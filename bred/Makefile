@@ -67,10 +67,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/solution/basis
+CMAKE_SOURCE_DIR = /home/camilo/solution/basis
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/solution/basis
+CMAKE_BINARY_DIR = /home/camilo/solution/basis
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,14 +99,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles /home/pi/solution/basis/source/app/bred//CMakeFiles/progress.marks
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/bred/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles /home/camilo/solution/basis/source/app/bred//CMakeFiles/progress.marks
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/bred/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/bred/clean
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/bred/clean
 .PHONY : clean
 
 # The main clean target
@@ -116,22 +116,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/bred/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/bred/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/bred/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/bred/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 source/app/bred/CMakeFiles/bred.dir/rule:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/bred/CMakeFiles/bred.dir/rule
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/bred/CMakeFiles/bred.dir/rule
 .PHONY : source/app/bred/CMakeFiles/bred.dir/rule
 
 # Convenience name for target.
@@ -141,7 +141,7 @@ bred: source/app/bred/CMakeFiles/bred.dir/rule
 
 # fast build rule for target.
 bred/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/build
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/build
 .PHONY : bred/fast
 
 _.o: _.cpp.o
@@ -150,7 +150,7 @@ _.o: _.cpp.o
 
 # target to build an object file
 _.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/_.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/_.cpp.o
 .PHONY : _.cpp.o
 
 _.i: _.cpp.i
@@ -159,7 +159,7 @@ _.i: _.cpp.i
 
 # target to preprocess a source file
 _.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/_.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/_.cpp.i
 .PHONY : _.cpp.i
 
 _.s: _.cpp.s
@@ -168,22 +168,22 @@ _.s: _.cpp.s
 
 # target to generate assembly for a file
 _.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/_.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/_.cpp.s
 .PHONY : _.cpp.s
 
 # target to build an object file
 cmake_pch.hxx.gch:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/cmake_pch.hxx.gch
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/cmake_pch.hxx.gch
 .PHONY : cmake_pch.hxx.gch
 
 # target to preprocess a source file
 cmake_pch.hxx.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/cmake_pch.hxx.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/cmake_pch.hxx.i
 .PHONY : cmake_pch.hxx.i
 
 # target to generate assembly for a file
 cmake_pch.hxx.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/cmake_pch.hxx.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/cmake_pch.hxx.s
 .PHONY : cmake_pch.hxx.s
 
 const/idpool.o: const/idpool.cpp.o
@@ -192,7 +192,7 @@ const/idpool.o: const/idpool.cpp.o
 
 # target to build an object file
 const/idpool.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/const/idpool.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/const/idpool.cpp.o
 .PHONY : const/idpool.cpp.o
 
 const/idpool.i: const/idpool.cpp.i
@@ -201,7 +201,7 @@ const/idpool.i: const/idpool.cpp.i
 
 # target to preprocess a source file
 const/idpool.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/const/idpool.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/const/idpool.cpp.i
 .PHONY : const/idpool.cpp.i
 
 const/idpool.s: const/idpool.cpp.s
@@ -210,7 +210,7 @@ const/idpool.s: const/idpool.cpp.s
 
 # target to generate assembly for a file
 const/idpool.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/const/idpool.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/const/idpool.cpp.s
 .PHONY : const/idpool.cpp.s
 
 framework.o: framework.cpp.o
@@ -219,7 +219,7 @@ framework.o: framework.cpp.o
 
 # target to build an object file
 framework.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/framework.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/framework.cpp.o
 .PHONY : framework.cpp.o
 
 framework.i: framework.cpp.i
@@ -228,7 +228,7 @@ framework.i: framework.cpp.i
 
 # target to preprocess a source file
 framework.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/framework.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/framework.cpp.i
 .PHONY : framework.cpp.i
 
 framework.s: framework.cpp.s
@@ -237,7 +237,7 @@ framework.s: framework.cpp.s
 
 # target to generate assembly for a file
 framework.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/framework.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/framework.cpp.s
 .PHONY : framework.cpp.s
 
 platform/application.o: platform/application.cpp.o
@@ -246,7 +246,7 @@ platform/application.o: platform/application.cpp.o
 
 # target to build an object file
 platform/application.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/platform/application.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/platform/application.cpp.o
 .PHONY : platform/application.cpp.o
 
 platform/application.i: platform/application.cpp.i
@@ -255,7 +255,7 @@ platform/application.i: platform/application.cpp.i
 
 # target to preprocess a source file
 platform/application.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/platform/application.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/platform/application.cpp.i
 .PHONY : platform/application.cpp.i
 
 platform/application.s: platform/application.cpp.s
@@ -264,7 +264,7 @@ platform/application.s: platform/application.cpp.s
 
 # target to generate assembly for a file
 platform/application.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/platform/application.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/platform/application.cpp.s
 .PHONY : platform/application.cpp.s
 
 platform/session.o: platform/session.cpp.o
@@ -273,7 +273,7 @@ platform/session.o: platform/session.cpp.o
 
 # target to build an object file
 platform/session.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/platform/session.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/platform/session.cpp.o
 .PHONY : platform/session.cpp.o
 
 platform/session.i: platform/session.cpp.i
@@ -282,7 +282,7 @@ platform/session.i: platform/session.cpp.i
 
 # target to preprocess a source file
 platform/session.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/platform/session.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/platform/session.cpp.i
 .PHONY : platform/session.cpp.i
 
 platform/session.s: platform/session.cpp.s
@@ -291,7 +291,7 @@ platform/session.s: platform/session.cpp.s
 
 # target to generate assembly for a file
 platform/session.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/platform/session.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/platform/session.cpp.s
 .PHONY : platform/session.cpp.s
 
 platform/system.o: platform/system.cpp.o
@@ -300,7 +300,7 @@ platform/system.o: platform/system.cpp.o
 
 # target to build an object file
 platform/system.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/platform/system.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/platform/system.cpp.o
 .PHONY : platform/system.cpp.o
 
 platform/system.i: platform/system.cpp.i
@@ -309,7 +309,7 @@ platform/system.i: platform/system.cpp.i
 
 # target to preprocess a source file
 platform/system.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/platform/system.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/platform/system.cpp.i
 .PHONY : platform/system.cpp.i
 
 platform/system.s: platform/system.cpp.s
@@ -318,7 +318,7 @@ platform/system.s: platform/system.cpp.s
 
 # target to generate assembly for a file
 platform/system.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/platform/system.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/bred/CMakeFiles/bred.dir/build.make source/app/bred/CMakeFiles/bred.dir/platform/system.cpp.s
 .PHONY : platform/system.cpp.s
 
 # Help Target
@@ -362,6 +362,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

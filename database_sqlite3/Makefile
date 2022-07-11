@@ -67,10 +67,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/solution/basis
+CMAKE_SOURCE_DIR = /home/camilo/solution/basis
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/solution/basis
+CMAKE_BINARY_DIR = /home/camilo/solution/basis
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,14 +99,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles /home/pi/solution/basis/source/app/database_sqlite3//CMakeFiles/progress.marks
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/database_sqlite3/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles /home/camilo/solution/basis/source/app/database_sqlite3//CMakeFiles/progress.marks
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/database_sqlite3/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/database_sqlite3/clean
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/database_sqlite3/clean
 .PHONY : clean
 
 # The main clean target
@@ -116,22 +116,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/database_sqlite3/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/database_sqlite3/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/database_sqlite3/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/database_sqlite3/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/rule:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/rule
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/rule
 .PHONY : source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/rule
 
 # Convenience name for target.
@@ -141,7 +141,7 @@ database_sqlite3: source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/ru
 
 # fast build rule for target.
 database_sqlite3/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build
 .PHONY : database_sqlite3/fast
 
 _.o: _.cpp.o
@@ -150,7 +150,7 @@ _.o: _.cpp.o
 
 # target to build an object file
 _.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/_.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/_.cpp.o
 .PHONY : _.cpp.o
 
 _.i: _.cpp.i
@@ -159,7 +159,7 @@ _.i: _.cpp.i
 
 # target to preprocess a source file
 _.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/_.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/_.cpp.i
 .PHONY : _.cpp.i
 
 _.s: _.cpp.s
@@ -168,7 +168,7 @@ _.s: _.cpp.s
 
 # target to generate assembly for a file
 _.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/_.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/_.cpp.s
 .PHONY : _.cpp.s
 
 _factory.o: _factory.cpp.o
@@ -177,7 +177,7 @@ _factory.o: _factory.cpp.o
 
 # target to build an object file
 _factory.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/_factory.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/_factory.cpp.o
 .PHONY : _factory.cpp.o
 
 _factory.i: _factory.cpp.i
@@ -186,7 +186,7 @@ _factory.i: _factory.cpp.i
 
 # target to preprocess a source file
 _factory.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/_factory.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/_factory.cpp.i
 .PHONY : _factory.cpp.i
 
 _factory.s: _factory.cpp.s
@@ -195,22 +195,22 @@ _factory.s: _factory.cpp.s
 
 # target to generate assembly for a file
 _factory.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/_factory.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/_factory.cpp.s
 .PHONY : _factory.cpp.s
 
 # target to build an object file
 cmake_pch.hxx.gch:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/cmake_pch.hxx.gch
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/cmake_pch.hxx.gch
 .PHONY : cmake_pch.hxx.gch
 
 # target to preprocess a source file
 cmake_pch.hxx.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/cmake_pch.hxx.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/cmake_pch.hxx.i
 .PHONY : cmake_pch.hxx.i
 
 # target to generate assembly for a file
 cmake_pch.hxx.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/cmake_pch.hxx.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/cmake_pch.hxx.s
 .PHONY : cmake_pch.hxx.s
 
 database.o: database.cpp.o
@@ -219,7 +219,7 @@ database.o: database.cpp.o
 
 # target to build an object file
 database.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/database.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/database.cpp.o
 .PHONY : database.cpp.o
 
 database.i: database.cpp.i
@@ -228,7 +228,7 @@ database.i: database.cpp.i
 
 # target to preprocess a source file
 database.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/database.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/database.cpp.i
 .PHONY : database.cpp.i
 
 database.s: database.cpp.s
@@ -237,7 +237,7 @@ database.s: database.cpp.s
 
 # target to generate assembly for a file
 database.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/database.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/database.cpp.s
 .PHONY : database.cpp.s
 
 framework.o: framework.cpp.o
@@ -246,7 +246,7 @@ framework.o: framework.cpp.o
 
 # target to build an object file
 framework.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/framework.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/framework.cpp.o
 .PHONY : framework.cpp.o
 
 framework.i: framework.cpp.i
@@ -255,7 +255,7 @@ framework.i: framework.cpp.i
 
 # target to preprocess a source file
 framework.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/framework.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/framework.cpp.i
 .PHONY : framework.cpp.i
 
 framework.s: framework.cpp.s
@@ -264,7 +264,7 @@ framework.s: framework.cpp.s
 
 # target to generate assembly for a file
 framework.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/framework.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/build.make source/app/database_sqlite3/CMakeFiles/database_sqlite3.dir/framework.cpp.s
 .PHONY : framework.cpp.s
 
 # Help Target
@@ -302,6 +302,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -67,10 +67,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/solution/basis
+CMAKE_SOURCE_DIR = /home/camilo/solution/basis
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/solution/basis
+CMAKE_BINARY_DIR = /home/camilo/solution/basis
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,14 +99,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles /home/pi/solution/basis/source/app/programming//CMakeFiles/progress.marks
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/programming/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles /home/camilo/solution/basis/source/app/programming//CMakeFiles/progress.marks
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/programming/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/programming/clean
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/programming/clean
 .PHONY : clean
 
 # The main clean target
@@ -116,22 +116,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/programming/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/programming/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/programming/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/programming/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 source/app/programming/CMakeFiles/programming.dir/rule:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/programming/CMakeFiles/programming.dir/rule
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/programming/CMakeFiles/programming.dir/rule
 .PHONY : source/app/programming/CMakeFiles/programming.dir/rule
 
 # Convenience name for target.
@@ -141,7 +141,7 @@ programming: source/app/programming/CMakeFiles/programming.dir/rule
 
 # fast build rule for target.
 programming/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/build
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/build
 .PHONY : programming/fast
 
 _.o: _.cpp.o
@@ -150,7 +150,7 @@ _.o: _.cpp.o
 
 # target to build an object file
 _.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/_.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/_.cpp.o
 .PHONY : _.cpp.o
 
 _.i: _.cpp.i
@@ -159,7 +159,7 @@ _.i: _.cpp.i
 
 # target to preprocess a source file
 _.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/_.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/_.cpp.i
 .PHONY : _.cpp.i
 
 _.s: _.cpp.s
@@ -168,22 +168,22 @@ _.s: _.cpp.s
 
 # target to generate assembly for a file
 _.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/_.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/_.cpp.s
 .PHONY : _.cpp.s
 
 # target to build an object file
 cmake_pch.hxx.gch:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/cmake_pch.hxx.gch
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/cmake_pch.hxx.gch
 .PHONY : cmake_pch.hxx.gch
 
 # target to preprocess a source file
 cmake_pch.hxx.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/cmake_pch.hxx.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/cmake_pch.hxx.i
 .PHONY : cmake_pch.hxx.i
 
 # target to generate assembly for a file
 cmake_pch.hxx.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/cmake_pch.hxx.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/cmake_pch.hxx.s
 .PHONY : cmake_pch.hxx.s
 
 dynamic_source/exit_exception.o: dynamic_source/exit_exception.cpp.o
@@ -192,7 +192,7 @@ dynamic_source/exit_exception.o: dynamic_source/exit_exception.cpp.o
 
 # target to build an object file
 dynamic_source/exit_exception.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/exit_exception.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/exit_exception.cpp.o
 .PHONY : dynamic_source/exit_exception.cpp.o
 
 dynamic_source/exit_exception.i: dynamic_source/exit_exception.cpp.i
@@ -201,7 +201,7 @@ dynamic_source/exit_exception.i: dynamic_source/exit_exception.cpp.i
 
 # target to preprocess a source file
 dynamic_source/exit_exception.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/exit_exception.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/exit_exception.cpp.i
 .PHONY : dynamic_source/exit_exception.cpp.i
 
 dynamic_source/exit_exception.s: dynamic_source/exit_exception.cpp.s
@@ -210,7 +210,7 @@ dynamic_source/exit_exception.s: dynamic_source/exit_exception.cpp.s
 
 # target to generate assembly for a file
 dynamic_source/exit_exception.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/exit_exception.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/exit_exception.cpp.s
 .PHONY : dynamic_source/exit_exception.cpp.s
 
 dynamic_source/httpd_socket.o: dynamic_source/httpd_socket.cpp.o
@@ -219,7 +219,7 @@ dynamic_source/httpd_socket.o: dynamic_source/httpd_socket.cpp.o
 
 # target to build an object file
 dynamic_source/httpd_socket.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/httpd_socket.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/httpd_socket.cpp.o
 .PHONY : dynamic_source/httpd_socket.cpp.o
 
 dynamic_source/httpd_socket.i: dynamic_source/httpd_socket.cpp.i
@@ -228,7 +228,7 @@ dynamic_source/httpd_socket.i: dynamic_source/httpd_socket.cpp.i
 
 # target to preprocess a source file
 dynamic_source/httpd_socket.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/httpd_socket.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/httpd_socket.cpp.i
 .PHONY : dynamic_source/httpd_socket.cpp.i
 
 dynamic_source/httpd_socket.s: dynamic_source/httpd_socket.cpp.s
@@ -237,7 +237,7 @@ dynamic_source/httpd_socket.s: dynamic_source/httpd_socket.cpp.s
 
 # target to generate assembly for a file
 dynamic_source/httpd_socket.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/httpd_socket.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/httpd_socket.cpp.s
 .PHONY : dynamic_source/httpd_socket.cpp.s
 
 dynamic_source/script.o: dynamic_source/script.cpp.o
@@ -246,7 +246,7 @@ dynamic_source/script.o: dynamic_source/script.cpp.o
 
 # target to build an object file
 dynamic_source/script.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script.cpp.o
 .PHONY : dynamic_source/script.cpp.o
 
 dynamic_source/script.i: dynamic_source/script.cpp.i
@@ -255,7 +255,7 @@ dynamic_source/script.i: dynamic_source/script.cpp.i
 
 # target to preprocess a source file
 dynamic_source/script.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script.cpp.i
 .PHONY : dynamic_source/script.cpp.i
 
 dynamic_source/script.s: dynamic_source/script.cpp.s
@@ -264,7 +264,7 @@ dynamic_source/script.s: dynamic_source/script.cpp.s
 
 # target to generate assembly for a file
 dynamic_source/script.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script.cpp.s
 .PHONY : dynamic_source/script.cpp.s
 
 dynamic_source/script_cache.o: dynamic_source/script_cache.cpp.o
@@ -273,7 +273,7 @@ dynamic_source/script_cache.o: dynamic_source/script_cache.cpp.o
 
 # target to build an object file
 dynamic_source/script_cache.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_cache.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_cache.cpp.o
 .PHONY : dynamic_source/script_cache.cpp.o
 
 dynamic_source/script_cache.i: dynamic_source/script_cache.cpp.i
@@ -282,7 +282,7 @@ dynamic_source/script_cache.i: dynamic_source/script_cache.cpp.i
 
 # target to preprocess a source file
 dynamic_source/script_cache.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_cache.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_cache.cpp.i
 .PHONY : dynamic_source/script_cache.cpp.i
 
 dynamic_source/script_cache.s: dynamic_source/script_cache.cpp.s
@@ -291,7 +291,7 @@ dynamic_source/script_cache.s: dynamic_source/script_cache.cpp.s
 
 # target to generate assembly for a file
 dynamic_source/script_cache.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_cache.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_cache.cpp.s
 .PHONY : dynamic_source/script_cache.cpp.s
 
 dynamic_source/script_compiler.o: dynamic_source/script_compiler.cpp.o
@@ -300,7 +300,7 @@ dynamic_source/script_compiler.o: dynamic_source/script_compiler.cpp.o
 
 # target to build an object file
 dynamic_source/script_compiler.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_compiler.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_compiler.cpp.o
 .PHONY : dynamic_source/script_compiler.cpp.o
 
 dynamic_source/script_compiler.i: dynamic_source/script_compiler.cpp.i
@@ -309,7 +309,7 @@ dynamic_source/script_compiler.i: dynamic_source/script_compiler.cpp.i
 
 # target to preprocess a source file
 dynamic_source/script_compiler.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_compiler.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_compiler.cpp.i
 .PHONY : dynamic_source/script_compiler.cpp.i
 
 dynamic_source/script_compiler.s: dynamic_source/script_compiler.cpp.s
@@ -318,7 +318,7 @@ dynamic_source/script_compiler.s: dynamic_source/script_compiler.cpp.s
 
 # target to generate assembly for a file
 dynamic_source/script_compiler.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_compiler.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_compiler.cpp.s
 .PHONY : dynamic_source/script_compiler.cpp.s
 
 dynamic_source/script_composite.o: dynamic_source/script_composite.cpp.o
@@ -327,7 +327,7 @@ dynamic_source/script_composite.o: dynamic_source/script_composite.cpp.o
 
 # target to build an object file
 dynamic_source/script_composite.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_composite.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_composite.cpp.o
 .PHONY : dynamic_source/script_composite.cpp.o
 
 dynamic_source/script_composite.i: dynamic_source/script_composite.cpp.i
@@ -336,7 +336,7 @@ dynamic_source/script_composite.i: dynamic_source/script_composite.cpp.i
 
 # target to preprocess a source file
 dynamic_source/script_composite.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_composite.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_composite.cpp.i
 .PHONY : dynamic_source/script_composite.cpp.i
 
 dynamic_source/script_composite.s: dynamic_source/script_composite.cpp.s
@@ -345,7 +345,7 @@ dynamic_source/script_composite.s: dynamic_source/script_composite.cpp.s
 
 # target to generate assembly for a file
 dynamic_source/script_composite.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_composite.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_composite.cpp.s
 .PHONY : dynamic_source/script_composite.cpp.s
 
 dynamic_source/script_instance.o: dynamic_source/script_instance.cpp.o
@@ -354,7 +354,7 @@ dynamic_source/script_instance.o: dynamic_source/script_instance.cpp.o
 
 # target to build an object file
 dynamic_source/script_instance.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_instance.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_instance.cpp.o
 .PHONY : dynamic_source/script_instance.cpp.o
 
 dynamic_source/script_instance.i: dynamic_source/script_instance.cpp.i
@@ -363,7 +363,7 @@ dynamic_source/script_instance.i: dynamic_source/script_instance.cpp.i
 
 # target to preprocess a source file
 dynamic_source/script_instance.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_instance.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_instance.cpp.i
 .PHONY : dynamic_source/script_instance.cpp.i
 
 dynamic_source/script_instance.s: dynamic_source/script_instance.cpp.s
@@ -372,7 +372,7 @@ dynamic_source/script_instance.s: dynamic_source/script_instance.cpp.s
 
 # target to generate assembly for a file
 dynamic_source/script_instance.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_instance.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_instance.cpp.s
 .PHONY : dynamic_source/script_instance.cpp.s
 
 dynamic_source/script_interface.o: dynamic_source/script_interface.cpp.o
@@ -381,7 +381,7 @@ dynamic_source/script_interface.o: dynamic_source/script_interface.cpp.o
 
 # target to build an object file
 dynamic_source/script_interface.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_interface.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_interface.cpp.o
 .PHONY : dynamic_source/script_interface.cpp.o
 
 dynamic_source/script_interface.i: dynamic_source/script_interface.cpp.i
@@ -390,7 +390,7 @@ dynamic_source/script_interface.i: dynamic_source/script_interface.cpp.i
 
 # target to preprocess a source file
 dynamic_source/script_interface.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_interface.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_interface.cpp.i
 .PHONY : dynamic_source/script_interface.cpp.i
 
 dynamic_source/script_interface.s: dynamic_source/script_interface.cpp.s
@@ -399,7 +399,7 @@ dynamic_source/script_interface.s: dynamic_source/script_interface.cpp.s
 
 # target to generate assembly for a file
 dynamic_source/script_interface.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_interface.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_interface.cpp.s
 .PHONY : dynamic_source/script_interface.cpp.s
 
 dynamic_source/script_main.o: dynamic_source/script_main.cpp.o
@@ -408,7 +408,7 @@ dynamic_source/script_main.o: dynamic_source/script_main.cpp.o
 
 # target to build an object file
 dynamic_source/script_main.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_main.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_main.cpp.o
 .PHONY : dynamic_source/script_main.cpp.o
 
 dynamic_source/script_main.i: dynamic_source/script_main.cpp.i
@@ -417,7 +417,7 @@ dynamic_source/script_main.i: dynamic_source/script_main.cpp.i
 
 # target to preprocess a source file
 dynamic_source/script_main.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_main.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_main.cpp.i
 .PHONY : dynamic_source/script_main.cpp.i
 
 dynamic_source/script_main.s: dynamic_source/script_main.cpp.s
@@ -426,7 +426,7 @@ dynamic_source/script_main.s: dynamic_source/script_main.cpp.s
 
 # target to generate assembly for a file
 dynamic_source/script_main.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_main.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_main.cpp.s
 .PHONY : dynamic_source/script_main.cpp.s
 
 dynamic_source/script_manager.o: dynamic_source/script_manager.cpp.o
@@ -435,7 +435,7 @@ dynamic_source/script_manager.o: dynamic_source/script_manager.cpp.o
 
 # target to build an object file
 dynamic_source/script_manager.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_manager.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_manager.cpp.o
 .PHONY : dynamic_source/script_manager.cpp.o
 
 dynamic_source/script_manager.i: dynamic_source/script_manager.cpp.i
@@ -444,7 +444,7 @@ dynamic_source/script_manager.i: dynamic_source/script_manager.cpp.i
 
 # target to preprocess a source file
 dynamic_source/script_manager.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_manager.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_manager.cpp.i
 .PHONY : dynamic_source/script_manager.cpp.i
 
 dynamic_source/script_manager.s: dynamic_source/script_manager.cpp.s
@@ -453,7 +453,7 @@ dynamic_source/script_manager.s: dynamic_source/script_manager.cpp.s
 
 # target to generate assembly for a file
 dynamic_source/script_manager.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_manager.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/script_manager.cpp.s
 .PHONY : dynamic_source/script_manager.cpp.s
 
 dynamic_source/session.o: dynamic_source/session.cpp.o
@@ -462,7 +462,7 @@ dynamic_source/session.o: dynamic_source/session.cpp.o
 
 # target to build an object file
 dynamic_source/session.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/session.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/session.cpp.o
 .PHONY : dynamic_source/session.cpp.o
 
 dynamic_source/session.i: dynamic_source/session.cpp.i
@@ -471,7 +471,7 @@ dynamic_source/session.i: dynamic_source/session.cpp.i
 
 # target to preprocess a source file
 dynamic_source/session.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/session.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/session.cpp.i
 .PHONY : dynamic_source/session.cpp.i
 
 dynamic_source/session.s: dynamic_source/session.cpp.s
@@ -480,7 +480,7 @@ dynamic_source/session.s: dynamic_source/session.cpp.s
 
 # target to generate assembly for a file
 dynamic_source/session.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/session.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/dynamic_source/session.cpp.s
 .PHONY : dynamic_source/session.cpp.s
 
 framework.o: framework.cpp.o
@@ -489,7 +489,7 @@ framework.o: framework.cpp.o
 
 # target to build an object file
 framework.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/framework.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/framework.cpp.o
 .PHONY : framework.cpp.o
 
 framework.i: framework.cpp.i
@@ -498,7 +498,7 @@ framework.i: framework.cpp.i
 
 # target to preprocess a source file
 framework.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/framework.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/framework.cpp.i
 .PHONY : framework.cpp.i
 
 framework.s: framework.cpp.s
@@ -507,7 +507,7 @@ framework.s: framework.cpp.s
 
 # target to generate assembly for a file
 framework.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/framework.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/framework.cpp.s
 .PHONY : framework.cpp.s
 
 introjection/compiler.o: introjection/compiler.cpp.o
@@ -516,7 +516,7 @@ introjection/compiler.o: introjection/compiler.cpp.o
 
 # target to build an object file
 introjection/compiler.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/introjection/compiler.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/introjection/compiler.cpp.o
 .PHONY : introjection/compiler.cpp.o
 
 introjection/compiler.i: introjection/compiler.cpp.i
@@ -525,7 +525,7 @@ introjection/compiler.i: introjection/compiler.cpp.i
 
 # target to preprocess a source file
 introjection/compiler.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/introjection/compiler.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/introjection/compiler.cpp.i
 .PHONY : introjection/compiler.cpp.i
 
 introjection/compiler.s: introjection/compiler.cpp.s
@@ -534,7 +534,7 @@ introjection/compiler.s: introjection/compiler.cpp.s
 
 # target to generate assembly for a file
 introjection/compiler.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/introjection/compiler.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/introjection/compiler.cpp.s
 .PHONY : introjection/compiler.cpp.s
 
 introjection/library.o: introjection/library.cpp.o
@@ -543,7 +543,7 @@ introjection/library.o: introjection/library.cpp.o
 
 # target to build an object file
 introjection/library.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/introjection/library.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/introjection/library.cpp.o
 .PHONY : introjection/library.cpp.o
 
 introjection/library.i: introjection/library.cpp.i
@@ -552,7 +552,7 @@ introjection/library.i: introjection/library.cpp.i
 
 # target to preprocess a source file
 introjection/library.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/introjection/library.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/introjection/library.cpp.i
 .PHONY : introjection/library.cpp.i
 
 introjection/library.s: introjection/library.cpp.s
@@ -561,7 +561,7 @@ introjection/library.s: introjection/library.cpp.s
 
 # target to generate assembly for a file
 introjection/library.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/introjection/library.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/introjection/library.cpp.s
 .PHONY : introjection/library.cpp.s
 
 programming/compiler.o: programming/compiler.cpp.o
@@ -570,7 +570,7 @@ programming/compiler.o: programming/compiler.cpp.o
 
 # target to build an object file
 programming/compiler.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/programming/compiler.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/programming/compiler.cpp.o
 .PHONY : programming/compiler.cpp.o
 
 programming/compiler.i: programming/compiler.cpp.i
@@ -579,7 +579,7 @@ programming/compiler.i: programming/compiler.cpp.i
 
 # target to preprocess a source file
 programming/compiler.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/programming/compiler.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/programming/compiler.cpp.i
 .PHONY : programming/compiler.cpp.i
 
 programming/compiler.s: programming/compiler.cpp.s
@@ -588,7 +588,7 @@ programming/compiler.s: programming/compiler.cpp.s
 
 # target to generate assembly for a file
 programming/compiler.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/programming/compiler.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/programming/CMakeFiles/programming.dir/build.make source/app/programming/CMakeFiles/programming.dir/programming/compiler.cpp.s
 .PHONY : programming/compiler.cpp.s
 
 # Help Target
@@ -662,6 +662,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

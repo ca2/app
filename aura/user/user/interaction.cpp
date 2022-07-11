@@ -485,16 +485,16 @@ namespace user
    ::windowing::window * interaction::_window() const
    {
 
-      auto puserinteractionHost = ((interaction *)this)->get_host_window();
+      auto puserinteractionTopLevel = ((interaction *)this)->_top_level();
 
-      if (::is_null(puserinteractionHost))
+      if (::is_null(puserinteractionTopLevel))
       {
 
          return nullptr;
 
       }
 
-      auto pinteractionimpl = puserinteractionHost->m_pinteractionimpl;
+      auto pinteractionimpl = puserinteractionTopLevel->m_pinteractionimpl;
 
       if (::is_null(pinteractionimpl))
       {

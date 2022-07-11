@@ -67,10 +67,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/solution/basis
+CMAKE_SOURCE_DIR = /home/camilo/solution/basis
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/solution/basis
+CMAKE_BINARY_DIR = /home/camilo/solution/basis
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,14 +99,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles /home/pi/solution/basis/source/app/imaging_freeimage//CMakeFiles/progress.marks
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/imaging_freeimage/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles /home/camilo/solution/basis/source/app/imaging_freeimage//CMakeFiles/progress.marks
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/imaging_freeimage/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/imaging_freeimage/clean
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/imaging_freeimage/clean
 .PHONY : clean
 
 # The main clean target
@@ -116,22 +116,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/imaging_freeimage/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/imaging_freeimage/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/imaging_freeimage/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/imaging_freeimage/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/rule:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/rule
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/rule
 .PHONY : source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/rule
 
 # Convenience name for target.
@@ -141,7 +141,7 @@ imaging_freeimage: source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir
 
 # fast build rule for target.
 imaging_freeimage/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build
 .PHONY : imaging_freeimage/fast
 
 _.o: _.cpp.o
@@ -150,7 +150,7 @@ _.o: _.cpp.o
 
 # target to build an object file
 _.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/_.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/_.cpp.o
 .PHONY : _.cpp.o
 
 _.i: _.cpp.i
@@ -159,7 +159,7 @@ _.i: _.cpp.i
 
 # target to preprocess a source file
 _.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/_.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/_.cpp.i
 .PHONY : _.cpp.i
 
 _.s: _.cpp.s
@@ -168,7 +168,7 @@ _.s: _.cpp.s
 
 # target to generate assembly for a file
 _.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/_.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/_.cpp.s
 .PHONY : _.cpp.s
 
 _factory.o: _factory.cpp.o
@@ -177,7 +177,7 @@ _factory.o: _factory.cpp.o
 
 # target to build an object file
 _factory.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/_factory.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/_factory.cpp.o
 .PHONY : _factory.cpp.o
 
 _factory.i: _factory.cpp.i
@@ -186,7 +186,7 @@ _factory.i: _factory.cpp.i
 
 # target to preprocess a source file
 _factory.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/_factory.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/_factory.cpp.i
 .PHONY : _factory.cpp.i
 
 _factory.s: _factory.cpp.s
@@ -195,22 +195,22 @@ _factory.s: _factory.cpp.s
 
 # target to generate assembly for a file
 _factory.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/_factory.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/_factory.cpp.s
 .PHONY : _factory.cpp.s
 
 # target to build an object file
 cmake_pch.hxx.gch:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/cmake_pch.hxx.gch
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/cmake_pch.hxx.gch
 .PHONY : cmake_pch.hxx.gch
 
 # target to preprocess a source file
 cmake_pch.hxx.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/cmake_pch.hxx.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/cmake_pch.hxx.i
 .PHONY : cmake_pch.hxx.i
 
 # target to generate assembly for a file
 cmake_pch.hxx.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/cmake_pch.hxx.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/cmake_pch.hxx.s
 .PHONY : cmake_pch.hxx.s
 
 context_image.o: context_image.cpp.o
@@ -219,7 +219,7 @@ context_image.o: context_image.cpp.o
 
 # target to build an object file
 context_image.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/context_image.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/context_image.cpp.o
 .PHONY : context_image.cpp.o
 
 context_image.i: context_image.cpp.i
@@ -228,7 +228,7 @@ context_image.i: context_image.cpp.i
 
 # target to preprocess a source file
 context_image.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/context_image.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/context_image.cpp.i
 .PHONY : context_image.cpp.i
 
 context_image.s: context_image.cpp.s
@@ -237,7 +237,7 @@ context_image.s: context_image.cpp.s
 
 # target to generate assembly for a file
 context_image.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/context_image.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/context_image.cpp.s
 .PHONY : context_image.cpp.s
 
 file_procedure.o: file_procedure.cpp.o
@@ -246,7 +246,7 @@ file_procedure.o: file_procedure.cpp.o
 
 # target to build an object file
 file_procedure.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/file_procedure.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/file_procedure.cpp.o
 .PHONY : file_procedure.cpp.o
 
 file_procedure.i: file_procedure.cpp.i
@@ -255,7 +255,7 @@ file_procedure.i: file_procedure.cpp.i
 
 # target to preprocess a source file
 file_procedure.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/file_procedure.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/file_procedure.cpp.i
 .PHONY : file_procedure.cpp.i
 
 file_procedure.s: file_procedure.cpp.s
@@ -264,7 +264,7 @@ file_procedure.s: file_procedure.cpp.s
 
 # target to generate assembly for a file
 file_procedure.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/file_procedure.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/file_procedure.cpp.s
 .PHONY : file_procedure.cpp.s
 
 file_procedure_ex1.o: file_procedure_ex1.cpp.o
@@ -273,7 +273,7 @@ file_procedure_ex1.o: file_procedure_ex1.cpp.o
 
 # target to build an object file
 file_procedure_ex1.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/file_procedure_ex1.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/file_procedure_ex1.cpp.o
 .PHONY : file_procedure_ex1.cpp.o
 
 file_procedure_ex1.i: file_procedure_ex1.cpp.i
@@ -282,7 +282,7 @@ file_procedure_ex1.i: file_procedure_ex1.cpp.i
 
 # target to preprocess a source file
 file_procedure_ex1.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/file_procedure_ex1.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/file_procedure_ex1.cpp.i
 .PHONY : file_procedure_ex1.cpp.i
 
 file_procedure_ex1.s: file_procedure_ex1.cpp.s
@@ -291,7 +291,7 @@ file_procedure_ex1.s: file_procedure_ex1.cpp.s
 
 # target to generate assembly for a file
 file_procedure_ex1.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/file_procedure_ex1.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/file_procedure_ex1.cpp.s
 .PHONY : file_procedure_ex1.cpp.s
 
 framework.o: framework.cpp.o
@@ -300,7 +300,7 @@ framework.o: framework.cpp.o
 
 # target to build an object file
 framework.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/framework.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/framework.cpp.o
 .PHONY : framework.cpp.o
 
 framework.i: framework.cpp.i
@@ -309,7 +309,7 @@ framework.i: framework.cpp.i
 
 # target to preprocess a source file
 framework.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/framework.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/framework.cpp.i
 .PHONY : framework.cpp.i
 
 framework.s: framework.cpp.s
@@ -318,7 +318,7 @@ framework.s: framework.cpp.s
 
 # target to generate assembly for a file
 framework.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/framework.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/framework.cpp.s
 .PHONY : framework.cpp.s
 
 loading.o: loading.cpp.o
@@ -327,7 +327,7 @@ loading.o: loading.cpp.o
 
 # target to build an object file
 loading.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/loading.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/loading.cpp.o
 .PHONY : loading.cpp.o
 
 loading.i: loading.cpp.i
@@ -336,7 +336,7 @@ loading.i: loading.cpp.i
 
 # target to preprocess a source file
 loading.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/loading.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/loading.cpp.i
 .PHONY : loading.cpp.i
 
 loading.s: loading.cpp.s
@@ -345,7 +345,7 @@ loading.s: loading.cpp.s
 
 # target to generate assembly for a file
 loading.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/loading.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/loading.cpp.s
 .PHONY : loading.cpp.s
 
 loading_multi_frame.o: loading_multi_frame.cpp.o
@@ -354,7 +354,7 @@ loading_multi_frame.o: loading_multi_frame.cpp.o
 
 # target to build an object file
 loading_multi_frame.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/loading_multi_frame.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/loading_multi_frame.cpp.o
 .PHONY : loading_multi_frame.cpp.o
 
 loading_multi_frame.i: loading_multi_frame.cpp.i
@@ -363,7 +363,7 @@ loading_multi_frame.i: loading_multi_frame.cpp.i
 
 # target to preprocess a source file
 loading_multi_frame.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/loading_multi_frame.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/loading_multi_frame.cpp.i
 .PHONY : loading_multi_frame.cpp.i
 
 loading_multi_frame.s: loading_multi_frame.cpp.s
@@ -372,7 +372,7 @@ loading_multi_frame.s: loading_multi_frame.cpp.s
 
 # target to generate assembly for a file
 loading_multi_frame.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/loading_multi_frame.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/loading_multi_frame.cpp.s
 .PHONY : loading_multi_frame.cpp.s
 
 loading_svg.o: loading_svg.cpp.o
@@ -381,7 +381,7 @@ loading_svg.o: loading_svg.cpp.o
 
 # target to build an object file
 loading_svg.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/loading_svg.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/loading_svg.cpp.o
 .PHONY : loading_svg.cpp.o
 
 loading_svg.i: loading_svg.cpp.i
@@ -390,7 +390,7 @@ loading_svg.i: loading_svg.cpp.i
 
 # target to preprocess a source file
 loading_svg.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/loading_svg.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/loading_svg.cpp.i
 .PHONY : loading_svg.cpp.i
 
 loading_svg.s: loading_svg.cpp.s
@@ -399,7 +399,7 @@ loading_svg.s: loading_svg.cpp.s
 
 # target to generate assembly for a file
 loading_svg.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/loading_svg.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/loading_svg.cpp.s
 .PHONY : loading_svg.cpp.s
 
 saving.o: saving.cpp.o
@@ -408,7 +408,7 @@ saving.o: saving.cpp.o
 
 # target to build an object file
 saving.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/saving.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/saving.cpp.o
 .PHONY : saving.cpp.o
 
 saving.i: saving.cpp.i
@@ -417,7 +417,7 @@ saving.i: saving.cpp.i
 
 # target to preprocess a source file
 saving.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/saving.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/saving.cpp.i
 .PHONY : saving.cpp.i
 
 saving.s: saving.cpp.s
@@ -426,7 +426,7 @@ saving.s: saving.cpp.s
 
 # target to generate assembly for a file
 saving.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/saving.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/build.make source/app/imaging_freeimage/CMakeFiles/imaging_freeimage.dir/saving.cpp.s
 .PHONY : saving.cpp.s
 
 # Help Target
@@ -482,6 +482,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

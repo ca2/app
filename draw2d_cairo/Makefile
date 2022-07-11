@@ -67,10 +67,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/solution/basis
+CMAKE_SOURCE_DIR = /home/camilo/solution/basis
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/solution/basis
+CMAKE_BINARY_DIR = /home/camilo/solution/basis
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,14 +99,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles /home/pi/solution/basis/source/app/draw2d_cairo//CMakeFiles/progress.marks
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/draw2d_cairo/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles /home/camilo/solution/basis/source/app/draw2d_cairo//CMakeFiles/progress.marks
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/draw2d_cairo/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/draw2d_cairo/clean
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/draw2d_cairo/clean
 .PHONY : clean
 
 # The main clean target
@@ -116,22 +116,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/draw2d_cairo/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/draw2d_cairo/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/draw2d_cairo/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/draw2d_cairo/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/rule:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/rule
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/rule
 .PHONY : source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/rule
 
 # Convenience name for target.
@@ -141,7 +141,7 @@ draw2d_cairo: source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/rule
 
 # fast build rule for target.
 draw2d_cairo/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build
 .PHONY : draw2d_cairo/fast
 
 _.o: _.cpp.o
@@ -150,7 +150,7 @@ _.o: _.cpp.o
 
 # target to build an object file
 _.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/_.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/_.cpp.o
 .PHONY : _.cpp.o
 
 _.i: _.cpp.i
@@ -159,7 +159,7 @@ _.i: _.cpp.i
 
 # target to preprocess a source file
 _.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/_.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/_.cpp.i
 .PHONY : _.cpp.i
 
 _.s: _.cpp.s
@@ -168,7 +168,7 @@ _.s: _.cpp.s
 
 # target to generate assembly for a file
 _.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/_.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/_.cpp.s
 .PHONY : _.cpp.s
 
 _cairo.o: _cairo.cpp.o
@@ -177,7 +177,7 @@ _cairo.o: _cairo.cpp.o
 
 # target to build an object file
 _cairo.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/_cairo.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/_cairo.cpp.o
 .PHONY : _cairo.cpp.o
 
 _cairo.i: _cairo.cpp.i
@@ -186,7 +186,7 @@ _cairo.i: _cairo.cpp.i
 
 # target to preprocess a source file
 _cairo.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/_cairo.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/_cairo.cpp.i
 .PHONY : _cairo.cpp.i
 
 _cairo.s: _cairo.cpp.s
@@ -195,7 +195,7 @@ _cairo.s: _cairo.cpp.s
 
 # target to generate assembly for a file
 _cairo.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/_cairo.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/_cairo.cpp.s
 .PHONY : _cairo.cpp.s
 
 _factory.o: _factory.cpp.o
@@ -204,7 +204,7 @@ _factory.o: _factory.cpp.o
 
 # target to build an object file
 _factory.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/_factory.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/_factory.cpp.o
 .PHONY : _factory.cpp.o
 
 _factory.i: _factory.cpp.i
@@ -213,7 +213,7 @@ _factory.i: _factory.cpp.i
 
 # target to preprocess a source file
 _factory.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/_factory.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/_factory.cpp.i
 .PHONY : _factory.cpp.i
 
 _factory.s: _factory.cpp.s
@@ -222,7 +222,7 @@ _factory.s: _factory.cpp.s
 
 # target to generate assembly for a file
 _factory.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/_factory.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/_factory.cpp.s
 .PHONY : _factory.cpp.s
 
 bitmap.o: bitmap.cpp.o
@@ -231,7 +231,7 @@ bitmap.o: bitmap.cpp.o
 
 # target to build an object file
 bitmap.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/bitmap.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/bitmap.cpp.o
 .PHONY : bitmap.cpp.o
 
 bitmap.i: bitmap.cpp.i
@@ -240,7 +240,7 @@ bitmap.i: bitmap.cpp.i
 
 # target to preprocess a source file
 bitmap.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/bitmap.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/bitmap.cpp.i
 .PHONY : bitmap.cpp.i
 
 bitmap.s: bitmap.cpp.s
@@ -249,7 +249,7 @@ bitmap.s: bitmap.cpp.s
 
 # target to generate assembly for a file
 bitmap.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/bitmap.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/bitmap.cpp.s
 .PHONY : bitmap.cpp.s
 
 brush.o: brush.cpp.o
@@ -258,7 +258,7 @@ brush.o: brush.cpp.o
 
 # target to build an object file
 brush.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/brush.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/brush.cpp.o
 .PHONY : brush.cpp.o
 
 brush.i: brush.cpp.i
@@ -267,7 +267,7 @@ brush.i: brush.cpp.i
 
 # target to preprocess a source file
 brush.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/brush.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/brush.cpp.i
 .PHONY : brush.cpp.i
 
 brush.s: brush.cpp.s
@@ -276,7 +276,7 @@ brush.s: brush.cpp.s
 
 # target to generate assembly for a file
 brush.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/brush.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/brush.cpp.s
 .PHONY : brush.cpp.s
 
 cairo.o: cairo.cpp.o
@@ -285,7 +285,7 @@ cairo.o: cairo.cpp.o
 
 # target to build an object file
 cairo.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/cairo.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/cairo.cpp.o
 .PHONY : cairo.cpp.o
 
 cairo.i: cairo.cpp.i
@@ -294,7 +294,7 @@ cairo.i: cairo.cpp.i
 
 # target to preprocess a source file
 cairo.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/cairo.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/cairo.cpp.i
 .PHONY : cairo.cpp.i
 
 cairo.s: cairo.cpp.s
@@ -303,22 +303,22 @@ cairo.s: cairo.cpp.s
 
 # target to generate assembly for a file
 cairo.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/cairo.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/cairo.cpp.s
 .PHONY : cairo.cpp.s
 
 # target to build an object file
 cmake_pch.hxx.gch:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/cmake_pch.hxx.gch
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/cmake_pch.hxx.gch
 .PHONY : cmake_pch.hxx.gch
 
 # target to preprocess a source file
 cmake_pch.hxx.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/cmake_pch.hxx.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/cmake_pch.hxx.i
 .PHONY : cmake_pch.hxx.i
 
 # target to generate assembly for a file
 cmake_pch.hxx.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/cmake_pch.hxx.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/cmake_pch.hxx.s
 .PHONY : cmake_pch.hxx.s
 
 draw2d.o: draw2d.cpp.o
@@ -327,7 +327,7 @@ draw2d.o: draw2d.cpp.o
 
 # target to build an object file
 draw2d.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/draw2d.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/draw2d.cpp.o
 .PHONY : draw2d.cpp.o
 
 draw2d.i: draw2d.cpp.i
@@ -336,7 +336,7 @@ draw2d.i: draw2d.cpp.i
 
 # target to preprocess a source file
 draw2d.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/draw2d.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/draw2d.cpp.i
 .PHONY : draw2d.cpp.i
 
 draw2d.s: draw2d.cpp.s
@@ -345,7 +345,7 @@ draw2d.s: draw2d.cpp.s
 
 # target to generate assembly for a file
 draw2d.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/draw2d.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/draw2d.cpp.s
 .PHONY : draw2d.cpp.s
 
 font.o: font.cpp.o
@@ -354,7 +354,7 @@ font.o: font.cpp.o
 
 # target to build an object file
 font.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/font.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/font.cpp.o
 .PHONY : font.cpp.o
 
 font.i: font.cpp.i
@@ -363,7 +363,7 @@ font.i: font.cpp.i
 
 # target to preprocess a source file
 font.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/font.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/font.cpp.i
 .PHONY : font.cpp.i
 
 font.s: font.cpp.s
@@ -372,7 +372,7 @@ font.s: font.cpp.s
 
 # target to generate assembly for a file
 font.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/font.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/font.cpp.s
 .PHONY : font.cpp.s
 
 framework.o: framework.cpp.o
@@ -381,7 +381,7 @@ framework.o: framework.cpp.o
 
 # target to build an object file
 framework.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/framework.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/framework.cpp.o
 .PHONY : framework.cpp.o
 
 framework.i: framework.cpp.i
@@ -390,7 +390,7 @@ framework.i: framework.cpp.i
 
 # target to preprocess a source file
 framework.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/framework.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/framework.cpp.i
 .PHONY : framework.cpp.i
 
 framework.s: framework.cpp.s
@@ -399,7 +399,7 @@ framework.s: framework.cpp.s
 
 # target to generate assembly for a file
 framework.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/framework.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/framework.cpp.s
 .PHONY : framework.cpp.s
 
 graphics.o: graphics.cpp.o
@@ -408,7 +408,7 @@ graphics.o: graphics.cpp.o
 
 # target to build an object file
 graphics.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/graphics.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/graphics.cpp.o
 .PHONY : graphics.cpp.o
 
 graphics.i: graphics.cpp.i
@@ -417,7 +417,7 @@ graphics.i: graphics.cpp.i
 
 # target to preprocess a source file
 graphics.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/graphics.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/graphics.cpp.i
 .PHONY : graphics.cpp.i
 
 graphics.s: graphics.cpp.s
@@ -426,7 +426,7 @@ graphics.s: graphics.cpp.s
 
 # target to generate assembly for a file
 graphics.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/graphics.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/graphics.cpp.s
 .PHONY : graphics.cpp.s
 
 image.o: image.cpp.o
@@ -435,7 +435,7 @@ image.o: image.cpp.o
 
 # target to build an object file
 image.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/image.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/image.cpp.o
 .PHONY : image.cpp.o
 
 image.i: image.cpp.i
@@ -444,7 +444,7 @@ image.i: image.cpp.i
 
 # target to preprocess a source file
 image.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/image.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/image.cpp.i
 .PHONY : image.cpp.i
 
 image.s: image.cpp.s
@@ -453,7 +453,7 @@ image.s: image.cpp.s
 
 # target to generate assembly for a file
 image.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/image.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/image.cpp.s
 .PHONY : image.cpp.s
 
 keep.o: keep.cpp.o
@@ -462,7 +462,7 @@ keep.o: keep.cpp.o
 
 # target to build an object file
 keep.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/keep.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/keep.cpp.o
 .PHONY : keep.cpp.o
 
 keep.i: keep.cpp.i
@@ -471,7 +471,7 @@ keep.i: keep.cpp.i
 
 # target to preprocess a source file
 keep.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/keep.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/keep.cpp.i
 .PHONY : keep.cpp.i
 
 keep.s: keep.cpp.s
@@ -480,7 +480,7 @@ keep.s: keep.cpp.s
 
 # target to generate assembly for a file
 keep.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/keep.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/keep.cpp.s
 .PHONY : keep.cpp.s
 
 object.o: object.cpp.o
@@ -489,7 +489,7 @@ object.o: object.cpp.o
 
 # target to build an object file
 object.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/object.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/object.cpp.o
 .PHONY : object.cpp.o
 
 object.i: object.cpp.i
@@ -498,7 +498,7 @@ object.i: object.cpp.i
 
 # target to preprocess a source file
 object.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/object.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/object.cpp.i
 .PHONY : object.cpp.i
 
 object.s: object.cpp.s
@@ -507,7 +507,7 @@ object.s: object.cpp.s
 
 # target to generate assembly for a file
 object.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/object.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/object.cpp.s
 .PHONY : object.cpp.s
 
 palette.o: palette.cpp.o
@@ -516,7 +516,7 @@ palette.o: palette.cpp.o
 
 # target to build an object file
 palette.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/palette.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/palette.cpp.o
 .PHONY : palette.cpp.o
 
 palette.i: palette.cpp.i
@@ -525,7 +525,7 @@ palette.i: palette.cpp.i
 
 # target to preprocess a source file
 palette.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/palette.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/palette.cpp.i
 .PHONY : palette.cpp.i
 
 palette.s: palette.cpp.s
@@ -534,7 +534,7 @@ palette.s: palette.cpp.s
 
 # target to generate assembly for a file
 palette.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/palette.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/palette.cpp.s
 .PHONY : palette.cpp.s
 
 path.o: path.cpp.o
@@ -543,7 +543,7 @@ path.o: path.cpp.o
 
 # target to build an object file
 path.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/path.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/path.cpp.o
 .PHONY : path.cpp.o
 
 path.i: path.cpp.i
@@ -552,7 +552,7 @@ path.i: path.cpp.i
 
 # target to preprocess a source file
 path.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/path.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/path.cpp.i
 .PHONY : path.cpp.i
 
 path.s: path.cpp.s
@@ -561,7 +561,7 @@ path.s: path.cpp.s
 
 # target to generate assembly for a file
 path.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/path.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/path.cpp.s
 .PHONY : path.cpp.s
 
 pen.o: pen.cpp.o
@@ -570,7 +570,7 @@ pen.o: pen.cpp.o
 
 # target to build an object file
 pen.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/pen.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/pen.cpp.o
 .PHONY : pen.cpp.o
 
 pen.i: pen.cpp.i
@@ -579,7 +579,7 @@ pen.i: pen.cpp.i
 
 # target to preprocess a source file
 pen.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/pen.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/pen.cpp.i
 .PHONY : pen.cpp.i
 
 pen.s: pen.cpp.s
@@ -588,7 +588,7 @@ pen.s: pen.cpp.s
 
 # target to generate assembly for a file
 pen.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/pen.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/pen.cpp.s
 .PHONY : pen.cpp.s
 
 preview_dc.o: preview_dc.cpp.o
@@ -597,7 +597,7 @@ preview_dc.o: preview_dc.cpp.o
 
 # target to build an object file
 preview_dc.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/preview_dc.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/preview_dc.cpp.o
 .PHONY : preview_dc.cpp.o
 
 preview_dc.i: preview_dc.cpp.i
@@ -606,7 +606,7 @@ preview_dc.i: preview_dc.cpp.i
 
 # target to preprocess a source file
 preview_dc.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/preview_dc.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/preview_dc.cpp.i
 .PHONY : preview_dc.cpp.i
 
 preview_dc.s: preview_dc.cpp.s
@@ -615,7 +615,7 @@ preview_dc.s: preview_dc.cpp.s
 
 # target to generate assembly for a file
 preview_dc.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/preview_dc.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/preview_dc.cpp.s
 .PHONY : preview_dc.cpp.s
 
 region.o: region.cpp.o
@@ -624,7 +624,7 @@ region.o: region.cpp.o
 
 # target to build an object file
 region.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/region.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/region.cpp.o
 .PHONY : region.cpp.o
 
 region.i: region.cpp.i
@@ -633,7 +633,7 @@ region.i: region.cpp.i
 
 # target to preprocess a source file
 region.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/region.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/region.cpp.i
 .PHONY : region.cpp.i
 
 region.s: region.cpp.s
@@ -642,7 +642,7 @@ region.s: region.cpp.s
 
 # target to generate assembly for a file
 region.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/region.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/build.make source/app/draw2d_cairo/CMakeFiles/draw2d_cairo.dir/region.cpp.s
 .PHONY : region.cpp.s
 
 # Help Target
@@ -722,6 +722,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

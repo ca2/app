@@ -67,10 +67,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/solution/basis
+CMAKE_SOURCE_DIR = /home/camilo/solution/basis
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/solution/basis
+CMAKE_BINARY_DIR = /home/camilo/solution/basis
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,14 +99,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles /home/pi/solution/basis/source/app/folder_zip//CMakeFiles/progress.marks
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/folder_zip/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles /home/camilo/solution/basis/source/app/folder_zip//CMakeFiles/progress.marks
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/folder_zip/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/folder_zip/clean
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/folder_zip/clean
 .PHONY : clean
 
 # The main clean target
@@ -116,22 +116,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/folder_zip/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/folder_zip/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/folder_zip/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/folder_zip/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 source/app/folder_zip/CMakeFiles/folder_zip.dir/rule:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/folder_zip/CMakeFiles/folder_zip.dir/rule
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/folder_zip/CMakeFiles/folder_zip.dir/rule
 .PHONY : source/app/folder_zip/CMakeFiles/folder_zip.dir/rule
 
 # Convenience name for target.
@@ -141,7 +141,7 @@ folder_zip: source/app/folder_zip/CMakeFiles/folder_zip.dir/rule
 
 # fast build rule for target.
 folder_zip/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/build
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/build
 .PHONY : folder_zip/fast
 
 _.o: _.cpp.o
@@ -150,7 +150,7 @@ _.o: _.cpp.o
 
 # target to build an object file
 _.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.o
 .PHONY : _.cpp.o
 
 _.i: _.cpp.i
@@ -159,7 +159,7 @@ _.i: _.cpp.i
 
 # target to preprocess a source file
 _.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.i
 .PHONY : _.cpp.i
 
 _.s: _.cpp.s
@@ -168,7 +168,7 @@ _.s: _.cpp.s
 
 # target to generate assembly for a file
 _.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/_.cpp.s
 .PHONY : _.cpp.s
 
 _factory.o: _factory.cpp.o
@@ -177,7 +177,7 @@ _factory.o: _factory.cpp.o
 
 # target to build an object file
 _factory.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.o
 .PHONY : _factory.cpp.o
 
 _factory.i: _factory.cpp.i
@@ -186,7 +186,7 @@ _factory.i: _factory.cpp.i
 
 # target to preprocess a source file
 _factory.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.i
 .PHONY : _factory.cpp.i
 
 _factory.s: _factory.cpp.s
@@ -195,22 +195,22 @@ _factory.s: _factory.cpp.s
 
 # target to generate assembly for a file
 _factory.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/_factory.cpp.s
 .PHONY : _factory.cpp.s
 
 # target to build an object file
 cmake_pch.hxx.gch:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.gch
 .PHONY : cmake_pch.hxx.gch
 
 # target to preprocess a source file
 cmake_pch.hxx.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.i
 .PHONY : cmake_pch.hxx.i
 
 # target to generate assembly for a file
 cmake_pch.hxx.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/cmake_pch.hxx.s
 .PHONY : cmake_pch.hxx.s
 
 file.o: file.cpp.o
@@ -219,7 +219,7 @@ file.o: file.cpp.o
 
 # target to build an object file
 file.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.o
 .PHONY : file.cpp.o
 
 file.i: file.cpp.i
@@ -228,7 +228,7 @@ file.i: file.cpp.i
 
 # target to preprocess a source file
 file.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.i
 .PHONY : file.cpp.i
 
 file.s: file.cpp.s
@@ -237,7 +237,7 @@ file.s: file.cpp.s
 
 # target to generate assembly for a file
 file.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/file.cpp.s
 .PHONY : file.cpp.s
 
 file_function_definitions.o: file_function_definitions.cpp.o
@@ -246,7 +246,7 @@ file_function_definitions.o: file_function_definitions.cpp.o
 
 # target to build an object file
 file_function_definitions.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.o
 .PHONY : file_function_definitions.cpp.o
 
 file_function_definitions.i: file_function_definitions.cpp.i
@@ -255,7 +255,7 @@ file_function_definitions.i: file_function_definitions.cpp.i
 
 # target to preprocess a source file
 file_function_definitions.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.i
 .PHONY : file_function_definitions.cpp.i
 
 file_function_definitions.s: file_function_definitions.cpp.s
@@ -264,7 +264,7 @@ file_function_definitions.s: file_function_definitions.cpp.s
 
 # target to generate assembly for a file
 file_function_definitions.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/file_function_definitions.cpp.s
 .PHONY : file_function_definitions.cpp.s
 
 folder.o: folder.cpp.o
@@ -273,7 +273,7 @@ folder.o: folder.cpp.o
 
 # target to build an object file
 folder.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.o
 .PHONY : folder.cpp.o
 
 folder.i: folder.cpp.i
@@ -282,7 +282,7 @@ folder.i: folder.cpp.i
 
 # target to preprocess a source file
 folder.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.i
 .PHONY : folder.cpp.i
 
 folder.s: folder.cpp.s
@@ -291,7 +291,7 @@ folder.s: folder.cpp.s
 
 # target to generate assembly for a file
 folder.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/folder.cpp.s
 .PHONY : folder.cpp.s
 
 ioapi.o: ioapi.cpp.o
@@ -300,7 +300,7 @@ ioapi.o: ioapi.cpp.o
 
 # target to build an object file
 ioapi.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.o
 .PHONY : ioapi.cpp.o
 
 ioapi.i: ioapi.cpp.i
@@ -309,7 +309,7 @@ ioapi.i: ioapi.cpp.i
 
 # target to preprocess a source file
 ioapi.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.i
 .PHONY : ioapi.cpp.i
 
 ioapi.s: ioapi.cpp.s
@@ -318,7 +318,7 @@ ioapi.s: ioapi.cpp.s
 
 # target to generate assembly for a file
 ioapi.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/ioapi.cpp.s
 .PHONY : ioapi.cpp.s
 
 unzip.o: unzip.cpp.o
@@ -327,7 +327,7 @@ unzip.o: unzip.cpp.o
 
 # target to build an object file
 unzip.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.o
 .PHONY : unzip.cpp.o
 
 unzip.i: unzip.cpp.i
@@ -336,7 +336,7 @@ unzip.i: unzip.cpp.i
 
 # target to preprocess a source file
 unzip.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.i
 .PHONY : unzip.cpp.i
 
 unzip.s: unzip.cpp.s
@@ -345,7 +345,7 @@ unzip.s: unzip.cpp.s
 
 # target to generate assembly for a file
 unzip.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/unzip.cpp.s
 .PHONY : unzip.cpp.s
 
 zip.o: zip.cpp.o
@@ -354,7 +354,7 @@ zip.o: zip.cpp.o
 
 # target to build an object file
 zip.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.o
 .PHONY : zip.cpp.o
 
 zip.i: zip.cpp.i
@@ -363,7 +363,7 @@ zip.i: zip.cpp.i
 
 # target to preprocess a source file
 zip.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.i
 .PHONY : zip.cpp.i
 
 zip.s: zip.cpp.s
@@ -372,7 +372,7 @@ zip.s: zip.cpp.s
 
 # target to generate assembly for a file
 zip.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/folder_zip/CMakeFiles/folder_zip.dir/build.make source/app/folder_zip/CMakeFiles/folder_zip.dir/zip.cpp.s
 .PHONY : zip.cpp.s
 
 # Help Target
@@ -422,6 +422,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

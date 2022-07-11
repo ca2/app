@@ -1,6 +1,8 @@
-// Created by camilo on 2022-03-18 19:55 <3ThomasBorregaardSørensen!! (Thomas likes number 5!!)!!
+// Created by camilo on 2022-03-18 19:55 <3ThomasBorregaardSï¿½rensen!! (Thomas likes number 5!!)!!
 #include "framework.h"
-
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_user.h"
+#endif
 
 namespace appearance
 {

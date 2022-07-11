@@ -1,4 +1,4 @@
-# Install script for directory: /home/camilo/solution/basis/source/app/scripting
+# Install script for directory: /home/camilo/solution/basis/source/app/build
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

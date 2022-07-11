@@ -67,10 +67,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/solution/basis
+CMAKE_SOURCE_DIR = /home/camilo/solution/basis
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/solution/basis
+CMAKE_BINARY_DIR = /home/camilo/solution/basis
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,14 +99,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles /home/pi/solution/basis/source/app/app//CMakeFiles/progress.marks
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/app/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles /home/camilo/solution/basis/source/app/app//CMakeFiles/progress.marks
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/app/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/app/clean
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/app/clean
 .PHONY : clean
 
 # The main clean target
@@ -116,22 +116,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/app/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/app/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/app/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/app/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 source/app/app/CMakeFiles/_app_app.dir/rule:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/app/CMakeFiles/_app_app.dir/rule
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/app/CMakeFiles/_app_app.dir/rule
 .PHONY : source/app/app/CMakeFiles/_app_app.dir/rule
 
 # Convenience name for target.
@@ -141,12 +141,12 @@ _app_app: source/app/app/CMakeFiles/_app_app.dir/rule
 
 # fast build rule for target.
 _app_app/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/_app_app.dir/build.make source/app/app/CMakeFiles/_app_app.dir/build
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/_app_app.dir/build.make source/app/app/CMakeFiles/_app_app.dir/build
 .PHONY : _app_app/fast
 
 # Convenience name for target.
 source/app/app/CMakeFiles/app_app.dir/rule:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/app/CMakeFiles/app_app.dir/rule
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/app/CMakeFiles/app_app.dir/rule
 .PHONY : source/app/app/CMakeFiles/app_app.dir/rule
 
 # Convenience name for target.
@@ -156,7 +156,7 @@ app_app: source/app/app/CMakeFiles/app_app.dir/rule
 
 # fast build rule for target.
 app_app/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/build
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/build
 .PHONY : app_app/fast
 
 _.o: _.cpp.o
@@ -165,7 +165,7 @@ _.o: _.cpp.o
 
 # target to build an object file
 _.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/_.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/_.cpp.o
 .PHONY : _.cpp.o
 
 _.i: _.cpp.i
@@ -174,7 +174,7 @@ _.i: _.cpp.i
 
 # target to preprocess a source file
 _.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/_.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/_.cpp.i
 .PHONY : _.cpp.i
 
 _.s: _.cpp.s
@@ -183,7 +183,7 @@ _.s: _.cpp.s
 
 # target to generate assembly for a file
 _.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/_.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/_.cpp.s
 .PHONY : _.cpp.s
 
 _factory.o: _factory.cpp.o
@@ -192,7 +192,7 @@ _factory.o: _factory.cpp.o
 
 # target to build an object file
 _factory.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/_factory.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/_factory.cpp.o
 .PHONY : _factory.cpp.o
 
 _factory.i: _factory.cpp.i
@@ -201,7 +201,7 @@ _factory.i: _factory.cpp.i
 
 # target to preprocess a source file
 _factory.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/_factory.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/_factory.cpp.i
 .PHONY : _factory.cpp.i
 
 _factory.s: _factory.cpp.s
@@ -210,7 +210,7 @@ _factory.s: _factory.cpp.s
 
 # target to generate assembly for a file
 _factory.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/_factory.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/_factory.cpp.s
 .PHONY : _factory.cpp.s
 
 _main.o: _main.cpp.o
@@ -219,7 +219,7 @@ _main.o: _main.cpp.o
 
 # target to build an object file
 _main.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/_app_app.dir/build.make source/app/app/CMakeFiles/_app_app.dir/_main.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/_app_app.dir/build.make source/app/app/CMakeFiles/_app_app.dir/_main.cpp.o
 .PHONY : _main.cpp.o
 
 _main.i: _main.cpp.i
@@ -228,7 +228,7 @@ _main.i: _main.cpp.i
 
 # target to preprocess a source file
 _main.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/_app_app.dir/build.make source/app/app/CMakeFiles/_app_app.dir/_main.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/_app_app.dir/build.make source/app/app/CMakeFiles/_app_app.dir/_main.cpp.i
 .PHONY : _main.cpp.i
 
 _main.s: _main.cpp.s
@@ -237,7 +237,7 @@ _main.s: _main.cpp.s
 
 # target to generate assembly for a file
 _main.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/_app_app.dir/build.make source/app/app/CMakeFiles/_app_app.dir/_main.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/_app_app.dir/build.make source/app/app/CMakeFiles/_app_app.dir/_main.cpp.s
 .PHONY : _main.cpp.s
 
 application.o: application.cpp.o
@@ -246,7 +246,7 @@ application.o: application.cpp.o
 
 # target to build an object file
 application.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/application.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/application.cpp.o
 .PHONY : application.cpp.o
 
 application.i: application.cpp.i
@@ -255,7 +255,7 @@ application.i: application.cpp.i
 
 # target to preprocess a source file
 application.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/application.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/application.cpp.i
 .PHONY : application.cpp.i
 
 application.s: application.cpp.s
@@ -264,22 +264,22 @@ application.s: application.cpp.s
 
 # target to generate assembly for a file
 application.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/application.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/application.cpp.s
 .PHONY : application.cpp.s
 
 # target to build an object file
 cmake_pch.hxx.gch:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/cmake_pch.hxx.gch
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/cmake_pch.hxx.gch
 .PHONY : cmake_pch.hxx.gch
 
 # target to preprocess a source file
 cmake_pch.hxx.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/cmake_pch.hxx.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/cmake_pch.hxx.i
 .PHONY : cmake_pch.hxx.i
 
 # target to generate assembly for a file
 cmake_pch.hxx.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/cmake_pch.hxx.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/cmake_pch.hxx.s
 .PHONY : cmake_pch.hxx.s
 
 framework.o: framework.cpp.o
@@ -288,7 +288,7 @@ framework.o: framework.cpp.o
 
 # target to build an object file
 framework.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/framework.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/framework.cpp.o
 .PHONY : framework.cpp.o
 
 framework.i: framework.cpp.i
@@ -297,7 +297,7 @@ framework.i: framework.cpp.i
 
 # target to preprocess a source file
 framework.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/framework.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/framework.cpp.i
 .PHONY : framework.cpp.i
 
 framework.s: framework.cpp.s
@@ -306,7 +306,7 @@ framework.s: framework.cpp.s
 
 # target to generate assembly for a file
 framework.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/framework.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/framework.cpp.s
 .PHONY : framework.cpp.s
 
 main_window.o: main_window.cpp.o
@@ -315,7 +315,7 @@ main_window.o: main_window.cpp.o
 
 # target to build an object file
 main_window.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/main_window.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/main_window.cpp.o
 .PHONY : main_window.cpp.o
 
 main_window.i: main_window.cpp.i
@@ -324,7 +324,7 @@ main_window.i: main_window.cpp.i
 
 # target to preprocess a source file
 main_window.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/main_window.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/main_window.cpp.i
 .PHONY : main_window.cpp.i
 
 main_window.s: main_window.cpp.s
@@ -333,7 +333,7 @@ main_window.s: main_window.cpp.s
 
 # target to generate assembly for a file
 main_window.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/main_window.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/app/CMakeFiles/app_app.dir/build.make source/app/app/CMakeFiles/app_app.dir/main_window.cpp.s
 .PHONY : main_window.cpp.s
 
 # Help Target
@@ -378,6 +378,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

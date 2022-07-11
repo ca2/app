@@ -67,10 +67,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/solution/basis
+CMAKE_SOURCE_DIR = /home/camilo/solution/basis
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/solution/basis
+CMAKE_BINARY_DIR = /home/camilo/solution/basis
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,14 +99,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles /home/pi/solution/basis/source/app/scripting//CMakeFiles/progress.marks
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/scripting/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles /home/camilo/solution/basis/source/app/scripting//CMakeFiles/progress.marks
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/scripting/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/scripting/clean
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/scripting/clean
 .PHONY : clean
 
 # The main clean target
@@ -116,22 +116,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/scripting/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/scripting/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/scripting/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/scripting/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 source/app/scripting/CMakeFiles/scripting.dir/rule:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/scripting/CMakeFiles/scripting.dir/rule
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/scripting/CMakeFiles/scripting.dir/rule
 .PHONY : source/app/scripting/CMakeFiles/scripting.dir/rule
 
 # Convenience name for target.
@@ -141,7 +141,7 @@ scripting: source/app/scripting/CMakeFiles/scripting.dir/rule
 
 # fast build rule for target.
 scripting/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/build
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/build
 .PHONY : scripting/fast
 
 _.o: _.cpp.o
@@ -150,7 +150,7 @@ _.o: _.cpp.o
 
 # target to build an object file
 _.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/_.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/_.cpp.o
 .PHONY : _.cpp.o
 
 _.i: _.cpp.i
@@ -159,7 +159,7 @@ _.i: _.cpp.i
 
 # target to preprocess a source file
 _.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/_.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/_.cpp.i
 .PHONY : _.cpp.i
 
 _.s: _.cpp.s
@@ -168,22 +168,22 @@ _.s: _.cpp.s
 
 # target to generate assembly for a file
 _.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/_.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/_.cpp.s
 .PHONY : _.cpp.s
 
 # target to build an object file
 cmake_pch.hxx.gch:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/cmake_pch.hxx.gch
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/cmake_pch.hxx.gch
 .PHONY : cmake_pch.hxx.gch
 
 # target to preprocess a source file
 cmake_pch.hxx.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/cmake_pch.hxx.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/cmake_pch.hxx.i
 .PHONY : cmake_pch.hxx.i
 
 # target to generate assembly for a file
 cmake_pch.hxx.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/cmake_pch.hxx.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/cmake_pch.hxx.s
 .PHONY : cmake_pch.hxx.s
 
 framework.o: framework.cpp.o
@@ -192,7 +192,7 @@ framework.o: framework.cpp.o
 
 # target to build an object file
 framework.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/framework.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/framework.cpp.o
 .PHONY : framework.cpp.o
 
 framework.i: framework.cpp.i
@@ -201,7 +201,7 @@ framework.i: framework.cpp.i
 
 # target to preprocess a source file
 framework.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/framework.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/framework.cpp.i
 .PHONY : framework.cpp.i
 
 framework.s: framework.cpp.s
@@ -210,7 +210,7 @@ framework.s: framework.cpp.s
 
 # target to generate assembly for a file
 framework.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/framework.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/framework.cpp.s
 .PHONY : framework.cpp.s
 
 javascript/_.o: javascript/_.cpp.o
@@ -219,7 +219,7 @@ javascript/_.o: javascript/_.cpp.o
 
 # target to build an object file
 javascript/_.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/javascript/_.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/javascript/_.cpp.o
 .PHONY : javascript/_.cpp.o
 
 javascript/_.i: javascript/_.cpp.i
@@ -228,7 +228,7 @@ javascript/_.i: javascript/_.cpp.i
 
 # target to preprocess a source file
 javascript/_.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/javascript/_.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/javascript/_.cpp.i
 .PHONY : javascript/_.cpp.i
 
 javascript/_.s: javascript/_.cpp.s
@@ -237,7 +237,7 @@ javascript/_.s: javascript/_.cpp.s
 
 # target to generate assembly for a file
 javascript/_.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/javascript/_.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/javascript/_.cpp.s
 .PHONY : javascript/_.cpp.s
 
 javascript/functions.o: javascript/functions.cpp.o
@@ -246,7 +246,7 @@ javascript/functions.o: javascript/functions.cpp.o
 
 # target to build an object file
 javascript/functions.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/javascript/functions.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/javascript/functions.cpp.o
 .PHONY : javascript/functions.cpp.o
 
 javascript/functions.i: javascript/functions.cpp.i
@@ -255,7 +255,7 @@ javascript/functions.i: javascript/functions.cpp.i
 
 # target to preprocess a source file
 javascript/functions.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/javascript/functions.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/javascript/functions.cpp.i
 .PHONY : javascript/functions.cpp.i
 
 javascript/functions.s: javascript/functions.cpp.s
@@ -264,7 +264,7 @@ javascript/functions.s: javascript/functions.cpp.s
 
 # target to generate assembly for a file
 javascript/functions.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/javascript/functions.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/javascript/functions.cpp.s
 .PHONY : javascript/functions.cpp.s
 
 javascript/tinyjs_functions.o: javascript/tinyjs_functions.cpp.o
@@ -273,7 +273,7 @@ javascript/tinyjs_functions.o: javascript/tinyjs_functions.cpp.o
 
 # target to build an object file
 javascript/tinyjs_functions.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/javascript/tinyjs_functions.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/javascript/tinyjs_functions.cpp.o
 .PHONY : javascript/tinyjs_functions.cpp.o
 
 javascript/tinyjs_functions.i: javascript/tinyjs_functions.cpp.i
@@ -282,7 +282,7 @@ javascript/tinyjs_functions.i: javascript/tinyjs_functions.cpp.i
 
 # target to preprocess a source file
 javascript/tinyjs_functions.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/javascript/tinyjs_functions.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/javascript/tinyjs_functions.cpp.i
 .PHONY : javascript/tinyjs_functions.cpp.i
 
 javascript/tinyjs_functions.s: javascript/tinyjs_functions.cpp.s
@@ -291,7 +291,7 @@ javascript/tinyjs_functions.s: javascript/tinyjs_functions.cpp.s
 
 # target to generate assembly for a file
 javascript/tinyjs_functions.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/javascript/tinyjs_functions.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/scripting/CMakeFiles/scripting.dir/build.make source/app/scripting/CMakeFiles/scripting.dir/javascript/tinyjs_functions.cpp.s
 .PHONY : javascript/tinyjs_functions.cpp.s
 
 # Help Target
@@ -332,6 +332,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

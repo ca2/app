@@ -67,10 +67,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/solution/basis
+CMAKE_SOURCE_DIR = /home/camilo/solution/basis
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/solution/basis
+CMAKE_BINARY_DIR = /home/camilo/solution/basis
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,14 +99,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles /home/pi/solution/basis/source/app/base//CMakeFiles/progress.marks
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/base/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles /home/camilo/solution/basis/source/app/base//CMakeFiles/progress.marks
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/base/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/base/clean
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/base/clean
 .PHONY : clean
 
 # The main clean target
@@ -116,22 +116,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/base/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/base/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/base/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/base/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 source/app/base/CMakeFiles/base.dir/rule:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/base/CMakeFiles/base.dir/rule
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/base/CMakeFiles/base.dir/rule
 .PHONY : source/app/base/CMakeFiles/base.dir/rule
 
 # Convenience name for target.
@@ -141,7 +141,7 @@ base: source/app/base/CMakeFiles/base.dir/rule
 
 # fast build rule for target.
 base/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/build
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/build
 .PHONY : base/fast
 
 _.o: _.cpp.o
@@ -150,7 +150,7 @@ _.o: _.cpp.o
 
 # target to build an object file
 _.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/_.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/_.cpp.o
 .PHONY : _.cpp.o
 
 _.i: _.cpp.i
@@ -159,7 +159,7 @@ _.i: _.cpp.i
 
 # target to preprocess a source file
 _.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/_.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/_.cpp.i
 .PHONY : _.cpp.i
 
 _.s: _.cpp.s
@@ -168,22 +168,22 @@ _.s: _.cpp.s
 
 # target to generate assembly for a file
 _.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/_.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/_.cpp.s
 .PHONY : _.cpp.s
 
 # target to build an object file
 cmake_pch.hxx.gch:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/cmake_pch.hxx.gch
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/cmake_pch.hxx.gch
 .PHONY : cmake_pch.hxx.gch
 
 # target to preprocess a source file
 cmake_pch.hxx.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/cmake_pch.hxx.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/cmake_pch.hxx.i
 .PHONY : cmake_pch.hxx.i
 
 # target to generate assembly for a file
 cmake_pch.hxx.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/cmake_pch.hxx.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/cmake_pch.hxx.s
 .PHONY : cmake_pch.hxx.s
 
 constant/idpool.o: constant/idpool.cpp.o
@@ -192,7 +192,7 @@ constant/idpool.o: constant/idpool.cpp.o
 
 # target to build an object file
 constant/idpool.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/constant/idpool.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/constant/idpool.cpp.o
 .PHONY : constant/idpool.cpp.o
 
 constant/idpool.i: constant/idpool.cpp.i
@@ -201,7 +201,7 @@ constant/idpool.i: constant/idpool.cpp.i
 
 # target to preprocess a source file
 constant/idpool.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/constant/idpool.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/constant/idpool.cpp.i
 .PHONY : constant/idpool.cpp.i
 
 constant/idpool.s: constant/idpool.cpp.s
@@ -210,7 +210,7 @@ constant/idpool.s: constant/idpool.cpp.s
 
 # target to generate assembly for a file
 constant/idpool.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/constant/idpool.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/constant/idpool.cpp.s
 .PHONY : constant/idpool.cpp.s
 
 framework.o: framework.cpp.o
@@ -219,7 +219,7 @@ framework.o: framework.cpp.o
 
 # target to build an object file
 framework.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/framework.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/framework.cpp.o
 .PHONY : framework.cpp.o
 
 framework.i: framework.cpp.i
@@ -228,7 +228,7 @@ framework.i: framework.cpp.i
 
 # target to preprocess a source file
 framework.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/framework.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/framework.cpp.i
 .PHONY : framework.cpp.i
 
 framework.s: framework.cpp.s
@@ -237,7 +237,7 @@ framework.s: framework.cpp.s
 
 # target to generate assembly for a file
 framework.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/framework.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/framework.cpp.s
 .PHONY : framework.cpp.s
 
 operating_system/linux/frame_window.o: operating_system/linux/frame_window.cpp.o
@@ -246,7 +246,7 @@ operating_system/linux/frame_window.o: operating_system/linux/frame_window.cpp.o
 
 # target to build an object file
 operating_system/linux/frame_window.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/operating_system/linux/frame_window.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/operating_system/linux/frame_window.cpp.o
 .PHONY : operating_system/linux/frame_window.cpp.o
 
 operating_system/linux/frame_window.i: operating_system/linux/frame_window.cpp.i
@@ -255,7 +255,7 @@ operating_system/linux/frame_window.i: operating_system/linux/frame_window.cpp.i
 
 # target to preprocess a source file
 operating_system/linux/frame_window.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/operating_system/linux/frame_window.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/operating_system/linux/frame_window.cpp.i
 .PHONY : operating_system/linux/frame_window.cpp.i
 
 operating_system/linux/frame_window.s: operating_system/linux/frame_window.cpp.s
@@ -264,7 +264,7 @@ operating_system/linux/frame_window.s: operating_system/linux/frame_window.cpp.s
 
 # target to generate assembly for a file
 operating_system/linux/frame_window.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/operating_system/linux/frame_window.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/operating_system/linux/frame_window.cpp.s
 .PHONY : operating_system/linux/frame_window.cpp.s
 
 platform/application.o: platform/application.cpp.o
@@ -273,7 +273,7 @@ platform/application.o: platform/application.cpp.o
 
 # target to build an object file
 platform/application.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/platform/application.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/platform/application.cpp.o
 .PHONY : platform/application.cpp.o
 
 platform/application.i: platform/application.cpp.i
@@ -282,7 +282,7 @@ platform/application.i: platform/application.cpp.i
 
 # target to preprocess a source file
 platform/application.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/platform/application.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/platform/application.cpp.i
 .PHONY : platform/application.cpp.i
 
 platform/application.s: platform/application.cpp.s
@@ -291,7 +291,7 @@ platform/application.s: platform/application.cpp.s
 
 # target to generate assembly for a file
 platform/application.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/platform/application.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/platform/application.cpp.s
 .PHONY : platform/application.cpp.s
 
 platform/session.o: platform/session.cpp.o
@@ -300,7 +300,7 @@ platform/session.o: platform/session.cpp.o
 
 # target to build an object file
 platform/session.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/platform/session.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/platform/session.cpp.o
 .PHONY : platform/session.cpp.o
 
 platform/session.i: platform/session.cpp.i
@@ -309,7 +309,7 @@ platform/session.i: platform/session.cpp.i
 
 # target to preprocess a source file
 platform/session.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/platform/session.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/platform/session.cpp.i
 .PHONY : platform/session.cpp.i
 
 platform/session.s: platform/session.cpp.s
@@ -318,7 +318,7 @@ platform/session.s: platform/session.cpp.s
 
 # target to generate assembly for a file
 platform/session.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/platform/session.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/platform/session.cpp.s
 .PHONY : platform/session.cpp.s
 
 platform/system.o: platform/system.cpp.o
@@ -327,7 +327,7 @@ platform/system.o: platform/system.cpp.o
 
 # target to build an object file
 platform/system.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/platform/system.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/platform/system.cpp.o
 .PHONY : platform/system.cpp.o
 
 platform/system.i: platform/system.cpp.i
@@ -336,7 +336,7 @@ platform/system.i: platform/system.cpp.i
 
 # target to preprocess a source file
 platform/system.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/platform/system.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/platform/system.cpp.i
 .PHONY : platform/system.cpp.i
 
 platform/system.s: platform/system.cpp.s
@@ -345,7 +345,7 @@ platform/system.s: platform/system.cpp.s
 
 # target to generate assembly for a file
 platform/system.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/platform/system.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/platform/system.cpp.s
 .PHONY : platform/system.cpp.s
 
 user/experience/button.o: user/experience/button.cpp.o
@@ -354,7 +354,7 @@ user/experience/button.o: user/experience/button.cpp.o
 
 # target to build an object file
 user/experience/button.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/button.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/button.cpp.o
 .PHONY : user/experience/button.cpp.o
 
 user/experience/button.i: user/experience/button.cpp.i
@@ -363,7 +363,7 @@ user/experience/button.i: user/experience/button.cpp.i
 
 # target to preprocess a source file
 user/experience/button.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/button.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/button.cpp.i
 .PHONY : user/experience/button.cpp.i
 
 user/experience/button.s: user/experience/button.cpp.s
@@ -372,7 +372,7 @@ user/experience/button.s: user/experience/button.cpp.s
 
 # target to generate assembly for a file
 user/experience/button.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/button.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/button.cpp.s
 .PHONY : user/experience/button.cpp.s
 
 user/experience/control_box.o: user/experience/control_box.cpp.o
@@ -381,7 +381,7 @@ user/experience/control_box.o: user/experience/control_box.cpp.o
 
 # target to build an object file
 user/experience/control_box.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/control_box.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/control_box.cpp.o
 .PHONY : user/experience/control_box.cpp.o
 
 user/experience/control_box.i: user/experience/control_box.cpp.i
@@ -390,7 +390,7 @@ user/experience/control_box.i: user/experience/control_box.cpp.i
 
 # target to preprocess a source file
 user/experience/control_box.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/control_box.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/control_box.cpp.i
 .PHONY : user/experience/control_box.cpp.i
 
 user/experience/control_box.s: user/experience/control_box.cpp.s
@@ -399,7 +399,7 @@ user/experience/control_box.s: user/experience/control_box.cpp.s
 
 # target to generate assembly for a file
 user/experience/control_box.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/control_box.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/control_box.cpp.s
 .PHONY : user/experience/control_box.cpp.s
 
 user/experience/department.o: user/experience/department.cpp.o
@@ -408,7 +408,7 @@ user/experience/department.o: user/experience/department.cpp.o
 
 # target to build an object file
 user/experience/department.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/department.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/department.cpp.o
 .PHONY : user/experience/department.cpp.o
 
 user/experience/department.i: user/experience/department.cpp.i
@@ -417,7 +417,7 @@ user/experience/department.i: user/experience/department.cpp.i
 
 # target to preprocess a source file
 user/experience/department.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/department.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/department.cpp.i
 .PHONY : user/experience/department.cpp.i
 
 user/experience/department.s: user/experience/department.cpp.s
@@ -426,7 +426,7 @@ user/experience/department.s: user/experience/department.cpp.s
 
 # target to generate assembly for a file
 user/experience/department.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/department.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/department.cpp.s
 .PHONY : user/experience/department.cpp.s
 
 user/experience/dock_manager.o: user/experience/dock_manager.cpp.o
@@ -435,7 +435,7 @@ user/experience/dock_manager.o: user/experience/dock_manager.cpp.o
 
 # target to build an object file
 user/experience/dock_manager.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/dock_manager.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/dock_manager.cpp.o
 .PHONY : user/experience/dock_manager.cpp.o
 
 user/experience/dock_manager.i: user/experience/dock_manager.cpp.i
@@ -444,7 +444,7 @@ user/experience/dock_manager.i: user/experience/dock_manager.cpp.i
 
 # target to preprocess a source file
 user/experience/dock_manager.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/dock_manager.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/dock_manager.cpp.i
 .PHONY : user/experience/dock_manager.cpp.i
 
 user/experience/dock_manager.s: user/experience/dock_manager.cpp.s
@@ -453,7 +453,7 @@ user/experience/dock_manager.s: user/experience/dock_manager.cpp.s
 
 # target to generate assembly for a file
 user/experience/dock_manager.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/dock_manager.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/dock_manager.cpp.s
 .PHONY : user/experience/dock_manager.cpp.s
 
 user/experience/experience.o: user/experience/experience.cpp.o
@@ -462,7 +462,7 @@ user/experience/experience.o: user/experience/experience.cpp.o
 
 # target to build an object file
 user/experience/experience.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/experience.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/experience.cpp.o
 .PHONY : user/experience/experience.cpp.o
 
 user/experience/experience.i: user/experience/experience.cpp.i
@@ -471,7 +471,7 @@ user/experience/experience.i: user/experience/experience.cpp.i
 
 # target to preprocess a source file
 user/experience/experience.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/experience.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/experience.cpp.i
 .PHONY : user/experience/experience.cpp.i
 
 user/experience/experience.s: user/experience/experience.cpp.s
@@ -480,7 +480,7 @@ user/experience/experience.s: user/experience/experience.cpp.s
 
 # target to generate assembly for a file
 user/experience/experience.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/experience.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/experience.cpp.s
 .PHONY : user/experience/experience.cpp.s
 
 user/experience/experience_updown.o: user/experience/experience_updown.cpp.o
@@ -489,7 +489,7 @@ user/experience/experience_updown.o: user/experience/experience_updown.cpp.o
 
 # target to build an object file
 user/experience/experience_updown.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/experience_updown.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/experience_updown.cpp.o
 .PHONY : user/experience/experience_updown.cpp.o
 
 user/experience/experience_updown.i: user/experience/experience_updown.cpp.i
@@ -498,7 +498,7 @@ user/experience/experience_updown.i: user/experience/experience_updown.cpp.i
 
 # target to preprocess a source file
 user/experience/experience_updown.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/experience_updown.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/experience_updown.cpp.i
 .PHONY : user/experience/experience_updown.cpp.i
 
 user/experience/experience_updown.s: user/experience/experience_updown.cpp.s
@@ -507,7 +507,7 @@ user/experience/experience_updown.s: user/experience/experience_updown.cpp.s
 
 # target to generate assembly for a file
 user/experience/experience_updown.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/experience_updown.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/experience_updown.cpp.s
 .PHONY : user/experience/experience_updown.cpp.s
 
 user/experience/frame.o: user/experience/frame.cpp.o
@@ -516,7 +516,7 @@ user/experience/frame.o: user/experience/frame.cpp.o
 
 # target to build an object file
 user/experience/frame.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/frame.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/frame.cpp.o
 .PHONY : user/experience/frame.cpp.o
 
 user/experience/frame.i: user/experience/frame.cpp.i
@@ -525,7 +525,7 @@ user/experience/frame.i: user/experience/frame.cpp.i
 
 # target to preprocess a source file
 user/experience/frame.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/frame.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/frame.cpp.i
 .PHONY : user/experience/frame.cpp.i
 
 user/experience/frame.s: user/experience/frame.cpp.s
@@ -534,7 +534,7 @@ user/experience/frame.s: user/experience/frame.cpp.s
 
 # target to generate assembly for a file
 user/experience/frame.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/frame.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/frame.cpp.s
 .PHONY : user/experience/frame.cpp.s
 
 user/experience/frame_window.o: user/experience/frame_window.cpp.o
@@ -543,7 +543,7 @@ user/experience/frame_window.o: user/experience/frame_window.cpp.o
 
 # target to build an object file
 user/experience/frame_window.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/frame_window.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/frame_window.cpp.o
 .PHONY : user/experience/frame_window.cpp.o
 
 user/experience/frame_window.i: user/experience/frame_window.cpp.i
@@ -552,7 +552,7 @@ user/experience/frame_window.i: user/experience/frame_window.cpp.i
 
 # target to preprocess a source file
 user/experience/frame_window.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/frame_window.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/frame_window.cpp.i
 .PHONY : user/experience/frame_window.cpp.i
 
 user/experience/frame_window.s: user/experience/frame_window.cpp.s
@@ -561,7 +561,7 @@ user/experience/frame_window.s: user/experience/frame_window.cpp.s
 
 # target to generate assembly for a file
 user/experience/frame_window.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/frame_window.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/frame_window.cpp.s
 .PHONY : user/experience/frame_window.cpp.s
 
 user/experience/menu_manager.o: user/experience/menu_manager.cpp.o
@@ -570,7 +570,7 @@ user/experience/menu_manager.o: user/experience/menu_manager.cpp.o
 
 # target to build an object file
 user/experience/menu_manager.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/menu_manager.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/menu_manager.cpp.o
 .PHONY : user/experience/menu_manager.cpp.o
 
 user/experience/menu_manager.i: user/experience/menu_manager.cpp.i
@@ -579,7 +579,7 @@ user/experience/menu_manager.i: user/experience/menu_manager.cpp.i
 
 # target to preprocess a source file
 user/experience/menu_manager.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/menu_manager.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/menu_manager.cpp.i
 .PHONY : user/experience/menu_manager.cpp.i
 
 user/experience/menu_manager.s: user/experience/menu_manager.cpp.s
@@ -588,7 +588,7 @@ user/experience/menu_manager.s: user/experience/menu_manager.cpp.s
 
 # target to generate assembly for a file
 user/experience/menu_manager.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/menu_manager.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/menu_manager.cpp.s
 .PHONY : user/experience/menu_manager.cpp.s
 
 user/experience/move_manager.o: user/experience/move_manager.cpp.o
@@ -597,7 +597,7 @@ user/experience/move_manager.o: user/experience/move_manager.cpp.o
 
 # target to build an object file
 user/experience/move_manager.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/move_manager.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/move_manager.cpp.o
 .PHONY : user/experience/move_manager.cpp.o
 
 user/experience/move_manager.i: user/experience/move_manager.cpp.i
@@ -606,7 +606,7 @@ user/experience/move_manager.i: user/experience/move_manager.cpp.i
 
 # target to preprocess a source file
 user/experience/move_manager.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/move_manager.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/move_manager.cpp.i
 .PHONY : user/experience/move_manager.cpp.i
 
 user/experience/move_manager.s: user/experience/move_manager.cpp.s
@@ -615,7 +615,7 @@ user/experience/move_manager.s: user/experience/move_manager.cpp.s
 
 # target to generate assembly for a file
 user/experience/move_manager.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/move_manager.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/move_manager.cpp.s
 .PHONY : user/experience/move_manager.cpp.s
 
 user/experience/orto_button.o: user/experience/orto_button.cpp.o
@@ -624,7 +624,7 @@ user/experience/orto_button.o: user/experience/orto_button.cpp.o
 
 # target to build an object file
 user/experience/orto_button.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/orto_button.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/orto_button.cpp.o
 .PHONY : user/experience/orto_button.cpp.o
 
 user/experience/orto_button.i: user/experience/orto_button.cpp.i
@@ -633,7 +633,7 @@ user/experience/orto_button.i: user/experience/orto_button.cpp.i
 
 # target to preprocess a source file
 user/experience/orto_button.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/orto_button.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/orto_button.cpp.i
 .PHONY : user/experience/orto_button.cpp.i
 
 user/experience/orto_button.s: user/experience/orto_button.cpp.s
@@ -642,7 +642,7 @@ user/experience/orto_button.s: user/experience/orto_button.cpp.s
 
 # target to generate assembly for a file
 user/experience/orto_button.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/orto_button.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/orto_button.cpp.s
 .PHONY : user/experience/orto_button.cpp.s
 
 user/experience/size_manager.o: user/experience/size_manager.cpp.o
@@ -651,7 +651,7 @@ user/experience/size_manager.o: user/experience/size_manager.cpp.o
 
 # target to build an object file
 user/experience/size_manager.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/size_manager.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/size_manager.cpp.o
 .PHONY : user/experience/size_manager.cpp.o
 
 user/experience/size_manager.i: user/experience/size_manager.cpp.i
@@ -660,7 +660,7 @@ user/experience/size_manager.i: user/experience/size_manager.cpp.i
 
 # target to preprocess a source file
 user/experience/size_manager.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/size_manager.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/size_manager.cpp.i
 .PHONY : user/experience/size_manager.cpp.i
 
 user/experience/size_manager.s: user/experience/size_manager.cpp.s
@@ -669,7 +669,7 @@ user/experience/size_manager.s: user/experience/size_manager.cpp.s
 
 # target to generate assembly for a file
 user/experience/size_manager.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/size_manager.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/experience/size_manager.cpp.s
 .PHONY : user/experience/size_manager.cpp.s
 
 user/menu/button.o: user/menu/button.cpp.o
@@ -678,7 +678,7 @@ user/menu/button.o: user/menu/button.cpp.o
 
 # target to build an object file
 user/menu/button.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/button.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/button.cpp.o
 .PHONY : user/menu/button.cpp.o
 
 user/menu/button.i: user/menu/button.cpp.i
@@ -687,7 +687,7 @@ user/menu/button.i: user/menu/button.cpp.i
 
 # target to preprocess a source file
 user/menu/button.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/button.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/button.cpp.i
 .PHONY : user/menu/button.cpp.i
 
 user/menu/button.s: user/menu/button.cpp.s
@@ -696,7 +696,7 @@ user/menu/button.s: user/menu/button.cpp.s
 
 # target to generate assembly for a file
 user/menu/button.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/button.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/button.cpp.s
 .PHONY : user/menu/button.cpp.s
 
 user/menu/central.o: user/menu/central.cpp.o
@@ -705,7 +705,7 @@ user/menu/central.o: user/menu/central.cpp.o
 
 # target to build an object file
 user/menu/central.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/central.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/central.cpp.o
 .PHONY : user/menu/central.cpp.o
 
 user/menu/central.i: user/menu/central.cpp.i
@@ -714,7 +714,7 @@ user/menu/central.i: user/menu/central.cpp.i
 
 # target to preprocess a source file
 user/menu/central.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/central.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/central.cpp.i
 .PHONY : user/menu/central.cpp.i
 
 user/menu/central.s: user/menu/central.cpp.s
@@ -723,7 +723,7 @@ user/menu/central.s: user/menu/central.cpp.s
 
 # target to generate assembly for a file
 user/menu/central.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/central.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/central.cpp.s
 .PHONY : user/menu/central.cpp.s
 
 user/menu/list_view.o: user/menu/list_view.cpp.o
@@ -732,7 +732,7 @@ user/menu/list_view.o: user/menu/list_view.cpp.o
 
 # target to build an object file
 user/menu/list_view.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/list_view.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/list_view.cpp.o
 .PHONY : user/menu/list_view.cpp.o
 
 user/menu/list_view.i: user/menu/list_view.cpp.i
@@ -741,7 +741,7 @@ user/menu/list_view.i: user/menu/list_view.cpp.i
 
 # target to preprocess a source file
 user/menu/list_view.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/list_view.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/list_view.cpp.i
 .PHONY : user/menu/list_view.cpp.i
 
 user/menu/list_view.s: user/menu/list_view.cpp.s
@@ -750,7 +750,7 @@ user/menu/list_view.s: user/menu/list_view.cpp.s
 
 # target to generate assembly for a file
 user/menu/list_view.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/list_view.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/list_view.cpp.s
 .PHONY : user/menu/list_view.cpp.s
 
 user/menu/list_window.o: user/menu/list_window.cpp.o
@@ -759,7 +759,7 @@ user/menu/list_window.o: user/menu/list_window.cpp.o
 
 # target to build an object file
 user/menu/list_window.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/list_window.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/list_window.cpp.o
 .PHONY : user/menu/list_window.cpp.o
 
 user/menu/list_window.i: user/menu/list_window.cpp.i
@@ -768,7 +768,7 @@ user/menu/list_window.i: user/menu/list_window.cpp.i
 
 # target to preprocess a source file
 user/menu/list_window.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/list_window.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/list_window.cpp.i
 .PHONY : user/menu/list_window.cpp.i
 
 user/menu/list_window.s: user/menu/list_window.cpp.s
@@ -777,7 +777,7 @@ user/menu/list_window.s: user/menu/list_window.cpp.s
 
 # target to generate assembly for a file
 user/menu/list_window.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/list_window.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/list_window.cpp.s
 .PHONY : user/menu/list_window.cpp.s
 
 user/menu/menu_view.o: user/menu/menu_view.cpp.o
@@ -786,7 +786,7 @@ user/menu/menu_view.o: user/menu/menu_view.cpp.o
 
 # target to build an object file
 user/menu/menu_view.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/menu_view.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/menu_view.cpp.o
 .PHONY : user/menu/menu_view.cpp.o
 
 user/menu/menu_view.i: user/menu/menu_view.cpp.i
@@ -795,7 +795,7 @@ user/menu/menu_view.i: user/menu/menu_view.cpp.i
 
 # target to preprocess a source file
 user/menu/menu_view.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/menu_view.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/menu_view.cpp.i
 .PHONY : user/menu/menu_view.cpp.i
 
 user/menu/menu_view.s: user/menu/menu_view.cpp.s
@@ -804,7 +804,7 @@ user/menu/menu_view.s: user/menu/menu_view.cpp.s
 
 # target to generate assembly for a file
 user/menu/menu_view.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/menu_view.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/menu/menu_view.cpp.s
 .PHONY : user/menu/menu_view.cpp.s
 
 user/simple/frame_window.o: user/simple/frame_window.cpp.o
@@ -813,7 +813,7 @@ user/simple/frame_window.o: user/simple/frame_window.cpp.o
 
 # target to build an object file
 user/simple/frame_window.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/simple/frame_window.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/simple/frame_window.cpp.o
 .PHONY : user/simple/frame_window.cpp.o
 
 user/simple/frame_window.i: user/simple/frame_window.cpp.i
@@ -822,7 +822,7 @@ user/simple/frame_window.i: user/simple/frame_window.cpp.i
 
 # target to preprocess a source file
 user/simple/frame_window.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/simple/frame_window.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/simple/frame_window.cpp.i
 .PHONY : user/simple/frame_window.cpp.i
 
 user/simple/frame_window.s: user/simple/frame_window.cpp.s
@@ -831,7 +831,7 @@ user/simple/frame_window.s: user/simple/frame_window.cpp.s
 
 # target to generate assembly for a file
 user/simple/frame_window.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/simple/frame_window.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/simple/frame_window.cpp.s
 .PHONY : user/simple/frame_window.cpp.s
 
 user/simple/main_frame.o: user/simple/main_frame.cpp.o
@@ -840,7 +840,7 @@ user/simple/main_frame.o: user/simple/main_frame.cpp.o
 
 # target to build an object file
 user/simple/main_frame.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/simple/main_frame.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/simple/main_frame.cpp.o
 .PHONY : user/simple/main_frame.cpp.o
 
 user/simple/main_frame.i: user/simple/main_frame.cpp.i
@@ -849,7 +849,7 @@ user/simple/main_frame.i: user/simple/main_frame.cpp.i
 
 # target to preprocess a source file
 user/simple/main_frame.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/simple/main_frame.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/simple/main_frame.cpp.i
 .PHONY : user/simple/main_frame.cpp.i
 
 user/simple/main_frame.s: user/simple/main_frame.cpp.s
@@ -858,7 +858,7 @@ user/simple/main_frame.s: user/simple/main_frame.cpp.s
 
 # target to generate assembly for a file
 user/simple/main_frame.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/simple/main_frame.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/simple/main_frame.cpp.s
 .PHONY : user/simple/main_frame.cpp.s
 
 user/simple/scroll_bar.o: user/simple/scroll_bar.cpp.o
@@ -867,7 +867,7 @@ user/simple/scroll_bar.o: user/simple/scroll_bar.cpp.o
 
 # target to build an object file
 user/simple/scroll_bar.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/simple/scroll_bar.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/simple/scroll_bar.cpp.o
 .PHONY : user/simple/scroll_bar.cpp.o
 
 user/simple/scroll_bar.i: user/simple/scroll_bar.cpp.i
@@ -876,7 +876,7 @@ user/simple/scroll_bar.i: user/simple/scroll_bar.cpp.i
 
 # target to preprocess a source file
 user/simple/scroll_bar.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/simple/scroll_bar.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/simple/scroll_bar.cpp.i
 .PHONY : user/simple/scroll_bar.cpp.i
 
 user/simple/scroll_bar.s: user/simple/scroll_bar.cpp.s
@@ -885,7 +885,7 @@ user/simple/scroll_bar.s: user/simple/scroll_bar.cpp.s
 
 # target to generate assembly for a file
 user/simple/scroll_bar.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/simple/scroll_bar.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/simple/scroll_bar.cpp.s
 .PHONY : user/simple/scroll_bar.cpp.s
 
 user/user/control_bar.o: user/user/control_bar.cpp.o
@@ -894,7 +894,7 @@ user/user/control_bar.o: user/user/control_bar.cpp.o
 
 # target to build an object file
 user/user/control_bar.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/control_bar.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/control_bar.cpp.o
 .PHONY : user/user/control_bar.cpp.o
 
 user/user/control_bar.i: user/user/control_bar.cpp.i
@@ -903,7 +903,7 @@ user/user/control_bar.i: user/user/control_bar.cpp.i
 
 # target to preprocess a source file
 user/user/control_bar.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/control_bar.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/control_bar.cpp.i
 .PHONY : user/user/control_bar.cpp.i
 
 user/user/control_bar.s: user/user/control_bar.cpp.s
@@ -912,7 +912,7 @@ user/user/control_bar.s: user/user/control_bar.cpp.s
 
 # target to generate assembly for a file
 user/user/control_bar.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/control_bar.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/control_bar.cpp.s
 .PHONY : user/user/control_bar.cpp.s
 
 user/user/control_property.o: user/user/control_property.cpp.o
@@ -921,7 +921,7 @@ user/user/control_property.o: user/user/control_property.cpp.o
 
 # target to build an object file
 user/user/control_property.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/control_property.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/control_property.cpp.o
 .PHONY : user/user/control_property.cpp.o
 
 user/user/control_property.i: user/user/control_property.cpp.i
@@ -930,7 +930,7 @@ user/user/control_property.i: user/user/control_property.cpp.i
 
 # target to preprocess a source file
 user/user/control_property.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/control_property.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/control_property.cpp.i
 .PHONY : user/user/control_property.cpp.i
 
 user/user/control_property.s: user/user/control_property.cpp.s
@@ -939,7 +939,7 @@ user/user/control_property.s: user/user/control_property.cpp.s
 
 # target to generate assembly for a file
 user/user/control_property.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/control_property.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/control_property.cpp.s
 .PHONY : user/user/control_property.cpp.s
 
 user/user/data_exchange.o: user/user/data_exchange.cpp.o
@@ -948,7 +948,7 @@ user/user/data_exchange.o: user/user/data_exchange.cpp.o
 
 # target to build an object file
 user/user/data_exchange.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/data_exchange.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/data_exchange.cpp.o
 .PHONY : user/user/data_exchange.cpp.o
 
 user/user/data_exchange.i: user/user/data_exchange.cpp.i
@@ -957,7 +957,7 @@ user/user/data_exchange.i: user/user/data_exchange.cpp.i
 
 # target to preprocess a source file
 user/user/data_exchange.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/data_exchange.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/data_exchange.cpp.i
 .PHONY : user/user/data_exchange.cpp.i
 
 user/user/data_exchange.s: user/user/data_exchange.cpp.s
@@ -966,7 +966,7 @@ user/user/data_exchange.s: user/user/data_exchange.cpp.s
 
 # target to generate assembly for a file
 user/user/data_exchange.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/data_exchange.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/data_exchange.cpp.s
 .PHONY : user/user/data_exchange.cpp.s
 
 user/user/document.o: user/user/document.cpp.o
@@ -975,7 +975,7 @@ user/user/document.o: user/user/document.cpp.o
 
 # target to build an object file
 user/user/document.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/document.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/document.cpp.o
 .PHONY : user/user/document.cpp.o
 
 user/user/document.i: user/user/document.cpp.i
@@ -984,7 +984,7 @@ user/user/document.i: user/user/document.cpp.i
 
 # target to preprocess a source file
 user/user/document.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/document.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/document.cpp.i
 .PHONY : user/user/document.cpp.i
 
 user/user/document.s: user/user/document.cpp.s
@@ -993,7 +993,7 @@ user/user/document.s: user/user/document.cpp.s
 
 # target to generate assembly for a file
 user/user/document.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/document.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/document.cpp.s
 .PHONY : user/user/document.cpp.s
 
 user/user/document_manager.o: user/user/document_manager.cpp.o
@@ -1002,7 +1002,7 @@ user/user/document_manager.o: user/user/document_manager.cpp.o
 
 # target to build an object file
 user/user/document_manager.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/document_manager.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/document_manager.cpp.o
 .PHONY : user/user/document_manager.cpp.o
 
 user/user/document_manager.i: user/user/document_manager.cpp.i
@@ -1011,7 +1011,7 @@ user/user/document_manager.i: user/user/document_manager.cpp.i
 
 # target to preprocess a source file
 user/user/document_manager.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/document_manager.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/document_manager.cpp.i
 .PHONY : user/user/document_manager.cpp.i
 
 user/user/document_manager.s: user/user/document_manager.cpp.s
@@ -1020,7 +1020,7 @@ user/user/document_manager.s: user/user/document_manager.cpp.s
 
 # target to generate assembly for a file
 user/user/document_manager.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/document_manager.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/document_manager.cpp.s
 .PHONY : user/user/document_manager.cpp.s
 
 user/user/document_manager_container.o: user/user/document_manager_container.cpp.o
@@ -1029,7 +1029,7 @@ user/user/document_manager_container.o: user/user/document_manager_container.cpp
 
 # target to build an object file
 user/user/document_manager_container.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/document_manager_container.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/document_manager_container.cpp.o
 .PHONY : user/user/document_manager_container.cpp.o
 
 user/user/document_manager_container.i: user/user/document_manager_container.cpp.i
@@ -1038,7 +1038,7 @@ user/user/document_manager_container.i: user/user/document_manager_container.cpp
 
 # target to preprocess a source file
 user/user/document_manager_container.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/document_manager_container.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/document_manager_container.cpp.i
 .PHONY : user/user/document_manager_container.cpp.i
 
 user/user/document_manager_container.s: user/user/document_manager_container.cpp.s
@@ -1047,7 +1047,7 @@ user/user/document_manager_container.s: user/user/document_manager_container.cpp
 
 # target to generate assembly for a file
 user/user/document_manager_container.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/document_manager_container.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/document_manager_container.cpp.s
 .PHONY : user/user/document_manager_container.cpp.s
 
 user/user/form_control.o: user/user/form_control.cpp.o
@@ -1056,7 +1056,7 @@ user/user/form_control.o: user/user/form_control.cpp.o
 
 # target to build an object file
 user/user/form_control.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_control.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_control.cpp.o
 .PHONY : user/user/form_control.cpp.o
 
 user/user/form_control.i: user/user/form_control.cpp.i
@@ -1065,7 +1065,7 @@ user/user/form_control.i: user/user/form_control.cpp.i
 
 # target to preprocess a source file
 user/user/form_control.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_control.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_control.cpp.i
 .PHONY : user/user/form_control.cpp.i
 
 user/user/form_control.s: user/user/form_control.cpp.s
@@ -1074,7 +1074,7 @@ user/user/form_control.s: user/user/form_control.cpp.s
 
 # target to generate assembly for a file
 user/user/form_control.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_control.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_control.cpp.s
 .PHONY : user/user/form_control.cpp.s
 
 user/user/form_data.o: user/user/form_data.cpp.o
@@ -1083,7 +1083,7 @@ user/user/form_data.o: user/user/form_data.cpp.o
 
 # target to build an object file
 user/user/form_data.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_data.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_data.cpp.o
 .PHONY : user/user/form_data.cpp.o
 
 user/user/form_data.i: user/user/form_data.cpp.i
@@ -1092,7 +1092,7 @@ user/user/form_data.i: user/user/form_data.cpp.i
 
 # target to preprocess a source file
 user/user/form_data.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_data.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_data.cpp.i
 .PHONY : user/user/form_data.cpp.i
 
 user/user/form_data.s: user/user/form_data.cpp.s
@@ -1101,7 +1101,7 @@ user/user/form_data.s: user/user/form_data.cpp.s
 
 # target to generate assembly for a file
 user/user/form_data.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_data.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_data.cpp.s
 .PHONY : user/user/form_data.cpp.s
 
 user/user/form_document.o: user/user/form_document.cpp.o
@@ -1110,7 +1110,7 @@ user/user/form_document.o: user/user/form_document.cpp.o
 
 # target to build an object file
 user/user/form_document.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_document.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_document.cpp.o
 .PHONY : user/user/form_document.cpp.o
 
 user/user/form_document.i: user/user/form_document.cpp.i
@@ -1119,7 +1119,7 @@ user/user/form_document.i: user/user/form_document.cpp.i
 
 # target to preprocess a source file
 user/user/form_document.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_document.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_document.cpp.i
 .PHONY : user/user/form_document.cpp.i
 
 user/user/form_document.s: user/user/form_document.cpp.s
@@ -1128,7 +1128,7 @@ user/user/form_document.s: user/user/form_document.cpp.s
 
 # target to generate assembly for a file
 user/user/form_document.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_document.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_document.cpp.s
 .PHONY : user/user/form_document.cpp.s
 
 user/user/form_view.o: user/user/form_view.cpp.o
@@ -1137,7 +1137,7 @@ user/user/form_view.o: user/user/form_view.cpp.o
 
 # target to build an object file
 user/user/form_view.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_view.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_view.cpp.o
 .PHONY : user/user/form_view.cpp.o
 
 user/user/form_view.i: user/user/form_view.cpp.i
@@ -1146,7 +1146,7 @@ user/user/form_view.i: user/user/form_view.cpp.i
 
 # target to preprocess a source file
 user/user/form_view.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_view.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_view.cpp.i
 .PHONY : user/user/form_view.cpp.i
 
 user/user/form_view.s: user/user/form_view.cpp.s
@@ -1155,7 +1155,7 @@ user/user/form_view.s: user/user/form_view.cpp.s
 
 # target to generate assembly for a file
 user/user/form_view.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_view.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_view.cpp.s
 .PHONY : user/user/form_view.cpp.s
 
 user/user/form_window.o: user/user/form_window.cpp.o
@@ -1164,7 +1164,7 @@ user/user/form_window.o: user/user/form_window.cpp.o
 
 # target to build an object file
 user/user/form_window.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_window.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_window.cpp.o
 .PHONY : user/user/form_window.cpp.o
 
 user/user/form_window.i: user/user/form_window.cpp.i
@@ -1173,7 +1173,7 @@ user/user/form_window.i: user/user/form_window.cpp.i
 
 # target to preprocess a source file
 user/user/form_window.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_window.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_window.cpp.i
 .PHONY : user/user/form_window.cpp.i
 
 user/user/form_window.s: user/user/form_window.cpp.s
@@ -1182,7 +1182,7 @@ user/user/form_window.s: user/user/form_window.cpp.s
 
 # target to generate assembly for a file
 user/user/form_window.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_window.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/form_window.cpp.s
 .PHONY : user/user/form_window.cpp.s
 
 user/user/frame_window.o: user/user/frame_window.cpp.o
@@ -1191,7 +1191,7 @@ user/user/frame_window.o: user/user/frame_window.cpp.o
 
 # target to build an object file
 user/user/frame_window.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/frame_window.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/frame_window.cpp.o
 .PHONY : user/user/frame_window.cpp.o
 
 user/user/frame_window.i: user/user/frame_window.cpp.i
@@ -1200,7 +1200,7 @@ user/user/frame_window.i: user/user/frame_window.cpp.i
 
 # target to preprocess a source file
 user/user/frame_window.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/frame_window.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/frame_window.cpp.i
 .PHONY : user/user/frame_window.cpp.i
 
 user/user/frame_window.s: user/user/frame_window.cpp.s
@@ -1209,7 +1209,7 @@ user/user/frame_window.s: user/user/frame_window.cpp.s
 
 # target to generate assembly for a file
 user/user/frame_window.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/frame_window.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/frame_window.cpp.s
 .PHONY : user/user/frame_window.cpp.s
 
 user/user/hotplugin.o: user/user/hotplugin.cpp.o
@@ -1218,7 +1218,7 @@ user/user/hotplugin.o: user/user/hotplugin.cpp.o
 
 # target to build an object file
 user/user/hotplugin.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/hotplugin.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/hotplugin.cpp.o
 .PHONY : user/user/hotplugin.cpp.o
 
 user/user/hotplugin.i: user/user/hotplugin.cpp.i
@@ -1227,7 +1227,7 @@ user/user/hotplugin.i: user/user/hotplugin.cpp.i
 
 # target to preprocess a source file
 user/user/hotplugin.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/hotplugin.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/hotplugin.cpp.i
 .PHONY : user/user/hotplugin.cpp.i
 
 user/user/hotplugin.s: user/user/hotplugin.cpp.s
@@ -1236,7 +1236,7 @@ user/user/hotplugin.s: user/user/hotplugin.cpp.s
 
 # target to generate assembly for a file
 user/user/hotplugin.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/hotplugin.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/hotplugin.cpp.s
 .PHONY : user/user/hotplugin.cpp.s
 
 user/user/image_list.o: user/user/image_list.cpp.o
@@ -1245,7 +1245,7 @@ user/user/image_list.o: user/user/image_list.cpp.o
 
 # target to build an object file
 user/user/image_list.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/image_list.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/image_list.cpp.o
 .PHONY : user/user/image_list.cpp.o
 
 user/user/image_list.i: user/user/image_list.cpp.i
@@ -1254,7 +1254,7 @@ user/user/image_list.i: user/user/image_list.cpp.i
 
 # target to preprocess a source file
 user/user/image_list.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/image_list.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/image_list.cpp.i
 .PHONY : user/user/image_list.cpp.i
 
 user/user/image_list.s: user/user/image_list.cpp.s
@@ -1263,7 +1263,7 @@ user/user/image_list.s: user/user/image_list.cpp.s
 
 # target to generate assembly for a file
 user/user/image_list.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/image_list.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/image_list.cpp.s
 .PHONY : user/user/image_list.cpp.s
 
 user/user/impact.o: user/user/impact.cpp.o
@@ -1272,7 +1272,7 @@ user/user/impact.o: user/user/impact.cpp.o
 
 # target to build an object file
 user/user/impact.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact.cpp.o
 .PHONY : user/user/impact.cpp.o
 
 user/user/impact.i: user/user/impact.cpp.i
@@ -1281,7 +1281,7 @@ user/user/impact.i: user/user/impact.cpp.i
 
 # target to preprocess a source file
 user/user/impact.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact.cpp.i
 .PHONY : user/user/impact.cpp.i
 
 user/user/impact.s: user/user/impact.cpp.s
@@ -1290,7 +1290,7 @@ user/user/impact.s: user/user/impact.cpp.s
 
 # target to generate assembly for a file
 user/user/impact.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact.cpp.s
 .PHONY : user/user/impact.cpp.s
 
 user/user/impact_creator.o: user/user/impact_creator.cpp.o
@@ -1299,7 +1299,7 @@ user/user/impact_creator.o: user/user/impact_creator.cpp.o
 
 # target to build an object file
 user/user/impact_creator.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_creator.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_creator.cpp.o
 .PHONY : user/user/impact_creator.cpp.o
 
 user/user/impact_creator.i: user/user/impact_creator.cpp.i
@@ -1308,7 +1308,7 @@ user/user/impact_creator.i: user/user/impact_creator.cpp.i
 
 # target to preprocess a source file
 user/user/impact_creator.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_creator.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_creator.cpp.i
 .PHONY : user/user/impact_creator.cpp.i
 
 user/user/impact_creator.s: user/user/impact_creator.cpp.s
@@ -1317,7 +1317,7 @@ user/user/impact_creator.s: user/user/impact_creator.cpp.s
 
 # target to generate assembly for a file
 user/user/impact_creator.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_creator.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_creator.cpp.s
 .PHONY : user/user/impact_creator.cpp.s
 
 user/user/impact_data.o: user/user/impact_data.cpp.o
@@ -1326,7 +1326,7 @@ user/user/impact_data.o: user/user/impact_data.cpp.o
 
 # target to build an object file
 user/user/impact_data.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_data.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_data.cpp.o
 .PHONY : user/user/impact_data.cpp.o
 
 user/user/impact_data.i: user/user/impact_data.cpp.i
@@ -1335,7 +1335,7 @@ user/user/impact_data.i: user/user/impact_data.cpp.i
 
 # target to preprocess a source file
 user/user/impact_data.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_data.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_data.cpp.i
 .PHONY : user/user/impact_data.cpp.i
 
 user/user/impact_data.s: user/user/impact_data.cpp.s
@@ -1344,7 +1344,7 @@ user/user/impact_data.s: user/user/impact_data.cpp.s
 
 # target to generate assembly for a file
 user/user/impact_data.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_data.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_data.cpp.s
 .PHONY : user/user/impact_data.cpp.s
 
 user/user/impact_host.o: user/user/impact_host.cpp.o
@@ -1353,7 +1353,7 @@ user/user/impact_host.o: user/user/impact_host.cpp.o
 
 # target to build an object file
 user/user/impact_host.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_host.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_host.cpp.o
 .PHONY : user/user/impact_host.cpp.o
 
 user/user/impact_host.i: user/user/impact_host.cpp.i
@@ -1362,7 +1362,7 @@ user/user/impact_host.i: user/user/impact_host.cpp.i
 
 # target to preprocess a source file
 user/user/impact_host.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_host.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_host.cpp.i
 .PHONY : user/user/impact_host.cpp.i
 
 user/user/impact_host.s: user/user/impact_host.cpp.s
@@ -1371,7 +1371,7 @@ user/user/impact_host.s: user/user/impact_host.cpp.s
 
 # target to generate assembly for a file
 user/user/impact_host.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_host.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_host.cpp.s
 .PHONY : user/user/impact_host.cpp.s
 
 user/user/impact_kit.o: user/user/impact_kit.cpp.o
@@ -1380,7 +1380,7 @@ user/user/impact_kit.o: user/user/impact_kit.cpp.o
 
 # target to build an object file
 user/user/impact_kit.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_kit.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_kit.cpp.o
 .PHONY : user/user/impact_kit.cpp.o
 
 user/user/impact_kit.i: user/user/impact_kit.cpp.i
@@ -1389,7 +1389,7 @@ user/user/impact_kit.i: user/user/impact_kit.cpp.i
 
 # target to preprocess a source file
 user/user/impact_kit.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_kit.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_kit.cpp.i
 .PHONY : user/user/impact_kit.cpp.i
 
 user/user/impact_kit.s: user/user/impact_kit.cpp.s
@@ -1398,7 +1398,7 @@ user/user/impact_kit.s: user/user/impact_kit.cpp.s
 
 # target to generate assembly for a file
 user/user/impact_kit.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_kit.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_kit.cpp.s
 .PHONY : user/user/impact_kit.cpp.s
 
 user/user/impact_system.o: user/user/impact_system.cpp.o
@@ -1407,7 +1407,7 @@ user/user/impact_system.o: user/user/impact_system.cpp.o
 
 # target to build an object file
 user/user/impact_system.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_system.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_system.cpp.o
 .PHONY : user/user/impact_system.cpp.o
 
 user/user/impact_system.i: user/user/impact_system.cpp.i
@@ -1416,7 +1416,7 @@ user/user/impact_system.i: user/user/impact_system.cpp.i
 
 # target to preprocess a source file
 user/user/impact_system.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_system.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_system.cpp.i
 .PHONY : user/user/impact_system.cpp.i
 
 user/user/impact_system.s: user/user/impact_system.cpp.s
@@ -1425,7 +1425,7 @@ user/user/impact_system.s: user/user/impact_system.cpp.s
 
 # target to generate assembly for a file
 user/user/impact_system.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_system.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/impact_system.cpp.s
 .PHONY : user/user/impact_system.cpp.s
 
 user/user/margin.o: user/user/margin.cpp.o
@@ -1434,7 +1434,7 @@ user/user/margin.o: user/user/margin.cpp.o
 
 # target to build an object file
 user/user/margin.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/margin.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/margin.cpp.o
 .PHONY : user/user/margin.cpp.o
 
 user/user/margin.i: user/user/margin.cpp.i
@@ -1443,7 +1443,7 @@ user/user/margin.i: user/user/margin.cpp.i
 
 # target to preprocess a source file
 user/user/margin.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/margin.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/margin.cpp.i
 .PHONY : user/user/margin.cpp.i
 
 user/user/margin.s: user/user/margin.cpp.s
@@ -1452,7 +1452,7 @@ user/user/margin.s: user/user/margin.cpp.s
 
 # target to generate assembly for a file
 user/user/margin.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/margin.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/margin.cpp.s
 .PHONY : user/user/margin.cpp.s
 
 user/user/menu.o: user/user/menu.cpp.o
@@ -1461,7 +1461,7 @@ user/user/menu.o: user/user/menu.cpp.o
 
 # target to build an object file
 user/user/menu.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/menu.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/menu.cpp.o
 .PHONY : user/user/menu.cpp.o
 
 user/user/menu.i: user/user/menu.cpp.i
@@ -1470,7 +1470,7 @@ user/user/menu.i: user/user/menu.cpp.i
 
 # target to preprocess a source file
 user/user/menu.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/menu.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/menu.cpp.i
 .PHONY : user/user/menu.cpp.i
 
 user/user/menu.s: user/user/menu.cpp.s
@@ -1479,7 +1479,7 @@ user/user/menu.s: user/user/menu.cpp.s
 
 # target to generate assembly for a file
 user/user/menu.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/menu.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/menu.cpp.s
 .PHONY : user/user/menu.cpp.s
 
 user/user/menu_interaction.o: user/user/menu_interaction.cpp.o
@@ -1488,7 +1488,7 @@ user/user/menu_interaction.o: user/user/menu_interaction.cpp.o
 
 # target to build an object file
 user/user/menu_interaction.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/menu_interaction.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/menu_interaction.cpp.o
 .PHONY : user/user/menu_interaction.cpp.o
 
 user/user/menu_interaction.i: user/user/menu_interaction.cpp.i
@@ -1497,7 +1497,7 @@ user/user/menu_interaction.i: user/user/menu_interaction.cpp.i
 
 # target to preprocess a source file
 user/user/menu_interaction.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/menu_interaction.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/menu_interaction.cpp.i
 .PHONY : user/user/menu_interaction.cpp.i
 
 user/user/menu_interaction.s: user/user/menu_interaction.cpp.s
@@ -1506,7 +1506,7 @@ user/user/menu_interaction.s: user/user/menu_interaction.cpp.s
 
 # target to generate assembly for a file
 user/user/menu_interaction.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/menu_interaction.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/menu_interaction.cpp.s
 .PHONY : user/user/menu_interaction.cpp.s
 
 user/user/menu_item.o: user/user/menu_item.cpp.o
@@ -1515,7 +1515,7 @@ user/user/menu_item.o: user/user/menu_item.cpp.o
 
 # target to build an object file
 user/user/menu_item.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/menu_item.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/menu_item.cpp.o
 .PHONY : user/user/menu_item.cpp.o
 
 user/user/menu_item.i: user/user/menu_item.cpp.i
@@ -1524,7 +1524,7 @@ user/user/menu_item.i: user/user/menu_item.cpp.i
 
 # target to preprocess a source file
 user/user/menu_item.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/menu_item.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/menu_item.cpp.i
 .PHONY : user/user/menu_item.cpp.i
 
 user/user/menu_item.s: user/user/menu_item.cpp.s
@@ -1533,7 +1533,7 @@ user/user/menu_item.s: user/user/menu_item.cpp.s
 
 # target to generate assembly for a file
 user/user/menu_item.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/menu_item.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/menu_item.cpp.s
 .PHONY : user/user/menu_item.cpp.s
 
 user/user/multiple_document_template.o: user/user/multiple_document_template.cpp.o
@@ -1542,7 +1542,7 @@ user/user/multiple_document_template.o: user/user/multiple_document_template.cpp
 
 # target to build an object file
 user/user/multiple_document_template.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/multiple_document_template.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/multiple_document_template.cpp.o
 .PHONY : user/user/multiple_document_template.cpp.o
 
 user/user/multiple_document_template.i: user/user/multiple_document_template.cpp.i
@@ -1551,7 +1551,7 @@ user/user/multiple_document_template.i: user/user/multiple_document_template.cpp
 
 # target to preprocess a source file
 user/user/multiple_document_template.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/multiple_document_template.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/multiple_document_template.cpp.i
 .PHONY : user/user/multiple_document_template.cpp.i
 
 user/user/multiple_document_template.s: user/user/multiple_document_template.cpp.s
@@ -1560,7 +1560,7 @@ user/user/multiple_document_template.s: user/user/multiple_document_template.cpp
 
 # target to generate assembly for a file
 user/user/multiple_document_template.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/multiple_document_template.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/multiple_document_template.cpp.s
 .PHONY : user/user/multiple_document_template.cpp.s
 
 user/user/network_configuration.o: user/user/network_configuration.cpp.o
@@ -1569,7 +1569,7 @@ user/user/network_configuration.o: user/user/network_configuration.cpp.o
 
 # target to build an object file
 user/user/network_configuration.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/network_configuration.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/network_configuration.cpp.o
 .PHONY : user/user/network_configuration.cpp.o
 
 user/user/network_configuration.i: user/user/network_configuration.cpp.i
@@ -1578,7 +1578,7 @@ user/user/network_configuration.i: user/user/network_configuration.cpp.i
 
 # target to preprocess a source file
 user/user/network_configuration.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/network_configuration.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/network_configuration.cpp.i
 .PHONY : user/user/network_configuration.cpp.i
 
 user/user/network_configuration.s: user/user/network_configuration.cpp.s
@@ -1587,7 +1587,7 @@ user/user/network_configuration.s: user/user/network_configuration.cpp.s
 
 # target to generate assembly for a file
 user/user/network_configuration.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/network_configuration.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/network_configuration.cpp.s
 .PHONY : user/user/network_configuration.cpp.s
 
 user/user/picture.o: user/user/picture.cpp.o
@@ -1596,7 +1596,7 @@ user/user/picture.o: user/user/picture.cpp.o
 
 # target to build an object file
 user/user/picture.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/picture.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/picture.cpp.o
 .PHONY : user/user/picture.cpp.o
 
 user/user/picture.i: user/user/picture.cpp.i
@@ -1605,7 +1605,7 @@ user/user/picture.i: user/user/picture.cpp.i
 
 # target to preprocess a source file
 user/user/picture.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/picture.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/picture.cpp.i
 .PHONY : user/user/picture.cpp.i
 
 user/user/picture.s: user/user/picture.cpp.s
@@ -1614,7 +1614,7 @@ user/user/picture.s: user/user/picture.cpp.s
 
 # target to generate assembly for a file
 user/user/picture.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/picture.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/picture.cpp.s
 .PHONY : user/user/picture.cpp.s
 
 user/user/picture_interaction.o: user/user/picture_interaction.cpp.o
@@ -1623,7 +1623,7 @@ user/user/picture_interaction.o: user/user/picture_interaction.cpp.o
 
 # target to build an object file
 user/user/picture_interaction.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/picture_interaction.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/picture_interaction.cpp.o
 .PHONY : user/user/picture_interaction.cpp.o
 
 user/user/picture_interaction.i: user/user/picture_interaction.cpp.i
@@ -1632,7 +1632,7 @@ user/user/picture_interaction.i: user/user/picture_interaction.cpp.i
 
 # target to preprocess a source file
 user/user/picture_interaction.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/picture_interaction.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/picture_interaction.cpp.i
 .PHONY : user/user/picture_interaction.cpp.i
 
 user/user/picture_interaction.s: user/user/picture_interaction.cpp.s
@@ -1641,7 +1641,7 @@ user/user/picture_interaction.s: user/user/picture_interaction.cpp.s
 
 # target to generate assembly for a file
 user/user/picture_interaction.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/picture_interaction.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/picture_interaction.cpp.s
 .PHONY : user/user/picture_interaction.cpp.s
 
 user/user/place_holder.o: user/user/place_holder.cpp.o
@@ -1650,7 +1650,7 @@ user/user/place_holder.o: user/user/place_holder.cpp.o
 
 # target to build an object file
 user/user/place_holder.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/place_holder.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/place_holder.cpp.o
 .PHONY : user/user/place_holder.cpp.o
 
 user/user/place_holder.i: user/user/place_holder.cpp.i
@@ -1659,7 +1659,7 @@ user/user/place_holder.i: user/user/place_holder.cpp.i
 
 # target to preprocess a source file
 user/user/place_holder.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/place_holder.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/place_holder.cpp.i
 .PHONY : user/user/place_holder.cpp.i
 
 user/user/place_holder.s: user/user/place_holder.cpp.s
@@ -1668,7 +1668,7 @@ user/user/place_holder.s: user/user/place_holder.cpp.s
 
 # target to generate assembly for a file
 user/user/place_holder.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/place_holder.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/place_holder.cpp.s
 .PHONY : user/user/place_holder.cpp.s
 
 user/user/place_holder_container.o: user/user/place_holder_container.cpp.o
@@ -1677,7 +1677,7 @@ user/user/place_holder_container.o: user/user/place_holder_container.cpp.o
 
 # target to build an object file
 user/user/place_holder_container.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/place_holder_container.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/place_holder_container.cpp.o
 .PHONY : user/user/place_holder_container.cpp.o
 
 user/user/place_holder_container.i: user/user/place_holder_container.cpp.i
@@ -1686,7 +1686,7 @@ user/user/place_holder_container.i: user/user/place_holder_container.cpp.i
 
 # target to preprocess a source file
 user/user/place_holder_container.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/place_holder_container.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/place_holder_container.cpp.i
 .PHONY : user/user/place_holder_container.cpp.i
 
 user/user/place_holder_container.s: user/user/place_holder_container.cpp.s
@@ -1695,7 +1695,7 @@ user/user/place_holder_container.s: user/user/place_holder_container.cpp.s
 
 # target to generate assembly for a file
 user/user/place_holder_container.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/place_holder_container.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/place_holder_container.cpp.s
 .PHONY : user/user/place_holder_container.cpp.s
 
 user/user/print_task.o: user/user/print_task.cpp.o
@@ -1704,7 +1704,7 @@ user/user/print_task.o: user/user/print_task.cpp.o
 
 # target to build an object file
 user/user/print_task.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/print_task.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/print_task.cpp.o
 .PHONY : user/user/print_task.cpp.o
 
 user/user/print_task.i: user/user/print_task.cpp.i
@@ -1713,7 +1713,7 @@ user/user/print_task.i: user/user/print_task.cpp.i
 
 # target to preprocess a source file
 user/user/print_task.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/print_task.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/print_task.cpp.i
 .PHONY : user/user/print_task.cpp.i
 
 user/user/print_task.s: user/user/print_task.cpp.s
@@ -1722,7 +1722,7 @@ user/user/print_task.s: user/user/print_task.cpp.s
 
 # target to generate assembly for a file
 user/user/print_task.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/print_task.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/print_task.cpp.s
 .PHONY : user/user/print_task.cpp.s
 
 user/user/server.o: user/user/server.cpp.o
@@ -1731,7 +1731,7 @@ user/user/server.o: user/user/server.cpp.o
 
 # target to build an object file
 user/user/server.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/server.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/server.cpp.o
 .PHONY : user/user/server.cpp.o
 
 user/user/server.i: user/user/server.cpp.i
@@ -1740,7 +1740,7 @@ user/user/server.i: user/user/server.cpp.i
 
 # target to preprocess a source file
 user/user/server.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/server.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/server.cpp.i
 .PHONY : user/user/server.cpp.i
 
 user/user/server.s: user/user/server.cpp.s
@@ -1749,7 +1749,7 @@ user/user/server.s: user/user/server.cpp.s
 
 # target to generate assembly for a file
 user/user/server.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/server.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/server.cpp.s
 .PHONY : user/user/server.cpp.s
 
 user/user/simple_view.o: user/user/simple_view.cpp.o
@@ -1758,7 +1758,7 @@ user/user/simple_view.o: user/user/simple_view.cpp.o
 
 # target to build an object file
 user/user/simple_view.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/simple_view.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/simple_view.cpp.o
 .PHONY : user/user/simple_view.cpp.o
 
 user/user/simple_view.i: user/user/simple_view.cpp.i
@@ -1767,7 +1767,7 @@ user/user/simple_view.i: user/user/simple_view.cpp.i
 
 # target to preprocess a source file
 user/user/simple_view.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/simple_view.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/simple_view.cpp.i
 .PHONY : user/user/simple_view.cpp.i
 
 user/user/simple_view.s: user/user/simple_view.cpp.s
@@ -1776,7 +1776,7 @@ user/user/simple_view.s: user/user/simple_view.cpp.s
 
 # target to generate assembly for a file
 user/user/simple_view.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/simple_view.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/simple_view.cpp.s
 .PHONY : user/user/simple_view.cpp.s
 
 user/user/single_document_template.o: user/user/single_document_template.cpp.o
@@ -1785,7 +1785,7 @@ user/user/single_document_template.o: user/user/single_document_template.cpp.o
 
 # target to build an object file
 user/user/single_document_template.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/single_document_template.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/single_document_template.cpp.o
 .PHONY : user/user/single_document_template.cpp.o
 
 user/user/single_document_template.i: user/user/single_document_template.cpp.i
@@ -1794,7 +1794,7 @@ user/user/single_document_template.i: user/user/single_document_template.cpp.i
 
 # target to preprocess a source file
 user/user/single_document_template.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/single_document_template.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/single_document_template.cpp.i
 .PHONY : user/user/single_document_template.cpp.i
 
 user/user/single_document_template.s: user/user/single_document_template.cpp.s
@@ -1803,7 +1803,7 @@ user/user/single_document_template.s: user/user/single_document_template.cpp.s
 
 # target to generate assembly for a file
 user/user/single_document_template.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/single_document_template.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/single_document_template.cpp.s
 .PHONY : user/user/single_document_template.cpp.s
 
 user/user/split_bar.o: user/user/split_bar.cpp.o
@@ -1812,7 +1812,7 @@ user/user/split_bar.o: user/user/split_bar.cpp.o
 
 # target to build an object file
 user/user/split_bar.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_bar.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_bar.cpp.o
 .PHONY : user/user/split_bar.cpp.o
 
 user/user/split_bar.i: user/user/split_bar.cpp.i
@@ -1821,7 +1821,7 @@ user/user/split_bar.i: user/user/split_bar.cpp.i
 
 # target to preprocess a source file
 user/user/split_bar.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_bar.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_bar.cpp.i
 .PHONY : user/user/split_bar.cpp.i
 
 user/user/split_bar.s: user/user/split_bar.cpp.s
@@ -1830,7 +1830,7 @@ user/user/split_bar.s: user/user/split_bar.cpp.s
 
 # target to generate assembly for a file
 user/user/split_bar.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_bar.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_bar.cpp.s
 .PHONY : user/user/split_bar.cpp.s
 
 user/user/split_layout.o: user/user/split_layout.cpp.o
@@ -1839,7 +1839,7 @@ user/user/split_layout.o: user/user/split_layout.cpp.o
 
 # target to build an object file
 user/user/split_layout.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_layout.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_layout.cpp.o
 .PHONY : user/user/split_layout.cpp.o
 
 user/user/split_layout.i: user/user/split_layout.cpp.i
@@ -1848,7 +1848,7 @@ user/user/split_layout.i: user/user/split_layout.cpp.i
 
 # target to preprocess a source file
 user/user/split_layout.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_layout.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_layout.cpp.i
 .PHONY : user/user/split_layout.cpp.i
 
 user/user/split_layout.s: user/user/split_layout.cpp.s
@@ -1857,7 +1857,7 @@ user/user/split_layout.s: user/user/split_layout.cpp.s
 
 # target to generate assembly for a file
 user/user/split_layout.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_layout.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_layout.cpp.s
 .PHONY : user/user/split_layout.cpp.s
 
 user/user/split_pane.o: user/user/split_pane.cpp.o
@@ -1866,7 +1866,7 @@ user/user/split_pane.o: user/user/split_pane.cpp.o
 
 # target to build an object file
 user/user/split_pane.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_pane.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_pane.cpp.o
 .PHONY : user/user/split_pane.cpp.o
 
 user/user/split_pane.i: user/user/split_pane.cpp.i
@@ -1875,7 +1875,7 @@ user/user/split_pane.i: user/user/split_pane.cpp.i
 
 # target to preprocess a source file
 user/user/split_pane.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_pane.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_pane.cpp.i
 .PHONY : user/user/split_pane.cpp.i
 
 user/user/split_pane.s: user/user/split_pane.cpp.s
@@ -1884,7 +1884,7 @@ user/user/split_pane.s: user/user/split_pane.cpp.s
 
 # target to generate assembly for a file
 user/user/split_pane.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_pane.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_pane.cpp.s
 .PHONY : user/user/split_pane.cpp.s
 
 user/user/split_view.o: user/user/split_view.cpp.o
@@ -1893,7 +1893,7 @@ user/user/split_view.o: user/user/split_view.cpp.o
 
 # target to build an object file
 user/user/split_view.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_view.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_view.cpp.o
 .PHONY : user/user/split_view.cpp.o
 
 user/user/split_view.i: user/user/split_view.cpp.i
@@ -1902,7 +1902,7 @@ user/user/split_view.i: user/user/split_view.cpp.i
 
 # target to preprocess a source file
 user/user/split_view.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_view.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_view.cpp.i
 .PHONY : user/user/split_view.cpp.i
 
 user/user/split_view.s: user/user/split_view.cpp.s
@@ -1911,7 +1911,7 @@ user/user/split_view.s: user/user/split_view.cpp.s
 
 # target to generate assembly for a file
 user/user/split_view.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_view.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/split_view.cpp.s
 .PHONY : user/user/split_view.cpp.s
 
 user/user/static_control.o: user/user/static_control.cpp.o
@@ -1920,7 +1920,7 @@ user/user/static_control.o: user/user/static_control.cpp.o
 
 # target to build an object file
 user/user/static_control.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/static_control.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/static_control.cpp.o
 .PHONY : user/user/static_control.cpp.o
 
 user/user/static_control.i: user/user/static_control.cpp.i
@@ -1929,7 +1929,7 @@ user/user/static_control.i: user/user/static_control.cpp.i
 
 # target to preprocess a source file
 user/user/static_control.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/static_control.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/static_control.cpp.i
 .PHONY : user/user/static_control.cpp.i
 
 user/user/static_control.s: user/user/static_control.cpp.s
@@ -1938,7 +1938,7 @@ user/user/static_control.s: user/user/static_control.cpp.s
 
 # target to generate assembly for a file
 user/user/static_control.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/static_control.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/static_control.cpp.s
 .PHONY : user/user/static_control.cpp.s
 
 user/user/style.o: user/user/style.cpp.o
@@ -1947,7 +1947,7 @@ user/user/style.o: user/user/style.cpp.o
 
 # target to build an object file
 user/user/style.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/style.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/style.cpp.o
 .PHONY : user/user/style.cpp.o
 
 user/user/style.i: user/user/style.cpp.i
@@ -1956,7 +1956,7 @@ user/user/style.i: user/user/style.cpp.i
 
 # target to preprocess a source file
 user/user/style.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/style.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/style.cpp.i
 .PHONY : user/user/style.cpp.i
 
 user/user/style.s: user/user/style.cpp.s
@@ -1965,7 +1965,7 @@ user/user/style.s: user/user/style.cpp.s
 
 # target to generate assembly for a file
 user/user/style.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/style.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/style.cpp.s
 .PHONY : user/user/style.cpp.s
 
 user/user/tab.o: user/user/tab.cpp.o
@@ -1974,7 +1974,7 @@ user/user/tab.o: user/user/tab.cpp.o
 
 # target to build an object file
 user/user/tab.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab.cpp.o
 .PHONY : user/user/tab.cpp.o
 
 user/user/tab.i: user/user/tab.cpp.i
@@ -1983,7 +1983,7 @@ user/user/tab.i: user/user/tab.cpp.i
 
 # target to preprocess a source file
 user/user/tab.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab.cpp.i
 .PHONY : user/user/tab.cpp.i
 
 user/user/tab.s: user/user/tab.cpp.s
@@ -1992,7 +1992,7 @@ user/user/tab.s: user/user/tab.cpp.s
 
 # target to generate assembly for a file
 user/user/tab.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab.cpp.s
 .PHONY : user/user/tab.cpp.s
 
 user/user/tab_callback.o: user/user/tab_callback.cpp.o
@@ -2001,7 +2001,7 @@ user/user/tab_callback.o: user/user/tab_callback.cpp.o
 
 # target to build an object file
 user/user/tab_callback.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_callback.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_callback.cpp.o
 .PHONY : user/user/tab_callback.cpp.o
 
 user/user/tab_callback.i: user/user/tab_callback.cpp.i
@@ -2010,7 +2010,7 @@ user/user/tab_callback.i: user/user/tab_callback.cpp.i
 
 # target to preprocess a source file
 user/user/tab_callback.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_callback.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_callback.cpp.i
 .PHONY : user/user/tab_callback.cpp.i
 
 user/user/tab_callback.s: user/user/tab_callback.cpp.s
@@ -2019,7 +2019,7 @@ user/user/tab_callback.s: user/user/tab_callback.cpp.s
 
 # target to generate assembly for a file
 user/user/tab_callback.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_callback.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_callback.cpp.s
 .PHONY : user/user/tab_callback.cpp.s
 
 user/user/tab_data.o: user/user/tab_data.cpp.o
@@ -2028,7 +2028,7 @@ user/user/tab_data.o: user/user/tab_data.cpp.o
 
 # target to build an object file
 user/user/tab_data.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_data.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_data.cpp.o
 .PHONY : user/user/tab_data.cpp.o
 
 user/user/tab_data.i: user/user/tab_data.cpp.i
@@ -2037,7 +2037,7 @@ user/user/tab_data.i: user/user/tab_data.cpp.i
 
 # target to preprocess a source file
 user/user/tab_data.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_data.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_data.cpp.i
 .PHONY : user/user/tab_data.cpp.i
 
 user/user/tab_data.s: user/user/tab_data.cpp.s
@@ -2046,7 +2046,7 @@ user/user/tab_data.s: user/user/tab_data.cpp.s
 
 # target to generate assembly for a file
 user/user/tab_data.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_data.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_data.cpp.s
 .PHONY : user/user/tab_data.cpp.s
 
 user/user/tab_pane.o: user/user/tab_pane.cpp.o
@@ -2055,7 +2055,7 @@ user/user/tab_pane.o: user/user/tab_pane.cpp.o
 
 # target to build an object file
 user/user/tab_pane.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_pane.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_pane.cpp.o
 .PHONY : user/user/tab_pane.cpp.o
 
 user/user/tab_pane.i: user/user/tab_pane.cpp.i
@@ -2064,7 +2064,7 @@ user/user/tab_pane.i: user/user/tab_pane.cpp.i
 
 # target to preprocess a source file
 user/user/tab_pane.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_pane.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_pane.cpp.i
 .PHONY : user/user/tab_pane.cpp.i
 
 user/user/tab_pane.s: user/user/tab_pane.cpp.s
@@ -2073,7 +2073,7 @@ user/user/tab_pane.s: user/user/tab_pane.cpp.s
 
 # target to generate assembly for a file
 user/user/tab_pane.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_pane.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_pane.cpp.s
 .PHONY : user/user/tab_pane.cpp.s
 
 user/user/tab_pane_array.o: user/user/tab_pane_array.cpp.o
@@ -2082,7 +2082,7 @@ user/user/tab_pane_array.o: user/user/tab_pane_array.cpp.o
 
 # target to build an object file
 user/user/tab_pane_array.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_pane_array.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_pane_array.cpp.o
 .PHONY : user/user/tab_pane_array.cpp.o
 
 user/user/tab_pane_array.i: user/user/tab_pane_array.cpp.i
@@ -2091,7 +2091,7 @@ user/user/tab_pane_array.i: user/user/tab_pane_array.cpp.i
 
 # target to preprocess a source file
 user/user/tab_pane_array.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_pane_array.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_pane_array.cpp.i
 .PHONY : user/user/tab_pane_array.cpp.i
 
 user/user/tab_pane_array.s: user/user/tab_pane_array.cpp.s
@@ -2100,7 +2100,7 @@ user/user/tab_pane_array.s: user/user/tab_pane_array.cpp.s
 
 # target to generate assembly for a file
 user/user/tab_pane_array.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_pane_array.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_pane_array.cpp.s
 .PHONY : user/user/tab_pane_array.cpp.s
 
 user/user/tab_view.o: user/user/tab_view.cpp.o
@@ -2109,7 +2109,7 @@ user/user/tab_view.o: user/user/tab_view.cpp.o
 
 # target to build an object file
 user/user/tab_view.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_view.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_view.cpp.o
 .PHONY : user/user/tab_view.cpp.o
 
 user/user/tab_view.i: user/user/tab_view.cpp.i
@@ -2118,7 +2118,7 @@ user/user/tab_view.i: user/user/tab_view.cpp.i
 
 # target to preprocess a source file
 user/user/tab_view.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_view.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_view.cpp.i
 .PHONY : user/user/tab_view.cpp.i
 
 user/user/tab_view.s: user/user/tab_view.cpp.s
@@ -2127,7 +2127,7 @@ user/user/tab_view.s: user/user/tab_view.cpp.s
 
 # target to generate assembly for a file
 user/user/tab_view.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_view.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/tab_view.cpp.s
 .PHONY : user/user/tab_view.cpp.s
 
 user/user/toolbar.o: user/user/toolbar.cpp.o
@@ -2136,7 +2136,7 @@ user/user/toolbar.o: user/user/toolbar.cpp.o
 
 # target to build an object file
 user/user/toolbar.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/toolbar.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/toolbar.cpp.o
 .PHONY : user/user/toolbar.cpp.o
 
 user/user/toolbar.i: user/user/toolbar.cpp.i
@@ -2145,7 +2145,7 @@ user/user/toolbar.i: user/user/toolbar.cpp.i
 
 # target to preprocess a source file
 user/user/toolbar.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/toolbar.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/toolbar.cpp.i
 .PHONY : user/user/toolbar.cpp.i
 
 user/user/toolbar.s: user/user/toolbar.cpp.s
@@ -2154,7 +2154,7 @@ user/user/toolbar.s: user/user/toolbar.cpp.s
 
 # target to generate assembly for a file
 user/user/toolbar.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/toolbar.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/toolbar.cpp.s
 .PHONY : user/user/toolbar.cpp.s
 
 user/user/user.o: user/user/user.cpp.o
@@ -2163,7 +2163,7 @@ user/user/user.o: user/user/user.cpp.o
 
 # target to build an object file
 user/user/user.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/user.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/user.cpp.o
 .PHONY : user/user/user.cpp.o
 
 user/user/user.i: user/user/user.cpp.i
@@ -2172,7 +2172,7 @@ user/user/user.i: user/user/user.cpp.i
 
 # target to preprocess a source file
 user/user/user.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/user.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/user.cpp.i
 .PHONY : user/user/user.cpp.i
 
 user/user/user.s: user/user/user.cpp.s
@@ -2181,7 +2181,7 @@ user/user/user.s: user/user/user.cpp.s
 
 # target to generate assembly for a file
 user/user/user.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/user.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/base/CMakeFiles/base.dir/build.make source/app/base/CMakeFiles/base.dir/user/user/user.cpp.s
 .PHONY : user/user/user.cpp.s
 
 # Help Target
@@ -2432,6 +2432,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

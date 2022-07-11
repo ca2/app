@@ -67,10 +67,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/solution/basis
+CMAKE_SOURCE_DIR = /home/camilo/solution/basis
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/solution/basis
+CMAKE_BINARY_DIR = /home/camilo/solution/basis
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,14 +99,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles /home/pi/solution/basis/source/app/aura//CMakeFiles/progress.marks
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/aura/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles /home/camilo/solution/basis/source/app/aura//CMakeFiles/progress.marks
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/aura/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/aura/clean
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/aura/clean
 .PHONY : clean
 
 # The main clean target
@@ -116,22 +116,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/aura/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/aura/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/aura/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/aura/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 source/app/aura/CMakeFiles/aura.dir/rule:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/aura/CMakeFiles/aura.dir/rule
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/aura/CMakeFiles/aura.dir/rule
 .PHONY : source/app/aura/CMakeFiles/aura.dir/rule
 
 # Convenience name for target.
@@ -141,7 +141,7 @@ aura: source/app/aura/CMakeFiles/aura.dir/rule
 
 # fast build rule for target.
 aura/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/build
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/build
 .PHONY : aura/fast
 
 _.o: _.cpp.o
@@ -150,7 +150,7 @@ _.o: _.cpp.o
 
 # target to build an object file
 _.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/_.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/_.cpp.o
 .PHONY : _.cpp.o
 
 _.i: _.cpp.i
@@ -159,7 +159,7 @@ _.i: _.cpp.i
 
 # target to preprocess a source file
 _.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/_.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/_.cpp.i
 .PHONY : _.cpp.i
 
 _.s: _.cpp.s
@@ -168,7 +168,7 @@ _.s: _.cpp.s
 
 # target to generate assembly for a file
 _.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/_.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/_.cpp.s
 .PHONY : _.cpp.s
 
 __matter_ca2.o: __matter_ca2.cpp.o
@@ -177,7 +177,7 @@ __matter_ca2.o: __matter_ca2.cpp.o
 
 # target to build an object file
 __matter_ca2.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/__matter_ca2.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/__matter_ca2.cpp.o
 .PHONY : __matter_ca2.cpp.o
 
 __matter_ca2.i: __matter_ca2.cpp.i
@@ -186,7 +186,7 @@ __matter_ca2.i: __matter_ca2.cpp.i
 
 # target to preprocess a source file
 __matter_ca2.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/__matter_ca2.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/__matter_ca2.cpp.i
 .PHONY : __matter_ca2.cpp.i
 
 __matter_ca2.s: __matter_ca2.cpp.s
@@ -195,22 +195,22 @@ __matter_ca2.s: __matter_ca2.cpp.s
 
 # target to generate assembly for a file
 __matter_ca2.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/__matter_ca2.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/__matter_ca2.cpp.s
 .PHONY : __matter_ca2.cpp.s
 
 # target to build an object file
 cmake_pch.hxx.gch:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/cmake_pch.hxx.gch
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/cmake_pch.hxx.gch
 .PHONY : cmake_pch.hxx.gch
 
 # target to preprocess a source file
 cmake_pch.hxx.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/cmake_pch.hxx.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/cmake_pch.hxx.i
 .PHONY : cmake_pch.hxx.i
 
 # target to generate assembly for a file
 cmake_pch.hxx.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/cmake_pch.hxx.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/cmake_pch.hxx.s
 .PHONY : cmake_pch.hxx.s
 
 constant/idpool.o: constant/idpool.cpp.o
@@ -219,7 +219,7 @@ constant/idpool.o: constant/idpool.cpp.o
 
 # target to build an object file
 constant/idpool.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/constant/idpool.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/constant/idpool.cpp.o
 .PHONY : constant/idpool.cpp.o
 
 constant/idpool.i: constant/idpool.cpp.i
@@ -228,7 +228,7 @@ constant/idpool.i: constant/idpool.cpp.i
 
 # target to preprocess a source file
 constant/idpool.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/constant/idpool.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/constant/idpool.cpp.i
 .PHONY : constant/idpool.cpp.i
 
 constant/idpool.s: constant/idpool.cpp.s
@@ -237,7 +237,7 @@ constant/idpool.s: constant/idpool.cpp.s
 
 # target to generate assembly for a file
 constant/idpool.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/constant/idpool.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/constant/idpool.cpp.s
 .PHONY : constant/idpool.cpp.s
 
 context_glx.o: context_glx.cpp.o
@@ -246,7 +246,7 @@ context_glx.o: context_glx.cpp.o
 
 # target to build an object file
 context_glx.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/context_glx.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/context_glx.cpp.o
 .PHONY : context_glx.cpp.o
 
 context_glx.i: context_glx.cpp.i
@@ -255,7 +255,7 @@ context_glx.i: context_glx.cpp.i
 
 # target to preprocess a source file
 context_glx.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/context_glx.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/context_glx.cpp.i
 .PHONY : context_glx.cpp.i
 
 context_glx.s: context_glx.cpp.s
@@ -264,7 +264,7 @@ context_glx.s: context_glx.cpp.s
 
 # target to generate assembly for a file
 context_glx.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/context_glx.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/context_glx.cpp.s
 .PHONY : context_glx.cpp.s
 
 filesystem/filemanager/callback.o: filesystem/filemanager/callback.cpp.o
@@ -273,7 +273,7 @@ filesystem/filemanager/callback.o: filesystem/filemanager/callback.cpp.o
 
 # target to build an object file
 filesystem/filemanager/callback.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/filesystem/filemanager/callback.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/filesystem/filemanager/callback.cpp.o
 .PHONY : filesystem/filemanager/callback.cpp.o
 
 filesystem/filemanager/callback.i: filesystem/filemanager/callback.cpp.i
@@ -282,7 +282,7 @@ filesystem/filemanager/callback.i: filesystem/filemanager/callback.cpp.i
 
 # target to preprocess a source file
 filesystem/filemanager/callback.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/filesystem/filemanager/callback.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/filesystem/filemanager/callback.cpp.i
 .PHONY : filesystem/filemanager/callback.cpp.i
 
 filesystem/filemanager/callback.s: filesystem/filemanager/callback.cpp.s
@@ -291,7 +291,7 @@ filesystem/filemanager/callback.s: filesystem/filemanager/callback.cpp.s
 
 # target to generate assembly for a file
 filesystem/filemanager/callback.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/filesystem/filemanager/callback.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/filesystem/filemanager/callback.cpp.s
 .PHONY : filesystem/filemanager/callback.cpp.s
 
 filesystem/filemanager/item_action.o: filesystem/filemanager/item_action.cpp.o
@@ -300,7 +300,7 @@ filesystem/filemanager/item_action.o: filesystem/filemanager/item_action.cpp.o
 
 # target to build an object file
 filesystem/filemanager/item_action.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/filesystem/filemanager/item_action.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/filesystem/filemanager/item_action.cpp.o
 .PHONY : filesystem/filemanager/item_action.cpp.o
 
 filesystem/filemanager/item_action.i: filesystem/filemanager/item_action.cpp.i
@@ -309,7 +309,7 @@ filesystem/filemanager/item_action.i: filesystem/filemanager/item_action.cpp.i
 
 # target to preprocess a source file
 filesystem/filemanager/item_action.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/filesystem/filemanager/item_action.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/filesystem/filemanager/item_action.cpp.i
 .PHONY : filesystem/filemanager/item_action.cpp.i
 
 filesystem/filemanager/item_action.s: filesystem/filemanager/item_action.cpp.s
@@ -318,7 +318,7 @@ filesystem/filemanager/item_action.s: filesystem/filemanager/item_action.cpp.s
 
 # target to generate assembly for a file
 filesystem/filemanager/item_action.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/filesystem/filemanager/item_action.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/filesystem/filemanager/item_action.cpp.s
 .PHONY : filesystem/filemanager/item_action.cpp.s
 
 framework.o: framework.cpp.o
@@ -327,7 +327,7 @@ framework.o: framework.cpp.o
 
 # target to build an object file
 framework.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/framework.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/framework.cpp.o
 .PHONY : framework.cpp.o
 
 framework.i: framework.cpp.i
@@ -336,7 +336,7 @@ framework.i: framework.cpp.i
 
 # target to preprocess a source file
 framework.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/framework.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/framework.cpp.i
 .PHONY : framework.cpp.i
 
 framework.s: framework.cpp.s
@@ -345,7 +345,7 @@ framework.s: framework.cpp.s
 
 # target to generate assembly for a file
 framework.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/framework.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/framework.cpp.s
 .PHONY : framework.cpp.s
 
 game/estamira.o: game/estamira.cpp.o
@@ -354,7 +354,7 @@ game/estamira.o: game/estamira.cpp.o
 
 # target to build an object file
 game/estamira.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/game/estamira.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/game/estamira.cpp.o
 .PHONY : game/estamira.cpp.o
 
 game/estamira.i: game/estamira.cpp.i
@@ -363,7 +363,7 @@ game/estamira.i: game/estamira.cpp.i
 
 # target to preprocess a source file
 game/estamira.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/game/estamira.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/game/estamira.cpp.i
 .PHONY : game/estamira.cpp.i
 
 game/estamira.s: game/estamira.cpp.s
@@ -372,7 +372,7 @@ game/estamira.s: game/estamira.cpp.s
 
 # target to generate assembly for a file
 game/estamira.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/game/estamira.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/game/estamira.cpp.s
 .PHONY : game/estamira.cpp.s
 
 game/game.o: game/game.cpp.o
@@ -381,7 +381,7 @@ game/game.o: game/game.cpp.o
 
 # target to build an object file
 game/game.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/game/game.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/game/game.cpp.o
 .PHONY : game/game.cpp.o
 
 game/game.i: game/game.cpp.i
@@ -390,7 +390,7 @@ game/game.i: game/game.cpp.i
 
 # target to preprocess a source file
 game/game.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/game/game.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/game/game.cpp.i
 .PHONY : game/game.cpp.i
 
 game/game.s: game/game.cpp.s
@@ -399,7 +399,7 @@ game/game.s: game/game.cpp.s
 
 # target to generate assembly for a file
 game/game.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/game/game.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/game/game.cpp.s
 .PHONY : game/game.cpp.s
 
 gpu/gpu/approach.o: gpu/gpu/approach.cpp.o
@@ -408,7 +408,7 @@ gpu/gpu/approach.o: gpu/gpu/approach.cpp.o
 
 # target to build an object file
 gpu/gpu/approach.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/approach.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/approach.cpp.o
 .PHONY : gpu/gpu/approach.cpp.o
 
 gpu/gpu/approach.i: gpu/gpu/approach.cpp.i
@@ -417,7 +417,7 @@ gpu/gpu/approach.i: gpu/gpu/approach.cpp.i
 
 # target to preprocess a source file
 gpu/gpu/approach.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/approach.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/approach.cpp.i
 .PHONY : gpu/gpu/approach.cpp.i
 
 gpu/gpu/approach.s: gpu/gpu/approach.cpp.s
@@ -426,7 +426,7 @@ gpu/gpu/approach.s: gpu/gpu/approach.cpp.s
 
 # target to generate assembly for a file
 gpu/gpu/approach.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/approach.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/approach.cpp.s
 .PHONY : gpu/gpu/approach.cpp.s
 
 gpu/gpu/buffer.o: gpu/gpu/buffer.cpp.o
@@ -435,7 +435,7 @@ gpu/gpu/buffer.o: gpu/gpu/buffer.cpp.o
 
 # target to build an object file
 gpu/gpu/buffer.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/buffer.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/buffer.cpp.o
 .PHONY : gpu/gpu/buffer.cpp.o
 
 gpu/gpu/buffer.i: gpu/gpu/buffer.cpp.i
@@ -444,7 +444,7 @@ gpu/gpu/buffer.i: gpu/gpu/buffer.cpp.i
 
 # target to preprocess a source file
 gpu/gpu/buffer.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/buffer.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/buffer.cpp.i
 .PHONY : gpu/gpu/buffer.cpp.i
 
 gpu/gpu/buffer.s: gpu/gpu/buffer.cpp.s
@@ -453,7 +453,7 @@ gpu/gpu/buffer.s: gpu/gpu/buffer.cpp.s
 
 # target to generate assembly for a file
 gpu/gpu/buffer.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/buffer.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/buffer.cpp.s
 .PHONY : gpu/gpu/buffer.cpp.s
 
 gpu/gpu/context.o: gpu/gpu/context.cpp.o
@@ -462,7 +462,7 @@ gpu/gpu/context.o: gpu/gpu/context.cpp.o
 
 # target to build an object file
 gpu/gpu/context.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/context.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/context.cpp.o
 .PHONY : gpu/gpu/context.cpp.o
 
 gpu/gpu/context.i: gpu/gpu/context.cpp.i
@@ -471,7 +471,7 @@ gpu/gpu/context.i: gpu/gpu/context.cpp.i
 
 # target to preprocess a source file
 gpu/gpu/context.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/context.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/context.cpp.i
 .PHONY : gpu/gpu/context.cpp.i
 
 gpu/gpu/context.s: gpu/gpu/context.cpp.s
@@ -480,7 +480,7 @@ gpu/gpu/context.s: gpu/gpu/context.cpp.s
 
 # target to generate assembly for a file
 gpu/gpu/context.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/context.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/context.cpp.s
 .PHONY : gpu/gpu/context.cpp.s
 
 gpu/gpu/program.o: gpu/gpu/program.cpp.o
@@ -489,7 +489,7 @@ gpu/gpu/program.o: gpu/gpu/program.cpp.o
 
 # target to build an object file
 gpu/gpu/program.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/program.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/program.cpp.o
 .PHONY : gpu/gpu/program.cpp.o
 
 gpu/gpu/program.i: gpu/gpu/program.cpp.i
@@ -498,7 +498,7 @@ gpu/gpu/program.i: gpu/gpu/program.cpp.i
 
 # target to preprocess a source file
 gpu/gpu/program.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/program.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/program.cpp.i
 .PHONY : gpu/gpu/program.cpp.i
 
 gpu/gpu/program.s: gpu/gpu/program.cpp.s
@@ -507,7 +507,7 @@ gpu/gpu/program.s: gpu/gpu/program.cpp.s
 
 # target to generate assembly for a file
 gpu/gpu/program.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/program.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/program.cpp.s
 .PHONY : gpu/gpu/program.cpp.s
 
 gpu/gpu/shader.o: gpu/gpu/shader.cpp.o
@@ -516,7 +516,7 @@ gpu/gpu/shader.o: gpu/gpu/shader.cpp.o
 
 # target to build an object file
 gpu/gpu/shader.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/shader.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/shader.cpp.o
 .PHONY : gpu/gpu/shader.cpp.o
 
 gpu/gpu/shader.i: gpu/gpu/shader.cpp.i
@@ -525,7 +525,7 @@ gpu/gpu/shader.i: gpu/gpu/shader.cpp.i
 
 # target to preprocess a source file
 gpu/gpu/shader.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/shader.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/shader.cpp.i
 .PHONY : gpu/gpu/shader.cpp.i
 
 gpu/gpu/shader.s: gpu/gpu/shader.cpp.s
@@ -534,7 +534,7 @@ gpu/gpu/shader.s: gpu/gpu/shader.cpp.s
 
 # target to generate assembly for a file
 gpu/gpu/shader.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/shader.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/gpu/gpu/shader.cpp.s
 .PHONY : gpu/gpu/shader.cpp.s
 
 graphics/draw2d/_.o: graphics/draw2d/_.cpp.o
@@ -543,7 +543,7 @@ graphics/draw2d/_.o: graphics/draw2d/_.cpp.o
 
 # target to build an object file
 graphics/draw2d/_.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/_.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/_.cpp.o
 .PHONY : graphics/draw2d/_.cpp.o
 
 graphics/draw2d/_.i: graphics/draw2d/_.cpp.i
@@ -552,7 +552,7 @@ graphics/draw2d/_.i: graphics/draw2d/_.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/_.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/_.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/_.cpp.i
 .PHONY : graphics/draw2d/_.cpp.i
 
 graphics/draw2d/_.s: graphics/draw2d/_.cpp.s
@@ -561,7 +561,7 @@ graphics/draw2d/_.s: graphics/draw2d/_.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/_.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/_.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/_.cpp.s
 .PHONY : graphics/draw2d/_.cpp.s
 
 graphics/draw2d/alpha.o: graphics/draw2d/alpha.cpp.o
@@ -570,7 +570,7 @@ graphics/draw2d/alpha.o: graphics/draw2d/alpha.cpp.o
 
 # target to build an object file
 graphics/draw2d/alpha.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/alpha.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/alpha.cpp.o
 .PHONY : graphics/draw2d/alpha.cpp.o
 
 graphics/draw2d/alpha.i: graphics/draw2d/alpha.cpp.i
@@ -579,7 +579,7 @@ graphics/draw2d/alpha.i: graphics/draw2d/alpha.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/alpha.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/alpha.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/alpha.cpp.i
 .PHONY : graphics/draw2d/alpha.cpp.i
 
 graphics/draw2d/alpha.s: graphics/draw2d/alpha.cpp.s
@@ -588,7 +588,7 @@ graphics/draw2d/alpha.s: graphics/draw2d/alpha.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/alpha.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/alpha.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/alpha.cpp.s
 .PHONY : graphics/draw2d/alpha.cpp.s
 
 graphics/draw2d/api.o: graphics/draw2d/api.cpp.o
@@ -597,7 +597,7 @@ graphics/draw2d/api.o: graphics/draw2d/api.cpp.o
 
 # target to build an object file
 graphics/draw2d/api.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/api.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/api.cpp.o
 .PHONY : graphics/draw2d/api.cpp.o
 
 graphics/draw2d/api.i: graphics/draw2d/api.cpp.i
@@ -606,7 +606,7 @@ graphics/draw2d/api.i: graphics/draw2d/api.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/api.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/api.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/api.cpp.i
 .PHONY : graphics/draw2d/api.cpp.i
 
 graphics/draw2d/api.s: graphics/draw2d/api.cpp.s
@@ -615,7 +615,7 @@ graphics/draw2d/api.s: graphics/draw2d/api.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/api.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/api.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/api.cpp.s
 .PHONY : graphics/draw2d/api.cpp.s
 
 graphics/draw2d/bitmap.o: graphics/draw2d/bitmap.cpp.o
@@ -624,7 +624,7 @@ graphics/draw2d/bitmap.o: graphics/draw2d/bitmap.cpp.o
 
 # target to build an object file
 graphics/draw2d/bitmap.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/bitmap.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/bitmap.cpp.o
 .PHONY : graphics/draw2d/bitmap.cpp.o
 
 graphics/draw2d/bitmap.i: graphics/draw2d/bitmap.cpp.i
@@ -633,7 +633,7 @@ graphics/draw2d/bitmap.i: graphics/draw2d/bitmap.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/bitmap.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/bitmap.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/bitmap.cpp.i
 .PHONY : graphics/draw2d/bitmap.cpp.i
 
 graphics/draw2d/bitmap.s: graphics/draw2d/bitmap.cpp.s
@@ -642,7 +642,7 @@ graphics/draw2d/bitmap.s: graphics/draw2d/bitmap.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/bitmap.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/bitmap.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/bitmap.cpp.s
 .PHONY : graphics/draw2d/bitmap.cpp.s
 
 graphics/draw2d/brush.o: graphics/draw2d/brush.cpp.o
@@ -651,7 +651,7 @@ graphics/draw2d/brush.o: graphics/draw2d/brush.cpp.o
 
 # target to build an object file
 graphics/draw2d/brush.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/brush.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/brush.cpp.o
 .PHONY : graphics/draw2d/brush.cpp.o
 
 graphics/draw2d/brush.i: graphics/draw2d/brush.cpp.i
@@ -660,7 +660,7 @@ graphics/draw2d/brush.i: graphics/draw2d/brush.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/brush.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/brush.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/brush.cpp.i
 .PHONY : graphics/draw2d/brush.cpp.i
 
 graphics/draw2d/brush.s: graphics/draw2d/brush.cpp.s
@@ -669,7 +669,7 @@ graphics/draw2d/brush.s: graphics/draw2d/brush.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/brush.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/brush.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/brush.cpp.s
 .PHONY : graphics/draw2d/brush.cpp.s
 
 graphics/draw2d/buffered_graphics.o: graphics/draw2d/buffered_graphics.cpp.o
@@ -678,7 +678,7 @@ graphics/draw2d/buffered_graphics.o: graphics/draw2d/buffered_graphics.cpp.o
 
 # target to build an object file
 graphics/draw2d/buffered_graphics.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/buffered_graphics.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/buffered_graphics.cpp.o
 .PHONY : graphics/draw2d/buffered_graphics.cpp.o
 
 graphics/draw2d/buffered_graphics.i: graphics/draw2d/buffered_graphics.cpp.i
@@ -687,7 +687,7 @@ graphics/draw2d/buffered_graphics.i: graphics/draw2d/buffered_graphics.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/buffered_graphics.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/buffered_graphics.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/buffered_graphics.cpp.i
 .PHONY : graphics/draw2d/buffered_graphics.cpp.i
 
 graphics/draw2d/buffered_graphics.s: graphics/draw2d/buffered_graphics.cpp.s
@@ -696,7 +696,7 @@ graphics/draw2d/buffered_graphics.s: graphics/draw2d/buffered_graphics.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/buffered_graphics.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/buffered_graphics.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/buffered_graphics.cpp.s
 .PHONY : graphics/draw2d/buffered_graphics.cpp.s
 
 graphics/draw2d/color_matrix.o: graphics/draw2d/color_matrix.cpp.o
@@ -705,7 +705,7 @@ graphics/draw2d/color_matrix.o: graphics/draw2d/color_matrix.cpp.o
 
 # target to build an object file
 graphics/draw2d/color_matrix.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/color_matrix.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/color_matrix.cpp.o
 .PHONY : graphics/draw2d/color_matrix.cpp.o
 
 graphics/draw2d/color_matrix.i: graphics/draw2d/color_matrix.cpp.i
@@ -714,7 +714,7 @@ graphics/draw2d/color_matrix.i: graphics/draw2d/color_matrix.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/color_matrix.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/color_matrix.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/color_matrix.cpp.i
 .PHONY : graphics/draw2d/color_matrix.cpp.i
 
 graphics/draw2d/color_matrix.s: graphics/draw2d/color_matrix.cpp.s
@@ -723,7 +723,7 @@ graphics/draw2d/color_matrix.s: graphics/draw2d/color_matrix.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/color_matrix.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/color_matrix.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/color_matrix.cpp.s
 .PHONY : graphics/draw2d/color_matrix.cpp.s
 
 graphics/draw2d/debug.o: graphics/draw2d/debug.cpp.o
@@ -732,7 +732,7 @@ graphics/draw2d/debug.o: graphics/draw2d/debug.cpp.o
 
 # target to build an object file
 graphics/draw2d/debug.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/debug.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/debug.cpp.o
 .PHONY : graphics/draw2d/debug.cpp.o
 
 graphics/draw2d/debug.i: graphics/draw2d/debug.cpp.i
@@ -741,7 +741,7 @@ graphics/draw2d/debug.i: graphics/draw2d/debug.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/debug.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/debug.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/debug.cpp.i
 .PHONY : graphics/draw2d/debug.cpp.i
 
 graphics/draw2d/debug.s: graphics/draw2d/debug.cpp.s
@@ -750,7 +750,7 @@ graphics/draw2d/debug.s: graphics/draw2d/debug.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/debug.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/debug.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/debug.cpp.s
 .PHONY : graphics/draw2d/debug.cpp.s
 
 graphics/draw2d/device_lock.o: graphics/draw2d/device_lock.cpp.o
@@ -759,7 +759,7 @@ graphics/draw2d/device_lock.o: graphics/draw2d/device_lock.cpp.o
 
 # target to build an object file
 graphics/draw2d/device_lock.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/device_lock.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/device_lock.cpp.o
 .PHONY : graphics/draw2d/device_lock.cpp.o
 
 graphics/draw2d/device_lock.i: graphics/draw2d/device_lock.cpp.i
@@ -768,7 +768,7 @@ graphics/draw2d/device_lock.i: graphics/draw2d/device_lock.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/device_lock.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/device_lock.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/device_lock.cpp.i
 .PHONY : graphics/draw2d/device_lock.cpp.i
 
 graphics/draw2d/device_lock.s: graphics/draw2d/device_lock.cpp.s
@@ -777,7 +777,7 @@ graphics/draw2d/device_lock.s: graphics/draw2d/device_lock.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/device_lock.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/device_lock.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/device_lock.cpp.s
 .PHONY : graphics/draw2d/device_lock.cpp.s
 
 graphics/draw2d/draw2d.o: graphics/draw2d/draw2d.cpp.o
@@ -786,7 +786,7 @@ graphics/draw2d/draw2d.o: graphics/draw2d/draw2d.cpp.o
 
 # target to build an object file
 graphics/draw2d/draw2d.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/draw2d.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/draw2d.cpp.o
 .PHONY : graphics/draw2d/draw2d.cpp.o
 
 graphics/draw2d/draw2d.i: graphics/draw2d/draw2d.cpp.i
@@ -795,7 +795,7 @@ graphics/draw2d/draw2d.i: graphics/draw2d/draw2d.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/draw2d.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/draw2d.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/draw2d.cpp.i
 .PHONY : graphics/draw2d/draw2d.cpp.i
 
 graphics/draw2d/draw2d.s: graphics/draw2d/draw2d.cpp.s
@@ -804,7 +804,7 @@ graphics/draw2d/draw2d.s: graphics/draw2d/draw2d.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/draw2d.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/draw2d.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/draw2d.cpp.s
 .PHONY : graphics/draw2d/draw2d.cpp.s
 
 graphics/draw2d/glyph.o: graphics/draw2d/glyph.cpp.o
@@ -813,7 +813,7 @@ graphics/draw2d/glyph.o: graphics/draw2d/glyph.cpp.o
 
 # target to build an object file
 graphics/draw2d/glyph.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/glyph.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/glyph.cpp.o
 .PHONY : graphics/draw2d/glyph.cpp.o
 
 graphics/draw2d/glyph.i: graphics/draw2d/glyph.cpp.i
@@ -822,7 +822,7 @@ graphics/draw2d/glyph.i: graphics/draw2d/glyph.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/glyph.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/glyph.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/glyph.cpp.i
 .PHONY : graphics/draw2d/glyph.cpp.i
 
 graphics/draw2d/glyph.s: graphics/draw2d/glyph.cpp.s
@@ -831,7 +831,7 @@ graphics/draw2d/glyph.s: graphics/draw2d/glyph.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/glyph.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/glyph.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/glyph.cpp.s
 .PHONY : graphics/draw2d/glyph.cpp.s
 
 graphics/draw2d/glyph_set.o: graphics/draw2d/glyph_set.cpp.o
@@ -840,7 +840,7 @@ graphics/draw2d/glyph_set.o: graphics/draw2d/glyph_set.cpp.o
 
 # target to build an object file
 graphics/draw2d/glyph_set.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/glyph_set.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/glyph_set.cpp.o
 .PHONY : graphics/draw2d/glyph_set.cpp.o
 
 graphics/draw2d/glyph_set.i: graphics/draw2d/glyph_set.cpp.i
@@ -849,7 +849,7 @@ graphics/draw2d/glyph_set.i: graphics/draw2d/glyph_set.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/glyph_set.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/glyph_set.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/glyph_set.cpp.i
 .PHONY : graphics/draw2d/glyph_set.cpp.i
 
 graphics/draw2d/glyph_set.s: graphics/draw2d/glyph_set.cpp.s
@@ -858,7 +858,7 @@ graphics/draw2d/glyph_set.s: graphics/draw2d/glyph_set.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/glyph_set.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/glyph_set.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/glyph_set.cpp.s
 .PHONY : graphics/draw2d/glyph_set.cpp.s
 
 graphics/draw2d/graphics.o: graphics/draw2d/graphics.cpp.o
@@ -867,7 +867,7 @@ graphics/draw2d/graphics.o: graphics/draw2d/graphics.cpp.o
 
 # target to build an object file
 graphics/draw2d/graphics.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/graphics.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/graphics.cpp.o
 .PHONY : graphics/draw2d/graphics.cpp.o
 
 graphics/draw2d/graphics.i: graphics/draw2d/graphics.cpp.i
@@ -876,7 +876,7 @@ graphics/draw2d/graphics.i: graphics/draw2d/graphics.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/graphics.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/graphics.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/graphics.cpp.i
 .PHONY : graphics/draw2d/graphics.cpp.i
 
 graphics/draw2d/graphics.s: graphics/draw2d/graphics.cpp.s
@@ -885,7 +885,7 @@ graphics/draw2d/graphics.s: graphics/draw2d/graphics.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/graphics.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/graphics.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/graphics.cpp.s
 .PHONY : graphics/draw2d/graphics.cpp.s
 
 graphics/draw2d/graphics_extension.o: graphics/draw2d/graphics_extension.cpp.o
@@ -894,7 +894,7 @@ graphics/draw2d/graphics_extension.o: graphics/draw2d/graphics_extension.cpp.o
 
 # target to build an object file
 graphics/draw2d/graphics_extension.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/graphics_extension.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/graphics_extension.cpp.o
 .PHONY : graphics/draw2d/graphics_extension.cpp.o
 
 graphics/draw2d/graphics_extension.i: graphics/draw2d/graphics_extension.cpp.i
@@ -903,7 +903,7 @@ graphics/draw2d/graphics_extension.i: graphics/draw2d/graphics_extension.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/graphics_extension.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/graphics_extension.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/graphics_extension.cpp.i
 .PHONY : graphics/draw2d/graphics_extension.cpp.i
 
 graphics/draw2d/graphics_extension.s: graphics/draw2d/graphics_extension.cpp.s
@@ -912,8 +912,62 @@ graphics/draw2d/graphics_extension.s: graphics/draw2d/graphics_extension.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/graphics_extension.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/graphics_extension.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/graphics_extension.cpp.s
 .PHONY : graphics/draw2d/graphics_extension.cpp.s
+
+graphics/draw2d/holdee.o: graphics/draw2d/holdee.cpp.o
+
+.PHONY : graphics/draw2d/holdee.o
+
+# target to build an object file
+graphics/draw2d/holdee.cpp.o:
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/holdee.cpp.o
+.PHONY : graphics/draw2d/holdee.cpp.o
+
+graphics/draw2d/holdee.i: graphics/draw2d/holdee.cpp.i
+
+.PHONY : graphics/draw2d/holdee.i
+
+# target to preprocess a source file
+graphics/draw2d/holdee.cpp.i:
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/holdee.cpp.i
+.PHONY : graphics/draw2d/holdee.cpp.i
+
+graphics/draw2d/holdee.s: graphics/draw2d/holdee.cpp.s
+
+.PHONY : graphics/draw2d/holdee.s
+
+# target to generate assembly for a file
+graphics/draw2d/holdee.cpp.s:
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/holdee.cpp.s
+.PHONY : graphics/draw2d/holdee.cpp.s
+
+graphics/draw2d/holder.o: graphics/draw2d/holder.cpp.o
+
+.PHONY : graphics/draw2d/holder.o
+
+# target to build an object file
+graphics/draw2d/holder.cpp.o:
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/holder.cpp.o
+.PHONY : graphics/draw2d/holder.cpp.o
+
+graphics/draw2d/holder.i: graphics/draw2d/holder.cpp.i
+
+.PHONY : graphics/draw2d/holder.i
+
+# target to preprocess a source file
+graphics/draw2d/holder.cpp.i:
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/holder.cpp.i
+.PHONY : graphics/draw2d/holder.cpp.i
+
+graphics/draw2d/holder.s: graphics/draw2d/holder.cpp.s
+
+.PHONY : graphics/draw2d/holder.s
+
+# target to generate assembly for a file
+graphics/draw2d/holder.cpp.s:
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/holder.cpp.s
+.PHONY : graphics/draw2d/holder.cpp.s
 
 graphics/draw2d/host.o: graphics/draw2d/host.cpp.o
 
@@ -921,7 +975,7 @@ graphics/draw2d/host.o: graphics/draw2d/host.cpp.o
 
 # target to build an object file
 graphics/draw2d/host.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/host.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/host.cpp.o
 .PHONY : graphics/draw2d/host.cpp.o
 
 graphics/draw2d/host.i: graphics/draw2d/host.cpp.i
@@ -930,7 +984,7 @@ graphics/draw2d/host.i: graphics/draw2d/host.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/host.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/host.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/host.cpp.i
 .PHONY : graphics/draw2d/host.cpp.i
 
 graphics/draw2d/host.s: graphics/draw2d/host.cpp.s
@@ -939,7 +993,7 @@ graphics/draw2d/host.s: graphics/draw2d/host.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/host.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/host.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/host.cpp.s
 .PHONY : graphics/draw2d/host.cpp.s
 
 graphics/draw2d/lock.o: graphics/draw2d/lock.cpp.o
@@ -948,7 +1002,7 @@ graphics/draw2d/lock.o: graphics/draw2d/lock.cpp.o
 
 # target to build an object file
 graphics/draw2d/lock.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/lock.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/lock.cpp.o
 .PHONY : graphics/draw2d/lock.cpp.o
 
 graphics/draw2d/lock.i: graphics/draw2d/lock.cpp.i
@@ -957,7 +1011,7 @@ graphics/draw2d/lock.i: graphics/draw2d/lock.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/lock.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/lock.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/lock.cpp.i
 .PHONY : graphics/draw2d/lock.cpp.i
 
 graphics/draw2d/lock.s: graphics/draw2d/lock.cpp.s
@@ -966,7 +1020,7 @@ graphics/draw2d/lock.s: graphics/draw2d/lock.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/lock.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/lock.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/lock.cpp.s
 .PHONY : graphics/draw2d/lock.cpp.s
 
 graphics/draw2d/matrix.o: graphics/draw2d/matrix.cpp.o
@@ -975,7 +1029,7 @@ graphics/draw2d/matrix.o: graphics/draw2d/matrix.cpp.o
 
 # target to build an object file
 graphics/draw2d/matrix.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/matrix.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/matrix.cpp.o
 .PHONY : graphics/draw2d/matrix.cpp.o
 
 graphics/draw2d/matrix.i: graphics/draw2d/matrix.cpp.i
@@ -984,7 +1038,7 @@ graphics/draw2d/matrix.i: graphics/draw2d/matrix.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/matrix.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/matrix.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/matrix.cpp.i
 .PHONY : graphics/draw2d/matrix.cpp.i
 
 graphics/draw2d/matrix.s: graphics/draw2d/matrix.cpp.s
@@ -993,7 +1047,7 @@ graphics/draw2d/matrix.s: graphics/draw2d/matrix.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/matrix.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/matrix.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/matrix.cpp.s
 .PHONY : graphics/draw2d/matrix.cpp.s
 
 graphics/draw2d/nano_svg.o: graphics/draw2d/nano_svg.cpp.o
@@ -1002,7 +1056,7 @@ graphics/draw2d/nano_svg.o: graphics/draw2d/nano_svg.cpp.o
 
 # target to build an object file
 graphics/draw2d/nano_svg.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/nano_svg.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/nano_svg.cpp.o
 .PHONY : graphics/draw2d/nano_svg.cpp.o
 
 graphics/draw2d/nano_svg.i: graphics/draw2d/nano_svg.cpp.i
@@ -1011,7 +1065,7 @@ graphics/draw2d/nano_svg.i: graphics/draw2d/nano_svg.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/nano_svg.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/nano_svg.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/nano_svg.cpp.i
 .PHONY : graphics/draw2d/nano_svg.cpp.i
 
 graphics/draw2d/nano_svg.s: graphics/draw2d/nano_svg.cpp.s
@@ -1020,7 +1074,7 @@ graphics/draw2d/nano_svg.s: graphics/draw2d/nano_svg.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/nano_svg.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/nano_svg.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/nano_svg.cpp.s
 .PHONY : graphics/draw2d/nano_svg.cpp.s
 
 graphics/draw2d/nano_svg_rasterization.o: graphics/draw2d/nano_svg_rasterization.cpp.o
@@ -1029,7 +1083,7 @@ graphics/draw2d/nano_svg_rasterization.o: graphics/draw2d/nano_svg_rasterization
 
 # target to build an object file
 graphics/draw2d/nano_svg_rasterization.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/nano_svg_rasterization.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/nano_svg_rasterization.cpp.o
 .PHONY : graphics/draw2d/nano_svg_rasterization.cpp.o
 
 graphics/draw2d/nano_svg_rasterization.i: graphics/draw2d/nano_svg_rasterization.cpp.i
@@ -1038,7 +1092,7 @@ graphics/draw2d/nano_svg_rasterization.i: graphics/draw2d/nano_svg_rasterization
 
 # target to preprocess a source file
 graphics/draw2d/nano_svg_rasterization.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/nano_svg_rasterization.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/nano_svg_rasterization.cpp.i
 .PHONY : graphics/draw2d/nano_svg_rasterization.cpp.i
 
 graphics/draw2d/nano_svg_rasterization.s: graphics/draw2d/nano_svg_rasterization.cpp.s
@@ -1047,7 +1101,7 @@ graphics/draw2d/nano_svg_rasterization.s: graphics/draw2d/nano_svg_rasterization
 
 # target to generate assembly for a file
 graphics/draw2d/nano_svg_rasterization.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/nano_svg_rasterization.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/nano_svg_rasterization.cpp.s
 .PHONY : graphics/draw2d/nano_svg_rasterization.cpp.s
 
 graphics/draw2d/object.o: graphics/draw2d/object.cpp.o
@@ -1056,7 +1110,7 @@ graphics/draw2d/object.o: graphics/draw2d/object.cpp.o
 
 # target to build an object file
 graphics/draw2d/object.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/object.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/object.cpp.o
 .PHONY : graphics/draw2d/object.cpp.o
 
 graphics/draw2d/object.i: graphics/draw2d/object.cpp.i
@@ -1065,7 +1119,7 @@ graphics/draw2d/object.i: graphics/draw2d/object.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/object.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/object.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/object.cpp.i
 .PHONY : graphics/draw2d/object.cpp.i
 
 graphics/draw2d/object.s: graphics/draw2d/object.cpp.s
@@ -1074,7 +1128,7 @@ graphics/draw2d/object.s: graphics/draw2d/object.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/object.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/object.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/object.cpp.s
 .PHONY : graphics/draw2d/object.cpp.s
 
 graphics/draw2d/palette.o: graphics/draw2d/palette.cpp.o
@@ -1083,7 +1137,7 @@ graphics/draw2d/palette.o: graphics/draw2d/palette.cpp.o
 
 # target to build an object file
 graphics/draw2d/palette.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/palette.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/palette.cpp.o
 .PHONY : graphics/draw2d/palette.cpp.o
 
 graphics/draw2d/palette.i: graphics/draw2d/palette.cpp.i
@@ -1092,7 +1146,7 @@ graphics/draw2d/palette.i: graphics/draw2d/palette.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/palette.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/palette.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/palette.cpp.i
 .PHONY : graphics/draw2d/palette.cpp.i
 
 graphics/draw2d/palette.s: graphics/draw2d/palette.cpp.s
@@ -1101,7 +1155,7 @@ graphics/draw2d/palette.s: graphics/draw2d/palette.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/palette.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/palette.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/palette.cpp.s
 .PHONY : graphics/draw2d/palette.cpp.s
 
 graphics/draw2d/path.o: graphics/draw2d/path.cpp.o
@@ -1110,7 +1164,7 @@ graphics/draw2d/path.o: graphics/draw2d/path.cpp.o
 
 # target to build an object file
 graphics/draw2d/path.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/path.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/path.cpp.o
 .PHONY : graphics/draw2d/path.cpp.o
 
 graphics/draw2d/path.i: graphics/draw2d/path.cpp.i
@@ -1119,7 +1173,7 @@ graphics/draw2d/path.i: graphics/draw2d/path.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/path.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/path.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/path.cpp.i
 .PHONY : graphics/draw2d/path.cpp.i
 
 graphics/draw2d/path.s: graphics/draw2d/path.cpp.s
@@ -1128,8 +1182,35 @@ graphics/draw2d/path.s: graphics/draw2d/path.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/path.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/path.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/path.cpp.s
 .PHONY : graphics/draw2d/path.cpp.s
+
+graphics/draw2d/path_simple_optimization.o: graphics/draw2d/path_simple_optimization.cpp.o
+
+.PHONY : graphics/draw2d/path_simple_optimization.o
+
+# target to build an object file
+graphics/draw2d/path_simple_optimization.cpp.o:
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/path_simple_optimization.cpp.o
+.PHONY : graphics/draw2d/path_simple_optimization.cpp.o
+
+graphics/draw2d/path_simple_optimization.i: graphics/draw2d/path_simple_optimization.cpp.i
+
+.PHONY : graphics/draw2d/path_simple_optimization.i
+
+# target to preprocess a source file
+graphics/draw2d/path_simple_optimization.cpp.i:
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/path_simple_optimization.cpp.i
+.PHONY : graphics/draw2d/path_simple_optimization.cpp.i
+
+graphics/draw2d/path_simple_optimization.s: graphics/draw2d/path_simple_optimization.cpp.s
+
+.PHONY : graphics/draw2d/path_simple_optimization.s
+
+# target to generate assembly for a file
+graphics/draw2d/path_simple_optimization.cpp.s:
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/path_simple_optimization.cpp.s
+.PHONY : graphics/draw2d/path_simple_optimization.cpp.s
 
 graphics/draw2d/pen.o: graphics/draw2d/pen.cpp.o
 
@@ -1137,7 +1218,7 @@ graphics/draw2d/pen.o: graphics/draw2d/pen.cpp.o
 
 # target to build an object file
 graphics/draw2d/pen.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/pen.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/pen.cpp.o
 .PHONY : graphics/draw2d/pen.cpp.o
 
 graphics/draw2d/pen.i: graphics/draw2d/pen.cpp.i
@@ -1146,7 +1227,7 @@ graphics/draw2d/pen.i: graphics/draw2d/pen.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/pen.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/pen.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/pen.cpp.i
 .PHONY : graphics/draw2d/pen.cpp.i
 
 graphics/draw2d/pen.s: graphics/draw2d/pen.cpp.s
@@ -1155,7 +1236,7 @@ graphics/draw2d/pen.s: graphics/draw2d/pen.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/pen.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/pen.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/pen.cpp.s
 .PHONY : graphics/draw2d/pen.cpp.s
 
 graphics/draw2d/printer.o: graphics/draw2d/printer.cpp.o
@@ -1164,7 +1245,7 @@ graphics/draw2d/printer.o: graphics/draw2d/printer.cpp.o
 
 # target to build an object file
 graphics/draw2d/printer.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/printer.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/printer.cpp.o
 .PHONY : graphics/draw2d/printer.cpp.o
 
 graphics/draw2d/printer.i: graphics/draw2d/printer.cpp.i
@@ -1173,7 +1254,7 @@ graphics/draw2d/printer.i: graphics/draw2d/printer.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/printer.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/printer.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/printer.cpp.i
 .PHONY : graphics/draw2d/printer.cpp.i
 
 graphics/draw2d/printer.s: graphics/draw2d/printer.cpp.s
@@ -1182,7 +1263,7 @@ graphics/draw2d/printer.s: graphics/draw2d/printer.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/printer.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/printer.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/printer.cpp.s
 .PHONY : graphics/draw2d/printer.cpp.s
 
 graphics/draw2d/region.o: graphics/draw2d/region.cpp.o
@@ -1191,7 +1272,7 @@ graphics/draw2d/region.o: graphics/draw2d/region.cpp.o
 
 # target to build an object file
 graphics/draw2d/region.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/region.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/region.cpp.o
 .PHONY : graphics/draw2d/region.cpp.o
 
 graphics/draw2d/region.i: graphics/draw2d/region.cpp.i
@@ -1200,7 +1281,7 @@ graphics/draw2d/region.i: graphics/draw2d/region.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/region.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/region.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/region.cpp.i
 .PHONY : graphics/draw2d/region.cpp.i
 
 graphics/draw2d/region.s: graphics/draw2d/region.cpp.s
@@ -1209,8 +1290,35 @@ graphics/draw2d/region.s: graphics/draw2d/region.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/region.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/region.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/region.cpp.s
 .PHONY : graphics/draw2d/region.cpp.s
+
+graphics/draw2d/region_item.o: graphics/draw2d/region_item.cpp.o
+
+.PHONY : graphics/draw2d/region_item.o
+
+# target to build an object file
+graphics/draw2d/region_item.cpp.o:
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/region_item.cpp.o
+.PHONY : graphics/draw2d/region_item.cpp.o
+
+graphics/draw2d/region_item.i: graphics/draw2d/region_item.cpp.i
+
+.PHONY : graphics/draw2d/region_item.i
+
+# target to preprocess a source file
+graphics/draw2d/region_item.cpp.i:
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/region_item.cpp.i
+.PHONY : graphics/draw2d/region_item.cpp.i
+
+graphics/draw2d/region_item.s: graphics/draw2d/region_item.cpp.s
+
+.PHONY : graphics/draw2d/region_item.s
+
+# target to generate assembly for a file
+graphics/draw2d/region_item.cpp.s:
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/region_item.cpp.s
+.PHONY : graphics/draw2d/region_item.cpp.s
 
 graphics/draw2d/task_tool.o: graphics/draw2d/task_tool.cpp.o
 
@@ -1218,7 +1326,7 @@ graphics/draw2d/task_tool.o: graphics/draw2d/task_tool.cpp.o
 
 # target to build an object file
 graphics/draw2d/task_tool.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/task_tool.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/task_tool.cpp.o
 .PHONY : graphics/draw2d/task_tool.cpp.o
 
 graphics/draw2d/task_tool.i: graphics/draw2d/task_tool.cpp.i
@@ -1227,7 +1335,7 @@ graphics/draw2d/task_tool.i: graphics/draw2d/task_tool.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/task_tool.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/task_tool.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/task_tool.cpp.i
 .PHONY : graphics/draw2d/task_tool.cpp.i
 
 graphics/draw2d/task_tool.s: graphics/draw2d/task_tool.cpp.s
@@ -1236,7 +1344,7 @@ graphics/draw2d/task_tool.s: graphics/draw2d/task_tool.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/task_tool.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/task_tool.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/task_tool.cpp.s
 .PHONY : graphics/draw2d/task_tool.cpp.s
 
 graphics/draw2d/winrt/image_gif.o: graphics/draw2d/winrt/image_gif.cpp.o
@@ -1245,7 +1353,7 @@ graphics/draw2d/winrt/image_gif.o: graphics/draw2d/winrt/image_gif.cpp.o
 
 # target to build an object file
 graphics/draw2d/winrt/image_gif.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/winrt/image_gif.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/winrt/image_gif.cpp.o
 .PHONY : graphics/draw2d/winrt/image_gif.cpp.o
 
 graphics/draw2d/winrt/image_gif.i: graphics/draw2d/winrt/image_gif.cpp.i
@@ -1254,7 +1362,7 @@ graphics/draw2d/winrt/image_gif.i: graphics/draw2d/winrt/image_gif.cpp.i
 
 # target to preprocess a source file
 graphics/draw2d/winrt/image_gif.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/winrt/image_gif.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/winrt/image_gif.cpp.i
 .PHONY : graphics/draw2d/winrt/image_gif.cpp.i
 
 graphics/draw2d/winrt/image_gif.s: graphics/draw2d/winrt/image_gif.cpp.s
@@ -1263,7 +1371,7 @@ graphics/draw2d/winrt/image_gif.s: graphics/draw2d/winrt/image_gif.cpp.s
 
 # target to generate assembly for a file
 graphics/draw2d/winrt/image_gif.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/winrt/image_gif.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw2d/winrt/image_gif.cpp.s
 .PHONY : graphics/draw2d/winrt/image_gif.cpp.s
 
 graphics/draw3d/ortho.o: graphics/draw3d/ortho.cpp.o
@@ -1272,7 +1380,7 @@ graphics/draw3d/ortho.o: graphics/draw3d/ortho.cpp.o
 
 # target to build an object file
 graphics/draw3d/ortho.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw3d/ortho.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw3d/ortho.cpp.o
 .PHONY : graphics/draw3d/ortho.cpp.o
 
 graphics/draw3d/ortho.i: graphics/draw3d/ortho.cpp.i
@@ -1281,7 +1389,7 @@ graphics/draw3d/ortho.i: graphics/draw3d/ortho.cpp.i
 
 # target to preprocess a source file
 graphics/draw3d/ortho.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw3d/ortho.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw3d/ortho.cpp.i
 .PHONY : graphics/draw3d/ortho.cpp.i
 
 graphics/draw3d/ortho.s: graphics/draw3d/ortho.cpp.s
@@ -1290,7 +1398,7 @@ graphics/draw3d/ortho.s: graphics/draw3d/ortho.cpp.s
 
 # target to generate assembly for a file
 graphics/draw3d/ortho.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw3d/ortho.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/draw3d/ortho.cpp.s
 .PHONY : graphics/draw3d/ortho.cpp.s
 
 graphics/graphics/bitmap_source_buffer.o: graphics/graphics/bitmap_source_buffer.cpp.o
@@ -1299,7 +1407,7 @@ graphics/graphics/bitmap_source_buffer.o: graphics/graphics/bitmap_source_buffer
 
 # target to build an object file
 graphics/graphics/bitmap_source_buffer.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/bitmap_source_buffer.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/bitmap_source_buffer.cpp.o
 .PHONY : graphics/graphics/bitmap_source_buffer.cpp.o
 
 graphics/graphics/bitmap_source_buffer.i: graphics/graphics/bitmap_source_buffer.cpp.i
@@ -1308,7 +1416,7 @@ graphics/graphics/bitmap_source_buffer.i: graphics/graphics/bitmap_source_buffer
 
 # target to preprocess a source file
 graphics/graphics/bitmap_source_buffer.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/bitmap_source_buffer.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/bitmap_source_buffer.cpp.i
 .PHONY : graphics/graphics/bitmap_source_buffer.cpp.i
 
 graphics/graphics/bitmap_source_buffer.s: graphics/graphics/bitmap_source_buffer.cpp.s
@@ -1317,7 +1425,7 @@ graphics/graphics/bitmap_source_buffer.s: graphics/graphics/bitmap_source_buffer
 
 # target to generate assembly for a file
 graphics/graphics/bitmap_source_buffer.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/bitmap_source_buffer.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/bitmap_source_buffer.cpp.s
 .PHONY : graphics/graphics/bitmap_source_buffer.cpp.s
 
 graphics/graphics/buffer.o: graphics/graphics/buffer.cpp.o
@@ -1326,7 +1434,7 @@ graphics/graphics/buffer.o: graphics/graphics/buffer.cpp.o
 
 # target to build an object file
 graphics/graphics/buffer.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/buffer.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/buffer.cpp.o
 .PHONY : graphics/graphics/buffer.cpp.o
 
 graphics/graphics/buffer.i: graphics/graphics/buffer.cpp.i
@@ -1335,7 +1443,7 @@ graphics/graphics/buffer.i: graphics/graphics/buffer.cpp.i
 
 # target to preprocess a source file
 graphics/graphics/buffer.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/buffer.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/buffer.cpp.i
 .PHONY : graphics/graphics/buffer.cpp.i
 
 graphics/graphics/buffer.s: graphics/graphics/buffer.cpp.s
@@ -1344,7 +1452,7 @@ graphics/graphics/buffer.s: graphics/graphics/buffer.cpp.s
 
 # target to generate assembly for a file
 graphics/graphics/buffer.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/buffer.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/buffer.cpp.s
 .PHONY : graphics/graphics/buffer.cpp.s
 
 graphics/graphics/console.o: graphics/graphics/console.cpp.o
@@ -1353,7 +1461,7 @@ graphics/graphics/console.o: graphics/graphics/console.cpp.o
 
 # target to build an object file
 graphics/graphics/console.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/console.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/console.cpp.o
 .PHONY : graphics/graphics/console.cpp.o
 
 graphics/graphics/console.i: graphics/graphics/console.cpp.i
@@ -1362,7 +1470,7 @@ graphics/graphics/console.i: graphics/graphics/console.cpp.i
 
 # target to preprocess a source file
 graphics/graphics/console.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/console.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/console.cpp.i
 .PHONY : graphics/graphics/console.cpp.i
 
 graphics/graphics/console.s: graphics/graphics/console.cpp.s
@@ -1371,7 +1479,7 @@ graphics/graphics/console.s: graphics/graphics/console.cpp.s
 
 # target to generate assembly for a file
 graphics/graphics/console.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/console.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/console.cpp.s
 .PHONY : graphics/graphics/console.cpp.s
 
 graphics/graphics/device_context.o: graphics/graphics/device_context.cpp.o
@@ -1380,7 +1488,7 @@ graphics/graphics/device_context.o: graphics/graphics/device_context.cpp.o
 
 # target to build an object file
 graphics/graphics/device_context.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/device_context.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/device_context.cpp.o
 .PHONY : graphics/graphics/device_context.cpp.o
 
 graphics/graphics/device_context.i: graphics/graphics/device_context.cpp.i
@@ -1389,7 +1497,7 @@ graphics/graphics/device_context.i: graphics/graphics/device_context.cpp.i
 
 # target to preprocess a source file
 graphics/graphics/device_context.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/device_context.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/device_context.cpp.i
 .PHONY : graphics/graphics/device_context.cpp.i
 
 graphics/graphics/device_context.s: graphics/graphics/device_context.cpp.s
@@ -1398,7 +1506,7 @@ graphics/graphics/device_context.s: graphics/graphics/device_context.cpp.s
 
 # target to generate assembly for a file
 graphics/graphics/device_context.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/device_context.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/device_context.cpp.s
 .PHONY : graphics/graphics/device_context.cpp.s
 
 graphics/graphics/double_buffer.o: graphics/graphics/double_buffer.cpp.o
@@ -1407,7 +1515,7 @@ graphics/graphics/double_buffer.o: graphics/graphics/double_buffer.cpp.o
 
 # target to build an object file
 graphics/graphics/double_buffer.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/double_buffer.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/double_buffer.cpp.o
 .PHONY : graphics/graphics/double_buffer.cpp.o
 
 graphics/graphics/double_buffer.i: graphics/graphics/double_buffer.cpp.i
@@ -1416,7 +1524,7 @@ graphics/graphics/double_buffer.i: graphics/graphics/double_buffer.cpp.i
 
 # target to preprocess a source file
 graphics/graphics/double_buffer.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/double_buffer.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/double_buffer.cpp.i
 .PHONY : graphics/graphics/double_buffer.cpp.i
 
 graphics/graphics/double_buffer.s: graphics/graphics/double_buffer.cpp.s
@@ -1425,7 +1533,7 @@ graphics/graphics/double_buffer.s: graphics/graphics/double_buffer.cpp.s
 
 # target to generate assembly for a file
 graphics/graphics/double_buffer.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/double_buffer.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/double_buffer.cpp.s
 .PHONY : graphics/graphics/double_buffer.cpp.s
 
 graphics/graphics/graphics.o: graphics/graphics/graphics.cpp.o
@@ -1434,7 +1542,7 @@ graphics/graphics/graphics.o: graphics/graphics/graphics.cpp.o
 
 # target to build an object file
 graphics/graphics/graphics.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/graphics.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/graphics.cpp.o
 .PHONY : graphics/graphics/graphics.cpp.o
 
 graphics/graphics/graphics.i: graphics/graphics/graphics.cpp.i
@@ -1443,7 +1551,7 @@ graphics/graphics/graphics.i: graphics/graphics/graphics.cpp.i
 
 # target to preprocess a source file
 graphics/graphics/graphics.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/graphics.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/graphics.cpp.i
 .PHONY : graphics/graphics/graphics.cpp.i
 
 graphics/graphics/graphics.s: graphics/graphics/graphics.cpp.s
@@ -1452,7 +1560,7 @@ graphics/graphics/graphics.s: graphics/graphics/graphics.cpp.s
 
 # target to generate assembly for a file
 graphics/graphics/graphics.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/graphics.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/graphics.cpp.s
 .PHONY : graphics/graphics/graphics.cpp.s
 
 graphics/graphics/monitor.o: graphics/graphics/monitor.cpp.o
@@ -1461,7 +1569,7 @@ graphics/graphics/monitor.o: graphics/graphics/monitor.cpp.o
 
 # target to build an object file
 graphics/graphics/monitor.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/monitor.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/monitor.cpp.o
 .PHONY : graphics/graphics/monitor.cpp.o
 
 graphics/graphics/monitor.i: graphics/graphics/monitor.cpp.i
@@ -1470,7 +1578,7 @@ graphics/graphics/monitor.i: graphics/graphics/monitor.cpp.i
 
 # target to preprocess a source file
 graphics/graphics/monitor.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/monitor.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/monitor.cpp.i
 .PHONY : graphics/graphics/monitor.cpp.i
 
 graphics/graphics/monitor.s: graphics/graphics/monitor.cpp.s
@@ -1479,7 +1587,7 @@ graphics/graphics/monitor.s: graphics/graphics/monitor.cpp.s
 
 # target to generate assembly for a file
 graphics/graphics/monitor.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/monitor.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/monitor.cpp.s
 .PHONY : graphics/graphics/monitor.cpp.s
 
 graphics/graphics/multiple_buffer.o: graphics/graphics/multiple_buffer.cpp.o
@@ -1488,7 +1596,7 @@ graphics/graphics/multiple_buffer.o: graphics/graphics/multiple_buffer.cpp.o
 
 # target to build an object file
 graphics/graphics/multiple_buffer.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/multiple_buffer.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/multiple_buffer.cpp.o
 .PHONY : graphics/graphics/multiple_buffer.cpp.o
 
 graphics/graphics/multiple_buffer.i: graphics/graphics/multiple_buffer.cpp.i
@@ -1497,7 +1605,7 @@ graphics/graphics/multiple_buffer.i: graphics/graphics/multiple_buffer.cpp.i
 
 # target to preprocess a source file
 graphics/graphics/multiple_buffer.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/multiple_buffer.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/multiple_buffer.cpp.i
 .PHONY : graphics/graphics/multiple_buffer.cpp.i
 
 graphics/graphics/multiple_buffer.s: graphics/graphics/multiple_buffer.cpp.s
@@ -1506,7 +1614,7 @@ graphics/graphics/multiple_buffer.s: graphics/graphics/multiple_buffer.cpp.s
 
 # target to generate assembly for a file
 graphics/graphics/multiple_buffer.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/multiple_buffer.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/multiple_buffer.cpp.s
 .PHONY : graphics/graphics/multiple_buffer.cpp.s
 
 graphics/graphics/target.o: graphics/graphics/target.cpp.o
@@ -1515,7 +1623,7 @@ graphics/graphics/target.o: graphics/graphics/target.cpp.o
 
 # target to build an object file
 graphics/graphics/target.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/target.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/target.cpp.o
 .PHONY : graphics/graphics/target.cpp.o
 
 graphics/graphics/target.i: graphics/graphics/target.cpp.i
@@ -1524,7 +1632,7 @@ graphics/graphics/target.i: graphics/graphics/target.cpp.i
 
 # target to preprocess a source file
 graphics/graphics/target.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/target.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/target.cpp.i
 .PHONY : graphics/graphics/target.cpp.i
 
 graphics/graphics/target.s: graphics/graphics/target.cpp.s
@@ -1533,7 +1641,7 @@ graphics/graphics/target.s: graphics/graphics/target.cpp.s
 
 # target to generate assembly for a file
 graphics/graphics/target.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/target.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/graphics/target.cpp.s
 .PHONY : graphics/graphics/target.cpp.s
 
 graphics/image/array.o: graphics/image/array.cpp.o
@@ -1542,7 +1650,7 @@ graphics/image/array.o: graphics/image/array.cpp.o
 
 # target to build an object file
 graphics/image/array.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/array.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/array.cpp.o
 .PHONY : graphics/image/array.cpp.o
 
 graphics/image/array.i: graphics/image/array.cpp.i
@@ -1551,7 +1659,7 @@ graphics/image/array.i: graphics/image/array.cpp.i
 
 # target to preprocess a source file
 graphics/image/array.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/array.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/array.cpp.i
 .PHONY : graphics/image/array.cpp.i
 
 graphics/image/array.s: graphics/image/array.cpp.s
@@ -1560,7 +1668,7 @@ graphics/image/array.s: graphics/image/array.cpp.s
 
 # target to generate assembly for a file
 graphics/image/array.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/array.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/array.cpp.s
 .PHONY : graphics/image/array.cpp.s
 
 graphics/image/context_image.o: graphics/image/context_image.cpp.o
@@ -1569,7 +1677,7 @@ graphics/image/context_image.o: graphics/image/context_image.cpp.o
 
 # target to build an object file
 graphics/image/context_image.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/context_image.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/context_image.cpp.o
 .PHONY : graphics/image/context_image.cpp.o
 
 graphics/image/context_image.i: graphics/image/context_image.cpp.i
@@ -1578,7 +1686,7 @@ graphics/image/context_image.i: graphics/image/context_image.cpp.i
 
 # target to preprocess a source file
 graphics/image/context_image.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/context_image.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/context_image.cpp.i
 .PHONY : graphics/image/context_image.cpp.i
 
 graphics/image/context_image.s: graphics/image/context_image.cpp.s
@@ -1587,7 +1695,7 @@ graphics/image/context_image.s: graphics/image/context_image.cpp.s
 
 # target to generate assembly for a file
 graphics/image/context_image.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/context_image.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/context_image.cpp.s
 .PHONY : graphics/image/context_image.cpp.s
 
 graphics/image/cursor.o: graphics/image/cursor.cpp.o
@@ -1596,7 +1704,7 @@ graphics/image/cursor.o: graphics/image/cursor.cpp.o
 
 # target to build an object file
 graphics/image/cursor.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/cursor.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/cursor.cpp.o
 .PHONY : graphics/image/cursor.cpp.o
 
 graphics/image/cursor.i: graphics/image/cursor.cpp.i
@@ -1605,7 +1713,7 @@ graphics/image/cursor.i: graphics/image/cursor.cpp.i
 
 # target to preprocess a source file
 graphics/image/cursor.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/cursor.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/cursor.cpp.i
 .PHONY : graphics/image/cursor.cpp.i
 
 graphics/image/cursor.s: graphics/image/cursor.cpp.s
@@ -1614,7 +1722,7 @@ graphics/image/cursor.s: graphics/image/cursor.cpp.s
 
 # target to generate assembly for a file
 graphics/image/cursor.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/cursor.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/cursor.cpp.s
 .PHONY : graphics/image/cursor.cpp.s
 
 graphics/image/drawer.o: graphics/image/drawer.cpp.o
@@ -1623,7 +1731,7 @@ graphics/image/drawer.o: graphics/image/drawer.cpp.o
 
 # target to build an object file
 graphics/image/drawer.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/drawer.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/drawer.cpp.o
 .PHONY : graphics/image/drawer.cpp.o
 
 graphics/image/drawer.i: graphics/image/drawer.cpp.i
@@ -1632,7 +1740,7 @@ graphics/image/drawer.i: graphics/image/drawer.cpp.i
 
 # target to preprocess a source file
 graphics/image/drawer.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/drawer.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/drawer.cpp.i
 .PHONY : graphics/image/drawer.cpp.i
 
 graphics/image/drawer.s: graphics/image/drawer.cpp.s
@@ -1641,7 +1749,7 @@ graphics/image/drawer.s: graphics/image/drawer.cpp.s
 
 # target to generate assembly for a file
 graphics/image/drawer.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/drawer.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/drawer.cpp.s
 .PHONY : graphics/image/drawer.cpp.s
 
 graphics/image/dynamic.o: graphics/image/dynamic.cpp.o
@@ -1650,7 +1758,7 @@ graphics/image/dynamic.o: graphics/image/dynamic.cpp.o
 
 # target to build an object file
 graphics/image/dynamic.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/dynamic.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/dynamic.cpp.o
 .PHONY : graphics/image/dynamic.cpp.o
 
 graphics/image/dynamic.i: graphics/image/dynamic.cpp.i
@@ -1659,7 +1767,7 @@ graphics/image/dynamic.i: graphics/image/dynamic.cpp.i
 
 # target to preprocess a source file
 graphics/image/dynamic.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/dynamic.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/dynamic.cpp.i
 .PHONY : graphics/image/dynamic.cpp.i
 
 graphics/image/dynamic.s: graphics/image/dynamic.cpp.s
@@ -1668,7 +1776,7 @@ graphics/image/dynamic.s: graphics/image/dynamic.cpp.s
 
 # target to generate assembly for a file
 graphics/image/dynamic.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/dynamic.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/dynamic.cpp.s
 .PHONY : graphics/image/dynamic.cpp.s
 
 graphics/image/extension.o: graphics/image/extension.cpp.o
@@ -1677,7 +1785,7 @@ graphics/image/extension.o: graphics/image/extension.cpp.o
 
 # target to build an object file
 graphics/image/extension.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/extension.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/extension.cpp.o
 .PHONY : graphics/image/extension.cpp.o
 
 graphics/image/extension.i: graphics/image/extension.cpp.i
@@ -1686,7 +1794,7 @@ graphics/image/extension.i: graphics/image/extension.cpp.i
 
 # target to preprocess a source file
 graphics/image/extension.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/extension.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/extension.cpp.i
 .PHONY : graphics/image/extension.cpp.i
 
 graphics/image/extension.s: graphics/image/extension.cpp.s
@@ -1695,7 +1803,7 @@ graphics/image/extension.s: graphics/image/extension.cpp.s
 
 # target to generate assembly for a file
 graphics/image/extension.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/extension.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/extension.cpp.s
 .PHONY : graphics/image/extension.cpp.s
 
 graphics/image/fastblur.o: graphics/image/fastblur.cpp.o
@@ -1704,7 +1812,7 @@ graphics/image/fastblur.o: graphics/image/fastblur.cpp.o
 
 # target to build an object file
 graphics/image/fastblur.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/fastblur.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/fastblur.cpp.o
 .PHONY : graphics/image/fastblur.cpp.o
 
 graphics/image/fastblur.i: graphics/image/fastblur.cpp.i
@@ -1713,7 +1821,7 @@ graphics/image/fastblur.i: graphics/image/fastblur.cpp.i
 
 # target to preprocess a source file
 graphics/image/fastblur.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/fastblur.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/fastblur.cpp.i
 .PHONY : graphics/image/fastblur.cpp.i
 
 graphics/image/fastblur.s: graphics/image/fastblur.cpp.s
@@ -1722,7 +1830,7 @@ graphics/image/fastblur.s: graphics/image/fastblur.cpp.s
 
 # target to generate assembly for a file
 graphics/image/fastblur.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/fastblur.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/fastblur.cpp.s
 .PHONY : graphics/image/fastblur.cpp.s
 
 graphics/image/frame.o: graphics/image/frame.cpp.o
@@ -1731,7 +1839,7 @@ graphics/image/frame.o: graphics/image/frame.cpp.o
 
 # target to build an object file
 graphics/image/frame.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/frame.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/frame.cpp.o
 .PHONY : graphics/image/frame.cpp.o
 
 graphics/image/frame.i: graphics/image/frame.cpp.i
@@ -1740,7 +1848,7 @@ graphics/image/frame.i: graphics/image/frame.cpp.i
 
 # target to preprocess a source file
 graphics/image/frame.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/frame.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/frame.cpp.i
 .PHONY : graphics/image/frame.cpp.i
 
 graphics/image/frame.s: graphics/image/frame.cpp.s
@@ -1749,7 +1857,7 @@ graphics/image/frame.s: graphics/image/frame.cpp.s
 
 # target to generate assembly for a file
 graphics/image/frame.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/frame.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/frame.cpp.s
 .PHONY : graphics/image/frame.cpp.s
 
 graphics/image/gif_antialias_8bit.o: graphics/image/gif_antialias_8bit.cpp.o
@@ -1758,7 +1866,7 @@ graphics/image/gif_antialias_8bit.o: graphics/image/gif_antialias_8bit.cpp.o
 
 # target to build an object file
 graphics/image/gif_antialias_8bit.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/gif_antialias_8bit.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/gif_antialias_8bit.cpp.o
 .PHONY : graphics/image/gif_antialias_8bit.cpp.o
 
 graphics/image/gif_antialias_8bit.i: graphics/image/gif_antialias_8bit.cpp.i
@@ -1767,7 +1875,7 @@ graphics/image/gif_antialias_8bit.i: graphics/image/gif_antialias_8bit.cpp.i
 
 # target to preprocess a source file
 graphics/image/gif_antialias_8bit.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/gif_antialias_8bit.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/gif_antialias_8bit.cpp.i
 .PHONY : graphics/image/gif_antialias_8bit.cpp.i
 
 graphics/image/gif_antialias_8bit.s: graphics/image/gif_antialias_8bit.cpp.s
@@ -1776,7 +1884,7 @@ graphics/image/gif_antialias_8bit.s: graphics/image/gif_antialias_8bit.cpp.s
 
 # target to generate assembly for a file
 graphics/image/gif_antialias_8bit.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/gif_antialias_8bit.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/gif_antialias_8bit.cpp.s
 .PHONY : graphics/image/gif_antialias_8bit.cpp.s
 
 graphics/image/icon.o: graphics/image/icon.cpp.o
@@ -1785,7 +1893,7 @@ graphics/image/icon.o: graphics/image/icon.cpp.o
 
 # target to build an object file
 graphics/image/icon.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/icon.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/icon.cpp.o
 .PHONY : graphics/image/icon.cpp.o
 
 graphics/image/icon.i: graphics/image/icon.cpp.i
@@ -1794,7 +1902,7 @@ graphics/image/icon.i: graphics/image/icon.cpp.i
 
 # target to preprocess a source file
 graphics/image/icon.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/icon.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/icon.cpp.i
 .PHONY : graphics/image/icon.cpp.i
 
 graphics/image/icon.s: graphics/image/icon.cpp.s
@@ -1803,7 +1911,7 @@ graphics/image/icon.s: graphics/image/icon.cpp.s
 
 # target to generate assembly for a file
 graphics/image/icon.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/icon.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/icon.cpp.s
 .PHONY : graphics/image/icon.cpp.s
 
 graphics/image/image.o: graphics/image/image.cpp.o
@@ -1812,7 +1920,7 @@ graphics/image/image.o: graphics/image/image.cpp.o
 
 # target to build an object file
 graphics/image/image.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/image.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/image.cpp.o
 .PHONY : graphics/image/image.cpp.o
 
 graphics/image/image.i: graphics/image/image.cpp.i
@@ -1821,7 +1929,7 @@ graphics/image/image.i: graphics/image/image.cpp.i
 
 # target to preprocess a source file
 graphics/image/image.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/image.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/image.cpp.i
 .PHONY : graphics/image/image.cpp.i
 
 graphics/image/image.s: graphics/image/image.cpp.s
@@ -1830,7 +1938,7 @@ graphics/image/image.s: graphics/image/image.cpp.s
 
 # target to generate assembly for a file
 graphics/image/image.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/image.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/image.cpp.s
 .PHONY : graphics/image/image.cpp.s
 
 graphics/image/imaging.o: graphics/image/imaging.cpp.o
@@ -1839,7 +1947,7 @@ graphics/image/imaging.o: graphics/image/imaging.cpp.o
 
 # target to build an object file
 graphics/image/imaging.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/imaging.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/imaging.cpp.o
 .PHONY : graphics/image/imaging.cpp.o
 
 graphics/image/imaging.i: graphics/image/imaging.cpp.i
@@ -1848,7 +1956,7 @@ graphics/image/imaging.i: graphics/image/imaging.cpp.i
 
 # target to preprocess a source file
 graphics/image/imaging.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/imaging.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/imaging.cpp.i
 .PHONY : graphics/image/imaging.cpp.i
 
 graphics/image/imaging.s: graphics/image/imaging.cpp.s
@@ -1857,7 +1965,7 @@ graphics/image/imaging.s: graphics/image/imaging.cpp.s
 
 # target to generate assembly for a file
 graphics/image/imaging.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/imaging.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/imaging.cpp.s
 .PHONY : graphics/image/imaging.cpp.s
 
 graphics/image/list.o: graphics/image/list.cpp.o
@@ -1866,7 +1974,7 @@ graphics/image/list.o: graphics/image/list.cpp.o
 
 # target to build an object file
 graphics/image/list.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/list.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/list.cpp.o
 .PHONY : graphics/image/list.cpp.o
 
 graphics/image/list.i: graphics/image/list.cpp.i
@@ -1875,7 +1983,7 @@ graphics/image/list.i: graphics/image/list.cpp.i
 
 # target to preprocess a source file
 graphics/image/list.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/list.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/list.cpp.i
 .PHONY : graphics/image/list.cpp.i
 
 graphics/image/list.s: graphics/image/list.cpp.s
@@ -1884,7 +1992,7 @@ graphics/image/list.s: graphics/image/list.cpp.s
 
 # target to generate assembly for a file
 graphics/image/list.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/list.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/list.cpp.s
 .PHONY : graphics/image/list.cpp.s
 
 graphics/image/map.o: graphics/image/map.cpp.o
@@ -1893,7 +2001,7 @@ graphics/image/map.o: graphics/image/map.cpp.o
 
 # target to build an object file
 graphics/image/map.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/map.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/map.cpp.o
 .PHONY : graphics/image/map.cpp.o
 
 graphics/image/map.i: graphics/image/map.cpp.i
@@ -1902,7 +2010,7 @@ graphics/image/map.i: graphics/image/map.cpp.i
 
 # target to preprocess a source file
 graphics/image/map.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/map.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/map.cpp.i
 .PHONY : graphics/image/map.cpp.i
 
 graphics/image/map.s: graphics/image/map.cpp.s
@@ -1911,7 +2019,7 @@ graphics/image/map.s: graphics/image/map.cpp.s
 
 # target to generate assembly for a file
 graphics/image/map.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/map.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/map.cpp.s
 .PHONY : graphics/image/map.cpp.s
 
 graphics/image/meta.o: graphics/image/meta.cpp.o
@@ -1920,7 +2028,7 @@ graphics/image/meta.o: graphics/image/meta.cpp.o
 
 # target to build an object file
 graphics/image/meta.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/meta.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/meta.cpp.o
 .PHONY : graphics/image/meta.cpp.o
 
 graphics/image/meta.i: graphics/image/meta.cpp.i
@@ -1929,7 +2037,7 @@ graphics/image/meta.i: graphics/image/meta.cpp.i
 
 # target to preprocess a source file
 graphics/image/meta.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/meta.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/meta.cpp.i
 .PHONY : graphics/image/meta.cpp.i
 
 graphics/image/meta.s: graphics/image/meta.cpp.s
@@ -1938,7 +2046,7 @@ graphics/image/meta.s: graphics/image/meta.cpp.s
 
 # target to generate assembly for a file
 graphics/image/meta.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/meta.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/meta.cpp.s
 .PHONY : graphics/image/meta.cpp.s
 
 graphics/image/nanosvg.o: graphics/image/nanosvg.cpp.o
@@ -1947,7 +2055,7 @@ graphics/image/nanosvg.o: graphics/image/nanosvg.cpp.o
 
 # target to build an object file
 graphics/image/nanosvg.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/nanosvg.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/nanosvg.cpp.o
 .PHONY : graphics/image/nanosvg.cpp.o
 
 graphics/image/nanosvg.i: graphics/image/nanosvg.cpp.i
@@ -1956,7 +2064,7 @@ graphics/image/nanosvg.i: graphics/image/nanosvg.cpp.i
 
 # target to preprocess a source file
 graphics/image/nanosvg.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/nanosvg.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/nanosvg.cpp.i
 .PHONY : graphics/image/nanosvg.cpp.i
 
 graphics/image/nanosvg.s: graphics/image/nanosvg.cpp.s
@@ -1965,7 +2073,7 @@ graphics/image/nanosvg.s: graphics/image/nanosvg.cpp.s
 
 # target to generate assembly for a file
 graphics/image/nanosvg.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/nanosvg.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/nanosvg.cpp.s
 .PHONY : graphics/image/nanosvg.cpp.s
 
 graphics/image/pointer_array.o: graphics/image/pointer_array.cpp.o
@@ -1974,7 +2082,7 @@ graphics/image/pointer_array.o: graphics/image/pointer_array.cpp.o
 
 # target to build an object file
 graphics/image/pointer_array.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/pointer_array.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/pointer_array.cpp.o
 .PHONY : graphics/image/pointer_array.cpp.o
 
 graphics/image/pointer_array.i: graphics/image/pointer_array.cpp.i
@@ -1983,7 +2091,7 @@ graphics/image/pointer_array.i: graphics/image/pointer_array.cpp.i
 
 # target to preprocess a source file
 graphics/image/pointer_array.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/pointer_array.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/pointer_array.cpp.i
 .PHONY : graphics/image/pointer_array.cpp.i
 
 graphics/image/pointer_array.s: graphics/image/pointer_array.cpp.s
@@ -1992,7 +2100,7 @@ graphics/image/pointer_array.s: graphics/image/pointer_array.cpp.s
 
 # target to generate assembly for a file
 graphics/image/pointer_array.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/pointer_array.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/pointer_array.cpp.s
 .PHONY : graphics/image/pointer_array.cpp.s
 
 graphics/image/source.o: graphics/image/source.cpp.o
@@ -2001,7 +2109,7 @@ graphics/image/source.o: graphics/image/source.cpp.o
 
 # target to build an object file
 graphics/image/source.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/source.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/source.cpp.o
 .PHONY : graphics/image/source.cpp.o
 
 graphics/image/source.i: graphics/image/source.cpp.i
@@ -2010,7 +2118,7 @@ graphics/image/source.i: graphics/image/source.cpp.i
 
 # target to preprocess a source file
 graphics/image/source.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/source.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/source.cpp.i
 .PHONY : graphics/image/source.cpp.i
 
 graphics/image/source.s: graphics/image/source.cpp.s
@@ -2019,7 +2127,7 @@ graphics/image/source.s: graphics/image/source.cpp.s
 
 # target to generate assembly for a file
 graphics/image/source.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/source.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/image/source.cpp.s
 .PHONY : graphics/image/source.cpp.s
 
 graphics/user/control_box_button.o: graphics/user/control_box_button.cpp.o
@@ -2028,7 +2136,7 @@ graphics/user/control_box_button.o: graphics/user/control_box_button.cpp.o
 
 # target to build an object file
 graphics/user/control_box_button.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/user/control_box_button.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/user/control_box_button.cpp.o
 .PHONY : graphics/user/control_box_button.cpp.o
 
 graphics/user/control_box_button.i: graphics/user/control_box_button.cpp.i
@@ -2037,7 +2145,7 @@ graphics/user/control_box_button.i: graphics/user/control_box_button.cpp.i
 
 # target to preprocess a source file
 graphics/user/control_box_button.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/user/control_box_button.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/user/control_box_button.cpp.i
 .PHONY : graphics/user/control_box_button.cpp.i
 
 graphics/user/control_box_button.s: graphics/user/control_box_button.cpp.s
@@ -2046,7 +2154,7 @@ graphics/user/control_box_button.s: graphics/user/control_box_button.cpp.s
 
 # target to generate assembly for a file
 graphics/user/control_box_button.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/user/control_box_button.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/user/control_box_button.cpp.s
 .PHONY : graphics/user/control_box_button.cpp.s
 
 graphics/user/control_box_icon.o: graphics/user/control_box_icon.cpp.o
@@ -2055,7 +2163,7 @@ graphics/user/control_box_icon.o: graphics/user/control_box_icon.cpp.o
 
 # target to build an object file
 graphics/user/control_box_icon.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/user/control_box_icon.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/user/control_box_icon.cpp.o
 .PHONY : graphics/user/control_box_icon.cpp.o
 
 graphics/user/control_box_icon.i: graphics/user/control_box_icon.cpp.i
@@ -2064,7 +2172,7 @@ graphics/user/control_box_icon.i: graphics/user/control_box_icon.cpp.i
 
 # target to preprocess a source file
 graphics/user/control_box_icon.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/user/control_box_icon.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/user/control_box_icon.cpp.i
 .PHONY : graphics/user/control_box_icon.cpp.i
 
 graphics/user/control_box_icon.s: graphics/user/control_box_icon.cpp.s
@@ -2073,7 +2181,7 @@ graphics/user/control_box_icon.s: graphics/user/control_box_icon.cpp.s
 
 # target to generate assembly for a file
 graphics/user/control_box_icon.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/user/control_box_icon.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/user/control_box_icon.cpp.s
 .PHONY : graphics/user/control_box_icon.cpp.s
 
 graphics/write_text/_shape.o: graphics/write_text/_shape.cpp.o
@@ -2082,7 +2190,7 @@ graphics/write_text/_shape.o: graphics/write_text/_shape.cpp.o
 
 # target to build an object file
 graphics/write_text/_shape.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/_shape.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/_shape.cpp.o
 .PHONY : graphics/write_text/_shape.cpp.o
 
 graphics/write_text/_shape.i: graphics/write_text/_shape.cpp.i
@@ -2091,7 +2199,7 @@ graphics/write_text/_shape.i: graphics/write_text/_shape.cpp.i
 
 # target to preprocess a source file
 graphics/write_text/_shape.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/_shape.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/_shape.cpp.i
 .PHONY : graphics/write_text/_shape.cpp.i
 
 graphics/write_text/_shape.s: graphics/write_text/_shape.cpp.s
@@ -2100,7 +2208,7 @@ graphics/write_text/_shape.s: graphics/write_text/_shape.cpp.s
 
 # target to generate assembly for a file
 graphics/write_text/_shape.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/_shape.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/_shape.cpp.s
 .PHONY : graphics/write_text/_shape.cpp.s
 
 graphics/write_text/drawer.o: graphics/write_text/drawer.cpp.o
@@ -2109,7 +2217,7 @@ graphics/write_text/drawer.o: graphics/write_text/drawer.cpp.o
 
 # target to build an object file
 graphics/write_text/drawer.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/drawer.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/drawer.cpp.o
 .PHONY : graphics/write_text/drawer.cpp.o
 
 graphics/write_text/drawer.i: graphics/write_text/drawer.cpp.i
@@ -2118,7 +2226,7 @@ graphics/write_text/drawer.i: graphics/write_text/drawer.cpp.i
 
 # target to preprocess a source file
 graphics/write_text/drawer.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/drawer.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/drawer.cpp.i
 .PHONY : graphics/write_text/drawer.cpp.i
 
 graphics/write_text/drawer.s: graphics/write_text/drawer.cpp.s
@@ -2127,7 +2235,7 @@ graphics/write_text/drawer.s: graphics/write_text/drawer.cpp.s
 
 # target to generate assembly for a file
 graphics/write_text/drawer.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/drawer.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/drawer.cpp.s
 .PHONY : graphics/write_text/drawer.cpp.s
 
 graphics/write_text/font.o: graphics/write_text/font.cpp.o
@@ -2136,7 +2244,7 @@ graphics/write_text/font.o: graphics/write_text/font.cpp.o
 
 # target to build an object file
 graphics/write_text/font.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font.cpp.o
 .PHONY : graphics/write_text/font.cpp.o
 
 graphics/write_text/font.i: graphics/write_text/font.cpp.i
@@ -2145,7 +2253,7 @@ graphics/write_text/font.i: graphics/write_text/font.cpp.i
 
 # target to preprocess a source file
 graphics/write_text/font.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font.cpp.i
 .PHONY : graphics/write_text/font.cpp.i
 
 graphics/write_text/font.s: graphics/write_text/font.cpp.s
@@ -2154,7 +2262,7 @@ graphics/write_text/font.s: graphics/write_text/font.cpp.s
 
 # target to generate assembly for a file
 graphics/write_text/font.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font.cpp.s
 .PHONY : graphics/write_text/font.cpp.s
 
 graphics/write_text/font_enumeration.o: graphics/write_text/font_enumeration.cpp.o
@@ -2163,7 +2271,7 @@ graphics/write_text/font_enumeration.o: graphics/write_text/font_enumeration.cpp
 
 # target to build an object file
 graphics/write_text/font_enumeration.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_enumeration.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_enumeration.cpp.o
 .PHONY : graphics/write_text/font_enumeration.cpp.o
 
 graphics/write_text/font_enumeration.i: graphics/write_text/font_enumeration.cpp.i
@@ -2172,7 +2280,7 @@ graphics/write_text/font_enumeration.i: graphics/write_text/font_enumeration.cpp
 
 # target to preprocess a source file
 graphics/write_text/font_enumeration.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_enumeration.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_enumeration.cpp.i
 .PHONY : graphics/write_text/font_enumeration.cpp.i
 
 graphics/write_text/font_enumeration.s: graphics/write_text/font_enumeration.cpp.s
@@ -2181,7 +2289,7 @@ graphics/write_text/font_enumeration.s: graphics/write_text/font_enumeration.cpp
 
 # target to generate assembly for a file
 graphics/write_text/font_enumeration.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_enumeration.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_enumeration.cpp.s
 .PHONY : graphics/write_text/font_enumeration.cpp.s
 
 graphics/write_text/font_enumeration_item.o: graphics/write_text/font_enumeration_item.cpp.o
@@ -2190,7 +2298,7 @@ graphics/write_text/font_enumeration_item.o: graphics/write_text/font_enumeratio
 
 # target to build an object file
 graphics/write_text/font_enumeration_item.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_enumeration_item.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_enumeration_item.cpp.o
 .PHONY : graphics/write_text/font_enumeration_item.cpp.o
 
 graphics/write_text/font_enumeration_item.i: graphics/write_text/font_enumeration_item.cpp.i
@@ -2199,7 +2307,7 @@ graphics/write_text/font_enumeration_item.i: graphics/write_text/font_enumeratio
 
 # target to preprocess a source file
 graphics/write_text/font_enumeration_item.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_enumeration_item.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_enumeration_item.cpp.i
 .PHONY : graphics/write_text/font_enumeration_item.cpp.i
 
 graphics/write_text/font_enumeration_item.s: graphics/write_text/font_enumeration_item.cpp.s
@@ -2208,7 +2316,7 @@ graphics/write_text/font_enumeration_item.s: graphics/write_text/font_enumeratio
 
 # target to generate assembly for a file
 graphics/write_text/font_enumeration_item.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_enumeration_item.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_enumeration_item.cpp.s
 .PHONY : graphics/write_text/font_enumeration_item.cpp.s
 
 graphics/write_text/font_list.o: graphics/write_text/font_list.cpp.o
@@ -2217,7 +2325,7 @@ graphics/write_text/font_list.o: graphics/write_text/font_list.cpp.o
 
 # target to build an object file
 graphics/write_text/font_list.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_list.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_list.cpp.o
 .PHONY : graphics/write_text/font_list.cpp.o
 
 graphics/write_text/font_list.i: graphics/write_text/font_list.cpp.i
@@ -2226,7 +2334,7 @@ graphics/write_text/font_list.i: graphics/write_text/font_list.cpp.i
 
 # target to preprocess a source file
 graphics/write_text/font_list.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_list.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_list.cpp.i
 .PHONY : graphics/write_text/font_list.cpp.i
 
 graphics/write_text/font_list.s: graphics/write_text/font_list.cpp.s
@@ -2235,7 +2343,7 @@ graphics/write_text/font_list.s: graphics/write_text/font_list.cpp.s
 
 # target to generate assembly for a file
 graphics/write_text/font_list.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_list.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_list.cpp.s
 .PHONY : graphics/write_text/font_list.cpp.s
 
 graphics/write_text/font_utf8.o: graphics/write_text/font_utf8.cpp.o
@@ -2244,7 +2352,7 @@ graphics/write_text/font_utf8.o: graphics/write_text/font_utf8.cpp.o
 
 # target to build an object file
 graphics/write_text/font_utf8.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_utf8.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_utf8.cpp.o
 .PHONY : graphics/write_text/font_utf8.cpp.o
 
 graphics/write_text/font_utf8.i: graphics/write_text/font_utf8.cpp.i
@@ -2253,7 +2361,7 @@ graphics/write_text/font_utf8.i: graphics/write_text/font_utf8.cpp.i
 
 # target to preprocess a source file
 graphics/write_text/font_utf8.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_utf8.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_utf8.cpp.i
 .PHONY : graphics/write_text/font_utf8.cpp.i
 
 graphics/write_text/font_utf8.s: graphics/write_text/font_utf8.cpp.s
@@ -2262,7 +2370,7 @@ graphics/write_text/font_utf8.s: graphics/write_text/font_utf8.cpp.s
 
 # target to generate assembly for a file
 graphics/write_text/font_utf8.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_utf8.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/font_utf8.cpp.s
 .PHONY : graphics/write_text/font_utf8.cpp.s
 
 graphics/write_text/fonts.o: graphics/write_text/fonts.cpp.o
@@ -2271,7 +2379,7 @@ graphics/write_text/fonts.o: graphics/write_text/fonts.cpp.o
 
 # target to build an object file
 graphics/write_text/fonts.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/fonts.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/fonts.cpp.o
 .PHONY : graphics/write_text/fonts.cpp.o
 
 graphics/write_text/fonts.i: graphics/write_text/fonts.cpp.i
@@ -2280,7 +2388,7 @@ graphics/write_text/fonts.i: graphics/write_text/fonts.cpp.i
 
 # target to preprocess a source file
 graphics/write_text/fonts.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/fonts.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/fonts.cpp.i
 .PHONY : graphics/write_text/fonts.cpp.i
 
 graphics/write_text/fonts.s: graphics/write_text/fonts.cpp.s
@@ -2289,7 +2397,7 @@ graphics/write_text/fonts.s: graphics/write_text/fonts.cpp.s
 
 # target to generate assembly for a file
 graphics/write_text/fonts.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/fonts.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/fonts.cpp.s
 .PHONY : graphics/write_text/fonts.cpp.s
 
 graphics/write_text/text_box.o: graphics/write_text/text_box.cpp.o
@@ -2298,7 +2406,7 @@ graphics/write_text/text_box.o: graphics/write_text/text_box.cpp.o
 
 # target to build an object file
 graphics/write_text/text_box.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/text_box.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/text_box.cpp.o
 .PHONY : graphics/write_text/text_box.cpp.o
 
 graphics/write_text/text_box.i: graphics/write_text/text_box.cpp.i
@@ -2307,7 +2415,7 @@ graphics/write_text/text_box.i: graphics/write_text/text_box.cpp.i
 
 # target to preprocess a source file
 graphics/write_text/text_box.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/text_box.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/text_box.cpp.i
 .PHONY : graphics/write_text/text_box.cpp.i
 
 graphics/write_text/text_box.s: graphics/write_text/text_box.cpp.s
@@ -2316,7 +2424,7 @@ graphics/write_text/text_box.s: graphics/write_text/text_box.cpp.s
 
 # target to generate assembly for a file
 graphics/write_text/text_box.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/text_box.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/text_box.cpp.s
 .PHONY : graphics/write_text/text_box.cpp.s
 
 graphics/write_text/text_out.o: graphics/write_text/text_out.cpp.o
@@ -2325,7 +2433,7 @@ graphics/write_text/text_out.o: graphics/write_text/text_out.cpp.o
 
 # target to build an object file
 graphics/write_text/text_out.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/text_out.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/text_out.cpp.o
 .PHONY : graphics/write_text/text_out.cpp.o
 
 graphics/write_text/text_out.i: graphics/write_text/text_out.cpp.i
@@ -2334,7 +2442,7 @@ graphics/write_text/text_out.i: graphics/write_text/text_out.cpp.i
 
 # target to preprocess a source file
 graphics/write_text/text_out.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/text_out.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/text_out.cpp.i
 .PHONY : graphics/write_text/text_out.cpp.i
 
 graphics/write_text/text_out.s: graphics/write_text/text_out.cpp.s
@@ -2343,7 +2451,7 @@ graphics/write_text/text_out.s: graphics/write_text/text_out.cpp.s
 
 # target to generate assembly for a file
 graphics/write_text/text_out.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/text_out.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/text_out.cpp.s
 .PHONY : graphics/write_text/text_out.cpp.s
 
 graphics/write_text/text_out_array.o: graphics/write_text/text_out_array.cpp.o
@@ -2352,7 +2460,7 @@ graphics/write_text/text_out_array.o: graphics/write_text/text_out_array.cpp.o
 
 # target to build an object file
 graphics/write_text/text_out_array.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/text_out_array.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/text_out_array.cpp.o
 .PHONY : graphics/write_text/text_out_array.cpp.o
 
 graphics/write_text/text_out_array.i: graphics/write_text/text_out_array.cpp.i
@@ -2361,7 +2469,7 @@ graphics/write_text/text_out_array.i: graphics/write_text/text_out_array.cpp.i
 
 # target to preprocess a source file
 graphics/write_text/text_out_array.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/text_out_array.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/text_out_array.cpp.i
 .PHONY : graphics/write_text/text_out_array.cpp.i
 
 graphics/write_text/text_out_array.s: graphics/write_text/text_out_array.cpp.s
@@ -2370,7 +2478,7 @@ graphics/write_text/text_out_array.s: graphics/write_text/text_out_array.cpp.s
 
 # target to generate assembly for a file
 graphics/write_text/text_out_array.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/text_out_array.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/text_out_array.cpp.s
 .PHONY : graphics/write_text/text_out_array.cpp.s
 
 graphics/write_text/true_type_font_utilities.o: graphics/write_text/true_type_font_utilities.cpp.o
@@ -2379,7 +2487,7 @@ graphics/write_text/true_type_font_utilities.o: graphics/write_text/true_type_fo
 
 # target to build an object file
 graphics/write_text/true_type_font_utilities.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/true_type_font_utilities.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/true_type_font_utilities.cpp.o
 .PHONY : graphics/write_text/true_type_font_utilities.cpp.o
 
 graphics/write_text/true_type_font_utilities.i: graphics/write_text/true_type_font_utilities.cpp.i
@@ -2388,7 +2496,7 @@ graphics/write_text/true_type_font_utilities.i: graphics/write_text/true_type_fo
 
 # target to preprocess a source file
 graphics/write_text/true_type_font_utilities.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/true_type_font_utilities.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/true_type_font_utilities.cpp.i
 .PHONY : graphics/write_text/true_type_font_utilities.cpp.i
 
 graphics/write_text/true_type_font_utilities.s: graphics/write_text/true_type_font_utilities.cpp.s
@@ -2397,7 +2505,7 @@ graphics/write_text/true_type_font_utilities.s: graphics/write_text/true_type_fo
 
 # target to generate assembly for a file
 graphics/write_text/true_type_font_utilities.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/true_type_font_utilities.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/true_type_font_utilities.cpp.s
 .PHONY : graphics/write_text/true_type_font_utilities.cpp.s
 
 graphics/write_text/write_text.o: graphics/write_text/write_text.cpp.o
@@ -2406,7 +2514,7 @@ graphics/write_text/write_text.o: graphics/write_text/write_text.cpp.o
 
 # target to build an object file
 graphics/write_text/write_text.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/write_text.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/write_text.cpp.o
 .PHONY : graphics/write_text/write_text.cpp.o
 
 graphics/write_text/write_text.i: graphics/write_text/write_text.cpp.i
@@ -2415,7 +2523,7 @@ graphics/write_text/write_text.i: graphics/write_text/write_text.cpp.i
 
 # target to preprocess a source file
 graphics/write_text/write_text.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/write_text.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/write_text.cpp.i
 .PHONY : graphics/write_text/write_text.cpp.i
 
 graphics/write_text/write_text.s: graphics/write_text/write_text.cpp.s
@@ -2424,7 +2532,7 @@ graphics/write_text/write_text.s: graphics/write_text/write_text.cpp.s
 
 # target to generate assembly for a file
 graphics/write_text/write_text.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/write_text.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/graphics/write_text/write_text.cpp.s
 .PHONY : graphics/write_text/write_text.cpp.s
 
 hardware/device_listener.o: hardware/device_listener.cpp.o
@@ -2433,7 +2541,7 @@ hardware/device_listener.o: hardware/device_listener.cpp.o
 
 # target to build an object file
 hardware/device_listener.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/hardware/device_listener.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/hardware/device_listener.cpp.o
 .PHONY : hardware/device_listener.cpp.o
 
 hardware/device_listener.i: hardware/device_listener.cpp.i
@@ -2442,7 +2550,7 @@ hardware/device_listener.i: hardware/device_listener.cpp.i
 
 # target to preprocess a source file
 hardware/device_listener.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/hardware/device_listener.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/hardware/device_listener.cpp.i
 .PHONY : hardware/device_listener.cpp.i
 
 hardware/device_listener.s: hardware/device_listener.cpp.s
@@ -2451,7 +2559,7 @@ hardware/device_listener.s: hardware/device_listener.cpp.s
 
 # target to generate assembly for a file
 hardware/device_listener.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/hardware/device_listener.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/hardware/device_listener.cpp.s
 .PHONY : hardware/device_listener.cpp.s
 
 hardware/devices.o: hardware/devices.cpp.o
@@ -2460,7 +2568,7 @@ hardware/devices.o: hardware/devices.cpp.o
 
 # target to build an object file
 hardware/devices.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/hardware/devices.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/hardware/devices.cpp.o
 .PHONY : hardware/devices.cpp.o
 
 hardware/devices.i: hardware/devices.cpp.i
@@ -2469,7 +2577,7 @@ hardware/devices.i: hardware/devices.cpp.i
 
 # target to preprocess a source file
 hardware/devices.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/hardware/devices.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/hardware/devices.cpp.i
 .PHONY : hardware/devices.cpp.i
 
 hardware/devices.s: hardware/devices.cpp.s
@@ -2478,7 +2586,7 @@ hardware/devices.s: hardware/devices.cpp.s
 
 # target to generate assembly for a file
 hardware/devices.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/hardware/devices.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/hardware/devices.cpp.s
 .PHONY : hardware/devices.cpp.s
 
 message/_.o: message/_.cpp.o
@@ -2487,7 +2595,7 @@ message/_.o: message/_.cpp.o
 
 # target to build an object file
 message/_.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/message/_.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/message/_.cpp.o
 .PHONY : message/_.cpp.o
 
 message/_.i: message/_.cpp.i
@@ -2496,7 +2604,7 @@ message/_.i: message/_.cpp.i
 
 # target to preprocess a source file
 message/_.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/message/_.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/message/_.cpp.i
 .PHONY : message/_.cpp.i
 
 message/_.s: message/_.cpp.s
@@ -2505,7 +2613,7 @@ message/_.s: message/_.cpp.s
 
 # target to generate assembly for a file
 message/_.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/message/_.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/message/_.cpp.s
 .PHONY : message/_.cpp.s
 
 message/timer.o: message/timer.cpp.o
@@ -2514,7 +2622,7 @@ message/timer.o: message/timer.cpp.o
 
 # target to build an object file
 message/timer.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/message/timer.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/message/timer.cpp.o
 .PHONY : message/timer.cpp.o
 
 message/timer.i: message/timer.cpp.i
@@ -2523,7 +2631,7 @@ message/timer.i: message/timer.cpp.i
 
 # target to preprocess a source file
 message/timer.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/message/timer.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/message/timer.cpp.i
 .PHONY : message/timer.cpp.i
 
 message/timer.s: message/timer.cpp.s
@@ -2532,7 +2640,7 @@ message/timer.s: message/timer.cpp.s
 
 # target to generate assembly for a file
 message/timer.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/message/timer.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/message/timer.cpp.s
 .PHONY : message/timer.cpp.s
 
 message/user.o: message/user.cpp.o
@@ -2541,7 +2649,7 @@ message/user.o: message/user.cpp.o
 
 # target to build an object file
 message/user.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/message/user.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/message/user.cpp.o
 .PHONY : message/user.cpp.o
 
 message/user.i: message/user.cpp.i
@@ -2550,7 +2658,7 @@ message/user.i: message/user.cpp.i
 
 # target to preprocess a source file
 message/user.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/message/user.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/message/user.cpp.i
 .PHONY : message/user.cpp.i
 
 message/user.s: message/user.cpp.s
@@ -2559,7 +2667,7 @@ message/user.s: message/user.cpp.s
 
 # target to generate assembly for a file
 message/user.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/message/user.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/message/user.cpp.s
 .PHONY : message/user.cpp.s
 
 operating_system/http.o: operating_system/http.cpp.o
@@ -2568,7 +2676,7 @@ operating_system/http.o: operating_system/http.cpp.o
 
 # target to build an object file
 operating_system/http.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/http.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/http.cpp.o
 .PHONY : operating_system/http.cpp.o
 
 operating_system/http.i: operating_system/http.cpp.i
@@ -2577,7 +2685,7 @@ operating_system/http.i: operating_system/http.cpp.i
 
 # target to preprocess a source file
 operating_system/http.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/http.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/http.cpp.i
 .PHONY : operating_system/http.cpp.i
 
 operating_system/http.s: operating_system/http.cpp.s
@@ -2586,7 +2694,7 @@ operating_system/http.s: operating_system/http.cpp.s
 
 # target to generate assembly for a file
 operating_system/http.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/http.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/http.cpp.s
 .PHONY : operating_system/http.cpp.s
 
 operating_system/linux/_factory.o: operating_system/linux/_factory.cpp.o
@@ -2595,7 +2703,7 @@ operating_system/linux/_factory.o: operating_system/linux/_factory.cpp.o
 
 # target to build an object file
 operating_system/linux/_factory.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/_factory.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/_factory.cpp.o
 .PHONY : operating_system/linux/_factory.cpp.o
 
 operating_system/linux/_factory.i: operating_system/linux/_factory.cpp.i
@@ -2604,7 +2712,7 @@ operating_system/linux/_factory.i: operating_system/linux/_factory.cpp.i
 
 # target to preprocess a source file
 operating_system/linux/_factory.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/_factory.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/_factory.cpp.i
 .PHONY : operating_system/linux/_factory.cpp.i
 
 operating_system/linux/_factory.s: operating_system/linux/_factory.cpp.s
@@ -2613,7 +2721,7 @@ operating_system/linux/_factory.s: operating_system/linux/_factory.cpp.s
 
 # target to generate assembly for a file
 operating_system/linux/_factory.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/_factory.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/_factory.cpp.s
 .PHONY : operating_system/linux/_factory.cpp.s
 
 operating_system/linux/appindicator.o: operating_system/linux/appindicator.cpp.o
@@ -2622,7 +2730,7 @@ operating_system/linux/appindicator.o: operating_system/linux/appindicator.cpp.o
 
 # target to build an object file
 operating_system/linux/appindicator.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/appindicator.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/appindicator.cpp.o
 .PHONY : operating_system/linux/appindicator.cpp.o
 
 operating_system/linux/appindicator.i: operating_system/linux/appindicator.cpp.i
@@ -2631,7 +2739,7 @@ operating_system/linux/appindicator.i: operating_system/linux/appindicator.cpp.i
 
 # target to preprocess a source file
 operating_system/linux/appindicator.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/appindicator.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/appindicator.cpp.i
 .PHONY : operating_system/linux/appindicator.cpp.i
 
 operating_system/linux/appindicator.s: operating_system/linux/appindicator.cpp.s
@@ -2640,7 +2748,7 @@ operating_system/linux/appindicator.s: operating_system/linux/appindicator.cpp.s
 
 # target to generate assembly for a file
 operating_system/linux/appindicator.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/appindicator.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/appindicator.cpp.s
 .PHONY : operating_system/linux/appindicator.cpp.s
 
 operating_system/linux/application.o: operating_system/linux/application.cpp.o
@@ -2649,7 +2757,7 @@ operating_system/linux/application.o: operating_system/linux/application.cpp.o
 
 # target to build an object file
 operating_system/linux/application.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/application.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/application.cpp.o
 .PHONY : operating_system/linux/application.cpp.o
 
 operating_system/linux/application.i: operating_system/linux/application.cpp.i
@@ -2658,7 +2766,7 @@ operating_system/linux/application.i: operating_system/linux/application.cpp.i
 
 # target to preprocess a source file
 operating_system/linux/application.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/application.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/application.cpp.i
 .PHONY : operating_system/linux/application.cpp.i
 
 operating_system/linux/application.s: operating_system/linux/application.cpp.s
@@ -2667,7 +2775,7 @@ operating_system/linux/application.s: operating_system/linux/application.cpp.s
 
 # target to generate assembly for a file
 operating_system/linux/application.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/application.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/application.cpp.s
 .PHONY : operating_system/linux/application.cpp.s
 
 operating_system/linux/application_system_run.o: operating_system/linux/application_system_run.cpp.o
@@ -2676,7 +2784,7 @@ operating_system/linux/application_system_run.o: operating_system/linux/applicat
 
 # target to build an object file
 operating_system/linux/application_system_run.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/application_system_run.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/application_system_run.cpp.o
 .PHONY : operating_system/linux/application_system_run.cpp.o
 
 operating_system/linux/application_system_run.i: operating_system/linux/application_system_run.cpp.i
@@ -2685,7 +2793,7 @@ operating_system/linux/application_system_run.i: operating_system/linux/applicat
 
 # target to preprocess a source file
 operating_system/linux/application_system_run.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/application_system_run.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/application_system_run.cpp.i
 .PHONY : operating_system/linux/application_system_run.cpp.i
 
 operating_system/linux/application_system_run.s: operating_system/linux/application_system_run.cpp.s
@@ -2694,7 +2802,7 @@ operating_system/linux/application_system_run.s: operating_system/linux/applicat
 
 # target to generate assembly for a file
 operating_system/linux/application_system_run.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/application_system_run.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/application_system_run.cpp.s
 .PHONY : operating_system/linux/application_system_run.cpp.s
 
 operating_system/linux/aura.o: operating_system/linux/aura.cpp.o
@@ -2703,7 +2811,7 @@ operating_system/linux/aura.o: operating_system/linux/aura.cpp.o
 
 # target to build an object file
 operating_system/linux/aura.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/aura.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/aura.cpp.o
 .PHONY : operating_system/linux/aura.cpp.o
 
 operating_system/linux/aura.i: operating_system/linux/aura.cpp.i
@@ -2712,7 +2820,7 @@ operating_system/linux/aura.i: operating_system/linux/aura.cpp.i
 
 # target to preprocess a source file
 operating_system/linux/aura.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/aura.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/aura.cpp.i
 .PHONY : operating_system/linux/aura.cpp.i
 
 operating_system/linux/aura.s: operating_system/linux/aura.cpp.s
@@ -2721,7 +2829,7 @@ operating_system/linux/aura.s: operating_system/linux/aura.cpp.s
 
 # target to generate assembly for a file
 operating_system/linux/aura.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/aura.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/aura.cpp.s
 .PHONY : operating_system/linux/aura.cpp.s
 
 operating_system/linux/cross_win_file.o: operating_system/linux/cross_win_file.cpp.o
@@ -2730,7 +2838,7 @@ operating_system/linux/cross_win_file.o: operating_system/linux/cross_win_file.c
 
 # target to build an object file
 operating_system/linux/cross_win_file.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/cross_win_file.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/cross_win_file.cpp.o
 .PHONY : operating_system/linux/cross_win_file.cpp.o
 
 operating_system/linux/cross_win_file.i: operating_system/linux/cross_win_file.cpp.i
@@ -2739,7 +2847,7 @@ operating_system/linux/cross_win_file.i: operating_system/linux/cross_win_file.c
 
 # target to preprocess a source file
 operating_system/linux/cross_win_file.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/cross_win_file.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/cross_win_file.cpp.i
 .PHONY : operating_system/linux/cross_win_file.cpp.i
 
 operating_system/linux/cross_win_file.s: operating_system/linux/cross_win_file.cpp.s
@@ -2748,7 +2856,7 @@ operating_system/linux/cross_win_file.s: operating_system/linux/cross_win_file.c
 
 # target to generate assembly for a file
 operating_system/linux/cross_win_file.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/cross_win_file.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/cross_win_file.cpp.s
 .PHONY : operating_system/linux/cross_win_file.cpp.s
 
 operating_system/linux/cross_win_gdi.o: operating_system/linux/cross_win_gdi.cpp.o
@@ -2757,7 +2865,7 @@ operating_system/linux/cross_win_gdi.o: operating_system/linux/cross_win_gdi.cpp
 
 # target to build an object file
 operating_system/linux/cross_win_gdi.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/cross_win_gdi.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/cross_win_gdi.cpp.o
 .PHONY : operating_system/linux/cross_win_gdi.cpp.o
 
 operating_system/linux/cross_win_gdi.i: operating_system/linux/cross_win_gdi.cpp.i
@@ -2766,7 +2874,7 @@ operating_system/linux/cross_win_gdi.i: operating_system/linux/cross_win_gdi.cpp
 
 # target to preprocess a source file
 operating_system/linux/cross_win_gdi.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/cross_win_gdi.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/cross_win_gdi.cpp.i
 .PHONY : operating_system/linux/cross_win_gdi.cpp.i
 
 operating_system/linux/cross_win_gdi.s: operating_system/linux/cross_win_gdi.cpp.s
@@ -2775,7 +2883,7 @@ operating_system/linux/cross_win_gdi.s: operating_system/linux/cross_win_gdi.cpp
 
 # target to generate assembly for a file
 operating_system/linux/cross_win_gdi.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/cross_win_gdi.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/cross_win_gdi.cpp.s
 .PHONY : operating_system/linux/cross_win_gdi.cpp.s
 
 operating_system/linux/debug.o: operating_system/linux/debug.cpp.o
@@ -2784,7 +2892,7 @@ operating_system/linux/debug.o: operating_system/linux/debug.cpp.o
 
 # target to build an object file
 operating_system/linux/debug.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/debug.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/debug.cpp.o
 .PHONY : operating_system/linux/debug.cpp.o
 
 operating_system/linux/debug.i: operating_system/linux/debug.cpp.i
@@ -2793,7 +2901,7 @@ operating_system/linux/debug.i: operating_system/linux/debug.cpp.i
 
 # target to preprocess a source file
 operating_system/linux/debug.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/debug.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/debug.cpp.i
 .PHONY : operating_system/linux/debug.cpp.i
 
 operating_system/linux/debug.s: operating_system/linux/debug.cpp.s
@@ -2802,7 +2910,7 @@ operating_system/linux/debug.s: operating_system/linux/debug.cpp.s
 
 # target to generate assembly for a file
 operating_system/linux/debug.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/debug.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/debug.cpp.s
 .PHONY : operating_system/linux/debug.cpp.s
 
 operating_system/linux/file.o: operating_system/linux/file.cpp.o
@@ -2811,7 +2919,7 @@ operating_system/linux/file.o: operating_system/linux/file.cpp.o
 
 # target to build an object file
 operating_system/linux/file.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/file.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/file.cpp.o
 .PHONY : operating_system/linux/file.cpp.o
 
 operating_system/linux/file.i: operating_system/linux/file.cpp.i
@@ -2820,7 +2928,7 @@ operating_system/linux/file.i: operating_system/linux/file.cpp.i
 
 # target to preprocess a source file
 operating_system/linux/file.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/file.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/file.cpp.i
 .PHONY : operating_system/linux/file.cpp.i
 
 operating_system/linux/file.s: operating_system/linux/file.cpp.s
@@ -2829,7 +2937,7 @@ operating_system/linux/file.s: operating_system/linux/file.cpp.s
 
 # target to generate assembly for a file
 operating_system/linux/file.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/file.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/file.cpp.s
 .PHONY : operating_system/linux/file.cpp.s
 
 operating_system/linux/graphics.o: operating_system/linux/graphics.cpp.o
@@ -2838,7 +2946,7 @@ operating_system/linux/graphics.o: operating_system/linux/graphics.cpp.o
 
 # target to build an object file
 operating_system/linux/graphics.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/graphics.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/graphics.cpp.o
 .PHONY : operating_system/linux/graphics.cpp.o
 
 operating_system/linux/graphics.i: operating_system/linux/graphics.cpp.i
@@ -2847,7 +2955,7 @@ operating_system/linux/graphics.i: operating_system/linux/graphics.cpp.i
 
 # target to preprocess a source file
 operating_system/linux/graphics.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/graphics.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/graphics.cpp.i
 .PHONY : operating_system/linux/graphics.cpp.i
 
 operating_system/linux/graphics.s: operating_system/linux/graphics.cpp.s
@@ -2856,7 +2964,7 @@ operating_system/linux/graphics.s: operating_system/linux/graphics.cpp.s
 
 # target to generate assembly for a file
 operating_system/linux/graphics.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/graphics.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/graphics.cpp.s
 .PHONY : operating_system/linux/graphics.cpp.s
 
 operating_system/linux/language.o: operating_system/linux/language.cpp.o
@@ -2865,7 +2973,7 @@ operating_system/linux/language.o: operating_system/linux/language.cpp.o
 
 # target to build an object file
 operating_system/linux/language.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/language.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/language.cpp.o
 .PHONY : operating_system/linux/language.cpp.o
 
 operating_system/linux/language.i: operating_system/linux/language.cpp.i
@@ -2874,7 +2982,7 @@ operating_system/linux/language.i: operating_system/linux/language.cpp.i
 
 # target to preprocess a source file
 operating_system/linux/language.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/language.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/language.cpp.i
 .PHONY : operating_system/linux/language.cpp.i
 
 operating_system/linux/language.s: operating_system/linux/language.cpp.s
@@ -2883,7 +2991,7 @@ operating_system/linux/language.s: operating_system/linux/language.cpp.s
 
 # target to generate assembly for a file
 operating_system/linux/language.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/language.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/language.cpp.s
 .PHONY : operating_system/linux/language.cpp.s
 
 operating_system/linux/library.o: operating_system/linux/library.cpp.o
@@ -2892,7 +3000,7 @@ operating_system/linux/library.o: operating_system/linux/library.cpp.o
 
 # target to build an object file
 operating_system/linux/library.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/library.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/library.cpp.o
 .PHONY : operating_system/linux/library.cpp.o
 
 operating_system/linux/library.i: operating_system/linux/library.cpp.i
@@ -2901,7 +3009,7 @@ operating_system/linux/library.i: operating_system/linux/library.cpp.i
 
 # target to preprocess a source file
 operating_system/linux/library.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/library.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/library.cpp.i
 .PHONY : operating_system/linux/library.cpp.i
 
 operating_system/linux/library.s: operating_system/linux/library.cpp.s
@@ -2910,7 +3018,7 @@ operating_system/linux/library.s: operating_system/linux/library.cpp.s
 
 # target to generate assembly for a file
 operating_system/linux/library.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/library.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/library.cpp.s
 .PHONY : operating_system/linux/library.cpp.s
 
 operating_system/linux/message_loop.o: operating_system/linux/message_loop.cpp.o
@@ -2919,7 +3027,7 @@ operating_system/linux/message_loop.o: operating_system/linux/message_loop.cpp.o
 
 # target to build an object file
 operating_system/linux/message_loop.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/message_loop.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/message_loop.cpp.o
 .PHONY : operating_system/linux/message_loop.cpp.o
 
 operating_system/linux/message_loop.i: operating_system/linux/message_loop.cpp.i
@@ -2928,7 +3036,7 @@ operating_system/linux/message_loop.i: operating_system/linux/message_loop.cpp.i
 
 # target to preprocess a source file
 operating_system/linux/message_loop.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/message_loop.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/message_loop.cpp.i
 .PHONY : operating_system/linux/message_loop.cpp.i
 
 operating_system/linux/message_loop.s: operating_system/linux/message_loop.cpp.s
@@ -2937,7 +3045,7 @@ operating_system/linux/message_loop.s: operating_system/linux/message_loop.cpp.s
 
 # target to generate assembly for a file
 operating_system/linux/message_loop.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/message_loop.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/message_loop.cpp.s
 .PHONY : operating_system/linux/message_loop.cpp.s
 
 operating_system/linux/os.o: operating_system/linux/os.cpp.o
@@ -2946,7 +3054,7 @@ operating_system/linux/os.o: operating_system/linux/os.cpp.o
 
 # target to build an object file
 operating_system/linux/os.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/os.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/os.cpp.o
 .PHONY : operating_system/linux/os.cpp.o
 
 operating_system/linux/os.i: operating_system/linux/os.cpp.i
@@ -2955,7 +3063,7 @@ operating_system/linux/os.i: operating_system/linux/os.cpp.i
 
 # target to preprocess a source file
 operating_system/linux/os.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/os.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/os.cpp.i
 .PHONY : operating_system/linux/os.cpp.i
 
 operating_system/linux/os.s: operating_system/linux/os.cpp.s
@@ -2964,7 +3072,7 @@ operating_system/linux/os.s: operating_system/linux/os.cpp.s
 
 # target to generate assembly for a file
 operating_system/linux/os.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/os.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/os.cpp.s
 .PHONY : operating_system/linux/os.cpp.s
 
 operating_system/linux/parallelization.o: operating_system/linux/parallelization.cpp.o
@@ -2973,7 +3081,7 @@ operating_system/linux/parallelization.o: operating_system/linux/parallelization
 
 # target to build an object file
 operating_system/linux/parallelization.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/parallelization.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/parallelization.cpp.o
 .PHONY : operating_system/linux/parallelization.cpp.o
 
 operating_system/linux/parallelization.i: operating_system/linux/parallelization.cpp.i
@@ -2982,7 +3090,7 @@ operating_system/linux/parallelization.i: operating_system/linux/parallelization
 
 # target to preprocess a source file
 operating_system/linux/parallelization.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/parallelization.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/parallelization.cpp.i
 .PHONY : operating_system/linux/parallelization.cpp.i
 
 operating_system/linux/parallelization.s: operating_system/linux/parallelization.cpp.s
@@ -2991,7 +3099,7 @@ operating_system/linux/parallelization.s: operating_system/linux/parallelization
 
 # target to generate assembly for a file
 operating_system/linux/parallelization.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/parallelization.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/parallelization.cpp.s
 .PHONY : operating_system/linux/parallelization.cpp.s
 
 operating_system/linux/simple_app.o: operating_system/linux/simple_app.cpp.o
@@ -3000,7 +3108,7 @@ operating_system/linux/simple_app.o: operating_system/linux/simple_app.cpp.o
 
 # target to build an object file
 operating_system/linux/simple_app.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/simple_app.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/simple_app.cpp.o
 .PHONY : operating_system/linux/simple_app.cpp.o
 
 operating_system/linux/simple_app.i: operating_system/linux/simple_app.cpp.i
@@ -3009,7 +3117,7 @@ operating_system/linux/simple_app.i: operating_system/linux/simple_app.cpp.i
 
 # target to preprocess a source file
 operating_system/linux/simple_app.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/simple_app.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/simple_app.cpp.i
 .PHONY : operating_system/linux/simple_app.cpp.i
 
 operating_system/linux/simple_app.s: operating_system/linux/simple_app.cpp.s
@@ -3018,7 +3126,7 @@ operating_system/linux/simple_app.s: operating_system/linux/simple_app.cpp.s
 
 # target to generate assembly for a file
 operating_system/linux/simple_app.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/simple_app.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/simple_app.cpp.s
 .PHONY : operating_system/linux/simple_app.cpp.s
 
 operating_system/linux/system.o: operating_system/linux/system.cpp.o
@@ -3027,7 +3135,7 @@ operating_system/linux/system.o: operating_system/linux/system.cpp.o
 
 # target to build an object file
 operating_system/linux/system.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/system.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/system.cpp.o
 .PHONY : operating_system/linux/system.cpp.o
 
 operating_system/linux/system.i: operating_system/linux/system.cpp.i
@@ -3036,7 +3144,7 @@ operating_system/linux/system.i: operating_system/linux/system.cpp.i
 
 # target to preprocess a source file
 operating_system/linux/system.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/system.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/system.cpp.i
 .PHONY : operating_system/linux/system.cpp.i
 
 operating_system/linux/system.s: operating_system/linux/system.cpp.s
@@ -3045,7 +3153,7 @@ operating_system/linux/system.s: operating_system/linux/system.cpp.s
 
 # target to generate assembly for a file
 operating_system/linux/system.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/system.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/system.cpp.s
 .PHONY : operating_system/linux/system.cpp.s
 
 operating_system/linux/time.o: operating_system/linux/time.cpp.o
@@ -3054,7 +3162,7 @@ operating_system/linux/time.o: operating_system/linux/time.cpp.o
 
 # target to build an object file
 operating_system/linux/time.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/time.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/time.cpp.o
 .PHONY : operating_system/linux/time.cpp.o
 
 operating_system/linux/time.i: operating_system/linux/time.cpp.i
@@ -3063,7 +3171,7 @@ operating_system/linux/time.i: operating_system/linux/time.cpp.i
 
 # target to preprocess a source file
 operating_system/linux/time.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/time.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/time.cpp.i
 .PHONY : operating_system/linux/time.cpp.i
 
 operating_system/linux/time.s: operating_system/linux/time.cpp.s
@@ -3072,7 +3180,7 @@ operating_system/linux/time.s: operating_system/linux/time.cpp.s
 
 # target to generate assembly for a file
 operating_system/linux/time.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/time.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/time.cpp.s
 .PHONY : operating_system/linux/time.cpp.s
 
 operating_system/linux/user.o: operating_system/linux/user.cpp.o
@@ -3081,7 +3189,7 @@ operating_system/linux/user.o: operating_system/linux/user.cpp.o
 
 # target to build an object file
 operating_system/linux/user.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/user.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/user.cpp.o
 .PHONY : operating_system/linux/user.cpp.o
 
 operating_system/linux/user.i: operating_system/linux/user.cpp.i
@@ -3090,7 +3198,7 @@ operating_system/linux/user.i: operating_system/linux/user.cpp.i
 
 # target to preprocess a source file
 operating_system/linux/user.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/user.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/user.cpp.i
 .PHONY : operating_system/linux/user.cpp.i
 
 operating_system/linux/user.s: operating_system/linux/user.cpp.s
@@ -3099,7 +3207,7 @@ operating_system/linux/user.s: operating_system/linux/user.cpp.s
 
 # target to generate assembly for a file
 operating_system/linux/user.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/user.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/user.cpp.s
 .PHONY : operating_system/linux/user.cpp.s
 
 operating_system/linux/win_base.o: operating_system/linux/win_base.cpp.o
@@ -3108,7 +3216,7 @@ operating_system/linux/win_base.o: operating_system/linux/win_base.cpp.o
 
 # target to build an object file
 operating_system/linux/win_base.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/win_base.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/win_base.cpp.o
 .PHONY : operating_system/linux/win_base.cpp.o
 
 operating_system/linux/win_base.i: operating_system/linux/win_base.cpp.i
@@ -3117,7 +3225,7 @@ operating_system/linux/win_base.i: operating_system/linux/win_base.cpp.i
 
 # target to preprocess a source file
 operating_system/linux/win_base.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/win_base.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/win_base.cpp.i
 .PHONY : operating_system/linux/win_base.cpp.i
 
 operating_system/linux/win_base.s: operating_system/linux/win_base.cpp.s
@@ -3126,7 +3234,7 @@ operating_system/linux/win_base.s: operating_system/linux/win_base.cpp.s
 
 # target to generate assembly for a file
 operating_system/linux/win_base.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/win_base.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/win_base.cpp.s
 .PHONY : operating_system/linux/win_base.cpp.s
 
 operating_system/linux/windowing.o: operating_system/linux/windowing.cpp.o
@@ -3135,7 +3243,7 @@ operating_system/linux/windowing.o: operating_system/linux/windowing.cpp.o
 
 # target to build an object file
 operating_system/linux/windowing.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/windowing.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/windowing.cpp.o
 .PHONY : operating_system/linux/windowing.cpp.o
 
 operating_system/linux/windowing.i: operating_system/linux/windowing.cpp.i
@@ -3144,7 +3252,7 @@ operating_system/linux/windowing.i: operating_system/linux/windowing.cpp.i
 
 # target to preprocess a source file
 operating_system/linux/windowing.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/windowing.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/windowing.cpp.i
 .PHONY : operating_system/linux/windowing.cpp.i
 
 operating_system/linux/windowing.s: operating_system/linux/windowing.cpp.s
@@ -3153,7 +3261,7 @@ operating_system/linux/windowing.s: operating_system/linux/windowing.cpp.s
 
 # target to generate assembly for a file
 operating_system/linux/windowing.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/windowing.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/linux/windowing.cpp.s
 .PHONY : operating_system/linux/windowing.cpp.s
 
 operating_system/thread.o: operating_system/thread.cpp.o
@@ -3162,7 +3270,7 @@ operating_system/thread.o: operating_system/thread.cpp.o
 
 # target to build an object file
 operating_system/thread.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/thread.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/thread.cpp.o
 .PHONY : operating_system/thread.cpp.o
 
 operating_system/thread.i: operating_system/thread.cpp.i
@@ -3171,7 +3279,7 @@ operating_system/thread.i: operating_system/thread.cpp.i
 
 # target to preprocess a source file
 operating_system/thread.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/thread.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/thread.cpp.i
 .PHONY : operating_system/thread.cpp.i
 
 operating_system/thread.s: operating_system/thread.cpp.s
@@ -3180,7 +3288,7 @@ operating_system/thread.s: operating_system/thread.cpp.s
 
 # target to generate assembly for a file
 operating_system/thread.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/thread.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/thread.cpp.s
 .PHONY : operating_system/thread.cpp.s
 
 operating_system/windowing.o: operating_system/windowing.cpp.o
@@ -3189,7 +3297,7 @@ operating_system/windowing.o: operating_system/windowing.cpp.o
 
 # target to build an object file
 operating_system/windowing.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/windowing.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/windowing.cpp.o
 .PHONY : operating_system/windowing.cpp.o
 
 operating_system/windowing.i: operating_system/windowing.cpp.i
@@ -3198,7 +3306,7 @@ operating_system/windowing.i: operating_system/windowing.cpp.i
 
 # target to preprocess a source file
 operating_system/windowing.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/windowing.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/windowing.cpp.i
 .PHONY : operating_system/windowing.cpp.i
 
 operating_system/windowing.s: operating_system/windowing.cpp.s
@@ -3207,7 +3315,7 @@ operating_system/windowing.s: operating_system/windowing.cpp.s
 
 # target to generate assembly for a file
 operating_system/windowing.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/windowing.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/operating_system/windowing.cpp.s
 .PHONY : operating_system/windowing.cpp.s
 
 platform/application.o: platform/application.cpp.o
@@ -3216,7 +3324,7 @@ platform/application.o: platform/application.cpp.o
 
 # target to build an object file
 platform/application.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/application.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/application.cpp.o
 .PHONY : platform/application.cpp.o
 
 platform/application.i: platform/application.cpp.i
@@ -3225,7 +3333,7 @@ platform/application.i: platform/application.cpp.i
 
 # target to preprocess a source file
 platform/application.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/application.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/application.cpp.i
 .PHONY : platform/application.cpp.i
 
 platform/application.s: platform/application.cpp.s
@@ -3234,7 +3342,7 @@ platform/application.s: platform/application.cpp.s
 
 # target to generate assembly for a file
 platform/application.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/application.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/application.cpp.s
 .PHONY : platform/application.cpp.s
 
 platform/aura.o: platform/aura.cpp.o
@@ -3243,7 +3351,7 @@ platform/aura.o: platform/aura.cpp.o
 
 # target to build an object file
 platform/aura.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/aura.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/aura.cpp.o
 .PHONY : platform/aura.cpp.o
 
 platform/aura.i: platform/aura.cpp.i
@@ -3252,7 +3360,7 @@ platform/aura.i: platform/aura.cpp.i
 
 # target to preprocess a source file
 platform/aura.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/aura.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/aura.cpp.i
 .PHONY : platform/aura.cpp.i
 
 platform/aura.s: platform/aura.cpp.s
@@ -3261,7 +3369,7 @@ platform/aura.s: platform/aura.cpp.s
 
 # target to generate assembly for a file
 platform/aura.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/aura.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/aura.cpp.s
 .PHONY : platform/aura.cpp.s
 
 platform/aura_mq.o: platform/aura_mq.cpp.o
@@ -3270,7 +3378,7 @@ platform/aura_mq.o: platform/aura_mq.cpp.o
 
 # target to build an object file
 platform/aura_mq.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/aura_mq.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/aura_mq.cpp.o
 .PHONY : platform/aura_mq.cpp.o
 
 platform/aura_mq.i: platform/aura_mq.cpp.i
@@ -3279,7 +3387,7 @@ platform/aura_mq.i: platform/aura_mq.cpp.i
 
 # target to preprocess a source file
 platform/aura_mq.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/aura_mq.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/aura_mq.cpp.i
 .PHONY : platform/aura_mq.cpp.i
 
 platform/aura_mq.s: platform/aura_mq.cpp.s
@@ -3288,7 +3396,7 @@ platform/aura_mq.s: platform/aura_mq.cpp.s
 
 # target to generate assembly for a file
 platform/aura_mq.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/aura_mq.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/aura_mq.cpp.s
 .PHONY : platform/aura_mq.cpp.s
 
 platform/context.o: platform/context.cpp.o
@@ -3297,7 +3405,7 @@ platform/context.o: platform/context.cpp.o
 
 # target to build an object file
 platform/context.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/context.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/context.cpp.o
 .PHONY : platform/context.cpp.o
 
 platform/context.i: platform/context.cpp.i
@@ -3306,7 +3414,7 @@ platform/context.i: platform/context.cpp.i
 
 # target to preprocess a source file
 platform/context.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/context.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/context.cpp.i
 .PHONY : platform/context.cpp.i
 
 platform/context.s: platform/context.cpp.s
@@ -3315,7 +3423,7 @@ platform/context.s: platform/context.cpp.s
 
 # target to generate assembly for a file
 platform/context.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/context.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/context.cpp.s
 .PHONY : platform/context.cpp.s
 
 platform/draw_context.o: platform/draw_context.cpp.o
@@ -3324,7 +3432,7 @@ platform/draw_context.o: platform/draw_context.cpp.o
 
 # target to build an object file
 platform/draw_context.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/draw_context.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/draw_context.cpp.o
 .PHONY : platform/draw_context.cpp.o
 
 platform/draw_context.i: platform/draw_context.cpp.i
@@ -3333,7 +3441,7 @@ platform/draw_context.i: platform/draw_context.cpp.i
 
 # target to preprocess a source file
 platform/draw_context.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/draw_context.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/draw_context.cpp.i
 .PHONY : platform/draw_context.cpp.i
 
 platform/draw_context.s: platform/draw_context.cpp.s
@@ -3342,7 +3450,7 @@ platform/draw_context.s: platform/draw_context.cpp.s
 
 # target to generate assembly for a file
 platform/draw_context.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/draw_context.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/draw_context.cpp.s
 .PHONY : platform/draw_context.cpp.s
 
 platform/drawable.o: platform/drawable.cpp.o
@@ -3351,7 +3459,7 @@ platform/drawable.o: platform/drawable.cpp.o
 
 # target to build an object file
 platform/drawable.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/drawable.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/drawable.cpp.o
 .PHONY : platform/drawable.cpp.o
 
 platform/drawable.i: platform/drawable.cpp.i
@@ -3360,7 +3468,7 @@ platform/drawable.i: platform/drawable.cpp.i
 
 # target to preprocess a source file
 platform/drawable.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/drawable.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/drawable.cpp.i
 .PHONY : platform/drawable.cpp.i
 
 platform/drawable.s: platform/drawable.cpp.s
@@ -3369,7 +3477,7 @@ platform/drawable.s: platform/drawable.cpp.s
 
 # target to generate assembly for a file
 platform/drawable.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/drawable.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/drawable.cpp.s
 .PHONY : platform/drawable.cpp.s
 
 platform/node.o: platform/node.cpp.o
@@ -3378,7 +3486,7 @@ platform/node.o: platform/node.cpp.o
 
 # target to build an object file
 platform/node.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/node.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/node.cpp.o
 .PHONY : platform/node.cpp.o
 
 platform/node.i: platform/node.cpp.i
@@ -3387,7 +3495,7 @@ platform/node.i: platform/node.cpp.i
 
 # target to preprocess a source file
 platform/node.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/node.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/node.cpp.i
 .PHONY : platform/node.cpp.i
 
 platform/node.s: platform/node.cpp.s
@@ -3396,7 +3504,7 @@ platform/node.s: platform/node.cpp.s
 
 # target to generate assembly for a file
 platform/node.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/node.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/node.cpp.s
 .PHONY : platform/node.cpp.s
 
 platform/session.o: platform/session.cpp.o
@@ -3405,7 +3513,7 @@ platform/session.o: platform/session.cpp.o
 
 # target to build an object file
 platform/session.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/session.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/session.cpp.o
 .PHONY : platform/session.cpp.o
 
 platform/session.i: platform/session.cpp.i
@@ -3414,7 +3522,7 @@ platform/session.i: platform/session.cpp.i
 
 # target to preprocess a source file
 platform/session.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/session.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/session.cpp.i
 .PHONY : platform/session.cpp.i
 
 platform/session.s: platform/session.cpp.s
@@ -3423,7 +3531,7 @@ platform/session.s: platform/session.cpp.s
 
 # target to generate assembly for a file
 platform/session.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/session.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/session.cpp.s
 .PHONY : platform/session.cpp.s
 
 platform/shell_open.o: platform/shell_open.cpp.o
@@ -3432,7 +3540,7 @@ platform/shell_open.o: platform/shell_open.cpp.o
 
 # target to build an object file
 platform/shell_open.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/shell_open.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/shell_open.cpp.o
 .PHONY : platform/shell_open.cpp.o
 
 platform/shell_open.i: platform/shell_open.cpp.i
@@ -3441,7 +3549,7 @@ platform/shell_open.i: platform/shell_open.cpp.i
 
 # target to preprocess a source file
 platform/shell_open.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/shell_open.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/shell_open.cpp.i
 .PHONY : platform/shell_open.cpp.i
 
 platform/shell_open.s: platform/shell_open.cpp.s
@@ -3450,7 +3558,7 @@ platform/shell_open.s: platform/shell_open.cpp.s
 
 # target to generate assembly for a file
 platform/shell_open.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/shell_open.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/shell_open.cpp.s
 .PHONY : platform/shell_open.cpp.s
 
 platform/system.o: platform/system.cpp.o
@@ -3459,7 +3567,7 @@ platform/system.o: platform/system.cpp.o
 
 # target to build an object file
 platform/system.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/system.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/system.cpp.o
 .PHONY : platform/system.cpp.o
 
 platform/system.i: platform/system.cpp.i
@@ -3468,7 +3576,7 @@ platform/system.i: platform/system.cpp.i
 
 # target to preprocess a source file
 platform/system.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/system.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/system.cpp.i
 .PHONY : platform/system.cpp.i
 
 platform/system.s: platform/system.cpp.s
@@ -3477,7 +3585,7 @@ platform/system.s: platform/system.cpp.s
 
 # target to generate assembly for a file
 platform/system.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/system.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/system.cpp.s
 .PHONY : platform/system.cpp.s
 
 platform/theme.o: platform/theme.cpp.o
@@ -3486,7 +3594,7 @@ platform/theme.o: platform/theme.cpp.o
 
 # target to build an object file
 platform/theme.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/theme.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/theme.cpp.o
 .PHONY : platform/theme.cpp.o
 
 platform/theme.i: platform/theme.cpp.i
@@ -3495,7 +3603,7 @@ platform/theme.i: platform/theme.cpp.i
 
 # target to preprocess a source file
 platform/theme.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/theme.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/theme.cpp.i
 .PHONY : platform/theme.cpp.i
 
 platform/theme.s: platform/theme.cpp.s
@@ -3504,7 +3612,7 @@ platform/theme.s: platform/theme.cpp.s
 
 # target to generate assembly for a file
 platform/theme.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/theme.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/platform/theme.cpp.s
 .PHONY : platform/theme.cpp.s
 
 user/appearance/appearance.o: user/appearance/appearance.cpp.o
@@ -3513,7 +3621,7 @@ user/appearance/appearance.o: user/appearance/appearance.cpp.o
 
 # target to build an object file
 user/appearance/appearance.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/appearance/appearance.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/appearance/appearance.cpp.o
 .PHONY : user/appearance/appearance.cpp.o
 
 user/appearance/appearance.i: user/appearance/appearance.cpp.i
@@ -3522,7 +3630,7 @@ user/appearance/appearance.i: user/appearance/appearance.cpp.i
 
 # target to preprocess a source file
 user/appearance/appearance.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/appearance/appearance.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/appearance/appearance.cpp.i
 .PHONY : user/appearance/appearance.cpp.i
 
 user/appearance/appearance.s: user/appearance/appearance.cpp.s
@@ -3531,7 +3639,7 @@ user/appearance/appearance.s: user/appearance/appearance.cpp.s
 
 # target to generate assembly for a file
 user/appearance/appearance.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/appearance/appearance.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/appearance/appearance.cpp.s
 .PHONY : user/appearance/appearance.cpp.s
 
 user/menu/menu_command.o: user/menu/menu_command.cpp.o
@@ -3540,7 +3648,7 @@ user/menu/menu_command.o: user/menu/menu_command.cpp.o
 
 # target to build an object file
 user/menu/menu_command.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/menu/menu_command.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/menu/menu_command.cpp.o
 .PHONY : user/menu/menu_command.cpp.o
 
 user/menu/menu_command.i: user/menu/menu_command.cpp.i
@@ -3549,7 +3657,7 @@ user/menu/menu_command.i: user/menu/menu_command.cpp.i
 
 # target to preprocess a source file
 user/menu/menu_command.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/menu/menu_command.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/menu/menu_command.cpp.i
 .PHONY : user/menu/menu_command.cpp.i
 
 user/menu/menu_command.s: user/menu/menu_command.cpp.s
@@ -3558,7 +3666,7 @@ user/menu/menu_command.s: user/menu/menu_command.cpp.s
 
 # target to generate assembly for a file
 user/menu/menu_command.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/menu/menu_command.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/menu/menu_command.cpp.s
 .PHONY : user/menu/menu_command.cpp.s
 
 user/user/box.o: user/user/box.cpp.o
@@ -3567,7 +3675,7 @@ user/user/box.o: user/user/box.cpp.o
 
 # target to build an object file
 user/user/box.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/box.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/box.cpp.o
 .PHONY : user/user/box.cpp.o
 
 user/user/box.i: user/user/box.cpp.i
@@ -3576,7 +3684,7 @@ user/user/box.i: user/user/box.cpp.i
 
 # target to preprocess a source file
 user/user/box.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/box.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/box.cpp.i
 .PHONY : user/user/box.cpp.i
 
 user/user/box.s: user/user/box.cpp.s
@@ -3585,7 +3693,7 @@ user/user/box.s: user/user/box.cpp.s
 
 # target to generate assembly for a file
 user/user/box.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/box.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/box.cpp.s
 .PHONY : user/user/box.cpp.s
 
 user/user/button.o: user/user/button.cpp.o
@@ -3594,7 +3702,7 @@ user/user/button.o: user/user/button.cpp.o
 
 # target to build an object file
 user/user/button.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/button.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/button.cpp.o
 .PHONY : user/user/button.cpp.o
 
 user/user/button.i: user/user/button.cpp.i
@@ -3603,7 +3711,7 @@ user/user/button.i: user/user/button.cpp.i
 
 # target to preprocess a source file
 user/user/button.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/button.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/button.cpp.i
 .PHONY : user/user/button.cpp.i
 
 user/user/button.s: user/user/button.cpp.s
@@ -3612,7 +3720,7 @@ user/user/button.s: user/user/button.cpp.s
 
 # target to generate assembly for a file
 user/user/button.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/button.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/button.cpp.s
 .PHONY : user/user/button.cpp.s
 
 user/user/call_message_handler_task.o: user/user/call_message_handler_task.cpp.o
@@ -3621,7 +3729,7 @@ user/user/call_message_handler_task.o: user/user/call_message_handler_task.cpp.o
 
 # target to build an object file
 user/user/call_message_handler_task.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/call_message_handler_task.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/call_message_handler_task.cpp.o
 .PHONY : user/user/call_message_handler_task.cpp.o
 
 user/user/call_message_handler_task.i: user/user/call_message_handler_task.cpp.i
@@ -3630,7 +3738,7 @@ user/user/call_message_handler_task.i: user/user/call_message_handler_task.cpp.i
 
 # target to preprocess a source file
 user/user/call_message_handler_task.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/call_message_handler_task.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/call_message_handler_task.cpp.i
 .PHONY : user/user/call_message_handler_task.cpp.i
 
 user/user/call_message_handler_task.s: user/user/call_message_handler_task.cpp.s
@@ -3639,7 +3747,7 @@ user/user/call_message_handler_task.s: user/user/call_message_handler_task.cpp.s
 
 # target to generate assembly for a file
 user/user/call_message_handler_task.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/call_message_handler_task.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/call_message_handler_task.cpp.s
 .PHONY : user/user/call_message_handler_task.cpp.s
 
 user/user/check_box.o: user/user/check_box.cpp.o
@@ -3648,7 +3756,7 @@ user/user/check_box.o: user/user/check_box.cpp.o
 
 # target to build an object file
 user/user/check_box.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/check_box.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/check_box.cpp.o
 .PHONY : user/user/check_box.cpp.o
 
 user/user/check_box.i: user/user/check_box.cpp.i
@@ -3657,7 +3765,7 @@ user/user/check_box.i: user/user/check_box.cpp.i
 
 # target to preprocess a source file
 user/user/check_box.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/check_box.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/check_box.cpp.i
 .PHONY : user/user/check_box.cpp.i
 
 user/user/check_box.s: user/user/check_box.cpp.s
@@ -3666,7 +3774,7 @@ user/user/check_box.s: user/user/check_box.cpp.s
 
 # target to generate assembly for a file
 user/user/check_box.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/check_box.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/check_box.cpp.s
 .PHONY : user/user/check_box.cpp.s
 
 user/user/copydesk.o: user/user/copydesk.cpp.o
@@ -3675,7 +3783,7 @@ user/user/copydesk.o: user/user/copydesk.cpp.o
 
 # target to build an object file
 user/user/copydesk.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/copydesk.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/copydesk.cpp.o
 .PHONY : user/user/copydesk.cpp.o
 
 user/user/copydesk.i: user/user/copydesk.cpp.i
@@ -3684,7 +3792,7 @@ user/user/copydesk.i: user/user/copydesk.cpp.i
 
 # target to preprocess a source file
 user/user/copydesk.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/copydesk.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/copydesk.cpp.i
 .PHONY : user/user/copydesk.cpp.i
 
 user/user/copydesk.s: user/user/copydesk.cpp.s
@@ -3693,7 +3801,7 @@ user/user/copydesk.s: user/user/copydesk.cpp.s
 
 # target to generate assembly for a file
 user/user/copydesk.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/copydesk.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/copydesk.cpp.s
 .PHONY : user/user/copydesk.cpp.s
 
 user/user/form.o: user/user/form.cpp.o
@@ -3702,7 +3810,7 @@ user/user/form.o: user/user/form.cpp.o
 
 # target to build an object file
 user/user/form.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/form.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/form.cpp.o
 .PHONY : user/user/form.cpp.o
 
 user/user/form.i: user/user/form.cpp.i
@@ -3711,7 +3819,7 @@ user/user/form.i: user/user/form.cpp.i
 
 # target to preprocess a source file
 user/user/form.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/form.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/form.cpp.i
 .PHONY : user/user/form.cpp.i
 
 user/user/form.s: user/user/form.cpp.s
@@ -3720,7 +3828,7 @@ user/user/form.s: user/user/form.cpp.s
 
 # target to generate assembly for a file
 user/user/form.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/form.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/form.cpp.s
 .PHONY : user/user/form.cpp.s
 
 user/user/form_callback.o: user/user/form_callback.cpp.o
@@ -3729,7 +3837,7 @@ user/user/form_callback.o: user/user/form_callback.cpp.o
 
 # target to build an object file
 user/user/form_callback.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/form_callback.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/form_callback.cpp.o
 .PHONY : user/user/form_callback.cpp.o
 
 user/user/form_callback.i: user/user/form_callback.cpp.i
@@ -3738,7 +3846,7 @@ user/user/form_callback.i: user/user/form_callback.cpp.i
 
 # target to preprocess a source file
 user/user/form_callback.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/form_callback.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/form_callback.cpp.i
 .PHONY : user/user/form_callback.cpp.i
 
 user/user/form_callback.s: user/user/form_callback.cpp.s
@@ -3747,7 +3855,7 @@ user/user/form_callback.s: user/user/form_callback.cpp.s
 
 # target to generate assembly for a file
 user/user/form_callback.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/form_callback.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/form_callback.cpp.s
 .PHONY : user/user/form_callback.cpp.s
 
 user/user/frame.o: user/user/frame.cpp.o
@@ -3756,7 +3864,7 @@ user/user/frame.o: user/user/frame.cpp.o
 
 # target to build an object file
 user/user/frame.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/frame.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/frame.cpp.o
 .PHONY : user/user/frame.cpp.o
 
 user/user/frame.i: user/user/frame.cpp.i
@@ -3765,7 +3873,7 @@ user/user/frame.i: user/user/frame.cpp.i
 
 # target to preprocess a source file
 user/user/frame.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/frame.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/frame.cpp.i
 .PHONY : user/user/frame.cpp.i
 
 user/user/frame.s: user/user/frame.cpp.s
@@ -3774,7 +3882,7 @@ user/user/frame.s: user/user/frame.cpp.s
 
 # target to generate assembly for a file
 user/user/frame.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/frame.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/frame.cpp.s
 .PHONY : user/user/frame.cpp.s
 
 user/user/interaction.o: user/user/interaction.cpp.o
@@ -3783,7 +3891,7 @@ user/user/interaction.o: user/user/interaction.cpp.o
 
 # target to build an object file
 user/user/interaction.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction.cpp.o
 .PHONY : user/user/interaction.cpp.o
 
 user/user/interaction.i: user/user/interaction.cpp.i
@@ -3792,7 +3900,7 @@ user/user/interaction.i: user/user/interaction.cpp.i
 
 # target to preprocess a source file
 user/user/interaction.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction.cpp.i
 .PHONY : user/user/interaction.cpp.i
 
 user/user/interaction.s: user/user/interaction.cpp.s
@@ -3801,7 +3909,7 @@ user/user/interaction.s: user/user/interaction.cpp.s
 
 # target to generate assembly for a file
 user/user/interaction.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction.cpp.s
 .PHONY : user/user/interaction.cpp.s
 
 user/user/interaction_child.o: user/user/interaction_child.cpp.o
@@ -3810,7 +3918,7 @@ user/user/interaction_child.o: user/user/interaction_child.cpp.o
 
 # target to build an object file
 user/user/interaction_child.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_child.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_child.cpp.o
 .PHONY : user/user/interaction_child.cpp.o
 
 user/user/interaction_child.i: user/user/interaction_child.cpp.i
@@ -3819,7 +3927,7 @@ user/user/interaction_child.i: user/user/interaction_child.cpp.i
 
 # target to preprocess a source file
 user/user/interaction_child.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_child.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_child.cpp.i
 .PHONY : user/user/interaction_child.cpp.i
 
 user/user/interaction_child.s: user/user/interaction_child.cpp.s
@@ -3828,7 +3936,7 @@ user/user/interaction_child.s: user/user/interaction_child.cpp.s
 
 # target to generate assembly for a file
 user/user/interaction_child.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_child.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_child.cpp.s
 .PHONY : user/user/interaction_child.cpp.s
 
 user/user/interaction_impl.o: user/user/interaction_impl.cpp.o
@@ -3837,7 +3945,7 @@ user/user/interaction_impl.o: user/user/interaction_impl.cpp.o
 
 # target to build an object file
 user/user/interaction_impl.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_impl.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_impl.cpp.o
 .PHONY : user/user/interaction_impl.cpp.o
 
 user/user/interaction_impl.i: user/user/interaction_impl.cpp.i
@@ -3846,7 +3954,7 @@ user/user/interaction_impl.i: user/user/interaction_impl.cpp.i
 
 # target to preprocess a source file
 user/user/interaction_impl.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_impl.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_impl.cpp.i
 .PHONY : user/user/interaction_impl.cpp.i
 
 user/user/interaction_impl.s: user/user/interaction_impl.cpp.s
@@ -3855,7 +3963,7 @@ user/user/interaction_impl.s: user/user/interaction_impl.cpp.s
 
 # target to generate assembly for a file
 user/user/interaction_impl.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_impl.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_impl.cpp.s
 .PHONY : user/user/interaction_impl.cpp.s
 
 user/user/interaction_layout.o: user/user/interaction_layout.cpp.o
@@ -3864,7 +3972,7 @@ user/user/interaction_layout.o: user/user/interaction_layout.cpp.o
 
 # target to build an object file
 user/user/interaction_layout.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_layout.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_layout.cpp.o
 .PHONY : user/user/interaction_layout.cpp.o
 
 user/user/interaction_layout.i: user/user/interaction_layout.cpp.i
@@ -3873,7 +3981,7 @@ user/user/interaction_layout.i: user/user/interaction_layout.cpp.i
 
 # target to preprocess a source file
 user/user/interaction_layout.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_layout.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_layout.cpp.i
 .PHONY : user/user/interaction_layout.cpp.i
 
 user/user/interaction_layout.s: user/user/interaction_layout.cpp.s
@@ -3882,7 +3990,7 @@ user/user/interaction_layout.s: user/user/interaction_layout.cpp.s
 
 # target to generate assembly for a file
 user/user/interaction_layout.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_layout.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_layout.cpp.s
 .PHONY : user/user/interaction_layout.cpp.s
 
 user/user/interaction_prodevian.o: user/user/interaction_prodevian.cpp.o
@@ -3891,7 +3999,7 @@ user/user/interaction_prodevian.o: user/user/interaction_prodevian.cpp.o
 
 # target to build an object file
 user/user/interaction_prodevian.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_prodevian.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_prodevian.cpp.o
 .PHONY : user/user/interaction_prodevian.cpp.o
 
 user/user/interaction_prodevian.i: user/user/interaction_prodevian.cpp.i
@@ -3900,7 +4008,7 @@ user/user/interaction_prodevian.i: user/user/interaction_prodevian.cpp.i
 
 # target to preprocess a source file
 user/user/interaction_prodevian.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_prodevian.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_prodevian.cpp.i
 .PHONY : user/user/interaction_prodevian.cpp.i
 
 user/user/interaction_prodevian.s: user/user/interaction_prodevian.cpp.s
@@ -3909,7 +4017,7 @@ user/user/interaction_prodevian.s: user/user/interaction_prodevian.cpp.s
 
 # target to generate assembly for a file
 user/user/interaction_prodevian.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_prodevian.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_prodevian.cpp.s
 .PHONY : user/user/interaction_prodevian.cpp.s
 
 user/user/interaction_scaler.o: user/user/interaction_scaler.cpp.o
@@ -3918,7 +4026,7 @@ user/user/interaction_scaler.o: user/user/interaction_scaler.cpp.o
 
 # target to build an object file
 user/user/interaction_scaler.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_scaler.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_scaler.cpp.o
 .PHONY : user/user/interaction_scaler.cpp.o
 
 user/user/interaction_scaler.i: user/user/interaction_scaler.cpp.i
@@ -3927,7 +4035,7 @@ user/user/interaction_scaler.i: user/user/interaction_scaler.cpp.i
 
 # target to preprocess a source file
 user/user/interaction_scaler.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_scaler.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_scaler.cpp.i
 .PHONY : user/user/interaction_scaler.cpp.i
 
 user/user/interaction_scaler.s: user/user/interaction_scaler.cpp.s
@@ -3936,7 +4044,7 @@ user/user/interaction_scaler.s: user/user/interaction_scaler.cpp.s
 
 # target to generate assembly for a file
 user/user/interaction_scaler.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_scaler.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_scaler.cpp.s
 .PHONY : user/user/interaction_scaler.cpp.s
 
 user/user/interaction_thread.o: user/user/interaction_thread.cpp.o
@@ -3945,7 +4053,7 @@ user/user/interaction_thread.o: user/user/interaction_thread.cpp.o
 
 # target to build an object file
 user/user/interaction_thread.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_thread.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_thread.cpp.o
 .PHONY : user/user/interaction_thread.cpp.o
 
 user/user/interaction_thread.i: user/user/interaction_thread.cpp.i
@@ -3954,7 +4062,7 @@ user/user/interaction_thread.i: user/user/interaction_thread.cpp.i
 
 # target to preprocess a source file
 user/user/interaction_thread.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_thread.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_thread.cpp.i
 .PHONY : user/user/interaction_thread.cpp.i
 
 user/user/interaction_thread.s: user/user/interaction_thread.cpp.s
@@ -3963,7 +4071,7 @@ user/user/interaction_thread.s: user/user/interaction_thread.cpp.s
 
 # target to generate assembly for a file
 user/user/interaction_thread.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_thread.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/interaction_thread.cpp.s
 .PHONY : user/user/interaction_thread.cpp.s
 
 user/user/key.o: user/user/key.cpp.o
@@ -3972,7 +4080,7 @@ user/user/key.o: user/user/key.cpp.o
 
 # target to build an object file
 user/user/key.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/key.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/key.cpp.o
 .PHONY : user/user/key.cpp.o
 
 user/user/key.i: user/user/key.cpp.i
@@ -3981,7 +4089,7 @@ user/user/key.i: user/user/key.cpp.i
 
 # target to preprocess a source file
 user/user/key.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/key.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/key.cpp.i
 .PHONY : user/user/key.cpp.i
 
 user/user/key.s: user/user/key.cpp.s
@@ -3990,7 +4098,7 @@ user/user/key.s: user/user/key.cpp.s
 
 # target to generate assembly for a file
 user/user/key.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/key.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/key.cpp.s
 .PHONY : user/user/key.cpp.s
 
 user/user/keyboard.o: user/user/keyboard.cpp.o
@@ -3999,7 +4107,7 @@ user/user/keyboard.o: user/user/keyboard.cpp.o
 
 # target to build an object file
 user/user/keyboard.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/keyboard.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/keyboard.cpp.o
 .PHONY : user/user/keyboard.cpp.o
 
 user/user/keyboard.i: user/user/keyboard.cpp.i
@@ -4008,7 +4116,7 @@ user/user/keyboard.i: user/user/keyboard.cpp.i
 
 # target to preprocess a source file
 user/user/keyboard.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/keyboard.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/keyboard.cpp.i
 .PHONY : user/user/keyboard.cpp.i
 
 user/user/keyboard.s: user/user/keyboard.cpp.s
@@ -4017,7 +4125,7 @@ user/user/keyboard.s: user/user/keyboard.cpp.s
 
 # target to generate assembly for a file
 user/user/keyboard.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/keyboard.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/keyboard.cpp.s
 .PHONY : user/user/keyboard.cpp.s
 
 user/user/layout_state.o: user/user/layout_state.cpp.o
@@ -4026,7 +4134,7 @@ user/user/layout_state.o: user/user/layout_state.cpp.o
 
 # target to build an object file
 user/user/layout_state.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/layout_state.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/layout_state.cpp.o
 .PHONY : user/user/layout_state.cpp.o
 
 user/user/layout_state.i: user/user/layout_state.cpp.i
@@ -4035,7 +4143,7 @@ user/user/layout_state.i: user/user/layout_state.cpp.i
 
 # target to preprocess a source file
 user/user/layout_state.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/layout_state.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/layout_state.cpp.i
 .PHONY : user/user/layout_state.cpp.i
 
 user/user/layout_state.s: user/user/layout_state.cpp.s
@@ -4044,7 +4152,7 @@ user/user/layout_state.s: user/user/layout_state.cpp.s
 
 # target to generate assembly for a file
 user/user/layout_state.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/layout_state.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/layout_state.cpp.s
 .PHONY : user/user/layout_state.cpp.s
 
 user/user/main_window.o: user/user/main_window.cpp.o
@@ -4053,7 +4161,7 @@ user/user/main_window.o: user/user/main_window.cpp.o
 
 # target to build an object file
 user/user/main_window.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/main_window.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/main_window.cpp.o
 .PHONY : user/user/main_window.cpp.o
 
 user/user/main_window.i: user/user/main_window.cpp.i
@@ -4062,7 +4170,7 @@ user/user/main_window.i: user/user/main_window.cpp.i
 
 # target to preprocess a source file
 user/user/main_window.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/main_window.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/main_window.cpp.i
 .PHONY : user/user/main_window.cpp.i
 
 user/user/main_window.s: user/user/main_window.cpp.s
@@ -4071,7 +4179,7 @@ user/user/main_window.s: user/user/main_window.cpp.s
 
 # target to generate assembly for a file
 user/user/main_window.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/main_window.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/main_window.cpp.s
 .PHONY : user/user/main_window.cpp.s
 
 user/user/message.o: user/user/message.cpp.o
@@ -4080,7 +4188,7 @@ user/user/message.o: user/user/message.cpp.o
 
 # target to build an object file
 user/user/message.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/message.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/message.cpp.o
 .PHONY : user/user/message.cpp.o
 
 user/user/message.i: user/user/message.cpp.i
@@ -4089,7 +4197,7 @@ user/user/message.i: user/user/message.cpp.i
 
 # target to preprocess a source file
 user/user/message.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/message.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/message.cpp.i
 .PHONY : user/user/message.cpp.i
 
 user/user/message.s: user/user/message.cpp.s
@@ -4098,7 +4206,7 @@ user/user/message.s: user/user/message.cpp.s
 
 # target to generate assembly for a file
 user/user/message.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/message.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/message.cpp.s
 .PHONY : user/user/message.cpp.s
 
 user/user/message_box.o: user/user/message_box.cpp.o
@@ -4107,7 +4215,7 @@ user/user/message_box.o: user/user/message_box.cpp.o
 
 # target to build an object file
 user/user/message_box.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/message_box.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/message_box.cpp.o
 .PHONY : user/user/message_box.cpp.o
 
 user/user/message_box.i: user/user/message_box.cpp.i
@@ -4116,7 +4224,7 @@ user/user/message_box.i: user/user/message_box.cpp.i
 
 # target to preprocess a source file
 user/user/message_box.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/message_box.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/message_box.cpp.i
 .PHONY : user/user/message_box.cpp.i
 
 user/user/message_box.s: user/user/message_box.cpp.s
@@ -4125,7 +4233,7 @@ user/user/message_box.s: user/user/message_box.cpp.s
 
 # target to generate assembly for a file
 user/user/message_box.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/message_box.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/message_box.cpp.s
 .PHONY : user/user/message_box.cpp.s
 
 user/user/notify_icon.o: user/user/notify_icon.cpp.o
@@ -4134,7 +4242,7 @@ user/user/notify_icon.o: user/user/notify_icon.cpp.o
 
 # target to build an object file
 user/user/notify_icon.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/notify_icon.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/notify_icon.cpp.o
 .PHONY : user/user/notify_icon.cpp.o
 
 user/user/notify_icon.i: user/user/notify_icon.cpp.i
@@ -4143,7 +4251,7 @@ user/user/notify_icon.i: user/user/notify_icon.cpp.i
 
 # target to preprocess a source file
 user/user/notify_icon.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/notify_icon.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/notify_icon.cpp.i
 .PHONY : user/user/notify_icon.cpp.i
 
 user/user/notify_icon.s: user/user/notify_icon.cpp.s
@@ -4152,7 +4260,7 @@ user/user/notify_icon.s: user/user/notify_icon.cpp.s
 
 # target to generate assembly for a file
 user/user/notify_icon.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/notify_icon.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/notify_icon.cpp.s
 .PHONY : user/user/notify_icon.cpp.s
 
 user/user/notify_icon_listener.o: user/user/notify_icon_listener.cpp.o
@@ -4161,7 +4269,7 @@ user/user/notify_icon_listener.o: user/user/notify_icon_listener.cpp.o
 
 # target to build an object file
 user/user/notify_icon_listener.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/notify_icon_listener.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/notify_icon_listener.cpp.o
 .PHONY : user/user/notify_icon_listener.cpp.o
 
 user/user/notify_icon_listener.i: user/user/notify_icon_listener.cpp.i
@@ -4170,7 +4278,7 @@ user/user/notify_icon_listener.i: user/user/notify_icon_listener.cpp.i
 
 # target to preprocess a source file
 user/user/notify_icon_listener.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/notify_icon_listener.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/notify_icon_listener.cpp.i
 .PHONY : user/user/notify_icon_listener.cpp.i
 
 user/user/notify_icon_listener.s: user/user/notify_icon_listener.cpp.s
@@ -4179,7 +4287,7 @@ user/user/notify_icon_listener.s: user/user/notify_icon_listener.cpp.s
 
 # target to generate assembly for a file
 user/user/notify_icon_listener.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/notify_icon_listener.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/notify_icon_listener.cpp.s
 .PHONY : user/user/notify_icon_listener.cpp.s
 
 user/user/plain_edit.o: user/user/plain_edit.cpp.o
@@ -4188,7 +4296,7 @@ user/user/plain_edit.o: user/user/plain_edit.cpp.o
 
 # target to build an object file
 user/user/plain_edit.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/plain_edit.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/plain_edit.cpp.o
 .PHONY : user/user/plain_edit.cpp.o
 
 user/user/plain_edit.i: user/user/plain_edit.cpp.i
@@ -4197,7 +4305,7 @@ user/user/plain_edit.i: user/user/plain_edit.cpp.i
 
 # target to preprocess a source file
 user/user/plain_edit.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/plain_edit.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/plain_edit.cpp.i
 .PHONY : user/user/plain_edit.cpp.i
 
 user/user/plain_edit.s: user/user/plain_edit.cpp.s
@@ -4206,7 +4314,7 @@ user/user/plain_edit.s: user/user/plain_edit.cpp.s
 
 # target to generate assembly for a file
 user/user/plain_edit.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/plain_edit.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/plain_edit.cpp.s
 .PHONY : user/user/plain_edit.cpp.s
 
 user/user/plain_text_data.o: user/user/plain_text_data.cpp.o
@@ -4215,7 +4323,7 @@ user/user/plain_text_data.o: user/user/plain_text_data.cpp.o
 
 # target to build an object file
 user/user/plain_text_data.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/plain_text_data.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/plain_text_data.cpp.o
 .PHONY : user/user/plain_text_data.cpp.o
 
 user/user/plain_text_data.i: user/user/plain_text_data.cpp.i
@@ -4224,7 +4332,7 @@ user/user/plain_text_data.i: user/user/plain_text_data.cpp.i
 
 # target to preprocess a source file
 user/user/plain_text_data.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/plain_text_data.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/plain_text_data.cpp.i
 .PHONY : user/user/plain_text_data.cpp.i
 
 user/user/plain_text_data.s: user/user/plain_text_data.cpp.s
@@ -4233,7 +4341,7 @@ user/user/plain_text_data.s: user/user/plain_text_data.cpp.s
 
 # target to generate assembly for a file
 user/user/plain_text_data.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/plain_text_data.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/plain_text_data.cpp.s
 .PHONY : user/user/plain_text_data.cpp.s
 
 user/user/primitive_impl.o: user/user/primitive_impl.cpp.o
@@ -4242,7 +4350,7 @@ user/user/primitive_impl.o: user/user/primitive_impl.cpp.o
 
 # target to build an object file
 user/user/primitive_impl.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/primitive_impl.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/primitive_impl.cpp.o
 .PHONY : user/user/primitive_impl.cpp.o
 
 user/user/primitive_impl.i: user/user/primitive_impl.cpp.i
@@ -4251,7 +4359,7 @@ user/user/primitive_impl.i: user/user/primitive_impl.cpp.i
 
 # target to preprocess a source file
 user/user/primitive_impl.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/primitive_impl.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/primitive_impl.cpp.i
 .PHONY : user/user/primitive_impl.cpp.i
 
 user/user/primitive_impl.s: user/user/primitive_impl.cpp.s
@@ -4260,7 +4368,7 @@ user/user/primitive_impl.s: user/user/primitive_impl.cpp.s
 
 # target to generate assembly for a file
 user/user/primitive_impl.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/primitive_impl.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/primitive_impl.cpp.s
 .PHONY : user/user/primitive_impl.cpp.s
 
 user/user/progress.o: user/user/progress.cpp.o
@@ -4269,7 +4377,7 @@ user/user/progress.o: user/user/progress.cpp.o
 
 # target to build an object file
 user/user/progress.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/progress.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/progress.cpp.o
 .PHONY : user/user/progress.cpp.o
 
 user/user/progress.i: user/user/progress.cpp.i
@@ -4278,7 +4386,7 @@ user/user/progress.i: user/user/progress.cpp.i
 
 # target to preprocess a source file
 user/user/progress.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/progress.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/progress.cpp.i
 .PHONY : user/user/progress.cpp.i
 
 user/user/progress.s: user/user/progress.cpp.s
@@ -4287,7 +4395,7 @@ user/user/progress.s: user/user/progress.cpp.s
 
 # target to generate assembly for a file
 user/user/progress.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/progress.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/progress.cpp.s
 .PHONY : user/user/progress.cpp.s
 
 user/user/range.o: user/user/range.cpp.o
@@ -4296,7 +4404,7 @@ user/user/range.o: user/user/range.cpp.o
 
 # target to build an object file
 user/user/range.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/range.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/range.cpp.o
 .PHONY : user/user/range.cpp.o
 
 user/user/range.i: user/user/range.cpp.i
@@ -4305,7 +4413,7 @@ user/user/range.i: user/user/range.cpp.i
 
 # target to preprocess a source file
 user/user/range.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/range.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/range.cpp.i
 .PHONY : user/user/range.cpp.i
 
 user/user/range.s: user/user/range.cpp.s
@@ -4314,7 +4422,7 @@ user/user/range.s: user/user/range.cpp.s
 
 # target to generate assembly for a file
 user/user/range.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/range.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/range.cpp.s
 .PHONY : user/user/range.cpp.s
 
 user/user/scroll.o: user/user/scroll.cpp.o
@@ -4323,7 +4431,7 @@ user/user/scroll.o: user/user/scroll.cpp.o
 
 # target to build an object file
 user/user/scroll.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/scroll.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/scroll.cpp.o
 .PHONY : user/user/scroll.cpp.o
 
 user/user/scroll.i: user/user/scroll.cpp.i
@@ -4332,7 +4440,7 @@ user/user/scroll.i: user/user/scroll.cpp.i
 
 # target to preprocess a source file
 user/user/scroll.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/scroll.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/scroll.cpp.i
 .PHONY : user/user/scroll.cpp.i
 
 user/user/scroll.s: user/user/scroll.cpp.s
@@ -4341,7 +4449,7 @@ user/user/scroll.s: user/user/scroll.cpp.s
 
 # target to generate assembly for a file
 user/user/scroll.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/scroll.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/scroll.cpp.s
 .PHONY : user/user/scroll.cpp.s
 
 user/user/scroll_bar.o: user/user/scroll_bar.cpp.o
@@ -4350,7 +4458,7 @@ user/user/scroll_bar.o: user/user/scroll_bar.cpp.o
 
 # target to build an object file
 user/user/scroll_bar.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/scroll_bar.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/scroll_bar.cpp.o
 .PHONY : user/user/scroll_bar.cpp.o
 
 user/user/scroll_bar.i: user/user/scroll_bar.cpp.i
@@ -4359,7 +4467,7 @@ user/user/scroll_bar.i: user/user/scroll_bar.cpp.i
 
 # target to preprocess a source file
 user/user/scroll_bar.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/scroll_bar.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/scroll_bar.cpp.i
 .PHONY : user/user/scroll_bar.cpp.i
 
 user/user/scroll_bar.s: user/user/scroll_bar.cpp.s
@@ -4368,7 +4476,7 @@ user/user/scroll_bar.s: user/user/scroll_bar.cpp.s
 
 # target to generate assembly for a file
 user/user/scroll_bar.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/scroll_bar.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/scroll_bar.cpp.s
 .PHONY : user/user/scroll_bar.cpp.s
 
 user/user/shell.o: user/user/shell.cpp.o
@@ -4377,7 +4485,7 @@ user/user/shell.o: user/user/shell.cpp.o
 
 # target to build an object file
 user/user/shell.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/shell.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/shell.cpp.o
 .PHONY : user/user/shell.cpp.o
 
 user/user/shell.i: user/user/shell.cpp.i
@@ -4386,7 +4494,7 @@ user/user/shell.i: user/user/shell.cpp.i
 
 # target to preprocess a source file
 user/user/shell.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/shell.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/shell.cpp.i
 .PHONY : user/user/shell.cpp.i
 
 user/user/shell.s: user/user/shell.cpp.s
@@ -4395,7 +4503,7 @@ user/user/shell.s: user/user/shell.cpp.s
 
 # target to generate assembly for a file
 user/user/shell.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/shell.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/shell.cpp.s
 .PHONY : user/user/shell.cpp.s
 
 user/user/still.o: user/user/still.cpp.o
@@ -4404,7 +4512,7 @@ user/user/still.o: user/user/still.cpp.o
 
 # target to build an object file
 user/user/still.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/still.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/still.cpp.o
 .PHONY : user/user/still.cpp.o
 
 user/user/still.i: user/user/still.cpp.i
@@ -4413,7 +4521,7 @@ user/user/still.i: user/user/still.cpp.i
 
 # target to preprocess a source file
 user/user/still.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/still.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/still.cpp.i
 .PHONY : user/user/still.cpp.i
 
 user/user/still.s: user/user/still.cpp.s
@@ -4422,7 +4530,7 @@ user/user/still.s: user/user/still.cpp.s
 
 # target to generate assembly for a file
 user/user/still.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/still.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/still.cpp.s
 .PHONY : user/user/still.cpp.s
 
 user/user/style.o: user/user/style.cpp.o
@@ -4431,7 +4539,7 @@ user/user/style.o: user/user/style.cpp.o
 
 # target to build an object file
 user/user/style.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/style.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/style.cpp.o
 .PHONY : user/user/style.cpp.o
 
 user/user/style.i: user/user/style.cpp.i
@@ -4440,7 +4548,7 @@ user/user/style.i: user/user/style.cpp.i
 
 # target to preprocess a source file
 user/user/style.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/style.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/style.cpp.i
 .PHONY : user/user/style.cpp.i
 
 user/user/style.s: user/user/style.cpp.s
@@ -4449,7 +4557,7 @@ user/user/style.s: user/user/style.cpp.s
 
 # target to generate assembly for a file
 user/user/style.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/style.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/style.cpp.s
 .PHONY : user/user/style.cpp.s
 
 user/user/style_base.o: user/user/style_base.cpp.o
@@ -4458,7 +4566,7 @@ user/user/style_base.o: user/user/style_base.cpp.o
 
 # target to build an object file
 user/user/style_base.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/style_base.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/style_base.cpp.o
 .PHONY : user/user/style_base.cpp.o
 
 user/user/style_base.i: user/user/style_base.cpp.i
@@ -4467,7 +4575,7 @@ user/user/style_base.i: user/user/style_base.cpp.i
 
 # target to preprocess a source file
 user/user/style_base.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/style_base.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/style_base.cpp.i
 .PHONY : user/user/style_base.cpp.i
 
 user/user/style_base.s: user/user/style_base.cpp.s
@@ -4476,7 +4584,7 @@ user/user/style_base.s: user/user/style_base.cpp.s
 
 # target to generate assembly for a file
 user/user/style_base.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/style_base.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/style_base.cpp.s
 .PHONY : user/user/style_base.cpp.s
 
 user/user/style_control.o: user/user/style_control.cpp.o
@@ -4485,7 +4593,7 @@ user/user/style_control.o: user/user/style_control.cpp.o
 
 # target to build an object file
 user/user/style_control.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/style_control.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/style_control.cpp.o
 .PHONY : user/user/style_control.cpp.o
 
 user/user/style_control.i: user/user/style_control.cpp.i
@@ -4494,7 +4602,7 @@ user/user/style_control.i: user/user/style_control.cpp.i
 
 # target to preprocess a source file
 user/user/style_control.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/style_control.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/style_control.cpp.i
 .PHONY : user/user/style_control.cpp.i
 
 user/user/style_control.s: user/user/style_control.cpp.s
@@ -4503,7 +4611,7 @@ user/user/style_control.s: user/user/style_control.cpp.s
 
 # target to generate assembly for a file
 user/user/style_control.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/style_control.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/style_control.cpp.s
 .PHONY : user/user/style_control.cpp.s
 
 user/user/system.o: user/user/system.cpp.o
@@ -4512,7 +4620,7 @@ user/user/system.o: user/user/system.cpp.o
 
 # target to build an object file
 user/user/system.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/system.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/system.cpp.o
 .PHONY : user/user/system.cpp.o
 
 user/user/system.i: user/user/system.cpp.i
@@ -4521,7 +4629,7 @@ user/user/system.i: user/user/system.cpp.i
 
 # target to preprocess a source file
 user/user/system.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/system.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/system.cpp.i
 .PHONY : user/user/system.cpp.i
 
 user/user/system.s: user/user/system.cpp.s
@@ -4530,7 +4638,7 @@ user/user/system.s: user/user/system.cpp.s
 
 # target to generate assembly for a file
 user/user/system.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/system.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/system.cpp.s
 .PHONY : user/user/system.cpp.s
 
 user/user/text_composition.o: user/user/text_composition.cpp.o
@@ -4539,7 +4647,7 @@ user/user/text_composition.o: user/user/text_composition.cpp.o
 
 # target to build an object file
 user/user/text_composition.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/text_composition.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/text_composition.cpp.o
 .PHONY : user/user/text_composition.cpp.o
 
 user/user/text_composition.i: user/user/text_composition.cpp.i
@@ -4548,7 +4656,7 @@ user/user/text_composition.i: user/user/text_composition.cpp.i
 
 # target to preprocess a source file
 user/user/text_composition.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/text_composition.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/text_composition.cpp.i
 .PHONY : user/user/text_composition.cpp.i
 
 user/user/text_composition.s: user/user/text_composition.cpp.s
@@ -4557,7 +4665,7 @@ user/user/text_composition.s: user/user/text_composition.cpp.s
 
 # target to generate assembly for a file
 user/user/text_composition.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/text_composition.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/text_composition.cpp.s
 .PHONY : user/user/text_composition.cpp.s
 
 user/user/tool_window.o: user/user/tool_window.cpp.o
@@ -4566,7 +4674,7 @@ user/user/tool_window.o: user/user/tool_window.cpp.o
 
 # target to build an object file
 user/user/tool_window.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/tool_window.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/tool_window.cpp.o
 .PHONY : user/user/tool_window.cpp.o
 
 user/user/tool_window.i: user/user/tool_window.cpp.i
@@ -4575,7 +4683,7 @@ user/user/tool_window.i: user/user/tool_window.cpp.i
 
 # target to preprocess a source file
 user/user/tool_window.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/tool_window.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/tool_window.cpp.i
 .PHONY : user/user/tool_window.cpp.i
 
 user/user/tool_window.s: user/user/tool_window.cpp.s
@@ -4584,7 +4692,7 @@ user/user/tool_window.s: user/user/tool_window.cpp.s
 
 # target to generate assembly for a file
 user/user/tool_window.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/tool_window.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/tool_window.cpp.s
 .PHONY : user/user/tool_window.cpp.s
 
 user/user/user.o: user/user/user.cpp.o
@@ -4593,7 +4701,7 @@ user/user/user.o: user/user/user.cpp.o
 
 # target to build an object file
 user/user/user.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/user.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/user.cpp.o
 .PHONY : user/user/user.cpp.o
 
 user/user/user.i: user/user/user.cpp.i
@@ -4602,7 +4710,7 @@ user/user/user.i: user/user/user.cpp.i
 
 # target to preprocess a source file
 user/user/user.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/user.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/user.cpp.i
 .PHONY : user/user/user.cpp.i
 
 user/user/user.s: user/user/user.cpp.s
@@ -4611,7 +4719,7 @@ user/user/user.s: user/user/user.cpp.s
 
 # target to generate assembly for a file
 user/user/user.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/user.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/user.cpp.s
 .PHONY : user/user/user.cpp.s
 
 user/user/wait_cursor.o: user/user/wait_cursor.cpp.o
@@ -4620,7 +4728,7 @@ user/user/wait_cursor.o: user/user/wait_cursor.cpp.o
 
 # target to build an object file
 user/user/wait_cursor.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/wait_cursor.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/wait_cursor.cpp.o
 .PHONY : user/user/wait_cursor.cpp.o
 
 user/user/wait_cursor.i: user/user/wait_cursor.cpp.i
@@ -4629,7 +4737,7 @@ user/user/wait_cursor.i: user/user/wait_cursor.cpp.i
 
 # target to preprocess a source file
 user/user/wait_cursor.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/wait_cursor.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/wait_cursor.cpp.i
 .PHONY : user/user/wait_cursor.cpp.i
 
 user/user/wait_cursor.s: user/user/wait_cursor.cpp.s
@@ -4638,7 +4746,7 @@ user/user/wait_cursor.s: user/user/wait_cursor.cpp.s
 
 # target to generate assembly for a file
 user/user/wait_cursor.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/wait_cursor.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/wait_cursor.cpp.s
 .PHONY : user/user/wait_cursor.cpp.s
 
 user/user/window_util.o: user/user/window_util.cpp.o
@@ -4647,7 +4755,7 @@ user/user/window_util.o: user/user/window_util.cpp.o
 
 # target to build an object file
 user/user/window_util.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/window_util.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/window_util.cpp.o
 .PHONY : user/user/window_util.cpp.o
 
 user/user/window_util.i: user/user/window_util.cpp.i
@@ -4656,7 +4764,7 @@ user/user/window_util.i: user/user/window_util.cpp.i
 
 # target to preprocess a source file
 user/user/window_util.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/window_util.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/window_util.cpp.i
 .PHONY : user/user/window_util.cpp.i
 
 user/user/window_util.s: user/user/window_util.cpp.s
@@ -4665,7 +4773,7 @@ user/user/window_util.s: user/user/window_util.cpp.s
 
 # target to generate assembly for a file
 user/user/window_util.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/window_util.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/window_util.cpp.s
 .PHONY : user/user/window_util.cpp.s
 
 user/user/windowing.o: user/user/windowing.cpp.o
@@ -4674,7 +4782,7 @@ user/user/windowing.o: user/user/windowing.cpp.o
 
 # target to build an object file
 user/user/windowing.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/windowing.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/windowing.cpp.o
 .PHONY : user/user/windowing.cpp.o
 
 user/user/windowing.i: user/user/windowing.cpp.i
@@ -4683,7 +4791,7 @@ user/user/windowing.i: user/user/windowing.cpp.i
 
 # target to preprocess a source file
 user/user/windowing.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/windowing.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/windowing.cpp.i
 .PHONY : user/user/windowing.cpp.i
 
 user/user/windowing.s: user/user/windowing.cpp.s
@@ -4692,7 +4800,7 @@ user/user/windowing.s: user/user/windowing.cpp.s
 
 # target to generate assembly for a file
 user/user/windowing.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/windowing.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/user/user/windowing.cpp.s
 .PHONY : user/user/windowing.cpp.s
 
 windowing/cursor.o: windowing/cursor.cpp.o
@@ -4701,7 +4809,7 @@ windowing/cursor.o: windowing/cursor.cpp.o
 
 # target to build an object file
 windowing/cursor.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/cursor.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/cursor.cpp.o
 .PHONY : windowing/cursor.cpp.o
 
 windowing/cursor.i: windowing/cursor.cpp.i
@@ -4710,7 +4818,7 @@ windowing/cursor.i: windowing/cursor.cpp.i
 
 # target to preprocess a source file
 windowing/cursor.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/cursor.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/cursor.cpp.i
 .PHONY : windowing/cursor.cpp.i
 
 windowing/cursor.s: windowing/cursor.cpp.s
@@ -4719,7 +4827,7 @@ windowing/cursor.s: windowing/cursor.cpp.s
 
 # target to generate assembly for a file
 windowing/cursor.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/cursor.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/cursor.cpp.s
 .PHONY : windowing/cursor.cpp.s
 
 windowing/cursor_manager.o: windowing/cursor_manager.cpp.o
@@ -4728,7 +4836,7 @@ windowing/cursor_manager.o: windowing/cursor_manager.cpp.o
 
 # target to build an object file
 windowing/cursor_manager.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/cursor_manager.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/cursor_manager.cpp.o
 .PHONY : windowing/cursor_manager.cpp.o
 
 windowing/cursor_manager.i: windowing/cursor_manager.cpp.i
@@ -4737,7 +4845,7 @@ windowing/cursor_manager.i: windowing/cursor_manager.cpp.i
 
 # target to preprocess a source file
 windowing/cursor_manager.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/cursor_manager.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/cursor_manager.cpp.i
 .PHONY : windowing/cursor_manager.cpp.i
 
 windowing/cursor_manager.s: windowing/cursor_manager.cpp.s
@@ -4746,7 +4854,7 @@ windowing/cursor_manager.s: windowing/cursor_manager.cpp.s
 
 # target to generate assembly for a file
 windowing/cursor_manager.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/cursor_manager.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/cursor_manager.cpp.s
 .PHONY : windowing/cursor_manager.cpp.s
 
 windowing/debug.o: windowing/debug.cpp.o
@@ -4755,7 +4863,7 @@ windowing/debug.o: windowing/debug.cpp.o
 
 # target to build an object file
 windowing/debug.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/debug.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/debug.cpp.o
 .PHONY : windowing/debug.cpp.o
 
 windowing/debug.i: windowing/debug.cpp.i
@@ -4764,7 +4872,7 @@ windowing/debug.i: windowing/debug.cpp.i
 
 # target to preprocess a source file
 windowing/debug.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/debug.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/debug.cpp.i
 .PHONY : windowing/debug.cpp.i
 
 windowing/debug.s: windowing/debug.cpp.s
@@ -4773,7 +4881,7 @@ windowing/debug.s: windowing/debug.cpp.s
 
 # target to generate assembly for a file
 windowing/debug.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/debug.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/debug.cpp.s
 .PHONY : windowing/debug.cpp.s
 
 windowing/display.o: windowing/display.cpp.o
@@ -4782,7 +4890,7 @@ windowing/display.o: windowing/display.cpp.o
 
 # target to build an object file
 windowing/display.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/display.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/display.cpp.o
 .PHONY : windowing/display.cpp.o
 
 windowing/display.i: windowing/display.cpp.i
@@ -4791,7 +4899,7 @@ windowing/display.i: windowing/display.cpp.i
 
 # target to preprocess a source file
 windowing/display.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/display.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/display.cpp.i
 .PHONY : windowing/display.cpp.i
 
 windowing/display.s: windowing/display.cpp.s
@@ -4800,7 +4908,7 @@ windowing/display.s: windowing/display.cpp.s
 
 # target to generate assembly for a file
 windowing/display.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/display.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/display.cpp.s
 .PHONY : windowing/display.cpp.s
 
 windowing/icon.o: windowing/icon.cpp.o
@@ -4809,7 +4917,7 @@ windowing/icon.o: windowing/icon.cpp.o
 
 # target to build an object file
 windowing/icon.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/icon.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/icon.cpp.o
 .PHONY : windowing/icon.cpp.o
 
 windowing/icon.i: windowing/icon.cpp.i
@@ -4818,7 +4926,7 @@ windowing/icon.i: windowing/icon.cpp.i
 
 # target to preprocess a source file
 windowing/icon.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/icon.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/icon.cpp.i
 .PHONY : windowing/icon.cpp.i
 
 windowing/icon.s: windowing/icon.cpp.s
@@ -4827,7 +4935,7 @@ windowing/icon.s: windowing/icon.cpp.s
 
 # target to generate assembly for a file
 windowing/icon.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/icon.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/icon.cpp.s
 .PHONY : windowing/icon.cpp.s
 
 windowing/keyboard.o: windowing/keyboard.cpp.o
@@ -4836,7 +4944,7 @@ windowing/keyboard.o: windowing/keyboard.cpp.o
 
 # target to build an object file
 windowing/keyboard.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/keyboard.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/keyboard.cpp.o
 .PHONY : windowing/keyboard.cpp.o
 
 windowing/keyboard.i: windowing/keyboard.cpp.i
@@ -4845,7 +4953,7 @@ windowing/keyboard.i: windowing/keyboard.cpp.i
 
 # target to preprocess a source file
 windowing/keyboard.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/keyboard.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/keyboard.cpp.i
 .PHONY : windowing/keyboard.cpp.i
 
 windowing/keyboard.s: windowing/keyboard.cpp.s
@@ -4854,7 +4962,7 @@ windowing/keyboard.s: windowing/keyboard.cpp.s
 
 # target to generate assembly for a file
 windowing/keyboard.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/keyboard.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/keyboard.cpp.s
 .PHONY : windowing/keyboard.cpp.s
 
 windowing/menu.o: windowing/menu.cpp.o
@@ -4863,7 +4971,7 @@ windowing/menu.o: windowing/menu.cpp.o
 
 # target to build an object file
 windowing/menu.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/menu.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/menu.cpp.o
 .PHONY : windowing/menu.cpp.o
 
 windowing/menu.i: windowing/menu.cpp.i
@@ -4872,7 +4980,7 @@ windowing/menu.i: windowing/menu.cpp.i
 
 # target to preprocess a source file
 windowing/menu.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/menu.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/menu.cpp.i
 .PHONY : windowing/menu.cpp.i
 
 windowing/menu.s: windowing/menu.cpp.s
@@ -4881,7 +4989,7 @@ windowing/menu.s: windowing/menu.cpp.s
 
 # target to generate assembly for a file
 windowing/menu.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/menu.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/menu.cpp.s
 .PHONY : windowing/menu.cpp.s
 
 windowing/menu_command.o: windowing/menu_command.cpp.o
@@ -4890,7 +4998,7 @@ windowing/menu_command.o: windowing/menu_command.cpp.o
 
 # target to build an object file
 windowing/menu_command.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/menu_command.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/menu_command.cpp.o
 .PHONY : windowing/menu_command.cpp.o
 
 windowing/menu_command.i: windowing/menu_command.cpp.i
@@ -4899,7 +5007,7 @@ windowing/menu_command.i: windowing/menu_command.cpp.i
 
 # target to preprocess a source file
 windowing/menu_command.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/menu_command.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/menu_command.cpp.i
 .PHONY : windowing/menu_command.cpp.i
 
 windowing/menu_command.s: windowing/menu_command.cpp.s
@@ -4908,7 +5016,7 @@ windowing/menu_command.s: windowing/menu_command.cpp.s
 
 # target to generate assembly for a file
 windowing/menu_command.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/menu_command.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/menu_command.cpp.s
 .PHONY : windowing/menu_command.cpp.s
 
 windowing/menu_item.o: windowing/menu_item.cpp.o
@@ -4917,7 +5025,7 @@ windowing/menu_item.o: windowing/menu_item.cpp.o
 
 # target to build an object file
 windowing/menu_item.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/menu_item.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/menu_item.cpp.o
 .PHONY : windowing/menu_item.cpp.o
 
 windowing/menu_item.i: windowing/menu_item.cpp.i
@@ -4926,7 +5034,7 @@ windowing/menu_item.i: windowing/menu_item.cpp.i
 
 # target to preprocess a source file
 windowing/menu_item.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/menu_item.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/menu_item.cpp.i
 .PHONY : windowing/menu_item.cpp.i
 
 windowing/menu_item.s: windowing/menu_item.cpp.s
@@ -4935,7 +5043,7 @@ windowing/menu_item.s: windowing/menu_item.cpp.s
 
 # target to generate assembly for a file
 windowing/menu_item.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/menu_item.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/menu_item.cpp.s
 .PHONY : windowing/menu_item.cpp.s
 
 windowing/monitor.o: windowing/monitor.cpp.o
@@ -4944,7 +5052,7 @@ windowing/monitor.o: windowing/monitor.cpp.o
 
 # target to build an object file
 windowing/monitor.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/monitor.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/monitor.cpp.o
 .PHONY : windowing/monitor.cpp.o
 
 windowing/monitor.i: windowing/monitor.cpp.i
@@ -4953,7 +5061,7 @@ windowing/monitor.i: windowing/monitor.cpp.i
 
 # target to preprocess a source file
 windowing/monitor.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/monitor.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/monitor.cpp.i
 .PHONY : windowing/monitor.cpp.i
 
 windowing/monitor.s: windowing/monitor.cpp.s
@@ -4962,7 +5070,7 @@ windowing/monitor.s: windowing/monitor.cpp.s
 
 # target to generate assembly for a file
 windowing/monitor.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/monitor.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/monitor.cpp.s
 .PHONY : windowing/monitor.cpp.s
 
 windowing/window.o: windowing/window.cpp.o
@@ -4971,7 +5079,7 @@ windowing/window.o: windowing/window.cpp.o
 
 # target to build an object file
 windowing/window.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/window.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/window.cpp.o
 .PHONY : windowing/window.cpp.o
 
 windowing/window.i: windowing/window.cpp.i
@@ -4980,7 +5088,7 @@ windowing/window.i: windowing/window.cpp.i
 
 # target to preprocess a source file
 windowing/window.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/window.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/window.cpp.i
 .PHONY : windowing/window.cpp.i
 
 windowing/window.s: windowing/window.cpp.s
@@ -4989,7 +5097,7 @@ windowing/window.s: windowing/window.cpp.s
 
 # target to generate assembly for a file
 windowing/window.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/window.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/window.cpp.s
 .PHONY : windowing/window.cpp.s
 
 windowing/windowing.o: windowing/windowing.cpp.o
@@ -4998,7 +5106,7 @@ windowing/windowing.o: windowing/windowing.cpp.o
 
 # target to build an object file
 windowing/windowing.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/windowing.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/windowing.cpp.o
 .PHONY : windowing/windowing.cpp.o
 
 windowing/windowing.i: windowing/windowing.cpp.i
@@ -5007,7 +5115,7 @@ windowing/windowing.i: windowing/windowing.cpp.i
 
 # target to preprocess a source file
 windowing/windowing.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/windowing.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/windowing.cpp.i
 .PHONY : windowing/windowing.cpp.i
 
 windowing/windowing.s: windowing/windowing.cpp.s
@@ -5016,7 +5124,7 @@ windowing/windowing.s: windowing/windowing.cpp.s
 
 # target to generate assembly for a file
 windowing/windowing.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/windowing.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/aura/CMakeFiles/aura.dir/build.make source/app/aura/CMakeFiles/aura.dir/windowing/windowing.cpp.s
 .PHONY : windowing/windowing.cpp.s
 
 # Help Target
@@ -5115,6 +5223,12 @@ help:
 	@echo "... graphics/draw2d/graphics_extension.o"
 	@echo "... graphics/draw2d/graphics_extension.i"
 	@echo "... graphics/draw2d/graphics_extension.s"
+	@echo "... graphics/draw2d/holdee.o"
+	@echo "... graphics/draw2d/holdee.i"
+	@echo "... graphics/draw2d/holdee.s"
+	@echo "... graphics/draw2d/holder.o"
+	@echo "... graphics/draw2d/holder.i"
+	@echo "... graphics/draw2d/holder.s"
 	@echo "... graphics/draw2d/host.o"
 	@echo "... graphics/draw2d/host.i"
 	@echo "... graphics/draw2d/host.s"
@@ -5139,6 +5253,9 @@ help:
 	@echo "... graphics/draw2d/path.o"
 	@echo "... graphics/draw2d/path.i"
 	@echo "... graphics/draw2d/path.s"
+	@echo "... graphics/draw2d/path_simple_optimization.o"
+	@echo "... graphics/draw2d/path_simple_optimization.i"
+	@echo "... graphics/draw2d/path_simple_optimization.s"
 	@echo "... graphics/draw2d/pen.o"
 	@echo "... graphics/draw2d/pen.i"
 	@echo "... graphics/draw2d/pen.s"
@@ -5148,6 +5265,9 @@ help:
 	@echo "... graphics/draw2d/region.o"
 	@echo "... graphics/draw2d/region.i"
 	@echo "... graphics/draw2d/region.s"
+	@echo "... graphics/draw2d/region_item.o"
+	@echo "... graphics/draw2d/region_item.i"
+	@echo "... graphics/draw2d/region_item.s"
 	@echo "... graphics/draw2d/task_tool.o"
 	@echo "... graphics/draw2d/task_tool.i"
 	@echo "... graphics/draw2d/task_tool.s"
@@ -5582,6 +5702,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

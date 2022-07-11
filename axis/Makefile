@@ -67,10 +67,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pi/solution/basis
+CMAKE_SOURCE_DIR = /home/camilo/solution/basis
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pi/solution/basis
+CMAKE_BINARY_DIR = /home/camilo/solution/basis
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -99,14 +99,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles /home/pi/solution/basis/source/app/axis//CMakeFiles/progress.marks
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/axis/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/solution/basis/CMakeFiles 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles /home/camilo/solution/basis/source/app/axis//CMakeFiles/progress.marks
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/axis/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/camilo/solution/basis/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/axis/clean
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/axis/clean
 .PHONY : clean
 
 # The main clean target
@@ -116,22 +116,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/axis/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/axis/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/axis/preinstall
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/axis/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 source/app/axis/CMakeFiles/axis.dir/rule:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/axis/CMakeFiles/axis.dir/rule
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 source/app/axis/CMakeFiles/axis.dir/rule
 .PHONY : source/app/axis/CMakeFiles/axis.dir/rule
 
 # Convenience name for target.
@@ -141,7 +141,7 @@ axis: source/app/axis/CMakeFiles/axis.dir/rule
 
 # fast build rule for target.
 axis/fast:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/build
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/build
 .PHONY : axis/fast
 
 _.o: _.cpp.o
@@ -150,7 +150,7 @@ _.o: _.cpp.o
 
 # target to build an object file
 _.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/_.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/_.cpp.o
 .PHONY : _.cpp.o
 
 _.i: _.cpp.i
@@ -159,7 +159,7 @@ _.i: _.cpp.i
 
 # target to preprocess a source file
 _.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/_.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/_.cpp.i
 .PHONY : _.cpp.i
 
 _.s: _.cpp.s
@@ -168,7 +168,7 @@ _.s: _.cpp.s
 
 # target to generate assembly for a file
 _.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/_.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/_.cpp.s
 .PHONY : _.cpp.s
 
 account/authenticator.o: account/authenticator.cpp.o
@@ -177,7 +177,7 @@ account/authenticator.o: account/authenticator.cpp.o
 
 # target to build an object file
 account/authenticator.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/authenticator.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/authenticator.cpp.o
 .PHONY : account/authenticator.cpp.o
 
 account/authenticator.i: account/authenticator.cpp.i
@@ -186,7 +186,7 @@ account/authenticator.i: account/authenticator.cpp.i
 
 # target to preprocess a source file
 account/authenticator.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/authenticator.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/authenticator.cpp.i
 .PHONY : account/authenticator.cpp.i
 
 account/authenticator.s: account/authenticator.cpp.s
@@ -195,7 +195,7 @@ account/authenticator.s: account/authenticator.cpp.s
 
 # target to generate assembly for a file
 account/authenticator.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/authenticator.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/authenticator.cpp.s
 .PHONY : account/authenticator.cpp.s
 
 account/contact_list.o: account/contact_list.cpp.o
@@ -204,7 +204,7 @@ account/contact_list.o: account/contact_list.cpp.o
 
 # target to build an object file
 account/contact_list.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/contact_list.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/contact_list.cpp.o
 .PHONY : account/contact_list.cpp.o
 
 account/contact_list.i: account/contact_list.cpp.i
@@ -213,7 +213,7 @@ account/contact_list.i: account/contact_list.cpp.i
 
 # target to preprocess a source file
 account/contact_list.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/contact_list.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/contact_list.cpp.i
 .PHONY : account/contact_list.cpp.i
 
 account/contact_list.s: account/contact_list.cpp.s
@@ -222,7 +222,7 @@ account/contact_list.s: account/contact_list.cpp.s
 
 # target to generate assembly for a file
 account/contact_list.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/contact_list.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/contact_list.cpp.s
 .PHONY : account/contact_list.cpp.s
 
 account/credentials.o: account/credentials.cpp.o
@@ -231,7 +231,7 @@ account/credentials.o: account/credentials.cpp.o
 
 # target to build an object file
 account/credentials.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/credentials.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/credentials.cpp.o
 .PHONY : account/credentials.cpp.o
 
 account/credentials.i: account/credentials.cpp.i
@@ -240,7 +240,7 @@ account/credentials.i: account/credentials.cpp.i
 
 # target to preprocess a source file
 account/credentials.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/credentials.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/credentials.cpp.i
 .PHONY : account/credentials.cpp.i
 
 account/credentials.s: account/credentials.cpp.s
@@ -249,7 +249,7 @@ account/credentials.s: account/credentials.cpp.s
 
 # target to generate assembly for a file
 account/credentials.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/credentials.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/credentials.cpp.s
 .PHONY : account/credentials.cpp.s
 
 account/department.o: account/department.cpp.o
@@ -258,7 +258,7 @@ account/department.o: account/department.cpp.o
 
 # target to build an object file
 account/department.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/department.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/department.cpp.o
 .PHONY : account/department.cpp.o
 
 account/department.i: account/department.cpp.i
@@ -267,7 +267,7 @@ account/department.i: account/department.cpp.i
 
 # target to preprocess a source file
 account/department.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/department.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/department.cpp.i
 .PHONY : account/department.cpp.i
 
 account/department.s: account/department.cpp.s
@@ -276,7 +276,7 @@ account/department.s: account/department.cpp.s
 
 # target to generate assembly for a file
 account/department.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/department.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/department.cpp.s
 .PHONY : account/department.cpp.s
 
 account/interactive.o: account/interactive.cpp.o
@@ -285,7 +285,7 @@ account/interactive.o: account/interactive.cpp.o
 
 # target to build an object file
 account/interactive.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/interactive.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/interactive.cpp.o
 .PHONY : account/interactive.cpp.o
 
 account/interactive.i: account/interactive.cpp.i
@@ -294,7 +294,7 @@ account/interactive.i: account/interactive.cpp.i
 
 # target to preprocess a source file
 account/interactive.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/interactive.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/interactive.cpp.i
 .PHONY : account/interactive.cpp.i
 
 account/interactive.s: account/interactive.cpp.s
@@ -303,7 +303,7 @@ account/interactive.s: account/interactive.cpp.s
 
 # target to generate assembly for a file
 account/interactive.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/interactive.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/interactive.cpp.s
 .PHONY : account/interactive.cpp.s
 
 account/network_authenticator.o: account/network_authenticator.cpp.o
@@ -312,7 +312,7 @@ account/network_authenticator.o: account/network_authenticator.cpp.o
 
 # target to build an object file
 account/network_authenticator.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/network_authenticator.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/network_authenticator.cpp.o
 .PHONY : account/network_authenticator.cpp.o
 
 account/network_authenticator.i: account/network_authenticator.cpp.i
@@ -321,7 +321,7 @@ account/network_authenticator.i: account/network_authenticator.cpp.i
 
 # target to preprocess a source file
 account/network_authenticator.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/network_authenticator.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/network_authenticator.cpp.i
 .PHONY : account/network_authenticator.cpp.i
 
 account/network_authenticator.s: account/network_authenticator.cpp.s
@@ -330,7 +330,7 @@ account/network_authenticator.s: account/network_authenticator.cpp.s
 
 # target to generate assembly for a file
 account/network_authenticator.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/network_authenticator.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/network_authenticator.cpp.s
 .PHONY : account/network_authenticator.cpp.s
 
 account/product.o: account/product.cpp.o
@@ -339,7 +339,7 @@ account/product.o: account/product.cpp.o
 
 # target to build an object file
 account/product.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/product.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/product.cpp.o
 .PHONY : account/product.cpp.o
 
 account/product.i: account/product.cpp.i
@@ -348,7 +348,7 @@ account/product.i: account/product.cpp.i
 
 # target to preprocess a source file
 account/product.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/product.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/product.cpp.i
 .PHONY : account/product.cpp.i
 
 account/product.s: account/product.cpp.s
@@ -357,7 +357,7 @@ account/product.s: account/product.cpp.s
 
 # target to generate assembly for a file
 account/product.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/product.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/product.cpp.s
 .PHONY : account/product.cpp.s
 
 account/product_array.o: account/product_array.cpp.o
@@ -366,7 +366,7 @@ account/product_array.o: account/product_array.cpp.o
 
 # target to build an object file
 account/product_array.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/product_array.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/product_array.cpp.o
 .PHONY : account/product_array.cpp.o
 
 account/product_array.i: account/product_array.cpp.i
@@ -375,7 +375,7 @@ account/product_array.i: account/product_array.cpp.i
 
 # target to preprocess a source file
 account/product_array.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/product_array.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/product_array.cpp.i
 .PHONY : account/product_array.cpp.i
 
 account/product_array.s: account/product_array.cpp.s
@@ -384,7 +384,7 @@ account/product_array.s: account/product_array.cpp.s
 
 # target to generate assembly for a file
 account/product_array.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/product_array.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/product_array.cpp.s
 .PHONY : account/product_array.cpp.s
 
 account/storage_client.o: account/storage_client.cpp.o
@@ -393,7 +393,7 @@ account/storage_client.o: account/storage_client.cpp.o
 
 # target to build an object file
 account/storage_client.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/storage_client.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/storage_client.cpp.o
 .PHONY : account/storage_client.cpp.o
 
 account/storage_client.i: account/storage_client.cpp.i
@@ -402,7 +402,7 @@ account/storage_client.i: account/storage_client.cpp.i
 
 # target to preprocess a source file
 account/storage_client.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/storage_client.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/storage_client.cpp.i
 .PHONY : account/storage_client.cpp.i
 
 account/storage_client.s: account/storage_client.cpp.s
@@ -411,7 +411,7 @@ account/storage_client.s: account/storage_client.cpp.s
 
 # target to generate assembly for a file
 account/storage_client.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/storage_client.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/storage_client.cpp.s
 .PHONY : account/storage_client.cpp.s
 
 account/system_storage.o: account/system_storage.cpp.o
@@ -420,7 +420,7 @@ account/system_storage.o: account/system_storage.cpp.o
 
 # target to build an object file
 account/system_storage.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/system_storage.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/system_storage.cpp.o
 .PHONY : account/system_storage.cpp.o
 
 account/system_storage.i: account/system_storage.cpp.i
@@ -429,7 +429,7 @@ account/system_storage.i: account/system_storage.cpp.i
 
 # target to preprocess a source file
 account/system_storage.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/system_storage.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/system_storage.cpp.i
 .PHONY : account/system_storage.cpp.i
 
 account/system_storage.s: account/system_storage.cpp.s
@@ -438,7 +438,7 @@ account/system_storage.s: account/system_storage.cpp.s
 
 # target to generate assembly for a file
 account/system_storage.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/system_storage.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/system_storage.cpp.s
 .PHONY : account/system_storage.cpp.s
 
 account/user.o: account/user.cpp.o
@@ -447,7 +447,7 @@ account/user.o: account/user.cpp.o
 
 # target to build an object file
 account/user.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/user.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/user.cpp.o
 .PHONY : account/user.cpp.o
 
 account/user.i: account/user.cpp.i
@@ -456,7 +456,7 @@ account/user.i: account/user.cpp.i
 
 # target to preprocess a source file
 account/user.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/user.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/user.cpp.i
 .PHONY : account/user.cpp.i
 
 account/user.s: account/user.cpp.s
@@ -465,7 +465,7 @@ account/user.s: account/user.cpp.s
 
 # target to generate assembly for a file
 account/user.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/user.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/user.cpp.s
 .PHONY : account/user.cpp.s
 
 account/user_array.o: account/user_array.cpp.o
@@ -474,7 +474,7 @@ account/user_array.o: account/user_array.cpp.o
 
 # target to build an object file
 account/user_array.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/user_array.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/user_array.cpp.o
 .PHONY : account/user_array.cpp.o
 
 account/user_array.i: account/user_array.cpp.i
@@ -483,7 +483,7 @@ account/user_array.i: account/user_array.cpp.i
 
 # target to preprocess a source file
 account/user_array.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/user_array.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/user_array.cpp.i
 .PHONY : account/user_array.cpp.i
 
 account/user_array.s: account/user_array.cpp.s
@@ -492,7 +492,7 @@ account/user_array.s: account/user_array.cpp.s
 
 # target to generate assembly for a file
 account/user_array.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/user_array.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/user_array.cpp.s
 .PHONY : account/user_array.cpp.s
 
 account/user_set.o: account/user_set.cpp.o
@@ -501,7 +501,7 @@ account/user_set.o: account/user_set.cpp.o
 
 # target to build an object file
 account/user_set.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/user_set.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/user_set.cpp.o
 .PHONY : account/user_set.cpp.o
 
 account/user_set.i: account/user_set.cpp.i
@@ -510,7 +510,7 @@ account/user_set.i: account/user_set.cpp.i
 
 # target to preprocess a source file
 account/user_set.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/user_set.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/user_set.cpp.i
 .PHONY : account/user_set.cpp.i
 
 account/user_set.s: account/user_set.cpp.s
@@ -519,7 +519,7 @@ account/user_set.s: account/user_set.cpp.s
 
 # target to generate assembly for a file
 account/user_set.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/user_set.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/user_set.cpp.s
 .PHONY : account/user_set.cpp.s
 
 account/usera.o: account/usera.cpp.o
@@ -528,7 +528,7 @@ account/usera.o: account/usera.cpp.o
 
 # target to build an object file
 account/usera.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/usera.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/usera.cpp.o
 .PHONY : account/usera.cpp.o
 
 account/usera.i: account/usera.cpp.i
@@ -537,7 +537,7 @@ account/usera.i: account/usera.cpp.i
 
 # target to preprocess a source file
 account/usera.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/usera.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/usera.cpp.i
 .PHONY : account/usera.cpp.i
 
 account/usera.s: account/usera.cpp.s
@@ -546,22 +546,22 @@ account/usera.s: account/usera.cpp.s
 
 # target to generate assembly for a file
 account/usera.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/usera.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/account/usera.cpp.s
 .PHONY : account/usera.cpp.s
 
 # target to build an object file
 cmake_pch.hxx.gch:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/cmake_pch.hxx.gch
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/cmake_pch.hxx.gch
 .PHONY : cmake_pch.hxx.gch
 
 # target to preprocess a source file
 cmake_pch.hxx.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/cmake_pch.hxx.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/cmake_pch.hxx.i
 .PHONY : cmake_pch.hxx.i
 
 # target to generate assembly for a file
 cmake_pch.hxx.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/cmake_pch.hxx.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/cmake_pch.hxx.s
 .PHONY : cmake_pch.hxx.s
 
 constant/idpool.o: constant/idpool.cpp.o
@@ -570,7 +570,7 @@ constant/idpool.o: constant/idpool.cpp.o
 
 # target to build an object file
 constant/idpool.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/constant/idpool.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/constant/idpool.cpp.o
 .PHONY : constant/idpool.cpp.o
 
 constant/idpool.i: constant/idpool.cpp.i
@@ -579,7 +579,7 @@ constant/idpool.i: constant/idpool.cpp.i
 
 # target to preprocess a source file
 constant/idpool.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/constant/idpool.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/constant/idpool.cpp.i
 .PHONY : constant/idpool.cpp.i
 
 constant/idpool.s: constant/idpool.cpp.s
@@ -588,7 +588,7 @@ constant/idpool.s: constant/idpool.cpp.s
 
 # target to generate assembly for a file
 constant/idpool.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/constant/idpool.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/constant/idpool.cpp.s
 .PHONY : constant/idpool.cpp.s
 
 database/database/database.o: database/database/database.cpp.o
@@ -597,7 +597,7 @@ database/database/database.o: database/database/database.cpp.o
 
 # target to build an object file
 database/database/database.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/database.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/database.cpp.o
 .PHONY : database/database/database.cpp.o
 
 database/database/database.i: database/database/database.cpp.i
@@ -606,7 +606,7 @@ database/database/database.i: database/database/database.cpp.i
 
 # target to preprocess a source file
 database/database/database.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/database.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/database.cpp.i
 .PHONY : database/database/database.cpp.i
 
 database/database/database.s: database/database/database.cpp.s
@@ -615,7 +615,7 @@ database/database/database.s: database/database/database.cpp.s
 
 # target to generate assembly for a file
 database/database/database.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/database.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/database.cpp.s
 .PHONY : database/database/database.cpp.s
 
 database/database/database_composite.o: database/database/database_composite.cpp.o
@@ -624,7 +624,7 @@ database/database/database_composite.o: database/database/database_composite.cpp
 
 # target to build an object file
 database/database/database_composite.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/database_composite.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/database_composite.cpp.o
 .PHONY : database/database/database_composite.cpp.o
 
 database/database/database_composite.i: database/database/database_composite.cpp.i
@@ -633,7 +633,7 @@ database/database/database_composite.i: database/database/database_composite.cpp
 
 # target to preprocess a source file
 database/database/database_composite.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/database_composite.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/database_composite.cpp.i
 .PHONY : database/database/database_composite.cpp.i
 
 database/database/database_composite.s: database/database/database_composite.cpp.s
@@ -642,7 +642,7 @@ database/database/database_composite.s: database/database/database_composite.cpp
 
 # target to generate assembly for a file
 database/database/database_composite.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/database_composite.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/database_composite.cpp.s
 .PHONY : database/database/database_composite.cpp.s
 
 database/database/database_impl.o: database/database/database_impl.cpp.o
@@ -651,7 +651,7 @@ database/database/database_impl.o: database/database/database_impl.cpp.o
 
 # target to build an object file
 database/database/database_impl.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/database_impl.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/database_impl.cpp.o
 .PHONY : database/database/database_impl.cpp.o
 
 database/database/database_impl.i: database/database/database_impl.cpp.i
@@ -660,7 +660,7 @@ database/database/database_impl.i: database/database/database_impl.cpp.i
 
 # target to preprocess a source file
 database/database/database_impl.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/database_impl.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/database_impl.cpp.i
 .PHONY : database/database/database_impl.cpp.i
 
 database/database/database_impl.s: database/database/database_impl.cpp.s
@@ -669,7 +669,7 @@ database/database/database_impl.s: database/database/database_impl.cpp.s
 
 # target to generate assembly for a file
 database/database/database_impl.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/database_impl.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/database_impl.cpp.s
 .PHONY : database/database/database_impl.cpp.s
 
 database/database/dataset.o: database/database/dataset.cpp.o
@@ -678,7 +678,7 @@ database/database/dataset.o: database/database/dataset.cpp.o
 
 # target to build an object file
 database/database/dataset.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/dataset.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/dataset.cpp.o
 .PHONY : database/database/dataset.cpp.o
 
 database/database/dataset.i: database/database/dataset.cpp.i
@@ -687,7 +687,7 @@ database/database/dataset.i: database/database/dataset.cpp.i
 
 # target to preprocess a source file
 database/database/dataset.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/dataset.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/dataset.cpp.i
 .PHONY : database/database/dataset.cpp.i
 
 database/database/dataset.s: database/database/dataset.cpp.s
@@ -696,7 +696,7 @@ database/database/dataset.s: database/database/dataset.cpp.s
 
 # target to generate assembly for a file
 database/database/dataset.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/dataset.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/dataset.cpp.s
 .PHONY : database/database/dataset.cpp.s
 
 database/database/definition.o: database/database/definition.cpp.o
@@ -705,7 +705,7 @@ database/database/definition.o: database/database/definition.cpp.o
 
 # target to build an object file
 database/database/definition.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/definition.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/definition.cpp.o
 .PHONY : database/database/definition.cpp.o
 
 database/database/definition.i: database/database/definition.cpp.i
@@ -714,7 +714,7 @@ database/database/definition.i: database/database/definition.cpp.i
 
 # target to preprocess a source file
 database/database/definition.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/definition.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/definition.cpp.i
 .PHONY : database/database/definition.cpp.i
 
 database/database/definition.s: database/database/definition.cpp.s
@@ -723,7 +723,7 @@ database/database/definition.s: database/database/definition.cpp.s
 
 # target to generate assembly for a file
 database/database/definition.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/definition.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/definition.cpp.s
 .PHONY : database/database/definition.cpp.s
 
 database/database/field_definition.o: database/database/field_definition.cpp.o
@@ -732,7 +732,7 @@ database/database/field_definition.o: database/database/field_definition.cpp.o
 
 # target to build an object file
 database/database/field_definition.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/field_definition.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/field_definition.cpp.o
 .PHONY : database/database/field_definition.cpp.o
 
 database/database/field_definition.i: database/database/field_definition.cpp.i
@@ -741,7 +741,7 @@ database/database/field_definition.i: database/database/field_definition.cpp.i
 
 # target to preprocess a source file
 database/database/field_definition.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/field_definition.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/field_definition.cpp.i
 .PHONY : database/database/field_definition.cpp.i
 
 database/database/field_definition.s: database/database/field_definition.cpp.s
@@ -750,7 +750,7 @@ database/database/field_definition.s: database/database/field_definition.cpp.s
 
 # target to generate assembly for a file
 database/database/field_definition.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/field_definition.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/field_definition.cpp.s
 .PHONY : database/database/field_definition.cpp.s
 
 database/database/transaction.o: database/database/transaction.cpp.o
@@ -759,7 +759,7 @@ database/database/transaction.o: database/database/transaction.cpp.o
 
 # target to build an object file
 database/database/transaction.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/transaction.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/transaction.cpp.o
 .PHONY : database/database/transaction.cpp.o
 
 database/database/transaction.i: database/database/transaction.cpp.i
@@ -768,7 +768,7 @@ database/database/transaction.i: database/database/transaction.cpp.i
 
 # target to preprocess a source file
 database/database/transaction.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/transaction.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/transaction.cpp.i
 .PHONY : database/database/transaction.cpp.i
 
 database/database/transaction.s: database/database/transaction.cpp.s
@@ -777,7 +777,7 @@ database/database/transaction.s: database/database/transaction.cpp.s
 
 # target to generate assembly for a file
 database/database/transaction.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/transaction.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/database/transaction.cpp.s
 .PHONY : database/database/transaction.cpp.s
 
 database/simpledb/file_set.o: database/simpledb/file_set.cpp.o
@@ -786,7 +786,7 @@ database/simpledb/file_set.o: database/simpledb/file_set.cpp.o
 
 # target to build an object file
 database/simpledb/file_set.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/file_set.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/file_set.cpp.o
 .PHONY : database/simpledb/file_set.cpp.o
 
 database/simpledb/file_set.i: database/simpledb/file_set.cpp.i
@@ -795,7 +795,7 @@ database/simpledb/file_set.i: database/simpledb/file_set.cpp.i
 
 # target to preprocess a source file
 database/simpledb/file_set.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/file_set.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/file_set.cpp.i
 .PHONY : database/simpledb/file_set.cpp.i
 
 database/simpledb/file_set.s: database/simpledb/file_set.cpp.s
@@ -804,7 +804,7 @@ database/simpledb/file_set.s: database/simpledb/file_set.cpp.s
 
 # target to generate assembly for a file
 database/simpledb/file_set.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/file_set.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/file_set.cpp.s
 .PHONY : database/simpledb/file_set.cpp.s
 
 database/simpledb/item.o: database/simpledb/item.cpp.o
@@ -813,7 +813,7 @@ database/simpledb/item.o: database/simpledb/item.cpp.o
 
 # target to build an object file
 database/simpledb/item.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/item.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/item.cpp.o
 .PHONY : database/simpledb/item.cpp.o
 
 database/simpledb/item.i: database/simpledb/item.cpp.i
@@ -822,7 +822,7 @@ database/simpledb/item.i: database/simpledb/item.cpp.i
 
 # target to preprocess a source file
 database/simpledb/item.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/item.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/item.cpp.i
 .PHONY : database/simpledb/item.cpp.i
 
 database/simpledb/item.s: database/simpledb/item.cpp.s
@@ -831,7 +831,7 @@ database/simpledb/item.s: database/simpledb/item.cpp.s
 
 # target to generate assembly for a file
 database/simpledb/item.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/item.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/item.cpp.s
 .PHONY : database/simpledb/item.cpp.s
 
 database/simpledb/server.o: database/simpledb/server.cpp.o
@@ -840,7 +840,7 @@ database/simpledb/server.o: database/simpledb/server.cpp.o
 
 # target to build an object file
 database/simpledb/server.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/server.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/server.cpp.o
 .PHONY : database/simpledb/server.cpp.o
 
 database/simpledb/server.i: database/simpledb/server.cpp.i
@@ -849,7 +849,7 @@ database/simpledb/server.i: database/simpledb/server.cpp.i
 
 # target to preprocess a source file
 database/simpledb/server.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/server.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/server.cpp.i
 .PHONY : database/simpledb/server.cpp.i
 
 database/simpledb/server.s: database/simpledb/server.cpp.s
@@ -858,7 +858,7 @@ database/simpledb/server.s: database/simpledb/server.cpp.s
 
 # target to generate assembly for a file
 database/simpledb/server.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/server.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/server.cpp.s
 .PHONY : database/simpledb/server.cpp.s
 
 database/simpledb/simpledb.o: database/simpledb/simpledb.cpp.o
@@ -867,7 +867,7 @@ database/simpledb/simpledb.o: database/simpledb/simpledb.cpp.o
 
 # target to build an object file
 database/simpledb/simpledb.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/simpledb.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/simpledb.cpp.o
 .PHONY : database/simpledb/simpledb.cpp.o
 
 database/simpledb/simpledb.i: database/simpledb/simpledb.cpp.i
@@ -876,7 +876,7 @@ database/simpledb/simpledb.i: database/simpledb/simpledb.cpp.i
 
 # target to preprocess a source file
 database/simpledb/simpledb.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/simpledb.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/simpledb.cpp.i
 .PHONY : database/simpledb/simpledb.cpp.i
 
 database/simpledb/simpledb.s: database/simpledb/simpledb.cpp.s
@@ -885,7 +885,7 @@ database/simpledb/simpledb.s: database/simpledb/simpledb.cpp.s
 
 # target to generate assembly for a file
 database/simpledb/simpledb.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/simpledb.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/simpledb.cpp.s
 .PHONY : database/simpledb/simpledb.cpp.s
 
 database/simpledb/storage.o: database/simpledb/storage.cpp.o
@@ -894,7 +894,7 @@ database/simpledb/storage.o: database/simpledb/storage.cpp.o
 
 # target to build an object file
 database/simpledb/storage.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/storage.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/storage.cpp.o
 .PHONY : database/simpledb/storage.cpp.o
 
 database/simpledb/storage.i: database/simpledb/storage.cpp.i
@@ -903,7 +903,7 @@ database/simpledb/storage.i: database/simpledb/storage.cpp.i
 
 # target to preprocess a source file
 database/simpledb/storage.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/storage.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/storage.cpp.i
 .PHONY : database/simpledb/storage.cpp.i
 
 database/simpledb/storage.s: database/simpledb/storage.cpp.s
@@ -912,7 +912,7 @@ database/simpledb/storage.s: database/simpledb/storage.cpp.s
 
 # target to generate assembly for a file
 database/simpledb/storage.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/storage.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/storage.cpp.s
 .PHONY : database/simpledb/storage.cpp.s
 
 database/simpledb/thread.o: database/simpledb/thread.cpp.o
@@ -921,7 +921,7 @@ database/simpledb/thread.o: database/simpledb/thread.cpp.o
 
 # target to build an object file
 database/simpledb/thread.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/thread.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/thread.cpp.o
 .PHONY : database/simpledb/thread.cpp.o
 
 database/simpledb/thread.i: database/simpledb/thread.cpp.i
@@ -930,7 +930,7 @@ database/simpledb/thread.i: database/simpledb/thread.cpp.i
 
 # target to preprocess a source file
 database/simpledb/thread.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/thread.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/thread.cpp.i
 .PHONY : database/simpledb/thread.cpp.i
 
 database/simpledb/thread.s: database/simpledb/thread.cpp.s
@@ -939,7 +939,7 @@ database/simpledb/thread.s: database/simpledb/thread.cpp.s
 
 # target to generate assembly for a file
 database/simpledb/thread.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/thread.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/thread.cpp.s
 .PHONY : database/simpledb/thread.cpp.s
 
 database/simpledb/thread_localdatabase.o: database/simpledb/thread_localdatabase.cpp.o
@@ -948,7 +948,7 @@ database/simpledb/thread_localdatabase.o: database/simpledb/thread_localdatabase
 
 # target to build an object file
 database/simpledb/thread_localdatabase.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/thread_localdatabase.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/thread_localdatabase.cpp.o
 .PHONY : database/simpledb/thread_localdatabase.cpp.o
 
 database/simpledb/thread_localdatabase.i: database/simpledb/thread_localdatabase.cpp.i
@@ -957,7 +957,7 @@ database/simpledb/thread_localdatabase.i: database/simpledb/thread_localdatabase
 
 # target to preprocess a source file
 database/simpledb/thread_localdatabase.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/thread_localdatabase.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/thread_localdatabase.cpp.i
 .PHONY : database/simpledb/thread_localdatabase.cpp.i
 
 database/simpledb/thread_localdatabase.s: database/simpledb/thread_localdatabase.cpp.s
@@ -966,7 +966,7 @@ database/simpledb/thread_localdatabase.s: database/simpledb/thread_localdatabase
 
 # target to generate assembly for a file
 database/simpledb/thread_localdatabase.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/thread_localdatabase.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/database/simpledb/thread_localdatabase.cpp.s
 .PHONY : database/simpledb/thread_localdatabase.cpp.s
 
 framework.o: framework.cpp.o
@@ -975,7 +975,7 @@ framework.o: framework.cpp.o
 
 # target to build an object file
 framework.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/framework.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/framework.cpp.o
 .PHONY : framework.cpp.o
 
 framework.i: framework.cpp.i
@@ -984,7 +984,7 @@ framework.i: framework.cpp.i
 
 # target to preprocess a source file
 framework.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/framework.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/framework.cpp.i
 .PHONY : framework.cpp.i
 
 framework.s: framework.cpp.s
@@ -993,7 +993,7 @@ framework.s: framework.cpp.s
 
 # target to generate assembly for a file
 framework.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/framework.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/framework.cpp.s
 .PHONY : framework.cpp.s
 
 geoip/city.o: geoip/city.cpp.o
@@ -1002,7 +1002,7 @@ geoip/city.o: geoip/city.cpp.o
 
 # target to build an object file
 geoip/city.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/city.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/city.cpp.o
 .PHONY : geoip/city.cpp.o
 
 geoip/city.i: geoip/city.cpp.i
@@ -1011,7 +1011,7 @@ geoip/city.i: geoip/city.cpp.i
 
 # target to preprocess a source file
 geoip/city.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/city.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/city.cpp.i
 .PHONY : geoip/city.cpp.i
 
 geoip/city.s: geoip/city.cpp.s
@@ -1020,7 +1020,7 @@ geoip/city.s: geoip/city.cpp.s
 
 # target to generate assembly for a file
 geoip/city.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/city.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/city.cpp.s
 .PHONY : geoip/city.cpp.s
 
 geoip/geoip.o: geoip/geoip.cpp.o
@@ -1029,7 +1029,7 @@ geoip/geoip.o: geoip/geoip.cpp.o
 
 # target to build an object file
 geoip/geoip.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/geoip.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/geoip.cpp.o
 .PHONY : geoip/geoip.cpp.o
 
 geoip/geoip.i: geoip/geoip.cpp.i
@@ -1038,7 +1038,7 @@ geoip/geoip.i: geoip/geoip.cpp.i
 
 # target to preprocess a source file
 geoip/geoip.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/geoip.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/geoip.cpp.i
 .PHONY : geoip/geoip.cpp.i
 
 geoip/geoip.s: geoip/geoip.cpp.s
@@ -1047,7 +1047,7 @@ geoip/geoip.s: geoip/geoip.cpp.s
 
 # target to generate assembly for a file
 geoip/geoip.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/geoip.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/geoip.cpp.s
 .PHONY : geoip/geoip.cpp.s
 
 geoip/region_name.o: geoip/region_name.cpp.o
@@ -1056,7 +1056,7 @@ geoip/region_name.o: geoip/region_name.cpp.o
 
 # target to build an object file
 geoip/region_name.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/region_name.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/region_name.cpp.o
 .PHONY : geoip/region_name.cpp.o
 
 geoip/region_name.i: geoip/region_name.cpp.i
@@ -1065,7 +1065,7 @@ geoip/region_name.i: geoip/region_name.cpp.i
 
 # target to preprocess a source file
 geoip/region_name.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/region_name.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/region_name.cpp.i
 .PHONY : geoip/region_name.cpp.i
 
 geoip/region_name.s: geoip/region_name.cpp.s
@@ -1074,7 +1074,7 @@ geoip/region_name.s: geoip/region_name.cpp.s
 
 # target to generate assembly for a file
 geoip/region_name.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/region_name.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/region_name.cpp.s
 .PHONY : geoip/region_name.cpp.s
 
 geoip/time_zone.o: geoip/time_zone.cpp.o
@@ -1083,7 +1083,7 @@ geoip/time_zone.o: geoip/time_zone.cpp.o
 
 # target to build an object file
 geoip/time_zone.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/time_zone.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/time_zone.cpp.o
 .PHONY : geoip/time_zone.cpp.o
 
 geoip/time_zone.i: geoip/time_zone.cpp.i
@@ -1092,7 +1092,7 @@ geoip/time_zone.i: geoip/time_zone.cpp.i
 
 # target to preprocess a source file
 geoip/time_zone.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/time_zone.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/time_zone.cpp.i
 .PHONY : geoip/time_zone.cpp.i
 
 geoip/time_zone.s: geoip/time_zone.cpp.s
@@ -1101,7 +1101,7 @@ geoip/time_zone.s: geoip/time_zone.cpp.s
 
 # target to generate assembly for a file
 geoip/time_zone.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/time_zone.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/time_zone.cpp.s
 .PHONY : geoip/time_zone.cpp.s
 
 geoip/update.o: geoip/update.cpp.o
@@ -1110,7 +1110,7 @@ geoip/update.o: geoip/update.cpp.o
 
 # target to build an object file
 geoip/update.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/update.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/update.cpp.o
 .PHONY : geoip/update.cpp.o
 
 geoip/update.i: geoip/update.cpp.i
@@ -1119,7 +1119,7 @@ geoip/update.i: geoip/update.cpp.i
 
 # target to preprocess a source file
 geoip/update.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/update.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/update.cpp.i
 .PHONY : geoip/update.cpp.i
 
 geoip/update.s: geoip/update.cpp.s
@@ -1128,7 +1128,7 @@ geoip/update.s: geoip/update.cpp.s
 
 # target to generate assembly for a file
 geoip/update.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/update.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/geoip/update.cpp.s
 .PHONY : geoip/update.cpp.s
 
 graphics/render/water_routine.o: graphics/render/water_routine.cpp.o
@@ -1137,7 +1137,7 @@ graphics/render/water_routine.o: graphics/render/water_routine.cpp.o
 
 # target to build an object file
 graphics/render/water_routine.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/graphics/render/water_routine.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/graphics/render/water_routine.cpp.o
 .PHONY : graphics/render/water_routine.cpp.o
 
 graphics/render/water_routine.i: graphics/render/water_routine.cpp.i
@@ -1146,7 +1146,7 @@ graphics/render/water_routine.i: graphics/render/water_routine.cpp.i
 
 # target to preprocess a source file
 graphics/render/water_routine.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/graphics/render/water_routine.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/graphics/render/water_routine.cpp.i
 .PHONY : graphics/render/water_routine.cpp.i
 
 graphics/render/water_routine.s: graphics/render/water_routine.cpp.s
@@ -1155,7 +1155,7 @@ graphics/render/water_routine.s: graphics/render/water_routine.cpp.s
 
 # target to generate assembly for a file
 graphics/render/water_routine.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/graphics/render/water_routine.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/graphics/render/water_routine.cpp.s
 .PHONY : graphics/render/water_routine.cpp.s
 
 html/html/html.o: html/html/html.cpp.o
@@ -1164,7 +1164,7 @@ html/html/html.o: html/html/html.cpp.o
 
 # target to build an object file
 html/html/html.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html/html.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html/html.cpp.o
 .PHONY : html/html/html.cpp.o
 
 html/html/html.i: html/html/html.cpp.i
@@ -1173,7 +1173,7 @@ html/html/html.i: html/html/html.cpp.i
 
 # target to preprocess a source file
 html/html/html.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html/html.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html/html.cpp.i
 .PHONY : html/html/html.cpp.i
 
 html/html/html.s: html/html/html.cpp.s
@@ -1182,7 +1182,7 @@ html/html/html.s: html/html/html.cpp.s
 
 # target to generate assembly for a file
 html/html/html.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html/html.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html/html.cpp.s
 .PHONY : html/html/html.cpp.s
 
 html/html_lite/attributes.o: html/html_lite/attributes.cpp.o
@@ -1191,7 +1191,7 @@ html/html_lite/attributes.o: html/html_lite/attributes.cpp.o
 
 # target to build an object file
 html/html_lite/attributes.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/attributes.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/attributes.cpp.o
 .PHONY : html/html_lite/attributes.cpp.o
 
 html/html_lite/attributes.i: html/html_lite/attributes.cpp.i
@@ -1200,7 +1200,7 @@ html/html_lite/attributes.i: html/html_lite/attributes.cpp.i
 
 # target to preprocess a source file
 html/html_lite/attributes.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/attributes.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/attributes.cpp.i
 .PHONY : html/html_lite/attributes.cpp.i
 
 html/html_lite/attributes.s: html/html_lite/attributes.cpp.s
@@ -1209,7 +1209,7 @@ html/html_lite/attributes.s: html/html_lite/attributes.cpp.s
 
 # target to generate assembly for a file
 html/html_lite/attributes.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/attributes.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/attributes.cpp.s
 .PHONY : html/html_lite/attributes.cpp.s
 
 html/html_lite/entity_resolver.o: html/html_lite/entity_resolver.cpp.o
@@ -1218,7 +1218,7 @@ html/html_lite/entity_resolver.o: html/html_lite/entity_resolver.cpp.o
 
 # target to build an object file
 html/html_lite/entity_resolver.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/entity_resolver.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/entity_resolver.cpp.o
 .PHONY : html/html_lite/entity_resolver.cpp.o
 
 html/html_lite/entity_resolver.i: html/html_lite/entity_resolver.cpp.i
@@ -1227,7 +1227,7 @@ html/html_lite/entity_resolver.i: html/html_lite/entity_resolver.cpp.i
 
 # target to preprocess a source file
 html/html_lite/entity_resolver.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/entity_resolver.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/entity_resolver.cpp.i
 .PHONY : html/html_lite/entity_resolver.cpp.i
 
 html/html_lite/entity_resolver.s: html/html_lite/entity_resolver.cpp.s
@@ -1236,7 +1236,7 @@ html/html_lite/entity_resolver.s: html/html_lite/entity_resolver.cpp.s
 
 # target to generate assembly for a file
 html/html_lite/entity_resolver.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/entity_resolver.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/entity_resolver.cpp.s
 .PHONY : html/html_lite/entity_resolver.cpp.s
 
 html/html_lite/reader.o: html/html_lite/reader.cpp.o
@@ -1245,7 +1245,7 @@ html/html_lite/reader.o: html/html_lite/reader.cpp.o
 
 # target to build an object file
 html/html_lite/reader.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/reader.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/reader.cpp.o
 .PHONY : html/html_lite/reader.cpp.o
 
 html/html_lite/reader.i: html/html_lite/reader.cpp.i
@@ -1254,7 +1254,7 @@ html/html_lite/reader.i: html/html_lite/reader.cpp.i
 
 # target to preprocess a source file
 html/html_lite/reader.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/reader.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/reader.cpp.i
 .PHONY : html/html_lite/reader.cpp.i
 
 html/html_lite/reader.s: html/html_lite/reader.cpp.s
@@ -1263,7 +1263,7 @@ html/html_lite/reader.s: html/html_lite/reader.cpp.s
 
 # target to generate assembly for a file
 html/html_lite/reader.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/reader.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/reader.cpp.s
 .PHONY : html/html_lite/reader.cpp.s
 
 html/html_lite/tag.o: html/html_lite/tag.cpp.o
@@ -1272,7 +1272,7 @@ html/html_lite/tag.o: html/html_lite/tag.cpp.o
 
 # target to build an object file
 html/html_lite/tag.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/tag.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/tag.cpp.o
 .PHONY : html/html_lite/tag.cpp.o
 
 html/html_lite/tag.i: html/html_lite/tag.cpp.i
@@ -1281,7 +1281,7 @@ html/html_lite/tag.i: html/html_lite/tag.cpp.i
 
 # target to preprocess a source file
 html/html_lite/tag.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/tag.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/tag.cpp.i
 .PHONY : html/html_lite/tag.cpp.i
 
 html/html_lite/tag.s: html/html_lite/tag.cpp.s
@@ -1290,7 +1290,7 @@ html/html_lite/tag.s: html/html_lite/tag.cpp.s
 
 # target to generate assembly for a file
 html/html_lite/tag.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/tag.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/html/html_lite/tag.cpp.s
 .PHONY : html/html_lite/tag.cpp.s
 
 mathematics/calculator/calculator.o: mathematics/calculator/calculator.cpp.o
@@ -1299,7 +1299,7 @@ mathematics/calculator/calculator.o: mathematics/calculator/calculator.cpp.o
 
 # target to build an object file
 mathematics/calculator/calculator.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/calculator.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/calculator.cpp.o
 .PHONY : mathematics/calculator/calculator.cpp.o
 
 mathematics/calculator/calculator.i: mathematics/calculator/calculator.cpp.i
@@ -1308,7 +1308,7 @@ mathematics/calculator/calculator.i: mathematics/calculator/calculator.cpp.i
 
 # target to preprocess a source file
 mathematics/calculator/calculator.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/calculator.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/calculator.cpp.i
 .PHONY : mathematics/calculator/calculator.cpp.i
 
 mathematics/calculator/calculator.s: mathematics/calculator/calculator.cpp.s
@@ -1317,7 +1317,7 @@ mathematics/calculator/calculator.s: mathematics/calculator/calculator.cpp.s
 
 # target to generate assembly for a file
 mathematics/calculator/calculator.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/calculator.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/calculator.cpp.s
 .PHONY : mathematics/calculator/calculator.cpp.s
 
 mathematics/calculator/element.o: mathematics/calculator/element.cpp.o
@@ -1326,7 +1326,7 @@ mathematics/calculator/element.o: mathematics/calculator/element.cpp.o
 
 # target to build an object file
 mathematics/calculator/element.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/element.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/element.cpp.o
 .PHONY : mathematics/calculator/element.cpp.o
 
 mathematics/calculator/element.i: mathematics/calculator/element.cpp.i
@@ -1335,7 +1335,7 @@ mathematics/calculator/element.i: mathematics/calculator/element.cpp.i
 
 # target to preprocess a source file
 mathematics/calculator/element.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/element.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/element.cpp.i
 .PHONY : mathematics/calculator/element.cpp.i
 
 mathematics/calculator/element.s: mathematics/calculator/element.cpp.s
@@ -1344,7 +1344,7 @@ mathematics/calculator/element.s: mathematics/calculator/element.cpp.s
 
 # target to generate assembly for a file
 mathematics/calculator/element.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/element.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/element.cpp.s
 .PHONY : mathematics/calculator/element.cpp.s
 
 mathematics/calculator/parser.o: mathematics/calculator/parser.cpp.o
@@ -1353,7 +1353,7 @@ mathematics/calculator/parser.o: mathematics/calculator/parser.cpp.o
 
 # target to build an object file
 mathematics/calculator/parser.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/parser.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/parser.cpp.o
 .PHONY : mathematics/calculator/parser.cpp.o
 
 mathematics/calculator/parser.i: mathematics/calculator/parser.cpp.i
@@ -1362,7 +1362,7 @@ mathematics/calculator/parser.i: mathematics/calculator/parser.cpp.i
 
 # target to preprocess a source file
 mathematics/calculator/parser.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/parser.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/parser.cpp.i
 .PHONY : mathematics/calculator/parser.cpp.i
 
 mathematics/calculator/parser.s: mathematics/calculator/parser.cpp.s
@@ -1371,7 +1371,7 @@ mathematics/calculator/parser.s: mathematics/calculator/parser.cpp.s
 
 # target to generate assembly for a file
 mathematics/calculator/parser.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/parser.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/parser.cpp.s
 .PHONY : mathematics/calculator/parser.cpp.s
 
 mathematics/calculator/parser_exception.o: mathematics/calculator/parser_exception.cpp.o
@@ -1380,7 +1380,7 @@ mathematics/calculator/parser_exception.o: mathematics/calculator/parser_excepti
 
 # target to build an object file
 mathematics/calculator/parser_exception.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/parser_exception.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/parser_exception.cpp.o
 .PHONY : mathematics/calculator/parser_exception.cpp.o
 
 mathematics/calculator/parser_exception.i: mathematics/calculator/parser_exception.cpp.i
@@ -1389,7 +1389,7 @@ mathematics/calculator/parser_exception.i: mathematics/calculator/parser_excepti
 
 # target to preprocess a source file
 mathematics/calculator/parser_exception.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/parser_exception.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/parser_exception.cpp.i
 .PHONY : mathematics/calculator/parser_exception.cpp.i
 
 mathematics/calculator/parser_exception.s: mathematics/calculator/parser_exception.cpp.s
@@ -1398,7 +1398,7 @@ mathematics/calculator/parser_exception.s: mathematics/calculator/parser_excepti
 
 # target to generate assembly for a file
 mathematics/calculator/parser_exception.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/parser_exception.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/parser_exception.cpp.s
 .PHONY : mathematics/calculator/parser_exception.cpp.s
 
 mathematics/calculator/result.o: mathematics/calculator/result.cpp.o
@@ -1407,7 +1407,7 @@ mathematics/calculator/result.o: mathematics/calculator/result.cpp.o
 
 # target to build an object file
 mathematics/calculator/result.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/result.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/result.cpp.o
 .PHONY : mathematics/calculator/result.cpp.o
 
 mathematics/calculator/result.i: mathematics/calculator/result.cpp.i
@@ -1416,7 +1416,7 @@ mathematics/calculator/result.i: mathematics/calculator/result.cpp.i
 
 # target to preprocess a source file
 mathematics/calculator/result.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/result.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/result.cpp.i
 .PHONY : mathematics/calculator/result.cpp.i
 
 mathematics/calculator/result.s: mathematics/calculator/result.cpp.s
@@ -1425,7 +1425,7 @@ mathematics/calculator/result.s: mathematics/calculator/result.cpp.s
 
 # target to generate assembly for a file
 mathematics/calculator/result.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/result.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/result.cpp.s
 .PHONY : mathematics/calculator/result.cpp.s
 
 mathematics/calculator/scanner.o: mathematics/calculator/scanner.cpp.o
@@ -1434,7 +1434,7 @@ mathematics/calculator/scanner.o: mathematics/calculator/scanner.cpp.o
 
 # target to build an object file
 mathematics/calculator/scanner.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/scanner.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/scanner.cpp.o
 .PHONY : mathematics/calculator/scanner.cpp.o
 
 mathematics/calculator/scanner.i: mathematics/calculator/scanner.cpp.i
@@ -1443,7 +1443,7 @@ mathematics/calculator/scanner.i: mathematics/calculator/scanner.cpp.i
 
 # target to preprocess a source file
 mathematics/calculator/scanner.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/scanner.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/scanner.cpp.i
 .PHONY : mathematics/calculator/scanner.cpp.i
 
 mathematics/calculator/scanner.s: mathematics/calculator/scanner.cpp.s
@@ -1452,7 +1452,7 @@ mathematics/calculator/scanner.s: mathematics/calculator/scanner.cpp.s
 
 # target to generate assembly for a file
 mathematics/calculator/scanner.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/scanner.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/calculator/scanner.cpp.s
 .PHONY : mathematics/calculator/scanner.cpp.s
 
 mathematics/kissfft/fft.o: mathematics/kissfft/fft.cpp.o
@@ -1461,7 +1461,7 @@ mathematics/kissfft/fft.o: mathematics/kissfft/fft.cpp.o
 
 # target to build an object file
 mathematics/kissfft/fft.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/fft.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/fft.cpp.o
 .PHONY : mathematics/kissfft/fft.cpp.o
 
 mathematics/kissfft/fft.i: mathematics/kissfft/fft.cpp.i
@@ -1470,7 +1470,7 @@ mathematics/kissfft/fft.i: mathematics/kissfft/fft.cpp.i
 
 # target to preprocess a source file
 mathematics/kissfft/fft.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/fft.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/fft.cpp.i
 .PHONY : mathematics/kissfft/fft.cpp.i
 
 mathematics/kissfft/fft.s: mathematics/kissfft/fft.cpp.s
@@ -1479,7 +1479,7 @@ mathematics/kissfft/fft.s: mathematics/kissfft/fft.cpp.s
 
 # target to generate assembly for a file
 mathematics/kissfft/fft.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/fft.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/fft.cpp.s
 .PHONY : mathematics/kissfft/fft.cpp.s
 
 mathematics/kissfft/fft_shared.o: mathematics/kissfft/fft_shared.cpp.o
@@ -1488,7 +1488,7 @@ mathematics/kissfft/fft_shared.o: mathematics/kissfft/fft_shared.cpp.o
 
 # target to build an object file
 mathematics/kissfft/fft_shared.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/fft_shared.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/fft_shared.cpp.o
 .PHONY : mathematics/kissfft/fft_shared.cpp.o
 
 mathematics/kissfft/fft_shared.i: mathematics/kissfft/fft_shared.cpp.i
@@ -1497,7 +1497,7 @@ mathematics/kissfft/fft_shared.i: mathematics/kissfft/fft_shared.cpp.i
 
 # target to preprocess a source file
 mathematics/kissfft/fft_shared.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/fft_shared.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/fft_shared.cpp.i
 .PHONY : mathematics/kissfft/fft_shared.cpp.i
 
 mathematics/kissfft/fft_shared.s: mathematics/kissfft/fft_shared.cpp.s
@@ -1506,7 +1506,7 @@ mathematics/kissfft/fft_shared.s: mathematics/kissfft/fft_shared.cpp.s
 
 # target to generate assembly for a file
 mathematics/kissfft/fft_shared.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/fft_shared.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/fft_shared.cpp.s
 .PHONY : mathematics/kissfft/fft_shared.cpp.s
 
 mathematics/kissfft/fftd.o: mathematics/kissfft/fftd.cpp.o
@@ -1515,7 +1515,7 @@ mathematics/kissfft/fftd.o: mathematics/kissfft/fftd.cpp.o
 
 # target to build an object file
 mathematics/kissfft/fftd.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/fftd.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/fftd.cpp.o
 .PHONY : mathematics/kissfft/fftd.cpp.o
 
 mathematics/kissfft/fftd.i: mathematics/kissfft/fftd.cpp.i
@@ -1524,7 +1524,7 @@ mathematics/kissfft/fftd.i: mathematics/kissfft/fftd.cpp.i
 
 # target to preprocess a source file
 mathematics/kissfft/fftd.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/fftd.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/fftd.cpp.i
 .PHONY : mathematics/kissfft/fftd.cpp.i
 
 mathematics/kissfft/fftd.s: mathematics/kissfft/fftd.cpp.s
@@ -1533,7 +1533,7 @@ mathematics/kissfft/fftd.s: mathematics/kissfft/fftd.cpp.s
 
 # target to generate assembly for a file
 mathematics/kissfft/fftd.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/fftd.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/fftd.cpp.s
 .PHONY : mathematics/kissfft/fftd.cpp.s
 
 mathematics/kissfft/ifft.o: mathematics/kissfft/ifft.cpp.o
@@ -1542,7 +1542,7 @@ mathematics/kissfft/ifft.o: mathematics/kissfft/ifft.cpp.o
 
 # target to build an object file
 mathematics/kissfft/ifft.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/ifft.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/ifft.cpp.o
 .PHONY : mathematics/kissfft/ifft.cpp.o
 
 mathematics/kissfft/ifft.i: mathematics/kissfft/ifft.cpp.i
@@ -1551,7 +1551,7 @@ mathematics/kissfft/ifft.i: mathematics/kissfft/ifft.cpp.i
 
 # target to preprocess a source file
 mathematics/kissfft/ifft.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/ifft.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/ifft.cpp.i
 .PHONY : mathematics/kissfft/ifft.cpp.i
 
 mathematics/kissfft/ifft.s: mathematics/kissfft/ifft.cpp.s
@@ -1560,7 +1560,7 @@ mathematics/kissfft/ifft.s: mathematics/kissfft/ifft.cpp.s
 
 # target to generate assembly for a file
 mathematics/kissfft/ifft.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/ifft.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/ifft.cpp.s
 .PHONY : mathematics/kissfft/ifft.cpp.s
 
 mathematics/kissfft/ifftd.o: mathematics/kissfft/ifftd.cpp.o
@@ -1569,7 +1569,7 @@ mathematics/kissfft/ifftd.o: mathematics/kissfft/ifftd.cpp.o
 
 # target to build an object file
 mathematics/kissfft/ifftd.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/ifftd.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/ifftd.cpp.o
 .PHONY : mathematics/kissfft/ifftd.cpp.o
 
 mathematics/kissfft/ifftd.i: mathematics/kissfft/ifftd.cpp.i
@@ -1578,7 +1578,7 @@ mathematics/kissfft/ifftd.i: mathematics/kissfft/ifftd.cpp.i
 
 # target to preprocess a source file
 mathematics/kissfft/ifftd.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/ifftd.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/ifftd.cpp.i
 .PHONY : mathematics/kissfft/ifftd.cpp.i
 
 mathematics/kissfft/ifftd.s: mathematics/kissfft/ifftd.cpp.s
@@ -1587,7 +1587,7 @@ mathematics/kissfft/ifftd.s: mathematics/kissfft/ifftd.cpp.s
 
 # target to generate assembly for a file
 mathematics/kissfft/ifftd.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/ifftd.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/mathematics/kissfft/ifftd.cpp.s
 .PHONY : mathematics/kissfft/ifftd.cpp.s
 
 networking/email_department.o: networking/email_department.cpp.o
@@ -1596,7 +1596,7 @@ networking/email_department.o: networking/email_department.cpp.o
 
 # target to build an object file
 networking/email_department.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/email_department.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/email_department.cpp.o
 .PHONY : networking/email_department.cpp.o
 
 networking/email_department.i: networking/email_department.cpp.i
@@ -1605,7 +1605,7 @@ networking/email_department.i: networking/email_department.cpp.i
 
 # target to preprocess a source file
 networking/email_department.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/email_department.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/email_department.cpp.i
 .PHONY : networking/email_department.cpp.i
 
 networking/email_department.s: networking/email_department.cpp.s
@@ -1614,170 +1614,8 @@ networking/email_department.s: networking/email_department.cpp.s
 
 # target to generate assembly for a file
 networking/email_department.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/email_department.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/email_department.cpp.s
 .PHONY : networking/email_department.cpp.s
-
-networking/netserver/socket.o: networking/netserver/socket.cpp.o
-
-.PHONY : networking/netserver/socket.o
-
-# target to build an object file
-networking/netserver/socket.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/netserver/socket.cpp.o
-.PHONY : networking/netserver/socket.cpp.o
-
-networking/netserver/socket.i: networking/netserver/socket.cpp.i
-
-.PHONY : networking/netserver/socket.i
-
-# target to preprocess a source file
-networking/netserver/socket.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/netserver/socket.cpp.i
-.PHONY : networking/netserver/socket.cpp.i
-
-networking/netserver/socket.s: networking/netserver/socket.cpp.s
-
-.PHONY : networking/netserver/socket.s
-
-# target to generate assembly for a file
-networking/netserver/socket.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/netserver/socket.cpp.s
-.PHONY : networking/netserver/socket.cpp.s
-
-networking/netserver/socket_handler.o: networking/netserver/socket_handler.cpp.o
-
-.PHONY : networking/netserver/socket_handler.o
-
-# target to build an object file
-networking/netserver/socket_handler.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/netserver/socket_handler.cpp.o
-.PHONY : networking/netserver/socket_handler.cpp.o
-
-networking/netserver/socket_handler.i: networking/netserver/socket_handler.cpp.i
-
-.PHONY : networking/netserver/socket_handler.i
-
-# target to preprocess a source file
-networking/netserver/socket_handler.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/netserver/socket_handler.cpp.i
-.PHONY : networking/netserver/socket_handler.cpp.i
-
-networking/netserver/socket_handler.s: networking/netserver/socket_handler.cpp.s
-
-.PHONY : networking/netserver/socket_handler.s
-
-# target to generate assembly for a file
-networking/netserver/socket_handler.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/netserver/socket_handler.cpp.s
-.PHONY : networking/netserver/socket_handler.cpp.s
-
-networking/netserver/socket_thread.o: networking/netserver/socket_thread.cpp.o
-
-.PHONY : networking/netserver/socket_thread.o
-
-# target to build an object file
-networking/netserver/socket_thread.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/netserver/socket_thread.cpp.o
-.PHONY : networking/netserver/socket_thread.cpp.o
-
-networking/netserver/socket_thread.i: networking/netserver/socket_thread.cpp.i
-
-.PHONY : networking/netserver/socket_thread.i
-
-# target to preprocess a source file
-networking/netserver/socket_thread.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/netserver/socket_thread.cpp.i
-.PHONY : networking/netserver/socket_thread.cpp.i
-
-networking/netserver/socket_thread.s: networking/netserver/socket_thread.cpp.s
-
-.PHONY : networking/netserver/socket_thread.s
-
-# target to generate assembly for a file
-networking/netserver/socket_thread.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/netserver/socket_thread.cpp.s
-.PHONY : networking/netserver/socket_thread.cpp.s
-
-networking/networking_application.o: networking/networking_application.cpp.o
-
-.PHONY : networking/networking_application.o
-
-# target to build an object file
-networking/networking_application.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/networking_application.cpp.o
-.PHONY : networking/networking_application.cpp.o
-
-networking/networking_application.i: networking/networking_application.cpp.i
-
-.PHONY : networking/networking_application.i
-
-# target to preprocess a source file
-networking/networking_application.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/networking_application.cpp.i
-.PHONY : networking/networking_application.cpp.i
-
-networking/networking_application.s: networking/networking_application.cpp.s
-
-.PHONY : networking/networking_application.s
-
-# target to generate assembly for a file
-networking/networking_application.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/networking_application.cpp.s
-.PHONY : networking/networking_application.cpp.s
-
-networking/networking_application_handler.o: networking/networking_application_handler.cpp.o
-
-.PHONY : networking/networking_application_handler.o
-
-# target to build an object file
-networking/networking_application_handler.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/networking_application_handler.cpp.o
-.PHONY : networking/networking_application_handler.cpp.o
-
-networking/networking_application_handler.i: networking/networking_application_handler.cpp.i
-
-.PHONY : networking/networking_application_handler.i
-
-# target to preprocess a source file
-networking/networking_application_handler.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/networking_application_handler.cpp.i
-.PHONY : networking/networking_application_handler.cpp.i
-
-networking/networking_application_handler.s: networking/networking_application_handler.cpp.s
-
-.PHONY : networking/networking_application_handler.s
-
-# target to generate assembly for a file
-networking/networking_application_handler.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/networking_application_handler.cpp.s
-.PHONY : networking/networking_application_handler.cpp.s
-
-networking/networking_application_socket.o: networking/networking_application_socket.cpp.o
-
-.PHONY : networking/networking_application_socket.o
-
-# target to build an object file
-networking/networking_application_socket.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/networking_application_socket.cpp.o
-.PHONY : networking/networking_application_socket.cpp.o
-
-networking/networking_application_socket.i: networking/networking_application_socket.cpp.i
-
-.PHONY : networking/networking_application_socket.i
-
-# target to preprocess a source file
-networking/networking_application_socket.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/networking_application_socket.cpp.i
-.PHONY : networking/networking_application_socket.cpp.i
-
-networking/networking_application_socket.s: networking/networking_application_socket.cpp.s
-
-.PHONY : networking/networking_application_socket.s
-
-# target to generate assembly for a file
-networking/networking_application_socket.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/networking_application_socket.cpp.s
-.PHONY : networking/networking_application_socket.cpp.s
 
 networking/sockets/bsd/smtp/smtp_socket.o: networking/sockets/bsd/smtp/smtp_socket.cpp.o
 
@@ -1785,7 +1623,7 @@ networking/sockets/bsd/smtp/smtp_socket.o: networking/sockets/bsd/smtp/smtp_sock
 
 # target to build an object file
 networking/sockets/bsd/smtp/smtp_socket.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/smtp/smtp_socket.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/smtp/smtp_socket.cpp.o
 .PHONY : networking/sockets/bsd/smtp/smtp_socket.cpp.o
 
 networking/sockets/bsd/smtp/smtp_socket.i: networking/sockets/bsd/smtp/smtp_socket.cpp.i
@@ -1794,7 +1632,7 @@ networking/sockets/bsd/smtp/smtp_socket.i: networking/sockets/bsd/smtp/smtp_sock
 
 # target to preprocess a source file
 networking/sockets/bsd/smtp/smtp_socket.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/smtp/smtp_socket.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/smtp/smtp_socket.cpp.i
 .PHONY : networking/sockets/bsd/smtp/smtp_socket.cpp.i
 
 networking/sockets/bsd/smtp/smtp_socket.s: networking/sockets/bsd/smtp/smtp_socket.cpp.s
@@ -1803,7 +1641,7 @@ networking/sockets/bsd/smtp/smtp_socket.s: networking/sockets/bsd/smtp/smtp_sock
 
 # target to generate assembly for a file
 networking/sockets/bsd/smtp/smtp_socket.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/smtp/smtp_socket.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/smtp/smtp_socket.cpp.s
 .PHONY : networking/sockets/bsd/smtp/smtp_socket.cpp.s
 
 networking/sockets/bsd/smtp/smtpd_socket.o: networking/sockets/bsd/smtp/smtpd_socket.cpp.o
@@ -1812,7 +1650,7 @@ networking/sockets/bsd/smtp/smtpd_socket.o: networking/sockets/bsd/smtp/smtpd_so
 
 # target to build an object file
 networking/sockets/bsd/smtp/smtpd_socket.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/smtp/smtpd_socket.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/smtp/smtpd_socket.cpp.o
 .PHONY : networking/sockets/bsd/smtp/smtpd_socket.cpp.o
 
 networking/sockets/bsd/smtp/smtpd_socket.i: networking/sockets/bsd/smtp/smtpd_socket.cpp.i
@@ -1821,7 +1659,7 @@ networking/sockets/bsd/smtp/smtpd_socket.i: networking/sockets/bsd/smtp/smtpd_so
 
 # target to preprocess a source file
 networking/sockets/bsd/smtp/smtpd_socket.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/smtp/smtpd_socket.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/smtp/smtpd_socket.cpp.i
 .PHONY : networking/sockets/bsd/smtp/smtpd_socket.cpp.i
 
 networking/sockets/bsd/smtp/smtpd_socket.s: networking/sockets/bsd/smtp/smtpd_socket.cpp.s
@@ -1830,7 +1668,7 @@ networking/sockets/bsd/smtp/smtpd_socket.s: networking/sockets/bsd/smtp/smtpd_so
 
 # target to generate assembly for a file
 networking/sockets/bsd/smtp/smtpd_socket.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/smtp/smtpd_socket.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/smtp/smtpd_socket.cpp.s
 .PHONY : networking/sockets/bsd/smtp/smtpd_socket.cpp.s
 
 networking/sockets/bsd/timer/Event.o: networking/sockets/bsd/timer/Event.cpp.o
@@ -1839,7 +1677,7 @@ networking/sockets/bsd/timer/Event.o: networking/sockets/bsd/timer/Event.cpp.o
 
 # target to build an object file
 networking/sockets/bsd/timer/Event.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/Event.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/Event.cpp.o
 .PHONY : networking/sockets/bsd/timer/Event.cpp.o
 
 networking/sockets/bsd/timer/Event.i: networking/sockets/bsd/timer/Event.cpp.i
@@ -1848,7 +1686,7 @@ networking/sockets/bsd/timer/Event.i: networking/sockets/bsd/timer/Event.cpp.i
 
 # target to preprocess a source file
 networking/sockets/bsd/timer/Event.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/Event.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/Event.cpp.i
 .PHONY : networking/sockets/bsd/timer/Event.cpp.i
 
 networking/sockets/bsd/timer/Event.s: networking/sockets/bsd/timer/Event.cpp.s
@@ -1857,7 +1695,7 @@ networking/sockets/bsd/timer/Event.s: networking/sockets/bsd/timer/Event.cpp.s
 
 # target to generate assembly for a file
 networking/sockets/bsd/timer/Event.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/Event.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/Event.cpp.s
 .PHONY : networking/sockets/bsd/timer/Event.cpp.s
 
 networking/sockets/bsd/timer/EventHandler.o: networking/sockets/bsd/timer/EventHandler.cpp.o
@@ -1866,7 +1704,7 @@ networking/sockets/bsd/timer/EventHandler.o: networking/sockets/bsd/timer/EventH
 
 # target to build an object file
 networking/sockets/bsd/timer/EventHandler.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/EventHandler.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/EventHandler.cpp.o
 .PHONY : networking/sockets/bsd/timer/EventHandler.cpp.o
 
 networking/sockets/bsd/timer/EventHandler.i: networking/sockets/bsd/timer/EventHandler.cpp.i
@@ -1875,7 +1713,7 @@ networking/sockets/bsd/timer/EventHandler.i: networking/sockets/bsd/timer/EventH
 
 # target to preprocess a source file
 networking/sockets/bsd/timer/EventHandler.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/EventHandler.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/EventHandler.cpp.i
 .PHONY : networking/sockets/bsd/timer/EventHandler.cpp.i
 
 networking/sockets/bsd/timer/EventHandler.s: networking/sockets/bsd/timer/EventHandler.cpp.s
@@ -1884,7 +1722,7 @@ networking/sockets/bsd/timer/EventHandler.s: networking/sockets/bsd/timer/EventH
 
 # target to generate assembly for a file
 networking/sockets/bsd/timer/EventHandler.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/EventHandler.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/EventHandler.cpp.s
 .PHONY : networking/sockets/bsd/timer/EventHandler.cpp.s
 
 networking/sockets/bsd/timer/EventTime.o: networking/sockets/bsd/timer/EventTime.cpp.o
@@ -1893,7 +1731,7 @@ networking/sockets/bsd/timer/EventTime.o: networking/sockets/bsd/timer/EventTime
 
 # target to build an object file
 networking/sockets/bsd/timer/EventTime.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/EventTime.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/EventTime.cpp.o
 .PHONY : networking/sockets/bsd/timer/EventTime.cpp.o
 
 networking/sockets/bsd/timer/EventTime.i: networking/sockets/bsd/timer/EventTime.cpp.i
@@ -1902,7 +1740,7 @@ networking/sockets/bsd/timer/EventTime.i: networking/sockets/bsd/timer/EventTime
 
 # target to preprocess a source file
 networking/sockets/bsd/timer/EventTime.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/EventTime.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/EventTime.cpp.i
 .PHONY : networking/sockets/bsd/timer/EventTime.cpp.i
 
 networking/sockets/bsd/timer/EventTime.s: networking/sockets/bsd/timer/EventTime.cpp.s
@@ -1911,7 +1749,7 @@ networking/sockets/bsd/timer/EventTime.s: networking/sockets/bsd/timer/EventTime
 
 # target to generate assembly for a file
 networking/sockets/bsd/timer/EventTime.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/EventTime.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/EventTime.cpp.s
 .PHONY : networking/sockets/bsd/timer/EventTime.cpp.s
 
 networking/sockets/bsd/timer/IEventOwner.o: networking/sockets/bsd/timer/IEventOwner.cpp.o
@@ -1920,7 +1758,7 @@ networking/sockets/bsd/timer/IEventOwner.o: networking/sockets/bsd/timer/IEventO
 
 # target to build an object file
 networking/sockets/bsd/timer/IEventOwner.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/IEventOwner.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/IEventOwner.cpp.o
 .PHONY : networking/sockets/bsd/timer/IEventOwner.cpp.o
 
 networking/sockets/bsd/timer/IEventOwner.i: networking/sockets/bsd/timer/IEventOwner.cpp.i
@@ -1929,7 +1767,7 @@ networking/sockets/bsd/timer/IEventOwner.i: networking/sockets/bsd/timer/IEventO
 
 # target to preprocess a source file
 networking/sockets/bsd/timer/IEventOwner.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/IEventOwner.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/IEventOwner.cpp.i
 .PHONY : networking/sockets/bsd/timer/IEventOwner.cpp.i
 
 networking/sockets/bsd/timer/IEventOwner.s: networking/sockets/bsd/timer/IEventOwner.cpp.s
@@ -1938,7 +1776,7 @@ networking/sockets/bsd/timer/IEventOwner.s: networking/sockets/bsd/timer/IEventO
 
 # target to generate assembly for a file
 networking/sockets/bsd/timer/IEventOwner.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/IEventOwner.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/networking/sockets/bsd/timer/IEventOwner.cpp.s
 .PHONY : networking/sockets/bsd/timer/IEventOwner.cpp.s
 
 platform/application.o: platform/application.cpp.o
@@ -1947,7 +1785,7 @@ platform/application.o: platform/application.cpp.o
 
 # target to build an object file
 platform/application.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/application.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/application.cpp.o
 .PHONY : platform/application.cpp.o
 
 platform/application.i: platform/application.cpp.i
@@ -1956,7 +1794,7 @@ platform/application.i: platform/application.cpp.i
 
 # target to preprocess a source file
 platform/application.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/application.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/application.cpp.i
 .PHONY : platform/application.cpp.i
 
 platform/application.s: platform/application.cpp.s
@@ -1965,7 +1803,7 @@ platform/application.s: platform/application.cpp.s
 
 # target to generate assembly for a file
 platform/application.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/application.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/application.cpp.s
 .PHONY : platform/application.cpp.s
 
 platform/checked.o: platform/checked.cpp.o
@@ -1974,7 +1812,7 @@ platform/checked.o: platform/checked.cpp.o
 
 # target to build an object file
 platform/checked.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/checked.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/checked.cpp.o
 .PHONY : platform/checked.cpp.o
 
 platform/checked.i: platform/checked.cpp.i
@@ -1983,7 +1821,7 @@ platform/checked.i: platform/checked.cpp.i
 
 # target to preprocess a source file
 platform/checked.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/checked.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/checked.cpp.i
 .PHONY : platform/checked.cpp.i
 
 platform/checked.s: platform/checked.cpp.s
@@ -1992,7 +1830,7 @@ platform/checked.s: platform/checked.cpp.s
 
 # target to generate assembly for a file
 platform/checked.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/checked.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/checked.cpp.s
 .PHONY : platform/checked.cpp.s
 
 platform/geo_department.o: platform/geo_department.cpp.o
@@ -2001,7 +1839,7 @@ platform/geo_department.o: platform/geo_department.cpp.o
 
 # target to build an object file
 platform/geo_department.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/geo_department.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/geo_department.cpp.o
 .PHONY : platform/geo_department.cpp.o
 
 platform/geo_department.i: platform/geo_department.cpp.i
@@ -2010,7 +1848,7 @@ platform/geo_department.i: platform/geo_department.cpp.i
 
 # target to preprocess a source file
 platform/geo_department.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/geo_department.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/geo_department.cpp.i
 .PHONY : platform/geo_department.cpp.i
 
 platform/geo_department.s: platform/geo_department.cpp.s
@@ -2019,7 +1857,7 @@ platform/geo_department.s: platform/geo_department.cpp.s
 
 # target to generate assembly for a file
 platform/geo_department.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/geo_department.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/geo_department.cpp.s
 .PHONY : platform/geo_department.cpp.s
 
 platform/muldiv64.o: platform/muldiv64.cpp.o
@@ -2028,7 +1866,7 @@ platform/muldiv64.o: platform/muldiv64.cpp.o
 
 # target to build an object file
 platform/muldiv64.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/muldiv64.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/muldiv64.cpp.o
 .PHONY : platform/muldiv64.cpp.o
 
 platform/muldiv64.i: platform/muldiv64.cpp.i
@@ -2037,7 +1875,7 @@ platform/muldiv64.i: platform/muldiv64.cpp.i
 
 # target to preprocess a source file
 platform/muldiv64.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/muldiv64.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/muldiv64.cpp.i
 .PHONY : platform/muldiv64.cpp.i
 
 platform/muldiv64.s: platform/muldiv64.cpp.s
@@ -2046,7 +1884,7 @@ platform/muldiv64.s: platform/muldiv64.cpp.s
 
 # target to generate assembly for a file
 platform/muldiv64.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/muldiv64.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/muldiv64.cpp.s
 .PHONY : platform/muldiv64.cpp.s
 
 platform/session.o: platform/session.cpp.o
@@ -2055,7 +1893,7 @@ platform/session.o: platform/session.cpp.o
 
 # target to build an object file
 platform/session.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/session.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/session.cpp.o
 .PHONY : platform/session.cpp.o
 
 platform/session.i: platform/session.cpp.i
@@ -2064,7 +1902,7 @@ platform/session.i: platform/session.cpp.i
 
 # target to preprocess a source file
 platform/session.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/session.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/session.cpp.i
 .PHONY : platform/session.cpp.i
 
 platform/session.s: platform/session.cpp.s
@@ -2073,7 +1911,7 @@ platform/session.s: platform/session.cpp.s
 
 # target to generate assembly for a file
 platform/session.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/session.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/session.cpp.s
 .PHONY : platform/session.cpp.s
 
 platform/system.o: platform/system.cpp.o
@@ -2082,7 +1920,7 @@ platform/system.o: platform/system.cpp.o
 
 # target to build an object file
 platform/system.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/system.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/system.cpp.o
 .PHONY : platform/system.cpp.o
 
 platform/system.i: platform/system.cpp.i
@@ -2091,7 +1929,7 @@ platform/system.i: platform/system.cpp.i
 
 # target to preprocess a source file
 platform/system.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/system.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/system.cpp.i
 .PHONY : platform/system.cpp.i
 
 platform/system.s: platform/system.cpp.s
@@ -2100,7 +1938,7 @@ platform/system.s: platform/system.cpp.s
 
 # target to generate assembly for a file
 platform/system.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/system.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/platform/system.cpp.s
 .PHONY : platform/system.cpp.s
 
 user/combo_box.o: user/combo_box.cpp.o
@@ -2109,7 +1947,7 @@ user/combo_box.o: user/combo_box.cpp.o
 
 # target to build an object file
 user/combo_box.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/combo_box.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/combo_box.cpp.o
 .PHONY : user/combo_box.cpp.o
 
 user/combo_box.i: user/combo_box.cpp.i
@@ -2118,7 +1956,7 @@ user/combo_box.i: user/combo_box.cpp.i
 
 # target to preprocess a source file
 user/combo_box.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/combo_box.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/combo_box.cpp.i
 .PHONY : user/combo_box.cpp.i
 
 user/combo_box.s: user/combo_box.cpp.s
@@ -2127,7 +1965,7 @@ user/combo_box.s: user/combo_box.cpp.s
 
 # target to generate assembly for a file
 user/combo_box.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/combo_box.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/combo_box.cpp.s
 .PHONY : user/combo_box.cpp.s
 
 user/list_box.o: user/list_box.cpp.o
@@ -2136,7 +1974,7 @@ user/list_box.o: user/list_box.cpp.o
 
 # target to build an object file
 user/list_box.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/list_box.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/list_box.cpp.o
 .PHONY : user/list_box.cpp.o
 
 user/list_box.i: user/list_box.cpp.i
@@ -2145,7 +1983,7 @@ user/list_box.i: user/list_box.cpp.i
 
 # target to preprocess a source file
 user/list_box.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/list_box.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/list_box.cpp.i
 .PHONY : user/list_box.cpp.i
 
 user/list_box.s: user/list_box.cpp.s
@@ -2154,7 +1992,7 @@ user/list_box.s: user/list_box.cpp.s
 
 # target to generate assembly for a file
 user/list_box.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/list_box.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/list_box.cpp.s
 .PHONY : user/list_box.cpp.s
 
 user/simple_ui_draw.o: user/simple_ui_draw.cpp.o
@@ -2163,7 +2001,7 @@ user/simple_ui_draw.o: user/simple_ui_draw.cpp.o
 
 # target to build an object file
 user/simple_ui_draw.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/simple_ui_draw.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/simple_ui_draw.cpp.o
 .PHONY : user/simple_ui_draw.cpp.o
 
 user/simple_ui_draw.i: user/simple_ui_draw.cpp.i
@@ -2172,7 +2010,7 @@ user/simple_ui_draw.i: user/simple_ui_draw.cpp.i
 
 # target to preprocess a source file
 user/simple_ui_draw.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/simple_ui_draw.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/simple_ui_draw.cpp.i
 .PHONY : user/simple_ui_draw.cpp.i
 
 user/simple_ui_draw.s: user/simple_ui_draw.cpp.s
@@ -2181,7 +2019,7 @@ user/simple_ui_draw.s: user/simple_ui_draw.cpp.s
 
 # target to generate assembly for a file
 user/simple_ui_draw.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/simple_ui_draw.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/simple_ui_draw.cpp.s
 .PHONY : user/simple_ui_draw.cpp.s
 
 user/slider.o: user/slider.cpp.o
@@ -2190,7 +2028,7 @@ user/slider.o: user/slider.cpp.o
 
 # target to build an object file
 user/slider.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/slider.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/slider.cpp.o
 .PHONY : user/slider.cpp.o
 
 user/slider.i: user/slider.cpp.i
@@ -2199,7 +2037,7 @@ user/slider.i: user/slider.cpp.i
 
 # target to preprocess a source file
 user/slider.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/slider.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/slider.cpp.i
 .PHONY : user/slider.cpp.i
 
 user/slider.s: user/slider.cpp.s
@@ -2208,7 +2046,7 @@ user/slider.s: user/slider.cpp.s
 
 # target to generate assembly for a file
 user/slider.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/slider.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/slider.cpp.s
 .PHONY : user/slider.cpp.s
 
 user/style.o: user/style.cpp.o
@@ -2217,7 +2055,7 @@ user/style.o: user/style.cpp.o
 
 # target to build an object file
 user/style.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/style.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/style.cpp.o
 .PHONY : user/style.cpp.o
 
 user/style.i: user/style.cpp.i
@@ -2226,7 +2064,7 @@ user/style.i: user/style.cpp.i
 
 # target to preprocess a source file
 user/style.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/style.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/style.cpp.i
 .PHONY : user/style.cpp.i
 
 user/style.s: user/style.cpp.s
@@ -2235,7 +2073,7 @@ user/style.s: user/style.cpp.s
 
 # target to generate assembly for a file
 user/style.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/style.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/style.cpp.s
 .PHONY : user/style.cpp.s
 
 user/user.o: user/user.cpp.o
@@ -2244,7 +2082,7 @@ user/user.o: user/user.cpp.o
 
 # target to build an object file
 user/user.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/user.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/user.cpp.o
 .PHONY : user/user.cpp.o
 
 user/user.i: user/user.cpp.i
@@ -2253,7 +2091,7 @@ user/user.i: user/user.cpp.i
 
 # target to preprocess a source file
 user/user.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/user.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/user.cpp.i
 .PHONY : user/user.cpp.i
 
 user/user.s: user/user.cpp.s
@@ -2262,7 +2100,7 @@ user/user.s: user/user.cpp.s
 
 # target to generate assembly for a file
 user/user.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/user.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/user.cpp.s
 .PHONY : user/user.cpp.s
 
 user/validate.o: user/validate.cpp.o
@@ -2271,7 +2109,7 @@ user/validate.o: user/validate.cpp.o
 
 # target to build an object file
 user/validate.cpp.o:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/validate.cpp.o
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/validate.cpp.o
 .PHONY : user/validate.cpp.o
 
 user/validate.i: user/validate.cpp.i
@@ -2280,7 +2118,7 @@ user/validate.i: user/validate.cpp.i
 
 # target to preprocess a source file
 user/validate.cpp.i:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/validate.cpp.i
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/validate.cpp.i
 .PHONY : user/validate.cpp.i
 
 user/validate.s: user/validate.cpp.s
@@ -2289,7 +2127,7 @@ user/validate.s: user/validate.cpp.s
 
 # target to generate assembly for a file
 user/validate.cpp.s:
-	cd /home/pi/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/validate.cpp.s
+	cd /home/camilo/solution/basis && $(MAKE) $(MAKESILENT) -f source/app/axis/CMakeFiles/axis.dir/build.make source/app/axis/CMakeFiles/axis.dir/user/validate.cpp.s
 .PHONY : user/validate.cpp.s
 
 # Help Target
@@ -2466,24 +2304,6 @@ help:
 	@echo "... networking/email_department.o"
 	@echo "... networking/email_department.i"
 	@echo "... networking/email_department.s"
-	@echo "... networking/netserver/socket.o"
-	@echo "... networking/netserver/socket.i"
-	@echo "... networking/netserver/socket.s"
-	@echo "... networking/netserver/socket_handler.o"
-	@echo "... networking/netserver/socket_handler.i"
-	@echo "... networking/netserver/socket_handler.s"
-	@echo "... networking/netserver/socket_thread.o"
-	@echo "... networking/netserver/socket_thread.i"
-	@echo "... networking/netserver/socket_thread.s"
-	@echo "... networking/networking_application.o"
-	@echo "... networking/networking_application.i"
-	@echo "... networking/networking_application.s"
-	@echo "... networking/networking_application_handler.o"
-	@echo "... networking/networking_application_handler.i"
-	@echo "... networking/networking_application_handler.s"
-	@echo "... networking/networking_application_socket.o"
-	@echo "... networking/networking_application_socket.i"
-	@echo "... networking/networking_application_socket.s"
 	@echo "... networking/sockets/bsd/smtp/smtp_socket.o"
 	@echo "... networking/sockets/bsd/smtp/smtp_socket.i"
 	@echo "... networking/sockets/bsd/smtp/smtp_socket.s"
@@ -2552,6 +2372,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/pi/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/camilo/solution/basis && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

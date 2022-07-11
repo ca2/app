@@ -377,7 +377,7 @@ namespace sockets
 //      }
 
       set_connecting(false);
-      SetSocks4(false);
+      //SetSocks4(false);
 
 //      if(socket_handler()->PoolEnabled())
 //      {

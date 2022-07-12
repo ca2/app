@@ -666,6 +666,14 @@ namespace user
    }
 
 
+   void check_box::on_message_left_button_double_click(::message::message * pmessage)
+   {
+
+      pmessage->m_bRet = true;
+
+   }
+
+
    bool check_box::on_click(::item * pitem)
    {
 
@@ -698,6 +706,7 @@ namespace user
       //install_click_default_mouse_handling(pchannel);
       
       MESSAGE_LINK(e_message_create, pchannel, this, &check_box::on_message_create);
+      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &check_box::on_message_left_button_double_click);
 
    }
 

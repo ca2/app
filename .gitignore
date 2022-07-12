@@ -2,6 +2,8 @@ time-*/
 workspace.xml
 cmake-build-*/
 cmake-time-*/
+cmake_install.cmake
+Makefile
 **/.visualgdb
 **/CMakeFiles
 **/.vs

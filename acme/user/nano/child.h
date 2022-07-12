@@ -14,7 +14,7 @@ public:
    string                  m_strText;
    ::atom                  m_atom;
    rectangle_i32           m_rectangle;
-   nano_window *           m_pwindow;
+   nano_window *           m_pnanowindow;
 
 
    virtual void on_draw(nano_device * pnanodevice) = 0;

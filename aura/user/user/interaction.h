@@ -115,43 +115,31 @@ namespace user
 
       };
 
-      union
-      {
 
-         struct
-         {
+      bool                                         m_bExtendOnParent;
+      bool                                         m_bExtendOnParentIfClientOnly;
 
+      bool                                         m_bToolWindow;
+      bool                                         m_bMessageWindow;
+      bool                                         m_bCompositedFrameWindow;
 
-            bool                                         m_bExtendOnParent : 1;
-            bool                                         m_bExtendOnParentIfClientOnly : 1;
+      bool                                         m_bEdgeGestureDisableTouchWhenFullscreen;
+      bool                                         m_bVisible;
 
-            bool                                         m_bToolWindow : 1;
-            bool                                         m_bMessageWindow : 1;
-            bool                                         m_bCompositedFrameWindow : 1;
+      bool                                         m_bMouseHoverOnCapture;
+      bool                                         m_bMouseHover;
+      bool                                         m_bClickDefaultMouseHandling;
+      bool                                         m_bHoverDefaultMouseHandling;
+      bool                                         m_bEditDefaultHandling;
+      bool                                         m_bKeyboardMultipleSelectionDefaultHandling;
+      bool                                         m_bDataUpdateDefaultHandling;
+      //bool                                         m_bLockSketchToDesign;
+      bool                                         m_bParentScrollX;
+      bool                                         m_bParentScrollY;
+      bool                                         m_bUserInteractionHost;
+      bool                                         m_bEnableDragClient;
+      bool                                         m_bEnableDragResize;
 
-            bool                                         m_bEdgeGestureDisableTouchWhenFullscreen : 1;
-            bool                                         m_bVisible : 1;
-
-            bool                                         m_bMouseHoverOnCapture : 1;
-            bool                                         m_bMouseHover : 1;
-            bool                                         m_bClickDefaultMouseHandling : 1;
-            bool                                         m_bHoverDefaultMouseHandling : 1;
-            bool                                         m_bEditDefaultHandling : 1;
-            bool                                         m_bKeyboardMultipleSelectionDefaultHandling : 1;
-            bool                                         m_bDataUpdateDefaultHandling : 1;
-            //bool                                         m_bLockSketchToDesign : 1;
-            bool                                         m_bParentScrollX : 1;
-            bool                                         m_bParentScrollY : 1;
-            bool                                         m_bUserInteractionHost : 1;
-            bool                                         m_bEnableDragClient : 1;
-            bool                                         m_bEnableDragResize : 1;
-
-         };
-
-         ::u64                                        m_uUserInteractionFlags;
-
-      };
-      
       enum_text_wrap                               m_etextwrap;
 
       __pointer(::user::interaction_scaler)        m_pinteractionScaler;

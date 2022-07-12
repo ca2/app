@@ -15,16 +15,16 @@ void nano_still::on_draw(nano_device * pnanodevice)
 
    __pointer(nano_pen) ppenBorder;
 
-   if (m_pwindow->m_pchildHover == this || m_pwindow->m_pchildFocus == this)
+   if (m_pnanowindow->m_pchildHover == this || m_pnanowindow->m_pchildFocus == this)
    {
 
-      ppenBorder = m_pwindow->m_ppenBorderFocus;
+      ppenBorder = m_pnanowindow->m_ppenBorderFocus;
 
    }
    else
    {
 
-      ppenBorder = m_pwindow->m_ppenBorder;
+      ppenBorder = m_pnanowindow->m_ppenBorder;
 
    }
 
@@ -39,11 +39,11 @@ void nano_still::on_draw(nano_device * pnanodevice)
       rectangleText,
       e_align_center,
       e_draw_text_single_line,
-      m_pwindow->m_pbrushWindow,
+      m_pnanowindow->m_pbrushWindow,
       m_bHyperlink ? (has_capture() ?
-         m_pwindow->m_pbrushHyperlinkHover :
-         m_pwindow->m_pbrushHyperlink) : m_pwindow->m_pbrushText,
-      m_pwindow->m_pfont);
+         m_pnanowindow->m_pbrushHyperlinkHover :
+         m_pnanowindow->m_pbrushHyperlink) : m_pnanowindow->m_pbrushText,
+      m_pnanowindow->m_pfont);
 
 }
 
@@ -54,7 +54,7 @@ void nano_still::on_char(int iChar)
    if (iChar == '\r' || iChar == ' ')
    {
 
-      m_pwindow->on_click(m_atom, nullptr);
+      m_pnanowindow->on_click(m_atom, nullptr);
 
    }
 
@@ -67,19 +67,19 @@ void nano_still::on_mouse_move(::user::mouse * pmouse)
    if (m_bHyperlink)
    {
 
-      if (m_pwindow->m_pchildHover == this)
+      if (m_pnanowindow->m_pchildHover == this)
       {
 
          auto r = m_rectangle;
 
-         r += m_pwindow->m_rectangle.top_left();
+         r += m_pnanowindow->m_rectangle.top_left();
 
          if (!r.contains(pmouse->m_point))
          {
 
-            m_pwindow->m_pchildHover = nullptr;
+            m_pnanowindow->m_pchildHover = nullptr;
 
-            m_pwindow->redraw();
+            m_pnanowindow->redraw();
 
          }
 
@@ -87,9 +87,9 @@ void nano_still::on_mouse_move(::user::mouse * pmouse)
       else
       {
 
-         m_pwindow->m_pchildHover = this;
+         m_pnanowindow->m_pchildHover = this;
 
-         m_pwindow->redraw();
+         m_pnanowindow->redraw();
 
       }
 
@@ -111,7 +111,7 @@ bool nano_still::is_focusable() const
 //
 //   auto pdevice = __create < nano_device >();
 //
-//   auto size = pdevice->get_text_extents(m_strText, m_pwindow->m_pfont);
+//   auto size = pdevice->get_text_extents(m_strText, m_pnanowindow->m_pfont);
 //
 //   m_rectangle.right = m_rectangle.left + size.cx;
 //

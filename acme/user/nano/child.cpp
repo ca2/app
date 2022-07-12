@@ -7,9 +7,9 @@
 void nano_child::set_focus()
 {
 
-   m_pwindow->m_pchildFocus = this;
+   m_pnanowindow->m_pchildFocus = this;
 
-   m_pwindow->redraw();
+   m_pnanowindow->redraw();
 
 }
 
@@ -32,9 +32,9 @@ void nano_child::on_mouse_move(::user::mouse * pmouse)
 void nano_child::set_capture()
 {
 
-   m_pwindow->m_pchildCapture = this;
+   m_pnanowindow->m_pchildCapture = this;
 
-   m_pwindow->set_capture();
+   m_pnanowindow->set_capture();
 
 }
 
@@ -42,14 +42,14 @@ void nano_child::set_capture()
 bool nano_child::has_capture() const
 {
 
-   if (!m_pwindow->has_capture())
+   if (!m_pnanowindow->has_capture())
    {
 
       return false;
 
    }
 
-   return m_pwindow->m_pchildCapture == this;
+   return m_pnanowindow->m_pchildCapture == this;
 
 }
 
@@ -57,12 +57,12 @@ bool nano_child::has_capture() const
 void nano_child::release_capture()
 {
 
-   if (m_pwindow->m_pchildCapture == this)
+   if (m_pnanowindow->m_pchildCapture == this)
    {
 
-      m_pwindow->m_pchildCapture.release();
+      m_pnanowindow->m_pchildCapture.release();
 
-      m_pwindow->release_capture();
+      m_pnanowindow->release_capture();
 
    }
 
@@ -74,7 +74,7 @@ void nano_child::resize_to_fit()
 
    auto pdevice = __create < nano_device >();
 
-   auto size = pdevice->get_text_extents(m_strText, m_pwindow->m_pfont);
+   auto size = pdevice->get_text_extents(m_strText, m_pnanowindow->m_pfont);
 
    m_rectangle.right = m_rectangle.left + size.cx;
 

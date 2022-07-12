@@ -6,24 +6,24 @@
 void nano_button::on_draw(nano_device * pnanodevice)
 {
 
-   //::SelectObject(hdc, m_pwindow->m_hbrushWindow);
+   //::SelectObject(hdc, m_pnanowindow->m_hbrushWindow);
 
    __pointer(nano_pen) ppenBorder;
 
-   if (m_pwindow->m_pchildFocus == this)
+   if (m_pnanowindow->m_pchildFocus == this)
    {
 
-      ppenBorder = m_pwindow->m_ppenBorderFocus;
+      ppenBorder = m_pnanowindow->m_ppenBorderFocus;
 
    }
    else
    {
 
-      ppenBorder = m_pwindow->m_ppenBorder;
+      ppenBorder = m_pnanowindow->m_ppenBorder;
 
    }
 
-   pnanodevice->rectangle(m_rectangle, m_pwindow->m_pbrushWindow, ppenBorder);
+   pnanodevice->rectangle(m_rectangle, m_pnanowindow->m_pbrushWindow, ppenBorder);
 
    wstring wstrText(m_strText);
 
@@ -36,9 +36,9 @@ void nano_button::on_draw(nano_device * pnanodevice)
       rectangleText, 
       e_align_center,
       e_draw_text_single_line, 
-      m_pwindow->m_pbrushWindow,
-      m_pwindow->m_pbrushText, 
-      m_pwindow->m_pfont);
+      m_pnanowindow->m_pbrushWindow,
+      m_pnanowindow->m_pbrushText, 
+      m_pnanowindow->m_pfont);
 
 }
 
@@ -49,7 +49,7 @@ void nano_button::on_char(int iChar)
    if (iChar == '\r' || iChar == ' ')
    {
 
-      m_pwindow->on_click(m_atom, nullptr);
+      m_pnanowindow->on_click(m_atom, nullptr);
 
    }
 
@@ -70,7 +70,7 @@ bool nano_button::is_focusable() const
 //
 //   auto pdevice = __create < nano_device >();
 //
-//   auto size = pdevice->get_text_extents(m_strText, m_pwindow->m_pfont);
+//   auto size = pdevice->get_text_extents(m_strText, m_pnanowindow->m_pfont);
 //
 //   m_rectangle.right = m_rectangle.left + size.cx;
 //

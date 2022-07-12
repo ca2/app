@@ -583,7 +583,7 @@ namespace user
 
          //      auto pwindowing = puser->windowing();
 
-         m_pwindow = pwindowing->new_window(this);
+         pwindowing->new_window(this);
 
          if (m_pwindow)
          {
@@ -731,7 +731,7 @@ namespace user
 
                                        auto pwindowing = windowing();
 
-                                       m_pwindow = pwindowing->new_window(this);
+                                       pwindowing->new_window(this);
 
                                        if(m_pwindow)
                                        {
@@ -4456,6 +4456,64 @@ namespace user
    void interaction_impl::_001OnPrioCreate(::message::message * pmessage)
    {
 
+// // https://stackoverflow.com/questions/23367775/pragma-packshow-with-gcc - Morten Jensen
+//       /*
+//    The static_assert macro will generate an error at compile-time, if the predicate is false
+//    but will only work for predicates that are resolvable at compile-time!
+
+//    E.g.: to assert the size of a data structure, static_assert(sizeof(struct_t) == 10)
+// */
+// #define STATIC_ASSERT(COND,MSG)      typedef char static_assertion_##MSG[(!!(COND))*2-1]
+// /* token pasting madness: */
+// #define COMPILE_TIME_ASSERT3(X,L)     STATIC_ASSERT(X,at_line_##L)             /* add line-number to error message for better warnings, especially GCC will tell the name of the variable as well */
+// #define COMPILE_TIME_ASSERT2(X,L)     COMPILE_TIME_ASSERT3(X, L)               /* expand line-number */
+// #define static_assert(X)              COMPILE_TIME_ASSERT2(X, __LINE__)        /* call with line-number macro */
+
+// #define PACKED  __attribute__ ((gcc_struct, __packed__))
+
+ typedef struct {
+   uint8_t bytes[3];
+   uint32_t looong;
+ } struct_t1;
+// static_assert(sizeof(struct_t) == 8);
+
+printf("sizeof(struct_t1) = %d\n", sizeof(struct_t1));
+
+      #ifdef _DEBUG
+      printf("_DEBUG defined\n");
+      #else
+      printf("_DEBUG not defined\n");
+      #endif
+
+      #ifdef RASPBIAN
+      printf("RASPBIAN defined\n");
+      #else
+      printf("RASPBIAN not defined\n");
+      #endif
+
+      printf("(11.0) offset of m_durationFocusStart in ::user::primitive = %d\n", offsetof(::user::primitive,m_durationFocusStart));
+      printf("(11.0) offset of m_uUserInteractionFlags in ::user::interaction = %d\n", offsetof(::user::interaction, m_bExtendOnParent));
+      printf("(11.0) offset of m_pwindow in ::user::interaction = %d\n", offsetof(::user::interaction, m_pwindow));
+
+      if(::is_null(m_puserinteraction->m_pwindow))
+      {
+
+         printf("m_puserinteraction->m_pwindow is null!! (11.1) (0x%x)\n", m_puserinteraction->m_pwindow);
+         printf("m_puserinteraction (11.1) (0x%x)\n", m_puserinteraction.m_p);
+         printf("&m_pwindow(0x%x)\n", &m_puserinteraction->m_pwindow);
+
+      }
+      else
+      {
+
+         printf("m_puserinteraction->m_pwindow is set!! (11.1) (0x%x)\n", m_puserinteraction->m_pwindow);
+         printf("m_puserinteraction (11.1) (0x%x)\n", m_puserinteraction.m_p);
+         printf("&m_pwindow(0x%x)\n", &m_puserinteraction->m_pwindow);
+
+      }
+      
+      fflush(stdout);
+
       if(::is_null(m_puserinteraction->m_pinteractionScaler))
       {
 
@@ -4463,7 +4521,41 @@ namespace user
 
       }
 
+      if(::is_null(m_puserinteraction->m_pwindow))
+      {
+
+         printf("m_puserinteraction->m_pwindow is null!! (11) (0x%x)\n", m_puserinteraction->m_pwindow);
+         printf("m_puserinteraction (11) (0x%x)\n", m_puserinteraction.m_p);
+
+      }
+      else
+      {
+
+         printf("m_puserinteraction->m_pwindow is set!! (11) (0x%x)\n", m_puserinteraction->m_pwindow);
+         printf("m_puserinteraction (11) (0x%x)\n", m_puserinteraction.m_p);
+
+      }
+      
+      fflush(stdout);
+
       m_puserinteraction->m_pinteractionScaler->on_display_change(m_puserinteraction);
+
+      if(::is_null(m_puserinteraction->m_pwindow))
+      {
+
+         printf("m_puserinteraction->m_pwindow is null!! (12) (0x%x)\n", m_puserinteraction->m_pwindow);
+         printf("m_puserinteraction (12) (0x%x)\n", m_puserinteraction.m_p);
+
+      }
+      else
+      {
+
+         printf("m_puserinteraction->m_pwindow is set!! (12) (0x%x)\n", m_puserinteraction->m_pwindow);
+         printf("m_puserinteraction (12) (0x%x)\n", m_puserinteraction.m_p);
+
+      }
+      
+      fflush(stdout);
 
    }
 

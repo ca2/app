@@ -323,7 +323,7 @@ nano_child * nano_window::on_hit_test(const ::point_i32 & point)
 void nano_window::add_child(nano_child * pchild)
 {
 
-   pchild->m_pwindow = this;
+   pchild->m_pnanowindow = this;
 
    m_childa.add(pchild);
 

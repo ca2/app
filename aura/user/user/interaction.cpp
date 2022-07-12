@@ -125,11 +125,35 @@ namespace user
    void interaction::user_interaction_common_construct()
    {
 
+      m_bExtendOnParent = false;
+      m_bExtendOnParentIfClientOnly = false;
+
+      m_bToolWindow = false;
+      m_bMessageWindow = false;
+      m_bCompositedFrameWindow = false;
+
+      m_bEdgeGestureDisableTouchWhenFullscreen = false;
+      m_bVisible = false;
+
+      m_bMouseHoverOnCapture = false;
+      m_bMouseHover = false;
+      m_bClickDefaultMouseHandling = false;
+      m_bHoverDefaultMouseHandling = false;
+      m_bEditDefaultHandling = false;
+      m_bKeyboardMultipleSelectionDefaultHandling = false;
+      m_bDataUpdateDefaultHandling = false;
+        //m_bLockSketchToDesign = false;
+      m_bParentScrollX = false;
+      m_bParentScrollY = false;
+      m_bUserInteractionHost = false;
+      m_bEnableDragClient = false;
+      m_bEnableDragResize = false;
+
       //m_pinteractiondraw2d = nullptr;
 
       m_bSketchToDesignLayout = false;
 
-      m_uUserInteractionFlags = 0;
+      //m_uUserInteractionFlags = 0;
 
       m_bEnableDragClient = false;
 
@@ -299,6 +323,10 @@ namespace user
       m_puserframeParent = nullptr;
       m_pwindow = nullptr;
       m_bFullScreen = false;
+
+      printf("interaction::common_construct - m_pwindow (0x%x)\n", m_pwindow);
+
+      fflush(stdout);
 
    }
 
@@ -11760,6 +11788,10 @@ namespace user
    void interaction::on_after_set_parent()
    {
 
+      printf("interaction::on_after_set_parent(1) m_pwindow (0x%x)\n", m_pwindow);
+
+      fflush(stdout);
+
       m_puserinteractionTopLevel = _top_level();
 
       m_puserframeParent = _parent_frame();
@@ -11767,6 +11799,10 @@ namespace user
       m_puserframeTopLevel = _top_level_frame();
 
       m_pwindow = _window();
+
+      printf("interaction::on_after_set_parent(2) m_pwindow (0x%x)\n", m_pwindow);
+
+      fflush(stdout);
 
       m_oswindow = m_pwindow->oswindow();
 

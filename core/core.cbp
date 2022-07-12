@@ -1,798 +1,2079 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CodeBlocks_project_file>
-	<FileVersion major="1" minor="6" />
+	<FileVersion major="1" minor="6"/>
 	<Project>
-		<Option title="core" />
-		<Option pch_mode="2" />
-		<Option compiler="gcc" />
+		<Option title="core"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\source\;CMake Files\source\console\;CMake Files\source\console\application_build_helper\;CMake Files\source\console\hello\;CMake Files\source\console\helloearth\;CMake Files\source\console\hellosolarsystem\;CMake Files\source\console\readlines\;CMake Files\source\app\;CMake Files\source\app\acme\;CMake Files\source\app\apex\;CMake Files\source\app\app\;CMake Files\source\app\just_message_box\;CMake Files\source\app\message_box\;CMake Files\source\app\aqua\;CMake Files\source\app\aura\;CMake Files\source\app\axis\;CMake Files\source\app\base\;CMake Files\source\app\draw2d_cairo\;CMake Files\source\app\crypto_openssl\;CMake Files\source\app\compress_bzip2\;CMake Files\source\app\compress_zlib\;CMake Files\source\app\folder_zip\;CMake Files\source\app\database_sqlite3\;CMake Files\source\app\regular_expression_pcre2\;CMake Files\source\app\experience_core\;CMake Files\source\app\experience_anthill\;CMake Files\source\app\experience_tranquillum\;CMake Files\source\app\imaging_freeimage\;CMake Files\source\app\nanogui\;CMake Files\source\app\bred\;CMake Files\source\app\core\;CMake Files\source\app\programming\;CMake Files\source\app\scripting\;CMake Files\source\app-core\;CMake Files\source\app-core\announcecom\;CMake Files\source\app-core\api_azure\;CMake Files\source\app-core\api_ca2\;CMake Files\source\app-core\api_google\;CMake Files\source\app-core\addressbook\;CMake Files\source\app-core\audioaura\;CMake Files\source\app-core\auraclick\;CMake Files\source\app-core\auratype\;CMake Files\source\app-core\chronometer\;CMake Files\source\app-core\clockverse\;CMake Files\source\app-core\desk\;CMake Files\source\app-core\file_manager\;CMake Files\source\app-core\flag\;CMake Files\source\app-core\hash_hub\;CMake Files\source\app-core\hellomultiverse\;CMake Files\source\app-core\note\;CMake Files\source\app-core\photo\;CMake Files\source\app-core\picture\;CMake Files\source\app-core\projection\;CMake Files\source\app-core\resident_client\;CMake Files\source\app-core\resident_desktop\;CMake Files\source\app-core\store\;CMake Files\source\app-core\timer\;CMake Files\source\app-core\todo\;CMake Files\source\app-core\weather\;CMake Files\source\app-core\audio\;CMake Files\source\app-core\audio_decode_wave\;CMake Files\source\app-core\audio_resample_swresample\;CMake Files\source\app-core\video_input\;CMake Files\source\app-core\video_input_video_for_linux\;CMake Files\source\app-core\library\;CMake Files\source\app-core\gcom\;CMake Files\source\app-core\target_wallpaper_x11\;CMake Files\source\app-core\text_to_speech_azure\;CMake Files\source\app-core\text_to_speech_google\;CMake Files\source\app-core\userdatetime\;CMake Files\source\app-core\multimedia\;CMake Files\source\app-core\resident\;CMake Files\source\app-core\hash_base\;CMake Files\source\app-cidadedecuritiba\;CMake Files\source\app-cidadedecuritiba\alphaclock\;CMake Files\source\app-complex\;CMake Files\source\app-complex\drawing\;CMake Files\source\app-complex\form\;CMake Files\source\app-complex\video_capture\;CMake Files\source\app-simple\;CMake Files\source\app-simple\application\;CMake Files\source\app-simple\box\;CMake Files\source\app-simple\change_grub_default_entry\;CMake Files\source\app-simple\drawing\;CMake Files\source\app-simple\form\;CMake Files\source\app-simple\nanogui_example\;CMake Files\source\app-simple\networking_application\;CMake Files\source\app-simple\notify_drawing\;CMake Files\source\app-veriwell\;CMake Files\source\app-veriwell\asciimedia\;CMake Files\source\app-veriwell\keyboard\;CMake Files\source\app-veriwell\musical_player\;CMake Files\source\app-veriwell\musical_player_lite\;CMake Files\source\app-veriwell\verisimplevideo\;CMake Files\source\app-veriwell\waven\;CMake Files\source\app-veriwell\audio_decode_libmpg123\;CMake Files\source\app-veriwell\music_midi_rtmidi\;CMake Files\source\app-veriwell\multimedia\;CMake Files\source\app-veriwell\video_decode_ffmpeg\;CMake Files\source\game\;CMake Files\source\game\light\;CMake Files\source\game\estamira\;CMake Files\source\game\game_of_life\;CMake Files\source\game\tetris\;CMake Files\source\game\tictactoe\;CMake Files\source\game\arkanoid\;CMake Files\source\game\sokoban\;CMake Files\source\game\pacman\;CMake Files\source\game\coincube\;CMake Files\source\game\arch001\;CMake Files\source\port\;CMake Files\source\port\id3lib\;CMake Files\source\design\;CMake Files\source\design\design\;CMake Files\source\design\text_format\;CMake Files\operating-system\;CMake Files\operating-system\operating-system-linux\;CMake Files\operating-system\operating-system-linux\acme_linux\;CMake Files\operating-system\operating-system-linux\apex_linux\;CMake Files\operating-system\operating-system-linux\audio_mixer_alsa\;CMake Files\operating-system\operating-system-linux\aura_linux\;CMake Files\operating-system\operating-system-linux\node_linux\;CMake Files\operating-system\operating-system-linux\desktop_environment_gnome\;CMake Files\operating-system\operating-system-linux\music_midi_alsa\;CMake Files\operating-system\operating-system-posix\;CMake Files\operating-system\operating-system-posix\acme_posix\;CMake Files\operating-system\operating-system-posix\apex_posix\;CMake Files\operating-system\operating-system-posix\audio_alsa\;CMake Files\operating-system\operating-system-posix\aura_posix\;CMake Files\operating-system\operating-system-posix\windowing_x11\;CMake Files\operating-system\operating-system-posix\node_gtk\;CMake Files\operating-system\operating-system-posix\node_gnome\;CMake Files\operating-system\operating-system-posix\write_text_pango\;"/>
 		<Build>
-			<Target title="basis">
-				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
-				<Option type="3" />
-				<Option compiler="gcc" />
-				<Option createDefFile="1" />
-				<Option createStaticLib="1" />
-				<Compiler>
-					<Add option="-std=c++17" />
-					<Add option="-fPIC" />
-					<Add option="-m64" />
-					<Add option="-g" />
-					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux" />
-					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux/_include" />
-				</Compiler>
-				<Linker>
-					<Add option="-m64" />
-					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
-					<Add option="-lacme" />
-					<Add option="-lapex" />
-					<Add option="-laqua" />
-					<Add option="-laura" />
-					<Add option="-laxis" />
-					<Add option="-lbase" />
-					<Add option="-lbred" />
-					<Add option="-Wl,-z,defs" />
-					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
-					<Add directory="$(#archive)/storage-linux/third/library/x64/" />
-				</Linker>
+			<Target title="all">
+				<Option working_dir="/home/camilo/solution/basis/source/app/core"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/core/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/core/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
 			</Target>
-			<Target title="stage">
-				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
-				<Option type="3" />
-				<Option compiler="gcc" />
-				<Option createDefFile="1" />
-				<Option createStaticLib="1" />
+			<Target title="core">
+				<Option output="/home/camilo/solution/basis/output/libcore.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/camilo/solution/basis/source/app/core"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
 				<Compiler>
-					<Add option="-std=c++17" />
-					<Add option="-pg" />
-					<Add option="-fPIC" />
-					<Add option="-m64" />
-					<Add option="-g" />
-					<Add option="-O0" />
-					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux" />
-					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux/_include" />
+					<Add option="-D_CORE_LIBRARY"/>
+					<Add option="-DWITH_X11"/>
+					<Add option="-Ddefault_draw2d=draw2d_cairo"/>
+					<Add option="-Ddefault_imaging=imaging_freeimage"/>
+					<Add option="-Ddefault_write_text=write_text_pango"/>
+					<Add option="-Ddefault_audio=audio_alsa"/>
+					<Add option="-Ddefault_music_midi=music_midi_alsa"/>
+					<Add option="-Ddefault_node=node_linux"/>
+					<Add option="-DDESKTOP_ENVIRONMENT_GNOME"/>
+					<Add option="-DUNICODE"/>
+					<Add option="-D_UNICODE"/>
+					<Add directory="/home/camilo/solution/basis/."/>
+					<Add directory="/home/camilo/__config"/>
+					<Add directory="/home/camilo/solution/basis/source"/>
+					<Add directory="/home/camilo/solution/basis/source/app"/>
+					<Add directory="/home/camilo/solution/basis/source/app/_include"/>
+					<Add directory="/home/camilo/solution/basis/source/include"/>
+					<Add directory="/home/camilo/solution/basis/source/port/include"/>
+					<Add directory="/home/camilo/solution/basis/source/port"/>
+					<Add directory="/home/camilo/solution/basis/operating-system"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-posix"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-posix/_include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-linux"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-linux/_include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/third/include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/third/include/include"/>
+					<Add directory="/home/camilo/solution/basis/source/app/core"/>
 				</Compiler>
-				<Linker>
-					<Add option="-pg" />
-					<Add option="-m64" />
-					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
-					<Add option="-laura" />
-					<Add option="-laxis" />
-					<Add option="-lbase" />
-					<Add option="-Wl,-z,defs" />
-					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
-				</Linker>
-				<ExtraCommands>
-					<Add before="../../operating-system-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
-					<Add before="cp -Rf $(#archive)/storage-linux/third/library/x64/* $(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				</ExtraCommands>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/core/Makefile&quot;  VERBOSE=1 core"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/core/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
 			</Target>
-			<Target title="memdleak">
-				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
-				<Option type="3" />
-				<Option compiler="gcc" />
-				<Option createDefFile="1" />
-				<Option createStaticLib="1" />
+			<Target title="core/fast">
+				<Option output="/home/camilo/solution/basis/output/libcore.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/camilo/solution/basis/source/app/core"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
 				<Compiler>
-					<Add option="-g" />
-					<Add option="-D_DEBUG" />
-					<Add option="-DMEMDLEAK" />
-					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux" />
-					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux/_include" />
+					<Add option="-D_CORE_LIBRARY"/>
+					<Add option="-DWITH_X11"/>
+					<Add option="-Ddefault_draw2d=draw2d_cairo"/>
+					<Add option="-Ddefault_imaging=imaging_freeimage"/>
+					<Add option="-Ddefault_write_text=write_text_pango"/>
+					<Add option="-Ddefault_audio=audio_alsa"/>
+					<Add option="-Ddefault_music_midi=music_midi_alsa"/>
+					<Add option="-Ddefault_node=node_linux"/>
+					<Add option="-DDESKTOP_ENVIRONMENT_GNOME"/>
+					<Add option="-DUNICODE"/>
+					<Add option="-D_UNICODE"/>
+					<Add directory="/home/camilo/solution/basis/."/>
+					<Add directory="/home/camilo/__config"/>
+					<Add directory="/home/camilo/solution/basis/source"/>
+					<Add directory="/home/camilo/solution/basis/source/app"/>
+					<Add directory="/home/camilo/solution/basis/source/app/_include"/>
+					<Add directory="/home/camilo/solution/basis/source/include"/>
+					<Add directory="/home/camilo/solution/basis/source/port/include"/>
+					<Add directory="/home/camilo/solution/basis/source/port"/>
+					<Add directory="/home/camilo/solution/basis/operating-system"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-posix"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-posix/_include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-linux"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-linux/_include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/third/include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/third/include/include"/>
+					<Add directory="/home/camilo/solution/basis/source/app/core"/>
 				</Compiler>
-				<Linker>
-					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
-				</Linker>
-				<ExtraCommands>
-					<Add before="../../operating-system-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
-				</ExtraCommands>
-			</Target>
-			<Target title="arm64_basis">
-				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
-				<Option type="3" />
-				<Option compiler="gcc" />
-				<Option createDefFile="1" />
-				<Option createStaticLib="1" />
-				<Compiler>
-					<Add option="-pg" />
-					<Add option="-g" />
-					<Add option="-std=c++17" />
-					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-raspbian" />
-				</Compiler>
-				<Linker>
-					<Add option="-pg" />
-					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
-					<Add option="-lz" />
-					<Add option="-lbz2" />
-					<Add option="-ldl" />
-					<Add option="-lrt" />
-					<Add option="-lbfd" />
-					<Add option="-lX11" />
-					<Add option="-lX11-xcb" />
-					<Add option="-lxcb" />
-					<Add option="-lxcb-util" />
-					<Add option="-lXinerama" />
-					<Add option="-lXmu" />
-					<Add option="-lXrandr" />
-					<Add option="-lXext" />
-					<Add option="-lXxf86vm" />
-					<Add option="-lidn" />
-					<Add option="-lpthread" />
-					<Add option="-lncurses" />
-					<Add option="-lssl" />
-					<Add option="-lcrypto" />
-					<Add option="`pkg-config --libs gtk+-3.0 gdk-3.0 gthread-2.0`" />
-					<Add option="-lace" />
-					<Add option="-lfreeimage" />
-					<Add option="-laqua" />
-					<Add option="-Wl,-z,defs" />
-					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
-				</Linker>
-				<ExtraCommands>
-					<Add before="../../operating-system-raspbian/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
-				</ExtraCommands>
-			</Target>
-			<Target title="sanitizers">
-				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/basis/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/basis/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/basis/$(PROJECT_NAME)" />
-				<Option type="3" />
-				<Option compiler="gcc" />
-				<Option createDefFile="1" />
-				<Option createStaticLib="1" />
-				<Compiler>
-					<Add option="-g" />
-					<Add option="-std=c++17" />
-					<Add option="-fPIC" />
-					<Add option="-fsanitize=address" />
-					<Add option="-fsanitize-recover=address" />
-					<Add option="-fsanitize=undefined" />
-					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux" />
-					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux/_include" />
-				</Compiler>
-				<Linker>
-					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
-					<Add option="-lasan" />
-					<Add option="-lubsan" />
-					<Add option="-lz" />
-					<Add option="-lbz2" />
-					<Add option="-ldl" />
-					<Add option="-lrt" />
-					<Add option="-lbfd" />
-					<Add option="-lX11" />
-					<Add option="-lX11-xcb" />
-					<Add option="-lxcb" />
-					<Add option="-lXinerama" />
-					<Add option="-lXmu" />
-					<Add option="-lXrandr" />
-					<Add option="-lXext" />
-					<Add option="-lXxf86vm" />
-					<Add option="-lXrender" />
-					<Add option="-lidn" />
-					<Add option="-lpthread" />
-					<Add option="-lncurses" />
-					<Add option="-lssl" />
-					<Add option="-lcrypto" />
-					<Add option="-lfreeimage" />
-					<Add option="`pkg-config --libs gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
-					<Add option="`$(#archive)/tool/bin/not_platform_setup raspbian -laurasn`" />
-					<Add option="-lace" />
-					<Add option="-laqua" />
-					<Add option="-Wl,-z,defs" />
-					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
-				</Linker>
-				<ExtraCommands>
-					<Add before="../../operating-system-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
-					<Add before="cp -Rf $(#archive)/third-linux/thirdparty/library/x64/* ../$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				</ExtraCommands>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/core/Makefile&quot;  VERBOSE=1 core/fast"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/core/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
 			</Target>
 		</Build>
-		<VirtualTargets>
-			<Add alias="all_sanitizers" targets="sanitizers;" />
-		</VirtualTargets>
-		<Compiler>
-			<Add option="-std=c++17" />
-			<Add option="-fPIC" />
-			<Add option="-fexceptions" />
-			<Add option="-fnon-call-exceptions" />
-			<Add option="-fno-stack-protector" />
-			<Add option="-fno-omit-frame-pointer" />
-			<Add option="-Wno-pointer-arith" />
-			<Add option="-Wno-attributes" />
-			<Add option="-Winvalid-pch" />
-			<Add option="-pthread" />
-			<Add option="`pkg-config --cflags glib-2.0 gtk+-3.0 gdk-3.0 gthread-2.0`" />
-			<Add directory="." />
-			<Add directory="$(PROJECT_DIR)" />
-			<Add directory="$(#archive)" />
-			<Add directory="$(#config)" />
-			<Add directory="$(WORKSPACE_DIR)/../../../source" />
-			<Add directory="$(WORKSPACE_DIR)/../../../source/inc" />
-			<Add directory="$(WORKSPACE_DIR)/../../../source/include" />
-			<Add directory="$(WORKSPACE_DIR)/../../../source/app/_include" />
-			<Add directory="$(WORKSPACE_DIR)/../../../source/app/" />
-			<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-$(#platform_modifier)" />
-			<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-$(#platform_modifier)/_include" />
-			<Add directory="$(#archive)/third-$(#platform_modifier)/third/include" />
-			<Add directory="$(#archive)/platform/include" />
-			<Add directory="$(#sensitive)/sensitive/include" />
-		</Compiler>
-		<Linker>
-			<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
-		</Linker>
-		<Unit filename="_.cpp" />
-		<Unit filename="_.h" />
-		<Unit filename="__matter_ca2.cpp" />
-		<Unit filename="_defer.h" />
-		<Unit filename="application.h" />
-		<Unit filename="console.h" />
-		<Unit filename="const/_const.h" />
-		<Unit filename="const/check.h" />
-		<Unit filename="const/context.h" />
-		<Unit filename="const/id.h" />
-		<Unit filename="const/idpool.cpp" />
-		<Unit filename="const/idpool.h" />
-		<Unit filename="const/impact.h" />
-		<Unit filename="const/message.h" />
-		<Unit filename="const/simple_command.h" />
-		<Unit filename="const/source.h" />
-		<Unit filename="const/status.h" />
-		<Unit filename="const/status_range_authentication.h" />
-		<Unit filename="const/thread_flag.h" />
-		<Unit filename="const/timer.h" />
-		<Unit filename="core/core/_.h" />
-		<Unit filename="core/core/_impl.h" />
-		<Unit filename="core/core/application.h" />
-		<Unit filename="core/core/debug.h" />
-		<Unit filename="core/core/library.h" />
-		<Unit filename="core/core/session.h" />
-		<Unit filename="core/core/system.h" />
-		<Unit filename="core/plugin/plugin.h" />
-		<Unit filename="core/plugin/plugin_gen.h" />
-		<Unit filename="core/plugin/plugin_history.h" />
-		<Unit filename="core/plugin/plugin_host_interaction.h" />
-		<Unit filename="core/plugin/plugin_instance.h" />
-		<Unit filename="core/plugin/plugin_plugin.h" />
-		<Unit filename="core/plugin/plugin_run_start_installer.h" />
-		<Unit filename="core/plugin/plugin_system.h" />
-		<Unit filename="filesystem/_impl.h" />
-		<Unit filename="filesystem/filehandler/_.h" />
-		<Unit filename="filesystem/filehandler/_data.h" />
-		<Unit filename="filesystem/filehandler/_filehandler.h" />
-		<Unit filename="filesystem/filehandler/handler.cpp" />
-		<Unit filename="filesystem/filehandler/handler.h" />
-		<Unit filename="filesystem/filehandler/item.cpp" />
-		<Unit filename="filesystem/filehandler/item.h" />
-		<Unit filename="filesystem/filehandler/library.cpp" />
-		<Unit filename="filesystem/filehandler/library.h" />
-		<Unit filename="filesystem/filehandler/menu_library.cpp" />
-		<Unit filename="filesystem/filehandler/menu_library.h" />
-		<Unit filename="filesystem/filehandler/tree_interface.cpp" />
-		<Unit filename="filesystem/filehandler/tree_interface.h" />
-		<Unit filename="filesystem/filemanager/_.cpp" />
-		<Unit filename="filesystem/filemanager/_.h" />
-		<Unit filename="filesystem/filemanager/_filemanager.h" />
-		<Unit filename="filesystem/filemanager/aaa_want_to_erase_form_view.h" />
-		<Unit filename="filesystem/filemanager/child_frame.cpp" />
-		<Unit filename="filesystem/filemanager/child_frame.h" />
-		<Unit filename="filesystem/filemanager/component.cpp" />
-		<Unit filename="filesystem/filemanager/component.h" />
-		<Unit filename="filesystem/filemanager/const.h" />
-		<Unit filename="filesystem/filemanager/context_menu.cpp" />
-		<Unit filename="filesystem/filemanager/context_menu.h" />
-		<Unit filename="filesystem/filemanager/data.cpp" />
-		<Unit filename="filesystem/filemanager/data.h" />
-		<Unit filename="filesystem/filemanager/document.cpp" />
-		<Unit filename="filesystem/filemanager/document.h" />
-		<Unit filename="filesystem/filemanager/file_list.cpp" />
-		<Unit filename="filesystem/filemanager/file_list.h" />
-		<Unit filename="filesystem/filemanager/file_list_callback.cpp" />
-		<Unit filename="filesystem/filemanager/file_list_callback.h" />
-		<Unit filename="filesystem/filemanager/file_properties_form.cpp" />
-		<Unit filename="filesystem/filemanager/file_properties_form.h" />
-		<Unit filename="filesystem/filemanager/folder_list.cpp" />
-		<Unit filename="filesystem/filemanager/folder_list.h" />
-		<Unit filename="filesystem/filemanager/folder_list_data.cpp" />
-		<Unit filename="filesystem/filemanager/folder_list_data.h" />
-		<Unit filename="filesystem/filemanager/folder_list_view.cpp" />
-		<Unit filename="filesystem/filemanager/folder_list_view.h" />
-		<Unit filename="filesystem/filemanager/folder_selection_list_view.cpp" />
-		<Unit filename="filesystem/filemanager/folder_selection_list_view.h" />
-		<Unit filename="filesystem/filemanager/form.cpp" />
-		<Unit filename="filesystem/filemanager/form.h" />
-		<Unit filename="filesystem/filemanager/form_child_frame.cpp" />
-		<Unit filename="filesystem/filemanager/form_child_frame.h" />
-		<Unit filename="filesystem/filemanager/form_document.cpp" />
-		<Unit filename="filesystem/filemanager/form_document.h" />
-		<Unit filename="filesystem/filemanager/frame.cpp" />
-		<Unit filename="filesystem/filemanager/frame.h" />
-		<Unit filename="filesystem/filemanager/fs_simple_list_view.cpp" />
-		<Unit filename="filesystem/filemanager/fs_simple_list_view.h" />
-		<Unit filename="filesystem/filemanager/fs_simple_tree.cpp" />
-		<Unit filename="filesystem/filemanager/fs_simple_tree.h" />
-		<Unit filename="filesystem/filemanager/fs_simple_view.cpp" />
-		<Unit filename="filesystem/filemanager/fs_simple_view.h" />
-		<Unit filename="filesystem/filemanager/icon.cpp" />
-		<Unit filename="filesystem/filemanager/icon.h" />
-		<Unit filename="filesystem/filemanager/iconoverlayer.cpp" />
-		<Unit filename="filesystem/filemanager/iconoverlayer.h" />
-		<Unit filename="filesystem/filemanager/impact.cpp" />
-		<Unit filename="filesystem/filemanager/impact.h" />
-		<Unit filename="filesystem/filemanager/left_view.cpp" />
-		<Unit filename="filesystem/filemanager/left_view.h" />
-		<Unit filename="filesystem/filemanager/main_frame.cpp" />
-		<Unit filename="filesystem/filemanager/main_frame.h" />
-		<Unit filename="filesystem/filemanager/main_impact.cpp" />
-		<Unit filename="filesystem/filemanager/main_impact.h" />
-		<Unit filename="filesystem/filemanager/operation.cpp" />
-		<Unit filename="filesystem/filemanager/operation.h" />
-		<Unit filename="filesystem/filemanager/operation_child_frame.cpp" />
-		<Unit filename="filesystem/filemanager/operation_child_frame.h" />
-		<Unit filename="filesystem/filemanager/operation_document.cpp" />
-		<Unit filename="filesystem/filemanager/operation_document.h" />
-		<Unit filename="filesystem/filemanager/operation_info_view.cpp" />
-		<Unit filename="filesystem/filemanager/operation_info_view.h" />
-		<Unit filename="filesystem/filemanager/operation_list_view.cpp" />
-		<Unit filename="filesystem/filemanager/operation_list_view.h" />
-		<Unit filename="filesystem/filemanager/operation_thread.cpp" />
-		<Unit filename="filesystem/filemanager/operation_thread.h" />
-		<Unit filename="filesystem/filemanager/operation_view.cpp" />
-		<Unit filename="filesystem/filemanager/operation_view.h" />
-		<Unit filename="filesystem/filemanager/path_view.cpp" />
-		<Unit filename="filesystem/filemanager/path_view.h" />
-		<Unit filename="filesystem/filemanager/preview.cpp" />
-		<Unit filename="filesystem/filemanager/preview.h" />
-		<Unit filename="filesystem/filemanager/save_as_name_view.cpp" />
-		<Unit filename="filesystem/filemanager/save_as_name_view.h" />
-		<Unit filename="filesystem/filemanager/tab_view.cpp" />
-		<Unit filename="filesystem/filemanager/tab_view.h" />
-		<Unit filename="filesystem/filemanager/tree.cpp" />
-		<Unit filename="filesystem/filemanager/tree.h" />
-		<Unit filename="filesystem/filemanager/update_hint.cpp" />
-		<Unit filename="filesystem/filemanager/update_hint.h" />
-		<Unit filename="filesystem/filemanager/impact.cpp" />
-		<Unit filename="filesystem/filemanager/impact.h" />
-		<Unit filename="filesystem/filesystem.h" />
-		<Unit filename="filesystem/fs/_.h" />
-		<Unit filename="filesystem/fs/_fs.h" />
-		<Unit filename="filesystem/fs/ftp_file.cpp" />
-		<Unit filename="filesystem/fs/ftp_file.h" />
-		<Unit filename="filesystem/fs/ftp_net.h" />
-		<Unit filename="filesystem/fs/ftpfs.cpp" />
-		<Unit filename="filesystem/fs/ftpfs.h" />
-		<Unit filename="filesystem/userfs/_.h" />
-		<Unit filename="filesystem/userfs/_userfs.h" />
-		<Unit filename="filesystem/userfs/const.h" />
-		<Unit filename="filesystem/userfs/document.cpp" />
-		<Unit filename="filesystem/userfs/document.h" />
-		<Unit filename="filesystem/userfs/item.cpp" />
-		<Unit filename="filesystem/userfs/item.h" />
-		<Unit filename="filesystem/userfs/list.cpp" />
-		<Unit filename="filesystem/userfs/list.h" />
-		<Unit filename="filesystem/userfs/list_data.cpp" />
-		<Unit filename="filesystem/userfs/list_data.h" />
-		<Unit filename="filesystem/userfs/list_item.cpp" />
-		<Unit filename="filesystem/userfs/list_item.h" />
-		<Unit filename="filesystem/userfs/list_item_array.cpp" />
-		<Unit filename="filesystem/userfs/list_item_array.h" />
-		<Unit filename="filesystem/userfs/main_impact.cpp" />
-		<Unit filename="filesystem/userfs/main_impact.h" />
-		<Unit filename="filesystem/userfs/tree.cpp" />
-		<Unit filename="filesystem/userfs/tree.h" />
-		<Unit filename="filesystem/userfs/userfs.cpp" />
-		<Unit filename="filesystem/userfs/userfs.h" />
-		<Unit filename="framework.cpp" />
-		<Unit filename="framework.h">
-			<Option compile="1" />
-			<Option weight="0" />
+		<Unit filename="/home/camilo/solution/basis/source/app/core/CMakeFiles/core.dir/cmake_pch.hxx">
+			<Option target="core"/>
 		</Unit>
-		<Unit filename="framework_c.h" />
-		<Unit filename="html/element/element.cpp" />
-		<Unit filename="html/graphics/attribute.cpp" />
-		<Unit filename="html/graphics/attribute.h" />
-		<Unit filename="html/graphics/base.cpp" />
-		<Unit filename="html/graphics/base.h" />
-		<Unit filename="html/graphics/border.h" />
-		<Unit filename="html/graphics/box.h" />
-		<Unit filename="html/graphics/ex.h" />
-		<Unit filename="html/graphics/font.cpp" />
-		<Unit filename="html/graphics/font.h" />
-		<Unit filename="html/graphics/form.cpp" />
-		<Unit filename="html/graphics/form.h" />
-		<Unit filename="html/graphics/graphics.h" />
-		<Unit filename="html/graphics/html2.h" />
-		<Unit filename="html/graphics/html_html2.h" />
-		<Unit filename="html/graphics/internal.h" />
-		<Unit filename="html/graphics/message.cpp" />
-		<Unit filename="html/graphics/message.h" />
-		<Unit filename="html/graphics/point.h" />
-		<Unit filename="html/graphics/reader.cpp" />
-		<Unit filename="html/graphics/reader.h" />
-		<Unit filename="html/graphics/size.h" />
-		<Unit filename="html/graphics/style.cpp" />
-		<Unit filename="html/graphics/style.h" />
-		<Unit filename="html/graphics/style_sheet.cpp" />
-		<Unit filename="html/graphics/style_sheet.h" />
-		<Unit filename="html/graphics/style_sheet_array.cpp" />
-		<Unit filename="html/graphics/style_sheet_array.h" />
-		<Unit filename="html/graphics/tag.cpp" />
-		<Unit filename="html/graphics/tag.h" />
-		<Unit filename="html/graphics/value.cpp" />
-		<Unit filename="html/graphics/value.h" />
-		<Unit filename="html/hi5/hi5_twitter_authorization.cpp" />
-		<Unit filename="html/hi5/hi5_twitter_authorization.h" />
-		<Unit filename="html/html/_.h" />
-		<Unit filename="html/html/core_data.cpp" />
-		<Unit filename="html/html/core_data.h" />
-		<Unit filename="html/html/data.cpp" />
-		<Unit filename="html/html/data.h" />
-		<Unit filename="html/impl/_.cpp" />
-		<Unit filename="html/impl/_.h" />
-		<Unit filename="html/impl/_impl.h" />
-		<Unit filename="html/impl/cell.cpp" />
-		<Unit filename="html/impl/cell.h" />
-		<Unit filename="html/impl/element.cpp" />
-		<Unit filename="html/impl/form.cpp" />
-		<Unit filename="html/impl/form.h" />
-		<Unit filename="html/impl/image.cpp" />
-		<Unit filename="html/impl/image.h" />
-		<Unit filename="html/impl/input_button.cpp" />
-		<Unit filename="html/impl/input_button.h" />
-		<Unit filename="html/impl/input_checkbox.cpp" />
-		<Unit filename="html/impl/input_checkbox.h" />
-		<Unit filename="html/impl/input_text.cpp" />
-		<Unit filename="html/impl/input_text.h" />
-		<Unit filename="html/impl/matter.h" />
-		<Unit filename="html/impl/select.cpp" />
-		<Unit filename="html/impl/select.h" />
-		<Unit filename="html/impl/table.cpp" />
-		<Unit filename="html/impl/table.h" />
-		<Unit filename="html/impl/table_elemental.cpp" />
-		<Unit filename="html/impl/table_elemental.h" />
-		<Unit filename="html/impl/table_row.cpp" />
-		<Unit filename="html/impl/table_row.h" />
-		<Unit filename="html/impl/text.cpp" />
-		<Unit filename="html/impl/text.h" />
-		<Unit filename="html/matter/_.h" />
-		<Unit filename="html/matter/_element.h" />
-		<Unit filename="html/matter/matter.h" />
-		<Unit filename="html/user/child_frame.cpp" />
-		<Unit filename="html/user/child_frame.h" />
-		<Unit filename="html/user/document.cpp" />
-		<Unit filename="html/user/document.h" />
-		<Unit filename="html/user/form.cpp" />
-		<Unit filename="html/user/form.h" />
-		<Unit filename="html/user/form_view.cpp" />
-		<Unit filename="html/user/form_view.h" />
-		<Unit filename="html/user/frame.cpp" />
-		<Unit filename="html/user/frame.h" />
-		<Unit filename="html/user/internal.h" />
-		<Unit filename="html/user/user.cpp" />
-		<Unit filename="html/user/user.h" />
-		<Unit filename="html/user/impact.cpp" />
-		<Unit filename="html/user/impact.h" />
-		<Unit filename="id.h" />
-		<Unit filename="include/_.cpp" />
-		<Unit filename="include/_.h" />
-		<Unit filename="include/_c_bridge.h" />
-		<Unit filename="include/objc.h" />
-		<Unit filename="include/objcpp.h" />
-		<Unit filename="include/winrt.h" />
-		<Unit filename="inline/__debug_box_clear_impl.h" />
-		<Unit filename="inline/__debug_box_set_impl.h" />
-		<Unit filename="inline/_acid_app_impl.h" />
-		<Unit filename="inline/_app_impl1.h" />
-		<Unit filename="inline/_application.h" />
-		<Unit filename="inline/_draw2d_impl.h" />
-		<Unit filename="inline/_new_impl.h" />
-		<Unit filename="library.h" />
-		<Unit filename="message.h" />
-		<Unit filename="net/ftp/_.h" />
-		<Unit filename="net/ftp/client_socket.cpp" />
-		<Unit filename="net/ftp/client_socket.h" />
-		<Unit filename="net/ftp/data_types.cpp" />
-		<Unit filename="net/ftp/data_types.h" />
-		<Unit filename="net/ftp/file.cpp" />
-		<Unit filename="net/ftp/file.h" />
-		<Unit filename="net/ftp/file_list_parser.cpp" />
-		<Unit filename="net/ftp/file_list_parser.h" />
-		<Unit filename="net/ftp/file_status.cpp" />
-		<Unit filename="net/ftp/file_status.h" />
-		<Unit filename="net/ftp/interface.h" />
-		<Unit filename="net/ftp/output.cpp" />
-		<Unit filename="net/ftp/output.h" />
-		<Unit filename="net/ftp/output_stream.cpp" />
-		<Unit filename="net/ftp/output_stream.h" />
-		<Unit filename="net/ftp/transfer_notification.h" />
-		<Unit filename="node/linux/shell.cpp" />
-		<Unit filename="node/linux/shell.h" />
-		<Unit filename="node/linux/shell_linux.cpp" />
-		<Unit filename="node/linux/shell_linux.h" />
-		<Unit filename="os/cross/windows/windows_ole_automation.h.txt" />
-		<Unit filename="papaya/papaya_zoneing.h" />
-		<Unit filename="platform/application.cpp" />
-		<Unit filename="platform/application.h" />
-		<Unit filename="platform/session.cpp" />
-		<Unit filename="platform/session.h" />
-		<Unit filename="platform/system.cpp" />
-		<Unit filename="platform/system.h" />
-		<Unit filename="platform/user.h" />
-		<Unit filename="update.h" />
-		<Unit filename="user.h" />
-		<Unit filename="user/_.h" />
-		<Unit filename="user/account/account.cpp" />
-		<Unit filename="user/account/account.h" />
-		<Unit filename="user/account/account_dialog.cpp" />
-		<Unit filename="user/account/account_dialog.h" />
-		<Unit filename="user/account/account_login.cpp" />
-		<Unit filename="user/account/account_login.h" />
-		<Unit filename="user/account/account_simple_ui.cpp" />
-		<Unit filename="user/account/account_simple_ui.h" />
-		<Unit filename="user/account/simple_ui_style.h" />
-		<Unit filename="user/account/impact.cpp" />
-		<Unit filename="user/account/impact.h" />
-		<Unit filename="user/databaseuser/_.h" />
-		<Unit filename="user/databaseuser/_databaseuser.h" />
-		<Unit filename="user/databaseuser/key_mesh_data.cpp" />
-		<Unit filename="user/databaseuser/key_mesh_data.h" />
-		<Unit filename="user/databaseuser/mesh_data.cpp" />
-		<Unit filename="user/databaseuser/mesh_data.h" />
-		<Unit filename="user/hotplugin/hotplugin.h" />
-		<Unit filename="user/hotplugin/hotplugin_composer.h" />
-		<Unit filename="user/hotplugin/hotplugin_container_launcher.h" />
-		<Unit filename="user/hotplugin/hotplugin_host.h" />
-		<Unit filename="user/hotplugin/hotplugin_plugin.h" />
-		<Unit filename="user/netuser/_.h" />
-		<Unit filename="user/netuser/netuser_network_configuration.cpp" />
-		<Unit filename="user/netuser/network_configuration.h" />
-		<Unit filename="user/prelude.h" />
-		<Unit filename="user/rich_text/_const.h" />
-		<Unit filename="user/rich_text/_rich_text.h" />
-		<Unit filename="user/rich_text/box.cpp" />
-		<Unit filename="user/rich_text/box.h" />
-		<Unit filename="user/rich_text/data.cpp" />
-		<Unit filename="user/rich_text/data.h" />
-		<Unit filename="user/rich_text/document.cpp" />
-		<Unit filename="user/rich_text/document.h" />
-		<Unit filename="user/rich_text/edit.cpp" />
-		<Unit filename="user/rich_text/edit.h" />
-		<Unit filename="user/rich_text/edit_impl.cpp" />
-		<Unit filename="user/rich_text/edit_impl.h" />
-		<Unit filename="user/rich_text/format.cpp" />
-		<Unit filename="user/rich_text/format.h" />
-		<Unit filename="user/rich_text/format_tool.cpp" />
-		<Unit filename="user/rich_text/format_tool.h" />
-		<Unit filename="user/rich_text/global.cpp" />
-		<Unit filename="user/rich_text/global.h" />
-		<Unit filename="user/rich_text/layout.h" />
-		<Unit filename="user/rich_text/line.cpp" />
-		<Unit filename="user/rich_text/line.h" />
-		<Unit filename="user/rich_text/span.cpp" />
-		<Unit filename="user/rich_text/span.h" />
-		<Unit filename="user/rich_text/text_format.cpp" />
-		<Unit filename="user/rich_text/text_format.h" />
-		<Unit filename="user/rich_text/text_format_object.cpp" />
-		<Unit filename="user/rich_text/text_format_object.h" />
-		<Unit filename="user/simple/_.cpp" />
-		<Unit filename="user/simple/_.h" />
-		<Unit filename="user/simple/_impl.h" />
-		<Unit filename="user/simple/_simple.h" />
-		<Unit filename="user/simple/_tree.h" />
-		<Unit filename="user/simple/child_frame.cpp" />
-		<Unit filename="user/simple/child_frame.h" />
-		<Unit filename="user/simple/form_list_view.cpp" />
-		<Unit filename="user/simple/form_list_view.h" />
-		<Unit filename="user/simple/form_view.cpp" />
-		<Unit filename="user/simple/form_view.h" />
-		<Unit filename="user/simple/list_control.cpp" />
-		<Unit filename="user/simple/list_control.h" />
-		<Unit filename="user/simple/list_data.cpp" />
-		<Unit filename="user/simple/list_data.h" />
-		<Unit filename="user/simple/list_header_control.cpp" />
-		<Unit filename="user/simple/list_header_control.h" />
-		<Unit filename="user/simple/list_view.cpp" />
-		<Unit filename="user/simple/list_view.h" />
-		<Unit filename="user/simple/menu_bar.cpp" />
-		<Unit filename="user/simple/menu_bar.h" />
-		<Unit filename="user/simple/mesh_data.cpp" />
-		<Unit filename="user/simple/mesh_data.h" />
-		<Unit filename="user/simple/message_box.cpp" />
-		<Unit filename="user/simple/message_box.h" />
-		<Unit filename="user/simple/pane_document.cpp" />
-		<Unit filename="user/simple/pane_document.h" />
-		<Unit filename="user/simple/printer_list_view.cpp" />
-		<Unit filename="user/simple/printer_list_view.h" />
-		<Unit filename="user/simple/simple.h" />
-		<Unit filename="user/simple/static.cpp" />
-		<Unit filename="user/simple/static.h" />
-		<Unit filename="user/simple/status_bar.cpp" />
-		<Unit filename="user/simple/status_bar.h" />
-		<Unit filename="user/simple/tab_control.cpp" />
-		<Unit filename="user/simple/tab_control.h" />
-		<Unit filename="user/simple/tab_view.cpp" />
-		<Unit filename="user/simple/tab_view.h" />
-		<Unit filename="user/simple/toolbar.cpp" />
-		<Unit filename="user/simple/toolbar.h" />
-		<Unit filename="user/simple/tree_view.cpp" />
-		<Unit filename="user/simple/tree_view.h" />
-		<Unit filename="user/simple_ui/_.h" />
-		<Unit filename="user/simple_ui/edit_box.cpp" />
-		<Unit filename="user/simple_ui/edit_box.h" />
-		<Unit filename="user/simple_ui/interaction.cpp" />
-		<Unit filename="user/simple_ui/interaction.h" />
-		<Unit filename="user/simple_ui/label.cpp" />
-		<Unit filename="user/simple_ui/label.h" />
-		<Unit filename="user/simple_ui/message_box.cpp" />
-		<Unit filename="user/simple_ui/message_box.h" />
-		<Unit filename="user/simple_ui/password.cpp" />
-		<Unit filename="user/simple_ui/password.h" />
-		<Unit filename="user/simple_ui/style.cpp" />
-		<Unit filename="user/simple_ui/style.h" />
-		<Unit filename="user/simple_ui/tap.cpp" />
-		<Unit filename="user/simple_ui/tap.h" />
-		<Unit filename="user/simple_ui/top.cpp" />
-		<Unit filename="user/simple_ui/top.h" />
-		<Unit filename="user/user/00.h" />
-		<Unit filename="user/user/_.cpp" />
-		<Unit filename="user/user/_.h" />
-		<Unit filename="user/user/_const.h" />
-		<Unit filename="user/user/_data.h" />
-		<Unit filename="user/user/_impl.h" />
-		<Unit filename="user/user/_tree.h" />
-		<Unit filename="user/user/_user.h" />
-		<Unit filename="user/user/color_combo_box.cpp" />
-		<Unit filename="user/user/color_combo_box.h" />
-		<Unit filename="user/user/control_ddx_dbflags.h" />
-		<Unit filename="user/user/elastic_slider.cpp" />
-		<Unit filename="user/user/elastic_slider.h" />
-		<Unit filename="user/user/font_combo_box.cpp" />
-		<Unit filename="user/user/font_combo_box.h" />
-		<Unit filename="user/user/font_list.cpp" />
-		<Unit filename="user/user/font_list.h" />
-		<Unit filename="user/user/form_list.cpp" />
-		<Unit filename="user/user/form_list.h" />
-		<Unit filename="user/user/form_list_view.cpp" />
-		<Unit filename="user/user/form_list_view.h" />
-		<Unit filename="user/user/form_mesh.cpp" />
-		<Unit filename="user/user/form_mesh.h" />
-		<Unit filename="user/user/form_update_hint.h" />
-		<Unit filename="user/user/image_manager.cpp" />
-		<Unit filename="user/user/image_manager.h" />
-		<Unit filename="user/user/inline.h" />
-		<Unit filename="user/user/list.cpp" />
-		<Unit filename="user/user/list.h" />
-		<Unit filename="user/user/list_cache.cpp" />
-		<Unit filename="user/user/list_cache.h" />
-		<Unit filename="user/user/list_column.h" />
-		<Unit filename="user/user/list_column_array.h" />
-		<Unit filename="user/user/list_data.cpp" />
-		<Unit filename="user/user/list_data.h" />
-		<Unit filename="user/user/list_header.cpp" />
-		<Unit filename="user/user/list_header.h" />
-		<Unit filename="user/user/list_item.h" />
-		<Unit filename="user/user/list_view.cpp" />
-		<Unit filename="user/user/list_view.h" />
-		<Unit filename="user/user/listing.h" />
-		<Unit filename="user/user/main_frame.h" />
-		<Unit filename="user/user/mesh.cpp" />
-		<Unit filename="user/user/mesh.h" />
-		<Unit filename="user/user/mesh_cache.cpp" />
-		<Unit filename="user/user/mesh_cache.h" />
-		<Unit filename="user/user/mesh_cache_interface.cpp" />
-		<Unit filename="user/user/mesh_cache_interface.h" />
-		<Unit filename="user/user/mesh_data.cpp" />
-		<Unit filename="user/user/mesh_data.h" />
-		<Unit filename="user/user/mesh_item.h" />
-		<Unit filename="user/user/notify_icon.mm" />
-		<Unit filename="user/user/notify_icon_mm_bridge.mm" />
-		<Unit filename="user/user/shell.cpp" />
-		<Unit filename="user/user/shell.h" />
-		<Unit filename="user/user/statusbar.cpp" />
-		<Unit filename="user/user/statusbar.h" />
-		<Unit filename="user/user/step_slider.cpp" />
-		<Unit filename="user/user/step_slider.h" />
-		<Unit filename="user/user/toggle_switch.cpp" />
-		<Unit filename="user/user/toggle_switch.h" />
-		<Unit filename="user/user/tool_command.cpp" />
-		<Unit filename="user/user/tool_command.h" />
-		<Unit filename="user/user/tool_tip_tool.cpp" />
-		<Unit filename="user/user/tool_tip_tool.h" />
-		<Unit filename="user/user/tool_tip_window.cpp" />
-		<Unit filename="user/user/tool_tip_window.h" />
-		<Unit filename="user/user/toolbar_control.h" />
-		<Unit filename="user/user/toolbar_ctrl.cpp" />
-		<Unit filename="user/user/tooltip.cpp" />
-		<Unit filename="user/user/tooltip.h" />
-		<Unit filename="user/user/tree.cpp" />
-		<Unit filename="user/user/tree.h" />
-		<Unit filename="user/user/tree_data.cpp" />
-		<Unit filename="user/user/tree_data.h" />
-		<Unit filename="user/user/tree_window.cpp" />
-		<Unit filename="user/user/xfplayer_view_line.cpp" />
-		<Unit filename="user/user/xfplayer_view_line.h" />
-		<Unit filename="user/user/xfplayer_view_line_selection.cpp" />
-		<Unit filename="user/user/xfplayer_view_line_selection.h" />
-		<Unit filename="user/user/xfplayer_view_lines.cpp" />
-		<Unit filename="user/user/xfplayer_view_lines.h" />
-		<Unit filename="user/userex/-ehrror_dialog.cpp" />
-		<Unit filename="user/userex/_.h" />
-		<Unit filename="user/userex/_impl.h" />
-		<Unit filename="user/userex/_userex.h" />
-		<Unit filename="user/userex/aaa_want_to_erase_form_update_hint.h" />
-		<Unit filename="user/userex/calculator_edit_view.cpp" />
-		<Unit filename="user/userex/calculator_edit_view.h" />
-		<Unit filename="user/userex/color_view.cpp" />
-		<Unit filename="user/userex/color_view.h" />
-		<Unit filename="user/userex/const.h" />
-		<Unit filename="user/userex/dialog.cpp" />
-		<Unit filename="user/userex/dialog.h" />
-		<Unit filename="user/userex/error_dialog.h" />
-		<Unit filename="user/userex/font_view.cpp" />
-		<Unit filename="user/userex/font_view.h" />
-		<Unit filename="user/userex/form_child_frame.cpp" />
-		<Unit filename="user/userex/form_child_frame.h" />
-		<Unit filename="user/userex/form_document.h" />
-		<Unit filename="user/userex/form_frame.cpp" />
-		<Unit filename="user/userex/form_frame.h" />
-		<Unit filename="user/userex/form_view.h" />
-		<Unit filename="user/userex/group_image_list.cpp" />
-		<Unit filename="user/userex/group_image_list.h" />
-		<Unit filename="user/userex/home_view.cpp" />
-		<Unit filename="user/userex/home_view.h" />
-		<Unit filename="user/userex/image_list.cpp" />
-		<Unit filename="user/userex/image_list.h" />
-		<Unit filename="user/userex/impact_host.cpp" />
-		<Unit filename="user/userex/impact_host.h" />
-		<Unit filename="user/userex/menu_document.cpp" />
-		<Unit filename="user/userex/menu_document.h" />
-		<Unit filename="user/userex/menu_frame.cpp" />
-		<Unit filename="user/userex/menu_frame.h" />
-		<Unit filename="user/userex/menu_view.cpp" />
-		<Unit filename="user/userex/menu_view.h" />
-		<Unit filename="user/userex/message_box.cpp" />
-		<Unit filename="user/userex/message_box.h" />
-		<Unit filename="user/userex/mini_dock_frame_window.h" />
-		<Unit filename="user/userex/pane_split_view.cpp" />
-		<Unit filename="user/userex/pane_split_view.h" />
-		<Unit filename="user/userex/pane_tab_impact.cpp" />
-		<Unit filename="user/userex/pane_tab_impact.h" />
-		<Unit filename="user/userex/pane_impact.cpp" />
-		<Unit filename="user/userex/pane_impact.h" />
-		<Unit filename="user/userex/progress.cpp" />
-		<Unit filename="user/userex/progress.h" />
-		<Unit filename="user/userex/property_page.cpp" />
-		<Unit filename="user/userex/property_page.h" />
-		<Unit filename="user/userex/property_sheet.cpp" />
-		<Unit filename="user/userex/property_sheet.h" />
-		<Unit filename="user/userex/split_view.cpp" />
-		<Unit filename="user/userex/split_view.h" />
-		<Unit filename="user/userex/top_edit_view.cpp" />
-		<Unit filename="user/userex/top_edit_view.h" />
-		<Unit filename="user/userex/top_toggle_view.cpp" />
-		<Unit filename="user/userex/top_toggle_view.h" />
-		<Unit filename="user/userex/top_view.cpp" />
-		<Unit filename="user/userex/top_view.h" />
-		<Unit filename="user/userex/user.cpp" />
-		<Unit filename="user/userex/wait_message_dialog.cpp" />
-		<Unit filename="user/userex/wait_message_dialog.h" />
-		<Unit filename="user/userpresence/_.h" />
-		<Unit filename="user/userpresence/department.cpp" />
-		<Unit filename="user/userpresence/department.h" />
-		<Unit filename="user/userpresence/presence.cpp" />
-		<Unit filename="user/userpresence/presence.h" />
-		<Unit filename="version/version.config.h" />
-		<Unit filename="version/version.h" />
-		<Unit filename="xml.h" />
-		<Extensions />
+		<Unit filename="/home/camilo/solution/basis/source/app/core/CMakeFiles/core.dir/cmake_pch.hxx.cxx">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/_.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/_defer.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/application.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/axispolicy/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/axispolicy/_c.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/axispolicy/policy_objc.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/axispolicy/policy_objcpp.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/axispolicy/policy_winrt.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/callback.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/console.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/const/idpool.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/const/idpool.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/_impl.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filehandler/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filehandler/_data.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filehandler/_filehandler.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filehandler/handler.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filehandler/handler.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filehandler/item.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filehandler/item.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filehandler/library.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filehandler/library.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filehandler/menu_library.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filehandler/menu_library.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filehandler/tree_interface.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filehandler/tree_interface.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/_.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/_data.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/_filemanager.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/_tree.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/child_frame.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/child_frame.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/component.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/component.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/const.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/context_menu.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/context_menu.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/data.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/data.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/document.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/document.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/file_list.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/file_list.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/file_list_callback.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/file_list_callback.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/file_properties_form.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/file_properties_form.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/folder_list.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/folder_list.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/folder_list_data.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/folder_list_data.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/folder_list_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/folder_list_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/folder_selection_list_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/folder_selection_list_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/form.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/form.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/form_child_frame.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/form_child_frame.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/frame.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/frame.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/fs_simple_list_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/fs_simple_list_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/fs_simple_tree.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/fs_simple_tree.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/fs_simple_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/fs_simple_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/icon.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/icon.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/iconoverlayer.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/iconoverlayer.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/impact.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/impact.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/impact_base.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/impact_base.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/left_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/left_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/main_frame.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/main_frame.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/main_impact.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/main_impact.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/operation.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/operation.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/operation_child_frame.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/operation_child_frame.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/operation_document.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/operation_document.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/operation_info_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/operation_info_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/operation_list_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/operation_list_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/operation_thread.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/operation_thread.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/operation_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/operation_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/path_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/path_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/preview.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/preview.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/save_as_name_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/save_as_name_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/tab_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/tab_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/tree.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filemanager/tree.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/filesystem.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/fs/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/fs/_fs.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/fs/ftp_file.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/fs/ftp_file.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/fs/ftpfs.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/fs/ftpfs.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/fs/ftpnet.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/fs/ftpnet.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/_data.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/_tree.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/_userfs.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/const.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/document.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/document.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/item.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/item.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/list.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/list.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/list_data.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/list_data.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/list_item.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/list_item.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/list_item_array.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/list_item_array.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/main_impact.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/main_impact.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/tree.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/tree.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/userfs.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/filesystem/userfs/userfs.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/framework.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/framework.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/framework_c.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/element/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/element/_element.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/element/element.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/element/element.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/_graphics.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/attribute.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/attribute.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/base.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/base.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/border.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/box.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/font.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/font.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/message.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/message.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/point.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/reader.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/reader.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/size.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/style.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/style.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/style_sheet.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/style_sheet.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/style_sheet_array.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/style_sheet_array.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/tag.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/tag.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/value.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/graphics/value.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/hi5/hi5_twitter_authorization.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/hi5/hi5_twitter_authorization.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/html/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/html/_html.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/html/core_data.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/html/core_data.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/html/data.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/html/data.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/_.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/_impl.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/cell.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/cell.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/element.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/element.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/form.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/form.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/image.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/image.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/input_button.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/input_button.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/input_checkbox.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/input_checkbox.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/input_text.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/input_text.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/select.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/select.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/table.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/table.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/table_elemental.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/table_elemental.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/table_row.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/table_row.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/text.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/impl/text.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/user/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/user/_user.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/user/child_frame.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/user/document.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/user/document.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/user/form.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/user/form.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/user/form_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/user/form_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/user/impact.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/user/impact.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/html/user/user.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/id.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/include/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/include/_c.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/include/_c_bridge.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/include/_no_templates.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/include/_setup.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/include/objc.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/include/objcpp.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/include/winrt.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/inline/__debug_box_clear_impl.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/inline/__debug_box_set_impl.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/inline/_acid_app_impl.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/inline/_app_impl1.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/inline/_application.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/inline/_console_old.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/inline/_draw2d_impl.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/inline/_new_impl.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/inline/application.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/inline/application_common.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/inline/console.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/inline/console_common.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/inline/library.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/library.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/message.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/networking/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/networking/_impl.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/networking/ftp/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/networking/ftp/client_socket.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/networking/ftp/client_socket.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/networking/ftp/data_types.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/networking/ftp/data_types.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/networking/ftp/file.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/networking/ftp/file.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/networking/ftp/file_list_parser.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/networking/ftp/file_list_parser.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/networking/ftp/file_status.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/networking/ftp/file_status.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/networking/ftp/interface.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/networking/ftp/output.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/networking/ftp/output.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/networking/ftp/output_stream.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/networking/ftp/output_stream.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/networking/ftp/transfer_notification.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/operating_system/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/operating_system/_application.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/operating_system/_c.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/operating_system/_impl.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/operating_system/_node.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/operating_system/_os.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/operating_system/binreloc.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/operating_system/chronometer.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/operating_system/console.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/operating_system/core.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/operating_system/cross.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/operating_system/dummy/frame_window.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/operating_system/file.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/operating_system/graphics.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/operating_system/os_windowing2.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/operating_system/serial.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/operating_system/text.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/operating_system/threading.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/operating_system/time.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/operating_system/windowing.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/operating_system/winpr_input.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/papaya/papaya_zoneing.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/platform/application.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/platform/application.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/platform/session.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/platform/session.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/platform/system.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/platform/system.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/platform/user.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/procedure.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/template/list.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/update.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/account/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/account/_account.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/account/account_dialog.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/account/account_login.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/account/account_simple_ui.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/account/dialog.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/account/impact.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/account/impact.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/account/login.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/databaseuser/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/databaseuser/_databaseuser.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/databaseuser/key_mesh_data.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/databaseuser/key_mesh_data.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/databaseuser/mesh_data.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/databaseuser/mesh_data.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/netuser/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/netuser/_netuser.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/netuser/netuser_network_configuration.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/netuser/network_configuration.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/prelude.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/_const.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/_impl.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/_rich_text.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/box.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/box.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/data.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/data.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/document.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/document.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/edit.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/edit.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/edit_impl.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/edit_impl.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/format.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/format.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/format_tool.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/format_tool.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/global.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/global.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/layout.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/line.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/line.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/rich_text.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/span.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/span.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/text_format.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/text_format.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/text_format_object.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/rich_text/text_format_object.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/_impl.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/_simple.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/_tree.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/child_frame.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/child_frame.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/form_list_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/form_list_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/form_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/form_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/list_control.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/list_control.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/list_data.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/list_data.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/list_header_control.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/list_header_control.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/list_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/list_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/menu_bar.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/menu_bar.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/mesh_data.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/mesh_data.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/message_box.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/pane_document.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/pane_document.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/printer_list_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/printer_list_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/simple.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/static.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/static.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/status_bar.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/status_bar.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/tab_control.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/tab_control.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/tab_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/tab_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/toolbar.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/toolbar.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/tree_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/simple/tree_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/00.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/_const.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/_data.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/_impl.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/_tree.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/_user.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/color_combo_box.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/color_combo_box.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/control_ddx_dbflags.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/elastic_slider.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/elastic_slider.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/font_combo_box.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/font_combo_box.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/font_list.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/font_list.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/form_list.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/form_list.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/form_list_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/form_list_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/form_mesh.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/form_mesh.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/form_update_hint.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/image_manager.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/image_manager.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/inline.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/list.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/list.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/list_cache.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/list_cache.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/list_column.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/list_column.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/list_column_array.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/list_data.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/list_data.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/list_header.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/list_header.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/list_item.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/list_item.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/list_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/list_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/listing.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/main_frame.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/main_frame.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/mesh.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/mesh.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/mesh_cache.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/mesh_cache_interface.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/mesh_cache_interface.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/mesh_data.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/mesh_data.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/mesh_item.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/mesh_item.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/statusbar.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/statusbar.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/step_slider.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/step_slider.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/toggle_switch.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/toggle_switch.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/tool_command.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/tool_command.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/tool_tip_tool.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/tool_tip_tool.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/tool_tip_window.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/tool_tip_window.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/toolbar_control.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/toolbar_ctrl.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/tooltip.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/tooltip.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/tree.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/tree.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/tree_data.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/tree_data.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/tree_window.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/xfplayer_view_line.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/xfplayer_view_line.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/xfplayer_view_line_selection.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/xfplayer_view_line_selection.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/xfplayer_view_lines.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/user/xfplayer_view_lines.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/-ehrror_dialog.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/_impl.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/_userex.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/calculator_edit_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/calculator_edit_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/color_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/color_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/const.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/dialog.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/dialog.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/dialog_frame.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/dialog_frame.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/error_dialog.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/font_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/font_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/form_child_frame.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/form_child_frame.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/form_document.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/form_frame.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/form_frame.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/form_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/group_image_list.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/group_image_list.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/home_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/home_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/image_list.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/image_list.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/impact_host.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/impact_host.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/menu_document.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/menu_document.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/menu_frame.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/menu_frame.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/menu_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/menu_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/message_box.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/message_box.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/mini_dock_frame_window.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/pane_impact.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/pane_impact.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/pane_split_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/pane_split_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/pane_tab_impact.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/pane_tab_impact.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/progress.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/progress.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/property_page.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/property_page.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/property_sheet.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/property_sheet.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/split_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/split_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/top_edit_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/top_edit_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/top_toggle_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/top_toggle_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/top_view.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/top_view.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/user.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/user.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/wait_message_dialog.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userex/wait_message_dialog.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userpresence/_.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userpresence/department.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userpresence/department.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userpresence/presence.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/user/userpresence/presence.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/version/version.config.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/version/version.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/console/application_build_helper/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\console\application_build_helper\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/console/hello/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\console\hello\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/console/helloearth/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\console\helloearth\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/console/hellosolarsystem/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\console\hellosolarsystem\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/console/readlines/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\console\readlines\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/acme/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\acme\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/apex/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\apex\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/app/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\app\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/just_message_box/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\just_message_box\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/message_box/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\message_box\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/aqua/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\aqua\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/aura/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\aura\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\axis\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/base/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\base\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/draw2d_cairo/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\draw2d_cairo\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/crypto_openssl/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\crypto_openssl\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/compress_bzip2/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\compress_bzip2\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/compress_zlib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\compress_zlib\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/folder_zip/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\folder_zip\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/database_sqlite3/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\database_sqlite3\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/regular_expression_pcre2/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\regular_expression_pcre2\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\experience_core\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_anthill/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\experience_anthill\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_tranquillum/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\experience_tranquillum\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/imaging_freeimage/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\imaging_freeimage\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/nanogui/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\nanogui\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/bred/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\bred\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\core\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/programming/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\programming\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/scripting/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\scripting\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/announcecom/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\announcecom\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/api_azure/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\api_azure\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/api_ca2/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\api_ca2\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/api_google/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\api_google\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/addressbook/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\addressbook\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/audioaura/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\audioaura\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/auraclick/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\auraclick\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/auratype/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\auratype\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/chronometer/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\chronometer\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/clockverse/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\clockverse\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/desk/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\desk\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/file_manager/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\file_manager\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/flag/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\flag\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/hash_hub/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\hash_hub\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/hellomultiverse/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\hellomultiverse\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/note/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\note\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/photo/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\photo\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/picture/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\picture\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/projection/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\projection\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/resident_client/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\resident_client\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/resident_desktop/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\resident_desktop\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/store/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\store\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/timer/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\timer\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/todo/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\todo\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/weather/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\weather\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/audio/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\audio\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/audio_decode_wave/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\audio_decode_wave\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/audio_resample_swresample/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\audio_resample_swresample\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/video_input/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\video_input\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/video_input_video_for_linux/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\video_input_video_for_linux\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/library/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\library\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/gcom/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\gcom\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/target_wallpaper_x11/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\target_wallpaper_x11\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/text_to_speech_azure/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\text_to_speech_azure\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/text_to_speech_google/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\text_to_speech_google\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/userdatetime/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\userdatetime\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/multimedia/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\multimedia\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/resident/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\resident\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/hash_base/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\hash_base\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-cidadedecuritiba/alphaclock/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-cidadedecuritiba\alphaclock\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-complex/drawing/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-complex\drawing\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-complex/form/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-complex\form\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-complex/video_capture/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-complex\video_capture\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/application/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-simple\application\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/box/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-simple\box\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/change_grub_default_entry/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-simple\change_grub_default_entry\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/drawing/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-simple\drawing\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/form/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-simple\form\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/nanogui_example/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-simple\nanogui_example\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/networking_application/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-simple\networking_application\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/notify_drawing/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-simple\notify_drawing\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/asciimedia/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-veriwell\asciimedia\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/keyboard/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-veriwell\keyboard\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/musical_player/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-veriwell\musical_player\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/musical_player_lite/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-veriwell\musical_player_lite\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/verisimplevideo/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-veriwell\verisimplevideo\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/waven/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-veriwell\waven\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/audio_decode_libmpg123/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-veriwell\audio_decode_libmpg123\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/music_midi_rtmidi/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-veriwell\music_midi_rtmidi\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/multimedia/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-veriwell\multimedia\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/video_decode_ffmpeg/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-veriwell\video_decode_ffmpeg\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/game/light/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\game\light\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/game/estamira/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\game\estamira\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/game/game_of_life/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\game\game_of_life\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/game/tetris/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\game\tetris\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/game/tictactoe/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\game\tictactoe\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/game/arkanoid/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\game\arkanoid\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/game/sokoban/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\game\sokoban\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/game/pacman/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\game\pacman\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/game/coincube/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\game\coincube\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/game/arch001/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\game\arch001\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/port/id3lib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\port\id3lib\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/design/design/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\design\design\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/design/text_format/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\design\text_format\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-linux/acme_linux/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-linux\acme_linux\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-linux/apex_linux/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-linux\apex_linux\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-linux/audio_mixer_alsa/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-linux\audio_mixer_alsa\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-linux/aura_linux/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-linux\aura_linux\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-linux/node_linux/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-linux\node_linux\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-linux\desktop_environment_gnome\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-linux/music_midi_alsa/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-linux\music_midi_alsa\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/acme_posix/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\acme_posix\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/apex_posix/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\apex_posix\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/audio_alsa/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\audio_alsa\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/aura_posix/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\aura_posix\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/windowing_x11/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\windowing_x11\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/node_gtk/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\node_gtk\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/node_gnome/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\node_gnome\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/write_text_pango/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\write_text_pango\"/>
+		</Unit>
 	</Project>
 </CodeBlocks_project_file>

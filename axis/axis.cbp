@@ -1,691 +1,1173 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CodeBlocks_project_file>
-	<FileVersion major="1" minor="6" />
+	<FileVersion major="1" minor="6"/>
 	<Project>
-		<Option title="axis" />
-		<Option pch_mode="2" />
-		<Option compiler="gcc" />
+		<Option title="axis"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\source\;CMake Files\source\console\;CMake Files\source\console\application_build_helper\;CMake Files\source\console\hello\;CMake Files\source\console\helloearth\;CMake Files\source\console\hellosolarsystem\;CMake Files\source\console\readlines\;CMake Files\source\app\;CMake Files\source\app\acme\;CMake Files\source\app\apex\;CMake Files\source\app\app\;CMake Files\source\app\just_message_box\;CMake Files\source\app\message_box\;CMake Files\source\app\aqua\;CMake Files\source\app\aura\;CMake Files\source\app\axis\;CMake Files\source\app\base\;CMake Files\source\app\draw2d_cairo\;CMake Files\source\app\crypto_openssl\;CMake Files\source\app\compress_bzip2\;CMake Files\source\app\compress_zlib\;CMake Files\source\app\folder_zip\;CMake Files\source\app\database_sqlite3\;CMake Files\source\app\regular_expression_pcre2\;CMake Files\source\app\experience_core\;CMake Files\source\app\experience_anthill\;CMake Files\source\app\experience_tranquillum\;CMake Files\source\app\imaging_freeimage\;CMake Files\source\app\nanogui\;CMake Files\source\app\bred\;CMake Files\source\app\core\;CMake Files\source\app\programming\;CMake Files\source\app\scripting\;CMake Files\source\app-core\;CMake Files\source\app-core\announcecom\;CMake Files\source\app-core\api_azure\;CMake Files\source\app-core\api_ca2\;CMake Files\source\app-core\api_google\;CMake Files\source\app-core\addressbook\;CMake Files\source\app-core\audioaura\;CMake Files\source\app-core\auraclick\;CMake Files\source\app-core\auratype\;CMake Files\source\app-core\chronometer\;CMake Files\source\app-core\clockverse\;CMake Files\source\app-core\desk\;CMake Files\source\app-core\file_manager\;CMake Files\source\app-core\flag\;CMake Files\source\app-core\hash_hub\;CMake Files\source\app-core\hellomultiverse\;CMake Files\source\app-core\note\;CMake Files\source\app-core\photo\;CMake Files\source\app-core\picture\;CMake Files\source\app-core\projection\;CMake Files\source\app-core\resident_client\;CMake Files\source\app-core\resident_desktop\;CMake Files\source\app-core\store\;CMake Files\source\app-core\timer\;CMake Files\source\app-core\todo\;CMake Files\source\app-core\weather\;CMake Files\source\app-core\audio\;CMake Files\source\app-core\audio_decode_wave\;CMake Files\source\app-core\audio_resample_swresample\;CMake Files\source\app-core\video_input\;CMake Files\source\app-core\video_input_video_for_linux\;CMake Files\source\app-core\library\;CMake Files\source\app-core\gcom\;CMake Files\source\app-core\target_wallpaper_x11\;CMake Files\source\app-core\text_to_speech_azure\;CMake Files\source\app-core\text_to_speech_google\;CMake Files\source\app-core\userdatetime\;CMake Files\source\app-core\multimedia\;CMake Files\source\app-core\resident\;CMake Files\source\app-core\hash_base\;CMake Files\source\app-cidadedecuritiba\;CMake Files\source\app-cidadedecuritiba\alphaclock\;CMake Files\source\app-complex\;CMake Files\source\app-complex\drawing\;CMake Files\source\app-complex\form\;CMake Files\source\app-complex\video_capture\;CMake Files\source\app-simple\;CMake Files\source\app-simple\application\;CMake Files\source\app-simple\box\;CMake Files\source\app-simple\change_grub_default_entry\;CMake Files\source\app-simple\drawing\;CMake Files\source\app-simple\form\;CMake Files\source\app-simple\nanogui_example\;CMake Files\source\app-simple\networking_application\;CMake Files\source\app-simple\notify_drawing\;CMake Files\source\app-veriwell\;CMake Files\source\app-veriwell\asciimedia\;CMake Files\source\app-veriwell\keyboard\;CMake Files\source\app-veriwell\musical_player\;CMake Files\source\app-veriwell\musical_player_lite\;CMake Files\source\app-veriwell\verisimplevideo\;CMake Files\source\app-veriwell\waven\;CMake Files\source\app-veriwell\audio_decode_libmpg123\;CMake Files\source\app-veriwell\music_midi_rtmidi\;CMake Files\source\app-veriwell\multimedia\;CMake Files\source\app-veriwell\video_decode_ffmpeg\;CMake Files\source\game\;CMake Files\source\game\light\;CMake Files\source\game\estamira\;CMake Files\source\game\game_of_life\;CMake Files\source\game\tetris\;CMake Files\source\game\tictactoe\;CMake Files\source\game\arkanoid\;CMake Files\source\game\sokoban\;CMake Files\source\game\pacman\;CMake Files\source\game\coincube\;CMake Files\source\game\arch001\;CMake Files\source\port\;CMake Files\source\port\id3lib\;CMake Files\source\design\;CMake Files\source\design\design\;CMake Files\source\design\text_format\;CMake Files\operating-system\;CMake Files\operating-system\operating-system-linux\;CMake Files\operating-system\operating-system-linux\acme_linux\;CMake Files\operating-system\operating-system-linux\apex_linux\;CMake Files\operating-system\operating-system-linux\audio_mixer_alsa\;CMake Files\operating-system\operating-system-linux\aura_linux\;CMake Files\operating-system\operating-system-linux\node_linux\;CMake Files\operating-system\operating-system-linux\desktop_environment_gnome\;CMake Files\operating-system\operating-system-linux\music_midi_alsa\;CMake Files\operating-system\operating-system-posix\;CMake Files\operating-system\operating-system-posix\acme_posix\;CMake Files\operating-system\operating-system-posix\apex_posix\;CMake Files\operating-system\operating-system-posix\audio_alsa\;CMake Files\operating-system\operating-system-posix\aura_posix\;CMake Files\operating-system\operating-system-posix\windowing_x11\;CMake Files\operating-system\operating-system-posix\node_gtk\;CMake Files\operating-system\operating-system-posix\node_gnome\;CMake Files\operating-system\operating-system-posix\write_text_pango\;"/>
 		<Build>
-			<Target title="basis">
-				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
-				<Option type="3" />
-				<Option compiler="gcc" />
-				<Option createDefFile="1" />
-				<Option createStaticLib="1" />
-				<Compiler>
-					<Add option="-fPIC" />
-					<Add option="-m64" />
-					<Add option="-g" />
-					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux" />
-					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux/_include" />
-				</Compiler>
-				<Linker>
-					<Add option="-m64" />
-					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
-					<Add option="-lz" />
-					<Add option="-ldl" />
-					<Add option="-lrt" />
-					<Add option="-lbfd" />
-					<Add option="-lidn" />
-					<Add option="-lpthread" />
-					<Add option="-lncurses" />
-					<Add option="-lpcre2-8" />
-					<Add option="-lsqlite3" />
-					<Add option="-lsn" />
-					<Add option="-lacme" />
-					<Add option="-lapex" />
-					<Add option="-laqua" />
-					<Add option="-laura" />
-					<Add option="`pkg-config --libs glib-2.0 gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
-					<Add option="-Wl,-z,defs" />
-					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
-					<Add directory="$(#archive)/storage-linux/third/library/x64/" />
-				</Linker>
+			<Target title="all">
+				<Option working_dir="/home/camilo/solution/basis/source/app/axis"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/axis/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/axis/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/axis/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/axis/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
 			</Target>
-			<Target title="stage">
-				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
-				<Option type="3" />
-				<Option compiler="gcc" />
-				<Option createDefFile="1" />
-				<Option createStaticLib="1" />
+			<Target title="axis">
+				<Option output="/home/camilo/solution/basis/output/libaxis.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/camilo/solution/basis/source/app/axis"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
 				<Compiler>
-					<Add option="-pg" />
-					<Add option="-fPIC" />
-					<Add option="-m64" />
-					<Add option="-g" />
-					<Add option="-O0" />
-					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux" />
-					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux/_include" />
+					<Add option="-D_AXIS_LIBRARY"/>
+					<Add option="-DWITH_X11"/>
+					<Add option="-Ddefault_draw2d=draw2d_cairo"/>
+					<Add option="-Ddefault_imaging=imaging_freeimage"/>
+					<Add option="-Ddefault_write_text=write_text_pango"/>
+					<Add option="-Ddefault_audio=audio_alsa"/>
+					<Add option="-Ddefault_music_midi=music_midi_alsa"/>
+					<Add option="-Ddefault_node=node_linux"/>
+					<Add option="-DDESKTOP_ENVIRONMENT_GNOME"/>
+					<Add option="-DUNICODE"/>
+					<Add option="-D_UNICODE"/>
+					<Add directory="/home/camilo/solution/basis/."/>
+					<Add directory="/home/camilo/__config"/>
+					<Add directory="/home/camilo/solution/basis/source"/>
+					<Add directory="/home/camilo/solution/basis/source/app"/>
+					<Add directory="/home/camilo/solution/basis/source/app/_include"/>
+					<Add directory="/home/camilo/solution/basis/source/include"/>
+					<Add directory="/home/camilo/solution/basis/source/port/include"/>
+					<Add directory="/home/camilo/solution/basis/source/port"/>
+					<Add directory="/home/camilo/solution/basis/operating-system"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-posix"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-posix/_include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-linux"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-linux/_include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/third/include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/third/include/include"/>
+					<Add directory="/home/camilo/solution/basis/source/app/axis"/>
 				</Compiler>
-				<Linker>
-					<Add option="-pg" />
-					<Add option="-m64" />
-					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
-					<Add option="-lz" />
-					<Add option="-lbz2" />
-					<Add option="-ldl" />
-					<Add option="-lrt" />
-					<Add option="-lbfd" />
-					<Add option="-lX11" />
-					<Add option="-lX11-xcb" />
-					<Add option="-lxcb" />
-					<Add option="-lXinerama" />
-					<Add option="-lXmu" />
-					<Add option="-lXrandr" />
-					<Add option="-lXext" />
-					<Add option="-lXxf86vm" />
-					<Add option="-lXrender" />
-					<Add option="-lidn" />
-					<Add option="-lpthread" />
-					<Add option="-lncurses" />
-					<Add option="-lssl" />
-					<Add option="-lcrypto" />
-					<Add option="-lfreeimage" />
-					<Add option="-lpcre2-8" />
-					<Add option="`pkg-config --libs glib-2.0 gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
-					<Add option="`$(#archive)/tool/bin/not_platform_setup raspbian -laurasn`" />
-					<Add option="-lace" />
-					<Add option="-laqua" />
-					<Add option="-Wl,-z,defs" />
-					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
-				</Linker>
-				<ExtraCommands>
-					<Add before="../../operating-system-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
-					<Add before="cp -Rf $(#archive)/storage-linux/third/library/x64/* $(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				</ExtraCommands>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/axis/Makefile&quot;  VERBOSE=1 axis"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/axis/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/axis/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/axis/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
 			</Target>
-			<Target title="memdleak">
-				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
-				<Option type="3" />
-				<Option compiler="gcc" />
-				<Option createDefFile="1" />
-				<Option createStaticLib="1" />
+			<Target title="axis/fast">
+				<Option output="/home/camilo/solution/basis/output/libaxis.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/camilo/solution/basis/source/app/axis"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
 				<Compiler>
-					<Add option="-g" />
-					<Add option="-D_DEBUG" />
-					<Add option="-DMEMDLEAK" />
-					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux" />
-					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux/_include" />
+					<Add option="-D_AXIS_LIBRARY"/>
+					<Add option="-DWITH_X11"/>
+					<Add option="-Ddefault_draw2d=draw2d_cairo"/>
+					<Add option="-Ddefault_imaging=imaging_freeimage"/>
+					<Add option="-Ddefault_write_text=write_text_pango"/>
+					<Add option="-Ddefault_audio=audio_alsa"/>
+					<Add option="-Ddefault_music_midi=music_midi_alsa"/>
+					<Add option="-Ddefault_node=node_linux"/>
+					<Add option="-DDESKTOP_ENVIRONMENT_GNOME"/>
+					<Add option="-DUNICODE"/>
+					<Add option="-D_UNICODE"/>
+					<Add directory="/home/camilo/solution/basis/."/>
+					<Add directory="/home/camilo/__config"/>
+					<Add directory="/home/camilo/solution/basis/source"/>
+					<Add directory="/home/camilo/solution/basis/source/app"/>
+					<Add directory="/home/camilo/solution/basis/source/app/_include"/>
+					<Add directory="/home/camilo/solution/basis/source/include"/>
+					<Add directory="/home/camilo/solution/basis/source/port/include"/>
+					<Add directory="/home/camilo/solution/basis/source/port"/>
+					<Add directory="/home/camilo/solution/basis/operating-system"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-posix"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-posix/_include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-linux"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-linux/_include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/third/include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/third/include/include"/>
+					<Add directory="/home/camilo/solution/basis/source/app/axis"/>
 				</Compiler>
-				<Linker>
-					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
-				</Linker>
-				<ExtraCommands>
-					<Add before="../../operating-system-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
-				</ExtraCommands>
-			</Target>
-			<Target title="arm64_basis">
-				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
-				<Option type="3" />
-				<Option compiler="gcc" />
-				<Option createDefFile="1" />
-				<Option createStaticLib="1" />
-				<Compiler>
-					<Add option="-pg" />
-					<Add option="-g" />
-					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-raspbian" />
-				</Compiler>
-				<Linker>
-					<Add option="-pg" />
-					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
-					<Add option="-lz" />
-					<Add option="-ldl" />
-					<Add option="-lrt" />
-					<Add option="-lbfd" />
-					<Add option="-lX11" />
-					<Add option="-lX11-xcb" />
-					<Add option="-lxcb" />
-					<Add option="-lxcb-util" />
-					<Add option="-lXinerama" />
-					<Add option="-lXmu" />
-					<Add option="-lXrandr" />
-					<Add option="-lXext" />
-					<Add option="-lXxf86vm" />
-					<Add option="-lidn" />
-					<Add option="-lpthread" />
-					<Add option="-lncurses" />
-					<Add option="-lssl" />
-					<Add option="-lcrypto" />
-					<Add option="-lpcre2-8" />
-					<Add option="-lsqlite3" />
-					<Add option="`pkg-config --libs gtk+-3.0 gdk-3.0 gthread-2.0`" />
-					<Add option="-Wl,-z,defs" />
-					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
-				</Linker>
-				<ExtraCommands>
-					<Add before="mkdir -p $(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-					<Add before="cp -Rf $(#archive)/storage-raspbian/third/library/x64/* $(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				</ExtraCommands>
-			</Target>
-			<Target title="sanitizers">
-				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/basis/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/basis/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/basis/$(PROJECT_NAME)" />
-				<Option type="3" />
-				<Option compiler="gcc" />
-				<Option createDefFile="1" />
-				<Option createStaticLib="1" />
-				<Compiler>
-					<Add option="-fPIC" />
-					<Add option="-g" />
-					<Add option="-fsanitize=address" />
-					<Add option="-fsanitize-recover=address" />
-					<Add option="-fsanitize=undefined" />
-					<Add option="-D_DEBUG" />
-					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux" />
-					<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-linux/_include" />
-				</Compiler>
-				<Linker>
-					<Add option="-Wl,-rpath=\\$$$ORIGIN" />
-					<Add option="-lasan" />
-					<Add option="-lubsan" />
-					<Add option="-lz" />
-					<Add option="-lbz2" />
-					<Add option="-ldl" />
-					<Add option="-lrt" />
-					<Add option="-lbfd" />
-					<Add option="-lX11" />
-					<Add option="-lX11-xcb" />
-					<Add option="-lxcb" />
-					<Add option="-lXinerama" />
-					<Add option="-lXmu" />
-					<Add option="-lXrandr" />
-					<Add option="-lXext" />
-					<Add option="-lXxf86vm" />
-					<Add option="-lXrender" />
-					<Add option="-lidn" />
-					<Add option="-lpthread" />
-					<Add option="-lncurses" />
-					<Add option="-lssl" />
-					<Add option="-lcrypto" />
-					<Add option="-lfreeimage" />
-					<Add option="`pkg-config --libs gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
-					<Add option="`$(#archive)/tool/bin/not_platform_setup raspbian -laurasn`" />
-					<Add option="-lace" />
-					<Add option="-laqua" />
-					<Add option="-Wl,-z,defs" />
-					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
-				</Linker>
-				<ExtraCommands>
-					<Add before="../../operating-system-linux/stage/prepare_framework_h.sh $(PROJECT_DIR) $(TARGET_OBJECT_DIR)" />
-					<Add before="cp -Rf $(#archive)/third-linux/thirdparty/library/x64/* ../$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				</ExtraCommands>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/axis/Makefile&quot;  VERBOSE=1 axis/fast"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/axis/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/axis/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/axis/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
 			</Target>
 		</Build>
-		<VirtualTargets>
-			<Add alias="all_sanitizers" targets="sanitizers;" />
-		</VirtualTargets>
-		<Compiler>
-			<Add option="-std=c++14" />
-			<Add option="-fPIC" />
-			<Add option="-fexceptions" />
-			<Add option="-fnon-call-exceptions" />
-			<Add option="-fno-stack-protector" />
-			<Add option="-fno-omit-frame-pointer" />
-			<Add option="-Wno-pointer-arith" />
-			<Add option="-Wno-attributes" />
-			<Add option="-Winvalid-pch" />
-			<Add option="-pthread" />
-			<Add option="`pkg-config --cflags glib-2.0 gtk+-3.0 gdk-3.0 gthread-2.0`" />
-			<Add option="-D_AURA_LIBRARY" />
-			<Add directory="." />
-			<Add directory="$(PROJECT_DIR)" />
-			<Add directory="$(#archive)" />
-			<Add directory="$(#config)" />
-			<Add directory="$(WORKSPACE_DIR)/../../../source" />
-			<Add directory="$(WORKSPACE_DIR)/../../../source/inc" />
-			<Add directory="$(WORKSPACE_DIR)/../../../source/include" />
-			<Add directory="$(WORKSPACE_DIR)/../../../source/app/_include" />
-			<Add directory="$(WORKSPACE_DIR)/../../../source/app/" />
-			<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-$(#platform_modifier)" />
-			<Add directory="$(WORKSPACE_DIR)/../../../operating-system/operating-system-$(#platform_modifier)/_include" />
-			<Add directory="$(#archive)/third-$(#platform_modifier)/third/include" />
-			<Add directory="$(#sensitive)/sensitive/include" />
-			<Add directory="$(#archive)/third-linux/third/include" />
-		</Compiler>
-		<Linker>
-			<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
-		</Linker>
-		<Unit filename="_.cpp" />
-		<Unit filename="_.h" />
-		<Unit filename="__matter_ca2.cpp" />
-		<Unit filename="_defer.h" />
-		<Unit filename="account/_.h" />
-		<Unit filename="account/_account.h" />
-		<Unit filename="account/aaa_want_to_remove_account_authentication_map.h" />
-		<Unit filename="account/aaa_want_to_remove_account_authorization_task.h" />
-		<Unit filename="account/aaa_want_to_remove_account_object.h" />
-		<Unit filename="account/aaa_want_to_remove_account_user_authentication.h" />
-		<Unit filename="account/account.cpp" />
-		<Unit filename="account/authenticator.cpp" />
-		<Unit filename="account/authenticator.h" />
-		<Unit filename="account/const.h" />
-		<Unit filename="account/contact_list.cpp" />
-		<Unit filename="account/contact_list.h" />
-		<Unit filename="account/credentials.cpp" />
-		<Unit filename="account/credentials.h" />
-		<Unit filename="account/department.cpp" />
-		<Unit filename="account/department.h" />
-		<Unit filename="account/e_status.h" />
-		<Unit filename="account/interactive.cpp" />
-		<Unit filename="account/interactive.h" />
-		<Unit filename="account/network_authenticator.cpp" />
-		<Unit filename="account/network_authenticator.h" />
-		<Unit filename="account/product.cpp" />
-		<Unit filename="account/product.h" />
-		<Unit filename="account/product_array.cpp" />
-		<Unit filename="account/product_array.h" />
-		<Unit filename="account/storage.cpp" />
-		<Unit filename="account/storage.h" />
-		<Unit filename="account/storage_client.cpp" />
-		<Unit filename="account/storage_client.h" />
-		<Unit filename="account/system_storage.cpp" />
-		<Unit filename="account/system_storage.h" />
-		<Unit filename="account/user.cpp" />
-		<Unit filename="account/user.h" />
-		<Unit filename="account/user_array.cpp" />
-		<Unit filename="account/user_array.h" />
-		<Unit filename="account/user_set.cpp" />
-		<Unit filename="account/user_set.h" />
-		<Unit filename="account/usera.cpp" />
-		<Unit filename="account/usera.h" />
-		<Unit filename="application.h" />
-		<Unit filename="axispolicy/_.h" />
-		<Unit filename="axispolicy/_c.h" />
-		<Unit filename="axispolicy/policy_objc.h" />
-		<Unit filename="axispolicy/policy_objcpp.h" />
-		<Unit filename="axispolicy/policy_winrt.h" />
-		<Unit filename="compress/bsdiff/libbsdiff.h" />
-		<Unit filename="compress/compress.h" />
-		<Unit filename="compress/compress_bz.h" />
-		<Unit filename="console.h" />
-		<Unit filename="const/_const.h" />
-		<Unit filename="const/check.h" />
-		<Unit filename="const/context.h" />
-		<Unit filename="const/id.h" />
-		<Unit filename="const/idpool.cpp" />
-		<Unit filename="const/idpool.h" />
-		<Unit filename="const/impact.h" />
-		<Unit filename="const/message.h" />
-		<Unit filename="const/simple_command.h" />
-		<Unit filename="const/source.h" />
-		<Unit filename="const/status.h" />
-		<Unit filename="const/status_range_authentication.h" />
-		<Unit filename="const/thread_flag.h" />
-		<Unit filename="const/timer.h" />
-		<Unit filename="database/_.h" />
-		<Unit filename="database/database/_.h" />
-		<Unit filename="database/database/_impl.h" />
-		<Unit filename="database/database/const.h" />
-		<Unit filename="database/database/database.cpp" />
-		<Unit filename="database/database/database.h" />
-		<Unit filename="database/database/dataset.cpp" />
-		<Unit filename="database/database/dataset.h" />
-		<Unit filename="database/database/definition.cpp" />
-		<Unit filename="database/database/definition.h" />
-		<Unit filename="database/database/field_definition.cpp" />
-		<Unit filename="database/database/field_definition.h" />
-		<Unit filename="database/database/template.h" />
-		<Unit filename="database/simpledb/_.h" />
-		<Unit filename="database/simpledb/_simpledb.h" />
-		<Unit filename="database/simpledb/aaa_want_to_removesimpledb_database.h" />
-		<Unit filename="database/simpledb/file_set.cpp" />
-		<Unit filename="database/simpledb/file_set.h" />
-		<Unit filename="database/simpledb/item.cpp" />
-		<Unit filename="database/simpledb/item.h" />
-		<Unit filename="database/simpledb/queue_item.h" />
-		<Unit filename="database/simpledb/server.cpp" />
-		<Unit filename="database/simpledb/server.h" />
-		<Unit filename="database/simpledb/simpledb.cpp" />
-		<Unit filename="database/simpledb/simpledb.h" />
-		<Unit filename="database/simpledb/storage.cpp" />
-		<Unit filename="database/simpledb/storage.h" />
-		<Unit filename="database/simpledb/thread.cpp" />
-		<Unit filename="database/simpledb/thread.h" />
-		<Unit filename="database/simpledb/thread_localdatabase.cpp" />
-		<Unit filename="database/simpledb/thread_localdatabase.h" />
-		<Unit filename="database/simpledb/veiev_post.h" />
-		<Unit filename="database/sqlitedb/_.h" />
-		<Unit filename="database/sqlitedb/database.cpp" />
-		<Unit filename="database/sqlitedb/database.h" />
-		<Unit filename="database/sqlitedb/dataset.h" />
-		<Unit filename="framework.cpp" />
-		<Unit filename="framework.h">
-			<Option compile="1" />
-			<Option weight="0" />
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/CMakeFiles/axis.dir/cmake_pch.hxx">
+			<Option target="axis"/>
 		</Unit>
-		<Unit filename="framework_c.h" />
-		<Unit filename="geoip/_.h" />
-		<Unit filename="geoip/city.cpp" />
-		<Unit filename="geoip/city.h" />
-		<Unit filename="geoip/geoip.cpp" />
-		<Unit filename="geoip/global.h" />
-		<Unit filename="geoip/internal.h" />
-		<Unit filename="geoip/region_name.cpp" />
-		<Unit filename="geoip/time_zone.cpp" />
-		<Unit filename="geoip/update.cpp" />
-		<Unit filename="geoip/update.h" />
-		<Unit filename="graphics/render/water_routine.cpp" />
-		<Unit filename="graphics/render/water_routine.h" />
-		<Unit filename="html/html/_.h" />
-		<Unit filename="html/html/_const.h" />
-		<Unit filename="html/html/html.cpp" />
-		<Unit filename="html/html/html.h" />
-		<Unit filename="html/html_lite/_.h" />
-		<Unit filename="html/html_lite/attributes.cpp" />
-		<Unit filename="html/html_lite/attributes.h" />
-		<Unit filename="html/html_lite/common.h" />
-		<Unit filename="html/html_lite/entity_resolver.cpp" />
-		<Unit filename="html/html_lite/entity_resolver.h" />
-		<Unit filename="html/html_lite/reader.cpp" />
-		<Unit filename="html/html_lite/reader.h" />
-		<Unit filename="html/html_lite/tag.cpp" />
-		<Unit filename="html/html_lite/tag.h" />
-		<Unit filename="id.h" />
-		<Unit filename="include/_.cpp" />
-		<Unit filename="include/_.h" />
-		<Unit filename="include/_c_bridge.h" />
-		<Unit filename="include/_include.h" />
-		<Unit filename="include/objc.h" />
-		<Unit filename="include/objcpp.h" />
-		<Unit filename="include/winrt.h" />
-		<Unit filename="inline/__debug_box_clear_impl.h" />
-		<Unit filename="inline/__debug_box_set_impl.h" />
-		<Unit filename="inline/_acid_app_impl.h" />
-		<Unit filename="inline/_app_impl1.h" />
-		<Unit filename="inline/_application.h" />
-		<Unit filename="inline/_draw2d_impl.h" />
-		<Unit filename="inline/_new_impl.h" />
-		<Unit filename="inline/application/linux.h" />
-		<Unit filename="library.h" />
-		<Unit filename="math/_.h" />
-		<Unit filename="math/_math.h" />
-		<Unit filename="math/calculator/_.h" />
-		<Unit filename="math/calculator/calculator.cpp" />
-		<Unit filename="math/calculator/calculator.h" />
-		<Unit filename="math/calculator/element.cpp" />
-		<Unit filename="math/calculator/element.h" />
-		<Unit filename="math/calculator/parser.cpp" />
-		<Unit filename="math/calculator/parser.h" />
-		<Unit filename="math/calculator/parser_exception.cpp" />
-		<Unit filename="math/calculator/parser_exception.h" />
-		<Unit filename="math/calculator/payload.cpp" />
-		<Unit filename="math/calculator/payload.h" />
-		<Unit filename="math/calculator/scanner.cpp" />
-		<Unit filename="math/calculator/scanner.h" />
-		<Unit filename="math/calculator/token.h" />
-		<Unit filename="math/calculator/value.h" />
-		<Unit filename="math/kissfft/_.h" />
-		<Unit filename="math/kissfft/fft.cpp" />
-		<Unit filename="math/kissfft/fft.h" />
-		<Unit filename="math/kissfft/fft_guts.h" />
-		<Unit filename="math/kissfft/fft_shared.cpp" />
-		<Unit filename="math/kissfft/fftd.cpp" />
-		<Unit filename="math/kissfft/fftd.h" />
-		<Unit filename="math/kissfft/ifft.cpp" />
-		<Unit filename="math/kissfft/ifft.h" />
-		<Unit filename="math/kissfft/ifftd.cpp" />
-		<Unit filename="math/kissfft/ifftd.h" />
-		<Unit filename="math/kissfft/kissfft.h" />
-		<Unit filename="math/math_math.h" />
-		<Unit filename="message.h" />
-		<Unit filename="net/_.h" />
-		<Unit filename="net/_impl.h" />
-		<Unit filename="net/_net.h" />
-		<Unit filename="net/email_department.cpp" />
-		<Unit filename="net/email_department.h" />
-		<Unit filename="net/netserver/_.h" />
-		<Unit filename="net/netserver/socket.cpp" />
-		<Unit filename="net/netserver/socket.h" />
-		<Unit filename="net/netserver/socket_handler.cpp" />
-		<Unit filename="net/netserver/socket_handler.h" />
-		<Unit filename="net/netserver/socket_thread.cpp" />
-		<Unit filename="net/netserver/socket_thread.h" />
-		<Unit filename="net/sockets/_sockets.h" />
-		<Unit filename="net/sockets/bsd/smtp/smtp_socket.cpp" />
-		<Unit filename="net/sockets/bsd/smtp/smtp_socket.h" />
-		<Unit filename="net/sockets/bsd/smtp/smtpd_socket.cpp" />
-		<Unit filename="net/sockets/bsd/smtp/smtpd_socket.h" />
-		<Unit filename="net/sockets/bsd/timer/Event.cpp" />
-		<Unit filename="net/sockets/bsd/timer/EventHandler.cpp" />
-		<Unit filename="net/sockets/bsd/timer/EventTime.cpp" />
-		<Unit filename="net/sockets/bsd/timer/IEventOwner.cpp" />
-		<Unit filename="net/sockets/bsd/timer/_.h" />
-		<Unit filename="net/sockets/bsd/timer/event.h" />
-		<Unit filename="net/sockets/bsd/timer/event_handler.h" />
-		<Unit filename="net/sockets/bsd/timer/event_time.h" />
-		<Unit filename="net/sockets/bsd/timer/ievent_handler.h" />
-		<Unit filename="net/sockets/bsd/timer/ievent_owner.h" />
-		<Unit filename="net/sockets/bsd/webserver/ajp13.h" />
-		<Unit filename="net/sockets/bsd/webserver/ajp13_socket.h" />
-		<Unit filename="net/sockets/bsd/webserver/ajp_base_socket.h" />
-		<Unit filename="node/_.h" />
-		<Unit filename="node/_node.h" />
-		<Unit filename="node/linux/_.h" />
-		<Unit filename="node/linux/_linux.h" />
-		<Unit filename="node/linux/aaa_want_to_remove_application.h" />
-		<Unit filename="node/linux/application.h" />
-		<Unit filename="node/linux/console_window.h" />
-		<Unit filename="node/linux/copydesk.h" />
-		<Unit filename="node/linux/dir_context.h" />
-		<Unit filename="node/linux/dir_system.h" />
-		<Unit filename="node/linux/factory_exchange.h" />
-		<Unit filename="node/linux/file.h" />
-		<Unit filename="node/linux/file_context.h" />
-		<Unit filename="node/linux/file_system.h" />
-		<Unit filename="node/linux/interaction_impl.h" />
-		<Unit filename="node/linux/internal.h" />
-		<Unit filename="node/linux/os_context.h" />
-		<Unit filename="node/linux/process.h" />
-		<Unit filename="node/linux/root_tools.h" />
-		<Unit filename="node/linux/shell.h" />
-		<Unit filename="node/linux/shell_linux.h" />
-		<Unit filename="node/linux/stdio_file.h" />
-		<Unit filename="node/linux/thread.h" />
-		<Unit filename="node/posix/_posix.h" />
-		<Unit filename="node/posix/aaa_want_to_remove_ansios.h" />
-		<Unit filename="node/posix/aaa_want_to_remove_ansios_thread_impl.h" />
-		<Unit filename="node/posix/file_watcher.h" />
-		<Unit filename="node/posix/pipe.h" />
-		<Unit filename="node/posix/serial.h" />
-		<Unit filename="node/serial.h" />
-		<Unit filename="node/unix/_unix.h" />
-		<Unit filename="node/unix/aaa_want_to_remove_ansios.h" />
-		<Unit filename="node/unix/aaa_want_to_remove_ansios_thread_impl.h" />
-		<Unit filename="node/unix/file_watcher.h" />
-		<Unit filename="node/unix/pipe.h" />
-		<Unit filename="node/unix/serial.h" />
-		<Unit filename="node/windows/_.h" />
-		<Unit filename="node/windows/_node_windows.h" />
-		<Unit filename="node/windows/_windows.h" />
-		<Unit filename="node/windows/a.h" />
-		<Unit filename="node/windows/aaa_want_to_remove_RoundWindowApp.h" />
-		<Unit filename="node/windows/aaa_want_to_remove_handle.h" />
-		<Unit filename="node/windows/aaa_want_to_remove_printer.h" />
-		<Unit filename="node/windows/aaa_want_to_remove_simple_hold_handle.h" />
-		<Unit filename="node/windows/base/_windows.h" />
-		<Unit filename="node/windows/base/factory_exchange.h" />
-		<Unit filename="node/windows/base/implementation.h" />
-		<Unit filename="node/windows/base/print_job.h" />
-		<Unit filename="node/windows/buffer.h" />
-		<Unit filename="node/windows/command.h" />
-		<Unit filename="node/windows/console.h" />
-		<Unit filename="node/windows/copydesk.h" />
-		<Unit filename="node/windows/crypto.h" />
-		<Unit filename="node/windows/dir_context.h" />
-		<Unit filename="node/windows/dir_system.h" />
-		<Unit filename="node/windows/exception.h" />
-		<Unit filename="node/windows/factory_exchange.h" />
-		<Unit filename="node/windows/file.h" />
-		<Unit filename="node/windows/file_context.h" />
-		<Unit filename="node/windows/file_find.h" />
-		<Unit filename="node/windows/file_system.h" />
-		<Unit filename="node/windows/file_watcher.h" />
-		<Unit filename="node/windows/folder_watch.h" />
-		<Unit filename="node/windows/interaction_impl.h" />
-		<Unit filename="node/windows/ip_enum.h" />
-		<Unit filename="node/windows/os_context.h" />
-		<Unit filename="node/windows/pipe.h" />
-		<Unit filename="node/windows/process.h" />
-		<Unit filename="node/windows/registry.h" />
-		<Unit filename="node/windows/serial.h" />
-		<Unit filename="node/windows/shell.h" />
-		<Unit filename="node/windows/shell1.h" />
-		<Unit filename="node/windows/stdio_file.h" />
-		<Unit filename="node/windows/system_interaction_impl.h" />
-		<Unit filename="node/windows/thread.h" />
-		<Unit filename="node/windows/tts_speaker.h" />
-		<Unit filename="node/windows/uac_tools.h" />
-		<Unit filename="node/windows/user.h" />
-		<Unit filename="os/_.h" />
-		<Unit filename="os/_application.h" />
-		<Unit filename="os/_c.h" />
-		<Unit filename="os/_impl.h" />
-		<Unit filename="os/_os.h" />
-		<Unit filename="os/ansios/_.h" />
-		<Unit filename="os/ansios/_ansios.h" />
-		<Unit filename="os/ansios/_c.h" />
-		<Unit filename="os/ansios/ansios_file.h" />
-		<Unit filename="os/ansios/callstack.h" />
-		<Unit filename="os/ansios/datetime_c.h" />
-		<Unit filename="os/ansios/exception_engine.h" />
-		<Unit filename="os/ansios/file.h" />
-		<Unit filename="os/ansios/file_c.h" />
-		<Unit filename="os/ansios/file_raw.h" />
-		<Unit filename="os/ansios/multithreading.h" />
-		<Unit filename="os/cairo/_.h" />
-		<Unit filename="os/cairo/_impl.h" />
-		<Unit filename="os/cross/ansios/ansios.h" />
-		<Unit filename="os/cross/ansios/ansios_datetime_c.h" />
-		<Unit filename="os/cross/ansios/ansios_file.h" />
-		<Unit filename="os/cross/ansios/ansios_file_raw.h" />
-		<Unit filename="os/cross/ansios/exception_engine.h" />
-		<Unit filename="os/cross/cross.h" />
-		<Unit filename="os/cross/windows/_.h" />
-		<Unit filename="os/cross/windows/e.h" />
-		<Unit filename="os/cross/windows/windows.h" />
-		<Unit filename="os/cross/windows/windows_base.h" />
-		<Unit filename="os/cross/windows/windows_base_tsd.h" />
-		<Unit filename="os/cross/windows/windows_common_controls.h" />
-		<Unit filename="os/cross/windows/windows_crt.h" />
-		<Unit filename="os/cross/windows/windows_crtdefs.h" />
-		<Unit filename="os/cross/windows/windows_defs.h" />
-		<Unit filename="os/cross/windows/windows_errno.h" />
-		<Unit filename="os/cross/windows/windows_error.h" />
-		<Unit filename="os/cross/windows/windows_file.h" />
-		<Unit filename="os/cross/windows/windows_gdi.h" />
-		<Unit filename="os/cross/windows/windows_guid_def.h" />
-		<Unit filename="os/cross/windows/windows_internals.h" />
-		<Unit filename="os/cross/windows/windows_mmeapi.h" />
-		<Unit filename="os/cross/windows/windows_mmsystem.h" />
-		<Unit filename="os/cross/windows/windows_nls.h" />
-		<Unit filename="os/cross/windows/windows_nt.h" />
-		<Unit filename="os/cross/windows/windows_ntstatus.h" />
-		<Unit filename="os/cross/windows/windows_ole_automation.h" />
-		<Unit filename="os/cross/windows/windows_shared_memory.h" />
-		<Unit filename="os/cross/windows/windows_thread.h" />
-		<Unit filename="os/cross/windows/windows_thread_impl.h" />
-		<Unit filename="os/cross/windows/windows_time.h" />
-		<Unit filename="os/cross/windows/windows_types.h" />
-		<Unit filename="os/cross/windows/windows_user.h" />
-		<Unit filename="os/cross/windows/windows_wincon.h" />
-		<Unit filename="os/cross/windows/windows_winnt.h" />
-		<Unit filename="os/linux/_.h" />
-		<Unit filename="os/linux/_c.h" />
-		<Unit filename="os/linux/_linux.h" />
-		<Unit filename="os/linux/_user.h" />
-		<Unit filename="os/linux/appindicator.h" />
-		<Unit filename="os/linux/bloat_pad.h" />
-		<Unit filename="os/linux/cross_win_file.h" />
-		<Unit filename="os/linux/cross_win_gdi.h" />
-		<Unit filename="os/linux/cross_win_gdi_internal.h" />
-		<Unit filename="os/linux/debug.h" />
-		<Unit filename="os/linux/desktop_file.h" />
-		<Unit filename="os/linux/exception_engine.h" />
-		<Unit filename="os/linux/file.h" />
-		<Unit filename="os/linux/gnome.h" />
-		<Unit filename="os/linux/gnome_gnome.h" />
-		<Unit filename="os/linux/gnome_internal_glue.h" />
-		<Unit filename="os/linux/gnome_shared.h" />
-		<Unit filename="os/linux/graphics.h" />
-		<Unit filename="os/linux/graphics2.h" />
-		<Unit filename="os/linux/linux_linux.h" />
-		<Unit filename="os/linux/osdisplay.h" />
-		<Unit filename="os/linux/oswindow.h" />
-		<Unit filename="os/linux/process.h" />
-		<Unit filename="os/linux/user.h" />
-		<Unit filename="os/linux/user_private.h" />
-		<Unit filename="os/linux/window_cairo.h" />
-		<Unit filename="os/linux/window_xlib.h" />
-		<Unit filename="os/linux/windowing.h" />
-		<Unit filename="os/linux/x11.h" />
-		<Unit filename="os/linux/xdisplay.h" />
-		<Unit filename="os/x11/x11.h" />
-		<Unit filename="os/x11/x11_exception.h" />
-		<Unit filename="os/x11/x11_keyboard.h" />
-		<Unit filename="pcre/_.h" />
-		<Unit filename="pcre/_pcre.h" />
-		<Unit filename="pcre/code.cpp" />
-		<Unit filename="pcre/code.h" />
-		<Unit filename="pcre/code_impl.cpp" />
-		<Unit filename="pcre/code_impl.h" />
-		<Unit filename="pcre/context.cpp" />
-		<Unit filename="pcre/context.h" />
-		<Unit filename="pcre/context_impl.cpp" />
-		<Unit filename="pcre/context_impl.h" />
-		<Unit filename="pcre/regex.cpp" />
-		<Unit filename="pcre/regex.h" />
-		<Unit filename="pcre/system.cpp" />
-		<Unit filename="pcre/util_impl.cpp" />
-		<Unit filename="pcre/util_impl.h" />
-		<Unit filename="platform/_features.h" />
-		<Unit filename="platform/_impl.h" />
-		<Unit filename="platform/_platform.h" />
-		<Unit filename="platform/_system_xml_impl.h" />
-		<Unit filename="platform/all.h" />
-		<Unit filename="platform/application.cpp" />
-		<Unit filename="platform/application.h" />
-		<Unit filename="platform/geo_department.cpp" />
-		<Unit filename="platform/session.cpp" />
-		<Unit filename="platform/session.h" />
-		<Unit filename="platform/system.cpp" />
-		<Unit filename="platform/system.h" />
-		<Unit filename="update.h" />
-		<Unit filename="user.h" />
-		<Unit filename="user/_.h" />
-		<Unit filename="user/_user.h" />
-		<Unit filename="user/button.cpp" />
-		<Unit filename="user/button.h" />
-		<Unit filename="user/check_box.cpp" />
-		<Unit filename="user/check_box.h" />
-		<Unit filename="user/combo_box.cpp" />
-		<Unit filename="user/combo_box.h" />
-		<Unit filename="user/list_box.cpp" />
-		<Unit filename="user/list_box.h" />
-		<Unit filename="user/simple_ui_draw.cpp" />
-		<Unit filename="user/simple_ui_draw.h" />
-		<Unit filename="user/slider.cpp" />
-		<Unit filename="user/slider.h" />
-		<Unit filename="user/still.cpp" />
-		<Unit filename="user/still.h" />
-		<Unit filename="user/style.cpp" />
-		<Unit filename="user/style.h" />
-		<Unit filename="user/user.cpp" />
-		<Unit filename="user/user.h" />
-		<Unit filename="user/validate.cpp" />
-		<Unit filename="user/validate.h" />
-		<Unit filename="version/version.config.h" />
-		<Unit filename="version/version.h" />
-		<Extensions />
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/CMakeFiles/axis.dir/cmake_pch.hxx.cxx">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/_.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/_.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/_defer.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/aaa_want_to_move_xml.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/_.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/_account.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/authenticator.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/authenticator.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/const.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/contact_list.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/contact_list.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/credentials.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/credentials.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/department.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/department.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/e_status.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/interactive.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/interactive.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/network_authenticator.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/network_authenticator.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/product.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/product.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/product_array.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/product_array.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/storage.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/storage_client.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/storage_client.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/system_storage.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/system_storage.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/user.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/user.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/user_array.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/user_array.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/user_set.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/user_set.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/usera.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/account/usera.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/application.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/asset/cube_new.inl">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/asset/new.inl">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/astr.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/axispolicy/_.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/axispolicy/_c.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/axispolicy/policy_objc.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/axispolicy/policy_objcpp.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/axispolicy/policy_winrt.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/callback.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/console.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/console_slim.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/constant/idpool.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/constant/idpool.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/_.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/database/_.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/database/_impl.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/database/const.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/database/database.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/database/database.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/database/database_composite.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/database/database_composite.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/database/database_impl.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/database/database_impl.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/database/dataset.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/database/dataset.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/database/definition.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/database/definition.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/database/field_definition.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/database/field_definition.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/database/template.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/database/transaction.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/database/transaction.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/simpledb/_.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/simpledb/_simpledb.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/simpledb/file_set.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/simpledb/file_set.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/simpledb/item.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/simpledb/item.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/simpledb/queue_item.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/simpledb/server.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/simpledb/server.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/simpledb/simpledb.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/simpledb/simpledb.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/simpledb/storage.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/simpledb/storage.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/simpledb/thread.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/simpledb/thread.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/simpledb/thread_localdatabase.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/simpledb/thread_localdatabase.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/database/simpledb/veiev_post.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/framework.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/framework.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/framework_c.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/geoip/_.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/geoip/city.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/geoip/city.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/geoip/geoip.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/geoip/global.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/geoip/internal.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/geoip/region_name.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/geoip/time_zone.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/geoip/update.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/geoip/update.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/graphics/render/water_routine.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/graphics/render/water_routine.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/html/html/_.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/html/html/_const.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/html/html/html.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/html/html/html.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/html/html_lite/_.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/html/html_lite/attributes.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/html/html_lite/attributes.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/html/html_lite/common.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/html/html_lite/entity_resolver.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/html/html_lite/entity_resolver.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/html/html_lite/reader.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/html/html_lite/reader.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/html/html_lite/tag.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/html/html_lite/tag.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/id.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/include/_.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/include/_c.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/include/_c_bridge.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/include/_include.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/include/_no_templates.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/include/_setup.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/include/objc.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/include/objcpp.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/include/winrt.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/inline/__debug_box_clear_impl.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/inline/__debug_box_set_impl.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/inline/_acid_app_impl.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/inline/_app_impl1.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/inline/_application.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/inline/_console_old.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/inline/_draw2d_impl.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/inline/_new_impl.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/inline/application.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/inline/application_common.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/inline/console.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/inline/console_common.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/inline/library.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/library.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/_.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/calculator/_.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/calculator/calculator.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/calculator/calculator.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/calculator/element.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/calculator/element.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/calculator/parser.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/calculator/parser.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/calculator/parser_exception.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/calculator/parser_exception.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/calculator/result.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/calculator/result.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/calculator/scanner.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/calculator/scanner.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/calculator/token.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/kissfft/_.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/kissfft/fft.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/kissfft/fft.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/kissfft/fft_guts.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/kissfft/fft_shared.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/kissfft/fftd.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/kissfft/fftd.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/kissfft/ifft.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/kissfft/ifft.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/kissfft/ifftd.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/mathematics/kissfft/ifftd.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/message.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/_.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/_impl.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/_networking.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/email_department.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/email_department.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/_sockets.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/_.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/_strconv.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/config.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/smtp/smtp_socket.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/smtp/smtp_socket.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/smtp/smtpd_socket.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/smtp/smtpd_socket.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/socket_id_list.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/sockets.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/timer/Event.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/timer/EventHandler.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/timer/EventTime.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/timer/IEventOwner.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/timer/_.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/timer/event.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/timer/event_handler.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/timer/event_time.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/timer/ievent_handler.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/timer/ievent_owner.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/webserver/ajp13.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/webserver/ajp13_socket.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/networking/sockets/bsd/webserver/ajp_base_socket.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/platform/_features.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/platform/_generic_object_constructor_impl.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/platform/_impl.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/platform/_platform.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/platform/_system_xml_impl.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/platform/all.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/platform/application.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/platform/application.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/platform/checked.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/platform/geo_department.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/platform/geo_department.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/platform/muldiv64.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/platform/openweather_city.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/platform/session.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/platform/session.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/platform/system.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/platform/system.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/procedure.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/update.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/user/_.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/user/_user.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/user/combo_box.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/user/combo_box.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/user/list_box.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/user/list_box.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/user/simple_ui_draw.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/user/simple_ui_draw.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/user/slider.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/user/slider.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/user/style.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/user/style.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/user/user.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/user/user.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/user/validate.cpp">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/user/validate.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/version/version.config.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/version/version.h">
+			<Option target="axis"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/console/application_build_helper/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\console\application_build_helper\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/console/hello/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\console\hello\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/console/helloearth/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\console\helloearth\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/console/hellosolarsystem/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\console\hellosolarsystem\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/console/readlines/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\console\readlines\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/acme/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\acme\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/apex/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\apex\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/app/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\app\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/just_message_box/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\just_message_box\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/message_box/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\message_box\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/aqua/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\aqua\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/aura/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\aura\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\axis\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/base/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\base\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/draw2d_cairo/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\draw2d_cairo\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/crypto_openssl/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\crypto_openssl\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/compress_bzip2/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\compress_bzip2\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/compress_zlib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\compress_zlib\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/folder_zip/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\folder_zip\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/database_sqlite3/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\database_sqlite3\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/regular_expression_pcre2/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\regular_expression_pcre2\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\experience_core\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_anthill/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\experience_anthill\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_tranquillum/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\experience_tranquillum\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/imaging_freeimage/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\imaging_freeimage\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/nanogui/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\nanogui\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/bred/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\bred\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/core/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\core\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/programming/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\programming\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app/scripting/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app\scripting\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/announcecom/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\announcecom\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/api_azure/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\api_azure\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/api_ca2/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\api_ca2\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/api_google/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\api_google\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/addressbook/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\addressbook\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/audioaura/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\audioaura\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/auraclick/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\auraclick\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/auratype/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\auratype\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/chronometer/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\chronometer\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/clockverse/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\clockverse\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/desk/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\desk\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/file_manager/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\file_manager\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/flag/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\flag\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/hash_hub/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\hash_hub\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/hellomultiverse/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\hellomultiverse\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/note/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\note\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/photo/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\photo\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/picture/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\picture\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/projection/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\projection\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/resident_client/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\resident_client\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/resident_desktop/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\resident_desktop\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/store/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\store\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/timer/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\timer\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/todo/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\todo\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/weather/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\weather\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/audio/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\audio\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/audio_decode_wave/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\audio_decode_wave\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/audio_resample_swresample/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\audio_resample_swresample\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/video_input/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\video_input\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/video_input_video_for_linux/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\video_input_video_for_linux\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/library/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\library\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/gcom/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\gcom\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/target_wallpaper_x11/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\target_wallpaper_x11\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/text_to_speech_azure/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\text_to_speech_azure\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/text_to_speech_google/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\text_to_speech_google\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/userdatetime/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\userdatetime\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/multimedia/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\multimedia\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/resident/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\resident\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-core/hash_base/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-core\hash_base\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-cidadedecuritiba/alphaclock/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-cidadedecuritiba\alphaclock\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-complex/drawing/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-complex\drawing\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-complex/form/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-complex\form\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-complex/video_capture/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-complex\video_capture\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/application/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-simple\application\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/box/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-simple\box\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/change_grub_default_entry/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-simple\change_grub_default_entry\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/drawing/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-simple\drawing\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/form/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-simple\form\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/nanogui_example/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-simple\nanogui_example\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/networking_application/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-simple\networking_application\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/notify_drawing/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-simple\notify_drawing\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/asciimedia/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-veriwell\asciimedia\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/keyboard/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-veriwell\keyboard\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/musical_player/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-veriwell\musical_player\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/musical_player_lite/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-veriwell\musical_player_lite\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/verisimplevideo/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-veriwell\verisimplevideo\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/waven/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-veriwell\waven\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/audio_decode_libmpg123/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-veriwell\audio_decode_libmpg123\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/music_midi_rtmidi/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-veriwell\music_midi_rtmidi\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/multimedia/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-veriwell\multimedia\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/video_decode_ffmpeg/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\app-veriwell\video_decode_ffmpeg\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/game/light/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\game\light\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/game/estamira/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\game\estamira\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/game/game_of_life/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\game\game_of_life\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/game/tetris/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\game\tetris\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/game/tictactoe/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\game\tictactoe\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/game/arkanoid/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\game\arkanoid\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/game/sokoban/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\game\sokoban\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/game/pacman/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\game\pacman\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/game/coincube/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\game\coincube\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/game/arch001/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\game\arch001\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/port/id3lib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\port\id3lib\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/design/design/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\design\design\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/source/design/text_format/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\source\design\text_format\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-linux/acme_linux/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-linux\acme_linux\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-linux/apex_linux/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-linux\apex_linux\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-linux/audio_mixer_alsa/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-linux\audio_mixer_alsa\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-linux/aura_linux/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-linux\aura_linux\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-linux/node_linux/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-linux\node_linux\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-linux\desktop_environment_gnome\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-linux/music_midi_alsa/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-linux\music_midi_alsa\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/acme_posix/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\acme_posix\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/apex_posix/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\apex_posix\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/audio_alsa/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\audio_alsa\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/aura_posix/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\aura_posix\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/windowing_x11/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\windowing_x11\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/node_gtk/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\node_gtk\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/node_gnome/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\node_gnome\"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/write_text_pango/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\write_text_pango\"/>
+		</Unit>
 	</Project>
 </CodeBlocks_project_file>

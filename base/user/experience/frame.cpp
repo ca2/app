@@ -221,6 +221,15 @@ namespace experience
 
       }
 
+      if(get_control_box()->is_this_screen_visible())
+      {
+
+         get_control_box()->order(::e_zorder_top_most);
+
+      }
+
+      get_control_box()->set_need_layout();
+
    }
 
 
@@ -835,8 +844,6 @@ namespace experience
 
          get_control_box()->display();
 
-         get_control_box()->order(::e_zorder_top_most);
-
       }
       else
       {
@@ -844,8 +851,6 @@ namespace experience
          get_control_box()->hide();
 
       }
-
-      get_control_box()->set_need_layout();
 
    }
 

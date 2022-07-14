@@ -135,6 +135,8 @@ namespace user
       m_bEdgeGestureDisableTouchWhenFullscreen = false;
       m_bVisible = false;
 
+      m_bPendingZorder = false;
+
       m_bMouseHoverOnCapture = false;
       m_bMouseHover = false;
       m_bClickDefaultMouseHandling = false;
@@ -4200,6 +4202,17 @@ namespace user
          m_bSketchToDesignLayout = false;
 
          design_layout(pgraphics);
+
+
+
+      }
+
+      bool bZorder = check_child_zorder();
+
+      if(bZorder)
+      {
+
+         design_zorder();
 
       }
 
@@ -8700,6 +8713,40 @@ namespace user
    //}
 
 
+   bool interaction::check_child_zorder()
+   {
+
+      if(m_bPendingZorder)
+      {
+
+         return true;
+
+      }
+
+      if (m_puserinteractionpointeraChild)
+      {
+
+         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild.get();
+
+         for (auto & pchild : puserinteractionpointeraChild->interactiona())
+         {
+
+            if (pchild->layout().sketch().zorder().is_change_request())
+            {
+
+               m_bPendingZorder = true;
+
+            }
+
+         }
+
+      }
+
+      return m_bPendingZorder;
+
+   }
+
+
    zorder interaction::zorder(enum_layout elayout) const
    {
 
@@ -9051,6 +9098,8 @@ namespace user
       }
 
       //return true;
+
+      m_bPendingZorder = false;
 
    }
 
@@ -11221,26 +11270,6 @@ namespace user
 
       bool bAppearance = layout().sketch().appearance() != layout().design().appearance();
 
-      bool bZorder = false;
-
-      if (m_puserinteractionpointeraChild)
-      {
-
-         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild.get();
-
-         for (auto & pchild : puserinteractionpointeraChild->interactiona())
-         {
-
-            if (pchild->layout().sketch().zorder().is_change_request())
-            {
-
-               bZorder = true;
-
-            }
-
-         }
-
-      }
 
       ::point_i32 pointSketch = layout().sketch().origin();
 
@@ -11371,6 +11400,8 @@ namespace user
 
       }
 
+      bool bZorder = check_child_zorder();
+
       m_bUpdateVisual |= bDisplay || bZorder || bLayout;
 
       bUpdateBuffer = bLayout;
@@ -11399,13 +11430,14 @@ namespace user
 
          }
 
-         if (bZorder)
-         {
-
-            design_zorder();
-
-         }
-
+//         if (bZorder)
+//         {
+//
+//            //design_zorder();
+//            m_bPendingZorder = true;
+//
+//         }
+//
          if (bLayout)
          {
 

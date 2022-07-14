@@ -238,7 +238,7 @@ namespace graphics
 
          m_iCurrentBuffer = 1;
          
-         output_debug_string("buffer_lock_round_swap_key_buffers (1)\n");
+         //output_debug_string("buffer_lock_round_swap_key_buffers (1)\n");
 
       }
       else
@@ -246,7 +246,7 @@ namespace graphics
 
          m_iCurrentBuffer = 0;
 
-         output_debug_string("buffer_lock_round_swap_key_buffers (0)\n");
+         //output_debug_string("buffer_lock_round_swap_key_buffers (0)\n");
 
       }
       

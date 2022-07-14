@@ -1601,9 +1601,13 @@ namespace acme
    void node::shell_open(const ::file::path & path, const ::string & strParam, const ::file::path & pathFolder)
    {
 
-      //throw ::interface_only();
+      throw ::interface_only();
 
-      //throw ::interface_only();
+   }
+
+
+   void node::open_url(const ::string & strUrl)
+   {
 
       throw ::interface_only();
 

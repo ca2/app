@@ -2179,6 +2179,12 @@ namespace user
             INFORMATION("e_message_left_button_double_click");
             
          }
+         else if(pmessage->m_atom == e_message_left_button_down)
+         {
+
+            INFORMATION("e_message_left_button_down");
+
+         }
 
          if (::is_set(m_puserinteraction) && !m_puserinteraction->m_bUserElementOk)
          {

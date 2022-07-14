@@ -889,13 +889,15 @@ namespace experience
 
             toggle_appearance(e_appearance_transparent_frame);
 
+            defer_save_window_placement();
+
             display();
+
+            set_reposition();
 
             set_need_layout();
 
             set_need_redraw();
-
-            defer_save_window_placement();
 
             post_redraw();
 

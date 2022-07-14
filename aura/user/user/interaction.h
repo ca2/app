@@ -152,6 +152,7 @@ namespace user
 
 
       bool                                         m_bSketchToDesignLayout;
+      bool                                         m_bPendingZorder;
 
       // <3ThomasBorreggardSørensen_!!
       __pointer(::material_object)                 m_pmaterialCommandHandler;
@@ -714,6 +715,9 @@ namespace user
       virtual void set_activation(::e_activation eactivation, enum_layout elayout = e_layout_sketch);
 
       virtual void display(::e_display edisplay = e_display_default, ::e_activation eactivation = ::e_activation_default) override;
+
+
+      virtual bool check_child_zorder();
 
       virtual ::zorder zorder(enum_layout elayout = e_layout_design) const;
       virtual void order(::zorder zorder);

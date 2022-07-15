@@ -34,6 +34,11 @@
 #include "acme/_defer.h"
 
 
+#if defined(LINUX) || defined(FREEBSD)
+extern char _binary__matter_zip_start[];
+extern char _binary__matter_zip_end[];
+#endif
+
 
 #if defined(WINDOWS)
 int WINAPI WinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
@@ -87,9 +92,9 @@ int main(int argc, char * argv[], char * envp[])
 
 #if defined(LINUX) || defined(FREEBSD)
 
-   papp->m_pchar_binary__matter_zip_start = embed_resource::get_start();
+   papp->m_pchar_binary__matter_zip_start = _binary__matter_zip_start;
 
-   papp->m_pchar_binary__matter_zip_end = embed_resource::get_end();
+   papp->m_pchar_binary__matter_zip_end = _binary__matter_zip_end;
 
 #elif defined(ANDROID)
 

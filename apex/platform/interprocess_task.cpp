@@ -23,22 +23,22 @@ interprocess_task::~interprocess_task()
 void interprocess_task::do_task(const string& strObject, const string& strMember, const payload_array& payloada)
 {
 
-   ::interprocess_communication::tx& txc = m_pcall->m_pinterprocessintercommunication->tx(m_pcall->m_strApp, m_atomPid);
-
-   string strVara = m_pcall->m_pinterprocessintercommunication->str_from_va(payloada);
-
-   m_iTask = m_pcall->m_pinterprocessintercommunication->m_iTaskSeed++;
-
-   string strSource;
-
-   string strPid = __string(m_pcall->m_pinterprocessintercommunication->m_atomApp);
-
-   strSource.format(" from %s:%s ", m_pcall->m_pinterprocessintercommunication->m_strApp.c_str(), strPid.c_str());
-
-   string str = "call " + __string(m_iTask) + strSource + strObject + "." + strMember + ": " + strVara;
-
    try
    {
+
+      ::interprocess_communication::tx& txc = m_pcall->m_pinterprocessintercommunication->tx(m_pcall->m_strApp, m_atomPid);
+
+      string strVara = m_pcall->m_pinterprocessintercommunication->str_from_va(payloada);
+
+      m_iTask = m_pcall->m_pinterprocessintercommunication->m_iTaskSeed++;
+
+      string strSource;
+
+      string strPid = __string(m_pcall->m_pinterprocessintercommunication->m_atomApp);
+
+      strSource.format(" from %s:%s ", m_pcall->m_pinterprocessintercommunication->m_strApp.c_str(), strPid.c_str());
+
+      string str = "call " + __string(m_iTask) + strSource + strObject + "." + strMember + ": " + strVara;
 
       //txc.send(str, m_pcall->m_duration);
       txc.send(str, 1_min);

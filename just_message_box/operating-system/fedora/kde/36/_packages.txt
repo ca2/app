@@ -1,0 +1,7 @@
+app/app_just_message_box
+app/draw2d_cairo
+platform-linux/node_linux
+operating-system-posix/windowing_xcb
+platform-linux/aura_linux
+operating-system-posix/aura_posix
+operating-system-posix/write_text_pango

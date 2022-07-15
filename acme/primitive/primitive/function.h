@@ -30,7 +30,7 @@ enum enum_timeout
 }; // enum enum_timeout
 
 
-#define __as(p) { e_as, p }
+#define _as(p) { e_as, p }
 
 
 struct function_common

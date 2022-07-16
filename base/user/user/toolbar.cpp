@@ -90,6 +90,7 @@ namespace user
       MESSAGE_LINK(e_message_non_client_hittest, pchannel, this, &toolbar::_001OnNcHitTest);
       MESSAGE_LINK(e_message_non_client_calcsize, pchannel, this, &toolbar::on_message_non_client_calculate_size);
       MESSAGE_LINK(e_message_create, pchannel, this, &toolbar::on_message_create);
+      MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &toolbar::on_message_left_button_double_click);
       //#ifdef WINDOWS_DESKTOP
 //      MESSAGE_LINK(TB_SETBITMAPSIZE, pchannel, this, &toolbar::_001OnSetBitmapSize);
 //      MESSAGE_LINK(TB_SETBUTTONSIZE, pchannel, this, &toolbar::_001OnSetButtonSize);
@@ -1464,6 +1465,19 @@ return { 0,0 };
    {
 
       set_timer(e_timer_command_probe, 333_ms);
+
+   }
+
+
+   void toolbar::on_message_left_button_double_click(::message::message* pmessage)
+   {
+
+      if (::is_set(m_pitemLButtonDown) && m_pitemLButtonDown->m_iItem >= 0)
+      {
+
+         pmessage->m_bRet = true;
+
+      }
 
    }
 

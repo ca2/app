@@ -403,8 +403,8 @@ namespace user
       //      || edisplay == e_display_full_screen
       //      || (edisplay == e_display_iconic && !bInitialFramePosition)))
       if (edisplay == e_display_zoomed
-      && edisplay == e_display_full_screen
-      && edisplay == e_display_iconic)
+      || edisplay == e_display_full_screen
+      || edisplay == e_display_iconic)
       {
 
          //         if(bInitialFramePosition)
@@ -668,6 +668,42 @@ namespace user
 
       //return true;
 
+   }
+
+
+   void box::display_restore()
+   {
+      
+      auto edisplayPrevious = m_windowrectangle.m_edisplayPrevious;
+      
+      if(edisplayPrevious == e_display_restore)
+      {
+         
+         display(e_display_normal);
+         
+      }
+      else
+      {
+      
+         display(edisplayPrevious);
+         
+      }
+      
+   }
+
+
+   void box::design_iconic()
+   {
+      
+      if (const_layout().design().display() != e_display_iconic)
+      {
+
+         m_windowrectangle.m_edisplayPrevious = const_layout().design().display();
+
+      }
+
+      ::user::interaction::design_iconic();
+      
    }
 
 

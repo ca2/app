@@ -4483,7 +4483,7 @@ namespace user
  } struct_t1;
 // static_assert(sizeof(struct_t) == 8);
 
-printf("sizeof(struct_t1) = %d\n", sizeof(struct_t1));
+printf("sizeof(struct_t1) = %" PRIuPTR "\n", sizeof(struct_t1));
 
       #ifdef _DEBUG
       printf("_DEBUG defined\n");

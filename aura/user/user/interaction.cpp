@@ -326,7 +326,7 @@ namespace user
       m_pwindow = nullptr;
       m_bFullScreen = false;
 
-      printf("interaction::common_construct - m_pwindow (0x%x)\n", m_pwindow);
+      printf("interaction::common_construct - m_pwindow (0x%" PRI0xPTR ")\n", (uptr) m_pwindow);
 
       fflush(stdout);
 
@@ -2109,6 +2109,36 @@ namespace user
    }
 
 
+   void interaction::display_iconic()
+   {
+      
+#ifdef INFO_LAYOUT_DISPLAY
+
+      INFORMATION("interaction_layout::display e_display_iconic");
+
+#endif
+
+      layout().sketch().display() = e_display_iconic;
+
+   }
+
+
+   void interaction::display_restore()
+   {
+      
+#ifdef INFO_LAYOUT_DISPLAY
+
+      INFORMATION("interaction_layout::display e_display_restore");
+
+#endif
+      
+      auto edisplayDesign = const_layout().design().display();
+      
+      layout().sketch().display() = e_display_restore;
+
+   }
+
+
    void interaction::display(::e_display edisplay, ::e_activation eactivation)
    {
 
@@ -2122,6 +2152,19 @@ namespace user
          INFORMATION("interaction_layout::display e_display_normal");
 
 #endif
+         
+#if DEBUG_LEVEL > 0
+
+      if (m_pdescriptor.is_set() && m_puserinteractionParent == nullptr)
+      {
+
+         INFORMATION("Parent is Null. Display Request -> normal");
+
+      }
+
+#endif
+         
+        layout().sketch().display() = e_display_normal;
 
       }
       else if (edisplay == e_display_hide)
@@ -2132,16 +2175,18 @@ namespace user
          INFORMATION("interaction_layout::display e_display_hide");
 
 #endif
+         
+#if DEBUG_LEVEL > 0
+         if (m_pdescriptor.is_set() && m_puserinteractionParent == nullptr)
+         {
 
-      }
-      else if (edisplay == e_display_default)
-      {
+            INFORMATION("Parent is Null. Display Request -> hide");
 
-#ifdef INFO_LAYOUT_DISPLAY
+         }
 
-         INFORMATION("interaction_layout::display e_display_default");
-
-#endif
+   #endif
+         
+         layout().sketch().display() = e_display_hide;
 
       }
       else if (edisplay == e_display_zoomed)
@@ -2154,16 +2199,14 @@ namespace user
          INFORMATION("interaction_layout::display e_display_zoomed");
 
 #endif
+         
+         layout().sketch().display() = e_display_zoomed;
 
       }
       else if (edisplay == e_display_iconic)
       {
-
-#ifdef INFO_LAYOUT_DISPLAY
-
-         INFORMATION("interaction_layout::display e_display_iconic");
-
-#endif
+         
+         display_iconic();
 
       }
       else if (edisplay == e_display_full_screen)
@@ -2176,48 +2219,24 @@ namespace user
          INFORMATION("interaction_layout::display e_display_full_screen");
 
 #endif
+         
+         layout().sketch().display() = e_display_full_screen;
 
       }
-      else
+      else if (edisplay == e_display_restore)
       {
 
-#ifdef INFO_LAYOUT_DISPLAY
-
-         INFORMATION("interaction_layout::display (unknown)");
-
-#endif
+         display_restore();
 
       }
-
-#if DEBUG_LEVEL > 0
-
-      if (edisplay == e_display_normal)
+      else if (edisplay == e_display_default)
       {
 
-         if (m_pdescriptor.is_set() && m_puserinteractionParent == nullptr)
-         {
+   #ifdef INFO_LAYOUT_DISPLAY
 
-            INFORMATION("Parent is Null. Display Request -> normal");
+            INFORMATION("interaction_layout::display e_display_default");
 
-         }
-
-      }
-      else if (edisplay == e_display_hide)
-      {
-
-         if (m_pdescriptor.is_set() && m_puserinteractionParent == nullptr)
-         {
-
-            INFORMATION("Parent is Null. Display Request -> hide");
-
-         }
-
-      }
-
-#endif
-
-      if (edisplay == e_display_default)
-      {
+   #endif
 
          auto edisplayCurrent = layout().sketch().display();
 
@@ -2262,7 +2281,11 @@ namespace user
       else
       {
 
-         layout().sketch().display() = edisplay;
+#ifdef INFO_LAYOUT_DISPLAY
+
+         INFORMATION("interaction_layout::display (unknown)");
+
+#endif
 
       }
 
@@ -8843,6 +8866,27 @@ namespace user
    }
 
 
+   void interaction::design_iconic()
+   {
+      
+      if (get_parent() != nullptr)
+      {
+
+         WARNING("iconify child window?");
+
+         layout().sketch() = e_display_normal;
+
+      }
+      else
+      {
+
+         design_window_minimize(layout().sketch().activation());
+
+      }
+
+   }
+
+
    void interaction::design_display()
    {
 
@@ -8879,20 +8923,7 @@ namespace user
       else if (edisplaySketch == ::e_display_iconic)
       {
 
-         if (get_parent() != nullptr)
-         {
-
-            WARNING("iconify child window?");
-
-            layout().sketch() = e_display_normal;
-
-         }
-         else
-         {
-
-            design_window_minimize(layout().sketch().activation());
-
-         }
+         design_iconic();
 
       }
       else if (edisplaySketch == ::e_display_zoomed)
@@ -8914,7 +8945,26 @@ namespace user
          }
 
       }
-      else if (edisplaySketch == ::e_display_restore
+      else if (edisplaySketch == ::e_display_restore)
+      {
+         
+         if (get_parent() != nullptr)
+         {
+
+            WARNING("restoring child window?");
+
+            layout().sketch() = e_display_normal;
+
+         }
+         else
+         {
+
+            design_window_restore(edisplaySketch);
+
+         }
+         
+      }
+      else if(edisplaySketch == ::e_display_normal
          || edisplaySketch == ::e_display_compact
          || edisplaySketch == ::e_display_broad)
       {
@@ -13496,7 +13546,7 @@ namespace user
 
    void interaction::design_window_restore(edisplay edisplay)
    {
-
+      
       auto activation = layout().sketch().activation();
 
       auto zorder = layout().sketch().zorder();
@@ -13583,7 +13633,7 @@ namespace user
 
          order_top();
 
-         display(e_display_normal, e_activation_set_foreground);
+         display(e_display_restore, e_activation_set_foreground);
 
       }
 
@@ -15980,7 +16030,7 @@ namespace user
             if (edisplay == e_display_zoomed)
             {
 
-               display(e_display_restore);
+               display(e_display_normal);
 
             }
             else

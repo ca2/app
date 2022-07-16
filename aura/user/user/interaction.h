@@ -660,6 +660,10 @@ namespace user
       virtual void design_layout(::draw2d::graphics_pointer & pgraphics);
 
 
+      virtual void display_iconic();
+      virtual void display_restore();
+      
+      virtual void design_iconic();
       virtual void design_window_minimize(::e_activation eactivation) override;
       virtual void design_window_maximize() override;
       virtual void design_window_full_screen(const ::rectangle_i32& rectangleHint = nullptr) override;

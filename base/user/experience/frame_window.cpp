@@ -1897,13 +1897,6 @@ namespace experience
 
          }
 
-         if (const_layout().sketch().display() != e_display_iconic)
-         {
-
-            m_windowrectangle.m_edisplayPrevious = const_layout().sketch().display();
-
-         }
-
          if (!_001CallOnBeforeAppearance())
          {
 

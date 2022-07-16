@@ -8964,8 +8964,13 @@ namespace user
          }
          
       }
-      else if(edisplaySketch == ::e_display_normal
-         || edisplaySketch == ::e_display_compact
+      else if(edisplaySketch == ::e_display_normal)
+      {
+         
+         INFORMATION("::user::interaction::design_display e_display_normal");
+         
+      }
+      else if(edisplaySketch == ::e_display_compact
          || edisplaySketch == ::e_display_broad)
       {
 

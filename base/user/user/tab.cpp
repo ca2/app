@@ -197,7 +197,7 @@ namespace user
       // second colon starts the text.
       // if the text is a ID, the ID will be result when no translation
       // if the text is a text (in English), the text (in English) will be the result when there is no translation.
-      //set_tille("text://hellomultiverse/AKDFJG./:Main Tab"));
+      //set_tille("text://hello_multiverse/AKDFJG./:Main Tab"));
       ppane->set_title(strTitle);
 
       ppane->m_bTabPaneVisible   = bVisible;

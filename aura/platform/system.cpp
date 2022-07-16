@@ -3018,9 +3018,9 @@ namespace aura
 //         TRACE("reach");
 //      }
 //
-//      if(!ansi_compare_ci(pszLibrary, "app_core_hellomultiverse"))
+//      if(!ansi_compare_ci(pszLibrary, "app_core_hello_multiverse"))
 //      {
-//         TRACE("reach app_core_hellomultiverse");
+//         TRACE("reach app_core_hello_multiverse");
 //      }
 //
 //      if(!ansi_compare_ci(pszLibrary, "experience_lite"))
@@ -3028,9 +3028,9 @@ namespace aura
 //         TRACE("reach experience_lite");
 //      }
 //
-//      if(!ansi_compare_ci(pszLibrary, "app_core_hellomultiverse"))
+//      if(!ansi_compare_ci(pszLibrary, "app_core_hello_multiverse"))
 //      {
-//         TRACE("reach app_core_hellomultiverse");
+//         TRACE("reach app_core_hello_multiverse");
 //      }
 //
 //      if(!library.open(pszLibrary, true))

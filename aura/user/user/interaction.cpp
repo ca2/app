@@ -3829,7 +3829,7 @@ namespace user
 
                      //   //   string strType = __type_name(pinteraction);
 
-                     //   //   if(strType.contains("hellomultiverse") && strType.contains("frame"))
+                     //   //   if(strType.contains("hello_multiverse") && strType.contains("frame"))
                      //   //   {
 
                      //   //      output_debug_string(".");

@@ -105,7 +105,7 @@ namespace user
 
       virtual __pointer(::user::document) create_new_document(::create * pcreate);
       virtual __pointer(::user::frame_window) create_new_frame(::user::document * pDoc, __pointer(::user::frame_window) pOther, ::create * pcreate);
-      virtual void InitialUpdateFrame(__pointer(::user::frame_window) pFrame, ::user::document * pDoc, bool bMakeVisible = true);
+      virtual void prepare_frame(::user::frame_window * pframe, ::user::document * pdocument, bool bMakeVisible = true);
       virtual bool save_all_modified();     // for all documents
       virtual void pre_close_all_documents();
       virtual void close_all_documents(bool bEndSession);

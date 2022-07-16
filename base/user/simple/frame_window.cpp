@@ -3853,10 +3853,10 @@ void simple_frame_window::on_create_bars()
 }
 
 
-void simple_frame_window::InitialUpdateFrame(::user::document * pDoc,bool bMakeVisible)
+void simple_frame_window::prepare_frame(::user::document * pdocument, bool bMakeVisible)
 {
 
-   ::user::frame_window::InitialUpdateFrame(pDoc,bMakeVisible);
+   ::user::frame_window::prepare_frame(pdocument, bMakeVisible);
 
    create_bars();
 

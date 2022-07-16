@@ -1198,7 +1198,7 @@ namespace user
 //#endif
 
 
-   void frame_window::InitialUpdateFrame(::user::document * pDoc, bool bMakeVisible)
+   void frame_window::prepare_frame(::user::document * pdocument, bool bMakeVisible)
    {
 
       // if the frame does not have an active ::user::impact, set to first pane
@@ -1258,10 +1258,10 @@ namespace user
       //m_bLockSketchToDesign = false;
 
       // update frame counts and frame title (may already have been visible)
-      if (pDoc != nullptr)
+      if (pdocument != nullptr)
       {
 
-         pDoc->update_frame_counts();
+         pdocument->update_frame_counts();
 
       }
 

@@ -328,7 +328,7 @@ namespace filemanager
             if (::is_null(pframe))
             {
 
-               pframe->m_puserframewindow->InitialUpdateFrame(nullptr, true);
+               pframe->m_puserframewindow->prepare_frame(nullptr, true);
 
                pframe->display(e_display_normal);
 

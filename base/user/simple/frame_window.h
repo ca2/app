@@ -219,7 +219,7 @@ public:
 
    virtual void on_after_graphical_update() override;
 
-   virtual void InitialUpdateFrame(::user::document * pDoc,bool bMakeVisible) override;
+   void prepare_frame(::user::document * pdocument,bool bMakeVisible) override;
 
    virtual void _001OnTimer(::timer * ptimer) override;
 

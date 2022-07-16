@@ -11874,11 +11874,15 @@ namespace user
 
    void interaction::on_after_set_parent()
    {
+      
+#ifdef REPORT_OFFSET
 
       printf("interaction::on_after_set_parent(1) m_pwindow (0x%x)\n", m_pwindow);
 
       fflush(stdout);
 
+#endif
+      
       m_puserinteractionTopLevel = _top_level();
 
       m_puserframeParent = _parent_frame();
@@ -11886,10 +11890,14 @@ namespace user
       m_puserframeTopLevel = _top_level_frame();
 
       m_pwindow = _window();
+      
+#ifdef REPORT_OFFSET
 
       printf("interaction::on_after_set_parent(2) m_pwindow (0x%x)\n", m_pwindow);
 
       fflush(stdout);
+      
+#endif
 
       m_oswindow = m_pwindow->oswindow();
 

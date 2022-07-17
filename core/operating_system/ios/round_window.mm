@@ -264,6 +264,7 @@ void round_window::round_window_edit_on_set_focus(int l, int t, int r, int b, co
    rect.origin.y = t;
    rect.size.width = r - l;
    rect.size.height = b - t;
+   
  
 
    NSString * strText = [ NSString stringWithUTF8String: pszText ];

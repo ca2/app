@@ -754,6 +754,7 @@ namespace user
       virtual void display_previous_restore();
 
       // Client Rect : e_layout_design : Design/_001OnDraw time
+      virtual void get_input_client_area(RECTANGLE_I32* lprect);
       virtual void get_client_rect(RECTANGLE_I32* lprect);
       virtual ::rectangle_i32 get_client_rect();
 

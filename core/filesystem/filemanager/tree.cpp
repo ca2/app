@@ -434,7 +434,7 @@ namespace filemanager
 
             _017EnsureVisible(pathUser, context);
 
-            auto ptreeitem = find_item_by_user_path(pathUser);
+            __pointer(::data::tree_item) ptreeitem = find_item_by_user_path(pathUser);
 
             _001SelectItem(ptreeitem);
 
@@ -445,7 +445,7 @@ namespace filemanager
             while (ptreeitem)
             {
 
-               auto ptreeitemNext = ptreeitem->get_child_next_or_parent();
+               __pointer(::data::tree_item) ptreeitemNext = ptreeitem->get_child_next_or_parent();
 
                if (ptreeitem->m_iLevel >= iMaxLevel && !ptreeitem->is_expanded())
                {

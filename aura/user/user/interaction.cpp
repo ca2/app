@@ -514,7 +514,7 @@ namespace user
 
    ::windowing::window * interaction::_window() const
    {
-
+      
       auto puserinteractionTopLevel = ((interaction *)this)->_top_level();
 
       if (::is_null(puserinteractionTopLevel))
@@ -528,8 +528,20 @@ namespace user
 
       if (::is_null(pinteractionimpl))
       {
-
-         return nullptr;
+         
+         if(::is_set(puserinteractionTopLevel->m_puserinteractionParent))
+         {
+         
+            pinteractionimpl = puserinteractionTopLevel->m_puserinteractionParent->m_pinteractionimpl;
+            
+         }
+         
+         if(::is_null(pinteractionimpl))
+         {
+         
+            return nullptr;
+            
+         }
 
       }
 
@@ -8246,7 +8258,7 @@ namespace user
       else
       {
 
-         m_puserinteraction->get_client_rect(&sizeparentparams.rectangle);
+         get_input_client_area(&sizeparentparams.rectangle);
 
       }
 
@@ -13712,6 +13724,13 @@ namespace user
 
    }
 
+
+   void interaction::get_input_client_area(RECTANGLE_I32* lprect)
+   {
+   
+      get_client_rect(lprect);
+      
+   }
 
    void interaction::get_client_rect(RECTANGLE_I32 * lprect)
    {

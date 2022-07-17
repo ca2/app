@@ -54,6 +54,21 @@ namespace user
    }
 
 
+   void main_window::get_input_client_area(RECTANGLE_I32 * prectangle)
+   {
+      
+      get_client_rect(prectangle);
+   
+      if(is_top_level() && ::is_set(m_pwindow))
+      {
+         
+         prectangle->top += m_pwindow->get_top_margin();
+         
+      }
+      
+   }
+
+
    ::index main_window::get_preferred_restore(RECTANGLE_I32 * prectanglePreferredRestore)
    {
 

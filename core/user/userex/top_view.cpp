@@ -120,12 +120,16 @@ namespace userex
 
       ::duration d1 = t1.elapsed();
 
+#ifdef VERBOSE_LOG      
+
       if(d1 > 50_ms)
       {
 
          CATEGORY_INFORMATION(prodevian, "(more than 50ms)(H) "<< strType << "::_000OnDraw took " << integral_millisecond(d1) << ".\n");
 
       }
+
+#endif
 
    }
 

@@ -46,12 +46,16 @@ namespace experience_core
 
       ::duration d1 = t1.elapsed();
 
+#ifdef VERBOSE_LOG      
+
       if (d1 > 50_ms)
       {
 
          CATEGORY_INFORMATION(prodevian, "is_activeis_activeis_active more than 50ms user::control_box_button wndframe_core");
 
       }
+
+#endif
 
       auto rectangleClient = get_client_rect();
 
@@ -166,12 +170,16 @@ namespace experience_core
 
       ::duration d2 = t1.elapsed();
 
+#ifdef VERBOSE_LOG      
+
       if (d2 > 50_ms)
       {
 
          CATEGORY_INFORMATION(prodevian, "(d2) more than 50ms user::control_box_button wndframe_core");
 
       }
+
+#endif
 
    }
 

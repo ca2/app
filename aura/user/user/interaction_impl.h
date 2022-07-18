@@ -71,30 +71,42 @@ namespace user
 #if defined(WINDOWS_DESKTOP) && !defined(ENABLE_TEXT_SERVICES_FRAMEWORK)
       //HIMC                                    m_himc;
 #endif
+      bool                                      m_bEatSizeEvent;
+      bool                                      m_bEatMoveEvent;
+      bool                                      m_bTransparentMouseEvents;
+      bool                                      m_bOfflineRender;
+
+      bool                                      m_bCursorRedraw;
+      bool                                      m_bLockWindowUpdate;
+      bool                                      m_bOkToUpdateScreen;
+      bool                                      m_bScreenRelativeMouseMessagePosition;
+
+      bool                                      m_bTranslateMouseMessageCursor;
+      bool                                      m_bComposite;
+      bool                                      m_bUpdateGraphics;
+      bool                                      m_bPointInside;
+
+      bool                                      m_bPendingRedraw;
+      bool                                      m_bPadding1;
+      bool                                      m_bPadding2;
+      bool                                      m_bPadding3;
+
       ::IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::interaction_impl *  m_pImpl2;
       ::rectangle_i32                           m_rectangleWindowScreen;
       ::rectangle_i32                           m_rectangleClientScreen;
       int                                       m_iState1;
       ::u32                                     m_uCodePage;
       int                                       m_iLangId;
-      bool                                      m_bEatSizeEvent;
-      bool                                      m_bEatMoveEvent;
       ::duration                                    m_durationLastExposureAddUp;
       __reference(prodevian)                    m_pprodevian;
       __reference(::user::thread)               m_puserthread;
       __pointer_array(::matter)                 m_matteraProdevian;
-      bool                                      m_bTransparentMouseEvents;
-      bool                                      m_bOfflineRender;
       string                                    m_strBitmapSource;
-//      bool                                      m_bFocus;
       __pointer(::windowing::windowing)         m_pwindowing;
-      bool                                      m_bCursorRedraw;
       double                                    m_dProdevianFps;
       double                                    m_dNominalFps;
       double                                    m_dOutputFps;
-      bool                                      m_bLockWindowUpdate;
       point_i32                                 m_pointMouseMove;
-      bool                                      m_bOkToUpdateScreen;
       ::size_i32                                m_sizeDrawn;
       reference_addressa                        m_ptraRedraw;
 
@@ -103,16 +115,11 @@ namespace user
 
       ::list < __pointer(::message::message) >  m_messagelist;
 
-      bool                                      m_bPointInside;
       ::point_i32                               m_pointInside;
       //::user::primitive *                       m_pprimitiveFocus;
       __pointer(::user::element)                m_pelementSoftwareKeyboard;
 
       __pointer(::windowing::window)            m_pwindow;
-      bool                                      m_bScreenRelativeMouseMessagePosition;
-      bool                                      m_bTranslateMouseMessageCursor;
-      bool                                      m_bComposite;
-      bool                                      m_bUpdateGraphics;
 
       point_i32                                 m_point;
       size_i32                                  m_size;
@@ -138,7 +145,6 @@ namespace user
       __pointer(::user::interaction)            m_puserinteractionKeyboardGainingFocusIfAny;
       __pointer(::user::interaction)            m_puserinteractionToKillKeyboardFocus;
 
-      bool                                      m_bPendingRedraw;
       ::duration                                m_durationLastRedraw;
       ::user::interaction_array                 m_userinteractionaHideOnConfigurationChange;
       

@@ -872,12 +872,16 @@ namespace user
 
       auto d1 = t1.elapsed();
 
+#ifdef VERBOSE_LOG      
+
       if (d1 > 50_ms)
       {
 
          CATEGORY_INFORMATION(prodevian, "plain_edit took more than 50ms to draw " << d1.integral_millisecond());
 
       }
+
+#endif
 
    }
 

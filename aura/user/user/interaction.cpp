@@ -117,6 +117,14 @@ namespace user
    interaction::interaction()
    {
 
+      if((offsetof(::user::interaction, m_oswindow) & 4) != 0)
+      {
+
+         throw "invalid alignment";
+
+      }
+
+
       user_interaction_common_construct();
 
    }
@@ -3463,11 +3471,16 @@ namespace user
 
                }
 
+#ifdef VERBOSE_LOG               
+
+
                CATEGORY_INFORMATION(prodevian, type.m_strName << " drawing took more than 50ms to complete ("
                   << durationElapsed.integral_millisecond() << ")!!\n");
 
                   // let's trye to see what happened?
                   //_001CallOnDraw(pgraphics);
+
+#endif
 
             }
 
@@ -3504,6 +3517,8 @@ namespace user
 
             auto durationElapsed = tickEnd - tickStart;
 
+#ifdef VERBOSE_LOG               
+
             if (durationElapsed > 100_ms)
             {
 
@@ -3516,6 +3531,8 @@ namespace user
 
 
             }
+
+#endif
 
 #endif //__DEBUG
 
@@ -3592,6 +3609,8 @@ namespace user
 
             ::duration durationElapsed = tickEnd - tickStart;
 
+#ifdef VERBOSE_LOG               
+
             if (durationElapsed > 100_ms)
             {
 
@@ -3604,6 +3623,8 @@ namespace user
                //_001OnDraw(pgraphics);
 
             }
+
+#endif
 
 #endif //__DEBUG
 
@@ -4448,6 +4469,8 @@ namespace user
 
                auto d1 = t1.elapsed();
 
+#ifdef VERBOSE_LOG
+
                if (d1 > 50_ms)
                {
 
@@ -4457,6 +4480,8 @@ namespace user
                      d1.integral_millisecond() << "::duration.\n");
 
                }
+
+#endif
 
             }
 

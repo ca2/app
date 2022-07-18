@@ -108,7 +108,7 @@ namespace experience_core
          
       }
       
-      output_debug_string("style::_001TabOnDrawSchema01\n");
+      //output_debug_string("style::_001TabOnDrawSchema01\n");
 
       auto pstyle = ptab->get_style(pgraphics);
 

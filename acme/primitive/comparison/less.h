@@ -36,6 +36,21 @@ template <> struct StaticAssertionFailed <true> {};
 #define STATIC_ASSERT(x) \
     {StaticAssertionFailed <x> ();}
 
+// https://stackoverflow.com/questions/23367775/pragma-packshow-with-gcc - Morten Jensen
+      /*
+   The static_assert macro will generate an error at compile-time, if the predicate is false
+   but will only work for predicates that are resolvable at compile-time!
+
+   E.g.: to assert the size of a data structure, static_assert(sizeof(struct_t) == 10)
+*/
+#define COMPILE_TIME_ASSERT(COND,MSG) typedef char static_assertion_##MSG[(!!(COND))*2-1]
+/* token pasting madness: */
+#define COMPILE_TIME_ASSERT3(X,L)     COMPILE_TIME_ASSERT(X,at_line_##L)             /* add line-number to error message for better warnings, especially GCC will tell the name of the variable as well */
+#define COMPILE_TIME_ASSERT2(X,L)     COMPILE_TIME_ASSERT3(X, L)               /* expand line-number */
+#define compile_time_assert(X)        COMPILE_TIME_ASSERT2(X, __LINE__)        /* call with line-number macro */
+
+#define PACKED  __attribute__ ((gcc_struct, __packed__))
+
 
 namespace comparison
 {

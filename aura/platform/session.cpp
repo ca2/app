@@ -1974,7 +1974,7 @@ namespace aura
 //
 ////      puserinteraction->place(rectangleScreen);
 ////
-////      puserinteraction->display(e_display_normal);
+////      puserinteraction->display(e_display_restored);
 ////
 ////      puserinteraction->set_need_layout();
 ////

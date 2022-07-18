@@ -1496,7 +1496,7 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
 
          ::property_set set;
 
-         return ::call_sync(::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()),pszCommandLine,::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()),e_display_normal, 2_min, set);
+         return ::call_sync(::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()),pszCommandLine,::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()),e_display_restored, 2_min, set);
 
 #endif
 

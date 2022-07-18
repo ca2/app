@@ -461,7 +461,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
       bool bTimedOut = false;
 
-      u32 dwExitCode = psystem->process().synch(strPath,e_display_normal,2_s),&bTimedOut);
+      u32 dwExitCode = psystem->process().synch(strPath,e_display_restored,2_s),&bTimedOut);
 
       if(bTimedOut)
       {

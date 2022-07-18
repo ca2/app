@@ -3527,6 +3527,23 @@ namespace user
 
       }
 
+#ifdef REPORT_OFFSETS
+
+      printf("(14) m_pwindow.m_p (0x%x)\n", m_pwindow.m_p);
+      printf("(14) m_pwindow.m_pelement (0x%x)\n", m_pwindow.m_pelement);
+      printf("(14) offset of m_pImpl2 in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_pImpl2));
+      printf("(14) offset of m_durationLastExposureAddUp in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_durationLastExposureAddUp));
+      printf("(14) offset of m_strBitmapSource in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_strBitmapSource));
+      printf("(14) offset of m_bCursorRedraw in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_bCursorRedraw));
+      printf("(14) offset of m_bLockWindowUpdate in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_bLockWindowUpdate));
+      printf("(14) offset of m_bOkToUpdateScreen in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_bOkToUpdateScreen));
+      printf("(14) offset of m_sizeDrawn in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_sizeDrawn));
+      printf("(14) offset of m_pthreadMouseLeave in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_pthreadMouseLeave));
+      printf("(14) offset of m_bPointInside in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_bPointInside));
+      printf("(14) offset of m_pwindow in ::user::interaction_impl = %d\n", offsetof(::user::interaction_impl, m_pwindow));
+
+#endif
+
       auto pwindow = m_pwindow;
 
       if(!pwindow)
@@ -5367,7 +5384,7 @@ printf("sizeof(struct_t1) = %" PRIuPTR "\n", sizeof(struct_t1));
 
       pinteraction->place(rectangle);
 
-      pinteraction->display(e_display_normal, e_activation_no_activate);
+      pinteraction->display(e_display_restored, e_activation_no_activate);
 
    }
 
@@ -6859,10 +6876,10 @@ printf("sizeof(struct_t1) = %" PRIuPTR "\n", sizeof(struct_t1));
 
          //m_puserinteraction->layout().sketch().origin() = pmove->m_point;
 
-         //if (m_puserinteraction->layout().sketch().display() != e_display_normal)
+         //if (m_puserinteraction->layout().sketch().display() != e_display_restored)
          //{
 
-           // m_puserinteraction->display(e_display_normal);
+           // m_puserinteraction->display(e_display_restored);
 
          //}
 
@@ -6925,10 +6942,10 @@ printf("sizeof(struct_t1) = %" PRIuPTR "\n", sizeof(struct_t1));
 //
 //         m_puserinteraction->layout().sketch() = psize->m_size;
 //
-//         if (m_puserinteraction->layout().sketch().display() != e_display_normal)
+//         if (m_puserinteraction->layout().sketch().display() != e_display_restored)
 //         {
 //
-//            m_puserinteraction->display(e_display_normal);
+//            m_puserinteraction->display(e_display_restored);
 //
 //         }
 //
@@ -6974,10 +6991,10 @@ printf("sizeof(struct_t1) = %" PRIuPTR "\n", sizeof(struct_t1));
 
          //m_puserinteraction->layout().sketch().origin() = pmove->m_point;
 
-         //if (m_puserinteraction->layout().sketch().display() != e_display_normal)
+         //if (m_puserinteraction->layout().sketch().display() != e_display_restored)
          //{
 
-         // m_puserinteraction->display(e_display_normal);
+         // m_puserinteraction->display(e_display_restored);
 
          //}
 

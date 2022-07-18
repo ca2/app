@@ -199,7 +199,7 @@ namespace prompt
                         utf8_to_unicode(strLine),
                         nullptr,
                         nullptr,
-                        e_display_normal))
+                        e_display_restored))
                   {
                      string strNewText = str + "executing " + strLine  + "...";
                      strNewText.replace("\r\n", "\n");

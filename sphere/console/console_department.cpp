@@ -107,7 +107,7 @@ namespace console
          }
          else
          {
-            i.get_top_level()->display(e_display_normal);
+            i.get_top_level()->display(e_display_restored);
 
          }
 

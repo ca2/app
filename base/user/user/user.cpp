@@ -694,7 +694,7 @@ namespace base
 //         //__pointer(::simple_frame_window) pframe = get_document()->get_type_impact < ::bergedge::pane_impact >()->get_parent_frame();
 //         //if(pframe != nullptr)
 //         //{
-//         //   pframe->display(e_display_normal);
+//         //   pframe->display(e_display_restored);
 //         //}
 //      }
 //      else
@@ -704,7 +704,7 @@ namespace base
 //         //   __pointer(::simple_frame_window) pframe = get_document()->get_type_impact < ::bergedge::impact >()->get_parent_frame();
 //         //   if(pframe != nullptr)
 //         //   {
-//         //      pframe->display(e_display_normal);
+//         //      pframe->display(e_display_restored);
 //         //      if(pframe->GetTypedParent < ::plugin::host_interaction > () != nullptr)
 //         //      {
 //         //         pframe->GetTypedParent < ::plugin::host_interaction > ()->on_layout(pgraphics);

@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "base/user/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "aura/id.h"
 #include "aqua/xml.h"
 #include "acme/constant/timer.h"
@@ -864,7 +866,7 @@ auto pwindowing = windowing();
 
       place(rectangleWindow);
 
-      display(e_display_normal, e_activation_no_activate);
+      display(e_display_restored, e_activation_no_activate);
 
       set_need_redraw();
 

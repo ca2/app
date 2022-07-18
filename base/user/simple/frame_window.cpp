@@ -9,7 +9,7 @@
 
 
 #define TEST 0
-
+//#define VERBOSE_LOG
 
 namespace base
 {
@@ -1451,7 +1451,7 @@ void simple_frame_window::ToggleFullScreen()
    if (layout().is_full_screen())
    {
 
-      display(e_display_normal);
+      display(e_display_restored);
 
    }
    else
@@ -1879,7 +1879,7 @@ void simple_frame_window::_001OnActivateApp(::message::message * pmessage)
    //   //   if (layout().is_iconic())
    //   //   {
 
-   //   //      display(e_display_normal);
+   //   //      display(e_display_restored);
 
    //   //   }
    //   //   
@@ -2157,7 +2157,7 @@ void simple_frame_window::on_frame_position()
       if (const_layout().design().display() == ::e_display_iconic)
       {
 
-         display(e_display_normal);
+         display(e_display_restored);
 
       }
 
@@ -2465,12 +2465,16 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
          string strType = __type_name(this);
 
+#ifdef VERBOSE_LOG
+
          if(d1 > 50_ms)
          {
 
             CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::duration.\n");
 
          }
+
+#endif
 
          if (iDrawingOrder == DRAWING_ORDER_CLIENT_OVER)
          {
@@ -2489,12 +2493,16 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
             auto d1 = t1.elapsed();
 
+#ifdef VERBOSE_LOG            
+
             if(d1 > 50_ms)
             {
 
                CATEGORY_INFORMATION(prodevian, "(more than 50ms) draw_frame_and_control_box_over took " << d1.integral_millisecond() << "::duration.\n");
 
             }
+
+#endif
 
          }
 
@@ -3381,7 +3389,11 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                         //}
 
+#ifdef VERBOSE_LOG                        
+
                         CATEGORY_INFORMATION(prodevian, "(more than 50ms) " << strType << "::_001OnDraw took " << integral_millisecond(d1) << "::duration.");
+
+#endif
 
                      }
 
@@ -3411,12 +3423,16 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
       ::duration d1 = t1.elapsed();
 
+#ifdef VERBOSE_LOG      
+
       if(d1 > 50_ms)
       {
 
          CATEGORY_INFORMATION(prodevian, "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << "::duration.\n");
 
       }
+
+#endif
 
    }
 
@@ -3487,12 +3503,16 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                         ::duration d1 = t1.elapsed();
 
+#ifdef VERBOSE_LOG                        
+
                         if (d1 > 50_ms)
                         {
 
                            CATEGORY_INFORMATION(prodevian, "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << ".\n");
 
                         }
+
+#endif
 
                      }
 
@@ -3517,7 +3537,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
    if(dxx > 50_ms)
    {
 
-      output_debug_string("what???xx");
+      //output_debug_string("what???xx");
 
    }
 
@@ -3525,7 +3545,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
    if(dx > 50_ms)
    {
 
-      output_debug_string("what???");
+      //output_debug_string("what???");
 
    }
 
@@ -3537,12 +3557,16 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
       ::duration d1 = t1.elapsed();
 
+#ifdef VERBOSE_LOG      
+
       if(d1 > 50_ms)
       {
 
          CATEGORY_INFORMATION(prodevian, "(more than 50ms) simple_frame_windows::_001DrawThis took " << integral_millisecond(d1) << ".\n");
 
       }
+
+#endif
 
    }
 
@@ -3668,7 +3692,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //   {
 //      if (layout().is_full_screen())
 //      {
-//         display(e_display_normal);
+//         display(e_display_restored);
 //         return true;
 //      }
 //      __pointer(::user::interaction) puserinteractionParentFrame = get_parent_frame();

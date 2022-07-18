@@ -4780,11 +4780,11 @@ void application::show_critical_error_log()
    //
    //#elif defined(WINDOWS)
    //
-   //      call_async("C:\\Program Files (x86)\\Notepad++\\Notepad++.exe", "\"" + strFile + "\"", "", e_display_normal, false);
+   //      call_async("C:\\Program Files (x86)\\Notepad++\\Notepad++.exe", "\"" + strFile + "\"", "", e_display_restored, false);
    //
    //#elif defined(LINUX)
    //
-   //      call_async("gedit", "\"" + strFile + "\"", "", e_display_normal, false);
+   //      call_async("gedit", "\"" + strFile + "\"", "", e_display_restored, false);
    //
    //#else
    //
@@ -7105,7 +7105,7 @@ void application::hotplugin_host_starter_start_sync(const ::string& pszCommandLi
 
       auto pnode = psystem->node();
 
-      return pnode->call_sync(m_psystem->m_pacmedirectory->app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, m_psystem->m_pacmedirectory->app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_normal, 2_minute, set);
+      return pnode->call_sync(m_psystem->m_pacmedirectory->app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, m_psystem->m_pacmedirectory->app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_restored, 2_minute, set);
 
 #endif
 

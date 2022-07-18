@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "aura/operating_system.h"
-//#include "base/user/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "aura/operating_system/_user.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 
@@ -728,7 +730,7 @@ namespace user
 //            else if (swpFlags & SWP_SHOWWINDOW)
 //            {
 //
-//               display(e_display_normal, e_activation_no_activate);
+//               display(e_display_restored, e_activation_no_activate);
 //
 //            }
 //

@@ -1110,14 +1110,20 @@ namespace acme
 
       string strName = m_strName;
 
+      INFORMATION("library::create_factory \""+strName+"\": starting...");
+
       auto pfactory = ::factory::get_factory(strName);
 
       if (!pfactory)
       {
 
+         INFORMATION("library::create_factory ::factory::get_factory(\""+strName+"\") failed!!");
+
          throw ::exception(error_wrong_state);
 
       }
+
+      INFORMATION("library::create_factory ::factory::get_factory(\""+strName+"\") succeeded!!");
 
       if (!m_pfnFactory)
       {
@@ -1126,10 +1132,18 @@ namespace acme
 
          strFactoryFunction = strName + "_factory";
 
+         INFORMATION("library::create_factory factory function not initialized!!");
+         INFORMATION("library::create_factory factory function name: \"" << strFactoryFunction << "\"");
+
          auto pfnFactory = get < PFN_factory >(strFactoryFunction);
 
          if (::is_null(pfnFactory))
          {
+
+            WARNING("library::create_factory factory function: \"" << strFactoryFunction << "\" doesn't exist!!!");
+
+            WARNING("Is _factory.cpp included in the project \"" << strName << "\"???");
+            WARNING("Does it contain the implementation of factory function \"" << strFactoryFunction << "\"???");
 
             string strDetails;
 
@@ -1138,6 +1152,8 @@ namespace acme
             throw ::exception(error_function_entry_not_found, "Function \"" + strFactoryFunction + "\" not found", strDetails);
 
          }
+
+         INFORMATION("library::create_factory " << strFactoryFunction);
 
          m_pfnFactory = pfnFactory;
 

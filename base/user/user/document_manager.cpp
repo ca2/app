@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "base/user/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 
 
 #define _wcsdec(_cpc1, _cpc2) ((_cpc1)>=(_cpc2) ? nullptr : (_cpc2)-1)
@@ -563,7 +565,7 @@ namespace user
        trans         if (pMainWnd->is_iconic())
       nCmdShow = SW_RESTORE;
       else
-      nCmdShow = e_display_normal;
+      nCmdShow = e_display_restored;
       //}
       pMainWnd->display(nCmdShow);
        trans      if (nCmdShow != SW_MINIMIZE)

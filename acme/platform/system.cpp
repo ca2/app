@@ -40,7 +40,7 @@ m_bJoinable = true;
 
    m_ewindowing = e_windowing_none;
 
-   m_etracelevel = e_trace_level_error;
+   m_etracelevel = e_trace_level_information;
 
    trace_category_static_init(this);
 
@@ -909,6 +909,7 @@ __pointer(::acme::library) system::create_library(const ::string& strLibrary)
 
    //auto estatus = plibrary->open(strLibrary);
 
+   INFORMATION("system::create_library Going to open library \"" << strLibrary << "\".");
 
    plibrary->open(strLibrary);
 
@@ -921,6 +922,8 @@ __pointer(::acme::library) system::create_library(const ::string& strLibrary)
 
    if (!plibrary->is_opened())
    {
+
+      INFORMATION("Library wasn't opened (\"" << strLibrary << "\")");
 
       throw ::exception(error_failed, "Library wasn't opened (\"" + strLibrary + "\")");
 
@@ -1060,6 +1063,8 @@ __pointer(::factory::factory)& system::factory(const ::string& strLibraryRequest
 
    }
 
+   INFORMATION("system::factory Going to get library \"" << strLibrary << "\".");
+
    auto& plibrary = library(strLibrary);
 
    if (!plibrary)
@@ -1086,6 +1091,8 @@ __pointer(::factory::factory)& system::factory(const ::string& strLibraryRequest
 #endif
 
    }
+
+   INFORMATION("system::factory Going to create factory from library \"" << strLibrary << "\".");
 
    pfactory = plibrary->create_factory();
 
@@ -1734,18 +1741,28 @@ void system::system_construct(const ::main & main)
 
    enum_trace_level etracelevel;
 
-   if(is_debugger_attached())
-   {
+   // if(is_debugger_attached())
+   // {
+
+   //    etracelevel = e_trace_level_information;
+
+   // }
+   // else
+   // {
+
+   //    etracelevel = e_trace_level_warning;
+
+   // }
+
+   #ifdef _DEBUG
 
       etracelevel = e_trace_level_information;
 
-   }
-   else
-   {
+   #else
 
       etracelevel = e_trace_level_warning;
 
-   }
+   #endif
 
    if(etracelevel > e_trace_level_information)
    {

@@ -116,29 +116,84 @@ namespace user
       };
 
 
+      
       bool                                         m_bExtendOnParent;
       bool                                         m_bExtendOnParentIfClientOnly;
-
       bool                                         m_bToolWindow;
       bool                                         m_bMessageWindow;
+      
       bool                                         m_bCompositedFrameWindow;
-
       bool                                         m_bEdgeGestureDisableTouchWhenFullscreen;
       bool                                         m_bVisible;
-
       bool                                         m_bMouseHoverOnCapture;
+
       bool                                         m_bMouseHover;
       bool                                         m_bClickDefaultMouseHandling;
       bool                                         m_bHoverDefaultMouseHandling;
       bool                                         m_bEditDefaultHandling;
+
       bool                                         m_bKeyboardMultipleSelectionDefaultHandling;
       bool                                         m_bDataUpdateDefaultHandling;
-      //bool                                         m_bLockSketchToDesign;
       bool                                         m_bParentScrollX;
       bool                                         m_bParentScrollY;
+
       bool                                         m_bUserInteractionHost;
       bool                                         m_bEnableDragClient;
       bool                                         m_bEnableDragResize;
+      bool                                         m_bDerivedHeight;
+
+      bool                                         m_bSketchToDesignLayout;
+      bool                                         m_bTransparent;
+      bool                                         m_bCreated;
+      bool                                         m_bSubclassed;
+      
+      bool                                         m_bClipRectangle;
+      bool                                         m_bLayoutModified;
+      bool                                         m_bCustomWindowProc;
+      bool                                         m_bControlExCommandEnabled;
+
+      bool                                         m_bIdBound;
+      bool                                         m_bOverdraw;
+      bool                                         m_bFullScreen;
+      bool                                         m_bModal;
+
+      bool                                         m_bNeedRedraw;
+      bool                                         m_bNeedLayout;
+      bool                                         m_bReposition;
+      bool                                         m_bUpdatingVisual;
+
+      bool                                         m_bUpdateVisual;
+      bool                                         m_bMouseMovePending;
+      bool                                         m_bNeedLoadFormData;
+      bool                                         m_bNeedSaveFormData;
+
+      bool                                         m_bWorkspaceFullScreen;
+      bool                                         m_bHideOnTransparentFrame;
+      bool                                         m_bOffScreenRender;
+      bool                                         m_bMoveWindow;
+
+      bool                                         m_bVoidPaint;
+      bool                                         m_bRedrawing;
+      bool                                         m_bRedrawOnVisible;
+      bool                                         m_bSaveWindowRect;
+
+      bool                                         m_bEnableSaveWindowRect2;
+      bool                                         m_bShowSoftwareKeyboard;
+      bool                                         m_bUserInteractionSetFinish;
+      bool                                         m_bDefaultWalkPreTranslateParentTree;
+
+      bool                                         m_bBackgroundBypass;
+      bool                                         m_bSizeMove;
+      bool                                         m_bCursorInside;
+      bool                                         m_bRectOk;
+
+      bool                                         m_bWfiUpDownTarget;
+      bool                                         m_bPendingZorder;
+      bool                                         m_bPadding001;
+      bool                                         m_bPadding002;
+
+
+      ::oswindow                                   m_oswindow;
 
       enum_text_wrap                               m_etextwrap;
 
@@ -146,13 +201,8 @@ namespace user
 
 
 
-      ::oswindow                                   m_oswindow;
+      //::oswindow                                   m_oswindow;
       ewindowflag                                  m_ewindowflag;
-      bool                                         m_bDerivedHeight;
-
-
-      bool                                         m_bSketchToDesignLayout;
-      bool                                         m_bPendingZorder;
 
       // <3ThomasBorreggardSørensen_!!
       __pointer(::material_object)                 m_pmaterialCommandHandler;
@@ -172,10 +222,8 @@ namespace user
       ::type                                    m_type;
       atom                                        m_atomPrivateDataSection;
       //::atom                                      m_atomTranslated;
-      bool                                      m_bTransparent;
       enum_control_type                         m_econtroltype;
-      bool                                      m_bCreated;
-      bool                                      m_bSubclassed;
+
       enum_control_ddx                          m_eddx;
       ::database::key                           m_datakey;
       int                                       m_iDataValue;
@@ -199,11 +247,6 @@ namespace user
       ::windowing::window *                     m_pwindow;
 
 
-      //bool                                      m_bEatsDoubleClick;
-
-
-      //__pointer(shape_array<::draw2d::region >) m_pshapeaClip;
-      bool                                      m_bClipRectangle;
       ::rectangle                               m_rectangleClip;
       __pointer(::aura::draw_context)           m_pdrawcontext;
 
@@ -212,8 +255,7 @@ namespace user
       ::draw2d::path_pointer                    m_pathFocusRect3;
       ::draw2d::path_pointer                    m_pathFocusRect4;
 
-      //bool                                    m_bOnSetFinish;
-
+      
       //class draw_select
       //{
       //public:
@@ -239,18 +281,10 @@ namespace user
 
       //};
 
-      bool                                         m_bLayoutModified;
-
-      // control member variables BEGIN
-      bool                                         m_bCustomWindowProc;
-      // index                                        m_iEditItem;
-      bool                                         m_bControlExCommandEnabled;
-      bool                                         m_bIdBound;
       // control member variables END
 
       string                                       m_strInteractionTag;
 
-      bool                                         m_bOverdraw;
       ::index                                      m_iIndex;
       __pointer(::item)                            m_pitemLButtonDown;
       __pointer(::item)                            m_pitemCurrent;
@@ -265,52 +299,26 @@ namespace user
       ::duration                                   m_durationMouseMoveSkip;
       ::point_i32                                  m_pointMouseMoveSkip;
       ::duration                                   m_durationMouseMovePeriod;
-      bool                                         m_bMouseMovePending;
       ::point_i32                                  m_pointMouseMove;
-      bool                                         m_bNeedLoadFormData;
-      bool                                         m_bNeedSaveFormData;
       ::duration                                   m_durationLastRedraw;
       ::atom                                       m_atomImpact;
       ::color::color                               m_colorBackground;
-      bool                                         m_bWorkspaceFullScreen;
       point_i32                                    m_pointScroll;
-      bool                                         m_bHideOnTransparentFrame;
-      bool                                         m_bOffScreenRender;
-      bool                                         m_bMoveWindow;
-      bool                                         m_bVoidPaint;
-      bool                                         m_bRedrawing;
-      bool                                         m_bRedrawOnVisible;
-      bool                                         m_bSaveWindowRect;
-      bool                                         m_bEnableSaveWindowRect2;
-      bool                                         m_bShowSoftwareKeyboard;
-      bool                                         m_bUserInteractionSetFinish;
-      //bool                                       m_bFreeHandMouseMove; this is the default
       // if high frequency mouse move notification is required
       // create a fast path/low latency callback system
       ::duration                                   m_durationMouseMove;
       ::duration                                   m_durationMouseMoveIgnore;
       double                                       m_dItemHeight;
       point_i32                                    m_pointMoveCursor;
-      bool                                         m_bDefaultWalkPreTranslateParentTree;
-      bool                                         m_bBackgroundBypass;
       ::duration                                   m_durationLastFullUpdate;
-      bool                                         m_bSizeMove;
       ::duration                                   m_durationLastVisualChange;
       string                                       m_strName;
       u64                                          m_uiUserInteractionFlags;
-      bool                                         m_bCursorInside;
       __pointer(::windowing::cursor)               m_pcursor;
-      bool                                         m_bRectOk;
       string                                       m_strWindowText;
-      bool                                         m_bModal;
       atom                                           m_atomModalResult; // for return values from interaction_impl::RunModalLoop
       i32                                          m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
 
-      bool                                         m_bNeedRedraw;
-      bool                                         m_bNeedLayout;
-      bool                                         m_bReposition;
-      bool                                         m_bUpdatingVisual;
-      bool                                         m_bUpdateVisual;
 
 
 
@@ -320,7 +328,6 @@ namespace user
       /// represents (this window is a button [a menu button],
       /// this window is a m_pcheckbox [a menu m_pcheckbox],
       /// this window is a player/impact [a menu picture/video/chat?!])
-      bool                                         m_bWfiUpDownTarget;
 
 
       // references
@@ -350,7 +357,6 @@ namespace user
       __pointer(::object)                          m_pmenuitem;
       __pointer_array(interaction)                 m_menua;
       __pointer(::appearance::appearance)          m_pappearance;
-      bool                                         m_bFullScreen;
 
 
       interaction();
@@ -660,9 +666,12 @@ namespace user
       virtual void design_layout(::draw2d::graphics_pointer & pgraphics);
 
 
+      virtual void display_restored();
       virtual void display_iconic();
       virtual void display_restore();
+
       
+      virtual void design_restored();
       virtual void design_iconic();
       virtual void design_window_minimize(::e_activation eactivation) override;
       virtual void design_window_maximize() override;
@@ -2218,4 +2227,13 @@ namespace user
    //};
 
 
+   //compile_time_assert((offsetof(::user::interaction, m_oswindow) & 4) == 0);
+
+
 } // namespace user
+
+
+
+
+
+

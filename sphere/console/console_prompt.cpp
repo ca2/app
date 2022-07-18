@@ -47,7 +47,7 @@ namespace console
          }
          else
          {
-            m_pdocumenttemplate->get_document()->get_type_impact < prompt_impact >()->display(e_display_normal);
+            m_pdocumenttemplate->get_document()->get_type_impact < prompt_impact >()->display(e_display_restored);
 
          }
 

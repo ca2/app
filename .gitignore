@@ -7,6 +7,7 @@ Makefile
 **/.visualgdb
 **/CMakeFiles
 **/.vs
+**/.vscode
 **/.DS_Store
 **/.git
 **/.svn

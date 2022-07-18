@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "base/user/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "tab_pane.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 
@@ -442,7 +444,7 @@ namespace user
 
       m_pdroptargetwindow->place(rectangle);
 
-      m_pdroptargetwindow->display(e_display_normal);
+      m_pdroptargetwindow->display(e_display_restored);
 
       m_pdroptargetwindow->set_mouse_capture();
 
@@ -1056,7 +1058,11 @@ namespace user
 
                string strType = __type_name(this);
 
+#ifdef VERBOSE_LOG               
+
                CATEGORY_INFORMATION(prodevian, "(more than 50ms)(B) " << strType << "::_000DrawThis took " << integral_millisecond(d1) << ".\n");
+
+#endif
 
             }
 

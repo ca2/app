@@ -35,7 +35,7 @@
 #include "acme/_defer.h"
 
 
-#if defined(LINUX) || defined(FREEBSD)
+#if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN)
 extern char _binary__matter_zip_start[];
 extern char _binary__matter_zip_end[];
 #endif
@@ -91,7 +91,7 @@ int main(int argc, char * argv[], char * envp[])
 
 #endif
 
-#if defined(LINUX) || defined(FREEBSD)
+#if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN)
 
    papp->m_pchar_binary__matter_zip_start = _binary__matter_zip_start;
 

@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "base/user/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "split_pane.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 
@@ -82,7 +84,7 @@ namespace user
       //   else
       //   {
 
-      //      puserinteraction->display(e_display_normal);
+      //      puserinteraction->display(e_display_restored);
 
       //   }
 
@@ -126,7 +128,7 @@ namespace user
       //   else
       //   {
 
-      //      puserinteraction->display(e_display_normal);
+      //      puserinteraction->display(e_display_restored);
 
       //   }
 

@@ -2878,9 +2878,9 @@ namespace ios
 
 //   void interaction_impl::_001WindowRestore()
 //   {
-//      m_puserinteraction->m_edisplay = user::e_display_normal;
+//      m_puserinteraction->m_edisplay = user::e_display_restored;
 //      if(m_puserinteraction != nullptr)
-//         m_puserinteraction->m_edisplay = user::e_display_normal;
+//         m_puserinteraction->m_edisplay = user::e_display_restored;
 //      //      ::ShowWindow(get_handle(), SW_RESTORE);
 //   }
 

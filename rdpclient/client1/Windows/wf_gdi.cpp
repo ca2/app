@@ -332,7 +332,7 @@ void wf_toggle_fullscreen(wfContext* wfc)
 
 	SetParent(wfc->hwnd, wfc->fullscreen ? nullptr : wfc->hWndParent);
 	wf_resize_window(wfc);
-	ShowWindow(wfc->hwnd, e_display_normal);
+	ShowWindow(wfc->hwnd, e_display_restored);
 	SetForegroundWindow(wfc->hwnd);
 
 	if (!wfc->fullscreen)

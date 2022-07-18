@@ -2620,7 +2620,7 @@ bool x11_process_message(Display * pdisplay)
                      if(pinteraction->m_windowrectangle.m_edisplayPrevious == ::e_display_iconic)
                      {
 
-                        pinteraction->_001OnDeiconify(::e_display_normal);
+                        pinteraction->_001OnDeiconify(::e_display_restored);
 
                      }
                      else

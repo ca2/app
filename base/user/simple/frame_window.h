@@ -85,7 +85,7 @@ public:
    virtual void ToggleFullScreen();
    virtual void WfiOnFullScreen() override;
    virtual void _001OnExitFullScreen() override;
-   virtual void show_control_bars(const ::e_display & edisplay = e_display_normal, bool bLeaveFullScreenBarsOnHide = false);
+   virtual void show_control_bars(const ::e_display & edisplay = e_display_restored, bool bLeaveFullScreenBarsOnHide = false);
 
    virtual bool _001OnBeforeAppearance() override;
    virtual void initialize_frame_window_experience() override;

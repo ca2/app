@@ -3732,7 +3732,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                            if(edisplayPrevious == ::e_display_iconic)
                            {
 
-                              pinteraction->_001OnDeiconify(::e_display_normal);
+                              pinteraction->_001OnDeiconify(::e_display_restored);
 
                            }
                            else
@@ -3827,7 +3827,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                      if(edisplayPrevious == ::e_display_iconic)
                      {
 
-                        pinteraction->_001OnDeiconify(::e_display_normal);
+                        pinteraction->_001OnDeiconify(::e_display_restored);
 
                      }
                      else

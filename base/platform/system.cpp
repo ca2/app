@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "base/user/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 #include "acme/platform/system_setup.h"
 #include "base/constant/idpool.h"
 

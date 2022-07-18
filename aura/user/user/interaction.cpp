@@ -117,6 +117,14 @@ namespace user
    interaction::interaction()
    {
 
+      if((offsetof(::user::interaction, m_oswindow) & 4) != 0)
+      {
+
+         throw "invalid alignment";
+
+      }
+
+
       user_interaction_common_construct();
 
    }
@@ -2121,6 +2129,31 @@ namespace user
    }
 
 
+   void interaction::display_restored()
+   {
+
+#ifdef INFO_LAYOUT_DISPLAY
+
+      INFORMATION("interaction_layout::display e_display_restored");
+
+#endif
+
+#if DEBUG_LEVEL > 0
+
+      if (m_pdescriptor.is_set() && m_puserinteractionParent == nullptr)
+      {
+
+         INFORMATION("Parent is Null. Display Request -> normal");
+
+      }
+
+#endif
+
+      layout().sketch().display() = e_display_restored;
+
+   }
+
+
    void interaction::display_iconic()
    {
       
@@ -2156,27 +2189,10 @@ namespace user
 
       bool bToggle = false;
 
-      if (edisplay == e_display_normal)
+      if (edisplay == e_display_restored)
       {
 
-#ifdef INFO_LAYOUT_DISPLAY
-
-         INFORMATION("interaction_layout::display e_display_normal");
-
-#endif
-         
-#if DEBUG_LEVEL > 0
-
-      if (m_pdescriptor.is_set() && m_puserinteractionParent == nullptr)
-      {
-
-         INFORMATION("Parent is Null. Display Request -> normal");
-
-      }
-
-#endif
-         
-        layout().sketch().display() = e_display_normal;
+         display_restored();
 
       }
       else if (edisplay == e_display_hide)
@@ -2259,7 +2275,7 @@ namespace user
          if (edisplayCurrent == e_display_undefined)
          {
 
-            edisplay = e_display_normal;
+            edisplay = e_display_restored;
 
          }
          else if (::is_screen_visible(edisplayCurrent))
@@ -2283,7 +2299,7 @@ namespace user
          else
          {
 
-            edisplay = ::e_display_normal;
+            edisplay = ::e_display_restored;
 
          }
 
@@ -3500,11 +3516,16 @@ namespace user
 
                }
 
+#ifdef VERBOSE_LOG               
+
+
                CATEGORY_INFORMATION(prodevian, type.m_strName << " drawing took more than 50ms to complete ("
                   << durationElapsed.integral_millisecond() << ")!!\n");
 
                   // let's trye to see what happened?
                   //_001CallOnDraw(pgraphics);
+
+#endif
 
             }
 
@@ -3541,6 +3562,8 @@ namespace user
 
             auto durationElapsed = tickEnd - tickStart;
 
+#ifdef VERBOSE_LOG               
+
             if (durationElapsed > 100_ms)
             {
 
@@ -3553,6 +3576,8 @@ namespace user
 
 
             }
+
+#endif
 
 #endif //__DEBUG
 
@@ -3629,6 +3654,8 @@ namespace user
 
             ::duration durationElapsed = tickEnd - tickStart;
 
+#ifdef VERBOSE_LOG               
+
             if (durationElapsed > 100_ms)
             {
 
@@ -3641,6 +3668,8 @@ namespace user
                //_001OnDraw(pgraphics);
 
             }
+
+#endif
 
 #endif //__DEBUG
 
@@ -4496,6 +4525,8 @@ namespace user
 
                auto d1 = t1.elapsed();
 
+#ifdef VERBOSE_LOG
+
                if (d1 > 50_ms)
                {
 
@@ -4505,6 +4536,8 @@ namespace user
                      d1.integral_millisecond() << "::duration.\n");
 
                }
+
+#endif
 
             }
 
@@ -8878,6 +8911,14 @@ namespace user
    }
 
 
+   void interaction::design_restored()
+   {
+
+      design_window_restore(e_display_restored);
+
+   }
+
+
    void interaction::design_iconic()
    {
       
@@ -8886,7 +8927,7 @@ namespace user
 
          WARNING("iconify child window?");
 
-         layout().sketch() = e_display_normal;
+         layout().sketch() = e_display_restored;
 
       }
       else
@@ -8921,7 +8962,7 @@ namespace user
 
             WARNING("full screen child window?");
 
-            layout().sketch() = e_display_normal;
+            layout().sketch() = e_display_restored;
 
          }
          else
@@ -8946,7 +8987,7 @@ namespace user
 
             WARNING("zooming child window?");
 
-            layout().sketch() = e_display_normal;
+            layout().sketch() = e_display_restored;
 
          }
          else
@@ -8965,7 +9006,7 @@ namespace user
 
             WARNING("restoring child window?");
 
-            layout().sketch() = e_display_normal;
+            layout().sketch() = e_display_restored;
 
          }
          else
@@ -8976,10 +9017,10 @@ namespace user
          }
          
       }
-      else if(edisplaySketch == ::e_display_normal)
+      else if(edisplaySketch == ::e_display_restored)
       {
          
-         INFORMATION("::user::interaction::design_display e_display_normal");
+         INFORMATION("::user::interaction::design_display e_display_restored");
          
       }
       else if(edisplaySketch == ::e_display_compact
@@ -8991,7 +9032,7 @@ namespace user
 
             WARNING("restoring child window?");
 
-            layout().sketch() = e_display_normal;
+            layout().sketch() = e_display_restored;
 
          }
          else
@@ -9022,7 +9063,7 @@ namespace user
 
             WARNING("snapping child window?");
 
-            layout().sketch() = e_display_normal;
+            layout().sketch() = e_display_restored;
 
          }
          else
@@ -10186,17 +10227,17 @@ namespace user
 
       ::enum_display edisplayWindow = layout().window().display();
 
-      if (is_equivalent(edisplayOutput, e_display_normal))
+      if (is_equivalent(edisplayOutput, e_display_restored))
       {
 
-         edisplayOutput = e_display_normal;
+         edisplayOutput = e_display_restored;
 
       }
 
-      if (is_equivalent(edisplayWindow, e_display_normal))
+      if (is_equivalent(edisplayWindow, e_display_restored))
       {
 
-         edisplayWindow = e_display_normal;
+         edisplayWindow = e_display_restored;
 
       }
 
@@ -10207,14 +10248,14 @@ namespace user
       if (::is_docking_appearance(edisplayOutputForOsShowWindow))
       {
 
-         edisplayOutputForOsShowWindow = e_display_normal;
+         edisplayOutputForOsShowWindow = e_display_restored;
 
       }
 
       if (::is_docking_appearance(edisplayWindowForOsShowWindow))
       {
 
-         edisplayWindowForOsShowWindow = e_display_normal;
+         edisplayWindowForOsShowWindow = e_display_restored;
 
       }
 
@@ -10419,7 +10460,7 @@ namespace user
 
       layout().sketch() = rectangle_i32_dimension(x, y, cx, cy);
 
-      display(e_display_normal);
+      display(e_display_restored);
 
    }
 
@@ -11246,7 +11287,7 @@ namespace user
 
          place(rectanglePlace);
 
-         display(e_display_normal);
+         display(e_display_restored);
 
       }
 
@@ -13338,10 +13379,10 @@ namespace user
          }
          else if (
             !(edisplaySketch == e_display_restore ||
-               edisplaySketch == e_display_normal)
+               edisplaySketch == e_display_restored)
             &&
             (edisplayDesign == e_display_restore
-               || edisplayDesign == e_display_normal))
+               || edisplayDesign == e_display_restored))
          {
 
             _001OnExitNormal();
@@ -13486,7 +13527,7 @@ namespace user
 
       place(rectangle);
 
-      display(e_display_normal);
+      display(e_display_restored);
 
    }
 
@@ -14368,7 +14409,7 @@ namespace user
 
             }
 
-            display(e_display_normal, eactivation);
+            display(e_display_restored, eactivation);
 
             set_need_redraw();
 
@@ -14470,7 +14511,7 @@ namespace user
 
          place(rectangleNew);
 
-         display(e_display_normal, eactivation);
+         display(e_display_restored, eactivation);
 
       }
 
@@ -15583,7 +15624,7 @@ namespace user
 
       //m_ptooltip->order(e_zorder_top_most);
       //m_ptooltip->place(rectangleWindow);
-      //m_ptooltip->display(e_display_normal, e_activation_no_activate);
+      //m_ptooltip->display(e_display_restored, e_activation_no_activate);
       ////m_ptooltip->show(show_no_activate);
       ////SWP_FRAMECHANGED | SWP_SHOWWINDOW | SWP_NOACTIVATE);
 
@@ -15992,7 +16033,7 @@ namespace user
    void interaction::_001OnDeiconify(edisplay edisplay)
    {
 
-      display(e_display_normal);
+      display(e_display_restored);
 
    }
 
@@ -16062,7 +16103,7 @@ namespace user
             if (edisplay == e_display_zoomed)
             {
 
-               display(e_display_normal);
+               display(e_display_restored);
 
             }
             else
@@ -18306,7 +18347,7 @@ namespace user
 
    //    }
 
-   //    display(e_display_normal);
+   //    display(e_display_restored);
 
    //    place(rectangleWindow);
 

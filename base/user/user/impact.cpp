@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "base/user/user/_user.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "base/user/user/_user.h"
+#endif
 
 
 namespace user
@@ -917,7 +919,7 @@ namespace user
 
       pinteraction->m_pusersystem = pusersystem;
 
-      pinteraction->display(e_display_normal);
+      pinteraction->display(e_display_restored);
 
       pinteraction->m_atom = atom;
 

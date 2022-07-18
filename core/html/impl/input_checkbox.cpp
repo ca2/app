@@ -161,7 +161,7 @@ namespace html
 
          m_pcheckbox->place(rect);
 
-         m_pcheckbox->display(::e_display_normal);
+         m_pcheckbox->display(::e_display_restored);
 
       }
 

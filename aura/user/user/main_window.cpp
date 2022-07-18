@@ -62,10 +62,44 @@ namespace user
       if(is_top_level() && ::is_set(m_pwindow))
       {
          
-         prectangle->top += m_pwindow->get_top_margin();
+         prectangle->top += (::i32) m_pwindow->get_top_margin();
          
       }
       
+   }
+
+
+   void main_window::initial_frame_placement()
+   {
+
+
+#if defined(SANDBOXED_PLATFORM)
+
+
+#else
+
+      if (!m_rectangleInitialRateOrSize.is_empty())
+      {
+
+         ::rectangle_i32 rectangle;
+
+         calculate_window_rectangle_in_main_monitor(rectangle, m_rectangleInitialRateOrSize);
+
+         place(rectangle);
+
+         display(e_display_restored);
+
+      }
+      else
+      {
+
+         WindowDataLoadWindowRect();
+
+      }
+
+#endif
+
+
    }
 
 

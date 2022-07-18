@@ -14,6 +14,9 @@
 CLASS_DECL_ACME void exception_message_box(::object* pobject, ::exception& exception, const ::string& strMoreDetails);
 
 
+CLASS_DECL_ACME void operating_system_open_url(const char* pszUrl);
+
+
 namespace acme
 {
 
@@ -1609,7 +1612,9 @@ namespace acme
    void node::open_url(const ::string & strUrl)
    {
 
-      throw ::interface_only();
+      //throw ::interface_only();
+
+      ::operating_system_open_url(strUrl);
 
    }
 

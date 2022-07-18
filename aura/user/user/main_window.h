@@ -27,6 +27,9 @@ namespace user
       void get_input_client_area(RECTANGLE_I32 * prectangle) override;
 
 
+      void initial_frame_placement() override;
+
+
       ::index get_preferred_restore(RECTANGLE_I32 * prectanglePreferredRestore) override;
 
 

@@ -676,7 +676,12 @@ namespace user
 
       ::user::interaction::display_restored();
 
-      place(m_windowrectangle.m_rectangleRestored);
+      if (!m_windowrectangle.m_rectangleRestored.is_empty())
+      {
+
+         place(m_windowrectangle.m_rectangleRestored);
+
+      }
 
    }
 

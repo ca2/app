@@ -728,7 +728,7 @@ namespace user
 //            else if (swpFlags & SWP_SHOWWINDOW)
 //            {
 //
-//               display(e_display_normal, e_activation_no_activate);
+//               display(e_display_restored, e_activation_no_activate);
 //
 //            }
 //

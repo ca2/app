@@ -743,7 +743,7 @@ namespace apex
             //   __pointer(::simple_frame_window) pframe =  (get_document()->get_type_impact < ::bergedge::impact >()->get_parent_frame());
             //   if(pframe != nullptr)
             //   {
-            //      pframe->display(e_display_normal);
+            //      pframe->display(e_display_restored);
             //      pframe->_001FancyInitialFramePlacement();
             //   }
             //}

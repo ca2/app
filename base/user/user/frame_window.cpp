@@ -2207,7 +2207,7 @@ namespace user
 
          set_size(rectangle.size());
 
-         display(e_display_normal, e_activation_no_activate);
+         display(e_display_restored, e_activation_no_activate);
 
       }
       else
@@ -2353,7 +2353,7 @@ namespace user
          if (!::is_visible(const_layout().sketch().display()))
          {
 
-            edisplay = e_display_normal;
+            edisplay = e_display_restored;
 
          }
          else if (layout().is_iconic())

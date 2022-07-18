@@ -5367,7 +5367,7 @@ printf("sizeof(struct_t1) = %" PRIuPTR "\n", sizeof(struct_t1));
 
       pinteraction->place(rectangle);
 
-      pinteraction->display(e_display_normal, e_activation_no_activate);
+      pinteraction->display(e_display_restored, e_activation_no_activate);
 
    }
 
@@ -6859,10 +6859,10 @@ printf("sizeof(struct_t1) = %" PRIuPTR "\n", sizeof(struct_t1));
 
          //m_puserinteraction->layout().sketch().origin() = pmove->m_point;
 
-         //if (m_puserinteraction->layout().sketch().display() != e_display_normal)
+         //if (m_puserinteraction->layout().sketch().display() != e_display_restored)
          //{
 
-           // m_puserinteraction->display(e_display_normal);
+           // m_puserinteraction->display(e_display_restored);
 
          //}
 
@@ -6925,10 +6925,10 @@ printf("sizeof(struct_t1) = %" PRIuPTR "\n", sizeof(struct_t1));
 //
 //         m_puserinteraction->layout().sketch() = psize->m_size;
 //
-//         if (m_puserinteraction->layout().sketch().display() != e_display_normal)
+//         if (m_puserinteraction->layout().sketch().display() != e_display_restored)
 //         {
 //
-//            m_puserinteraction->display(e_display_normal);
+//            m_puserinteraction->display(e_display_restored);
 //
 //         }
 //
@@ -6974,10 +6974,10 @@ printf("sizeof(struct_t1) = %" PRIuPTR "\n", sizeof(struct_t1));
 
          //m_puserinteraction->layout().sketch().origin() = pmove->m_point;
 
-         //if (m_puserinteraction->layout().sketch().display() != e_display_normal)
+         //if (m_puserinteraction->layout().sketch().display() != e_display_restored)
          //{
 
-         // m_puserinteraction->display(e_display_normal);
+         // m_puserinteraction->display(e_display_restored);
 
          //}
 

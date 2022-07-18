@@ -2156,12 +2156,12 @@ namespace user
 
       bool bToggle = false;
 
-      if (edisplay == e_display_normal)
+      if (edisplay == e_display_restored)
       {
 
 #ifdef INFO_LAYOUT_DISPLAY
 
-         INFORMATION("interaction_layout::display e_display_normal");
+         INFORMATION("interaction_layout::display e_display_restored");
 
 #endif
          
@@ -2176,7 +2176,7 @@ namespace user
 
 #endif
          
-        layout().sketch().display() = e_display_normal;
+        layout().sketch().display() = e_display_restored;
 
       }
       else if (edisplay == e_display_hide)
@@ -2259,7 +2259,7 @@ namespace user
          if (edisplayCurrent == e_display_undefined)
          {
 
-            edisplay = e_display_normal;
+            edisplay = e_display_restored;
 
          }
          else if (::is_screen_visible(edisplayCurrent))
@@ -2283,7 +2283,7 @@ namespace user
          else
          {
 
-            edisplay = ::e_display_normal;
+            edisplay = ::e_display_restored;
 
          }
 
@@ -8886,7 +8886,7 @@ namespace user
 
          WARNING("iconify child window?");
 
-         layout().sketch() = e_display_normal;
+         layout().sketch() = e_display_restored;
 
       }
       else
@@ -8921,7 +8921,7 @@ namespace user
 
             WARNING("full screen child window?");
 
-            layout().sketch() = e_display_normal;
+            layout().sketch() = e_display_restored;
 
          }
          else
@@ -8946,7 +8946,7 @@ namespace user
 
             WARNING("zooming child window?");
 
-            layout().sketch() = e_display_normal;
+            layout().sketch() = e_display_restored;
 
          }
          else
@@ -8965,7 +8965,7 @@ namespace user
 
             WARNING("restoring child window?");
 
-            layout().sketch() = e_display_normal;
+            layout().sketch() = e_display_restored;
 
          }
          else
@@ -8976,10 +8976,10 @@ namespace user
          }
          
       }
-      else if(edisplaySketch == ::e_display_normal)
+      else if(edisplaySketch == ::e_display_restored)
       {
          
-         INFORMATION("::user::interaction::design_display e_display_normal");
+         INFORMATION("::user::interaction::design_display e_display_restored");
          
       }
       else if(edisplaySketch == ::e_display_compact
@@ -8991,7 +8991,7 @@ namespace user
 
             WARNING("restoring child window?");
 
-            layout().sketch() = e_display_normal;
+            layout().sketch() = e_display_restored;
 
          }
          else
@@ -9022,7 +9022,7 @@ namespace user
 
             WARNING("snapping child window?");
 
-            layout().sketch() = e_display_normal;
+            layout().sketch() = e_display_restored;
 
          }
          else
@@ -10186,17 +10186,17 @@ namespace user
 
       ::enum_display edisplayWindow = layout().window().display();
 
-      if (is_equivalent(edisplayOutput, e_display_normal))
+      if (is_equivalent(edisplayOutput, e_display_restored))
       {
 
-         edisplayOutput = e_display_normal;
+         edisplayOutput = e_display_restored;
 
       }
 
-      if (is_equivalent(edisplayWindow, e_display_normal))
+      if (is_equivalent(edisplayWindow, e_display_restored))
       {
 
-         edisplayWindow = e_display_normal;
+         edisplayWindow = e_display_restored;
 
       }
 
@@ -10207,14 +10207,14 @@ namespace user
       if (::is_docking_appearance(edisplayOutputForOsShowWindow))
       {
 
-         edisplayOutputForOsShowWindow = e_display_normal;
+         edisplayOutputForOsShowWindow = e_display_restored;
 
       }
 
       if (::is_docking_appearance(edisplayWindowForOsShowWindow))
       {
 
-         edisplayWindowForOsShowWindow = e_display_normal;
+         edisplayWindowForOsShowWindow = e_display_restored;
 
       }
 
@@ -10419,7 +10419,7 @@ namespace user
 
       layout().sketch() = rectangle_i32_dimension(x, y, cx, cy);
 
-      display(e_display_normal);
+      display(e_display_restored);
 
    }
 
@@ -11246,7 +11246,7 @@ namespace user
 
          place(rectanglePlace);
 
-         display(e_display_normal);
+         display(e_display_restored);
 
       }
 
@@ -13338,10 +13338,10 @@ namespace user
          }
          else if (
             !(edisplaySketch == e_display_restore ||
-               edisplaySketch == e_display_normal)
+               edisplaySketch == e_display_restored)
             &&
             (edisplayDesign == e_display_restore
-               || edisplayDesign == e_display_normal))
+               || edisplayDesign == e_display_restored))
          {
 
             _001OnExitNormal();
@@ -13486,7 +13486,7 @@ namespace user
 
       place(rectangle);
 
-      display(e_display_normal);
+      display(e_display_restored);
 
    }
 
@@ -14368,7 +14368,7 @@ namespace user
 
             }
 
-            display(e_display_normal, eactivation);
+            display(e_display_restored, eactivation);
 
             set_need_redraw();
 
@@ -14470,7 +14470,7 @@ namespace user
 
          place(rectangleNew);
 
-         display(e_display_normal, eactivation);
+         display(e_display_restored, eactivation);
 
       }
 
@@ -15583,7 +15583,7 @@ namespace user
 
       //m_ptooltip->order(e_zorder_top_most);
       //m_ptooltip->place(rectangleWindow);
-      //m_ptooltip->display(e_display_normal, e_activation_no_activate);
+      //m_ptooltip->display(e_display_restored, e_activation_no_activate);
       ////m_ptooltip->show(show_no_activate);
       ////SWP_FRAMECHANGED | SWP_SHOWWINDOW | SWP_NOACTIVATE);
 
@@ -15992,7 +15992,7 @@ namespace user
    void interaction::_001OnDeiconify(edisplay edisplay)
    {
 
-      display(e_display_normal);
+      display(e_display_restored);
 
    }
 
@@ -16062,7 +16062,7 @@ namespace user
             if (edisplay == e_display_zoomed)
             {
 
-               display(e_display_normal);
+               display(e_display_restored);
 
             }
             else
@@ -18306,7 +18306,7 @@ namespace user
 
    //    }
 
-   //    display(e_display_normal);
+   //    display(e_display_restored);
 
    //    place(rectangleWindow);
 

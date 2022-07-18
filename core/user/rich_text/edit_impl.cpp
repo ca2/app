@@ -2090,7 +2090,7 @@ namespace user
 
          place(rectangleWindow);
 
-         display(e_display_normal);
+         display(e_display_restored);
 
          set_need_layout();
 

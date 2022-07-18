@@ -1687,7 +1687,7 @@ namespace user
       if (bDisplay)
       {
 
-         pholder->display(::e_display_normal);
+         pholder->display(::e_display_restored);
 
 //         if (ppane->m_bNeedLayout)
 //         {
@@ -3243,7 +3243,7 @@ namespace user
 //      set_current_tab_by_index(iIndex);
 //      // if(get_tab_holder(get_current_tab_index()) != nullptr)
 //      //{
-//      // get_tab_holder(get_current_tab_index())->display(e_display_normal);
+//      // get_tab_holder(get_current_tab_index())->display(e_display_restored);
 //      // }
 //
 //      //on_layout(pgraphics);
@@ -4210,7 +4210,7 @@ namespace user
 //         if (pshowwindow->m_bShow)
 //         {
 //
-//            pholder->display(e_display_normal);
+//            pholder->display(e_display_restored);
 //
 //         }
 //         else

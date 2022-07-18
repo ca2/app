@@ -24,7 +24,7 @@ bool os_history::hist(const char * psz)
 
    }
    
-    plauncher->setup((oswindow) nullptr, "open", psz, "", "", e_display_normal);
+    plauncher->setup((oswindow) nullptr, "open", psz, "", "", e_display_restored);
 
    //if (!estatus)
    //{

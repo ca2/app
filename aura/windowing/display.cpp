@@ -788,7 +788,7 @@ namespace windowing
       if (edisplay == e_display_none)
       {
 
-         edisplay = e_display_normal;
+         edisplay = e_display_restored;
 
       }
 

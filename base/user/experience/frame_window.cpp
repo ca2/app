@@ -2208,7 +2208,7 @@ namespace experience
          if (edisplay == e_display_none)
          {
 
-            edisplay = e_display_normal;
+            edisplay = e_display_restored;
 
          }
 
@@ -2427,7 +2427,7 @@ namespace experience
 
       edisplay edisplay = const_layout().sketch().display();
 
-      if (!::is_equivalent(edisplay, e_display_normal))
+      if (!::is_equivalent(edisplay, e_display_restored))
       {
 
          defer_restore(m_windowrectangle.m_rectangleRestored);

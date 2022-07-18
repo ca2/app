@@ -10,7 +10,7 @@ CLASS_DECL_ACME enum_display equivalence_sink(enum_display edisplay)
       || edisplay == e_display_broad)
    {
 
-      return e_display_normal;
+      return e_display_restored;
 
    }
 
@@ -63,7 +63,7 @@ CLASS_DECL_ACME string __string(enum_display edisplay)
    {
    case e_display_default:
       return "default";
-   case e_display_normal:
+   case e_display_restored:
       return "normal";
    case e_display_iconic:
       return "iconic";

@@ -157,7 +157,7 @@ namespace prompt
       ::u32 nShow;
       if(bShow)
       {
-         nShow = e_display_normal;
+         nShow = e_display_restored;
       }
       else
       {

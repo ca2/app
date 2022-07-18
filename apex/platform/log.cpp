@@ -559,7 +559,7 @@ namespace apex
 ////                  if (!m_psystem->m_pacmepath->app_module().contains_ci("logviewer") && m_psystem->m_pacmefile->exists(m_psystem->m_pacmedirectory->system() / "logviewer.txt"))
 ////                  {
 ////
-////                     call_async("C:\\apex\\time\\x64\\basis\\app_core_logviewer.exe", "\"" + m_strLogPath + "\"", "C:\\apex\\time\\x64\\basis", e_display_normal, false);
+////                     call_async("C:\\apex\\time\\x64\\basis\\app_core_logviewer.exe", "\"" + m_strLogPath + "\"", "C:\\apex\\time\\x64\\basis", e_display_restored, false);
 ////
 ////                  }
 ////

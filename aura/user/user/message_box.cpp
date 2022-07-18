@@ -134,7 +134,7 @@ namespace user
 
       set_tool_window();
 
-      display(::e_display_normal);
+      display(::e_display_restored);
 
       do_layout();
 

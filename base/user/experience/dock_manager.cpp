@@ -186,7 +186,7 @@ namespace experience
          if (rectangleCenter.contains_y(pointCursor.y))
          {
 
-            edisplayDock = ::e_display_normal;
+            edisplayDock = ::e_display_restored;
 
          }
          else if (pointCursor.y < rectangleCenter.top)
@@ -271,12 +271,12 @@ namespace experience
 
       }
 
-      if (edisplayDock == ::e_display_normal)
+      if (edisplayDock == ::e_display_restored)
       {
 
          bool bChange = false;
 
-         if (edisplayOld != e_display_normal)
+         if (edisplayOld != e_display_restored)
          {
 
             m_pframewindow->set_size(m_pframewindow->m_windowrectangle.m_rectangleRestored.size());
@@ -305,7 +305,7 @@ namespace experience
          if(bChange)
          {
 
-            m_pframewindow->display(e_display_normal);
+            m_pframewindow->display(e_display_restored);
 
             m_pframewindow->set_need_layout();
 

@@ -141,7 +141,7 @@ namespace user
          m_windowrectangle.m_rectangleSnapped = m_windowrectangle.m_rectangleWindow;
 
       }
-      else if (is_equivalent(edisplay, e_display_normal))
+      else if (is_equivalent(edisplay, e_display_restored))
       {
 
          calculate_broad_and_compact_restore();
@@ -392,7 +392,7 @@ namespace user
          if (is_docking_appearance(edisplay))
          {
 
-            edisplay = e_display_normal;
+            edisplay = e_display_restored;
 
          }
 
@@ -509,7 +509,7 @@ namespace user
          if (is_docking_appearance(edisplay))
          {
 
-            edisplay = e_display_normal;
+            edisplay = e_display_restored;
 
          }
 
@@ -679,7 +679,7 @@ namespace user
       if(edisplayPrevious == e_display_restore)
       {
          
-         display(e_display_normal);
+         display(e_display_restored);
          
       }
       else

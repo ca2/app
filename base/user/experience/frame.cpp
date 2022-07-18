@@ -1206,7 +1206,7 @@ namespace experience
 
          }
 
-         if (edisplay == e_display_normal)
+         if (edisplay == e_display_restored)
          {
 
             if (m_pframewindow->move_manager()->window_is_moving())

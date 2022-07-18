@@ -623,7 +623,7 @@ namespace universal_windows
                {
                   string strCommand(str2);
                   strCommand.replace("%1", pcsz);
-                  WinExec(strCommand,e_display_normal);
+                  WinExec(strCommand,e_display_restored);
                }
             }
             else
@@ -637,7 +637,7 @@ namespace universal_windows
                      {
                         string strCommand(str2);
                         strCommand.replace("%1", pcsz);
-                        WinExec(strCommand,e_display_normal);
+                        WinExec(strCommand,e_display_restored);
                      }
                   }
                }
@@ -676,7 +676,7 @@ namespace universal_windows
                {
                   string strCommand(str2);
                   strCommand.replace("%1", pcsz);
-                  WinExec(strCommand, e_display_normal);
+                  WinExec(strCommand, e_display_restored);
                }
             }
             else
@@ -690,7 +690,7 @@ namespace universal_windows
                      {
                         string strCommand(str2);
                         strCommand.replace("%1", pcsz);
-                        WinExec(strCommand, e_display_normal);
+                        WinExec(strCommand, e_display_restored);
                      }
                   }
                }

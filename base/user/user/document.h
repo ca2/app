@@ -241,7 +241,7 @@ namespace user
 
       virtual __pointer(::user::impact) get_typed_view_with_id(::type info,atom atom);
 
-      virtual void show_all_frames(const ::edisplay & edisplay = e_display_normal);
+      virtual void show_all_frames(const ::edisplay & edisplay = e_display_restored);
 
 
       //class update

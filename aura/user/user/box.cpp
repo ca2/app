@@ -671,6 +671,16 @@ namespace user
    }
 
 
+   void box::display_restored()
+   {
+
+      ::user::interaction::display_restored();
+
+      place(m_windowrectangle.m_rectangleRestored);
+
+   }
+
+
    void box::display_restore()
    {
       

@@ -32,6 +32,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
 
       
+      void display_restored() override;
       void display_restore() override;
       
       

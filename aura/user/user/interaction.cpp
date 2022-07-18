@@ -2121,6 +2121,31 @@ namespace user
    }
 
 
+   void interaction::display_restored()
+   {
+
+#ifdef INFO_LAYOUT_DISPLAY
+
+      INFORMATION("interaction_layout::display e_display_restored");
+
+#endif
+
+#if DEBUG_LEVEL > 0
+
+      if (m_pdescriptor.is_set() && m_puserinteractionParent == nullptr)
+      {
+
+         INFORMATION("Parent is Null. Display Request -> normal");
+
+      }
+
+#endif
+
+      layout().sketch().display() = e_display_restored;
+
+   }
+
+
    void interaction::display_iconic()
    {
       
@@ -2159,24 +2184,7 @@ namespace user
       if (edisplay == e_display_restored)
       {
 
-#ifdef INFO_LAYOUT_DISPLAY
-
-         INFORMATION("interaction_layout::display e_display_restored");
-
-#endif
-         
-#if DEBUG_LEVEL > 0
-
-      if (m_pdescriptor.is_set() && m_puserinteractionParent == nullptr)
-      {
-
-         INFORMATION("Parent is Null. Display Request -> normal");
-
-      }
-
-#endif
-         
-        layout().sketch().display() = e_display_restored;
+         display_restored();
 
       }
       else if (edisplay == e_display_hide)
@@ -8874,6 +8882,14 @@ namespace user
       }
 
       return bDisplay;
+
+   }
+
+
+   void interaction::design_restored()
+   {
+
+      design_window_restore(e_display_restored);
 
    }
 

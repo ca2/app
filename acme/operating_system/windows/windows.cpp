@@ -2,6 +2,7 @@
 #include "acme/operating_system/parallelization.h"
 #include "acme/operating_system.h"
 #include <Shlobj.h>
+#include <Shellapi.h>
 
 
 HANDLE duplicate_handle(HANDLE h)
@@ -562,6 +563,16 @@ void operating_system_get_main_screen_size(int& cx, int& cy)
    cx = rectDesktop.right - rectDesktop.left;
 
    cy = rectDesktop.bottom - rectDesktop.top;
+
+}
+
+
+CLASS_DECL_ACME void operating_system_open_url(const char* pszUrl)
+{
+
+   wstring wstrUrl(pszUrl);
+
+   ::ShellExecuteW(nullptr, L"open", wstrUrl, nullptr, nullptr, SW_SHOWNORMAL);
 
 }
 

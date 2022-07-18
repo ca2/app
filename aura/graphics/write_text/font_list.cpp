@@ -1517,7 +1517,9 @@ namespace write_text
       if (!pfontlistdata)
       {
 
-         return nullptr;
+         auto pitemNone = __new(::item(::e_element_none));
+
+         return pitemNone;
 
       }
 
@@ -1552,7 +1554,9 @@ namespace write_text
 
       }
 
-      return nullptr;
+      auto pitemNone = __new(::item(::e_element_none));
+
+      return pitemNone;
 
    }
 
@@ -1567,7 +1571,9 @@ namespace write_text
       if (!pfontlistdata)
       {
 
-         return nullptr;
+         auto pitemNone = __new(::item(::e_element_none));
+
+         return pitemNone;
 
       }
 
@@ -1594,7 +1600,9 @@ namespace write_text
 
       }
 
-      return nullptr;
+      auto pitemNone = __new(::item(::e_element_none));
+
+      return pitemNone;
 
    }
 

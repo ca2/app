@@ -7,18 +7,18 @@ class CLASS_DECL_APEX interprocess_task :
 public:
 
 
-   ::atom                                m_atomPid;
-   ::i64                               m_iTask;
-   __pointer(interprocess_call)               m_pcall;
-   ::payload                                 m_var;
-   __pointer(manual_reset_event)       m_pevReady;
+   ::atom                                 m_atomPid;
+   ::i64                                  m_iTask;
+   __pointer(interprocess_call)           m_pcall;
+   ::payload                              m_payload;
+   __pointer(manual_reset_event)          m_pevReady;
 
 
    interprocess_task(interprocess_call* pcall, const ::atom& idPid, i64 iTask);
-   virtual ~interprocess_task();
+   ~interprocess_task() override;
 
 
-   virtual void do_task(const string& strObject, const string& strMember, const payload_array& payloada);
+   virtual void do_task(const string& strObject, const string& strMember, const property_set & propertyset);
 
 
 };

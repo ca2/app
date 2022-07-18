@@ -760,7 +760,7 @@ void create::_001ParseCommandForkUri(const ::string& strCommandFork)
 
    }
 
-   get_property_set().parse_url_query(strQuery);
+   get_property_set().parse_network_arguments(strQuery);
 
    m_strApp = strScript;
 

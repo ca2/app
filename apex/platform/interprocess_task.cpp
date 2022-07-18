@@ -20,7 +20,7 @@ interprocess_task::~interprocess_task()
 }
 
 
-void interprocess_task::do_task(const string& strObject, const string& strMember, const payload_array& payloada)
+void interprocess_task::do_task(const string& strObject, const string& strMember, const ::property_set & propertyset)
 {
 
    try
@@ -28,7 +28,7 @@ void interprocess_task::do_task(const string& strObject, const string& strMember
 
       ::interprocess_communication::tx& txc = m_pcall->m_pinterprocessintercommunication->tx(m_pcall->m_strApp, m_atomPid);
 
-      string strVara = m_pcall->m_pinterprocessintercommunication->str_from_va(payloada);
+      string strNetworkArguments = propertyset.get_network_arguments();
 
       m_iTask = m_pcall->m_pinterprocessintercommunication->m_iTaskSeed++;
 
@@ -36,9 +36,15 @@ void interprocess_task::do_task(const string& strObject, const string& strMember
 
       string strPid = __string(m_pcall->m_pinterprocessintercommunication->m_atomApp);
 
-      strSource.format(" from %s:%s ", m_pcall->m_pinterprocessintercommunication->m_strApp.c_str(), strPid.c_str());
+      strSource.format("protocol.origin=%s&protocol.origin_pid=%s", m_pcall->m_pinterprocessintercommunication->m_strApp.c_str(), strPid.c_str());
+      
+      string strApp = m_pcall->m_strApp;
+      
+      strApp.find_replace("_", "-");
+      strApp.find_replace("/", "-");
+      strApp.find_replace(".", "-");
 
-      string str = "call " + __string(m_iTask) + strSource + strObject + "." + strMember + ": " + strVara;
+      string str = strApp + "://" + strObject + "/" + strMember + "?" + strNetworkArguments + "&protocol.call_id=" + __string(m_iTask) + "&" + strSource + "&protocol.target_pid=" + m_atomPid.to_string();
 
       //txc.send(str, m_pcall->m_duration);
       txc.send(str, 1_min);
@@ -47,7 +53,7 @@ void interprocess_task::do_task(const string& strObject, const string& strMember
    catch (...)
    {
 
-      m_var = false;
+      m_payload = false;
 
       m_pevReady->set_event();
 
@@ -58,7 +64,7 @@ void interprocess_task::do_task(const string& strObject, const string& strMember
    if (strMember.begins_ci("reply."))
    {
 
-      m_var = true;
+      m_payload = true;
 
       m_pevReady->set_event();
 

@@ -1084,6 +1084,9 @@ public:
 
 
    ::e_status on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost) override;
+   
+   
+   void handle_url(const ::string & strUrl) override;
 
 
 };

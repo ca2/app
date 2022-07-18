@@ -63,22 +63,33 @@ namespace http
 
    inline property_set & form::get()
    {
+      
       return m_setGet;
+      
    }
 
+   
    inline property_set & form::post()
    {
+      
       return m_setPost;
+      
    }
+
 
    inline property_set & form::request()
    {
+      
       return m_setRequest;
+      
    }
+
 
    inline void form::parse_query_string(const string & buffer, strsize)
    {
-      m_setGet._parse_url_query(buffer);
+      
+      m_setGet._parse_network_arguments(buffer);
+      
    }
 
 

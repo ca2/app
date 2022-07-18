@@ -337,140 +337,161 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 {
 
    INFORMATION("::interprocess_intercommunication::on_receive " << strMessage);
-
-   if(!::str().begins_eat(strMessage, "call "))
-   {
-
-      return;
-
-   }
-
-   ::i64 iCall = ::str().consume_natural(strMessage);
-
-   if(!::str().begins_eat(strMessage, " from "))
-   {
-
-      return;
-
-   }
-
-   string strAppFrom;
    
-   strMessage.eat_before(strAppFrom, ":");
+   string strUrl = strMessage;
 
-   string strAppPid;
+//   if(!::str().begins_eat(strMessage, "call "))
+//   {
+//
+//      return;
+//
+//   }
+//
+//   ::i64 iCall = ::str().consume_natural(strMessage);
+//
+//   if(!::str().begins_eat(strMessage, " from "))
+//   {
+//
+//      return;
+//
+//   }
+//
+//   string strAppFrom;
+//
+//   strMessage.eat_before(strAppFrom, ":");
+//
+//   string strAppPid;
+//
+//   strMessage.eat_before(strAppPid, " ");
+//
+//   if(strAppFrom.is_empty())
+//   {
+//
+//      return;
+//
+//   }
+//
+//   if (strAppPid.is_empty())
+//   {
+//
+//      return;
+//
+//   }
+//
+//#if !defined(_UWP)
+//
+//   auto iPid = atoll(strAppPid);
+//
+//   if(iPid == 0)
+//   {
+//
+//      return;
+//
+//   }
+//
+//#endif
+//
+//   strsize iFind = strMessage.find(":");
+//
+//   string str1;
+//
+//   string strObject;
+//
+//   string strMember;
+//
+//   string_array stra;
+//
+//   property_set propertyset;
+//
+//   if(iFind >= 0 && iFind <= 3)
+//   {
+//
+//      return;
+//
+//   }
+//
+//   if(iFind > 3)
+//   {
+//
+//      str1 = strMessage.Left(iFind);
+//
+//   }
+//   else
+//   {
+//
+//      str1 = strMessage;
+//
+//   }
+//
+//   str1.trim();
+//
+//   strsize iFind2 = str1.find(".");
+//
+//   if(iFind2 < 0)
+//   {
+//
+//      return;
+//
+//   }
+//
+//   strObject = str1.Left(iFind2);
+//
+//   strMember = str1.Mid(iFind2 + 1);
+//
+//   if(iFind >= 0)
+//   {
+//
+//      str1 = strMessage.Mid(iFind + 1);
+//
+//      str1.trim();
+//
+//      memory_stream stream;
+//
+//      stream->get_primitive_memory()->from_hex(str1);
+//
+//      stream->seek_to_begin();
+//
+//      stream.set_loading();
+//
+//      __io_array(stream, payloada);
+//
+//   }
    
-   strMessage.eat_before(strAppPid, " ");
+   
+   string strObject = m_psystem->url()->get_server(strUrl);
+   
+   string strMember = m_psystem->url()->get_script(strUrl);
+   
+   strMember.trim_left("/");
+   
+   string strNetworkArguments = m_psystem->url()->get_query(strUrl);
+   
+   ::property_set propertyset;
+   
+   propertyset.parse_network_arguments(strNetworkArguments);
 
-   if(strAppFrom.is_empty())
-   {
+   ::payload payloadReply;
 
-      return;
-
-   }
-
-   if (strAppPid.is_empty())
-   {
-
-      return;
-
-   }
-
-#if !defined(_UWP)
-
-   auto iPid = atoll(strAppPid);
-
-   if(iPid == 0)
-   {
-
-      return;
-
-   }
-
-#endif
-
-   strsize iFind = strMessage.find(":");
-
-   string str1;
-
-   string strObject;
-
-   string strMember;
-
-   string_array stra;
-
-   payload_array payloada;
-
-   if(iFind >= 0 && iFind <= 3)
-   {
-
-      return;
-
-   }
-
-   if(iFind > 3)
-   {
-
-      str1 = strMessage.Left(iFind);
-
-   }
-   else
-   {
-
-      str1 = strMessage;
-
-   }
-
-   str1.trim();
-
-   strsize iFind2 = str1.find(".");
-
-   if(iFind2 < 0)
-   {
-
-      return;
-
-   }
-
-   strObject = str1.Left(iFind2);
-
-   strMember = str1.Mid(iFind2 + 1);
-
-   if(iFind >= 0)
-   {
-
-      str1 = strMessage.Mid(iFind + 1);
-
-      str1.trim();
-
-      memory_stream stream;
-
-      stream->get_primitive_memory()->from_hex(str1);
-
-      stream->seek_to_begin();
-
-      stream.set_loading();
-
-      __io_array(stream, payloada);
-
-   }
-
-   ::payload varRet;
-
-   on_interprocess_call(varRet, strObject, strMember, payloada);
+   on_interprocess_call(payloadReply, strObject, strMember, propertyset);
 
    if(!strMember.begins_ci("reply."))
    {
+      
+      string strOrigin = propertyset["protocol.origin"].get_string();
+      
+      string strOriginObject = propertyset["protocol.origin_object"].get_string();
+      
+      ::index iCallId = propertyset["protocol.call_id"].i64();
 
-      auto pcall = create_call(strAppFrom, strObject, "reply." + strMember);
+      auto pcall = create_call(strOrigin, strOriginObject, "reply." + strMember);
 
-      pcall->add_arg(iCall);
+      pcall->add_parameter("protocol.call_id", iCallId);
 
-      pcall->add_arg(varRet);
+      pcall->add_parameter("protocol:reply", payloadReply);
 
       //pcall->set_timeout(1_minute);
 
-      pcall->post(strAppPid);
+      pcall->post(strOriginObject);
 
    }
 
@@ -519,7 +540,7 @@ __pointer(interprocess_call) interprocess_intercommunication::create_call(const 
 }
 
 
-void interprocess_intercommunication::on_interprocess_call(::payload & payload, const ::string & strObject, const ::string & strMember, payload_array & payloada)
+void interprocess_intercommunication::on_interprocess_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
 {
 
    if(strObject == "application")
@@ -528,13 +549,13 @@ void interprocess_intercommunication::on_interprocess_call(::payload & payload, 
       if(::str().begins_ci(strMember, "reply."))
       {
 
-         ::i64 iTask = payloada[0].i64();
+         ::i64 iTask = propertyset["protocol:call_id"];
 
-         auto pobjectTask = get_task(iTask);
+         auto pinterprocesstask = get_task(iTask);
 
-         pobjectTask->m_var = payloada[1];
+         pinterprocesstask->m_payload = propertyset["protocol:reply"];
 
-         pobjectTask->m_pevReady->set_event();
+         pinterprocesstask->m_pevReady->set_event();
 
       }
       else if(strMember == "on_additional_local_instance")
@@ -542,27 +563,27 @@ void interprocess_intercommunication::on_interprocess_call(::payload & payload, 
 
          string strModule;
          
-         strModule = payloada[0];
+         strModule = propertyset["module"];
 
          string strCommandLine;
 
-         strCommandLine = payloada[2];
+         strCommandLine = propertyset["command_line"];
 
          auto papp = get_app();
 
          papp->m_papplication->on_additional_local_instance(
             payload["handled"].as_bool(),
             strModule, 
-            payloada[1].i32(), 
+            propertyset["pid"].i32(),
             strCommandLine);
 
-         payload["continue"] = true;
+         propertyset["continue"] = true;
 
       }
       else if (strMember == "on_new_instance")
       {
 
-         on_new_instance(payloada[0], payloada[1]);
+         on_new_instance(propertyset["module"], propertyset["pid"]);
 
       }
 

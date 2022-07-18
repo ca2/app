@@ -121,7 +121,7 @@ void ifs_file::set_file_data()
 
       property_set set;
 
-      set.parse_url_query(strResponse);
+      set.parse_network_arguments(strResponse);
 
       string strMd5Here;
 

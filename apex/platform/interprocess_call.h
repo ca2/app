@@ -18,7 +18,7 @@ public:
 
    string                                       m_strObject;
    string                                       m_strMember;
-   payload_array                                m_payloadaArgs;
+   property_set                                 m_propertyset;
 
 
    interprocess_call(interprocess_intercommunication* pipi, const string& strApp, const string& strObject, const string& strMember);
@@ -26,8 +26,8 @@ public:
 
    //inline auto tasks() const { return m_mapTask.values(); }
 
-   void add_arg(const ::payload & payload);
-   void add_args(const payload_array& payloada);
+   void add_parameter(const ::atom & atom, const ::payload & payload);
+   void add_parameters(const ::property_set & property_set);
    //void set_timeout(const duration& duration);
    void set_auto_launch(bool bSet = true);
 

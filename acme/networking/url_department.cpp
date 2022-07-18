@@ -903,22 +903,24 @@ namespace url
 
    }
 
+
    string department::query_erase(const ::string & strQueryParam, const ::string & strKeyParam)
    {
 
       ::property_set set;
 
-      set.parse_url_query(strQueryParam);
+      set.parse_network_arguments(strQueryParam);
 
       set.erase_by_name(strKeyParam);
 
       string str;
 
-      set.get_http_post(str);
+      set.get_network_arguments(str);
 
       return str;
 
    }
+
 
    string department::__query_erase(const ::string & strQueryParam, const ::string & strAndKeyEqual)
    {
@@ -927,36 +929,50 @@ namespace url
 
       while(true)
       {
+         
          strsize iFind = strQuery.find(strAndKeyEqual);
+         
          if(iFind < 0)
+         {
+            
             break;
+            
+         }
+         
          strsize iNextParam = strQuery.find("&", iFind + 1);
+         
          if(iNextParam < 0)
          {
+            
             strQuery = strQuery.Left(iFind);
+            
          }
          else
          {
+            
             strQuery = strQuery.Left(iFind) + strQuery.Mid(iNextParam);
+            
          }
+         
       }
 
       return strQuery;
 
    }
 
+
    string department::query_erase(const ::string & strQueryParam, string_array & straKey)
    {
 
       ::property_set set;
 
-      set.parse_url_query(strQueryParam);
+      set.parse_network_arguments(strQueryParam);
 
       set.erase_by_name(straKey);
 
       string str;
 
-      set.get_http_post(str);
+      set.get_network_arguments(str);
 
       return str;
 
@@ -974,60 +990,91 @@ namespace url
 
       string strAndKeyEqual = "&" + strKeyEqual;
 
-      ::payload varValue;
+      ::payload payload;
 
       strsize iPos = 0;
 
       if(::str().begins(strQuery, strKeyEqual))
       {
+         
          iPos = strQuery.find('&');
+         
          if(iPos < 0)
          {
-            varValue = strQuery.Mid(strKeyEqual.get_length());
-            return varValue;
+            
+            payload = strQuery.Mid(strKeyEqual.get_length());
+            
+            return payload;
+            
          }
          else
          {
-            varValue = strQuery.Mid(strKeyEqual.get_length(), iPos - strKeyEqual.get_length());
+            
+            payload = strQuery.Mid(strKeyEqual.get_length(), iPos - strKeyEqual.get_length());
+            
          }
+         
       }
 
       while(true)
       {
+         
          iPos = strQuery.find(strAndKeyEqual, iPos);
+         
          if(iPos < 0)
+         {
+            
             break;
+            
+         }
+         
          strsize iEnd = strQuery.find('&', iPos + 1);
+         
          if(iEnd < 0)
          {
-            if(varValue.is_new())
+            
+            if(payload.is_new())
             {
-               varValue = strQuery.Mid(iPos + strKeyEqual.get_length());
+               
+               payload = strQuery.Mid(iPos + strKeyEqual.get_length());
+               
             }
             else
             {
-               varValue.payloada().add(strQuery.Mid(iPos + strKeyEqual.get_length()));
+               
+               payload.payloada().add(strQuery.Mid(iPos + strKeyEqual.get_length()));
+               
             }
-            return varValue;
+            
+            return payload;
+            
          }
          else
          {
-            if(varValue.is_new())
+            
+            if(payload.is_new())
             {
-               varValue = strQuery.Mid(iPos + strKeyEqual.get_length(), iEnd - (iPos + strKeyEqual.get_length()));
+               
+               payload = strQuery.Mid(iPos + strKeyEqual.get_length(), iEnd - (iPos + strKeyEqual.get_length()));
+               
             }
             else
             {
-               varValue.payloada().add(strQuery.Mid(iPos + strKeyEqual.get_length(), iEnd - (iPos + strKeyEqual.get_length())));
+               
+               payload.payloada().add(strQuery.Mid(iPos + strKeyEqual.get_length(), iEnd - (iPos + strKeyEqual.get_length())));
+               
             }
+            
          }
+         
          iPos++;
+         
       }
 
-
-      return varValue;
+      return payload;
 
    }
+
 
    string department::query_get_param(const ::string & strQuery, const ::string & strKey)
    {
@@ -1035,38 +1082,60 @@ namespace url
       string strValue;
 
       if(!query_get_param(strValue, strQuery, strKey))
+      {
+         
          return "";
+         
+      }
 
       return strValue;
 
    }
 
+
    bool department::query_get_param(string & strValue, const ::string & strQuery, const ::string & strKey)
    {
 
       strsize iCmp = strQuery.length() - strKey.length();
+      
       if(iCmp < 0)
+      {
+         
          return false;
+         
+      }
 
       if(ansi_count_compare(strQuery, strKey, strKey.length()) == 0)
       {
+         
          if(iCmp == 0)
          {
+            
             strValue = "";
+            
             return true;
+            
          }
          else if(strQuery[strKey.length()] == '=')
          {
+            
             strsize iFind2 = strQuery.find('&', strKey.length() + 1);
+            
             if(iFind2 > 0)
             {
+               
                strValue = strQuery.Mid(strKey.length() + 1, iFind2 - (strKey.length() + 1));
+               
             }
             else
             {
+               
                strValue = strQuery.Mid(strKey.length() + 1);
+               
             }
+            
             return true;
+            
          }
 
       }
@@ -1077,50 +1146,77 @@ namespace url
 
       while((iFind = strQuery.find(strKey, iStart)) >= 0)
       {
+         
          if(strQuery[iFind - 1] == '&')
          {
+            
             if(strQuery.length() == (iFind + strKey.length()))
             {
+               
                strValue = "";
+               
                return true;
+               
             }
             else if(strQuery[iFind + strKey.length()] == '=')
             {
+               
                strsize iFind2 = strQuery.find('&', iFind + strKey.length() + 1);
+               
                if(iFind2 > 0)
                {
+                  
                   strValue = strQuery.Mid(iFind + strKey.length() + 1, iFind2 - (iFind + strKey.length() + 1));
+                  
                }
                else
                {
+                  
                   strValue = strQuery.Mid(iFind + strKey.length() + 1);
+                  
                }
+               
                return true;
+               
             }
+            
          }
+         
          iStart = iFind + strKey.length() + 1;
+         
       }
 
       return false;
 
    }
+
 
    bool department::query_has_param(const ::string & strQuery, const ::string & strKey)
    {
 
       strsize iCmp = strQuery.length() - strKey.length();
+      
       if(iCmp < 0)
+      {
+         
          return false;
+         
+      }
 
       if(ansi_count_compare(strQuery, strKey, strKey.length()) == 0)
       {
+         
          if(iCmp == 0)
          {
+            
             return true;
+            
          }
          else if(strQuery[strKey.length()] == '=')
          {
+            
             return true;
+            
          }
 
       }
@@ -1131,46 +1227,71 @@ namespace url
 
       while((iFind = strQuery.find(strKey, iStart)) >= 0)
       {
+         
          if(strQuery[iFind - 1] == '&')
          {
+            
             if(strQuery.length() == (iFind + strKey.length()))
             {
+               
                return true;
+               
             }
             else if(strQuery[iFind + strKey.length()] == '=')
             {
+               
                return true;
+               
             }
+            
          }
+         
          iStart = iFind + strKey.length() + 1;
+         
       }
 
       return false;
+      
    }
+
 
    bool department::query_param_has_char(const ::string & strQuery, const ::string & strKey)
    {
 
       strsize iCmp = strQuery.length() - strKey.length();
+      
       if(iCmp < 0)
+      {
+         
          return false;
+         
+      }
 
       if(ansi_count_compare(strQuery, strKey, strKey.length()) == 0)
       {
+         
          if(iCmp == 0)
          {
+            
             return false;
+            
          }
          else if(strQuery[strKey.length()] == '=')
          {
+            
             strsize iFind2 = strQuery.find('&', strKey.length() + 1);
+            
             if(iFind2 > 0)
             {
+               
                return (iFind2 - (strKey.length() + 1)) > 0;
+               
             }
             else
             {
+               
                return (strQuery.length() - (strKey.length() + 1)) > 0;
+               
             }
 
          }
@@ -1183,58 +1304,90 @@ namespace url
 
       while((iFind = strQuery.find(strKey, iStart)) >= 0)
       {
+         
          if(strQuery[iFind - 1] == '&')
          {
+            
             if(strQuery.length() == (iFind + strKey.length()))
             {
+               
                return false;
+               
             }
             else if(strQuery[iFind + strKey.length()] == '=')
             {
+               
                strsize iFind2 = strQuery.find('&', iFind + strKey.length() + 1);
+               
                if(iFind2 > 0)
                {
+                  
                   return (iFind2 - (iFind + strKey.length() + 1)) > 0;
+                  
                }
                else
                {
+                  
                   return (strQuery.length() - (iFind + strKey.length() + 1)) > 0;
+                  
                }
+               
             }
+            
          }
+         
          iStart = iFind + strKey.length() + 1;
+         
       }
 
       return false;
 
    }
+
 
    bool department::query_has_param_replace(string & strQuery, const ::string & strKey, const ::string & strValue)
    {
 
       strsize iCmp = strQuery.length() - strKey.length();
+      
       if(iCmp < 0)
+      {
+
          return false;
+         
+      }
 
       if(ansi_count_compare(strQuery, strKey, strKey.length()) == 0)
       {
+         
          if(iCmp == 0)
          {
+            
             strQuery += "=" + strValue;
+            
             return true;
+            
          }
          else if(strQuery[strKey.length()] == '=')
          {
+            
             strsize iFind2 = strQuery.find('&', strKey.length() + 1);
+            
             if(iFind2 > 0)
             {
+               
                strQuery = strQuery.Left(strKey.length() + 1) + strValue + strQuery.Mid(iFind2);
+               
             }
             else
             {
+               
                strQuery = strQuery.Left(strKey.length() + 1) + strValue;
+               
             }
+            
             return true;
+            
          }
 
       }
@@ -1245,37 +1398,53 @@ namespace url
 
       while((iFind = strQuery.find(strKey, iStart)) >= 0)
       {
+         
          if(strQuery[iFind - 1] == '&')
          {
+            
             if(strQuery.length() == (iFind + strKey.length()))
             {
+               
                strQuery += "=" + strValue;
+               
                return true;
+               
             }
             else if(strQuery[iFind + strKey.length()] == '=')
             {
+               
                strsize iFind2 = strQuery.find('&', iFind + strKey.length() + 1);
+               
                if(iFind2 > 0)
                {
+                  
                   strQuery = strQuery.Left(iFind + strKey.length() + 1) + strValue + strQuery.Mid(iFind2);
+                  
                }
                else
                {
+                  
                   strQuery = strQuery.Left(iFind + strKey.length() + 1) + strValue;
+                  
                }
+               
                return true;
+               
             }
+            
          }
+         
          iStart = iFind + strKey.length() + 1;
+         
       }
 
       return false;
 
    }
 
+
    bool department::locale_is_eu(atom idLocale)
    {
-
 
       if(
       idLocale == __id(eu)

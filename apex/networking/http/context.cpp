@@ -1128,7 +1128,7 @@ namespace http
 
       auto purl = psystem->url();
 
-      setQuery.parse_url_query(purl->get_query(strUrl));
+      setQuery.parse_network_arguments(purl->get_query(strUrl));
 
       string strIp;
 
@@ -1306,7 +1306,7 @@ namespace http
 
          property_set setQuery;
 
-         setQuery.parse_url_query(purl->get_query(strUrl));
+         setQuery.parse_network_arguments(purl->get_query(strUrl));
 
          string strSessId;
 

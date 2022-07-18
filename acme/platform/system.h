@@ -464,7 +464,7 @@ public:
 
    virtual void windowing_post(const ::procedure & procedure);
 
-   void _main_application_open_url(const char * pszUrl, const ::function < void(bool) > & functionSucceeded) override;
+   void _main_application_handle_url(const char * pszUrl, const ::function < void(bool) > & functionSucceeded) override;
    
 
 };

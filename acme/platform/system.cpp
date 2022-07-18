@@ -2386,7 +2386,7 @@ __pointer(::app) system::new_app(const char* pszAppId)
 }
 
 
-void system::_main_application_open_url(const char * pszUrl, const ::function < void(bool) > & functionSucceeded)
+void system::_main_application_handle_url(const char * pszUrl, const ::function < void(bool) > & functionSucceeded)
 {
    
    try
@@ -2395,17 +2395,22 @@ void system::_main_application_open_url(const char * pszUrl, const ::function < 
       if(m_pappMain)
       {
          
-         m_pappMain->open_url(pszUrl);
+         m_pappMain->handle_url(pszUrl);
          
       }
       else if(m_pappStartup)
       {
          
-         m_pappStartup->open_url(pszUrl);
+         m_pappStartup->handle_url(pszUrl);
          
       }
+      
+      if(functionSucceeded)
+      {
          
-      functionSucceeded(true);
+         functionSucceeded(true);
+         
+      }
       
    }
    catch(...)
@@ -2413,7 +2418,12 @@ void system::_main_application_open_url(const char * pszUrl, const ::function < 
       
    }
    
-   functionSucceeded(false);
+   if(functionSucceeded)
+   {
+   
+      functionSucceeded(false);
+      
+   }
    
 }
 

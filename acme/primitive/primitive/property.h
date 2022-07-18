@@ -176,8 +176,8 @@ public:
 
   }
 
-   ::string & get_http_post(::string & str) const;
-   ::string get_http_post() const { ::string str; return get_http_post(str); }
+   ::string & get_network_arguments(::string & str) const;
+   ::string get_network_arguments() const { ::string str; return get_network_arguments(str); }
 
 
    template < typename T >

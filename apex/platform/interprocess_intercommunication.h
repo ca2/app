@@ -58,7 +58,7 @@ public:
 
    virtual string str_from_va(const payload_array& va);
 
-   virtual void on_interprocess_call(::payload& payload, const ::string& strObject, const ::string& strMember, payload_array& payloada);
+   virtual void on_interprocess_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset);
 
    using ::interprocess_communication::rx::receiver::on_interprocess_receive;
 

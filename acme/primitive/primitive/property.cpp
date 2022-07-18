@@ -258,10 +258,10 @@ void property_skip_network_payload_value(const char *& pszJson, const char * psz
 }
 
 
-string & property::get_http_post(::string & str) const
+string & property::get_network_arguments(::string & str) const
 {
 
-   str += m_atom.str();
+   str += url_encode(m_atom.str());
 
    str += "=";
 

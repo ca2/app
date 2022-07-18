@@ -14,7 +14,7 @@ class plane_system :
 public:
    
    
-   virtual void _main_application_open_url(const char * pszUrl, const ::function < void(bool) > & functionSucceeded) = 0;
+   virtual void _main_application_handle_url(const char * pszUrl, const ::function < void(bool) > & functionSucceeded) = 0;
    
 };
 

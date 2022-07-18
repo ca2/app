@@ -4067,34 +4067,34 @@ void application::on_exclusive_instance_local_conflict(bool& bHandled)
 
          auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
 
-         pcall->add_arg(m_pcontext->m_papexcontext->file().module());
+         pcall->add_parameter("module", m_pcontext->m_papexcontext->file().module());
 
-         pcall->add_arg(m_pcontext->m_papexcontext->os_context()->get_pid());
+         pcall->add_parameter("pid", m_pcontext->m_papexcontext->os_context()->get_pid());
 
-         pcall->add_arg(psystem->command_line_text());
+         pcall->add_parameter("command_line", psystem->command_line_text());
 
-         string strId;
+         //string strId;
 
-         pcall->add_arg(strId);
+         //pcall->add_parameter(strId);
 
          pcall->send_call();
 
          for (auto& pair : pcall->m_mapTask)
          {
 
-            auto& pobjectTask = pair.element2();
+            auto& pinterprocesstask = pair.element2();
 
-            if (bContinue && pobjectTask->has_property("continue"))
+            if (bContinue && pinterprocesstask->has_property("continue"))
             {
 
-               bContinue = pobjectTask->m_var["continue"].is_true();
+               bContinue = pinterprocesstask->m_payload["continue"].is_true();
 
             }
 
-            if (!bHandled && pobjectTask->has_property("handled"))
+            if (!bHandled && pinterprocesstask->has_property("handled"))
             {
 
-               bHandled = pobjectTask->m_var["handled"].is_true();
+               bHandled = pinterprocesstask->m_payload["handled"].is_true();
 
             }
 
@@ -4126,13 +4126,13 @@ void application::on_exclusive_instance_local_conflict_id(bool& bHandled, string
 
          auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
 
-         pcall->add_arg(m_pcontext->m_papexcontext->file().module());
+         pcall->add_parameter("module", m_pcontext->m_papexcontext->file().module());
 
-         pcall->add_arg(m_pcontext->m_papexcontext->os_context()->get_pid());
+         pcall->add_parameter("pid", m_pcontext->m_papexcontext->os_context()->get_pid());
 
-         pcall->add_arg(psystem->command_line_text());
+         pcall->add_parameter("command_line", psystem->command_line_text());
 
-         pcall->add_arg(strId);
+         pcall->add_parameter("id", strId);
 
          for (auto& ptask : pcall->m_mapTask.values())
          {
@@ -10206,6 +10206,20 @@ void application::create_networking_application()
 
 }
 
+
+void application::handle_url(const ::string & strUrl)
+{
+ 
+   if(m_pinterprocessintercommunication)
+   {
+      
+      string strMessage = strUrl;
+      
+      m_pinterprocessintercommunication->m_prx->on_interprocess_receive(::move(strMessage));
+      
+   }
+
+}
 
 //void application::interprocess_communication_open(const char * pszPath)
 //{

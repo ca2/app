@@ -299,14 +299,14 @@ public:
    void parse_network_payload(const ::string & strJson);
    void parse_network_payload(const char * & pszJson);
    void parse_network_payload(const char * & pszJson, const char * pszEnd);
-   void parse_url_query(const char * pszUrl);
-   void _parse_url_query(const char * pszUrlQuery);
-   void parse_http_headers(const char * pszHeaders);
+   void parse_network_arguments(const char * pszUrl);
+   void _parse_network_arguments(const char * pszUrlQuery);
+   void parse_network_headers(const char * pszHeaders);
 
 
-   string & get_http_post(string & str) const;
+   string & get_network_arguments(string & str) const;
    string & get_network_payload(string & str, bool bNewLine = true) const;
-   string get_http_post() const { string str; return get_http_post(str); }
+   string get_network_arguments() const { string str; return get_network_arguments(str); }
    string get_network_payload() const { string str; return get_network_payload(str); }
    string get_command_line(const string_array & straKeys) const;
    string get_command_line() const;

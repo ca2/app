@@ -188,7 +188,7 @@ void * application_system(void * pApplication)
 }
 
 
-void app::open_url(const ::string & strUrl)
+void app::handle_url(const ::string & strUrl)
 {
    
    

@@ -71,7 +71,7 @@ public:
    virtual void add_capability(enum_application_capability ecapability);
    
    
-   virtual void open_url(const ::string & strUrl);
+   virtual void handle_url(const ::string & strUrl);
 
 
 };

@@ -107,12 +107,12 @@ namespace sockets
       else
       {
 
-         string body;
+         string strBody;
 
          if (m_fields.has_property("raw_text"))
          {
 
-            body = m_fields["raw_text"];
+            strBody = m_fields["raw_text"];
 
             string strContentType = m_fields["raw_text_content_type"];
 
@@ -127,9 +127,9 @@ namespace sockets
             if (payload.get_type() == ::e_type_property_set)
             {
 
-               payload.propset().get_network_payload(body);
+               payload.propset().get_network_payload(strBody);
 
-               INFORMATION("JSON BODY: " << body);
+               INFORMATION("JSON BODY: " << strBody);
 
                string strContentType = inheader(__id(content_type)).string();
 
@@ -160,7 +160,7 @@ namespace sockets
          else
          {
 
-            m_fields.get_http_post(body);
+            m_fields.get_network_arguments(strBody);
 
             if (inheader(__id(content_type)).string().find_ci("application/x-www-form-urlencoded") < 0)
             {
@@ -196,27 +196,27 @@ namespace sockets
 
          }
 
+         auto content_length = strBody.length();
 
-         auto content_length = body.length();
-
-            inheader(__id(content_length)) = content_length;
+         inheader(__id(content_length)) = content_length;
 
 #if !defined(BSD_STYLE_SOCKETS)
 
-            m_bExpectResponse = true;
+         m_bExpectResponse = true;
 
-            m_bExpectRequest = false;
+         m_bExpectRequest = false;
 
 #endif
 
-            SendRequest();
+         SendRequest();
 
-            if (body.get_length() > 0)
-            {
-               // send body
-               print(body);
+         if (strBody.has_char())
+         {
+            
+            // send body
+            print(strBody);
 
-            }
+         }
 
       }
 

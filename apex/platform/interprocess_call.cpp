@@ -23,18 +23,18 @@ interprocess_call::~interprocess_call()
 }
 
 
-void interprocess_call::add_arg(const ::payload & payload)
+void interprocess_call::add_parameter(const ::atom & atom, const ::payload & payload)
 {
 
-   m_payloadaArgs.add(payload);
+   m_propertyset[atom] = payload;
 
 }
 
 
-void interprocess_call::add_args(const payload_array& payloada)
+void interprocess_call::add_parameters(const ::property_set & propertyset)
 {
 
-   ::papaya::array::add(m_payloadaArgs, payloada);
+   m_propertyset.merge(propertyset);
 
 }
 
@@ -85,7 +85,7 @@ void interprocess_call::send(const ::atom& idPid)
 
    }
 
-   pobjectTask->do_task(pcall->m_strObject, pcall->m_strMember, pcall->m_payloadaArgs);
+   pobjectTask->do_task(pcall->m_strObject, pcall->m_strMember, pcall->m_propertyset);
 
 }
 

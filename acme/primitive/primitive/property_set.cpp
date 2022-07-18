@@ -1045,71 +1045,125 @@ string & property_set::get_network_payload(string & str, bool bNewLine) const
 }
 
 
-void property_set::parse_url_query(const char * pszUrl)
+void property_set::parse_network_arguments(const char * pszUriOrNetworkArguments)
 {
-   if(pszUrl == nullptr)
+   
+   if(::is_empty(pszUriOrNetworkArguments))
+   {
+      
       return;
-   const char * pszUrlQuery = strchr(pszUrl, '?');
-   if(pszUrlQuery == nullptr)
-      return _parse_url_query(pszUrl);
+   
+   }
+   
+   const char * pszNetworkArguments = strchr(pszUriOrNetworkArguments, '?');
+   
+   if(::is_empty(pszNetworkArguments))
+   {
+      
+      return _parse_network_arguments(pszUriOrNetworkArguments);
+      
+   }
    else
-      return _parse_url_query(pszUrlQuery + 1);
+   {
+
+      return _parse_network_arguments(pszNetworkArguments + 1);
+      
+   }
+   
 }
 
-void property_set::_parse_url_query(const char * pszUrlQuery)
+
+void property_set::_parse_network_arguments(const char * pszNetworkArguments)
 {
-   if(pszUrlQuery == nullptr)
+   
+   if(::is_empty(pszNetworkArguments))
+   {
+    
       return;
-   const char * pszParam = pszUrlQuery;
-   const char * pszParamEnd;
+      
+   }
+   
+   const char * pszArgument = pszNetworkArguments;
+   
+   const char * pszArgumentEnd;
+   
    const char * pszKeyEnd;
+   
    string strKey;
+   
    while(true)
    {
-      pszParamEnd = strchr(pszParam, '&');
-      pszKeyEnd   = strchr(pszParam, '=');
-      if(pszParamEnd == nullptr)
+      
+      pszArgumentEnd = strchr(pszArgument, '&');
+      
+      pszKeyEnd   = strchr(pszArgument, '=');
+      
+      if(pszArgumentEnd == nullptr)
       {
+         
          if(pszKeyEnd == nullptr)
          {
-            strKey = url_decode(pszParam, strlen(pszUrlQuery) - (pszParam - pszUrlQuery));
+            
+            strKey = url_decode(pszArgument, strlen(pszNetworkArguments) - (pszArgument - pszNetworkArguments));
+            
             _008Add(strKey, "");
+            
          }
          else
          {
-            string strKey = url_decode(pszParam, pszKeyEnd - pszParam);
-            string strValue = url_decode(pszKeyEnd + 1, strlen(pszUrlQuery) - (pszKeyEnd + 1 - pszUrlQuery));
+            
+            string strKey = url_decode(pszArgument, pszKeyEnd - pszArgument);
+            
+            string strValue = url_decode(pszKeyEnd + 1, strlen(pszNetworkArguments) - (pszKeyEnd + 1 - pszNetworkArguments));
+            
             _008Add(strKey, strValue);
+            
          }
+         
          return;
+         
+      }
+
+      if(pszKeyEnd == nullptr || pszKeyEnd > pszArgumentEnd)
+      {
+      
+         strKey = url_decode(pszArgument, pszArgumentEnd - pszArgument);
+         
+         _008Add(strKey, "");
+      
       }
       else
       {
-         if(pszKeyEnd == nullptr || pszKeyEnd > pszParamEnd)
-         {
-            strKey = url_decode(pszParam, pszParamEnd - pszParam);
-            _008Add(strKey, "");
-         }
-         else
-         {
-            string strKey = url_decode(pszParam, pszKeyEnd - pszParam);
-            string strValue = url_decode(pszKeyEnd + 1, pszParamEnd - (pszKeyEnd + 1));
-            _008Add(strKey, strValue);
-         }
+      
+         string strKey = url_decode(pszArgument, pszKeyEnd - pszArgument);
+         
+         string strValue = url_decode(pszKeyEnd + 1, pszArgumentEnd - (pszKeyEnd + 1));
+         
+         _008Add(strKey, strValue);
+         
       }
-      pszParam = pszParamEnd + 1;
+      
+      pszArgument = pszArgumentEnd + 1;
+      
    }
 
 }
 
-void property_set::parse_http_headers(const char * pszHeaders)
+
+void property_set::parse_network_headers(const char * pszHeaders)
 {
+   
    string_array stra;
+   
    stra.add_tokens(pszHeaders, "\r\n", true);
+   
    string strName;
+   
    for(i32 i = 0; i < stra.get_size(); i++)
    {
+      
       strsize iPos = stra[i].find(":");
+      
       if(iPos < 0)
       {
 
@@ -1131,12 +1185,14 @@ void property_set::parse_http_headers(const char * pszHeaders)
 
 }
 
+
 string property_set::_001Replace(const ::string & str) const
 {
 
    return ::papaya::property_set::evaluate(*this, str);
 
 }
+
 
 ::matter * property_set::source_channel()
 {
@@ -1145,19 +1201,29 @@ string property_set::_001Replace(const ::string & str) const
 
 }
 
+
 ::count property_set::erase_by_name(const atom & idName)
 {
+   
    return unset(idName);
+   
 }
+
 
 ::count property_set::erase_by_name(string_array & stra)
 {
+   
    ::count count = 0;
+   
    for(i32 i = 0; i < stra.get_count(); i++)
    {
+      
       count += erase_by_name(stra[i]);
+      
    }
+   
    return count;
+   
 }
 
 
@@ -1655,7 +1721,7 @@ bool property_set::contains(const property_set & set) const
 }
 
 
-string & property_set::get_http_post(string & strPost) const
+string & property_set::get_network_arguments(string & strNetworkArguments) const
 {
 
    auto p = values();
@@ -1663,7 +1729,7 @@ string & property_set::get_http_post(string & strPost) const
    if(p)
    {
 
-      p->get_http_post(strPost);
+      p->get_network_arguments(strNetworkArguments);
 
       p++;
 
@@ -1672,26 +1738,15 @@ string & property_set::get_http_post(string & strPost) const
    for(; p; p++)
    {
 
-      strPost += "&";
+      strNetworkArguments += "&";
 
-      p->get_http_post(strPost);
+      p->get_network_arguments(strNetworkArguments);
 
    }
 
-   return strPost;
+   return strNetworkArguments;
 
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 //stable_property_set::stable_property_set/*()

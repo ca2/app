@@ -188,9 +188,9 @@ namespace user
       bool                                         m_bRectOk;
 
       bool                                         m_bWfiUpDownTarget;
+      bool                                         m_bPendingZorder;
       bool                                         m_bPadding001;
       bool                                         m_bPadding002;
-      //bool                                         m_bPadding003;
 
 
       ::oswindow                                   m_oswindow;
@@ -201,13 +201,8 @@ namespace user
 
 
 
-      ::oswindow                                   m_oswindow;
+      //::oswindow                                   m_oswindow;
       ewindowflag                                  m_ewindowflag;
-      bool                                         m_bDerivedHeight;
-
-
-      bool                                         m_bSketchToDesignLayout;
-      bool                                         m_bPendingZorder;
 
       // <3ThomasBorreggardSørensen_!!
       __pointer(::material_object)                 m_pmaterialCommandHandler;

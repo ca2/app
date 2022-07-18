@@ -277,3 +277,16 @@ CLASS_DECL_ACME void operating_system_get_main_screen_size(int & cx, int & cy)
 
 
 
+void ui_open_url(const char  *pszUrl)
+{
+   
+   NSString * strUrl = [ [ NSString alloc ] initWithUTF8String:pszUrl];
+   
+   NSURL * url = [ NSURL URLWithString: strUrl ];
+   
+   [ [ UIApplication sharedApplication ] openURL: url options:@{} completionHandler:nil];
+
+}
+
+
+

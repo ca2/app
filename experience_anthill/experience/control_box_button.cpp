@@ -208,7 +208,9 @@ namespace experience_anthill
       if (m_spregion.is_null())
       {
 
-         return nullptr;
+         auto pitemNone = __new(::item(e_element_none));
+
+         return pitemNone;
 
       }
 
@@ -223,7 +225,9 @@ namespace experience_anthill
       if (!m_spregion->contains(point))
       {
 
-         return nullptr;
+         auto pitemNone = __new(::item(e_element_none));
+
+         return pitemNone;
 
       }
 

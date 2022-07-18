@@ -1694,9 +1694,16 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
       //}
 
-      //estatus = 
+      //estatus =
       
-      m_pimageDots->create({ (int)(rectangleDraw.width() * iDiv), (int)(rectangleDraw.height() * iDiv) });
+      ::size_i32 size((rectangleDraw.width() * iDiv), (rectangleDraw.height() * iDiv));
+      
+      if(size.has_area())
+      {
+      
+         m_pimageDots->create(size);
+         
+      }
 
       //if (!estatus)
       //{
@@ -1704,49 +1711,54 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
       //   return;
 
       //}
-
-      m_pimageDots->fill_byte(0);
-
-      if (!m_pimageDots->g())
+      
+      if(::is_ok(m_pimageDots))
       {
 
-         return;
+         m_pimageDots->fill_byte(0);
 
-      }
-
-      m_pimageDots->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-      double iDiv2 = iDiv / 2;
-
-      double iDiv3 = iDiv2 / 2;
-
-      double x = m_pimageDots->width() / (iDiv * 2);
-
-      double iSize = iDiv3;
-
-      for (int i = 0; i <= iDiv2; i++)
-      {
-
-         double y = m_pimageDots->height() / (iDiv * 2);
-
-         for (int j = 0; j <= iDiv2; j++)
+         if (!m_pimageDots->g())
          {
 
-            iSize = maximum(abs(m_pimageDots->width() / 2 - x), abs(m_pimageDots->width() / 2 - y));
-
-            iSize = (m_pimageDots->width() / 2) - iSize;
-
-            iSize = pow(iSize, 0.55);
-
-            rectangle_f64 r(x - iSize, y - iSize, x + iSize, y + iSize);
-
-            m_pimageDots->g()->fill_rectangle(r, argb(80, 0, 0, 0));
-
-            y += m_pimageDots->height() / (iDiv2 + 1.0);
+            return;
 
          }
 
-         x += m_pimageDots->width() / (iDiv2 + 1.0);
+         m_pimageDots->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+         double iDiv2 = iDiv / 2;
+
+         double iDiv3 = iDiv2 / 2;
+
+         double x = m_pimageDots->width() / (iDiv * 2);
+
+         double iSize = iDiv3;
+
+         for (int i = 0; i <= iDiv2; i++)
+         {
+
+            double y = m_pimageDots->height() / (iDiv * 2);
+
+            for (int j = 0; j <= iDiv2; j++)
+            {
+
+               iSize = maximum(abs(m_pimageDots->width() / 2 - x), abs(m_pimageDots->width() / 2 - y));
+
+               iSize = (m_pimageDots->width() / 2) - iSize;
+
+               iSize = pow(iSize, 0.55);
+
+               rectangle_f64 r(x - iSize, y - iSize, x + iSize, y + iSize);
+
+               m_pimageDots->g()->fill_rectangle(r, argb(80, 0, 0, 0));
+
+               y += m_pimageDots->height() / (iDiv2 + 1.0);
+
+            }
+
+            x += m_pimageDots->width() / (iDiv2 + 1.0);
+            
+         }
 
       }
 
@@ -1837,7 +1849,9 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
       }
 
-      return nullptr;
+      auto pitemNone = __new(::item(e_element_none));
+
+      return pitemNone;
 
    }
 

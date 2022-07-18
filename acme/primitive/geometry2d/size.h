@@ -60,6 +60,7 @@ public:
    UNIT_TYPE area() const noexcept { return ::rect_area(this->cx, this->cy); }
    inline bool is_empty() const noexcept { return this->cx <= 0 || this->cy <= 0; }
    inline bool is_set() const noexcept { return !is_empty(); }
+   inline bool has_area() const noexcept { return is_set(); }
 
 
    ::u32          u32() const noexcept { return __u32(this->cx, this->cy); }

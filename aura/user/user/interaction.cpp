@@ -17647,7 +17647,9 @@ namespace user
          }
 
       }
-
+      
+      
+      
       return pitemHitTest;
 
    }
@@ -17698,14 +17700,9 @@ namespace user
 
       auto pitem = hit_test(pointClient);
 
-      if (pitem.is_set())
-      {
+      pitem->m_pointScreen = pmouse->m_point;
 
-         pitem->m_pointScreen = pmouse->m_point;
-
-         pitem->m_pmouse = pmouse;
-
-      }
+      pitem->m_pmouse = pmouse;
 
       return pitem;
 
@@ -17717,12 +17714,7 @@ namespace user
 
       auto pitem = on_hit_test(pointClient);
 
-      if (pitem.is_set())
-      {
-
-         pitem->m_pointClient = pointClient;
-
-      }
+      pitem->m_pointClient = pointClient;
 
       return pitem;
 
@@ -17798,7 +17790,9 @@ namespace user
       else
       {
 
-         return nullptr;
+         auto pitemClient = __new(::item(e_element_none));
+
+         return pitemClient;
 
       }
 

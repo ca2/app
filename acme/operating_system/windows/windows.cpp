@@ -567,14 +567,14 @@ void operating_system_get_main_screen_size(int& cx, int& cy)
 }
 
 
-CLASS_DECL_ACME void operating_system_open_url(const char* pszUrl)
-{
+// CLASS_DECL_ACME void operating_system_open_url(const char* pszUrl)
+// {
 
-   wstring wstrUrl(pszUrl);
+//    wstring wstrUrl(pszUrl);
 
-   ::ShellExecuteW(nullptr, L"open", wstrUrl, nullptr, nullptr, SW_SHOWNORMAL);
+//    ::ShellExecuteW(nullptr, L"open", wstrUrl, nullptr, nullptr, SW_SHOWNORMAL);
 
-}
+// }
 
 
 

@@ -507,7 +507,7 @@ namespace account
 
       m_plogin->place(rectangleClient);
 
-      m_plogin->display(::e_display_normal);
+      m_plogin->display(::e_display_restored);
 
    }
 

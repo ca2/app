@@ -397,6 +397,7 @@ namespace acme
 
 
       virtual void shell_open(const ::file::path & path, const string & strParams = "", const ::file::path & pathFolder = "");
+      virtual void open_url(const ::string & strUrl);
 
 
       virtual void aaa_shell_execute_async(const char * pszFile, const char * pszParams);

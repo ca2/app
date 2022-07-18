@@ -301,10 +301,10 @@ namespace user
    }
 
 
-   void impact_system::InitialUpdateFrame(__pointer(::user::frame_window) pFrame, ::user::document * pdocument, bool bMakeVisible)
+   void impact_system::prepare_frame(::user::frame_window * pframe, ::user::document * pdocument, bool bMakeVisible)
    {
 
-      pFrame->InitialUpdateFrame(pdocument, bMakeVisible);
+      pframe->prepare_frame(pdocument, bMakeVisible);
 
    }
 

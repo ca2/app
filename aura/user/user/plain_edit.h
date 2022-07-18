@@ -189,8 +189,12 @@ namespace user
       bool                                m_bNeedCalcLayout;
       bool                                m_bCalcLayoutHintNoTextChange;
       int                                 m_iInputConnectionBatch;
-      index                               m_iLastSelEndLine;
-      int                                 m_iLastSelEndX;
+      bool                                m_bSetTextSelectionUpdatePending;
+      bool                                m_bLastSelectionWasAtEnd;
+      ::index                             m_iLastSelectionBeginLine;
+      ::i32                               m_iLastSelectionBeginX;
+      ::index                             m_iLastSelectionEndLine;
+      ::i32                               m_iLastSelectionEndX;
       int                                 m_iTabWidth;
       bool                                m_bColorerTake5;
       ::index                             m_iCurrentPageLineStart;

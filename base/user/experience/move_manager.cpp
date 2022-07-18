@@ -84,7 +84,7 @@ namespace experience
          if (edisplaySketch == e_display_none)
          {
 
-            edisplaySketch = e_display_normal;
+            edisplaySketch = e_display_restored;
 
          }
 

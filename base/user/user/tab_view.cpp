@@ -444,7 +444,7 @@ namespace user
 
       m_pdroptargetwindow->place(rectangle);
 
-      m_pdroptargetwindow->display(e_display_normal);
+      m_pdroptargetwindow->display(e_display_restored);
 
       m_pdroptargetwindow->set_mouse_capture();
 

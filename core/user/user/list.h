@@ -87,7 +87,7 @@ namespace user
 
       //mesh_data * GetDataInterface();
       using mesh::update_hover;
-      bool update_hover(::user::mouse * pmouse, bool bAvoidRedraw = true) override;
+      ::item_pointer update_hover(::user::mouse * pmouse, bool bAvoidRedraw = true) override;
       //::write_text::font * _001GetFont();
       //::write_text::font * _001GetFontHover();
       //::draw2d::pen * _001GetPenFocused();

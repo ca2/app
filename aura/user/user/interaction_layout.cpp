@@ -222,12 +222,12 @@ namespace user
 //
 //      bool bToggle = false;
 //
-//      if (edisplay == e_display_normal)
+//      if (edisplay == e_display_restored)
 //      {
 //
 //         #ifdef INFO_LAYOUT_DISPLAY
 //
-//         INFORMATION("interaction_layout::display e_display_normal");
+//         INFORMATION("interaction_layout::display e_display_restored");
 //
 //         #endif
 //
@@ -299,7 +299,7 @@ namespace user
 //
 //#if DEBUG_LEVEL > 0
 //
-//      if (edisplay == e_display_normal)
+//      if (edisplay == e_display_restored)
 //      {
 //
 //         if (m_pdescriptor.is_set() && m_puserinteractionParent == nullptr)
@@ -336,7 +336,7 @@ namespace user
 //         if (edisplayCurrent == e_display_undefined)
 //         {
 //
-//            edisplay = e_display_normal;
+//            edisplay = e_display_restored;
 //
 //         }
 //         else if (::is_screen_visible(edisplayCurrent))
@@ -360,7 +360,7 @@ namespace user
 //         else
 //         {
 //
-//            edisplay = ::e_display_normal;
+//            edisplay = ::e_display_restored;
 //
 //         }
 //

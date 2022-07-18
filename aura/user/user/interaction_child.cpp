@@ -652,6 +652,8 @@ namespace user
       {
 
       }
+      
+      m_puserinteraction->layout().m_statea[e_layout_window].m_edisplay = edisplay;
 
    }
 

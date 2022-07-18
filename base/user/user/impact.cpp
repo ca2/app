@@ -919,7 +919,7 @@ namespace user
 
       pinteraction->m_pusersystem = pusersystem;
 
-      pinteraction->display(e_display_normal);
+      pinteraction->display(e_display_restored);
 
       pinteraction->m_atom = atom;
 

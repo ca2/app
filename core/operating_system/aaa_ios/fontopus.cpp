@@ -481,7 +481,7 @@ namespace account
 
 //      SetTimer(m_oswindow, 123, 23, nullptr);
 
-      ShowWindow(m_oswindow, e_display_normal);
+      ShowWindow(m_oswindow, e_display_restored);
 
 
 
@@ -755,7 +755,7 @@ namespace account
 
          if (m_eresult == ::spa_login::result_fail)
          {
-            ::ShowWindow(m_oswindow, e_display_normal);
+            ::ShowWindow(m_oswindow, e_display_restored);
          }
          else
          {

@@ -3376,9 +3376,9 @@ return true;
 
       throw ::exception(todo);
 
-      /*      m_edisplay = e_display_normal;
+      /*      m_edisplay = e_display_restored;
             if(m_puserinteraction != nullptr)
-            m_puserinteraction->m_edisplay = e_display_normal;
+            m_puserinteraction->m_edisplay = e_display_restored;
             ::ShowWindow(get_handle(), SW_RESTORE);*/
    }
 

@@ -199,7 +199,7 @@ namespace user
       // second colon starts the text.
       // if the text is a ID, the ID will be result when no translation
       // if the text is a text (in English), the text (in English) will be the result when there is no translation.
-      //set_tille("text://hellomultiverse/AKDFJG./:Main Tab"));
+      //set_tille("text://hello_multiverse/AKDFJG./:Main Tab"));
       ppane->set_title(strTitle);
 
       ppane->m_bTabPaneVisible   = bVisible;
@@ -1689,7 +1689,7 @@ namespace user
       if (bDisplay)
       {
 
-         pholder->display(::e_display_normal);
+         pholder->display(::e_display_restored);
 
 //         if (ppane->m_bNeedLayout)
 //         {
@@ -2568,7 +2568,9 @@ namespace user
 
       }
 
-      return nullptr;
+      auto pitemNone = __new(::item(e_element_none));
+
+      return pitemNone;
 
    }
 
@@ -3243,7 +3245,7 @@ namespace user
 //      set_current_tab_by_index(iIndex);
 //      // if(get_tab_holder(get_current_tab_index()) != nullptr)
 //      //{
-//      // get_tab_holder(get_current_tab_index())->display(e_display_normal);
+//      // get_tab_holder(get_current_tab_index())->display(e_display_restored);
 //      // }
 //
 //      //on_layout(pgraphics);
@@ -4210,7 +4212,7 @@ namespace user
 //         if (pshowwindow->m_bShow)
 //         {
 //
-//            pholder->display(e_display_normal);
+//            pholder->display(e_display_restored);
 //
 //         }
 //         else

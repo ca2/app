@@ -194,7 +194,7 @@ namespace user
 
       }
 
-      InitialUpdateFrame(pFrame, pdocument, bMakeVisible);
+      prepare_frame(pFrame, pdocument, bMakeVisible);
 
       pcreate->payload("document") = pdocument;
 

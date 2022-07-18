@@ -37,6 +37,16 @@
 #endif
 
 
+#if OSBIT == 64
+
+#define PRI0xPTR  "016" PRIxPTR
+
+#else
+
+#define PRI0xPTR  "08" PRIxPTR
+
+#endif
+
 
 CLASS_DECL_ACME void* reverse_memchr(const void* l, int ch, size_t l_len);
 CLASS_DECL_ACME void* reverse_memmem(const void* l, size_t l_len, const void* s, size_t s_len);

@@ -299,8 +299,8 @@ string interprocess_intercommunication::key(const string &strApp, const ::atom &
 
    strAppId.find_replace("-","-");
 
-   strKey = "apex-" + strAppId;
-
+   strKey = strAppId;
+   
 #ifdef MACOS
 
    strKey += "/" + __string(idPid.i32());

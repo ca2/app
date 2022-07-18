@@ -30,7 +30,7 @@ namespace helloaura
       MyRegisterClass(hInstance);
 
       // Perform application initialization:
-      if (!InitInstance(prender, hInstance, e_display_normal))
+      if (!InitInstance(prender, hInstance, e_display_restored))
       {
          return false;
       }

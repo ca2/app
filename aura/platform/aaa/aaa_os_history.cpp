@@ -13,7 +13,7 @@ bool os_history::hist(const ::string & psz)
 
 #if !defined(_UWP)
 
-   ::aura::shell_launcher launcher(nullptr, "open", psz, "", "", e_display_normal);
+   ::aura::shell_launcher launcher(nullptr, "open", psz, "", "", e_display_restored);
 
    launcher.execute();
 

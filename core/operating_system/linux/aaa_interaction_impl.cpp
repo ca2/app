@@ -910,7 +910,7 @@ namespace linux
             if(m_puserinteraction->m_windowrectangle.m_edisplayPrevious == ::e_display_iconic)
             {
 
-               m_puserinteraction->_001OnDeiconify(::e_display_normal);
+               m_puserinteraction->_001OnDeiconify(::e_display_restored);
 
             }
             else
@@ -2994,11 +2994,11 @@ namespace linux
 //      if(m_puserinteraction != nullptr)
 //      {
 //
-//         m_puserinteraction->dis = ::e_display_normal;
+//         m_puserinteraction->dis = ::e_display_restored;
 //
 //      }
 //
-//      ::show_window(m_oswindow, e_display_normal);
+//      ::show_window(m_oswindow, e_display_restored);
 //
 //   }
 

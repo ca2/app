@@ -146,8 +146,10 @@
 
    void os_context::link_open(const string & strUrl, const string & strProfile)
    {
+      
+      m_psystem->node()->open_url(strUrl);
 
-      file_open(strUrl);
+//      file_open(strUrl);
       //{
 
       //   return error_failed;

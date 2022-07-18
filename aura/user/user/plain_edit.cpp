@@ -226,7 +226,10 @@ namespace user
       m_bRMouseDown = false;
       m_durationCaretPeriod = 1_s;
 
-      m_iLastSelEndX = -1;
+      m_iLastSelectionBeginLine = -1;
+      m_iLastSelectionBeginX = -1;
+      m_iLastSelectionEndLine = -1;
+      m_iLastSelectionEndX = -1;
       m_iColumnX = -1;
 
    }
@@ -499,15 +502,9 @@ namespace user
 
       __sort(iSelBeg, iSelEnd);
 
-      {
+      m_iLastSelectionBeginLine = plain_edit_sel_to_line_x(pgraphics, iSelBeg, m_iLastSelectionBeginX);
 
-         auto iEnd = iSelEnd;
-
-         int x;
-
-         m_iLastSelEndLine = plain_edit_sel_to_line_x(pgraphics, iEnd, x);
-
-      }
+      m_iLastSelectionEndLine = plain_edit_sel_to_line_x(pgraphics, iSelEnd, m_iLastSelectionEndX);
 
       pgraphics->set_font(this, ::e_element_none);
 
@@ -943,7 +940,7 @@ namespace user
          queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
             {
 
-               plain_edit_on_set_text(pgraphics, ::e_source_system);
+               //plain_edit_on_set_text(pgraphics, ::e_source_system);
 
                plain_edit_on_update(pgraphics, ::e_source_system);
 
@@ -1598,30 +1595,29 @@ namespace user
 
       m_bNewSel = true;
 
-      //if (action_context.is_user_source())
-      //{
+      if (action_context.is_user_source())
+      {
 
-      //   auto pwindowing = windowing();
+         auto pwindowing = windowing();
 
-      //   auto ptexteditorinterface = pwindowing->get_text_editor_interface();
+         auto ptexteditorinterface = pwindowing->get_text_editor_interface();
 
-      //   if (::is_set(ptexteditorinterface))
-      //   {
+         if (::is_set(ptexteditorinterface))
+         {
 
+            string strText;
 
-      //      string strText;
-
-      //      _001GetText(strText);
+            _001GetText(strText);
 
       //      //operating_system_driver::get()->m_iInputMethodManagerSelectionStart = ansi_to_wd16_len(strText, iBeg);
 
       //      //operating_system_driver::get()->m_iInputMethodManagerSelectionEnd = ansi_to_wd16_len(strText, iEnd);
 
-      //      auto iSelectionStart = ansi_to_wd16_len(strText, iBeg);
+         auto iSelectionStart = ansi_to_wd32_len(strText, iBeg);
 
-      //      auto iSelectionEnd = ansi_to_wd16_len(strText, iEnd);
+         auto iSelectionEnd = ansi_to_wd32_len(strText, iEnd);
 
-      //      ptexteditorinterface->set_input_method_manager_selection(iSelectionStart, iSelectionEnd);
+         ptexteditorinterface->set_editor_selection(iSelectionStart, iSelectionEnd);
 
       //      if (m_pitemComposing)
       //      {
@@ -1640,9 +1636,9 @@ namespace user
 
       //      }
 
-      //   }
+         }
 
-      //}
+      }
 
 //#ifdef ANDROID
 //
@@ -1901,17 +1897,19 @@ namespace user
             set_mouse_capture();
 
             queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
-               {
+            {
 
-                  auto iSelBeg = plain_edit_char_hit_test(pgraphics, point);
+               auto iSelBeg = plain_edit_char_hit_test(pgraphics, point);
 
-                  auto iSelEnd = iSelBeg;
+               auto iSelEnd = iSelBeg;
+               
+               FORMATTED_INFORMATION("LeftButtonDown(%d,%d)-queue_graphics_call", iSelBeg, iSelEnd);
 
-                  _001SetSel(iSelBeg, iSelEnd);
+               _001SetSel(iSelBeg, iSelEnd);
 
-                  m_iColumn = plain_edit_sel_to_column_x(pgraphics, m_ptree->m_iSelEnd, m_iColumnX);
+               m_iColumn = plain_edit_sel_to_column_x(pgraphics, m_ptree->m_iSelEnd, m_iColumnX);
 
-               });
+            });
 
 #if defined(WINDOWS_DESKTOP)
 
@@ -6293,9 +6291,9 @@ namespace user
 
       //auto iLine = plain_edit_sel_to_line_x(pgraphics, iEnd, x);
 
-      i32 x = m_iLastSelEndX;
+      i32 x = m_iLastSelectionEndX;
 
-      double y = m_iLastSelEndLine * m_dLineHeight - get_viewport_offset().y;
+      double y = m_iLastSelectionEndLine * m_dLineHeight - get_viewport_offset().y;
 
       double y2 = y + m_dLineHeight;
 
@@ -7014,6 +7012,75 @@ namespace user
       {
 
       }
+      
+      if(m_bSetTextSelectionUpdatePending)
+      {
+         
+         m_bSetTextSelectionUpdatePending = false;
+         
+         bool bSelectionWasAtEnd = m_bLastSelectionWasAtEnd;
+         
+         if(bSelectionWasAtEnd)
+         {
+            
+            auto iTextLength = _001GetTextLength();
+            
+            _001SetSel(iTextLength, iTextLength);
+            
+         }
+         else
+         {
+            
+            ::strsize iSelectionBegin = 0;
+            
+            ::strsize iSelectionEnd = 0;
+            
+            iSelectionBegin = plain_edit_line_x_to_sel(pgraphics, m_iLastSelectionBeginLine, m_iLastSelectionBeginX);
+            
+            iSelectionEnd = plain_edit_line_x_to_sel(pgraphics, m_iLastSelectionEndLine, m_iLastSelectionEndX);
+
+            _001SetSel(iSelectionBegin, iSelectionEnd);
+            
+         }
+         
+      }
+      
+      try
+      {
+         
+         //if (context.is_user_source())
+         {
+
+            auto pwindowing = windowing();
+
+            auto ptexteditorinterface = pwindowing->get_text_editor_interface();
+
+            if (::is_set(ptexteditorinterface))
+            {
+
+               string strText;
+
+               _001GetText(strText);
+
+               ptexteditorinterface->set_editor_text(strText);
+               
+               ::strsize iBeg = -1;
+               
+               ::strsize iEnd = -1;
+               
+               _001GetSel(iBeg, iEnd);
+               
+               ptexteditorinterface->set_editor_selection(iBeg, iEnd);
+
+            }
+
+         }
+
+      }
+      catch(...)
+      {
+         
+      }
 
       //printf("xxxxxxxxxx4\n");
 
@@ -7264,9 +7331,19 @@ namespace user
 
 
 
-   void plain_edit::_001SetText(const ::string & strParam, const ::action_context & context)
+   void plain_edit::_001SetText(const ::string & strParam, const ::action_context & action_context)
    {
-
+      
+      ::strsize iSelBeg = 0;
+      
+      ::strsize iSelEnd = 0;
+      
+      _001GetSel(iSelBeg, iSelEnd);
+      
+      ::strsize iTextLength = _001GetTextLength();
+      
+      m_bLastSelectionWasAtEnd = (iSelBeg == iSelEnd) && (iSelEnd == iTextLength);
+      
       string str(strParam);
 
       {
@@ -7310,15 +7387,15 @@ namespace user
          }
 
       }
+      
+      m_bSetTextSelectionUpdatePending = true;
+      
+      queue_graphics_call([this, action_context](::draw2d::graphics_pointer & pgraphics)
+      {
 
-      queue_graphics_call([this, context](::draw2d::graphics_pointer & pgraphics)
-         {
+         plain_edit_on_update(pgraphics, action_context);
 
-            plain_edit_on_set_text(pgraphics, context);
-
-            plain_edit_on_update(pgraphics, context);
-
-         });
+      });
 
       set_need_redraw();
 

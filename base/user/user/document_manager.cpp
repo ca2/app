@@ -565,7 +565,7 @@ namespace user
        trans         if (pMainWnd->is_iconic())
       nCmdShow = SW_RESTORE;
       else
-      nCmdShow = e_display_normal;
+      nCmdShow = e_display_restored;
       //}
       pMainWnd->display(nCmdShow);
        trans      if (nCmdShow != SW_MINIMIZE)

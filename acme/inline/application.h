@@ -2,6 +2,7 @@
 #include "__apps.inl"
 
 
+#include "acme/operating_system.h"
 #include "acme/platform/system_setup.h"
 
 

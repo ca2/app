@@ -22,6 +22,9 @@ namespace user
 
 
       void on_create_user_interaction() override;
+      
+      
+      void get_input_client_area(RECTANGLE_I32 * prectangle) override;
 
 
       ::index get_preferred_restore(RECTANGLE_I32 * prectanglePreferredRestore) override;

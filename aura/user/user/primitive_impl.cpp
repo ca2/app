@@ -9,6 +9,7 @@
 #include "acme/platform/timer_array.h"
 
 
+
 namespace user
 {
 
@@ -2036,13 +2037,13 @@ namespace user
             if(::is_null(m_puserinteraction->m_pwindow))
       {
 
-         printf("m_puserinteraction->m_pwindow is null!! (8) (0x%x)", m_puserinteraction->m_pwindow);
+         printf("m_puserinteraction->m_pwindow is null!! (8) (0x%" PRI0xPTR ")", (uptr) m_puserinteraction->m_pwindow);
 
       }
       else
       {
 
-         printf("m_puserinteraction->m_pwindow is set!! (8) (0x%x)", m_puserinteraction->m_pwindow);
+         printf("m_puserinteraction->m_pwindow is set!! (8) (0x%" PRI0xPTR ")", (uptr) m_puserinteraction->m_pwindow);
 
       }
       
@@ -2054,13 +2055,13 @@ namespace user
             if(::is_null(m_puserinteraction->m_pwindow))
       {
 
-         printf("m_puserinteraction->m_pwindow is null!! (9) (0x%x)", m_puserinteraction->m_pwindow);
+         printf("m_puserinteraction->m_pwindow is null!! (9) (0x%" PRI0xPTR ")", (uptr) m_puserinteraction->m_pwindow);
 
       }
       else
       {
 
-         printf("m_puserinteraction->m_pwindow is set!! (9) (0x%x)", m_puserinteraction->m_pwindow);
+         printf("m_puserinteraction->m_pwindow is set!! (9) (0x%" PRI0xPTR ")", (uptr) m_puserinteraction->m_pwindow);
 
       }
       
@@ -2071,13 +2072,13 @@ namespace user
                   if(::is_null(m_puserinteraction->m_pwindow))
       {
 
-         printf("m_puserinteraction->m_pwindow is null!! (10) (0x%x)", m_puserinteraction->m_pwindow);
+         printf("m_puserinteraction->m_pwindow is null!! (10) (0x%" PRI0xPTR ")", (uptr) m_puserinteraction->m_pwindow);
 
       }
       else
       {
 
-         printf("m_puserinteraction->m_pwindow is set!! (10) (0x%x)", m_puserinteraction->m_pwindow);
+         printf("m_puserinteraction->m_pwindow is set!! (10) (0x%" PRI0xPTR ")", (uptr) m_puserinteraction->m_pwindow);
 
       }
       

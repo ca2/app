@@ -347,9 +347,9 @@ namespace user
 
       }
 
-      //item = ::e_element_none;
+      auto pitemNone = __new(::item(e_element_none));
 
-      return nullptr;
+      return pitemNone;
 
    }
 

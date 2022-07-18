@@ -31,6 +31,13 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_size);
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
 
+      
+      void display_restored() override;
+      void display_restore() override;
+      
+      
+      void design_iconic() override;
+      
 
       virtual::e_display window_stored_display() const override;
       virtual::e_display window_previous_display() const override;

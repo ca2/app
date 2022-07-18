@@ -2553,7 +2553,7 @@ namespace aura
 //
 //            auto pcontext = get_context();
 //            
-//            plauncher->setup(nullptr, nullptr, pcontext->m_papexcontext->dir().module() / strApp, strParameters, nullptr, e_display_normal);
+//            plauncher->setup(nullptr, nullptr, pcontext->m_papexcontext->dir().module() / strApp, strParameters, nullptr, e_display_restored);
 //
 //            plauncher->launch();
 //
@@ -2589,7 +2589,7 @@ namespace aura
 //
 //            auto pcontext = get_context();
 //
-//            plauncher->setup(nullptr,nullptr,pcontext->m_papexcontext->dir().module()/strApp,nullptr,nullptr, e_display_normal);
+//            plauncher->setup(nullptr,nullptr,pcontext->m_papexcontext->dir().module()/strApp,nullptr,nullptr, e_display_restored);
 //
 //            plauncher->launch();
 //
@@ -2631,7 +2631,7 @@ namespace aura
 //
 //            auto pcontext = get_context();
 //
-//            plauncher->setup(nullptr,nullptr, pcontext->m_papexcontext->dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
+//            plauncher->setup(nullptr,nullptr, pcontext->m_papexcontext->dir().ca2module() / strApp,strParameters,nullptr, e_display_restored);
 //
 //            plauncher->launch();
 //
@@ -2667,7 +2667,7 @@ namespace aura
 //
 //            auto pcontext = get_context();
 //
-//            plauncher->setup(nullptr,nullptr, pcontext->m_papexcontext->dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
+//            plauncher->setup(nullptr,nullptr, pcontext->m_papexcontext->dir().ca2module() / strApp,strParameters,nullptr, e_display_restored);
 //
 //            plauncher->launch();
 //
@@ -3018,9 +3018,9 @@ namespace aura
 //         TRACE("reach");
 //      }
 //
-//      if(!ansi_compare_ci(pszLibrary, "app_core_hellomultiverse"))
+//      if(!ansi_compare_ci(pszLibrary, "app_core_hello_multiverse"))
 //      {
-//         TRACE("reach app_core_hellomultiverse");
+//         TRACE("reach app_core_hello_multiverse");
 //      }
 //
 //      if(!ansi_compare_ci(pszLibrary, "experience_lite"))
@@ -3028,9 +3028,9 @@ namespace aura
 //         TRACE("reach experience_lite");
 //      }
 //
-//      if(!ansi_compare_ci(pszLibrary, "app_core_hellomultiverse"))
+//      if(!ansi_compare_ci(pszLibrary, "app_core_hello_multiverse"))
 //      {
-//         TRACE("reach app_core_hellomultiverse");
+//         TRACE("reach app_core_hello_multiverse");
 //      }
 //
 //      if(!library.open(pszLibrary, true))
@@ -4450,7 +4450,7 @@ namespace aura
 //      if (!bFound)
 //      {
 //
-//         call_async(strBrowserPath, strParam, strBrowserDir, e_display_normal, false);
+//         call_async(strBrowserPath, strParam, strBrowserDir, e_display_restored, false);
 //
 //         call_async(strBrowserHelperPath, "/SetAsDefaultAppUser", strBrowserHelperDir, e_display_none, false);
 //

@@ -20,6 +20,9 @@
 //#include "aura/operating_system/windows_common/draw2d_direct2d_global.h"
 //#endif
 
+
+//#define REPORT_OFFSETS
+
 point_i32 g_pointLastBottomRight;
 
 #undef ALOG_CONTEXT
@@ -364,6 +367,7 @@ namespace user
 
    //   return false;
    //}
+
 
    //void interaction_impl::GetLayeredWindowAttributes(::color::color * pcrKey,byte * pbAlpha,u32 * pdwFlags) const
    //{
@@ -2178,6 +2182,12 @@ namespace user
             
             INFORMATION("e_message_left_button_double_click");
             
+         }
+         else if(pmessage->m_atom == e_message_left_button_down)
+         {
+
+            INFORMATION("e_message_left_button_down");
+
          }
 
          if (::is_set(m_puserinteraction) && !m_puserinteraction->m_bUserElementOk)
@@ -4494,7 +4504,7 @@ namespace user
  } struct_t1;
 // static_assert(sizeof(struct_t) == 8);
 
-printf("sizeof(struct_t1) = %d\n", sizeof(struct_t1));
+printf("sizeof(struct_t1) = %" PRIuPTR "\n", sizeof(struct_t1));
 
       #ifdef _DEBUG
       printf("_DEBUG defined\n");
@@ -4507,6 +4517,8 @@ printf("sizeof(struct_t1) = %d\n", sizeof(struct_t1));
       #else
       printf("RASPBIAN not defined\n");
       #endif
+      
+#ifdef REPORT_OFFSET
 
       printf("(11.0) offset of m_durationFocusStart in ::user::primitive = %d\n", offsetof(::user::primitive,m_durationFocusStart));
       printf("(11.0) offset of m_uUserInteractionFlags in ::user::interaction = %d\n", offsetof(::user::interaction, m_bExtendOnParent));
@@ -4530,6 +4542,8 @@ printf("sizeof(struct_t1) = %d\n", sizeof(struct_t1));
       }
       
       fflush(stdout);
+      
+#endif
 
       if(::is_null(m_puserinteraction->m_pinteractionScaler))
       {
@@ -4537,6 +4551,8 @@ printf("sizeof(struct_t1) = %d\n", sizeof(struct_t1));
          m_puserinteraction->m_pinteractionScaler = __new(::user::interaction_scaler());
 
       }
+      
+#ifdef REPORT_OFFSET
 
       if(::is_null(m_puserinteraction->m_pwindow))
       {
@@ -4554,8 +4570,12 @@ printf("sizeof(struct_t1) = %d\n", sizeof(struct_t1));
       }
       
       fflush(stdout);
+      
+#endif
 
       m_puserinteraction->m_pinteractionScaler->on_display_change(m_puserinteraction);
+      
+#ifdef REPORT_OFFSET
 
       if(::is_null(m_puserinteraction->m_pwindow))
       {
@@ -4574,6 +4594,8 @@ printf("sizeof(struct_t1) = %d\n", sizeof(struct_t1));
       
       fflush(stdout);
 
+#endif
+      
    }
 
 
@@ -5362,7 +5384,7 @@ printf("sizeof(struct_t1) = %d\n", sizeof(struct_t1));
 
       pinteraction->place(rectangle);
 
-      pinteraction->display(e_display_normal, e_activation_no_activate);
+      pinteraction->display(e_display_restored, e_activation_no_activate);
 
    }
 
@@ -6854,10 +6876,10 @@ printf("sizeof(struct_t1) = %d\n", sizeof(struct_t1));
 
          //m_puserinteraction->layout().sketch().origin() = pmove->m_point;
 
-         //if (m_puserinteraction->layout().sketch().display() != e_display_normal)
+         //if (m_puserinteraction->layout().sketch().display() != e_display_restored)
          //{
 
-           // m_puserinteraction->display(e_display_normal);
+           // m_puserinteraction->display(e_display_restored);
 
          //}
 
@@ -6920,10 +6942,10 @@ printf("sizeof(struct_t1) = %d\n", sizeof(struct_t1));
 //
 //         m_puserinteraction->layout().sketch() = psize->m_size;
 //
-//         if (m_puserinteraction->layout().sketch().display() != e_display_normal)
+//         if (m_puserinteraction->layout().sketch().display() != e_display_restored)
 //         {
 //
-//            m_puserinteraction->display(e_display_normal);
+//            m_puserinteraction->display(e_display_restored);
 //
 //         }
 //
@@ -6969,10 +6991,10 @@ printf("sizeof(struct_t1) = %d\n", sizeof(struct_t1));
 
          //m_puserinteraction->layout().sketch().origin() = pmove->m_point;
 
-         //if (m_puserinteraction->layout().sketch().display() != e_display_normal)
+         //if (m_puserinteraction->layout().sketch().display() != e_display_restored)
          //{
 
-         // m_puserinteraction->display(e_display_normal);
+         // m_puserinteraction->display(e_display_restored);
 
          //}
 

@@ -187,6 +187,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnSetButtonSize);
       DECLARE_MESSAGE_HANDLER(_001OnSetBitmapSize);
       DECLARE_MESSAGE_HANDLER(_001OnPreserveZeroBorderHelper);
+      DECLARE_MESSAGE_HANDLER(on_message_left_button_double_click);
 
 
       void on_command_probe(::user::interaction * puserinteraction, bool bDisableIfNoHndler) override;

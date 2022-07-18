@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A601888285B281700151842 /* libpcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A87FEF8284B8C8F0084AA05 /* libpcre.dylib */; };
 		9A6543BE2666B05100F8A254 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6543972666B05100F8A254 /* framework.cpp */; };
 		9A6543BF2666B05100F8A254 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A65439D2666B05100F8A254 /* context.cpp */; };
 		9A6543C12666B05100F8A254 /* factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6543A02666B05100F8A254 /* factory_exchange.h */; };
@@ -23,6 +22,8 @@
 		9A6543D12666B05100F8A254 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6543B32666B05100F8A254 /* framework.h */; };
 		9A6543D32666B05100F8A254 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6543BB2666B05100F8A254 /* _.h */; };
 		9A6543E02666B21C00F8A254 /* acme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6543DA2666B1F300F8A254 /* acme.dylib */; };
+		9A8BCD2F2883679200DAA61A /* libpcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A87FEF8284B8C8F0084AA05 /* libpcre.dylib */; };
+		9A8BCD302883679200DAA61A /* libpcre.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A87FEF8284B8C8F0084AA05 /* libpcre.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AAF255127CFE93D00D96CB7 /* result.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AAF254F27CFE93D00D96CB7 /* result.cpp */; };
 		9AAF255227CFE93D00D96CB7 /* result.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAF255027CFE93D00D96CB7 /* result.h */; };
 		9AE64349284ABD430079EBA0 /* util_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6543AB2666B05100F8A254 /* util_impl.h */; };
@@ -79,13 +80,6 @@
 			remoteGlobalIDString = 07D6A8471B4CBB45004FEBC2;
 			remoteInfo = ios_pcre;
 		};
-		9A87FEFB284B8CA70084AA05 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9A87FEF2284B8C8F0084AA05 /* pcre.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
-			remoteInfo = pcre;
-		};
 		9A87FEFD284B8CB20084AA05 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A87FEF2284B8C8F0084AA05 /* pcre.xcodeproj */;
@@ -101,6 +95,20 @@
 			remoteInfo = ios_acme;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9A8BCD312883679200DAA61A /* Embed Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9A8BCD302883679200DAA61A /* libpcre.dylib in Embed Libraries */,
+			);
+			name = "Embed Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9A6543972666B05100F8A254 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
@@ -131,7 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A601888285B281700151842 /* libpcre.dylib in Frameworks */,
+				9A8BCD2F2883679200DAA61A /* libpcre.dylib in Frameworks */,
 				9A6543E02666B21C00F8A254 /* acme.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,11 +263,11 @@
 				9AE12E892661E9B4009F476A /* Headers */,
 				9AE12E8A2661E9B4009F476A /* Sources */,
 				9AE12E8B2661E9B4009F476A /* Frameworks */,
+				9A8BCD312883679200DAA61A /* Embed Libraries */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				9A87FEFC284B8CA70084AA05 /* PBXTargetDependency */,
 				9A6543DE2666B20E00F8A254 /* PBXTargetDependency */,
 			);
 			name = regular_expression_pcre2;
@@ -394,11 +402,6 @@
 			isa = PBXTargetDependency;
 			name = acme;
 			targetProxy = 9A6543DD2666B20E00F8A254 /* PBXContainerItemProxy */;
-		};
-		9A87FEFC284B8CA70084AA05 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = pcre;
-			targetProxy = 9A87FEFB284B8CA70084AA05 /* PBXContainerItemProxy */;
 		};
 		9A87FEFE284B8CB20084AA05 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

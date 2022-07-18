@@ -141,7 +141,7 @@ namespace user
          m_windowrectangle.m_rectangleSnapped = m_windowrectangle.m_rectangleWindow;
 
       }
-      else if (is_equivalent(edisplay, e_display_normal))
+      else if (is_equivalent(edisplay, e_display_restored))
       {
 
          calculate_broad_and_compact_restore();
@@ -392,7 +392,7 @@ namespace user
          if (is_docking_appearance(edisplay))
          {
 
-            edisplay = e_display_normal;
+            edisplay = e_display_restored;
 
          }
 
@@ -403,8 +403,8 @@ namespace user
       //      || edisplay == e_display_full_screen
       //      || (edisplay == e_display_iconic && !bInitialFramePosition)))
       if (edisplay == e_display_zoomed
-      && edisplay == e_display_full_screen
-      && edisplay == e_display_iconic)
+      || edisplay == e_display_full_screen
+      || edisplay == e_display_iconic)
       {
 
          //         if(bInitialFramePosition)
@@ -509,7 +509,7 @@ namespace user
          if (is_docking_appearance(edisplay))
          {
 
-            edisplay = e_display_normal;
+            edisplay = e_display_restored;
 
          }
 
@@ -668,6 +668,52 @@ namespace user
 
       //return true;
 
+   }
+
+
+   void box::display_restored()
+   {
+
+      ::user::interaction::display_restored();
+
+      place(m_windowrectangle.m_rectangleRestored);
+
+   }
+
+
+   void box::display_restore()
+   {
+      
+      auto edisplayPrevious = m_windowrectangle.m_edisplayPrevious;
+      
+      if(edisplayPrevious == e_display_restore)
+      {
+         
+         display(e_display_restored);
+         
+      }
+      else
+      {
+      
+         display(edisplayPrevious);
+         
+      }
+      
+   }
+
+
+   void box::design_iconic()
+   {
+      
+      if (const_layout().design().display() != e_display_iconic)
+      {
+
+         m_windowrectangle.m_edisplayPrevious = const_layout().design().display();
+
+      }
+
+      ::user::interaction::design_iconic();
+      
    }
 
 

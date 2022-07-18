@@ -564,7 +564,7 @@ pacmedirectory->create(::file_path_folder(m_strLogPath));
 pacmedirectory->system() / "logviewer.txt"))
                   {
 
-                     call_async("C:\\aura\\time\\x64\\basis\\app_core_logviewer.exe", "\"" + m_strLogPath + "\"", "C:\\aura\\time\\x64\\basis", e_display_normal, false);
+                     call_async("C:\\aura\\time\\x64\\basis\\app_core_logviewer.exe", "\"" + m_strLogPath + "\"", "C:\\aura\\time\\x64\\basis", e_display_restored, false);
 
                   }
 

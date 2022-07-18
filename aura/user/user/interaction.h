@@ -201,7 +201,13 @@ namespace user
 
 
 
+      ::oswindow                                   m_oswindow;
       ewindowflag                                  m_ewindowflag;
+      bool                                         m_bDerivedHeight;
+
+
+      bool                                         m_bSketchToDesignLayout;
+      bool                                         m_bPendingZorder;
 
       // <3ThomasBorreggardSørensen_!!
       __pointer(::material_object)                 m_pmaterialCommandHandler;
@@ -665,6 +671,13 @@ namespace user
       virtual void design_layout(::draw2d::graphics_pointer & pgraphics);
 
 
+      virtual void display_restored();
+      virtual void display_iconic();
+      virtual void display_restore();
+
+      
+      virtual void design_restored();
+      virtual void design_iconic();
       virtual void design_window_minimize(::e_activation eactivation) override;
       virtual void design_window_maximize() override;
       virtual void design_window_full_screen(const ::rectangle_i32& rectangleHint = nullptr) override;
@@ -721,6 +734,9 @@ namespace user
 
       virtual void display(::e_display edisplay = e_display_default, ::e_activation eactivation = ::e_activation_default) override;
 
+
+      virtual bool check_child_zorder();
+
       virtual ::zorder zorder(enum_layout elayout = e_layout_design) const;
       virtual void order(::zorder zorder);
 
@@ -752,6 +768,7 @@ namespace user
       virtual void display_previous_restore();
 
       // Client Rect : e_layout_design : Design/_001OnDraw time
+      virtual void get_input_client_area(RECTANGLE_I32* lprect);
       virtual void get_client_rect(RECTANGLE_I32* lprect);
       virtual ::rectangle_i32 get_client_rect();
 
@@ -1891,7 +1908,7 @@ namespace user
       ::item_pointer on_hit_test(const ::point_i32 & point) override;
 
       //virtual bool update_hover(const ::point_i32 & point, bool bAvoidRedraw = true);
-      virtual bool update_hover(::user::mouse * pmouse, bool bAvoidRedraw = true);
+      virtual ::item_pointer update_hover(::user::mouse * pmouse, bool bAvoidRedraw = true);
 
       //virtual bool get_rectangle(::item * pitem);
 

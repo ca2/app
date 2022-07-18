@@ -81,7 +81,7 @@ bool file_context::exists(const ::file::path &pathParam)
 
    }
 
-   ::file::path path = m_pcontext->m_papexcontext->defer_process_matter_path(pathParam);
+   ::file::path path = m_pcontext->m_papexcontext->defer_process_path(pathParam);
 
    if (!(path & ::file::e_flag_required) && path.is_empty())
    {

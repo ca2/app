@@ -328,11 +328,11 @@ namespace filemanager
             if (::is_null(pframe))
             {
 
-               pframe->m_puserframewindow->InitialUpdateFrame(nullptr, true);
+               pframe->m_puserframewindow->prepare_frame(nullptr, true);
 
-               pframe->display(e_display_normal);
+               pframe->display(e_display_restored);
 
-               pframe->ActivateFrame(e_display_normal);
+               pframe->ActivateFrame(e_display_restored);
 
             }
 

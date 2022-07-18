@@ -2480,7 +2480,7 @@ pacmedirectory->create("/ca2core");
 
             auto plauncher = __create < ::apex::shell_launcher >();
             
-            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().module() / strApp, strParameters, nullptr, e_display_normal);
+            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().module() / strApp, strParameters, nullptr, e_display_restored);
 
             plauncher->launch();
 
@@ -2515,7 +2515,7 @@ pacmedirectory->create("/ca2core");
 
             auto plauncher = __create < ::apex::shell_launcher >();
             
-            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().module() / strApp, nullptr, nullptr, e_display_normal);
+            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().module() / strApp, nullptr, nullptr, e_display_restored);
 
             plauncher->launch();
 
@@ -2555,7 +2555,7 @@ pacmedirectory->create("/ca2core");
 
             auto plauncher = __create < ::apex::shell_launcher >();
             
-            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().module() / strApp, strParameters, nullptr, e_display_normal);
+            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().module() / strApp, strParameters, nullptr, e_display_restored);
 
             plauncher->launch();
 
@@ -2589,7 +2589,7 @@ pacmedirectory->create("/ca2core");
 
             auto plauncher = __create < ::apex::shell_launcher >();
             
-            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().module() / strApp, strParameters, nullptr, e_display_normal);
+            plauncher->setup(nullptr, nullptr, m_pcontext->m_papexcontext->dir().module() / strApp, strParameters, nullptr, e_display_restored);
 
             plauncher->launch();
 
@@ -2953,9 +2953,9 @@ pacmedirectory->create("/ca2core");
 //         INFORMATION("reach");
 //      }
 //
-//      if(!ansi_compare_ci(pszLibrary, "app_core_hellomultiverse"))
+//      if(!ansi_compare_ci(pszLibrary, "app_core_hello_multiverse"))
 //      {
-//         INFORMATION("reach app_core_hellomultiverse");
+//         INFORMATION("reach app_core_hello_multiverse");
 //      }
 //
 //      if(!ansi_compare_ci(pszLibrary, "experience_lite"))
@@ -2963,9 +2963,9 @@ pacmedirectory->create("/ca2core");
 //         INFORMATION("reach experience_lite");
 //      }
 //
-//      if(!ansi_compare_ci(pszLibrary, "app_core_hellomultiverse"))
+//      if(!ansi_compare_ci(pszLibrary, "app_core_hello_multiverse"))
 //      {
-//         INFORMATION("reach app_core_hellomultiverse");
+//         INFORMATION("reach app_core_hello_multiverse");
 //      }
 //
 //      if(!library.open(pszLibrary, true))
@@ -4254,7 +4254,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
          auto pnode = psystem->node();
 
-         pnode->call_async(strBrowserPath, strParam, strBrowserDir, e_display_normal, false);
+         pnode->call_async(strBrowserPath, strParam, strBrowserDir, e_display_restored, false);
 
          pnode->call_async(strBrowserHelperPath, "/SetAsDefaultAppUser", strBrowserHelperDir, e_display_none, false);
 

@@ -210,7 +210,7 @@ namespace user
       // Operations
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
       void ActivateFrame(::e_display edisplay = e_display_undefined) override;
-      virtual void InitialUpdateFrame(::user::document * pDoc, bool bMakeVisible);
+      virtual void prepare_frame(::user::document * pdocument, bool bMakeVisible);
       //bool _001FancyInitialFramePlacement(bool bForceRestore = false) override;
 
       // to set text of standard status bar

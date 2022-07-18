@@ -203,14 +203,18 @@ namespace experience_tranquillum
       if (m_spregion.is_null())
       {
 
-         return nullptr;
+         auto pitemNone = __new(::item(e_element_none));
+
+         return pitemNone;
 
       }
 
       if (!m_spregion->contains(point))
       {
 
-         return nullptr;
+         auto pitemNone = __new(::item(e_element_none));
+
+         return pitemNone;
 
       }
 

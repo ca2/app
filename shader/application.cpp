@@ -64,7 +64,7 @@ namespace app_shader
 
       __compose(m_pmainwindow, __create_new < ::app_shader::main_window > ());
 
-      m_pmainwindow->display(e_display_normal);
+      m_pmainwindow->display(e_display_restored);
 
       m_pmainwindow->create_main_window();
 

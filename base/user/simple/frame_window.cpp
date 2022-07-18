@@ -1451,7 +1451,7 @@ void simple_frame_window::ToggleFullScreen()
    if (layout().is_full_screen())
    {
 
-      display(e_display_normal);
+      display(e_display_restored);
 
    }
    else
@@ -1879,7 +1879,7 @@ void simple_frame_window::_001OnActivateApp(::message::message * pmessage)
    //   //   if (layout().is_iconic())
    //   //   {
 
-   //   //      display(e_display_normal);
+   //   //      display(e_display_restored);
 
    //   //   }
    //   //   
@@ -2157,7 +2157,7 @@ void simple_frame_window::on_frame_position()
       if (const_layout().design().display() == ::e_display_iconic)
       {
 
-         display(e_display_normal);
+         display(e_display_restored);
 
       }
 
@@ -3692,7 +3692,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //   {
 //      if (layout().is_full_screen())
 //      {
-//         display(e_display_normal);
+//         display(e_display_restored);
 //         return true;
 //      }
 //      __pointer(::user::interaction) puserinteractionParentFrame = get_parent_frame();
@@ -3877,10 +3877,10 @@ void simple_frame_window::on_create_bars()
 }
 
 
-void simple_frame_window::InitialUpdateFrame(::user::document * pDoc,bool bMakeVisible)
+void simple_frame_window::prepare_frame(::user::document * pdocument, bool bMakeVisible)
 {
 
-   ::user::frame_window::InitialUpdateFrame(pDoc,bMakeVisible);
+   ::user::frame_window::prepare_frame(pdocument, bMakeVisible);
 
    create_bars();
 

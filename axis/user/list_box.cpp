@@ -1108,8 +1108,10 @@ namespace user
          return __new(item(e_element_search_edit));
 
       }
+      
+      auto pitemNone = __new(::item(e_element_none));
 
-      return nullptr;
+      return pitemNone;
 
    }
 
@@ -1247,7 +1249,7 @@ namespace user
 
          order_top_most();
 
-         display(e_display_normal);
+         display(e_display_restored);
 
          auto & window_state = const_layout().sketch();
 

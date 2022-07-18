@@ -13,7 +13,11 @@
 //#include <pcre/pcre2.h>
 //#else
 // apt install libpcre2-dev
+#ifdef __APPLE__
+#include "port/pcre2.h"
+#else
 #include <pcre2.h>
+#endif
 //#endif
 
 

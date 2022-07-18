@@ -202,6 +202,12 @@ void interprocess_call::send_call()
 void interprocess_call::post_call()
 {
 
+#ifdef SANDBOXED_PLATFORM
+   
+   send(0);
+   
+#else
+   
    auto iaPid = prepare_call();
 
    for (auto& idPid : iaPid)
@@ -210,6 +216,8 @@ void interprocess_call::post_call()
       send(idPid);
 
    }
+   
+#endif
 
 }
 

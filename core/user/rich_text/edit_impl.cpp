@@ -667,7 +667,9 @@ namespace user
 
          //return m_pdata->hit_test(point);
 
-         return nullptr;
+         auto pitemNone = __new(::item(e_element_none));
+
+         return pitemNone;
 
       }
 

@@ -1108,8 +1108,10 @@ namespace user
          return __new(item(e_element_search_edit));
 
       }
+      
+      auto pitemNone = __new(::item(e_element_none));
 
-      return nullptr;
+      return pitemNone;
 
    }
 

@@ -212,7 +212,9 @@ namespace user
       if (rectangleClient.width() == 0)
       {
 
-         return nullptr;
+         auto pitemNone = __new(::item(e_element_none));
+
+         return pitemNone;
 
       }
 

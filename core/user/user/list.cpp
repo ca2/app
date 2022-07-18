@@ -6737,26 +6737,24 @@ auto pwindowing = windowing();
    }
 
 
-   bool list::update_hover(::user::mouse * pmouse, bool bAvoidRedraw)
+   ::item_pointer list::update_hover(::user::mouse * pmouse, bool bAvoidRedraw)
    {
 
-      index iItemHover;
-
-      index iSubItemHover;
-
+      auto pitemHitTest = __new(::item);
+      
       auto pointClient = _001ScreenToClient(pmouse->m_point);
 
-      bool bAnyHoverChange = false;
+      bool & bAnyHoverChange = pitemHitTest->m_bAnyHoverChange;
 
-      if (_001DisplayHitTest(pointClient, iItemHover, iSubItemHover))
+      if (_001DisplayHitTest(pointClient, pitemHitTest->m_iItem, pitemHitTest->m_iSubItem))
       {
 
-         if (m_iSubItemHover != iSubItemHover || m_iDisplayItemHover != iItemHover)
+         if (m_iSubItemHover != pitemHitTest->m_iSubItem || m_iDisplayItemHover != pitemHitTest->m_iItem)
          {
 
-            m_iDisplayItemHover = iItemHover;
+            m_iDisplayItemHover = pitemHitTest->m_iItem;
 
-            m_iSubItemHover = iSubItemHover;
+            m_iSubItemHover = pitemHitTest->m_iSubItem;
 
             bAnyHoverChange = true;
 
@@ -6793,7 +6791,7 @@ auto pwindowing = windowing();
 
       }
 
-      return bAnyHoverChange;
+      return pitemHitTest;
 
    }
 

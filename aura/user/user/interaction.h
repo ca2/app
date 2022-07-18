@@ -1894,7 +1894,7 @@ namespace user
       ::item_pointer on_hit_test(const ::point_i32 & point) override;
 
       //virtual bool update_hover(const ::point_i32 & point, bool bAvoidRedraw = true);
-      virtual bool update_hover(::user::mouse * pmouse, bool bAvoidRedraw = true);
+      virtual ::item_pointer update_hover(::user::mouse * pmouse, bool bAvoidRedraw = true);
 
       //virtual bool get_rectangle(::item * pitem);
 

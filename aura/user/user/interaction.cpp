@@ -16814,7 +16814,7 @@ namespace user
 
       }
 
-      m_pitemLButtonDown = hit_test(pmouse);
+      m_pitemLButtonDown = update_hover(pmouse);
 
       if (drag_on_button_down(m_pitemLButtonDown))
       {
@@ -17565,7 +17565,7 @@ namespace user
    }
 
 
-   bool interaction::update_hover(::user::mouse * pmouse, bool bAvoidRedraw)
+   ::item_pointer interaction::update_hover(::user::mouse * pmouse, bool bAvoidRedraw)
    {
 
       //synchronous_lock synchronouslock(mutex());
@@ -17574,7 +17574,7 @@ namespace user
 
       drag_on_mouse_hover(pitemHitTest);
 
-      bool bAnyHoverChange = false;
+      bool & bAnyHoverChange = pitemHitTest->m_bAnyHoverChange;
 
       if (!::is_same_item(pitemHitTest, m_pitemHover))
       {
@@ -17648,7 +17648,7 @@ namespace user
 
       }
 
-      return bAnyHoverChange;
+      return pitemHitTest;
 
    }
 

@@ -6560,6 +6560,10 @@ namespace user
 
          m_ptree->m_peditfile->change_insert_item_data(m_pitemComposing.get(), strText);
 
+         m_ptree->m_iSelBeg = m_pitemComposing->m_position + m_pitemComposing->get_extent();
+
+         m_ptree->m_iSelEnd = m_ptree->m_iSelBeg;
+
       }
       else
       {
@@ -6579,7 +6583,60 @@ namespace user
 
             ::index iAfterComposingCursorPosition = -1;
 
-            if (::is_set(m_pitemComposing))
+            //if (::is_set(m_pitemComposing))
+            //{
+
+            //   string strFull;
+
+            //   _001GetText(strFull);
+
+            //   strsize iOffset = 0;
+
+            //   if (iNewCursorPosition > 0)
+            //   {
+
+            //      iAfterComposingCursorPosition = (index)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
+
+            //      if (iNewCursorPosition > 1)
+            //      {
+
+            //         wd16string wstrFull(strFull.Mid(iAfterComposingCursorPosition));
+
+            //         iOffset = wd16_to_ansi_len(wstrFull, iNewCursorPosition - 1);
+
+            //      }
+
+            //      iAfterComposingCursorPosition += iOffset;
+
+            //   }
+            //   else
+            //   {
+
+            //      iAfterComposingCursorPosition = (index)(m_pitemComposing->m_position);
+
+            //      if (iNewCursorPosition < 0)
+            //      {
+
+            //         wd16string wstrFull(strFull.Left(iAfterComposingCursorPosition));
+
+            //         iOffset = wd16_to_ansi_len(wstrFull, wstrFull.get_length() + iNewCursorPosition);
+
+            //      }
+
+            //      iAfterComposingCursorPosition -= iOffset;
+
+            //   }
+
+            //   //m_ptree->m_iSelEnd = iAfterComposingPosition;
+            //   //m_ptree->m_iSelBeg = iAfterComposingPosition;
+            //   //m_ppropertysetsel->m_iSelEnd = iAfterComposingPosition;
+            //   //m_ppropertysetsel->m_iSelBeg = iAfterComposingPosition;
+
+            //}
+            //else
+
+            iAfterComposingCursorPosition = m_ptree->m_iSelEnd;
+
             {
 
                string strFull;
@@ -6590,8 +6647,6 @@ namespace user
 
                if (iNewCursorPosition > 0)
                {
-
-                  iAfterComposingCursorPosition = (index)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
 
                   if (iNewCursorPosition > 1)
                   {
@@ -6608,8 +6663,6 @@ namespace user
                else
                {
 
-                  iAfterComposingCursorPosition = (index)(m_pitemComposing->m_position);
-
                   if (iNewCursorPosition < 0)
                   {
 
@@ -6623,17 +6676,13 @@ namespace user
 
                }
 
-               //m_ptree->m_iSelEnd = iAfterComposingPosition;
-               //m_ptree->m_iSelBeg = iAfterComposingPosition;
-               //m_ppropertysetsel->m_iSelEnd = iAfterComposingPosition;
-               //m_ppropertysetsel->m_iSelBeg = iAfterComposingPosition;
 
             }
 
             if (bAlreadyComposing)
             {
 
-               int iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, i1);
+               int iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, iAfterComposingCursorPosition);
 
                bool bFullUpdate = false;
 

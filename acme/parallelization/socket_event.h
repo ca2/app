@@ -27,7 +27,7 @@ public:
 	///  \brief		destructor
 	virtual ~socket_event();
 
-	///  \brief		conversion operator for read state as boolean
+	///  \brief		conversion operator for read state as tristate
 	virtual operator bool ();
 	void	set_active(bool active = true);
 

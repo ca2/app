@@ -113,7 +113,7 @@ public:
 
       u32                                             m_dwPromptContext;        // help action_context override for message box
       // LKG
-      u32                                             m_dwPolicies;            // block for storing boolean system policies
+      u32                                             m_dwPolicies;            // block for storing tristate system policies
 
       // Support for Shift+F1 help mode.
       // true if we're in SHIFT+F1 mode.

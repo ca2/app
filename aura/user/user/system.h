@@ -40,7 +40,7 @@ namespace user
       __pointer(::create)                    m_pcreate;
       __pointer(::windowing::window)         m_pwindow;
 
-      boolean                                m_bWindowFrame;
+      tristate                                m_bWindowFrame;
       ::type                                 m_typeNewImpact;
       __pointer(::object)                    m_pdocumentCurrent;
       __pointer(::user::primitive)           m_puserprimitiveNew;

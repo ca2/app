@@ -134,7 +134,7 @@ typedef struct _MEMORY_STATE
  *
  ***************************************************************************/
 
-/* _STATIC_ASSERT is for enforcing boolean/integral conditions at compile time.
+/* _STATIC_ASSERT is for enforcing tristate/integral conditions at compile time.
    Since it is purely a compile-time mechanism that generates no code, the check
    is left in even if __DEBUG is not defined. */
 

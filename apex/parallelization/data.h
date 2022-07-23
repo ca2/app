@@ -105,10 +105,10 @@
 //
 
 
-//extern thread_local boolean t_booleana[e_thread_boolean_count];
+//extern thread_local tristate t_booleana[e_thread_boolean_count];
 //
 //
-//inline ::boolean& task_boolean(enum_thread_boolean ethreadboolean)
+//inline ::tristate& task_boolean(enum_thread_boolean ethreadboolean)
 //{
 //
 //   //return ::get_task()->payload(atom);

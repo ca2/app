@@ -38,7 +38,7 @@ struct CLASS_DECL_ACME apex_main_struct :
 
    bool                          m_bDataCentralRequired : 1;
 
-   ::boolean                     m_bExperienceMainFrame;
+   ::tristate                     m_bExperienceMainFrame;
 
    INT_STRING *                  m_pintstringLanguageResourceMap;
    int                           m_iMatterFromHttpCache;

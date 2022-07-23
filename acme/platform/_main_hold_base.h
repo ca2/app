@@ -11,7 +11,7 @@ public:
    __pointer(::app)        m_papp;
 
 
-   static boolean is_audio_enabled();
+   static tristate is_audio_enabled();
 
    static void enable_audio(bool bEnable = true);
 

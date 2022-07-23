@@ -419,7 +419,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
       property_set set;
 
-      set.parse_url_query(m_straLinesNativeLaunch[1]);
+      set.parse_network_arguments(m_straLinesNativeLaunch[1]);
 
       string strPath = ::path::app(process_platform_dir_name2());
 
@@ -593,7 +593,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
          property_set set;
 
-         set.parse_url_query(purl->get_query(m_phost->m_pbasecomposer->m_strPluginUrl));
+         set.parse_network_arguments(purl->get_query(m_phost->m_pbasecomposer->m_strPluginUrl));
 
          string strUrl(set["ruri"]);
 
@@ -626,7 +626,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
          property_set set;
 
-         set.parse_url_query(purl->get_query(m_phost->m_pbasecomposer->m_strPluginUrl));
+         set.parse_network_arguments(purl->get_query(m_phost->m_pbasecomposer->m_strPluginUrl));
 
          //ca2logout(set);
 

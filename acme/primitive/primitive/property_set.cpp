@@ -1451,7 +1451,7 @@ property_set & property_set::operator = (const property_set & set)
 }
 
 
-property_set & property_set::add(const property_set & set)
+property_set & property_set::append(const property_set & set)
 {
 
    if (&set != this)
@@ -1580,7 +1580,7 @@ property_set & property_set::merge(const property_set & set)
 property_set & property_set::operator += (const property_set & set)
 {
 
-   return add(set);
+   return append(set);
 
 }
 

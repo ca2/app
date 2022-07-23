@@ -9,8 +9,6 @@ interprocess_task::interprocess_task(interprocess_call* pcall, const ::atom& idP
    m_iTask(iTask)
 {
    
-   initialize(pcall);
-
 }
 
 

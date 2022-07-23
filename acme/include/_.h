@@ -2436,7 +2436,7 @@ namespace audio
 
 
 
-#include "acme/primitive/logic/boolean.h"
+#include "acme/primitive/logic/tristate.h"
 
 
 #include "acme/platform/auto.h"

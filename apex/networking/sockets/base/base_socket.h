@@ -81,7 +81,7 @@ namespace sockets
       ::duration              m_durationStart; ///< Set by SetTimeout
       ::duration              m_durationMaximum; ///< Defined by SetTimeout
       bool                    m_bNonBlocking;
-      //    unsigned long           m_flags; ///< boolean flags, replacing old 'bool' members
+      //    unsigned long           m_flags; ///< tristate flags, replacing old 'bool' members
 
 #if !defined(BSD_STYLE_SOCKETS)
       manual_reset_event      m_event;

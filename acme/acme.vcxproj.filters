@@ -132,9 +132,6 @@
     <Filter Include="Header Files\primitive\logic">
       <UniqueIdentifier>{e97a5ec9-2fa7-4178-8eec-69ba27417691}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\primitive\logic\NewFilter1">
-      <UniqueIdentifier>{a438e428-fa53-4435-9ffd-70a76c03e239}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\graphics">
       <UniqueIdentifier>{d0364683-3fa6-44bf-bab8-f4017b7096bd}</UniqueIdentifier>
     </Filter>
@@ -2971,6 +2968,9 @@
     </ClInclude>
     <ClInclude Include="parallelization\task_keep.h">
       <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\logic\tristate.h">
+      <Filter>Header Files\primitive\logic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

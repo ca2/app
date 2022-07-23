@@ -329,7 +329,11 @@ public:
    property_set & operator += (const property_set & set);
    property_set & operator |= (const property_set & set);
 
-   property_set & add(const property_set & set);
+
+   property & merge(const property& property) { return set_at(property.m_atom, property); }
+
+
+   property_set & append(const property_set & set);
    property_set & merge(const property_set & set);
 
 

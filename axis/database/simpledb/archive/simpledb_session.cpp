@@ -49,7 +49,7 @@ namespace simpledb
    {
       string_array stra;
       property_set dataset;
-      dataset.parse_url_query(pszQuery);
+      dataset.parse_network_arguments(pszQuery);
       if(dataset["command"] == "open")
       {
          payload = open(dataset["database"]);

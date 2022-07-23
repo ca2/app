@@ -30,23 +30,23 @@ struct CLASS_DECL_ACME PLAIN_MAIN // : public ::acme::reference
 
    int                           m_iExitCode = 0;
 
-   ::boolean                     m_bLocalization;
-   ::boolean                     m_bConsole;
-   ::boolean                     m_bDraw2d;
-   ::boolean                     m_bWriteText;
-   ::boolean                     m_bUser;
-   ::boolean                     m_bUserEx;
-   ::boolean                     m_bImaging;
-   ::boolean                     m_bAudio;
-   ::boolean                     m_bMidi;
-   ::boolean                     m_bInitializeDataCentral;
+   ::tristate                     m_bLocalization;
+   ::tristate                     m_bConsole;
+   ::tristate                     m_bDraw2d;
+   ::tristate                     m_bWriteText;
+   ::tristate                     m_bUser;
+   ::tristate                     m_bUserEx;
+   ::tristate                     m_bImaging;
+   ::tristate                     m_bAudio;
+   ::tristate                     m_bMidi;
+   ::tristate                     m_bInitializeDataCentral;
 #ifdef WINDOWS_DESKTOP
-   ::boolean                     m_bGdiplus;
+   ::tristate                     m_bGdiplus;
 #elif defined(LINUX) || defined(FREEBSD)
-   ::boolean                     m_bGtkApp;
+   ::tristate                     m_bGtkApp;
 #endif
-   ::boolean                     m_bShowApplicationInformation;
-   //::boolean                     m_bPreferNoFrameWindow;
+   ::tristate                     m_bShowApplicationInformation;
+   //::tristate                     m_bPreferNoFrameWindow;
 
    PLAIN_MAIN();
 

@@ -536,7 +536,7 @@ namespace hi5
          string dataPart = rawUrl.Mid( nPos + 1 );
 
          property_set setUrl;
-         setUrl.parse_url_query(dataPart);
+         setUrl.parse_network_arguments(dataPart);
 
          setSignature.merge(setUrl);
 

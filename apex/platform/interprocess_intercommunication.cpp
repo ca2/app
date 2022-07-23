@@ -485,13 +485,18 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 
       auto pcall = create_call(strOrigin, strOriginObject, "reply." + strMember);
 
-      pcall->add_parameter("protocol.call_id", iCallId);
+      (*pcall)["protocol.call_id"] = iCallId;
 
-      pcall->add_parameter("protocol:reply", payloadReply);
+      (*pcall)["protocol:reply"] = payloadReply;
 
       //pcall->set_timeout(1_minute);
 
-      pcall->post(strOriginObject);
+      fork([pcall, strOriginObject]()
+      {
+
+         pcall->send(strOriginObject);
+
+      });
 
    }
 

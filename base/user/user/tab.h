@@ -66,7 +66,7 @@ namespace user
       //__pointer(::create)              m_pcreate;
       ::count                          m_iRestoredTabCount;
       bool                             m_bDrawTabAtBackground;
-      ::boolean                     m_bitLastShowTabs;
+      ::tristate                     m_bitLastShowTabs;
       enum_display                        m_edisplayParentFrameAutoHide;
       int                              m_iTabScroll;
       int                              m_iTabScrollStart;

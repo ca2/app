@@ -4067,11 +4067,11 @@ void application::on_exclusive_instance_local_conflict(bool& bHandled)
 
          auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
 
-         pcall->add_parameter("module", m_pcontext->m_papexcontext->file().module());
+         (*pcall)["module"] = m_pcontext->m_papexcontext->file().module();
 
-         pcall->add_parameter("pid", m_pcontext->m_papexcontext->os_context()->get_pid());
+         (*pcall)["pid"] =  m_pcontext->m_papexcontext->os_context()->get_pid();
 
-         pcall->add_parameter("command_line", psystem->command_line_text());
+         (*pcall)["command_line"] = psystem->command_line_text();
 
          //string strId;
 
@@ -4084,17 +4084,17 @@ void application::on_exclusive_instance_local_conflict(bool& bHandled)
 
             auto& pinterprocesstask = pair.element2();
 
-            if (bContinue && pinterprocesstask->has_property("continue"))
+            if (bContinue && pinterprocesstask->m_tristateContinue.is_set())
             {
 
-               bContinue = pinterprocesstask->m_payload["continue"].is_true();
+               bContinue = pinterprocesstask->m_tristateContinue;
 
             }
 
-            if (!bHandled && pinterprocesstask->has_property("handled"))
+            if (!bHandled && pinterprocesstask->m_tristateHandled.is_set())
             {
 
-               bHandled = pinterprocesstask->m_payload["handled"].is_true();
+               bHandled = pinterprocesstask->m_tristateHandled.is_true();
 
             }
 
@@ -4126,13 +4126,13 @@ void application::on_exclusive_instance_local_conflict_id(bool& bHandled, string
 
          auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
 
-         pcall->add_parameter("module", m_pcontext->m_papexcontext->file().module());
+         (*pcall)["module"] = m_pcontext->m_papexcontext->file().module();
 
-         pcall->add_parameter("pid", m_pcontext->m_papexcontext->os_context()->get_pid());
+         (*pcall)["pid"] = m_pcontext->m_papexcontext->os_context()->get_pid();
 
-         pcall->add_parameter("command_line", psystem->command_line_text());
+         (*pcall)["command_line"] = psystem->command_line_text();
 
-         pcall->add_parameter("id", strId);
+         (*pcall)["id"] = strId;
 
          for (auto& ptask : pcall->m_mapTask.values())
          {
@@ -4140,12 +4140,12 @@ void application::on_exclusive_instance_local_conflict_id(bool& bHandled, string
             if (!bHandled)
             {
 
-               bHandled = ptask->is_true("handled");
+               bHandled = ptask->m_tristateHandled.is_true();
 
                if (bHandled)
                {
 
-                  bContinue = ptask->is_true("continue");
+                  bContinue = ptask->m_tristateContinue.is_true();
 
                }
 

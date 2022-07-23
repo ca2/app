@@ -23,20 +23,20 @@ interprocess_call::~interprocess_call()
 }
 
 
-void interprocess_call::add_parameter(const ::atom & atom, const ::payload & payload)
-{
-
-   m_propertyset[atom] = payload;
-
-}
-
-
-void interprocess_call::add_parameters(const ::property_set & propertyset)
-{
-
-   m_propertyset.merge(propertyset);
-
-}
+//void interprocess_call::add_property(const ::property & property)
+//{
+//
+//   m_propertyset.merge(property);
+//
+//}
+//
+//
+//void interprocess_call::add_property_set(const ::property_set & propertyset)
+//{
+//
+//   m_propertyset.merge(propertyset);
+//
+//}
 
 
 //void interprocess_call::set_timeout(const duration& duration)
@@ -62,11 +62,12 @@ bool interprocess_call::is_auto_launch() const
 
 }
 
+//m_pcontext->m_papexcontext->os_context()->get_pid()
 
-void interprocess_call::exclude_this_app()
+void interprocess_call::exclude_pid(::i32 iPid)
 {
 
-   m_iaExclude.add(m_pcontext->m_papexcontext->os_context()->get_pid());
+   m_iaExclude.add(iPid);
 
 }
 
@@ -85,24 +86,24 @@ void interprocess_call::send(const ::atom& idPid)
 
    }
 
-   pobjectTask->do_task(pcall->m_strObject, pcall->m_strMember, pcall->m_propertyset);
+   pobjectTask->do_task(pcall->m_strObject, pcall->m_strMember, *pcall);
 
 }
 
 
-void interprocess_call::post(const ::atom& idPid)
-{
-
-   __pointer(interprocess_call) pcall = this;
-
-   fork([pcall, idPid]()
-      {
-
-         pcall->send(idPid);
-
-      });
-
-}
+//void interprocess_call::post(const ::atom& idPid)
+//{
+//
+//   __pointer(interprocess_call) pcall = this;
+//
+//   fork([pcall, idPid]()
+//      {
+//
+//         pcall->send(idPid);
+//
+//      });
+//
+//}
 
 
 __pointer(synchronization_array) interprocess_call::synca()
@@ -157,7 +158,7 @@ bool interprocess_call::_wait(const class ::wait & wait)
 id_array interprocess_call::prepare_call()
 {
 
-   exclude_this_app();
+   ///exclude_this_app();
 
    auto iaPid = m_pinterprocessintercommunication->get_pid(m_strApp);
 
@@ -187,27 +188,12 @@ id_array interprocess_call::prepare_call()
 void interprocess_call::send_call()
 {
 
-   auto iaPid = prepare_call();
-
-   for (auto& idPid : iaPid)
-   {
-
-      send(idPid);
-
-   }
-
-}
-
-
-void interprocess_call::post_call()
-{
-
 #ifdef SANDBOXED_PLATFORM
-   
+
    send(0);
-   
+
 #else
-   
+
    auto iaPid = prepare_call();
 
    for (auto& idPid : iaPid)
@@ -216,10 +202,33 @@ void interprocess_call::post_call()
       send(idPid);
 
    }
-   
+
 #endif
 
 }
+
+
+//void interprocess_call::post_call()
+//{
+//
+//#ifdef SANDBOXED_PLATFORM
+//   
+//   send(0);
+//   
+//#else
+//   
+//   auto iaPid = prepare_call();
+//
+//   for (auto& idPid : iaPid)
+//   {
+//
+//      send(idPid);
+//
+//   }
+//   
+//#endif
+//
+//}
 
 
 

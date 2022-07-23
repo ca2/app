@@ -1659,6 +1659,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\geometry3d\quaternions.h" />
     <ClInclude Include="primitive\geometry3d\_.h" />
     <ClInclude Include="primitive\logic\bit.h" />
+    <ClInclude Include="primitive\logic\tristate.h" />
     <ClInclude Include="primitive\mathematics\binary_operation.h" />
     <ClInclude Include="primitive\mathematics\cast.h" />
     <ClInclude Include="primitive\mathematics\classes.h" />

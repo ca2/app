@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_APEX interprocess_task :
-   virtual public ::object
+   virtual public ::element
 {
 public:
 
@@ -12,6 +12,8 @@ public:
    __pointer(interprocess_call)           m_pcall;
    ::payload                              m_payload;
    __pointer(manual_reset_event)          m_pevReady;
+   tristate                               m_tristateContinue;
+   tristate                               m_tristateHandled;
 
 
    interprocess_task(interprocess_call* pcall, const ::atom& idPid, i64 iTask);

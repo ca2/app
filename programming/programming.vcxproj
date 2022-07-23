@@ -749,6 +749,7 @@
     <ClInclude Include="programming\_.h" />
     <ClInclude Include="programming\_programming.h" />
     <ClInclude Include="_.h" />
+    <ClInclude Include="_library.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dynamic_source\exit_exception.cpp" />

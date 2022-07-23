@@ -121,7 +121,7 @@
     <ClInclude Include="user\style.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="_experience_anthill.h">
+    <ClInclude Include="_library.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

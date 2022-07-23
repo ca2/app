@@ -658,7 +658,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_2.h" />
-    <ClInclude Include="_database_sqlite3.h" />
+    <ClInclude Include="_library.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="database_sqlite3.def" />

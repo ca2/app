@@ -814,7 +814,7 @@
     <ClInclude Include="unzip.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="_folder_zip.h" />
+    <ClInclude Include="_library.h" />
     <ClInclude Include="__aaa_internal.h" />
   </ItemGroup>
   <ItemGroup>

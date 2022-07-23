@@ -812,7 +812,7 @@
     <ClInclude Include="rsa.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="_crypto_openssl.h" />
+    <ClInclude Include="_library.h" />
     <ClInclude Include="aaa__openssl.h" />
   </ItemGroup>
   <ItemGroup>

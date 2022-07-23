@@ -1,7 +1,8 @@
 #pragma once
 
 
-#include "app/_app_app.h"
+#include "_.h"
+#include "app/_library.h"
 
 
 #include "main_window.h"

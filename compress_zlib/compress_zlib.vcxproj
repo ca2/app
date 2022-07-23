@@ -844,7 +844,7 @@
     <ClInclude Include="uncompress.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="_compress_zlib.h" />
+    <ClInclude Include="_library.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="compress.cpp" />

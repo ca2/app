@@ -885,7 +885,7 @@
     <ClInclude Include="_.h" />
     <ClInclude Include="main_window.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="_app_app.h" />
+    <ClInclude Include="_library.h" />
     <ClInclude Include="_factory.h" />
   </ItemGroup>
   <ItemGroup>

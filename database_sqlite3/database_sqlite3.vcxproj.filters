@@ -29,7 +29,7 @@
     <ClInclude Include="_2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="_database_sqlite3.h">
+    <ClInclude Include="_library.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="database.h">

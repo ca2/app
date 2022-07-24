@@ -5,7 +5,7 @@ project(app_app CXX)
 list(APPEND library_source
         _.cpp
         _.h
-        _library.cpp
+        _library.h
         _factory.h
         application.cpp
         application.h

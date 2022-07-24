@@ -5,8 +5,8 @@ project(app_message_box CXX)
 list(APPEND library_source
         _.cpp
         _.h
-   _factory.cpp
-        _app_message_box.h
+        _factory.cpp
+        _library.h
         application.cpp
         application.h
         framework.cpp

@@ -5,6 +5,9 @@
 // Refactored to crypto_openssl by camilo 2021-11-19 14:19 BRT <3ThomasBS_!!
 //
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_library.h"
+#endif
 #include "initializer.h"
 
 

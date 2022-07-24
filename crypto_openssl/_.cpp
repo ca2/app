@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_library.h"
+#endif
 #include "apex/library.h"
 
 ////#include "_openssl.h"

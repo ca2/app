@@ -5,7 +5,7 @@ project(app_shader CXX)
 list(APPEND library_source
    _.cpp
    _.h
-   _app_shader.h
+   _library.h
    _factory.cpp
    application.cpp
    application.h

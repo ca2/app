@@ -20,14 +20,9 @@ namespace windowing
    }
 
 
-   void text_editor_interface::set_input_method_manager_selection(strsize iStart, strsize iEnd)
+   void text_editor_interface::set_input_method_manager_selection(strsize iSelBeg, strsize iSelEnd, strsize iCandidateBeg, strsize iCandidateEnd)
    {
 
-   }
-
-
-   void text_editor_interface::set_input_method_manager_candidate_position(strsize iStart, strsize iEnd)
-   {
 
    }
 

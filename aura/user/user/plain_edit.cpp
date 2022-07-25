@@ -6489,42 +6489,54 @@ namespace user
    }
 
 
-   void plain_edit::InputConnectionBeginBatchEdit()
+   bool plain_edit::InputConnectionBeginBatchEdit(bool bSuper)
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      MacroBegin();
+      //MacroBegin();
 
       m_iInputConnectionBatch++;
 
+      return true;
+
    }
 
 
-   void plain_edit::InputConnectionEndBatchEdit()
+   bool plain_edit::InputConnectionEndBatchEdit(bool bSuper)
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      MacroEnd();
+      //MacroEnd();
 
       m_iInputConnectionBatch--;
 
+      if (m_iInputConnectionBatch == 0)
+      {
+
+         queue_selection_synchronization();
+
+      }
+
+      return true;
+
    }
 
 
-
-   void plain_edit::InputConnectionCommitText(const ::string & strText, strsize iNewCursorPosition)
+   bool plain_edit::InputConnectionCommitText(const ::string & strText, strsize iNewCursorPosition, bool bSuper)
    {
 
-      InputConnectionSetComposingText(strText, iNewCursorPosition);
+      InputConnectionSetComposingText(strText, iNewCursorPosition, bSuper);
 
-      InputConnectionFinishComposingText();
+      InputConnectionFinishComposingText(bSuper);
+
+      return true;
 
    }
 
 
-   void plain_edit::InputConnectionDeleteSurroundingText(strsize iBeforeLength, strsize iAfterLength)
+   bool plain_edit::InputConnectionDeleteSurroundingText(strsize iBeforeLength, strsize iAfterLength, bool bSuper)
    {
 
       queue_graphics_call([this, iBeforeLength, iAfterLength](::draw2d::graphics_pointer & pgraphics)
@@ -6538,46 +6550,55 @@ namespace user
 
       post_redraw();
 
+      return true;
+
    }
 
 
-   void plain_edit::InputConnectionSetComposingText(const ::string & strText, strsize iNewCursorPosition)
+   bool plain_edit::InputConnectionSetComposingText(const ::string & strTextParam, strsize iNewCursorPosition, bool bSuper)
    {
 
-      if (m_ptextcompositionclient)
-      {
+      string strText(strTextParam);
 
-         m_ptextcompositionclient->set_text_composition_active();
-
-      }
-
-      bool bTextHasNewLine = strText.contains('\r') || strText.contains('\n');
-
-      bool bAlreadyComposing = m_pitemComposing && !bTextHasNewLine;
-
-      if (bAlreadyComposing)
-      {
-
-         m_ptree->m_peditfile->change_insert_item_data(m_pitemComposing.get(), strText);
-
-         m_ptree->m_iSelBeg = m_pitemComposing->m_position + m_pitemComposing->get_extent();
-
-         m_ptree->m_iSelEnd = m_ptree->m_iSelBeg;
-
-      }
-      else
-      {
-
-         insert_text(strText, true, e_source_user);
-
-         //__refer(m_pitemComposing, m_pinsert);
-
-      }
-
-      queue_graphics_call([this, iNewCursorPosition, bTextHasNewLine](::draw2d::graphics_pointer & pgraphics)
+      queue_graphics_call([this, strText, iNewCursorPosition](::draw2d::graphics_pointer & pgraphics)
          {
 
+            if (m_ptextcompositionclient)
+            {
+
+               m_ptextcompositionclient->set_text_composition_active();
+
+            }
+
+            bool bTextHasNewLine = strText.contains('\r') || strText.contains('\n');
+
             bool bAlreadyComposing = m_pitemComposing && !bTextHasNewLine;
+
+            if (bAlreadyComposing)
+            {
+
+               m_ptree->m_peditfile->change_insert_item_data(m_pitemComposing.get(), strText);
+
+               m_ptree->m_iSelBeg = m_pitemComposing->m_position + m_pitemComposing->get_extent();
+
+               m_ptree->m_iSelEnd = m_ptree->m_iSelBeg;
+
+            }
+            else
+            {
+
+               plain_edit_insert_text(pgraphics, strText, false);
+
+               if (!m_pitemComposing)
+               {
+
+                  __refer(m_pitemComposing, m_pinsert);
+
+               }
+
+            }
+
+            //bool bAlreadyComposing = m_pitemComposing && !bTextHasNewLine;
 
             strsize i1 = iNewCursorPosition;
 
@@ -6715,60 +6736,69 @@ namespace user
 
          });
 
-      set_need_redraw();
-
-      post_redraw();
+      return true;
 
    }
 
 
-   void plain_edit::InputConnectionSetComposingRegion(strsize iStart, strsize iEnd)
+   bool plain_edit::InputConnectionSetComposingRegion(strsize iComposingStart, strsize iComposingEnd, bool bSuper)
    {
 
-      m_ptree->m_peditfile->MacroBegin();
+      queue_graphics_call([this, iComposingStart, iComposingEnd](::draw2d::graphics_pointer& pgraphics)
+         {
 
-      __release(m_pitemComposing);
+            strsize iCandidateBeg = iComposingStart;
 
-      string strText;
+            strsize iCandidateEnd = iComposingEnd;
 
-      _001GetText(strText);
+            m_ptree->m_peditfile->MacroBegin();
 
-      __sort(iStart, iEnd);
+            __release(m_pitemComposing);
 
-      wd16string wstrText(strText);
+            string strText;
 
-      strsize iComposingBeg = wd16_to_ansi_len(wstrText, iStart);
+            _001GetText(strText);
 
-      strsize iComposingEnd = wd16_to_ansi_len(wstrText, iEnd);
+            __sort(iCandidateBeg, iCandidateEnd);
 
-      string strComposition(strText.Mid(iComposingBeg, iComposingEnd - iComposingBeg));
+            wd16string wstrText(strText);
 
-      m_ptree->m_peditfile->seek(iComposingBeg, ::e_seek_set);
+            strsize iStart = wd16_to_ansi_len(wstrText, iCandidateBeg);
 
-      m_ptree->m_peditfile->Delete((memsize)(iComposingEnd - iComposingBeg));
+            strsize iEnd = wd16_to_ansi_len(wstrText, iCandidateEnd);
 
-      IndexRegisterDelete(iComposingBeg, iComposingEnd - iComposingBeg);
+            string strComposition(strText.Mid(iStart, iEnd - iStart));
 
-      m_ptree->m_peditfile->seek(iComposingBeg, ::e_seek_set);
+            m_ptree->m_peditfile->seek(iStart, ::e_seek_set);
 
-      auto iLength = strComposition.get_length();
+            m_ptree->m_peditfile->Delete((memsize)(iEnd - iStart));
 
-      m_pinsert = m_ptree->m_peditfile->Insert(strComposition, iLength);
+            IndexRegisterDelete(iStart, iEnd - iStart);
 
-      IndexRegisterInsert(iComposingBeg, strComposition);
+            m_ptree->m_peditfile->seek(iStart, ::e_seek_set);
 
-      __refer(m_pitemComposing, m_pinsert);
+            auto iLength = strComposition.get_length();
 
-      m_ptree->m_peditfile->MacroEnd();
+            m_pinsert = m_ptree->m_peditfile->Insert(strComposition, iLength);
 
-      MacroBegin();
-      MacroRecord(__new(plain_text_file_command()));
-      MacroEnd();
+            IndexRegisterInsert(iStart, strComposition);
+
+            __refer(m_pitemComposing, m_pinsert);
+
+            m_ptree->m_peditfile->MacroEnd();
+
+            MacroBegin();
+            MacroRecord(__new(plain_text_file_command()));
+            MacroEnd();
+
+         });
+
+      return true;
 
    }
 
 
-   void plain_edit::InputConnectionSetSelection(strsize iStart, strsize iEnd)
+   bool plain_edit::InputConnectionSetSelection(strsize iStart, strsize iEnd, bool bSuper)
    {
 
       string strText;
@@ -6801,13 +6831,67 @@ namespace user
       MacroRecord(psetsel);
       MacroEnd();
 
+      return true;
+
    }
 
 
-   void plain_edit::InputConnectionFinishComposingText()
+   bool plain_edit::InputConnectionFinishComposingText(bool bSuper)
    {
 
-      __release(m_pitemComposing);
+      queue_graphics_call([this](::draw2d::graphics_pointer& pgraphics)
+         {
+
+            __release(m_pitemComposing);
+
+            if (m_ptextcompositionclient)
+            {
+
+               m_ptextcompositionclient->set_text_composition_active(false);
+
+            }
+
+            m_pinsert = nullptr;
+
+         });
+
+      return true;
+
+   }
+
+
+   void plain_edit::queue_selection_synchronization()
+   {
+
+      queue_graphics_call([this](::draw2d::graphics_pointer& pgraphics)
+         {
+
+            auto pwindowing = windowing();
+
+            auto ptexteditorinterface = pwindowing->get_text_editor_interface();
+
+            if (::is_set(ptexteditorinterface))
+            {
+
+               strsize iSelectionStart = 0;
+
+               strsize iSelectionEnd = 0;
+
+               strsize iComposingStart = 0;
+
+               strsize iComposingEnd = 0;
+
+               _001GetSel(iSelectionStart, iSelectionEnd, iComposingStart, iComposingEnd);
+
+               ptexteditorinterface->set_input_method_manager_selection(iSelectionStart, iSelectionEnd, iComposingStart, iComposingEnd);
+
+            }
+
+         });
+
+      set_need_redraw();
+
+      post_redraw();
 
    }
 
@@ -8116,7 +8200,6 @@ namespace user
                __refer(m_pitemComposing, m_pinsert);
 
             }
-
 
          });
 

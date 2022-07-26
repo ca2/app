@@ -274,14 +274,18 @@ namespace user
       void clear_ime_composition() override;
 
 
-      void InputConnectionBeginBatchEdit() override;
-      void InputConnectionEndBatchEdit() override;
-      void InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition) override;
-      void InputConnectionDeleteSurroundingText(strsize iBeforeLength, strsize iAfterLength) override;
-      void InputConnectionSetComposingText(const ::string & str, strsize iNewCursorPosition) override;
-      void InputConnectionSetComposingRegion(strsize iStart, strsize iEnd) override;
-      void InputConnectionSetSelection(strsize iStart, strsize iEnd) override;
-      void InputConnectionFinishComposingText() override;
+      bool InputConnectionBeginBatchEdit(bool bSuper) override;
+      bool InputConnectionEndBatchEdit(bool bSuper) override;
+      bool InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition, bool bSuper) override;
+      bool InputConnectionDeleteSurroundingText(strsize iBeforeLength, strsize iAfterLength, bool bSuper) override;
+      bool InputConnectionSetComposingText(const ::string & str, strsize iNewCursorPosition, bool bSuper) override;
+      bool InputConnectionSetComposingRegion(strsize iStart, strsize iEnd, bool bSuper) override;
+      bool InputConnectionSetSelection(strsize iStart, strsize iEnd, bool bSuper) override;
+      bool InputConnectionFinishComposingText(bool bSuper) override;
+
+      
+      void queue_selection_synchronization() override;
+
 
       bool validate_viewport_offset(::point_i32 & point) override;
 

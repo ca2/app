@@ -225,6 +225,8 @@ namespace user
 
       virtual void _001UpdateWindow();
 
+      virtual void queue_selection_synchronization();
+
       //virtual void window_apply_visual(const window_state & windowstate);
 
 
@@ -702,14 +704,14 @@ namespace user
       virtual rectangle_i32 get_input_content_rect();
       virtual rectangle_i32 get_input_selection_rect();
 
-      virtual void InputConnectionBeginBatchEdit();
-      virtual void InputConnectionEndBatchEdit();
-      virtual void InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition);
-      virtual void InputConnectionDeleteSurroundingText(strsize iBeforeLength, strsize iAfterLength);
-      virtual void InputConnectionSetComposingText(const ::string & str, strsize iNewCursorPosition);
-      virtual void InputConnectionSetComposingRegion(strsize iStart, strsize iEnd);
-      virtual void InputConnectionSetSelection(strsize iStart, strsize iEnd);
-      virtual void InputConnectionFinishComposingText();
+      virtual bool InputConnectionBeginBatchEdit(bool bSuper);
+      virtual bool InputConnectionEndBatchEdit(bool bSuper);
+      virtual bool InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition, bool bSuper);
+      virtual bool InputConnectionDeleteSurroundingText(strsize iBeforeLength, strsize iAfterLength, bool bSuper);
+      virtual bool InputConnectionSetComposingText(const ::string & str, strsize iNewCursorPosition, bool bSuper);
+      virtual bool InputConnectionSetComposingRegion(strsize iStart, strsize iEnd, bool bSuper);
+      virtual bool InputConnectionSetSelection(strsize iStart, strsize iEnd, bool bSuper);
+      virtual bool InputConnectionFinishComposingText(bool bSuper);
 
       //virtual void _001OnTimer(::timer * ptimer);
 

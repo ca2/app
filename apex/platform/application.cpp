@@ -2186,7 +2186,7 @@ void application::on_create_app_shortcut()
 
    string strRoot = m_strAppId.Left(m_strAppId.find('/'));
 
-   auto pathCreatedShortcut = m_psystem->m_pacmedirectory->roaming() / m_strAppId / "created_shortcut.txt";
+   //auto pathCreatedShortcut = m_psystem->m_pacmedirectory->roaming() / m_strAppId / "created_shortcut.txt";
 
    auto pathShortcut = m_psystem->m_pacmedirectory->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / (strAppName + ".lnk");
 
@@ -2194,14 +2194,10 @@ void application::on_create_app_shortcut()
 
    ::file::path pathTarget;
 
-   if (!m_psystem->m_pacmefile->exists(pathCreatedShortcut)
-      || (m_psystem->m_pacmefile->exists(pathShortcut)
-         &&
-         (!m_psystem->node()->m_papexnode->shell_link_target(pathTarget, pathShortcut)
-            ||
-            !m_psystem->m_pacmepath->final_is_same(
-               pathTarget,
-               path))))
+   //if (!m_psystem->m_pacmefile->exists(pathCreatedShortcut)
+   if(!m_psystem->m_pacmefile->exists(pathShortcut)
+    || m_psystem->node()->m_papexnode->shell_link_target(pathTarget, pathShortcut)
+    || !m_psystem->m_pacmepath->final_is_same(pathTarget, path))
    {
 
       create_app_shortcut();

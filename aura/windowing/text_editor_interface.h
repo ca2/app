@@ -16,8 +16,7 @@ namespace windowing
       ~text_editor_interface() override;
 
 
-      virtual void set_input_method_manager_selection(strsize iStart, strsize iEnd);
-      virtual void set_input_method_manager_candidate_position(strsize iStart, strsize iEnd);
+      virtual void set_input_method_manager_selection(strsize iSelBeg, strsize iSelEnd, strsize iCandidateBeg, strsize iCandidateEnd);
       virtual void synchronize_input_method_manager_with_selection_end();
 
 

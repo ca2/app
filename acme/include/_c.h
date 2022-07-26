@@ -69,13 +69,6 @@ typedef u64 file_time_t;
 #endif
 
 
-#ifdef RASPBIAN
-#define BROAD_PRECOMPILED_HEADER 0
-#else
-#define BROAD_PRECOMPILED_HEADER 1
-#endif
-
-
 #include "acme/constant/_constant.h"
 #include "acme/constant/_enumeration.h"
 #include "acme/primitive/duration/_struct.h"

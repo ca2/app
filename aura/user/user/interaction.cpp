@@ -117,12 +117,12 @@ namespace user
    interaction::interaction()
    {
 
-      if((offsetof(::user::interaction, m_oswindow) & 4) != 0)
-      {
+      // if((offsetof(::user::interaction, m_oswindow) & 4) != 0)
+      // {
 
-         throw "invalid alignment";
+      //    throw "invalid alignment";
 
-      }
+      // }
 
 
       user_interaction_common_construct();

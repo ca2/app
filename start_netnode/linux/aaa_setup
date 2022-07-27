@@ -1,0 +1,9 @@
+#!/bin/bash
+
+
+PACKAGE_NAME=app_app
+
+
+BASE_DIR=$HOME/solution/basis/time-linux/x64/basis
+
+

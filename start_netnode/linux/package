@@ -1,0 +1,29 @@
+#!/bin/bash
+
+. ./setup
+
+
+. add_common_dependencies
+
+
+add_item()
+{
+
+   cd $BASE_DIR
+   zip "gnome/$PACKAGE_NAME.zip" "$1"
+
+}
+
+
+add_item _$PACKAGE_NAME
+add_item lib$PACKAGE_NAME.so
+add_item libcrypto_openssl.so
+add_item libdraw2d_cairo.so
+add_item libfolder_zip.so
+
+
+cd $BASE_DIR
+cp "gnome/$PACKAGE_NAME.zip" /store/$DISTRO_NAME/$DESKTOP_ENVIRONMENT_NAME/
+
+
+

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
+  <Identity Name="app.app" Publisher="CN=camilo" Version="1.1.20.0" />
+  <mp:PhoneIdentity PhoneProductId="1e4c7cd3-fcc2-44e7-9e13-eb7aacb60680" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Properties>
+    <DisplayName>App App</DisplayName>
+    <PublisherDisplayName>ca2 Desenvolvimento de Software</PublisherDisplayName>
+    <Logo>assets\Square50.scale-100.png</Logo>
+  </Properties>
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+  </Dependencies>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="AppApp.AppApp">
+      <uap:VisualElements DisplayName="App App" Square150x150Logo="Assets\Square150.scale-100.png" Square44x44Logo="Assets\Square44.scale-100.png" Description="Simple Application" BackgroundColor="transparent">
+        <uap:LockScreen Notification="badge" BadgeLogo="assets\Square24.scale-100.png" />
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150.scale-100.png" ShortName="Beat Mapper!!" Square310x310Logo="assets\Square310.scale-100.png" Square71x71Logo="Assets\Square71.png">
+        </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\Wide620x300.scale-100.png" />
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape"/>
+          <uap:Rotation Preference="portrait"/>
+          <uap:Rotation Preference="landscapeFlipped"/>
+          <uap:Rotation Preference="portraitFlipped"/></uap:InitialRotationPreference>
+      </uap:VisualElements>
+      <Extensions>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="core_topic">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.topic</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+    <uap:Capability Name="documentsLibrary" />
+    <uap:Capability Name="picturesLibrary" />
+    <Capability Name="internetClientServer"/>
+    <Capability Name="privateNetworkClientServer"/>
+  </Capabilities>
+</Package>

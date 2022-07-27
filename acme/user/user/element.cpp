@@ -2435,6 +2435,13 @@ namespace user
 
    }
 
+   
+   void element::queue_selection_synchronization()
+   {
+
+
+   }
+
 
    // void element::window_apply_visual(const window_state & windowstate)
    // {
@@ -4437,56 +4444,66 @@ namespace user
    }
 
 
-   void element::InputConnectionBeginBatchEdit()
+   bool element::InputConnectionBeginBatchEdit(bool bSuper)
    {
 
+      return bSuper;
 
    }
 
 
-   void element::InputConnectionEndBatchEdit()
+   bool element::InputConnectionEndBatchEdit(bool bSuper)
    {
 
+      return bSuper;
 
    }
 
 
-   void element::InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition)
+   bool element::InputConnectionCommitText(const ::string & str, strsize iNewCursorPosition, bool bSuper)
    {
 
+      return bSuper;
 
    }
 
 
-   void element::InputConnectionDeleteSurroundingText(strsize iBeforeLength, strsize iAfterLength)
+   bool element::InputConnectionDeleteSurroundingText(strsize iBeforeLength, strsize iAfterLength, bool bSuper)
    {
 
+      return bSuper;
 
    }
 
 
-   void element::InputConnectionSetComposingText(const ::string & str, strsize iNewCursorPosition)
+   bool element::InputConnectionSetComposingText(const ::string & str, strsize iNewCursorPosition, bool bSuper)
    {
 
+      return bSuper;
 
    }
 
 
-   void element::InputConnectionSetComposingRegion(strsize iStart, strsize iEnd)
+   bool element::InputConnectionSetComposingRegion(strsize iStart, strsize iEnd, bool bSuper)
    {
+
+      return bSuper;
 
    }
 
 
-   void element::InputConnectionSetSelection(strsize iStart, strsize iEnd)
+   bool element::InputConnectionSetSelection(strsize iStart, strsize iEnd, bool bSuper)
    {
+
+      return bSuper;
 
    }
 
 
-   void element::InputConnectionFinishComposingText()
+   bool element::InputConnectionFinishComposingText(bool bSuper)
    {
 
+      return bSuper;
 
    }
 

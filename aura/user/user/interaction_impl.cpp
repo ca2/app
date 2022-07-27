@@ -3527,7 +3527,7 @@ namespace user
 
       }
 
-#ifdef REPORT_OFFSETS
+#ifdef REPORT_OFFSET
 
       printf("(14) m_pwindow.m_p (0x%x)\n", m_pwindow.m_p);
       printf("(14) m_pwindow.m_pelement (0x%x)\n", m_pwindow.m_pelement);

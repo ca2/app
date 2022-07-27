@@ -34,6 +34,9 @@ woven in by Terry Thorsen 1/2003.
   version without encryption capabilities).
  */
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_library.h"
+#endif
 #include "unzip.h"
 #include "crypt.h"
 

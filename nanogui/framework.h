@@ -1,24 +1,30 @@
 #ifndef __GNUC__
 #pragma once
 #endif
+
+
 #ifndef __OBJC__
+
+
 #include "acme/_start.h"
 
 
 #include "_.h"
 
 
+#if BROAD_PRECOMPILED_HEADER
 
 
+#include "_library.h"
 
-#include "_nanogui.h"
 
-
-#include "nano2d/_nano2d.h"
+#endif
 
 
 #include "aura/_defer.h"
 
 
-
 #endif
+
+
+

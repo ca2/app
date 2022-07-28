@@ -10,6 +10,10 @@
 */
 #include "framework.h"
 #include "Graph.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_library.h"
+#endif
+
 //#include <nanogui/graph.h>
 //#include <nanogui/theme.h>
 //#include <nanogui/opengl.h>

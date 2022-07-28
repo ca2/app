@@ -1,12 +1,11 @@
-// Created by camilo on 2022/03/18 2:00 AM <3ThomasBorregaardSørensen!! (Thomas Like number 5)
+// Created by camilo on 2022/03/18 2:00 AM <3ThomasBorregaardSï¿½rensen!! (Thomas Like number 5)
 #pragma once
 
 
 #include "aura/user/user/_user.h"
 #include "aura/user/appearance/_appearance.h"
+#include "nano2d/_nano2d.h"
 
-
-#include "_.h"
 
 
 //**

@@ -17831,14 +17831,10 @@ namespace user
          return pitemClient;
 
       }
-      else
-      {
 
-         auto pitemClient = __new(::item(e_element_none));
+      auto pitemNone = __new(::item(e_element_none));
 
-         return pitemClient;
-
-      }
+      return pitemNone;
 
    }
 

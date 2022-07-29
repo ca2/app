@@ -6,7 +6,9 @@
 //  Copyright © 2020 Camilo Sasuke Tsumanuma. All rights reserved.
 //
 #include "framework.h"
-#include "_.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_library.h"
+#endif
 #include <OpenGL/OpenGL.h>
 #include "context_fbo.h"
 

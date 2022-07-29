@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "_.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_library.h"
+#endif
 #include "context_win32.h"
 #include "aura/graphics/image/image.h"
 

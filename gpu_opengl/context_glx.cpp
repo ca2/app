@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "_.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_library.h"
+#endif
 #include "context_glx.h"
 #include "aura_posix/_.h"
 #include "aura_posix/_aura_posix.h"

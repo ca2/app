@@ -1049,7 +1049,9 @@ namespace user
       if (iItem < 0)
       {
 
-         return nullptr;
+         auto pitemNone = __new(::item(e_element_none));
+
+         return pitemNone;
 
       }
 

@@ -1017,6 +1017,9 @@
     <ClInclude Include="graphics\image\_.h">
       <Filter>Header Files\graphics\image</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\draw2d\host.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\_impl.h">

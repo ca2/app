@@ -265,7 +265,7 @@ namespace draw2d_cairo
 
          m_pfontface = pfontface;
 
-         m_osdata[0] = m_pfontface;
+         m_osdata[1] = m_pfontface;
 
       }
 
@@ -290,7 +290,7 @@ namespace draw2d_cairo
 
       m_pfontface = pfontface;
 
-      m_osdata[0] = m_pfontface;
+      m_osdata[1] = m_pfontface;
 
       if (pfontface)
       {

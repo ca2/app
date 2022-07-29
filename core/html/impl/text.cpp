@@ -156,7 +156,7 @@ namespace html
 
          }
 
-         pgraphics->m_phost = pdata->m_pcoredata->m_puserinteraction;
+         pgraphics->m_pdraw2dhost = pdata->m_pcoredata->m_puserinteraction;
 
          font * pfont = pdata->get_font(m_pelemental);
 

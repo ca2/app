@@ -188,7 +188,7 @@ namespace graphics
 
       m_pimage = m_pcontext->m_pauracontext->create_image(sizeImage);
 
-      m_pimage->g()->m_phost = m_puserinteraction;
+      m_pimage->g()->m_pdraw2dhost = m_puserinteraction;
 
       __construct(m_pimage->g()->m_pfont);
 

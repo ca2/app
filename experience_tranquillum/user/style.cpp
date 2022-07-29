@@ -499,7 +499,7 @@ namespace experience_tranquillum
 
       ::draw2d::savedc k(pgraphics);
 
-      pgraphics->m_phost = pframe;
+      pgraphics->m_pdraw2dhost = pframe;
 
       if (!pframe->is_custom_draw() && pgraphics != nullptr && pgraphics->m_pnext == nullptr)
       {

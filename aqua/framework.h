@@ -12,9 +12,6 @@
 
 #include "_.h"
 #include "aqua/xml.h"
-#if !defined(BROAD_PRECOMPILED_HEADER)
-#define BROAD_PRECOMPILED_HEADER 1
-#endif
 #if BROAD_PRECOMPILED_HEADER
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/user/_user.h"

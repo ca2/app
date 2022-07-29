@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "_.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_library.h"
+#endif
 #include "aura/graphics/image/image.h"
 #include "glm/mat4x4.hpp"
 

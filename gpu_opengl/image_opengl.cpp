@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_library.h"
+#endif
 #include "aura/operating_system.h"
 #include "aura/graphics/image/image.h"
 #ifdef WINDOWS_DESKTOP

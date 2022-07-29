@@ -203,10 +203,10 @@ namespace draw2d_cairo
 
       double dFontScaler = 1.0;
 
-      if(::is_set(pgraphics->m_phost))
+      if(::is_set(pgraphics->m_pdraw2dhost))
       {
 
-         dFontScaler = pgraphics->m_phost->font_scaler();
+         dFontScaler = pgraphics->m_pdraw2dhost->font_scaler();
 
       }
       else
@@ -215,7 +215,6 @@ namespace draw2d_cairo
          ::output_debug_string("Warning: No ::user::interaction font scaler!\n");
 
       }
-
 
       pango_font_description_set_family(m_pdesc, m_strFontFamilyName);
 

@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_library.h"
+#endif
 
 
 __FACTORY_EXPORT void app_message_box_factory(::factory::factory* pfactory)

@@ -475,7 +475,7 @@ namespace draw2d
 
       auto pgraphics = pdraw2dhost->__create< ::draw2d::graphics>();
 
-      pgraphics->m_phost = pdraw2dhost;
+      pgraphics->m_pdraw2dhost = pdraw2dhost;
 
       return ::move(pgraphics);
 

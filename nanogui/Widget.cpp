@@ -13,6 +13,10 @@
 #include "nano2d/context.h"
 #include "nano2d/draw2d_context.h"
 #include "aura/graphics/draw2d/_draw2d.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_library.h"
+#endif
+
 //#include <nanogui/layout.h>
 //#include <nanogui/theme.h>
 //#include <nanogui/window.h>

@@ -3935,6 +3935,13 @@ namespace draw2d_cairo
 
 
       }
+      else if (::is_set(pfont->get_os_data(this, 1)))
+      {
+
+         return internal_draw_text_cairo(block, rectangle, ealign, edrawtext, &cairo_show_text);
+
+
+      }
 
       throw ::exception(error_null_pointer);
 
@@ -4248,18 +4255,11 @@ namespace draw2d_cairo
    size_f64 graphics::get_text_extent(const char * lpszString, strsize nCount, strsize iIndex)
    {
 
-      size_f64 sz;
+      size_f64 size;
 
-      get_text_extent(sz, lpszString, nCount, iIndex);
+      get_text_extent(size, lpszString, nCount, iIndex);
 
-      //if (!get_text_extent(sz, lpszString, nCount, iIndex))
-      //{
-
-      //    return ::size_f64(0.0, 0.0);
-
-      //}
-
-      return sz;
+      return size;
 
    }
 
@@ -4278,26 +4278,6 @@ namespace draw2d_cairo
       return get_text_extent((const char *) block.get_data(), block.get_size());
 
    }
-
-
-//size_f64 graphics::GetOutputTextExtent(const char * lpszString, strsize nCount)
-//{
-//
-//    throw ::interface_only();
-//
-//    return ::size_f64(0, 0);
-//
-//}
-//
-//
-//size_f64 graphics::GetOutputTextExtent(const ::string & str)
-//{
-//
-//    throw ::interface_only();
-//
-//    return ::size_f64(0, 0);
-//
-//}
 
 
    void graphics::get_text_extent(size_f64 & size, const char * lpszString, strsize nCount, strsize iIndex)
@@ -4566,18 +4546,18 @@ namespace draw2d_cairo
    }
 
 
-   void graphics::get_text_extent(size_f64 & size_f64, const char * lpszString, strsize nCount)
+   void graphics::get_text_extent(size_f64 & size, const char * lpszString, strsize nCount)
    {
 
-      return get_text_extent(size_f64, lpszString, nCount, -1);
+      return get_text_extent(size, lpszString, nCount, -1);
 
    }
 
 
-   void graphics::get_text_extent(size_f64 & size_f64, const ::string & str)
+   void graphics::get_text_extent(size_f64 & size, const ::string & str)
    {
 
-      return get_text_extent(size_f64, str, str.get_length());
+      return get_text_extent(size, str, str.get_length());
 
    }
 
@@ -5357,7 +5337,7 @@ namespace draw2d_cairo
 
       }
 
-      auto posdata = pfontParam->get_os_data(this, 0);
+      auto posdata = pfontParam->get_os_data(this, 1);
 
       if (::is_null(posdata))
       {
@@ -5392,7 +5372,16 @@ namespace draw2d_cairo
 
 #endif
 
+      //double dFontScaler = 1.0;
 
+
+      //if (::is_set(m_pdraw2dhost))
+      //{
+
+      //   dFontScaler = m_pdraw2dhost->font_scaler();
+
+      //}
+      
       if (::is_set(m_puserinteraction))
       {
 
@@ -5411,11 +5400,15 @@ namespace draw2d_cairo
       if (pfontParam->m_eunitFontSize == ::draw2d::e_unit_pixel)
       {
 
+         //cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * dFontScaler * fDensity);
+
          cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * fDensity);
 
       }
       else
       {
+
+         //cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * dFontScaler * fPreferredDpiX / fDenominatorDpi);
 
          cairo_set_font_size(m_pdc, pfontParam->m_dFontSize * fPreferredDpiX / fDenominatorDpi);
 

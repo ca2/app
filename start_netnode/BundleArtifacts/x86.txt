@@ -1,0 +1,2 @@
+﻿MainPackage=C:\winmetro\time\Win32\basis\winmetro_simple_drawing_simple_drawing\winmetro_simple_drawing_simple_drawing_1.1.17.0_Win32_basis.appx
+ResourcePack=C:\winmetro\time\Win32\basis\winmetro_simple_drawing_simple_drawing\winmetro_simple_drawing_simple_drawing_1.1.17.0_scale-100.appx

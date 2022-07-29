@@ -573,7 +573,7 @@ inline std::string value::serialize(bool prettify) const {
 
 template <typename Iter> void value::_indent(Iter oi, int indent) {
   *oi++ = '\n';
-  for (int i = 0; i < indent * INDENT_WIDTH; ++i) {
+  for (int i = 0; i < indent * (int) INDENT_WIDTH; ++i) {
     *oi++ = ' ';
   }
 }

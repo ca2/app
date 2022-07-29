@@ -370,7 +370,7 @@ namespace user
 
       pgraphics->create_memory_graphics();
 
-      pgraphics->m_phost = this;
+      pgraphics->m_pdraw2dhost = this;
 
       m_pinteractionScaler = __new(::user::interaction_scaler);
 

@@ -1,0 +1,6 @@
+BEGIN_FACTORY(app_app) 
+FACTORY_DEPENDENCY(draw2d_cairo) 
+FACTORY_DEPENDENCY(node_linux) 
+FACTORY_DEPENDENCY(crypto_openssl) 
+FACTORY_DEPENDENCY(app_app) 
+END_FACTORY() 

@@ -9,6 +9,10 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_library.h"
+#endif
+
 //#include <nanogui/m_pcheckbox.h>
 //#include <nanogui/opengl.h>
 //#include <nanogui/theme.h>

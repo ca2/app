@@ -16,9 +16,6 @@
 
 #include "aura/_.h"
 #include "aura/platform/_platform.h"
-#if !defined(BROAD_PRECOMPILED_HEADER)
-#define BROAD_PRECOMPILED_HEADER 1
-#endif
 #if BROAD_PRECOMPILED_HEADER
 #include "aura/user/user/_user.h"
 //#include "core/user/simple/_simple.h"

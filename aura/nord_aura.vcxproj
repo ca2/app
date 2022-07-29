@@ -224,6 +224,7 @@
     <ClInclude Include="graphics\draw2d\glyph_set.h" />
     <ClInclude Include="graphics\draw2d\graphics.h" />
     <ClInclude Include="graphics\draw2d\graphics_extension.h" />
+    <ClInclude Include="graphics\draw2d\host.h" />
     <ClInclude Include="graphics\draw2d\icon.h" />
     <ClInclude Include="graphics\draw2d\igui.h" />
     <ClInclude Include="graphics\draw2d\image.h" />

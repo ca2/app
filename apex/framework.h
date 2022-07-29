@@ -16,9 +16,6 @@
 
 #include "apex/_.h"
 #include "apex/platform/_platform.h"
-#if !defined(BROAD_PRECOMPILED_HEADER)
-#define BROAD_PRECOMPILED_HEADER 1
-#endif
 #if BROAD_PRECOMPILED_HEADER
 //#include "core/user/simple/_simple.h"
 //#include "apex/user/rich_text/_rich_text.h"

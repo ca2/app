@@ -537,11 +537,8 @@
     <ClInclude Include="mathematics\_.h">
       <Filter>Header Files\mathematics</Filter>
     </ClInclude>
-    <ClInclude Include="mathematics\_mathematics.h">
+    <ClInclude Include="mathematics\_component.h">
       <Filter>Header Files\mathematics</Filter>
-    </ClInclude>
-    <ClInclude Include="geoip\_geoip.h">
-      <Filter>Header Files\geoip</Filter>
     </ClInclude>
     <ClInclude Include="constant\idpool.h">
       <Filter>Header Files\constant</Filter>
@@ -554,6 +551,9 @@
     </ClInclude>
     <ClInclude Include="networking\_.h">
       <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="geoip\_component.h">
+      <Filter>Header Files\geoip</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

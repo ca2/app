@@ -439,7 +439,7 @@
     <ClInclude Include="geoip\internal.h" />
     <ClInclude Include="geoip\update.h" />
     <ClInclude Include="geoip\_.h" />
-    <ClInclude Include="geoip\_geoip.h" />
+    <ClInclude Include="geoip\_component.h" />
     <ClInclude Include="graphics\render\water_routine.h" />
     <ClInclude Include="html\html\html.h" />
     <ClInclude Include="html\html\_.h" />
@@ -474,7 +474,7 @@
     <ClInclude Include="inline\__debug_box_clear_impl.h" />
     <ClInclude Include="inline\__debug_box_set_impl.h" />
     <ClInclude Include="mathematics\_.h" />
-    <ClInclude Include="mathematics\_mathematics.h" />
+    <ClInclude Include="mathematics\_component.h" />
     <ClInclude Include="math\calculator\calculator.h" />
     <ClInclude Include="math\calculator\element.h" />
     <ClInclude Include="math\calculator\parser.h" />

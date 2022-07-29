@@ -1,0 +1,16 @@
+app/app_app
+app/aura
+app/aqua
+app/apex
+app/acme
+operating-system-freebsd/acme_freebsd
+operating-system-posix/acme_posix
+operating-system-freebsd/apex_freebsd
+operating-system-posix/apex_posix
+operating-system-freebsd/aura_freebsd
+operating-system-posix/aura_posix
+operating-system-freebsd/node_freebsd
+operating-system-freebsd/desktop_environment_gnome
+app/crypto_openssl
+app/folder_zip
+app/draw2d_cairo

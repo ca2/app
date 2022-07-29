@@ -12,6 +12,10 @@
 */
 #include "framework.h"
 #include "ColorPicker.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_library.h"
+#endif
+
 //#include <nanogui/colorpicker.h>
 //#include <nanogui/layout.h>
 //#include <nanogui/colorwheel.h>

@@ -5357,7 +5357,7 @@ namespace draw2d_cairo
 
       }
 
-      auto posdata = pfontParam->get_os_data(this, 0);
+      auto posdata = pfontParam->get_os_data(this, 1);
 
       if (::is_null(posdata))
       {

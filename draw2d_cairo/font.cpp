@@ -174,74 +174,9 @@ namespace draw2d_cairo
 
          m_pfontface = pfontface;
 
-         //m_osdata[1] = m_pfontface;
+         m_osdata[1] = m_pfontface;
 
-         m_osdata[0] = m_pfontface;
-
-//         if (pprivatefont)
-//         {
-//
-//            if (pprivatefont->m_iFamilyCount <= 0)
-//            {
-//
-//               throw exception(error_resource);
-//
-//            }
-//
-//            int iFound = 0;
-//
-//            WCHAR wszGetFamilyName[LF_FACESIZE];
-//
-//            if (m_strFontFamilyName.has_char())
-//            {
-//
-//               for (int i = 0; i < pprivatefont->m_iFamilyCount; i++)
-//               {
-//
-//                  auto & fontfamily = pprivatefont->m_pfamily.m_p[i];
-//
-//                  if (fontfamily.GetFamilyName(wszGetFamilyName) == Gdiplus::Ok)
-//                  {
-//
-//                     string strFontFamily = wszGetFamilyName;
-//
-//                     if (strFontFamily.compare_ci(m_strFontFamilyName) == 0)
-//                     {
-//
-//                        iFound = i;
-//
-//                        break;
-//
-//
-//                     }
-//
-//                  }
-//
-//               }
-//
-//            }
-//
-//            auto & fontfamily = pprivatefont->m_pfamily.m_p[iFound];
-//
-//            if (fontfamily.GetFamilyName(wszGetFamilyName) != Gdiplus::Ok)
-//            {
-//
-//               throw exception(error_resource);
-//
-//            }
-//
-//            auto pfont = new Gdiplus::Font(
-//               wszGetFamilyName,
-//               (Gdiplus::REAL)m_dFontSize,
-//               iStyle,
-//               unit,
-//               pprivatefont->m_pcollection);
-//
-//            set_gdiplus_font(pfont);
-//
-//            bFont = true;
-//
-//         }
+         m_osdata[0] = nullptr;
 
          return ;
 

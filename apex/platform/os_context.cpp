@@ -703,6 +703,22 @@
    }
 
 
+   void os_context::hidden_start(const ::file::path& pathTarget, const ::string& strParams, const ::file::path& pathFolder)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void os_context::hidden_run(const class ::wait& wait, const ::file::path& pathTarget, const ::string& strParams, const ::file::path& pathFolder)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
    string os_context::get_default_browser()
    {
 

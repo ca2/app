@@ -92,6 +92,8 @@ public:
    virtual void set_dark_mode(bool bDarkMode);
 
    virtual void file_open(const ::file::path & path, const ::string & strParams = "", const ::file::path & pathFolder = "");
+   virtual void hidden_start(const ::file::path& path, const ::string& strParams = "", const ::file::path& pathFolder = "");
+   virtual void hidden_run(const class ::wait & wait, const ::file::path& path, const ::string& strParams = "", const ::file::path& pathFolder = "");
 
    virtual string get_default_browser();
 

@@ -179,7 +179,7 @@
     <ClCompile Include="_app_core_build.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\version.rc" />
+    <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\deployment\deployment.rc" />
     <ResourceCompile Include="main.rc" />
   </ItemGroup>
   <ItemGroup>

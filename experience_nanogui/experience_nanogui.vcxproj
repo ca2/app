@@ -79,7 +79,7 @@
     <ClInclude Include="_experience_nanogui.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\version.rc" />
+    <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\deployment\deployment.rc" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\acme\acme.vcxproj">

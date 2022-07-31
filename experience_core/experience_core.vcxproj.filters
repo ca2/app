@@ -129,7 +129,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\version.rc">
+    <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\deployment\deployment.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>

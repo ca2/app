@@ -3160,30 +3160,35 @@ namespace user
    void interaction::defer_set_icon()
    {
 
-#if defined(CUBE)
-
-      return;
-
-#endif
+//#if defined(CUBE)
+//
+//      return;
+//
+//#endif
 
 #ifdef WINDOWS_DESKTOP
 
-      auto pwindowingicon = get_windowing_icon();
+      //auto pwindowingicon = get_windowing_icon();
 
-      if (get_parent() == nullptr && ::is_null(pwindowingicon))
+      if (get_parent() == nullptr)
       {
 
-         ::file::path strMatter = get_window_default_matter();
+         //if (!window()->defer_set_icon())
+         {
 
-         auto pwindowing = windowing();
+            ::file::path strMatter = get_window_default_matter();
 
-         auto pcontext = m_pcontext->m_papexcontext;
+            auto pwindowing = windowing();
 
-         ::file::path pathIcon = "matter://main/icon.ico";
+            auto pcontext = m_pcontext->m_papexcontext;
 
-         auto picon = window()->load_icon(pathIcon);
+            ::file::path pathIcon = "matter://main/icon.png";
 
-         set_windowing_icon(picon);
+            auto picon = window()->load_icon(pathIcon);
+
+            set_windowing_icon(picon);
+
+         }
 
       }
 

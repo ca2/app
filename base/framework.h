@@ -16,9 +16,6 @@
 
 #include "base/_.h"
 #include "base/platform/_platform.h"
-#if !defined(BROAD_PRECOMPILED_HEADER)
-#define BROAD_PRECOMPILED_HEADER 1
-#endif
 #if BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
 //#include "base/user/experience/_experience.h"

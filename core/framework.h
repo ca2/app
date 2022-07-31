@@ -17,14 +17,6 @@
 #include "core/_.h"
 
 
-#ifdef RASPBIAN
-#define BROAD_PRECOMPILED_HEADER 0
-#else
-#ifndef BROAD_PRECOMPILED_HEADER
-#define BROAD_PRECOMPILED_HEADER 1
-#endif // BROAD_PRECOMPILED_HEADER
-#endif
-
 #if BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #include "core/user/rich_text/_rich_text.h"

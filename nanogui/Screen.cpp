@@ -12,6 +12,10 @@
 */
 #include "framework.h"
 #include "aura/graphics/image/context_image.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_library.h"
+#endif
+
 //#include <nanogui/screen.h>
 //#include <nanogui/theme.h>
 //#include <nanogui/opengl.h>

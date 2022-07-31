@@ -4926,7 +4926,7 @@ printf("sizeof(struct_t1) = %" PRIuPTR "\n", sizeof(struct_t1));
 
          pgraphics->on_begin_draw();
 
-         pgraphics->m_phost = m_puserinteraction;
+         pgraphics->m_pdraw2dhost = m_puserinteraction;
 
          pgraphics->m_puserstyle.release();
 

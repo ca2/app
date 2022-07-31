@@ -6836,6 +6836,18 @@ namespace aura
    void system::windowing_post(const ::procedure & procedure)
    {
 
+      if(::is_null(m_pappMain)
+         || ::is_null(m_pappMain->m_pauraapplication)
+            || ::is_null(m_pappMain->m_pauraapplication->get_session())
+               || ::is_null(m_pappMain->m_pauraapplication->get_session()->user())
+                  || ::is_null(m_pappMain->m_pauraapplication->get_session()->user()->windowing1())
+               )
+      {
+
+         return aqua::system::windowing_post(procedure);
+
+      }
+
       auto pwindowing = m_pappMain->m_pauraapplication->get_session()->user()->windowing1();
 
       pwindowing->windowing_post(procedure);

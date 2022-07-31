@@ -117,13 +117,16 @@ namespace user
    interaction::interaction()
    {
 
-      // if((offsetof(::user::interaction, m_oswindow) & 4) != 0)
-      // {
+#ifdef REPORT_OFFSETS
 
-      //    throw "invalid alignment";
+      if((offsetof(::user::interaction, m_oswindow) & 4) != 0)
+      {
 
-      // }
+         throw "invalid alignment";
 
+      }
+
+#endif
 
       user_interaction_common_construct();
 
@@ -17828,14 +17831,10 @@ namespace user
          return pitemClient;
 
       }
-      else
-      {
 
-         auto pitemClient = __new(::item(e_element_none));
+      auto pitemNone = __new(::item(e_element_none));
 
-         return pitemClient;
-
-      }
+      return pitemNone;
 
    }
 

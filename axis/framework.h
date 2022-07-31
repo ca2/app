@@ -16,14 +16,11 @@
 
 #include "axis/_.h"
 #include "axis/platform/_platform.h"
-#if !defined(BROAD_PRECOMPILED_HEADER)
-#define BROAD_PRECOMPILED_HEADER 1
-#endif
 #if BROAD_PRECOMPILED_HEADER
 #include "axis/user/_user.h"
 #include "axis/html/html_lite/_.h"
 #include "axis/geoip/_.h"
-#include "axis/geoip/_geoip.h"
+#include "axis/geoip/_component.h"
 #endif
 #include "axis/mathematics/_.h"
 #include "axis/mathematics/calculator/_.h"

@@ -2187,6 +2187,22 @@ namespace user
    }
 
 
+   void interaction::display_notify_icon()
+   {
+
+      output_debug_string("\ne_display_notify_icon\n");
+
+#ifdef INFO_LAYOUT_DISPLAY
+
+      INFORMATION("interaction_layout::display e_display_notify_icon");
+
+#endif
+
+      layout().sketch().display() = e_display_notify_icon;
+
+   }
+
+
    void interaction::display(::e_display edisplay, ::e_activation eactivation)
    {
 
@@ -2258,6 +2274,12 @@ namespace user
       {
 
          display_restore();
+
+      }
+      else if (edisplay == e_display_notify_icon)
+      {
+
+         display_notify_icon();
 
       }
       else if (edisplay == e_display_default)

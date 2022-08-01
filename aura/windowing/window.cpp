@@ -132,12 +132,12 @@ namespace windowing
    }
 
 
-   bool window::defer_set_icon()
-   {
+   //bool window::defer_set_icon()
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    double window::get_top_margin()

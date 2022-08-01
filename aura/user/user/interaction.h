@@ -669,6 +669,7 @@ namespace user
       virtual void display_restored();
       virtual void display_iconic();
       virtual void display_restore();
+      virtual void display_notify_icon();
 
       
       virtual void design_restored();

@@ -227,7 +227,7 @@
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\deployment\deployment.rc" />
+    <ResourceCompile Include="deployment.rc" />
     <ResourceCompile Include="main.rc" />
   </ItemGroup>
   <ItemGroup>

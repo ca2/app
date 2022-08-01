@@ -714,7 +714,7 @@
     <None Include="regular_expression_pcre2.def" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\deployment\deployment.rc" />
+    <ResourceCompile Include="deployment.rc" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\acme\acme.vcxproj">

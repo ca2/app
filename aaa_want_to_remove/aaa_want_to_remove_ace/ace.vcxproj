@@ -976,7 +976,7 @@
     <ClCompile Include="aaa_want_to_remove_version.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\deployment\deployment.rc" />
+    <ResourceCompile Include="deployment.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -265,7 +265,7 @@ namespace apex
    }
 
 
-   bool node::shell_link_icon(::file::path& pathIcon, int & iIcon, const ::file::path& pathLnk)
+   bool node::shell_link_icon(::file::path& pathIcon, int& iIcon, const ::file::path& pathLnk)
    {
 
       throw ::interface_only();
@@ -273,6 +273,7 @@ namespace apex
       return false;
 
    }
+
 
    // void node::parallelization_initialize()
    // {

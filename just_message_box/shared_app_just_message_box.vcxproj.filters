@@ -32,7 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc">
-      <Filter>Resource Files</Filter>
+      <Filter>Source Files</Filter>
     </ResourceCompile>
     <ResourceCompile Include="main.rc">
       <Filter>Resource Files</Filter>

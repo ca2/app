@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc">
-      <Filter>Resource Files</Filter>
+      <Filter>Source Files</Filter>
     </ResourceCompile>
   </ItemGroup>
 </Project>

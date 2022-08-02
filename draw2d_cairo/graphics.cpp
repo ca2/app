@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_library.h"
+#endif
 #include <math.h>
 #include "acme/platform/restore.h"
 #include "aura/user/user/_user.h"

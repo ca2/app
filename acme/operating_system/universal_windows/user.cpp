@@ -42,7 +42,7 @@ namespace user
 
 
 
-   ::boolean      g_bLastDarkModeApp;
+   ::tristate      g_bLastDarkModeApp;
 
 
 } // namespace user

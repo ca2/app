@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_library.h"
+#endif
 
 
 cairo_keep::cairo_keep(cairo_t * pgraphics, bool bSave)

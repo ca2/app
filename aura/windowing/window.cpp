@@ -132,6 +132,14 @@ namespace windowing
    }
 
 
+   //bool window::defer_set_icon()
+   //{
+
+   //   return false;
+
+   //}
+
+
    double window::get_top_margin()
    {
       

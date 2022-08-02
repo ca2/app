@@ -258,6 +258,8 @@ void application::initialize(::object* pobject)
 
    ::thread::initialize(pobject);
 
+   ::app::initialize(pobject);
+
    //if (!estatus)
    //{
    //
@@ -280,21 +282,6 @@ void application::initialize(::object* pobject)
    //   //set_context_system(m_pappParent->psystem);
 
    //}
-
-   {
-
-#include "deployment/build.h"
-
-      m_strBuild = pszBuild;
-
-   }
-
-   if (m_strBuild.is_empty())
-   {
-
-      m_strBuild = "(unknown build version)";
-
-   }
 
    //return estatus;
 

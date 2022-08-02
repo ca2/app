@@ -127,7 +127,7 @@ void acme_file::overwrite_if_different(const char* pathTarget, const char* pathS
 file_pointer acme_file::open(const ::file::path & pathParam, const ::file::e_open & eopen)
 {
 
-   auto pfile = m_psystem->__create_new < ::file::file >();
+   auto pfile = m_psystem->__create < ::file::file >();
 
    if(!pfile)
    {

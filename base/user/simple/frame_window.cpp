@@ -893,7 +893,11 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    }
 
-   defer_set_icon();
+//#if !defined(WINDOWS)
+
+   //defer_set_icon();
+
+//#endif
 
    //defer_synch_layered();
 

@@ -78,6 +78,8 @@ namespace apex
 
       virtual bool shell_link_target(::file::path & pathTarget, const ::file::path & pathLnk);
 
+      virtual bool shell_link_icon(::file::path & pathIcon, int & iIcon, const ::file::path& pathLnk);
+
 
       //virtual void parallelization_initialize();
       //virtual void parallelization_finalize();

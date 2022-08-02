@@ -924,7 +924,7 @@
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\version.rc" />
+    <ResourceCompile Include="deployment.rc" />
     <ResourceCompile Include="gpu_opengl.rc" />
   </ItemGroup>
   <ItemGroup>

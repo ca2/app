@@ -1,14 +1,14 @@
 #pragma once
 
 
-class CLASS_DECL_CORE simple_tab_view :
+class CLASS_DECL_CORE simple_tab_impact :
    virtual public ::user::show < ::user::tab >
 {
 public:
 
 
-   simple_tab_view();
-   virtual ~simple_tab_view();
+   simple_tab_impact();
+   virtual ~simple_tab_impact();
 
    virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

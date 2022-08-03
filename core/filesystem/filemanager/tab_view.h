@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   class CLASS_DECL_CORE tab_view :
+   class CLASS_DECL_CORE tab_impact :
       virtual public ::userex::pane_tab_impact
    {
    public:
@@ -13,8 +13,8 @@ namespace filemanager
 
       
 
-      tab_view();
-      ~tab_view() override;
+      tab_impact();
+      ~tab_impact() override;
 
 
       void assert_ok() const override;

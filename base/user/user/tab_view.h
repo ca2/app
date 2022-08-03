@@ -10,7 +10,7 @@ namespace user
    class single_document_template;
 
 
-   class CLASS_DECL_BASE tab_view :
+   class CLASS_DECL_BASE tab_impact :
       virtual public ::user::impact_host,
       virtual public ::user::tab,
       virtual public ::user::tab_callback
@@ -26,8 +26,8 @@ namespace user
       //__pointer(::user::impact)                 m_pimpactTopic;
 
 
-      tab_view();
-      ~tab_view() override;
+      tab_impact();
+      ~tab_impact() override;
 
 
       void assert_ok() const override;

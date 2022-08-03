@@ -2,33 +2,33 @@
 #include "core/user/simple/_simple.h"
 
 
-simple_tab_view::simple_tab_view()
+simple_tab_impact::simple_tab_impact()
 {
 
 }
 
 
-simple_tab_view::~simple_tab_view()
+simple_tab_impact::~simple_tab_impact()
 {
 }
 
 
-// simple_tab_view diagnostics
+// simple_tab_impact diagnostics
 
 
-void simple_tab_view::assert_ok() const
+void simple_tab_impact::assert_ok() const
 {
    ::user::impact::assert_ok();
 }
 
 
-void simple_tab_view::dump(dump_context & dumpcontext) const
+void simple_tab_impact::dump(dump_context & dumpcontext) const
 {
    ::user::impact::dump(dumpcontext);
 }
 
 
-void simple_tab_view::on_layout(::draw2d::graphics_pointer & pgraphics)
+void simple_tab_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
 {
 
    ::user::tab::on_layout(pgraphics);
@@ -42,7 +42,7 @@ void simple_tab_view::on_layout(::draw2d::graphics_pointer & pgraphics)
 
 
 
-void simple_tab_view::get_client_rect(RECTANGLE_I32 * prectangle)
+void simple_tab_impact::get_client_rect(RECTANGLE_I32 * prectangle)
 {
 
    ::user::impact::get_client_rect(prectangle);
@@ -55,7 +55,7 @@ void simple_tab_view::get_client_rect(RECTANGLE_I32 * prectangle)
 
 
 
-void simple_tab_view::on_message_create(::message::message * pmessage)
+void simple_tab_impact::on_message_create(::message::message * pmessage)
 {
 
    __pointer(::message::create) pcreate(pmessage);
@@ -74,7 +74,7 @@ void simple_tab_view::on_message_create(::message::message * pmessage)
 }
 
 
-void simple_tab_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+void simple_tab_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
 
    ::user::tab::_001OnDraw(pgraphics);
@@ -82,7 +82,7 @@ void simple_tab_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 }
 
 
-void simple_tab_view::install_message_routing(::channel * pchannel)
+void simple_tab_impact::install_message_routing(::channel * pchannel)
 {
    
    ::user::impact::install_message_routing(pchannel);
@@ -92,7 +92,7 @@ void simple_tab_view::install_message_routing(::channel * pchannel)
 }
 
 
-void simple_tab_view::on_message_left_button_up(::message::message * pmessage)
+void simple_tab_impact::on_message_left_button_up(::message::message * pmessage)
 {
 
    auto pmouse = pmessage->m_union.m_pmouse;
@@ -109,7 +109,7 @@ void simple_tab_view::on_message_left_button_up(::message::message * pmessage)
 }
 
 
-void simple_tab_view::on_message_mouse_move(::message::message * pmessage)
+void simple_tab_impact::on_message_mouse_move(::message::message * pmessage)
 {
    
    auto pmouse = pmessage->m_union.m_pmouse;
@@ -126,7 +126,7 @@ void simple_tab_view::on_message_mouse_move(::message::message * pmessage)
 }
 
 
-void simple_tab_view::on_message_mouse_leave(::message::message * pmessage)
+void simple_tab_impact::on_message_mouse_leave(::message::message * pmessage)
 {
 
    auto pmouse = pmessage->m_union.m_pmouse;

@@ -10,7 +10,7 @@ namespace user
 {
 
 
-   tab_view::tab_view()
+   tab_impact::tab_impact()
    {
 
       m_flagNonClient.erase(non_client_background);
@@ -24,13 +24,13 @@ namespace user
    }
 
 
-   tab_view::~tab_view()
+   tab_impact::~tab_impact()
    {
 
    }
 
 
-   void tab_view::assert_ok() const
+   void tab_impact::assert_ok() const
    {
 
       impact::assert_ok();
@@ -38,7 +38,7 @@ namespace user
    }
 
 
-   void tab_view::dump(dump_context & dumpcontext) const
+   void tab_impact::dump(dump_context & dumpcontext) const
    {
 
       impact::dump(dumpcontext);
@@ -46,7 +46,7 @@ namespace user
    }
 
 
-   void tab_view::on_message_create(::message::message * pmessage)
+   void tab_impact::on_message_create(::message::message * pmessage)
    {
 
       auto pdata = get_data();
@@ -63,7 +63,7 @@ namespace user
    }
 
 
-   void tab_view::handle(::topic * ptopic, ::context * pcontext)
+   void tab_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       tab::handle(ptopic, pcontext);
@@ -85,7 +85,7 @@ namespace user
    }
 
 
-   void tab_view::on_message_set_focus(::message::message * pmessage)
+   void tab_impact::on_message_set_focus(::message::message * pmessage)
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
@@ -100,7 +100,7 @@ namespace user
    }
 
 
-   bool tab_view::add_impact(const ::string & strName, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplacehoder)
+   bool tab_impact::add_impact(const ::string & strName, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplacehoder)
    {
 
       return add_tab(strName, atomImpact, bVisible, bPermanent, pplacehoder);
@@ -108,7 +108,7 @@ namespace user
    }
 
 
-   bool tab_view::add_impact_with_icon(const ::string & strName, const ::string & strIcon, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplacehoder)
+   bool tab_impact::add_impact_with_icon(const ::string & strName, const ::string & strIcon, const ::atom & atomImpact, bool bVisible, bool bPermanent, ::user::place_holder * pplacehoder)
    {
 
       return add_tab_with_icon(strName, strIcon, atomImpact, bVisible, bPermanent, pplacehoder);
@@ -116,7 +116,7 @@ namespace user
    }
 
 
-   void tab_view::OnActivateImpact(bool bActivate, __pointer(impact) pActivateImpact, __pointer(impact) pDeactiveImpact)
+   void tab_impact::OnActivateImpact(bool bActivate, __pointer(impact) pActivateImpact, __pointer(impact) pDeactiveImpact)
    {
 
       __pointer(::user::interaction) pinteraction = get_view_uie();
@@ -165,7 +165,7 @@ namespace user
    }
 
 
-   bool tab_view::pre_create_window(::user::system * pusersystem)
+   bool tab_impact::pre_create_window(::user::system * pusersystem)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -179,7 +179,7 @@ namespace user
    }
 
 
-   void tab_view::rotate()
+   void tab_impact::rotate()
    {
 
       index iIndex = get_current_tab_index();
@@ -216,7 +216,7 @@ namespace user
    }
 
 
-   void tab_view::_001OnMenuMessage(::message::message * pmessage)
+   void tab_impact::_001OnMenuMessage(::message::message * pmessage)
    {
       
       __pointer(::user::message) pusermessage(pmessage);
@@ -231,21 +231,21 @@ namespace user
    }
 
 
-   void tab_view::install_message_routing(::channel * pchannel)
+   void tab_impact::install_message_routing(::channel * pchannel)
    {
 
       ::user::tab::install_message_routing(pchannel);
 
       impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &tab_view::on_message_create);
-      MESSAGE_LINK(WM_USER + 1122, pchannel, this, &tab_view::_001OnMenuMessage);
-      MESSAGE_LINK(e_message_set_focus, pchannel, this, &tab_view::on_message_set_focus);
+      MESSAGE_LINK(e_message_create, pchannel, this, &tab_impact::on_message_create);
+      MESSAGE_LINK(WM_USER + 1122, pchannel, this, &tab_impact::_001OnMenuMessage);
+      MESSAGE_LINK(e_message_set_focus, pchannel, this, &tab_impact::on_message_set_focus);
 
    }
 
 
-   void tab_view::_001OnTabClick(index iTab)
+   void tab_impact::_001OnTabClick(index iTab)
    {
 
       ::user::tab::_001OnTabClick(iTab);
@@ -253,7 +253,7 @@ namespace user
    }
 
 
-   void tab_view::_001OnRemoveTab(class tab_pane * ptabpane)
+   void tab_impact::_001OnRemoveTab(class tab_pane * ptabpane)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -308,7 +308,7 @@ namespace user
    }
 
 
-   void tab_view::_001OnDropTab(index iTab, enum_position eposition)
+   void tab_impact::_001OnDropTab(index iTab, enum_position eposition)
    {
 
       if (eposition != e_position_none)
@@ -399,7 +399,7 @@ namespace user
    }
 
 
-   ::user::interaction * tab_view::_001GetTabWnd(index iTab)
+   ::user::interaction * tab_impact::_001GetTabWnd(index iTab)
    {
 
       if (m_pviewcreator == nullptr)
@@ -425,7 +425,7 @@ namespace user
    }
 
 
-   void tab_view::_001DropTargetWindowInitialize(::user::tab * pchannel)
+   void tab_impact::_001DropTargetWindowInitialize(::user::tab * pchannel)
    {
 
       create_tab_by_id(::user::tab::index_id(pchannel->get_data()->m_iClickTab));
@@ -451,7 +451,7 @@ namespace user
    }
 
 
-   void tab_view::_001DropTargetWindowRelay(::user::tab * pchannel)
+   void tab_impact::_001DropTargetWindowRelay(::user::tab * pchannel)
    {
 
       __UNREFERENCED_PARAMETER(pchannel);
@@ -461,7 +461,7 @@ namespace user
    }
 
 
-   void tab_view::_001DropTargetWindowFinalize(::user::tab * pchannel)
+   void tab_impact::_001DropTargetWindowFinalize(::user::tab * pchannel)
    {
       __UNREFERENCED_PARAMETER(pchannel);
       if(m_pdroptargetwindow != nullptr)
@@ -473,7 +473,7 @@ namespace user
    }
 
 
-   void tab_view::_001OnShowTab(tab * ptab)
+   void tab_impact::_001OnShowTab(tab * ptab)
    {
 
       if(ptab == this)
@@ -488,7 +488,7 @@ namespace user
    }
 
 
-   void tab_view::_on_change_cur_sel()
+   void tab_impact::_on_change_cur_sel()
    {
 
       index iTab = get_current_tab_index();
@@ -723,7 +723,7 @@ namespace user
    }
 
 
-   void tab_view::on_create_impact(::user::impact_data * pimpactdata)
+   void tab_impact::on_create_impact(::user::impact_data * pimpactdata)
    {
    
       if(pimpactdata->m_atom == MENU_IMPACT)
@@ -735,7 +735,7 @@ namespace user
       
    }
 
-   void tab_view::on_change_cur_sel()
+   void tab_impact::on_change_cur_sel()
    {
 
       _on_change_cur_sel();
@@ -767,7 +767,7 @@ namespace user
    }
 
 
-   ::user::tab_pane * tab_view::create_tab_by_id(const ::atom & atom)
+   ::user::tab_pane * tab_impact::create_tab_by_id(const ::atom & atom)
    {
 
       if (get_impact_data(atom, get_data()->m_rectangleTabClient) == nullptr)
@@ -791,7 +791,7 @@ namespace user
    }
 
 
-   void tab_view::preparimpact_menu(::user::menu * pmenu)
+   void tab_impact::preparimpact_menu(::user::menu * pmenu)
    {
 
       if (pmenu->load_xml_menu("matter://impact.menu"))
@@ -806,7 +806,7 @@ namespace user
    }
 
 
-   void tab_view::on_change_tab_count(::array < ::user::tab_pane * > array)
+   void tab_impact::on_change_tab_count(::array < ::user::tab_pane * > array)
    {
 
       ::user::tab::on_change_tab_count(array);
@@ -826,7 +826,7 @@ namespace user
    }
 
 
-   void tab_view::on_erase_child(::user::interaction* pinteraction)
+   void tab_impact::on_erase_child(::user::interaction* pinteraction)
    {
 
       ::user::impact_host::on_erase_child(pinteraction);
@@ -836,7 +836,7 @@ namespace user
    }
 
 
-   void tab_view::on_erase_place_holder_child(::user::interaction* pinteraction)
+   void tab_impact::on_erase_place_holder_child(::user::interaction* pinteraction)
    {
 
       ::user::impact_host::on_erase_place_holder_child(pinteraction);
@@ -847,7 +847,7 @@ namespace user
 
 
 
-   void tab_view::on_hide_child(::user::interaction* pinteraction)
+   void tab_impact::on_hide_child(::user::interaction* pinteraction)
    {
 
       ::user::impact_host::on_hide_child(pinteraction);
@@ -857,7 +857,7 @@ namespace user
    }
 
 
-   void tab_view::on_hide_place_holder_child(::user::interaction* pinteraction)
+   void tab_impact::on_hide_place_holder_child(::user::interaction* pinteraction)
    {
 
       ::user::impact_host::on_hide_place_holder_child(pinteraction);
@@ -867,7 +867,7 @@ namespace user
    }
 
 
-   //::user::impact_data * tab_view::create_impact(atom atom, const ::rectangle_i32 & rectangleCreate, ::user::frame_window * pframewindow)
+   //::user::impact_data * tab_impact::create_impact(atom atom, const ::rectangle_i32 & rectangleCreate, ::user::frame_window * pframewindow)
 
    //{
 
@@ -922,7 +922,7 @@ namespace user
 
    //}
 
-   atom tab_view::get_view_id()
+   atom tab_impact::get_view_id()
    {
 
       if (m_pimpactdata == nullptr)
@@ -937,7 +937,7 @@ namespace user
    }
 
 
-   ::user::impact_data * tab_view::get_view_creator_data()
+   ::user::impact_data * tab_impact::get_view_creator_data()
    {
 
       return m_pimpactdata;
@@ -945,7 +945,7 @@ namespace user
    }
 
 
-   ::user::interaction * tab_view::get_view_uie()
+   ::user::interaction * tab_impact::get_view_uie()
    {
 
       ::user::impact_data * pimpactdata = get_view_creator_data();
@@ -992,7 +992,7 @@ namespace user
    }
 
 
-   ::user::document * tab_view::get_view_document()
+   ::user::document * tab_impact::get_view_document()
    {
 
       if(m_pimpactdata == nullptr)
@@ -1007,7 +1007,7 @@ namespace user
    }
 
 
-   void tab_view::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void tab_impact::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       bool bUpdateBuffer = false;
@@ -1073,7 +1073,7 @@ namespace user
    }
 
 
-   bool tab_view::on_preparimpact_data(::user::impact_data* pimpactdata)
+   bool tab_impact::on_preparimpact_data(::user::impact_data* pimpactdata)
    {
 
       //if (!add_tab(pimpactdata->m_atom, pimpactdata->m_atomTitle))
@@ -1126,7 +1126,7 @@ namespace user
    }
 
 
-   void tab_view::on_after_host_impact(::user::impact_data * pimpactdata)
+   void tab_impact::on_after_host_impact(::user::impact_data * pimpactdata)
    {
 
       ::user::impact_host::on_after_host_impact(pimpactdata);
@@ -1149,7 +1149,7 @@ namespace user
    }
 
 
-   void tab_view::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
+   void tab_impact::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
 //      if(m_pimpactTopic)

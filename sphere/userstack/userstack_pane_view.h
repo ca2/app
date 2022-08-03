@@ -28,7 +28,7 @@ namespace userstack
       pane_impact(::object * pobject);
       virtual ~pane_impact();
 
-      using ::user::tab_view::on_change_cur_sel;
+      using ::user::tab_impact::on_change_cur_sel;
       using ::userstack::form_callback::update;
 
       void rotate() override;

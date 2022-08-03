@@ -60,7 +60,7 @@ namespace filemanager
 
       string str;
 
-      ::filemanager::tab_view * ptabimpact = GetTypedParent < ::filemanager::tab_view >();
+      ::filemanager::tab_impact * ptabimpact = GetTypedParent < ::filemanager::tab_impact >();
       if (ptabimpact != nullptr)
       {
          get_window_text(str);

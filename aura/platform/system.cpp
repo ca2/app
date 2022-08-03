@@ -6276,7 +6276,7 @@ namespace aura
    //}
 
 
-   //::type system::get_pane_tab_view_type_info()
+   //::type system::get_pane_tab_impact_type_info()
    //{
 
    //   return __type(userex::pane_tab_impact);
@@ -6759,7 +6759,7 @@ namespace aura
 
       //}
 
-   ::type system::get_pane_tab_view_type_info()
+   ::type system::get_pane_tab_impact_type_info()
    {
 
       return m_typePaneTabImpact;

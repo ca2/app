@@ -175,7 +175,7 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
 
    }
 
-   auto ptabimpact = GetTypedParent <::filemanager::tab_view >();
+   auto ptabimpact = GetTypedParent <::filemanager::tab_impact >();
 
    if(ptabimpact != nullptr)
    {

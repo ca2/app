@@ -130,7 +130,7 @@ namespace core
       ::factory::add_factory_item <::userex::top_toggle_view >();
       ::factory::add_factory_item <::userex::top_view >();
 
-      ::factory::add_factory_item <::user::tab_view >();
+      ::factory::add_factory_item <::user::tab_impact >();
 
       ::factory::add_factory_item < ::user::form_view > ();
 

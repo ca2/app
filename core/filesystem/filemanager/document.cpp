@@ -64,7 +64,7 @@ namespace filemanager
 
       __pointer(document) pdocument = this;
 
-      tab_view * pimpact = pdocument->get_type_impact < tab_view >();
+      tab_impact * pimpact = pdocument->get_type_impact < tab_impact >();
 
 //#ifdef WINDOWS_DESKTOP
 //      oswindow oswindowDesktop = ::get_desktop_window();
@@ -469,7 +469,7 @@ namespace filemanager
    document * document::get_main_document()
    {
 
-      __pointer(tab_view) ptabimpact = get_type_impact < tab_view >();
+      __pointer(tab_impact) ptabimpact = get_type_impact < tab_impact >();
 
       if (ptabimpact.is_set())
       {
@@ -845,7 +845,7 @@ namespace filemanager
       if (pimpact.is_set())
       {
 
-         __pointer(tab_view) ptabimpact = pimpact->GetTypedParent <tab_view>();
+         __pointer(tab_impact) ptabimpact = pimpact->GetTypedParent <tab_impact>();
 
          if (ptabimpact.is_set())
          {
@@ -1296,7 +1296,7 @@ namespace filemanager
    operation_document * document::get_operation_doc(bool bSwitch)
    {
 
-      //::filemanager::tab_view * ptabimpact = psession->m_pdocumenttemplateMain->get_document(0)->get_type_impact < ::filemanager::tab_view >();
+      //::filemanager::tab_impact * ptabimpact = psession->m_pdocumenttemplateMain->get_document(0)->get_type_impact < ::filemanager::tab_impact >();
 
       //if (ptabimpact == nullptr)
       //{

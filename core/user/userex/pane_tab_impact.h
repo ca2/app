@@ -9,7 +9,7 @@ namespace userex
 
 
    class CLASS_DECL_CORE pane_tab_impact :
-      virtual public ::user::tab_view,
+      virtual public ::user::tab_impact,
       virtual public ::user::form_callback
    {
    public:
@@ -90,7 +90,7 @@ namespace userex
 
 
 template <  typename APPLICATION, typename BASE1 = optional_interaction1, typename BASE2 = optional_interaction2, typename BASE3 = optional_interaction3, typename BASE4 = optional_interaction4 >
-class application_pane_tab_view :
+class application_pane_tab_impact :
    virtual public ::object,
    virtual public BASE1,
    virtual public BASE2,
@@ -103,7 +103,7 @@ public:
    __pointer(APPLICATION) m_papp;
 
 
-   application_pane_tab_view()
+   application_pane_tab_impact()
    {
 
    }

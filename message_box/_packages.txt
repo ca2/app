@@ -1,5 +1,5 @@
 app/app_message_box
-app/app_app
+app/app
 app/aura
 app/aqua
 app/apex

@@ -91,7 +91,7 @@ namespace user
    }
 
 
-   void tab_view::creatimpact_menu(::user::impact_data * pimpactdata)
+   void tab_impact::creatimpact_menu(::user::impact_data * pimpactdata)
    {
 
       ::user::impact::create_view < ::user::menu_list_view >(pimpactdata);

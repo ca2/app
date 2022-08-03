@@ -9,43 +9,43 @@ namespace filemanager
 {
 
 
-   tab_view::tab_view()
+   tab_impact::tab_impact()
    {
 
    }
 
 
-   tab_view::~tab_view()
+   tab_impact::~tab_impact()
    {
 
    }
 
 
-   void tab_view::assert_ok() const
+   void tab_impact::assert_ok() const
    {
-      ::user::tab_view::assert_ok();
+      ::user::tab_impact::assert_ok();
    }
 
-   void tab_view::dump(dump_context & dumpcontext) const
+   void tab_impact::dump(dump_context & dumpcontext) const
    {
-      ::user::tab_view::dump(dumpcontext);
-   }
-
-
-
-   void tab_view::install_message_routing(::channel * pchannel)
-   {
-
-      ::user::tab_view::install_message_routing(pchannel);
-
-      MESSAGE_LINK(e_message_create, pchannel, this, &tab_view::on_message_create);
-      MESSAGE_LINK(e_message_set_focus, pchannel, this, &tab_view::on_message_create);
-
+      ::user::tab_impact::dump(dumpcontext);
    }
 
 
 
-   void tab_view::on_create_impact(::user::impact_data * pimpactdata)
+   void tab_impact::install_message_routing(::channel * pchannel)
+   {
+
+      ::user::tab_impact::install_message_routing(pchannel);
+
+      MESSAGE_LINK(e_message_create, pchannel, this, &tab_impact::on_message_create);
+      MESSAGE_LINK(e_message_set_focus, pchannel, this, &tab_impact::on_message_create);
+
+   }
+
+
+
+   void tab_impact::on_create_impact(::user::impact_data * pimpactdata)
    {
 
       if(pimpactdata->m_atom.is_null())
@@ -256,7 +256,7 @@ namespace filemanager
    }
 
 
-   void tab_view::on_message_create(::message::message * pmessage)
+   void tab_impact::on_message_create(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -266,7 +266,7 @@ namespace filemanager
    }
 
 
-   __pointer(document) tab_view::get_document()
+   __pointer(document) tab_impact::get_document()
    {
 
       return ::user::impact::get_document();
@@ -276,12 +276,12 @@ namespace filemanager
 
 
 
-   void tab_view::handle(::topic * ptopic, ::context * pcontext)
+   void tab_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       impact::handle(ptopic, pcontext);
 
-      ::user::tab_view::handle(ptopic, pcontext);
+      ::user::tab_impact::handle(ptopic, pcontext);
 
       ////__update(::update)
       {

@@ -258,6 +258,8 @@ void application::initialize(::object* pobject)
 
    ::thread::initialize(pobject);
 
+   ::app::initialize(pobject);
+
    //if (!estatus)
    //{
    //
@@ -280,21 +282,6 @@ void application::initialize(::object* pobject)
    //   //set_context_system(m_pappParent->psystem);
 
    //}
-
-   {
-
-#include "build.h"
-
-      m_strBuild = pszBuild;
-
-   }
-
-   if (m_strBuild.is_empty())
-   {
-
-      m_strBuild = "(unknown build version)";
-
-   }
 
    //return estatus;
 
@@ -2186,22 +2173,23 @@ void application::on_create_app_shortcut()
 
    string strRoot = m_strAppId.Left(m_strAppId.find('/'));
 
-   auto pathCreatedShortcut = m_psystem->m_pacmedirectory->roaming() / m_strAppId / "created_shortcut.txt";
+   //auto pathCreatedShortcut = m_psystem->m_pacmedirectory->roaming() / m_strAppId / "created_shortcut.txt";
 
    auto pathShortcut = m_psystem->m_pacmedirectory->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / (strAppName + ".lnk");
 
    auto path = m_psystem->m_pacmefile->module();
 
    ::file::path pathTarget;
+   ::file::path pathIcon;
+   int iIcon = -1;
 
-   if (!m_psystem->m_pacmefile->exists(pathCreatedShortcut)
-      || (m_psystem->m_pacmefile->exists(pathShortcut)
-         &&
-         (!m_psystem->node()->m_papexnode->shell_link_target(pathTarget, pathShortcut)
-            ||
-            !m_psystem->m_pacmepath->final_is_same(
-               pathTarget,
-               path))))
+   //if (!m_psystem->m_pacmefile->exists(pathCreatedShortcut)
+   if(!m_psystem->m_pacmefile->exists(pathShortcut)
+    || !m_psystem->node()->m_papexnode->shell_link_target(pathTarget, pathShortcut)
+    || !m_psystem->m_pacmepath->final_is_same(pathTarget, path)
+    || !m_psystem->node()->m_papexnode->shell_link_icon(pathIcon, iIcon, path)
+    || !m_psystem->m_pacmefile->exists(pathIcon)
+    )
    {
 
       create_app_shortcut();

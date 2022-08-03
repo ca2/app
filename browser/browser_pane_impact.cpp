@@ -9,7 +9,7 @@ namespace browser
 
    pane_impact::pane_impact(::object * pobject) :
       object(pobject),
-      ::user::tab_view(pobject),
+      ::user::tab_impact(pobject),
       ::userex::pane_tab_impact(pobject),
       place_holder_container(pobject)
    {

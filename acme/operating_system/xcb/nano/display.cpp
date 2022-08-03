@@ -4,7 +4,8 @@
 //
 #include "framework.h"
 #include "_nano.h"
-
+#include "aura_posix/_.h"
+#include "aura_posix/_aura_posix.h"
 
 
 struct MWMHints
@@ -584,9 +585,25 @@ namespace xcb
 
       }
 
-      m_pX11Display = x11_get_display(this);
+      if(!m_pX11Display)
+      {
 
-      m_pconnection = x11_display_xcb_connection(m_pX11Display);
+         m_pX11Display = x11_get_display(this);
+
+      }
+
+#if defined(WITH_XCB)
+
+      m_pconnection = (xcb_connection_t *) m_psystem->m_pnode->m_pAuraPosix->m_pxcbconnection;
+
+#endif
+
+      if(!m_pconnection)
+      {
+
+         m_pconnection = x11_display_xcb_connection(m_pX11Display);
+
+      }
 
       if (xcb_connection_has_error(m_pconnection))
       {

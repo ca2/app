@@ -186,7 +186,7 @@ namespace aura
 #ifdef WINDOWS_DESKTOP
 
 
-   void* node::HICON_from_ico_file(const ::block& block)
+   void* node::HICON_from_image(::image * pimage)
    {
 
       throw ::interface_only();

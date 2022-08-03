@@ -186,7 +186,7 @@ namespace userex
    }
 
 
-   __pointer(::userex::pane_tab_impact) impact_host::get_pane_tab_view()
+   __pointer(::userex::pane_tab_impact) impact_host::get_pane_tab_impact()
    {
 
       if (m_ptemplateTab == nullptr)
@@ -232,7 +232,7 @@ namespace userex
 
          __pointer(::simple_frame_window) pframewindow = pupdown;
 
-         auto ptabimpact = get_pane_tab_view();
+         auto ptabimpact = get_pane_tab_impact();
 
          {
 

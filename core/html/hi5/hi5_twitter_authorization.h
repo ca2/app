@@ -23,7 +23,7 @@ namespace hi5
          i32                                   m_iImpact;
          __pointer(::user::single_document_template)      m_ptemplatePane;
          __pointer(::user::document)                      m_pdocument;
-         __pointer(::user::tab_view)                      m_ptabimpact;
+         __pointer(::user::tab_impact)                      m_ptabimpact;
          __pointer(::form_document)                       m_pdocAuth;
          __pointer(::form_document)                       m_pdocMessage;
          __pointer(::user::form_view)                     m_pviewAuth;

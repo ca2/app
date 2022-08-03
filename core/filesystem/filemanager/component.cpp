@@ -201,7 +201,7 @@ namespace filemanager
       ::factory::add_factory_item <preview >();
       ::factory::add_factory_item <main_frame >();
       ::factory::add_factory_item <frame >();
-      ::factory::add_factory_item <tab_view >();
+      ::factory::add_factory_item <tab_impact >();
       ::factory::add_factory_item <form_child_frame >();
       ::factory::add_factory_item <::simple_form_view >();
       ::factory::add_factory_item <folder_selection_list_view >();
@@ -310,7 +310,7 @@ namespace filemanager
                              strTemplateId,
                              __type(document),
                              __type(frame),       // main SDI frame window
-                             __type(tab_view)));
+                             __type(tab_impact)));
 
       }
       else if (is_filemanager_group(atom, LIST_GROUP))
@@ -676,7 +676,7 @@ namespace filemanager
 
       //pdocument->Initialize(pcreate == nullptr ? true : pcreate->m_bMakeVisible, false);
 
-      //tab_view * ptabimpact = pdocument->get_type_impact < tab_view >();
+      //tab_impact * ptabimpact = pdocument->get_type_impact < tab_impact >();
 
       //if (ptabimpact != nullptr)
       //{
@@ -878,7 +878,7 @@ namespace filemanager
 //   if (pdocument != nullptr)
 //   {
 
-//      tab_view * ptabimpact = pdocument->get_type_impact < tab_view >();
+//      tab_impact * ptabimpact = pdocument->get_type_impact < tab_impact >();
 
 //      if (pathFolder.m_iDir == 1)
 //      {

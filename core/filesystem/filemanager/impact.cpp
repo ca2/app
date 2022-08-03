@@ -288,7 +288,7 @@ namespace filemanager
 
       }
 
-      //tab_view * ptabimpact = get_parent_frame()->GetTypedParent < tab_view >();
+      //tab_impact * ptabimpact = get_parent_frame()->GetTypedParent < tab_impact >();
       //if (ptabimpact != nullptr)
       //{
       //   ptabimpact->on_update(this, eupdate, pobject);

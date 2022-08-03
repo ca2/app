@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ACME single_lock :
-   virtual public synchronization_object
+   virtual public synchronization_lock
 {
 public:
 

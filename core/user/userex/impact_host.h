@@ -69,7 +69,7 @@ namespace userex
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-      virtual __pointer(::userex::pane_tab_impact) get_pane_tab_view();
+      virtual __pointer(::userex::pane_tab_impact) get_pane_tab_impact();
 
       virtual bool _001IsCompactMode();
 

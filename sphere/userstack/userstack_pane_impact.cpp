@@ -7,7 +7,7 @@ namespace userstack
 
    pane_impact::pane_impact(::object * pobject) :
       ::object(pobject),
-      ::user::tab_view(pobject),
+      ::user::tab_impact(pobject),
       ::userex::pane_tab_impact(pobject),
       place_holder_container(pobject)
    {
@@ -86,7 +86,7 @@ namespace userstack
    void pane_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::tab_view::handle(ptopic, pcontext);
+      ::user::tab_impact::handle(ptopic, pcontext);
       
    }
 

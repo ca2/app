@@ -100,7 +100,7 @@ CLASS_DECL_APEX i32 ca2_main();
 bool application::os_on_start_application()
 {
 
-   if (!::is_debugger_attached())
+   //if (!::is_debugger_attached())
    {
 
       ::file::path pathObj;

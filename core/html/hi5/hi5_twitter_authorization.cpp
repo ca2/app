@@ -62,7 +62,7 @@ namespace hi5
             "system/auth",
             __type(::user::document),
             __type(simple_frame_window),
-            psystem->get_pane_tab_view_type_info());
+            psystem->get_pane_tab_impact_type_info());
 
          //return estatus;
 
@@ -112,7 +112,7 @@ namespace hi5
          if(m_pdocument == nullptr)
             return;
 
-         __pointer(user::tab_view) ptabimpact = m_pdocument->get_type_impact < user::tab_view >();
+         __pointer(user::tab_impact) ptabimpact = m_pdocument->get_type_impact < user::tab_impact >();
          m_ptabimpact = ptabimpact;
 
          auto pimpactkit = ptabimpact->get_impact_kit();

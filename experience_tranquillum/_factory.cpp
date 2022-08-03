@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_library.h"
+#endif
 
 
 __FACTORY_EXPORT void experience_tranquillum_factory(::factory::factory * pfactory)

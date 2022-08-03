@@ -45,6 +45,29 @@ app::~app()
 }
 
 
+void app::initialize(::object* pobject)
+{
+
+   ::task::initialize(pobject);
+
+   {
+
+#include "deployment/build.h"
+
+      m_strBuild = pszBuild;
+
+   }
+
+   if (m_strBuild.is_empty())
+   {
+
+      m_strBuild = "(unknown build version)";
+
+   }
+
+}
+
+
 bool app::is_application() const
 {
 

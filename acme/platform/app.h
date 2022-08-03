@@ -38,6 +38,9 @@ public:
    ~app() override;
 
 
+   void initialize(::object* pobject) override;
+
+
    virtual bool is_application() const;
 
    virtual bool is_system() const;

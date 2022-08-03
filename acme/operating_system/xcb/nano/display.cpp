@@ -592,7 +592,11 @@ namespace xcb
 
       }
 
+#if defined(WITH_XCB)
+
       m_pconnection = (xcb_connection_t *) m_psystem->m_pnode->m_pAuraPosix->m_pxcbconnection;
+
+#endif
 
       if(!m_pconnection)
       {

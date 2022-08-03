@@ -7,7 +7,7 @@ namespace user
 
    class CLASS_DECL_CORE form_list_view:
       virtual public ::user::form_list,
-      virtual public ::user::form_view,
+      virtual public ::user::form_impact,
       virtual public ::user::list_view
    {
    public:

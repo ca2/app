@@ -6,7 +6,7 @@ namespace filehandler
 
 
    class CLASS_DECL_SPHERE impact :
-      public ::user::form_view
+      public ::user::form_impact
    {
    public:
 

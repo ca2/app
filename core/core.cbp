@@ -752,10 +752,10 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/html/user/form.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/html/user/form_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/html/user/form_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/html/user/form_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/html/user/form_impact.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/html/user/impact.cpp">
@@ -1169,10 +1169,10 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/form_list_view.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/form_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/form_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/form_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/form_impact.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/list_control.cpp">
@@ -1568,7 +1568,7 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/form_frame.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/form_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/form_impact.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/group_image_list.cpp">

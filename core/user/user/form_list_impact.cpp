@@ -23,7 +23,7 @@ namespace user
    void form_list_view::install_message_routing(::channel * pchannel)
    {
 
-      ::user::form_view::install_message_routing(pchannel);
+      ::user::form_impact::install_message_routing(pchannel);
       ::user::form_list::install_message_routing(pchannel);
 
    }
@@ -32,7 +32,7 @@ namespace user
    void form_list_view::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::form_view::handle(ptopic, pcontext);
+      ::user::form_impact::handle(ptopic, pcontext);
 
       ::user::list_view::handle(ptopic, pcontext);
 
@@ -94,7 +94,7 @@ namespace user
 
       //estatus =
       
-      ::user::form_view::initialize(pobject);
+      ::user::form_impact::initialize(pobject);
 
       //if (!estatus)
       //{
@@ -123,7 +123,7 @@ namespace user
    {
 
       form_list::assert_ok();
-      form_view::assert_ok();
+      form_impact::assert_ok();
       list_view::assert_ok();
 
    }
@@ -133,7 +133,7 @@ namespace user
    {
 
       form_list::dump(dumpcontext);
-      form_view::dump(dumpcontext);
+      form_impact::dump(dumpcontext);
       list_view::dump(dumpcontext);
 
    }
@@ -183,7 +183,7 @@ namespace user
 
       ::user::list_view::_001OnTimer(ptimer);
 
-      ::user::form_view::_001OnTimer(ptimer);
+      ::user::form_impact::_001OnTimer(ptimer);
 
    }
 
@@ -215,7 +215,7 @@ namespace user
    //void form_list_view::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   form_view::handle(ptopic, pcontext);
+   //   form_impact::handle(ptopic, pcontext);
 
    //   list_view::handle(ptopic, pcontext);
 

@@ -13,7 +13,7 @@ namespace usernet
 
 
       __pointer(::user::document)               m_pdocument;
-      __pointer(::user::form_view)              m_pimpact;
+      __pointer(::user::form_impact)              m_pimpact;
 
 
       network_configuration();

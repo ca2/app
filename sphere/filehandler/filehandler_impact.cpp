@@ -54,7 +54,7 @@ namespace filehandler
    void impact::_001OnTimer(::timer * ptimer)
    {
 
-      form_view::_001OnTimer(ptimer);;
+      form_impact::_001OnTimer(ptimer);;
 
       if(ptimer->m_uEvent == 8888)
       {

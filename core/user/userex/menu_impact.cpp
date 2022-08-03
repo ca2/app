@@ -14,7 +14,7 @@ menu_view::menu_view()
 
 void menu_view::handle(::topic * ptopic, ::context * pcontext)
 {
-   ::user::form_view::handle(ptopic, pcontext);
+   ::user::form_impact::handle(ptopic, pcontext);
 
    auto papp = get_app();
 
@@ -109,7 +109,7 @@ void menu_view::on_message_create(::message::message * pmessage)
 void menu_view::_001OnTimer(::timer * ptimer)
 {
 
-   ::user::form_view::_001OnTimer(ptimer);;
+   ::user::form_impact::_001OnTimer(ptimer);;
 
    if(m_pcallback != nullptr)
    {

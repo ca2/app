@@ -132,7 +132,7 @@ namespace core
 
       ::factory::add_factory_item <::user::tab_impact >();
 
-      ::factory::add_factory_item < ::user::form_view > ();
+      ::factory::add_factory_item < ::user::form_impact > ();
 
       ::factory::add_factory_item < ::user::font_combo_box >();
 
@@ -266,7 +266,7 @@ namespace core
          "system/form",
          __type(form_document),
          psystem->get_simple_frame_window_type_info(),
-         __type(::user::form_view)));
+         __type(::user::form_impact)));
 
       ptemplate->initialize(this);
 
@@ -279,7 +279,7 @@ namespace core
          "system/form",
          __type(form_document),
          get_simple_child_frame_type_info(),
-         __type(::user::form_view)));
+         __type(::user::form_impact)));
 
       ptemplate->initialize(this);
 

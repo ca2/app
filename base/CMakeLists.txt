@@ -124,8 +124,8 @@ list(APPEND library_source
         user/user/form_document.cpp
         user/user/form_document.h
         user/user/form_update_hint.h
-        user/user/form_view.cpp
-        user/user/form_view.h
+        user/user/form_impact.cpp
+        user/user/form_impact.h
         user/user/form_window.cpp
         user/user/form_window.h
         user/user/frame_window.cpp

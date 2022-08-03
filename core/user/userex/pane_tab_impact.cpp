@@ -294,7 +294,7 @@ namespace userex
 
             }
 
-            auto pformview = m_pdocumentMenu->get_type_impact < ::user::form_view>();
+            auto pformview = m_pdocumentMenu->get_type_impact < ::user::form_impact>();
 
             pformview->get_form()->add_handler(get_app());
 

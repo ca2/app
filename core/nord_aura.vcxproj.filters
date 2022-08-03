@@ -1780,7 +1780,7 @@
     <ClCompile Include="html\user\form.cpp">
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
-    <ClCompile Include="html\user\form_view.cpp">
+    <ClCompile Include="html\user\form_impact.cpp">
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
     <ClCompile Include="html\user\frame.cpp">
@@ -2083,7 +2083,7 @@
     <ClCompile Include="user\simple\form_list_view.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\form_view.cpp">
+    <ClCompile Include="user\simple\form_impact.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\frame_window.cpp">
@@ -2587,7 +2587,7 @@
     <ClCompile Include="user\user\form_mesh.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\form_view.cpp">
+    <ClCompile Include="user\user\form_impact.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\form_window.cpp">
@@ -6336,7 +6336,7 @@
     <ClInclude Include="html\user\form.h">
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
-    <ClInclude Include="html\user\form_view.h">
+    <ClInclude Include="html\user\form_impact.h">
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
     <ClInclude Include="html\user\frame.h">

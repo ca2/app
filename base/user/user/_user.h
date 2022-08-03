@@ -389,7 +389,7 @@ namespace user
 #include "form_window.h"
 //#include "form_mesh.h"
 //#include "form_list.h"
-#include "form_view.h"
+#include "form_impact.h"
 //#include "form_list_view.h"
 #include "split_bar.h"
 

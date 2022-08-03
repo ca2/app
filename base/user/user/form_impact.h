@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE form_view:
+   class CLASS_DECL_BASE form_impact:
       virtual public ::user::show < ::user::margin < ::user::form_window > >
    {
    public:
@@ -20,8 +20,8 @@ namespace user
       using BASE_VIEW = ::user::show < ::user::margin < ::user::form_window > >;
 
       
-      form_view();
-      ~form_view() override;
+      form_impact();
+      ~form_impact() override;
 
 
 

@@ -753,7 +753,7 @@
     <ClInclude Include="html\user\child_frame.h" />
     <ClInclude Include="html\user\document.h" />
     <ClInclude Include="html\user\form.h" />
-    <ClInclude Include="html\user\form_view.h" />
+    <ClInclude Include="html\user\form_impact.h" />
     <ClInclude Include="html\user\frame.h" />
     <ClInclude Include="html\user\internal.h" />
     <ClInclude Include="html\user\user.h" />

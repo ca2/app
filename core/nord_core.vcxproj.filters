@@ -196,7 +196,7 @@
     <ClCompile Include="html\user\form.cpp">
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
-    <ClCompile Include="html\user\form_view.cpp">
+    <ClCompile Include="html\user\form_impact.cpp">
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
     <ClCompile Include="html\user\user.cpp">
@@ -211,7 +211,7 @@
     <ClCompile Include="user\simple\form_list_view.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\form_view.cpp">
+    <ClCompile Include="user\simple\form_impact.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\list_control.cpp">
@@ -835,7 +835,7 @@
     <ClInclude Include="user\user\form_update_hint.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\form_view.h">
+    <ClInclude Include="user\user\form_impact.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\form_window.h">
@@ -1102,7 +1102,7 @@
     <ClInclude Include="user\userex\form_frame.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\form_view.h">
+    <ClInclude Include="user\userex\form_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\home_view.h">
@@ -1216,7 +1216,7 @@
     <ClInclude Include="user\simple\frame_window.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\form_view.h">
+    <ClInclude Include="user\simple\form_impact.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\form_list_view.h">
@@ -1573,7 +1573,7 @@
     <ClInclude Include="html\user\frame.h">
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
-    <ClInclude Include="html\user\form_view.h">
+    <ClInclude Include="html\user\form_impact.h">
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
     <ClInclude Include="html\user\form.h">

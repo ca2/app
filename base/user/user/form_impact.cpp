@@ -10,19 +10,19 @@ namespace user
 {
 
 
-   form_view::form_view()
+   form_impact::form_impact()
    {
 
    }
 
 
-   form_view::~form_view()
+   form_impact::~form_impact()
    {
 
    }
 
 
-   void form_view::handle(::topic * ptopic, ::context * pcontext)
+   void form_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       //::user::impact::handle(ptopic, pcontext);
@@ -91,7 +91,7 @@ namespace user
    }
 
 
-   bool form_view::Navigate(const ::string & pszUrl)
+   bool form_impact::Navigate(const ::string & pszUrl)
    {
 
       __UNREFERENCED_PARAMETER(pszUrl);
@@ -101,7 +101,7 @@ namespace user
    }
 
 
-   bool form_view::open_document(const ::payload & payloadFile)
+   bool form_impact::open_document(const ::payload & payloadFile)
    {
 
       auto psystem = m_psystem->m_pbasesystem;
@@ -224,7 +224,7 @@ namespace user
    }
 
 
-   bool form_view::open_html(const ::string & str)
+   bool form_impact::open_html(const ::string & str)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -233,7 +233,7 @@ namespace user
 
       bool bOk = true;
 
-      //__pointer(::user::form_view) pformChild = create_view(psession->userex()->get_html_view_type());
+      //__pointer(::user::form_impact) pformChild = create_view(psession->userex()->get_html_view_type());
       //
       //if(pformChild)
       //{
@@ -290,7 +290,7 @@ namespace user
    }
 
 
-   void form_view::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void form_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       BASE_VIEW::on_layout(pgraphics);
@@ -315,7 +315,7 @@ namespace user
    }
 
 
-   void form_view::soft_reload()
+   void form_impact::soft_reload()
    {
 
       if(m_pform)
@@ -328,7 +328,7 @@ namespace user
    }
 
 
-   //void form_view::handle(::topic * ptopic, ::context * pcontext)
+   //void form_impact::handle(::topic * ptopic, ::context * pcontext)
    //{
 
    //   form_window::handle(ptopic, pcontext);
@@ -349,7 +349,7 @@ namespace user
    //}
 
 
-   void form_view::set_need_load_form_data()
+   void form_impact::set_need_load_form_data()
    {
 
       if (m_pform)
@@ -368,7 +368,7 @@ namespace user
    }
 
 
-   ::form_document * form_view::get_document()
+   ::form_document * form_impact::get_document()
    {
       
       return dynamic_cast < ::form_document * >(::user::impact::get_document());

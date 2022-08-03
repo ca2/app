@@ -154,7 +154,7 @@ namespace filemanager
 
 //#include "form_document.h"
 #include "form_child_frame.h"
-//#include "form_view.h"
+//#include "form_impact.h"
 
 
 #include "folder_selection_list_view.h"

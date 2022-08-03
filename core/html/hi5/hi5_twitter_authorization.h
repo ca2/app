@@ -26,7 +26,7 @@ namespace hi5
          __pointer(::user::tab_impact)                      m_ptabimpact;
          __pointer(::form_document)                       m_pdocAuth;
          __pointer(::form_document)                       m_pdocMessage;
-         __pointer(::user::form_view)                     m_pviewAuth;
+         __pointer(::user::form_impact)                     m_pviewAuth;
          bool                                      m_bAuth;
          string                                    m_strForm;
          string                                    m_strLicense;

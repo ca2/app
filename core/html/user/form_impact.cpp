@@ -17,15 +17,15 @@ html_form_view::~html_form_view()
 void html_form_view::install_message_routing(::channel * pchannel)
 {
 
-   ::user::form_view::install_message_routing(pchannel);
+   ::user::form_impact::install_message_routing(pchannel);
 
    //MESSAGE_LINK(e_message_destroy, pchannel, this, &html_form_view::on_message_destroy);
    //MESSAGE_LINK(e_message_size, pchannel, this, &html_form_view::on_message_size);
 
    //MESSAGE_LINK(WM_USER + 177     , this, this, &html_form_view::_001OnTabClick);
-   //add_command_handler(ID_FILE_PRINT, ::user::form_view::OnFilePrint)
-   //add_command_handler(ID_FILE_PRINT_DIRECT, ::user::form_view::OnFilePrint)
-   //add_command_handler(ID_FILE_PRINT_PREVIEW, ::user::form_view::OnFilePrintPreview)
+   //add_command_handler(ID_FILE_PRINT, ::user::form_impact::OnFilePrint)
+   //add_command_handler(ID_FILE_PRINT_DIRECT, ::user::form_impact::OnFilePrint)
+   //add_command_handler(ID_FILE_PRINT_PREVIEW, ::user::form_impact::OnFilePrintPreview)
    //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
    //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &::user::interaction::on_message_left_button_up);
    //MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);
@@ -57,12 +57,12 @@ void html_form_view::OnDraw(::draw2d::graphics_pointer & pgraphics)
 
 void html_form_view::assert_ok() const
 {
-   ::user::form_view::assert_ok();
+   ::user::form_impact::assert_ok();
 }
 
 void html_form_view::dump(dump_context & dumpcontext) const
 {
-   ::user::form_view::dump(dumpcontext);
+   ::user::form_impact::dump(dumpcontext);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -81,7 +81,7 @@ bool html_form_view::pre_create_window(::user::system * pusersystem)
 
 #endif
 
-   return ::user::form_view::pre_create_window(pusersystem);
+   return ::user::form_impact::pre_create_window(pusersystem);
 
 }
 
@@ -140,5 +140,5 @@ void html_form_view::on_message_kill_focus(::message::message * pmessage)
 
 form_document * html_form_view::get_document()
 {
-   return dynamic_cast < form_document * > (::user::form_view::get_document());
+   return dynamic_cast < form_document * > (::user::form_impact::get_document());
 }

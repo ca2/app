@@ -232,8 +232,8 @@ list(APPEND library_source
    html/user/document.h
    html/user/form.cpp
    html/user/form.h
-   html/user/form_view.cpp
-   html/user/form_view.h
+   html/user/form_impact.cpp
+   html/user/form_impact.h
    #html/user/frame.cpp
    #html/user/frame.h
    html/user/user.cpp
@@ -384,8 +384,8 @@ list(APPEND library_source
    user/simple/child_frame.h
    user/simple/form_list_view.cpp
    user/simple/form_list_view.h
-   user/simple/form_view.cpp
-   user/simple/form_view.h
+   user/simple/form_impact.cpp
+   user/simple/form_impact.h
    user/simple/list_control.cpp
    user/simple/list_control.h
    user/simple/list_data.cpp
@@ -520,7 +520,7 @@ list(APPEND library_source
    user/userex/form_document.h
    user/userex/form_frame.cpp
    user/userex/form_frame.h
-   user/userex/form_view.h
+   user/userex/form_impact.h
    user/userex/group_image_list.cpp
    user/userex/group_image_list.h
    user/userex/home_view.cpp

@@ -2159,8 +2159,8 @@
 		<Unit filename="html/user/document.h" />
 		<Unit filename="html/user/form.cpp" />
 		<Unit filename="html/user/form.h" />
-		<Unit filename="html/user/form_view.cpp" />
-		<Unit filename="html/user/form_view.h" />
+		<Unit filename="html/user/form_impact.cpp" />
+		<Unit filename="html/user/form_impact.h" />
 		<Unit filename="html/user/frame.cpp" />
 		<Unit filename="html/user/frame.h" />
 		<Unit filename="html/user/internal.h" />
@@ -3132,8 +3132,8 @@
 		<Unit filename="user/simple/child_frame.h" />
 		<Unit filename="user/simple/form_list_view.cpp" />
 		<Unit filename="user/simple/form_list_view.h" />
-		<Unit filename="user/simple/form_view.cpp" />
-		<Unit filename="user/simple/form_view.h" />
+		<Unit filename="user/simple/form_impact.cpp" />
+		<Unit filename="user/simple/form_impact.h" />
 		<Unit filename="user/simple/frame_window.cpp" />
 		<Unit filename="user/simple/frame_window.h" />
 		<Unit filename="user/simple/list_control.cpp" />
@@ -3291,8 +3291,8 @@
 		<Unit filename="user/user/form_mesh.cpp" />
 		<Unit filename="user/user/form_mesh.h" />
 		<Unit filename="user/user/form_update_hint.h" />
-		<Unit filename="user/user/form_view.cpp" />
-		<Unit filename="user/user/form_view.h" />
+		<Unit filename="user/user/form_impact.cpp" />
+		<Unit filename="user/user/form_impact.h" />
 		<Unit filename="user/user/form_window.cpp" />
 		<Unit filename="user/user/form_window.h" />
 		<Unit filename="user/user/frame.cpp" />
@@ -3542,7 +3542,7 @@
 		<Unit filename="user/userex/form_document.h" />
 		<Unit filename="user/userex/form_frame.cpp" />
 		<Unit filename="user/userex/form_frame.h" />
-		<Unit filename="user/userex/form_view.h" />
+		<Unit filename="user/userex/form_impact.h" />
 		<Unit filename="user/userex/home_view.cpp" />
 		<Unit filename="user/userex/home_view.h" />
 		<Unit filename="user/userex/impact_host.cpp" />

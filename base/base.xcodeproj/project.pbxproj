@@ -29,7 +29,7 @@
 		9A1D5F282751B58A003D9B5F /* form_control.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5DAB2751A98B003D9B5F /* form_control.cpp */; };
 		9A1D5F292751B58A003D9B5F /* form_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5DAD2751A98B003D9B5F /* form_data.cpp */; };
 		9A1D5F2A2751B58A003D9B5F /* form_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5E192751A98C003D9B5F /* form_document.cpp */; };
-		9A1D5F2B2751B58A003D9B5F /* form_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5DB12751A98B003D9B5F /* form_view.cpp */; };
+		9A1D5F2B2751B58A003D9B5F /* form_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5DB12751A98B003D9B5F /* form_impact.cpp */; };
 		9A1D5F2C2751B58A003D9B5F /* form_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5E172751A98C003D9B5F /* form_window.cpp */; };
 		9A1D5F2D2751B58A003D9B5F /* frame_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5E132751A98C003D9B5F /* frame_window.cpp */; };
 		9A1D5F2E2751B58A003D9B5F /* hotplugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5DF92751A98C003D9B5F /* hotplugin.cpp */; };
@@ -109,7 +109,7 @@
 		9A93B6B62846EB33005ACD11 /* form_control.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5DAB2751A98B003D9B5F /* form_control.cpp */; };
 		9A93B6B72846EB33005ACD11 /* form_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5DAD2751A98B003D9B5F /* form_data.cpp */; };
 		9A93B6B82846EB33005ACD11 /* form_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5E192751A98C003D9B5F /* form_document.cpp */; };
-		9A93B6B92846EB33005ACD11 /* form_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5DB12751A98B003D9B5F /* form_view.cpp */; };
+		9A93B6B92846EB33005ACD11 /* form_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5DB12751A98B003D9B5F /* form_impact.cpp */; };
 		9A93B6BA2846EB33005ACD11 /* form_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5E172751A98C003D9B5F /* form_window.cpp */; };
 		9A93B6BB2846EB33005ACD11 /* frame_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5E132751A98C003D9B5F /* frame_window.cpp */; };
 		9A93B6BC2846EB33005ACD11 /* hotplugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5DF92751A98C003D9B5F /* hotplugin.cpp */; };
@@ -264,7 +264,7 @@
 		9A1D5DAD2751A98B003D9B5F /* form_data.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = form_data.cpp; sourceTree = "<group>"; };
 		9A1D5DAF2751A98B003D9B5F /* split_bar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = split_bar.h; sourceTree = "<group>"; };
 		9A1D5DB02751A98B003D9B5F /* margin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = margin.h; sourceTree = "<group>"; };
-		9A1D5DB12751A98B003D9B5F /* form_view.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = form_view.cpp; sourceTree = "<group>"; };
+		9A1D5DB12751A98B003D9B5F /* form_impact.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = form_impact.cpp; sourceTree = "<group>"; };
 		9A1D5DB32751A98B003D9B5F /* margin.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = margin.cpp; sourceTree = "<group>"; };
 		9A1D5DB42751A98B003D9B5F /* form_document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = form_document.h; sourceTree = "<group>"; };
 		9A1D5DB52751A98B003D9B5F /* print_task.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = print_task.h; sourceTree = "<group>"; };
@@ -344,7 +344,7 @@
 		9A1D5E0C2751A98C003D9B5F /* document.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = document.cpp; sourceTree = "<group>"; };
 		9A1D5E0D2751A98C003D9B5F /* simple_view.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = simple_view.cpp; sourceTree = "<group>"; };
 		9A1D5E0E2751A98C003D9B5F /* impact_system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = impact_system.h; sourceTree = "<group>"; };
-		9A1D5E0F2751A98C003D9B5F /* form_view.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = form_view.h; sourceTree = "<group>"; };
+		9A1D5E0F2751A98C003D9B5F /* form_impact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = form_impact.h; sourceTree = "<group>"; };
 		9A1D5E102751A98C003D9B5F /* main_frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main_frame.h; sourceTree = "<group>"; };
 		9A1D5E112751A98C003D9B5F /* server.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = server.h; sourceTree = "<group>"; };
 		9A1D5E122751A98C003D9B5F /* document_manager_container.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = document_manager_container.cpp; sourceTree = "<group>"; };
@@ -563,8 +563,8 @@
 				9A1D5E192751A98C003D9B5F /* form_document.cpp */,
 				9A1D5DB42751A98B003D9B5F /* form_document.h */,
 				9A1D5DEF2751A98C003D9B5F /* form_update_hint.h */,
-				9A1D5DB12751A98B003D9B5F /* form_view.cpp */,
-				9A1D5E0F2751A98C003D9B5F /* form_view.h */,
+				9A1D5DB12751A98B003D9B5F /* form_impact.cpp */,
+				9A1D5E0F2751A98C003D9B5F /* form_impact.h */,
 				9A1D5E172751A98C003D9B5F /* form_window.cpp */,
 				9A1D5DA72751A98B003D9B5F /* form_window.h */,
 				9A1D5E132751A98C003D9B5F /* frame_window.cpp */,
@@ -887,7 +887,7 @@
 				9A93B6B62846EB33005ACD11 /* form_control.cpp in Sources */,
 				9A93B6B72846EB33005ACD11 /* form_data.cpp in Sources */,
 				9A93B6B82846EB33005ACD11 /* form_document.cpp in Sources */,
-				9A93B6B92846EB33005ACD11 /* form_view.cpp in Sources */,
+				9A93B6B92846EB33005ACD11 /* form_impact.cpp in Sources */,
 				9A93B6BA2846EB33005ACD11 /* form_window.cpp in Sources */,
 				9A93B6BB2846EB33005ACD11 /* frame_window.cpp in Sources */,
 				9A93B6BC2846EB33005ACD11 /* hotplugin.cpp in Sources */,
@@ -968,7 +968,7 @@
 				9A1D5F282751B58A003D9B5F /* form_control.cpp in Sources */,
 				9A1D5F292751B58A003D9B5F /* form_data.cpp in Sources */,
 				9A1D5F2A2751B58A003D9B5F /* form_document.cpp in Sources */,
-				9A1D5F2B2751B58A003D9B5F /* form_view.cpp in Sources */,
+				9A1D5F2B2751B58A003D9B5F /* form_impact.cpp in Sources */,
 				9A1D5F2C2751B58A003D9B5F /* form_window.cpp in Sources */,
 				9A1D5F2D2751B58A003D9B5F /* frame_window.cpp in Sources */,
 				9A1D5F2E2751B58A003D9B5F /* hotplugin.cpp in Sources */,

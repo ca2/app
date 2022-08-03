@@ -479,7 +479,7 @@
     <ClCompile Include="html\user\child_frame.cpp" />
     <ClCompile Include="html\user\document.cpp" />
     <ClCompile Include="html\user\form.cpp" />
-    <ClCompile Include="html\user\form_view.cpp" />
+    <ClCompile Include="html\user\form_impact.cpp" />
     <ClCompile Include="html\user\frame.cpp" />
     <ClCompile Include="html\user\user.cpp" />
     <ClCompile Include="html\user\impact.cpp" />
@@ -1062,7 +1062,7 @@
     <ClCompile Include="user\rich_text\text_format_object.cpp" />
     <ClCompile Include="user\simple\child_frame.cpp" />
     <ClCompile Include="user\simple\form_list_view.cpp" />
-    <ClCompile Include="user\simple\form_view.cpp" />
+    <ClCompile Include="user\simple\form_impact.cpp" />
     <ClCompile Include="user\simple\frame_window.cpp" />
     <ClCompile Include="user\simple\list_control.cpp" />
     <ClCompile Include="user\simple\list_data.cpp" />
@@ -1156,7 +1156,7 @@
     <ClCompile Include="user\user\form_list.cpp" />
     <ClCompile Include="user\user\form_list_view.cpp" />
     <ClCompile Include="user\user\form_mesh.cpp" />
-    <ClCompile Include="user\user\form_view.cpp" />
+    <ClCompile Include="user\user\form_impact.cpp" />
     <ClCompile Include="user\user\form_window.cpp" />
     <ClCompile Include="user\user\frame.cpp" />
     <ClCompile Include="user\user\frame_window.cpp" />
@@ -1889,7 +1889,7 @@
     <ClInclude Include="html\user\child_frame.h" />
     <ClInclude Include="html\user\document.h" />
     <ClInclude Include="html\user\form.h" />
-    <ClInclude Include="html\user\form_view.h" />
+    <ClInclude Include="html\user\form_impact.h" />
     <ClInclude Include="html\user\frame.h" />
     <ClInclude Include="html\user\internal.h" />
     <ClInclude Include="html\user\user.h" />

@@ -1030,7 +1030,7 @@ namespace experience_lite
          return true;
 
       }
-      else if (ecolor == ::user::color_view_background)
+      else if (ecolor == ::user::color_impact_background)
       {
 
          color32 = argb(80, 255, 255, 255);

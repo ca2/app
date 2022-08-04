@@ -80,12 +80,12 @@ namespace userex
             
             //create_context cc;
             //cc.m_pCurrentDoc = get_document();
-            //cc.m_typeNewImpact = __type(::user::menu_list_view);
+            //cc.m_typeNewImpact = __type(::user::menu_list_impact);
 
             __pointer(::user::impact) pimpact = create_view < ::user::impact > ();
             if(pimpact != nullptr)
             {
-//               __pointer(::user::menu_list_view) pmenuview = (__pointer(::user::menu_list_view)) pimpact;
+//               __pointer(::user::menu_list_impact) pmenuview = (__pointer(::user::menu_list_impact)) pimpact;
    /* xxx           xml::node node(this);
                node.load(pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().matter(
                   "mplite_popup_lyricview.xml")));

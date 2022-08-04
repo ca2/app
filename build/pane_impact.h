@@ -11,7 +11,7 @@ namespace app_core_build
    public:
 
 
-      ::user::split_view *                            m_ptopviewLast;
+      ::user::split_impact *                            m_ptopviewLast;
       ::user::impact_data *                           m_pimpactdataTopic;
       string                                          m_strTopicTitle;
 

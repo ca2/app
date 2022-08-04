@@ -30,7 +30,7 @@ namespace app_core_build
       bool                                   m_bMultiverseChat;
 
       ::user::document *                     m_pdocMenu;
-      ::user::plain_edit_view *              m_prollfps;
+      ::user::plain_edit_impact *              m_prollfps;
       ::user::single_document_template *     m_ptemplateHelloMultiverseMain;
       ::user::single_document_template *     m_ptemplateHelloMultiverseView;
       pane_impact *                            m_ppaneimpact;

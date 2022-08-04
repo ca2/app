@@ -201,20 +201,20 @@ namespace filemanager
       ::factory::add_factory_item <preview >();
       ::factory::add_factory_item <main_frame >();
       ::factory::add_factory_item <frame >();
-      ::factory::add_factory_item <tab_view >();
+      ::factory::add_factory_item <tab_impact >();
       ::factory::add_factory_item <form_child_frame >();
-      ::factory::add_factory_item <::simple_form_view >();
-      ::factory::add_factory_item <folder_selection_list_view >();
-      ::factory::add_factory_item <folder_list_view >();
+      ::factory::add_factory_item <::simple_form_impact >();
+      ::factory::add_factory_item <folder_selection_list_impact >();
+      ::factory::add_factory_item <folder_list_impact >();
       ::factory::add_factory_item <operation_document >();
       ::factory::add_factory_item <operation_child_frame >();
       ::factory::add_factory_item <operation_view >();
       ::factory::add_factory_item <operation_info_view >();
-      ::factory::add_factory_item <operation_list_view >();
-      ::factory::add_factory_item <save_as_edit_view >();
+      ::factory::add_factory_item <operation_list_impact >();
+      ::factory::add_factory_item <save_as_edit_impact >();
       ::factory::add_factory_item <save_as_button>();
       ::factory::add_factory_item <fs::simple::impact >();
-      ::factory::add_factory_item <fs::simple::list_view >();
+      ::factory::add_factory_item <fs::simple::list_impact >();
       ::factory::add_factory_item <fs::simple::tree >();
 
       //__compose_new(this, m_pmap);
@@ -310,7 +310,7 @@ namespace filemanager
                              strTemplateId,
                              __type(document),
                              __type(frame),       // main SDI frame window
-                             __type(tab_view)));
+                             __type(tab_impact)));
 
       }
       else if (is_filemanager_group(atom, LIST_GROUP))
@@ -330,7 +330,7 @@ namespace filemanager
                              strTemplateId,
                              __type(document),
                              __type(main_frame),
-                             __type(folder_selection_list_view)));
+                             __type(folder_selection_list_impact)));
 
       }
       else
@@ -676,7 +676,7 @@ namespace filemanager
 
       //pdocument->Initialize(pcreate == nullptr ? true : pcreate->m_bMakeVisible, false);
 
-      //tab_view * ptabimpact = pdocument->get_type_impact < tab_view >();
+      //tab_impact * ptabimpact = pdocument->get_type_impact < tab_impact >();
 
       //if (ptabimpact != nullptr)
       //{
@@ -878,7 +878,7 @@ namespace filemanager
 //   if (pdocument != nullptr)
 //   {
 
-//      tab_view * ptabimpact = pdocument->get_type_impact < tab_view >();
+//      tab_impact * ptabimpact = pdocument->get_type_impact < tab_impact >();
 
 //      if (pathFolder.m_iDir == 1)
 //      {

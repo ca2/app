@@ -26,19 +26,19 @@ namespace filemanager
    {
 
       ::filemanager_impact_base::install_message_routing(pchannel);
-      ::user::split_view::install_message_routing(pchannel);
+      ::user::split_impact::install_message_routing(pchannel);
 
    }
 
 
    void impact::assert_ok() const
    {
-      ::user::split_view::assert_ok();
+      ::user::split_impact::assert_ok();
    }
 
    void impact::dump(dump_context & dumpcontext) const
    {
-      ::user::split_view::dump(dumpcontext);
+      ::user::split_impact::dump(dumpcontext);
    }
 
 
@@ -110,7 +110,7 @@ namespace filemanager
 
       ::filemanager_impact_base::handle(ptopic, pcontext);
 
-      ::user::split_view::handle(ptopic, pcontext);
+      ::user::split_impact::handle(ptopic, pcontext);
 
       auto psystem = m_psystem->m_paurasystem;
 
@@ -288,7 +288,7 @@ namespace filemanager
 
       }
 
-      //tab_view * ptabimpact = get_parent_frame()->GetTypedParent < tab_view >();
+      //tab_impact * ptabimpact = get_parent_frame()->GetTypedParent < tab_impact >();
       //if (ptabimpact != nullptr)
       //{
       //   ptabimpact->on_update(this, eupdate, pobject);

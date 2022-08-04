@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #include "imm_client.h"
 #include "aaa_composition_imm_client.h"
 

@@ -159,7 +159,7 @@ inline prodevian::prodevian(::user::interaction* pinteraction) :
 //
 //
 //   template < class VIEW >
-//   inline __pointer(VIEW) split_view::create_pane_view(index iPane, atom atom, ::user::interaction* pviewLast)
+//   inline __pointer(VIEW) split_impact::create_pane_view(index iPane, atom atom, ::user::interaction* pviewLast)
 //   {
 //
 //      return create_view < VIEW >(get_pane_holder(iPane), atom, pviewLast);

@@ -243,7 +243,7 @@ namespace core
       //virtual __pointer(::userfs::userfs) create_userfs();
 
 
-      virtual ::type get_pane_tab_view_type_info();
+      virtual ::type get_pane_tab_impact_type_info();
       //virtual ::type get_simple_frame_window_type_info() override;
       virtual ::type get_simple_child_frame_type_info();
 

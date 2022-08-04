@@ -450,10 +450,10 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/form_update_hint.h">
 			<Option target="base"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/form_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/form_impact.cpp">
 			<Option target="base"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/form_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/form_impact.h">
 			<Option target="base"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/form_window.cpp">

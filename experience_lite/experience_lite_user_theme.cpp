@@ -34,7 +34,7 @@ namespace lite
       create_color(::user::color_list_background, argb(255, 255, 255, 255));
       create_color(::user::color_edit_background, argb(255, 255, 255, 255));
       create_color(::user::color_tree_background, argb(255, 255, 255, 255));
-      create_color(::user::color_view_background, argb(255, 255, 255, 255));
+      create_color(::user::color_impact_background, argb(255, 255, 255, 255));
       create_color(::user::color_scrollbar_background, argb(255, 255, 255, 255));
       create_color(::user::color_tab_layout_background, argb(255, 255, 255, 255));
       create_color(::user::color_tab_client_background, argb(255, 255, 255, 255));

@@ -92,7 +92,7 @@ void html_document::dump(dump_context & dumpcontext) const
 //
 //   set_data("html", pdata);
 //
-//   pdata->m_pcoredata->m_puserinteraction = get_type_impact < ::user::form_view >();
+//   pdata->m_pcoredata->m_puserinteraction = get_type_impact < ::user::form_impact >();
 //
 //   pdata->m_pcoredata->m_pcallback = this;
 //
@@ -133,7 +133,7 @@ property_set * html_document::form_document_get_property_set()
 //   if (!phtmlform)
 //   {
 //
-//      auto pform = get_type_impact < ::user::form_view >();
+//      auto pform = get_type_impact < ::user::form_impact >();
 //
 //      if (!pform)
 //      {
@@ -186,7 +186,7 @@ bool html_document::on_open_document(const ::payload & payloadFile)
    if (!phtmlform)
    {
 
-      auto pform = get_type_impact < ::user::form_view >();
+      auto pform = get_type_impact < ::user::form_impact >();
 
       if (!pform)
       {

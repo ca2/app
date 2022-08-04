@@ -270,7 +270,7 @@
     <ClCompile Include="html\impl\_.cpp" />
     <ClCompile Include="html\user\document.cpp" />
     <ClCompile Include="html\user\form.cpp" />
-    <ClCompile Include="html\user\form_view.cpp" />
+    <ClCompile Include="html\user\form_impact.cpp" />
     <ClCompile Include="html\user\user.cpp" />
     <ClCompile Include="html\user\impact.cpp" />
     <ClCompile Include="node\windows\shell.cpp">
@@ -299,7 +299,7 @@
     <ClCompile Include="user\rich_text\text_format_object.cpp" />
     <ClCompile Include="user\simple\child_frame.cpp" />
     <ClCompile Include="user\simple\form_list_view.cpp" />
-    <ClCompile Include="user\simple\form_view.cpp" />
+    <ClCompile Include="user\simple\form_impact.cpp" />
     <ClCompile Include="user\simple\list_control.cpp" />
     <ClCompile Include="user\simple\list_data.cpp" />
     <ClCompile Include="user\simple\list_header_control.cpp" />
@@ -527,7 +527,7 @@
     <ClInclude Include="html\user\child_frame.h" />
     <ClInclude Include="html\user\document.h" />
     <ClInclude Include="html\user\form.h" />
-    <ClInclude Include="html\user\form_view.h" />
+    <ClInclude Include="html\user\form_impact.h" />
     <ClInclude Include="html\user\frame.h" />
     <ClInclude Include="html\user\impact.h" />
     <ClInclude Include="html\user\_.h" />
@@ -566,7 +566,7 @@
     <ClInclude Include="user\menu\_.h" />
     <ClInclude Include="user\simple\child_frame.h" />
     <ClInclude Include="user\simple\form_list_view.h" />
-    <ClInclude Include="user\simple\form_view.h" />
+    <ClInclude Include="user\simple\form_impact.h" />
     <ClInclude Include="user\simple\frame_window.h" />
     <ClInclude Include="user\simple\list_control.h" />
     <ClInclude Include="user\simple\list_data.h" />
@@ -597,7 +597,7 @@
     <ClInclude Include="user\userex\form_child_frame.h" />
     <ClInclude Include="user\userex\form_document.h" />
     <ClInclude Include="user\userex\form_frame.h" />
-    <ClInclude Include="user\userex\form_view.h" />
+    <ClInclude Include="user\userex\form_impact.h" />
     <ClInclude Include="user\userex\home_view.h" />
     <ClInclude Include="user\userex\impact_host.h" />
     <ClInclude Include="user\userex\keyboard_layout.h" />
@@ -643,7 +643,7 @@
     <ClInclude Include="user\user\form_list_view.h" />
     <ClInclude Include="user\user\form_mesh.h" />
     <ClInclude Include="user\user\form_update_hint.h" />
-    <ClInclude Include="user\user\form_view.h" />
+    <ClInclude Include="user\user\form_impact.h" />
     <ClInclude Include="user\user\form_window.h" />
     <ClInclude Include="user\user\frame_window.h" />
     <ClInclude Include="user\user\image_manager.h" />

@@ -8,8 +8,8 @@ namespace userex
 {
 
 
-   class CLASS_DECL_CORE image_list_view :
-      virtual public ::user::image_list_view
+   class CLASS_DECL_CORE image_list_impact :
+      virtual public ::user::image_list_impact
    {
    public:
 
@@ -21,8 +21,8 @@ namespace userex
       string                           m_strLinkPrefix;
       int                              m_iForkAddDib;
 
-      image_list_view();
-      ~image_list_view() override;
+      image_list_impact();
+      ~image_list_impact() override;
 
 
       void assert_ok() const override;

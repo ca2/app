@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "base/user/simple/_simple.h"
+#include "base/user/simple/_component.h"
 
 
 

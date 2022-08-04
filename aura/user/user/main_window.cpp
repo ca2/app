@@ -3,6 +3,19 @@
 #include "aura/user/user/_user.h"
 #endif
 
+inline bool is_custom_size(enum_display edisplay)
+{
+
+   return edisplay == e_display_restored
+         || edisplay == e_display_restore
+         || edisplay == e_display_compact
+         || edisplay == e_display_broad
+         || edisplay == e_display_minimal
+         || edisplay == e_display_fixed_size
+         || edisplay == e_display_center;
+
+}
+
 
 namespace user
 {
@@ -81,11 +94,7 @@ namespace user
       if (!m_rectangleInitialRateOrSize.is_empty())
       {
 
-         ::rectangle_i32 rectangle;
-
-         calculate_window_rectangle_in_main_monitor(rectangle, m_rectangleInitialRateOrSize);
-
-         place(rectangle);
+         place_rate_or_size(m_rectangleInitialRateOrSize);
 
          display(e_display_restored);
 
@@ -99,6 +108,29 @@ namespace user
 
 #endif
 
+      auto edisplay = const_layout().sketch().display();
+
+      if(is_custom_size(edisplay))
+      {
+
+         auto sizeMinimum = frame::get_window_minimum_size();
+
+         auto rectangleFrame = screen_rect();
+
+         auto sizeFrame = rectangleFrame.size();
+
+         if(sizeFrame.cx < sizeMinimum.cx || sizeFrame.cy < sizeMinimum.cy)
+         {
+
+            ::rectangle_f64 rectangleRateOrSize = { 0.05, 0.05, 0.4, 0.4 };
+
+            place_rate_or_size(rectangleRateOrSize);
+
+            display(e_display_restored);
+
+         }
+
+      }
 
    }
 

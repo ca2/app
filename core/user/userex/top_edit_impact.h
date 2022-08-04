@@ -1,0 +1,51 @@
+#pragma once
+
+
+namespace userex
+{
+
+
+   class CLASS_DECL_CORE top_edit_impact :
+      virtual public ::user::show < ::user::plain_edit >
+   {
+   public:
+
+
+      ::duration                  m_durationLastChange;
+      ::duration                  m_durationDelayedAfterChange;
+      top_impact *              m_ptopview;
+      bool                    m_bEnterKeyPressed;
+      ::write_text::font_pointer  m_pfont;
+
+
+      top_edit_impact();
+      virtual ~top_edit_impact();
+
+      void install_message_routing(::channel * pchannel) override;
+
+      DECLARE_MESSAGE_HANDLER(on_message_create);
+      DECLARE_MESSAGE_HANDLER(on_message_key_down);
+
+      virtual ::write_text::font_pointer get_font(::user::style* pstyle, ::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const override;
+
+      virtual void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context& action_context) override;
+
+      void handle(::topic * ptopic, ::context * pcontext) override;
+
+
+
+      bool keyboard_focus_is_focusable() const override;
+
+      virtual void _001OnTimer(::timer * ptimer) override;
+
+      //virtual bool _is_window_visible() override;
+
+
+   };
+
+
+} // namespace userex
+
+
+
+

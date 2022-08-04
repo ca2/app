@@ -11,6 +11,7 @@ namespace write_text
    font::font()
    {
 
+      m_bCacheLayout = true;
       m_dFontSize = 17.0;
       m_dFontWidth = 1.0;
       m_eunitFontSize = ::draw2d::e_unit_point;

@@ -120,7 +120,7 @@ enum enum_id : u64
    id_get_attachable_view,
    id_backgrounds,
    id_after_browse,
-   id_get_form_view,
+   id_get_form_impact,
    id_document_complete,
    id_compact_mode,
    id_progress,

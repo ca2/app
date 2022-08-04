@@ -951,7 +951,7 @@
     <ClInclude Include="graphics\html\html_ex.h" />
     <ClInclude Include="graphics\html\html_file.h" />
     <ClInclude Include="graphics\html\html_font.h" />
-    <ClInclude Include="graphics\html\::user::form_view.h" />
+    <ClInclude Include="graphics\html\::user::form_impact.h" />
     <ClInclude Include="graphics\html\html_html.h" />
     <ClInclude Include="graphics\html\html_html2.h" />
     <ClInclude Include="graphics\html\html_image.h" />
@@ -1952,7 +1952,7 @@
     <ClCompile Include="graphics\html\html_elemental.cpp" />
     <ClCompile Include="graphics\html\html_file.cpp" />
     <ClCompile Include="graphics\html\html_font.cpp" />
-    <ClCompile Include="graphics\html\::user::form_view.cpp" />
+    <ClCompile Include="graphics\html\::user::form_impact.cpp" />
     <ClCompile Include="graphics\html\html_html.cpp" />
     <ClCompile Include="graphics\html\html_image.cpp" />
     <ClCompile Include="graphics\html\html_input_button.cpp" />

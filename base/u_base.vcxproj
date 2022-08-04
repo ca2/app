@@ -156,7 +156,7 @@
     <ClInclude Include="user\user\form_data.h" />
     <ClInclude Include="user\user\form_document.h" />
     <ClInclude Include="user\user\form_update_hint.h" />
-    <ClInclude Include="user\user\form_view.h" />
+    <ClInclude Include="user\user\form_impact.h" />
     <ClInclude Include="user\user\form_window.h" />
     <ClInclude Include="user\user\frame_window.h" />
     <ClInclude Include="user\user\image_list.h" />
@@ -263,7 +263,7 @@
     <ClCompile Include="user\user\form_control.cpp" />
     <ClCompile Include="user\user\form_data.cpp" />
     <ClCompile Include="user\user\form_document.cpp" />
-    <ClCompile Include="user\user\form_view.cpp" />
+    <ClCompile Include="user\user\form_impact.cpp" />
     <ClCompile Include="user\user\form_window.cpp" />
     <ClCompile Include="user\user\frame_window.cpp" />
     <ClCompile Include="user\user\hotplugin.cpp" />

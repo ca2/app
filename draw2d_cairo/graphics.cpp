@@ -3964,11 +3964,26 @@ namespace draw2d_cairo
 
       string strText((const char *) block.m_pdata, block.m_iSize);
 
-      auto & pangolayout = pfont->m_mapPangoLayout[strText];
+      draw2d_cairo::font::pango_layout * ppangolayout = nullptr;
 
-      PangoLayout *& playout = pangolayout.m_playout;                            // layout for a paragraph of text
+      draw2d_cairo::font::pango_layout pangolayoutLocal;
 
-      PangoRectangle & rectangle = pangolayout.m_rectangle;
+      if(pfont->m_bCacheLayout)
+      {
+
+         ppangolayout = &pfont->m_mapPangoLayout[strText];
+
+      }
+      else
+      {
+
+         ppangolayout = &pangolayoutLocal;
+
+      }
+
+      PangoLayout *& playout = ppangolayout->m_playout;                            // layout for a paragraph of text
+
+      PangoRectangle & rectangle = ppangolayout->m_rectangle;
 
       if (!playout)
       {

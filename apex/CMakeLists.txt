@@ -896,8 +896,8 @@ if (MACOS)
       #operating_system/macos/ApexWindowApp.mm
       #operating_system/macos/ApexWindowController.h
       #operating_system/macos/ApexWindowController.mm
-      #operating_system/macos/ApexWindowFrameView.h
-      #operating_system/macos/ApexWindowFrameView.mm
+      #operating_system/macos/ApexWindowFrameImpact.h
+      #operating_system/macos/ApexWindowFrameImpact.mm
       #operating_system/macos/app.mm
       #operating_system/macos/application.cpp
       #operating_system/macos/application.h
@@ -1031,7 +1031,7 @@ if (IOS)
       operating_system/ios/plane_system.cpp
       operating_system/ios/plane_system.h
       operating_system/ios/round_window.mm
-      operating_system/ios/RoundCaretView.h
+      operating_system/ios/RoundCaretImpact.h
       operating_system/ios/RoundWindow.mm
       operating_system/ios/RoundWindowApp.h
       operating_system/ios/RoundWindowApp.mm
@@ -1179,7 +1179,7 @@ if (ANDROID)
       #operating_system/android/process_pid.cpp
       operating_system/android/simple_shell_launcher.cpp
       operating_system/android/small_ipca_channel.cpp
-      operating_system/android/view_bitmap.h
+      operating_system/android/impact_bitmap.h
       operating_system/android/win_base.cpp
       operating_system/android/window_android.cpp
       operating_system/android/window_android.h

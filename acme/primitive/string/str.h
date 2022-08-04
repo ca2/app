@@ -1,6 +1,9 @@
 #pragma once
 
 
+class synchronization_lock;
+
+
 template < typename TYPE_CHAR >
 class single_char
 {
@@ -394,6 +397,9 @@ public:
 #include "_str_trait_ansi.h"
 #include "_str_trait_wd16.h"
 #include "_str_trait_wd32.h"
+
+
+   void get_lines(::string_array & stra, ::string & str, const ::string & strPrefix, bool bFinal, ::synchronization_lock * psynchronizationlock = nullptr);
 
 
 }; // class str

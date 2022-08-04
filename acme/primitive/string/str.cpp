@@ -5224,10 +5224,111 @@ string str::zero_padded(const ::string & strSrc, strsize lenPad)
    return str;
 
 }
-//
-//
-//} // namespace str
-//
+
+
+void str::get_lines(::string_array & stra, ::string & str, const ::string & strPrefix, bool bFinal, ::synchronization_lock * psynchronizationlock)
+{
+
+   auto iLimit = str.reverse_find("\n");
+
+   if (iLimit < 0)
+   {
+
+      if(bFinal)
+      {
+
+         iLimit = str.get_length();
+
+         if(iLimit <= 0)
+         {
+
+            return;
+
+         }
+
+      }
+      else
+      {
+
+         return;
+
+      }
+
+   }
+
+   strsize iLast = -1;
+
+   while(true)
+   {
+
+      strsize iFindNext = str.find('\n', iLast + 1);
+
+      if(iFindNext < 0)
+      {
+
+         if(bFinal)
+         {
+
+            iFindNext = str.get_length();
+
+            if(iFindNext >= iLast)
+            {
+
+               break;
+
+            }
+
+         }
+         else
+         {
+
+            break;
+
+         }
+
+      }
+      else if(iFindNext > iLimit)
+      {
+
+         break;
+
+      }
+
+      string strLine = str.Mid(iLast + 1, iFindNext - iLast - 1);
+
+      string strPrefixedLine;
+
+      strPrefixedLine = strPrefix + strLine;
+
+      if (::is_set(psynchronizationlock))
+      {
+
+         psynchronizationlock->_lock();
+
+      }
+
+      stra.add(strPrefixedLine);
+
+      if(::is_set(psynchronizationlock))
+      {
+
+         psynchronizationlock->unlock();
+
+      }
+
+      if(iFindNext >= iLimit)
+      {
+
+         break;
+
+      }
+
+      iLast = iFindNext;
+
+   }
+
+}
+
 
 
 void to_string(string & str, const ::string_stream & strstream)

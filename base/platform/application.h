@@ -784,7 +784,7 @@ namespace base
 //
 //
 //
-      virtual void on_create_split_view(::user::split_view* pimpact);
+      virtual void on_create_split_impact(::user::split_impact* pimpact);
 //
 //
 //      //virtual ::type control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;

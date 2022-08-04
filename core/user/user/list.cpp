@@ -100,8 +100,8 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &list::on_message_create);
       //      //MESSAGE_LINK(e_message_timer,           pchannel, this, &list::_001OnTimer);
-      add_command_handler("list_view_auto_arrange", this, &list::_001OnListImpactAutoArrange);
-      add_command_prober("list_view_auto_arrange", this, &list::_001OnUpdateListImpactAutoArrange);
+      add_command_handler("list_impact_auto_arrange", this, &list::_001OnListImpactAutoArrange);
+      add_command_prober("list_impact_auto_arrange", this, &list::_001OnUpdateListImpactAutoArrange);
 
    }
 
@@ -1040,7 +1040,7 @@ namespace user
 
       LayoutHeaderCtrl();
 
-      update_icon_list_view_sort();
+      update_icon_list_impact_sort();
 
    }
 
@@ -1095,7 +1095,7 @@ namespace user
          if (m_eview == impact_icon)
          {
 
-            update_icon_list_view_sort();
+            update_icon_list_impact_sort();
 
          }
          else
@@ -4018,7 +4018,7 @@ auto pwindowing = windowing();
 
                         defer_update_display();
 
-                        strSort += "-" + get_display_tag() + ".icon_list_view_sort";
+                        strSort += "-" + get_display_tag() + ".icon_list_impact_sort";
 
                         synchronouslock.lock();
 
@@ -4039,7 +4039,7 @@ auto pwindowing = windowing();
 
                         synchronouslock.unlock();
 
-                        update_icon_list_view_sort();
+                        update_icon_list_impact_sort();
 
                      }
 
@@ -7586,7 +7586,7 @@ auto pwindowing = windowing();
 
 
 
-   void list::update_icon_list_view_sort()
+   void list::update_icon_list_impact_sort()
    {
 
       if (m_eview != impact_icon)
@@ -7605,7 +7605,7 @@ auto pwindowing = windowing();
 
          defer_update_display();
 
-         strSort += "-" + get_display_tag() + ".icon_list_view_sort";
+         strSort += "-" + get_display_tag() + ".icon_list_impact_sort";
 
          auto pcontext = get_context();
 

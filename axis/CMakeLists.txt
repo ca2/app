@@ -490,7 +490,7 @@ if(ANDROID)
         operating_system/android/process_pid.cpp
         operating_system/android/simple_shell_launcher.cpp
         operating_system/android/small_ipca_channel.cpp
-        operating_system/android/view_bitmap.h
+        operating_system/android/impact_bitmap.h
         operating_system/android/vsnord_native_app_glue.c
         operating_system/android/vsnord_native_app_glue.h
         operating_system/android/win_base.cpp

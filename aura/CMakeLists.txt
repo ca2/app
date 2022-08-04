@@ -995,14 +995,14 @@ if (IOS)
       operating_system/ios/application.h
       operating_system/ios/aura_window.h
       operating_system/ios/aura_window.mm
-      operating_system/ios/AuraViewController.h
-      operating_system/ios/AuraViewController.mm
+      operating_system/ios/AuraImpactController.h
+      operating_system/ios/AuraImpactController.mm
       operating_system/ios/AuraWindow.h
       operating_system/ios/AuraWindow.mm
       operating_system/ios/AuraWindowApp.h
       operating_system/ios/AuraWindowApp.mm
-      operating_system/ios/AuraWindowFrameView.h
-      operating_system/ios/AuraWindowFrameView.mm
+      operating_system/ios/AuraWindowFrameImpact.h
+      operating_system/ios/AuraWindowFrameImpact.mm
       operating_system/ios/exception.cpp
       operating_system/ios/_factory.cpp
       operating_system/ios/
@@ -1016,16 +1016,16 @@ if (IOS)
       operating_system/ios/main.cpp
       operating_system/ios/plane_system.cpp
       operating_system/ios/plane_system.h
-      operating_system/ios/RoundCaretView.h
-      operating_system/ios/RoundCaretView.mm
-      operating_system/ios/RoundEditView.h
-      operating_system/ios/RoundEditView.mm
+      operating_system/ios/RoundCaretImpact.h
+      operating_system/ios/RoundCaretImpact.mm
+      operating_system/ios/RoundEditImpact.h
+      operating_system/ios/RoundEditImpact.mm
       operating_system/ios/RoundTextPosition.h
       operating_system/ios/RoundTextPosition.mm
       operating_system/ios/RoundTextRange.h
       operating_system/ios/RoundTextRange.mm
-      operating_system/ios/RoundTextView.h
-      operating_system/ios/RoundTextView.mm
+      operating_system/ios/RoundTextImpact.h
+      operating_system/ios/RoundTextImpact.mm
       operating_system/ios/state.h
       operating_system/ios/thread.cpp
       operating_system/ios/thread.h
@@ -1211,7 +1211,7 @@ if (ANDROID)
 #      operating_system/android/process.cpp
 #      operating_system/android/process.h
 #      operating_system/android/process_pid.cpp
-      operating_system/android/view_bitmap.h
+      operating_system/android/impact_bitmap.h
       operating_system/android/win_base.cpp
       operating_system/android/window_android.cpp
       operating_system/android/window_android.h

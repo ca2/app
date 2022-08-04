@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 
 
 namespace html
@@ -21,7 +21,7 @@ class html_document;
 
 
 #include "form.h"
-#include "form_view.h" // html_form_view does not require a ::user::document
+#include "form_impact.h" // html_form_impact does not require a ::user::document
 
 //#include "frame.h"
 #include "child_frame.h"

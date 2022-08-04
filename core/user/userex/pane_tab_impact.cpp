@@ -15,7 +15,7 @@ namespace core
 {
 
 
-   ::type user::get_pane_tab_view_type_info()
+   ::type user::get_pane_tab_impact_type_info()
    {
 
       return __type(::userex::pane_tab_impact);
@@ -51,7 +51,7 @@ namespace userex
    ::user::interaction * pane_tab_impact::get_view_uie()
    {
 
-      return ::user::tab_view::get_view_uie();
+      return ::user::tab_impact::get_view_uie();
 
    }
 
@@ -59,7 +59,7 @@ namespace userex
    atom pane_tab_impact::get_view_id()
    {
 
-      return ::user::tab_view::get_view_id();
+      return ::user::tab_impact::get_view_id();
 
    }
 
@@ -71,7 +71,7 @@ namespace userex
       if(m_pimpactdata == nullptr || m_pimpactdata->m_puserinteraction == nullptr || m_pimpactdata->m_iExtendOnParent == 0)
       {
 
-         ::user::tab_view::GetTabClientRect(prectangle);
+         ::user::tab_impact::GetTabClientRect(prectangle);
 
 
       }
@@ -148,7 +148,7 @@ namespace userex
    void pane_tab_impact::install_message_routing(::channel * pchannel)
    {
 
-      ::user::tab_view::install_message_routing(pchannel);
+      ::user::tab_impact::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &pane_tab_impact::on_message_create);
 
@@ -245,7 +245,7 @@ namespace userex
    void pane_tab_impact::on_change_cur_sel()
    {
 
-      ::user::tab_view::on_change_cur_sel();
+      ::user::tab_impact::on_change_cur_sel();
 
       if (m_pimpactdataOld != nullptr && is_filemanager(m_pimpactdataOld->m_atom))
       {
@@ -279,7 +279,7 @@ namespace userex
 
             ::file::path path;
             
-            path = pcontext->dir().appdata() / "debug_ca2/menu_view" / (get_app()->m_strAppId + ".html");
+            path = pcontext->dir().appdata() / "debug_ca2/menu_impact" / (get_app()->m_strAppId + ".html");
 
             pcontext->file().put_memory(path, strOptionsImpact);
 
@@ -294,7 +294,7 @@ namespace userex
 
             }
 
-            auto pformview = m_pdocumentMenu->get_type_impact < ::user::form_view>();
+            auto pformview = m_pdocumentMenu->get_type_impact < ::user::form_impact>();
 
             pformview->get_form()->add_handler(get_app());
 
@@ -539,7 +539,7 @@ namespace userex
 
          auto pdocument = ptemplate->open_document_file(get_app(), ::e_type_null, __visible(true).is_true(), pimpactdata->m_pplaceholder);
 
-         m_pfontview = pdocument->get_type_impact < font_view >();
+         m_pfontview = pdocument->get_type_impact < font_impact >();
 
          m_pfontview->set_need_layout();
 
@@ -576,7 +576,7 @@ namespace userex
 
          //auto pdocument = pimpactsystem->open_document_file(get_app(), ::e_type_null, __visible(false).is_true(), pimpactdata->m_pplaceholder);
 
-         m_pcolorview = create_view < color_view >(pimpactdata);
+         m_pcolorview = create_view < color_impact >(pimpactdata);
 
 //         pdocument->m_pviewTopic->set_notify_user_interaction(this);
 
@@ -774,7 +774,7 @@ namespace userex
 
       }
 
-      ::user::tab_view::on_create_impact(pimpactdata);
+      ::user::tab_impact::on_create_impact(pimpactdata);
       
    }
 
@@ -857,7 +857,7 @@ namespace userex
    void pane_tab_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::tab_view::handle(ptopic, pcontext);
+      ::user::tab_impact::handle(ptopic, pcontext);
 
       if (ptopic->m_atom == ::id_context_menu_close)
       {
@@ -875,7 +875,7 @@ namespace userex
 
       }
 
-      ::user::tab_view::handle(ptopic, pcontext);
+      ::user::tab_impact::handle(ptopic, pcontext);
 
 
    }
@@ -885,7 +885,7 @@ namespace userex
 //   {
 //
 //
-//      ::user::tab_view::_001OnNcDraw(pgraphics);
+//      ::user::tab_impact::_001OnNcDraw(pgraphics);
 //
 //
 //   }
@@ -910,7 +910,7 @@ namespace userex
 
    //   }
 
-   //   ::user::tab_view::handle(ptopic, pcontext);
+   //   ::user::tab_impact::handle(ptopic, pcontext);
 
    //}
 
@@ -976,7 +976,7 @@ namespace userex
    void pane_tab_impact::_001OnRemoveTab(::user::tab_pane * ptab)
    {
 
-      ::user::tab_view::_001OnRemoveTab(ptab);
+      ::user::tab_impact::_001OnRemoveTab(ptab);
 
       m_impactdatamap.erase_key(ptab->m_atom);
 
@@ -1014,7 +1014,7 @@ namespace userex
 //namespace aura
 //{
 //
-//::type system::get_pane_tab_view_type_info()
+//::type system::get_pane_tab_impact_type_info()
 //{
 //
 //   return __type(userex::pane_tab_impact);

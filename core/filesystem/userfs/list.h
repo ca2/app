@@ -7,7 +7,7 @@ namespace userfs
    class main_impact;
 
    class CLASS_DECL_CORE list :
-      virtual public ::user::form_list_view
+      virtual public ::user::form_list_impact
    {
    public:
 

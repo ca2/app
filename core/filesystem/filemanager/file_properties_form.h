@@ -15,7 +15,7 @@ namespace filemanager
 
       __pointer(::user::single_document_template)      m_ptemplatePane;
       __pointer(::user::document)                      m_pdocGeneral;
-      __pointer(::user::form_view)                     m_pviewGeneral;
+      __pointer(::user::form_impact)                     m_pviewGeneral;
       __pointer(::userex::pane_tab_impact)               m_ptabimpact;
       ::file::item_array                          m_itema;
 

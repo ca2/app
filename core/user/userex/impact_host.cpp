@@ -81,7 +81,7 @@ namespace userex
       if (m_idaHandledImpacts.contains(pcommand->m_atom))
       {
 
-         toggle_view(pcommand->m_atom);
+         toggle_impact(pcommand->m_atom);
 
       }
 
@@ -186,7 +186,7 @@ namespace userex
    }
 
 
-   __pointer(::userex::pane_tab_impact) impact_host::get_pane_tab_view()
+   __pointer(::userex::pane_tab_impact) impact_host::get_pane_tab_impact()
    {
 
       if (m_ptemplateTab == nullptr)
@@ -232,7 +232,7 @@ namespace userex
 
          __pointer(::simple_frame_window) pframewindow = pupdown;
 
-         auto ptabimpact = get_pane_tab_view();
+         auto ptabimpact = get_pane_tab_impact();
 
          {
 
@@ -558,7 +558,7 @@ namespace userex
 
       }
 
-      __pointer(::userex::font_view) pimpact = _001GetImpact(idImpact);
+      __pointer(::userex::font_impact) pimpact = _001GetImpact(idImpact);
 
       if(pimpact.is_null())
       {
@@ -672,7 +672,7 @@ namespace userex
    void impact_host::_001OnImpact(::atom idImpact)
    {
 
-      toggle_view(idImpact);
+      toggle_impact(idImpact);
 
       //defer_create_view(idImpact);
 
@@ -758,7 +758,7 @@ namespace userex
    }
 
 
-   void impact_host::toggle_view(::atom idImpact)
+   void impact_host::toggle_impact(::atom idImpact)
    {
 
       //post_procedure(__routine([this, idImpact]()

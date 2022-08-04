@@ -25,7 +25,7 @@ namespace userex
 //         type_none,
 ////         type_attach_view,
 ////         type_detach_view,
-////         type_attach_toggle_view,
+////         type_attach_toggle_impact,
 //
 //      };
 //
@@ -69,14 +69,14 @@ namespace userex
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-      virtual __pointer(::userex::pane_tab_impact) get_pane_tab_view();
+      virtual __pointer(::userex::pane_tab_impact) get_pane_tab_impact();
 
       virtual bool _001IsCompactMode();
 
       virtual void _001OnImpact(::atom idImpact);
       virtual void show_view(::atom idImpact);
       virtual void hide_view(::atom idImpact);
-      virtual void toggle_view(::atom idImpact);
+      virtual void toggle_impact(::atom idImpact);
       virtual void defer_show_view(::atom idImpact);
       virtual __pointer(::user::impact) _001GetImpact(::atom idImpact);
       virtual __pointer(::simple_frame_window) _001GetFrame(::atom idImpact);

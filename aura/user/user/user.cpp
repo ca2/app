@@ -3,7 +3,7 @@
 #include "aura/user/user/_user.h"
 #endif
 #include "aura/update.h"
-//#include "simple_view.h"
+//#include "simple_impact.h"
 #include "acme/platform/system_setup.h"
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
@@ -408,7 +408,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      ::factory::add_factory_item <::user::message_window >();
 //#endif
-      //add_factory_item <::user::simple_view >();
+      //add_factory_item <::user::simple_impact >();
       //add_factory_item <::user::place_holder >();
       //add_factory_item <::user::font_combo_box >();
 

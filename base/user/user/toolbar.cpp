@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "aura/operating_system.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #endif
 #include "aqua/xml.h"
 //#include "acme/operating_system/_os.h"

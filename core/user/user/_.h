@@ -17,7 +17,7 @@ namespace user
    class user;
    class document_manager;
    class interaction_pointer_array;
-   class split_view;
+   class split_impact;
    class single_document_template;
    class multiple_document_template;
    class document;
@@ -34,7 +34,7 @@ namespace user
    class scroll_base;
    template < class VIEW >  class show;
    using scroll_view = show < scroll_base >;
-   using plain_edit_view = show < plain_edit >;
+   using plain_edit_impact = show < plain_edit >;
 
    class mesh_cache_interface;
    class mesh_data;

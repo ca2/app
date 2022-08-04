@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_CORE html_form :
-   virtual public ::user::form_view
+   virtual public ::user::form_impact
 {
 public:
 

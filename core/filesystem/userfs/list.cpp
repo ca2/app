@@ -39,7 +39,7 @@ namespace userfs
    void list::install_message_routing(::channel * pchannel)
    {
 
-      ::user::form_list_view::install_message_routing(pchannel);
+      ::user::form_list_impact::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_hscroll, pchannel, this, &list::_001OnHScroll);
       MESSAGE_LINK(e_message_vscroll, pchannel, this, &list::_001OnVScroll);
@@ -53,7 +53,7 @@ namespace userfs
    void list::initialize_view(::user::document * pdocument)
    {
 
-      ::user::form_list_view::initialize_view(pdocument);
+      ::user::form_list_impact::initialize_view(pdocument);
 
       m_pdocument = dynamic_cast <document *>(pdocument);
 
@@ -94,7 +94,7 @@ namespace userfs
    {
       //      __UNREFERENCED_PARAMETER(pmessage);
 
-      ::user::form_list_view::_001OnTimer(ptimer);
+      ::user::form_list_impact::_001OnTimer(ptimer);
 
    }
 
@@ -158,7 +158,7 @@ namespace userfs
    void list::assert_ok() const
    {
 
-      ::user::form_list_view::assert_ok();
+      ::user::form_list_impact::assert_ok();
 
    }
 
@@ -166,7 +166,7 @@ namespace userfs
    void list::dump(dump_context & dumpcontext) const
    {
 
-      ::user::form_list_view::dump(dumpcontext);
+      ::user::form_list_impact::dump(dumpcontext);
 
    }
 
@@ -209,7 +209,7 @@ namespace userfs
 
 #endif
 
-      return ::user::form_list_view::pre_create_window(pusersystem);
+      return ::user::form_list_impact::pre_create_window(pusersystem);
 
    }
 
@@ -379,7 +379,7 @@ namespace userfs
    void list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::form_list_view::_001OnDraw(pgraphics);
+      ::user::form_list_impact::_001OnDraw(pgraphics);
 
    }
 
@@ -903,7 +903,7 @@ namespace userfs
    //__pointer(::userfs::document) list::get_document()
    //{
 
-   //   return ::user::form_list_view::get_document();
+   //   return ::user::form_list_impact::get_document();
 
    //}
 
@@ -911,7 +911,7 @@ namespace userfs
    void list::_001GetSubItemText(::user::mesh_subitem * psubitem)
    {
 
-      return ::user::form_list_view::_001GetSubItemText(psubitem);
+      return ::user::form_list_impact::_001GetSubItemText(psubitem);
 
    }
 
@@ -1043,7 +1043,7 @@ namespace userfs
 
       }
 
-      return ::user::form_list_view::_001GetSubItemImage(psubitem);
+      return ::user::form_list_impact::_001GetSubItemImage(psubitem);
 
    }
 

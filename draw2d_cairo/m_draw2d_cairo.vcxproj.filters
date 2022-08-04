@@ -2114,7 +2114,7 @@
     <ClInclude Include="graphics\html\html_font.h">
       <Filter>Header Files\graphics\html</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\html\::user::form_view.h">
+    <ClInclude Include="graphics\html\::user::form_impact.h">
       <Filter>Header Files\graphics\html</Filter>
     </ClInclude>
     <ClInclude Include="graphics\html\html_html.h">
@@ -5293,7 +5293,7 @@
     <ClCompile Include="graphics\html\html_html.cpp">
       <Filter>Source Files\graphics\html</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\html\::user::form_view.cpp">
+    <ClCompile Include="graphics\html\::user::form_impact.cpp">
       <Filter>Source Files\graphics\html</Filter>
     </ClCompile>
     <ClCompile Include="graphics\html\html_font.cpp">

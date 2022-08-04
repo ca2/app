@@ -85,12 +85,12 @@ namespace hellobase
          }
 
       }
-      else if(get_type_impact < ::user::plain_edit_view >() != nullptr
+      else if(get_type_impact < ::user::plain_edit_impact >() != nullptr
               && pcontext->m_papexcontext->file().exists(payloadFile)
               && (str = pcontext->m_papexcontext->file().as_string(payloadFile)).has_char())
       {
 
-         get_type_impact < ::user::plain_edit_view >()->_001SetText(str.Left(84),::e_source_user);
+         get_type_impact < ::user::plain_edit_impact >()->_001SetText(str.Left(84),::e_source_user);
 
       }
 

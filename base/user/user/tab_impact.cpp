@@ -729,7 +729,7 @@ namespace user
       if(pimpactdata->m_atom == MENU_IMPACT)
       {
          
-         creatimpact_menu(pimpactdata);
+         create_impact_menu(pimpactdata);
          
       }
       
@@ -743,7 +743,7 @@ namespace user
       if (m_pimpactdata->m_atom == MENU_IMPACT)
       {
 
-       //  creatimpact_menu(m_pimpactdata);
+       //  create_impact_menu(m_pimpactdata);
 
          __pointer(::user::menu) pmenu = get_impact_uie();
          
@@ -756,7 +756,7 @@ namespace user
             
             pmenu->m_puserinteractionpointeraChild.release();
 
-            preparimpact_menu(pmenu);
+            prepare_impact_menu(pmenu);
             
          }
 
@@ -791,7 +791,7 @@ namespace user
    }
 
 
-   void tab_impact::preparimpact_menu(::user::menu * pmenu)
+   void tab_impact::prepare_impact_menu(::user::menu * pmenu)
    {
 
       if (pmenu->load_xml_menu("matter://impact.menu"))
@@ -1073,7 +1073,7 @@ namespace user
    }
 
 
-   bool tab_impact::on_preparimpact_data(::user::impact_data* pimpactdata)
+   bool tab_impact::on_prepare_impact_data(::user::impact_data* pimpactdata)
    {
 
       //if (!add_tab(pimpactdata->m_atom, pimpactdata->m_atomTitle))

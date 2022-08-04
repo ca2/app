@@ -13,7 +13,7 @@ namespace user
 
 
       split_impact();
-      virtual ~split_impact();
+      ~split_impact() override;
 
 
       void assert_ok() const override;
@@ -36,8 +36,8 @@ namespace user
       template < class VIEW >
       inline __pointer(VIEW) create_pane_impact(index iPane, atom atom = ::atom(), ::user::interaction * pviewLast = nullptr);
 
-      virtual bool on_preparimpact_data(::user::impact_data* pimpactdata) override;
-      
+      virtual bool on_prepare_impact_data(::user::impact_data* pimpactdata) override;
+
 
    };
 

@@ -8433,7 +8433,7 @@ namespace aura
 
    //   }
 
-   //   auto estatus = creatimpact_system();
+   //   auto estatus = create_impact_system();
 
    //   if (failed(estatus))
    //   {
@@ -8447,7 +8447,7 @@ namespace aura
    //}
 
 
-   void     application::creatimpact_system()
+   void     application::create_impact_system()
    {
 
       //return ::success;

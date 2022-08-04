@@ -223,7 +223,7 @@ namespace user
    }
 
 
-   bool split_impact::on_preparimpact_data(::user::impact_data* pimpactdata)
+   bool split_impact::on_prepare_impact_data(::user::impact_data* pimpactdata)
    {
 
       //if (!add_tab(pimpactdata->m_atom, pimpactdata->m_atomTitle))

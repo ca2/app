@@ -271,7 +271,7 @@ namespace userex
          if (::is_set(m_pdocumentMenu))
          {
 
-            auto strOptionsImpact = get_app()->preparimpact_options();
+            auto strOptionsImpact = get_app()->prepare_impact_options();
 
 #if defined(_DEBUG) && !defined(_UWP) && !defined(APPLE_IOS)
 
@@ -308,7 +308,7 @@ namespace userex
    }
 
 
-   bool pane_tab_impact::on_preparimpact_data(::user::impact_data * pimpactdata)
+   bool pane_tab_impact::on_prepare_impact_data(::user::impact_data * pimpactdata)
    {
 
       pimpactdata->m_pplaceholder = get_new_place_holder(get_data()->m_rectangleTabClient);
@@ -325,7 +325,7 @@ namespace userex
    }
 
 
-   bool pane_tab_impact::on_after_creatimpact_data(::user::impact_data * pimpactdata)
+   bool pane_tab_impact::on_after_create_impact_data(::user::impact_data * pimpactdata)
    {
 
       ::index iVisibleIndex = id_visible_index(pimpactdata->m_atom);

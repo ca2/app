@@ -73,11 +73,11 @@ namespace user
       bool create_impact(::user::impact_data * pimpactdata) override;
 
 
-      impact_data * creatimpact_by_id(const ::atom & atom);
+      impact_data * create_impact_by_id(const ::atom & atom);
 
 
-      virtual bool on_preparimpact_data(::user::impact_data * pimpactdata);
-      virtual bool on_after_creatimpact_data(::user::impact_data * pimpactdata);
+      virtual bool on_prepare_impact_data(::user::impact_data * pimpactdata);
+      virtual bool on_after_create_impact_data(::user::impact_data * pimpactdata);
       virtual void on_change_cur_sel();
 
 

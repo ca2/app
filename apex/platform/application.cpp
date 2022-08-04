@@ -1839,7 +1839,7 @@ void application::init_instance()
    INFORMATION("axis::application::init_instance success");
 
    //auto estatus = 
-   creatimpact_system();
+   create_impact_system();
 
    //if (failed(estatus))
    //{
@@ -9927,7 +9927,7 @@ void application::_001OnSwitchContextTheme(::message::message* pmessage)
 }
 
 
-void     application::creatimpact_system()
+void     application::create_impact_system()
 {
 
    //return ::success;

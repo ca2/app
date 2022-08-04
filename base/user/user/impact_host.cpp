@@ -102,7 +102,7 @@ namespace user
    }
 
 
-   bool impact_host::on_preparimpact_data(impact_data * pimpactdata)
+   bool impact_host::on_prepare_impact_data(impact_data * pimpactdata)
    {
 
       __UNREFERENCED_PARAMETER(pimpactdata);
@@ -112,7 +112,7 @@ namespace user
    }
 
 
-   bool impact_host::on_after_creatimpact_data(impact_data * pimpactdata)
+   bool impact_host::on_after_create_impact_data(impact_data * pimpactdata)
    {
 
       __UNREFERENCED_PARAMETER(pimpactdata);
@@ -262,7 +262,7 @@ namespace user
 
 
 
-   impact_data * impact_host::creatimpact_by_id(const ::atom & atom)
+   impact_data * impact_host::create_impact_by_id(const ::atom & atom)
    {
 
       impact_data * pimpactdata = allocatimpact_data(atom);
@@ -442,7 +442,7 @@ namespace user
       try
       {
 
-         on_preparimpact_data(pimpactdata);
+         on_prepare_impact_data(pimpactdata);
 
       }
       catch (const ::exception & exception)
@@ -468,7 +468,7 @@ namespace user
       try
       {
 
-         on_after_creatimpact_data(pimpactdata);
+         on_after_create_impact_data(pimpactdata);
 
       }
       catch (const ::exception & exception)
@@ -585,7 +585,7 @@ namespace user
 
       }
 
-      pimpactdata = creatimpact_by_id(atom);
+      pimpactdata = create_impact_by_id(atom);
 
       if (pimpactdata == nullptr)
       {

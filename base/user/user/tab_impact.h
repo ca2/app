@@ -72,7 +72,7 @@ namespace user
 
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
-      bool on_preparimpact_data(::user::impact_data* pimpactdata) override;
+      bool on_prepare_impact_data(::user::impact_data* pimpactdata) override;
 
       void on_after_host_impact(::user::impact_data * pimpactdata) override;
 
@@ -88,9 +88,9 @@ namespace user
       
       void on_create_impact(::user::impact_data * pimpactdata) override;
 
-      virtual void creatimpact_menu(::user::impact_data * pimpactdata);
+      virtual void create_impact_menu(::user::impact_data * pimpactdata);
 
-      void preparimpact_menu(::user::menu * pmenu);
+      void prepare_impact_menu(::user::menu * pmenu);
 
       void _001OnShowTab(::user::tab * ptab) override;
 

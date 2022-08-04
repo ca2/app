@@ -1052,7 +1052,7 @@ public:
       virtual void report_error(const ::exception & e, int iMessageFlags, const ::string & pszTopic);
 
 
-      virtual void creatimpact_system();
+      virtual void create_impact_system();
 
 
       virtual void on_song_added(const string& str);

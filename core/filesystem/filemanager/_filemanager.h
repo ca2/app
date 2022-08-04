@@ -41,7 +41,7 @@ namespace filemanager
    class callback;
    //class filemanager;
    class file_list_callback;
-   class preview;
+   class thumbnail;
    class file_properties_form;
    class folder_list_impact;
    class tree;
@@ -92,7 +92,7 @@ namespace filemanager
    class callback;
    class filemanager;
    class file_list_callback;
-   class preview;
+   class thumbnail;
    class file_properties_form;
    class folder_list_impact;
    class tree;
@@ -148,7 +148,7 @@ namespace filemanager
 
 #include "file_properties_form.h"
 
-#include "preview.h"
+#include "thumbnail.h"
 #include "file_list.h"
 
 
@@ -215,7 +215,7 @@ namespace filemanager
 
 #include "file_properties_form.h"
 
-#include "preview.h"
+#include "thumbnail.h"
 #include "file_list.h"
 
 

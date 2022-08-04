@@ -113,9 +113,9 @@ namespace filemanager
 
       }
 
-      m_ppreview = create_impact < preview >();
+      m_pthumbnail = create_impact < thumbnail >();
 
-      m_ppreview->display(e_display_none);
+      m_pthumbnail->display(e_display_none);
 
    }
 
@@ -150,21 +150,21 @@ namespace filemanager
       if(pcommand->m_atom == "change_impact")
       {
 
-         if(m_ppreview->is_window_visible())
+         if(m_pthumbnail->is_window_visible())
          {
 
             SetPane(1,m_pfilelist,false);
 
             set_need_layout();
 
-            m_ppreview->display(e_display_none);
+            m_pthumbnail->display(e_display_none);
 
 
          }
          else
          {
 
-            SetPane(1,m_ppreview,false);
+            SetPane(1,m_pthumbnail,false);
 
             set_need_layout();
 

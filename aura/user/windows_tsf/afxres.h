@@ -118,7 +118,7 @@
 
 #define AFX_IDW_TOOLBAR                 0xE800  // main Toolbar for window
 #define AFX_IDW_STATUS_BAR              0xE801  // Status bar window
-#define AFX_IDW_PREVIEW_BAR             0xE802  // PrintPreview Dialog Bar
+#define AFX_IDW_PREVIEW_BAR             0xE802  // PrintThumbnail Dialog Bar
 #define AFX_IDW_RESIZE_BAR              0xE803  // OLE in-place resize bar
 #if _MFC_VER >= 0x0600
 #define AFX_IDW_REBAR                   0xE804  // COMCTL32 "rebar" Bar
@@ -128,7 +128,7 @@
 // Note: If your application supports docking toolbars, you should
 //  not use the following IDs for your own toolbars.  The IDs chosen
 //  are at the top of the first 32 such that the bars will be hidden
-//  while in print preview mode, and are not likely to conflict with
+//  while in print thumbnail mode, and are not likely to conflict with
 //  IDs your application may have used succesfully in the past.
 
 #define AFX_IDW_DOCKBAR_TOP             0xE81B
@@ -267,7 +267,7 @@
 #define ID_OLE_VERB_LAST                0xE21F
 #endif //!RC_INVOKED
 
-// for print preview dialog bar
+// for print thumbnail dialog bar
 #define AFX_ID_PREVIEW_CLOSE            0xE300
 #define AFX_ID_PREVIEW_NUMPAGE          0xE301      // One/Two Page button
 #define AFX_ID_PREVIEW_NEXT             0xE302
@@ -347,7 +347,7 @@
 #define AFX_IDS_USER_EXCEPTION          0xF024
 #define AFX_IDS_INVALID_ARG_EXCEPTION   0xF025
 
-// Printing and print preview strings
+// Printing and print thumbnail strings
 #define AFX_IDS_PRINTONPORT             0xF040
 #define AFX_IDS_ONEPAGE                 0xF041
 #define AFX_IDS_TWOPAGE                 0xF042
@@ -611,7 +611,7 @@
 // Standard cursors (0x7901->)
 	// AFX_IDC = Cursor resources
 #define AFX_IDC_CONTEXTHELP             30977       // action_context sensitive help
-#define AFX_IDC_MAGNIFY                 30978       // print preview zoom
+#define AFX_IDC_MAGNIFY                 30978       // print thumbnail zoom
 #define AFX_IDC_SMALLARROWS             30979       // splitter
 #define AFX_IDC_HSPLITBAR               30980       // splitter
 #define AFX_IDC_VSPLITBAR               30981       // splitter

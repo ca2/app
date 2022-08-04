@@ -894,8 +894,8 @@
     <ClInclude Include="filesystem\filemanager\SimpleFolderListView.h" />
     <ClInclude Include="filesystem\filemanager\SimpleFolderTreeInterface.h" />
     <ClInclude Include="filesystem\filemanager\SimpleFolderTreeView.h" />
-    <ClInclude Include="filesystem\filemanager\SimplePreview.h" />
-    <ClInclude Include="filesystem\filemanager\SimplePreviewInterface.h" />
+    <ClInclude Include="filesystem\filemanager\SimpleThumbnail.h" />
+    <ClInclude Include="filesystem\filemanager\SimpleThumbnailInterface.h" />
     <ClInclude Include="filesystem\fs\fs.h" />
     <ClInclude Include="filesystem\fs\fs_data.h" />
     <ClInclude Include="filesystem\fs\fs_fs.h" />
@@ -1902,8 +1902,8 @@
     <ClCompile Include="filesystem\filemanager\SimpleFolderListView.cpp" />
     <ClCompile Include="filesystem\filemanager\SimpleFolderTreeInterface.cpp" />
     <ClCompile Include="filesystem\filemanager\SimpleFolderTreeView.cpp" />
-    <ClCompile Include="filesystem\filemanager\SimplePreview.cpp" />
-    <ClCompile Include="filesystem\filemanager\SimplePreviewInterface.cpp" />
+    <ClCompile Include="filesystem\filemanager\SimpleThumbnail.cpp" />
+    <ClCompile Include="filesystem\filemanager\SimpleThumbnailInterface.cpp" />
     <ClCompile Include="filesystem\fs\fs_data.cpp" />
     <ClCompile Include="filesystem\fs\fs_fs.cpp" />
     <ClCompile Include="filesystem\fs\fs_ifs.cpp" />

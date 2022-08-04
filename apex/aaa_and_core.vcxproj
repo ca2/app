@@ -685,7 +685,7 @@
     <ClInclude Include="filesystem\filemanager\filemanager_file_properties_form.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_folder_list.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_tree.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_preview.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_thumbnail.h" />
     <ClInclude Include="filesystem\file\file_html_buffer.h" />
     <ClInclude Include="filesystem\userfs\userfs.h" />
     <ClInclude Include="filesystem\userfs\userfs_document.h" />
@@ -1070,7 +1070,7 @@
     <ClCompile Include="filesystem\filemanager\filemanager_tree.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_preview.cpp">
+    <ClCompile Include="filesystem\filemanager\filemanager_thumbnail.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_document.cpp">

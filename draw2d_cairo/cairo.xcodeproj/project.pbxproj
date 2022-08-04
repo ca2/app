@@ -816,10 +816,10 @@
 		07A6DD4E173C27EB009E6FB8 /* SimpleFolderTreeInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D391173C27E7009E6FB8 /* SimpleFolderTreeInterface.h */; };
 		07A6DD4F173C27EB009E6FB8 /* SimpleFolderTreeView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D392173C27E7009E6FB8 /* SimpleFolderTreeView.cpp */; };
 		07A6DD50173C27EB009E6FB8 /* SimpleFolderTreeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D393173C27E7009E6FB8 /* SimpleFolderTreeView.h */; };
-		07A6DD51173C27EB009E6FB8 /* SimplePreview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D394173C27E7009E6FB8 /* SimplePreview.cpp */; };
-		07A6DD52173C27EB009E6FB8 /* SimplePreview.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D395173C27E7009E6FB8 /* SimplePreview.h */; };
-		07A6DD53173C27EB009E6FB8 /* SimplePreviewInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D396173C27E7009E6FB8 /* SimplePreviewInterface.cpp */; };
-		07A6DD54173C27EB009E6FB8 /* SimplePreviewInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D397173C27E7009E6FB8 /* SimplePreviewInterface.h */; };
+		07A6DD51173C27EB009E6FB8 /* SimpleThumbnail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D394173C27E7009E6FB8 /* SimpleThumbnail.cpp */; };
+		07A6DD52173C27EB009E6FB8 /* SimpleThumbnail.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D395173C27E7009E6FB8 /* SimpleThumbnail.h */; };
+		07A6DD53173C27EB009E6FB8 /* SimpleThumbnailInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D396173C27E7009E6FB8 /* SimpleThumbnailInterface.cpp */; };
+		07A6DD54173C27EB009E6FB8 /* SimpleThumbnailInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D397173C27E7009E6FB8 /* SimpleThumbnailInterface.h */; };
 		07A6DD55173C27EB009E6FB8 /* fs.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D399173C27E7009E6FB8 /* fs.h */; };
 		07A6DD56173C27EB009E6FB8 /* fs_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D39A173C27E7009E6FB8 /* fs_data.cpp */; };
 		07A6DD57173C27EB009E6FB8 /* fs_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D39B173C27E7009E6FB8 /* fs_data.h */; };
@@ -3088,10 +3088,10 @@
 		07A6D391173C27E7009E6FB8 /* SimpleFolderTreeInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleFolderTreeInterface.h; sourceTree = "<group>"; };
 		07A6D392173C27E7009E6FB8 /* SimpleFolderTreeView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleFolderTreeView.cpp; sourceTree = "<group>"; };
 		07A6D393173C27E7009E6FB8 /* SimpleFolderTreeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleFolderTreeView.h; sourceTree = "<group>"; };
-		07A6D394173C27E7009E6FB8 /* SimplePreview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimplePreview.cpp; sourceTree = "<group>"; };
-		07A6D395173C27E7009E6FB8 /* SimplePreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePreview.h; sourceTree = "<group>"; };
-		07A6D396173C27E7009E6FB8 /* SimplePreviewInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimplePreviewInterface.cpp; sourceTree = "<group>"; };
-		07A6D397173C27E7009E6FB8 /* SimplePreviewInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePreviewInterface.h; sourceTree = "<group>"; };
+		07A6D394173C27E7009E6FB8 /* SimpleThumbnail.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleThumbnail.cpp; sourceTree = "<group>"; };
+		07A6D395173C27E7009E6FB8 /* SimpleThumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleThumbnail.h; sourceTree = "<group>"; };
+		07A6D396173C27E7009E6FB8 /* SimpleThumbnailInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SimpleThumbnailInterface.cpp; sourceTree = "<group>"; };
+		07A6D397173C27E7009E6FB8 /* SimpleThumbnailInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleThumbnailInterface.h; sourceTree = "<group>"; };
 		07A6D399173C27E7009E6FB8 /* fs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs.h; sourceTree = "<group>"; };
 		07A6D39A173C27E7009E6FB8 /* fs_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fs_data.cpp; sourceTree = "<group>"; };
 		07A6D39B173C27E7009E6FB8 /* fs_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_data.h; sourceTree = "<group>"; };
@@ -6047,10 +6047,10 @@
 				07A6D391173C27E7009E6FB8 /* SimpleFolderTreeInterface.h */,
 				07A6D392173C27E7009E6FB8 /* SimpleFolderTreeView.cpp */,
 				07A6D393173C27E7009E6FB8 /* SimpleFolderTreeView.h */,
-				07A6D394173C27E7009E6FB8 /* SimplePreview.cpp */,
-				07A6D395173C27E7009E6FB8 /* SimplePreview.h */,
-				07A6D396173C27E7009E6FB8 /* SimplePreviewInterface.cpp */,
-				07A6D397173C27E7009E6FB8 /* SimplePreviewInterface.h */,
+				07A6D394173C27E7009E6FB8 /* SimpleThumbnail.cpp */,
+				07A6D395173C27E7009E6FB8 /* SimpleThumbnail.h */,
+				07A6D396173C27E7009E6FB8 /* SimpleThumbnailInterface.cpp */,
+				07A6D397173C27E7009E6FB8 /* SimpleThumbnailInterface.h */,
 			);
 			path = filemanager;
 			sourceTree = "<group>";
@@ -7970,8 +7970,8 @@
 				07A6DD4C173C27EB009E6FB8 /* SimpleFolderListView.h in Headers */,
 				07A6DD4E173C27EB009E6FB8 /* SimpleFolderTreeInterface.h in Headers */,
 				07A6DD50173C27EB009E6FB8 /* SimpleFolderTreeView.h in Headers */,
-				07A6DD52173C27EB009E6FB8 /* SimplePreview.h in Headers */,
-				07A6DD54173C27EB009E6FB8 /* SimplePreviewInterface.h in Headers */,
+				07A6DD52173C27EB009E6FB8 /* SimpleThumbnail.h in Headers */,
+				07A6DD54173C27EB009E6FB8 /* SimpleThumbnailInterface.h in Headers */,
 				07A6DD55173C27EB009E6FB8 /* fs.h in Headers */,
 				07A6DD57173C27EB009E6FB8 /* fs_data.h in Headers */,
 				07A6DD59173C27EB009E6FB8 /* fs_fs.h in Headers */,
@@ -9127,8 +9127,8 @@
 				07A6DD4B173C27EB009E6FB8 /* SimpleFolderListView.cpp in Sources */,
 				07A6DD4D173C27EB009E6FB8 /* SimpleFolderTreeInterface.cpp in Sources */,
 				07A6DD4F173C27EB009E6FB8 /* SimpleFolderTreeView.cpp in Sources */,
-				07A6DD51173C27EB009E6FB8 /* SimplePreview.cpp in Sources */,
-				07A6DD53173C27EB009E6FB8 /* SimplePreviewInterface.cpp in Sources */,
+				07A6DD51173C27EB009E6FB8 /* SimpleThumbnail.cpp in Sources */,
+				07A6DD53173C27EB009E6FB8 /* SimpleThumbnailInterface.cpp in Sources */,
 				07A6DD56173C27EB009E6FB8 /* fs_data.cpp in Sources */,
 				07A6DD58173C27EB009E6FB8 /* fs_fs.cpp in Sources */,
 				07A6DD5A173C27EB009E6FB8 /* fs_ifs.cpp in Sources */,

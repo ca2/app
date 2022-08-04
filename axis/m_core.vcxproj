@@ -520,7 +520,7 @@
     <ClInclude Include="filesystem\filemanager\filemanager_operation_thread.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_operation_impact.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_path_impact.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_preview.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_thumbnail.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_save_as_name_impact.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_tab_impact.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_tree.h" />
@@ -1423,7 +1423,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_preview.cpp">
+    <ClCompile Include="filesystem\filemanager\filemanager_thumbnail.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='profiler|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">true</ExcludedFromBuild>

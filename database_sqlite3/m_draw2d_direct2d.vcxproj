@@ -461,7 +461,7 @@
     <ClCompile Include="draw2d_direct2d_path.cpp" />
     <ClCompile Include="draw2d_direct2d_palette.cpp" />
     <ClCompile Include="draw2d_direct2d_pen.cpp" />
-    <ClCompile Include="draw2d_direct2d_preview_dc.cpp" />
+    <ClCompile Include="draw2d_direct2d_thumbnail_dc.cpp" />
     <ClCompile Include="draw2d_direct2d_printer.cpp" />
     <ClCompile Include="draw2d_direct2d_region.cpp" />
     <ClCompile Include="draw2d_direct2d_win_tls.cpp" />

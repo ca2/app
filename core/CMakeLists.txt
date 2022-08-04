@@ -112,8 +112,8 @@ list(APPEND library_source
    filesystem/filemanager/operation_impact.h
    filesystem/filemanager/path_impact.cpp
    filesystem/filemanager/path_impact.h
-   filesystem/filemanager/preview.cpp
-   filesystem/filemanager/preview.h
+   filesystem/filemanager/thumbnail.cpp
+   filesystem/filemanager/thumbnail.h
    filesystem/filemanager/save_as_name_impact.cpp
    filesystem/filemanager/save_as_name_impact.h
    filesystem/filemanager/tab_impact.cpp

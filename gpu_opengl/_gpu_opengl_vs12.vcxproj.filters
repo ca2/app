@@ -88,7 +88,7 @@
     <ClCompile Include="draw2d_gdiplus_pen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw2d_gdiplus_preview_dc.cpp">
+    <ClCompile Include="draw2d_gdiplus_thumbnail_dc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="draw2d_gdiplus_region.cpp">

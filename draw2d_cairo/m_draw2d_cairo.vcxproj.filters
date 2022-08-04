@@ -1949,10 +1949,10 @@
     <ClInclude Include="filesystem\filemanager\SimpleFolderTreeView.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\SimplePreview.h">
+    <ClInclude Include="filesystem\filemanager\SimpleThumbnail.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\SimplePreviewInterface.h">
+    <ClInclude Include="filesystem\filemanager\SimpleThumbnailInterface.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\fs\fs.h">
@@ -4993,10 +4993,10 @@
     <ClCompile Include="filesystem\filehandler\filehandler_handler.cpp">
       <Filter>Source Files\filesystem\filehandler</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\SimplePreviewInterface.cpp">
+    <ClCompile Include="filesystem\filemanager\SimpleThumbnailInterface.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\SimplePreview.cpp">
+    <ClCompile Include="filesystem\filemanager\SimpleThumbnail.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\SimpleFolderTreeView.cpp">

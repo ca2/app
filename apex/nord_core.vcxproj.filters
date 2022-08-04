@@ -19,7 +19,7 @@
     <ClCompile Include="filesystem\filemanager\save_as_name_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\preview.cpp">
+    <ClCompile Include="filesystem\filemanager\thumbnail.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\path_impact.cpp">
@@ -987,7 +987,7 @@
     <ClInclude Include="filesystem\filemanager\filemanager_tree.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_preview.h">
+    <ClInclude Include="filesystem\filemanager\filemanager_thumbnail.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\userfs\userfs.h">

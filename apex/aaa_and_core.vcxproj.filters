@@ -566,7 +566,7 @@
     <ClInclude Include="filesystem\filemanager\filemanager_folder_list.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_preview.h">
+    <ClInclude Include="filesystem\filemanager\filemanager_thumbnail.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_context_menu.h">
@@ -1255,7 +1255,7 @@
     <ClCompile Include="filesystem\filemanager\aaa_want_to_remove_filemanager_update_hint.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_preview.cpp">
+    <ClCompile Include="filesystem\filemanager\filemanager_thumbnail.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_folder_list.cpp">

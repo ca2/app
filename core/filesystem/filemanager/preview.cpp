@@ -8,26 +8,26 @@ namespace filemanager
 {
 
 
-   preview::preview()
+   thumbnail::thumbnail()
    {
 
    }
 
 
-   preview::~preview()
+   thumbnail::~thumbnail()
    {
 
    }
 
 
-   void preview::install_message_routing(::channel * pchannel)
+   void thumbnail::install_message_routing(::channel * pchannel)
    {
       ::user::impact::install_message_routing(pchannel);
    }
 
 
 
-   void preview::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void thumbnail::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
 
@@ -56,7 +56,7 @@ namespace filemanager
    }
 
 
-   void preview::handle(::topic * ptopic, ::context * pcontext)
+   void thumbnail::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ::filemanager_impact_base::handle(ptopic, pcontext);

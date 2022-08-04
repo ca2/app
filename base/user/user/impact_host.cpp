@@ -270,7 +270,7 @@ namespace user
       try
       {
 
-         if (create_impact(pimpactdata))
+         if (impact_creator_create_impact(pimpactdata))
          {
 
 

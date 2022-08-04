@@ -981,8 +981,8 @@ namespace base
 //      bool _LoadSysPolicies() noexcept; // Implementation helper
 //      static const char gen_FileSection[];
 //      static const char gen_FileEntry[];
-//      static const char gen_PreviewSection[];
-//      static const char gen_PreviewEntry[];
+//      static const char gen_ThumbnailSection[];
+//      static const char gen_ThumbnailEntry[];
 //
 //
 //

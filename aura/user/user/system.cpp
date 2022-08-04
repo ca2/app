@@ -130,9 +130,7 @@ namespace user
    __pointer(::user::interaction) system::create_impact(::user::interaction * puserinteractionParent, const ::atom & atom)
    {
 
-      ASSERT(pusersystem != nullptr);
-
-      ASSERT(pusersystem->m_typeNewImpact || pusersystem->m_puserprimitiveNew != nullptr);
+      ASSERT(m_typeNewImpact || m_puserprimitiveNew != nullptr);
 
       ::application * papp = puserinteractionParent->get_app();
 

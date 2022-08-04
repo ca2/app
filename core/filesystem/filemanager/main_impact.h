@@ -13,7 +13,7 @@ namespace filemanager
 
       
       file_list *                            m_pfilelist;
-      preview *                              m_ppreview;
+      thumbnail *                              m_pthumbnail;
       __composite(file_properties_form)      m_ppropform;
       ::file::item_array                     m_itema;
 

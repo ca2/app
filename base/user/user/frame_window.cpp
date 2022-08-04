@@ -814,7 +814,7 @@ namespace user
       ::display(oswindow, e_display_none);
       pwindow->m_nFlags |= WF_TEMPHIDE;
       }
-      // don't show temporarily hidden windows if we're in print preview mode
+      // don't show temporarily hidden windows if we're in print thumbnail mode
       else if (bShow && (uStyle & (WS_VISIBLE|WS_DISABLED)) == 0 &&
       (pwindow->m_nFlags & WF_TEMPHIDE) && !m_lpfnCloseProc)
       {
@@ -1939,7 +1939,7 @@ namespace user
    //      else if (wParam != 0)
    //      {
 
-   //         // map SC_CLOSE to PREVIEW_CLOSE when in print preview mode
+   //         // map SC_CLOSE to PREVIEW_CLOSE when in print thumbnail mode
    //         /*         if (wParam == __IDS_SCCLOSE && m_lpfnCloseProc != nullptr)
    //         wParam = __IDS_PREVIEW_CLOSE;*/
 
@@ -2110,7 +2110,7 @@ namespace user
 
    /////////////////////////////////////////////////////////////////////////////
 
-   /*   void frame_window::OnSetPreviewMode(bool bPreview, CPrintPreviewState* pState)
+   /*   void frame_window::OnSetThumbnailMode(bool bThumbnail, CPrintThumbnailState* pState)
       {
          ENSURE_ARG(pState != nullptr);
          // default implementation changes control bars, menu and main pane interaction_impl
@@ -2119,9 +2119,9 @@ namespace user
          // set visibility of standard ControlBars (only the first 32)
          //   u32 dwOldStates = 0;
 
-         if (bPreview)
+         if (bThumbnail)
          {
-            // Entering Print Preview
+            // Entering Print Thumbnail
 
 
             // show any modeless dialogs, popup windows, float tools, etc
@@ -2131,7 +2131,7 @@ namespace user
          }
          else
          {
-            // Leaving Preview
+            // Leaving Thumbnail
             m_lpfnCloseProc = nullptr;
 
             // shift original FIRST_PANE back to its rightful ID

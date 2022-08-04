@@ -7313,8 +7313,8 @@ bool application::is_local_data()
 
 //const char application::gen_FileSection[] = "Recent File List";
 //const char application::gen_FileEntry[] = "File%d";
-//const char application::gen_PreviewSection[] = "Settings";
-//const char application::gen_PreviewEntry[] = "PreviewPages";
+//const char application::gen_ThumbnailSection[] = "Settings";
+//const char application::gen_ThumbnailEntry[] = "ThumbnailPages";
 
 
 //application::application()
@@ -7983,7 +7983,7 @@ __UNREFERENCED_PARAMETER(nMaxMRU);
 ASSERT_VALID(this);
 
 // 0 by default means not set
-m_nNumPreviewPages = GetProfileInt(gen_PreviewSection, gen_PreviewEntry, 0);
+m_nNumThumbnailPages = GetProfileInt(gen_ThumbnailSection, gen_ThumbnailEntry, 0);
 }*/
 
 /*void application::ParseCommandLine(CCommandLineInfo& rCmdInfo)
@@ -8122,8 +8122,8 @@ m_bShowSplash = !m_bRunEmbedded && !m_bRunAutomated;
 //ASSERT_VALID(this);
 //
 //
-////      if (m_nNumPreviewPages != 0)
-////       WriteProfileInt(gen_PreviewSection, gen_PreviewEntry, m_nNumPreviewPages);
+////      if (m_nNumThumbnailPages != 0)
+////       WriteProfileInt(gen_ThumbnailSection, gen_ThumbnailEntry, m_nNumThumbnailPages);
 //}
 
 
@@ -9259,7 +9259,7 @@ void application::_001OnFileNew(::message::message* pmessage)
 //      document_manager()->dump(dumpcontext);*/
 //
 //      dumpcontext << "\nm_nWaitCursorCount = " << m_iWaitCursorCount;
-//      dumpcontext << "\nm_nNumPreviewPages = " << m_nNumPreviewPages;
+//      dumpcontext << "\nm_nNumThumbnailPages = " << m_nNumThumbnailPages;
 //
 //      dumpcontext << "\n";
 //   }

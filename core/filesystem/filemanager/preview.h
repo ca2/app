@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   class CLASS_DECL_CORE preview :
+   class CLASS_DECL_CORE thumbnail :
       virtual public ::filemanager_show < ::user::impact >
    {
    public:
@@ -18,8 +18,8 @@ namespace filemanager
       //i64_array    m_iaSize;
       i32        m_iCurFile;
 
-      preview();
-      virtual ~preview();
+      thumbnail();
+      virtual ~thumbnail();
 
       void install_message_routing(::channel * pchannel) override;
       virtual void handle(::topic * ptopic, ::context * pcontext) override;

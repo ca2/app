@@ -796,7 +796,7 @@
     <ClCompile Include="filesystem\filemanager\operation_thread.cpp" />
     <ClCompile Include="filesystem\filemanager\operation_impact.cpp" />
     <ClCompile Include="filesystem\filemanager\path_impact.cpp" />
-    <ClCompile Include="filesystem\filemanager\preview.cpp" />
+    <ClCompile Include="filesystem\filemanager\thumbnail.cpp" />
     <ClCompile Include="filesystem\filemanager\save_as_name_impact.cpp" />
     <ClCompile Include="filesystem\filemanager\tab_impact.cpp" />
     <ClCompile Include="filesystem\filemanager\tree.cpp" />
@@ -1141,7 +1141,7 @@
     <ClInclude Include="filesystem\filemanager\operation_thread.h" />
     <ClInclude Include="filesystem\filemanager\operation_impact.h" />
     <ClInclude Include="filesystem\filemanager\path_impact.h" />
-    <ClInclude Include="filesystem\filemanager\preview.h" />
+    <ClInclude Include="filesystem\filemanager\thumbnail.h" />
     <ClInclude Include="filesystem\filemanager\save_as_name_impact.h" />
     <ClInclude Include="filesystem\filemanager\tab_impact.h" />
     <ClInclude Include="filesystem\filemanager\tree.h" />

@@ -126,7 +126,7 @@ namespace aura
 //
 //      ATOM                                            m_atomApp;
 //      ATOM                                            m_atomSystemTopic;   // for DDE open
-//      ::u32                                            m_nNumPreviewPages; // number of default printed pages
+//      ::u32                                            m_nNumThumbnailPages; // number of default printed pages
 //
 //      string                                          m_strId;
 
@@ -952,8 +952,8 @@ namespace aura
 
       //static const char gen_FileSection[];
       //static const char gen_FileEntry[];
-      //static const char gen_PreviewSection[];
-      //static const char gen_PreviewEntry[];
+      //static const char gen_ThumbnailSection[];
+      //static const char gen_ThumbnailEntry[];
 
 
 

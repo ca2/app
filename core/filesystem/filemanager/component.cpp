@@ -198,7 +198,7 @@ namespace filemanager
       ::factory::add_factory_item <left_impact >();
       ::factory::add_factory_item <main_impact >();
       ::factory::add_factory_item <file_list >();
-      ::factory::add_factory_item <preview >();
+      ::factory::add_factory_item <thumbnail >();
       ::factory::add_factory_item <main_frame >();
       ::factory::add_factory_item <frame >();
       ::factory::add_factory_item <tab_impact >();

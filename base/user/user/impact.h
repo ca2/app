@@ -127,7 +127,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnNextPaneCmd);
 
       DECLARE_MESSAGE_HANDLER(_001OnFilePrint);
-      DECLARE_MESSAGE_HANDLER(_001OnFilePrintPreview);
+      DECLARE_MESSAGE_HANDLER(_001OnFilePrintThumbnail);
 
 
       DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
@@ -141,7 +141,7 @@ namespace user
 
       // not mapped commands - must be mapped in derived class
       void OnFilePrint();
-      void OnFilePrintPreview();
+      void OnFilePrintThumbnail();
 
       // TODO: could return a kind of - also TODO - JOB object in case of assynchronous call
       //virtual void collaborate(::job * pjob);

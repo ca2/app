@@ -716,8 +716,8 @@
 		<Unit filename="filesystem/filemanager/operation_impact.h" />
 		<Unit filename="filesystem/filemanager/path_impact.cpp" />
 		<Unit filename="filesystem/filemanager/path_impact.h" />
-		<Unit filename="filesystem/filemanager/preview.cpp" />
-		<Unit filename="filesystem/filemanager/preview.h" />
+		<Unit filename="filesystem/filemanager/thumbnail.cpp" />
+		<Unit filename="filesystem/filemanager/thumbnail.h" />
 		<Unit filename="filesystem/filemanager/save_as_name_impact.cpp" />
 		<Unit filename="filesystem/filemanager/save_as_name_impact.h" />
 		<Unit filename="filesystem/filemanager/tab_impact.cpp" />

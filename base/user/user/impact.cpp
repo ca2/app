@@ -1260,9 +1260,9 @@ namespace user
 
 
    /////////////////////////////////////////////////////////////////////////////
-   // ::user::impact's OnPrintPreview.  Here to force linkage
+   // ::user::impact's OnPrintThumbnail.  Here to force linkage
 
-   void impact::_001OnFilePrintPreview(::message::message * pmessage)
+   void impact::_001OnFilePrintThumbnail(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
    }

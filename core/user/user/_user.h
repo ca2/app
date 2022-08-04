@@ -175,7 +175,7 @@ struct __SIZEPARENTPARAMS;    // control bar implementationproperca2_property.h
 // Classes declared in this file
 
 //::draw2d::graphics_pointer
-class preview_dc;               // Virtual DC for print preview
+class thumbnail_dc;               // Virtual DC for print thumbnail
 
 class mini_dock_frame_window;
 
@@ -234,7 +234,7 @@ namespace user
    class control_bar;
 
 
-   struct PrintPreviewState;  // forward object (see afxext.h)
+   struct PrintThumbnailState;  // forward object (see afxext.h)
 
 
 }
@@ -415,7 +415,7 @@ namespace user
 
 
 
-struct CPrintPreviewState;  // forward object (see afxext.h)
+struct CPrintThumbnailState;  // forward object (see afxext.h)
 namespace user
 {
    class control_bar;          // forward object (see afxext.h)

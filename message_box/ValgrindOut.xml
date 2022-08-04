@@ -36127,7 +36127,7 @@
     <frame>
       <ip>0x11E88F2A</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;filemanager::preview, filemanager::preview&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;filemanager::thumbnail, filemanager::thumbnail&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>

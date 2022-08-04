@@ -237,7 +237,7 @@ namespace user
 
 
 
-struct CPrintPreviewState;  // forward object (see afxext.h)
+struct CPrintThumbnailState;  // forward object (see afxext.h)
 namespace user
 {
    class control_bar;          // forward object (see afxext.h)

@@ -30,7 +30,7 @@ class BaseDockState;
 
 #define __IDW_TOOLBAR                 0xE800  // main Toolbar for interaction_impl
 //#define "status_bar"              0xE801  // Status bar interaction_impl
-#define __IDW_PREVIEW_BAR             0xE802  // PrintPreview Dialog Bar
+#define __IDW_PREVIEW_BAR             0xE802  // PrintThumbnail Dialog Bar
 #define __IDW_RESIZE_BAR              0xE803  // OLE in-place resize bar
 #define __IDW_REBAR                   0xE804  // COMCTL32 "rebar" Bar
 #define __IDW_DIALOGBAR               0xE805  // dialogBar
@@ -38,7 +38,7 @@ class BaseDockState;
 // Note: If your application supports docking toolbars, you should
 //  not use the following IDs for your own toolbars.  The IDs chosen
 //  are at the top of the first 32 such that the bars will be hidden
-//  while in print preview mode, and are not likely to conflict with
+//  while in print thumbnail mode, and are not likely to conflict with
 //  IDs your application may have used succesfully in the past.
 
 #define __IDW_DOCKBAR_TOP             0xE81B

@@ -25,7 +25,7 @@ void html_form_impact::install_message_routing(::channel * pchannel)
    //MESSAGE_LINK(WM_USER + 177     , this, this, &html_form_impact::_001OnTabClick);
    //add_command_handler(ID_FILE_PRINT, ::user::form_impact::OnFilePrint)
    //add_command_handler(ID_FILE_PRINT_DIRECT, ::user::form_impact::OnFilePrint)
-   //add_command_handler(ID_FILE_PRINT_PREVIEW, ::user::form_impact::OnFilePrintPreview)
+   //add_command_handler(ID_FILE_PRINT_PREVIEW, ::user::form_impact::OnFilePrintThumbnail)
    //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::on_message_left_button_down);
    //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &::user::interaction::on_message_left_button_up);
    //MESSAGE_LINK(e_message_key_down, pchannel, this, &::user::interaction::on_message_key_down);

@@ -128,7 +128,7 @@ public:
       //      ATOM                                            m_atomSystemTopic;   // for DDE open
       //#endif
 
-      ::u32                                            m_nNumPreviewPages; // number of default printed pages
+      ::u32                                            m_nNumThumbnailPages; // number of default printed pages
 
       string                                          m_strId;
 

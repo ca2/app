@@ -46,9 +46,9 @@ namespace tc4
 
       add_factory_item <::tc4::document >();
       add_factory_item <::tc4::frame >();
-      add_factory_item <::tc4::edit_view >();
-      add_factory_item <::tc4::toggle_view >();
-      add_factory_item <::tc4::top_view >();
+      add_factory_item <::tc4::edit_impact >();
+      add_factory_item <::tc4::toggle_impact >();
+      add_factory_item <::tc4::top_impact >();
       add_factory_item <::tc4::lite_view >();
       add_factory_item <::tc4::full_view >();
       add_factory_item <::tc4::impact >();

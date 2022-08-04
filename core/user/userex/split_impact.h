@@ -5,15 +5,15 @@ namespace userex
 {
 
 
-   class CLASS_DECL_CORE split_view :
-      virtual public ::user::split_view
+   class CLASS_DECL_CORE split_impact :
+      virtual public ::user::split_impact
    {
    public:
 
 
 
-      split_view();
-      virtual ~split_view();
+      split_impact();
+      virtual ~split_impact();
 
 
       void install_message_routing(::channel * pchannel) override;

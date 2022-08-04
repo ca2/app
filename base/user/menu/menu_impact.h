@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE menu_view :
+   class CLASS_DECL_BASE menu_impact :
       virtual public ::user::impact
    {
    public:
@@ -25,8 +25,8 @@ namespace user
       int_array                           m_iaPopup;
 
 
-      menu_view();
-      ~menu_view() override;
+      menu_impact();
+      ~menu_impact() override;
 
 
       void assert_ok() const override;

@@ -191,18 +191,18 @@ namespace filemanager
       ////add_factory_item <frame >();
       ////add_factory_item <tab_impact >();
       ////add_factory_item <form_child_frame >();
-      ////add_factory_item <::simple_form_view >();
-      ////add_factory_item <folder_selection_list_view >();
-      ////add_factory_item <folder_list_view >();
+      ////add_factory_item <::simple_form_impact >();
+      ////add_factory_item <folder_selection_list_impact >();
+      ////add_factory_item <folder_list_impact >();
       ////add_factory_item <operation_document >();
       ////add_factory_item <operation_child_frame >();
       ////add_factory_item <operation_view >();
       ////add_factory_item <operation_info_view >();
-      ////add_factory_item <operation_list_view >();
-      ////add_factory_item <save_as_edit_view >();
+      ////add_factory_item <operation_list_impact >();
+      ////add_factory_item <save_as_edit_impact >();
       ////add_factory_item <save_as_button>();
       ////add_factory_item <fs::simple::impact >();
-      ////add_factory_item <fs::simple::list_view >();
+      ////add_factory_item <fs::simple::list_impact >();
 
       ////__compose_new(this, m_pmap);
 
@@ -306,7 +306,7 @@ namespace filemanager
    //   //                       strTemplateId,
    //   //                       __type(document),
    //   //                       __type(main_frame),
-   //   //                       __type(folder_selection_list_view)));
+   //   //                       __type(folder_selection_list_impact)));
 
    //   //}
    //   //else

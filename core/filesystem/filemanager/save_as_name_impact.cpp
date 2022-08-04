@@ -11,7 +11,7 @@ namespace filemanager
 {
 
 
-   save_as_edit_view::save_as_edit_view()
+   save_as_edit_impact::save_as_edit_impact()
    {
 
       m_bVoidSync = false;
@@ -19,7 +19,7 @@ namespace filemanager
    }
 
 
-   void save_as_edit_view::install_message_routing(::channel * pchannel)
+   void save_as_edit_impact::install_message_routing(::channel * pchannel)
    {
 
       ::filemanager_impact_base::install_message_routing(pchannel);
@@ -30,7 +30,7 @@ namespace filemanager
 
 
 
-   void save_as_edit_view::browse_sync(const ::action_context & context)
+   void save_as_edit_impact::browse_sync(const ::action_context & context)
    {
 
       if (m_bVoidSync)
@@ -54,7 +54,7 @@ namespace filemanager
    }
 
 
-   void save_as_edit_view::_001OnAfterChangeText(const ::action_context & context)
+   void save_as_edit_impact::_001OnAfterChangeText(const ::action_context & context)
    {
 
       string str;
@@ -114,7 +114,7 @@ namespace filemanager
    }
 
 
-   void save_as_edit_view::handle(::topic * ptopic, ::context * pcontext)
+   void save_as_edit_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ::user::impact::handle(ptopic, pcontext);
@@ -334,7 +334,7 @@ namespace filemanager
    {
 
       ::filemanager_impact_base::install_message_routing(pchannel);
-      ::user::split_view::install_message_routing(pchannel);
+      ::user::split_impact::install_message_routing(pchannel);
 
    }
 
@@ -430,7 +430,7 @@ namespace filemanager
 
       initialize_split_layout();
 
-      m_pedit = create_pane_view < save_as_edit_view >(0);
+      m_pedit = create_pane_view < save_as_edit_impact >(0);
 
       if (!m_pedit)
       {

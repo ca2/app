@@ -11,7 +11,7 @@ namespace filemanager
 {
 
 
-   folder_selection_list_view::folder_selection_list_view()
+   folder_selection_list_impact::folder_selection_list_impact()
    {
 
       m_ptree = nullptr;
@@ -22,21 +22,21 @@ namespace filemanager
    }
 
 
-   folder_selection_list_view::~folder_selection_list_view()
+   folder_selection_list_impact::~folder_selection_list_impact()
    {
 
    }
 
 
-   void folder_selection_list_view::install_message_routing(::channel * pchannel)
+   void folder_selection_list_impact::install_message_routing(::channel * pchannel)
    {
 
-      ::user::split_view::install_message_routing(pchannel);
+      ::user::split_impact::install_message_routing(pchannel);
 
    }
 
 
-   void folder_selection_list_view::on_create_split_impact()
+   void folder_selection_list_impact::on_create_split_impact()
    {
 
       SetPaneCount(2);
@@ -47,7 +47,7 @@ namespace filemanager
 
       initialize_split_layout();
 
-      m_pusertree = create_view  < ::user::tree_view >(get_document(), get_pane_holder(0));
+      m_pusertree = create_view  < ::user::tree_impact >(get_document(), get_pane_holder(0));
 
       if(m_pusertree == nullptr)
       {
@@ -75,7 +75,7 @@ namespace filemanager
 
       }
 
-      m_plistview = create_view < folder_list_view >(get_document(), get_pane_holder(1));
+      m_plistview = create_view < folder_list_impact >(get_document(), get_pane_holder(1));
 
       if(m_plistview == nullptr)
       {
@@ -87,7 +87,7 @@ namespace filemanager
    }
 
 
-   void folder_selection_list_view::FolderAdd()
+   void folder_selection_list_impact::FolderAdd()
    {
 
       string_array straSel;
@@ -112,7 +112,7 @@ namespace filemanager
    }
 
 
-   void folder_selection_list_view::FolderRemove()
+   void folder_selection_list_impact::FolderRemove()
    {
 
       string_array wstraSel;
@@ -124,7 +124,7 @@ namespace filemanager
    }
 
 
-   void folder_selection_list_view::handle(::topic * ptopic, ::context * pcontext)
+   void folder_selection_list_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ::filemanager_impact_base::handle(ptopic, pcontext);
@@ -132,7 +132,7 @@ namespace filemanager
    }
 
 
-   void folder_selection_list_view::_001OnAdd(::message::message * pmessage)
+   void folder_selection_list_impact::_001OnAdd(::message::message * pmessage)
    {
 
       FolderAdd();
@@ -147,7 +147,7 @@ namespace filemanager
    }
 
 
-   void folder_selection_list_view::_001OnRemove(::message::message * pmessage)
+   void folder_selection_list_impact::_001OnRemove(::message::message * pmessage)
    {
 
       FolderRemove();
@@ -162,7 +162,7 @@ namespace filemanager
    }
 
 
-   data * folder_selection_list_view::filemanager_data()
+   data * folder_selection_list_impact::filemanager_data()
    {
 
       return m_pdata;
@@ -170,7 +170,7 @@ namespace filemanager
    }
 
 
-   void folder_selection_list_view::browse_sync(const ::action_context & context)
+   void folder_selection_list_impact::browse_sync(const ::action_context & context)
    {
 
       auto pdocument = get_document();

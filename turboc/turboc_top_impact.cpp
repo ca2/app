@@ -5,45 +5,45 @@ namespace turboc
 {
 
 
-   top_view::top_view(::object * pobject):
+   top_impact::top_impact(::object * pobject):
       ::object(pobject),
       ::user::split_layout(pobject),
-      ::user::split_view(pobject),
+      ::user::split_impact(pobject),
       place_holder_container(pobject)
    {
 
    }
 
 
-   top_view::~top_view()
+   top_impact::~top_impact()
    {
 
    }
 
 
-   void top_view::assert_ok() const
+   void top_impact::assert_ok() const
    {
 
-      ::user::split_view::assert_ok();
+      ::user::split_impact::assert_ok();
 
    }
 
 
-   void top_view::dump(dump_context & dumpcontext) const
+   void top_impact::dump(dump_context & dumpcontext) const
    {
 
-      ::user::split_view::dump(dumpcontext);
+      ::user::split_impact::dump(dumpcontext);
 
    }
 
 
-   void top_view::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
+   void top_impact::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
-      ::user::split_view::handle(ptopic, pcontext);
+      ::user::split_impact::handle(ptopic, pcontext);
    }
 
 
-   void top_view::on_create_split_impact()
+   void top_impact::on_create_split_impact()
    {
 
       if(get_pane_count() > 0)
@@ -57,7 +57,7 @@ namespace turboc
 
       initialize_split_layout();
 
-      m_peditview = create_view < edit_view >();
+      m_peditview = create_view < edit_impact >();
 
       if(m_peditview == NULL)
       {
@@ -73,13 +73,13 @@ namespace turboc
       if(m_atom == "turboc_top")
       {
 
-         m_ptoggleview = create_view < toggle_view >(NULL,::rectangle_i32(),NULL,"turboc_toggle");
+         m_ptoggleview = create_view < toggle_impact >(NULL,::rectangle_i32(),NULL,"turboc_toggle");
 
       }
       else
       {
 
-         m_ptoggleview = create_view < toggle_view >(NULL,::rectangle_i32(),NULL,"switcher_toggle");
+         m_ptoggleview = create_view < toggle_impact >(NULL,::rectangle_i32(),NULL,"switcher_toggle");
 
       }
 

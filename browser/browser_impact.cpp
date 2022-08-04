@@ -124,13 +124,13 @@ namespace browser
 
       data_get("cur_text", m_strNewHelloBrowser);
 
-      if(GetTypedParent<::user::split_view>() != nullptr)
+      if(GetTypedParent<::user::split_impact>() != nullptr)
       {
 
-         if(GetTypedParent<::user::split_view>()->get_child_by_id("top_edit_view") != nullptr)
+         if(GetTypedParent<::user::split_impact>()->get_child_by_id("top_edit_impact") != nullptr)
          {
 
-            auto pinteraction = GetTypedParent<::user::split_view>()->get_child_by_id("top_edit_view");
+            auto pinteraction = GetTypedParent<::user::split_impact>()->get_child_by_id("top_edit_impact");
 
             pinteraction->_001SetText(m_strNewHelloBrowser,::e_source_initialize);
 
@@ -262,7 +262,7 @@ namespace browser
       if (ptopic->m_atom == id_after_change_text)
       {
 
-         auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
+         auto * peditview = _001TypedWindow < ::userex::top_edit_impact >();
 
          if (peditview != nullptr && ptopic->user_interaction() == peditview)
          {

@@ -392,7 +392,7 @@ namespace user
       //virtual bool get_client_rect(RECTANGLE_I32 * prectangle) override;
 
 
-      virtual void update_icon_list_view_sort();
+      virtual void update_icon_list_impact_sort();
 
    };
 

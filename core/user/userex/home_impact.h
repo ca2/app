@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   class CLASS_DECL_CORE home_view :
+   class CLASS_DECL_CORE home_impact :
       virtual public ::user::impact
    {
    public:
@@ -22,8 +22,8 @@ namespace userex
       };
 
 
-      home_view();
-      virtual ~home_view();
+      home_impact();
+      virtual ~home_impact();
 
 
       void assert_ok() const override;

@@ -180,7 +180,7 @@ namespace helloworld
 
          ::user::impact * pimpact = m_pdocMenu->get_view(0);
 
-         m_prollfps = dynamic_cast <::calculator::plain_edit_view *> (pimpact->get_child_by_id("roll_fps"));
+         m_prollfps = dynamic_cast <::calculator::plain_edit_impact *> (pimpact->get_child_by_id("roll_fps"));
 
          m_pimpactLast->data_get("cur_fps_text", str);
 
@@ -213,7 +213,7 @@ namespace helloworld
       else if (get_view_id() == FONTSEL_IMPACT)
       {
 
-         __pointer(::user::font_list_view) pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_view");
+         __pointer(::user::font_list_impact) pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_impact");
 
          if (m_pimpactLast != nullptr && pfontview.is_set())
          {

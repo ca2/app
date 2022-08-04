@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   class CLASS_DECL_CA2_MATH plain_edit_view:
+   class CLASS_DECL_CA2_MATH plain_edit_impact:
       virtual public ::user::show < ::user::plain_edit >
    {
    public:
@@ -33,8 +33,8 @@ namespace calculator
       string                     m_strFormat;
 
 
-      plain_edit_view(::object * pobject);
-      virtual ~plain_edit_view();
+      plain_edit_impact(::object * pobject);
+      virtual ~plain_edit_impact();
 
       virtual void _001OnAfterChangeText(const ::action_context & action_context);
 

@@ -8,7 +8,7 @@ namespace userex
 {
 
 
-   class CLASS_DECL_CORE group_image_list_view :
+   class CLASS_DECL_CORE group_image_list_impact :
       virtual public ::user::impact
    {
    public:
@@ -23,7 +23,7 @@ namespace userex
          ::atom                    m_atomGroup;
          string                  m_strIcon;
          string                  m_strTitle;
-         __pointer(image_list_view)     m_plist;
+         __pointer(image_list_impact)     m_plist;
 
       };
 
@@ -37,8 +37,8 @@ namespace userex
       ::atom                          m_atomGroup;
 
 
-      group_image_list_view();
-      virtual ~group_image_list_view();
+      group_image_list_impact();
+      virtual ~group_image_list_impact();
 
 
       void assert_ok() const override;
@@ -46,7 +46,7 @@ namespace userex
       void dump(dump_context & dumpcontext) const override;
 
 
-      virtual ::userex::image_list_view * get_group_list(::atom idGroup);
+      virtual ::userex::image_list_impact * get_group_list(::atom idGroup);
 
       virtual ::file::path get_link_path(string strLink);
 
@@ -63,7 +63,7 @@ namespace userex
 
       virtual void on_command(::message::command * pcommand) override;
 
-      virtual ::userex::image_list_view * add_group(::atom idGroup, string strIcon, string strTitle, ::file::path pathFolder = "");
+      virtual ::userex::image_list_impact * add_group(::atom idGroup, string strIcon, string strTitle, ::file::path pathFolder = "");
 
       void set_current_item(::item * pitem, const ::action_context & action_context) override;
 
@@ -73,7 +73,7 @@ namespace userex
 
       virtual string get_menu_xml();
 
-      ::userex::image_list_view * get_current_list();
+      ::userex::image_list_impact * get_current_list();
 
       virtual group * get_group(::atom idGroup);
 

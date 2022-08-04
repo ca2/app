@@ -5,7 +5,7 @@ namespace turboc
 {
 
 
-   toggle_view::toggle_view(::object * pobject):
+   toggle_impact::toggle_impact(::object * pobject):
       ::object(pobject),
       ::user::interaction(pobject),
       ::user::button(pobject)
@@ -14,13 +14,13 @@ namespace turboc
       m_ptopview = NULL;
 
    }
-   toggle_view::~toggle_view()
+   toggle_impact::~toggle_impact()
    {
 
 
    }
 
-   void toggle_view::install_message_handling(::message::dispatch * pdispatch)
+   void toggle_impact::install_message_handling(::message::dispatch * pdispatch)
    {
 
       ::aura::impact::install_message_handling(pdispatch);
@@ -29,7 +29,7 @@ namespace turboc
    }
 
 
-   void toggle_view::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
+   void toggle_impact::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
 
       ::aura::impact::handle(ptopic, pcontext);
@@ -37,7 +37,7 @@ namespace turboc
    }
 
 
-   //void toggle_view::_001OnAfterChangeText(const ::action_context & context)
+   //void toggle_impact::_001OnAfterChangeText(const ::action_context & context)
    //{
 
    //   if(!context.is_user_source())
@@ -56,7 +56,7 @@ namespace turboc
    //}
 
 
-   bool toggle_view::keyboard_focus_is_focusable()
+   bool toggle_impact::keyboard_focus_is_focusable()
    {
 
       return ::user::button::keyboard_focus_is_focusable() ;

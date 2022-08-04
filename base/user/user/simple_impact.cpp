@@ -1,8 +1,8 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #endif
-#include "simple_view.h"
+#include "simple_impact.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 
 
@@ -10,18 +10,18 @@ namespace user
 {
 
 
-   simple_view::simple_view()
+   simple_impact::simple_impact()
    {
 
    }
 
 
-   simple_view::~simple_view()
+   simple_impact::~simple_impact()
    {
    }
 
 
-   void simple_view::install_message_routing(::channel * pchannel)
+   void simple_impact::install_message_routing(::channel * pchannel)
    {
 
       ::user::impact::install_message_routing(pchannel);
@@ -29,7 +29,7 @@ namespace user
    }
 
 
-   void simple_view::assert_ok() const
+   void simple_impact::assert_ok() const
    {
 
       ::user::impact::assert_ok();
@@ -37,7 +37,7 @@ namespace user
    }
 
 
-   void simple_view::dump(dump_context & dumpcontext) const
+   void simple_impact::dump(dump_context & dumpcontext) const
    {
 
       ::user::impact::dump(dumpcontext);
@@ -45,7 +45,7 @@ namespace user
    }
 
 
-   void simple_view::handle(::topic * ptopic, ::context * pcontext)
+   void simple_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ::user::impact::handle(ptopic, pcontext);
@@ -53,7 +53,7 @@ namespace user
    }
 
 
-   void simple_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void simple_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       for (auto & text : m_texta)

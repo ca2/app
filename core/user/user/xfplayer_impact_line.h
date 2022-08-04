@@ -1,13 +1,13 @@
 #pragma once
 
 
-#include "xfplayer_view_line_selection.h"
+#include "xfplayer_impact_line_selection.h"
 
 
-class xfplayer_view_linea;
+class xfplayer_impact_linea;
 
 
-class CLASS_DECL_CORE xfplayer_view_line  :
+class CLASS_DECL_CORE xfplayer_impact_line  :
    virtual public ::object
 {
 public:
@@ -53,7 +53,7 @@ public:
    bool                             m_bAutoSizeY;
    i32                              m_iAlign;
    ::user::interaction *            m_puserinteraction;
-   xfplayer_view_linea *              m_pContainer;
+   xfplayer_impact_linea *              m_pContainer;
 
    // 08, May 2004 attributes
    ::draw2d::graphics_pointer                m_dc1;
@@ -96,11 +96,11 @@ public:
    ::color::color                         m_colorLyricLeft;
    ::color::color                         m_colorLyricRight;
 
-   xfplayer_view_line(::user::interaction * puserinteraction);
-   //xfplayer_view_line(const xfplayer_view_line & line);
-   ~xfplayer_view_line() override;
+   xfplayer_impact_line(::user::interaction * puserinteraction);
+   //xfplayer_impact_line(const xfplayer_impact_line & line);
+   ~xfplayer_impact_line() override;
 
-   virtual void initialize_xfplayer_view_line(xfplayer_view_linea * pContainer);
+   virtual void initialize_xfplayer_impact_line(xfplayer_impact_linea * pContainer);
 
    void set_blend(double d);
    ::write_text::font * GetFont();
@@ -182,7 +182,7 @@ public:
    void OnTimerAnimate(::draw2d::graphics_pointer & pgraphics, rectangle_i32_array &   rectaModified);
 
    void Show(bool bShow = true);
-   virtual xfplayer_view_line & operator = (const xfplayer_view_line & src);
+   virtual xfplayer_impact_line & operator = (const xfplayer_impact_line & src);
    void GetPlacement(RECTANGLE_I32 * prectangle);
 
    void SetPlaement(const ::rectangle_i32 & rectangle);

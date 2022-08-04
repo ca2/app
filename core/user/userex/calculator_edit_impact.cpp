@@ -4,7 +4,7 @@
 #endif
 
 #include "axis/mathematics/calculator/_.h"
-#include "calculator_edit_view.h"
+#include "calculator_edit_impact.h"
 #include "aura/update.h"
 #include "acme/id.h"
 
@@ -13,7 +13,7 @@ namespace calculator
 {
 
 
-   plain_edit_view::plain_edit_view()
+   plain_edit_impact::plain_edit_impact()
    {
 
       m_pcallback = nullptr;
@@ -24,13 +24,13 @@ namespace calculator
    }
 
 
-   plain_edit_view::~plain_edit_view()
+   plain_edit_impact::~plain_edit_impact()
    {
 
    }
 
 
-   bool plain_edit_view::keyboard_focus_is_focusable() const
+   bool plain_edit_impact::keyboard_focus_is_focusable() const
    {
 
       return is_window_enabled() && is_window_visible();
@@ -38,7 +38,7 @@ namespace calculator
    }
 
 
-   ::payload plain_edit_view::get_payload()
+   ::payload plain_edit_impact::get_payload()
    {
 
       ::payload payload;
@@ -51,17 +51,17 @@ namespace calculator
 
    }
 
-   void plain_edit_view::install_message_routing(::channel * pchannel)
+   void plain_edit_impact::install_message_routing(::channel * pchannel)
    {
     
       ::user::show < ::user::plain_edit >::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &plain_edit_view::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &plain_edit_impact::on_message_create);
       
    }
 
 
-   void plain_edit_view::on_message_create(::message::message * pmessage)
+   void plain_edit_impact::on_message_create(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -77,7 +77,7 @@ namespace calculator
    }
 
 
-   void plain_edit_view::set_format(const string& strFormat)
+   void plain_edit_impact::set_format(const string& strFormat)
    {
 
       m_strFormat = strFormat;
@@ -85,7 +85,7 @@ namespace calculator
    }
 
 
-   void plain_edit_view::set_callback(callback* pcallback)
+   void plain_edit_impact::set_callback(callback* pcallback)
    {
 
       m_pcallback = pcallback;
@@ -93,7 +93,7 @@ namespace calculator
    }
 
 
-   void plain_edit_view::handle(::topic * ptopic, ::context * pcontext)
+   void plain_edit_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       if (ptopic->m_atom == id_after_change_text)
@@ -378,7 +378,7 @@ namespace calculator
    }
 
 
-   void plain_edit_view::plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context& context)
+   void plain_edit_impact::plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context& context)
    {
 
       auto pplaineditview = this;
@@ -401,7 +401,7 @@ namespace calculator
 ::user::plain_edit* new_calculator_plain_edit()
 {
 
-   return new ::calculator::plain_edit_view();
+   return new ::calculator::plain_edit_impact();
 
 }
 

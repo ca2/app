@@ -9,7 +9,7 @@ namespace userex
 {
 
 
-   top_toggle_view::top_toggle_view()
+   top_toggle_impact::top_toggle_impact()
    {
 
       m_ptopview = nullptr;
@@ -17,14 +17,14 @@ namespace userex
    }
 
 
-   top_toggle_view::~top_toggle_view()
+   top_toggle_impact::~top_toggle_impact()
    {
 
 
    }
 
 
-   void top_toggle_view::install_message_routing(::channel * pchannel)
+   void top_toggle_impact::install_message_routing(::channel * pchannel)
    {
 
       ::user::impact::install_message_routing(pchannel);
@@ -33,7 +33,7 @@ namespace userex
    }
 
 
-   void top_toggle_view::handle(::topic * ptopic, ::context * pcontext)
+   void top_toggle_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ::user::impact::handle(ptopic, pcontext);
@@ -41,7 +41,7 @@ namespace userex
    }
 
 
-   bool top_toggle_view::keyboard_focus_is_focusable() const
+   bool top_toggle_impact::keyboard_focus_is_focusable() const
    {
 
       return ::user::button::keyboard_focus_is_focusable();

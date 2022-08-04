@@ -216,7 +216,7 @@ namespace browser
 
          ::user::impact * pimpact = m_pdocMenu->get_view(0);
 
-         m_prollfps = dynamic_cast <::user::plain_edit_view *> (pimpact->get_child_by_id("roll_fps"));
+         m_prollfps = dynamic_cast <::user::plain_edit_impact *> (pimpact->get_child_by_id("roll_fps"));
 
          m_pimpactLast->data_get("cur_fps_text", str);
 
@@ -251,7 +251,7 @@ namespace browser
       else if (get_view_id() == FONTSEL_IMPACT)
       {
 
-         __pointer(::user::font_list_view) pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_view");
+         __pointer(::user::font_list_impact) pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_impact");
 
          if (m_pimpactLastBilbo != nullptr && pfontview.is_set())
          {
@@ -276,7 +276,7 @@ namespace browser
       if (m_pimpactdataOld != nullptr && m_pimpactdataOld->m_atom == FONTSEL_IMPACT)
       {
 
-         __pointer(::user::font_list_view) pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_view");
+         __pointer(::user::font_list_impact) pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_impact");
 
          if (m_pimpactLastBilbo != nullptr && pfontview.is_set())
          {

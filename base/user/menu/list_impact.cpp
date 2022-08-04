@@ -7,7 +7,7 @@ namespace user
 {
 
 
-   menu_list_view::menu_list_view()
+   menu_list_impact::menu_list_impact()
    {
 
       m_bAutoClose = false;
@@ -16,13 +16,13 @@ namespace user
 
 
 
-   menu_list_view::~menu_list_view()
+   menu_list_impact::~menu_list_impact()
    {
 
    }
 
 
-   void menu_list_view::assert_ok() const
+   void menu_list_impact::assert_ok() const
    {
       
       impact::assert_ok();
@@ -30,7 +30,7 @@ namespace user
    }
 
 
-   void menu_list_view::dump(dump_context & dumpcontext) const
+   void menu_list_impact::dump(dump_context & dumpcontext) const
    {
       
       impact::dump(dumpcontext);
@@ -39,7 +39,7 @@ namespace user
 
 
 
-   void menu_list_view::install_message_routing(::channel * pchannel)
+   void menu_list_impact::install_message_routing(::channel * pchannel)
    {
 
       BASE::install_message_routing(pchannel);
@@ -47,7 +47,7 @@ namespace user
    }
 
 
-   bool menu_list_view::pre_create_window(::user::system * pusersystem)
+   bool menu_list_impact::pre_create_window(::user::system * pusersystem)
    {
 
       return ::user::impact::pre_create_window(pusersystem);
@@ -55,7 +55,7 @@ namespace user
    }
 
 
-   void menu_list_view::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
+   void menu_list_impact::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
       __pointer(::user::interaction) puserinteractionNotify;
@@ -83,7 +83,7 @@ namespace user
    }
 
 
-   void menu_list_view::post_non_client_destroy()
+   void menu_list_impact::post_non_client_destroy()
    {
 
       ::user::menu_list_window::post_non_client_destroy();
@@ -94,7 +94,7 @@ namespace user
    void tab_impact::creatimpact_menu(::user::impact_data * pimpactdata)
    {
 
-      ::user::impact::create_view < ::user::menu_list_view >(pimpactdata);
+      ::user::impact::create_view < ::user::menu_list_impact >(pimpactdata);
 
    }
 

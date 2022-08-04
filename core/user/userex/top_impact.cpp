@@ -9,7 +9,7 @@ namespace userex
 {
 
 
-   top_view::top_view()
+   top_impact::top_impact()
    {
 
       m_peditview = nullptr;
@@ -18,37 +18,37 @@ namespace userex
    }
 
 
-   top_view::~top_view()
+   top_impact::~top_impact()
    {
 
    }
 
 
-   void top_view::assert_ok() const
+   void top_impact::assert_ok() const
    {
 
-      ::user::split_view::assert_ok();
+      ::user::split_impact::assert_ok();
 
    }
 
 
-   void top_view::dump(dump_context & dumpcontext) const
+   void top_impact::dump(dump_context & dumpcontext) const
    {
 
-      ::user::split_view::dump(dumpcontext);
+      ::user::split_impact::dump(dumpcontext);
 
    }
 
 
-   void top_view::handle(::topic * ptopic, ::context * pcontext)
+   void top_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::split_view::handle(ptopic, pcontext);
+      ::user::split_impact::handle(ptopic, pcontext);
 
    }
 
 
-   void top_view::on_create_split_impact()
+   void top_impact::on_create_split_impact()
    {
 
       if (get_pane_count() > 0)
@@ -66,7 +66,7 @@ namespace userex
 
       initialize_split_layout();
 
-      m_peditview = create_pane_view < top_edit_view >(0, "top_edit_view");
+      m_peditview = create_pane_view < top_edit_impact >(0, "top_edit_impact");
 
       m_peditview->m_bParseDataPacks = true;
 
@@ -79,7 +79,7 @@ namespace userex
 
       m_peditview->m_ptopview = this;
 
-      m_ptoggleview = create_pane_view < top_toggle_view >(1, "top_toggle_view");
+      m_ptoggleview = create_pane_view < top_toggle_impact >(1, "top_toggle_impact");
 
       if (m_ptoggleview == nullptr)
       {
@@ -93,30 +93,30 @@ namespace userex
    }
 
 
-   bool top_view::is_this_visible(::user::enum_layout elayout)
+   bool top_impact::is_this_visible(::user::enum_layout elayout)
    {
 
-      return ::user::split_view::is_this_visible(elayout) && !top_level()->frame_is_transparent();
+      return ::user::split_impact::is_this_visible(elayout) && !top_level()->frame_is_transparent();
 
    }
 
 
-   void top_view::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void top_impact::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::split_view::_001OnNcDraw(pgraphics);
+      ::user::split_impact::_001OnNcDraw(pgraphics);
 
    }
 
 
-   void top_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void top_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      string strType = "top_view";
+      string strType = "top_impact";
 
       ::duration t1 = ::duration::now();
 
-      ::user::split_view::_001OnDraw(pgraphics);
+      ::user::split_impact::_001OnDraw(pgraphics);
 
       ::duration d1 = t1.elapsed();
 

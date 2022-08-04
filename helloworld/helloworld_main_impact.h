@@ -6,12 +6,12 @@ namespace helloworld
 
 
    class CLASS_DECL_APP_HELLOWORLD main_impact:
-      virtual public ::user::split_view
+      virtual public ::user::split_impact
    {
    public:
 
 
-      ::userex::top_view *    m_ptopview;
+      ::userex::top_impact *    m_ptopview;
       impact *                  m_pimpact;
 
 

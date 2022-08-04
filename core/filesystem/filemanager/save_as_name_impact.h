@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   class CLASS_DECL_CORE save_as_edit_view :
+   class CLASS_DECL_CORE save_as_edit_impact :
       virtual public ::filemanager_show < ::user::show < ::user::plain_edit > >
    {
    public:
@@ -14,7 +14,7 @@ namespace filemanager
       bool m_bVoidSync;
 
 
-      save_as_edit_view();
+      save_as_edit_impact();
 
 
       void install_message_routing(::channel * pchannel) override;
@@ -54,12 +54,12 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE save_as_view:
-      virtual public ::filemanager_show < ::user::split_view >
+      virtual public ::filemanager_show < ::user::split_impact >
    {
    public:
 
       
-      save_as_edit_view *     m_pedit;
+      save_as_edit_impact *     m_pedit;
       save_as_button *        m_pbutton;
 
 

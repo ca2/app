@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #endif
 
 
@@ -86,7 +86,7 @@ namespace base
    }
 
 
-   void application::on_create_split_view(::user::split_view* psplit)
+   void application::on_create_split_impact(::user::split_impact* psplit)
    {
 
 

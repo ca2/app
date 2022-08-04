@@ -2,7 +2,7 @@
 #include "core/user/user/_user.h"
 
 
-xfplayer_view_linea::xfplayer_view_linea(::user::interaction * puserinteraction) :
+xfplayer_impact_linea::xfplayer_impact_linea(::user::interaction * puserinteraction) :
    m_selection(puserinteraction),
    m_puserinteraction(puserinteraction)
 {
@@ -14,14 +14,14 @@ xfplayer_view_linea::xfplayer_view_linea(::user::interaction * puserinteraction)
 }
 
 
-xfplayer_view_linea::~xfplayer_view_linea()
+xfplayer_impact_linea::~xfplayer_impact_linea()
 {
 
 }
 
 
 
-void xfplayer_view_linea::OnChildSetVisible(xfplayer_view_line * pline, bool bVisible)
+void xfplayer_impact_linea::OnChildSetVisible(xfplayer_impact_line * pline, bool bVisible)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -65,17 +65,17 @@ void xfplayer_view_linea::OnChildSetVisible(xfplayer_view_line * pline, bool bVi
 
 }
 
-index xfplayer_view_linea::GetFirstVisibleLineIndex()
+index xfplayer_impact_linea::GetFirstVisibleLineIndex()
 {
    return m_iFirstVisible;
 }
 
-index xfplayer_view_linea::GetLastVisibleLineIndex()
+index xfplayer_impact_linea::GetLastVisibleLineIndex()
 {
    return m_iLastVisible;
 }
 
-void xfplayer_view_linea::Prepare()
+void xfplayer_impact_linea::Prepare()
 {
    synchronous_lock synchronouslock(mutex());
    for (i32 i = 0; i < this->line_count(); i++)
@@ -85,7 +85,7 @@ void xfplayer_view_linea::Prepare()
    }
 }
 
-void xfplayer_view_linea::Prepare(xfplayer_view_line *pImpactLine)
+void xfplayer_impact_linea::Prepare(xfplayer_impact_line *pImpactLine)
 
 {
    synchronous_lock synchronouslock(mutex());
@@ -93,7 +93,7 @@ void xfplayer_view_linea::Prepare(xfplayer_view_line *pImpactLine)
 
 }
 
-//void xfplayer_view_linea::set_user_interaction(__pointer(::user::interaction) pinteraction)
+//void xfplayer_impact_linea::set_user_interaction(__pointer(::user::interaction) pinteraction)
 //{
 //   
 //   m_pinteraction = pinteraction;
@@ -101,7 +101,7 @@ void xfplayer_view_linea::Prepare(xfplayer_view_line *pImpactLine)
 //}
 
 
-void xfplayer_view_linea::SetEffect(i32 iEffect)
+void xfplayer_impact_linea::SetEffect(i32 iEffect)
 {
    synchronous_lock synchronouslock(mutex());
    for (i32 i = 0; i < this->line_count(); i++)
@@ -110,12 +110,12 @@ void xfplayer_view_linea::SetEffect(i32 iEffect)
    }
 }
 
-//void xfplayer_view_linea::SetRenderWindow(::user::interaction_impl * pwindow)
+//void xfplayer_impact_linea::SetRenderWindow(::user::interaction_impl * pwindow)
 //{
 //   __UNREFERENCED_PARAMETER(pwindow);
 //}
 
-index xfplayer_view_linea::FindLine(xfplayer_view_line * pline)
+index xfplayer_impact_linea::FindLine(xfplayer_impact_line * pline)
 {
    synchronous_lock synchronouslock(mutex());
    for (i32 iLine = 0; iLine < this->line_count(); iLine++)
@@ -126,7 +126,7 @@ index xfplayer_view_linea::FindLine(xfplayer_view_line * pline)
    return -1;
 }
 
-::user::enum_line_hit xfplayer_view_linea::hit_test(const point_i32 &pointCursor, index &iLine, strsize &iChar)
+::user::enum_line_hit xfplayer_impact_linea::hit_test(const point_i32 &pointCursor, index &iLine, strsize &iChar)
 {
    synchronous_lock synchronouslock(mutex());
    for (index i = 0; i < this->line_count(); i++)
@@ -142,16 +142,16 @@ index xfplayer_view_linea::FindLine(xfplayer_view_line * pline)
 
 }
 
-void xfplayer_view_linea::install_message_routing(::channel * pchannel)
+void xfplayer_impact_linea::install_message_routing(::channel * pchannel)
 {
-   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &xfplayer_view_linea::OnMouseMove);
-   MESSAGE_LINK(e_message_set_cursor, pchannel, this, &xfplayer_view_linea::OnSetCursor);
-   //MESSAGE_LINK(e_message_timer,        pchannel, this, &xfplayer_view_linea::OnTimer);
-   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &xfplayer_view_linea::OnLButtonDown);
-   MESSAGE_LINK(e_message_left_button_up, pchannel, this, &xfplayer_view_linea::OnLButtonUp);
+   MESSAGE_LINK(e_message_mouse_move, pchannel, this, &xfplayer_impact_linea::OnMouseMove);
+   MESSAGE_LINK(e_message_set_cursor, pchannel, this, &xfplayer_impact_linea::OnSetCursor);
+   //MESSAGE_LINK(e_message_timer,        pchannel, this, &xfplayer_impact_linea::OnTimer);
+   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &xfplayer_impact_linea::OnLButtonDown);
+   MESSAGE_LINK(e_message_left_button_up, pchannel, this, &xfplayer_impact_linea::OnLButtonUp);
 }
 
-void xfplayer_view_linea::OnMouseMove(::message::message * pmessage)
+void xfplayer_impact_linea::OnMouseMove(::message::message * pmessage)
 {
    synchronous_lock synchronouslock(mutex());
    for (i32 i = 0; i < this->line_count(); i++)
@@ -164,7 +164,7 @@ void xfplayer_view_linea::OnMouseMove(::message::message * pmessage)
    }
 }
 
-void xfplayer_view_linea::OnLButtonDown(::message::message * pmessage)
+void xfplayer_impact_linea::OnLButtonDown(::message::message * pmessage)
 {
    synchronous_lock synchronouslock(mutex());
    for (i32 i = 0; i < this->line_count(); i++)
@@ -177,7 +177,7 @@ void xfplayer_view_linea::OnLButtonDown(::message::message * pmessage)
    }
 }
 
-void xfplayer_view_linea::OnLButtonUp(::message::message * pmessage)
+void xfplayer_impact_linea::OnLButtonUp(::message::message * pmessage)
 {
    synchronous_lock synchronouslock(mutex());
    for (i32 i = 0; i < this->line_count(); i++)
@@ -188,7 +188,7 @@ void xfplayer_view_linea::OnLButtonUp(::message::message * pmessage)
    }
 }
 
-void xfplayer_view_linea::_001OnTimer(::timer * ptimer)
+void xfplayer_impact_linea::_001OnTimer(::timer * ptimer)
 {
    synchronous_lock synchronouslock(mutex());
    for (i32 i = 0; i < this->line_count(); i++)
@@ -197,7 +197,7 @@ void xfplayer_view_linea::_001OnTimer(::timer * ptimer)
    }
 }
 
-void xfplayer_view_linea::OnSetCursor(::message::message * pmessage)
+void xfplayer_impact_linea::OnSetCursor(::message::message * pmessage)
 {
    synchronous_lock synchronouslock(mutex());
    for (i32 i = 0; i < this->line_count(); i++)
@@ -208,7 +208,7 @@ void xfplayer_view_linea::OnSetCursor(::message::message * pmessage)
    }
 }
 
-void xfplayer_view_linea::set_blend(double dBlend)
+void xfplayer_impact_linea::set_blend(double dBlend)
 {
    synchronous_lock synchronouslock(mutex());
    for (i32 iLine = 0; iLine < this->line_count(); iLine++)
@@ -218,13 +218,13 @@ void xfplayer_view_linea::set_blend(double dBlend)
 }
 
 
-XfplayerImpactLineSelection & xfplayer_view_linea::GetSelection()
+XfplayerImpactLineSelection & xfplayer_impact_linea::GetSelection()
 {
    return m_selection;
 }
 
 
-void xfplayer_view_linea::get_sel_text(string & strSelText, const ::string & pszLineSeparator)
+void xfplayer_impact_linea::get_sel_text(string & strSelText, const ::string & pszLineSeparator)
 {
    synchronous_lock synchronouslock(mutex());
    index iLineStart;
@@ -277,7 +277,7 @@ void xfplayer_view_linea::get_sel_text(string & strSelText, const ::string & psz
 
 }
 
-string xfplayer_view_linea::get_sel_text(const ::string & pszLineSeparator)
+string xfplayer_impact_linea::get_sel_text(const ::string & pszLineSeparator)
 {
 
    string strSelText;
@@ -289,7 +289,7 @@ string xfplayer_view_linea::get_sel_text(const ::string & pszLineSeparator)
 }
 
 
-void xfplayer_view_linea::get_text(string & strText, const ::string & pszLineSeparator)
+void xfplayer_impact_linea::get_text(string & strText, const ::string & pszLineSeparator)
 {
    synchronous_lock synchronouslock(mutex());
    if (line_count() > 0)
@@ -310,7 +310,7 @@ void xfplayer_view_linea::get_text(string & strText, const ::string & pszLineSep
 
 }
 
-string xfplayer_view_linea::get_text(const ::string & pszLineSeparator)
+string xfplayer_impact_linea::get_text(const ::string & pszLineSeparator)
 {
 
    string strText;

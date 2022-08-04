@@ -30,7 +30,7 @@ namespace filemanager
    {
 
       ::filemanager_impact_base::install_message_routing(pchannel);
-      ::user::split_view::install_message_routing(pchannel);
+      ::user::split_impact::install_message_routing(pchannel);
 
    }
 
@@ -38,7 +38,7 @@ namespace filemanager
    void main_impact::assert_ok() const
    {
 
-      ::user::split_view::assert_ok();
+      ::user::split_impact::assert_ok();
 
    }
 
@@ -46,7 +46,7 @@ namespace filemanager
    void main_impact::dump(dump_context & dumpcontext) const
    {
 
-      ::user::split_view::dump(dumpcontext);
+      ::user::split_impact::dump(dumpcontext);
 
    }
 
@@ -184,7 +184,7 @@ namespace filemanager
 
       ::filemanager_impact_base::handle(ptopic, pcontext);
 
-      ::user::split_view::handle(ptopic, pcontext);
+      ::user::split_impact::handle(ptopic, pcontext);
 
       if (ptopic->m_atom == OPEN_DOCUMENT_UPDATE)
       {

@@ -5,15 +5,15 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE split_view :
+   class CLASS_DECL_BASE split_impact :
       virtual public ::user::impact_host,
       virtual public ::user::show < split_layout >
    {
    public:
 
 
-      split_view();
-      virtual ~split_view();
+      split_impact();
+      virtual ~split_impact();
 
 
       void assert_ok() const override;

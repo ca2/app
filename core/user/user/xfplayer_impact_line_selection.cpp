@@ -18,7 +18,7 @@ XfplayerImpactLineSelection::~XfplayerImpactLineSelection()
 }
 
 
-void XfplayerImpactLineSelection::relay_event(xfplayer_view_line & viewline, ::message::message * pmessage)
+void XfplayerImpactLineSelection::relay_event(xfplayer_impact_line & viewline, ::message::message * pmessage)
 {
    __pointer(::user::message) pusermessage(pmessage);
 
@@ -188,7 +188,7 @@ void XfplayerImpactLineSelection::relay_event(xfplayer_view_line & viewline, ::m
    }
 }
 
-void XfplayerImpactLineSelection::OnSelEvent(xfplayer_view_line & viewline, XfplayerImpactLineSelection::enum_event eevent)
+void XfplayerImpactLineSelection::OnSelEvent(xfplayer_impact_line & viewline, XfplayerImpactLineSelection::enum_event eevent)
 {
    __UNREFERENCED_PARAMETER(viewline);
    switch(eevent)
@@ -219,7 +219,7 @@ void XfplayerImpactLineSelection::OnSelEvent(xfplayer_view_line & viewline, Xfpl
    }
 }
 
-bool XfplayerImpactLineSelection::SetSelBefore(xfplayer_view_line & viewline)
+bool XfplayerImpactLineSelection::SetSelBefore(xfplayer_impact_line & viewline)
 {
    /*   if(m_etype & TypeMaskEndHere)
    {
@@ -249,7 +249,7 @@ bool XfplayerImpactLineSelection::SetSelBefore(xfplayer_view_line & viewline)
    return true;
 }
 
-bool XfplayerImpactLineSelection::SetSelAfter(xfplayer_view_line & viewline)
+bool XfplayerImpactLineSelection::SetSelAfter(xfplayer_impact_line & viewline)
 {
    if(viewline.m_iaPosition.get_count() > 0)
    {
@@ -292,7 +292,7 @@ bool XfplayerImpactLineSelection::SetSelAfter(xfplayer_view_line & viewline)
    return true;
 }
 
-void XfplayerImpactLineSelection::NormalizeSel(xfplayer_view_line & viewline)
+void XfplayerImpactLineSelection::NormalizeSel(xfplayer_impact_line & viewline)
 {
    __UNREFERENCED_PARAMETER(viewline);
    ASSERT(false);
@@ -444,7 +444,7 @@ bool    bMerge)
 }
 
 
-bool XfplayerImpactLineSelection::OnLButtonDown(xfplayer_view_line & viewline, ::u32 user, const ::point_i32 & point)
+bool XfplayerImpactLineSelection::OnLButtonDown(xfplayer_impact_line & viewline, ::u32 user, const ::point_i32 & point)
 {
    
    __UNREFERENCED_PARAMETER(user);
@@ -491,7 +491,7 @@ bool XfplayerImpactLineSelection::OnLButtonDown(xfplayer_view_line & viewline, :
 }
 
 
-bool XfplayerImpactLineSelection::OnMouseMove(xfplayer_view_line & viewline, ::u32 user, const ::point_i32 & point)
+bool XfplayerImpactLineSelection::OnMouseMove(xfplayer_impact_line & viewline, ::u32 user, const ::point_i32 & point)
 {
    
    if (!viewline.IsVisible())
@@ -580,7 +580,7 @@ bool XfplayerImpactLineSelection::OnMouseMove(xfplayer_view_line & viewline, ::u
    return false;
 }
 
-bool XfplayerImpactLineSelection::OnLButtonUp(xfplayer_view_line & viewline, ::u32 user, const ::point_i32 & point)
+bool XfplayerImpactLineSelection::OnLButtonUp(xfplayer_impact_line & viewline, ::u32 user, const ::point_i32 & point)
 {
    __UNREFERENCED_PARAMETER(user);
    if(!viewline.IsVisible())
@@ -662,7 +662,7 @@ bool XfplayerImpactLineSelection::OnLButtonUp(xfplayer_view_line & viewline, ::u
    return false;
 }
 
-bool XfplayerImpactLineSelection::OnTimer(xfplayer_view_line & viewline, ::u32 user)
+bool XfplayerImpactLineSelection::OnTimer(xfplayer_impact_line & viewline, ::u32 user)
 {
    ::u32 uEvent = user;
    if(uEvent == ::e_timer_hover)
@@ -787,7 +787,7 @@ void XfplayerImpactLineSelectionItem::SetCharEnd(strsize iChar)
    m_iCharEnd = iChar;
 }
 
-bool XfplayerImpactLineSelectionItem::Intersect(xfplayer_view_line &viewline)
+bool XfplayerImpactLineSelectionItem::Intersect(xfplayer_impact_line &viewline)
 {
    return Intersect(viewline.m_iIndex, viewline.m_iaPosition.get_upper_bound());
 }
@@ -807,7 +807,7 @@ bool XfplayerImpactLineSelectionItem::Intersect(index iFirstLine, index iLastLin
 
 }
 
-bool XfplayerImpactLineSelection::get_item(XfplayerImpactLineSelectionItem &item, xfplayer_view_line &viewline)
+bool XfplayerImpactLineSelection::get_item(XfplayerImpactLineSelectionItem &item, xfplayer_impact_line &viewline)
 {
    if(m_item.Intersect(viewline))
    {

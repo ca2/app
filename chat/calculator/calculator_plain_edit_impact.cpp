@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   plain_edit_view::plain_edit_view(::object * pobject):
+   plain_edit_impact::plain_edit_impact(::object * pobject):
       object(pobject),
       ::user::interaction(pobject),
       ::user::plain_edit(pobject)
@@ -18,13 +18,13 @@ namespace calculator
 
    }
 
-   plain_edit_view::~plain_edit_view()
+   plain_edit_impact::~plain_edit_impact()
    {
 
    }
 
 
-   void plain_edit_view::handle(::topic * ptopic, ::context * pcontext)
+   void plain_edit_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       if(eupdate == 2000)
@@ -296,7 +296,7 @@ namespace calculator
    }
 
 
-   void plain_edit_view::_001OnAfterChangeText(const ::action_context & context)
+   void plain_edit_impact::_001OnAfterChangeText(const ::action_context & context)
    {
 
       if(context.is_user_source())
@@ -314,7 +314,7 @@ namespace calculator
    }
 
 
-   bool plain_edit_view::keyboard_focus_is_focusable()
+   bool plain_edit_impact::keyboard_focus_is_focusable()
    {
 
       return is_window_enabled() && is_window_visible();
@@ -322,11 +322,11 @@ namespace calculator
    }
 
 
-   i64 plain_edit_view::increment_reference_count()
+   i64 plain_edit_impact::increment_reference_count()
    {
       return ::object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
    }
-   i64 plain_edit_view::decrement_reference_count()
+   i64 plain_edit_impact::decrement_reference_count()
    {
       return ::object::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
    }

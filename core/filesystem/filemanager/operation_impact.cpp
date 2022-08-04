@@ -36,7 +36,7 @@ namespace filemanager
 
       initialize_split_layout();
 
-      m_plistview = create_view < operation_list_view >();
+      m_plistview = create_view < operation_list_impact >();
 
       if(m_plistview == nullptr)
       {
@@ -59,7 +59,7 @@ namespace filemanager
 
    void operation_view::install_message_routing(::channel * pchannel)
    {
-      ::user::split_view::install_message_routing(pchannel);
+      ::user::split_impact::install_message_routing(pchannel);
       MESSAGE_LINK(e_message_create,pchannel,this,&operation_view::on_message_create);
       MESSAGE_LINK(MessageMainPost,pchannel,this,&operation_view::_001OnMainPostMessage);
       MESSAGE_LINK(e_message_destroy,pchannel,this,&operation_view::on_message_destroy);

@@ -111,7 +111,7 @@ auto pwindowing = windowing();
 
                m_pdocument = puser->m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(get_app(), ::e_type_null, __visible(false).is_true());
 
-               m_pimpact = m_pdocument->get_type_impact < ::userex::color_view >();
+               m_pimpact = m_pdocument->get_type_impact < ::userex::color_impact >();
 
                m_pimpact->m_bCompact = true;
 

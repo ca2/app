@@ -10,28 +10,28 @@ namespace userex
 {
 
 
-   split_view::split_view()
+   split_impact::split_impact()
    {
 
    }
 
 
-   split_view::~split_view()
+   split_impact::~split_impact()
    {
 
    }
 
 
-   void split_view::install_message_routing(::channel * pchannel)
+   void split_impact::install_message_routing(::channel * pchannel)
    {
 
-      ::user::split_view::install_message_routing(pchannel);
+      ::user::split_impact::install_message_routing(pchannel);
       ::user::impact_host::install_message_routing(pchannel);
 
    }
 
 
-   bool split_view::on_new_view_creator_data(::user::impact_data * pimpactdata)
+   bool split_impact::on_new_view_creator_data(::user::impact_data * pimpactdata)
    {
 
       ::index iPane = pimpactdata->m_atom.index();
@@ -68,16 +68,16 @@ namespace userex
    }
 
 
-   void split_view::handle(::topic * ptopic, ::context * pcontext)
+   void split_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::split_view::handle(ptopic, pcontext);
+      ::user::split_impact::handle(ptopic, pcontext);
       ::user::impact_host::handle(ptopic, pcontext);
 
    }
 
 
-   bool split_view::on_preparimpact_data(::user::impact_data* pimpactdata)
+   bool split_impact::on_preparimpact_data(::user::impact_data* pimpactdata)
    {
 
       pimpactdata->m_pplaceholder = get_pane_holder((::index) pimpactdata->m_iId);
@@ -87,7 +87,7 @@ namespace userex
    }
 
 
-   bool split_view::create_pane(i32 iPane, bool bFixedSize, ::atom atom)
+   bool split_impact::create_pane(i32 iPane, bool bFixedSize, ::atom atom)
    {
 
       ASSERT(iPane >= 0);
@@ -118,13 +118,13 @@ namespace userex
    }
 
 
-   void split_view::on_command_probe(::message::command * pcommand)
+   void split_impact::on_command_probe(::message::command * pcommand)
    {
 
    }
 
 
-   void split_view::on_command(::message::command * pcommand)
+   void split_impact::on_command(::message::command * pcommand)
    {
 
    }

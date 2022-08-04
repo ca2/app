@@ -9,24 +9,24 @@ namespace filemanager
 {
 
 
-   operation_list_view::operation_list_view()
+   operation_list_impact::operation_list_impact()
    {
 
       m_durationLastUpdate.Now();
 
    }
 
-   void operation_list_view::install_message_routing(::channel * pchannel)
+   void operation_list_impact::install_message_routing(::channel * pchannel)
    {
 
       ::user::impact::install_message_routing(pchannel);
       ::user::list::install_message_routing(pchannel);
-//      //MESSAGE_LINK(e_message_timer,pchannel,this,&operation_list_view::_001OnTimer);
-      MESSAGE_LINK(e_message_create,pchannel,this,&operation_list_view::on_message_create);
+//      //MESSAGE_LINK(e_message_timer,pchannel,this,&operation_list_impact::_001OnTimer);
+      MESSAGE_LINK(e_message_create,pchannel,this,&operation_list_impact::on_message_create);
    }
 
 
-   void operation_list_view::OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void operation_list_impact::OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
@@ -34,20 +34,20 @@ namespace filemanager
    }
 
 
-   ::count operation_list_view::_001GetItemCount()
+   ::count operation_list_impact::_001GetItemCount()
    {
       if(get_document() == nullptr)
          return 0;
       return get_document()->m_thread.get_item_count();
    }
 
-   __pointer(operation_document) operation_list_view::get_document()
+   __pointer(operation_document) operation_list_impact::get_document()
    {
       return  (::user::impact::get_document());
    }
 
    
-   void operation_list_view::_001GetSubItemText(::user::mesh_subitem * psubitem)
+   void operation_list_impact::_001GetSubItemText(::user::mesh_subitem * psubitem)
    {
 
       if(psubitem->m_iSubItem == 0)
@@ -74,7 +74,7 @@ namespace filemanager
    }
 
 
-   void operation_list_view::_001InsertColumns()
+   void operation_list_impact::_001InsertColumns()
    {
 
       {
@@ -100,7 +100,7 @@ namespace filemanager
    }
 
 
-   void operation_list_view::on_message_create(::message::message * pmessage)
+   void operation_list_impact::on_message_create(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -116,7 +116,7 @@ namespace filemanager
    }
 
 
-   void operation_list_view::_001OnTimer(::timer * ptimer)
+   void operation_list_impact::_001OnTimer(::timer * ptimer)
    {
       BASE::_001OnTimer(ptimer);
       if(ptimer->m_uEvent == 123)
@@ -132,7 +132,7 @@ namespace filemanager
    }
 
 
-   void operation_list_view::OnFileOperationStep(i32 iOperation,bool bFinal)
+   void operation_list_impact::OnFileOperationStep(i32 iOperation,bool bFinal)
    {
 
       __UNREFERENCED_PARAMETER(iOperation);
@@ -169,7 +169,7 @@ namespace filemanager
    }
 
 
-   void operation_list_view::handle(::topic * ptopic, ::context * pcontext)
+   void operation_list_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       BASE::handle(ptopic, pcontext);

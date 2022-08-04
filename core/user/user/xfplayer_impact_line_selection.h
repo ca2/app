@@ -1,6 +1,6 @@
 #pragma once
 
-class xfplayer_view_line;
+class xfplayer_impact_line;
 
 class CLASS_DECL_CORE XfplayerImpactLineSelectionItem  
 {
@@ -26,7 +26,7 @@ public:
    XfplayerImpactLineSelectionItem & operator =(const XfplayerImpactLineSelectionItem & item);
 
    void NormalizeSel();
-   bool Intersect(xfplayer_view_line & viewline);
+   bool Intersect(xfplayer_impact_line & viewline);
    bool Intersect(index iLineStart, index iLineEnd);
 
    index GetLineStart();
@@ -86,14 +86,14 @@ public:
    ~XfplayerImpactLineSelection() override;
 
 
-   bool get_item(XfplayerImpactLineSelectionItem & item, xfplayer_view_line & viewline);
+   bool get_item(XfplayerImpactLineSelectionItem & item, xfplayer_impact_line & viewline);
    enum_state GetState();
 
-   virtual void relay_event(xfplayer_view_line & viewline, ::message::message * pmessage);
-   virtual void OnSelEvent(xfplayer_view_line & viewline, enum_event eselevent);
-   bool SetSelBefore(xfplayer_view_line & viewline);
-   bool SetSelAfter(xfplayer_view_line & viewline);
-   void NormalizeSel(xfplayer_view_line & viewline);
+   virtual void relay_event(xfplayer_impact_line & viewline, ::message::message * pmessage);
+   virtual void OnSelEvent(xfplayer_impact_line & viewline, enum_event eselevent);
+   bool SetSelBefore(xfplayer_impact_line & viewline);
+   bool SetSelAfter(xfplayer_impact_line & viewline);
+   void NormalizeSel(xfplayer_impact_line & viewline);
    void GetNormalSelection(index & iLineStart, strsize & iCharStart, index & iLineEnd, strsize & iCharEnd);
 
    void Select(
@@ -107,10 +107,10 @@ public:
 
    XfplayerImpactLineSelection & operator =(XfplayerImpactLineSelection & selection);
 
-   bool OnMouseMove(xfplayer_view_line & viewline, ::u32 user, const ::point_i32 & point);
-   bool OnLButtonDown(xfplayer_view_line & viewline, ::u32 user, const ::point_i32 & point);
-   bool OnLButtonUp(xfplayer_view_line & viewline, ::u32 user, const ::point_i32 & point);
-   bool OnTimer(xfplayer_view_line & viewline, ::u32 user);
+   bool OnMouseMove(xfplayer_impact_line & viewline, ::u32 user, const ::point_i32 & point);
+   bool OnLButtonDown(xfplayer_impact_line & viewline, ::u32 user, const ::point_i32 & point);
+   bool OnLButtonUp(xfplayer_impact_line & viewline, ::u32 user, const ::point_i32 & point);
+   bool OnTimer(xfplayer_impact_line & viewline, ::u32 user);
 
 };
 

@@ -1,6 +1,6 @@
 #pragma once
 
-class CLASS_DECL_CORE html_form_view :
+class CLASS_DECL_CORE html_form_impact :
    virtual public ::html_form
 {
 public:
@@ -9,8 +9,8 @@ public:
    html::element* m_pelementalLButtonDown;
 
 
-   html_form_view();
-   virtual ~html_form_view();
+   html_form_impact();
+   virtual ~html_form_impact();
 
 
    void assert_ok() const override;

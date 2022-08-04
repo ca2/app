@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #endif
 #include "tab_pane.h"
 #include "aura/graphics/draw2d/_draw2d.h"
@@ -332,7 +332,7 @@ namespace user
 
          add_tab(strName1 + "->:<-" + strName2, id3, true, false, pimpactdata->m_pplaceholder);
 
-         __pointer(::user::split_view) psplitview = impact::create_view < ::user::split_view >(pimpactdata);
+         __pointer(::user::split_impact) psplitview = impact::create_view < ::user::split_impact >(pimpactdata);
 
          pimpactdata->m_puserinteraction = psplitview;
 

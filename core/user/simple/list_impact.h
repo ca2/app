@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_CORE simple_list_view :
+class CLASS_DECL_CORE simple_list_impact :
    virtual public ::user::show <  ::user::form_list >
 {
 public:
@@ -10,8 +10,8 @@ public:
    using BASE_TYPE = ::user::show <  ::user::form_list > ;
 
 
-   simple_list_view();
-   ~simple_list_view() override;
+   simple_list_impact();
+   ~simple_list_impact() override;
 
 
    void assert_ok() const override;

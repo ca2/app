@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   class CLASS_DECL_CORE operation_list_view:
+   class CLASS_DECL_CORE operation_list_impact:
       virtual public ::user::show < ::user::list >
    {
    public:
@@ -21,7 +21,7 @@ namespace filemanager
       ::duration                              m_durationLastUpdate;
 
 
-      operation_list_view();
+      operation_list_impact();
 
       void install_message_routing(::channel * pchannel) override;
 

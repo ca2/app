@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE operation_view:
-      public ::user::split_view
+      public ::user::split_impact
    {
    public:
 
@@ -31,7 +31,7 @@ namespace filemanager
       };
 
 
-      operation_list_view *    m_plistview;
+      operation_list_impact *    m_plistview;
       operation_info_view *    m_pinfoview;
 
       ::user::impact_creator *     m_pviewcreator;

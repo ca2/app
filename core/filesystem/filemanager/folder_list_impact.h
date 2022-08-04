@@ -5,8 +5,8 @@ namespace filemanager
 {
 
 
-   class  CLASS_DECL_CORE folder_list_view:
-      virtual public ::filemanager_show < simple_list_view >
+   class  CLASS_DECL_CORE folder_list_impact:
+      virtual public ::filemanager_show < simple_list_impact >
    {
    public:
 
@@ -16,8 +16,8 @@ namespace filemanager
       __pointer(folder_list_data)      m_pfolderlistdata;
 
 
-      folder_list_view();
-      virtual ~folder_list_view();
+      folder_list_impact();
+      virtual ~folder_list_impact();
 
 
       void install_message_routing(::channel * pchannel) override;

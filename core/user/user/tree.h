@@ -209,7 +209,7 @@ namespace user
       void install_message_routing(::channel * pchannel) override;
    };
 
-   typedef show < tree > tree_view;
+   typedef show < tree > tree_impact;
 
 } // namespace user
 

@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   class CLASS_DECL_CORE color_view :
+   class CLASS_DECL_CORE color_impact :
       virtual public ::user::impact
    {
    public:
@@ -15,10 +15,10 @@ namespace userex
       ::point_i32                      m_pointMouseColorBeam;
       bool                             m_bCompact;
       bool                             m_bLButtonPressed;
-      ::user::plain_edit_view          m_editRed;
-      ::user::plain_edit_view          m_editGreen;
-      ::user::plain_edit_view          m_editBlue;
-      ::user::plain_edit_view          m_editHex;
+      ::user::plain_edit_impact          m_editRed;
+      ::user::plain_edit_impact          m_editGreen;
+      ::user::plain_edit_impact          m_editBlue;
+      ::user::plain_edit_impact          m_editHex;
 
       ::image_pointer                  m_pimageTemplate;
       ::image_pointer                  m_pimage;
@@ -29,8 +29,8 @@ namespace userex
       ::rectangle_i32                           m_rectangleColors;
 
 
-      color_view();
-      virtual ~color_view();
+      color_impact();
+      virtual ~color_impact();
 
 
       void assert_ok() const override;

@@ -5,7 +5,7 @@ namespace turboc
 {
 
 
-   edit_view::edit_view(::object * pobject):
+   edit_impact::edit_impact(::object * pobject):
       ::object(pobject),
       ::user::interaction(pobject),
       ::user::scroll_view(pobject),
@@ -18,13 +18,13 @@ namespace turboc
 
    }
 
-   edit_view::~edit_view()
+   edit_impact::~edit_impact()
    {
 
    }
 
 
-   void edit_view::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
+   void edit_impact::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
 
       ::user::edit_plain_text_view::handle(ptopic, pcontext);
@@ -32,7 +32,7 @@ namespace turboc
    }
 
 
-   void edit_view::_001OnAfterChangeText(const ::action_context & context)
+   void edit_impact::_001OnAfterChangeText(const ::action_context & context)
    {
 
       if(!context.is_user_source())
@@ -54,7 +54,7 @@ namespace turboc
    }
 
 
-   bool edit_view::keyboard_focus_is_focusable()
+   bool edit_impact::keyboard_focus_is_focusable()
    {
 
       return is_window_enabled() && is_window_visible();
@@ -62,11 +62,11 @@ namespace turboc
    }
 
 
-   i64 edit_view::increment_reference_count()
+   i64 edit_impact::increment_reference_count()
    {
       return ::root::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
    }
-   i64 edit_view::decrement_reference_count()
+   i64 edit_impact::decrement_reference_count()
    {
       return ::root::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
    }

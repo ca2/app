@@ -9,7 +9,7 @@ namespace filemanager
 {
 
 
-   folder_list_view::folder_list_view()
+   folder_list_impact::folder_list_impact()
    {
 
       m_bRecursive = true;
@@ -17,22 +17,22 @@ namespace filemanager
    }
 
 
-   folder_list_view::~folder_list_view()
+   folder_list_impact::~folder_list_impact()
    {
 
    }
 
 
-   void folder_list_view::install_message_routing(::channel * pchannel)
+   void folder_list_impact::install_message_routing(::channel * pchannel)
    {
 
       ::filemanager_impact_base::install_message_routing(pchannel);
-      ::simple_list_view::install_message_routing(pchannel);
+      ::simple_list_impact::install_message_routing(pchannel);
 
    }
 
 
-   void folder_list_view::initialize(string strDataKeyModifier,bool bRecursive)
+   void folder_list_impact::initialize(string strDataKeyModifier,bool bRecursive)
    {
 
       m_bRecursive = bRecursive;
@@ -52,7 +52,7 @@ namespace filemanager
    }
 
 
-   void folder_list_view::_001InsertColumns()
+   void folder_list_impact::_001InsertColumns()
    {
 
       {
@@ -61,7 +61,7 @@ namespace filemanager
 
          pcolumn->m_iWidth = 400;
          pcolumn->m_iSubItem = 0;
-         pcolumn->m_text = m_pcontext->__text("text://filemanager/folder_list_view/folder_path/Folder Path");
+         pcolumn->m_text = m_pcontext->__text("text://filemanager/folder_list_impact/folder_path/Folder Path");
 
 
       }
@@ -73,7 +73,7 @@ namespace filemanager
          pcolumn->m_atom                    = "check_recursive";
          pcolumn->m_iWidth                = 80;
          pcolumn->m_iSubItem              = 1;
-         pcolumn->m_text                  = m_pcontext->__text("text://filemanager/folder_list_view/recursive/Recursive");
+         pcolumn->m_text                  = m_pcontext->__text("text://filemanager/folder_list_impact/recursive/Recursive");
 
          auto pcheckbox = __create_new <  ::user::check_box >();
          pcheckbox->m_atom = pcolumn->m_atom;
@@ -85,7 +85,7 @@ namespace filemanager
    }
 
 
-   bool folder_list_view::add_unique(const string_array & stra)
+   bool folder_list_impact::add_unique(const string_array & stra)
    {
 
       if (stra.get_size() == 0)
@@ -111,7 +111,7 @@ namespace filemanager
    }
 
 
-   bool folder_list_view::add_unique(const string_array & stra, int_array & baRecursive)
+   bool folder_list_impact::add_unique(const string_array & stra, int_array & baRecursive)
    {
 
       if (stra.get_size() == 0)
@@ -137,7 +137,7 @@ namespace filemanager
    }
 
 
-   bool folder_list_view::erase(const string_array & stra)
+   bool folder_list_impact::erase(const string_array & stra)
    {
 
       if (stra.get_size() == 0)
@@ -166,7 +166,7 @@ namespace filemanager
    }
 
 
-   void folder_list_view::GetSel(string_array & stra)
+   void folder_list_impact::GetSel(string_array & stra)
    {
 
       if (m_pfolderlistdata)
@@ -180,7 +180,7 @@ namespace filemanager
    }
 
 
-   void folder_list_view::handle(::topic * ptopic, ::context * pcontext)
+   void folder_list_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       FILEMANAGER_SHOW_IMPACT::handle(ptopic, pcontext);
@@ -202,7 +202,7 @@ namespace filemanager
    }
 
 
-   void folder_list_view::on_check_save(::user::interaction* puserinteraction)
+   void folder_list_impact::on_check_save(::user::interaction* puserinteraction)
    {
 
       if (puserinteraction->m_atom == "check_recursive")
@@ -224,7 +224,7 @@ namespace filemanager
    }
 
 
-   void folder_list_view::on_check_load(::user::interaction* puserinteraction)
+   void folder_list_impact::on_check_load(::user::interaction* puserinteraction)
    {
 
       if (puserinteraction->m_atom == "check_recursive")

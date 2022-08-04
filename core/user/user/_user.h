@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 
 
 #define SWP_CHANGEVIEWPORTOFFSET  0x100000
@@ -270,7 +270,7 @@ namespace userex
 {
 
 
-   class color_view;
+   class color_impact;
 
 
 } // namespace userex
@@ -404,7 +404,7 @@ namespace user
 #include "mesh.h"
 #include "list.h"
 
-#include "list_view.h"
+#include "list_impact.h"
 #include "mesh_cache.h"
 #include "list_cache.h"
 
@@ -430,8 +430,8 @@ class CDockState;           // forward object (see afxpriv.h)
 
 
 
-#include "xfplayer_view_line.h"
-#include "xfplayer_view_lines.h"
+#include "xfplayer_impact_line.h"
+#include "xfplayer_impact_lines.h"
 
 //#include "tool_tip_tool.h"
 //#include "tool_tip_window.h"
@@ -457,7 +457,7 @@ namespace user
 
 #include "form_mesh.h"
 #include "form_list.h"
-#include "form_list_view.h"
+#include "form_list_impact.h"
 
 
 #include "step_slider.h"

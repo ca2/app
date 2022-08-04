@@ -7,28 +7,28 @@
 //#endif
 
 
-simple_printer_list_view::simple_printer_list_view()
+simple_printer_list_impact::simple_printer_list_impact()
 {
 
 }
 
 
-simple_printer_list_view::~simple_printer_list_view()
+simple_printer_list_impact::~simple_printer_list_impact()
 {
 
 }
 
 
-void simple_printer_list_view::install_message_routing(::channel * pchannel)
+void simple_printer_list_impact::install_message_routing(::channel * pchannel)
 {
 
-   simple_list_view::install_message_routing(pchannel);
-   MESSAGE_LINK(e_message_create, pchannel, this, &simple_printer_list_view::on_message_create);
+   simple_list_impact::install_message_routing(pchannel);
+   MESSAGE_LINK(e_message_create, pchannel, this, &simple_printer_list_impact::on_message_create);
 
 }
 
 
-void simple_printer_list_view::on_message_create(::message::message * pmessage)
+void simple_printer_list_impact::on_message_create(::message::message * pmessage)
 {
 //   __pointer(::message::create) pcreate(pmessage);
 
@@ -80,7 +80,7 @@ void simple_printer_list_view::on_message_create(::message::message * pmessage)
 }
 
 
-bool simple_printer_list_view::on_click(::item * pitem)
+bool simple_printer_list_impact::on_click(::item * pitem)
 {
 
    if (!::is_set(pitem))

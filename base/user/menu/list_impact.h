@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE menu_list_view :
+   class CLASS_DECL_BASE menu_list_impact :
       virtual public ::user::show < ::user::menu_list_window >
    {
    public:
@@ -14,8 +14,8 @@ namespace user
       typedef ::user::show <  ::user::menu_list_window  > BASE;
 
 
-      menu_list_view();
-      ~menu_list_view() override;
+      menu_list_impact();
+      ~menu_list_impact() override;
 
 
       void assert_ok() const override;

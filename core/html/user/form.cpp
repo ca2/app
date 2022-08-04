@@ -819,7 +819,7 @@ void html_form::handle(::topic * ptopic, ::context * pcontext)
 
 
 
-void html_form_view::handle(::topic * ptopic, ::context * pcontext)
+void html_form_impact::handle(::topic * ptopic, ::context * pcontext)
 {
 
    ::html_form::handle(ptopic, pcontext);
@@ -880,7 +880,7 @@ void html_form_view::handle(::topic * ptopic, ::context * pcontext)
             }
 
          }
-         else if (ptopic->m_atom == id_get_form_view)
+         else if (ptopic->m_atom == id_get_form_impact)
          {
 
             ptopic->payload(id_form) = this;

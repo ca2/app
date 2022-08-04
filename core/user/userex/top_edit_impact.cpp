@@ -11,7 +11,7 @@ namespace userex
 {
 
 
-   top_edit_view::top_edit_view()
+   top_edit_impact::top_edit_impact()
    {
 
       m_durationDelayedAfterChange = 1_s;
@@ -23,24 +23,24 @@ namespace userex
    }
 
 
-   top_edit_view::~top_edit_view()
+   top_edit_impact::~top_edit_impact()
    {
 
    }
 
 
-   void top_edit_view::install_message_routing(::channel * pchannel)
+   void top_edit_impact::install_message_routing(::channel * pchannel)
    {
 
       ::user::show < ::user::plain_edit >::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &top_edit_view::on_message_create);
-      MESSAGE_LINK(e_message_key_down, pchannel, this, &top_edit_view::on_message_key_down);
+      MESSAGE_LINK(e_message_create, pchannel, this, &top_edit_impact::on_message_create);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &top_edit_impact::on_message_key_down);
 
    }
 
 
-   ::write_text::font_pointer top_edit_view::get_font(::user::style* pstyle, ::enum_element eelement, ::user::enum_state estate) const
+   ::write_text::font_pointer top_edit_impact::get_font(::user::style* pstyle, ::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (m_pfont)
@@ -55,7 +55,7 @@ namespace userex
    }
 
 
-   void top_edit_view::on_message_create(::message::message * pmessage)
+   void top_edit_impact::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -69,12 +69,12 @@ namespace userex
 
       }
 
-      m_ptopview = GetTypedParent < top_view >();
+      m_ptopview = GetTypedParent < top_impact >();
 
    }
 
 
-   void top_edit_view::on_message_key_down(::message::message * pmessage)
+   void top_edit_impact::on_message_key_down(::message::message * pmessage)
    {
 
       auto pkey = pmessage->m_union.m_pkey;
@@ -105,7 +105,7 @@ namespace userex
    }
 
 
-   void top_edit_view::_001OnTimer(::timer * ptimer)
+   void top_edit_impact::_001OnTimer(::timer * ptimer)
    {
 
       ::user::show < ::user::plain_edit >::_001OnTimer(ptimer);
@@ -144,13 +144,13 @@ namespace userex
    }
 
 
-   void top_edit_view::handle(::topic * ptopic, ::context * pcontext)
+   void top_edit_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
    }
 
 
-   void top_edit_view::plain_edit_on_after_change_text(::draw2d::graphics_pointer & pgraphics, const ::action_context & context)
+   void top_edit_impact::plain_edit_on_after_change_text(::draw2d::graphics_pointer & pgraphics, const ::action_context & context)
    {
 
       if (context.is_user_source())
@@ -180,7 +180,7 @@ namespace userex
    }
 
 
-   bool top_edit_view::keyboard_focus_is_focusable() const
+   bool top_edit_impact::keyboard_focus_is_focusable() const
    {
 
       return is_window_enabled() && is_window_visible();

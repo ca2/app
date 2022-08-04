@@ -6,7 +6,7 @@ namespace calculator
 {
 
 
-   plain_edit_view::plain_edit_view()
+   plain_edit_impact::plain_edit_impact()
    {
 
       m_pcallback = nullptr;
@@ -17,7 +17,7 @@ namespace calculator
    }
 
 
-   plain_edit_view::~plain_edit_view()
+   plain_edit_impact::~plain_edit_impact()
    {
 
    }
@@ -25,7 +25,7 @@ namespace calculator
 
 
 
-   bool plain_edit_view::keyboard_focus_is_focusable()
+   bool plain_edit_impact::keyboard_focus_is_focusable()
    {
 
       return is_window_enabled() && is_window_visible();
@@ -33,7 +33,7 @@ namespace calculator
    }
 
 
-   ::payload plain_edit_view::get_ex_value()
+   ::payload plain_edit_impact::get_ex_value()
    {
 
       ::payload v;
@@ -47,7 +47,7 @@ namespace calculator
    }
 
 
-   void plain_edit_view::set_format(const string& strFormat)
+   void plain_edit_impact::set_format(const string& strFormat)
    {
 
       m_strFormat = strFormat;
@@ -55,7 +55,7 @@ namespace calculator
    }
 
 
-   void plain_edit_view::set_callback(callback* pcallback)
+   void plain_edit_impact::set_callback(callback* pcallback)
    {
 
       m_pcallback = pcallback;
@@ -69,7 +69,7 @@ namespace calculator
 ::user::plain_edit* new_calculator_plain_edit()
 {
 
-   return new ::calculator::plain_edit_view();
+   return new ::calculator::plain_edit_impact();
 
 }
 

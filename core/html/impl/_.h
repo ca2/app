@@ -2,7 +2,7 @@
 
 
 #include "core/html/graphics/_.h"
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 
 
 #include "element.h"

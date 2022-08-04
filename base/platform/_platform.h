@@ -107,7 +107,7 @@ namespace user
 
    class impact_data;
    class form_callback;
-   class split_view;
+   class split_impact;
 
    class combo_box;
    class list_box;

@@ -29,7 +29,7 @@ namespace browser
       bool                                   m_bBrowserChat;
       CefRefPtr<SimpleApp> get_app();
       ::user::document *                     m_pdocMenu;
-      ::user::plain_edit_view *              m_prollfps;
+      ::user::plain_edit_impact *              m_prollfps;
       ::user::single_document_template *     m_ptemplateHelloBrowserMain;
       ::user::single_document_template *     m_ptemplateHelloBrowserView;
       ::user::single_document_template *     m_ptemplateHelloBrowserSwitcher;

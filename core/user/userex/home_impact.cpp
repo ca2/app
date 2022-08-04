@@ -25,7 +25,7 @@ namespace userex
 {
 
 
-   home_view::home_view()
+   home_impact::home_impact()
    {
 
       m_atomImpact = COLORSEL_IMPACT;
@@ -33,14 +33,14 @@ namespace userex
    }
 
 
-   home_view::~home_view()
+   home_impact::~home_impact()
    {
 
 
    }
 
 
-   void home_view::assert_ok() const
+   void home_impact::assert_ok() const
    {
 
       ::user::impact::assert_ok();
@@ -48,7 +48,7 @@ namespace userex
    }
 
 
-   void home_view::dump(dump_context & dumpcontext) const
+   void home_impact::dump(dump_context & dumpcontext) const
    {
 
       ::user::impact::dump(dumpcontext);
@@ -56,21 +56,21 @@ namespace userex
    }
 
 
-   void home_view::install_message_routing(::channel * pchannel)
+   void home_impact::install_message_routing(::channel * pchannel)
    {
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &home_view::on_message_create);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &home_view::on_message_mouse_move);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &home_view::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &home_view::on_message_left_button_up);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &home_view::on_message_show_window);
+      MESSAGE_LINK(e_message_create, pchannel, this, &home_impact::on_message_create);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &home_impact::on_message_mouse_move);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &home_impact::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &home_impact::on_message_left_button_up);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &home_impact::on_message_show_window);
 
    }
 
 
-   void home_view::handle(::topic * ptopic, ::context * pcontext)
+   void home_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ::user::impact::handle(ptopic, pcontext);
@@ -78,7 +78,7 @@ namespace userex
    }
 
 
-   //void home_view::handle(::topic * ptopic, ::context * pcontext)
+   //void home_impact::handle(::topic * ptopic, ::context * pcontext)
    //{
 
    //   ::user::impact::handle(ptopic, pcontext);
@@ -86,7 +86,7 @@ namespace userex
    //}
 
 
-   void home_view::on_message_create(::message::message * pmessage)
+   void home_impact::on_message_create(::message::message * pmessage)
    {
 
       //m_pimageBeam->create_image(this, ::size_i32(32, 32));
@@ -121,7 +121,7 @@ namespace userex
    }
 
 
-   void home_view::on_message_show_window(::message::message * pmessage)
+   void home_impact::on_message_show_window(::message::message * pmessage)
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
@@ -130,7 +130,7 @@ namespace userex
    }
 
 
-   //color home_view::get_color()
+   //color home_impact::get_color()
    //{
 
    //   //::color::color color;
@@ -146,7 +146,7 @@ namespace userex
    //}
 
 
-   //void home_view::set_color(::color::color color)
+   //void home_impact::set_color(::color::color color)
    //{
 
    //   color.get_hls(m_hls);
@@ -154,14 +154,14 @@ namespace userex
    //}
 
 
-   void home_view::on_mouse(const ::point_i32 & point)
+   void home_impact::on_mouse(const ::point_i32 & point)
    {
 
 
    }
 
 
-   void home_view::rebuild_luminance()
+   void home_impact::rebuild_luminance()
    {
 
    }
@@ -170,14 +170,14 @@ namespace userex
 
 
 
-   void home_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void home_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
 
    }
 
 
-   void home_view::on_message_left_button_down(::message::message * pmessage)
+   void home_impact::on_message_left_button_down(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
@@ -195,7 +195,7 @@ namespace userex
    }
 
 
-   void home_view::on_message_left_button_up(::message::message * pmessage)
+   void home_impact::on_message_left_button_up(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
@@ -225,7 +225,7 @@ auto pwindowing = windowing();
    }
 
 
-   void home_view::on_message_mouse_move(::message::message * pmessage)
+   void home_impact::on_message_mouse_move(::message::message * pmessage)
    {
 
       //auto pmouse = pmessage->m_union.m_pmouse;
@@ -233,7 +233,7 @@ auto pwindowing = windowing();
    }
 
 
-   void home_view::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void home_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::user::impact::on_layout(pgraphics);

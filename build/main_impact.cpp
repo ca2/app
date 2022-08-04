@@ -27,7 +27,7 @@ namespace app_core_build
    void main_impact::assert_ok() const
    {
 
-      ::user::split_view::assert_ok();
+      ::user::split_impact::assert_ok();
 
    }
 
@@ -35,7 +35,7 @@ namespace app_core_build
    void main_impact::dump(dump_context & dumpcontext) const
    {
 
-      ::user::split_view::dump(dumpcontext);
+      ::user::split_impact::dump(dumpcontext);
 
    }
 
@@ -43,7 +43,7 @@ namespace app_core_build
    void main_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::split_view::handle(ptopic, pcontext);
+      ::user::split_impact::handle(ptopic, pcontext);
 
    }
 
@@ -79,7 +79,7 @@ namespace app_core_build
 
          initialize_split_layout();
 
-         m_ptopview = create_view < ::userex::top_view >(nullptr, get_pane_holder(0), "top_view");
+         m_ptopview = create_view < ::userex::top_impact >(nullptr, get_pane_holder(0), "top_impact");
 
          if (m_ptopview == nullptr)
          {
@@ -118,7 +118,7 @@ namespace app_core_build
    void main_impact::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::split_view::_001OnNcDraw(pgraphics);
+      ::user::split_impact::_001OnNcDraw(pgraphics);
 
    }
 
@@ -126,7 +126,7 @@ namespace app_core_build
    void main_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::split_view::_001OnDraw(pgraphics);
+      ::user::split_impact::_001OnDraw(pgraphics);
 
    }
 
@@ -152,7 +152,7 @@ namespace app_core_build
 
    //   }
 
-   //   ::user::split_view::handle(ptopic, pcontext);
+   //   ::user::split_impact::handle(ptopic, pcontext);
 
    //}
 

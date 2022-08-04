@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   class CLASS_DECL_CORE top_edit_view :
+   class CLASS_DECL_CORE top_edit_impact :
       virtual public ::user::show < ::user::plain_edit >
    {
    public:
@@ -13,13 +13,13 @@ namespace userex
 
       ::duration                  m_durationLastChange;
       ::duration                  m_durationDelayedAfterChange;
-      top_view *              m_ptopview;
+      top_impact *              m_ptopview;
       bool                    m_bEnterKeyPressed;
       ::write_text::font_pointer  m_pfont;
 
 
-      top_edit_view();
-      virtual ~top_edit_view();
+      top_edit_impact();
+      virtual ~top_edit_impact();
 
       void install_message_routing(::channel * pchannel) override;
 

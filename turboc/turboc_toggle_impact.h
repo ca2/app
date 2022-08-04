@@ -5,18 +5,18 @@ namespace turboc
 {
 
 
-   class CLASS_DECL_TURBOC toggle_view:
+   class CLASS_DECL_TURBOC toggle_impact:
       virtual public ::aura::impact,
       virtual public ::user::button
    {
    public:
 
 
-      top_view * m_ptopview;
+      top_impact * m_ptopview;
 
 
-      toggle_view(::object * pobject);
-      virtual ~toggle_view();
+      toggle_impact(::object * pobject);
+      virtual ~toggle_impact();
 
 
       virtual void install_message_handling(::message::dispatch * pdispatch);

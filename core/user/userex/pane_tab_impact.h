@@ -20,8 +20,8 @@ namespace userex
       __pointer(pane_impact)                   m_ppaneimpact;
       id_map < __pointer(::object) >         m_mapFileManager;
       __pointer(::user::document)            m_pdocAppOptions;
-      font_view *                            m_pfontview;
-      color_view *                           m_pcolorview;
+      font_impact *                            m_pfontview;
+      color_impact *                           m_pcolorview;
       ::form_document *                      m_pdocumentMenu;
 
 

@@ -2157,6 +2157,22 @@ namespace user
    }
 
 
+   void interaction::display_zoomed()
+   {
+
+      output_debug_string("\ne_display_zoomed\n");
+
+#ifdef INFO_LAYOUT_DISPLAY
+
+      INFORMATION("interaction_layout::display e_display_zoomed");
+
+#endif
+
+      layout().sketch().display() = e_display_zoomed;
+
+   }
+
+
    void interaction::display_iconic()
    {
       
@@ -2239,15 +2255,7 @@ namespace user
       else if (edisplay == e_display_zoomed)
       {
 
-         output_debug_string("\ne_display_zoomed\n");
-
-#ifdef INFO_LAYOUT_DISPLAY
-
-         INFORMATION("interaction_layout::display e_display_zoomed");
-
-#endif
-         
-         layout().sketch().display() = e_display_zoomed;
+         display_zoomed();
 
       }
       else if (edisplay == e_display_iconic)
@@ -4477,10 +4485,10 @@ namespace user
 
             output_debug_string("waven::impact");
          }
-         //         else if(strType.contains_ci("menu_list_view"))
+         //         else if(strType.contains_ci("menu_list_impact"))
          //         {
          //
-         //            output_debug_string("menu_list_view");
+         //            output_debug_string("menu_list_impact");
          //
          //         }
          //   if (!is_custom_draw() && pgraphics->m_pnext == nullptr)
@@ -13540,6 +13548,18 @@ namespace user
       place(rectangle);
 
       return *this;
+
+   }
+
+
+   void interaction::place_rate_or_size(const ::rectangle_f64 & rectangleRateOrSize)
+   {
+
+      ::rectangle_i32 rectangle;
+
+      calculate_window_rectangle_in_main_monitor(rectangle, rectangleRateOrSize);
+
+      place(rectangle);
 
    }
 

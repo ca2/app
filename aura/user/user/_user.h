@@ -497,7 +497,7 @@ namespace userex
 {
 
 
-   class color_view;
+   class color_impact;
 
 
 } // namespace userex

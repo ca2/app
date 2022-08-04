@@ -20,7 +20,7 @@ namespace filemanager
       {
 
 
-         list_view::list_view()
+         list_impact::list_impact()
          {
 
             m_bKickActive = false;
@@ -28,41 +28,41 @@ namespace filemanager
          }
 
 
-         list_view::~list_view()
+         list_impact::~list_impact()
          {
 
          }
 
 
-         void list_view::install_message_routing(::channel * pchannel)
+         void list_impact::install_message_routing(::channel * pchannel)
          {
-            simple_list_view::install_message_routing(pchannel);
-            MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list_view::on_message_left_button_double_click);
-//            //MESSAGE_LINK(e_message_timer, pchannel, this, &list_view::_001OnTimer);
-            MESSAGE_LINK(e_message_size, pchannel, this, &list_view::on_message_size);
+            simple_list_impact::install_message_routing(pchannel);
+            MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &list_impact::on_message_left_button_double_click);
+//            //MESSAGE_LINK(e_message_timer, pchannel, this, &list_impact::_001OnTimer);
+            MESSAGE_LINK(e_message_size, pchannel, this, &list_impact::on_message_size);
 #ifdef WINDOWS_DESKTOP
-            MESSAGE_LINK(e_message_context_menu, pchannel, this, &list_view::on_message_context_menu);
+            MESSAGE_LINK(e_message_context_menu, pchannel, this, &list_impact::on_message_context_menu);
 #endif
-            //MESSAGE_LINK(e_message_erase_background, pchannel, this, &list_view::_001OnEraseBkgnd);
-            MESSAGE_LINK(WM_USER + 1217, pchannel, this, &list_view::_001OnFillTaskResponse);
+            //MESSAGE_LINK(e_message_erase_background, pchannel, this, &list_impact::_001OnEraseBkgnd);
+            MESSAGE_LINK(WM_USER + 1217, pchannel, this, &list_impact::_001OnFillTaskResponse);
 
          }
 
 
 
 
-         void list_view::assert_ok() const
+         void list_impact::assert_ok() const
          {
-            simple_list_view::assert_ok();
+            simple_list_impact::assert_ok();
          }
 
-         void list_view::dump(dump_context & dumpcontext) const
+         void list_impact::dump(dump_context & dumpcontext) const
          {
-            simple_list_view::dump(dumpcontext);
+            simple_list_impact::dump(dumpcontext);
          }
 
 
-         void list_view::on_message_create(::message::message* pmessage)
+         void list_impact::on_message_create(::message::message* pmessage)
          {
 
             if (!pmessage->previous())
@@ -112,7 +112,7 @@ namespace filemanager
          }
 
 
-         void list_view::_001InsertColumns()
+         void list_impact::_001InsertColumns()
          {
 
             {
@@ -174,7 +174,7 @@ namespace filemanager
          }
 
 
-         void list_view::_001GetSubItemImage(::user::mesh_subitem * psubitem)
+         void list_impact::_001GetSubItemImage(::user::mesh_subitem * psubitem)
          {
 
             if(psubitem->m_pitem->m_iItem < 0 || psubitem->m_pitem->m_iItem >= m_itema.get_size())
@@ -217,7 +217,7 @@ namespace filemanager
          }
 
 
-         void list_view::_001GetSubItemText(::user::mesh_subitem * psubitem)
+         void list_impact::_001GetSubItemText(::user::mesh_subitem * psubitem)
          {
 
             if(psubitem->m_pitem->m_iItem < 0 || psubitem->m_pitem->m_iItem >= m_itema.get_size())
@@ -255,7 +255,7 @@ namespace filemanager
          }
 
 
-         void list_view::_001SearchGetSubItemText(::user::mesh_subitem * psubitem)
+         void list_impact::_001SearchGetSubItemText(::user::mesh_subitem * psubitem)
          {
 
             return_(psubitem->m_bOk, false);
@@ -263,10 +263,10 @@ namespace filemanager
          }
 
 
-         void list_view::handle(::topic * ptopic, ::context * pcontext)
+         void list_impact::handle(::topic * ptopic, ::context * pcontext)
          {
 
-            simple_list_view::handle(ptopic, pcontext);
+            simple_list_impact::handle(ptopic, pcontext);
 
             //if(::is_null(pobject))
             {
@@ -282,7 +282,7 @@ namespace filemanager
          }
 
 
-         void list_view::on_message_left_button_double_click(::message::message * pmessage)
+         void list_impact::on_message_left_button_double_click(::message::message * pmessage)
          {
 
             auto pmouse = pmessage->m_union.m_pmouse;
@@ -310,7 +310,7 @@ namespace filemanager
          }
 
 
-         bool list_view::on_click(::item * pitem)
+         bool list_impact::on_click(::item * pitem)
          {
 
             if(m_itema[pitem->item_index()]->IsFolder())
@@ -331,7 +331,7 @@ namespace filemanager
          }
 
 
-         bool list_view::GetSongPath(string &str, index iItem)
+         bool list_impact::GetSongPath(string &str, index iItem)
          {
 
             auto & pdrawlistsubitem = get_subitem(iItem, SubItemFilePath);
@@ -352,7 +352,7 @@ namespace filemanager
          }
 
 
-         void list_view::_001OnSort()
+         void list_impact::_001OnSort()
          {
             string strSql;
 
@@ -403,7 +403,7 @@ namespace filemanager
 
          }
 
-         void list_view::PostFillTask(string & wstrFile, uptr uiTimer)
+         void list_impact::PostFillTask(string & wstrFile, uptr uiTimer)
          {
 
             __UNREFERENCED_PARAMETER(wstrFile);
@@ -413,7 +413,7 @@ namespace filemanager
          }
 
 
-         void list_view::fill_task()
+         void list_impact::fill_task()
          {
 
             //__UNREFERENCED_PARAMETER(pParameter);
@@ -460,9 +460,9 @@ namespace filemanager
 //            return 0;
          }
 
-         void list_view::_001OnTimer(::timer * ptimer)
+         void list_impact::_001OnTimer(::timer * ptimer)
          {
-            simple_list_view::_001OnTimer(ptimer);
+            simple_list_impact::_001OnTimer(ptimer);
             if(ptimer->m_uEvent == 123654)
             {
                KillTimer(123654);
@@ -596,7 +596,7 @@ namespace filemanager
          }
 
 
-         list_view::BuildHelper::BuildHelper()
+         list_impact::BuildHelper::BuildHelper()
          {
             m_iTopIndex          = -1;
             m_bActive            = false;
@@ -604,14 +604,14 @@ namespace filemanager
             m_iDisplayItemCount  = -1;
          }
 
-         void list_view::on_message_size(::message::message * pmessage)
+         void list_impact::on_message_size(::message::message * pmessage)
          {
             __UNREFERENCED_PARAMETER(pmessage);
             //m_buildhelper.m_iDisplayItemCount = _001GetDisplayItemCount();
 
          }
 
-         /*void list_view::KickBuildMachine(bool bDisplayOnly)
+         /*void list_impact::KickBuildMachine(bool bDisplayOnly)
          {
          if(bDisplayOnly)
          {
@@ -625,7 +625,7 @@ namespace filemanager
          }
          }*/
 
-         /*list_view::FillTask::FillTask(__pointer(list_view) pimpact, LPWString pcsz)
+         /*list_impact::FillTask::FillTask(__pointer(list_impact) pimpact, LPWString pcsz)
 
          :
          m_pimpact(pimpact),m_wstrFile(pcsz)
@@ -633,7 +633,7 @@ namespace filemanager
          {
          }*/
 
-         void list_view::_001OnFillTaskResponse(::message::message * pmessage)
+         void list_impact::_001OnFillTaskResponse(::message::message * pmessage)
          {
             __pointer(::user::message) pusermessage(pmessage);
             m_bKickActive = true;
@@ -682,7 +682,7 @@ namespace filemanager
 
          }
 
-         void list_view::start_build(i32 iItem)
+         void list_impact::start_build(i32 iItem)
          {
             __UNREFERENCED_PARAMETER(iItem);
             auto iTopIndex = m_iTopDisplayIndex;
@@ -704,7 +704,7 @@ namespace filemanager
          }
 
 
-         void list_view::on_message_context_menu(::message::message * pmessage)
+         void list_impact::on_message_context_menu(::message::message * pmessage)
          {
 
             __pointer(::message::context_menu) pcontextmenu(pmessage);
@@ -740,7 +740,7 @@ namespace filemanager
             }*/
          }
 
-         void list_view::parse(const ::string & pszSource)
+         void list_impact::parse(const ::string & pszSource)
 
          {
             m_itema.erase_all();
@@ -871,14 +871,14 @@ namespace filemanager
             //             m_etype == ItemTypeArtist;
          }
 
-         // void list_view::_001OnEraseBkgnd(::message::message * pmessage)
+         // void list_impact::_001OnEraseBkgnd(::message::message * pmessage)
          // {
          //    __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
          //    perasebkgnd->m_bRet = true;
          //    perasebkgnd->set_result(true);
          // }
 
-         ::count list_view::_001GetItemCount()
+         ::count list_impact::_001GetItemCount()
          {
             /*if(get_document() != nullptr)
             {

@@ -8,15 +8,15 @@
 namespace userex
 {
 
-// IMPLEMENT_DYNCREATE(pane_split_view, ::user::split_view)
+// IMPLEMENT_DYNCREATE(pane_split_impact, ::user::split_impact)
 
 
-   pane_split_view::pane_split_view()
+   pane_split_impact::pane_split_impact()
    {
    }
  
 
-   pane_split_view::~pane_split_view()
+   pane_split_impact::~pane_split_impact()
    {
    }
 

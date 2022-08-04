@@ -5,19 +5,19 @@ namespace turboc
 {
 
 
-   class CLASS_DECL_TURBOC top_view:
-      virtual public ::user::split_view
+   class CLASS_DECL_TURBOC top_impact:
+      virtual public ::user::split_impact
    {
    public:
 
 
-      edit_view *             m_peditview;
-      toggle_view *           m_ptoggleview;
+      edit_impact *             m_peditview;
+      toggle_impact *           m_ptoggleview;
       impact *                  m_pimpact;
 
 
-      top_view(::object * pobject);
-      virtual ~top_view();
+      top_impact(::object * pobject);
+      virtual ~top_impact();
 
 
       void assert_ok() const override;

@@ -6,12 +6,12 @@ namespace turboc
 
 
    class CLASS_DECL_TURBOC switcher_view:
-      virtual public ::user::split_view
+      virtual public ::user::split_impact
    {
    public:
 
 
-      top_view *              m_ptopview;
+      top_impact *              m_ptopview;
       impact *                  m_pimpact;
 
 

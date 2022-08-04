@@ -51,9 +51,9 @@ namespace turboc
 
       add_factory_item <::turboc::document >();
       add_factory_item <::turboc::frame >();
-      add_factory_item <::turboc::edit_view >();
-      add_factory_item <::turboc::toggle_view >();
-      add_factory_item <::turboc::top_view >();
+      add_factory_item <::turboc::edit_impact >();
+      add_factory_item <::turboc::toggle_impact >();
+      add_factory_item <::turboc::top_impact >();
       add_factory_item <::turboc::lite_view >();
       add_factory_item <::turboc::full_view >();
       add_factory_item <::turboc::impact >();

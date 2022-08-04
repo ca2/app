@@ -5,8 +5,8 @@ namespace filemanager
 {
 
 
-   class CLASS_DECL_CORE folder_selection_list_view:
-      virtual public ::filemanager_show < ::user::split_view >
+   class CLASS_DECL_CORE folder_selection_list_impact:
+      virtual public ::filemanager_show < ::user::split_impact >
    {
    public:
 
@@ -15,12 +15,12 @@ namespace filemanager
 
       ::user::tree *             m_pusertree;
       tree *                     m_ptree;
-      folder_list_view *         m_plistview;
+      folder_list_impact *         m_plistview;
       data *                     m_pdata;
 
 
-      folder_selection_list_view();
-      virtual ~folder_selection_list_view();
+      folder_selection_list_impact();
+      virtual ~folder_selection_list_impact();
 
 
       virtual data * filemanager_data() override;

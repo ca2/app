@@ -279,7 +279,7 @@ namespace userex
 
             ::file::path path;
             
-            path = pcontext->dir().appdata() / "debug_ca2/menu_view" / (get_app()->m_strAppId + ".html");
+            path = pcontext->dir().appdata() / "debug_ca2/menu_impact" / (get_app()->m_strAppId + ".html");
 
             pcontext->file().put_memory(path, strOptionsImpact);
 
@@ -539,7 +539,7 @@ namespace userex
 
          auto pdocument = ptemplate->open_document_file(get_app(), ::e_type_null, __visible(true).is_true(), pimpactdata->m_pplaceholder);
 
-         m_pfontview = pdocument->get_type_impact < font_view >();
+         m_pfontview = pdocument->get_type_impact < font_impact >();
 
          m_pfontview->set_need_layout();
 
@@ -576,7 +576,7 @@ namespace userex
 
          //auto pdocument = pimpactsystem->open_document_file(get_app(), ::e_type_null, __visible(false).is_true(), pimpactdata->m_pplaceholder);
 
-         m_pcolorview = create_view < color_view >(pimpactdata);
+         m_pcolorview = create_view < color_impact >(pimpactdata);
 
 //         pdocument->m_pviewTopic->set_notify_user_interaction(this);
 

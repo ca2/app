@@ -9,7 +9,7 @@
 #include "calculator_value.cpp"
 
 
-#include "calculator_plain_edit_view.cpp"
+#include "calculator_plain_edit_impact.cpp"
 
 
 

@@ -8,7 +8,7 @@ namespace browser
    main_impact::main_impact(::object * pobject):
       object(pobject),
       ::user::split_layout(pobject),
-      ::user::split_view(pobject),
+      ::user::split_impact(pobject),
       place_holder_container(pobject)
    {
 
@@ -30,7 +30,7 @@ namespace browser
    void main_impact::assert_ok() const
    {
 
-      ::user::split_view::assert_ok();
+      ::user::split_impact::assert_ok();
 
    }
 
@@ -38,7 +38,7 @@ namespace browser
    void main_impact::dump(dump_context & dumpcontext) const
    {
 
-      ::user::split_view::dump(dumpcontext);
+      ::user::split_impact::dump(dumpcontext);
 
    }
 
@@ -46,7 +46,7 @@ namespace browser
    void main_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::split_view::handle(ptopic, pcontext);
+      ::user::split_impact::handle(ptopic, pcontext);
 
    }
 
@@ -70,7 +70,7 @@ namespace browser
 
          initialize_split_layout();
 
-         m_ptopview = create_view < ::userex::top_view >(nullptr, nullptr, "top_view");
+         m_ptopview = create_view < ::userex::top_impact >(nullptr, nullptr, "top_impact");
 
          if (m_ptopview == nullptr)
          {
@@ -106,7 +106,7 @@ namespace browser
 
       }
 
-      __pointer(::userex::top_edit_view) peditview = get_child_by_id("top_edit_view");
+      __pointer(::userex::top_edit_impact) peditview = get_child_by_id("top_edit_impact");
 
       peditview->m_bParseDataPacks = true;
 
@@ -129,7 +129,7 @@ namespace browser
    void main_impact::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::split_view::_001OnNcDraw(pgraphics);
+      ::user::split_impact::_001OnNcDraw(pgraphics);
 
    }
 
@@ -137,7 +137,7 @@ namespace browser
    void main_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::split_view::_001OnDraw(pgraphics);
+      ::user::split_impact::_001OnDraw(pgraphics);
 
    }
 
@@ -163,7 +163,7 @@ namespace browser
 
       }
 
-      ::user::split_view::handle(ptopic, pcontext);
+      ::user::split_impact::handle(ptopic, pcontext);
 
    }
 

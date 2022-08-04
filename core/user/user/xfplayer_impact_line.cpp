@@ -5,11 +5,11 @@
 #include "acme/platform/hyperlink.h"
 
 
-const i32 xfplayer_view_line::AlignLeft = 1;
-const i32 xfplayer_view_line::AlignRight = 2;
+const i32 xfplayer_impact_line::AlignLeft = 1;
+const i32 xfplayer_impact_line::AlignRight = 2;
 
 
-xfplayer_view_line::xfplayer_view_line(::user::interaction * puserinteraction) :
+xfplayer_impact_line::xfplayer_impact_line(::user::interaction * puserinteraction) :
    m_selection(puserinteraction)
 {
 
@@ -40,7 +40,7 @@ xfplayer_view_line::xfplayer_view_line(::user::interaction * puserinteraction) :
 }
 
 
-void xfplayer_view_line::initialize_xfplayer_view_line(xfplayer_view_linea * pContainer)
+void xfplayer_impact_line::initialize_xfplayer_impact_line(xfplayer_impact_linea * pContainer)
 {
 
    //auto estatus = 
@@ -81,7 +81,7 @@ void xfplayer_view_line::initialize_xfplayer_view_line(xfplayer_view_linea * pCo
 }
 
 
-//xfplayer_view_line::xfplayer_view_line(const xfplayer_view_line & line)
+//xfplayer_impact_line::xfplayer_impact_line(const xfplayer_impact_line & line)
 //{
 //
 //   initialize((object *) &line);
@@ -93,13 +93,13 @@ void xfplayer_view_line::initialize_xfplayer_view_line(xfplayer_view_linea * pCo
 //}
 
 
-xfplayer_view_line::~xfplayer_view_line()
+xfplayer_impact_line::~xfplayer_impact_line()
 {
 
 }
 
 
-bool xfplayer_view_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, string str, i32 flags, const ::rectangle_i32 & rectangle)
+bool xfplayer_impact_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, string str, i32 flags, const ::rectangle_i32 & rectangle)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -139,7 +139,7 @@ bool xfplayer_view_line::PrepareLine(::draw2d::graphics_pointer & pgraphics, str
 }
 
 
-void xfplayer_view_line::add_char(widechar wch, strsize & index)
+void xfplayer_impact_line::add_char(widechar wch, strsize & index)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -158,7 +158,7 @@ void xfplayer_view_line::add_char(widechar wch, strsize & index)
 }
 
 
-void xfplayer_view_line::add_char(widechar wch, strsize & index, ::write_text::font * pFont)
+void xfplayer_impact_line::add_char(widechar wch, strsize & index, ::write_text::font * pFont)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -175,7 +175,7 @@ void xfplayer_view_line::add_char(widechar wch, strsize & index, ::write_text::f
 }
 
 
-void xfplayer_view_line::GetPlacement(RECTANGLE_I32 * prectangle)
+void xfplayer_impact_line::GetPlacement(RECTANGLE_I32 * prectangle)
 
 {
 
@@ -186,7 +186,7 @@ void xfplayer_view_line::GetPlacement(RECTANGLE_I32 * prectangle)
 }
 
 
-bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rectangle_i32_array & rectaModified, bool bRecalcLayout)
+bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rectangle_i32_array & rectaModified, bool bRecalcLayout)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -431,7 +431,7 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
 }
 
 
-bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rectangle_i32_array & rectaModified, ::count * count, bool bRecalcLayout, ::color::color crColor, ::draw2d::pen_pointer sppen)
+bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool bDraw, const ::rectangle_i32 & rectangle, rectangle_i32_array & rectaModified, ::count * count, bool bRecalcLayout, ::color::color crColor, ::draw2d::pen_pointer sppen)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -604,7 +604,7 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
 
 
 
-/*void xfplayer_view_line::CalcCharsPositions(
+/*void xfplayer_impact_line::CalcCharsPositions(
 ::draw2d::graphics * pdcForeground,
    ref_array <  ::write_text::font > * pFonts,
    const ::rectangle_i32 & rectangle)
@@ -736,7 +736,7 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
 }*/
 
 
-void xfplayer_view_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
+void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
 
 {
 
@@ -932,7 +932,7 @@ void xfplayer_view_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphi
    pgraphics->set(pfontOld);*/
 }
 
-/*void xfplayer_view_line::CalcCharsPositions(
+/*void xfplayer_impact_line::CalcCharsPositions(
    ::draw2d::graphics *             pdcForeground,
    ::write_text::font *     pFont,
    const rectangle_i32 &           rectangle_i32)
@@ -1039,7 +1039,7 @@ void xfplayer_view_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphi
    pdcForeground->set(pfontOriginal);
 }*/
 
-void xfplayer_view_line::SetAutoSize(bool bAutoSize)
+void xfplayer_impact_line::SetAutoSize(bool bAutoSize)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1048,7 +1048,7 @@ void xfplayer_view_line::SetAutoSize(bool bAutoSize)
    m_bAutoSizeY = bAutoSize;
 }
 
-void xfplayer_view_line::SetAlign(i32 iAlign)
+void xfplayer_impact_line::SetAlign(i32 iAlign)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1056,7 +1056,7 @@ void xfplayer_view_line::SetAlign(i32 iAlign)
    m_iAlign = iAlign;
 }
 
-xfplayer_view_line & xfplayer_view_line::operator = (const xfplayer_view_line & src)
+xfplayer_impact_line & xfplayer_impact_line::operator = (const xfplayer_impact_line & src)
 {
    m_pContainer = src.m_pContainer;
    m_bAutoSizeX = src.m_bAutoSizeX;
@@ -1083,7 +1083,7 @@ xfplayer_view_line & xfplayer_view_line::operator = (const xfplayer_view_line & 
    return *this;
 }
 
-void xfplayer_view_line::Show(bool bShow)
+void xfplayer_impact_line::Show(bool bShow)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1110,7 +1110,7 @@ void xfplayer_view_line::Show(bool bShow)
 }
 
 
-void xfplayer_view_line::OnTimerAnimate(::draw2d::graphics_pointer& pgraphics, rectangle_i32_array &  rectaModified)
+void xfplayer_impact_line::OnTimerAnimate(::draw2d::graphics_pointer& pgraphics, rectangle_i32_array &  rectaModified)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1147,7 +1147,7 @@ void xfplayer_view_line::OnTimerAnimate(::draw2d::graphics_pointer& pgraphics, r
    }
 }
 
-void xfplayer_view_line::SetAnimateType(i32 iAnimateType)
+void xfplayer_impact_line::SetAnimateType(i32 iAnimateType)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1157,7 +1157,7 @@ void xfplayer_view_line::SetAnimateType(i32 iAnimateType)
 
 }
 
-void xfplayer_view_line::SetTextEffect(i32 iTextEffect)
+void xfplayer_impact_line::SetTextEffect(i32 iTextEffect)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1165,7 +1165,7 @@ void xfplayer_view_line::SetTextEffect(i32 iTextEffect)
    m_iTextEffect = iTextEffect;
 }
 
-void xfplayer_view_line::SetEmbossPen(::draw2d::pen *pPen)
+void xfplayer_impact_line::SetEmbossPen(::draw2d::pen *pPen)
 
 {
 
@@ -1176,7 +1176,7 @@ void xfplayer_view_line::SetEmbossPen(::draw2d::pen *pPen)
 
 }
 
-void xfplayer_view_line::SetForegroundColor(::color32_t color32)
+void xfplayer_impact_line::SetForegroundColor(::color32_t color32)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1184,12 +1184,12 @@ void xfplayer_view_line::SetForegroundColor(::color32_t color32)
    m_colorForeground = color32;
 }
 
-/*ref_array <  ::write_text::font > * xfplayer_view_line::GetFonts()
+/*ref_array <  ::write_text::font > * xfplayer_impact_line::GetFonts()
 {
     return &m_fonts;
 }
 */
-i32 xfplayer_view_line::MapToFontEffect(i32 iLineEffect)
+i32 xfplayer_impact_line::MapToFontEffect(i32 iLineEffect)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1205,7 +1205,7 @@ i32 xfplayer_view_line::MapToFontEffect(i32 iLineEffect)
    return -1;
 }
 
-void xfplayer_view_line::SetAnimateIncrement(double dIncrement)
+void xfplayer_impact_line::SetAnimateIncrement(double dIncrement)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1213,23 +1213,23 @@ void xfplayer_view_line::SetAnimateIncrement(double dIncrement)
    m_dAnimateProgressIncrement = dIncrement;
 }
 
-//void xfplayer_view_line::SetRedrawMode(i32 iMode)
+//void xfplayer_impact_line::SetRedrawMode(i32 iMode)
 //{
 //  m_iRedrawMode = iMode;
 //}
 
-//void xfplayer_view_line::SetRenderWindow(::user::interaction_impl * pwindow)
+//void xfplayer_impact_line::SetRenderWindow(::user::interaction_impl * pwindow)
 //{
 //  m_pRenderWnd = pwindow;
 //}
 
-void xfplayer_view_line::SetRenderCriticalSection(critical_section * pcs)
+void xfplayer_impact_line::SetRenderCriticalSection(critical_section * pcs)
 {
    __UNREFERENCED_PARAMETER(pcs);
    //    m_pcsRender =   pcs;
 }
 
-i32 xfplayer_view_line::SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen * ppenRight)
+i32 xfplayer_impact_line::SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen * ppenRight)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1239,7 +1239,7 @@ i32 xfplayer_view_line::SetLyricPens(::draw2d::pen * ppenLeft, ::draw2d::pen * p
    return true;
 }
 
-i32 xfplayer_view_line::SetLyricColors(::color::color crLeft, ::color::color crRight)
+i32 xfplayer_impact_line::SetLyricColors(::color::color crLeft, ::color::color crRight)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1251,7 +1251,7 @@ i32 xfplayer_view_line::SetLyricColors(::color::color crLeft, ::color::color crR
 }
 
 
-void xfplayer_view_line::SetPlacement(const ::rectangle_i32 & rectangle)
+void xfplayer_impact_line::SetPlacement(const ::rectangle_i32 & rectangle)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1263,17 +1263,17 @@ void xfplayer_view_line::SetPlacement(const ::rectangle_i32 & rectangle)
 }
 
 
-//i32 xfplayer_view_line::GetVmsFontCount()
+//i32 xfplayer_impact_line::GetVmsFontCount()
 /*{
    return m_fonts.get_size();
 }
 
-void xfplayer_view_line::AddVmsFont(::write_text::font * pfont)
+void xfplayer_impact_line::AddVmsFont(::write_text::font * pfont)
 {
    m_fonts.add(pfont);
 }*/
 
-void xfplayer_view_line::Invalidate(const rectangle_i32 & rectangleParam)
+void xfplayer_impact_line::Invalidate(const rectangle_i32 & rectangleParam)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1304,7 +1304,7 @@ void xfplayer_view_line::Invalidate(const rectangle_i32 & rectangleParam)
 }
 
 
-void xfplayer_view_line::Validate(const rectangle_i32 & rectangleParam)
+void xfplayer_impact_line::Validate(const rectangle_i32 & rectangleParam)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1335,7 +1335,7 @@ void xfplayer_view_line::Validate(const rectangle_i32 & rectangleParam)
 }
 
 
-bool xfplayer_view_line::IsVisible()
+bool xfplayer_impact_line::IsVisible()
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1345,7 +1345,7 @@ bool xfplayer_view_line::IsVisible()
 }
 
 
-void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::string & pcsz, i32 iLeft, i32 iTop, i32 iWidth, ::color32_t color32, ::color::color crOutline, strsize iLen, double dBlend)
+void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::string & pcsz, i32 iLeft, i32 iTop, i32 iWidth, ::color32_t color32, ::color::color crOutline, strsize iLen, double dBlend)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1366,7 +1366,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 }
 
 
-void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, ::image * pimageCache, const ::string & pcsz, i32 iLeft, i32 iTop, i32 iWidth, ::color32_t color32, ::color::color crOutline, strsize iLen, double dBlend)
+void xfplayer_impact_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, ::image * pimageCache, const ::string & pcsz, i32 iLeft, i32 iTop, i32 iWidth, ::color32_t color32, ::color::color crOutline, strsize iLen, double dBlend)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1500,7 +1500,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 
 
 
-void xfplayer_view_line::SetColors(::color32_t color32, ::color::color crOutline)
+void xfplayer_impact_line::SetColors(::color32_t color32, ::color::color crOutline)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1513,7 +1513,7 @@ void xfplayer_view_line::SetColors(::color32_t color32, ::color::color crOutline
 //#ifdef WINDOWS_DESKTOP
 //
 //
-//void xfplayer_view_line::GetLogFont(LOGFONTW &lf)
+//void xfplayer_impact_line::GetLogFont(LOGFONTW &lf)
 //{
 //
 //   single_lock synchronouslock(m_pContainer->mutex());
@@ -1525,7 +1525,7 @@ void xfplayer_view_line::SetColors(::color32_t color32, ::color::color crOutline
 //#endif
 
 
-void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, const ::string & pcsz, strsize iLen, ::image_pointer & pimageCache)
+void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, const ::string & pcsz, strsize iLen, ::image_pointer & pimageCache)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1616,7 +1616,7 @@ void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, con
 }
 
 
-void xfplayer_view_line::SetFont(::write_text::font * pfont)
+void xfplayer_impact_line::SetFont(::write_text::font * pfont)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1626,7 +1626,7 @@ void xfplayer_view_line::SetFont(::write_text::font * pfont)
 }
 
 
-void xfplayer_view_line::PrepareURLLinks()
+void xfplayer_impact_line::PrepareURLLinks()
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1653,7 +1653,7 @@ void xfplayer_view_line::PrepareURLLinks()
 
 }
 
-bool xfplayer_view_line::CharHasLink(strsize iChar)
+bool xfplayer_impact_line::CharHasLink(strsize iChar)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1661,7 +1661,7 @@ bool xfplayer_view_line::CharHasLink(strsize iChar)
    return GetCharLink(iChar) > -1;
 }
 
-bool xfplayer_view_line::GetCharLink(string & str, strsize iChar)
+bool xfplayer_impact_line::GetCharLink(string & str, strsize iChar)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1673,7 +1673,7 @@ bool xfplayer_view_line::GetCharLink(string & str, strsize iChar)
    return true;
 }
 
-::user::enum_line_hit xfplayer_view_line::get_link(string & strUrl, const ::point_i32 & pointCursor)
+::user::enum_line_hit xfplayer_impact_line::get_link(string & strUrl, const ::point_i32 & pointCursor)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1687,7 +1687,7 @@ bool xfplayer_view_line::GetCharLink(string & str, strsize iChar)
    return etest;
 }
 
-index xfplayer_view_line::GetCharLink(strsize iChar)
+index xfplayer_impact_line::GetCharLink(strsize iChar)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1703,7 +1703,7 @@ index xfplayer_view_line::GetCharLink(strsize iChar)
    return -1;
 }
 
-::user::enum_line_hit xfplayer_view_line::hit_test(const point_i32 &pointCursorParam, strsize &iChar)
+::user::enum_line_hit xfplayer_impact_line::hit_test(const point_i32 &pointCursorParam, strsize &iChar)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1740,7 +1740,7 @@ index xfplayer_view_line::GetCharLink(strsize iChar)
 
 }
 
-bool xfplayer_view_line::CalcChar(const ::point_i32 & point, strsize &iChar)
+bool xfplayer_impact_line::CalcChar(const ::point_i32 & point, strsize &iChar)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1777,7 +1777,7 @@ bool xfplayer_view_line::CalcChar(const ::point_i32 & point, strsize &iChar)
 }
 
 
-void xfplayer_view_line::OnMouseMove(::message::message * pmessage)
+void xfplayer_impact_line::OnMouseMove(::message::message * pmessage)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1888,7 +1888,7 @@ void xfplayer_view_line::OnMouseMove(::message::message * pmessage)
 }
 
 
-void xfplayer_view_line::OnSetCursor(::message::message * pmessage)
+void xfplayer_impact_line::OnSetCursor(::message::message * pmessage)
 {
 
    __UNREFERENCED_PARAMETER(pmessage);
@@ -1905,7 +1905,7 @@ void xfplayer_view_line::OnSetCursor(::message::message * pmessage)
 }
 
 
-void xfplayer_view_line::OnLButtonDown(::message::message * pmessage)
+void xfplayer_impact_line::OnLButtonDown(::message::message * pmessage)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1924,7 +1924,7 @@ void xfplayer_view_line::OnLButtonDown(::message::message * pmessage)
 }
 
 
-void xfplayer_view_line::OnLButtonUp(::message::message * pmessage)
+void xfplayer_impact_line::OnLButtonUp(::message::message * pmessage)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1967,7 +1967,7 @@ void xfplayer_view_line::OnLButtonUp(::message::message * pmessage)
 }
 
 
-void xfplayer_view_line::_001OnTimer(::timer * ptimer)
+void xfplayer_impact_line::_001OnTimer(::timer * ptimer)
 {
 
    __UNREFERENCED_PARAMETER(ptimer);
@@ -1982,7 +1982,7 @@ void xfplayer_view_line::_001OnTimer(::timer * ptimer)
 }
 
 
-::write_text::font * xfplayer_view_line::GetFont()
+::write_text::font * xfplayer_impact_line::GetFont()
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -1992,7 +1992,7 @@ void xfplayer_view_line::_001OnTimer(::timer * ptimer)
 }
 
 
-void xfplayer_view_line::set_blend(double d)
+void xfplayer_impact_line::set_blend(double d)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -2013,7 +2013,7 @@ void xfplayer_view_line::set_blend(double d)
 }
 
 
-void xfplayer_view_line::update_hover(point_i32 &pointCursor)
+void xfplayer_impact_line::update_hover(point_i32 &pointCursor)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -2062,7 +2062,7 @@ void xfplayer_view_line::update_hover(point_i32 &pointCursor)
 }
 
 
-bool xfplayer_view_line::is_hover()
+bool xfplayer_impact_line::is_hover()
 {
 
    if (m_iLinkHoverIndex >= 0)
@@ -2081,7 +2081,7 @@ bool xfplayer_view_line::is_hover()
 }
 
 
-index xfplayer_view_line::GetLinkIndex(index iLine, strsize iChar)
+index xfplayer_impact_line::GetLinkIndex(index iLine, strsize iChar)
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -2105,7 +2105,7 @@ index xfplayer_view_line::GetLinkIndex(index iLine, strsize iChar)
 }
 
 
-bool xfplayer_view_line::has_link()
+bool xfplayer_impact_line::has_link()
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -2115,7 +2115,7 @@ bool xfplayer_view_line::has_link()
 }
 
 
-::user::interaction * xfplayer_view_line::get_interaction()
+::user::interaction * xfplayer_impact_line::get_interaction()
 {
 
    return m_pContainer->m_puserinteraction;
@@ -2123,7 +2123,7 @@ bool xfplayer_view_line::has_link()
 }
 
 
-inline XfplayerImpactLineSelection & xfplayer_view_line::GetSelection()
+inline XfplayerImpactLineSelection & xfplayer_impact_line::GetSelection()
 {
 
    single_lock synchronouslock(m_pContainer->mutex());

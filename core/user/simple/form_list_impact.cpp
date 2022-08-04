@@ -2,19 +2,19 @@
 #include "core/user/simple/_simple.h"
 
 
-simple_form_list_view::simple_form_list_view()
+simple_form_list_impact::simple_form_list_impact()
 {
 
 }
 
 
-simple_form_list_view::~simple_form_list_view()
+simple_form_list_impact::~simple_form_list_impact()
 {
 
 }
 
 
-void simple_form_list_view::install_message_routing(::channel * pchannel)
+void simple_form_list_impact::install_message_routing(::channel * pchannel)
 {
    BASE::install_message_routing(pchannel);
    //::user::impact::install_message_routing(pchannel);
@@ -23,13 +23,13 @@ void simple_form_list_view::install_message_routing(::channel * pchannel)
 
 
 
-void simple_form_list_view::assert_ok() const
+void simple_form_list_impact::assert_ok() const
 {
    ::user::impact::assert_ok();
 }
 
 
-void simple_form_list_view::dump(dump_context & dumpcontext) const
+void simple_form_list_impact::dump(dump_context & dumpcontext) const
 {
 
    ::user::impact::dump(dumpcontext);
@@ -37,7 +37,7 @@ void simple_form_list_view::dump(dump_context & dumpcontext) const
 }
 
 
-bool simple_form_list_view::pre_create_window(::user::system * pusersystem) 
+bool simple_form_list_impact::pre_create_window(::user::system * pusersystem) 
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -51,7 +51,7 @@ bool simple_form_list_view::pre_create_window(::user::system * pusersystem)
 }
 
 
-void simple_form_list_view::handle(::topic * ptopic, ::context * pcontext)
+void simple_form_list_impact::handle(::topic * ptopic, ::context * pcontext)
 {
 
    BASE::handle(ptopic, pcontext);

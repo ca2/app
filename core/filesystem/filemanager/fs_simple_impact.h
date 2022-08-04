@@ -13,12 +13,12 @@ namespace filemanager
       {
 
 
-         class list_view;
+         class list_impact;
          class tree;
 
 
          class CLASS_DECL_CORE impact :
-            virtual public ::user::split_view
+            virtual public ::user::split_impact
          {
          public:
 
@@ -26,7 +26,7 @@ namespace filemanager
             __composite(tree)             m_ptree;
             ::user::tree *                m_pusertree;
 
-            __pointer(list_view)          m_plist;
+            __pointer(list_impact)          m_plist;
             ::object *                    m_prequestinterface;
 
 

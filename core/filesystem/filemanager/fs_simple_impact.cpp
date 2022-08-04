@@ -38,7 +38,7 @@ namespace filemanager
          void impact::install_message_routing(::channel * pchannel)
          {
 
-            ::user::split_view::install_message_routing(pchannel);
+            ::user::split_impact::install_message_routing(pchannel);
 
             MESSAGE_LINK(e_message_destroy, pchannel, this, &::filemanager::fs::simple::impact::on_message_destroy);
 
@@ -48,12 +48,12 @@ namespace filemanager
 
          void impact::assert_ok() const
          {
-            ::user::split_view::assert_ok();
+            ::user::split_impact::assert_ok();
          }
 
          void impact::dump(dump_context & dumpcontext) const
          {
-            ::user::split_view::dump(dumpcontext);
+            ::user::split_impact::dump(dumpcontext);
          }
 
 
@@ -88,7 +88,7 @@ namespace filemanager
 
             SetPane(0, m_pusertree, false);
 
-            m_plist = create_view < list_view > ();
+            m_plist = create_view < list_impact > ();
 
             m_plist->m_pserver = this;
 

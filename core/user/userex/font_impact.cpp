@@ -10,10 +10,10 @@ namespace userex
 {
 
 
-   font_view::font_view()
+   font_impact::font_impact()
    {
 
-      m_atom = "font_view";
+      m_atom = "font_impact";
 
       m_pimpact = nullptr;
 
@@ -24,40 +24,40 @@ namespace userex
    }
 
 
-   font_view::~font_view()
+   font_impact::~font_impact()
    {
 
    }
 
 
-   void font_view::assert_ok() const
+   void font_impact::assert_ok() const
    {
 
-      ::user::split_view::assert_ok();
+      ::user::split_impact::assert_ok();
 
    }
 
 
-   void font_view::dump(dump_context& dumpcontext) const
+   void font_impact::dump(dump_context& dumpcontext) const
    {
 
-      ::user::split_view::dump(dumpcontext);
+      ::user::split_impact::dump(dumpcontext);
 
    }
 
 
-   void font_view::install_message_routing(::channel* pchannel)
+   void font_impact::install_message_routing(::channel* pchannel)
    {
 
-      ::user::split_view::install_message_routing(pchannel);
+      ::user::split_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &font_view::on_message_create);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &font_view::on_message_show_window);
+      MESSAGE_LINK(e_message_create, pchannel, this, &font_impact::on_message_create);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &font_impact::on_message_show_window);
 
    }
 
 
-   void font_view::on_message_create(::message::message* pmessage)
+   void font_impact::on_message_create(::message::message* pmessage)
    {
 
       pmessage->previous();
@@ -69,16 +69,16 @@ namespace userex
    }
 
    
-   void font_view::on_message_show_window(::message::message* /* pmessage */)
+   void font_impact::on_message_show_window(::message::message* /* pmessage */)
    {
 
    }
 
 
-   void font_view::handle(::topic * ptopic, ::context * pcontext)
+   void font_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::split_view::handle(ptopic, pcontext);
+      ::user::split_impact::handle(ptopic, pcontext);
 
       if (ptopic->m_atom == id_after_change_text)
       {
@@ -129,7 +129,7 @@ namespace userex
    }
 
 
-   void font_view::on_create_split_impact()
+   void font_impact::on_create_split_impact()
    {
 
       if (get_pane_count() > 0)
@@ -149,7 +149,7 @@ namespace userex
 
       initialize_split_layout();
 
-      m_ptopview = create_view < top_view >(nullptr, get_pane_holder(0), "top_view");
+      m_ptopview = create_view < top_impact >(nullptr, get_pane_holder(0), "top_impact");
 
       if (m_ptopview == nullptr)
       {
@@ -158,7 +158,7 @@ namespace userex
 
       }
 
-      m_pimpact = create_view < ::user::font_list_view >(nullptr, get_pane_holder(1), FONTSEL_IMPACT);
+      m_pimpact = create_view < ::user::font_list_impact >(nullptr, get_pane_holder(1), FONTSEL_IMPACT);
 
       if (m_pimpact == nullptr)
       {
@@ -179,15 +179,15 @@ namespace userex
    }
 
 
-   void font_view::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void font_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::split_view::on_layout(pgraphics);
+      ::user::split_impact::on_layout(pgraphics);
 
    }
 
 
-   bool font_view::set_sel_by_name(string str)
+   bool font_impact::set_sel_by_name(string str)
    {
 
       if (m_bSourceFontSel)
@@ -227,7 +227,7 @@ namespace userex
    }
 
 
-   //void font_view::handle(::topic * ptopic, ::context * pcontext)
+   //void font_impact::handle(::topic * ptopic, ::context * pcontext)
    //{
 
    //   ::user::impact::handle(ptopic, pcontext);

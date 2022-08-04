@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_BASE simple_view :
+   class CLASS_DECL_BASE simple_impact :
       virtual public ::user::impact
    {
    public:
@@ -29,8 +29,8 @@ namespace user
       array < text >       m_texta;
 
 
-      simple_view();
-      virtual ~simple_view();
+      simple_impact();
+      virtual ~simple_impact();
 
 
       void assert_ok() const override;

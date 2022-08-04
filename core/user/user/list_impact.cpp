@@ -7,19 +7,19 @@ namespace user
 {
 
 
-   list_view::list_view()
+   list_impact::list_impact()
    {
 
    }
 
 
-   list_view::~list_view()
+   list_impact::~list_impact()
    {
 
    }
 
 
-   void list_view::install_message_routing(::channel * pchannel)
+   void list_impact::install_message_routing(::channel * pchannel)
    {
 
       BASE_VIEW::install_message_routing(pchannel);
@@ -27,7 +27,7 @@ namespace user
    }
 
 
-   void list_view::handle(::topic * ptopic, ::context * pcontext)
+   void list_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       BASE_VIEW::handle(ptopic, pcontext);
@@ -42,7 +42,7 @@ namespace user
    }
 
 
-   void list_view::_001OnSelectionChange()
+   void list_impact::_001OnSelectionChange()
    {
 
       BASE_VIEW::_001OnSelectionChange();

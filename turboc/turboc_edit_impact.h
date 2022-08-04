@@ -5,17 +5,17 @@ namespace turboc
 {
 
 
-   class CLASS_DECL_TURBOC edit_view:
+   class CLASS_DECL_TURBOC edit_impact:
       virtual public ::user::edit_plain_text_view
    {
    public:
 
 
-      top_view * m_ptopview;
+      top_impact * m_ptopview;
 
 
-      edit_view(::object * pobject);
-      virtual ~edit_view();
+      edit_impact(::object * pobject);
+      virtual ~edit_impact();
 
       virtual void _001OnAfterChangeText(const ::action_context & action_context);
 

@@ -9337,7 +9337,7 @@ void application::pre_translate_message(::message::message* pmessage)
 }
 
 
-//void application::on_create_split_view(::user::split_view* psplit)
+//void application::on_create_split_impact(::user::split_impact* psplit)
 //{
 
 //}

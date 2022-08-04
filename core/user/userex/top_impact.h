@@ -5,18 +5,18 @@ namespace userex
 {
 
 
-   class CLASS_DECL_CORE top_view :
-      virtual public ::user::split_view
+   class CLASS_DECL_CORE top_impact :
+      virtual public ::user::split_impact
    {
    public:
 
 
-      top_edit_view *                     m_peditview;
-      top_toggle_view *                   m_ptoggleview;
+      top_edit_impact *                     m_peditview;
+      top_toggle_impact *                   m_ptoggleview;
 
 
-      top_view();
-      virtual ~top_view();
+      top_impact();
+      virtual ~top_impact();
 
       void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;

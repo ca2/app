@@ -8,7 +8,7 @@ namespace turboc
    switcher_view::switcher_view(::object * pobject):
       ::object(pobject),
       ::user::split_layout(pobject),
-      ::user::split_view(pobject),
+      ::user::split_impact(pobject),
       place_holder_container(pobject)
    {
 
@@ -24,7 +24,7 @@ namespace turboc
    void switcher_view::assert_ok() const
    {
 
-      ::user::split_view::assert_ok();
+      ::user::split_impact::assert_ok();
 
    }
 
@@ -32,14 +32,14 @@ namespace turboc
    void switcher_view::dump(dump_context & dumpcontext) const
    {
 
-      ::user::split_view::dump(dumpcontext);
+      ::user::split_impact::dump(dumpcontext);
 
    }
 
 
    void switcher_view::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
-      ::user::split_view::handle(ptopic, pcontext);
+      ::user::split_impact::handle(ptopic, pcontext);
    }
 
 
@@ -57,7 +57,7 @@ namespace turboc
 
       initialize_split_layout();
 
-      m_ptopview = create_view < top_view >(NULL,::rectangle_i32(),NULL,"switcher_top");
+      m_ptopview = create_view < top_impact >(NULL,::rectangle_i32(),NULL,"switcher_top");
 
       if(m_ptopview == NULL)
       {

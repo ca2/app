@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #endif
 #include "split_pane.h"
 
@@ -9,7 +9,7 @@ namespace user
 {
 
 
-   split_view::split_view()
+   split_impact::split_impact()
    {
 
       m_flagNonClient -= non_client_background;
@@ -17,38 +17,38 @@ namespace user
    }
 
 
-   split_view::~split_view()
+   split_impact::~split_impact()
    {
 
    }
 
 
-   void split_view::install_message_routing(::channel * pchannel)
+   void split_impact::install_message_routing(::channel * pchannel)
    {
 
       split_layout::install_message_routing(pchannel);
       impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &split_view::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &split_impact::on_message_create);
 
-      //MESSAGE_LINK(e_message_size, pchannel, this, &split_view::on_message_size);
-      //MESSAGE_LINK(e_message_show_window, pchannel, this, &split_view::on_message_show_window);
+      //MESSAGE_LINK(e_message_size, pchannel, this, &split_impact::on_message_size);
+      //MESSAGE_LINK(e_message_show_window, pchannel, this, &split_impact::on_message_show_window);
 
    }
 
 
 
-   void split_view::assert_ok() const
+   void split_impact::assert_ok() const
    {
       impact::assert_ok();
    }
 
-   void split_view::dump(dump_context & dumpcontext) const
+   void split_impact::dump(dump_context & dumpcontext) const
    {
       impact::dump(dumpcontext);
    }
 
-   void split_view::on_message_create(::message::message * pmessage)
+   void split_impact::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -65,7 +65,7 @@ namespace user
    }
 
 
-   bool split_view::create_split_impact()
+   bool split_impact::create_split_impact()
    {
 
 
@@ -84,9 +84,9 @@ namespace user
 
          string strMessage;
 #if defined(__APPLE__) || defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
-         strMessage.format("split_view::on_create_impact failed to create views for split impact %s", typeid(this).name());
+         strMessage.format("split_impact::on_create_impact failed to create views for split impact %s", typeid(this).name());
 #else
-         strMessage.format("split_view::on_create_impact failed to create views for split impact %s", typeid(this).raw_name());
+         strMessage.format("split_impact::on_create_impact failed to create views for split impact %s", typeid(this).raw_name());
 #endif
 
          //message_box(strMessage, nullptr, e_message_box_icon_exclamation)->get_object(10_s);
@@ -116,13 +116,13 @@ namespace user
    }
 
 
-   void split_view::handle(::topic * ptopic, ::context * pcontext)
+   void split_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
    }
 
 
-   void split_view::on_message_size(::message::message * pmessage)
+   void split_impact::on_message_size(::message::message * pmessage)
    {
       __pointer(::message::size) psize(pmessage);
       psize->previous();
@@ -130,7 +130,7 @@ namespace user
    }
 
 
-   bool split_view::pre_create_window(::user::system * pusersystem)
+   bool split_impact::pre_create_window(::user::system * pusersystem)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -144,24 +144,24 @@ namespace user
    }
 
 
-   void split_view::on_create_split_impact()
+   void split_impact::on_create_split_impact()
    {
 
       auto papp = get_app();
 
-      papp->on_create_split_view(this);
+      papp->on_create_split_impact(this);
 
    }
 
 
-   void split_view::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void split_impact::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       __UNREFERENCED_PARAMETER(pgraphics);
 
    }
 
-   void split_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void split_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::user::split_layout::_001OnDraw(pgraphics);
@@ -215,7 +215,7 @@ namespace user
    }
 
 
-   void split_view::on_message_show_window(::message::message * pmessage)
+   void split_impact::on_message_show_window(::message::message * pmessage)
    {
       __pointer(::message::show_window) pshowwindow(pmessage);
       pshowwindow->previous();
@@ -223,7 +223,7 @@ namespace user
    }
 
 
-   bool split_view::on_preparimpact_data(::user::impact_data* pimpactdata)
+   bool split_impact::on_preparimpact_data(::user::impact_data* pimpactdata)
    {
 
       //if (!add_tab(pimpactdata->m_atom, pimpactdata->m_atomTitle))

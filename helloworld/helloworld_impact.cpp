@@ -100,18 +100,18 @@ namespace helloworld
 
       data_get("cur_text",strText);
 
-      if(GetTypedParent<::user::split_view>() != nullptr)
+      if(GetTypedParent<::user::split_impact>() != nullptr)
       {
 
-         if(GetTypedParent<::user::split_view>()->get_child_by_id("top_edit_view") != nullptr)
+         if(GetTypedParent<::user::split_impact>()->get_child_by_id("top_edit_impact") != nullptr)
          {
 
-            GetTypedParent<::user::split_view>()->get_child_by_id("top_edit_view")->_001SetText(strText,::e_source_initialize);
+            GetTypedParent<::user::split_impact>()->get_child_by_id("top_edit_impact")->_001SetText(strText,::e_source_initialize);
 
 
 //            m_psystem->m_pacmefile->put_contents("C:\\dennisheazle\\ft.txt", __string((iptr)get_top_level()->get_handle()));
 
-            //GetTypedParent<::user::split_view>()->get_child_by_id("top_edit_view")->_001SetText(__string((iptr)get_top_level()->get_handle()), ::e_source_initialize);
+            //GetTypedParent<::user::split_impact>()->get_child_by_id("top_edit_impact")->_001SetText(__string((iptr)get_top_level()->get_handle()), ::e_source_initialize);
 
 
          }
@@ -193,7 +193,7 @@ namespace helloworld
       if (pupdate != nullptr)
       {
 
-         auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
+         auto * peditview = _001TypedWindow < ::userex::top_edit_impact >();
 
          if (peditview != nullptr)
          {

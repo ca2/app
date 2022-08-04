@@ -5,16 +5,16 @@ namespace user
 {
 
 
-   class CLASS_DECL_CORE form_list_view:
+   class CLASS_DECL_CORE form_list_impact:
       virtual public ::user::form_list,
       virtual public ::user::form_impact,
-      virtual public ::user::list_view
+      virtual public ::user::list_impact
    {
    public:
 
 
-      form_list_view();
-      virtual ~form_list_view();
+      form_list_impact();
+      virtual ~form_list_impact();
 
 
       virtual void initialize(::object * pobject) override;

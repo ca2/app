@@ -12,7 +12,7 @@ namespace browser
    public:
 
 
-      ::user::split_view *                            m_ptopviewLast;
+      ::user::split_impact *                            m_ptopviewLast;
       impact_base *                                     m_pimpactLast;
       impact *                                          m_pimpactLastBilbo;
       ::user::impact_data *                     m_pimpactdataTopic;
@@ -20,7 +20,7 @@ namespace browser
 
 
       ::user::document *                              m_pdocMenu;
-      ::user::plain_edit_view *                       m_prollfps;
+      ::user::plain_edit_impact *                       m_prollfps;
       address_array < ::user::check_box * >           m_checkptraBilbo;
 
 

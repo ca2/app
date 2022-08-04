@@ -5,17 +5,17 @@ namespace userex
 {
 
 
-   class CLASS_DECL_CORE top_toggle_view :
+   class CLASS_DECL_CORE top_toggle_impact :
       virtual public ::user::show < ::user::button >
    {
    public:
 
 
-      top_view *           m_ptopview;
+      top_impact *           m_ptopview;
 
 
-      top_toggle_view();
-      virtual ~top_toggle_view();
+      top_toggle_impact();
+      virtual ~top_toggle_impact();
 
 
       void install_message_routing(::channel * pchannel) override;

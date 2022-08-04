@@ -114,7 +114,7 @@ namespace userstack
       }
       //   else if(get_view_id() == CONTEXT_MENU_IMPACT)
       //   {
-      //      /*bergedge::menu_view * pimpact = dynamic_cast < bergedge::menu_view *  > (get_view());
+      //      /*bergedge::menu_impact * pimpact = dynamic_cast < bergedge::menu_impact *  > (get_view());
       //      __pointer(::filemanager::document) pdocument = (pimpact->get_document());
       //      pdocument->FileManagerBrowse(pcontext->m_papexcontext->dir().appdata() / "bergedge\\menu"), ::e_source_system);*/
       //   }

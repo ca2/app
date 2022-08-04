@@ -5,19 +5,19 @@ namespace userex
 {
 
 
-   class CLASS_DECL_CORE font_view :
-      virtual public ::user::split_view
+   class CLASS_DECL_CORE font_impact :
+      virtual public ::user::split_impact
    {
    public:
 
 
-      top_view *                    m_ptopview;
-      ::user::font_list_view *      m_pimpact;
+      top_impact *                    m_ptopview;
+      ::user::font_list_impact *      m_pimpact;
       bool                          m_bSourceFontSel;
 
 
-      font_view();
-      virtual ~font_view();
+      font_impact();
+      virtual ~font_impact();
 
 
       void install_message_routing(::channel * pchannel) override;

@@ -1,13 +1,13 @@
 #pragma once
 
 
-class CLASS_DECL_CORE menu_view :
+class CLASS_DECL_CORE menu_impact :
    virtual public ::user::form_impact
 {
 public:
 
 
-   menu_view();
+   menu_impact();
 
 
    void handle(::topic * ptopic, ::context * pcontext) override;

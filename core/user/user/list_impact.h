@@ -4,7 +4,7 @@
 namespace user
 {
 
-   class CLASS_DECL_CORE list_view:
+   class CLASS_DECL_CORE list_impact:
       virtual public ::user::show < ::user::margin < ::user::list > >
    {
    public:
@@ -13,8 +13,8 @@ namespace user
       using BASE_VIEW = ::user::show < ::user::margin < ::user::list > >;
 
 
-      list_view();
-      virtual ~list_view();
+      list_impact();
+      virtual ~list_impact();
 
 
       void install_message_routing(::channel * pchannel) override;

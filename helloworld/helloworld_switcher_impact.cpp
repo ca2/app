@@ -8,7 +8,7 @@ namespace helloworld
    switcher_view::switcher_view(::object * pobject):
       object(pobject),
       ::user::split_layout(pobject),
-      ::user::split_view(pobject),
+      ::user::split_impact(pobject),
       place_holder_container(pobject)
    {
 
@@ -28,7 +28,7 @@ namespace helloworld
    void switcher_view::assert_ok() const
    {
 
-      ::user::split_view::assert_ok();
+      ::user::split_impact::assert_ok();
 
    }
 
@@ -36,14 +36,14 @@ namespace helloworld
    void switcher_view::dump(dump_context & dumpcontext) const
    {
 
-      ::user::split_view::dump(dumpcontext);
+      ::user::split_impact::dump(dumpcontext);
 
    }
 
 
    void switcher_view::handle(::topic * ptopic, ::context * pcontext)
    {
-      ::user::split_view::handle(ptopic, pcontext);
+      ::user::split_impact::handle(ptopic, pcontext);
    }
 
 
@@ -61,7 +61,7 @@ namespace helloworld
 
       initialize_split_layout();
 
-      m_ptopview = create_view < ::userex::top_view >(nullptr, get_pane_holder(0),"top_view");
+      m_ptopview = create_view < ::userex::top_impact >(nullptr, get_pane_holder(0),"top_impact");
 
       if(m_ptopview == nullptr)
       {
@@ -130,7 +130,7 @@ namespace helloworld
    void switcher_view::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::split_view::_001OnNcDraw(pgraphics);
+      ::user::split_impact::_001OnNcDraw(pgraphics);
 
    }
 
@@ -138,7 +138,7 @@ namespace helloworld
    void switcher_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::split_view::_001OnDraw(pgraphics);
+      ::user::split_impact::_001OnDraw(pgraphics);
 
    }
 

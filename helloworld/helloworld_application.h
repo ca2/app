@@ -30,30 +30,30 @@ namespace helloworld
       bool                                   m_bWorldChat;
 
       ::user::document *                     m_pdocMenu;
-//      ::calculator::plain_edit_view *        m_prollfps;
-      ::user::plain_edit_view *              m_prollfps;
+//      ::calculator::plain_edit_impact *        m_prollfps;
+      ::user::plain_edit_impact *              m_prollfps;
       ::user::single_document_template *     m_ptemplateHelloWorldMain;
       ::user::single_document_template *     m_ptemplateHelloWorldView;
       ::user::single_document_template *     m_ptemplateHelloWorldSwitcher;
 
 
-      //::user::split_view *                             m_ptopviewLast;
+      //::user::split_impact *                             m_ptopviewLast;
       //impact *                                 m_pimpactLast;
 
-      //::user::split_view *                             m_ptopviewMain;
+      //::user::split_impact *                             m_ptopviewMain;
       //impact *                                 m_pviewMain;
       //::user::button_view *                          m_ptoggleviewMain;
-      //::user::plain_edit_view *              m_peditMain;
+      //::user::plain_edit_impact *              m_peditMain;
 
-      //::user::split_view *                             m_ptopviewSwitcher;
+      //::user::split_impact *                             m_ptopviewSwitcher;
       //impact *                                 m_pviewSwitcher;
       //::user::button_view *                          m_ptoggleviewSwitcher;
-      //::user::plain_edit_view *              m_peditSwitcher;
+      //::user::plain_edit_impact *              m_peditSwitcher;
 
-      //::user::split_view *                             m_ptopviewFont;
-      //::user::font_list_view *               m_pfontlistview;
+      //::user::split_impact *                             m_ptopviewFont;
+      //::user::font_list_impact *               m_pfontlistview;
       //::user::button_view *                          m_ptoggleviewFontSel;
-      //::user::plain_edit_view *              m_peditFontSel;
+      //::user::plain_edit_impact *              m_peditFontSel;
 
       ::mutex                                  m_mutexAiFont;
       i32                                m_iErrorAiFont;

@@ -360,7 +360,7 @@ namespace userex
 {
 
 
-   color_view::color_view()
+   color_impact::color_impact()
    {
 
       m_bMouseColorBeam = false;
@@ -376,14 +376,14 @@ namespace userex
    }
 
 
-   color_view::~color_view()
+   color_impact::~color_impact()
    {
 
 
    }
 
 
-   void color_view::assert_ok() const
+   void color_impact::assert_ok() const
    {
 
       ::user::impact::assert_ok();
@@ -391,7 +391,7 @@ namespace userex
    }
 
 
-   void color_view::dump(dump_context & dumpcontext) const
+   void color_impact::dump(dump_context & dumpcontext) const
    {
 
       ::user::impact::dump(dumpcontext);
@@ -399,16 +399,16 @@ namespace userex
    }
 
 
-   void color_view::install_message_routing(::channel * pchannel)
+   void color_impact::install_message_routing(::channel * pchannel)
    {
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &color_view::on_message_create);
-      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &color_view::on_message_mouse_move);
-      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &color_view::on_message_left_button_down);
-      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &color_view::on_message_left_button_up);
-      MESSAGE_LINK(e_message_show_window, pchannel, this, &color_view::on_message_show_window);
+      MESSAGE_LINK(e_message_create, pchannel, this, &color_impact::on_message_create);
+      MESSAGE_LINK(e_message_mouse_move, pchannel, this, &color_impact::on_message_mouse_move);
+      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &color_impact::on_message_left_button_down);
+      MESSAGE_LINK(e_message_left_button_up, pchannel, this, &color_impact::on_message_left_button_up);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &color_impact::on_message_show_window);
 
       m_pimageTemplate = m_pcontext->m_pauracontext->create_image({2048,  2048});
 
@@ -419,7 +419,7 @@ namespace userex
    }
 
 
-   void color_view::handle(::topic * ptopic, ::context * pcontext)
+   void color_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ::user::impact::handle(ptopic, pcontext);
@@ -427,7 +427,7 @@ namespace userex
    }
 
 
-   //void color_view::handle(::topic * ptopic, ::context * pcontext)
+   //void color_impact::handle(::topic * ptopic, ::context * pcontext)
    //{
 
    //   ::user::impact::handle(ptopic, pcontext);
@@ -435,7 +435,7 @@ namespace userex
    //}
 
 
-   void color_view::on_message_create(::message::message * pmessage)
+   void color_impact::on_message_create(::message::message * pmessage)
    {
 
       //m_pimageBeam->create_image(this, ::size_i32(32, 32));
@@ -470,7 +470,7 @@ namespace userex
    }
 
 
-   void color_view::on_message_show_window(::message::message * pmessage)
+   void color_impact::on_message_show_window(::message::message * pmessage)
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
@@ -479,7 +479,7 @@ namespace userex
    }
 
 
-   ::color::color color_view::get_color()
+   ::color::color color_impact::get_color()
    {
 
       ::color::color color;
@@ -493,7 +493,7 @@ namespace userex
    }
 
 
-   void color_view::set_color(const ::color::color & color)
+   void color_impact::set_color(const ::color::color & color)
    {
 
       m_bMouseColorBeam = false;
@@ -507,7 +507,7 @@ namespace userex
    }
 
 
-   void color_view::on_mouse(const ::point_i32 & point)
+   void color_impact::on_mouse(const ::point_i32 & point)
    {
 
       if (point.y >= m_rectangleColors.bottom)
@@ -611,7 +611,7 @@ namespace userex
    }
 
 
-   void color_view::rebuild_luminance()
+   void color_impact::rebuild_luminance()
    {
 
       ::visual::shades_of_luminance(m_pimageLuminance, m_hls.m_dH, m_hls.m_dS);
@@ -619,7 +619,7 @@ namespace userex
    }
 
 
-   void color_view::draw_beam(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & pointParam)
+   void color_impact::draw_beam(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & pointParam)
    {
 
       point_f64 point(pointParam);
@@ -693,7 +693,7 @@ namespace userex
    }
 
 
-   void color_view::draw_level(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleW, int yParam)
+   void color_impact::draw_level(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleW, int yParam)
    {
 
       double y = yParam;
@@ -741,7 +741,7 @@ namespace userex
    }
 
 
-   void color_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void color_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::rectangle_i32 rC;
@@ -833,7 +833,7 @@ namespace userex
    }
 
 
-   void color_view::on_message_left_button_down(::message::message * pmessage)
+   void color_impact::on_message_left_button_down(::message::message * pmessage)
    {
       
       auto pmouse = pmessage->m_union.m_pmouse;
@@ -853,7 +853,7 @@ namespace userex
    }
 
 
-   void color_view::on_message_left_button_up(::message::message * pmessage)
+   void color_impact::on_message_left_button_up(::message::message * pmessage)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
@@ -888,7 +888,7 @@ auto pwindowing = windowing();
    }
 
 
-   void color_view::on_message_mouse_move(::message::message * pmessage)
+   void color_impact::on_message_mouse_move(::message::message * pmessage)
    {
       
       auto pmouse = pmessage->m_union.m_pmouse;
@@ -909,7 +909,7 @@ auto pwindowing = windowing();
    }
 
 
-   void color_view::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void color_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::user::impact::on_layout(pgraphics);

@@ -45,8 +45,8 @@ namespace filemanager
          };
 
 
-         class CLASS_DECL_CORE list_view :
-            public simple_list_view
+         class CLASS_DECL_CORE list_impact :
+            public simple_list_impact
          {
          public:
 
@@ -117,8 +117,8 @@ namespace filemanager
             BuildHelper                                     m_buildhelper;
 
 
-            list_view();
-            ~list_view() override;
+            list_impact();
+            ~list_impact() override;
 
 
             void assert_ok() const override;

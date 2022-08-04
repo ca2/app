@@ -251,7 +251,7 @@ namespace prompt
          ptopic->payload(id_form) = "filemanager\\replace_name_in_file_system.xhtml";
          pdocument->update_all_views(pupdate);
 
-         ptopic->m_atom = id_get_form_view;
+         ptopic->m_atom = id_get_form_impact;
          pdocument->update_all_views(pupdate);
 
          ptopic->m_atom = id_after_browse;

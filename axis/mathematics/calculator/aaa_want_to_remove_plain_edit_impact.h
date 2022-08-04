@@ -5,7 +5,7 @@ namespace calculator
 {
 
 
-   class CLASS_DECL_AXIS plain_edit_view:
+   class CLASS_DECL_AXIS plain_edit_impact:
       virtual public ::user::show < ::user::plain_edit >
    {
    public:
@@ -17,8 +17,8 @@ namespace calculator
       string                     m_strFormat;
 
 
-      plain_edit_view();
-      virtual ~plain_edit_view();
+      plain_edit_impact();
+      virtual ~plain_edit_impact();
 
 
       virtual void set_format(const string& strFormat) override;

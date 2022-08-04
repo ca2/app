@@ -6,13 +6,13 @@
 
 
 
-menu_view::menu_view()
+menu_impact::menu_impact()
 {
    
 }
 
 
-void menu_view::handle(::topic * ptopic, ::context * pcontext)
+void menu_impact::handle(::topic * ptopic, ::context * pcontext)
 {
    ::user::form_impact::handle(ptopic, pcontext);
 
@@ -52,7 +52,7 @@ void menu_view::handle(::topic * ptopic, ::context * pcontext)
 }
 
 //
-//void menu_view::handle(::topic * ptopic, ::context * pcontext)
+//void menu_impact::handle(::topic * ptopic, ::context * pcontext)
 //{
 //
 //   auto papp = get_app();
@@ -90,23 +90,23 @@ void menu_view::handle(::topic * ptopic, ::context * pcontext)
 //}
 //
 
-void menu_view::install_message_routing(::channel * pchannel)
+void menu_impact::install_message_routing(::channel * pchannel)
 {
    ::user::form::install_message_routing(pchannel);
-   MESSAGE_LINK(e_message_create, pchannel, this, &menu_view::on_message_create);
-//   //MESSAGE_LINK(e_message_timer, pchannel, this, &menu_view::_001OnTimer);
-   //MESSAGE_LINK(WM_USER + 123, pchannel, this, &menu_view::_001OnUser123);
+   MESSAGE_LINK(e_message_create, pchannel, this, &menu_impact::on_message_create);
+//   //MESSAGE_LINK(e_message_timer, pchannel, this, &menu_impact::_001OnTimer);
+   //MESSAGE_LINK(WM_USER + 123, pchannel, this, &menu_impact::_001OnUser123);
 
 }
 
 
-void menu_view::on_message_create(::message::message * pmessage)
+void menu_impact::on_message_create(::message::message * pmessage)
 {
    pmessage->previous();
 }
 
 
-void menu_view::_001OnTimer(::timer * ptimer)
+void menu_impact::_001OnTimer(::timer * ptimer)
 {
 
    ::user::form_impact::_001OnTimer(ptimer);;
@@ -149,7 +149,7 @@ void menu_view::_001OnTimer(::timer * ptimer)
 }
 
 
-//void menu_view::_001OnUser123(::message::message * pmessage)
+//void menu_impact::_001OnUser123(::message::message * pmessage)
 //{
 //   __pointer(::user::message) pusermessage(pmessage);
 //   if(pusermessage->m_wparam == 0x80000001)

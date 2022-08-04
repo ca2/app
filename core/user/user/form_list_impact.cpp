@@ -8,19 +8,19 @@ namespace user
 {
 
 
-   form_list_view::form_list_view()
+   form_list_impact::form_list_impact()
    {
 
    }
 
 
-   form_list_view::~form_list_view()
+   form_list_impact::~form_list_impact()
    {
 
    }
 
 
-   void form_list_view::install_message_routing(::channel * pchannel)
+   void form_list_impact::install_message_routing(::channel * pchannel)
    {
 
       ::user::form_impact::install_message_routing(pchannel);
@@ -29,12 +29,12 @@ namespace user
    }
 
 
-   void form_list_view::handle(::topic * ptopic, ::context * pcontext)
+   void form_list_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ::user::form_impact::handle(ptopic, pcontext);
 
-      ::user::list_view::handle(ptopic, pcontext);
+      ::user::list_impact::handle(ptopic, pcontext);
 
       ////__update(::update)
       {
@@ -57,7 +57,7 @@ namespace user
             }
 
          }
-         else if(ptopic->m_atom == id_get_form_view)
+         else if(ptopic->m_atom == id_get_form_impact)
          {
 
             ptopic->payload(id_form) = this;
@@ -78,7 +78,7 @@ namespace user
    }
 
 
-   void form_list_view::initialize(::object * pobject)
+   void form_list_impact::initialize(::object * pobject)
    {
 
       //auto estatus = 
@@ -105,7 +105,7 @@ namespace user
 
       //estatus = 
       
-      ::user::list_view::initialize(pobject);
+      ::user::list_impact::initialize(pobject);
 
       //if (!estatus)
       //{
@@ -119,30 +119,30 @@ namespace user
    }
 
 
-   void form_list_view::assert_ok() const
+   void form_list_impact::assert_ok() const
    {
 
       form_list::assert_ok();
       form_impact::assert_ok();
-      list_view::assert_ok();
+      list_impact::assert_ok();
 
    }
 
 
-   void form_list_view::dump(dump_context & dumpcontext) const
+   void form_list_impact::dump(dump_context & dumpcontext) const
    {
 
       form_list::dump(dumpcontext);
       form_impact::dump(dumpcontext);
-      list_view::dump(dumpcontext);
+      list_impact::dump(dumpcontext);
 
    }
 
 
-   bool form_list_view::pre_create_window(::user::system * pusersystem)
+   bool form_list_impact::pre_create_window(::user::system * pusersystem)
    {
 
-      if (!::user::list_view::pre_create_window(pusersystem))
+      if (!::user::list_impact::pre_create_window(pusersystem))
       {
 
          return false;
@@ -154,15 +154,15 @@ namespace user
    }
 
 
-   void form_list_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void form_list_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::list_view::_001OnDraw(pgraphics);
+      ::user::list_impact::_001OnDraw(pgraphics);
 
    }
 
 
-   void form_list_view::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
+   void form_list_impact::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
       ::user::impact::route_command(pcommand);
@@ -170,7 +170,7 @@ namespace user
    }
 
 
-   void form_list_view::on_command(::message::command* pcommand)
+   void form_list_impact::on_command(::message::command* pcommand)
    {
 
       ::user::impact::on_command(pcommand);
@@ -178,51 +178,51 @@ namespace user
    }
 
 
-   void form_list_view::_001OnTimer(::timer * ptimer)
+   void form_list_impact::_001OnTimer(::timer * ptimer)
    {
 
-      ::user::list_view::_001OnTimer(ptimer);
+      ::user::list_impact::_001OnTimer(ptimer);
 
       ::user::form_impact::_001OnTimer(ptimer);
 
    }
 
 
-   void form_list_view::set_viewport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
+   void form_list_impact::set_viewport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
    {
 
-      ::user::list_view::set_viewport_offset(pgraphics, x, y);
+      ::user::list_impact::set_viewport_offset(pgraphics, x, y);
 
    }
 
 
-   ::point_i32 form_list_view::get_viewport_offset()
+   ::point_i32 form_list_impact::get_viewport_offset()
    {
 
-      return ::user::list_view::get_viewport_offset();
+      return ::user::list_impact::get_viewport_offset();
 
    }
 
 
-   ::size_f64 form_list_view::get_total_size()
+   ::size_f64 form_list_impact::get_total_size()
    {
 
-      return ::user::list_view::get_total_size();
+      return ::user::list_impact::get_total_size();
 
    }
 
 
-   //void form_list_view::handle(::topic * ptopic, ::context * pcontext)
+   //void form_list_impact::handle(::topic * ptopic, ::context * pcontext)
    //{
 
    //   form_impact::handle(ptopic, pcontext);
 
-   //   list_view::handle(ptopic, pcontext);
+   //   list_impact::handle(ptopic, pcontext);
 
    //}
 
 
-   void form_list_view::OnActivateImpact(bool bActivate, __pointer(::user::impact) pActivateImpact, __pointer(::user::impact) pviewDeactive)
+   void form_list_impact::OnActivateImpact(bool bActivate, __pointer(::user::impact) pActivateImpact, __pointer(::user::impact) pviewDeactive)
    {
       //    UNUSED(pActivateImpact);   // unused in release builds
 
@@ -255,7 +255,7 @@ namespace user
    }
 
 
-   void form_list_view::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void form_list_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::user::form_list::on_layout(pgraphics);
@@ -263,7 +263,7 @@ namespace user
    }
 
 
-   index form_list_view::_001GetCurItem()
+   index form_list_impact::_001GetCurItem()
    {
 
       if (m_pcontrolEdit.is_set())
@@ -273,7 +273,7 @@ namespace user
 
       }
 
-      return ::user::list_view::_001GetCurItem();
+      return ::user::list_impact::_001GetCurItem();
 
    }
 

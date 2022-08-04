@@ -667,6 +667,7 @@ namespace user
 
 
       virtual void display_restored();
+      virtual void display_zoomed();
       virtual void display_iconic();
       virtual void display_restore();
       virtual void display_notify_icon();
@@ -1642,6 +1643,8 @@ namespace user
          
       }
       virtual interaction& operator =(const ::rectangle_i32& rectangle);
+
+      virtual void place_rate_or_size(const ::rectangle_f64 & rectangle);
 
 
       virtual void activation(::e_activation eactivation);

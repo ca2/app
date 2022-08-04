@@ -1,10 +1,10 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #endif
 #include "aura/update.h"
 #include "aqua/xml.h"
-#include "menu_view.h"
+#include "menu_impact.h"
 #include "aura/graphics/draw2d/_draw2d.h"
 
 
@@ -12,7 +12,7 @@ namespace user
 {
 
 
-   menu_view::menu_view() 
+   menu_impact::menu_impact() 
    {
 
       m_bClickDefaultMouseHandling = true;
@@ -24,13 +24,13 @@ namespace user
    }
 
 
-   menu_view::~menu_view()
+   menu_impact::~menu_impact()
    {
 
    }
 
 
-   void menu_view::assert_ok() const
+   void menu_impact::assert_ok() const
    {
 
       ::user::impact::assert_ok();
@@ -38,7 +38,7 @@ namespace user
    }
 
 
-   void menu_view::dump(dump_context & dumpcontext) const
+   void menu_impact::dump(dump_context & dumpcontext) const
    {
 
       ::user::impact::dump(dumpcontext);
@@ -46,20 +46,20 @@ namespace user
    }
 
 
-   void menu_view::install_message_routing(::channel * pchannel)
+   void menu_impact::install_message_routing(::channel * pchannel)
    {
 
       ::user::impact::install_message_routing(pchannel);
 
       //install_click_default_mouse_handling(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &menu_view::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &menu_view::on_message_destroy);
+      MESSAGE_LINK(e_message_create, pchannel, this, &menu_impact::on_message_create);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &menu_impact::on_message_destroy);
 
    }
 
 
-   bool menu_view::on_click(::item * pitem)
+   bool menu_impact::on_click(::item * pitem)
    {
 
       if (!is_window_enabled())
@@ -131,7 +131,7 @@ namespace user
    }
 
 
-   void menu_view::on_message_create(::message::message * pmessage)
+   void menu_impact::on_message_create(::message::message * pmessage)
    {
 
       payload(FONTSEL_IMPACT) = true;
@@ -168,7 +168,7 @@ namespace user
 
       //}
 
-      //set_topic_text("menu_view> ");
+      //set_topic_text("menu_impact> ");
 
       auto atom = get_document()->m_pimpactsystem->m_atom;
 
@@ -196,13 +196,13 @@ namespace user
 
       m_pfont->create_point_font(pnode->font_name(e_font_sans_ui), 14, 400);
 
-      if (GetTypedParent<::user::split_view>() != nullptr)
+      if (GetTypedParent<::user::split_impact>() != nullptr)
       {
 
-         if (GetTypedParent<::user::split_view>()->get_child_by_id("top_edit_view") != nullptr)
+         if (GetTypedParent<::user::split_impact>()->get_child_by_id("top_edit_impact") != nullptr)
          {
 
-            auto pinteraction = GetTypedParent<::user::split_view>()->get_child_by_id("top_edit_view");
+            auto pinteraction = GetTypedParent<::user::split_impact>()->get_child_by_id("top_edit_impact");
 
             pinteraction->_001SetText(strText, ::e_source_initialize);
 
@@ -213,13 +213,13 @@ namespace user
    }
 
 
-   void menu_view::on_message_destroy(::message::message * pmessage)
+   void menu_impact::on_message_destroy(::message::message * pmessage)
    {
 
    }
 
 
-   void menu_view::handle(::topic * ptopic, ::context * pcontext)
+   void menu_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ::user::impact::handle(ptopic, pcontext);
@@ -227,7 +227,7 @@ namespace user
       if (ptopic->m_atom == id_after_change_text)
       {
 
-         auto peditview = _001TypedWindow < ::user::plain_edit_view >();
+         auto peditview = _001TypedWindow < ::user::plain_edit_impact >();
 
          if (peditview != nullptr && ptopic->m_puserelement == peditview)
          {
@@ -243,7 +243,7 @@ namespace user
    }
 
 
-   bool menu_view::get_item_rect(index i, RECTANGLE_I32 * prectangle)
+   bool menu_impact::get_item_rect(index i, RECTANGLE_I32 * prectangle)
    {
 
       int iHeight = (int) ( m_pfontTitle->m_dFontSize * 1.25 + 20);
@@ -295,7 +295,7 @@ namespace user
    }
 
 
-   ::item_pointer menu_view::on_hit_test(const ::point_i32 &point)
+   ::item_pointer menu_impact::on_hit_test(const ::point_i32 &point)
    {
 
       index iPos = 0;
@@ -354,7 +354,7 @@ namespace user
    }
 
 
-   void menu_view::_001OnDraw(::draw2d::graphics_pointer & pgraphicsParam)
+   void menu_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphicsParam)
    {
 
       ::image_pointer pimage1;
@@ -635,7 +635,7 @@ namespace user
    }
 
 
-   ::user::document * menu_view::get_document()
+   ::user::document * menu_impact::get_document()
    {
 
       return  (::user::impact::get_document());
@@ -643,7 +643,7 @@ namespace user
    }
 
 
-   void menu_view::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void menu_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::rectangle_i32 rectangleClient;
@@ -656,7 +656,7 @@ namespace user
    }
 
 
-   bool menu_view::load_xml(::payload payloadFile)
+   bool menu_impact::load_xml(::payload payloadFile)
    {
 
       auto pcontext = get_context();
@@ -741,7 +741,7 @@ namespace user
    }
 
 
-   void menu_view::draw_border_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
+   void menu_impact::draw_border_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
       pgraphics->set_current_point(rectangle.left, rectangle.top);
@@ -755,7 +755,7 @@ namespace user
    }
 
 
-   void menu_view::draw_header_separator(::draw2d::graphics_pointer & pgraphics, const ::point_i32& point1, const ::point_i32& point2)
+   void menu_impact::draw_header_separator(::draw2d::graphics_pointer & pgraphics, const ::point_i32& point1, const ::point_i32& point2)
    {
 
       pgraphics->set_current_point(point1);
@@ -764,7 +764,7 @@ namespace user
    }
 
 
-   void menu_view::draw_header_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
+   void menu_impact::draw_header_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
       pgraphics->fill_rectangle(rectangle, argb(255, 240, 240, 240));
@@ -783,7 +783,7 @@ namespace user
    }
 
 
-   void menu_view::draw_item_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
+   void menu_impact::draw_item_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
       pgraphics->set_current_point(rectangle.left, rectangle.top);
@@ -798,7 +798,7 @@ namespace user
    }
 
 
-   void menu_view::draw_item_rectangle_hover001(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
+   void menu_impact::draw_item_rectangle_hover001(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
       pgraphics->fill_rectangle(rectangle);
@@ -818,7 +818,7 @@ namespace user
    }
 
 
-   void menu_view::draw_item_rectangle_sel001(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
+   void menu_impact::draw_item_rectangle_sel001(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
       pgraphics->fill_rectangle(rectangle);
@@ -849,7 +849,7 @@ namespace user
 
    }
 
-   void menu_view::draw_item_rectangle_hover_sel001(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
+   void menu_impact::draw_item_rectangle_hover_sel001(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
       pgraphics->fill_rectangle(rectangle);
@@ -883,7 +883,7 @@ namespace user
    }
 
 
-   void menu_view::draw_item_separator(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & point1, const ::point_i32 & point2)
+   void menu_impact::draw_item_separator(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & point1, const ::point_i32 & point2)
    {
 
       pgraphics->set_current_point(point1);

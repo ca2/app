@@ -8,8 +8,8 @@ namespace userex
    class pane_impact;
 
 
-   class CLASS_DECL_CORE pane_split_view:
-      virtual public ::user::split_view
+   class CLASS_DECL_CORE pane_split_impact:
+      virtual public ::user::split_impact
    {
    public:
 
@@ -17,8 +17,8 @@ namespace userex
       __pointer(pane_impact) m_ppaneimpact;
 
 
-      pane_split_view();
-      virtual ~pane_split_view();
+      pane_split_impact();
+      virtual ~pane_split_impact();
 
 
    };

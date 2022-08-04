@@ -363,7 +363,7 @@ namespace user
 
    //   //if (lHint> update_begin && lHint < update_end)
    //   //{
-   //   //   on_simple_view_update_hint(pSender, (e_hint)lHint, pHint);
+   //   //   on_simple_impact_update_hint(pSender, (e_hint)lHint, pHint);
    //   //}
    //   //ASSERT(pimpact != this);
    //   //UNUSED(pSender);     // unused in release builds
@@ -375,7 +375,7 @@ namespace user
 
    //}
 
-   //void impact::on_simple_view_update_hint(__pointer(::user::impact) pviewSender, e_hint ehint, object * pupdate)
+   //void impact::on_simple_impact_update_hint(__pointer(::user::impact) pviewSender, e_hint ehint, object * pupdate)
    //{
 
    //   switch (ehint)

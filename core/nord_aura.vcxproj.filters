@@ -2686,7 +2686,7 @@
     <ClCompile Include="user\user\shell.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\simple_view.cpp">
+    <ClCompile Include="user\user\simple_impact.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\single_document_template.cpp">
@@ -2863,7 +2863,7 @@
     <ClCompile Include="filesystem\filemanager\fs_simple_tree.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\fs_simple_view.cpp">
+    <ClCompile Include="filesystem\filemanager\fs_simple_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\icon.cpp">
@@ -2878,7 +2878,7 @@
     <ClCompile Include="filesystem\filemanager\item_action.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\left_view.cpp">
+    <ClCompile Include="filesystem\filemanager\left_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\main_frame.cpp">
@@ -2908,13 +2908,13 @@
     <ClCompile Include="filesystem\filemanager\operation_view.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\path_view.cpp">
+    <ClCompile Include="filesystem\filemanager\path_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\preview.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\save_as_name_view.cpp">
+    <ClCompile Include="filesystem\filemanager\save_as_name_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\tab_view.cpp">

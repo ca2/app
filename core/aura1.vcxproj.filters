@@ -2966,7 +2966,7 @@
     <ClInclude Include="user\user\shell.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\simple_view.h">
+    <ClInclude Include="user\user\simple_impact.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\slider.h">
@@ -3107,7 +3107,7 @@
     <ClInclude Include="filesystem\filemanager\fs_simple_tree.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\fs_simple_view.h">
+    <ClInclude Include="filesystem\filemanager\fs_simple_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\icon.h">
@@ -3122,7 +3122,7 @@
     <ClInclude Include="filesystem\filemanager\item_action.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\left_view.h">
+    <ClInclude Include="filesystem\filemanager\left_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\main_frame.h">
@@ -3152,13 +3152,13 @@
     <ClInclude Include="filesystem\filemanager\operation_view.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\path_view.h">
+    <ClInclude Include="filesystem\filemanager\path_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\preview.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\save_as_name_view.h">
+    <ClInclude Include="filesystem\filemanager\save_as_name_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\tab_view.h">
@@ -6556,7 +6556,7 @@
     <ClCompile Include="user\user\shell.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\simple_view.cpp">
+    <ClCompile Include="user\user\simple_impact.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\slider.cpp">
@@ -6694,7 +6694,7 @@
     <ClCompile Include="filesystem\filemanager\fs_simple_tree.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\fs_simple_view.cpp">
+    <ClCompile Include="filesystem\filemanager\fs_simple_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\icon.cpp">
@@ -6709,7 +6709,7 @@
     <ClCompile Include="filesystem\filemanager\item_action.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\left_view.cpp">
+    <ClCompile Include="filesystem\filemanager\left_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\main_frame.cpp">
@@ -6739,13 +6739,13 @@
     <ClCompile Include="filesystem\filemanager\operation_view.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\path_view.cpp">
+    <ClCompile Include="filesystem\filemanager\path_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\preview.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\save_as_name_view.cpp">
+    <ClCompile Include="filesystem\filemanager\save_as_name_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\tab_view.cpp">

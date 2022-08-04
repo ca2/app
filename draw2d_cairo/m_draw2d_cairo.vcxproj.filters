@@ -1850,7 +1850,7 @@
     <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_tree_view.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_view.h">
+    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_icon.h">
@@ -5089,7 +5089,7 @@
     <ClCompile Include="filesystem\filemanager\filemanager_icon.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_view.cpp">
+    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_tree_view.cpp">

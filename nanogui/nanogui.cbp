@@ -162,16 +162,16 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/nanogui/Icons.h">
 			<Option target="nanogui"/>
 		</Unit>
+		<Unit filename="/home/camilo/solution/stage/source/app/nanogui/ImageImpact.cpp">
+			<Option target="nanogui"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/stage/source/app/nanogui/ImageImpact.h">
+			<Option target="nanogui"/>
+		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/nanogui/ImagePanel.cpp">
 			<Option target="nanogui"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/nanogui/ImagePanel.h">
-			<Option target="nanogui"/>
-		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/nanogui/ImageView.cpp">
-			<Option target="nanogui"/>
-		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/nanogui/ImageView.h">
 			<Option target="nanogui"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/nanogui/Label.cpp">

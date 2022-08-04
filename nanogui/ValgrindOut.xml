@@ -36724,7 +36724,7 @@
     <frame>
       <ip>0x11E89302</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;filemanager::left_view, filemanager::left_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;filemanager::left_impact, filemanager::left_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -37122,7 +37122,7 @@
     <frame>
       <ip>0x11E89592</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;filemanager::path_view, filemanager::path_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;filemanager::path_impact, filemanager::path_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -47072,7 +47072,7 @@
     <frame>
       <ip>0xE69C74A</ip>
       <obj>/xcore/time/x64/basis/libbase.so</obj>
-      <fn>alloc_factory&lt;user::simple_view, user::simple_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;user::simple_impact, user::simple_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/base/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>

@@ -224,7 +224,7 @@ namespace userstack
       {
       case e_timer_backview:
       {
-         //gcom::backview::user_interaction::image_change_post_event(gcom::backview::event_timer);
+         //gcom::backimpact::user_interaction::image_change_post_event(gcom::backimpact::event_timer);
       }
       break;
       }
@@ -377,7 +377,7 @@ namespace userstack
          }
       }
       ::user::show < ::user::interaction >::on_layout(pgraphics);
-      gcom::backview::user::interaction::on_layout(pgraphics);
+      gcom::backimpact::user::interaction::on_layout(pgraphics);
    }*/
 
    void impact::_000OnMouse(::message::mouse * pmouse)

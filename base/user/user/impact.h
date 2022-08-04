@@ -150,7 +150,7 @@ namespace user
 
       virtual ::user::interaction::enum_type get_window_type() override;
 
-      //virtual void on_simple_view_update_hint(__pointer(::user::impact) pviewSender, e_hint ehint, object * pupdate);
+      //virtual void on_simple_impact_update_hint(__pointer(::user::impact) pviewSender, e_hint ehint, object * pupdate);
 
       virtual void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

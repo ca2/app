@@ -193,9 +193,9 @@ namespace filemanager
       ::factory::add_factory_item <document >();
       ::factory::add_factory_item <child_frame >();
       ::factory::add_factory_item <impact >();
-      ::factory::add_factory_item <path_view >();
+      ::factory::add_factory_item <path_impact >();
       ::factory::add_factory_item <save_as_view >();
-      ::factory::add_factory_item <left_view >();
+      ::factory::add_factory_item <left_impact >();
       ::factory::add_factory_item <main_impact >();
       ::factory::add_factory_item <file_list >();
       ::factory::add_factory_item <preview >();

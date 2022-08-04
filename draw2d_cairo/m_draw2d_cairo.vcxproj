@@ -874,7 +874,7 @@
     <ClInclude Include="filesystem\filemanager\filemanager_form_view.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_list_view.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_tree_view.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_impact.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_icon.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_iconoverlayer.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_item_action.h" />
@@ -1884,7 +1884,7 @@
     <ClCompile Include="filesystem\filemanager\filemanager_form_view.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_list_view.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_tree_view.cpp" />
-    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_view.cpp" />
+    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_impact.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_icon.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_iconoverlayer.cpp" />
     <ClCompile Include="filesystem\filemanager\filemanager_item_action.cpp" />

@@ -8,7 +8,7 @@ namespace filemanager
 {
 
 
-   path_view::path_view()
+   path_impact::path_impact()
    {
 
       m_bVoidSync = false;
@@ -16,7 +16,7 @@ namespace filemanager
    }
 
 
-   void path_view::install_message_routing(::channel * pchannel)
+   void path_impact::install_message_routing(::channel * pchannel)
    {
 
       ::filemanager_impact_base::install_message_routing(pchannel);
@@ -25,7 +25,7 @@ namespace filemanager
    }
 
 
-   void path_view::browse_sync(const ::action_context & context)
+   void path_impact::browse_sync(const ::action_context & context)
    {
 
       if (m_bVoidSync)
@@ -60,7 +60,7 @@ namespace filemanager
    }
 
 
-   //void path_view::_001OnAfterChangeText(const ::action_context & context)
+   //void path_impact::_001OnAfterChangeText(const ::action_context & context)
    //{
 
    //   //if (!context.is_user_source())
@@ -151,7 +151,7 @@ namespace filemanager
    //}
 
 
-   void path_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void path_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       //::color::color crBackground = 0;
@@ -174,7 +174,7 @@ namespace filemanager
    }
 
 
-   void path_view::handle(::topic * ptopic, ::context * pcontext)
+   void path_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ::filemanager_impact_base::handle(ptopic, pcontext);

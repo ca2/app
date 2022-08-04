@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   class CLASS_DECL_CORE path_view :
+   class CLASS_DECL_CORE path_impact :
       virtual public ::user::show < ::user::plain_edit >,
       virtual public ::filemanager_impact_base
    {
@@ -15,7 +15,7 @@ namespace filemanager
       bool m_bVoidSync;
 
 
-      path_view();
+      path_impact();
 
 
       void install_message_routing(::channel * pchannel) override;

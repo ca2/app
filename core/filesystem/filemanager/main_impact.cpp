@@ -93,7 +93,7 @@ namespace filemanager
 
       initialize_split_layout();
 
-      left_view * pleftview = create_pane_view < left_view >(0);
+      left_impact * pleftview = create_pane_view < left_impact >(0);
 
       if(pleftview == nullptr)
       {

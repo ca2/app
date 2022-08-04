@@ -320,7 +320,7 @@
     <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_list_view.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_view.h">
+    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_icon.h">
@@ -542,7 +542,7 @@
     <ClInclude Include="filesystem\filemanager\filemanager_main_frame.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_left_view.h">
+    <ClInclude Include="filesystem\filemanager\filemanager_left_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_frame.h">
@@ -554,7 +554,7 @@
     <ClInclude Include="filesystem\filemanager\filemanager_child_frame.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_save_as_name_view.h">
+    <ClInclude Include="filesystem\filemanager\filemanager_save_as_name_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_tab_view.h">
@@ -1093,7 +1093,7 @@
     <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_list_view.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_view.cpp">
+    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_icon.cpp">
@@ -1240,13 +1240,13 @@
     <ClCompile Include="filesystem\filemanager\filemanager_frame.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_left_view.cpp">
+    <ClCompile Include="filesystem\filemanager\filemanager_left_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_main_frame.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_save_as_name_view.cpp">
+    <ClCompile Include="filesystem\filemanager\filemanager_save_as_name_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_tab_view.cpp">

@@ -318,10 +318,10 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/menu/central.h">
 			<Option target="base"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/base/user/menu/list_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/base/user/menu/list_impact.cpp">
 			<Option target="base"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/base/user/menu/list_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/base/user/menu/list_impact.h">
 			<Option target="base"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/menu/list_window.cpp">
@@ -330,10 +330,10 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/menu/list_window.h">
 			<Option target="base"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/base/user/menu/menu_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/base/user/menu/menu_impact.cpp">
 			<Option target="base"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/base/user/menu/menu_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/base/user/menu/menu_impact.h">
 			<Option target="base"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/prelude.h">
@@ -342,10 +342,10 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/simple/_.h">
 			<Option target="base"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/base/user/simple/_impl.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/base/user/simple/_component.h">
 			<Option target="base"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/base/user/simple/_simple.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/base/user/simple/_impl.h">
 			<Option target="base"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/simple/frame_window.cpp">
@@ -366,7 +366,16 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/simple/scroll_bar.h">
 			<Option target="base"/>
 		</Unit>
+		<Unit filename="/home/camilo/solution/stage/source/app/base/user/simple/tab_document.cpp">
+			<Option target="base"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/stage/source/app/base/user/simple/tab_document.h">
+			<Option target="base"/>
+		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/_.h">
+			<Option target="base"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/_component.h">
 			<Option target="base"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/_data.h">
@@ -376,9 +385,6 @@
 			<Option target="base"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/_tree.h">
-			<Option target="base"/>
-		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/_user.h">
 			<Option target="base"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/composition_imm_client.h">
@@ -447,13 +453,13 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/form_document.h">
 			<Option target="base"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/form_update_hint.h">
-			<Option target="base"/>
-		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/form_impact.cpp">
 			<Option target="base"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/form_impact.h">
+			<Option target="base"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/form_update_hint.h">
 			<Option target="base"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/form_window.cpp">
@@ -594,10 +600,10 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/server.h">
 			<Option target="base"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/simple_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/simple_impact.cpp">
 			<Option target="base"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/simple_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/simple_impact.h">
 			<Option target="base"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/single_document_template.cpp">
@@ -612,6 +618,12 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/split_bar.h">
 			<Option target="base"/>
 		</Unit>
+		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/split_impact.cpp">
+			<Option target="base"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/split_impact.h">
+			<Option target="base"/>
+		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/split_layout.cpp">
 			<Option target="base"/>
 		</Unit>
@@ -622,12 +634,6 @@
 			<Option target="base"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/split_pane.h">
-			<Option target="base"/>
-		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/split_view.cpp">
-			<Option target="base"/>
-		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/split_view.h">
 			<Option target="base"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/static_control.cpp">
@@ -663,6 +669,12 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/tab_drop_target_window.h">
 			<Option target="base"/>
 		</Unit>
+		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/tab_impact.cpp">
+			<Option target="base"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/tab_impact.h">
+			<Option target="base"/>
+		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/tab_pane.cpp">
 			<Option target="base"/>
 		</Unit>
@@ -673,12 +685,6 @@
 			<Option target="base"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/tab_pane_array.h">
-			<Option target="base"/>
-		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/tab_view.cpp">
-			<Option target="base"/>
-		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/tab_view.h">
 			<Option target="base"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/base/user/user/toolbar.cpp">

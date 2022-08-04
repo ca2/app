@@ -71,7 +71,7 @@ namespace filemanager
 
          initialize_split_layout();
 
-         path_view * ppathview = create_pane_view < path_view >(0);
+         path_impact * ppathview = create_pane_view < path_impact >(0);
 
          if (ppathview == nullptr)
          {

@@ -378,7 +378,7 @@ list(APPEND library_source
    #user/simple/_.cpp
    user/simple/_.h
    user/simple/_impl.h
-   user/simple/_simple.h
+   user/simple/_component.h
    user/simple/_tree.h
    user/simple/child_frame.cpp
    user/simple/child_frame.h

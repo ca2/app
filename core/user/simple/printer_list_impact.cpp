@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "core/user/simple/_simple.h"
+#include "core/user/simple/_component.h"
 #include "aura/graphics/draw2d/printer.h"
 #include "base/user/user/print_task.h"
 //#ifdef WINDOWS_DESKTOP

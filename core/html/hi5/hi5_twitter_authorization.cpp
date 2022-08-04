@@ -3,9 +3,9 @@
 #include "core/html/impl/_impl.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "hi5_twitter_authorization.h"
-#include "core/user/simple/_simple.h"
+#include "core/user/simple/_component.h"
 #endif
-//#include "core/user/simple/_simple.h"
+//#include "core/user/simple/_component.h"
 
 //#include <openssl/rsa.h>
 //#include <openssl/engine.h>

@@ -269,16 +269,16 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/folder_list_data.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/folder_list_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/folder_list_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/folder_list_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/folder_list_impact.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/folder_selection_list_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/folder_selection_list_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/folder_selection_list_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/folder_selection_list_impact.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/form.cpp">
@@ -299,22 +299,22 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/frame.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/fs_simple_list_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/fs_simple_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/fs_simple_list_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/fs_simple_impact.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/fs_simple_list_impact.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/fs_simple_list_impact.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/fs_simple_tree.cpp">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/fs_simple_tree.h">
-			<Option target="core"/>
-		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/fs_simple_view.cpp">
-			<Option target="core"/>
-		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/fs_simple_view.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/icon.cpp">
@@ -341,10 +341,10 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/impact_base.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/left_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/left_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/left_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/left_impact.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/main_frame.cpp">
@@ -377,16 +377,22 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/operation_document.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/operation_info_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/operation_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/operation_info_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/operation_impact.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/operation_list_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/operation_info_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/operation_list_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/operation_info_impact.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/operation_list_impact.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/operation_list_impact.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/operation_thread.cpp">
@@ -395,16 +401,10 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/operation_thread.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/operation_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/path_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/operation_view.h">
-			<Option target="core"/>
-		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/path_view.cpp">
-			<Option target="core"/>
-		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/path_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/path_impact.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/preview.cpp">
@@ -413,16 +413,16 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/preview.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/save_as_name_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/save_as_name_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/save_as_name_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/save_as_name_impact.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/tab_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/tab_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/tab_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/tab_impact.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/filesystem/filemanager/tree.cpp">
@@ -1148,10 +1148,10 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/_.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/_impl.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/_component.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/_simple.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/_impl.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/_tree.h">
@@ -1163,16 +1163,16 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/child_frame.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/form_list_view.cpp">
-			<Option target="core"/>
-		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/form_list_view.h">
-			<Option target="core"/>
-		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/form_impact.cpp">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/form_impact.h">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/form_list_impact.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/form_list_impact.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/list_control.cpp">
@@ -1193,10 +1193,10 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/list_header_control.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/list_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/list_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/list_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/list_impact.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/menu_bar.cpp">
@@ -1220,10 +1220,10 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/pane_document.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/printer_list_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/printer_list_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/printer_list_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/printer_list_impact.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/simple.h">
@@ -1247,10 +1247,10 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/tab_control.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/tab_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/tab_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/tab_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/tab_impact.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/toolbar.cpp">
@@ -1259,10 +1259,10 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/toolbar.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/tree_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/tree_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/tree_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/simple/tree_impact.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/00.h">
@@ -1319,10 +1319,10 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/form_list.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/form_list_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/form_list_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/form_list_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/form_list_impact.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/form_mesh.cpp">
@@ -1376,16 +1376,16 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/list_header.h">
 			<Option target="core"/>
 		</Unit>
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/list_impact.cpp">
+			<Option target="core"/>
+		</Unit>
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/list_impact.h">
+			<Option target="core"/>
+		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/list_item.cpp">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/list_item.h">
-			<Option target="core"/>
-		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/list_view.cpp">
-			<Option target="core"/>
-		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/list_view.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/listing.h">
@@ -1487,22 +1487,22 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/tree_window.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/xfplayer_view_line.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/xfplayer_impact_line.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/xfplayer_view_line.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/xfplayer_impact_line.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/xfplayer_view_line_selection.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/xfplayer_impact_line_selection.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/xfplayer_view_line_selection.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/xfplayer_impact_line_selection.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/xfplayer_view_lines.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/xfplayer_impact_lines.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/xfplayer_view_lines.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/user/xfplayer_impact_lines.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/-ehrror_dialog.cpp">
@@ -1517,16 +1517,16 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/_userex.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/calculator_edit_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/calculator_edit_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/calculator_edit_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/calculator_edit_impact.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/color_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/color_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/color_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/color_impact.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/const.h">
@@ -1547,10 +1547,10 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/error_dialog.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/font_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/font_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/font_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/font_impact.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/form_child_frame.cpp">
@@ -1577,10 +1577,10 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/group_image_list.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/home_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/home_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/home_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/home_impact.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/image_list.cpp">
@@ -1607,10 +1607,10 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/menu_frame.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/menu_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/menu_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/menu_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/menu_impact.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/message_box.cpp">
@@ -1628,10 +1628,10 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/pane_impact.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/pane_split_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/pane_split_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/pane_split_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/pane_split_impact.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/pane_tab_impact.cpp">
@@ -1658,28 +1658,28 @@
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/property_sheet.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/split_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/split_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/split_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/split_impact.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/top_edit_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/top_edit_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/top_edit_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/top_edit_impact.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/top_toggle_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/top_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/top_toggle_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/top_impact.h">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/top_view.cpp">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/top_toggle_impact.cpp">
 			<Option target="core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/top_view.h">
+		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/top_toggle_impact.h">
 			<Option target="core"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/stage/source/app/core/user/userex/user.cpp">

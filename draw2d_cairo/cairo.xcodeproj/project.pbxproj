@@ -752,8 +752,8 @@
 		07A6DD0E173C27EB009E6FB8 /* filemanager_fs_simple_list_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D351173C27E7009E6FB8 /* filemanager_fs_simple_list_view.h */; };
 		07A6DD0F173C27EB009E6FB8 /* filemanager_fs_simple_tree_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D352173C27E7009E6FB8 /* filemanager_fs_simple_tree_view.cpp */; };
 		07A6DD10173C27EB009E6FB8 /* filemanager_fs_simple_tree_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D353173C27E7009E6FB8 /* filemanager_fs_simple_tree_view.h */; };
-		07A6DD11173C27EB009E6FB8 /* filemanager_fs_simple_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D354173C27E7009E6FB8 /* filemanager_fs_simple_view.cpp */; };
-		07A6DD12173C27EB009E6FB8 /* filemanager_fs_simple_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D355173C27E7009E6FB8 /* filemanager_fs_simple_view.h */; };
+		07A6DD11173C27EB009E6FB8 /* filemanager_fs_simple_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D354173C27E7009E6FB8 /* filemanager_fs_simple_impact.cpp */; };
+		07A6DD12173C27EB009E6FB8 /* filemanager_fs_simple_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D355173C27E7009E6FB8 /* filemanager_fs_simple_impact.h */; };
 		07A6DD13173C27EB009E6FB8 /* filemanager_icon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D356173C27E7009E6FB8 /* filemanager_icon.cpp */; };
 		07A6DD14173C27EB009E6FB8 /* filemanager_icon.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A6D357173C27E7009E6FB8 /* filemanager_icon.h */; };
 		07A6DD15173C27EB009E6FB8 /* filemanager_iconoverlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A6D358173C27E7009E6FB8 /* filemanager_iconoverlayer.cpp */; };
@@ -3024,8 +3024,8 @@
 		07A6D351173C27E7009E6FB8 /* filemanager_fs_simple_list_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_fs_simple_list_view.h; sourceTree = "<group>"; };
 		07A6D352173C27E7009E6FB8 /* filemanager_fs_simple_tree_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_fs_simple_tree_view.cpp; sourceTree = "<group>"; };
 		07A6D353173C27E7009E6FB8 /* filemanager_fs_simple_tree_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_fs_simple_tree_view.h; sourceTree = "<group>"; };
-		07A6D354173C27E7009E6FB8 /* filemanager_fs_simple_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_fs_simple_view.cpp; sourceTree = "<group>"; };
-		07A6D355173C27E7009E6FB8 /* filemanager_fs_simple_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_fs_simple_view.h; sourceTree = "<group>"; };
+		07A6D354173C27E7009E6FB8 /* filemanager_fs_simple_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_fs_simple_impact.cpp; sourceTree = "<group>"; };
+		07A6D355173C27E7009E6FB8 /* filemanager_fs_simple_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_fs_simple_impact.h; sourceTree = "<group>"; };
 		07A6D356173C27E7009E6FB8 /* filemanager_icon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_icon.cpp; sourceTree = "<group>"; };
 		07A6D357173C27E7009E6FB8 /* filemanager_icon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filemanager_icon.h; sourceTree = "<group>"; };
 		07A6D358173C27E7009E6FB8 /* filemanager_iconoverlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filemanager_iconoverlayer.cpp; sourceTree = "<group>"; };
@@ -5983,8 +5983,8 @@
 				07A6D351173C27E7009E6FB8 /* filemanager_fs_simple_list_view.h */,
 				07A6D352173C27E7009E6FB8 /* filemanager_fs_simple_tree_view.cpp */,
 				07A6D353173C27E7009E6FB8 /* filemanager_fs_simple_tree_view.h */,
-				07A6D354173C27E7009E6FB8 /* filemanager_fs_simple_view.cpp */,
-				07A6D355173C27E7009E6FB8 /* filemanager_fs_simple_view.h */,
+				07A6D354173C27E7009E6FB8 /* filemanager_fs_simple_impact.cpp */,
+				07A6D355173C27E7009E6FB8 /* filemanager_fs_simple_impact.h */,
 				07A6D356173C27E7009E6FB8 /* filemanager_icon.cpp */,
 				07A6D357173C27E7009E6FB8 /* filemanager_icon.h */,
 				07A6D358173C27E7009E6FB8 /* filemanager_iconoverlayer.cpp */,
@@ -7937,7 +7937,7 @@
 				07A6DD0C173C27EB009E6FB8 /* filemanager_form_view.h in Headers */,
 				07A6DD0E173C27EB009E6FB8 /* filemanager_fs_simple_list_view.h in Headers */,
 				07A6DD10173C27EB009E6FB8 /* filemanager_fs_simple_tree_view.h in Headers */,
-				07A6DD12173C27EB009E6FB8 /* filemanager_fs_simple_view.h in Headers */,
+				07A6DD12173C27EB009E6FB8 /* filemanager_fs_simple_impact.h in Headers */,
 				07A6DD14173C27EB009E6FB8 /* filemanager_icon.h in Headers */,
 				07A6DD16173C27EB009E6FB8 /* filemanager_iconoverlayer.h in Headers */,
 				07A6DD18173C27EB009E6FB8 /* filemanager_item_action.h in Headers */,
@@ -9096,7 +9096,7 @@
 				07A6DD0B173C27EB009E6FB8 /* filemanager_form_view.cpp in Sources */,
 				07A6DD0D173C27EB009E6FB8 /* filemanager_fs_simple_list_view.cpp in Sources */,
 				07A6DD0F173C27EB009E6FB8 /* filemanager_fs_simple_tree_view.cpp in Sources */,
-				07A6DD11173C27EB009E6FB8 /* filemanager_fs_simple_view.cpp in Sources */,
+				07A6DD11173C27EB009E6FB8 /* filemanager_fs_simple_impact.cpp in Sources */,
 				07A6DD13173C27EB009E6FB8 /* filemanager_icon.cpp in Sources */,
 				07A6DD15173C27EB009E6FB8 /* filemanager_iconoverlayer.cpp in Sources */,
 				07A6DD17173C27EB009E6FB8 /* filemanager_item_action.cpp in Sources */,

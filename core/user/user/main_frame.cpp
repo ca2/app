@@ -1,7 +1,7 @@
 // Created by camilo on 2021-10-09 18:43 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "core/user/simple/_simple.h"
+#include "core/user/simple/_component.h"
 #endif
 #include "main_frame.h"
 

@@ -650,10 +650,10 @@
     <ClInclude Include="filesystem\filemanager\filemanager_frame.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_main_view.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_manager.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_left_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_left_impact.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_main_frame.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_path_view.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_save_as_name_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_save_as_name_impact.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_tab_view.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_manager_template.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_view.h" />
@@ -671,7 +671,7 @@
     <ClInclude Include="filesystem\filemanager\filemanager_form_view.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_list_view.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_tree.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_view.h" />
+    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_impact.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_icon.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_iconoverlayer.h" />
     <ClInclude Include="filesystem\filemanager\filemanager_item_action.h" />
@@ -962,7 +962,7 @@
     <ClCompile Include="filesystem\filemanager\filemanager_manager.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_left_view.cpp">
+    <ClCompile Include="filesystem\filemanager\filemanager_left_impact.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_main_frame.cpp">
@@ -971,7 +971,7 @@
     <ClCompile Include="filesystem\filemanager\filemanager_path_view.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_save_as_name_view.cpp">
+    <ClCompile Include="filesystem\filemanager\filemanager_save_as_name_impact.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_tab_view.cpp">
@@ -1025,7 +1025,7 @@
     <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_tree.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_view.cpp">
+    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_impact.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_icon.cpp">

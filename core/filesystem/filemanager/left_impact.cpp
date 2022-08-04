@@ -11,19 +11,19 @@ namespace filemanager
 {
 
 
-   left_view::left_view()
+   left_impact::left_impact()
    {
 
    }
 
 
-   left_view::~left_view()
+   left_impact::~left_impact()
    {
 
    }
 
 
-   void left_view::install_message_routing(::channel * pchannel)
+   void left_impact::install_message_routing(::channel * pchannel)
    {
 
       ::filemanager_impact_base::install_message_routing(pchannel);
@@ -34,12 +34,12 @@ namespace filemanager
 
 
 
-   void left_view::assert_ok() const
+   void left_impact::assert_ok() const
    {
       ::user::split_impact::assert_ok();
    }
 
-   void left_view::dump(dump_context & dumpcontext) const
+   void left_impact::dump(dump_context & dumpcontext) const
    {
       ::user::split_impact::dump(dumpcontext);
    }
@@ -47,7 +47,7 @@ namespace filemanager
 
 
 
-   void left_view::on_create_split_impact()
+   void left_impact::on_create_split_impact()
    {
 
       SetPaneCount(1);
@@ -82,7 +82,7 @@ namespace filemanager
    }
 
 
-   void left_view::handle(::topic * ptopic, ::context * pcontext)
+   void left_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ::filemanager_impact_base::handle(ptopic, pcontext);

@@ -175,7 +175,7 @@
     <ClCompile Include="user\user\server.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\simple_view.cpp">
+    <ClCompile Include="user\user\simple_impact.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\single_document_template.cpp">

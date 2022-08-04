@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   class CLASS_DECL_CORE left_view :
+   class CLASS_DECL_CORE left_impact :
       virtual public ::filemanager_show < ::user::split_impact >
    {
    public:
@@ -15,8 +15,8 @@ namespace filemanager
       ::filemanager::tree *   m_ptree;
 
 
-      left_view();
-      virtual ~left_view();
+      left_impact();
+      virtual ~left_impact();
 
 
       void install_message_routing(::channel * pchannel) override;

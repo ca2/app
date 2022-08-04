@@ -814,7 +814,7 @@
     <ClCompile Include="user\user\picture.cpp" />
     <ClCompile Include="user\user\picture_interaction.cpp" />
     <ClCompile Include="user\user\server.cpp" />
-    <ClCompile Include="user\user\simple_view.cpp" />
+    <ClCompile Include="user\user\simple_impact.cpp" />
     <ClCompile Include="user\user\single_document_template.cpp" />
     <ClCompile Include="user\user\split_bar.cpp" />
     <ClCompile Include="user\user\split_layout.cpp" />
@@ -951,7 +951,7 @@
     <ClInclude Include="user\user\menu_item.h" />
     <ClInclude Include="user\user\place_holder.h" />
     <ClInclude Include="user\user\place_holder_container.h" />
-    <ClInclude Include="user\user\simple_view.h" />
+    <ClInclude Include="user\user\simple_impact.h" />
     <ClInclude Include="user\user\single_document_template.h" />
     <ClInclude Include="user\user\split_bar.h" />
     <ClInclude Include="user\user\split_layout.h" />

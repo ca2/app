@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "core/user/simple/_simple.h"
+#include "core/user/simple/_component.h"
 
 
 const i32 simple_list_header_control::s_iDividerWidth = 4;

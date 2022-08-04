@@ -51,7 +51,7 @@
 		9A1D5F3F2751B58A003D9B5F /* place_holder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5E0A2751A98C003D9B5F /* place_holder.cpp */; };
 		9A1D5F402751B58A003D9B5F /* print_task.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5DDC2751A98C003D9B5F /* print_task.cpp */; };
 		9A1D5F412751B58A003D9B5F /* server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5E1D2751A98C003D9B5F /* server.cpp */; };
-		9A1D5F422751B58A003D9B5F /* simple_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5E0D2751A98C003D9B5F /* simple_view.cpp */; };
+		9A1D5F422751B58A003D9B5F /* simple_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5E0D2751A98C003D9B5F /* simple_impact.cpp */; };
 		9A1D5F432751B58A003D9B5F /* single_document_template.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5DC52751A98C003D9B5F /* single_document_template.cpp */; };
 		9A1D5F442751B58A003D9B5F /* split_bar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5DAC2751A98B003D9B5F /* split_bar.cpp */; };
 		9A1D5F452751B58A003D9B5F /* split_layout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5DC62751A98C003D9B5F /* split_layout.cpp */; };
@@ -131,7 +131,7 @@
 		9A93B6CD2846EB33005ACD11 /* place_holder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5E0A2751A98C003D9B5F /* place_holder.cpp */; };
 		9A93B6CE2846EB33005ACD11 /* print_task.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5DDC2751A98C003D9B5F /* print_task.cpp */; };
 		9A93B6CF2846EB33005ACD11 /* server.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5E1D2751A98C003D9B5F /* server.cpp */; };
-		9A93B6D02846EB33005ACD11 /* simple_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5E0D2751A98C003D9B5F /* simple_view.cpp */; };
+		9A93B6D02846EB33005ACD11 /* simple_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5E0D2751A98C003D9B5F /* simple_impact.cpp */; };
 		9A93B6D12846EB33005ACD11 /* single_document_template.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5DC52751A98C003D9B5F /* single_document_template.cpp */; };
 		9A93B6D22846EB33005ACD11 /* split_bar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5DAC2751A98B003D9B5F /* split_bar.cpp */; };
 		9A93B6D32846EB33005ACD11 /* split_layout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1D5DC62751A98C003D9B5F /* split_layout.cpp */; };
@@ -296,7 +296,7 @@
 		9A1D5DD12751A98C003D9B5F /* tab_pane.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tab_pane.h; sourceTree = "<group>"; };
 		9A1D5DD22751A98C003D9B5F /* split_view.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = split_view.h; sourceTree = "<group>"; };
 		9A1D5DD32751A98C003D9B5F /* document_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = document_manager.cpp; sourceTree = "<group>"; };
-		9A1D5DD42751A98C003D9B5F /* simple_view.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = simple_view.h; sourceTree = "<group>"; };
+		9A1D5DD42751A98C003D9B5F /* simple_impact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = simple_impact.h; sourceTree = "<group>"; };
 		9A1D5DD62751A98C003D9B5F /* form_control.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = form_control.h; sourceTree = "<group>"; };
 		9A1D5DD72751A98C003D9B5F /* impact_creator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = impact_creator.h; sourceTree = "<group>"; };
 		9A1D5DD82751A98C003D9B5F /* _user.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _user.h; sourceTree = "<group>"; };
@@ -342,7 +342,7 @@
 		9A1D5E0A2751A98C003D9B5F /* place_holder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = place_holder.cpp; sourceTree = "<group>"; };
 		9A1D5E0B2751A98C003D9B5F /* tab_pane_array.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tab_pane_array.cpp; sourceTree = "<group>"; };
 		9A1D5E0C2751A98C003D9B5F /* document.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = document.cpp; sourceTree = "<group>"; };
-		9A1D5E0D2751A98C003D9B5F /* simple_view.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = simple_view.cpp; sourceTree = "<group>"; };
+		9A1D5E0D2751A98C003D9B5F /* simple_impact.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = simple_impact.cpp; sourceTree = "<group>"; };
 		9A1D5E0E2751A98C003D9B5F /* impact_system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = impact_system.h; sourceTree = "<group>"; };
 		9A1D5E0F2751A98C003D9B5F /* form_impact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = form_impact.h; sourceTree = "<group>"; };
 		9A1D5E102751A98C003D9B5F /* main_frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main_frame.h; sourceTree = "<group>"; };
@@ -611,8 +611,8 @@
 				9A1D5DB52751A98B003D9B5F /* print_task.h */,
 				9A1D5E1D2751A98C003D9B5F /* server.cpp */,
 				9A1D5E112751A98C003D9B5F /* server.h */,
-				9A1D5E0D2751A98C003D9B5F /* simple_view.cpp */,
-				9A1D5DD42751A98C003D9B5F /* simple_view.h */,
+				9A1D5E0D2751A98C003D9B5F /* simple_impact.cpp */,
+				9A1D5DD42751A98C003D9B5F /* simple_impact.h */,
 				9A1D5DC52751A98C003D9B5F /* single_document_template.cpp */,
 				9A1D5DE52751A98C003D9B5F /* single_document_template.h */,
 				9A1D5DAC2751A98B003D9B5F /* split_bar.cpp */,
@@ -909,7 +909,7 @@
 				9A93B6CD2846EB33005ACD11 /* place_holder.cpp in Sources */,
 				9A93B6CE2846EB33005ACD11 /* print_task.cpp in Sources */,
 				9A93B6CF2846EB33005ACD11 /* server.cpp in Sources */,
-				9A93B6D02846EB33005ACD11 /* simple_view.cpp in Sources */,
+				9A93B6D02846EB33005ACD11 /* simple_impact.cpp in Sources */,
 				9A93B6D12846EB33005ACD11 /* single_document_template.cpp in Sources */,
 				9A93B6D22846EB33005ACD11 /* split_bar.cpp in Sources */,
 				9A93B6D32846EB33005ACD11 /* split_layout.cpp in Sources */,
@@ -990,7 +990,7 @@
 				9A1D5F3F2751B58A003D9B5F /* place_holder.cpp in Sources */,
 				9A1D5F402751B58A003D9B5F /* print_task.cpp in Sources */,
 				9A1D5F412751B58A003D9B5F /* server.cpp in Sources */,
-				9A1D5F422751B58A003D9B5F /* simple_view.cpp in Sources */,
+				9A1D5F422751B58A003D9B5F /* simple_impact.cpp in Sources */,
 				9A1D5F432751B58A003D9B5F /* single_document_template.cpp in Sources */,
 				9A1D5F442751B58A003D9B5F /* split_bar.cpp in Sources */,
 				9A1D5F452751B58A003D9B5F /* split_layout.cpp in Sources */,

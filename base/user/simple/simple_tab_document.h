@@ -1,0 +1,8 @@
+//
+// Created by camilo on 03/08/22.
+//
+
+#ifndef BASIS_SIMPLE_TAB_DOCUMENT_H
+#define BASIS_SIMPLE_TAB_DOCUMENT_H
+
+#endif //BASIS_SIMPLE_TAB_DOCUMENT_H

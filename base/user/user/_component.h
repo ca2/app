@@ -153,7 +153,7 @@ namespace userex
 {
 
 
-   class color_view;
+   class color_impact;
 
 
 } // namespace userex
@@ -348,8 +348,8 @@ class COleDataObject;   // forward object (see afxole.h)
 
 
 
-//#include "xfplayer_view_line.h"
-//#include "xfplayer_view_lines.h"
+//#include "xfplayer_impact_line.h"
+//#include "xfplayer_impact_lines.h"
 
 //#include "tool_tip_tool.h"
 //#include "tool_tip_window.h"
@@ -390,7 +390,7 @@ namespace user
 //#include "form_mesh.h"
 //#include "form_list.h"
 #include "form_impact.h"
-//#include "form_list_view.h"
+//#include "form_list_impact.h"
 #include "split_bar.h"
 
 
@@ -403,7 +403,7 @@ namespace user
 #include "impact_host.h"
 
 
-#include "split_view.h"
+#include "split_impact.h"
 
 
 //#include "edit_plain_text_view.h"

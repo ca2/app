@@ -2,7 +2,7 @@
 
 
 #ifndef BASE_USER_CUBE_H
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #endif
 #include "base/user/experience/_experience.h"
 
@@ -14,6 +14,9 @@
 
 
 #include "main_frame.h"
+
+
+#include "tab_document.h"
 
 
 #include "_impl.h"

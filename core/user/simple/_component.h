@@ -8,7 +8,7 @@
 #include "base/user/menu/_menu.h"
 
 
-#include "base/user/simple/_simple.h"
+#include "base/user/simple/_component.h"
 
 
 namespace experience
@@ -53,7 +53,7 @@ namespace user
 
 
 #include "list_header_control.h"
-#include "list_view.h"
+#include "list_impact.h"
 #include "list_control.h"
 
 
@@ -63,16 +63,16 @@ namespace user
 
 
 
-#include "printer_list_view.h"
+#include "printer_list_impact.h"
 
 
 
 
 
-#include "form_list_view.h"
+#include "form_list_impact.h"
 #include "tab_impact.h"
 
-//#include "tree_view.h"
+//#include "tree_impact.h"
 
 
 #include "tab_control.h"

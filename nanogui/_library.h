@@ -76,7 +76,7 @@ inline bool nvg_is_font_icon(int value) { return value >= 1024; }
 #include "Canvas.h"
 
 #include "ImagePanel.h"
-#include "ImageView.h"
+#include "ImageImpact.h"
 
 #include "ComboBox.h"
 

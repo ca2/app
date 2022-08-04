@@ -10,7 +10,7 @@
 		0730AFD51BA10CEC001D28DB /* calculator_element.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFC71BA10CEC001D28DB /* calculator_element.h */; };
 		0730AFD71BA10CEC001D28DB /* calculator_parser_exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFC91BA10CEC001D28DB /* calculator_parser_exception.h */; };
 		0730AFD91BA10CEC001D28DB /* calculator_parser.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFCB1BA10CEC001D28DB /* calculator_parser.h */; };
-		0730AFDB1BA10CEC001D28DB /* calculator_plain_edit_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFCD1BA10CEC001D28DB /* calculator_plain_edit_view.h */; };
+		0730AFDB1BA10CEC001D28DB /* calculator_plain_edit_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFCD1BA10CEC001D28DB /* calculator_plain_edit_impact.h */; };
 		0730AFDD1BA10CEC001D28DB /* calculator_scanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFCF1BA10CEC001D28DB /* calculator_scanner.h */; };
 		0730AFDE1BA10CEC001D28DB /* calculator_token.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFD01BA10CEC001D28DB /* calculator_token.h */; };
 		0730AFE01BA10CEC001D28DB /* calculator_value.h in Headers */ = {isa = PBXBuildFile; fileRef = 0730AFD21BA10CEC001D28DB /* calculator_value.h */; };
@@ -156,7 +156,7 @@
 		0730AFC71BA10CEC001D28DB /* calculator_element.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_element.h; sourceTree = "<group>"; };
 		0730AFC91BA10CEC001D28DB /* calculator_parser_exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_parser_exception.h; sourceTree = "<group>"; };
 		0730AFCB1BA10CEC001D28DB /* calculator_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_parser.h; sourceTree = "<group>"; };
-		0730AFCD1BA10CEC001D28DB /* calculator_plain_edit_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_plain_edit_view.h; sourceTree = "<group>"; };
+		0730AFCD1BA10CEC001D28DB /* calculator_plain_edit_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_plain_edit_impact.h; sourceTree = "<group>"; };
 		0730AFCF1BA10CEC001D28DB /* calculator_scanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_scanner.h; sourceTree = "<group>"; };
 		0730AFD01BA10CEC001D28DB /* calculator_token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_token.h; sourceTree = "<group>"; };
 		0730AFD21BA10CEC001D28DB /* calculator_value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calculator_value.h; sourceTree = "<group>"; };
@@ -273,7 +273,7 @@
 				0730AFC71BA10CEC001D28DB /* calculator_element.h */,
 				0730AFC91BA10CEC001D28DB /* calculator_parser_exception.h */,
 				0730AFCB1BA10CEC001D28DB /* calculator_parser.h */,
-				0730AFCD1BA10CEC001D28DB /* calculator_plain_edit_view.h */,
+				0730AFCD1BA10CEC001D28DB /* calculator_plain_edit_impact.h */,
 				0730AFCF1BA10CEC001D28DB /* calculator_scanner.h */,
 				0730AFD01BA10CEC001D28DB /* calculator_token.h */,
 				0730AFD21BA10CEC001D28DB /* calculator_value.h */,
@@ -367,7 +367,7 @@
 				9AD4FD7A17BD5A480008F751 /* kiss_fft_guts.h in Headers */,
 				9AD4FD7D17BD5A480008F751 /* kiss_ifft.h in Headers */,
 				9AD4FD7E17BD5A480008F751 /* kissfft.h in Headers */,
-				0730AFDB1BA10CEC001D28DB /* calculator_plain_edit_view.h in Headers */,
+				0730AFDB1BA10CEC001D28DB /* calculator_plain_edit_impact.h in Headers */,
 				0730AFD91BA10CEC001D28DB /* calculator_parser.h in Headers */,
 				9AD4FD8017BD5A480008F751 /* kissfft_fftd.h in Headers */,
 				9AD4FD8217BD5A480008F751 /* kissfft_ifftd.h in Headers */,

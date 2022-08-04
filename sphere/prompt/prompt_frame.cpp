@@ -186,7 +186,7 @@ namespace prompt
          {
             if(get_active_document() != nullptr)
             {
-               get_active_document()->update_all_views(id_select_main_tab);
+               get_active_document()->update_all_impacts(id_select_main_tab);
             }
          }
          ToFront();
@@ -327,7 +327,7 @@ namespace prompt
       if(!pshowwindow->m_bShow)
       {
          if(get_active_document() != nullptr)
-            get_active_document()->update_all_views(id_update_current_area);
+            get_active_document()->update_all_impacts(id_update_current_area);
       }
    }
 

@@ -10,22 +10,22 @@ namespace prompt
 {
 
 
-   primary_view::primary_view(::object * pobject) :
+   primary_impact::primary_impact(::object * pobject) :
       ::object(pobject),
       ::user::plain_edit(pobject)
    {
 
       m_iCompromised = 0;
 
-      add_command_prober("edit_copy", &primary_view::_001OnUpdateEditCopy);
-      add_command_handler("edit_copy", &primary_view::_001OnEditCopy);
-      add_command_prober("edit_paste", &primary_view::_001OnUpdateEditPaste);
-      add_command_handler("edit_paste", &primary_view::_001OnEditPaste);
+      add_command_prober("edit_copy", &primary_impact::_001OnUpdateEditCopy);
+      add_command_handler("edit_copy", &primary_impact::_001OnEditCopy);
+      add_command_prober("edit_paste", &primary_impact::_001OnUpdateEditPaste);
+      add_command_handler("edit_paste", &primary_impact::_001OnEditPaste);
 
    }
 
 
-   void primary_view::handle(::topic * ptopic, ::context * pcontext)
+   void primary_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       __UNREFERENCED_PARAMETER(ptopic);
@@ -33,16 +33,16 @@ namespace prompt
    }
 
 
-   void primary_view::install_message_routing(::channel * pchannel)
+   void primary_impact::install_message_routing(::channel * pchannel)
    {
 
       BASE::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_context_menu, pchannel, this, &primary_view::on_message_context_menu);
+      MESSAGE_LINK(e_message_context_menu, pchannel, this, &primary_impact::on_message_context_menu);
 
    }
 
 
-   void primary_view::_001OnAfterChangeText(const ::action_context & context)
+   void primary_impact::_001OnAfterChangeText(const ::action_context & context)
    {
       string str;
 
@@ -221,33 +221,33 @@ namespace prompt
       }
    }
 
-   void primary_view::_001OnUpdateEditCopy(::message::message * pmessage)
+   void primary_impact::_001OnUpdateEditCopy(::message::message * pmessage)
    {
       __pointer(::message::command) pcommand(pmessage);
       pcommand->enable(true);
    }
 
-   void primary_view::_001OnEditCopy(::message::message * pmessage)
+   void primary_impact::_001OnEditCopy(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
       clipboard_copy();
    }
 
-   void primary_view::_001OnUpdateEditPaste(::message::message * pmessage)
+   void primary_impact::_001OnUpdateEditPaste(::message::message * pmessage)
    {
       __pointer(::message::command) pcommand(pmessage);
       pcommand->enable(true);
    }
 
 
-   void primary_view::_001OnEditPaste(::message::message * pmessage)
+   void primary_impact::_001OnEditPaste(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
       clipboard_paste();
    }
 
 
-   void primary_view::on_message_context_menu(::message::message * pmessage)
+   void primary_impact::on_message_context_menu(::message::message * pmessage)
    {
 
       __pointer(::message::context_menu) pcontextmenu(pmessage);

@@ -2,7 +2,7 @@
 #include "aura/node/universal_windows/directx.h"
 #include "aura/node/universal_windows/directx_interaction.h"
 #include "aura/node/universal_windows/directx_impact.h"
-#include "aura/node/universal_windows/directx_framework_view.h"
+#include "aura/node/universal_windows/directx_framework_impact.h"
 
 
 CLASS_DECL_CORE void os_application_system_run(::aura::system * psystem)

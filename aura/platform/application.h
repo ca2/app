@@ -333,7 +333,7 @@ namespace aura
       //virtual i32 hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
       //virtual i32 hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
 
-      //virtual void on_update_view(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint);
+      //virtual void on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint);
 
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
       //virtual void on_notify_control_event(::user::control_event* pevent);
@@ -848,7 +848,7 @@ namespace aura
       virtual void close(::apex::enum_end eend) override;
 
 
-      //user virtual __pointer(::user::document) defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom = nullptr);
+      //user virtual __pointer(::user::document) defer_create_impact(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom = nullptr);
 
 
       virtual void HideApplication() override;

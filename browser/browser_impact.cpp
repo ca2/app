@@ -3,7 +3,7 @@
 
 #include "include/base/cef_bind.h"
 #include "include/cef_app.h"
-#include "include/views/cef_browser_view.h"
+#include "include/views/cef_browser_impact.h"
 #include "include/views/cef_window.h"
 #include "include/wrapper/cef_closure_task.h"
 #include "include/wrapper/cef_helpers.h"

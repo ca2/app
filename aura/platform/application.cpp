@@ -3928,10 +3928,10 @@ retry_license:
    }
 
 
-   //__pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom)
+   //__pointer(::user::document) application::defer_create_impact(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom)
    //{
 
-   //   //auto pcontroller = pmultimedia->defer_create_view(strImpact, puiParent, ewindowflag, atom);
+   //   //auto pcontroller = pmultimedia->defer_create_impact(strImpact, puiParent, ewindowflag, atom);
 
    //   //if (pcontroller)
    //   //{
@@ -5267,7 +5267,7 @@ retry_license:
    //}
 
 
-   //void application::on_update_view(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint)
+   //void application::on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint)
    //{
 
 
@@ -8753,10 +8753,10 @@ namespace aura
    }
 
 
-   //__pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::atom& atom)
+   //__pointer(::user::document) application::defer_create_impact(string strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::atom& atom)
    //{
 
-   //   auto pcontroller = ::aura::application::defer_create_view(strImpact, puiParent, ewindowflag, atom);
+   //   auto pcontroller = ::aura::application::defer_create_impact(strImpact, puiParent, ewindowflag, atom);
 
    //   if (pcontroller)
    //   {

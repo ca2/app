@@ -12,7 +12,7 @@ namespace app_core_build
       m_pimpact    = nullptr;
       m_flagNonClient.add(non_client_background);
       m_flagNonClient.add(non_client_focus_rect);
-      m_strViewId = "hellomultiverse_view";
+      m_strViewId = "hellomultiverse_impact";
 
 
    }
@@ -79,7 +79,7 @@ namespace app_core_build
 
          initialize_split_layout();
 
-         m_ptopview = create_view < ::userex::top_impact >(nullptr, get_pane_holder(0), "top_impact");
+         m_ptopview = create_impact < ::userex::top_impact >(nullptr, get_pane_holder(0), "top_impact");
 
          if (m_ptopview == nullptr)
          {
@@ -102,7 +102,7 @@ namespace app_core_build
 
       }
 
-      m_pimpact = create_view < ::app_core_build::impact >(nullptr,get_pane_holder(iPane), m_strViewId);
+      m_pimpact = create_impact < ::app_core_build::impact >(nullptr,get_pane_holder(iPane), m_strViewId);
 
       if(m_pimpact == nullptr)
       {

@@ -96,8 +96,8 @@ namespace user
       //__pointer(::user::frame_window) CreateOleFrame(::user::interaction_impl * puiParent, ::user::document * pDoc,
       //   bool bCreateImpact);
 
-      virtual void update_all_views(::user::impact * pimpact, const ::atom & atom);
-      virtual void update_all_views(::topic * ptopic);
+      virtual void update_all_impacts(::user::impact * pimpact, const ::atom & atom);
+      virtual void update_all_impacts(::topic * ptopic);
 
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
 

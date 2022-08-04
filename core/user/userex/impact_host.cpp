@@ -1,5 +1,5 @@
 //
-//  userex_view_container.cpp
+//  userex_impact_container.cpp
 //  app_veriwell_musical_player
 //
 //  Created by Camilo Sasuke Tsumanuma on 14/07/18.
@@ -158,7 +158,7 @@ namespace userex
 
       }
 
-      return pdocument->get_view();
+      return pdocument->get_impact();
 
    }
 
@@ -522,7 +522,7 @@ namespace userex
    }
 
 
-   __pointer(::user::impact) impact_host::get_view(::atom idImpact)
+   __pointer(::user::impact) impact_host::get_impact(::atom idImpact)
    {
 
       __pointer(::user::document) pdocument = get_doc(idImpact);
@@ -599,7 +599,7 @@ namespace userex
    }
 
 
-   bool impact_host::defer_create_view(::atom idImpact, ::create * pcreate)
+   bool impact_host::defer_create_impact(::atom idImpact, ::create * pcreate)
    {
 
       __pointer(::user::document) pdocument = get_doc(idImpact);
@@ -654,7 +654,7 @@ namespace userex
       else
       {
 
-         pdocument = papp->defer_create_view(idImpact, this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, atom);
+         pdocument = papp->defer_create_impact(idImpact, this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, atom);
 
       }
 
@@ -674,7 +674,7 @@ namespace userex
 
       toggle_impact(idImpact);
 
-      //defer_create_view(idImpact);
+      //defer_create_impact(idImpact);
 
       //__pointer(::simple_frame_window) pframewindow = _001GetFrame(idImpact);
 
@@ -693,7 +693,7 @@ namespace userex
    }
 
 
-   void impact_host::show_view(::atom idImpact)
+   void impact_host::show_impact(::atom idImpact)
    {
 
       bool bShow = true;
@@ -708,9 +708,9 @@ namespace userex
       
       auto puser = psession->m_puser->m_pcoreuser;
 
-      puser->will_use_view_hint(idImpact);
+      puser->will_use_impact_hint(idImpact);
 
-      if (!defer_create_view(idImpact))
+      if (!defer_create_impact(idImpact))
       {
 
          __pointer(::simple_frame_window) pframewindow = _001GetFrame(idImpact);
@@ -731,7 +731,7 @@ namespace userex
    }
 
 
-   void impact_host::hide_view(::atom idImpact)
+   void impact_host::hide_impact(::atom idImpact)
    {
 
       bool bShow = false;
@@ -775,13 +775,13 @@ namespace userex
             if (bShow)
             {
 
-               show_view(idImpact);
+               show_impact(idImpact);
 
             }
             else
             {
 
-               hide_view(idImpact);
+               hide_impact(idImpact);
 
             }
 
@@ -791,7 +791,7 @@ namespace userex
    }
 
 
-   void impact_host::defer_show_view(::atom idImpact)
+   void impact_host::defer_show_impact(::atom idImpact)
    {
 
       bool bShow = false;
@@ -807,7 +807,7 @@ namespace userex
 
       }
 
-      show_view(idImpact);
+      show_impact(idImpact);
 
    }
 
@@ -831,13 +831,13 @@ namespace userex
    void impact_host::on_simple_command(::message::simple_command * psimplecommand)
    {
       
-      if (psimplecommand->command() == e_simple_command_defer_initialize_handled_views)
+      if (psimplecommand->command() == e_simple_command_defer_initialize_handled_impacts)
       {
          
          for (auto & atom : m_idaHandledImpacts)
          {
             
-            defer_show_view(atom);
+            defer_show_impact(atom);
             
          }
          

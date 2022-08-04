@@ -16,7 +16,7 @@ namespace html
 
 
 class form_document;
-class html_view;
+class html_impact;
 class html_document;
 
 

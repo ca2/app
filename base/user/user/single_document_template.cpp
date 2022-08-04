@@ -104,7 +104,7 @@ namespace user
 
       //bool bMakeVisible = pcreate->payload("make_visible_boolean") || pcreate->m_bMakeVisible;
       //   __pointer(::user::interaction) puserinteractionParent = pcreate->payload("parent_user_interaction").cast < ::user::interaction > ();
-      //   __pointer(::user::impact) pviewAlloc = pcreate->payload("allocation_view").cast < ::user::impact > ();
+      //   __pointer(::user::impact) pviewAlloc = pcreate->payload("allocation_impact").cast < ::user::impact > ();
 
       __pointer(::user::document) pdocument;
 
@@ -127,7 +127,7 @@ namespace user
 
          }
 
-         ::user::impact * pimpact = pdocument->get_view();
+         ::user::impact * pimpact = pdocument->get_impact();
 
          pFrame = pimpact->parent_frame();
 
@@ -242,7 +242,7 @@ namespace user
 
          }
 
-         pdocument->id_update_all_views(id_new_document);
+         pdocument->id_update_all_impacts(id_new_document);
 
       }
       else
@@ -286,7 +286,7 @@ namespace user
          }
          pdocument->set_path_name(payloadFile);
          pdocument->update_title();
-         pdocument->id_update_all_views(OPEN_DOCUMENT_UPDATE);
+         pdocument->id_update_all_impacts(OPEN_DOCUMENT_UPDATE);
 
 
       }

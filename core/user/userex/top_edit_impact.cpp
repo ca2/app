@@ -85,7 +85,7 @@ namespace userex
 
       ptopic->m_ekey = pkey->m_ekey;
 
-      get_document()->update_all_views(ptopic);
+      get_document()->update_all_impacts(ptopic);
 
       if (pkey->m_ekey == ::user::e_key_return)
       {
@@ -133,7 +133,7 @@ namespace userex
 
                pextendedtopic->payload(id_enter_key_pressed) = bEnterKeyPressed;
 
-               pdocument->update_all_views(pextendedtopic);
+               pdocument->update_all_impacts(pextendedtopic);
 
             }
 
@@ -164,7 +164,7 @@ namespace userex
 
          pextendedtopic->m_puserelement = this;
 
-         get_document()->update_all_views(pextendedtopic);
+         get_document()->update_all_impacts(pextendedtopic);
 
          if (m_durationDelayedAfterChange > 0_s)
          {

@@ -155,7 +155,7 @@
     <ClInclude Include="user\user\control_property.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\edit_plain_text_view.h">
+    <ClInclude Include="user\user\edit_plain_text_impact.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\form_control.h">
@@ -206,7 +206,7 @@
     <ClInclude Include="user\user\split_layout.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\split_view.h">
+    <ClInclude Include="user\user\split_impact.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\static_control.h">
@@ -218,7 +218,7 @@
     <ClInclude Include="user\user\tab_callback.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\tab_view.h">
+    <ClInclude Include="user\user\tab_impact.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user.h">
@@ -437,13 +437,13 @@
     <ClInclude Include="user\menu\central.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
-    <ClInclude Include="user\menu\list_view.h">
+    <ClInclude Include="user\menu\list_impact.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
     <ClInclude Include="user\menu\list_window.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
-    <ClInclude Include="user\menu\menu_view.h">
+    <ClInclude Include="user\menu\menu_impact.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
     <ClInclude Include="user\user\tab_drop_target_window.h">
@@ -553,7 +553,7 @@
     <ClCompile Include="user\user\split_layout.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\split_view.cpp">
+    <ClCompile Include="user\user\split_impact.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\static_control.cpp">
@@ -565,7 +565,7 @@
     <ClCompile Include="user\user\tab_callback.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\tab_view.cpp">
+    <ClCompile Include="user\user\tab_impact.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="platform\application.cpp">
@@ -658,13 +658,13 @@
     <ClCompile Include="user\menu\central.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
-    <ClCompile Include="user\menu\list_view.cpp">
+    <ClCompile Include="user\menu\list_impact.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
     <ClCompile Include="user\menu\list_window.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
-    <ClCompile Include="user\menu\menu_view.cpp">
+    <ClCompile Include="user\menu\menu_impact.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
     <ClCompile Include="user\user\tab_data.cpp">

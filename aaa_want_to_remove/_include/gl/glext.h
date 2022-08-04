@@ -3162,9 +3162,9 @@ GLAPI void APIENTRY glDrawElementsInstancedARB (GLenum mode, GLsizei count, GLen
 #define GL_ARB_fragment_coord_conventions 1
 #endif /* GL_ARB_fragment_coord_conventions */
 
-#ifndef GL_ARB_fragment_layer_viewport
-#define GL_ARB_fragment_layer_viewport 1
-#endif /* GL_ARB_fragment_layer_viewport */
+#ifndef GL_ARB_fragment_layer_impactport
+#define GL_ARB_fragment_layer_impactport 1
+#endif /* GL_ARB_fragment_layer_impactport */
 
 #ifndef GL_ARB_fragment_program
 #define GL_ARB_fragment_program 1
@@ -4186,9 +4186,9 @@ GLAPI void APIENTRY glGetShaderSourceARB (GLhandleARB obj, GLsizei maxLength, GL
 #define GL_ARB_shader_texture_lod 1
 #endif /* GL_ARB_shader_texture_lod */
 
-#ifndef GL_ARB_shader_viewport_layer_array
-#define GL_ARB_shader_viewport_layer_array 1
-#endif /* GL_ARB_shader_viewport_layer_array */
+#ifndef GL_ARB_shader_impactport_layer_array
+#define GL_ARB_shader_impactport_layer_array 1
+#endif /* GL_ARB_shader_impactport_layer_array */
 
 #ifndef GL_ARB_shading_language_100
 #define GL_ARB_shading_language_100 1
@@ -4523,9 +4523,9 @@ GLAPI void APIENTRY glGetCompressedTexImageARB (GLenum target, GLint level, void
 #define GL_ARB_texture_swizzle 1
 #endif /* GL_ARB_texture_swizzle */
 
-#ifndef GL_ARB_texture_view
-#define GL_ARB_texture_view 1
-#endif /* GL_ARB_texture_view */
+#ifndef GL_ARB_texture_impact
+#define GL_ARB_texture_impact 1
+#endif /* GL_ARB_texture_impact */
 
 #ifndef GL_ARB_timer_query
 #define GL_ARB_timer_query 1
@@ -4851,9 +4851,9 @@ GLAPI GLint APIENTRY glGetAttribLocationARB (GLhandleARB programObj, const GLcha
 #define GL_ARB_vertex_type_2_10_10_10_rev 1
 #endif /* GL_ARB_vertex_type_2_10_10_10_rev */
 
-#ifndef GL_ARB_viewport_array
-#define GL_ARB_viewport_array 1
-#endif /* GL_ARB_viewport_array */
+#ifndef GL_ARB_impactport_array
+#define GL_ARB_impactport_array 1
+#endif /* GL_ARB_impactport_array */
 
 #ifndef GL_ARB_window_pos
 #define GL_ARB_window_pos 1
@@ -5669,9 +5669,9 @@ GLAPI void APIENTRY glTessellationModeAMD (GLenum mode);
 #endif
 #endif /* GL_AMD_vertex_shader_tessellator */
 
-#ifndef GL_AMD_vertex_shader_viewport_index
-#define GL_AMD_vertex_shader_viewport_index 1
-#endif /* GL_AMD_vertex_shader_viewport_index */
+#ifndef GL_AMD_vertex_shader_impactport_index
+#define GL_AMD_vertex_shader_impactport_index 1
+#endif /* GL_AMD_vertex_shader_impactport_index */
 
 #ifndef GL_APPLE_aux_depth_stencil
 #define GL_APPLE_aux_depth_stencil 1
@@ -11084,9 +11084,9 @@ GLAPI void APIENTRY glVideoCaptureStreamParameterdvNV (GLuint video_capture_slot
 #endif
 #endif /* GL_NV_video_capture */
 
-#ifndef GL_NV_viewport_array2
-#define GL_NV_viewport_array2 1
-#endif /* GL_NV_viewport_array2 */
+#ifndef GL_NV_impactport_array2
+#define GL_NV_impactport_array2 1
+#endif /* GL_NV_impactport_array2 */
 
 #ifndef GL_OML_interlace
 #define GL_OML_interlace 1

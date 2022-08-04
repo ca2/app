@@ -359,18 +359,18 @@ namespace user
    }
 
 
-   void plain_edit::on_viewport_offset(::draw2d::graphics_pointer & pgraphics)
+   void plain_edit::on_impactport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::interaction::on_viewport_offset(pgraphics);
+      ::user::interaction::on_impactport_offset(pgraphics);
 
    }
 
 
-   bool plain_edit::validate_viewport_offset(::point_i32 & point)
+   bool plain_edit::validate_impactport_offset(::point_i32 & point)
    {
 
-      if (!::user::scroll_base::validate_viewport_offset(point))
+      if (!::user::scroll_base::validate_impactport_offset(point))
       {
 
          return false;
@@ -472,7 +472,7 @@ namespace user
 
       ::draw2d::brush_pointer & pbrushTextSel = m_pcontrolstyle->m_pbrushTextSel;
 
-      //auto pointOffset = get_viewport_offset();
+      //auto pointOffset = get_impactport_offset();
 
       //if (m_dLineHeight > 0.)
       //{
@@ -1500,7 +1500,7 @@ namespace user
 
       get_client_rect(rectangleClient);
 
-      auto xViewport = get_viewport_offset().x;
+      auto xViewport = get_impactport_offset().x;
 
       int iBorder = 4;
 
@@ -1510,7 +1510,7 @@ namespace user
          xViewport = 0;
 
       }
-      else if (xEnd - get_viewport_offset().x < rectangleClient.width() - iBorder * 2)
+      else if (xEnd - get_impactport_offset().x < rectangleClient.width() - iBorder * 2)
       {
 
          xViewport = (int)maximum(0, xEnd - rectangleClient.width() + iBorder * 2);
@@ -1522,13 +1522,13 @@ namespace user
          xViewport = x;
 
       }
-      else if (x > 0 && x < get_viewport_offset().x)
+      else if (x > 0 && x < get_impactport_offset().x)
       {
 
          xViewport = maximum(0, x - rectangleClient.width() / 2);
 
       }
-      else if (x > get_viewport_offset().x + rectangleClient.width() - iBorder * 2)
+      else if (x > get_impactport_offset().x + rectangleClient.width() - iBorder * 2)
       {
 
          xViewport = (int)maximum(0, xEnd - rectangleClient.width() + iBorder * 2);
@@ -1536,7 +1536,7 @@ namespace user
       }
 
 
-      if (iSelEnd == m_ptree->m_iSelEnd && iColumn == m_iColumn && xViewport == get_viewport_offset().x)
+      if (iSelEnd == m_ptree->m_iSelEnd && iColumn == m_iColumn && xViewport == get_impactport_offset().x)
       {
 
          return;
@@ -1547,10 +1547,10 @@ namespace user
 
       m_iColumn = iColumn;
 
-      if (xViewport != get_viewport_offset().x)
+      if (xViewport != get_impactport_offset().x)
       {
 
-         set_viewport_offset_x(pgraphics, (int)xViewport);
+         set_impactport_offset_x(pgraphics, (int)xViewport);
 
       }
 
@@ -1731,7 +1731,7 @@ namespace user
       if (!m_bMultiLine)
       {
 
-         set_viewport_offset_y(pgraphics, 0);
+         set_impactport_offset_y(pgraphics, 0);
 
       }
       else
@@ -1741,9 +1741,9 @@ namespace user
 
          GetFocusRect(rectangleClient);
 
-         int iCurrentPageTop = get_viewport_offset().y;
+         int iCurrentPageTop = get_impactport_offset().y;
 
-         int iCurrentPageBottom = get_viewport_offset().y + rectangleClient.height();
+         int iCurrentPageBottom = get_impactport_offset().y + rectangleClient.height();
 
          index iLineTop = (::index)(iLine * m_dLineHeight);
 
@@ -1752,13 +1752,13 @@ namespace user
          if (iLineTop < iCurrentPageTop)
          {
 
-            set_viewport_offset_y(pgraphics, (int)iLineTop);
+            set_impactport_offset_y(pgraphics, (int)iLineTop);
 
          }
          else if (iLineBottom >= iCurrentPageBottom)
          {
 
-            set_viewport_offset_y(pgraphics, ((int)iLineBottom - rectangleClient.height()) + (int)(m_dLineHeight / 4.0));
+            set_impactport_offset_y(pgraphics, ((int)iLineBottom - rectangleClient.height()) + (int)(m_dLineHeight / 4.0));
 
          }
 
@@ -1777,10 +1777,10 @@ namespace user
    }
 
 
-   void plain_edit::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
+   void plain_edit::on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-      scroll_base::on_change_viewport_offset(pgraphics);
+      scroll_base::on_change_impactport_offset(pgraphics);
 
       plain_edit_on_calc_offset(pgraphics);
 
@@ -2044,7 +2044,7 @@ namespace user
 
       //}
 
-      //auto pointOffset = get_viewport_offset();
+      //auto pointOffset = get_impactport_offset();
 
       //m_iCurrentPagePotentialLineCount = (::count) ceil((double)rectangleClient.height() / m_dLineHeight);
 
@@ -2347,7 +2347,7 @@ namespace user
 
       ////}
 
-      ////on_change_view_size();
+      ////on_change_impact_size();
 
       ////m_bCalcLayoutHintNoTextChange = false;
 
@@ -2459,7 +2459,7 @@ namespace user
       //
       //         m_sizeTotal = { 0, 0 };
       //
-      //         on_change_view_size(pgraphics);
+      //         on_change_impact_size(pgraphics);
       //
       //         return;
       //
@@ -2495,7 +2495,7 @@ namespace user
       //
       //      }
       //
-      //      auto pointOffset = get_viewport_offset();
+      //      auto pointOffset = get_impactport_offset();
       //
       //      m_iCurrentPagePotentialLineCount = (::count) ceil((double) rectangleClient.height() / m_dLineHeight);
       //
@@ -2834,7 +2834,7 @@ namespace user
       //
       //      m_scrolldataVertical.m_iLine = (int) m_dLineHeight;
       //
-      //      on_change_view_size(pgraphics);
+      //      on_change_impact_size(pgraphics);
       //
       //      m_bCalcLayoutHintNoTextChange = false;
 
@@ -2907,7 +2907,7 @@ namespace user
 
       }
 
-      auto pointOffset = get_viewport_offset();
+      auto pointOffset = get_impactport_offset();
 
       m_iCurrentPagePotentialLineCount = (::count)ceil((double)rectangleClient.height() / m_dLineHeight);
 
@@ -3210,7 +3210,7 @@ namespace user
 
       ////}
 
-      ////on_change_view_size();
+      ////on_change_impact_size();
 
       ////m_bCalcLayoutHintNoTextChange = false;
 
@@ -3273,7 +3273,7 @@ namespace user
 
 //}
 
-//auto pointOffset = get_viewport_offset();
+//auto pointOffset = get_impactport_offset();
 
 //m_iCurrentPagePotentialLineCount = (::count) ceil((double)rectangleClient.height() / m_dLineHeight);
 
@@ -3576,7 +3576,7 @@ namespace user
 
       //}
 
-      //on_change_view_size();
+      //on_change_impact_size();
 
       //m_bCalcLayoutHintNoTextChange = false;
 
@@ -3975,7 +3975,7 @@ namespace user
 
       point.y -= rectangleClient.top;
 
-      auto pointOffset = get_viewport_offset();
+      auto pointOffset = get_impactport_offset();
 
       if (m_dLineHeight > 0)
       {
@@ -4049,7 +4049,7 @@ namespace user
 
       GetFocusRect(rectangleClient);
 
-      auto pointOffset = get_viewport_offset();
+      auto pointOffset = get_impactport_offset();
 
       px -= (rectangleClient.left - pointOffset.x);
 
@@ -6293,7 +6293,7 @@ namespace user
 
       i32 x = m_iLastSelectionEndX;
 
-      double y = m_iLastSelectionEndLine * m_dLineHeight - get_viewport_offset().y;
+      double y = m_iLastSelectionEndLine * m_dLineHeight - get_impactport_offset().y;
 
       double y2 = y + m_dLineHeight;
 
@@ -6979,9 +6979,9 @@ namespace user
    void plain_edit::plain_edit_one_line_up(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::point_i32 pointOffset = get_viewport_offset();
+      ::point_i32 pointOffset = get_impactport_offset();
 
-      set_viewport_offset_y(pgraphics, (int)(pointOffset.y - m_dLineHeight));
+      set_impactport_offset_y(pgraphics, (int)(pointOffset.y - m_dLineHeight));
 
       double dHeight = 0.;
 
@@ -6991,7 +6991,7 @@ namespace user
 
       ::index i = 0;
 
-      __copy(pointOffset, get_viewport_offset());
+      __copy(pointOffset, get_impactport_offset());
 
       while (pointOffset.y > dHeight && i < m_iaLineLength.get_size())
       {

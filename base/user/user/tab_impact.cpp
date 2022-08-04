@@ -90,10 +90,10 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      if(get_view_uie() != nullptr)
+      if(get_impact_uie() != nullptr)
       {
 
-         get_view_uie()->set_keyboard_focus();
+         get_impact_uie()->set_keyboard_focus();
 
       }
 
@@ -119,7 +119,7 @@ namespace user
    void tab_impact::OnActivateImpact(bool bActivate, __pointer(impact) pActivateImpact, __pointer(impact) pDeactiveImpact)
    {
 
-      __pointer(::user::interaction) pinteraction = get_view_uie();
+      __pointer(::user::interaction) pinteraction = get_impact_uie();
 
       __pointer(::user::impact) pimpact = pinteraction;
 
@@ -141,7 +141,7 @@ namespace user
             if (pframe.is_set())
             {
 
-               pimpact = pframe->get_active_view();
+               pimpact = pframe->get_active_impact();
 
             }
 
@@ -332,7 +332,7 @@ namespace user
 
          add_tab(strName1 + "->:<-" + strName2, id3, true, false, pimpactdata->m_pplaceholder);
 
-         __pointer(::user::split_impact) psplitview = impact::create_view < ::user::split_impact >(pimpactdata);
+         __pointer(::user::split_impact) psplitview = impact::create_impact < ::user::split_impact >(pimpactdata);
 
          pimpactdata->m_puserinteraction = psplitview;
 
@@ -712,7 +712,7 @@ namespace user
       if (::is_set(pframe))
       {
 
-         pframe->set_active_view(pimpact);
+         pframe->set_active_impact(pimpact);
 
       }
 
@@ -745,7 +745,7 @@ namespace user
 
        //  creatimpact_menu(m_pimpactdata);
 
-         __pointer(::user::menu) pmenu = get_view_uie();
+         __pointer(::user::menu) pmenu = get_impact_uie();
          
          if(pmenu)
          {
@@ -922,7 +922,7 @@ namespace user
 
    //}
 
-   atom tab_impact::get_view_id()
+   atom tab_impact::get_impact_id()
    {
 
       if (m_pimpactdata == nullptr)
@@ -937,7 +937,7 @@ namespace user
    }
 
 
-   ::user::impact_data * tab_impact::get_view_creator_data()
+   ::user::impact_data * tab_impact::get_impact_creator_data()
    {
 
       return m_pimpactdata;
@@ -945,10 +945,10 @@ namespace user
    }
 
 
-   ::user::interaction * tab_impact::get_view_uie()
+   ::user::interaction * tab_impact::get_impact_uie()
    {
 
-      ::user::impact_data * pimpactdata = get_view_creator_data();
+      ::user::impact_data * pimpactdata = get_impact_creator_data();
 
       if (pimpactdata == nullptr)
       {
@@ -992,7 +992,7 @@ namespace user
    }
 
 
-   ::user::document * tab_impact::get_view_document()
+   ::user::document * tab_impact::get_impact_document()
    {
 
       if(m_pimpactdata == nullptr)

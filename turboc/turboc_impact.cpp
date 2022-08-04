@@ -520,7 +520,7 @@ namespace turboc
             //          ::u32 dwTime2= ::duration::now();
 
             //FORMATTED_TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-//            FORMATTED_TRACE("hello_view::lyot call timeA= %d ms",(u64) (dwTime2 - t_time1.operator DWORD_PTR()));
+//            FORMATTED_TRACE("hello_impact::lyot call timeA= %d ms",(u64) (dwTime2 - t_time1.operator DWORD_PTR()));
 
          }
 
@@ -571,7 +571,7 @@ namespace turboc
 //            ::u32 dwTime2= ::duration::now();
 
             //FORMATTED_TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-            //FORMATTED_TRACE("hello_view::lyot call timeB= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
+            //FORMATTED_TRACE("hello_impact::lyot call timeB= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
 
          }
 
@@ -887,13 +887,13 @@ namespace turboc
       if(m_bLite)
       {
 
-/*         turboc_render_lite_view(pimage->g());
+/*         turboc_render_lite_impact(pimage->g());
 
       }
       else
       {
 
-/*         turboc_render_full_view(pimage->g());
+/*         turboc_render_full_impact(pimage->g());
 
       }
 

@@ -16,25 +16,25 @@
     <ClCompile Include="helloworld_main_frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="helloworld_main_view.cpp">
+    <ClCompile Include="helloworld_main_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include=".\helloworld_pane_view.cpp">
+    <ClCompile Include=".\helloworld_pane_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include=".\aaa_want_to_erase_helloworld_view_update_hint.cpp">
+    <ClCompile Include=".\aaa_want_to_erase_helloworld_impact_update_hint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="helloworld_render.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="helloworld_switcher_view.cpp">
+    <ClCompile Include="helloworld_switcher_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include=".\helloworld_view.cpp">
+    <ClCompile Include=".\helloworld_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="helloworld_view_base.cpp">
+    <ClCompile Include="helloworld_impact_base.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="helloworld.cpp">
@@ -60,25 +60,25 @@
     <ClInclude Include="helloworld_main_frame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="helloworld_main_view.h">
+    <ClInclude Include="helloworld_main_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="helloworld_pane_view.h">
+    <ClInclude Include="helloworld_pane_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aaa_want_to_erase_helloworld_view_update_hint.h">
+    <ClInclude Include="aaa_want_to_erase_helloworld_impact_update_hint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="helloworld_render.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="helloworld_switcher_view.h">
+    <ClInclude Include="helloworld_switcher_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="helloworld_view.h">
+    <ClInclude Include="helloworld_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="helloworld_view_base.h">
+    <ClInclude Include="helloworld_impact_base.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

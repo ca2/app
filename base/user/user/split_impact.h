@@ -34,7 +34,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(on_message_show_window);
 
       template < class VIEW >
-      inline __pointer(VIEW) create_pane_view(index iPane, atom atom = ::atom(), ::user::interaction * pviewLast = nullptr);
+      inline __pointer(VIEW) create_pane_impact(index iPane, atom atom = ::atom(), ::user::interaction * pviewLast = nullptr);
 
       virtual bool on_preparimpact_data(::user::impact_data* pimpactdata) override;
       

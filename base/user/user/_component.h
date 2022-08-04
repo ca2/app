@@ -406,7 +406,7 @@ namespace user
 #include "split_impact.h"
 
 
-//#include "edit_plain_text_view.h"
+//#include "edit_plain_text_impact.h"
 
 
 //#include "form.h"
@@ -523,7 +523,7 @@ typedef struct _AppIndicator AppIndicator;
 
 
 
-//#include "edit_plain_text_view.h"
+//#include "edit_plain_text_impact.h"
 
 
 #include "static_control.h"

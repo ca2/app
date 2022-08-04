@@ -5,7 +5,7 @@ namespace prompt
 {
 
 
-   class CLASS_DECL_SPHERE primary_view :
+   class CLASS_DECL_SPHERE primary_impact :
       public ::user::show < ::user::plain_edit >
    {
    public:
@@ -19,7 +19,7 @@ namespace prompt
       strsize m_iCompromised;
 
 
-      primary_view(::object * pobject);
+      primary_impact(::object * pobject);
 
 
       void install_message_routing(::channel * pchannel) override;

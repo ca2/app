@@ -69,7 +69,7 @@ namespace prompt
       ::userex::pane_tab_impact::on_change_cur_sel();
       __pointer(frame) pframe = GetTypedParent < frame > ();
 
-      if(get_view_id() == FILEMANAGER_IMPACT)
+      if(get_impact_id() == FILEMANAGER_IMPACT)
       {
          pframe->m_bAutoHideOnOutClick = false;
          
@@ -78,9 +78,9 @@ namespace prompt
          pframe->display();
          
       }
-      else if(get_view_id() == CONTEXT_MENU_IMPACT)
+      else if(get_impact_id() == CONTEXT_MENU_IMPACT)
       {
-         __pointer(::filemanager::document) pdocument =  (get_view_uie());
+         __pointer(::filemanager::document) pdocument =  (get_impact_uie());
          pdocument->browse(pcontext->m_papexcontext->dir().appdata()/ "command/menu", ::e_source_system);
       }
       else
@@ -131,9 +131,9 @@ namespace prompt
             //pdocument->browse();
 
             ////pdocument->Initialize(true);
-            ////pdocument->update_all_views(id_unknown); // 1234);
-            ////pdocument->update_all_views(id_unknown); //123458);
-            __pointer(::user::impact) pimpact = pdata->m_pdocument->get_view();
+            ////pdocument->update_all_impacts(id_unknown); // 1234);
+            ////pdocument->update_all_impacts(id_unknown); //123458);
+            __pointer(::user::impact) pimpact = pdata->m_pdocument->get_impact();
 
             if(pimpact != nullptr)
             {
@@ -153,7 +153,7 @@ namespace prompt
       break;
       case impact_primary_command:
       {
-         __pointer(::user::impact) pimpact = create_view < primary_view > ();
+         __pointer(::user::impact) pimpact = create_impact < primary_impact > ();
          if(pimpact != nullptr)
          {
             pimpactdata->m_pdocument = get_document();
@@ -169,9 +169,9 @@ namespace prompt
 //         {
 //            pdocument->filemanager_data()->m_datakey = "winactionarea_filemanager";
 //            pdocument->Initialize(true);
-//            pdocument->update_all_views(id_unknown); //1234);
-//            pdocument->update_all_views(id_unknown); //123458);
-//            __pointer(::user::impact) pimpact = pdocument->get_view();
+//            pdocument->update_all_impacts(id_unknown); //1234);
+//            pdocument->update_all_impacts(id_unknown); //123458);
+//            __pointer(::user::impact) pimpact = pdocument->get_impact();
 //            if(pimpact != nullptr)
 //            {
 //               __pointer(::user::frame_window) pframe =  (pimpact->get_parent_frame());
@@ -214,9 +214,9 @@ namespace prompt
             //pdocument->filemanager_data()->m_pcallback = this;
             //pdocument->filemanager_data()->m_datakey = "winactionarea_3-action-launch";
             //pdocument->Initialize(true);
-            //pdocument->update_all_views(id_unknown); // 1234);
-            //pdocument->update_all_views(id_unknown); //123458);
-            __pointer(::user::impact) pimpact = pdata->m_pdocument->get_view();
+            //pdocument->update_all_impacts(id_unknown); // 1234);
+            //pdocument->update_all_impacts(id_unknown); //123458);
+            __pointer(::user::impact) pimpact = pdata->m_pdocument->get_impact();
 
             //pdocument->FileManagerBrowse();
 
@@ -249,13 +249,13 @@ namespace prompt
          pupdate->m_actioncontext = ::e_source_system;
          ptopic->m_atom = id_browse;
          ptopic->payload(id_form) = "filemanager\\replace_name_in_file_system.xhtml";
-         pdocument->update_all_views(pupdate);
+         pdocument->update_all_impacts(pupdate);
 
          ptopic->m_atom = id_get_form_impact;
-         pdocument->update_all_views(pupdate);
+         pdocument->update_all_impacts(pupdate);
 
          ptopic->m_atom = id_after_browse;
-         pdocument->update_all_views(pupdate);
+         pdocument->update_all_impacts(pupdate);
 
 
          pimpactdata->m_puserinteraction = (pimpact->get_parent_frame());
@@ -301,7 +301,7 @@ namespace prompt
 
       atom idNew;
 
-      if (get_view_id() == FILEMANAGER_IMPACT)
+      if (get_impact_id() == FILEMANAGER_IMPACT)
       {
 
          idNew = CONTEXT_MENU_IMPACT;
@@ -310,7 +310,7 @@ namespace prompt
       else
       {
 
-         switch (get_view_id())
+         switch (get_impact_id())
          {
          case CONTEXT_MENU_IMPACT:
             idNew = impact_primary_command;

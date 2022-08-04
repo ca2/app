@@ -678,7 +678,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include=".\hellobase_pane_view.cpp" />
+    <ClCompile Include=".\hellobase_pane_impact.cpp" />
 
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompiledHeader>
@@ -688,31 +688,31 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include=".\hellobase_view.cpp" />
-    <ClCompile Include="hellobase_edit_view.cpp" />
-    <ClCompile Include="hellobase_lite_view.cpp" />
-    <ClCompile Include="hellobase_main_view.cpp" />
-    <ClCompile Include="hellobase_switcher_view.cpp" />
-    <ClCompile Include="hellobase_toggle_view.cpp" />
-    <ClCompile Include="hellobase_top_view.cpp" />
-    <ClCompile Include="hellobase_full_view.cpp" />
+    <ClCompile Include=".\hellobase_impact.cpp" />
+    <ClCompile Include="hellobase_edit_impact.cpp" />
+    <ClCompile Include="hellobase_lite_impact.cpp" />
+    <ClCompile Include="hellobase_main_impact.cpp" />
+    <ClCompile Include="hellobase_switcher_impact.cpp" />
+    <ClCompile Include="hellobase_toggle_impact.cpp" />
+    <ClCompile Include="hellobase_top_impact.cpp" />
+    <ClCompile Include="hellobase_full_impact.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hellobase_application.h" />
     <ClInclude Include="hellobase_document.h" />
-    <ClInclude Include="hellobase_edit_view.h" />
+    <ClInclude Include="hellobase_edit_impact.h" />
     <ClInclude Include="hellobase_frame.h" />
     <ClInclude Include="hellobase.h" />
-    <ClInclude Include="hellobase_full_view.h" />
-    <ClInclude Include="hellobase_lite_view.h" />
-    <ClInclude Include="hellobase_main_view.h" />
-    <ClInclude Include="hellobase_pane_view.h" />
+    <ClInclude Include="hellobase_full_impact.h" />
+    <ClInclude Include="hellobase_lite_impact.h" />
+    <ClInclude Include="hellobase_main_impact.h" />
+    <ClInclude Include="hellobase_pane_impact.h" />
 
     <ClInclude Include="framework.h" />
-    <ClInclude Include="hellobase_switcher_view.h" />
-    <ClInclude Include="hellobase_toggle_view.h" />
-    <ClInclude Include="hellobase_top_view.h" />
-    <ClInclude Include="hellobase_view.h" />
+    <ClInclude Include="hellobase_switcher_impact.h" />
+    <ClInclude Include="hellobase_toggle_impact.h" />
+    <ClInclude Include="hellobase_top_impact.h" />
+    <ClInclude Include="hellobase_impact.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".\app_core_hellobase.def" />

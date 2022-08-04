@@ -40,7 +40,7 @@ namespace browser
       void handle(::topic * ptopic, ::context * pcontext);
       void on_change_cur_sel();
 
-      virtual ::file::path prepare_menu_view();
+      virtual ::file::path prepare_menu_impact();
 
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
 

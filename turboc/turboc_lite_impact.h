@@ -5,14 +5,14 @@ namespace turboc
 {
 
 
-   class CLASS_DECL_TURBOC lite_view:
+   class CLASS_DECL_TURBOC lite_impact:
       virtual public impact
    {
    public:
 
 
-      lite_view(::object * pobject);
-      virtual ~lite_view();
+      lite_impact(::object * pobject);
+      virtual ~lite_impact();
 
       void assert_ok() const override;
 

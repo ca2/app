@@ -71,37 +71,37 @@
     <ClInclude Include="turboc_main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="turboc_view.h">
+    <ClInclude Include="turboc_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="turboc_top_view.h">
+    <ClInclude Include="turboc_top_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="turboc_toggle_view.h">
+    <ClInclude Include="turboc_toggle_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="turboc_switcher_view.h">
+    <ClInclude Include="turboc_switcher_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aaa_want_to_erase_turboc_view_update_hint.h">
+    <ClInclude Include="aaa_want_to_erase_turboc_impact_update_hint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="turboc_pane_view.h">
+    <ClInclude Include="turboc_pane_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="turboc_main_view.h">
+    <ClInclude Include="turboc_main_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="turboc_lite_view.h">
+    <ClInclude Include="turboc_lite_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="turboc_full_view.h">
+    <ClInclude Include="turboc_full_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="turboc_frame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="turboc_edit_view.h">
+    <ClInclude Include="turboc_edit_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="turboc_document.h">
@@ -421,37 +421,37 @@
     <ClCompile Include="src\floodfill.cpp">
       <Filter>Source Files\src</Filter>
     </ClCompile>
-    <ClCompile Include="turboc_view.cpp">
+    <ClCompile Include="turboc_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="turboc_top_view.cpp">
+    <ClCompile Include="turboc_top_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="turboc_toggle_view.cpp">
+    <ClCompile Include="turboc_toggle_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="turboc_switcher_view.cpp">
+    <ClCompile Include="turboc_switcher_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="aaa_want_to_erase_turboc_view_update_hint.cpp">
+    <ClCompile Include="aaa_want_to_erase_turboc_impact_update_hint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="turboc_pane_view.cpp">
+    <ClCompile Include="turboc_pane_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="turboc_main_view.cpp">
+    <ClCompile Include="turboc_main_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="turboc_lite_view.cpp">
+    <ClCompile Include="turboc_lite_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="turboc_full_view.cpp">
+    <ClCompile Include="turboc_full_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="turboc_frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="turboc_edit_view.cpp">
+    <ClCompile Include="turboc_edit_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="turboc_document.cpp">

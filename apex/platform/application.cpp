@@ -5413,10 +5413,10 @@ bool application::is_equal_file_path(const ::file::path& path1Param, const ::fil
 
 
 
-//__pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom)
+//__pointer(::user::document) application::defer_create_impact(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom)
 //{
 
-//   //auto pcontroller = pmultimedia->defer_create_view(strImpact, puiParent, ewindowflag, atom);
+//   //auto pcontroller = pmultimedia->defer_create_impact(strImpact, puiParent, ewindowflag, atom);
 
 //   //if (pcontroller)
 //   //{
@@ -7143,7 +7143,7 @@ void application::hotplugin_host_host_starter_start_sync(const ::string& pszComm
 //}
 
 
-//void application::on_update_view(::user::impact * pimpact, ::user::impact * pviewSender, LPARAM lHint, object * pHint)
+//void application::on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, LPARAM lHint, object * pHint)
 //{
 
 

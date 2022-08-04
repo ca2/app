@@ -41,8 +41,8 @@ namespace user
 
 
 
-      virtual ::count               get_data_bound_view_count() const override;
-      virtual ::user::primitive *   get_data_bound_view(index iImpact) override;
+      virtual ::count               get_data_bound_impact_count() const override;
+      virtual ::user::primitive *   get_data_bound_impact(index iImpact) override;
 
 
 

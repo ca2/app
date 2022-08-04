@@ -48,18 +48,18 @@ namespace userex
    }
 
 
-   ::user::interaction * pane_tab_impact::get_view_uie()
+   ::user::interaction * pane_tab_impact::get_impact_uie()
    {
 
-      return ::user::tab_impact::get_view_uie();
+      return ::user::tab_impact::get_impact_uie();
 
    }
 
 
-   atom pane_tab_impact::get_view_id()
+   atom pane_tab_impact::get_impact_id()
    {
 
-      return ::user::tab_impact::get_view_id();
+      return ::user::tab_impact::get_impact_id();
 
    }
 
@@ -474,7 +474,7 @@ namespace userex
          if (pimpactdata->m_atom == "account")
       {
 
-         __pointer(::account::impact) pimpact = create_view < ::account::impact >();
+         __pointer(::account::impact) pimpact = create_impact < ::account::impact >();
 
          if (pimpact.is_set())
          {
@@ -521,7 +521,7 @@ namespace userex
          
          auto puser = psession->m_puser->m_pcoreuser;
 
-         puser->will_use_view_hint(FONTSEL_IMPACT);
+         puser->will_use_impact_hint(FONTSEL_IMPACT);
 
          //auto pcreate = __new(create(this));
 
@@ -570,13 +570,13 @@ namespace userex
          
          auto puser = psession->m_puser->m_pcoreuser;
 
-         puser->will_use_view_hint(COLORSEL_IMPACT);
+         puser->will_use_impact_hint(COLORSEL_IMPACT);
 
          auto pimpactsystem = puser->m_mapimpactsystem[COLORSEL_IMPACT];
 
          //auto pdocument = pimpactsystem->open_document_file(get_app(), ::e_type_null, __visible(false).is_true(), pimpactdata->m_pplaceholder);
 
-         m_pcolorview = create_view < color_impact >(pimpactdata);
+         m_pcolorview = create_impact < color_impact >(pimpactdata);
 
 //         pdocument->m_pviewTopic->set_notify_user_interaction(this);
 
@@ -680,7 +680,7 @@ namespace userex
 
             m_mapFileManager[pimpactdata->m_atom] = pdocument;
 
-            __pointer(::user::impact) pimpact = pdocument->get_view();
+            __pointer(::user::impact) pimpact = pdocument->get_impact();
 
             if(pimpact != nullptr)
             {
@@ -714,7 +714,7 @@ namespace userex
 
       //      m_pfilemanagerTabbed = pmanager;
 
-      //      __pointer(::user::impact) pimpact = pmanager->get_view();
+      //      __pointer(::user::impact) pimpact = pmanager->get_impact();
 
       //      if(pimpact != nullptr)
       //      {
@@ -762,7 +762,7 @@ namespace userex
 
                pdocument->m_atom = string("document.") + string(pimpactdata->m_atom);
 
-               ::user::impact * pimpact = pdocument->get_view(0);
+               ::user::impact * pimpact = pdocument->get_impact(0);
 
                pimpactdata->m_puserinteraction = pimpact->parent_frame();
 
@@ -840,7 +840,7 @@ namespace userex
 
       set_current_tab_by_id("account");
 
-      __pointer(::account::impact) pimpact = get_view();
+      __pointer(::account::impact) pimpact = get_impact();
 
       if (pimpact.is_null())
       {

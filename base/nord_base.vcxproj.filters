@@ -31,13 +31,13 @@
     <ClCompile Include="user\menu\central.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
-    <ClCompile Include="user\menu\list_view.cpp">
+    <ClCompile Include="user\menu\list_impact.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
     <ClCompile Include="user\menu\list_window.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
-    <ClCompile Include="user\menu\menu_view.cpp">
+    <ClCompile Include="user\menu\menu_impact.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
     <ClCompile Include="user\experience\button.cpp">
@@ -190,7 +190,7 @@
     <ClCompile Include="user\user\split_pane.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\split_view.cpp">
+    <ClCompile Include="user\user\split_impact.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\static_control.cpp">
@@ -214,7 +214,7 @@
     <ClCompile Include="user\user\tab_pane_array.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\tab_view.cpp">
+    <ClCompile Include="user\user\tab_impact.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\toolbar.cpp">

@@ -49,11 +49,11 @@ namespace tc4
       add_factory_item <::tc4::edit_impact >();
       add_factory_item <::tc4::toggle_impact >();
       add_factory_item <::tc4::top_impact >();
-      add_factory_item <::tc4::lite_view >();
-      add_factory_item <::tc4::full_view >();
+      add_factory_item <::tc4::lite_impact >();
+      add_factory_item <::tc4::full_impact >();
       add_factory_item <::tc4::impact >();
       add_factory_item <::tc4::main_impact >();
-      add_factory_item <::tc4::switcher_view >();
+      add_factory_item <::tc4::switcher_impact >();
       add_factory_item <::tc4::pane_impact >();
 
       if(!::turboc::application::initialize_application())
@@ -81,7 +81,7 @@ namespace tc4
       "main",
       __type(::tc4::document),
       __type(::tc4::frame),       // top level SDI frame::user::interaction_impl
-      __type(::tc4::switcher_view));
+      __type(::tc4::switcher_impact));
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseSwitcher = pDocTemplate;
 

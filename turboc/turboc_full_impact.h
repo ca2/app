@@ -5,14 +5,14 @@ namespace turboc
 {
 
 
-   class CLASS_DECL_TURBOC full_view:
+   class CLASS_DECL_TURBOC full_impact:
       virtual public impact
    {
    public:
 
 
-      full_view(::object * pobject);
-      virtual ~full_view();
+      full_impact(::object * pobject);
+      virtual ~full_impact();
 
 
       void assert_ok() const override;

@@ -45,7 +45,7 @@ namespace user
    }
 
 
-   ::count impact_host::get_view_count()
+   ::count impact_host::get_impact_count()
    {
 
       return m_impactdatamap.get_count();
@@ -78,7 +78,7 @@ namespace user
    }
 
 
-   __pointer(::user::impact) impact_host::get_view()
+   __pointer(::user::impact) impact_host::get_impact()
    {
 
       return nullptr;
@@ -86,7 +86,7 @@ namespace user
    }
 
 
-   atom impact_host::get_view_id()
+   atom impact_host::get_impact_id()
    {
 
       return atom(::e_type_empty);
@@ -94,10 +94,10 @@ namespace user
    }
 
 
-   ::user::document * impact_host::get_view_document()
+   ::user::document * impact_host::get_impact_document()
    {
 
-      return ::user::get_document(get_view());
+      return ::user::get_document(get_impact());
 
    }
 

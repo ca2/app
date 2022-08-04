@@ -99,20 +99,20 @@
 		<Unit filename="helloaura_gcom.h" />
 		<Unit filename="helloaura_main_frame.cpp" />
 		<Unit filename="helloaura_main_frame.h" />
-		<Unit filename="helloaura_main_view.cpp" />
-		<Unit filename="helloaura_main_view.h" />
-		<Unit filename="helloaura_pane_view.cpp" />
-		<Unit filename="helloaura_pane_view.h" />
-		<Unit filename="aaa_want_to_erase_helloaura_view_update_hint.cpp" />
-		<Unit filename="aaa_want_to_erase_helloaura_view_update_hint.h" />
+		<Unit filename="helloaura_main_impact.cpp" />
+		<Unit filename="helloaura_main_impact.h" />
+		<Unit filename="helloaura_pane_impact.cpp" />
+		<Unit filename="helloaura_pane_impact.h" />
+		<Unit filename="aaa_want_to_erase_helloaura_impact_update_hint.cpp" />
+		<Unit filename="aaa_want_to_erase_helloaura_impact_update_hint.h" />
 		<Unit filename="helloaura_render.cpp" />
 		<Unit filename="helloaura_render.h" />
-		<Unit filename="helloaura_switcher_view.cpp" />
-		<Unit filename="helloaura_switcher_view.h" />
-		<Unit filename="helloaura_view.cpp" />
-		<Unit filename="helloaura_view.h" />
-		<Unit filename="helloaura_view_base.cpp" />
-		<Unit filename="helloaura_view_base.h" />
+		<Unit filename="helloaura_switcher_impact.cpp" />
+		<Unit filename="helloaura_switcher_impact.h" />
+		<Unit filename="helloaura_impact.cpp" />
+		<Unit filename="helloaura_impact.h" />
+		<Unit filename="helloaura_impact_base.cpp" />
+		<Unit filename="helloaura_impact_base.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

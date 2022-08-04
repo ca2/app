@@ -47,13 +47,13 @@ namespace user
 
       //virtual void GetScrollRect(RECTANGLE_I32 * prectangle);
 
-      virtual void on_change_view_size(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_change_impact_size(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics) override;
       virtual bool create_horizontal_scroll_bar();
       virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics) override;
       virtual void defer_create_horizontal_scroll_bar();
       //virtual void on_create_horizontal_scroll_bar();
-      virtual bool validate_viewport_offset(point_i32 & point) override;
+      virtual bool validate_impactport_offset(point_i32 & point) override;
       virtual void scroll_left_line();
       virtual void scroll_right_line();
       virtual void scroll_left_page();
@@ -93,14 +93,14 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void on_change_view_size(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_change_impact_size(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics) override;
       virtual i32 get_wheel_scroll_delta() override;
       virtual bool create_vertical_scroll_bar();
       virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics) override;
       virtual void defer_create_vertical_scroll_bar();
       //virtual void on_create_vertical_scroll_bar();
-      virtual bool validate_viewport_offset(point_i32 & point) override;
+      virtual bool validate_impactport_offset(point_i32 & point) override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_vertical_scroll);
@@ -134,9 +134,9 @@ namespace user
       virtual ~scroll_base();
 
 
-      virtual void on_change_view_size(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics) override;
-      virtual bool validate_viewport_offset(point_i32 & point) override;
+      virtual void on_change_impact_size(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics) override;
+      virtual bool validate_impactport_offset(point_i32 & point) override;
       virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics) override;
 
 

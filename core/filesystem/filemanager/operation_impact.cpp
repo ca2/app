@@ -8,19 +8,19 @@ namespace filemanager
 {
 
 
-   operation_view::operation_view()
+   operation_impact::operation_impact()
    {
 
    }
 
 
-   operation_view::~operation_view()
+   operation_impact::~operation_impact()
    {
 
    }
 
 
-   void operation_view::on_message_create(::message::message * pmessage)
+   void operation_impact::on_message_create(::message::message * pmessage)
    {
       pmessage->previous();
 
@@ -36,7 +36,7 @@ namespace filemanager
 
       initialize_split_layout();
 
-      m_plistview = create_view < operation_list_impact >();
+      m_plistview = create_impact < operation_list_impact >();
 
       if(m_plistview == nullptr)
       {
@@ -48,7 +48,7 @@ namespace filemanager
       SetPane(0,m_plistview,false);
 
 
-      m_pinfoview = create_view < operation_info_view >();
+      m_pinfoview = create_impact < operation_info_impact >();
       if(m_pinfoview == nullptr)
       {
          output_error_message("Could not create transfer information ::user::impact");
@@ -57,20 +57,20 @@ namespace filemanager
 
    }
 
-   void operation_view::install_message_routing(::channel * pchannel)
+   void operation_impact::install_message_routing(::channel * pchannel)
    {
       ::user::split_impact::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create,pchannel,this,&operation_view::on_message_create);
-      MESSAGE_LINK(MessageMainPost,pchannel,this,&operation_view::_001OnMainPostMessage);
-      MESSAGE_LINK(e_message_destroy,pchannel,this,&operation_view::on_message_destroy);
+      MESSAGE_LINK(e_message_create,pchannel,this,&operation_impact::on_message_create);
+      MESSAGE_LINK(MessageMainPost,pchannel,this,&operation_impact::_001OnMainPostMessage);
+      MESSAGE_LINK(e_message_destroy,pchannel,this,&operation_impact::on_message_destroy);
    }
 
-   __pointer(operation_document) operation_view::get_document()
+   __pointer(operation_document) operation_impact::get_document()
    {
       return  (::user::impact::get_document());
    }
 
-   void operation_view::_001OnMainPostMessage(::message::message * pmessage)
+   void operation_impact::_001OnMainPostMessage(::message::message * pmessage)
    {
       __pointer(::user::message) pusermessage(pmessage);
       if(pusermessage->m_wparam == MessageMainPostFileOperation)
@@ -85,7 +85,7 @@ namespace filemanager
       }
    }
 
-   void operation_view::on_message_destroy(::message::message *pmessage)
+   void operation_impact::on_message_destroy(::message::message *pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
    }

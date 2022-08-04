@@ -36,22 +36,22 @@
     <ClInclude Include="browser_main_frame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="browser_main_view.h">
+    <ClInclude Include="browser_main_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="browser_pane_view.h">
+    <ClInclude Include="browser_pane_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="browser_render.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="browser_switcher_view.h">
+    <ClInclude Include="browser_switcher_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="browser_view.h">
+    <ClInclude Include="browser_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="browser_view_base.h">
+    <ClInclude Include="browser_impact_base.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
@@ -86,22 +86,22 @@
     <ClCompile Include="browser_main_frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="browser_main_view.cpp">
+    <ClCompile Include="browser_main_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="browser_pane_view.cpp">
+    <ClCompile Include="browser_pane_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="browser_render.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="browser_switcher_view.cpp">
+    <ClCompile Include="browser_switcher_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="browser_view.cpp">
+    <ClCompile Include="browser_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="browser_view_base.cpp">
+    <ClCompile Include="browser_impact_base.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="simple_handler_win.cpp">

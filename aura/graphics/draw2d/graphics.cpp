@@ -2745,7 +2745,7 @@ namespace draw2d
    }
 
 
-   void graphics::get_viewport_scale(::draw2d::matrix & matrix)
+   void graphics::get_impactport_scale(::draw2d::matrix & matrix)
    {
 
       matrix = ::draw2d::matrix();

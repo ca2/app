@@ -23,7 +23,7 @@ namespace user
    }
 
 
-   ::count tree_data::get_data_bound_view_count() const
+   ::count tree_data::get_data_bound_impact_count() const
    {
 
       return m_usertreeaBound.get_count();
@@ -31,7 +31,7 @@ namespace user
    }
 
 
-   ::user::primitive * tree_data::get_data_bound_view(index iImpact)
+   ::user::primitive * tree_data::get_data_bound_impact(index iImpact)
    {
 
       return m_usertreeaBound[iImpact].cast < ::user::primitive >();

@@ -6,7 +6,7 @@ namespace turboc
 {
 
 
-   lite_view::lite_view(::object * pobject):
+   lite_impact::lite_impact(::object * pobject):
       ::object(pobject),
       impact(pobject)
    {
@@ -15,41 +15,41 @@ namespace turboc
    }
 
 
-   lite_view::~lite_view()
+   lite_impact::~lite_impact()
    {
 
    }
 
 
-   void lite_view::assert_ok() const
+   void lite_impact::assert_ok() const
    {
       ::aura::impact::assert_ok();
    }
 
-   void lite_view::dump(dump_context & dumpcontext) const
+   void lite_impact::dump(dump_context & dumpcontext) const
    {
       ::aura::impact::dump(dumpcontext);
    }
 
-   void lite_view::install_message_handling(::message::dispatch * pdispatch)
+   void lite_impact::install_message_handling(::message::dispatch * pdispatch)
    {
 
       impact::install_message_handling(pdispatch);
 
-      IGUI_WIN_MSG_LINK(e_message_create,pdispatch,this,&lite_view::on_message_create);
+      IGUI_WIN_MSG_LINK(e_message_create,pdispatch,this,&lite_impact::on_message_create);
 
    }
 
-   i64 lite_view::increment_reference_count()
+   i64 lite_impact::increment_reference_count()
    {
       return ::root::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
    }
-   i64 lite_view::decrement_reference_count()
+   i64 lite_impact::decrement_reference_count()
    {
       return ::root::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
    }
 
-   void lite_view::on_message_create(signal_details * pmessage)
+   void lite_impact::on_message_create(signal_details * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -72,13 +72,13 @@ namespace turboc
    }
 
 
-   void lite_view::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
+   void lite_impact::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
       __UNREFERENCED_PARAMETER(ptopic);
    }
 
 
-   void lite_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void lite_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       impact::_001OnDraw(pgraphics);
@@ -86,15 +86,15 @@ namespace turboc
    }
 
 
-/*   void lite_view::turboc_render(::image * pimage)
+/*   void lite_impact::turboc_render(::image * pimage)
    {
 
-      turboc_render_lite_view(pgraphics);
+      turboc_render_lite_impact(pgraphics);
 
    }
 
 
-/*   void impact::turboc_render_lite_view(::image * pimage)
+/*   void impact::turboc_render_lite_impact(::image * pimage)
    {
 
 

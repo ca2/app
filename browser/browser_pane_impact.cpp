@@ -96,7 +96,7 @@ namespace browser
    {
 
       ::userex::pane_tab_impact::on_change_cur_sel();
-      string strId = get_view_id();
+      string strId = get_impact_id();
       string_array stra;
       m_prollfps = nullptr;
       m_checkptraBilbo.erase_all();
@@ -112,9 +112,9 @@ namespace browser
 
       }
 
-      if(get_view_id() == MENU_IMPACT
-            || get_view_id() == MAIN_IMPACT
-            || get_view_id() == MAIN_SWITCHER_IMPACT
+      if(get_impact_id() == MENU_IMPACT
+            || get_impact_id() == MAIN_IMPACT
+            || get_impact_id() == MAIN_SWITCHER_IMPACT
             || stra.contains(__string((int)MENU_IMPACT))
             || stra.contains(__string((int)MAIN_IMPACT))
             || stra.contains(__string((int)MAIN_SWITCHER_IMPACT)))
@@ -143,7 +143,7 @@ namespace browser
 
          }
 
-         if(get_view_id() == MENU_IMPACT)
+         if(get_impact_id() == MENU_IMPACT)
          {
             
             auto ptabpaneMenu = get_tab_by_id(MENU_IMPACT);
@@ -153,21 +153,21 @@ namespace browser
             m_strTopicTitle = ptabpaneMenu->m_straTitle.implode(" ");
 
          }
-         else if(get_view_id() == MAIN_IMPACT)
+         else if(get_impact_id() == MAIN_IMPACT)
          {
 
-            m_pimpactLast = dynamic_cast < impact_base * > (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_view"));
-            m_pimpactLastBilbo = dynamic_cast < impact * > (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_view"));
+            m_pimpactLast = dynamic_cast < impact_base * > (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_impact"));
+            m_pimpactLastBilbo = dynamic_cast < impact * > (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_impact"));
             m_pimpactLast->set_need_layout();
             m_pimpactdataTopic = m_pimpactdata;
             m_strTopicTitle = get_pane_by_id(MAIN_IMPACT)->m_straTitle.implode(" ");
 
          }
-         else if (get_view_id() == MAIN_SWITCHER_IMPACT)
+         else if (get_impact_id() == MAIN_SWITCHER_IMPACT)
          {
 
-            m_pimpactLast = dynamic_cast < impact_base * > (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_view"));
-            m_pimpactLastBilbo = dynamic_cast < impact * > (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_view"));
+            m_pimpactLast = dynamic_cast < impact_base * > (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_impact"));
+            m_pimpactLastBilbo = dynamic_cast < impact * > (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_impact"));
             m_pimpactLast->set_need_layout();
             m_pimpactdataTopic = m_pimpactdata;
             m_strTopicTitle = get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_straTitle.implode(" ");
@@ -179,16 +179,16 @@ namespace browser
 
             {
 
-               auto pviewLast = dynamic_cast <impact_base *> (get_child_by_id("browser_view"));
-               //m_pimpactLastBilbo = dynamic_cast <impact *> (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_view"));
+               auto pviewLast = dynamic_cast <impact_base *> (get_child_by_id("browser_impact"));
+               //m_pimpactLastBilbo = dynamic_cast <impact *> (get_pane_by_id(MAIN_IMPACT)->m_pholder->get_child_by_id("browser_impact"));
                pviewLast->set_need_layout();
                //m_pimpactdataTopic = m_pimpactdata;
                //m_strTopicTitle = get_pane_by_id(MAIN_IMPACT)->m_straTitle.implode(" ");
 
             }
             {
-               auto pviewLast = dynamic_cast <impact_base *> (get_child_by_id("browser_switcher_view"));
-               //m_pimpactLastBilbo = dynamic_cast <impact *> (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_view"));
+               auto pviewLast = dynamic_cast <impact_base *> (get_child_by_id("browser_switcher_impact"));
+               //m_pimpactLastBilbo = dynamic_cast <impact *> (get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_pholder->get_child_by_id("browser_switcher_impact"));
                pviewLast->set_need_layout();
                //m_pimpactdataTopic = m_pimpactdata;
                //m_strTopicTitle = get_pane_by_id(MAIN_SWITCHER_IMPACT)->m_straTitle.implode(" ");
@@ -198,10 +198,10 @@ namespace browser
 
 
       }
-      else if (get_view_id() == MENU_IMPACT)
+      else if (get_impact_id() == MENU_IMPACT)
       {
 
-         ::file::path path = prepare_menu_view();
+         ::file::path path = prepare_menu_impact();
 
          if (!m_pdocMenu->open_document(path))
          {
@@ -214,7 +214,7 @@ namespace browser
 
          string str;
 
-         ::user::impact * pimpact = m_pdocMenu->get_view(0);
+         ::user::impact * pimpact = m_pdocMenu->get_impact(0);
 
          m_prollfps = dynamic_cast <::user::plain_edit_impact *> (pimpact->get_child_by_id("roll_fps"));
 
@@ -248,7 +248,7 @@ namespace browser
          }
 
       }
-      else if (get_view_id() == FONTSEL_IMPACT)
+      else if (get_impact_id() == FONTSEL_IMPACT)
       {
 
          __pointer(::user::font_list_impact) pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_impact");
@@ -261,7 +261,7 @@ namespace browser
          }
 
       }
-      else if (get_view_id() == COLORSEL_IMPACT)
+      else if (get_impact_id() == COLORSEL_IMPACT)
       {
 
          if (m_pimpactLastBilbo != nullptr && m_pcolorview != nullptr)
@@ -304,7 +304,7 @@ namespace browser
 
          m_pdocMenu = papp->create_child_form(this,pimpactdata->m_pplaceholder);
 
-         ::user::impact * pimpact = m_pdocMenu->get_view(0);
+         ::user::impact * pimpact = m_pdocMenu->get_impact(0);
 
          m_pimpactdata->m_puserinteraction = pimpact->get_parent_frame();
 
@@ -312,7 +312,7 @@ namespace browser
       break;
       case GCOM_IMPACT:
       {
-         create_view < gcom >(pimpactdata);
+         create_impact < gcom >(pimpactdata);
 
 
       }
@@ -342,7 +342,7 @@ namespace browser
    void pane_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(m_pdocMenu != nullptr && ptopic->is_about(m_pdocMenu->get_view(0)))
+      if(m_pdocMenu != nullptr && ptopic->is_about(m_pdocMenu->get_impact(0)))
       {
 
          if(ptopic->m_atom == ::id_after_change_text)
@@ -541,7 +541,7 @@ namespace browser
    }
 
 
-   ::file::path pane_impact::prepare_menu_view()
+   ::file::path pane_impact::prepare_menu_impact()
    {
 
       string str;

@@ -34,7 +34,7 @@ namespace universal_windows
       //};
 
 
-      directx_framework_view  ^           m_frameworkview;
+      directx_framework_impact  ^           m_frameworkview;
 
       ::draw2d::graphics_pointer       m_pdraw2dgraphics;
 

@@ -804,7 +804,7 @@ namespace user
 
       auto item_height = _001GetItemHeight();
 
-      auto pointOffset = get_viewport_offset();
+      auto pointOffset = get_impactport_offset();
 
       if(item_height != 0)
       {
@@ -877,7 +877,7 @@ namespace user
    }
 
 
-   void tree::on_change_view_size(::draw2d::graphics_pointer & pgraphics)
+   void tree::on_change_impact_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::size_f64 sizeTotal;
@@ -890,7 +890,7 @@ namespace user
 
       set_total_size(sizeTotal);
 
-      ::user::scroll_base::on_change_view_size(pgraphics);
+      ::user::scroll_base::on_change_impact_size(pgraphics);
 
    }
 
@@ -980,7 +980,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(bLayout);
 
-      auto pointOffset = get_viewport_offset();
+      auto pointOffset = get_impactport_offset();
 
       if(bExpand)
       {
@@ -1040,7 +1040,7 @@ namespace user
                   {
 
 
-                     set_viewport_offset_y(pgraphics, (int)maximum(iNewScroll, 0));
+                     set_impactport_offset_y(pgraphics, (int)maximum(iNewScroll, 0));
 
                   });
                //            _001SetYScroll(maximum(iNewScroll, 0), false);
@@ -1185,12 +1185,12 @@ namespace user
    }
 
 
-   void tree::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
+   void tree::on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
       m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
 
-      ::user::scroll_base::on_change_viewport_offset(pgraphics);
+      ::user::scroll_base::on_change_impactport_offset(pgraphics);
 
 //      auto psession = get_session();
 //
@@ -1261,9 +1261,9 @@ namespace user
 
       set_total_size(sizeTotal);
 
-      on_change_view_size(pgraphics);
+      on_change_impact_size(pgraphics);
 
-      on_change_viewport_offset(pgraphics);
+      on_change_impactport_offset(pgraphics);
 
    }
 
@@ -1454,7 +1454,7 @@ namespace user
 
       }
 
-      auto pointOffset = get_viewport_offset();
+      auto pointOffset = get_impactport_offset();
 
       int iItemHeight = (int)(_001GetItemHeight());
 
@@ -1531,7 +1531,7 @@ namespace user
 
       defer_graphics(pgraphics);
 
-      auto pointOffset = get_viewport_offset();
+      auto pointOffset = get_impactport_offset();
 
       nOffset = (::index)(pointOffset.y / _001GetItemHeight());
 
@@ -2202,7 +2202,7 @@ namespace user
 
       index iIndex = get_proper_item_index(pitem, &iLevel);
 
-      auto pointOffset = get_viewport_offset();
+      auto pointOffset = get_impactport_offset();
 
       if (m_dItemHeight <= 0.)
       {
@@ -2225,7 +2225,7 @@ namespace user
          queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
             {
 
-               set_viewport_offset_y(pgraphics, iy);
+               set_impactport_offset_y(pgraphics, iy);
 
             });
 
@@ -2259,7 +2259,7 @@ namespace user
    }
 
 
-   void tree::on_viewport_offset(::draw2d::graphics_pointer & pgraphics)
+   void tree::on_impactport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
    }

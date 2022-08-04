@@ -30,7 +30,7 @@ namespace universal_windows
 {
 
 
-   directx_framework_view::directx_framework_view(::aura::system * psystem, ::String ^ strId)
+   directx_framework_impact::directx_framework_impact(::aura::system * psystem, ::String ^ strId)
    {
 
       draw2d_direct2d::defer_direct2d_initialize();
@@ -55,7 +55,7 @@ namespace universal_windows
       if (!main_initialize())
       {
 
-         throw ::exception(::exception("Failed to run main_initialize at directx_framework_view constructor."));
+         throw ::exception(::exception("Failed to run main_initialize at directx_framework_impact constructor."));
 
       }
 
@@ -68,7 +68,7 @@ namespace universal_windows
    }
 
 
-   directx_framework_view::~directx_framework_view()
+   directx_framework_impact::~directx_framework_impact()
    {
 
       ::draw2d_direct2d::direct2d_finalize();
@@ -76,7 +76,7 @@ namespace universal_windows
    }
 
 
-   void directx_framework_view::initialize_directx_application()
+   void directx_framework_impact::initialize_directx_application()
    {
 
       int nReturnCode = 0;
@@ -189,55 +189,55 @@ namespace universal_windows
    }
 
 
-   void directx_framework_view::Initialize(CoreApplicationView ^ applicationView)
+   void directx_framework_impact::Initialize(CoreApplicationView ^ applicationView)
    {
 
       impact::Initialize(applicationView);
 
-      applicationView->Activated += ref new TypedEventHandler<CoreApplicationView ^, IActivatedEventArgs ^>(this, &directx_framework_view::OnActivated);
+      applicationView->Activated += ref new TypedEventHandler<CoreApplicationView ^, IActivatedEventArgs ^>(this, &directx_framework_impact::OnActivated);
 
-      CoreApplication::Suspending += ref new EventHandler<SuspendingEventArgs ^>(this, &directx_framework_view::OnSuspending);
+      CoreApplication::Suspending += ref new EventHandler<SuspendingEventArgs ^>(this, &directx_framework_impact::OnSuspending);
 
-      CoreApplication::Resuming += ref new EventHandler<Object ^>(this, &directx_framework_view::OnResuming);
+      CoreApplication::Resuming += ref new EventHandler<Object ^>(this, &directx_framework_impact::OnResuming);
 
    }
 
 
-   void directx_framework_view::install_directx_application_message_routing()
+   void directx_framework_impact::install_directx_application_message_routing()
    {
 
-      m_puisettings->ColorValuesChanged += ref new TypedEventHandler<::winrt::Windows::UI::ViewManagement::UISettings ^, Platform::Object ^>(this, &directx_framework_view::OnUISettingsColorValuesChange);
+      m_puisettings->ColorValuesChanged += ref new TypedEventHandler<::winrt::Windows::UI::ViewManagement::UISettings ^, Platform::Object ^>(this, &directx_framework_impact::OnUISettingsColorValuesChange);
 
       CoreWindow ^ window = m_window.Get();
 
-      window->VisibilityChanged += ref new TypedEventHandler<CoreWindow ^, VisibilityChangedEventArgs ^>(this, &directx_framework_view::OnWindowVisibilityChanged);
+      window->VisibilityChanged += ref new TypedEventHandler<CoreWindow ^, VisibilityChangedEventArgs ^>(this, &directx_framework_impact::OnWindowVisibilityChanged);
 
       window->PointerCursor = ref new CoreCursor(CoreCursorType::Arrow, 0);
 
-      window->SizeChanged += ref new TypedEventHandler<CoreWindow ^, WindowSizeChangedEventArgs ^>(this, &directx_framework_view::OnWindowSizeChanged);
+      window->SizeChanged += ref new TypedEventHandler<CoreWindow ^, WindowSizeChangedEventArgs ^>(this, &directx_framework_impact::OnWindowSizeChanged);
 
-      window->PointerMoved += ref new TypedEventHandler < CoreWindow ^, PointerEventArgs ^>(this, &directx_framework_view::OnPointerMoved);
+      window->PointerMoved += ref new TypedEventHandler < CoreWindow ^, PointerEventArgs ^>(this, &directx_framework_impact::OnPointerMoved);
 
-      window->CharacterReceived += ref new TypedEventHandler<CoreWindow ^, CharacterReceivedEventArgs ^>(this, &directx_framework_view::OnCharacterReceived);
+      window->CharacterReceived += ref new TypedEventHandler<CoreWindow ^, CharacterReceivedEventArgs ^>(this, &directx_framework_impact::OnCharacterReceived);
 
-      window->KeyDown += ref new TypedEventHandler < CoreWindow ^, KeyEventArgs ^>(this, &directx_framework_view::OnKeyDown);
+      window->KeyDown += ref new TypedEventHandler < CoreWindow ^, KeyEventArgs ^>(this, &directx_framework_impact::OnKeyDown);
 
-      window->KeyUp += ref new TypedEventHandler < CoreWindow ^, KeyEventArgs ^>(this, &directx_framework_view::OnKeyUp);
+      window->KeyUp += ref new TypedEventHandler < CoreWindow ^, KeyEventArgs ^>(this, &directx_framework_impact::OnKeyUp);
 
-      window->PointerPressed += ref new TypedEventHandler<CoreWindow ^, PointerEventArgs ^>(this, &directx_framework_view::OnPointerPressed);
+      window->PointerPressed += ref new TypedEventHandler<CoreWindow ^, PointerEventArgs ^>(this, &directx_framework_impact::OnPointerPressed);
 
-      window->PointerReleased += ref new TypedEventHandler<CoreWindow ^, PointerEventArgs ^>(this, &directx_framework_view::OnPointerReleased);
+      window->PointerReleased += ref new TypedEventHandler<CoreWindow ^, PointerEventArgs ^>(this, &directx_framework_impact::OnPointerReleased);
 
       ::winrt::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::winrt::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
 
-      displayinformation->DpiChanged += ref new TypedEventHandler < DisplayInformation ^, Object ^ >(this, &directx_framework_view::DpiChanged);
+      displayinformation->DpiChanged += ref new TypedEventHandler < DisplayInformation ^, Object ^ >(this, &directx_framework_impact::DpiChanged);
 
-      displayinformation->DisplayContentsInvalidated += ref new TypedEventHandler < DisplayInformation ^, Object ^ >(this, &directx_framework_view::DisplayContentsInvalidated);
+      displayinformation->DisplayContentsInvalidated += ref new TypedEventHandler < DisplayInformation ^, Object ^ >(this, &directx_framework_impact::DisplayContentsInvalidated);
 
    }
 
 
-   void directx_framework_view::SetWindow(CoreWindow ^ window)
+   void directx_framework_impact::SetWindow(CoreWindow ^ window)
    {
 
       impact::SetWindow(window);
@@ -257,13 +257,13 @@ namespace universal_windows
    }
 
 
-   void directx_framework_view::Load(String ^ entryPoint)
+   void directx_framework_impact::Load(String ^ entryPoint)
    {
 
    }
 
 
-   void directx_framework_view::Run()
+   void directx_framework_impact::Run()
    {
 
       m_window->Dispatcher->ProcessEvents(CoreProcessEventsOption::ProcessUntilQuit);
@@ -271,13 +271,13 @@ namespace universal_windows
    }
 
 
-   void directx_framework_view::Uninitialize()
+   void directx_framework_impact::Uninitialize()
    {
 
    }
 
 
-   void directx_framework_view::OnUISettingsColorValuesChange(::winrt::Windows::UI::ViewManagement::UISettings ^ uisettings, Platform::Object ^)
+   void directx_framework_impact::OnUISettingsColorValuesChange(::winrt::Windows::UI::ViewManagement::UISettings ^ uisettings, Platform::Object ^)
    {
 
       ::user::os_calc_dark_mode();
@@ -285,7 +285,7 @@ namespace universal_windows
    }
 
 
-   void directx_framework_view::OnWindowSizeChanged(CoreWindow ^ sender, WindowSizeChangedEventArgs ^ args)
+   void directx_framework_impact::OnWindowSizeChanged(CoreWindow ^ sender, WindowSizeChangedEventArgs ^ args)
    {
 
       ::size_i32 size((LONG) args->Size.Width, (LONG) args->Size.Height);
@@ -295,7 +295,7 @@ namespace universal_windows
    }
 
 
-   void directx_framework_view::on_window_size_changed(CoreWindow ^ sender, const ::size_i32 & size)
+   void directx_framework_impact::on_window_size_changed(CoreWindow ^ sender, const ::size_i32 & size)
    {
 
       m_directx->m_size = size;
@@ -309,7 +309,7 @@ namespace universal_windows
    }
 
  
-   void directx_framework_view::DpiChanged(::winrt::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj)
+   void directx_framework_impact::DpiChanged(::winrt::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj)
    {
 
       m_rectangleLastWindowRect = m_window->Bounds;
@@ -320,7 +320,7 @@ namespace universal_windows
    }
 
 
-   void directx_framework_view::DisplayContentsInvalidated(::winrt::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj)
+   void directx_framework_impact::DisplayContentsInvalidated(::winrt::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj)
    {
 
       // Ensure the D3D Device is available for rendering.
@@ -330,7 +330,7 @@ namespace universal_windows
    }
 
 
-   void directx_framework_view::OnActivated(CoreApplicationView^ applicationView, IActivatedEventArgs^ args)
+   void directx_framework_impact::OnActivated(CoreApplicationView^ applicationView, IActivatedEventArgs^ args)
    {
 
       m_window->Activate();
@@ -372,19 +372,19 @@ namespace universal_windows
    }
 
 
-   void directx_framework_view::OnSuspending(Object ^ sender, SuspendingEventArgs ^ args)
+   void directx_framework_impact::OnSuspending(Object ^ sender, SuspendingEventArgs ^ args)
    {
 
    }
 
 
-   void directx_framework_view::OnResuming(Object ^ sender, Object ^ args)
+   void directx_framework_impact::OnResuming(Object ^ sender, Object ^ args)
    {
 
    }
 
 
-   void directx_framework_view::OnCharacterReceived(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::CharacterReceivedEventArgs ^ args)
+   void directx_framework_impact::OnCharacterReceived(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::CharacterReceivedEventArgs ^ args)
    {
 
       if(m_psystem->get_session() == nullptr)
@@ -413,7 +413,7 @@ namespace universal_windows
    }
 
 
-   void directx_framework_view::OnKeyDown(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::KeyEventArgs ^ args)
+   void directx_framework_impact::OnKeyDown(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::KeyEventArgs ^ args)
    {
       if (args->VirtualKey == ::winrt::Windows::aura::get_system()::VirtualKey::Shift)
       {
@@ -468,7 +468,7 @@ namespace universal_windows
 
    }
 
-   void directx_framework_view::OnKeyUp(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::KeyEventArgs ^ args)
+   void directx_framework_impact::OnKeyUp(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::KeyEventArgs ^ args)
    {
 
       if(m_psystem == nullptr)
@@ -552,13 +552,13 @@ namespace universal_windows
    }
 
 
-   void directx_framework_view::OnWindowClosed(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::CoreWindowEventArgs ^ args)
+   void directx_framework_impact::OnWindowClosed(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::CoreWindowEventArgs ^ args)
    {
 
    }
 
 
-   void directx_framework_view::OnWindowVisibilityChanged(::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::VisibilityChangedEventArgs^ args)
+   void directx_framework_impact::OnWindowVisibilityChanged(::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::VisibilityChangedEventArgs^ args)
    {
 
       if (args->Visible)
@@ -603,7 +603,7 @@ namespace universal_windows
 
    }
 
-   void directx_framework_view::OnPointerMoved(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::PointerEventArgs ^ args)
+   void directx_framework_impact::OnPointerMoved(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::PointerEventArgs ^ args)
    {
 
       //if (m_dwMouseMoveThrottle && m_durationLastMouseMove.elapsed() < m_dwMouseMoveThrottle)
@@ -654,7 +654,7 @@ namespace universal_windows
    }
 
 
-   void directx_framework_view::OnPointerPressed(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::PointerEventArgs ^ args)
+   void directx_framework_impact::OnPointerPressed(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::PointerEventArgs ^ args)
    {
 
       if (m_psystem == nullptr)
@@ -734,7 +734,7 @@ namespace universal_windows
    }
 
 
-   void directx_framework_view::OnPointerReleased(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::PointerEventArgs ^ args)
+   void directx_framework_impact::OnPointerReleased(::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::PointerEventArgs ^ args)
    {
 
       if (m_psystem == nullptr)
@@ -810,7 +810,7 @@ namespace universal_windows
    ::winrt::Windows::ApplicationModel::Core::IFrameworkView^ directx_application_source::CreateView()
    {
 
-      return ref new directx_framework_view(m_psystem,m_strId);
+      return ref new directx_framework_impact(m_psystem,m_strId);
 
    }
 
@@ -829,7 +829,7 @@ namespace universal_windows
    }
 
    
-   ::winrt::Windows::Foundation::Rect directx_framework_view::get_input_content_rect()
+   ::winrt::Windows::Foundation::Rect directx_framework_impact::get_input_content_rect()
    {
 
       ::winrt::Windows::Foundation::Rect rectangle_i32;
@@ -857,7 +857,7 @@ namespace universal_windows
    }
 
 
-   ::winrt::Windows::Foundation::Rect directx_framework_view::get_input_selection_rect()
+   ::winrt::Windows::Foundation::Rect directx_framework_impact::get_input_selection_rect()
    {
 
       ::winrt::Windows::Foundation::Rect rectangle = m_rectangleInputSelectionRect;
@@ -867,7 +867,7 @@ namespace universal_windows
    }
 
    
-   widestring directx_framework_view::get_input_text()
+   widestring directx_framework_impact::get_input_text()
    {
 
       widestring wstrText;
@@ -892,7 +892,7 @@ namespace universal_windows
    }
 
 
-   bool directx_framework_view::set_input_text(const widestring & wstr)
+   bool directx_framework_impact::set_input_text(const widestring & wstr)
    {
 
       auto pfocusui = m_puserinteraction->get_keyboard_focus();
@@ -916,14 +916,14 @@ namespace universal_windows
    }
 
 
-   //void directx_framework_view::get_input_text(const widestring & wstr)
+   //void directx_framework_impact::get_input_text(const widestring & wstr)
    //{
 
 
    //}
 
 
-   ::winrt::Windows::Foundation::Rect directx_framework_view::get_window_rect()
+   ::winrt::Windows::Foundation::Rect directx_framework_impact::get_window_rect()
    {
 
       ::winrt::Windows::Foundation::Rect rectangle = m_rectangleLastWindowRect;
@@ -951,7 +951,7 @@ namespace universal_windows
 
    }
 
-   ::winrt::Windows::Foundation::Point directx_framework_view::get_cursor_position()
+   ::winrt::Windows::Foundation::Point directx_framework_impact::get_cursor_position()
    {
 
       single_lock synchronouslock(&m_mutex, true);

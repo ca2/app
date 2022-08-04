@@ -532,7 +532,7 @@ int imm_client::on_text_composition_message(int iMessage)
 
 
 
-      //int y = (iLine)* m_iLineHeight - get_viewport_offset().y;
+      //int y = (iLine)* m_iLineHeight - get_impactport_offset().y;
       //int y2 = y + m_iLineHeight;
       // ::point_i32 point(x, y);
       //::rectangle_i32 r;

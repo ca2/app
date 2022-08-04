@@ -114,8 +114,8 @@ namespace turboc
       virtual bool in_anime();
 
 
-/*      virtual void turboc_render_lite_view(::image * pimage);
-/*      virtual void turboc_render_full_view(::image * pimage);
+/*      virtual void turboc_render_lite_impact(::image * pimage);
+/*      virtual void turboc_render_full_impact(::image * pimage);
 
    };
 

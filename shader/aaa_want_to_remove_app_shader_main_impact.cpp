@@ -71,7 +71,7 @@ namespace simple_shader
 
          initialize_split_layout();
 
-         m_ptopview = host_view < ::userex::top_impact >(0, "top_impact");
+         m_ptopview = host_impact < ::userex::top_impact >(0, "top_impact");
 
          if (m_ptopview == NULL)
          {
@@ -96,9 +96,9 @@ namespace simple_shader
 
       }
 
-      //m_pimpact = create_view < lite_view >();
+      //m_pimpact = create_impact < lite_impact >();
 
-      m_pimpact = host_view < impact >(iPane, "simple_shader_view");
+      m_pimpact = host_impact < impact >(iPane, "simple_shader_impact");
 
       if(m_pimpact == NULL)
       {

@@ -82,13 +82,13 @@ namespace filemanager
 
             m_ptree->m_pserver = this;
 
-            m_pusertree = create_view < ::user::tree > ();
+            m_pusertree = create_impact < ::user::tree > ();
 
             m_pusertree->merge(m_ptree, true);
 
             SetPane(0, m_pusertree, false);
 
-            m_plist = create_view < list_impact > ();
+            m_plist = create_impact < list_impact > ();
 
             m_plist->m_pserver = this;
 

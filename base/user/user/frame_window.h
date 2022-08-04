@@ -96,8 +96,8 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual ::atom get_topic_view_id();
-      virtual bool set_topic_view_by_id(const ::atom & atom);
+      virtual ::atom get_topic_impact_id();
+      virtual bool set_topic_impact_by_id(const ::atom & atom);
 
 
       virtual void update_active_document(::topic * ptopic);
@@ -192,8 +192,8 @@ namespace user
 //      }
 
 
-      ::user::interaction * get_active_view() const override;           // active ::user::impact or nullptr
-      void set_active_view(::user::impact * pImpactNew, bool bNotify = true) override;
+      ::user::interaction * get_active_impact() const override;           // active ::user::impact or nullptr
+      void set_active_impact(::user::impact * pImpactNew, bool bNotify = true) override;
       // active ::user::impact or nullptr, bNotify == false if focus should not be set
 
       // Active frame (for frames within frames -- MDI)

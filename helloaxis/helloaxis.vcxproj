@@ -718,7 +718,7 @@
     <ClCompile Include=".\helloaxis_document.cpp" />
     <ClCompile Include=".\helloaxis_frame.cpp" />
     <ClCompile Include="helloaxis.cpp" />
-    <ClCompile Include=".\helloaxis_pane_view.cpp" />
+    <ClCompile Include=".\helloaxis_pane_impact.cpp" />
 
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
@@ -728,13 +728,13 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include=".\helloaxis_view.cpp" />
+    <ClCompile Include=".\helloaxis_impact.cpp" />
     <ClCompile Include="helloaxis_gcom.cpp" />
     <ClCompile Include="helloaxis_main_frame.cpp" />
-    <ClCompile Include="helloaxis_main_view.cpp" />
+    <ClCompile Include="helloaxis_main_impact.cpp" />
     <ClCompile Include="helloaxis_render.cpp" />
-    <ClCompile Include="helloaxis_switcher_view.cpp" />
-    <ClCompile Include="helloaxis_view_base.cpp" />
+    <ClCompile Include="helloaxis_switcher_impact.cpp" />
+    <ClCompile Include="helloaxis_impact_base.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helloaxis_application.h" />
@@ -743,14 +743,14 @@
     <ClInclude Include="helloaxis.h" />
     <ClInclude Include="helloaxis_gcom.h" />
     <ClInclude Include="helloaxis_main_frame.h" />
-    <ClInclude Include="helloaxis_main_view.h" />
-    <ClInclude Include="helloaxis_pane_view.h" />
+    <ClInclude Include="helloaxis_main_impact.h" />
+    <ClInclude Include="helloaxis_pane_impact.h" />
 
     <ClInclude Include="framework.h" />
     <ClInclude Include="helloaxis_render.h" />
-    <ClInclude Include="helloaxis_switcher_view.h" />
-    <ClInclude Include="helloaxis_view.h" />
-    <ClInclude Include="helloaxis_view_base.h" />
+    <ClInclude Include="helloaxis_switcher_impact.h" />
+    <ClInclude Include="helloaxis_impact.h" />
+    <ClInclude Include="helloaxis_impact_base.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".\app_core_helloaxis.def" />

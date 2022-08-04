@@ -94,7 +94,7 @@ namespace helloworld
    {
 
       ::userex::pane_tab_impact::on_change_cur_sel();
-      string strId = get_view_id();
+      string strId = get_impact_id();
       string_array stra;
       m_prollfps = nullptr;
       m_checkptraBilbo.erase_all();
@@ -110,8 +110,8 @@ namespace helloworld
 
       }
 
-      if(get_view_id() == ::helloworld::PaneViewHelloWorld
-            || get_view_id() == ::helloworld::PaneViewHelloWorldSwitcher
+      if(get_impact_id() == ::helloworld::PaneViewHelloWorld
+            || get_impact_id() == ::helloworld::PaneViewHelloWorldSwitcher
             || stra.contains(__string((int)::helloworld::PaneViewHelloWorld))
             || stra.contains(__string((int)::helloworld::PaneViewHelloWorldSwitcher)))
       {
@@ -137,21 +137,21 @@ namespace helloworld
 
 
 
-         if(get_view_id() == ::helloworld::PaneViewHelloWorld)
+         if(get_impact_id() == ::helloworld::PaneViewHelloWorld)
          {
 
-            m_pimpactLast = dynamic_cast < impact_base * > (get_pane_by_id(::helloworld::PaneViewHelloWorld)->m_pholder->get_child_by_id("helloworld_view"));
-            m_pimpactLastBilbo = dynamic_cast < impact * > (get_pane_by_id(::helloworld::PaneViewHelloWorld)->m_pholder->get_child_by_id("helloworld_view"));
+            m_pimpactLast = dynamic_cast < impact_base * > (get_pane_by_id(::helloworld::PaneViewHelloWorld)->m_pholder->get_child_by_id("helloworld_impact"));
+            m_pimpactLastBilbo = dynamic_cast < impact * > (get_pane_by_id(::helloworld::PaneViewHelloWorld)->m_pholder->get_child_by_id("helloworld_impact"));
             m_pimpactLast->set_need_layout();
             m_pimpactdataTopic = m_pimpactdata;
             m_strTopicTitle = get_pane_by_id(::helloworld::PaneViewHelloWorld)->m_straTitle.implode(" ");
 
          }
-         else if (get_view_id() == ::helloworld::PaneViewHelloWorldSwitcher)
+         else if (get_impact_id() == ::helloworld::PaneViewHelloWorldSwitcher)
          {
 
-            m_pimpactLast = dynamic_cast < impact_base * > (get_pane_by_id(::helloworld::PaneViewHelloWorldSwitcher)->m_pholder->get_child_by_id("helloworld_view"));
-            m_pimpactLastBilbo = dynamic_cast < impact * > (get_pane_by_id(::helloworld::PaneViewHelloWorldSwitcher)->m_pholder->get_child_by_id("helloworld_view"));
+            m_pimpactLast = dynamic_cast < impact_base * > (get_pane_by_id(::helloworld::PaneViewHelloWorldSwitcher)->m_pholder->get_child_by_id("helloworld_impact"));
+            m_pimpactLastBilbo = dynamic_cast < impact * > (get_pane_by_id(::helloworld::PaneViewHelloWorldSwitcher)->m_pholder->get_child_by_id("helloworld_impact"));
             m_pimpactLast->set_need_layout();
             m_pimpactdataTopic = m_pimpactdata;
             m_strTopicTitle = get_pane_by_id(::helloworld::PaneViewHelloWorldSwitcher)->m_straTitle.implode(" ");
@@ -160,12 +160,12 @@ namespace helloworld
 
 
       }
-      else if (get_view_id() == MENU_IMPACT)
+      else if (get_impact_id() == MENU_IMPACT)
       {
 
-         //::user::tab_pane * ppane = get_pane(id_pane(get_view_id()));
+         //::user::tab_pane * ppane = get_pane(id_pane(get_impact_id()));
 
-         ::file::path path = prepare_menu_view();
+         ::file::path path = prepare_menu_impact();
 
          m_pdocMenu->open_document(path);
 
@@ -178,7 +178,7 @@ namespace helloworld
 
          string str;
 
-         ::user::impact * pimpact = m_pdocMenu->get_view(0);
+         ::user::impact * pimpact = m_pdocMenu->get_impact(0);
 
          m_prollfps = dynamic_cast <::calculator::plain_edit_impact *> (pimpact->get_child_by_id("roll_fps"));
 
@@ -210,7 +210,7 @@ namespace helloworld
          }
 
       }
-      else if (get_view_id() == FONTSEL_IMPACT)
+      else if (get_impact_id() == FONTSEL_IMPACT)
       {
 
          __pointer(::user::font_list_impact) pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_impact");
@@ -239,12 +239,12 @@ namespace helloworld
 
          m_pdocMenu = papp->create_child_form(this,pimpactdata->m_pplaceholder);
 
-         ::user::impact * pimpact = m_pdocMenu->get_view(0);
+         ::user::impact * pimpact = m_pdocMenu->get_impact(0);
 
          m_pimpactdata->m_puserinteraction = pimpact->get_parent_frame();
 
 
-         //::file::path path = prepare_menu_view();
+         //::file::path path = prepare_menu_impact();
 
          //m_pdocMenu->open_document(path);
 
@@ -302,7 +302,7 @@ namespace helloworld
    void pane_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (pimpact) == m_pdocMenu->get_view(0) && ptopic->user_interaction() != nullptr)
+      if(m_pdocMenu != nullptr && dynamic_cast < ::user::impact * > (pimpact) == m_pdocMenu->get_impact(0) && ptopic->user_interaction() != nullptr)
       {
 
          if(ptopic->m_atom == ::id_after_change_text)
@@ -440,7 +440,7 @@ namespace helloworld
    }
 
 
-   ::file::path pane_impact::prepare_menu_view()
+   ::file::path pane_impact::prepare_menu_impact()
    {
 
       string str;

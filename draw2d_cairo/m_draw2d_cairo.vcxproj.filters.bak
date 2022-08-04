@@ -1086,13 +1086,13 @@
     <ClCompile Include="user\user_text_interface.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_view.cpp">
+    <ClCompile Include="user\user_impact.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_view_container.cpp">
+    <ClCompile Include="user\user_impact_container.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_view_creator.cpp">
+    <ClCompile Include="user\user_impact_creator.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_virtual_user_interface.cpp">
@@ -3527,13 +3527,13 @@
     <ClInclude Include="user\user_text_interface.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user_view.h">
+    <ClInclude Include="user\user_impact.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user_view_container.h">
+    <ClInclude Include="user\user_impact_container.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user_view_creator.h">
+    <ClInclude Include="user\user_impact_creator.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_virtual_user_interface.h">
@@ -3992,7 +3992,7 @@
     <ClInclude Include="colorertake5\styled_region.h">
       <Filter>Header Files\colorertake5</Filter>
     </ClInclude>
-    <ClInclude Include="colorertake5\text_console_viewer.h">
+    <ClInclude Include="colorertake5\text_console_impacter.h">
       <Filter>Header Files\colorertake5</Filter>
     </ClInclude>
     <ClInclude Include="colorertake5\text_hrd_mapper.h">

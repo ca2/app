@@ -46,7 +46,7 @@ namespace user
       void create_child_form()
       {
 
-         m_pform = create_view < FORM >(this, "child_form");
+         m_pform = create_impact < FORM >(this, "child_form");
 
       }
       

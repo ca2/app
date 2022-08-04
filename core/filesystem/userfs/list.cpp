@@ -50,10 +50,10 @@ namespace userfs
    }
 
 
-   void list::initialize_view(::user::document * pdocument)
+   void list::initialize_impact(::user::document * pdocument)
    {
 
-      ::user::form_list_impact::initialize_view(pdocument);
+      ::user::form_list_impact::initialize_impact(pdocument);
 
       m_pdocument = dynamic_cast <document *>(pdocument);
 

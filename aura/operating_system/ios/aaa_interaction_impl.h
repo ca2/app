@@ -137,7 +137,7 @@ namespace ios
       //      void SetFont(::write_text::font* pFont, bool bRedraw = true);
       //    ::write_text::font* GetFont();
 
-      virtual void defer_update_text_view();
+      virtual void defer_update_text_impact();
 
       // oswindow size_i32 and position Functions
       //virtual bool layout().is_iconic() override;
@@ -209,8 +209,8 @@ namespace ios
 //      virtual bool is_active() override;
 
 
-      virtual void set_viewport_org(::draw2d::graphics_pointer & pgraphics) override;
-      void offset_viewport_org(RECTANGLE_I32 * lprectScreen);
+      virtual void set_impactport_org(::draw2d::graphics_pointer & pgraphics) override;
+      void offset_impactport_org(RECTANGLE_I32 * lprectScreen);
 
 
       //virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, ::u32 flags) override;

@@ -56,7 +56,7 @@ namespace filemanager
 
       initialize_split_layout();
 
-      auto pusertree = create_pane_view < ::user::show < ::user::tree > >(0);
+      auto pusertree = create_pane_impact < ::user::show < ::user::tree > >(0);
 
       m_pusertree = pusertree;
 

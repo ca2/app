@@ -227,7 +227,7 @@ namespace userex
       if (plist.is_null())
       {
 
-         plist = create_view < ::userex::image_list_impact >(nullptr, nullptr, idGroup);
+         plist = create_impact < ::userex::image_list_impact >(nullptr, nullptr, idGroup);
 
          plist->m_ealign = e_align_top_center;
 

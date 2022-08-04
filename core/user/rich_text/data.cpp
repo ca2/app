@@ -1874,7 +1874,7 @@ namespace user
 
             ::draw2d::matrix m;
 
-            pgraphics->get_viewport_scale(m);
+            pgraphics->get_impactport_scale(m);
 
             //m.invert();
 

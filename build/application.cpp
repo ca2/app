@@ -67,12 +67,12 @@ namespace app_core_build
 
       auto puser = psession->user()->m_pcoreuser;
 
-      puser->will_use_view_hint(FONTSEL_IMPACT);
+      puser->will_use_impact_hint(FONTSEL_IMPACT);
 
       ::factory::add_factory_item <::app_core_build::document >();
       ::factory::add_factory_item <::app_core_build::frame >();
       ::factory::add_factory_item <::app_core_build::main_frame >();
-      ::factory::add_factory_item <::user::button_view >();
+      ::factory::add_factory_item <::user::button_impact >();
       ::factory::add_factory_item <::app_core_build::impact >();
       ::factory::add_factory_item <::app_core_build::main_impact >();
       ::factory::add_factory_item <::app_core_build::pane_impact >();

@@ -53,7 +53,7 @@ namespace filemanager
    };
 
 
-   class CLASS_DECL_CORE save_as_view:
+   class CLASS_DECL_CORE save_as_impact:
       virtual public ::filemanager_show < ::user::split_impact >
    {
    public:
@@ -63,7 +63,7 @@ namespace filemanager
       save_as_button *        m_pbutton;
 
 
-      save_as_view();
+      save_as_impact();
 
 
       void install_message_routing(::channel * pchannel) override;

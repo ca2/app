@@ -44,7 +44,7 @@ namespace base
       inline ::base::session* get_session() const;
 
 
-      virtual __pointer(::user::document) defer_create_view(string strImpact, ::user::interaction* puiParent = nullptr, ewindowflag ewindowflag = ::ewindowflag(), const ::atom& atom = ::atom());
+      virtual __pointer(::user::document) defer_create_impact(string strImpact, ::user::interaction* puiParent = nullptr, ewindowflag ewindowflag = ::ewindowflag(), const ::atom& atom = ::atom());
 
 ///*
 //
@@ -219,7 +219,7 @@ namespace base
 //      virtual i32 hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
 //      virtual i32 hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
 //
-//      virtual void on_update_view(::user::impact * pimpact, ::user::impact * pviewSender, LPARAM lHint, object * pHint);
+//      virtual void on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, LPARAM lHint, object * pHint);
 //
 //      virtual void handle(::topic * ptopic, ::context * pcontext) override;
 //      virtual void on_notify_control_event(::user::control_event* pevent);
@@ -732,7 +732,7 @@ namespace base
 //      virtual void close(e_end eend);
 //
 //
-//      virtual __pointer(::user::document) defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom = nullptr);
+//      virtual __pointer(::user::document) defer_create_impact(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom = nullptr);
 //
 //
 //      virtual void HideApplication();
@@ -1122,7 +1122,7 @@ namespace base
 //      //////////////////////////////////////////////////////////////////////////////////////////////////
 //      // Session/Session
 //      //
-//      //         virtual __pointer(::bergedge::impact) get_view();
+//      //         virtual __pointer(::bergedge::impact) get_impact();
 //      //       virtual __pointer(::bergedge::document) get_document();
 //
 //
@@ -1284,7 +1284,7 @@ virtual void on_create_impact(::user::impact_data* pimpactdata) override;
 //
 //virtual ::user::interaction* create_menu_interaction();
 //
-////      virtual __pointer(::user::document) defer_create_view(string strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::atom& atom = nullptr) override;
+////      virtual __pointer(::user::document) defer_create_impact(string strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::atom& atom = nullptr) override;
 //
 //      // multimedia
 //

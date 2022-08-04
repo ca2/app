@@ -5,7 +5,7 @@ namespace turboc
 {
 
 
-   switcher_view::switcher_view(::object * pobject):
+   switcher_impact::switcher_impact(::object * pobject):
       ::object(pobject),
       ::user::split_layout(pobject),
       ::user::split_impact(pobject),
@@ -15,13 +15,13 @@ namespace turboc
    }
 
 
-   switcher_view::~switcher_view()
+   switcher_impact::~switcher_impact()
    {
 
    }
 
 
-   void switcher_view::assert_ok() const
+   void switcher_impact::assert_ok() const
    {
 
       ::user::split_impact::assert_ok();
@@ -29,7 +29,7 @@ namespace turboc
    }
 
 
-   void switcher_view::dump(dump_context & dumpcontext) const
+   void switcher_impact::dump(dump_context & dumpcontext) const
    {
 
       ::user::split_impact::dump(dumpcontext);
@@ -37,13 +37,13 @@ namespace turboc
    }
 
 
-   void switcher_view::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
+   void switcher_impact::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
       ::user::split_impact::handle(ptopic, pcontext);
    }
 
 
-   void switcher_view::on_create_split_impact()
+   void switcher_impact::on_create_split_impact()
    {
 
       if(get_pane_count() > 0)
@@ -57,7 +57,7 @@ namespace turboc
 
       initialize_split_layout();
 
-      m_ptopview = create_view < top_impact >(NULL,::rectangle_i32(),NULL,"switcher_top");
+      m_ptopview = create_impact < top_impact >(NULL,::rectangle_i32(),NULL,"switcher_top");
 
       if(m_ptopview == NULL)
       {
@@ -68,7 +68,7 @@ namespace turboc
 
       SetPane(0,m_ptopview,false);
 
-      m_pimpact = create_view < lite_view >();
+      m_pimpact = create_impact < lite_impact >();
 
       m_pimpact->m_bAlternate = true;
 
@@ -89,7 +89,7 @@ namespace turboc
 
 
 
-   void switcher_view::handle(::topic * ptopic, ::context * pcontext)
+   void switcher_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       if(ptopic->m_atom == ::id_click)
@@ -100,16 +100,16 @@ namespace turboc
 
             __pointer(impact) pimpact = m_pimpact;
 
-            if(base_class < lite_view >::bases(pimpact))
+            if(base_class < lite_impact >::bases(pimpact))
             {
 
-               m_pimpact = create_view < full_view >();
+               m_pimpact = create_impact < full_impact >();
 
             }
             else
             {
 
-               m_pimpact = create_view < lite_view >();
+               m_pimpact = create_impact < lite_impact >();
 
             }
 

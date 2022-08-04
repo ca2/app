@@ -8,15 +8,15 @@
 #include "hellobase_font_impact.cpp"
 #include "hellobase_frame.cpp"
 #include "hellobase_gcom.cpp"
-#include "hellobase_main_view.cpp"
-#include "hellobase_pane_view.cpp"
+#include "hellobase_main_impact.cpp"
+#include "hellobase_pane_impact.cpp"
 
 #include "hellobase_render.cpp"
-#include "hellobase_switcher_view.cpp"
+#include "hellobase_switcher_impact.cpp"
 #include "hellobase_toggle_impact.cpp"
 #include "hellobase_top_impact.cpp"
-#include "hellobase_view.cpp"
-#include "hellobase_view_base.cpp"
+#include "hellobase_impact.cpp"
+#include "hellobase_impact_base.cpp"
 
 
 #include "hellobase_main_frame.cpp"

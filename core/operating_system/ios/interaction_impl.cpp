@@ -5025,13 +5025,13 @@ namespace ios
 //   }
 
 
-   void interaction_impl::offset_viewport_org(RECTANGLE_I32 * lprectScreen)
+   void interaction_impl::offset_impactport_org(RECTANGLE_I32 * lprectScreen)
    {
 
    }
 
 
-   void interaction_impl::set_viewport_org(::draw2d::graphics_pointer & pgraphics)
+   void interaction_impl::set_impactport_org(::draw2d::graphics_pointer & pgraphics)
    {
 
       // graphics will be already set its impact port to the user::interaction for linux - cairo with xlib
@@ -5177,7 +5177,7 @@ namespace ios
    }
 
 
-   void interaction_impl::defer_update_text_view()
+   void interaction_impl::defer_update_text_impact()
    {
 
       __pointer(::user::text) ptext = psession->get_keyboard_focus();

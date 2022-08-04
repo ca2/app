@@ -684,7 +684,7 @@ namespace aura
 
       virtual string get_host_location_url() override;
 
-//      virtual void add_view_library(::acme::library* plibrary);
+//      virtual void add_impact_library(::acme::library* plibrary);
 
       //virtual void get_cursor_position(POINT_I32 * ppoint);
 

@@ -6,8 +6,8 @@
 
 #include "filehandler_document.h"
 #include "filehandler_frame.h"
-#include "filehandler_pane_view.h"
-#include "filehandler_view.h"
+#include "filehandler_pane_impact.h"
+#include "filehandler_impact.h"
 
 
 #include "filehandler_department.h"

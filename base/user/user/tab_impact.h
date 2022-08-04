@@ -56,13 +56,13 @@ namespace user
 
       void on_hide_place_holder_child(::user::interaction* pinteraction) override;
 
-      atom get_view_id() override;
+      atom get_impact_id() override;
 
-      ::user::interaction * get_view_uie() override;
+      ::user::interaction * get_impact_uie() override;
 
-      virtual ::user::impact_data * get_view_creator_data();
+      virtual ::user::impact_data * get_impact_creator_data();
 
-      ::user::document * get_view_document() override;
+      ::user::document * get_impact_document() override;
 
       void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

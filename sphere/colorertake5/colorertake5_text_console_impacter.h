@@ -5,9 +5,9 @@ namespace colorertake5
 
    /**
        Console viewing of parsed and colored spfile->
-       @ingroup colorer_viewer
+       @ingroup colorer_impacter
    */
-   class text_console_viewer
+   class text_console_impacter
    {
 
    private:
@@ -16,8 +16,8 @@ namespace colorertake5
      i32 encoding;
      i32 background;
    public:
-     text_console_viewer(base_editor *be, text_lines *ts, i32 background, i32 encoding);
-     ~text_console_viewer();
+     text_console_impacter(base_editor *be, text_lines *ts, i32 background, i32 encoding);
+     ~text_console_impacter();
 
      void impact();
    };

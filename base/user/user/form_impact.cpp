@@ -134,7 +134,7 @@ namespace user
 
          auto psession = get_session();
 
-         pformNew = create_view(psession->user()->get_html_view_type());
+         pformNew = create_impact(psession->user()->get_html_impact_type());
 
          if(pformNew)
          {
@@ -233,7 +233,7 @@ namespace user
 
       bool bOk = true;
 
-      //__pointer(::user::form_impact) pformChild = create_view(psession->userex()->get_html_view_type());
+      //__pointer(::user::form_impact) pformChild = create_impact(psession->userex()->get_html_impact_type());
       //
       //if(pformChild)
       //{

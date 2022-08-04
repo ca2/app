@@ -49,7 +49,7 @@ namespace user
 #endif
    class scroll_base;
    template < class VIEW >  class show;
-   using scroll_view = show < scroll_base >;
+   using scroll_impact = show < scroll_base >;
    using plain_edit_impact = show < plain_edit >;
 
    //class mesh_cache_interface;

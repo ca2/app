@@ -5,7 +5,7 @@ namespace filemanager
 {
 
 
-   class CLASS_DECL_CORE operation_info_view:
+   class CLASS_DECL_CORE operation_info_impact:
       virtual public ::user::impact
 
    {
@@ -16,7 +16,7 @@ namespace filemanager
 
       double m_dAnimation;
 
-      operation_info_view();
+      operation_info_impact();
 
       void assert_ok() const override;
       void dump(dump_context & action_context) const override;

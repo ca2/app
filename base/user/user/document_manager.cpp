@@ -819,7 +819,7 @@ namespace user
       if (pOpenDocument != nullptr)
       {
          
-         auto pimpact = pOpenDocument->get_view(0); // get first one
+         auto pimpact = pOpenDocument->get_impact(0); // get first one
 
          if(pimpact != nullptr)
          {

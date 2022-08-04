@@ -93,7 +93,7 @@ namespace filemanager
 
       initialize_split_layout();
 
-      left_impact * pleftview = create_pane_view < left_impact >(0);
+      left_impact * pleftview = create_pane_impact < left_impact >(0);
 
       if(pleftview == nullptr)
       {
@@ -102,9 +102,9 @@ namespace filemanager
 
       }
 
-      //pleftview->create_views();
+      //pleftview->create_impacts();
 
-      m_pfilelist = create_pane_view < file_list >(1);
+      m_pfilelist = create_pane_impact < file_list >(1);
 
       if(m_pfilelist == nullptr)
       {
@@ -113,7 +113,7 @@ namespace filemanager
 
       }
 
-      m_ppreview = create_view < preview >();
+      m_ppreview = create_impact < preview >();
 
       m_ppreview->display(e_display_none);
 
@@ -147,7 +147,7 @@ namespace filemanager
    void main_impact::on_command(::message::command * pcommand)
    {
 
-      if(pcommand->m_atom == "change_view")
+      if(pcommand->m_atom == "change_impact")
       {
 
          if(m_ppreview->is_window_visible())

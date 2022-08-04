@@ -95,7 +95,7 @@ namespace userstack
    {
       ::userex::pane_tab_impact::on_change_cur_sel();
 //      __pointer(frame) pframe =  (get_parent_frame());
-      string strId = get_view_id();
+      string strId = get_impact_id();
       if(::str().begins_eat(strId, "app:"))
       {
 
@@ -112,13 +112,13 @@ namespace userstack
                      pframeApp->display(e_display_full_screen);
                   }*/
       }
-      //   else if(get_view_id() == CONTEXT_MENU_IMPACT)
+      //   else if(get_impact_id() == CONTEXT_MENU_IMPACT)
       //   {
-      //      /*bergedge::menu_impact * pimpact = dynamic_cast < bergedge::menu_impact *  > (get_view());
+      //      /*bergedge::menu_impact * pimpact = dynamic_cast < bergedge::menu_impact *  > (get_impact());
       //      __pointer(::filemanager::document) pdocument = (pimpact->get_document());
       //      pdocument->FileManagerBrowse(pcontext->m_papexcontext->dir().appdata() / "bergedge\\menu"), ::e_source_system);*/
       //   }
-      //   else if(get_view_id() ==CONFIGURATION_IMPACT)
+      //   else if(get_impact_id() ==CONFIGURATION_IMPACT)
       //   {
       ///*      __pointer(::user::interaction) pinteraction = m_pformOptions->ve_display_bandwidth");
       //      matter * pcheck = dynamic_cast < matter * > (puie);
@@ -131,7 +131,7 @@ namespace userstack
       //         pcheck->_001SetCheck(e_check_unchecked, false);
       //      }*/
       //   }
-      //   else if(get_view_id() == ::bergedge::impact_winactionarea)
+      //   else if(get_impact_id() == ::bergedge::impact_winactionarea)
       //   {
       //      string strDirName;
       //      strDirName.format("desktop-%d", m_iDisplay);
@@ -486,12 +486,12 @@ namespace userstack
    {
       __UNREFERENCED_PARAMETER(pmessage);
 //      auto pmouse = pmessage->m_union.m_pmouse;
-      /*if(get_view_id() == ::bergedge::impact_winactionarea)
+      /*if(get_impact_id() == ::bergedge::impact_winactionarea)
       {
          ::user::menu menu(this);
          menu.LoadXmlMenu("bergedge\\popup_winactionarea.xml");
          ::user::menu menuPopup(get_app(), menu.GetSubMenu(0));
-         get_parent_frame()->set_active_view(this);
+         get_parent_frame()->set_active_impact(this);
          menuPopup.track_popup_menu(0, pmouse->m_point.x, pmouse->m_point.y, get_parent_frame());
       }*/
    }
@@ -501,7 +501,7 @@ namespace userstack
 
       __UNREFERENCED_PARAMETER(pdata);
 
-      //if(get_view_id() == ::bergedge::impact_winactionarea)
+      //if(get_impact_id() == ::bergedge::impact_winactionarea)
       //{
 
       //   track_popup_xml_matter_menu("bergedge/popup_winactionarea.xml", 0);
@@ -530,7 +530,7 @@ namespace userstack
    void pane_impact::_001OnProperties(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-//      if(get_view_id() == ::bergedge::impact_winactionarea)
+//      if(get_impact_id() == ::bergedge::impact_winactionarea)
 //      {
 //
 //#ifndef _UWP

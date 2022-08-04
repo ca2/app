@@ -5,7 +5,7 @@ namespace turboc
 {
 
 
-   class CLASS_DECL_TURBOC switcher_view:
+   class CLASS_DECL_TURBOC switcher_impact:
       virtual public ::user::split_impact
    {
    public:
@@ -15,8 +15,8 @@ namespace turboc
       impact *                  m_pimpact;
 
 
-      switcher_view(::object * pobject);
-      virtual ~switcher_view();
+      switcher_impact(::object * pobject);
+      virtual ~switcher_impact();
 
 
       void assert_ok() const override;

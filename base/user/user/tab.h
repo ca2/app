@@ -121,7 +121,7 @@ namespace user
       virtual ::user::interaction * pane_window(::index iTab);
       virtual ::user::place_holder * pane_holder(::index iTab);
 
-      virtual ::user::interaction * get_view_uie();
+      virtual ::user::interaction * get_impact_uie();
 
       virtual void _001SetTabCallback(tab_callback * pcallback);
       virtual bool _001IsAddTab(::index iTab);

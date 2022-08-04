@@ -11,7 +11,7 @@ namespace universal_windows
    CLASS_DECL_AURA LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM lParam);
 
    
-   ref class directx_framework_view;
+   ref class directx_framework_impact;
 
 
    class CLASS_DECL_AURA interaction_impl :
@@ -20,7 +20,7 @@ namespace universal_windows
    public:
 
 
-      directx_framework_view ^                                          m_pframeworkview;
+      directx_framework_impact ^                                          m_pframeworkview;
       ::user::message_queue_listener *                                  m_plistener;
       bool                                                              m_bNotifyLayoutCompletedPending;
       string                                                            m_strWindowText;
@@ -28,7 +28,7 @@ namespace universal_windows
       //point_f64                                                            m_pointCursor;
       double                                                            m_dAccumulatedMouseMoveDistance;
       ::duration                                                              m_durationLastMouseMove;
-      Agile < ::winrt::Windows::ApplicationModel::Core::CoreApplicationView >    m_view;
+      Agile < ::winrt::Windows::ApplicationModel::Core::CoreApplicationView >    m_impact;
       Agile < ::winrt::Windows::UI::ViewManagement::ApplicationView >            m_applicationview;
       Agile < ::winrt::Windows::UI::Core::CoreWindow >                           m_window;
       ::thread *                                                        m_pthreadDraw;
@@ -683,9 +683,9 @@ namespace universal_windows
 
       Agile < ::winrt::Windows::UI::Core::CoreWindow > get_os_window();
 
-      void set_view_port_org(::image * pimage);
+      void set_impact_port_org(::image * pimage);
 
-      void offset_view_port_org(RECTANGLE_I32 * lprectScreen);
+      void offset_impact_port_org(RECTANGLE_I32 * lprectScreen);
 
       virtual void queue_message_handler(::user::message * pusermessage) override;
 

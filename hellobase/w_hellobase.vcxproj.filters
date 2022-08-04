@@ -18,19 +18,19 @@
     <ClInclude Include="hellobase_frame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hellobase_main_view.h">
+    <ClInclude Include="hellobase_main_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hellobase_pane_view.h">
+    <ClInclude Include="hellobase_pane_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aaa_want_to_erase_hellobase_view_update_hint.h">
+    <ClInclude Include="aaa_want_to_erase_hellobase_impact_update_hint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hellobase_switcher_view.h">
+    <ClInclude Include="hellobase_switcher_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hellobase_view.h">
+    <ClInclude Include="hellobase_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="hellobase_render.h">
@@ -39,7 +39,7 @@
     <ClInclude Include="hellobase_gcom.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hellobase_view_base.h">
+    <ClInclude Include="hellobase_impact_base.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="hellobase_main_frame.h">
@@ -68,19 +68,19 @@
     <ClCompile Include="hellobase_frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hellobase_main_view.cpp">
+    <ClCompile Include="hellobase_main_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hellobase_pane_view.cpp">
+    <ClCompile Include="hellobase_pane_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="aaa_want_to_erase_hellobase_view_update_hint.cpp">
+    <ClCompile Include="aaa_want_to_erase_hellobase_impact_update_hint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hellobase_switcher_view.cpp">
+    <ClCompile Include="hellobase_switcher_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hellobase_view.cpp">
+    <ClCompile Include="hellobase_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="hellobase_render.cpp">
@@ -89,7 +89,7 @@
     <ClCompile Include="hellobase_gcom.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hellobase_view_base.cpp">
+    <ClCompile Include="hellobase_impact_base.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="hellobase_main_frame.cpp">

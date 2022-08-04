@@ -19,7 +19,7 @@ namespace userex
       void install_message_routing(::channel * pchannel) override;
 
 
-      virtual bool on_new_view_creator_data(::user::impact_data * pimpactdata);
+      virtual bool on_new_impact_creator_data(::user::impact_data * pimpactdata);
 
       virtual void on_command_probe(::message::command * pcommand) override;
 

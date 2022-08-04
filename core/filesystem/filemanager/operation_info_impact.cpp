@@ -44,7 +44,7 @@ namespace filemanager
    }
 
 
-   operation_info_view::operation_info_view()
+   operation_info_impact::operation_info_impact()
    {
 
       m_dAnimation = 0.0;
@@ -52,7 +52,7 @@ namespace filemanager
    }
 
 
-   void operation_info_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void operation_info_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
 
@@ -106,18 +106,18 @@ namespace filemanager
 
    }
 
-   void operation_info_view::OnFileOperationStep(i32 iOperation,bool bFinal)
+   void operation_info_impact::OnFileOperationStep(i32 iOperation,bool bFinal)
    {
       __UNREFERENCED_PARAMETER(iOperation);
       __UNREFERENCED_PARAMETER(bFinal);
    }
 
-   __pointer(operation_document) operation_info_view::get_document()
+   __pointer(operation_document) operation_info_impact::get_document()
    {
       return  (::user::impact::get_document());
    }
 
-   void operation_info_view::_001OnTimer(::timer * ptimer)
+   void operation_info_impact::_001OnTimer(::timer * ptimer)
    {
       ::user::impact::_001OnTimer(ptimer);
       if(ptimer->m_uEvent == 123)
@@ -125,24 +125,24 @@ namespace filemanager
       }
    }
 
-   void operation_info_view::on_message_create(::message::message * pmessage)
+   void operation_info_impact::on_message_create(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
       //SetTimer(123, 184, nullptr);
    }
 
-   void operation_info_view::install_message_routing(::channel * pchannel)
+   void operation_info_impact::install_message_routing(::channel * pchannel)
    {
       ::user::impact::install_message_routing(pchannel);
-      MESSAGE_LINK(e_message_create,pchannel,this,&operation_info_view::on_message_create);
-//      //MESSAGE_LINK(e_message_timer,pchannel,this,&operation_info_view::_001OnTimer);
+      MESSAGE_LINK(e_message_create,pchannel,this,&operation_info_impact::on_message_create);
+//      //MESSAGE_LINK(e_message_timer,pchannel,this,&operation_info_impact::_001OnTimer);
    }
 
-   void operation_info_view::assert_ok() const
+   void operation_info_impact::assert_ok() const
    {
       ::user::impact::assert_ok();
    }
-   void operation_info_view::dump(dump_context & context) const
+   void operation_info_impact::dump(dump_context & context) const
    {
       ::user::impact::dump(context);
    }

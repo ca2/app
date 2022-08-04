@@ -54,11 +54,11 @@ namespace turboc
       add_factory_item <::turboc::edit_impact >();
       add_factory_item <::turboc::toggle_impact >();
       add_factory_item <::turboc::top_impact >();
-      add_factory_item <::turboc::lite_view >();
-      add_factory_item <::turboc::full_view >();
+      add_factory_item <::turboc::lite_impact >();
+      add_factory_item <::turboc::full_impact >();
       add_factory_item <::turboc::impact >();
       add_factory_item <::turboc::main_impact >();
-      add_factory_item <::turboc::switcher_view >();
+      add_factory_item <::turboc::switcher_impact >();
       add_factory_item <::turboc::pane_impact >();
 
       if(!::console::application::initialize_application())
@@ -86,7 +86,7 @@ namespace turboc
       "main",
       __type(::turboc::document),
       __type(::turboc::frame),       // top level SDI frame::user::interaction_impl
-      __type(::turboc::switcher_view));
+      __type(::turboc::switcher_impact));
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseSwitcher = pDocTemplate;
 

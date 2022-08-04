@@ -5,7 +5,7 @@ namespace universal_windows
 {
 
 
-   ref class directx_framework_view :
+   ref class directx_framework_impact :
       public impact
    {
    internal:
@@ -41,7 +41,7 @@ namespace universal_windows
       ::winrt::Windows::Foundation::Rect                       m_rectangleInputSelectionRect;
 
 
-      directx_framework_view(::aura::system * psystem,String ^ strId);
+      directx_framework_impact(::aura::system * psystem,String ^ strId);
 
 
       void install_directx_application_message_routing();
@@ -75,7 +75,7 @@ namespace universal_windows
       virtual ::winrt::Windows::Foundation::Rect get_input_selection_rect() override;
 
 
-      virtual ~directx_framework_view();
+      virtual ~directx_framework_impact();
 
    private:
 

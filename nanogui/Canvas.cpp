@@ -186,7 +186,7 @@ void Canvas::draw(NVGcontext * ctx) {
 //   }
 //   else {
 //      m_render_pass->resize(scr->framebuffer_size());
-//      m_render_pass->set_viewport(offset, fbsize);
+//      m_render_pass->set_impactport(offset, fbsize);
 //   }
 //
 //   m_render_pass->begin();

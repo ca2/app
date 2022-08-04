@@ -54,7 +54,7 @@ namespace userex
          if(pcommand->m_atom == m_menua[i]->m_atom.compounded(::atom::e_type_command))
          {
             
-            // show_view where??
+            // show_impact where??
 
             pcommand->m_bRet = true;
 
@@ -82,7 +82,7 @@ namespace userex
             //cc.m_pCurrentDoc = get_document();
             //cc.m_typeNewImpact = __type(::user::menu_list_impact);
 
-            __pointer(::user::impact) pimpact = create_view < ::user::impact > ();
+            __pointer(::user::impact) pimpact = create_impact < ::user::impact > ();
             if(pimpact != nullptr)
             {
 //               __pointer(::user::menu_list_impact) pmenuview = (__pointer(::user::menu_list_impact)) pimpact;

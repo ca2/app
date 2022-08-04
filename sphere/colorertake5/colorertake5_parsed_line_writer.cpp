@@ -6,7 +6,7 @@ namespace colorertake5
 {
    /**
    Static service methods of LineRegion output.
-   @ingroup colorer_viewer
+   @ingroup colorer_impacter
    */
 
    /** Writes given line of text using list of passed line regions.

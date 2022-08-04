@@ -57,7 +57,7 @@ namespace turboc
 
       initialize_split_layout();
 
-      m_peditview = create_view < edit_impact >();
+      m_peditview = create_impact < edit_impact >();
 
       if(m_peditview == NULL)
       {
@@ -73,13 +73,13 @@ namespace turboc
       if(m_atom == "turboc_top")
       {
 
-         m_ptoggleview = create_view < toggle_impact >(NULL,::rectangle_i32(),NULL,"turboc_toggle");
+         m_ptoggleview = create_impact < toggle_impact >(NULL,::rectangle_i32(),NULL,"turboc_toggle");
 
       }
       else
       {
 
-         m_ptoggleview = create_view < toggle_impact >(NULL,::rectangle_i32(),NULL,"switcher_toggle");
+         m_ptoggleview = create_impact < toggle_impact >(NULL,::rectangle_i32(),NULL,"switcher_toggle");
 
       }
 

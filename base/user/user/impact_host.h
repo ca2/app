@@ -101,12 +101,12 @@ namespace user
 
 
       template < class VIEW >
-      __pointer(VIEW) host_view(const ::atom & atom)
+      __pointer(VIEW) host_impact(const ::atom & atom)
       {
 
          impact_data* pimpactdata = allocatimpact_data(atom);
 
-         pimpactdata->m_puserinteraction = create_view <VIEW>(pimpactdata);
+         pimpactdata->m_puserinteraction = create_impact <VIEW>(pimpactdata);
 
          pimpactdata->m_pdocument = get_document();
 
@@ -134,11 +134,11 @@ namespace user
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-      virtual ::count get_view_count();
+      virtual ::count get_impact_count();
 
-      virtual atom get_view_id();
-      virtual __pointer(::user::impact) get_view();
-      virtual ::user::document * get_view_document();
+      virtual atom get_impact_id();
+      virtual __pointer(::user::impact) get_impact();
+      virtual ::user::document * get_impact_document();
 
 
       virtual void hide_all_except(const id_array & atom);

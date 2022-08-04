@@ -82,10 +82,10 @@ namespace user
       //               if (pframe)
       //               {
 
-      //                  if (pframe->get_active_view() == puserinteractionOld)
+      //                  if (pframe->get_active_impact() == puserinteractionOld)
       //                  {
 
-      //                     pframe->set_active_view(pimpact);
+      //                     pframe->set_active_impact(pimpact);
 
       //                  }
 

@@ -65,7 +65,7 @@ namespace turboc
       if(papp->m_bMultiverseChat)
       {
 
-         m_ptopview = create_view < top_impact >(NULL,::rectangle_i32(),NULL,"turboc_top");
+         m_ptopview = create_impact < top_impact >(NULL,::rectangle_i32(),NULL,"turboc_top");
 
          if(m_ptopview == NULL)
          {
@@ -78,9 +78,9 @@ namespace turboc
 
       }
 
-      //m_pimpact = create_view < lite_view >();
+      //m_pimpact = create_impact < lite_impact >();
 
-      m_pimpact = create_view < impact >();
+      m_pimpact = create_impact < impact >();
 
       if(m_pimpact == NULL)
       {

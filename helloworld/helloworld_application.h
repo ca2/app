@@ -42,17 +42,17 @@ namespace helloworld
 
       //::user::split_impact *                             m_ptopviewMain;
       //impact *                                 m_pviewMain;
-      //::user::button_view *                          m_ptoggleviewMain;
+      //::user::button_impact *                          m_ptoggleviewMain;
       //::user::plain_edit_impact *              m_peditMain;
 
       //::user::split_impact *                             m_ptopviewSwitcher;
       //impact *                                 m_pviewSwitcher;
-      //::user::button_view *                          m_ptoggleviewSwitcher;
+      //::user::button_impact *                          m_ptoggleviewSwitcher;
       //::user::plain_edit_impact *              m_peditSwitcher;
 
       //::user::split_impact *                             m_ptopviewFont;
       //::user::font_list_impact *               m_pfontlistview;
-      //::user::button_view *                          m_ptoggleviewFontSel;
+      //::user::button_impact *                          m_ptoggleviewFontSel;
       //::user::plain_edit_impact *              m_peditFontSel;
 
       ::mutex                                  m_mutexAiFont;

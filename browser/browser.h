@@ -16,7 +16,7 @@ namespace user
 {
 
 
-   typedef ::user::show < ::user::button > button_view;
+   typedef ::user::show < ::user::button > button_impact;
 
 
 } // namespace user
@@ -41,15 +41,15 @@ namespace browser
 #include "browser_render.h"
 
 #include "browser_document.h"
-#include "browser_view_base.h"
+#include "browser_impact_base.h"
 #include "browser_gcom.h"
-#include "browser_view.h"
-#include "browser_main_view.h"
-#include "browser_switcher_view.h"
+#include "browser_impact.h"
+#include "browser_main_impact.h"
+#include "browser_switcher_impact.h"
 #include "browser_frame.h"
 #include "browser_main_frame.h"
 
-#include "browser_pane_view.h"
+#include "browser_pane_impact.h"
 
 #include "browser_application.h"
 

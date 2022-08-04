@@ -99,20 +99,20 @@
 		<Unit filename="helloworld_gcom.h" />
 		<Unit filename="helloworld_main_frame.cpp" />
 		<Unit filename="helloworld_main_frame.h" />
-		<Unit filename="helloworld_main_view.cpp" />
-		<Unit filename="helloworld_main_view.h" />
-		<Unit filename="helloworld_pane_view.cpp" />
-		<Unit filename="helloworld_pane_view.h" />
-		<Unit filename="aaa_want_to_erase_helloworld_view_update_hint.cpp" />
-		<Unit filename="aaa_want_to_erase_helloworld_view_update_hint.h" />
+		<Unit filename="helloworld_main_impact.cpp" />
+		<Unit filename="helloworld_main_impact.h" />
+		<Unit filename="helloworld_pane_impact.cpp" />
+		<Unit filename="helloworld_pane_impact.h" />
+		<Unit filename="aaa_want_to_erase_helloworld_impact_update_hint.cpp" />
+		<Unit filename="aaa_want_to_erase_helloworld_impact_update_hint.h" />
 		<Unit filename="helloworld_render.cpp" />
 		<Unit filename="helloworld_render.h" />
-		<Unit filename="helloworld_switcher_view.cpp" />
-		<Unit filename="helloworld_switcher_view.h" />
-		<Unit filename="helloworld_view.cpp" />
-		<Unit filename="helloworld_view.h" />
-		<Unit filename="helloworld_view_base.cpp" />
-		<Unit filename="helloworld_view_base.h" />
+		<Unit filename="helloworld_switcher_impact.cpp" />
+		<Unit filename="helloworld_switcher_impact.h" />
+		<Unit filename="helloworld_impact.cpp" />
+		<Unit filename="helloworld_impact.h" />
+		<Unit filename="helloworld_impact_base.cpp" />
+		<Unit filename="helloworld_impact_base.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

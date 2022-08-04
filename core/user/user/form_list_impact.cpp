@@ -188,18 +188,18 @@ namespace user
    }
 
 
-   void form_list_impact::set_viewport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
+   void form_list_impact::set_impactport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
    {
 
-      ::user::list_impact::set_viewport_offset(pgraphics, x, y);
+      ::user::list_impact::set_impactport_offset(pgraphics, x, y);
 
    }
 
 
-   ::point_i32 form_list_impact::get_viewport_offset()
+   ::point_i32 form_list_impact::get_impactport_offset()
    {
 
-      return ::user::list_impact::get_viewport_offset();
+      return ::user::list_impact::get_impactport_offset();
 
    }
 

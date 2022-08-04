@@ -64,7 +64,7 @@ void ns_main_sync(dispatch_block_t block);
 
    [ [ NSNotificationCenter defaultCenter ] addObserver: self selector: @selector(windowDidResize:) name: NSWindowDidResizeNotification object: self];
 
-   [ self create_view ];
+   [ self create_impact ];
    
    return self;
    
@@ -148,7 +148,7 @@ void ns_main_sync(dispatch_block_t block);
 }
 
 
-- (void)create_view
+- (void)create_impact
 {
 
    NSRect bounds = [ self frame ];

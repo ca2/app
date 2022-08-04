@@ -817,7 +817,7 @@ public:
       virtual void close(::apex::enum_end eend);
 
 
-      //user virtual __pointer(::user::document) defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom = nullptr);
+      //user virtual __pointer(::user::document) defer_create_impact(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom = nullptr);
 
 
       virtual void HideApplication();

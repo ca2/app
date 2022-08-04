@@ -1800,9 +1800,9 @@ void xfplayer_impact_line::OnMouseMove(::message::message * pmessage)
 
    }
    /*
-   lyric_view_line_selection & selection = GetSelection();
+   lyric_impact_line_selection & selection = GetSelection();
 
-   if(selection.GetState() == lyric_view_line_selection::StateTracking)
+   if(selection.GetState() == lyric_impact_line_selection::StateTracking)
    {
 
       bool bInside;

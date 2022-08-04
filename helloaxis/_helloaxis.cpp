@@ -8,15 +8,15 @@
 #include "helloaxis_font_impact.cpp"
 #include "helloaxis_frame.cpp"
 #include "helloaxis_gcom.cpp"
-#include "helloaxis_main_view.cpp"
-#include "helloaxis_pane_view.cpp"
+#include "helloaxis_main_impact.cpp"
+#include "helloaxis_pane_impact.cpp"
 
 #include "helloaxis_render.cpp"
-#include "helloaxis_switcher_view.cpp"
+#include "helloaxis_switcher_impact.cpp"
 #include "helloaxis_toggle_impact.cpp"
 #include "helloaxis_top_impact.cpp"
-#include "helloaxis_view.cpp"
-#include "helloaxis_view_base.cpp"
+#include "helloaxis_impact.cpp"
+#include "helloaxis_impact_base.cpp"
 
 
 #include "helloaxis_main_frame.cpp"

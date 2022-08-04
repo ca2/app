@@ -61,7 +61,7 @@ namespace aura_universal_windows
 {
 
 
-   //ref class directx_framework_view;
+   //ref class directx_framework_impact;
    //ref class directx_application_source;
    class interaction_impl;
 

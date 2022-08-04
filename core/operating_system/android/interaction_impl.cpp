@@ -4530,7 +4530,7 @@ namespace android
 
 
 
-   void interaction_impl::set_viewport_org(::draw2d::graphics_pointer & pgraphics)
+   void interaction_impl::set_impactport_org(::draw2d::graphics_pointer & pgraphics)
    {
       // graphics will be already set its impact port to the interaction_impl for android - cairo with xlib
 

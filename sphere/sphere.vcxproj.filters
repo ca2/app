@@ -89,10 +89,10 @@
     <ClInclude Include="filehandler\filehandler_frame.h">
       <Filter>Header Files\filehandler</Filter>
     </ClInclude>
-    <ClInclude Include="filehandler\filehandler_pane_view.h">
+    <ClInclude Include="filehandler\filehandler_pane_impact.h">
       <Filter>Header Files\filehandler</Filter>
     </ClInclude>
-    <ClInclude Include="filehandler\filehandler_view.h">
+    <ClInclude Include="filehandler\filehandler_impact.h">
       <Filter>Header Files\filehandler</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
@@ -110,10 +110,10 @@
     <ClInclude Include="userstack\userstack_frame.h">
       <Filter>Header Files\userstack</Filter>
     </ClInclude>
-    <ClInclude Include="userstack\userstack_pane_view.h">
+    <ClInclude Include="userstack\userstack_pane_impact.h">
       <Filter>Header Files\userstack</Filter>
     </ClInclude>
-    <ClInclude Include="userstack\userstack_view.h">
+    <ClInclude Include="userstack\userstack_impact.h">
       <Filter>Header Files\userstack</Filter>
     </ClInclude>
     <ClInclude Include="sphere\sphere.h">
@@ -134,7 +134,7 @@
     <ClInclude Include="calculator\calculator_frame.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\calculator_view.h">
+    <ClInclude Include="calculator\calculator_impact.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
     <ClInclude Include="console\console_prompt.h">
@@ -344,7 +344,7 @@
     <ClInclude Include="colorertake5\colorertake5_styled_region.h">
       <Filter>Header Files\colorertake5</Filter>
     </ClInclude>
-    <ClInclude Include="colorertake5\colorertake5_text_console_viewer.h">
+    <ClInclude Include="colorertake5\colorertake5_text_console_impacter.h">
       <Filter>Header Files\colorertake5</Filter>
     </ClInclude>
     <ClInclude Include="colorertake5\colorertake5_text_hrd_mapper.h">
@@ -412,7 +412,7 @@
     <ClCompile Include="calculator\calculator_frame.cpp">
       <Filter>Source Files\calculator</Filter>
     </ClCompile>
-    <ClCompile Include="calculator\calculator_view.cpp">
+    <ClCompile Include="calculator\calculator_impact.cpp">
       <Filter>Source Files\calculator</Filter>
     </ClCompile>
     <ClCompile Include="filehandler\filehandler_document.cpp">
@@ -421,10 +421,10 @@
     <ClCompile Include="filehandler\filehandler_frame.cpp">
       <Filter>Source Files\filehandler</Filter>
     </ClCompile>
-    <ClCompile Include="filehandler\filehandler_pane_view.cpp">
+    <ClCompile Include="filehandler\filehandler_pane_impact.cpp">
       <Filter>Source Files\filehandler</Filter>
     </ClCompile>
-    <ClCompile Include="filehandler\filehandler_view.cpp">
+    <ClCompile Include="filehandler\filehandler_impact.cpp">
       <Filter>Source Files\filehandler</Filter>
     </ClCompile>
     <ClCompile Include="userstack\userstack_document.cpp">
@@ -436,10 +436,10 @@
     <ClCompile Include="userstack\userstack_frame.cpp">
       <Filter>Source Files\userstack</Filter>
     </ClCompile>
-    <ClCompile Include="userstack\userstack_pane_view.cpp">
+    <ClCompile Include="userstack\userstack_pane_impact.cpp">
       <Filter>Source Files\userstack</Filter>
     </ClCompile>
-    <ClCompile Include="userstack\userstack_view.cpp">
+    <ClCompile Include="userstack\userstack_impact.cpp">
       <Filter>Source Files\userstack</Filter>
     </ClCompile>
     <ClCompile Include="sphere\sphere_application.cpp">
@@ -640,13 +640,13 @@
     <ClCompile Include="prompt\prompt_frame.cpp">
       <Filter>Source Files\prompt</Filter>
     </ClCompile>
-    <ClCompile Include="prompt\prompt_pane_view.cpp">
+    <ClCompile Include="prompt\prompt_pane_impact.cpp">
       <Filter>Source Files\prompt</Filter>
     </ClCompile>
-    <ClCompile Include="prompt\prompt_primary_view.cpp">
+    <ClCompile Include="prompt\prompt_primary_impact.cpp">
       <Filter>Source Files\prompt</Filter>
     </ClCompile>
-    <ClCompile Include="prompt\prompt_view.cpp">
+    <ClCompile Include="prompt\prompt_impact.cpp">
       <Filter>Source Files\prompt</Filter>
     </ClCompile>
   </ItemGroup>

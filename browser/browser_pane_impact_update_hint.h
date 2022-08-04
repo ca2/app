@@ -27,9 +27,9 @@ namespace browser
       {
 
          type_none,
-         type_get_view,
-         type_set_view,
-         type_on_show_view,
+         type_get_impact,
+         type_set_impact,
+         type_on_show_impact,
 
       };
 

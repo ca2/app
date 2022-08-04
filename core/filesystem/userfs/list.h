@@ -29,7 +29,7 @@ namespace userfs
       ~list() override;
 
 
-      void initialize_view(::user::document * pdocument) override;
+      void initialize_impact(::user::document * pdocument) override;
 
 
       inline ::fs::data * fs_data() { return m_pfsdata; }

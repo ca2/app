@@ -99,7 +99,7 @@ namespace universal_windows
 
                   //get_context_system()->m_paurasystem->m_applicationsource->m_pimplHook = this;
 
-                  m_view = ::winrt::Windows::ApplicationModel::Core::CoreApplication::CreateNewView();
+                  m_impact = ::winrt::Windows::ApplicationModel::Core::CoreApplication::CreateNewView();
                   if (pusersystem->m_createstruct.cx > 0 && pusersystem->m_createstruct.cy > 0)
                   {
 
@@ -161,7 +161,7 @@ namespace universal_windows
 
                }));
 
-         //::wait(m_view->Dispatcher->RunAsync(
+         //::wait(m_impact->Dispatcher->RunAsync(
          //   ::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
          //   ref new ::winrt::Windows::UI::Core::DispatchedHandler([this, cs]()
          //      {
@@ -892,10 +892,10 @@ namespace universal_windows
 
       ::winrt::Windows::UI::Core::CoreDispatcher ^ pdispatcher;
 
-      if (m_view.Get())
+      if (m_impact.Get())
       {
 
-         pdispatcher = m_view->Dispatcher;
+         pdispatcher = m_impact->Dispatcher;
 
       }
       else
@@ -5971,7 +5971,7 @@ namespace universal_windows
    }
 
 
-   void interaction_impl::set_view_port_org(::image * pimage)
+   void interaction_impl::set_impact_port_org(::image * pimage)
    {
       // graphics will be already set its impact port to the interaction_impl for linux - cairo with xlib
 
@@ -5985,7 +5985,7 @@ namespace universal_windows
    }
 
 
-   void interaction_impl::offset_view_port_org(RECTANGLE_I32 * lprectScreen)
+   void interaction_impl::offset_impact_port_org(RECTANGLE_I32 * lprectScreen)
    {
    }
 

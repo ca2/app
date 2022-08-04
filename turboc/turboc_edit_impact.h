@@ -6,7 +6,7 @@ namespace turboc
 
 
    class CLASS_DECL_TURBOC edit_impact:
-      virtual public ::user::edit_plain_text_view
+      virtual public ::user::edit_plain_text_impact
    {
    public:
 

@@ -83,7 +83,7 @@ namespace user
       virtual bool contains(::data::tree_item * pitem);
 
 
-      void on_change_view_size(::draw2d::graphics_pointer & pgraphics) override;
+      void on_change_impact_size(::draw2d::graphics_pointer & pgraphics) override;
 
       void _001OnTreeDataChange();
       __pointer(::data::tree_item) CalcFirstVisibleItem(index & iProperIndex);
@@ -122,7 +122,7 @@ namespace user
 
       virtual i32 get_wheel_scroll_delta() override;
 
-      virtual void on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics) override;
 
       __pointer(::image_list) get_image_list();
 
@@ -186,7 +186,7 @@ namespace user
 
       //virtual ::size_f64 get_total_size() override;
 
-      virtual void on_viewport_offset(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_impactport_offset(::draw2d::graphics_pointer & pgraphics) override;
 
 
    };

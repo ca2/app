@@ -46,9 +46,9 @@ namespace filemanager
    class folder_list_impact;
    class tree;
    class operation_thread;
-   class operation_view;
+   class operation_impact;
    class operation_list_impact;
-   class operation_info_view;
+   class operation_info_impact;
 
 
 } // namespace filemanager
@@ -97,9 +97,9 @@ namespace filemanager
    class folder_list_impact;
    class tree;
    class operation_thread;
-   class operation_view;
+   class operation_impact;
    class operation_list_impact;
-   class operation_info_view;
+   class operation_info_impact;
 
 
 } // namespace filemanager
@@ -182,8 +182,8 @@ namespace filemanager
 #include "operation_thread.h"
 #include "operation_child_frame.h"
 #include "operation_document.h"
-#include "operation_view.h"
-#include "operation_info_view.h"
+#include "operation_impact.h"
+#include "operation_info_impact.h"
 #include "operation_list_impact.h"
 
 #include "folder_list_data.h"

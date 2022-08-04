@@ -8,10 +8,10 @@ namespace turboc
    edit_impact::edit_impact(::object * pobject):
       ::object(pobject),
       ::user::interaction(pobject),
-      ::user::scroll_view(pobject),
+      ::user::scroll_impact(pobject),
       ::data::listener(pobject),
       ::user::edit_plain_text(pobject),
-      ::user::edit_plain_text_view(pobject)
+      ::user::edit_plain_text_impact(pobject)
    {
 
       m_ptopview = NULL;
@@ -27,7 +27,7 @@ namespace turboc
    void edit_impact::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
 
-      ::user::edit_plain_text_view::handle(ptopic, pcontext);
+      ::user::edit_plain_text_impact::handle(ptopic, pcontext);
 
    }
 

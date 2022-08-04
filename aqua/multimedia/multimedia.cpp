@@ -77,7 +77,7 @@ namespace aqua
    }
 
 
-   __pointer(::user::controller) multimedia::defer_create_view(::object* pobject, const string& strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::atom& atom)
+   __pointer(::user::controller) multimedia::defer_create_impact(::object* pobject, const string& strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::atom& atom)
    {
 
       return nullptr;

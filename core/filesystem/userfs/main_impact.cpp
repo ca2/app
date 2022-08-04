@@ -44,14 +44,14 @@ namespace userfs
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
   //    cc->m_usercreatecontext.m_typeNewImpact = __type(tree);
-      __pointer(::user::interaction) puserinteraction = create_view(__type(tree),get_document(),get_pane_holder(0),100);
+      __pointer(::user::interaction) puserinteraction = create_impact(__type(tree),get_document(),get_pane_holder(0),100);
       SetPane(0, puserinteraction, false);
 //      __pointer(tree) ptree =  (puserinteraction);
 
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
   //    cc->m_usercreatecontext.m_typeNewImpact = __type(list);
-      puserinteraction = create_view(__type(list),get_document(), get_pane_holder(1),101);
+      puserinteraction = create_impact(__type(list),get_document(), get_pane_holder(1),101);
 //      list * plist = dynamic_cast < list * > (puserinteraction);
       SetPane(1, puserinteraction, false);
       set_need_layout();

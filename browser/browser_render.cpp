@@ -356,13 +356,13 @@ namespace browser
       //   if(m_bLite)
       {
 
-         browser_render_lite_view(pgraphics);
+         browser_render_lite_impact(pgraphics);
 
       }
       //   else
       //   {
       //
-      //      browser_render_full_view(pimage->g());
+      //      browser_render_full_impact(pimage->g());
       //
       //   }
 
@@ -409,7 +409,7 @@ namespace browser
 
    }
 
-   void render::browser_render_lite_view(::draw2d::graphics_pointer & pgraphics)
+   void render::browser_render_lite_impact(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (m_pimageWork->area() <= 0)
@@ -674,7 +674,7 @@ namespace browser
    }
 
 
-   void render::browser_render_full_view(::draw2d::graphics_pointer & pgraphics)
+   void render::browser_render_full_impact(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (m_pimageWork->area() <= 0)

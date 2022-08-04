@@ -51,13 +51,13 @@
 		9A2E626425258C4E0001CC7E /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A48898624EB48DE00119EC4 /* libapp_just_message_box_app.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = libapp_just_message_box_app.dylib; path = libapp_just_message_box.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A488A3B24EB4B0C00119EC4 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
-		9A8FCAF02651A84D00C0D8A1 /* aaa_want_to_remove_pane_view_update_hint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_remove_pane_view_update_hint.h; sourceTree = "<group>"; };
+		9A8FCAF02651A84D00C0D8A1 /* aaa_want_to_remove_pane_impact_update_hint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_remove_pane_impact_update_hint.h; sourceTree = "<group>"; };
 		9A8FCAFC2651A84D00C0D8A1 /* framework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A8FCAFF2651A84D00C0D8A1 /* application.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
-		9A8FCB0D2651A84D00C0D8A1 /* aaa_want_to_remove_simple_app_main_view.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_remove_simple_app_main_view.cpp; sourceTree = "<group>"; };
+		9A8FCB0D2651A84D00C0D8A1 /* aaa_want_to_remove_simple_app_main_impact.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_remove_simple_app_main_impact.cpp; sourceTree = "<group>"; };
 		9A8FCB742651A84E00C0D8A1 /* _user.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _user.h; sourceTree = "<group>"; };
-		9A8FCB7F2651A84E00C0D8A1 /* aaa_want_to_remove_simple_app_main_view.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_remove_simple_app_main_view.h; sourceTree = "<group>"; };
-		9A8FCB8A2651A84E00C0D8A1 /* aaa_want_to_remove_pane_view_update_hint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_remove_pane_view_update_hint.cpp; sourceTree = "<group>"; };
+		9A8FCB7F2651A84E00C0D8A1 /* aaa_want_to_remove_simple_app_main_impact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_remove_simple_app_main_impact.h; sourceTree = "<group>"; };
+		9A8FCB8A2651A84E00C0D8A1 /* aaa_want_to_remove_pane_impact_update_hint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_remove_pane_impact_update_hint.cpp; sourceTree = "<group>"; };
 		9A8FCB8C2651A84F00C0D8A1 /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A8FCBA42651A84F00C0D8A1 /* framework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9A8FCBA62651A84F00C0D8A1 /* application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
@@ -125,10 +125,10 @@
 				9A8FCB8C2651A84F00C0D8A1 /* _.cpp */,
 				9A8FCC162651A85000C0D8A1 /* _.h */,
 				9A8FCB742651A84E00C0D8A1 /* _user.h */,
-				9A8FCB8A2651A84E00C0D8A1 /* aaa_want_to_remove_pane_view_update_hint.cpp */,
-				9A8FCAF02651A84D00C0D8A1 /* aaa_want_to_remove_pane_view_update_hint.h */,
-				9A8FCB0D2651A84D00C0D8A1 /* aaa_want_to_remove_simple_app_main_view.cpp */,
-				9A8FCB7F2651A84E00C0D8A1 /* aaa_want_to_remove_simple_app_main_view.h */,
+				9A8FCB8A2651A84E00C0D8A1 /* aaa_want_to_remove_pane_impact_update_hint.cpp */,
+				9A8FCAF02651A84D00C0D8A1 /* aaa_want_to_remove_pane_impact_update_hint.h */,
+				9A8FCB0D2651A84D00C0D8A1 /* aaa_want_to_remove_simple_app_main_impact.cpp */,
+				9A8FCB7F2651A84E00C0D8A1 /* aaa_want_to_remove_simple_app_main_impact.h */,
 				9A8FCBA62651A84F00C0D8A1 /* application.cpp */,
 				9A8FCAFF2651A84D00C0D8A1 /* application.h */,
 				9A8FCAFC2651A84D00C0D8A1 /* framework.cpp */,

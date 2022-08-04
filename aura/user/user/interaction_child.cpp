@@ -760,7 +760,7 @@ namespace user
    }
 
 
-   void interaction_child::set_viewport_org(::draw2d::graphics_pointer & pgraphics)
+   void interaction_child::set_impactport_org(::draw2d::graphics_pointer & pgraphics)
    {
 
       try

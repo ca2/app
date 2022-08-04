@@ -189,7 +189,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient = get_client_rect();
 
-      auto pointOffset = get_viewport_offset();
+      auto pointOffset = get_impactport_offset();
 
       pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
@@ -530,7 +530,7 @@ namespace user
 
       ::rectangle_i32 rectangleIntersect;
 
-      rectangleClient.offset(get_viewport_offset());
+      rectangleClient.offset(get_impactport_offset());
 
       bool bHoverFont = false;
 
@@ -1036,7 +1036,7 @@ namespace user
 
       LayoutHeaderCtrl();
 
-      on_change_view_size(pgraphics);
+      on_change_impact_size(pgraphics);
 
       LayoutHeaderCtrl();
 
@@ -1050,7 +1050,7 @@ namespace user
       
       __UNREFERENCED_PARAMETER(dwFlags);
 
-      auto pointOffset = get_viewport_offset();
+      auto pointOffset = get_impactport_offset();
 
       ::count nCount = _001GetItemCount();
 
@@ -1132,7 +1132,7 @@ namespace user
       queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
          {
 
-            set_viewport_offset(pgraphics, pointOffset.x, pointOffset.y);
+            set_impactport_offset(pgraphics, pointOffset.x, pointOffset.y);
 
          });
 
@@ -1143,7 +1143,7 @@ namespace user
    }
 
 
-   void list::on_change_view_size(::draw2d::graphics_pointer & pgraphics)
+   void list::on_change_impact_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       m_iTopDisplayIndex = _001CalcDisplayTopIndex();
@@ -1303,7 +1303,7 @@ namespace user
 
       set_total_size(rectangle.size());
 
-      ::user::scroll_base::on_change_view_size(pgraphics);
+      ::user::scroll_base::on_change_impact_size(pgraphics);
 
    }
 
@@ -1811,7 +1811,7 @@ namespace user
    index list::_001CalcDisplayTopIndex()
    {
 
-      auto pointOffset = get_viewport_offset();
+      auto pointOffset = get_impactport_offset();
 
       index iItem;
 
@@ -2128,7 +2128,7 @@ namespace user
 
       auto iColumnCount = _001GetColumnCount();
 
-      auto pointOffset = get_viewport_offset();
+      auto pointOffset = get_impactport_offset();
 
       ::rectangle_i32 rectangleMargin;
 
@@ -2214,7 +2214,7 @@ namespace user
       if (m_eview == impact_report)
       {
 
-         auto pointOffset = get_viewport_offset();
+         auto pointOffset = get_impactport_offset();
 
          double iy = point.y + pointOffset.y + (m_bHeaderCtrl ? -m_dItemHeight : 0);
 
@@ -2288,7 +2288,7 @@ namespace user
 
          index dHeight = (::index) ((rectangleClient.height() / m_dItemHeight) * m_dItemHeight);
 
-         auto pointOffset = get_viewport_offset();
+         auto pointOffset = get_impactport_offset();
 
          index iy;
 
@@ -2406,7 +2406,7 @@ namespace user
 
          index iItemSize = iIconSize * 2;
 
-         auto pointOffset = get_viewport_offset();
+         auto pointOffset = get_impactport_offset();
 
          index ix = (index)(point.x + pointOffset.x);
 
@@ -2527,7 +2527,7 @@ namespace user
 
       }
 
-      auto pointOffset = get_viewport_offset();
+      auto pointOffset = get_impactport_offset();
 
       if (m_eview == impact_report)
       {
@@ -4492,7 +4492,7 @@ auto pwindowing = windowing();
       if (m_plistheader == nullptr)
          return;
 
-      auto pointOffset = get_viewport_offset();
+      auto pointOffset = get_impactport_offset();
 
       m_plistheader->order_top();
       //m_plistheader->move_to(-pointOffset.x, 0);
@@ -5890,7 +5890,7 @@ auto pwindowing = windowing();
    void list::_001EnsureVisible(index iItem, ::e_align ealign, bool bRedraw)
    {
 
-      auto pointOffset = get_viewport_offset();
+      auto pointOffset = get_impactport_offset();
 
       if (ealign & e_align_vertical_center)
       {
@@ -5930,9 +5930,9 @@ auto pwindowing = windowing();
          queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
             {
 
-               set_viewport_offset_y(pgraphics, pointOffset.y);
+               set_impactport_offset_y(pgraphics, pointOffset.y);
 
-               on_change_viewport_offset(pgraphics);
+               on_change_impactport_offset(pgraphics);
 
             });
 
@@ -5954,16 +5954,16 @@ auto pwindowing = windowing();
       if (iItem < m_nItemCount)
       {
 
-         auto pointOffset = get_viewport_offset();
+         auto pointOffset = get_impactport_offset();
 
          pointOffset.y = (::i32)(iItem * m_dItemHeight);
 
          queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
             {
 
-               set_viewport_offset_y(pgraphics, pointOffset.y);
+               set_impactport_offset_y(pgraphics, pointOffset.y);
 
-               on_change_viewport_offset(pgraphics);
+               on_change_impactport_offset(pgraphics);
 
             });
 
@@ -5982,7 +5982,7 @@ auto pwindowing = windowing();
    void list::_001EnsureVisible(index iItem, range & range)
    {
 
-      auto pointOffset = get_viewport_offset();
+      auto pointOffset = get_impactport_offset();
 
       index iyScroll = (index) ( pointOffset.y / maximum(1, m_dItemHeight));
 
@@ -6009,7 +6009,7 @@ auto pwindowing = windowing();
          queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
             {
 
-               on_change_viewport_offset(pgraphics);
+               on_change_impactport_offset(pgraphics);
 
             });
 
@@ -6174,7 +6174,7 @@ auto pwindowing = windowing();
       queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
          {
 
-            set_viewport_offset(pgraphics, 0, 0);
+            set_impactport_offset(pgraphics, 0, 0);
 
          });
 
@@ -6353,7 +6353,7 @@ auto pwindowing = windowing();
       //queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
       //   {
 
-      //      set_viewport_offset(pgraphics, 0, 0);
+      //      set_impactport_offset(pgraphics, 0, 0);
 
       //   });
 
@@ -6624,12 +6624,12 @@ auto pwindowing = windowing();
    }
 
 
-   void list::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
+   void list::on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      auto point = get_viewport_offset();
+      auto point = get_impactport_offset();
 
       m_iTopDisplayIndex = _001CalcDisplayTopIndex();
 
@@ -6697,7 +6697,7 @@ auto pwindowing = windowing();
 
       update_hover(pmouse);
 
-      ::user::scroll_base::on_change_viewport_offset(pgraphics);
+      ::user::scroll_base::on_change_impactport_offset(pgraphics);
 
       set_need_redraw();
 
@@ -7440,7 +7440,7 @@ auto pwindowing = windowing();
    //}
 
 
-   void list::on_viewport_offset(::draw2d::graphics_pointer & pgraphics)
+   void list::on_impactport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
    }

@@ -4744,7 +4744,7 @@ namespace linux
 //   }
 
 
-   void interaction_impl::set_viewport_org(::draw2d::graphics_pointer & pgraphics)
+   void interaction_impl::set_impactport_org(::draw2d::graphics_pointer & pgraphics)
    {
 
       pgraphics->SetViewportOrg(::point_i32());

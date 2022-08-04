@@ -107,7 +107,7 @@ auto pwindowing = windowing();
                
                auto puser = psession->m_puser->m_pcoreuser;
 
-               puser->will_use_view_hint(COLORSEL_IMPACT);
+               puser->will_use_impact_hint(COLORSEL_IMPACT);
 
                m_pdocument = puser->m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(get_app(), ::e_type_null, __visible(false).is_true());
 

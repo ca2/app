@@ -61,10 +61,10 @@ namespace helloworld
       add_factory_item <::helloworld::document >();
       add_factory_item <::helloworld::frame >();
       add_factory_item <::helloworld::main_frame >();
-      add_factory_item <::user::button_view >();
+      add_factory_item <::user::button_impact >();
       add_factory_item <::helloworld::impact >();
       add_factory_item <::helloworld::main_impact >();
-      add_factory_item <::helloworld::switcher_view >();
+      add_factory_item <::helloworld::switcher_impact >();
       add_factory_item <::helloworld::pane_impact >();
 
       if (!::aura::application::init_instance())
@@ -113,7 +113,7 @@ namespace helloworld
                              "switcher",
                              __type(document),
                              __type(frame),
-                             __type(switcher_view)));
+                             __type(switcher_impact)));
       m_ptemplateHelloWorldSwitcher = pDocTemplate;
       add_document_template(pDocTemplate);
 

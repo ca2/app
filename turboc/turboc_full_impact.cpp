@@ -6,7 +6,7 @@ namespace turboc
 {
 
 
-   full_view::full_view(::object * pobject):
+   full_impact::full_impact(::object * pobject):
       ::object(pobject),
       impact(pobject)
    {
@@ -16,13 +16,13 @@ namespace turboc
    }
 
 
-   full_view::~full_view()
+   full_impact::~full_impact()
    {
 
    }
 
 
-   void full_view::assert_ok() const
+   void full_impact::assert_ok() const
    {
 
       ::aura::impact::assert_ok();
@@ -30,7 +30,7 @@ namespace turboc
    }
 
 
-   void full_view::dump(dump_context & dumpcontext) const
+   void full_impact::dump(dump_context & dumpcontext) const
    {
 
       ::aura::impact::dump(dumpcontext);
@@ -38,17 +38,17 @@ namespace turboc
    }
 
 
-   void full_view::install_message_handling(::message::dispatch * pdispatch)
+   void full_impact::install_message_handling(::message::dispatch * pdispatch)
    {
 
       impact::install_message_handling(pdispatch);
 
-      IGUI_WIN_MSG_LINK(e_message_create,pdispatch,this,&full_view::on_message_create);
+      IGUI_WIN_MSG_LINK(e_message_create,pdispatch,this,&full_impact::on_message_create);
 
    }
 
 
-   void full_view::on_message_create(signal_details * pmessage)
+   void full_impact::on_message_create(signal_details * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -70,28 +70,28 @@ namespace turboc
    }
 
 
-   void full_view::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
+   void full_impact::on_update(::aura::impact * pSender,e_update eupdate,object* pupdate)
    {
       __UNREFERENCED_PARAMETER(ptopic);
    }
 
 
-   void full_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void full_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       impact::_001OnDraw(pgraphics);
 
    }
 
-/*   void full_view::turboc_render(::image * pimage)
+/*   void full_impact::turboc_render(::image * pimage)
    {
 
-      turboc_render_full_view(pgraphics);
+      turboc_render_full_impact(pgraphics);
 
    }
 
 
-/*   void impact::turboc_render_full_view(::image * pimage)
+/*   void impact::turboc_render_full_impact(::image * pimage)
    {
 
       if(m_pimageWork->area() <= 0)

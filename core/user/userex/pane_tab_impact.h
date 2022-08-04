@@ -46,9 +46,9 @@ namespace userex
       void _001OnRemoveTab(::user::tab_pane * ptab) override;
 
 
-      ::user::interaction * get_view_uie() override;
+      ::user::interaction * get_impact_uie() override;
 
-      atom get_view_id() override;
+      atom get_impact_id() override;
 
       void on_change_cur_sel() override;
 

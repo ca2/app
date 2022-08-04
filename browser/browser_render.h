@@ -127,8 +127,8 @@ namespace browser
       virtual void browser_draw();
       virtual void browser_render(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void browser_render_full_view(::draw2d::graphics_pointer & pgraphics);
-      virtual void browser_render_lite_view(::draw2d::graphics_pointer & pgraphics);
+      virtual void browser_render_full_impact(::draw2d::graphics_pointer & pgraphics);
+      virtual void browser_render_lite_impact(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual void _006OnDraw(::draw2d::graphics_pointer & pgraphics);

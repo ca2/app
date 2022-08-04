@@ -119,7 +119,7 @@ namespace user
       inline ::html::html* html() { return m_phtml; } // defined in upper level
 
       inline ::type get_html_document_type() { return m_typeHtmlDocument; }
-      inline ::type get_html_view_type() { return m_typeHtmlImpact; }
+      inline ::type get_html_impact_type() { return m_typeHtmlImpact; }
 
       virtual void create_user_shell();
 

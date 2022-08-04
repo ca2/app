@@ -5,7 +5,7 @@ namespace helloworld
 {
 
 
-   class CLASS_DECL_APP_HELLOWORLD switcher_view:
+   class CLASS_DECL_APP_HELLOWORLD switcher_impact:
       virtual public ::user::split_impact
    {
    public:
@@ -15,8 +15,8 @@ namespace helloworld
       impact *                  m_pimpact;
 
 
-      switcher_view(::object * pobject);
-      virtual ~switcher_view();
+      switcher_impact(::object * pobject);
+      virtual ~switcher_impact();
 
 
       void assert_ok() const override;

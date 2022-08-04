@@ -289,7 +289,7 @@ namespace hi5
       }
       void authorization::on_change_cur_sel()
       {
-//         switch(get_view_id())
+//         switch(get_impact_id())
 //         {
 //         case 1:
 //         {

@@ -54,7 +54,7 @@ namespace filemanager
 
       auto papp = get_app();
 
-      bool bPathImpact = papp->is_false("no_path_view");
+      bool bPathImpact = papp->is_false("no_path_impact");
 
       SetPaneCount(bPathImpact ? 2 : 1);
 
@@ -71,7 +71,7 @@ namespace filemanager
 
          initialize_split_layout();
 
-         path_impact * ppathview = create_pane_view < path_impact >(0);
+         path_impact * ppathview = create_pane_impact < path_impact >(0);
 
          if (ppathview == nullptr)
          {
@@ -89,7 +89,7 @@ namespace filemanager
       }
 
 
-      main_impact * pmainview = create_pane_view < main_impact >(bPathImpact ? 1 : 0);
+      main_impact * pmainview = create_pane_impact < main_impact >(bPathImpact ? 1 : 0);
 
       if (pmainview == nullptr)
       {
@@ -100,7 +100,7 @@ namespace filemanager
 
       //SetPane(pmainview, false);
 
-      //pmainview->create_views();
+      //pmainview->create_impacts();
 
    }
 
@@ -184,7 +184,7 @@ namespace filemanager
 
                }
 
-               ::filemanager::save_as_view * ptopview = create_view < ::filemanager::save_as_view >();
+               ::filemanager::save_as_impact * ptopview = create_impact < ::filemanager::save_as_impact >();
 
                if (ptopview == nullptr)
                {
@@ -266,7 +266,7 @@ namespace filemanager
          else if (ptopic->m_atom == id_topic_cancel)
          {
 
-            if (base_class < ::filemanager::save_as_view >::bases(get_pane_window(0)))
+            if (base_class < ::filemanager::save_as_impact >::bases(get_pane_window(0)))
             {
                //RemovePaneAt(0);
                //set_position(0, 49);

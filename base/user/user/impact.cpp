@@ -121,7 +121,7 @@ namespace user
 
             __pointer(::user::document) pdocument = pusersystem->m_pdocumentCurrent;
 
-            pdocument->add_view(this);
+            pdocument->add_impact(this);
 
          }
 
@@ -176,17 +176,17 @@ namespace user
 
       auto pframe = parent_frame();
 
-      if (pframe != nullptr && pframe->get_active_view() == this)
+      if (pframe != nullptr && pframe->get_active_impact() == this)
       {
 
-         pframe->set_active_view(nullptr, false);    // deactivate during death
+         pframe->set_active_impact(nullptr, false);    // deactivate during death
 
       }
 
       if (m_pdocument != nullptr)
       {
 
-         m_pdocument->erase_view(this);
+         m_pdocument->erase_impact(this);
 
       }
 
@@ -201,7 +201,7 @@ namespace user
    }
 
 
-   void impact::initialize_view(::user::document * pdocument)
+   void impact::initialize_impact(::user::document * pdocument)
    {
 
       //auto estatus = 
@@ -371,7 +371,7 @@ namespace user
    //   // invalidate the entire pane, erase background too
    //   //Invalidate(true);
 
-   //   //papp->on_update_view(this,pSender,lHint,pHint);
+   //   //papp->on_update_impact(this,pSender,lHint,pHint);
 
    //}
 
@@ -546,7 +546,7 @@ namespace user
    ASSERT(pParentFrame == pDesktopWnd || pDesktopWnd->IsChild(pParentFrame));
 
    // either re-activate the current ::user::impact, or set this ::user::impact to be active
-   __pointer(::user::impact) pimpact = pParentFrame->get_active_view();
+   __pointer(::user::impact) pimpact = pParentFrame->get_active_impact();
    oswindow oswindow_Focus = ::GetFocus();
    if (pimpact == this &&
    get_handle() != oswindow_Focus && !::IsChild(get_handle(), oswindow_Focus))
@@ -557,7 +557,7 @@ namespace user
    else
    {
    // activate this ::user::impact
-   pParentFrame->set_active_view(this);
+   pParentFrame->set_active_impact(this);
    }
    }
    return nResult;
@@ -769,7 +769,7 @@ namespace user
    //}
 
 
-   __pointer(::user::interaction) impact::create_view(::user::interaction * pimpactAlloc, ::user::impact_data * pimpactdata, ::user::interaction * pviewLast)
+   __pointer(::user::interaction) impact::create_impact(::user::interaction * pimpactAlloc, ::user::impact_data * pimpactdata, ::user::interaction * pviewLast)
    {
 
       __pointer(::create) pcreate(e_create, this);
@@ -784,12 +784,12 @@ namespace user
 
       pusersystem->m_pdocumentCurrent = get_document();
 
-      return ::user::create_view(pusersystem, pimpactdata->m_pplaceholder, pimpactdata->m_atom);
+      return ::user::create_impact(pusersystem, pimpactdata->m_pplaceholder, pimpactdata->m_atom);
 
    }
 
 
-   __pointer(::user::interaction) impact::create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
+   __pointer(::user::interaction) impact::create_impact(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
    {
 
       __pointer(::create) pcreate(e_create_new, this);
@@ -838,12 +838,12 @@ namespace user
 
       }
 
-      return ::user::create_view(pusersystem, puserinteractionParent, idCreate);
+      return ::user::create_impact(pusersystem, puserinteractionParent, idCreate);
 
    }
 
 
-   __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast)
+   __pointer(::user::interaction) create_impact(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast)
    {
 
       __pointer(::create) pcreate(e_create_new, pdocument);
@@ -856,12 +856,12 @@ namespace user
 
       pusersystem->m_pdocumentCurrent = pdocument;
 
-      return ::user::create_view(pusersystem, puserinteractionParent, atom);
+      return ::user::create_impact(pusersystem, puserinteractionParent, atom);
 
    }
 
 
-   __pointer(::user::interaction) create_view(::user::system * pusersystem, ::user::interaction * puserinteractionParent, const ::atom & atom)
+   __pointer(::user::interaction) create_impact(::user::system * pusersystem, ::user::interaction * puserinteractionParent, const ::atom & atom)
    {
 
       ASSERT(pusersystem != nullptr);
@@ -983,7 +983,7 @@ namespace user
       if (parent_frame() != nullptr)
       {
 
-         parent_frame()->set_active_view(this);
+         parent_frame()->set_active_impact(this);
 
       }
 
@@ -1040,18 +1040,18 @@ namespace user
 
    ::user::interaction::enum_type impact::get_window_type()
    {
-      return type_view;
+      return type_impact;
    }
 
 
-   //void impact::on_draw_view_nc(::image * pimage)
+   //void impact::on_draw_impact_nc(::image * pimage)
    //{
 
    //   __UNREFERENCED_PARAMETER(pgraphics);
 
    //}
 
-   //void impact::on_draw_view(::draw2d::graphics_pointer & pgraphics, __pointer_array(::data::data) spadata)
+   //void impact::on_draw_impact(::draw2d::graphics_pointer & pgraphics, __pointer_array(::data::data) spadata)
    //{
 
    //   __UNREFERENCED_PARAMETER(pgraphics);
@@ -1059,7 +1059,7 @@ namespace user
 
    //}
 
-   //void impact::defer_draw_view(::image * pimage)
+   //void impact::defer_draw_impact(::image * pimage)
    //{
 
    //   if (get_document() == nullptr)
@@ -1082,7 +1082,7 @@ namespace user
 
    //   try
    //   {
-   //      on_draw_view(pgraphics, spadata);
+   //      on_draw_impact(pgraphics, spadata);
    //   }
    //   catch (...)
    //   {
@@ -1093,7 +1093,7 @@ namespace user
    //void impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   on_draw_view_nc(pgraphics);
+   //   on_draw_impact_nc(pgraphics);
 
    //   i32 iTry = 0;
 
@@ -1105,7 +1105,7 @@ namespace user
 
    //   try
    //   {
-   //      defer_draw_view(pgraphics);
+   //      defer_draw_impact(pgraphics);
    //   }
    //   catch (...)
    //   {
@@ -1179,7 +1179,7 @@ namespace user
                 || pmouseactivate->get_desktop_window()->is_child(pParentFrame));
 
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
-         __pointer(::user::impact) pimpact = pParentFrame->get_active_view();
+         __pointer(::user::impact) pimpact = pParentFrame->get_active_impact();
 
          auto psession = get_session();
 
@@ -1203,7 +1203,7 @@ namespace user
             {
 
                // activate this ::user::impact
-               pParentFrame->set_active_view(this);
+               pParentFrame->set_active_impact(this);
 
             }
 
@@ -1222,7 +1222,7 @@ namespace user
    {
 
       return ::user::box::_001CallOnDraw(pgraphics);
-      //on_viewport_offset(pgraphics);
+      //on_impactport_offset(pgraphics);
 
       //synchronous_lock slImpact(mutex());
 
@@ -1251,7 +1251,7 @@ namespace user
          || pmouseactivate->get_desktop_window()->IsChild(pParentFrame));*/
 
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
-         __pointer(::user::impact) pimpact = pParentFrame->get_active_view();
+         __pointer(::user::impact) pimpact = pParentFrame->get_active_impact();
 
          auto psession = get_session();
 
@@ -1272,7 +1272,7 @@ namespace user
          {
 
             // activate this ::user::impact
-            pParentFrame->set_active_view(this);
+            pParentFrame->set_active_impact(this);
 
          }
 
@@ -1453,7 +1453,7 @@ namespace user
       __UNREFERENCED_PARAMETER(pmessage);
       //auto pmouse = pmessage->m_union.m_pmouse;
 
-      parent_frame()->set_active_view(this);
+      parent_frame()->set_active_impact(this);
    }
 
    void impact::on_message_middle_button_down(::message::message * pmessage)
@@ -1461,7 +1461,7 @@ namespace user
       __UNREFERENCED_PARAMETER(pmessage);
       //      auto pmouse = pmessage->m_union.m_pmouse;
 
-      parent_frame()->set_active_view(this);
+      parent_frame()->set_active_impact(this);
 
    }
 

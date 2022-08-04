@@ -97,7 +97,7 @@ namespace filemanager
    ::file::item_array child_frame::get_selected_items()
    {
 
-      __pointer(file_list) plist = get_active_view();
+      __pointer(file_list) plist = get_active_impact();
 
       if (plist.is_null())
       {

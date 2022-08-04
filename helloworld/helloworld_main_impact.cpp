@@ -68,7 +68,7 @@ namespace helloworld
 
          initialize_split_layout();
 
-         m_ptopview = create_view < ::userex::top_impact >(nullptr, nullptr, "top_impact");
+         m_ptopview = create_impact < ::userex::top_impact >(nullptr, nullptr, "top_impact");
 
          if (m_ptopview == nullptr)
          {
@@ -93,9 +93,9 @@ namespace helloworld
 
       }
 
-      //m_pimpact = create_view < lite_view >();
+      //m_pimpact = create_impact < lite_impact >();
 
-      m_pimpact = create_view < impact >(nullptr, get_pane_holder(iPane), "helloworld_view");
+      m_pimpact = create_impact < impact >(nullptr, get_pane_holder(iPane), "helloworld_impact");
 
       if(m_pimpact == nullptr)
       {

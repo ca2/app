@@ -149,7 +149,7 @@ namespace userex
 
       initialize_split_layout();
 
-      m_ptopview = create_view < top_impact >(nullptr, get_pane_holder(0), "top_impact");
+      m_ptopview = create_impact < top_impact >(nullptr, get_pane_holder(0), "top_impact");
 
       if (m_ptopview == nullptr)
       {
@@ -158,7 +158,7 @@ namespace userex
 
       }
 
-      m_pimpact = create_view < ::user::font_list_impact >(nullptr, get_pane_holder(1), FONTSEL_IMPACT);
+      m_pimpact = create_impact < ::user::font_list_impact >(nullptr, get_pane_holder(1), FONTSEL_IMPACT);
 
       if (m_pimpact == nullptr)
       {

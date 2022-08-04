@@ -504,7 +504,7 @@ namespace experience_tranquillum
       if (!pframe->is_custom_draw() && pgraphics != nullptr && pgraphics->m_pnext == nullptr)
       {
 
-         pframe->set_viewport_org(pgraphics);
+         pframe->set_impactport_org(pgraphics);
 
       }
 

@@ -113,7 +113,7 @@ namespace filehandler
       if(::str().begins_eat_ci(strFile, "default_file_handler://"))
       {
 
-         __pointer(::filehandler::impact) pimpact = create_view < ::filehandler::impact > (pimpactdata);
+         __pointer(::filehandler::impact) pimpact = create_impact < ::filehandler::impact > (pimpactdata);
 
          pimpactdata->m_puserinteraction = pimpact;
 
@@ -134,7 +134,7 @@ namespace filehandler
          rtprxsp(::document) pdocument = dynamic_cast < rtprxsp(::document) > (papp->m_ptemplateVideo->do_request(pcreate));
          if(pdocument != nullptr)
          {
-         __pointer(::user::impact) pimpact = pdocument->get_view();
+         __pointer(::user::impact) pimpact = pdocument->get_impact();
          pimpact->call_update(INITIAL_UPDATE);
          if(pimpact != nullptr)
          {

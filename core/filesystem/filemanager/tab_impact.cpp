@@ -105,13 +105,13 @@ namespace filemanager
 
          ptopic->payload("creator") = pimpactdata->m_atom;
 
-         pdocument->update_all_views(ptopic);
+         pdocument->update_all_impacts(ptopic);
 
          //ptopic->m_pcontext = ptopic->context(id_after_browse);
 
          ptopic->m_atom = id_after_browse;
 
-         pdocument->update_all_views(ptopic);
+         pdocument->update_all_impacts(ptopic);
 
          pimpactdata->m_pdocument = pdocument;
 
@@ -142,7 +142,7 @@ namespace filemanager
 
          }
 
-         auto pimpact = pdocument->get_view(0);
+         auto pimpact = pdocument->get_impact(0);
 
          pimpactdata->m_puserinteraction = pimpact->parent_frame();
 
@@ -196,7 +196,7 @@ namespace filemanager
          //__pointer(simple_frame_window) puserinteractionTopLevel;
          __pointer(document) pdocument = get_document();
 
-         create_view < impact >(pimpactdata);
+         create_impact < impact >(pimpactdata);
 
          auto pcontext = get_context();
 
@@ -209,7 +209,7 @@ namespace filemanager
 
             //          pdocument->filemanager_data()->m_iDocument = puser->filemanager()->m_iNextDocument++;
 
-            __pointer(::user::impact) pimpact = pdocument->get_view(0);
+            __pointer(::user::impact) pimpact = pdocument->get_impact(0);
 
             auto pframe = (pimpact->parent_frame());
 
@@ -289,7 +289,7 @@ namespace filemanager
          if (ptopic->m_atom == id_open_document)
          {
 
-            //if (m_viewmap.get_count() == 0)
+            //if (m_impactmap.get_count() == 0)
             //{
 
             //   set_current_tab_by_id(0);

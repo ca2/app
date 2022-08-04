@@ -182,7 +182,7 @@ namespace filemanager
       ////add_factory_item <child_frame >();
       ////add_factory_item <impact >();
       ////add_factory_item <path_impact >();
-      ////add_factory_item <save_as_view >();
+      ////add_factory_item <save_as_impact >();
       ////add_factory_item <left_impact >();
       ////add_factory_item <main_impact >();
       ////add_factory_item <file_list >();
@@ -196,8 +196,8 @@ namespace filemanager
       ////add_factory_item <folder_list_impact >();
       ////add_factory_item <operation_document >();
       ////add_factory_item <operation_child_frame >();
-      ////add_factory_item <operation_view >();
-      ////add_factory_item <operation_info_view >();
+      ////add_factory_item <operation_impact >();
+      ////add_factory_item <operation_info_impact >();
       ////add_factory_item <operation_list_impact >();
       ////add_factory_item <save_as_edit_impact >();
       ////add_factory_item <save_as_button>();
@@ -223,7 +223,7 @@ namespace filemanager
       ////                    "filemanager",
       ////                    __type(operation_document),
       ////                    __type(operation_child_frame),
-      ////                    __type(operation_view)));
+      ////                    __type(operation_impact)));
       ////
       ////__compose(m_pdocumenttemplateOperation, psingle);
 

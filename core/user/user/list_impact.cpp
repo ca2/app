@@ -50,7 +50,7 @@ namespace user
       //if (get_parent_frame() != nullptr)
       //{
 
-      //   get_parent_frame()->set_active_view(this);
+      //   get_parent_frame()->set_active_impact(this);
 
       //}
 

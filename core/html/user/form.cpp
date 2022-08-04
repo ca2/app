@@ -849,7 +849,7 @@ void html_form_impact::handle(::topic * ptopic, ::context * pcontext)
 
          on_document_complete(ptopic->payload(id_url));
 
-         parent_frame()->set_active_view(this);
+         parent_frame()->set_active_impact(this);
 
          set_keyboard_focus();
 
@@ -903,7 +903,7 @@ void html_form_impact::handle(::topic * ptopic, ::context * pcontext)
 }
 
 
-void html_view::handle(::topic * ptopic, ::context * pcontext)
+void html_impact::handle(::topic * ptopic, ::context * pcontext)
 {
 
    ::html_form::handle(ptopic, pcontext);

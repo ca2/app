@@ -1922,7 +1922,7 @@ namespace user
    }
 
 
-   void element::set_viewport_org(::draw2d::graphics_pointer & pgraphics)
+   void element::set_impactport_org(::draw2d::graphics_pointer & pgraphics)
    {
 
       throw ::interface_only();

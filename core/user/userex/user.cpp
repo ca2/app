@@ -303,7 +303,7 @@ namespace core
          "main",
          __type(::user::document),
          __type(::userex::dialog_frame),
-         __type(::userex::progress_view));
+         __type(::userex::progress_impact));
 
       m_ptemplateProgress2 = pmultitemplate;
 
@@ -969,7 +969,7 @@ namespace core
 
 #else
 
-      will_use_view_hint(COLORSEL_IMPACT);
+      will_use_impact_hint(COLORSEL_IMPACT);
 
       auto pdocument = m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(puiOwner->get_app(), ::e_type_null, __visible(true));
 
@@ -1999,7 +1999,7 @@ namespace core
    //}
 
 
-   void user::will_use_view_hint(::atom idImpact)
+   void user::will_use_impact_hint(::atom idImpact)
    {
 
       if (idImpact == FILEMANAGER_IMPACT)

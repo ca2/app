@@ -34,13 +34,13 @@
     <ClInclude Include="helloaura_frame.h" />
     <ClInclude Include="helloaura_gcom.h" />
     <ClInclude Include="helloaura_main_frame.h" />
-    <ClInclude Include="helloaura_main_view.h" />
-    <ClInclude Include="helloaura_pane_view.h" />
+    <ClInclude Include="helloaura_main_impact.h" />
+    <ClInclude Include="helloaura_pane_impact.h" />
 
     <ClInclude Include="helloaura_render.h" />
-    <ClInclude Include="helloaura_switcher_view.h" />
-    <ClInclude Include="helloaura_view.h" />
-    <ClInclude Include="helloaura_view_base.h" />
+    <ClInclude Include="helloaura_switcher_impact.h" />
+    <ClInclude Include="helloaura_impact.h" />
+    <ClInclude Include="helloaura_impact_base.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -57,13 +57,13 @@
     <ClCompile Include="helloaura_frame.cpp" />
     <ClCompile Include="helloaura_gcom.cpp" />
     <ClCompile Include="helloaura_main_frame.cpp" />
-    <ClCompile Include="helloaura_main_view.cpp" />
-    <ClCompile Include="helloaura_pane_view.cpp" />
+    <ClCompile Include="helloaura_main_impact.cpp" />
+    <ClCompile Include="helloaura_pane_impact.cpp" />
 
     <ClCompile Include="helloaura_render.cpp" />
-    <ClCompile Include="helloaura_switcher_view.cpp" />
-    <ClCompile Include="helloaura_view.cpp" />
-    <ClCompile Include="helloaura_view_base.cpp" />
+    <ClCompile Include="helloaura_switcher_impact.cpp" />
+    <ClCompile Include="helloaura_impact.cpp" />
+    <ClCompile Include="helloaura_impact_base.cpp" />
   </ItemGroup>
   
   <ItemGroup>

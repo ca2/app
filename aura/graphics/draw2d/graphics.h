@@ -375,7 +375,7 @@ namespace draw2d
 //      virtual void GetWorldTransform(XFORM* pXform);
 //#endif
 
-      virtual void get_viewport_scale(::draw2d::matrix & matrix);
+      virtual void get_impactport_scale(::draw2d::matrix & matrix);
 
       // Mapping Functions
       ///virtual i32 GetMapMode();

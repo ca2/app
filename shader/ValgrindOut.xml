@@ -11029,9 +11029,9 @@
     <frame>
       <ip>0x12197082</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>user::tab_view::install_message_routing(channel*)</fn>
+      <fn>user::tab_impact::install_message_routing(channel*)</fn>
       <dir>/xcore/app/aura/user/user</dir>
-      <file>tab_view.cpp</file>
+      <file>tab_impact.cpp</file>
       <line>166</line>
     </frame>
   </stack>
@@ -30356,7 +30356,7 @@
     <frame>
       <ip>0xD47E7D4</ip>
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
-      <fn>alloc_factory&lt;simple_shader::main_view, simple_shader::main_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;simple_shader::main_impact, simple_shader::main_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app-simple/simple_shader/../../app/aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -31550,7 +31550,7 @@
     <frame>
       <ip>0x122522BA</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;userex::font_view, userex::font_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;userex::font_impact, userex::font_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -32744,7 +32744,7 @@
     <frame>
       <ip>0x11F5D1D0</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;userfs::main_view, userfs::main_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;userfs::main_impact, userfs::main_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -32943,7 +32943,7 @@
     <frame>
       <ip>0x11E87AAA</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;filemanager::fs::simple::list_view, filemanager::fs::simple::list_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;filemanager::fs::simple::list_impact, filemanager::fs::simple::list_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -33540,7 +33540,7 @@
     <frame>
       <ip>0x11E87E82</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;filemanager::save_as_edit_view, filemanager::save_as_edit_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;filemanager::save_as_edit_impact, filemanager::save_as_edit_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -33739,7 +33739,7 @@
     <frame>
       <ip>0x11E87FCA</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;filemanager::operation_list_view, filemanager::operation_list_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;filemanager::operation_list_impact, filemanager::operation_list_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -33938,7 +33938,7 @@
     <frame>
       <ip>0x11E88112</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;filemanager::operation_info_view, filemanager::operation_info_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;filemanager::operation_info_impact, filemanager::operation_info_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -34137,7 +34137,7 @@
     <frame>
       <ip>0x11E8825A</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;filemanager::operation_view, filemanager::operation_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;filemanager::operation_impact, filemanager::operation_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -34734,7 +34734,7 @@
     <frame>
       <ip>0x11E88632</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;filemanager::folder_list_view, filemanager::folder_list_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;filemanager::folder_list_impact, filemanager::folder_list_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -34933,7 +34933,7 @@
     <frame>
       <ip>0x11E8877A</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;filemanager::folder_selection_list_view, filemanager::folder_selection_list_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;filemanager::folder_selection_list_impact, filemanager::folder_selection_list_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -35132,7 +35132,7 @@
     <frame>
       <ip>0x11E888C2</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;simple_form_view, simple_form_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;simple_form_impact, simple_form_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -35530,7 +35530,7 @@
     <frame>
       <ip>0x11E88B52</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;filemanager::tab_view, filemanager::tab_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;filemanager::tab_impact, filemanager::tab_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -36525,7 +36525,7 @@
     <frame>
       <ip>0x11E891BA</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;filemanager::main_view, filemanager::main_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;filemanager::main_impact, filemanager::main_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -36923,7 +36923,7 @@
     <frame>
       <ip>0x11E8944A</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;filemanager::save_as_view, filemanager::save_as_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;filemanager::save_as_impact, filemanager::save_as_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -38117,7 +38117,7 @@
     <frame>
       <ip>0x12255B1A</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;user::tab_view, user::tab_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;user::tab_impact, user::tab_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -38316,7 +38316,7 @@
     <frame>
       <ip>0x12255C62</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;userex::top_view, userex::top_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;userex::top_impact, userex::top_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -38515,7 +38515,7 @@
     <frame>
       <ip>0x12255DAA</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;userex::top_toggle_view, userex::top_toggle_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;userex::top_toggle_impact, userex::top_toggle_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -38714,7 +38714,7 @@
     <frame>
       <ip>0x12255EF2</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;userex::top_edit_view, userex::top_edit_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;userex::top_edit_impact, userex::top_edit_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -40107,7 +40107,7 @@
     <frame>
       <ip>0x11FD6DA2</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;html_view, html_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;html_impact, html_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -40505,7 +40505,7 @@
     <frame>
       <ip>0x12252E42</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;menu_view, menu_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;menu_impact, menu_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -42296,7 +42296,7 @@
     <frame>
       <ip>0x122539CA</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;simple_printer_list_view, simple_printer_list_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;simple_printer_list_impact, simple_printer_list_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -42495,7 +42495,7 @@
     <frame>
       <ip>0x12253B12</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;simple_list_view, simple_list_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;simple_list_impact, simple_list_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -43490,7 +43490,7 @@
     <frame>
       <ip>0x1225417A</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;userex::split_view, userex::split_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;userex::split_impact, userex::split_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -43689,7 +43689,7 @@
     <frame>
       <ip>0x122542C2</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;user::split_view, user::split_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;user::split_impact, user::split_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -44286,7 +44286,7 @@
     <frame>
       <ip>0x122547E2</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;user::menu_list_view, user::menu_list_view&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;user::menu_list_impact, user::menu_list_impact&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -46475,7 +46475,7 @@
     <frame>
       <ip>0x12255742</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>alloc_factory&lt;xfplayer_view_line, xfplayer_view_line&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;xfplayer_impact_line, xfplayer_impact_line&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>
@@ -68539,7 +68539,7 @@
     <frame>
       <ip>0x709DCE4</ip>
       <obj>/usr/lib/x86_64-linux-gnu/libgtk-3.so.0.2404.4</obj>
-      <fn>gtk_icon_view_get_type</fn>
+      <fn>gtk_icon_impact_get_type</fn>
     </frame>
     <frame>
       <ip>0x6A8A4D2</ip>
@@ -68606,7 +68606,7 @@
     <frame>
       <ip>0x709DCE4</ip>
       <obj>/usr/lib/x86_64-linux-gnu/libgtk-3.so.0.2404.4</obj>
-      <fn>gtk_icon_view_get_type</fn>
+      <fn>gtk_icon_impact_get_type</fn>
     </frame>
     <frame>
       <ip>0x6A8A4D2</ip>
@@ -75086,7 +75086,7 @@
     <frame>
       <ip>0x12238CDD</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>pointer&lt;thread&gt;&amp; fork&lt;aura::session::will_use_view_hint(id)::{lambda()#1}&gt;(pointer&lt;thread&gt;, object*, aura::session::will_use_view_hint(id)::{lambda()#1})</fn>
+      <fn>pointer&lt;thread&gt;&amp; fork&lt;aura::session::will_use_impact_hint(id)::{lambda()#1}&gt;(pointer&lt;thread&gt;, object*, aura::session::will_use_impact_hint(id)::{lambda()#1})</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_fork.h</file>
       <line>136</line>
@@ -75094,7 +75094,7 @@
     <frame>
       <ip>0x12238C0C</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>thread* fork&lt;aura::session::will_use_view_hint(id)::{lambda()#1}&gt;(object*, aura::session::will_use_view_hint(id)::{lambda()#1})</fn>
+      <fn>thread* fork&lt;aura::session::will_use_impact_hint(id)::{lambda()#1}&gt;(object*, aura::session::will_use_impact_hint(id)::{lambda()#1})</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_fork.h</file>
       <line>171</line>
@@ -75102,7 +75102,7 @@
     <frame>
       <ip>0x12238BD0</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>thread* object::fork&lt;aura::session::will_use_view_hint(id)::{lambda()#1}&gt;(aura::session::will_use_view_hint(id)::{lambda()#1})</fn>
+      <fn>thread* object::fork&lt;aura::session::will_use_impact_hint(id)::{lambda()#1}&gt;(aura::session::will_use_impact_hint(id)::{lambda()#1})</fn>
       <dir>/xcore/app/aura/../aura/multithreading</dir>
       <file>multithreading_fork.h</file>
       <line>180</line>
@@ -75110,7 +75110,7 @@
     <frame>
       <ip>0x12238759</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>aura::session::will_use_view_hint(id)</fn>
+      <fn>aura::session::will_use_impact_hint(id)</fn>
       <dir>/xcore/app/aura/user/userex</dir>
       <file>userex_userex.cpp</file>
       <line>2218</line>
@@ -91361,7 +91361,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>14</line>
     </frame>
     <frame>
@@ -91467,7 +91467,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>14</line>
     </frame>
     <frame>
@@ -91573,7 +91573,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>14</line>
     </frame>
     <frame>
@@ -91679,7 +91679,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>14</line>
     </frame>
     <frame>
@@ -98104,7 +98104,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>14</line>
     </frame>
     <frame>
@@ -98210,7 +98210,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>14</line>
     </frame>
     <frame>
@@ -98316,7 +98316,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>14</line>
     </frame>
     <frame>
@@ -98422,7 +98422,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>14</line>
     </frame>
     <frame>
@@ -98528,7 +98528,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>14</line>
     </frame>
     <frame>
@@ -98634,7 +98634,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::pane_impact(object*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>14</line>
     </frame>
     <frame>
@@ -98748,7 +98748,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>60</line>
     </frame>
     <frame>
@@ -98854,7 +98854,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>60</line>
     </frame>
     <frame>
@@ -98960,7 +98960,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>60</line>
     </frame>
     <frame>
@@ -99066,7 +99066,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>61</line>
     </frame>
     <frame>
@@ -99172,7 +99172,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>61</line>
     </frame>
     <frame>
@@ -99278,7 +99278,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>61</line>
     </frame>
     <frame>
@@ -99384,7 +99384,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>62</line>
     </frame>
     <frame>
@@ -99490,7 +99490,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>62</line>
     </frame>
     <frame>
@@ -99596,7 +99596,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>62</line>
     </frame>
     <frame>
@@ -99702,7 +99702,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>63</line>
     </frame>
     <frame>
@@ -99808,7 +99808,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>63</line>
     </frame>
     <frame>
@@ -99914,7 +99914,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>63</line>
     </frame>
     <frame>
@@ -100020,7 +100020,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>64</line>
     </frame>
     <frame>
@@ -100126,7 +100126,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>64</line>
     </frame>
     <frame>
@@ -100232,7 +100232,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>64</line>
     </frame>
     <frame>
@@ -100338,7 +100338,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>65</line>
     </frame>
     <frame>
@@ -100444,7 +100444,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>65</line>
     </frame>
     <frame>
@@ -100550,7 +100550,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>65</line>
     </frame>
     <frame>
@@ -100656,7 +100656,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>66</line>
     </frame>
     <frame>
@@ -100762,7 +100762,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>66</line>
     </frame>
     <frame>
@@ -100868,7 +100868,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>66</line>
     </frame>
     <frame>
@@ -100974,7 +100974,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>67</line>
     </frame>
     <frame>
@@ -101080,7 +101080,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>67</line>
     </frame>
     <frame>
@@ -101186,7 +101186,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>67</line>
     </frame>
     <frame>
@@ -101637,7 +101637,7 @@
       <obj>/xcore/time/x64/basis/libcore.so</obj>
       <fn>userex::pane_tab_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app/aura/user/userex</dir>
-      <file>userex_pane_tab_view.cpp</file>
+      <file>userex_pane_tab_impact.cpp</file>
       <line>164</line>
     </frame>
     <frame>
@@ -101661,7 +101661,7 @@
       <obj>/xcore/time/x64/basis/libapp_simple_shader.so</obj>
       <fn>simple_shader::pane_impact::_001OnCreate(message::message*)</fn>
       <dir>/xcore/app-simple/simple_shader</dir>
-      <file>simple_shader_pane_view.cpp</file>
+      <file>simple_shader_pane_impact.cpp</file>
       <line>57</line>
     </frame>
     <frame>
@@ -105753,7 +105753,7 @@
       <obj>/xcore/time/x64/basis/libcore.so</obj>
       <fn>userex::pane_tab_impact::on_prepare_impact_data(user::impact_data*)</fn>
       <dir>/xcore/app/aura/user/userex</dir>
-      <file>userex_pane_tab_view.cpp</file>
+      <file>userex_pane_tab_impact.cpp</file>
       <line>264</line>
     </frame>
     <frame>
@@ -105783,9 +105783,9 @@
     <frame>
       <ip>0x12198B08</ip>
       <obj>/xcore/time/x64/basis/libcore.so</obj>
-      <fn>user::tab_view::on_change_cur_sel()</fn>
+      <fn>user::tab_impact::on_change_cur_sel()</fn>
       <dir>/xcore/app/aura/user/user</dir>
-      <file>tab_view.cpp</file>
+      <file>tab_impact.cpp</file>
       <line>424</line>
     </frame>
   </stack>

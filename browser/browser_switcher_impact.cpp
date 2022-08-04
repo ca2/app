@@ -5,7 +5,7 @@ namespace browser
 {
 
 
-   switcher_view::switcher_view(::object * pobject):
+   switcher_impact::switcher_impact(::object * pobject):
       object(pobject),
       ::user::split_layout(pobject),
       ::user::split_impact(pobject),
@@ -19,13 +19,13 @@ namespace browser
    }
 
 
-   switcher_view::~switcher_view()
+   switcher_impact::~switcher_impact()
    {
 
    }
 
 
-   void switcher_view::assert_ok() const
+   void switcher_impact::assert_ok() const
    {
 
       ::user::split_impact::assert_ok();
@@ -33,7 +33,7 @@ namespace browser
    }
 
 
-   void switcher_view::dump(dump_context & dumpcontext) const
+   void switcher_impact::dump(dump_context & dumpcontext) const
    {
 
       ::user::split_impact::dump(dumpcontext);
@@ -41,13 +41,13 @@ namespace browser
    }
 
 
-   void switcher_view::handle(::topic * ptopic, ::context * pcontext)
+   void switcher_impact::handle(::topic * ptopic, ::context * pcontext)
    {
       ::user::split_impact::handle(ptopic, pcontext);
    }
 
 
-   void switcher_view::on_create_split_impact()
+   void switcher_impact::on_create_split_impact()
    {
 
       if(get_pane_count() > 0)
@@ -61,7 +61,7 @@ namespace browser
 
       initialize_split_layout();
 
-      m_ptopview = create_view < ::userex::top_impact >(nullptr, get_pane_holder(0),"top_impact");
+      m_ptopview = create_impact < ::userex::top_impact >(nullptr, get_pane_holder(0),"top_impact");
 
       if(m_ptopview == nullptr)
       {
@@ -72,7 +72,7 @@ namespace browser
 
       //SetPane(0,m_ptopview,false);
 
-      m_pimpact = create_view < impact >(nullptr,get_pane_holder(1),"browser_switcher_view");
+      m_pimpact = create_impact < impact >(nullptr,get_pane_holder(1),"browser_switcher_impact");
 
       if(m_pimpact == nullptr)
       {
@@ -85,7 +85,7 @@ namespace browser
 
 
 
-   void switcher_view::handle(::topic * ptopic, ::context * pcontext)
+   void switcher_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       if(ptopic->m_atom == ::id_click)
@@ -121,7 +121,7 @@ namespace browser
 
    }
 
-   void switcher_view::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void switcher_impact::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::user::split_impact::_001OnNcDraw(pgraphics);
@@ -129,7 +129,7 @@ namespace browser
    }
 
 
-   void switcher_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void switcher_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::user::split_impact::_001OnDraw(pgraphics);

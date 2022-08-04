@@ -16,7 +16,7 @@ public:
    ~filemanager_impact_base() override;
 
 
-   void initialize_view(::user::document * pdocument) override;
+   void initialize_impact(::user::document * pdocument) override;
 
 
    void install_message_routing(::channel * pchannel) override;
@@ -64,12 +64,12 @@ public:
    using IMPACT::IMPACT;
 
 
-   void initialize_view(::user::document * pdocument) override
+   void initialize_impact(::user::document * pdocument) override
    {
 
-      IMPACT::initialize_view(pdocument);
+      IMPACT::initialize_impact(pdocument);
 
-      ::filemanager_impact_base::initialize_view(pdocument);
+      ::filemanager_impact_base::initialize_impact(pdocument);
 
    }
 

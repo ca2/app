@@ -31,7 +31,7 @@ namespace userex
    }
 
 
-   bool split_impact::on_new_view_creator_data(::user::impact_data * pimpactdata)
+   bool split_impact::on_new_impact_creator_data(::user::impact_data * pimpactdata)
    {
 
       ::index iPane = pimpactdata->m_atom.index();

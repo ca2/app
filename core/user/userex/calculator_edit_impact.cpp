@@ -369,7 +369,7 @@ namespace calculator
          /*         if(m_ptopview != nullptr)
                   {
 
-                     m_ptopview->m_pimpact->post_message(message_view_update);
+                     m_ptopview->m_pimpact->post_message(message_impact_update);
 
                   }*/
 

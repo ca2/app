@@ -47,7 +47,7 @@ namespace filemanager
 
       initialize_split_layout();
 
-      m_pusertree = create_view  < ::user::tree_impact >(get_document(), get_pane_holder(0));
+      m_pusertree = create_impact  < ::user::tree_impact >(get_document(), get_pane_holder(0));
 
       if(m_pusertree == nullptr)
       {
@@ -75,7 +75,7 @@ namespace filemanager
 
       }
 
-      m_plistview = create_view < folder_list_impact >(get_document(), get_pane_holder(1));
+      m_plistview = create_impact < folder_list_impact >(get_document(), get_pane_holder(1));
 
       if(m_plistview == nullptr)
       {
@@ -179,7 +179,7 @@ namespace filemanager
 
       ptopic->m_actioncontext = context + ::e_source_selection;
 
-      pdocument->update_all_views(ptopic);
+      pdocument->update_all_impacts(ptopic);
 
    }
 

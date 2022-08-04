@@ -184,7 +184,7 @@ namespace filemanager
 
       ::file::path strPath;
 
-      GetTypedParent<save_as_view>()->m_pedit->_001GetText(strTitle);
+      GetTypedParent<save_as_impact>()->m_pedit->_001GetText(strTitle);
 
       auto pcontext = get_context();
 
@@ -325,12 +325,12 @@ namespace filemanager
 
       //auto ptopic = new_action(topic(id_topic_cancel));
 
-      //get_document()->update_all_views(ptopic);
+      //get_document()->update_all_impacts(ptopic);
 
    }
 
 
-   void save_as_view::install_message_routing(::channel * pchannel)
+   void save_as_impact::install_message_routing(::channel * pchannel)
    {
 
       ::filemanager_impact_base::install_message_routing(pchannel);
@@ -339,7 +339,7 @@ namespace filemanager
    }
 
 
-   save_as_view::save_as_view()
+   save_as_impact::save_as_impact()
    {
 
 
@@ -347,7 +347,7 @@ namespace filemanager
    }
 
 
-   void save_as_view::handle(::topic * ptopic, ::context * pcontext)
+   void save_as_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ::user::impact::handle(ptopic, pcontext);
@@ -412,7 +412,7 @@ namespace filemanager
    }
 
 
-   void save_as_view::on_create_split_impact()
+   void save_as_impact::on_create_split_impact()
    {
 
       if (get_pane_count() > 0)
@@ -430,7 +430,7 @@ namespace filemanager
 
       initialize_split_layout();
 
-      m_pedit = create_pane_view < save_as_edit_impact >(0);
+      m_pedit = create_pane_impact < save_as_edit_impact >(0);
 
       if (!m_pedit)
       {
@@ -439,7 +439,7 @@ namespace filemanager
 
       }
 
-      m_pbutton = create_pane_view < save_as_button >(1);
+      m_pbutton = create_pane_impact < save_as_button >(1);
 
       m_pbutton->set_window_text("Save");
 

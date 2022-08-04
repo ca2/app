@@ -937,10 +937,12 @@ namespace user
          if (pusersystem->m_typeNewImpact || pusersystem->m_puserprimitiveNew != nullptr)
          {
 
-            if (::user::create_impact(pusersystem, this, FIRST_PANE).is_null())
+            auto pinteraction = pusersystem->create_impact(this, FIRST_PANE);
+
+            if(!pinteraction)
             {
 
-               return false;
+               WARNING("the impact wasn't created: " << pusersystem->m_typeNewImpact.to_string());
 
             }
 

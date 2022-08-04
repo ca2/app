@@ -328,7 +328,7 @@ namespace user
 
          string strName2 = ppane2->get_title();
 
-         auto pimpactdata = allocatimpact_data(id3);
+         auto pimpactdata = allocate_impact_data(id3);
 
          add_tab(strName1 + "->:<-" + strName2, id3, true, false, pimpactdata->m_pplaceholder);
 

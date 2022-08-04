@@ -70,7 +70,7 @@ namespace user
       virtual bool set_impact_with_icon(const ::string & strName, const ::string & strIcon, const ::atom & atomImpact = nullptr, bool bVisible = true, ::user::place_holder * pholder = nullptr);
 
       
-      bool create_impact(::user::impact_data * pimpactdata) override;
+      bool impact_creator_create_impact(::user::impact_data * pimpactdata) override;
 
 
       impact_data * create_impact_by_id(const ::atom & atom);
@@ -82,12 +82,12 @@ namespace user
 
 
       virtual ::user::impact_data * new_impact_data(const atom & atom);
-      virtual ::user::impact_data * allocatimpact_data(const atom & atom);
+      virtual ::user::impact_data * allocate_impact_data(const atom & atom);
 
 
       virtual ::user::impact_data * host_impact(const atom& atom, ::user::interaction * pinteraction, ::user::document * pdocument);
 
-      virtual ::user::place_holder* updown_target_get_place_holder(::user::interaction* pinteraction, ::user::document* pdocument);
+      virtual ::user::place_holder * updown_target_get_place_holder(::user::interaction* pinteraction, ::user::document* pdocument);
 
       virtual ::user::impact_data * impact_host_get_impact_data(const atom& atom, ::user::interaction* pinteraction, ::user::document* pdocument);
 
@@ -104,7 +104,7 @@ namespace user
       __pointer(VIEW) host_impact(const ::atom & atom)
       {
 
-         impact_data* pimpactdata = allocatimpact_data(atom);
+         impact_data* pimpactdata = allocate_impact_data(atom);
 
          pimpactdata->m_puserinteraction = create_impact <VIEW>(pimpactdata);
 

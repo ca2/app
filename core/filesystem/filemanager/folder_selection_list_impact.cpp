@@ -47,7 +47,7 @@ namespace filemanager
 
       initialize_split_layout();
 
-      m_pusertree = create_impact  < ::user::tree_impact >(get_document(), get_pane_holder(0));
+      m_pusertree = create_impact < ::user::tree_impact >(get_document(), get_pane_holder(0));
 
       if(m_pusertree == nullptr)
       {

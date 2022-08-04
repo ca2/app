@@ -63,8 +63,8 @@ namespace user
       void CalcPaneRect(index iIndex, RECTANGLE_I32 * prectangle);
 
 
-      virtual __pointer(::user::interaction) get_pane_window(index iPane);
-      virtual __pointer(::user::place_holder) get_pane_holder(index iPane);
+      virtual ::user::interaction * get_pane_window(index iPane);
+      virtual ::user::place_holder * get_pane_holder(index iPane);
       virtual ::rectangle_i32 & get_pane_rect(index iPane);
       virtual atom get_pane_id(index iPane);
       virtual split_pane * get_pane_by_id(::atom atom);

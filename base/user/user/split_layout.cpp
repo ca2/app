@@ -1302,7 +1302,7 @@ namespace user
    }
 
 
-   __pointer(::user::place_holder) split_layout::get_pane_holder(index iPane)
+   ::user::place_holder * split_layout::get_pane_holder(index iPane)
    {
 
       ASSERT(iPane >= 0);
@@ -1321,7 +1321,7 @@ namespace user
    }
 
 
-   __pointer(::user::interaction) split_layout::get_pane_window(index iPane)
+   ::user::interaction * split_layout::get_pane_window(index iPane)
    {
 
       __pointer(::user::place_holder) pholder = get_pane_holder(iPane);

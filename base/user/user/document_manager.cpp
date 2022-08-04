@@ -826,29 +826,10 @@ namespace user
             
             ASSERT_VALID(pimpact);
 
-            auto pFrame = pimpact->parent_frame();
-
-            if (pFrame == nullptr)
-            {
-             
-               CATEGORY_ERROR(appmsg, "Error: Can not find a frame for document to activate.");
-
-            }
-            else
+            while(auto pFrame = pimpact->parent_frame())
             {
 
                pFrame->ActivateFrame();
-
-               if (pFrame->get_parent() != nullptr)
-               {
-
-                  __pointer(::user::frame_window) pAppFrame;
-
-                  ASSERT_KINDOF(frame_window, pAppFrame);
-
-                  pAppFrame->ActivateFrame();
-
-               }
 
             }
 

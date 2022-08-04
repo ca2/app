@@ -100,7 +100,7 @@ namespace user
 
          auto pholder = get_pane_holder(i);
 
-         if (pholder.is_set())
+         if (pholder)
          {
 
             pholder->set_need_layout();

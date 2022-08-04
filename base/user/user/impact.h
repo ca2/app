@@ -217,9 +217,9 @@ namespace user
 
 
 
-   CLASS_DECL_BASE __pointer(::user::interaction) create_impact(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast = nullptr);
-   CLASS_DECL_BASE __pointer(::user::interaction) create_impact(::user::system * pusersystem, ::user::interaction * puserinteractionParent, const ::atom & atom);
-   CLASS_DECL_BASE ::user::document * get_document(::user::interaction * pinteraction);
+   //CLASS_DECL_BASE __pointer(::user::interaction) create_impact(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast = nullptr);
+   //CLASS_DECL_BASE __pointer(::user::interaction) create_impact(::user::system * pusersystem, ::user::interaction * puserinteractionParent, const ::atom & atom);
+   //CLASS_DECL_BASE ::user::document * get_document(::user::interaction * pinteraction);
 
 
 } // namespace user

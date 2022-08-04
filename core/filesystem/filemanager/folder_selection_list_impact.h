@@ -20,7 +20,7 @@ namespace filemanager
 
 
       folder_selection_list_impact();
-      virtual ~folder_selection_list_impact();
+      ~folder_selection_list_impact() override;
 
 
       virtual data * filemanager_data() override;

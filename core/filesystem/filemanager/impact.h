@@ -12,7 +12,7 @@ namespace filemanager
 
 
       impact();
-      virtual ~impact();
+      ~impact() override;
 
 
       void install_message_routing(::channel * pchannel) override;

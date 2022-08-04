@@ -265,7 +265,7 @@ namespace user
    impact_data * impact_host::create_impact_by_id(const ::atom & atom)
    {
 
-      impact_data * pimpactdata = allocatimpact_data(atom);
+      impact_data * pimpactdata = allocate_impact_data(atom);
 
       try
       {
@@ -316,10 +316,10 @@ namespace user
    }
 
 
-   bool impact_host::create_impact(::user::impact_data * pimpactdata)
+   bool impact_host::impact_creator_create_impact(::user::impact_data * pimpactdata)
    {
 
-      if (::user::impact_creator::create_impact(pimpactdata))
+      if (::user::impact_creator::impact_creator_create_impact(pimpactdata))
       {
 
          return true;
@@ -335,7 +335,7 @@ namespace user
             if (pitem->m_pimpactcreator)
             {
 
-               if (pitem->m_pimpactcreator->create_impact(pimpactdata))
+               if (pitem->m_pimpactcreator->impact_creator_create_impact(pimpactdata))
                {
 
                   return true;
@@ -352,7 +352,7 @@ namespace user
 
       auto pimpactcreator = papp->cast< ::user::impact_creator>();
 
-      if (pimpactcreator->create_impact(pimpactdata))
+      if (pimpactcreator->impact_creator_create_impact(pimpactdata))
       {
 
          return true;
@@ -434,7 +434,7 @@ namespace user
    }
 
 
-   impact_data * impact_host::allocatimpact_data(const atom & atom)
+   impact_data * impact_host::allocate_impact_data(const atom & atom)
    {
 
       impact_data * pimpactdata = new_impact_data(atom);
@@ -579,7 +579,7 @@ namespace user
       if (!bCallOnCreateImpact)
       {
 
-         pimpactdata = allocatimpact_data(atom);
+         pimpactdata = allocate_impact_data(atom);
 
          return pimpactdata;
 
@@ -733,7 +733,7 @@ namespace user
 
       }
 
-      pimpactdata = allocatimpact_data(atom);
+      pimpactdata = allocate_impact_data(atom);
 
       if (!pimpactdata)
       {

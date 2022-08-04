@@ -784,7 +784,9 @@ namespace user
 
       pusersystem->m_pdocumentCurrent = get_document();
 
-      return ::user::create_impact(pusersystem, pimpactdata->m_pplaceholder, pimpactdata->m_atom);
+      auto pinteraction = pusersystem->create_impact(pimpactdata->m_pplaceholder, pimpactdata->m_atom);
+
+      return pinteraction;
 
    }
 
@@ -838,7 +840,9 @@ namespace user
 
       }
 
-      return ::user::create_impact(pusersystem, puserinteractionParent, idCreate);
+      auto pinteraction = pusersystem->create_impact(puserinteractionParent, idCreate);
+
+      return pinteraction;
 
    }
 
@@ -856,110 +860,7 @@ namespace user
 
       pusersystem->m_pdocumentCurrent = pdocument;
 
-      return ::user::create_impact(pusersystem, puserinteractionParent, atom);
-
-   }
-
-
-   __pointer(::user::interaction) create_impact(::user::system * pusersystem, ::user::interaction * puserinteractionParent, const ::atom & atom)
-   {
-
-      ASSERT(pusersystem != nullptr);
-
-      ASSERT(pusersystem->m_typeNewImpact || pusersystem->m_puserprimitiveNew != nullptr);
-
-      ::application * papp = puserinteractionParent->get_app();
-
-      __pointer(::user::interaction) pinteraction;
-
-      //::e_status estatus = ::success;
-
-      if (pusersystem->m_puserprimitiveNew != nullptr)
-      {
-
-         pinteraction = pusersystem->m_puserprimitiveNew;
-
-      }
-      else
-      {
-
-         __pointer(::object) pobject = pusersystem->m_pdocumentCurrent;
-
-         if(pobject.is_null())
-         {
-
-            pobject = papp;
-
-         }
-
-         if (pobject.is_null() || ::is_null(pobject->get_app()))
-         {
-            
-            _ERROR(pobject, "Cannot create impact. Document doesn't have context application. (Should it be a blocking thing...)");
-
-            return nullptr;
-
-         }
-
-         auto pcontextJustForInspection = pobject->m_pcontext;
-
-         string strType = typeid(*pcontextJustForInspection).name();
-
-         //estatus = 
-         pobject->__id_construct(pinteraction, pusersystem->m_typeNewImpact);
-
-      }
-
-      if (pinteraction.is_null())
-      {
-
-         return nullptr;
-
-      }
-
-      pinteraction->m_pusersystem = pusersystem;
-
-      pinteraction->display(e_display_restored);
-
-      pinteraction->m_atom = atom;
-
-      //if (!pinteraction->create_interaction(nullptr, nullptr, WS_VISIBLE | WS_CHILD, puserinteractionParent, atom, pcreate))
-      //if (!pinteraction->create_child(puserinteractionParent))
-
-      pinteraction->create_child(puserinteractionParent);
-      //{
-
-      //   return nullptr;
-
-      //}
-
-      __pointer(::user::impact) pimpact = pinteraction;
-
-      if (pimpact.is_set())
-      {
-
-         auto pdocument = pimpact->get_document();
-
-         pdocument->signal(id_initial_update);
-
-      }
-
-      //if (pinteraction.is_set())
-      //{
-
-      //   if (pinteraction->get_parent() != nullptr)
-      //   {
-
-      //      if (pinteraction->get_parent()->is_place_holder())
-      //      {
-
-      //         pinteraction->get_parent()->place_hold(pinteraction);
-
-      //      }
-
-      //   }
-
-      //}
+      auto pinteraction = pusersystem->create_impact(puserinteractionParent, atom);
 
       return pinteraction;
 

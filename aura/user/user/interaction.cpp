@@ -337,9 +337,9 @@ namespace user
       m_pwindow = nullptr;
       m_bFullScreen = false;
 
-      printf("interaction::common_construct - m_pwindow (0x%" PRI0xPTR ")\n", (uptr) m_pwindow);
-
-      fflush(stdout);
+//      printf("interaction::common_construct - m_pwindow (0x%" PRI0xPTR ")\n", (uptr) m_pwindow);
+//
+//      fflush(stdout);
 
    }
 

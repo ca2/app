@@ -103,10 +103,10 @@ bool set_process_priority(::enum_priority epriority)
 }
 
 
-CLASS_DECL_ACME void command_system(string& strOutput, string& strError, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout)
+CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout)
 {
 
-   strOutput.Empty();
+   straOutput.clear();
 
    string str(psz);
 
@@ -268,7 +268,7 @@ CLASS_DECL_ACME void command_system(string& strOutput, string& strError, int& iE
 
          }
 
-         strOutput += strMessage;
+         straOutput.add(strMessage);
 
          if (dwRead == 0)
          {

@@ -5813,8 +5813,6 @@ namespace draw2d
    void graphics::update_matrix()
    {
 
-      matrix matrix;
-
       matrix matrixScale;
 
       matrix matrixTranslate;
@@ -5827,9 +5825,9 @@ namespace draw2d
 
       matrixTranslate.c2 = m_pointOrigin.y;
 
-      class matrix matrixConsolidated = matrixScale * m_matrix * matrixTranslate;
+      auto matrix = matrixScale * m_matrix * matrixTranslate;
 
-      _set(matrixConsolidated);
+      _set(matrix);
 
    }
 

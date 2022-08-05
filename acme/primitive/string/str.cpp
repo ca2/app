@@ -5307,7 +5307,7 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
 
       }
 
-      stra.add(strPrefixedLine);
+      stra.add(strPrefixedLine.c_str());
 
       if(::is_set(psynchronizationlock))
       {
@@ -5325,7 +5325,16 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
 
       iLast = iFindNext;
 
+      if(iLast >= iLimit)
+      {
+
+         break;
+
+      }
+
    }
+
+   str.erase(0, iLimit + 1);
 
 }
 

@@ -1073,7 +1073,7 @@ bool mutex::_wait(const class ::wait & wait)
       else if(rc == ETIMEDOUT)
       {
 
-         return error_timeout;
+         return error_wait_timeout;
 
       }
       else

@@ -1874,7 +1874,7 @@ namespace user
 
             ::draw2d::matrix m;
 
-            pgraphics->get_scaling(m);
+            m.scaling(pgraphics->get_scaling());
 
             //m.invert();
 

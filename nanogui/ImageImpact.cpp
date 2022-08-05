@@ -24,7 +24,7 @@
 
 NAMESPACE_BEGIN(nanogui)
 
-ImageView::ImageView(Widget * parent) : Canvas(parent, 1, false, false, false) {
+ImageImpact::ImageView(Widget * parent) : Canvas(parent, 1, false, false, false) {
    //render_pass()->set_clear_color(0, Color(0.3f, 0.3f, 0.32f, 1.f));
 
    //m_image_shader = new Shader(
@@ -51,51 +51,51 @@ ImageView::ImageView(Widget * parent) : Canvas(parent, 1, false, false, false) {
 }
 
 // opengl
-//void ImageView::set_image(Texture * image) {
+//void ImageImpact::set_image(Texture * image) {
 //   if (image->mag_interpolation_mode() != Texture::InterpolationMode::Nearest)
 //      throw std::runtime_error(
-//         "ImageView::set_image(): interpolation mode must be set to 'Nearest'!");
+//         "ImageImpact::set_image(): interpolation mode must be set to 'Nearest'!");
 //   m_image_shader->set_texture("image", image);
 //   m_image = image;
 //}
 
-void ImageView::set_image(::image *pimage) {
+void ImageImpact::set_image(::image *pimage) {
    m_pimage = pimage;
 }
-float ImageView::scale() const {
+float ImageImpact::scale() const {
    return std::pow(2.f, m_scale / 5.f);
 }
 
-void ImageView::set_scale(float scale) {
+void ImageImpact::set_scale(float scale) {
    m_scale = std::log2(scale) * 5.f;
 }
 
-void ImageView::center() {
+void ImageImpact::center() {
    if (!m_pimage)
       return;
    m_offset = Vector2i(.5f * (Vector2f(m_size) * screen()->pixel_ratio() - Vector2f((float)m_pimage->width(), (float)m_pimage->height())) * scale());
 }
 
-void ImageView::reset() {
+void ImageImpact::reset() {
    m_scale = 0.f;
    center();
 }
 
-Vector2f ImageView::pos_to_pixel(const Vector2f & p) const {
+Vector2f ImageImpact::pos_to_pixel(const Vector2f & p) const {
    Vector2f p2 = p;
    if (m_draw_border)
       p2 -= 1.f;
    return (p2 * screen()->pixel_ratio() - m_offset) / scale();
 }
 
-Vector2f ImageView::pixel_to_pos(const Vector2f & p) const {
+Vector2f ImageImpact::pixel_to_pos(const Vector2f & p) const {
    Vector2i pos = (p * scale() + m_offset) / screen()->pixel_ratio();
    if (m_draw_border)
       pos += 1;
    return pos;
 }
 
-bool ImageView::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, const ::user::e_key & /* ekeyModifiers */, const ::string & strText) {
+bool ImageImpact::keyboard_event(::user::enum_key ekey, int /* scancode */, int action, const ::user::e_key & /* ekeyModifiers */, const ::string & strText) {
    if (!m_enabled || !m_pimage)
       return false;
 
@@ -111,7 +111,7 @@ bool ImageView::keyboard_event(::user::enum_key ekey, int /* scancode */, int ac
 }
 
 
-bool ImageView::mouse_drag_event(const Vector2i & /* p */, const Vector2i & rel, const ::user::e_key & /* modifiers */) 
+bool ImageImpact::mouse_drag_event(const Vector2i & /* p */, const Vector2i & rel, const ::user::e_key & /* modifiers */) 
 {
 
    if (!m_enabled || !m_pimage)
@@ -129,7 +129,7 @@ bool ImageView::mouse_drag_event(const Vector2i & /* p */, const Vector2i & rel,
 }
 
 
-bool ImageView::scroll_event(const Vector2i & p, const Vector2f & rel) 
+bool ImageImpact::scroll_event(const Vector2i & p, const Vector2f & rel) 
 {
 
    if (!m_enabled || !m_pimage)
@@ -155,7 +155,7 @@ bool ImageView::scroll_event(const Vector2i & p, const Vector2f & rel)
 }
 
 
-void ImageView::draw(NVGcontext * ctx) 
+void ImageImpact::draw(NVGcontext * ctx) 
 {
 
    //if (!m_enabled || !m_pimage)
@@ -224,7 +224,7 @@ void ImageView::draw(NVGcontext * ctx)
    //nvgRestore(ctx);
 }
 
-void ImageView::draw_contents(NVGcontext * ctx) 
+void ImageImpact::draw_contents(NVGcontext * ctx) 
 {
    //if (!m_pimage)
       //return;

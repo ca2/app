@@ -99,7 +99,7 @@ namespace universal_windows
 
                   //get_context_system()->m_paurasystem->m_applicationsource->m_pimplHook = this;
 
-                  m_impact = ::winrt::Windows::ApplicationModel::Core::CoreApplication::CreateNewView();
+                  m_impact = ::winrt::Windows::ApplicationModel::Core::CoreApplication::CreateNewImpact();
                   if (pusersystem->m_createstruct.cx > 0 && pusersystem->m_createstruct.cy > 0)
                   {
 
@@ -153,7 +153,7 @@ namespace universal_windows
                   if (pusersystem->m_createstruct.cx > 0 && pusersystem->m_createstruct.cy > 0)
                   {
 
-                     m_applicationview->TryResizeView(::winrt::Windows::Foundation::Size({ (float)pusersystem->m_createstruct.cx,(float)pusersystem->m_createstruct.cy }));
+                     m_applicationview->TryResizeImpact(::winrt::Windows::Foundation::Size({ (float)pusersystem->m_createstruct.cx,(float)pusersystem->m_createstruct.cy }));
 
                   }
 
@@ -635,7 +635,7 @@ namespace universal_windows
              ref new ::winrt::Windows::UI::Core::DispatchedHandler([this]()
       {
 
-         ::winrt::Windows::UI::ViewManagement::ApplicationView ^ applicationview = ::winrt::Windows::UI::ViewManagement::ApplicationView::GetForCurrentView();
+         ::winrt::Windows::UI::ViewManagement::ApplicationView ^ applicationview = ::winrt::Windows::UI::ViewManagement::ApplicationImpact::GetForCurrentImpact();
 
          m_strWindowText = applicationview->Title->Begin();
 
@@ -2463,12 +2463,12 @@ return true;
       //      _001OnDeferPaintLayeredWindowBackground(pgraphics);
       //   }
       //   (dynamic_cast<::universal_windows::graphics * >(pgraphics))->SelectClipRgn(nullptr);
-      //   (dynamic_cast<::universal_windows::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
+      //   (dynamic_cast<::universal_windows::graphics * >(pgraphics))->set_origin(::point_i32());
       //   _000OnDraw(pgraphics);
-      //   (dynamic_cast<::universal_windows::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
+      //   (dynamic_cast<::universal_windows::graphics * >(pgraphics))->set_origin(::point_i32());
       //   //(dynamic_cast<::universal_windows::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left, rectangleUpdate.top, 100, 100, 255);
       //   (dynamic_cast<::universal_windows::graphics * >(pgraphics))->SelectClipRgn(nullptr);
-      //   (dynamic_cast<::universal_windows::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
+      //   (dynamic_cast<::universal_windows::graphics * >(pgraphics))->set_origin(::point_i32());
 
       //   pgraphics->SelectClipRgn( nullptr);
       //   pgraphics->BitBlt(rectanglePaint.left, rectanglePaint.top,
@@ -3596,7 +3596,7 @@ return true;
       ref new ::winrt::Windows::UI::Core::DispatchedHandler([this]()
       {
 
-         ::winrt::Windows::UI::ViewManagement::ApplicationView ^ applicationview = ::winrt::Windows::UI::ViewManagement::ApplicationView::GetForCurrentView();
+         ::winrt::Windows::UI::ViewManagement::ApplicationView ^ applicationview = ::winrt::Windows::UI::ViewManagement::ApplicationImpact::GetForCurrentImpact();
 
          {
 
@@ -5722,7 +5722,7 @@ bool CLASS_DECL_AURA __end_defer_register_class(::i32 fToRegisterParam, const ::
          }
          else if(fToRegister & __WNDFRAMEORVIEW_REG)
          {
-            *ppszClass = gen_WndFrameOrView;
+            *ppszClass = gen_WndFrameOrImpact;
          }
       }
       return true;
@@ -5807,7 +5807,7 @@ bool CLASS_DECL_AURA __end_defer_register_class(::i32 fToRegisterParam, const ::
       {
          if(ppszClass != nullptr)
          {
-            *ppszClass = gen_WndFrameOrView;
+            *ppszClass = gen_WndFrameOrImpact;
          }
          fRegisteredClasses |= __WNDFRAMEORVIEW_REG;
       }
@@ -5979,7 +5979,7 @@ namespace universal_windows
       rectangle_i32 rectangleWindow;
       m_puserinteraction->get_window_rect(rectangleWindow);
       //      get_wnd()->screen_to_client(rectangleWindow);
-      pimage->SetViewportOrg(point_i32(rectangleWindow.top_left()));
+      pimage->set_origin(point_i32(rectangleWindow.top_left()));
       //pimage->SelectClipRgn(nullptr);
 
    }

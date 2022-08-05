@@ -1,5 +1,5 @@
 /*
-     File: RoundEditView.h
+     File: RoundEditImpact.h
  Abstract:
 A impact that illustrates how to implement and use the UITextInput protocol.
 
@@ -51,23 +51,23 @@ Heavily leverages an existing CoreText-based editor and merely serves as the "gl
 
 //#import <UIKit/UIKit.h>
 
-//#import "RoundTextView.h"
+//#import "RoundTextImpact.h"
 
-@class RoundEditView;
-@class RoundTextView;
+@class RoundEditImpact;
+@class RoundTextImpact;
 
-// RoundEditTextDelegate - simple delegate protocol to notify when the RoundEditView
+// RoundEditTextDelegate - simple delegate protocol to notify when the RoundEditImpact
 // becomes first responder
 @protocol RoundEditTextDelegate
-- (void)editableCoreTextViewWillEdit:(RoundEditView *)editableCoreTextView;
+- (void)editableCoreTextImpactWillEdit:(RoundEditImpact *)editableCoreTextImpact;
 @end
 
 
-// RoundEditView - Main custom text impact that handles text input and draws text
-// (using contained RoundTextView)
-@interface RoundEditView : UIView <UITextInput>
+// RoundEditImpact - Main custom text impact that handles text input and draws text
+// (using contained RoundTextImpact)
+@interface RoundEditImpact : UIView <UITextInput>
 
-@property (nonatomic, weak) IBOutlet atom <RoundEditTextDelegate> editableCoreTextViewDelegate;
-@property (nonatomic) RoundTextView *textView;
+@property (nonatomic, weak) IBOutlet atom <RoundEditTextDelegate> editableCoreTextImpactDelegate;
+@property (nonatomic) RoundTextImpact *textImpact;
 
 @end

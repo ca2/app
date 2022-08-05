@@ -125,11 +125,11 @@ namespace simple_ui
 
       /*if(m_iLineHeight == 0)
       {
-         pgraphics->OffsetViewportOrg(-m_scrolldata.m_pointScroll.x,m_scrolldata.m_pointScroll.y);
+         pgraphics->offset_origin(-m_scrolldata.m_pointScroll.x,m_scrolldata.m_pointScroll.y);
       }
       else
       {
-         pgraphics->OffsetViewportOrg(-m_scrolldata.m_pointScroll.x,-(m_scrolldata.m_pointScroll.y % m_iLineHeight));
+         pgraphics->offset_origin(-m_scrolldata.m_pointScroll.x,-(m_scrolldata.m_pointScroll.y % m_iLineHeight));
       }*/
 
 
@@ -175,7 +175,7 @@ namespace simple_ui
 //
 
       double y = rectangleClient.top;
-      _001GetViewSel(iSelStart,iSelEnd);
+      _001GetImpactSel(iSelStart,iSelEnd);
       strsize iCursor = iSelEnd;
       __sort(iSelStart,iSelEnd);
       pgraphics->set(get_font(pstyle));

@@ -2412,7 +2412,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
             pgraphics = m_pimageAlpha->get_graphics();
 
-            pgraphics->SetViewportOrg(pgraphics->GetViewportOrg());
+            pgraphics->set_origin(pgraphics->get_origin());
 
             bDib = true;
 

@@ -2475,7 +2475,7 @@ namespace draw2d_opengl
 ////
 ////         m_bReduced = true;
 ////
-////         m_spgraphics->SetViewportOrg(0,0);
+////         m_spgraphics->set_origin(0,0);
 ////
 ////         map();
 ////
@@ -2632,12 +2632,12 @@ namespace draw2d_opengl
 //         m_spgraphics->SelectClipRgn(nullptr);
 //         puserinteraction->_001OnDeferPaintLayeredWindowBackground(pimage->get_graphics());
 //         m_spgraphics->SelectClipRgn(nullptr);
-//         m_spgraphics-> SetViewportOrg(::point_i32());
+//         m_spgraphics-> set_origin(::point_i32());
 //         puserinteraction->_000OnDraw(pimage->get_graphics());
-//         m_spgraphics->SetViewportOrg(::point_i32());
+//         m_spgraphics->set_origin(::point_i32());
 //         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left, rectangleUpdate.top, 100, 100, 255);
 //         m_spgraphics->SelectClipRgn(nullptr);
-//         m_spgraphics->SetViewportOrg(::point_i32());
+//         m_spgraphics->set_origin(::point_i32());
 //
 //         m_spgraphics->SelectClipRgn( nullptr);
 //         m_spgraphics->BitBlt(rectanglePaint.left, rectanglePaint.top,
@@ -2693,7 +2693,7 @@ namespace draw2d_opengl
       {
          if (m_spgraphics.is_set())
          {
-            ((image*)this)->m_point = m_spgraphics.GetViewportOrg();
+            ((image*)this)->m_point = m_spgraphics.get_origin();
 
          }
 

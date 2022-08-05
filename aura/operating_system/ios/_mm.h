@@ -17,10 +17,10 @@
 //#import "AuraWindow.h"
 
 
-//#import "AuraWindowFrameView.h"
+//#import "AuraWindowFrameImpact.h"
 
 
-//#import "AuraViewController.h"
+//#import "AuraImpactController.h"
 
 
 //#import "aura_window.h"

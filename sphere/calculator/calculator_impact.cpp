@@ -49,7 +49,7 @@ namespace calculator
    /////////////////////////////////////////////////////////////////////////////
    // impact message handlers
 
-   // vmpLightView.cpp : implementation of the impact class
+   // vmpLightImpact.cpp : implementation of the impact class
    //
 
 
@@ -75,7 +75,7 @@ namespace calculator
    }
 
 
-   __pointer(::user::interaction) impact::BackViewGetWnd()
+   __pointer(::user::interaction) impact::backimpact_GetWnd()
    {
 
       return this;
@@ -154,12 +154,12 @@ namespace calculator
       //__pointer(::user::message) pusermessage(pmessage);
    }
 
-   void impact::_001OnUpdateViewEncoding(::message::message * pmessage)
+   void impact::_001OnUpdateImpactEncoding(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
       //__pointer(::message::command) pcommand(pmessage);
    }
-   void impact::_001OnViewEncoding(::message::message * pmessage)
+   void impact::_001OnShowEncoding(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
       //__pointer(::message::command) pcommand(pmessage);

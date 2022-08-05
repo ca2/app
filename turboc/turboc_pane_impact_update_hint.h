@@ -5,11 +5,11 @@ namespace turboc
 {
 
 
-   enum EPaneView
+   enum EPaneImpact
    {
       impact_none,
       MAIN_IMPACT,
-      PaneViewHelloMultiverseSwitcher,
+      PaneImpactHelloMultiverseSwitcher,
       
    };
 
@@ -23,14 +23,14 @@ namespace turboc
       enum enum_type
       {
 
-         TypeGetView,
-         TypeSetView,
+         TypeGetImpact,
+         TypeSetImpact,
          TypeOnShowKaraoke,
-         TypeOnShowView,
+         TypeOnShowImpact,
 
       };
 
-      EPaneView m_eview;
+      EPaneImpact m_eview;
       enum_type m_etype;
 
 

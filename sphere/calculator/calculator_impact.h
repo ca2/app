@@ -19,7 +19,7 @@ namespace calculator
       void dump(dump_context & dumpcontext) const override;
 
 
-      virtual __pointer(::user::interaction) BackViewGetWnd();
+      virtual __pointer(::user::interaction) backimpact_GetWnd();
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -36,8 +36,8 @@ namespace calculator
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_context_menu);
       //DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
-      DECLARE_MESSAGE_HANDLER(_001OnUpdateViewEncoding);
-      DECLARE_MESSAGE_HANDLER(_001OnViewEncoding);
+      DECLARE_MESSAGE_HANDLER(_001OnUpdateImpactEncoding);
+      DECLARE_MESSAGE_HANDLER(_001OnShowEncoding);
       DECLARE_MESSAGE_HANDLER(_001OnWavePlayerEvent);
 
       virtual void _001OnTabClick(i32 iTab);

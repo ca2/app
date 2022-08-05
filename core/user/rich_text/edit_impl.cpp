@@ -799,7 +799,7 @@ namespace user
 
          synchronous_lock synchronouslock(mutex());
 
-         //pgraphics->OffsetViewportOrg(m_pointScroll.x, m_pointScroll.y);
+         //pgraphics->offset_origin(m_pointScroll.x, m_pointScroll.y);
 
          m_pdata->_001OnDraw(pgraphics);
 

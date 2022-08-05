@@ -2445,7 +2445,7 @@ namespace linux
 //      //return;
 //      ::rectangle rectangleUpdate;
 //      m_puserinteraction->get_window_rect(rectangleUpdate);
-////      SetViewportOrgEx(hdc, 0, 0, nullptr);
+////      SetContextOrgEx(hdc, 0, 0, nullptr);
 //      ::rectangle rectanglePaint;
 //      rectanglePaint = rectangleUpdate;
 //      m_puserinteraction->screen_to_client(rectanglePaint);
@@ -4719,7 +4719,7 @@ namespace linux
    void interaction_impl::set_impactport_org(::draw2d::graphics_pointer & pgraphics)
    {
 
-      pgraphics->SetViewportOrg(::point_i32());
+      pgraphics->set_origin(::point_i32());
 
    }
 

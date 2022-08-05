@@ -14,7 +14,7 @@ namespace app_core_build
       m_bInterprocessIntercommunication = true;
 
       m_ptemplateHelloMultiverseMain = nullptr;
-      m_ptemplateHelloMultiverseView = nullptr;
+      m_ptemplateHelloMultiverseImpact = nullptr;
 
       m_strAppId = "app-core/build";
       m_strAppName = "app-core/build";
@@ -109,7 +109,7 @@ namespace app_core_build
                        __type(frame),
                        __type(main_impact)));
 
-      m_ptemplateHelloMultiverseView = ptemplate;
+      m_ptemplateHelloMultiverseImpact = ptemplate;
 
       add_document_template(ptemplate);
 
@@ -182,7 +182,7 @@ namespace app_core_build
       if (pcreate->has_file())
       {
 
-         m_ptemplateHelloMultiverseView->do_request(pcreate);
+         m_ptemplateHelloMultiverseImpact->do_request(pcreate);
 
       }
 

@@ -116,7 +116,7 @@ namespace browser
 
       }
 
-      backimpact::user::impact::BackViewRender(pgraphics, rectangleClient);
+      backimpact::user::impact::backimpact_Render(pgraphics, rectangleClient);
 
    }
 

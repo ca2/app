@@ -310,7 +310,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
                   pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
                   pgraphics->flush();
 
-                  //const ::point_i32 & point = pgraphics->GetViewportOrg();
+                  //const ::point_i32 & point = pgraphics->get_origin();
                   //pimage->from(nullptr, pgraphics, point_i32 + rectangle.top_left(), rectangle.size());
 
                   {

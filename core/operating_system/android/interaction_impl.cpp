@@ -1948,7 +1948,7 @@ namespace android
       //return;
       ::rectangle_i32 rectangleUpdate;
       m_puserinteraction->get_window_rect(rectangleUpdate);
-      //      SetViewportOrgEx(hdc, 0, 0, nullptr);
+      //      SetContextOrgEx(hdc, 0, 0, nullptr);
       ::rectangle_i32 rectanglePaint;
       rectanglePaint = rectangleUpdate;
       m_puserinteraction->screen_to_client(rectanglePaint);
@@ -2024,12 +2024,12 @@ namespace android
       //            _001OnDeferPaintLayeredWindowBackground(pgraphics);
       //         }
       //         (dynamic_cast<::android::graphics * >(pgraphics))->SelectClipRgn(nullptr);
-      //         (dynamic_cast<::android::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
+      //         (dynamic_cast<::android::graphics * >(pgraphics))->set_origin(::point_i32());
       //         _000OnDraw(pgraphics);
-      //         (dynamic_cast<::android::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
+      //         (dynamic_cast<::android::graphics * >(pgraphics))->set_origin(::point_i32());
       //         //(dynamic_cast<::android::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left, rectangleUpdate.top, 100, 100, 255);
       //         (dynamic_cast<::android::graphics * >(pgraphics))->SelectClipRgn(nullptr);
-      //         (dynamic_cast<::android::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
+      //         (dynamic_cast<::android::graphics * >(pgraphics))->set_origin(::point_i32());
       //
       //         pgraphics->SelectClipRgn( nullptr);
       //         pgraphics->BitBlt(rectanglePaint.left, rectanglePaint.top,
@@ -4534,12 +4534,12 @@ namespace android
    {
       // graphics will be already set its impact port to the interaction_impl for android - cairo with xlib
 
-      pgraphics->SetViewportOrg(::point_i32());
+      pgraphics->set_origin(::point_i32());
 
       /*      rectangle_i64 rectangleWindow;
       get_window_rect(rectangleWindow);
       get_wnd()->screen_to_client(rectangleWindow);
-      pgraphics->SetViewportOrg(point_i32(rectangleWindow.top_left()));
+      pgraphics->set_origin(point_i32(rectangleWindow.top_left()));
       pgraphics->SelectClipRgn(nullptr);
       */
 

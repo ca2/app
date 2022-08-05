@@ -202,7 +202,7 @@ namespace user
 
          pbrushText->create_solid(get_color(pstyle,::e_element_text));
 
-         auto pointViewportOrg = pgraphics->GetViewportOrg();
+         auto pointContextOrg = pgraphics->get_origin();
 
          pgraphics->set(pbrushText);
 
@@ -257,7 +257,7 @@ namespace user
             }
          }
 
-         pgraphics->SetViewportOrg(pointViewportOrg);
+         pgraphics->set_origin(pointContextOrg);
 
       }
 

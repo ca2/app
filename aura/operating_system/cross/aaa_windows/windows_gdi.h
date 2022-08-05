@@ -710,7 +710,7 @@ HBITMAP CreateCompatibleBitmap(HDC hdc,i32 cx,i32 cy);
 int_bool BitBlt(HDC hdcDest,i32 nXDest,i32 nYDest,i32 nWidth,i32 nHeight,HDC hdcSrc,i32 nXSrc,i32 nYSrc,::u32 dwRop);
 
 
-//int_bool SetViewportOrgEx(HDC hdc, i32 X, i32 Y, POINT32 * lpPoint);
+//int_bool SetContextOrgEx(HDC hdc, i32 X, i32 Y, POINT32 * lpPoint);
 
 
 

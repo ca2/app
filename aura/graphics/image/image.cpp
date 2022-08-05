@@ -7208,7 +7208,7 @@ void image::_set_mipmap(::draw2d::enum_mipmap emipmap)
 }
 
 
-void image::SetViewportOrg(const ::point_i32& point)
+void image::set_origin(const ::point_i32& point)
 {
 
    m_point = point;
@@ -7216,7 +7216,7 @@ void image::SetViewportOrg(const ::point_i32& point)
    if (!m_bMapped)
    {
 
-      get_graphics()->SetViewportOrg(point);
+      get_graphics()->set_origin(point);
 
    }
 
@@ -8809,13 +8809,13 @@ void image::unmap() const
          if (rectangleThis.contains(rectangleMap.origin()))
          {
 
-            _get_graphics()->SetViewportOrg(rectangleMap.origin());
+            _get_graphics()->set_origin(rectangleMap.origin());
 
          }
          else
          {
 
-            _get_graphics()->SetViewportOrg(0, 0);
+            _get_graphics()->set_origin(0, 0);
 
          }
 

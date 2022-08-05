@@ -33,7 +33,7 @@ namespace helloworld
 //      ::calculator::plain_edit_impact *        m_prollfps;
       ::user::plain_edit_impact *              m_prollfps;
       ::user::single_document_template *     m_ptemplateHelloWorldMain;
-      ::user::single_document_template *     m_ptemplateHelloWorldView;
+      ::user::single_document_template *     m_ptemplateHelloWorldImpact;
       ::user::single_document_template *     m_ptemplateHelloWorldSwitcher;
 
 

@@ -278,7 +278,7 @@ Screen::Screen(::user::interaction* puserinteraction,
 //   glfwGetFramebufferSize(m_glfw_window, &m_fbsize[0], &m_fbsize[1]);
 //
 //#if defined(NANOGUI_USE_OPENGL) || defined(NANOGUI_USE_GLES)
-//   CHK(glViewport(0, 0, m_fbsize[0], m_fbsize[1]));
+//   CHK(glContext(0, 0, m_fbsize[0], m_fbsize[1]));
 //   CHK(glClearColor(m_background[0], m_background[1],
 //      m_background[2], m_background[3]));
 //   CHK(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT |
@@ -634,7 +634,7 @@ void Screen::draw_setup(NVGcontext * ctx)
 #endif
 
 #if defined(NANOGUI_USE_OPENGL) || defined(NANOGUI_USE_GLES)
-   CHK(glViewport(0, 0, m_fbsize[0], m_fbsize[1]));
+   CHK(glContext(0, 0, m_fbsize[0], m_fbsize[1]));
 #endif
 }
 
@@ -693,7 +693,7 @@ void Screen::draw_contents(NVGcontext * ctx)
 //void Screen::nvg_flush() {
 //   NVGparams * params = nvgInternalParams(ctx);
 //   params->renderFlush(params->userPtr);
-//   params->renderViewport(params->userPtr, m_size[0], m_size[1], m_pixel_ratio);
+//   params->renderContext(params->userPtr, m_size[0], m_size[1], m_pixel_ratio);
 //}
 //
 
@@ -1243,7 +1243,7 @@ void Screen::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    
    context.set_font_sink(m_pfontsink);
 
-   pgraphics->OffsetViewportOrg(-m_pos.x(), -m_pos.y());
+   pgraphics->offset_origin(-m_pos.x(), -m_pos.y());
 
    pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 

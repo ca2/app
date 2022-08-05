@@ -92,8 +92,8 @@ void SimpleApp::OnContextInitialized()
 //
 //   if (use_impacts)
 //   {
-//      // Create the BrowserView.
-//      CefRefPtr<CefBrowserView> browser_impact = CefBrowserView::CreateBrowserView(
+//      // Create the BrowserImpact.
+//      CefRefPtr<CefBrowserView> browser_impact = CefBrowserImpact::CreateBrowserView(
 //            handler, url, browser_settings, nullptr, nullptr);
 //
 //      // Create the Window. It will show itself after creation.

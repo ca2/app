@@ -784,7 +784,7 @@ namespace user
 
             puserinteraction->viewport_screen_to_client(rectangleWindow);
 
-            pgraphics->SetViewportOrg(rectangleWindow.top_left());
+            pgraphics->set_origin(rectangleWindow.top_left());
 
          }
 

@@ -189,7 +189,7 @@ namespace user
 
          pbrushText->create_solid(get_color(pstyle, ::e_element_text));
 
-         const ::point_i32 & pointViewportOrg = pgraphics->GetViewportOrg();
+         const ::point_i32 & pointContextOrg = pgraphics->get_origin();
 
          pgraphics->set(pbrushText);
          ::size_array sizea;
@@ -231,7 +231,7 @@ namespace user
                iStart = iNewStart;
             }
          }
-         pgraphics->SetViewportOrg(pointViewportOrg);
+         pgraphics->set_origin(pointContextOrg);
       }
 
 

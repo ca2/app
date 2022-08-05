@@ -408,7 +408,7 @@ static NVGstate * __NANO2D_API(__getState)(NANO2D_CONTEXT * ctx)
 //
 //	__NANO2D_API(__setDevicePixelRatio)(ctx, devicePixelRatio);
 //
-//	__NANO2D_CONTEXT(ctx)->params.renderViewport(__NANO2D_CONTEXT(ctx)->params.userPtr, windowWidth, windowHeight, devicePixelRatio);
+//	__NANO2D_CONTEXT(ctx)->params.renderContext(__NANO2D_CONTEXT(ctx)->params.userPtr, windowWidth, windowHeight, devicePixelRatio);
 //
 //	__NANO2D_CONTEXT(ctx)->drawCallCount = 0;
 //	__NANO2D_CONTEXT(ctx)->fillTriCount = 0;

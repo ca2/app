@@ -19,7 +19,7 @@
 
 class round_window;
 
-@class RoundViewController;
+@class RoundImpactController;
 
 
 @interface RoundWindow : UIWindow
@@ -28,7 +28,7 @@ class round_window;
    
    
     round_window           * m_pwindow;
-    RoundViewController    * m_controller;
+    RoundImpactController    * m_controller;
    
 }
 

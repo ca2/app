@@ -76,7 +76,7 @@ namespace userstack
    /////////////////////////////////////////////////////////////////////////////
    // ::impact message handlers
 
-   // vmpLightView.cpp : implementation of the ::impact class
+   // vmpLightImpact.cpp : implementation of the ::impact class
    //
 
 
@@ -153,7 +153,7 @@ namespace userstack
 
 
 
-      SetTimer(e_timer_backview, 83, nullptr);  // maximum. 12 fps
+      SetTimer(e_timer_backimpact, 83, nullptr);  // maximum. 12 fps
       SetTimer(21977, 20 * 1000, nullptr);  // maximum. 12 fps
 
       check_apps();
@@ -222,7 +222,7 @@ namespace userstack
 
       switch(ptimer->m_uEvent)
       {
-      case e_timer_backview:
+      case e_timer_backimpact:
       {
          //gcom::backimpact::user_interaction::image_change_post_event(gcom::backimpact::event_timer);
       }

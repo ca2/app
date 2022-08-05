@@ -3638,7 +3638,7 @@ namespace user
       if (!pointScroll.is_null())
       {
 
-         pgraphics->OffsetViewportOrg(-pointScroll.x, -pointScroll.y);
+         pgraphics->offset_origin(-pointScroll.x, -pointScroll.y);
 
       }
 
@@ -3734,7 +3734,7 @@ namespace user
 
 #endif //__DEBUG
 
-      pgraphics->OffsetViewportOrg(pointScroll.x, pointScroll.y);
+      pgraphics->offset_origin(pointScroll.x, pointScroll.y);
 
    }
 
@@ -3774,11 +3774,11 @@ namespace user
 
       }
 
-      auto pointViewportOffset = get_impactport_offset();
+      auto pointContextOffset = get_impactport_offset();
 
-      auto offset = pointOffset - pointViewportOffset;
+      auto offset = pointOffset - pointContextOffset;
 
-      pgraphics->OffsetViewportOrg((::i32)offset.cx, (::i32)offset.cy);
+      pgraphics->offset_origin((::i32)offset.cx, (::i32)offset.cy);
 
    }
 
@@ -3883,7 +3883,7 @@ namespace user
                         if (!bParentScrollX && pinteraction->m_bParentScrollX)
                         {
 
-                           pgraphics->OffsetViewportOrg(-pointScroll.x, 0);
+                           pgraphics->offset_origin(-pointScroll.x, 0);
 
                            bParentScrollX = true;
 
@@ -3891,7 +3891,7 @@ namespace user
                         else if (bParentScrollX && !pinteraction->m_bParentScrollX)
                         {
 
-                           pgraphics->OffsetViewportOrg(pointScroll.x, 0);
+                           pgraphics->offset_origin(pointScroll.x, 0);
 
                            bParentScrollX = false;
 
@@ -3900,7 +3900,7 @@ namespace user
                         if (!bParentScrollY && pinteraction->m_bParentScrollY)
                         {
 
-                           pgraphics->OffsetViewportOrg(0, -pointScroll.y);
+                           pgraphics->offset_origin(0, -pointScroll.y);
 
                            bParentScrollY = true;
 
@@ -3908,7 +3908,7 @@ namespace user
                         else if (bParentScrollY && !pinteraction->m_bParentScrollY)
                         {
 
-                           pgraphics->OffsetViewportOrg(0, pointScroll.y);
+                           pgraphics->offset_origin(0, pointScroll.y);
 
                            bParentScrollY = false;
 
@@ -3968,19 +3968,19 @@ namespace user
 
       }
 
-      //pgraphics->OffsetViewportOrg(pointScroll.x, pointScroll.y);
+      //pgraphics->offset_origin(pointScroll.x, pointScroll.y);
 
       if (bParentScrollX && pointScroll.x)
       {
 
-         pgraphics->OffsetViewportOrg(pointScroll.x, 0);
+         pgraphics->offset_origin(pointScroll.x, 0);
 
       }
 
       if (bParentScrollY && pointScroll.y)
       {
 
-         pgraphics->OffsetViewportOrg(0, pointScroll.y);
+         pgraphics->offset_origin(0, pointScroll.y);
 
       }
 
@@ -4410,7 +4410,7 @@ namespace user
       if (!pointOffset.is_null())
       {
 
-         pgraphics->OffsetViewportOrg(pointOffset.x, pointOffset.y);
+         pgraphics->offset_origin(pointOffset.x, pointOffset.y);
 
       }
 
@@ -4428,7 +4428,7 @@ namespace user
       if (!pointOffset.is_null())
       {
 
-         pgraphics->OffsetViewportOrg(-pointOffset.x, -pointOffset.y);
+         pgraphics->offset_origin(-pointOffset.x, -pointOffset.y);
 
       }
 
@@ -4501,7 +4501,7 @@ namespace user
          //}
          ////         ::point_i32 pointParentOffset = get_parent_impactport_offset();
          ////
-         ////         pgraphics->OffsetViewportOrg(-pointParentOffset.x, -pointParentOffset.y);
+         ////         pgraphics->offset_origin(-pointParentOffset.x, -pointParentOffset.y);
 
          try
          {
@@ -12087,18 +12087,34 @@ namespace user
       }
 
       if (!m_bDefaultWalkPreTranslateParentTree)
+      {
+
          return;
 
+      }
+
       if (pmessage->m_bRet)
+      {
+
          return;
+
+      }
 
       ::user::interaction * puserinteractionParent = get_parent();
 
-      if (puserinteractionParent != nullptr)
+      if (::is_null(puserinteractionParent))
+      {
+
          return;
 
+      }
+
       if (puserinteractionParent == puiStop)
+      {
+
          return;
+
+      }
 
       try
       {

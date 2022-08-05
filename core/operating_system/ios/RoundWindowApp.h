@@ -9,7 +9,7 @@
 //#import <UIKit/UIKit.h>
 
 
-@class RoundWindowFrameView;
+@class RoundWindowFrameImpact;
 
 @interface RoundWindowApp : UIResponder <UIApplicationDelegate, UIDocumentInteractionControllerDelegate>
 {
@@ -21,6 +21,6 @@
 }
 
 @property (strong, nonatomic) UIWindow * window;
-@property (strong, nonatomic) RoundWindowFrameView * impact;
+@property (strong, nonatomic) RoundWindowFrameImpact * impact;
 
 @end

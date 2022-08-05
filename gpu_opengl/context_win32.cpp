@@ -267,7 +267,7 @@ namespace opengl
 
       make_current();
 
-      glViewport(0, 0, size.cx, size.cy);
+      glContext(0, 0, size.cx, size.cy);
       //glMatrixMode(GL_PROJECTION);
       //glLoadIdentity();
       //glOrtho(0, size.cx, 0, size.cy, -10, 10);

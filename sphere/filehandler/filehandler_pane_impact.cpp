@@ -33,7 +33,7 @@ namespace filehandler
       IDR_ALBUM,
       __type(OptionsDoc),
       __type(OptionsChildFrame),
-      __type(OptionsView));
+      __type(OptionsImpact));
 
 
       m_pdocumenttemplateOptions = pdoctemplate;
@@ -42,7 +42,7 @@ namespace filehandler
       IDR_ALBUM,
       __type(GoodMixerDoc),
       __type(simple_child_frame),
-      __type(MixerMainView));
+      __type(MixerMainImpact));
 
       m_pdocumenttemplateAudioControl = pdoctemplate;*/
 
@@ -150,12 +150,12 @@ namespace filehandler
          }*/
          /*         create_context cc;
          cc.m_pCurrentDoc = get_document();
-         cc.m_typeNewView =  __type(rtprx::impact);
+         cc.m_typeNewImpact =  __type(rtprx::impact);
 
-         __pointer(::user::impact) pimpact = (CreateView(&cc, 101, this));
+         __pointer(::user::impact) pimpact = (CreateImpact(&cc, 101, this));
          if(pimpact != nullptr)
          {
-         pimpactdata = new ViewData();
+         pimpactdata = new ::user::impact_data();
          pimpactdata->m_eview = eview;
          pimpactdata->m_pdocument = get_document();
          pimpactdata->m_puserinteraction = pimpact;

@@ -340,8 +340,8 @@ class COleDataObject;   // forward object (see afxole.h)
 #include "data_exchange.h"
 
 
-//#include "view_container.h"
-//#include "view_creator.h"
+//#include "impact_container.h"
+//#include "impact_creator.h"
 
 //#include "job.h"
 

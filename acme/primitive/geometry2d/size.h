@@ -123,6 +123,18 @@ public:
    template < primitive_point POINT >
    inline size_type & operator-=(const POINT & point) noexcept { this->cx -= point.x; this->cy -= point.y; return *this; }
 
+   template < primitive_number NUMBER >
+   inline size_type & operator+=(NUMBER n) noexcept { this->cx = UNIT_TYPE(this->cx + n); this->cy = UNIT_TYPE(this->cy + n); return *this; }
+
+   template < primitive_number NUMBER >
+   inline size_type & operator-=(NUMBER n) noexcept { this->cx = UNIT_TYPE(this->cx - n); this->cy = UNIT_TYPE(this->cy - n); return *this; }
+
+   template < primitive_number NUMBER >
+   inline size_type & operator*=(NUMBER n) noexcept { this->cx = UNIT_TYPE(this->cx * n); this->cy = UNIT_TYPE(this->cy * n); return *this; }
+
+   template < primitive_number NUMBER >
+   inline size_type & operator/=(NUMBER n) noexcept { this->cx = UNIT_TYPE(this->cx / n); this->cy = UNIT_TYPE(this->cy / n); return *this; }
+
    inline void set_size(UNIT_TYPE cx, UNIT_TYPE cy) noexcept {this->cx = cx; this->cy = cy; }
    inline void set_size(const size_type & size_type) noexcept { set_size(size_type.cx, size_type.cy); }
 

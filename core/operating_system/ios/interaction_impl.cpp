@@ -2405,12 +2405,12 @@ namespace ios
       //            _001OnDeferPaintLayeredWindowBackground(pgraphics);
       //         }
       //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SelectClipRgn(nullptr);
-      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
+      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->set_origin(::point_i32());
       //         _000OnDraw(pgraphics);
-      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
+      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->set_origin(::point_i32());
       //         //(dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left, rectangleUpdate.top, 100, 100, 255);
       //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SelectClipRgn(nullptr);
-      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
+      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->set_origin(::point_i32());
       //
       //         pgraphics->SelectClipRgn( nullptr);
       //         pgraphics->BitBlt(rectanglePaint.left, rectanglePaint.top,
@@ -5036,7 +5036,7 @@ namespace ios
 
       // graphics will be already set its impact port to the user::interaction for linux - cairo with xlib
 
-      pgraphics->SetViewportOrg(::point_i32());
+      pgraphics->set_origin(::point_i32());
 
    }
 

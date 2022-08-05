@@ -43,7 +43,7 @@ enum enum_timer : ::i64
 
    // multimedia
    e_timer_lyric,
-   e_timer_backview,
+   e_timer_backimpact,
    e_timer_song_info,
    e_timer_visual_fade_out,
    e_timer_visual_fade_in,

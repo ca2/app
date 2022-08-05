@@ -32,7 +32,7 @@ namespace app_core_build
       ::user::document *                     m_pdocMenu;
       ::user::plain_edit_impact *              m_prollfps;
       ::user::single_document_template *     m_ptemplateHelloMultiverseMain;
-      ::user::single_document_template *     m_ptemplateHelloMultiverseView;
+      ::user::single_document_template *     m_ptemplateHelloMultiverseImpact;
       pane_impact *                            m_ppaneimpact;
 
 

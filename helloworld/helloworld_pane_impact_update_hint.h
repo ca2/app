@@ -5,12 +5,12 @@ namespace helloworld
 {
 
 
-   enum EPaneView
+   enum EPaneImpact
    {
       impact_none,
       impact_menu,
-      PaneViewHelloWorld,
-      PaneViewHelloWorldSwitcher
+      PaneImpactHelloWorld,
+      PaneImpactHelloWorldSwitcher
       
    };
 
@@ -25,14 +25,14 @@ namespace helloworld
       {
 
          TypeNone,
-         TypeGetView,
-         TypeSetView,
+         TypeGetImpact,
+         TypeSetImpact,
          TypeOnShowKaraoke,
-         TypeOnShowView,
+         TypeOnShowImpact,
 
       };
 
-      EPaneView m_eview;
+      EPaneImpact m_eview;
       enum_type m_etype;
 
 

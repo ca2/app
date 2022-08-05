@@ -80,13 +80,13 @@ namespace experience_core
       if (ptab->get_data()->m_bVertical)
       {
          
-         pgraphics->OffsetViewportOrg(0., -ptab->m_iTabScroll);
+         pgraphics->offset_origin(0., -ptab->m_iTabScroll);
          
       }
       else
       {
          
-         pgraphics->OffsetViewportOrg(-ptab->m_iTabScroll, 0.);
+         pgraphics->offset_origin(-ptab->m_iTabScroll, 0.);
          
       }
 

@@ -181,7 +181,7 @@ extern "C" {
 	// Begin drawing a new frame
 	// Calls to nanovg drawing API should be wrapped in __NANO2D_API(BeginFrame)() & __NANO2D_API(EndFrame)()
 	// __NANO2D_API(BeginFrame)() defines the size of the window to render to in relation currently
-	// set viewport (i.e. glViewport on GL backends). Device pixel ration allows to
+	// set viewport (i.e. glContext on GL backends). Device pixel ration allows to
 	// control the rendering on Hi-DPI devices.
 	// For example, GLFW returns two dimension for an opened window: window size and
 	// frame buffer size. In that case you would set windowWidth/Height to the window size
@@ -699,7 +699,7 @@ NANO2D_EXPORT int __NANO2D_API(CreateImageMem)(NVGcontext * ctx, int imageFlags,
 		int (*renderDeleteTexture)(void * uptr, int image);
 		int (*renderUpdateTexture)(void * uptr, int image, int x, int y, int w, int h, const unsigned char * data);
 		int (*renderGetTextureSize)(void * uptr, int image, int * w, int * h);
-		void (*renderViewport)(void * uptr, float width, float height, float devicePixelRatio);
+		void (*renderContext)(void * uptr, float width, float height, float devicePixelRatio);
 		void (*renderCancel)(void * uptr);
 		void (*renderFlush)(void * uptr);
 		void (*renderFill)(void * uptr, NVGpaint * paint, NVGcompositeOperationState compositeOperation, NVGscissor * scissor, float fringe, const float * bounds, const NVGpath * paths, int npaths);

@@ -1,5 +1,5 @@
 //
-//  RoundWindowFrameView.h
+//  RoundWindowFrameImpact.h
 //  RoundWindow
 //
 //  Created by Matt Gallagher on 12/12/08.
@@ -17,7 +17,7 @@
 
 @class RoundWindow;
 
-@interface RoundWindowFrameView : UIView
+@interface RoundWindowFrameImpact : UIView
 {
 @public
    
@@ -39,7 +39,7 @@
 //@property (nonatomic, getter=isEditing) BOOL editing; // Is impact in "editing" mode or not (affects drawn results).
 //@property (nonatomic) NSRange nsMarkedTextRange; // Marked text range (for input method marked text).
 //@property (nonatomic) NSRange nselectedTextRange; // Selected text range.
-// @property (nonatomic) RoundPlainTextView *textView;
+// @property (nonatomic) RoundPlainTextImpact *textImpact;
 // @property (nonatomic) NSMutableString *text;
 
 //- (CGRect)caretRectForIndex:(int)index;

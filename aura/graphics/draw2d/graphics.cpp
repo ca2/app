@@ -5718,23 +5718,31 @@ namespace draw2d
 
    }
 
+   
    savedc::savedc(graphics * pgraphics)
    {
+      
       m_pgraphics = pgraphics;
+      
       try
       {
+         
          if (m_pgraphics != nullptr)
          {
+            
             m_iSavedDC = m_pgraphics->SaveDC();
-            m_sizeScale = pgraphics->m_sizeScale;
-            m_matrixTransform = pgraphics->m_matrixTransform;
-            m_sizeTranslate = pgraphics->m_sizeTranslate;
+            m_sizeScaling = pgraphics->m_sizeScaling;
+            m_pointOrigin = pgraphics->m_pointOrigin;
+            m_matrix = pgraphics->m_matrix;
+            
          }
+         
       }
       catch (...)
       {
 
       }
+      
    }
 
 
@@ -5748,9 +5756,9 @@ namespace draw2d
          {
 
             m_pgraphics->RestoreDC(m_iSavedDC);
-            m_pgraphics->m_sizeScale = m_sizeScale;
-            m_pgraphics->m_matrixTransform = m_matrixTransform;
-            m_pgraphics->m_sizeTranslate = m_sizeTranslate;
+            m_pgraphics->m_sizeScaling = m_sizeScaling;
+            m_pgraphics->m_matrix = m_matrix;
+            m_pgraphics->m_pointOrigin = m_pointOrigin;
             m_pgraphics->update_matrix();
 
          }
@@ -5783,7 +5791,7 @@ namespace draw2d
    void graphics::get(matrix & matrix)
    {
 
-      matrix = m_matrixTransform;
+      matrix = m_matrix;
 
       //return true;
 
@@ -5793,7 +5801,7 @@ namespace draw2d
    void graphics::set(const matrix & matrix)
    {
 
-      m_matrixTransform = matrix;
+      m_matrix = matrix;
 
       update_matrix();
 
@@ -5805,31 +5813,23 @@ namespace draw2d
    void graphics::update_matrix()
    {
 
-      matrix matrixContext;
+      matrix matrix;
 
-      matrix matrixContextScale;
+      matrix matrixScale;
 
-      matrix matrixContextTranslate;
+      matrix matrixTranslate;
 
-      matrixContextScale.a1 = m_matrixContext.a1;
+      matrixScale.a1 = m_sizeScaling.cx;
 
-      matrixContextScale.b2 = m_matrixContext.b2;
+      matrixScale.b2 = m_sizeScaling.cy;
 
-      matrixContextTranslate.c1 = m_matrixContext.c1;
+      matrixTranslate.c1 = m_pointOrigin.x;
 
-      matrixContextTranslate.c2 = m_matrixContext.c2;
+      matrixTranslate.c2 = m_pointOrigin.y;
 
-      matrix matrix = matrixContextScale * m_matrixTransform * matrixContextTranslate;
+      class matrix matrixConsolidated = matrixScale * m_matrix * matrixTranslate;
 
-      _set(matrix);
-      //if (!_set(matrix))
-      //{
-
-      //   return false;
-
-      //}
-
-      //return true;
+      _set(matrixConsolidated);
 
    }
 
@@ -5837,11 +5837,9 @@ namespace draw2d
    void graphics::append(const matrix & matrix)
    {
 
-      m_matrixTransform.append(matrix);
+      m_matrix.append(matrix);
 
       update_matrix();
-
-      //return true;
 
    }
 
@@ -5849,11 +5847,9 @@ namespace draw2d
    void graphics::prepend(const matrix & matrix)
    {
 
-      m_matrixTransform.prepend(matrix);
+      m_matrix.prepend(matrix);
 
       update_matrix();
-
-      //return true;
 
    }
 

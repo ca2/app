@@ -102,8 +102,8 @@ namespace draw2d
       double                                 m_dFontFactor;
 
       ::size_f64                             m_sizeScaling;
-      ::draw2d::matrix                       m_matrixTransform;
       ::point_f64                            m_pointOrigin;
+      ::draw2d::matrix                       m_matrix;
 
       ::rectangle_f64                        m_rectangleDraw;
 
@@ -1239,9 +1239,9 @@ namespace draw2d
       graphics *     m_pgraphics;
       int            m_iSavedDC;
 
-      ::size_f64     m_sizeScale;
-      matrix         m_matrixTransform;
-      ::size_f64     m_sizeTranslate;
+      ::size_f64     m_sizeScaling;
+      ::point_f64    m_pointOrigin;
+      matrix         m_matrix;
 
       savedc(graphics * graphics);
       ~savedc();

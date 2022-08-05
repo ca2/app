@@ -58,7 +58,6 @@ namespace draw2d
    matrix matrix::scaling(double dRateX, double dRateY)
    {
 
-
       matrix m;
 
       m.a1 = dRateX;

@@ -86,7 +86,7 @@ namespace universal_windows
       comptr<ID3D11Device1>           m_d3dDevice;
       comptr<ID3D11DeviceContext1>    m_d3dContext;
       comptr<IDXGISwapChain1>         m_swapChain;
-      comptr<ID3D11RenderTargetView>  m_d3dRenderTargetView;
+      comptr<ID3D11RenderTargetView>  m_d3dRenderTargetImpact;
 
       // Direct2D Rendering Objects. Required for 2D.
       comptr<ID2D1Device>             m_d2dDevice;
@@ -94,7 +94,7 @@ namespace universal_windows
       comptr<ID2D1Bitmap1>            m_d2dTargetBitmap;
 
       // Direct3D Rendering Objects. Required for 3D.
-      comptr<ID3D11DepthStencilView>  m_d3dDepthStencilView;
+      comptr<ID3D11DepthStencilView>  m_d3dDepthStencilImpact;
 
       // Cached renderer properties.
       D3D_FEATURE_LEVEL                               m_featureLevel;

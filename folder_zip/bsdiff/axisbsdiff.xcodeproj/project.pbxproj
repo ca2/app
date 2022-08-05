@@ -280,8 +280,8 @@
 		9AA5E5D216F7C61B005C45CE /* ImfOpaqueAttribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C2E916E7F600008420D3 /* ImfOpaqueAttribute.cpp */; };
 		9AA5E5D316F7C61B005C45CE /* ImfOutputFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C2EB16E7F600008420D3 /* ImfOutputFile.cpp */; };
 		9AA5E5D416F7C61B005C45CE /* ImfPizCompressor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C2EE16E7F600008420D3 /* ImfPizCompressor.cpp */; };
-		9AA5E5D516F7C61B005C45CE /* ImfPreviewImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C2F016E7F600008420D3 /* ImfPreviewImage.cpp */; };
-		9AA5E5D616F7C61B005C45CE /* ImfPreviewImageAttribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C2F216E7F600008420D3 /* ImfPreviewImageAttribute.cpp */; };
+		9AA5E5D516F7C61B005C45CE /* ImfThumbnailImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C2F016E7F600008420D3 /* ImfThumbnailImage.cpp */; };
+		9AA5E5D616F7C61B005C45CE /* ImfThumbnailImageAttribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C2F216E7F600008420D3 /* ImfThumbnailImageAttribute.cpp */; };
 		9AA5E5D716F7C61B005C45CE /* ImfPxr24Compressor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C2F416E7F600008420D3 /* ImfPxr24Compressor.cpp */; };
 		9AA5E5D816F7C61B005C45CE /* ImfRational.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C2F616E7F600008420D3 /* ImfRational.cpp */; };
 		9AA5E5D916F7C61B005C45CE /* ImfRationalAttribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A86C2F816E7F600008420D3 /* ImfRationalAttribute.cpp */; };
@@ -464,8 +464,8 @@
 		9AA5E68C16F7C61B005C45CE /* ImfOutputFile.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C2EC16E7F600008420D3 /* ImfOutputFile.h */; };
 		9AA5E68D16F7C61B005C45CE /* ImfPixelType.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C2ED16E7F600008420D3 /* ImfPixelType.h */; };
 		9AA5E68E16F7C61B005C45CE /* ImfPizCompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C2EF16E7F600008420D3 /* ImfPizCompressor.h */; };
-		9AA5E68F16F7C61B005C45CE /* ImfPreviewImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C2F116E7F600008420D3 /* ImfPreviewImage.h */; };
-		9AA5E69016F7C61B005C45CE /* ImfPreviewImageAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C2F316E7F600008420D3 /* ImfPreviewImageAttribute.h */; };
+		9AA5E68F16F7C61B005C45CE /* ImfThumbnailImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C2F116E7F600008420D3 /* ImfThumbnailImage.h */; };
+		9AA5E69016F7C61B005C45CE /* ImfThumbnailImageAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C2F316E7F600008420D3 /* ImfThumbnailImageAttribute.h */; };
 		9AA5E69116F7C61B005C45CE /* ImfPxr24Compressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C2F516E7F600008420D3 /* ImfPxr24Compressor.h */; };
 		9AA5E69216F7C61B005C45CE /* ImfRational.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C2F716E7F600008420D3 /* ImfRational.h */; };
 		9AA5E69316F7C61B005C45CE /* ImfRationalAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A86C2F916E7F600008420D3 /* ImfRationalAttribute.h */; };
@@ -1001,10 +1001,10 @@
 		9A86C2ED16E7F600008420D3 /* ImfPixelType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImfPixelType.h; sourceTree = "<group>"; };
 		9A86C2EE16E7F600008420D3 /* ImfPizCompressor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImfPizCompressor.cpp; sourceTree = "<group>"; };
 		9A86C2EF16E7F600008420D3 /* ImfPizCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImfPizCompressor.h; sourceTree = "<group>"; };
-		9A86C2F016E7F600008420D3 /* ImfPreviewImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImfPreviewImage.cpp; sourceTree = "<group>"; };
-		9A86C2F116E7F600008420D3 /* ImfPreviewImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImfPreviewImage.h; sourceTree = "<group>"; };
-		9A86C2F216E7F600008420D3 /* ImfPreviewImageAttribute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImfPreviewImageAttribute.cpp; sourceTree = "<group>"; };
-		9A86C2F316E7F600008420D3 /* ImfPreviewImageAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImfPreviewImageAttribute.h; sourceTree = "<group>"; };
+		9A86C2F016E7F600008420D3 /* ImfThumbnailImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImfThumbnailImage.cpp; sourceTree = "<group>"; };
+		9A86C2F116E7F600008420D3 /* ImfThumbnailImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImfThumbnailImage.h; sourceTree = "<group>"; };
+		9A86C2F216E7F600008420D3 /* ImfThumbnailImageAttribute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImfThumbnailImageAttribute.cpp; sourceTree = "<group>"; };
+		9A86C2F316E7F600008420D3 /* ImfThumbnailImageAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImfThumbnailImageAttribute.h; sourceTree = "<group>"; };
 		9A86C2F416E7F600008420D3 /* ImfPxr24Compressor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImfPxr24Compressor.cpp; sourceTree = "<group>"; };
 		9A86C2F516E7F600008420D3 /* ImfPxr24Compressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImfPxr24Compressor.h; sourceTree = "<group>"; };
 		9A86C2F616E7F600008420D3 /* ImfRational.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImfRational.cpp; sourceTree = "<group>"; };
@@ -1704,10 +1704,10 @@
 				9A86C2ED16E7F600008420D3 /* ImfPixelType.h */,
 				9A86C2EE16E7F600008420D3 /* ImfPizCompressor.cpp */,
 				9A86C2EF16E7F600008420D3 /* ImfPizCompressor.h */,
-				9A86C2F016E7F600008420D3 /* ImfPreviewImage.cpp */,
-				9A86C2F116E7F600008420D3 /* ImfPreviewImage.h */,
-				9A86C2F216E7F600008420D3 /* ImfPreviewImageAttribute.cpp */,
-				9A86C2F316E7F600008420D3 /* ImfPreviewImageAttribute.h */,
+				9A86C2F016E7F600008420D3 /* ImfThumbnailImage.cpp */,
+				9A86C2F116E7F600008420D3 /* ImfThumbnailImage.h */,
+				9A86C2F216E7F600008420D3 /* ImfThumbnailImageAttribute.cpp */,
+				9A86C2F316E7F600008420D3 /* ImfThumbnailImageAttribute.h */,
 				9A86C2F416E7F600008420D3 /* ImfPxr24Compressor.cpp */,
 				9A86C2F516E7F600008420D3 /* ImfPxr24Compressor.h */,
 				9A86C2F616E7F600008420D3 /* ImfRational.cpp */,
@@ -1983,8 +1983,8 @@
 				9AA5E68C16F7C61B005C45CE /* ImfOutputFile.h in Headers */,
 				9AA5E68D16F7C61B005C45CE /* ImfPixelType.h in Headers */,
 				9AA5E68E16F7C61B005C45CE /* ImfPizCompressor.h in Headers */,
-				9AA5E68F16F7C61B005C45CE /* ImfPreviewImage.h in Headers */,
-				9AA5E69016F7C61B005C45CE /* ImfPreviewImageAttribute.h in Headers */,
+				9AA5E68F16F7C61B005C45CE /* ImfThumbnailImage.h in Headers */,
+				9AA5E69016F7C61B005C45CE /* ImfThumbnailImageAttribute.h in Headers */,
 				9AA5E69116F7C61B005C45CE /* ImfPxr24Compressor.h in Headers */,
 				9AA5E69216F7C61B005C45CE /* ImfRational.h in Headers */,
 				9AA5E69316F7C61B005C45CE /* ImfRationalAttribute.h in Headers */,
@@ -2411,8 +2411,8 @@
 				9AA5E5D216F7C61B005C45CE /* ImfOpaqueAttribute.cpp in Sources */,
 				9AA5E5D316F7C61B005C45CE /* ImfOutputFile.cpp in Sources */,
 				9AA5E5D416F7C61B005C45CE /* ImfPizCompressor.cpp in Sources */,
-				9AA5E5D516F7C61B005C45CE /* ImfPreviewImage.cpp in Sources */,
-				9AA5E5D616F7C61B005C45CE /* ImfPreviewImageAttribute.cpp in Sources */,
+				9AA5E5D516F7C61B005C45CE /* ImfThumbnailImage.cpp in Sources */,
+				9AA5E5D616F7C61B005C45CE /* ImfThumbnailImageAttribute.cpp in Sources */,
 				9AA5E5D716F7C61B005C45CE /* ImfPxr24Compressor.cpp in Sources */,
 				9AA5E5D816F7C61B005C45CE /* ImfRational.cpp in Sources */,
 				9AA5E5D916F7C61B005C45CE /* ImfRationalAttribute.cpp in Sources */,

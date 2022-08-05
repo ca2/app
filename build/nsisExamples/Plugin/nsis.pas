@@ -77,7 +77,7 @@ type
     instdir_error: Integer;
     rtl: Integer;
     errlvl: Integer;
-    alter_reg_view: Integer;
+    alter_reg_impact: Integer;
     status_update: Integer;
   end;
 

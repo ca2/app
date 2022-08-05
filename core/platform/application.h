@@ -27,10 +27,10 @@ namespace core
       __pointer(::progress::real) show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::count iProgressCount) override;
 
 
-      //virtual void preparimpact_menu(::user::menu * pmenu);
+      //virtual void prepare_impact_menu(::user::menu * pmenu);
 
 
-      virtual string preparimpact_options();
+      virtual string prepare_impact_options();
       virtual string prepare_impact_options_header();
       virtual string prepare_impact_options_main_body();
       virtual string prepare_impact_options_footer();

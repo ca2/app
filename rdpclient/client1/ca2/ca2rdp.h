@@ -72,7 +72,7 @@ namespace draw2d
 }
 
 
-struct rdpclient_view_interface
+struct rdpclient_impact_interface
 {
    virtual void rdpclient_set_cursor(::draw2d::cursor * pcursor) = 0;
 };
@@ -111,7 +111,7 @@ struct ca2rdp_context :
 #endif
    HANDLE thread;
    ::aura::application * m_pappRdp;
-   rdpclient_view_interface * m_pviewRdp;
+   rdpclient_impact_interface * m_pviewRdp;
 
    ca2rdpInfo* ca2rdpi;
 };

@@ -36,7 +36,7 @@ public:
    virtual void form_document_set_property_set(const property_set & set) override;
    virtual property_set * form_document_get_property_set() override;
 
-   virtual void form_document_set_view(::user::form * pimpact);
+   virtual void form_document_set_impact(::user::form * pimpact);
    virtual void form_document_set_callback(::user::form_callback * pcallback);
 
    //bool open_document(::create * pcreate) override;

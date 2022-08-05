@@ -204,13 +204,13 @@ namespace filemanager
 
          }
 
-         m_pimpact->post_message(operation_view::MessageMainPost, operation_view::MessageMainPostFileOperation);
+         m_pimpact->post_message(operation_impact::MessageMainPost, operation_impact::MessageMainPostFileOperation);
 
          sleep(millisStepSetSleep);
 
       }
 
-      m_pimpact->post_message(operation_view::MessageMainPost,  operation_view::MessageMainPostFileOperationFinal);
+      m_pimpact->post_message(operation_impact::MessageMainPost,  operation_impact::MessageMainPostFileOperationFinal);
 
       //return ::success;
 

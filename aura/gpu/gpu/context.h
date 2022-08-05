@@ -48,7 +48,7 @@ namespace gpu
       __pointer(::gpu::program)        m_pprogram;
       bool                             m_bCreated;
       ::draw3d::matrix                 m_matrixProjection;
-      ::draw3d::matrix                 m_matrixView;
+      ::draw3d::matrix                 m_matrixImpact;
 
 
       context();
@@ -64,8 +64,8 @@ namespace gpu
       virtual string _001GetIntroFragment();
 
 
-      inline const ::draw3d::matrix & view_matrix() const { return m_matrixView; }
-      inline ::draw3d::matrix & view_matrix() { return m_matrixView; }
+      inline const ::draw3d::matrix & view_matrix() const { return m_matrixImpact; }
+      inline ::draw3d::matrix & view_matrix() { return m_matrixImpact; }
       inline const ::draw3d::matrix & projection_matrix() const { return m_matrixProjection; }
       inline ::draw3d::matrix & projection_matrix() { return m_matrixProjection; }
 

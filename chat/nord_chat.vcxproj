@@ -24,7 +24,7 @@
     <ClInclude Include="calculator\calculator_element.h" />
     <ClInclude Include="calculator\calculator_parser.h" />
     <ClInclude Include="calculator\calculator_parser_exception.h" />
-    <ClInclude Include="calculator\calculator_plain_edit_view.h" />
+    <ClInclude Include="calculator\calculator_plain_edit_impact.h" />
     <ClInclude Include="calculator\calculator_scanner.h" />
     <ClInclude Include="calculator\calculator_token.h" />
     <ClInclude Include="calculator\calculator_value.h" />
@@ -54,7 +54,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="calculator\calculator_plain_edit_view.cpp">
+    <ClCompile Include="calculator\calculator_plain_edit_impact.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x86'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
     </ClCompile>

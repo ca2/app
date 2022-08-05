@@ -938,21 +938,21 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
     <ClInclude Include="turboc_application.h" />
     <ClInclude Include="turboc_context.h" />
     <ClInclude Include="turboc_document.h" />
-    <ClInclude Include="turboc_edit_view.h" />
+    <ClInclude Include="turboc_edit_impact.h" />
     <ClInclude Include="turboc_frame.h" />
-    <ClInclude Include="turboc_full_view.h" />
-    <ClInclude Include="turboc_lite_view.h" />
+    <ClInclude Include="turboc_full_impact.h" />
+    <ClInclude Include="turboc_lite_impact.h" />
     <ClInclude Include="turboc_main.h" />
-    <ClInclude Include="turboc_main_view.h" />
-    <ClInclude Include="turboc_pane_view.h" />
+    <ClInclude Include="turboc_main_impact.h" />
+    <ClInclude Include="turboc_pane_impact.h" />
 
     <ClInclude Include="turboc_pos.h" />
     <ClInclude Include="turboc_pre.h" />
     <ClInclude Include="turboc_private.h" />
-    <ClInclude Include="turboc_switcher_view.h" />
-    <ClInclude Include="turboc_toggle_view.h" />
-    <ClInclude Include="turboc_top_view.h" />
-    <ClInclude Include="turboc_view.h" />
+    <ClInclude Include="turboc_switcher_impact.h" />
+    <ClInclude Include="turboc_toggle_impact.h" />
+    <ClInclude Include="turboc_top_impact.h" />
+    <ClInclude Include="turboc_impact.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -2515,19 +2515,19 @@ ml64 /Zi /Fo"$(IntDir)gvmat64.o" /c /Fl"$(IntDir)gvmat.lst" "$(ProjectDir)contri
     <ClCompile Include="turboc.cpp" />
     <ClCompile Include="turboc_context.cpp" />
     <ClCompile Include="turboc_document.cpp" />
-    <ClCompile Include="turboc_edit_view.cpp" />
+    <ClCompile Include="turboc_edit_impact.cpp" />
     <ClCompile Include="turboc_frame.cpp" />
-    <ClCompile Include="turboc_full_view.cpp" />
-    <ClCompile Include="turboc_lite_view.cpp" />
+    <ClCompile Include="turboc_full_impact.cpp" />
+    <ClCompile Include="turboc_lite_impact.cpp" />
     <ClCompile Include="turboc_main.cpp" />
-    <ClCompile Include="turboc_main_view.cpp" />
-    <ClCompile Include="turboc_pane_view.cpp" />
+    <ClCompile Include="turboc_main_impact.cpp" />
+    <ClCompile Include="turboc_pane_impact.cpp" />
 
-    <ClCompile Include="turboc_switcher_view.cpp" />
-    <ClCompile Include="turboc_toggle_view.cpp" />
-    <ClCompile Include="turboc_top_view.cpp" />
+    <ClCompile Include="turboc_switcher_impact.cpp" />
+    <ClCompile Include="turboc_toggle_impact.cpp" />
+    <ClCompile Include="turboc_top_impact.cpp" />
     <ClCompile Include="turboc_turboc.cpp" />
-    <ClCompile Include="turboc_view.cpp" />
+    <ClCompile Include="turboc_impact.cpp" />
   </ItemGroup>
   <ItemGroup>
     

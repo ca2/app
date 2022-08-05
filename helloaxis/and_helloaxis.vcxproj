@@ -678,7 +678,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include=".\helloaxis_pane_view.cpp" />
+    <ClCompile Include=".\helloaxis_pane_impact.cpp" />
 
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompiledHeader>
@@ -688,31 +688,31 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include=".\helloaxis_view.cpp" />
-    <ClCompile Include="helloaxis_edit_view.cpp" />
-    <ClCompile Include="helloaxis_lite_view.cpp" />
-    <ClCompile Include="helloaxis_main_view.cpp" />
-    <ClCompile Include="helloaxis_switcher_view.cpp" />
-    <ClCompile Include="helloaxis_toggle_view.cpp" />
-    <ClCompile Include="helloaxis_top_view.cpp" />
-    <ClCompile Include="helloaxis_full_view.cpp" />
+    <ClCompile Include=".\helloaxis_impact.cpp" />
+    <ClCompile Include="helloaxis_edit_impact.cpp" />
+    <ClCompile Include="helloaxis_lite_impact.cpp" />
+    <ClCompile Include="helloaxis_main_impact.cpp" />
+    <ClCompile Include="helloaxis_switcher_impact.cpp" />
+    <ClCompile Include="helloaxis_toggle_impact.cpp" />
+    <ClCompile Include="helloaxis_top_impact.cpp" />
+    <ClCompile Include="helloaxis_full_impact.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helloaxis_application.h" />
     <ClInclude Include="helloaxis_document.h" />
-    <ClInclude Include="helloaxis_edit_view.h" />
+    <ClInclude Include="helloaxis_edit_impact.h" />
     <ClInclude Include="helloaxis_frame.h" />
     <ClInclude Include="helloaxis.h" />
-    <ClInclude Include="helloaxis_full_view.h" />
-    <ClInclude Include="helloaxis_lite_view.h" />
-    <ClInclude Include="helloaxis_main_view.h" />
-    <ClInclude Include="helloaxis_pane_view.h" />
+    <ClInclude Include="helloaxis_full_impact.h" />
+    <ClInclude Include="helloaxis_lite_impact.h" />
+    <ClInclude Include="helloaxis_main_impact.h" />
+    <ClInclude Include="helloaxis_pane_impact.h" />
 
     <ClInclude Include="framework.h" />
-    <ClInclude Include="helloaxis_switcher_view.h" />
-    <ClInclude Include="helloaxis_toggle_view.h" />
-    <ClInclude Include="helloaxis_top_view.h" />
-    <ClInclude Include="helloaxis_view.h" />
+    <ClInclude Include="helloaxis_switcher_impact.h" />
+    <ClInclude Include="helloaxis_toggle_impact.h" />
+    <ClInclude Include="helloaxis_top_impact.h" />
+    <ClInclude Include="helloaxis_impact.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".\app_core_helloaxis.def" />

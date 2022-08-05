@@ -5247,6 +5247,12 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
          }
 
       }
+      else
+      {
+
+         return;
+
+      }
 
    }
 
@@ -5265,7 +5271,7 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
 
             iFindNext = str.get_length();
 
-            if(iFindNext >= iLimit || iFindNext >= iLast)
+            if(iFindNext >= iLast)
             {
 
                break;
@@ -5288,16 +5294,20 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
 
       }
 
-      string strLine = str.Mid(iFindNext + 1, iFindNext - iLast + 1);
+      string strLine = str.Mid(iLast + 1, iFindNext - iLast - 1);
 
-      if(::is_set(psynchronizationlock))
+      string strPrefixedLine;
+
+      strPrefixedLine = strPrefix + strLine;
+
+      if (::is_set(psynchronizationlock))
       {
 
-         psynchronizationlock->lock();
+         psynchronizationlock->_lock();
 
       }
 
-      stra.add(strPrefix + strLine);
+      stra.add(strPrefixedLine.c_str());
 
       if(::is_set(psynchronizationlock))
       {
@@ -5315,7 +5325,16 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
 
       iLast = iFindNext;
 
+      if(iLast >= iLimit)
+      {
+
+         break;
+
+      }
+
    }
+
+   str.erase(0, iLimit + 1);
 
 }
 

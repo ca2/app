@@ -20,10 +20,10 @@ filemanager_impact_base::~filemanager_impact_base()
 }
 
 
-void filemanager_impact_base::initialize_view(::user::document * pdocument)
+void filemanager_impact_base::initialize_impact(::user::document * pdocument)
 {
 
-   ::user::impact::initialize_view(pdocument);
+   ::user::impact::initialize_impact(pdocument);
 
    m_pfilemanagerdocument = dynamic_cast <::filemanager::document *>(pdocument);
 

@@ -20,10 +20,10 @@ namespace universal_windows
 
          ::winrt::Windows::UI::Core::CoreDispatcher ^ pdispatcher = nullptr;
 
-         if (m_pimpl->m_view.Get())
+         if (m_pimpl->m_impact.Get())
          {
 
-            pdispatcher = m_pimpl->m_view->Dispatcher;
+            pdispatcher = m_pimpl->m_impact->Dispatcher;
 
          }
          else

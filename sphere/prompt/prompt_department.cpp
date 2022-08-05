@@ -35,7 +35,7 @@ namespace prompt
       add_factory_item <prompt::frame >();
       add_factory_item <prompt::impact >();
       add_factory_item <prompt::pane_impact >();
-      add_factory_item <prompt::primary_view >();
+      add_factory_item <prompt::primary_impact >();
 
       if (!::acme::department::init_instance())
       {

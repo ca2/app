@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #endif
 
 
@@ -47,7 +47,7 @@ namespace user
    }
 
 
-   bool impact_creator::create_impact(::user::impact_data * pimpactdata)
+   bool impact_creator::impact_creator_create_impact(::user::impact_data * pimpactdata)
    {
 
       on_create_impact(pimpactdata);

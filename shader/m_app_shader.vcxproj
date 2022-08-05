@@ -133,17 +133,17 @@
     <ClInclude Include="simple_shader.h" />
     <ClInclude Include="simple_shader_application.h" />
     <ClInclude Include="simple_shader_document.h" />
-    <ClInclude Include="simple_shader_edit_view.h" />
+    <ClInclude Include="simple_shader_edit_impact.h" />
     <ClInclude Include="simple_shader_frame.h" />
-    <ClInclude Include="simple_shader_full_view.h" />
-    <ClInclude Include="simple_shader_lite_view.h" />
-    <ClInclude Include="simple_shader_main_view.h" />
-    <ClInclude Include="simple_shader_pane_view.h" />
+    <ClInclude Include="simple_shader_full_impact.h" />
+    <ClInclude Include="simple_shader_lite_impact.h" />
+    <ClInclude Include="simple_shader_main_impact.h" />
+    <ClInclude Include="simple_shader_pane_impact.h" />
 
-    <ClInclude Include="simple_shader_switcher_view.h" />
-    <ClInclude Include="simple_shader_toggle_view.h" />
-    <ClInclude Include="simple_shader_top_view.h" />
-    <ClInclude Include="simple_shader_view.h" />
+    <ClInclude Include="simple_shader_switcher_impact.h" />
+    <ClInclude Include="simple_shader_toggle_impact.h" />
+    <ClInclude Include="simple_shader_top_impact.h" />
+    <ClInclude Include="simple_shader_impact.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -154,17 +154,17 @@
     <ClCompile Include="simple_shader.cpp" />
     <ClCompile Include="simple_shader_application.cpp" />
     <ClCompile Include="simple_shader_document.cpp" />
-    <ClCompile Include="simple_shader_edit_view.cpp" />
+    <ClCompile Include="simple_shader_edit_impact.cpp" />
     <ClCompile Include="simple_shader_frame.cpp" />
-    <ClCompile Include="simple_shader_full_view.cpp" />
-    <ClCompile Include="simple_shader_lite_view.cpp" />
-    <ClCompile Include="simple_shader_main_view.cpp" />
-    <ClCompile Include="simple_shader_pane_view.cpp" />
+    <ClCompile Include="simple_shader_full_impact.cpp" />
+    <ClCompile Include="simple_shader_lite_impact.cpp" />
+    <ClCompile Include="simple_shader_main_impact.cpp" />
+    <ClCompile Include="simple_shader_pane_impact.cpp" />
 
-    <ClCompile Include="simple_shader_switcher_view.cpp" />
-    <ClCompile Include="simple_shader_toggle_view.cpp" />
-    <ClCompile Include="simple_shader_top_view.cpp" />
-    <ClCompile Include="simple_shader_view.cpp" />
+    <ClCompile Include="simple_shader_switcher_impact.cpp" />
+    <ClCompile Include="simple_shader_toggle_impact.cpp" />
+    <ClCompile Include="simple_shader_top_impact.cpp" />
+    <ClCompile Include="simple_shader_impact.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\source\app\aura\m_aura.vcxproj">

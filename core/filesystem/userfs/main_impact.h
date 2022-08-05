@@ -9,7 +9,7 @@ namespace userfs
 
 
    class CLASS_DECL_CORE main_impact :
-      public ::user::split_view
+      public ::user::split_impact
    {
    public:
 

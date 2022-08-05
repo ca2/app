@@ -698,13 +698,13 @@
     <ClInclude Include="user\user_keyboard_layout_cfg.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user_view.h">
+    <ClInclude Include="user\user_impact.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user_view_container.h">
+    <ClInclude Include="user\user_impact_container.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user_view_creator.h">
+    <ClInclude Include="user\user_impact_creator.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_virtual_user_interface.h">
@@ -1826,10 +1826,10 @@
     <ClInclude Include="filesystem\filemanager\filemanager_folder_list_data.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_folder_list_view.h">
+    <ClInclude Include="filesystem\filemanager\filemanager_folder_list_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_folder_selection_list_view.h">
+    <ClInclude Include="filesystem\filemanager\filemanager_folder_selection_list_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_form_child_frame.h">
@@ -1841,16 +1841,16 @@
     <ClInclude Include="filesystem\filemanager\aaa_want_to_erase_filemanager_form_update_hint.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_form_view.h">
+    <ClInclude Include="filesystem\filemanager\filemanager_form_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_list_view.h">
+    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_list_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_tree_view.h">
+    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_tree_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_view.h">
+    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_icon.h">
@@ -1868,16 +1868,16 @@
     <ClInclude Include="filesystem\filemanager\filemanager_operation_document.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_operation_info_view.h">
+    <ClInclude Include="filesystem\filemanager\filemanager_operation_info_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_operation_list_view.h">
+    <ClInclude Include="filesystem\filemanager\filemanager_operation_list_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\filemanager_operation_thread.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\filemanager_operation_view.h">
+    <ClInclude Include="filesystem\filemanager\filemanager_operation_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\FileManagerCallbackInterface.h">
@@ -1922,10 +1922,10 @@
     <ClInclude Include="filesystem\filemanager\FileManagerViewUpdateHint.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\folder_list_view.h">
+    <ClInclude Include="filesystem\filemanager\folder_list_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\folder_selection_list_view.h">
+    <ClInclude Include="filesystem\filemanager\folder_selection_list_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\SimpleFileListInterface.h">
@@ -1949,10 +1949,10 @@
     <ClInclude Include="filesystem\filemanager\SimpleFolderTreeView.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\SimplePreview.h">
+    <ClInclude Include="filesystem\filemanager\SimpleThumbnail.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\SimplePreviewInterface.h">
+    <ClInclude Include="filesystem\filemanager\SimpleThumbnailInterface.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\fs\fs.h">
@@ -2009,7 +2009,7 @@
     <ClInclude Include="filesystem\userfs\userfs_list_item_array.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\userfs\userfs_main_view.h">
+    <ClInclude Include="filesystem\userfs\userfs_main_impact.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\userfs\userfs_tree.h">
@@ -2114,7 +2114,7 @@
     <ClInclude Include="graphics\html\html_font.h">
       <Filter>Header Files\graphics\html</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\html\::user::form_view.h">
+    <ClInclude Include="graphics\html\::user::form_impact.h">
       <Filter>Header Files\graphics\html</Filter>
     </ClInclude>
     <ClInclude Include="graphics\html\html_html.h">
@@ -2564,19 +2564,19 @@
     <ClInclude Include="plane\session\bergedge\bergedge_frame.h">
       <Filter>Header Files\plane\session\bergedge</Filter>
     </ClInclude>
-    <ClInclude Include="plane\session\bergedge\bergedge_pane_view.h">
+    <ClInclude Include="plane\session\bergedge\bergedge_pane_impact.h">
       <Filter>Header Files\plane\session\bergedge</Filter>
     </ClInclude>
-    <ClInclude Include="plane\session\bergedge\aaa_want_to_erase_bergedge_view_update_hint.h">
+    <ClInclude Include="plane\session\bergedge\aaa_want_to_erase_bergedge_impact_update_hint.h">
       <Filter>Header Files\plane\session\bergedge</Filter>
     </ClInclude>
-    <ClInclude Include="plane\session\bergedge\bergedge_view.h">
+    <ClInclude Include="plane\session\bergedge\bergedge_impact.h">
       <Filter>Header Files\plane\session\bergedge</Filter>
     </ClInclude>
     <ClInclude Include="plane\session\nature\nature.h">
       <Filter>Header Files\plane\session\nature</Filter>
     </ClInclude>
-    <ClInclude Include="plane\session\nature\nature_appearance_view.h">
+    <ClInclude Include="plane\session\nature\nature_appearance_impact.h">
       <Filter>Header Files\plane\session\nature</Filter>
     </ClInclude>
     <ClInclude Include="plane\session\nature\nature_application.h">
@@ -2591,13 +2591,13 @@
     <ClInclude Include="plane\session\nature\nature_frame.h">
       <Filter>Header Files\plane\session\nature</Filter>
     </ClInclude>
-    <ClInclude Include="plane\session\nature\nature_pane_view.h">
+    <ClInclude Include="plane\session\nature\nature_pane_impact.h">
       <Filter>Header Files\plane\session\nature</Filter>
     </ClInclude>
-    <ClInclude Include="plane\session\nature\aaa_want_to_erase_nature_view_update_hint.h">
+    <ClInclude Include="plane\session\nature\aaa_want_to_erase_nature_impact_update_hint.h">
       <Filter>Header Files\plane\session\nature</Filter>
     </ClInclude>
-    <ClInclude Include="plane\session\nature\nature_view.h">
+    <ClInclude Include="plane\session\nature\nature_impact.h">
       <Filter>Header Files\plane\session\nature</Filter>
     </ClInclude>
     <ClInclude Include="plane\session\platform\platform.h">
@@ -2612,16 +2612,16 @@
     <ClInclude Include="plane\session\platform\platform_frame.h">
       <Filter>Header Files\plane\session\platform</Filter>
     </ClInclude>
-    <ClInclude Include="plane\session\platform\platform_pane_view.h">
+    <ClInclude Include="plane\session\platform\platform_pane_impact.h">
       <Filter>Header Files\plane\session\platform</Filter>
     </ClInclude>
-    <ClInclude Include="plane\session\platform\aaa_want_to_erase_platform_view_update_hint.h">
+    <ClInclude Include="plane\session\platform\aaa_want_to_erase_platform_impact_update_hint.h">
       <Filter>Header Files\plane\session\platform</Filter>
     </ClInclude>
     <ClInclude Include="plane\session\platform\platform_resource.h">
       <Filter>Header Files\plane\session\platform</Filter>
     </ClInclude>
-    <ClInclude Include="plane\session\platform\platform_view.h">
+    <ClInclude Include="plane\session\platform\platform_impact.h">
       <Filter>Header Files\plane\session\platform</Filter>
     </ClInclude>
     <ClInclude Include="programming\dynamic_source\dynamic_source.h">
@@ -2789,7 +2789,7 @@
     <ClInclude Include="user\colorertake5\colorertake5_styled_region.h">
       <Filter>Header Files\user\colorertake5</Filter>
     </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_text_console_viewer.h">
+    <ClInclude Include="user\colorertake5\colorertake5_text_console_impacter.h">
       <Filter>Header Files\user\colorertake5</Filter>
     </ClInclude>
     <ClInclude Include="user\colorertake5\colorertake5_text_hrd_mapper.h">
@@ -2861,7 +2861,7 @@
     <ClInclude Include="user\menu\user_menu_item.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
-    <ClInclude Include="user\menu\user_menu_list_view.h">
+    <ClInclude Include="user\menu\user_menu_list_impact.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
     <ClInclude Include="user\menu\user_menu_list_window.h">
@@ -2894,7 +2894,7 @@
     <ClInclude Include="user\simple\simple_form_list_edit.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\simple_form_list_view.h">
+    <ClInclude Include="user\simple\simple_form_list_impact.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\simple_frame_window.h">
@@ -2906,7 +2906,7 @@
     <ClInclude Include="user\simple\simple_list_header_control.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\simple_list_view.h">
+    <ClInclude Include="user\simple\simple_list_impact.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\simple_main_frame.h">
@@ -2915,7 +2915,7 @@
     <ClInclude Include="user\simple\simple_menu_bar.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\simple_printer_list_view.h">
+    <ClInclude Include="user\simple\simple_printer_list_impact.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\simple_push_button.h">
@@ -2933,13 +2933,13 @@
     <ClInclude Include="user\simple\simple_tab_control.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\simple_tab_view.h">
+    <ClInclude Include="user\simple\simple_tab_impact.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\simple_tool_bar.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\simple_tree_view.h">
+    <ClInclude Include="user\simple\simple_tree_impact.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\uinteraction\uinteraction.h">
@@ -3014,10 +3014,10 @@
     <ClInclude Include="user\userex\aaa_want_to_erase_userex_form_update_hint.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\userex_form_view.h">
+    <ClInclude Include="user\userex\userex_form_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\userex_hour_list_view.h">
+    <ClInclude Include="user\userex\userex_hour_list_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\userex_keyboard_layout.h">
@@ -3029,7 +3029,7 @@
     <ClInclude Include="user\userex\userex_menu_frame.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\userex_menu_view.h">
+    <ClInclude Include="user\userex\userex_menu_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\userex_message_box.h">
@@ -3038,16 +3038,16 @@
     <ClInclude Include="user\userex\userex_mini_dock_frame_window.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\userex_minute_list_view.h">
+    <ClInclude Include="user\userex\userex_minute_list_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\userex_pane_split_view.h">
+    <ClInclude Include="user\userex\userex_pane_split_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\userex_pane_tab_view.h">
+    <ClInclude Include="user\userex\userex_pane_tab_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\userex_pane_view.h">
+    <ClInclude Include="user\userex\userex_pane_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\userex_property_page.h">
@@ -3056,10 +3056,10 @@
     <ClInclude Include="user\userex\userex_property_sheet.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\userex_second_list_view.h">
+    <ClInclude Include="user\userex\userex_second_list_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\userex_split_view.h">
+    <ClInclude Include="user\userex\userex_split_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\userex_wait_message_dialog.h">
@@ -3077,16 +3077,16 @@
     <ClInclude Include="user\userhtml\userhtml_form.h">
       <Filter>Header Files\user\userhtml</Filter>
     </ClInclude>
-    <ClInclude Include="user\userhtml\userhtml_form_view.h">
+    <ClInclude Include="user\userhtml\userhtml_form_impact.h">
       <Filter>Header Files\user\userhtml</Filter>
     </ClInclude>
     <ClInclude Include="user\userhtml\userhtml_frame.h">
       <Filter>Header Files\user\userhtml</Filter>
     </ClInclude>
-    <ClInclude Include="user\userhtml\userhtml_view.h">
+    <ClInclude Include="user\userhtml\userhtml_impact.h">
       <Filter>Header Files\user\userhtml</Filter>
     </ClInclude>
-    <ClInclude Include="user\userhtml\aaa_want_to_erase_userhtml_view_update_hint.h">
+    <ClInclude Include="user\userhtml\aaa_want_to_erase_userhtml_impact_update_hint.h">
       <Filter>Header Files\user\userhtml</Filter>
     </ClInclude>
     <ClInclude Include="ca2.h">
@@ -4372,13 +4372,13 @@
     <ClCompile Include="user\user_user.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_view.cpp">
+    <ClCompile Include="user\user_impact.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_view_container.cpp">
+    <ClCompile Include="user\user_impact_container.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_view_creator.cpp">
+    <ClCompile Include="user\user_impact_creator.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_virtual_user_interface.cpp">
@@ -4993,10 +4993,10 @@
     <ClCompile Include="filesystem\filehandler\filehandler_handler.cpp">
       <Filter>Source Files\filesystem\filehandler</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\SimplePreviewInterface.cpp">
+    <ClCompile Include="filesystem\filemanager\SimpleThumbnailInterface.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\SimplePreview.cpp">
+    <ClCompile Include="filesystem\filemanager\SimpleThumbnail.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\SimpleFolderTreeView.cpp">
@@ -5062,16 +5062,16 @@
     <ClCompile Include="filesystem\filemanager\FileManagerCallbackInterface.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_operation_view.cpp">
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_operation_thread.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_operation_list_view.cpp">
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_list_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_operation_info_view.cpp">
+    <ClCompile Include="filesystem\filemanager\filemanager_operation_info_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_operation_document.cpp">
@@ -5089,16 +5089,16 @@
     <ClCompile Include="filesystem\filemanager\filemanager_icon.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_view.cpp">
+    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_tree_view.cpp">
+    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_tree_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_list_view.cpp">
+    <ClCompile Include="filesystem\filemanager\filemanager_fs_simple_list_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_form_view.cpp">
+    <ClCompile Include="filesystem\filemanager\filemanager_form_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\aaa_want_to_erase_filemanager_form_update_hint.cpp">
@@ -5110,10 +5110,10 @@
     <ClCompile Include="filesystem\filemanager\filemanager_form_child_frame.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_folder_selection_list_view.cpp">
+    <ClCompile Include="filesystem\filemanager\filemanager_folder_selection_list_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\filemanager_folder_list_view.cpp">
+    <ClCompile Include="filesystem\filemanager\filemanager_folder_list_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\filemanager_folder_list_data.cpp">
@@ -5179,7 +5179,7 @@
     <ClCompile Include="filesystem\userfs\userfs_tree.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\userfs\userfs_main_view.cpp">
+    <ClCompile Include="filesystem\userfs\userfs_main_impact.cpp">
       <Filter>Source Files\filesystem\userfs</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\userfs\userfs_list_item_array.cpp">
@@ -5293,7 +5293,7 @@
     <ClCompile Include="graphics\html\html_html.cpp">
       <Filter>Source Files\graphics\html</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\html\::user::form_view.cpp">
+    <ClCompile Include="graphics\html\::user::form_impact.cpp">
       <Filter>Source Files\graphics\html</Filter>
     </ClCompile>
     <ClCompile Include="graphics\html\html_font.cpp">
@@ -5602,16 +5602,16 @@
     <ClCompile Include="plane\session\bergedge\bergedge_frame.cpp">
       <Filter>Source Files\plane\session\bergedge</Filter>
     </ClCompile>
-    <ClCompile Include="plane\session\bergedge\bergedge_pane_view.cpp">
+    <ClCompile Include="plane\session\bergedge\bergedge_pane_impact.cpp">
       <Filter>Source Files\plane\session\bergedge</Filter>
     </ClCompile>
-    <ClCompile Include="plane\session\bergedge\aaa_want_to_erase_bergedge_view_update_hint.cpp">
+    <ClCompile Include="plane\session\bergedge\aaa_want_to_erase_bergedge_impact_update_hint.cpp">
       <Filter>Source Files\plane\session\bergedge</Filter>
     </ClCompile>
-    <ClCompile Include="plane\session\bergedge\bergedge_view.cpp">
+    <ClCompile Include="plane\session\bergedge\bergedge_impact.cpp">
       <Filter>Source Files\plane\session\bergedge</Filter>
     </ClCompile>
-    <ClCompile Include="plane\session\nature\nature_appearance_view.cpp">
+    <ClCompile Include="plane\session\nature\nature_appearance_impact.cpp">
       <Filter>Source Files\plane\session\nature</Filter>
     </ClCompile>
     <ClCompile Include="plane\session\nature\nature_application.cpp">
@@ -5626,13 +5626,13 @@
     <ClCompile Include="plane\session\nature\nature_frame.cpp">
       <Filter>Source Files\plane\session\nature</Filter>
     </ClCompile>
-    <ClCompile Include="plane\session\nature\nature_pane_view.cpp">
+    <ClCompile Include="plane\session\nature\nature_pane_impact.cpp">
       <Filter>Source Files\plane\session\nature</Filter>
     </ClCompile>
-    <ClCompile Include="plane\session\nature\aaa_want_to_erase_nature_view_update_hint.cpp">
+    <ClCompile Include="plane\session\nature\aaa_want_to_erase_nature_impact_update_hint.cpp">
       <Filter>Source Files\plane\session\nature</Filter>
     </ClCompile>
-    <ClCompile Include="plane\session\nature\nature_view.cpp">
+    <ClCompile Include="plane\session\nature\nature_impact.cpp">
       <Filter>Source Files\plane\session\nature</Filter>
     </ClCompile>
     <ClCompile Include="plane\session\platform\platform_application.cpp">
@@ -5644,13 +5644,13 @@
     <ClCompile Include="plane\session\platform\platform_frame.cpp">
       <Filter>Source Files\plane\session\platform</Filter>
     </ClCompile>
-    <ClCompile Include="plane\session\platform\platform_pane_view.cpp">
+    <ClCompile Include="plane\session\platform\platform_pane_impact.cpp">
       <Filter>Source Files\plane\session\platform</Filter>
     </ClCompile>
-    <ClCompile Include="plane\session\platform\aaa_want_to_erase_platform_view_update_hint.cpp">
+    <ClCompile Include="plane\session\platform\aaa_want_to_erase_platform_impact_update_hint.cpp">
       <Filter>Source Files\plane\session\platform</Filter>
     </ClCompile>
-    <ClCompile Include="plane\session\platform\platform_view.cpp">
+    <ClCompile Include="plane\session\platform\platform_impact.cpp">
       <Filter>Source Files\plane\session\platform</Filter>
     </ClCompile>
     <ClCompile Include="programming\dynamic_source\dynamic_source_exit_exception.cpp">
@@ -5794,13 +5794,13 @@
     <ClCompile Include="user\menu\userbase_menu_list_window.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\simple_tree_view.cpp">
+    <ClCompile Include="user\simple\simple_tree_impact.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\simple_toolbar.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\simple_tab_view.cpp">
+    <ClCompile Include="user\simple\simple_tab_impact.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\simple_tab_ctrl.cpp">
@@ -5818,7 +5818,7 @@
     <ClCompile Include="user\simple\simple_push_button.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\simple_printer_list_view.cpp">
+    <ClCompile Include="user\simple\simple_printer_list_impact.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\simple_menu_bar.cpp">
@@ -5827,7 +5827,7 @@
     <ClCompile Include="user\simple\simple_main_frame.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\simple_list_view.cpp">
+    <ClCompile Include="user\simple\simple_list_impact.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\simple_list_header_ctrl.cpp">
@@ -5839,7 +5839,7 @@
     <ClCompile Include="user\simple\simple_frame_window.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\simple_form_list_view.cpp">
+    <ClCompile Include="user\simple\simple_form_list_impact.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\simple_form_list_edit.cpp">
@@ -5917,10 +5917,10 @@
     <ClCompile Include="user\userex\userex_wait_message_dialog.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\userex_split_view.cpp">
+    <ClCompile Include="user\userex\userex_split_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\userex_second_list_view.cpp">
+    <ClCompile Include="user\userex\userex_second_list_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\userex_property_sheet.cpp">
@@ -5929,16 +5929,16 @@
     <ClCompile Include="user\userex\userex_property_page.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\userex_pane_view.cpp">
+    <ClCompile Include="user\userex\userex_pane_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\userex_pane_tab_view.cpp">
+    <ClCompile Include="user\userex\userex_pane_tab_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\userex_pane_split_view.cpp">
+    <ClCompile Include="user\userex\userex_pane_split_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\userex_minute_list_view.cpp">
+    <ClCompile Include="user\userex\userex_minute_list_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\userex_mini_dock_frame_window.cpp">
@@ -5947,7 +5947,7 @@
     <ClCompile Include="user\userex\userex_message_box.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\userex_menu_view.cpp">
+    <ClCompile Include="user\userex\userex_menu_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\userex_menu_frame.cpp">
@@ -5959,10 +5959,10 @@
     <ClCompile Include="user\userex\userex_keyboard_layout.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\userex_hour_list_view.cpp">
+    <ClCompile Include="user\userex\userex_hour_list_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\userex_form_view.cpp">
+    <ClCompile Include="user\userex\userex_form_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\aaa_want_to_erase_userex_form_update_hint.cpp">
@@ -5989,16 +5989,16 @@
     <ClCompile Include="user\userhtml\userhtml_form.cpp">
       <Filter>Source Files\user\userhtml</Filter>
     </ClCompile>
-    <ClCompile Include="user\userhtml\userhtml_form_view.cpp">
+    <ClCompile Include="user\userhtml\userhtml_form_impact.cpp">
       <Filter>Source Files\user\userhtml</Filter>
     </ClCompile>
     <ClCompile Include="user\userhtml\userhtml_frame.cpp">
       <Filter>Source Files\user\userhtml</Filter>
     </ClCompile>
-    <ClCompile Include="user\userhtml\userhtml_view.cpp">
+    <ClCompile Include="user\userhtml\userhtml_impact.cpp">
       <Filter>Source Files\user\userhtml</Filter>
     </ClCompile>
-    <ClCompile Include="user\userhtml\aaa_want_to_erase_userhtml_view_update_hint.cpp">
+    <ClCompile Include="user\userhtml\aaa_want_to_erase_userhtml_impact_update_hint.cpp">
       <Filter>Source Files\user\userhtml</Filter>
     </ClCompile>
     <ClCompile Include="user\userpresence\userpresence_user_presence.cpp">
@@ -6049,7 +6049,7 @@
     <ClCompile Include="user\user_edit_plain_text.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_edit_plain_text_view.cpp">
+    <ClCompile Include="user\user_edit_plain_text_impact.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_elastic_slider.cpp">
@@ -6088,7 +6088,7 @@
     <ClCompile Include="user\user_main_frame.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_menu_list_view.cpp">
+    <ClCompile Include="user\user_menu_list_impact.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_meta_button.cpp">
@@ -6115,7 +6115,7 @@
     <ClCompile Include="user\user_scroll_bar.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_scroll_view.cpp">
+    <ClCompile Include="user\user_scroll_impact.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_split_bar.cpp">
@@ -6124,7 +6124,7 @@
     <ClCompile Include="user\user_split_layout.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_split_view.cpp">
+    <ClCompile Include="user\user_split_impact.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_split_window.cpp">
@@ -6145,10 +6145,10 @@
     <ClCompile Include="user\user_tab_callback.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_tab_view.cpp">
+    <ClCompile Include="user\user_tab_impact.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\aaa_want_to_erase_user_tab_view_update_hint.cpp">
+    <ClCompile Include="user\aaa_want_to_erase_user_tab_impact_update_hint.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_tool_cmd_ui.cpp">
@@ -6175,16 +6175,16 @@
     <ClCompile Include="user\user_util.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\aaa_want_to_erase_user_view_update_hint.cpp">
+    <ClCompile Include="user\aaa_want_to_erase_user_impact_update_hint.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_xfplayer_view_line.cpp">
+    <ClCompile Include="user\user_xfplayer_impact_line.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_xfplayer_view_line_selection.cpp">
+    <ClCompile Include="user\user_xfplayer_impact_line_selection.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user_xfplayer_view_lines.cpp">
+    <ClCompile Include="user\user_xfplayer_impact_lines.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="base\os\os_cross_windows_crt.cpp">

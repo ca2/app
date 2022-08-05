@@ -678,7 +678,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include=".\helloworld_pane_view.cpp" />
+    <ClCompile Include=".\helloworld_pane_impact.cpp" />
 
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompiledHeader>
@@ -688,31 +688,31 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include=".\helloworld_view.cpp" />
-    <ClCompile Include="helloworld_edit_view.cpp" />
-    <ClCompile Include="helloworld_lite_view.cpp" />
-    <ClCompile Include="helloworld_main_view.cpp" />
-    <ClCompile Include="helloworld_switcher_view.cpp" />
-    <ClCompile Include="helloworld_toggle_view.cpp" />
-    <ClCompile Include="helloworld_top_view.cpp" />
-    <ClCompile Include="helloworld_full_view.cpp" />
+    <ClCompile Include=".\helloworld_impact.cpp" />
+    <ClCompile Include="helloworld_edit_impact.cpp" />
+    <ClCompile Include="helloworld_lite_impact.cpp" />
+    <ClCompile Include="helloworld_main_impact.cpp" />
+    <ClCompile Include="helloworld_switcher_impact.cpp" />
+    <ClCompile Include="helloworld_toggle_impact.cpp" />
+    <ClCompile Include="helloworld_top_impact.cpp" />
+    <ClCompile Include="helloworld_full_impact.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helloworld_application.h" />
     <ClInclude Include="helloworld_document.h" />
-    <ClInclude Include="helloworld_edit_view.h" />
+    <ClInclude Include="helloworld_edit_impact.h" />
     <ClInclude Include="helloworld_frame.h" />
     <ClInclude Include="helloworld.h" />
-    <ClInclude Include="helloworld_full_view.h" />
-    <ClInclude Include="helloworld_lite_view.h" />
-    <ClInclude Include="helloworld_main_view.h" />
-    <ClInclude Include="helloworld_pane_view.h" />
+    <ClInclude Include="helloworld_full_impact.h" />
+    <ClInclude Include="helloworld_lite_impact.h" />
+    <ClInclude Include="helloworld_main_impact.h" />
+    <ClInclude Include="helloworld_pane_impact.h" />
 
     <ClInclude Include="framework.h" />
-    <ClInclude Include="helloworld_switcher_view.h" />
-    <ClInclude Include="helloworld_toggle_view.h" />
-    <ClInclude Include="helloworld_top_view.h" />
-    <ClInclude Include="helloworld_view.h" />
+    <ClInclude Include="helloworld_switcher_impact.h" />
+    <ClInclude Include="helloworld_toggle_impact.h" />
+    <ClInclude Include="helloworld_top_impact.h" />
+    <ClInclude Include="helloworld_impact.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".\app_core_helloworld.def" />

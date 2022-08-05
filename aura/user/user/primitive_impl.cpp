@@ -437,7 +437,7 @@ namespace user
    }
 
 
-   void primitive_impl::set_viewport_org(::draw2d::graphics_pointer & pgraphics)
+   void primitive_impl::set_impactport_org(::draw2d::graphics_pointer & pgraphics)
    {
 
    }

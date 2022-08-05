@@ -31,7 +31,7 @@ namespace filemanager
       ~file_list() override;
 
 
-      void initialize_view(::user::document * pdocument) override;
+      void initialize_impact(::user::document * pdocument) override;
 
 
       void assert_ok() const override;

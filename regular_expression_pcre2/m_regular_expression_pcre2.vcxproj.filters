@@ -42,7 +42,7 @@
     <ClCompile Include="draw2d_direct2d_pen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="draw2d_direct2d_preview_dc.cpp">
+    <ClCompile Include="draw2d_direct2d_thumbnail_dc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="draw2d_direct2d_region.cpp">

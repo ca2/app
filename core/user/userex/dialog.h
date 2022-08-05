@@ -18,7 +18,7 @@ public:
 
    __pointer(::form_document)             m_pdocument;
    __pointer(simple_frame_window)         m_pframe;
-   __pointer(::user::form_view)           m_pform;
+   __pointer(::user::form_impact)           m_pform;
    string                                 m_strMatter;
 
 

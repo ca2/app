@@ -154,7 +154,7 @@
     <ClInclude Include="inline\_new_impl.h" />
     <ClInclude Include="inline\__debug_box_clear_impl.h" />
     <ClInclude Include="inline\__debug_box_set_impl.h" />
-    <ClInclude Include="mathematics\calculator\aaa_want_to_remove_plain_edit_view.h" />
+    <ClInclude Include="mathematics\calculator\aaa_want_to_remove_plain_edit_impact.h" />
     <ClInclude Include="mathematics\calculator\calculator.h" />
     <ClInclude Include="mathematics\calculator\element.h" />
     <ClInclude Include="mathematics\calculator\parser.h" />

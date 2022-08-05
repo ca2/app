@@ -61,7 +61,7 @@ namespace base
 
   
       inline ::type get_html_document_type() { return m_typeHtmlDocument; }
-      inline ::type get_html_view_type() { return m_typeHtmlImpact; }
+      inline ::type get_html_impact_type() { return m_typeHtmlImpact; }
 
       virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
 

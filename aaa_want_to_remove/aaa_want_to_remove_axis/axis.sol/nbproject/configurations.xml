@@ -2827,11 +2827,11 @@
           <itemPath>../user/user/user_text_interface.h</itemPath>
           <itemPath>../user/user/user_user.cpp</itemPath>
           <itemPath>../user/user/user_user.h</itemPath>
-          <itemPath>../user/user/user_view_container.cpp</itemPath>
-          <itemPath>../user/user/user_view_container.h</itemPath>
-          <itemPath>../user/user/user_view_creator.cpp</itemPath>
-          <itemPath>../user/user/user_view_creator.h</itemPath>
-          <itemPath>../user/user/user_view_creator_data.h</itemPath>
+          <itemPath>../user/user/user_impact_container.cpp</itemPath>
+          <itemPath>../user/user/user_impact_container.h</itemPath>
+          <itemPath>../user/user/user_impact_creator.cpp</itemPath>
+          <itemPath>../user/user/user_impact_creator.h</itemPath>
+          <itemPath>../user/user/user_impact_creator_data.h</itemPath>
           <itemPath>../user/user/user_virtual_user_interface.cpp</itemPath>
           <itemPath>../user/user/user_virtual_user_interface.h</itemPath>
           <itemPath>../user/user/user_wait_cursor.cpp</itemPath>

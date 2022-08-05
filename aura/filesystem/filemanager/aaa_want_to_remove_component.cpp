@@ -181,28 +181,28 @@ namespace filemanager
       ////add_factory_item <document >();
       ////add_factory_item <child_frame >();
       ////add_factory_item <impact >();
-      ////add_factory_item <path_view >();
-      ////add_factory_item <save_as_view >();
-      ////add_factory_item <left_view >();
+      ////add_factory_item <path_impact >();
+      ////add_factory_item <save_as_impact >();
+      ////add_factory_item <left_impact >();
       ////add_factory_item <main_impact >();
       ////add_factory_item <file_list >();
-      ////add_factory_item <preview >();
+      ////add_factory_item <thumbnail >();
       ////add_factory_item <main_frame >();
       ////add_factory_item <frame >();
       ////add_factory_item <tab_impact >();
       ////add_factory_item <form_child_frame >();
-      ////add_factory_item <::simple_form_view >();
-      ////add_factory_item <folder_selection_list_view >();
-      ////add_factory_item <folder_list_view >();
+      ////add_factory_item <::simple_form_impact >();
+      ////add_factory_item <folder_selection_list_impact >();
+      ////add_factory_item <folder_list_impact >();
       ////add_factory_item <operation_document >();
       ////add_factory_item <operation_child_frame >();
-      ////add_factory_item <operation_view >();
-      ////add_factory_item <operation_info_view >();
-      ////add_factory_item <operation_list_view >();
-      ////add_factory_item <save_as_edit_view >();
+      ////add_factory_item <operation_impact >();
+      ////add_factory_item <operation_info_impact >();
+      ////add_factory_item <operation_list_impact >();
+      ////add_factory_item <save_as_edit_impact >();
       ////add_factory_item <save_as_button>();
       ////add_factory_item <fs::simple::impact >();
-      ////add_factory_item <fs::simple::list_view >();
+      ////add_factory_item <fs::simple::list_impact >();
 
       ////__compose_new(this, m_pmap);
 
@@ -223,7 +223,7 @@ namespace filemanager
       ////                    "filemanager",
       ////                    __type(operation_document),
       ////                    __type(operation_child_frame),
-      ////                    __type(operation_view)));
+      ////                    __type(operation_impact)));
       ////
       ////__compose(m_pdocumenttemplateOperation, psingle);
 
@@ -306,7 +306,7 @@ namespace filemanager
    //   //                       strTemplateId,
    //   //                       __type(document),
    //   //                       __type(main_frame),
-   //   //                       __type(folder_selection_list_view)));
+   //   //                       __type(folder_selection_list_impact)));
 
    //   //}
    //   //else

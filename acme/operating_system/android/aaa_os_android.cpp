@@ -20,7 +20,7 @@
 //#include "android_process_pid.cpp"
 //#include "android_simple_shell_launcher.cpp"
 //#include "android_small_ipca_channel.cpp"
-//#include "android_view_bitmap.cpp"
+//#include "android_impact_bitmap.cpp"
 //#include "android_window_android.cpp"
 //#include "android_window_buffer.cpp"
 //#include "android_window_impl.cpp"

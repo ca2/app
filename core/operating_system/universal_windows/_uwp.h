@@ -22,7 +22,7 @@
 
 //#include "directx_impact.h"
 
-//#include "directx_framework_view.h"
+//#include "directx_framework_impact.h"
 
 //#include "interaction_impl.h"
 

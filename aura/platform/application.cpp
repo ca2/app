@@ -3928,10 +3928,10 @@ retry_license:
    }
 
 
-   //__pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom)
+   //__pointer(::user::document) application::defer_create_impact(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom)
    //{
 
-   //   //auto pcontroller = pmultimedia->defer_create_view(strImpact, puiParent, ewindowflag, atom);
+   //   //auto pcontroller = pmultimedia->defer_create_impact(strImpact, puiParent, ewindowflag, atom);
 
    //   //if (pcontroller)
    //   //{
@@ -5267,7 +5267,7 @@ retry_license:
    //}
 
 
-   //void application::on_update_view(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint)
+   //void application::on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint)
    //{
 
 
@@ -5447,8 +5447,8 @@ namespace aura
 
    //const char application::gen_FileSection[] = "Recent File List";
    //const char application::gen_FileEntry[] = "File%d";
-   //const char application::gen_PreviewSection[] = "Settings";
-   //const char application::gen_PreviewEntry[] = "PreviewPages";
+   //const char application::gen_ThumbnailSection[] = "Settings";
+   //const char application::gen_ThumbnailEntry[] = "ThumbnailPages";
 
 
    //application::application()
@@ -6175,7 +6175,7 @@ namespace aura
    ASSERT_VALID(this);
 
    // 0 by default means not set
-   m_nNumPreviewPages = GetProfileInt(gen_PreviewSection, gen_PreviewEntry, 0);
+   m_nNumThumbnailPages = GetProfileInt(gen_ThumbnailSection, gen_ThumbnailEntry, 0);
    }*/
 
    /*void application::ParseCommandLine(CCommandLineInfo& rCmdInfo)
@@ -6314,8 +6314,8 @@ namespace aura
    //   ASSERT_VALID(this);
 
 
-   //   //      if (m_nNumPreviewPages != 0)
-   //   //       WriteProfileInt(gen_PreviewSection, gen_PreviewEntry, m_nNumPreviewPages);
+   //   //      if (m_nNumThumbnailPages != 0)
+   //   //       WriteProfileInt(gen_ThumbnailSection, gen_ThumbnailEntry, m_nNumThumbnailPages);
    //}
 
 
@@ -7444,7 +7444,7 @@ namespace aura
 //      document_manager()->dump(dumpcontext);*/
 //
 //      dumpcontext << "\nm_nWaitCursorCount = " << m_iWaitCursorCount;
-//      dumpcontext << "\nm_nNumPreviewPages = " << m_nNumPreviewPages;
+//      dumpcontext << "\nm_nNumThumbnailPages = " << m_nNumThumbnailPages;
 //
 //      dumpcontext << "\n";
 //   }
@@ -7576,7 +7576,7 @@ namespace aura
    }
 
 
-   //void application::on_create_split_view(::user::split_view* psplit)
+   //void application::on_create_split_impact(::user::split_impact* psplit)
    //{
 
    //}
@@ -8433,7 +8433,7 @@ namespace aura
 
    //   }
 
-   //   auto estatus = creatimpact_system();
+   //   auto estatus = create_impact_system();
 
    //   if (failed(estatus))
    //   {
@@ -8447,7 +8447,7 @@ namespace aura
    //}
 
 
-   void     application::creatimpact_system()
+   void     application::create_impact_system()
    {
 
       //return ::success;
@@ -8753,10 +8753,10 @@ namespace aura
    }
 
 
-   //__pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::atom& atom)
+   //__pointer(::user::document) application::defer_create_impact(string strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::atom& atom)
    //{
 
-   //   auto pcontroller = ::aura::application::defer_create_view(strImpact, puiParent, ewindowflag, atom);
+   //   auto pcontroller = ::aura::application::defer_create_impact(strImpact, puiParent, ewindowflag, atom);
 
    //   if (pcontroller)
    //   {

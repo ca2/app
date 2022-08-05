@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "core/user/simple/_simple.h"
+#include "core/user/simple/_component.h"
 
 
 simple_tab_control::simple_tab_control()

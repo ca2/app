@@ -108,7 +108,7 @@ Section "app_core_build (required)"
   File "C:\basis\time-windows\Win32\stage\write_text_win32.dll"
   File "C:\basis\time-windows\Win32\stage\app_core_build.dll"
   File "C:\basis\time-windows\Win32\stage\app_core_build.exe"
-  File "C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Redist\MSVC\v143\vc_redist.x86.exe"
+  File "C:\Program Files\Microsoft Visual Studio\2022\Thumbnail\VC\Redist\MSVC\v143\vc_redist.x86.exe"
   
 ${If} ${Runningx64}
 	ReadRegStr $1 HKLM "SOFTWARE\Wow6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\x86" "Installed"

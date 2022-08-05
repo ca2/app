@@ -15,7 +15,7 @@ public:
    ::payload                                 m_payloadFile;
    enum_impact                            m_epaneimpact;
    string                              m_strImpact;
-   __pointer_array(::user::impact)     m_viewaAttachable;
+   __pointer_array(::user::impact)     m_impactaAttachable;
    __pointer(::user::impact)           m_pviewTopic;
    __pointer(::user::document)         m_pdocTopic;
    bool                                m_bFullScreen;

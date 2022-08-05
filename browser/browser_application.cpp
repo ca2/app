@@ -83,15 +83,15 @@ pacmedirectory->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); 
 
       ::aura::session * pcoression = &Session;
 
-      pcoression->will_use_view_hint(FONTSEL_IMPACT);
+      pcoression->will_use_impact_hint(FONTSEL_IMPACT);
 
       add_factory_item <::browser::document >();
       add_factory_item <::browser::frame >();
       add_factory_item <::browser::main_frame >();
-      add_factory_item <::user::button_view >();
+      add_factory_item <::user::button_impact >();
       add_factory_item <::browser::impact >();
       add_factory_item <::browser::main_impact >();
-      add_factory_item <::browser::switcher_view >();
+      add_factory_item <::browser::switcher_impact >();
       add_factory_item <::browser::pane_impact >();
       add_factory_item <::browser::gcom >();
       add_matter_locator("app-core/hellomultiverse");
@@ -142,7 +142,7 @@ pacmedirectory->create(szRelative);  // or SHCreateDirectory(NULL, szCacheDir); 
                           "switcher",
                           __type(document),
                           __type(frame),
-                          __type(switcher_view)));
+                          __type(switcher_impact)));
       m_ptemplateHelloBrowserSwitcher = pDocTemplate;
       add_document_template(pDocTemplate);
 

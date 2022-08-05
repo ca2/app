@@ -6,13 +6,13 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE impact :
-      virtual public ::filemanager_show < ::user::split_view >
+      virtual public ::filemanager_show < ::user::split_impact >
    {
    public:
 
 
       impact();
-      virtual ~impact();
+      ~impact() override;
 
 
       void install_message_routing(::channel * pchannel) override;

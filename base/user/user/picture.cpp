@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #endif
 #include <math.h>
 #include "aura/graphics/draw2d/_draw2d.h"
@@ -957,7 +957,7 @@ namespace user
 
       ::draw2d::matrix mG;
 
-      pgraphics->get_viewport_scale(mG);
+      pgraphics->get_scaling(mG);
 
       pgraphics->prepend(mRot);
 

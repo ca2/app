@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #include "aura/os/_c.h"
 #include "aura/os/_.h"
 #include "aura/os/_os.h"

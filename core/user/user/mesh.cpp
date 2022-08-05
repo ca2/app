@@ -147,9 +147,9 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this,&mesh::on_message_create);
 
-      add_command_handler("mesh_view_auto_arrange", this, &mesh::_001OnMeshImpactAutoArrange);
+      add_command_handler("mesh_impact_auto_arrange", this, &mesh::_001OnMeshImpactAutoArrange);
 
-      add_command_prober("mesh_view_auto_arrange", this, &mesh::_001OnUpdateMeshImpactAutoArrange);
+      add_command_prober("mesh_impact_auto_arrange", this, &mesh::_001OnUpdateMeshImpactAutoArrange);
 
    }
 
@@ -175,7 +175,7 @@ namespace user
       get_client_rect(rectangleClient);
 
 
-      auto pointScroll = get_viewport_offset();
+      auto pointScroll = get_impactport_offset();
 
 
       //      pgraphics->SetBkMode(TRANSPARENT);
@@ -189,7 +189,7 @@ namespace user
 
          pbrushText->create_solid(get_color(pstyle, ::e_element_text));
 
-         const ::point_i32 & pointViewportOrg = pgraphics->GetViewportOrg();
+         const ::point_i32 & pointContextOrg = pgraphics->get_origin();
 
          pgraphics->set(pbrushText);
          ::size_array sizea;
@@ -231,7 +231,7 @@ namespace user
                iStart = iNewStart;
             }
          }
-         pgraphics->SetViewportOrg(pointViewportOrg);
+         pgraphics->set_origin(pointContextOrg);
       }
 
 
@@ -636,7 +636,7 @@ namespace user
       //if(m_eview == impact_grid)
       //{
 
-      //   pdrawitem->m_iOrder = maximum(get_viewport_offset().x, 0);
+      //   pdrawitem->m_iOrder = maximum(get_impactport_offset().x, 0);
 
       //}
       //else
@@ -955,7 +955,7 @@ namespace user
 
       m_nDisplayCount   = _001CalcDisplayItemCount();
 
-      on_change_view_size(pgraphics);
+      on_change_impact_size(pgraphics);
 
 
 
@@ -1108,7 +1108,7 @@ namespace user
 
       auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-      on_change_view_size(pgraphics);
+      on_change_impact_size(pgraphics);
 
       //FORMATTED_TRACE("mesh::_001OnUpdateItemCount ItemCount %d\n",m_nItemCount);
       //if(m_bGroup)
@@ -1120,7 +1120,7 @@ namespace user
    }
 
 
-   void mesh::on_change_view_size(::draw2d::graphics_pointer & pgraphics)
+   void mesh::on_change_impact_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::size_i32 sizeTotal = get_total_size();
@@ -1269,7 +1269,7 @@ namespace user
 
       }
 
-//      ::user::box::on_change_view_size();
+//      ::user::box::on_change_impact_size();
 
    }
 
@@ -1455,13 +1455,13 @@ namespace user
       if(m_eview == impact_grid)
       {
 
-         return (::index) minimum(maximum(0,get_viewport_offset().y),m_nGridItemCount);
+         return (::index) minimum(maximum(0,get_impactport_offset().y),m_nGridItemCount);
 
       }
       else
       {
 
-         auto pointScroll = get_viewport_offset();
+         auto pointScroll = get_impactport_offset();
 
          index iItem;
 
@@ -1697,7 +1697,7 @@ namespace user
 
       }
 
-      auto pointScroll = get_viewport_offset();
+      auto pointScroll = get_impactport_offset();
 
       if(m_eview == impact_icon || m_eview == impact_list)
       {
@@ -1759,7 +1759,7 @@ namespace user
 
       }
 
-      auto pointScroll = get_viewport_offset();
+      auto pointScroll = get_impactport_offset();
 
       if(m_eview == impact_report || m_eview == impact_grid)
       {
@@ -1969,7 +1969,7 @@ namespace user
 
       }
 
-      auto pointScroll = get_viewport_offset();
+      auto pointScroll = get_impactport_offset();
 
       if(m_eview == impact_grid)
       {
@@ -4357,7 +4357,7 @@ auto pwindowing = windowing();
    void mesh::_001EnsureVisible(index iItem,bool bRedraw)
    {
 
-      auto pointScroll = get_viewport_offset();
+      auto pointScroll = get_impactport_offset();
 
       if(iItem < pointScroll.y || (m_dItemHeight > 0 && iItem >= pointScroll.y / m_dItemHeight + m_nDisplayCount))
       {
@@ -4367,7 +4367,7 @@ auto pwindowing = windowing();
          queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
             {
 
-               set_viewport_offset_y(pgraphics, iy);
+               set_impactport_offset_y(pgraphics, iy);
 
             });
 
@@ -4386,7 +4386,7 @@ auto pwindowing = windowing();
    void mesh::_001ItemScroll(index iItem,bool bRedraw)
    {
 
-      //auto pointScroll = get_viewport_offset();
+      //auto pointScroll = get_impactport_offset();
 
       if(iItem < m_nItemCount)
       {
@@ -4396,7 +4396,7 @@ auto pwindowing = windowing();
          queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
             {
 
-               set_viewport_offset_y(pgraphics, iy);
+               set_impactport_offset_y(pgraphics, iy);
 
             });
 
@@ -4415,7 +4415,7 @@ auto pwindowing = windowing();
    void mesh::_001EnsureVisible(index iItem,range & range)
    {
 
-      auto pointScroll = get_viewport_offset();
+      auto pointScroll = get_impactport_offset();
 
       auto iyScroll = pointScroll.y / maximum(1,m_dItemHeight);
       if(iItem < iyScroll)
@@ -4435,9 +4435,9 @@ auto pwindowing = windowing();
          queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
             {
 
-               set_viewport_offset_y(pgraphics, iy);
+               set_impactport_offset_y(pgraphics, iy);
 
-               on_change_viewport_offset(pgraphics);
+               on_change_impactport_offset(pgraphics);
 
             });
 
@@ -4631,7 +4631,7 @@ auto pwindowing = windowing();
       queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
          {
 
-            set_viewport_offset(pgraphics, 0, 0);
+            set_impactport_offset(pgraphics, 0, 0);
 
          });
 
@@ -4643,7 +4643,7 @@ auto pwindowing = windowing();
 
       auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-      on_change_view_size(pgraphics);
+      on_change_impact_size(pgraphics);
 
       set_need_layout();
 
@@ -4696,7 +4696,7 @@ auto pwindowing = windowing();
 
       auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-      on_change_view_size(pgraphics);
+      on_change_impact_size(pgraphics);
 
       set_need_layout();
 
@@ -4832,7 +4832,7 @@ auto pwindowing = windowing();
       queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
          {
 
-            set_viewport_offset(pgraphics, 0, 0);
+            set_impactport_offset(pgraphics, 0, 0);
 
          });
 
@@ -4844,7 +4844,7 @@ auto pwindowing = windowing();
 
       auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-      on_change_view_size(pgraphics);
+      on_change_impact_size(pgraphics);
 
       set_need_layout();
 
@@ -5159,10 +5159,10 @@ auto pwindowing = windowing();
    //}
 
 
-   void mesh::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
+   void mesh::on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-//      ::user::interaction::on_change_viewport_offset();
+//      ::user::interaction::on_change_impactport_offset();
 
       m_iTopDisplayIndex = _001CalcDisplayTopIndex();
       index iLow = 0;
@@ -5300,7 +5300,7 @@ auto pwindowing = windowing();
       //}
 
 
-      //on_ui_event(event_change_view_style, object_list, this);
+      //on_ui_event(event_change_impact_style, object_list, this);
 
       data_get_DisplayToStrict();
 
@@ -5430,7 +5430,7 @@ auto pwindowing = windowing();
          if(pscroll->m_ecommand != e_scroll_command_thumb_track)
          {
 
-            auto pointScroll = get_viewport_offset();
+            auto pointScroll = get_impactport_offset();
 
             auto sizePage = get_page_size();
 
@@ -5447,7 +5447,7 @@ auto pwindowing = windowing();
 
                auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-               on_change_view_size(pgraphics);
+               on_change_impact_size(pgraphics);
 
             }
 
@@ -5470,7 +5470,7 @@ auto pwindowing = windowing();
          if(pscroll->m_ecommand != e_scroll_command_thumb_track)
          {
 
-            auto pointScroll = get_viewport_offset();
+            auto pointScroll = get_impactport_offset();
 
             auto sizePage = get_page_size();
 
@@ -5489,7 +5489,7 @@ auto pwindowing = windowing();
 
                auto pgraphics = pdraw2d->create_memory_graphics(this);
 
-               on_change_view_size(pgraphics);
+               on_change_impact_size(pgraphics);
 
             }
 
@@ -6170,15 +6170,15 @@ auto pwindowing = windowing();
    }
 
 
-   ::point_i32 mesh::get_viewport_offset()
+   ::point_i32 mesh::get_impactport_offset()
    {
 
-      return ::user::interaction::get_viewport_offset();
+      return ::user::interaction::get_impactport_offset();
 
    }
 
 
-   //void mesh::on_change_view_size()
+   //void mesh::on_change_impact_size()
    //{
 
    //   if(m_eview == impact_grid && m_dItemHeight > 0)
@@ -6213,7 +6213,7 @@ auto pwindowing = windowing();
    //   else
    //   {
    //
-   //      ::user::box::on_change_view_size();
+   //      ::user::box::on_change_impact_size();
 
    //   }
 
@@ -6239,7 +6239,7 @@ auto pwindowing = windowing();
 
          get_client_rect(rectangleClient);
 
-         //auto pointScroll = get_viewport_offset();
+         //auto pointScroll = get_impactport_offset();
 
          ::size_i32 sizePage;
 

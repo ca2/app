@@ -133,7 +133,7 @@ namespace userfs
          ASSERT(pPopup != nullptr);
          __pointer(::user::frame_window) pframe = top_level_frame();
 
-         pframe->set_active_view(this);
+         pframe->set_active_impact(this);
 
          //IContextMenu * pcontextmenu;
 

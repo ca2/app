@@ -200,9 +200,9 @@
     <ClCompile Include="user\experience\size_manager.cpp" />
     <ClCompile Include="user\menu\button.cpp" />
     <ClCompile Include="user\menu\central.cpp" />
-    <ClCompile Include="user\menu\list_view.cpp" />
+    <ClCompile Include="user\menu\list_impact.cpp" />
     <ClCompile Include="user\menu\list_window.cpp" />
-    <ClCompile Include="user\menu\menu_view.cpp" />
+    <ClCompile Include="user\menu\menu_impact.cpp" />
     <ClCompile Include="user\simple\frame_window.cpp" />
     <ClCompile Include="user\simple\main_frame.cpp" />
     <ClCompile Include="user\simple\scroll_bar.cpp" />
@@ -215,7 +215,7 @@
     <ClCompile Include="user\user\form_control.cpp" />
     <ClCompile Include="user\user\form_data.cpp" />
     <ClCompile Include="user\user\form_document.cpp" />
-    <ClCompile Include="user\user\form_view.cpp" />
+    <ClCompile Include="user\user\form_impact.cpp" />
     <ClCompile Include="user\user\form_window.cpp" />
     <ClCompile Include="user\user\frame_window.cpp" />
     <ClCompile Include="user\user\hotplugin.cpp" />
@@ -238,12 +238,12 @@
     <ClCompile Include="user\user\place_holder_container.cpp" />
     <ClCompile Include="user\user\print_task.cpp" />
     <ClCompile Include="user\user\server.cpp" />
-    <ClCompile Include="user\user\simple_view.cpp" />
+    <ClCompile Include="user\user\simple_impact.cpp" />
     <ClCompile Include="user\user\single_document_template.cpp" />
     <ClCompile Include="user\user\split_bar.cpp" />
     <ClCompile Include="user\user\split_layout.cpp" />
     <ClCompile Include="user\user\split_pane.cpp" />
-    <ClCompile Include="user\user\split_view.cpp" />
+    <ClCompile Include="user\user\split_impact.cpp" />
     <ClCompile Include="user\user\static_control.cpp" />
     <ClCompile Include="user\user\style.cpp" />
     <ClCompile Include="user\user\tab.cpp" />
@@ -251,7 +251,7 @@
     <ClCompile Include="user\user\tab_data.cpp" />
     <ClCompile Include="user\user\tab_pane.cpp" />
     <ClCompile Include="user\user\tab_pane_array.cpp" />
-    <ClCompile Include="user\user\tab_view.cpp" />
+    <ClCompile Include="user\user\tab_impact.cpp" />
     <ClCompile Include="user\user\toolbar.cpp" />
     <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="_.cpp" />

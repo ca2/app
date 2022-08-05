@@ -495,7 +495,7 @@ namespace draw2d_opengl
 //                        //   height = 1;										// Making Height Equal One
 //                        //}
 //
-//                        glViewport(0, 0, m_sizeOut.cx, m_sizeOut.cy);						// Reset The Current Viewport
+//                        glContext(0, 0, m_sizeOut.cx, m_sizeOut.cy);						// Reset The Current Context
 //
 //                        glMatrixMode(GL_PROJECTION);						// Select The Projection Matrix
 //                        glLoadIdentity();									// Reset The Projection Matrix

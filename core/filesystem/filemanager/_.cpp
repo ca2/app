@@ -17,15 +17,15 @@ namespace core
       if (::is_set(pdocument))
       {
 
-         if (pdocument->get_view() != nullptr)
+         if (pdocument->get_impact() != nullptr)
          {
 
-            auto ppanetabview = pdocument->get_view()->GetTypedParent < ::userex::pane_tab_impact >();
+            auto ppanetabview = pdocument->get_impact()->GetTypedParent < ::userex::pane_tab_impact >();
 
             if (ppanetabview)
             {
 
-               ppanetabview = pdocument->get_view()->GetTypedParent < ::userex::pane_tab_impact >();
+               ppanetabview = pdocument->get_impact()->GetTypedParent < ::userex::pane_tab_impact >();
 
                auto pfilemanagerdocument = ppanetabview->filemanager_document(atomFileManager);
 

@@ -846,7 +846,7 @@ namespace acme
    //}
 
 
-   //void library::get_create_view_id_list(::array < ::atom > & ida)
+   //void library::get_create_impact_id_list(::array < ::atom > & ida)
    //{
 
    //   auto psystem = get_system();

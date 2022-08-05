@@ -30,10 +30,10 @@ namespace filemanager
    }
 
 
-   void file_list::initialize_view(::user::document * pdocument)
+   void file_list::initialize_impact(::user::document * pdocument)
    {
 
-      ::filemanager_show < ::userfs::list >::initialize_view(pdocument);
+      ::filemanager_show < ::userfs::list >::initialize_impact(pdocument);
 
    }
 
@@ -1237,7 +1237,7 @@ namespace filemanager
       queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
          {
 
-            set_viewport_offset(pgraphics, 0, 0);
+            set_impactport_offset(pgraphics, 0, 0);
 
          });
 
@@ -2032,19 +2032,19 @@ namespace filemanager
          }
 
       }
-      else if (ptopic->m_atom == id_view_list)
+      else if (ptopic->m_atom == id_impact_list)
       {
 
          _001SetImpact(impact_list);
 
       }
-      else if (ptopic->m_atom == id_view_report)
+      else if (ptopic->m_atom == id_impact_report)
       {
 
          _001SetImpact(impact_report);
 
       }
-      else if (ptopic->m_atom == id_view_icon)
+      else if (ptopic->m_atom == id_impact_icon)
       {
 
          _001SetImpact(impact_icon);
@@ -2122,10 +2122,10 @@ namespace filemanager
          }
 
       }
-      else if (ptopic->m_atom == id_get_active_view_selection)
+      else if (ptopic->m_atom == id_get_active_impact_selection)
       {
 
-         if (parent_frame()->get_active_view() == (this))
+         if (parent_frame()->get_active_impact() == (this))
          {
 
             get_selected_items(*ptopic->cast <::file::item_array>(id_selected));

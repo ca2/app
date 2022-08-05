@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #endif
 
 
@@ -82,10 +82,10 @@ namespace user
       //               if (pframe)
       //               {
 
-      //                  if (pframe->get_active_view() == puserinteractionOld)
+      //                  if (pframe->get_active_impact() == puserinteractionOld)
       //                  {
 
-      //                     pframe->set_active_view(pimpact);
+      //                     pframe->set_active_impact(pimpact);
 
       //                  }
 

@@ -112,7 +112,7 @@ namespace dynamic_source
 //         if (m_strVs == "2022")
 //         {
 //
-//            m_strEnv = "C:/Program Files/Microsoft Visual Studio/2022/Preview/VC/Auxiliary/Build/vcvarsall.bat";
+//            m_strEnv = "C:/Program Files/Microsoft Visual Studio/2022/Thumbnail/VC/Auxiliary/Build/vcvarsall.bat";
 //
 //            m_strVCVersion = papp->get_visual_studio_build();
 //

@@ -1,8 +1,8 @@
 #include "framework.h"
-#include "base/user/simple/_simple.h"
+#include "base/user/simple/_component.h"
 #include "base/user/menu/_menu.h"
 #include "aura/update.h"
-#include "simple_view.h"
+#include "simple_impact.h"
 #include "acme/platform/system_setup.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "aura/graphics/draw2d/_draw2d.h"
@@ -64,10 +64,15 @@ namespace base
 
       ::factory::add_factory_item <::user::document >();
       //add_factory_item <::user::message_queue >();
-      ::factory::add_factory_item <::user::simple_view >();
+      ::factory::add_factory_item <::user::simple_impact >();
       ::factory::add_factory_item <::user::still >();
       ::factory::add_factory_item <::user::combo_box >();
       ::factory::add_factory_item <::user::place_holder >();
+
+
+      ::factory::add_factory_item <::simple_tab_document >();
+
+
       //add_factory_item <::user::font_combo_box >();
 
       ////if(get_app()->is_system())
@@ -116,7 +121,7 @@ namespace base
 
       ::factory::add_factory_item <::user::menu_item >();
       ::factory::add_factory_item <::user::menu >();
-      ::factory::add_factory_item <::user::menu_list_view >();
+      ::factory::add_factory_item <::user::menu_list_impact >();
 
 
       ::factory::add_factory_item < ::user::split_layout  >();
@@ -127,7 +132,7 @@ namespace base
       //add_factory_item < prodevian_translucent_simple_frame_window  >();
       ::factory::add_factory_item < simple_main_frame  >();
       ::factory::add_factory_item < ::user::document  >();
-      ::factory::add_factory_item < ::user::split_view  >();
+      ::factory::add_factory_item < ::user::split_impact  >();
 
 
       //auto estatus = 
@@ -435,7 +440,7 @@ namespace base
    }
 
 
-//   __pointer(::user::impact) user::get_view()
+//   __pointer(::user::impact) user::get_impact()
 //   {
 //
 //      return nullptr;
@@ -686,7 +691,7 @@ namespace base
 //
 //      if (psession->m_bShowPlatform)
 //      {
-//         //__pointer(::simple_frame_window) pframeApp = get_document()->get_type_impact < ::bergedge::pane_impact >()->get_view_uie();
+//         //__pointer(::simple_frame_window) pframeApp = get_document()->get_type_impact < ::bergedge::pane_impact >()->get_impact_uie();
 //         //if(pframeApp != nullptr)
 //         //{
 //         //   pframeApp->display(e_display_full_screen);
@@ -721,7 +726,7 @@ namespace base
 ////      {
 ////         try
 ////         {
-////            get_view()->get_parent_frame()->set_window_text(psession->m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
+////            get_impact()->get_parent_frame()->set_window_text(psession->m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
 ////         }
 ////         catch (...)
 ////         {
@@ -740,7 +745,7 @@ namespace base
    //}
 
 
-   //__pointer(::user::impact) session::get_view()
+   //__pointer(::user::impact) session::get_impact()
    //{
 
    //   if (get_document() == nullptr)
@@ -771,10 +776,10 @@ namespace base
 
    //{
 
-   //   if (get_document() != nullptr && get_view() != nullptr)
+   //   if (get_document() != nullptr && get_impact() != nullptr)
    //   {
 
-   //      get_view()->get_window_rect(prectangle);
+   //      get_impact()->get_window_rect(prectangle);
 
 
    //      return true;
@@ -803,7 +808,7 @@ namespace base
    //::count session::get_monitor_count()
    //{
 
-   //   if (get_document() != nullptr && get_view() != nullptr)
+   //   if (get_document() != nullptr && get_impact() != nullptr)
    //   {
 
    //      return 1;
@@ -851,7 +856,7 @@ namespace base
 //
 //      /*      if(pinteraction == nullptr && m_bShowPlatform && m_pbergedge->get_document() != nullptr)
 //      {
-//      pinteraction = psession->get_document()->get_bergedge_view();
+//      pinteraction = psession->get_document()->get_bergedge_impact();
 //      }
 //
 //      return pinteraction;

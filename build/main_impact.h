@@ -6,14 +6,14 @@ namespace app_core_build
 
 
    class CLASS_DECL_APP_CORE_BUILD main_impact:
-      virtual public ::app_consumer < application, ::user::split_view >
+      virtual public ::app_consumer < application, ::user::split_impact >
    {
    public:
 
 
-      ::userex::top_view *                      m_ptopview;
+      ::userex::top_impact *                      m_ptopview;
       ::app_core_build::impact *      m_pimpact;
-      string                                    m_strViewId;
+      string                                    m_strImpactId;
 
 
       main_impact();

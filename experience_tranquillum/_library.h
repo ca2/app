@@ -1,8 +1,8 @@
-// Created by camilo on 2022-03-18 17:43 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-03-18 17:43 <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
-#include "base/user/simple/_simple.h"       // thank you (mummy)
+#include "base/user/simple/_component.h"       // thank you (mummy)
 
 
 

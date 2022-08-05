@@ -54,14 +54,14 @@ namespace turboc
          get_type_impact < impact >()->m_strImage = payloadFile;
          get_type_impact < impact >()->m_strHelloMultiverse = "image:"+ get_type_impact < impact >()->m_strImage + ":" + get_type_impact < impact >()->m_strHelloMultiverse;
       }
-      else if(get_type_impact < edit_view >() != NULL)
+      else if(get_type_impact < edit_impact >() != NULL)
       {
 
          string str = pcontext->m_papexcontext->file().as_string(payloadFile);
 
          str = str.Left(84);
 
-         get_type_impact < edit_view >()->_001SetText(str,::e_source_user);
+         get_type_impact < edit_impact >()->_001SetText(str,::e_source_user);
 
       }
       else if(get_type_impact < pane_impact >() != NULL)

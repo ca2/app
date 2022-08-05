@@ -678,7 +678,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Android'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='static_basis|Android'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include=".\simple_shader_pane_view.cpp" />
+    <ClCompile Include=".\simple_shader_pane_impact.cpp" />
 
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Android'">Create</PrecompiledHeader>
@@ -688,31 +688,31 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Android'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='profiler|Android'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include=".\simple_shader_view.cpp" />
-    <ClCompile Include="simple_shader_edit_view.cpp" />
-    <ClCompile Include="simple_shader_lite_view.cpp" />
-    <ClCompile Include="simple_shader_main_view.cpp" />
-    <ClCompile Include="simple_shader_switcher_view.cpp" />
-    <ClCompile Include="simple_shader_toggle_view.cpp" />
-    <ClCompile Include="simple_shader_top_view.cpp" />
-    <ClCompile Include="simple_shader_full_view.cpp" />
+    <ClCompile Include=".\simple_shader_impact.cpp" />
+    <ClCompile Include="simple_shader_edit_impact.cpp" />
+    <ClCompile Include="simple_shader_lite_impact.cpp" />
+    <ClCompile Include="simple_shader_main_impact.cpp" />
+    <ClCompile Include="simple_shader_switcher_impact.cpp" />
+    <ClCompile Include="simple_shader_toggle_impact.cpp" />
+    <ClCompile Include="simple_shader_top_impact.cpp" />
+    <ClCompile Include="simple_shader_full_impact.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="simple_shader_application.h" />
     <ClInclude Include="simple_shader_document.h" />
-    <ClInclude Include="simple_shader_edit_view.h" />
+    <ClInclude Include="simple_shader_edit_impact.h" />
     <ClInclude Include="simple_shader_frame.h" />
     <ClInclude Include="simple_shader.h" />
-    <ClInclude Include="simple_shader_full_view.h" />
-    <ClInclude Include="simple_shader_lite_view.h" />
-    <ClInclude Include="simple_shader_main_view.h" />
-    <ClInclude Include="simple_shader_pane_view.h" />
+    <ClInclude Include="simple_shader_full_impact.h" />
+    <ClInclude Include="simple_shader_lite_impact.h" />
+    <ClInclude Include="simple_shader_main_impact.h" />
+    <ClInclude Include="simple_shader_pane_impact.h" />
 
     <ClInclude Include="framework.h" />
-    <ClInclude Include="simple_shader_switcher_view.h" />
-    <ClInclude Include="simple_shader_toggle_view.h" />
-    <ClInclude Include="simple_shader_top_view.h" />
-    <ClInclude Include="simple_shader_view.h" />
+    <ClInclude Include="simple_shader_switcher_impact.h" />
+    <ClInclude Include="simple_shader_toggle_impact.h" />
+    <ClInclude Include="simple_shader_top_impact.h" />
+    <ClInclude Include="simple_shader_impact.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".\simple_shader_simple_shader.def" />

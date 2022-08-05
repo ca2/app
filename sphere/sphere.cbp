@@ -112,8 +112,8 @@
 		<Unit filename="calculator/calculator_document.h" />
 		<Unit filename="calculator/calculator_frame.cpp" />
 		<Unit filename="calculator/calculator_frame.h" />
-		<Unit filename="calculator/calculator_view.cpp" />
-		<Unit filename="calculator/calculator_view.h" />
+		<Unit filename="calculator/calculator_impact.cpp" />
+		<Unit filename="calculator/calculator_impact.h" />
 		<Unit filename="charguess/EUCJPProber.cpp" />
 		<Unit filename="charguess/EUCJPProber.h" />
 		<Unit filename="charguess/EUCKRProber.cpp" />
@@ -219,7 +219,7 @@
 		<Unit filename="colorertake5/colorertake5_styled_hrd_mapper.cpp" />
 		<Unit filename="colorertake5/colorertake5_styled_hrd_mapper.h" />
 		<Unit filename="colorertake5/colorertake5_styled_region.h" />
-		<Unit filename="colorertake5/colorertake5_text_console_viewer.h" />
+		<Unit filename="colorertake5/colorertake5_text_console_impacter.h" />
 		<Unit filename="colorertake5/colorertake5_text_hrd_mapper.cpp" />
 		<Unit filename="colorertake5/colorertake5_text_hrd_mapper.h" />
 		<Unit filename="colorertake5/colorertake5_text_lines.cpp" />
@@ -236,10 +236,10 @@
 		<Unit filename="command/command_document.h" />
 		<Unit filename="command/command_form_callback.h" />
 		<Unit filename="command/command_frame.h" />
-		<Unit filename="command/command_pane_view.h" />
-		<Unit filename="command/aaa_want_to_erase_command_view_update_hint.h" />
-		<Unit filename="command/command_primary_view.h" />
-		<Unit filename="command/command_view.h" />
+		<Unit filename="command/command_pane_impact.h" />
+		<Unit filename="command/aaa_want_to_erase_command_impact_update_hint.h" />
+		<Unit filename="command/command_primary_impact.h" />
+		<Unit filename="command/command_impact.h" />
 		<Unit filename="console/console.h" />
 		<Unit filename="console/console_application.h" />
 		<Unit filename="console/console_department.cpp" />
@@ -258,12 +258,12 @@
 		<Unit filename="filehandler/filehandler_document.h" />
 		<Unit filename="filehandler/filehandler_frame.cpp" />
 		<Unit filename="filehandler/filehandler_frame.h" />
-		<Unit filename="filehandler/filehandler_pane_view.cpp" />
-		<Unit filename="filehandler/filehandler_pane_view.h" />
-		<Unit filename="filehandler/aaa_want_to_erase_filehandler_view_update_hint.cpp" />
-		<Unit filename="filehandler/aaa_want_to_erase_filehandler_view_update_hint.h" />
-		<Unit filename="filehandler/filehandler_view.cpp" />
-		<Unit filename="filehandler/filehandler_view.h" />
+		<Unit filename="filehandler/filehandler_pane_impact.cpp" />
+		<Unit filename="filehandler/filehandler_pane_impact.h" />
+		<Unit filename="filehandler/aaa_want_to_erase_filehandler_impact_update_hint.cpp" />
+		<Unit filename="filehandler/aaa_want_to_erase_filehandler_impact_update_hint.h" />
+		<Unit filename="filehandler/filehandler_impact.cpp" />
+		<Unit filename="filehandler/filehandler_impact.h" />
 		<Unit filename="framework.h">
 			<Option compile="1" />
 			<Option weight="0" />
@@ -306,14 +306,14 @@
 		<Unit filename="prompt/prompt_form_callback.h" />
 		<Unit filename="prompt/prompt_frame.cpp" />
 		<Unit filename="prompt/prompt_frame.h" />
-		<Unit filename="prompt/prompt_pane_view.cpp" />
-		<Unit filename="prompt/prompt_pane_view.h" />
-		<Unit filename="prompt/aaa_want_to_erase_prompt_view_update_hint.cpp" />
-		<Unit filename="prompt/aaa_want_to_erase_prompt_view_update_hint.h" />
-		<Unit filename="prompt/prompt_primary_view.cpp" />
-		<Unit filename="prompt/prompt_primary_view.h" />
-		<Unit filename="prompt/prompt_view.cpp" />
-		<Unit filename="prompt/prompt_view.h" />
+		<Unit filename="prompt/prompt_pane_impact.cpp" />
+		<Unit filename="prompt/prompt_pane_impact.h" />
+		<Unit filename="prompt/aaa_want_to_erase_prompt_impact_update_hint.cpp" />
+		<Unit filename="prompt/aaa_want_to_erase_prompt_impact_update_hint.h" />
+		<Unit filename="prompt/prompt_primary_impact.cpp" />
+		<Unit filename="prompt/prompt_primary_impact.h" />
+		<Unit filename="prompt/prompt_impact.cpp" />
+		<Unit filename="prompt/prompt_impact.h" />
 		<Unit filename="res/aud.h" />
 		<Unit filename="sphere/sphere.h" />
 		<Unit filename="sphere/sphere_application.cpp" />
@@ -331,12 +331,12 @@
 		<Unit filename="userstack/userstack_form_callback.h" />
 		<Unit filename="userstack/userstack_frame.cpp" />
 		<Unit filename="userstack/userstack_frame.h" />
-		<Unit filename="userstack/userstack_pane_view.cpp" />
-		<Unit filename="userstack/userstack_pane_view.h" />
-		<Unit filename="userstack/aaa_want_to_erase_userstack_view_update_hint.cpp" />
-		<Unit filename="userstack/aaa_want_to_erase_userstack_view_update_hint.h" />
-		<Unit filename="userstack/userstack_view.cpp" />
-		<Unit filename="userstack/userstack_view.h" />
+		<Unit filename="userstack/userstack_pane_impact.cpp" />
+		<Unit filename="userstack/userstack_pane_impact.h" />
+		<Unit filename="userstack/aaa_want_to_erase_userstack_impact_update_hint.cpp" />
+		<Unit filename="userstack/aaa_want_to_erase_userstack_impact_update_hint.h" />
+		<Unit filename="userstack/userstack_impact.cpp" />
+		<Unit filename="userstack/userstack_impact.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

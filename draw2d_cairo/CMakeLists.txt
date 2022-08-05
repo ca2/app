@@ -34,7 +34,7 @@ list(APPEND library_source
    path.h
    pen.cpp
    pen.h
-   preview_dc.cpp
+   thumbnail_dc.cpp
    region.cpp
    region.h)
 

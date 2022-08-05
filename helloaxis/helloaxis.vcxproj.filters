@@ -25,25 +25,25 @@
     <ClCompile Include=".\helloaxis_frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include=".\helloaxis_pane_view.cpp">
+    <ClCompile Include=".\helloaxis_pane_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include=".\aaa_want_to_erase_helloaxis_view_update_hint.cpp">
+    <ClCompile Include=".\aaa_want_to_erase_helloaxis_impact_update_hint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include=".\helloaxis_view.cpp">
+    <ClCompile Include=".\helloaxis_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="helloaxis_main_view.cpp">
+    <ClCompile Include="helloaxis_main_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="helloaxis_switcher_view.cpp">
+    <ClCompile Include="helloaxis_switcher_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="helloaxis_render.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="helloaxis_view_base.cpp">
+    <ClCompile Include="helloaxis_impact_base.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="helloaxis_gcom.cpp">
@@ -69,25 +69,25 @@
     <ClInclude Include="helloaxis_frame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="helloaxis_pane_view.h">
+    <ClInclude Include="helloaxis_pane_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aaa_want_to_erase_helloaxis_view_update_hint.h">
+    <ClInclude Include="aaa_want_to_erase_helloaxis_impact_update_hint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="helloaxis_view.h">
+    <ClInclude Include="helloaxis_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="helloaxis_main_view.h">
+    <ClInclude Include="helloaxis_main_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="helloaxis_switcher_view.h">
+    <ClInclude Include="helloaxis_switcher_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="helloaxis_render.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="helloaxis_view_base.h">
+    <ClInclude Include="helloaxis_impact_base.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="helloaxis_gcom.h">

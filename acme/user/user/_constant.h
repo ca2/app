@@ -130,7 +130,7 @@ namespace user
    //   using color_edit_background_selected = ::color::color;
    //   using color_edit_text_empty = ::color::color;
    //   using color_tree_background = ::color::color;
-   //   using color_view_background = ::color::color;
+   //   using color_impact_background = ::color::color;
    //   using color_toolbar_background = ::color::color;
    //   using color_toolbar_separator = ::color::color;
    //   using color_split_layout_background = ::color::color;

@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #endif
 #include "aura/message.h"
 #include "aura/update.h"
@@ -52,9 +52,9 @@ namespace user
 #endif
 
       // there should be no views left!
-      disconnect_views();
+      disconnect_impacts();
 
-      ASSERT(m_viewa.is_empty());
+      ASSERT(m_impacta.is_empty());
 
       if (m_pimpactsystem != nullptr)
       {
@@ -72,10 +72,10 @@ namespace user
    {
       ::object::assert_ok();
 
-      ::count count = get_view_count();
+      ::count count = get_impact_count();
       for (index index = 0; index < count; index++)
       {
-         __pointer(::user::impact) pimpact = get_view(index);
+         __pointer(::user::impact) pimpact = get_impact(index);
          ASSERT_VALID(pimpact);
       }
    }
@@ -84,7 +84,7 @@ namespace user
    ::user::interaction* document::impact_at(::index iImpact) const
    {
 
-      return m_viewa[iImpact];
+      return m_impacta[iImpact];
 
    }
 
@@ -92,7 +92,7 @@ namespace user
    ::count document::impact_count() const
    {
 
-      return m_viewa.get_count();
+      return m_impacta.get_count();
 
    }
 
@@ -104,7 +104,7 @@ namespace user
 
       ::user::interaction_array uia;
 
-      for (auto & pimpact : m_viewa)
+      for (auto & pimpact : m_impacta)
       {
 
          uia.add_unique_interaction(pimpact->top_level());
@@ -165,7 +165,7 @@ namespace user
    bool document::contains(::user::interaction* pinteraction) const
    {
 
-      for (auto& pimpact : m_viewa)
+      for (auto& pimpact : m_impacta)
       {
 
          if (::is_set(pimpact))
@@ -202,10 +202,10 @@ namespace user
 
       if (dumpcontext.GetDepth() > 0)
       {
-         ::count count = get_view_count();
+         ::count count = get_impact_count();
          for (index index = 0; index < count; index++)
          {
-            __pointer(::user::impact) pimpact = get_view(index);
+            __pointer(::user::impact) pimpact = get_impact(index);
             dumpcontext << "\nwith ::user::impact " << (void *)pimpact;
          }
       }
@@ -271,7 +271,7 @@ namespace user
    //   //for (auto& pinteraction : m_interactionaCommandHandlers)
    //   //{
 
-   //   //   if (pinteraction && pinteraction != get_active_view())
+   //   //   if (pinteraction && pinteraction != get_active_impact())
    //   //   {
 
    //   //      pinteraction->on_command_message(pcommand);
@@ -322,7 +322,7 @@ namespace user
 
    //   __pointer(channel) ptarget = psession->get_keyboard_focus();
 
-   //   if (ptarget != nullptr && ptarget != this && ptarget != get_active_view()
+   //   if (ptarget != nullptr && ptarget != this && ptarget != get_active_impact()
    //      && !m_interactionaCommandHandlers.contains(ptarget))
    //   {
 
@@ -392,26 +392,26 @@ namespace user
    }
 
 
-   ::atom document::get_topic_view_id()
+   ::atom document::get_topic_impact_id()
    {
 
-      auto psignal = get_signal(id_get_topic_view_id);
+      auto psignal = get_signal(id_get_topic_impact_id);
 
-      update_all_views(psignal);
+      update_all_impacts(psignal);
 
       return psignal->payload(id_id);
 
    }
 
 
-   bool document::set_topic_view_by_id(::atom atom)
+   bool document::set_topic_impact_by_id(::atom atom)
    {
 
-      auto psignal = get_signal(id_get_topic_view_id);
+      auto psignal = get_signal(id_get_topic_impact_id);
 
       psignal->payload(id_id) = atom;
 
-      update_all_views(psignal);
+      update_all_impacts(psignal);
 
       return psignal->m_bRet;
 
@@ -434,7 +434,7 @@ namespace user
 
       }
 
-      auto pimpact = get_view(0);
+      auto pimpact = get_impact(0);
 
       if (pimpact)
       {
@@ -463,15 +463,15 @@ namespace user
    }
 
 
-   void document::disconnect_views()
+   void document::disconnect_impacts()
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      for (index index = 0; index < m_viewa.get_count(); index++)
+      for (index index = 0; index < m_impacta.get_count(); index++)
       {
 
-         __pointer(::user::impact) pimpact = m_viewa[index];
+         __pointer(::user::impact) pimpact = m_impacta[index];
 
          ASSERT_VALID(pimpact);
 
@@ -481,7 +481,7 @@ namespace user
 
       }
 
-      m_viewa.erase_all();
+      m_impacta.erase_all();
 
    }
 
@@ -511,19 +511,19 @@ namespace user
    }
 
 
-   __pointer(::user::impact) document::get_view(index index) const
+   __pointer(::user::impact) document::get_impact(index index) const
    {
 
       synchronous_lock synchronouslock(((document *)this)->mutex());
 
-      if (index < 0 || index >= m_viewa.get_count())
+      if (index < 0 || index >= m_impacta.get_count())
       {
 
          return nullptr;
 
       }
 
-      __pointer(::user::impact) pimpact = m_viewa[index];
+      __pointer(::user::impact) pimpact = m_impacta[index];
 
       ASSERT_KINDOF(::user::impact, pimpact);
 
@@ -536,14 +536,14 @@ namespace user
    //void document::send_update(__pointer(::user::impact) pSender, LPARAM lHint, ::object * pHint)
    //// walk through all views
    //{
-   //   ASSERT(pSender == nullptr || !m_viewa.is_empty());
+   //   ASSERT(pSender == nullptr || !m_impacta.is_empty());
    //   // must have views if sent by one of them
 
    //   update * ptask;
-   //   ::count count = get_view_count();
+   //   ::count count = get_impact_count();
    //   for (index index = 0; index < count; index++)
    //   {
-   //      __pointer(::user::impact) pimpact = get_view(index);
+   //      __pointer(::user::impact) pimpact = get_impact(index);
 
    //      ptask = new update;
    //      ptask->m_pSender = pSender;
@@ -568,7 +568,7 @@ namespace user
 
       single_lock synchronouslock(mutex(), true);
 
-      ::count countImpact = get_view_count();
+      ::count countImpact = get_impact_count();
 
       ::count countFind = 0;
 
@@ -577,7 +577,7 @@ namespace user
       for (index index = 0; index < countImpact; index++)
       {
 
-         pimpact = get_view(index);
+         pimpact = get_impact(index);
 
          if (info == __type_name(pimpact))
          {
@@ -604,15 +604,15 @@ namespace user
    }
 
 
-   __pointer(::user::impact) document::get_typed_view_with_id(::type info, atom atom)
+   __pointer(::user::impact) document::get_typed_impact_with_id(::type info, atom atom)
    {
       single_lock synchronouslock(mutex(), true);
-      ::count countImpact = get_view_count();
+      ::count countImpact = get_impact_count();
       ::count countFind = 0;
       __pointer(::user::impact) pimpact;
       for (index index = 0; index < countImpact; index++)
       {
-         pimpact = get_view(index);
+         pimpact = get_impact(index);
          if (info == __type_name(pimpact))
          {
             if (atom == pimpact->m_atom)
@@ -630,12 +630,12 @@ namespace user
    void document::show_all_frames(const ::edisplay & edisplay)
    {
 
-      ::count count = get_view_count();
+      ::count count = get_impact_count();
 
       for (index index = 0; index < count; index++)
       {
 
-         __pointer(::user::impact) pimpact = get_view(index);
+         __pointer(::user::impact) pimpact = get_impact(index);
 
          enum_activation eactivation = e_activation_default;
 
@@ -796,20 +796,20 @@ namespace user
       m_bNew = false;*/
    }
 
-   ::count document::get_view_count() const
+   ::count document::get_impact_count() const
    {
-      return m_viewa.get_count();
+      return m_impacta.get_count();
    }
 
    /////////////////////////////////////////////////////////////////////////////
    // Closing documents or views
 
-   void document::on_changed_view_list()
+   void document::on_changed_impact_list()
    {
 
       // if no more views on the document_interface, delete ourself
       // not called if directly closing the document_interface or terminating the cast
-      if (m_viewa.is_empty() && m_bAutoDelete)
+      if (m_impacta.is_empty() && m_bAutoDelete)
       {
 
          on_close_document();
@@ -1089,7 +1089,7 @@ namespace user
 
          synchronous_lock synchronouslock(mutex());
 
-         for (auto & pimpact : m_viewa.ptra())
+         for (auto & pimpact : m_impacta.ptra())
          {
 
             ::user::frame * pframe = pimpact->parent_frame();
@@ -1120,7 +1120,7 @@ namespace user
 
          synchronous_lock synchronouslock(mutex());
 
-         m_viewa.erase_all();
+         m_impacta.erase_all();
 
       }
 
@@ -1136,7 +1136,7 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      auto viewptra = m_viewa;
+      auto viewptra = m_impacta;
 
       synchronouslock.unlock();
 
@@ -1172,7 +1172,7 @@ namespace user
 
       }
 
-      update_all_views(nullptr, PRE_CLOSE_DOCUMENT_UPDATE);
+      update_all_impacts(nullptr, PRE_CLOSE_DOCUMENT_UPDATE);
 
    }
 
@@ -1331,12 +1331,12 @@ namespace user
 
       //UNUSED(pframeParam);   // unused in release builds
 
-      ::count count = get_view_count();
+      ::count count = get_impact_count();
 
       for (index index = 0; index < count; index++)
       {
 
-         __pointer(::user::impact) pimpact = get_view(index);
+         __pointer(::user::impact) pimpact = get_impact(index);
 
          ASSERT_VALID(pimpact);
 
@@ -1623,14 +1623,14 @@ namespace user
    {
 
       // walk all frames of views (mark and sweep approach)
-      ::count count = get_view_count();
+      ::count count = get_impact_count();
 
       index index;
 
       for (index = 0; index < count; index++)
       {
 
-         ::user::impact * pimpact = get_view(index);
+         ::user::impact * pimpact = get_impact(index);
 
          ASSERT_VALID(pimpact);
 
@@ -1653,12 +1653,12 @@ namespace user
       // now do it again counting the unique ones
       i32 nFrames = 0;
 
-      count = get_view_count();
+      count = get_impact_count();
 
       for (index = 0; index < count; index++)
       {
 
-         ::user::impact * pimpact = get_view(index);
+         ::user::impact * pimpact = get_impact(index);
 
          ASSERT_VALID(pimpact);
 
@@ -1685,12 +1685,12 @@ namespace user
       // go through frames updating the appropriate one
       i32 iFrame = 1;
 
-      count = get_view_count();
+      count = get_impact_count();
 
       for (index = 0; index < count; index++)
       {
 
-         ::user::impact * pimpact = get_view(index);
+         ::user::impact * pimpact = get_impact(index);
 
          ASSERT_VALID(pimpact);
 
@@ -1755,7 +1755,7 @@ namespace user
    // ::user::impact operations
 
 
-   void document::add_view(::user::impact * pimpact)
+   void document::add_impact(::user::impact * pimpact)
    {
 
       single_lock synchronouslock(mutex(), true);
@@ -1769,23 +1769,23 @@ namespace user
 
       }
 
-      if (!m_viewa.add_unique(pimpact))
+      if (!m_impacta.add_unique(pimpact))
       {
 
          throw ::exception(::error_already_added);// must not be already added
 
       }
 
-      pimpact->initialize_view(this);
+      pimpact->initialize_impact(this);
 
-      on_changed_view_list();    // must be the last thing done to the document
+      on_changed_impact_list();    // must be the last thing done to the document
 
       //return ::success;
 
    }
 
 
-   void document::erase_view(::user::impact * pimpact)
+   void document::erase_impact(::user::impact * pimpact)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -1799,7 +1799,7 @@ namespace user
 
       }
 
-      if (m_viewa.erase(pimpact) < 0)
+      if (m_impacta.erase(pimpact) < 0)
       {
 
          throw ::exception(::error_not_found);
@@ -1808,7 +1808,7 @@ namespace user
 
       pimpact->__release(pimpact->m_pdocument);
 
-      on_changed_view_list();    // must be the last thing done to the document
+      on_changed_impact_list();    // must be the last thing done to the document
 
       //return ::success;
 
@@ -1902,20 +1902,20 @@ namespace user
    }
 
 
-   void document::id_update_all_views(const ::atom & atom)
+   void document::id_update_all_impacts(const ::atom & atom)
    {
 
-      update_all_views(nullptr, atom);
+      update_all_impacts(nullptr, atom);
 
    }
 
 
-   void document::update_all_views(::topic * ptopic)
+   void document::update_all_impacts(::topic * ptopic)
    {
 
-      ASSERT(ptopic->m_psender == nullptr || !m_viewa.is_empty());
+      ASSERT(ptopic->m_psender == nullptr || !m_impacta.is_empty());
 
-      for (auto & pimpact : m_viewa.ptra())
+      for (auto & pimpact : m_impacta.ptra())
       {
 
          ASSERT_VALID(pimpact);
@@ -1942,19 +1942,19 @@ namespace user
    void document::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      update_all_views(ptopic);
+      update_all_impacts(ptopic);
 
    }
 
 
-   void document::update_all_views(impact * pimpactSender, const ::atom & atom)
+   void document::update_all_impacts(impact * pimpactSender, const ::atom & atom)
    {
 
       auto ptopic = create_topic(atom);
 
       ptopic->m_psender = pimpactSender;
 
-      update_all_views(ptopic);
+      update_all_impacts(ptopic);
 
    }
 
@@ -1962,7 +1962,7 @@ namespace user
    void document::call_initial_update()
    {
 
-      id_update_all_views(INITIAL_UPDATE);
+      id_update_all_impacts(INITIAL_UPDATE);
 
    }
 

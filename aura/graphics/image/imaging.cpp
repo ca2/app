@@ -991,7 +991,7 @@ return pil;
 //         LPVOID pv = memorystorage.get_data();
 
 //#endif
-//         //       ::point_i32 pointViewport = pgraphics->GetViewportOrg();
+//         //       ::point_i32 pointContext = pgraphics->get_origin();
 //
 //         ::u32 uStartScanLine = maximum(0,bm.bmHeight - y - cy);
 //         ::u32 uScanLines = cy + minimum(0,bm.bmHeight - y - cy);
@@ -1123,7 +1123,7 @@ throw ::exception(::exception("integer_exception" + __string($1)));
 }
 LPVOID pv = memorystorage.get_data();
 
-::point_i32 pointViewport = pgraphics->GetViewportOrg();
+::point_i32 pointContext = pgraphics->get_origin();
 
 ::u32 uStartScanLine = 0;
 ::u32 uScanLines = cy;
@@ -1227,8 +1227,8 @@ throw ::exception(::exception("integer_exception" + __string($1)));
 LPVOID pv = memorystorage.get_data();
 
 
-::point_i32 pointViewport;
-pointViewport = pgraphics->GetViewportOrg();
+::point_i32 pointContext;
+pointContext = pgraphics->get_origin();
 ::u32 uStartScanLine = bm.bmHeight;
 
 uiStartScanLineParam = uiStartScanLine;
@@ -1236,7 +1236,7 @@ uiStartScanLineParam = uiStartScanLine;
 //::u32 uStartScanLine = bm.bmHeight - y - cy;
 ::u32 uScanLines = cy;
 uiScanLineCountParam = uiScanLines;
-i32 xOffset = (x + pointViewport.x) * 3;
+i32 xOffset = (x + pointContext.x) * 3;
 //if(!GetDIBits(dcAux.get_os_data(), bitmap, bm.bmHeight - cy, cy, pv, &bmi, DIB_RGB_COLORS))
 
 //  throw ::exception(::exception("integer_exception" + __string($1)));
@@ -1255,9 +1255,9 @@ DIB_RGB_COLORS)))
 throw ::exception(::exception("integer_exception" + __string($1)));
 i32 iLimitX = cx;
 
-if(bm.bmWidth - x - pointViewport.x < iLimitX)
+if(bm.bmWidth - x - pointContext.x < iLimitX)
 {
-iLimitX = bm.bmWidth - x - pointViewport.x;
+iLimitX = bm.bmWidth - x - pointContext.x;
 }
 
 graphicsMem->set(pmpMemOld);
@@ -1712,12 +1712,12 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
    LPVOID pv = memstorageA.get_data();
 
 
-   ::point_i32 pointViewport;
-   pointViewport = pgraphics->GetViewportOrg();
-   ::u32 uStartScanLine = bm.bmHeight - y - cy - pointViewport.y;
+   ::point_i32 pointContext;
+   pointContext = pgraphics->get_origin();
+   ::u32 uStartScanLine = bm.bmHeight - y - cy - pointContext.y;
    //::u32 uStartScanLine = bm.bmHeight - y - cy;
    ::u32 uScanLines = cy;
-   i32 xOffset = (x + pointViewport.x) * 3;
+   i32 xOffset = (x + pointContext.x) * 3;
    //if(!GetDIBits(dcAux.get_os_data(), bitmapA, bm.bmHeight - cy, cy, pv, &bmi, DIB_RGB_COLORS))
 
    //  throw ::exception(::exception("integer_exception" + __string($1)));
@@ -1735,9 +1735,9 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
    return false;
    i32 iLimitX = cx;
 
-   if(bm.bmWidth - x - pointViewport.x < iLimitX)
+   if(bm.bmWidth - x - pointContext.x < iLimitX)
    {
-   iLimitX = bm.bmWidth - x - pointViewport.x;
+   iLimitX = bm.bmWidth - x - pointContext.x;
    }
 
    byte * p;
@@ -1828,11 +1828,11 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
    }
    LPVOID pv = memstorageA.get_data();
 
-   ::point_i32 pointViewport = pgraphics->GetViewportOrg();
-   ::u32 uStartScanLine = bm.bmHeight - y - cy - pointViewport.y;
+   ::point_i32 pointContext = pgraphics->get_origin();
+   ::u32 uStartScanLine = bm.bmHeight - y - cy - pointContext.y;
    //::u32 uStartScanLine = bm.bmHeight - y - cy;
    ::u32 uScanLines = cy;
-   i32 xOffset = (x + pointViewport.x) * 3;
+   i32 xOffset = (x + pointContext.x) * 3;
 
 
    //i32 xOffset = (x) * 3;
@@ -1852,9 +1852,9 @@ void imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
    i32 iLimitX = cx;
 
 
-   if(bm.bmWidth - x - pointViewport.x < iLimitX)
+   if(bm.bmWidth - x - pointContext.x < iLimitX)
    {
-   iLimitX = bm.bmWidth - x - pointViewport.x;
+   iLimitX = bm.bmWidth - x - pointContext.x;
    }
 
    byte * p;
@@ -4403,11 +4403,11 @@ i32 w3)
 
 //
 //
-//   const ::point_i32 & pointViewportDst = pdcDst->GetViewportOrg();
-//   const ::point_i32 & pointViewportSrc = pdcSrc->GetViewportOrg();
+//   const ::point_i32 & pointContextDst = pdcDst->get_origin();
+//   const ::point_i32 & pointContextSrc = pdcSrc->get_origin();
 //
-//   i32 xvpDst = pointDst.x + pointViewportDst.x;
-//   i32 xvpSrc = pointSrc.x + pointViewportSrc.x;
+//   i32 xvpDst = pointDst.x + pointContextDst.x;
+//   i32 xvpSrc = pointSrc.x + pointContextSrc.x;
 //
 //   i32 iLimitX = size.cx;
 //
@@ -4582,11 +4582,11 @@ i32 w3)
 
 //
 //
-//   const ::point_i32 & pointViewportDest = pdcDst->GetViewportOrg();
-//   const ::point_i32 & pointViewportSrc = pdcSrc->GetViewportOrg();
+//   const ::point_i32 & pointContextDest = pdcDst->get_origin();
+//   const ::point_i32 & pointContextSrc = pdcSrc->get_origin();
 //
-//   i32 xvpDest = pointDst.x + pointViewportDest.x;
-//   i32 xvpSrc = pointDst.y + pointViewportSrc.x;
+//   i32 xvpDest = pointDst.x + pointContextDest.x;
+//   i32 xvpSrc = pointDst.y + pointContextSrc.x;
 //
 //   i32 iLimitX = size.cx;
 //
@@ -5728,11 +5728,11 @@ breakFilter2:
 
 //
 //
-//   const ::point_i32 & pointViewportDest = pdcDst->GetViewportOrg();
-//   const ::point_i32 & pointViewportSrc = pdcSrc->GetViewportOrg();
+//   const ::point_i32 & pointContextDest = pdcDst->get_origin();
+//   const ::point_i32 & pointContextSrc = pdcSrc->get_origin();
 //
-//   i32 xvpDest = xDest + pointViewportDest.x;
-//   i32 xvpSrc = xSrc + pointViewportSrc.x;
+//   i32 xvpDest = xDest + pointContextDest.x;
+//   i32 xvpSrc = xSrc + pointContextSrc.x;
 //
 //   i32 iLimitX = cx;
 //
@@ -6294,13 +6294,13 @@ i32      iSize)
 
 
 //
-//   const ::point_i32 & pointViewportDest = pdcDst->GetViewportOrg();
-//   const ::point_i32 & pointViewportSrc1 = pdcSrc1->GetViewportOrg();
-//   const ::point_i32 & pointViewportSrc2 = pdcSrc2->GetViewportOrg();
+//   const ::point_i32 & pointContextDest = pdcDst->get_origin();
+//   const ::point_i32 & pointContextSrc1 = pdcSrc1->get_origin();
+//   const ::point_i32 & pointContextSrc2 = pdcSrc2->get_origin();
 //
-//   i32 xvpDest = xDest + pointViewportDest.x;
-//   i32 xvpSrc1 = xSrc1 + pointViewportSrc1.x;
-//   i32 xvpSrc2 = xSrc2 + pointViewportSrc2.x;
+//   i32 xvpDest = xDest + pointContextDest.x;
+//   i32 xvpSrc1 = xSrc1 + pointContextSrc1.x;
+//   i32 xvpSrc2 = xSrc2 + pointContextSrc2.x;
 //
 //   i32 iLimitX = cx;
 //

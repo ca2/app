@@ -2,36 +2,36 @@
 #include "_user.h"
 
 
-html_view::html_view()
+html_impact::html_impact()
 {
 
    auto pform = m_pform;
 
-   output_debug_string("html_view::on_message_create");
+   output_debug_string("html_impact::on_message_create");
 
 }
 
 
-html_view::~html_view()
+html_impact::~html_impact()
 {
 
 }
 
 
-void html_view::install_message_routing(::channel * pchannel)
+void html_impact::install_message_routing(::channel * pchannel)
 {
 
    html_form::install_message_routing(pchannel);
 
-   MESSAGE_LINK(e_message_destroy, pchannel, this, &html_view::on_message_destroy);
-   MESSAGE_LINK(e_message_create, pchannel, this, &html_view::on_message_create);
-   MESSAGE_LINK(e_message_context_menu, pchannel, this, &html_view::on_message_context_menu);
-   //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &html_view::on_message_set_cursor);
+   MESSAGE_LINK(e_message_destroy, pchannel, this, &html_impact::on_message_destroy);
+   MESSAGE_LINK(e_message_create, pchannel, this, &html_impact::on_message_create);
+   MESSAGE_LINK(e_message_context_menu, pchannel, this, &html_impact::on_message_context_menu);
+   //MESSAGE_LINK(e_message_set_cursor, pchannel, this, &html_impact::on_message_set_cursor);
 
 }
 
 
-void html_view::assert_ok() const
+void html_impact::assert_ok() const
 {
 
    ::user::impact::assert_ok();
@@ -39,7 +39,7 @@ void html_view::assert_ok() const
 }
 
 
-void html_view::dump(dump_context & dumpcontext) const
+void html_impact::dump(dump_context & dumpcontext) const
 {
 
    ::user::impact::dump(dumpcontext);
@@ -47,7 +47,7 @@ void html_view::dump(dump_context & dumpcontext) const
 }
 
 
-bool html_view::pre_create_window(::user::system * pusersystem)
+bool html_impact::pre_create_window(::user::system * pusersystem)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -61,7 +61,7 @@ bool html_view::pre_create_window(::user::system * pusersystem)
 }
 
 
-void html_view::on_message_destroy(::message::message * pmessage)
+void html_impact::on_message_destroy(::message::message * pmessage)
 {
 
    ::user::impact::on_message_destroy(pmessage);
@@ -69,7 +69,7 @@ void html_view::on_message_destroy(::message::message * pmessage)
 }
 
 
-void html_view::on_message_create(::message::message * pmessage)
+void html_impact::on_message_create(::message::message * pmessage)
 {
 
    if (pmessage->previous())
@@ -81,18 +81,18 @@ void html_view::on_message_create(::message::message * pmessage)
 
    auto pform = m_pform;
 
-   output_debug_string("html_view::on_message_create");
+   output_debug_string("html_impact::on_message_create");
 
 }
 
 
-void html_view::on_message_context_menu(::message::message * pmessage)
+void html_impact::on_message_context_menu(::message::message * pmessage)
 {
 
 }
 
 
-//void html_view::on_message_set_cursor(::message::message * pmessage)
+//void html_impact::on_message_set_cursor(::message::message * pmessage)
 //{
 //
 //   __pointer(::message::set_cursor) psetcursor(pmessage);
@@ -114,7 +114,7 @@ void html_view::on_message_context_menu(::message::message * pmessage)
 //}
 
 
-string html_view::GetLocationURL()
+string html_impact::GetLocationURL()
 {
 
    return m_strLocationURL;
@@ -122,7 +122,7 @@ string html_view::GetLocationURL()
 }
 
 
-bool html_view::Refresh2(i32 i)
+bool html_impact::Refresh2(i32 i)
 {
 
    __UNREFERENCED_PARAMETER(i);
@@ -134,7 +134,7 @@ bool html_view::Refresh2(i32 i)
 }
 
 
-bool html_view::Navigate(const ::string & pszUrl)
+bool html_impact::Navigate(const ::string & pszUrl)
 {
 
    if (!get_document()->on_open_document(pszUrl))
@@ -151,7 +151,7 @@ bool html_view::Navigate(const ::string & pszUrl)
 }
 
 
-void html_view::on_document_complete(const ::string & strUrl)
+void html_impact::on_document_complete(const ::string & strUrl)
 {
 
    __UNREFERENCED_PARAMETER(strUrl);

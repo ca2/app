@@ -287,7 +287,7 @@ namespace userfs
 
       pextendedtopic->m_actioncontext = context + ::e_source_sync;
 
-      update_all_views(pextendedtopic);
+      update_all_impacts(pextendedtopic);
 
       return true;
 

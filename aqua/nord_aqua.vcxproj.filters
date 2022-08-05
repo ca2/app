@@ -2427,7 +2427,7 @@
     <ClInclude Include="html\user\form.h">
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
-    <ClInclude Include="html\user\form_view.h">
+    <ClInclude Include="html\user\form_impact.h">
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
     <ClInclude Include="html\user\frame.h">

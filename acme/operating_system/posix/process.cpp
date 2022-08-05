@@ -119,6 +119,23 @@ void command_system(string_array & straOutput, int& iExitCode, const char* psz, 
    while(true)
    {
 
+      if(!::task_get_run())
+      {
+
+         close(stdout_fds[0]);
+
+         close(stderr_fds[0]);
+
+         kill(pid, SIGKILL);
+
+         int iStatus = 0;
+
+         waitpid(pid, &iStatus, 0);
+
+         break;
+
+      }
+
       bool bRead = false;
 
       while(true)

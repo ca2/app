@@ -3,7 +3,7 @@
 class form_document;
 
 
-class CLASS_DECL_CORE html_view :
+class CLASS_DECL_CORE html_impact :
    virtual public ::html_form
 {
 public:
@@ -15,8 +15,8 @@ public:
    string m_strLocationURL;
 
 
-   html_view();
-   virtual ~html_view();
+   html_impact();
+   virtual ~html_impact();
 
 
    void assert_ok() const override;

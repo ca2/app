@@ -84,20 +84,20 @@ namespace user
       virtual void set_impact_title(const ::string & strImpactTitle);
       virtual string get_impact_title() const;
 
-      __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::atom & atom = ::atom(), ::user::interaction * pviewLast = nullptr, ::user::impact_data * pdata = nullptr);
+      __pointer(::user::interaction) create_impact(const ::type & type, ::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::atom & atom = ::atom(), ::user::interaction * pviewLast = nullptr, ::user::impact_data * pdata = nullptr);
 
-      virtual void initialize_view(::user::document * pdocument);
-
-      template < class VIEW >
-      __pointer(VIEW) create_view(::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::atom & atom = ::atom(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
+      virtual void initialize_impact(::user::document * pdocument);
 
       template < class VIEW >
-      __pointer(VIEW) create_view(::user::interaction * puserinteractionParent, const ::atom & atom = ::atom(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
+      __pointer(VIEW) create_impact(::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::atom & atom = ::atom(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
 
       template < class VIEW >
-      __pointer(VIEW) create_view(::user::impact_data * pimpactdata, ::user::interaction * pviewLast = nullptr);
+      __pointer(VIEW) create_impact(::user::interaction * puserinteractionParent, const ::atom & atom = ::atom(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
 
-      __pointer(::user::interaction) create_view(::user::interaction * pimpactAlloc, ::user::impact_data * pimpactdata, ::user::interaction * pviewLast = nullptr);
+      template < class VIEW >
+      __pointer(VIEW) create_impact(::user::impact_data * pimpactdata, ::user::interaction * pviewLast = nullptr);
+
+      __pointer(::user::interaction) create_impact(::user::interaction * pimpactAlloc, ::user::impact_data * pimpactdata, ::user::interaction * pviewLast = nullptr);
 
 
 
@@ -127,7 +127,7 @@ namespace user
       DECLARE_MESSAGE_HANDLER(_001OnNextPaneCmd);
 
       DECLARE_MESSAGE_HANDLER(_001OnFilePrint);
-      DECLARE_MESSAGE_HANDLER(_001OnFilePrintPreview);
+      DECLARE_MESSAGE_HANDLER(_001OnFilePrintThumbnail);
 
 
       DECLARE_MESSAGE_HANDLER(on_message_right_button_down);
@@ -141,7 +141,7 @@ namespace user
 
       // not mapped commands - must be mapped in derived class
       void OnFilePrint();
-      void OnFilePrintPreview();
+      void OnFilePrintThumbnail();
 
       // TODO: could return a kind of - also TODO - JOB object in case of assynchronous call
       //virtual void collaborate(::job * pjob);
@@ -150,7 +150,7 @@ namespace user
 
       virtual ::user::interaction::enum_type get_window_type() override;
 
-      //virtual void on_simple_view_update_hint(__pointer(::user::impact) pviewSender, e_hint ehint, object * pupdate);
+      //virtual void on_simple_impact_update_hint(__pointer(::user::impact) pviewSender, e_hint ehint, object * pupdate);
 
       virtual void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -217,9 +217,9 @@ namespace user
 
 
 
-   CLASS_DECL_BASE __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast = nullptr);
-   CLASS_DECL_BASE __pointer(::user::interaction) create_view(::user::system * pusersystem, ::user::interaction * puserinteractionParent, const ::atom & atom);
-   CLASS_DECL_BASE ::user::document * get_document(::user::interaction * pinteraction);
+   //CLASS_DECL_BASE __pointer(::user::interaction) create_impact(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast = nullptr);
+   //CLASS_DECL_BASE __pointer(::user::interaction) create_impact(::user::system * pusersystem, ::user::interaction * puserinteractionParent, const ::atom & atom);
+   //CLASS_DECL_BASE ::user::document * get_document(::user::interaction * pinteraction);
 
 
 } // namespace user

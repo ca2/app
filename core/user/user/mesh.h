@@ -427,7 +427,7 @@ namespace user
       virtual bool  _001OnUpdateColumnCount(u32 dwFlags = 0);
       virtual bool  _001OnUpdateItemCount(u32 dwFlags = 0);
 
-      virtual void on_change_view_size(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_change_impact_size(::draw2d::graphics_pointer & pgraphics) override;
 
 
       virtual void  _001OnInitialize();
@@ -557,7 +557,7 @@ namespace user
 
       virtual i32 get_wheel_scroll_delta() override;
 
-      virtual void on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual bool keyboard_focus_is_focusable() const override;
 
@@ -566,7 +566,7 @@ namespace user
 
       virtual void  defer_create_mesh_data();
 
-      virtual ::point_i32 get_viewport_offset() override;
+      virtual ::point_i32 get_impactport_offset() override;
 
       virtual ::size_f64 get_page_size() override;
 

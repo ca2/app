@@ -993,7 +993,7 @@
     <ClInclude Include="user\colorertake5\colorertake5_styled_region.h">
       <Filter>Header Files\user\colorertake5</Filter>
     </ClInclude>
-    <ClInclude Include="user\colorertake5\colorertake5_text_console_viewer.h">
+    <ClInclude Include="user\colorertake5\colorertake5_text_console_impacter.h">
       <Filter>Header Files\user\colorertake5</Filter>
     </ClInclude>
     <ClInclude Include="user\colorertake5\colorertake5_text_hrd_mapper.h">

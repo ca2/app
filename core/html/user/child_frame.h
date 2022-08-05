@@ -13,6 +13,6 @@
 //
 //
 //   __pointer(form_document) get_document();
-//   __pointer(html_view) get_view();
+//   __pointer(html_impact) get_impact();
 //
 //};

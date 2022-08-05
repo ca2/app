@@ -17,7 +17,7 @@
 //#import "AuraWindow.h"
 
 
-//#import "AuraWindowFrameView.h"
+//#import "AuraWindowFrameImpact.h"
 
 
 //#import "aura_window.h"

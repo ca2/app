@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "base/user/simple/_simple.h"
+#include "base/user/simple/_component.h"
 #include "aura/message.h"
 #include "aura/update.h"
 #include "aqua/xml.h"
@@ -1009,10 +1009,10 @@ void simple_frame_window::_on_show_window()
 
       m_bFirstShow = false;
 
-      if (get_active_view())
+      if (get_active_impact())
       {
 
-         get_active_view()->post_message(e_message_simple_command, e_simple_command_defer_initialize_handled_views);
+         get_active_impact()->post_message(e_message_simple_command, e_simple_command_defer_initialize_handled_impacts);
 
       }
 
@@ -2412,7 +2412,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
             pgraphics = m_pimageAlpha->get_graphics();
 
-            pgraphics->SetViewportOrg(pgraphics->GetViewportOrg());
+            pgraphics->set_origin(pgraphics->get_origin());
 
             bDib = true;
 
@@ -3270,13 +3270,13 @@ string simple_frame_window::get_window_default_matter()
 //      __pointer(::user::frame_window) pframe = (this);
 //      // if the frame does not have an active ::user::impact, set to first pane
 //      __pointer(::user::impact) pimpact;
-//      if (pframe->get_active_view() == nullptr)
+//      if (pframe->get_active_impact() == nullptr)
 //      {
 //         __pointer(::user::interaction) pwindow = pframe->get_child_by_id(FIRST_PANE);
 //         if (pwindow != nullptr && base_class < ::user::impact >::bases(pwindow))
 //         {
 //            pimpact = (pwindow.m_p);
-//            pframe->set_active_view(pimpact, false);
+//            pframe->set_active_impact(pimpact, false);
 //         }
 //      }
 //
@@ -3358,7 +3358,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
       ::draw2d::savedc k(pgraphics);
 
-      //on_viewport_offset(pgraphics);
+      //on_impactport_offset(pgraphics);
       //if (0)
       {
 
@@ -3464,7 +3464,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
       ::draw2d::savedc k(pgraphics);
 
-      //on_viewport_offset(pgraphics);
+      //on_impactport_offset(pgraphics);
 
       try
       {

@@ -50,7 +50,7 @@
     <ClCompile Include="pen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="preview_dc.cpp">
+    <ClCompile Include="thumbnail_dc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="region.cpp">

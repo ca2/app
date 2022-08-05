@@ -1324,7 +1324,7 @@ namespace aura
 //            if (pimpl.is_set())
 //            {
 //
-//               pimpl->defer_update_text_view();
+//               pimpl->defer_update_text_impact();
 //
 //            }
 //

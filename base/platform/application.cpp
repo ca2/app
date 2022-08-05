@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #endif
 
 
@@ -86,7 +86,7 @@ namespace base
    }
 
 
-   void application::on_create_split_view(::user::split_view* psplit)
+   void application::on_create_split_impact(::user::split_impact* psplit)
    {
 
 
@@ -100,7 +100,7 @@ namespace base
    }
 
 
-   void application::creatimpact_system()
+   void application::create_impact_system()
    {
 
       //return ::success;
@@ -148,7 +148,7 @@ namespace base
    }
 
 
-   __pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::atom& atom)
+   __pointer(::user::document) application::defer_create_impact(string strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::atom& atom)
    {
 
       return nullptr;

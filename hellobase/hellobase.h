@@ -15,7 +15,7 @@
 namespace user
 {
 
-   typedef ::user::show < ::user::button > button_view;
+   typedef ::user::show < ::user::button > button_impact;
 
 } // namespace user
 
@@ -36,8 +36,8 @@ namespace hellobase
 #include "hellobase_render.h"
 
 #include "hellobase_document.h"
-#include "hellobase_view_base.h"
-#include "hellobase_view.h"
+#include "hellobase_impact_base.h"
+#include "hellobase_impact.h"
 #include "hellobase_main_frame.h"
 
 #include "hellobase_application.h"

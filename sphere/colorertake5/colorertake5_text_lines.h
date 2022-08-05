@@ -9,7 +9,7 @@ namespace colorertake5
    makes it accessible with line_source interface.
    All lines should be separated with \\r\\n , \\n or \\r characters.
 
-   @ingroup colorer_viewer
+   @ingroup colorer_impacter
    */
    class CLASS_DECL_SPHERE text_lines :
       public line_source

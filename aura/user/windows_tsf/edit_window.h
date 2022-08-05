@@ -150,7 +150,7 @@ namespace tsf
       STDMETHODIMP FindNextAttrTransition(::i32 acpStart, ::i32 acpHalt, ULONG cFilterAttrs, const TS_ATTRID * paFilterAttrs, ::u32 dwFlags, ::i32 * pacpNext, BOOL * pfFound, ::i32 * plFoundOffset);
       STDMETHODIMP RetrieveRequestedAttrs(ULONG ulCount, TS_ATTRVAL * paAttrVals, ULONG * pcFetched);
       STDMETHODIMP GetEndACP(::i32 * pacp);
-      STDMETHODIMP get_active_view(TsViewCookie * pvcView);
+      STDMETHODIMP get_active_impact(TsViewCookie * pvcView);
       STDMETHODIMP GetACPFromPoint(TsViewCookie vcView, const POINT_I32 * pt, ::u32 dwFlags, ::i32 * pacp);
       STDMETHODIMP GetTextExt(TsViewCookie vcView, ::i32 acpStart, ::i32 acpEnd, RECTANGLE_I32 * prc, BOOL * pfClipped);
       STDMETHODIMP GetScreenExt(TsViewCookie vcView, RECTANGLE_I32 * prc);

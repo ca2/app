@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 
 
 #define SWP_CHANGEVIEWPORTOFFSET  0x100000
@@ -175,7 +175,7 @@ struct __SIZEPARENTPARAMS;    // control bar implementationproperca2_property.h
 // Classes declared in this file
 
 //::draw2d::graphics_pointer
-class preview_dc;               // Virtual DC for print preview
+class thumbnail_dc;               // Virtual DC for print thumbnail
 
 class mini_dock_frame_window;
 
@@ -234,7 +234,7 @@ namespace user
    class control_bar;
 
 
-   struct PrintPreviewState;  // forward object (see afxext.h)
+   struct PrintThumbnailState;  // forward object (see afxext.h)
 
 
 }
@@ -270,7 +270,7 @@ namespace userex
 {
 
 
-   class color_view;
+   class color_impact;
 
 
 } // namespace userex
@@ -404,7 +404,7 @@ namespace user
 #include "mesh.h"
 #include "list.h"
 
-#include "list_view.h"
+#include "list_impact.h"
 #include "mesh_cache.h"
 #include "list_cache.h"
 
@@ -415,7 +415,7 @@ namespace user
 
 
 
-struct CPrintPreviewState;  // forward object (see afxext.h)
+struct CPrintThumbnailState;  // forward object (see afxext.h)
 namespace user
 {
    class control_bar;          // forward object (see afxext.h)
@@ -430,8 +430,8 @@ class CDockState;           // forward object (see afxpriv.h)
 
 
 
-#include "xfplayer_view_line.h"
-#include "xfplayer_view_lines.h"
+#include "xfplayer_impact_line.h"
+#include "xfplayer_impact_lines.h"
 
 //#include "tool_tip_tool.h"
 //#include "tool_tip_window.h"
@@ -457,7 +457,7 @@ namespace user
 
 #include "form_mesh.h"
 #include "form_list.h"
-#include "form_list_view.h"
+#include "form_list_impact.h"
 
 
 #include "step_slider.h"

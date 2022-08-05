@@ -53,7 +53,7 @@ namespace file
 
       }
 
-      m_pdata = MapViewOfFileFromApp(m_hfilemap, (m_bRead ? FILE_MAP_READ : 0) | (m_bWrite ? FILE_MAP_WRITE : 0), 0, 0);
+      m_pdata = MapimpactOfFileFromApp(m_hfilemap, (m_bRead ? FILE_MAP_READ : 0) | (m_bWrite ? FILE_MAP_WRITE : 0), 0, 0);
 
       if (m_pdata == nullptr)
       {
@@ -99,7 +99,7 @@ namespace file
       if (m_pdata != nullptr)
       {
 
-         UnmapViewOfFile(m_pdata);
+         UnmapimpactOfFile(m_pdata);
 
          m_pdata = nullptr;
 

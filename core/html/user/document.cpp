@@ -36,7 +36,7 @@ bool html_document::on_new_document()
 
    }
 
-   update_all_views(nullptr, NEW_DOCUMENT_UPDATE);
+   update_all_impacts(nullptr, NEW_DOCUMENT_UPDATE);
 
    return true;
 
@@ -92,7 +92,7 @@ void html_document::dump(dump_context & dumpcontext) const
 //
 //   set_data("html", pdata);
 //
-//   pdata->m_pcoredata->m_puserinteraction = get_type_impact < ::user::form_view >();
+//   pdata->m_pcoredata->m_puserinteraction = get_type_impact < ::user::form_impact >();
 //
 //   pdata->m_pcoredata->m_pcallback = this;
 //
@@ -133,7 +133,7 @@ property_set * html_document::form_document_get_property_set()
 //   if (!phtmlform)
 //   {
 //
-//      auto pform = get_type_impact < ::user::form_view >();
+//      auto pform = get_type_impact < ::user::form_impact >();
 //
 //      if (!pform)
 //      {
@@ -142,7 +142,7 @@ property_set * html_document::form_document_get_property_set()
 //
 //      }
 //
-//      pform->create_child_form <html_view>();
+//      pform->create_child_form <html_impact>();
 //
 //      phtmlform = pform->m_pformChild;
 //
@@ -186,7 +186,7 @@ bool html_document::on_open_document(const ::payload & payloadFile)
    if (!phtmlform)
    {
 
-      auto pform = get_type_impact < ::user::form_view >();
+      auto pform = get_type_impact < ::user::form_impact >();
 
       if (!pform)
       {
@@ -195,7 +195,7 @@ bool html_document::on_open_document(const ::payload & payloadFile)
 
       }
 
-      pform->create_child_form <html_view>();
+      pform->create_child_form <html_impact>();
 
       phtmlform = pform->m_pform;
 
@@ -243,7 +243,7 @@ bool html_document::on_open_document(const ::payload & payloadFile)
 
    ptopic->payload(id_url) = payloadFile;
 
-   phtmldocument->update_all_views(ptopic);
+   phtmldocument->update_all_impacts(ptopic);
 
    //data_set({ "LastOpenedFile", true }, get_file_path());
 
@@ -283,7 +283,7 @@ void html_document::soft_reload()
 //
 //   ptopic->payload(id_url) = get_file_path();
 //
-//   update_all_views(pupdate);
+//   update_all_impacts(pupdate);
 
 }
 
@@ -427,7 +427,7 @@ __pointer(::user::interaction) html_document::get_frame()
 
 
 
-void html_document::form_document_set_view(::user::form * pimpact)
+void html_document::form_document_set_impact(::user::form * pimpact)
 {
 
    get_html_data()->m_pcoredata->m_pform = dynamic_cast < ::html_form *> (pimpact);

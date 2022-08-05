@@ -977,7 +977,7 @@
     <ClCompile Include="object.cpp" />
     <ClCompile Include="path.cpp" />
     <ClCompile Include="pen.cpp" />
-    <ClCompile Include="preview_dc.cpp" />
+    <ClCompile Include="thumbnail_dc.cpp" />
     <ClCompile Include="printer.cpp" />
     <ClCompile Include="region.cpp" />
   </ItemGroup>

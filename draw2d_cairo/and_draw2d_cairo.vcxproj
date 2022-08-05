@@ -462,7 +462,7 @@
     <ClCompile Include="draw2d_cairo_path.cpp" />
     <ClCompile Include="draw2d_cairo_palette.cpp" />
     <ClCompile Include="draw2d_cairo_pen.cpp" />
-    <ClCompile Include="draw2d_cairo_preview_dc.cpp" />
+    <ClCompile Include="draw2d_cairo_thumbnail_dc.cpp" />
     <ClCompile Include="draw2d_cairo_region.cpp" />
     <ClCompile Include="framework.cpp">
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='basis|Android'">CompileAsCppHeader</CompileAs>

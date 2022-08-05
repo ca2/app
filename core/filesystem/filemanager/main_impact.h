@@ -6,14 +6,14 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE main_impact:
-      virtual public ::filemanager_show < ::user::split_view >
+      virtual public ::filemanager_show < ::user::split_impact >
    {
    public:
 
 
       
       file_list *                            m_pfilelist;
-      preview *                              m_ppreview;
+      thumbnail *                              m_pthumbnail;
       __composite(file_properties_form)      m_ppropform;
       ::file::item_array                     m_itema;
 

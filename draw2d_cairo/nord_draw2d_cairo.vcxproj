@@ -202,7 +202,7 @@
     <ClCompile Include="palette.cpp" />
     <ClCompile Include="path.cpp" />
     <ClCompile Include="pen.cpp" />
-    <ClCompile Include="preview_dc.cpp" />
+    <ClCompile Include="thumbnail_dc.cpp" />
     <ClCompile Include="region.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>

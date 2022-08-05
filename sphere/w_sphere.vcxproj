@@ -319,15 +319,15 @@
     <ClInclude Include="calculator\calculator_application.h" />
     <ClInclude Include="calculator\calculator_document.h" />
     <ClInclude Include="calculator\calculator_frame.h" />
-    <ClInclude Include="calculator\calculator_view.h" />
+    <ClInclude Include="calculator\calculator_impact.h" />
     <ClInclude Include="command\command.h" />
     <ClInclude Include="command\command_application.h" />
     <ClInclude Include="command\command_document.h" />
     <ClInclude Include="command\command_form_callback.h" />
     <ClInclude Include="command\command_frame.h" />
-    <ClInclude Include="command\command_pane_view.h" />
-    <ClInclude Include="command\command_primary_view.h" />
-    <ClInclude Include="command\command_view.h" />
+    <ClInclude Include="command\command_pane_impact.h" />
+    <ClInclude Include="command\command_primary_impact.h" />
+    <ClInclude Include="command\command_impact.h" />
     <ClInclude Include="console\console.h" />
     <ClInclude Include="console\console_application.h" />
     <ClInclude Include="console\console_prompt.h" />
@@ -338,8 +338,8 @@
     <ClInclude Include="filehandler\filehandler_application.h" />
     <ClInclude Include="filehandler\filehandler_document.h" />
     <ClInclude Include="filehandler\filehandler_frame.h" />
-    <ClInclude Include="filehandler\filehandler_pane_view.h" />
-    <ClInclude Include="filehandler\filehandler_view.h" />
+    <ClInclude Include="filehandler\filehandler_pane_impact.h" />
+    <ClInclude Include="filehandler\filehandler_impact.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="hi5\hi5.h" />
     <ClInclude Include="hi5\hi5_oauth.h" />
@@ -353,8 +353,8 @@
     <ClInclude Include="userstack\userstack_document.h" />
     <ClInclude Include="userstack\userstack_form_callback.h" />
     <ClInclude Include="userstack\userstack_frame.h" />
-    <ClInclude Include="userstack\userstack_pane_view.h" />
-    <ClInclude Include="userstack\userstack_view.h" />
+    <ClInclude Include="userstack\userstack_pane_impact.h" />
+    <ClInclude Include="userstack\userstack_impact.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="asphere\asphere_application.cpp">
@@ -398,7 +398,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="calculator\calculator_view.cpp">
+    <ClCompile Include="calculator\calculator_impact.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
@@ -793,7 +793,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="command\command_pane_view.cpp">
+    <ClCompile Include="command\command_pane_impact.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
@@ -801,7 +801,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="command\command_primary_view.cpp">
+    <ClCompile Include="command\command_primary_impact.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
@@ -809,7 +809,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="command\command_view.cpp">
+    <ClCompile Include="command\command_impact.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
@@ -883,7 +883,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filehandler\filehandler_pane_view.cpp">
+    <ClCompile Include="filehandler\filehandler_pane_impact.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
@@ -891,7 +891,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="filehandler\filehandler_view.cpp">
+    <ClCompile Include="filehandler\filehandler_impact.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
@@ -986,7 +986,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="userstack\userstack_pane_view.cpp">
+    <ClCompile Include="userstack\userstack_pane_impact.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>
@@ -994,7 +994,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="userstack\userstack_view.cpp">
+    <ClCompile Include="userstack\userstack_impact.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">true</ExcludedFromBuild>

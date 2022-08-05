@@ -5,21 +5,21 @@
 		<Option title="experience_core"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\source\;CMake Files\source\console\;CMake Files\source\console\application_build_helper\;CMake Files\source\console\hello\;CMake Files\source\console\helloearth\;CMake Files\source\console\hellosolarsystem\;CMake Files\source\console\readlines\;CMake Files\source\app\;CMake Files\source\app\acme\;CMake Files\source\app\apex\;CMake Files\source\app\app\;CMake Files\source\app\just_message_box\;CMake Files\source\app\message_box\;CMake Files\source\app\aqua\;CMake Files\source\app\aura\;CMake Files\source\app\axis\;CMake Files\source\app\base\;CMake Files\source\app\draw2d_cairo\;CMake Files\source\app\crypto_openssl\;CMake Files\source\app\compress_bzip2\;CMake Files\source\app\compress_zlib\;CMake Files\source\app\folder_zip\;CMake Files\source\app\database_sqlite3\;CMake Files\source\app\regular_expression_pcre2\;CMake Files\source\app\experience_core\;CMake Files\source\app\experience_anthill\;CMake Files\source\app\experience_tranquillum\;CMake Files\source\app\imaging_freeimage\;CMake Files\source\app\nanogui\;CMake Files\source\app\bred\;CMake Files\source\app\core\;CMake Files\source\app\programming\;CMake Files\source\app\scripting\;CMake Files\source\app-core\;CMake Files\source\app-core\announcecom\;CMake Files\source\app-core\api_azure\;CMake Files\source\app-core\api_ca2\;CMake Files\source\app-core\api_google\;CMake Files\source\app-core\addressbook\;CMake Files\source\app-core\audioaura\;CMake Files\source\app-core\auraclick\;CMake Files\source\app-core\auratype\;CMake Files\source\app-core\chronometer\;CMake Files\source\app-core\clockverse\;CMake Files\source\app-core\desk\;CMake Files\source\app-core\file_manager\;CMake Files\source\app-core\flag\;CMake Files\source\app-core\hash_hub\;CMake Files\source\app-core\hello_animation\;CMake Files\source\app-core\hello_multiverse\;CMake Files\source\app-core\integration\;CMake Files\source\app-core\note\;CMake Files\source\app-core\photo\;CMake Files\source\app-core\picture\;CMake Files\source\app-core\projection\;CMake Files\source\app-core\resident_client\;CMake Files\source\app-core\resident_desktop\;CMake Files\source\app-core\store\;CMake Files\source\app-core\timer\;CMake Files\source\app-core\todo\;CMake Files\source\app-core\weather\;CMake Files\source\app-core\audio\;CMake Files\source\app-core\audio_decode_wave\;CMake Files\source\app-core\audio_resample_swresample\;CMake Files\source\app-core\video_input\;CMake Files\source\app-core\video_input_video_for_linux\;CMake Files\source\app-core\library\;CMake Files\source\app-core\gcom\;CMake Files\source\app-core\target_wallpaper_x11\;CMake Files\source\app-core\text_to_speech_azure\;CMake Files\source\app-core\text_to_speech_google\;CMake Files\source\app-core\userdatetime\;CMake Files\source\app-core\multimedia\;CMake Files\source\app-core\resident\;CMake Files\source\app-core\hash_base\;CMake Files\source\app-cidadedecuritiba\;CMake Files\source\app-cidadedecuritiba\alphaclock\;CMake Files\source\app-complex\;CMake Files\source\app-complex\drawing\;CMake Files\source\app-complex\form\;CMake Files\source\app-complex\video_capture\;CMake Files\source\app-simple\;CMake Files\source\app-simple\application\;CMake Files\source\app-simple\box\;CMake Files\source\app-simple\change_grub_default_entry\;CMake Files\source\app-simple\drawing\;CMake Files\source\app-simple\form\;CMake Files\source\app-simple\nanogui_example\;CMake Files\source\app-simple\networking_application\;CMake Files\source\app-simple\notify_drawing\;CMake Files\source\app-veriwell\;CMake Files\source\app-veriwell\asciimedia\;CMake Files\source\app-veriwell\keyboard\;CMake Files\source\app-veriwell\musical_player\;CMake Files\source\app-veriwell\musical_player_lite\;CMake Files\source\app-veriwell\verisimplevideo\;CMake Files\source\app-veriwell\waven\;CMake Files\source\app-veriwell\audio_decode_libmpg123\;CMake Files\source\app-veriwell\music_midi_rtmidi\;CMake Files\source\app-veriwell\multimedia\;CMake Files\source\app-veriwell\video_decode_ffmpeg\;CMake Files\source\game\;CMake Files\source\game\light\;CMake Files\source\game\estamira\;CMake Files\source\game\game_of_life\;CMake Files\source\game\tetris\;CMake Files\source\game\tictactoe\;CMake Files\source\game\arkanoid\;CMake Files\source\game\sokoban\;CMake Files\source\game\pacman\;CMake Files\source\game\coincube\;CMake Files\source\game\arch001\;CMake Files\source\port\;CMake Files\source\port\id3lib\;CMake Files\source\design\;CMake Files\source\design\design\;CMake Files\source\design\text_format\;CMake Files\operating-system\;CMake Files\operating-system\operating-system-linux\;CMake Files\operating-system\operating-system-linux\acme_linux\;CMake Files\operating-system\operating-system-linux\apex_linux\;CMake Files\operating-system\operating-system-linux\audio_mixer_alsa\;CMake Files\operating-system\operating-system-linux\aura_linux\;CMake Files\operating-system\operating-system-linux\node_linux\;CMake Files\operating-system\operating-system-linux\desktop_environment_gnome\;CMake Files\operating-system\operating-system-linux\music_midi_alsa\;CMake Files\operating-system\operating-system-posix\;CMake Files\operating-system\operating-system-posix\acme_posix\;CMake Files\operating-system\operating-system-posix\apex_posix\;CMake Files\operating-system\operating-system-posix\audio_alsa\;CMake Files\operating-system\operating-system-posix\aura_posix\;CMake Files\operating-system\operating-system-posix\windowing_x11\;CMake Files\operating-system\operating-system-posix\node_gtk\;CMake Files\operating-system\operating-system-posix\node_gnome\;CMake Files\operating-system\operating-system-posix\write_text_pango\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\source\;CMake Files\source\console\;CMake Files\source\console\application_build_helper\;CMake Files\source\console\hello\;CMake Files\source\console\helloearth\;CMake Files\source\console\hellosolarsystem\;CMake Files\source\console\readlines\;CMake Files\source\app\;CMake Files\source\app\acme\;CMake Files\source\app\apex\;CMake Files\source\app\app\;CMake Files\source\app\just_message_box\;CMake Files\source\app\message_box\;CMake Files\source\app\aqua\;CMake Files\source\app\aura\;CMake Files\source\app\axis\;CMake Files\source\app\base\;CMake Files\source\app\draw2d_cairo\;CMake Files\source\app\crypto_openssl\;CMake Files\source\app\compress_bzip2\;CMake Files\source\app\compress_zlib\;CMake Files\source\app\folder_zip\;CMake Files\source\app\database_sqlite3\;CMake Files\source\app\regular_expression_pcre2\;CMake Files\source\app\experience_core\;CMake Files\source\app\experience_anthill\;CMake Files\source\app\experience_tranquillum\;CMake Files\source\app\imaging_freeimage\;CMake Files\source\app\nanogui\;CMake Files\source\app\bred\;CMake Files\source\app\core\;CMake Files\source\app\programming\;CMake Files\source\app\scripting\;CMake Files\source\app-core\;CMake Files\source\app-core\announcecom\;CMake Files\source\app-core\api_azure\;CMake Files\source\app-core\api_ca2\;CMake Files\source\app-core\api_google\;CMake Files\source\app-core\addressbook\;CMake Files\source\app-core\audioaura\;CMake Files\source\app-core\auraclick\;CMake Files\source\app-core\auratype\;CMake Files\source\app-core\chronometer\;CMake Files\source\app-core\clockverse\;CMake Files\source\app-core\desk\;CMake Files\source\app-core\file_manager\;CMake Files\source\app-core\flag\;CMake Files\source\app-core\hash_hub\;CMake Files\source\app-core\hello_animation\;CMake Files\source\app-core\hello_multiverse\;CMake Files\source\app-core\note\;CMake Files\source\app-core\photo\;CMake Files\source\app-core\picture\;CMake Files\source\app-core\projection\;CMake Files\source\app-core\resident_client\;CMake Files\source\app-core\resident_desktop\;CMake Files\source\app-core\store\;CMake Files\source\app-core\timer\;CMake Files\source\app-core\todo\;CMake Files\source\app-core\weather\;CMake Files\source\app-core\audio\;CMake Files\source\app-core\audio_decode_wave\;CMake Files\source\app-core\audio_resample_swresample\;CMake Files\source\app-core\video_input\;CMake Files\source\app-core\video_input_video_for_linux\;CMake Files\source\app-core\library\;CMake Files\source\app-core\gcom\;CMake Files\source\app-core\target_wallpaper_x11\;CMake Files\source\app-core\text_to_speech_azure\;CMake Files\source\app-core\text_to_speech_google\;CMake Files\source\app-core\userdatetime\;CMake Files\source\app-core\multimedia\;CMake Files\source\app-core\resident\;CMake Files\source\app-core\hash_base\;CMake Files\source\app-cidadedecuritiba\;CMake Files\source\app-cidadedecuritiba\alphaclock\;CMake Files\source\app-complex\;CMake Files\source\app-complex\drawing\;CMake Files\source\app-complex\form\;CMake Files\source\app-complex\video_capture\;CMake Files\source\app-simple\;CMake Files\source\app-simple\application\;CMake Files\source\app-simple\box\;CMake Files\source\app-simple\change_grub_default_entry\;CMake Files\source\app-simple\drawing\;CMake Files\source\app-simple\form\;CMake Files\source\app-simple\nanogui_example\;CMake Files\source\app-simple\networking_application\;CMake Files\source\app-simple\notify_drawing\;CMake Files\source\app-veriwell\;CMake Files\source\app-veriwell\asciimedia\;CMake Files\source\app-veriwell\keyboard\;CMake Files\source\app-veriwell\musical_player\;CMake Files\source\app-veriwell\musical_player_lite\;CMake Files\source\app-veriwell\verisimplevideo\;CMake Files\source\app-veriwell\waven\;CMake Files\source\app-veriwell\audio_decode_libmpg123\;CMake Files\source\app-veriwell\music_midi_rtmidi\;CMake Files\source\app-veriwell\multimedia\;CMake Files\source\app-veriwell\video_decode_ffmpeg\;CMake Files\source\game\;CMake Files\source\game\light\;CMake Files\source\game\estamira\;CMake Files\source\game\game_of_life\;CMake Files\source\game\tetris\;CMake Files\source\game\tictactoe\;CMake Files\source\game\arkanoid\;CMake Files\source\game\sokoban\;CMake Files\source\game\pacman\;CMake Files\source\game\coincube\;CMake Files\source\game\arch001\;CMake Files\source\port\;CMake Files\source\port\id3lib\;CMake Files\source\design\;CMake Files\source\design\design\;CMake Files\source\design\text_format\;CMake Files\operating-system\;CMake Files\operating-system\operating-system-linux\;CMake Files\operating-system\operating-system-linux\acme_linux\;CMake Files\operating-system\operating-system-linux\apex_linux\;CMake Files\operating-system\operating-system-linux\audio_mixer_alsa\;CMake Files\operating-system\operating-system-linux\aura_linux\;CMake Files\operating-system\operating-system-linux\node_linux\;CMake Files\operating-system\operating-system-linux\desktop_environment_gnome\;CMake Files\operating-system\operating-system-linux\music_midi_alsa\;CMake Files\operating-system\operating-system-posix\;CMake Files\operating-system\operating-system-posix\acme_posix\;CMake Files\operating-system\operating-system-posix\apex_posix\;CMake Files\operating-system\operating-system-posix\audio_alsa\;CMake Files\operating-system\operating-system-posix\aura_posix\;CMake Files\operating-system\operating-system-posix\windowing_x11\;CMake Files\operating-system\operating-system-posix\node_gtk\;CMake Files\operating-system\operating-system-posix\node_gnome\;CMake Files\operating-system\operating-system-posix\write_text_pango\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/camilo/solution/stage/source/app/experience_core"/>
+				<Option working_dir="/home/camilo/solution/basis/source/app/experience_core"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/stage/source/app/experience_core/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/stage/source/app/experience_core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/stage/source/app/experience_core/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/stage/source/app/experience_core/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/experience_core/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/experience_core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/experience_core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/experience_core/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="experience_core">
-				<Option output="/home/camilo/solution/stage/output/libexperience_core.so" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/camilo/solution/stage/source/app/experience_core"/>
+				<Option output="/home/camilo/solution/basis/output/libexperience_core.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/camilo/solution/basis/source/app/experience_core"/>
 				<Option object_output="./"/>
 				<Option type="3"/>
 				<Option compiler="gcc"/>
@@ -35,37 +35,37 @@
 					<Add option="-DDESKTOP_ENVIRONMENT_GNOME"/>
 					<Add option="-DUNICODE"/>
 					<Add option="-D_UNICODE"/>
-					<Add directory="/home/camilo/solution/stage/."/>
+					<Add directory="/home/camilo/solution/basis/."/>
 					<Add directory="/home/camilo/__config"/>
-					<Add directory="/home/camilo/solution/stage/source"/>
-					<Add directory="/home/camilo/solution/stage/source/app"/>
-					<Add directory="/home/camilo/solution/stage/source/app/include"/>
-					<Add directory="/home/camilo/solution/stage/source/include"/>
-					<Add directory="/home/camilo/solution/stage/source/port/include"/>
-					<Add directory="/home/camilo/solution/stage/source/port"/>
-					<Add directory="/home/camilo/solution/stage/operating-system"/>
-					<Add directory="/home/camilo/solution/stage/operating-system/operating-system-posix"/>
-					<Add directory="/home/camilo/solution/stage/operating-system/operating-system-posix/include"/>
-					<Add directory="/home/camilo/solution/stage/operating-system/operating-system-linux"/>
-					<Add directory="/home/camilo/solution/stage/operating-system/operating-system-linux/include"/>
-					<Add directory="/home/camilo/solution/stage/operating-system/third-linux/include"/>
-					<Add directory="/home/camilo/solution/stage/operating-system/third-linux/third/include"/>
-					<Add directory="/home/camilo/solution/stage/operating-system/third-linux/third/include/include"/>
-					<Add directory="/home/camilo/solution/stage/source/app/experience_core/."/>
-					<Add directory="/home/camilo/solution/stage/source/app/experience_core/../.."/>
-					<Add directory="/home/camilo/solution/stage/source/app/experience_core/.."/>
-					<Add directory="/home/camilo/solution/stage/source/app/experience_core"/>
+					<Add directory="/home/camilo/solution/basis/source"/>
+					<Add directory="/home/camilo/solution/basis/source/app"/>
+					<Add directory="/home/camilo/solution/basis/source/app/include"/>
+					<Add directory="/home/camilo/solution/basis/source/include"/>
+					<Add directory="/home/camilo/solution/basis/source/port/include"/>
+					<Add directory="/home/camilo/solution/basis/source/port"/>
+					<Add directory="/home/camilo/solution/basis/operating-system"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-posix"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-posix/include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-linux"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-linux/include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/third/include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/third/include/include"/>
+					<Add directory="/home/camilo/solution/basis/source/app/experience_core/."/>
+					<Add directory="/home/camilo/solution/basis/source/app/experience_core/../.."/>
+					<Add directory="/home/camilo/solution/basis/source/app/experience_core/.."/>
+					<Add directory="/home/camilo/solution/basis/source/app/experience_core"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/stage/source/app/experience_core/Makefile&quot;  VERBOSE=1 experience_core"/>
-					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/stage/source/app/experience_core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/stage/source/app/experience_core/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/stage/source/app/experience_core/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/experience_core/Makefile&quot;  VERBOSE=1 experience_core"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/experience_core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/experience_core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/experience_core/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="experience_core/fast">
-				<Option output="/home/camilo/solution/stage/output/libexperience_core.so" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/camilo/solution/stage/source/app/experience_core"/>
+				<Option output="/home/camilo/solution/basis/output/libexperience_core.so" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/camilo/solution/basis/source/app/experience_core"/>
 				<Option object_output="./"/>
 				<Option type="3"/>
 				<Option compiler="gcc"/>
@@ -81,495 +81,492 @@
 					<Add option="-DDESKTOP_ENVIRONMENT_GNOME"/>
 					<Add option="-DUNICODE"/>
 					<Add option="-D_UNICODE"/>
-					<Add directory="/home/camilo/solution/stage/."/>
+					<Add directory="/home/camilo/solution/basis/."/>
 					<Add directory="/home/camilo/__config"/>
-					<Add directory="/home/camilo/solution/stage/source"/>
-					<Add directory="/home/camilo/solution/stage/source/app"/>
-					<Add directory="/home/camilo/solution/stage/source/app/include"/>
-					<Add directory="/home/camilo/solution/stage/source/include"/>
-					<Add directory="/home/camilo/solution/stage/source/port/include"/>
-					<Add directory="/home/camilo/solution/stage/source/port"/>
-					<Add directory="/home/camilo/solution/stage/operating-system"/>
-					<Add directory="/home/camilo/solution/stage/operating-system/operating-system-posix"/>
-					<Add directory="/home/camilo/solution/stage/operating-system/operating-system-posix/include"/>
-					<Add directory="/home/camilo/solution/stage/operating-system/operating-system-linux"/>
-					<Add directory="/home/camilo/solution/stage/operating-system/operating-system-linux/include"/>
-					<Add directory="/home/camilo/solution/stage/operating-system/third-linux/include"/>
-					<Add directory="/home/camilo/solution/stage/operating-system/third-linux/third/include"/>
-					<Add directory="/home/camilo/solution/stage/operating-system/third-linux/third/include/include"/>
-					<Add directory="/home/camilo/solution/stage/source/app/experience_core/."/>
-					<Add directory="/home/camilo/solution/stage/source/app/experience_core/../.."/>
-					<Add directory="/home/camilo/solution/stage/source/app/experience_core/.."/>
-					<Add directory="/home/camilo/solution/stage/source/app/experience_core"/>
+					<Add directory="/home/camilo/solution/basis/source"/>
+					<Add directory="/home/camilo/solution/basis/source/app"/>
+					<Add directory="/home/camilo/solution/basis/source/app/include"/>
+					<Add directory="/home/camilo/solution/basis/source/include"/>
+					<Add directory="/home/camilo/solution/basis/source/port/include"/>
+					<Add directory="/home/camilo/solution/basis/source/port"/>
+					<Add directory="/home/camilo/solution/basis/operating-system"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-posix"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-posix/include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-linux"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/operating-system-linux/include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/third/include"/>
+					<Add directory="/home/camilo/solution/basis/operating-system/third-linux/third/include/include"/>
+					<Add directory="/home/camilo/solution/basis/source/app/experience_core/."/>
+					<Add directory="/home/camilo/solution/basis/source/app/experience_core/../.."/>
+					<Add directory="/home/camilo/solution/basis/source/app/experience_core/.."/>
+					<Add directory="/home/camilo/solution/basis/source/app/experience_core"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/stage/source/app/experience_core/Makefile&quot;  VERBOSE=1 experience_core/fast"/>
-					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/stage/source/app/experience_core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/stage/source/app/experience_core/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/stage/source/app/experience_core/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/experience_core/Makefile&quot;  VERBOSE=1 experience_core/fast"/>
+					<CompileFile command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/experience_core/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/experience_core/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -f &quot;/home/camilo/solution/basis/source/app/experience_core/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/CMakeFiles/experience_core.dir/cmake_pch.hxx">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/CMakeFiles/experience_core.dir/cmake_pch.hxx">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/CMakeFiles/experience_core.dir/cmake_pch.hxx.cxx">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/CMakeFiles/experience_core.dir/cmake_pch.hxx.cxx">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/_.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/_.cpp">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/_.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/_.h">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/_factory.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/_factory.cpp">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/control_box.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/control_box.cpp">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/control_box.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/control_box.h">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/control_box_button.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/control_box_button.cpp">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/control_box_button.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/control_box_button.h">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/experience.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/experience.cpp">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/experience.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/experience.h">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/frame.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/frame.cpp">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/frame.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/frame.h">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/frame_001.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/frame_001.cpp">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/frame_001.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/frame_001.h">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/frame_002.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/frame_002.cpp">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/frame_002.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/frame_002.h">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/frame_005.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/frame_005.cpp">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/frame_005.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/frame_005.h">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/frame_008.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/frame_008.cpp">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/frame_008.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/frame_008.h">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/frame_011.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/frame_011.cpp">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/frame_011.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/frame_011.h">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/frame_013.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/frame_013.cpp">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/frame_013.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/frame_013.h">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/frame_Minimal001.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/frame_Minimal001.cpp">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/experience/frame_Minimal001.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/experience/frame_Minimal001.h">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/framework.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/framework.cpp">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/framework.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/framework.h">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/user/_user.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/user/_user.h">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/user/style.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/user/style.cpp">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/user/style.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/user/style.h">
 			<Option target="experience_core"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/console/application_build_helper/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/console/application_build_helper/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\console\application_build_helper\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/console/hello/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/console/hello/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\console\hello\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/console/helloearth/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/console/helloearth/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\console\helloearth\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/console/hellosolarsystem/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/console/hellosolarsystem/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\console\hellosolarsystem\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/console/readlines/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/console/readlines/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\console\readlines\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/acme/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/acme/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\acme\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/apex/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/apex/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\apex\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/app/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/app/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\app\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/just_message_box/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/just_message_box/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\just_message_box\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/message_box/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/message_box/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\message_box\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/aqua/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/aqua/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\aqua\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/aura/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/aura/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\aura\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/axis/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/axis/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\axis\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/base/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/base/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\base\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/draw2d_cairo/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/draw2d_cairo/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\draw2d_cairo\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/crypto_openssl/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/crypto_openssl/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\crypto_openssl\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/compress_bzip2/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/compress_bzip2/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\compress_bzip2\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/compress_zlib/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/compress_zlib/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\compress_zlib\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/folder_zip/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/folder_zip/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\folder_zip\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/database_sqlite3/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/database_sqlite3/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\database_sqlite3\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/regular_expression_pcre2/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/regular_expression_pcre2/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\regular_expression_pcre2\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_core/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_core/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\experience_core\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_anthill/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_anthill/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\experience_anthill\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/experience_tranquillum/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/experience_tranquillum/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\experience_tranquillum\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/imaging_freeimage/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/imaging_freeimage/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\imaging_freeimage\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/nanogui/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/nanogui/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\nanogui\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/bred/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/bred/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\bred\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/core/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/core/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\core\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/programming/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/programming/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\programming\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app/scripting/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app/scripting/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app\scripting\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/announcecom/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/announcecom/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\announcecom\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/api_azure/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/api_azure/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\api_azure\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/api_ca2/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/api_ca2/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\api_ca2\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/api_google/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/api_google/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\api_google\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/addressbook/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/addressbook/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\addressbook\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/audioaura/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/audioaura/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\audioaura\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/auraclick/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/auraclick/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\auraclick\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/auratype/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/auratype/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\auratype\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/chronometer/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/chronometer/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\chronometer\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/clockverse/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/clockverse/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\clockverse\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/desk/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/desk/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\desk\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/file_manager/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/file_manager/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\file_manager\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/flag/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/flag/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\flag\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/hash_hub/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/hash_hub/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\hash_hub\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/hello_animation/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/hello_animation/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\hello_animation\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/hello_multiverse/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/hello_multiverse/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\hello_multiverse\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/integration/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\source\app-core\integration\"/>
-		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/note/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/note/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\note\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/photo/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/photo/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\photo\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/picture/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/picture/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\picture\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/projection/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/projection/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\projection\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/resident_client/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/resident_client/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\resident_client\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/resident_desktop/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/resident_desktop/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\resident_desktop\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/store/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/store/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\store\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/timer/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/timer/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\timer\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/todo/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/todo/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\todo\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/weather/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/weather/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\weather\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/audio/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/audio/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\audio\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/audio_decode_wave/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/audio_decode_wave/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\audio_decode_wave\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/audio_resample_swresample/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/audio_resample_swresample/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\audio_resample_swresample\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/video_input/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/video_input/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\video_input\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/video_input_video_for_linux/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/video_input_video_for_linux/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\video_input_video_for_linux\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/library/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/library/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\library\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/gcom/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/gcom/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\gcom\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/target_wallpaper_x11/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/target_wallpaper_x11/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\target_wallpaper_x11\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/text_to_speech_azure/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/text_to_speech_azure/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\text_to_speech_azure\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/text_to_speech_google/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/text_to_speech_google/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\text_to_speech_google\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/userdatetime/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/userdatetime/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\userdatetime\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/multimedia/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/multimedia/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\multimedia\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/resident/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/resident/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\resident\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-core/hash_base/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-core/hash_base/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-core\hash_base\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-cidadedecuritiba/alphaclock/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-cidadedecuritiba/alphaclock/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-cidadedecuritiba\alphaclock\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-complex/drawing/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-complex/drawing/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-complex\drawing\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-complex/form/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-complex/form/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-complex\form\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-complex/video_capture/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-complex/video_capture/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-complex\video_capture\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-simple/application/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/application/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-simple\application\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-simple/box/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/box/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-simple\box\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-simple/change_grub_default_entry/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/change_grub_default_entry/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-simple\change_grub_default_entry\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-simple/drawing/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/drawing/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-simple\drawing\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-simple/form/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/form/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-simple\form\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-simple/nanogui_example/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/nanogui_example/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-simple\nanogui_example\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-simple/networking_application/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/networking_application/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-simple\networking_application\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-simple/notify_drawing/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-simple/notify_drawing/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-simple\notify_drawing\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-veriwell/asciimedia/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/asciimedia/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-veriwell\asciimedia\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-veriwell/keyboard/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/keyboard/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-veriwell\keyboard\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-veriwell/musical_player/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/musical_player/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-veriwell\musical_player\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-veriwell/musical_player_lite/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/musical_player_lite/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-veriwell\musical_player_lite\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-veriwell/verisimplevideo/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/verisimplevideo/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-veriwell\verisimplevideo\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-veriwell/waven/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/waven/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-veriwell\waven\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-veriwell/audio_decode_libmpg123/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/audio_decode_libmpg123/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-veriwell\audio_decode_libmpg123\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-veriwell/music_midi_rtmidi/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/music_midi_rtmidi/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-veriwell\music_midi_rtmidi\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-veriwell/multimedia/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/multimedia/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-veriwell\multimedia\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/app-veriwell/video_decode_ffmpeg/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/app-veriwell/video_decode_ffmpeg/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\app-veriwell\video_decode_ffmpeg\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/game/light/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/game/light/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\game\light\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/game/estamira/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/game/estamira/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\game\estamira\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/game/game_of_life/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/game/game_of_life/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\game\game_of_life\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/game/tetris/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/game/tetris/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\game\tetris\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/game/tictactoe/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/game/tictactoe/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\game\tictactoe\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/game/arkanoid/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/game/arkanoid/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\game\arkanoid\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/game/sokoban/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/game/sokoban/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\game\sokoban\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/game/pacman/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/game/pacman/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\game\pacman\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/game/coincube/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/game/coincube/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\game\coincube\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/game/arch001/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/game/arch001/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\game\arch001\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/port/id3lib/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/port/id3lib/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\port\id3lib\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/design/design/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/design/design/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\design\design\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/source/design/text_format/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/source/design/text_format/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\source\design\text_format\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/operating-system/operating-system-linux/acme_linux/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-linux/acme_linux/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\operating-system\operating-system-linux\acme_linux\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/operating-system/operating-system-linux/apex_linux/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-linux/apex_linux/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\operating-system\operating-system-linux\apex_linux\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/operating-system/operating-system-linux/audio_mixer_alsa/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-linux/audio_mixer_alsa/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\operating-system\operating-system-linux\audio_mixer_alsa\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/operating-system/operating-system-linux/aura_linux/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-linux/aura_linux/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\operating-system\operating-system-linux\aura_linux\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/operating-system/operating-system-linux/node_linux/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-linux/node_linux/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\operating-system\operating-system-linux\node_linux\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/operating-system/operating-system-linux/desktop_environment_gnome/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-linux/desktop_environment_gnome/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\operating-system\operating-system-linux\desktop_environment_gnome\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/operating-system/operating-system-linux/music_midi_alsa/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-linux/music_midi_alsa/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\operating-system\operating-system-linux\music_midi_alsa\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/operating-system/operating-system-posix/acme_posix/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/acme_posix/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\acme_posix\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/operating-system/operating-system-posix/apex_posix/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/apex_posix/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\apex_posix\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/operating-system/operating-system-posix/audio_alsa/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/audio_alsa/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\audio_alsa\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/operating-system/operating-system-posix/aura_posix/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/aura_posix/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\aura_posix\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/operating-system/operating-system-posix/windowing_x11/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/windowing_x11/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\windowing_x11\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/operating-system/operating-system-posix/node_gtk/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/node_gtk/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\node_gtk\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/operating-system/operating-system-posix/node_gnome/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/node_gnome/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\node_gnome\"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/stage/operating-system/operating-system-posix/write_text_pango/CMakeLists.txt">
+		<Unit filename="/home/camilo/solution/basis/operating-system/operating-system-posix/write_text_pango/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\operating-system\operating-system-posix\write_text_pango\"/>
 		</Unit>
 	</Project>

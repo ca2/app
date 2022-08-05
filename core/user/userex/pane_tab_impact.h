@@ -20,8 +20,8 @@ namespace userex
       __pointer(pane_impact)                   m_ppaneimpact;
       id_map < __pointer(::object) >         m_mapFileManager;
       __pointer(::user::document)            m_pdocAppOptions;
-      font_view *                            m_pfontview;
-      color_view *                           m_pcolorview;
+      font_impact *                            m_pfontview;
+      color_impact *                           m_pcolorview;
       ::form_document *                      m_pdocumentMenu;
 
 
@@ -46,15 +46,15 @@ namespace userex
       void _001OnRemoveTab(::user::tab_pane * ptab) override;
 
 
-      ::user::interaction * get_view_uie() override;
+      ::user::interaction * get_impact_uie() override;
 
-      atom get_view_id() override;
+      atom get_impact_id() override;
 
       void on_change_cur_sel() override;
 
-      bool on_preparimpact_data(::user::impact_data * pimpactdata) override;
+      bool on_prepare_impact_data(::user::impact_data * pimpactdata) override;
 
-      bool on_after_creatimpact_data(::user::impact_data * pimpactdata) override;
+      bool on_after_create_impact_data(::user::impact_data * pimpactdata) override;
 
       void GetTabClientRect(RECTANGLE_I32 * prectangle) override;
 

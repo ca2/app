@@ -34,13 +34,13 @@
     <ClInclude Include="hellobase_frame.h" />
     <ClInclude Include="hellobase_gcom.h" />
     <ClInclude Include="hellobase_main_frame.h" />
-    <ClInclude Include="hellobase_main_view.h" />
-    <ClInclude Include="hellobase_pane_view.h" />
+    <ClInclude Include="hellobase_main_impact.h" />
+    <ClInclude Include="hellobase_pane_impact.h" />
 
     <ClInclude Include="hellobase_render.h" />
-    <ClInclude Include="hellobase_switcher_view.h" />
-    <ClInclude Include="hellobase_view.h" />
-    <ClInclude Include="hellobase_view_base.h" />
+    <ClInclude Include="hellobase_switcher_impact.h" />
+    <ClInclude Include="hellobase_impact.h" />
+    <ClInclude Include="hellobase_impact_base.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -57,13 +57,13 @@
     <ClCompile Include="hellobase_frame.cpp" />
     <ClCompile Include="hellobase_gcom.cpp" />
     <ClCompile Include="hellobase_main_frame.cpp" />
-    <ClCompile Include="hellobase_main_view.cpp" />
-    <ClCompile Include="hellobase_pane_view.cpp" />
+    <ClCompile Include="hellobase_main_impact.cpp" />
+    <ClCompile Include="hellobase_pane_impact.cpp" />
 
     <ClCompile Include="hellobase_render.cpp" />
-    <ClCompile Include="hellobase_switcher_view.cpp" />
-    <ClCompile Include="hellobase_view.cpp" />
-    <ClCompile Include="hellobase_view_base.cpp" />
+    <ClCompile Include="hellobase_switcher_impact.cpp" />
+    <ClCompile Include="hellobase_impact.cpp" />
+    <ClCompile Include="hellobase_impact_base.cpp" />
   </ItemGroup>
   
   <ItemGroup>

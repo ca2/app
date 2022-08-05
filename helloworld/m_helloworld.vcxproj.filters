@@ -21,37 +21,37 @@
     <ClInclude Include="helloworld_document.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="helloworld_edit_view.h">
+    <ClInclude Include="helloworld_edit_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="helloworld_frame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="helloworld_full_view.h">
+    <ClInclude Include="helloworld_full_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="helloworld_lite_view.h">
+    <ClInclude Include="helloworld_lite_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="helloworld_main_view.h">
+    <ClInclude Include="helloworld_main_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="helloworld_pane_view.h">
+    <ClInclude Include="helloworld_pane_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aaa_want_to_erase_helloworld_view_update_hint.h">
+    <ClInclude Include="aaa_want_to_erase_helloworld_impact_update_hint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="helloworld_switcher_view.h">
+    <ClInclude Include="helloworld_switcher_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="helloworld_toggle_view.h">
+    <ClInclude Include="helloworld_toggle_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="helloworld_top_view.h">
+    <ClInclude Include="helloworld_top_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="helloworld_view.h">
+    <ClInclude Include="helloworld_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -71,34 +71,34 @@
     <ClCompile Include="helloworld_frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="helloworld_pane_view.cpp">
+    <ClCompile Include="helloworld_pane_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="aaa_want_to_erase_helloworld_view_update_hint.cpp">
+    <ClCompile Include="aaa_want_to_erase_helloworld_impact_update_hint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="helloworld_view.cpp">
+    <ClCompile Include="helloworld_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="helloworld_edit_view.cpp">
+    <ClCompile Include="helloworld_edit_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="helloworld_full_view.cpp">
+    <ClCompile Include="helloworld_full_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="helloworld_lite_view.cpp">
+    <ClCompile Include="helloworld_lite_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="helloworld_main_view.cpp">
+    <ClCompile Include="helloworld_main_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="helloworld_switcher_view.cpp">
+    <ClCompile Include="helloworld_switcher_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="helloworld_toggle_view.cpp">
+    <ClCompile Include="helloworld_toggle_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="helloworld_top_view.cpp">
+    <ClCompile Include="helloworld_top_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

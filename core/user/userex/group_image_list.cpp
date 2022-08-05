@@ -10,7 +10,7 @@ namespace userex
 {
 
 
-   group_image_list_view::group_image_list_view()
+   group_image_list_impact::group_image_list_impact()
    {
 
       m_size.cx = 7;
@@ -20,7 +20,7 @@ namespace userex
    }
 
 
-   group_image_list_view::~group_image_list_view()
+   group_image_list_impact::~group_image_list_impact()
    {
 
    }
@@ -29,7 +29,7 @@ namespace userex
 
 
 
-   void group_image_list_view::assert_ok() const
+   void group_image_list_impact::assert_ok() const
    {
 
       ::user::impact::assert_ok();
@@ -37,7 +37,7 @@ namespace userex
    }
 
 
-   void group_image_list_view::dump(dump_context & dumpcontext) const
+   void group_image_list_impact::dump(dump_context & dumpcontext) const
    {
 
       ::user::impact::dump(dumpcontext);
@@ -45,7 +45,7 @@ namespace userex
    }
 
 
-   void group_image_list_view::handle(::topic * ptopic, ::context * pcontext)
+   void group_image_list_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ::user::impact::handle(ptopic, pcontext);
@@ -72,18 +72,18 @@ namespace userex
 
    }
 
-   void group_image_list_view::install_message_routing(::channel * pchannel)
+   void group_image_list_impact::install_message_routing(::channel * pchannel)
    {
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &group_image_list_view::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &group_image_list_impact::on_message_create);
 
 
    }
 
 
-   ::userex::image_list_view * group_image_list_view::add_group(::atom idGroup, string strIcon, string strTitle, ::file::path pathFolder)
+   ::userex::image_list_impact * group_image_list_impact::add_group(::atom idGroup, string strIcon, string strTitle, ::file::path pathFolder)
    {
 
       __pointer(group) pgroup = __new(group);
@@ -118,7 +118,7 @@ namespace userex
    }
 
 
-   void group_image_list_view::on_message_create(::message::message * pmessage)
+   void group_image_list_impact::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -146,7 +146,7 @@ namespace userex
    }
 
 
-   group_image_list_view::group * group_image_list_view::get_group(::atom idGroup)
+   group_image_list_impact::group * group_image_list_impact::get_group(::atom idGroup)
    {
 
       index iFind = m_groupa.predicate_find_first([=](auto & item)
@@ -168,7 +168,7 @@ namespace userex
    }
 
 
-   string group_image_list_view::get_group_title(group * pgroup)
+   string group_image_list_impact::get_group_title(group * pgroup)
    {
 
       ASSERT(pgroup != nullptr);
@@ -186,7 +186,7 @@ namespace userex
    }
 
 
-   ::file::path group_image_list_view::get_link_path(string strLink)
+   ::file::path group_image_list_impact::get_link_path(string strLink)
    {
 
       ::file::path path;
@@ -210,7 +210,7 @@ namespace userex
    }
 
 
-   ::userex::image_list_view * group_image_list_view::get_group_list(::atom idGroup)
+   ::userex::image_list_impact * group_image_list_impact::get_group_list(::atom idGroup)
    {
 
       __pointer(group) pgroup = get_group(idGroup);
@@ -227,7 +227,7 @@ namespace userex
       if (plist.is_null())
       {
 
-         plist = create_view < ::userex::image_list_view >(nullptr, nullptr, idGroup);
+         plist = create_impact < ::userex::image_list_impact >(nullptr, nullptr, idGroup);
 
          plist->m_ealign = e_align_top_center;
 
@@ -240,7 +240,7 @@ namespace userex
    }
 
 
-   void group_image_list_view::set_current_item(::item * pitem, const ::action_context & context)
+   void group_image_list_impact::set_current_item(::item * pitem, const ::action_context & context)
    {
 
       //auto estatus = 
@@ -293,7 +293,7 @@ namespace userex
    }
 
 
-   bool group_image_list_view::show_group(::atom idGroup, ::file::path pathFolder)
+   bool group_image_list_impact::show_group(::atom idGroup, ::file::path pathFolder)
    {
 
       __pointer(group) pgroup = get_group(idGroup);
@@ -339,7 +339,7 @@ namespace userex
    }
 
 
-   void group_image_list_view::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
+   void group_image_list_impact::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::user::impact::_001OnNcDraw(pgraphics);
@@ -347,7 +347,7 @@ namespace userex
    }
 
 
-   void group_image_list_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void group_image_list_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::user::impact::_001OnDraw(pgraphics);
@@ -355,7 +355,7 @@ namespace userex
    }
 
 
-   //void group_image_list_view::handle(::topic * ptopic, ::context * pcontext)
+   //void group_image_list_impact::handle(::topic * ptopic, ::context * pcontext)
    //{
 
    //   if (ptopic->m_atom == ::id_item_clicked)
@@ -380,7 +380,7 @@ namespace userex
    //}
 
 
-   string group_image_list_view::get_menu_xml()
+   string group_image_list_impact::get_menu_xml()
    {
 
       string str;
@@ -407,7 +407,7 @@ namespace userex
    }
 
 
-   void group_image_list_view::show_menu()
+   void group_image_list_impact::show_menu()
    {
 
       string strXml(get_menu_xml());
@@ -462,7 +462,7 @@ namespace userex
    }
 
 
-   void group_image_list_view::on_command(::message::command * pcommand)
+   void group_image_list_impact::on_command(::message::command * pcommand)
    {
 
       string str = pcommand->m_atom;
@@ -476,7 +476,7 @@ namespace userex
 
    }
 
-   ::userex::image_list_view * group_image_list_view::get_current_list()
+   ::userex::image_list_impact * group_image_list_impact::get_current_list()
    {
 
       auto * pgroup = get_group(m_atomGroup);
@@ -493,7 +493,7 @@ namespace userex
    }
 
 
-   void group_image_list_view::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void group_image_list_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto rectangleClient = get_client_rect();

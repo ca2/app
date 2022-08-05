@@ -60,7 +60,7 @@ namespace filemanager
 
       //auto estatus = 
       
-      initialize_view(pdocument);
+      initialize_impact(pdocument);
 
       //if (!estatus)
       //{
@@ -219,7 +219,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      auto pointOffset = get_viewport_offset();
+      auto pointOffset = get_impactport_offset();
 
       ::file::path pathUser = filemanager_path();
 
@@ -483,7 +483,7 @@ namespace filemanager
       queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
          {
 
-            set_viewport_offset(pgraphics, pointOffset.x, pointOffset.y);
+            set_impactport_offset(pgraphics, pointOffset.x, pointOffset.y);
 
          });
 

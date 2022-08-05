@@ -103,7 +103,7 @@ namespace user
    };
 
 
-   typedef ::user::show < ::user::font_list > font_list_view;
+   typedef ::user::show < ::user::font_list > font_list_impact;
 
 
 } // namespace user

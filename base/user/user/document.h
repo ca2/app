@@ -24,7 +24,7 @@ namespace user
       bool                                m_bCustomOpen;
 
       __pointer(::user::impact_system)       m_pimpactsystem;
-      __pointer_array(::user::impact)        m_viewa;
+      __pointer_array(::user::impact)        m_impacta;
       ::user::impact *                          m_pviewTopic;
 
       bool                                m_bAutoSaveModified;
@@ -61,8 +61,8 @@ namespace user
       void on_request(::create* pcreate) override;
 
 
-      virtual ::atom get_topic_view_id();
-      virtual bool set_topic_view_by_id(::atom atom);
+      virtual ::atom get_topic_impact_id();
+      virtual bool set_topic_impact_by_id(::atom atom);
 
       virtual void update_title();
 
@@ -84,25 +84,25 @@ namespace user
       virtual bool is_new_document();
 
       // Operations
-      void add_view(::user::impact * pimpact);
-      void erase_view(::user::impact * pimpact);
-      virtual ::count get_view_count() const;
-      virtual __pointer(::user::impact) get_view(index index = 0) const;
+      void add_impact(::user::impact * pimpact);
+      void erase_impact(::user::impact * pimpact);
+      virtual ::count get_impact_count() const;
+      virtual __pointer(::user::impact) get_impact(index index = 0) const;
 
 
 
       template < class T >
-      ::count get_typed_view_count() const
+      ::count get_typed_impact_count() const
       {
          synchronous_lock synchronouslock(((document *)this)->mutex());
          ::count count = 0;
-         for (index index = 0; index < m_viewa.get_count(); index++)
+         for (index index = 0; index < m_impacta.get_count(); index++)
          {
-            if (m_viewa[index].is_null())
+            if (m_impacta[index].is_null())
             {
                continue;
             }
-            __pointer(T) point = m_viewa[index].cast < T > ();
+            __pointer(T) point = m_impacta[index].cast < T > ();
             if (point.is_set())
                count++;
          }
@@ -115,7 +115,7 @@ namespace user
 
          synchronous_lock synchronouslock(((document *)this)->mutex());
 
-         if (indexFind < 0 || indexFind >= m_viewa.get_count())
+         if (indexFind < 0 || indexFind >= m_impacta.get_count())
          {
 
             return nullptr;
@@ -124,17 +124,17 @@ namespace user
 
          ::count count = 0;
 
-         for (index index = 0; index < m_viewa.get_count(); index++)
+         for (index index = 0; index < m_impacta.get_count(); index++)
          {
 
-            if(m_viewa[index].is_null())
+            if(m_impacta[index].is_null())
             {
 
                continue;
 
             }
 
-            __pointer(T) point = m_viewa[index].cast < T > ();
+            __pointer(T) point = m_impacta[index].cast < T > ();
 
             if (point.is_set())
             {
@@ -162,22 +162,22 @@ namespace user
 
 
       template < class T >
-      __pointer(T) get_typed_view_with_id(atom atom) const
+      __pointer(T) get_typed_impact_with_id(atom atom) const
       {
 
          synchronous_lock synchronouslock(((document *)this)->mutex());
 
          ::count count = 0;
 
-         for(index index = 0; index < m_viewa.get_count(); index++)
+         for(index index = 0; index < m_impacta.get_count(); index++)
          {
 
-            if(m_viewa[index].is_null())
+            if(m_impacta[index].is_null())
             {
                continue;
             }
 
-            __pointer(T) point = m_viewa[index].cast < T >();
+            __pointer(T) point = m_impacta[index].cast < T >();
 
             if(point.is_set())
             {
@@ -239,7 +239,7 @@ namespace user
 
       virtual __pointer(::user::impact) get_type_impact(::type info, index indexFind = 0);
 
-      virtual __pointer(::user::impact) get_typed_view_with_id(::type info,atom atom);
+      virtual __pointer(::user::impact) get_typed_impact_with_id(::type info,atom atom);
 
       virtual void show_all_frames(const ::edisplay & edisplay = e_display_restored);
 
@@ -253,9 +253,9 @@ namespace user
       //};
 
       // Update Impacts (simple update - DAG only)
-      void id_update_all_views(const ::atom & atom);
-      void update_all_views(impact * pimpact, const ::atom & atom);
-      virtual void update_all_views(::topic * ptopic);
+      void id_update_all_impacts(const ::atom & atom);
+      void update_all_impacts(impact * pimpact, const ::atom & atom);
+      virtual void update_all_impacts(::topic * ptopic);
 
 
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
@@ -265,7 +265,7 @@ namespace user
 
       // Overridables
       // Special notifications
-      virtual void on_changed_view_list(); // after add or erase ::user::impact
+      virtual void on_changed_impact_list(); // after add or erase ::user::impact
       virtual void delete_contents(); // delete doc items etc
 
       virtual bool new_document();
@@ -302,7 +302,7 @@ namespace user
       virtual bool do_save(::payload payloadFile, bool bReplace = true);
       virtual bool do_file_save();
       virtual void update_frame_counts();
-      virtual void disconnect_views();
+      virtual void disconnect_impacts();
       virtual void call_initial_update();
 
 

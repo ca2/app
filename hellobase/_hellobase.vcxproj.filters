@@ -19,10 +19,10 @@
     <ClCompile Include="hellobase_render.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hellobase_view.cpp">
+    <ClCompile Include="hellobase_impact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hellobase_view_base.cpp">
+    <ClCompile Include="hellobase_impact_base.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -45,10 +45,10 @@
     <ClInclude Include="hellobase_render.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hellobase_view.h">
+    <ClInclude Include="hellobase_impact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hellobase_view_base.h">
+    <ClInclude Include="hellobase_impact_base.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

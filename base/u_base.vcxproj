@@ -123,9 +123,9 @@
     <ClInclude Include="user\experience\_experience.h" />
     <ClInclude Include="user\menu\button.h" />
     <ClInclude Include="user\menu\central.h" />
-    <ClInclude Include="user\menu\list_view.h" />
+    <ClInclude Include="user\menu\list_impact.h" />
     <ClInclude Include="user\menu\list_window.h" />
-    <ClInclude Include="user\menu\menu_view.h" />
+    <ClInclude Include="user\menu\menu_impact.h" />
     <ClInclude Include="user\menu\_.h" />
     <ClInclude Include="user\menu\_menu.h" />
     <ClInclude Include="user\simple\frame_window.h" />
@@ -147,7 +147,7 @@
     <ClInclude Include="user\user\document_data_map.h" />
     <ClInclude Include="user\user\document_manager.h" />
     <ClInclude Include="user\user\document_manager_container.h" />
-    <ClInclude Include="user\user\edit_plain_text_view.h" />
+    <ClInclude Include="user\user\edit_plain_text_impact.h" />
     <ClInclude Include="user\user\edit_text.h" />
     <ClInclude Include="user\user\edit_window.h" />
     <ClInclude Include="user\user\form.h" />
@@ -156,7 +156,7 @@
     <ClInclude Include="user\user\form_data.h" />
     <ClInclude Include="user\user\form_document.h" />
     <ClInclude Include="user\user\form_update_hint.h" />
-    <ClInclude Include="user\user\form_view.h" />
+    <ClInclude Include="user\user\form_impact.h" />
     <ClInclude Include="user\user\form_window.h" />
     <ClInclude Include="user\user\frame_window.h" />
     <ClInclude Include="user\user\image_list.h" />
@@ -186,11 +186,11 @@
     <ClInclude Include="user\user\place_holder_container.h" />
     <ClInclude Include="user\user\print_task.h" />
     <ClInclude Include="user\user\server.h" />
-    <ClInclude Include="user\user\simple_view.h" />
+    <ClInclude Include="user\user\simple_impact.h" />
     <ClInclude Include="user\user\single_document_template.h" />
     <ClInclude Include="user\user\split_bar.h" />
     <ClInclude Include="user\user\split_layout.h" />
-    <ClInclude Include="user\user\split_view.h" />
+    <ClInclude Include="user\user\split_impact.h" />
     <ClInclude Include="user\user\static_control.h" />
     <ClInclude Include="user\user\style.h" />
     <ClInclude Include="user\user\tab.h" />
@@ -199,7 +199,7 @@
     <ClInclude Include="user\user\tab_drop_target_window.h" />
     <ClInclude Include="user\user\tab_pane.h" />
     <ClInclude Include="user\user\tab_pane_array.h" />
-    <ClInclude Include="user\user\tab_view.h" />
+    <ClInclude Include="user\user\tab_impact.h" />
     <ClInclude Include="user\user\toolbar.h" />
     <ClInclude Include="user\user\tool_window.h" />
     <ClInclude Include="user\user\user.h" />
@@ -248,9 +248,9 @@
     <ClCompile Include="user\experience\size_manager.cpp" />
     <ClCompile Include="user\menu\button.cpp" />
     <ClCompile Include="user\menu\central.cpp" />
-    <ClCompile Include="user\menu\list_view.cpp" />
+    <ClCompile Include="user\menu\list_impact.cpp" />
     <ClCompile Include="user\menu\list_window.cpp" />
-    <ClCompile Include="user\menu\menu_view.cpp" />
+    <ClCompile Include="user\menu\menu_impact.cpp" />
     <ClCompile Include="user\simple\frame_window.cpp" />
     <ClCompile Include="user\simple\main_frame.cpp" />
     <ClCompile Include="user\simple\scroll_bar.cpp" />
@@ -263,7 +263,7 @@
     <ClCompile Include="user\user\form_control.cpp" />
     <ClCompile Include="user\user\form_data.cpp" />
     <ClCompile Include="user\user\form_document.cpp" />
-    <ClCompile Include="user\user\form_view.cpp" />
+    <ClCompile Include="user\user\form_impact.cpp" />
     <ClCompile Include="user\user\form_window.cpp" />
     <ClCompile Include="user\user\frame_window.cpp" />
     <ClCompile Include="user\user\hotplugin.cpp" />
@@ -286,12 +286,12 @@
     <ClCompile Include="user\user\place_holder_container.cpp" />
     <ClCompile Include="user\user\print_task.cpp" />
     <ClCompile Include="user\user\server.cpp" />
-    <ClCompile Include="user\user\simple_view.cpp" />
+    <ClCompile Include="user\user\simple_impact.cpp" />
     <ClCompile Include="user\user\single_document_template.cpp" />
     <ClCompile Include="user\user\split_bar.cpp" />
     <ClCompile Include="user\user\split_layout.cpp" />
     <ClCompile Include="user\user\split_pane.cpp" />
-    <ClCompile Include="user\user\split_view.cpp" />
+    <ClCompile Include="user\user\split_impact.cpp" />
     <ClCompile Include="user\user\static_control.cpp" />
     <ClCompile Include="user\user\style.cpp" />
     <ClCompile Include="user\user\tab.cpp" />
@@ -299,7 +299,7 @@
     <ClCompile Include="user\user\tab_data.cpp" />
     <ClCompile Include="user\user\tab_pane.cpp" />
     <ClCompile Include="user\user\tab_pane_array.cpp" />
-    <ClCompile Include="user\user\tab_view.cpp" />
+    <ClCompile Include="user\user\tab_impact.cpp" />
     <ClCompile Include="user\user\toolbar.cpp" />
     <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="_.cpp" />

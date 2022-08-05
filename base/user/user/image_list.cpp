@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #endif
 #include "aura/update.h"
 #include "image_list.h"
@@ -659,19 +659,19 @@ namespace user
    }
 
 
-   image_list_view::image_list_view()
+   image_list_impact::image_list_impact()
    {
 
    }
 
 
-   image_list_view::~image_list_view()
+   image_list_impact::~image_list_impact()
    {
 
    }
 
 
-   void image_list_view::assert_ok() const
+   void image_list_impact::assert_ok() const
    {
 
       ::user::image_list::assert_ok();
@@ -679,7 +679,7 @@ namespace user
    }
 
 
-   void image_list_view::dump(dump_context & dumpcontext) const
+   void image_list_impact::dump(dump_context & dumpcontext) const
    {
 
       ::user::image_list::dump(dumpcontext);
@@ -687,19 +687,19 @@ namespace user
    }
 
 
-   void image_list_view::install_message_routing(::channel * pchannel)
+   void image_list_impact::install_message_routing(::channel * pchannel)
    {
 
       ::user::impact::install_message_routing(pchannel);
       ::user::image_list::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &image_list_view::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list_view::on_message_destroy);
+      MESSAGE_LINK(e_message_create, pchannel, this, &image_list_impact::on_message_create);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list_impact::on_message_destroy);
 
    }
 
 
-   void image_list_view::on_message_create(::message::message * pmessage)
+   void image_list_impact::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -709,13 +709,13 @@ namespace user
    }
 
 
-   void image_list_view::on_message_destroy(::message::message * pmessage)
+   void image_list_impact::on_message_destroy(::message::message * pmessage)
    {
 
    }
 
 
-   void image_list_view::handle(::topic * ptopic, ::context * pcontext)
+   void image_list_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
       ::user::impact::handle(ptopic, pcontext);
@@ -724,7 +724,7 @@ namespace user
       {
 
          throw ::exception(todo, "core");
-         //auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
+         //auto * peditview = _001TypedWindow < ::userex::top_edit_impact >();
 
          //if (peditview != nullptr && ptopic->user_interaction() == peditview)
          //{

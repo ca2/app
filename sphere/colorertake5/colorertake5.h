@@ -41,7 +41,7 @@
 #include "colorertake5_pair_match.h"
 #include "colorertake5_base_editor.h"
 #include "colorertake5_parsed_line_writer.h"
-#include "colorertake5_text_console_viewer.h"
+#include "colorertake5_text_console_impacter.h"
 #include "colorertake5_outline_item.h"
 #include "colorertake5_outliner.h"
 

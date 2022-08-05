@@ -64,10 +64,10 @@ list(APPEND library_source
    filesystem/filemanager/folder_list.h
    filesystem/filemanager/folder_list_data.cpp
    filesystem/filemanager/folder_list_data.h
-   filesystem/filemanager/folder_list_view.cpp
-   filesystem/filemanager/folder_list_view.h
-   filesystem/filemanager/folder_selection_list_view.cpp
-   filesystem/filemanager/folder_selection_list_view.h
+   filesystem/filemanager/folder_list_impact.cpp
+   filesystem/filemanager/folder_list_impact.h
+   filesystem/filemanager/folder_selection_list_impact.cpp
+   filesystem/filemanager/folder_selection_list_impact.h
    filesystem/filemanager/form.cpp
    filesystem/filemanager/form.h
    filesystem/filemanager/form_child_frame.cpp
@@ -76,12 +76,12 @@ list(APPEND library_source
    #filesystem/filemanager/form_document.h
    filesystem/filemanager/frame.cpp
    filesystem/filemanager/frame.h
-   filesystem/filemanager/fs_simple_list_view.cpp
-   filesystem/filemanager/fs_simple_list_view.h
+   filesystem/filemanager/fs_simple_list_impact.cpp
+   filesystem/filemanager/fs_simple_list_impact.h
    filesystem/filemanager/fs_simple_tree.cpp
    filesystem/filemanager/fs_simple_tree.h
-   filesystem/filemanager/fs_simple_view.cpp
-   filesystem/filemanager/fs_simple_view.h
+   filesystem/filemanager/fs_simple_impact.cpp
+   filesystem/filemanager/fs_simple_impact.h
    filesystem/filemanager/icon.cpp
    filesystem/filemanager/icon.h
    filesystem/filemanager/iconoverlayer.cpp
@@ -90,8 +90,8 @@ list(APPEND library_source
    filesystem/filemanager/impact_base.h
    filesystem/filemanager/impact.cpp
    filesystem/filemanager/impact.h
-   filesystem/filemanager/left_view.cpp
-   filesystem/filemanager/left_view.h
+   filesystem/filemanager/left_impact.cpp
+   filesystem/filemanager/left_impact.h
    filesystem/filemanager/main_frame.cpp
    filesystem/filemanager/main_frame.h
    filesystem/filemanager/main_impact.cpp
@@ -102,22 +102,22 @@ list(APPEND library_source
    filesystem/filemanager/operation_child_frame.h
    filesystem/filemanager/operation_document.cpp
    filesystem/filemanager/operation_document.h
-   filesystem/filemanager/operation_info_view.cpp
-   filesystem/filemanager/operation_info_view.h
-   filesystem/filemanager/operation_list_view.cpp
-   filesystem/filemanager/operation_list_view.h
+   filesystem/filemanager/operation_info_impact.cpp
+   filesystem/filemanager/operation_info_impact.h
+   filesystem/filemanager/operation_list_impact.cpp
+   filesystem/filemanager/operation_list_impact.h
    filesystem/filemanager/operation_thread.cpp
    filesystem/filemanager/operation_thread.h
-   filesystem/filemanager/operation_view.cpp
-   filesystem/filemanager/operation_view.h
-   filesystem/filemanager/path_view.cpp
-   filesystem/filemanager/path_view.h
-   filesystem/filemanager/preview.cpp
-   filesystem/filemanager/preview.h
-   filesystem/filemanager/save_as_name_view.cpp
-   filesystem/filemanager/save_as_name_view.h
-   filesystem/filemanager/tab_view.cpp
-   filesystem/filemanager/tab_view.h
+   filesystem/filemanager/operation_impact.cpp
+   filesystem/filemanager/operation_impact.h
+   filesystem/filemanager/path_impact.cpp
+   filesystem/filemanager/path_impact.h
+   filesystem/filemanager/thumbnail.cpp
+   filesystem/filemanager/thumbnail.h
+   filesystem/filemanager/save_as_name_impact.cpp
+   filesystem/filemanager/save_as_name_impact.h
+   filesystem/filemanager/tab_impact.cpp
+   filesystem/filemanager/tab_impact.h
    filesystem/filemanager/tree.cpp
    filesystem/filemanager/tree.h
    #filesystem/filemanager/update_hint.cpp
@@ -232,8 +232,8 @@ list(APPEND library_source
    html/user/document.h
    html/user/form.cpp
    html/user/form.h
-   html/user/form_view.cpp
-   html/user/form_view.h
+   html/user/form_impact.cpp
+   html/user/form_impact.h
    #html/user/frame.cpp
    #html/user/frame.h
    html/user/user.cpp
@@ -378,22 +378,22 @@ list(APPEND library_source
    #user/simple/_.cpp
    user/simple/_.h
    user/simple/_impl.h
-   user/simple/_simple.h
+   user/simple/_component.h
    user/simple/_tree.h
    user/simple/child_frame.cpp
    user/simple/child_frame.h
-   user/simple/form_list_view.cpp
-   user/simple/form_list_view.h
-   user/simple/form_view.cpp
-   user/simple/form_view.h
+   user/simple/form_list_impact.cpp
+   user/simple/form_list_impact.h
+   user/simple/form_impact.cpp
+   user/simple/form_impact.h
    user/simple/list_control.cpp
    user/simple/list_control.h
    user/simple/list_data.cpp
    user/simple/list_data.h
    user/simple/list_header_control.cpp
    user/simple/list_header_control.h
-   user/simple/list_view.cpp
-   user/simple/list_view.h
+   user/simple/list_impact.cpp
+   user/simple/list_impact.h
    user/simple/menu_bar.cpp
    user/simple/menu_bar.h
    user/simple/mesh_data.cpp
@@ -402,8 +402,8 @@ list(APPEND library_source
    user/simple/message_box.h
    user/simple/pane_document.cpp
    user/simple/pane_document.h
-   user/simple/printer_list_view.cpp
-   user/simple/printer_list_view.h
+   user/simple/printer_list_impact.cpp
+   user/simple/printer_list_impact.h
    user/simple/simple.h
    user/simple/static.cpp
    user/simple/static.h
@@ -411,12 +411,12 @@ list(APPEND library_source
    user/simple/status_bar.h
    user/simple/tab_control.cpp
    user/simple/tab_control.h
-   user/simple/tab_view.cpp
-   user/simple/tab_view.h
+   user/simple/tab_impact.cpp
+   user/simple/tab_impact.h
    user/simple/toolbar.cpp
    user/simple/toolbar.h
-   user/simple/tree_view.cpp
-   user/simple/tree_view.h
+   user/simple/tree_impact.cpp
+   user/simple/tree_impact.h
    user/user/00.h
    #user/user/_.cpp
    user/user/_.h
@@ -436,8 +436,8 @@ list(APPEND library_source
    user/user/font_list.h
    user/user/form_list.cpp
    user/user/form_list.h
-   user/user/form_list_view.cpp
-   user/user/form_list_view.h
+   user/user/form_list_impact.cpp
+   user/user/form_list_impact.h
    user/user/form_mesh.cpp
    user/user/form_mesh.h
    user/user/form_update_hint.h
@@ -457,8 +457,8 @@ list(APPEND library_source
    user/user/list_header.h
    user/user/list_item.cpp
    user/user/list_item.h
-   user/user/list_view.cpp
-   user/user/list_view.h
+   user/user/list_impact.cpp
+   user/user/list_impact.h
    user/user/listing.h
    user/user/main_frame.cpp
    user/user/main_frame.h
@@ -493,38 +493,38 @@ list(APPEND library_source
    user/user/tree_data.cpp
    user/user/tree_data.h
    user/user/tree_window.cpp
-   user/user/xfplayer_view_line.cpp
-   user/user/xfplayer_view_line.h
-   user/user/xfplayer_view_line_selection.cpp
-   user/user/xfplayer_view_line_selection.h
-   user/user/xfplayer_view_lines.cpp
-   user/user/xfplayer_view_lines.h
+   user/user/xfplayer_impact_line.cpp
+   user/user/xfplayer_impact_line.h
+   user/user/xfplayer_impact_line_selection.cpp
+   user/user/xfplayer_impact_line_selection.h
+   user/user/xfplayer_impact_lines.cpp
+   user/user/xfplayer_impact_lines.h
    user/userex/-ehrror_dialog.cpp
    user/userex/_.h
    user/userex/_impl.h
    user/userex/_userex.h
-   user/userex/calculator_edit_view.cpp
-   user/userex/calculator_edit_view.h
-   user/userex/color_view.cpp
-   user/userex/color_view.h
+   user/userex/calculator_edit_impact.cpp
+   user/userex/calculator_edit_impact.h
+   user/userex/color_impact.cpp
+   user/userex/color_impact.h
    user/userex/const.h
    user/userex/dialog.cpp
    user/userex/dialog.h
    user/userex/dialog_frame.cpp
    user/userex/dialog_frame.h
    user/userex/error_dialog.h
-   user/userex/font_view.cpp
-   user/userex/font_view.h
+   user/userex/font_impact.cpp
+   user/userex/font_impact.h
    user/userex/form_child_frame.cpp
    user/userex/form_child_frame.h
    user/userex/form_document.h
    user/userex/form_frame.cpp
    user/userex/form_frame.h
-   user/userex/form_view.h
+   user/userex/form_impact.h
    user/userex/group_image_list.cpp
    user/userex/group_image_list.h
-   user/userex/home_view.cpp
-   user/userex/home_view.h
+   user/userex/home_impact.cpp
+   user/userex/home_impact.h
    user/userex/image_list.cpp
    user/userex/image_list.h
    user/userex/impact_host.cpp
@@ -533,13 +533,13 @@ list(APPEND library_source
    user/userex/menu_document.h
    user/userex/menu_frame.cpp
    user/userex/menu_frame.h
-   user/userex/menu_view.cpp
-   user/userex/menu_view.h
+   user/userex/menu_impact.cpp
+   user/userex/menu_impact.h
    user/userex/message_box.cpp
    user/userex/message_box.h
    user/userex/mini_dock_frame_window.h
-   user/userex/pane_split_view.cpp
-   user/userex/pane_split_view.h
+   user/userex/pane_split_impact.cpp
+   user/userex/pane_split_impact.h
    user/userex/pane_tab_impact.cpp
    user/userex/pane_tab_impact.h
    user/userex/pane_impact.cpp
@@ -550,14 +550,14 @@ list(APPEND library_source
    user/userex/property_page.h
    user/userex/property_sheet.cpp
    user/userex/property_sheet.h
-   user/userex/split_view.cpp
-   user/userex/split_view.h
-   user/userex/top_edit_view.cpp
-   user/userex/top_edit_view.h
-   user/userex/top_toggle_view.cpp
-   user/userex/top_toggle_view.h
-   user/userex/top_view.cpp
-   user/userex/top_view.h
+   user/userex/split_impact.cpp
+   user/userex/split_impact.h
+   user/userex/top_edit_impact.cpp
+   user/userex/top_edit_impact.h
+   user/userex/top_toggle_impact.cpp
+   user/userex/top_toggle_impact.h
+   user/userex/top_impact.cpp
+   user/userex/top_impact.h
    user/userex/user.cpp
    user/userex/user.h
    user/userex/wait_message_dialog.cpp
@@ -830,24 +830,24 @@ if (IOS)
       operating_system/ios/plane_system.h
       operating_system/ios/round_window.h
       operating_system/ios/round_window.mm
-      operating_system/ios/RoundCaretView.h
-      operating_system/ios/RoundCaretView.mm
-      operating_system/ios/RoundEditView.h
-      operating_system/ios/RoundEditView.mm
+      operating_system/ios/RoundCaretImpact.h
+      operating_system/ios/RoundCaretImpact.mm
+      operating_system/ios/RoundEditImpact.h
+      operating_system/ios/RoundEditImpact.mm
       operating_system/ios/RoundTextPosition.h
       operating_system/ios/RoundTextPosition.mm
       operating_system/ios/RoundTextRange.h
       operating_system/ios/RoundTextRange.mm
-      operating_system/ios/RoundTextView.h
-      operating_system/ios/RoundTextView.mm
-      operating_system/ios/RoundViewController.h
-      operating_system/ios/RoundViewController.mm
+      operating_system/ios/RoundTextImpact.h
+      operating_system/ios/RoundTextImpact.mm
+      operating_system/ios/RoundImpactController.h
+      operating_system/ios/RoundImpactController.mm
       operating_system/ios/RoundWindow.h
       operating_system/ios/RoundWindow.mm
       operating_system/ios/RoundWindowApp.h
       operating_system/ios/RoundWindowApp.mm
-      operating_system/ios/RoundWindowFrameView.h
-      operating_system/ios/RoundWindowFrameView.mm
+      operating_system/ios/RoundWindowFrameImpact.h
+      operating_system/ios/RoundWindowFrameImpact.mm
       operating_system/ios/shell.cpp
       operating_system/ios/shell.h
       operating_system/ios/state.h
@@ -952,7 +952,7 @@ if (ANDROID)
 #      operating_system/android/process_pid.cpp
       operating_system/android/simple_shell_launcher.cpp
       operating_system/android/small_ipca_channel.cpp
-      operating_system/android/view_bitmap.h
+      operating_system/android/impact_bitmap.h
       operating_system/android/win_base.cpp
       operating_system/android/window_android.cpp
       operating_system/android/window_android.h

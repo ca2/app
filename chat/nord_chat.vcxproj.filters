@@ -66,7 +66,7 @@
     <ClInclude Include="calculator\calculator_parser_exception.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\calculator_plain_edit_view.h">
+    <ClInclude Include="calculator\calculator_plain_edit_impact.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
     <ClInclude Include="calculator\calculator_scanner.h">
@@ -116,7 +116,7 @@
     <ClCompile Include="calculator\calculator_parser_exception.cpp">
       <Filter>Source Files\calculator</Filter>
     </ClCompile>
-    <ClCompile Include="calculator\calculator_plain_edit_view.cpp">
+    <ClCompile Include="calculator\calculator_plain_edit_impact.cpp">
       <Filter>Source Files\calculator</Filter>
     </ClCompile>
     <ClCompile Include="calculator\calculator_scanner.cpp">

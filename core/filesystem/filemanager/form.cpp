@@ -29,7 +29,7 @@ namespace filemanager
 
             ptopic->payload(id_form) = "filemanager_add_location_lfs.xhtml";
 
-            get_document()->update_all_views(ptopic);
+            get_document()->update_all_impacts(ptopic);
 
             auto pinteraction = get_child_by_name("lfs");
 
@@ -43,7 +43,7 @@ namespace filemanager
 
             ptopic->payload(id_form) = "filemanager_add_location_ftp.xhtml";
 
-            get_document()->update_all_views(ptopic);
+            get_document()->update_all_impacts(ptopic);
 
          }
          else if(ptopic->user_interaction()->m_atom == "submit")
@@ -86,7 +86,7 @@ namespace filemanager
 
                auto pdocument =  filemanager_document();
 
-               pdocument->update_all_views(ptopic);
+               pdocument->update_all_impacts(ptopic);
 
             }
             else if (m_atomCreator == "new_folder")
@@ -100,7 +100,7 @@ namespace filemanager
 
                auto pdocument = filemanager_document();
 
-               pdocument->update_all_views(ptopic);
+               pdocument->update_all_impacts(ptopic);
 
             }
 

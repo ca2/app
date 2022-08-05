@@ -41,7 +41,7 @@ namespace hellobase
 
       add_factory_item <::hellobase::document >();
       add_factory_item <::hellobase::main_frame >();
-      add_factory_item <::user::button_view >();
+      add_factory_item <::user::button_impact >();
       add_factory_item <::hellobase::impact >();
 
       if (!::base::application::init_instance())

@@ -40,6 +40,10 @@ namespace draw2d
       m_puserinteraction = nullptr;
       m_bUseImageMipMapsOrResizedImages = false;
 
+      m_pointOrigin.x = 0;
+      m_pointOrigin.y = 0;
+      m_sizeScaling.cx = 1.0;
+      m_sizeScaling.cy = 1.0;
       //m_estatus = success;
       //m_estatusLast = success;
 

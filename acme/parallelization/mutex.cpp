@@ -745,12 +745,12 @@ bool mutex::_wait(const class ::wait & wait)
    if (m_strName.has_char())
    {
 
-      int rc = pthread_mutex_lock(&m_mutex);
+      int iError = pthread_mutex_lock(&m_mutex);
 
-      if (rc < 0)
+      if (iError < 0)
       {
 
-         return error_failed;
+         throw ::exception(error_failed);
 
       }
 
@@ -769,7 +769,12 @@ bool mutex::_wait(const class ::wait & wait)
 
                int iError = pthread_mutex_unlock(&m_mutex);
 
-               ASSERT(iError == 0);
+               if (iError < 0)
+               {
+
+                  throw ::exception(error_failed);
+
+               }
 
                return true;
 
@@ -790,7 +795,12 @@ bool mutex::_wait(const class ::wait & wait)
 
                int iError = pthread_mutex_unlock(&m_mutex);
 
-               ASSERT(iError == 0);
+               if (iError < 0)
+               {
+
+                  throw ::exception(error_failed);
+
+               }
 
                return true;
 
@@ -805,9 +815,9 @@ bool mutex::_wait(const class ::wait & wait)
 
                   int iError = pthread_mutex_unlock(&m_mutex);
 
-                  ASSERT(iError == 0);
+                  //ASSERT(iError == 0);
 
-                  return error_failed;
+                  throw ::exception(error_failed);
 
                }
 
@@ -820,7 +830,7 @@ bool mutex::_wait(const class ::wait & wait)
 
                ASSERT(false);
 
-               return error_failed;
+               throw ::exception(error_failed);
 
             }
 
@@ -829,18 +839,18 @@ bool mutex::_wait(const class ::wait & wait)
             if (tickElapsed >= wait)
             {
 
-               return error_wait_timeout;
+               return false;
 
             }
 
             preempt((::duration)minimum_maximum((wait - tickElapsed) / 50, 1, 1000));
 
-            rc = pthread_mutex_lock(&m_mutex);
+            iError = pthread_mutex_lock(&m_mutex);
 
-            if (rc < 0)
+            if (iError < 0)
             {
 
-               return error_failed;
+               throw ::exception(error_failed);
 
             }
 
@@ -1062,24 +1072,30 @@ bool mutex::_wait(const class ::wait & wait)
 
       abs_time.tv_nsec = d.m_iNanosecond;
 
-      int rc = pthread_mutex_timedlock (&m_mutex, &abs_time);
+      int iError = pthread_mutex_timedlock (&m_mutex, &abs_time);
 
-      if (!rc)
+      if (iError == 0)
       {
 
-         return signaled_base;
+         return true;
 
       }
-      else if(rc == ETIMEDOUT)
+      else if(iError == ETIMEDOUT)
       {
 
-         return error_wait_timeout;
+         return false;
+
+      }
+      else if(iError == EINVAL)
+      {
+
+         return false;
 
       }
       else
       {
 
-         return error_failed;
+         throw ::exception(error_failed);
 
       }
 
@@ -1130,9 +1146,9 @@ void mutex::_wait()
    if (m_strName.has_char())
    {
 
-      int rc = pthread_mutex_lock(&m_mutex);
+      int iError = pthread_mutex_lock(&m_mutex);
 
-      if (rc < 0)
+      if (iError != 0)
       {
 
          throw ::exception(error_failed);
@@ -1144,16 +1160,14 @@ void mutex::_wait()
 
          m_count++;
 
-         int rc = pthread_mutex_unlock(&m_mutex);
+         iError = pthread_mutex_unlock(&m_mutex);
 
-         if (rc < 0)
+         if (iError != 0)
          {
 
             throw ::exception(error_failed);
 
          }
-
-         //return ::success;
 
       }
 
@@ -1168,16 +1182,14 @@ void mutex::_wait()
 
                m_count++;
 
-               int rc = pthread_mutex_unlock(&m_mutex);
+               iError = pthread_mutex_unlock(&m_mutex);
 
-               if (rc < 0)
+               if (iError != 0)
                {
 
                   throw ::exception(error_failed);
 
                }
-
-               //return ::success;
 
             }
 
@@ -1185,38 +1197,36 @@ void mutex::_wait()
          else
          {
 
-            rc = lockf(m_iFd, F_LOCK, 0);
+            iError = lockf(m_iFd, F_LOCK, 0);
 
-            if (rc == 0)
+            if (iError == 0)
             {
 
                m_count++;
 
                m_thread = pthread_self();
 
-               int rc = pthread_mutex_unlock(&m_mutex);
+               iError = pthread_mutex_unlock(&m_mutex);
 
-               if (rc < 0)
+               if (iError != 0)
                {
 
                   throw ::exception(error_failed);
 
                }
 
-               //return ::success;
-
             }
             else
             {
 
-               rc = errno;
+               iError = errno;
 
-               if (rc != EAGAIN && rc != EACCES)
+               if (iError != EAGAIN && iError != EACCES)
                {
 
-                  int rc = pthread_mutex_unlock(&m_mutex);
+                  iError = pthread_mutex_unlock(&m_mutex);
 
-                  if(rc < 0)
+                  if(iError != 0)
                   {
 
                      throw ::exception(error_failed);
@@ -1231,9 +1241,9 @@ void mutex::_wait()
 
          }
 
-         int rc = pthread_mutex_unlock(&m_mutex);
+         iError = pthread_mutex_unlock(&m_mutex);
 
-         if (rc < 0)
+         if (iError != 0)
          {
 
             throw ::exception(error_failed);
@@ -1242,9 +1252,9 @@ void mutex::_wait()
 
          preempt(100_ms);
 
-         rc = pthread_mutex_lock(&m_mutex);
+         iError = pthread_mutex_lock(&m_mutex);
 
-         if (rc < 0)
+         if (iError != 0)
          {
 
             throw ::exception(error_failed);
@@ -1252,8 +1262,6 @@ void mutex::_wait()
          }
 
       }
-
-      //return ::success;
 
    }
    else
@@ -1335,9 +1343,9 @@ void mutex::_wait()
 
    {
 
-      int irc = pthread_mutex_lock(&m_mutex);
+      int iError = pthread_mutex_lock(&m_mutex);
 
-      if (irc)
+      if (iError != 0)
       {
 
          throw ::exception(error_failed);

@@ -2034,55 +2034,54 @@ namespace user
 
       }
 
-            if(::is_null(m_puserinteraction->m_pwindow))
-      {
-
-         printf("m_puserinteraction->m_pwindow is null!! (8) (0x%" PRI0xPTR ")", (uptr) m_puserinteraction->m_pwindow);
-
-      }
-      else
-      {
-
-         printf("m_puserinteraction->m_pwindow is set!! (8) (0x%" PRI0xPTR ")", (uptr) m_puserinteraction->m_pwindow);
-
-      }
-      
-      fflush(stdout);
-
+//      if(::is_null(m_puserinteraction->m_pwindow))
+//      {
+//
+//         printf("m_puserinteraction->m_pwindow is null!! (8) (0x%" PRI0xPTR ")\n", (uptr) m_puserinteraction->m_pwindow);
+//
+//      }
+//      else
+//      {
+//
+//         printf("m_puserinteraction->m_pwindow is set!! (8) (0x%" PRI0xPTR ")\n", (uptr) m_puserinteraction->m_pwindow);
+//
+//      }
+//
+//      fflush(stdout);
 
       m_puserinteraction->run_property("on_create");
 
-            if(::is_null(m_puserinteraction->m_pwindow))
-      {
-
-         printf("m_puserinteraction->m_pwindow is null!! (9) (0x%" PRI0xPTR ")", (uptr) m_puserinteraction->m_pwindow);
-
-      }
-      else
-      {
-
-         printf("m_puserinteraction->m_pwindow is set!! (9) (0x%" PRI0xPTR ")", (uptr) m_puserinteraction->m_pwindow);
-
-      }
-      
-      fflush(stdout);
+//      if(::is_null(m_puserinteraction->m_pwindow))
+//      {
+//
+//         printf("m_puserinteraction->m_pwindow is null!! (9) (0x%" PRI0xPTR ")", (uptr) m_puserinteraction->m_pwindow);
+//
+//      }
+//      else
+//      {
+//
+//         printf("m_puserinteraction->m_pwindow is set!! (9) (0x%" PRI0xPTR ")", (uptr) m_puserinteraction->m_pwindow);
+//
+//      }
+//
+//      fflush(stdout);
 
       m_puserinteraction->call_routines_with_id(CREATE_ROUTINE);
 
-                  if(::is_null(m_puserinteraction->m_pwindow))
-      {
-
-         printf("m_puserinteraction->m_pwindow is null!! (10) (0x%" PRI0xPTR ")", (uptr) m_puserinteraction->m_pwindow);
-
-      }
-      else
-      {
-
-         printf("m_puserinteraction->m_pwindow is set!! (10) (0x%" PRI0xPTR ")", (uptr) m_puserinteraction->m_pwindow);
-
-      }
-      
-      fflush(stdout);
+//      if(::is_null(m_puserinteraction->m_pwindow))
+//      {
+//
+//         printf("m_puserinteraction->m_pwindow is null!! (10) (0x%" PRI0xPTR ")", (uptr) m_puserinteraction->m_pwindow);
+//
+//      }
+//      else
+//      {
+//
+//         printf("m_puserinteraction->m_pwindow is set!! (10) (0x%" PRI0xPTR ")", (uptr) m_puserinteraction->m_pwindow);
+//
+//      }
+//
+//      fflush(stdout);
 
 
    }

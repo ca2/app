@@ -32,17 +32,41 @@ namespace draw2d_cairo
                m_playout = nullptr;
 
             }
+
+
             ~pango_layout()
             {
 
-               g_object_unref(m_playout);
+               if(::is_set(m_playout))
+               {
 
-               m_playout = nullptr;
+                  if(G_IS_OBJECT(m_playout))
+                  {
+
+                     g_object_unref(m_playout);
+
+                  }
+                  else
+                  {
+
+                     ::output_debug_string("pango_layout destructor: m_playout is not g_object");
+
+                  }
+
+                  m_playout = nullptr;
+
+               }
+               else
+               {
+
+                  //::output_debug_string("pango_layout destructor: m_playout is nullptr\n");
+
+               }
 
             }
 
 
-         PangoLayout * m_playout;
+            PangoLayout * m_playout;
             PangoRectangle m_rectangle;
 
 

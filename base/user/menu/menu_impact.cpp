@@ -5,7 +5,7 @@
 #include "aura/update.h"
 #include "aqua/xml.h"
 #include "menu_impact.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 
 
 namespace user

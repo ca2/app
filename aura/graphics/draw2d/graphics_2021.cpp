@@ -3,7 +3,7 @@
 #include "aura/user/user/_user.h"
 #endif
 #include "aura/platform/aura.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #include "aura/graphics/image/array.h"
 #include "graphics.h"
 #include "aura/graphics/image/image.h"

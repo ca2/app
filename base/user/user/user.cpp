@@ -5,7 +5,7 @@
 #include "simple_impact.h"
 #include "acme/platform/system_setup.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 
 
 namespace base

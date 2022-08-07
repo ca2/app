@@ -21,7 +21,7 @@
 //#include "aura/node/universal_windows/directx_application.h"
 //#include "aura/os/windows_common/draw2d_direct2d_global.h"
 //#endif
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 //#include "acme/platform/system_impl.h"
 
 int GetMainScreenRect(RECTANGLE_I32 * lprect);

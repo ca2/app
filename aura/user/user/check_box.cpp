@@ -7,7 +7,7 @@
 #include "aura/platform/draw_context2.h"
 //#include "interaction_draw2d.h"
 #include "acme/primitive/mathematics/mathematics.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 
 
 void scroll_x(RECTANGLE_I32 * prectangle, double dRateX, const ::rectangle_i32 & rectangle)

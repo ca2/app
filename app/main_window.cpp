@@ -3,7 +3,7 @@
 #include "_library.h"
 #endif
 #include "aura/graphics/user/control_box_button.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #include "acme/primitive/mathematics/mathematics.h"
 
 

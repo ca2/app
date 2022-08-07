@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "axis/user/_user.h"
 #include "acme/constant/timer.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #include "acme/platform/timer.h"
 
 

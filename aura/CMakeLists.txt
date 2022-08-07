@@ -40,7 +40,7 @@ list(APPEND library_source
    graphics/draw2d/winrt/image_gif.cpp
    graphics/draw2d/_.cpp
    graphics/draw2d/_.h
-   graphics/draw2d/_draw2d.h
+   graphics/draw2d/_component.h
    graphics/draw2d/_impl.h
    graphics/draw2d/_visual_impl.h
    graphics/draw2d/alpha.cpp

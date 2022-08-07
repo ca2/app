@@ -1,6 +1,6 @@
-// Created by camilo on 2022-06-25 09:18 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-06-25 09:18 <3ThomasBorregaardSï¿½rensen!!
 #include "framework.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #include "region_shape.h"
 #include "_defer.h"
 

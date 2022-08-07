@@ -4,7 +4,7 @@
 #include "aura/_.h" // psystem->ftlibrary()
 
 #include "aura/operating_system.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #include "acme/primitive/geometry2d/_impl.h"
 
 

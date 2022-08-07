@@ -2,7 +2,7 @@
 #include "acme/platform/timer.h"
 #include "core/user/account/_account.h"
 #include "acme/constant/timer.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #include "acme/platform/timer.h"
 #include "acme/platform/hyperlink.h"
 

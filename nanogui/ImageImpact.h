@@ -1,5 +1,5 @@
 /*
-    nanogui/imageview.h -- Widget used to display images.
+    nanogui/ImageImpact.h -- Widget used to display images.
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
     The widget drawing code is based on the NanoVG demo application
@@ -17,17 +17,17 @@
 NAMESPACE_BEGIN(nanogui)
 
 /**
- * \class ImageView imageview.h nanogui/imageview.h
+ * \class ImageImpact ImageImpact.h nanogui/ImageImpact.h
  *
  * \brief A widget for displaying, panning, and zooming images. Numerical RGBA
  * pixel information is shown at large magnifications.
  */
-   class NANOGUI_EXPORT ImageView : public Canvas {
+   class NANOGUI_EXPORT ImageImpact : public Canvas {
    public:
       using PixelCallback = ::function<void(const Vector2i &, char **, size_t)>;
 
       /// Initialize the widget
-      ImageView(Widget * parent);
+      ImageImpact(Widget * parent);
 
 
       // opengl

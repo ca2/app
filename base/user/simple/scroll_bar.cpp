@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "base/user/simple/_component.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #include "acme/platform/timer.h"
 //#include "aura/user/interaction_draw2d.h"
 

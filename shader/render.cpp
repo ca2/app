@@ -1,9 +1,9 @@
 #include "framework.h"
 #include <math.h>
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 
 
-CLASS_DECL_ACME ::color::color dk_red(); // <3ThomasBorregaardSørensen!!
+CLASS_DECL_ACME ::color::color dk_red(); // <3ThomasBorregaardSï¿½rensen!!
 
 
 void image_gl_set(image* pimage);

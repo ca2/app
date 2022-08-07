@@ -5,7 +5,7 @@
 #endif
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/list.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 
 
 namespace user

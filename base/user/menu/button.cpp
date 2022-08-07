@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "base/user/menu/_menu.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #include "aura/graphics/image/list.h"
 
 

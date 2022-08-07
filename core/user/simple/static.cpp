@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "core/user/simple/_component.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 
 
 simple_static::simple_static()

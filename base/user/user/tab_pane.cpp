@@ -6,7 +6,7 @@
 #include "aqua/xml.h"
 #include "tab_pane.h"
 #include "acme/primitive/text/_.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 
 
 #define MAGIC_PALACE_TAB_SPLT "->:<-"

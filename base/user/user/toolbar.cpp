@@ -8,7 +8,7 @@
 //#include "acme/operating_system/cross.h"
 #include "aura/operating_system/_user.h"
 #include "toolbar.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #include "acme/timer.h"
 //
 //#define CLR_TO_RGBQUAD(clr)     (rgb(::blue(clr), ::green(clr), ::red(clr)))

@@ -3,7 +3,7 @@
 #include "base/user/user/_component.h"
 #endif
 #include <math.h>
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 
 
 property & operator << (property & property, const RECTANGLE_F64 & rectangle)

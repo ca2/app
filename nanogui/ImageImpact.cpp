@@ -1,5 +1,5 @@
 /*
-    nanogui/imageview.cpp -- Widget used to display images.
+    nanogui/ImageImpact.cpp -- Widget used to display images.
 
     NanoGUI was developed by Wenzel Jakob <wenzel.jakob@epfl.ch>.
     The widget drawing code is based on the NanoVG demo application
@@ -14,7 +14,7 @@
 #endif
 
 #define __NANO2D_CONTEXT(ctx) ((::nano2d::context *) (ctx)->p)
-//#include <nanogui/imageview.h>
+//#include <nanogui/ImageImpact.h>
 //#include <nanogui/renderpass.h>
 //#include <nanogui/shader.h>
 //#include <nanogui/texture.h>
@@ -24,15 +24,15 @@
 
 NAMESPACE_BEGIN(nanogui)
 
-ImageImpact::ImageView(Widget * parent) : Canvas(parent, 1, false, false, false) {
+ImageImpact::ImageImpact(Widget * parent) : Canvas(parent, 1, false, false, false) {
    //render_pass()->set_clear_color(0, Color(0.3f, 0.3f, 0.32f, 1.f));
 
    //m_image_shader = new Shader(
    //   render_pass(),
    //   /* An identifying name */
    //   "a_simple_shader",
-   //   NANOGUI_SHADER("imageview_vertex"),
-   //   NANOGUI_SHADER("imageview_fragment"),
+   //   NANOGUI_SHADER("ImageImpact_vertex"),
+   //   NANOGUI_SHADER("ImageImpact_fragment"),
    //   Shader::BlendMode::AlphaBlend
    //);
 

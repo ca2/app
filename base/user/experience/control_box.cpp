@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "base/user/experience/_experience.h"
 #include "acme/constant/timer.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #include "acme/platform/timer.h"
 //#include "aura/user/interaction_draw2d.h"
 

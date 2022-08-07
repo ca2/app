@@ -3,7 +3,7 @@
 //#include "acme/operating_system/cross/windows/_windows.h"
 #include "acme/constant/timer.h"
 #include "acme/platform/timer.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #include "aura/graphics/image/list.h"
 
 

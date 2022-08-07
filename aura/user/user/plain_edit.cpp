@@ -14,7 +14,7 @@
 #endif
 #include "acme/constant/timer.h"
 #include "acme/primitive/string/base64.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #include "acme/platform/timer.h"
 #include "aura/windowing/text_editor_interface.h"
 //#include "_tree.h"

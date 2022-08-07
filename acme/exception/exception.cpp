@@ -514,4 +514,12 @@ CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exc
 }
 
 
+void throw_exception(enum_status estatus)
+{
+
+   throw ::exception(estatus);
+
+}
+
+
 

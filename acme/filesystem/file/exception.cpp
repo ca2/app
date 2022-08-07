@@ -474,7 +474,7 @@ namespace file
 } // namespace file
 
 
-::e_status errno_to_status(int iErrorNumber)
+::enum_status _errno_to_status(int iErrorNumber)
 {
 
    switch (iErrorNumber)
@@ -507,7 +507,7 @@ namespace file
 }
 
 
-::e_status failed_errno_to_status(int iErrorNumber)
+::enum_status _failed_errno_to_status(int iErrorNumber)
 {
 
    if(iErrorNumber == 0)
@@ -517,7 +517,7 @@ namespace file
 
    }
 
-   return errno_to_status(iErrorNumber);
+   return _errno_to_status(iErrorNumber);
 
 }
 

@@ -24,31 +24,31 @@ list(APPEND library_references
    )
 
 
-add_library(app_shader SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
-target_precompile_headers(app_shader PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
 
-set_target_properties(app_shader PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
 
-   target_compile_options(app_shader PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-   target_link_options(app_shader PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-   target_link_options(app_shader PRIVATE "/SUBSYSTEM:WINDOWS")
-   target_link_libraries(app_shader PRIVATE ${library_references})
+   target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+   target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+   target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
 
 elseif(LINUX OR FREEBSD)
 
-   target_compile_options(app_shader PRIVATE -fpermissive)
-   #target_link_options(app_shader PRIVATE -Wl,-rpath=$ORIGIN)
-   target_link_libraries(app_shader PRIVATE ${library_references})
-   target_link_options(app_shader PRIVATE -Wl,-z,defs)
+   target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+   #target_link_options(${PROJECT_NAME} PRIVATE -Wl,-rpath=$ORIGIN)
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
+   target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
 
 endif ()
 
 
-target_link_directories(app_shader PRIVATE ${library_link_directories})
+target_link_directories(${PROJECT_NAME} PRIVATE ${library_link_directories})
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
@@ -56,10 +56,10 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 
 
-target_include_directories(app_shader PRIVATE ${library_include_directories})
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(app_shader PRIVATE _APP_SIMPLE_DRAWING_LIBRARY)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _APP_SIMPLE_DRAWING_LIBRARY)
 
 
 #add_executable(_${PROJECT_NAME} _main.cpp)
@@ -71,7 +71,7 @@ list(APPEND executable_references
    apex
    aqua
    aura
-   app_shader
+   ${PROJECT_NAME}
    )
 
 
@@ -102,38 +102,38 @@ endif()
 if (MSVC)
 
 
-   target_compile_options(_app_shader PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-   target_link_options(_app_shader PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-   target_link_options(_app_shader PRIVATE "/SUBSYSTEM:WINDOWS")
-   target_link_libraries(_app_shader PRIVATE ${executable_references})
+   target_compile_options(_${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+   target_link_options(_${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+   target_link_options(_${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
+   target_link_libraries(_${PROJECT_NAME} PRIVATE ${executable_references})
 
 
 elseif(LINUX OR FREEBSD)
 
 
-   target_compile_options(_app_shader PRIVATE -fpermissive)
-   target_link_libraries(_app_shader PRIVATE ${executable_references})
-   target_link_options(_app_shader PRIVATE -Wl,-z,defs)
+   target_compile_options(_${PROJECT_NAME} PRIVATE -fpermissive)
+   target_link_libraries(_${PROJECT_NAME} PRIVATE ${executable_references})
+   target_link_options(_${PROJECT_NAME} PRIVATE -Wl,-z,defs)
 
 
 endif ()
 
 
 
-add_dependencies(_app_shader ${default_draw2d})
-add_dependencies(_app_shader ${default_write_text})
-add_dependencies(_app_shader ${app_common_dependencies})
-add_dependencies(_app_shader crypto_openssl)
-add_dependencies(_app_shader folder_zip)
-add_dependencies(_app_shader gpu_opengl)
+add_dependencies(_${PROJECT_NAME} ${default_draw2d})
+add_dependencies(_${PROJECT_NAME} ${default_write_text})
+add_dependencies(_${PROJECT_NAME} ${app_common_dependencies})
+add_dependencies(_${PROJECT_NAME} crypto_openssl)
+add_dependencies(_${PROJECT_NAME} folder_zip)
+add_dependencies(_${PROJECT_NAME} gpu_opengl)
 
 
 
-target_include_directories(_app_shader PRIVATE ${library_include_directories})
+target_include_directories(_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
-target_link_directories(_app_shader PRIVATE ${library_link_directories})
+target_link_directories(_${PROJECT_NAME} PRIVATE ${library_link_directories})
 
-set_target_properties(_app_shader PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(_${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
 

@@ -31,23 +31,21 @@
 #include "standard.h"
 
 
-namespace win
-{
+CLASS_DECL_ACME ::enum_status _errno_to_status(i32 nErrno);
+inline ::e_status errno_to_status(i32 nErrno) { return _errno_to_status(nErrno); }
 
-   CLASS_DECL_ACME string error_message(u32 dwError);
-
-}
-
-
-CLASS_DECL_ACME ::e_status errno_to_status(i32 nErrno);
-
-CLASS_DECL_ACME ::e_status failed_errno_to_status(i32 nErrno);
+CLASS_DECL_ACME ::enum_status _failed_errno_to_status(i32 nErrno);
+inline ::e_status failed_errno_to_status(i32 nErrno) { return _failed_errno_to_status(nErrno); }
 
 
 #ifdef WINDOWS
 
 
-CLASS_DECL_ACME ::e_status last_error_to_status(DWORD dwLastError);
+CLASS_DECL_ACME ::enum_status _last_error_to_status(DWORD dwLastError);
+inline ::e_status last_error_to_status(DWORD dwLastError) { return _last_error_to_status(dwLastError); }
+
+
+CLASS_DECL_ACME string last_error_message(u32 dwError);
 
 
 #endif

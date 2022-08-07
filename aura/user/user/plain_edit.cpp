@@ -482,13 +482,13 @@ namespace user
       //   if (iVerticalOffsetModule > 0)
       //   {
 
-      //      pgraphics->OffsetViewportOrg(0, -iVerticalOffsetModule);
+      //      pgraphics->offset_origin(0, -iVerticalOffsetModule);
 
       //   }
 
       //}
 
-      //pgraphics->OffsetViewportOrg(-pointOffset.x, 0);
+      //pgraphics->offset_origin(-pointOffset.x, 0);
 
       double y = rectangleClient.top + m_iCurrentPageLineStart * m_dLineHeight;
 
@@ -1500,43 +1500,43 @@ namespace user
 
       get_client_rect(rectangleClient);
 
-      auto xViewport = get_impactport_offset().x;
+      auto xContext = get_impactport_offset().x;
 
       int iBorder = 4;
 
       if (xEnd < rectangleClient.width() - iBorder * 2)
       {
 
-         xViewport = 0;
+         xContext = 0;
 
       }
       else if (xEnd - get_impactport_offset().x < rectangleClient.width() - iBorder * 2)
       {
 
-         xViewport = (int)maximum(0, xEnd - rectangleClient.width() + iBorder * 2);
+         xContext = (int)maximum(0, xEnd - rectangleClient.width() + iBorder * 2);
 
       }
-      else if (x < xViewport && xViewport > 0)
+      else if (x < xContext && xContext > 0)
       {
 
-         xViewport = x;
+         xContext = x;
 
       }
       else if (x > 0 && x < get_impactport_offset().x)
       {
 
-         xViewport = maximum(0, x - rectangleClient.width() / 2);
+         xContext = maximum(0, x - rectangleClient.width() / 2);
 
       }
       else if (x > get_impactport_offset().x + rectangleClient.width() - iBorder * 2)
       {
 
-         xViewport = (int)maximum(0, xEnd - rectangleClient.width() + iBorder * 2);
+         xContext = (int)maximum(0, xEnd - rectangleClient.width() + iBorder * 2);
 
       }
 
 
-      if (iSelEnd == m_ptree->m_iSelEnd && iColumn == m_iColumn && xViewport == get_impactport_offset().x)
+      if (iSelEnd == m_ptree->m_iSelEnd && iColumn == m_iColumn && xContext == get_impactport_offset().x)
       {
 
          return;
@@ -1547,10 +1547,10 @@ namespace user
 
       m_iColumn = iColumn;
 
-      if (xViewport != get_impactport_offset().x)
+      if (xContext != get_impactport_offset().x)
       {
 
-         set_impactport_offset_x(pgraphics, (int)xViewport);
+         set_impactport_offset_x(pgraphics, (int)xContext);
 
       }
 

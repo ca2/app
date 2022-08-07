@@ -76,7 +76,7 @@ namespace prompt
    /////////////////////////////////////////////////////////////////////////////
    // impact message handlers
 
-   // vmpLightView.cpp : implementation of the impact class
+   // vmpLightImpact.cpp : implementation of the impact class
    //
 
 

@@ -75,7 +75,7 @@ namespace tc4
       __type(::tc4::frame),       // top level SDI frame::user::interaction_impl
       __type(::tc4::main_impact));
       add_document_template(pDocTemplate);
-      m_ptemplateHelloMultiverseView = pDocTemplate;
+      m_ptemplateHelloMultiverseImpact = pDocTemplate;
       pDocTemplate = new ::user::single_document_template(
       this,
       "main",
@@ -130,7 +130,7 @@ namespace tc4
       if(pcreate->m_payloadFile.has_char())
       {
 
-         m_ptemplateHelloMultiverseView->do_request(pcreate);
+         m_ptemplateHelloMultiverseImpact->do_request(pcreate);
 
       }
 

@@ -96,7 +96,7 @@ namespace helloworld
       else if(get_type_impact < ::userex::pane_tab_impact >() != nullptr)
       {
 
-         get_type_impact < ::userex::pane_tab_impact >()->set_current_tab_by_id(::helloworld::PaneViewHelloWorld);
+         get_type_impact < ::userex::pane_tab_impact >()->set_current_tab_by_id(::helloworld::PaneImpactHelloWorld);
 
       }
 

@@ -12,7 +12,7 @@ namespace app_core_build
       m_pimpact    = nullptr;
       m_flagNonClient.add(non_client_background);
       m_flagNonClient.add(non_client_focus_rect);
-      m_strViewId = "hellomultiverse_impact";
+      m_strImpactId = "hellomultiverse_impact";
 
 
    }
@@ -102,7 +102,7 @@ namespace app_core_build
 
       }
 
-      m_pimpact = create_impact < ::app_core_build::impact >(nullptr,get_pane_holder(iPane), m_strViewId);
+      m_pimpact = create_impact < ::app_core_build::impact >(nullptr,get_pane_holder(iPane), m_strImpactId);
 
       if(m_pimpact == nullptr)
       {

@@ -101,8 +101,9 @@ namespace draw2d
       ::write_text::enum_rendering           m_ewritetextrendering;
       double                                 m_dFontFactor;
 
-      ::draw2d::matrix                       m_matrixViewport;
-      ::draw2d::matrix                       m_matrixTransform;
+      ::size_f64                             m_sizeScaling;
+      ::point_f64                            m_pointOrigin;
+      ::draw2d::matrix                       m_matrix;
 
       ::rectangle_f64                        m_rectangleDraw;
 
@@ -375,22 +376,22 @@ namespace draw2d
 //      virtual void GetWorldTransform(XFORM* pXform);
 //#endif
 
-      virtual void get_impactport_scale(::draw2d::matrix & matrix);
+      virtual ::size_f64 get_scaling();
 
       // Mapping Functions
       ///virtual i32 GetMapMode();
-      virtual ::point_f64 GetViewportOrg();
+      virtual ::point_f64 get_origin();
       //virtual i32 SetMapMode(i32 nMapMode);
-      // Viewport Origin
-      virtual ::point_f64 SetViewportOrg(double x, double y);
-      virtual ::point_f64 SetViewportOrg(const ::point_f64 & point_f64);
-      virtual ::point_f64 OffsetViewportOrg(double x, double y);
+      // Context Origin
+      virtual ::point_f64 set_origin(double x, double y);
+      virtual ::point_f64 set_origin(const ::point_f64 & point_f64);
+      virtual ::point_f64 offset_origin(double x, double y);
 
-      // Viewport Extent
-      virtual ::size_f64 GetViewportExt();
-      virtual ::size_f64 SetViewportExt(double cx, double cy);
-      virtual ::size_f64 SetViewportExt(const ::size_f64 & size);
-      virtual ::size_f64 ScaleViewportExt(double xNum, double xDenom, double yNum, double yDenom);
+      // Context Extent
+      virtual ::size_f64 get_context_extents();
+      virtual ::size_f64 set_context_extents(double cx, double cy);
+      virtual ::size_f64 set_context_extents(const ::size_f64 & size);
+      virtual ::size_f64 scale_context_extents(double xNum, double xDenom, double yNum, double yDenom);
 
       // Window Origin
       virtual ::point_f64 GetWindowOrg();
@@ -1238,8 +1239,9 @@ namespace draw2d
       graphics *     m_pgraphics;
       int            m_iSavedDC;
 
-      matrix         m_matrixViewport;
-      matrix         m_matrixTransform;
+      ::size_f64     m_sizeScaling;
+      ::point_f64    m_pointOrigin;
+      matrix         m_matrix;
 
       savedc(graphics * graphics);
       ~savedc();

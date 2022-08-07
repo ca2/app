@@ -45,11 +45,11 @@ namespace universal_windows
 
       m_window = window;
       
-      m_resizemanager = ::winrt::Windows::UI::Core::CoreWindowResizeManager::GetForCurrentView();
+      m_resizemanager = ::winrt::Windows::UI::Core::CoreWindowResizeManager::GetForCurrentImpact();
 
       m_resizemanager->ShouldWaitForLayoutCompletion = true;
 
-      //auto coreTitleBar = ::winrt::Windows::ApplicationModel::Core::CoreApplication::GetCurrentView()->TitleBar;
+      //auto coreTitleBar = ::winrt::Windows::ApplicationModel::Core::CoreApplication::GetCurrentImpact()->TitleBar;
 
       //coreTitleBar->ExtendViewIntoTitleBar = true;
 
@@ -61,12 +61,12 @@ namespace universal_windows
 
       m_tokenPointerPressed = m_window->PointerPressed += ref new TypedEventHandler < ::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::PointerEventArgs^>(this, &impact::CoreWindow_PointerPressed);
 
-      CoreTextServicesManager ^ manager = CoreTextServicesManager::GetForCurrentView();
+      CoreTextServicesManager ^ manager = CoreTextServicesManager::GetForCurrentImpact();
 
       m_editcontext = manager->CreateEditContext();
 
       // Get the Input Pane so we can programmatically hide and show it.
-      m_inputpane = InputPane::GetForCurrentView();
+      m_inputpane = InputPane::GetForCurrentImpact();
 
       // For demonstration purposes, this sample sets the Input Pane display policy to Manual
       // so that it can manually show the software keyboard when the control gains focus and
@@ -509,7 +509,7 @@ namespace universal_windows
       selectionRect.Y += windowBounds.Y;
 
       // Finally, scale up to raw pixels.
-      double scaleFactor = DisplayInformation::GetForCurrentView()->RawPixelsPerViewPixel;
+      double scaleFactor = DisplayInformation::GetForCurrentImpact()->RawPixelsPerViewPixel;
 
       contentRect = ScaleRect(contentRect, scaleFactor);
       selectionRect = ScaleRect(selectionRect, scaleFactor);

@@ -121,7 +121,7 @@ namespace calculator
       }
 
       /*   m_toolbar.ShowWindow(nShow);
-         m_toolbarView.ShowWindow(nShow);
+         m_toolbarImpact.ShowWindow(nShow);
       //   m_statusbar.ShowWindow(nShow);
          m_menubar.ShowWindow(nShow);
          m_dialogbar.ShowWindow(nShow);*/

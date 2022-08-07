@@ -248,8 +248,8 @@ e_message_queue_sentinel =    0x0379,
    e_message_subject,
 
 
-   e_message_backview,
-   e_message_backview_dequeue,
+   e_message_backimpact,
+   e_message_backimpact_dequeue,
 
    e_message_graphical_command,
 

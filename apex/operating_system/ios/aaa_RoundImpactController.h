@@ -1,22 +1,22 @@
 //
-//  RoundViewController.h
+//  RoundImpactController.h
 //  apex
 //
 //  Created by Camilo Sasuke Tsumanuma on 14/05/14.
 //
 //
 
-@class RoundWindowFrameView;
-@class RoundEditView;
+@class RoundWindowFrameImpact;
+@class RoundEditImpact;
 
-@interface RoundViewController : UIViewController < UITextViewDelegate >
+@interface RoundImpactController : UIViewController < UITextImpactDelegate >
 {
 @public
    
    
-   RoundWindowFrameView   *   childContentView;
+   RoundWindowFrameImpact   *   childContentImpact;
    RoundWindow *              m_pwindow;
-   RoundEditView *            m_pedit;
+   RoundEditImpact *            m_pedit;
 
 }
 

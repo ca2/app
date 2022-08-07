@@ -215,7 +215,7 @@ namespace html
 
          //::draw2d::savedc savedc(pgraphics);
 
-         //pgraphics->SetViewportOrg(rectangleWindow.top_left());
+         //pgraphics->set_origin(rectangleWindow.top_left());
 
          m_pcombo->_000CallOnDraw(pgraphics);
 

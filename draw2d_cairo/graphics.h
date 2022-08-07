@@ -146,18 +146,18 @@ namespace draw2d_cairo
 
       // Mapping Functions
       //virtual i32 GetMapMode() override;
-      point_f64 GetViewportOrg() override;
+      point_f64 get_origin() override;
       //virtual i32 SetMapMode(i32 nMapMode) override;
-      // Viewport Origin
-      point_f64 SetViewportOrg(double x, double y) override;
-      point_f64 SetViewportOrg(const ::point_f64 & point_f64) override;
-      point_f64 OffsetViewportOrg(double nWidth, double nHeight) override;
+      // Context Origin
+      point_f64 set_origin(double x, double y) override;
+      point_f64 set_origin(const ::point_f64 & point_f64) override;
+      point_f64 offset_origin(double nWidth, double nHeight) override;
 
-      // Viewport Extent
-      size_f64 GetViewportExt() override;
-      size_f64 SetViewportExt(double cx, double cy) override;
-      size_f64 SetViewportExt(const ::size_f64 & size_f64) override;
-      size_f64 ScaleViewportExt(double xNum, double xDenom, double yNum, double yDenom) override;
+      // Context Extent
+      size_f64 get_context_extents() override;
+      size_f64 set_context_extents(double cx, double cy) override;
+      size_f64 set_context_extents(const ::size_f64 & size_f64) override;
+      size_f64 scale_context_extents(double xNum, double xDenom, double yNum, double yDenom) override;
 
       // Window Origin
       point_f64 GetWindowOrg() override;

@@ -1,5 +1,5 @@
 /*
-     File: RoundTextView.h
+     File: RoundTextImpact.h
  Abstract:
  A impact that draws text, reasons about layout, and manages a selection over its text range.
  
@@ -54,7 +54,7 @@
 
 @class RoundWindow;
 
-@interface RoundTextView : UIView
+@interface RoundTextImpact : UIView
 {
 @public
    

@@ -5,11 +5,11 @@ namespace simple_drawing
 {
 
 
-   enum EPaneView
+   enum EPaneImpact
    {
       impact_none,
-      PaneViewMenu,
-      PaneViewSimpleDrawing
+      PaneImpactMenu,
+      PaneImpactSimpleDrawing
    };
 
 
@@ -23,14 +23,14 @@ namespace simple_drawing
       {
 
          TypeNone,
-         TypeGetView,
-         TypeSetView,
+         TypeGetImpact,
+         TypeSetImpact,
          TypeOnShowKaraoke,
-         TypeOnShowView,
+         TypeOnShowImpact,
 
       };
 
-      EPaneView m_eview;
+      EPaneImpact m_eview;
       enum_type m_etype;
 
 

@@ -13,7 +13,7 @@ namespace app_core_build
 
       ::userex::top_impact *                      m_ptopview;
       ::app_core_build::impact *      m_pimpact;
-      string                                    m_strViewId;
+      string                                    m_strImpactId;
 
 
       main_impact();

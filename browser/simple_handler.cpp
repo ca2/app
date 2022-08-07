@@ -44,7 +44,7 @@ void SimpleHandler::OnTitleChange(CefRefPtr<CefBrowser> browser,
    {
       // Set the title of the window using the Views framework.
       CefRefPtr<CefBrowserView> browser_impact =
-      CefBrowserView::GetForBrowser(browser);
+      CefBrowserImpact::GetForBrowser(browser);
       if (browser_impact)
       {
          CefRefPtr<CefWindow> window = browser_impact->GetWindow();

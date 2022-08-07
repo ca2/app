@@ -547,7 +547,7 @@ namespace universal_windows
          static_cast<float>(backBufferDesc.Height)
          );
 
-         m_d3dContext->RSSetViewports(1, &viewport);
+         m_d3dContext->RSSetContexts(1, &viewport);
 
       }
 
@@ -640,21 +640,21 @@ namespace universal_windows
                if (m_d3dContext.Get())
                {
 
-                  if (m_d3dRenderTargetView.Get())
+                  if (m_d3dRenderTargetImpact.Get())
                   {
 
                      // Discard the contents of the render target.
                      // This is a valid operation only when the existing contents will be entirely
                      // overwritten. If dirty or scroll rects are used, this call should be erased.
-                     m_d3dContext->DiscardView(m_d3dRenderTargetView.Get());
+                     m_d3dContext->DiscardView(m_d3dRenderTargetImpact.Get());
 
                   }
 
-                  if (m_d3dDepthStencilView.Get())
+                  if (m_d3dDepthStencilImpact.Get())
                   {
 
                      // Discard the contents of the depth stencil.
-                     m_d3dContext->DiscardView(m_d3dDepthStencilView.Get());
+                     m_d3dContext->DiscardView(m_d3dDepthStencilImpact.Get());
 
                   }
 
@@ -698,7 +698,7 @@ namespace universal_windows
       // A window size change has been initiated and the app has just completed presenting
       // the first frame with the new size. Notify the resize manager so we can short
       // circuit any resize animation and prevent unnecessary delays.
-      //      CoreWindowResizeManager::GetForCurrentView()->NotifyLayoutCompleted();
+      //      CoreWindowResizeManager::GetForCurrentImpact()->NotifyLayoutCompleted();
 
       //   }));
 

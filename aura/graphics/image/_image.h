@@ -112,7 +112,7 @@ CLASS_DECL_AURA enum_rotate_flip exif_orientation_rotate_flip(int orientation);
 //   virtual bool create_isotropic(::image * pimage)= 0;
 //   virtual bool create_isotropic(double_array & daRate, ::enum_priority epriority)= 0;
 //
-//   virtual bool SetViewportOrg(const ::point_i32 & point)= 0;
+//   virtual bool set_origin(const ::point_i32 & point)= 0;
 //   virtual bool set_font_factor(double dFactor)= 0;
 //   virtual bool set_alpha_mode(::draw2d::enum_alpha_mode enum_alpha_mode)= 0;
 //

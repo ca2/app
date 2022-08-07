@@ -149,7 +149,7 @@ namespace universal_windows
 
    public:
 
-      virtual ::winrt::Windows::ApplicationModel::Core::IFrameworkView ^ CreateView();
+      virtual ::winrt::Windows::ApplicationModel::Core::IFrameworkView ^ CreateImpact();
 
    };
 

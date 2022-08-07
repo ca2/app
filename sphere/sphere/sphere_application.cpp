@@ -787,9 +787,9 @@ namespace sphere
 
    void application::check_topic_file_change()
    {
-      if (m_varCurrentViewFile != m_varTopicFile && !m_varTopicFile.is_empty())
+      if (m_varCurrentImpactFile != m_varTopicFile && !m_varTopicFile.is_empty())
       {
-         m_varCurrentViewFile = m_varTopicFile;
+         m_varCurrentImpactFile = m_varTopicFile;
          request_topic_file();
       }
    }

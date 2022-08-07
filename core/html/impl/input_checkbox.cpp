@@ -173,13 +173,13 @@ namespace html
 
          //::rectangle_i32 rectangleWindow;
          //m_pcheckbox->get_window_rect(rectangleWindow);
-  //       ::point_i32 pointPreviousViewportOrg = pgraphics->GetViewportOrg();
+  //       ::point_i32 pointPreviousContextOrg = pgraphics->get_origin();
 
-    //     pgraphics->OffsetViewportOrg((i32) m_box.left, (i32) m_box.top);
+    //     pgraphics->offset_origin((i32) m_box.left, (i32) m_box.top);
 
          m_pcheckbox->_000CallOnDraw(pdata->m_pcoredata->m_pgraphics);
 
-      //   pgraphics->SetViewportOrg(pointPreviousViewportOrg);
+      //   pgraphics->set_origin(pointPreviousContextOrg);
 
       }
 

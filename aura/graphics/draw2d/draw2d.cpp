@@ -35,6 +35,8 @@ namespace draw2d
 
       m_pimpl = nullptr;
 
+
+
       //m_pmutexFont = __new(::mutex);
 
       //add_factory_item < e_cursor_set >();

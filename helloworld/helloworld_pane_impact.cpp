@@ -58,15 +58,15 @@ namespace helloworld
          return;
 
       set_tab("Menu",MENU_IMPACT);
-      set_tab("helloworld", ::helloworld::PaneViewHelloWorld);
-      set_tab("switcher",::helloworld::PaneViewHelloWorldSwitcher);
+      set_tab("helloworld", ::helloworld::PaneImpactHelloWorld);
+      set_tab("switcher",::helloworld::PaneImpactHelloWorldSwitcher);
       set_tab("Font",FONTSEL_IMPACT);
 #if 1
       set_tab("Open", FILEMANAGER_IMPACT);
 #endif
 
       //set_current_tab_by_id(GCOM_IMPACT);
-      set_current_tab_by_id(::helloworld::PaneViewHelloWorld);
+      set_current_tab_by_id(::helloworld::PaneImpactHelloWorld);
 
 
 
@@ -110,10 +110,10 @@ namespace helloworld
 
       }
 
-      if(get_impact_id() == ::helloworld::PaneViewHelloWorld
-            || get_impact_id() == ::helloworld::PaneViewHelloWorldSwitcher
-            || stra.contains(__string((int)::helloworld::PaneViewHelloWorld))
-            || stra.contains(__string((int)::helloworld::PaneViewHelloWorldSwitcher)))
+      if(get_impact_id() == ::helloworld::PaneImpactHelloWorld
+            || get_impact_id() == ::helloworld::PaneImpactHelloWorldSwitcher
+            || stra.contains(__string((int)::helloworld::PaneImpactHelloWorld))
+            || stra.contains(__string((int)::helloworld::PaneImpactHelloWorldSwitcher)))
       {
 
 
@@ -137,24 +137,24 @@ namespace helloworld
 
 
 
-         if(get_impact_id() == ::helloworld::PaneViewHelloWorld)
+         if(get_impact_id() == ::helloworld::PaneImpactHelloWorld)
          {
 
-            m_pimpactLast = dynamic_cast < impact_base * > (get_pane_by_id(::helloworld::PaneViewHelloWorld)->m_pholder->get_child_by_id("helloworld_impact"));
-            m_pimpactLastBilbo = dynamic_cast < impact * > (get_pane_by_id(::helloworld::PaneViewHelloWorld)->m_pholder->get_child_by_id("helloworld_impact"));
+            m_pimpactLast = dynamic_cast < impact_base * > (get_pane_by_id(::helloworld::PaneImpactHelloWorld)->m_pholder->get_child_by_id("helloworld_impact"));
+            m_pimpactLastBilbo = dynamic_cast < impact * > (get_pane_by_id(::helloworld::PaneImpactHelloWorld)->m_pholder->get_child_by_id("helloworld_impact"));
             m_pimpactLast->set_need_layout();
             m_pimpactdataTopic = m_pimpactdata;
-            m_strTopicTitle = get_pane_by_id(::helloworld::PaneViewHelloWorld)->m_straTitle.implode(" ");
+            m_strTopicTitle = get_pane_by_id(::helloworld::PaneImpactHelloWorld)->m_straTitle.implode(" ");
 
          }
-         else if (get_impact_id() == ::helloworld::PaneViewHelloWorldSwitcher)
+         else if (get_impact_id() == ::helloworld::PaneImpactHelloWorldSwitcher)
          {
 
-            m_pimpactLast = dynamic_cast < impact_base * > (get_pane_by_id(::helloworld::PaneViewHelloWorldSwitcher)->m_pholder->get_child_by_id("helloworld_impact"));
-            m_pimpactLastBilbo = dynamic_cast < impact * > (get_pane_by_id(::helloworld::PaneViewHelloWorldSwitcher)->m_pholder->get_child_by_id("helloworld_impact"));
+            m_pimpactLast = dynamic_cast < impact_base * > (get_pane_by_id(::helloworld::PaneImpactHelloWorldSwitcher)->m_pholder->get_child_by_id("helloworld_impact"));
+            m_pimpactLastBilbo = dynamic_cast < impact * > (get_pane_by_id(::helloworld::PaneImpactHelloWorldSwitcher)->m_pholder->get_child_by_id("helloworld_impact"));
             m_pimpactLast->set_need_layout();
             m_pimpactdataTopic = m_pimpactdata;
-            m_strTopicTitle = get_pane_by_id(::helloworld::PaneViewHelloWorldSwitcher)->m_straTitle.implode(" ");
+            m_strTopicTitle = get_pane_by_id(::helloworld::PaneImpactHelloWorldSwitcher)->m_straTitle.implode(" ");
 
          }
 
@@ -278,14 +278,14 @@ namespace helloworld
 
       }
       break;
-      case PaneViewHelloWorld:
+      case PaneImpactHelloWorld:
       {
 
          papp->m_ptemplateHelloWorldView->create_subdocument(pimpactdata);
 
       }
       break;
-      case PaneViewHelloWorldSwitcher:
+      case PaneImpactHelloWorldSwitcher:
       {
 
          papp->m_ptemplateHelloWorldSwitcher->create_subdocument(pimpactdata);

@@ -487,9 +487,9 @@ namespace user
 
          rectangle_f64 rectangleControl(psubitem->m_pdrawmeshsubitem->m_rectangleSubItem);
 
-         auto pointViewport = get_impactport_offset();
+         auto pointContext = get_impactport_offset();
 
-         rectangleControl.offset(pointViewport);
+         rectangleControl.offset(pointContext);
 
          if (!bOnlySizeAndPosition)
          {

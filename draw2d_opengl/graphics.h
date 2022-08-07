@@ -170,18 +170,18 @@ namespace draw2d_opengl
 
       // Mapping Functions
       virtual i32 GetMapMode() const;
-      //virtual point_i32 GetViewportOrg() const;
+      //virtual point_i32 get_origin() const;
       virtual i32 SetMapMode(i32 nMapMode);
-      // Viewport Origin
-      virtual point_i32 SetViewportOrg(i32 x, i32 y);
-      virtual point_i32 SetViewportOrg(const ::point_i32 & point);
-      virtual point_i32 OffsetViewportOrg(i32 nWidth, i32 nHeight);
+      // Context Origin
+      virtual point_i32 set_origin(i32 x, i32 y);
+      virtual point_i32 set_origin(const ::point_i32 & point);
+      virtual point_i32 offset_origin(i32 nWidth, i32 nHeight);
 
-      // Viewport Extent
-      virtual size_i32 GetViewportExt() const;
-      virtual size_i32 SetViewportExt(i32 cx, i32 cy);
-      virtual size_i32 SetViewportExt(const ::size_i32 & size);
-      virtual size_i32 ScaleViewportExt(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom);
+      // Context Extent
+      virtual size_i32 get_context_extents() const;
+      virtual size_i32 set_context_extents(i32 cx, i32 cy);
+      virtual size_i32 set_context_extents(const ::size_i32 & size);
+      virtual size_i32 scale_context_extents(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom);
 
       // Window Origin
       point_i32 GetWindowOrg() const;

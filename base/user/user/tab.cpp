@@ -623,7 +623,7 @@ namespace user
 
       }
 
-      //point_i32 pointViewportOffset = pgraphics->GetViewportOrg();
+      //point_i32 pointContextOffset = pgraphics->get_origin();
 
       ::rectangle_f64 rClip;
 

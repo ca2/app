@@ -627,7 +627,7 @@ namespace os
 
 /*         m_pimage->g()->set_alpha_mode(draw2d::e_alpha_mode_set);
 
-/*         m_pimage->g()->SetViewportOrg(0, 0);
+/*         m_pimage->g()->set_origin(0, 0);
 
 /*         m_pimage->g()->FillSolidRect(&rectangleClient, argb(255, 255, 255, 255));
 

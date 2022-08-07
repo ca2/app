@@ -8,7 +8,7 @@
 //
 
 //
-//  RoundWindowFrameView.h
+//  RoundWindowFrameImpact.h
 //  RoundWindow
 //
 //  Created by Matt Gallagher on 12/12/08.

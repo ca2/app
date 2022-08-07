@@ -1003,7 +1003,7 @@ run_install:
 
 
 
-      pgraphics->OffsetViewportOrg(rectangleWindow.left, rectangleWindow.top);
+      pgraphics->offset_origin(rectangleWindow.left, rectangleWindow.top);
 
       //b.create(cx, cy, pgraphics);
 
@@ -1065,7 +1065,7 @@ run_install:
 
 #ifdef WINDOWS
 
-      pgraphics->SetViewportOrg(0, 0);
+      pgraphics->set_origin(0, 0);
       //pgraphics.bit_blt(lprect->left                , lprect->top                 , lprect->right - lprect->left, lprect->bottom - lprect->top,
       //     pgraphics         , lprect->left - ::hotplugin::plugin::m_rectangle.left  , lprect.top - ::hotplugin::plugin::m_rectangle.top    );
 

@@ -957,7 +957,7 @@ namespace user
 
       ::draw2d::matrix mG;
 
-      pgraphics->get_impactport_scale(mG);
+      mG.scaling(pgraphics->get_scaling());
 
       pgraphics->prepend(mRot);
 

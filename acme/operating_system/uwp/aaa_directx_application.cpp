@@ -183,7 +183,7 @@ namespace universal_windows
 
       window->PointerReleased += ref new TypedEventHandler<CoreWindow^, PointerEventArgs^>(this, &directx_framework_impact::OnPointerReleased);
 
-      ::winrt::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::winrt::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
+      ::winrt::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::winrt::Windows::Graphics::Display::DisplayInformation::GetForCurrentImpact();
 
       displayinformation->DpiChanged += ref new TypedEventHandler < DisplayInformation ^, Object ^ >(this, &directx_framework_impact::DpiChanged);
 
@@ -201,7 +201,7 @@ namespace universal_windows
 
       m_directx->m_psystem = m_psystem;
 
-      ::winrt::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::winrt::Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
+      ::winrt::Windows::Graphics::Display::DisplayInformation ^ displayinformation = ::winrt::Windows::Graphics::Display::DisplayInformation::GetForCurrentImpact();
 
       m_directx->Initialize(window, displayinformation->LogicalDpi);
 
@@ -697,7 +697,7 @@ namespace universal_windows
    }
 
 
-   ::winrt::Windows::ApplicationModel::Core::IFrameworkView^ directx_application_source::CreateView()
+   ::winrt::Windows::ApplicationModel::Core::IFrameworkView^ directx_application_source::CreateImpact()
    {
 
       return ref new directx_framework_impact(m_psystem,m_strId);

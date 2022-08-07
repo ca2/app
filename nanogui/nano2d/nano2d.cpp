@@ -16,8 +16,10 @@
 // 3. This notice may not be removed or altered from any source distribution.
 //
 #include "framework.h"
-
-#include "aura/graphics/draw2d/_draw2d.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_library.h"
+#endif
+#include "aura/graphics/draw2d/_component.h"
 
 //#include <stdlib.h>
 //#include <stdio.h>
@@ -408,7 +410,7 @@ static NVGstate * __NANO2D_API(__getState)(NANO2D_CONTEXT * ctx)
 //
 //	__NANO2D_API(__setDevicePixelRatio)(ctx, devicePixelRatio);
 //
-//	__NANO2D_CONTEXT(ctx)->params.renderViewport(__NANO2D_CONTEXT(ctx)->params.userPtr, windowWidth, windowHeight, devicePixelRatio);
+//	__NANO2D_CONTEXT(ctx)->params.renderContext(__NANO2D_CONTEXT(ctx)->params.userPtr, windowWidth, windowHeight, devicePixelRatio);
 //
 //	__NANO2D_CONTEXT(ctx)->drawCallCount = 0;
 //	__NANO2D_CONTEXT(ctx)->fillTriCount = 0;

@@ -31,7 +31,7 @@ namespace browser
       ::user::document *                     m_pdocMenu;
       ::user::plain_edit_impact *              m_prollfps;
       ::user::single_document_template *     m_ptemplateHelloBrowserMain;
-      ::user::single_document_template *     m_ptemplateHelloBrowserView;
+      ::user::single_document_template *     m_ptemplateHelloBrowserImpact;
       ::user::single_document_template *     m_ptemplateHelloBrowserSwitcher;
       pane_impact *                            m_ppaneimpact;
 

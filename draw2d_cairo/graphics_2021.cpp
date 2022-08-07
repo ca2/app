@@ -601,7 +601,7 @@ namespace draw2d_cairo
 //}
 
 
-   size_f64 graphics::GetViewportExt()
+   size_f64 graphics::get_context_extents()
    {
 
       return ::size_f64(0, 0);
@@ -626,15 +626,15 @@ namespace draw2d_cairo
 
 
 // non-virtual helpers calling virtual mapping functions
-   point_f64 graphics::SetViewportOrg(const ::point_f64 & point)
+   point_f64 graphics::set_origin(const ::point_f64 & point)
    {
 
-      return SetViewportOrg(point.x, point.y);
+      return set_origin(point.x, point.y);
 
    }
 
 
-   size_f64 graphics::SetViewportExt(const ::size_f64 & size_f64)
+   size_f64 graphics::set_context_extents(const ::size_f64 & size_f64)
    {
 
       return ::size_f64(0, 0);
@@ -3399,31 +3399,31 @@ namespace draw2d_cairo
 //}
 
 
-   point_f64 graphics::GetViewportOrg()
+   point_f64 graphics::get_origin()
    {
 
-      return ::draw2d::graphics::GetViewportOrg();
+      return ::draw2d::graphics::get_origin();
 
    }
 
 
-   point_f64 graphics::SetViewportOrg(double x, double y)
+   point_f64 graphics::set_origin(double x, double y)
    {
 
-      return ::draw2d::graphics::SetViewportOrg(x, y);
+      return ::draw2d::graphics::set_origin(x, y);
 
    }
 
 
-   point_f64 graphics::OffsetViewportOrg(double nWidth, double nHeight)
+   point_f64 graphics::offset_origin(double nWidth, double nHeight)
    {
 
-      return ::draw2d::graphics::OffsetViewportOrg(nWidth, nHeight);
+      return ::draw2d::graphics::offset_origin(nWidth, nHeight);
 
    }
 
 
-   size_f64 graphics::SetViewportExt(double x, double y)
+   size_f64 graphics::set_context_extents(double x, double y)
    {
 
       throw ::interface_only();
@@ -3433,10 +3433,10 @@ namespace draw2d_cairo
    }
 
 
-   size_f64 graphics::ScaleViewportExt(double xNum, double xDenom, double yNum, double yDenom)
+   size_f64 graphics::scale_context_extents(double xNum, double xDenom, double yNum, double yDenom)
    {
 
-      return ::draw2d::graphics::ScaleViewportExt(xNum, xDenom, yNum, yDenom);
+      return ::draw2d::graphics::scale_context_extents(xNum, xDenom, yNum, yDenom);
 
    }
 

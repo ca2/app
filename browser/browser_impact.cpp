@@ -829,7 +829,7 @@ namespace browser
 
    //void impact::OnSize(::u32 nType, int cx, int cy)
    //{
-   //   CView::OnSize(nType, cx, cy);
+   //   CImpact::OnSize(nType, cx, cy);
 
    //   if (m_pclienthandler != nullptr)
    //   {
@@ -854,7 +854,7 @@ namespace browser
    //      }
    //   }
 
-   //   return CView::PreTranslateMessage(pMsg);
+   //   return CImpact::PreTranslateMessage(pMsg);
    //}
 
    
@@ -870,7 +870,7 @@ namespace browser
    }
 
 
-   bool impact::GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rectangle)
+   bool impact::GetImpactRect(CefRefPtr<CefBrowser> browser, CefRect& rectangle)
    {
 
       ::rectangle_i32 rectangleClient = get_client_rect();

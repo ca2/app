@@ -15,7 +15,7 @@ namespace core
 {
 
 
-   ::type user::get_pane_tab_view_type_info()
+   ::type user::get_pane_tab_impact_type_info()
    {
 
       return __type(::userex::pane_tab_impact);
@@ -48,18 +48,18 @@ namespace userex
    }
 
 
-   ::user::interaction * pane_tab_impact::get_view_uie()
+   ::user::interaction * pane_tab_impact::get_impact_uie()
    {
 
-      return ::user::tab_view::get_view_uie();
+      return ::user::tab_impact::get_impact_uie();
 
    }
 
 
-   atom pane_tab_impact::get_view_id()
+   atom pane_tab_impact::get_impact_id()
    {
 
-      return ::user::tab_view::get_view_id();
+      return ::user::tab_impact::get_impact_id();
 
    }
 
@@ -71,7 +71,7 @@ namespace userex
       if(m_pimpactdata == nullptr || m_pimpactdata->m_puserinteraction == nullptr || m_pimpactdata->m_iExtendOnParent == 0)
       {
 
-         ::user::tab_view::GetTabClientRect(prectangle);
+         ::user::tab_impact::GetTabClientRect(prectangle);
 
 
       }
@@ -148,7 +148,7 @@ namespace userex
    void pane_tab_impact::install_message_routing(::channel * pchannel)
    {
 
-      ::user::tab_view::install_message_routing(pchannel);
+      ::user::tab_impact::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &pane_tab_impact::on_message_create);
 
@@ -245,7 +245,7 @@ namespace userex
    void pane_tab_impact::on_change_cur_sel()
    {
 
-      ::user::tab_view::on_change_cur_sel();
+      ::user::tab_impact::on_change_cur_sel();
 
       if (m_pimpactdataOld != nullptr && is_filemanager(m_pimpactdataOld->m_atom))
       {
@@ -271,7 +271,7 @@ namespace userex
          if (::is_set(m_pdocumentMenu))
          {
 
-            auto strOptionsImpact = get_app()->preparimpact_options();
+            auto strOptionsImpact = get_app()->prepare_impact_options();
 
 #if defined(_DEBUG) && !defined(_UWP) && !defined(APPLE_IOS)
 
@@ -279,7 +279,7 @@ namespace userex
 
             ::file::path path;
             
-            path = pcontext->dir().appdata() / "debug_ca2/menu_view" / (get_app()->m_strAppId + ".html");
+            path = pcontext->dir().appdata() / "debug_ca2/menu_impact" / (get_app()->m_strAppId + ".html");
 
             pcontext->file().put_memory(path, strOptionsImpact);
 
@@ -294,7 +294,7 @@ namespace userex
 
             }
 
-            auto pformview = m_pdocumentMenu->get_type_impact < ::user::form_view>();
+            auto pformview = m_pdocumentMenu->get_type_impact < ::user::form_impact>();
 
             pformview->get_form()->add_handler(get_app());
 
@@ -308,7 +308,7 @@ namespace userex
    }
 
 
-   bool pane_tab_impact::on_preparimpact_data(::user::impact_data * pimpactdata)
+   bool pane_tab_impact::on_prepare_impact_data(::user::impact_data * pimpactdata)
    {
 
       pimpactdata->m_pplaceholder = get_new_place_holder(get_data()->m_rectangleTabClient);
@@ -325,7 +325,7 @@ namespace userex
    }
 
 
-   bool pane_tab_impact::on_after_creatimpact_data(::user::impact_data * pimpactdata)
+   bool pane_tab_impact::on_after_create_impact_data(::user::impact_data * pimpactdata)
    {
 
       ::index iVisibleIndex = id_visible_index(pimpactdata->m_atom);
@@ -474,7 +474,7 @@ namespace userex
          if (pimpactdata->m_atom == "account")
       {
 
-         __pointer(::account::impact) pimpact = create_view < ::account::impact >();
+         __pointer(::account::impact) pimpact = create_impact < ::account::impact >();
 
          if (pimpact.is_set())
          {
@@ -521,7 +521,7 @@ namespace userex
          
          auto puser = psession->m_puser->m_pcoreuser;
 
-         puser->will_use_view_hint(FONTSEL_IMPACT);
+         puser->will_use_impact_hint(FONTSEL_IMPACT);
 
          //auto pcreate = __new(create(this));
 
@@ -539,7 +539,7 @@ namespace userex
 
          auto pdocument = ptemplate->open_document_file(get_app(), ::e_type_null, __visible(true).is_true(), pimpactdata->m_pplaceholder);
 
-         m_pfontview = pdocument->get_type_impact < font_view >();
+         m_pfontview = pdocument->get_type_impact < font_impact >();
 
          m_pfontview->set_need_layout();
 
@@ -570,13 +570,13 @@ namespace userex
          
          auto puser = psession->m_puser->m_pcoreuser;
 
-         puser->will_use_view_hint(COLORSEL_IMPACT);
+         puser->will_use_impact_hint(COLORSEL_IMPACT);
 
          auto pimpactsystem = puser->m_mapimpactsystem[COLORSEL_IMPACT];
 
          //auto pdocument = pimpactsystem->open_document_file(get_app(), ::e_type_null, __visible(false).is_true(), pimpactdata->m_pplaceholder);
 
-         m_pcolorview = create_view < color_view >(pimpactdata);
+         m_pcolorview = create_impact < color_impact >(pimpactdata);
 
 //         pdocument->m_pviewTopic->set_notify_user_interaction(this);
 
@@ -680,7 +680,7 @@ namespace userex
 
             m_mapFileManager[pimpactdata->m_atom] = pdocument;
 
-            __pointer(::user::impact) pimpact = pdocument->get_view();
+            __pointer(::user::impact) pimpact = pdocument->get_impact();
 
             if(pimpact != nullptr)
             {
@@ -714,7 +714,7 @@ namespace userex
 
       //      m_pfilemanagerTabbed = pmanager;
 
-      //      __pointer(::user::impact) pimpact = pmanager->get_view();
+      //      __pointer(::user::impact) pimpact = pmanager->get_impact();
 
       //      if(pimpact != nullptr)
       //      {
@@ -762,7 +762,7 @@ namespace userex
 
                pdocument->m_atom = string("document.") + string(pimpactdata->m_atom);
 
-               ::user::impact * pimpact = pdocument->get_view(0);
+               ::user::impact * pimpact = pdocument->get_impact(0);
 
                pimpactdata->m_puserinteraction = pimpact->parent_frame();
 
@@ -774,7 +774,7 @@ namespace userex
 
       }
 
-      ::user::tab_view::on_create_impact(pimpactdata);
+      ::user::tab_impact::on_create_impact(pimpactdata);
       
    }
 
@@ -840,7 +840,7 @@ namespace userex
 
       set_current_tab_by_id("account");
 
-      __pointer(::account::impact) pimpact = get_view();
+      __pointer(::account::impact) pimpact = get_impact();
 
       if (pimpact.is_null())
       {
@@ -857,7 +857,7 @@ namespace userex
    void pane_tab_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::tab_view::handle(ptopic, pcontext);
+      ::user::tab_impact::handle(ptopic, pcontext);
 
       if (ptopic->m_atom == ::id_context_menu_close)
       {
@@ -875,7 +875,7 @@ namespace userex
 
       }
 
-      ::user::tab_view::handle(ptopic, pcontext);
+      ::user::tab_impact::handle(ptopic, pcontext);
 
 
    }
@@ -885,7 +885,7 @@ namespace userex
 //   {
 //
 //
-//      ::user::tab_view::_001OnNcDraw(pgraphics);
+//      ::user::tab_impact::_001OnNcDraw(pgraphics);
 //
 //
 //   }
@@ -910,7 +910,7 @@ namespace userex
 
    //   }
 
-   //   ::user::tab_view::handle(ptopic, pcontext);
+   //   ::user::tab_impact::handle(ptopic, pcontext);
 
    //}
 
@@ -976,7 +976,7 @@ namespace userex
    void pane_tab_impact::_001OnRemoveTab(::user::tab_pane * ptab)
    {
 
-      ::user::tab_view::_001OnRemoveTab(ptab);
+      ::user::tab_impact::_001OnRemoveTab(ptab);
 
       m_impactdatamap.erase_key(ptab->m_atom);
 
@@ -1014,7 +1014,7 @@ namespace userex
 //namespace aura
 //{
 //
-//::type system::get_pane_tab_view_type_info()
+//::type system::get_pane_tab_impact_type_info()
 //{
 //
 //   return __type(userex::pane_tab_impact);

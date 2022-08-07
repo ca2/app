@@ -32,7 +32,7 @@ namespace sphere
 
 
       ::payload                                          m_varTopicFile;
-      ::payload                                          m_varCurrentViewFile;
+      ::payload                                          m_varCurrentImpactFile;
 
       bool                                         m_bDrawCursor;
 

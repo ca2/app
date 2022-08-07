@@ -322,13 +322,13 @@ namespace hellobase
       //   if(m_bLite)
       {
 
-         helloaura_render_lite_view(pgraphics);
+         helloaura_render_lite_impact(pgraphics);
 
       }
       //   else
       //   {
       //
-      //      helloaura_render_full_view(pimage->g());
+      //      helloaura_render_full_impact(pimage->g());
       //
       //   }
 
@@ -377,10 +377,10 @@ namespace hellobase
 
    }
 
-   void render::helloaura_render_lite_view(::draw2d::graphics_pointer & pgraphics)
+   void render::helloaura_render_lite_impact(::draw2d::graphics_pointer & pgraphics)
    {
 
-      return ::helloaura::render::helloaura_render_lite_view(pgraphics);
+      return ::helloaura::render::helloaura_render_lite_impact(pgraphics);
 
 //      if (m_pimageWork->area() <= 0)
 //         return;
@@ -630,10 +630,10 @@ namespace hellobase
    }
 
 
-   void render::helloaura_render_full_view(::draw2d::graphics_pointer & pgraphics)
+   void render::helloaura_render_full_impact(::draw2d::graphics_pointer & pgraphics)
    {
 
-      return ::helloaura::render::helloaura_render_full_view(pgraphics);
+      return ::helloaura::render::helloaura_render_full_impact(pgraphics);
 
 //      if (m_pimageWork->area() <= 0)
 //         return;

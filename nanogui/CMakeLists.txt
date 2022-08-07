@@ -36,8 +36,8 @@ list(APPEND library_source
    Icons.h
    ImagePanel.cpp
    ImagePanel.h
-   ImageView.cpp
-   ImageView.h
+   ImageImpact.cpp
+   ImageImpact.h
    Label.cpp
    Label.h
    Layout.cpp

@@ -140,7 +140,7 @@ namespace user
 
       ::draw2d::savedc savedc(pgraphics);
 
-      pgraphics->OffsetViewportOrg(rectangleClient.left, rectangleClient.top);
+      pgraphics->offset_origin(rectangleClient.left, rectangleClient.top);
 
       ::rectangle rectangleCheckBox;
 
@@ -540,7 +540,7 @@ namespace user
       //      pgraphics->line_to(13, 6);
       //   }
       //}
-      //pgraphics->OffsetViewportOrg(-rectangleClient.left, -rectangleClient.top);
+      //pgraphics->offset_origin(-rectangleClient.left, -rectangleClient.top);
 
    }
 

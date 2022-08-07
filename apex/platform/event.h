@@ -42,7 +42,7 @@
 //      void Ok();
 //      void Nok();
 //
-//      //impact * get_view();
+//      //impact * get_impact();
 //      //::user::document * get_document();
 //      //::user::impact_system * get_impact_system();
 //      //string get_impact_matter();

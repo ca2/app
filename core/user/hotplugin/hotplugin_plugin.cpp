@@ -902,13 +902,13 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
 //#endif
 //
 //#ifdef _UWP
-//      m_pcolorref = (color32_t *) MapViewOfFileFromApp(
+//      m_pcolorref = (color32_t *) MapimpactOfFileFromApp(
 //         m_hfilemapBitmap,
 //         FILE_MAP_READ | FILE_MAP_WRITE,
 //         0,
 //         0);
 //#elif defined(WINDOWS)
-//         m_pcolorref = (color32_t *) MapViewOfFile(
+//         m_pcolorref = (color32_t *) MapimpactOfFile(
 //            m_hfilemapBitmap,
 //            FILE_MAP_READ | FILE_MAP_WRITE,
 //            0,

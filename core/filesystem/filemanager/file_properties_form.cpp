@@ -180,7 +180,7 @@ namespace filemanager
 
    void file_properties_form::on_change_cur_sel()
    {
-      switch(get_view_id())
+      switch(get_impact_id())
       {
       case 1:
       {

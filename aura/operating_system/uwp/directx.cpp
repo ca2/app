@@ -649,7 +649,7 @@ namespace universal_windows
          static_cast<float>(backBufferDesc.Height)
          );
 
-         ::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext->RSSetViewports(1, &viewport);
+         ::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext->RSSetContexts(1, &viewport);
 
       }
 
@@ -778,21 +778,21 @@ namespace universal_windows
                if (::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext.Get())
                {
 
-                  if (m_d3dRenderTargetView.Get())
+                  if (m_d3dRenderTargetImpact.Get())
                   {
 
                      // Discard the contents of the render target.
                      // This is a valid operation only when the existing contents will be entirely
                      // overwritten. If dirty or scroll rects are used, this call should be erased.
-                     ::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext1->DiscardView(m_d3dRenderTargetView.Get());
+                     ::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext1->DiscardView(m_d3dRenderTargetImpact.Get());
 
                   }
 
-                  if (m_d3dDepthStencilView.Get())
+                  if (m_d3dDepthStencilImpact.Get())
                   {
 
                      // Discard the contents of the depth stencil.
-                     ::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext1->DiscardView(m_d3dDepthStencilView.Get());
+                     ::aura::get_system()->draw2d()->direct2d()->m_pd3devicecontext1->DiscardView(m_d3dDepthStencilImpact.Get());
 
                   }
 
@@ -843,7 +843,7 @@ namespace universal_windows
       // A window size_i32 change has been initiated and the app has just completed presenting
       // the first frame with the new size. Notify the resize manager so we can short
       // circuit any resize animation and prevent unnecessary delays.
-      //      CoreWindowResizeManager::GetForCurrentView()->NotifyLayoutCompleted();
+      //      CoreWindowResizeManager::GetForCurrentImpact()->NotifyLayoutCompleted();
 
       //   }));
 

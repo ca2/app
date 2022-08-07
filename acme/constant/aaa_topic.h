@@ -53,7 +53,7 @@ enum enum_topic
    id_create,
    id_layout,
    id_calc_item_height,
-   id_change_view_style,
+   id_change_impact_style,
    id_item_clicked,
    id_image_list_action,
    id_load_form_data,
@@ -62,7 +62,7 @@ enum enum_topic
    id_switch,
 
 
-   id_show_view,
+   id_show_impact,
    id_load_projects,
 
 

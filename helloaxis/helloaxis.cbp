@@ -99,20 +99,20 @@
 		<Unit filename="helloaxis_gcom.h" />
 		<Unit filename="helloaxis_main_frame.cpp" />
 		<Unit filename="helloaxis_main_frame.h" />
-		<Unit filename="helloaxis_main_view.cpp" />
-		<Unit filename="helloaxis_main_view.h" />
-		<Unit filename="helloaxis_pane_view.cpp" />
-		<Unit filename="helloaxis_pane_view.h" />
-		<Unit filename="aaa_want_to_erase_helloaxis_view_update_hint.cpp" />
-		<Unit filename="aaa_want_to_erase_helloaxis_view_update_hint.h" />
+		<Unit filename="helloaxis_main_impact.cpp" />
+		<Unit filename="helloaxis_main_impact.h" />
+		<Unit filename="helloaxis_pane_impact.cpp" />
+		<Unit filename="helloaxis_pane_impact.h" />
+		<Unit filename="aaa_want_to_erase_helloaxis_impact_update_hint.cpp" />
+		<Unit filename="aaa_want_to_erase_helloaxis_impact_update_hint.h" />
 		<Unit filename="helloaxis_render.cpp" />
 		<Unit filename="helloaxis_render.h" />
-		<Unit filename="helloaxis_switcher_view.cpp" />
-		<Unit filename="helloaxis_switcher_view.h" />
-		<Unit filename="helloaxis_view.cpp" />
-		<Unit filename="helloaxis_view.h" />
-		<Unit filename="helloaxis_view_base.cpp" />
-		<Unit filename="helloaxis_view_base.h" />
+		<Unit filename="helloaxis_switcher_impact.cpp" />
+		<Unit filename="helloaxis_switcher_impact.h" />
+		<Unit filename="helloaxis_impact.cpp" />
+		<Unit filename="helloaxis_impact.h" />
+		<Unit filename="helloaxis_impact_base.cpp" />
+		<Unit filename="helloaxis_impact_base.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

@@ -7,7 +7,7 @@
 #include "aura/platform/draw_context2.h"
 //#include "interaction_draw2d.h"
 #include "acme/primitive/mathematics/mathematics.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 
 
 void scroll_x(RECTANGLE_I32 * prectangle, double dRateX, const ::rectangle_i32 & rectangle)
@@ -179,7 +179,7 @@ namespace user
 
       ::draw2d::savedc savedc(pgraphics);
 
-      pgraphics->OffsetViewportOrg(rectangleClient.left, rectangleClient.top);
+      pgraphics->offset_origin(rectangleClient.left, rectangleClient.top);
 
       ::rectangle_i32 rectangleCheckBox;
 
@@ -594,7 +594,7 @@ namespace user
       //      pgraphics->line_to(13, 6);
       //   }
       //}
-      //pgraphics->OffsetViewportOrg(-rectangleClient.left, -rectangleClient.top);
+      //pgraphics->offset_origin(-rectangleClient.left, -rectangleClient.top);
 
    }
 

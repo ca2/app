@@ -1,12 +1,12 @@
 // Created by Camilo 2021-01-08 <3TBS!!
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #endif
 #include "aqua/xml.h"
 #include "tab_pane.h"
 #include "acme/primitive/text/_.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 
 
 #define MAGIC_PALACE_TAB_SPLT "->:<-"

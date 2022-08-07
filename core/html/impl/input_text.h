@@ -11,7 +11,7 @@ namespace html
 
       class CLASS_DECL_CORE input_text :
          public element,
-         virtual public ::user::plain_edit_view::callback
+         virtual public ::user::plain_edit_impact::callback
       {
       public:
 

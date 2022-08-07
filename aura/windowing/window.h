@@ -67,6 +67,8 @@ namespace windowing
       inline ::point_i32 get_cursor_position() { ::point_i32 point; get_cursor_position(&point); return point; }
 
 
+      //virtual bool defer_set_icon();
+
       virtual double get_top_margin();
       
 
@@ -258,7 +260,7 @@ namespace windowing
       virtual void set_tool_window(bool bSet);
 
 
-      void set_viewport_org(::draw2d::graphics_pointer & pgraphics);
+      void set_impactport_org(::draw2d::graphics_pointer & pgraphics);
 
 
       void on_set_parent(::user::interaction * pinteraction);

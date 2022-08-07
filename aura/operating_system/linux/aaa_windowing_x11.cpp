@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #include "aura/os/x11/_x11.h"
 #include "_linux.h"
 #include "acme/id.h"

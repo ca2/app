@@ -110,7 +110,7 @@ namespace apex
 {
    class create_context;      // action_context for creating things
 }
-struct CPrintInfo;          // print preview customization info
+struct CPrintInfo;          // print thumbnail customization info
 
 /////////////////////////////////////////////////////////////////////////////
 // interaction_impl - a Microsoft Windows application interaction_impl

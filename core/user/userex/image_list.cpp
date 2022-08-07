@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/graphics/image/context_image.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #endif
@@ -13,19 +13,19 @@ namespace userex
 {
 
 
-   image_list_view::image_list_view() 
+   image_list_impact::image_list_impact() 
    {
 
 
    }
 
 
-   image_list_view::~image_list_view()
+   image_list_impact::~image_list_impact()
    {
    }
 
 
-   string_array image_list_view::get_ls_pattern_stra() const
+   string_array image_list_impact::get_ls_pattern_stra() const
    {
 
       string_array stra;
@@ -48,7 +48,7 @@ namespace userex
    }
 
 
-   string image_list_view::get_link_prefix()
+   string image_list_impact::get_link_prefix()
    {
 
       if (m_strLinkPrefix.has_char())
@@ -63,7 +63,7 @@ namespace userex
    }
 
 
-   ::file::path image_list_view::get_link_path(string strLink)
+   ::file::path image_list_impact::get_link_path(string strLink)
    {
 
       if (::str().begins_eat_ci(strLink, get_link_prefix()))
@@ -78,7 +78,7 @@ namespace userex
    }
 
 
-   void image_list_view::update_data(bool bSaveAndValidate)
+   void image_list_impact::update_data(bool bSaveAndValidate)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -122,7 +122,7 @@ namespace userex
    }
 
 
-   void image_list_view::load_images()
+   void image_list_impact::load_images()
    {
 
       m_iForkAddDib++;
@@ -215,31 +215,31 @@ namespace userex
    }
 
 
-   void image_list_view::assert_ok() const
+   void image_list_impact::assert_ok() const
    {
-      ::user::image_list_view::assert_ok();
+      ::user::image_list_impact::assert_ok();
    }
 
-   void image_list_view::dump(dump_context & dumpcontext) const
+   void image_list_impact::dump(dump_context & dumpcontext) const
    {
-      ::user::image_list_view::dump(dumpcontext);
+      ::user::image_list_impact::dump(dumpcontext);
    }
 
-   void image_list_view::install_message_routing(::channel * pchannel)
+   void image_list_impact::install_message_routing(::channel * pchannel)
    {
 
-      ::user::image_list_view::install_message_routing(pchannel);
+      ::user::image_list_impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &image_list_view::on_message_create);
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list_view::on_message_destroy);
-//      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &image_list_view::on_message_left_button_down);
-      //    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &image_list_view::on_message_mouse_move);
-      //  MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &image_list_view::on_message_mouse_leave);
+      MESSAGE_LINK(e_message_create, pchannel, this, &image_list_impact::on_message_create);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &image_list_impact::on_message_destroy);
+//      MESSAGE_LINK(e_message_left_button_down, pchannel, this, &image_list_impact::on_message_left_button_down);
+      //    MESSAGE_LINK(e_message_mouse_move, pchannel, this, &image_list_impact::on_message_mouse_move);
+      //  MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &image_list_impact::on_message_mouse_leave);
 
    }
 
 
-   //void image_list_view::on_message_left_button_down(::message::message * pmessage)
+   //void image_list_impact::on_message_left_button_down(::message::message * pmessage)
    //{
 
    //   auto pmouse = pmessage->m_union.m_pmouse;
@@ -266,7 +266,7 @@ namespace userex
    //}
 
 
-   //void image_list_view::on_message_mouse_move(::message::message * pmessage)
+   //void image_list_impact::on_message_mouse_move(::message::message * pmessage)
    //{
 
    //   auto pmouse = pmessage->m_union.m_pmouse;
@@ -297,7 +297,7 @@ namespace userex
    //}
 
 
-   //void image_list_view::on_message_mouse_leave(::message::message * pmessage)
+   //void image_list_impact::on_message_mouse_leave(::message::message * pmessage)
    //{
 
    //auto psession = get_session();
@@ -315,7 +315,7 @@ namespace userex
    //}
 
 
-   void image_list_view::on_message_create(::message::message * pmessage)
+   void image_list_impact::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -340,21 +340,21 @@ namespace userex
    }
 
 
-   void image_list_view::on_message_destroy(::message::message * pmessage)
+   void image_list_impact::on_message_destroy(::message::message * pmessage)
    {
 
    }
 
 
-   void image_list_view::handle(::topic * ptopic, ::context * pcontext)
+   void image_list_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      ::user::image_list_view::handle(ptopic, pcontext);
+      ::user::image_list_impact::handle(ptopic, pcontext);
 
       if (ptopic->m_atom == id_after_change_text)
       {
 
-         auto * peditview = _001TypedWindow < ::userex::top_edit_view >();
+         auto * peditview = _001TypedWindow < ::userex::top_edit_impact >();
 
          if (peditview != nullptr && ptopic->m_puserelement == peditview)
          {
@@ -370,16 +370,16 @@ namespace userex
    }
 
 
-   void image_list_view::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void image_list_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
 
-      ::user::image_list_view::on_layout(pgraphics);
+      ::user::image_list_impact::on_layout(pgraphics);
 
    }
 
 
-   bool image_list_view::_001GetItemText(string & str, index iItem)
+   bool image_list_impact::_001GetItemText(string & str, index iItem)
    {
 
       str = m_plisting->element_at(iItem).name();

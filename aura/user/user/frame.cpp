@@ -241,7 +241,7 @@ namespace user
    }
 
 
-   ::user::interaction* frame::get_active_view() const
+   ::user::interaction* frame::get_active_impact() const
    {
 
       return nullptr;
@@ -249,7 +249,7 @@ namespace user
    }
 
 
-   void frame::set_active_view(::user::impact* pImpactNew, bool bNotify)
+   void frame::set_active_impact(::user::impact* pImpactNew, bool bNotify)
    {
 
 

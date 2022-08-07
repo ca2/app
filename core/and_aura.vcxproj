@@ -581,7 +581,7 @@
     <ClInclude Include="user\colorertake5\colorertake5_string_buffer.h" />
     <ClInclude Include="user\colorertake5\colorertake5_styled_hrd_mapper.h" />
     <ClInclude Include="user\colorertake5\colorertake5_styled_region.h" />
-    <ClInclude Include="user\colorertake5\colorertake5_text_console_viewer.h" />
+    <ClInclude Include="user\colorertake5\colorertake5_text_console_impacter.h" />
     <ClInclude Include="user\colorertake5\colorertake5_text_hrd_mapper.h" />
     <ClInclude Include="user\colorertake5\colorertake5_text_lines.h" />
     <ClInclude Include="user\colorertake5\colorertake5_text_parser.h" />

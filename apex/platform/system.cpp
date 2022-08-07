@@ -4839,14 +4839,14 @@ namespace apex
    }
 
 
-   //void system::add_view_library(::acme::library* plibrary)
+   //void system::add_impact_library(::acme::library* plibrary)
    //{
 
    //   m_libraryspa.add(plibrary);
 
    //   ::array < ::atom > ida;
 
-   //   plibrary->get_create_view_id_list(ida);
+   //   plibrary->get_create_impact_id_list(ida);
 
    //   for (i32 i = 0; i < ida.get_count(); i++)
    //   {

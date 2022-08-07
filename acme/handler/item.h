@@ -156,9 +156,9 @@ public:
 
    }
    
-   inline ::index menu_view_index() const { return (::index) m_iItem; }
-   inline ::index menu_view_group() const { return (::index) m_iSubItem; }
-   inline ::index menu_view_command() const { return (::index) m_iListItem; }
+   inline ::index menu_impact_index() const { return (::index) m_iItem; }
+   inline ::index menu_impact_group() const { return (::index) m_iSubItem; }
+   inline ::index menu_impact_command() const { return (::index) m_iListItem; }
 
    inline ::index item_index() const { return (::index) m_iItem; }
    inline ::index subitem_index() const { return (::index) m_iSubItem; }

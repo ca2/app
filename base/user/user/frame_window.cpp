@@ -1,13 +1,13 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #endif
 #include "aura/message.h"
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "aura/graphics/image/context_image.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #include "aura/graphics/graphics/_.h"
 #include "aura/graphics/graphics/_graphics.h"
 
@@ -200,7 +200,7 @@ namespace user
 
       }
 
-      pdocument->update_all_views(ptopic);
+      pdocument->update_all_impacts(ptopic);
 
    }
 
@@ -217,12 +217,12 @@ namespace user
 
       }
 
-      pdocument->id_update_all_views(atom);
+      pdocument->id_update_all_impacts(atom);
 
    }
 
 
-   ::atom frame_window::get_topic_view_id()
+   ::atom frame_window::get_topic_impact_id()
    {
 
       auto pdocument = get_active_document();
@@ -234,12 +234,12 @@ namespace user
 
       }
 
-      return pdocument->get_topic_view_id();
+      return pdocument->get_topic_impact_id();
 
    }
 
 
-   bool frame_window::set_topic_view_by_id(const ::atom & atom)
+   bool frame_window::set_topic_impact_by_id(const ::atom & atom)
    {
 
       auto pdocument = get_active_document();
@@ -251,7 +251,7 @@ namespace user
 
       }
 
-      return pdocument->set_topic_view_by_id(atom);
+      return pdocument->set_topic_impact_by_id(atom);
 
    }
 
@@ -814,7 +814,7 @@ namespace user
       ::display(oswindow, e_display_none);
       pwindow->m_nFlags |= WF_TEMPHIDE;
       }
-      // don't show temporarily hidden windows if we're in print preview mode
+      // don't show temporarily hidden windows if we're in print thumbnail mode
       else if (bShow && (uStyle & (WS_VISIBLE|WS_DISABLED)) == 0 &&
       (pwindow->m_nFlags & WF_TEMPHIDE) && !m_lpfnCloseProc)
       {
@@ -937,10 +937,12 @@ namespace user
          if (pusersystem->m_typeNewImpact || pusersystem->m_puserprimitiveNew != nullptr)
          {
 
-            if (::user::create_view(pusersystem, this, FIRST_PANE).is_null())
+            auto pinteraction = pusersystem->create_impact(this, FIRST_PANE);
+
+            if(!pinteraction)
             {
 
-               return false;
+               WARNING("the impact wasn't created: " << pusersystem->m_typeNewImpact.to_string());
 
             }
 
@@ -1206,7 +1208,7 @@ namespace user
       // if the frame does not have an active ::user::impact, set to first pane
       __pointer(::user::impact) pimpact;
 
-      if (get_active_view() == nullptr)
+      if (get_active_impact() == nullptr)
       {
 
          __pointer(::user::interaction) pwindow = get_child_by_id(FIRST_PANE);
@@ -1216,7 +1218,7 @@ namespace user
 
             pimpact = pwindow;
 
-            set_active_view(pimpact, false);
+            set_active_impact(pimpact, false);
 
          }
 
@@ -1351,10 +1353,10 @@ namespace user
       if (pdocument != nullptr && pdocument->m_bAutoDelete)
       {
       bool bOtherFrame = false;
-      POSITION pos = pdocument->get_view_count();
+      POSITION pos = pdocument->get_impact_count();
       while (pos != nullptr)
       {
-      __pointer(::user::impact) pimpact = pdocument->get_view(pos);
+      __pointer(::user::impact) pimpact = pdocument->get_impact(pos);
       ENSURE_VALID(pimpact);
       if (pimpact->get_parent_frame() != this)
       {
@@ -1399,7 +1401,7 @@ namespace user
       if (bRouteToKeyDescendant)
       {
 
-         __pointer(::user::impact) pimpact = get_active_view();
+         __pointer(::user::impact) pimpact = get_active_impact();
 
          if (pimpact != nullptr)
          {
@@ -1426,7 +1428,7 @@ namespace user
    // Delegate scroll messages to active ::user::impact as well
    void frame_window::OnHScroll(::u32, ::u32, CScrollBar*)
    {
-      __pointer(::user::interaction) pActiveImpact = get_active_view();
+      __pointer(::user::interaction) pActiveImpact = get_active_impact();
       if (pActiveImpact != nullptr)
       {
          // trans const MESSAGE* pMsg = GetCurrentMessage();
@@ -1436,7 +1438,7 @@ namespace user
 
    void frame_window::OnVScroll(::u32, ::u32, CScrollBar*)
    {
-      __pointer(::user::interaction) pActiveImpact = get_active_view();
+      __pointer(::user::interaction) pActiveImpact = get_active_impact();
       if (pActiveImpact != nullptr)
       {
          // trans      const MESSAGE* pMsg = GetCurrentMessage();
@@ -1459,12 +1461,12 @@ namespace user
    //   //thread *pThread = get_task();
    //   //ASSERT(pThread);
    //   
-   //   __pointer(::user::impact) pActiveImpact = get_active_view();
+   //   __pointer(::user::impact) pActiveImpact = get_active_impact();
 
    //   if (pActiveImpact == nullptr)
    //   {
 
-   //      pActiveImpact = GetActiveFrame()->get_active_view();
+   //      pActiveImpact = GetActiveFrame()->get_active_impact();
 
    //   }
 
@@ -1512,12 +1514,12 @@ namespace user
 
       // get active ::user::impact (use active frame if no active ::user::impact)
       
-      __pointer(::user::impact) pActiveImpact = get_active_view();
+      __pointer(::user::impact) pActiveImpact = get_active_impact();
 
       if (pActiveImpact == nullptr)
       {
 
-         pActiveImpact = GetActiveFrame()->get_active_view();
+         pActiveImpact = GetActiveFrame()->get_active_impact();
 
       }
 
@@ -1761,7 +1763,7 @@ namespace user
    }
 
 
-   ::user::interaction * frame_window::get_active_view() const
+   ::user::interaction * frame_window::get_active_impact() const
    {
 
       ASSERT(m_pviewActive == nullptr || base_class < ::user::impact >::bases(m_pviewActive));
@@ -1771,7 +1773,7 @@ namespace user
    }
 
 
-   void frame_window::set_active_view(::user::impact * pviewNew, bool bNotify)
+   void frame_window::set_active_impact(::user::impact * pviewNew, bool bNotify)
    {
 
       auto pviewOld = m_pviewActive;
@@ -1781,14 +1783,14 @@ namespace user
       if (pframewindow)
       {
 
-         pframewindow->set_active_view(pviewNew, bNotify);
+         pframewindow->set_active_impact(pviewNew, bNotify);
 
       }
 
       if (pviewNew == pviewOld)
       {
 
-         return;     // do not re-activate if set_active_view called more than once
+         return;     // do not re-activate if set_active_impact called more than once
 
       }
 
@@ -1849,7 +1851,7 @@ namespace user
 
       ASSERT_VALID(this);
 
-      __pointer(::user::impact) pimpact = get_active_view();
+      __pointer(::user::impact) pimpact = get_active_impact();
 
       if (pimpact != nullptr)
       {
@@ -1937,7 +1939,7 @@ namespace user
    //      else if (wParam != 0)
    //      {
 
-   //         // map SC_CLOSE to PREVIEW_CLOSE when in print preview mode
+   //         // map SC_CLOSE to PREVIEW_CLOSE when in print thumbnail mode
    //         /*         if (wParam == __IDS_SCCLOSE && m_lpfnCloseProc != nullptr)
    //         wParam = __IDS_PREVIEW_CLOSE;*/
 
@@ -2108,7 +2110,7 @@ namespace user
 
    /////////////////////////////////////////////////////////////////////////////
 
-   /*   void frame_window::OnSetPreviewMode(bool bPreview, CPrintPreviewState* pState)
+   /*   void frame_window::OnSetThumbnailMode(bool bThumbnail, CPrintThumbnailState* pState)
       {
          ENSURE_ARG(pState != nullptr);
          // default implementation changes control bars, menu and main pane interaction_impl
@@ -2117,9 +2119,9 @@ namespace user
          // set visibility of standard ControlBars (only the first 32)
          //   u32 dwOldStates = 0;
 
-         if (bPreview)
+         if (bThumbnail)
          {
-            // Entering Print Preview
+            // Entering Print Thumbnail
 
 
             // show any modeless dialogs, popup windows, float tools, etc
@@ -2129,7 +2131,7 @@ namespace user
          }
          else
          {
-            // Leaving Preview
+            // Leaving Thumbnail
             m_lpfnCloseProc = nullptr;
 
             // shift original FIRST_PANE back to its rightful ID

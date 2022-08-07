@@ -3,7 +3,7 @@
 #include "_library.h"
 #endif
 #include "base/user/user/tab_pane.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 //#include "core/user/userex/_userex.h"
 // pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
@@ -504,7 +504,7 @@ namespace experience_tranquillum
       if (!pframe->is_custom_draw() && pgraphics != nullptr && pgraphics->m_pnext == nullptr)
       {
 
-         pframe->set_viewport_org(pgraphics);
+         pframe->set_impactport_org(pgraphics);
 
       }
 

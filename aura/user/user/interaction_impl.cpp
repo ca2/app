@@ -4498,25 +4498,26 @@ namespace user
 
 // #define PACKED  __attribute__ ((gcc_struct, __packed__))
 
- typedef struct {
-   uint8_t bytes[3];
-   uint32_t looong;
- } struct_t1;
-// static_assert(sizeof(struct_t) == 8);
-
-printf("sizeof(struct_t1) = %" PRIuPTR "\n", sizeof(struct_t1));
-
-      #ifdef _DEBUG
-      printf("_DEBUG defined\n");
-      #else
-      printf("_DEBUG not defined\n");
-      #endif
-
-      #ifdef RASPBIAN
-      printf("RASPBIAN defined\n");
-      #else
-      printf("RASPBIAN not defined\n");
-      #endif
+//   typedef struct
+//   {
+//      uint8_t bytes[3];
+//      uint32_t looong;
+//   } struct_t1;
+//   // static_assert(sizeof(struct_t) == 8);
+//
+//      printf("sizeof(struct_t1) = %" PRIuPTR "\n", sizeof(struct_t1));
+//
+//      #ifdef _DEBUG
+//      printf("_DEBUG defined\n");
+//      #else
+//      printf("_DEBUG not defined\n");
+//      #endif
+//
+//      #ifdef RASPBIAN
+//      printf("RASPBIAN defined\n");
+//      #else
+//      printf("RASPBIAN not defined\n");
+//      #endif
       
 #ifdef REPORT_OFFSET
 

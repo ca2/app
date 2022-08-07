@@ -128,7 +128,7 @@ public:
       //      ATOM                                            m_atomSystemTopic;   // for DDE open
       //#endif
 
-      ::u32                                            m_nNumPreviewPages; // number of default printed pages
+      ::u32                                            m_nNumThumbnailPages; // number of default printed pages
 
       string                                          m_strId;
 
@@ -817,7 +817,7 @@ public:
       virtual void close(::apex::enum_end eend);
 
 
-      //user virtual __pointer(::user::document) defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom = nullptr);
+      //user virtual __pointer(::user::document) defer_create_impact(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom = nullptr);
 
 
       virtual void HideApplication();
@@ -865,7 +865,7 @@ public:
 
 
 
-      //user virtual void on_create_split_view(::user::split_view* pimpact);
+      //user virtual void on_create_split_impact(::user::split_impact* pimpact);
 
 
       //virtual ::type control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;
@@ -1052,7 +1052,7 @@ public:
       virtual void report_error(const ::exception & e, int iMessageFlags, const ::string & pszTopic);
 
 
-      virtual void creatimpact_system();
+      virtual void create_impact_system();
 
 
       virtual void on_song_added(const string& str);

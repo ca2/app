@@ -438,7 +438,7 @@ namespace user
 
       m_sizeTotal = m_pfontlist->m_size;
 
-      on_change_view_size(pgraphics);
+      on_change_impact_size(pgraphics);
 
    }
 

@@ -998,13 +998,13 @@ namespace tsf
 
    /**************************************************************************
 
-      edit_window::get_active_view()
+      edit_window::get_active_impact()
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::get_active_view(TsImpactCookie *pvcImpact)
+   STDMETHODIMP edit_window::get_active_impact(TsImpactCookie *pvcImpact)
    {
-       OutputDebugString(TEXT("edit_window::get_active_view \n"));
+       OutputDebugString(TEXT("edit_window::get_active_impact \n"));
 
        //this app only supports one impact, so this can be constant
        *pvcImpact = EDIT_VIEW_COOKIE;

@@ -111,8 +111,8 @@ namespace helloaxis
       //virtual void helloaura_render(::draw2d::graphics_pointer & pgraphics);
       //virtual void helloaura_render(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void helloaura_render_full_view(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void helloaura_render_lite_view(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void helloaura_render_full_impact(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void helloaura_render_lite_impact(::draw2d::graphics_pointer & pgraphics) override;
 
 
       virtual void _006OnDraw(::draw2d::graphics_pointer & pgraphics) override;

@@ -18,7 +18,7 @@
 namespace user
 {
 
-   typedef ::user::show < ::user::button > button_view;
+   typedef ::user::show < ::user::button > button_impact;
 
 } // namespace user
 
@@ -41,16 +41,16 @@ namespace helloworld
 #include "helloworld_render.h"
 
 #include "helloworld_document.h"
-#include "helloworld_view_base.h"
-#include "helloworld_view.h"
-//#include "helloworld_lite_view.h"
-//#include "helloworld_full_view.h"
-#include "helloworld_main_view.h"
-#include "helloworld_switcher_view.h"
+#include "helloworld_impact_base.h"
+#include "helloworld_impact.h"
+//#include "helloworld_lite_impact.h"
+//#include "helloworld_full_impact.h"
+#include "helloworld_main_impact.h"
+#include "helloworld_switcher_impact.h"
 #include "helloworld_frame.h"
 #include "helloworld_main_frame.h"
 
-#include "helloworld_pane_view.h"
+#include "helloworld_pane_impact.h"
 
 #include "helloworld_application.h"
 

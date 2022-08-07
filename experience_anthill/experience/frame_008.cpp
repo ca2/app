@@ -2,7 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "_library.h"
 #endif
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 
 
 #define GRIP_CORNER_LARGE_CX 16
@@ -830,7 +830,7 @@ namespace experience_anthill
 //               //      return true;
 //
 //               //   }
-//               //   else if (ecolor == ::user::color_view_background)
+//               //   else if (ecolor == ::user::color_impact_background)
 //               //   {
 //
 //               //      color32 = argb(255, 255, 255, 255);

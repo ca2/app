@@ -3,9 +3,9 @@
 #include "core/html/impl/_impl.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "hi5_twitter_authorization.h"
-#include "core/user/simple/_simple.h"
+#include "core/user/simple/_component.h"
 #endif
-//#include "core/user/simple/_simple.h"
+//#include "core/user/simple/_component.h"
 
 //#include <openssl/rsa.h>
 //#include <openssl/engine.h>
@@ -62,7 +62,7 @@ namespace hi5
             "system/auth",
             __type(::user::document),
             __type(simple_frame_window),
-            psystem->get_pane_tab_view_type_info());
+            psystem->get_pane_tab_impact_type_info());
 
          //return estatus;
 
@@ -112,7 +112,7 @@ namespace hi5
          if(m_pdocument == nullptr)
             return;
 
-         __pointer(user::tab_view) ptabimpact = m_pdocument->get_type_impact < user::tab_view >();
+         __pointer(user::tab_impact) ptabimpact = m_pdocument->get_type_impact < user::tab_impact >();
          m_ptabimpact = ptabimpact;
 
          auto pimpactkit = ptabimpact->get_impact_kit();
@@ -289,7 +289,7 @@ namespace hi5
       }
       void authorization::on_change_cur_sel()
       {
-//         switch(get_view_id())
+//         switch(get_impact_id())
 //         {
 //         case 1:
 //         {

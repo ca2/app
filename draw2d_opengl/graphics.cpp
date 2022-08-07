@@ -477,10 +477,10 @@ namespace draw2d_opengl
 
    }
 
-   size_i32 graphics::GetViewportExt() const
+   size_i32 graphics::get_context_extents() const
    {
       ::size_i32 size;
-      //::GetViewportExtEx(m_hdc, &size);
+      //::Get_wiewportExtEx(m_hdc, &size);
       return size;
    }
 
@@ -499,16 +499,16 @@ namespace draw2d_opengl
    }
 
    // non-virtual helpers calling virtual mapping functions
-   point_i32 graphics::SetViewportOrg(const ::point_i32 & point)
+   point_i32 graphics::set_origin(const ::point_i32 & point)
    {
 
-      return SetViewportOrg(point.x, point.y);
+      return set_origin(point.x, point.y);
 
    }
 
-   size_i32 graphics::SetViewportExt(const ::size_i32 & size)
+   size_i32 graphics::set_context_extents(const ::size_i32 & size)
    {
-      return SetViewportExt(size.cx, size.cy);
+      return set_context_extents(size.cx, size.cy);
    }
 
    point_i32 graphics::SetWindowOrg(const ::point_i32 & point)
@@ -1616,7 +1616,7 @@ namespace draw2d_opengl
 //
 //         return m_pgraphics->DrawImage(
 //                   (plusplus::Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(),
-//                   x, y, xSrc + pgraphicsSrc->GetViewportOrg().x, ySrc + pgraphicsSrc->GetViewportOrg().y, nWidth, nHeight, plusplus::UnitPixel) == plusplus::Status::Ok;
+//                   x, y, xSrc + pgraphicsSrc->get_origin().x, ySrc + pgraphicsSrc->get_origin().y, nWidth, nHeight, plusplus::UnitPixel) == plusplus::Status::Ok;
 //
       }
       catch(...)
@@ -3701,13 +3701,13 @@ namespace draw2d_opengl
    }
 
 
-   //point_i32 graphics::GetViewportOrg() const
+   //point_i32 graphics::get_origin() const
    //{
 
-   //   return ::draw2d::graphics::GetViewportOrg();
+   //   return ::draw2d::graphics::get_origin();
 
    //   //::point_i32 point;
-   //   //::GetViewportOrgEx(m_hdc, &point);
+   //   //::GetContextOrgEx(m_hdc, &point);
 
    //   //if (m_pgraphics == nullptr)
    //   //{
@@ -3779,48 +3779,48 @@ namespace draw2d_opengl
    }
 
 
-   point_i32 graphics::SetViewportOrg(i32 x, i32 y)
+   point_i32 graphics::set_origin(i32 x, i32 y)
    {
 
-      return ::draw2d::graphics::SetViewportOrg(x, y);
+      return ::draw2d::graphics::set_origin(x, y);
 
    }
 
 
-   point_i32 graphics::OffsetViewportOrg(i32 nWidth, i32 nHeight)
+   point_i32 graphics::offset_origin(i32 nWidth, i32 nHeight)
    {
 
-      return ::draw2d::graphics::OffsetViewportOrg(nWidth, nHeight);
+      return ::draw2d::graphics::offset_origin(nWidth, nHeight);
 
 
    }
 
 
-   size_i32 graphics::SetViewportExt(i32 x, i32 y)
+   size_i32 graphics::set_context_extents(i32 x, i32 y)
    {
 
-      return ::draw2d::graphics::SetViewportExt(x, y);
+      return ::draw2d::graphics::set_context_extents(x, y);
 
       //size_i32 size(0, 0);
       ////if(m_hdc != nullptr && m_hdc != m_hdc)
-      ////   ::SetViewportExtEx(m_hdc, x, y, &size);
+      ////   ::Set_wiewportExtEx(m_hdc, x, y, &size);
       ////if(m_hdc != nullptr)
-      ////   ::SetViewportExtEx(m_hdc, x, y, &size);
+      ////   ::Set_wiewportExtEx(m_hdc, x, y, &size);
       //return size;
 
    }
 
 
-   size_i32 graphics::ScaleViewportExt(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom)
+   size_i32 graphics::scale_context_extents(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom)
    {
 
-      return ::draw2d::graphics::ScaleViewportExt(xNum, xDenom, yNum, yDenom);
+      return ::draw2d::graphics::scale_context_extents(xNum, xDenom, yNum, yDenom);
 
       //size_i32 size(0, 0);
       ////if(m_hdc != nullptr && m_hdc != m_hdc)
-      ////   ::ScaleViewportExtEx(m_hdc, xNum, xDenom, yNum, yDenom, &size);
+      ////   ::scale_context_extentsEx(m_hdc, xNum, xDenom, yNum, yDenom, &size);
       ////if(m_hdc != nullptr)
-      ////   ::ScaleViewportExtEx(m_hdc, xNum, xDenom, yNum, yDenom, &size);
+      ////   ::scale_context_extentsEx(m_hdc, xNum, xDenom, yNum, yDenom, &size);
       //return size;
    }
 
@@ -4327,11 +4327,11 @@ namespace draw2d_opengl
 //         (i32)(i16)pMetaRec->rdParm[1], (i32)(i16)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SETVIEWPORTEXT:
-//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SetViewportExt(
+//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->set_context_extents(
 //         (i32)(i16)pMetaRec->rdParm[1], (i32)(i16)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SETVIEWPORTORG:
-//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SetViewportOrg(
+//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->set_origin(
 //         (i32)(i16)pMetaRec->rdParm[1], (i32)(i16)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SCALEWINDOWEXT:
@@ -4340,12 +4340,12 @@ namespace draw2d_opengl
 //         (i32)(i16)pMetaRec->rdParm[1], (i32)(i16)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SCALEVIEWPORTEXT:
-//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->ScaleViewportExt(
+//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->scale_context_extents(
 //         (i32)(i16)pMetaRec->rdParm[3], (i32)(i16)pMetaRec->rdParm[2],
 //         (i32)(i16)pMetaRec->rdParm[1], (i32)(i16)pMetaRec->rdParm[0]);
 //         break;
 //      case META_OFFSETVIEWPORTORG:
-//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->OffsetViewportOrg(
+//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->offset_origin(
 //         (i32)(i16)pMetaRec->rdParm[1], (i32)(i16)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SAVEDC:
@@ -4439,7 +4439,7 @@ namespace draw2d_opengl
       //ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE_I32)));
 
       //size_i32 sizeWinExt = GetWindowExt();
-      //size_i32 sizeVpExt = GetViewportExt();
+      //size_i32 sizeVpExt = get_context_extents();
       //LPSIZE32->cx = MulDiv(LPSIZE32->cx, abs(sizeVpExt.cx), abs(sizeWinExt.cx));
       //LPSIZE32->cy = MulDiv(LPSIZE32->cy, abs(sizeVpExt.cy), abs(sizeWinExt.cy));
 
@@ -4452,7 +4452,7 @@ namespace draw2d_opengl
       //ASSERT(__is_valid_address(LPSIZE32, sizeof(SIZE_I32)));
 
       //size_i32 sizeWinExt = GetWindowExt();
-      //size_i32 sizeVpExt = GetViewportExt();
+      //size_i32 sizeVpExt = get_context_extents();
       //LPSIZE32->cx = MulDiv(LPSIZE32->cx, abs(sizeWinExt.cx), abs(sizeVpExt.cx));
       //LPSIZE32->cy = MulDiv(LPSIZE32->cy, abs(sizeWinExt.cy), abs(sizeVpExt.cy));
 
@@ -5645,7 +5645,7 @@ namespace opengl
 
       double d = 1.0;
 
-      glViewport(0, 0, size.cx * d, size.cy * d);
+      glContext(0, 0, size.cx * d, size.cy * d);
 
       glMatrixMode(GL_PROJECTION);
       glLoadIdentity();

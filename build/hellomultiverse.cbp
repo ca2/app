@@ -132,8 +132,8 @@
 		<Unit filename="render.cpp" />
 		<Unit filename="render.h" />
 		<Unit filename="render_yee.cpp" />
-		<Unit filename="switcher_view.cpp" />
-		<Unit filename="switcher_view.h" />
+		<Unit filename="switcher_impact.cpp" />
+		<Unit filename="switcher_impact.h" />
 		<Unit filename="impact.cpp" />
 		<Unit filename="impact.h" />
 		<Unit filename="view_base.h" />

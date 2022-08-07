@@ -21,7 +21,7 @@ namespace turboc
 {
 
    class application;
-   class top_view;
+   class top_impact;
    class main_impact;
    class document;
    class impact;
@@ -47,14 +47,14 @@ namespace turboc
 
 
 #include "turboc_document.h"
-#include "turboc_edit_view.h"
-#include "turboc_toggle_view.h"
-#include "turboc_top_view.h"
-#include "turboc_view.h"
-#include "turboc_lite_view.h"
-#include "turboc_full_view.h"
-#include "turboc_main_view.h"
-#include "turboc_switcher_view.h"
+#include "turboc_edit_impact.h"
+#include "turboc_toggle_impact.h"
+#include "turboc_top_impact.h"
+#include "turboc_impact.h"
+#include "turboc_lite_impact.h"
+#include "turboc_full_impact.h"
+#include "turboc_main_impact.h"
+#include "turboc_switcher_impact.h"
 #include "turboc_frame.h"
 
-#include "turboc_pane_view.h"
+#include "turboc_pane_impact.h"

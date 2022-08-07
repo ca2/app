@@ -159,10 +159,10 @@ inline prodevian::prodevian(::user::interaction* pinteraction) :
 //
 //
 //   template < class VIEW >
-//   inline __pointer(VIEW) split_view::create_pane_view(index iPane, atom atom, ::user::interaction* pviewLast)
+//   inline __pointer(VIEW) split_impact::create_pane_impact(index iPane, atom atom, ::user::interaction* pviewLast)
 //   {
 //
-//      return create_view < VIEW >(get_pane_holder(iPane), atom, pviewLast);
+//      return create_impact < VIEW >(get_pane_holder(iPane), atom, pviewLast);
 //
 //   }
 //
@@ -181,28 +181,28 @@ inline prodevian::prodevian(::user::interaction* pinteraction) :
 //
 //
 //   template < class VIEW >
-//   inline __pointer(VIEW) impact::create_view(::user::document* pdocument, ::user::interaction* puserinteractionParent, atom atom, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
+//   inline __pointer(VIEW) impact::create_impact(::user::document* pdocument, ::user::interaction* puserinteractionParent, atom atom, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
 //   {
 //
-//      return create_view(__type(VIEW), pdocument, puserinteractionParent, atom, pviewLast, pimpactdata);
+//      return create_impact(__type(VIEW), pdocument, puserinteractionParent, atom, pviewLast, pimpactdata);
 //
 //   }
 //
 //
 //   template < class VIEW >
-//   inline __pointer(VIEW) impact::create_view(::user::interaction* puserinteractionParent, atom atom, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
+//   inline __pointer(VIEW) impact::create_impact(::user::interaction* puserinteractionParent, atom atom, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
 //   {
 //
-//      return create_view < VIEW >(get_document(), puserinteractionParent, atom, pviewLast, pimpactdata);
+//      return create_impact < VIEW >(get_document(), puserinteractionParent, atom, pviewLast, pimpactdata);
 //
 //   }
 //
 //
 //   template < class VIEW >
-//   inline __pointer(VIEW) impact::create_view(::user::impact_data* pimpactdata, ::user::interaction* pviewLast)
+//   inline __pointer(VIEW) impact::create_impact(::user::impact_data* pimpactdata, ::user::interaction* pviewLast)
 //   {
 //
-//      return create_view < VIEW >(get_document(), pimpactdata->m_pplaceholder, pimpactdata->m_atom, pviewLast, pimpactdata);
+//      return create_impact < VIEW >(get_document(), pimpactdata->m_pplaceholder, pimpactdata->m_atom, pviewLast, pimpactdata);
 //
 //   }
 //

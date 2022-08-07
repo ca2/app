@@ -150,7 +150,7 @@
 		<Unit filename="path.h" />
 		<Unit filename="pen.cpp" />
 		<Unit filename="pen.h" />
-		<Unit filename="preview_dc.cpp" />
+		<Unit filename="thumbnail_dc.cpp" />
 		<Unit filename="region.cpp" />
 		<Unit filename="region.h" />
 		<Extensions />

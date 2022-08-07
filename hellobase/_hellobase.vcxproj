@@ -1001,8 +1001,8 @@
     <ClCompile Include="hellobase_document.cpp" />
     <ClCompile Include="hellobase_main_frame.cpp" />
     <ClCompile Include="hellobase_render.cpp" />
-    <ClCompile Include="hellobase_view.cpp" />
-    <ClCompile Include="hellobase_view_base.cpp" />
+    <ClCompile Include="hellobase_impact.cpp" />
+    <ClCompile Include="hellobase_impact_base.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
@@ -1011,8 +1011,8 @@
     <ClInclude Include="hellobase_document.h" />
     <ClInclude Include="hellobase_main_frame.h" />
     <ClInclude Include="hellobase_render.h" />
-    <ClInclude Include="hellobase_view.h" />
-    <ClInclude Include="hellobase_view_base.h" />
+    <ClInclude Include="hellobase_impact.h" />
+    <ClInclude Include="hellobase_impact_base.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\source\app-core\experience_lite\_experience_lite.vcxproj">

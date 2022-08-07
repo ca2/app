@@ -10,14 +10,14 @@ namespace universal_windows
    CLASS_DECL_CORE LRESULT CALLBACK __cbt_filter_hook(int, WPARAM, LPARAM);
    CLASS_DECL_CORE LRESULT __call_window_procedure(::user::interaction * pWnd, oswindow hWnd, ::u32 nMsg, WPARAM wParam, LPARAM lParam);
 
-   ref class directx_framework_view;
+   ref class directx_framework_impact;
 
    class CLASS_DECL_CORE interaction_impl :
       virtual public ::user::interaction_impl
    {
    public:
 
-      directx_framework_view ^                     m_frameworkview;
+      directx_framework_impact ^                     m_frameworkview;
       ::user::message_queue_listener *          m_plistener;
       string                                    m_strWindowText;
       //::image_pointer              m_pimage;
@@ -687,9 +687,9 @@ namespace universal_windows
 
       Agile < ::winrt::Windows::UI::Core::CoreWindow > get_os_window();
 
-      void set_view_port_org(::image * pimage);
+      void set_impact_port_org(::image * pimage);
 
-      void offset_view_port_org(RECTANGLE_I32 * lprectScreen);
+      void offset_impact_port_org(RECTANGLE_I32 * lprectScreen);
 
       virtual void queue_message_handler(::user::message * pusermessage) override;
 

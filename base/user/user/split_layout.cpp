@@ -1,9 +1,9 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #endif
 #include "split_pane.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 
 
 namespace user
@@ -1302,7 +1302,7 @@ namespace user
    }
 
 
-   __pointer(::user::place_holder) split_layout::get_pane_holder(index iPane)
+   ::user::place_holder * split_layout::get_pane_holder(index iPane)
    {
 
       ASSERT(iPane >= 0);
@@ -1321,7 +1321,7 @@ namespace user
    }
 
 
-   __pointer(::user::interaction) split_layout::get_pane_window(index iPane)
+   ::user::interaction * split_layout::get_pane_window(index iPane)
    {
 
       __pointer(::user::place_holder) pholder = get_pane_holder(iPane);

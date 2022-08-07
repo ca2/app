@@ -126,6 +126,114 @@ namespace user
 
    }
 
+
+   __pointer(::user::interaction) system::create_impact(::user::interaction * puserinteractionParent, const ::atom & atom)
+   {
+
+      ASSERT(m_typeNewImpact || m_puserprimitiveNew != nullptr);
+
+      ::application * papp = puserinteractionParent->get_app();
+
+      __pointer(::user::interaction) pinteraction;
+
+      //::e_status estatus = ::success;
+
+      if (m_puserprimitiveNew != nullptr)
+      {
+
+         pinteraction = m_puserprimitiveNew;
+
+      }
+      else
+      {
+
+         __pointer(::object) pobject = m_pdocumentCurrent;
+
+         if(pobject.is_null())
+         {
+
+            pobject = papp;
+
+         }
+
+         if (pobject.is_null() || ::is_null(pobject->get_app()))
+         {
+
+            _ERROR(pobject, "Cannot create impact. Document doesn't have context application. (Should it be a blocking thing...)");
+
+            return nullptr;
+
+         }
+
+         auto pcontextJustForInspection = pobject->m_pcontext;
+
+         string strType = typeid(*pcontextJustForInspection).name();
+
+         //estatus =
+         pobject->__id_construct(pinteraction, m_typeNewImpact);
+
+      }
+
+      if (pinteraction.is_null())
+      {
+
+         return nullptr;
+
+      }
+
+      pinteraction->m_pusersystem = this;
+
+      pinteraction->display(e_display_restored);
+
+      pinteraction->m_atom = atom;
+
+      //if (!pinteraction->create_interaction(nullptr, nullptr, WS_VISIBLE | WS_CHILD, puserinteractionParent, atom, pcreate))
+      //if (!pinteraction->create_child(puserinteractionParent))
+
+      pinteraction->create_child(puserinteractionParent);
+      //{
+
+      //   return nullptr;
+
+      //}
+
+
+      pinteraction->signal(id_initial_update);
+      
+
+//      __pointer(::user::impact) pimpact = pinteraction;
+//
+//      if (pimpact.is_set())
+//      {
+//
+//         auto pdocument = pimpact->get_document();
+//
+//         pdocument->signal(id_initial_update);
+//
+//      }
+
+      //if (pinteraction.is_set())
+      //{
+
+      //   if (pinteraction->get_parent() != nullptr)
+      //   {
+
+      //      if (pinteraction->get_parent()->is_place_holder())
+      //      {
+
+      //         pinteraction->get_parent()->place_hold(pinteraction);
+
+      //      }
+
+      //   }
+
+      //}
+
+      return pinteraction;
+
+   }
+
+
    //void system::get_rect(RECTANGLE_I32 * lprect)
    //{
 

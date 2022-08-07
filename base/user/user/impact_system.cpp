@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #endif
 #include "aura/user/user/wait_cursor.h"
 
@@ -435,12 +435,12 @@ namespace user
    void impact_system::handle(::topic * ptopic, ::context * pcontext)
    {
 
-      update_all_views(ptopic);
+      update_all_impacts(ptopic);
 
    }
 
 
-   void impact_system::update_all_views(::topic * ptopic)
+   void impact_system::update_all_impacts(::topic * ptopic)
    {
 
       ::count count = get_document_count();
@@ -450,7 +450,7 @@ namespace user
 
          ::user::document * pdocument = get_document(index);
 
-         pdocument->update_all_views(ptopic);
+         pdocument->update_all_impacts(ptopic);
 
       }
 
@@ -487,7 +487,7 @@ namespace user
    }
 
 
-   void impact_system::update_all_views(::user::impact * pimpact, const ::atom & atom)
+   void impact_system::update_all_impacts(::user::impact * pimpact, const ::atom & atom)
    {
 
       ::count count = get_document_count();
@@ -497,7 +497,7 @@ namespace user
 
          ::user::document * pdocument = get_document(index);
 
-         pdocument->update_all_views(pimpact, atom);
+         pdocument->update_all_impacts(pimpact, atom);
 
       }
 

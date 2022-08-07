@@ -684,7 +684,7 @@ namespace aura
 
       virtual string get_host_location_url() override;
 
-//      virtual void add_view_library(::acme::library* plibrary);
+//      virtual void add_impact_library(::acme::library* plibrary);
 
       //virtual void get_cursor_position(POINT_I32 * ppoint);
 
@@ -712,7 +712,7 @@ namespace aura
       //virtual void hist_hist(const ::string & psz) override;
 
 
-      virtual ::type get_pane_tab_view_type_info();
+      virtual ::type get_pane_tab_impact_type_info();
       virtual ::type get_simple_frame_window_type_info();
       //virtual ::type get_simple_child_frame_type_info();
 

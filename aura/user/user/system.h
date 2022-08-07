@@ -81,6 +81,9 @@ namespace user
 
       //inline auto get_rect() { ::rectangle_i32 rectangle(e_no_initialize); get_rect(&rectangle); return rectangle; }
 
+      __pointer(::user::interaction) create_impact(::user::interaction * puserinteractionParent, const ::atom & atom);
+
+
    };
 
 

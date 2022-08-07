@@ -64,7 +64,7 @@ namespace filemanager
 
       __pointer(document) pdocument = this;
 
-      tab_view * pimpact = pdocument->get_type_impact < tab_view >();
+      tab_impact * pimpact = pdocument->get_type_impact < tab_impact >();
 
 //#ifdef WINDOWS_DESKTOP
 //      oswindow oswindowDesktop = ::get_desktop_window();
@@ -247,7 +247,7 @@ namespace filemanager
 
          ptopic->_extended_topic()->m_pfileitem = itema.get_first_pointer();
 
-         pdocument->update_all_views(ptopic);
+         pdocument->update_all_impacts(ptopic);
 
          pfilemanagerdata->m_pdocumentTopic = nullptr;
 
@@ -469,7 +469,7 @@ namespace filemanager
    document * document::get_main_document()
    {
 
-      __pointer(tab_view) ptabimpact = get_type_impact < tab_view >();
+      __pointer(tab_impact) ptabimpact = get_type_impact < tab_impact >();
 
       if (ptabimpact.is_set())
       {
@@ -549,7 +549,7 @@ namespace filemanager
 
             //set_data_key_modifier(m_strManagerId);
 
-  /*          __pointer(main_frame) pframe = get_view()->GetTypedParent < main_frame >();
+  /*          __pointer(main_frame) pframe = get_impact()->GetTypedParent < main_frame >();
 
             if (pframe.is_set() && !pframe->m_atom.to_string().contains("::frame"))
             {
@@ -669,7 +669,7 @@ namespace filemanager
 
          ptopic->_extended_topic()->m_pfileitem = pitem;
 
-         update_all_views(ptopic);
+         update_all_impacts(ptopic);
 
       }
 
@@ -703,7 +703,7 @@ namespace filemanager
 
       pextendedtopic->m_actioncontext = context + ::e_source_sync;
 
-      update_all_views(pextendedtopic);
+      update_all_impacts(pextendedtopic);
 
    }
 
@@ -747,7 +747,7 @@ namespace filemanager
 
       auto pextendedtopic = create_topic(id_open_selection_properties);
 
-      update_all_views(pextendedtopic);
+      update_all_impacts(pextendedtopic);
 
    }
 
@@ -845,7 +845,7 @@ namespace filemanager
       if (pimpact.is_set())
       {
 
-         __pointer(tab_view) ptabimpact = pimpact->GetTypedParent <tab_view>();
+         __pointer(tab_impact) ptabimpact = pimpact->GetTypedParent <tab_impact>();
 
          if (ptabimpact.is_set())
          {
@@ -914,7 +914,7 @@ namespace filemanager
    void document::_001OnAddLocation(::message::message * pmessage)
    {
 
-      id_update_all_views(id_add_location);
+      id_update_all_impacts(id_add_location);
 
       pmessage->m_bRet = true;
 
@@ -938,7 +938,7 @@ namespace filemanager
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      id_update_all_views(id_replace_name);
+      id_update_all_impacts(id_replace_name);
 
       pmessage->m_bRet = true;
 
@@ -962,7 +962,7 @@ namespace filemanager
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      id_update_all_views(id_new_folder);
+      id_update_all_impacts(id_new_folder);
 
       pmessage->m_bRet = true;
 
@@ -981,7 +981,7 @@ namespace filemanager
    {
       __UNREFERENCED_PARAMETER(pmessage);
       //pcontext->m_papexcontext->file().paste(pfilemanagerdata->filemanager_item().m_strPath, psystem->m_strCopy);
-      //update_all_views(nullptr, 123, nullptr);
+      //update_all_impacts(nullptr, 123, nullptr);
       //pmessage->m_bRet = true;
    }
 
@@ -1016,7 +1016,7 @@ namespace filemanager
 
          ptopic->payload(id_document) = this;
 
-         update_all_views(ptopic);
+         update_all_impacts(ptopic);
 
       }
 
@@ -1037,7 +1037,7 @@ namespace filemanager
 
          ptopic->payload(id_document) = this;
 
-         update_all_views(ptopic);
+         update_all_impacts(ptopic);
 
       }
 
@@ -1056,7 +1056,7 @@ namespace filemanager
 
          ptopic->payload(id_document) = this;
 
-         update_all_views(ptopic);
+         update_all_impacts(ptopic);
 
       }
 
@@ -1076,14 +1076,14 @@ namespace filemanager
 
       browse(path, ::e_source_database);
 
-      update_all_views(ptopic);
+      update_all_impacts(ptopic);
 
       if (bMakeVisible)
       {
 
          ::topic topic(id_pop);
 
-         update_all_views(&topic);
+         update_all_impacts(&topic);
 
       }
 
@@ -1169,7 +1169,7 @@ namespace filemanager
 
       //ptopic->m_atom = ;
 
-      //update_all_views(pupdate);
+      //update_all_impacts(pupdate);
 
    }
 
@@ -1191,7 +1191,7 @@ namespace filemanager
 
          ptopic->payload(id_document) = this;
 
-         update_all_views(ptopic);
+         update_all_impacts(ptopic);
 
       }
 
@@ -1203,7 +1203,7 @@ namespace filemanager
 
          ptopic->payload(id_document) = this;
 
-         update_all_views(ptopic);
+         update_all_impacts(ptopic);
 
       }
 
@@ -1219,7 +1219,7 @@ namespace filemanager
 
          ptopic->payload(id_document) = this;
 
-         update_all_views(ptopic);
+         update_all_impacts(ptopic);
 
       }
 
@@ -1227,7 +1227,7 @@ namespace filemanager
 
          ::topic topic(id_pop);
 
-         update_all_views(&topic);
+         update_all_impacts(&topic);
 
       }
 
@@ -1296,7 +1296,7 @@ namespace filemanager
    operation_document * document::get_operation_doc(bool bSwitch)
    {
 
-      //::filemanager::tab_view * ptabimpact = psession->m_pdocumenttemplateMain->get_document(0)->get_type_impact < ::filemanager::tab_view >();
+      //::filemanager::tab_impact * ptabimpact = psession->m_pdocumenttemplateMain->get_document(0)->get_type_impact < ::filemanager::tab_impact >();
 
       //if (ptabimpact == nullptr)
       //{
@@ -1335,9 +1335,9 @@ namespace filemanager
    void document::GetActiveImpactSelection(::file::item_array & itema)
    {
 
-      auto ptopic = create_topic(id_get_active_view_selection);
+      auto ptopic = create_topic(id_get_active_impact_selection);
 
-      update_all_views(ptopic);
+      update_all_impacts(ptopic);
 
       itema = *ptopic->cast < ::file::item_array>(id_selected);
 
@@ -1361,7 +1361,7 @@ namespace filemanager
 
          pextendedtopic->payload(id_document) = pdocumentFilemanager;
 
-         pdocumentFilemanager->update_all_views(pextendedtopic);
+         pdocumentFilemanager->update_all_impacts(pextendedtopic);
 
       }
 
@@ -1369,7 +1369,7 @@ namespace filemanager
 
          auto pextendedtopic = create_topic(id_create_bars);
 
-         pdocumentFilemanager->update_all_views(pextendedtopic);
+         pdocumentFilemanager->update_all_impacts(pextendedtopic);
 
       }
 
@@ -1393,7 +1393,7 @@ namespace filemanager
 
          ptopic->payload(id_document) = pdocumentFilemanager;
 
-         pdocumentFilemanager->update_all_views(ptopic);
+         pdocumentFilemanager->update_all_impacts(ptopic);
 
       }
 
@@ -1401,7 +1401,7 @@ namespace filemanager
 
          ::topic topic(id_create_bars);
 
-         pdocumentFilemanager->update_all_views(&topic);
+         pdocumentFilemanager->update_all_impacts(&topic);
 
       }
 
@@ -1425,7 +1425,7 @@ namespace filemanager
 
          ptopic->payload(id_document) = pdocumentFilemanager;
 
-         pdocumentFilemanager->update_all_views(ptopic);
+         pdocumentFilemanager->update_all_impacts(ptopic);
 
       }
 
@@ -1433,7 +1433,7 @@ namespace filemanager
 
          ::topic topic(id_create_bars);
 
-         pdocumentFilemanager->update_all_views(&topic);
+         pdocumentFilemanager->update_all_impacts(&topic);
 
       }
 

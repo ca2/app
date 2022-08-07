@@ -2,23 +2,21 @@
 // Created by camilo on 2020-11-19. <3Thomas Boregaard SørensenCamilo SasukeThomas Boregaard Sørensen!! DOMAS_16-09-0.1989
 //
 #include "framework.h"
-// CLASS_DECL_ACME string xxxget_environment_variable(const char * pszEnvironmentVariable)
-// {
 
-//    string str = getenv(pszEnvironmentVariable);
 
-//    return str;
-
-// }
 #include <sys/wait.h>
 #include <unistd.h>
 #include <wordexp.h>
 #include <fcntl.h>
 
+
 #if !defined(APPLE_IOS)
 
-void command_system(string& strOutput, string& strError, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout)
+
+void command_system(string_array & straOutput, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout, ::synchronization_object * psynchronizationobject, ::file::file * pfileLog)
 {
+
+   single_lock singlelock(psynchronizationobject);
 
    ::e_status estatus = success;
 
@@ -52,6 +50,10 @@ void command_system(string& strOutput, string& strError, int& iExitCode, const c
 
    }
 
+   string strOutput;
+
+   string strError;
+
    auto pszCommandLine = strdup(psz);
 
    const pid_t pid = fork();
@@ -60,14 +62,16 @@ void command_system(string& strOutput, string& strError, int& iExitCode, const c
    {
 
       while((dup2(stdout_fds[1], STDOUT_FILENO) == -1) && (errno==EINTR)){}
+
       while((dup2(stderr_fds[1], STDERR_FILENO) == -1) && (errno==EINTR)){}
 
       close(stdout_fds[0]);
-      close(stdout_fds[1]);
-      close(stderr_fds[0]);
-      close(stderr_fds[1]);
 
-      //sleep(20);
+      close(stdout_fds[1]);
+
+      close(stderr_fds[0]);
+
+      close(stderr_fds[1]);
 
       wordexp_t we{};
 
@@ -99,10 +103,12 @@ void command_system(string& strOutput, string& strError, int& iExitCode, const c
    }
 
    close(stdout_fds[1]);
+
    close(stderr_fds[1]);
 
-   fcntl( stdout_fds[0], F_SETFL, fcntl(stdout_fds[0], F_GETFL) | O_NONBLOCK);
-   fcntl( stderr_fds[0], F_SETFL, fcntl(stderr_fds[0], F_GETFL) | O_NONBLOCK);
+   fcntl(stdout_fds[0], F_SETFL, fcntl(stdout_fds[0], F_GETFL) | O_NONBLOCK);
+
+   fcntl(stderr_fds[0], F_SETFL, fcntl(stderr_fds[0], F_GETFL) | O_NONBLOCK);
 
    const int buf_size = 4096;
 
@@ -112,6 +118,23 @@ void command_system(string& strOutput, string& strError, int& iExitCode, const c
 
    while(true)
    {
+
+      if(!::task_get_run())
+      {
+
+         close(stdout_fds[0]);
+
+         close(stderr_fds[0]);
+
+         kill(pid, SIGKILL);
+
+         int iStatus = 0;
+
+         waitpid(pid, &iStatus, 0);
+
+         break;
+
+      }
 
       bool bRead = false;
 
@@ -136,6 +159,8 @@ void command_system(string& strOutput, string& strError, int& iExitCode, const c
 
             }
 
+            ::str().get_lines(straOutput, strOutput, "I: ", false, &singlelock, pfileLog);
+
          }
 
          const ssize_t iErrRead = read(stderr_fds[0], buffer, buf_size);
@@ -155,6 +180,8 @@ void command_system(string& strOutput, string& strError, int& iExitCode, const c
                fprintf(stderr, "%s", strMessage.c_str());
 
             }
+
+            ::str().get_lines(straOutput, strError, "E: ", false, &singlelock, pfileLog);
 
          }
 
@@ -186,8 +213,6 @@ void command_system(string& strOutput, string& strError, int& iExitCode, const c
 
             if(iErrorNo != ECHILD)
             {
-
-               // No child with specified pid
 
                break;
 
@@ -234,20 +259,28 @@ void command_system(string& strOutput, string& strError, int& iExitCode, const c
 
    }
 
-   //return ::success;
+   ::str().get_lines(straOutput, strOutput, "I: ", true, &singlelock, pfileLog);
+
+   ::str().get_lines(straOutput, strError, "E: ", true, &singlelock, pfileLog);
 
 }
 
+
 #endif
+
 
 critical_section * g_pcsPid2 = nullptr;
 
 
-//chldstatus_map * g_ppid = nullptr;
+namespace acme
+{
 
-namespace acme{
-extern critical_section * g_pcsGlobal;
-}
+
+   extern critical_section * g_pcsGlobal;
+
+
+} // namespace acme
+
 
 critical_section * get_pid_cs()
 {
@@ -258,9 +291,6 @@ critical_section * get_pid_cs()
    {
 
       g_pcsPid2 = new critical_section();
-
-      //g_ppid = new chldstatus_map();
-
 
    }
 

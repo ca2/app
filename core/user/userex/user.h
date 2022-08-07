@@ -194,7 +194,7 @@ namespace core
       ::type default_type_list_data();
 
 
-      virtual void will_use_view_hint(::atom idImpact);
+      virtual void will_use_impact_hint(::atom idImpact);
 
 
       virtual void term_instance() override;
@@ -243,7 +243,7 @@ namespace core
       //virtual __pointer(::userfs::userfs) create_userfs();
 
 
-      virtual ::type get_pane_tab_view_type_info();
+      virtual ::type get_pane_tab_impact_type_info();
       //virtual ::type get_simple_frame_window_type_info() override;
       virtual ::type get_simple_child_frame_type_info();
 
@@ -546,7 +546,7 @@ namespace core
 
       ////virtual bool create_bergedge(::create * pcreate);
 
-      //virtual void will_use_view_hint(::atom idImpact);
+      //virtual void will_use_impact_hint(::atom idImpact);
 
       ////virtual void on_app_request_bergedge_callback(::object * pobject);
 
@@ -574,7 +574,7 @@ namespace core
 
 
       //__pointer(::user::document)                   get_document();
-      //__pointer(::user::impact)                     get_view();
+      //__pointer(::user::impact)                     get_impact();
       //__pointer(::user::document)                   get_platform();
       //__pointer(::user::document)                   get_nature();
 
@@ -643,7 +643,7 @@ namespace core
 
       //inline ::user::user* user() { return m_puser; }
 
-      ////virtual __pointer(::user::impact)                      get_view();
+      ////virtual __pointer(::user::impact)                      get_impact();
 
 
       ////virtual void     initialize(::object * pobject) override;

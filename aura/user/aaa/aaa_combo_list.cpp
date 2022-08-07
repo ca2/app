@@ -117,7 +117,7 @@ namespace user
 
       ::rectangle rectangleItem;
 
-      //point p = pgraphics->GetViewportOrg();
+      //point p = pgraphics->get_origin();
 
       rectangleItem = rectangleClient;
 

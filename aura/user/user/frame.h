@@ -178,8 +178,8 @@ namespace user
 
 
 
-      virtual ::user::interaction * get_active_view() const;
-      virtual void set_active_view(::user::impact * pImpactNew, bool bNotify = true);
+      virtual ::user::interaction * get_active_impact() const;
+      virtual void set_active_impact(::user::impact * pImpactNew, bool bNotify = true);
 
       virtual void ActivateFrame(::e_display edisplay = e_display_undefined);
 

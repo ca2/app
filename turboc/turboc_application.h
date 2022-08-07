@@ -28,7 +28,7 @@ namespace turboc
 
 
       ::user::single_document_template *     m_ptemplateHelloMultiverseMain;
-      ::user::single_document_template *     m_ptemplateHelloMultiverseView;
+      ::user::single_document_template *     m_ptemplateHelloMultiverseImpact;
       ::user::single_document_template *     m_ptemplateHelloMultiverseSwitcher;
 
       ::mutex                                  m_mutexAiFont;

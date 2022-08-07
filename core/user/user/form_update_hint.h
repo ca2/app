@@ -15,7 +15,7 @@ namespace user
       {
          type_browse,
          type_after_browse,
-         type_get_form_view,
+         type_get_form_impact,
       };
 
 

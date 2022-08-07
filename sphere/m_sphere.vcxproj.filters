@@ -66,7 +66,7 @@
     <ClCompile Include="calculator\calculator_frame.cpp">
       <Filter>Source Files\calculator</Filter>
     </ClCompile>
-    <ClCompile Include="calculator\calculator_view.cpp">
+    <ClCompile Include="calculator\calculator_impact.cpp">
       <Filter>Source Files\calculator</Filter>
     </ClCompile>
     <ClCompile Include="command\command_application.cpp">
@@ -81,16 +81,16 @@
     <ClCompile Include="command\command_frame.cpp">
       <Filter>Source Files\command</Filter>
     </ClCompile>
-    <ClCompile Include="command\command_pane_view.cpp">
+    <ClCompile Include="command\command_pane_impact.cpp">
       <Filter>Source Files\command</Filter>
     </ClCompile>
-    <ClCompile Include="command\aaa_want_to_erase_command_view_update_hint.cpp">
+    <ClCompile Include="command\aaa_want_to_erase_command_impact_update_hint.cpp">
       <Filter>Source Files\command</Filter>
     </ClCompile>
-    <ClCompile Include="command\command_primary_view.cpp">
+    <ClCompile Include="command\command_primary_impact.cpp">
       <Filter>Source Files\command</Filter>
     </ClCompile>
-    <ClCompile Include="command\command_view.cpp">
+    <ClCompile Include="command\command_impact.cpp">
       <Filter>Source Files\command</Filter>
     </ClCompile>
     <ClCompile Include="filehandler\filehandler_application.cpp">
@@ -102,13 +102,13 @@
     <ClCompile Include="filehandler\filehandler_frame.cpp">
       <Filter>Source Files\filehandler</Filter>
     </ClCompile>
-    <ClCompile Include="filehandler\filehandler_pane_view.cpp">
+    <ClCompile Include="filehandler\filehandler_pane_impact.cpp">
       <Filter>Source Files\filehandler</Filter>
     </ClCompile>
-    <ClCompile Include="filehandler\aaa_want_to_erase_filehandler_view_update_hint.cpp">
+    <ClCompile Include="filehandler\aaa_want_to_erase_filehandler_impact_update_hint.cpp">
       <Filter>Source Files\filehandler</Filter>
     </ClCompile>
-    <ClCompile Include="filehandler\filehandler_view.cpp">
+    <ClCompile Include="filehandler\filehandler_impact.cpp">
       <Filter>Source Files\filehandler</Filter>
     </ClCompile>
     <ClCompile Include="sphere\sphere_application.cpp">
@@ -126,16 +126,16 @@
     <ClCompile Include="userstack\userstack_frame.cpp">
       <Filter>Source Files\userstack</Filter>
     </ClCompile>
-    <ClCompile Include="userstack\userstack_pane_view.cpp">
+    <ClCompile Include="userstack\userstack_pane_impact.cpp">
       <Filter>Source Files\userstack</Filter>
     </ClCompile>
-    <ClCompile Include="userstack\aaa_want_to_erase_userstack_view_update_hint.cpp">
+    <ClCompile Include="userstack\aaa_want_to_erase_userstack_impact_update_hint.cpp">
       <Filter>Source Files\userstack</Filter>
     </ClCompile>
     <ClCompile Include="userstack\userstack_application.cpp">
       <Filter>Source Files\userstack</Filter>
     </ClCompile>
-    <ClCompile Include="userstack\userstack_view.cpp">
+    <ClCompile Include="userstack\userstack_impact.cpp">
       <Filter>Source Files\userstack</Filter>
     </ClCompile>
     <ClCompile Include="console\console_application.cpp">
@@ -179,7 +179,7 @@
     <ClInclude Include="calculator\calculator_frame.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\calculator_view.h">
+    <ClInclude Include="calculator\calculator_impact.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
     <ClInclude Include="command\command.h">
@@ -197,16 +197,16 @@
     <ClInclude Include="command\command_frame.h">
       <Filter>Header Files\command</Filter>
     </ClInclude>
-    <ClInclude Include="command\command_pane_view.h">
+    <ClInclude Include="command\command_pane_impact.h">
       <Filter>Header Files\command</Filter>
     </ClInclude>
-    <ClInclude Include="command\aaa_want_to_erase_command_view_update_hint.h">
+    <ClInclude Include="command\aaa_want_to_erase_command_impact_update_hint.h">
       <Filter>Header Files\command</Filter>
     </ClInclude>
-    <ClInclude Include="command\command_primary_view.h">
+    <ClInclude Include="command\command_primary_impact.h">
       <Filter>Header Files\command</Filter>
     </ClInclude>
-    <ClInclude Include="command\command_view.h">
+    <ClInclude Include="command\command_impact.h">
       <Filter>Header Files\command</Filter>
     </ClInclude>
     <ClInclude Include="filehandler\filehandler.h">
@@ -221,13 +221,13 @@
     <ClInclude Include="filehandler\filehandler_frame.h">
       <Filter>Header Files\filehandler</Filter>
     </ClInclude>
-    <ClInclude Include="filehandler\filehandler_pane_view.h">
+    <ClInclude Include="filehandler\filehandler_pane_impact.h">
       <Filter>Header Files\filehandler</Filter>
     </ClInclude>
-    <ClInclude Include="filehandler\aaa_want_to_erase_filehandler_view_update_hint.h">
+    <ClInclude Include="filehandler\aaa_want_to_erase_filehandler_impact_update_hint.h">
       <Filter>Header Files\filehandler</Filter>
     </ClInclude>
-    <ClInclude Include="filehandler\filehandler_view.h">
+    <ClInclude Include="filehandler\filehandler_impact.h">
       <Filter>Header Files\filehandler</Filter>
     </ClInclude>
     <ClInclude Include="sphere\sphere.h">
@@ -251,16 +251,16 @@
     <ClInclude Include="userstack\userstack_frame.h">
       <Filter>Header Files\userstack</Filter>
     </ClInclude>
-    <ClInclude Include="userstack\userstack_pane_view.h">
+    <ClInclude Include="userstack\userstack_pane_impact.h">
       <Filter>Header Files\userstack</Filter>
     </ClInclude>
-    <ClInclude Include="userstack\aaa_want_to_erase_userstack_view_update_hint.h">
+    <ClInclude Include="userstack\aaa_want_to_erase_userstack_impact_update_hint.h">
       <Filter>Header Files\userstack</Filter>
     </ClInclude>
     <ClInclude Include="userstack\userstack_application.h">
       <Filter>Header Files\userstack</Filter>
     </ClInclude>
-    <ClInclude Include="userstack\userstack_view.h">
+    <ClInclude Include="userstack\userstack_impact.h">
       <Filter>Header Files\userstack</Filter>
     </ClInclude>
     <ClInclude Include="console\console.h">

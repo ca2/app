@@ -75,7 +75,7 @@ namespace core
    }
 
 
-   string application::preparimpact_options()
+   string application::prepare_impact_options()
    {
 
       string strHeader = prepare_impact_options_header();

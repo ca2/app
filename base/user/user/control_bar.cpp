@@ -1,10 +1,10 @@
 #include "framework.h"
 #include "aura/operating_system.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #endif
 #include "aura/operating_system/_user.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 
 
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),

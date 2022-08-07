@@ -45,7 +45,7 @@
    
    m_controller->m_pwindow = self;
 
-   [self create_view];
+   [self create_impact];
    
    [self setRootViewController:m_controller];
    
@@ -89,7 +89,7 @@
       //m_controller = [[UIViewController alloc] init];
       
       
-      //[self create_view];
+      //[self create_impact];
       
     //  [self setRootViewController : m_controller];
       
@@ -142,7 +142,7 @@
 // Keep our frame view as the content view and make the specified "aView"
 // the child of that.
 //
-- (void)create_view
+- (void)create_impact
 {
 
 	CGRect bounds = [self frame];
@@ -184,7 +184,7 @@
    // Keep our frame view as the content view and make the specified "aView"
    // the child of that.
    //
-  // - (void)create_view
+  // - (void)create_impact
   // {
       
      // CGRect bounds = [self frame];

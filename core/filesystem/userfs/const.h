@@ -15,7 +15,7 @@ namespace userfs
    //   ::update_create_bars,
    //   ::update_pop,
    //   ::update_filter,
-   //   ::update_get_active_view_selection,
+   //   ::update_get_active_impact_selection,
    //   ::update_open_selection_properties,
    //   ::updatid_start,
    //   ::updatid_cancel,

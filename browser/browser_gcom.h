@@ -7,7 +7,7 @@ namespace browser
 
    class CLASS_DECL_APP_BROWSER gcom :
       virtual public impact_base,
-      virtual public ::backview::user::impact
+      virtual public ::backimpact::user::impact
    {
    public:
 

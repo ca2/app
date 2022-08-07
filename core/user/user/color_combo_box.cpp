@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #endif
@@ -107,11 +107,11 @@ auto pwindowing = windowing();
                
                auto puser = psession->m_puser->m_pcoreuser;
 
-               puser->will_use_view_hint(COLORSEL_IMPACT);
+               puser->will_use_impact_hint(COLORSEL_IMPACT);
 
                m_pdocument = puser->m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(get_app(), ::e_type_null, __visible(false).is_true());
 
-               m_pimpact = m_pdocument->get_type_impact < ::userex::color_view >();
+               m_pimpact = m_pdocument->get_type_impact < ::userex::color_impact >();
 
                m_pimpact->m_bCompact = true;
 

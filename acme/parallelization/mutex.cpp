@@ -750,7 +750,7 @@ bool mutex::_wait(const class ::wait & wait)
       if (rc < 0)
       {
 
-         return error_failed;
+         throw ::exception(error_failed);
 
       }
 
@@ -807,7 +807,7 @@ bool mutex::_wait(const class ::wait & wait)
 
                   ASSERT(iError == 0);
 
-                  return error_failed;
+                  throw ::exception(error_failed);
 
                }
 
@@ -820,7 +820,7 @@ bool mutex::_wait(const class ::wait & wait)
 
                ASSERT(false);
 
-               return error_failed;
+               throw ::exception(error_failed);
 
             }
 
@@ -829,7 +829,7 @@ bool mutex::_wait(const class ::wait & wait)
             if (tickElapsed >= wait)
             {
 
-               return error_wait_timeout;
+               return false;
 
             }
 
@@ -840,7 +840,7 @@ bool mutex::_wait(const class ::wait & wait)
             if (rc < 0)
             {
 
-               return error_failed;
+               throw ::exception(error_failed);
 
             }
 
@@ -853,6 +853,8 @@ bool mutex::_wait(const class ::wait & wait)
 //      ASSERT(iError == 0);
 //
 //      return synchronization_result(synchronization_result::Failure);
+
+      return true;
 
    }
    else
@@ -1052,9 +1054,9 @@ bool mutex::_wait(const class ::wait & wait)
 
       ::duration d;
 
-      d.m_iSecond = abs_time.tv_sec + wait.m_i / 1'000;
+      d.m_iSecond = abs_time.tv_sec + (::i64) (wait.m_d);
 
-      d.m_iNanosecond = abs_time.tv_nsec + ((wait.m_i % 1'000) * 1'000'000);
+      d.m_iNanosecond = abs_time.tv_nsec + (fmod(wait.m_d, 1.0) * 1'000'000'000);
 
       d.normalize();
 
@@ -1067,19 +1069,25 @@ bool mutex::_wait(const class ::wait & wait)
       if (!rc)
       {
 
-         return signaled_base;
+         return true;
+
+      }
+      else if(rc == EINVAL)
+      {
+
+         return false;
 
       }
       else if(rc == ETIMEDOUT)
       {
 
-         return error_timeout;
+         return false;
 
       }
       else
       {
 
-         return error_failed;
+         throw ::exception(error_failed);
 
       }
 
@@ -1340,7 +1348,7 @@ void mutex::_wait()
       if (irc)
       {
 
-         return false;
+         throw ::exception(error_failed);
 
       }
 
@@ -1539,7 +1547,14 @@ void mutex::unlock()
 
    {
 
-      return pthread_mutex_unlock(&m_mutex) == 0;
+      int iError = pthread_mutex_unlock(&m_mutex);
+
+      if(iError != 0)
+      {
+
+         throw ::exception(error_failed);
+
+      }
 
    }
 

@@ -6,7 +6,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE form :
-      virtual public ::filemanager_show < ::user::form_view >
+      virtual public ::filemanager_show < ::user::form_impact >
    {
    public:
 

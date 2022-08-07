@@ -126,7 +126,7 @@ namespace aura
 //
 //      ATOM                                            m_atomApp;
 //      ATOM                                            m_atomSystemTopic;   // for DDE open
-//      ::u32                                            m_nNumPreviewPages; // number of default printed pages
+//      ::u32                                            m_nNumThumbnailPages; // number of default printed pages
 //
 //      string                                          m_strId;
 
@@ -333,7 +333,7 @@ namespace aura
       //virtual i32 hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
       //virtual i32 hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::aura::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
 
-      //virtual void on_update_view(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint);
+      //virtual void on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, lparam lHint, object * pHint);
 
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
       //virtual void on_notify_control_event(::user::control_event* pevent);
@@ -848,7 +848,7 @@ namespace aura
       virtual void close(::apex::enum_end eend) override;
 
 
-      //user virtual __pointer(::user::document) defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom = nullptr);
+      //user virtual __pointer(::user::document) defer_create_impact(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom = nullptr);
 
 
       virtual void HideApplication() override;
@@ -952,8 +952,8 @@ namespace aura
 
       //static const char gen_FileSection[];
       //static const char gen_FileEntry[];
-      //static const char gen_PreviewSection[];
-      //static const char gen_PreviewEntry[];
+      //static const char gen_ThumbnailSection[];
+      //static const char gen_ThumbnailEntry[];
 
 
 
@@ -1022,7 +1022,7 @@ namespace aura
       virtual bool on_close_frame_window(::user::frame* pframe);
 
 
-      void creatimpact_system() override;
+      void create_impact_system() override;
 
       virtual ::user::interaction* create_menu_interaction();
 

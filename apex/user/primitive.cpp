@@ -2040,7 +2040,7 @@ namespace user
    }
 
 
-   void primitive::set_viewport_org(::draw2d::graphics_pointer & pgraphics)
+   void primitive::set_impactport_org(::draw2d::graphics_pointer & pgraphics)
    {
 
       throw ::interface_only();

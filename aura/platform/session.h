@@ -323,7 +323,7 @@ namespace aura
 
       //virtual bool create_bergedge(::create * pcreate);
 
-      //virtual void will_use_view_hint(::atom idImpact);
+      //virtual void will_use_impact_hint(::atom idImpact);
 
       //virtual void on_app_request_bergedge_callback(::object * pobject);
 
@@ -351,7 +351,7 @@ namespace aura
 
 
       //user __pointer(::user::document)                   get_document();
-      //user __pointer(::user::impact)                     get_view();
+      //user __pointer(::user::impact)                     get_impact();
       //user __pointer(::user::document)                   get_platform();
       //user __pointer(::user::document)                   get_nature();
 

@@ -70,24 +70,24 @@ namespace user
       virtual bool set_impact_with_icon(const ::string & strName, const ::string & strIcon, const ::atom & atomImpact = nullptr, bool bVisible = true, ::user::place_holder * pholder = nullptr);
 
       
-      bool create_impact(::user::impact_data * pimpactdata) override;
+      bool impact_creator_create_impact(::user::impact_data * pimpactdata) override;
 
 
-      impact_data * creatimpact_by_id(const ::atom & atom);
+      impact_data * create_impact_by_id(const ::atom & atom);
 
 
-      virtual bool on_preparimpact_data(::user::impact_data * pimpactdata);
-      virtual bool on_after_creatimpact_data(::user::impact_data * pimpactdata);
+      virtual bool on_prepare_impact_data(::user::impact_data * pimpactdata);
+      virtual bool on_after_create_impact_data(::user::impact_data * pimpactdata);
       virtual void on_change_cur_sel();
 
 
       virtual ::user::impact_data * new_impact_data(const atom & atom);
-      virtual ::user::impact_data * allocatimpact_data(const atom & atom);
+      virtual ::user::impact_data * allocate_impact_data(const atom & atom);
 
 
       virtual ::user::impact_data * host_impact(const atom& atom, ::user::interaction * pinteraction, ::user::document * pdocument);
 
-      virtual ::user::place_holder* updown_target_get_place_holder(::user::interaction* pinteraction, ::user::document* pdocument);
+      virtual ::user::place_holder * updown_target_get_place_holder(::user::interaction* pinteraction, ::user::document* pdocument);
 
       virtual ::user::impact_data * impact_host_get_impact_data(const atom& atom, ::user::interaction* pinteraction, ::user::document* pdocument);
 
@@ -101,12 +101,12 @@ namespace user
 
 
       template < class VIEW >
-      __pointer(VIEW) host_view(const ::atom & atom)
+      __pointer(VIEW) host_impact(const ::atom & atom)
       {
 
-         impact_data* pimpactdata = allocatimpact_data(atom);
+         impact_data* pimpactdata = allocate_impact_data(atom);
 
-         pimpactdata->m_puserinteraction = create_view <VIEW>(pimpactdata);
+         pimpactdata->m_puserinteraction = create_impact <VIEW>(pimpactdata);
 
          pimpactdata->m_pdocument = get_document();
 
@@ -134,11 +134,11 @@ namespace user
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-      virtual ::count get_view_count();
+      virtual ::count get_impact_count();
 
-      virtual atom get_view_id();
-      virtual __pointer(::user::impact) get_view();
-      virtual ::user::document * get_view_document();
+      virtual atom get_impact_id();
+      virtual __pointer(::user::impact) get_impact();
+      virtual ::user::document * get_impact_document();
 
 
       virtual void hide_all_except(const id_array & atom);

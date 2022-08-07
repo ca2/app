@@ -16,7 +16,7 @@
 #include "acme/platform/hyperlink.h"
 #include "acme/platform/timer.h"
 #include "acme/platform/timer_array.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #include "aura/graphics/graphics/_.h"
 #include "aura/graphics/graphics/_graphics.h"
 #include "acme/primitive/geometry2d/_shape.h"
@@ -337,9 +337,9 @@ namespace user
       m_pwindow = nullptr;
       m_bFullScreen = false;
 
-      printf("interaction::common_construct - m_pwindow (0x%" PRI0xPTR ")\n", (uptr) m_pwindow);
-
-      fflush(stdout);
+//      printf("interaction::common_construct - m_pwindow (0x%" PRI0xPTR ")\n", (uptr) m_pwindow);
+//
+//      fflush(stdout);
 
    }
 
@@ -2157,6 +2157,22 @@ namespace user
    }
 
 
+   void interaction::display_zoomed()
+   {
+
+      output_debug_string("\ne_display_zoomed\n");
+
+#ifdef INFO_LAYOUT_DISPLAY
+
+      INFORMATION("interaction_layout::display e_display_zoomed");
+
+#endif
+
+      layout().sketch().display() = e_display_zoomed;
+
+   }
+
+
    void interaction::display_iconic()
    {
       
@@ -2183,6 +2199,22 @@ namespace user
       auto edisplayDesign = const_layout().design().display();
       
       layout().sketch().display() = e_display_restore;
+
+   }
+
+
+   void interaction::display_notify_icon()
+   {
+
+      output_debug_string("\ne_display_notify_icon\n");
+
+#ifdef INFO_LAYOUT_DISPLAY
+
+      INFORMATION("interaction_layout::display e_display_notify_icon");
+
+#endif
+
+      layout().sketch().display() = e_display_notify_icon;
 
    }
 
@@ -2223,15 +2255,7 @@ namespace user
       else if (edisplay == e_display_zoomed)
       {
 
-         output_debug_string("\ne_display_zoomed\n");
-
-#ifdef INFO_LAYOUT_DISPLAY
-
-         INFORMATION("interaction_layout::display e_display_zoomed");
-
-#endif
-         
-         layout().sketch().display() = e_display_zoomed;
+         display_zoomed();
 
       }
       else if (edisplay == e_display_iconic)
@@ -2258,6 +2282,12 @@ namespace user
       {
 
          display_restore();
+
+      }
+      else if (edisplay == e_display_notify_icon)
+      {
+
+         display_notify_icon();
 
       }
       else if (edisplay == e_display_default)
@@ -2744,7 +2774,7 @@ namespace user
 
       auto sizePage = get_page_size();
 
-      auto pointOffset = get_viewport_offset();
+      auto pointOffset = get_impactport_offset();
 
       info.nMin = 0;
       info.nMax = (::i32)sizeTotal.cx;
@@ -2762,7 +2792,7 @@ namespace user
 
       auto sizePage = get_page_size();
 
-      auto pointOffset = get_viewport_offset();
+      auto pointOffset = get_impactport_offset();
 
       info.nMin = 0;
       info.nMax = (::i32)sizeTotal.cy;
@@ -3160,30 +3190,35 @@ namespace user
    void interaction::defer_set_icon()
    {
 
-#if defined(CUBE)
-
-      return;
-
-#endif
+//#if defined(CUBE)
+//
+//      return;
+//
+//#endif
 
 #ifdef WINDOWS_DESKTOP
 
-      auto pwindowingicon = get_windowing_icon();
+      //auto pwindowingicon = get_windowing_icon();
 
-      if (get_parent() == nullptr && ::is_null(pwindowingicon))
+      if (get_parent() == nullptr)
       {
 
-         ::file::path strMatter = get_window_default_matter();
+         //if (!window()->defer_set_icon())
+         {
 
-         auto pwindowing = windowing();
+            ::file::path strMatter = get_window_default_matter();
 
-         auto pcontext = m_pcontext->m_papexcontext;
+            auto pwindowing = windowing();
 
-         ::file::path pathIcon = "matter://main/icon.ico";
+            auto pcontext = m_pcontext->m_papexcontext;
 
-         auto picon = window()->load_icon(pathIcon);
+            ::file::path pathIcon = "matter://main/icon.png";
 
-         set_windowing_icon(picon);
+            auto picon = window()->load_icon(pathIcon);
+
+            set_windowing_icon(picon);
+
+         }
 
       }
 
@@ -3254,7 +3289,7 @@ namespace user
    }
 
 
-   void interaction::set_viewport_org(::draw2d::graphics_pointer & pgraphics)
+   void interaction::set_impactport_org(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (m_pprimitiveimpl == nullptr)
@@ -3264,7 +3299,7 @@ namespace user
 
       }
 
-      m_pprimitiveimpl->set_viewport_org(pgraphics);
+      m_pprimitiveimpl->set_impactport_org(pgraphics);
 
    }
 
@@ -3603,11 +3638,11 @@ namespace user
       if (!pointScroll.is_null())
       {
 
-         pgraphics->OffsetViewportOrg(-pointScroll.x, -pointScroll.y);
+         pgraphics->offset_origin(-pointScroll.x, -pointScroll.y);
 
       }
 
-      //on_viewport_offset(pgraphics);
+      //on_impactport_offset(pgraphics);
 
 #ifdef __DEBUG
 
@@ -3699,7 +3734,7 @@ namespace user
 
 #endif //__DEBUG
 
-      pgraphics->OffsetViewportOrg(pointScroll.x, pointScroll.y);
+      pgraphics->offset_origin(pointScroll.x, pointScroll.y);
 
    }
 
@@ -3712,7 +3747,7 @@ namespace user
       try
       {
 
-         set_viewport_org(pgraphics);
+         set_impactport_org(pgraphics);
 
          synchronous_lock synchronouslock(mutex());
 
@@ -3727,7 +3762,7 @@ namespace user
    }
 
 
-   void interaction::on_viewport_offset(::draw2d::graphics_pointer & pgraphics)
+   void interaction::on_impactport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::point_i32 pointOffset;
@@ -3739,11 +3774,11 @@ namespace user
 
       }
 
-      auto pointViewportOffset = get_viewport_offset();
+      auto pointContextOffset = get_impactport_offset();
 
-      auto offset = pointOffset - pointViewportOffset;
+      auto offset = pointOffset - pointContextOffset;
 
-      pgraphics->OffsetViewportOrg((::i32)offset.cx, (::i32)offset.cy);
+      pgraphics->offset_origin((::i32)offset.cx, (::i32)offset.cy);
 
    }
 
@@ -3806,7 +3841,7 @@ namespace user
 
          //::draw2d::savedc k(pgraphics);
 
-         //on_viewport_offset(pgraphics);
+         //on_impactport_offset(pgraphics);
          //// while drawing layout can occur and machine z-order.
          //// keep this past z-order
          //interaction_pointer_array uia;
@@ -3848,7 +3883,7 @@ namespace user
                         if (!bParentScrollX && pinteraction->m_bParentScrollX)
                         {
 
-                           pgraphics->OffsetViewportOrg(-pointScroll.x, 0);
+                           pgraphics->offset_origin(-pointScroll.x, 0);
 
                            bParentScrollX = true;
 
@@ -3856,7 +3891,7 @@ namespace user
                         else if (bParentScrollX && !pinteraction->m_bParentScrollX)
                         {
 
-                           pgraphics->OffsetViewportOrg(pointScroll.x, 0);
+                           pgraphics->offset_origin(pointScroll.x, 0);
 
                            bParentScrollX = false;
 
@@ -3865,7 +3900,7 @@ namespace user
                         if (!bParentScrollY && pinteraction->m_bParentScrollY)
                         {
 
-                           pgraphics->OffsetViewportOrg(0, -pointScroll.y);
+                           pgraphics->offset_origin(0, -pointScroll.y);
 
                            bParentScrollY = true;
 
@@ -3873,7 +3908,7 @@ namespace user
                         else if (bParentScrollY && !pinteraction->m_bParentScrollY)
                         {
 
-                           pgraphics->OffsetViewportOrg(0, pointScroll.y);
+                           pgraphics->offset_origin(0, pointScroll.y);
 
                            bParentScrollY = false;
 
@@ -3933,19 +3968,19 @@ namespace user
 
       }
 
-      //pgraphics->OffsetViewportOrg(pointScroll.x, pointScroll.y);
+      //pgraphics->offset_origin(pointScroll.x, pointScroll.y);
 
       if (bParentScrollX && pointScroll.x)
       {
 
-         pgraphics->OffsetViewportOrg(pointScroll.x, 0);
+         pgraphics->offset_origin(pointScroll.x, 0);
 
       }
 
       if (bParentScrollY && pointScroll.y)
       {
 
-         pgraphics->OffsetViewportOrg(0, pointScroll.y);
+         pgraphics->offset_origin(0, pointScroll.y);
 
       }
 
@@ -4375,7 +4410,7 @@ namespace user
       if (!pointOffset.is_null())
       {
 
-         pgraphics->OffsetViewportOrg(pointOffset.x, pointOffset.y);
+         pgraphics->offset_origin(pointOffset.x, pointOffset.y);
 
       }
 
@@ -4393,7 +4428,7 @@ namespace user
       if (!pointOffset.is_null())
       {
 
-         pgraphics->OffsetViewportOrg(-pointOffset.x, -pointOffset.y);
+         pgraphics->offset_origin(-pointOffset.x, -pointOffset.y);
 
       }
 
@@ -4450,23 +4485,23 @@ namespace user
 
             output_debug_string("waven::impact");
          }
-         //         else if(strType.contains_ci("menu_list_view"))
+         //         else if(strType.contains_ci("menu_list_impact"))
          //         {
          //
-         //            output_debug_string("menu_list_view");
+         //            output_debug_string("menu_list_impact");
          //
          //         }
          //   if (!is_custom_draw() && pgraphics->m_pnext == nullptr)
          //   {
 
-         //      set_viewport_org(pgraphics);
+         //      set_impactport_org(pgraphics);
 
          //   }
 
          //}
-         ////         ::point_i32 pointParentOffset = get_parent_viewport_offset();
+         ////         ::point_i32 pointParentOffset = get_parent_impactport_offset();
          ////
-         ////         pgraphics->OffsetViewportOrg(-pointParentOffset.x, -pointParentOffset.y);
+         ////         pgraphics->offset_origin(-pointParentOffset.x, -pointParentOffset.y);
 
          try
          {
@@ -9995,7 +10030,7 @@ namespace user
 
       layout_tooltip();
 
-      on_change_view_size(pgraphics);
+      on_change_impact_size(pgraphics);
 
       //if(m_pinteractiondraw2d)
       {
@@ -12052,18 +12087,34 @@ namespace user
       }
 
       if (!m_bDefaultWalkPreTranslateParentTree)
+      {
+
          return;
 
+      }
+
       if (pmessage->m_bRet)
+      {
+
          return;
+
+      }
 
       ::user::interaction * puserinteractionParent = get_parent();
 
-      if (puserinteractionParent != nullptr)
+      if (::is_null(puserinteractionParent))
+      {
+
          return;
 
+      }
+
       if (puserinteractionParent == puiStop)
+      {
+
          return;
+
+      }
 
       try
       {
@@ -13517,6 +13568,18 @@ namespace user
    }
 
 
+   void interaction::place_rate_or_size(const ::rectangle_f64 & rectangleRateOrSize)
+   {
+
+      ::rectangle_i32 rectangle;
+
+      calculate_window_rectangle_in_main_monitor(rectangle, rectangleRateOrSize);
+
+      place(rectangle);
+
+   }
+
+
    void interaction::activation(::e_activation eactivation)
    {
 
@@ -14626,33 +14689,33 @@ namespace user
    }
 
 
-   void interaction::offset_viewport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
+   void interaction::offset_impactport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
    {
 
-      auto pointOffset = get_viewport_offset();
+      auto pointOffset = get_impactport_offset();
 
-      set_viewport_offset(pgraphics, pointOffset.x + x, pointOffset.y + y);
+      set_impactport_offset(pgraphics, pointOffset.x + x, pointOffset.y + y);
 
    }
 
 
-   void interaction::offset_viewport_offset_x(::draw2d::graphics_pointer & pgraphics, int x)
+   void interaction::offset_impactport_offset_x(::draw2d::graphics_pointer & pgraphics, int x)
    {
 
-      offset_viewport_offset(pgraphics, x, 0);
+      offset_impactport_offset(pgraphics, x, 0);
 
    }
 
 
-   void interaction::offset_viewport_offset_y(::draw2d::graphics_pointer & pgraphics, int y)
+   void interaction::offset_impactport_offset_y(::draw2d::graphics_pointer & pgraphics, int y)
    {
 
-      offset_viewport_offset(pgraphics, 0, y);
+      offset_impactport_offset(pgraphics, 0, y);
 
    }
 
 
-   void interaction::set_viewport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
+   void interaction::set_impactport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
    {
 
       ::point_i32 pointOffset(x, y);
@@ -14664,7 +14727,7 @@ namespace user
 
       }
 
-      if (!validate_viewport_offset(pointOffset))
+      if (!validate_impactport_offset(pointOffset))
       {
 
          return;
@@ -14673,12 +14736,12 @@ namespace user
 
       m_pointScroll = pointOffset;
 
-      on_change_viewport_offset(pgraphics);
+      on_change_impactport_offset(pgraphics);
 
    }
 
 
-   bool interaction::validate_viewport_offset(point_i32 & point)
+   bool interaction::validate_impactport_offset(point_i32 & point)
    {
 
       if (point == m_pointScroll)
@@ -14693,23 +14756,23 @@ namespace user
    }
 
 
-   void interaction::set_viewport_offset_x(::draw2d::graphics_pointer & pgraphics, int x)
+   void interaction::set_impactport_offset_x(::draw2d::graphics_pointer & pgraphics, int x)
    {
 
-      set_viewport_offset(pgraphics, x, (::i32)get_viewport_offset().y);
+      set_impactport_offset(pgraphics, x, (::i32)get_impactport_offset().y);
 
    }
 
 
-   void interaction::set_viewport_offset_y(::draw2d::graphics_pointer & pgraphics, int y)
+   void interaction::set_impactport_offset_y(::draw2d::graphics_pointer & pgraphics, int y)
    {
 
-      set_viewport_offset(pgraphics, (::i32)get_viewport_offset().x, y);
+      set_impactport_offset(pgraphics, (::i32)get_impactport_offset().x, y);
 
    }
 
 
-   void interaction::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
+   void interaction::on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
       //set_need_redraw();
@@ -14719,7 +14782,7 @@ namespace user
    }
 
 
-   point_i32 interaction::get_viewport_offset()
+   point_i32 interaction::get_impactport_offset()
    {
 
       ::point_i32 point = m_pointScroll;
@@ -14756,7 +14819,7 @@ namespace user
    }
 
 
-   void interaction::on_change_view_size(::draw2d::graphics_pointer & pgraphics)
+   void interaction::on_change_impact_size(::draw2d::graphics_pointer & pgraphics)
    {
 
    }
@@ -14774,7 +14837,7 @@ namespace user
    }
 
 
-   point_i32 interaction::get_ascendant_viewport_offset() const
+   point_i32 interaction::get_ascendant_impactport_offset() const
    {
 
       __pointer(::user::interaction) puser = get_parent();
@@ -14784,7 +14847,7 @@ namespace user
       while (puser.is_set())
       {
 
-         point += puser->get_viewport_offset();
+         point += puser->get_impactport_offset();
 
          puser = puser->get_parent();
 
@@ -14832,7 +14895,7 @@ namespace user
    }
 
 
-   point_i32 interaction::get_parent_viewport_offset() const
+   point_i32 interaction::get_parent_impactport_offset() const
    {
 
       ::user::interaction * puser = get_parent();
@@ -14849,9 +14912,9 @@ namespace user
       if (puser != NULL)
       {
 
-         pointParentAccumulated = puser->get_viewport_offset();
+         pointParentAccumulated = puser->get_impactport_offset();
 
-         pointParentAccumulated += puser->get_parent_viewport_offset();
+         pointParentAccumulated += puser->get_parent_impactport_offset();
 
       }
 
@@ -17831,14 +17894,10 @@ namespace user
          return pitemClient;
 
       }
-      else
-      {
 
-         auto pitemClient = __new(::item(e_element_none));
+      auto pitemNone = __new(::item(e_element_none));
 
-         return pitemClient;
-
-      }
+      return pitemNone;
 
    }
 

@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_library.h"
+#endif
 #include "aura/graphics/_.h"
 #include <math.h>
 
@@ -176,7 +179,7 @@ namespace draw2d_cairo
       m_pgraphics = pgraphics;
 
       m_pgraphics->set(m_pbitmap);
-      m_pgraphics->SetViewportOrg(m_point);
+      m_pgraphics->set_origin(m_point);
       m_pgraphics->m_pimage = this;
       m_sizeRaw = size;
       m_sizeAlloc = size;
@@ -759,7 +762,7 @@ namespace draw2d_cairo
 //
 //      puserinteraction->get_window_rect(rectangleWindow);
 //
-//      m_spgraphics->SetViewportOrg(0, 0);
+//      m_spgraphics->set_origin(0, 0);
 //
 //      map(true);
 //
@@ -829,12 +832,12 @@ namespace draw2d_cairo
 //         m_spgraphics->SelectClipRgn(nullptr);
 //         puserinteraction->_001OnDeferPaintLayeredWindowBackground(pimage1->g());
 //         m_spgraphics->SelectClipRgn(nullptr);
-//         m_spgraphics-> SetViewportOrg(::point_i32());
+//         m_spgraphics-> set_origin(::point_i32());
 //         puserinteraction->_000OnDraw(pimage1->g());
-//         m_spgraphics->SetViewportOrg(::point_i32());
+//         m_spgraphics->set_origin(::point_i32());
 //         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectangleUpdate.left, rectangleUpdate.top, 100, 100, 255);
 //         m_spgraphics->SelectClipRgn(nullptr);
-//         m_spgraphics->SetViewportOrg(::point_i32());
+//         m_spgraphics->set_origin(::point_i32());
 //
 //         m_spgraphics->SelectClipRgn( nullptr);
 //         m_spgraphics->BitBlt(rectanglePaint.left, rectanglePaint.top,
@@ -888,7 +891,7 @@ namespace draw2d_cairo
 ////
 ////      puserinteraction->get_window_rect(rectangleWindow);
 ////
-////      m_spgraphics->SetViewportOrg(0, 0);
+////      m_spgraphics->set_origin(0, 0);
 ////
 ////      map(true);
 ////
@@ -933,7 +936,7 @@ namespace draw2d_cairo
 //
 //      puserinteraction->get_window_rect(rectangleWindow);
 //
-//      m_spgraphics->SetViewportOrg(0, 0);
+//      m_spgraphics->set_origin(0, 0);
 //
 //      map(false);
 //

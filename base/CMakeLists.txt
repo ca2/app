@@ -73,28 +73,30 @@ list(APPEND library_source
         user/menu/button.h
         user/menu/central.cpp
         user/menu/central.h
-        user/menu/list_view.cpp
-        user/menu/list_view.h
+        user/menu/list_impact.cpp
+        user/menu/list_impact.h
         user/menu/list_window.cpp
         user/menu/list_window.h
-        user/menu/menu_view.cpp
-        user/menu/menu_view.h
+        user/menu/menu_impact.cpp
+        user/menu/menu_impact.h
         user/simple/_.h
         user/simple/_impl.h
-        user/simple/_simple.h
+        user/simple/_component.h
         user/simple/frame_window.cpp
         user/simple/frame_window.h
         user/simple/main_frame.cpp
         user/simple/main_frame.h
         user/simple/scroll_bar.cpp
         user/simple/scroll_bar.h
+        user/simple/tab_document.cpp
+        user/simple/tab_document.h
         #user/user/_.cpp
         user/user/_.h
         #user/user/_constant.h
         user/user/_data.h
         user/user/_impl.h
         user/user/_tree.h
-        user/user/_user.h
+        user/user/_component.h
         user/user/composition_imm_client.h
         #user/user/control.cpp
         #user/user/control.h
@@ -114,8 +116,8 @@ list(APPEND library_source
         user/user/document_manager.h
         user/user/document_manager_container.cpp
         user/user/document_manager_container.h
-        #user/user/edit_plain_text_view.cpp
-        #user/user/edit_plain_text_view.h
+        #user/user/edit_plain_text_impact.cpp
+        #user/user/edit_plain_text_impact.h
         user/user/edit_window.h
         user/user/form_control.cpp
         user/user/form_control.h
@@ -124,8 +126,8 @@ list(APPEND library_source
         user/user/form_document.cpp
         user/user/form_document.h
         user/user/form_update_hint.h
-        user/user/form_view.cpp
-        user/user/form_view.h
+        user/user/form_impact.cpp
+        user/user/form_impact.h
         user/user/form_window.cpp
         user/user/form_window.h
         user/user/frame_window.cpp
@@ -144,96 +146,96 @@ list(APPEND library_source
         user/user/impact_host.h
    user/user/impact_kit.cpp
    user/user/impact_kit.h
-        user/user/impact_system.cpp
-        user/user/impact_system.h
-        user/user/impact_update_hint.h
-        user/user/main_frame.h
-        user/user/margin.cpp
-        user/user/margin.h
-        user/user/menu.cpp
-        user/user/menu.h
-        #user/user/menu_command.cpp
-        #user/user/menu_command.h
-        user/user/menu_interaction.cpp
-        user/user/menu_interaction.h
-        user/user/menu_item.cpp
-        user/user/menu_item.h
-        user/user/multiple_document_template.cpp
-        user/user/multiple_document_template.h
-        user/user/network_configuration.cpp
-        user/user/network_configuration.h
-        #user/user/notification_area.cpp
-        #user/user/notification_area.h
-        user/user/picture.cpp
-        user/user/picture.h
-        user/user/picture_interaction.cpp
-        user/user/picture_interaction.h
-        user/user/place_holder.cpp
-        user/user/place_holder.h
-        user/user/place_holder_container.cpp
-        user/user/place_holder_container.h
-        user/user/print_task.cpp
-        user/user/print_task.h
-        user/user/server.cpp
-        user/user/server.h
-        user/user/simple_view.cpp
-        user/user/simple_view.h
-        user/user/single_document_template.cpp
-        user/user/single_document_template.h
-        user/user/split_bar.cpp
-        user/user/split_bar.h
-        user/user/split_layout.cpp
-        user/user/split_layout.h
-        user/user/split_pane.cpp
-        user/user/split_pane.h
-        user/user/split_view.cpp
-        user/user/split_view.h
-        user/user/static_control.cpp
-        user/user/static_control.h
-        user/user/style.cpp
-        user/user/style.h
-        user/user/tab.cpp
-        user/user/tab.h
-        user/user/tab_callback.cpp
-        user/user/tab_callback.h
-        user/user/tab_data.cpp
-        user/user/tab_data.h
-        user/user/tab_drop_target_window.h
-        user/user/tab_pane.cpp
-        user/user/tab_pane.h
-        user/user/tab_pane_array.cpp
-        user/user/tab_pane_array.cpp
-        user/user/tab_view.cpp
-        user/user/tab_view.h
-        user/user/toolbar.cpp
-        user/user/toolbar.h
-        user/user/user.cpp
-        user/user/user.h
-        #user/user/validate.cpp
-        user/_.h
-        user/prelude.h
-        version/version.config.h
-        version/version.h
-        _.cpp
-        _.h
-        #__matter_ca2.cpp
-        _defer.h
-        #$aaa_want_to_move_xml.h
-        application.h
-        #astr.h
-        callback.h
-        console.h
-        #context_glx.cpp
-        framework.cpp
-        framework.h
-        #framework_c.h
-        id.h
-        library.h
-        message.h
-        procedure.h
-        #timer.mm
-        #update.h
-        user.h)
+    user/user/impact_system.cpp
+    user/user/impact_system.h
+    user/user/impact_update_hint.h
+    user/user/main_frame.h
+    user/user/margin.cpp
+    user/user/margin.h
+    user/user/menu.cpp
+    user/user/menu.h
+    #user/user/menu_command.cpp
+    #user/user/menu_command.h
+    user/user/menu_interaction.cpp
+    user/user/menu_interaction.h
+    user/user/menu_item.cpp
+    user/user/menu_item.h
+    user/user/multiple_document_template.cpp
+    user/user/multiple_document_template.h
+    user/user/network_configuration.cpp
+    user/user/network_configuration.h
+    #user/user/notification_area.cpp
+    #user/user/notification_area.h
+    user/user/picture.cpp
+    user/user/picture.h
+    user/user/picture_interaction.cpp
+    user/user/picture_interaction.h
+    user/user/place_holder.cpp
+    user/user/place_holder.h
+    user/user/place_holder_container.cpp
+    user/user/place_holder_container.h
+    user/user/print_task.cpp
+    user/user/print_task.h
+    user/user/server.cpp
+    user/user/server.h
+    user/user/simple_impact.cpp
+    user/user/simple_impact.h
+    user/user/single_document_template.cpp
+    user/user/single_document_template.h
+    user/user/split_bar.cpp
+    user/user/split_bar.h
+    user/user/split_layout.cpp
+    user/user/split_layout.h
+    user/user/split_pane.cpp
+    user/user/split_pane.h
+    user/user/split_impact.cpp
+    user/user/split_impact.h
+    user/user/static_control.cpp
+    user/user/static_control.h
+    user/user/style.cpp
+    user/user/style.h
+    user/user/tab.cpp
+    user/user/tab.h
+    user/user/tab_callback.cpp
+    user/user/tab_callback.h
+    user/user/tab_data.cpp
+    user/user/tab_data.h
+    user/user/tab_drop_target_window.h
+    user/user/tab_pane.cpp
+    user/user/tab_pane.h
+    user/user/tab_pane_array.cpp
+    user/user/tab_pane_array.cpp
+    user/user/tab_impact.cpp
+    user/user/tab_impact.h
+    user/user/toolbar.cpp
+    user/user/toolbar.h
+    user/user/user.cpp
+    user/user/user.h
+    #user/user/validate.cpp
+    user/_.h
+    user/prelude.h
+    version/version.config.h
+    version/version.h
+    _.cpp
+    _.h
+    #__matter_ca2.cpp
+    _defer.h
+    #$aaa_want_to_move_xml.h
+    application.h
+    #astr.h
+    callback.h
+    console.h
+    #context_glx.cpp
+    framework.cpp
+    framework.h
+    #framework_c.h
+    id.h
+    library.h
+    message.h
+    procedure.h
+    #timer.mm
+    #update.h
+    user.h)
 
 if(WIN32)
 
@@ -265,34 +267,31 @@ if(APPLE)
 endif()
 
 
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
-
-add_library(base SHARED ${library_source})
-
-
-target_precompile_headers(base PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
 
 
-set_target_properties(base PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
 
 
-    target_compile_options(base PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(base PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(base PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/base.lib")
-    target_link_options(base PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/base.def")
-    target_link_libraries(base PRIVATE acme apex aqua aura axis)
+    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/base.lib")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/base.def")
+    target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura axis)
 
 
 elseif(LINUX OR FREEBSD)
 
 
-    target_compile_options(base PRIVATE -fpermissive)
-    target_link_libraries(base PRIVATE acme apex aqua aura axis)
-    target_link_options(base PRIVATE -Wl,-z,defs)
+    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+    target_link_libraries(${PROJECT_NAME} PRIVATE acme apex aqua aura axis)
+    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
 
 
 endif()
@@ -306,7 +305,7 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(base PRIVATE _BASE_LIBRARY)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _BASE_LIBRARY)
 
 
 

@@ -229,9 +229,9 @@ namespace graphics
    bool double_buffer::buffer_lock_round_swap_key_buffers()
    {
 
-      synchronous_lock slBuffer(get_buffer_sync());
+      _synchronous_lock slBuffer(get_buffer_sync());
       
-      synchronous_lock slScreen(get_screen_sync());
+      _synchronous_lock slScreen(get_screen_sync());
 
       if (m_iCurrentBuffer == 0)
       {

@@ -3,7 +3,7 @@
 #include "aura/user/user/_user.h"
 #endif
 #include "aura/update.h"
-//#include "simple_view.h"
+//#include "simple_impact.h"
 #include "acme/platform/system_setup.h"
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
@@ -408,7 +408,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      ::factory::add_factory_item <::user::message_window >();
 //#endif
-      //add_factory_item <::user::simple_view >();
+      //add_factory_item <::user::simple_impact >();
       //add_factory_item <::user::place_holder >();
       //add_factory_item <::user::font_combo_box >();
 
@@ -799,7 +799,7 @@ namespace user
    //}
 
 
-//   __pointer(::user::impact) user::get_view()
+//   __pointer(::user::impact) user::get_impact()
 //   {
 //
 //      return nullptr;
@@ -1024,7 +1024,7 @@ namespace aura
 //
 //      if (psession->m_bShowPlatform)
 //      {
-//         //__pointer(::simple_frame_window) pframeApp = get_document()->get_type_impact < ::bergedge::pane_impact >()->get_view_uie();
+//         //__pointer(::simple_frame_window) pframeApp = get_document()->get_type_impact < ::bergedge::pane_impact >()->get_impact_uie();
 //         //if(pframeApp != nullptr)
 //         //{
 //         //   pframeApp->display(e_display_full_screen);
@@ -1059,7 +1059,7 @@ namespace aura
 ////      {
 ////         try
 ////         {
-////            get_view()->get_parent_frame()->set_window_text(psession->m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
+////            get_impact()->get_parent_frame()->set_window_text(psession->m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
 ////         }
 ////         catch (...)
 ////         {
@@ -1078,7 +1078,7 @@ namespace aura
    //}
 
 
-   //__pointer(::user::impact) session::get_view()
+   //__pointer(::user::impact) session::get_impact()
    //{
 
    //   if (get_document() == nullptr)
@@ -1109,10 +1109,10 @@ namespace aura
 
    //{
 
-   //   if (get_document() != nullptr && get_view() != nullptr)
+   //   if (get_document() != nullptr && get_impact() != nullptr)
    //   {
 
-   //      get_view()->get_window_rect(prectangle);
+   //      get_impact()->get_window_rect(prectangle);
 
 
    //      return true;
@@ -1165,7 +1165,7 @@ namespace aura
    //::count session::get_monitor_count()
    //{
 
-   //   if (get_document() != nullptr && get_view() != nullptr)
+   //   if (get_document() != nullptr && get_impact() != nullptr)
    //   {
 
    //      return 1;
@@ -1219,7 +1219,7 @@ namespace aura
 
       /*      if(pinteraction == nullptr && m_bShowPlatform && m_pbergedge->get_document() != nullptr)
       {
-      pinteraction = psession->get_document()->get_bergedge_view();
+      pinteraction = psession->get_document()->get_bergedge_impact();
       }
 
       return pinteraction;

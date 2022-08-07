@@ -12,7 +12,7 @@ namespace filemanager
 
 
       ::filemanager::enum_state            m_estate;
-      operation_view *                 m_pimpact;
+      operation_impact *                 m_pimpact;
       __pointer_array(::filemanager::operation)              m_fileoperationa;
       i32                          m_iOperation;
       bool                             m_bStep;

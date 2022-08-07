@@ -32,7 +32,7 @@ void html_form::initialize(::object * pobject)
 
    //auto estatus = 
    
-   ::user::form_view::initialize(pobject);
+   ::user::form_impact::initialize(pobject);
 
    //if (!estatus)
    //{
@@ -157,7 +157,7 @@ void html_form::_001OnImageLoaded(::message::message * pmessage)
 void html_form::install_message_routing(::channel * pchannel)
 {
 
-   ::user::form_view::install_message_routing(pchannel);
+   ::user::form_impact::install_message_routing(pchannel);
 
    MESSAGE_LINK(e_message_create, pchannel, this, &html_form::on_message_create);
 
@@ -800,7 +800,7 @@ bool html_form::load_html(const ::string & str)
 void html_form::handle(::topic * ptopic, ::context * pcontext)
 {
 
-   ::user::form_view::handle(ptopic, pcontext);
+   ::user::form_impact::handle(ptopic, pcontext);
 
    ////__update(::update)
    {
@@ -819,7 +819,7 @@ void html_form::handle(::topic * ptopic, ::context * pcontext)
 
 
 
-void html_form_view::handle(::topic * ptopic, ::context * pcontext)
+void html_form_impact::handle(::topic * ptopic, ::context * pcontext)
 {
 
    ::html_form::handle(ptopic, pcontext);
@@ -849,7 +849,7 @@ void html_form_view::handle(::topic * ptopic, ::context * pcontext)
 
          on_document_complete(ptopic->payload(id_url));
 
-         parent_frame()->set_active_view(this);
+         parent_frame()->set_active_impact(this);
 
          set_keyboard_focus();
 
@@ -880,7 +880,7 @@ void html_form_view::handle(::topic * ptopic, ::context * pcontext)
             }
 
          }
-         else if (ptopic->m_atom == id_get_form_view)
+         else if (ptopic->m_atom == id_get_form_impact)
          {
 
             ptopic->payload(id_form) = this;
@@ -903,7 +903,7 @@ void html_form_view::handle(::topic * ptopic, ::context * pcontext)
 }
 
 
-void html_view::handle(::topic * ptopic, ::context * pcontext)
+void html_impact::handle(::topic * ptopic, ::context * pcontext)
 {
 
    ::html_form::handle(ptopic, pcontext);

@@ -19,7 +19,7 @@ namespace userfs
 
    void main_impact::install_message_routing(::channel * pchannel)
    {
-      ::user::split_view::install_message_routing(pchannel);
+      ::user::split_impact::install_message_routing(pchannel);
       MESSAGE_LINK(e_message_create, pchannel, this, &main_impact::on_message_create);
    }
 
@@ -44,14 +44,14 @@ namespace userfs
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
   //    cc->m_usercreatecontext.m_typeNewImpact = __type(tree);
-      __pointer(::user::interaction) puserinteraction = create_view(__type(tree),get_document(),get_pane_holder(0),100);
+      __pointer(::user::interaction) puserinteraction = create_impact(__type(tree),get_document(),get_pane_holder(0),100);
       SetPane(0, puserinteraction, false);
 //      __pointer(tree) ptree =  (puserinteraction);
 
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
   //    cc->m_usercreatecontext.m_typeNewImpact = __type(list);
-      puserinteraction = create_view(__type(list),get_document(), get_pane_holder(1),101);
+      puserinteraction = create_impact(__type(list),get_document(), get_pane_holder(1),101);
 //      list * plist = dynamic_cast < list * > (puserinteraction);
       SetPane(1, puserinteraction, false);
       set_need_layout();
@@ -63,14 +63,14 @@ namespace userfs
    void main_impact::_001OnTimer(::timer * ptimer)
    {
 
-      ::user::split_view::_001OnTimer(ptimer);
+      ::user::split_impact::_001OnTimer(ptimer);
 
    }
 
 
    ::user::document * main_impact::get_document()
    {
-      return  ::user::split_view::get_document();
+      return  ::user::split_impact::get_document();
    }
 
 

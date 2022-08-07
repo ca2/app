@@ -504,7 +504,7 @@
     <ClInclude Include="mathematics\calculator\calculator.h">
       <Filter>Header Files\mathematics\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="mathematics\calculator\aaa_want_to_remove_plain_edit_view.h">
+    <ClInclude Include="mathematics\calculator\aaa_want_to_remove_plain_edit_impact.h">
       <Filter>Header Files\mathematics\calculator</Filter>
     </ClInclude>
     <ClInclude Include="mathematics\calculator\_.h">

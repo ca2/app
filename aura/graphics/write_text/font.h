@@ -73,6 +73,7 @@ namespace write_text
       enum_character_set            m_echaracterset;
       ///enum_rendering                m_erendering;
       text_metric                   m_textmetric2;
+      bool                          m_bCacheLayout;
 
       //bool                          m_bTextMetric;
       string_map < text >           m_mapText;

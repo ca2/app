@@ -258,6 +258,8 @@ void application::initialize(::object* pobject)
 
    ::thread::initialize(pobject);
 
+   ::app::initialize(pobject);
+
    //if (!estatus)
    //{
    //
@@ -280,21 +282,6 @@ void application::initialize(::object* pobject)
    //   //set_context_system(m_pappParent->psystem);
 
    //}
-
-   {
-
-#include "build.h"
-
-      m_strBuild = pszBuild;
-
-   }
-
-   if (m_strBuild.is_empty())
-   {
-
-      m_strBuild = "(unknown build version)";
-
-   }
 
    //return estatus;
 
@@ -1852,7 +1839,7 @@ void application::init_instance()
    INFORMATION("axis::application::init_instance success");
 
    //auto estatus = 
-   creatimpact_system();
+   create_impact_system();
 
    //if (failed(estatus))
    //{
@@ -2186,22 +2173,23 @@ void application::on_create_app_shortcut()
 
    string strRoot = m_strAppId.Left(m_strAppId.find('/'));
 
-   auto pathCreatedShortcut = m_psystem->m_pacmedirectory->roaming() / m_strAppId / "created_shortcut.txt";
+   //auto pathCreatedShortcut = m_psystem->m_pacmedirectory->roaming() / m_strAppId / "created_shortcut.txt";
 
    auto pathShortcut = m_psystem->m_pacmedirectory->roaming() / "Microsoft/Windows/Start Menu/Programs" / strRoot / (strAppName + ".lnk");
 
    auto path = m_psystem->m_pacmefile->module();
 
    ::file::path pathTarget;
+   ::file::path pathIcon;
+   int iIcon = -1;
 
-   if (!m_psystem->m_pacmefile->exists(pathCreatedShortcut)
-      || (m_psystem->m_pacmefile->exists(pathShortcut)
-         &&
-         (!m_psystem->node()->m_papexnode->shell_link_target(pathTarget, pathShortcut)
-            ||
-            !m_psystem->m_pacmepath->final_is_same(
-               pathTarget,
-               path))))
+   //if (!m_psystem->m_pacmefile->exists(pathCreatedShortcut)
+   if(!m_psystem->m_pacmefile->exists(pathShortcut)
+    || !m_psystem->node()->m_papexnode->shell_link_target(pathTarget, pathShortcut)
+    || !m_psystem->m_pacmepath->final_is_same(pathTarget, path)
+    || !m_psystem->node()->m_papexnode->shell_link_icon(pathIcon, iIcon, path)
+    || !m_psystem->m_pacmefile->exists(pathIcon)
+    )
    {
 
       create_app_shortcut();
@@ -5425,10 +5413,10 @@ bool application::is_equal_file_path(const ::file::path& path1Param, const ::fil
 
 
 
-//__pointer(::user::document) application::defer_create_view(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom)
+//__pointer(::user::document) application::defer_create_impact(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom)
 //{
 
-//   //auto pcontroller = pmultimedia->defer_create_view(strImpact, puiParent, ewindowflag, atom);
+//   //auto pcontroller = pmultimedia->defer_create_impact(strImpact, puiParent, ewindowflag, atom);
 
 //   //if (pcontroller)
 //   //{
@@ -7155,7 +7143,7 @@ void application::hotplugin_host_host_starter_start_sync(const ::string& pszComm
 //}
 
 
-//void application::on_update_view(::user::impact * pimpact, ::user::impact * pviewSender, LPARAM lHint, object * pHint)
+//void application::on_update_impact(::user::impact * pimpact, ::user::impact * pviewSender, LPARAM lHint, object * pHint)
 //{
 
 
@@ -7325,8 +7313,8 @@ bool application::is_local_data()
 
 //const char application::gen_FileSection[] = "Recent File List";
 //const char application::gen_FileEntry[] = "File%d";
-//const char application::gen_PreviewSection[] = "Settings";
-//const char application::gen_PreviewEntry[] = "PreviewPages";
+//const char application::gen_ThumbnailSection[] = "Settings";
+//const char application::gen_ThumbnailEntry[] = "ThumbnailPages";
 
 
 //application::application()
@@ -7995,7 +7983,7 @@ __UNREFERENCED_PARAMETER(nMaxMRU);
 ASSERT_VALID(this);
 
 // 0 by default means not set
-m_nNumPreviewPages = GetProfileInt(gen_PreviewSection, gen_PreviewEntry, 0);
+m_nNumThumbnailPages = GetProfileInt(gen_ThumbnailSection, gen_ThumbnailEntry, 0);
 }*/
 
 /*void application::ParseCommandLine(CCommandLineInfo& rCmdInfo)
@@ -8134,8 +8122,8 @@ m_bShowSplash = !m_bRunEmbedded && !m_bRunAutomated;
 //ASSERT_VALID(this);
 //
 //
-////      if (m_nNumPreviewPages != 0)
-////       WriteProfileInt(gen_PreviewSection, gen_PreviewEntry, m_nNumPreviewPages);
+////      if (m_nNumThumbnailPages != 0)
+////       WriteProfileInt(gen_ThumbnailSection, gen_ThumbnailEntry, m_nNumThumbnailPages);
 //}
 
 
@@ -9271,7 +9259,7 @@ void application::_001OnFileNew(::message::message* pmessage)
 //      document_manager()->dump(dumpcontext);*/
 //
 //      dumpcontext << "\nm_nWaitCursorCount = " << m_iWaitCursorCount;
-//      dumpcontext << "\nm_nNumPreviewPages = " << m_nNumPreviewPages;
+//      dumpcontext << "\nm_nNumThumbnailPages = " << m_nNumThumbnailPages;
 //
 //      dumpcontext << "\n";
 //   }
@@ -9349,7 +9337,7 @@ void application::pre_translate_message(::message::message* pmessage)
 }
 
 
-//void application::on_create_split_view(::user::split_view* psplit)
+//void application::on_create_split_impact(::user::split_impact* psplit)
 //{
 
 //}
@@ -9939,7 +9927,7 @@ void application::_001OnSwitchContextTheme(::message::message* pmessage)
 }
 
 
-void     application::creatimpact_system()
+void     application::create_impact_system()
 {
 
    //return ::success;

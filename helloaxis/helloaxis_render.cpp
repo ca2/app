@@ -242,10 +242,10 @@ namespace helloaxis
 
 
 
-   void render::helloaura_render_lite_view(::draw2d::graphics_pointer & pgraphics)
+   void render::helloaura_render_lite_impact(::draw2d::graphics_pointer & pgraphics)
    {
 
-      return ::helloaura::render::helloaura_render_lite_view(pgraphics);
+      return ::helloaura::render::helloaura_render_lite_impact(pgraphics);
 
 //      if (m_pimageWork->area() <= 0)
 //         return;
@@ -487,10 +487,10 @@ namespace helloaxis
    }
 
 
-   void render::helloaura_render_full_view(::draw2d::graphics_pointer & pgraphics)
+   void render::helloaura_render_full_impact(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::helloaura::render::helloaura_render_full_view(pgraphics);
+      ::helloaura::render::helloaura_render_full_impact(pgraphics);
 
 //      if (m_pimageWork->area() <= 0)
 //         return;

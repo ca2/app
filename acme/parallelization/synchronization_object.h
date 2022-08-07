@@ -6,6 +6,8 @@ using hsync = void *;
 #endif
 
 
+
+
 class CLASS_DECL_ACME synchronization_object :
    virtual public matter
 {
@@ -62,5 +64,16 @@ public:
 
 };
 
+
+class CLASS_DECL_ACME synchronization_lock :
+   virtual public synchronization_object
+{
+public:
+
+
+   ~synchronization_lock() override;
+
+
+};
 
 

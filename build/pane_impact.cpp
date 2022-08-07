@@ -118,7 +118,7 @@ namespace app_core_build
 
          auto papp = get_app();
 
-         m_papp->m_ptemplateHelloMultiverseView->open_document_file(papp, payloadFile, true, pimpactdata->m_pplaceholder);
+         m_papp->m_ptemplateHelloMultiverseImpact->open_document_file(papp, payloadFile, true, pimpactdata->m_pplaceholder);
 
       }
       break;

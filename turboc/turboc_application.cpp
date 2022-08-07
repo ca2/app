@@ -51,14 +51,14 @@ namespace turboc
 
       add_factory_item <::turboc::document >();
       add_factory_item <::turboc::frame >();
-      add_factory_item <::turboc::edit_view >();
-      add_factory_item <::turboc::toggle_view >();
-      add_factory_item <::turboc::top_view >();
-      add_factory_item <::turboc::lite_view >();
-      add_factory_item <::turboc::full_view >();
+      add_factory_item <::turboc::edit_impact >();
+      add_factory_item <::turboc::toggle_impact >();
+      add_factory_item <::turboc::top_impact >();
+      add_factory_item <::turboc::lite_impact >();
+      add_factory_item <::turboc::full_impact >();
       add_factory_item <::turboc::impact >();
       add_factory_item <::turboc::main_impact >();
-      add_factory_item <::turboc::switcher_view >();
+      add_factory_item <::turboc::switcher_impact >();
       add_factory_item <::turboc::pane_impact >();
 
       if(!::console::application::initialize_application())
@@ -80,13 +80,13 @@ namespace turboc
       __type(::turboc::frame),       // top level SDI frame::user::interaction_impl
       __type(::turboc::main_impact));
       add_document_template(pDocTemplate);
-      m_ptemplateHelloMultiverseView = pDocTemplate;
+      m_ptemplateHelloMultiverseImpact = pDocTemplate;
       pDocTemplate = new ::user::single_document_template(
       this,
       "main",
       __type(::turboc::document),
       __type(::turboc::frame),       // top level SDI frame::user::interaction_impl
-      __type(::turboc::switcher_view));
+      __type(::turboc::switcher_impact));
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseSwitcher = pDocTemplate;
 
@@ -183,7 +183,7 @@ namespace turboc
       if(pcreate->m_payloadFile.has_char())
       {
 
-         m_ptemplateHelloMultiverseView->do_request(pcreate);
+         m_ptemplateHelloMultiverseImpact->do_request(pcreate);
 
       }
 

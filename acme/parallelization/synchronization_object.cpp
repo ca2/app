@@ -498,4 +498,11 @@ bool synchronization_object::is_locked() const
 }
 
 
+synchronization_lock::~synchronization_lock()
+{
+
+
+}
+
+
 

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #include "core/filesystem/filemanager/_filemanager.h"
@@ -126,13 +126,13 @@ namespace core
 
       //add_factory_item <::userex::keyboard_layout >();
 
-      ::factory::add_factory_item <::userex::top_edit_view >();
-      ::factory::add_factory_item <::userex::top_toggle_view >();
-      ::factory::add_factory_item <::userex::top_view >();
+      ::factory::add_factory_item <::userex::top_edit_impact >();
+      ::factory::add_factory_item <::userex::top_toggle_impact >();
+      ::factory::add_factory_item <::userex::top_impact >();
 
-      ::factory::add_factory_item <::user::tab_view >();
+      ::factory::add_factory_item <::user::tab_impact >();
 
-      ::factory::add_factory_item < ::user::form_view > ();
+      ::factory::add_factory_item < ::user::form_impact > ();
 
       ::factory::add_factory_item < ::user::font_combo_box >();
 
@@ -235,7 +235,7 @@ namespace core
 
       ::factory::add_factory_item < form_document >();
       ::factory::add_factory_item < simple_child_frame  >();
-      ::factory::add_factory_item < ::userex::split_view  >();
+      ::factory::add_factory_item < ::userex::split_impact  >();
 
       ::factory::add_factory_item < ::simple_mesh_data  >();
       ::factory::add_factory_item < ::simple_list_data  >();
@@ -244,9 +244,9 @@ namespace core
       ::factory::add_factory_item <::user::tree >();
 
 
-      ::factory::add_factory_item <simple_list_view >();
+      ::factory::add_factory_item <simple_list_impact >();
       ::factory::add_factory_item <::user::document >();
-      ::factory::add_factory_item <simple_printer_list_view >();
+      ::factory::add_factory_item <simple_printer_list_impact >();
 
 
       
@@ -256,7 +256,7 @@ namespace core
 
       ::factory::add_factory_item <menu_document >();
       ::factory::add_factory_item <menu_frame >();
-      ::factory::add_factory_item <menu_view >();
+      ::factory::add_factory_item <menu_impact >();
 
       auto psystem = m_psystem->m_paurasystem;
 
@@ -266,7 +266,7 @@ namespace core
          "system/form",
          __type(form_document),
          psystem->get_simple_frame_window_type_info(),
-         __type(::user::form_view)));
+         __type(::user::form_impact)));
 
       ptemplate->initialize(this);
 
@@ -279,7 +279,7 @@ namespace core
          "system/form",
          __type(form_document),
          get_simple_child_frame_type_info(),
-         __type(::user::form_view)));
+         __type(::user::form_impact)));
 
       ptemplate->initialize(this);
 
@@ -303,7 +303,7 @@ namespace core
          "main",
          __type(::user::document),
          __type(::userex::dialog_frame),
-         __type(::userex::progress_view));
+         __type(::userex::progress_impact));
 
       m_ptemplateProgress2 = pmultitemplate;
 
@@ -969,11 +969,11 @@ namespace core
 
 #else
 
-      will_use_view_hint(COLORSEL_IMPACT);
+      will_use_impact_hint(COLORSEL_IMPACT);
 
       auto pdocument = m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(puiOwner->get_app(), ::e_type_null, __visible(true));
 
-      __pointer(::userex::color_view) pimpact = pdocument->get_type_impact < ::userex::color_view >();
+      __pointer(::userex::color_impact) pimpact = pdocument->get_type_impact < ::userex::color_impact >();
 
       __pointer(::user::frame_window) pframe = pimpact->top_level_frame();
 
@@ -1999,7 +1999,7 @@ namespace core
    //}
 
 
-   void user::will_use_view_hint(::atom idImpact)
+   void user::will_use_impact_hint(::atom idImpact)
    {
 
       if (idImpact == FILEMANAGER_IMPACT)
@@ -2014,14 +2014,14 @@ namespace core
 
          m_mapimpactsystem[FILEMANAGER_IMPACT] = filemanager(idImpact)->m_pdocumenttemplate;
 
-         //add_factory_item <::user::color_view >();
+         //add_factory_item <::user::color_impact >();
 
          //user()->m_mapimpactsystem[COLORSEL_IMPACT] = __new(::user::multiple_document_template(
          //   get_app(),
          //   "main",
          //   __type(::user::document),
          //   __type(::prodevian_translucent_simple_frame_window),
-         //   __type(::user::color_view)));
+         //   __type(::user::color_impact)));
 
          //add_document_template(user()->m_mapimpactsystem[COLORSEL_IMPACT]);
 
@@ -2036,13 +2036,13 @@ namespace core
 
          }
 
-         ::factory::add_factory_item <::userex::color_view >();
+         ::factory::add_factory_item <::userex::color_impact >();
 
          auto ptemplate = __new(::user::multiple_document_template(
                                "main",
                                __type(::user::document),
                                __type(::simple_frame_window),
-                               __type(::userex::color_view)));
+                               __type(::userex::color_impact)));
 
          auto psession = get_session();
 
@@ -2064,14 +2064,14 @@ namespace core
          m_bFontSelInitialized = true;
 
          ::factory::add_factory_item <::user::font_list >();
-         ::factory::add_factory_item <::user::font_list_view >();
-         ::factory::add_factory_item <::userex::font_view >();
+         ::factory::add_factory_item <::user::font_list_impact >();
+         ::factory::add_factory_item <::userex::font_impact >();
 
          auto ptemplate = __new(::user::multiple_document_template(
                                "main",
                                __type(::user::document),
                                __type(::simple_frame_window),
-                               __type(::userex::font_view)));
+                               __type(::userex::font_impact)));
 
          auto psession = get_session();
 

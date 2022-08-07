@@ -61,7 +61,7 @@ namespace base
 
   
       inline ::type get_html_document_type() { return m_typeHtmlDocument; }
-      inline ::type get_html_view_type() { return m_typeHtmlImpact; }
+      inline ::type get_html_impact_type() { return m_typeHtmlImpact; }
 
       virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
 
@@ -103,7 +103,7 @@ namespace base
       ::user::style_pointer get_user_style(const ::string & strExperience, ::application* papp = nullptr);
 
 
-      //virtual ::type get_pane_tab_view_type_info();
+      //virtual ::type get_pane_tab_impact_type_info();
       virtual ::type get_simple_frame_window_type_info();
       //virtual ::type get_simple_child_frame_type_info();
 

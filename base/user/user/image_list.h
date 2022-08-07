@@ -87,14 +87,14 @@ namespace user
    };
 
 
-   class CLASS_DECL_BASE image_list_view :
+   class CLASS_DECL_BASE image_list_impact :
       virtual public show < margin < ::user::image_list > >
    {
    public:
 
 
-      image_list_view();
-      ~image_list_view() override;
+      image_list_impact();
+      ~image_list_impact() override;
 
 
       void assert_ok() const override;

@@ -41,8 +41,8 @@ namespace data
       virtual ::data::data_container_base* get_data_container();
 
 
-      virtual ::count get_data_bound_view_count() const;
-      virtual ::user::primitive * get_data_bound_view(index iInteraction);
+      virtual ::count get_data_bound_impact_count() const;
+      virtual ::user::primitive * get_data_bound_impact(index iInteraction);
 
       //void signal(::signal * psignal) override;
       void handle(::topic * ptopic, ::context * pcontext) override;

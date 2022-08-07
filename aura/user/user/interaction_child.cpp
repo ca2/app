@@ -760,7 +760,7 @@ namespace user
    }
 
 
-   void interaction_child::set_viewport_org(::draw2d::graphics_pointer & pgraphics)
+   void interaction_child::set_impactport_org(::draw2d::graphics_pointer & pgraphics)
    {
 
       try
@@ -784,7 +784,7 @@ namespace user
 
             puserinteraction->viewport_screen_to_client(rectangleWindow);
 
-            pgraphics->SetViewportOrg(rectangleWindow.top_left());
+            pgraphics->set_origin(rectangleWindow.top_left());
 
          }
 

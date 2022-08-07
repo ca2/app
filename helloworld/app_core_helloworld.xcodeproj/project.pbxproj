@@ -8,40 +8,40 @@
 
 /* Begin PBXBuildFile section */
 		070533EF1C90B2CF00F31B3F /* libgcom.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 070533E61C90B2A100F31B3F /* libgcom.dylib */; };
-		07473E601B5050B8004688C5 /* helloworld_switcher_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076D09F11A3FC72C007432B6 /* helloworld_switcher_view.cpp */; };
-		07473E641B5050B8004688C5 /* helloworld_main_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA1008C19971FCE004F84BD /* helloworld_main_view.cpp */; };
-		076D09FB1A3FC72C007432B6 /* helloworld_switcher_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076D09F11A3FC72C007432B6 /* helloworld_switcher_view.cpp */; };
-		076D09FC1A3FC72C007432B6 /* helloworld_switcher_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 076D09F21A3FC72C007432B6 /* helloworld_switcher_view.h */; };
+		07473E601B5050B8004688C5 /* helloworld_switcher_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076D09F11A3FC72C007432B6 /* helloworld_switcher_impact.cpp */; };
+		07473E641B5050B8004688C5 /* helloworld_main_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA1008C19971FCE004F84BD /* helloworld_main_impact.cpp */; };
+		076D09FB1A3FC72C007432B6 /* helloworld_switcher_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 076D09F11A3FC72C007432B6 /* helloworld_switcher_impact.cpp */; };
+		076D09FC1A3FC72C007432B6 /* helloworld_switcher_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 076D09F21A3FC72C007432B6 /* helloworld_switcher_impact.h */; };
 		07A4B1371B76469200DA5C57 /* helloworld_render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FB1AA21B744E8800F3FCC1 /* helloworld_render.cpp */; };
 		07A684EC17F0E06700C41DE6 /* helloworld_application.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E617F0E06700C41DE6 /* helloworld_application.h */; };
 		07A684ED17F0E06700C41DE6 /* helloworld_document.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E717F0E06700C41DE6 /* helloworld_document.h */; };
 		07A684EE17F0E06700C41DE6 /* helloworld_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E817F0E06700C41DE6 /* helloworld_frame.h */; };
-		07A684EF17F0E06700C41DE6 /* aaa_want_to_erase_helloworld_view_update_hint.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E917F0E06700C41DE6 /* aaa_want_to_erase_helloworld_view_update_hint.h */; };
-		07A684F017F0E06700C41DE6 /* helloworld_pane_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684EA17F0E06700C41DE6 /* helloworld_pane_view.h */; };
-		07A684F117F0E06700C41DE6 /* helloworld_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684EB17F0E06700C41DE6 /* helloworld_view.h */; };
+		07A684EF17F0E06700C41DE6 /* aaa_want_to_erase_helloworld_impact_update_hint.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684E917F0E06700C41DE6 /* aaa_want_to_erase_helloworld_impact_update_hint.h */; };
+		07A684F017F0E06700C41DE6 /* helloworld_pane_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684EA17F0E06700C41DE6 /* helloworld_pane_impact.h */; };
+		07A684F117F0E06700C41DE6 /* helloworld_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A684EB17F0E06700C41DE6 /* helloworld_impact.h */; };
 		07AE494E1CC7A83F00959A6F /* helloworld_gcom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE494A1CC7A83F00959A6F /* helloworld_gcom.cpp */; };
 		07AE494F1CC7A83F00959A6F /* helloworld_gcom.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AE494B1CC7A83F00959A6F /* helloworld_gcom.h */; };
-		07AE49501CC7A83F00959A6F /* helloworld_view_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE494C1CC7A83F00959A6F /* helloworld_view_base.cpp */; };
-		07AE49511CC7A83F00959A6F /* helloworld_view_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AE494D1CC7A83F00959A6F /* helloworld_view_base.h */; };
+		07AE49501CC7A83F00959A6F /* helloworld_impact_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE494C1CC7A83F00959A6F /* helloworld_impact_base.cpp */; };
+		07AE49511CC7A83F00959A6F /* helloworld_impact_base.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AE494D1CC7A83F00959A6F /* helloworld_impact_base.h */; };
 		07B65520190F3001002DAADE /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75BE16F78E600085103B /* framework.cpp */; };
 		07B65521190F3001002DAADE /* helloworld_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75C916F78E600085103B /* helloworld_application.cpp */; };
 		07B65522190F3001002DAADE /* helloworld_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CA16F78E600085103B /* helloworld_document.cpp */; };
 		07B65523190F3001002DAADE /* helloworld_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CB16F78E600085103B /* helloworld_frame.cpp */; };
-		07B65524190F3001002DAADE /* helloworld_pane_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CC16F78E600085103B /* helloworld_pane_view.cpp */; };
-		07B65525190F3001002DAADE /* aaa_want_to_erase_helloworld_view_update_hint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CD16F78E600085103B /* aaa_want_to_erase_helloworld_view_update_hint.cpp */; };
-		07B65526190F3001002DAADE /* helloworld_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CE16F78E600085103B /* helloworld_view.cpp */; };
+		07B65524190F3001002DAADE /* helloworld_pane_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CC16F78E600085103B /* helloworld_pane_impact.cpp */; };
+		07B65525190F3001002DAADE /* aaa_want_to_erase_helloworld_impact_update_hint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CD16F78E600085103B /* aaa_want_to_erase_helloworld_impact_update_hint.cpp */; };
+		07B65526190F3001002DAADE /* helloworld_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CE16F78E600085103B /* helloworld_impact.cpp */; };
 		07FB1AA41B744E8800F3FCC1 /* helloworld_render.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07FB1AA21B744E8800F3FCC1 /* helloworld_render.cpp */; };
 		07FB1AA51B744E8800F3FCC1 /* helloworld_render.h in Headers */ = {isa = PBXBuildFile; fileRef = 07FB1AA31B744E8800F3FCC1 /* helloworld_render.h */; };
 		9A6716B61D155B860069A961 /* helloworld_main_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72594A1D1403E6001F56B4 /* helloworld_main_frame.cpp */; };
 		9A6716B71D155B860069A961 /* helloworld_gcom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE494A1CC7A83F00959A6F /* helloworld_gcom.cpp */; };
-		9A6716B81D155B860069A961 /* helloworld_view_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE494C1CC7A83F00959A6F /* helloworld_view_base.cpp */; };
+		9A6716B81D155B860069A961 /* helloworld_impact_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE494C1CC7A83F00959A6F /* helloworld_impact_base.cpp */; };
 		9A72594C1D1403E6001F56B4 /* helloworld_main_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A72594A1D1403E6001F56B4 /* helloworld_main_frame.cpp */; };
 		9A72594D1D1403E6001F56B4 /* helloworld_main_frame.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A72594B1D1403E6001F56B4 /* helloworld_main_frame.h */; };
 		9A8C49451F6069A8004A5BA4 /* libace.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8C49441F6069A8004A5BA4 /* libace.dylib */; };
 		9A920FD81F3BF68500CD9D94 /* libcore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A920FD71F3BF68500CD9D94 /* libcore.dylib */; };
 		9A920FDC1F3BF69300CD9D94 /* libsphere.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A920FDB1F3BF69300CD9D94 /* libsphere.dylib */; };
-		9AA1009019971FCE004F84BD /* helloworld_main_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA1008C19971FCE004F84BD /* helloworld_main_view.cpp */; };
-		9AA1009119971FCE004F84BD /* helloworld_main_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA1008D19971FCE004F84BD /* helloworld_main_view.h */; };
+		9AA1009019971FCE004F84BD /* helloworld_main_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA1008C19971FCE004F84BD /* helloworld_main_impact.cpp */; };
+		9AA1009119971FCE004F84BD /* helloworld_main_impact.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AA1008D19971FCE004F84BD /* helloworld_main_impact.h */; };
 		9ACE47D61D2041A300A1E0AD /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE47D51D2041A300A1E0AD /* libaura.dylib */; };
 		9ACE47DA1D2041AE00A1E0AD /* libaxis.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE47D91D2041AE00A1E0AD /* libaxis.dylib */; };
 		9ACE47DC1D2041B800A1E0AD /* libbase.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ACE47DB1D2041B800A1E0AD /* libbase.dylib */; };
@@ -55,9 +55,9 @@
 		9AEB75E116F78E600085103B /* helloworld_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75C916F78E600085103B /* helloworld_application.cpp */; };
 		9AEB75E216F78E600085103B /* helloworld_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CA16F78E600085103B /* helloworld_document.cpp */; };
 		9AEB75E316F78E600085103B /* helloworld_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CB16F78E600085103B /* helloworld_frame.cpp */; };
-		9AEB75E416F78E600085103B /* helloworld_pane_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CC16F78E600085103B /* helloworld_pane_view.cpp */; };
-		9AEB75E516F78E600085103B /* aaa_want_to_erase_helloworld_view_update_hint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CD16F78E600085103B /* aaa_want_to_erase_helloworld_view_update_hint.cpp */; };
-		9AEB75E616F78E600085103B /* helloworld_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CE16F78E600085103B /* helloworld_view.cpp */; };
+		9AEB75E416F78E600085103B /* helloworld_pane_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CC16F78E600085103B /* helloworld_pane_impact.cpp */; };
+		9AEB75E516F78E600085103B /* aaa_want_to_erase_helloworld_impact_update_hint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CD16F78E600085103B /* aaa_want_to_erase_helloworld_impact_update_hint.cpp */; };
+		9AEB75E616F78E600085103B /* helloworld_impact.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB75CE16F78E600085103B /* helloworld_impact.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,18 +154,18 @@
 
 /* Begin PBXFileReference section */
 		070533CB1C90B2A100F31B3F /* gcom.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gcom.xcodeproj; path = ../gcom/gcom.xcodeproj; sourceTree = "<group>"; };
-		076D09F11A3FC72C007432B6 /* helloworld_switcher_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloworld_switcher_view.cpp; sourceTree = "<group>"; };
-		076D09F21A3FC72C007432B6 /* helloworld_switcher_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloworld_switcher_view.h; sourceTree = "<group>"; };
+		076D09F11A3FC72C007432B6 /* helloworld_switcher_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloworld_switcher_impact.cpp; sourceTree = "<group>"; };
+		076D09F21A3FC72C007432B6 /* helloworld_switcher_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloworld_switcher_impact.h; sourceTree = "<group>"; };
 		07A684E617F0E06700C41DE6 /* helloworld_application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloworld_application.h; sourceTree = "<group>"; };
 		07A684E717F0E06700C41DE6 /* helloworld_document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloworld_document.h; sourceTree = "<group>"; };
 		07A684E817F0E06700C41DE6 /* helloworld_frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloworld_frame.h; sourceTree = "<group>"; };
-		07A684E917F0E06700C41DE6 /* aaa_want_to_erase_helloworld_view_update_hint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_erase_helloworld_view_update_hint.h; sourceTree = "<group>"; };
-		07A684EA17F0E06700C41DE6 /* helloworld_pane_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloworld_pane_view.h; sourceTree = "<group>"; };
-		07A684EB17F0E06700C41DE6 /* helloworld_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloworld_view.h; sourceTree = "<group>"; };
+		07A684E917F0E06700C41DE6 /* aaa_want_to_erase_helloworld_impact_update_hint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aaa_want_to_erase_helloworld_impact_update_hint.h; sourceTree = "<group>"; };
+		07A684EA17F0E06700C41DE6 /* helloworld_pane_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloworld_pane_impact.h; sourceTree = "<group>"; };
+		07A684EB17F0E06700C41DE6 /* helloworld_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloworld_impact.h; sourceTree = "<group>"; };
 		07AE494A1CC7A83F00959A6F /* helloworld_gcom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloworld_gcom.cpp; sourceTree = "<group>"; };
 		07AE494B1CC7A83F00959A6F /* helloworld_gcom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloworld_gcom.h; sourceTree = "<group>"; };
-		07AE494C1CC7A83F00959A6F /* helloworld_view_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloworld_view_base.cpp; sourceTree = "<group>"; };
-		07AE494D1CC7A83F00959A6F /* helloworld_view_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloworld_view_base.h; sourceTree = "<group>"; };
+		07AE494C1CC7A83F00959A6F /* helloworld_impact_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloworld_impact_base.cpp; sourceTree = "<group>"; };
+		07AE494D1CC7A83F00959A6F /* helloworld_impact_base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloworld_impact_base.h; sourceTree = "<group>"; };
 		07FB1AA21B744E8800F3FCC1 /* helloworld_render.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloworld_render.cpp; sourceTree = "<group>"; };
 		07FB1AA31B744E8800F3FCC1 /* helloworld_render.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloworld_render.h; sourceTree = "<group>"; };
 		9A72594A1D1403E6001F56B4 /* helloworld_main_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloworld_main_frame.cpp; sourceTree = "<group>"; };
@@ -178,8 +178,8 @@
 		9A986CDE1D22629C001F4C04 /* libios_base.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_base.dylib; path = "../../app/base/build/Debug-iphoneos/libios_base.dylib"; sourceTree = "<group>"; };
 		9A986CE01D2262BA001F4C04 /* libios_axis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_axis.dylib; path = "../../app/axis/build/Debug-iphoneos/libios_axis.dylib"; sourceTree = "<group>"; };
 		9A986CE21D2262CB001F4C04 /* libios_aura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libios_aura.dylib; path = "../../app/aura/build/Debug-iphoneos/libios_aura.dylib"; sourceTree = "<group>"; };
-		9AA1008C19971FCE004F84BD /* helloworld_main_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloworld_main_view.cpp; sourceTree = "<group>"; };
-		9AA1008D19971FCE004F84BD /* helloworld_main_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloworld_main_view.h; sourceTree = "<group>"; };
+		9AA1008C19971FCE004F84BD /* helloworld_main_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloworld_main_impact.cpp; sourceTree = "<group>"; };
+		9AA1008D19971FCE004F84BD /* helloworld_main_impact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helloworld_main_impact.h; sourceTree = "<group>"; };
 		9AC62E941D20C12200A4AC0A /* libaura.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaura.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/basic-ios-bmuegusfgbffmoeixicbxhlnbzop/Build/Products/Debug-iphonesimulator/libaura.dylib"; sourceTree = "<group>"; };
 		9AC62E981D20C12800A4AC0A /* libaxis.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libaxis.dylib; path = "../../app/axis/build/Debug-iphoneos/libaxis.dylib"; sourceTree = "<group>"; };
 		9AC62E9A1D20C12F00A4AC0A /* libbase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbase.dylib; path = "../../app/base/build/Debug-iphoneos/libbase.dylib"; sourceTree = "<group>"; };
@@ -200,9 +200,9 @@
 		9AEB75C916F78E600085103B /* helloworld_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloworld_application.cpp; sourceTree = "<group>"; };
 		9AEB75CA16F78E600085103B /* helloworld_document.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloworld_document.cpp; sourceTree = "<group>"; };
 		9AEB75CB16F78E600085103B /* helloworld_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloworld_frame.cpp; sourceTree = "<group>"; };
-		9AEB75CC16F78E600085103B /* helloworld_pane_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloworld_pane_view.cpp; sourceTree = "<group>"; };
-		9AEB75CD16F78E600085103B /* aaa_want_to_erase_helloworld_view_update_hint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_erase_helloworld_view_update_hint.cpp; sourceTree = "<group>"; };
-		9AEB75CE16F78E600085103B /* helloworld_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloworld_view.cpp; sourceTree = "<group>"; };
+		9AEB75CC16F78E600085103B /* helloworld_pane_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloworld_pane_impact.cpp; sourceTree = "<group>"; };
+		9AEB75CD16F78E600085103B /* aaa_want_to_erase_helloworld_impact_update_hint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = aaa_want_to_erase_helloworld_impact_update_hint.cpp; sourceTree = "<group>"; };
+		9AEB75CE16F78E600085103B /* helloworld_impact.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = helloworld_impact.cpp; sourceTree = "<group>"; };
 		9AF75DEF1F83EBA100FDE7CC /* libios_aura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_aura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AF75DF31F83EBAA00FDE7CC /* libios_axis.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_axis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AF75DF51F83EBB300FDE7CC /* libios_base.dylib */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_base.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -345,20 +345,20 @@
 				07AE494B1CC7A83F00959A6F /* helloworld_gcom.h */,
 				9A72594A1D1403E6001F56B4 /* helloworld_main_frame.cpp */,
 				9A72594B1D1403E6001F56B4 /* helloworld_main_frame.h */,
-				9AA1008C19971FCE004F84BD /* helloworld_main_view.cpp */,
-				9AA1008D19971FCE004F84BD /* helloworld_main_view.h */,
-				9AEB75CC16F78E600085103B /* helloworld_pane_view.cpp */,
-				07A684EA17F0E06700C41DE6 /* helloworld_pane_view.h */,
-				9AEB75CD16F78E600085103B /* aaa_want_to_erase_helloworld_view_update_hint.cpp */,
-				07A684E917F0E06700C41DE6 /* aaa_want_to_erase_helloworld_view_update_hint.h */,
+				9AA1008C19971FCE004F84BD /* helloworld_main_impact.cpp */,
+				9AA1008D19971FCE004F84BD /* helloworld_main_impact.h */,
+				9AEB75CC16F78E600085103B /* helloworld_pane_impact.cpp */,
+				07A684EA17F0E06700C41DE6 /* helloworld_pane_impact.h */,
+				9AEB75CD16F78E600085103B /* aaa_want_to_erase_helloworld_impact_update_hint.cpp */,
+				07A684E917F0E06700C41DE6 /* aaa_want_to_erase_helloworld_impact_update_hint.h */,
 				07FB1AA21B744E8800F3FCC1 /* helloworld_render.cpp */,
 				07FB1AA31B744E8800F3FCC1 /* helloworld_render.h */,
-				076D09F11A3FC72C007432B6 /* helloworld_switcher_view.cpp */,
-				076D09F21A3FC72C007432B6 /* helloworld_switcher_view.h */,
-				07AE494C1CC7A83F00959A6F /* helloworld_view_base.cpp */,
-				07AE494D1CC7A83F00959A6F /* helloworld_view_base.h */,
-				9AEB75CE16F78E600085103B /* helloworld_view.cpp */,
-				07A684EB17F0E06700C41DE6 /* helloworld_view.h */,
+				076D09F11A3FC72C007432B6 /* helloworld_switcher_impact.cpp */,
+				076D09F21A3FC72C007432B6 /* helloworld_switcher_impact.h */,
+				07AE494C1CC7A83F00959A6F /* helloworld_impact_base.cpp */,
+				07AE494D1CC7A83F00959A6F /* helloworld_impact_base.h */,
+				9AEB75CE16F78E600085103B /* helloworld_impact.cpp */,
+				07A684EB17F0E06700C41DE6 /* helloworld_impact.h */,
 			);
 			name = helloworld;
 			sourceTree = "<group>";
@@ -373,16 +373,16 @@
 				9AEB75DE16F78E600085103B /* framework.h in Headers */,
 				07FB1AA51B744E8800F3FCC1 /* helloworld_render.h in Headers */,
 				9AEB75E016F78E600085103B /* helloworld.h in Headers */,
-				07A684F117F0E06700C41DE6 /* helloworld_view.h in Headers */,
-				9AA1009119971FCE004F84BD /* helloworld_main_view.h in Headers */,
-				07AE49511CC7A83F00959A6F /* helloworld_view_base.h in Headers */,
+				07A684F117F0E06700C41DE6 /* helloworld_impact.h in Headers */,
+				9AA1009119971FCE004F84BD /* helloworld_main_impact.h in Headers */,
+				07AE49511CC7A83F00959A6F /* helloworld_impact_base.h in Headers */,
 				9A72594D1D1403E6001F56B4 /* helloworld_main_frame.h in Headers */,
-				07A684EF17F0E06700C41DE6 /* aaa_want_to_erase_helloworld_view_update_hint.h in Headers */,
+				07A684EF17F0E06700C41DE6 /* aaa_want_to_erase_helloworld_impact_update_hint.h in Headers */,
 				07A684ED17F0E06700C41DE6 /* helloworld_document.h in Headers */,
-				07A684F017F0E06700C41DE6 /* helloworld_pane_view.h in Headers */,
+				07A684F017F0E06700C41DE6 /* helloworld_pane_impact.h in Headers */,
 				07AE494F1CC7A83F00959A6F /* helloworld_gcom.h in Headers */,
 				07A684EE17F0E06700C41DE6 /* helloworld_frame.h in Headers */,
-				076D09FC1A3FC72C007432B6 /* helloworld_switcher_view.h in Headers */,
+				076D09FC1A3FC72C007432B6 /* helloworld_switcher_impact.h in Headers */,
 				07A684EC17F0E06700C41DE6 /* helloworld_application.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -552,17 +552,17 @@
 			files = (
 				9A6716B61D155B860069A961 /* helloworld_main_frame.cpp in Sources */,
 				9A6716B71D155B860069A961 /* helloworld_gcom.cpp in Sources */,
-				9A6716B81D155B860069A961 /* helloworld_view_base.cpp in Sources */,
+				9A6716B81D155B860069A961 /* helloworld_impact_base.cpp in Sources */,
 				07A4B1371B76469200DA5C57 /* helloworld_render.cpp in Sources */,
-				07473E641B5050B8004688C5 /* helloworld_main_view.cpp in Sources */,
-				07473E601B5050B8004688C5 /* helloworld_switcher_view.cpp in Sources */,
+				07473E641B5050B8004688C5 /* helloworld_main_impact.cpp in Sources */,
+				07473E601B5050B8004688C5 /* helloworld_switcher_impact.cpp in Sources */,
 				07B65520190F3001002DAADE /* framework.cpp in Sources */,
 				07B65521190F3001002DAADE /* helloworld_application.cpp in Sources */,
 				07B65522190F3001002DAADE /* helloworld_document.cpp in Sources */,
 				07B65523190F3001002DAADE /* helloworld_frame.cpp in Sources */,
-				07B65524190F3001002DAADE /* helloworld_pane_view.cpp in Sources */,
-				07B65525190F3001002DAADE /* aaa_want_to_erase_helloworld_view_update_hint.cpp in Sources */,
-				07B65526190F3001002DAADE /* helloworld_view.cpp in Sources */,
+				07B65524190F3001002DAADE /* helloworld_pane_impact.cpp in Sources */,
+				07B65525190F3001002DAADE /* aaa_want_to_erase_helloworld_impact_update_hint.cpp in Sources */,
+				07B65526190F3001002DAADE /* helloworld_impact.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,19 +578,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AA1009019971FCE004F84BD /* helloworld_main_view.cpp in Sources */,
+				9AA1009019971FCE004F84BD /* helloworld_main_impact.cpp in Sources */,
 				9AEB75DD16F78E600085103B /* framework.cpp in Sources */,
 				07AE494E1CC7A83F00959A6F /* helloworld_gcom.cpp in Sources */,
 				9A72594C1D1403E6001F56B4 /* helloworld_main_frame.cpp in Sources */,
-				076D09FB1A3FC72C007432B6 /* helloworld_switcher_view.cpp in Sources */,
+				076D09FB1A3FC72C007432B6 /* helloworld_switcher_impact.cpp in Sources */,
 				07FB1AA41B744E8800F3FCC1 /* helloworld_render.cpp in Sources */,
 				9AEB75E116F78E600085103B /* helloworld_application.cpp in Sources */,
-				07AE49501CC7A83F00959A6F /* helloworld_view_base.cpp in Sources */,
+				07AE49501CC7A83F00959A6F /* helloworld_impact_base.cpp in Sources */,
 				9AEB75E216F78E600085103B /* helloworld_document.cpp in Sources */,
 				9AEB75E316F78E600085103B /* helloworld_frame.cpp in Sources */,
-				9AEB75E416F78E600085103B /* helloworld_pane_view.cpp in Sources */,
-				9AEB75E516F78E600085103B /* aaa_want_to_erase_helloworld_view_update_hint.cpp in Sources */,
-				9AEB75E616F78E600085103B /* helloworld_view.cpp in Sources */,
+				9AEB75E416F78E600085103B /* helloworld_pane_impact.cpp in Sources */,
+				9AEB75E516F78E600085103B /* aaa_want_to_erase_helloworld_impact_update_hint.cpp in Sources */,
+				9AEB75E616F78E600085103B /* helloworld_impact.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -40,7 +40,7 @@ namespace user
       virtual void _001SetSelText(const ::string & psz, const ::action_context & action_context);
 
 
-      virtual void _001GetViewSel(strsize &iSelStart, strsize &iSelEnd) const;
+      virtual void _001GetImpactSel(strsize &iSelStart, strsize &iSelEnd) const;
 
 
       virtual void MacroBegin();

@@ -667,8 +667,10 @@ namespace user
 
 
       virtual void display_restored();
+      virtual void display_zoomed();
       virtual void display_iconic();
       virtual void display_restore();
+      virtual void display_notify_icon();
 
       
       virtual void design_restored();
@@ -1550,7 +1552,7 @@ namespace user
 
 
       virtual bool window_is_notify_icon_enabled();
-      virtual void set_viewport_org(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void set_impactport_org(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void viewport_screen_to_client(POINT_I32* ppt) override;
       virtual void viewport_client_to_screen(POINT_I32* ppt) override;
@@ -1642,6 +1644,8 @@ namespace user
       }
       virtual interaction& operator =(const ::rectangle_i32& rectangle);
 
+      virtual void place_rate_or_size(const ::rectangle_f64 & rectangle);
+
 
       virtual void activation(::e_activation eactivation);
 
@@ -1695,24 +1699,24 @@ namespace user
       virtual scroll_data* get_vertical_scroll_data();
 
 
-      virtual void set_viewport_offset_x(::draw2d::graphics_pointer & pgraphics, int x);
-      virtual void set_viewport_offset_y(::draw2d::graphics_pointer & pgraphics, int y);
-      virtual void set_viewport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y);
-      virtual void offset_viewport_offset_x(::draw2d::graphics_pointer & pgraphics, int x);
-      virtual void offset_viewport_offset_y(::draw2d::graphics_pointer & pgraphics, int y);
-      virtual void offset_viewport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y);
-      virtual bool validate_viewport_offset(point_i32& point);
-      virtual void on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics);
-      virtual void on_viewport_offset(::draw2d::graphics_pointer & pgraphics);
-      virtual ::point_i32 get_viewport_offset();
+      virtual void set_impactport_offset_x(::draw2d::graphics_pointer & pgraphics, int x);
+      virtual void set_impactport_offset_y(::draw2d::graphics_pointer & pgraphics, int y);
+      virtual void set_impactport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y);
+      virtual void offset_impactport_offset_x(::draw2d::graphics_pointer & pgraphics, int x);
+      virtual void offset_impactport_offset_y(::draw2d::graphics_pointer & pgraphics, int y);
+      virtual void offset_impactport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y);
+      virtual bool validate_impactport_offset(point_i32& point);
+      virtual void on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_impactport_offset(::draw2d::graphics_pointer & pgraphics);
+      virtual ::point_i32 get_impactport_offset();
       virtual ::size_f64 get_total_size();
-      virtual void on_change_view_size(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_change_impact_size(::draw2d::graphics_pointer & pgraphics);
       virtual ::size_f64 get_page_size();
       virtual void set_total_size(const ::size_f64& size);
       virtual void set_page_size(const ::size_f64& size);
       virtual ::point_i32 get_parent_accumulated_scroll(enum_layout elayout = e_layout_design) const;
-      virtual ::point_i32 get_parent_viewport_offset() const;
-      virtual ::point_i32 get_ascendant_viewport_offset() const;
+      virtual ::point_i32 get_parent_impactport_offset() const;
+      virtual ::point_i32 get_ascendant_impactport_offset() const;
       virtual void get_margin_rect(RECTANGLE_I32* prectMargin);
 
       virtual int get_final_x_scroll_bar_width();

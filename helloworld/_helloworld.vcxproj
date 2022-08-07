@@ -990,7 +990,7 @@
     <ClCompile Include=".\helloworld_document.cpp" />
     <ClCompile Include=".\helloworld_frame.cpp" />
     <ClCompile Include="helloworld.cpp" />
-    <ClCompile Include=".\helloworld_pane_view.cpp" />
+    <ClCompile Include=".\helloworld_pane_impact.cpp" />
 
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
@@ -1002,12 +1002,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='small|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include=".\helloworld_view.cpp" />
+    <ClCompile Include=".\helloworld_impact.cpp" />
     <ClCompile Include="helloworld_main_frame.cpp" />
-    <ClCompile Include="helloworld_main_view.cpp" />
+    <ClCompile Include="helloworld_main_impact.cpp" />
     <ClCompile Include="helloworld_render.cpp" />
-    <ClCompile Include="helloworld_switcher_view.cpp" />
-    <ClCompile Include="helloworld_view_base.cpp" />
+    <ClCompile Include="helloworld_switcher_impact.cpp" />
+    <ClCompile Include="helloworld_impact_base.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helloworld_application.h" />
@@ -1015,14 +1015,14 @@
     <ClInclude Include="helloworld_frame.h" />
     <ClInclude Include="helloworld.h" />
     <ClInclude Include="helloworld_main_frame.h" />
-    <ClInclude Include="helloworld_main_view.h" />
-    <ClInclude Include="helloworld_pane_view.h" />
+    <ClInclude Include="helloworld_main_impact.h" />
+    <ClInclude Include="helloworld_pane_impact.h" />
 
     <ClInclude Include="framework.h" />
     <ClInclude Include="helloworld_render.h" />
-    <ClInclude Include="helloworld_switcher_view.h" />
-    <ClInclude Include="helloworld_view.h" />
-    <ClInclude Include="helloworld_view_base.h" />
+    <ClInclude Include="helloworld_switcher_impact.h" />
+    <ClInclude Include="helloworld_impact.h" />
+    <ClInclude Include="helloworld_impact_base.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\source\app-core\experience_lite\_experience_lite.vcxproj">

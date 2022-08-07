@@ -204,10 +204,10 @@
     <ClInclude Include="user\simple\child_frame.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\form_list_view.h">
+    <ClInclude Include="user\simple\form_list_impact.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\form_view.h">
+    <ClInclude Include="user\simple\form_impact.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\frame_window.h">
@@ -222,7 +222,7 @@
     <ClInclude Include="user\simple\list_header_control.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\list_view.h">
+    <ClInclude Include="user\simple\list_impact.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\main_frame.h">
@@ -240,7 +240,7 @@
     <ClInclude Include="user\simple\pane_document.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\printer_list_view.h">
+    <ClInclude Include="user\simple\printer_list_impact.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\scroll_bar.h">
@@ -258,13 +258,13 @@
     <ClInclude Include="user\simple\tab_control.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\tab_view.h">
+    <ClInclude Include="user\simple\tab_impact.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\toolbar.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\tree_view.h">
+    <ClInclude Include="user\simple\tree_impact.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\_.h">
@@ -303,7 +303,7 @@
     <ClInclude Include="user\user\form_list.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\form_list_view.h">
+    <ClInclude Include="user\user\form_list_impact.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\form_mesh.h">
@@ -339,7 +339,7 @@
     <ClInclude Include="user\user\list_item.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\list_view.h">
+    <ClInclude Include="user\user\list_impact.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\main_frame.h">
@@ -396,13 +396,13 @@
     <ClInclude Include="user\user\tree_data.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\xfplayer_view_line.h">
+    <ClInclude Include="user\user\xfplayer_impact_line.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\xfplayer_view_lines.h">
+    <ClInclude Include="user\user\xfplayer_impact_lines.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\xfplayer_view_line_selection.h">
+    <ClInclude Include="user\user\xfplayer_impact_line_selection.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\_.h">
@@ -417,7 +417,7 @@
     <ClInclude Include="user\user\_user.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\calculator_edit_view.h">
+    <ClInclude Include="user\userex\calculator_edit_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\group_image_list.h">
@@ -432,7 +432,7 @@
     <ClInclude Include="user\userex\aaa_want_to_erase_form_update_hint.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\color_view.h">
+    <ClInclude Include="user\userex\color_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\const.h">
@@ -444,7 +444,7 @@
     <ClInclude Include="user\userex\error_dialog.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\font_view.h">
+    <ClInclude Include="user\userex\font_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\form_child_frame.h">
@@ -456,10 +456,10 @@
     <ClInclude Include="user\userex\form_frame.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\form_view.h">
+    <ClInclude Include="user\userex\form_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\home_view.h">
+    <ClInclude Include="user\userex\home_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\impact_host.h">
@@ -471,7 +471,7 @@
     <ClInclude Include="user\userex\menu_frame.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\menu_view.h">
+    <ClInclude Include="user\userex\menu_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\message_box.h">
@@ -480,7 +480,7 @@
     <ClInclude Include="user\userex\mini_dock_frame_window.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\pane_split_view.h">
+    <ClInclude Include="user\userex\pane_split_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\pane_tab_impact.h">
@@ -495,16 +495,16 @@
     <ClInclude Include="user\userex\property_sheet.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\split_view.h">
+    <ClInclude Include="user\userex\split_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\top_edit_view.h">
+    <ClInclude Include="user\userex\top_edit_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\top_toggle_view.h">
+    <ClInclude Include="user\userex\top_toggle_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\top_view.h">
+    <ClInclude Include="user\userex\top_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\user.h">
@@ -666,7 +666,7 @@
     <ClInclude Include="filesystem\filemanager\_tree.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\aaa_want_to_erase_form_view.h">
+    <ClInclude Include="filesystem\filemanager\aaa_want_to_erase_form_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\aaa_want_to_erase_callback.h">
@@ -702,10 +702,10 @@
     <ClInclude Include="filesystem\filemanager\folder_list_data.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\folder_list_view.h">
+    <ClInclude Include="filesystem\filemanager\folder_list_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\folder_selection_list_view.h">
+    <ClInclude Include="filesystem\filemanager\folder_selection_list_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\form.h">
@@ -720,13 +720,13 @@
     <ClInclude Include="filesystem\filemanager\frame.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\fs_simple_list_view.h">
+    <ClInclude Include="filesystem\filemanager\fs_simple_list_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\fs_simple_tree.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\fs_simple_view.h">
+    <ClInclude Include="filesystem\filemanager\fs_simple_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\icon.h">
@@ -738,7 +738,7 @@
     <ClInclude Include="filesystem\filemanager\aaa_want_to_erase_item_action.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\left_view.h">
+    <ClInclude Include="filesystem\filemanager\left_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\main_frame.h">
@@ -756,28 +756,28 @@
     <ClInclude Include="filesystem\filemanager\operation_document.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\operation_info_view.h">
+    <ClInclude Include="filesystem\filemanager\operation_info_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\operation_list_view.h">
+    <ClInclude Include="filesystem\filemanager\operation_list_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\operation_thread.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\operation_view.h">
+    <ClInclude Include="filesystem\filemanager\operation_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\path_view.h">
+    <ClInclude Include="filesystem\filemanager\path_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\preview.h">
+    <ClInclude Include="filesystem\filemanager\thumbnail.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\save_as_name_view.h">
+    <ClInclude Include="filesystem\filemanager\save_as_name_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\tab_view.h">
+    <ClInclude Include="filesystem\filemanager\tab_impact.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\tree.h">
@@ -1065,7 +1065,7 @@
     <ClInclude Include="html\user\form.h">
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
-    <ClInclude Include="html\user\form_view.h">
+    <ClInclude Include="html\user\form_impact.h">
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
     <ClInclude Include="html\user\frame.h">
@@ -1186,10 +1186,10 @@
     <ClCompile Include="user\simple\child_frame.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\form_list_view.cpp">
+    <ClCompile Include="user\simple\form_list_impact.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\form_view.cpp">
+    <ClCompile Include="user\simple\form_impact.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\list_control.cpp">
@@ -1201,7 +1201,7 @@
     <ClCompile Include="user\simple\list_header_control.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\list_view.cpp">
+    <ClCompile Include="user\simple\list_impact.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\menu_bar.cpp">
@@ -1213,7 +1213,7 @@
     <ClCompile Include="user\simple\pane_document.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\printer_list_view.cpp">
+    <ClCompile Include="user\simple\printer_list_impact.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\static.cpp">
@@ -1225,13 +1225,13 @@
     <ClCompile Include="user\simple\tab_control.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\tab_view.cpp">
+    <ClCompile Include="user\simple\tab_impact.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\toolbar.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\tree_view.cpp">
+    <ClCompile Include="user\simple\tree_impact.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\user\color_combo_box.cpp">
@@ -1249,7 +1249,7 @@
     <ClCompile Include="user\user\form_list.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\form_list_view.cpp">
+    <ClCompile Include="user\user\form_list_impact.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\form_mesh.cpp">
@@ -1270,7 +1270,7 @@
     <ClCompile Include="user\user\list_header.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\list_view.cpp">
+    <ClCompile Include="user\user\list_impact.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\mesh.cpp">
@@ -1312,13 +1312,13 @@
     <ClCompile Include="user\user\tree_window.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\xfplayer_view_line.cpp">
+    <ClCompile Include="user\user\xfplayer_impact_line.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\xfplayer_view_lines.cpp">
+    <ClCompile Include="user\user\xfplayer_impact_lines.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\xfplayer_view_line_selection.cpp">
+    <ClCompile Include="user\user\xfplayer_impact_line_selection.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\tooltip.cpp">
@@ -1327,16 +1327,16 @@
     <ClCompile Include="user\userex\-ehrror_dialog.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\calculator_edit_view.cpp">
+    <ClCompile Include="user\userex\calculator_edit_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\color_view.cpp">
+    <ClCompile Include="user\userex\color_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\dialog.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\font_view.cpp">
+    <ClCompile Include="user\userex\font_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\form_child_frame.cpp">
@@ -1348,7 +1348,7 @@
     <ClCompile Include="user\userex\group_image_list.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\home_view.cpp">
+    <ClCompile Include="user\userex\home_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\image_list.cpp">
@@ -1363,13 +1363,13 @@
     <ClCompile Include="user\userex\menu_frame.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\menu_view.cpp">
+    <ClCompile Include="user\userex\menu_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\message_box.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\pane_split_view.cpp">
+    <ClCompile Include="user\userex\pane_split_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\pane_tab_impact.cpp">
@@ -1387,16 +1387,16 @@
     <ClCompile Include="user\userex\property_sheet.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\split_view.cpp">
+    <ClCompile Include="user\userex\split_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\top_edit_view.cpp">
+    <ClCompile Include="user\userex\top_edit_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\top_toggle_view.cpp">
+    <ClCompile Include="user\userex\top_toggle_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\top_view.cpp">
+    <ClCompile Include="user\userex\top_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\user.cpp">
@@ -1498,10 +1498,10 @@
     <ClCompile Include="filesystem\filemanager\folder_list_data.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\folder_list_view.cpp">
+    <ClCompile Include="filesystem\filemanager\folder_list_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\folder_selection_list_view.cpp">
+    <ClCompile Include="filesystem\filemanager\folder_selection_list_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\form.cpp">
@@ -1513,13 +1513,13 @@
     <ClCompile Include="filesystem\filemanager\frame.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\fs_simple_list_view.cpp">
+    <ClCompile Include="filesystem\filemanager\fs_simple_list_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\fs_simple_tree.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\fs_simple_view.cpp">
+    <ClCompile Include="filesystem\filemanager\fs_simple_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\icon.cpp">
@@ -1528,7 +1528,7 @@
     <ClCompile Include="filesystem\filemanager\iconoverlayer.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\left_view.cpp">
+    <ClCompile Include="filesystem\filemanager\left_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\main_frame.cpp">
@@ -1546,28 +1546,28 @@
     <ClCompile Include="filesystem\filemanager\operation_document.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\operation_info_view.cpp">
+    <ClCompile Include="filesystem\filemanager\operation_info_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\operation_list_view.cpp">
+    <ClCompile Include="filesystem\filemanager\operation_list_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\operation_thread.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\operation_view.cpp">
+    <ClCompile Include="filesystem\filemanager\operation_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\path_view.cpp">
+    <ClCompile Include="filesystem\filemanager\path_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\preview.cpp">
+    <ClCompile Include="filesystem\filemanager\thumbnail.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\save_as_name_view.cpp">
+    <ClCompile Include="filesystem\filemanager\save_as_name_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\filemanager\tab_view.cpp">
+    <ClCompile Include="filesystem\filemanager\tab_impact.cpp">
       <Filter>Source Files\filesystem\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\filemanager\tree.cpp">
@@ -1702,7 +1702,7 @@
     <ClCompile Include="html\user\form.cpp">
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
-    <ClCompile Include="html\user\form_view.cpp">
+    <ClCompile Include="html\user\form_impact.cpp">
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
     <ClCompile Include="html\user\user.cpp">

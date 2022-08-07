@@ -287,11 +287,11 @@ namespace user
       void queue_selection_synchronization() override;
 
 
-      bool validate_viewport_offset(::point_i32 & point) override;
+      bool validate_impactport_offset(::point_i32 & point) override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void on_viewport_offset(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_impactport_offset(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void _001DeleteSel();
       virtual bool plain_edit_delete_sel(::draw2d::graphics_pointer& pgraphics, bool & bFullUpdate, index & iLineUpdate);
@@ -494,7 +494,7 @@ namespace user
 
       //virtual bool display(edisplay edisplay) override;
 
-      virtual void on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual ::size_f64 get_total_size() override;
 

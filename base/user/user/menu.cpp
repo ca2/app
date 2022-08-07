@@ -1,13 +1,13 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #endif
 #include "aura/id.h"
 #include "aqua/xml.h"
 #include "acme/constant/timer.h"
 #include "aura/astr.h"
 #include "aura/user/menu/_menu.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #include "acme/platform/timer.h"
 
 

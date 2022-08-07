@@ -719,7 +719,7 @@
     <ClInclude Include="calculator\calculator_department.h" />
     <ClInclude Include="calculator\calculator_document.h" />
     <ClInclude Include="calculator\calculator_frame.h" />
-    <ClInclude Include="calculator\calculator_view.h" />
+    <ClInclude Include="calculator\calculator_impact.h" />
     <ClInclude Include="charguess\big5Prober.h" />
     <ClInclude Include="charguess\charDistribution.h" />
     <ClInclude Include="charguess\charguess.h" />
@@ -783,7 +783,7 @@
     <ClInclude Include="colorertake5\colorertake5_string_buffer.h" />
     <ClInclude Include="colorertake5\colorertake5_styled_hrd_mapper.h" />
     <ClInclude Include="colorertake5\colorertake5_styled_region.h" />
-    <ClInclude Include="colorertake5\colorertake5_text_console_viewer.h" />
+    <ClInclude Include="colorertake5\colorertake5_text_console_impacter.h" />
     <ClInclude Include="colorertake5\colorertake5_text_hrd_mapper.h" />
     <ClInclude Include="colorertake5\colorertake5_text_lines.h" />
     <ClInclude Include="colorertake5\colorertake5_text_parser.h" />
@@ -802,8 +802,8 @@
     <ClInclude Include="filehandler\filehandler_department.h" />
     <ClInclude Include="filehandler\filehandler_document.h" />
     <ClInclude Include="filehandler\filehandler_frame.h" />
-    <ClInclude Include="filehandler\filehandler_pane_view.h" />
-    <ClInclude Include="filehandler\filehandler_view.h" />
+    <ClInclude Include="filehandler\filehandler_pane_impact.h" />
+    <ClInclude Include="filehandler\filehandler_impact.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="hi5\hi5.h" />
     <ClInclude Include="hi5\hi5_oauth.h" />
@@ -820,9 +820,9 @@
     <ClInclude Include="userstack\userstack_document.h" />
     <ClInclude Include="userstack\userstack_form_callback.h" />
     <ClInclude Include="userstack\userstack_frame.h" />
-    <ClInclude Include="userstack\userstack_pane_view.h" />
+    <ClInclude Include="userstack\userstack_pane_impact.h" />
     <ClInclude Include="userstack\userstack_department.h" />
-    <ClInclude Include="userstack\userstack_view.h" />
+    <ClInclude Include="userstack\userstack_impact.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="charguess\big5Prober.cpp">
@@ -1195,8 +1195,8 @@
     <ClCompile Include="filehandler\filehandler_department.cpp" />
     <ClCompile Include="filehandler\filehandler_document.cpp" />
     <ClCompile Include="filehandler\filehandler_frame.cpp" />
-    <ClCompile Include="filehandler\filehandler_pane_view.cpp" />
-    <ClCompile Include="filehandler\filehandler_view.cpp" />
+    <ClCompile Include="filehandler\filehandler_pane_impact.cpp" />
+    <ClCompile Include="filehandler\filehandler_impact.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
@@ -1240,7 +1240,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="prompt\prompt_pane_view.cpp">
+    <ClCompile Include="prompt\prompt_pane_impact.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
@@ -1248,7 +1248,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="prompt\prompt_primary_view.cpp">
+    <ClCompile Include="prompt\prompt_primary_impact.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
@@ -1256,7 +1256,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="prompt\prompt_view.cpp">
+    <ClCompile Include="prompt\prompt_impact.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
@@ -1271,12 +1271,12 @@
     <ClCompile Include="userstack\userstack_document.cpp" />
     <ClCompile Include="userstack\userstack_form_callback.cpp" />
     <ClCompile Include="userstack\userstack_frame.cpp" />
-    <ClCompile Include="userstack\userstack_pane_view.cpp" />
-    <ClCompile Include="userstack\userstack_view.cpp" />
+    <ClCompile Include="userstack\userstack_pane_impact.cpp" />
+    <ClCompile Include="userstack\userstack_impact.cpp" />
     <ClCompile Include="calculator\calculator_department.cpp" />
     <ClCompile Include="calculator\calculator_document.cpp" />
     <ClCompile Include="calculator\calculator_frame.cpp" />
-    <ClCompile Include="calculator\calculator_view.cpp" />
+    <ClCompile Include="calculator\calculator_impact.cpp" />
   </ItemGroup>
   <ItemGroup>
     
@@ -1290,7 +1290,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\version.rc" />
+    <ResourceCompile Include="deployment.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

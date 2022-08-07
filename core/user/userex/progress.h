@@ -5,7 +5,7 @@ namespace userex
 {
 
 
-   class progress_view;
+   class progress_impact;
 
 
    class CLASS_DECL_CORE progress_control :
@@ -15,7 +15,7 @@ namespace userex
 
 
       ::user::document *    m_pdocument;
-      progress_view *       m_pimpact;
+      progress_impact *       m_pimpact;
 
 
       progress_control();
@@ -39,7 +39,7 @@ namespace userex
    };
 
 
-   class CLASS_DECL_CORE progress_view :
+   class CLASS_DECL_CORE progress_impact :
       virtual public user::impact,
       virtual public double_scalar
    {
@@ -54,8 +54,8 @@ namespace userex
       ::rectangle_i32                        m_rectangleStatus;
 
 
-      progress_view();
-      ~progress_view() override;
+      progress_impact();
+      ~progress_impact() override;
 
 
       void assert_ok() const override;

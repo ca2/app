@@ -1,14 +1,14 @@
 #include "framework.h"
 #include "aura/operating_system.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #endif
 #include "aqua/xml.h"
 //#include "acme/operating_system/_os.h"
 //#include "acme/operating_system/cross.h"
 #include "aura/operating_system/_user.h"
 #include "toolbar.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #include "acme/timer.h"
 //
 //#define CLR_TO_RGBQUAD(clr)     (rgb(::blue(clr), ::green(clr), ::red(clr)))

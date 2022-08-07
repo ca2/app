@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #include "core/user/user/_user.h"
 #include "aura/graphics/draw2d/item.h"
 
@@ -934,7 +934,7 @@ namespace user
    }
 
 
-   ::point_i32 list_header::get_parent_viewport_offset() const
+   ::point_i32 list_header::get_parent_impactport_offset() const
    {
 
       __pointer(::user::interaction) puser = get_parent();
@@ -955,7 +955,7 @@ namespace user
 
       }
 
-      return puser->get_viewport_offset();
+      return puser->get_impactport_offset();
 
    }
 

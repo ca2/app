@@ -1,5 +1,5 @@
 //
-//  userex_view_container.hpp
+//  userex_impact_container.hpp
 //  app_veriwell_musical_player
 //
 //  Created by Camilo Sasuke Tsumanuma on 14/07/18.
@@ -23,9 +23,9 @@ namespace userex
 //      {
 //
 //         type_none,
-////         type_attach_view,
-////         type_detach_view,
-////         type_attach_toggle_view,
+////         type_attach_impact,
+////         type_detach_impact,
+////         type_attach_toggle_impact,
 //
 //      };
 //
@@ -69,23 +69,23 @@ namespace userex
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-      virtual __pointer(::userex::pane_tab_impact) get_pane_tab_view();
+      virtual __pointer(::userex::pane_tab_impact) get_pane_tab_impact();
 
       virtual bool _001IsCompactMode();
 
       virtual void _001OnImpact(::atom idImpact);
-      virtual void show_view(::atom idImpact);
-      virtual void hide_view(::atom idImpact);
-      virtual void toggle_view(::atom idImpact);
-      virtual void defer_show_view(::atom idImpact);
+      virtual void show_impact(::atom idImpact);
+      virtual void hide_impact(::atom idImpact);
+      virtual void toggle_impact(::atom idImpact);
+      virtual void defer_show_impact(::atom idImpact);
       virtual __pointer(::user::impact) _001GetImpact(::atom idImpact);
       virtual __pointer(::simple_frame_window) _001GetFrame(::atom idImpact);
       virtual __pointer(::user::impact) _001DetachImpact(::atom idImpact);
       virtual bool _001AttachImpact(::atom idImpact);
       virtual void _001DefaultLayoutImpact(::atom idImpact);
-      virtual __pointer(::user::impact) get_view(::atom idImpact);
+      virtual __pointer(::user::impact) get_impact(::atom idImpact);
       virtual __pointer(::user::document) get_doc(::atom idImpact);
-      virtual bool defer_create_view(::atom idImpact, ::create * pcreate = nullptr);
+      virtual bool defer_create_impact(::atom idImpact, ::create * pcreate = nullptr);
       //virtual __pointer(::user::document) detach_doc(::atom idImpact);
       //virtual bool attach(__pointer(::user::document) pdocument, ::atom idImpact);
       //virtual bool toggle(__pointer(::user::document) pdocument, ::atom idImpact);

@@ -85,7 +85,7 @@ enum enum_element : ::i64
    e_element_desk_launcher_8,
    e_element_desk_launcher_last = e_element_desk_launcher_8,
    e_element_desk_close,
-   e_element_desk_change_view,
+   e_element_desk_change_impact,
    e_element_desk_change_theme,
    e_element_desk_last,
 

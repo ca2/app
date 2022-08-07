@@ -133,17 +133,17 @@
     <ClInclude Include="hellomultiverse.h" />
     <ClInclude Include="hellomultiverse_application.h" />
     <ClInclude Include="hellomultiverse_document.h" />
-    <ClInclude Include="hellomultiverse_edit_view.h" />
+    <ClInclude Include="hellomultiverse_edit_impact.h" />
     <ClInclude Include="hellomultiverse_frame.h" />
-    <ClInclude Include="hellomultiverse_full_view.h" />
-    <ClInclude Include="hellomultiverse_lite_view.h" />
-    <ClInclude Include="hellomultiverse_main_view.h" />
-    <ClInclude Include="hellomultiverse_pane_view.h" />
+    <ClInclude Include="hellomultiverse_full_impact.h" />
+    <ClInclude Include="hellomultiverse_lite_impact.h" />
+    <ClInclude Include="hellomultiverse_main_impact.h" />
+    <ClInclude Include="hellomultiverse_pane_impact.h" />
 
-    <ClInclude Include="hellomultiverse_switcher_view.h" />
-    <ClInclude Include="hellomultiverse_toggle_view.h" />
-    <ClInclude Include="hellomultiverse_top_view.h" />
-    <ClInclude Include="hellomultiverse_view.h" />
+    <ClInclude Include="hellomultiverse_switcher_impact.h" />
+    <ClInclude Include="hellomultiverse_toggle_impact.h" />
+    <ClInclude Include="hellomultiverse_top_impact.h" />
+    <ClInclude Include="hellomultiverse_impact.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -154,17 +154,17 @@
     <ClCompile Include="hellomultiverse.cpp" />
     <ClCompile Include="hellomultiverse_application.cpp" />
     <ClCompile Include="hellomultiverse_document.cpp" />
-    <ClCompile Include="hellomultiverse_edit_view.cpp" />
+    <ClCompile Include="hellomultiverse_edit_impact.cpp" />
     <ClCompile Include="hellomultiverse_frame.cpp" />
-    <ClCompile Include="hellomultiverse_full_view.cpp" />
-    <ClCompile Include="hellomultiverse_lite_view.cpp" />
-    <ClCompile Include="hellomultiverse_main_view.cpp" />
-    <ClCompile Include="hellomultiverse_pane_view.cpp" />
+    <ClCompile Include="hellomultiverse_full_impact.cpp" />
+    <ClCompile Include="hellomultiverse_lite_impact.cpp" />
+    <ClCompile Include="hellomultiverse_main_impact.cpp" />
+    <ClCompile Include="hellomultiverse_pane_impact.cpp" />
 
-    <ClCompile Include="hellomultiverse_switcher_view.cpp" />
-    <ClCompile Include="hellomultiverse_toggle_view.cpp" />
-    <ClCompile Include="hellomultiverse_top_view.cpp" />
-    <ClCompile Include="hellomultiverse_view.cpp" />
+    <ClCompile Include="hellomultiverse_switcher_impact.cpp" />
+    <ClCompile Include="hellomultiverse_toggle_impact.cpp" />
+    <ClCompile Include="hellomultiverse_top_impact.cpp" />
+    <ClCompile Include="hellomultiverse_impact.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\source\app\aura\m_aura.vcxproj">

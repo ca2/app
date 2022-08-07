@@ -328,13 +328,13 @@ namespace helloworld
       //   if(m_bLite)
       {
 
-         helloworld_render_lite_view(pgraphics);
+         helloworld_render_lite_impact(pgraphics);
 
       }
       //   else
       //   {
       //
-      //      helloworld_render_full_view(pimage->g());
+      //      helloworld_render_full_impact(pimage->g());
       //
       //   }
 
@@ -383,7 +383,7 @@ namespace helloworld
 
    }
 
-   void render::helloworld_render_lite_view(::draw2d::graphics_pointer & pgraphics)
+   void render::helloworld_render_lite_impact(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (m_pimageWork->area() <= 0)
@@ -634,7 +634,7 @@ namespace helloworld
    }
 
 
-   void render::helloworld_render_full_view(::draw2d::graphics_pointer & pgraphics)
+   void render::helloworld_render_full_impact(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (m_pimageWork->area() <= 0)

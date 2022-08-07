@@ -1545,7 +1545,7 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
    }
 
 
-   void application::on_update_view(::user::impact * pimpact,::user::impact * pviewSender,LPARAM lHint,object* pHint)
+   void application::on_update_impact(::user::impact * pimpact,::user::impact * pviewSender,LPARAM lHint,object* pHint)
    {
 
 

@@ -677,12 +677,12 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="browser_frame.h" />
     <ClInclude Include="browser_gcom.h" />
     <ClInclude Include="browser_main_frame.h" />
-    <ClInclude Include="browser_main_view.h" />
-    <ClInclude Include="browser_pane_view.h" />
+    <ClInclude Include="browser_main_impact.h" />
+    <ClInclude Include="browser_pane_impact.h" />
     <ClInclude Include="browser_render.h" />
-    <ClInclude Include="browser_switcher_view.h" />
-    <ClInclude Include="browser_view.h" />
-    <ClInclude Include="browser_view_base.h" />
+    <ClInclude Include="browser_switcher_impact.h" />
+    <ClInclude Include="browser_impact.h" />
+    <ClInclude Include="browser_impact_base.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="simple_app.h" />
     <ClInclude Include="simple_handler.h" />
@@ -706,12 +706,12 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="browser_frame.cpp" />
     <ClCompile Include="browser_gcom.cpp" />
     <ClCompile Include="browser_main_frame.cpp" />
-    <ClCompile Include="browser_main_view.cpp" />
-    <ClCompile Include="browser_pane_view.cpp" />
+    <ClCompile Include="browser_main_impact.cpp" />
+    <ClCompile Include="browser_pane_impact.cpp" />
     <ClCompile Include="browser_render.cpp" />
-    <ClCompile Include="browser_switcher_view.cpp" />
-    <ClCompile Include="browser_view.cpp" />
-    <ClCompile Include="browser_view_base.cpp" />
+    <ClCompile Include="browser_switcher_impact.cpp" />
+    <ClCompile Include="browser_impact.cpp" />
+    <ClCompile Include="browser_impact_base.cpp" />
     <ClCompile Include="simple_app.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">NotUsing</PrecompiledHeader>

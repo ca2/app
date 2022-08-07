@@ -1,12 +1,12 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_user.h"
+#include "base/user/user/_component.h"
 #endif
 #include "aura/update.h"
 #include "acme/constant/timer.h"
 #include "aqua/xml.h"
 #include "tab_pane.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #include "aura/graphics/image/list.h"
 #include "acme/platform/timer.h"
 
@@ -623,7 +623,7 @@ namespace user
 
       }
 
-      //point_i32 pointViewportOffset = pgraphics->GetViewportOrg();
+      //point_i32 pointContextOffset = pgraphics->get_origin();
 
       ::rectangle_f64 rClip;
 
@@ -3559,7 +3559,7 @@ namespace user
    }
 
 
-   ::user::interaction * tab::get_view_uie()
+   ::user::interaction * tab::get_impact_uie()
    {
 
       return nullptr;
@@ -3589,7 +3589,7 @@ namespace user
 
       ::user::interaction::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == id_get_topic_view_id)
+      if (ptopic->m_atom == id_get_topic_impact_id)
       {
 
          ptopic->payload(id_id) = get_current_tab_id();
@@ -3597,7 +3597,7 @@ namespace user
          ptopic->m_bRet = true;
 
       }
-      else if (ptopic->m_atom == id_set_topic_view_by_id)
+      else if (ptopic->m_atom == id_set_topic_impact_by_id)
       {
 
          set_current_tab_by_id(ptopic->payload(id_id));

@@ -9,7 +9,7 @@
 #include "math/calculator/calculator_parser_exception.h"
 
 
-#include "math/calculator/calculator_plain_edit_view.h"
+#include "math/calculator/calculator_plain_edit_impact.h"
 
 
 #include "math/calculator/calculator_calculator.h"

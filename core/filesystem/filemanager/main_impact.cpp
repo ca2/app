@@ -30,7 +30,7 @@ namespace filemanager
    {
 
       ::filemanager_impact_base::install_message_routing(pchannel);
-      ::user::split_view::install_message_routing(pchannel);
+      ::user::split_impact::install_message_routing(pchannel);
 
    }
 
@@ -38,7 +38,7 @@ namespace filemanager
    void main_impact::assert_ok() const
    {
 
-      ::user::split_view::assert_ok();
+      ::user::split_impact::assert_ok();
 
    }
 
@@ -46,7 +46,7 @@ namespace filemanager
    void main_impact::dump(dump_context & dumpcontext) const
    {
 
-      ::user::split_view::dump(dumpcontext);
+      ::user::split_impact::dump(dumpcontext);
 
    }
 
@@ -93,7 +93,7 @@ namespace filemanager
 
       initialize_split_layout();
 
-      left_view * pleftview = create_pane_view < left_view >(0);
+      left_impact * pleftview = create_pane_impact < left_impact >(0);
 
       if(pleftview == nullptr)
       {
@@ -102,9 +102,9 @@ namespace filemanager
 
       }
 
-      //pleftview->create_views();
+      //pleftview->create_impacts();
 
-      m_pfilelist = create_pane_view < file_list >(1);
+      m_pfilelist = create_pane_impact < file_list >(1);
 
       if(m_pfilelist == nullptr)
       {
@@ -113,9 +113,9 @@ namespace filemanager
 
       }
 
-      m_ppreview = create_view < preview >();
+      m_pthumbnail = create_impact < thumbnail >();
 
-      m_ppreview->display(e_display_none);
+      m_pthumbnail->display(e_display_none);
 
    }
 
@@ -147,24 +147,24 @@ namespace filemanager
    void main_impact::on_command(::message::command * pcommand)
    {
 
-      if(pcommand->m_atom == "change_view")
+      if(pcommand->m_atom == "change_impact")
       {
 
-         if(m_ppreview->is_window_visible())
+         if(m_pthumbnail->is_window_visible())
          {
 
             SetPane(1,m_pfilelist,false);
 
             set_need_layout();
 
-            m_ppreview->display(e_display_none);
+            m_pthumbnail->display(e_display_none);
 
 
          }
          else
          {
 
-            SetPane(1,m_ppreview,false);
+            SetPane(1,m_pthumbnail,false);
 
             set_need_layout();
 
@@ -184,7 +184,7 @@ namespace filemanager
 
       ::filemanager_impact_base::handle(ptopic, pcontext);
 
-      ::user::split_view::handle(ptopic, pcontext);
+      ::user::split_impact::handle(ptopic, pcontext);
 
       if (ptopic->m_atom == OPEN_DOCUMENT_UPDATE)
       {

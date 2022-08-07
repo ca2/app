@@ -6,7 +6,7 @@
 
 #include "include/cef_browser.h"
 #include "include/cef_command_line.h"
-#include "include/views/cef_browser_view.h"
+#include "include/views/cef_browser_impact.h"
 #include "include/views/cef_window.h"
 #include "include/wrapper/cef_helpers.h"
 #include "simple_handler.h"
@@ -19,35 +19,35 @@ namespace
    class SimpleWindowDelegate : public CefWindowDelegate
    {
    public:
-      explicit SimpleWindowDelegate(CefRefPtr<CefBrowserView> browser_view)
-         : browser_view_(browser_view) {}
+      explicit SimpleWindowDelegate(CefRefPtr<CefBrowserView> browser_impact)
+         : browser_impact_(browser_impact) {}
 
       void OnWindowCreated(CefRefPtr<CefWindow> window) OVERRIDE
       {
          // Add the browser impact and show the window.
-         window->AddChildView(browser_view_);
+         window->AddChildView(browser_impact_);
          window->Show();
 
          // Give keyboard focus to the browser impact.
-         browser_view_->RequestFocus();
+         browser_impact_->RequestFocus();
       }
 
       void OnWindowDestroyed(CefRefPtr<CefWindow> window) OVERRIDE
       {
-         browser_view_ = nullptr;
+         browser_impact_ = nullptr;
       }
 
       bool CanClose(CefRefPtr<CefWindow> window) OVERRIDE
       {
          // Allow the window to close if the browser says it's OK.
-         CefRefPtr<CefBrowser> browser = browser_view_->GetBrowser();
+         CefRefPtr<CefBrowser> browser = browser_impact_->GetBrowser();
          if (browser)
             return browser->GetHost()->TryCloseBrowser();
          return true;
       }
 
    private:
-      CefRefPtr<CefBrowserView> browser_view_;
+      CefRefPtr<CefBrowserView> browser_impact_;
 
       IMPLEMENT_REFCOUNTING(SimpleWindowDelegate);
       DISALLOW_COPY_AND_ASSIGN(SimpleWindowDelegate);
@@ -69,15 +69,15 @@ void SimpleApp::OnContextInitialized()
    // via the command-line. Otherwise, create the browser using the native
    // platform framework. The Views framework is currently only supported on
    // Windows and Linux.
-   const bool use_views = command_line->HasSwitch("use-views");
+   const bool use_impacts = command_line->HasSwitch("use-views");
 #else
-   const bool use_views = false;
+   const bool use_impacts = false;
 #endif
 
    m_bCefInitialized = true;
 
 //   // SimpleHandler implements browser-level callbacks.
-//   CefRefPtr<SimpleHandler> handler(new SimpleHandler(use_views));
+//   CefRefPtr<SimpleHandler> handler(new SimpleHandler(use_impacts));
 //
 //   // Specify CEF browser settings here.
 //   CefBrowserSettings browser_settings;
@@ -90,14 +90,14 @@ void SimpleApp::OnContextInitialized()
 //   if (url.empty())
 //      url = "http://www.google.com";
 //
-//   if (use_views)
+//   if (use_impacts)
 //   {
-//      // Create the BrowserView.
-//      CefRefPtr<CefBrowserView> browser_view = CefBrowserView::CreateBrowserView(
+//      // Create the BrowserImpact.
+//      CefRefPtr<CefBrowserView> browser_impact = CefBrowserImpact::CreateBrowserView(
 //            handler, url, browser_settings, nullptr, nullptr);
 //
 //      // Create the Window. It will show itself after creation.
-//      CefWindow::CreateTopLevelWindow(new SimpleWindowDelegate(browser_view));
+//      CefWindow::CreateTopLevelWindow(new SimpleWindowDelegate(browser_impact));
 //   }
 //   else
 //   {

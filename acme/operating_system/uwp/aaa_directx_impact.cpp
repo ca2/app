@@ -53,12 +53,12 @@ namespace universal_windows
       m_tokenPointerPressed = m_window->PointerPressed += ref new TypedEventHandler < ::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::PointerEventArgs^>(this, &impact::CoreWindow_PointerPressed);
 
       // Create a CoreTextEditContext for our custom edit control.
-      CoreTextServicesManager^ manager = CoreTextServicesManager::GetForCurrentView();
+      CoreTextServicesManager^ manager = CoreTextServicesManager::GetForCurrentImpact();
 
       _editContext = manager->CreateEditContext();
 
       // Get the Input Pane so we can programmatically hide and show it.
-      _inputPane = InputPane::GetForCurrentView();
+      _inputPane = InputPane::GetForCurrentImpact();
 
       // For demonstration purposes, this sample sets the Input Pane display policy to Manual
       // so that it can manually show the software keyboard when the control gains focus and
@@ -439,7 +439,7 @@ namespace universal_windows
       selectionRect.Y += windowBounds.Y;
 
       // Finally, scale up to raw pixels.
-      double scaleFactor = DisplayInformation::GetForCurrentView()->RawPixelsPerViewPixel;
+      double scaleFactor = DisplayInformation::GetForCurrentImpact()->RawPixelsPerViewPixel;
 
       contentRect = ScaleRect(contentRect, scaleFactor);
       selectionRect = ScaleRect(selectionRect, scaleFactor);

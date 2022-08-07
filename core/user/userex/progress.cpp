@@ -72,7 +72,7 @@ namespace userex
 
          m_pdocument = puser->m_ptemplateProgress2->open_document_file(get_app(), ::e_type_null, __visible(false).is_true());
 
-         m_pimpact = m_pdocument->get_type_impact<::userex::progress_view>();
+         m_pimpact = m_pdocument->get_type_impact<::userex::progress_impact>();
 
       }
 
@@ -189,19 +189,19 @@ namespace userex
    }
 
 
-   progress_view::progress_view()
+   progress_impact::progress_impact()
    {
 
    }
 
 
-   progress_view::~progress_view()
+   progress_impact::~progress_impact()
    {
 
    }
 
 
-   void progress_view::assert_ok() const
+   void progress_impact::assert_ok() const
    {
 
       ::user::impact::assert_ok();
@@ -209,7 +209,7 @@ namespace userex
    }
 
 
-   void  progress_view::dump(dump_context & dumpcontext) const
+   void  progress_impact::dump(dump_context & dumpcontext) const
    {
 
       ::user::impact::dump(dumpcontext);
@@ -217,24 +217,24 @@ namespace userex
    }
 
 
-   void  progress_view::install_message_routing(::channel * pchannel)
+   void  progress_impact::install_message_routing(::channel * pchannel)
    {
 
       ::user::impact::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_create, pchannel, this, &progress_view::on_message_create);
+      MESSAGE_LINK(e_message_create, pchannel, this, &progress_impact::on_message_create);
 
 
    }
 
 
-   void progress_view::handle(::topic * ptopic, ::context * pcontext)
+   void progress_impact::handle(::topic * ptopic, ::context * pcontext)
    {
 
    }
 
 
-   void progress_view::on_message_create(::message::message * pmessage)
+   void progress_impact::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
@@ -262,7 +262,7 @@ namespace userex
    }
 
 
-   void progress_view::_001OnTimer(::timer* ptimer)
+   void progress_impact::_001OnTimer(::timer* ptimer)
    {
 
       if (ptimer->m_uEvent == e_timer_update_current_area)
@@ -301,7 +301,7 @@ namespace userex
    }
 
 
-   void progress_view::on_message_destroy(::message::message * pmessage)
+   void progress_impact::on_message_destroy(::message::message * pmessage)
    {
 
       pmessage->previous();
@@ -309,7 +309,7 @@ namespace userex
    }
 
 
-   void progress_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
+   void progress_impact::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (m_pprogress == nullptr)
@@ -328,7 +328,7 @@ namespace userex
    }
 
 
-   void progress_view::on_layout(::draw2d::graphics_pointer & pgraphics)
+   void progress_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto rectangleClient = get_client_rect();

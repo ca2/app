@@ -60,7 +60,7 @@ enum enum_impact : ::i64
    impact_crc,
    impact_md5,
    impact_text_format,
-   impact_viewers,
+   impact_impacters,
    impact_library,
    impact_video,
    impact_modes,

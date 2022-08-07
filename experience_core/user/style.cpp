@@ -4,7 +4,7 @@
 #endif
 #include "base/user/simple/scroll_bar.h"
 #include "base/user/user/tab_pane.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 
 
 // pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!
@@ -80,13 +80,13 @@ namespace experience_core
       if (ptab->get_data()->m_bVertical)
       {
          
-         pgraphics->OffsetViewportOrg(0., -ptab->m_iTabScroll);
+         pgraphics->offset_origin(0., -ptab->m_iTabScroll);
          
       }
       else
       {
          
-         pgraphics->OffsetViewportOrg(-ptab->m_iTabScroll, 0.);
+         pgraphics->offset_origin(-ptab->m_iTabScroll, 0.);
          
       }
 

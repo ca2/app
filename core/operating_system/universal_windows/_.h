@@ -17,7 +17,7 @@
 //namespace universal_windows
 //{
 //
-//   ref class directx_framework_view;
+//   ref class directx_framework_impact;
 //
 //} // namespace universal_windows
 //

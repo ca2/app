@@ -21,7 +21,7 @@
 //#include "aura/node/universal_windows/directx_application.h"
 //#include "aura/os/windows_common/draw2d_direct2d_global.h"
 //#endif
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 //#include "acme/platform/system_impl.h"
 
 int GetMainScreenRect(RECTANGLE_I32 * lprect);
@@ -6135,14 +6135,14 @@ namespace aura
    }
 
 
-   //void system::add_view_library(::acme::library* plibrary)
+   //void system::add_impact_library(::acme::library* plibrary)
    //{
 
    //   m_libraryspa.add(plibrary);
 
    //   ::array < ::atom > ida;
 
-   //   plibrary->get_create_view_id_list(ida);
+   //   plibrary->get_create_impact_id_list(ida);
 
    //   for (i32 i = 0; i < ida.get_count(); i++)
    //   {
@@ -6276,7 +6276,7 @@ namespace aura
    //}
 
 
-   //::type system::get_pane_tab_view_type_info()
+   //::type system::get_pane_tab_impact_type_info()
    //{
 
    //   return __type(userex::pane_tab_impact);
@@ -6759,7 +6759,7 @@ namespace aura
 
       //}
 
-   ::type system::get_pane_tab_view_type_info()
+   ::type system::get_pane_tab_impact_type_info()
    {
 
       return m_typePaneTabImpact;

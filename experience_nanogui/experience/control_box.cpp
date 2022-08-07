@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 
 
 namespace experience_nanogui

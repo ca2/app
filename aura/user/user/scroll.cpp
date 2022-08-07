@@ -152,37 +152,37 @@ namespace user
             if (pscroll->m_ecommand == e_scroll_command_line_left)
             {
 
-               set_viewport_offset_x(pgraphics, (::i32)(get_viewport_offset().x - m_scrolldataHorizontal.m_iLine));
+               set_impactport_offset_x(pgraphics, (::i32)(get_impactport_offset().x - m_scrolldataHorizontal.m_iLine));
 
             }
             else if (pscroll->m_ecommand == e_scroll_command_page_left)
             {
 
-               set_viewport_offset_x(pgraphics, (::i32)(get_viewport_offset().x - m_scrolldataHorizontal.m_iPage));
+               set_impactport_offset_x(pgraphics, (::i32)(get_impactport_offset().x - m_scrolldataHorizontal.m_iPage));
 
             }
             else if (pscroll->m_ecommand == e_scroll_command_page_right)
             {
 
-               set_viewport_offset_x(pgraphics, (::i32)(get_viewport_offset().x + m_scrolldataHorizontal.m_iPage));
+               set_impactport_offset_x(pgraphics, (::i32)(get_impactport_offset().x + m_scrolldataHorizontal.m_iPage));
 
             }
             else if (pscroll->m_ecommand == e_scroll_command_line_right)
             {
 
-               set_viewport_offset_x(pgraphics, (::i32)(get_viewport_offset().x + m_scrolldataHorizontal.m_iLine));
+               set_impactport_offset_x(pgraphics, (::i32)(get_impactport_offset().x + m_scrolldataHorizontal.m_iLine));
 
             }
             else if (pscroll->m_ecommand == e_scroll_command_thumb_track)
             {
 
-               set_viewport_offset_x(pgraphics, pscroll->m_nPos);
+               set_impactport_offset_x(pgraphics, pscroll->m_nPos);
 
             }
             else if (pscroll->m_ecommand == e_scroll_command_thumb_position)
             {
 
-               set_viewport_offset_x(pgraphics, pscroll->m_nPos);
+               set_impactport_offset_x(pgraphics, pscroll->m_nPos);
 
             }
 
@@ -191,7 +191,7 @@ namespace user
    }
 
 
-   void horizontal_scroll_base::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
+   void horizontal_scroll_base::on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -206,7 +206,7 @@ namespace user
    }
 
 
-   bool horizontal_scroll_base::validate_viewport_offset(point_i32 & point)
+   bool horizontal_scroll_base::validate_impactport_offset(point_i32 & point)
    {
 
       if (point.x < 0)
@@ -244,7 +244,7 @@ namespace user
    }
 
 
-   void horizontal_scroll_base::on_change_view_size(::draw2d::graphics_pointer & pgraphics)
+   void horizontal_scroll_base::on_change_impact_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto sizeTotal = get_total_size();
@@ -297,12 +297,12 @@ namespace user
 
       m_scrolldataHorizontal.m_iPage = rectangleScroll.width();
 
-      if (validate_viewport_offset(m_pointScroll))
+      if (validate_impactport_offset(m_pointScroll))
       {
 
          layout_scroll_bar(pgraphics);
 
-         on_change_viewport_offset(pgraphics);
+         on_change_impactport_offset(pgraphics);
 
       }
 
@@ -467,19 +467,19 @@ namespace user
             if (pscroll->m_ecommand == e_scroll_command_line_up)
             {
 
-               set_viewport_offset_y(pgraphics, (::i32)(get_viewport_offset().y - m_scrolldataVertical.m_iLine));
+               set_impactport_offset_y(pgraphics, (::i32)(get_impactport_offset().y - m_scrolldataVertical.m_iLine));
 
             }
             else if (pscroll->m_ecommand == e_scroll_command_page_up)
             {
 
-               set_viewport_offset_y(pgraphics, (::i32)(get_viewport_offset().y - m_scrolldataVertical.m_iPage));
+               set_impactport_offset_y(pgraphics, (::i32)(get_impactport_offset().y - m_scrolldataVertical.m_iPage));
 
             }
             else if (pscroll->m_ecommand == e_scroll_command_page_down)
             {
 
-               set_viewport_offset_y(pgraphics, (::i32)(get_viewport_offset().y + m_scrolldataVertical.m_iPage));
+               set_impactport_offset_y(pgraphics, (::i32)(get_impactport_offset().y + m_scrolldataVertical.m_iPage));
 
             }
             else if (pscroll->m_ecommand == e_scroll_command_line_down)
@@ -487,19 +487,19 @@ namespace user
 
                auto iLine = m_scrolldataVertical.m_iLine;
 
-               set_viewport_offset_y(pgraphics, (::i32)(get_viewport_offset().y + iLine));
+               set_impactport_offset_y(pgraphics, (::i32)(get_impactport_offset().y + iLine));
 
             }
             else if (pscroll->m_ecommand == e_scroll_command_thumb_track)
             {
 
-               set_viewport_offset_y(pgraphics, pscroll->m_nPos);
+               set_impactport_offset_y(pgraphics, pscroll->m_nPos);
 
             }
             else if (pscroll->m_ecommand == e_scroll_command_thumb_position)
             {
 
-               set_viewport_offset_y(pgraphics, pscroll->m_nPos);
+               set_impactport_offset_y(pgraphics, pscroll->m_nPos);
 
             }
 
@@ -521,7 +521,7 @@ namespace user
    }
 
 
-   void vertical_scroll_base::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
+   void vertical_scroll_base::on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -667,7 +667,7 @@ namespace user
    }
 
 
-   bool vertical_scroll_base::validate_viewport_offset(point_i32 & point)
+   bool vertical_scroll_base::validate_impactport_offset(point_i32 & point)
    {
 
       if (point.y < 0)
@@ -709,7 +709,7 @@ namespace user
    }
 
 
-   void vertical_scroll_base::on_change_view_size(::draw2d::graphics_pointer & pgraphics)
+   void vertical_scroll_base::on_change_impact_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto sizeTotal = get_total_size();
@@ -762,12 +762,12 @@ namespace user
 
       m_scrolldataVertical.m_iPage = rectangleScroll.height();
 
-      if (validate_viewport_offset(m_pointScroll))
+      if (validate_impactport_offset(m_pointScroll))
       {
 
          layout_scroll_bar(pgraphics);
 
-         on_change_viewport_offset(pgraphics);
+         on_change_impactport_offset(pgraphics);
 
       }
 
@@ -803,26 +803,26 @@ namespace user
    }
 
 
-   void scroll_base::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
+   void scroll_base::on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-      horizontal_scroll_base::on_change_viewport_offset(pgraphics);
+      horizontal_scroll_base::on_change_impactport_offset(pgraphics);
 
-      vertical_scroll_base::on_change_viewport_offset(pgraphics);
+      vertical_scroll_base::on_change_impactport_offset(pgraphics);
 
-      ::user::interaction::on_change_viewport_offset(pgraphics);
+      ::user::interaction::on_change_impactport_offset(pgraphics);
 
    }
 
 
-   bool scroll_base::validate_viewport_offset(point_i32 & point)
+   bool scroll_base::validate_impactport_offset(point_i32 & point)
    {
 
-      bool xValidated = horizontal_scroll_base::validate_viewport_offset(point);
+      bool xValidated = horizontal_scroll_base::validate_impactport_offset(point);
 
-      bool yValidated = vertical_scroll_base::validate_viewport_offset(point);
+      bool yValidated = vertical_scroll_base::validate_impactport_offset(point);
 
-      bool iValidated = ::user::interaction::validate_viewport_offset(point);
+      bool iValidated = ::user::interaction::validate_impactport_offset(point);
 
       return (xValidated || yValidated) && iValidated;
 
@@ -839,7 +839,7 @@ namespace user
    }
 
 
-   void scroll_base::on_change_view_size(::draw2d::graphics_pointer & pgraphics)
+   void scroll_base::on_change_impact_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       m_scrolldataHorizontal.m_bScroll = false;
@@ -928,12 +928,12 @@ namespace user
 
       m_scrolldataVertical.m_iPage = rectangleScroll.height();
 
-      if (validate_viewport_offset(m_pointScroll))
+      if (validate_impactport_offset(m_pointScroll))
       {
 
          layout_scroll_bar(pgraphics);
 
-         on_change_viewport_offset(pgraphics);
+         on_change_impactport_offset(pgraphics);
 
       }
       else
@@ -962,7 +962,7 @@ namespace user
       else
       {
 
-         pscroll->m_nPos = (i32) get_viewport_offset().x;
+         pscroll->m_nPos = (i32) get_impactport_offset().x;
 
       }
 
@@ -1041,7 +1041,7 @@ namespace user
       queue_graphics_call([this, nPos](::draw2d::graphics_pointer & pgraphics)
          {
 
-            set_viewport_offset_x(pgraphics, nPos);
+            set_impactport_offset_x(pgraphics, nPos);
 
          });
 
@@ -1064,7 +1064,7 @@ namespace user
       else
       {
 
-         pscroll->m_nPos = (i32) get_viewport_offset().y;
+         pscroll->m_nPos = (i32) get_impactport_offset().y;
 
       }
 
@@ -1143,7 +1143,7 @@ namespace user
       queue_graphics_call([this, nPos](::draw2d::graphics_pointer & pgraphics)
          {
 
-            set_viewport_offset_y(pgraphics, nPos);
+            set_impactport_offset_y(pgraphics, nPos);
 
          });
 
@@ -1157,7 +1157,7 @@ namespace user
 
       auto sizeTotal = get_total_size();
 
-      auto pointOffset = get_viewport_offset();
+      auto pointOffset = get_impactport_offset();
 
       prectangle->right = (::i32) (prectangle->left + minimum(::width(prectangle), sizeTotal.cx - m_scrolldataHorizontal.m_iPage - pointOffset.x));
 

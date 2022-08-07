@@ -34,7 +34,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 // simultaneous connections (must be done before including winsock.h)
 //#define FD_SETSIZE 1024
 
-// windows 2000 with ipv6 preview installed:
+// windows 2000 with ipv6 thumbnail installed:
 //    http://msdn.microsoft.com/downloads/sdks/platform/tpipv6.asp
 // see the FAQ on how to install
 /*#define WIN32_LEAN_AND_MEAN
@@ -42,7 +42,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #if _MSC_VER < 1200
 #ifndef __CYGWIN__
 #ifdef ENABLE_IPV6
-#include <tpipv6.h>  // For IPv6 Tech Preview.
+#include <tpipv6.h>  // For IPv6 Tech Thumbnail.
 #endif
 #endif
 #endif // _MSC_VER < 1200

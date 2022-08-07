@@ -88,7 +88,7 @@ namespace data
    }
 
 
-   ::count data::get_data_bound_view_count() const
+   ::count data::get_data_bound_impact_count() const
    {
 
       return  0;
@@ -96,7 +96,7 @@ namespace data
    }
 
 
-   ::user::primitive *  data::get_data_bound_view(index iImpact)
+   ::user::primitive *  data::get_data_bound_impact(index iImpact)
    {
 
       return nullptr;

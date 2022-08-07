@@ -1,8 +1,8 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/_draw2d.h"
+#include "aura/graphics/draw2d/_component.h"
 #include "aura/graphics/image/list.h"
 //#include "aura/operating_system.h"
-#include "core/user/simple/_simple.h"
+#include "core/user/simple/_component.h"
 
 
 #define TIMER_HOVER 321654
@@ -382,7 +382,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //   // draw gripper in non-client area
 //   DrawGripper(pgraphics, rectangleWindow);
 //
-//   //pgraphics->SetViewportOrg(pointViewport);
+//   //pgraphics->set_origin(pointContext);
 //}
 
 

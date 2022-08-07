@@ -487,9 +487,9 @@ namespace user
 
          rectangle_f64 rectangleControl(psubitem->m_pdrawmeshsubitem->m_rectangleSubItem);
 
-         auto pointViewport = get_viewport_offset();
+         auto pointContext = get_impactport_offset();
 
-         rectangleControl.offset(pointViewport);
+         rectangleControl.offset(pointContext);
 
          if (!bOnlySizeAndPosition)
          {
@@ -2410,7 +2410,7 @@ ok_control:;
 //
 //            ::draw2d::savedc savedc(pdrawitem->m_pgraphics);
 //
-//            on_viewport_offset(pdrawitem->m_pgraphics);
+//            on_impactport_offset(pdrawitem->m_pgraphics);
 //
 //            __keep(pinteraction->m_pdrawcontext, pdrawitem);
 //

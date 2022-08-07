@@ -42,10 +42,10 @@
 #define PRIestatus PRIi64
 
 
-constexpr ::i64 minimum_int_minus(::i64 i) { return ((::i64) INT_MIN) - i; }
+constexpr int64_t minimum_int_minus(int64_t i) { return ((int64_t) INT_MIN) - i; }
 
 
-enum enum_status : ::i64
+enum enum_status : ::int64_t
 {
 
    e_status_none = INT64_MIN,

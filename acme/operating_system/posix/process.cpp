@@ -13,7 +13,7 @@
 #if !defined(APPLE_IOS)
 
 
-void command_system(string_array & straOutput, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout, ::synchronization_object * psynchronizationobject)
+void command_system(string_array & straOutput, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout, ::synchronization_object * psynchronizationobject, ::file::file * pfileLog)
 {
 
    single_lock singlelock(psynchronizationobject);
@@ -106,9 +106,9 @@ void command_system(string_array & straOutput, int& iExitCode, const char* psz, 
 
    close(stderr_fds[1]);
 
-   fcntl( stdout_fds[0], F_SETFL, fcntl(stdout_fds[0], F_GETFL) | O_NONBLOCK);
+   fcntl(stdout_fds[0], F_SETFL, fcntl(stdout_fds[0], F_GETFL) | O_NONBLOCK);
 
-   fcntl( stderr_fds[0], F_SETFL, fcntl(stderr_fds[0], F_GETFL) | O_NONBLOCK);
+   fcntl(stderr_fds[0], F_SETFL, fcntl(stderr_fds[0], F_GETFL) | O_NONBLOCK);
 
    const int buf_size = 4096;
 
@@ -159,7 +159,7 @@ void command_system(string_array & straOutput, int& iExitCode, const char* psz, 
 
             }
 
-            ::str().get_lines(straOutput, strOutput, "I: ", false, &singlelock);
+            ::str().get_lines(straOutput, strOutput, "I: ", false, &singlelock, pfileLog);
 
          }
 
@@ -181,7 +181,7 @@ void command_system(string_array & straOutput, int& iExitCode, const char* psz, 
 
             }
 
-            ::str().get_lines(straOutput, strError, "E: ", false, &singlelock);
+            ::str().get_lines(straOutput, strError, "E: ", false, &singlelock, pfileLog);
 
          }
 
@@ -259,9 +259,9 @@ void command_system(string_array & straOutput, int& iExitCode, const char* psz, 
 
    }
 
-   ::str().get_lines(straOutput, strOutput, "I: ", true, &singlelock);
+   ::str().get_lines(straOutput, strOutput, "I: ", true, &singlelock, pfileLog);
 
-   ::str().get_lines(straOutput, strError, "E: ", true, &singlelock);
+   ::str().get_lines(straOutput, strError, "E: ", true, &singlelock, pfileLog);
 
 }
 

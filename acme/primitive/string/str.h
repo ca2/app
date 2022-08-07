@@ -399,7 +399,7 @@ public:
 #include "_str_trait_wd32.h"
 
 
-   void get_lines(::string_array & stra, ::string & str, const ::string & strPrefix, bool bFinal, ::synchronization_lock * psynchronizationlock = nullptr);
+   void get_lines(::string_array & stra, ::string & str, const ::string & strPrefix, bool bFinal, ::synchronization_lock * psynchronizationlock = nullptr, ::file::file * pfileLines = nullptr);
 
 
 }; // class str

@@ -13,7 +13,7 @@ enum enum_command_system
 };
 
 
-CLASS_DECL_ACME void command_system(string_array & straOutput, int & iExitCode, const char* psz, enum_command_system ecommandsystem = e_command_system_none, const ::duration & durationTimeout = ::duration::infinite(), ::synchronization_object * psynchronizationobject = nullptr);
+CLASS_DECL_ACME void command_system(string_array & straOutput, int & iExitCode, const char* psz, enum_command_system ecommandsystem = e_command_system_none, const ::duration & durationTimeout = ::duration::infinite(), ::synchronization_object * psynchronizationobject = nullptr, ::file::file * pfileLog = nullptr);
 
 
 

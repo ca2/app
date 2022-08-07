@@ -5226,7 +5226,7 @@ string str::zero_padded(const ::string & strSrc, strsize lenPad)
 }
 
 
-void str::get_lines(::string_array & stra, ::string & str, const ::string & strPrefix, bool bFinal, ::synchronization_lock * psynchronizationlock)
+void str::get_lines(::string_array & stra, ::string & str, const ::string & strPrefix, bool bFinal, ::synchronization_lock * psynchronizationlock, ::file::file * pfileLog)
 {
 
    auto iLimit = str.reverse_find("\n");
@@ -5313,6 +5313,22 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
       {
 
          psynchronizationlock->unlock();
+
+      }
+
+      if(::is_ok(pfileLog))
+      {
+
+         try
+         {
+
+            pfileLog->write(strPrefixedLine + "\n");
+
+         }
+         catch(...)
+         {
+
+         }
 
       }
 

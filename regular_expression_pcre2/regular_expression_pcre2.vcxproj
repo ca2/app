@@ -38,7 +38,7 @@
     <ProjectGuid>{DBA80336-2E72-4DCE-8AB3-C362F3B19106}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>draw2d_direct2d</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">

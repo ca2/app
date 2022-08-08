@@ -97,13 +97,6 @@ HANDLE dup_handle(HANDLE h)
 //   return pbi.PebBaseAddress;
 //}
 
-//
-//string get_display_error(u32 NTStatusMessage)
-//{
-//
-//   return get_last_error_message(NTStatusMessage);
-//
-//}
 
 
 struct shell_execute :

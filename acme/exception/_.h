@@ -37,16 +37,6 @@ inline ::e_status failed_errno_to_status(i32 nErrno) { return _failed_errno_to_s
 
 
 
-#ifdef WINDOWS
-
-
-inline ::e_status last_error_to_status(DWORD dwLastError) { return _last_error_to_status(dwLastError); }
-
-
-CLASS_DECL_ACME string last_error_message(u32 dwError);
-
-
-#endif
 
 
 //namespace exception

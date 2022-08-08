@@ -312,13 +312,4 @@ CLASS_DECL_ACME ::enum_status _errno_to_status(i32 nErrno);
 CLASS_DECL_ACME ::enum_status _failed_errno_to_status(i32 nErrno);
 
 
-#ifdef WINDOWS
-
-
-CLASS_DECL_ACME ::enum_status _last_error_to_status(DWORD dwLastError);
-
-
-#endif
-
-
 

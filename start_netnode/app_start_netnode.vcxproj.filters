@@ -46,7 +46,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="deployment.rc">
+    <ResourceCompile Include="..\..\..\operating-system\operating-system-windows\version.rc">
       <Filter>Source Files</Filter>
     </ResourceCompile>
   </ItemGroup>

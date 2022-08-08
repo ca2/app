@@ -53,7 +53,7 @@ typedef struct
   int instdir_error;
   int rtl;
   int errlvl;
-  int alter_reg_impact;
+  int alter_reg_view;
   int status_update;
 } exec_flags_t;
 

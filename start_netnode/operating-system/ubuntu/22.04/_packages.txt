@@ -1,4 +1,4 @@
-app/app_start_netnode
+app/app_app
 app/aura
 app/aqua
 app/apex

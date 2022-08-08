@@ -37,9 +37,9 @@ namespace app_app
 
       auto poscontext = m_psystem->m_papexsystem->os_context();
 
-      ::file::path path = "C:/basis/operating-system/tool-windows/headless_monitor/deviceinstaller64.exe";
+      ::file::path path = "C:\\basis\\operating-system\\tool-windows\\bin\\hstart.exe";
 
-      poscontext->hidden_run(1_minute, path, "enableidd 1");
+      poscontext->hidden_run(1_minute, path, "/NOCONSOLE /NOUAC \"C:\\basis\\operating-system\\tool-windows\\headless_monitor\\deviceinstaller64.exe enableidd 1\"");
 
       poscontext->hidden_start("C:/Windows/system32/cmd.exe", "/c subst S: C:\\store");
 

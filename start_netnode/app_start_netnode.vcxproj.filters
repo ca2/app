@@ -44,15 +44,16 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{fc4d3e16-4d8c-42e5-aeb6-94b3de76d790}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{6e8d507d-1d54-4ffb-888e-899d6beabfa9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\NewFilter1">
+      <UniqueIdentifier>{65379cbd-0643-478b-912c-b71e040e7e15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="deps.txt">
-      <Filter>Source Files</Filter>
-    </Text>
   </ItemGroup>
 </Project>

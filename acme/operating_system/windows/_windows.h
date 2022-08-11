@@ -11,24 +11,6 @@ inline file_time __file_time(const FILETIME & file_time) { return make64_from32(
 CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h);
 
 
-inline void __throw_last_error(DWORD dwLastError)
-{
-
-   auto estatus = last_error_to_status(dwLastError);
-
-   throw ::exception(estatus);
-
-}
-
-
-inline void __throw_last_error()
-{
-
-   auto lastError = ::GetLastError();
-
-   __throw_last_error(lastError);
-
-}
 
 
 

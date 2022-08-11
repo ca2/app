@@ -21,37 +21,37 @@
     <ClInclude Include="simple_drawing_document.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_drawing_edit_impact.h">
+    <ClInclude Include="simple_drawing_edit_view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="simple_drawing_frame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_drawing_full_impact.h">
+    <ClInclude Include="simple_drawing_full_view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_drawing_lite_impact.h">
+    <ClInclude Include="simple_drawing_lite_view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_drawing_main_impact.h">
+    <ClInclude Include="simple_drawing_main_view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_drawing_pane_impact.h">
+    <ClInclude Include="simple_drawing_pane_view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aaa_want_to_remove_simple_drawing_impact_update_hint.h">
+    <ClInclude Include="aaa_want_to_remove_simple_drawing_view_update_hint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_drawing_switcher_impact.h">
+    <ClInclude Include="simple_drawing_switcher_view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_drawing_toggle_impact.h">
+    <ClInclude Include="simple_drawing_toggle_view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_drawing_top_impact.h">
+    <ClInclude Include="simple_drawing_top_view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="simple_drawing_impact.h">
+    <ClInclude Include="simple_drawing_view.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -71,34 +71,34 @@
     <ClCompile Include="simple_drawing_frame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="simple_drawing_pane_impact.cpp">
+    <ClCompile Include="simple_drawing_pane_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="aaa_want_to_remove_simple_drawing_impact_update_hint.cpp">
+    <ClCompile Include="aaa_want_to_remove_simple_drawing_view_update_hint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="simple_drawing_impact.cpp">
+    <ClCompile Include="simple_drawing_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="simple_drawing_edit_impact.cpp">
+    <ClCompile Include="simple_drawing_edit_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="simple_drawing_full_impact.cpp">
+    <ClCompile Include="simple_drawing_full_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="simple_drawing_lite_impact.cpp">
+    <ClCompile Include="simple_drawing_lite_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="simple_drawing_main_impact.cpp">
+    <ClCompile Include="simple_drawing_main_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="simple_drawing_switcher_impact.cpp">
+    <ClCompile Include="simple_drawing_switcher_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="simple_drawing_toggle_impact.cpp">
+    <ClCompile Include="simple_drawing_toggle_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="simple_drawing_top_impact.cpp">
+    <ClCompile Include="simple_drawing_top_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

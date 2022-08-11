@@ -42,15 +42,12 @@
 #define PRIestatus PRIi64
 
 
-constexpr int64_t minimum_int_minus(int64_t i) { return ((int64_t) INT_MIN) - i; }
-
-
 enum enum_status : ::int64_t
 {
 
    e_status_none = INT64_MIN,
 
-   e_status_process_result_negative_base = minimum_int_minus(1),
+   e_status_process_result_negative_base = (::int64_t) INT_MIN - 1,
 
    error_failed = INT_FAILURE_STATUS(STATUS_RANGE_GENERAL),
    error_not_set,

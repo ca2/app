@@ -47,7 +47,7 @@ enum enum_status : ::int64_t
 
    e_status_none = INT64_MIN,
 
-   e_status_process_result_negative_base = ((::int64_t) INT_MIN) - 1,
+   e_status_process_result_negative_base = (::int64_t) INT_MIN - 1,
 
    error_failed = INT_FAILURE_STATUS(STATUS_RANGE_GENERAL),
    error_not_set,
@@ -308,8 +308,6 @@ INLINE_CONSTEXPR bool is_exit_exception_status(::enum_status estatus)
 }
 
 
+
 CLASS_DECL_ACME ::enum_status _errno_to_status(i32 nErrno);
 CLASS_DECL_ACME ::enum_status _failed_errno_to_status(i32 nErrno);
-
-
-

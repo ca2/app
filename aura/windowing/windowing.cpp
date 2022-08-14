@@ -224,14 +224,12 @@ namespace windowing
    }
 
 
-   //void windowing::set_cursor_position(const ::point_i32 & point)
-   //{
+   void windowing::set_cursor_position(const ::point_i32 & pointCursor)
+   {
 
-   //   throw ::interface_only();
+      m_pointCursor = pointCursor;
 
-   //   //throw ::interface_only();
-
-   //}
+   }
 
 
    ::windowing::window * windowing::window(oswindow oswindow)

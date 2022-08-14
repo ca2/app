@@ -250,14 +250,14 @@ void command_system(string_array & straOutput, int& iExitCode, const char* psz, 
 
    close(stderr_fds[0]);
 
-   if(iExitCode != 0)
-   {
-
-      auto estatus = failed_errno_to_status(iExitCode);
-
-      throw ::exception(estatus);
-
-   }
+//   if(iExitCode != 0)
+//   {
+//
+//      auto estatus = failed_errno_to_status(iExitCode);
+//
+//      throw ::exception(estatus);
+//
+//   }
 
    ::str().get_lines(straOutput, strOutput, "I: ", true, &singlelock, pfileLog);
 

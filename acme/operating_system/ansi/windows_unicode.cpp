@@ -371,7 +371,7 @@ int_bool *  pUsedDefaultChar)
 }
 
 
-CLASS_DECL_ACME string get_last_error_message(u32 dwError)
+CLASS_DECL_ACME string last_error_message(u32 dwError)
 {
 
    string str;

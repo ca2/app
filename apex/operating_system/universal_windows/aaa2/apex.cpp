@@ -306,25 +306,6 @@ string key_to_char(wparam wparam, lparam lparam)
 
 
 
-//string get_last_error_message(u32 dwError)
-//{
-//   wstring wstr;
-//   unichar * p = wstr.get_string_buffer(64 * 1024 / sizeof(unichar));
-//   ::u32 dw = FormatMessageW(
-//              FORMAT_MESSAGE_FROM_SYSTEM,
-//              nullptr,
-//              dwError,
-//              0,
-//              p,
-//              wstr.get_length() / sizeof(unichar),
-//              nullptr);
-//   p[dw] = L'\0';
-//   wstr.release_string_buffer();
-//   string str(wstr);
-//   return str;
-//}
-
-
 
 
 //::u32 WINAPI WaitForSingleObject( _In_ HANDLE hHandle, _In_ ::u32 dw::durations )

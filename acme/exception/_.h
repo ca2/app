@@ -31,26 +31,12 @@
 #include "standard.h"
 
 
-namespace win
-{
+inline ::e_status errno_to_status(i32 nErrno) { return _errno_to_status(nErrno); }
 
-   CLASS_DECL_ACME string error_message(u32 dwError);
-
-}
+inline ::e_status failed_errno_to_status(i32 nErrno) { return _failed_errno_to_status(nErrno); }
 
 
-CLASS_DECL_ACME ::e_status errno_to_status(i32 nErrno);
 
-CLASS_DECL_ACME ::e_status failed_errno_to_status(i32 nErrno);
-
-
-#ifdef WINDOWS
-
-
-CLASS_DECL_ACME ::e_status last_error_to_status(DWORD dwLastError);
-
-
-#endif
 
 
 //namespace exception

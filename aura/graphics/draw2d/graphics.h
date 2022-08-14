@@ -388,10 +388,10 @@ namespace draw2d
       virtual ::point_f64 offset_origin(double x, double y);
 
       // Context Extent
-      virtual ::size_f64 get_context_extents();
-      virtual ::size_f64 set_context_extents(double cx, double cy);
-      virtual ::size_f64 set_context_extents(const ::size_f64 & size);
-      virtual ::size_f64 scale_context_extents(double xNum, double xDenom, double yNum, double yDenom);
+      virtual ::size_f64 get_extents();
+      virtual ::size_f64 set_extents(double cx, double cy);
+      virtual ::size_f64 set_extents(const ::size_f64 & size);
+      virtual ::size_f64 scale_extents(double xNum, double xDenom, double yNum, double yDenom);
 
       // Window Origin
       virtual ::point_f64 GetWindowOrg();

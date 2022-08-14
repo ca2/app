@@ -154,10 +154,10 @@ namespace draw2d_cairo
       point_f64 offset_origin(double nWidth, double nHeight) override;
 
       // Context Extent
-      size_f64 get_context_extents() override;
-      size_f64 set_context_extents(double cx, double cy) override;
-      size_f64 set_context_extents(const ::size_f64 & size_f64) override;
-      size_f64 scale_context_extents(double xNum, double xDenom, double yNum, double yDenom) override;
+      size_f64 get_extents() override;
+      size_f64 set_extents(double cx, double cy) override;
+      size_f64 set_extents(const ::size_f64 & size_f64) override;
+      size_f64 scale_extents(double xNum, double xDenom, double yNum, double yDenom) override;
 
       // Window Origin
       point_f64 GetWindowOrg() override;

@@ -103,7 +103,7 @@ bool set_process_priority(::enum_priority epriority)
 }
 
 
-CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout)
+CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, const char* psz, enum_command_system ecommandsystem, const ::duration& durationTimeout, ::synchronization_object* psynchronizationobject, ::file::file* pfileLines)
 {
 
    straOutput.clear();
@@ -240,6 +240,12 @@ CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, c
 
    durationStart.Now();
 
+   string strError;
+
+   string strOutput;
+
+   single_lock sl(psynchronizationobject);
+
    while (true)
    {
 
@@ -259,16 +265,18 @@ CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, c
 
          }
 
-         string strMessage(sz, dwRead);
+         string str(sz, dwRead);
 
          if(ecommandsystem & e_command_system_inline_log)
          {
 
-            printf("%s", strMessage.c_str());
+            printf("%s", str.c_str());
 
          }
 
-         straOutput.add(strMessage);
+         strOutput += str;
+
+         ::str().get_lines(straOutput, strOutput, "I: ", false, &sl, pfileLines);
 
          if (dwRead == 0)
          {
@@ -291,16 +299,18 @@ CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, c
 
          }
 
-         string strMessage(sz, dwRead);
+         string str(sz, dwRead);
 
          if(ecommandsystem & e_command_system_inline_log)
          {
 
-            fprintf(stderr, "%s", strMessage.c_str());
+            fprintf(stderr, "%s", str.c_str());
 
          }
 
-         strError += strMessage;
+         strError += str;
+
+         ::str().get_lines(straOutput, strError, "E: ", false, &sl, pfileLines);
 
          if (dwRead == 0)
          {
@@ -343,6 +353,9 @@ CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, c
 
    CloseHandle(pi.hProcess);
    CloseHandle(pi.hThread);
+
+   ::str().get_lines(straOutput, strOutput, "I: ", true, &sl, pfileLines);
+   ::str().get_lines(straOutput, strOutput, "E: ", true, &sl, pfileLines);
 
 
    //return ::success;

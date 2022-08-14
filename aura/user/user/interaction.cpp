@@ -2170,6 +2170,10 @@ namespace user
 
       layout().sketch().display() = e_display_zoomed;
 
+      ::rectangle_i32 rectangleRequest = this->screen_rect();
+
+      best_workspace(nullptr, rectangleRequest, true, layout().sketch().activation(), layout().sketch().zorder());
+
    }
 
 
@@ -13901,7 +13905,7 @@ namespace user
          iMatchingMonitor = 0;
 
       }
-      else
+      else香港
       {
 
          if (m_bWorkspaceFullScreen)
@@ -13968,7 +13972,11 @@ namespace user
 
       ::rectangle_i32 rectangleNew;
 
-      auto pwindowing = windowing();
+      auto psession = get_session();
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing1();
 
       auto pdisplay = pwindowing->display();
 
@@ -14001,7 +14009,7 @@ namespace user
 
          place(rectangleWorkspace);
 
-         display(e_display_zoomed, eactivation | e_activation_display_change);
+         //display(e_display_zoomed, eactivation | e_activation_display_change);
 
       }
 

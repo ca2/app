@@ -41,11 +41,13 @@ inline ::e_status failed_errno_to_status(i32 nErrno) { return _failed_errno_to_s
 #ifdef WINDOWS
 
 
+CLASS_DECL_ACME ::enum_status _hresult_to_status(HRESULT hr);
 CLASS_DECL_ACME ::enum_status _last_error_to_status(DWORD dwLastError);
 inline ::e_status last_error_to_status(DWORD dwLastError) { return _last_error_to_status(dwLastError); }
 
 
 CLASS_DECL_ACME string last_error_message(u32 dwError);
+
 
 
 #endif

@@ -13905,7 +13905,7 @@ namespace user
          iMatchingMonitor = 0;
 
       }
-      else香港
+      else
       {
 
          if (m_bWorkspaceFullScreen)

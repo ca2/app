@@ -5,6 +5,29 @@
 #include "acme/constant/parallelization.h"
 
 
+#include "_c.h"
+
+
+inline void __throw_last_error(DWORD dwLastError)
+{
+
+   auto estatus = last_error_to_status(dwLastError);
+
+   throw ::exception(estatus);
+
+}
+
+
+inline void __throw_last_error()
+{
+
+   auto lastError = ::GetLastError();
+
+   __throw_last_error(lastError);
+
+}
+
+
 inline ::e_status windows_wait_result_to_status(int iResult)
 {
 
@@ -58,6 +81,9 @@ wstring CLASS_DECL_ACME windows_get_root(const wstring & wstrPath);
 
 
 #include "api.h"
+
+
+
 
 
 

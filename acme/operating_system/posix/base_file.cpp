@@ -736,6 +736,13 @@ bool is_directory(const char * path)
 
       int iErrNo = errno;
 
+      if(iErrNo == ENOTDIR)
+      {
+
+         return false;
+
+      }
+
       auto estatus = errno_to_status(iErrNo);
 
       if(estatus == error_file_not_found)

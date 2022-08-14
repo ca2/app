@@ -889,9 +889,6 @@
     <ClInclude Include="_factory.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="deployment.rc" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\acme\acme.vcxproj">
       <Project>{638b242f-0f21-41c3-9f66-724660046133}</Project>
     </ProjectReference>
@@ -906,7 +903,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="deps.txt" />
+    <ResourceCompile Include="deployment.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

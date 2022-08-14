@@ -643,7 +643,7 @@ namespace draw2d_cairo
 //}
 
 
-   size_f64 graphics::get_context_extents()
+   size_f64 graphics::get_extents()
    {
 
       return ::size_f64(0, 0);
@@ -676,7 +676,7 @@ namespace draw2d_cairo
    }
 
 
-   size_f64 graphics::set_context_extents(const ::size_f64 & size_f64)
+   size_f64 graphics::set_extents(const ::size_f64 & size_f64)
    {
 
       return ::size_f64(0, 0);
@@ -3359,7 +3359,7 @@ namespace draw2d_cairo
    }
 
 
-   size_f64 graphics::set_context_extents(double x, double y)
+   size_f64 graphics::set_extents(double x, double y)
    {
 
       throw ::interface_only();
@@ -3369,10 +3369,10 @@ namespace draw2d_cairo
    }
 
 
-   size_f64 graphics::scale_context_extents(double xNum, double xDenom, double yNum, double yDenom)
+   size_f64 graphics::scale_extents(double xNum, double xDenom, double yNum, double yDenom)
    {
 
-      return ::draw2d::graphics::scale_context_extents(xNum, xDenom, yNum, yDenom);
+      return ::draw2d::graphics::scale_extents(xNum, xDenom, yNum, yDenom);
 
    }
 

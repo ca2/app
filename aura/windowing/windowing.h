@@ -99,7 +99,8 @@ namespace windowing
       virtual void set_cursor_set_from_matter(::object * pobjectContext, const ::file::path & pathDir);
 
       
-
+      inline ::point_i32 get_cursor_position() { return m_pointCursor; }
+      virtual void set_cursor_position(const ::point_i32 & pointCursor);
 
 
       virtual ::windowing::window * window(oswindow oswindow);

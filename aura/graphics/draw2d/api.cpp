@@ -29,13 +29,13 @@ namespace draw2d
 
       ::rectangle_i32 clipRect;
 
-      size_i32 viewportExt = pgraphics->get_context_extents();
+      size_i32 viewportExt = pgraphics->get_extents();
       point_i32 viewportOrg = pgraphics->get_origin();
 
       pgraphics->offset_origin(ppointOffset->x, ppointOffset->y);
 
 
-      pgraphics->scale_context_extents((i32)dRateX, 1, 1, 1);
+      pgraphics->scale_extents((i32)dRateX, 1, 1, 1);
 
       pgraphics->begin_path();
       pgraphics->poly_bezier(ppoints, iCount);
@@ -59,7 +59,7 @@ namespace draw2d
 
       ::rectangle_i32 clipRect;
 
-      size_i32 viewportExt = pgraphics->get_context_extents();
+      size_i32 viewportExt = pgraphics->get_extents();
       point_i32 viewportOrg = pgraphics->get_origin();
 
       pgraphics->offset_origin(
@@ -68,7 +68,7 @@ namespace draw2d
       ppointOffset->y);
 
 
-      pgraphics->scale_context_extents((i32)dRateX, 1, 1, 1);
+      pgraphics->scale_extents((i32)dRateX, 1, 1, 1);
 
       pgraphics->begin_path();
       pgraphics->poly_bezier(ppoints, iCount);
@@ -93,7 +93,7 @@ namespace draw2d
 
       ::rectangle_i32 clipRect;
 
-      size_i32 viewportExt = pgraphics->get_context_extents();
+      size_i32 viewportExt = pgraphics->get_extents();
       point_i32 viewportOrg = pgraphics->get_origin();
 
       pgraphics->offset_origin(
@@ -102,7 +102,7 @@ namespace draw2d
       ppointOffset->y);
 
 
-      pgraphics->scale_context_extents((i32)(dRateX * 1000.0), 1, 1, 1);
+      pgraphics->scale_extents((i32)(dRateX * 1000.0), 1, 1, 1);
 
       for (i32 i = 0; i < pglyph->get_size(); i++)
 

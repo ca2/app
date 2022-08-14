@@ -4,7 +4,7 @@
 
 #include "aura/user/user/_user.h"
 #include "aura/user/appearance/_appearance.h"
-#include "nano2d/_nano2d.h"
+#include "nano2d/_component.h"
 
 
 

@@ -11,10 +11,10 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
-#include "ColorPicker.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "_library.h"
 #endif
+#include "ColorPicker.h"
 
 //#include <nanogui/colorpicker.h>
 //#include <nanogui/layout.h>

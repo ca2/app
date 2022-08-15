@@ -1,3 +1,3 @@
 app/draw2d_cairo
-platform-linux/node_linux
+operating-system-linux/node_linux
 app/crypto_openssl

@@ -3,7 +3,7 @@ project(nanogui CXX)
 
 
 list(APPEND library_source
-   nano2d/_nano2d.h
+   nano2d/_component.h
    nano2d/context.cpp
    nano2d/context.h
    nano2d/draw2d_context.cpp

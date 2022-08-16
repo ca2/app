@@ -3,7 +3,7 @@
 // hi5 contribution...
 #include "framework.h"
 //#include "aura/node/windows/system_interaction.h"
-#include "_windowing.h"
+//#include "_windowing.h"
 
 #if !BROAD_PRECOMPILED_HEADER
 
@@ -30,6 +30,13 @@ namespace windowing
 
    windowing::~windowing()
    {
+
+   }
+
+
+   void windowing::_initialize_windowing()
+   {
+
 
    }
 
@@ -799,6 +806,22 @@ namespace windowing
    }
 
 
+   bool windowing::_xcb_process_event(void * p)
+   {
+
+      return false;
+
+   }
+
+
+   bool windowing::xcb_message_loop_step()
+   {
+
+      return true;
+
+   }
+
+
 #endif
 
 
@@ -812,6 +835,52 @@ namespace windowing
    }
 
 
+   ::e_status windowing::is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
+   {
+
+      return ::success;
+
+   }
+
+
+   void windowing::install_keyboard_hook(::matter * pmatterListener)
+   {
+
+      //return ::success;
+
+   }
+
+
+   void windowing::uninstall_keyboard_hook(::matter * pmatterListener)
+   {
+
+      //return ::success;
+
+   }
+
+
+   ::e_status windowing::is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
+   {
+
+      return ::success;
+
+   }
+
+
+   void windowing::install_mouse_hook(::matter * pmatterListener)
+   {
+
+      //return ::success;
+
+   }
+
+
+   void windowing::uninstall_mouse_hook(::matter * pmatterListener)
+   {
+
+      //return ::success;
+
+   }
 
 
 } // namespace windowing

@@ -790,6 +790,7 @@
     <ClCompile Include="user\simple\frame_window.cpp" />
     <ClCompile Include="user\simple\main_frame.cpp" />
     <ClCompile Include="user\simple\scroll_bar.cpp" />
+    <ClCompile Include="user\simple\tab_document.cpp" />
     <ClCompile Include="user\user\control_bar.cpp" />
     <ClCompile Include="user\user\control_property.cpp" />
     <ClCompile Include="user\user\data_exchange.cpp" />
@@ -889,6 +890,7 @@
     <ClInclude Include="user\simple\frame_window.h" />
     <ClInclude Include="user\simple\main_frame.h" />
     <ClInclude Include="user\simple\scroll_bar.h" />
+    <ClInclude Include="user\simple\tab_document.h" />
     <ClInclude Include="user\simple\_.h" />
     <ClInclude Include="user\simple\_impl.h" />
     <ClInclude Include="user\simple\_simple.h" />

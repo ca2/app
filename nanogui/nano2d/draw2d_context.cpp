@@ -4,7 +4,6 @@
 #include "_library.h"
 #endif
 #include "aura/graphics/draw2d/_component.h"
-#include "_nano2d.h"
 
 
 namespace nano2d

@@ -1849,7 +1849,7 @@ namespace draw2d
 //} // namespace OPERATING_SYSTEM_NAMESPACE
 
 
-#include "aura/windowing/_windowing.h"
+#include "aura/windowing/_component.h"
 
 
 #include "aura/platform/theme.h"

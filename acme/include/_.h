@@ -275,24 +275,24 @@ namespace windowing_universal_windows
 #define APPLICATION_CLASS app
 
 
-namespace windowing_x11
-{
+//namespace windowing_x11
+//{
+//
+//
+//   class node;
+//
+//
+//} // namespace windowing_x11
 
 
-   class node;
-
-
-} // namespace windowing_x11
-
-
-namespace windowing_xcb
-{
-
-
-   class node;
-
-
-} // namespace windowing_xcb
+//namespace windowing_xcb
+//{
+//
+//
+//   class node;
+//
+//
+//} // namespace windowing_xcb
 
 
 namespace node_gtk

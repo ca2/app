@@ -30,7 +30,7 @@ void operating_system_initialize_nano(::factory::factory * pfactory)
 
    auto psystem = pfactory->m_psystem;
 
-   if(edesktop & ::user::e_desktop_kde)
+   if(edesktop & ::user::e_desktop_kde && psystem->node()->has_xcb())
    {
 
       psystem->m_ewindowing = e_windowing_xcb;

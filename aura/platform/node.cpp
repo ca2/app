@@ -21,6 +21,8 @@ namespace aura
 
       m_pauranode = this;
 
+      m_bUnhookX = true;
+
    }
 
 

@@ -5,7 +5,7 @@
 #include "framework.h"
 #include "_nano.h"
 //#include "aura_posix/_.h"
-//#include "aura_posix/_aura_posix.h"
+//#include "aura_posix/_library.h"
 
 
 struct MWMHints

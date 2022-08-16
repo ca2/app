@@ -4,7 +4,7 @@
 #endif
 #include "context_glx.h"
 #include "aura_posix/_.h"
-#include "aura_posix/_aura_posix.h"
+#include "aura_posix/_library.h"
 #include "aura_posix/x11/display_lock.h"
 
 

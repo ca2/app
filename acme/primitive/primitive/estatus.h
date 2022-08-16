@@ -26,7 +26,7 @@ inline bool failed(::i64 i)
 }
 
 
-class CLASS_DECL_ACME e_status
+class e_status
 {
 public:
    
@@ -41,6 +41,7 @@ public:
    e_status(i32 i) : m_estatus((::enum_status) i) {}
    e_status(i64 i) : m_estatus((::enum_status) i) {}
    
+
    operator ::enum_status () const { return m_estatus; }
 
    operator bool() const { return this->succeeded(); }
@@ -80,10 +81,8 @@ public:
    bool operator >(const e_status& estatus) const { return m_estatus > (enum_status) estatus; }
    bool operator >(const enum_status& estatus) const { return m_estatus > estatus; }
 
-   
-   
-};
 
+};
 
 
 inline bool succeeded(const ::e_status& estatus)

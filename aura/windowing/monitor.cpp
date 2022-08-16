@@ -47,7 +47,9 @@ namespace windowing
    void monitor::get_monitor_rectangle(::RECTANGLE_I32 * prectangle)
    {
 
-      m_psystem->get_session()->m_paurasession->user()->m_pdesktopenvironment->get_monitor_rectangle(m_iIndex, &m_rectangle);
+      auto pdesktopenvironment = m_psystem->get_session()->m_paurasession->user()->m_pdesktopenvironment;
+
+      pdesktopenvironment->get_monitor_rectangle(m_iIndex, &m_rectangle);
 
       __copy(prectangle, m_rectangle);
 
@@ -57,7 +59,9 @@ namespace windowing
    void monitor::get_workspace_rectangle(::RECTANGLE_I32 * prectangle)
    {
 
-      m_psystem->get_session()->m_paurasession->user()->m_pdesktopenvironment->get_workspace_rectangle(m_iIndex, &m_rectangle);
+      auto pdesktopenvironment = m_psystem->get_session()->m_paurasession->user()->m_pdesktopenvironment;
+
+      pdesktopenvironment->get_workspace_rectangle(m_iIndex, &m_rectangle);
 
       __copy(prectangle, m_rectangleWorkspace);
 

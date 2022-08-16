@@ -608,4 +608,22 @@ void * x11_get_display(::object * pobject)
 }
 
 
+void initialize_x11_display(::object * pobject, void * pX11Display)
+{
+
+   ::x11::display::get(pobject, false, (Display *) pX11Display);
+
+}
+
+
+void * initialize_x11_display(::object * pobject)
+{
+
+   auto pdisplay = ::x11::display::get(pobject, false);
+
+   return pdisplay->m_pdisplay;
+
+}
+
+
 

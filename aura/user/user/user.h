@@ -54,6 +54,8 @@ namespace user
 
       __composite(::user::shell)                m_pshell;
 
+      __pointer(::windowing::desktop_environment)  m_pdesktopenvironment;
+
       bool                                      m_bOnInitializeWindowObject;
 
 

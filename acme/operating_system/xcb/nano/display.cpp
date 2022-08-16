@@ -4,8 +4,8 @@
 //
 #include "framework.h"
 #include "_nano.h"
-#include "aura_posix/_.h"
-#include "aura_posix/_aura_posix.h"
+//#include "aura_posix/_.h"
+//#include "aura_posix/_aura_posix.h"
 
 
 struct MWMHints
@@ -594,7 +594,7 @@ namespace xcb
 
 #if defined(WITH_XCB)
 
-      m_pconnection = (xcb_connection_t *) m_psystem->m_pnode->m_pAuraPosix->m_pxcbconnection;
+      m_pconnection = (xcb_connection_t *) m_psystem->m_pnode->get_os_xcb_connection();
 
 #endif
 

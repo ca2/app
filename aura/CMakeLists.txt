@@ -447,6 +447,8 @@ list(APPEND library_source
    windowing/cursor.h
    windowing/cursor_manager.cpp
    windowing/cursor_manager.h
+   windowing/desktop_environment.cpp
+   windowing/desktop_environment.h
    windowing/display.cpp
    windowing/display.h
    windowing/icon.cpp
@@ -684,7 +686,7 @@ endif ()
 
 list(APPEND windowing_source
    windowing/_.h
-   windowing/_windowing.h
+   windowing/_component.h
    #windowing/buffer.cpp
    #windowing/buffer.h
    #windowing/button.cpp

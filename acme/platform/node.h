@@ -61,8 +61,8 @@ namespace acme
       ::windowing_universal_windows::node *                 m_pWindowingUniversalWindowsNode;
 
 
-      ::windowing_x11::node *                               m_pNodeX11;
-      ::windowing_xcb::node *                               m_pNodeXcb;
+      //::windowing_x11::node *                               m_pNodeX11;
+      //::windowing_xcb::node *                               m_pNodeXcb;
       ::node_gtk::node *                                    m_pNodeGtk;
       ::node_gnome::node *                                  m_pNodeGnome;
       ::node_kde::node *                                    m_pNodeKDE;
@@ -167,16 +167,6 @@ namespace acme
       virtual ::file::path get_last_run_application_path(const ::string & strAppId);
       virtual void  set_last_run_application_path(const string& strAppId);
 
-      virtual ::e_status is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
-
-      virtual void install_keyboard_hook(::matter * pmatterListener);
-      virtual void uninstall_keyboard_hook(::matter * pmatterListener);
-      
-      virtual ::e_status is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
-
-      virtual void install_mouse_hook(::matter * pmatterListener);
-      virtual void uninstall_mouse_hook(::matter * pmatterListener);
-
 
       virtual ::file::path _module_path();
 
@@ -234,6 +224,11 @@ namespace acme
       virtual int os_launch_uri(const ::string & pszUri, char * pszError = NULL, int iBufferSize = 0);
 
       virtual void enable_wallpaper_change_notification();
+
+      virtual bool has_xcb() const;
+
+      virtual void * get_os_xcb_connection();
+
 
 //      template < typename PREDICATE >
 //      void node_fork(PREDICATE predicate)

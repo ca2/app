@@ -357,9 +357,6 @@
     <ClInclude Include="user\simple\_impl.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\_simple.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
     <ClInclude Include="user\menu\button.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
@@ -488,6 +485,12 @@
     </ClInclude>
     <ClInclude Include="constant\idpool.h">
       <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\tab_document.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\_component.h">
+      <Filter>Header Files\user\simple</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -717,6 +720,9 @@
     </ClCompile>
     <ClCompile Include="user\user\impact_kit.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\tab_document.cpp">
+      <Filter>Source Files\user\simple</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

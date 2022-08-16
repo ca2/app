@@ -131,9 +131,10 @@
     <ClInclude Include="user\simple\frame_window.h" />
     <ClInclude Include="user\simple\main_frame.h" />
     <ClInclude Include="user\simple\scroll_bar.h" />
+    <ClInclude Include="user\simple\tab_document.h" />
     <ClInclude Include="user\simple\_.h" />
+    <ClInclude Include="user\simple\_component.h" />
     <ClInclude Include="user\simple\_impl.h" />
-    <ClInclude Include="user\simple\_simple.h" />
     <ClInclude Include="user\user\button.h" />
     <ClInclude Include="user\user\combo_box.h" />
     <ClInclude Include="user\user\list_box.h" />
@@ -254,6 +255,7 @@
     <ClCompile Include="user\simple\frame_window.cpp" />
     <ClCompile Include="user\simple\main_frame.cpp" />
     <ClCompile Include="user\simple\scroll_bar.cpp" />
+    <ClCompile Include="user\simple\tab_document.cpp" />
     <ClCompile Include="user\user\control_bar.cpp" />
     <ClCompile Include="user\user\control_property.cpp" />
     <ClCompile Include="user\user\data_exchange.cpp" />
@@ -330,7 +332,6 @@
     <AppContainerApplication>true</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformMinVersion>10.0.19041.0</WindowsTargetPlatformMinVersion>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
     <ProjectName>base</ProjectName>
   </PropertyGroup>

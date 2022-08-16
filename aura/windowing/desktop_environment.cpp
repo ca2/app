@@ -11,6 +11,7 @@ namespace windowing
    desktop_environment::desktop_environment()
    {
 
+      m_bUnhook = false;
 
    }
 
@@ -21,6 +22,24 @@ namespace windowing
 
 
    }
+
+
+   void desktop_environment::get_monitor_rectangle(::index iMonitor, ::RECTANGLE_I32 * prectangle)
+   {
+
+
+   }
+
+
+   void desktop_environment::get_workspace_rectangle(::index iMonitor, ::RECTANGLE_I32 * prectangle)
+   {
+
+
+
+   }
+
+
+
 
 
    void desktop_environment::windowing_post(const ::procedure & procedure)

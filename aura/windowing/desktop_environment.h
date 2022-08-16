@@ -1,8 +1,40 @@
 //
-// Created by camilo on 8/16/22.
+// Created by camilo on 8/16/22. <3ThomasBorregaardSorensen!!
 //
 
-#ifndef BASIS_DESKTOP_ENVIRONMENT_H
-#define BASIS_DESKTOP_ENVIRONMENT_H
 
-#endif //BASIS_DESKTOP_ENVIRONMENT_H
+namespace windowing
+{
+
+
+   class CLASS_DECL_AURA desktop_environment :
+      virtual public ::acme::department
+   {
+   public:
+
+
+      bool                                      m_bUnhook;
+      __pointer(::windowing::windowing)         m_pwindowing;
+
+
+      desktop_environment();
+      ~desktop_environment() override;
+
+
+      virtual void get_monitor_rectangle(::index iMonitor, ::RECTANGLE_I32 * prectangle);
+      virtual void get_workspace_rectangle(::index iMonitor, ::RECTANGLE_I32 * prectangle);
+
+
+      virtual void windowing_post(const ::procedure & procedure);
+
+
+      virtual bool message_loop_step();
+
+
+   };
+
+
+} // namespace windowing
+
+
+

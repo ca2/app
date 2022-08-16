@@ -1421,7 +1421,16 @@ namespace user
       //::e_status estatus = ::success;
 
       //estatus = 
+
+      __construct(m_pdesktopenvironment);
+
+      m_pdesktopenvironment->m_bUnhook = m_psystem->m_pauranode->m_bUnhookX;
+
       __compose(m_pwindowing);
+
+      m_pdesktopenvironment->m_pwindowing = m_pwindowing;
+
+      m_pwindowing->_initialize_windowing();
 
       //if (!estatus)
       //{

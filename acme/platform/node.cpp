@@ -40,8 +40,8 @@ namespace acme
       m_pApexPlatform = nullptr;
       m_pAuraPlatform = nullptr;
 
-      m_pNodeX11 = nullptr;
-      m_pNodeXcb = nullptr;
+      //m_pNodeX11 = nullptr;
+      //m_pNodeXcb = nullptr;
 
       m_pNodeGnome = nullptr;
       m_pNodeKDE = nullptr;
@@ -539,54 +539,6 @@ namespace acme
    }
 
 
-   ::e_status node::is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
-   {
-
-      return ::success;
-
-   }
-
-
-   void node::install_keyboard_hook(::matter * pmatterListener)
-   {
-
-      //return ::success;
-
-   }
-
-
-   void node::uninstall_keyboard_hook(::matter * pmatterListener)
-   {
-
-      //return ::success;
-
-   }
-
-
-   ::e_status node::is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
-   {
-
-      return ::success;
-
-   }
-
-   void node::install_mouse_hook(::matter * pmatterListener)
-   {
-
-      //return ::success;
-
-   }
-
-
-
-   void node::uninstall_mouse_hook(::matter * pmatterListener)
-   {
-
-      //return ::success;
-
-   }
-
-
    ::file::path node::_module_path()
    {
 
@@ -820,6 +772,22 @@ namespace acme
    void node::enable_wallpaper_change_notification()
    {
 
+
+   }
+
+
+   bool node::has_xcb() const
+   {
+
+      return false;
+
+   }
+
+
+   void * node::get_os_xcb_connection()
+   {
+
+      return nullptr;
 
    }
 

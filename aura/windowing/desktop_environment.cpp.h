@@ -1,8 +1,0 @@
-//
-// Created by camilo on 8/16/22.
-//
-
-#ifndef BASIS_DESKTOP_ENVIRONMENT_CPP_H
-#define BASIS_DESKTOP_ENVIRONMENT_CPP_H
-
-#endif //BASIS_DESKTOP_ENVIRONMENT_CPP_H

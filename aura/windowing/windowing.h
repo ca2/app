@@ -73,6 +73,9 @@ namespace windowing
       inline ::aura::system* get_system() const;
 
 
+      virtual void _initialize_windowing();
+
+
       virtual void initialize_windowing(::user::user * puser);
 
       virtual void defer_term_ui();
@@ -204,6 +207,10 @@ namespace windowing
 
       virtual void _libsn_start_context();
 
+      virtual bool _xcb_process_event(void * p);
+
+      virtual bool xcb_message_loop_step();
+
 
 #endif
 
@@ -234,6 +241,17 @@ namespace windowing
 
 
 #endif
+
+
+      virtual ::e_status is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
+
+      virtual void install_keyboard_hook(::matter * pmatterListener);
+      virtual void uninstall_keyboard_hook(::matter * pmatterListener);
+
+      virtual ::e_status is_mouse_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
+
+      virtual void install_mouse_hook(::matter * pmatterListener);
+      virtual void uninstall_mouse_hook(::matter * pmatterListener);
 
 
    };

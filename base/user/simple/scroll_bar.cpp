@@ -142,6 +142,13 @@ void simple_scroll_bar::on_message_mouse_move(::message::message * pmessage)
 bool simple_scroll_bar::scrollbar_action(const ::item * pitem, ::draw2d::graphics_pointer & pgraphics)
 {
 
+   if(::is_null(pitem))
+   {
+
+      return false;
+
+   }
+
    switch(pitem->m_eelement)
    {
    case ::e_element_scrollbar_rectA:

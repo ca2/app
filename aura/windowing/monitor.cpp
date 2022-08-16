@@ -61,7 +61,7 @@ namespace windowing
 
       auto pdesktopenvironment = m_psystem->get_session()->m_paurasession->user()->m_pdesktopenvironment;
 
-      pdesktopenvironment->get_workspace_rectangle(m_iIndex, &m_rectangle);
+      pdesktopenvironment->get_workspace_rectangle(m_iIndex, &m_rectangleWorkspace);
 
       __copy(prectangle, m_rectangleWorkspace);
 

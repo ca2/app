@@ -56,7 +56,7 @@ CLASS_DECL_ACME int _status_exit_code(enum_status estatus)
 
 #else
 
-   if (m_estatus >= -125)
+   if (estatus >= -125)
    {
 
       return -(int)(estatus);

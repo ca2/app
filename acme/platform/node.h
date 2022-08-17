@@ -57,8 +57,8 @@ namespace acme
       //:: IDENTIFIER_PREFIX_OPERATING_SYSTEM(_node)::node *  m_pNode;
 
 
-      ::windowing_win32::node *                             m_pWindowingWin32Node;
-      ::windowing_universal_windows::node *                 m_pWindowingUniversalWindowsNode;
+      //::windowing_win32::node *                             m_pWindowingWin32Node;
+      //::windowing_universal_windows::node *                 m_pWindowingUniversalWindowsNode;
 
 
       //::windowing_x11::node *                               m_pNodeX11;

@@ -672,6 +672,9 @@
     <ClCompile Include="graphics\draw2d\holder.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
+    <ClCompile Include="windowing\desktop_environment.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">

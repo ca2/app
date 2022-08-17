@@ -52,7 +52,7 @@ namespace acme
       m_pNodeDesktopEnvironmentXfce = nullptr;
 
 
-      m_pWindowingWin32Node = nullptr;
+      //m_pWindowingWin32Node = nullptr;
 
 #ifdef LINUX
 

@@ -250,24 +250,24 @@ namespace aura
 } // namespace aura
 
 
-namespace windowing_win32
-{
+//namespace windowing_win32
+//{
+//
+//
+//   class node;
+//
+//
+//} // namespace windowing_win32
 
 
-   class node;
-
-
-} // namespace windowing_win32
-
-
-namespace windowing_universal_windows
-{
-
-   
-   class node;
-
-
-} // namespace windowing_universal_windows
+//namespace windowing_universal_windows
+//{
+//
+//   
+//   class node;
+//
+//
+//} // namespace windowing_universal_windows
 
 
 

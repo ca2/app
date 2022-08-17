@@ -39,7 +39,7 @@ CLASS_DECL_ACME ::e_status operator & (enum_status e1, enum_status e2)
 }
 
 
-CLASS_DECL_ACME int status_exit_code(enum_status estatus)
+CLASS_DECL_ACME int _status_exit_code(enum_status estatus)
 {
 
    

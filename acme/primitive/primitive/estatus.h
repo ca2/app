@@ -68,7 +68,7 @@ public:
 
    int error_status() const { return succeeded() ? 0 : (int)m_estatus; }
 
-   int exit_code() const;
+   int exit_code() const { return succeeded() ? 0 : (int)_status_exit_code(m_estatus); }
 
    e_status& operator =(enum_status estatus) { m_estatus = estatus; return *this; }
    e_status& operator =(const e_status & estatus) { m_estatus = (enum_status) estatus; return *this; }

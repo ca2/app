@@ -20,38 +20,6 @@ CLASS_DECL_ACME string __string(const ::e_status & estatus)
 }
 
 
-int ::e_status::exit_code() const
-{
-
-#ifdef WINDOWS
-
-   return succeeded() ? 0 : (int) m_estatus;
-
-#else
-
-   if(m_estatus >= 0)
-   {
-
-      return 0;
-
-   }
-   else if(m_estatus >= -125)
-   {
-
-      return -(int)(m_estatus);
-
-   }
-   else
-   {
-
-      return 125;
-
-   }
-
-#endif
-
-}
-
 
 CLASS_DECL_ACME ::e_status worst(enum_status e1, enum_status e2)
 {
@@ -69,3 +37,41 @@ CLASS_DECL_ACME ::e_status operator & (enum_status e1, enum_status e2)
    return worst(e1, e2);
 
 }
+
+
+CLASS_DECL_ACME int status_exit_code(enum_status estatus)
+{
+
+   
+   if (succeeded(estatus))
+   {
+
+      return 0;
+
+   }
+
+#ifdef WINDOWS
+   
+   return -(i32)estatus;
+
+#else
+
+   if (m_estatus >= -125)
+   {
+
+      return -(int)(estatus);
+
+   }
+   else
+   {
+
+      return 125;
+
+   }
+
+#endif
+
+}
+
+
+

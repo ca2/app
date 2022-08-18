@@ -12,6 +12,4 @@ operating-system-linux/acme_linux
 operating-system-posix/acme_posix
 operating-system-linux/apex_linux
 operating-system-posix/apex_posix
-third/sqlite
 app/regular_expression_pcre2
-third/pcre

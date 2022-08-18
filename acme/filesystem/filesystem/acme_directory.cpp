@@ -1141,7 +1141,9 @@ int acme_directory::make_path(const char * psz)
 bool acme_directory::_is(bool & bDir, const char * path)
 {
 
-   bDir = ::is_directory(path);
+   auto pathFinal = m_pacmepath->_final(path);
+
+   bDir = ::is_directory(pathFinal);
 
    return true;
 

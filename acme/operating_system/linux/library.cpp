@@ -100,6 +100,7 @@ CLASS_DECL_ACME void * __node_library_open(const char * pszPath, string & strMes
       strPath = "lib" + strPath;
 
    void * plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_LAZY | RTLD_NODELETE);
+   //void * plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_NODELETE);
 
    if(plibrary == nullptr)
    {

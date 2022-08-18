@@ -878,7 +878,6 @@ bool file_exists(const char * path)
 void create_directory(const char * path)
 {
 
-
    if (::mkdir(path, S_IRWXU | S_IRWXG | S_IRWXO) != 0)
    {
       
@@ -910,7 +909,7 @@ void erase_directory(const char * path)
 {
 
 
-   if (::mkdir(path, S_IRWXU | S_IRWXG | S_IRWXO) != 0)
+   if (::rmdir(path) != 0)
    {
 
       auto estatus =  errno_to_status(errno);

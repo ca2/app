@@ -265,6 +265,13 @@ CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, c
 
          }
 
+         if (dwRead == 0)
+         {
+
+            break;
+
+         }
+
          string str(sz, dwRead);
 
          if(ecommandsystem & e_command_system_inline_log)
@@ -278,13 +285,6 @@ CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, c
 
          ::str().get_lines(straOutput, strOutput, "I: ", false, &sl, pfileLines);
 
-         if (dwRead == 0)
-         {
-
-            break;
-
-         }
-
       };
 
       while (true)
@@ -293,6 +293,13 @@ CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, c
          DWORD dwRead = 0;
 
          if (!ReadFile(hErrRd, sz, 256, &dwRead, nullptr))
+         {
+
+            break;
+
+         }
+
+         if (dwRead == 0)
          {
 
             break;
@@ -311,13 +318,6 @@ CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, c
          strError += str;
 
          ::str().get_lines(straOutput, strError, "E: ", false, &sl, pfileLines);
-
-         if (dwRead == 0)
-         {
-
-            break;
-
-         }
 
       };
 
@@ -355,9 +355,6 @@ CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, c
    CloseHandle(pi.hThread);
 
    ::str().get_lines(straOutput, strOutput, "I: ", true, &sl, pfileLines);
-   ::str().get_lines(straOutput, strOutput, "E: ", true, &sl, pfileLines);
-
-
-   //return ::success;
+   ::str().get_lines(straOutput, strError, "E: ", true, &sl, pfileLines);
 
 }

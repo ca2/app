@@ -13,7 +13,9 @@ platform-posix/aura_posix
 operating-system-linux/node_linux
 operating-system-linux/desktop_environment_kde
 operating-system-posix/node_kde
+operating-system-posix/aura_posix
 operating-system-posix/windowing_xcb
+operating-system-posix/windowing_x11
 app/crypto_openssl
 app/folder_zip
 app/draw2d_cairo

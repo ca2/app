@@ -355,7 +355,7 @@ CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, c
    CloseHandle(pi.hThread);
 
    ::str().get_lines(straOutput, strOutput, "I: ", true, &sl, pfileLines);
-   ::str().get_lines(straOutput, strOutput, "E: ", true, &sl, pfileLines);
+   ::str().get_lines(straOutput, strError, "E: ", true, &sl, pfileLines);
 
 
    //return ::success;

@@ -214,8 +214,8 @@ CLASS_DECL_ACME void command_system(string_array & straOutput, int& iExitCode, c
 
    ZeroMemory(&si, sizeof(si));
    si.cb = sizeof(si);
-   si.hStdError = hOutWr;
-   si.hStdOutput = hErrWr;
+   si.hStdError = hErrWr;
+   si.hStdOutput = hOutWr;
    si.dwFlags |= STARTF_USESTDHANDLES;
 
    ZeroMemory(&pi, sizeof(pi));

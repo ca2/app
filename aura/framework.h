@@ -17,7 +17,7 @@
 #include "aura/_.h"
 #include "aura/platform/_platform.h"
 #if BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+#include "aura/user/user/_component.h"
 //#include "core/user/simple/_component.h"
 //#include "aura/user/rich_text/_rich_text.h"
 //#include "aura/filesystem/filemanager/_filemanager.h"

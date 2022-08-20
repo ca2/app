@@ -37,12 +37,6 @@
     <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="_2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="_3 (1).h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="_library.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -689,8 +689,6 @@
     <ClInclude Include="result.h" />
     <ClInclude Include="util_impl.h" />
     <ClInclude Include="_.h" />
-    <ClInclude Include="_2.h" />
-    <ClInclude Include="_3 (1).h" />
     <ClInclude Include="_library.h" />
   </ItemGroup>
   <ItemGroup>

@@ -1156,9 +1156,9 @@
     <ClInclude Include="user\appearance\button.h" />
     <ClInclude Include="user\appearance\still.h" />
     <ClInclude Include="user\appearance\_.h" />
-    <ClInclude Include="user\appearance\_appearance.h" />
+    <ClInclude Include="user\appearance\_component.h" />
     <ClInclude Include="user\menu\menu_command.h" />
-    <ClInclude Include="user\menu\_menu.h" />
+    <ClInclude Include="user\menu\_component.h" />
     <ClInclude Include="user\user\aaaa_plain_edit_style.h" />
     <ClInclude Include="user\user\aaa_create.h" />
     <ClInclude Include="user\user\aaa_interaction_draw2d.h" />
@@ -1219,7 +1219,7 @@
     <ClInclude Include="user\user\_impl.h" />
     <ClInclude Include="user\user\_interaction_impl.h" />
     <ClInclude Include="user\user\_prelude.h" />
-    <ClInclude Include="user\user\_user.h" />
+    <ClInclude Include="user\user\_component.h" />
     <ClInclude Include="windowing\button.h" />
     <ClInclude Include="windowing\cursor.h" />
     <ClInclude Include="windowing\cursor_manager.h" />

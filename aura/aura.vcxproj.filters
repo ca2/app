@@ -764,7 +764,7 @@
     <ClInclude Include="user\user\_prelude.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\_user.h">
+    <ClInclude Include="user\user\_component.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\aaa_create.h">
@@ -923,7 +923,7 @@
     <ClInclude Include="user\user\windowing.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\menu\_menu.h">
+    <ClInclude Include="user\menu\_component.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
     <ClInclude Include="user\menu\menu_command.h">
@@ -938,7 +938,7 @@
     <ClInclude Include="user\appearance\appearance.h">
       <Filter>Header Files\user\appearance</Filter>
     </ClInclude>
-    <ClInclude Include="user\appearance\_appearance.h">
+    <ClInclude Include="user\appearance\_component.h">
       <Filter>Header Files\user\appearance</Filter>
     </ClInclude>
     <ClInclude Include="user\appearance\_.h">

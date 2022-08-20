@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/operating_system.h"
-#include "aura/user/user/_user.h"
+#include "aura/user/user/_component.h"
 #include "edit_window.h"
 #include "aura/message.h"
 #include "apex/platform/app_core.h"

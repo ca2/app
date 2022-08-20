@@ -105,7 +105,7 @@ namespace user
 
       //virtual bool post_message(const ::atom & atom,wparam wparam,lparam lparam) override;
 
-      void set_impactport_org(::draw2d::graphics_pointer & pgraphics) override;
+      void set_origin(::draw2d::graphics_pointer & pgraphics) override;
 
       void RedrawWindow(const ::rectangle_i32& rectangleUpdate,::draw2d::region* prgnUpdate,::u32 flags) override;
 

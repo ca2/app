@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_component.h"
+#endif
 #include "aura/id.h"
 #include "acme/platform/version.h"
 //#include "apex/platform/app_core.h"

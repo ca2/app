@@ -115,7 +115,7 @@
 //
 //   ::rectangle_i32 rectangleMainScreen;
 //
-//   GetMainScreenRect(rectangleMainScreen);
+//   get_main_screen_rectangle(rectangleMainScreen);
 //
 //   pimpl->SetPlacement(rectangleMainScreen);
 //

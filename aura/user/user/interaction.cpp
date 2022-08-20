@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "aura/operating_system.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+#include "aura/user/user/_component.h"
 #endif
 //#include "apex/platform/app_core.h"
 #include "aura/message.h"
@@ -3303,7 +3303,7 @@ namespace user
 
       }
 
-      m_pprimitiveimpl->set_impactport_org(pgraphics);
+      m_pprimitiveimpl->set_origin(pgraphics);
 
    }
 

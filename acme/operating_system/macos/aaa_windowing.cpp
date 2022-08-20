@@ -676,7 +676,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //   ::rectangle_i32 rMainScreen;
 //
-//   GetMainScreenRect(rMainScreen);
+//   get_main_screen_rectangle(rMainScreen);
 //
 //   long c = CFArrayGetCount(windowa);
 //
@@ -819,7 +819,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //   //rectangle_i32 rMainScreen;
 //
-//   //GetMainScreenRect(rMainScreen);
+//   //get_main_screen_rectangle(rMainScreen);
 //
 //   // "CG" Window Rects are like Windows (R) GDI Coordinates (Y down)
 //
@@ -1092,7 +1092,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //   string strAppName;
 //
-//   //GetMainScreenRect(rMainScreen);
+//   //get_main_screen_rectangle(rMainScreen);
 //
 //   // "CG" Window Rects are like Windows (R) GDI Coordinates (Y down)
 //

@@ -1238,7 +1238,7 @@
 		<Unit filename="/home/camilo/solution/basis/source/app/aura/user/user/_prelude.h">
 			<Option target="aura"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/aura/user/user/_user.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/aura/user/user/_component.h">
 			<Option target="aura"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/source/app/aura/user/user/box.cpp">

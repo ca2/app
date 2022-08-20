@@ -2,7 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "_library.h"
 #endif
-#include "aura/user/user/_user.h"
+#include "aura/user/user/_component.h"
 
 
 namespace draw2d_cairo

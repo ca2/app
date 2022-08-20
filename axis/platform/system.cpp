@@ -10,7 +10,7 @@
 void axis_factory(::factory::factory * pfactory);
 
 
-//int GetMainScreenRect(RECTANGLE_I32 * lprect);
+//int get_main_screen_rectangle(RECTANGLE_I32 * lprect);
 
 //
 //const char* g_pszMultimediaLibraryName = nullptr;

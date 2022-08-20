@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+#include "aura/user/user/_component.h"
 #endif
 //#include "apex/platform/app_core.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -760,7 +760,7 @@ namespace user
    }
 
 
-   void interaction_child::set_impactport_org(::draw2d::graphics_pointer & pgraphics)
+   void interaction_child::set_origin(::draw2d::graphics_pointer & pgraphics)
    {
 
       try

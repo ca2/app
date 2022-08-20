@@ -2,7 +2,7 @@
 // twitch streams... twitch chatting...
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+#include "aura/user/user/_component.h"
 #endif
 #include "call_message_handler_task.h"
 

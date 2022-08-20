@@ -1603,7 +1603,7 @@ double _001GetWindowTopLeftWeightedOccludedOpaqueRate(oswindow oswindow)
 
 
 
-int GetMainScreenRect(RECTANGLE_I32 * lprect)
+int get_main_screen_rectangle(RECTANGLE_I32 * lprect)
 {
 
    *lprect = psystem->get_session()->m_puserinteractionHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectangleWindowScreen;

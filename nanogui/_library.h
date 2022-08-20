@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "aura/user/user/_user.h"
+#include "aura/user/user/_component.h"
 #include "aura/user/appearance/_appearance.h"
 #include "nano2d/_component.h"
 

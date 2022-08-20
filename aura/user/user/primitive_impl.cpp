@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+#include "aura/user/user/_component.h"
 #endif
 #include "aura/id.h"
 #include "interaction_thread.h"
@@ -437,7 +437,7 @@ namespace user
    }
 
 
-   void primitive_impl::set_impactport_org(::draw2d::graphics_pointer & pgraphics)
+   void primitive_impl::set_origin(::draw2d::graphics_pointer & pgraphics)
    {
 
    }

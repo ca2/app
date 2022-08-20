@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+#include "aura/user/user/_component.h"
 #endif
 //#include "acme/operating_system/cross.h"
 #include "aura/platform/message_queue.h"

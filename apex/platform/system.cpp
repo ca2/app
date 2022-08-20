@@ -31,7 +31,7 @@ CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exc
 
 //CLASS_DECL_APEX void apex_generate_random_bytes(void* p, memsize s);
 
-//int GetMainScreenRect(RECTANGLE_I32 * lprect);
+//int get_main_screen_rectangle(RECTANGLE_I32 * lprect);
 
 
 ///const ::string & g_pszMultimediaLibraryName = nullptr;

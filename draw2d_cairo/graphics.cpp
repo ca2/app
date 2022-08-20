@@ -4,7 +4,7 @@
 #endif
 #include <math.h>
 #include "acme/platform/restore.h"
-#include "aura/user/user/_user.h"
+#include "aura/user/user/_component.h"
 
 
 #ifdef _DEBUG

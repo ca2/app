@@ -2,7 +2,7 @@
 
 
 #include "apex/os/universal_windows/_uwp.h"
-#include "aura/user/user/_user.h"
+#include "aura/user/user/_component.h"
 
 
 //#include "file_watcher.h"

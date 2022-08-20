@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_ios.h"
-#include "aura/user/user/_user.h"
+#include "aura/user/user/_component.h"
 #include "aura/user/user.h"
 #include "aura/os/ios/oswindow_data.h"
 
@@ -2829,7 +2829,7 @@ namespace ios
 ////      if(m_puserinteraction == get_app()->m_psystem->m_possystemwindow->m_puserinteraction)
 ////      {
 ////
-////         if(!GetMainScreenRect(rect32))
+////         if(!get_main_screen_rectangle(rect32))
 ////         {
 ////
 ////            return false;
@@ -2868,7 +2868,7 @@ namespace ios
 //      if(m_puserinteraction == get_app()->m_psystem->m_possystemwindow->m_puserinteraction)
 //      {
 //
-//         if(!GetMainScreenRect(rect32))
+//         if(!get_main_screen_rectangle(rect32))
 //         {
 //
 //            return false;

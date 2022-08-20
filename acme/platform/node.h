@@ -127,11 +127,7 @@ namespace acme
 
       virtual void system_main();
 
-      virtual void _will_finish_launching();
-
       virtual void reboot();
-
-      virtual void implement(__pointer(::acme::node) & pnode, __pointer(class ::system) & psystem);
 
 
       virtual void install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension);

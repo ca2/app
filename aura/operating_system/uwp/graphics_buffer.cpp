@@ -2,7 +2,7 @@
 #include "_uwp.h"
 #include "aura/os/universal_windows/_uwp.h"
 #include "aura/message.h"
-#include "aura/user/user/_user.h"
+#include "aura/user/user/_component.h"
 #include "buffer.h"
 #include <stdio.h>
 #include "aura/node/universal_windows/directx_application.h"

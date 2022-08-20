@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+#include "aura/user/user/_component.h"
 #endif
 #include "aura/gpu/gpu/_.h"
 #include "aura/gpu/gpu/_gpu.h"
@@ -24,7 +24,7 @@
 #include "aura/graphics/draw2d/_component.h"
 //#include "acme/platform/system_impl.h"
 
-int GetMainScreenRect(RECTANGLE_I32 * lprect);
+int get_main_screen_rectangle(RECTANGLE_I32 * lprect);
 
 
 #ifdef LINUX
@@ -3566,7 +3566,7 @@ namespace aura
 //
 //      //get_session()->m_puserinteractionHost->get_window_rect(prectangle);
 //
-//      GetMainScreenRect(prectangle);
+//      get_main_screen_rectangle(prectangle);
 //
 //      return true;
 //

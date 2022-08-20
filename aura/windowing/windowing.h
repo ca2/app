@@ -241,7 +241,16 @@ namespace windowing
 
 
 #endif
+       
+       
+       virtual void os_menu_item_enable(void * pitem, bool bEnable);
+       virtual void os_menu_item_check(void * pitem, bool bCheck);
 
+       virtual void defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId);
+
+      virtual void implement(__pointer(::acme::node) & pnode, __pointer(class ::system) & psystem);
+
+      virtual void _will_finish_launching();
 
       virtual ::e_status is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
 

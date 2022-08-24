@@ -8,6 +8,12 @@ namespace draw2d
    class cursor;
 
 
+   class graphics_call_base;
+
+
+   using graphics_call_array = __pointer_array(graphics_call_base);
+
+
 } // namespace draw2d
 
 

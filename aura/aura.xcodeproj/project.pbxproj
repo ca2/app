@@ -587,6 +587,8 @@
 		9AAD4727249EC7F600B23B86 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAD4726249EC7F600B23B86 /* application.h */; };
 		9AAD4729249EC81E00B23B86 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAD4728249EC81D00B23B86 /* library.h */; };
 		9AB3DCC7278360390025099F /* item.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AB3DCC3278360390025099F /* item.h */; };
+		9ABA65A228B5CDB90063B976 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ABA65A028B5CDB80063B976 /* _impl.h */; };
+		9ABA65A328B5CDB90063B976 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ABA65A128B5CDB80063B976 /* _.h */; };
 		9AC2CCC326533BB700CC8096 /* context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC2CCBE26533BB600CC8096 /* context.cpp */; };
 		9AC2CCC426533BB700CC8096 /* message_queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CCBF26533BB600CC8096 /* message_queue.h */; };
 		9AC2CCC526533BB700CC8096 /* context.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC2CCC026533BB600CC8096 /* context.h */; };
@@ -1175,6 +1177,9 @@
 		9AAD4726249EC7F600B23B86 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
 		9AAD4728249EC81D00B23B86 /* library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
 		9AB3DCC3278360390025099F /* item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = item.h; sourceTree = "<group>"; };
+		9ABA659F28B5CC7C0063B976 /* _struct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _struct.h; sourceTree = "<group>"; };
+		9ABA65A028B5CDB80063B976 /* _impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
+		9ABA65A128B5CDB80063B976 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _.h; path = graphics/_.h; sourceTree = "<group>"; };
 		9AC2CCBE26533BB600CC8096 /* context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
 		9AC2CCBF26533BB600CC8096 /* message_queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message_queue.h; sourceTree = "<group>"; };
 		9AC2CCC026533BB600CC8096 /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
@@ -1813,13 +1818,14 @@
 			isa = PBXGroup;
 			children = (
 				9A92306327EACA3B00B5A78D /* _.h */,
+				9A92302D27EACA3B00B5A78D /* _component.h */,
 				9A92301527EACA3A00B5A78D /* _constant.h */,
 				9A92303A27EACA3B00B5A78D /* _data.h */,
 				9A92303127EACA3B00B5A78D /* _experience_const.h */,
 				9A922FFB27EACA3A00B5A78D /* _impl.h */,
 				9A92304027EACA3B00B5A78D /* _interaction_impl.h */,
 				9A922FF927EACA3A00B5A78D /* _prelude.h */,
-				9A92302D27EACA3B00B5A78D /* _component.h */,
+				9ABA659F28B5CC7C0063B976 /* _struct.h */,
 				9A92300D27EACA3A00B5A78D /* box.cpp */,
 				9A922FF827EACA3A00B5A78D /* box.h */,
 				9A92300627EACA3A00B5A78D /* button.cpp */,
@@ -2095,6 +2101,8 @@
 				9A2BE846251EC3BC0075218C /* game */,
 				9A8B635224CBCD3C00A93185 /* gpu */,
 				9A2A52F81F1FEDFD001AB0F8 /* graphics */,
+				9ABA65A128B5CDB80063B976 /* _.h */,
+				9ABA65A028B5CDB80063B976 /* _impl.h */,
 				9A75C6A1283D6E6400EC37F2 /* hardware */,
 				9A2488C02452C4F100F23D28 /* include */,
 				9A37650C2409C094002D15D3 /* inline */,
@@ -2205,6 +2213,7 @@
 				9A2489EC2453417F00F23D28 /* _.h in Headers */,
 				9A750F6C282B90B600C4861B /* message.h in Headers */,
 				9AE6379426700C1A005F3412 /* drawer.h in Headers */,
+				9ABA65A228B5CDB90063B976 /* _impl.h in Headers */,
 				9A8EB3972449821C0056E362 /* item_action.h in Headers */,
 				9A22713627CEE2020042BAC2 /* thread.h in Headers */,
 				9A3764A22409BF0C002D15D3 /* printer.h in Headers */,
@@ -2412,6 +2421,7 @@
 				9A750F64282B90B600C4861B /* copydesk.h in Headers */,
 				9A750F85282B90B700C4861B /* _impl.h in Headers */,
 				9A750F8B282B90B700C4861B /* form.h in Headers */,
+				9ABA65A328B5CDB90063B976 /* _.h in Headers */,
 				9AC2CEA02653452D00CC8096 /* task_tool.h in Headers */,
 				9A22712427CEE2020042BAC2 /* cross_win_gdi.h in Headers */,
 				9A3764812409BF0C002D15D3 /* common.h in Headers */,

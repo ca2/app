@@ -2,11 +2,28 @@
 //  _struct.h
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 24/08/22.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 24/08/22 00:04
 //
-
-#ifndef _struct_h
-#define _struct_h
+#pragma once
 
 
-#endif /* _struct_h */
+namespace user
+{
+
+
+   class calc_size
+   {
+   public:
+
+
+      ::draw2d::graphics_pointer    m_pgraphics;
+      size_i32                          m_size;
+
+
+   };
+
+
+} // namespace user
+
+
+

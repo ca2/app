@@ -34,7 +34,6 @@ namespace draw2d
    };
 
 
-   using graphics_call_array = __pointer_array(graphics_call_base);
 
 
 } // namespace draw2d

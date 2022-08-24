@@ -4,18 +4,17 @@
 #include  "apex/_.h"
 
 
-namespace graphics
-{
+#include "_constant.h"
 
 
-   class graphics;
-
-
-} // namespace graphics
+#include "_struct.h"
 
 
 namespace user
 {
+
+
+   class alpha_source;
 
    class button;
 

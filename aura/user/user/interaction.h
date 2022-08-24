@@ -343,7 +343,7 @@ namespace user
       __pointer(::user::interaction_layout)        m_playout;
    public:
       //__pointer(drag_move)                         m_pdragmove;
-      __pointer(graphics_call_array)               m_pgraphicscalla;
+      __pointer(::draw2d::graphics_call_array)     m_pgraphicscalla;
       __pointer(::user::interaction)               m_puserinteractionCustomWindowProc;
       __pointer(::user::interaction)               m_puiLabel;
       __pointer_array(::item)                m_useritema;
@@ -435,8 +435,8 @@ namespace user
       inline iterator proper_children() { return {this, e_next_proper, this}; }
 
 
-      const class ::user::interaction_layout& const_layout() const { return m_layout; }
-      class ::user::interaction_layout& layout() { return m_layout; }
+      const class ::user::interaction_layout& const_layout() const { return *m_playout; }
+      class ::user::interaction_layout& layout() { return *m_playout; }
 
       inline double screen_scaler() const;
       inline double font_scaler() const;

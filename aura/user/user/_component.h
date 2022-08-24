@@ -126,17 +126,6 @@ namespace experience
 namespace user
 {
 
-   class calc_size
-   {
-   public:
-
-
-      ::draw2d::graphics_pointer    m_pgraphics;
-      size_i32                          m_size;
-
-
-   };
-
 
    class CLASS_DECL_AURA alpha_source :
       virtual public ::matter

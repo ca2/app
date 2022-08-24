@@ -25,6 +25,8 @@ namespace user
 
    class message;
 
+   class frame;
+
    class frame_window;
 
    class interaction_scaler;

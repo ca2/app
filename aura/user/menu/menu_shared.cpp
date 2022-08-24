@@ -5,6 +5,7 @@
 //  Created by Camilo Sasuke Tsumanuma on 10/08/20.
 //
 #include "framework.h"
+#include "aura/user/user/_component.h"
 #include "menu_shared.h"
 
 
@@ -37,7 +38,7 @@ menu_shared::~menu_shared()
 }
 
 
-__pointer(menu_shared) create_menu_shared(const string_array & straParent, const string_array & straMenu, const string_array & straId)
+__pointer(menu_shared) create_menu_shared(::object * pobject, const string_array & straParent, const string_array & straMenu, const string_array & straId)
 {
 
    int iCount = (int) straParent.get_count();
@@ -96,9 +97,11 @@ void * menu_shared::find_item(const char * pszParent, const char * pszId)
 void menu_shared::on_idle_update()
 {
 
-   auto psystem = m_psystem->m_papexsystem;
+   auto psession = m_psystem->m_paurasession;
    
-   auto pnode = psystem->m_papexnode;
+   auto puser = psession->user();
+   
+   auto pwindowing = puser->windowing1();
    
    for(int i = 0; i < m_iCount; i++)
    {
@@ -127,7 +130,7 @@ void menu_shared::on_idle_update()
 
             }
             
-            pnode->os_menu_item_check(pitem, bCheck);
+            pwindowing->os_menu_item_check(pitem, bCheck);
 
             //os_menu_item_check(pitem, bCheck);
 
@@ -152,7 +155,7 @@ void menu_shared::on_idle_update()
 
             }
             
-            pnode->os_menu_item_enable(pitem, !bDisabled);
+            pwindowing->os_menu_item_enable(pitem, !bDisabled);
 
             //os_menu_item_enable(pitem, !bDisabled);
 

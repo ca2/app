@@ -1758,6 +1758,14 @@ namespace user
 
       virtual void _001GetSel(strsize& iBeg, strsize& iEnd) const override;
 
+      
+      virtual bool set_sel_by_name(const ::string & strName);
+      virtual void ensure_sel_visible();
+      
+      
+      virtual void set_sel_color(const ::color::hls & hls);
+      virtual ::color::hls get_sel_color();
+      
 
       virtual void get_horizontal_scroll_info(scroll_info& info);
       virtual void get_vertical_scroll_info(scroll_info& info);

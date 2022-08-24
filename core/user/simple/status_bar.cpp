@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "core/user/simple/_component.h"
+#include "status_bar.h"
 
 
 simple_status_bar::simple_status_bar()

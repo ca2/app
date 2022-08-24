@@ -451,17 +451,17 @@ namespace user
 } // namespace user
 
 
-#include "toolbar_control.h"
+//#include "toolbar_control.h"
 
-#include "statusbar.h"
+//#include "statusbar.h"
 
 #include "form_mesh.h"
 #include "form_list.h"
 #include "form_list_impact.h"
 
 
-#include "step_slider.h"
-#include "elastic_slider.h"
+//#include "step_slider.h"
+//#include "elastic_slider.h"
 
 
 #include "image_manager.h"
@@ -476,11 +476,11 @@ namespace user
 #include "form_mesh.h"
 
 
-#include "font_list.h"
+//#include "font_list.h"
 
 
 
-#include "tooltip.h"
+//#include "tooltip.h"
 
 
 #include "aura/user/user/shell.h"

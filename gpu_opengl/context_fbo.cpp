@@ -205,7 +205,7 @@ namespace opengl
          
       }
       
-      glContext(0, 0, size.cx, size.cy);
+      glViewport(0, 0, size.cx, size.cy);
       
       //return ::success;
 
@@ -397,7 +397,7 @@ namespace opengl
       
       glRenderbufferStorageEXT(GL_RENDERBUFFER_EXT, GL_RGBA8, size.cx, size.cy);
 
-      glContext(0, 0, size.cx, size.cy);
+      glViewport(0, 0, size.cx, size.cy);
       
 //      return ::success;
 

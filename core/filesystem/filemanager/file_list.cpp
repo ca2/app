@@ -5,7 +5,7 @@
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
 
-#include "aura/update.h"
+//#include "aura/update.h"
 #include "aura/user/menu/menu_command.h"
 
 

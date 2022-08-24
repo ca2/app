@@ -1,12 +1,9 @@
 ///TBS__<3tbs
 #pragma once
 
-//#pragma pack(show)
-
-
-
 
 #include "bred/_.h"
+
 
 #if defined(_CORE_LIBRARY)
 #define CLASS_DECL_CORE  CLASS_DECL_EXPORT
@@ -17,6 +14,10 @@
 
 
 #include "core/include/_.h"
+
+
+#include "core/user/user/_.h"
+#include "core/user/simple/_.h"
 
 
 

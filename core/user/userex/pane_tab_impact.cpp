@@ -7,8 +7,9 @@
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
 #include "core/user/account/_account.h"
-#include "aura/update.h"
+//#include "aura/update.h"
 #include "base/user/user/tab_pane.h"
+#include "core/user/user/font_list.h"
 
 
 namespace core
@@ -33,7 +34,7 @@ namespace userex
    pane_tab_impact::pane_tab_impact()
    {
 
-      m_pcolorview = nullptr;
+      //m_pcolorview = nullptr;
 
       //m_pfilemanager = nullptr;
 
@@ -155,6 +156,54 @@ namespace userex
       add_command_handler("file_save_as", this, &pane_tab_impact::_001OnFileSaveAs);
       add_command_prober("file_save_as", this, &pane_tab_impact::_001OnUpdateFileSaveAs);
 
+   }
+
+
+   ::user::interaction * pane_tab_impact::get_font_interaction()
+   {
+     
+      if(::is_null(m_pfontview1))
+      {
+         
+         return nullptr;
+         
+      }
+      
+      auto pimpact = m_pfontview1->m_pimpact;
+      
+      if(::is_null(pimpact))
+      {
+         
+         return nullptr;
+         
+      }
+      
+      return pimpact;
+      
+   }
+
+
+   ::user::interaction * pane_tab_impact::get_color_interaction()
+   {
+  
+      if(::is_null(m_pcolorview1))
+      {
+         
+         return nullptr;
+         
+      }
+      
+      auto pimpact = m_pcolorview1;
+      
+      if(::is_null(pimpact))
+      {
+         
+         return nullptr;
+         
+      }
+      
+      return pimpact;
+      
    }
 
 
@@ -539,22 +588,22 @@ namespace userex
 
          auto pdocument = ptemplate->open_document_file(get_app(), ::e_type_null, __visible(true).is_true(), pimpactdata->m_pplaceholder);
 
-         m_pfontview = pdocument->get_type_impact < font_impact >();
+         m_pfontview1 = pdocument->get_type_impact < font_impact >();
 
-         m_pfontview->set_need_layout();
+         m_pfontview1->set_need_layout();
 
          pdocument->m_pviewTopic->set_notify_user_interaction(this);
 
          pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
          
-         m_pfontview->m_pimpact->add_handler(this);
+         m_pfontview1->m_pimpact->add_handler(this);
 
          __pointer(::user::interaction) pimpact = psession->get_bound_ui(FONTSEL_IMPACT);
 
          if(pimpact)
          {
 
-            m_pfontview->m_pimpact->add_handler(pimpact);
+            m_pfontview1->m_pimpact->add_handler(pimpact);
 
          }
 
@@ -576,20 +625,20 @@ namespace userex
 
          //auto pdocument = pimpactsystem->open_document_file(get_app(), ::e_type_null, __visible(false).is_true(), pimpactdata->m_pplaceholder);
 
-         m_pcolorview = create_impact < color_impact >(pimpactdata);
+         m_pcolorview1 = create_impact < color_impact >(pimpactdata);
 
 //         pdocument->m_pviewTopic->set_notify_user_interaction(this);
 
   //       pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
          
-         m_pcolorview->add_handler(this);
+         m_pcolorview1->add_handler(this);
 
          __pointer(::user::interaction) pimpact = psession->get_bound_ui(COLORSEL_IMPACT);
 
          if(pimpact)
          {
 
-            m_pcolorview->add_handler(pimpact);
+            m_pcolorview1->add_handler(pimpact);
 
          }
 

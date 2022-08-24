@@ -4,7 +4,7 @@
 #include "base/user/_.h"
 
 
-#include "_const.h"
+#include "_constant.h"
 
 
 class form_document;
@@ -50,6 +50,10 @@ namespace user
 
    class shell;
 
+   class font_list;
+
+   typedef ::user::show < ::user::font_list > font_list_impact;
+
 
 } // namespace user
 
@@ -58,22 +62,13 @@ namespace user
 inline ::user::primitive* __user_primitive(oswindow oswindow);
 
 
-#include "mesh_item.h"
-#include "list_item.h"
-
-
-#include "mesh_data.h"
-#include "list_data.h"
-
-
-//#include "aura/filesystem/file/html_file.h"
-
-
-//#include "message_queue_listener.h"
-
-
-
-
+//#include "mesh_item.h"
+//#include "list_item.h"
+//
+//
+//#include "mesh_data.h"
+//#include "list_data.h"
+//
 
 
 

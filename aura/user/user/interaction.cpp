@@ -2771,6 +2771,35 @@ namespace user
    }
 
 
+   void interaction::set_sel_by_name(const ::string & strName)
+   {
+      
+      
+   }
+
+   
+   void interaction::ensure_sel_visible()
+   {
+      
+      
+   }
+
+
+   void interaction::set_sel_color(const ::color::hls & hls)
+   {
+
+      
+   }
+
+
+   ::color::hls interaction::get_sel_color()
+   {
+
+      return {};
+   
+   }
+
+
    void interaction::get_horizontal_scroll_info(scroll_info & info)
    {
 

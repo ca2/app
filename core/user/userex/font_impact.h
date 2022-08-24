@@ -11,9 +11,9 @@ namespace userex
    public:
 
 
-      top_impact *                    m_ptopview;
-      ::user::font_list_impact *      m_pimpact;
-      bool                          m_bSourceFontSel;
+      top_impact *                     m_ptopview;
+      ::user::font_list_impact *       m_pimpact;
+      bool                             m_bSourceFontSel;
 
 
       font_impact();

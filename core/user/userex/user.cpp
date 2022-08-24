@@ -6,13 +6,15 @@
 #endif
 
 #include "core/user/account/_account.h"
+#include "core/user/user/font_list.h"
 #include "acme/platform/system_setup.h"
-#include "aura/update.h"
+//#include "aura/update.h"
 #include "aqua/xml.h"
 #include "aura/user/user/shell.h"
 #include "core/user/user/_tree.h"
 #include "dialog_frame.h"
 #include "progress.h"
+#include "core/user/simple/toolbar.h"
 
 
 //void __html_initialize(::user::user * puserex);

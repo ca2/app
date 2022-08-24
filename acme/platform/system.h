@@ -466,6 +466,8 @@ public:
 
    void _main_application_handle_url(const char * pszUrl, const ::function < void(bool) > & functionSucceeded) override;
    
+   //virtual void windowing_post_quit();
+   
 
 };
 

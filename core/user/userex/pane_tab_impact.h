@@ -20,8 +20,8 @@ namespace userex
       __pointer(pane_impact)                   m_ppaneimpact;
       id_map < __pointer(::object) >         m_mapFileManager;
       __pointer(::user::document)            m_pdocAppOptions;
-      font_impact *                            m_pfontview;
-      color_impact *                           m_pcolorview;
+      font_impact *                          m_pfontview1;
+      color_impact *                         m_pcolorview1;
       ::form_document *                      m_pdocumentMenu;
 
 
@@ -31,6 +31,10 @@ namespace userex
 
 
       void install_message_routing(::channel * pchannel) override;
+      
+      
+      virtual ::user::interaction * get_font_interaction();
+      virtual ::user::interaction * get_color_interaction();
 
 
       inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }

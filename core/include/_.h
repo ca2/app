@@ -1,4 +1,4 @@
-/////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
 //
 //  ca2
 //
@@ -21,17 +21,16 @@
 
 
 
-namespace base
+namespace core
 {
 
 
    class system;
    class session;
    class application;
-   class user;
 
 
-} // namespace base
+} // namespace core
 
 
 namespace user
@@ -42,27 +41,6 @@ namespace user
 
 
 } // namespace user
-
-
-//#include "core/compress/compress.h"
-
-//#include "core/multimedia/_c.h"
-
-#include "core/user/user/_const.h"
-
-//#include "aura/const/_const.h"
-
-#include "acme/primitive/primitive/_memory.h"
-
-#include "core/user/user/_const.h"
-
-
-namespace core
-{
-
-   class user;
-
-} // namespace core
 
 
 namespace html
@@ -82,10 +60,10 @@ namespace audio
    class plugin;
 
 
-
 } // namespace audio
 
 
+#include "core/user/user/_constant.h"
 
 
 CLASS_DECL_CORE bool __node_core_pre_init();
@@ -93,22 +71,6 @@ CLASS_DECL_CORE bool __node_core_pos_init();
 
 CLASS_DECL_CORE bool __node_core_pre_term();
 CLASS_DECL_CORE bool __node_core_pos_term();
-
-
-
-//CLASS_DECL_CORE ::core::user * get_context_user();
-//CLASS_DECL_CORE inline ::core::user * get_context_user(::object * pobject);
-//CLASS_DECL_CORE inline ::core::user * get_context_user(::aura::application * papp);
-//
-//
-//#include "aura/xml/exportable.h"
-//
-//
-//#include "aura/xml/importable.h"
-
-
-
-//#include "aura/common.h"
 
 
 #include "core/platform/core.h"
@@ -162,21 +124,7 @@ CLASS_DECL_CORE bool __node_core_pos_term();
 
 #include "core/operating_system/text.h"
 
-#ifdef ANDROID
-
-//#include "core/os/android/_os_local.h"
-
-#endif
-
-//#include "core/database/database/_.h"
-
 #include "core/user/_.h"
-
-//#include "core/multimedia/_.h"
-
-//#include "core/os/process.h"
-
-//#include "core/geoip/geoip.h"
 
 class ftpfs;
 
@@ -198,17 +146,11 @@ namespace ftp
 
 } // namespace ftp
 
-//#include "axis/programming/javascript/javascript.h"
 
 #if !defined(_UWP)
 #include "core/filesystem/fs/_fs.h"
 #endif
 
-//#include "core/database/sqlitedb/_.h"
-
-//#include "core/database/simpledb/_.h"
-
-//#include "core/html/html_lite/_.h"
 
 #include "core/filesystem/userfs/_.h"
 
@@ -218,8 +160,6 @@ namespace ftp
 
 #include "core/filesystem/filehandler/_.h"
 
-//#include "core/game/_.h"
-
 #include "core/platform/user.h"
 
 #include "core/platform/application.h"
@@ -228,44 +168,21 @@ namespace ftp
 
 #include "core/platform/system.h"
 
-
-
-//#include "core/multimedia/audio/speaker.h"
-
-//#include "core/multimedia/audio.h"
-
-//#include "core/multimedia/multimedia.h"
-
-//#include "core/gpu/gpu/_.h"
-
-
 #include "core/operating_system/chronometer.h"
 
-
-
-//#include "core/math/_math.h"
-
-
-// C++ Includes
 #include "core/operating_system/_.h"
-
-// C++ Includes
-#include "core/operating_system/_.h"
-
 
 #include "core/user/_.h"
 
-
 #include "core/filesystem/_impl.h"
-
 
 #include "core/networking/_impl.h"
 
-
 #include "core/operating_system/_impl.h"
-
 
 #include "core/platform/_impl.h"
 
-
 #include "core/filesystem/filemanager/_impl.h"
+
+
+

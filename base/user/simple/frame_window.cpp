@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "base/user/simple/_component.h"
 #include "aura/message.h"
-#include "aura/update.h"
+//#include "aura/update.h"
 #include "aqua/xml.h"
 #include "acme/id.h"
 #include "acme/parallelization/pool.h"
@@ -2426,7 +2426,11 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
    {
 
+#ifdef VERBOSE_LOG
+
       ::duration t1 = ::duration::now();
+      
+#endif
 
       //pinteraction->_001OnDraw(pgraphics);
       if(dAlpha > 0.0)
@@ -2465,11 +2469,11 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
 #endif
 
-         ::duration d1 = t1.elapsed();
-
          string strType = __type_name(this);
 
 #ifdef VERBOSE_LOG
+
+         ::duration d1 = t1.elapsed();
 
          if(d1 > 50_ms)
          {
@@ -2491,13 +2495,17 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
          else
          {
 
+#ifdef VERBOSE_LOG
+
             ::duration t1 = ::duration::now();
+            
+#endif
 
             draw_frame_and_control_box_over(pgraphics);
 
-            auto d1 = t1.elapsed();
+#ifdef VERBOSE_LOG
 
-#ifdef VERBOSE_LOG            
+            auto d1 = t1.elapsed();
 
             if(d1 > 50_ms)
             {
@@ -3419,15 +3427,19 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    {
 
+#ifdef VERBOSE_LOG
+
       ::duration t1 = ::duration::now();
+
+#endif
 
       _001DrawThis(pgraphics);
 
       //return; // abcxxx
 
-      ::duration d1 = t1.elapsed();
+#ifdef VERBOSE_LOG
 
-#ifdef VERBOSE_LOG      
+      ::duration d1 = t1.elapsed();
 
       if(d1 > 50_ms)
       {
@@ -3501,13 +3513,17 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                      {
 
+#ifdef VERBOSE_LOG
+
                         ::duration t1 = ::duration::now();
+                        
+#endif
 
                         pinteraction->_000CallOnDraw(pgraphics);
 
-                        ::duration d1 = t1.elapsed();
+#ifdef VERBOSE_LOG
 
-#ifdef VERBOSE_LOG                        
+                        ::duration d1 = t1.elapsed();
 
                         if (d1 > 50_ms)
                         {
@@ -3555,13 +3571,17 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    {
 
+#ifdef VERBOSE_LOG
+
       ::duration t1 = ::duration::now();
+      
+#endif
 
       _008CallOnDraw(pgraphics);
 
-      ::duration d1 = t1.elapsed();
+#ifdef VERBOSE_LOG
 
-#ifdef VERBOSE_LOG      
+      ::duration d1 = t1.elapsed();
 
       if(d1 > 50_ms)
       {

@@ -2,7 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_component.h"
 #endif
-#include "aura/update.h"
+//#include "aura/update.h"
 #include "aqua/xml.h"
 #include "menu_impact.h"
 #include "aura/graphics/draw2d/_component.h"

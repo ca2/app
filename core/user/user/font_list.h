@@ -86,9 +86,9 @@ namespace user
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool set_sel_by_name(string str);
+      bool set_sel_by_name(const string & strName) override;
 
-      virtual void ensure_sel_visible();
+      void ensure_sel_visible() override;
 
       virtual void __on_draw_ensure_sel_visible();
 
@@ -101,9 +101,6 @@ namespace user
 
 
    };
-
-
-   typedef ::user::show < ::user::font_list > font_list_impact;
 
 
 } // namespace user

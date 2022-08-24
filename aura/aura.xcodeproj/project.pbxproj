@@ -649,6 +649,12 @@
 		9AD19A102512B8CB00B4C44A /* timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AD19A0F2512B8CB00B4C44A /* timer.cpp */; };
 		9AE245DD27F1227A00B849D0 /* host.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE245DB27F1227900B849D0 /* host.cpp */; };
 		9AE245DE27F1227A00B849D0 /* host.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE245DC27F1227900B849D0 /* host.h */; };
+		9AE382A728B1844A007EA867 /* desktop_environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE382A528B1844A007EA867 /* desktop_environment.cpp */; };
+		9AE382A828B1844A007EA867 /* desktop_environment.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE382A628B1844A007EA867 /* desktop_environment.h */; };
+		9AE382AD28B1885C007EA867 /* menu_shared.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE382A928B1885B007EA867 /* menu_shared.cpp */; };
+		9AE382AE28B1885C007EA867 /* menu_shared_commnand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE382AA28B1885C007EA867 /* menu_shared_commnand.cpp */; };
+		9AE382AF28B1885C007EA867 /* menu_shared_command.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE382AB28B1885C007EA867 /* menu_shared_command.h */; };
+		9AE382B028B1885C007EA867 /* menu_shared.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE382AC28B1885C007EA867 /* menu_shared.h */; };
 		9AE6378E26700C1A005F3412 /* text_out.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6378526700C19005F3412 /* text_out.cpp */; };
 		9AE6378F26700C1A005F3412 /* text_out_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6378826700C19005F3412 /* text_out_array.cpp */; };
 		9AE6379026700C1A005F3412 /* font_list_data.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6378926700C19005F3412 /* font_list_data.h */; };
@@ -1098,7 +1104,7 @@
 		9A92306127EACA3B00B5A78D /* windowing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = windowing.cpp; sourceTree = "<group>"; };
 		9A92306227EACA3B00B5A78D /* primitive_impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = primitive_impl.h; sourceTree = "<group>"; };
 		9A92306327EACA3B00B5A78D /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		9A92306527EACA3B00B5A78D /* _menu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _menu.h; sourceTree = "<group>"; };
+		9A92306527EACA3B00B5A78D /* _library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _library.h; sourceTree = "<group>"; };
 		9A92306627EACA3B00B5A78D /* menu_command.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = menu_command.h; sourceTree = "<group>"; };
 		9A92306727EACA3B00B5A78D /* menu_command.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = menu_command.cpp; sourceTree = "<group>"; };
 		9A92306927EACA3B00B5A78D /* button.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = button.cpp; sourceTree = "<group>"; };
@@ -1232,6 +1238,12 @@
 		9AE245DB27F1227900B849D0 /* host.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = host.cpp; sourceTree = "<group>"; };
 		9AE245DC27F1227900B849D0 /* host.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = host.h; sourceTree = "<group>"; };
 		9AE24D431904CEFE001AEFFB /* aura_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = aura_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AE382A528B1844A007EA867 /* desktop_environment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = desktop_environment.cpp; sourceTree = "<group>"; };
+		9AE382A628B1844A007EA867 /* desktop_environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = desktop_environment.h; sourceTree = "<group>"; };
+		9AE382A928B1885B007EA867 /* menu_shared.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = menu_shared.cpp; sourceTree = "<group>"; };
+		9AE382AA28B1885C007EA867 /* menu_shared_commnand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = menu_shared_commnand.cpp; sourceTree = "<group>"; };
+		9AE382AB28B1885C007EA867 /* menu_shared_command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menu_shared_command.h; sourceTree = "<group>"; };
+		9AE382AC28B1885C007EA867 /* menu_shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menu_shared.h; sourceTree = "<group>"; };
 		9AE6378526700C19005F3412 /* text_out.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text_out.cpp; sourceTree = "<group>"; };
 		9AE6378826700C19005F3412 /* text_out_array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text_out_array.cpp; sourceTree = "<group>"; };
 		9AE6378926700C19005F3412 /* font_list_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = font_list_data.h; sourceTree = "<group>"; };
@@ -1905,7 +1917,11 @@
 		9A92306427EACA3B00B5A78D /* menu */ = {
 			isa = PBXGroup;
 			children = (
-				9A92306527EACA3B00B5A78D /* _menu.h */,
+				9AE382AB28B1885C007EA867 /* menu_shared_command.h */,
+				9AE382AA28B1885C007EA867 /* menu_shared_commnand.cpp */,
+				9AE382A928B1885B007EA867 /* menu_shared.cpp */,
+				9AE382AC28B1885C007EA867 /* menu_shared.h */,
+				9A92306527EACA3B00B5A78D /* _library.h */,
 				9A92306727EACA3B00B5A78D /* menu_command.cpp */,
 				9A92306627EACA3B00B5A78D /* menu_command.h */,
 			);
@@ -2015,6 +2031,8 @@
 				9AC2CEBF2653455600CC8096 /* cursor.cpp */,
 				9AC2CEB32653455600CC8096 /* cursor.h */,
 				9AC2CEBC2653455600CC8096 /* debug.cpp */,
+				9AE382A528B1844A007EA867 /* desktop_environment.cpp */,
+				9AE382A628B1844A007EA867 /* desktop_environment.h */,
 				9AC2CEB12653455600CC8096 /* display.cpp */,
 				9AC2CEB52653455600CC8096 /* display.h */,
 				9AC2CEA62653455600CC8096 /* event.h */,
@@ -2128,6 +2146,7 @@
 				9A37648E2409BF0C002D15D3 /* glyph.h in Headers */,
 				9AB3DCC7278360390025099F /* item.h in Headers */,
 				9A2273BE27CF053B0042BAC2 /* true_type_font_utilities.h in Headers */,
+				9AE382B028B1885C007EA867 /* menu_shared.h in Headers */,
 				9A92312F27EACF2100B5A78D /* extension.h in Headers */,
 				9A2270C727CEE2010042BAC2 /* ns_exception.h in Headers */,
 				9A750F9B282B90B700C4861B /* _experience_const.h in Headers */,
@@ -2160,6 +2179,7 @@
 				9A92313C27EACF2100B5A78D /* fastblur.h in Headers */,
 				9A750F81282B90B700C4861B /* key.h in Headers */,
 				9A22714E27CEE2020042BAC2 /* _application.h in Headers */,
+				9AE382A828B1844A007EA867 /* desktop_environment.h in Headers */,
 				9A37648A2409BF0C002D15D3 /* matrix.h in Headers */,
 				9A750F96282B90B700C4861B /* main_window.h in Headers */,
 				9A2488D22452C4F200F23D28 /* _.h in Headers */,
@@ -2396,6 +2416,7 @@
 				9A22712427CEE2020042BAC2 /* cross_win_gdi.h in Headers */,
 				9A3764812409BF0C002D15D3 /* common.h in Headers */,
 				9A3764D72409BF0C002D15D3 /* _.h in Headers */,
+				9AE382AF28B1885C007EA867 /* menu_shared_command.h in Headers */,
 				9A24866B2452C49000F23D28 /* session.h in Headers */,
 				9A3764892409BF0C002D15D3 /* brush.h in Headers */,
 				9ACFE56828497F8800911485 /* windowing.h in Headers */,
@@ -2862,6 +2883,7 @@
 				9A22714327CEE2020042BAC2 /* application.cpp in Sources */,
 				9A3764E42409BF10002D15D3 /* ortho.cpp in Sources */,
 				9A92310E27EACF2100B5A78D /* source.cpp in Sources */,
+				9AE382A728B1844A007EA867 /* desktop_environment.cpp in Sources */,
 				9A9230B127EACE1000B5A78D /* font_enumeration_item.cpp in Sources */,
 				9AC2CEA12653452D00CC8096 /* color_filter.cpp in Sources */,
 				9A92310D27EACF2100B5A78D /* context_image.cpp in Sources */,
@@ -2892,11 +2914,13 @@
 				9A92311127EACF2100B5A78D /* frame.cpp in Sources */,
 				9A8FCD8A2651AFAB00C0D8A1 /* font_enumeration.cpp in Sources */,
 				9A8EB3562449821B0056E362 /* callback.cpp in Sources */,
+				9AE382AD28B1885C007EA867 /* menu_shared.cpp in Sources */,
 				9AC2CEDA2653455600CC8096 /* display.cpp in Sources */,
 				9A2270C127CEE2010042BAC2 /* apple_timer.cpp in Sources */,
 				9A8FCD932651AFAB00C0D8A1 /* fonts.cpp in Sources */,
 				9A8B636124CBCD3C00A93185 /* context.cpp in Sources */,
 				9A1E1D6F22F0AF69004243B8 /* multiple_buffer.cpp in Sources */,
+				9AE382AE28B1885C007EA867 /* menu_shared_commnand.cpp in Sources */,
 				9ACC5E0E251A9744008528B1 /* aura_mq.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3147,7 +3171,7 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "@executable_path";
+				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
@@ -3238,7 +3262,7 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "@executable_path";
+				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (

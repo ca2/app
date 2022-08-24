@@ -5489,6 +5489,34 @@ namespace aura
    }
 
 
+//   void system::node_will_finish_launching()
+//   {
+//
+//      auto pnode = get_session()->m_paurasession;
+//
+//      auto puser = psession->user();
+//
+//      auto pwindowing = puser->windowing1();
+//
+//      pwindowing->_will_finish_launching();
+//
+//   }
+
+   
+//   void system::windowing_post_quit()
+//   {
+//   
+//      auto psession = get_session()->m_paurasession;
+//
+//      auto puser = psession->user();
+//
+//      auto pwindowing = puser->windowing1();
+//
+//      pwindowing->element_quit_post_quit();
+//
+//   }
+
+
    __pointer(::data::node) system::load_xml(const ::string & pszXml)
    {
 

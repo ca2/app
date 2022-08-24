@@ -1,7 +1,8 @@
 #include "framework.h"
 #include "core/user/user/_user.h"
-#include "aura/update.h"
+//#include "aura/update.h"
 #include "aura/procedure.h"
+#include "font_list.h"
 
 
 namespace user
@@ -537,7 +538,7 @@ namespace user
    }
 
 
-   bool font_list::set_sel_by_name(string str)
+   bool font_list::set_sel_by_name(const ::string & strName)
    {
 
       if (!m_pfontlist)
@@ -547,7 +548,7 @@ namespace user
 
       }
 
-      if (!m_pfontlist->set_sel_by_name(str))
+      if (!m_pfontlist->set_sel_by_name(strName))
       {
 
          return false;

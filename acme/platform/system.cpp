@@ -1873,10 +1873,22 @@ void system::add_signal_handler(::matter * pmatter, const ::atom & atomSignal)
 void system::node_will_finish_launching()
 {
 
+//   auto pnode = node();
+//      
+//   pnode->_will_finish_launching();
+      
+//   auto pnode = get_session()->m_paurasession;
+//
+//   auto puser = psession->user();
+//
+//   auto pwindowing = puser->windowing1();
+//
+//   pwindowing->_will_finish_launching();
+
    auto pnode = node();
-      
+
    pnode->_will_finish_launching();
-      
+
    //return ::success;
       
 }

@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "core/user/rich_text/_rich_text.h"
-#include "aura/update.h"
+//#include "aura/update.h"
 
 
 namespace user

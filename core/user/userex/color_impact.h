@@ -30,7 +30,7 @@ namespace userex
 
 
       color_impact();
-      virtual ~color_impact();
+      ~color_impact() override;
 
 
       void assert_ok() const override;
@@ -38,7 +38,12 @@ namespace userex
       void dump(dump_context & dumpcontext) const override;
 
       void install_message_routing(::channel * pchannel) override;
-
+      
+      
+      void set_sel_color(const ::color::hls & hls) override;
+      ::color::hls get_sel_color() override;
+      
+      
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
       //virtual void handle(::topic * ptopic, ::context * pcontext) override;

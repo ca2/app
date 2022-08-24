@@ -167,12 +167,12 @@ namespace apex
    }
 
 
-   void node::defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId)
-   {
-
-      //throw ::interface_only();
-
-   }
+//   void node::defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId)
+//   {
+//
+//      //throw ::interface_only();
+//
+//   }
 
 
    void node::set_application_menu(::application_menu * pmenu, ::application * papp)
@@ -395,22 +395,6 @@ namespace apex
 
 
 
-
-
-   void node::os_menu_item_enable(void * pitem, bool bEnable)
-   {
-
-      throw ::interface_only();
-      
-   }
-
-
-   void node::os_menu_item_check(void * pitem, bool bCheck)
-   {
-   
-      throw ::interface_only();
-      
-   }
 
 
 } // namespace apex

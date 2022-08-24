@@ -53,6 +53,10 @@ namespace acme
       :: IDENTIFIER_SUFFIX_OPERATING_SYSTEM(acme_)::node *  m_pAcmePlatform;
       :: IDENTIFIER_SUFFIX_OPERATING_SYSTEM(apex_)::node *  m_pApexPlatform;
       :: IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::node *  m_pAuraPlatform;
+      
+      
+      __pointer(::element)                                  m_pelementQuit;
+      
 
       //:: IDENTIFIER_PREFIX_OPERATING_SYSTEM(_node)::node *  m_pNode;
 
@@ -111,6 +115,17 @@ namespace acme
       virtual void initialize(::object * pobject) override;
       
       
+      virtual __pointer(::element) create_quit_element(__pointer(::acme::node) & pnode, __pointer(class ::system) & psystem);
+      
+      
+      virtual void implement(__pointer(::acme::node) & pnode, __pointer(class ::system) & psystem);
+
+      virtual void acme_application_main(class ::system * psystem);
+      virtual void _will_finish_launching();
+      
+      //virtual void element_quit_post_quit();
+
+
       virtual string audio_get_default_library_name();
       virtual string multimedia_audio_get_default_library_name();
       virtual string multimedia_audio_mixer_get_default_library_name();

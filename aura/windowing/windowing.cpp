@@ -835,6 +835,30 @@ namespace windowing
    }
 
 
+   void windowing::os_menu_item_enable(void * pitem, bool bEnable)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void windowing::os_menu_item_check(void * pitem, bool bCheck)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void windowing::defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId)
+   {
+
+      //throw ::interface_only();
+
+   }
+
+
    ::e_status windowing::is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
    {
 

@@ -84,6 +84,8 @@
 		9A389A3124F538B900185630 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A389A3024F538B900185630 /* AppKit.framework */; };
 		9A4E5C9E2519315800CC6817 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E5C9D2519315800CC6817 /* libacme.dylib */; };
 		9A4E5CA02519315800CC6817 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E5C9F2519315800CC6817 /* libapex.dylib */; };
+		9A615C3B28B1C5EE00377F68 /* tab_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A615C3A28B1C5BD00377F68 /* tab_document.cpp */; };
+		9A615C3C28B1C5EF00377F68 /* tab_document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A615C3A28B1C5BD00377F68 /* tab_document.cpp */; };
 		9A92318327EAE4B400B5A78D /* impact_kit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A92318127EAE4B400B5A78D /* impact_kit.cpp */; };
 		9A92318427EAE4B400B5A78D /* impact_kit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92318227EAE4B400B5A78D /* impact_kit.h */; };
 		9A93B69D2846EB33005ACD11 /* impact_kit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A92318227EAE4B400B5A78D /* impact_kit.h */; };
@@ -362,7 +364,6 @@
 		9A1D5E1F2751A98C003D9B5F /* frame_window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = frame_window.h; sourceTree = "<group>"; };
 		9A1D5E202751A98C003D9B5F /* _impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
 		9A1D5E212751A98C003D9B5F /* main_frame.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main_frame.cpp; sourceTree = "<group>"; };
-		9A1D5E222751A98C003D9B5F /* _simple.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _simple.h; sourceTree = "<group>"; };
 		9A1D5E232751A98C003D9B5F /* scroll_bar.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scroll_bar.cpp; sourceTree = "<group>"; };
 		9A1D5E242751A98C003D9B5F /* scroll_bar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = scroll_bar.h; sourceTree = "<group>"; };
 		9A1D5E252751A98C003D9B5F /* main_frame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main_frame.h; sourceTree = "<group>"; };
@@ -401,6 +402,9 @@
 		9A389A3024F538B900185630 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		9A4E5C9D2519315800CC6817 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4E5C9F2519315800CC6817 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A615C3828B1C5BD00377F68 /* _component.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _component.h; sourceTree = "<group>"; };
+		9A615C3928B1C5BD00377F68 /* tab_document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tab_document.h; sourceTree = "<group>"; };
+		9A615C3A28B1C5BD00377F68 /* tab_document.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tab_document.cpp; sourceTree = "<group>"; };
 		9A92318127EAE4B400B5A78D /* impact_kit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = impact_kit.cpp; sourceTree = "<group>"; };
 		9A92318227EAE4B400B5A78D /* impact_kit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = impact_kit.h; sourceTree = "<group>"; };
 		9A93B6FA2846EB33005ACD11 /* libios_base.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_base.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -652,14 +656,16 @@
 			isa = PBXGroup;
 			children = (
 				9A1D5E272751A98C003D9B5F /* _.h */,
+				9A615C3828B1C5BD00377F68 /* _component.h */,
 				9A1D5E202751A98C003D9B5F /* _impl.h */,
-				9A1D5E222751A98C003D9B5F /* _simple.h */,
 				9A1D5E262751A98C003D9B5F /* frame_window.cpp */,
 				9A1D5E1F2751A98C003D9B5F /* frame_window.h */,
 				9A1D5E212751A98C003D9B5F /* main_frame.cpp */,
 				9A1D5E252751A98C003D9B5F /* main_frame.h */,
 				9A1D5E232751A98C003D9B5F /* scroll_bar.cpp */,
 				9A1D5E242751A98C003D9B5F /* scroll_bar.h */,
+				9A615C3A28B1C5BD00377F68 /* tab_document.cpp */,
+				9A615C3928B1C5BD00377F68 /* tab_document.h */,
 			);
 			path = simple;
 			sourceTree = "<group>";
@@ -910,6 +916,7 @@
 				9A93B6CE2846EB33005ACD11 /* print_task.cpp in Sources */,
 				9A93B6CF2846EB33005ACD11 /* server.cpp in Sources */,
 				9A93B6D02846EB33005ACD11 /* simple_impact.cpp in Sources */,
+				9A615C3C28B1C5EF00377F68 /* tab_document.cpp in Sources */,
 				9A93B6D12846EB33005ACD11 /* single_document_template.cpp in Sources */,
 				9A93B6D22846EB33005ACD11 /* split_bar.cpp in Sources */,
 				9A93B6D32846EB33005ACD11 /* split_layout.cpp in Sources */,
@@ -991,6 +998,7 @@
 				9A1D5F402751B58A003D9B5F /* print_task.cpp in Sources */,
 				9A1D5F412751B58A003D9B5F /* server.cpp in Sources */,
 				9A1D5F422751B58A003D9B5F /* simple_impact.cpp in Sources */,
+				9A615C3B28B1C5EE00377F68 /* tab_document.cpp in Sources */,
 				9A1D5F432751B58A003D9B5F /* single_document_template.cpp in Sources */,
 				9A1D5F442751B58A003D9B5F /* split_bar.cpp in Sources */,
 				9A1D5F452751B58A003D9B5F /* split_layout.cpp in Sources */,
@@ -1126,7 +1134,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "@executable_path";
+				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
@@ -1223,7 +1231,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "@executable_path";
+				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (

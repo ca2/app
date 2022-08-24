@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "aura/graphics/draw2d/_component.h"
 #include "aura/graphics/image/list.h"
-//#include "aura/operating_system.h"
 #include "core/user/simple/_component.h"
+#include "toolbar.h"
 
 
 #define TIMER_HOVER 321654

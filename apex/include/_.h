@@ -1116,7 +1116,7 @@ namespace user
 
 //#include "apex/user/check.h"
 
-#include "apex/user/menu_shared_command.h"
+//#include "apex/user/menu_shared_command.h"
 
 //#include "apex/message/command.h"
 

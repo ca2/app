@@ -2530,6 +2530,7 @@
 		9A5F8E122719A377002CB2B8 /* _unit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _unit.h; sourceTree = "<group>"; };
 		9A5F8E132719AB1E002CB2B8 /* _unit_operator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _unit_operator.h; sourceTree = "<group>"; };
 		9A5F8E142719ABA9002CB2B8 /* _string_format.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _string_format.h; sourceTree = "<group>"; };
+		9A615C0128B1B5B600377F68 /* __acme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = __acme.h; sourceTree = "<group>"; };
 		9A6451512846458100A94AAB /* time_operator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = time_operator.h; sourceTree = "<group>"; };
 		9A6451522846458200A94AAB /* time.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
 		9A64515328464BFC00A94AAB /* time.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = time.cpp; sourceTree = "<group>"; };
@@ -3805,6 +3806,14 @@
 			path = integral;
 			sourceTree = "<group>";
 		};
+		9A615C0028B1B5B600377F68 /* __acme */ = {
+			isa = PBXGroup;
+			children = (
+				9A615C0128B1B5B600377F68 /* __acme.h */,
+			);
+			path = __acme;
+			sourceTree = "<group>";
+		};
 		9A68A40B25114352008DABD2 = {
 			isa = PBXGroup;
 			children = (
@@ -3812,6 +3821,7 @@
 				9A68A4522511442E008DABD2 /* acme */,
 				9AEA11DE275FE2FD006437A3 /* acme_framework */,
 				9AEA11EA275FE2FE006437A3 /* acme_frameworkTests */,
+				9A615C0028B1B5B600377F68 /* __acme */,
 				9A68A41525114352008DABD2 /* Products */,
 				9AD1996A2511B9C600B4C44A /* Frameworks */,
 			);
@@ -7923,7 +7933,7 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "@executable_path";
+				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
@@ -8035,7 +8045,7 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "@executable_path";
+				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (

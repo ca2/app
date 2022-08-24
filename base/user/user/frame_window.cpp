@@ -970,11 +970,9 @@ namespace user
       if(get_parent() == nullptr)
       {
          
-         auto psystem = m_psystem->m_papexsystem;
+         auto pwindowing = windowing();
          
-         auto pnode = psystem->node();
-         
-         pnode->defer_create_main_menu(
+         pwindowing->defer_create_main_menu(
                                        
                                        m_straMenuParent,
                                        m_straMenuName,

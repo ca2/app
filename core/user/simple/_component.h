@@ -41,9 +41,9 @@ namespace user
 
 //#include "scroll_bar.h"
 
-#include "toolbar.h"
-#include "menu_bar.h"
-#include "status_bar.h"
+//#include "toolbar.h"
+//#include "menu_bar.h"
+//#include "status_bar.h"
 
 
 #include "pane_document.h"

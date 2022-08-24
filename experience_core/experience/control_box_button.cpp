@@ -38,7 +38,11 @@ namespace experience_core
    void control_box_button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
+#ifdef VERBOSE_LOG
+
       ::duration t1 = ::duration::now();
+
+#endif
 
       if ((top_level()->frame_is_transparent() && !top_level()->is_active_window()) || !top_level_frame()->m_bShowControlBox)
       {
@@ -47,9 +51,9 @@ namespace experience_core
 
       }
 
-      ::duration d1 = t1.elapsed();
+#ifdef VERBOSE_LOG
 
-#ifdef VERBOSE_LOG      
+      ::duration d1 = t1.elapsed();
 
       if (d1 > 50_ms)
       {
@@ -171,9 +175,9 @@ namespace experience_core
 
       }
 
-      ::duration d2 = t1.elapsed();
+#ifdef VERBOSE_LOG
 
-#ifdef VERBOSE_LOG      
+      ::duration d2 = t1.elapsed();
 
       if (d2 > 50_ms)
       {

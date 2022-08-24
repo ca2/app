@@ -4,7 +4,7 @@
 #endif
 #include "aura/operating_system.h"
 #include "_data.h"
-#include "aura/update.h"
+//#include "aura/update.h"
 #include "aura/message.h"
 //#include "aura/user/interaction_thread.h"
 #ifdef WINDOWS_DESKTOP

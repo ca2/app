@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "core/user/user/_user.h"
 #include "acme/platform/timer.h"
+#include "elastic_slider.h"
 
 
 namespace user

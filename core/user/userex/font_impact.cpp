@@ -3,7 +3,8 @@
 #include "core/user/userex/_userex.h"
 #endif
 
-#include "aura/update.h"
+//#include "aura/update.h"
+#include "core/user/user/font_list.h"
 
 
 namespace userex
@@ -97,7 +98,7 @@ namespace userex
          }
 
       }
-      else if (ptopic->user_element_id() == impact_font_sel)
+      else if (ptopic->user_element_id() == FONT_SEL_IMPACT)
       {
 
          if (ptopic->m_atom == ::id_after_change_cur_sel)

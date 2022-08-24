@@ -83,17 +83,11 @@ namespace windowing
 
       virtual void finalize_windowing();
 
-      //virtual void destroy() override;
-
       void destroy() override;
-
-
-      //virtual void start();
 
       virtual void windowing_main();
 
       virtual void windowing_post_quit();
-
 
       virtual text_editor_interface * get_text_editor_interface();
       
@@ -243,14 +237,10 @@ namespace windowing
 #endif
        
        
-       virtual void os_menu_item_enable(void * pitem, bool bEnable);
-       virtual void os_menu_item_check(void * pitem, bool bCheck);
+      virtual void os_menu_item_enable(void * pitem, bool bEnable);
+      virtual void os_menu_item_check(void * pitem, bool bCheck);
 
-       virtual void defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId);
-
-      virtual void implement(__pointer(::acme::node) & pnode, __pointer(class ::system) & psystem);
-
-      virtual void _will_finish_launching();
+      virtual void defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId);
 
       virtual ::e_status is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
 

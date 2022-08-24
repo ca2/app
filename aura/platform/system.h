@@ -132,6 +132,13 @@ namespace aura
       virtual void initialize_context() override;
 
       //virtual void defer_xml();
+       
+      
+      //void node_will_finish_launching() override;
+      
+      
+      //void windowing_post_quit() override;
+      
 
       virtual __pointer(::data::node) load_xml(const ::string & pszXml) override;
 

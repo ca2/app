@@ -1,4 +1,7 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "_library.h"
+#endif
 #include <math.h>
 #include "acme/id.h"
 #include "aura/graphics/user/control_box_icon.h"

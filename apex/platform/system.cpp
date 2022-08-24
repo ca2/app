@@ -5363,51 +5363,15 @@ namespace apex
 
    }
 
+//
+//   void system::windowing_post_quit()
+//   {
+//      
+//      
+//   }
+
 
 } // namespace apex
 
 
-//void apex_system_update(const ::atom & atom, const ::payload & payload)
-//{
-//
-//   psystem->process_subject(atom, payload);
-//
-//}
 
-//
-//
-//void apex_system_set_modified(const ::atom& atom)
-//{
-//
-//
-//
-//   psystem->set_modified(atom);
-//
-//}
-//
-//namespace apex
-//{
-//
-//
-//   void system::on_subject(::topic* ptopic)
-//   {
-//
-//
-//      ::manager::on_subject(ptopic);
-//
-//   }
-//
-//
-//
-//} // namespace apex
-//
-
-
-//void system_id_update(void* pSystem, ::i64 iUpdate, ::i64 iPayload)
-//{
-//
-//   auto psystem = (class ::system *) pSystem;
-//
-//   psystem->system_id_update(iUpdate, iPayload);
-//
-//}

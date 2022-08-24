@@ -2,11 +2,18 @@
 //  _.h
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 24/08/22.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 24/08/22 00:24
 //
-
-#ifndef __h
-#define __h
+#pragma once
 
 
-#endif /* __h */
+#include "user/_.h"
+
+
+#include "appearance/_.h"
+
+
+#include "menu/_.h"
+
+
+

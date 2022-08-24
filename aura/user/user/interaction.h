@@ -346,7 +346,7 @@ namespace user
       __pointer(::draw2d::graphics_call_array)     m_pgraphicscalla;
       __pointer(::user::interaction)               m_puserinteractionCustomWindowProc;
       __pointer(::user::interaction)               m_puiLabel;
-      __pointer_array(::item)                m_useritema;
+      __pointer_array(::item)                      m_useritema;
       __pointer(::user::form)                      m_pform;
       __pointer(alpha_source)                      m_palphasource;
       __pointer(::aura::drawable)                  m_pdrawableBackground;

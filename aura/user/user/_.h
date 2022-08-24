@@ -13,7 +13,6 @@
 namespace user
 {
 
-
    class alpha_source;
 
    class button;

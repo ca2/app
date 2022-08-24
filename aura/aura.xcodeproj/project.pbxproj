@@ -1106,7 +1106,7 @@
 		9A92306127EACA3B00B5A78D /* windowing.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = windowing.cpp; sourceTree = "<group>"; };
 		9A92306227EACA3B00B5A78D /* primitive_impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = primitive_impl.h; sourceTree = "<group>"; };
 		9A92306327EACA3B00B5A78D /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		9A92306527EACA3B00B5A78D /* _library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _library.h; sourceTree = "<group>"; };
+		9A92306527EACA3B00B5A78D /* _component.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _component.h; sourceTree = "<group>"; };
 		9A92306627EACA3B00B5A78D /* menu_command.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = menu_command.h; sourceTree = "<group>"; };
 		9A92306727EACA3B00B5A78D /* menu_command.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = menu_command.cpp; sourceTree = "<group>"; };
 		9A92306927EACA3B00B5A78D /* button.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = button.cpp; sourceTree = "<group>"; };
@@ -1182,6 +1182,7 @@
 		9ABA65A128B5CDB80063B976 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9ABA65A428B5CF4B0063B976 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9ABA65A528B5D1710063B976 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9ABA65A628B5D3F80063B976 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9AC2CCBE26533BB600CC8096 /* context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
 		9AC2CCBF26533BB600CC8096 /* message_queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message_queue.h; sourceTree = "<group>"; };
 		9AC2CCC026533BB600CC8096 /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
@@ -1928,11 +1929,12 @@
 		9A92306427EACA3B00B5A78D /* menu */ = {
 			isa = PBXGroup;
 			children = (
+				9ABA65A628B5D3F80063B976 /* _.h */,
+				9A92306527EACA3B00B5A78D /* _component.h */,
 				9AE382AB28B1885C007EA867 /* menu_shared_command.h */,
 				9AE382AA28B1885C007EA867 /* menu_shared_commnand.cpp */,
 				9AE382A928B1885B007EA867 /* menu_shared.cpp */,
 				9AE382AC28B1885C007EA867 /* menu_shared.h */,
-				9A92306527EACA3B00B5A78D /* _library.h */,
 				9A92306727EACA3B00B5A78D /* menu_command.cpp */,
 				9A92306627EACA3B00B5A78D /* menu_command.h */,
 			);

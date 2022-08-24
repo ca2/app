@@ -2,11 +2,9 @@
 //  _.h
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 24/08/22.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 24/08/22 00:35 (Thomas Likes Number 5!!).
 //
-
-#ifndef __h
-#define __h
+#pragma once
 
 
-#endif /* __h */
+

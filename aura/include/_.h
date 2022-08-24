@@ -1018,18 +1018,6 @@ namespace write_text
 
 } // namespace write_text
 
-//
-using image_pointer = __pointer(::image);
-using icon_pointer = __pointer(::draw2d::icon);
-//
-//
-using image_pointer = __pointer(::image);
-using icon_pointer = __pointer(::draw2d::icon);
-//
-//
-//class command_line;
-using image_pointer_array = __pointer_array(::image);
-
 
 #include "acme/user/user/_constant_key.h"
 

@@ -22,6 +22,7 @@ namespace draw2d
 
    using graphics_call_array = __pointer_array(graphics_call_base);
 
+   using icon_pointer = __pointer(::draw2d::icon);
 
 } // namespace draw2d
 

@@ -34,8 +34,7 @@ namespace crypto_openssl
          const string& strIqmp);
 
       rsa(const string& str);
-
-      virtual ~rsa();
+      ~rsa() override;
 
       
       virtual int public_encrypt(memory& out, const memory& in, string& strError) override;

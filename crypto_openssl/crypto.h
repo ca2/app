@@ -5,21 +5,11 @@ namespace crypto_openssl
 {
 
 
-   //class rsa;
-
-
-   //class initializer;
-
-
    class CLASS_DECL_CRYPTO_OPENSSL crypto :
       virtual public ::crypto::crypto
    {
    public:
 
-
-      //__creatable_from_base(crypto, ::crypto::crypto);
-
-      // salt here may be dangerous for the universe
 
       __composite(::crypto::initializer)    m_pinitializer;
 

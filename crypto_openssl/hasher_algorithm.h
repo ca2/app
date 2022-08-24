@@ -5,8 +5,6 @@ namespace crypto_openssl
 {
 
 
-
-   //template < typename CTX, enum_hash m_ehash >
    class CLASS_DECL_CRYPTO_OPENSSL hasher_algorithm :
       public ::crypto::hasher_algorithm
    {

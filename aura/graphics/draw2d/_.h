@@ -15,6 +15,7 @@ namespace draw2d
    class path;
    class graphics;
    class bitmap;
+   class icon;
 
 
    class graphics_call_base;

@@ -28,6 +28,7 @@
 		9A8EB4A724498E390056E362 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8EB48B24498E390056E362 /* _.h */; };
 		9A8F8948240C031B0097E249 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F890E240C031B0097E249 /* framework.cpp */; };
 		9A8F8958240C031B0097E249 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A8F8934240C031B0097E249 /* framework.h */; };
+		9ABA659B28B5BB420063B976 /* _library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ABA659A28B5BB420063B976 /* _library.h */; };
 		9AE245DF27F1233F00B849D0 /* control_box_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A927DFC27F10FDE002BCA3C /* control_box_button.cpp */; };
 		9AE245E027F1233F00B849D0 /* control_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A927DF827F10FDE002BCA3C /* control_box.cpp */; };
 		9AE245E127F1233F00B849D0 /* experience.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A927E0827F10FDE002BCA3C /* experience.cpp */; };
@@ -135,6 +136,7 @@
 		9A927E0C27F10FDE002BCA3C /* style.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = style.h; sourceTree = "<group>"; };
 		9A927E0D27F10FDE002BCA3C /* style.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = style.cpp; sourceTree = "<group>"; };
 		9A927E0E27F10FDE002BCA3C /* _user.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _user.h; sourceTree = "<group>"; };
+		9ABA659A28B5BB420063B976 /* _library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _library.h; sourceTree = "<group>"; };
 		9AE24E5A1904CFE2001AEFFB /* libios_experience_anthill.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libios_experience_anthill.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE24E5C1904CFE2001AEFFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9AE24E691904CFE2001AEFFB /* experience_lite_iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = experience_lite_iosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,8 +190,9 @@
 			children = (
 				9A927DF327F10FDE002BCA3C /* experience */,
 				9A927E0B27F10FDE002BCA3C /* user */,
-				9A8C7DE427D1449200025329 /* _factory.cpp */,
 				9A8EB48B24498E390056E362 /* _.h */,
+				9A8C7DE427D1449200025329 /* _factory.cpp */,
+				9ABA659A28B5BB420063B976 /* _library.h */,
 				9A8F890E240C031B0097E249 /* framework.cpp */,
 				9A8F8934240C031B0097E249 /* framework.h */,
 			);
@@ -293,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A8EB4A724498E390056E362 /* _.h in Headers */,
+				9ABA659B28B5BB420063B976 /* _library.h in Headers */,
 				9A8F8958240C031B0097E249 /* framework.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

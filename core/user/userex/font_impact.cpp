@@ -98,7 +98,7 @@ namespace userex
          }
 
       }
-      else if (ptopic->user_element_id() == FONT_SEL_IMPACT)
+      else if (ptopic->user_element_id() == FONTSEL_IMPACT)
       {
 
          if (ptopic->m_atom == ::id_after_change_cur_sel)

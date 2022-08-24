@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "core/user/user/form_list.h"
+
+
 class CLASS_DECL_CORE simple_list_impact :
    virtual public ::user::show <  ::user::form_list >
 {

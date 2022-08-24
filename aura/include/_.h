@@ -1008,36 +1008,32 @@ namespace draw2d
 } // namespace draw2d
 
 
-namespace write_text
-{
-
-
-   class text_out;
-   class draw_text;
-
-
-} // namespace write_text
-
-
 #include "acme/user/user/_constant_key.h"
 
 
-namespace draw2d
-{
+#include "aura/graphics/_.h"
 
 
-   class graphics;
+#include "aura/user/_.h"
 
-
-   class icon;
-   class cursor;
-   class region;
-   class brush;
-   using brush_pointer = __pointer(brush);
-
-
-} // namespace draw2d
-
+//
+//
+//namespace draw2d
+//{
+//
+//
+//   class graphics;
+//
+//
+//   class icon;
+//   class cursor;
+//   class region;
+//   class brush;
+//   using brush_pointer = __pointer(brush);
+//
+//
+//} // namespace draw2d
+//
 
 namespace write_text
 {

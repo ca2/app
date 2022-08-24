@@ -16,7 +16,7 @@ namespace aura
 
 
       game();
-      virtual ~game();
+      ~game() override;
 
       
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
@@ -27,4 +27,8 @@ namespace aura
 
    };
 
-}
+
+}  // namespace aura
+
+
+

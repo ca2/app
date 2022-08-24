@@ -15,6 +15,11 @@ namespace write_text
 
    };
 
+
+   class text_out;
+   class draw_text;
+
+
    class font_list;
    class font;
    using font_pointer = __pointer(font);

@@ -103,7 +103,7 @@
 		9A281A4325242A09009FA9CB /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A281A38252428C3009FA9CB /* libapex.dylib */; };
 		9A2E6254252588430001CC7E /* estamira.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2E624D252588430001CC7E /* estamira.h */; };
 		9A2E6255252588430001CC7E /* estamira.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E624E252588430001CC7E /* estamira.cpp */; };
-		9A2E6256252588430001CC7E /* _game.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2E624F252588430001CC7E /* _game.h */; };
+		9A2E6256252588430001CC7E /* _component.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2E624F252588430001CC7E /* _component.h */; };
 		9A2E6257252588430001CC7E /* game.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2E6250252588430001CC7E /* game.h */; };
 		9A2E6258252588430001CC7E /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E6251252588430001CC7E /* game.cpp */; };
 		9A2E6259252588430001CC7E /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2E6252252588430001CC7E /* _.h */; };
@@ -175,7 +175,7 @@
 		9A8E9E77282A3210005FF778 /* exception.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2819A425242523009FA9CB /* exception.h */; };
 		9A8E9E78282A3210005FF778 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2819AC25242523009FA9CB /* _.h */; };
 		9A8E9E7A282A3210005FF778 /* sound_track_player.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28199D25242523009FA9CB /* sound_track_player.h */; };
-		9A8E9E7B282A3210005FF778 /* _game.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2E624F252588430001CC7E /* _game.h */; };
+		9A8E9E7B282A3210005FF778 /* _component.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2E624F252588430001CC7E /* _component.h */; };
 		9A8E9E7C282A3210005FF778 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28197C25242523009FA9CB /* application.h */; };
 		9A8E9E7E282A3210005FF778 /* _new_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28198425242523009FA9CB /* _new_impl.h */; };
 		9A8E9E80282A3210005FF778 /* node.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A28195625242523009FA9CB /* node.h */; };
@@ -357,7 +357,7 @@
 		9A281A32252428C3009FA9CB /* apex.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = apex.xcodeproj; path = ../apex/apex.xcodeproj; sourceTree = "<group>"; };
 		9A2E624D252588430001CC7E /* estamira.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = estamira.h; sourceTree = "<group>"; };
 		9A2E624E252588430001CC7E /* estamira.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = estamira.cpp; sourceTree = "<group>"; };
-		9A2E624F252588430001CC7E /* _game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _game.h; sourceTree = "<group>"; };
+		9A2E624F252588430001CC7E /* _component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _component.h; sourceTree = "<group>"; };
 		9A2E6250252588430001CC7E /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = game.h; sourceTree = "<group>"; };
 		9A2E6251252588430001CC7E /* game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = game.cpp; sourceTree = "<group>"; };
 		9A2E6252252588430001CC7E /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
@@ -425,7 +425,6 @@
 			isa = PBXGroup;
 			children = (
 				9A601E9B285B62F200151842 /* include */,
-				9A601E95285B629900151842 /* _audio.h */,
 				9A97C7BD28236AFA00755A0A /* constant */,
 				9A2E624C252588430001CC7E /* game */,
 				9A28196E25242523009FA9CB /* inline */,
@@ -436,6 +435,7 @@
 				9A28194025242523009FA9CB /* xml */,
 				9A28198D25242523009FA9CB /* _.cpp */,
 				9A2819AC25242523009FA9CB /* _.h */,
+				9A601E95285B629900151842 /* _audio.h */,
 				9A28192925242523009FA9CB /* _defer.h */,
 				9A601E98285B62B500151842 /* _estamira.h */,
 				9A28192825242523009FA9CB /* console.h */,
@@ -596,12 +596,12 @@
 		9A2E624C252588430001CC7E /* game */ = {
 			isa = PBXGroup;
 			children = (
+				9A2E6252252588430001CC7E /* _.h */,
+				9A2E624F252588430001CC7E /* _component.h */,
 				9A2E624D252588430001CC7E /* estamira.h */,
 				9A2E624E252588430001CC7E /* estamira.cpp */,
-				9A2E624F252588430001CC7E /* _game.h */,
 				9A2E6250252588430001CC7E /* game.h */,
 				9A2E6251252588430001CC7E /* game.cpp */,
-				9A2E6252252588430001CC7E /* _.h */,
 			);
 			path = game;
 			sourceTree = "<group>";
@@ -692,7 +692,7 @@
 				9A281A1825242524009FA9CB /* exception.h in Headers */,
 				9A281A1C25242524009FA9CB /* _.h in Headers */,
 				9A281A1125242524009FA9CB /* sound_track_player.h in Headers */,
-				9A2E6256252588430001CC7E /* _game.h in Headers */,
+				9A2E6256252588430001CC7E /* _component.h in Headers */,
 				9A2819F525242523009FA9CB /* application.h in Headers */,
 				9A2819FB25242523009FA9CB /* _new_impl.h in Headers */,
 				9A2819D125242523009FA9CB /* node.h in Headers */,
@@ -771,7 +771,7 @@
 				9A8E9E77282A3210005FF778 /* exception.h in Headers */,
 				9A8E9E78282A3210005FF778 /* _.h in Headers */,
 				9A8E9E7A282A3210005FF778 /* sound_track_player.h in Headers */,
-				9A8E9E7B282A3210005FF778 /* _game.h in Headers */,
+				9A8E9E7B282A3210005FF778 /* _component.h in Headers */,
 				9A8E9E7C282A3210005FF778 /* application.h in Headers */,
 				9A8E9E7E282A3210005FF778 /* _new_impl.h in Headers */,
 				9A8E9E80282A3210005FF778 /* node.h in Headers */,

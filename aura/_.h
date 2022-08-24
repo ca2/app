@@ -47,12 +47,6 @@ namespace aura
 #include "aura/operating_system/_.h"
 
 
-#include "graphics/_.h"
-
-
-#include "user/_.h"
-
-
 #include "aura/include/_include.h"
 
 

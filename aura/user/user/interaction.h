@@ -210,8 +210,6 @@ namespace user
 
       ::user::interaction::e_updown                m_eupdown;
 
-   protected:
-      ::user::interaction_layout                   m_layout;
    public:
 
       index                                        m_iItem;
@@ -341,7 +339,9 @@ namespace user
 
       // ownership
       __pointer(::user::system)                    m_pusersystem;
+   protected:
       __pointer(::user::interaction_layout)        m_playout;
+   public:
       //__pointer(drag_move)                         m_pdragmove;
       __pointer(graphics_call_array)               m_pgraphicscalla;
       __pointer(::user::interaction)               m_puserinteractionCustomWindowProc;

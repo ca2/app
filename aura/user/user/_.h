@@ -13,6 +13,13 @@
 namespace user
 {
 
+
+   class interation;
+
+   class interaction_impl;
+
+   class interaction_scaler;
+
    class alpha_source;
 
    class button;
@@ -29,7 +36,11 @@ namespace user
 
    class frame_window;
 
-   class interaction_scaler;
+   class toolbar;
+
+   class scroll_bar;
+
+   class split_layout;
 
 
 } // namespace user

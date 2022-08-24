@@ -2771,9 +2771,10 @@ namespace user
    }
 
 
-   void interaction::set_sel_by_name(const ::string & strName)
+   bool interaction::set_sel_by_name(const ::string & strName)
    {
       
+      return false;
       
    }
 

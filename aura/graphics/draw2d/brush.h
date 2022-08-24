@@ -63,8 +63,6 @@ namespace draw2d
 
    };
 
-   using brush_pointer = __pointer(brush);
-
    //class CLASS_DECL_AURA brush_pointer :
    //   public pointer < brush >
    //{

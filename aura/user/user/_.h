@@ -29,6 +29,8 @@ namespace user
 
    class frame_window;
 
+   class interaction_scaler;
+
 
 } // namespace user
 

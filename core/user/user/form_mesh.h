@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/user/user/form_window.h"
+
+
 namespace user
 {
 

@@ -2,6 +2,7 @@
 
 
 #include "apex/message/command.h"
+#include "apex/user/primitive.h"
 
 
 namespace user

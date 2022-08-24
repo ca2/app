@@ -7,6 +7,14 @@ namespace write_text
 {
 
 
+   struct font_descriptor
+   {
+
+      string      m_strFace;
+      float       m_fSize;
+
+   };
+
    class font_list;
    class font;
    using font_pointer = __pointer(font);

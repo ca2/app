@@ -4,6 +4,9 @@
 class context_image;
 
 
+class image;
+
+
 #include "draw2d/_.h"
 
 
@@ -11,6 +14,15 @@ class context_image;
 
 
 #include "graphics/_.h"
+
+
+#include "image/_.h"
+
+
+#include "user/_.h"
+
+
+#include "write_text/_.h"
 
 
 

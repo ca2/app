@@ -1179,7 +1179,8 @@
 		9AB3DCC3278360390025099F /* item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = item.h; sourceTree = "<group>"; };
 		9ABA659F28B5CC7C0063B976 /* _struct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _struct.h; sourceTree = "<group>"; };
 		9ABA65A028B5CDB80063B976 /* _impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _impl.h; sourceTree = "<group>"; };
-		9ABA65A128B5CDB80063B976 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _.h; path = graphics/_.h; sourceTree = "<group>"; };
+		9ABA65A128B5CDB80063B976 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
+		9ABA65A428B5CF4B0063B976 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9AC2CCBE26533BB600CC8096 /* context.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = context.cpp; sourceTree = "<group>"; };
 		9AC2CCBF26533BB600CC8096 /* message_queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = message_queue.h; sourceTree = "<group>"; };
 		9AC2CCC026533BB600CC8096 /* context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = context.h; sourceTree = "<group>"; };
@@ -1594,6 +1595,8 @@
 				9A9230D627EACF2100B5A78D /* image */,
 				9A46D32C26784C8D000B22D0 /* user */,
 				9A8FCD6F2651AFAB00C0D8A1 /* write_text */,
+				9ABA65A128B5CDB80063B976 /* _.h */,
+				9ABA65A028B5CDB80063B976 /* _impl.h */,
 			);
 			path = graphics;
 			sourceTree = "<group>";
@@ -1710,6 +1713,7 @@
 		9A46D32C26784C8D000B22D0 /* user */ = {
 			isa = PBXGroup;
 			children = (
+				9ABA65A428B5CF4B0063B976 /* _.h */,
 				9A4AE6FC27F9549900A4B000 /* control_box_button.cpp */,
 				9A4AE6FD27F9549900A4B000 /* control_box_button.h */,
 				9A4AE6FE27F9549900A4B000 /* control_box_icon.cpp */,
@@ -2101,8 +2105,6 @@
 				9A2BE846251EC3BC0075218C /* game */,
 				9A8B635224CBCD3C00A93185 /* gpu */,
 				9A2A52F81F1FEDFD001AB0F8 /* graphics */,
-				9ABA65A128B5CDB80063B976 /* _.h */,
-				9ABA65A028B5CDB80063B976 /* _impl.h */,
 				9A75C6A1283D6E6400EC37F2 /* hardware */,
 				9A2488C02452C4F100F23D28 /* include */,
 				9A37650C2409C094002D15D3 /* inline */,

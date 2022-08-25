@@ -1692,7 +1692,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
       //estatus =
       
-      ::size_i32 size((rectangleDraw.width() * iDiv), (rectangleDraw.height() * iDiv));
+      ::size_i32 size((::i32) (rectangleDraw.width() * iDiv), (::i32)(rectangleDraw.height() * iDiv));
       
       if(size.has_area())
       {

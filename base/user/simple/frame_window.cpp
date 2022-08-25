@@ -1,11 +1,11 @@
 #include "framework.h"
 #include "base/user/simple/_component.h"
 #include "aura/message.h"
-//#include "aura/update.h"
 #include "aqua/xml.h"
 #include "acme/id.h"
 #include "acme/parallelization/pool.h"
 #include "aura/graphics/draw2d/_component.h"
+#include "aura/windowing/icon.h"
 
 
 #define TEST 0
@@ -2777,7 +2777,7 @@ void simple_frame_window::defer_create_notification_icon()
 
    }
 
-   windowing()->windowing_post([this]
+   windowing_post([this]
    {
 
 //      if (m_pnotifyicon)
@@ -3207,9 +3207,7 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
 
          //OnNotifyIconContextMenu(ptopic->m_puserelement->m_atom);
 
-         auto pwindow = window();
-
-         auto pointCursor = pwindow->get_cursor_position();
+         auto pointCursor = get_cursor_position();
 
          string strXml = notification_area_get_xml_menu();
 

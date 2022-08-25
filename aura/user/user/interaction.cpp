@@ -5310,6 +5310,40 @@ namespace user
    }
 
 
+   void interaction::windowing_send(const ::procedure& procedure)
+   {
+
+      auto pwindowing = windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      pwindowing->windowing_send(procedure);
+
+   }
+
+
+   void interaction::windowing_post(const ::procedure& procedure)
+   {
+
+      auto pwindowing = windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      pwindowing->windowing_post(procedure);
+
+   }
+
+
    void interaction::_000OnDrag(::message::drag_and_drop * pdrag)
    {
 
@@ -11137,6 +11171,14 @@ namespace user
       }
 
       return pwindow->set_active_window();
+
+   }
+
+
+   void interaction::bring_to_front()
+   {
+
+      window()->bring_to_front();
 
    }
 

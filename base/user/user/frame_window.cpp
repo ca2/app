@@ -10,6 +10,7 @@
 #include "aura/graphics/draw2d/_component.h"
 #include "aura/graphics/graphics/_.h"
 #include "aura/graphics/graphics/_graphics.h"
+#include "aura/windowing/windowing.h"
 
 
 namespace user
@@ -520,9 +521,7 @@ namespace user
 
                   pimage1->get_graphics()->draw(imagedrawing);
 
-                  auto pwindow = window();
-
-                  auto pcopydesk = pwindow->copydesk();
+                  auto pcopydesk = copydesk();
 
                   pcopydesk->image_to_desk(pimage1);
 

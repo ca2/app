@@ -499,9 +499,7 @@ namespace user
 
             client_to_screen(rectangleTab);
 
-            auto pwindow = window();
-
-            auto pointCursor = pwindow->get_cursor_position();
+            auto pointCursor = get_cursor_position();
 
             bool bShowTabs = rectangleTab.contains(pointCursor);
 
@@ -553,9 +551,7 @@ namespace user
 
             bool bShowTabs;
 
-            auto pwindow = window();
-
-            auto pointCursor = pwindow->get_cursor_position();
+            auto pointCursor = get_cursor_position();
 
             if(get_data()->m_bVertical)
             {

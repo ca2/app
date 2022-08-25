@@ -2,7 +2,6 @@
 #include "base/user/simple/_component.h"
 #include "aura/graphics/draw2d/_component.h"
 #include "acme/platform/timer.h"
-//#include "aura/user/interaction_draw2d.h"
 
 
 simple_scroll_bar::simple_scroll_bar()
@@ -108,15 +107,11 @@ void simple_scroll_bar::on_message_mouse_move(::message::message * pmessage)
 
       pmouse->m_lresult = 1;
 
-      //pmouse->m_bRet = true;
-
-      auto pwindowing = windowing();
-
-      auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+      auto pcursor = get_mouse_cursor(e_cursor_arrow);
 
       pmouse->m_pcursor = pcursor;
 
-   }s
+   }
    else
    {
 
@@ -125,9 +120,7 @@ void simple_scroll_bar::on_message_mouse_move(::message::message * pmessage)
       if(eelement.is_set())
       {
 
-         auto pwindowing = windowing();
-
-         auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+         auto pcursor = get_mouse_cursor(e_cursor_arrow);
 
          pmouse->m_pcursor = pcursor;
 
@@ -248,9 +241,7 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
 void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 {
 
-   auto pwindowing = windowing();
-
-   pwindowing->release_mouse_capture();
+   release_mouse_capture();
 
    auto pmouse = pmessage->m_union.m_pmouse;
 
@@ -783,9 +774,7 @@ void simple_scroll_bar::_001OnTimer(::timer * ptimer)
 
    ::user::scroll_bar::_001OnTimer(ptimer);
 
-   auto pwindow = window();
-
-   auto pointCursor = pwindow->get_cursor_position();
+   auto pointCursor = get_cursor_position();
 
    screen_to_client(pointCursor);
 

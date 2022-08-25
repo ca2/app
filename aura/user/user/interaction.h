@@ -495,6 +495,11 @@ namespace user
 
       virtual void interaction_post(const ::procedure & procedure) override;
 
+      virtual void windowing_send(const ::procedure& procedure);
+
+      virtual void windowing_post(const ::procedure& procedure);
+
+
 
       inline void auto_prodevian_on_show() { m_ewindowflag |= e_window_flag_auto_prodevian_on_show; }
       inline void clear_auto_prodevian_on_show() { m_ewindowflag -= e_window_flag_auto_prodevian_on_show; }
@@ -1242,6 +1247,8 @@ namespace user
 
       virtual void set_foreground_window();
       virtual void set_active_window();
+
+      virtual void bring_to_front();
 
       virtual bool is_window_enabled() const;
       inline bool is_this_window_enabled() const { return m_ewindowflag.is(e_window_flag_enable); }

@@ -164,9 +164,7 @@ namespace user
 
          m_pparent->m_iState = split_layout::stateInitial;
 
-         auto pwindowing = windowing();
-
-         pwindowing->release_mouse_capture();
+         release_mouse_capture();
 
          pmouse->m_bRet = true;
 
@@ -189,12 +187,10 @@ namespace user
       if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count() && !m_pparent->m_splitpanecompositea[m_iIndex]->m_bFixedSize)
       {
 
-         auto pwindowing = windowing();
-
          if(m_pparent->GetSplitOrientation() == e_orientation_horizontal)
          {
 
-            auto pcursor = pwindowing->get_cursor(e_cursor_size_vertical);
+            auto pcursor = get_mouse_cursor(e_cursor_size_vertical);
 
             pmouse->m_pcursor = pcursor;
 
@@ -202,7 +198,7 @@ namespace user
          else
          {
 
-            auto pcursor = pwindowing->get_cursor(e_cursor_size_horizontal);
+            auto pcursor = get_mouse_cursor(e_cursor_size_horizontal);
 
             pmouse->m_pcursor = pcursor;
 

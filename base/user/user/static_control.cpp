@@ -154,9 +154,7 @@ namespace user
       if(m_bHover)
       {
 
-         auto pwindow = window();
-
-         auto pointCursor = pwindow->get_cursor_position();
+         auto pointCursor = get_cursor_position();
 
          ::rectangle_i32 rectangleWindow;
 

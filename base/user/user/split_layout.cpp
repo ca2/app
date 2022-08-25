@@ -282,9 +282,7 @@ namespace user
          if(m_iState != stateInitial)
          {
 
-            auto pwindowing = windowing();
-
-            pwindowing->release_mouse_capture();
+            release_mouse_capture();
 
             m_iState = stateInitial;
 

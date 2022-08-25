@@ -1240,9 +1240,7 @@ namespace user
 
       ::color::color crBk;
 
-      auto pwindow = window();
-
-      auto pointCursor = _001ScreenToClient(pwindow->get_cursor_position());
+      auto pointCursor = _001ScreenToClient(get_cursor_position());
 
       enum_position epositionDrag = m_ptab->DragHitTest(pointCursor);
 
@@ -1293,9 +1291,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-auto pwindowing = windowing();
-
-      pwindowing->release_mouse_capture();
+      release_mouse_capture();
 
       auto point(pmouse->m_point);
 

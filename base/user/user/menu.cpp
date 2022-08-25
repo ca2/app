@@ -304,16 +304,16 @@ namespace user
             post_procedure([this]()
             {
 
-               window()->set_foreground_window();
+               set_foreground_window();
 
                post_procedure([this]()
                   {
 
-                     window()->set_active_window();
+                     set_active_window();
 
-                     window()->bring_to_front();
+                     bring_to_front();
 
-                     window()->set_window_position(e_zorder_top_most, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+                     set_window_position(e_zorder_top_most, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
 
                   });
 

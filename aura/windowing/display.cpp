@@ -8,6 +8,10 @@
 #include "acme/primitive/geometry2d/_.h"
 #include "acme/primitive/geometry2d/_geometry2d.h"
 #include "acme/primitive/geometry2d/_impl.h"
+#include "aura/windowing/display.h"
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/monitor.h"
+#include "aura/windowing/window.h"
 
 
 namespace windowing

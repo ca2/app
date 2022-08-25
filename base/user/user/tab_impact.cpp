@@ -13,8 +13,8 @@ namespace user
    tab_impact::tab_impact()
    {
 
-      m_flagNonClient.erase(non_client_background);
-      m_flagNonClient.erase(non_client_focus_rect);
+      m_flagNonClient.erase(e_non_client_background);
+      m_flagNonClient.erase(e_non_client_focus_rect);
 
       m_pimpactdata                    = nullptr;
       m_pimpactdataOld                 = nullptr;

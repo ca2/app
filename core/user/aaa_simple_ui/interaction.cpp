@@ -536,7 +536,7 @@ namespace simple_ui
 //
 //      ::user::interaction::_001OnNcDraw(pgraphics);
 //
-//      if(m_flagNonClient.has(non_client_focus_rect) && keyboard_focus_is_focusable())
+//      if(m_flagNonClient.has(e_non_client_focus_rect) && keyboard_focus_is_focusable())
 //      {
 //
 //         simple_ui_draw_focus_rect(pgraphics);

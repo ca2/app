@@ -6,6 +6,8 @@
 #include "aura/user/user/_component.h"
 #endif
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/display.h"
 
 
 namespace user
@@ -114,8 +116,8 @@ namespace user
 
       m_pbuttonClose->set_stock_icon(::e_stock_icon_close);
 
-      m_pbuttonClose->m_flagNonClient -= non_client_background;
-      m_pbuttonClose->m_flagNonClient -= non_client_focus_rect;
+      m_pbuttonClose->m_flagNonClient -= e_non_client_background;
+      m_pbuttonClose->m_flagNonClient -= e_non_client_focus_rect;
 
       ::user::message_box::show(puserinteraction, strMessageParam, strTitle, emessagebox);
 

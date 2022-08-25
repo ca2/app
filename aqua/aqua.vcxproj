@@ -41,7 +41,7 @@
     <ClInclude Include="game\estamira.h" />
     <ClInclude Include="game\game.h" />
     <ClInclude Include="game\_.h" />
-    <ClInclude Include="game\_game.h" />
+    <ClInclude Include="game\_component.h" />
     <ClInclude Include="id.h" />
     <ClInclude Include="include\_.h" />
     <ClInclude Include="inline\application.h" />

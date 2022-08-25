@@ -1237,7 +1237,7 @@ namespace filemanager
       queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
          {
 
-            set_impactport_offset(pgraphics, 0, 0);
+            set_context_offset(pgraphics, 0, 0);
 
          });
 

@@ -85,6 +85,7 @@ namespace user
 
    }
 
+
    void slider::on_message_left_button_up(::message::message * pmessage)
    {
 
@@ -93,9 +94,7 @@ namespace user
       if(m_bSlide)
       {
 
-         auto pwindowing = windowing();
-
-         pwindowing->release_mouse_capture();
+         release_mouse_capture();
 
          m_bSlide = false;
 
@@ -139,13 +138,9 @@ namespace user
 
       double dScalar = m_pscalar->get_rate();
 
-auto pwindowing = windowing();
+      auto pointCursor = get_cursor_position();
 
-      auto pwindow = window();
-
-      auto point = pwindow->get_cursor_position();
-
-      screen_to_client(point, e_layout_design);
+      screen_to_client(pointCursor, e_layout_design);
 
       ::rectangle_i32 rectangle;
 
@@ -154,7 +149,7 @@ auto pwindowing = windowing();
       if(rectangle.width() != 0)
       {
 
-         dScalar = (double) (point.x - rectangle.left) / (double) rectangle.width();
+         dScalar = (double) (pointCursor.x - rectangle.left) / (double) rectangle.width();
 
       }
 

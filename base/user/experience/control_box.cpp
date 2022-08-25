@@ -79,9 +79,7 @@ namespace experience
 
          m_bDrag = false;
 
-         auto pwindowing = windowing();
-
-         pwindowing->release_mouse_capture();
+         release_mouse_capture();
 
          pmouse->m_bRet = true;
 
@@ -219,11 +217,7 @@ namespace experience
 
          ::point_i32 pointCursor;
 
-         //auto pwindowing = windowing();
-
-         auto pwindow = window();
-
-         pointCursor = pwindow->get_cursor_position();
+         pointCursor = get_cursor_position();
 
          if (is_window_visible())
          {
@@ -320,12 +314,12 @@ namespace experience
                rectangleWindow.left = minimum(rectangleWindow.left, rectangleWindow.right);
                rectangleWindow.bottom = minimum(rectangleWindow.top, rectangleWindow.bottom);
 
-               ::point_i32 point;
+               ::point_i32 pointCursor;
 
                try
                {
 
-                  point = window()->get_cursor_position();
+                  pointCursor = get_cursor_position();
 
                }
                catch (...)
@@ -333,7 +327,7 @@ namespace experience
 
                }
 
-               if (point.x >= rectangleWindow.left && point.x <= rectangleWindow.right && point.y == 0)
+               if (pointCursor.x >= rectangleWindow.left && pointCursor.x <= rectangleWindow.right && pointCursor.y == 0)
                {
 
                   m_bShowAttempt = true;

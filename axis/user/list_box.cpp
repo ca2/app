@@ -420,9 +420,7 @@ namespace user
 
       }
 
-      auto pwindow = window();
-
-      auto pointCursor = pwindow->get_cursor_position();
+      auto pointCursor = get_cursor_position();
 
       screen_to_client(pointCursor, ::user::e_layout_design);
 
@@ -859,9 +857,7 @@ namespace user
       if (pactivate->m_eactivate == e_activate_inactive)
       {
 
-         auto pwindow = window();
-
-         auto pointCursor = pwindow->get_cursor_position();
+         auto pointCursor = get_cursor_position();
 
          m_pcombo->screen_to_client(pointCursor, ::user::e_layout_sketch);
 
@@ -1133,15 +1129,7 @@ namespace user
 
          ::rectangle_i32 rectangleMonitor;
 
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing1();
-
-         auto pdisplay = pwindowing->display();
-
-         ::index i = pdisplay->get_best_monitor(rectangleMonitor, rectangleWindow);
+         ::index i = get_best_monitor(rectangleMonitor, rectangleWindow);
 
          ::rectangle_i32 rectangleList;
 

@@ -2410,7 +2410,7 @@ namespace user
       //__pointer(::user::interaction) pupdown = pinteraction;
 
       //if (pupdown.is_set()
-      //      && pupdown->m_eupdown != updown_normal_frame
+      //      && pupdown->m_eupdown != e_updown_normal_frame
       //      && pupdown->m_eupdown != updown_none)
       //{
 
@@ -2427,7 +2427,7 @@ namespace user
       //__pointer(::user::interaction) pupdown = pinteraction;
 
       //if (pupdown.is_set()
-      //      && pupdown->m_eupdown != updown_normal_frame
+      //      && pupdown->m_eupdown != e_updown_normal_frame
       //      && pupdown->m_eupdown != updown_none)
       //{
 

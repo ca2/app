@@ -7,6 +7,8 @@
 //#include "acme/id.h"
 //#include "apex/platform/app_core.h"
 #include "acme/platform/system_setup.h"
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/window.h"
 //#include "apex/platform/str_context.h"
 
 //#ifdef LINUX

@@ -21,6 +21,10 @@
 #include "aura/graphics/graphics/_graphics.h"
 #include "acme/primitive/geometry2d/_shape.h"
 #include "acme/primitive/geometry2d/_defer_shape.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/display.h"
+#include "aura/windowing/cursor.h"
 
 
 #define INFO_LAYOUT_DISPLAY
@@ -243,7 +247,7 @@ namespace user
 
       m_uiUserInteractionFlags = 0;
 
-      m_eupdown = ::user::interaction::updown_normal_frame;
+      m_eupdown = ::user::interaction::e_updown_normal_frame;
 
       //m_playout = NULL;
 
@@ -253,9 +257,9 @@ namespace user
 
       m_dItemHeight = -1;
 
-      m_flagNonClient.add(non_client_background);
+      m_flagNonClient.add(e_non_client_background);
 
-      m_flagNonClient.add(non_client_focus_rect);
+      m_flagNonClient.add(e_non_client_focus_rect);
 
       m_bMouseHover = false;
 
@@ -811,7 +815,7 @@ namespace user
       interaction::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
-      if (m_flagNonClient.has(non_client_focus_rect))
+      if (m_flagNonClient.has(e_non_client_focus_rect))
       {
 
          double dFocusHeightWidth = get_double(pstyle, ::user::e_double_focus_height_width, estate, 2.0);
@@ -2816,7 +2820,7 @@ namespace user
 
       auto sizePage = get_page_size();
 
-      auto pointOffset = get_impactport_offset();
+      auto pointOffset = get_context_offset();
 
       info.nMin = 0;
       info.nMax = (::i32)sizeTotal.cx;
@@ -2834,7 +2838,7 @@ namespace user
 
       auto sizePage = get_page_size();
 
-      auto pointOffset = get_impactport_offset();
+      auto pointOffset = get_context_offset();
 
       info.nMin = 0;
       info.nMax = (::i32)sizeTotal.cy;
@@ -3331,7 +3335,7 @@ namespace user
    }
 
 
-   void interaction::set_impactport_org(::draw2d::graphics_pointer & pgraphics)
+   void interaction::set_context_org(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (m_pprimitiveimpl == nullptr)
@@ -3684,7 +3688,7 @@ namespace user
 
       }
 
-      //on_impactport_offset(pgraphics);
+      //on_context_offset(pgraphics);
 
 #ifdef __DEBUG
 
@@ -3789,7 +3793,7 @@ namespace user
       try
       {
 
-         set_impactport_org(pgraphics);
+         set_context_org(pgraphics);
 
          synchronous_lock synchronouslock(mutex());
 
@@ -3804,7 +3808,7 @@ namespace user
    }
 
 
-   void interaction::on_impactport_offset(::draw2d::graphics_pointer & pgraphics)
+   void interaction::on_context_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::point_i32 pointOffset;
@@ -3816,7 +3820,7 @@ namespace user
 
       }
 
-      auto pointContextOffset = get_impactport_offset();
+      auto pointContextOffset = get_context_offset();
 
       auto offset = pointOffset - pointContextOffset;
 
@@ -3883,7 +3887,7 @@ namespace user
 
          //::draw2d::savedc k(pgraphics);
 
-         //on_impactport_offset(pgraphics);
+         //on_context_offset(pgraphics);
          //// while drawing layout can occur and machine z-order.
          //// keep this past z-order
          //interaction_pointer_array uia;
@@ -4536,12 +4540,12 @@ namespace user
          //   if (!is_custom_draw() && pgraphics->m_pnext == nullptr)
          //   {
 
-         //      set_impactport_org(pgraphics);
+         //      set_context_org(pgraphics);
 
          //   }
 
          //}
-         ////         ::point_i32 pointParentOffset = get_parent_impactport_offset();
+         ////         ::point_i32 pointParentOffset = get_parent_context_offset();
          ////
          ////         pgraphics->offset_origin(-pointParentOffset.x, -pointParentOffset.y);
 
@@ -8136,7 +8140,7 @@ namespace user
       }
 
       m_pusersystem.release();
-      m_playout.release();
+      ///m_playout.release();
       m_pgraphicscalla.release();
       m_puserinteractionCustomWindowProc.release();
       m_puiLabel.release();
@@ -12256,10 +12260,73 @@ namespace user
    }
 
 
+   __pointer(::windowing::cursor) interaction::get_mouse_cursor(enum_cursor ecursor)
+   {
+
+      auto pwindowing = windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pcursor = pwindowing->get_cursor(ecursor);
+
+      if (::is_null(pcursor))
+      {
+
+         return nullptr;
+
+      }
+
+      return pcursor;
+
+   }
+
+
    ::windowing::cursor * interaction::get_mouse_cursor()
    {
 
       return m_pcursor;
+
+   }
+
+
+   ::point_i32 interaction::get_cursor_position()
+   {
+
+      auto pwindow = window();
+
+      if (::is_null(pwindow))
+      {
+
+         return {};
+
+      }
+
+      auto pointCursor = pwindow->get_cursor_position();
+
+      return pointCursor;
+
+   }
+
+
+   void interaction::release_mouse_capture()
+   {
+
+      auto pwindowing = windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         throw ::exception(::error_wrong_state);
+
+      }
+
+
+      pwindowing->release_mouse_capture();
 
    }
 
@@ -14403,6 +14470,18 @@ namespace user
 
    }
 
+   
+   index interaction::get_best_monitor(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation)
+   {
+
+      auto pwindowing = windowing();
+
+      auto pdisplay = pwindowing->display();
+
+      return pdisplay->get_best_monitor(prectangle, rectangle, eactivation, window());
+
+   }
+
 
    index interaction::best_zoneing(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet, edisplay * pedisplay, ::e_activation eactivation, ::zorder zorderParam)
    {
@@ -14735,33 +14814,33 @@ namespace user
    }
 
 
-   void interaction::offset_impactport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
+   void interaction::offset_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
    {
 
-      auto pointOffset = get_impactport_offset();
+      auto pointOffset = get_context_offset();
 
-      set_impactport_offset(pgraphics, pointOffset.x + x, pointOffset.y + y);
+      set_context_offset(pgraphics, pointOffset.x + x, pointOffset.y + y);
 
    }
 
 
-   void interaction::offset_impactport_offset_x(::draw2d::graphics_pointer & pgraphics, int x)
+   void interaction::offset_context_offset_x(::draw2d::graphics_pointer & pgraphics, int x)
    {
 
-      offset_impactport_offset(pgraphics, x, 0);
+      offset_context_offset(pgraphics, x, 0);
 
    }
 
 
-   void interaction::offset_impactport_offset_y(::draw2d::graphics_pointer & pgraphics, int y)
+   void interaction::offset_context_offset_y(::draw2d::graphics_pointer & pgraphics, int y)
    {
 
-      offset_impactport_offset(pgraphics, 0, y);
+      offset_context_offset(pgraphics, 0, y);
 
    }
 
 
-   void interaction::set_impactport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
+   void interaction::set_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
    {
 
       ::point_i32 pointOffset(x, y);
@@ -14773,7 +14852,7 @@ namespace user
 
       }
 
-      if (!validate_impactport_offset(pointOffset))
+      if (!validate_context_offset(pointOffset))
       {
 
          return;
@@ -14782,12 +14861,12 @@ namespace user
 
       m_pointScroll = pointOffset;
 
-      on_change_impactport_offset(pgraphics);
+      on_change_context_offset(pgraphics);
 
    }
 
 
-   bool interaction::validate_impactport_offset(point_i32 & point)
+   bool interaction::validate_context_offset(point_i32 & point)
    {
 
       if (point == m_pointScroll)
@@ -14802,23 +14881,23 @@ namespace user
    }
 
 
-   void interaction::set_impactport_offset_x(::draw2d::graphics_pointer & pgraphics, int x)
+   void interaction::set_context_offset_x(::draw2d::graphics_pointer & pgraphics, int x)
    {
 
-      set_impactport_offset(pgraphics, x, (::i32)get_impactport_offset().y);
+      set_context_offset(pgraphics, x, (::i32)get_context_offset().y);
 
    }
 
 
-   void interaction::set_impactport_offset_y(::draw2d::graphics_pointer & pgraphics, int y)
+   void interaction::set_context_offset_y(::draw2d::graphics_pointer & pgraphics, int y)
    {
 
-      set_impactport_offset(pgraphics, (::i32)get_impactport_offset().x, y);
+      set_context_offset(pgraphics, (::i32)get_context_offset().x, y);
 
    }
 
 
-   void interaction::on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics)
+   void interaction::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
       //set_need_redraw();
@@ -14828,7 +14907,7 @@ namespace user
    }
 
 
-   point_i32 interaction::get_impactport_offset()
+   point_i32 interaction::get_context_offset()
    {
 
       ::point_i32 point = m_pointScroll;
@@ -14883,7 +14962,7 @@ namespace user
    }
 
 
-   point_i32 interaction::get_ascendant_impactport_offset() const
+   point_i32 interaction::get_ascendant_context_offset() const
    {
 
       __pointer(::user::interaction) puser = get_parent();
@@ -14893,7 +14972,7 @@ namespace user
       while (puser.is_set())
       {
 
-         point += puser->get_impactport_offset();
+         point += puser->get_context_offset();
 
          puser = puser->get_parent();
 
@@ -14941,7 +15020,7 @@ namespace user
    }
 
 
-   point_i32 interaction::get_parent_impactport_offset() const
+   point_i32 interaction::get_parent_context_offset() const
    {
 
       ::user::interaction * puser = get_parent();
@@ -14958,9 +15037,9 @@ namespace user
       if (puser != NULL)
       {
 
-         pointParentAccumulated = puser->get_impactport_offset();
+         pointParentAccumulated = puser->get_context_offset();
 
-         pointParentAccumulated += puser->get_parent_impactport_offset();
+         pointParentAccumulated += puser->get_parent_context_offset();
 
       }
 
@@ -15162,7 +15241,7 @@ namespace user
 
       bool bAttached = false;
 
-      pupdown->m_eupdown = updown_down;
+      pupdown->m_eupdown = e_updown_down;
 
       try
       {
@@ -15183,7 +15262,7 @@ namespace user
       if (!bAttached)
       {
 
-         pupdown->m_eupdown = updown_none;
+         pupdown->m_eupdown = e_updown_none;
 
       }
 
@@ -15195,7 +15274,7 @@ namespace user
 
       bool bDetached = false;
 
-      pupdown->m_eupdown = updown_up;
+      pupdown->m_eupdown = e_updown_up;
 
       try
       {
@@ -15216,7 +15295,7 @@ namespace user
       if (!bDetached)
       {
 
-         pupdown->m_eupdown = updown_none;
+         pupdown->m_eupdown = e_updown_none;
 
       }
 
@@ -18009,7 +18088,7 @@ namespace user
    void interaction::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (m_flagNonClient.has(non_client_background)
+      if (m_flagNonClient.has(e_non_client_background)
          && !(top_level()->frame_is_transparent()))
       {
 
@@ -18017,7 +18096,7 @@ namespace user
 
       }
 
-      if (m_flagNonClient.has(non_client_focus_rect) && keyboard_focus_is_focusable())
+      if (m_flagNonClient.has(e_non_client_focus_rect) && keyboard_focus_is_focusable())
       {
 
          simple_ui_draw_focus_rect(pgraphics);
@@ -18514,7 +18593,7 @@ namespace user
    bool interaction::wfi_is_up()
    {
 
-      return m_eupdown == updown_up;
+      return m_eupdown == e_updown_up;
 
    }
 
@@ -18522,7 +18601,7 @@ namespace user
    bool interaction::wfi_is_down()
    {
 
-      return m_eupdown == updown_down;
+      return m_eupdown == e_updown_down;
 
    }
 

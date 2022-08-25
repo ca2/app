@@ -10,7 +10,7 @@
 
    //         m_pupdowntarget            = nullptr;
 
-   //         m_eupdown                  = ::user::interaction::updown_normal_frame;
+   //         m_eupdown                  = ::user::interaction::e_updown_normal_frame;
 
    //      }
 
@@ -23,7 +23,7 @@
    //      bool updown::wfi_is_up()
    //      {
 
-   //         return m_eupdown == updown_up;
+   //         return m_eupdown == e_updown_up;
 
    //      }
 
@@ -31,7 +31,7 @@
    //      bool updown::wfi_is_down()
    //      {
 
-   //         return m_eupdown == updown_down;
+   //         return m_eupdown == e_updown_down;
 
    //      }
 

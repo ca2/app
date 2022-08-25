@@ -5,6 +5,8 @@
 #include "aura/message.h"
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/display.h"
 
 
 namespace user

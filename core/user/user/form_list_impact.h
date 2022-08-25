@@ -39,8 +39,8 @@ namespace user
       virtual void on_command(::message::command* pcommand) override;
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
-      virtual void set_impactport_offset(::draw2d::graphics_pointer & pgraphics, int, int) override;
-      virtual ::point_i32 get_impactport_offset() override;
+      virtual void set_context_offset(::draw2d::graphics_pointer & pgraphics, int, int) override;
+      virtual ::point_i32 get_context_offset() override;
       virtual ::size_f64 get_total_size() override;
 
       //virtual void handle(::topic * ptopic, ::context * pcontext) override;

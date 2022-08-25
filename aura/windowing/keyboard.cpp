@@ -17,6 +17,7 @@
 //!!!#include <X11/XKBlib.h>
 //!!!#include <X11/keysym.h>
 #include "acme/user/user/_constant_key.h"
+#include "aura/windowing/keyboard.h"
 // <3 ThomasBS - 400th follower
 
 // keyboard -----------------------------------------------------------

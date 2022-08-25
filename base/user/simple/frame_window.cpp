@@ -405,7 +405,7 @@ void simple_frame_window::WindowDataSaveWindowRect()
 
       bool bDown;
 
-      bDown = m_eupdown != updown_up;
+      bDown = m_eupdown != e_updown_up;
 
       auto papp = get_app();
 
@@ -2006,13 +2006,13 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
          if (wfi_has_up_down())
          {
 
-            if (m_eupdown == updown_up)
+            if (m_eupdown == e_updown_up)
             {
 
                puiParent = nullptr;
 
             }
-            else if (m_eupdown == updown_down)
+            else if (m_eupdown == e_updown_down)
             {
 
                __pointer(::user::document) pdocument = pusersystem->m_pdocumentCurrent;
@@ -2847,7 +2847,7 @@ bool simple_frame_window::updown_get_down_enable()
 void simple_frame_window::design_down()
 {
 
-   m_eupdown = updown_down;
+   m_eupdown = e_updown_down;
 
    if (m_pframe)
    {
@@ -2889,7 +2889,7 @@ void simple_frame_window::WfiToggleShow()
 void simple_frame_window::design_up()
 {
 
-   m_eupdown = updown_up;
+   m_eupdown = e_updown_up;
 
    if (m_pframe)
    {
@@ -3366,7 +3366,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
       ::draw2d::savedc k(pgraphics);
 
-      //on_impactport_offset(pgraphics);
+      //on_context_offset(pgraphics);
       //if (0)
       {
 
@@ -3476,7 +3476,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
       ::draw2d::savedc k(pgraphics);
 
-      //on_impactport_offset(pgraphics);
+      //on_context_offset(pgraphics);
 
       try
       {
@@ -3819,13 +3819,13 @@ class ::mini_dock_frame_window* simple_frame_window::CreateFloatingFrame(u32 uSt
 //   if (edisplay == ::e_display_up)
 //   {
 //
-//      m_eupdown = updown_up;
+//      m_eupdown = e_updown_up;
 //
 //   }
 //   else if (edisplay == ::e_display_down)
 //   {
 //
-//      m_eupdown = updown_down;
+//      m_eupdown = e_updown_down;
 //
 //   }
 //

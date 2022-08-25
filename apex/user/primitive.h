@@ -442,7 +442,7 @@ namespace user
       //#endif
 
 
-      void set_impactport_org(::draw2d::graphics_pointer & pgraphics) override;
+      void set_context_org(::draw2d::graphics_pointer & pgraphics) override;
 
       void viewport_screen_to_client(POINT_I32 * ppt) override;
       void viewport_client_to_screen(POINT_I32 * ppt) override;

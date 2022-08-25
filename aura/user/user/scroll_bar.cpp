@@ -81,7 +81,7 @@ namespace user
    //}
 
 
-   point_i32 scroll_bar::get_ascendant_impactport_offset() const
+   point_i32 scroll_bar::get_ascendant_context_offset() const
    {
 
       if (get_parent() == nullptr)
@@ -91,12 +91,12 @@ namespace user
 
       }
 
-      return get_parent()->get_ascendant_impactport_offset();
+      return get_parent()->get_ascendant_context_offset();
 
    }
 
 
-   point_i32 scroll_bar::get_parent_impactport_offset() const
+   point_i32 scroll_bar::get_parent_context_offset() const
    {
 
       return nullptr;

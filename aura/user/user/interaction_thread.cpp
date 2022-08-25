@@ -5,6 +5,8 @@
 #include "aura/message.h"
 #include "interaction_thread.h"
 #include "interaction_prodevian.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/windowing.h"
 
 
 #ifdef WINDOWS_DESKTOP

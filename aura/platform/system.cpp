@@ -17,6 +17,9 @@
 #include "aura/constant/idpool.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "aqua/game/estamira.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/windowing.h"
 //#ifdef _UWP
 //#include "aura/node/universal_windows/directx_application.h"
 //#include "aura/os/windows_common/draw2d_direct2d_global.h"

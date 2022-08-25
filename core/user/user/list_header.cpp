@@ -16,8 +16,8 @@ namespace user
       m_iImageSpacing = 4;
       m_bParentScrollY = false;
       //m_ecolorBackground = color_list_header_background;
-      m_flagNonClient.erase(::user::interaction::non_client_background);
-      m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
+      m_flagNonClient.erase(::user::interaction::e_non_client_background);
+      m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
    }
 
    list_header::~list_header()
@@ -934,7 +934,7 @@ namespace user
    }
 
 
-   ::point_i32 list_header::get_parent_impactport_offset() const
+   ::point_i32 list_header::get_parent_context_offset() const
    {
 
       __pointer(::user::interaction) puser = get_parent();
@@ -955,7 +955,7 @@ namespace user
 
       }
 
-      return puser->get_impactport_offset();
+      return puser->get_context_offset();
 
    }
 

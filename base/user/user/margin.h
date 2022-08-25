@@ -66,10 +66,10 @@ namespace user
 
       // }
 
-      virtual ::point_i32 get_impactport_offset() override
+      virtual ::point_i32 get_context_offset() override
       {
 
-         auto pointOffset = BASE::get_impactport_offset();
+         auto pointOffset = BASE::get_context_offset();
 
          pointOffset.x += m_rectangleMargin.left;
 
@@ -80,10 +80,10 @@ namespace user
       }
 
 
-      void set_impactport_offset(::draw2d::graphics_pointer & pgraphics, int x,int y) override
+      void set_context_offset(::draw2d::graphics_pointer & pgraphics, int x,int y) override
       {
 
-         BASE::set_impactport_offset(pgraphics, x - m_rectangleMargin.left, y - m_rectangleMargin.top);
+         BASE::set_context_offset(pgraphics, x - m_rectangleMargin.left, y - m_rectangleMargin.top);
 
       }
 

@@ -5,10 +5,14 @@
 #include "aura/user/user/_component.h"
 #endif
 #include "acme/operating_system/_user.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/icon.h"
 
 
 namespace windowing
 {
+
 
    window::window()
    {
@@ -1302,6 +1306,32 @@ namespace windowing
 
 
    }
+
+
+   ::aura::application* window::get_app() const
+   {
+
+      return m_pcontext && m_pcontext->m_papplication ? m_pcontext->m_papplication->m_pauraapplication : nullptr;
+
+   }
+
+
+   ::aura::session* window::get_session() const
+   {
+
+      return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr;
+
+   }
+
+
+   ::aura::system* window::get_system() const
+   {
+
+      return m_psystem ? m_psystem->m_paurasystem : nullptr;
+
+   }
+
+
 
 
 } // namespace windowing

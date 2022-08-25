@@ -25,8 +25,8 @@ namespace user
       m_iClick = 0;
       m_ealignText = e_align_center;
 
-      m_flagNonClient -= non_client_background;
-      m_flagNonClient -= non_client_focus_rect;
+      m_flagNonClient -= e_non_client_background;
+      m_flagNonClient -= e_non_client_focus_rect;
       
       //m_bEatsDoubleClick = false;
 

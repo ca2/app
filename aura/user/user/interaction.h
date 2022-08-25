@@ -96,23 +96,23 @@ namespace user
       };
 
 
-      enum e_non_client
+      enum enum_non_client
       {
 
-         non_client_background = 1,
-         non_client_focus_rect = 2,
-         non_client_hover_rect = 4,
+         e_non_client_background = 1,
+         e_non_client_focus_rect = 2,
+         e_non_client_hover_rect = 4,
 
       };
 
 
-      enum e_updown
+      enum enum_updown
       {
 
-         updown_normal_frame,
-         updown_none,
-         updown_up,
-         updown_down,
+         e_updown_normal_frame,
+         e_updown_none,
+         e_updown_up,
+         e_updown_down,
 
       };
 
@@ -208,7 +208,7 @@ namespace user
       // <3ThomasBorreggardSørensen_!!
       __pointer(::material_object)                 m_pmaterialCommandHandler;
 
-      ::user::interaction::e_updown                m_eupdown;
+      ::user::interaction::enum_updown             m_eupdown;
 
    public:
 
@@ -292,7 +292,7 @@ namespace user
       __pointer(::item)                            m_pitemPressed;
       ::size_i32                                   m_sizeRestoreBroad;
       ::size_i32                                   m_sizeRestoreCompact;
-      enumeration < e_non_client >                 m_flagNonClient;
+      enumeration < enum_non_client >              m_flagNonClient;
       int                                          m_iMouseMoveSkipCount;
       int                                          m_iMouseMoveSkipSquareDistance;
       ::duration                                   m_durationMouseMoveSkip;
@@ -818,9 +818,13 @@ namespace user
       virtual double get_output_fps();
 
 
-      
+      virtual __pointer(::windowing::cursor) get_mouse_cursor(enum_cursor ecursor);
+
       virtual ::windowing::cursor * get_mouse_cursor() override;
 
+      virtual ::point_i32 get_cursor_position();
+
+      virtual void release_mouse_capture();
 
 
       inline void defer_graphics(::draw2d::graphics_pointer & pgraphics)
@@ -1557,7 +1561,7 @@ namespace user
 
 
       virtual bool window_is_notify_icon_enabled();
-      virtual void set_impactport_org(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void set_context_org(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void viewport_screen_to_client(POINT_I32* ppt) override;
       virtual void viewport_client_to_screen(POINT_I32* ppt) override;
@@ -1694,6 +1698,10 @@ namespace user
       virtual index get_best_zoneing(edisplay& edisplay, ::rectangle_i32* prectangle, const ::rectangle_i32& rectangleRequest = ::rectangle_i32(), bool bPreserveSize = false);
       virtual index get_best_workspace(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default);
 
+
+      virtual index get_best_monitor(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default);
+
+
       virtual void get_rect_normal(RECTANGLE_I32* prectangle);
 
 
@@ -1704,24 +1712,24 @@ namespace user
       virtual scroll_data* get_vertical_scroll_data();
 
 
-      virtual void set_impactport_offset_x(::draw2d::graphics_pointer & pgraphics, int x);
-      virtual void set_impactport_offset_y(::draw2d::graphics_pointer & pgraphics, int y);
-      virtual void set_impactport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y);
-      virtual void offset_impactport_offset_x(::draw2d::graphics_pointer & pgraphics, int x);
-      virtual void offset_impactport_offset_y(::draw2d::graphics_pointer & pgraphics, int y);
-      virtual void offset_impactport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y);
-      virtual bool validate_impactport_offset(point_i32& point);
-      virtual void on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics);
-      virtual void on_impactport_offset(::draw2d::graphics_pointer & pgraphics);
-      virtual ::point_i32 get_impactport_offset();
+      virtual void set_context_offset_x(::draw2d::graphics_pointer & pgraphics, int x);
+      virtual void set_context_offset_y(::draw2d::graphics_pointer & pgraphics, int y);
+      virtual void set_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y);
+      virtual void offset_context_offset_x(::draw2d::graphics_pointer & pgraphics, int x);
+      virtual void offset_context_offset_y(::draw2d::graphics_pointer & pgraphics, int y);
+      virtual void offset_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y);
+      virtual bool validate_context_offset(point_i32& point);
+      virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics);
+      virtual void on_context_offset(::draw2d::graphics_pointer & pgraphics);
+      virtual ::point_i32 get_context_offset();
       virtual ::size_f64 get_total_size();
       virtual void on_change_impact_size(::draw2d::graphics_pointer & pgraphics);
       virtual ::size_f64 get_page_size();
       virtual void set_total_size(const ::size_f64& size);
       virtual void set_page_size(const ::size_f64& size);
       virtual ::point_i32 get_parent_accumulated_scroll(enum_layout elayout = e_layout_design) const;
-      virtual ::point_i32 get_parent_impactport_offset() const;
-      virtual ::point_i32 get_ascendant_impactport_offset() const;
+      virtual ::point_i32 get_parent_context_offset() const;
+      virtual ::point_i32 get_ascendant_context_offset() const;
       virtual void get_margin_rect(RECTANGLE_I32* prectMargin);
 
       virtual int get_final_x_scroll_bar_width();

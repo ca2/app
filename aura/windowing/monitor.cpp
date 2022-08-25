@@ -3,6 +3,8 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/user/_component.h"
 #endif
+#include "aura/windowing/monitor.h"
+#include "aura/windowing/desktop_environment.h"
 
 
 namespace windowing

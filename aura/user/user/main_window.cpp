@@ -2,6 +2,8 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/user/_component.h"
 #endif
+#include "aura/windowing/window.h"
+
 
 inline bool is_custom_size(enum_display edisplay)
 {

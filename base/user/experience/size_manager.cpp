@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "base/user/experience/_experience.h"
+#include "aura/windowing/windowing.h"
 
 
 namespace experience

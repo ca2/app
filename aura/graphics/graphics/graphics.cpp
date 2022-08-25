@@ -4,6 +4,7 @@
 #endif
 #include "_.h"
 #include "_graphics.h"
+#include "aura/windowing/window.h"
 
 
 namespace graphics

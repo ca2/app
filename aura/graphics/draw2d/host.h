@@ -7,7 +7,7 @@ namespace draw2d
 
 
    class CLASS_DECL_AURA host :
-      virtual public object
+      virtual public ::object
    {
    public:
 

@@ -12,6 +12,9 @@
 #include "acme/platform/node.h"
 #include "aura/graphics/draw2d/_component.h"
 #include "acme/primitive/string/base64.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/windowing.h"
+#include "aqua/game/game.h"
 
 
 extern "C"

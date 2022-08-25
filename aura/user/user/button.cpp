@@ -4,6 +4,7 @@
 #endif
 #include "aura/graphics/draw2d/_component.h"
 #include "aura/graphics/image/list.h"
+#include "aura/windowing/windowing.h"
 
 
 namespace user

@@ -9,8 +9,8 @@ simple_scroll_bar::simple_scroll_bar()
 {
 
    //m_pbrushNull->CreateStockObject(NULL_BRUSH);
-   m_flagNonClient.erase(non_client_background);
-   // m_flagNonClient.erase(non_client_focus_rect);
+   m_flagNonClient.erase(e_non_client_background);
+   // m_flagNonClient.erase(e_non_client_focus_rect);
    m_bTracking          = false;
    m_scrollinfo.nMin    = 0;
    m_scrollinfo.nMax    = 100;
@@ -116,7 +116,7 @@ void simple_scroll_bar::on_message_mouse_move(::message::message * pmessage)
 
       pmouse->m_pcursor = pcursor;
 
-   }
+   }s
    else
    {
 

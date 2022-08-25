@@ -153,9 +153,6 @@
     <ClInclude Include="game\estamira.h">
       <Filter>Header Files\game</Filter>
     </ClInclude>
-    <ClInclude Include="game\_game.h">
-      <Filter>Header Files\game</Filter>
-    </ClInclude>
     <ClInclude Include="game\_.h">
       <Filter>Header Files\game</Filter>
     </ClInclude>
@@ -296,6 +293,9 @@
     </ClInclude>
     <ClInclude Include="constant\idpool.h">
       <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="game\_component.h">
+      <Filter>Header Files\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

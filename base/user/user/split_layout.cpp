@@ -22,8 +22,8 @@ namespace user
       m_cyBorder = 1;
       m_iPaneCount = 0;
 
-      m_flagNonClient.erase(non_client_background);
-      m_flagNonClient.erase(non_client_focus_rect);
+      m_flagNonClient.erase(e_non_client_background);
+      m_flagNonClient.erase(e_non_client_focus_rect);
 
    }
 

@@ -8,6 +8,9 @@
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "shell.h"
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/desktop_environment.h"
 
 
 ::mutex * g_pmutexUser = nullptr;

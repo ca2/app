@@ -11,6 +11,11 @@
 
 #endif
 
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/cursor_manager.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/keyboard.h"
+
 
 namespace windowing
 {
@@ -905,6 +910,32 @@ namespace windowing
       //return ::success;
 
    }
+
+
+   ::aura::application* windowing::get_app() const
+   {
+
+      return m_pcontext && m_pcontext->m_papplication ? m_pcontext->m_papplication->m_pauraapplication : nullptr;
+
+   }
+
+
+   ::aura::session* windowing::get_session() const
+   {
+
+      return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr;
+
+   }
+
+
+   ::aura::system* windowing::get_system() const
+   {
+
+      return ::is_set(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr;
+
+   }
+
+
 
 
 } // namespace windowing

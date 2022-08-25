@@ -4,6 +4,7 @@
 #endif
 #include "aura/graphics/image/icon.h"
 #include "acme/parallelization/pool.h"
+#include "aura/windowing/windowing.h"
 
 
 namespace user

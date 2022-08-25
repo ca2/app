@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "estamira.h"
 
 
 namespace aura

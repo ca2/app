@@ -106,7 +106,7 @@ namespace write_text
 
       ::rectangle_i32 rectangleClient = m_puserinteraction->get_client_rect();
 
-      rectangleClient += m_puserinteraction->get_impactport_offset();
+      rectangleClient += m_puserinteraction->get_context_offset();
 
       auto pfontlistdata = m_pfontlistdata;
 
@@ -297,17 +297,15 @@ namespace write_text
 
       rectangle_i32 rectangleClient = m_puserinteraction->get_client_rect();
 
-      rectangleClient += m_puserinteraction->get_impactport_offset();
+      rectangleClient += m_puserinteraction->get_context_offset();
 
       auto pwindowing = m_puserinteraction->windowing();
 
-      auto pwindow = m_puserinteraction->window();
-
-      auto pointCursor = pwindow->get_cursor_position();
+      auto pointCursor = m_puserinteraction->get_cursor_position();
 
       m_puserinteraction->screen_to_client(pointCursor);
 
-      pointCursor += m_puserinteraction->get_impactport_offset();
+      pointCursor += m_puserinteraction->get_context_offset();
 
       bool bCheckHover = true;
 
@@ -1233,7 +1231,7 @@ namespace write_text
 
       rectangle_i32 rectangleClient = m_puserinteraction->get_client_rect();
 
-      rectangleClient += m_puserinteraction->get_impactport_offset();
+      rectangleClient += m_puserinteraction->get_context_offset();
 
       auto pfontlistdata = m_pfontlistdata;
 

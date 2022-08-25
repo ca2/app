@@ -1415,7 +1415,7 @@ namespace experience
 
       }
 
-      if (m_pframewindow->m_eupdown == ::user::interaction::updown_down)
+      if (m_pframewindow->m_eupdown == ::user::interaction::e_updown_down)
       {
 
          egrip = e_grip_none;

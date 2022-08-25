@@ -888,7 +888,7 @@
     <ClCompile Include="operating_system\windows\windowing.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\aura.cpp" />
-    <ClCompile Include="platform\aura_mq.cpp" />
+    <ClCompile Include="platform\message_queue.cpp" />
     <ClCompile Include="platform\context.cpp" />
     <ClCompile Include="platform\drawable.cpp" />
     <ClCompile Include="platform\draw_context.cpp" />

@@ -330,7 +330,7 @@
     <ClCompile Include="platform\aura.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\aura_mq.cpp">
+    <ClCompile Include="platform\message_queue.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\context.cpp">

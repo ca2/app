@@ -495,7 +495,7 @@ namespace user
       //#endif
 
 
-      virtual void set_impactport_org(::draw2d::graphics_pointer & pgraphics);
+      virtual void set_context_org(::draw2d::graphics_pointer & pgraphics);
 
       virtual void viewport_screen_to_client(POINT_I32 * ppt);
       virtual void viewport_client_to_screen(POINT_I32 * ppt);

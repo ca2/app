@@ -145,7 +145,7 @@ namespace experience
       m_bEnableFrameExperience = true;
       //m_bEatsDoubleClick = false;
 
-      m_eupdown = updown_normal_frame;
+      m_eupdown = e_updown_normal_frame;
 
       m_pupdowntarget = nullptr;
 
@@ -1889,13 +1889,13 @@ namespace experience
          else if (edisplay == ::e_display_up)
          {
 
-            m_eupdown = updown_up;
+            m_eupdown = e_updown_up;
 
          }
          else if (edisplay == ::e_display_down)
          {
 
-            m_eupdown = updown_down;
+            m_eupdown = e_updown_down;
 
          }
 

@@ -15,6 +15,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/graphics/image/icon.h"
+#include "aura/windowing/icon.h"
 
 
 #if defined(RASPBIAN)

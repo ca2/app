@@ -7,6 +7,7 @@
 #include "aura/graphics/image/frame_array.h"
 #include "aura/graphics/image/context_image.h"
 #include "acme/primitive/string/base64.h"
+#include "aura/windowing/window.h"
 
 
 namespace user

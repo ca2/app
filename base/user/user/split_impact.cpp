@@ -12,7 +12,7 @@ namespace user
    split_impact::split_impact()
    {
 
-      m_flagNonClient -= non_client_background;
+      m_flagNonClient -= e_non_client_background;
 
    }
 

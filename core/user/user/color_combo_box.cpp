@@ -77,9 +77,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-auto pwindowing = windowing();
-
-      pwindowing->release_mouse_capture();
+      release_mouse_capture();
 
       if (m_bMouseDown)
       {

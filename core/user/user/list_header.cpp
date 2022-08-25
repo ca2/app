@@ -613,9 +613,7 @@ namespace user
 
             m_bTrack = false;
 
-            auto pwindowing = windowing();
-
-            pwindowing->release_mouse_capture();
+            release_mouse_capture();
 
          }
 
@@ -644,18 +642,18 @@ namespace user
 
       auto pwindowing = windowing();
 
-      ::windowing::cursor* pcursor = nullptr;
+      __pointer(::windowing::cursor) pcursor;
 
       if(m_bHover && m_eelementHover == ElementDivider)
       {
          
-         pcursor = pwindowing->get_cursor(e_cursor_size_horizontal);
+         pcursor = get_mouse_cursor(e_cursor_size_horizontal);
 
       }
       else
       {
 
-         pcursor = pwindowing->get_cursor(e_cursor_arrow);
+         pcursor = get_mouse_cursor(e_cursor_arrow);
 
       }
 

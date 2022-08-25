@@ -3953,9 +3953,7 @@ namespace user
 
       screen_to_client(point);
 
-auto pwindowing = windowing();
-
-      pwindowing->release_mouse_capture();
+      release_mouse_capture();
 
       KillTimer(e_timer_drag_start);
 
@@ -6689,9 +6687,7 @@ auto pwindowing = windowing();
 
       cache_hint();
 
-      auto pwindow = window();
-
-      auto pointCursor = pwindow->get_cursor_position();
+      auto pointCursor = get_cursor_position();
 
       auto pmouse = __create_new < ::user::mouse >();
 

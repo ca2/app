@@ -34,7 +34,7 @@ namespace user
 
       m_bHoverStart = false;
 
-      m_flagNonClient += ::user::interaction::non_client_hover_rect;
+      m_flagNonClient += ::user::interaction::e_non_client_hover_rect;
 
       m_econtroltype = ::user::e_control_type_tree;
 
@@ -218,10 +218,7 @@ namespace user
 
          //pgraphics->fill_rectangle(rectangleClient, m_colorTreeBackground);
 
-
-         auto pwindow = window();
-
-         auto pointCursor = _001ScreenToClient(pwindow->get_cursor_position());
+         auto pointCursor = _001ScreenToClient(get_cursor_position());
 
          auto dwHoverIn = 300_ms;
 
@@ -245,11 +242,11 @@ namespace user
             }
             else
             {
-               auto 😁 = MATH_PI;
+               auto pi = MATH_PI;
                auto f = 1.0 / duration(dwHoverIn).floating_second().m_d;
-               auto 😃 = -😁 * f; // omega pi
+               auto omega = -pi* f; // omega pi
                auto t = m_durationHoverStart.elapsed().floating_second().m_d;
-               ::u32 dwCurve =  (::u32) (255.0 * (1.0 - exp(😃 * t)));
+               ::u32 dwCurve =  (::u32) (255.0 * (1.0 - exp(omega * t)));
                if(m_uchHoverAlphaInit + dwCurve > 255)
                   m_uchHoverAlpha = 255;
                else
@@ -273,11 +270,11 @@ namespace user
             }
             else
             {
-               auto 😁 = MATH_PI;
+               auto pi = MATH_PI;
                auto f = 1.0 / ::duration(dwHoverOut).floating_second().m_d;
-               auto 😃 = -😁 * f; // omega pi
+               auto omega = -pi * f; // omega pi
                auto t = m_durationHoverStart.elapsed().floating_second().m_d;
-               ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(😃 * t)));
+               ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
                if(m_uchHoverAlphaInit < dwCurve)
                   m_uchHoverAlpha = 0;
                else
@@ -1308,9 +1305,7 @@ namespace user
    void tree::update_tree_hover()
    {
 
-      auto pwindow = window();
-
-      auto pointCursor = pwindow->get_cursor_position();
+      auto pointCursor = get_cursor_position();
 
       update_tree_hover(pointCursor);
 

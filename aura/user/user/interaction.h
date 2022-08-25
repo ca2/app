@@ -408,6 +408,12 @@ namespace user
       double point_dpi(double d) override;
       double dpiy(double d) override;
 
+
+      virtual float get_dpi_for_window();
+
+      virtual float get_density_for_window();
+
+
          //}
          //else
          //{

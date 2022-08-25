@@ -208,9 +208,7 @@ namespace userex
 
       pmouse->m_bRet = true;
 
-auto pwindowing = windowing();
-
-      pwindowing->release_mouse_capture();
+      release_mouse_capture();
 
       auto ptopic = create_topic(::id_after_change_cur_sel);
 

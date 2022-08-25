@@ -527,6 +527,41 @@ namespace user
    }
 
 
+   float interaction::get_dpi_for_window()
+   {
+
+      auto pwindow = window();
+
+      if (::is_null(pwindow))
+      {
+
+         return 96.0f;
+
+      }
+
+      return pwindow->get_dpi_for_window();
+
+   }
+
+
+   float interaction::get_density_for_window()
+   {
+
+      auto pwindow = window();
+
+      if (::is_null(pwindow))
+      {
+
+         return 1.0f;
+
+      }
+
+      return pwindow->get_density_for_window();
+
+   }
+
+
+
    ::windowing::window * interaction::_window() const
    {
       

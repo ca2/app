@@ -371,7 +371,7 @@ namespace userex
 
       m_bLButtonPressed = false;
 
-      m_atom = impact_color_sel;
+      m_atom = COLORSEL_IMPACT;
 
    }
 
@@ -415,6 +415,21 @@ namespace userex
       ::visual::colors_with_shades_of_grey(m_pimageTemplate);
 
       m_pimageLuminance = m_pcontext->m_pauracontext->create_image({100,  100});
+
+   }
+
+
+   void color_impact::set_sel_color(const ::color::hls& hls)
+   {
+
+
+   }
+
+
+   ::color::hls color_impact::get_sel_color()
+   {
+
+      return {};
 
    }
 
@@ -866,9 +881,7 @@ namespace userex
 
       pmouse->m_bRet = true;
 
-auto pwindowing = windowing();
-
-      pwindowing->release_mouse_capture();
+      release_mouse_capture();
 
       m_bLButtonPressed = false;
       

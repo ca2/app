@@ -1832,9 +1832,7 @@ namespace user
 
          m_bMouseDown = false;
 
-         auto pwindowing = windowing();
-
-         pwindowing->release_mouse_capture();
+         release_mouse_capture();
 
       }
 
@@ -1860,9 +1858,7 @@ namespace user
 
          // drag operation was about to start (but ended prematurely)
 
-         auto pwindowing = windowing();
-
-         pwindowing->release_mouse_capture();
+         release_mouse_capture();
 
          KillTimer(e_timer_drag_start);
 
@@ -1922,7 +1918,7 @@ namespace user
       if(m_bMouseDown)
       {
 
-         if (window()->windowing()->is_sandboxed())
+         if (is_sandboxed())
          {
 
             m_bTabScrollingActive = true;
@@ -2038,7 +2034,7 @@ namespace user
 
          float fDensity = 1.0f;
 
-         if (!window()->windowing()->is_sandboxed())
+         if (!is_sandboxed())
          {
 
             if (eelement == e_element_tab_near_scroll)
@@ -2055,7 +2051,7 @@ namespace user
 
                   prectangle->right = rectangle.right;
 
-                  fDensity = window()->get_density_for_window();
+                  fDensity = get_density_for_window();
 
                   prectangle->bottom = rectangle.top + (::i32)(8.0f * fDensity);
 
@@ -2069,7 +2065,7 @@ namespace user
 
                   prectangle->top = rectangle.top;
 
-                  fDensity = window()->get_density_for_window();
+                  fDensity = get_density_for_window();
 
                   prectangle->right = rectangle.left + (::i32)(8.0f * fDensity);
 
@@ -2090,7 +2086,7 @@ namespace user
 
                   prectangle->left = rectangle.left;
 
-                  fDensity = window()->get_density_for_window();
+                  fDensity = get_density_for_window();
 
                   prectangle->top = rectangle.bottom - (::i32)(8.0f * fDensity);
 
@@ -2104,7 +2100,7 @@ namespace user
 
                   ::rectangle_i32 rectangle = ptabdata->m_rectangleTab;
 
-                  fDensity = window()->get_density_for_window();
+                  fDensity = get_density_for_window();
 
                   prectangle->left = rectangle.right - (::i32)(8.0f * fDensity);
 
@@ -2448,7 +2444,7 @@ namespace user
       if(bScroll)
       {
 
-         if (window()->windowing()->is_sandboxed())
+         if (is_sandboxed())
          {
 
          }
@@ -2617,12 +2613,14 @@ namespace user
 
       __pointer(::user::message) pusermessage(pmessage);
 
-      if(pmessage->previous())
+      if (pmessage->previous())
+      {
+
          return;
 
-      auto pwindowing = windowing();
+      }
 
-      auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+      auto pcursor = get_mouse_cursor(e_cursor_arrow);
 
       set_mouse_cursor(pcursor);
 
@@ -3664,13 +3662,9 @@ namespace user
          //auto elapsed = g_tickDragStart.elapsed();
          KillTimer(e_timer_drag_start);
 
-         auto pwindowing = windowing();
+         release_mouse_capture();
 
-         pwindowing->release_mouse_capture();
-
-         auto pwindow = window();
-
-         auto pointCursor = pwindow->get_cursor_position();
+         auto pointCursor = get_cursor_position();
 
          auto pitem = hit_test(pointCursor);
 

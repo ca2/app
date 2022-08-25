@@ -2826,9 +2826,7 @@ namespace user
 
       {
 
-         auto pwindow = window();
-
-         auto pointCursor = pwindow->get_cursor_position();
+         auto pointCursor = get_cursor_position();
 
          auto pmouse = __create_new < ::user::mouse >();
 
@@ -3100,9 +3098,7 @@ namespace user
 
       screen_to_client(point);
 
-auto pwindowing = windowing();
-
-      pwindowing->release_mouse_capture();
+      release_mouse_capture();
 
       if (m_bDrag)
       {
@@ -3619,9 +3615,7 @@ auto pwindowing = windowing();
 
       index iSubItemSel;
 
-      auto pwindow = window();
-
-      auto pointCursor = pwindow->get_cursor_position();
+      auto pointCursor = get_cursor_position();
 
       screen_to_client(pointCursor);
 
@@ -5176,9 +5170,7 @@ auto pwindowing = windowing();
 
       cache_hint();
 
-      auto pwindow = window();
-
-      auto pointCursor = pwindow->get_cursor_position();
+      auto pointCursor = get_cursor_position();
 
       auto pmouse = __create_new < ::user::mouse >();
 

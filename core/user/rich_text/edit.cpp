@@ -266,9 +266,7 @@ namespace user
       void edit::on_message_mouse_leave(::message::message * pmessage)
       {
 
-         auto pwindowing = windowing();
-
-         pwindowing->release_mouse_capture();
+         release_mouse_capture();
 
          set_need_redraw();
 
@@ -612,9 +610,7 @@ namespace user
 
                }
 
-               auto pwindow = window();
-
-               auto pcopydesk = pwindow->copydesk();
+               auto pcopydesk = copydesk();
 
                pcopydesk->set_plain_text(str);
 
@@ -653,9 +649,7 @@ namespace user
 
                _001GetSelText(str);
 
-               auto pwindow = window();
-
-               auto pcopydesk = pwindow->copydesk();
+               auto pcopydesk = copydesk();
 
                pcopydesk->set_plain_text(str);
 

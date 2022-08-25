@@ -206,9 +206,7 @@ namespace html
 
             auto puser = psession->user();
 
-            auto pwindowing = puser->windowing1();
-
-            auto pcursor = pwindowing->get_cursor(e_cursor_hand);
+            auto pcursor = phtml->m_puserinteraction->get_mouse_cursor(e_cursor_hand);
 
             pmouse->m_pcursor = pcursor;
 

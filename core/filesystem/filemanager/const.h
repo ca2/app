@@ -4,51 +4,61 @@
 namespace filemanager
 {
 
+
    enum enum_flag
    {
 
-      flag_zip_compressed,
-      flag_folder,
-      flag_folder_ex001,
-      flag_folder_ex001_calc,
-      flag_has_sub_folder,
-      flag_has_sub_folder_unknown
+      e_flag_zip_compressed,
+      e_flag_folder,
+      e_flag_folder_ex001,
+      e_flag_folder_ex001_calc,
+      e_flag_has_sub_folder,
+      e_flag_has_sub_folder_unknown
 
    };
 
    
-   enum e_attribute
+   enum enum_attribute
    {
 
-      attribute_name
+      e_attribute_name
 
    };
+
 
    enum EFolder
    {
 
 
-   FolderMyComputer,
+      FolderMyComputer,
 
 
    };
 
 
-   enum e_operation
+   enum enum_operation
    {
-      operation_none,
-      operation_copy,
-      operation_delete,
-      operation_move,
+      
+      
+      e_operation_none,
+      e_operation_copy,
+      e_operation_delete,
+      e_operation_move,
+
+
    };
 
 
    enum enum_state
    {
+      
+
       e_state_initial,
-      state_start,
-      state_step,
-      state_finish,
+      e_state_start,
+      e_state_step,
+      e_state_finish,
+
+
    };
 
 

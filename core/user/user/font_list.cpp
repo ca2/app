@@ -22,7 +22,7 @@ namespace user
 
       m_econtroltype = ::user::e_control_type_list;
 
-      m_flagNonClient.add(non_client_hover_rect);
+      m_flagNonClient.add(e_non_client_hover_rect);
 
       m_bFirstShown = false;
       m_atomImpact = FONTSEL_IMPACT;

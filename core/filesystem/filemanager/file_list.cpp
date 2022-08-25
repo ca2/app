@@ -570,9 +570,7 @@ namespace filemanager
 
       auto patha = get_selected_final_path();
 
-      auto pwindow = window();
-
-      auto pcopydesk = pwindow->copydesk();
+      auto pcopydesk = copydesk();
 
       pcopydesk->set_filea(patha, ::user::copydesk::e_op_copy);
 

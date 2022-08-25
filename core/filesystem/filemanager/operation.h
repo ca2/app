@@ -11,7 +11,7 @@ namespace filemanager
    public:
 
 
-      e_operation                m_eoperation;
+      enum_operation             m_eoperation;
       ::file::listing            m_stra;
       double_array               m_daRead;
       double_array               m_daSize;
@@ -57,8 +57,9 @@ namespace filemanager
       void initialize(::object * pobject) override;
       virtual bool open_src_dst(const ::file::path & pszSrc,::file::path & strDst,const ::file::path & pszDir);
 
-      virtual void set_operation(e_operation eoperation);
-      virtual e_operation get_operation();
+      virtual void set_operation(enum_operation eoperation);
+      virtual enum_operation get_operation();
+
 
    };
 

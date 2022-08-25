@@ -5,6 +5,8 @@
 #include "aura/graphics/draw2d/_component.h"
 #include "acme/platform/timer.h"
 #include "acme/platform/hyperlink.h"
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/display.h"
 
 
 namespace account

@@ -420,9 +420,7 @@ namespace user
 
          auto pmouse = pmessage->m_union.m_pmouse;
 
-         auto pwindowing = windowing();
-
-         pwindowing->release_mouse_capture();
+         release_mouse_capture();
 
          if (!is_text_editable())
          {
@@ -482,9 +480,7 @@ namespace user
          if (::is_set(m_pitemHover))
          {
 
-            auto pwindowing = windowing();
-
-            auto pcursor = pwindowing->get_cursor(e_cursor_text_select);
+            auto pcursor = get_mouse_cursor(e_cursor_text_select);
 
             pmouse->m_pcursor = pcursor;
 
@@ -517,9 +513,7 @@ namespace user
          if (!m_bClickThrough)
          {
 
-            auto pwindowing = windowing();
-
-            auto pcursor = pwindowing->get_cursor(e_cursor_text_select);
+            auto pcursor = get_mouse_cursor(e_cursor_text_select);
 
             pmouse->m_pcursor = pcursor;
 
@@ -557,9 +551,7 @@ namespace user
       void edit_impl::on_message_mouse_leave(::message::message * pmessage)
       {
 
-         auto pwindowing = windowing();
-
-         pwindowing->release_mouse_capture();
+         release_mouse_capture();
 
          set_need_redraw();
 
@@ -567,7 +559,6 @@ namespace user
 
 
       bool edit_impl::get_element_rect(RECTANGLE_I32 * prectangle, index i, enum_element eelement)
-
       {
 
          if (eelement == ::e_element_icon)
@@ -1119,9 +1110,7 @@ namespace user
 
                }
 
-               auto pwindow = window();
-               
-               auto pcopydesk = pwindow->copydesk();
+               auto pcopydesk = copydesk();
 
                pcopydesk->set_plain_text(str);
 
@@ -1143,9 +1132,7 @@ namespace user
 
                   string str;
 
-                  auto pwindow = window();
-
-                  auto pcopydesk = pwindow->copydesk();
+                  auto pcopydesk = copydesk();
 
                   pcopydesk->get_plain_text(str);
 
@@ -1170,9 +1157,7 @@ namespace user
 
                _001GetSelText(str);
 
-               auto pwindow = window();
-
-               auto pcopydesk = pwindow->copydesk();
+               auto pcopydesk = copydesk();
 
                pcopydesk->set_plain_text(str);
 

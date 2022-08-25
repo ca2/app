@@ -313,7 +313,7 @@ namespace user
 
                      bring_to_front();
 
-                     set_window_position(e_zorder_top_most, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+                     order(e_zorder_top_most);
 
                   });
 
@@ -615,9 +615,7 @@ namespace user
       if (!m_bPositionHint)
       {
 
-         auto pwindow = window();
-
-         auto pointCursor = pwindow->get_cursor_position();
+         auto pointCursor = get_cursor_position();
          
          m_pointPositionHint = pointCursor;
 
@@ -825,11 +823,9 @@ namespace user
 
       ::rectangle_i32 rectangleMonitor;
 
-auto pwindowing = windowing();
-
-      auto pdisplay = pwindowing->display();
-
-      if (pdisplay->get_best_monitor(rectangleMonitor, rectangleWindow) >= 0)
+      auto iMonitor = get_best_monitor(rectangleMonitor, rectangleWindow);
+         
+      if(iMonitor >= 0)
       {
 
          rectangleMonitor.deflate(16, 16);

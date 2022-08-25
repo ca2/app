@@ -4,9 +4,8 @@
 #include "tool_tip_window.h"
 #include "tool_tip_tool.h"
 #include "aura/graphics/draw2d/_component.h"
-//#include "aura/windowing/windowing.h"
-//#include "aura/windowing/window.h"
-//#include "aura/windowing/display.h"
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/display.h"
 
 
 namespace user
@@ -124,8 +123,11 @@ namespace user
 
       while(true)
       {
+         
          m_sizeArrow.cx = 12;
+         
          m_sizeArrow.cy = 12;
+
          if(((m_ealign & AlignLeft) == AlignLeft) &&
                ((m_ealign & AlignTop) == AlignTop))
          {
@@ -157,6 +159,7 @@ namespace user
          pdisplay->get_main_monitor(rectangle);
 
          ::size_i32 sizeScreen;
+
          sizeScreen = rectangleScreen.size();
 
          if(rectangle.right > sizeScreen.cx && !bHRetry)

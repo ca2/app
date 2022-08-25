@@ -125,9 +125,7 @@ void filemanager_impact_base::_001OnUpdateEditPaste(::message::message * pmessag
 
    __pointer(::message::command) pcommand(pmessage);
 
-   auto pwindow = window();
-   
-   auto pcopydesk = pwindow->copydesk();
+   auto pcopydesk = copydesk();
    
    bool bHasFile = pcopydesk->has_filea();
          
@@ -147,9 +145,7 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
 
    ::user::copydesk::enum_op eop;
 
-   auto pwindow = window();
-   
-   auto pcopydesk = pwindow->copydesk();
+   auto pcopydesk = copydesk();
    
    bool bOk = pcopydesk->get_filea(listing, eop);
 

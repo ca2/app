@@ -6,6 +6,10 @@ namespace draw2d
 
 
    class object;
+   class draw2d;
+
+
+   class printer;
    
 
    class cursor;

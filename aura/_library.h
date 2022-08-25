@@ -2,11 +2,12 @@
 //  _library.h
 //  aura
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 24/08/22.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 24/08/22 01:08.
 //
-
-#ifndef _library_h
-#define _library_h
+#pragma once
 
 
-#endif /* _library_h */
+#include "aura/include/_library.h"
+
+
+

@@ -9,8 +9,12 @@
 #ifdef __cplusplus
 
 
-
 #include "_.h"
+
+
+#include "_library.h"
+
+
 #include "aqua/xml.h"
 #if BROAD_PRECOMPILED_HEADER
 #if !BROAD_PRECOMPILED_HEADER

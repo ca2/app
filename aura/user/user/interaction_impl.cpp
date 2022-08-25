@@ -16,6 +16,9 @@
 #include "aura/windowing/text_editor_interface.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/lock.h"
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/display.h"
 //#ifdef _UWP
 //#include "aura/operating_system/windows_common/draw2d_direct2d_global.h"
 //#endif
@@ -7508,7 +7511,40 @@ namespace user
    }
 
 
+   ::oswindow interaction_impl::oswindow() const
+   {
+
+      return m_pwindow->m_oswindow;
+
+   }
+
+
 } // namespace user
 
 
+CLASS_DECL_AURA ::user::interaction * __interaction(::windowing::window * pwindow)
+{
 
+   if (::is_null(pwindow)) return nullptr;
+
+   auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
+
+   if (!puserinteractionimpl) return nullptr;
+
+   return puserinteractionimpl->m_puserinteraction;
+
+}
+
+
+CLASS_DECL_AURA ::user::interaction_impl * __interaction_impl(::windowing::window * pwindow)
+{
+
+   if (::is_null(pwindow)) return nullptr;
+
+   auto pimpl = pwindow->m_puserinteractionimpl.m_p;
+
+   if (::is_null(pimpl)) return nullptr;
+
+   return pimpl;
+
+}

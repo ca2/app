@@ -14,6 +14,7 @@
 //
 #pragma once
 
+
 #undef LAYER_NAMESPACE
 #define LAYER_NAMESPACE aqua
 
@@ -62,6 +63,7 @@ namespace multimedia
 #undef APPLICATION_CLASS
 #define APPLICATION_CLASS ::aqua::application
 
+
 #include "aqua/multimedia/_c.h"
 
 
@@ -72,9 +74,6 @@ namespace multimedia
 
 
 #include "aqua/multimedia/_.h"
-
-
-#include "aqua/game/_.h"
 
 
 #include "aqua/platform/application.h"

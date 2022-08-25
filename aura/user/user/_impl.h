@@ -274,25 +274,6 @@ namespace user
 {
 
 
-   inline ::user::interaction_impl * message::userinteractionimpl()
-   {
-
-      auto pwindow = window();
-
-      return pwindow ? pwindow->m_puserinteractionimpl : nullptr;
-
-   }
-
-
-   inline ::user::interaction * message::userinteraction()
-   {
-
-      auto pimpl = userinteractionimpl();
-
-      return pimpl ? pimpl->m_puserinteraction : nullptr;
-
-   }
-
 
    inline ::aura::application* interaction::get_app() const
    {
@@ -398,36 +379,8 @@ namespace user
    }
 
 
-   inline ::oswindow interaction_impl::oswindow() const
-   {
-
-      return m_pwindow->m_oswindow;
-
-   }
 
 
-   inline ::user::interaction * primitive_impl::top_level() const
-   {
-      
-      return m_puserinteraction->m_puserinteractionTopLevel; 
-   
-   }
-
-
-   inline ::user::frame * primitive_impl::parent_frame() const 
-   { 
-      
-      return m_puserinteraction->m_puserframeParent; 
-   
-   }
-
-
-   inline ::windowing::window* primitive_impl::window()
-   {
-
-      return m_puserinteraction->m_pwindow;
-
-   }
 
 
 } // namespace user

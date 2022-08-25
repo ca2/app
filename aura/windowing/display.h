@@ -141,8 +141,6 @@ namespace windowing
    };
 
 
-   using display_map = iptr_map < __pointer(display) >;
-
 
 } // namespace windowing
 

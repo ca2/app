@@ -1,7 +1,8 @@
 #include "framework.h"
-#include "core/user/user/_user.h"
+#include "core/user/user/_component.h"
 #include "acme/platform/timer.h"
 #include "step_slider.h"
+//#include "aura/windowing/window.h"
 
 
 namespace user
@@ -49,15 +50,15 @@ namespace user
    void step_slider::_001OnTimer(::timer * ptimer)
    {
       ::user::interaction::_001OnTimer(ptimer);;
-      if(ptimer->m_uEvent == 1)
-      {
-         if(::is_set(m_pitemHover))
-         {
-            update_hover();
-            if(!::is_set(m_pitemHover))
-               KillTimer(1);
-         }
-      }
+//      if(ptimer->m_uEvent == 1)
+//      {
+//         if(::is_set(m_pitemHover))
+//         {
+//            update_hover();
+//            if(!::is_set(m_pitemHover))
+//               KillTimer(1);
+//         }
+//      }
    }
 
    void step_slider::on_message_left_button_down(::message::message * pmessage)
@@ -96,7 +97,7 @@ namespace user
 
       m_pitemHover = __new(::item(::e_element_client));
 
-      update_hover();
+      //update_hover();
 
    }
 
@@ -230,35 +231,35 @@ namespace user
    }
 
 
-   void step_slider::update_hover()
-   {
-
-      auto pwindow = window();
-
-      auto pointCursor = pwindow->get_cursor_position();
-
-      m_pitemHover = hit_test(pointCursor);
-
-      set_need_redraw();
-
-      ::rectangle_i32 rectangleClient;
-
-      get_client_rect(rectangleClient);
-
-      if (rectangleClient.contains(pointCursor))
-      {
-
-         m_pitemHover = __new(::item(e_element_client));
-
-      }
-      else
-      {
-
-         m_pitemHover = nullptr;
-
-      }
-
-   }
+//   void step_slider::update_hover()
+//   {
+//
+//      auto pwindow = window();
+//
+//      auto pointCursor = pwindow->get_cursor_position();
+//
+//      m_pitemHover = hit_test(pointCursor);
+//
+//      set_need_redraw();
+//
+//      ::rectangle_i32 rectangleClient;
+//
+//      get_client_rect(rectangleClient);
+//
+//      if (rectangleClient.contains(pointCursor))
+//      {
+//
+//         m_pitemHover = __new(::item(e_element_client));
+//
+//      }
+//      else
+//      {
+//
+//         m_pitemHover = nullptr;
+//
+//      }
+//
+//   }
 
 
 } // namespace user

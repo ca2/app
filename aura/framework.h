@@ -15,6 +15,11 @@
 #else
 
 #include "aura/_.h"
+
+
+#include "aura/_library.h"
+
+
 #include "aura/platform/_platform.h"
 #if BROAD_PRECOMPILED_HEADER
 #include "aura/user/user/_component.h"

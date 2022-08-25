@@ -2434,6 +2434,30 @@ namespace user
 #endif
 
 
+   ::user::interaction * primitive_impl::top_level() const
+   {
+      
+      return m_puserinteraction->m_puserinteractionTopLevel;
+
+   }
+
+
+   ::user::frame * primitive_impl::parent_frame() const
+   {
+      
+      return m_puserinteraction->m_puserframeParent;
+
+   }
+
+
+   ::windowing::window* primitive_impl::window()
+   {
+
+      return m_puserinteraction->m_pwindow;
+
+   }
+
+
 } // namespace user
 
 

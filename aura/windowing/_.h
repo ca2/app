@@ -20,11 +20,18 @@ namespace sandbox_windowing
 namespace windowing
 {
 
+   
+   class icon;
+
 
    class display;
    class window;
    class windowing;
    class text_editor_interface;
+   class desktop_environment;
+   class cursor_manager;
+   class keyboard;
+   class monitor;
 
 
    enum enum_status
@@ -40,6 +47,10 @@ namespace windowing
    };
 
    DECLARE_ENUMERATION(e_status, enum_status);
+
+   using display_map = iptr_map < __pointer(display) >;
+
+
 
 } // namespace windowing
 

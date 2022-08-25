@@ -570,30 +570,38 @@ namespace user
    }
 
 
-   //::windowing::windowing * interaction::windowing() const
-   //{
+   ::user::copydesk * interaction::copydesk()
+   {
+   
+      auto pwindow = window();
+      
+      if(::is_null(pwindow))
+      {
+         
+         return nullptr;
+         
+      }
+      
+      auto pcopydesk = pwindow->copydesk();
+      
+      if(::is_null(pcopydesk))
+      {
+       
+         return nullptr;
+         
+      }
+      
+      return pcopydesk;
 
-   //   auto pwindow = window();
+   }
 
-   //   if (::is_null(pwindow))
-   //   {
 
-   //      return nullptr;
-
-   //   }
-
-   //   auto pwindowing = pwindow->windowing();
-
-   //   if (::is_null(pwindowing))
-   //   {
-
-   //      return nullptr;
-
-   //   }
-
-   //   return pwindowing;
-
-   //}
+   ::windowing::windowing * interaction::windowing() const
+   {
+   
+      return m_pwindow->m_pwindowing;
+   
+   }
 
 
    ::windowing::display * interaction::get_display() const

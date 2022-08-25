@@ -1,10 +1,12 @@
 #include "framework.h"
-#include "core/user/user/_user.h"
+#include "core/user/user/_component.h"
 #include "acme/platform/timer.h"
 #include "acme/constant/timer.h"
 #include "acme/primitive/collection/sort.h"
 #include "aura/graphics/draw2d/_component.h"
 #include "aura/graphics/image/list.h"
+//#include "aura/windowing/windowing.h"
+//#include "aura/windowing/window.h"
 
 
 #define DBLCLKMS 500_ms

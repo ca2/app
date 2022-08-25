@@ -1,11 +1,12 @@
-﻿#include "framework.h"
-#include "core/user/user/_user.h"
+#include "framework.h"
+#include "core/user/user/_component.h"
 #include "_data.h"
 #include "_tree.h"
 #include "acme/constant/timer.h"
 #include "aura/message.h"
 #include "aura/graphics/draw2d/_component.h"
 #include "aura/graphics/image/list.h"
+//#include "aura/windowing/window.h"
 
 
 namespace user

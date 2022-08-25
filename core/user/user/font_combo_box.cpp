@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "core/user/user/_user.h"
+#include "core/user/user/_component.h"
 #include "font_list.h"
 #include "font_combo_box.h"
 

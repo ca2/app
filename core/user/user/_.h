@@ -55,6 +55,16 @@ namespace user
    typedef ::user::show < ::user::font_list > font_list_impact;
 
 
+   class primitive_pointer_array;
+
+   class notify_icon;
+
+   class control_bar;
+
+   class scroll_info;
+
+
+
 } // namespace user
 
 

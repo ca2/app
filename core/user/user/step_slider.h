@@ -15,7 +15,7 @@ namespace user
 
 
       step_slider();
-      virtual ~step_slider();
+      ~step_slider() override;
 
       
       //bool create_window(::user::interaction * puserinteractionParent, atom atom);
@@ -31,7 +31,7 @@ namespace user
 
       ::item_pointer on_hit_test(const ::point_i32 & point) override;
 
-      void update_hover();
+      //void update_hover();
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "core/user/user/_user.h"
+#include "core/user/user/_component.h"
 #include "aura/graphics/draw2d/_component.h"
 
 

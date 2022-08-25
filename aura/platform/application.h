@@ -155,7 +155,7 @@ namespace aura
 
       virtual void enumerate_composite(matter_array& a);
 
-      inline ::aura::game* game() { return m_pgame->m_pauragame; }
+      virtual ::aura::game* game();
 
 
       virtual void _001CloseApplication() override;

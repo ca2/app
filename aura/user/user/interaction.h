@@ -340,13 +340,13 @@ namespace user
       // ownership
       __pointer(::user::system)                    m_pusersystem;
    protected:
-      __pointer(::user::interaction_layout)        m_playout;
+      ::user::interaction_layout                   m_layout;
    public:
       //__pointer(drag_move)                         m_pdragmove;
       __pointer(::draw2d::graphics_call_array)     m_pgraphicscalla;
       __pointer(::user::interaction)               m_puserinteractionCustomWindowProc;
       __pointer(::user::interaction)               m_puiLabel;
-      __pointer_array(::item)                      m_useritema;
+      __pointer_array(::item)                m_useritema;
       __pointer(::user::form)                      m_pform;
       __pointer(alpha_source)                      m_palphasource;
       __pointer(::aura::drawable)                  m_pdrawableBackground;
@@ -417,7 +417,7 @@ namespace user
 
       //::windowing::window * window() const;
 
-      inline ::windowing::windowing * windowing() const { return m_pwindow->m_pwindowing; }
+      virtual ::windowing::windowing * windowing() const;
 
       ::windowing::display * get_display() const;
 
@@ -435,8 +435,8 @@ namespace user
       inline iterator proper_children() { return {this, e_next_proper, this}; }
 
 
-      const class ::user::interaction_layout& const_layout() const { return *m_playout; }
-      class ::user::interaction_layout& layout() { return *m_playout; }
+      const class ::user::interaction_layout& const_layout() const { return m_layout; }
+      class ::user::interaction_layout& layout() { return m_layout; }
 
       inline double screen_scaler() const;
       inline double font_scaler() const;
@@ -458,6 +458,9 @@ namespace user
       //index find_control(::user::interaction * pinteraction);
 
       __pointer(interaction) alloc();
+      
+      
+      
 
 
       template < typename PRED >
@@ -468,7 +471,7 @@ namespace user
 
          __defer_construct_new(m_pgraphicscalla);
 
-         m_pgraphicscalla->add(__new(graphics_call< PRED >(pred)));
+         m_pgraphicscalla->add(__new(::draw2d::graphics_call< PRED >(pred)));
 
       }
 
@@ -1541,6 +1544,7 @@ namespace user
       inline ::windowing::window * window() const { return m_pwindow; }
       virtual ::windowing::window * _window() const override;
 
+      virtual ::user::copydesk * copydesk();
 
       virtual void* get_os_data() const;
 

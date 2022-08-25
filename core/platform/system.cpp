@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "acme/platform/system_setup.h"
-#include "core/user/user/_user.h"
+#include "core/user/user/_component.h"
 #include "core/const/idpool.h"
 #include "core/networking/ftp/file_status.h"
 

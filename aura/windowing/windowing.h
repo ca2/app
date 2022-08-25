@@ -4,18 +4,7 @@
 #pragma once
 
 
-inline ::user::interaction_impl * __interaction_impl(::windowing::window * pwindow)
-{
-
-   if (::is_null(pwindow)) return nullptr;
-
-   auto pimpl = pwindow->m_puserinteractionimpl.m_p;
-
-   if (::is_null(pimpl)) return nullptr;
-
-   return pimpl;
-
-}
+CLASS_DECL_AURA ::user::interaction_impl * __interaction_impl(::windowing::window * pwindow);
 
 
 namespace windowing

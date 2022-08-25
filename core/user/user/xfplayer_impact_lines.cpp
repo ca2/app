@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "core/user/user/_user.h"
+#include "core/user/user/_component.h"
 
 
 xfplayer_impact_linea::xfplayer_impact_linea(::user::interaction * puserinteraction) :

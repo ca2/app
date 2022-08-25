@@ -2,12 +2,13 @@
 //  _library.h
 //  aqua
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 24/08/22.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 24/08/22 00:58
 //  Copyright © 2022 Camilo Sasuke Tsumanuma. All rights reserved.
 //
-
-#ifndef _library_h
-#define _library_h
+#pragma once
 
 
-#endif /* _library_h */
+#include "aqua/include/_library.h"
+
+
+

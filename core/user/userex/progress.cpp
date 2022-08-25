@@ -265,38 +265,38 @@ namespace userex
    void progress_impact::_001OnTimer(::timer* ptimer)
    {
 
-      if (ptimer->m_uEvent == e_timer_update_current_area)
-      {
-
-         KillTimer(ptimer->m_uEvent);
-
-         ::rectangle_i32 rectangle;
-
-         auto pwindowing = windowing();
-
-         auto pdisplay = pwindowing->display();
-
-         pdisplay->get_main_monitor(rectangle);
-
-         rectangle.deflate(rectangle.width() / 6, rectangle.height() / 3, rectangle.width() / 6, rectangle.height() / 2);
-
-         auto pframe = parent_frame();
-
-         if (::is_set(pframe))
-         {
-
-            pframe->m_sizeMinimum.cx = 300;
-            pframe->m_sizeMinimum.cy = 50;
-
-            pframe->good_restore(nullptr, rectangle, true);
-
-            pframe->set_need_redraw();
-
-            pframe->post_redraw();
-
-         }
-
-      }
+//      if (ptimer->m_uEvent == e_timer_update_current_area)
+//      {
+//
+//         KillTimer(ptimer->m_uEvent);
+//
+//         ::rectangle_i32 rectangle;
+//
+//         auto pwindowing = windowing();
+//
+//         auto pdisplay = pwindowing->display();
+//
+//         pdisplay->get_main_monitor(rectangle);
+//
+//         rectangle.deflate(rectangle.width() / 6, rectangle.height() / 3, rectangle.width() / 6, rectangle.height() / 2);
+//
+//         auto pframe = parent_frame();
+//
+//         if (::is_set(pframe))
+//         {
+//
+//            pframe->m_sizeMinimum.cx = 300;
+//            pframe->m_sizeMinimum.cy = 50;
+//
+//            pframe->good_restore(nullptr, rectangle, true);
+//
+//            pframe->set_need_redraw();
+//
+//            pframe->post_redraw();
+//
+//         }
+//
+//      }
 
    }
 

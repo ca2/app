@@ -1,8 +1,9 @@
 #include "framework.h"
-#include "core/user/user/_user.h"
+#include "core/user/user/_component.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/draw2d/_component.h"
 #include "acme/platform/hyperlink.h"
+#include "aura/windowing/windowing.h"
 
 
 const i32 xfplayer_impact_line::AlignLeft = 1;

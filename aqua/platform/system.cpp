@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/platform/system_setup.h"
 //#if !BROAD_PRECOMPILED_HEADER
-//#include "core/user/user/_user.h"
+//#include "core/user/user/_component.h"
 //#endif
 #include "aqua/constant/idpool.h"
 #include "acme/parallelization/pool.h"

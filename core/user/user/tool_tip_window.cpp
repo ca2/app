@@ -1,9 +1,12 @@
 #include "framework.h"
-#include "core/user/user/_user.h"
+#include "core/user/user/_component.h"
 #include "acme/constant/timer.h"
 #include "tool_tip_window.h"
 #include "tool_tip_tool.h"
 #include "aura/graphics/draw2d/_component.h"
+//#include "aura/windowing/windowing.h"
+//#include "aura/windowing/window.h"
+//#include "aura/windowing/display.h"
 
 
 namespace user
@@ -38,15 +41,15 @@ namespace user
          if(ptool->BaseToolTipGetWnd()->top_level() == pusermessage->userinteraction())
          {
             
-            auto pwindow = window();
+//            auto pwindow = window();
+//
+//            auto pointCursor = pwindow->get_cursor_position();
 
-            auto pointCursor = pwindow->get_cursor_position();
-
-            if(m_iEventTool != ptool->BaseToolTipGetIndex()
-                  || pointCursor != m_point)
+//            if(m_iEventTool != ptool->BaseToolTipGetIndex()
+  //                || pointCursor != m_point)
             {
                
-               m_point = pointCursor;
+//               m_point = pointCursor;
                
                m_iEventTool = ptool->BaseToolTipGetIndex();
                
@@ -79,21 +82,21 @@ namespace user
          return;
       }
 
-      if(!bForce)
-      {
-
-         auto pwindow = window();
-
-         auto pointCursor = pwindow->get_cursor_position();
-
-         if (pointCursor != m_point)
-         {
-
-            return;
-
-         }
-
-      }
+//      if(!bForce)
+//      {
+//
+//         auto pwindow = window();
+//
+//         auto pointCursor = pwindow->get_cursor_position();
+//
+//         if (pointCursor != m_point)
+//         {
+//
+//            return;
+//
+//         }
+//
+//      }
 
       if(!GetToolText(iTool, m_strTip))
          return;

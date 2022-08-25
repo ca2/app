@@ -866,18 +866,7 @@ namespace user
 } // namespace user
 
 
-inline ::user::interaction * __interaction(::windowing::window * pwindow)
-{
-
-   if (::is_null(pwindow)) return nullptr;
-
-   auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
-
-   if (!puserinteractionimpl) return nullptr;
-
-   return puserinteractionimpl->m_puserinteraction;
-
-}
+CLASS_DECL_AURA ::user::interaction * __interaction(::windowing::window * pwindow);
 
 
 

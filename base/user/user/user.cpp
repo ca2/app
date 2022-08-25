@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "base/user/simple/_component.h"
 #include "base/user/menu/_menu.h"
-//#include "aura/update.h"
+#include "aura/windowing/window.h"
 #include "simple_impact.h"
 #include "acme/platform/system_setup.h"
 #include "acme/filesystem/filesystem/acme_directory.h"

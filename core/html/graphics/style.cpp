@@ -7,7 +7,7 @@
 #endif
 #include "core/id.h"
 #include "core/html/html/_html.h"
-#include "core/user/user/_user.h"
+#include "core/user/user/_component.h"
 
 
 namespace html

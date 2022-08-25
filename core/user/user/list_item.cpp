@@ -1,7 +1,7 @@
 // From list.cpp by camilo on 2022-06-29 05:39 <3ThomasBorregaardSorensen!! 
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "core/user/user/_user.h"
+#include "core/user/user/_component.h"
 #endif
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/list.h"

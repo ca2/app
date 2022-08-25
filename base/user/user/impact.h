@@ -57,7 +57,7 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual bool IsSelected(const object* pDocItem) const; // support for OLE
+      virtual bool IsSelected(const ::object* pDocItem) const; // support for OLE
 
       // OLE scrolling support (used for drag/drop as well)
       virtual bool OnScroll(::u32 nScrollCode, ::u32 nPos, bool bDoScroll = true);

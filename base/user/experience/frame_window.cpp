@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "base/user/experience/_experience.h"
-//#include "aura/update.h"
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/display.h"
 #include "aura/message.h"
 
 

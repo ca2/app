@@ -37,7 +37,7 @@ public:
    virtual image_pointer path_image(const char *);
 
 
-   virtual ::icon_pointer get_icon(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
+   virtual ::draw2d::icon_pointer get_icon(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
    virtual ::image_pointer get_image(const ::payload & payloadFile, const ::image::load_options & loadoptions = ::image::load_options());
    virtual ::image_pointer matter_image(const ::string & strMatter, const ::image::load_options & loadoptions = ::image::load_options());
 

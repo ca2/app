@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aqua/game/game.h"
+
+
 namespace aura
 {
 
@@ -19,7 +22,10 @@ namespace aura
       ~game() override;
 
       
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      
+      
+      void destroy() override;
 
 
       virtual string sound_path(const ::string & psz);

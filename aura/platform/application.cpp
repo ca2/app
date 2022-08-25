@@ -8828,6 +8828,13 @@ namespace aura
 
    }
 
+   
+   ::aura::game * application::game()
+   {
+      
+      return m_pgame->m_pauragame;
+      
+   }
 
 
    void application::_001CloseApplication()

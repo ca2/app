@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "acme/constant/timer.h"
-#include "core/user/user/_user.h"
+#include "core/user/user/_component.h"
+#include "aura/windowing/window.h"
 
 
 XfplayerImpactLineSelection::XfplayerImpactLineSelection(::user::interaction * puserinteraction) :

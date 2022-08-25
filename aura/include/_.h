@@ -82,13 +82,19 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 } // namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 
 
-#include "aura/graphics/draw2d/_.h"
+#include "aura/graphics/_.h"
 
 
-#include "aura/graphics/image/_.h"
+#include "aura/game/_.h"
+
+
+#include "aura/user/_.h"
 
 
 #include "aura/message/_.h"
+
+
+#include "aura/windowing/_.h"
 
 
 //#include "aura/primitive/primitive/estatus.h"
@@ -1822,76 +1828,27 @@ namespace draw2d
 
 #include "aura/game/_.h"
 
-
-//namespace OPERATING_SYSTEM_NAMESPACE
-//{
-//
-//
-//   class window;
-//
-//
-//} // namespace OPERATING_SYSTEM_NAMESPACE
+#include "aura/windowing/_.h"
 
 
-#include "aura/windowing/_component.h"
-
-
-#include "aura/platform/theme.h"
-
-//#include "aura/user/callback.h"
 
 #include "aura/filesystem/filemanager/callback.h"
 
 #include "aura/platform/shell_open.h"
 
-#include "aura/platform/context.h"
-
-
-namespace draw2d
-{
-
-   class printer;
-   class draw2d;
-
-} // namespace draw2d
-
-
-#include "aura/platform/application.h"
-
 #include "aura/filesystem/filemanager/item_action.h"
-
-
-namespace write_text
-{
-
-   class font_list;
-
-} // namespace write_text
-
 
 #include "aura/hardware/devices.h"
 
 
 
+#include "aura/platform/_.h"
 
 
-#include "aura/platform/session.h"
-
-#include "aura/platform/node.h"
-
-#include "aura/platform/system.h"
-
-//#include "aura/graphics/graphics/graphics.h"
-
-//#include "aura/graphics/draw2d/_impl.h"
-
-//#include "aura/graphics/draw2d/_image_impl.h"
-
-//#include "aura/graphics/_impl.h"
 
 #include "aura/operating_system/_impl.h"
 
 #include "aura/platform/_impl.h"
 
-#include "aura/windowing/_impl.h"
+//#include "aura/windowing/_impl.h"
 

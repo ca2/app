@@ -55,7 +55,7 @@ namespace draw2d
       __pointer_array(::draw2d::object)                        m_objecta;
 
       critical_section                                         m_criticalsectionImageList;
-      __pointer_array(::image)                                 m_imagea;
+      image_array                                 m_imagea;
 
       critical_section                                         m_criticalsectionGraphicsContextList;
       __pointer_array(graphics)                                m_graphicsa;

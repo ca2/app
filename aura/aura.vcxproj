@@ -879,7 +879,7 @@
     <ClCompile Include="operating_system\http.cpp" />
     <ClCompile Include="operating_system\thread.cpp" />
     <ClCompile Include="operating_system\windowing.cpp" />
-    <ClCompile Include="operating_system\windows\aura.cpp" />
+    <ClCompile Include="operating_system\windows\_library.cpp" />
     <ClCompile Include="operating_system\windows\dpi.cpp" />
     <ClCompile Include="operating_system\windows\gdi.cpp" />
     <ClCompile Include="operating_system\windows\graphics.cpp" />
@@ -888,7 +888,6 @@
     <ClCompile Include="operating_system\windows\monitor.cpp" />
     <ClCompile Include="operating_system\windows\windowing.cpp" />
     <ClCompile Include="platform\application.cpp" />
-    <ClCompile Include="platform\aura.cpp" />
     <ClCompile Include="platform\message_queue.cpp" />
     <ClCompile Include="platform\context.cpp" />
     <ClCompile Include="platform\draw_context.cpp" />

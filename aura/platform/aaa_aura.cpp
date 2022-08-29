@@ -1,26 +1,29 @@
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/user/_component.h"
+#endif
 #include "aura.h"
-#include "apex/networking/sockets/_.h"
+//#include "apex/networking/sockets/_.h"
 //#include "acme/memory/plex_heap1.h"
 //#include "acme/memory/plex_heap_impl1.h"
 //#include "apex/platform/app_core.h"
-#include "acme/primitive/primitive/malloc.h"
-#include "aura/astr.h"
+//#include "acme/primitive/primitive/malloc.h"
+//#include "aura/astr.h"
 //#include "acme/platform/static_start_internal.h"
 //#include "aura/os/_os.h"
 //
 //#include <sqlite3.h>
-#include <locale.h>
-
-#ifdef RASPBIAN
-#define OPERATING_SYSTEM_NAMESPACE linux
-#endif
-
-#if defined(__APPLE__)
-#include <xlocale.h>
-#else
-#include <locale.h>
-#endif
+//#include <locale.h>
+//
+//#ifdef RASPBIAN
+//#define OPERATING_SYSTEM_NAMESPACE linux
+//#endif
+//
+//#if defined(__APPLE__)
+//#include <xlocale.h>
+//#else
+//#include <locale.h>
+//#endif
 
 //#ifdef LINUX
 //#include <glib.h> // sudo apt-get install libglib2.0-dev
@@ -28,18 +31,18 @@
 
 
 
-#ifdef LINUX
-//#include <glib.h> // sudo apt-get install libglib2.0-dev
+//#ifdef LINUX
+////#include <glib.h> // sudo apt-get install libglib2.0-dev
+//
+//
+////void x11_hook_init();
+////void x11_hook_term();
+//
+//
+//#endif
 
-
-//void x11_hook_init();
-//void x11_hook_term();
-
-
-#endif
-
-void trace_category_static_init();
-void trace_category_static_term();
+//void trace_category_static_init();
+//void trace_category_static_term();
 
 
 //extern thread_local ::task_pointer t_pthread;

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "image.h"
 #include "aura/graphics/image/context_image.h"
 #include "array.h"
 #include "drawing.h"

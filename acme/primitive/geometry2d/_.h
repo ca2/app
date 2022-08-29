@@ -2,11 +2,8 @@
 
 
 
-template < typename HOLDEE >
-class ___shape;
 
-
-#include "_struct.h"
+//#include "_struct.h"
 
 
 

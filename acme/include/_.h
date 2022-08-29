@@ -3323,9 +3323,6 @@ concept xydim_rectangle = requires(RECTANGLE rectangle)
 #include "acme/platform/lparam.h"
 
 
-#include "acme/primitive/geometry2d/_.h"
-
-
 #include "acme/platform/_global.h"
 
 
@@ -3500,6 +3497,12 @@ namespace http
 } // namespace http
 
 
+template < typename HOLDEE >
+class ___shape;
+
+
+#include "acme/primitive/geometry2d/_struct.h"
+
 
 #ifdef WINDOWS_DESKTOP
 
@@ -3521,10 +3524,10 @@ struct MESSAGE
 {
 
    ::oswindow              oswindow;
-   ::atom                    m_atom;
+   ::atom                  m_atom;
    wparam                  wParam;
    lparam                  lParam;
-   point_i32               pt;
+   POINT_I32               pt;
    ::u64                   time;
 
 };
@@ -3615,6 +3618,9 @@ using exception_array = ::array < ::exception >;
 
 
 #include "acme/exception/_.h"
+
+
+#include "acme/primitive/geometry2d/_.h"
 
 
 #include "acme/primitive/primitive/pointer2.h"

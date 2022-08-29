@@ -174,11 +174,11 @@ namespace filemanager
       {
          //      char szPath[MAX_PATH * 4];
          //      ::u32 uFlags;
-         if (pcolumn->m_pil == nullptr)
+         if (pcolumn->m_pimagelist == nullptr)
          {
-            pcolumn->m_pil = __new(::image_list);
+            pcolumn->m_pimagelist = __new(::image_list);
          }
-         __pointer(::image_list) pil = pcolumn->m_pil;
+         __pointer(::image_list) pil = pcolumn->m_pimagelist;
          //if(pil->GetSafeHandle() != nullptr)
          //pil->DeleteImageList();
          //if(pil->create(16, 16, ILC_COLOR32 | ILC_MASK, 0, 1))

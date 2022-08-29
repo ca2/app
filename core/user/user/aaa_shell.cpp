@@ -265,9 +265,9 @@ namespace user
          for (auto iSize : m_iaSize)
          {
 
-            iImage = m_pil[iSize]->reserve_image(iImage);
+            iImage = m_pimagelist[iSize]->reserve_image(iImage);
 
-            iImage = m_pilHover[iSize]->reserve_image(iImage);
+            iImage = m_pimagelistHover[iSize]->reserve_image(iImage);
 
          }
 
@@ -352,31 +352,31 @@ namespace user
          for (auto iSize : m_iaSize)
          {
 
-            if (m_pil[iSize].is_null())
+            if (m_pimagelist[iSize].is_null())
             {
 
-               m_pil[iSize] = __new(::image_list);
-               m_pil[iSize]->create(iSize, iSize, 0, 10, 10);
+               m_pimagelist[iSize] = __new(::image_list);
+               m_pimagelist[iSize]->create(iSize, iSize, 0, 10, 10);
 
             }
             else
             {
 
-               m_pil[iSize]->erase_all();
+               m_pimagelist[iSize]->erase_all();
 
             }
 
-            if (m_pilHover[iSize].is_null())
+            if (m_pimagelistHover[iSize].is_null())
             {
 
-               m_pilHover[iSize] = __new(::image_list);
-               m_pilHover[iSize]->create(iSize, iSize, 0, 10, 10);
+               m_pimagelistHover[iSize] = __new(::image_list);
+               m_pimagelistHover[iSize]->create(iSize, iSize, 0, 10, 10);
 
             }
             else
             {
 
-               m_pilHover[iSize]->erase_all();
+               m_pimagelistHover[iSize]->erase_all();
 
             }
 
@@ -484,7 +484,7 @@ namespace user
 
          }
 
-         return m_pil[m_iaSize[i]];
+         return m_pimagelist[m_iaSize[i]];
 
       }
 
@@ -529,7 +529,7 @@ namespace user
 
          }
 
-         return m_pilHover[m_iaSize[i]];
+         return m_pimagelistHover[m_iaSize[i]];
 
       }
 
@@ -781,24 +781,24 @@ namespace user
    //int shell::add_hover_image(int iSize, int iImage, color32_t crBk)
    //{
 
-   //   synchronous_lock synchronouslock(m_pilHover[iSize]->mutex());
+   //   synchronous_lock synchronouslock(m_pimagelistHover[iSize]->mutex());
 
    //   if (crBk == 0)
    //   {
 
-   //      return m_pilHover[iSize]->predicate_add_image([&](auto pimage)
+   //      return m_pimagelistHover[iSize]->predicate_add_image([&](auto pimage)
    //         {
 
    //            psystem->imaging().color_blend(pimage, rgb(255, 255, 240), 64);
 
    //         }
-   //      , m_pil[iSize], iImage, iImage);
+   //      , m_pimagelist[iSize], iImage, iImage);
 
    //   }
    //   else
    //   {
 
-   //      iImage = m_pilHover[iSize]->add_image(m_pil[iSize], iImage);
+   //      iImage = m_pimagelistHover[iSize]->add_image(m_pimagelist[iSize], iImage);
 
    //      {
 
@@ -807,25 +807,25 @@ namespace user
    //         pimage->fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
    //         pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-   //         m_pilHover[iSize]->draw(pimage->get_graphics(), iImage, nullptr, 0);
-   //         m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-   //         m_pilHover[iSize]->m_pimage->g()->BitBlt(iImage * 48, 0, 48, 48, pimage->get_graphics());
-   //         m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   //         m_pimagelistHover[iSize]->draw(pimage->get_graphics(), iImage, nullptr, 0);
+   //         m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //         m_pimagelistHover[iSize]->m_pimage->g()->BitBlt(iImage * 48, 0, 48, 48, pimage->get_graphics());
+   //         m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    //      }
 
    //      {
-   //         ::image_pointer d = m_pilHover[iSize]->m_pimage;
-   //         size_i32 s = m_pil[iSize]->m_pimage->get_size();
+   //         ::image_pointer d = m_pimagelistHover[iSize]->m_pimage;
+   //         size_i32 s = m_pimagelist[iSize]->m_pimage->get_size();
    //         ::image_pointer pimage(this);
    //         pimage->create(d->size());
    //         pimage->fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
    //         pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
    //         pimage->get_graphics()->draw(nullptr, d->size(), d->get_graphics());
    //         pimage->get_graphics()->fill_solid_rect_dim(0, 0, d->size().cx, d->size().cy, argb(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
-   //         m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-   //         m_pil[iSize]->m_pimage->g()->draw(d->rectangle(), pimage->get_graphics());
-   //         m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   //         m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //         m_pimagelist[iSize]->m_pimage->g()->draw(d->rectangle(), pimage->get_graphics());
+   //         m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    //      }
 
@@ -839,24 +839,24 @@ namespace user
    int shell::add_hover_image(int iSize, int iImage, color32_t crBk)
    {
 
-      synchronous_lock synchronouslock(m_pilHover[iSize]->mutex());
+      synchronous_lock synchronouslock(m_pimagelistHover[iSize]->mutex());
 
       if (crBk == 0)
       {
 
-         return m_pilHover[iSize]->predicate_add_image([&](auto pimage)
+         return m_pimagelistHover[iSize]->predicate_add_image([&](auto pimage)
             {
 
                psystem->imaging().color_blend(pimage, rgb(255, 255, 240), 64);
 
             }
-         , m_pil[iSize], iImage, iImage);
+         , m_pimagelist[iSize], iImage, iImage);
 
       }
       else
       {
 
-         iImage = m_pilHover[iSize]->add_image(m_pil[iSize], iImage);
+         iImage = m_pimagelistHover[iSize]->add_image(m_pimagelist[iSize], iImage);
 
          {
 
@@ -867,28 +867,28 @@ namespace user
 
             ::draw2d::graphics_pointer pgraphics = pimage->get_graphics();
 
-            m_pilHover[iSize]->draw(pgraphics, iImage, nullptr, 0);
-            m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+            m_pimagelistHover[iSize]->draw(pgraphics, iImage, nullptr, 0);
+            m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
             auto rectangleDraw = ::rectangle_f64(::point_f64(iImage * 48,0),::size_f64( 48, 48));
-            m_pilHover[iSize]->m_pimage->g()->draw(rectangleDraw, pimage->get_graphics());
+            m_pimagelistHover[iSize]->m_pimage->g()->draw(rectangleDraw, pimage->get_graphics());
 
-            m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          }
 
          {
-            ::image_pointer d = m_pilHover[iSize]->m_pimage;
-            //size_i32 s = m_pil[iSize]->m_pimage->get_size();
+            ::image_pointer d = m_pimagelistHover[iSize]->m_pimage;
+            //size_i32 s = m_pimagelist[iSize]->m_pimage->get_size();
             ::image_pointer pimage(this);
             pimage->create(d->size());
             pimage->fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
             pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
             pimage->get_graphics()->stretch(d->size(), d);
             pimage->get_graphics()->fill_rectangle(d->size(), argb(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
-            m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-            m_pil[iSize]->m_pimage->g()->draw(d->rectangle(), pimage->get_graphics());
-            m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+            m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+            m_pimagelist[iSize]->m_pimage->g()->draw(d->rectangle(), pimage->get_graphics());
+            m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
          }
 

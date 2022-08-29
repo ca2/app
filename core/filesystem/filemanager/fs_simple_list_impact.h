@@ -107,7 +107,7 @@ namespace filemanager
             __pointer(::user::list_cache)                   m_puserlistcache;
             bool                                            m_bKickActive;
 
-            __pointer(::image_list)                           m_pil;
+            __pointer(::image_list)                           m_pimagelist;
             index                                   m_iParentFolder;
             __pointer(::filemanager::fs::simple::impact)      m_pserver;
 

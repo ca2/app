@@ -10,6 +10,7 @@
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/image/list.h"
+#include "aura/graphics/image/drawing.h"
 #include "aura/user/user/frame.h"
 #include "base/user/user/tab.h"
 #include "base/user/user/tab_data.h"

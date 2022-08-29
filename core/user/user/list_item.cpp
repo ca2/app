@@ -131,16 +131,16 @@ namespace user
    ::image_list * draw_list_subitem::get_image_list()
    {
 
-      if (m_pitem->m_pdrawmeshitem->m_bListItemHover && m_pcolumn->m_pilHover != nullptr)
+      if (m_pitem->m_pdrawmeshitem->m_bListItemHover && m_pcolumn->m_pimagelistHover != nullptr)
       {
 
-         return m_pcolumn->m_pilHover;
+         return m_pcolumn->m_pimagelistHover;
 
       }
       else
       {
 
-         return m_pcolumn->m_pil;
+         return m_pcolumn->m_pimagelist;
 
       }
 
@@ -379,7 +379,7 @@ namespace user
 
       //return 
 
-      m_pmesh->m_plist->m_pilGroup->draw(m_pgraphics, (i32)m_iImage, m_rectangleImage.top_left(), m_rectangleImage.size(), ::point_i32(), 0);
+      m_pmesh->m_plist->m_pimagelistGroup->draw(m_pgraphics, (i32)m_iImage, m_rectangleImage.top_left(), m_rectangleImage.size(), ::point_i32(), 0);
 
    }
 

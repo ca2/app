@@ -18,10 +18,10 @@ namespace android
       {
       public:
 
-         //            ::windows::comptr < IImageList >                            m_pilSmall;
-         //            ::windows::comptr < IImageList >                            m_pilLarge;
-         //            ::windows::comptr < IImageList >                            m_pilExtraLarge;
-         //            ::windows::comptr < IImageList >                            m_pilJumbo;
+         //            ::windows::comptr < IImageList >                            m_pimagelistSmall;
+         //            ::windows::comptr < IImageList >                            m_pimagelistLarge;
+         //            ::windows::comptr < IImageList >                            m_pimagelistExtraLarge;
+         //            ::windows::comptr < IImageList >                            m_pimagelistJumbo;
          //            ::windows::comptr < IMalloc >                               m_pmalloc;
          //            ::windows::comptr < IShellFolder >                          m_pfolderDesktop;
          //            ::windows::comptr < IShellFolder >                          m_pfolder;

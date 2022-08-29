@@ -26,10 +26,10 @@ namespace ios
       defer_create_mutex();
       //begin();
 
-      //SHGetImageList(SHIL_SMALL, IID_IImageList, m_pilSmall);
-      //SHGetImageList(SHIL_LARGE, IID_IImageList, m_pilLarge);
-      //SHGetImageList(SHIL_EXTRALARGE, IID_IImageList, m_pilExtraLarge);
-      //SHGetImageList(SHIL_JUMBO, IID_IImageList, m_pilJumbo);
+      //SHGetImageList(SHIL_SMALL, IID_IImageList, m_pimagelistSmall);
+      //SHGetImageList(SHIL_LARGE, IID_IImageList, m_pimagelistLarge);
+      //SHGetImageList(SHIL_EXTRALARGE, IID_IImageList, m_pimagelistExtraLarge);
+      //SHGetImageList(SHIL_JUMBO, IID_IImageList, m_pimagelistJumbo);
       /// SHGetMalloc(&m_pmalloc);
 
       //int iThreadCount = get_processor_count() * 2;
@@ -237,16 +237,16 @@ namespace ios
 
          {
             
-            synchronous_lock sl1(m_pilHover[16]->mutex());
+            synchronous_lock sl1(m_pimagelistHover[16]->mutex());
             
-            synchronous_lock sl2(m_pil[16]->mutex());
+            synchronous_lock sl2(m_pimagelist[16]->mutex());
             
             if (ios_get_file_image(pimage16, strPath))
             {
                
-               iImage = m_pil[16]->add_image(pimage16, 0, 0);
+               iImage = m_pimagelist[16]->add_image(pimage16, 0, 0);
                
-               m_pilHover[16]->add_image(pimage16, 0, 0);
+               m_pimagelistHover[16]->add_image(pimage16, 0, 0);
 
             }
             else
@@ -256,28 +256,28 @@ namespace ios
 
                pimage16->get_graphics()->StretchBlt(0, 0, 48, 48, pimage48->get_graphics(), 0, 0, pimage48->width(), pimage48->height());
 
-               iImage = m_pil[16]->add_image(pimage16, 0, 0);
+               iImage = m_pimagelist[16]->add_image(pimage16, 0, 0);
 
-               m_pilHover[16]->add_image(pimage16, 0, 0);
+               m_pimagelistHover[16]->add_image(pimage16, 0, 0);
 
             }
 
          }
 
-         synchronous_lock sl1(m_pilHover[48]->mutex());
+         synchronous_lock sl1(m_pimagelistHover[48]->mutex());
 
-         synchronous_lock sl2(m_pil[48]->mutex());
+         synchronous_lock sl2(m_pimagelist[48]->mutex());
 
-         iImage = m_pil[48]->add_image(pimage48, 0, 0);
+         iImage = m_pimagelist[48]->add_image(pimage48, 0, 0);
 
-         m_pilHover[48]->add_image(pimage48, 0, 0);
+         m_pimagelistHover[48]->add_image(pimage48, 0, 0);
 
          if (crBk == 0)
          {
 
             psystem->imaging().color_blend(
-            m_pil[48],
-            m_pilHover[48],
+            m_pimagelist[48],
+            m_pimagelistHover[48],
             rgb(255, 255, 240),
             64);
 
@@ -285,7 +285,7 @@ namespace ios
          else
          {
 
-            *m_pil[48] = *m_pilHover[48];
+            *m_pimagelist[48] = *m_pimagelistHover[48];
 
          }
 
@@ -1599,12 +1599,12 @@ pacmedirectory->is(strPath))
 //         pimage->Fill(0);
 //
 //         {
-//            synchronous_lock sl1(m_pilHover[16]->mutex());
-//            synchronous_lock sl2(m_pil[16]->mutex());
+//            synchronous_lock sl1(m_pimagelistHover[16]->mutex());
+//            synchronous_lock sl2(m_pimagelist[16]->mutex());
 //            if (ios_get_file_image(image16, strPath))
 //            {
-//               iImage = m_pil[16]->add_image(image16, 0, 0);
-//               m_pilHover[16]->add_image(image16, 0, 0);
+//               iImage = m_pimagelist[16]->add_image(image16, 0, 0);
+//               m_pimagelistHover[16]->add_image(image16, 0, 0);
 //
 //
 //            }
@@ -1615,28 +1615,28 @@ pacmedirectory->is(strPath))
 //
 //               pimage->get_graphics()->StretchBlt(0, 0, 48, 48, pimage->get_graphics(), 0, 0, pimage->width(), pimage->height());
 //
-//               iImage = m_pil[16]->add_image(image16, 0, 0);
+//               iImage = m_pimagelist[16]->add_image(image16, 0, 0);
 //
-//               m_pilHover[16]->add_image(image16, 0, 0);
+//               m_pimagelistHover[16]->add_image(image16, 0, 0);
 //
 //            }
 //
 //         }
 //
-//         synchronous_lock sl1(m_pilHover[48]->mutex());
+//         synchronous_lock sl1(m_pimagelistHover[48]->mutex());
 //
-//         synchronous_lock sl2(m_pil[48]->mutex());
+//         synchronous_lock sl2(m_pimagelist[48]->mutex());
 //
-//         iImage = m_pil[48]->add_image(image48, 0, 0);
+//         iImage = m_pimagelist[48]->add_image(image48, 0, 0);
 //
-//         m_pilHover[48]->add_image(image48, 0, 0);
+//         m_pimagelistHover[48]->add_image(image48, 0, 0);
 //
 //         if (crBk == 0)
 //         {
 //
 //            psystem->imaging().Createcolor_blend_ImageList(
-//            m_pil[48],
-//            m_pilHover[48],
+//            m_pimagelist[48],
+//            m_pimagelistHover[48],
 //            rgb(255, 255, 240),
 //            64);
 //
@@ -1644,7 +1644,7 @@ pacmedirectory->is(strPath))
 //         else
 //         {
 //
-//            *m_pil[48] = *m_pilHover[48];
+//            *m_pimagelist[48] = *m_pimagelistHover[48];
 //
 //         }
 //
@@ -1683,10 +1683,10 @@ pacmedirectory->is(strPath))
 //   void ios::per_fork::init()
 //   {
 //
-////         SHGetImageList(SHIL_SMALL, IID_IImageList, m_pilSmall);
-////         SHGetImageList(SHIL_LARGE, IID_IImageList, m_pilLarge);
-////         SHGetImageList(SHIL_EXTRALARGE, IID_IImageList, m_pilExtraLarge);
-////         SHGetImageList(SHIL_JUMBO, IID_IImageList, m_pilJumbo);
+////         SHGetImageList(SHIL_SMALL, IID_IImageList, m_pimagelistSmall);
+////         SHGetImageList(SHIL_LARGE, IID_IImageList, m_pimagelistLarge);
+////         SHGetImageList(SHIL_EXTRALARGE, IID_IImageList, m_pimagelistExtraLarge);
+////         SHGetImageList(SHIL_JUMBO, IID_IImageList, m_pimagelistJumbo);
 ////         SHGetDesktopFolder(&m_pfolderDesktop);
 ////         SHGetMalloc(&m_pmalloc);
 //
@@ -1871,15 +1871,15 @@ pacmedirectory->is(strPath))
 //      if (crBk == 0)
 //      {
 //
-//         return m_pilHover[iSize]->predicate_add_image([&](auto pimage)
+//         return m_pimagelistHover[iSize]->predicate_add_image([&](auto pimage)
 //         { psystem->imaging().Createcolor_blend_image(pimage, rgb(255, 255, 240), 64); }
-//         , m_pil[iSize], iImage);
+//         , m_pimagelist[iSize], iImage);
 //
 //      }
 //      else
 //      {
 //
-//         iImage = m_pilHover[iSize]->add_image(m_pil[iSize], iImage);
+//         iImage = m_pimagelistHover[iSize]->add_image(m_pimagelist[iSize], iImage);
 //
 //         {
 //
@@ -1888,26 +1888,26 @@ pacmedirectory->is(strPath))
 //            pimage->Fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
 //            pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
-//            m_pilHover[iSize]->draw(pimage->get_graphics(), iImage, ::point_i32(), 0);
-//            m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-//            m_pilHover[iSize]->m_pimage->g()->BitBlt(iImage * 48, 0, 48, 48, pimage->get_graphics());
-//            m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+//            m_pimagelistHover[iSize]->draw(pimage->get_graphics(), iImage, ::point_i32(), 0);
+//            m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+//            m_pimagelistHover[iSize]->m_pimage->g()->BitBlt(iImage * 48, 0, 48, 48, pimage->get_graphics());
+//            m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
 //         }
 //
 //         {
 //
-//            ::image_pointer & d = *m_pilHover[iSize]->m_pimage;
-//            size_i32 s = m_pil[iSize]->m_pimage->get_size();
+//            ::image_pointer & d = *m_pimagelistHover[iSize]->m_pimage;
+//            size_i32 s = m_pimagelist[iSize]->m_pimage->get_size();
 //            ::image_pointer pimage;
 //            pimage = create_image(s);
 //            pimage->Fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
 //            pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //            pimage->get_graphics()->draw(::point_i32(), d.size(), d.get_graphics());
 //            pimage->get_graphics()->fill_solid_rect_dim(0, 0, d.size().cx, d.size().cy, argb(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
-//            m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-//            m_pil[iSize]->m_pimage->g()->draw(::point_i32(), d->size(), pimage->get_graphics());
-//            m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+//            m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+//            m_pimagelist[iSize]->m_pimage->g()->draw(::point_i32(), d->size(), pimage->get_graphics());
+//            m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 //
 //         }
 //

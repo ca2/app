@@ -80,19 +80,19 @@ namespace user
       class imaging & imaging = psystem->imaging();
 
       imaging.change_hue(
-      m_pilHue,
+      m_pimagelistHue,
       MenuV033GetImageList(),
       rgb(192, 192, 180),
       0.50);
 
-      m_pilBlend->color_blend(
+      m_pimagelistBlend->color_blend(
       MenuV033GetImageList(),
       rgb(255, 255, 240),
       64);
 
       imaging.change_hue(
-      m_pilHueLight,
-      m_pil,
+      m_pimagelistHueLight,
+      m_pimagelist,
       rgb(220, 220, 215),
       0.5);
 
@@ -156,7 +156,7 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      if (m_pil)
+      if (m_pimagelist)
       {
 
          return;
@@ -165,10 +165,10 @@ namespace user
 
       m_pfontMenu.create(this);
 
-      __construct_new(m_pil);
-      __construct_new(m_pilHue);
-      __construct_new(m_pilBlend);
-      __construct_new(m_pilHueLight);
+      __construct_new(m_pimagelist);
+      __construct_new(m_pimagelistHue);
+      __construct_new(m_pimagelistBlend);
+      __construct_new(m_pimagelistHueLight);
 
       auto psystem = m_psystem->m_pbasesystem;
 
@@ -198,7 +198,7 @@ namespace user
 
       defer_initialize();
 
-      return m_pil;
+      return m_pimagelist;
 
    }
 
@@ -206,7 +206,7 @@ namespace user
    __pointer(image_list) menu_central::MenuV033GetImageListHue()
    {
 
-      return m_pilHue;
+      return m_pimagelistHue;
 
    }
 
@@ -214,7 +214,7 @@ namespace user
    __pointer(image_list) menu_central::MenuV033GetImageListBlend()
    {
 
-      return m_pilBlend;
+      return m_pimagelistBlend;
 
    }
 
@@ -222,7 +222,7 @@ namespace user
    __pointer(image_list) menu_central::MenuV033GetImageListHueLight()
    {
 
-      return m_pilHueLight;
+      return m_pimagelistHueLight;
 
    }
 

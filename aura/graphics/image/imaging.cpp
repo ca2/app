@@ -7039,7 +7039,7 @@ void context_image::set_cursor_image(const image * pimage, int xHotSpot, int yHo
 
    synchronous_lock synchronouslock(&m_mutexWork);
 
-   if (m_pimageaWork->is_empty())
+   if (m_pimageaWork->has_no_image())
    {
 
       synchronouslock.unlock();
@@ -7048,7 +7048,7 @@ void context_image::set_cursor_image(const image * pimage, int xHotSpot, int yHo
 
    }
 
-   auto pimpl = m_pimageaWork->pop();
+   auto pimpl = m_pimageaWork->m_imagea.pop();
 
    synchronouslock.unlock();
 
@@ -7076,7 +7076,7 @@ void imaging::free_work_image(::image * pimage)
 
    synchronous_lock synchronouslock(&m_mutexWork);
 
-   m_pimageaWork->push(pimage);
+   m_pimageaWork->m_imagea.push(pimage);
 
 }
 

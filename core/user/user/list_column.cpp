@@ -17,13 +17,13 @@ namespace user
       m_iOrder = -1;
       m_iColumn = -1;
       m_bVisible = true;
-      m_pil = nullptr;
+      m_pimagelist = nullptr;
       //m_iControl = -1;
       m_bEditOnSecondClick = false;
       m_bCustomDraw = false;
       m_bIcon = false;
-      m_pil = nullptr;
-      m_pilHover = nullptr;
+      m_pimagelist = nullptr;
+      m_pimagelistHover = nullptr;
       m_sizeIcon.cx = 0;
       m_sizeIcon.cy = 0;
       m_pdrawlistcolumn = __new(draw_list_column);

@@ -111,7 +111,7 @@ namespace draw2d
 
       critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
 
-      m_pimagea->add(pimage);
+      m_pimagea->add_image(pimage);
 
    }
 
@@ -121,7 +121,7 @@ namespace draw2d
 
       critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
 
-      m_pimagea->erase(pimage);
+      m_pimagea->erase_image(pimage);
 
    }
 
@@ -200,7 +200,7 @@ namespace draw2d
 
       critical_section_lock criticalsectionlock(&m_criticalsectionImageList);
 
-      for (auto & pimage : *m_pimagea)
+      for (auto & pimage : m_pimagea->imagea())
       {
 
          pimage->destroy_os_data();
@@ -384,7 +384,7 @@ namespace draw2d
 
          critical_section_lock criticalsectionlock(&m_criticalsectionImageList);
 
-         m_pimagea->clear();
+         m_pimagea->m_imagea.clear();
 
       }
 

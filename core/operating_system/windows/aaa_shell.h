@@ -22,10 +22,10 @@ namespace windows
 
       comptr < IMalloc >                              m_pmalloc;
       comptr < IShellFolder >                         m_pfolderDesktop;
-      comptr < IImageList >                           m_pilSmall;
-      comptr < IImageList >                           m_pilLarge;
-      comptr < IImageList >                           m_pilExtraLarge;
-      comptr < IImageList >                           m_pilJumbo;
+      comptr < IImageList >                           m_pimagelistSmall;
+      comptr < IImageList >                           m_pimagelistLarge;
+      comptr < IImageList >                           m_pimagelistExtraLarge;
+      comptr < IImageList >                           m_pimagelistJumbo;
       //__composite(::user::message_queue)              m_pmessagequeue;
 
 

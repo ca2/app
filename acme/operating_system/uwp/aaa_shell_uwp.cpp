@@ -349,16 +349,16 @@ pacmedirectory->is(strPath))
 
          {
 
-            synchronous_lock sl1(m_pilHover[16]->mutex());
+            synchronous_lock sl1(m_pimagelistHover[16]->mutex());
 
-            synchronous_lock sl2(m_pil[16]->mutex());
+            synchronous_lock sl2(m_pimagelist[16]->mutex());
 
             if (uwp_get_file_image(pimage16, strPath))
             {
 
-               iImage = m_pil[16]->add_image(pimage16, 0, 0);
+               iImage = m_pimagelist[16]->add_image(pimage16, 0, 0);
 
-               m_pilHover[16]->add_image(pimage16, 0, 0);
+               m_pimagelistHover[16]->add_image(pimage16, 0, 0);
 
             }
             else
@@ -368,32 +368,32 @@ pacmedirectory->is(strPath))
 
                pimage48->get_graphics()->StretchBlt(0, 0, 48, 48, pimage16->get_graphics(), 0, 0, pimage16->width(), pimage16->height());
 
-               iImage = m_pil[16]->add_image(pimage16, 0, 0);
+               iImage = m_pimagelist[16]->add_image(pimage16, 0, 0);
 
-               m_pilHover[16]->add_image(pimage16, 0, 0);
+               m_pimagelistHover[16]->add_image(pimage16, 0, 0);
 
             }
 
          }
 
-         synchronous_lock sl1(m_pilHover[48]->mutex());
+         synchronous_lock sl1(m_pimagelistHover[48]->mutex());
 
-         synchronous_lock sl2(m_pil[48]->mutex());
+         synchronous_lock sl2(m_pimagelist[48]->mutex());
 
-         iImage = m_pil[48]->add_image(pimage48, 0, 0);
+         iImage = m_pimagelist[48]->add_image(pimage48, 0, 0);
 
-         m_pilHover[48]->add_image(pimage48, 0, 0);
+         m_pimagelistHover[48]->add_image(pimage48, 0, 0);
 
          if (imagekey.m_cr == 0)
          {
 
-            ::acme::get_system()->imaging().color_blend(m_pil[48], m_pilHover[48], rgb(255, 255, 240), 64);
+            ::acme::get_system()->imaging().color_blend(m_pimagelist[48], m_pimagelistHover[48], rgb(255, 255, 240), 64);
 
          }
          else
          {
 
-            *m_pil[48] = *m_pilHover[48];
+            *m_pimagelist[48] = *m_pimagelistHover[48];
 
          }
 

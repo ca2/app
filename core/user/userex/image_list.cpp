@@ -100,9 +100,9 @@ namespace userex
 
          synchronous_lock synchronouslock(mutex());
 
-         m_pimageaThumb->erase_all();
+         m_pimageaThumb->m_imagea.clear();
 
-         m_pimagea->erase_all();
+         m_pimagea->m_imagea.clear();
 
          auto pcontext = m_pcontext;
 
@@ -186,7 +186,7 @@ namespace userex
 
                   i++;
 
-                  m_pimagea->add(pimage1);
+                  m_pimagea->add_image(pimage1);
 
                   set_need_layout();
 

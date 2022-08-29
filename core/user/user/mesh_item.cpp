@@ -124,14 +124,14 @@ namespace user
 
    __pointer(::image_list) draw_mesh_subitem::get_image_list()
    {
-      //if(m_bListItemHover && m_pcolumn->m_pilHover != nullptr)
+      //if(m_bListItemHover && m_pcolumn->m_pimagelistHover != nullptr)
       //if(m_bListItemHover)
       //{
-      //   return m_pcolumn->m_pilHover;
+      //   return m_pcolumn->m_pimagelistHover;
       //}
       //else
       //{
-      //   return m_pcolumn->m_pil;
+      //   return m_pcolumn->m_pimagelist;
       //}
 
       return nullptr;

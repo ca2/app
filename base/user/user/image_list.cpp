@@ -4,6 +4,7 @@
 #endif
 #include "image_list.h"
 #include "aura/graphics/image/image.h"
+#include "aura/graphics/image/array.h"
 #include "aura/message/user.h"
 
 
@@ -87,7 +88,7 @@ namespace user
 
       }
 
-      return m_imagea[m_iaSel[0]];
+      return m_pimagea->element_at(m_iaSel[0]);
 
    }
 
@@ -183,7 +184,14 @@ namespace user
       pcreate->previous();
 
       if (pcreate->m_bRet)
+      {
+
          return;
+
+      }
+
+      __construct_new(m_pimagea);
+      __construct_new(m_pimageaThumb);
 
 
    }
@@ -639,7 +647,7 @@ namespace user
 
          //m_iWheelDeltaScroll = (i16) (sizeImage.cy / 3);
 
-         m_imageaThumb.erase_all();
+         m_pimageaThumb->erase_all();
 
       }
 

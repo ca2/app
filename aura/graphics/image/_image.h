@@ -10,10 +10,6 @@ class image_map;
 class image_array;
 
 
-
-
-
-
 CLASS_DECL_AURA void cra_from_quada(colorref_array & colorrefa, WINRGBQUAD * prgbquad, int iCount);
 
 
@@ -446,7 +442,6 @@ inline CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::re
 
 #include "image.h"
 #include "frame.h"
-#include "array.h"
 #include "frame_array.h"
 #include "extension.h"
 #include "map.h"

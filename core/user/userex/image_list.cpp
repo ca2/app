@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/drawing.h"
+#include "aura/graphics/image/array.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #endif
@@ -99,9 +100,9 @@ namespace userex
 
          synchronous_lock synchronouslock(mutex());
 
-         m_imageaThumb.erase_all();
+         m_pimageaThumb->erase_all();
 
-         m_imagea.erase_all();
+         m_pimagea->erase_all();
 
          auto pcontext = m_pcontext;
 
@@ -185,7 +186,7 @@ namespace userex
 
                   i++;
 
-                  m_imagea.add(pimage1);
+                  m_pimagea->add(pimage1);
 
                   set_need_layout();
 

@@ -4,8 +4,17 @@
 #endif
 #include "base/user/menu/central.h"
 #include "base/user/user/tab_pane.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/path.h"
+#include "aura/graphics/write_text/font.h"
 #include "aura/graphics/image/list.h"
+#include "aura/user/user/frame.h"
+#include "base/user/user/tab.h"
+#include "base/user/user/tab_data.h"
+#include "base/user/user/toolbar.h"
+#include "base/user/user/split_layout.h"
+#include "base/user/user/user.h"
 // pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
 #define MAGIC_PALACE_TAB_SIZE "-/-"

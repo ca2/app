@@ -336,9 +336,6 @@
     <ClCompile Include="platform\application.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\aura.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\message_queue.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -372,7 +369,7 @@
     <ClCompile Include="operating_system\windowing.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
-    <ClCompile Include="operating_system\windows\aura.cpp">
+    <ClCompile Include="operating_system\windows\_library.cpp">
       <Filter>Source Files\operating_system\windows</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\windows\dpi.cpp">

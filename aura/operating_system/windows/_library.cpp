@@ -1,32 +1,34 @@
 #include "framework.h"
-#include "aura/operating_system.h"
+#undef ERROR
+#include <WinSock2.h>
+//#include "aura/operating_system.h"
 //#include "aura/operating_syste,/_node.h"
-#include <VersionHelpers.h>
+//#include <VersionHelpers.h>
 
 // #ifndef USE_OS_IMAGE_LOADER
 
 // #include "FreeImage/FreeImage.h"
 
 // #endif
-
-#undef new
-#include "gdiplus.h"
-#include <ddeml.h>
-#define new ACME_NEW
-
-
-void __term_threading();
-void __term_windowing();
+//
+//#undef new
+//#include "gdiplus.h"
+//#include <ddeml.h>
+//#define new ACME_NEW
+////
+//
+//void __term_threading();
+//void __term_windowing();
 
 //bool is_verbose();
 
+//
+//::aura::system * app_common_prelude(int & iError, ::create * & pmaininitdata, app_core & appcore,  HINSTANCE hinstance = nullptr, HINSTANCE hinstancePrev = nullptr, const ::string & pszCmdLine = nullptr, int nShowCmd = e_display_restored);
+//int app_common_term(int iError, ::aura::system * psystem, app_core & appcore);
+//
 
-::aura::system * app_common_prelude(int & iError, ::create * & pmaininitdata, app_core & appcore,  HINSTANCE hinstance = nullptr, HINSTANCE hinstancePrev = nullptr, const ::string & pszCmdLine = nullptr, int nShowCmd = e_display_restored);
-int app_common_term(int iError, ::aura::system * psystem, app_core & appcore);
 
-
-
-CLASS_DECL_AURA i32 __cdecl _memory_type(const void * p);
+//CLASS_DECL_AURA i32 __cdecl _memory_type(const void * p);
 
 //Gdiplus::GdiplusStartupInput *   g_pgdiplusStartupInput     = nullptr;
 //Gdiplus::GdiplusStartupOutput *  g_pgdiplusStartupOutput    = nullptr;
@@ -41,20 +43,20 @@ CLASS_DECL_AURA i32 __cdecl _memory_type(const void * p);
 
 
 // LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter = nullptr;
-
-typedef
-LSTATUS
-( APIENTRY * LPFN_RegGetValueW) (
-HKEY hkey,
-const widechar * pSubKey,
-
-const widechar * pValue,
-
-u32 dwFlags,
-LPDWORD pdwType,
-PVOID pvData,
-LPDWORD pcbData
-);
+//
+//typedef
+//LSTATUS
+//( APIENTRY * LPFN_RegGetValueW) (
+//HKEY hkey,
+//const widechar * pSubKey,
+//
+//const widechar * pValue,
+//
+//u32 dwFlags,
+//LPDWORD pdwType,
+//PVOID pvData,
+//LPDWORD pcbData
+//);
 
 //LPFN_RegGetValueW g_pfnRegGetValueW = nullptr;
 

@@ -10,7 +10,7 @@ class image;
 using image_pointer = __pointer(::image);
 
 
-class image_array;
+class CLASS_DECL_AURA image_array;
 
 
 #include "draw2d/_.h"

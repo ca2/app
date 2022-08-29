@@ -1,11 +1,8 @@
 #pragma once
 
 
-#include "image.h"
-
-
 class CLASS_DECL_AURA image_array :
-   public __pointer_array(::image)
+   public image_pointer_array
 {
 public:
 

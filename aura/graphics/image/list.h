@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "drawing.h"
+//#include "drawing.h"
 
 
 class CLASS_DECL_AURA image_list :
@@ -46,7 +46,7 @@ public:
 
 
    //virtual i32 _set(int iItem, ::draw2d::icon * picon);
-   virtual i32 set(int iItem, image_drawing imagedrawing);
+   virtual i32 set(int iItem, const image_drawing & imagedrawing);
 //   virtual i32 sete(int iItem, ::file::file * pfile);
 //   virtual i32 set_icon(int iItem, ::file::file * pfile);
 
@@ -58,7 +58,7 @@ public:
 
    //}
 
-   inline i32 add(image_drawing imagedrawing) { return set(-1, imagedrawing); }
+   inline i32 add(const image_drawing & imagedrawing) { return set(-1, imagedrawing); }
 //   inline i32 add_file(::file::file * pfile) { return set_file(-1, pfile); }
 //   inline i32 add_icon(::file::file * pfile) { return set_icon(-1, pfile); }
    //inline i32 _add(::draw2d::icon * picon) { return _set(-1, picon); }

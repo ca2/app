@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/list.h"

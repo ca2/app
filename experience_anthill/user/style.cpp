@@ -4,6 +4,7 @@
 #endif
 #include "base/user/menu/central.h"
 #include "base/user/user/tab_pane.h"
+#include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/path.h"

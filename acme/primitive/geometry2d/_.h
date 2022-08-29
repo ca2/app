@@ -1254,11 +1254,44 @@ inline RECTANGLE_F64& operator += (RECTANGLE_F64& rectangle, const ::point_f64& 
 
 
 
-
-
-
 #include "types.h"
 
+
+template < typename RECTANGLE_BASE_TYPE, typename POINT_BASE_TYPE >
+void get_bounding_rectangle(RECTANGLE_BASE_TYPE * lprect, const POINT_BASE_TYPE * lppoint, ::count count)
+{
+
+   if (count <= 0)
+   {
+
+      lprect->left = 0;
+      lprect->top = 0;
+      lprect->right = 0;
+      lprect->bottom = 0;
+
+   }
+   else
+   {
+      lprect->left = lppoint[0].x;
+      lprect->top = lppoint[0].y;
+      lprect->right = lppoint[0].x;
+      lprect->bottom = lppoint[0].y;
+
+      for (i32 i = 1; i < count; i++)
+      {
+         if (lppoint[i].x < lprect->left)
+            lprect->left = lppoint[i].x;
+         else if (lppoint[i].x > lprect->right)
+            lprect->right = lppoint[i].x;
+         if (lppoint[i].y < lprect->top)
+            lprect->top = lppoint[i].y;
+         else if (lppoint[i].y > lprect->bottom)
+            lprect->bottom = lppoint[i].y;
+      }
+
+   }
+
+}
 
 
 inline bool get_bounding_rectangle(RECTANGLE_I32 * prectangleBounding, const RECTANGLE_I32 * prectangle)

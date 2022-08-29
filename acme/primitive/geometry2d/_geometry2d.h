@@ -6,8 +6,6 @@
 
 #include "bounding_rect.h"
 
-
-
 #include "contains.h"
 
 

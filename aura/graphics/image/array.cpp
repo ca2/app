@@ -4,17 +4,17 @@
 #include "drawing.h"
 
 
-image_array::image_array()
-{
-
-}
-
-
-image_array::~image_array()
-{
-
-
-}
+//image_array::image_array()
+//{
+//
+//}
+//
+//
+//image_array::~image_array()
+//{
+//
+//
+//}
 
 
 bool image_array::explode(::object * pobject, ::payload payloadFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)

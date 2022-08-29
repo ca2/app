@@ -1,5 +1,11 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/image/drawing.h"
+#include "base/user/user/document.h"
+#include "aura/user/user/frame.h"
+#include "aura/message/user.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #endif
@@ -10,6 +16,7 @@
 #endif
 
 #include "aura/operating_system/windows_common/graphics.h"
+#include "color_impact.h"
 
 
 //#if defined(__APPLE__)
@@ -855,7 +862,7 @@ namespace userex
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       on_mouse(point);
 
@@ -875,7 +882,7 @@ namespace userex
       
       ::point_i32 point = pmouse->m_point;
       
-      screen_to_client(point);
+      screen_to_client()(point);
 
       on_mouse(point);
 
@@ -911,7 +918,7 @@ namespace userex
 
          ::point_i32 point = pmouse->m_point;
 
-         screen_to_client(point);
+         screen_to_client()(point);
 
          on_mouse(point);
 

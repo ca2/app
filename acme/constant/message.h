@@ -285,6 +285,13 @@ e_message_queue_sentinel =    0x0379,
    e_message_application_exit,
 
 
+
+   e_message_main_post = WM_USER + 23,
+   e_message_image_loaded,
+
+
+
+
 };
 
 

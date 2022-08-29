@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_.h"
 #include "_gpu.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/image/image.h"
 #include "_defer.h"
 
 

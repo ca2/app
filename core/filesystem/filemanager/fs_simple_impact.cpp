@@ -5,6 +5,8 @@
 
 #include "_data.h"
 #include "core/user/user/_tree.h"
+#include "fs_simple_impact.h"
+#include "fs_simple_list_impact.h"
 
 
 namespace filemanager

@@ -25,8 +25,8 @@ namespace user
          double                              m_dFontSize;
          ::color::color                      m_colorForeground;
          ::color::color                      m_colorBackground;
-         e_script                            m_escript;
-         e_line_height                       m_elineheight;
+         enum_script                         m_escript;
+         enum_line_height                    m_elineheight;
 
 
          // cache or transport (not serialized)
@@ -46,7 +46,7 @@ namespace user
          virtual void exchange(::stream & stream) override;
 
 
-         void apply(const format * pformat, const eattribute & eattribute);
+         void apply(const format * pformat, const e_attribute & eattribute);
 
          ::write_text::font * get_font(::draw2d::graphics_pointer & pgraphics) const;
 

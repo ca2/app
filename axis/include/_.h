@@ -87,19 +87,21 @@ namespace axis
 
 #include "axis/platform/geo_department.h"
 
+#include "axis/html/_.h"
+
 #include "axis/user/_.h"
 
-#include "axis/platform/application.h"
+//#include "axis/platform/application.h"
 
-#include "axis/account/_account.h"
+//#include "axis/account/_account.h"
 
-#include "axis/platform/session.h"
+//#include "axis/platform/session.h"
 
-#include "axis/networking/email_department.h"
+//#include "axis/networking/email_department.h"
 
 #include "axis/html/html/_.h"
 
-#include "axis/platform/system.h"
+//#include "axis/platform/system.h"
 
 #define new ACME_NEW
 
@@ -115,14 +117,14 @@ namespace axis
 
 
 
-#include "axis/platform/_impl.h"
-
-
-
-#include "axis/networking/_impl.h"
-
-
-#include "axis/database/database/_impl.h"
-
-
-
+//#include "axis/platform/_impl.h"
+//
+//
+//
+//#include "axis/networking/_impl.h"
+//
+//
+//#include "axis/database/database/_impl.h"
+//
+//
+//

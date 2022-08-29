@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/user/user/split_impact.h"
+
+
 namespace userex
 {
 
@@ -37,7 +40,6 @@ namespace userex
 
 
 } // namespace userex
-
 
 
 

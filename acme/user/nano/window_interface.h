@@ -35,8 +35,8 @@ public:
    virtual void create_drawing_objects();
    virtual void update_drawing_objects();
 
-   virtual void screen_to_client(::point_i32 & point);
-   virtual void client_to_screen(::point_i32 & point);
+   virtual ::shift_i32 screen_to_client();
+   virtual ::shift_i32 client_to_screen();
 
    virtual ::nano_child * hit_test(::user::mouse * pmouse);
    virtual ::nano_child * on_hit_test(const ::point_i32 & point);

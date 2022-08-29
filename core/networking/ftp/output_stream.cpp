@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "_.h"
+#include "output_stream.h"
 
 
 namespace ftp

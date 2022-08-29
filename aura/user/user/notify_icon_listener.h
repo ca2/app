@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/user/notify_icon_bridge.h"
+
+
 namespace user
 {
 

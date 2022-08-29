@@ -19,12 +19,13 @@
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/display.h"
-//#ifdef _UWP
-//#include "aura/operating_system/windows_common/draw2d_direct2d_global.h"
-//#endif
+#include "interaction_impl.h"
+#include "interaction.h"
+#include "system.h"
+#include "user.h"
+#include "aura/message/user.h"
+#include "interaction_scaler.h"
 
-
-//#define REPORT_OFFSETS
 
 point_i32 g_pointLastBottomRight;
 
@@ -5384,7 +5385,7 @@ namespace user
 
       pinteraction->get_window_rect(rectangleOld);
 
-      puiParent->screen_to_client(rectangleOld);
+      rectangleOld += puiParent->screen_to_client();
 
       pinteraction->place(rectangle);
 
@@ -7234,7 +7235,7 @@ namespace user
 
       ::rectangle_i32 rectangle(lpcrect);
 
-      m_puserinteraction->screen_to_client(rectangle);
+      rectangle += m_puserinteraction->screen_to_client();
 
       return rectangle.area() - m_pgraphics->get_screen_image()->get_rgba_area(colorTransparent, rectangle);
 
@@ -7246,7 +7247,7 @@ namespace user
 
       ::rectangle_i32 rectangle(lpcrect);
 
-      m_puserinteraction->screen_to_client(rectangle);
+      rectangle += m_puserinteraction->screen_to_client();
 
       return m_pgraphics->_001GetTopLeftWeightedOpaqueArea(rectangle);
 

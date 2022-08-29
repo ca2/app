@@ -3,8 +3,8 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "_userfs.h"
 #endif
-
 #include "acme/id.h"
+#include "document.h"
 
 
 namespace userfs

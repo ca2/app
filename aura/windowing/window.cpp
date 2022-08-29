@@ -8,6 +8,11 @@
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/icon.h"
+#include "aura/user/user/user.h"
+#include "aura/message/user.h"
+#include "aura/user/user/interaction_impl.h"
+#include "aura/user/user/copydesk.h"
+#include "aura/user/user/interaction.h"
 
 
 namespace windowing

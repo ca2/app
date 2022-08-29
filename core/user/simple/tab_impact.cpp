@@ -1,5 +1,6 @@
 #include "framework.h"
-#include "core/user/simple/_component.h"
+#include "tab_impact.h"
+#include "aura/message/user.h"
 
 
 simple_tab_impact::simple_tab_impact()

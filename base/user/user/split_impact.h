@@ -1,6 +1,11 @@
 #pragma once
 
 
+#include "impact_host.h"
+#include "split_layout.h"
+#include "show.h"
+
+
 namespace user
 {
 
@@ -41,6 +46,14 @@ namespace user
 
    };
 
+
+   template < class VIEW >
+   inline __pointer(VIEW) split_impact::create_pane_impact(index iPane, atom atom, ::user::interaction * pviewLast)
+   {
+
+      return create_impact < VIEW >(get_pane_holder(iPane), atom, pviewLast);
+
+   }
 
 } // namespace user
 

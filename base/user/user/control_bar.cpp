@@ -1,13 +1,16 @@
 #include "framework.h"
-#include "aura/operating_system.h"
+//#include "aura/operating_system.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_component.h"
 #endif
 #include "aura/operating_system/_user.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "control_bar.h"
+#include "frame_window.h"
+#include "aura/message/user.h"
 
-
-#define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
 
 namespace user
 {
@@ -558,7 +561,7 @@ namespace user
       get_client_rect(rectangleClient);
       ::rectangle_i32 rectangleWindow;
       get_window_rect(rectangleWindow);
-      screen_to_client(rectangleWindow);
+      rectangleWindow+=screen_to_client();
       rectangleClient.offset(-rectangleWindow.left, -rectangleWindow.top);
       
       //pgraphics->exclude_clip();

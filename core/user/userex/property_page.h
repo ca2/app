@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "pane_tab_impact.h"
+
+
 namespace userex
 {
 

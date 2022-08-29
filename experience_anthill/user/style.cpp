@@ -1260,7 +1260,7 @@ namespace experience_anthill
 
       }
 
-      ptab->m_dcextension.get_text_extent(pgraphics, MAGIC_PALACE_TAB_SIZE, ptab->get_data()->m_sizeSep);
+      ptab->m_pdcextension->get_text_extent(pgraphics, MAGIC_PALACE_TAB_SIZE, ptab->get_data()->m_sizeSep);
 
       if (ptab->get_data()->m_bVertical)
       {
@@ -1284,11 +1284,11 @@ namespace experience_anthill
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(ptab->m_dcextension, pgraphics);
+            ppane->do_split_layout(ptab->m_pdcextension, pgraphics);
 
             ::size_i32 size;
 
-            ptab->m_dcextension.get_text_extent(pgraphics, str, size);
+            ptab->m_pdcextension->get_text_extent(pgraphics, str, size);
 
             if (ppane->m_pimage->is_set())
             {
@@ -1395,11 +1395,11 @@ namespace experience_anthill
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(ptab->m_dcextension, pgraphics);
+            ppane->do_split_layout(ptab->m_pdcextension, pgraphics);
 
             size_i32 size;
 
-            ptab->m_dcextension.get_text_extent(pgraphics, str, size);
+            ptab->m_pdcextension->get_text_extent(pgraphics, str, size);
 
             if (ppane->m_pimage)
             {

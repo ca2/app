@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "core/user/simple/_component.h"
+#include "core/user/simple/list_header_control.h"
+#include "core/user/user/list.h"
+#include "aura/message/user.h"
 
 
 const i32 simple_list_header_control::s_iDividerWidth = 4;

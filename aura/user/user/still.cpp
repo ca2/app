@@ -2,12 +2,15 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/user/_component.h"
 #endif
+#include "aura/graphics/write_text/text_out.h"
 #include "aura/graphics/write_text/text_out_array.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/context_image.h"
+#include "still.h"
+#include "aura/message/user.h"
 
 
 namespace user
@@ -21,7 +24,7 @@ namespace user
 
       m_ptextouta = nullptr;
       m_estockicon = e_stock_icon_none;
-      m_estyle = style_none;
+      m_estill = e_still_none;
       m_iClick = 0;
       m_ealignText = e_align_center;
 
@@ -79,7 +82,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      if (m_estyle == style_image)
+      if (m_estill == e_still_image)
       {
 
          _001OnDrawImage(pgraphics);
@@ -187,7 +190,7 @@ namespace user
 
    //   ::point_i32 point = pmouse->m_point;
 
-   //   screen_to_client(point);
+   //   screen_to_client()(point);
 
    //   if (hit_test(point, eelement) >= 0)
    //   {
@@ -217,7 +220,7 @@ namespace user
 
    //   ::point_i32 point = pmouse->m_point;
 
-   //   screen_to_client(point);
+   //   screen_to_client()(point);
 
    //   if (hit_test(point, eelement) >= 0)
    //   {
@@ -251,7 +254,7 @@ namespace user
 
    //   //::point_i32 point = pmouse->m_point;
 
-   //   //screen_to_client(point);
+   //   //screen_to_client()(point);
 
    //   //if (hit_test(point, eelement) >= 0 && psession->m_puiLastLButtonDown == this)
    //   //{
@@ -436,7 +439,7 @@ namespace user
    void still::resize_to_fit(::draw2d::graphics_pointer& pgraphics)
    {
 
-      if (m_estyle == style_text)
+      if (m_estill == e_still_text)
       {
 
          pgraphics->set_font(this, ::e_element_none);
@@ -455,7 +458,7 @@ namespace user
          const_layout().sketch().size() = rectangle.size();
 
       }
-      else if (m_estyle == style_image)
+      else if (m_estill == e_still_image)
       {
 
          auto size = m_pimage->size();
@@ -514,10 +517,10 @@ namespace user
 
       }
 
-      if (m_estyle == style_none)
+      if (m_estill == e_still_none)
       {
 
-         set_button_style(style_text);
+         set_still_type(e_still_text);
 
       }
 
@@ -934,22 +937,35 @@ namespace user
    }
 
 
-   void still::set_button_style(e_style estyle)
+   void still::set_still_type(enum_still estill)
    {
 
-      if (m_estyle == estyle)
+      if (m_estill == estill)
+      {
+
          return;
 
-      on_exit_button_style(m_estyle);
+      }
 
-      m_estyle = estyle;
+      on_exit_still_style(m_estill);
 
-      on_enter_button_style(estyle);
+      m_estill = estill;
+
+      on_enter_still_style(m_estill);
 
    }
 
 
-   void still::on_enter_button_style(e_style estyle)
+   enum_still still::get_still_type() const
+   {
+
+      return m_estill;
+
+   }
+
+
+
+   void still::on_enter_still_style(enum_still estill)
    {
 
 
@@ -957,19 +973,25 @@ namespace user
    }
 
 
-   void still::on_exit_button_style(e_style estyle)
+   void still::on_exit_still_style(enum_still estill)
    {
 
    }
 
 
+   ::draw2d::icon * still::still_get_icon()
+   {
+
+      return m_estill == e_still_icon ? m_picon : nullptr;
+
+   }
 
 
 
    bool still::LoadBitmaps(::payload payload, ::payload varSel, ::payload varFocus, ::payload varDisabled, ::payload varHover)
    {
 
-      set_button_style(style_image);
+      set_still_type(e_still_image);
 
       if (!payload.is_empty())
       {

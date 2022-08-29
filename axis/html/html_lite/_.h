@@ -36,12 +36,12 @@ me to keep updating it.
 class lite_html_tag;
 class lite_html_reader;
 
-
-#include "common.h"
-#include "attributes.h"
-#include "entity_resolver.h"
-#include "reader.h"
-#include "tag.h"
+//
+//#include "common.h"
+//#include "attributes.h"
+//#include "entity_resolver.h"
+//#include "reader.h"
+//#include "tag.h"
 
 
 

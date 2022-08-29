@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "control_bar.h"
+
+
 namespace user
 {
 

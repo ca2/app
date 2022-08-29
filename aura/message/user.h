@@ -7,6 +7,8 @@
 //
 //}
 
+#include "aura/user/user/message.h"
+#include "aura/user/user/key.h"
 
 #define MESSAGE_OLE_DRAGENTER WM_APP + 324
 #define MESSAGE_OLE_DRAGOVER WM_APP + 325

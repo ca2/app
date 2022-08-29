@@ -51,7 +51,7 @@ namespace user
          span(class data * pdata, ::e_align ealignNewLine);
          span(class data * pdata, const span & span);
          span(const span & span);
-         virtual ~span();
+         ~span() override;
 
 
          void set_new_format();
@@ -66,7 +66,7 @@ namespace user
 
          __pointer(class span) fork();
 
-         __pointer(class span) fork(const class format * pformat, const eattribute & eattribute);
+         __pointer(class span) fork(const class format * pformat, const e_attribute & eattribute);
 
          virtual ::stream & write(::stream & stream) const override;
 virtual ::stream & read(::stream & stream) override;

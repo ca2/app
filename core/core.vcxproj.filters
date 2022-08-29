@@ -39,17 +39,11 @@
     <Filter Include="Resource Files">
       <UniqueIdentifier>{884e337b-3347-4863-8d95-d6b0a4245427}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\const">
-      <UniqueIdentifier>{f8ac833f-c335-48be-81bf-1c8408752720}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\filesystem\fs">
       <UniqueIdentifier>{3dbb64e5-0f7f-4246-9de1-8b9aef3918e4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\filesystem\fs">
       <UniqueIdentifier>{cc48579c-af6d-48d0-80e4-57089dd8fdc3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\const">
-      <UniqueIdentifier>{d1dc7140-9c26-4249-9bf3-84fc6fbb92d7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\filesystem\filemanager">
       <UniqueIdentifier>{8360180d-4810-4991-8eff-d53d2f2318c1}</UniqueIdentifier>
@@ -96,23 +90,8 @@
     <Filter Include="Source Files\html">
       <UniqueIdentifier>{bbd4a0ea-bb5f-4544-b795-8dfd398d01bb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\html\impl">
-      <UniqueIdentifier>{f0a18cf3-2322-4fe7-9c3c-c850b77fb3ff}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\html\html">
-      <UniqueIdentifier>{2b0166b5-530d-47f7-b9bf-ae9ce0e81e15}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\html\graphics">
-      <UniqueIdentifier>{87adcfe3-d0cc-4553-b721-9f9d17c73bab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\html\user">
-      <UniqueIdentifier>{9fc4644d-df96-48fa-b7c9-4ca7dd98cd96}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\html">
       <UniqueIdentifier>{6de90435-564c-4251-b7cf-c0c993793e17}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\html\html">
-      <UniqueIdentifier>{c72749df-3f0c-4f4b-bc78-c4b90fe2e160}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\html\hi5">
       <UniqueIdentifier>{5010553c-2d1a-4c30-92ce-560b471f9730}</UniqueIdentifier>
@@ -132,15 +111,6 @@
     <Filter Include="Header Files\inline\console">
       <UniqueIdentifier>{b02501a0-3913-4e17-bb27-ebe27d6ed3d6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\html\impl">
-      <UniqueIdentifier>{f795e5f2-1ded-4faf-90bc-5e0abb4234ff}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\html\graphics">
-      <UniqueIdentifier>{d0c2f595-4047-4137-b6c1-56b9c00bf056}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\html\user">
-      <UniqueIdentifier>{18c7f2aa-a86f-437e-8462-0e5559b0d99a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\html\hi5">
       <UniqueIdentifier>{23a2f817-72e1-4649-aeb9-6755764f2e5a}</UniqueIdentifier>
     </Filter>
@@ -152,12 +122,6 @@
     </Filter>
     <Filter Include="Header Files\user\netuser">
       <UniqueIdentifier>{7414d1f0-8f4e-4376-ad9a-c252779030d9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\html\element">
-      <UniqueIdentifier>{00fd2a98-1ad5-4005-9478-c4b51b8b942c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\html\element">
-      <UniqueIdentifier>{3394504c-c614-4aa7-b40f-9375ed0fa0d4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\networking">
       <UniqueIdentifier>{8b262521-2560-453a-a362-71363e835ffa}</UniqueIdentifier>
@@ -171,6 +135,12 @@
     <Filter Include="Header Files\networking\ftp">
       <UniqueIdentifier>{8809b4aa-0c02-4365-b792-65aa2046bba6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\constant">
+      <UniqueIdentifier>{d1dc7140-9c26-4249-9bf3-84fc6fbb92d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\constant">
+      <UniqueIdentifier>{f8ac833f-c335-48be-81bf-1c8408752720}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -179,10 +149,10 @@
     <ClInclude Include="user\simple\message_box.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\_user.h">
+    <ClInclude Include="user\user\_component.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\_const.h">
+    <ClInclude Include="user\user\_constant.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\listing.h">
@@ -203,7 +173,7 @@
     <ClInclude Include="filesystem\fs\_.h">
       <Filter>Header Files\filesystem\fs</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\fs\_fs.h">
+    <ClInclude Include="filesystem\fs\_component.h">
       <Filter>Header Files\filesystem\fs</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\fs\ftp_file.h">
@@ -217,36 +187,6 @@
     </ClInclude>
     <ClInclude Include="inline\_draw2d_impl.h">
       <Filter>Header Files\inline</Filter>
-    </ClInclude>
-    <ClInclude Include="const\_const.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\check.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\context.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\id.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\impact.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\simple_command.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\source.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\status.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\status_range_authentication.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\timer.h">
-      <Filter>Header Files\const</Filter>
     </ClInclude>
     <ClInclude Include="user\user\_.h">
       <Filter>Header Files\user\user</Filter>
@@ -371,7 +311,7 @@
     <ClInclude Include="filesystem\filemanager\_.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\_filemanager.h">
+    <ClInclude Include="filesystem\filemanager\_component.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\aaa_want_to_erase_form_impact.h">
@@ -380,7 +320,7 @@
     <ClInclude Include="filesystem\filemanager\child_frame.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filemanager\const.h">
+    <ClInclude Include="filesystem\filemanager\_constant.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\context_menu.h">
@@ -563,7 +503,7 @@
     <ClInclude Include="user\userex\_.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\_userex.h">
+    <ClInclude Include="user\userex\_component.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\aaa_want_to_erase_form_update_hint.h">
@@ -578,7 +518,7 @@
     <ClInclude Include="user\userex\dialog.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\userex\error_dialog.h">
+    <ClInclude Include="user\userex\failure_dialog.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\font_impact.h">
@@ -650,10 +590,10 @@
     <ClInclude Include="filesystem\userfs\_.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\userfs\_userfs.h">
+    <ClInclude Include="filesystem\userfs\_component.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\userfs\const.h">
+    <ClInclude Include="filesystem\userfs\_constant.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\userfs\document.h">
@@ -698,16 +638,16 @@
     <ClInclude Include="filesystem\filehandler\tree_interface.h">
       <Filter>Header Files\filesystem\filehandler</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\filehandler\_filehandler.h">
+    <ClInclude Include="filesystem\filehandler\_component.h">
       <Filter>Header Files\filesystem\filehandler</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filehandler\_.h">
       <Filter>Header Files\filesystem\filehandler</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\_simple.h">
+    <ClInclude Include="user\simple\_component.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\static.h">
+    <ClInclude Include="user\simple\still.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\user\tree_data.h">
@@ -722,23 +662,14 @@
     <ClInclude Include="user\databaseuser\_.h">
       <Filter>Header Files\user\databaseuser</Filter>
     </ClInclude>
-    <ClInclude Include="user\databaseuser\_databaseuser.h">
+    <ClInclude Include="user\databaseuser\_component.h">
       <Filter>Header Files\user\databaseuser</Filter>
     </ClInclude>
-    <ClInclude Include="user\account\account_style.h">
+    <ClInclude Include="user\account\style.h">
       <Filter>Header Files\user\account</Filter>
     </ClInclude>
     <ClInclude Include="user\account\impact.h">
       <Filter>Header Files\user\account</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html\_.h">
-      <Filter>Header Files\html\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html\core_data.h">
-      <Filter>Header Files\html\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html\data.h">
-      <Filter>Header Files\html\html</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\_impl.h">
       <Filter>Header Files\user\userex</Filter>
@@ -803,7 +734,7 @@
     <ClInclude Include="user\userex\image_list.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\rich_text\_const.h">
+    <ClInclude Include="user\rich_text\_constant.h">
       <Filter>Header Files\user\rich_text</Filter>
     </ClInclude>
     <ClInclude Include="user\rich_text\box.h">
@@ -842,7 +773,7 @@
     <ClInclude Include="user\rich_text\text_format_object.h">
       <Filter>Header Files\user\rich_text</Filter>
     </ClInclude>
-    <ClInclude Include="user\rich_text\_rich_text.h">
+    <ClInclude Include="user\rich_text\_component.h">
       <Filter>Header Files\user\rich_text</Filter>
     </ClInclude>
     <ClInclude Include="inline\application\windows.h">
@@ -890,113 +821,8 @@
     <ClInclude Include="inline\console_common.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
-    <ClInclude Include="html\impl\_.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\_impl.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\cell.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\form.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\image.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\input_button.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\input_checkbox.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\input_text.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\select.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\table.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\table_elemental.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\table_row.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\text.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\attribute.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\base.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\border.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\box.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\font.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\form.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\message.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\point.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\reader.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\size.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\style.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\style_sheet.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\style_sheet_array.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\tag.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\value.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\user\child_frame.h">
-      <Filter>Header Files\html\user</Filter>
-    </ClInclude>
-    <ClInclude Include="html\user\document.h">
-      <Filter>Header Files\html\user</Filter>
-    </ClInclude>
-    <ClInclude Include="html\user\form.h">
-      <Filter>Header Files\html\user</Filter>
-    </ClInclude>
-    <ClInclude Include="html\user\form_impact.h">
-      <Filter>Header Files\html\user</Filter>
-    </ClInclude>
-    <ClInclude Include="html\user\frame.h">
-      <Filter>Header Files\html\user</Filter>
-    </ClInclude>
-    <ClInclude Include="html\user\impact.h">
-      <Filter>Header Files\html\user</Filter>
-    </ClInclude>
     <ClInclude Include="html\hi5\hi5_twitter_authorization.h">
       <Filter>Header Files\html\hi5</Filter>
-    </ClInclude>
-    <ClInclude Include="const\thread.h">
-      <Filter>Header Files\const</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\_tree.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
@@ -1040,12 +866,6 @@
     <ClInclude Include="filesystem\filemanager\aaa_want_to_erase_item_action.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="const\charset.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
-    <ClInclude Include="const\idpool.h">
-      <Filter>Header Files\const</Filter>
-    </ClInclude>
     <ClInclude Include="filesystem\userfs\_data.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
@@ -1070,25 +890,10 @@
     <ClInclude Include="user\userex\calculator_edit_impact.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="html\graphics\_.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\graphics\_graphics.h">
-      <Filter>Header Files\html\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html\_html.h">
-      <Filter>Header Files\html\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\user\_.h">
-      <Filter>Header Files\html\user</Filter>
-    </ClInclude>
-    <ClInclude Include="html\user\_user.h">
-      <Filter>Header Files\html\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\account\_.h">
       <Filter>Header Files\user\account</Filter>
     </ClInclude>
-    <ClInclude Include="user\account\_account.h">
+    <ClInclude Include="user\account\_component.h">
       <Filter>Header Files\user\account</Filter>
     </ClInclude>
     <ClInclude Include="user\account\dialog.h">
@@ -1114,24 +919,6 @@
     </ClInclude>
     <ClInclude Include="user\rich_text\format_tool.h">
       <Filter>Header Files\user\rich_text</Filter>
-    </ClInclude>
-    <ClInclude Include="html\matter\_element.h">
-      <Filter>Header Files\html\element</Filter>
-    </ClInclude>
-    <ClInclude Include="html\matter\_.h">
-      <Filter>Header Files\html\element</Filter>
-    </ClInclude>
-    <ClInclude Include="html\element\_element.h">
-      <Filter>Header Files\html\element</Filter>
-    </ClInclude>
-    <ClInclude Include="html\element\element.h">
-      <Filter>Header Files\html\element</Filter>
-    </ClInclude>
-    <ClInclude Include="html\impl\element.h">
-      <Filter>Header Files\html\impl</Filter>
-    </ClInclude>
-    <ClInclude Include="const\aaa_message.h">
-      <Filter>Header Files\const</Filter>
     </ClInclude>
     <ClInclude Include="user\user\aaa_shell.h">
       <Filter>Header Files\user\user</Filter>
@@ -1190,13 +977,31 @@
     <ClInclude Include="user\userex\dialog_frame.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
+    <ClInclude Include="user\rich_text\_.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\_.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="html\_.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\_.h">
+      <Filter>Header Files\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="html\hi5\_.h">
+      <Filter>Header Files\html\hi5</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\idpool.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\filehandler\aaa_data.h">
+      <Filter>Header Files\filesystem\filehandler</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="user\user\tooltip.cpp">
       <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="const\idpool.cpp">
-      <Filter>Source Files\const</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\ftp_file.cpp">
       <Filter>Source Files\filesystem\fs</Filter>
@@ -1438,7 +1243,7 @@
     <ClCompile Include="user\userex\dialog.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\-ehrror_dialog.cpp">
+    <ClCompile Include="user\userex\failure_dialog.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
     <ClCompile Include="user\userex\font_impact.cpp">
@@ -1498,9 +1303,6 @@
     <ClCompile Include="user\userex\wait_message_dialog.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\child_frame.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
     <ClCompile Include="user\simple\form_list_impact.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
@@ -1531,7 +1333,7 @@
     <ClCompile Include="user\simple\printer_list_impact.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\static.cpp">
+    <ClCompile Include="user\simple\still.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\status_bar.cpp">
@@ -1588,13 +1390,10 @@
     <ClCompile Include="user\databaseuser\mesh_data.cpp">
       <Filter>Source Files\user\databaseuser</Filter>
     </ClCompile>
-    <ClCompile Include="user\account\account_dialog.cpp">
+    <ClCompile Include="user\account\dialog.cpp">
       <Filter>Source Files\user\account</Filter>
     </ClCompile>
-    <ClCompile Include="user\account\account_login.cpp">
-      <Filter>Source Files\user\account</Filter>
-    </ClCompile>
-    <ClCompile Include="user\account\account_simple_ui.cpp">
+    <ClCompile Include="user\account\login.cpp">
       <Filter>Source Files\user\account</Filter>
     </ClCompile>
     <ClCompile Include="user\account\impact.cpp">
@@ -1615,92 +1414,8 @@
     <ClCompile Include="filesystem\filehandler\tree_interface.cpp">
       <Filter>Source Files\filesystem\filehandler</Filter>
     </ClCompile>
-    <ClCompile Include="user\netuser\netuser_network_configuration.cpp">
+    <ClCompile Include="user\netuser\network_configuration.cpp">
       <Filter>Source Files\user\netuser</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\cell.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\form.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\image.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\input_button.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\input_checkbox.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\input_text.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\select.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\table.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\table_elemental.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\table_row.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\text.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\html\core_data.cpp">
-      <Filter>Source Files\html\html</Filter>
-    </ClCompile>
-    <ClCompile Include="html\html\data.cpp">
-      <Filter>Source Files\html\html</Filter>
-    </ClCompile>
-    <ClCompile Include="html\graphics\attribute.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html\graphics\base.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html\graphics\font.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html\graphics\message.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html\graphics\reader.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html\graphics\style.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html\graphics\style_sheet.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html\graphics\style_sheet_array.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html\graphics\tag.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html\graphics\value.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html\user\document.cpp">
-      <Filter>Source Files\html\user</Filter>
-    </ClCompile>
-    <ClCompile Include="html\user\form.cpp">
-      <Filter>Source Files\html\user</Filter>
-    </ClCompile>
-    <ClCompile Include="html\user\form_impact.cpp">
-      <Filter>Source Files\html\user</Filter>
-    </ClCompile>
-    <ClCompile Include="html\user\user.cpp">
-      <Filter>Source Files\html\user</Filter>
-    </ClCompile>
-    <ClCompile Include="html\user\impact.cpp">
-      <Filter>Source Files\html\user</Filter>
     </ClCompile>
     <ClCompile Include="html\hi5\hi5_twitter_authorization.cpp">
       <Filter>Source Files\html\hi5</Filter>
@@ -1735,17 +1450,8 @@
     <ClCompile Include="user\userex\calculator_edit_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="html\impl\_.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
     <ClCompile Include="user\rich_text\format_tool.cpp">
       <Filter>Source Files\user\rich_text</Filter>
-    </ClCompile>
-    <ClCompile Include="html\element\element.cpp">
-      <Filter>Source Files\html\element</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\element.cpp">
-      <Filter>Source Files\html\impl</Filter>
     </ClCompile>
     <ClCompile Include="user\user\list_column.cpp">
       <Filter>Source Files\user\user</Filter>
@@ -1788,6 +1494,12 @@
     </ClCompile>
     <ClCompile Include="user\user\mesh_item.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="constant\idpool.cpp">
+      <Filter>Source Files\constant</Filter>
+    </ClCompile>
+    <ClCompile Include="user\account\main_window.cpp">
+      <Filter>Source Files\user\account</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -44,30 +44,38 @@ void colorref_array::create_web_palette()
 }
 
 
-CLASS_DECL_ACME void cra_from_quada(colorref_array & colorrefa, WINRGBQUAD * prgbquad, int iCount)
+namespace draw2d
 {
 
-   colorrefa.set_size(iCount);
 
-   for (index i = 0; i < iCount; i++)
+
+   CLASS_DECL_ACME void cra_from_quada(colorref_array & colorrefa, WINRGBQUAD * prgbquad, int iCount)
    {
 
-#if defined(ANDROID) && defined(__arm__)
-      colorrefa[i] = argb(255, prgbquad[i].rgbRed, prgbquad[i].rgbGreen, prgbquad[i].rgbBlue);
-#else
-      colorrefa[i] = argb(255, prgbquad[i].rgbBlue, prgbquad[i].rgbGreen, prgbquad[i].rgbRed);
-#endif
+      colorrefa.set_size(iCount);
 
-      if (colorrefa[i] == argb(255, 255, 255, 255))
+      for (index i = 0; i < iCount; i++)
       {
 
-         output_debug_string("completely white");
+#if defined(ANDROID) && defined(__arm__)
+         colorrefa[i] = argb(255, prgbquad[i].rgbRed, prgbquad[i].rgbGreen, prgbquad[i].rgbBlue);
+#else
+         colorrefa[i] = argb(255, prgbquad[i].rgbBlue, prgbquad[i].rgbGreen, prgbquad[i].rgbRed);
+#endif
+
+         if (colorrefa[i] == argb(255, 255, 255, 255))
+         {
+
+            output_debug_string("completely white");
+
+         }
 
       }
 
    }
 
-}
+
+} // namespace draw2d
 
 
 

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/user/user/interaction.h"
+
+
 struct IDropTarget; // forward declaration
 
 

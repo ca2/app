@@ -1,7 +1,10 @@
 #pragma once
 
+
+#include "base/user/user/tab.h"
+
+
 class CLASS_DECL_CORE simple_tab_control :
-   virtual public ::user::interaction,
    virtual public ::user::tab
 {
 public:
@@ -17,5 +20,8 @@ public:
 
    void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
+
 };
+
+
 

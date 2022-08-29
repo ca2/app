@@ -2,7 +2,12 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_component.h"
 #endif
-
+#include "frame_window.h"
+#include "impact.h"
+#include "impact_host.h"
+#include "base/platform/application.h"
+#include "place_holder.h"
+#include "document.h"
 
 
 namespace user
@@ -802,10 +807,6 @@ namespace user
 
       if (pinteraction->m_ewindowflag & e_window_flag_window_created)
       {
-
-
-
-
 
          pinteraction->set_parent(pimpactdata->m_pplaceholder);
 

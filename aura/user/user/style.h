@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "style_base.h"
+
+
 namespace user
 {
 
@@ -173,13 +176,7 @@ namespace user
 
    };
 
-   
-   inline bool control_style::is_up_to_date(::user::style * pstyle) const
-   {
 
-      return m_iUpdate == pstyle->m_iUpdate;
-
-   }
 
 
 } // namespace user

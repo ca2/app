@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "list_window.h"
+#include "base/user/user/show.h"
+
+
 namespace user
 {
 

@@ -1,6 +1,11 @@
 #pragma once
 
 
+#include "base/user/user/impact.h"
+#include "base/user/user/split_impact.h"
+#include "aura/user/user/plain_edit.h"
+
+
 class CLASS_DECL_CORE filemanager_impact_base :
    virtual public ::user::impact
 {

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "impact_base.h"
+
+
 namespace filemanager
 {
 
@@ -12,14 +15,14 @@ namespace filemanager
 
 
       
-      file_list *                            m_pfilelist;
-      thumbnail *                              m_pthumbnail;
-      __composite(file_properties_form)      m_ppropform;
-      ::file::item_array                     m_itema;
+      file_list *                               m_pfilelist;
+      thumbnail *                               m_pthumbnail;
+      __composite(file_properties_form)         m_ppropform;
+      __pointer(::file::item_array)             m_pitema;
 
 
       main_impact();
-      virtual ~main_impact();
+      ~main_impact() override;
 
 
       void install_message_routing(::channel * pchannel) override;

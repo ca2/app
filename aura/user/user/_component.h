@@ -1,177 +1,29 @@
 #pragma once
 
+//
+//#include "aura/platform/_platform.h"
+//
 
-#include "aura/platform/_platform.h"
 
+//
+//namespace user
+//{
+//
+//
+//
+//
+//} // namespace user
+//
 
-class prodevian;
 
 
-namespace user
-{
 
+//namespace user
+//{
+//}
 
-   class control_bar;
 
 
-   enum e_interaction
-   {
-
-      interaction_wfi_up_down_loading = 1 << 0,
-      interaction_wfi_up_tool_window = 1 << 1,
-
-   };
-
-
-} // namespace user
-
-
-#define SWP_CHANGEVIEWPORTOFFSET  0x100000
-
-
-namespace message
-{
-
-
-   class key;
-   class drag_and_drop;
-   class mouse_base;
-
-
-} // namespace message
-
-
-namespace user
-{
-   //class form;
-   class tooltip;
-
-
-
-   class copydesk;
-   //class system;
-   class control_event;
-   //class control_descriptor;
-   class interaction_child;
-   class interaction_impl;
-   class interaction_array;
-   //class place_holder;
-   //class tab;
-   //class tab_pane;
-   //class check_box;
-   //class menu_interaction;
-   //class menu_button;
-   //class menu_item;
-   //class menu_item_ptra;
-   //class frame_window;
-   class toolbar;
-   class scroll_bar;
-   class split_layout;
-   class style;
-   class scroll_info;
-   //class window_map;
-   //class system_interaction;
-
-
-   //class place_holder;
-
-   //#if defined _UWP
-   //
-   //   class CLASS_DECL_AURA native_window_initialize
-   //   {
-   //   public:
-   //
-   //
-   //      Agile < ::winrt::Windows::UI::Core::CoreWindow >         m_window;
-   //      ::aura::system_window ^                         m_pwindow;
-   //
-   //
-   //   };
-   //
-   //#elif defined(APPLE_IOS) || defined(ANDROID)
-#if defined(APPLE_IOS) || defined(ANDROID)
-
-   class CLASS_DECL_AURA native_window_initialize
-   {
-   public:
-
-      RECTANGLE_I32   m_rectangle;
-
-   };
-
-#else
-
-   class native_window_initialize;
-
-#endif
-
-
-   class control_event;
-   //class frame_window;
-
-   CLASS_DECL_AURA bool is_descendant(::user::interaction* puiParent, ::user::interaction* puiChild);
-
-
-}
-
-
-namespace experience
-{
-
-   class updown;
-
-} // namespace experience
-
-
-namespace user
-{
-
-
-   class CLASS_DECL_AURA alpha_source :
-      virtual public ::matter
-   {
-   public:
-
-
-      virtual double get_alpha(::user::interaction* puiTarget);
-      virtual void on_alpha_target_initial_frame_position();
-
-
-   };
-
-
-   //CLASS_DECL_AURA::mutex * mutex_children2();
-
-
-
-
-}
-
-
-namespace user
-{
-
-   class CLASS_DECL_AURA run_application
-   {
-   public:
-
-
-      index                               m_iEdge;
-      string                              m_strApp;
-      string                              m_strQuery;
-      __pointer(::aura::session)          m_pbergedgeParent;
-      __pointer(::aura::application)      m_papp;
-      bool                                m_bMakeVisible;
-      __pointer(::user::interaction)      m_puserinteractionParent;
-      property_set                        m_setParameters;
-
-      run_application();
-
-
-   };
-
-
-} // namespace user
 
 
 //#include "aura/primitive/primitive/command.h"
@@ -184,114 +36,114 @@ namespace user
 
 //#include "style_base.h"
 
-
-//#include "aura/primitive/primitive/create.h"
-#include "system.h"
-
-
-
-#include "window_util.h"
-
-
-#include "aura/user/appearance/_.h"
-
-
-#include "aura/graphics/write_text/text_box.h"
-#include "aura/graphics/write_text/font_list.h"
-#include "layout_state.h"
-#include "primitive_impl.h"
-
-
-//#include "aura/database/key.h"
-
-#include "apex/user/notify_icon_bridge.h"
-
-#include "notify_icon_listener.h"
-
-#include "control_descriptor.h"
-
-
-#include "interaction_layout.h"
-
-
-#include "prodevian.h"
-
-//#include "aura/platform/str_context.h"
-
-
-//#include "aura/primitive/primitive/form_property_set.h"
-
-
-namespace user
-{
-   
-   
-   class notify_icon;
-
-   
-} // namespace user
-
-
-#include "aura/graphics/draw2d/graphics_call.h"
-
-
-#include "interaction_scaler.h"
-
-
-#include "interaction.h"
-
-
-#include "notify_icon.h"
-
-
-#include "aura/windowing/menu_item.h"
-
-
-#include "aura/windowing/menu.h"
-
-
-//using window_pointer = __pointer(::user::interaction_impl);
-
+//
+////#include "aura/primitive/primitive/create.h"
+//#include "system.h"
+//
+//
+//
+//#include "window_util.h"
+//
+//
+//#include "aura/user/appearance/_.h"
+//
+//
+//#include "aura/graphics/write_text/text_box.h"
+//#include "aura/graphics/write_text/font_list.h"
+//#include "layout_state.h"
 //#include "primitive_impl.h"
+//
+//
+////#include "aura/database/key.h"
+//
+//#include "apex/user/notify_icon_bridge.h"
+//
+//#include "notify_icon_listener.h"
+//
+//#include "control_descriptor.h"
+//
+//
+//#include "interaction_layout.h"
+//
+//
+//#include "prodevian.h"
+//
+////#include "aura/platform/str_context.h"
+//
+//
+////#include "aura/primitive/primitive/form_property_set.h"
 
-#include "interaction_impl.h"
-
-
-#include "copydesk.h"
-#include "interaction_child.h"
-#include "scroll_info.h"
-//#include "place_holder.h"
-//#include "place_holder_container.h"
-//#include "job.h"
-//#include "core/user/experience/experience_updown.h"
-#include "box.h"
-#include "tool_window.h"
-#include "frame.h"
-//#include "menu_command.h"
-//#include "menu_interaction.h"
-//#include "menu_item.h"
-//#include "menu.h"
-//#include "control_event.h"
-//#include "window_map.h"
-
-#include "scroll.h"
-
-//#include "aura/primitive/primitive/form_property_set.h"
-
-
-//#include "control.h"
-
-
-#include "scroll_bar.h"
-
-
-//#include "callback.h"
+//
+//namespace user
+//{
+//   
+//   
+//   class notify_icon;
+//
+//   
+//} // namespace user
 
 
-//#include "form_data.h"
-#include "form.h"
-
-#include "form_callback.h"
+//#include "aura/graphics/draw2d/graphics_call.h"
+//
+//
+//#include "interaction_scaler.h"
+//
+//
+//#include "interaction.h"
+//
+//
+//#include "notify_icon.h"
+//
+//
+//#include "aura/windowing/menu_item.h"
+//
+//
+//#include "aura/windowing/menu.h"
+//
+//
+////using window_pointer = __pointer(::user::interaction_impl);
+//
+////#include "primitive_impl.h"
+//
+//#include "interaction_impl.h"
+//
+//
+//#include "copydesk.h"
+//#include "interaction_child.h"
+//#include "scroll_info.h"
+////#include "place_holder.h"
+////#include "place_holder_container.h"
+////#include "job.h"
+////#include "core/user/experience/experience_updown.h"
+//#include "box.h"
+//#include "tool_window.h"
+//#include "frame.h"
+////#include "menu_command.h"
+////#include "menu_interaction.h"
+////#include "menu_item.h"
+////#include "menu.h"
+////#include "control_event.h"
+////#include "window_map.h"
+//
+//#include "scroll.h"
+//
+////#include "aura/primitive/primitive/form_property_set.h"
+//
+//
+////#include "control.h"
+//
+//
+//#include "scroll_bar.h"
+//
+//
+////#include "callback.h"
+//
+//
+////#include "form_data.h"
+//#include "form.h"
+//
+//#include "form_callback.h"
 
 
 //#include "message_window.h"
@@ -318,9 +170,9 @@ namespace user
 //#include "aura/os/_user.h"
 //
 
-//#include "keyboard_layout.h"
-#include "keyboard.h"
-//
+////#include "keyboard_layout.h"
+//#include "keyboard.h"
+////
 //
 //namespace str
 //{
@@ -333,74 +185,15 @@ namespace user
 //} // namespace str
 //
 
-struct __SIZEPARENTPARAMS;    // control bar implementationproperca2_property.h
-
-// Classes declared in this file
-
-//::draw2d::graphics_pointer
-class thumbnail_dc;               // Virtual DC for print thumbnail
-
-class mini_dock_frame_window;
-
-/////////////////////////////////////////////////////////////////////////////
-// Global ID ranges (see Technical note TN020 for more details)
-
-// 8000 -> FFFF command IDs (used for menu items, accelerators and controls)
-#define IS_COMMAND_ID(nID)  ((nID) & 0x8000)
-
-// 8000 -> DFFF : ::account::user commands
-// E000 -> EFFF : _ commands and other things
-// F000 -> FFFF : standard windows commands and other things etc
-// E000 -> E7FF standard commands
-// E800 -> E8FF control bars (first 32 are special)
-// E900 -> EEFF standard interaction_impl controls/components
-// EF00 -> EFFF SC_ menu help
-// F000 -> FFFF standard strings
-#define ID_COMMAND_FROM_SC(sc)  (((sc - 0xF000) >> 4) + __IDS_SCFIRST)
-
-// 0000 -> 7FFF IDR range
-// 0000 -> 6FFF : ::account::user resources
-// 7000 -> 7FFF : _ (and standard windows) resources
-// IDR ranges (NOTE: IDR_ values must be <32768)
-#define ASSERT_VALID_IDR(nIDR) ASSERT((nIDR) != 0 && (nIDR) < 0x8000)
-
-/////////////////////////////////////////////////////////////////////////////
-// Context sensitive help support (see Technical note TN028 for more details)
-
-// Help ID bases
-#define HID_BASE_COMMAND    0x00010000UL        // ID and IDM
-#define HID_BASE_RESOURCE   0x00020000UL        // IDR and IDD
-#define HID_BASE_PROMPT     0x00030000UL        // IDP
-#define HID_BASE_NCAREAS    0x00040000UL
-#define HID_BASE_CONTROL    0x00050000UL        // IDC
-#define HID_BASE_DISPATCH   0x00060000UL        // IDispatch help codes
 
 
 
-
-
-// flags for wParam in the WM_FLOATSTATUS message
-enum
-{
-   FS_SHOW = 0x01, FS_HIDE = 0x02,
-   FS_ACTIVATE = 0x04, FS_DEACTIVATE = 0x08,
-   FS_ENABLE = 0x10, FS_DISABLE = 0x20,
-   FS_SYNCACTIVE = 0x40
-};
-
-
-
-
-
-#ifndef LAYOUT_LTR
-#define LAYOUT_LTR                         0x00000000
-#endif
 
 
 //#include "still.h"
 
 
-#include "progress.h"
+//#include "progress.h"
 
 
 
@@ -416,19 +209,11 @@ enum
 //#include "user_menu_item.h"
 //#include "user_menu_command.h"
 //#include "user_menu.h"
-
-namespace user
-{
-   //class interaction_impl;
-   //class frame_window;
-   class mdi_child_window;
-   //class control_bar;
-
-
-   struct PrintThumbnailState;  // forward object (see afxext.h)
-
-
-}
+//
+//namespace user
+//{
+//
+//}
 
 //#include "user_copydesk.h"
 
@@ -464,79 +249,31 @@ namespace user
 
 //#include "aura/user/rich_text/_const.h"
 
-
-namespace user
-{
-
-
-   namespace rich_text
-   {
-
-
-      class edit_impl;
+//
+//namespace user
+//{
+//
+//
+//
+//} // namespace user
 
 
-   } // namespace rich_text
-
-
-} // namespace user
-
-
-namespace userex
-{
-
-
-   class color_impact;
-
-
-} // namespace userex
-
-
-class cregexp;
-
-namespace database
-{
-
-   class selection;
-
-} // namespace database
-
-class image_list;
-//class simple_list_data;
-
-
-namespace user
-{
-
-
-   //class menu_item_ptra;
-   //class menu_item;
-   //class menu_item_ptra;
-   class front_end;
-   //class menu_item;
-
-   //class list_column_array;
-
-
-
-   //class list_header;
-   class scroll_bar;
-   //class list_column_array;
-
-
-
-
-
-   //CLASS_DECL_AURA bool set_wallpaper(string strLocalImagePath);
-   //CLASS_DECL_AURA string_array get_wallpaper();
-
-
-
-} // namespace user
-
-
-#define USER_TIMER 50000
-
+//
+//namespace user
+//{
+//
+//
+//
+//
+//
+//
+//   //CLASS_DECL_AURA bool set_wallpaper(string strLocalImagePath);
+//   //CLASS_DECL_AURA string_array get_wallpaper();
+//
+//
+//
+//} // namespace user
+//
 
 //class simple_mesh_data;
 
@@ -576,25 +313,16 @@ namespace user
 //#include "picture.h"
 //#include "picture_interaction.h"
 
-
-namespace user
-{
-
-   namespace rich_text
-   {
-
-
-      class edit;
-      class data;
-
-
-   }  // namespace rich_text
-
-
-} // namespace user
-
-///#include "aura/os/_user.h"
-
+//
+//namespace user
+//{
+//
+//
+//
+//} // namespace user
+//
+/////#include "aura/os/_user.h"
+//
 
 
 //#include "aura/user/rich_text/edit.h"
@@ -612,21 +340,21 @@ namespace user
 // #include "windows_tsf/edit_window.h"
 // #endif
 // #endif
-
-
-#include "button.h"
-
-
-#include "check_box.h"
-
-
-#include "still.h"
-
-
-#include "text_composition.h"
-
-
-#include "plain_edit.h"
+//
+//
+//#include "button.h"
+//
+//
+//#include "check_box.h"
+//
+//
+//#include "still.h"
+//
+//
+//#include "text_composition.h"
+//
+//
+//#include "plain_edit.h"
 
 
 //#include "combo_box.h"
@@ -634,16 +362,6 @@ namespace user
 
 
 //#include "check_box.h"
-
-
-struct CPrintThumbnailState;  // forward object (see afxext.h)
-namespace user
-{
-   class control_bar;          // forward object (see afxext.h)
-}
-
-
-class mini_dock_frame_window;    // forward object (see afxpriv.h)
 
 
 //#include "button.h"
@@ -741,26 +459,9 @@ class COleDataObject;   // forward object (see afxole.h)
 
 
 
-struct __SIZEPARENTPARAMS;
-
-
-namespace user
-{
-
-
-   class user;
-
-
-} // namespace user
-
 
 //#include "combo_box.h"
 //#include "list_box.h"
-
-
-#if defined(LINUX) || defined(FREEBSD)
-typedef struct _AppIndicator AppIndicator;
-#endif
 
 
 //#include "slider.h"
@@ -768,63 +469,25 @@ typedef struct _AppIndicator AppIndicator;
 
 //#define new AURA_NEW
 
-
-namespace user
-{
-
-   class shell;
-
-} // namespace user
-
-
-#include "user.h"
-
-
-#include "main_window.h"
-
-
-#include "message_box.h"
-
-
-#include "box.h"
-
-
-#include "_impl.h"
-
-
-namespace user
-{
-
-
-   template < typename CONTROL_STYLE >
-   void style::get(__pointer(CONTROL_STYLE) & pcontrolstyleImpl, ::draw2d::graphics_pointer & pgraphics, ::user::interaction * pinteraction)
-   {
-
-      auto & pcontrolstyle = m_controlstyle[pinteraction->m_econtroltype];
-
-      if (!pcontrolstyle)
-      {
-
-         pcontrolstyle = __new(CONTROL_STYLE);
-
-      }
-
-      if (!pcontrolstyle->is_up_to_date(this))
-      {
-
-         pcontrolstyle->update(pgraphics, this, pinteraction);
-
-      }
-
-      pcontrolstyleImpl = pcontrolstyle;
-
-   }
-
-
-} // namespace user
-
-
-#include "user.h"
-
+//
+//
+//#include "user.h"
+//
+//
+//#include "main_window.h"
+//
+//
+//#include "message_box.h"
+//
+//
+//#include "box.h"
+//
+//
+//#include "_impl.h"
+//
+//
+//
+//#include "user.h"
+//
 
 

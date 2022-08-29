@@ -6,10 +6,24 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
-#include "core/user/account/_account.h"
-//#include "aura/update.h"
 #include "base/user/user/tab_pane.h"
 #include "core/user/user/font_list.h"
+#include "core/user/userex/user.h"
+#include "pane_tab_impact.h"
+#include "font_impact.h"
+#include "color_impact.h"
+#include "core/filesystem/filemanager/document.h"
+#include "core/filesystem/filemanager/data.h"
+#include "core/platform/application.h"
+#include "core/platform/session.h"
+#include "base/user/user/frame_window.h"
+#include "base/user/form/impact.h"
+#include "base/user/user/tab_data.h"
+#include "base/user/user/impact_system.h"
+#include "axis/account/credentials.h"
+#include "core/user/account/impact.h"
+#include "aura/message/user.h"
+
 
 
 namespace core
@@ -104,7 +118,7 @@ namespace userex
          pinteraction->get_window_rect(prectangle);
 
 
-         screen_to_client(prectangle);
+         screen_to_client()(*prectangle);
 
 
       }
@@ -139,7 +153,7 @@ namespace userex
 
          pinteraction->get_window_rect(prectangle);
 
-         screen_to_client(prectangle);
+         screen_to_client()(*prectangle);
 
       }
 
@@ -278,6 +292,7 @@ namespace userex
       }
 
    }
+
 
    void pane_tab_impact::_001OnUpdateFileSaveAs(::message::message * pmessage)
    {
@@ -680,25 +695,25 @@ namespace userex
 
             auto & set = payload("filemanager_toolbar").as_propset();
 
-            if (set[::userfs::mode_normal].is_set())
-               pfilemanagerdata->m_setToolbar[::userfs::mode_normal] = set[::userfs::mode_normal];
+            if (set[::userfs::e_mode_normal].is_set())
+               pfilemanagerdata->m_setToolbar[::userfs::e_mode_normal] = set[::userfs::e_mode_normal];
             else
-               pfilemanagerdata->m_setToolbar[::userfs::mode_normal] = "filemanager_toolbar.xml";
+               pfilemanagerdata->m_setToolbar[::userfs::e_mode_normal] = "filemanager_toolbar.xml";
 
-            if (set[::userfs::mode_saving].is_set())
-               pfilemanagerdata->m_setToolbar[::userfs::mode_saving] = set[::userfs::mode_saving];
+            if (set[::userfs::e_mode_saving].is_set())
+               pfilemanagerdata->m_setToolbar[::userfs::e_mode_saving] = set[::userfs::e_mode_saving];
             else
-               pfilemanagerdata->m_setToolbar[::userfs::mode_saving] = "filemanager_saving_toolbar.xml";
+               pfilemanagerdata->m_setToolbar[::userfs::e_mode_saving] = "filemanager_saving_toolbar.xml";
 
-            if (set[::userfs::mode_import].is_set())
-               pfilemanagerdata->m_setToolbar[::userfs::mode_import] = set[::userfs::mode_import];
+            if (set[::userfs::e_mode_import].is_set())
+               pfilemanagerdata->m_setToolbar[::userfs::e_mode_import] = set[::userfs::e_mode_import];
             else
-               pfilemanagerdata->m_setToolbar[::userfs::mode_import] = "filemanager_import_toolbar.xml";
+               pfilemanagerdata->m_setToolbar[::userfs::e_mode_import] = "filemanager_import_toolbar.xml";
 
-            if (set[::userfs::mode_export].is_set())
-               pfilemanagerdata->m_setToolbar[::userfs::mode_export] = set[::userfs::mode_export];
+            if (set[::userfs::e_mode_export].is_set())
+               pfilemanagerdata->m_setToolbar[::userfs::e_mode_export] = set[::userfs::e_mode_export];
             else
-               pfilemanagerdata->m_setToolbar[::userfs::mode_export] = "filemanager_export_toolbar.xml";
+               pfilemanagerdata->m_setToolbar[::userfs::e_mode_export] = "filemanager_export_toolbar.xml";
 
          }
 //         else

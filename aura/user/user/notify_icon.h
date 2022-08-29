@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "interaction.h"
+#include "notify_icon_listener.h"
+
+
 namespace user
 {
 

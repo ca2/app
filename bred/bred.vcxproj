@@ -390,6 +390,7 @@
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\_platform.h" />
+    <ClInclude Include="_.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\acme\acme.vcxproj">

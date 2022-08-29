@@ -2,6 +2,11 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_component.h"
 #endif
+#include "document_manager.h"
+#include "document.h"
+#include "impact.h"
+#include "impact_system.h"
+#include "aura/user/user/frame.h"
 
 
 #define _wcsdec(_cpc1, _cpc2) ((_cpc1)>=(_cpc2) ? nullptr : (_cpc2)-1)

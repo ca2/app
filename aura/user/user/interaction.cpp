@@ -3,28 +3,43 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/user/_component.h"
 #endif
-//#include "apex/platform/app_core.h"
 #include "aura/message.h"
 #include "aura/message/timer.h"
 #include "acme/constant/timer.h"
-#include "acme/id.h"
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "interaction_thread.h"
 #include "acme/operating_system/_user.h"
-//#include "interaction_draw2d.h"
 #include "acme/platform/hyperlink.h"
 #include "acme/platform/timer.h"
 #include "acme/platform/timer_array.h"
-#include "aura/graphics/draw2d/_component.h"
-#include "aura/graphics/graphics/_.h"
-#include "aura/graphics/graphics/_graphics.h"
-#include "acme/primitive/geometry2d/_shape.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/draw2d/path.h"
+#include "aura/graphics/graphics/graphics.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/_collection.h"
 #include "acme/primitive/geometry2d/_defer_shape.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
 #include "aura/windowing/cursor.h"
+#include "alpha_source.h"
+#include "message.h"
+#include "interaction.h"
+#include "interaction_impl.h"
+#include "interaction_scaler.h"
+#include "style.h"
+#include "user.h"
+#include "frame.h"
+#include "form.h"
+#include "interaction_child.h"
+#include "aura/message/user.h"
+#include "scroll_info.h"
+#include "aura/graphics/draw2d/graphics_call.h"
+#include "aura/user/appearance/appearance.h"
+#include "aura/user/user/system.h"
+#include "aura/graphics/user/control_box_icon.h"
+#include "aura/graphics/user/control_box_button.h"
 
 
 #define INFO_LAYOUT_DISPLAY
@@ -917,7 +932,7 @@ namespace user
    }
 
 
-   eflag interaction::get_draw_flags(style * pstyle) const
+   ::user::e_flag interaction::get_draw_flags(::user::style * pstyle) const
    {
 
       return e_null;
@@ -3492,9 +3507,9 @@ namespace user
 
                pinteraction->get_client_rect(rectangleClient);
 
-               pinteraction->client_to_host(rectangleClient);
+               rectangleClient += pinteraction->client_to_host();
 
-               host_to_client(rectangleClient);
+               rectangleClient += host_to_client();
 
                if (i == 0)
                {
@@ -4252,7 +4267,7 @@ namespace user
 
                auto pointCursor = pwindow->get_cursor_position();
 
-               screen_to_client(pointCursor, e_layout_design);
+               pointCursor += screen_to_client(e_layout_design);
 
                auto * pcursor = pwindowing->get_cursor();
 
@@ -4512,6 +4527,18 @@ namespace user
          pgraphics->offset_origin(-pointOffset.x, -pointOffset.y);
 
       }
+
+   }
+
+
+   void interaction::queue_graphics_call(const ::function<void(::draw2d::graphics_pointer&) > & function)
+   {
+
+      synchronous_lock synchronouslock(mutex());
+
+      __defer_construct_new(m_pgraphicscalla);
+
+      m_pgraphicscalla->add(__new(::draw2d::graphics_call(function)));
 
    }
 
@@ -5865,7 +5892,7 @@ namespace user
 
       get_client_rect(rectangle);
 
-      client_to_screen(rectangle);
+      rectangle += client_to_screen();
 
       return rectangle;
 
@@ -6420,7 +6447,7 @@ namespace user
 
          puserinteractionParent = puserinteractionSearchChildren;
 
-         puserinteractionParent->parent_to_client(pointClient);
+         pointClient += puserinteractionParent->parent_to_client();
 
          auto puserinteractionpointeraChild = puserinteractionParent->m_puserinteractionpointeraChild;
 
@@ -8188,7 +8215,7 @@ namespace user
       // tasks should not be destroyed in destroy
       //m_pform && m_pform != this && m_pform->destroy();
       if (m_palphasource) m_palphasource->destroy();
-      if (m_pdrawableBackground) m_pdrawableBackground->destroy();
+      //if (m_pdrawableBackground) m_pdrawableBackground->destroy();
       if (m_pprimitiveimpl) m_pprimitiveimpl->destroy();
       if (m_pinteractionimpl) m_pinteractionimpl->destroy();
       if (m_puserinteractionpointeraOwned) m_puserinteractionpointeraOwned->destroy();
@@ -8216,7 +8243,7 @@ namespace user
       m_useritema.erase_all();
       m_pform.release();
       m_palphasource.release();
-      m_pdrawableBackground.release();
+      //m_pdrawableBackground.release();
       m_pprimitiveimpl.release();
       m_pinteractionimpl.release();
       m_puserinteractionpointeraOwned.release();
@@ -11917,12 +11944,12 @@ namespace user
    }
 
 
-   ::oswindow interaction::_oswindow() const
-   {
+   //::oswindow interaction::_oswindow() const
+   //{
 
-      return oswindow();
+   //   return oswindow();
 
-   }
+   //}
 
 
    void interaction::OnLinkClick(const ::string & psz, const ::string & pszTarget)
@@ -13812,7 +13839,7 @@ namespace user
 
       auto rectangle = get_client_rect();
 
-      client_to_screen(rectangle);
+      rectangle += client_to_screen();
 
       return rectangle;
 
@@ -16268,19 +16295,6 @@ namespace user
    //   }
 
 
-   double alpha_source::get_alpha(::user::interaction * puiTarget)
-   {
-
-      return 1.0;
-
-   }
-
-
-   void alpha_source::on_alpha_target_initial_frame_position()
-   {
-
-
-   }
 
 
    void interaction::on_after_graphical_update()
@@ -16601,7 +16615,7 @@ namespace user
 
    //   auto point = pmouse->m_point;
 
-   //   screen_to_client(point);
+   //   screen_to_client()(point);
 
    //   point += m_ptScroll;
 
@@ -17104,7 +17118,7 @@ namespace user
 
             ::point_i32 pointClient;
 
-            _screen_to_client(pointClient, pmouse->m_point);
+            pointClient = pmouse->m_point + screen_to_client();
 
             auto psession = m_puserinteraction->get_session();
 
@@ -17281,7 +17295,7 @@ namespace user
 
          ::point_i32 pointClient;
 
-         _screen_to_client(pointClient, pmouse->m_point);
+         pointClient = pmouse->m_point + screen_to_client();
 
          auto psession = m_puserinteraction->get_session();
 
@@ -17543,7 +17557,7 @@ namespace user
 
             ::point_i32 pointClient;
 
-            _screen_to_client(pointClient, pmouse->m_point);
+            pointClient= pmouse->m_point + screen_to_client();
 
             auto psession = m_puserinteraction->get_session();
 
@@ -17590,7 +17604,7 @@ namespace user
 
          ::point_i32 pointClient;
 
-         _screen_to_client(pointClient, pmouse->m_point);
+         pointClient = pmouse->m_point + screen_to_client();
 
          auto psession = m_puserinteraction->get_session();
 
@@ -17684,7 +17698,7 @@ namespace user
 
          ::point_i32 pointClient;
 
-         _screen_to_client(pointClient, pmouse->m_point);
+         pointClient = pmouse->m_point + screen_to_client();
 
          bool bRet;
 
@@ -17848,7 +17862,7 @@ namespace user
 
          ::point_i32 pointClient;
 
-         _screen_to_client(pointClient, pwheel->m_point);
+         pointClient = pwheel->m_point + screen_to_client();
 
          bool bRet;
 
@@ -18005,7 +18019,7 @@ namespace user
 
       ::point_i32 pointClient;
 
-      _screen_to_client(pointClient, pmouse->m_point);
+      pointClient =  pmouse->m_point + screen_to_client();
 
       auto pitem = hit_test(pointClient);
 
@@ -18558,6 +18572,54 @@ namespace user
       }
 
       return point;
+
+   }
+
+
+   ::shift_i32 interaction::screen_to_client(enum_layout elayout)
+   {
+
+      return -client_to_screen(elayout);
+
+   }
+
+
+   ::shift_i32 interaction::client_to_screen(enum_layout elayout)
+   {
+
+      return (::shift_i32(screen_origin(elayout)) - ::shift_i32(get_parent_accumulated_scroll(elayout)));
+
+   }
+
+
+   ::shift_i32 interaction::parent_to_client(enum_layout elayout)
+   {
+
+      return -client_to_parent(elayout);
+
+   }
+
+
+   ::shift_i32 interaction::client_to_parent(enum_layout elayout)
+   {
+
+      return ::shift_i32(m_layout.origin(elayout));
+
+   }
+
+
+   ::shift_i32 interaction::host_to_client(enum_layout elayout)
+   {
+
+      return -client_to_host(elayout);
+
+   }
+
+
+   ::shift_i32 interaction::client_to_host(enum_layout elayout)
+   {
+
+      return (::shift_i32(host_origin(elayout)) - ::shift_i32(get_parent_accumulated_scroll(elayout)));
 
    }
 
@@ -19920,6 +19982,84 @@ namespace user
 
    //}
 
+
+   ::aura::application * interaction::get_app() const
+   {
+
+      return m_pcontext && m_pcontext->m_papplication ? m_pcontext->m_papplication->m_pauraapplication : nullptr;
+
+   }
+
+
+   ::aura::session * interaction::get_session() const
+   {
+
+      return m_pcontext ? m_pcontext->m_paurasession : nullptr;
+
+   }
+
+
+   ::aura::system * interaction::get_system() const
+   {
+
+      return m_psystem ? m_psystem->m_paurasystem : nullptr;
+
+   }
+
+
+   double interaction::screen_scaler() const
+   {
+
+      return m_pinteractionScaler->screen_scaler();
+
+   }
+
+
+   double interaction::font_scaler() const
+   {
+
+      return m_pinteractionScaler->font_scaler();
+
+   }
+
+   bool interaction::is_this_visible(enum_layout elayout) const
+   {
+
+      return m_layout.is_this_visible(elayout);
+
+   }
+
+
+   bool interaction::is_this_screen_visible(enum_layout elayout) const
+   {
+
+      return m_layout.is_this_screen_visible(elayout);
+
+   }
+
+
+   bool interaction::is_window_visible(enum_layout elayout) const
+   {
+
+      return m_puserinteractionParent && !m_puserinteractionParent->is_window_visible(elayout) ? false : m_layout.state(elayout).is_visible();
+
+   }
+
+
+   bool interaction::is_window_screen_visible(enum_layout elayout) const
+   {
+
+      return m_puserinteractionParent && !m_puserinteractionParent->is_window_screen_visible(elayout) ? false : is_screen_visible(m_layout.state(elayout).display());
+
+   }
+
+
+   bool interaction::has_prodevian() const noexcept 
+   {
+      
+      return m_pinteractionimpl ? m_pinteractionimpl->has_prodevian() : false;
+      
+   }
 
 
 } // namespace user

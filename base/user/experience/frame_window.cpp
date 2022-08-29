@@ -1,9 +1,21 @@
 #include "framework.h"
-#include "base/user/experience/_experience.h"
+#include "frame_window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/display.h"
 #include "aura/message.h"
+#include "aura/message/user.h"
+#include "base/platform/session.h"
+#include "base/user/user/user.h"
+#include "department.h"
+#include "frame.h"
+#include "menu_manager.h"
+#include "dock_manager.h"
+#include "move_manager.h"
+#include "size_manager.h"
+#include "control_box.h"
+#include "axis/user/user/list_box.h"
+#include "base/platform/system.h"
 
 
 template < primitive_rectangle R1, primitive_rectangle R2 >

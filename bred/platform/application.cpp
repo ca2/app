@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "application.h"
+#include "system.h"
 
 
 namespace bred

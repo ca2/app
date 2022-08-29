@@ -5,6 +5,8 @@
 #include "acme/id.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
+#include "style.h"
+#include "interaction.h"
 
 
 namespace user

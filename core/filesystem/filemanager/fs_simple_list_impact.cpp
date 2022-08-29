@@ -6,6 +6,12 @@
 #endif
 
 #include "aqua/xml.h"
+#include "fs_simple_list_impact.h"
+#include "core/user/user/list_cache.h"
+#include "core/user/user/list_column.h"
+#include "fs_simple_impact.h"
+#include "core/user/user/mesh_item.h"
+#include "aura/message/user.h"
 
 
 namespace filemanager
@@ -711,7 +717,7 @@ namespace filemanager
 
             ::point_i32 point = pcontextmenu->GetPoint();
 
-            screen_to_client(point);
+            screen_to_client()(point);
 
             /*    if(_001HitTest_(point, iItem))
             {

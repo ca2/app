@@ -5,6 +5,7 @@
 #endif
 #include "aura/windowing/monitor.h"
 #include "aura/windowing/desktop_environment.h"
+#include "aura/user/user/user.h"
 
 
 namespace windowing

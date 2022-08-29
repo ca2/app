@@ -3,6 +3,13 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
+#include "folder_list.h"
+#include "document.h"
+#include "core/user/user/list_column.h"
+#include "core/user/user/list_column_array.h"
+#include "data.h"
+#include "aura/message/user.h"
+#include "core/user/user/mesh_item.h"
 
 
 namespace filemanager
@@ -153,7 +160,7 @@ namespace filemanager
 
       _001OnUpdateItemCount();
 
-      ::user::list_column * pcolumn = m_columna.get_by_subitem(1);
+      auto pcolumn = m_pcolumna->get_by_subitem(1);
 
       _001CreateImageList(pcolumn);
 
@@ -369,25 +376,25 @@ namespace filemanager
 
          ::color32_t color32 = 0;
 
-         if (filemanager_document()->m_emode == ::userfs::mode_saving)
+         if (filemanager_document()->m_emode == ::userfs::e_mode_saving)
          {
 
             color32 = argb(190, 255, 180, 90);
 
          }
-         else if (filemanager_document()->m_emode == ::userfs::mode_import)
+         else if (filemanager_document()->m_emode == ::userfs::e_mode_import)
          {
 
             color32 = argb(190, 90, 177, 255);
 
          }
-         else if (filemanager_document()->m_emode == ::userfs::mode_export)
+         else if (filemanager_document()->m_emode == ::userfs::e_mode_export)
          {
 
             color32 = argb(190, 255, 255, 177);
 
          }
-         else if (filemanager_document()->m_emode == ::userfs::mode_import)
+         else if (filemanager_document()->m_emode == ::userfs::e_mode_import)
          {
 
             color32 = argb(190, 180, 255, 90);

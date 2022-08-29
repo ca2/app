@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "transfer_notification.h"
+
+
 namespace ftp
 {
 

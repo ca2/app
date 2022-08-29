@@ -1,9 +1,18 @@
 #include "framework.h"
-#include "core/user/user/_component.h"
 #include "aura/graphics/image/context_image.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/graphics/write_text/font.h"
+#include "aura/graphics/image/imaging.h"
+#include "aura/graphics/draw2d/graphics_extension.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/pen.h"
 #include "acme/platform/hyperlink.h"
 #include "aura/windowing/windowing.h"
+#include "xfplayer_impact_line.h"
+#include "xfplayer_impact_lines.h"
+#include "core/platform/system.h"
+#include "aura/message/user.h"
+#include "aura/user/user/interaction.h"
 
 
 const i32 xfplayer_impact_line::AlignLeft = 1;
@@ -11,7 +20,7 @@ const i32 xfplayer_impact_line::AlignRight = 2;
 
 
 xfplayer_impact_line::xfplayer_impact_line(::user::interaction * puserinteraction) :
-   m_selection(puserinteraction)
+   m_pselection(__new(xfplayer_impact_line_selection(puserinteraction)))
 {
 
    m_bColonPrefix = false;
@@ -826,7 +835,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
       m_iaPosition[0] = 0;
       for (i = 1; i <= m_strPrefix.get_length(); i++)
       {
-         m_dcextension.get_text_extent(
+         m_pdcextension->get_text_extent(
          pgraphics,
          m_strPrefix,
          i,
@@ -834,7 +843,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
          m_iaPosition.add(size.cx);
       }
       int iSize = size.cx;
-      m_dcextension.get_text_extent(
+      m_pdcextension->get_text_extent(
       pgraphics,
       " ",
       1,
@@ -847,7 +856,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
       for (i = 1; i <= m_strRoot.get_length(); i++)
       {
 
-         m_dcextension.get_text_extent(
+         m_pdcextension->get_text_extent(
          pgraphics,
          m_strRoot,
          i,
@@ -868,7 +877,7 @@ void xfplayer_impact_line::CalcCharsPositions(::draw2d::graphics_pointer & pgrap
       for (i = 1; i <= m_str.get_length(); i++)
       {
 
-         m_dcextension.get_text_extent(
+         m_pdcextension->get_text_extent(
          pgraphics,
          m_str,
          i,
@@ -1552,7 +1561,7 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
 
    pgraphics->set(m_pfont);
 
-   m_dcextension.get_text_extent(pgraphics, pcsz, iLen, size);
+   m_pdcextension->get_text_extent(pgraphics, pcsz, iLen, size);
 
    size.cx += (::i32)(2 * (maximum(2.0, m_floatRateX * 8.0)));
    size.cy += (::i32)(2 * (maximum(2.0, m_floatRateX * 8.0)));
@@ -1586,20 +1595,20 @@ void xfplayer_impact_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, c
 
       pdcCache->set(m_pfontPrefix);
       const ::size_i32 & size = pdcCache->get_text_extent(m_strPrefix);
-      m_dcextension.text_out(pdcCache, (i32)(i32)((maximum(2.0, m_floatRateX * 4.0)) / 2), (i32)1 * (i32)((maximum(2.0, m_floatRateX * 4.0)) / 2) + m_rectangle.height() - size.cy, m_strPrefix, m_strPrefix.get_length(), s);
+      m_pdcextension->text_out(pdcCache, (i32)(i32)((maximum(2.0, m_floatRateX * 4.0)) / 2), (i32)1 * (i32)((maximum(2.0, m_floatRateX * 4.0)) / 2) + m_rectangle.height() - size.cy, m_strPrefix, m_strPrefix.get_length(), s);
       pdcCache->set(m_pfont);
 
       int x = (i32) (s.cx + (s.cx / m_strPrefix.get_length()) + (i32)(i32)((maximum(2.0, m_floatRateX * 8.0)) / 2));
 
       int y = (i32) (1 * (i32)((maximum(2.0, m_floatRateX * 8.0)) / 2));
 
-      m_dcextension.text_out(pdcCache, x, y, m_strRoot, m_strRoot.get_length(), s);
+      m_pdcextension->text_out(pdcCache, x, y, m_strRoot, m_strRoot.get_length(), s);
 
    }
    else
    {
 
-      m_dcextension.text_out(pdcCache, (i32)(i32)((maximum(2.0, m_floatRateX * 8.0)) / 2), (i32)1 * (i32)((maximum(2.0, m_floatRateX * 8.0)) / 2), pcsz, iLen, s);
+      m_pdcextension->text_out(pdcCache, (i32)(i32)((maximum(2.0, m_floatRateX * 8.0)) / 2), (i32)1 * (i32)((maximum(2.0, m_floatRateX * 8.0)) / 2), pcsz, iLen, s);
 
 
    }
@@ -2124,7 +2133,7 @@ bool xfplayer_impact_line::has_link()
 }
 
 
-inline XfplayerImpactLineSelection & xfplayer_impact_line::GetSelection()
+inline xfplayer_impact_line_selection & xfplayer_impact_line::GetSelection()
 {
 
    single_lock synchronouslock(m_pContainer->mutex());
@@ -2132,7 +2141,7 @@ inline XfplayerImpactLineSelection & xfplayer_impact_line::GetSelection()
    if (m_pContainer == nullptr)
    {
 
-      return m_selection;
+      return *m_pselection;
 
    }
 

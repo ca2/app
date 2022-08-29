@@ -8,6 +8,8 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/user/_component.h"
 #endif
+#include "system.h"
+#include "interaction.h"
 
 
 namespace user

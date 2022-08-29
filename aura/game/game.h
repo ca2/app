@@ -9,8 +9,9 @@ namespace aura
 
 
    class CLASS_DECL_AURA game :
-      virtual public ::aqua::game,
-      virtual public ::aura::drawable
+      virtual public ::aqua::game
+      //,
+      //virtual public ::aura::drawable
    {
    public:
 
@@ -22,7 +23,7 @@ namespace aura
       ~game() override;
 
       
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
       
       
       void destroy() override;

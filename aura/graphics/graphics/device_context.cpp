@@ -6,6 +6,8 @@
 #include "_graphics.h"
 #include "device_context.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/user/user/interaction_impl.h"
+#include "aura/user/user/interaction.h"
 
 
 namespace graphics

@@ -1,8 +1,14 @@
 #include "framework.h"
-#include "base/user/experience/_experience.h"
+#include "dock_manager.h"
+#include "frame_window.h"
+#include "frame.h"
+#include "control_box.h"
+#include "button.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
+#include "aura/message/user.h"
+#include "aura/user/user/button.h"
 
 
 namespace experience
@@ -64,7 +70,7 @@ namespace experience
 
       auto pointMove = m_pointWindowOrigin + (pmouse->m_point - (m_pointWindowOrigin + dock_origin() + m_pointCursorDockOrigin));
 
-      m_pframewindow->screen_to_client(pointDock);
+      pointDock+=m_pframewindow->screen_to_client();
 
       point = __point(pointCursor - pointDock);
 
@@ -377,7 +383,7 @@ namespace experience
 
       auto pointDockOrigin = pointCursor;
 
-      pbutton->screen_to_client(pointDockOrigin);
+      pointDockOrigin+=pbutton->screen_to_client();
 
       m_pointCursorDockOrigin = pointDockOrigin;
 

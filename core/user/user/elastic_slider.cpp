@@ -2,6 +2,9 @@
 #include "core/user/user/_component.h"
 #include "acme/platform/timer.h"
 #include "elastic_slider.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "mesh.h"
+#include "aura/message/user.h"
 
 
 namespace user
@@ -84,7 +87,7 @@ namespace user
       
       auto point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       if(rectangle.contains(point))
       {
@@ -150,7 +153,7 @@ namespace user
       
       auto pointCursor = get_cursor_position();
 
-      screen_to_client(pointCursor);
+      screen_to_client()(pointCursor);
 
       CalcTension(pointCursor);
 
@@ -249,7 +252,7 @@ namespace user
          
          auto pointCursor = get_cursor_position();
 
-         screen_to_client(pointCursor);
+         screen_to_client()(pointCursor);
 
          pgraphics->line_to(pointCursor);
 

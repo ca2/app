@@ -8,6 +8,7 @@
 #include "aura/graphics/image/context_image.h"
 #include "acme/primitive/string/base64.h"
 #include "aura/windowing/window.h"
+#include "copydesk.h"
 
 
 namespace user

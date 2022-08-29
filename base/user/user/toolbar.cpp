@@ -4,30 +4,14 @@
 #include "base/user/user/_component.h"
 #endif
 #include "aqua/xml.h"
-//#include "acme/operating_system/_os.h"
-//#include "acme/operating_system/cross.h"
 #include "aura/operating_system/_user.h"
 #include "toolbar.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "acme/timer.h"
-//
-//#define CLR_TO_RGBQUAD(clr)     (rgb(::blue(clr), ::green(clr), ::red(clr)))
-//
-//struct __COLORMAP
-//{
-//   // use u32 instead of RGBQUAD so we can compare two RGBQUADs easily
-//   u32 rgbqFrom;
-//   index iSysColorTo;
-//};
+#include "aura/user/user/frame.h"
+#include "aura/message/user.h"
 
-//static const __COLORMAP gen_SysColorMap[] =
-//{
-// mapping from color in DIB to system color
-// { RGB_TO_RGBQUAD(0x00, 0x00, 0x00),  COLOR_BTNTEXT },       // black
-//{ RGB_TO_RGBQUAD(0x80, 0x80, 0x80),  COLOR_BTNSHADOW },     // dark gray
-//{ RGB_TO_RGBQUAD(0xC0, 0xC0, 0xC0),  COLOR_BTNFACE },       // bright gray
-//{ RGB_TO_RGBQUAD(0xFF, 0xFF, 0xFF),  COLOR_BTNHIGHLIGHT }   // white
-//};
 
 
 class user_toolbar_command : public ::message::command        // class private to this file !

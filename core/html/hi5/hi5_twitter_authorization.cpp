@@ -1,10 +1,20 @@
 #include "framework.h"
-#include "core/html/html/_html.h"
-#include "core/html/impl/_impl.h"
+//#include "core/html/html/_html.h"
+//#include "core/html/impl/_impl.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "hi5_twitter_authorization.h"
 #include "core/user/simple/_component.h"
 #endif
+#include "core/user/userex/user.h"
+#include "hi5_twitter_authorization.h"
+#include "base/user/simple/frame_window.h"
+#include "core/platform/session.h"
+#include "core/platform/system.h"
+#include "base/user/user/single_document_template.h"
+#include "base/user/form/impact.h"
+#include "axis/user/form/data.h"
+#include "base/user/user/tab_impact.h"
+#include "base/user/form/document.h"
 //#include "core/user/simple/_component.h"
 
 //#include <openssl/rsa.h>

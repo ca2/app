@@ -32,6 +32,10 @@
 #include <sys/mman.h>
 #include <unistd.h>
 #endif
+#include "common.h"
+#include "attributes.h"
+#include "tag.h"
+#include "reader.h"
 
 
 void ILiteHTMLReaderEvents::BeginParse(uptr dwAppData, bool &bAbort)

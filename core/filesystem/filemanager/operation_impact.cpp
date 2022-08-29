@@ -2,6 +2,13 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
+#include "operation_impact.h"
+#include "operation_document.h"
+#include "operation_thread.h"
+#include "operation_list_impact.h"
+#include "base/user/user/split_layout.h"
+#include "operation_info_impact.h"
+#include "aura/message/user.h"
 
 
 namespace filemanager
@@ -24,7 +31,7 @@ namespace filemanager
    {
       pmessage->previous();
 
-      get_document()->m_thread.m_pimpact = this;
+      get_document()->m_poperationthread->m_pimpact = this;
 
       m_pviewcreator = __new(::user::impact_creator());
 
@@ -53,15 +60,17 @@ namespace filemanager
       {
          output_error_message("Could not create transfer information ::user::impact");
       }
+
       SetPane(1,m_pinfoview,false);
 
    }
+
 
    void operation_impact::install_message_routing(::channel * pchannel)
    {
       ::user::split_impact::install_message_routing(pchannel);
       MESSAGE_LINK(e_message_create,pchannel,this,&operation_impact::on_message_create);
-      MESSAGE_LINK(MessageMainPost,pchannel,this,&operation_impact::_001OnMainPostMessage);
+      MESSAGE_LINK(e_message_main_post,pchannel,this,&operation_impact::_001OnMainPostMessage);
       MESSAGE_LINK(e_message_destroy,pchannel,this,&operation_impact::on_message_destroy);
    }
 
@@ -73,12 +82,12 @@ namespace filemanager
    void operation_impact::_001OnMainPostMessage(::message::message * pmessage)
    {
       __pointer(::user::message) pusermessage(pmessage);
-      if(pusermessage->m_wparam == MessageMainPostFileOperation)
+      if(pusermessage->m_wparam == e_main_post_file_operation)
       {
          m_pinfoview->OnFileOperationStep((i32)pusermessage->m_lparam,false);
          m_plistview->OnFileOperationStep((i32)pusermessage->m_lparam,false);
       }
-      else if(pusermessage->m_wparam == MessageMainPostFileOperationFinal)
+      else if(pusermessage->m_wparam == e_main_post_file_operation_final)
       {
          m_pinfoview->OnFileOperationStep((i32)pusermessage->m_lparam,true);
          m_plistview->OnFileOperationStep((i32)pusermessage->m_lparam,true);

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "axis/user/user/list_box.h"
+
+
 namespace user
 {
 
@@ -97,7 +100,7 @@ namespace user
 
       virtual void update_data(bool bSaveAndValidate) override;
 
-      virtual void set_font_list_type(::write_text::font_list::enum_type etype);
+      virtual void set_font_list_type(::write_text::enum_font_list efoldertype);
 
 
    };

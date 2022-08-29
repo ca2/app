@@ -1,5 +1,6 @@
 #include "framework.h"
-#include "core/user/user/_component.h"
+#include "mesh_cache_interface.h"
+#include "mesh_item.h"
 
 
 namespace user

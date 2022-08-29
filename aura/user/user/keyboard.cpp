@@ -4,6 +4,8 @@
 #endif
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/keyboard.h"
+#include "user.h"
+#include "key.h"
 
 
 //#if defined(LINUX) || defined(SOLARIS)

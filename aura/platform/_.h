@@ -7,6 +7,9 @@
 #pragma once
 
 
+class shell_open;
+
+
 #include "theme.h"
 
 #include "context.h"

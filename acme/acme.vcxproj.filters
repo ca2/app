@@ -2786,6 +2786,15 @@
     <ClInclude Include="primitive\logic\tristate.h">
       <Filter>Header Files\primitive\logic</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\geometry2d\shift.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_constant.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\_shape.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

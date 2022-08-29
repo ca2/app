@@ -2,7 +2,10 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/user/_component.h"
 #endif
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "aura/user/user/interaction.h"
 
 
 namespace user

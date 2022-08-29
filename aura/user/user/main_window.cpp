@@ -3,6 +3,7 @@
 #include "aura/user/user/_component.h"
 #endif
 #include "aura/windowing/window.h"
+#include "main_window.h"
 
 
 inline bool is_custom_size(enum_display edisplay)

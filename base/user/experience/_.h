@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "_constant.h"
+
+
 namespace experience
 {
 
@@ -25,9 +28,6 @@ namespace experience
 } // namespace experience
 
 
-#include "_constant.h"
-
-
 //#include "experience.h"
 //#include "frame.h"
 namespace experience
@@ -39,6 +39,6 @@ namespace experience
 
 } // namespace experience
 
-#include "department.h"
+//#include "department.h"
 
 

@@ -2,9 +2,13 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #endif
-
-//#include "aura/update.h"
 #include "core/user/user/font_list.h"
+#include "aura/user/user/frame.h"
+#include "aura/graphics/write_text/font_list.h"
+#include "font_impact.h"
+#include "top_impact.h"
+#include "top_edit_impact.h"
+#include "base/user/user/document.h"
 
 
 namespace userex
@@ -175,7 +179,7 @@ namespace userex
 
       }
 
-      m_pimpact->set_font_list_type(::write_text::font_list::type_wide);
+      m_pimpact->set_font_list_type(::write_text::e_font_list_wide);
 
    }
 

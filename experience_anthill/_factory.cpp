@@ -2,6 +2,10 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "_library.h"
 #endif
+#include "experience/experience.h"
+#include "experience/control_box.h"
+#include "experience/control_box_button.h"
+#include "user/style.h"
 
 
 __FACTORY_EXPORT void experience_anthill_factory(::factory::factory * pfactory)

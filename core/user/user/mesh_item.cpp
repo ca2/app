@@ -3,6 +3,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_component.h"
 #endif
+#include "mesh_item.h"
 
 
 

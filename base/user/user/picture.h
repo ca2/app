@@ -4,6 +4,7 @@
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/region.h"
 #include "aura/graphics/image/fastblur.h"
+#include "aura/user/user/drawable.h"
 
 
 namespace user
@@ -11,7 +12,7 @@ namespace user
 
 
    class CLASS_DECL_BASE picture :
-      virtual public ::aura::drawable
+      virtual public ::user::drawable
    {
    public:
 
@@ -78,11 +79,11 @@ namespace user
       virtual bool enable_picture(bool bEnable = true);
       virtual bool is_picture_enabled() const;
 
-      using ::aura::drawable::hit_test;
-      virtual ::item_pointer hit_test(const ::point_i32 & point) override;
+      //using ::aura::drawable::hit_test;
+      virtual ::item_pointer hit_test(const ::point_i32 & point);
 
 
-      virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
+      virtual ::item_pointer on_hit_test(const ::point_i32 & point);
       //virtual int on_hit_test_cursor(point_f64 point);
       //virtual int on_hit_test( point_i32) const;
       virtual bool intersects_drawing(const polygon_f64 & polygon_i32) const;

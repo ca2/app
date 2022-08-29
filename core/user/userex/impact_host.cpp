@@ -9,15 +9,21 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #endif
-
 #include "aura/message.h"
-//#include "aura/update.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #endif
-
 #include "apex/message/simple_command.h"
 #include "base/user/user/tab_pane.h"
+#include "base/user/user/document.h"
+#include "base/user/user/single_document_template.h"
+#include "impact_host.h"
+#include "base/user/simple/child_frame.h"
+#include "pane_tab_impact.h"
+#include "font_impact.h"
+#include "core/user/userex/user.h"
+#include "core/platform/application.h"
+#include "core/platform/session.h"
 
 
 namespace userex
@@ -243,7 +249,7 @@ namespace userex
 
             }
 
-            __keep_on(&pframewindow->m_uiUserInteractionFlags, ::user::interaction_wfi_up_down_loading);
+            __keep_on(&pframewindow->m_uiUserInteractionFlags, ::user::e_interaction_wfi_up_down_loading);
 
             //::user::lock_sketch_to_design lockSketchToDesign(pframewindow);
 
@@ -390,7 +396,7 @@ namespace userex
 
                //::user::lock_sketch_to_design lockSketchToDesign(pframewindow);
 
-               __keep_on(&pframewindow->m_uiUserInteractionFlags, ::user::interaction_wfi_up_down_loading);
+               __keep_on(&pframewindow->m_uiUserInteractionFlags, ::user::e_interaction_wfi_up_down_loading);
 
                pframewindow->set_parent(nullptr);
 
@@ -458,7 +464,7 @@ namespace userex
             if (ptabimpact != nullptr)
             {
 
-               auto pframewindowTab = ptabimpact->GetTypedParent < simple_frame_window >();
+               auto pframewindowTab = ptabimpact->get_typed_parent < simple_frame_window >();
 
                bool bShow = ptabimpact->get_tab_count() >= 1;
 

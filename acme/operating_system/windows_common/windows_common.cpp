@@ -311,9 +311,8 @@ CLASS_DECL_ACME void set_last_error(::u32 dw)
    default:
       return ::error_file;
    }
+
 }
-
-
 
 
 CLASS_DECL_ACME void TRACELASTERROR()

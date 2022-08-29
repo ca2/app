@@ -4,7 +4,15 @@
 #include "_userfs.h"
 #endif
 #include "aura/user/user/shell.h"
-
+#include "list.h"
+#include "document.h"
+#include "list_data.h"
+#include "list_item_array.h"
+#include "list_item.h"
+#include "core/user/user/list_column.h"
+#include "core/user/userex/user.h"
+#include "aura/user/user/frame.h"
+#include "core/platform/session.h"
 
 
 namespace userfs
@@ -114,14 +122,14 @@ namespace userfs
          index iUItem = itemrange.get_upper_bound();
          if (iUItem < iLItem)
          {
-            iUItem = pdata->m_itema.get_upper_bound();
+            iUItem = pdata->m_pitema->get_upper_bound();
          }
          if (iLItem < 0)
             return false;
-         if (iLItem >= pdata->m_itema.get_size())
+         if (iLItem >= pdata->m_pitema->get_size())
             return false;
-         if (iUItem >= pdata->m_itema.get_size())
-            iUItem = pdata->m_itema.get_upper_bound();
+         if (iUItem >= pdata->m_pitema->get_size())
+            iUItem = pdata->m_pitema->get_upper_bound();
          ::payload payloadFile;
          ::payload varQuery;
          if (iUItem == iLItem)
@@ -465,7 +473,7 @@ namespace userfs
          {
             if (iItem < 0)
                continue;
-            if (iItem >= pdata->m_itema.get_count())
+            if (iItem >= pdata->m_pitema->get_count())
                continue;
 
             index iStrict = _001DisplayToStrict(iItem);
@@ -620,7 +628,7 @@ namespace userfs
    //            iItem++)
    //      {
    //         ::file::item item;
-   //         if (iItem < pdata->m_itema.get_count() && !iaItem.contains(iItem))
+   //         if (iItem < pdata->m_pitema->get_count() && !iaItem.contains(iItem))
    //         {
    //            iaItem.add(iItem);
    //            index iStrict;
@@ -657,7 +665,7 @@ namespace userfs
    ::count list::_001GetItemCount()
    {
 
-      return fs_list()->m_itema.get_count();
+      return fs_list()->m_pitema->get_count();
 
    }
 
@@ -680,7 +688,7 @@ namespace userfs
 
       }
 
-      fs_list()->m_itema.add_fs_item(item);
+      fs_list()->m_pitema->add_fs_item(item);
 
       _001OnUpdateItemCount();
 
@@ -753,14 +761,14 @@ namespace userfs
       //DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
       /*if(pshow->m_bShow)
       {
-      for(i32 i = 0; i < m_itema.get_item_count(); i++)
+      for(i32 i = 0; i < m_pitema->get_item_count(); i++)
       {
       pset->m_table.add_request(item(i).m_strPath);
       }
       }
       else
       {
-      for(i32 i = 0; i < m_itema.get_item_count(); i++)
+      for(i32 i = 0; i < m_pitema->get_item_count(); i++)
       {
       pset->m_table.erase_request(item(i).m_strPath);
       }
@@ -950,7 +958,7 @@ namespace userfs
 
             //}
 
-            if (psubitem->m_pitem->m_iItem < 0 || psubitem->m_pitem->m_iItem >= pdata->m_itema.get_count())
+            if (psubitem->m_pitem->m_iItem < 0 || psubitem->m_pitem->m_iItem >= pdata->m_pitema->get_count())
             {
 
                return;
@@ -1044,6 +1052,14 @@ namespace userfs
       }
 
       return ::user::form_list_impact::_001GetSubItemImage(psubitem);
+
+   }
+
+
+   ::file::item * list::fs_list_item(index iIndex)
+   {
+
+      return (*fs_list()->m_pitema)[iIndex];
 
    }
 

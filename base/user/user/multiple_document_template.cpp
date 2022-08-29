@@ -3,6 +3,10 @@
 #include "base/user/user/_component.h"
 #endif
 #include "aura/message.h"
+#include "multiple_document_template.h"
+#include "document.h"
+#include "frame_window.h"
+#include "base/platform/application.h"
 
 
 namespace user

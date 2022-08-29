@@ -2,6 +2,7 @@
 // From windows::device_listener by camilo on 2022-05-15 16:36 <3ThomasBorregaardSorenesen!! and Mummi!!
 #include "framework.h"
 #include "device_listener.h"
+#include "devices.h"
 
 
 namespace hardware

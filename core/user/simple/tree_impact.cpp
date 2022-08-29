@@ -1,12 +1,13 @@
 #include "framework.h"
-#include "core/user/simple/_component.h"
-#include "_tree.h"
+#include "tree_impact.h"
+#include "aura/message/user.h"
 
 
 simple_tree_impact::simple_tree_impact()
 {
 
 }
+
 
 simple_tree_impact::~simple_tree_impact()
 {

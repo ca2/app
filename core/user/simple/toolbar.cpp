@@ -1,8 +1,16 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/write_text/font.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/list.h"
-#include "core/user/simple/_component.h"
 #include "toolbar.h"
+#include "base/user/menu/central.h"
+#include "aura/user/user/style.h"
+#include "core/platform/session.h"
+#include "base/user/user/user.h"
+#include "aura/message/user.h"
+#include "base/user/user/tab.h"
 
 
 #define TIMER_HOVER 321654
@@ -220,7 +228,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-   __pointer(::user::tab) ptab = GetTypedParent < ::user::tab >();
+   __pointer(::user::tab) ptab = get_typed_parent < ::user::tab >();
 
    if (ptab.is_set())
    {
@@ -1261,7 +1269,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //
 //   ::point_i32 point = pmouse->m_point;
 //
-//   screen_to_client(point);
+//   screen_to_client()(point);
 //
 //   if (m_bDockTrack)
 //   {
@@ -1322,7 +1330,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //
 //   auto point = pmouse->m_point;
 //
-//   screen_to_client(point);
+//   screen_to_client()(point);
 //
 //   if (m_bDockTrack)
 //   {
@@ -1478,7 +1486,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //
 //   auto point = psession->get_cursor_position();
 //
-//   screen_to_client(point);
+//   screen_to_client()(point);
 //
 //   _001Hover(point, bRedraw);
 //
@@ -2201,7 +2209,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
 
                   _001GetItemRect(i, &rectangle);
 
-                  client_to_screen(rectangle);
+                  client_to_screen()(rectangle);
 
                   pControl[nControlCount].rectangleOldPos = rectangle;
 

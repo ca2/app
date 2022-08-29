@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "aura/user/user/scroll.h"
+#include "aura/user/user/range.h"
+
+
 namespace user
 {
 
@@ -165,7 +169,7 @@ namespace user
       __pointer(mesh_cache_interface)              m_pmeshcache;
       e_cache_hinting                              m_ecachehinting;
 
-      draw2d::graphics_extension                   m_dcextension;
+      __pointer(draw2d::graphics_extension)        m_pdcextension;
 
       index                                        m_iClick;
       bool                                         m_bLButtonDown;

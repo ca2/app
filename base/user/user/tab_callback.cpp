@@ -2,6 +2,8 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_component.h"
 #endif
+#include "tab_callback.h"
+#include "tab.h"
 
 
 namespace user
@@ -28,12 +30,14 @@ namespace user
 
    }
 
+
    void tab_callback::_001OnTabClick(tab * ptab, ::index iTab)
    {
 
       ptab->set_current_tab_by_index(iTab);
 
    }
+
 
    void tab_callback::_001OnTabClose(tab * ptab, ::index iTab)
    {

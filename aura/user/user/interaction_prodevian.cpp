@@ -9,6 +9,8 @@
 #include "acme/operating_system/_user.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/windowing/window.h"
+#include "interaction_impl.h"
+#include "interaction.h"
 
 
 #define TIME_REPORTING 0

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "core/user/user/tree_data.h"
+
+
 namespace userfs
 {
 

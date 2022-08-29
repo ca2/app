@@ -1,9 +1,15 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/image/context_image.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #endif
-
+#include "group_image_list.h"
+#include "base/user/menu/button.h"
+#include "base/user/menu/menu.h"
+#include "base/user/menu/item.h"
+#include "base/user/menu/item_ptra.h"
+#include "base/user/user/user.h"
+#include "aura/message/user.h"
 
 
 namespace userex
@@ -133,15 +139,15 @@ namespace userex
 
       m_idaHandledCommands.add(m_atom);
 
-      m_buttonMenu.create_control(this, m_atom);
+      m_pbuttonMenu->create_control(this, m_atom);
 
-      m_buttonMenu.set_button_style(::user::button::e_style_image_and_text);
+      m_pbuttonMenu->set_button_style(::user::button::e_style_image_and_text);
 
-      //m_buttonMenu.create_color(::user::color_button_text, argb(255, 80, 80, 80));
-      //m_buttonMenu.create_color(::user::color_button_background, argb(255, 255, 255, 255));
-      //m_buttonMenu.create_int(::user::int_button_draw_text_and_image_flags, e_align_left_center | DT_SINGLELINE);
+      //m_pbuttonMenu->create_color(::user::color_button_text, argb(255, 80, 80, 80));
+      //m_pbuttonMenu->create_color(::user::color_button_background, argb(255, 255, 255, 255));
+      //m_pbuttonMenu->create_int(::user::int_button_draw_text_and_image_flags, e_align_left_center | DT_SINGLELINE);
 
-      m_buttonMenu.m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
+      m_pbuttonMenu->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
 
    }
 
@@ -269,9 +275,9 @@ namespace userex
 
      //::image_pointer pimage = papp->matter_image(pgroup->m_strIcon);
 
-      //m_buttonMenu.set_window_text(get_group_title(pgroup));
+      //m_pbuttonMenu->set_window_text(get_group_title(pgroup));
 
-      //m_buttonMenu.LoadBitmaps(pimage);
+      //m_pbuttonMenu->LoadBitmaps(pimage);
 
       //if (pathFolder.has_char())
       //{
@@ -315,9 +321,9 @@ namespace userex
 
       ::image_pointer pimage = pcontextimage->matter_image(pgroup->m_strIcon);
 
-      m_buttonMenu.set_window_text(get_group_title(pgroup));
+      m_pbuttonMenu->set_window_text(get_group_title(pgroup));
 
-      m_buttonMenu.LoadBitmaps(pimage);
+      m_pbuttonMenu->LoadBitmaps(pimage);
 
       if (pathFolder.has_char())
       {
@@ -412,7 +418,7 @@ namespace userex
 
       string strXml(get_menu_xml());
 
-      ::user::interaction * pinteraction = &m_buttonMenu;
+      ::user::interaction * pinteraction = m_pbuttonMenu;
 
       ::rectangle_i32 rectangleWindow;
 
@@ -509,7 +515,7 @@ namespace userex
 
       rectangleMenu.bottom = rectangleClient.top + 32;
 
-      m_buttonMenu.display_child(rectangleMenu);
+      m_pbuttonMenu->display_child(rectangleMenu);
 
       ::rectangle_i32 rectangleList(rectangleClient);
 

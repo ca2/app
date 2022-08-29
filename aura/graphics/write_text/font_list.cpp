@@ -4,7 +4,14 @@
 #endif
 #include <math.h>
 #include "font_list.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/write_text/fonts.h"
+#include "aura/graphics/write_text/font_enumeration_item.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/graphics/draw2d/lock.h"
+#include "aura/user/user/interaction.h"
+
 
 #define BOX 0
 #define BOX_SEL 1
@@ -65,7 +72,7 @@ namespace write_text
       m_uaBackgroundColor[1][1] = argb(127, 255, 255, 255);
       m_uaBackgroundColor[1][2] = argb(127, 230, 230, 230);
 
-      m_etype = type_single_column;
+      m_efontlist = e_font_list_single_column;
 
    }
 
@@ -303,7 +310,7 @@ namespace write_text
 
       auto pointCursor = m_puserinteraction->get_cursor_position();
 
-      m_puserinteraction->screen_to_client(pointCursor);
+      pointCursor += m_puserinteraction->screen_to_client();
 
       pointCursor += m_puserinteraction->get_context_offset();
 
@@ -421,7 +428,7 @@ namespace write_text
 
       synchronous_lock synchronouslock(mutex());
 
-      if (m_etype == type_wide)
+      if (m_efontlist == e_font_list_wide)
       {
 
          _001OnDrawWide(pgraphics);
@@ -706,10 +713,10 @@ namespace write_text
    }
 
    
-   void font_list::set_font_list_type(enum_type etype)
+   void font_list::set_font_list_type(enum_font_list efontlist)
    {
 
-      m_etype = etype;
+      m_efontlist = efontlist;
 
       if (::is_set(m_puserinteraction))
       {
@@ -725,10 +732,10 @@ namespace write_text
    }
 
 
-   font_list::enum_type font_list::get_font_list_type() const
+   enum_font_list font_list::get_font_list_type() const
    {
 
-      return m_etype;
+      return m_efontlist;
 
    }
 
@@ -780,7 +787,7 @@ namespace write_text
 
          }
 
-         if (m_etype != type_single_column && !m_rectangleClient)
+         if (m_efontlist != e_font_list_single_column && !m_rectangleClient)
          {
 
             return;
@@ -794,7 +801,7 @@ namespace write_text
 
          //}
 
-         if (m_etype == type_wide)
+         if (m_efontlist == e_font_list_wide)
          {
 
             int iBaseHeight = maximum(250, m_rectangleClient.height());
@@ -817,7 +824,7 @@ namespace write_text
 
          if (pfontlistdata.is_set() &&
             pfontlistdata->m_iUpdateId == m_pfontenumeration->m_iUpdateId
-            && (m_etype == type_single_column ||
+            && (m_efontlist == e_font_list_single_column ||
                pfontlistdata->m_rectangleClient == m_rectangleClient))
          {
 
@@ -847,7 +854,7 @@ namespace write_text
 
          }
 
-         if (m_etype == type_wide)
+         if (m_efontlist == e_font_list_wide)
          {
 
             iaSize.add(iBaseSize * 16 / 40);
@@ -1154,7 +1161,7 @@ namespace write_text
 
       ::size_i32 sizeTotal;
 
-      if (m_etype == type_wide)
+      if (m_efontlist == e_font_list_wide)
       {
 
          sizeTotal = layout_wide();
@@ -1489,7 +1496,7 @@ namespace write_text
 
       synchronous_lock synchronouslock(mutex());
 
-      if (m_etype == type_wide)
+      if (m_efontlist == e_font_list_wide)
       {
 
          return hit_test_wide(point);
@@ -1610,7 +1617,7 @@ namespace write_text
 
       synchronous_lock synchronouslock(mutex());
 
-      if (m_etype == type_wide)
+      if (m_efontlist == e_font_list_wide)
       {
 
          return get_box_rect_wide(lprect, i);

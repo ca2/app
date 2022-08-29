@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "span.h"
+
+
 namespace user
 {
 

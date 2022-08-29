@@ -3,6 +3,9 @@
 
 #include "acme/platform/timer_array.h"
 #include "aura/graphics/image/array.h"
+#include "aura/user/user/box.h"
+#include "margin.h"
+#include "show.h"
 
 
 namespace user

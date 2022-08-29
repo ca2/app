@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "base/user/user/impact.h"
+#include "aura/user/user/plain_edit.h"
+
+
 namespace userex
 {
 
@@ -15,10 +19,10 @@ namespace userex
       ::point_i32                      m_pointMouseColorBeam;
       bool                             m_bCompact;
       bool                             m_bLButtonPressed;
-      ::user::plain_edit_impact          m_editRed;
-      ::user::plain_edit_impact          m_editGreen;
-      ::user::plain_edit_impact          m_editBlue;
-      ::user::plain_edit_impact          m_editHex;
+      ::user::plain_edit               m_editRed;
+      ::user::plain_edit               m_editGreen;
+      ::user::plain_edit               m_editBlue;
+      ::user::plain_edit               m_editHex;
 
       ::image_pointer                  m_pimageTemplate;
       ::image_pointer                  m_pimage;

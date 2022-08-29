@@ -2,10 +2,10 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/user/_component.h"
 #endif
-//#include "apex/platform/app_core.h"
 #include "aura/graphics/draw2d/graphics.h"
-
-//void __reposition_window(SIZEPARENTPARAMS * pLayout, ::user::interaction * pinteraction, const ::rectangle_i32 & rectangle);
+#include "interaction_child.h"
+#include "interaction.h"
+#include "aura/message/user.h"
 
 
 namespace user

@@ -4,9 +4,6 @@
 #include "xfplayer_impact_line_selection.h"
 
 
-class xfplayer_impact_linea;
-
-
 class CLASS_DECL_CORE xfplayer_impact_line  :
    virtual public ::object
 {
@@ -29,22 +26,22 @@ public:
    };
 
 
-   bool                             m_bColonPrefix;
+   bool                                            m_bColonPrefix;
 
 
-   XfplayerImpactLineSelection        m_selection;
-   byte *                           m_lpBitmapData;
-   ::draw2d::graphics_extension     m_dcextension;
+   __pointer(xfplayer_impact_line_selection)       m_pselection;
+   byte *                                          m_lpBitmapData;
+   __pointer(::draw2d::graphics_extension)         m_pdcextension;
 
-   index                            m_iLinkHoverIndex;
-   index                            m_iIndex;
+   index                                           m_iLinkHoverIndex;
+   index                                           m_iIndex;
 
-   string                           m_str;
-   string                           m_strPrefix;
-   string                           m_strRoot;
-   int_array                        m_iaPosition;
+   string                                          m_str;
+   string                                          m_strPrefix;
+   string                                          m_strRoot;
+   int_array                                       m_iaPosition;
 
-   ::rectangle_i32                              m_rectangle;
+   ::rectangle_i32                                 m_rectangle;
 
    i32                              m_iIndent;
    bool                             m_bPendingLayoutUpdate;
@@ -212,8 +209,8 @@ public:
    virtual void _001OnTimer(::timer * ptimer);
    DECLARE_MESSAGE_HANDLER(OnSetCursor);
 
-   XfplayerImpactLineSelection::enum_state GetSelectionState();
-   XfplayerImpactLineSelection & GetSelection();
+   xfplayer_impact_line_selection::enum_state GetSelectionState();
+   xfplayer_impact_line_selection & GetSelection();
    ::user::interaction * get_interaction();
 
 

@@ -5,6 +5,10 @@
 #include "acme/platform/profiler.h"
 #include "acme/platform/system_setup.h"
 #include "axis/constant/idpool.h"
+#include "system.h"
+#include "axis/account/user_set.h"
+#include "session.h"
+#include "application.h"
 
 
 void axis_factory(::factory::factory * pfactory);

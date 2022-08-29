@@ -2,7 +2,12 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "_library.h"
 #endif
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "control_box_button.h"
+#include "aura/user/user/frame.h"
+#include "base/user/experience/control_box.h"
 
 
 namespace experience_core

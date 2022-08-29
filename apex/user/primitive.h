@@ -588,8 +588,8 @@ namespace user
       void keyboard_focus_OnKeyUp(::message::message * pmessage) override;
 
 
-      template < class T >
-      __pointer(T) GetTypedParent() const;
+      //template < class T >
+      //__pointer(T) GetTypedParent() const;
 
       
       ::user::interaction * get_parent_window() const override;

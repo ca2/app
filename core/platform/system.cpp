@@ -1,8 +1,13 @@
 #include "framework.h"
+#include "application.h"
+#include "session.h"
+#include "system.h"
 #include "acme/platform/system_setup.h"
 #include "core/user/user/_component.h"
-#include "core/const/idpool.h"
+#include "core/constant/idpool.h"
 #include "core/networking/ftp/file_status.h"
+#include "core/user/userex/user.h"
+
 
 
 bool __rich_text_initialize();

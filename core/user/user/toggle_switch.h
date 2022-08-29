@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/user/user/check_box.h"
+
+
 namespace user
 {
 

@@ -2,6 +2,9 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/user/_component.h"
 #endif
+#include "form.h"
+#include "aura/message/user.h"
+#include "form_callback.h"
 
 
 namespace user
@@ -198,6 +201,22 @@ namespace user
    {
 
       return false;
+
+   }
+
+
+   ::aura::application * form::get_app() const
+   {
+
+      return m_pcontext ? m_pcontext->m_pauraapplication : nullptr;
+
+   }
+
+
+   ::aura::session * form::get_session() const
+   {
+
+      return m_pcontext ? m_pcontext->m_paurasession : nullptr;
 
    }
 

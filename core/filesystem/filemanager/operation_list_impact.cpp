@@ -3,6 +3,14 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
+#include "operation_document.h"
+#include "operation_list_impact.h"
+#include "file_properties_form.h"
+#include "operation_thread.h"
+#include "core/user/user/list_column.h"
+#include "core/user/user/list_cache.h"
+#include "operation.h"
+#include "core/user/user/mesh_item.h"
 
 
 namespace filemanager
@@ -38,7 +46,7 @@ namespace filemanager
    {
       if(get_document() == nullptr)
          return 0;
-      return get_document()->m_thread.get_item_count();
+      return get_document()->m_poperationthread->get_item_count();
    }
 
    __pointer(operation_document) operation_list_impact::get_document()
@@ -53,7 +61,7 @@ namespace filemanager
       if(psubitem->m_iSubItem == 0)
       {
 
-         psubitem->m_strText = get_document()->m_thread.get_item_message((i32)psubitem->m_pitem->m_iItem);
+         psubitem->m_strText = get_document()->m_poperationthread->get_item_message((i32)psubitem->m_pitem->m_iItem);
          
          psubitem->m_bOk = true;
 
@@ -63,7 +71,7 @@ namespace filemanager
          
          double d;
          
-         d = get_document()->m_thread.get_item_progress((i32)psubitem->m_pitem->m_iItem);
+         d = get_document()->m_poperationthread->get_item_progress((i32)psubitem->m_pitem->m_iItem);
 
          psubitem->m_strText.format("%0.1f%%",d * 100.0);
 
@@ -148,17 +156,17 @@ namespace filemanager
 
          ::count iItem = 0;
 
-         for(i32 i = 0; i < get_document()->m_thread.m_iOperation; i++)
+         for(i32 i = 0; i < get_document()->m_poperationthread->m_iOperation; i++)
          {
 
-            iItem += get_document()->m_thread.m_fileoperationa.get_size();
+            iItem += get_document()->m_poperationthread->m_fileoperationa.get_size();
 
          }
 
-         if(get_document()->m_thread.m_iOperation < get_document()->m_thread.m_fileoperationa.get_size())
+         if(get_document()->m_poperationthread->m_iOperation < get_document()->m_poperationthread->m_fileoperationa.get_size())
          {
 
-            iItem += get_document()->m_thread.m_fileoperationa[get_document()->m_thread.m_iOperation]->m_iFile;
+            iItem += get_document()->m_poperationthread->m_fileoperationa[get_document()->m_poperationthread->m_iOperation]->m_iFile;
 
          }
 

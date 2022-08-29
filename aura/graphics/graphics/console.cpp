@@ -8,6 +8,8 @@
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/context_image.h"
+#include "aura/graphics/write_text/font.h"
+#include "aura/user/user/interaction.h"
 
 
 namespace graphics

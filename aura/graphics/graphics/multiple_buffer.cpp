@@ -5,6 +5,8 @@
 #include "aura/graphics/graphics/multiple_buffer.h"
 #include "_.h"
 #include "_graphics.h"
+#include "aura/user/user/interaction.h"
+#include "aura/user/user/interaction_impl.h"
 
 
 namespace graphics

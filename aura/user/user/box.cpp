@@ -7,6 +7,7 @@
 #include "apex/message/simple_command.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
+#include "box.h"
 
 
 namespace user
@@ -272,11 +273,11 @@ namespace user
 
          m_ewindowflag |= e_window_flag_loading_window_rect;
 
-         auto psession = get_session();
+         //auto psession = get_session();
 
-         auto puser = psession->user();
+         //auto puser = psession->user();
 
-         auto pwindowing = puser->windowing1();
+         //auto pwindowing = puser->windowing1();
 
          ::index iDisplay = good_restore(nullptr, nullptr, true, e_activation_default, e_zorder_top, initial_restore_display());
 
@@ -318,11 +319,11 @@ namespace user
 
          m_ewindowflag |= e_window_flag_loading_window_rect;
 
-         auto psession = get_session();
+         //auto psession = get_session();
 
-         auto puser = psession->user();
+         //auto puser = psession->user();
 
-         auto pwindowing = puser->windowing1();
+         //auto pwindowing = puser->windowing1();
 
          ::index iDisplay = good_restore(nullptr, nullptr, true, e_activation_default, e_zorder_top, initial_restore_display());
 
@@ -745,11 +746,7 @@ namespace user
 
       ::rectangle_i32 rectangleMainMonitor;
 
-      auto psession = get_session();
-
-      auto puser = psession->user();
-
-      auto pwindowing = puser->windowing1();
+      auto pwindowing = windowing();
 
       auto pdisplay = pwindowing->display();
 

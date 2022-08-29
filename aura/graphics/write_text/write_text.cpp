@@ -1,5 +1,6 @@
 #include "framework.h"
-#include "_.h"
+#include "write_text.h"
+#include "fonts.h"
 #include "aqua/xml/_.h"
 #include "true_type_font_utilities.h"
 #include "acme/filesystem/filesystem/acme_directory.h"

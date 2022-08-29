@@ -2,6 +2,17 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_component.h"
 #endif
+#include "impact.h"
+#include "aura/message/user.h"
+#include "aura/user/user/system.h"
+#include "document.h"
+#include "frame_window.h"
+#include "impact_system.h"
+#include "toolbar.h"
+#include "base/platform/session.h"
+#include "impact_data.h"
+#include "base/user/user/place_holder.h"
+#include "base/user/user/user.h"
 
 
 namespace user
@@ -132,7 +143,7 @@ namespace user
 
          }
 
-         auto pframe = GetTypedParent < ::user::frame_window >();
+         auto pframe = get_typed_parent < ::user::frame_window >();
 
          if (pframe != nullptr && pframe->m_pviewMain == nullptr)
          {
@@ -727,6 +738,38 @@ namespace user
       
       ::user::interaction::assert_ok();
 
+   }
+
+
+   ::base::application * impact::get_app() const 
+   {
+      
+      return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; 
+   
+   }
+
+
+   ::base::session * impact::get_session() const 
+   {
+      
+      return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
+   
+   }
+
+
+   ::base::system * impact::get_system() const 
+   {
+      
+      return m_psystem ? m_psystem->m_pbasesystem : nullptr; 
+   
+   }
+
+
+   ::base::user * impact::user() const 
+   {
+      
+      return get_session() ? get_session()->user() : nullptr; 
+   
    }
 
 

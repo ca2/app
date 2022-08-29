@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include "aura/user/user/main_window.h"
+
 
 namespace account
 {

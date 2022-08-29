@@ -2,6 +2,14 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
+#include "file_properties_form.h"
+#include "core/user/userex/pane_tab_impact.h"
+#include "core/user/userex/user.h"
+#include "core/platform/session.h"
+#include "base/user/simple/frame_window.h"
+#include "base/user/user/single_document_template.h"
+#include "base/user/user/document.h"
+#include "base/user/form/document.h"
 
 
 namespace filemanager

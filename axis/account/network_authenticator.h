@@ -8,6 +8,7 @@
 
 
 #include "apex/networking/http/status.h"
+#include "authenticator.h"
 
 
 namespace account

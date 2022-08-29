@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "aura/user/user/form_callback.h"
+#include "base/user/user/impact_creator.h"
+
+
 namespace usernet
 {
 

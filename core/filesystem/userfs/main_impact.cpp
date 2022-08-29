@@ -3,8 +3,9 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "_userfs.h"
 #endif
-
 #include "core/user/user/_tree.h"
+#include "main_impact.h"
+#include "list.h"
 
 
 namespace userfs

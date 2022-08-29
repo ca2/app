@@ -1,13 +1,16 @@
 #include "framework.h"
 #include "aura/graphics/image/image.h"
+#include "aura/graphics/write_text/font.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
-
 #include "_data.h"
 #include "core/user/user/_tree.h"
-//#include "aura/platform/static_start.h"
 #include "aura/astr.h"
+#include "data.h"
+#include "document.h"
+#include "core/platform/application.h"
+#include "base/user/user/multiple_document_template.h"
 
 
 namespace filemanager
@@ -17,10 +20,10 @@ namespace filemanager
    data::data()
    {
 
-      m_setToolbar[::userfs::mode_normal] = "filemanager_toolbar.xml";
-      m_setToolbar[::userfs::mode_saving] = "filemanager_saving_toolbar.xml";
-      m_setToolbar[::userfs::mode_import] = "filemanager_import_toolbar.xml";
-      m_setToolbar[::userfs::mode_export] = "filemanager_export_toolbar.xml";
+      m_setToolbar[::userfs::e_mode_normal] = "filemanager_toolbar.xml";
+      m_setToolbar[::userfs::e_mode_saving] = "filemanager_saving_toolbar.xml";
+      m_setToolbar[::userfs::e_mode_import] = "filemanager_import_toolbar.xml";
+      m_setToolbar[::userfs::e_mode_export] = "filemanager_export_toolbar.xml";
 
       m_bMakeVisible = true;
       m_bTransparentBackground = true;
@@ -88,10 +91,10 @@ namespace filemanager
       //}
 
       m_strLevelUp.Empty();
-      m_setToolbar[::userfs::mode_normal] = "matter://filemanager_toolbar.xml";
-      m_setToolbar[::userfs::mode_saving] = "matter://filemanager_saving_toolbar.xml";
-      m_setToolbar[::userfs::mode_import] = "matter://filemanager_import_toolbar.xml";
-      m_setToolbar[::userfs::mode_export] = "matter://filemanager_export_toolbar.xml";
+      m_setToolbar[::userfs::e_mode_normal] = "matter://filemanager_toolbar.xml";
+      m_setToolbar[::userfs::e_mode_saving] = "matter://filemanager_saving_toolbar.xml";
+      m_setToolbar[::userfs::e_mode_import] = "matter://filemanager_import_toolbar.xml";
+      m_setToolbar[::userfs::e_mode_export] = "matter://filemanager_export_toolbar.xml";
       m_dataidStatic = "FileManagerFavoritesList";
       m_strXmlPopup = "matter://department/file_popup.xml";
       m_strFolderPopup = "matter://department/folder_popup.xml";

@@ -1,6 +1,11 @@
 #pragma once
 
 
+#include "aura/user/user/plain_edit.h"
+#include "base/user/user/show.h"
+#include "axis/mathematics/calculator/result.h"
+
+
 namespace calculator
 {
 

@@ -1,8 +1,17 @@
 #include "framework.h"
 #include "aura/operating_system.h"
-#include "core/user/account/_account.h"
-#include "axis/user/simple_ui_draw.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "axis/user/user/simple_ui_draw.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/image/icon.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/write_text/font.h"
+#include "impact.h"
+#include "aura/user/user/still.h"
+#include "aura/user/user/plain_edit.h"
+#include "aura/user/user/button.h"
+#include "aura/message/user.h"
+#include "axis/account/credentials.h"
 
 
 namespace account

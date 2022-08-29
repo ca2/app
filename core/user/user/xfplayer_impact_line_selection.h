@@ -1,29 +1,33 @@
 #pragma once
 
+
 class xfplayer_impact_line;
 
-class CLASS_DECL_CORE XfplayerImpactLineSelectionItem  
+
+class CLASS_DECL_CORE xfplayer_impact_line_selection_item
 {
 protected:
 
-   index               m_iLineStart;
-   index               m_iLineEnd;
-   strsize               m_iCharStart;
-   strsize               m_iCharEnd;
+   
+   index                m_iLineStart;
+   index                m_iLineEnd;
+   strsize              m_iCharStart;
+   strsize              m_iCharEnd;
 
 
-      // Construction / Destruction
 public:
-   XfplayerImpactLineSelectionItem();
-   XfplayerImpactLineSelectionItem(
+
+
+   xfplayer_impact_line_selection_item();
+   xfplayer_impact_line_selection_item(
       index      iLineStart,
       index      iLineEnd,
       strsize      iCharStart,
       strsize      iCharEnd
       );
-   virtual ~XfplayerImpactLineSelectionItem();
+   ~xfplayer_impact_line_selection_item();
 
-   XfplayerImpactLineSelectionItem & operator =(const XfplayerImpactLineSelectionItem & item);
+   xfplayer_impact_line_selection_item & operator =(const xfplayer_impact_line_selection_item & item);
 
    void NormalizeSel();
    bool Intersect(xfplayer_impact_line & viewline);
@@ -42,7 +46,7 @@ public:
 };
 
 
-class CLASS_DECL_CORE XfplayerImpactLineSelection :
+class CLASS_DECL_CORE xfplayer_impact_line_selection :
    virtual public element
 {
 public:
@@ -50,43 +54,43 @@ public:
 
    enum enum_state
    {
+      
       e_state_initial = 1,
-      StateTracking = 2
+      e_state_tracking = 2
+
    };
       
+
    enum enum_event
    {
-      EventStart = 1,
-      EventEnd = 2
-   };
-      
-   enum ETypeMask
-   {
-//      TypeMaskStartHere = 1,
-//      TypeMaskEndHere = 2,
+
+      e_event_start = 1,
+      e_event_end = 2
+
    };
 
-   ::user::interaction * m_puserinteraction;
+      
+   ::user::interaction *                                                                  m_puserinteraction;
 
-   array < XfplayerImpactLineSelectionItem, XfplayerImpactLineSelectionItem> m_itema;
+   array < xfplayer_impact_line_selection_item, xfplayer_impact_line_selection_item >     m_itema;
 
-   XfplayerImpactLineSelectionItem m_item;
+   xfplayer_impact_line_selection_item                                                    m_item;
       
 
-   index               m_iLineStartSource;
-   index               m_iLineEndSource;
-   strsize               m_iCharStartSource;
-   strsize               m_iCharEndSource;
+   index                   m_iLineStartSource;
+   index                   m_iLineEndSource;
+   strsize                 m_iCharStartSource;
+   strsize                 m_iCharEndSource;
 
-   i32               m_etype; 
-   enum_state            m_estate;
+   i32                     m_etype; 
+   enum_state              m_estate;
 
    
-   XfplayerImpactLineSelection(::user::interaction * puserinteraction);
-   ~XfplayerImpactLineSelection() override;
+   xfplayer_impact_line_selection(::user::interaction * puserinteraction);
+   ~xfplayer_impact_line_selection() override;
 
 
-   bool get_item(XfplayerImpactLineSelectionItem & item, xfplayer_impact_line & viewline);
+   bool get_item(xfplayer_impact_line_selection_item & item, xfplayer_impact_line & viewline);
    enum_state GetState();
 
    virtual void relay_event(xfplayer_impact_line & viewline, ::message::message * pmessage);
@@ -104,13 +108,16 @@ public:
       bool   bMerge);
 
 
+   xfplayer_impact_line_selection & operator =(xfplayer_impact_line_selection & selection);
 
-   XfplayerImpactLineSelection & operator =(XfplayerImpactLineSelection & selection);
 
    bool OnMouseMove(xfplayer_impact_line & viewline, ::u32 user, const ::point_i32 & point);
    bool OnLButtonDown(xfplayer_impact_line & viewline, ::u32 user, const ::point_i32 & point);
    bool OnLButtonUp(xfplayer_impact_line & viewline, ::u32 user, const ::point_i32 & point);
    bool OnTimer(xfplayer_impact_line & viewline, ::u32 user);
 
+
 };
+
+
 

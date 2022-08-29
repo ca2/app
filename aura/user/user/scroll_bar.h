@@ -1,10 +1,12 @@
 #pragma once
 
 
+#include "interaction.h"
+#include "scroll_info.h"
+
+
 namespace user
 {
-
-
 
 
    class CLASS_DECL_AURA scroll_bar :

@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include "aura/user/user/interaction.h"
+
 
 namespace account
 {

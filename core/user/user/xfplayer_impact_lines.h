@@ -7,10 +7,11 @@ class CLASS_DECL_CORE xfplayer_impact_linea :
 public:
 
 
-   XfplayerImpactLineSelection         m_selection;
-   ::user::interaction *               m_puserinteraction;
-   index                               m_iFirstVisible;
-   index                               m_iLastVisible;
+   __pointer(xfplayer_impact_line_selection)    m_pselection;
+   ::user::interaction *                        m_puserinteraction;
+   index                                        m_iFirstVisible;
+   index                                        m_iLastVisible;
+
 
    HAVE_ARRAY_OF(line, m_linea, xfplayer_impact_line);
 
@@ -32,8 +33,6 @@ public:
    void OnChildSetVisible(xfplayer_impact_line * pImpactLine, bool bVisible);
 
 
-   
-
    user::enum_line_hit hit_test(const point_i32 &pointCursor, strsize &iLine, strsize &iChar);
 
    void install_message_routing(::channel * pchannel);
@@ -46,7 +45,7 @@ public:
    virtual void _001OnTimer(::timer * ptimer);
    DECLARE_MESSAGE_HANDLER(OnSetCursor);
 
-   XfplayerImpactLineSelection & GetSelection();
+   xfplayer_impact_line_selection & GetSelection();
 
    void get_sel_text(string & strSelText, const ::string & pszLineSeparator = "\r\n");
    string get_sel_text(const ::string & pszLineSeparator = "\r\n");

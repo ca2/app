@@ -4,9 +4,7 @@
 #endif
 #include "aura/operating_system.h"
 #include "_data.h"
-//#include "aura/update.h"
 #include "aura/message.h"
-//#include "aura/user/interaction_thread.h"
 #ifdef WINDOWS_DESKTOP
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
 #include "aura/user/windows_tsf/edit_window.h"
@@ -14,14 +12,23 @@
 #endif
 #include "acme/constant/timer.h"
 #include "acme/primitive/string/base64.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "acme/platform/timer.h"
 #include "aura/windowing/text_editor_interface.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
-//#include "_tree.h"
-
-//extern CLASS_DECL_AURA thread_int_ptr < DWORD_PTR > t_time1;
+#include "scroll_data.h"
+#include "plain_edit.h"
+#include "style.h"
+#include "plain_edit_style.h"
+#include "aura/message/user.h"
+#include "user.h"
+#include "copydesk.h"
+#include "interaction_style.h"
+#include "text_composition_client.h"
 
 
 namespace aura
@@ -217,9 +224,9 @@ namespace user
 
       m_bCalcLayoutHintNoTextChange = false;
 
-      m_scrolldataHorizontal.m_bScrollEnable = false;
+      m_pscrolldataHorizontal->m_bScrollEnable = false;
 
-      m_scrolldataVertical.m_bScrollEnable = false;
+      m_pscrolldataVertical->m_bScrollEnable = false;
 
       m_dy = -1;
       m_iImpactOffset = 0;
@@ -823,9 +830,9 @@ namespace user
 
                ::point_i32 point((long)(left + x1), (long)y);
 
-               client_to_screen(point);
+               point += client_to_screen();
 
-               get_wnd()->screen_to_client(point);
+               point += get_wnd()->screen_to_client();
 
                ::SetCaretPos(point.x, point.y);
 
@@ -845,9 +852,9 @@ namespace user
 
                ::point_i32 point((long)(left + x1), (long)y);
 
-               client_to_screen(point);
+               point+=client_to_screen();
 
-               get_wnd()->screen_to_client(point);
+               point+=get_wnd()->screen_to_client();
 
                ::SetCaretPos(point.x, point.y);
 
@@ -988,7 +995,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client(point);
+      point += screen_to_client();
 
       m_bRMouseDown = true;
 
@@ -1032,7 +1039,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client(point);
+      point += screen_to_client();
 
       //{
 
@@ -1094,7 +1101,7 @@ namespace user
 
             auto pointCursor = pwindow->get_cursor_position();
 
-            screen_to_client(pointCursor);
+            pointCursor += screen_to_client();
 
             ::rectangle_i32 rectangleActiveClient;
 
@@ -1821,7 +1828,7 @@ namespace user
 
             ::point_i32 point = pmouse->m_point;
 
-            screen_to_client(point);
+            point += screen_to_client();
 
             if (m_pointLastCursor != point)
             {
@@ -1886,7 +1893,7 @@ namespace user
 
          ::point_i32 point = pmouse->m_point;
 
-         screen_to_client(point);
+         point += screen_to_client();
 
          {
 
@@ -1954,7 +1961,7 @@ namespace user
 
          ::point_i32 point = pmouse->m_point;
 
-         screen_to_client(point);
+         point += screen_to_client();
 
          queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
             {
@@ -2488,7 +2495,7 @@ namespace user
       //
       //      m_dLineHeight = metric.get_line_spacing();
       //
-      //      m_scrolldataVertical.m_iLine = (::i32) m_dLineHeight;
+      //      m_pscrolldataVertical->m_iLine = (::i32) m_dLineHeight;
       //
       //      if (m_dLineHeight <= 0)
       //      {
@@ -2834,7 +2841,7 @@ namespace user
       //
       //      }
       //
-      //      m_scrolldataVertical.m_iLine = (int) m_dLineHeight;
+      //      m_pscrolldataVertical->m_iLine = (int) m_dLineHeight;
       //
       //      on_change_impact_size(pgraphics);
       //
@@ -6309,9 +6316,9 @@ namespace user
 
       rectangle.bottom = (::i32)y2;
 
-      client_to_screen(rectangle);
+      rectangle += client_to_screen();
 
-      get_wnd()->screen_to_client(rectangle);
+      rectangle += get_wnd()->screen_to_client();
 
    }
 

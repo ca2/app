@@ -4,6 +4,7 @@
 #include "core/user/simple/_component.h"
 #endif
 #include "main_frame.h"
+#include "core/user/rich_text/format_tool.h"
 
 
 namespace user

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/user/user/form.h"
+
+
 namespace userex
 {
 
@@ -12,11 +15,13 @@ namespace userex
 
 
       property_sheet();
-      virtual ~property_sheet();
+      ~property_sheet() override;
+
 
    };
 
 
 } // namespace userex
+
 
 

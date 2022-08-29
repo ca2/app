@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "_simpledb.h"
 #include "storage.h"
+#include "axis/platform/application.h"
 
 
 namespace simpledb

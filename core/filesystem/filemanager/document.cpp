@@ -4,9 +4,15 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
-
-//#include "aura/update.h"
 #include "base/user/user/tab_pane.h"
+#include "document.h"
+#include "tab_impact.h"
+#include "data.h"
+#include "child_frame.h"
+#include "core/user/userex/user.h"
+#include "impact.h"
+#include "core/platform/session.h"
+#include "core/platform/application.h"
 
 
 namespace filemanager
@@ -845,7 +851,7 @@ namespace filemanager
       if (pimpact.is_set())
       {
 
-         __pointer(tab_impact) ptabimpact = pimpact->GetTypedParent <tab_impact>();
+         __pointer(tab_impact) ptabimpact = pimpact->get_typed_parent <tab_impact>();
 
          if (ptabimpact.is_set())
          {
@@ -1009,7 +1015,7 @@ namespace filemanager
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      if (m_emode == ::userfs::mode_saving || m_emode == ::userfs::mode_export)
+      if (m_emode == ::userfs::e_mode_saving || m_emode == ::userfs::e_mode_export)
       {
 
          auto ptopic = create_topic(id_topic_ok);
@@ -1030,7 +1036,7 @@ namespace filemanager
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      if (m_emode == ::userfs::mode_import)
+      if (m_emode == ::userfs::e_mode_import)
       {
 
          auto ptopic = create_topic(id_topic_ok);
@@ -1049,7 +1055,7 @@ namespace filemanager
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      if (m_emode == ::userfs::mode_saving)
+      if (m_emode == ::userfs::e_mode_saving)
       {
 
          auto ptopic = create_topic(id_topic_ok);
@@ -1351,7 +1357,7 @@ namespace filemanager
 
       pfilemanagerdata->m_pdocumentTopic = pdocument;
 
-      m_emode = ::userfs::mode_saving;
+      m_emode = ::userfs::e_mode_saving;
 
       auto pdocumentFilemanager = this;
 
@@ -1383,7 +1389,7 @@ namespace filemanager
 
       pfilemanagerdata->m_pdocumentTopic = pdocument;
 
-      m_emode = ::userfs::mode_import;
+      m_emode = ::userfs::e_mode_import;
 
       auto pdocumentFilemanager = this;
 
@@ -1415,7 +1421,7 @@ namespace filemanager
 
       pfilemanagerdata->m_pdocumentTopic = pdocument;
 
-      m_emode = ::userfs::mode_export;
+      m_emode = ::userfs::e_mode_export;
 
       auto pdocumentFilemanager = this;
 

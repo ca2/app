@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "core/user/user/_component.h"
 #include "tool_command.h"
+#include "base/user/user/toolbar.h"
 
 
 namespace user

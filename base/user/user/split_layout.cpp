@@ -2,8 +2,11 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_component.h"
 #endif
+#include "split_layout.h"
 #include "split_pane.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "split_bar.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/user/user/style.h"
 
 
 namespace user

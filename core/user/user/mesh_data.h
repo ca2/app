@@ -2,6 +2,7 @@
 
 
 #include "mesh_item.h"
+#include "aura/user/user/range.h"
 
 
 namespace user

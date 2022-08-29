@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/user/user/tool_window.h"
+
+
 namespace user
 {
 
@@ -15,7 +18,7 @@ namespace user
       public:
 
 
-         ::user::rich_text::eattribute                            m_eattribute;
+         ::user::rich_text::e_attribute                           m_eattribute;
          // an array just to hold one format
          // the one the tool is editing
          __pointer(__pointer_array(::user::rich_text::format))    m_pformata;

@@ -3,7 +3,9 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_component.h"
 #endif
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "tab_data.h"
 
 
 namespace user

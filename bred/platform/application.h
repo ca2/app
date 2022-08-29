@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/platform/application.h"
+
+
 namespace bred
 {
 

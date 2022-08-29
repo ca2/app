@@ -8,6 +8,12 @@
 #include "_data.h"
 #include "aura/template/list.h"
 #include "core/user/user/_tree.h"
+#include "document.h"
+#include "core/filesystem/userfs/item.h"
+#include "data.h"
+#include "context_menu.h"
+#include "base/user/user/user.h"
+#include "aura/message/user.h"
 
 
 namespace filemanager
@@ -781,7 +787,7 @@ namespace filemanager
    void tree::_001OnShellCommand(::message::message * pmessage)
    {
 
-      m_contextmenu.OnCommand(pmessage->GetId());
+      m_pcontextmenu->OnCommand(pmessage->GetId());
 
    }
 

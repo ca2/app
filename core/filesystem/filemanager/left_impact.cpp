@@ -5,6 +5,8 @@
 
 #include "_data.h"
 #include "core/user/user/_tree.h"
+#include "left_impact.h"
+#include "document.h"
 
 
 namespace filemanager

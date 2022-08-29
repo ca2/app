@@ -2,6 +2,9 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
+#include "thumbnail.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "document.h"
 
 
 namespace filemanager

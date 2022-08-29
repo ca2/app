@@ -28,6 +28,11 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "axis/html/html_lite/_.h"
 #endif
+#include "common.h"
+#include "axis/platform/session.h"
+#include "axis/platform/system.h"
+#include "attributes.h"
+#include "reader.h"
 
 
 /**

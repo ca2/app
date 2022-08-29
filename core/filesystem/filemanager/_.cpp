@@ -3,8 +3,11 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
-
-//#include "aura/update.h"
+#include "core/user/userex/user.h"
+#include "core/user/userex/pane_tab_impact.h"
+#include "document.h"
+#include "data.h"
+#include "aura/user/user/frame.h"
 
 
 namespace core
@@ -20,12 +23,12 @@ namespace core
          if (pdocument->get_impact() != nullptr)
          {
 
-            auto ppanetabview = pdocument->get_impact()->GetTypedParent < ::userex::pane_tab_impact >();
+            auto ppanetabview = pdocument->get_impact()->get_typed_parent < ::userex::pane_tab_impact >();
 
             if (ppanetabview)
             {
 
-               ppanetabview = pdocument->get_impact()->GetTypedParent < ::userex::pane_tab_impact >();
+               ppanetabview = pdocument->get_impact()->get_typed_parent < ::userex::pane_tab_impact >();
 
                auto pfilemanagerdocument = ppanetabview->filemanager_document(atomFileManager);
 

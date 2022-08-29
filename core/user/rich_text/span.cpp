@@ -1,6 +1,8 @@
 #include "framework.h"
-#include "core/user/rich_text/_rich_text.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "span.h"
+#include "data.h"
+#include "format.h"
+#include "aura/graphics/draw2d/graphics.h"
 
 
 namespace user
@@ -137,7 +139,7 @@ namespace user
       }
 
 
-      __pointer(span) span::fork(const class format* pformat, const eattribute& eattribute)
+      __pointer(span) span::fork(const class format* pformat, const e_attribute& eattribute)
       {
 
          auto pspan = fork();

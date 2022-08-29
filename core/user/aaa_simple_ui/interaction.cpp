@@ -380,7 +380,7 @@ namespace simple_ui
 //
 //      auto point = pmouse->m_point;
 //
-//      screen_to_client(point);
+//      screen_to_client()(point);
 //
 //      point += m_ptScroll;
 //

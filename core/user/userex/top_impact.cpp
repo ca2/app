@@ -2,7 +2,9 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #endif
-
+#include "top_impact.h"
+#include "top_edit_impact.h"
+#include "top_toggle_impact.h"
 
 
 namespace userex

@@ -7,6 +7,11 @@
 #include "interaction_prodevian.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
+#include "interaction_impl.h"
+#include "interaction.h"
+#include "user.h"
+#include "system.h"
+#include "message.h"
 
 
 #ifdef WINDOWS_DESKTOP

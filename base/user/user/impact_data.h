@@ -22,7 +22,7 @@ namespace user
       atom                             m_atomSplit;
       bool                             m_bTabSplitSwap;
       i32                              m_iExtendOnParent;
-      eflag                            m_eflag;
+      e_flag                           m_eflag;
       ::string                         m_strTitle;
       void *                           m_pimpactdata;
       bool                             m_bOk;
@@ -52,29 +52,10 @@ namespace user
 } // namespace user
 
 
-inline ::user::impact_data* __impact_data(::user::system* pusersystem)
-{
-
-   return ::is_set(pusersystem) ? pusersystem->m_pimpactdata.cast < ::user::impact_data > () : nullptr;
-
-}
+CLASS_DECL_BASE ::user::impact_data * __impact_data(::user::system * pusersystem);
 
 
-inline ::user::impact_data* __impact_data(::message::create* pmessagecreate)
-{
-
-   auto pimpactdata = ::is_set(pmessagecreate) ? pmessagecreate->get_impact_data() : nullptr;
-
-   if (!pimpactdata)
-   {
-
-      return nullptr;
-
-   }
-
-   return dynamic_cast < ::user::impact_data * >(pimpactdata);
-
-}
+CLASS_DECL_BASE ::user::impact_data * __impact_data(::message::create * pmessagecreate);
 
 
 

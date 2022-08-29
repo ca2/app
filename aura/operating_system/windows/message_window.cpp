@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "message_window.h"
+#include "aura/user/user/message.h"
 
 
 namespace user

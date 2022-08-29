@@ -5,6 +5,7 @@
 #include "aura/user/user/_component.h"
 #endif
 #include "call_message_handler_task.h"
+#include "interaction.h"
 
 
 namespace user

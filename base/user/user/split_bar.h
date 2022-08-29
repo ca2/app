@@ -1,10 +1,15 @@
 #pragma once
 
 
+#include "aura/user/user/interaction.h"
+
+
 namespace user
 {
 
+
    class split_layout;
+
 
    class CLASS_DECL_BASE split_bar :
       public ::user::interaction

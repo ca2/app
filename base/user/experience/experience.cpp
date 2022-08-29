@@ -1,5 +1,6 @@
 #include "framework.h"
-#include "base/user/experience/_experience.h"
+#include "experience.h"
+#include "base/platform/session.h"
 
 
 namespace experience
@@ -15,6 +16,38 @@ namespace experience
    experience::~experience()
    {
 
+   }
+
+
+   ::base::application * experience::get_app() const
+   {
+      
+      return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; 
+   
+   }
+
+
+   ::base::session * experience::get_session() const 
+   {
+      
+      return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
+   
+   }
+
+
+   ::base::system * experience::get_system() const 
+   {
+      
+      return m_psystem ? m_psystem->m_pbasesystem : nullptr; 
+   
+   }
+
+
+   ::base::user * experience::user() const 
+   {
+      
+      return get_session() ? get_session()->user() : nullptr; 
+   
    }
 
 

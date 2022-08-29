@@ -4,6 +4,9 @@
 #endif
 #include "aura/platform/draw_context2.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "scroll_bar.h"
+#include "aura/message/user.h"
+
 
 namespace user
 {

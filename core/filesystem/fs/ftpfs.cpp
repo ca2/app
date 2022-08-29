@@ -1,9 +1,13 @@
 #include "framework.h"
 #include "core/networking/ftp/_.h"
-#include "core/filesystem/fs/_fs.h"
 #include "ftpnet.h"
 #include "ftp_file.h"
-
+#include "ftpfs.h"
+#include "core/platform/system.h"
+#include "core/networking/ftp/file_status.h"
+#include "core/networking/ftp/client_socket.h"
+#include "core/networking/ftp/output.h"
+#include "core/platform/application.h"
 
 
 ftpfs::ftpfs()

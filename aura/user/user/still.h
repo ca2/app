@@ -1,14 +1,7 @@
 #pragma once
 
 
-namespace write_text
-{
-
-   class text_out_array;
-
-}
-
-
+#include "interaction.h"
 
 
 namespace user
@@ -21,35 +14,22 @@ namespace user
    public:
 
 
-
-      
-      enum e_style
-      {
-
-
-         style_none,
-         style_text,
-         style_image
-
-
-      };
-
-
       ::write_text::font_pointer          m_pfont;
       ::image_pointer                     m_pimage;          // not pressed default bitmap
       //::rectangle_i32                   m_rectangleMargin;
       //::rectangle_i32                   m_rectangleBorder;
       //::rectangle_i32                   m_rectanglePadding;
       ::e_align                           m_ealignText;
-      e_style                             m_estyle;
+      enum_still                          m_estill;
       ::rectangle_i32                     m_rectangleText;
       index                               m_iClick;
       enum_stock_icon                     m_estockicon;
-
+      ::draw2d::icon_pointer              m_picon;
       ::write_text::text_out_array *      m_ptextouta;
 
       ::rectangle_i32                     m_rectangleCheckBox;
       string                              m_strLink;
+
 
       still();
       ~still() override;
@@ -104,9 +84,16 @@ namespace user
       bool LoadBitmaps(::payload payload, ::payload varSel = ::e_type_null, ::payload varFocus = ::e_type_null, ::payload varDisabled = ::e_type_null, ::payload varHover = ::e_type_null);
 
 
-      virtual void set_button_style(e_style estyle);
-      virtual void on_enter_button_style(e_style estyle);
-      virtual void on_exit_button_style(e_style estyle);
+      virtual void set_still_type(enum_still estill);
+      virtual enum_still get_still_type() const;
+
+
+      virtual void on_enter_still_style(enum_still estill);
+      virtual void on_exit_still_style(enum_still estill);
+
+
+      virtual ::draw2d::icon * still_get_icon();
+
 
       virtual void BaseToolTipRelayEvent(::message::message * pmessage);
       virtual void BaseToolTipGetRect(RECTANGLE_I32 * prectangle);

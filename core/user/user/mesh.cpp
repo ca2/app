@@ -1,10 +1,22 @@
 #include "framework.h"
-#include "core/user/user/_component.h"
-//#include "acme/operating_system/cross/windows/_windows.h"
 #include "acme/constant/timer.h"
 #include "acme/platform/timer.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/list.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/graphics_extension.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "mesh.h"
+#include "list.h"
+#include "mesh_cache_interface.h"
+#include "list_data.h"
+#include "list_item.h"
+#include "list_column.h"
+#include "core/user/simple/mesh_data.h"
+#include "core/platform/session.h"
+#include "axis/platform/system.h"
+#include "aura/message/user.h"
+#include "base/user/user/user.h"
 
 
 #define DBLCLKMS 500
@@ -193,7 +205,7 @@ namespace user
 
          pgraphics->set(pbrushText);
          ::size_array sizea;
-         m_dcextension.get_text_extent(pgraphics,m_strTopText,sizea);
+         m_pdcextension->get_text_extent(pgraphics,m_strTopText,sizea);
          index x = 0;
          index right = (index)rectangleClient.right;
          double y = m_dItemHeight;
@@ -2767,7 +2779,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       pmouse->previous(); // give chance to child control
 
@@ -2881,7 +2893,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       if(dynamic_cast < list * >(this) == nullptr)
       {
@@ -3096,7 +3108,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       release_mouse_capture();
 
@@ -3193,7 +3205,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       if(!has_keyboard_focus())
       {
@@ -3244,7 +3256,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       if (!has_keyboard_focus())
       {
@@ -3489,7 +3501,7 @@ namespace user
 
       on_enable_hover_select();
 
-      m_dcextension.initialize(this);
+      m_pdcextension->initialize(this);
 
       //on_create_draw_item();
 
@@ -3617,7 +3629,7 @@ namespace user
 
       auto pointCursor = get_cursor_position();
 
-      screen_to_client(pointCursor);
+      screen_to_client()(pointCursor);
 
       try
       {
@@ -4096,7 +4108,7 @@ namespace user
 
       ::size_array sizea;
 
-      m_dcextension.get_text_extent(pgraphics,m_strTopText,sizea);
+      m_pdcextension->get_text_extent(pgraphics,m_strTopText,sizea);
 
       ::rectangle_i32 rectangleClient;
 
@@ -4286,7 +4298,7 @@ namespace user
 
          ::size_i32 size{};
          
-         m_dcextension.get_text_extent(pgraphics, psubitem->m_strText, size);
+         m_pdcextension->get_text_extent(pgraphics, psubitem->m_strText, size);
 
          cx += size.cx;
 
@@ -5223,7 +5235,7 @@ namespace user
 
       ::item_pointer pitemHitTest = __new(::item);
       
-      auto pointClient = _001ScreenToClient(pmouse->m_point);
+      auto pointClient = screen_to_client().get(pmouse->m_point);
 
       bool & bAnyHoverChange = pitemHitTest->m_bAnyHoverChange;
 

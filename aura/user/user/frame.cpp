@@ -5,6 +5,10 @@
 #include "aura/graphics/image/icon.h"
 #include "acme/parallelization/pool.h"
 #include "aura/windowing/windowing.h"
+#include "frame.h"
+#include "key.h"
+#include "style.h"
+#include "user.h"
 
 
 namespace user

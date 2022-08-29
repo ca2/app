@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "core/networking/ftp/_.h"
 #include "ftpnet.h"
+#include "apex/networking/sockets/_sockets.h"
 
 
 ftpnet::ftpnet()

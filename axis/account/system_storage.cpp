@@ -7,6 +7,7 @@
 #include "framework.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "system_storage.h"
+#include "department.h"
 
 
 namespace account

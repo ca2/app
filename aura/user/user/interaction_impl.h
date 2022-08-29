@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "primitive_impl.h"
+#include "window_util.h"
+#include "interaction.h"
+
 
 #ifdef __DEBUG
 

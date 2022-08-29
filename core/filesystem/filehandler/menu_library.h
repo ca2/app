@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "library.h"
+
+
 namespace filehandler
 {
 
@@ -12,7 +15,7 @@ namespace filehandler
 
 
       menu_library();
-      virtual ~menu_library();
+      ~menu_library() override;
 
 
    };

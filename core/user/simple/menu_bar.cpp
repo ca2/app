@@ -3,6 +3,8 @@
 #include "aura/graphics/draw2d/_component.h"
 #include "toolbar.h"
 #include "menu_bar.h"
+#include "aura/message/user.h"
+#include "base/user/menu/menu.h"
 
 
 #define TIMER_HOVER 321654
@@ -170,7 +172,7 @@ bool simple_menu_bar::_track_popup_menu(index iItem)
    set_need_redraw();
    ::rectangle_i32 rectangle;
    _001GetElementRect(iItem, rectangle, ::e_element_item, ::user::e_state_none);
-   client_to_screen(rectangle);
+   client_to_screen()(rectangle);
 
    /*#ifdef WINDOWS_DESKTOP
        TPMPARAMS tpm;
@@ -283,7 +285,7 @@ void simple_menu_bar::on_message_create(::message::message * pmessage)
 //
 //         //::point_i32 point(xPos, yPos);
 //
-//         screen_to_client(point);
+//         screen_to_client()(point);
 //
 //         _track_popup_menu(point);
 //
@@ -853,7 +855,7 @@ void simple_menu_bar::_001Hover()
 {
    ::point_i32 point;
    GetCursorPos(&point);
-   screen_to_client(point);
+   screen_to_client()(point);
    _001Hover(point);
 }*/
 

@@ -1,4 +1,9 @@
 #include "framework.h"
+#include "aura/user/user/interaction.h"
+#include "base/user/form/document.h"
+#include "base/user/form/impact.h"
+#include "base/user/simple/frame_window.h"
+#include "core/platform/session.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #endif
@@ -7,7 +12,8 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #endif
-
+#include "dialog.h"
+#include "user.h"
 
 
 dialog::dialog()

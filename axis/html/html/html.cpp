@@ -3,6 +3,8 @@
 #include "axis/html/html_lite/_.h"
 #endif
 #include "axis/id.h"
+#include "axis/platform/system.h"
+#include "axis/html/html_lite/entity_resolver.h"
 
 
 namespace html

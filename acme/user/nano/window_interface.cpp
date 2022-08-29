@@ -101,26 +101,26 @@ void nano_window_interface::update_drawing_objects()
 }
 
 
-void nano_window_interface::screen_to_client(::point_i32 & point)
+::shift_i32 nano_window_interface::screen_to_client()
 {
 
    ::rectangle_i32 r;
 
    get_window_rectangle(r);
 
-   point -= r.top_left();
+   return  - r.top_left();
 
 }
 
 
-void nano_window_interface::client_to_screen(::point_i32 & point)
+::shift_i32 nano_window_interface::client_to_screen()
 {
 
    ::rectangle_i32 r;
 
    get_window_rectangle(r);
 
-   point += r.top_left();
+   return r.top_left();
 
 }
 
@@ -130,7 +130,7 @@ nano_child * nano_window_interface::hit_test(::user::mouse * pmouse)
 
    auto point = pmouse->m_point;
 
-   screen_to_client(point);
+   screen_to_client()(point);
 
    return on_hit_test(point);
 

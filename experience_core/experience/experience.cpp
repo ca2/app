@@ -3,6 +3,16 @@
 #include "_library.h"
 #endif
 #include "aura/windowing/windowing.h"
+#include "experience.h"
+#include "base/platform/session.h"
+#include "base/user/user/user.h"
+#include "frame_001.h"
+#include "frame_002.h"
+#include "frame_005.h"
+#include "frame_008.h"
+#include "frame_011.h"
+#include "frame_013.h"
+#include "frame_Minimal001.h"
 
 
 namespace experience_core

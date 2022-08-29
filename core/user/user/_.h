@@ -10,6 +10,11 @@
 class form_document;
 
 
+class xfplayer_impact_line;
+class xfplayer_impact_line_selection;
+class xfplayer_impact_linea;
+
+
 namespace user
 {
 
@@ -39,9 +44,23 @@ namespace user
    class mesh_cache_interface;
    class mesh_data;
    class mesh;
+   class mesh_item;
+   class mesh_subitem;
+   class mesh_group;
+   class draw_mesh_item;
+   class draw_mesh_subitem;
+   class draw_mesh_group;
    class list;
+   class list_data;
+   class list_cache;
+   class list_header;
    class list_item;
    class list_column;
+   class list_column_array;
+   class draw_list_item;
+   class draw_list_subitem;
+   class draw_list_group;
+
 
    class plain_text_set_sel_command;
    class plain_text_tree;
@@ -66,6 +85,17 @@ namespace user
 
 
 } // namespace user
+
+
+
+class xfplayer_impact_linea;
+class xfplayer_impact_line;
+
+CLASS_DECL_CORE void DDX_Control(::user::data_exchange * pdx, atom idControl, ::user::interaction & control);
+CLASS_DECL_CORE void DDX_Text(::user::data_exchange * pdx, atom idControl, string & str);
+CLASS_DECL_CORE void DDV_MaxChars(::user::data_exchange * pdx, string & str, i32 iMax);
+CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, atom idControl, i32 & iBool);
+CLASS_DECL_CORE void DDX_Check(::user::data_exchange * pdx, atom idControl, bool & b);
 
 
 

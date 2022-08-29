@@ -5,6 +5,10 @@
 //  Created by Camilo Sasuke Tsumanuma on 12/12/18.
 //
 #include "framework.h"
+#include "interactive.h"
+#include "credentials.h"
+#include "axis/platform/application.h"
+#include "user.h"
 
 
 namespace account

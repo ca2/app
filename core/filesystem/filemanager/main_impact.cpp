@@ -2,8 +2,13 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
-//#include "aura/update.h"
-
+#include "main_impact.h"
+#include "left_impact.h"
+#include "thumbnail.h"
+#include "file_list.h"
+#include "file_properties_form.h"
+#include "document.h"
+#include "base/user/user/frame_window.h"
 
 
 namespace filemanager

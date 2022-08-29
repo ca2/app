@@ -4,6 +4,7 @@
 #include "base/user/user/_component.h"
 #endif
 #include "tab_pane.h"
+#include "tab_pane_array.h"
 
 
 namespace user

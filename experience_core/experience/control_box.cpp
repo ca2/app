@@ -2,7 +2,9 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "_library.h"
 #endif
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "control_box.h"
+#include "aura/user/user/frame.h"
 
 
 namespace experience_core
@@ -28,6 +30,7 @@ namespace experience_core
 
 
    }
+
 
    void control_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {

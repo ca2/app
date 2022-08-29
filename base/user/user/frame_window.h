@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/user/user/main_window.h"
+
+
 namespace user
 {
 
@@ -78,10 +81,10 @@ namespace user
       ~frame_window() override;
 
 
-      inline ::base::application* get_app() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }
-      inline ::base::session* get_session() const { return m_pcontext ? m_pcontext->m_pbasesession : nullptr; }
-      inline ::base::system* get_system() const { return m_psystem ? m_psystem->m_pbasesystem : nullptr; }
-      inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+      ::base::application * get_app() const;
+      ::base::session * get_session() const;
+      ::base::system * get_system() const;
+      ::base::user * user() const;
 
 
       void common_construct();

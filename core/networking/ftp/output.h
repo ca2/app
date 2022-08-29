@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "client_socket.h"
+
+
 namespace ftp
 {
 

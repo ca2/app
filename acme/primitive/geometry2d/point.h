@@ -138,6 +138,15 @@ public:
    inline RECTANGLE_TYPE operator+(const RECTANGLE_TYPE & rectangle) const noexcept { return RECTANGLE_TYPE(rectangle) + *this; }
    inline RECTANGLE_TYPE operator-(const RECTANGLE_TYPE & rectangle) const noexcept { return RECTANGLE_TYPE(rectangle) - *this; }
 
+
+   inline point_type& operator+=(const SHIFT_I32& shift) noexcept { this->x = (UNIT_TYPE)(this->x + shift.dx); this->y = (UNIT_TYPE)(this->y + shift.dy); return *this; }
+   inline point_type& operator-=(const SHIFT_I32& shift) noexcept { this->x = (UNIT_TYPE)(this->x - shift.dx); this->y = (UNIT_TYPE)(this->y - shift.dy); return *this; }
+
+   inline point_type operator+(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->x + shift.dx), (UNIT_TYPE)(this->y + shift.dy) }; }
+   inline point_type operator-(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->x - shift.dx), (UNIT_TYPE)(this->y - shift.dy) }; }
+
+
+
    void x_constraint(const RECTANGLE_TYPE& rectangle) noexcept
    {
 

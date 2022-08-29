@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "core/user/user/_component.h"
+#include "form_mesh.h"
+#include "core/user/user/mesh_item.h"
+#include "aura/message/user.h"
 
 
 namespace user
@@ -489,7 +491,7 @@ namespace user
 
    //   //::point_i32 point = pmouse->m_point;
 
-   //   //screen_to_client(point);
+   //   //screen_to_client()(point);
 
    //   //if(pmouse->m_atom == e_message_left_button_down)
    //   //{
@@ -653,7 +655,7 @@ namespace user
    {
       control_get_client_rect(pinteraction,prectangle);
 
-      client_to_screen(prectangle);
+      client_to_screen()(*prectangle);
 
    }
 

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/user/user/split_impact.h"
+
+
 namespace userfs
 {
 

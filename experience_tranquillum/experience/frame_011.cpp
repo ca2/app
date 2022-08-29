@@ -51,7 +51,7 @@ namespace experience_tranquillum
    {
        ::experience::enum_frame etest =  ::experience::e_frame_client;
       {
-         //      m_pframewindow->GetEventWindow()->screen_to_client(point);
+         //      m_pframewindow->GetEventWindow()->screen_to_client()(point);
          ::rectangle_i32 rectangleEvent;
          m_pframewindow->get_window_rect(rectangleEvent);
          ::rectangle_i32 rectangle;

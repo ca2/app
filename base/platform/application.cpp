@@ -2,6 +2,11 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_component.h"
 #endif
+#include "application.h"
+#include "session.h"
+#include "system.h"
+#include "base/user/user/user.h"
+#include "base/user/user/document_manager.h"
 
 
 namespace base
@@ -184,6 +189,30 @@ namespace base
       }
 
       do_request(pcreate);
+
+   }
+
+   
+   ::base::system * application::get_system() const
+   {
+
+      return ::is_set(m_psystem) ? dynamic_cast <::base::system *> (m_psystem) : nullptr;
+
+   }
+
+
+   ::base::session * application::get_session() const
+   {
+
+      return m_pcontext ? m_pcontext->m_pbasesession : nullptr;
+
+   }
+
+
+   ::base::system * session::get_system() const
+   {
+
+      return ::is_set(m_psystem) ? dynamic_cast <::base::system *> (m_psystem) : nullptr;
 
    }
 

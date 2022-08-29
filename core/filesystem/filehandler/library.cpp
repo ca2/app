@@ -2,6 +2,8 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "_filehandler.h"
 #endif
+#include "library.h"
+
 
 namespace filehandler
 {

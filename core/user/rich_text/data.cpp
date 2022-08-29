@@ -1,6 +1,14 @@
 #include "framework.h"
-#include "core/user/rich_text/_rich_text.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "data.h"
+#include "edit_impl.h"
+#include "format.h"
+#include "line.h"
+#include "box.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/write_text/font.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/draw2d/path.h"
+#include "aura/graphics/draw2d/brush.h"
 
 
 namespace user
@@ -831,7 +839,7 @@ namespace user
 
 
 
-      void data::_001SetSelFontFormat(const format * pformat, const eattribute & eattribute)
+      void data::_001SetSelFontFormat(const format * pformat, const e_attribute & eattribute)
       {
 
          synchronous_lock synchronouslock(mutex());
@@ -2217,13 +2225,13 @@ namespace user
                ::rectangle_i32 rectangle = pbox->m_rectangleBox;
 
 
-               if (pformat->m_escript == script_subscript)
+               if (pformat->m_escript == e_script_subscript)
                {
 
                   rectangle.offset(0, rectangle.height() / 6);
 
                }
-               else if (pformat->m_escript == script_superscript)
+               else if (pformat->m_escript == e_script_superscript)
                {
 
                   rectangle.offset(0, -rectangle.height() / 3);

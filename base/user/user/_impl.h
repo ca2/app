@@ -1,59 +1,31 @@
 #pragma once
 
+//
+//namespace user
+//{
+//
+//
+//   template < class VIEW >
+//   inline __pointer(VIEW) split_impact::create_pane_impact(index iPane, atom atom, ::user::interaction* pviewLast)
+//   {
+//
+//      return create_impact < VIEW >(get_pane_holder(iPane), atom, pviewLast);
+//
+//   }
+//
+//
+//} // namespace user
+//
+
+
+
+
 
 namespace user
 {
 
 
-   template < class VIEW >
-   inline __pointer(VIEW) split_impact::create_pane_impact(index iPane, atom atom, ::user::interaction* pviewLast)
-   {
 
-      return create_impact < VIEW >(get_pane_holder(iPane), atom, pviewLast);
-
-   }
-
-
-} // namespace user
-
-
-
-
-
-
-namespace user
-{
-
-
-
-
-   template < class VIEW >
-   inline __pointer(VIEW) impact::create_impact(::user::document* pdocument, ::user::interaction* puserinteractionParent, const ::atom & atom, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
-   {
-
-      return create_impact(__type(VIEW), pdocument, puserinteractionParent, atom, pviewLast, pimpactdata);
-
-   }
-
-
-   template < class VIEW >
-   inline __pointer(VIEW) impact::create_impact(::user::interaction* puserinteractionParent, const ::atom & atom, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
-   {
-
-      return create_impact < VIEW >(get_document(), puserinteractionParent, atom, pviewLast, pimpactdata);
-
-   }
-
-
-   template < class VIEW >
-   inline __pointer(VIEW) impact::create_impact(::user::impact_data* pimpactdata, ::user::interaction* pviewLast)
-   {
-
-      pimpactdata->m_puserinteraction.release();
-
-      return create_impact < VIEW >(get_document(), pimpactdata->m_pplaceholder, pimpactdata->m_atom, pviewLast, pimpactdata);
-
-   }
 
 
    template < class DATA >
@@ -86,30 +58,6 @@ namespace user
 
       return m_pdocument->get_typed_document < DOCUMENT >();
 
-   }
-
-
-   inline ::base::session* menu_interaction::get_session() const
-   {
-
-      return m_pcontext ? m_pcontext->m_pbasesession : nullptr;
-
-   }
-
-
-   inline ::base::application* form_control::get_app() const
-   {
-      
-      return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr;
-   
-   }
-
-
-   inline ::base::session* form_control::get_session() const
-   { 
-      
-      return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
-   
    }
 
 

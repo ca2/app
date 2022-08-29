@@ -1,8 +1,8 @@
 #include "framework.h"
-#include "core/user/user/_component.h"
 #include "acme/platform/timer.h"
 #include "step_slider.h"
-//#include "aura/windowing/window.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/message/user.h"
 
 
 namespace user

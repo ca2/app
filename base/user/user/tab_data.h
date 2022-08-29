@@ -4,6 +4,8 @@
 
 #include "aura/graphics/draw2d/graphics_extension.h"
 #include "aura/graphics/draw2d/holder.h"
+#include "acme/primitive/primitive/match.h"
+#include "tab_pane_array.h"
 
 
 namespace user

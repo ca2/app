@@ -7,6 +7,8 @@
 #endif
 
 #include "core/user/user/_tree.h"
+#include "document.h"
+#include "item.h"
 
 
 namespace userfs

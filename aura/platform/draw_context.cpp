@@ -3,6 +3,7 @@
 #include "aura/user/user/_component.h"
 #endif
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/user/user/interaction.h"
 
 
 namespace aura

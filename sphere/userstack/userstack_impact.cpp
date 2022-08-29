@@ -276,7 +276,7 @@ namespace userstack
       pmouse->m_lresult = 1;
       KillTimer(5432180);
       auto point = pmouse->m_point;
-      screen_to_client(point);
+      screen_to_client()(point);
    }
 
    void impact::check_apps()

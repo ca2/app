@@ -8,7 +8,6 @@
 #pragma once
 
 
-
 template < typename HOLDEE >
 class ___shape :
    virtual public element
@@ -229,10 +228,6 @@ public:
 // };
 
 
-template < typename HOLDEE >
-class holdee
-{
-};
 
 
 template < typename GEOMETRY, typename HOLDEE >

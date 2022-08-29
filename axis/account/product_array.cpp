@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "product_array.h"
+#include "department.h"
+#include "product.h"
 
 
 namespace account

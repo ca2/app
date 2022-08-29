@@ -1,6 +1,12 @@
 #pragma once
 
 
+#include "aura/user/user/form_callback.h"
+#include "base/user/user/impact_host.h"
+#include "base/user/form/impact.h"
+#include "base/user/user/tab_callback.h"
+
+
 namespace filemanager
 {
 

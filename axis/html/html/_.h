@@ -19,10 +19,27 @@ namespace html
 	typedef string_to_color named_color;
 
 
+	class core_data;
+	class font;
+
+
+	namespace impl
+	{
+
+
+		class table;
+
+
+	} // namespace impl
+
+
 } // namespace html
 
 
-#include "_const.h"
+#include "_constant.h"
+
+
+class html_document;
 
 
 #include "html.h"

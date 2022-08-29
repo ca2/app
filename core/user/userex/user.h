@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "base/user/user/user.h"
+#include "base/user/user/impact_data.h"
+
+
 namespace core
 {
 
@@ -17,8 +21,6 @@ namespace core
       ::user::impact_system *                      m_ptemplateChildForm;
       ::user::impact_system *                      m_ptemplatePlaceHolder;
 
-
-      ::user::impact_system *                      m_ptemplateHtmlChildForm1;
 
 
       ::user::multiple_document_template *         m_ptemplateProgress2;
@@ -175,8 +177,6 @@ namespace core
 
       virtual void AddToRecentFileList(const ::string & pszPathName);
 
-      virtual void initialize_html();
-
 
       virtual void route_command(::message::command * pcommand, bool bRouteToKeyDescendant);
 
@@ -245,7 +245,7 @@ namespace core
 
       virtual ::type get_pane_tab_impact_type_info();
       //virtual ::type get_simple_frame_window_type_info() override;
-      virtual ::type get_simple_child_frame_type_info();
+      //virtual ::type get_simple_child_frame_type_info();
 
 
       virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha) override;
@@ -705,6 +705,8 @@ namespace core
       virtual void term() override;
 
       virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+
+      __pointer(::user::plain_edit) create_calculator_plain_edit() override;
 
 
    };

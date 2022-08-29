@@ -1,6 +1,8 @@
 #pragma once
 
 
+#include "apex/networking/sockets/base/base_socket.h"
+
 
 namespace sockets
 {

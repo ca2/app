@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "core/user/user/list_data.h"
+
+
 namespace userfs
 {
 
@@ -17,7 +20,7 @@ namespace userfs
       index                      m_iSizeSubItem;
       ::duration                 m_durationLastFileSizeGet;
 
-      list_item_array            m_itema;
+      __pointer(list_item_array) m_pitema;
 
 
 
@@ -25,7 +28,7 @@ namespace userfs
       ~list_data() override;
 
 
-      inline ::userfs::list_item * item(index i) { return m_itema.get_item(i); }
+      ::userfs::list_item * item(index i);
 
       virtual void update();
 

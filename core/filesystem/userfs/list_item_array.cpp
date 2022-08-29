@@ -2,7 +2,8 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "_userfs.h"
 #endif
-
+#include "list_item_array.h"
+#include "list_item.h"
 
 
 namespace userfs

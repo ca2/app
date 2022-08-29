@@ -4,14 +4,8 @@
 #endif
 #include "aura/gpu/gpu/_.h"
 #include "aura/gpu/gpu/_gpu.h"
-//#include "aqua/xml/_.h"
-//#include "apex/platform/app_core.h"
-//#include "acme/id.h"
-//#include "aura/node/_node.h"
-//#include "acme/platform/profiler.h"
 #include "acme/platform/system_setup.h"
 #include "acme/primitive/text/context.h"
-//#include "acme/node/windows/registry.h"
 #include "apex/platform/history.h"
 #include "aura/gpu/gpu/_.h"
 #include "aura/constant/idpool.h"
@@ -20,15 +14,22 @@
 #include "aqua/game/estamira.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
-//#ifdef _UWP
-//#include "aura/node/universal_windows/directx_application.h"
-//#include "aura/os/windows_common/draw2d_direct2d_global.h"
-//#endif
-#include "aura/graphics/draw2d/_component.h"
-//#include "acme/platform/system_impl.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/draw2d/task_tool.h"
+#include "acme/platform/profiler.h"
+#include "aura/user/user/user.h"
+#include "aura/hardware/devices.h"
+
 
 int get_main_screen_rectangle(RECTANGLE_I32 * lprect);
 
+
+namespace draw2d
+{
+
+   void static_initialize();
+
+}
 
 #ifdef LINUX
 const char * get_main_app_id();
@@ -6884,6 +6885,9 @@ namespace aura
       pwindowing->windowing_post(procedure);
 
    }
+
+
+
 
 
 } // namespace aura

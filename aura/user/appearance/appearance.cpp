@@ -3,6 +3,9 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/user/_component.h"
 #endif
+#include "appearance.h"
+#include "aura/user/user/interaction.h"
+
 
 namespace appearance
 {

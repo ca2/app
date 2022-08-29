@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "core/user/userex/form_child_frame.h"
+
+
 namespace filemanager
 {
 

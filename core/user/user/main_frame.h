@@ -1,8 +1,7 @@
 #pragma once
 
 
-
-#include "core/user/rich_text/_rich_text.h"
+#include "base/user/simple/main_frame.h"
 
 
 namespace user

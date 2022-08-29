@@ -7,6 +7,34 @@
 #include "_tree.h"
 #include "aura/user/user/shell.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "form.h"
+#include "child_frame.h"
+#include "impact.h"
+#include "path_impact.h"
+#include "save_as_name_impact.h"
+#include "left_impact.h"
+#include "main_impact.h"
+#include "main_frame.h"
+#include "frame.h"
+#include "tab_impact.h"
+#include "child_frame.h"
+#include "form_child_frame.h"
+#include "core/user/simple/form_impact.h"
+#include "folder_selection_list_impact.h"
+#include "operation_document.h"
+#include "operation_info_impact.h"
+#include "operation_list_impact.h"
+#include "operation_child_frame.h"
+#include "operation_impact.h"
+#include "data.h"
+#include "document.h"
+#include "file_list.h"
+#include "fs_simple_list_impact.h"
+#include "fs_simple_impact.h"
+#include "folder_list_impact.h"
+#include "thumbnail.h"
+#include "base/user/user/multiple_document_template.h"
+#include "core/platform/session.h"
 
 
 CLASS_DECL_CORE ::type __form_document_type();
@@ -1200,6 +1228,14 @@ namespace filemanager
 
 //}
 
+
+
+   ::core::session * component::get_session() const
+   {
+
+      return m_pcontext ? m_pcontext->m_pcoresession : nullptr;
+
+   }
 
 
 } // namespace filemanager

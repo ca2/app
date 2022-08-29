@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/user/simple/child_frame.h"
+
+
 namespace filemanager
 {
 

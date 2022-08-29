@@ -1,6 +1,12 @@
 #pragma once
 
 
+#include "aura/user/user/form_callback.h"
+#include "base/user/user/impact_creator.h"
+#include "base/user/user/tab_callback.h"
+#include "aura/user/user/style.h"
+
+
 namespace hi5
 {
 

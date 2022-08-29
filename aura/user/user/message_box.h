@@ -4,6 +4,9 @@
 #pragma once
 
 
+#include "interaction.h"
+
+
 namespace user
 {
 

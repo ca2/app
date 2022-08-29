@@ -1,5 +1,8 @@
 #include "framework.h"
 #include "windowing/window.h"
+#include "message.h"
+#include "interaction_impl.h"
+#include "interaction.h"
 
 
 namespace user

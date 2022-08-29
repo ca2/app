@@ -995,7 +995,7 @@
     <ClInclude Include="networking\sockets\http\tunnel.h">
       <Filter>Header Files\networking\sockets\http</Filter>
     </ClInclude>
-    <ClInclude Include="networking\sockets\bsd\_.h">
+    <ClInclude Include="networking\sockets\bsd\_component.h">
       <Filter>Header Files\networking\sockets\bsd</Filter>
     </ClInclude>
     <ClInclude Include="networking\sockets\bsd\_strconv.h">
@@ -1189,6 +1189,12 @@
     </ClInclude>
     <ClInclude Include="filesystem\filesystem\file_listener.h">
       <Filter>Header Files\filesystem\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\_.h">
+      <Filter>Header Files\networking\sockets\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\sockets\bsd\ssl\_.h">
+      <Filter>Header Files\networking\sockets\bsd\ssl</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

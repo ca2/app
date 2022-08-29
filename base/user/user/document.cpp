@@ -3,8 +3,14 @@
 #include "base/user/user/_component.h"
 #endif
 #include "aura/message.h"
-//#include "aura/update.h"
 #include "aura/user/user/wait_cursor.h"
+#include "document.h"
+#include "impact.h"
+#include "impact_system.h"
+#include "base/platform/application.h"
+#include "base/platform/session.h"
+#include "base/platform/system.h"
+#include "frame_window.h"
 
 
 namespace user
@@ -78,6 +84,38 @@ namespace user
          __pointer(::user::impact) pimpact = get_impact(index);
          ASSERT_VALID(pimpact);
       }
+   }
+
+
+   ::base::application * document::get_app() const 
+   {
+      
+      return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; 
+   
+   }
+
+
+   ::base::session * document::get_session() const 
+   {
+      
+      return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
+   
+   }
+
+
+   ::base::system * document::get_system() const 
+   {
+      
+      return m_psystem ? m_psystem->m_pbasesystem : nullptr; 
+   
+   }
+
+
+   ::base::user * document::user() const 
+   {
+      
+      return get_session() ? get_session()->user() : nullptr; 
+   
    }
 
 
@@ -1878,13 +1916,6 @@ namespace user
       return *form_document_get_property_set();
 
    }
-
-
-
-
-
-
-
 
 
    __pointer(::user::document) __document(::create * pcreate)

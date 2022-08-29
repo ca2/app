@@ -1,12 +1,17 @@
 #include "framework.h"
 #include "aura/graphics/image/context_image.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/image/drawing.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #endif
-
-//#include "aura/update.h"
-//#include "image_list.h"
+#include "image_list.h"
+#include "top_edit_impact.h"
+#include "aura/message/user.h"
+#include "base/user/user/document.h"
+#include "base/user/user/impact.h"
+#include "base/user/user/impact_system.h"
+#include "base/platform/application.h"
+#include "core/platform/session.h"
 
 
 namespace userex
@@ -246,7 +251,7 @@ namespace userex
 
    //   const ::point_i32 & point = pmouse->m_point;
 
-   //   screen_to_client(point);
+   //   screen_to_client()(point);
 
    //   int iMenuSel;
 
@@ -273,7 +278,7 @@ namespace userex
 
    //   const ::point_i32 & point = pmouse->m_point;
 
-   //   screen_to_client(point);
+   //   screen_to_client()(point);
 
    //   int iMenuHover;
 

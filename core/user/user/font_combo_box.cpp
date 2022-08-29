@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "core/user/user/_component.h"
+#include "aura/message/user.h"
+#include "aura/graphics/write_text/font_list.h"
+#include "aura/graphics/write_text/font_enumeration_item.h"
 #include "font_list.h"
 #include "font_combo_box.h"
 
@@ -61,7 +63,7 @@ namespace user
 
       __pointer(::user::font_list) pfontlist = m_plistbox;
 
-      pfontlist->set_font_list_type(::write_text::font_list::type_single_column);
+      pfontlist->set_font_list_type(::write_text::e_font_list_single_column);
 
    }
 

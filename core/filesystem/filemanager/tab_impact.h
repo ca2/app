@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "core/user/userex/pane_tab_impact.h"
+
+
 namespace filemanager
 {
 
@@ -10,8 +13,6 @@ namespace filemanager
    {
    public:
 
-
-      
 
       tab_impact();
       ~tab_impact() override;

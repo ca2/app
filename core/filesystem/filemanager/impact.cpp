@@ -4,6 +4,14 @@
 #endif
 ////#include "aura/update.h"
 #include "base/user/user/split_pane.h"
+#include "impact.h"
+#include "path_impact.h"
+#include "main_impact.h"
+#include "document.h"
+#include "save_as_name_impact.h"
+#include "data.h"
+#include "core/platform/application.h"
+#include "base/user/user/frame_window.h"
 
 
 namespace filemanager
@@ -172,7 +180,7 @@ namespace filemanager
          else if (ptopic->m_atom == id_topic_start)
          {
 
-            if (filemanager_document()->m_emode != ::userfs::mode_import && get_pane_count() == 2)
+            if (filemanager_document()->m_emode != ::userfs::e_mode_import && get_pane_count() == 2)
             {
 
                auto pframe = parent_frame();
@@ -277,7 +285,7 @@ namespace filemanager
          else if (ptopic->m_atom == id_topic_ok)
          {
 
-            if (filemanager_document()->m_emode == ::userfs::mode_import)
+            if (filemanager_document()->m_emode == ::userfs::e_mode_import)
             {
 
                ptopic->m_bRet = filemanager_data()->m_pdocumentTopic->on_filemanager_open(filemanager_document(), ptopic->_extended_topic()->m_pfileitem->user_path());

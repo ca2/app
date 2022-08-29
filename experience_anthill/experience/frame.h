@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/user/experience/frame.h"
+
+
 namespace experience_anthill
 {
 
@@ -29,7 +32,7 @@ namespace experience_anthill
 
 
 
-      ::draw2d::fastblur                     m_blur1;
+      __pointer(::draw2d::fastblur)          m_pfastblur;
       ::draw2d::pen_pointer                  m_ppenText1;
       ::draw2d::pen_pointer                  m_ppenFace1;
       ::draw2d::pen_pointer                  m_ppenHilight1;

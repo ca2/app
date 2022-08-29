@@ -10,6 +10,11 @@ namespace message
    class kill_keyboard_focus;
 
 
+   class mouse_base;
+   class drag_and_drop;
+   class create;
+
+
 } // namespace message
 
 

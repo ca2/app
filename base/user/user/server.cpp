@@ -2,6 +2,11 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_component.h"
 #endif
+#include "server.h"
+#include "aura/user/user/interaction.h"
+#include "impact_data.h"
+#include "place_holder.h"
+#include "document.h"
 
 
 namespace user

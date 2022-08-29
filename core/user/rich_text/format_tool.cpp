@@ -1,11 +1,17 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "format_tool.h"
+#include "format.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #endif
-
-#include "core/user/rich_text/_rich_text.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/write_text/font_list.h"
+#include "aura/graphics/write_text/font_enumeration_item.h"
 #include "core/user/user/font_list.h"
+#include "core/user/user/font_combo_box.h"
+#include "aura/message/user.h"
+#include "aura/user/user/button.h"
 
 
 namespace user
@@ -328,7 +334,7 @@ namespace user
 
                m_pbuttonBold->_001ToggleCheck(::e_source_user);
 
-               m_eattribute |= ::user::rich_text::attribute_bold;
+               m_eattribute |= ::user::rich_text::e_attribute_bold;
 
                update_data(true);
 
@@ -340,7 +346,7 @@ namespace user
 
                m_pbuttonItalic->_001ToggleCheck(::e_source_user);
 
-               m_eattribute |= ::user::rich_text::attribute_italic;
+               m_eattribute |= ::user::rich_text::e_attribute_italic;
 
                update_data(true);
 
@@ -352,7 +358,7 @@ namespace user
 
                m_pbuttonUnderline->_001ToggleCheck(::e_source_user);
 
-               m_eattribute |= ::user::rich_text::attribute_underline;
+               m_eattribute |= ::user::rich_text::e_attribute_underline;
 
                update_data(true);
 
@@ -371,7 +377,7 @@ namespace user
 
                }
 
-               m_eattribute |= ::user::rich_text::attribute_script;
+               m_eattribute |= ::user::rich_text::e_attribute_script;
 
                update_data(true);
 
@@ -390,7 +396,7 @@ namespace user
 
                }
 
-               m_eattribute |= ::user::rich_text::attribute_script;
+               m_eattribute |= ::user::rich_text::e_attribute_script;
 
                update_data(true);
 
@@ -417,7 +423,7 @@ namespace user
 
                }
 
-               m_eattribute |= ::user::rich_text::attribute_align;
+               m_eattribute |= ::user::rich_text::e_attribute_align;
 
                update_data(true);
 
@@ -443,7 +449,7 @@ namespace user
 
                }
 
-               m_eattribute |= ::user::rich_text::attribute_align;
+               m_eattribute |= ::user::rich_text::e_attribute_align;
 
                update_data(true);
 
@@ -469,7 +475,7 @@ namespace user
 
                }
 
-               m_eattribute |= ::user::rich_text::attribute_align;
+               m_eattribute |= ::user::rich_text::e_attribute_align;
 
                update_data(true);
 
@@ -493,7 +499,7 @@ namespace user
             if (ptopic->user_interaction()->m_atom == "combo_size")
             {
 
-               m_eattribute |= ::user::rich_text::attribute_size;
+               m_eattribute |= ::user::rich_text::e_attribute_size;
 
                update_data(true);
 
@@ -508,7 +514,7 @@ namespace user
             if (ptopic->user_interaction()->m_atom == "combo_size")
             {
 
-               m_eattribute |= ::user::rich_text::attribute_size;
+               m_eattribute |= ::user::rich_text::e_attribute_size;
 
                update_data(true);
 
@@ -523,7 +529,7 @@ namespace user
             if (ptopic->user_interaction()->m_atom == "combo_family")
             {
 
-               m_eattribute |= ::user::rich_text::attribute_family;
+               m_eattribute |= ::user::rich_text::e_attribute_family;
 
                update_data(true);
 
@@ -533,7 +539,7 @@ namespace user
             else if (ptopic->user_interaction()->m_atom == "combo_size")
             {
 
-               m_eattribute |= ::user::rich_text::attribute_size;
+               m_eattribute |= ::user::rich_text::e_attribute_size;
 
                update_data(true);
 
@@ -652,19 +658,19 @@ namespace user
          if (m_pbuttonSuperscript->echeck() == ::e_check_checked)
          {
 
-            m_pformata->first()->m_escript = ::user::rich_text::script_superscript;
+            m_pformata->first()->m_escript = ::user::rich_text::e_script_superscript;
 
          }
          else if (m_pbuttonSubscript->echeck() == ::e_check_checked)
          {
 
-            m_pformata->first()->m_escript = ::user::rich_text::script_subscript;
+            m_pformata->first()->m_escript = ::user::rich_text::e_script_subscript;
 
          }
          else
          {
 
-            m_pformata->first()->m_escript = ::user::rich_text::script_normal;
+            m_pformata->first()->m_escript = ::user::rich_text::e_script_normal;
 
          }
          if (m_pbuttonAlignRight->echeck() == ::e_check_checked)

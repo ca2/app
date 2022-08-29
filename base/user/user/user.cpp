@@ -1,11 +1,29 @@
 #include "framework.h"
 #include "base/user/simple/_component.h"
-#include "base/user/menu/_menu.h"
 #include "aura/windowing/window.h"
-#include "simple_impact.h"
 #include "acme/platform/system_setup.h"
+#include "base/platform/application.h"
+#include "base/platform/session.h"
+#include "base/platform/system.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/image/image.h"
+#include "user.h"
+#include "base/user/experience/department.h"
+#include "base/user/experience/experience.h"
+#include "base/user/simple/impact.h"
+#include "base/user/simple/tab_document.h"
+#include "base/user/simple/scroll_bar.h"
+#include "base/user/simple/frame_window.h"
+#include "base/user/simple/main_frame.h"
+#include "base/user/menu/list_impact.h"
+#include "base/user/menu/button.h"
+#include "base/user/menu/item.h"
+#include "base/user/menu/central.h"
+#include "impact_creator.h"
+#include "style.h"
+#include "split_impact.h"
+#include "split_bar.h"
+#include "aura/message/user.h"
 
 
 namespace base
@@ -62,34 +80,18 @@ namespace base
    {
 
 
+      ::axis::user::init1();
+
+
       ::factory::add_factory_item <::user::document >();
-      //add_factory_item <::user::message_queue >();
-      ::factory::add_factory_item <::user::simple_impact >();
-      ::factory::add_factory_item <::user::still >();
-      ::factory::add_factory_item <::user::combo_box >();
+      ::factory::add_factory_item <::simple_impact >();
       ::factory::add_factory_item <::user::place_holder >();
 
 
       ::factory::add_factory_item <::simple_tab_document >();
 
 
-      //add_factory_item <::user::font_combo_box >();
 
-      ////if(get_app()->is_system())
-      //{
-
-      //   add_factory_item <keyboard_layout >();
-
-      //}
-
-      ::axis::user::init1();
-
-      //if (!::axis::user::init1())
-      //{
-
-      //   return false;
-
-      //}
 
       initialize1_experience();
 
@@ -1018,7 +1020,7 @@ namespace base
 
       ::point_i32 point = pmouse->m_point;
 
-      pinteraction->screen_to_client(point);
+      pinteraction->screen_to_client()(point);
 
       return track_popup_menu(pinteraction, pitem, iFlags, point, pchannelNotify);
 
@@ -1032,7 +1034,7 @@ namespace base
 
       auto point = pmouse->m_point;
 
-      pinteraction->screen_to_client(point);
+      pinteraction->screen_to_client()(point);
 
       return track_popup_xml_menu(pinteraction, strXml, iFlags, point, ::size_i32(), pchannelNotify);
 

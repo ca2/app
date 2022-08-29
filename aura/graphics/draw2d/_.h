@@ -20,6 +20,16 @@ namespace draw2d
    class graphics;
    class bitmap;
    class icon;
+   class bitmap;
+
+
+   class item;
+
+
+   class fastblur;
+
+
+   class graphics_extension;
 
 
    class graphics_call_base;
@@ -27,9 +37,17 @@ namespace draw2d
 
    using graphics_call_array = __pointer_array(graphics_call_base);
 
-   using icon_pointer = __pointer(::draw2d::icon);
+   using icon_pointer = __pointer(icon);
    using brush_pointer = __pointer(brush);
    using pen_pointer = __pointer(pen);
+   using bitmap_pointer = __pointer(bitmap);
+   using path_pointer = __pointer(path);
+   using region_pointer =  __pointer(region);
+
+
+   class icon;
+
+   CLASS_DECL_ACME void cra_from_quada(colorref_array & colorrefa, WINRGBQUAD * prgbquad, int iCount);
 
 
 } // namespace draw2d

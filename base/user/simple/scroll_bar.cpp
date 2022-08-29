@@ -1,7 +1,11 @@
 #include "framework.h"
 #include "base/user/simple/_component.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/draw2d/pen.h"
 #include "acme/platform/timer.h"
+#include "scroll_bar.h"
+#include "aura/message/user.h"
+#include "aura/user/user/style.h"
 
 
 simple_scroll_bar::simple_scroll_bar()
@@ -85,7 +89,7 @@ void simple_scroll_bar::on_message_mouse_move(::message::message * pmessage)
 
    ::point_i32 pointClient;
 
-   _screen_to_client(pointClient, pmouse->m_point);
+   pointClient = pmouse->m_point + screen_to_client();
 
    if(m_bTracking)
    {
@@ -263,7 +267,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
    if (bWasTracking)
    {
 
-      auto point = _001ScreenToClient(pmouse->m_point);
+      auto point = pmouse->m_point + screen_to_client();
 
       point -= m_sizeTrackOffset;
 
@@ -776,7 +780,7 @@ void simple_scroll_bar::_001OnTimer(::timer * ptimer)
 
    auto pointCursor = get_cursor_position();
 
-   screen_to_client(pointCursor);
+   pointCursor+=screen_to_client();
 
    if(ptimer->m_uEvent == (uptr) this)
    {

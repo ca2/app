@@ -7,7 +7,10 @@
 #include "call_message_handler_task.h"
 #include "acme/operating_system/_user.h"
 #include "acme/platform/timer_array.h"
-
+#include "primitive_impl.h"
+#include "interaction.h"
+#include "interaction_impl.h"
+#include "aura/message/user.h"
 
 
 namespace user
@@ -2457,6 +2460,29 @@ namespace user
 
    }
 
+
+   ::aura::application * primitive_impl::get_app() const
+   {
+
+      return m_pcontext ? m_pcontext->m_pauraapplication : nullptr;
+
+   }
+
+
+   ::aura::session * primitive_impl::get_session() const
+   {
+
+      return m_pcontext ? m_pcontext->m_paurasession : nullptr;
+
+   }
+
+
+   ::aura::system * primitive_impl::get_system() const
+   {
+
+      return m_psystem ? m_psystem->m_paurasystem : nullptr;
+
+   }
 
 } // namespace user
 

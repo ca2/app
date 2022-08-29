@@ -2,6 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_component.h"
 #endif
+#include "network_configuration.h"
 
 
 namespace user

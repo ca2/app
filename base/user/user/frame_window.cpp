@@ -11,6 +11,17 @@
 #include "aura/graphics/graphics/_.h"
 #include "aura/graphics/graphics/_graphics.h"
 #include "aura/windowing/windowing.h"
+#include "frame_window.h"
+#include "document.h"
+#include "impact.h"
+#include "toolbar.h"
+#include "base/platform/session.h"
+#include "aura/message/user.h"
+#include "aura/user/user/interaction_impl.h"
+#include "aura/user/user/copydesk.h"
+#include "aura/user/user/system.h"
+#include "base/user/user/place_holder.h"
+#include "aura/user/user/style.h"
 
 
 namespace user
@@ -2449,6 +2460,39 @@ namespace user
 //      return false;
 //
 //   }
+
+
+   ::base::application * frame_window::get_app() const
+   {
+      
+      return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; 
+   
+   }
+
+
+   ::base::session * frame_window::get_session() const 
+   {
+      
+      return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
+   
+   }
+
+
+   ::base::system * frame_window::get_system() const 
+   {
+      
+      return m_psystem ? m_psystem->m_pbasesystem : nullptr; 
+   
+   }
+
+
+   ::base::user * frame_window::user() const
+   {
+      
+      return get_session() ? get_session()->user() : nullptr; 
+   
+   }
+
 
 
    void frame_window::common_construct()

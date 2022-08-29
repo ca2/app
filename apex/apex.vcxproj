@@ -1050,8 +1050,10 @@
     <ClInclude Include="networking\sockets\bsd\ssl\context.h" />
     <ClInclude Include="networking\sockets\bsd\ssl\initializer.h" />
     <ClInclude Include="networking\sockets\bsd\ssl\ticket_key.h" />
+    <ClInclude Include="networking\sockets\bsd\ssl\_.h" />
     <ClInclude Include="networking\sockets\bsd\webserver\httpd_socket.h" />
     <ClInclude Include="networking\sockets\bsd\_.h" />
+    <ClInclude Include="networking\sockets\bsd\_component.h" />
     <ClInclude Include="networking\sockets\bsd\_strconv.h" />
     <ClInclude Include="networking\sockets\http\client_socket.h" />
     <ClInclude Include="networking\sockets\http\debug_socket.h" />

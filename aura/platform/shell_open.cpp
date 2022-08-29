@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "shell_open.h"
 
 
 shell_open::shell_open()

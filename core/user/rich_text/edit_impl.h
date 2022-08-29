@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "edit.h"
+#include "base/user/user/show.h"
+
+
 namespace user
 {
 

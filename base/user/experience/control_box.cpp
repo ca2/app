@@ -1,9 +1,16 @@
 #include "framework.h"
-#include "base/user/experience/_experience.h"
+#include "control_box.h"
+#include "frame_window.h"
+#include "frame.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/write_text/font.h"
+#include "base/platform/session.h"
 #include "acme/constant/timer.h"
-#include "aura/graphics/draw2d/_component.h"
 #include "acme/platform/timer.h"
-//#include "aura/user/interaction_draw2d.h"
+#include "aura/message/user.h"
+#include "button.h"
+#include "experience.h"
 
 
 namespace experience
@@ -50,7 +57,7 @@ namespace experience
 
          m_pointDrag = pmouse->m_point;
 
-         screen_to_client(m_pointDrag);
+         m_pointDrag+=screen_to_client();
 
          set_mouse_capture();
 
@@ -73,7 +80,7 @@ namespace experience
 
          ::point_i32 point = pmouse->m_point;
 
-         m_pframewindow->screen_to_client(point);
+         point+=m_pframewindow->screen_to_client();
 
          drag(point);
 
@@ -103,7 +110,7 @@ namespace experience
 
             ::point_i32 point = pmouse->m_point;
 
-            m_pframewindow->screen_to_client(point);
+            point+=m_pframewindow->screen_to_client();
 
             drag(point);
 
@@ -575,13 +582,13 @@ if(rectangle.left > 400)
 
       ::rectangle_i32 rectangleParent(rectangleWindow);
 
-      m_pframewindow->screen_to_client(rectangleParent);
+      rectangleParent+=m_pframewindow->screen_to_client();
 
       ::rectangle_i32 rectangle;
 
       get_window_rect(rectangle);
 
-      m_pframewindow->screen_to_client(rectangle);
+      rectangle+=m_pframewindow->screen_to_client();
 
       reset_layout(pgraphics);
 
@@ -1095,7 +1102,7 @@ if(rectangle.left > 400)
 
       get_window_rect(rectangle);
 
-      m_pframewindow->screen_to_client(rectangle);
+      rectangle+=m_pframewindow->screen_to_client();
 
       m_pframewindow->m_pframe->m_bControlBoxAlignRight = rectangle.center().x > (rectangleWindow.width() / 2);
 

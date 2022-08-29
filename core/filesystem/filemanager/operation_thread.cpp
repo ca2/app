@@ -2,6 +2,10 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
+#include "operation_thread.h"
+#include "operation.h"
+#include "operation_impact.h"
+
 
 
 namespace filemanager
@@ -260,13 +264,13 @@ namespace filemanager
 
          }
 
-         m_pimpact->post_message(operation_impact::MessageMainPost, operation_impact::MessageMainPostFileOperation);
+         m_pimpact->post_message(e_message_main_post, operation_impact::e_main_post_file_operation);
 
          sleep(millisStepSetSleep);
 
       }
 
-      m_pimpact->post_message(operation_impact::MessageMainPost,  operation_impact::MessageMainPostFileOperationFinal);
+      m_pimpact->post_message(e_message_main_post,  operation_impact::e_main_post_file_operation_final);
 
    }
 

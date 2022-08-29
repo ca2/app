@@ -11,6 +11,16 @@
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/desktop_environment.h"
+#include "user.h"
+#include "style.h"
+#include "interaction_impl.h"
+#include "interaction.h"
+#include "aura/graphics/write_text/font_list.h"
+#include "aura/message/user.h"
+#include "plain_edit.h"
+#include "still.h"
+#include "check_box.h"
+#include "button.h"
 
 
 ::mutex * g_pmutexUser = nullptr;
@@ -404,35 +414,12 @@ namespace user
    void user::init1()
    {
 
-      ::factory::add_factory_item <::user::button >();
-      ::factory::add_factory_item <::user::check_box >();
-      ::factory::add_factory_item <::user::still >();
-      //add_factory_item <::user::document >();
-//#ifdef WINDOWS_DESKTOP
-//      ::factory::add_factory_item <::user::message_window >();
-//#endif
-      //add_factory_item <::user::simple_impact >();
-      //add_factory_item <::user::place_holder >();
-      //add_factory_item <::user::font_combo_box >();
-
-      //if(get_app()->is_system())
-      //{
-
-      //   add_factory_item <keyboard_layout >();
-
-      //}
-
-      //if (!
       ::acme::department::init1();
 
 
-      //{
-
-      //   return false;
-
-      //}
-
-      //return true;
+      ::factory::add_factory_item <::user::button >();
+      ::factory::add_factory_item <::user::check_box >();
+      ::factory::add_factory_item <::user::still >();
 
    }
 
@@ -1004,7 +991,7 @@ namespace aura
 
          __compose(m_pfontlistSingleColumn, __create_new < ::write_text::font_list > ());
 
-         m_pfontlistSingleColumn->set_font_list_type(::write_text::font_list::type_single_column);
+         m_pfontlistSingleColumn->set_font_list_type(::write_text::e_font_list_single_column);
 
          // m_pfontlistSingleColumn->set_need_layout();
 
@@ -1294,10 +1281,6 @@ namespace aura
 namespace user
 {
 
-   run_application::run_application()
-   {
-
-   }
 
    bool is_descendant(::user::interaction* puiParent, ::user::interaction* pinteraction)
       // helper for detecting whether child descendent of parent
@@ -1554,6 +1537,39 @@ namespace user
 
 
    __namespace_object_factory(user, ::system_setup::flag_object_user);
+
+
+   ::aura::application * user::get_app()
+   {
+
+      return m_pcontext && m_pcontext->m_papplication ? m_pcontext->m_papplication->m_pauraapplication : nullptr;
+
+   }
+
+   
+   ::aura::session * user::get_session()
+   {
+
+      return m_pcontext ? m_pcontext->m_paurasession : nullptr;
+
+   }
+
+
+   ::aura::system * user::get_system()
+   {
+
+      return ::is_set(m_psystem) ? dynamic_cast <::aura::system *> (m_psystem) : nullptr;
+
+   }
+
+   
+   __pointer(::user::plain_edit) user::create_calculator_plain_edit()
+   {
+
+      return __new(::user::plain_edit);
+
+   }
+
 
 
 } // namespace user

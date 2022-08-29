@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include "aqua/xml.h"
+#include "product.h"
+#include "axis/platform/application.h"
+#include "user.h"
 
 //
 //  account_license.cpp

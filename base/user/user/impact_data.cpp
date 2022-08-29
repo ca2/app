@@ -2,6 +2,9 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_component.h"
 #endif
+#include "impact_data.h"
+#include "aura/user/user/system.h"
+#include "aura/message/user.h"
 
 
 namespace user
@@ -122,6 +125,31 @@ namespace user
 
 
 } // namespace user
+
+
+::user::impact_data * __impact_data(::user::system * pusersystem)
+{
+
+   return ::is_set(pusersystem) ? pusersystem->m_pimpactdata.cast < ::user::impact_data >() : nullptr;
+
+}
+
+
+CLASS_DECL_BASE::user::impact_data * __impact_data(::message::create * pmessagecreate)
+{
+
+   auto pimpactdata = ::is_set(pmessagecreate) ? pmessagecreate->get_impact_data() : nullptr;
+
+   if (!pimpactdata)
+   {
+
+      return nullptr;
+
+   }
+
+   return dynamic_cast <::user::impact_data *>(pimpactdata);
+
+}
 
 
 

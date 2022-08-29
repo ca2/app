@@ -46,13 +46,14 @@
 //      - Replaced the magic numbers concerning the reply codes by a class.
 // v1.0 released 2004-10-25
 ////////////////////////////////////////////////////////////////////////////////
-
-
 #include "framework.h"
-#include "_.h"
+#include "client_socket.h"
+#include "output_stream.h"
+#include "file.h"
 #include "apex/networking/sockets/_sockets.h"
 //xxx #undef ___scoped_restore
 #include <openssl/x509.h>
+
 
 namespace ftp
 {

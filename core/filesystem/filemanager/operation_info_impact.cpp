@@ -3,6 +3,10 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
+#include "aura/graphics/draw2d/graphics.h"
+#include "operation_info_impact.h"
+#include "operation_document.h"
+#include "operation_thread.h"
 
 
 namespace filemanager
@@ -78,7 +82,7 @@ namespace filemanager
       double dProgressD = 1.0 / (double)iLineCount;
       ::rectangle_i32 rectangleBar;
       double dProgress;
-      dProgress = get_document()->m_thread.get_progress_rate();
+      dProgress = get_document()->m_poperationthread->get_progress_rate();
       for(i32 iLine = 0; iLine < iLineCount; iLine++)
       {
 

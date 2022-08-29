@@ -1,12 +1,26 @@
 #include "framework.h"
-#include "core/user/user/_component.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/graphics_extension.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "acme/platform/timer.h"
 #include "acme/constant/timer.h"
 #include "acme/primitive/collection/sort.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/list.h"
-//#include "aura/windowing/windowing.h"
-//#include "aura/windowing/window.h"
+#include "aura/user/user/scroll_data.h"
+#include "list.h"
+#include "list_column.h"
+#include "list_column_array.h"
+#include "list_header.h"
+#include "list_item.h"
+#include "list_data.h"
+#include "mesh_cache_interface.h"
+#include "core/user/simple/list_data.h"
+#include "core/platform/session.h"
+#include "axis/platform/system.h"
+#include "aura/message/user.h"
+#include "base/user/user/user.h"
+#include "aura/user/user/scroll_bar.h"
 
 
 #define DBLCLKMS 500_ms
@@ -55,7 +69,7 @@ namespace user
 
       m_eview = impact_report;
 
-      m_columna.Initialize(this);
+      m_pcolumna->Initialize(this);
 
       m_bHeaderCtrl = true;
       m_bSingleColumnMode = false;
@@ -210,7 +224,7 @@ namespace user
 
          ::size_array sizea;
 
-         m_dcextension.get_text_extent(pgraphics, m_strTopText, sizea);
+         m_pdcextension->get_text_extent(pgraphics, m_strTopText, sizea);
 
          index x = 0;
 
@@ -304,7 +318,7 @@ namespace user
 
          __pointer_array(synchronous_lock) slaImageList;
 
-         for (auto & pcolumn : m_columna)
+         for (auto & pcolumn : *m_pcolumna)
          {
 
             if (pcolumn)
@@ -761,7 +775,7 @@ namespace user
       else
       {
 
-         iColumnCount = m_columna.get_visible_count();
+         iColumnCount = m_pcolumna->get_visible_count();
 
       }
 
@@ -931,7 +945,7 @@ namespace user
    ::count list::_001GetColumnCount()
    {
 
-      return m_columna.get_visible_count();
+      return m_pcolumna->get_visible_count();
 
    }
 
@@ -992,10 +1006,10 @@ namespace user
 
          index iIconSize;
 
-         if (m_columna.get_count() > 0)
+         if (m_pcolumna->get_count() > 0)
          {
 
-            iIconSize = maximum(32, m_columna[0]->m_sizeIcon.cy);
+            iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy);
 
          }
          else
@@ -1032,7 +1046,7 @@ namespace user
 
          m_iItemWidth = iMaxWidth;
 
-         m_columna.get_visible(0)->m_iWidth = iMaxWidth;
+         m_pcolumna->get_visible(0)->m_iWidth = iMaxWidth;
 
       }
 
@@ -1244,7 +1258,7 @@ namespace user
 
             rectangle = pitem->m_pdrawlistitem->m_rectangleItem;
 
-            m_scrolldataVertical.m_iLine = (::i32) m_dItemHeight;
+            m_pscrolldataVertical->m_iLine = (::i32) m_dItemHeight;
 
             rectangle.top = 0;
 
@@ -1363,7 +1377,7 @@ namespace user
 
          pdrawlistsubitem->m_pitem = pitem;
 
-         pdrawlistsubitem->m_pcolumn = m_columna.get_by_subitem(iSubItem);
+         pdrawlistsubitem->m_pcolumn = m_pcolumna->get_by_subitem(iSubItem);
 
          pdrawlistsubitem->m_iSubItem = iSubItem;
 
@@ -1381,9 +1395,9 @@ namespace user
 
       auto pcolumn = __new(list_column());
 
-      m_columna.add(pcolumn);
+      m_pcolumna->add(pcolumn);
 
-      pcolumn->m_iColumn = m_columna.get_upper_bound();
+      pcolumn->m_iColumn = m_pcolumna->get_upper_bound();
 
       return pcolumn;
 
@@ -1444,7 +1458,7 @@ namespace user
    void list::_001OnColumnChange()
    {
 
-      for (auto & pcolumn : m_columna.ptra())
+      for (auto & pcolumn : m_pcolumna->ptra())
       {
 
          if (pcolumn->m_bNew)
@@ -1478,14 +1492,14 @@ namespace user
 
       //});
 
-      auto iVisibleColumnCount = m_columna.get_visible_count();
+      auto iVisibleColumnCount = m_pcolumna->get_visible_count();
 
       ::i32 iPosition = 0;
 
       for (::index iColumn = 0; iColumn < iVisibleColumnCount; iColumn++)
       {
 
-         auto pcolumn = m_columna.get_visible(iColumn);
+         auto pcolumn = m_pcolumna->get_visible(iColumn);
 
          pcolumn->m_iPosition = iPosition;
 
@@ -1499,7 +1513,7 @@ namespace user
       for (iColumn = 0; iColumn < iVisibleColumnCount; iColumn++)
       {
 
-         list_column * pcolumn = m_columna.get_visible(iColumn);
+         list_column * pcolumn = m_pcolumna->get_visible(iColumn);
 
          iColumnWidth = pcolumn->m_iWidth;
 
@@ -1580,7 +1594,7 @@ namespace user
 
          ::user::list_header::item hditem;
 
-         for (index iOrder = 0; iOrder < m_columna.get_visible_count(); iOrder++)
+         for (index iOrder = 0; iOrder < m_pcolumna->get_visible_count(); iOrder++)
          {
             iColumn = _001MapOrderToColumn(iOrder);
 
@@ -1591,7 +1605,7 @@ namespace user
 
             }
 
-            list_column * pcolumn = m_columna.get_visible(iColumn);
+            list_column * pcolumn = m_pcolumna->get_visible(iColumn);
 
             //hditem.mask = HDI_WIDTH | HDI_TEXT | HDI_LPARAM | HDI_ORDER;
             //str.load_string(_001GetColumnText(iColumn));
@@ -1624,14 +1638,14 @@ namespace user
 
       }
 
-      if (iColumn >= m_columna.get_visible_count())
+      if (iColumn >= m_pcolumna->get_visible_count())
       {
 
          return false;
 
       }
 
-      m_columna.get_visible(iColumn)->m_iWidth = iWidth;
+      m_pcolumna->get_visible(iColumn)->m_iWidth = iWidth;
 
       m_plistheader->DIDDXColumn(true);
 
@@ -1645,7 +1659,7 @@ namespace user
    //int list::_001GetColumnWidth(::index iColumn)
    //{
 
-   //   auto  * pcolumn = m_columna.get_visible(pitem->m_iColumn);
+   //   auto  * pcolumn = m_pcolumna->get_visible(pitem->m_iColumn);
 
    //   if (pcolumn == nullptr)
    //   {
@@ -1682,10 +1696,10 @@ namespace user
    index list::_001MapOrderToColumn(index iOrder)
    {
 
-      for (index iColumn = 0; iColumn < m_columna.get_size(); iColumn++)
+      for (index iColumn = 0; iColumn < m_pcolumna->get_size(); iColumn++)
       {
 
-         list_column * pcolumn = m_columna.element_at(iColumn);
+         list_column * pcolumn = m_pcolumna->element_at(iColumn);
 
          if (pcolumn->m_bVisible)
          {
@@ -1716,14 +1730,14 @@ namespace user
 
       }
 
-      if (iColumn >= m_columna.get_visible_count())
+      if (iColumn >= m_pcolumna->get_visible_count())
       {
 
          return -1;
 
       }
 
-      auto pcolumn = m_columna.get_visible(iColumn);
+      auto pcolumn = m_pcolumna->get_visible(iColumn);
 
       if (!pcolumn)
       {
@@ -1740,7 +1754,7 @@ namespace user
    index list::_001MapSubItemToColumn(index iSubItem)
    {
 
-      return m_columna.subitem_visible_index(iSubItem);
+      return m_pcolumna->subitem_visible_index(iSubItem);
 
    }
 
@@ -1749,9 +1763,9 @@ namespace user
    {
 
       ASSERT(iColumn >= 0);
-      ASSERT(iColumn < m_columna.get_visible_count());
+      ASSERT(iColumn < m_pcolumna->get_visible_count());
 
-      return m_columna.get_visible(iColumn)->subitem_index();
+      return m_pcolumna->get_visible(iColumn)->subitem_index();
 
    }
 
@@ -1760,9 +1774,9 @@ namespace user
    {
 
       ASSERT(iColumn >= 0);
-      ASSERT(iColumn < m_columna.get_visible_count());
+      ASSERT(iColumn < m_pcolumna->get_visible_count());
 
-      m_columna.erase(iColumn);
+      m_pcolumna->erase(iColumn);
 
    }
 
@@ -2168,7 +2182,7 @@ namespace user
 
          //}
 
-         auto pcolumn = m_columna.get_visible(iColumn);
+         auto pcolumn = m_pcolumna->get_visible(iColumn);
 
          iRight = iLeft + pcolumn->m_iWidth;
 
@@ -2386,7 +2400,7 @@ namespace user
       else if (m_eview == impact_icon)
       {
 
-         if (m_columna.get_count() == 0)
+         if (m_pcolumna->get_count() == 0)
          {
 
             return false;
@@ -2404,7 +2418,7 @@ namespace user
 
          }
 
-         index iIconSize = maximum(32, m_columna[0]->m_sizeIcon.cy);
+         index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy);
 
          index iItemSize = iIconSize * 2;
 
@@ -2783,7 +2797,7 @@ namespace user
 
          }
 
-         index iIconSize = maximum(32, m_columna[0]->m_sizeIcon.cy);
+         index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy);
 
          index iItemSize = iIconSize * 2;
 
@@ -2916,7 +2930,7 @@ namespace user
    ::user::interaction * list::get_subitem_control(::index iSubItem)
    {
 
-      auto pcolumn = m_columna.get_by_subitem(iSubItem);
+      auto pcolumn = m_pcolumna->get_by_subitem(iSubItem);
 
       if (!pcolumn)
       {
@@ -2971,7 +2985,7 @@ namespace user
          if (eelement == ::user::list::e_element_image)
          {
 
-            i32 iIconSize = m_columna[0]->m_sizeIcon.cy;
+            i32 iIconSize = (*m_pcolumna)[0]->m_sizeIcon.cy;
 
             pdrawlistsubitem->m_rectangleImage.left = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.left + iIconSize / 2;
             pdrawlistsubitem->m_rectangleImage.top = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.top;
@@ -2984,7 +2998,7 @@ namespace user
          else if (eelement == ::user::mesh::e_element_text)
          {
 
-            i32 iIconSize = m_columna[0]->m_sizeIcon.cy;
+            i32 iIconSize = (*m_pcolumna)[0]->m_sizeIcon.cy;
 
             pdrawlistsubitem->m_rectangleText.left = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.left;
             pdrawlistsubitem->m_rectangleText.top = pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_rectangleItem.top + iIconSize;
@@ -3353,7 +3367,7 @@ namespace user
             m_iDisplayItemFocus = iItem;
 
             item_range itemrange;
-            itemrange.set(iItem, iItem, 0, m_columna.get_count() - 1, -1, -1);
+            itemrange.set(iItem, iItem, 0, m_pcolumna->get_count() - 1, -1, -1);
             m_rangeSelection.add_item(itemrange);
 
             _001EnsureVisible(iItem, range);
@@ -3402,7 +3416,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       synchronous_lock synchronouslock(mutex());
 
@@ -3466,7 +3480,7 @@ namespace user
 
                get_client_rect(&rectangleClient);
 
-               index iIconSize = maximum(32, m_columna[0]->m_sizeIcon.cy);
+               index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy);
 
                index iItemSize = iIconSize * 2;
 
@@ -3597,7 +3611,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       synchronous_lock synchronouslock(mutex());
 
@@ -3782,7 +3796,7 @@ namespace user
 
                   auto iUItem = maximum(m_iShiftFirstSelection, iDisplayItem);
 
-                  itemrange.set(iLItem, iUItem, 0, m_columna.get_count() - 1, -1, -1);
+                  itemrange.set(iLItem, iUItem, 0, m_pcolumna->get_count() - 1, -1, -1);
 
                   m_rangeSelection.add_item(itemrange);
 
@@ -3803,7 +3817,7 @@ namespace user
 
                   auto iUItem = maximum(m_iShiftFirstSelection, iDisplayItem);
 
-                  itemrange.set(iLItem, iUItem, 0, m_columna.get_count() - 1, -1, -1);
+                  itemrange.set(iLItem, iUItem, 0, m_pcolumna->get_count() - 1, -1, -1);
 
                   m_rangeSelection.add_item(itemrange);
 
@@ -3843,7 +3857,7 @@ namespace user
 
                   item_range itemrange;
 
-                  itemrange.set(iDisplayItem, iDisplayItem, 0, m_columna.get_count() - 1, -1, -1);
+                  itemrange.set(iDisplayItem, iDisplayItem, 0, m_pcolumna->get_count() - 1, -1, -1);
 
                   _001AddSelection(itemrange);
 
@@ -3888,7 +3902,7 @@ namespace user
 
                auto point = pmouse->m_point;
 
-               screen_to_client(point);
+               screen_to_client()(point);
 
                draw_list_item item;
 
@@ -3951,7 +3965,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       release_mouse_capture();
 
@@ -4154,7 +4168,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       synchronous_lock synchronouslock(mutex());
 
@@ -4181,7 +4195,7 @@ namespace user
                m_rangeSelection.clear();
                m_iShiftFirstSelection = iItem;
                item_range itemrange;
-               itemrange.set(iItem, iItem, 0, m_columna.get_count() - 1, -1, -1);
+               itemrange.set(iItem, iItem, 0, m_pcolumna->get_count() - 1, -1, -1);
                m_rangeSelection.add_item(itemrange);
                set_need_redraw();
 
@@ -4401,7 +4415,7 @@ namespace user
    string list::_001GetColumnText(index iColumn)
    {
 
-      list_column * pcolumn = m_columna.get_visible(iColumn);
+      list_column * pcolumn = m_pcolumna->get_visible(iColumn);
 
       if (pcolumn == nullptr)
       {
@@ -4424,7 +4438,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       index iDisplayItem = -1;
 
@@ -4525,10 +4539,10 @@ namespace user
       __UNREFERENCED_PARAMETER(lparam);
 
 
-      for (index iColumn = 0; iColumn < m_columna.get_visible_count(); iColumn++)
+      for (index iColumn = 0; iColumn < m_pcolumna->get_visible_count(); iColumn++)
       {
 
-         list_column * pcolumn = m_columna.get_visible(iColumn);
+         list_column * pcolumn = m_pcolumna->get_visible(iColumn);
 
          pcolumn->m_iOrder = HeaderCtrlMapColumnToOrder(iColumn);
 
@@ -4584,12 +4598,12 @@ namespace user
 
       index width;
 
-      for (i = 0; i < m_columna.get_count(); i++)
+      for (i = 0; i < m_pcolumna->get_count(); i++)
       {
 
          str.format("list_column[%d].width", i);
 
-         width = m_columna.element_at(i)->m_iWidth;
+         width = m_pcolumna->element_at(i)->m_iWidth;
 
          //data_set(str, width);
 
@@ -4609,9 +4623,9 @@ namespace user
       __UNREFERENCED_PARAMETER(lparam);
 
 
-      //    for(index iColumn = 0; iColumn < m_columna.get_visible_count(); iColumn++)
+      //    for(index iColumn = 0; iColumn < m_pcolumna->get_visible_count(); iColumn++)
       //  {
-      //         list_column & column = m_columna.get_visible(iColumn);
+      //         list_column & column = m_pcolumna->get_visible(iColumn);
       //pcolumn->m_iWidth = m_plistheader->GetItemWidth(iColumn);
       //}
 
@@ -4633,7 +4647,7 @@ namespace user
 
       //data_set(str, bShow ? 1 : 0);
 
-      m_columna.ShowSubItem(iSubItem, bShow);
+      m_pcolumna->ShowSubItem(iSubItem, bShow);
 
       _001OnColumnChange();
 
@@ -5324,13 +5338,13 @@ namespace user
    void list::DISaveOrder()
    {
 
-      m_columna.DISaveOrder();
+      m_pcolumna->DISaveOrder();
 
    }
 
    void list::DILoadOrder()
    {
-      m_columna.DILoadOrder();
+      m_pcolumna->DILoadOrder();
       _001OnColumnChange();
    }
 
@@ -5367,7 +5381,7 @@ namespace user
 
          synchronous_lock synchronouslock(mutex());
 
-         m_columna.erase_all();
+         m_pcolumna->erase_all();
 
       }
 
@@ -5575,7 +5589,7 @@ namespace user
 
       ::size_array sizea;
 
-      m_dcextension.get_text_extent(pgraphics, m_strTopText, sizea);
+      m_pdcextension->get_text_extent(pgraphics, m_strTopText, sizea);
       ::rectangle_i32 rectangleClient;
       get_client_rect(rectangleClient);
       index x = 0;
@@ -5642,7 +5656,6 @@ namespace user
       m_psimplelistdata = pmeshdata;
 
    }
-
 
 
    //bool list::_001InsertColumn(list_column * pcolumn)
@@ -5749,7 +5762,7 @@ namespace user
 
          pgraphics->set_font(this, ::e_element_none);
 
-         m_dcextension.get_text_extent(pgraphics, psubitem->m_strText, psubitem->m_strText.get_length(), size);
+         m_pdcextension->get_text_extent(pgraphics, psubitem->m_strText, psubitem->m_strText.get_length(), size);
 
          cx += size.cx;
 
@@ -5771,7 +5784,7 @@ namespace user
 
    index list::_001ConfigIdToSubItem(const ::database::key & key)
    {
-      list_column * column = m_columna.get_by_config_id(key);
+      list_column * column = m_pcolumna->get_by_config_id(key);
       if (column == nullptr)
          return -1;
       return column->m_iSubItem;
@@ -5781,7 +5794,7 @@ namespace user
    index list::config_id_index(const ::database::key & key)
    {
 
-      return m_columna.config_id_index(key);
+      return m_pcolumna->config_id_index(key);
 
    }
 
@@ -6027,7 +6040,7 @@ namespace user
    {
       m_rangeHighlight.clear();
       item_range itemrange;
-      itemrange.set(iItem, iItem, 0, m_columna.get_count() - 1, -1, -1);
+      itemrange.set(iItem, iItem, 0, m_pcolumna->get_count() - 1, -1, -1);
       m_rangeHighlight.add_item(itemrange);
       if (bRedraw)
       {
@@ -6296,9 +6309,9 @@ namespace user
       //iFilter1Step < iItemCount;
       //iFilter1Step++)
       //{
-      //   for (index j = 0; j < m_columna.get_count(); j++)
+      //   for (index j = 0; j < m_pcolumna->get_count(); j++)
       //   {
-      //      list_column * pcolumn = m_columna.get_by_index(j);
+      //      list_column * pcolumn = m_pcolumna->get_by_index(j);
       //      item.m_strText.Empty();
       //      item.m_iItem = iFilter1Step;
       //      item.m_iSubItem = pcolumn->m_iSubItem;
@@ -6740,7 +6753,7 @@ namespace user
 
       auto pitemHitTest = __new(::item);
       
-      auto pointClient = _001ScreenToClient(pmouse->m_point);
+      auto pointClient = screen_to_client().get(pmouse->m_point);
 
       bool & bAnyHoverChange = pitemHitTest->m_bAnyHoverChange;
 
@@ -6975,7 +6988,7 @@ namespace user
 
             get_client_rect(&rectangleClient);
 
-            index iIconSize = maximum(32, m_columna[0]->m_sizeIcon.cy);
+            index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy);
 
             index iItemSize = iIconSize * 2;
 
@@ -7126,14 +7139,14 @@ namespace user
       if (m_eview == impact_icon)
       {
 
-         if (m_columna.get_count() == 0)
+         if (m_pcolumna->get_count() == 0)
          {
 
             return ::size_i32(32, 32);
 
          }
 
-         index iIconSize = maximum(32, m_columna[0]->m_sizeIcon.cy);
+         index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy);
 
          index iItemSize = iIconSize * 2;
 
@@ -7516,7 +7529,7 @@ namespace user
    ::index list::subitem_index(::user::interaction * pinteractionControl)
    {
 
-      auto pcolumn = m_columna.get_by_control(pinteractionControl);
+      auto pcolumn = m_pcolumna->get_by_control(pinteractionControl);
 
       if (!pcolumn)
       {
@@ -7540,7 +7553,7 @@ namespace user
    ::index list::column_index(::user::interaction * pinteractionControl) 
    {
 
-      auto pcolumn = m_columna.get_by_control(pinteractionControl);
+      auto pcolumn = m_pcolumna->get_by_control(pinteractionControl);
 
       if (!pcolumn)
       {

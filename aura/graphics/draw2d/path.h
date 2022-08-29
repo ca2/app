@@ -192,11 +192,17 @@ namespace draw2d
    };
 
 
-   using path_pointer = __pointer(path);
-
-   
    __pointer(::draw2d::path::optimization) create_path_simple_optimization(::draw2d::path * ppath);
 
 
 } // namespace draw2d
 
+//
+//template < >
+//CLASS_DECL_AURA __pointer(___shape< ::draw2d::path>) __create_shape(const ::write_text::text_out & textout, holdee < ::draw2d::path>);
+//
+//template < >
+//CLASS_DECL_AURA __pointer(___shape< ::draw2d::path>) __create_shape(const ::write_text::draw_text & drawtext, holdee < ::draw2d::path>);
+//
+//
+//

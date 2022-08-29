@@ -1,11 +1,20 @@
 #include "framework.h"
-#include "core/user/rich_text/_rich_text.h"
+#include "edit_impl.h"
+#include "format_tool.h"
+#include "document.h"
+#include "data.h"
+#include "format.h"
 #include "acme/platform/timer.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #endif
-
 #include "acme/constant/timer.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/message/user.h"
+#include "aura/user/user/frame.h"
+#include "aura/user/user/copydesk.h"
+#include "base/user/user/user.h"
+#include "core/platform/session.h"
 
 
 namespace user
@@ -872,7 +881,7 @@ namespace user
 
             point_f64 point(pointParam);
 
-            screen_to_client(point);
+            screen_to_client()(point);
 
             ::rectangle_i32 rWindow;
 
@@ -882,7 +891,7 @@ namespace user
 
             __copy(rectangleWindow, rWindow);
 
-            get_parent()->screen_to_client(rectangleWindow);
+            get_parent()->screen_to_client()(rectangleWindow);
 
             copy(rectangleWindow, rectangleWindow);
 
@@ -930,7 +939,7 @@ namespace user
             if (ptopic->user_interaction() == pformattool)
             {
 
-               if (pformattool->m_eattribute & attribute_align)
+               if (pformattool->m_eattribute & e_attribute_align)
                {
 
                   box_align(m_pdata->m_spana, find_span(m_pdata->m_spana, m_pdata->m_iSelEnd), pformattool->m_pformata->element_at(0)->m_ealign);
@@ -2051,7 +2060,7 @@ namespace user
          if (get_parent() != nullptr)
          {
 
-            get_parent()->screen_to_client(rectangleWindow);
+            get_parent()->screen_to_client()(rectangleWindow);
 
          }
 

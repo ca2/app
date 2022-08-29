@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/data/tree.h"
+
+
 namespace user
 {
 
@@ -19,9 +22,6 @@ namespace user
       ::rectangle_f64                          m_rectangleClient;
       ::rectangle_f64                          m_rectangle;
    };
-
-
-
 
 
    class CLASS_DECL_CORE tree_data:

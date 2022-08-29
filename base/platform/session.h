@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "axis/platform/session.h"
+#include "base/user/user/document_manager_container.h"
+
+
 namespace base
 {
 

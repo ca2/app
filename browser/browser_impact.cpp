@@ -323,7 +323,7 @@ namespace browser
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       event.x = point.x;
       event.y = point.y;

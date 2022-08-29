@@ -1620,6 +1620,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\geometry2d\arc.h" />
     <ClInclude Include="primitive\geometry2d\bounding_rect.h" />
     <ClInclude Include="primitive\geometry2d\contains.h" />
+    <ClInclude Include="primitive\geometry2d\shift.h" />
     <ClInclude Include="primitive\geometry2d\_f32.h" />
     <ClInclude Include="primitive\geometry2d\_f64.h" />
     <ClInclude Include="primitive\geometry2d\_i32.h" />
@@ -1705,6 +1706,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\primitive\_atom_impl.h" />
     <ClInclude Include="primitive\primitive\_interlocked_count_impl.h" />
     <ClInclude Include="primitive\primitive\_payload_impl.h" />
+    <ClInclude Include="primitive\primitive\_shape.h" />
     <ClInclude Include="primitive\promise\signalization.h" />
     <ClInclude Include="primitive\string\aaaa_conv_ansi.h" />
     <ClInclude Include="primitive\string\aaa_international_locale_schema.h" />
@@ -1773,6 +1775,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="user\user\text.h" />
     <ClInclude Include="user\user\theme_colors.h" />
     <ClInclude Include="user\user\_.h" />
+    <ClInclude Include="user\user\_constant.h" />
     <ClInclude Include="user\user\_style.h" />
     <ClInclude Include="version\version.h" />
     <ClInclude Include="filesystem\file\___serialization_draft.h" />

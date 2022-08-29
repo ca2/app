@@ -3,9 +3,16 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #endif
-
+#include "aura/graphics/draw2d/graphics.h"
 #include "acme/constant/timer.h"
-#include "core/user/userex/progress.h"
+#include "progress.h"
+#include "user.h"
+#include "aura/user/user/frame.h"
+#include "base/user/user/multiple_document_template.h"
+#include "base/user/user/document.h"
+#include "aura/user/user/progress.h"
+#include "aura/message/user.h"
+
 
 namespace userex
 {

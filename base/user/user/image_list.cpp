@@ -2,9 +2,9 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_component.h"
 #endif
-//#include "aura/update.h"
 #include "image_list.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/image/image.h"
+#include "aura/message/user.h"
 
 
 namespace user
@@ -27,7 +27,7 @@ namespace user
       m_iPad = 10;
       m_ealign = e_align_top_left;
 
-      //m_scrolldataVertical.m_bScrollEnable = true;
+      //m_pscrolldataVertical->m_bScrollEnable = true;
 
    }
 
@@ -651,7 +651,7 @@ namespace user
 
       //m_sizeTotal = rectangleTotal.size();
 
-      //m_scrolldataVertical.m_iPage = rectangleClient.height();
+      //m_pscrolldataVertical->m_iPage = rectangleClient.height();
 
       ::user::box::on_layout(pgraphics);
 

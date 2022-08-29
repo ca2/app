@@ -8,6 +8,13 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
+#include "message_box.h"
+#include "button.h"
+#include "still.h"
+#include "aura/message/user.h"
+#include "interaction_scaler.h"
+#include "user.h"
+#include "style.h"
 
 
 namespace user

@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "base/user/user/impact.h"
+#include "base/user/user/impact_creator.h"
+
+
 namespace userex
 {
 

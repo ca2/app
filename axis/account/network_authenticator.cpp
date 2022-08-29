@@ -6,7 +6,8 @@
 //
 #include "framework.h"
 #include "network_authenticator.h"
-//#include "aqua/xml.h"
+#include "credentials.h"
+#include "user.h"
 
 
 namespace account

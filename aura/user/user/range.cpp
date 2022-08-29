@@ -2,6 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/user/_component.h"
 #endif
+#include "range.h"
 
 
 namespace user

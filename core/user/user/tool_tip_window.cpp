@@ -1,11 +1,11 @@
 #include "framework.h"
-#include "core/user/user/_component.h"
 #include "acme/constant/timer.h"
 #include "tool_tip_window.h"
 #include "tool_tip_tool.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
+#include "aura/message/user.h"
 
 
 namespace user
@@ -147,7 +147,7 @@ namespace user
          }
          ::rectangle_i32 rectangleToolScreen;
          ptool->BaseToolTipGetRect(rectangleToolScreen);
-         ptool->BaseToolTipGetWnd()->client_to_screen(rectangleToolScreen);
+         ptool->BaseToolTipGetWnd()->client_to_screen()(rectangleToolScreen);
          CalcRect(pgraphics, rectangle, rectangleToolScreen, m_strTip);
 
          ::rectangle_i32 rectangleScreen;

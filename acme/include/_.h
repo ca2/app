@@ -250,6 +250,14 @@ namespace aura
 } // namespace aura
 
 
+
+
+template < typename HOLDEE >
+class holdee
+{
+};
+
+
 //namespace windowing_win32
 //{
 //
@@ -1774,16 +1782,7 @@ class synchronization_object;
 #include "acme/memory/_heap.h"
 
 
-//#include "acme/exception/_const.h"
-
-
-//#include "acme/primitive/primitive/bits.h"
-
 #include "acme/primitive/mathematics/_.h"
-
-//#include "acme/user/user/_const.h"
-
-//#include "acme/user/user/_experience_const.h"
 
 #include "acme/filesystem/file/_constant.h"
 
@@ -3369,6 +3368,7 @@ template < typename TYPE > class sequence;
 
 
 
+
 #include "acme/constant/idpool.h"
 
 
@@ -3652,6 +3652,12 @@ namespace file
 
 
 #include "acme/primitive/collection/_collection.h"
+
+
+#include "acme/primitive/geometry2d/polygon.h"
+
+
+//#include "acme/primitive/geometry2d/_shape.h"
 
 
 #include "acme/graphics/draw2d/_const.h"

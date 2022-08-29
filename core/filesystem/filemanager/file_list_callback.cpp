@@ -4,7 +4,9 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
-
+#include "file_list_callback.h"
+#include "core/platform/system.h"
+#include "aura/user/user/button.h"
 
 
 namespace filemanager

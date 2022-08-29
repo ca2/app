@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "base/user/simple/_component.h"
+#include "tab_document.h"
 
 
 simple_tab_document::simple_tab_document()

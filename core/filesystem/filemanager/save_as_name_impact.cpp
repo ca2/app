@@ -3,8 +3,10 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
-//#include "aura/update.h"
-
+#include "save_as_name_impact.h"
+#include "data.h"
+#include "document.h"
+#include "aura/user/user/frame.h"
 
 
 namespace filemanager
@@ -184,7 +186,7 @@ namespace filemanager
 
       ::file::path strPath;
 
-      GetTypedParent<save_as_impact>()->m_pedit->_001GetText(strTitle);
+      get_typed_parent<save_as_impact>()->m_pedit->_001GetText(strTitle);
 
       auto pcontext = get_context();
 
@@ -213,7 +215,7 @@ namespace filemanager
 
       }
 
-      if (filemanager_document()->m_emode == ::userfs::mode_import)
+      if (filemanager_document()->m_emode == ::userfs::e_mode_import)
       {
 
          filemanager_data()->m_pdocumentTopic->open_document(strPath);

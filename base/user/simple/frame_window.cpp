@@ -1,11 +1,31 @@
 #include "framework.h"
+#include "frame_window.h"
 #include "base/user/simple/_component.h"
 #include "aura/message.h"
 #include "aqua/xml.h"
 #include "acme/id.h"
 #include "acme/parallelization/pool.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/graphics/image/fastblur.h"
 #include "aura/windowing/icon.h"
+#include "aura/user/user/alpha_source.h"
+#include "base/user/user/user.h"
+#include "aura/user/user/primitive_impl.h"
+#include "base/platform/application.h"
+#include "aura/user/user/notify_icon.h"
+#include "base/platform/session.h"
+#include "base/user/experience/frame.h"
+#include "aura/message/user.h"
+#include "aura/user/user/system.h"
+#include "base/user/user/impact_system.h"
+#include "base/user/experience/control_box.h"
+#include "base/user/user/document.h"
+#include "base/user/user/toolbar.h"
+#include "base/user/user/place_holder.h"
+#include "base/user/user/impact_host.h"
+#include "aura/user/user/style.h"
 
 
 #define TEST 0
@@ -336,10 +356,10 @@ bool simple_frame_window::WindowDataLoadWindowRect()
    if (wfi_has_up_down())
    {
 
-      if (!(m_uiUserInteractionFlags & ::user::interaction_wfi_up_down_loading))
+      if (!(m_uiUserInteractionFlags & ::user::e_interaction_wfi_up_down_loading))
       {
 
-         __keep_on(&m_uiUserInteractionFlags, ::user::interaction_wfi_up_down_loading);
+         __keep_on(&m_uiUserInteractionFlags, ::user::e_interaction_wfi_up_down_loading);
 
          bool bWfiDown = true;
 
@@ -2550,6 +2570,15 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 }
 
 
+bool simple_frame_window::_000OnBeforeDraw(::draw2d::graphics_pointer & pgraphicsParam)
+{
+
+
+   return true;
+   
+}
+
+
 void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
 
@@ -2632,7 +2661,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
                
             }
 
-            m_blur.blur(m_pimageBlur, 2);
+            m_pfastblur->blur(m_pimageBlur, 2);
             
             {
                
@@ -2856,7 +2885,7 @@ void simple_frame_window::design_down()
 
    }
 
-   __keep_on(&m_uiUserInteractionFlags, ::user::interaction_wfi_up_down_loading);
+   __keep_on(&m_uiUserInteractionFlags, ::user::e_interaction_wfi_up_down_loading);
 
    frame_Attach();
 
@@ -2898,11 +2927,11 @@ void simple_frame_window::design_up()
 
    }
 
-   __keep_on(&m_uiUserInteractionFlags, ::user::interaction_wfi_up_down_loading);
+   __keep_on(&m_uiUserInteractionFlags, ::user::e_interaction_wfi_up_down_loading);
 
    frame_Detach();
 
-   if (m_pupdowntarget->m_uiUserInteractionFlags & ::user::interaction_wfi_up_tool_window)
+   if (m_pupdowntarget->m_uiUserInteractionFlags & ::user::e_interaction_wfi_up_tool_window)
    {
 
       set_tool_window();

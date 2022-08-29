@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "impact_system.h"
+
+
 namespace user
 {
 
@@ -15,7 +18,7 @@ namespace user
 
 
       single_document_template(const ::string & pszMatter, ::type pDocClass, ::type pFrameClass, ::type pImpactClass);
-      virtual ~single_document_template();
+      ~single_document_template() override;
 
       virtual void add_document(::user::document * pDoc) override;
       virtual void erase_document(::user::document * pDoc) override;

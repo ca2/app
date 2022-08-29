@@ -1,11 +1,13 @@
 #pragma once
 
 
+#include "scroll_base.h"
+#include "text_composition_composite.h"
+
+
 class element_2d;
 
 
-#define TEXT_COMPOSITION_MESSAGE_UPDATE_CANDIDATE_WINDOW_POSITION 256
-#define TEXT_COMPOSITION_MESSAGE_UPDATE_CARET 512
 
 
 namespace colorertake5

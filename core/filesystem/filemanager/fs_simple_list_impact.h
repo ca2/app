@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "core/user/simple/list_impact.h"
+
+
 namespace filemanager
 {
 

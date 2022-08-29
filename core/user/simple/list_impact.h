@@ -3,6 +3,7 @@
 
 #include "core/user/user/_component.h"
 #include "core/user/user/form_list.h"
+#include "base/user/user/show.h"
 
 
 class CLASS_DECL_CORE simple_list_impact :

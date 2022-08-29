@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/user/user/style.h"
+
+
 namespace experience_anthill
 {
 
@@ -9,8 +12,6 @@ namespace experience_anthill
       virtual public ::base::style
    {
    public:
-
-
 
 
       style();

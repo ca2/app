@@ -5,7 +5,12 @@
 #endif
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/list.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/image/fastblur.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "list.h"
+#include "list_item.h"
+#include "list_column.h"
 
 
 namespace user
@@ -202,7 +207,7 @@ namespace user
 
 
                   pimage->create(m_rectangleImage.size() + size_i32(m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate * 2, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius * iRate * 2));
-                  //m_plist->m_blurIcon.initialize(m_rectangleImage.size() , m_plist.m_iIconBlurRadius);
+                  //m_plist->m_pfastblurIcon->initialize(m_rectangleImage.size() , m_plist.m_iIconBlurRadius);
 
                }
                else
@@ -248,7 +253,7 @@ namespace user
                   for (index i = 0; i < m_pitem->m_pmesh->m_plist->m_iIconBlur; i++)
                   {
 
-                     m_pitem->m_pmesh->m_plist->m_blurIcon.blur(pimage, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius);
+                     m_pitem->m_pmesh->m_plist->m_pfastblurIcon->blur(pimage, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius);
 
                   }
 
@@ -519,7 +524,7 @@ namespace user
                   m_pitem->m_pdrawlistitem->m_pgraphics,
                   m_rectangleText,
                   m_strText,
-                  m_pitem->m_pmesh->m_plist->m_blur,
+                  *m_pitem->m_pmesh->m_plist->m_pfastblur,
                   pimage2,
                   m_pitem->m_pdrawlistitem->m_pgraphics->m_pfont,
                   m_pcolumn->m_pdrawlistcolumn->m_ealign,

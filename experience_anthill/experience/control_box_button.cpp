@@ -2,7 +2,11 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "_library.h"
 #endif
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/user/user/frame.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "aura/message/user.h"
 
 
 namespace experience_anthill
@@ -167,9 +171,7 @@ namespace experience_anthill
    void control_box_button::on_message_show_window(::message::message * pmessage)
    {
 
-
       __pointer(::message::show_window) pshowwindow(pmessage);
-
 
       if (pshowwindow->m_bShow)
       {

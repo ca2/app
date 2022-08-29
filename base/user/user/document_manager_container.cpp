@@ -2,6 +2,8 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_component.h"
 #endif
+#include "document_manager.h"
+#include "document_manager_container.h"
 
 
 namespace user

@@ -6,6 +6,7 @@
 #include "_data.h"
 #include "aqua/xml.h"
 #include "core/user/user/_tree.h"
+#include "fs_simple_impact.h"
 
 
 namespace filemanager

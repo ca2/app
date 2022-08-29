@@ -2,8 +2,11 @@
 // recreated by Camilo 2021-01-28 22:35 <3TBS, Mummi and bilbo!!
 // hi5 contribution...
 #include "framework.h"
-//#include "aura/node/windows/system_interaction.h"
-//#include "_windowing.h"
+#include "aura/user/user/interaction_impl.h"
+#include "aura/message/user.h"
+#include "aura/user/user/interaction.h"
+#include "aura/user/user/user.h"
+
 
 #if !BROAD_PRECOMPILED_HEADER
 

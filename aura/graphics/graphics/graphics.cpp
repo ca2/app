@@ -5,6 +5,8 @@
 #include "_.h"
 #include "_graphics.h"
 #include "aura/windowing/window.h"
+#include "aura/user/user/interaction_impl.h"
+#include "aura/user/user/interaction.h"
 
 
 namespace graphics

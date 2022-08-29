@@ -1,7 +1,15 @@
 #include "framework.h"
-#include "base/user/menu/_menu.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/list.h"
+#include "button.h"
+#include "item.h"
+#include "base/user/user/style.h"
+#include "base/platform/session.h"
+#include "base/user/user/user.h"
+#include "base/user/menu/central.h"
+#include "aura/message/user.h"
+#include "menu.h"
 
 
 namespace user

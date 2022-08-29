@@ -1,11 +1,17 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/_component.h"
-#include "core/user/user/_component.h"
+#include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/item.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/message/user.h"
+#include "list.h"
+#include "list_header.h"
+#include "list_column.h"
+#include "list_column_array.h"
 
 
 namespace user
 {
+
 
    list_header::list_header()
    {
@@ -41,15 +47,15 @@ namespace user
 
       list * plist = m_plist;
 
-      if (plist->m_columna.get_visible(iColumn)->m_pimageHeader->is_set() && plist->m_columna.get_visible(iColumn)->m_pimageHeader->area() > 0)
+      if (plist->m_pcolumna->get_visible(iColumn)->m_pimageHeader->is_set() && plist->m_pcolumna->get_visible(iColumn)->m_pimageHeader->area() > 0)
       {
 
          ::rectangle_i32 rectangle;
 
          rectangle.left = 0;
          rectangle.top = 0;
-         rectangle.right = plist->m_columna.get_visible(iColumn)->m_pimageHeader->width();
-         rectangle.bottom = plist->m_columna.get_visible(iColumn)->m_pimageHeader->height();
+         rectangle.right = plist->m_pcolumna->get_visible(iColumn)->m_pimageHeader->width();
+         rectangle.bottom = plist->m_pcolumna->get_visible(iColumn)->m_pimageHeader->height();
 
          ::rectangle_i32 rC;
 
@@ -59,7 +65,7 @@ namespace user
 
          rectangle.Align(::e_align_left_center, rC);
 
-         image_source imagesource(plist->m_columna.get_visible(iColumn)->m_pimageHeader);
+         image_source imagesource(plist->m_pcolumna->get_visible(iColumn)->m_pimageHeader);
 
          image_drawing_options imagedrawingoptions(rectangle);
 
@@ -178,7 +184,7 @@ namespace user
          
          xLast = x;
          
-         auto pcolumn = plist->m_columna.get_visible(iItem);
+         auto pcolumn = plist->m_pcolumna->get_visible(iItem);
          
          x += pcolumn->m_iWidth;
 
@@ -440,7 +446,7 @@ namespace user
          for (index iColumn = 0; iColumn < m_plist->_001GetColumnCount(); iColumn++)
          {
 
-            auto pcolumn = m_plist->m_columna.get_visible(iColumn);
+            auto pcolumn = m_plist->m_pcolumna->get_visible(iColumn);
 
             iaWidth.add(pcolumn->m_iWidth);
 
@@ -471,7 +477,7 @@ namespace user
             for (index iColumn = 0; iColumn < c; iColumn++)
             {
 
-               auto pcolumn = m_plist->m_columna.get_visible(iColumn);
+               auto pcolumn = m_plist->m_pcolumna->get_visible(iColumn);
 
                pcolumn->m_iWidth= iaWidth[iColumn];
 
@@ -500,7 +506,9 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pointCursor = _001ScreenToClient(pmouse->m_point);
+      auto pointCursor = pmouse->m_point;
+
+      screen_to_client()(pointCursor);
 
       if(hit_test(pointCursor, m_eelementLButtonDown, m_iItemLButtonDown))
       {
@@ -521,7 +529,9 @@ namespace user
 
       list * plist = m_plist;
 
-      auto pointCursor = _001ScreenToClient(pmouse->m_point);
+      auto pointCursor = pmouse->m_point;
+
+      screen_to_client()(pointCursor);
 
       if(m_bLButtonDown)
       {
@@ -550,12 +560,12 @@ namespace user
 
                   // The header item has been dragged
 
-                  index iKeyA = plist->m_columna.order_index(iItem);
-                  index iKeyB = plist->m_columna.order_index(iItem);
-                  index iOrderA = plist->m_columna.get_by_index(iKeyA)->m_iOrder;
-                  index iOrderB = plist->m_columna.get_by_index(iKeyB)->m_iOrder;
-                  plist->m_columna.get_by_index(iKeyA)->m_iOrder = iOrderB;
-                  plist->m_columna.get_by_index(iKeyB)->m_iOrder = iOrderA;
+                  index iKeyA = plist->m_pcolumna->order_index(iItem);
+                  index iKeyB = plist->m_pcolumna->order_index(iItem);
+                  index iOrderA = plist->m_pcolumna->get_by_index(iKeyA)->m_iOrder;
+                  index iOrderB = plist->m_pcolumna->get_by_index(iKeyB)->m_iOrder;
+                  plist->m_pcolumna->get_by_index(iKeyA)->m_iOrder = iOrderB;
+                  plist->m_pcolumna->get_by_index(iKeyB)->m_iOrder = iOrderA;
                   plist->_001OnColumnChange();
                   plist->DISaveOrder();
                   plist->set_need_redraw();
@@ -587,7 +597,9 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pointCursor = _001ScreenToClient(pmouse->m_point);
+      auto pointCursor = pmouse->m_point;
+
+      screen_to_client()(pointCursor);
 
       list * plist = m_plist;
 
@@ -669,7 +681,9 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pointCursor = _001ScreenToClient(pmouse->m_point);
+      auto pointCursor = pmouse->m_point;
+
+      screen_to_client()(pointCursor);
 
       list * plist = m_plist;
 

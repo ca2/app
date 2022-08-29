@@ -2,21 +2,22 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/user/_component.h"
 #endif
+#include "draw2d.h"
 #include "aura/platform/aura.h"
-#include "aura/graphics/draw2d/_component.h"
 #include "aura/graphics/image/array.h"
-#include "graphics.h"
 #include "aura/graphics/image/image.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/write_text/fonts.h"
+#include "graphics.h"
 #include "brush.h"
 #include "pen.h"
 #include "path.h"
-#include "aura/graphics/image/drawing.h"
-#include "aura/graphics/image/context_image.h"
 #include "acme/primitive/geometry2d/_geometry2d.h"
-#include "acme/primitive/geometry2d/_shape.h"
 #include "acme/primitive/geometry2d/_collection.h"
 #include "_defer.h"
 #include "acme/primitive/geometry2d/_defer_shape.h"
+#include "aura/user/user/interaction.h"
 
 #define IMAGE_OK(pimpl) (::is_set(pimpl) && pimpl->area() > 0)
 
@@ -2758,7 +2759,7 @@ namespace draw2d
    point_f64 graphics::offset_origin(double nWidth, double nHeight)
    {
 
-      m_pointOrigin += {nWidth, nHeight};
+      ::shift_i32(nWidth, nHeight)(m_pointOrigin);
 
       update_matrix();
 

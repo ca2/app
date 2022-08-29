@@ -2,13 +2,27 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_component.h"
 #endif
-//#include "aura/update.h"
+#include "tab.h"
+#include "tab_pane_array.h"
 #include "acme/constant/timer.h"
 #include "aqua/xml.h"
 #include "tab_pane.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "tab_data.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/image/list.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/path.h"
 #include "acme/platform/timer.h"
+#include "aura/user/user/frame.h"
+#include "aura/user/user/system.h"
+#include "style.h"
+#include "aura/message/user.h"
+#include "tab_callback.h"
+#include "base/platform/application.h"
+#include "base/platform/system.h"
 
 
 //extern CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;
@@ -497,7 +511,7 @@ namespace user
 
             ::rectangle_i32 rectangleTab(get_data()->m_rectangleTab);
 
-            client_to_screen(rectangleTab);
+            rectangleTab+=client_to_screen();
 
             auto pointCursor = get_cursor_position();
 
@@ -1364,7 +1378,7 @@ namespace user
 
       pgraphics->set(get_font(pstyle, e_element_close_tab_button));
 
-      m_dcextension.get_text_extent(pgraphics,MAGIC_PALACE_TAB_SIZE,get_data()->m_sizeSep);
+      m_pdcextension->get_text_extent(pgraphics,MAGIC_PALACE_TAB_SIZE,get_data()->m_sizeSep);
 
       if(get_data()->m_bVertical)
       {
@@ -1391,11 +1405,11 @@ namespace user
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(m_dcextension, pgraphics);
+            ppane->do_split_layout(m_pdcextension, pgraphics);
 
             ::size_i32 size;
 
-            m_dcextension.get_text_extent(pgraphics, str, size);
+            m_pdcextension->get_text_extent(pgraphics, str, size);
 
             if(ppane->m_pimage->is_set())
             {
@@ -1500,11 +1514,11 @@ namespace user
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(m_dcextension,pgraphics);
+            ppane->do_split_layout(m_pdcextension,pgraphics);
 
             ::size_i32 size;
 
-            m_dcextension.get_text_extent(pgraphics, str, size);
+            m_pdcextension->get_text_extent(pgraphics, str, size);
 
             if(ppane->m_pimage->is_ok())
             {
@@ -1671,7 +1685,7 @@ namespace user
 
       pholder->get_window_rect(rectangleWindow);
 
-      screen_to_client(rectangleWindow);
+      rectangleWindow+=screen_to_client();
 
       if(bDisplay && iIndex == get_current_tab_index())
       {

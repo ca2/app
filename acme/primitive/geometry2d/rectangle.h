@@ -255,6 +255,18 @@ public:
  rectangle_type & operator+=(const rectangle_type & rectangle) noexcept { return*::rect_inflate(this, &rectangle); }
  rectangle_type & operator*=(const rectangle_type & rectangle) noexcept { return*::rect_multiply_inline(this, &rectangle); }
 
+
+ inline rectangle_type& operator+=(const SHIFT_I32& shift) noexcept { this->left = (UNIT_TYPE)(this->left + shift.dx); this->top = (UNIT_TYPE)(this->top + shift.dy); this->right = (UNIT_TYPE)(this->right + shift.dx); this->bottom = (UNIT_TYPE)(this->bottom + shift.dy); return *this; }
+ inline rectangle_type& operator-=(const SHIFT_I32& shift) noexcept { this->left = (UNIT_TYPE)(this->left - shift.dx); this->top = (UNIT_TYPE)(this->top - shift.dy); this->right = (UNIT_TYPE)(this->right + shift.dx); this->bottom = (UNIT_TYPE)(this->bottom + shift.dy); return *this; }
+
+
+ inline rectangle_type& operator()(const SHIFT_I32& shift) noexcept { return operator +=(shift); }
+
+
+ inline rectangle_type operator+(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->left + shift.dx), (UNIT_TYPE)(this->top + shift.dy), (UNIT_TYPE)(this->right + shift.dx), (UNIT_TYPE)(this->bottom + shift.dy) }; }
+ inline rectangle_type operator-(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->left - shift.dx), (UNIT_TYPE)(this->top - shift.dy), (UNIT_TYPE)(this->right - shift.dx), (UNIT_TYPE)(this->bottom - shift.dy) }; }
+
+
  template < primitive_point POINT >
  rectangle_type & operator-=(const POINT & point) noexcept { return *::subtract_rect(this, point.x, point.y); }
 

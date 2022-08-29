@@ -1,5 +1,11 @@
 #include "framework.h"
-#include "base/user/experience/_experience.h"
+#include "button.h"
+#include "control_box.h"
+#include "frame_window.h"
+#include "dock_manager.h"
+#include "aura/message/user.h"
+#include "aura/graphics/draw2d/region.h"
+#include "aura/graphics/write_text/font.h"
 
 
 namespace experience

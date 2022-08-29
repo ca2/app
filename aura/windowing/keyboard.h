@@ -12,7 +12,7 @@
 //
 // $Id: XKeyboard.h 29 2008-04-09 21:37:44Z jay $
 
-
+#include "aura/user/user/keyboard.h"
 
 namespace windowing
 {

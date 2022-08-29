@@ -2,6 +2,13 @@
 #pragma once
 
 
+class imaging;
+class image_drawing;
+class image_drawing_options;
+class image_frame;
+class image_frame_array;
+
+
 CLASS_DECL_AURA void vertical_swap_copy_colorref(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc);
 CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc);
 CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, int x, int y, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc);

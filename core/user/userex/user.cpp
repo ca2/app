@@ -1,11 +1,12 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/write_text/font.h"
+#include "aura/graphics/write_text/fonts.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
-
-#include "core/user/account/_account.h"
+#include "core/user/account/impact.h"
 #include "core/user/user/font_list.h"
 #include "acme/platform/system_setup.h"
 //#include "aura/update.h"
@@ -15,6 +16,42 @@
 #include "dialog_frame.h"
 #include "progress.h"
 #include "core/user/simple/toolbar.h"
+#include "core/user/userex/user.h"
+#include "core/user/simple/pane_document.h"
+#include "core/user/simple/list_header_control.h"
+#include "base/user/simple/child_frame.h"
+#include "core/user/userex/split_impact.h"
+#include "core/user/simple/list_impact.h"
+#include "core/user/simple/printer_list_impact.h"
+#include "base/user/user/picture.h"
+#include "base/user/user/multiple_document_template.h"
+#include "base/user/user/document_manager.h"
+#include "base/user/form/document.h"
+
+
+#include "core/user/userex/menu_document.h"
+#include "core/user/userex/menu_frame.h"
+#include "core/user/userex/menu_impact.h"
+
+#include "aura/user/user/check_box.h"
+#include "aura/user/user/progress.h"
+
+#include "core/user/userex/form_child_frame.h"
+
+#include "base/user/experience/orto_button.h"
+#include "core/filesystem/filemanager/data.h"
+#include "core/user/simple/mesh_data.h"
+#include "core/user/simple/list_data.h"
+#include "color_impact.h"
+#include "font_impact.h"
+#include "pane_tab_impact.h"
+#include "core/user/user/font_combo_box.h"
+#include "core/platform/application.h"
+#include "core/platform/session.h"
+#include "top_impact.h"
+#include "top_toggle_impact.h"
+#include "top_edit_impact.h"
+#include "calculator_edit_impact.h"
 
 
 //void __html_initialize(::user::user * puserex);
@@ -2117,9 +2154,15 @@ namespace core
 
    __namespace_object_factory(user, ::system_setup::flag_object_user);
 
+   __pointer(::user::plain_edit) user::create_calculator_plain_edit()
+   {
+
+      return new ::calculator::plain_edit_impact();
+
+   }
 
 
-} // namespace core
+} // namespace userex
 
 
 namespace user
@@ -2166,6 +2209,9 @@ namespace user
       return puser->default_create_list_data(this);
 
    }
+
+
+
 
 
 } // namespace user

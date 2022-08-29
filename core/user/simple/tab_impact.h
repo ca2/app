@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "base/user/user/tab.h"
+#include "base/user/user/show.h"
+
+
 class CLASS_DECL_CORE simple_tab_impact :
    virtual public ::user::show < ::user::tab >
 {
@@ -8,7 +12,7 @@ public:
 
 
    simple_tab_impact();
-   virtual ~simple_tab_impact();
+   ~simple_tab_impact() override;
 
    virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

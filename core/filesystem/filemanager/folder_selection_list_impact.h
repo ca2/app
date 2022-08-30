@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "impact_base.h"
+
+
 namespace filemanager
 {
 

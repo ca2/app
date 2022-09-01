@@ -17,6 +17,7 @@ namespace draw2d
    class pen;
    class region;
    class path;
+   class host;
    class graphics;
    class bitmap;
    class icon;

@@ -20,6 +20,9 @@ namespace user
    {
 
       m_iWheelDeltaScroll = 3;
+
+      m_pscrolldataVertical = __new(scroll_data);
+
       m_pscrolldataVertical->m_bScroll = false;
       m_pscrolldataVertical->m_iPage = 0;
       m_pscrolldataVertical->m_iLine = 0;

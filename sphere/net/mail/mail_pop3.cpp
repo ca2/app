@@ -44,7 +44,7 @@ namespace mail
 
       }
 
-      m_psocket->open(::net::address(get_host(), (port_t) iPort));
+      m_psocket->open(::networking::address(get_host(), (port_t) iPort));
 
       m_phandler->add(m_psocket);
 

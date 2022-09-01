@@ -30,6 +30,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma once
 
 
+#include "client_socket.h"
+
+
 namespace sockets
 {
 
@@ -44,7 +47,7 @@ namespace sockets
 
       http_get_socket();
       http_get_socket(const string & url);
-      http_get_socket(const string & host,port_t port,const string & url);
+      http_get_socket(const string & host,::networking::port_t port,const string & url);
       ~http_get_socket() override;
 
       virtual bool step() override;

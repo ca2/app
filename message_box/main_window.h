@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "app/app/main_window.h"
+
+
 namespace app_message_box
 {
 

@@ -4,7 +4,7 @@
 // Most of the documentation are taken from this RFC.
 // This is an implementation of an simple FTP client_socket. I have tried to implement
 // platform independent. For the communication i used the classes transfer_socket,
-// ::net::address, ... from David J. Kruglinski (Inside Visual C++). These classes are
+// ::networking::address, ... from David J. Kruglinski (Inside Visual C++). These classes are
 // only small wrappers for the sockets-API.
 // Further I used a smart pointer-implementation from Scott Meyers (Effective C++,
 // More Effective C++, Effective STL).
@@ -166,7 +166,7 @@ namespace ftp
    }
 
    /// Opens the control channel to the FTP server.
-   /// @lparam[in] strServerHost IP-::net::address or name of the server
+   /// @lparam[in] strServerHost IP-::networking::address or name of the server
    /// @lparam[in] iServerPort Port for channel. Usually this is port 21.
    bool client_socket::OpenControlChannel(const string& strServerHost, ::u16 ushServerPort/*=DEFAULT_FTP_PORT*/)
    {
@@ -726,16 +726,16 @@ namespace ftp
       client_socket& ActiveServer = fSourcePasv ? TargetFtpServer : SourceFtpServer;
 
       // set one FTP server in passive mode
-      // the FTP server opens a port and tell us the socket (ip ::net::address + port)
+      // the FTP server opens a port and tell us the socket (ip ::networking::address + port)
       // this socket is used for opening the data connection
       ::u32  ulIP = 0;
       ::u16 ushSock = 0;
       if (PassiveServer.Passive(ulIP, ushSock) != FTP_OK)
          return false;
 
-      ::net::address csaPassiveServer((i32) ulIP, ushSock);
+      ::networking::address csaPassiveServer((i32) ulIP, ushSock);
 
-      // transmit the socket (ip ::net::address + port) of the first FTP server to the
+      // transmit the socket (ip ::networking::address + port) of the first FTP server to the
       // second server
       // the second FTP server establishes then the data connection to the first
       if (ActiveServer.DataPort(csaPassiveServer.get_display_number(), ushSock) != FTP_OK)
@@ -980,7 +980,7 @@ namespace ftp
       //{
       //   ll.EnableSSL();
       //}
-      // INADDR_ANY = ip ::net::address of localhost
+      // INADDR_ANY = ip ::networking::address of localhost
       // second parameter "0" means that the WINSOCKAPI ask for a port
       string strIp = "127.0.0.1";
       int iPort = 0;
@@ -999,9 +999,9 @@ namespace ftp
       ::u16 ushLocalSock = 0;
       try
       {
-         // INADDR_ANY = ip ::net::address of localhost
+         // INADDR_ANY = ip ::networking::address of localhost
          // second parameter "0" means that the WINSOCKAPI ask for a port
-         //::net::address csaAddressTemp(INADDR_ANY, 0);
+         //::networking::address csaAddressTemp(INADDR_ANY, 0);
          //apSckServer->create(SOCK_STREAM);
          //apSckServer->bind(csaAddressTemp);
          //apSckServer->get_socket_address(csaAddressTemp);
@@ -1015,16 +1015,16 @@ namespace ftp
          return false;
       }
 
-      ::net::address csaAddressTemp(INADDR_ANY, 0);
+      ::networking::address csaAddressTemp(INADDR_ANY, 0);
       csaAddressTemp = sckDataConnection.get_socket_address();
       ushLocalSock = csaAddressTemp.get_service_number();
 
 
-      // get own ip ::net::address
-      ::net::address csaLocalAddress;
+      // get own ip ::networking::address
+      ::networking::address csaLocalAddress;
       csaLocalAddress = get_socket_address();
 
-      // transmit the socket (ip ::net::address + port) to the server
+      // transmit the socket (ip ::networking::address + port) to the server
       // the FTP server establishes then the data connection
       if (DataPort(csaLocalAddress.get_display_number(), ushLocalSock) != FTP_OK)
          return false;
@@ -1091,13 +1091,13 @@ namespace ftp
       }
 
       // set passive mode
-      // the FTP server opens a port and tell us the socket (ip ::net::address + port)
+      // the FTP server opens a port and tell us the socket (ip ::networking::address + port)
       // this socket is used for opening the data connection
       if (Passive(ulRemoteHostIP, ushServerSock) != FTP_OK)
          return false;
 
       // establish connection
-      ::net::address sockAddrTemp(::net::ipv4((i32) ulRemoteHostIP, ushServerSock));
+      ::networking::address sockAddrTemp(::net::ipv4((i32) ulRemoteHostIP, ushServerSock));
       try
       {
          if (!sckDataConnection.open(sockAddrTemp))
@@ -1576,9 +1576,9 @@ auto tickStart = ::duration::now();
    /// This command requests the server-DTP (data transfer process) on a data to
    /// "listen"  port (which is not its default data port) and to wait for a
    /// connection rather than initiate one upon receipt of a transfer command.
-   /// The response to this command includes the host and port ::net::address this
+   /// The response to this command includes the host and port ::networking::address this
    /// server is listening on.
-   /// @lparam[out] ulIpAddress IP ::net::address the server is listening on.
+   /// @lparam[out] ulIpAddress IP ::networking::address the server is listening on.
    /// @lparam[out] ushPort Port the server is listening on.
    /// @return see return values of client_socket::SimpleErrorCheck
    int client_socket::Passive(::u32& ulIpAddress, ::u16& ushPort)
@@ -1596,16 +1596,16 @@ auto tickStart = ::duration::now();
       return SimpleErrorCheck(Reply);
    }
 
-   /// Parses a response string and extracts the ip ::net::address and port information.
+   /// Parses a response string and extracts the ip ::networking::address and port information.
    /// @lparam[in]  strResponse The response string of a FTP server which holds
-   ///                         the ip ::net::address and port information.
-   /// @lparam[out] ulIpAddress Buffer for the ip ::net::address.
+   ///                         the ip ::networking::address and port information.
+   /// @lparam[out] ulIpAddress Buffer for the ip ::networking::address.
    /// @lparam[out] ushPort     Buffer for the port information.
    /// @retval true  Everything went ok.
    /// @retval false An error occurred (invalid format).
    bool client_socket::GetIpAddressFromResponse(const string& strResponse, ::u32& ulIpAddress, ::u16& ushPort)
    {
-      // parsing of ip-::net::address and port implemented with a finite state machine
+      // parsing of ip-::networking::address and port implemented with a finite state machine
       // ...(192,168,1,1,3,44)...
       enum T_enState { state0, state1, state2, state3, state4 } enState = state0;
 
@@ -1761,9 +1761,9 @@ auto tickStart = ::duration::now();
    /// connection. There are defaults for both the user and server data ports, and
    /// under normal circumstances this command and its reply are not needed.  If
    /// this command is used, the argument is the concatenation of a 32-bit internet
-   /// host ::net::address and a 16-bit TCP port ::net::address.
-   /// @lparam[in] strHostIP IP-::net::address like xxx.xxx.xxx.xxx
-   /// @lparam[in] uiPort 16-bit TCP port ::net::address.
+   /// host ::networking::address and a 16-bit TCP port ::networking::address.
+   /// @lparam[in] strHostIP IP-::networking::address like xxx.xxx.xxx.xxx
+   /// @lparam[in] uiPort 16-bit TCP port ::networking::address.
    /// @return see return values of client_socket::SimpleErrorCheck
    int client_socket::DataPort(const string& strHostIP, ::u16 ushPort)
    {

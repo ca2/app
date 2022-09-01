@@ -399,7 +399,7 @@ namespace axis
    }
 
 
-   ::net::email_department& system::email()
+   ::networking::email_department& system::email()
    {
 
       return *m_pemaildepartment;

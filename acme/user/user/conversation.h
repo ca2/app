@@ -2,16 +2,20 @@
 #pragma once
 
 
+#include "acme/platform/sequence1.h"
+
+
 class CLASS_DECL_ACME conversation :
-   virtual public ::element
+   virtual public sequence < conversation >
 {
 public:
 
 
-   __pointer(::sequence < ::conversation >)           m_psequence;
-   ::atom                                             m_atomResult;
+   //__pointer(::sequence < ::conversation >)           m_psequence;
+   //::atom                                             m_atomResult;
 
 
+   virtual void initialize_message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails);
    virtual void do_message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string & strDetails);
 
 
@@ -21,7 +25,8 @@ public:
    virtual ::string get_message_box_details();
    
    
-   virtual ::atom do_synchronously();
+   ::payload do_synchronously(const class ::wait & wait = ::wait::infinite()) override;
+   void do_asynchronously() override;
 
 
 };

@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+
 #include "base/user/experience/frame_window.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/fastblur.h"

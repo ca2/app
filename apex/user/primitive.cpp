@@ -3998,7 +3998,7 @@ namespace user
    //::form_property_set * primitive::get_form_property_set()
    //{
 
-   //   auto pformpropertyset = GetTypedParent < ::form_property_set >();
+   //   auto pformpropertyset = get_typed_parent < ::form_property_set >();
 
    //   if (::is_set(pformpropertyset))
    //   {

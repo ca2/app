@@ -555,7 +555,7 @@ namespace filemanager
 
             //set_data_key_modifier(m_strManagerId);
 
-  /*          __pointer(main_frame) pframe = get_impact()->GetTypedParent < main_frame >();
+  /*          __pointer(main_frame) pframe = get_impact()->get_typed_parent < main_frame >();
 
             if (pframe.is_set() && !pframe->m_atom.to_string().contains("::frame"))
             {

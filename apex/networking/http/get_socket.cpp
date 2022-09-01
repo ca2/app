@@ -1,4 +1,5 @@
 #include "framework.h" 
+#include "get_socket.h" 
 #include "apex/id.h"
 #include "apex/networking/sockets/_sockets.h"
 
@@ -17,7 +18,7 @@ namespace http
    }
 
       
-   get_socket::get_socket(const string & host, port_t port, const string & url) :
+   get_socket::get_socket(const string & host, ::networking::port_t port, const string & url) :
       ::sockets::http_client_socket(url),
       ::sockets::http_get_socket(host, port, url)
    {

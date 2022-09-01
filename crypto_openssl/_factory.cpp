@@ -1,14 +1,7 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
-
-
-//BEGIN_FACTORY(crypto_openssl)
-//FACTORY_ITEM(::crypto_openssl::crypto)
-//FACTORY_ITEM(::crypto_openssl::initializer)
-//FACTORY_ITEM(::crypto_openssl::hasher_algorithm)
-//END_FACTORY()
+#include "crypto.h"
+#include "hasher_algorithm.h"
+#include "initializer.h"
 
 
 __FACTORY_EXPORT void crypto_openssl_factory(::factory::factory * pfactory)

@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+#include "bitmap.h"
 
 
 namespace draw2d_cairo

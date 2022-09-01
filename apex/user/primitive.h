@@ -589,7 +589,7 @@ namespace user
 
 
       //template < class T >
-      //__pointer(T) GetTypedParent() const;
+      //__pointer(T) get_typed_parent() const;
 
       
       ::user::interaction * get_parent_window() const override;

@@ -47,6 +47,10 @@ namespace draw2d
 
    class icon;
 
+
+   class matrix;
+
+
    CLASS_DECL_ACME void cra_from_quada(colorref_array & colorrefa, WINRGBQUAD * prgbquad, int iCount);
 
 

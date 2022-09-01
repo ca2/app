@@ -19,7 +19,7 @@ public:
    void calculate_size_and_position(int x = INT_MIN, int y = INT_MIN);
 
 
-   virtual void display(const ::string & strText, int x, int y);
+   virtual void initialize_popup_button(const ::string & strText, int x, int y);
 
    void on_click(const ::atom & atom, ::user::mouse * pmouse) override;
 

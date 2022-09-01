@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+
 #include <math.h>
 #include "aura/graphics/draw2d/_component.h"
 

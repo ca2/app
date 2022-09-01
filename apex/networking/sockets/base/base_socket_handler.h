@@ -30,7 +30,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma once
 
 
-#include "apex/networking/sockets/bsd/basic/socket.h"
+#include "apex/networking/sockets/basic/socket.h"
 
 
 namespace sockets
@@ -58,22 +58,22 @@ namespace sockets
       friend class base_socket;
       friend class socket;
 
-      /** Connection pool class for internal use by the base_socket_handler.
-      \ingroup internal */
-      class CLASS_DECL_APEX pool_socket : public socket
-      {
-      public:
+      ///** Connection pool class for internal use by the base_socket_handler.
+      //\ingroup internal */
+      //class CLASS_DECL_APEX pool_socket : public socket
+      //{
+      //public:
 
-         
-         pool_socket(base_socket * src);
-         ~pool_socket() override;
+      //   
+      //   pool_socket(base_socket * src);
+      //   ~pool_socket() override;
 
-         
-         void OnRead() override;
-         void OnOptions(int, int, int, SOCKET) override;
+      //   
+      //   void OnRead() override;
+      //   //void OnOptions(int, int, int, SOCKET) override;
 
 
-      };
+      //};
 
 
       int                           m_iSelectErrno;
@@ -97,8 +97,8 @@ namespace sockets
       /** add socket instance to socket ::map. Removal is always automatic. */
       virtual void add2(const socket_pointer& psocket) = 0;
       virtual void move2(socket_pointer && psocket) = 0;
-      virtual void move(socket_map::association * passociation, socket_map * psocketmap = nullptr) = 0;
-      virtual void restart_socket(SOCKET socket) = 0;
+      //virtual void move(socket_map::association * passociation, socket_map * psocketmap = nullptr) = 0;
+      //virtual void restart_socket(SOCKET socket) = 0;
       //virtual socket_map::association* new_association(socket_pointer && psocket) = 0;
    private:
       /** erase socket from socket ::map, used by socket class. */
@@ -107,16 +107,16 @@ namespace sockets
 
       virtual bool contains(base_socket *) = 0;
 
-      /** get status of read/write/exception file descriptor set for a socket. */
-      virtual void get(SOCKET s,bool& r,bool& w,bool& e) = 0;
-      /** Set read/write/exception file descriptor sets (fd_set). */
-      virtual void set(SOCKET s,bool bRead,bool bWrite,bool bException = true) = 0;
+      ///** get status of read/write/exception file descriptor set for a socket. */
+      //virtual void get(SOCKET s,bool& r,bool& w,bool& e) = 0;
+      ///** Set read/write/exception file descriptor sets (fd_set). */
+      //virtual void set(SOCKET s,bool bRead,bool bWrite,bool bException = true) = 0;
       /** Wait for events, generate callbacks. */
       virtual int select(i32 sec, i32 usec) = 0;
       /** This method will not return until an event has been detected. */
       virtual int select() = 0;
       /** Wait for events, generate callbacks. */
-      virtual int select(struct timeval *tsel) = 0;
+      //virtual int select(struct timeval *tsel) = 0;
 
       /** Check that a socket really is handled by this socket handler. */
       virtual bool Valid(base_socket *) = 0;
@@ -129,18 +129,18 @@ namespace sockets
       \lparam point_i32 listen_socket class pointer (use GetPort to identify which one) */
       virtual bool OkToAccept(base_socket *point_i32) = 0;
 
-      /** Called by socket when a socket changes state. */
-      virtual socket_list& socketlist_get(enum_list elist) = 0;
-      virtual void socketlist_modify(SOCKET s, enum_list elist, bool bAdd) = 0;
-      virtual void socketlist_add(SOCKET s, enum_list elist) = 0;
-      virtual void socketlist_erase(SOCKET s, enum_list elist) = 0;
+      ///** Called by socket when a socket changes state. */
+      //virtual socket_list& socketlist_get(enum_list elist) = 0;
+      //virtual void socketlist_modify(SOCKET s, enum_list elist, bool bAdd) = 0;
+      //virtual void socketlist_add(SOCKET s, enum_list elist) = 0;
+      //virtual void socketlist_erase(SOCKET s, enum_list elist) = 0;
 
-      virtual void erase_socket(SOCKET s) = 0;
+      //virtual void erase_socket(SOCKET s) = 0;
       // -------------------------------------------------------------------------
       // Connection pool
       // -------------------------------------------------------------------------
       /** find available open connection (used by connection pool). */
-      virtual __pointer(pool_socket) FindConnection(int type,const string & protocol, const ::net::address & address) = 0;
+      //virtual __pointer(pool_socket) FindConnection(int type,const string & protocol, ::networking::address * address) = 0;
 
       /** enable connection pool (by default disabled). */
       virtual void EnablePool(bool = true) = 0;
@@ -151,49 +151,49 @@ namespace sockets
       // -------------------------------------------------------------------------
       // Socks4
       // -------------------------------------------------------------------------
-#if defined(BSD_STYLE_SOCKETS)
-      /** Set socks4 server ip that all new tcp sockets should use. */
-      virtual void SetSocks4Host(in_addr) = 0;
-      /** Set socks4 server hostname that all new tcp sockets should use. */
-      virtual void SetSocks4Host(const string & ) = 0;
-#endif
+//#if defined(BSD_STYLE_SOCKETS)
+//      /** Set socks4 server ip that all new tcp sockets should use. */
+//      virtual void SetSocks4Host(in_addr) = 0;
+//      /** Set socks4 server hostname that all new tcp sockets should use. */
+//      virtual void SetSocks4Host(const string & ) = 0;
+//#endif
       /** Set socks4 server port number that all new tcp sockets should use. */
-      virtual void SetSocks4Port(port_t) = 0;
-      /** Set optional socks4 userid. */
-      virtual void SetSocks4Userid(const string & ) = 0;
-      /** If connection to socks4 server fails, immediately try direct connection to final host. */
-      virtual void SetSocks4TryDirect(bool = true) = 0;
-      /** get socks4 server ip.
-      \return socks4 server ip */
-      virtual in_addr GetSocks4Host() = 0;
-      /** get socks4 port number.
-      \return socks4 port number */
-      virtual port_t GetSocks4Port() = 0;
-      /** get socks4 userid (optional).
-      \return socks4 userid */
-      virtual const string & GetSocks4Userid() = 0;
+      //virtual void SetSocks4Port(::networking::port_t) = 0;
+      ///** Set optional socks4 userid. */
+      //virtual void SetSocks4Userid(const string & ) = 0;
+      ///** If connection to socks4 server fails, immediately try direct connection to final host. */
+      //virtual void SetSocks4TryDirect(bool = true) = 0;
+      ///** get socks4 server ip.
+      //\return socks4 server ip */
+      //virtual in_addr GetSocks4Host() = 0;
+      ///** get socks4 port number.
+      //\return socks4 port number */
+      //virtual ::networking::port_t GetSocks4Port() = 0;
+      ///** get socks4 userid (optional).
+      //\return socks4 userid */
+      //virtual const string & GetSocks4Userid() = 0;
       /** Check status of socks4 try direct flag.
       \return true if direct connection should be tried if connection to socks4 server fails */
-      virtual bool Socks4TryDirect() = 0;
+      //virtual bool Socks4TryDirect() = 0;
       // -------------------------------------------------------------------------
       // DNS resolve server
       // -------------------------------------------------------------------------
       /** enable asynchronous DNS.
       \lparam port Listen port of asynchronous dns server */
-      //virtual void EnableResolver(port_t = 16667) = 0;
+      //virtual void EnableResolver(::networking::port_t = 16667) = 0;
       /** Check resolver status.
       \return true if resolver is enabled */
       //virtual bool ResolverEnabled() = 0;
       /** Queue a dns request.
       \lparam host Hostname to be resolved
       \lparam port Port number will be echoed in socket::OnResolved callback */
-      //virtual int Resolve(base_socket *,const string & host,port_t port) = 0;
-      //virtual int Resolve6(base_socket *,const string & host,port_t port) = 0;
+      //virtual int Resolve(base_socket *,const string & host,::networking::port_t port) = 0;
+      //virtual int Resolve6(base_socket *,const string & host,::networking::port_t port) = 0;
       /** Do a reverse dns lookup. */
       //virtual int Resolve(base_socket *,in_addr a) = 0;
       //virtual int Resolve(base_socket *,in6_addr& a) = 0;
       /** get listen port of asynchronous dns server. */
-      //virtual port_t GetResolverPort() = 0;
+      //virtual ::networking::port_t GetResolverPort() = 0;
       /** Resolver thread ready for queries. */
       //virtual bool ResolverReady() = 0;
       /** Returns true if socket waiting for a resolve event. */
@@ -209,7 +209,7 @@ namespace sockets
       \lparam data Data passed from source to destination
       \lparam erase Empty trigger atom source and destination maps if 'true',
       Leave them in place if 'false' - if a trigger should be called many times */
-      virtual void Trigger(int atom, base_socket::trigger_data & data, bool erase = true) = 0;
+      //virtual void Trigger(int atom, base_socket::trigger_data & data, bool erase = true) = 0;
       /** Indicates that the handler runs under socket_thread. */
       //virtual void SetSlave(bool x = true) = 0;
       /** Indicates that the handler runs under socket_thread. */

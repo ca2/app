@@ -1,7 +1,7 @@
 #pragma once
 
 
-//#include "sockets_http_tunnel.h"
+#include "tunnel.h"
 
 //#include "apex/networking/sockets/bsd/basic/socket_handler.h"
 
@@ -69,7 +69,7 @@ namespace sockets
       virtual void OnConnect() override;
 
       /** Parse url to protocol,host,port,url and spfile-> */
-      void Url(const string & url_in,string & host,port_t& port);
+      void Url(const string & url_in,string & host,::networking::port_t& port);
 
       void OnFirst() override;
       void OnHeader(atom,const string &) override;

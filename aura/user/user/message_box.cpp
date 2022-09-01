@@ -42,7 +42,7 @@ namespace user
    }
 
 
-   __pointer(::sequence < ::conversation >) message_box::show(::user::interaction * puserinteraction, const string & strMessageParam, const string & strTitle, const ::e_message_box & emessagebox)
+   __pointer(::sequencer < ::conversation >) message_box::show(::user::interaction * puserinteraction, const string & strMessageParam, const string & strTitle, const ::e_message_box & emessagebox)
    {
 
       auto emessageboxType = emessagebox & e_message_box_type_mask;
@@ -96,14 +96,14 @@ namespace user
    }
 
 
-   __pointer(::sequence < ::conversation >) default_message_box::show(::user::interaction * puserinteraction, const string& strMessageParam, const string& strTitle, const ::e_message_box& emessagebox)
+   __pointer(::sequencer < ::conversation >) default_message_box::show(::user::interaction * puserinteraction, const string& strMessageParam, const string& strTitle, const ::e_message_box& emessagebox)
    {
 
-      auto psequence = __new(::sequence <::conversation >());
+      auto psequencer = __new(::sequencer <::conversation >());
 
-      psequence->m_p = this;
+      psequencer->m_psequence = this;
 
-      payload("sequence<conversation>") = psequence;
+      payload("sequence<conversation>") = psequencer;
 
       string strMessage(strMessageParam);
 
@@ -162,7 +162,7 @@ namespace user
 
       do_show();
 
-      return psequence;
+      return psequencer;
 
    }
 
@@ -258,7 +258,7 @@ namespace user
       else if (ptopic->m_atom == ::id_click)
       {
 
-         m_atomResult = ptopic->m_puserelement->m_atom;
+         m_payloadResult = ptopic->m_puserelement->m_atom;
 
          m_estatus = ::success;
 

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/graphics/draw2d/object.h"
+
+
 namespace draw2d_cairo
 {
 
@@ -12,7 +15,7 @@ namespace draw2d_cairo
 
 
       object();
-      virtual ~object();
+      ~object() override;
 
 
       //virtual void * get_os_data() const;

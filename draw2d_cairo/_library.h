@@ -16,14 +16,6 @@
 
 
 
-// apt install libcairo2-dev
-// dnf install cairo-devel pango
-#include <cairo/cairo-features.h>
-#include <cairo/cairo.h>
-#include <cairo/cairo-ft.h>
-#ifdef WINDOWS_DESKTOP
-#include "cairo/cairo-win32.h"
-#endif
 
 
 ::mutex * cairo_mutex();
@@ -38,12 +30,6 @@ void destroy_pointer(cairo_pattern_t* p);
 using cairo_surface_holder = ::holder < cairo_surface_t* >;
 using cairo_pattern_holder = ::holder < cairo_pattern_t* >;
 
-
-#ifdef _DRAW2D_CAIRO_LIBRARY
-#define CLASS_DECL_DRAW2D_CAIRO  CLASS_DECL_EXPORT
-#else
-#define CLASS_DECL_DRAW2D_CAIRO  CLASS_DECL_IMPORT
-#endif
 
 
 void copy(RECTANGLE_I32 * prectTarget, const cairo_rectangle_int_t * prectSource);

@@ -16,11 +16,11 @@ namespace net
 
 
 inline bool thread_has_sockets() { return task_flag().is_set(e_task_flag_using_sockets); }
-
-
-#include "logger.h"
-//#include "trace_interface.h"
-
+//
+//
+//#include "logger.h"
+////#include "trace_interface.h"
+//
 
 #ifdef BSD_STYLE_SOCKETS
 
@@ -41,55 +41,55 @@ namespace net
 };
 
 
-#include "sockets_base.h"
+//#include "sockets_base.h"
 
 
-#if defined(BSD_STYLE_SOCKETS)
+//#if defined(BSD_STYLE_SOCKETS)
+//
+//#include "bsd/_component.h"
+//
+//#if defined(LINUX) || defined(_UWP)
+//
+//extern "C"
+//CLASS_DECL_APEX const SSL_METHOD * TLS_client_method();
+//
+//extern "C"
+//CLASS_DECL_APEX const SSL_METHOD * TLS_server_method();
+//
+//#endif
+//
+//#elif defined(WINRT_SOCKETS)
+//
+//
+//#include "winrt/_.h"
+//
+//#else
+//
+//#error "Unknown Sockets Type?"
+//
+//#endif
+//
+//
+//#include "http_batch_buffer.h"
+//
+//
+//#include "transfer_socket.h"
 
-#include "bsd/_component.h"
-
-#if defined(LINUX) || defined(_UWP)
-
-extern "C"
-CLASS_DECL_APEX const SSL_METHOD * TLS_client_method();
-
-extern "C"
-CLASS_DECL_APEX const SSL_METHOD * TLS_server_method();
-
-#endif
-
-#elif defined(WINRT_SOCKETS)
-
-
-#include "winrt/_.h"
-
-#else
-
-#error "Unknown Sockets Type?"
-
-#endif
-
-
-#include "http_batch_buffer.h"
-
-
-#include "transfer_socket.h"
-
-
-#include "http/_.h"
-
-
-#include "apex/networking/ip_enum.h"
-#include "apex/networking/port_forward.h"
+//
+//#include "http/_.h"
 
 
-#include "websocket_client.h"
-
+//#include "apex/networking/ip_enum.h"
+//#include "apex/networking/port_forward.h"
+//
+//
+//#include "websocket_client.h"
+//
 
 CLASS_DECL_APEX string ip_reverse(string str);
 
 
-#include "apex/networking/address_department.h"
+#include "apex/networking/networking.h"
 
 
 #include "apex/networking/_networking_impl.h"

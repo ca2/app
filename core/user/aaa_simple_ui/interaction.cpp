@@ -424,7 +424,7 @@ namespace simple_ui
 //   bool interaction::on_action(const ::string & pszId)
 //   {
 //
-//      ::user::interaction * pinteraction = GetTypedParent < ::user::interaction >();
+//      ::user::interaction * pinteraction = get_typed_parent < ::user::interaction >();
 //
 //      if (pinteraction != nullptr)
 //      {
@@ -454,10 +454,10 @@ namespace simple_ui
 ////      if (m_puserstyle != nullptr)
 ////         return m_puserstyle;
 ////
-////      if (GetTypedParent < ::user::interaction >() == nullptr)
+////      if (get_typed_parent < ::user::interaction >() == nullptr)
 ////         return nullptr;
 ////
-////      return GetTypedParent < ::user::interaction >()->get_style();
+////      return get_typed_parent < ::user::interaction >()->get_style();
 ////
 ////   }
 //

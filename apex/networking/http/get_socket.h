@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/networking/sockets/http/get_socket.h"
+
+
 namespace http
 {
 
@@ -16,7 +19,7 @@ namespace http
 
 
       get_socket(const string & url);
-      get_socket(const string & host,port_t port,const string & url);
+      get_socket(const string & host,::networking::port_t port,const string & url);
       virtual ~get_socket();
 
 

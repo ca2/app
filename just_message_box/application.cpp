@@ -15,6 +15,8 @@ namespace app_just_message_box
 
       m_strBaseSupportId = "app/just_message_box";
 
+      m_bNetworking = false;
+
       m_bLicense = false;
 
       m_bImaging = false;

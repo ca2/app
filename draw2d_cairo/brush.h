@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/graphics/draw2d/brush.h"
+
+
 namespace draw2d_cairo
 {
 

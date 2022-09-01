@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "object.h"
+#include "aura/graphics/draw2d/path.h"
+
+
 namespace draw2d_cairo
 {
 

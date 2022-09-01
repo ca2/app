@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/networking/sockets/basic/tcp_socket.h"
+
+
 namespace sockets
 {
 

@@ -1464,7 +1464,8 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="platform\procedure_array.h" />
     <ClInclude Include="platform\profiler.h" />
     <ClInclude Include="platform\restore.h" />
-    <ClInclude Include="platform\sequence.h" />
+    <ClInclude Include="platform\sequence1.h" />
+    <ClInclude Include="platform\sequencer.h" />
     <ClInclude Include="platform\serial.h" />
     <ClInclude Include="platform\serial_shared.h" />
     <ClInclude Include="platform\set_app_id.h" />
@@ -1633,6 +1634,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\geometry2d\_collection_contains.h" />
     <ClInclude Include="primitive\geometry2d\_i64.h" />
     <ClInclude Include="primitive\geometry2d\_impl.h" />
+    <ClInclude Include="primitive\geometry2d\_shape.h" />
     <ClInclude Include="primitive\geometry2d\_struct.h" />
     <ClInclude Include="primitive\geometry3d\box.h" />
     <ClInclude Include="primitive\geometry3d\dimension.h" />
@@ -1706,7 +1708,6 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\primitive\_atom_impl.h" />
     <ClInclude Include="primitive\primitive\_interlocked_count_impl.h" />
     <ClInclude Include="primitive\primitive\_payload_impl.h" />
-    <ClInclude Include="primitive\primitive\_shape.h" />
     <ClInclude Include="primitive\promise\signalization.h" />
     <ClInclude Include="primitive\string\aaaa_conv_ansi.h" />
     <ClInclude Include="primitive\string\aaa_international_locale_schema.h" />

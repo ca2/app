@@ -4,6 +4,17 @@
 #pragma once
 
 
+#define IMPLEMENT_APPLICATION(APPLICATION) \
+CLASS_DECL_EXPORT ::app * IDENTIFIER_CONCATENATE(new_, APPLICATION)() \
+{ \
+  \
+   return new ::APPLICATION::application();  \
+  \
+}
+
+#define DECLARE_APPLICATION(APPLICATION) \
+CLASS_DECL_IMPORT ::app * IDENTIFIER_CONCATENATE(new_, APPLICATION)()
+
 class main_hold_base;
 
 

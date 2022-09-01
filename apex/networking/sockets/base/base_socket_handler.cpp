@@ -1,38 +1,38 @@
 #include "framework.h" 
-#include "apex/networking/sockets/_sockets.h"
+#include "base_socket_handler.h"
 
 
 namespace sockets
 {
 
 
-   base_socket_handler::pool_socket::pool_socket(base_socket * src)
-   {
+   //base_socket_handler::pool_socket::pool_socket(base_socket * src)
+   //{
 
-      CopyConnection(src);
+   //   CopyConnection(src);
 
-      SetIsClient();
+   //   SetIsClient();
 
-   }
-
-
-   base_socket_handler::pool_socket::~pool_socket()
-   {
-
-   }
+   //}
 
 
-   void base_socket_handler::pool_socket::OnRead()
-   {
-      FATAL("OnRead: data on hibernating socket");
-      SetCloseAndDelete();
-      SetLost();
-   }
+   //base_socket_handler::pool_socket::~pool_socket()
+   //{
 
-   void base_socket_handler::pool_socket::OnOptions(int, int, int, SOCKET)
-   {
+   //}
 
-   }
+
+   //void base_socket_handler::pool_socket::OnRead()
+   //{
+   //   FATAL("OnRead: data on hibernating socket");
+   //   SetCloseAndDelete();
+   //   SetLost();
+   //}
+
+   //void base_socket_handler::pool_socket::OnOptions(int, int, int, SOCKET)
+   //{
+
+   //}
 
 
    base_socket_handler::base_socket_handler(::apex::log * plogger) 

@@ -67,7 +67,7 @@ namespace prompt
    void pane_impact::on_change_cur_sel()
    {
       ::userex::pane_tab_impact::on_change_cur_sel();
-      __pointer(frame) pframe = GetTypedParent < frame > ();
+      __pointer(frame) pframe = get_typed_parent < frame > ();
 
       if(get_impact_id() == FILEMANAGER_IMPACT)
       {

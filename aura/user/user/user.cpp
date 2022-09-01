@@ -1033,9 +1033,9 @@ namespace aura
 //         //   if(pframe != nullptr)
 //         //   {
 //         //      pframe->display(e_display_restored);
-//         //      if(pframe->GetTypedParent < ::plugin::host_interaction > () != nullptr)
+//         //      if(pframe->get_typed_parent < ::plugin::host_interaction > () != nullptr)
 //         //      {
-//         //         pframe->GetTypedParent < ::plugin::host_interaction > ()->on_layout(pgraphics);
+//         //         pframe->get_typed_parent < ::plugin::host_interaction > ()->on_layout(pgraphics);
 //         //      }
 //         //      else
 //         //      {

@@ -6,9 +6,7 @@
    read zip.h for more info
 */
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+#include "zip.h"
 //#include "_internal.h"
 
 #if defined(WINDOWS) || defined(LINUX)

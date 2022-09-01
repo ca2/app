@@ -36,7 +36,8 @@ public:
    virtual ::size_i32 get_main_screen_size();
 
    
-   virtual ::atom do_synchronously();
+   virtual ::atom do_synchronously(const class ::wait & wait = ::wait::infinite());
+   virtual void do_asynchronously();
    
 
 };

@@ -31,6 +31,7 @@ struct CLASS_DECL_ACME PLAIN_MAIN // : public ::acme::reference
    int                           m_iExitCode = 0;
 
    ::tristate                     m_bLocalization;
+   ::tristate                     m_bNetworking;
    ::tristate                     m_bConsole;
    ::tristate                     m_bDraw2d;
    ::tristate                     m_bWriteText;

@@ -76,9 +76,9 @@ void scMyIpAddress(CScriptVar *pvar, void *data);
 //      return;
 //   }*/
 //
-//   ::net::address ad_host(host, 0);
-//   ::net::address ad_addr(addr, 0);
-//   ::net::address ad_mask(mask, 0);
+//   ::networking::address ad_host(host, 0);
+//   ::networking::address ad_addr(addr, 0);
+//   ::networking::address ad_mask(mask, 0);
 //
 //
 //	pvar->getReturnVar()->setInt(ad_host.is_in_same_net(ad_addr, ad_mask));

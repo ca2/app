@@ -652,9 +652,33 @@ namespace user
 
    ::windowing::windowing * interaction::windowing() const
    {
+
+      auto pwindow = m_pwindow;
+
+      if (::is_null(pwindow))
+      {
+
+         auto psession = get_session();
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing1();
+
+         return pwindowing;
+
+      }
    
-      return m_pwindow->m_pwindowing;
+      auto pwindowing = pwindow->m_pwindowing;
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
    
+      return pwindowing;
+
    }
 
 
@@ -3299,6 +3323,7 @@ namespace user
       if (get_parent() == nullptr)
       {
 
+         if(m_psystem->m_bImaging)
          //if (!window()->defer_set_icon())
          {
 
@@ -10741,7 +10766,7 @@ namespace user
       //if (::sequence<::conversation>::m_p)
       {
 
-         m_atomResult = idResult;
+         m_payloadResult = idResult;
 
          m_estatus = ::success;
 

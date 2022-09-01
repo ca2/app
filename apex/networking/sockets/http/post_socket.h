@@ -29,7 +29,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #pragma once
 
-//#include "sockets_http_client_socket.h"
+
+#include "client_socket.h"
+
 
 namespace sockets
 {

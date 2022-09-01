@@ -16,9 +16,7 @@
 // 3. This notice may not be removed or altered from any source distribution.
 //
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+
 #include "aura/graphics/draw2d/_component.h"
 
 //#include <stdlib.h>

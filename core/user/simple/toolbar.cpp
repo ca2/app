@@ -2070,7 +2070,7 @@ struct ___CONTROLPOS
 size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 dwMode, index nLength)
 {
 
-   //__pointer(::user::tab) ptab = GetTypedParent < ::user::tab >();
+   //__pointer(::user::tab) ptab = get_typed_parent < ::user::tab >();
 
    //if (ptab.is_set())
    //{

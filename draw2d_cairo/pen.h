@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "object.h"
+#include "aura/graphics/draw2d/pen.h"
+
 
 namespace draw2d_cairo
 {

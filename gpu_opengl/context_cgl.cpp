@@ -7,9 +7,7 @@
 //
 
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+
 #include <OpenGL/OpenGL.h>
 #include "context_cgl.h"
 

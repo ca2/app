@@ -142,6 +142,13 @@ void nano_window::destroy()
       
    }
 
+   if (m_psequencer)
+   {
+
+      m_psequencer->on_sequence();
+
+   }
+
    if (m_pimplementation)
    {
 
@@ -368,7 +375,7 @@ nano_child * nano_window::get_child_by_id(const ::atom & atom)
 ::atom nano_window::get_result()
 {
 
-   return m_atomResult;
+   return m_payloadResult;
 
 }
 
@@ -482,9 +489,9 @@ void nano_window::on_left_button_up(::user::mouse * pmouse)
    if (m_atomLeftButtonUp == m_atomLeftButtonDown && m_atomLeftButtonUp != e_dialog_result_none)
    {
 
-      m_atomResult = m_atomLeftButtonUp;
+      m_payloadResult = m_atomLeftButtonUp;
 
-      m_pimplementation->on_click(m_atomResult, pmouse);
+      m_pimplementation->on_click(m_payloadResult, pmouse);
 
    }
 
@@ -769,10 +776,18 @@ void nano_window::_run_modal_loop()
 }
 
 
-::atom nano_window::do_synchronously()
+::payload nano_window::do_synchronously(const class ::wait & wait)
 {
    
-   return m_pimplementation->do_synchronously();
+   return m_pimplementation->do_synchronously(wait);
+
+}
+
+
+void nano_window::do_asynchronously()
+{
+
+   m_pimplementation->do_asynchronously();
 
 }
 

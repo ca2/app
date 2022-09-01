@@ -2,6 +2,13 @@
 #include "framework.h"
 
 
+void conversation::initialize_message_box(const ::string & strMessage, const string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+{
+
+
+}
+
+
 void conversation::do_message_box(const ::string& strMessage, const string& strTitle, const ::e_message_box& emessagebox, const ::string & strDetails)
 {
 
@@ -41,11 +48,17 @@ void conversation::do_message_box(const ::string& strMessage, const string& strT
 }
 
 
-::atom conversation::do_synchronously()
+::payload conversation::do_synchronously(const class ::wait & wait)
 {
    
    return e_message_box_ok;
    
+}
+
+
+void conversation::do_asynchronously()
+{
+
 }
 
 

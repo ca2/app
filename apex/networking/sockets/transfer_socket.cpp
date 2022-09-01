@@ -8,7 +8,7 @@
 // transfer_socket_exception, transfer_socket, http_transfer_socket
 
 #include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
+#include "transfer_socket.h"
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
 
@@ -23,20 +23,20 @@ namespace sockets
 {
 
 
-   int get_error()
-   {
-
-#ifdef WINDOWS
-
-      return WSAGetLastError();
-
-#else
-
-      return errno;
-
-#endif
-
-   }
+//   int get_error()
+//   {
+//
+//#ifdef WINDOWS
+//
+//      return WSAGetLastError();
+//
+//#else
+//
+//      return errno;
+//
+//#endif
+//
+//   }
 
 
    ///////////////////////////////////////////////////////////////////////////////////////
@@ -44,7 +44,7 @@ namespace sockets
    ///////////////////////////////////////////////////////////////////////////////////////
 
    transfer_socket_exception::transfer_socket_exception(const char * pszMessage) :
-      m_nError(get_error()),
+      //m_nError(get_error()),
       ::exception(pszMessage)
    {
    }
@@ -222,24 +222,25 @@ namespace sockets
    bool transfer_socket::check_readability(int nSecsPatience) // const
    {
 
-      fd_set fd;
-      FD_ZERO(&fd);
-      FD_SET(GetSocket(), &fd);
-      TIMEVAL tv = { nSecsPatience, 0 };
+      //fd_set fd;
+      //FD_ZERO(&fd);
+      //FD_SET(GetSocket(), &fd);
+      //TIMEVAL tv = { nSecsPatience, 0 };
 
-      // static_cast is necessary to avoid compiler warning under WIN32;
-      // This is no problem because the first parameter is included only
-      // for compatibility with Berkeley sockets.
-      const int iRet = ::select((int) (GetSocket() + 1), &fd, nullptr, nullptr, &tv);
+      //// static_cast is necessary to avoid compiler warning under WIN32;
+      //// This is no problem because the first parameter is included only
+      //// for compatibility with Berkeley sockets.
+      //const int iRet = ::select((int) (GetSocket() + 1), &fd, nullptr, nullptr, &tv);
 
-      if (iRet == SOCKET_ERROR)
-      {
+      //if (iRet == SOCKET_ERROR)
+      //{
 
-         throw transfer_socket_exception("Socket Error");
+      //   throw transfer_socket_exception("Socket Error");
 
-      }
+      //}
 
-      return iRet == 1;
+      //return iRet == 1;
+      return false;
 
    }
 
@@ -247,24 +248,25 @@ namespace sockets
    bool transfer_socket::check_writability(int nSecsPatience) // const
    {
 
-      fd_set fd;
-      FD_ZERO(&fd);
-      FD_SET(GetSocket(), &fd);
-      TIMEVAL tv = { nSecsPatience, 0 };
+      //fd_set fd;
+      //FD_ZERO(&fd);
+      //FD_SET(GetSocket(), &fd);
+      //TIMEVAL tv = { nSecsPatience, 0 };
 
-      // static_cast is necessary to avoid compiler warning under WIN32;
-      // This is no problem because the first parameter is included only
-      // for compatibility with Berkeley sockets.
-      const int iRet = ::select((int) (GetSocket() + 1), nullptr, &fd, nullptr, &tv);
+      //// static_cast is necessary to avoid compiler warning under WIN32;
+      //// This is no problem because the first parameter is included only
+      //// for compatibility with Berkeley sockets.
+      //const int iRet = ::select((int) (GetSocket() + 1), nullptr, &fd, nullptr, &tv);
 
-      if (iRet == SOCKET_ERROR)
-      {
-         
-         throw transfer_socket_exception("Socket Error");
+      //if (iRet == SOCKET_ERROR)
+      //{
+      //   
+      //   throw transfer_socket_exception("Socket Error");
 
-      }
+      //}
 
-      return iRet == 1;
+      //return iRet == 1;
+      return false;
 
    }
 
@@ -406,52 +408,52 @@ namespace sockets
    }
 
 
-   int transfer_socket::receive_datagram(char* pch, int nSize, SOCKADDR * psa, int nSecs) // const
-   {
+   //int transfer_socket::receive_datagram(char* pch, int nSize, SOCKADDR * psa, int nSecs) // const
+   //{
 
-      if (!check_readability(nSecs))
-      {
+   //   if (!check_readability(nSecs))
+   //   {
 
-         throw transfer_socket_exception("Receive timeout");
+   //      throw transfer_socket_exception("Receive timeout");
 
-      }
+   //   }
 
-      // input buffer should be big enough for the entire datagram
-      socklen_t nFromSize = sizeof(SOCKADDR);
-      const int nBytesReceived = (int) (::recvfrom(GetSocket(), pch, nSize, 0, psa, &nFromSize));
+   //   // input buffer should be big enough for the entire datagram
+   //   socklen_t nFromSize = sizeof(SOCKADDR);
+   //   const int nBytesReceived = (int) (::recvfrom(GetSocket(), pch, nSize, 0, psa, &nFromSize));
 
-      if (nBytesReceived == SOCKET_ERROR)
-      {
-         
-         throw transfer_socket_exception("ReceiveDatagram");
+   //   if (nBytesReceived == SOCKET_ERROR)
+   //   {
+   //      
+   //      throw transfer_socket_exception("ReceiveDatagram");
 
-      }
+   //   }
 
-      return nBytesReceived;
-   }
+   //   return nBytesReceived;
+   //}
 
-   int transfer_socket::send_datagram(const char* pch, int nSize, const SOCKADDR * psa, int nSecs) // const
-   {
+   //int transfer_socket::send_datagram(const char* pch, int nSize, const SOCKADDR * psa, int nSecs) // const
+   //{
 
-      if (!check_writability(nSecs))
-      {
+   //   if (!check_writability(nSecs))
+   //   {
 
-         throw transfer_socket_exception("Send timeout");
+   //      throw transfer_socket_exception("Send timeout");
 
-      }
+   //   }
 
-      const int nBytesSent = (int) (::sendto(GetSocket(), pch, nSize, 0, psa, sizeof(SOCKADDR)));
-      
-      if (nBytesSent == SOCKET_ERROR)
-      {
+   //   const int nBytesSent = (int) (::sendto(GetSocket(), pch, nSize, 0, psa, sizeof(SOCKADDR)));
+   //   
+   //   if (nBytesSent == SOCKET_ERROR)
+   //   {
 
-         throw transfer_socket_exception("SendDatagram");
+   //      throw transfer_socket_exception("SendDatagram");
 
-      }
+   //   }
 
-      return nBytesSent;
+   //   return nBytesSent;
 
-   }
+   //}
 
 
    /////////////////////////////////////////////////////////////////////////////////////////

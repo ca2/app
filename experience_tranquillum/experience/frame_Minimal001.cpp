@@ -1,8 +1,9 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "frame_Minimal001.h"
+#include "base/user/experience/frame_window.h"
+#include "base/user/experience/size_manager.h"
+#include "base/user/experience/move_manager.h"
 
 
 #define GRIP_CORNER_LARGE_CX 16

@@ -1,7 +1,5 @@
 #include "framework.h" 
-#include "apex/astr.h"
-#include "apex/id.h"
-#include "apex/networking/sockets/_sockets.h"
+#include "tunnel.h"
 
 
 namespace sockets
@@ -22,7 +20,7 @@ namespace sockets
       m_bDirect = false;
       m_estate = e_state_initial;
       ///m_memoryBuf.set_size(1024 * 16);
-      m_iProxyPort = -1;
+      //m_iProxyPort = -1;
 
    }
 
@@ -116,12 +114,12 @@ namespace sockets
 
             }
 
-            if (::str().begins(strStatus, astr.s200Space))
-            {
+            //if (::str().begins(strStatus, astr.s200Space))
+            //{
 
-               m_estate = state_proxy_ok;
+            //   m_estate = state_proxy_ok;
 
-            }
+            //}
 
          }
 
@@ -213,37 +211,37 @@ namespace sockets
    }
 
 
-   bool http_tunnel::proxy_open(const string &host, port_t port)
+   bool http_tunnel::proxy_open(const string &host, ::networking::port_t port)
    {
 
-      m_strProxy = host;
-
-      m_iProxyPort = port;
-
-#ifdef BSD_STYLE_SOCKETS
-      m_strInitSSLClientContext += "/" + m_strProxy + ":" + __string(port);
-#endif
-
-      m_bSslTunnel = IsSSL();
-      
-      EnableSSL(false);
-      
-      if (!tcp_socket::open(host, port))
-      {
-
-         if (!is_connecting())
-         {
-
-            FATAL("http_get_socket: connect() failed miserably");
-            
-            SetCloseAndDelete();
-
-         }
-
-         return false;
-
-      }
-
+//      m_strProxy = host;
+//
+//      m_iProxyPort = port;
+//
+//#ifdef BSD_STYLE_SOCKETS
+//      m_strInitSSLClientContext += "/" + m_strProxy + ":" + __string(port);
+//#endif
+//
+//      m_bSslTunnel = IsSSL();
+//      
+//      EnableSSL(false);
+//      
+//      if (!tcp_socket::open(host, port))
+//      {
+//
+//         if (!is_connecting())
+//         {
+//
+//            FATAL("http_get_socket: connect() failed miserably");
+//            
+//            SetCloseAndDelete();
+//
+//         }
+//
+//         return false;
+//
+//      }
+//
       return true;
 
    }
@@ -252,48 +250,48 @@ namespace sockets
    bool http_tunnel::open(bool bConfigProxy)
    {
 
-      if (m_strProxy.has_char() && m_iProxyPort > 0 && !m_bDirect)
-      {
-      }
-      else if (bConfigProxy)
-      {
+      //if (m_strProxy.has_char() && m_iProxyPort > 0 && !m_bDirect)
+      //{
+      //}
+      //else if (bConfigProxy)
+      //{
 
-         m_pcontext->m_papexcontext->http().config_proxy(get_url(), this);
+      //   m_pcontext->m_papexcontext->http().config_proxy(get_url(), this);
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         m_bDirect = true;
+      //   m_bDirect = true;
 
-      }
+      //}
 
-      if (m_bDirect)
-      {
+      //if (m_bDirect)
+      //{
 
-         if (!tcp_socket::open(get_connect_host(), get_connect_port()))
-         {
+      //   if (!tcp_socket::open(get_connect_host(), get_connect_port()))
+      //   {
 
-            if (!is_connecting())
-            {
+      //      if (!is_connecting())
+      //      {
 
-               FATAL("http_get_socket: connect() failed miserably");
+      //         FATAL("http_get_socket: connect() failed miserably");
 
-               SetCloseAndDelete();
+      //         SetCloseAndDelete();
 
-            }
+      //      }
 
-            return false;
+      //      return false;
 
-         }
+      //   }
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         return proxy_open(m_strProxy, (port_t)m_iProxyPort);
+      //   return proxy_open(m_strProxy, (::networking::port_t)m_iProxyPort);
 
-      }
+      //}
 
       return true;
 
@@ -306,7 +304,7 @@ namespace sockets
    }
 
 
-   port_t http_tunnel::GetUrlPort()
+   ::networking::port_t http_tunnel::GetUrlPort()
    {
       return m_port;
    }

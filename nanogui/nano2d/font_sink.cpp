@@ -5,9 +5,7 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 06/04/22 05:06
 //
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+
 #include "aura/graphics/draw2d/draw2d.h"
 
 

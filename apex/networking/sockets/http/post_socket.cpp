@@ -1,6 +1,5 @@
 #include "framework.h"
-#include "apex/id.h"
-#include "apex/networking/sockets/_sockets.h"
+#include "post_socket.h"
 
 
 namespace sockets
@@ -82,11 +81,11 @@ namespace sockets
       else
       {
 
-#ifdef BSD_STYLE_SOCKETS
-
-         FATAL("AddFile " << Errno << bsd_socket_error(Errno));
-
-#endif
+//#ifdef BSD_STYLE_SOCKETS
+//
+//         FATAL("AddFile " << Errno << bsd_socket_error(Errno));
+//
+//#endif
 
          SetCloseAndDelete();
 

@@ -103,7 +103,7 @@ namespace console
          if(bCreate && bCreateMini)
          {
 
-            i.GetTypedParent < prompt_frame >()->show_mini();
+            i.get_typed_parent < prompt_frame >()->show_mini();
          }
          else
          {

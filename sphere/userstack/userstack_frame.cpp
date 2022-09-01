@@ -39,7 +39,7 @@ namespace userstack
 
       m_bWindowFrame = true;
 
-      m_bWindowFrame = GetTypedParent < ::plugin::host_interaction >() == nullptr;
+      m_bWindowFrame = get_typed_parent < ::plugin::host_interaction >() == nullptr;
 
       if(pmessage->previous())
          return;

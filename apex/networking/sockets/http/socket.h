@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/networking/sockets/basic/tcp_socket.h"
+
+
 namespace sockets
 {
 
@@ -14,8 +17,8 @@ namespace sockets
    public:
 
 
-      string               m_strProxy;
-      i32                  m_iProxyPort;
+      //string               m_strProxy;
+      //i32                  m_iProxyPort;
 
 
       ::http::request      m_request;
@@ -23,7 +26,7 @@ namespace sockets
 
       bool                 m_b_http_1_1;
       bool                 m_b_keepalive;
-
+      bool                 m_bChunked;
       bool                 m_bFirst;
       bool                 m_bHeader;
       string               m_strLine;
@@ -41,7 +44,7 @@ namespace sockets
 
       bool                 m_bOnlyHeaders;
       bool                 m_bNoClose;
-      http::listener *     m_plistener;
+      __pointer(http::listener)     m_plistener;
 
 
 
@@ -91,10 +94,15 @@ namespace sockets
       virtual string MyUseragent();
 
       /** Parse url. If protocol is https, EnableSSL() will be called. */
-      void url_this(string strUrl, string & strProtocol, string & strHost, port_t & port, string & strRequestUri, string & strFile);
+      void url_this(string strUrl, string & strProtocol, string & strHost, ::networking::port_t & port, string & strRequestUri, string & strFile);
 
       /** Transfer coding 'chunked' */
-      bool IsChunked() { return m_b_chunked; }
+      inline bool IsChunked()
+      {
+
+         return m_bChunked;
+
+      }
 
       property & inattr(const char * lpszName);
       property_set & inattrs();

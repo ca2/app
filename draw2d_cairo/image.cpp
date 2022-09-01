@@ -1,8 +1,8 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
-#include "aura/graphics/_.h"
+#include "image.h"
+#include "bitmap.h"
+#include "graphics.h"
+#include "aura/graphics/image/drawing.h"
 #include <math.h>
 
 

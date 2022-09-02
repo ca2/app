@@ -9,7 +9,7 @@
 #include "core/filesystem/userfs/list_data.h"
 #include "core/filesystem/userfs/list_item.h"
 #include "core/filesystem/userfs/list_item_array.h"
-#include "core/user/userex/user.h"
+#include "core/user/user/user.h"
 #include "data.h"
 #include "document.h"
 #include "context_menu.h"

@@ -2864,6 +2864,22 @@ namespace user
       
    }
 
+
+   string interaction::get_sel_by_name()
+   {
+
+      return "";
+
+   }
+
+
+   string interaction::get_hover_by_name()
+   {
+
+      return "";
+
+   }
+
    
    void interaction::ensure_sel_visible()
    {

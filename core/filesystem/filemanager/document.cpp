@@ -9,7 +9,7 @@
 #include "tab_impact.h"
 #include "data.h"
 #include "child_frame.h"
-#include "core/user/userex/user.h"
+#include "core/user/user/user.h"
 #include "impact.h"
 #include "core/platform/session.h"
 #include "core/platform/application.h"

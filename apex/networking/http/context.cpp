@@ -2645,6 +2645,13 @@ namespace http
 
       }
 
+      if (::is_null(psocket))
+      {
+
+         throw exception(error_wrong_state);
+
+      }
+
       pmessageMessage->m_estatusRet = (::e_status) set["get_status"].i64();
 
       pmessageMessage->m_setHeaders = psocket->outheaders();

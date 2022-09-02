@@ -173,7 +173,7 @@ __pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler whil
 
       virtual void initialize_socket(base_socket_handler* phandler);
 
-
+      ::networking::networking * networking();
       /** base_socket class instantiation method. Used when a "non-standard" constructor
       * needs to be used for the base_socket class. Note: the base_socket class still needs
       * the "default" constructor with one as input parameter.

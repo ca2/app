@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "core/user/netuser/_netuser.h"
 #include "aqua/xml.h"
-#include "core/user/userex/user.h"
+#include "core/user/user/user.h"
 #include "core/platform/session.h"
 #include "base/user/user/document.h"
 #include "base/user/form/impact.h"

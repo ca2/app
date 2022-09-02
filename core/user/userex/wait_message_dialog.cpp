@@ -157,7 +157,7 @@ namespace userex
 
       }
 
-      if (m_pdocument != nullptr)
+      if (m_pformdocument != nullptr)
       {
 
          payload("wait_message_dialog_timeout") = second;

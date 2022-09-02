@@ -29,8 +29,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
 //#include "apex/networking/sockets/_sockets.h"
-#include "base_socket.h"
-#include "base_socket_handler.h"
+#include "socket.h"
+#include "socket_handler.h"
 //#ifdef _WIN32
 //#elif defined(LINUX)
 //#include <netdb.h>
@@ -133,6 +133,16 @@ namespace sockets
       //m_socks4_userid = m_psockethandler->GetSocks4Userid();
 
    }
+
+   ::networking::networking * base_socket::networking()
+   {
+
+      auto pnetworking = m_psystem->m_papexsystem->networking();
+
+      return pnetworking;
+
+   }
+
 
 
    enum_trace_category base_socket::trace_category() const

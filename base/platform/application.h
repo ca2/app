@@ -1219,7 +1219,7 @@ virtual void on_change_cur_sel(::user::tab* ptab);
 ////virtual bool _001OnAgreeExit() override;
 ////virtual void france_exit() override;
 //
-//virtual void prepare_form(atom atom, ::form_document* pdocument);
+//virtual void prepare_form(atom atom, ::form_document* pformdocument);
 //
 //
 //virtual void report_error(::exception* pexception, int iMessageFlags, const ::string & pszTopic);

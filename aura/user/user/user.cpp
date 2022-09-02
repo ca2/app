@@ -2,8 +2,6 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/user/_component.h"
 #endif
-//#include "aura/update.h"
-//#include "simple_impact.h"
 #include "acme/platform/system_setup.h"
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
@@ -21,6 +19,7 @@
 #include "still.h"
 #include "check_box.h"
 #include "button.h"
+#include "progress.h"
 
 
 ::mutex * g_pmutexUser = nullptr;
@@ -420,6 +419,8 @@ namespace user
       ::factory::add_factory_item <::user::button >();
       ::factory::add_factory_item <::user::check_box >();
       ::factory::add_factory_item <::user::still >();
+
+      ::factory::add_factory_item <::user::progress >();
 
    }
 

@@ -19,9 +19,11 @@
 #include "base/user/menu/button.h"
 #include "base/user/menu/item.h"
 #include "base/user/menu/central.h"
+#include "base/user/form/impact.h"
 #include "impact_creator.h"
 #include "style.h"
 #include "split_impact.h"
+#include "tab_impact.h"
 #include "split_bar.h"
 #include "aura/message/user.h"
 
@@ -90,6 +92,9 @@ namespace base
 
       ::factory::add_factory_item <::simple_tab_document >();
 
+      ::factory::add_factory_item <::user::tab_impact >();
+
+      ::factory::add_factory_item < ::user::form_impact >();
 
 
 

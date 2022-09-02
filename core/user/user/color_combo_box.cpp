@@ -6,7 +6,7 @@
 #include "core/user/userex/_userex.h"
 #endif
 #include "color_combo_box.h"
-#include "core/user/userex/user.h"
+#include "core/user/user/user.h"
 #include "core/user/userex/color_impact.h"
 #include "aura/message/user.h"
 #include "aura/user/user/frame.h"

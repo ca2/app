@@ -7,18 +7,20 @@
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
 #include "core/user/account/impact.h"
-#include "core/user/user/font_list.h"
+#include "aura/user/user/check_box.h"
+#include "aura/user/user/progress.h"
+#include "font_list.h"
 #include "acme/platform/system_setup.h"
-//#include "aura/update.h"
 #include "aqua/xml.h"
-#include "aura/user/user/shell.h"
-#include "core/user/user/_tree.h"
-#include "dialog_frame.h"
-#include "progress.h"
 #include "core/user/simple/toolbar.h"
-#include "core/user/userex/user.h"
+#include "tree.h"
+#include "user.h"
+#include "font_combo_box.h"
 #include "core/user/simple/pane_document.h"
 #include "core/user/simple/list_header_control.h"
+#include "aura/user/user/shell.h"
+#include "core/user/userex/dialog_frame.h"
+#include "core/user/userex/progress.h"
 #include "base/user/simple/child_frame.h"
 #include "core/user/userex/split_impact.h"
 #include "core/user/simple/list_impact.h"
@@ -27,31 +29,24 @@
 #include "base/user/user/multiple_document_template.h"
 #include "base/user/user/document_manager.h"
 #include "base/user/form/document.h"
-
-
 #include "core/user/userex/menu_document.h"
 #include "core/user/userex/menu_frame.h"
 #include "core/user/userex/menu_impact.h"
-
-#include "aura/user/user/check_box.h"
-#include "aura/user/user/progress.h"
-
 #include "core/user/userex/form_child_frame.h"
 
 #include "base/user/experience/orto_button.h"
 #include "core/filesystem/filemanager/data.h"
 #include "core/user/simple/mesh_data.h"
 #include "core/user/simple/list_data.h"
-#include "color_impact.h"
-#include "font_impact.h"
-#include "pane_tab_impact.h"
-#include "core/user/user/font_combo_box.h"
+#include "core/user/userex/color_impact.h"
+#include "core/user/userex/font_impact.h"
+#include "core/user/userex/pane_tab_impact.h"
 #include "core/platform/application.h"
 #include "core/platform/session.h"
-#include "top_impact.h"
-#include "top_toggle_impact.h"
-#include "top_edit_impact.h"
-#include "calculator_edit_impact.h"
+#include "core/user/userex/top_impact.h"
+#include "core/user/userex/top_toggle_impact.h"
+#include "core/user/userex/top_edit_impact.h"
+#include "core/user/userex/calculator_edit_impact.h"
 
 
 //void __html_initialize(::user::user * puserex);
@@ -161,17 +156,15 @@ namespace core
    void user::init1()
    {
 
-      ::factory::add_factory_item < ::user::picture::picture_impl >();
 
-      //add_factory_item <::userex::keyboard_layout >();
+      ::base::user::init1();
+
+      ::factory::add_factory_item < ::user::picture::picture_impl >();
 
       ::factory::add_factory_item <::userex::top_edit_impact >();
       ::factory::add_factory_item <::userex::top_toggle_impact >();
       ::factory::add_factory_item <::userex::top_impact >();
 
-      ::factory::add_factory_item <::user::tab_impact >();
-
-      ::factory::add_factory_item < ::user::form_impact > ();
 
       ::factory::add_factory_item < ::user::font_combo_box >();
 
@@ -183,47 +176,8 @@ namespace core
       ::factory::add_factory_item < ::simple_toolbar >();
 
       ::factory::add_factory_item <::userex::dialog_frame >();
-      ::factory::add_factory_item <::user::progress >();
 
 
-
-      //::factory::add_factory_item < ::simple_pane_document >();
-
-      //if (!create_user_shell())
-      //{
-
-      //   WARNING("Failed to create_user_shell");
-
-      //   return false;
-
-      //}
-
-      ::base::user::init1();
-
-      //if (!::base::user::init1())
-      //{
-
-      //   return false;
-
-      //}
-
-      //if (!initialize1_experience())
-      //{
-
-      //   return false;
-
-      //}
-
-      //m_phtml->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-      //if(m_phtml == nullptr)
-      //   return false;
-
-      //m_phtml->construct(this);
-
-      //m_bProcessInitializeResult = true;
-
-      //return true;
 
    }
 
@@ -622,18 +576,18 @@ namespace core
 
       psystem->do_request(pcreate);
 
-      __pointer(::form_document) pdocument = ::user::__document(pcreate);
+      __pointer(::form_document) pformdocument = ::user::__document(pcreate);
 
-      if (pdocument.is_null())
+      if (pformdocument.is_null())
       {
 
          return nullptr;
 
       }
 
-      __pointer(::user::form_window) pform = pdocument->get_type_impact < ::user::form_window >();
+      __pointer(::user::form_window) pform = pformdocument->get_type_impact < ::user::form_window >();
 
-      return pdocument;
+      return pformdocument;
 
    }
 
@@ -1105,16 +1059,16 @@ namespace core
 
       m_ptemplateForm->do_request(pcreate);
 
-      __pointer(::form_document) pdocument = ::user::__document(pcreate);
+      __pointer(::form_document) pformdocument = ::user::__document(pcreate);
 
-      if (pdocument.is_null())
+      if (pformdocument.is_null())
       {
 
          return nullptr;
 
       }
 
-      __pointer(::user::form_window) pform = pdocument->get_type_impact < ::user::form_window >();
+      __pointer(::user::form_window) pform = pformdocument->get_type_impact < ::user::form_window >();
 
       if (pform.is_set())
       {
@@ -1123,7 +1077,7 @@ namespace core
 
       }
 
-      return pdocument;
+      return pformdocument;
 
    }
 
@@ -1187,16 +1141,16 @@ namespace core
 
       ptemplateForm->do_request(pcreate);
 
-      __pointer(::form_document) pdocument = ::user::__document(pcreate);
+      __pointer(::form_document) pformdocument = ::user::__document(pcreate);
 
-      if (pdocument.is_null())
+      if (pformdocument.is_null())
       {
 
          return nullptr;
 
       }
 
-      __pointer(::user::form_window) pform = pdocument->get_type_impact < ::user::form_window >();
+      __pointer(::user::form_window) pform = pformdocument->get_type_impact < ::user::form_window >();
 
       if (pform.is_set() && ::is_null(pform->get_form_callback()))
       {
@@ -1205,7 +1159,7 @@ namespace core
 
       }
 
-      return pdocument;
+      return pformdocument;
 
    }
 
@@ -1276,16 +1230,16 @@ namespace core
 
       m_ptemplateChildForm->do_request(pcreate);
 
-      __pointer(::form_document) pdocument = ::user::__document(pcreate);
+      __pointer(::form_document) pformdocument = ::user::__document(pcreate);
 
-      if (pdocument.is_null())
+      if (pformdocument.is_null())
       {
 
          return nullptr;
 
       }
 
-      __pointer(::user::form_window) pform = pdocument->get_type_impact < ::user::form_window >();
+      __pointer(::user::form_window) pform = pformdocument->get_type_impact < ::user::form_window >();
 
       if (pform.is_set())
       {
@@ -1294,7 +1248,7 @@ namespace core
 
       }
 
-      return pdocument;
+      return pformdocument;
 
    }
 
@@ -1351,16 +1305,16 @@ namespace core
 
       m_ptemplateChildForm->do_request(pcreate);
 
-      __pointer(::form_document) pdocument = ::user::__document(pcreate);
+      __pointer(::form_document) pformdocument = ::user::__document(pcreate);
 
-      if (pdocument.is_null())
+      if (pformdocument.is_null())
       {
 
          return nullptr;
 
       }
 
-      __pointer(::user::form_window) pform = pdocument->get_type_impact < ::user::form_window >();
+      __pointer(::user::form_window) pform = pformdocument->get_type_impact < ::user::form_window >();
 
       if (pform.is_set() && ::is_set(pcallback))
       {
@@ -1369,7 +1323,7 @@ namespace core
 
       }
 
-      return pdocument;
+      return pformdocument;
 
    }
 
@@ -1457,18 +1411,18 @@ namespace core
 
       psystem->do_request(pcreate);
 
-      __pointer(::form_document) pdocument = ::user::__document(pcreate);
+      __pointer(::form_document) pformdocument = ::user::__document(pcreate);
 
-      if (pdocument.is_null())
+      if (pformdocument.is_null())
       {
 
          return nullptr;
 
       }
 
-      __pointer(::user::form_window) pform = pdocument->get_type_impact < ::user::form_window >();
+      __pointer(::user::form_window) pform = pformdocument->get_type_impact < ::user::form_window >();
 
-      return pdocument;
+      return pformdocument;
 
    }
 
@@ -1484,13 +1438,13 @@ namespace core
 
       m_ptemplatePlaceHolder->do_request(pcreate);
 
-      __pointer(::form_document) pdocument = ::user::__document(pcreate);
+      __pointer(::form_document) pformdocument = ::user::__document(pcreate);
 
-      __pointer(::user::place_holder) pholder = pdocument->get_type_impact < ::user::place_holder  >();
+      __pointer(::user::place_holder) pholder = pformdocument->get_type_impact < ::user::place_holder  >();
 
       pholder->place_hold(pinteraction);
 
-      return pdocument;
+      return pformdocument;
 
    }
 

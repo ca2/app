@@ -429,6 +429,7 @@ namespace userex
    void color_impact::set_sel_color(const ::color::hls& hls)
    {
 
+      set_color(hls);
 
    }
 
@@ -436,7 +437,7 @@ namespace userex
    ::color::hls color_impact::get_sel_color()
    {
 
-      return {};
+      return get_color().get_hls();
 
    }
 

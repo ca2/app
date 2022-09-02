@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "apex/networking/sockets/base/base_socket.h"
+#include "apex/networking/sockets/base/socket.h"
 
 
 namespace sockets
@@ -46,7 +46,7 @@ namespace sockets
       and socket is not about to be closed. */
       virtual bool Ready();
 
-      virtual bool is_valid();
+      virtual bool is_ok();
 
       //virtual i32 close_socket(SOCKET s);
 
@@ -64,8 +64,8 @@ namespace sockets
       //bool SetNonblocking(bool bNb, SOCKET s);
 
 
-      virtual ::networking::address get_peer_address();
-      virtual ::networking::address get_socket_address();
+      virtual ::networking::address_pointer get_peer_address();
+      virtual ::networking::address_pointer get_socket_address();
 
 
 

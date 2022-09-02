@@ -1010,7 +1010,7 @@ namespace aura
       virtual i32 GetVisibleTopLevelFrameCountExcept(__pointer(::user::interaction) puserinteractionExcept);
       virtual i32 GetVisibleFrameCount();
 
-      virtual void prepare_form(atom atom, ::form_document* pdocument);
+      virtual void prepare_form(atom atom, ::form_document* pformdocument);
 
 
       void report_error(const ::exception & exception, int iMessageFlags, const ::string & pszTopic) override;

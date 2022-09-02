@@ -1020,8 +1020,8 @@
     <ClInclude Include="networking\net.h" />
     <ClInclude Include="networking\open_weather_city.h" />
     <ClInclude Include="networking\port_forward.h" />
-    <ClInclude Include="networking\sockets\base\base_socket.h" />
-    <ClInclude Include="networking\sockets\base\base_socket_handler.h" />
+    <ClInclude Include="networking\sockets\base\socket.h" />
+    <ClInclude Include="networking\sockets\base\socket_handler.h" />
     <ClInclude Include="networking\sockets\base\socket_thread.h" />
     <ClInclude Include="networking\sockets\basic\listen_socket.h" />
     <ClInclude Include="networking\sockets\basic\net.h" />

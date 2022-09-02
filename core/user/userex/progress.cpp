@@ -11,6 +11,7 @@
 #include "base/user/user/multiple_document_template.h"
 #include "base/user/user/document.h"
 #include "aura/user/user/progress.h"
+#include "core/user/user/user.h"
 #include "aura/message/user.h"
 
 

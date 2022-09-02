@@ -21,7 +21,7 @@
 #include "base/user/simple/child_frame.h"
 #include "pane_tab_impact.h"
 #include "font_impact.h"
-#include "core/user/userex/user.h"
+#include "core/user/user/user.h"
 #include "core/platform/application.h"
 #include "core/platform/session.h"
 

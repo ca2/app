@@ -895,7 +895,6 @@
     <ClCompile Include="user\userex\top_edit_impact.cpp" />
     <ClCompile Include="user\userex\top_toggle_impact.cpp" />
     <ClCompile Include="user\userex\top_impact.cpp" />
-    <ClCompile Include="user\userex\user.cpp" />
     <ClCompile Include="user\userex\wait_message_dialog.cpp" />
     <ClCompile Include="user\user\color_combo_box.cpp" />
     <ClCompile Include="user\user\elastic_slider.cpp" />
@@ -927,6 +926,7 @@
     <ClCompile Include="user\user\tree.cpp" />
     <ClCompile Include="user\user\tree_data.cpp" />
     <ClCompile Include="user\user\tree_window.cpp" />
+    <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="user\user\xfplayer_impact_line.cpp" />
     <ClCompile Include="user\user\xfplayer_impact_lines.cpp" />
     <ClCompile Include="user\user\xfplayer_impact_line_selection.cpp" />
@@ -1024,6 +1024,7 @@
     <ClInclude Include="user\userex\progress.h" />
     <ClInclude Include="user\user\aaa_shell.h" />
     <ClInclude Include="user\user\impact.h" />
+    <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\_tree.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="version\version.h" />
@@ -1166,7 +1167,6 @@
     <ClInclude Include="user\userex\top_edit_impact.h" />
     <ClInclude Include="user\userex\top_toggle_impact.h" />
     <ClInclude Include="user\userex\top_impact.h" />
-    <ClInclude Include="user\userex\user.h" />
     <ClInclude Include="user\userex\wait_message_dialog.h" />
     <ClInclude Include="user\userex\_.h" />
     <ClInclude Include="user\userex\_impl.h" />

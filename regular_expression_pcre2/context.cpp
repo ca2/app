@@ -1,5 +1,6 @@
 #include "framework.h"
-
+#include "context.h"
+#include "regular_expression.h"
 
 
 namespace regular_expression_pcre2

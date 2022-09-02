@@ -4,7 +4,7 @@
 #endif
 #include "file_properties_form.h"
 #include "core/user/userex/pane_tab_impact.h"
-#include "core/user/userex/user.h"
+#include "core/user/user/user.h"
 #include "core/platform/session.h"
 #include "base/user/simple/frame_window.h"
 #include "base/user/user/single_document_template.h"

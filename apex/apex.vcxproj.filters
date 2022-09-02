@@ -974,10 +974,10 @@
     <ClInclude Include="networking\sockets\http\tunnel.h">
       <Filter>Header Files\networking\sockets\http</Filter>
     </ClInclude>
-    <ClInclude Include="networking\sockets\base\base_socket.h">
+    <ClInclude Include="networking\sockets\base\socket.h">
       <Filter>Header Files\networking\sockets\base</Filter>
     </ClInclude>
-    <ClInclude Include="networking\sockets\base\base_socket_handler.h">
+    <ClInclude Include="networking\sockets\base\socket_handler.h">
       <Filter>Header Files\networking\sockets\base</Filter>
     </ClInclude>
     <ClInclude Include="networking\sockets\base\socket_thread.h">

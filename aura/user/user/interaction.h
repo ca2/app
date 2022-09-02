@@ -1780,6 +1780,8 @@ namespace user
 
       
       virtual bool set_sel_by_name(const ::string & strName);
+      virtual string get_sel_by_name();
+      virtual string get_hover_by_name();
       virtual void ensure_sel_visible();
       
       
@@ -1803,11 +1805,46 @@ namespace user
       virtual bool rget_child(__pointer(::user::interaction)& pinteraction);
 
 
-      template < typename CHILD >
-      inline bool get_typed_child(CHILD*& pchild);
+      //template < typename CHILD >
+      //inline bool get_typed_child(CHILD*& pchild);
+
+      //template < typename CHILD >
+      //inline __pointer(CHILD) get_typed_child();
 
       template < typename CHILD >
-      inline __pointer(CHILD) get_typed_child();
+      inline bool get_typed_child(CHILD *& pchild)
+      {
+
+         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+
+         if (!puserinteractionpointeraChild)
+         {
+
+            return false;
+
+         }
+
+         return puserinteractionpointeraChild->get_typed_child(pchild);
+
+      }
+
+      template < typename CHILD >
+      inline __pointer(CHILD) get_typed_child()
+      {
+
+         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+
+         if (!puserinteractionpointeraChild)
+         {
+
+            return nullptr;
+
+         }
+
+         return puserinteractionpointeraChild->get_typed_child < CHILD >();
+
+      }
+
 
       virtual enum_input_type preferred_input_type() const;
 

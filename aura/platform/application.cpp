@@ -8096,7 +8096,7 @@ namespace aura
    //}
 
 
-   void application::prepare_form(atom atom, ::form_document* pdocument)
+   void application::prepare_form(atom atom, ::form_document* pformdocument)
    {
 
 

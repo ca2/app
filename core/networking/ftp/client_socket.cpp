@@ -50,7 +50,9 @@
 #include "client_socket.h"
 #include "output_stream.h"
 #include "file.h"
-#include "apex/networking/sockets/_sockets.h"
+#include "apex/networking/sockets/basic/listen_socket.h"
+#include "apex/networking/sockets/transfer_socket.h"
+#include "apex/networking/sockets/base/socket_handler.h"
 //xxx #undef ___scoped_restore
 #include <openssl/x509.h>
 
@@ -208,7 +210,9 @@ namespace ftp
    /// Returns the connection state of the client_socket.
    bool client_socket::_is_connected()
    {
-      return GetSocket() != INVALID_SOCKET;
+      //return GetSocket() != INVALID_SOCKET;
+
+      return is_valid();
    }
 
    /// Returns true if a download/upload is running, otherwise false.
@@ -731,14 +735,18 @@ namespace ftp
       ::u32  ulIP = 0;
       ::u16 ushSock = 0;
       if (PassiveServer.Passive(ulIP, ushSock) != FTP_OK)
+      {
+
          return false;
 
-      ::networking::address csaPassiveServer((i32) ulIP, ushSock);
+      }
+
+      auto paddress = SourceFtpServer.m_psystem->m_papexsystem->networking()->create_ip4_address((i32)ulIP, ushSock);
 
       // transmit the socket (ip ::networking::address + port) of the first FTP server to the
       // second server
       // the second FTP server establishes then the data connection to the first
-      if (ActiveServer.DataPort(csaPassiveServer.get_display_number(), ushSock) != FTP_OK)
+      if (ActiveServer.DataPort(paddress->get_display_number(), ushSock) != FTP_OK)
          return false;
 
       if (!SourceFtpServer.SendCommand(command::RETR(), { strSourceFile }))
@@ -864,7 +872,7 @@ namespace ftp
 
          fTransferOK = TransferData(crDatachannelCmd, Observer, *psocket);
 
-         if (psocket->GetSocket() != INVALID_SOCKET)
+         if (_is_connected())
          {
 
             psocket->close();
@@ -984,7 +992,7 @@ namespace ftp
       // second parameter "0" means that the WINSOCKAPI ask for a port
       string strIp = "127.0.0.1";
       int iPort = 0;
-      if (sckDataConnection.Bind(0, "tcp", 1))
+      if (sckDataConnection.Bind(nullptr, "tcp", 1))
       {
          string strMessage;
          strMessage.format("could not bind to address %s %d", strIp.c_str(), iPort);
@@ -1015,18 +1023,20 @@ namespace ftp
          return false;
       }
 
-      ::networking::address csaAddressTemp(INADDR_ANY, 0);
-      csaAddressTemp = sckDataConnection.get_socket_address();
-      ushLocalSock = csaAddressTemp.get_service_number();
+      ::networking::address_pointer paddressTemp;
+      //auto paddress = m_psystem->m_papexsystem->networking()->create_address((i32)ulIP, ushSock);
+      //::networking::address csaAddressTemp(INADDR_ANY, 0);
+      paddressTemp = sckDataConnection.get_socket_address();
+      ushLocalSock = paddressTemp->get_service_number();
 
 
       // get own ip ::networking::address
-      ::networking::address csaLocalAddress;
-      csaLocalAddress = get_socket_address();
+      ::networking::address_pointer paddressLocal;
+      paddressLocal = get_socket_address();
 
       // transmit the socket (ip ::networking::address + port) to the server
       // the FTP server establishes then the data connection
-      if (DataPort(csaLocalAddress.get_display_number(), ushLocalSock) != FTP_OK)
+      if (DataPort(paddressLocal->get_display_number(), ushLocalSock) != FTP_OK)
          return false;
 
       // if resuming is activated then set offset
@@ -1097,10 +1107,10 @@ namespace ftp
          return false;
 
       // establish connection
-      ::networking::address sockAddrTemp(::net::ipv4((i32) ulRemoteHostIP, ushServerSock));
+      auto paddressTemp = networking()->create_ip4_address((i32)ulRemoteHostIP, ushServerSock);
       try
       {
-         if (!sckDataConnection.open(sockAddrTemp))
+         if (!sckDataConnection.open(paddressTemp))
          {
             return false;
          }
@@ -1262,7 +1272,7 @@ auto tickStart = ::duration::now();
 
                iNumRead = sckDataConnection.m_file.erase_begin(m_vBuffer.get_data(), static_cast<int>(m_vBuffer.size()));
 
-               if (sckDataConnection.GetSocket() == INVALID_SOCKET && iNumRead <= 0)
+               if (!sckDataConnection.is_valid() && iNumRead <= 0)
                {
 
                   break;

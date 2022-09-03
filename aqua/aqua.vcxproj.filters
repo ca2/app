@@ -288,7 +288,7 @@
     <ClInclude Include="operating_system\_.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
-    <ClInclude Include="multimedia\audio\_c_audio.h">
+    <ClInclude Include="multimedia\audio\_operating_system.h">
       <Filter>Header Files\multimedia\audio</Filter>
     </ClInclude>
     <ClInclude Include="constant\idpool.h">

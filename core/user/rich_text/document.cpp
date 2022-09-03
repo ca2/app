@@ -70,7 +70,7 @@ namespace user
       bool document::on_save_document(::file:: file * pfile)
       {
 
-         auto pedit = get_type_impact<::user::rich_text::edit_impl>();
+         auto pedit = get_typed_impact<::user::rich_text::edit_impl>();
 
          auto pdata = pedit->m_pdata;
 

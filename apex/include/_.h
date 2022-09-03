@@ -158,6 +158,12 @@ namespace opengl
 
 
 
+class api;
+
+
+class api_client;
+
+
 extern CLASS_DECL_APEX int g_bApex;
 
 

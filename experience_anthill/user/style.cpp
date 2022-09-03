@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "style.h"
 #include "base/user/menu/central.h"
 #include "base/user/user/tab_pane.h"
 #include "aura/graphics/draw2d/graphics.h"

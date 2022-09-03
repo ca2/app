@@ -1,5 +1,6 @@
 #include "framework.h"
-
+#include "control_box_button.h"
+#include "control_box.h"
 #include "aura/user/user/frame.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"

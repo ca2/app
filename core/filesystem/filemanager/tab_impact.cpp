@@ -88,7 +88,7 @@ namespace filemanager
 
          }
 
-         form * pformview = pdocument->get_type_impact < form >();
+         form * pformview = pdocument->get_typed_impact < form >();
 
          auto ptopic = create_topic(BROWSE_ID);
 

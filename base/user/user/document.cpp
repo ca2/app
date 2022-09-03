@@ -601,7 +601,7 @@ namespace user
    }
 
 
-   __pointer(::user::impact) document::get_type_impact(::type info, index indexFind)
+   __pointer(::user::impact) document::get_typed_impact(::type info, index indexFind)
    {
 
       single_lock synchronouslock(mutex(), true);

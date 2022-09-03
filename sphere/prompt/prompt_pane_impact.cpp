@@ -244,7 +244,7 @@ namespace prompt
          if(pdocument == nullptr)
             return;
          ::user::impact_data * pimpactdata = new ::user::impact_data;
-         __pointer(::user::impact) pimpact = pdocument->get_type_impact < ::user::impact > ();
+         __pointer(::user::impact) pimpact = pdocument->get_typed_impact < ::user::impact > ();
          auto pupdate = new_update();
          pupdate->m_actioncontext = ::e_source_system;
          ptopic->m_atom = id_browse;

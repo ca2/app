@@ -40,7 +40,7 @@ namespace usernet
       if(m_pdocument != nullptr)
       {
 
-         m_pimpact = m_pdocument->get_type_impact < ::user::form > ();
+         m_pimpact = m_pdocument->get_typed_impact < ::user::form > ();
 
          m_pimpact->set_form_callback(this);
 
@@ -67,7 +67,7 @@ namespace usernet
       if(m_pdocument != nullptr)
       {
 
-         m_pimpact = m_pdocument->get_type_impact < ::user::form > ();
+         m_pimpact = m_pdocument->get_typed_impact < ::user::form > ();
 
          m_pimpact->set_form_callback(this);
 

@@ -585,7 +585,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pformdocument->get_type_impact < ::user::form_window >();
+      __pointer(::user::form_window) pform = pformdocument->get_typed_impact < ::user::form_window >();
 
       return pformdocument;
 
@@ -966,7 +966,7 @@ namespace core
 
       auto pdocument = m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(puiOwner->get_app(), ::e_type_null, __visible(true));
 
-      __pointer(::userex::color_impact) pimpact = pdocument->get_type_impact < ::userex::color_impact >();
+      __pointer(::userex::color_impact) pimpact = pdocument->get_typed_impact < ::userex::color_impact >();
 
       __pointer(::user::frame_window) pframe = pimpact->top_level_frame();
 
@@ -1068,7 +1068,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pformdocument->get_type_impact < ::user::form_window >();
+      __pointer(::user::form_window) pform = pformdocument->get_typed_impact < ::user::form_window >();
 
       if (pform.is_set())
       {
@@ -1150,7 +1150,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pformdocument->get_type_impact < ::user::form_window >();
+      __pointer(::user::form_window) pform = pformdocument->get_typed_impact < ::user::form_window >();
 
       if (pform.is_set() && ::is_null(pform->get_form_callback()))
       {
@@ -1239,7 +1239,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pformdocument->get_type_impact < ::user::form_window >();
+      __pointer(::user::form_window) pform = pformdocument->get_typed_impact < ::user::form_window >();
 
       if (pform.is_set())
       {
@@ -1314,7 +1314,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pformdocument->get_type_impact < ::user::form_window >();
+      __pointer(::user::form_window) pform = pformdocument->get_typed_impact < ::user::form_window >();
 
       if (pform.is_set() && ::is_set(pcallback))
       {
@@ -1420,7 +1420,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pformdocument->get_type_impact < ::user::form_window >();
+      __pointer(::user::form_window) pform = pformdocument->get_typed_impact < ::user::form_window >();
 
       return pformdocument;
 
@@ -1440,7 +1440,7 @@ namespace core
 
       __pointer(::form_document) pformdocument = ::user::__document(pcreate);
 
-      __pointer(::user::place_holder) pholder = pformdocument->get_type_impact < ::user::place_holder  >();
+      __pointer(::user::place_holder) pholder = pformdocument->get_typed_impact < ::user::place_holder  >();
 
       pholder->place_hold(pinteraction);
 

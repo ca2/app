@@ -65,7 +65,7 @@
     <ClInclude Include="multimedia\audio\speaker.h" />
     <ClInclude Include="multimedia\audio\text_to_speech_client.h" />
     <ClInclude Include="multimedia\audio\_.h" />
-    <ClInclude Include="multimedia\audio\_c_audio.h" />
+    <ClInclude Include="multimedia\audio\_operating_system.h" />
     <ClInclude Include="multimedia\decoder.h" />
     <ClInclude Include="multimedia\decoder_plugin.h" />
     <ClInclude Include="multimedia\exception.h" />

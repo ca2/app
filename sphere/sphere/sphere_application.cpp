@@ -666,9 +666,9 @@ namespace sphere
             && (pcreate->m_strApp.is_empty()
             ||App(m_pappCurrent).m_strAppName == pcreate->m_strApp))
          {
-            if(get_document() != nullptr && get_document()->get_type_impact < pane_impact >() != nullptr)
+            if(get_document() != nullptr && get_document()->get_typed_impact < pane_impact >() != nullptr)
             {
-               get_document()->get_type_impact < pane_impact >()->set_current_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
+               get_document()->get_typed_impact < pane_impact >()->set_current_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
             }
             App(m_pappCurrent).do_request(pcreate);
             if(pcreate->payload("document").cast < ::user::document > () == nullptr)
@@ -699,11 +699,11 @@ namespace sphere
                }
             }
             else if(pcreate->m_strApp.has_char() &&
-               get_document() != nullptr && get_document()->get_type_impact < pane_impact >() != nullptr
+               get_document() != nullptr && get_document()->get_typed_impact < pane_impact >() != nullptr
                && (!pcreate->m_pappbias.is_set() || pcreate->m_pappbias->m_puserinteractionParent == nullptr))
             {
                //message_box(nullptr, "request3", "request3", e_message_box_icon_exclamation);
-               get_document()->get_type_impact < pane_impact >()->set_current_tab_by_id("app:" + pcreate->m_strApp);
+               get_document()->get_typed_impact < pane_impact >()->set_current_tab_by_id("app:" + pcreate->m_strApp);
                App(m_pappCurrent).do_request(pcreate);
             }
             else

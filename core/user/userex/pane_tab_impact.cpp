@@ -358,7 +358,7 @@ namespace userex
 
             }
 
-            auto pformview = m_pformdocumentMenu->get_type_impact < ::user::form_impact>();
+            auto pformview = m_pformdocumentMenu->get_typed_impact < ::user::form_impact>();
 
             pformview->get_form()->add_handler(get_app());
 
@@ -603,7 +603,7 @@ namespace userex
 
          auto pdocument = ptemplate->open_document_file(get_app(), ::e_type_null, __visible(true).is_true(), pimpactdata->m_pplaceholder);
 
-         m_pfontimpact = pdocument->get_type_impact < font_impact >();
+         m_pfontimpact = pdocument->get_typed_impact < font_impact >();
 
          m_pfontimpact->set_need_layout();
 
@@ -1003,7 +1003,7 @@ namespace userex
 
    //   m_pdocAppOptions = puser->create_child_form(this, this, pimpactdata->m_pplaceholder, strAppOptions);
 
-   //   //auto pform = m_pdocAppOptions->get_type_impact<::user::form>();
+   //   //auto pform = m_pdocAppOptions->get_typed_impact<::user::form>();
 
    //   //if (pform)
    //   //{

@@ -77,7 +77,7 @@ namespace filemanager
 
       __pointer(::user::document) pdocument = ::user::__document(pcreate);
 
-      __pointer(::userex::pane_tab_impact) ptabimpact = pdocument->get_type_impact < ::userex::pane_tab_impact > ();
+      __pointer(::userex::pane_tab_impact) ptabimpact = pdocument->get_typed_impact < ::userex::pane_tab_impact > ();
 
       m_ptabimpact = ptabimpact;
 
@@ -161,7 +161,7 @@ namespace filemanager
 
          if(m_pdocGeneral != nullptr)
          {
-            m_pviewGeneral = m_pdocGeneral->get_type_impact < ::user::form > ();
+            m_pviewGeneral = m_pdocGeneral->get_typed_impact < ::user::form > ();
             m_pviewGeneral->set_form_callback(this);
             pimpactdata->m_pdocument = m_pdocGeneral;
             pimpactdata->m_puserinteraction = m_pviewGeneral->parent_frame();

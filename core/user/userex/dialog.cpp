@@ -121,7 +121,7 @@ bool dialog::show(const ::string & pszMatter)
 
    //m_pframe->add_each_routine_from(DIALOG_RESULT_PROCESS, this);
 
-   m_pform = m_pformdocument->get_type_impact<::user::form>();
+   m_pform = m_pformdocument->get_typed_impact<::user::form>();
 
    on_position_parent_frame();
 

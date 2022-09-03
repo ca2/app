@@ -656,7 +656,7 @@ pacmedirectory->localconfig() / "user.component";
 
       //pdocument->Initialize(pcreate == nullptr ? true : pcreate->m_bMakeVisible, false);
 
-      //tab_impact * ptabimpact = pdocument->get_type_impact < tab_impact >();
+      //tab_impact * ptabimpact = pdocument->get_typed_impact < tab_impact >();
 
       //if (ptabimpact != nullptr)
       //{
@@ -859,7 +859,7 @@ pacmedirectory->localconfig() / "user.component";
 //   if (pdocument != nullptr)
 //   {
 
-//      tab_impact * ptabimpact = pdocument->get_type_impact < tab_impact >();
+//      tab_impact * ptabimpact = pdocument->get_typed_impact < tab_impact >();
 
 //      if (pathFolder.m_iDir == 1)
 //      {

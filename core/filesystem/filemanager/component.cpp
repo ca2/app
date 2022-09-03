@@ -704,7 +704,7 @@ namespace filemanager
 
       //pdocument->Initialize(pcreate == nullptr ? true : pcreate->m_bMakeVisible, false);
 
-      //tab_impact * ptabimpact = pdocument->get_type_impact < tab_impact >();
+      //tab_impact * ptabimpact = pdocument->get_typed_impact < tab_impact >();
 
       //if (ptabimpact != nullptr)
       //{
@@ -906,7 +906,7 @@ namespace filemanager
 //   if (pdocument != nullptr)
 //   {
 
-//      tab_impact * ptabimpact = pdocument->get_type_impact < tab_impact >();
+//      tab_impact * ptabimpact = pdocument->get_typed_impact < tab_impact >();
 
 //      if (pathFolder.m_iDir == 1)
 //      {

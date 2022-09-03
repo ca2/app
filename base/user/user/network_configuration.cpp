@@ -23,7 +23,7 @@ namespace user
       /*m_pdocument = papp->create_form(this, puiParent);
       if(m_pdocument != nullptr)
       {
-         m_pimpact = m_pdocument->get_type_impact < ::user::form > ();
+         m_pimpact = m_pdocument->get_typed_impact < ::user::form > ();
          m_pimpact->m_pcallback = this;
          return true;
       }*/
@@ -36,7 +36,7 @@ namespace user
       m_pdocument = psession->user()->create_child_form(this, puiParent);
       if(m_pdocument != nullptr)
       {
-         m_pimpact = m_pdocument->get_type_impact < ::user::form > ();
+         m_pimpact = m_pdocument->get_typed_impact < ::user::form > ();
          m_pimpact->m_pcallback = this;
          return true;
       }*/

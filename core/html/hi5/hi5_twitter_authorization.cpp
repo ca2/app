@@ -122,7 +122,7 @@ namespace hi5
          if(m_pdocument == nullptr)
             return;
 
-         __pointer(user::tab_impact) ptabimpact = m_pdocument->get_type_impact < user::tab_impact >();
+         __pointer(user::tab_impact) ptabimpact = m_pdocument->get_typed_impact < user::tab_impact >();
          m_ptabimpact = ptabimpact;
 
          auto pimpactkit = ptabimpact->get_impact_kit();
@@ -283,7 +283,7 @@ namespace hi5
             if (m_pformdocumentAuth != nullptr)
             {
 
-               m_pviewAuth = m_pformdocumentAuth->get_type_impact < ::user::form >();
+               m_pviewAuth = m_pformdocumentAuth->get_typed_impact < ::user::form >();
                m_pviewAuth->set_form_callback(this);
                pimpactdata->m_pdocument = m_pformdocumentAuth;
                pimpactdata->m_puserinteraction = m_pviewAuth->parent_frame();

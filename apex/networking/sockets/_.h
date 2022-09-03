@@ -18,12 +18,14 @@ namespace sockets
    //namespace sockets
    //{
 
-
+   class link_out_socket;
+   class link_in_socket;
       class socket_handler;
       class http_client_socket;
       class http_session;
 
-
+      using in_link_map = map < link_out_socket *, link_in_socket * >;
+      
    //} // namespace sockets
 
 

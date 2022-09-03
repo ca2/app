@@ -1,8 +1,10 @@
 #include "framework.h"
-#include "_.h"
+#include "apex/networking/sockets/link_in_socket.h"
+#include "apex/networking/sockets/link_out_socket.h"
 #include "apex/filesystem/filesystem/file_watcher.h"
 #include "acme/id.h"
-#include "aura/user/user/_component.h"
+
+//#include "aura/user/user/_component.h"
 
 
 namespace dynamic_source
@@ -1380,7 +1382,7 @@ namespace dynamic_source
 
             }
 
-            m_mapInLink.set_at(psocket, pinsocket);
+            m_pmapInLink->set_at(psocket, pinsocket);
 
          }
 
@@ -1400,7 +1402,7 @@ namespace dynamic_source
 
       single_lock sl2(&m_mutexInLink, true);
 
-      auto ppair = m_mapInLink.plookup(poutsocket);
+      auto ppair = m_pmapInLink->plookup(poutsocket);
 
       {
 
@@ -1420,7 +1422,7 @@ namespace dynamic_source
 
       ::sockets::link_in_socket * pinsocket = ppair->element2();
 
-      m_mapInLink.erase_key(poutsocket);
+      m_pmapInLink->erase_key(poutsocket);
 
       return pinsocket;
 

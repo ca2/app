@@ -10,7 +10,7 @@
 #include "list_item_array.h"
 #include "list_item.h"
 #include "core/user/user/list_column.h"
-#include "core/user/userex/user.h"
+#include "core/user/user/user.h"
 #include "aura/user/user/frame.h"
 #include "core/platform/session.h"
 

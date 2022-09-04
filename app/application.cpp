@@ -1,8 +1,7 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
-//#include "aura/update.h"
+
+#include "application.h"
+#include "main_window.h"
 
 
 namespace app_app
@@ -17,6 +16,8 @@ namespace app_app
       m_strAppName = "app/app";
 
       m_strBaseSupportId = "app_app";
+
+      m_bNetworking = false;
 
       m_bLicense = false;
 

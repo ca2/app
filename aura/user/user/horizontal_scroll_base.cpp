@@ -13,6 +13,8 @@ namespace user
    horizontal_scroll_base::horizontal_scroll_base()
    {
 
+      m_pscrolldataHorizontal = __new(scroll_data);
+
       m_pscrolldataHorizontal->m_bScroll = false;
       m_pscrolldataHorizontal->m_iPage = 0;
       m_pscrolldataHorizontal->m_iLine = 0;
@@ -93,24 +95,6 @@ namespace user
       }
 
    }
-
-
-   //bool horizontal_scroll_base::create_horizontal_scroll_bar()
-   //{
-
-   //   if (m_pscrolldataHorizontal->m_bScrollEnable)
-   //   {
-
-   //      if (!m_pscrollbarHorizontal)
-   //      {
-
-   //         create_horizontal_scroll_bar();
-
-   //      }
-
-   //   }
-
-   //}
 
 
    void horizontal_scroll_base::defer_create_horizontal_scroll_bar()

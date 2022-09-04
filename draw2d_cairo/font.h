@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/graphics/write_text/font.h"
+
+
 #if defined(USE_PANGO)
 
 #include <pango/pangocairo.h>

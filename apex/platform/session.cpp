@@ -738,9 +738,9 @@ namespace apex
          else if (m_bShowPlatform)
          {
             //create_bergedge(pcreate);
-            //if(get_document() != nullptr && get_document()->get_type_impact < ::bergedge::impact >() != nullptr)
+            //if(get_document() != nullptr && get_document()->get_typed_impact < ::bergedge::impact >() != nullptr)
             //{
-            //   __pointer(::simple_frame_window) pframe =  (get_document()->get_type_impact < ::bergedge::impact >()->get_parent_frame());
+            //   __pointer(::simple_frame_window) pframe =  (get_document()->get_typed_impact < ::bergedge::impact >()->get_parent_frame());
             //   if(pframe != nullptr)
             //   {
             //      pframe->display(e_display_restored);
@@ -1869,18 +1869,18 @@ namespace apex
 
    //   string strAppName = app.m_strAppName;
 
-   //   //if(get_document()->get_type_impact < ::bergedge::pane_impact >() != nullptr)
+   //   //if(get_document()->get_typed_impact < ::bergedge::pane_impact >() != nullptr)
    //   //{
 
-   //   //   get_document()->get_type_impact < ::bergedge::pane_impact >()->set_current_tab_by_id("app:" + strAppName);
+   //   //   get_document()->get_typed_impact < ::bergedge::pane_impact >()->set_current_tab_by_id("app:" + strAppName);
 
-   //   //   holderptra.add(get_document()->get_type_impact < ::bergedge::pane_impact >()->get_tab_holder(get_document()->get_type_impact < ::bergedge::pane_impact >()->get_tab_by_id("app:" + strAppName)));
+   //   //   holderptra.add(get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_tab_holder(get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_tab_by_id("app:" + strAppName)));
 
    //   //}
    //   //else
    //   //{
 
-   //   //   holderptra.add(get_document()->get_type_impact < ::bergedge::impact >());
+   //   //   holderptra.add(get_document()->get_typed_impact < ::bergedge::impact >());
 
    //   //}
 
@@ -1909,7 +1909,7 @@ namespace apex
       if (m_applicationa.lookup(pszAppId, papp) && papp)
       {
 
-         //__pointer(::bergedge::pane_impact) ppaneimpact = get_document()->get_type_impact < ::bergedge::pane_impact >();
+         //__pointer(::bergedge::pane_impact) ppaneimpact = get_document()->get_typed_impact < ::bergedge::pane_impact >();
 
          //if(ppaneimpact != nullptr)
          //{

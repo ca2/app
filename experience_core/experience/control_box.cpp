@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+
 #include "aura/graphics/draw2d/graphics.h"
 #include "control_box.h"
 #include "aura/user/user/frame.h"

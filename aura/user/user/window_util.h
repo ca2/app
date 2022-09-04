@@ -127,8 +127,43 @@ namespace user
       virtual bool rget_child(__pointer(::user::interaction) & pinteraction);
 
 
+      //template < typename CHILD >
+      //bool get_typed_child(CHILD * & pchild);
+
       template < typename CHILD >
-      bool get_typed_child(CHILD * & pchild);
+      inline bool get_typed_child(CHILD *& pchild)
+      {
+
+         for (i32 i = 0; i < this->interaction_count(); i++)
+         {
+
+            pchild = this->interaction_at(i).cast < CHILD >();
+
+            if (pchild)
+            {
+
+               return true;
+
+            }
+
+         }
+
+         for (i32 i = 0; i < this->interaction_count(); i++)
+         {
+
+            if (this->interaction_at(i)->get_typed_child(pchild))
+            {
+
+               return true;
+
+            }
+
+         }
+
+         return false;
+
+      }
+
 
       template < typename CHILD >
       __pointer(CHILD) get_typed_child()

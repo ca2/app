@@ -39,6 +39,18 @@ namespace user
    };
 
 
+   class plain_text_tree;
+
+   enum enum_plain_text_command
+   {
+      
+      e_plain_text_command_none,
+      e_plain_text_command_set_sel,
+      e_plain_text_command_file,
+      e_plain_text_command_group,
+
+
+   };
 
 } // namespace user
 

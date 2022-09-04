@@ -11,7 +11,11 @@ Copyright (ca) 1998 by PJ Naughter.
 #pragma once
 
 
-namespace net
+#include "address.h"
+
+
+
+namespace networking
 {
 
 
@@ -23,10 +27,10 @@ namespace net
 
 
       ip_enum();
-      virtual ~ip_enum();
+      ~ip_enum() override;
 
 
-      virtual ::count enumerate(array < ::net::address > & ipa);
+      virtual ::count enumerate(__pointer_array(::networking::address) & ipa);
 
 
    };

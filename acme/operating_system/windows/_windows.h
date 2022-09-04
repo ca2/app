@@ -11,6 +11,7 @@ inline file_time __file_time(const FILETIME & file_time) { return make64_from32(
 CLASS_DECL_ACME HANDLE duplicate_handle(HANDLE h);
 
 
+CLASS_DECL_ACME::file::path get_module_path(HMODULE hmodule);
 
 
 

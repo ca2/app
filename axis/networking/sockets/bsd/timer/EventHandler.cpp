@@ -295,7 +295,7 @@ namespace sockets
 #ifdef ENABLE_RECONNECT
          m_ptcpsocket -> SetReconnect(true);
 #endif
-         m_ptcpsocket -> open(::net::address("127.0.0.1", m_port));
+         m_ptcpsocket -> open(::networking::address("127.0.0.1", m_port));
 
          socket_handler::add2(m_ptcpsocket);
 

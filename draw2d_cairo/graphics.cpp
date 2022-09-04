@@ -1,10 +1,20 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+#include "graphics.h"
+#include "keep.h"
+#include "image.h"
+#include "region.h"
+#include "font.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/path.h"
+#include "aura/graphics/write_text/text_out.h"
+#include "aura/graphics/write_text/draw_text.h"
+#include "acme/primitive/geometry2d/_shape.h"
+#include "aura/user/user/interaction.h"
 #include <math.h>
 #include "acme/platform/restore.h"
-#include "aura/user/user/_component.h"
+
 
 
 #ifdef _DEBUG

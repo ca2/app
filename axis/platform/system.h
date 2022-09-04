@@ -19,7 +19,7 @@ namespace axis
       __composite(class ::geo::department)              m_pgeo;
 
 
-      __composite(::net::email_department)              m_pemaildepartment;
+      __composite(::networking::email_department)       m_pemaildepartment;
 
 
       __composite(::html::html)                         m_phtml;
@@ -66,7 +66,7 @@ namespace axis
 
 
 
-      ::net::email_department &                    email();
+      ::networking::email_department &             email();
 
       //::xml::department &                          xml();
 

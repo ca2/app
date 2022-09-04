@@ -124,13 +124,13 @@ namespace browser
 
       data_get("cur_text", m_strNewHelloBrowser);
 
-      if(GetTypedParent<::user::split_impact>() != nullptr)
+      if(get_typed_parent<::user::split_impact>() != nullptr)
       {
 
-         if(GetTypedParent<::user::split_impact>()->get_child_by_id("top_edit_impact") != nullptr)
+         if(get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact") != nullptr)
          {
 
-            auto pinteraction = GetTypedParent<::user::split_impact>()->get_child_by_id("top_edit_impact");
+            auto pinteraction = get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact");
 
             pinteraction->_001SetText(m_strNewHelloBrowser,::e_source_initialize);
 
@@ -432,9 +432,9 @@ namespace browser
 
       }
 
-      bool bHover = GetTypedParent < pane_impact >() != nullptr
-                    && GetTypedParent < pane_impact >()->m_pimpactLast == this
-                    && GetTypedParent < pane_impact >()->get_current_tab_id() == FONTSEL_IMPACT;
+      bool bHover = get_typed_parent < pane_impact >() != nullptr
+                    && get_typed_parent < pane_impact >()->m_pimpactLast == this
+                    && get_typed_parent < pane_impact >()->get_current_tab_id() == FONTSEL_IMPACT;
 
       //if(m_prender->m_cx == rectangleClient.width()
       //    && m_prender->m_cy == rectangleClient.height()

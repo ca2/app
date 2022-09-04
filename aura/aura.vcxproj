@@ -1089,6 +1089,7 @@
     <ClInclude Include="graphics\image\_image_impl.h" />
     <ClInclude Include="graphics\user\control_box_button.h" />
     <ClInclude Include="graphics\user\control_box_icon.h" />
+    <ClInclude Include="graphics\user\_.h" />
     <ClInclude Include="graphics\write_text\bounding_rect.h" />
     <ClInclude Include="graphics\write_text\contains.h" />
     <ClInclude Include="graphics\write_text\drawer.h" />

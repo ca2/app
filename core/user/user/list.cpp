@@ -324,16 +324,16 @@ namespace user
             if (pcolumn)
             {
 
-               if (pcolumn->m_pil)
+               if (pcolumn->m_pimagelist)
                {
 
-                  slaImageList.add(__new(synchronous_lock(pcolumn->m_pil)));
+                  slaImageList.add(__new(synchronous_lock(pcolumn->m_pimagelist)));
 
                }
-               if (pcolumn->m_pilHover)
+               if (pcolumn->m_pimagelistHover)
                {
 
-                  slaImageList.add(__new(synchronous_lock(pcolumn->m_pil)));
+                  slaImageList.add(__new(synchronous_lock(pcolumn->m_pimagelist)));
 
                }
 
@@ -1424,8 +1424,8 @@ namespace user
    //   m_uiSmallBitmap = pcolumn->m_uiSmallBitmap;
    //   m_colorSmallMask = pcolumn->m_colorSmallMask;
    //   m_iSmallImageWidth = pcolumn->m_iSmallImageWidth;
-   //   m_pil = pcolumn->m_pil;
-   //   m_pilHover = pcolumn->m_pilHover;
+   //   m_pimagelist = pcolumn->m_pimagelist;
+   //   m_pimagelistHover = pcolumn->m_pimagelistHover;
    //   m_bVisible = pcolumn->m_bVisible;
    //   m_iControl = pcolumn->m_iControl;
    //   m_datakey = pcolumn->m_datakey;
@@ -1526,10 +1526,10 @@ namespace user
 
          }
 
-         if (pcolumn->m_pil != nullptr && pcolumn->m_pil->get_image_count() > 0)
+         if (pcolumn->m_pimagelist != nullptr && pcolumn->m_pimagelist->get_image_count() > 0)
          {
 
-            pcolumn->m_pil->get_image_info(0, &ii);
+            pcolumn->m_pimagelist->get_image_info(0, &ii);
 
             rectangle = ii.m_rectangle;
 
@@ -3081,7 +3081,7 @@ namespace user
                }
 
             }
-            else if (pdrawlistsubitem->m_pcolumn->m_pil != nullptr)
+            else if (pdrawlistsubitem->m_pcolumn->m_pimagelist != nullptr)
             {
 
                ::image_list::info ii;
@@ -3095,7 +3095,7 @@ namespace user
 
                   string strText = pdrawlistsubitem->m_strText;
 
-                  pdrawlistsubitem->m_pcolumn->m_pil->get_image_info((i32)pdrawlistsubitem->m_iImage, &ii);
+                  pdrawlistsubitem->m_pcolumn->m_pimagelist->get_image_info((i32)pdrawlistsubitem->m_iImage, &ii);
 
                   if (eelement == ::user::list::e_element_image)
                   {
@@ -3178,7 +3178,7 @@ namespace user
 
          i32 iImageBottom = pdrawlistgroup->m_rectangleGroup.top;
 
-         if (m_pilGroup != nullptr)
+         if (m_pimagelistGroup != nullptr)
          {
 
             ::image_list::info ii;
@@ -3188,7 +3188,7 @@ namespace user
             if (pdrawlistgroup->m_bOk && pdrawlistgroup->m_iImage >= 0)
             {
 
-               m_pilGroup->get_image_info((i32)pdrawlistgroup->m_iImage, &ii);
+               m_pimagelistGroup->get_image_info((i32)pdrawlistgroup->m_iImage, &ii);
 
                if (egroupelement == ::user::list::e_group_element_image)
                {
@@ -5484,10 +5484,10 @@ namespace user
 
       }
 
-      if (pcolumn->m_pil == nullptr)
+      if (pcolumn->m_pimagelist == nullptr)
       {
 
-         pcolumn->m_pil = __new(::image_list);
+         pcolumn->m_pimagelist = __new(::image_list);
 
       }
 
@@ -5735,7 +5735,7 @@ namespace user
 
       //item.m_iListItem = -1;
 
-      if (psubitem->m_pcolumn->m_pil != nullptr)
+      if (psubitem->m_pcolumn->m_pimagelist != nullptr)
       {
 
          _001GetSubItemImage(*psubitem);
@@ -5743,7 +5743,7 @@ namespace user
          if (psubitem->m_bOk && psubitem->m_iImage >= 0)
          {
 
-            psubitem->m_pcolumn->m_pil->get_image_info((i32)psubitem->m_iImage, &ii);
+            psubitem->m_pcolumn->m_pimagelist->get_image_info((i32)psubitem->m_iImage, &ii);
 
             rectangle = ii.m_rectangle;
 

@@ -9,9 +9,7 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+
 
 #define __NANO2D_CONTEXT(ctx) ((::nano2d::context *) (ctx)->p)
 //#include <nanogui/ImageImpact.h>

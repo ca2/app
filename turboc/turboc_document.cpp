@@ -47,27 +47,27 @@ namespace turboc
    bool document::on_open_document(const ::payload & payloadFile)
    {
 
-      impact * pimpact = get_type_impact < impact >();
+      impact * pimpact = get_typed_impact < impact >();
 
 /*      if(pimpact->m_pimageImage->load_image(payloadFile))
       {
-         get_type_impact < impact >()->m_strImage = payloadFile;
-         get_type_impact < impact >()->m_strHelloMultiverse = "image:"+ get_type_impact < impact >()->m_strImage + ":" + get_type_impact < impact >()->m_strHelloMultiverse;
+         get_typed_impact < impact >()->m_strImage = payloadFile;
+         get_typed_impact < impact >()->m_strHelloMultiverse = "image:"+ get_typed_impact < impact >()->m_strImage + ":" + get_typed_impact < impact >()->m_strHelloMultiverse;
       }
-      else if(get_type_impact < edit_impact >() != NULL)
+      else if(get_typed_impact < edit_impact >() != NULL)
       {
 
          string str = pcontext->m_papexcontext->file().as_string(payloadFile);
 
          str = str.Left(84);
 
-         get_type_impact < edit_impact >()->_001SetText(str,::e_source_user);
+         get_typed_impact < edit_impact >()->_001SetText(str,::e_source_user);
 
       }
-      else if(get_type_impact < pane_impact >() != NULL)
+      else if(get_typed_impact < pane_impact >() != NULL)
       {
 
-         get_type_impact < pane_impact >()->set_current_tab_by_id(MAIN_IMPACT);
+         get_typed_impact < pane_impact >()->set_current_tab_by_id(MAIN_IMPACT);
       }
 
       return true;

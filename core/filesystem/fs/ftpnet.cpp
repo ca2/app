@@ -1,8 +1,7 @@
 // Created by camilo on 2021-03-22 20:40 <3ThomasBS_!!
 #include "framework.h"
-#include "core/networking/ftp/_.h"
 #include "ftpnet.h"
-#include "apex/networking/sockets/_sockets.h"
+#include "apex/networking/sockets/basic/socket_handler.h"
 
 
 ftpnet::ftpnet()

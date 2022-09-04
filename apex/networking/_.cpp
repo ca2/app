@@ -611,134 +611,134 @@ CLASS_DECL_APEX const char * c_inet_ntop(i32 af, const void *src, char *dst, i32
 
 }
 
-#define C_INADDR_NONE ((u32) -1)
-
-CLASS_DECL_APEX u32 c_inet_addr(const char * src)
-{
-
-   try
-   {
-
-
-   string_array stra;
-
-   stra.add_tokens(src, ".");
-
-   if(stra.get_count() > 4)
-      return C_INADDR_NONE;
-
-   if(stra.get_count() == 1)
-   {
-
-      return htonl(c_inet_to_ui(src));
-
-   }
-   else
-   {
-
-      c_in_addr addr;
-
-      u32 ul;
-
-      if(stra.get_count() == 2)
-      {
-
-         ul = c_inet_to_ui(stra[0]);
-
-         if(ul > 255)
-            return C_INADDR_NONE;
-
-         addr.S_un.S_un_b.s_b1 = (byte) ul;
-
-         ul = c_inet_to_ui(stra[1]);
-
-         if((ul & 0xff000000u) != 0)
-            return C_INADDR_NONE;
-
-         addr.S_un.S_un_b.s_b2 = ul & 0xFF;
-
-         addr.S_un.S_un_b.s_b3 = (ul >> 8) & 0xFF;
-
-         addr.S_un.S_un_b.s_b4 = (ul >> 16) & 0xFF;
-
-      }
-      else if(stra.get_count() == 3)
-      {
-
-         ul = c_inet_to_ui(stra[0]);
-
-         if(ul > 255)
-            return C_INADDR_NONE;
-
-         addr.S_un.S_un_b.s_b1 = (byte) ul;
-
-         ul = c_inet_to_ui(stra[1]);
-
-         if(ul > 255)
-            return C_INADDR_NONE;
-
-         addr.S_un.S_un_b.s_b2 = (byte) ul;
-
-         ul = c_inet_to_ui(stra[1]);
-
-         if((ul & 0xffff0000u) != 0)
-            return C_INADDR_NONE;
-
-         addr.S_un.S_un_b.s_b2 = ul & 0xFF;
-
-         addr.S_un.S_un_b.s_b4 = (ul >> 8) & 0xFF;
-
-      }
-      else if(stra.get_count() == 4)
-      {
-
-         ::from_string((in_addr &)addr, src);
-            return C_INADDR_NONE;
-
-         return addr.S_un.S_addr;
-
-      }
-      else
-      {
-
-         throw ::exception(error_bad_argument, "not expected");
-
-      }
-
-      return HTONL(addr.S_un.S_addr);
-
-   }
-
-   }
-   catch(...)
-   {
-
-   }
-
-   return C_INADDR_NONE;
-
-
-}
-
-
-CLASS_DECL_APEX string c_gethostbyname(const char * hostname)
-{
-
-//#ifdef _UWP
+//#define C_INADDR_NONE ((u32) -1)
 //
-//   return (ref new ::winrt::Windows::Networking::HostName(string(hostname)))->DisplayName;
+//CLASS_DECL_APEX u32 c_inet_addr(const char * src)
+//{
 //
-//#else
-
-   struct hostent * pentry = gethostbyname(hostname);
-
-   return c_inet_ntop(pentry->h_addrtype, pentry->h_addr_list[0]);
-
-//#endif
-
-}
-
-
+//   try
+//   {
+//
+//
+//   string_array stra;
+//
+//   stra.add_tokens(src, ".");
+//
+//   if(stra.get_count() > 4)
+//      return C_INADDR_NONE;
+//
+//   if(stra.get_count() == 1)
+//   {
+//
+//      return htonl(c_inet_to_ui(src));
+//
+//   }
+//   else
+//   {
+//
+//      c_in_addr addr;
+//
+//      u32 ul;
+//
+//      if(stra.get_count() == 2)
+//      {
+//
+//         ul = c_inet_to_ui(stra[0]);
+//
+//         if(ul > 255)
+//            return C_INADDR_NONE;
+//
+//         addr.S_un.S_un_b.s_b1 = (byte) ul;
+//
+//         ul = c_inet_to_ui(stra[1]);
+//
+//         if((ul & 0xff000000u) != 0)
+//            return C_INADDR_NONE;
+//
+//         addr.S_un.S_un_b.s_b2 = ul & 0xFF;
+//
+//         addr.S_un.S_un_b.s_b3 = (ul >> 8) & 0xFF;
+//
+//         addr.S_un.S_un_b.s_b4 = (ul >> 16) & 0xFF;
+//
+//      }
+//      else if(stra.get_count() == 3)
+//      {
+//
+//         ul = c_inet_to_ui(stra[0]);
+//
+//         if(ul > 255)
+//            return C_INADDR_NONE;
+//
+//         addr.S_un.S_un_b.s_b1 = (byte) ul;
+//
+//         ul = c_inet_to_ui(stra[1]);
+//
+//         if(ul > 255)
+//            return C_INADDR_NONE;
+//
+//         addr.S_un.S_un_b.s_b2 = (byte) ul;
+//
+//         ul = c_inet_to_ui(stra[1]);
+//
+//         if((ul & 0xffff0000u) != 0)
+//            return C_INADDR_NONE;
+//
+//         addr.S_un.S_un_b.s_b2 = ul & 0xFF;
+//
+//         addr.S_un.S_un_b.s_b4 = (ul >> 8) & 0xFF;
+//
+//      }
+//      else if(stra.get_count() == 4)
+//      {
+//
+//         ::from_string((in_addr &)addr, src);
+//            return C_INADDR_NONE;
+//
+//         return addr.S_un.S_addr;
+//
+//      }
+//      else
+//      {
+//
+//         throw ::exception(error_bad_argument, "not expected");
+//
+//      }
+//
+//      return HTONL(addr.S_un.S_addr);
+//
+//   }
+//
+//   }
+//   catch(...)
+//   {
+//
+//   }
+//
+//   return C_INADDR_NONE;
+//
+//
+//}
+//
+//
+//CLASS_DECL_APEX string c_gethostbyname(const char * hostname)
+//{
+//
+////#ifdef _UWP
+////
+////   return (ref new ::winrt::Windows::Networking::HostName(string(hostname)))->DisplayName;
+////
+////#else
+//
+//   struct hostent * pentry = gethostbyname(hostname);
+//
+//   return c_inet_ntop(pentry->h_addrtype, pentry->h_addr_list[0]);
+//
+////#endif
+//
+//}
+//
+//
 
 
 

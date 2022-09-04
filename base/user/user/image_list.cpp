@@ -88,7 +88,7 @@ namespace user
 
       }
 
-      return m_pimagea->element_at(m_iaSel[0]);
+      return m_pimagea->image_at(m_iaSel[0]);
 
    }
 
@@ -647,7 +647,7 @@ namespace user
 
          //m_iWheelDeltaScroll = (i16) (sizeImage.cy / 3);
 
-         m_pimageaThumb->erase_all();
+         m_pimageaThumb->m_imagea.erase_all();
 
       }
 

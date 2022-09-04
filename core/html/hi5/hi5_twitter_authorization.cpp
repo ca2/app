@@ -5,7 +5,7 @@
 #include "hi5_twitter_authorization.h"
 #include "core/user/simple/_component.h"
 #endif
-#include "core/user/userex/user.h"
+#include "core/user/user/user.h"
 #include "hi5_twitter_authorization.h"
 #include "base/user/simple/frame_window.h"
 #include "core/platform/session.h"
@@ -37,7 +37,7 @@ namespace hi5
 
 
          m_pviewAuth       = nullptr;
-         m_pdocAuth        = nullptr;
+         m_pformdocumentAuth        = nullptr;
          m_pdocument            = nullptr;
          m_ptabimpact        = nullptr;
       }
@@ -122,7 +122,7 @@ namespace hi5
          if(m_pdocument == nullptr)
             return;
 
-         __pointer(user::tab_impact) ptabimpact = m_pdocument->get_type_impact < user::tab_impact >();
+         __pointer(user::tab_impact) ptabimpact = m_pdocument->get_typed_impact < user::tab_impact >();
          m_ptabimpact = ptabimpact;
 
          auto pimpactkit = ptabimpact->get_impact_kit();
@@ -137,7 +137,7 @@ namespace hi5
       void authorization::page1()
       {
 
-         if(m_pdocAuth == nullptr)
+         if(m_pformdocumentAuth == nullptr)
             return;
 
          string strUrl;
@@ -167,7 +167,7 @@ namespace hi5
 
          property_set set;
 
-         property_set & setDoc = m_pdocAuth->form_document_property_set();
+         property_set & setDoc = m_pformdocumentAuth->form_document_property_set();
 
          auto pcontext = get_context();
 
@@ -189,18 +189,18 @@ namespace hi5
 
          }
 
-         if(!m_pdocAuth->on_open_document(pcontext->m_papexcontext->dir().matter(m_strForm)))
+         if(!m_pformdocumentAuth->on_open_document(pcontext->m_papexcontext->dir().matter(m_strForm)))
          {
 
             return;
 
          }
 
-         //::html::matter * pelemental = m_pdocAuth->get_html_data()->get_element_by_id("authorization_link");
+         //::html::matter * pelemental = m_pformdocumentAuth->get_html_data()->get_element_by_id("authorization_link");
 
          //::html::impl::text * ptext = dynamic_cast < ::html::impl::text * > (pelemental->m_pimpl);
 
-         ////__pointer(::user::interaction) ptext = m_pdocAuth->get_html_data()->get_child_by_id("authorization_link");
+         ////__pointer(::user::interaction) ptext = m_pformdocumentAuth->get_html_data()->get_child_by_id("authorization_link");
 
          //ptext->m_strLink = "ext://" + m_strAuthorizationUrl;
 
@@ -251,11 +251,11 @@ namespace hi5
 
          ensure_main_document();
 
-         m_pdocAuth->get_form_data()->m_pimpl->get_property_set() = set;
+         m_pformdocumentAuth->get_form_data()->m_pimpl->get_property_set() = set;
 
          auto pcontext = get_context();
 
-         m_pdocAuth->on_open_document(pcontext->m_papexcontext->dir().matter(pszMatter));
+         m_pformdocumentAuth->on_open_document(pcontext->m_papexcontext->dir().matter(pszMatter));
          display_main_frame();
          //m_ptabimpact->get_wnd()->RunModalLoop(MLF_NOIDLEMSG | MLF_NOKICKIDLE);
 
@@ -278,14 +278,14 @@ namespace hi5
             
             auto puser = psession->m_puser->m_pcoreuser;
 
-            m_pdocAuth = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
+            m_pformdocumentAuth = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
 
-            if (m_pdocAuth != nullptr)
+            if (m_pformdocumentAuth != nullptr)
             {
 
-               m_pviewAuth = m_pdocAuth->get_type_impact < ::user::form >();
+               m_pviewAuth = m_pformdocumentAuth->get_typed_impact < ::user::form >();
                m_pviewAuth->set_form_callback(this);
-               pimpactdata->m_pdocument = m_pdocAuth;
+               pimpactdata->m_pdocument = m_pformdocumentAuth;
                pimpactdata->m_puserinteraction = m_pviewAuth->parent_frame();
 
             }

@@ -1,7 +1,8 @@
 #include "framework.h"
+#include "email_address.h"
 
 
-namespace net
+namespace networking
 {
 
 

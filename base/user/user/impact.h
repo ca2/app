@@ -4,6 +4,7 @@
 //#define WM_VIEW (WM_USER + 1023)
 #include "aura/user/user/box.h"
 #include "impact_data.h"
+#include "document.h"
 
 
 namespace user
@@ -47,14 +48,39 @@ namespace user
 
       ::user::document * get_document() const;
 
+
       template < class DATA >
-      DATA * get_typed_data();
+      DATA * get_typed_data()
+      {
+
+         ASSERT(::is_set(this));
+
+         return m_pdocument->get_typed_data < DATA >();
+
+      }
+
 
       template < class DOCUMENT >
-      DOCUMENT * get_typed_document();
+      ::data::data * get_typed_document_data()
+      {
+
+         ASSERT(::is_set(this));
+
+         return m_pdocument->get_typed_document_data < DOCUMENT >();
+
+      }
+
 
       template < class DOCUMENT >
-      ::data::data * get_typed_document_data();
+      DOCUMENT * get_typed_document()
+      {
+
+         ASSERT(::is_set(this));
+
+         return m_pdocument->get_typed_document < DOCUMENT >();
+
+      }
+
 
       void install_message_routing(::channel * pchannel) override;
 

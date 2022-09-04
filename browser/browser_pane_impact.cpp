@@ -264,10 +264,10 @@ namespace browser
       else if (get_impact_id() == COLORSEL_IMPACT)
       {
 
-         if (m_pimpactLastBilbo != nullptr && m_pcolorview != nullptr)
+         if (m_pimpactLastBilbo != nullptr && m_pcolorimpact != nullptr)
          {
 
-            m_pcolorview->set_color(m_pimpactLastBilbo->m_prender->m_hlsForeground);
+            m_pcolorimpact->set_color(m_pimpactLastBilbo->m_prender->m_hlsForeground);
 
          }
 
@@ -470,13 +470,13 @@ namespace browser
       else
       {
 
-         if (m_pfontview != nullptr && ptopic->user_interaction() == m_pfontview->m_pimpact)
+         if (m_pfontimpact != nullptr && ptopic->user_interaction() == m_pfontimpact->m_pimpact)
          {
 
             if (ptopic->m_atom == ::id_after_change_cur_sel)
             {
 
-               string strFont = m_pfontview->m_pimpact->get_cur_sel_face_name();
+               string strFont = m_pfontimpact->m_pimpact->get_cur_sel_face_name();
 
                if (strFont.has_char())
                {
@@ -495,7 +495,7 @@ namespace browser
             else if (ptopic->m_atom == ::id_after_change_cur_hover)
             {
 
-               string strFont = m_pfontview->m_pimpact->get_cur_hover_face_name();
+               string strFont = m_pfontimpact->m_pimpact->get_cur_hover_face_name();
 
                if (strFont.has_char())
                {
@@ -509,7 +509,7 @@ namespace browser
             }
 
          }
-         else if (ptopic->user_interaction() == m_pcolorview)
+         else if (ptopic->user_interaction() == m_pcolorimpact)
          {
 
 
@@ -517,7 +517,7 @@ namespace browser
                   || ptopic->m_atom == ::id_after_change_cur_hover)
             {
 
-               m_pcolorview->get_color().get_hls(m_pimpactLastBilbo->m_prender->m_hlsForeground);
+               m_pcolorimpact->get_color().get_hls(m_pimpactLastBilbo->m_prender->m_hlsForeground);
 
                if (ptopic->m_atom == ::id_after_change_cur_sel)
                {

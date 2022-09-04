@@ -10,9 +10,6 @@ class image;
 using image_pointer = __pointer(::image);
 
 
-using image_pointer_array = __pointer_array(::image);
-
-
 class image_array;
 
 

@@ -17,6 +17,7 @@ namespace draw2d
    class pen;
    class region;
    class path;
+   class host;
    class graphics;
    class bitmap;
    class icon;
@@ -46,6 +47,10 @@ namespace draw2d
 
 
    class icon;
+
+
+   class matrix;
+
 
    CLASS_DECL_ACME void cra_from_quada(colorref_array & colorrefa, WINRGBQUAD * prgbquad, int iCount);
 

@@ -2,6 +2,7 @@
 
 
 #include "aqua/game/game.h"
+#include "aura/user/user/drawable.h"
 
 
 namespace aura
@@ -9,9 +10,8 @@ namespace aura
 
 
    class CLASS_DECL_AURA game :
-      virtual public ::aqua::game
-      //,
-      //virtual public ::aura::drawable
+      virtual public ::aqua::game,
+      virtual public ::user::drawable
    {
    public:
 

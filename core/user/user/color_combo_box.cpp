@@ -6,7 +6,7 @@
 #include "core/user/userex/_userex.h"
 #endif
 #include "color_combo_box.h"
-#include "core/user/userex/user.h"
+#include "core/user/user/user.h"
 #include "core/user/userex/color_impact.h"
 #include "aura/message/user.h"
 #include "aura/user/user/frame.h"
@@ -120,7 +120,7 @@ namespace user
 
                m_pdocument = puser->m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(get_app(), ::e_type_null, __visible(false).is_true());
 
-               m_pimpact = m_pdocument->get_type_impact < ::userex::color_impact >();
+               m_pimpact = m_pdocument->get_typed_impact < ::userex::color_impact >();
 
                m_pimpact->m_bCompact = true;
 

@@ -94,7 +94,7 @@ public:
    using TYPE_IS_PTR = TYPE;
 
 
-   TYPE *            m_pData;    // the actual array of data
+   TYPE * m_pData;    // the actual array of data
    ::count   m_nSize;    // # of elements (upperBound - 1)
    ::count   m_nMaxSize; // maximum allocated
    ::count   m_nGrowBy;  // grow amount
@@ -117,15 +117,15 @@ public:
 
       make_iterator()
       {
-         this->m_pelementBeg = (TYPE*)nullptr;
-         this->m_pelementEnd = (TYPE*)nullptr;
-         this->m_pcontainer = (CONTAINER*)nullptr;
+         this->m_pelementBeg = (TYPE *)nullptr;
+         this->m_pelementEnd = (TYPE *)nullptr;
+         this->m_pcontainer = (CONTAINER *)nullptr;
          this->m_pelement = this->m_pelementBeg;
       }
 
       make_iterator(::index iStart, ::index iEnd, const CONTAINER * parray = nullptr)
       {
-         this->m_pelementBeg = (TYPE *) (parray->m_pData + iStart);
+         this->m_pelementBeg = (TYPE *)(parray->m_pData + iStart);
          this->m_pelementEnd = (TYPE *)(parray->m_pData + (iEnd < 0 ? parray->m_nSize + iEnd + 1 : iEnd));
          this->m_pcontainer = (CONTAINER *)parray;
          this->m_pelement = this->m_pelementBeg;
@@ -133,8 +133,8 @@ public:
 
       make_iterator(const CONTAINER * parray, const TYPE * pmatter = nullptr, const TYPE * pelementEnd = nullptr)
       {
-         this->m_pelementBeg = (TYPE *) pmatter;
-         this->m_pelementEnd = (TYPE *) pelementEnd;
+         this->m_pelementBeg = (TYPE *)pmatter;
+         this->m_pelementEnd = (TYPE *)pelementEnd;
          this->m_pcontainer = (CONTAINER *)parray;
          this->m_pelement = this->m_pelementBeg;
       }
@@ -142,8 +142,8 @@ public:
 
       make_iterator(const make_iterator & iterator)
       {
-         this->m_pelementBeg = (TYPE *) iterator.m_pelementBeg;
-         this->m_pelementEnd = (TYPE *) iterator.m_pelementEnd;
+         this->m_pelementBeg = (TYPE *)iterator.m_pelementBeg;
+         this->m_pelementEnd = (TYPE *)iterator.m_pelementEnd;
          this->m_pelement = iterator.m_pelement;
          this->m_pcontainer = iterator.m_pcontainer;
       }
@@ -188,7 +188,7 @@ public:
       make_iterator operator + (::count c) const
       {
 
-         return { this->m_pcontainer, this->m_pelement + c};
+         return { this->m_pcontainer, this->m_pelement + c };
 
       }
 
@@ -417,7 +417,7 @@ public:
    inline iterator begin()
    {
 
-      return iterator (0, (::index)m_nSize, this);
+      return iterator(0, (::index)m_nSize, this);
 
    }
 
@@ -433,7 +433,7 @@ public:
    inline const_iterator begin() const
    {
 
-      return const_iterator(0, (::index) m_nSize, this);
+      return const_iterator(0, (::index)m_nSize, this);
 
    }
 
@@ -441,7 +441,7 @@ public:
    inline const_iterator end() const
    {
 
-      return const_iterator((::index) m_nSize,(::index) m_nSize, this);
+      return const_iterator((::index)m_nSize, (::index)m_nSize, this);
 
    }
 
@@ -505,7 +505,7 @@ public:
    inline void set_each(ARG_TYPE element, ::index iStart = 0, ::count c = -1);
 
    template < ::std::size_t N >
-   TYPE& get() { return element_at(N); }
+   TYPE & get() { return element_at(N); }
 
 
    void reserve(::count nReserve) { set_size(get_size(), nReserve); }
@@ -535,8 +535,8 @@ public:
    void erase_descending_indexes(const index_array & ia);
 
 
-   inline bool prepare_first_last(::index & first, ::index& last) const;
-   inline bool prepare_first_in_count_last_out(::index& first, ::count & inCountLastOut) const;
+   inline bool prepare_first_last(::index & first, ::index & last) const;
+   inline bool prepare_first_in_count_last_out(::index & first, ::count & inCountLastOut) const;
 
 
    inline void erase_last();
@@ -550,8 +550,8 @@ public:
    void on_copy_element(::index i, const TYPE * p) { ALLOCATOR::copy(&m_pData[i], p); }
 
 
-   inline const TYPE& operator[](::index i) const;
-   inline TYPE& operator[](::index i);
+   inline const TYPE & operator[](::index i) const;
+   inline TYPE & operator[](::index i);
 
 
    ::index insert_at(::index nIndex, const TYPE & newElement, ::count nCount = 1);
@@ -560,7 +560,7 @@ public:
 
    ::index make_room_at(::index nIndex, ::count nCount = 1);
 
-   
+
    TYPE pick_at(::index nIndex);
    TYPE pick_first(::index nIndex = 0) { return ::move(pick_at(nIndex)); }
    TYPE pick_last(::index nIndex = -1) { return ::move(pick_at(m_nSize + nIndex)); }
@@ -585,6 +585,9 @@ public:
    inline ::index push(ARG_TYPE newElement, ::index i = 0);
    inline void pop_back(::index i = -1);
    inline void push_back(ARG_TYPE newElement, ::index = 0);
+
+
+   inline TYPE pop_first(::index i = 0);
 
    inline TYPE takeAt(::index i);
    inline TYPE takeFirst(::index i = 0);

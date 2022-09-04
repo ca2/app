@@ -158,6 +158,8 @@ namespace acme
          psystem->init_task();
          
          (*psystem->m_pfnImplement)(psystem);
+
+         psystem->m_pnode.release();
          
          return;
          
@@ -1729,20 +1731,20 @@ namespace acme
    }
 
 
-   __pointer(::sequence < ::conversation >) node::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string & strDetails)
+   __pointer(::sequencer < ::conversation >) node::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
    {
 
-      auto psequence = __new(::sequence < ::conversation >());
+      auto psequencer = __new(::sequencer < ::conversation >());
 
       auto pmessagebox = create_new_message_box_conversation();
 
-      psequence->m_p = pmessagebox;
+      psequencer->m_psequence = pmessagebox;
 
-      pmessagebox->m_psequence = psequence;
+      pmessagebox->m_psequencer = psequencer;
 
-      pmessagebox->do_message_box(strMessage, strTitle, emessagebox, strDetails);
+      pmessagebox->initialize_message_box(strMessage, strTitle, emessagebox, strDetails);
 
-      return psequence;
+      return psequencer;
 
    }
 

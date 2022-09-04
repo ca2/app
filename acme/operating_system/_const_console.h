@@ -1,6 +1,7 @@
 //
 // Created by camilo on 01/05/2021. 00:31 BRT <3TBS_!!
 //
+#pragma once
 
 
 enum enum_dos_color

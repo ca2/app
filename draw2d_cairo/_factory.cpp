@@ -1,7 +1,14 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+#include "image.h"
+#include "graphics.h"
+#include "bitmap.h"
+#include "pen.h"
+#include "brush.h"
+#include "palette.h"
+#include "region.h"
+#include "font.h"
+#include "path.h"
+#include "draw2d.h"
 
 
 __FACTORY_EXPORT void draw2d_cairo_factory(::factory::factory * pfactory)

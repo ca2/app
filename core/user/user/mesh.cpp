@@ -104,8 +104,8 @@ namespace user
 
       //   m_iItemCount = 0;
 
-      m_pilGroup        = nullptr;
-      m_pilGroupHover   = nullptr;
+      m_pimagelistGroup        = nullptr;
+      m_pimagelistGroupHover   = nullptr;
 
 
       m_iLeftMargin                       = 0;
@@ -2380,7 +2380,7 @@ namespace user
       //   i32 x = pdrawitem->m_rectangleGroup.left;
       //   i32 iImageBottom = pdrawitem->m_rectangleGroup.top;
 
-      //   if(m_pilGroup != nullptr)
+      //   if(m_pimagelistGroup != nullptr)
       //   {
 
 
@@ -2389,7 +2389,7 @@ namespace user
       //      _001GetGroupImage(pdrawitem);
       //      if(pdrawitem->m_bOk && pdrawitem->m_iImage >= 0)
       //      {
-      //         m_pilGroup->get_image_info((i32)pdrawitem->m_iImage,&ii);
+      //         m_pimagelistGroup->get_image_info((i32)pdrawitem->m_iImage,&ii);
       //         if(eelement == ::user::mesh::element_group_image)
       //         {
       //            pdrawitem->m_rectangleImage.left      = x;
@@ -2534,7 +2534,7 @@ namespace user
             //      return_(pdrawitem->m_bOk,false);
             //   }
             //}
-            //else if(pdrawitem->m_pcolumnSubItemRect->m_pil != nullptr)
+            //else if(pdrawitem->m_pcolumnSubItemRect->m_pimagelist != nullptr)
             //{
 
             //   ::image_list::info ii;
@@ -2542,7 +2542,7 @@ namespace user
             //   _001GetItemImage(pdrawitem);
             //   if(pdrawitem->m_bOk && pdrawitem->m_iImage >= 0)
             //   {
-            //      pdrawitem->m_pcolumnSubItemRect->m_pil->get_image_info((i32)pdrawitem->m_iImage,&ii);
+            //      pdrawitem->m_pcolumnSubItemRect->m_pimagelist->get_image_info((i32)pdrawitem->m_iImage,&ii);
             //      if(eelement == ::user::mesh::element_image)
             //      {
             //         pdrawitem->m_rectangleImage.left      = x;
@@ -2592,7 +2592,7 @@ namespace user
          i32 x = pdrawmeshgroup->m_rectangleGroup.left;
          i32 iImageBottom = pdrawmeshgroup->m_rectangleGroup.top;
 
-         if (m_pilGroup != nullptr)
+         if (m_pimagelistGroup != nullptr)
          {
 
 
@@ -2601,7 +2601,7 @@ namespace user
             _001GetGroupImage(pdrawmeshgroup);
             if (pdrawmeshgroup->m_bOk && pdrawmeshgroup->m_iImage >= 0)
             {
-               m_pilGroup->get_image_info((i32)pdrawmeshgroup->m_iImage, &ii);
+               m_pimagelistGroup->get_image_info((i32)pdrawmeshgroup->m_iImage, &ii);
                if (egroupelement == ::user::mesh::e_group_element_image)
                {
                   pdrawmeshgroup->m_rectangleImage.left = x;
@@ -3602,11 +3602,11 @@ namespace user
    //   {
    //      return;
    //   }
-   //   if(pcolumn->m_pil == nullptr)
+   //   if(pcolumn->m_pimagelist == nullptr)
    //   {
-   //      pcolumn->m_pil = new ::image_list(this);
+   //      pcolumn->m_pimagelist = new ::image_list(this);
    //   }
-   //   //      __pointer(::image_list) pil = pcolumn->m_pil;
+   //   //      __pointer(::image_list) pil = pcolumn->m_pimagelist;
    //   //   if(pil != nullptr)
    //   //      pil->DeleteImageMesh();
    //   throw ::interface_only();
@@ -4279,12 +4279,12 @@ namespace user
       //item.m_iItem = iItem;
       //item.m_iSubItem = iSubItem;
       //item.m_iListItem = -1;
-      //if(pcolumn->m_pil != nullptr)
+      //if(pcolumn->m_pimagelist != nullptr)
       //{
       //   _001GetItemImage(&item);
       //   if(item.m_bOk && item.m_iImage >= 0)
       //   {
-      //      pcolumn->m_pil->get_image_info((i32)item.m_iImage,&ii);
+      //      pcolumn->m_pimagelist->get_image_info((i32)item.m_iImage,&ii);
       //      rectangle = ii.m_rectangle;
       //      cx += rectangle.width();
       //      cx += 2;
@@ -5919,7 +5919,7 @@ namespace user
    bool draw_mesh_subitem::draw_image()
    {
      
-      m_pitem->m_pmesh->m_pilGroup->draw(m_pitem->m_pdrawlistitem->m_pgraphics,(i32)m_iImage,m_rectangleImage.top_left(),m_rectangleImage.size(),point_i32(0,0),0);
+      m_pitem->m_pmesh->m_pimagelistGroup->draw(m_pitem->m_pdrawlistitem->m_pgraphics,(i32)m_iImage,m_rectangleImage.top_left(),m_rectangleImage.size(),point_i32(0,0),0);
 
       return true;
 

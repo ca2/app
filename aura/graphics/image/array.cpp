@@ -5,17 +5,17 @@
 #include "drawing.h"
 
 
-//image_array::image_array()
-//{
-//
-//}
-//
-//
-//image_array::~image_array()
-//{
-//
-//
-//}
+image_array::image_array()
+{
+
+}
+
+
+image_array::~image_array()
+{
+
+
+}
 
 
 bool image_array::explode(::object * pobject, ::payload payloadFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
@@ -97,7 +97,7 @@ bool image_array::explode(::object * pobject, const ::size_i32 & sizeParam, ::pa
 
          pimage->draw(imagedrawing);
 
-         add(pimage);
+         add_image(pimage);
 
       }
 

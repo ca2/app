@@ -110,7 +110,7 @@ namespace user
       }
 
       template < class T >
-      __pointer(T) get_type_impact(index indexFind = 0) const
+      __pointer(T) get_typed_impact(index indexFind = 0) const
       {
 
          synchronous_lock synchronouslock(((document *)this)->mutex());
@@ -237,7 +237,7 @@ namespace user
 
 
 
-      virtual __pointer(::user::impact) get_type_impact(::type info, index indexFind = 0);
+      virtual __pointer(::user::impact) get_typed_impact(::type info, index indexFind = 0);
 
       virtual __pointer(::user::impact) get_typed_impact_with_id(::type info,atom atom);
 

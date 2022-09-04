@@ -1,13 +1,12 @@
 #include "framework.h" 
-#include "apex/id.h"
-#include "apex/networking/sockets/_sockets.h"
+#include "session.h"
 
 
-#ifdef LINUX
-
-#include <sys/time.h>
-
-#endif
+//#ifdef LINUX
+//
+//#include <sys/time.h>
+//
+//#endif
 
 namespace sockets
 {
@@ -27,7 +26,7 @@ namespace sockets
       http_put_socket(handler)*/
    {
 
-      m_bEnablePool = false;
+      //m_bEnablePool = false;
       m_strProtocol                 = protocol;
       m_host                        = host;
 
@@ -72,7 +71,7 @@ namespace sockets
       inattr(__id(http_protocol))   = m_strProtocol;
       m_strUrl                      = m_strProtocol + "://" + GetUrlHost() + inattr("request_uri");
       inattr(__id(http_version))    = "HTTP/1.1";
-      m_b_keepalive                 = true;
+      //m_b_keepalive                 = true;
       m_content_ptr                 = 0;
 
       if(m_bRequestComplete)

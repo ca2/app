@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/networking/sockets/http/client_socket.h"
+
+
 namespace sockets
 {
 
@@ -50,7 +53,7 @@ namespace sockets
 
       websocket_client();
       websocket_client(const string & url, const ::string & strProtocol);
-      //websocket_client(const string & host, port_t port, const string & url);
+      //websocket_client(const string & host, ::networking::port_t port, const string & url);
       ~websocket_client() override;
 
       virtual void InitSSLClient() override;
@@ -76,6 +79,13 @@ namespace sockets
       virtual void on_websocket_data(string str);
 
       virtual bool client_ping_pong_ok();
+
+      virtual int client_send(memory & m, int fin, memory & memory, bool useMask);
+      virtual int client_send(memory & m, int fin, const char * src);
+
+      virtual int client_send_text(memory & m, const char * src);
+      virtual int client_send_text(memory & m, const char * src, bool bMasked);
+      virtual int client_send_binary(memory & m, memory & memory);
 
 
    };

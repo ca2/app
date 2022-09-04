@@ -1,8 +1,10 @@
 #include "framework.h"
-#include "axis/networking/_networking.h"
+#include "email_department.h"
+#include "axis/networking/sockets/bsd/smtp/smtp_socket.h"
+#include "apex/networking/sockets/basic/socket_handler.h"
 
 
-namespace net
+namespace networking
 {
 
 
@@ -12,7 +14,7 @@ namespace net
    }
 
 
-   bool email_department::utf8_mail(class ::net::email * pemail)
+   bool email_department::utf8_mail(class ::networking::email * pemail)
    {
 
       auto phandler = __create_new < ::sockets::socket_handler >();

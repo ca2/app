@@ -1,8 +1,8 @@
 #include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
+#include "ip_enum.h"
 
 
-namespace net
+namespace networking
 {
 
 
@@ -18,7 +18,7 @@ namespace net
    }
 
 
-   ::count ip_enum::enumerate(array < ::net::address > & ipa)
+   ::count ip_enum::enumerate(__pointer_array(::networking::address) & ipa)
    {
 
       __UNREFERENCED_PARAMETER(ipa);
@@ -30,7 +30,7 @@ namespace net
    }
 
 
-} // namespace net
+} // namespace networking
 
 
 

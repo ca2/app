@@ -852,7 +852,6 @@
     <ClCompile Include="user\rich_text\line.cpp" />
     <ClCompile Include="user\rich_text\span.cpp" />
     <ClCompile Include="user\rich_text\text_format.cpp" />
-    <ClCompile Include="user\rich_text\text_format_object.cpp" />
     <ClCompile Include="user\simple\form_list_impact.cpp" />
     <ClCompile Include="user\simple\form_impact.cpp" />
     <ClCompile Include="user\simple\list_control.cpp" />
@@ -895,7 +894,6 @@
     <ClCompile Include="user\userex\top_edit_impact.cpp" />
     <ClCompile Include="user\userex\top_toggle_impact.cpp" />
     <ClCompile Include="user\userex\top_impact.cpp" />
-    <ClCompile Include="user\userex\user.cpp" />
     <ClCompile Include="user\userex\wait_message_dialog.cpp" />
     <ClCompile Include="user\user\color_combo_box.cpp" />
     <ClCompile Include="user\user\elastic_slider.cpp" />
@@ -919,6 +917,7 @@
     <ClCompile Include="user\user\mesh_item.cpp" />
     <ClCompile Include="user\user\statusbar.cpp" />
     <ClCompile Include="user\user\step_slider.cpp" />
+    <ClCompile Include="user\user\text_format_object.cpp" />
     <ClCompile Include="user\user\toggle_switch.cpp" />
     <ClCompile Include="user\user\toolbar_ctrl.cpp" />
     <ClCompile Include="user\user\tool_command.cpp" />
@@ -927,6 +926,7 @@
     <ClCompile Include="user\user\tree.cpp" />
     <ClCompile Include="user\user\tree_data.cpp" />
     <ClCompile Include="user\user\tree_window.cpp" />
+    <ClCompile Include="user\user\user.cpp" />
     <ClCompile Include="user\user\xfplayer_impact_line.cpp" />
     <ClCompile Include="user\user\xfplayer_impact_lines.cpp" />
     <ClCompile Include="user\user\xfplayer_impact_line_selection.cpp" />
@@ -1013,7 +1013,6 @@
     <ClInclude Include="user\rich_text\rich_text.h" />
     <ClInclude Include="user\rich_text\span.h" />
     <ClInclude Include="user\rich_text\text_format.h" />
-    <ClInclude Include="user\rich_text\text_format_object.h" />
     <ClInclude Include="user\rich_text\_.h" />
     <ClInclude Include="user\rich_text\_constant.h" />
     <ClInclude Include="user\rich_text\_component.h" />
@@ -1024,6 +1023,8 @@
     <ClInclude Include="user\userex\progress.h" />
     <ClInclude Include="user\user\aaa_shell.h" />
     <ClInclude Include="user\user\impact.h" />
+    <ClInclude Include="user\user\text_format_object.h" />
+    <ClInclude Include="user\user\user.h" />
     <ClInclude Include="user\user\_tree.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="version\version.h" />
@@ -1166,7 +1167,6 @@
     <ClInclude Include="user\userex\top_edit_impact.h" />
     <ClInclude Include="user\userex\top_toggle_impact.h" />
     <ClInclude Include="user\userex\top_impact.h" />
-    <ClInclude Include="user\userex\user.h" />
     <ClInclude Include="user\userex\wait_message_dialog.h" />
     <ClInclude Include="user\userex\_.h" />
     <ClInclude Include="user\userex\_impl.h" />

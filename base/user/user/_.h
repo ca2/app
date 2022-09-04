@@ -29,6 +29,8 @@ namespace user
    class place_holder;
    class split_bar;
 
+   class picture;
+   class picture_impl;
 
    class user;
    class document_manager;
@@ -65,6 +67,13 @@ namespace user
 
 
    CLASS_DECL_BASE __pointer(::user::document) __document(::create * pcreate);
+
+
+
+
+   typedef ::user::show < ::user::button > button_impact;
+
+
 
 
 } // namespace user

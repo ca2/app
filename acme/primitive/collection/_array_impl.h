@@ -578,6 +578,18 @@ inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::pop(::inde
 
 }
 
+template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::pop_first(::index i)
+{
+
+   auto t = ::move(this->first(i));
+
+   this->erase_at(i);
+
+   return t;
+
+}
+
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
 inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::pop_back(::index n)

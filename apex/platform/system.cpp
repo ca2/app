@@ -1188,7 +1188,13 @@ pacmedirectory->create("/ca2core");
       //on_update_matter_locator();
 
       //estatus = 
-      initialize_sockets();
+
+      if (m_bNetworking || m_bNetworking.is_optional())
+      {
+
+         initialize_networking();
+
+      }
 
       //if (!estatus)
       //{

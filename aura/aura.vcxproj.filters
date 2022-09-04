@@ -1709,5 +1709,8 @@
     <ClInclude Include="graphics\write_text\_constant.h">
       <Filter>Header Files\graphics\write_text</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\user\_.h">
+      <Filter>Header Files\graphics\user</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

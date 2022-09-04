@@ -3348,8 +3348,13 @@ class CLASS_DECL_ACME integral_byte { public: integral_byte(memsize memsize = 1)
 #include "acme/parallelization/synchronization_result.h"
 
 
-template < typename TYPE > class sequence;
+template < typename SEQUENCE > 
+class sequence;
 
+class conversation;
+
+template < typename SEQUENCE >
+class sequencer;
 
 
 #include "acme/primitive/primitive/particle.h"
@@ -3358,7 +3363,6 @@ template < typename TYPE > class sequence;
 #include "acme/primitive/primitive/element.h"
 #include "acme/primitive/primitive/function.h"
 #include "acme/platform/procedure.h"
-#include "acme/user/user/conversation.h"
 #include "acme/primitive/primitive/tracer.h"
 #include "acme/primitive/primitive/matter.h"
 //#include "acme/primitive/primitive/linked_property.h"
@@ -3376,8 +3380,6 @@ template < typename TYPE > class sequence;
 
 class manual_reset_event;
 
-
-#include "acme/platform/sequence.h"
 
 
 #include "acme/primitive/primitive/work.h"
@@ -3626,7 +3628,7 @@ using exception_array = ::array < ::exception >;
 #include "acme/primitive/primitive/pointer2.h"
 
 
-#include "acme/user/user/conversation.h"
+//#include "acme/user/user/conversation.h"
 
 
 namespace file
@@ -3698,6 +3700,12 @@ namespace file
 #include "acme/platform/predicate_procedure.h"
 
 #include "acme/platform/predicate_process.h"
+
+
+#include "acme/platform/sequence1.h"
+#include "acme/user/user/conversation.h"
+#include "acme/platform/sequencer.h"
+
 
 
 #include "acme/parallelization/_preamble.h"

@@ -158,6 +158,12 @@ namespace opengl
 
 
 
+class api;
+
+
+class api_client;
+
+
 extern CLASS_DECL_APEX int g_bApex;
 
 
@@ -324,6 +330,9 @@ namespace core
 
 
 #include "acme/platform/library.h"
+
+
+#include "apex/filesystem/_.h"
 
 
 //#include "apex/platform/apex_main_struct.h"

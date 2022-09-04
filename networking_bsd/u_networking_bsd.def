@@ -1,0 +1,7 @@
+LIBRARY "crypto_openssl"
+
+EXPORTS
+crypto_openssl_factory
+
+
+

@@ -1,5 +1,9 @@
 #include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
+#include "apex/networking/networking.h"
+#include "apex/networking/sockets/http/tunnel.h"
+#include "apex/networking/sockets/http/session.h"
+#include "apex/networking/http/get_socket.h"
+#include "apex/networking/sockets/basic/socket_handler.h"
 #include "apex/constant/idpool.h"
 #include "apex/astr.h"
 #include <time.h>
@@ -761,9 +765,9 @@ namespace http
 
       i32 port = purl->get_port(pszUrl);
 
-      ::net::address ad(strHost, port);
+      //::networking::address ad(strHost, port);
 
-      strHost = ad.get_display_number();
+      //strHost = ad.get_display_number();
 
       string payload;
       //throw ::exception(todo("scripting"));
@@ -804,29 +808,29 @@ namespace http
    void context::config_proxy(const char * pszUrl, ::sockets::http_tunnel * psocket)
    {
 
-#ifdef _UWP
-
-      psocket->m_bDirect = true;
-
-#else
-
-      ::http::context::proxy * pproxy = get_proxy(pszUrl);
-
-      if (pproxy == nullptr)
-         return;
-
-      if (pproxy->m_bDirect)
-      {
-         psocket->m_bDirect = true;
-      }
-      else
-      {
-         psocket->m_bDirect = false;
-         psocket->m_strProxy = pproxy->m_strProxy;
-         psocket->m_iProxyPort = pproxy->m_iPort;
-      }
-
-#endif
+//#ifdef _UWP
+//
+//      psocket->m_bDirect = true;
+//
+//#else
+//
+//      ::http::context::proxy * pproxy = get_proxy(pszUrl);
+//
+//      if (pproxy == nullptr)
+//         return;
+//
+//      if (pproxy->m_bDirect)
+//      {
+//         psocket->m_bDirect = true;
+//      }
+//      else
+//      {
+//         psocket->m_bDirect = false;
+//         psocket->m_strProxy = pproxy->m_strProxy;
+//         psocket->m_iProxyPort = pproxy->m_iPort;
+//      }
+//
+//#endif
 
    }
 
@@ -899,16 +903,16 @@ namespace http
 
       //i32 iHostPort = purl->get_port(pszUrl);
 
-      //::net::address ipHost(strHost, iHostPort);
+      //::networking::address ipHost(strHost, iHostPort);
       //for (i32 iNode = 0; iNode < doc.root()->get_children_count(); iNode++)
       //{
       //   __pointer(::xml::node) pnode = doc.root()->child_at(iNode);
       //   if (pnode->get_name() == "proxy")
       //   {
 
-      //      ::net::address ipAddress(pnode->attribute("address").get_string(), 0);
+      //      ::networking::address ipAddress(pnode->attribute("address").get_string(), 0);
 
-      //      ::net::address ipMask(pnode->attribute("mask").get_string(), 0);
+      //      ::networking::address ipMask(pnode->attribute("mask").get_string(), 0);
 
       //      if (ipHost.is_in_same_net(ipAddress, ipMask))
       //      {
@@ -1179,510 +1183,510 @@ namespace http
    bool context::request(__pointer(::sockets::http_session) & psession, const char * pszRequest, property_set & set)
    {
 
-      INFORMATION("http context request : " << pszRequest);
-
-      ::duration tick1;
-
-      ::duration tick2;
-
-      bool bSeemsOk;
-
-      i32 iTry = 0;
-
-      i32 iTryCount;
-
-      if (set.has_property("try"))
-      {
-
-         set["try"].as(iTryCount);
-
-         if (iTryCount > 5)
-         {
-
-            iTryCount = 5;
-
-         }
-
-      }
-      else
-      {
-
-         iTryCount = 2;
-
-      }
-
-   retry:
-
-      iTry++;
-
-      bSeemsOk = true;
-
-      try
-      {
-
-         if (psession == nullptr)
-         {
-
-            bSeemsOk = false;
-
-         }
-         else if (!psession->is_valid())
-         {
-
-            //handler.erase(psession);
-
-            psession->SetCloseAndDelete();
-
-            bSeemsOk = false;
-
-         }
-
-      }
-      catch (...)
-      {
-
-         bSeemsOk = false;
-
-      }
-
-      auto psystem = m_psystem;
-
-      auto purl = psystem->url();
-
-      if (!bSeemsOk)
-      {
-
-         try
-         {
-
-            auto tickBeg = ::duration::now();
-
-            if (!open(psession, purl->get_server(pszRequest), purl->get_protocol(pszRequest), set, set["http_protocol_version"]))
-            {
-
-               return false;
-
-            }
-
-            FORMATTED_INFORMATION("opening context::request time(%d) = ", tickBeg.elapsed().integral_second().m_i);
-
-         }
-         catch (...)
-         {
-
-            return false;
-
-         }
-
-      }
-
-      auto tickBegA = ::duration::now();
-
-      try
-      {
-
-         auto tickTimeProfile1 = ::duration::now();
-
-         auto papplication = psession->m_psockethandler->get_app()->m_papplication;
-
-         string strRequest = purl->get_object(pszRequest);
-
-         string strServer = purl->get_server(pszRequest);
-
-         string strUrl = psession->m_strProtocol + "://" + strServer + strRequest;
-
-         // Format of script name example "context://server.com/the rain.mp3" => "context://server.com/the%20rain.mp3"
-         {
-
-            string strScript = purl->url_encode(purl->url_decode(purl->get_script(strUrl)));
-
-            strScript.replace_with("%20", "+");
-
-            strScript.replace_with("/", "%2F");
-
-            strUrl = purl->set_script(strUrl, strScript);
-
-         }
-
-         property_set setQuery;
-
-         setQuery.parse_network_arguments(purl->get_query(strUrl));
-
-         string strSessId;
-
-         //__pointer(::account::user) puser;
-
-         //on_auth(set, papp, strUrl, strSessId, puser);
-
-         strRequest = purl->get_object(strUrl);
-
-         psession->inheaders().clear();
-
-         psession->outheaders().clear();
-
-         psession->inattrs().clear();
-
-         psession->outattrs().clear();
-
-         psession->m_memoryfile.set_size(0);
-
-         psession->inheaders() = set["headers"].propset();
-
-         if (set.has_property("minimal_headers") && set["minimal_headers"].is_true())
-         {
-
-            psession->m_request.attrs()["minimal_headers"] = true;
-
-         }
-
-         if (set.has_property("file"))
-         {
-
-            psession->m_pfile = set["file"].cast < ::file::file >();
-
-         }
-
-         if (set.has_property("int_scalar_source_listener"))
-         {
-
-            psession->::int_scalar_source::m_plistener = set["int_scalar_source_listener"].cast < int_scalar_source::listener >();
-
-         }
-         else
-         {
-
-            psession->::int_scalar_source::m_plistener = nullptr;
-
-         }
-
-         if (set["cookies"].cast < ::http::cookies >() != nullptr && set["cookies"].cast < ::http::cookies >()->get_size() > 0)
-         {
-
-            psession->request().header(__id(cookie)) = set["cookies"].cast < ::http::cookies >()->get_cookie_header();
-
-         }
-
-         //if (set["user"].cast < ::account::user >() != nullptr && set["user"].cast < ::account::user >()->m_phttpcookies != nullptr && !(bool)set["disable_ca2_user_cookies"])
-         //{
-
-         //   psession->request().header(__id(cookie)) = set["user"].cast < ::account::user >()->m_phttpcookies->get_cookie_header();
-
-         //}
-
-         if (set.has_property(__id(cookie)) && set[__id(cookie)].string().has_char())
-         {
-
-            psession->request().header(__id(cookie)) = set[__id(cookie)];
-
-         }
-
-         psession->m_host = purl->get_server(pszRequest);
-
-         psession->m_strHost = purl->get_server(pszRequest);
-
-         psession->m_request.m_propertysetHeader[__id(host)] = psession->m_host;
-
-         set["http_body_size_downloaded"] = &psession->m_body_size_downloaded;
-
-         psession->m_scalarsourceDownloadedRate.m_plistener = set["http_downloaded_rate_listener"].cast < ::double_scalar_source::listener >();
-
-         psession->m_scalarsourceDownloadedRate.m_atom = set["http_downloaded_rate_id"].atom();
-
-         psession->m_scalarsourceDownloaded.m_plistener = set["http_downloaded_listener"].cast < ::int_scalar_source::listener >();
-
-         psession->m_scalarsourceDownloaded.m_atom = set["http_downloaded_id"].atom();
-
-         bool bPost;
-
-         bool bPut;
-
-         if (set["put"].cast < ::file::file >() || set(__id(http_method)) == "PUT")
-         {
-
-            bPost = false;
-
-            bPut = true;
-
-            psession.cast < ::sockets::http_put_socket>()->m_file = set["put"].cast < ::file::file >();
-
-            psession->request("PUT", strRequest);
-
-         }
-         else if (set["post"].propset().has_element() || set(__id(http_method)) == "POST")
-         {
-
-            bPost = true;
-
-            bPut = false;
-
-            psession.cast < ::sockets::http_post_socket>()->m_fields = set["post"].propset();
-
-            if (set.has_property("multipart"))
-            {
-
-               psession.cast < ::sockets::http_post_socket>()->m_pmultipart = set["multipart"].cast < ::sockets::multipart >();
-
-            }
-
-            psession->request("POST", strRequest);
-
-         }
-         else
-         {
-
-            bPost = false;
-
-            bPut = false;
-
-            psession->request("GET", strRequest);
-
-         }
-
-         psession->m_psockethandler->restart_socket(psession->GetSocket());
-
-         i32 iIteration = 0;
-
-         //::apex::live_signal keeplive;
-
-         //if (papp != nullptr)
-         //{
-
-         //   keeplive.keep(papp);
-
-         //   keeplive.keep(&Sess(papp));
-
-         //   keeplive.keep(&Sys(papp));
-
-         //}
-
-         FORMATTED_INFORMATION("opening preparation context::request time(%d) = ", tickBegA.elapsed().integral_second().m_i);
-
-         tick1 = payload("dw").duration();
-
-         tick2.Now();
-
-         INFORMATION("Higher Level Diagnosis : iNTERTIMe context::request " << iIteration << tick1.integral_second() << tick2.integral_second() << (tick2 - tick1).integral_second());
-
-         while ((psession->m_psockethandler->get_count() > 0 && !psession->m_bRequestComplete) && (::get_task() == nullptr || ::task_get_run()))
-            //while(psession->get_count() > 0 && !psession->m_bRequestComplete) // should only exit in case of process exit signal
-         {
-
-            tick1 = ::duration::now();
-
-            psession->m_psockethandler->select(240, 0);
-
-//            keeplive.keep_alive();
-
-            set["http_content_length"] = psession->m_content_length;
-
-            if (set.has_property("cancel"))
-            {
-
-               if (set["cancel"].get_bool())
-               {
-
-                  break;
-
-               }
-
-            }
-
-            double dRateDownloaded = 0.0;
-
-            i64 iContentLength = set["http_content_length"].i64();
-
-            i64 iBodySizeDownloaded = set["http_body_size_downloaded"].i64();
-
-            if (iContentLength > 0)
-            {
-
-               if (iBodySizeDownloaded > 0.0)
-               {
-
-                  dRateDownloaded = (double)iBodySizeDownloaded / (double)iContentLength;
-
-               }
-
-            }
-
-            set["http_rate_downloaded"] = dRateDownloaded;
-
-            psession->m_scalarsourceDownloadedRate.set_scalar(::scalar_none, dRateDownloaded);
-
-            psession->m_scalarsourceDownloaded.set_scalar(::scalar_none, iBodySizeDownloaded);
-
-            if (psession->m_estatus == error_connection_timed_out
-               || psession->m_estatus == error_on_connection_timeout)
-            {
-
-               break;
-
-            }
-
-            INFORMATION("context::request " << tick1.elapsed().integral_second());
-
-            iIteration++;
-
-         }
-
-///         keeplive.keep_alive();
-
-         (*this)["dw"].duration().Now();
-
-         set["get_headers"] = psession->outheaders();
-
-         set["get_attrs"] = psession->outattrs();
-
-         string strCookie = psession->response().cookies().get_cookie_header();
-
-         set[__id(cookie)] = strCookie;
-
-         i32 iStatusCode;
-
-         psession->outattr("http_status_code").as(iStatusCode);
-
-         if (set.has_property("cancel") && set["cancel"].get_bool())
-         {
-
-            psession->m_estatus = error_connection_cancelled;
-
-         }
-         else if (iStatusCode == 0)
-         {
-
-#if defined(BSD_STYLE_SOCKETS)
-
-            if (psession.is_set()
-               && psession->m_psslcontext != nullptr
-               && psession->m_psslcontext->m_pclientcontext != nullptr
-               && psession->m_psslcontext->m_pclientcontext->m_psslcontext != nullptr
-               && psession->m_psslcontext->m_iSslCtxRetry == 1 && iTry < iTryCount)
-            {
-
-               goto retry;
-
-            }
-
-#endif
-
-         }
-         else if (iStatusCode != 200)
-         {
-
-            if (iTry < iTryCount)
-            {
-
-               psession = nullptr;
-
-               goto retry;
-
-            }
-
-         }
-
-         ::e_status estatus;
-
-         if (::failed(psession->m_estatus))
-         {
-
-            estatus = psession->m_estatus;
-
-         }
-         else if ((iStatusCode >= 200 && iStatusCode <= 299) || (psession != nullptr && psession->outattr("http_status_code").is_empty()))
-         {
-
-            estatus = ::success;
-
-         }
-         else if (iStatusCode >= 300 && iStatusCode <= 399)
-         {
-
-            string strRedirectUrl = psession->inheader("location");
-
-            if (psession != nullptr)
-            {
-
-               string strCa2Realm;
-               
-               strCa2Realm = psession->outheader("ca2realm-x");
-
-               if (::str().begins_ci(strCa2Realm, "n7ot licensed: "))
-               {
-
-                  INFORMATION("Not Licensed Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
-
-                  string strLocation;
-                  
-                  strLocation = psession->outheader("Location");
-
-                  psession.release();
-
-                  throw ::exception(error_licensing, "realm:" + strCa2Realm + ",location:" + strLocation);
-
-                  return false;
-
-               }
-
-            }
-
-         }
-         else
-         {
-
-            estatus = error_http;
-
-         }
-
-         set["get_status"] = estatus;
-
-         FORMATTED_INFORMATION("Total time ::http::apex::context::get(\"%s\") %d ms ", strUrl.Left(minimum(255, strUrl.get_length())).c_str(), tick1.elapsed().integral_second().m_i);
-
-      }
-      catch (...)
-      {
-
-         if (iTry >= iTryCount)
-         {
-
-            return false;
-
-         }
-
-         goto retry;
-
-      }
-
-      if (psession != nullptr)
-      {
-
-         if (set.has_property("get_response"))
-         {
-
-            set["get_response"] = string((const char *)psession->GetDataPtr(), psession->GetContentLength());
-
-         }
-
-         if (set.has_property("get_memory"))
-         {
-
-            memory_base * pmemory = set.cast < memory_base >("get_memory");
-
-            if (pmemory != nullptr)
-            {
-
-               pmemory->assign(psession->GetDataPtr(), psession->GetContentLength());
-
-            }
-            else
-            {
-
-               set["get_memory"] = __new(memory(psession->GetDataPtr(), psession->GetContentLength()));
-
-            }
-
-         }
-
-      }
+//      INFORMATION("http context request : " << pszRequest);
+//
+//      ::duration tick1;
+//
+//      ::duration tick2;
+//
+//      bool bSeemsOk;
+//
+//      i32 iTry = 0;
+//
+//      i32 iTryCount;
+//
+//      if (set.has_property("try"))
+//      {
+//
+//         set["try"].as(iTryCount);
+//
+//         if (iTryCount > 5)
+//         {
+//
+//            iTryCount = 5;
+//
+//         }
+//
+//      }
+//      else
+//      {
+//
+//         iTryCount = 2;
+//
+//      }
+//
+//   retry:
+//
+//      iTry++;
+//
+//      bSeemsOk = true;
+//
+//      try
+//      {
+//
+//         if (psession == nullptr)
+//         {
+//
+//            bSeemsOk = false;
+//
+//         }
+//         else if (!psession->is_valid())
+//         {
+//
+//            //handler.erase(psession);
+//
+//            psession->SetCloseAndDelete();
+//
+//            bSeemsOk = false;
+//
+//         }
+//
+//      }
+//      catch (...)
+//      {
+//
+//         bSeemsOk = false;
+//
+//      }
+//
+//      auto psystem = m_psystem;
+//
+//      auto purl = psystem->url();
+//
+//      if (!bSeemsOk)
+//      {
+//
+//         try
+//         {
+//
+//            auto tickBeg = ::duration::now();
+//
+//            if (!open(psession, purl->get_server(pszRequest), purl->get_protocol(pszRequest), set, set["http_protocol_version"]))
+//            {
+//
+//               return false;
+//
+//            }
+//
+//            FORMATTED_INFORMATION("opening context::request time(%d) = ", tickBeg.elapsed().integral_second().m_i);
+//
+//         }
+//         catch (...)
+//         {
+//
+//            return false;
+//
+//         }
+//
+//      }
+//
+//      auto tickBegA = ::duration::now();
+//
+//      try
+//      {
+//
+//         auto tickTimeProfile1 = ::duration::now();
+//
+//         auto papplication = psession->m_psockethandler->get_app()->m_papplication;
+//
+//         string strRequest = purl->get_object(pszRequest);
+//
+//         string strServer = purl->get_server(pszRequest);
+//
+//         string strUrl = psession->m_strProtocol + "://" + strServer + strRequest;
+//
+//         // Format of script name example "context://server.com/the rain.mp3" => "context://server.com/the%20rain.mp3"
+//         {
+//
+//            string strScript = purl->url_encode(purl->url_decode(purl->get_script(strUrl)));
+//
+//            strScript.replace_with("%20", "+");
+//
+//            strScript.replace_with("/", "%2F");
+//
+//            strUrl = purl->set_script(strUrl, strScript);
+//
+//         }
+//
+//         property_set setQuery;
+//
+//         setQuery.parse_network_arguments(purl->get_query(strUrl));
+//
+//         string strSessId;
+//
+//         //__pointer(::account::user) puser;
+//
+//         //on_auth(set, papp, strUrl, strSessId, puser);
+//
+//         strRequest = purl->get_object(strUrl);
+//
+//         psession->inheaders().clear();
+//
+//         psession->outheaders().clear();
+//
+//         psession->inattrs().clear();
+//
+//         psession->outattrs().clear();
+//
+//         psession->m_memoryfile.set_size(0);
+//
+//         psession->inheaders() = set["headers"].propset();
+//
+//         if (set.has_property("minimal_headers") && set["minimal_headers"].is_true())
+//         {
+//
+//            psession->m_request.attrs()["minimal_headers"] = true;
+//
+//         }
+//
+//         if (set.has_property("file"))
+//         {
+//
+//            psession->m_pfile = set["file"].cast < ::file::file >();
+//
+//         }
+//
+//         if (set.has_property("int_scalar_source_listener"))
+//         {
+//
+//            psession->::int_scalar_source::m_plistener = set["int_scalar_source_listener"].cast < int_scalar_source::listener >();
+//
+//         }
+//         else
+//         {
+//
+//            psession->::int_scalar_source::m_plistener = nullptr;
+//
+//         }
+//
+//         if (set["cookies"].cast < ::http::cookies >() != nullptr && set["cookies"].cast < ::http::cookies >()->get_size() > 0)
+//         {
+//
+//            psession->request().header(__id(cookie)) = set["cookies"].cast < ::http::cookies >()->get_cookie_header();
+//
+//         }
+//
+//         //if (set["user"].cast < ::account::user >() != nullptr && set["user"].cast < ::account::user >()->m_phttpcookies != nullptr && !(bool)set["disable_ca2_user_cookies"])
+//         //{
+//
+//         //   psession->request().header(__id(cookie)) = set["user"].cast < ::account::user >()->m_phttpcookies->get_cookie_header();
+//
+//         //}
+//
+//         if (set.has_property(__id(cookie)) && set[__id(cookie)].string().has_char())
+//         {
+//
+//            psession->request().header(__id(cookie)) = set[__id(cookie)];
+//
+//         }
+//
+//         psession->m_host = purl->get_server(pszRequest);
+//
+//         psession->m_strHost = purl->get_server(pszRequest);
+//
+//         psession->m_request.m_propertysetHeader[__id(host)] = psession->m_host;
+//
+//         set["http_body_size_downloaded"] = &psession->m_body_size_downloaded;
+//
+//         psession->m_scalarsourceDownloadedRate.m_plistener = set["http_downloaded_rate_listener"].cast < ::double_scalar_source::listener >();
+//
+//         psession->m_scalarsourceDownloadedRate.m_atom = set["http_downloaded_rate_id"].atom();
+//
+//         psession->m_scalarsourceDownloaded.m_plistener = set["http_downloaded_listener"].cast < ::int_scalar_source::listener >();
+//
+//         psession->m_scalarsourceDownloaded.m_atom = set["http_downloaded_id"].atom();
+//
+//         bool bPost;
+//
+//         bool bPut;
+//
+//         if (set["put"].cast < ::file::file >() || set(__id(http_method)) == "PUT")
+//         {
+//
+//            bPost = false;
+//
+//            bPut = true;
+//
+//            psession.cast < ::sockets::http_put_socket>()->m_file = set["put"].cast < ::file::file >();
+//
+//            psession->request("PUT", strRequest);
+//
+//         }
+//         else if (set["post"].propset().has_element() || set(__id(http_method)) == "POST")
+//         {
+//
+//            bPost = true;
+//
+//            bPut = false;
+//
+//            psession.cast < ::sockets::http_post_socket>()->m_fields = set["post"].propset();
+//
+//            if (set.has_property("multipart"))
+//            {
+//
+//               psession.cast < ::sockets::http_post_socket>()->m_pmultipart = set["multipart"].cast < ::sockets::multipart >();
+//
+//            }
+//
+//            psession->request("POST", strRequest);
+//
+//         }
+//         else
+//         {
+//
+//            bPost = false;
+//
+//            bPut = false;
+//
+//            psession->request("GET", strRequest);
+//
+//         }
+//
+//         //psession->m_psockethandler->restart_socket(psession->GetSocket());
+//
+//         i32 iIteration = 0;
+//
+//         //::apex::live_signal keeplive;
+//
+//         //if (papp != nullptr)
+//         //{
+//
+//         //   keeplive.keep(papp);
+//
+//         //   keeplive.keep(&Sess(papp));
+//
+//         //   keeplive.keep(&Sys(papp));
+//
+//         //}
+//
+//         FORMATTED_INFORMATION("opening preparation context::request time(%d) = ", tickBegA.elapsed().integral_second().m_i);
+//
+//         tick1 = payload("dw").duration();
+//
+//         tick2.Now();
+//
+//         INFORMATION("Higher Level Diagnosis : iNTERTIMe context::request " << iIteration << tick1.integral_second() << tick2.integral_second() << (tick2 - tick1).integral_second());
+//
+//         while ((psession->m_psockethandler->get_count() > 0 && !psession->m_bRequestComplete) && (::get_task() == nullptr || ::task_get_run()))
+//            //while(psession->get_count() > 0 && !psession->m_bRequestComplete) // should only exit in case of process exit signal
+//         {
+//
+//            tick1 = ::duration::now();
+//
+//            psession->m_psockethandler->select(240, 0);
+//
+////            keeplive.keep_alive();
+//
+//            set["http_content_length"] = psession->m_content_length;
+//
+//            if (set.has_property("cancel"))
+//            {
+//
+//               if (set["cancel"].get_bool())
+//               {
+//
+//                  break;
+//
+//               }
+//
+//            }
+//
+//            double dRateDownloaded = 0.0;
+//
+//            i64 iContentLength = set["http_content_length"].i64();
+//
+//            i64 iBodySizeDownloaded = set["http_body_size_downloaded"].i64();
+//
+//            if (iContentLength > 0)
+//            {
+//
+//               if (iBodySizeDownloaded > 0.0)
+//               {
+//
+//                  dRateDownloaded = (double)iBodySizeDownloaded / (double)iContentLength;
+//
+//               }
+//
+//            }
+//
+//            set["http_rate_downloaded"] = dRateDownloaded;
+//
+//            psession->m_scalarsourceDownloadedRate.set_scalar(::scalar_none, dRateDownloaded);
+//
+//            psession->m_scalarsourceDownloaded.set_scalar(::scalar_none, iBodySizeDownloaded);
+//
+//            if (psession->m_estatus == error_connection_timed_out
+//               || psession->m_estatus == error_on_connection_timeout)
+//            {
+//
+//               break;
+//
+//            }
+//
+//            INFORMATION("context::request " << tick1.elapsed().integral_second());
+//
+//            iIteration++;
+//
+//         }
+//
+/////         keeplive.keep_alive();
+//
+//         (*this)["dw"].duration().Now();
+//
+//         set["get_headers"] = psession->outheaders();
+//
+//         set["get_attrs"] = psession->outattrs();
+//
+//         string strCookie = psession->response().cookies().get_cookie_header();
+//
+//         set[__id(cookie)] = strCookie;
+//
+//         i32 iStatusCode;
+//
+//         psession->outattr("http_status_code").as(iStatusCode);
+//
+//         if (set.has_property("cancel") && set["cancel"].get_bool())
+//         {
+//
+//            psession->m_estatus = error_connection_cancelled;
+//
+//         }
+//         else if (iStatusCode == 0)
+//         {
+//
+////#if defined(BSD_STYLE_SOCKETS)
+////
+////            if (psession.is_set()
+////               && psession->m_psslcontext != nullptr
+////               && psession->m_psslcontext->m_pclientcontext != nullptr
+////               && psession->m_psslcontext->m_pclientcontext->m_psslcontext != nullptr
+////               && psession->m_psslcontext->m_iSslCtxRetry == 1 && iTry < iTryCount)
+////            {
+////
+////               goto retry;
+////
+////            }
+////
+////#endif
+//
+//         }
+//         else if (iStatusCode != 200)
+//         {
+//
+//            if (iTry < iTryCount)
+//            {
+//
+//               psession = nullptr;
+//
+//               goto retry;
+//
+//            }
+//
+//         }
+//
+//         ::e_status estatus;
+//
+//         if (::failed(psession->m_estatus))
+//         {
+//
+//            estatus = psession->m_estatus;
+//
+//         }
+//         else if ((iStatusCode >= 200 && iStatusCode <= 299) || (psession != nullptr && psession->outattr("http_status_code").is_empty()))
+//         {
+//
+//            estatus = ::success;
+//
+//         }
+//         else if (iStatusCode >= 300 && iStatusCode <= 399)
+//         {
+//
+//            string strRedirectUrl = psession->inheader("location");
+//
+//            if (psession != nullptr)
+//            {
+//
+//               string strCa2Realm;
+//               
+//               strCa2Realm = psession->outheader("ca2realm-x");
+//
+//               if (::str().begins_ci(strCa2Realm, "n7ot licensed: "))
+//               {
+//
+//                  INFORMATION("Not Licensed Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
+//
+//                  string strLocation;
+//                  
+//                  strLocation = psession->outheader("Location");
+//
+//                  psession.release();
+//
+//                  throw ::exception(error_licensing, "realm:" + strCa2Realm + ",location:" + strLocation);
+//
+//                  return false;
+//
+//               }
+//
+//            }
+//
+//         }
+//         else
+//         {
+//
+//            estatus = error_http;
+//
+//         }
+//
+//         set["get_status"] = estatus;
+//
+//         FORMATTED_INFORMATION("Total time ::http::apex::context::get(\"%s\") %d ms ", strUrl.Left(minimum(255, strUrl.get_length())).c_str(), tick1.elapsed().integral_second().m_i);
+//
+//      }
+//      catch (...)
+//      {
+//
+//         if (iTry >= iTryCount)
+//         {
+//
+//            return false;
+//
+//         }
+//
+//         goto retry;
+//
+//      }
+//
+//      if (psession != nullptr)
+//      {
+//
+//         if (set.has_property("get_response"))
+//         {
+//
+//            set["get_response"] = string((const char *)psession->GetDataPtr(), psession->GetContentLength());
+//
+//         }
+//
+//         if (set.has_property("get_memory"))
+//         {
+//
+//            memory_base * pmemory = set.cast < memory_base >("get_memory");
+//
+//            if (pmemory != nullptr)
+//            {
+//
+//               pmemory->assign(psession->GetDataPtr(), psession->GetContentLength());
+//
+//            }
+//            else
+//            {
+//
+//               set["get_memory"] = __new(memory(psession->GetDataPtr(), psession->GetContentLength()));
+//
+//            }
+//
+//         }
+//
+//      }
 
       return true;
 
@@ -1731,818 +1735,818 @@ namespace http
    bool context::http_get(__pointer(::sockets::http_client_socket) & psocket, const char * pszUrl1, property_set & set)
    {
 
-      //auto ptask = ::get_task();
-
-      //__keep(ptask->payload("work_url"), pszUrl);
-
-      auto psystem = m_psystem->m_papexsystem;
-
-      auto purl = psystem->url();
-
-      i64 iHttpGetSerial = ++psystem->sockets().m_lHttpGetSerial;
-
-      //TRACE("");
-      //TRACE("");
-      set["http_get_serial"] = iHttpGetSerial;
-
-      auto tickStart = ::duration::now();
-
-      int iTry = 0;
-
-      int iTryCount;
-
-      if (set.has_property("try"))
-      {
-
-         set["try"].as(iTryCount);
-
-         if (iTryCount > 5)
-         {
-
-            iTryCount = 5;
-
-         }
-
-      }
-      else
-      {
-
-         iTryCount = 2;
-
-      }
-      INFORMATION("------------------------------------------------------");
-
-      string strUrl;
-
-      strUrl = pszUrl1;
-
-      string strRedirect;
-//#ifdef BSD_STYLE_SOCKETS
-      retry :
-//#endif
-      if (iTry > 0)
-      {
-
-         if (strRedirect.has_char())
-         {
-
-            INFORMATION("Redirect: " << iHttpGetSerial << strRedirect);
-
-            strUrl = strRedirect;
-
-            strRedirect.Empty();
-
-         }
-         else
-         {
-
-            INFORMATION("Redirect: " << iHttpGetSerial << strUrl);
-
-         }
-
-      }
-      else
-      {
-
-         INFORMATION("Start: " << iHttpGetSerial << strUrl);
-
-      }
-
-      iTry++;
-
-      auto tickTimeProfile1 = ::duration::now();
-
-      string strServer = purl->get_root(strUrl);
-
-      string strProtocol = purl->get_protocol(strUrl);
-
-      string strObject = purl->get_object(strUrl);
-
-      __pointer(::application) papp = set["app"].cast < ::application >();
-
-      __pointer(::application) pappAgent = papp;
-
-      i32 iPort;
-
-      if (strProtocol == "https")
-      {
-
-         iPort = 443;
-
-      }
-      else
-      {
-
-         iPort = 80;
-
-      }
-
-      string strVersion;
-      
-      strVersion = set["http_protocol_version"];
-
-      if (strVersion.is_empty())
-      {
-
-         strVersion = "HTTP/1.1";
-
-      }
-
-//      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(get_session()) && ::is_set(psession->account());
-
-      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(get_session()) ;
-
-//      single_lock slFontopus(bSessionAccount ? psession->account()->mutex() : nullptr);
-
-      string strIp;
-
-      string strSessId;
-
-      int iRetrySession = 0;
-
-   //retry_session:
-
-   //   __pointer(::account::user) puser;
-
-      if (bSessionAccount)
-      {
-
-//         on_auth(set, papp, strUrl, strSessId, puser);
-
-         if (strSessId.has_char())
-         {
-
-            string strCookie = set[__id(cookie)];
-
-            set[__id(cookie)] = ::str().has_char(strCookie, "", "; ") + "sessid=" + strSessId;
-
-         }
-
-         // Format of script name example "context://server.com/the rain.mp3" => "context://server.com/the%20rain.mp3"
-         {
-
-            string strScript = purl->url_encode(purl->url_decode(purl->get_script(strUrl)));
-
-            strScript.replace_with("%20", "+");
-
-            strScript.replace_with("/", "%2F");
-
-            strUrl = purl->set_script(strUrl, strScript);
-
-         }
-
-      }
-
-      bool bPost;
-
-      bool bPut;
-
-      if (set["put"].cast < ::file::file >() || set(__id(http_method)) == "PUT")
-      {
-
-         bPost = false;
-
-         bPut = true;
-
-         psocket = __new(::sockets::http_put_socket(strUrl));
-
-         dynamic_cast <::sockets::http_put_socket *> (psocket.m_p)->m_file = set["put"].cast < ::file::file >();
-
-         psocket->m_emethod = ::sockets::http_method_put;
-
-      }
-      else if (set["post"].propset().has_element() || set(__id(http_method)) == "POST")
-      {
-
-         bPost = true;
-
-         bPut = false;
-
-         psocket = __new(::sockets::http_post_socket(strUrl));
-
-         dynamic_cast <::sockets::http_post_socket *> (psocket.m_p)->m_fields = set["post"].propset();
-
-         if (set.has_property("multipart"))
-         {
-
-            psocket.cast < ::sockets::http_post_socket>()->m_pmultipart = set["multipart"].cast < ::sockets::multipart >();
-
-         }
-
-         psocket->m_emethod = ::sockets::http_method_post;
-
-      }
-      else
-      {
-
-         bPost = false;
-
-         bPut = false;
-
-         psocket = __new(::http::get_socket(strUrl));
-
-         psocket->m_emethod = ::sockets::string_http_method(set(__id(http_method), "GET"));
-
-      }
-
-      if (pappAgent.is_set())
-      {
-
-         psocket->initialize(pappAgent);
-
-      }
-
-      auto psockethandler = psocket->m_psockethandler;
-
-      if (!psockethandler)
-      {
-
-         psockethandler = __create_new < ::sockets::socket_handler >();
-
-         psocket->initialize_socket(psockethandler);
-
-      }
-
-      string strTopicText;
-
-      strTopicText.format(__prhttpget, iHttpGetSerial);
-
-      //psocket->set_topic_text(strTopicText);
-
-
-      psocket->m_bEnablePool = psockethandler->PoolEnabled();
-
-      if (set["disable_common_name_cert_check"].is_true())
-      {
-
-         psocket->enable_cert_common_name_check(false);
-
-      }
-
-      if (strProtocol == "https")
-      {
-
-         psocket->m_strTlsHostName = purl->get_server(strUrl);
-
-      }
-
-      if (set["http_listener"].cast < ::http::listener >() != nullptr)
-      {
-
-         psocket->::sockets::http_socket::m_plistener = set["http_listener"].cast < ::http::listener >();
-
-      }
-
-      psocket->inheaders().add(set["headers"].propset());
-
-      if (set.has_property("progress_listener"))
-      {
-
-         psocket->m_progressinteger.m_plistener = set["progress_listener"].cast < ::progress::listener >();
-
-      }
-
-      if (set.has_property("int_scalar_source_listener"))
-      {
-
-         psocket->::int_scalar_source::m_plistener = set["int_scalar_source_listener"].cast < int_scalar_source::listener >();
-
-      }
-
-      if (set.has_property("minimal_headers") && set["minimal_headers"].is_true())
-      {
-
-         psocket->m_request.attrs()["minimal_headers"] = true;
-
-      }
-
-      if (set.has_property("only_headers") && set["only_headers"].is_true())
-      {
-
-         psocket->m_bOnlyHeaders = true;
-
-      }
-
-      if (set.has_property("noclose") && set["noclose"].is_false())
-      {
-
-         psocket->m_bNoClose = false;
-
-      }
-
-      if (set.has_property("file"))
-      {
-
-         psocket->m_pfile = set["file"].cast < ::file::file >();
-
-      }
-
-      if (set["cookies"].cast < ::http::cookies >() != nullptr && set["cookies"].cast < ::http::cookies >()->get_size() > 0)
-      {
-
-         if (set["cookies"].cast < ::http::cookies >()->find_cookie("sessid") >= 0)
-         {
-
-            set["cookies"].cast < ::http::cookies >()->set_cookie("sessid", strSessId);
-
-         }
-
-         psocket->request().header(__id(cookie)) = set["cookies"].cast < ::http::cookies >()->get_cookie_header();
-
-      }
-
-      //if (set["user"].cast < ::account::user >() != nullptr && set["user"].cast < ::account::user >()->m_phttpcookies != nullptr && !(bool)set["disable_ca2_user_cookies"])
-      //{
-
-      //   if (set["user"].cast < ::account::user >()->m_phttpcookies->find_cookie("sessid") >= 0)
-      //   {
-
-      //      set["user"].cast < ::account::user >()->m_phttpcookies->set_cookie("sessid", strSessId);
-
-      //   }
-
-      //   psocket->request().header(__id(cookie)) = set["user"].cast < ::account::user >()->m_phttpcookies->get_cookie_header();
-
-      //}
-
-      if (set.has_property(__id(cookie)) && set[__id(cookie)].string().has_char())
-      {
-
-         psocket->request().header(__id(cookie)) = set[__id(cookie)];
-
-      }
-
-      if (!psocket->m_bNoClose)
-      {
-
-         psocket->SetCloseOnComplete();
-
-      }
-
-      if (strProtocol == "https")
-      {
-
-         psocket->EnableSSL();
-
-      }
-
-      auto tick1 = ::duration::now();
-
-      bool bConfigProxy = !set.has_property("no_proxy_config") || set["no_proxy_config"].is_false();
-
-      ::duration tickTotalTimeout = set["timeout"].duration();
-
-      set["http_body_size_downloaded"] = &psocket->m_body_size_downloaded;
-
-      psocket->m_scalarsourceDownloadedRate.m_plistener = set["http_downloaded_rate_listener"].cast < ::double_scalar_source::listener >();
-
-      psocket->m_scalarsourceDownloadedRate.m_atom = set["http_downloaded_rate_id"].atom();
-
-      psocket->m_scalarsourceDownloaded.m_plistener = set["http_downloaded_listener"].cast < ::int_scalar_source::listener >();
-
-      psocket->m_scalarsourceDownloaded.m_atom = set["http_downloaded_id"].atom();
-
-      if (tickTotalTimeout.is_null())
-      {
-
-         tickTotalTimeout = 30_s;
-
-      }
-
-      if (strIp.has_char())
-      {
-
-         psocket->m_strConnectHost = strIp;
-
-      }
-
-      string_array straProxy;
-
-      if (set.has_property("proxy"))
-      {
-
-         straProxy.explode(":", set["proxy"].string());
-
-         if (straProxy.get_count() != 2 || !psocket->proxy_open(straProxy[0], atoi(straProxy[1])))
-         {
-
-            set["get_status"] = (i64)error_http;
-
-            auto tick2 = ::duration::now();
-
-            INFORMATION(LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
-
-            return false;
-
-         }
-
-      }
-      else if (!psocket->open(bConfigProxy))
-      {
-
-         set["get_status"] = (i64)error_http;
-
-         INFORMATION(LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
-
-         return false;
-
-      }
-
-      //auto passociation = psockethandler->new_association(psocket);
-
-      psockethandler->add2(psocket);
-
-      i32 iIteration = 1;
-
-      //::apex::live_signal keeplive;
-
-      if (set["noloop"].is_true())
-      {
-
-         return true;
-
-      }
-
-      if (set.has_property("maximum_connection_retry_count"))
-      {
-
-         psocket->SetMaximumConnectionRetryCount(set["maximum_connection_retry_count"].i32());
-
-      }
-      //else
-      //{
-
-      //   psocket->SetConnectionRetry(3);
-
-      //}
-
-      //if (papp != nullptr)
-      //{
-
-      //   keeplive.keep(papp);
-      //   keeplive.keep(&Sess(papp));
-      //   keeplive.keep(&Sys(papp));
-
-      //}
-
-      if (psocket->m_bEnablePool)
-      {
-
-         psocket->SetRetain();
-
-      }
-
-      i64 iContentLength = -1;
-
-      i64 iBodySizeDownloaded = -1;
-
-      int iEnteredLoop = 0;
-
-      tick1 = ::duration::now();
-
-      while (psocket->m_psockethandler->get_count() > 0 && (::get_task() == nullptr || ::task_get_run()))
-      {
-
-         if (tickStart.elapsed() > tickTotalTimeout)
-         {
-
-            INFORMATION(LOG_HTTP_PREFIX << "> FAILING BY time_out after " << iIteration << " steps " << tick1.elapsed().integral_second());
-
-            break;
-
-         }
-
-         iEnteredLoop = 1;
-
-         auto iSelectTimeoutMillis = minimum(tickTotalTimeout, (tickTotalTimeout - tickStart.elapsed()));
-
-         auto iSelectTimeoutSeconds = iSelectTimeoutMillis.integral_second().m_i;
-
-         iSelectTimeoutSeconds = maximum(1, iSelectTimeoutSeconds);
-
-         iContentLength = psocket->m_content_length;
-
-         psocket->m_psockethandler->select((i32)iSelectTimeoutSeconds, 0);
-
-         set["http_content_length"] = iContentLength;
-
-         double dRateDownloaded = 0.0;
-
-         i64 iBodySizeDownloadedNow = set["http_body_size_downloaded"].i64();
-
-         if (iBodySizeDownloadedNow > iBodySizeDownloaded)
-         {
-
-            iBodySizeDownloaded = iBodySizeDownloadedNow;
-
-            if (iBodySizeDownloaded > 0)
-            {
-
-               tickStart = ::duration::now();
-
-            }
-
-         }
-
-         if (set.has_property("cancel") && set["cancel"].get_bool())
-         {
-
-            INFORMATION(LOG_HTTP_PREFIX << "> FAILING BY Cancellation at step " << iIteration << " " << tick1.elapsed().integral_second());
-
-            break;
-
-         }
-
-         if (iContentLength > 0)
-         {
-
-            if (iBodySizeDownloaded > 0.0)
-            {
-
-               dRateDownloaded = (double)iBodySizeDownloaded / (double)iContentLength;
-
-            }
-
-         }
-
-         set["http_rate_downloaded"] = dRateDownloaded;
-
-         psocket->m_scalarsourceDownloadedRate.set_scalar(::scalar_none, dRateDownloaded);
-
-         psocket->m_scalarsourceDownloaded.set_scalar(::scalar_none, iBodySizeDownloaded);
-
-//         keeplive.keep_alive();
-
-         if (psocket->m_estatus == error_connection_timed_out
-            || psocket->m_estatus == error_on_connection_timeout)
-         {
-
-            INFORMATION(LOG_HTTP_PREFIX << "FAILING BY Connection time_out after " << iIteration << " steps " << tick1.elapsed().integral_second());
-
-            break;
-
-         }
-
-         if (psocket->m_b_complete)
-         {
-
-            INFORMATION(LOG_HTTP_PREFIX << "Complete! in "<< iIteration <<" steps " << tick1.elapsed().integral_second());
-
-            break;
-
-         }
-
-         if (iContentLength >= 0)
-         {
-
-            INFORMATION(LOG_HTTP_PREFIX << iIteration << ". step " << tick1.elapsed().integral_second() << " Content-Length: " << (integral_byte)(memsize) iContentLength);
-
-         }
-         else
-         {
-
-            INFORMATION(LOG_HTTP_PREFIX << iIteration << ". step " << tick1.elapsed().integral_second());
-
-         }
-
-
-         if (HTTP_DEBUG_LEVEL >= DEBUG_LEVEL_SICK)
-         {
-
-            INFORMATION(LOG_HTTP_PREFIX << "iSelectTimeoutSeconds=" << iSelectTimeoutSeconds);
-
-         }
-
-         iIteration++;
-
-      }
-
-//      keeplive.keep_alive();
-
-      set["get_headers"] = psocket->outheaders();
-
-      set["get_attrs"] = psocket->outattrs();
-
-      string strCookie = psocket->response().cookies().get_cookie_header();
-
-      set[__id(cookie)] = strCookie;
-
-      ::e_status estatus = error_failed;
-
-      i32 iStatusCode;
-
-      psocket->outattr("http_status_code").as(iStatusCode);
-
-      set["http_status_code"] = iStatusCode;
-
-      string strStatus;
-      
-      strStatus = psocket->outattr("http_status");
-
-      set["http_status"] = strStatus;
-
-      iContentLength = set["http_content_length"].i64();
-
-      iBodySizeDownloaded = set["http_body_size_downloaded"].i64();
-
-      INFORMATION(LOG_HTTP_PREFIX
-         << strUrl
-         << " Status: "
-         << iStatusCode
-         << " - "
-         << strStatus
-         << " Content Length : "
-         << (integral_byte)(memsize)iContentLength
-         << ", Body Download : "
-         << iBodySizeDownloaded
-         << ", Loop : "
-         << iEnteredLoop
-         << ", "
-         << (psocket->m_b_complete ? "Finished!" : "Incomplete!"));
-         //iHttpGetSerial,
-         //.c_str(),
-         //,
-         //strStatus.c_str(),
-         //iContentLength,
-         //iBodySizeDownloaded,
-         //iEnteredLoop,
-         
-      //);
-
-      if (set.has_property("cancel") && set["cancel"].get_bool())
-      {
-
-         psocket->m_estatus = error_connection_cancelled;
-
-      }
-      else if (iStatusCode == 0)
-      {
-
-         ::duration tickElapse = tickStart.elapsed();
-
-         if (iTry < iTryCount && tickElapse < tickTotalTimeout)
-         {
-
-            task_sleep(300_ms);
-
-            if (::task_get_run())
-            {
-
-               goto retry;
-
-            }
-
-         }
-
-         INFORMATION(LOG_HTTP_PREFIX << "URL: " << strUrl << " Too much tries("<< iTry <<")");
-
-         estatus = error_http;
-
-      }
-      else if (::failed(psocket->m_estatus))
-      {
-
-         estatus = psocket->m_estatus;
-
-      }
-      else if ((iStatusCode >= 200 && iStatusCode <= 299) || psocket->outattr("http_status_code").is_empty())
-      {
-
-         estatus = ::success;
-
-      }
-      else if (iStatusCode >= 300 && iStatusCode <= 399)
-      {
-
-         string strCa2Realm;
-         
-         strCa2Realm = psocket->outheader("ca2realm-x");
-
-         if (::str().begins_ci(strCa2Realm, "not licensed: "))
-         {
-
-            auto tick2 = ::duration::now();
-
-            INFORMATION(LOG_HTTP_PREFIX << "Not Licensed Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
-
-            string strLocation;
-            
-            strLocation = psocket->outheader("Location");
-
-            throw ::exception(error_licensing, "realm:"+strCa2Realm+",location:"+ strLocation);
-
-            return false;
-
-         }
-
-         string strLocation;
-         
-         strLocation = psocket->outheader("location");
-
-         if (set.has_property("redirect_location"))
-         {
-
-            set["redirect_location"] = strLocation;
-
-            estatus = ::success_http_redirection;
-
-         }
-         else if (strLocation.has_char())
-         {
-
-
-            if (strLocation.find_ci("http://") == 0 || strLocation.find_ci("https://") == 0)
-            {
-
-               strRedirect = strLocation;
-
-               goto retry;
-
-            //   return http_get(psocket, strLocation, set);
-
-            }
-            else
-            {
-
-               ::file::path pathBase = purl->get_protocol(strUrl) + purl->get_server(strUrl);
-
-               strLocation = pathBase / strLocation;
-
-               goto retry;
-
-            }
-
-         }
-
-      }
-      else if (iStatusCode == 401)
-      {
-
-         //if (strSessId.has_char() && puser.is_set() && iRetrySession < 3)
-         //{
-
-         //   psession->account()->not_auth(pszUrl);
-
-         //   iRetrySession++;
-
-         //   goto retry_session;
-
-         //}
-
-         estatus = error_http;
-
-      }
-      else
-      {
-
-         estatus = error_http;
-
-      }
-
-      set["get_status"] = estatus;
-
-      if (set["http_listener"].cast < ::http::listener >() != nullptr)
-      {
-
-         set["http_listener"].cast < ::http::listener >()->on_http_complete(psocket, estatus);
-
-      }
-
-      if (set.has_property("get_response"))
-      {
-
-         const char * pszData = (const char *)psocket->GetDataPtr();
-
-         strsize iSize = psocket->GetContentLength();
-
-         string strResponse(pszData, iSize);
-
-         set["get_response"] = strResponse;
-
-      }
-
-      if (set.has_property("get_memory"))
-      {
-
-         memory_base * pmemory = set.cast < memory_base >("get_memory");
-
-         if (pmemory != nullptr)
-         {
-
-            pmemory->assign(psocket->GetDataPtr(), psocket->GetContentLength());
-
-         }
-         else
-         {
-
-            set["get_memory"] = __new(memory(psocket->GetDataPtr(), psocket->GetContentLength()));
-
-         }
-
-      }
-
-      INFORMATION(LOG_HTTP_PREFIX << "Total time " << tick1.elapsed().integral_second());
-
+//      //auto ptask = ::get_task();
+//
+//      //__keep(ptask->payload("work_url"), pszUrl);
+//
+//      auto psystem = m_psystem->m_papexsystem;
+//
+//      auto purl = psystem->url();
+//
+//      i64 iHttpGetSerial = ++psystem->networking()->m_lHttpGetSerial;
+//
+//      //TRACE("");
+//      //TRACE("");
+//      set["http_get_serial"] = iHttpGetSerial;
+//
+//      auto tickStart = ::duration::now();
+//
+//      int iTry = 0;
+//
+//      int iTryCount;
+//
+//      if (set.has_property("try"))
+//      {
+//
+//         set["try"].as(iTryCount);
+//
+//         if (iTryCount > 5)
+//         {
+//
+//            iTryCount = 5;
+//
+//         }
+//
+//      }
+//      else
+//      {
+//
+//         iTryCount = 2;
+//
+//      }
+//      INFORMATION("------------------------------------------------------");
+//
+//      string strUrl;
+//
+//      strUrl = pszUrl1;
+//
+//      string strRedirect;
+////#ifdef BSD_STYLE_SOCKETS
+//      retry :
+////#endif
+//      if (iTry > 0)
+//      {
+//
+//         if (strRedirect.has_char())
+//         {
+//
+//            INFORMATION("Redirect: " << iHttpGetSerial << strRedirect);
+//
+//            strUrl = strRedirect;
+//
+//            strRedirect.Empty();
+//
+//         }
+//         else
+//         {
+//
+//            INFORMATION("Redirect: " << iHttpGetSerial << strUrl);
+//
+//         }
+//
+//      }
+//      else
+//      {
+//
+//         INFORMATION("Start: " << iHttpGetSerial << strUrl);
+//
+//      }
+//
+//      iTry++;
+//
+//      auto tickTimeProfile1 = ::duration::now();
+//
+//      string strServer = purl->get_root(strUrl);
+//
+//      string strProtocol = purl->get_protocol(strUrl);
+//
+//      string strObject = purl->get_object(strUrl);
+//
+//      __pointer(::application) papp = set["app"].cast < ::application >();
+//
+//      __pointer(::application) pappAgent = papp;
+//
+//      i32 iPort;
+//
+//      if (strProtocol == "https")
+//      {
+//
+//         iPort = 443;
+//
+//      }
+//      else
+//      {
+//
+//         iPort = 80;
+//
+//      }
+//
+//      string strVersion;
+//      
+//      strVersion = set["http_protocol_version"];
+//
+//      if (strVersion.is_empty())
+//      {
+//
+//         strVersion = "HTTP/1.1";
+//
+//      }
+//
+////      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(get_session()) && ::is_set(psession->account());
+//
+//      bool bSessionAccount = !set.is_true("raw_http") && ::is_set(get_session()) ;
+//
+////      single_lock slFontopus(bSessionAccount ? psession->account()->mutex() : nullptr);
+//
+//      string strIp;
+//
+//      string strSessId;
+//
+//      int iRetrySession = 0;
+//
+//   //retry_session:
+//
+//   //   __pointer(::account::user) puser;
+//
+//      if (bSessionAccount)
+//      {
+//
+////         on_auth(set, papp, strUrl, strSessId, puser);
+//
+//         if (strSessId.has_char())
+//         {
+//
+//            string strCookie = set[__id(cookie)];
+//
+//            set[__id(cookie)] = ::str().has_char(strCookie, "", "; ") + "sessid=" + strSessId;
+//
+//         }
+//
+//         // Format of script name example "context://server.com/the rain.mp3" => "context://server.com/the%20rain.mp3"
+//         {
+//
+//            string strScript = purl->url_encode(purl->url_decode(purl->get_script(strUrl)));
+//
+//            strScript.replace_with("%20", "+");
+//
+//            strScript.replace_with("/", "%2F");
+//
+//            strUrl = purl->set_script(strUrl, strScript);
+//
+//         }
+//
+//      }
+//
+//      bool bPost;
+//
+//      bool bPut;
+//
+//      if (set["put"].cast < ::file::file >() || set(__id(http_method)) == "PUT")
+//      {
+//
+//         bPost = false;
+//
+//         bPut = true;
+//
+//         psocket = __new(::sockets::http_put_socket(strUrl));
+//
+//         dynamic_cast <::sockets::http_put_socket *> (psocket.m_p)->m_file = set["put"].cast < ::file::file >();
+//
+//         psocket->m_emethod = ::sockets::http_method_put;
+//
+//      }
+//      else if (set["post"].propset().has_element() || set(__id(http_method)) == "POST")
+//      {
+//
+//         bPost = true;
+//
+//         bPut = false;
+//
+//         psocket = __new(::sockets::http_post_socket(strUrl));
+//
+//         dynamic_cast <::sockets::http_post_socket *> (psocket.m_p)->m_fields = set["post"].propset();
+//
+//         if (set.has_property("multipart"))
+//         {
+//
+//            psocket.cast < ::sockets::http_post_socket>()->m_pmultipart = set["multipart"].cast < ::sockets::multipart >();
+//
+//         }
+//
+//         psocket->m_emethod = ::sockets::http_method_post;
+//
+//      }
+//      else
+//      {
+//
+//         bPost = false;
+//
+//         bPut = false;
+//
+//         psocket = __new(::http::get_socket(strUrl));
+//
+//         psocket->m_emethod = ::sockets::string_http_method(set(__id(http_method), "GET"));
+//
+//      }
+//
+//      if (pappAgent.is_set())
+//      {
+//
+//         psocket->initialize(pappAgent);
+//
+//      }
+//
+//      auto psockethandler = psocket->m_psockethandler;
+//
+//      if (!psockethandler)
+//      {
+//
+//         psockethandler = __create_new < ::sockets::socket_handler >();
+//
+//         psocket->initialize_socket(psockethandler);
+//
+//      }
+//
+//      string strTopicText;
+//
+//      strTopicText.format(__prhttpget, iHttpGetSerial);
+//
+//      //psocket->set_topic_text(strTopicText);
+//
+//
+//      psocket->m_bEnablePool = psockethandler->PoolEnabled();
+//
+//      if (set["disable_common_name_cert_check"].is_true())
+//      {
+//
+//         psocket->enable_cert_common_name_check(false);
+//
+//      }
+//
+//      if (strProtocol == "https")
+//      {
+//
+//         psocket->m_strTlsHostName = purl->get_server(strUrl);
+//
+//      }
+//
+//      if (set["http_listener"].cast < ::http::listener >() != nullptr)
+//      {
+//
+//         psocket->::sockets::http_socket::m_plistener = set["http_listener"].cast < ::http::listener >();
+//
+//      }
+//
+//      psocket->inheaders().add(set["headers"].propset());
+//
+//      if (set.has_property("progress_listener"))
+//      {
+//
+//         psocket->m_progressinteger.m_plistener = set["progress_listener"].cast < ::progress::listener >();
+//
+//      }
+//
+//      if (set.has_property("int_scalar_source_listener"))
+//      {
+//
+//         psocket->::int_scalar_source::m_plistener = set["int_scalar_source_listener"].cast < int_scalar_source::listener >();
+//
+//      }
+//
+//      if (set.has_property("minimal_headers") && set["minimal_headers"].is_true())
+//      {
+//
+//         psocket->m_request.attrs()["minimal_headers"] = true;
+//
+//      }
+//
+//      if (set.has_property("only_headers") && set["only_headers"].is_true())
+//      {
+//
+//         psocket->m_bOnlyHeaders = true;
+//
+//      }
+//
+//      if (set.has_property("noclose") && set["noclose"].is_false())
+//      {
+//
+//         psocket->m_bNoClose = false;
+//
+//      }
+//
+//      if (set.has_property("file"))
+//      {
+//
+//         psocket->m_pfile = set["file"].cast < ::file::file >();
+//
+//      }
+//
+//      if (set["cookies"].cast < ::http::cookies >() != nullptr && set["cookies"].cast < ::http::cookies >()->get_size() > 0)
+//      {
+//
+//         if (set["cookies"].cast < ::http::cookies >()->find_cookie("sessid") >= 0)
+//         {
+//
+//            set["cookies"].cast < ::http::cookies >()->set_cookie("sessid", strSessId);
+//
+//         }
+//
+//         psocket->request().header(__id(cookie)) = set["cookies"].cast < ::http::cookies >()->get_cookie_header();
+//
+//      }
+//
+//      //if (set["user"].cast < ::account::user >() != nullptr && set["user"].cast < ::account::user >()->m_phttpcookies != nullptr && !(bool)set["disable_ca2_user_cookies"])
+//      //{
+//
+//      //   if (set["user"].cast < ::account::user >()->m_phttpcookies->find_cookie("sessid") >= 0)
+//      //   {
+//
+//      //      set["user"].cast < ::account::user >()->m_phttpcookies->set_cookie("sessid", strSessId);
+//
+//      //   }
+//
+//      //   psocket->request().header(__id(cookie)) = set["user"].cast < ::account::user >()->m_phttpcookies->get_cookie_header();
+//
+//      //}
+//
+//      if (set.has_property(__id(cookie)) && set[__id(cookie)].string().has_char())
+//      {
+//
+//         psocket->request().header(__id(cookie)) = set[__id(cookie)];
+//
+//      }
+//
+//      if (!psocket->m_bNoClose)
+//      {
+//
+//         psocket->SetCloseOnComplete();
+//
+//      }
+//
+//      if (strProtocol == "https")
+//      {
+//
+//         psocket->EnableSSL();
+//
+//      }
+//
+//      auto tick1 = ::duration::now();
+//
+//      bool bConfigProxy = !set.has_property("no_proxy_config") || set["no_proxy_config"].is_false();
+//
+//      ::duration tickTotalTimeout = set["timeout"].duration();
+//
+//      set["http_body_size_downloaded"] = &psocket->m_body_size_downloaded;
+//
+//      psocket->m_scalarsourceDownloadedRate.m_plistener = set["http_downloaded_rate_listener"].cast < ::double_scalar_source::listener >();
+//
+//      psocket->m_scalarsourceDownloadedRate.m_atom = set["http_downloaded_rate_id"].atom();
+//
+//      psocket->m_scalarsourceDownloaded.m_plistener = set["http_downloaded_listener"].cast < ::int_scalar_source::listener >();
+//
+//      psocket->m_scalarsourceDownloaded.m_atom = set["http_downloaded_id"].atom();
+//
+//      if (tickTotalTimeout.is_null())
+//      {
+//
+//         tickTotalTimeout = 30_s;
+//
+//      }
+//
+//      if (strIp.has_char())
+//      {
+//
+//         psocket->m_strConnectHost = strIp;
+//
+//      }
+//
+//      string_array straProxy;
+//
+//      if (set.has_property("proxy"))
+//      {
+//
+//         straProxy.explode(":", set["proxy"].string());
+//
+//         if (straProxy.get_count() != 2 || !psocket->proxy_open(straProxy[0], atoi(straProxy[1])))
+//         {
+//
+//            set["get_status"] = (i64)error_http;
+//
+//            auto tick2 = ::duration::now();
+//
+//            INFORMATION(LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
+//
+//            return false;
+//
+//         }
+//
+//      }
+//      else if (!psocket->open(bConfigProxy))
+//      {
+//
+//         set["get_status"] = (i64)error_http;
+//
+//         INFORMATION(LOG_HTTP_PREFIX << "> Not Opened/Connected Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
+//
+//         return false;
+//
+//      }
+//
+//      //auto passociation = psockethandler->new_association(psocket);
+//
+//      psockethandler->add2(psocket);
+//
+//      i32 iIteration = 1;
+//
+//      //::apex::live_signal keeplive;
+//
+//      if (set["noloop"].is_true())
+//      {
+//
+//         return true;
+//
+//      }
+//
+//      if (set.has_property("maximum_connection_retry_count"))
+//      {
+//
+//         psocket->SetMaximumConnectionRetryCount(set["maximum_connection_retry_count"].i32());
+//
+//      }
+//      //else
+//      //{
+//
+//      //   psocket->SetConnectionRetry(3);
+//
+//      //}
+//
+//      //if (papp != nullptr)
+//      //{
+//
+//      //   keeplive.keep(papp);
+//      //   keeplive.keep(&Sess(papp));
+//      //   keeplive.keep(&Sys(papp));
+//
+//      //}
+//
+//      if (psocket->m_bEnablePool)
+//      {
+//
+//         psocket->SetRetain();
+//
+//      }
+//
+//      i64 iContentLength = -1;
+//
+//      i64 iBodySizeDownloaded = -1;
+//
+//      int iEnteredLoop = 0;
+//
+//      tick1 = ::duration::now();
+//
+//      while (psocket->m_psockethandler->get_count() > 0 && (::get_task() == nullptr || ::task_get_run()))
+//      {
+//
+//         if (tickStart.elapsed() > tickTotalTimeout)
+//         {
+//
+//            INFORMATION(LOG_HTTP_PREFIX << "> FAILING BY time_out after " << iIteration << " steps " << tick1.elapsed().integral_second());
+//
+//            break;
+//
+//         }
+//
+//         iEnteredLoop = 1;
+//
+//         auto iSelectTimeoutMillis = minimum(tickTotalTimeout, (tickTotalTimeout - tickStart.elapsed()));
+//
+//         auto iSelectTimeoutSeconds = iSelectTimeoutMillis.integral_second().m_i;
+//
+//         iSelectTimeoutSeconds = maximum(1, iSelectTimeoutSeconds);
+//
+//         iContentLength = psocket->m_content_length;
+//
+//         psocket->m_psockethandler->select((i32)iSelectTimeoutSeconds, 0);
+//
+//         set["http_content_length"] = iContentLength;
+//
+//         double dRateDownloaded = 0.0;
+//
+//         i64 iBodySizeDownloadedNow = set["http_body_size_downloaded"].i64();
+//
+//         if (iBodySizeDownloadedNow > iBodySizeDownloaded)
+//         {
+//
+//            iBodySizeDownloaded = iBodySizeDownloadedNow;
+//
+//            if (iBodySizeDownloaded > 0)
+//            {
+//
+//               tickStart = ::duration::now();
+//
+//            }
+//
+//         }
+//
+//         if (set.has_property("cancel") && set["cancel"].get_bool())
+//         {
+//
+//            INFORMATION(LOG_HTTP_PREFIX << "> FAILING BY Cancellation at step " << iIteration << " " << tick1.elapsed().integral_second());
+//
+//            break;
+//
+//         }
+//
+//         if (iContentLength > 0)
+//         {
+//
+//            if (iBodySizeDownloaded > 0.0)
+//            {
+//
+//               dRateDownloaded = (double)iBodySizeDownloaded / (double)iContentLength;
+//
+//            }
+//
+//         }
+//
+//         set["http_rate_downloaded"] = dRateDownloaded;
+//
+//         psocket->m_scalarsourceDownloadedRate.set_scalar(::scalar_none, dRateDownloaded);
+//
+//         psocket->m_scalarsourceDownloaded.set_scalar(::scalar_none, iBodySizeDownloaded);
+//
+////         keeplive.keep_alive();
+//
+//         if (psocket->m_estatus == error_connection_timed_out
+//            || psocket->m_estatus == error_on_connection_timeout)
+//         {
+//
+//            INFORMATION(LOG_HTTP_PREFIX << "FAILING BY Connection time_out after " << iIteration << " steps " << tick1.elapsed().integral_second());
+//
+//            break;
+//
+//         }
+//
+//         if (psocket->m_b_complete)
+//         {
+//
+//            INFORMATION(LOG_HTTP_PREFIX << "Complete! in "<< iIteration <<" steps " << tick1.elapsed().integral_second());
+//
+//            break;
+//
+//         }
+//
+//         if (iContentLength >= 0)
+//         {
+//
+//            INFORMATION(LOG_HTTP_PREFIX << iIteration << ". step " << tick1.elapsed().integral_second() << " Content-Length: " << (integral_byte)(memsize) iContentLength);
+//
+//         }
+//         else
+//         {
+//
+//            INFORMATION(LOG_HTTP_PREFIX << iIteration << ". step " << tick1.elapsed().integral_second());
+//
+//         }
+//
+//
+//         if (HTTP_DEBUG_LEVEL >= DEBUG_LEVEL_SICK)
+//         {
+//
+//            INFORMATION(LOG_HTTP_PREFIX << "iSelectTimeoutSeconds=" << iSelectTimeoutSeconds);
+//
+//         }
+//
+//         iIteration++;
+//
+//      }
+//
+////      keeplive.keep_alive();
+//
+//      set["get_headers"] = psocket->outheaders();
+//
+//      set["get_attrs"] = psocket->outattrs();
+//
+//      string strCookie = psocket->response().cookies().get_cookie_header();
+//
+//      set[__id(cookie)] = strCookie;
+//
+//      ::e_status estatus = error_failed;
+//
+//      i32 iStatusCode;
+//
+//      psocket->outattr("http_status_code").as(iStatusCode);
+//
+//      set["http_status_code"] = iStatusCode;
+//
+//      string strStatus;
+//      
+//      strStatus = psocket->outattr("http_status");
+//
+//      set["http_status"] = strStatus;
+//
+//      iContentLength = set["http_content_length"].i64();
+//
+//      iBodySizeDownloaded = set["http_body_size_downloaded"].i64();
+//
+//      INFORMATION(LOG_HTTP_PREFIX
+//         << strUrl
+//         << " Status: "
+//         << iStatusCode
+//         << " - "
+//         << strStatus
+//         << " Content Length : "
+//         << (integral_byte)(memsize)iContentLength
+//         << ", Body Download : "
+//         << iBodySizeDownloaded
+//         << ", Loop : "
+//         << iEnteredLoop
+//         << ", "
+//         << (psocket->m_b_complete ? "Finished!" : "Incomplete!"));
+//         //iHttpGetSerial,
+//         //.c_str(),
+//         //,
+//         //strStatus.c_str(),
+//         //iContentLength,
+//         //iBodySizeDownloaded,
+//         //iEnteredLoop,
+//         
+//      //);
+//
+//      if (set.has_property("cancel") && set["cancel"].get_bool())
+//      {
+//
+//         psocket->m_estatus = error_connection_cancelled;
+//
+//      }
+//      else if (iStatusCode == 0)
+//      {
+//
+//         ::duration tickElapse = tickStart.elapsed();
+//
+//         if (iTry < iTryCount && tickElapse < tickTotalTimeout)
+//         {
+//
+//            task_sleep(300_ms);
+//
+//            if (::task_get_run())
+//            {
+//
+//               goto retry;
+//
+//            }
+//
+//         }
+//
+//         INFORMATION(LOG_HTTP_PREFIX << "URL: " << strUrl << " Too much tries("<< iTry <<")");
+//
+//         estatus = error_http;
+//
+//      }
+//      else if (::failed(psocket->m_estatus))
+//      {
+//
+//         estatus = psocket->m_estatus;
+//
+//      }
+//      else if ((iStatusCode >= 200 && iStatusCode <= 299) || psocket->outattr("http_status_code").is_empty())
+//      {
+//
+//         estatus = ::success;
+//
+//      }
+//      else if (iStatusCode >= 300 && iStatusCode <= 399)
+//      {
+//
+//         string strCa2Realm;
+//         
+//         strCa2Realm = psocket->outheader("ca2realm-x");
+//
+//         if (::str().begins_ci(strCa2Realm, "not licensed: "))
+//         {
+//
+//            auto tick2 = ::duration::now();
+//
+//            INFORMATION(LOG_HTTP_PREFIX << "Not Licensed Result Total time ::http::apex::context::get(\"" << strUrl.Left(minimum(255, strUrl.get_length())) << "\") " << tick1.elapsed().integral_second());
+//
+//            string strLocation;
+//            
+//            strLocation = psocket->outheader("Location");
+//
+//            throw ::exception(error_licensing, "realm:"+strCa2Realm+",location:"+ strLocation);
+//
+//            return false;
+//
+//         }
+//
+//         string strLocation;
+//         
+//         strLocation = psocket->outheader("location");
+//
+//         if (set.has_property("redirect_location"))
+//         {
+//
+//            set["redirect_location"] = strLocation;
+//
+//            estatus = ::success_http_redirection;
+//
+//         }
+//         else if (strLocation.has_char())
+//         {
+//
+//
+//            if (strLocation.find_ci("http://") == 0 || strLocation.find_ci("https://") == 0)
+//            {
+//
+//               strRedirect = strLocation;
+//
+//               goto retry;
+//
+//            //   return http_get(psocket, strLocation, set);
+//
+//            }
+//            else
+//            {
+//
+//               ::file::path pathBase = purl->get_protocol(strUrl) + purl->get_server(strUrl);
+//
+//               strLocation = pathBase / strLocation;
+//
+//               goto retry;
+//
+//            }
+//
+//         }
+//
+//      }
+//      else if (iStatusCode == 401)
+//      {
+//
+//         //if (strSessId.has_char() && puser.is_set() && iRetrySession < 3)
+//         //{
+//
+//         //   psession->account()->not_auth(pszUrl);
+//
+//         //   iRetrySession++;
+//
+//         //   goto retry_session;
+//
+//         //}
+//
+//         estatus = error_http;
+//
+//      }
+//      else
+//      {
+//
+//         estatus = error_http;
+//
+//      }
+//
+//      set["get_status"] = estatus;
+//
+//      if (set["http_listener"].cast < ::http::listener >() != nullptr)
+//      {
+//
+//         set["http_listener"].cast < ::http::listener >()->on_http_complete(psocket, estatus);
+//
+//      }
+//
+//      if (set.has_property("get_response"))
+//      {
+//
+//         const char * pszData = (const char *)psocket->GetDataPtr();
+//
+//         strsize iSize = psocket->GetContentLength();
+//
+//         string strResponse(pszData, iSize);
+//
+//         set["get_response"] = strResponse;
+//
+//      }
+//
+//      if (set.has_property("get_memory"))
+//      {
+//
+//         memory_base * pmemory = set.cast < memory_base >("get_memory");
+//
+//         if (pmemory != nullptr)
+//         {
+//
+//            pmemory->assign(psocket->GetDataPtr(), psocket->GetContentLength());
+//
+//         }
+//         else
+//         {
+//
+//            set["get_memory"] = __new(memory(psocket->GetDataPtr(), psocket->GetContentLength()));
+//
+//         }
+//
+//      }
+//
+//      INFORMATION(LOG_HTTP_PREFIX << "Total time " << tick1.elapsed().integral_second());
+//
       return true;
 
    }
@@ -2638,6 +2642,13 @@ namespace http
          pmessageMessage->m_bRet = false;
 
          return;
+
+      }
+
+      if (::is_null(psocket))
+      {
+
+         throw exception(error_wrong_state);
 
       }
 

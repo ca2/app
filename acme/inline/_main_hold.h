@@ -1,3 +1,16 @@
+#ifdef CLASS_DECL_CORE
+#include "core/user/user/user.h"
+#include "core/platform/system.h"
+#elif defined(CLASS_DECL_BASE)
+#include "base/user/user/user.h"
+#include "base/platform/system.h"
+#elif defined(CLASS_DECL_AXIS)
+#include "axis/user/user/user.h"
+#include "axis/platform/system.h"
+#elif defined(CLASS_DECL_AURA)
+#include "aura/user/user/user.h"
+#include "aura/platform/system.h"
+#endif
 
 
 #ifdef CUBE
@@ -22,9 +35,9 @@ public:
 //#endif
 
 
-#ifdef APPLICATION
-   ::static_application_factory < ::APPLICATION::application > m_factoryApplication{ __APP_ID };
-#endif
+//#ifdef APPLICATION
+//   ::static_application_factory < ::APPLICATION::application > m_factoryApplication{ __APP_ID };
+//#endif
 #if defined(CUBE) && defined(HAS_AUDIO) && HAS_AUDIO
    ::system_setup m_factoryAudio{ &::audio_factory, "audio" };
 #endif

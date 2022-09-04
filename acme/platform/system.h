@@ -459,7 +459,9 @@ public:
    
    virtual bool fast_is_decompressable_folder(const ::file::path & path);
 
-   __pointer(::sequence < ::conversation >) message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
+   __pointer(::sequencer < ::conversation >) create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
+
+   //__pointer(::sequence < ::conversation >) message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
 
 
    virtual void windowing_post(const ::procedure & procedure);

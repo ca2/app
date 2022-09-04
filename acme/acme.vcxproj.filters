@@ -2687,7 +2687,7 @@
     <ClInclude Include="platform\restore.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\sequence.h">
+    <ClInclude Include="platform\sequence1.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\serial.h">
@@ -2792,8 +2792,14 @@
     <ClInclude Include="user\user\_constant.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\_shape.h">
+    <ClInclude Include="platform\sequencer.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry2d\_shape.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\_.h">
+      <Filter>Header Files\filesystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3831,6 +3837,9 @@
     </ClCompile>
     <ClCompile Include="platform\_main_hold_base.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\tracer.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

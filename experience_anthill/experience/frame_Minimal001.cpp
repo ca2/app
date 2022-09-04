@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+#include "frame_Minimal001.h"
 #include "base/user/experience/frame_window.h"
 #include "base/user/experience/size_manager.h"
 #include "base/user/experience/move_manager.h"

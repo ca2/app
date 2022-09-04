@@ -1,10 +1,11 @@
 #pragma once
 
 
+#include "frame.h"
+
+
 namespace experience_tranquillum
 {
-
-
 
 
    class CLASS_DECL_APP_EXPERIENCE_TRANQUILLUM frame_008 :

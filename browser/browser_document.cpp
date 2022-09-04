@@ -51,7 +51,7 @@ namespace browser
    bool document::on_open_document(const ::payload & payloadFile)
    {
 
-      impact * pimpact = get_type_impact < impact >();
+      impact * pimpact = get_typed_impact < impact >();
 
       if(pimpact == nullptr)
       {
@@ -94,18 +94,18 @@ namespace browser
          }
 
       }
-      else if(get_type_impact < ::user::plain_edit_impact >() != nullptr
+      else if(get_typed_impact < ::user::plain_edit_impact >() != nullptr
               && pcontext->m_papexcontext->file().exists(payloadFile)
               && (str = pcontext->m_papexcontext->file().as_string(payloadFile)).has_char())
       {
 
-         get_type_impact < ::user::plain_edit_impact >()->_001SetText(str.Left(84),::e_source_user);
+         get_typed_impact < ::user::plain_edit_impact >()->_001SetText(str.Left(84),::e_source_user);
 
       }
-      else if(get_type_impact < ::userex::pane_tab_impact >() != nullptr)
+      else if(get_typed_impact < ::userex::pane_tab_impact >() != nullptr)
       {
 
-         get_type_impact < ::userex::pane_tab_impact >()->set_current_tab_by_id(MAIN_IMPACT);
+         get_typed_impact < ::userex::pane_tab_impact >()->set_current_tab_by_id(MAIN_IMPACT);
 
       }
 

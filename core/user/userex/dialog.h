@@ -11,7 +11,7 @@ class CLASS_DECL_CORE dialog :
 public:
 
 
-   __pointer(::form_document)             m_pdocument;
+   __pointer(::form_document)             m_pformdocument;
    __pointer(simple_frame_window)         m_pframe;
    __pointer(::user::form_impact)           m_pform;
    string                                 m_strMatter;

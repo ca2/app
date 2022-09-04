@@ -14,10 +14,10 @@ namespace user
       id_map < int >          m_mapCommandImage;
       ::i32_map < atom >        m_mapImageCommand;
 
-      __pointer(::image_list)      m_pil;
-      __pointer(::image_list)      m_pilHue;
-      __pointer(::image_list)      m_pilBlend;
-      __pointer(::image_list)      m_pilHueLight;
+      __pointer(::image_list)      m_pimagelist;
+      __pointer(::image_list)      m_pimagelistHue;
+      __pointer(::image_list)      m_pimagelistBlend;
+      __pointer(::image_list)      m_pimagelistHueLight;
       ::write_text::font_pointer       m_pfontMenu;
 
 

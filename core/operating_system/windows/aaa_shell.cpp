@@ -34,13 +34,13 @@ namespace windows
 
       SHGetMalloc(&m_pmalloc);
 
-      SHGetImageList(SHIL_SMALL, IID_IImageList, (void **) &m_pilSmall);
+      SHGetImageList(SHIL_SMALL, IID_IImageList, (void **) &m_pimagelistSmall);
 
-      SHGetImageList(SHIL_LARGE, IID_IImageList, (void **)& m_pilLarge);
+      SHGetImageList(SHIL_LARGE, IID_IImageList, (void **)& m_pimagelistLarge);
 
-      SHGetImageList(SHIL_EXTRALARGE, IID_IImageList, (void **)& m_pilExtraLarge);
+      SHGetImageList(SHIL_EXTRALARGE, IID_IImageList, (void **)& m_pimagelistExtraLarge);
 
-      SHGetImageList(SHIL_JUMBO, IID_IImageList, (void **)& m_pilJumbo);
+      SHGetImageList(SHIL_JUMBO, IID_IImageList, (void **)& m_pimagelistJumbo);
 
 
 
@@ -1165,11 +1165,11 @@ pacmedirectory->is(strPath))
    int shell::add_icon(int iSize, HICON hicon, color32_t crBk, int iImage)
    {
 
-      synchronous_lock synchronouslock(m_pil[iSize]->mutex());
+      synchronous_lock synchronouslock(m_pimagelist[iSize]->mutex());
 
-      synchronous_lock slHover(m_pilHover[iSize]->mutex());
+      synchronous_lock slHover(m_pimagelistHover[iSize]->mutex());
 
-      iImage = m_pil[iSize]->add_icon_os_data(hicon, iImage);
+      iImage = m_pimagelist[iSize]->add_icon_os_data(hicon, iImage);
 
       iImage = add_hover_image(iSize, iImage, crBk);
 
@@ -1190,7 +1190,7 @@ pacmedirectory->is(strPath))
 
          pinfo = pinfo16 == nullptr ? pinfo48 : pinfo16;
 
-         iImage = add_system_icon(iSize, m_pilSmall, pinfo, crBk, bUsed, iImage);
+         iImage = add_system_icon(iSize, m_pimagelistSmall, pinfo, crBk, bUsed, iImage);
 
       }
       else if (iSize <= 32)
@@ -1198,7 +1198,7 @@ pacmedirectory->is(strPath))
 
          pinfo = pinfo48 == nullptr ? pinfo16 : pinfo48;
 
-         iImage = add_system_icon(iSize, m_pilLarge, pinfo, crBk, bUsed, iImage);
+         iImage = add_system_icon(iSize, m_pimagelistLarge, pinfo, crBk, bUsed, iImage);
 
       }
       else if (iSize <= 48)
@@ -1206,7 +1206,7 @@ pacmedirectory->is(strPath))
 
          pinfo = pinfo48 == nullptr ? pinfo16 : pinfo48;
 
-         iImage = add_system_icon(iSize, m_pilExtraLarge, pinfo, crBk, bUsed, iImage);
+         iImage = add_system_icon(iSize, m_pimagelistExtraLarge, pinfo, crBk, bUsed, iImage);
 
       }
       else
@@ -1214,7 +1214,7 @@ pacmedirectory->is(strPath))
 
          pinfo = pinfo48 == nullptr ? pinfo16 : pinfo48;
 
-         iImage = add_system_icon(iSize, m_pilJumbo, pinfo, crBk, bUsed, iImage);
+         iImage = add_system_icon(iSize, m_pimagelistJumbo, pinfo, crBk, bUsed, iImage);
 
       }
 

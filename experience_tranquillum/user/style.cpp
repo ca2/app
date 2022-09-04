@@ -1,9 +1,19 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+#include "base/user/simple/scroll_bar.h"
 #include "base/user/user/tab_pane.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/write_text/font.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/graphics/draw2d/path.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/user/user/frame.h"
+#include "style.h"
+#include "base/user/user/tab.h"
+#include "base/user/user/tab_data.h"
+#include "base/user/user/split_layout.h"
+#include "base/platform/session.h"
 //#include "core/user/userex/_userex.h"
 // pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
@@ -545,7 +555,7 @@ namespace experience_tranquillum
 
       pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
-      ptab->m_dcextension.get_text_extent(pgraphics, MAGIC_PALACE_TAB_SIZE, ptab->get_data()->m_sizeSep);
+      ptab->m_pdcextension->get_text_extent(pgraphics, MAGIC_PALACE_TAB_SIZE, ptab->get_data()->m_sizeSep);
 
       if (ptab->get_data()->m_bVertical)
       {
@@ -567,11 +577,11 @@ namespace experience_tranquillum
 
             string str = pane.get_title();
 
-            pane.do_split_layout(ptab->m_dcextension, pgraphics);
+            pane.do_split_layout(ptab->m_pdcextension, pgraphics);
 
             ::size_i32 size;
 
-            ptab->m_dcextension.get_text_extent(pgraphics, str, size);
+            ptab->m_pdcextension->get_text_extent(pgraphics, str, size);
 
 
 
@@ -664,11 +674,11 @@ namespace experience_tranquillum
 
             string str = pane.get_title();
 
-            pane.do_split_layout(ptab->m_dcextension, pgraphics);
+            pane.do_split_layout(ptab->m_pdcextension, pgraphics);
 
             ::size_i32 size;
 
-            ptab->m_dcextension.get_text_extent(pgraphics, str, size);
+            ptab->m_pdcextension->get_text_extent(pgraphics, str, size);
 
             ::write_text::text_metric metric;
 

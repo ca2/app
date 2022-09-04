@@ -7,74 +7,74 @@ namespace user
 
 
    
-   template < typename CHILD >
-   inline bool interaction::get_typed_child(CHILD*& pchild)
-   {
+   //template < typename CHILD >
+   //inline bool interaction::get_typed_child(CHILD*& pchild)
+   //{
 
-      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+   //   auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
-      if (!puserinteractionpointeraChild)
-      {
+   //   if (!puserinteractionpointeraChild)
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      return puserinteractionpointeraChild->get_typed_child(pchild);
+   //   return puserinteractionpointeraChild->get_typed_child(pchild);
 
-   }
+   //}
 
-   template < typename CHILD >
-   inline __pointer(CHILD) interaction::get_typed_child()
-   {
+   //template < typename CHILD >
+   //inline __pointer(CHILD) interaction::get_typed_child()
+   //{
 
-      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+   //   auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
-      if (!puserinteractionpointeraChild)
-      {
+   //   if (!puserinteractionpointeraChild)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      return puserinteractionpointeraChild->get_typed_child < CHILD >();
+   //   return puserinteractionpointeraChild->get_typed_child < CHILD >();
 
-   }
+   //}
 
 
-   template < typename CHILD >
-   inline bool interaction_array::get_typed_child(CHILD*& pchild)
-   {
+   //template < typename CHILD >
+   //inline bool interaction_array::get_typed_child(CHILD*& pchild)
+   //{
 
-      for (i32 i = 0; i < this->interaction_count(); i++)
-      {
+   //   for (i32 i = 0; i < this->interaction_count(); i++)
+   //   {
 
-         pchild = this->interaction_at(i).cast < CHILD >();
+   //      pchild = this->interaction_at(i).cast < CHILD >();
 
-         if (pchild)
-         {
+   //      if (pchild)
+   //      {
 
-            return true;
+   //         return true;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      for (i32 i = 0; i < this->interaction_count(); i++)
-      {
+   //   for (i32 i = 0; i < this->interaction_count(); i++)
+   //   {
 
-         if (this->interaction_at(i)->get_typed_child(pchild))
-         {
+   //      if (this->interaction_at(i)->get_typed_child(pchild))
+   //      {
 
-            return true;
+   //         return true;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
 } // namespace user

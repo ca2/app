@@ -135,7 +135,9 @@ void nano_message_box::calculate_size()
 }
 
 
-void nano_message_box::display(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+
+
+void nano_message_box::initialize_message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
 {
 
    calculate_size();
@@ -227,38 +229,51 @@ void nano_message_box::display(const ::string & strMessage, const ::string & str
 
    }
 
-   main_asynchronous([this]()
-   {
 
-      create();
-
-      nano_window::display();
-
-      message_loop();
-
-   });
 
 }
 
 
-void nano_message_box::do_message_box(const ::string& strMessage, const string& strTitle, const ::e_message_box& emessagebox, const ::string & strDetails)
-{
+//void nano_message_box::initialize_message_box(const ::string & strMessage, const string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+//{
+//
+//   m_functionClose = [this](nano_window * pwindow)
+//   {
+//
+//      m_psequence->on_sequence();
+//
+//   };
+//
+//   m_strMessage = strMessage;
+//
+//   m_strDetails = strDetails;
+//
+//   m_emessagebox = emessagebox;
+//
+//   m_strTitle = strTitle;
+//
+//}
 
-   m_functionClose = [this](nano_window* pwindow)
-   {
 
-      m_psequence->on_sequence();
 
-   };
-
-   main_asynchronous([this, strMessage, strTitle, emessagebox, strDetails]()
-      {
-
-         display(strMessage, strTitle, emessagebox, strDetails);
-
-      });
-
-}
+//void nano_message_box::do_message_box(const ::string& strMessage, const string& strTitle, const ::e_message_box& emessagebox, const ::string & strDetails)
+//{
+//
+//   m_functionClose = [this](nano_window* pwindow)
+//   {
+//
+//      m_psequence->on_sequence();
+//
+//   };
+//
+//   main_asynchronous([this, strMessage, strTitle, emessagebox, strDetails]()
+//      {
+//
+//         display(strMessage, strTitle, emessagebox, strDetails);
+//
+//      });
+//
+//}
 
 
 void nano_message_box::on_create()
@@ -339,11 +354,9 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::object * pobject, const char * 
    
 #endif
    
-   auto psequence = pobject->message_box(pszMessage, pszTitle, emessagebox, pszDetails);
+   auto psequencer = pobject->create_message_box_sequencer(pszMessage, pszTitle, emessagebox, pszDetails);
    
-   auto & sequence = *psequence;
-    
-   auto atomResult = sequence->do_synchronously();
+   auto atomResult = psequencer->do_synchronously();
    
 //   auto pmanualresetevent = __new(manual_reset_event);
 //   
@@ -456,8 +469,8 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
    
 #endif
    
-   main_asynchronous([ pmessagebox, pobject ]()
-   {
+   //main_asynchronous([ pmessagebox, pobject ]()
+   //{
 
       auto pnanomessagebox = pobject->__create_new < nano_message_box >();
    
@@ -465,7 +478,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
    
       manual_reset_event event;
 
-      pnanomessagebox->display(
+      pnanomessagebox->initialize_message_box(
          pmessagebox->m_strMessage,
          pmessagebox->m_strTitle,
          pmessagebox->m_emessagebox,
@@ -474,18 +487,20 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
       pnanomessagebox->m_functionClose = [ pmessagebox ](nano_window * pwindow)
       {
       
-         auto idResult = pwindow->m_atomResult;
+         auto result = pwindow->m_payloadResult;
          
          if(pmessagebox->m_function)
          {
       
-            pmessagebox->m_function(idResult);
+            pmessagebox->m_function(result);
             
          }
       
       };
 
-   });
+      pnanomessagebox->do_asynchronously();
+
+   //});
 
 }
 
@@ -500,15 +515,17 @@ void nano_message_box::on_click(const ::atom & atom, ::user::mouse * pmouse)
 
       pdetailswindow->m_strMessage = m_strDetails;
 
-      pdetailswindow->display(m_strDetails, m_strTitle + " : Details", e_message_box_ok, m_strDetails);
+      pdetailswindow->initialize_message_box(m_strDetails, m_strTitle + " : Details", e_message_box_ok, m_strDetails);
 
-      m_atomResult.clear();
+      pdetailswindow->do_synchronously();
+
+      m_payloadResult.unset();
 
       return;
 
    }
 
-   m_atomResult = atom;
+   m_payloadResult = atom;
 
    destroy();
 
@@ -523,9 +540,9 @@ void nano_message_box::on_right_click(const ::atom & atom, ::user::mouse * pmous
    pbutton->m_functionClose = [this](nano_window * pwindow)
    {
 
-      auto atomResult = pwindow->m_atomResult;
+      auto result = pwindow->m_payloadResult;
 
-      if (atomResult == e_dialog_result_yes)
+      if (result == e_dialog_result_yes)
       {
 
          display_temporary_file_with_text(m_strMessage + "\n\n" + m_strDetails);
@@ -534,7 +551,9 @@ void nano_message_box::on_right_click(const ::atom & atom, ::user::mouse * pmous
 
    };
 
-   pbutton->display("Dump to File...", pmouse->m_point.x, pmouse->m_point.y);
+   pbutton->initialize_popup_button("Dump to File...", pmouse->m_point.x, pmouse->m_point.y);
+
+   pbutton->do_asynchronously();
 
 }
 

@@ -129,7 +129,7 @@ namespace userstack
 
       SetTimer(888888, 2000, nullptr);
 
-      __pointer(frame) pframe = GetTypedParent < frame > ();
+      __pointer(frame) pframe = get_typed_parent < frame > ();
 
       pframe->m_pimpact = this;
       pframe->m_pdocument = get_document();

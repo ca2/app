@@ -30,6 +30,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma once
 
 
+#include "apex/networking/sockets/basic/socket_handler.h"
+
+
 namespace sockets
 {
 
@@ -50,7 +53,7 @@ namespace sockets
          list < Event * >              m_eventplist;
          bool                          m_bQuit;
          tcp_socket *                  m_ptcpsocket;
-         port_t                        m_port;
+         ::networking::port_t          m_port;
 
 
 

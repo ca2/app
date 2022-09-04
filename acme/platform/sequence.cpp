@@ -40,5 +40,3 @@ void finalize_sequence_critical_section()
 
 }
 
-
-

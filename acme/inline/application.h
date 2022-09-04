@@ -9,6 +9,9 @@
 #include "_main_hold.h"
 
 
+DECLARE_APPLICATION(APPLICATION);
+
+
 //__FACTORY_IMPORT void IDENTIFIER_CONCATENATE(APPLICATION, _factory)(::factory::factory *);
 
 
@@ -52,7 +55,7 @@ int main(int argc, char * argv[], char * envp[])
 
    auto pmainhold = __new(main_hold);
 
-   auto papp = __new(APPLICATION::application);
+   auto papp = IDENTIFIER_CONCATENATE(new_, APPLICATION)();
 
    pmainhold->m_papp = papp;
 

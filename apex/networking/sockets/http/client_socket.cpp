@@ -1,6 +1,5 @@
 #include "framework.h"
-#include "apex/id.h"
-#include "apex/networking/sockets/_sockets.h"
+#include "client_socket.h"
 
 
 #define HEAVY_HTTP_LOG 0
@@ -386,12 +385,12 @@ namespace sockets
 
       OnContent();
 
-      if(!m_bNoClose || m_b_close_when_complete)
-      {
+      //if(!m_bNoClose || m_b_close_when_complete)
+      //{
 
-         SetCloseAndDelete();
+      //   SetCloseAndDelete();
 
-      }
+      //}
 
 #if !defined(BSD_STYLE_SOCKETS)
 
@@ -572,7 +571,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::Url(const string & url_in, string & host, port_t & port)
+   void http_client_socket::Url(const string & url_in, string & host, ::networking::port_t & port)
    {
 
       string url;
@@ -587,7 +586,7 @@ namespace sockets
 
       host = purl->get_server(url);
 
-      port = (port_t) purl->get_port(url);
+      port = (::networking::port_t) purl->get_port(url);
 
    }
 

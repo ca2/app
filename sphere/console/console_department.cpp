@@ -95,7 +95,7 @@ namespace console
 
       }
 
-      prompt_impact & i = *m_spprompt->m_pdocumenttemplate->get_document()->get_type_impact < prompt_impact >();
+      prompt_impact & i = *m_spprompt->m_pdocumenttemplate->get_document()->get_typed_impact < prompt_impact >();
 
       if(bShow)
       {
@@ -103,7 +103,7 @@ namespace console
          if(bCreate && bCreateMini)
          {
 
-            i.GetTypedParent < prompt_frame >()->show_mini();
+            i.get_typed_parent < prompt_frame >()->show_mini();
          }
          else
          {

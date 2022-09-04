@@ -6,7 +6,7 @@
 #include "core/user/user/_component.h"
 #include "core/constant/idpool.h"
 #include "core/networking/ftp/file_status.h"
-#include "core/user/userex/user.h"
+#include "core/user/user/user.h"
 
 
 

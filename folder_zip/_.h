@@ -5,6 +5,10 @@
 #include "acme/_.h"
 
 
+#include <zlib.h>
+#include <zutil.h>
+
+
 #if defined(_FOLDER_ZIP_LIBRARY)
 #define CLASS_DECL_FOLDER_ZIP  CLASS_DECL_EXPORT
 #else

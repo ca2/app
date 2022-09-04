@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace net
+namespace networking
 {
 
 
@@ -14,7 +14,7 @@ namespace net
       email_department();
 
 
-      bool utf8_mail(class ::net::email * pemail);
+      bool utf8_mail(class ::networking::email * pemail);
 
 
       virtual bool syntax_is_valid(const ::string & strEmailAddress);

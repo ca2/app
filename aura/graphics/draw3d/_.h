@@ -7,6 +7,6 @@
 //#include "ortho.h"
 
 
-
+class box;
 
 

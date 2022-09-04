@@ -3,7 +3,7 @@
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
 #include "tab_impact.h"
-#include "core/user/userex/user.h"
+#include "core/user/user/user.h"
 #include "form.h"
 #include "operation_document.h"
 #include "data.h"
@@ -88,7 +88,7 @@ namespace filemanager
 
          }
 
-         form * pformview = pdocument->get_type_impact < form >();
+         form * pformview = pdocument->get_typed_impact < form >();
 
          auto ptopic = create_topic(BROWSE_ID);
 

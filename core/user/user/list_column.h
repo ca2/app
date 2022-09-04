@@ -48,8 +48,8 @@ namespace user
       i32                                    m_iSmallImageWidth;
       index                                  m_iSubItem;
       index                                  m_iColumn;
-      __pointer(::image_list)                m_pil;
-      __pointer(::image_list)                m_pilHover;
+      __pointer(::image_list)                m_pimagelist;
+      __pointer(::image_list)                m_pimagelistHover;
       __pointer(draw_list_column)            m_pdrawlistcolumn;
       __pointer(::user::interaction)         m_puserinteractionTemplate;
       __pointer(::user::interaction_array)   m_puserinteractiona;

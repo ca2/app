@@ -3,7 +3,8 @@
 #include "aura/user/user/_component.h"
 #endif
 #include "aura/operating_system.h"
-#include "_data.h"
+#include "apex/filesystem/file/edit_file.h"
+#include "plain_text_tree.h"
 #include "aura/message.h"
 #ifdef WINDOWS_DESKTOP
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK

@@ -10,9 +10,7 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include  "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+
 
 //#include <nanogui/imagepanel.h>
 //#include <nanogui/opengl.h>

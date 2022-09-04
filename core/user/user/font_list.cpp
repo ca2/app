@@ -487,6 +487,22 @@ namespace user
    }
 
 
+   string font_list::get_sel_by_name()
+   {
+
+      return get_cur_sel_face_name();
+
+   }
+
+
+   string font_list::get_hover_by_name()
+   {
+
+      return get_cur_hover_face_name();
+
+   }
+
+
    item_pointer font_list::current_item()
    {
 

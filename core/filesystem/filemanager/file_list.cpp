@@ -9,7 +9,7 @@
 #include "core/filesystem/userfs/list_data.h"
 #include "core/filesystem/userfs/list_item.h"
 #include "core/filesystem/userfs/list_item_array.h"
-#include "core/user/userex/user.h"
+#include "core/user/user/user.h"
 #include "data.h"
 #include "document.h"
 #include "context_menu.h"
@@ -1324,7 +1324,7 @@ namespace filemanager
             pcolumn->m_atom = atom;
             pcolumn->m_bCustomDraw = true;
             pcolumn->m_bEditOnSecondClick = true;
-            pcolumn->m_pil = pcallback->GetActionButtonImageList(i);
+            pcolumn->m_pimagelist = pcallback->GetActionButtonImageList(i);
 
          }
 
@@ -1350,8 +1350,8 @@ namespace filemanager
          
          auto puser = psession->m_puser->m_pcoreuser;
 
-         pcolumn->m_pil = puser->shell()->GetImageList(filemanager_data()->m_iIconSize);
-         pcolumn->m_pilHover = puser->shell()->GetImageListHover(filemanager_data()->m_iIconSize);
+         pcolumn->m_pimagelist = puser->shell()->GetImageList(filemanager_data()->m_iIconSize);
+         pcolumn->m_pimagelistHover = puser->shell()->GetImageListHover(filemanager_data()->m_iIconSize);
          pcolumn->m_iSubItem = m_iSelectionSubItem;
          i++;
       }
@@ -1413,9 +1413,9 @@ namespace filemanager
          
          auto puser = psession->m_puser->m_pcoreuser;
 
-         pcolumn->m_pil = puser->shell()->GetImageList(iIconSize);
+         pcolumn->m_pimagelist = puser->shell()->GetImageList(iIconSize);
 
-         pcolumn->m_pilHover = puser->shell()->GetImageListHover(iIconSize);
+         pcolumn->m_pimagelistHover = puser->shell()->GetImageListHover(iIconSize);
 
       }
 
@@ -1439,9 +1439,9 @@ namespace filemanager
 
          pcolumn->m_sizeIcon.cy = 0;
 
-         pcolumn->m_pilHover = nullptr;
+         pcolumn->m_pimagelistHover = nullptr;
 
-         pcolumn->m_pil = nullptr;
+         pcolumn->m_pimagelist = nullptr;
 
 
       }

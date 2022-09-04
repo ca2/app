@@ -69,8 +69,6 @@ namespace user
 
       m_eview = impact_report;
 
-      m_pcolumna->Initialize(this);
-
       m_bHeaderCtrl = true;
       m_bSingleColumnMode = false;
 
@@ -5418,6 +5416,12 @@ namespace user
          return;
 
       }
+
+      __defer_construct_new(m_pcolumna);
+
+      m_pcolumna->Initialize(this);
+
+
 
       if (m_bAutoCreateListHeader)
       {

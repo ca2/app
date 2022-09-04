@@ -14,6 +14,7 @@ namespace user
 
    
    class menu_list_impact;
+   class menu_impact;
 
 
 } // namespace user

@@ -360,14 +360,14 @@ namespace userex
       if (ptopic->m_atom == id_after_change_text)
       {
 
-         auto * peditview = _001TypedWindow < ::userex::top_edit_impact >();
+         auto * peditimpact = _001TypedWindow < ::userex::top_edit_impact >();
 
-         if (peditview != nullptr && ptopic->m_puserelement == peditview)
+         if (peditimpact != nullptr && ptopic->m_puserelement == peditimpact)
          {
 
             string strText;
 
-            peditview->_001GetText(strText);
+            peditimpact->_001GetText(strText);
 
          }
 

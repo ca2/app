@@ -1944,19 +1944,19 @@ namespace user
    void document::update_all_impacts(::topic * ptopic)
    {
 
-      ASSERT(ptopic->m_psender == nullptr || !m_impacta.is_empty());
+      ASSERT(!ptopic || ptopic->m_psender == nullptr || !m_impacta.is_empty());
 
       for (auto & pimpact : m_impacta.ptra())
       {
 
          ASSERT_VALID(pimpact);
 
-         if (pimpact != ptopic->m_psender)
+         if (!ptopic || pimpact != ptopic->m_psender)
          {
 
             pimpact->handle(ptopic, nullptr);
 
-            if(ptopic->m_bRet)
+            if(ptopic && ptopic->m_bRet)
             {
 
                break;

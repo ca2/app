@@ -829,6 +829,8 @@ namespace user
 
       virtual ::point_i32 get_cursor_position();
 
+      virtual void set_cursor_position(const ::point_i32 & pointCursor);
+
       virtual void release_mouse_capture();
 
 

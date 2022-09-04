@@ -12458,6 +12458,23 @@ namespace user
    }
 
 
+   void interaction::set_cursor_position(const ::point_i32 & pointCursor)
+   {
+
+      auto pwindow = window();
+
+      if (::is_null(pwindow))
+      {
+
+         throw ::exception(::error_wrong_state);
+
+      }
+
+      pwindow->set_cursor_position(pointCursor);
+
+   }
+
+
    void interaction::release_mouse_capture()
    {
 

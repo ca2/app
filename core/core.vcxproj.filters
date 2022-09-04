@@ -770,9 +770,6 @@
     <ClInclude Include="user\rich_text\text_format.h">
       <Filter>Header Files\user\rich_text</Filter>
     </ClInclude>
-    <ClInclude Include="user\rich_text\text_format_object.h">
-      <Filter>Header Files\user\rich_text</Filter>
-    </ClInclude>
     <ClInclude Include="user\rich_text\_component.h">
       <Filter>Header Files\user\rich_text</Filter>
     </ClInclude>
@@ -996,6 +993,9 @@
       <Filter>Header Files\filesystem\filehandler</Filter>
     </ClInclude>
     <ClInclude Include="user\user\user.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\text_format_object.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1381,9 +1381,6 @@
     <ClCompile Include="user\rich_text\text_format.cpp">
       <Filter>Source Files\user\rich_text</Filter>
     </ClCompile>
-    <ClCompile Include="user\rich_text\text_format_object.cpp">
-      <Filter>Source Files\user\rich_text</Filter>
-    </ClCompile>
     <ClCompile Include="user\databaseuser\key_mesh_data.cpp">
       <Filter>Source Files\user\databaseuser</Filter>
     </ClCompile>
@@ -1499,6 +1496,9 @@
       <Filter>Source Files\user\account</Filter>
     </ClCompile>
     <ClCompile Include="user\user\user.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\text_format_object.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>

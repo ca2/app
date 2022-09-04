@@ -820,6 +820,7 @@
     <ClCompile Include="user\user\multiple_document_template.cpp" />
     <ClCompile Include="user\user\network_configuration.cpp" />
     <ClCompile Include="user\user\picture.cpp" />
+    <ClCompile Include="user\user\picture_impl.cpp" />
     <ClCompile Include="user\user\picture_interaction.cpp" />
     <ClCompile Include="user\user\server.cpp" />
     <ClCompile Include="user\user\single_document_template.cpp" />
@@ -920,6 +921,7 @@
     <ClInclude Include="user\user\data_exchange.h" />
     <ClInclude Include="user\user\image_list.h" />
     <ClInclude Include="user\user\impact_data.h" />
+    <ClInclude Include="user\user\picture_impl.h" />
     <ClInclude Include="user\user\server.h" />
     <ClInclude Include="user\user\show.h" />
     <ClInclude Include="user\user\split_pane.h" />

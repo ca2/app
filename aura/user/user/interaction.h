@@ -409,8 +409,8 @@ namespace user
       virtual bool on_set_size(const ::size_i32 & size, enum_layout elayout);
 
       //virtual interaction_draw2d * get_draw2d();
-      virtual double point_dpi(double d);
-      virtual double dpiy(double d);
+      double point_dpi(double d) override;
+      double dpiy(double d) override;
 
 
       virtual float get_dpi_for_window();
@@ -1171,7 +1171,7 @@ namespace user
       virtual void ShowOwnedPopups(bool bShow = true);
 
 
-      virtual bool is_composite();
+      virtual bool is_composite() override;
 
       //virtual u32 GetStyle() const override;
       //virtual u32 GetExStyle() const override;
@@ -1214,13 +1214,13 @@ namespace user
 
       virtual void _001PrintBuffer(::draw2d::graphics_pointer & pgraphics);
       virtual void _001Print(::draw2d::graphics_pointer & pgraphics) ;
-      virtual void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics);
+      void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics) ;
       virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) ;
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _008CallOnDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void _008OnDraw(::draw2d::graphics_pointer & pgraphics) ;
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics);

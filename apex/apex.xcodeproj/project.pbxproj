@@ -1352,6 +1352,7 @@
 		9A9230C127EACE7F00B5A78D /* predicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = predicate.h; sourceTree = "<group>"; };
 		9A9230C427EACE7F00B5A78D /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A94DEEA282C583300F5C1CA /* application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
+		9A979C5528C489C90013DC54 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9AAE6EA2251921CC00F10692 /* interprocess_call.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interprocess_call.h; sourceTree = "<group>"; };
 		9AAE6EA3251921CC00F10692 /* interprocess_communication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = interprocess_communication.cpp; sourceTree = "<group>"; };
 		9AAE6EA4251921CC00F10692 /* interprocess_intercommunication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = interprocess_intercommunication.h; sourceTree = "<group>"; };
@@ -1925,6 +1926,7 @@
 		9A68B5B92511444B008DABD2 /* platform */ = {
 			isa = PBXGroup;
 			children = (
+				9A979C5528C489C90013DC54 /* _.h */,
 				9A68B60A2511444B008DABD2 /* _.cpp */,
 				9A23A28E26CE850300F98012 /* _application_service.cpp */,
 				9A68B5C72511444B008DABD2 /* _impl.h */,

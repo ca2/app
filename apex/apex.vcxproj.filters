@@ -54,9 +54,6 @@
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{533e8db8-72ac-4a56-b24d-f60871d5c7e5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\const">
-      <UniqueIdentifier>{d1dc7140-9c26-4249-9bf3-84fc6fbb92d7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{0c0346ef-bd1c-4a0a-85b1-cfd8ef8ec242}</UniqueIdentifier>
     </Filter>
@@ -192,6 +189,9 @@
     <Filter Include="Source Files\networking\sockets\webserver">
       <UniqueIdentifier>{a62b8d99-510e-44fa-8a41-3f09485af14e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\constant">
+      <UniqueIdentifier>{d1dc7140-9c26-4249-9bf3-84fc6fbb92d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -312,22 +312,22 @@
       <Filter>Header Files\inline</Filter>
     </ClInclude>
     <ClInclude Include="const\id.h">
-      <Filter>Header Files\const</Filter>
+      <Filter>Header Files\constant</Filter>
     </ClInclude>
     <ClInclude Include="const\idpool.h">
-      <Filter>Header Files\const</Filter>
+      <Filter>Header Files\constant</Filter>
     </ClInclude>
     <ClInclude Include="const\impact.h">
-      <Filter>Header Files\const</Filter>
+      <Filter>Header Files\constant</Filter>
     </ClInclude>
     <ClInclude Include="const\status.h">
-      <Filter>Header Files\const</Filter>
+      <Filter>Header Files\constant</Filter>
     </ClInclude>
     <ClInclude Include="const\status_range_authentication.h">
-      <Filter>Header Files\const</Filter>
+      <Filter>Header Files\constant</Filter>
     </ClInclude>
     <ClInclude Include="const\timer.h">
-      <Filter>Header Files\const</Filter>
+      <Filter>Header Files\constant</Filter>
     </ClInclude>
     <ClInclude Include="include\_.h">
       <Filter>Header Files\include</Filter>
@@ -507,7 +507,7 @@
       <Filter>Header Files\inline</Filter>
     </ClInclude>
     <ClInclude Include="const\thread.h">
-      <Filter>Header Files\const</Filter>
+      <Filter>Header Files\constant</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\_data.h">
       <Filter>Header Files\filesystem\file</Filter>
@@ -681,7 +681,7 @@
       <Filter>Header Files\message</Filter>
     </ClInclude>
     <ClInclude Include="const\charset.h">
-      <Filter>Header Files\const</Filter>
+      <Filter>Header Files\constant</Filter>
     </ClInclude>
     <ClInclude Include="platform\interprocess_communication.h">
       <Filter>Header Files\platform</Filter>
@@ -732,7 +732,7 @@
       <Filter>Header Files\crypto</Filter>
     </ClInclude>
     <ClInclude Include="const\aaa_simple_command.h">
-      <Filter>Header Files\const</Filter>
+      <Filter>Header Files\constant</Filter>
     </ClInclude>
     <ClInclude Include="parallelization\_.h">
       <Filter>Header Files\parallelization</Filter>
@@ -1147,6 +1147,12 @@
     </ClInclude>
     <ClInclude Include="networking\sockets\basic\tcp_socket_impl.h">
       <Filter>Header Files\networking\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\_constant.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\_.h">
+      <Filter>Header Files\filesystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -8843,7 +8843,7 @@ namespace aura
    ::aura::game * application::game()
    {
       
-      return m_pgame->m_pauragame;
+      return m_paquagame->m_pauragame;
       
    }
 

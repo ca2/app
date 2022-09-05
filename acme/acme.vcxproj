@@ -1045,6 +1045,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="operating_system\argcargv.cpp" />
     <ClCompile Include="operating_system\chronometer.cpp" />
     <ClCompile Include="operating_system\console.cpp" />
+    <ClCompile Include="operating_system\console_client.cpp" />
     <ClCompile Include="operating_system\debug.cpp" />
     <ClCompile Include="operating_system\file.cpp" />
     <ClCompile Include="operating_system\parallelization.cpp" />
@@ -1337,6 +1338,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="operating_system\argcargv.h" />
     <ClInclude Include="operating_system\chronometer.h" />
     <ClInclude Include="operating_system\console.h" />
+    <ClInclude Include="operating_system\console_client.h" />
     <ClInclude Include="operating_system\cross.h" />
     <ClInclude Include="operating_system\file.h" />
     <ClInclude Include="operating_system\graphics.h" />

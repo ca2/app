@@ -29,6 +29,8 @@ namespace user
    class place_holder;
    class split_bar;
 
+   class picture;
+   class picture_impl;
 
    class user;
    class document_manager;

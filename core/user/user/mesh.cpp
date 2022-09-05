@@ -3501,6 +3501,9 @@ namespace user
 
       on_enable_hover_select();
 
+
+      __defer_construct_new(m_pdcextension);
+
       m_pdcextension->initialize(this);
 
       //on_create_draw_item();

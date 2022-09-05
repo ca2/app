@@ -236,17 +236,22 @@ namespace user
 
       ::user::impact::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == id_after_change_text)
+      if (ptopic)
       {
 
-         auto peditview = _001TypedWindow < ::user::plain_edit_impact >();
-
-         if (peditview != nullptr && ptopic->m_puserelement == peditview)
+         if (ptopic->m_atom == id_after_change_text)
          {
 
-            string strText;
+            auto peditimpact = _001TypedWindow < ::user::plain_edit_impact >();
 
-            peditview->_001GetText(strText);
+            if (peditimpact != nullptr && ptopic->m_puserelement == peditimpact)
+            {
+
+               string strText;
+
+               peditimpact->_001GetText(strText);
+
+            }
 
          }
 

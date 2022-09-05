@@ -8,6 +8,10 @@ class image_drawing_options;
 class image_frame;
 class image_frame_array;
 class save_image;
+class image_list;
+
+
+using image_list_pointer = __pointer(::image_list);
 
 
 CLASS_DECL_AURA void vertical_swap_copy_colorref(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc);

@@ -1712,5 +1712,11 @@
     <ClInclude Include="graphics\user\_.h">
       <Filter>Header Files\graphics\user</Filter>
     </ClInclude>
+    <ClInclude Include="gpu\gpu\_constant.h">
+      <Filter>Header Files\gpu\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\_.h">
+      <Filter>Header Files\gpu</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

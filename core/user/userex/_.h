@@ -18,6 +18,8 @@ namespace userex
    class top_edit_impact;
    class top_toggle_impact;
 
+   class group_image_list_impact;
+
 
 } // namespace userex
 

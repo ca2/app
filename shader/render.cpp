@@ -1,7 +1,17 @@
 #include "framework.h"
-
+#include "render.h"
+#include "application.h"
+#include "aura/gpu/gpu/shader.h"
+#include "aura/gpu/gpu/approach.h"
+#include "aura/gpu/gpu/context.h"
+#include "aura/gpu/gpu/program.h"
+#include "aura/gpu/gpu/buffer.h"
 #include <math.h>
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/graphics/write_text/font.h"
+#include "aura/user/user/interaction.h"
 
 
 CLASS_DECL_ACME ::color::color dk_red(); // <3ThomasBorregaardS�rensen!!
@@ -293,9 +303,7 @@ namespace app_shader
 
                //auto puser = psession->user();
 
-               auto pwindow = m_puserinteraction->window();
-
-               auto pointCursor = pwindow->get_cursor_position();
+               auto pointCursor = m_puserinteraction->get_cursor_position();
 
                float x = (float) pointCursor.x;
 

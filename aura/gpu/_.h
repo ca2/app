@@ -1,12 +1,8 @@
-//
-//  _.h
-//  aura
-//
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 04/09/22.
-//
-
-#ifndef __h
-#define __h
+// Changed by camilo on 2021-12-10 19:36 PM <3ThomasBorregaardS�rensen!!
+#pragma once
 
 
-#endif /* __h */
+#include "gpu/_.h"
+
+
+

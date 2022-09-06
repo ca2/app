@@ -2,6 +2,7 @@
 
 
 #include "aura/user/user/tool_window.h"
+#include "core/user/user/font_combo_box.h"
 
 
 namespace user

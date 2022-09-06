@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "buffer.h"
 #include "aura/graphics/image/image.h"
 
 

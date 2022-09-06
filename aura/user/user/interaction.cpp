@@ -15885,29 +15885,34 @@ namespace user
 
       //handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == REDRAW_ID || ptopic->m_atom == m_atom)
+      if (ptopic)
       {
 
-         if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
+         if (ptopic->m_atom == REDRAW_ID || ptopic->m_atom == m_atom)
          {
-            
-            set_need_redraw();
 
-            post_redraw();
-            
+            if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
+            {
+
+               set_need_redraw();
+
+               post_redraw();
+
+            }
+
          }
-
-      }
-      else if (ptopic->m_atom == id_user_style_change)
-      {
-         
-         if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
+         else if (ptopic->m_atom == id_user_style_change)
          {
 
-            set_need_redraw();
+            if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
+            {
 
-            post_redraw();
-            
+               set_need_redraw();
+
+               post_redraw();
+
+            }
+
          }
 
       }

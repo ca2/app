@@ -1,5 +1,8 @@
 #include "framework.h"
-
+#include "opengl.h"
+#include "program.h"
+#include "shader.h"
+#include "buffer.h"
 
 
 //BEGIN_FACTORY(gpu_opengl)

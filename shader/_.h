@@ -20,6 +20,9 @@ namespace app_shader
    class main_window;
 
 
+   class render;
+
+
 } // namespace flag
 
 

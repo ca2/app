@@ -92,6 +92,9 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 #include "aura/game/_.h"
 
 
+#include "aura/gpu/_.h"
+
+
 #include "aura/user/_.h"
 
 

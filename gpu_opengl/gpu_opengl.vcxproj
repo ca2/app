@@ -196,7 +196,7 @@
       </HeaderFileName>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
       <PreprocessorDefinitions>_GPU_OPENGL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -368,7 +368,7 @@
       </HeaderFileName>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <PreprocessorDefinitions>_GPU_OPENGL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
@@ -549,7 +549,7 @@
       </HeaderFileName>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
       <PreprocessorDefinitions>_GPU_OPENGL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -714,7 +714,7 @@
       </HeaderFileName>
     </Midl>
     <ClCompile>
-      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <PreprocessorDefinitions>_GPU_OPENGL_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>

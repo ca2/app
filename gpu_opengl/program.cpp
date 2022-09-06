@@ -1,5 +1,6 @@
 #include "framework.h"
-
+#include "program.h"
+#include "aura/gpu/gpu/shader.h"
 
 
 namespace opengl

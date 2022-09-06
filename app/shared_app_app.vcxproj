@@ -169,6 +169,7 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -214,6 +215,7 @@
       <OpenMPSupport>false</OpenMPSupport>
       <StringPooling>true</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -255,6 +257,7 @@
       <CompileAsWinRT>false</CompileAsWinRT>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -300,6 +303,7 @@
       <OpenMPSupport>false</OpenMPSupport>
       <StringPooling>true</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

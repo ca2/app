@@ -1226,126 +1226,126 @@ namespace sockets
 //   }
 
 
-#if defined(IP_PKTINFO) && defined(BSD_STYLE_SOCKETS)
-
-   bool base_socket::SetIpPktinfo(bool x)
-   {
-
-      int optval = x ? 1 : 0;
-
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_PKTINFO, (char *)&optval, sizeof(optval)) == -1)
-      {
-      
-         FATAL("setsockopt(IPPROTO_IP, IP_PKTINFO) " << Errno << ", " << bsd_socket_error(Errno));
-      
-         return false;
-
-      }
-
-      return true;
-
-   }
-
-#endif
-
-
-#if defined(IP_RECVTOS) && defined(BSD_STYLE_SOCKETS)
-   
-
-   bool base_socket::SetIpRecvTOS(bool x)
-   {
-      
-      int optval = x ? 1 : 0;
-      
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVTOS, (char *)&optval, sizeof(optval)) == -1)
-      {
-      
-         FATAL("setsockopt(IPPROTO_IP, IP_RECVTOS) " << Errno << ", " << bsd_socket_error(Errno));
-      
-         return false;
-
-      }
-
-      return true;
-
-   }
-
-
-#endif
-
-
-#if defined(IP_RECVTTL) && defined(BSD_STYLE_SOCKETS)
-   
-
-   bool base_socket::SetIpRecvTTL(bool x)
-   {
-      
-      int optval = x ? 1 : 0;
-      
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVTTL, (char *)&optval, sizeof(optval)) == -1)
-      {
-         
-         FATAL("setsockopt(IPPROTO_IP, IP_RECVTTL) " << Errno << ", " << bsd_socket_error(Errno));
-         
-         return false;
-
-      }
-
-      return true;
-
-   }
-
-
-#endif
-
-
-#if defined(IP_RECVOPTS) && defined(BSD_STYLE_SOCKETS)
-   
-
-   bool base_socket::SetIpRecvopts(bool x)
-   {
-   
-      int optval = x ? 1 : 0;
-
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVOPTS, (char *)&optval, sizeof(optval)) == -1)
-      {
-
-         FATAL("setsockopt(IPPROTO_IP, IP_RECVOPTS) " << Errno << ", " << bsd_socket_error(Errno));
-
-         return false;
-
-      }
-
-      return true;
-
-   }
-
-#endif
+//#if defined(IP_PKTINFO) && defined(BSD_STYLE_SOCKETS)
+//
+//   bool base_socket::SetIpPktinfo(bool x)
+//   {
+//
+//      int optval = x ? 1 : 0;
+//
+//      if (setsockopt(GetSocket(), IPPROTO_IP, IP_PKTINFO, (char *)&optval, sizeof(optval)) == -1)
+//      {
+//
+//         FATAL("setsockopt(IPPROTO_IP, IP_PKTINFO) " << Errno << ", " << bsd_socket_error(Errno));
+//
+//         return false;
+//
+//      }
+//
+//      return true;
+//
+//   }
+//
+//#endif
+//
+//
+//#if defined(IP_RECVTOS) && defined(BSD_STYLE_SOCKETS)
+//
+//
+//   bool base_socket::SetIpRecvTOS(bool x)
+//   {
+//
+//      int optval = x ? 1 : 0;
+//
+//      if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVTOS, (char *)&optval, sizeof(optval)) == -1)
+//      {
+//
+//         FATAL("setsockopt(IPPROTO_IP, IP_RECVTOS) " << Errno << ", " << bsd_socket_error(Errno));
+//
+//         return false;
+//
+//      }
+//
+//      return true;
+//
+//   }
+//
+//
+//#endif
+//
+//
+//#if defined(IP_RECVTTL) && defined(BSD_STYLE_SOCKETS)
+//
+//
+//   bool base_socket::SetIpRecvTTL(bool x)
+//   {
+//
+//      int optval = x ? 1 : 0;
+//
+//      if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVTTL, (char *)&optval, sizeof(optval)) == -1)
+//      {
+//
+//         FATAL("setsockopt(IPPROTO_IP, IP_RECVTTL) " << Errno << ", " << bsd_socket_error(Errno));
+//
+//         return false;
+//
+//      }
+//
+//      return true;
+//
+//   }
+//
+//
+//#endif
 
 
-#if defined(IP_RETOPTS) && defined(BSD_STYLE_SOCKETS)
-   
-
-   bool base_socket::SetIpRetopts(bool x)
-   {
-   
-      int optval = x ? 1 : 0;
-
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_RETOPTS, (char *)&optval, sizeof(optval)) == -1)
-      {
-
-         FATAL("setsockopt(IPPROTO_IP, IP_RETOPTS) " << Errno << ", " << bsd_socket_error(Errno));
-
-         return false;
-
-      }
-
-      return true;
-
-   }
-
-
-#endif
+//#if defined(IP_RECVOPTS) && defined(BSD_STYLE_SOCKETS)
+//
+//
+//   bool base_socket::SetIpRecvopts(bool x)
+//   {
+//
+//      int optval = x ? 1 : 0;
+//
+//      if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVOPTS, (char *)&optval, sizeof(optval)) == -1)
+//      {
+//
+//         FATAL("setsockopt(IPPROTO_IP, IP_RECVOPTS) " << Errno << ", " << bsd_socket_error(Errno));
+//
+//         return false;
+//
+//      }
+//
+//      return true;
+//
+//   }
+//
+//#endif
+//
+//
+//#if defined(IP_RETOPTS) && defined(BSD_STYLE_SOCKETS)
+//
+//
+//   bool base_socket::SetIpRetopts(bool x)
+//   {
+//
+//      int optval = x ? 1 : 0;
+//
+//      if (setsockopt(GetSocket(), IPPROTO_IP, IP_RETOPTS, (char *)&optval, sizeof(optval)) == -1)
+//      {
+//
+//         FATAL("setsockopt(IPPROTO_IP, IP_RETOPTS) " << Errno << ", " << bsd_socket_error(Errno));
+//
+//         return false;
+//
+//      }
+//
+//      return true;
+//
+//   }
+//
+//
+//#endif
 
 
    bool base_socket::SetIpTOS(unsigned char tos)
@@ -1586,27 +1586,27 @@ namespace sockets
    bool base_socket::SetIpMulticastTTL(int ttl)
    {
 
-#if defined(IP_MULTICAST_TTL) && defined(BSD_STYLE_SOCKETS)
-
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(ttl)) == -1)
-      {
-
-         FATAL("setsockopt(IPPROTO_IP, IP_MULTICAST_TTL) " << Errno << ", " << bsd_socket_error(Errno));
-
-         return false;
-
-      }
-
-      return true;
-
-#else
-      
-      INFORMATION("ip option not available: IP_MULTICAST_TTL");
-      
-      return false;
-
-#endif
-
+//#if defined(IP_MULTICAST_TTL) && defined(BSD_STYLE_SOCKETS)
+//
+//      if (setsockopt(GetSocket(), IPPROTO_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(ttl)) == -1)
+//      {
+//
+//         FATAL("setsockopt(IPPROTO_IP, IP_MULTICAST_TTL) " << Errno << ", " << bsd_socket_error(Errno));
+//
+//         return false;
+//
+//      }
+//
+//      return true;
+//
+//#else
+//
+//      INFORMATION("ip option not available: IP_MULTICAST_TTL");
+//
+//      return false;
+//
+//#endif
+//
    }
 
 
@@ -1850,23 +1850,23 @@ namespace sockets
 
 #if defined(SO_NOSIGPIPE) && defined(BSD_STYLE_SOCKETS)
 
-   bool base_socket::SetSoNosigpipe(bool x)
-   {
-
-      int optval = x ? 1 : 0;
-
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_NOSIGPIPE, (char *)&optval, sizeof(optval)) == -1)
-      {
-
-         FATAL("setsockopt(SOL_SOCKET, SO_NOSIGPIPE)" << Errno << ", " << bsd_socket_error(Errno));
-
-         return false;
-
-      }
-
-      return true;
-
-   }
+//   bool base_socket::SetSoNosigpipe(bool x)
+//   {
+//
+//      int optval = x ? 1 : 0;
+//
+//      if (setsockopt(GetSocket(), SOL_SOCKET, SO_NOSIGPIPE, (char *)&optval, sizeof(optval)) == -1)
+//      {
+//
+//         FATAL("setsockopt(SOL_SOCKET, SO_NOSIGPIPE)" << Errno << ", " << bsd_socket_error(Errno));
+//
+//         return false;
+//
+//      }
+//
+//      return true;
+//
+//   }
 
 #endif
 
@@ -2451,23 +2451,23 @@ namespace sockets
 
 #if defined(SO_TIMESTAMP) && defined(BSD_STYLE_SOCKETS)
    
-   bool base_socket::SetSoTimestamp(bool x)
-   {
-   
-      int optval = x ? 1 : 0;
-   
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_TIMESTAMP, (char *)&optval, sizeof(optval)) == -1)
-      {
-
-         FATAL("setsockopt(SOL_SOCKET, SO_TIMESTAMP)" << Errno << ", " << bsd_socket_error(Errno));
-
-         return false;
-
-      }
-
-      return true;
-
-   }
+//   bool base_socket::SetSoTimestamp(bool x)
+//   {
+//   
+//      int optval = x ? 1 : 0;
+//   
+//      if (setsockopt(GetSocket(), SOL_SOCKET, SO_TIMESTAMP, (char *)&optval, sizeof(optval)) == -1)
+//      {
+//
+//         FATAL("setsockopt(SOL_SOCKET, SO_TIMESTAMP)" << Errno << ", " << bsd_socket_error(Errno));
+//
+//         return false;
+//
+//      }
+//
+//      return true;
+//
+//   }
 
 #endif
 

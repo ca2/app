@@ -52,7 +52,7 @@ namespace aqua
       virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 
 
-      virtual void defer_initialize_audio_playback(::wave::e_purpose epurpose = ::wave::purpose_playground);
+      virtual void defer_initialize_audio_playback(::wave::enum_purpose epurpose = ::wave::e_purpose_playground);
 
 
    };

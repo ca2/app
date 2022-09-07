@@ -3,6 +3,7 @@
 #include "aura/user/user/_component.h"
 #endif
 #include "aura/operating_system.h"
+#include "aura/platform/application.h"
 #include "apex/filesystem/file/edit_file.h"
 #include "plain_text_tree.h"
 #include "aura/message.h"
@@ -30,6 +31,7 @@
 #include "copydesk.h"
 #include "interaction_style.h"
 #include "text_composition_client.h"
+#include "aura/platform/session.h"
 
 
 namespace aura

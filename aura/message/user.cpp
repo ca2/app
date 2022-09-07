@@ -10,6 +10,7 @@
 #include "aura/user/user/user.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/interaction_impl.h"
+#include "aura/platform/session.h"
 
 
 #if defined(LINUX)

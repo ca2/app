@@ -51,7 +51,7 @@ namespace graphics
 
 #ifdef MACOS
 
-      m_pimageaBuffer->set_size(3);
+      m_pimageaBuffer->m_imagea.set_size(3);
 
 #else
 

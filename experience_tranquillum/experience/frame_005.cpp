@@ -8,6 +8,7 @@
 #include "base/user/experience/dock_manager.h"
 #include "base/user/experience/move_manager.h"
 #include "base/platform/session.h"
+#include "base/platform/system.h"
 
 
 #define GRIP_CORNER_LARGE_CX 16

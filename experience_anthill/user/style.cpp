@@ -15,6 +15,8 @@
 #include "base/user/user/toolbar.h"
 #include "base/user/user/split_layout.h"
 #include "base/user/user/user.h"
+#include "base/platform/system.h"
+#include "aura/platform/node.h"
 // pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
 #define MAGIC_PALACE_TAB_SIZE "-/-"

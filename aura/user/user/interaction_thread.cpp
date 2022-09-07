@@ -12,6 +12,7 @@
 #include "user.h"
 #include "system.h"
 #include "message.h"
+#include "aura/platform/session.h"
 
 
 #ifdef WINDOWS_DESKTOP

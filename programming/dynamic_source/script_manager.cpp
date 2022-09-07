@@ -1,10 +1,17 @@
 #include "framework.h"
+#include "script_manager.h"
+#include "script_cache.h"
+#include "script_compiler.h"
+#include "script_instance.h"
+#include "script_main.h"
+#include "ds_script.h"
+#include "session.h"
+#include "httpd_socket.h"
 #include "apex/networking/sockets/link_in_socket.h"
 #include "apex/networking/sockets/link_out_socket.h"
 #include "apex/filesystem/filesystem/file_watcher.h"
 #include "acme/id.h"
-
-//#include "aura/user/user/_component.h"
+#include "axis/platform/system.h"
 
 
 namespace dynamic_source

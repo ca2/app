@@ -11,6 +11,7 @@
 #include "axis/user/user/user.h"
 #include "html/graphics/border.h"
 #include "aura/user/user/interaction.h"
+#include "aura/platform/system.h"
 
 
 namespace html

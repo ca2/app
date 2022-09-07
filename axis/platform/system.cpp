@@ -9,6 +9,7 @@
 #include "axis/account/user_set.h"
 #include "session.h"
 #include "application.h"
+#include "axis/database/database/field.h"
 
 
 void axis_factory(::factory::factory * pfactory);

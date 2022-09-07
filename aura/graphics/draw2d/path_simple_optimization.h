@@ -2,12 +2,15 @@
 #pragma once
 
 
+#include "path_optimization.h"
+
+
 namespace draw2d
 {
 
 
    class path_simple_optimization :
-      virtual public path::optimization
+      virtual public path_optimization
    {
    public:
 

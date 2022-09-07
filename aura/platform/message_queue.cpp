@@ -6,6 +6,7 @@
 #include "aura/user/user/interaction_impl.h"
 #include "aura/windowing/window.h"
 #include "aura/user/user/interaction.h"
+#include "aura/platform/application.h"
 
 
 CLASS_DECL_AURA void message_queue_post(::windowing::window * pwindow, const ::atom & atom, wparam wparam, lparam lparam)

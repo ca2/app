@@ -1,6 +1,8 @@
 // Created by camilo on 2021-11-15 15:39 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "compiler.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "aura/platform/application.h"
 #ifdef WINDOWS_DESKTOP
 #include "acme_windows/_library.h"
 #endif

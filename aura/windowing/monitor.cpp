@@ -6,6 +6,7 @@
 #include "aura/windowing/monitor.h"
 #include "aura/windowing/desktop_environment.h"
 #include "aura/user/user/user.h"
+#include "aura/platform/session.h"
 
 
 namespace windowing

@@ -4,7 +4,7 @@
 #include "apex/message/command.h"
 #include "apex/user/primitive.h"
 #include "interaction_layout.h"
-#include "window_util.h"
+//#include "window_util.h"
 #include "prodevian.h"
 #include "drawable.h"
 
@@ -909,64 +909,7 @@ namespace user
       virtual i32 get_wheel_scroll_delta();
 
       template < typename TYPE >
-      TYPE* typed_descedant(::user::interaction* puiExclude = nullptr)
-      {
-
-         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
-
-         if (!puserinteractionpointeraChild)
-         {
-
-            return nullptr;
-
-         }
-
-         for (auto& pinteraction : puserinteractionpointeraChild->interactiona())
-         {
-
-            if (pinteraction != puiExclude)
-            {
-
-               TYPE* point = dynamic_cast <TYPE*> (pinteraction.m_p);
-
-               if (point != nullptr)
-               {
-
-                  return point;
-
-               }
-
-            }
-
-
-         }
-
-         //auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
-
-         for (auto& pinteraction :puserinteractionpointeraChild->interactiona())
-         {
-
-            if (pinteraction != puiExclude)
-            {
-
-               TYPE* point = pinteraction->typed_descedant < TYPE >(pinteraction.m_p);
-
-               if (point != nullptr)
-               {
-
-                  return point;
-
-               }
-
-            }
-
-
-         }
-
-         return nullptr;
-
-      }
-
+      TYPE* typed_descedant(::user::interaction* puiExclude = nullptr);
 
       template < typename TYPE >
       __pointer(TYPE)& _001TypedWindow(__pointer(TYPE)& sp)
@@ -1447,7 +1390,7 @@ namespace user
       ::user::interaction * get_child_by_id(const atom & atom, ::index iItem = -1, i32 iLevel = -1) override;
       ::user::element * get_primitive_by_id(const atom & atom, ::index iItem, i32 iLevel) override;
 
-      ::user::interaction* child_from_point(const ::point_i32& point, const ::user::interaction_array& interactionaExclude = {});
+      ::user::interaction* child_from_point(const ::point_i32& point, const ::user::interaction_array * pinteractionaExclude = nullptr);
 
 
       virtual bool is_ascendant(const primitive * puiIsAscendant, bool bIncludeSelf) const override;
@@ -1814,38 +1757,10 @@ namespace user
       //inline __pointer(CHILD) get_typed_child();
 
       template < typename CHILD >
-      inline bool get_typed_child(CHILD *& pchild)
-      {
-
-         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
-
-         if (!puserinteractionpointeraChild)
-         {
-
-            return false;
-
-         }
-
-         return puserinteractionpointeraChild->get_typed_child(pchild);
-
-      }
+      inline bool get_typed_child(CHILD *& pchild);
 
       template < typename CHILD >
-      inline __pointer(CHILD) get_typed_child()
-      {
-
-         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
-
-         if (!puserinteractionpointeraChild)
-         {
-
-            return nullptr;
-
-         }
-
-         return puserinteractionpointeraChild->get_typed_child < CHILD >();
-
-      }
+      inline __pointer(CHILD) get_typed_child();
 
 
       virtual enum_input_type preferred_input_type() const;

@@ -3,6 +3,7 @@
 #include "framework.h"
 #include "device_listener.h"
 #include "devices.h"
+#include "aura/platform/system.h"
 
 
 namespace hardware

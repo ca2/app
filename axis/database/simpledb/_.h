@@ -9,6 +9,9 @@ namespace simpledb
    class storage;
 
 
+   class queue_item;
+
+
 } // namespace simpledb
 
 

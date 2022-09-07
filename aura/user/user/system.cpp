@@ -10,6 +10,7 @@
 #endif
 #include "system.h"
 #include "interaction.h"
+#include "aura/platform/application.h"
 
 
 namespace user
@@ -134,7 +135,7 @@ namespace user
 
       ASSERT(m_typeNewImpact || m_puserprimitiveNew != nullptr);
 
-      ::application * papp = puserinteractionParent->get_app();
+      auto papp = puserinteractionParent->get_app();
 
       __pointer(::user::interaction) pinteraction;
 

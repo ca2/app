@@ -9,7 +9,7 @@
 #include "apex/include/_no_templates.h"
 
 
-#define CLASS_DECL_AURA
+//#define CLASS_DECL_AURA
 
 
 //#include "acme/operating_system/thread.h"

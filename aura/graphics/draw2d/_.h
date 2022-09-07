@@ -30,6 +30,9 @@ namespace draw2d
    class fastblur;
 
 
+   class path_optimization;
+
+
    class graphics_extension;
 
 

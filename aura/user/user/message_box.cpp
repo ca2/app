@@ -15,6 +15,7 @@
 #include "interaction_scaler.h"
 #include "user.h"
 #include "style.h"
+#include "aura/platform/session.h"
 
 
 namespace user

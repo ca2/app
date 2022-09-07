@@ -10,6 +10,7 @@
 #include "aura/graphics/image/save_image.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/message/user.h"
+#include "aura/platform/system.h"
 
 
 namespace app_shader

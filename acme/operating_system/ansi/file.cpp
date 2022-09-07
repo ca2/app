@@ -325,25 +325,4 @@
 //
 
 
-#if !defined(WINDOWS)
-
-
-int_handle::~int_handle()
-{
-
-   if (m_i >= 0)
-   {
-
-      ::close(m_i);
-
-      m_i = -1;
-
-   }
-
-}
-
-
-#endif
-
-
 

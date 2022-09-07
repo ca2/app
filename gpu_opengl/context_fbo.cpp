@@ -6,9 +6,10 @@
 //  Copyright © 2020 Camilo Sasuke Tsumanuma. All rights reserved.
 //
 #include "framework.h"
-
 #include <OpenGL/OpenGL.h>
 #include "context_fbo.h"
+#include "opengl.h"
+#include "aura/platform/system.h"
 
 
 namespace opengl

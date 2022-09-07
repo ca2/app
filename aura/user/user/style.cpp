@@ -7,6 +7,7 @@
 #include "aura/graphics/draw2d/pen.h"
 #include "style.h"
 #include "interaction.h"
+#include "aura/platform/node.h"
 
 
 namespace user

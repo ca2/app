@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "app/programming/programming/compiler.h"
+
+
 namespace dynamic_source
 {
 

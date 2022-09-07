@@ -233,19 +233,19 @@ namespace sockets
 
    void EventHandler::EventLoop()
    {
-      while (!m_bQuit)
-      {
-         struct timeval tv;
-         if (GetTimeUntilNextEvent(&tv))
-         {
-            select(&tv);
-            CheckEvents();
-         }
-         else
-         {
-            select();
-         }
-      }
+//      while (!m_bQuit)
+//      {
+//         struct timeval tv;
+//         if (GetTimeUntilNextEvent(&tv))
+//         {
+//            select(&tv);
+//            CheckEvents();
+//         }
+//         else
+//         {
+//            select();
+//         }
+//      }
    }
 
 
@@ -295,7 +295,11 @@ namespace sockets
 #ifdef ENABLE_RECONNECT
          m_ptcpsocket -> SetReconnect(true);
 #endif
-         m_ptcpsocket -> open(::networking::address("127.0.0.1", m_port));
+         
+         auto paddress = m_psystem->m_papexsystem->networking()->create_address("127.0.0.1", m_port));
+//         m_ptcpsocket -> open(::networking::address("127.0.0.1", m_port));
+         
+         m_ptcpsocket -> open(paddress);
 
          socket_handler::add2(m_ptcpsocket);
 

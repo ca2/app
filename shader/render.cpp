@@ -12,6 +12,8 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/user/user/interaction.h"
+#include "aura/platform/system.h"
+#include "aura/platform/node.h"
 
 
 CLASS_DECL_ACME ::color::color dk_red(); // <3ThomasBorregaardS�rensen!!

@@ -6,7 +6,7 @@
 
 
 #include <zlib.h>
-#include <zutil.h>
+//#include <zutil.h>
 
 
 #if defined(_FOLDER_ZIP_LIBRARY)

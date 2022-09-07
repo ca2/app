@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/platform/session.h"
+
+
 namespace axis
 {
 

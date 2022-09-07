@@ -40,6 +40,8 @@
 #include "aura/user/user/system.h"
 #include "aura/graphics/user/control_box_icon.h"
 #include "aura/graphics/user/control_box_button.h"
+#include "aura/platform/session.h"
+#include "aura/platform/application.h"
 
 
 #define INFO_LAYOUT_DISPLAY
@@ -6467,7 +6469,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::child_from_point(const ::point_i32 & point, const ::user::interaction_array & interactionaExclude)
+   ::user::interaction * interaction::child_from_point(const ::point_i32 & point, const ::user::interaction_array * pinteractionaExclude)
    {
 
       auto pointClient = point;
@@ -6507,7 +6509,7 @@ namespace user
 
             auto & puserinteractionChild = puserinteractionpointeraChild->interaction_at(iChild);
 
-            if (!interactionaExclude.contains_interaction(puserinteractionChild))
+            if (::is_set(pinteractionaExclude) && !pinteractionaExclude->contains_interaction(puserinteractionChild))
             {
                //if (puserinteractionChild->is_this_visible()
                //&& (!puserinteractionChild->is_place_holder()

@@ -5,31 +5,20 @@ namespace multimedia
 {
 
 
-   enum e_exception
-   {
-
-      exception_undefined,
-      exception_multimedia,
-      exception_midi,
-      exception_music,
-
-   };
-
-
    class CLASS_DECL_AQUA exception :
       public ::exception
    {
    public:
 
 
-      e_exception          m_eexception;
+      enum_exception          m_eexception;
 
 
-      exception(e_exception eexception = exception_undefined, const ::e_status & estatus = error_exception, const char * pszMessage = nullptr);
-      virtual ~exception();
+      exception(enum_exception eexception = e_exception_undefined, const ::e_status & estatus = error_exception, const char * pszMessage = nullptr);
+      ~exception() override;
 
 
-      virtual string get_message() const override;
+      string get_message() const override;
 
 
    };

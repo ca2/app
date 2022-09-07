@@ -1,5 +1,8 @@
 #include "framework.h"
 #include "database.h"
+#include "axis/database/database/result_set.h"
+#include "axis/database/database/exception.h"
+#include "axis/database/database/field.h"
 #include <stdio.h>
 
 
@@ -53,17 +56,18 @@ namespace sqlite
 
    }
 
-   ::database::e_connection database::connection_status()
+
+   ::database::enum_connection database::connection_status()
    {
 
       if (isActive() == false)
       {
 
-         return ::database::connection_none;
+         return ::database::e_connection_none;
 
       }
 
-      return ::database::connection_ok;
+      return ::database::e_connection_ok;
 
    }
 

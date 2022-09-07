@@ -13,6 +13,7 @@
 #include "aura/windowing/monitor.h"
 #include "aura/windowing/window.h"
 #include "aura/user/user/interaction.h"
+#include "aura/platform/system.h"
 
 
 namespace windowing

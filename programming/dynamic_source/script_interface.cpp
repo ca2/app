@@ -1,5 +1,8 @@
 #include "framework.h"
-#include "_.h"
+#include "script_interface.h"
+#include "script_main.h"
+#include "httpd_socket.h"
+#include "exit_exception.h"
 #include "axis/id.h"
 
 

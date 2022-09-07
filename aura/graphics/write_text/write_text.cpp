@@ -5,6 +5,7 @@
 #include "true_type_font_utilities.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "aura/platform/system.h"
 
 
 namespace write_text

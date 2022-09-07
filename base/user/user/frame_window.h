@@ -63,7 +63,7 @@ namespace user
       ::u32                                        m_nIDLastMessage;      // last displayed message string IDS
       ::user::impact *                             m_pviewActive;       // current active ::user::impact
       ::u32                                        m_cModalStack;         // BeginModalState depth
-      ::user::interaction_ptra                     m_uiptraDisable;       // windows disabled because of BeginModalState
+      __pointer(::user::interaction_ptra)                     m_puiptraDisable;       // windows disabled because of BeginModalState
 //#ifdef WINDOWS_DESKTOP
 //      HMENU                                      m_hMenuAlt;           // menu to update to (nullptr means default)
 //#endif

@@ -13,6 +13,7 @@
 #include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/copydesk.h"
 #include "aura/user/user/interaction.h"
+#include "aura/platform/session.h"
 
 
 namespace windowing

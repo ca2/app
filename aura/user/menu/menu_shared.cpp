@@ -5,8 +5,10 @@
 //  Created by Camilo Sasuke Tsumanuma on 10/08/20.
 //
 #include "framework.h"
-#include "aura/user/user/_component.h"
 #include "menu_shared.h"
+#include "aura/platform/session.h"
+#include "aura/user/user/user.h"
+#include "aura/windowing/windowing.h"
 
 
 void free_c_string_array(char * const * ppszList, int iCount);

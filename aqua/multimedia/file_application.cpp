@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "file_application.h"
+#include "audio/audio.h"
 
 
 namespace multimedia

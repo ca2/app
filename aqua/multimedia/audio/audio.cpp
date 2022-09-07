@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "audio.h"
 
 
 namespace aqua
@@ -151,7 +152,7 @@ namespace aqua
    }
 
 
-   void audio::defer_initialize_audio_playback(::wave::e_purpose epurpose)
+   void audio::defer_initialize_audio_playback(::wave::enum_purpose epurpose)
    {
 
       throw ::interface_only();

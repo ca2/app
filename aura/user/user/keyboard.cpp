@@ -6,6 +6,8 @@
 #include "aura/windowing/keyboard.h"
 #include "user.h"
 #include "key.h"
+#include "aura/platform/system.h"
+#include "aura/platform/session.h"
 
 
 //#if defined(LINUX) || defined(SOLARIS)

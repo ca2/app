@@ -1,0 +1,25 @@
+// From definition.h by camilo on 2022-09-06 17:19 <3ThomasBorregaardSorensen!!
+#pragma once
+
+
+namespace database
+{
+
+
+   class CLASS_DECL_AXIS exception :
+      public ::exception
+   {
+   public:
+
+
+      exception();
+      exception(const char * pszFormat, ...);
+
+
+   };
+
+
+} // namespace database
+
+
+

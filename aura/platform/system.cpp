@@ -19,6 +19,8 @@
 #include "acme/platform/profiler.h"
 #include "aura/user/user/user.h"
 #include "aura/hardware/devices.h"
+#include "aura/platform/session.h"
+#include "aura/platform/application.h"
 
 
 int get_main_screen_rectangle(RECTANGLE_I32 * lprect);

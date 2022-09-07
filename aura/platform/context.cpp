@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "context.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/user/_component.h"
 #endif

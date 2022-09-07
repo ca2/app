@@ -3,6 +3,7 @@
 #include "aura/user/user/_component.h"
 #endif
 #include "wait_cursor.h"
+#include "aura/platform/node.h"
 
 
 wait_cursor::wait_cursor(::object * pobject)

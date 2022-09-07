@@ -4,6 +4,7 @@
 #endif
 #include "aura/windowing/cursor_manager.h"
 #include "aura/windowing/cursor.h"
+#include "aura/platform/system.h"
 
 
 namespace windowing

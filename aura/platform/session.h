@@ -2,6 +2,7 @@
 
 
 #include "aura/filesystem/filemanager/item_action.h"
+#include "aura/platform/context.h"
 
 
 namespace aura

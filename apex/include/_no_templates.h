@@ -9,7 +9,7 @@
 #include "acme/include/_no_templates.h"
 
 
-#define CLASS_DECL_APEX
+//#define CLASS_DECL_APEX
 
 
 #include "acme/operating_system/parallelization.h"

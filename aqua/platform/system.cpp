@@ -1,11 +1,9 @@
 #include "framework.h"
 #include "acme/platform/system_setup.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/user/user/_component.h"
-//#endif
 #include "aqua/constant/idpool.h"
 #include "acme/parallelization/pool.h"
-//#include "acme/platform/system_impl.h"
+#include "aqua/multimedia/audio/audio.h"
+#include "aqua/multimedia/multimedia.h"
 
 
 namespace aqua

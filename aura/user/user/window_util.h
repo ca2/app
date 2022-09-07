@@ -1,11 +1,11 @@
 #pragma once
 
 
+#include "interaction.h"
+
+
 namespace user
 {
-
-
-   class interaction_array;
 
 
    class CLASS_DECL_AURA interaction_ptra:
@@ -183,6 +183,102 @@ namespace user
       }
 
    };
+
+
+   template < typename TYPE >
+   TYPE* interaction::typed_descedant(::user::interaction* puiExclude)
+   {
+
+      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+
+      if (!puserinteractionpointeraChild)
+      {
+
+         return nullptr;
+
+      }
+
+      for (auto& pinteraction : puserinteractionpointeraChild->interactiona())
+      {
+
+         if (pinteraction != puiExclude)
+         {
+
+            TYPE* point = dynamic_cast <TYPE*> (pinteraction.m_p);
+
+            if (point != nullptr)
+            {
+
+               return point;
+
+            }
+
+         }
+
+
+      }
+
+      //auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+
+      for (auto& pinteraction :puserinteractionpointeraChild->interactiona())
+      {
+
+         if (pinteraction != puiExclude)
+         {
+
+            TYPE* point = pinteraction->typed_descedant < TYPE >(pinteraction.m_p);
+
+            if (point != nullptr)
+            {
+
+               return point;
+
+            }
+
+         }
+
+
+      }
+
+      return nullptr;
+
+   }
+
+
+   template < typename CHILD >
+   inline bool interaction::get_typed_child(CHILD *& pchild)
+   {
+
+      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+
+      if (!puserinteractionpointeraChild)
+      {
+
+         return false;
+
+      }
+
+      return puserinteractionpointeraChild->get_typed_child(pchild);
+
+   }
+
+
+   template < typename CHILD >
+   inline __pointer(CHILD) interaction::get_typed_child()
+   {
+
+      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+
+      if (!puserinteractionpointeraChild)
+      {
+
+         return nullptr;
+
+      }
+
+      return puserinteractionpointeraChild->get_typed_child < CHILD >();
+
+   }
 
 
 } // namespace user

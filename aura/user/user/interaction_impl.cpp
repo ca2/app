@@ -25,6 +25,8 @@
 #include "user.h"
 #include "aura/message/user.h"
 #include "interaction_scaler.h"
+#include "aura/platform/session.h"
+#include "aura/platform/application.h"
 
 
 point_i32 g_pointLastBottomRight;
@@ -2711,7 +2713,7 @@ namespace user
             if (is_set(puserinteraction))
             {
 
-               auto pchild = puserinteraction->child_from_point(pmouse->m_point, interactionaHandled);
+               auto pchild = puserinteraction->child_from_point(pmouse->m_point, &interactionaHandled);
 
                if (::is_set(pchild))
                {

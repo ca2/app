@@ -18,6 +18,7 @@
 #include "aura/windowing/icon.h"
 #include "window_util.h"
 #include "interaction.h"
+#include "aura/platform/node.h"
 
 
 #if defined(RASPBIAN)

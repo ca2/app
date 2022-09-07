@@ -14,11 +14,9 @@
 		9A0DB3CF286430CD00D061F7 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0DB3B2286430CD00D061F7 /* _.cpp */; };
 		9A0DB3D0286430CD00D061F7 /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3B3286430CD00D061F7 /* database.h */; };
 		9A0DB3D1286430CD00D061F7 /* _2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3B4286430CD00D061F7 /* _2.h */; };
-		9A0DB3D2286430CD00D061F7 /* _database_sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3B5286430CD00D061F7 /* _database_sqlite3.h */; };
 		9A0DB3D3286430CD00D061F7 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3B8286430CD00D061F7 /* framework.h */; };
 		9A0DB3D4286430CD00D061F7 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0DB3C1286430CD00D061F7 /* _factory.cpp */; };
 		9A0DB3D5286430CD00D061F7 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3C3286430CD00D061F7 /* _.h */; };
-		9A0DB3D82864314500D061F7 /* _database_sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3B5286430CD00D061F7 /* _database_sqlite3.h */; };
 		9A0DB3D92864314500D061F7 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3C3286430CD00D061F7 /* _.h */; };
 		9A0DB3DA2864314500D061F7 /* database.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3B3286430CD00D061F7 /* database.h */; };
 		9A0DB3DB2864314500D061F7 /* factory_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0DB3A9286430CC00D061F7 /* factory_exchange.h */; };
@@ -70,7 +68,6 @@
 		9A0DB3B2286430CD00D061F7 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A0DB3B3286430CD00D061F7 /* database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = database.h; sourceTree = "<group>"; };
 		9A0DB3B4286430CD00D061F7 /* _2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _2.h; sourceTree = "<group>"; };
-		9A0DB3B5286430CD00D061F7 /* _database_sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _database_sqlite3.h; sourceTree = "<group>"; };
 		9A0DB3B8286430CD00D061F7 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9A0DB3C1286430CD00D061F7 /* _factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _factory.cpp; sourceTree = "<group>"; };
 		9A0DB3C3286430CD00D061F7 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
@@ -132,7 +129,6 @@
 				9A0DB3B2286430CD00D061F7 /* _.cpp */,
 				9A0DB3C3286430CD00D061F7 /* _.h */,
 				9A0DB3B4286430CD00D061F7 /* _2.h */,
-				9A0DB3B5286430CD00D061F7 /* _database_sqlite3.h */,
 				9A0DB3C1286430CD00D061F7 /* _factory.cpp */,
 				9A0DB3B1286430CD00D061F7 /* database.cpp */,
 				9A0DB3B3286430CD00D061F7 /* database.h */,
@@ -172,7 +168,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A0DB3D2286430CD00D061F7 /* _database_sqlite3.h in Headers */,
 				9A0DB3D5286430CD00D061F7 /* _.h in Headers */,
 				9A0DB3D0286430CD00D061F7 /* database.h in Headers */,
 				9A0DB3CC286430CD00D061F7 /* factory_exchange.h in Headers */,
@@ -186,7 +181,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A0DB3D82864314500D061F7 /* _database_sqlite3.h in Headers */,
 				9A0DB3D92864314500D061F7 /* _.h in Headers */,
 				9A0DB3DA2864314500D061F7 /* database.h in Headers */,
 				9A0DB3DB2864314500D061F7 /* factory_exchange.h in Headers */,

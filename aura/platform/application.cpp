@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "application.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/user/_component.h"
 #endif
@@ -23,6 +24,9 @@
 #include "aura/user/user/system.h"
 #include "aura/user/user/frame.h"
 #include "aura/user/user/plain_edit.h"
+#include "aura/platform/system.h"
+#include "aura/platform/session.h"
+#include "aura/platform/theme.h"
 
 
 extern "C"

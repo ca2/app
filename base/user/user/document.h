@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aqua/user/controller.h"
+
+
 namespace user
 {
 

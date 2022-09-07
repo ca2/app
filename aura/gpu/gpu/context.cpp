@@ -1,8 +1,11 @@
 #include "framework.h"
-#include "_.h"
-#include "_gpu.h"
-#include "aura/graphics/draw2d/_component.h"
-#include "aura/graphics/image/_image.h"
+#include "context.h"
+#include "buffer.h"
+//#include "_.h"
+//#include "_gpu.h"
+#include "aura/platform/system.h"
+//#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/image/image.h"
 #include "_defer.h"
 
 namespace gpu

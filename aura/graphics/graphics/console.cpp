@@ -10,6 +10,7 @@
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/user/user/interaction.h"
+#include "aura/platform/context.h"
 
 
 namespace graphics

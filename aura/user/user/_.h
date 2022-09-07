@@ -114,6 +114,11 @@ namespace user
    class interaction_child;
    class interaction_impl;
    class interaction_array;
+
+
+   class interaction_ptra;
+
+
    //class place_holder;
    //class tab;
    //class tab_pane;

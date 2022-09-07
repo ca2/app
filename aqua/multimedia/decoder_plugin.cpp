@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "decoder_plugin.h"
+#include "decoder.h"
 
 
 namespace multimedia

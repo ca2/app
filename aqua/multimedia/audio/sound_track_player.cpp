@@ -1,7 +1,8 @@
 #include "framework.h"
+#include "sound_track_player.h"
 
 
-namespace aura
+namespace aqua
 {
 
 
@@ -17,7 +18,7 @@ namespace aura
    }
 
 
-   void sound_track_player::defer_start(::wave::e_purpose epurpose)
+   void sound_track_player::defer_start(::wave::enum_purpose epurpose)
    {
 
 
@@ -73,7 +74,7 @@ namespace aura
    }
 
 
-} // namespace aura
+} // namespace aqua
 
 
 

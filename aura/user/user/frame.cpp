@@ -9,6 +9,8 @@
 #include "key.h"
 #include "style.h"
 #include "user.h"
+#include "aura/platform/session.h"
+#include "aura/platform/application.h"
 
 
 namespace user

@@ -20,6 +20,10 @@
 #include "check_box.h"
 #include "button.h"
 #include "progress.h"
+#include "aura/platform/system.h"
+#include "aura/platform/session.h"
+#include "aura/platform/application.h"
+#include "aura/platform/node.h"
 
 
 ::mutex * g_pmutexUser = nullptr;

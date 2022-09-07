@@ -30,7 +30,7 @@
 
 #else
 
-#include "apex/os/macos/_mm.h"
+#include "apex/operating_system/macos/_mm.h"
 
 #endif
 

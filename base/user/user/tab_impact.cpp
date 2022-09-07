@@ -5,7 +5,7 @@
 #include "tab_impact.h"
 #include "tab_pane.h"
 #include "tab_data.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/user/user/window_util.h"
 #include "frame_window.h"
 #include "aura/message/user.h"
 #include "split_impact.h"

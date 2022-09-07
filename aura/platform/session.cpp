@@ -7,6 +7,9 @@
 #include "aura/windowing/window.h"
 #include "aura/user/user/user.h"
 #include "aura/user/user/interaction.h"
+#include "aura/platform/session.h"
+#include "aura/platform/system.h"
+#include "aura/platform/application.h"
 
 
 #if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)

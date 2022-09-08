@@ -12,6 +12,7 @@
 #include "apex/filesystem/filesystem/file_watcher.h"
 #include "acme/id.h"
 #include "axis/platform/system.h"
+#include "aura/operating_system.h"
 
 
 namespace dynamic_source

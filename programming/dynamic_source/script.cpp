@@ -6,6 +6,7 @@
 #include "script_compiler.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "aura/platform/application.h"
+#include "aura/operating_system.h"
 
 
 #if defined(LINUX) || defined(APPLEOS)

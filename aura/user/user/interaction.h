@@ -923,7 +923,6 @@ namespace user
 
          }
 
-
          for (auto & pinteraction : *puserinteractionpointeraChild)
          {
 
@@ -965,6 +964,44 @@ namespace user
          return nullptr;
 
       }
+
+
+      template < typename CHILD >
+      inline bool get_typed_child(CHILD *& pchild, ::user::interaction * puiExclude = nullptr)
+      {
+
+         auto puserinteractionpointeraChild = children();
+
+         if (!puserinteractionpointeraChild)
+         {
+
+            return false;
+
+         }
+
+         for (auto & pinteraction : *puserinteractionpointeraChild)
+         {
+
+            if (pinteraction != puiExclude)
+            {
+
+               pchild = dynamic_cast <CHILD *> (pinteraction.m_p);
+
+               if (pchild != nullptr)
+               {
+
+                  return true;
+
+               }
+
+            }
+
+         }
+
+         return false;
+
+      }
+
 
       template < typename TYPE >
       __pointer(TYPE)& _001TypedWindow(__pointer(TYPE)& sp)
@@ -1805,17 +1842,26 @@ namespace user
       virtual bool rget_child(__pointer(::user::interaction)& pinteraction);
 
 
-      //template < typename CHILD >
-      //inline bool get_typed_child(CHILD*& pchild);
 
       //template < typename CHILD >
       //inline __pointer(CHILD) get_typed_child();
 
       template < typename CHILD >
-      inline bool get_typed_child(CHILD *& pchild);
+      inline __pointer(CHILD) get_typed_child()
+      {
 
-      template < typename CHILD >
-      inline __pointer(CHILD) get_typed_child();
+         CHILD * pchild = nullptr;
+
+         if (!get_typed_child(pchild))
+         {
+
+            return {};
+
+         }
+
+         return pchild;
+
+      }
 
 
       virtual enum_input_type preferred_input_type() const;

@@ -2,9 +2,11 @@
 #include "framework.h"
 #include "compiler.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 #include "aura/platform/application.h"
 #ifdef WINDOWS_DESKTOP
-#include "acme_windows/_library.h"
+#include "acme_windows/_.h"
+#include "acme_windows/registry.h"
 #endif
 
 

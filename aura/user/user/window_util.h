@@ -85,11 +85,11 @@ namespace user
       interaction_array();
       interaction_array(const address_array < ::user::interaction * > & a);
       interaction_array(const __pointer_array(::user::interaction) & a) :
-      m_interactiona(a) {}
+         m_interactiona(a) {}
 
       template < typename OTHER >
       interaction_array(const __pointer_array(OTHER) & a) :
-      m_interactiona(a) {}
+         m_interactiona(a) {}
 
       interaction_array(const ::user::interaction_array & a)
       {
@@ -100,7 +100,7 @@ namespace user
 
 #ifdef MOVE_SEMANTICS
 
-      interaction_array(const ::user::interaction_array&& a)
+      interaction_array(const ::user::interaction_array && a)
       {
 
          m_interactiona.copy(a.m_interactiona);
@@ -126,6 +126,71 @@ namespace user
       virtual bool get_child(__pointer(::user::interaction) & pinteraction);
       virtual bool rget_child(__pointer(::user::interaction) & pinteraction);
 
+
+      template < typename TYPE >
+      TYPE * typed_descendant(::user::interaction * puiExclude)
+      {
+
+         for (auto & pinteraction : this->interactiona())
+         {
+
+            if (pinteraction != puiExclude)
+            {
+
+               TYPE * point = dynamic_cast <TYPE *> (pinteraction.m_p);
+
+               if (point != nullptr)
+               {
+
+                  return point;
+
+               }
+
+            }
+
+
+         }
+
+         for (auto & pinteraction : this->interactiona())
+         {
+
+            if (pinteraction != puiExclude)
+            {
+
+               TYPE * point = pinteraction->typed_descedant < TYPE >(pinteraction.m_p);
+
+               if (point != nullptr)
+               {
+
+                  return point;
+
+               }
+
+            }
+
+         }
+
+         return nullptr;
+
+      }
+
+
+      //template < typename CHILD >
+      //inline bool interaction::get_typed_child(CHILD *& pchild)
+      //{
+
+      //   auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+
+      //   if (!puserinteractionpointeraChild)
+      //   {
+
+      //      return false;
+
+      //   }
+
+      //   return puserinteractionpointeraChild->get_typed_child(pchild);
+
+      //}
 
       //template < typename CHILD >
       //bool get_typed_child(CHILD * & pchild);
@@ -183,102 +248,6 @@ namespace user
       }
 
    };
-
-
-   template < typename TYPE >
-   TYPE* interaction::typed_descedant(::user::interaction* puiExclude)
-   {
-
-      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
-
-      if (!puserinteractionpointeraChild)
-      {
-
-         return nullptr;
-
-      }
-
-      for (auto& pinteraction : puserinteractionpointeraChild->interactiona())
-      {
-
-         if (pinteraction != puiExclude)
-         {
-
-            TYPE* point = dynamic_cast <TYPE*> (pinteraction.m_p);
-
-            if (point != nullptr)
-            {
-
-               return point;
-
-            }
-
-         }
-
-
-      }
-
-      //auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
-
-      for (auto& pinteraction :puserinteractionpointeraChild->interactiona())
-      {
-
-         if (pinteraction != puiExclude)
-         {
-
-            TYPE* point = pinteraction->typed_descedant < TYPE >(pinteraction.m_p);
-
-            if (point != nullptr)
-            {
-
-               return point;
-
-            }
-
-         }
-
-
-      }
-
-      return nullptr;
-
-   }
-
-
-   template < typename CHILD >
-   inline bool interaction::get_typed_child(CHILD *& pchild)
-   {
-
-      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
-
-      if (!puserinteractionpointeraChild)
-      {
-
-         return false;
-
-      }
-
-      return puserinteractionpointeraChild->get_typed_child(pchild);
-
-   }
-
-
-   template < typename CHILD >
-   inline __pointer(CHILD) interaction::get_typed_child()
-   {
-
-      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
-
-      if (!puserinteractionpointeraChild)
-      {
-
-         return nullptr;
-
-      }
-
-      return puserinteractionpointeraChild->get_typed_child < CHILD >();
-
-   }
 
 
 } // namespace user

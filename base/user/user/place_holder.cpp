@@ -1,8 +1,6 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "place_holder.h"
+#include "aura/user/user/window_util.h"
 
 
 namespace user

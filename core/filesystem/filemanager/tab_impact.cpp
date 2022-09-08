@@ -11,6 +11,7 @@
 #include "base/user/user/multiple_document_template.h"
 #include "aura/user/user/frame.h"
 #include "base/user/user/frame_window.h"
+#include "aura/platform/session.h"
 
 
 namespace filemanager

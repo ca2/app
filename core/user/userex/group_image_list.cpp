@@ -1,8 +1,5 @@
 #include "framework.h"
 #include "aura/graphics/image/context_image.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
 #include "group_image_list.h"
 #include "base/user/menu/button.h"
 #include "base/user/menu/menu.h"
@@ -10,6 +7,7 @@
 #include "base/user/menu/item_ptra.h"
 #include "base/user/user/user.h"
 #include "aura/message/user.h"
+#include "aura/platform/context.h"
 
 
 namespace userex

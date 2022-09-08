@@ -17,6 +17,7 @@
 #include "axis/html/impl/table.h"
 #include "axis/html/user/form.h"
 #include "axis/html/graphics/base.h"
+#include "aura/platform/session.h"
 
 
 namespace html

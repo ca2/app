@@ -5374,26 +5374,26 @@ namespace user
    }
 
 
-   CLASS_DECL_AURA void __reposition_window(SIZEPARENTPARAMS * pLayout, ::user::interaction * pinteraction,const ::rectangle_i32 & rectangle)
-   {
+   //CLASS_DECL_AURA void __reposition_window(SIZEPARENTPARAMS * pLayout, ::user::interaction * pinteraction,const ::rectangle_i32 & rectangle)
+   //{
 
-      ASSERT(::is_set(pinteraction));
+   //   ASSERT(::is_set(pinteraction));
 
-      __pointer(::user::interaction) puiParent = pinteraction->get_parent();
+   //   __pointer(::user::interaction) puiParent = pinteraction->get_parent();
 
-      ASSERT(puiParent != nullptr);
+   //   ASSERT(puiParent != nullptr);
 
-      ::rectangle_i32 rectangleOld;
+   //   ::rectangle_i32 rectangleOld;
 
-      pinteraction->get_window_rect(rectangleOld);
+   //   pinteraction->get_window_rect(rectangleOld);
 
-      rectangleOld += puiParent->screen_to_client();
+   //   rectangleOld += puiParent->screen_to_client();
 
-      pinteraction->place(rectangle);
+   //   pinteraction->place(rectangle);
 
-      pinteraction->display(e_display_restored, e_activation_no_activate);
+   //   pinteraction->display(e_display_restored, e_activation_no_activate);
 
-   }
+   //}
 
 
    void interaction_impl::prodevian_redraw(bool bUpdateBuffer)

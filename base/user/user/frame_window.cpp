@@ -1,15 +1,14 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "aura/message.h"
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "aura/graphics/graphics/graphics.h"
 #include "aura/graphics/image/context_image.h"
-#include "aura/graphics/draw2d/_component.h"
-#include "aura/graphics/graphics/_.h"
-#include "aura/graphics/graphics/_graphics.h"
+#include "aura/graphics/image/drawing.h"
+//#include "aura/graphics/draw2d/_component.h"
+//#include "aura/graphics/graphics/_.h"
+//#include "aura/graphics/graphics/_graphics.h"
 #include "aura/windowing/windowing.h"
 #include "frame_window.h"
 #include "document.h"
@@ -760,7 +759,7 @@ namespace user
       //  modeless windows anyway...
       //auto pparent = top_level();
 
-      m_uiptraDisable.erase_all();
+      m_puiptraDisable->erase_all();
 
       /*
       // disable all windows connected to this frame (and add them to the list)
@@ -792,20 +791,20 @@ namespace user
       if (m_cModalStack == 0 || --m_cModalStack > 0)
          return;
 
-      for (index nIndex = 0; nIndex < m_uiptraDisable.get_count(); nIndex++)
+      for (index nIndex = 0; nIndex < m_puiptraDisable->get_count(); nIndex++)
       {
 
-         ASSERT(m_uiptraDisable[nIndex] != nullptr);
+         ASSERT(m_puiptraDisable->element_at(nIndex) != nullptr);
 
-         if (m_uiptraDisable[nIndex]->is_window())
-            m_uiptraDisable[nIndex]->enable_window(true);
+         if (m_puiptraDisable->element_at(nIndex)->is_window())
+            m_puiptraDisable->element_at(nIndex)->enable_window(true);
 
       }
 
-      m_uiptraDisable.erase_all();
-
+      m_puiptraDisable->erase_all();
 
    }
+
 
    void frame_window::ShowOwnedWindows(bool bShow)
    {

@@ -5,6 +5,16 @@
 #include "aura/operating_system.h"
 
 
+
+#ifdef _IMAGING_FREEIMAGE_STATIC
+#define CLASS_DECL_IMAGING_FREEIMAGE
+#elif defined(_IMAGING_FREEIMAGE_LIBRARY)
+#define CLASS_DECL_IMAGING_FREEIMAGE  CLASS_DECL_EXPORT
+#else
+#define CLASS_DECL_IMAGING_FREEIMAGE  CLASS_DECL_IMPORT
+#endif
+
+
 #if defined(LINUX) || defined(FREEBSD)
 
 #undef _WINDOWS_
@@ -36,14 +46,6 @@ namespace imaging_freeimage
 
 
 
-
-#ifdef _IMAGING_FREEIMAGE_STATIC
-#define CLASS_DECL_IMAGING_FREEIMAGE
-#elif defined(_IMAGING_FREEIMAGE_LIBRARY)
-#define CLASS_DECL_IMAGING_FREEIMAGE  CLASS_DECL_EXPORT
-#else
-#define CLASS_DECL_IMAGING_FREEIMAGE  CLASS_DECL_IMPORT
-#endif
 
 
 

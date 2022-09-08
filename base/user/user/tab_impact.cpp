@@ -1,7 +1,4 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "tab_impact.h"
 #include "tab_pane.h"
 #include "tab_data.h"

@@ -1,8 +1,5 @@
 // Created by Camilo 2021-01-08 <3TBS!!
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "aqua/xml.h"
 #include "tab.h"
 #include "tab_pane.h"

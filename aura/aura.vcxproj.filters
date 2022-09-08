@@ -321,9 +321,6 @@
     <ClCompile Include="user\user\windowing.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\menu\menu_command.cpp">
-      <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
     <ClCompile Include="user\appearance\appearance.cpp">
       <Filter>Source Files\user\apperance</Filter>
     </ClCompile>
@@ -706,6 +703,12 @@
       <Filter>Source Files\graphics\write_text</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\item.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\command.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\water_routine.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1717,6 +1720,9 @@
     </ClInclude>
     <ClInclude Include="gpu\_.h">
       <Filter>Header Files\gpu</Filter>
+    </ClInclude>
+    <ClInclude Include="hardware\_constant.h">
+      <Filter>Header Files\hardware</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

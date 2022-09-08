@@ -1,9 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "axis/geoip/_.h"
-#include "axis/geoip/_component.h"
-#endif
-#include "apex/networking/sockets/_sockets.h"
+#include "geoip.h"
 #include <stdio.h>
 
 

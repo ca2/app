@@ -1,9 +1,6 @@
 // From picture.cpp by camilo on 2022-09-04 01:19 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "picture_impl.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 //#include <math.h>
 //#include "aura/graphics/draw2d/matrix.h"
 //#include "aura/graphics/image/image.h"

@@ -1441,12 +1441,6 @@
     <ClCompile Include="networking\sockets\http\socket.cpp">
       <Filter>Source Files\networking\sockets\http</Filter>
     </ClCompile>
-    <ClCompile Include="networking\sockets\base\base_socket.cpp">
-      <Filter>Source Files\networking\sockets\base</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\base\base_socket_handler.cpp">
-      <Filter>Source Files\networking\sockets\base</Filter>
-    </ClCompile>
     <ClCompile Include="networking\sockets\base\socket_thread.cpp">
       <Filter>Source Files\networking\sockets\base</Filter>
     </ClCompile>
@@ -1639,11 +1633,14 @@
     <ClCompile Include="networking\sockets\http\tunnel.cpp">
       <Filter>Source Files\networking\sockets\basic</Filter>
     </ClCompile>
-    <ClCompile Include="networking\_system_networking.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
     <ClCompile Include="networking\sockets\basic\tcp_socket_impl.cpp">
       <Filter>Source Files\networking\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\base\socket.cpp">
+      <Filter>Source Files\networking\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\base\socket_handler.cpp">
+      <Filter>Source Files\networking\sockets\base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,4 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "frame_window.h"
 #include "impact.h"
 #include "impact_host.h"

@@ -2,9 +2,6 @@
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/array.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
 #include "image_list.h"
 #include "top_edit_impact.h"
 #include "aura/message/user.h"

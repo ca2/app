@@ -10,6 +10,7 @@
 #include "aura/user/user/plain_edit.h"
 #include "login.h"
 #include "main_window.h"
+#include "aura/platform/session.h"
 
 
 

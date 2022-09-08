@@ -1,7 +1,4 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
 
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
@@ -23,7 +20,7 @@
 #include "axis/account/credentials.h"
 #include "core/user/account/impact.h"
 #include "aura/message/user.h"
-
+#include "aura/user/user/window_util.h"
 
 
 namespace core

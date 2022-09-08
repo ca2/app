@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "frame.h"
-#include "aura/graphics/draw2d/_component.h"
+//#include "aura/graphics/draw2d/_component.h"
 #include "base/platform/session.h"
 #include "frame_window.h"
 #include "control_box.h"

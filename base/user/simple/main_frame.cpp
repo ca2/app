@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "base/user/simple/_component.h"
+//#include "base/user/simple/_component.h"
 #include "main_frame.h"
 #include "aura/message/user.h"
 #include "base/platform/application.h"

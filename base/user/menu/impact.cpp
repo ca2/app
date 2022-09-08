@@ -1,7 +1,4 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "aqua/xml.h"
 #include "impact.h"
 #include "aura/graphics/write_text/font.h"
@@ -16,6 +13,7 @@
 #include "base/platform/application.h"
 #include "base/platform/system.h"
 #include "aura/user/user/system.h"
+#include "aura/platform/node.h"
 #include "aura/user/user/plain_edit.h"
 #include "base/user/user/impact_creator.h"
 

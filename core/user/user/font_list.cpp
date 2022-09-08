@@ -7,6 +7,9 @@
 #include "aura/graphics/write_text/font_list.h"
 #include "aura/message/user.h"
 #include "aura/user/user/user.h"
+#include "aura/platform/session.h"
+#include "aura/platform/system.h"
+#include "aura/platform/application.h"
 
 
 namespace user

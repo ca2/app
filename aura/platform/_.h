@@ -12,9 +12,9 @@ class shell_open;
 namespace aura
 {
 
-class application;
-class session;
-class system;
+   class application;
+   class session;
+   class system;
 
 } // namespace aura
 

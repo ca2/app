@@ -441,6 +441,8 @@ namespace user
 
       virtual bool has_link() const;
 
+      virtual __pointer_array(interaction) * children();
+
 
       inline iterator proper_children() { return {this, e_next_proper, this}; }
 
@@ -909,7 +911,60 @@ namespace user
       virtual i32 get_wheel_scroll_delta();
 
       template < typename TYPE >
-      TYPE* typed_descedant(::user::interaction* puiExclude = nullptr);
+      TYPE * typed_descendant(::user::interaction * puiExclude = nullptr)
+      {
+
+         auto puserinteractionpointeraChild = children();
+
+         if (!puserinteractionpointeraChild)
+         {
+
+            return nullptr;
+
+         }
+
+
+         for (auto & pinteraction : *puserinteractionpointeraChild)
+         {
+
+            if (pinteraction != puiExclude)
+            {
+
+               TYPE * point = dynamic_cast <TYPE *> (pinteraction.m_p);
+
+               if (point != nullptr)
+               {
+
+                  return point;
+
+               }
+
+            }
+
+         }
+
+         for (auto & pinteraction : *puserinteractionpointeraChild)
+         {
+
+            if (pinteraction != puiExclude)
+            {
+
+               TYPE * point = pinteraction->typed_descendant < TYPE >(pinteraction.m_p);
+
+               if (point != nullptr)
+               {
+
+                  return point;
+
+               }
+
+            }
+
+         }
+
+         return nullptr;
+
+      }
 
       template < typename TYPE >
       __pointer(TYPE)& _001TypedWindow(__pointer(TYPE)& sp)
@@ -931,7 +986,7 @@ namespace user
          while (pinteraction != nullptr)
          {
 
-            TYPE* point = pinteraction->typed_descedant < TYPE >(puiExclude);
+            TYPE* point = pinteraction->typed_descendant < TYPE >(puiExclude);
 
             if (point != nullptr)
             {

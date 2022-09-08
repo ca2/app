@@ -11,6 +11,7 @@
 #include "aura/user/user/button.h"
 #include "aura/user/user/plain_edit.h"
 #include "core/platform/system.h"
+#include "aura/platform/node.h"
 
 
 namespace account

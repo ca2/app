@@ -4,6 +4,7 @@
 #endif
 #include "operation.h"
 #include "aura/user/user/interaction.h"
+#include "aura/platform/context.h"
 
 
 namespace filemanager

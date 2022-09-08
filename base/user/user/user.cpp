@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "base/user/simple/_component.h"
+//#include "base/user/simple/_component.h"
 #include "aura/windowing/window.h"
 #include "acme/platform/system_setup.h"
 #include "base/platform/application.h"

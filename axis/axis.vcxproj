@@ -443,7 +443,7 @@
     <ClInclude Include="geoip\internal.h" />
     <ClInclude Include="geoip\update.h" />
     <ClInclude Include="geoip\_.h" />
-    <ClInclude Include="geoip\_component.h" />
+    <ClInclude Include="geoip\geoip.h" />
     <ClInclude Include="graphics\render\water_routine.h" />
     <ClInclude Include="html\element\element.h" />
     <ClInclude Include="html\element\_.h" />
@@ -585,8 +585,8 @@
     <ClCompile Include="account\user_array.cpp" />
     <ClCompile Include="account\user_set.cpp" />
     <ClCompile Include="constant\idpool.cpp" />
+    <ClCompile Include="database\database\composite.cpp" />
     <ClCompile Include="database\database\database.cpp" />
-    <ClCompile Include="database\database\database_composite.cpp" />
     <ClCompile Include="database\database\database_impl.cpp" />
     <ClCompile Include="database\database\dataset.cpp" />
     <ClCompile Include="database\database\definition.cpp" />
@@ -609,11 +609,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="geoip\city.cpp" />
-    <ClCompile Include="geoip\geoip.cpp" />
-    <ClCompile Include="geoip\region_name.cpp" />
-    <ClCompile Include="geoip\time_zone.cpp" />
-    <ClCompile Include="geoip\update.cpp" />
     <ClCompile Include="graphics\render\water_routine.cpp" />
     <ClCompile Include="html\element\element.cpp" />
     <ClCompile Include="html\graphics\attribute.cpp" />

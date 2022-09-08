@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "core/user/simple/_component.h"
-#include "aura/graphics/draw2d/_component.h"
+//#include "core/user/simple/_component.h"
+//#include "aura/graphics/draw2d/_component.h"
 #include "toolbar.h"
 #include "menu_bar.h"
 #include "aura/message/user.h"

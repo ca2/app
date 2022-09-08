@@ -13,6 +13,7 @@
 #include "core/user/user/user.h"
 #include "aura/user/user/frame.h"
 #include "core/platform/session.h"
+#include "aura/user/user/window_util.h"
 
 
 namespace userfs

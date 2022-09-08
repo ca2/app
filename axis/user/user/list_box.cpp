@@ -10,6 +10,7 @@
 #include "aura/user/user/interaction_impl.h"
 #include "aura/message/user.h"
 #include "aura/user/user/user.h"
+#include "aura/platform/session.h"
 
 
 #define DEBUG_LIST_ITEM_DRAWING 0

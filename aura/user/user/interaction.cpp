@@ -10210,6 +10210,21 @@ namespace user
    }
 
 
+   __pointer_array(interaction) * interaction::children()
+   {
+
+      if (::is_null(m_puserinteractionpointeraChild))
+      {
+
+         return nullptr;
+
+      }
+
+      return &m_puserinteractionpointeraChild->interactiona();
+
+   }
+
+
    void interaction::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 

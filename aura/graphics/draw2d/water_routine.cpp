@@ -1,9 +1,10 @@
 #include "framework.h"
-//#include <math.h>
+#include "water_routine.h"
 
 
 namespace draw2d
 {
+
 
    water_routine::water_routine()
    {
@@ -551,14 +552,16 @@ namespace draw2d
       }
 
    }
+
+
    inline color32_t water_routine::GetShiftedColor(color32_t color,i32 shift)
    {
-      long R;
-      long G;
-      long B;
-      long ir;
-      long ig;
-      long ib;
+      ::i32 R;
+      ::i32 G;
+      ::i32 B;
+      ::i32 ir;
+      ::i32 ig;
+      ::i32 ib;
 
       R = ::red(color)-shift;
       G = ::green(color)-shift;
@@ -569,6 +572,11 @@ namespace draw2d
       ib = (B < 0) ? 0 : (B > 255) ? 255 : B;
 
       return rgb(ir,ig,ib);
+
    }
 
+
 } // namespace draw2d
+
+
+

@@ -1,8 +1,5 @@
 #include "framework.h"
 #include "acme/platform/timer.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
 #include "aura/graphics/draw2d/graphics.h"
 #include "acme/constant/timer.h"
 #include "progress.h"
@@ -13,6 +10,7 @@
 #include "aura/user/user/progress.h"
 #include "core/user/user/user.h"
 #include "aura/message/user.h"
+#include "aura/platform/session.h"
 
 
 namespace userex

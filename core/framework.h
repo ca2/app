@@ -18,14 +18,14 @@
 
 
 #if BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_component.h"
-#include "core/user/rich_text/_component.h"
-#include "core/filesystem/filemanager/_component.h"
-#include "core/filesystem/filehandler/_component.h"
+//#include "core/user/userex/_component.h"
+//#include "core/user/rich_text/_component.h"
+//#include "core/filesystem/filemanager/_component.h"
+//#include "core/filesystem/filehandler/_component.h"
 //#include "axis/html/graphics/_component.h"
 //#include "axis/html/impl/_component.h"
-#include "core/user/account/_component.h"
-#include "core/user/databaseuser/_component.h"
+//#include "core/user/account/_component.h"
+//#include "core/user/databaseuser/_component.h"
 #endif
 #include "core/_defer.h"
 

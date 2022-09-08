@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
+#include "aura/platform/context.h"
 #include <math.h>
 #include "aura/graphics/draw2d/matrix.h"
 #include "aura/graphics/image/image.h"

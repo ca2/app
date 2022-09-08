@@ -1,12 +1,11 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "split_layout.h"
 #include "split_pane.h"
 #include "split_bar.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/user/user/style.h"
+#include "aura/platform/session.h"
+#include "aura/user/user/window_util.h"
 
 
 namespace user

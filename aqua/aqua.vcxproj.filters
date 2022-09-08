@@ -365,9 +365,6 @@
     <ClCompile Include="platform\system.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="multimedia\audio.cpp">
-      <Filter>Source Files\multimedia</Filter>
-    </ClCompile>
     <ClCompile Include="multimedia\decoder.cpp">
       <Filter>Source Files\multimedia</Filter>
     </ClCompile>
@@ -412,6 +409,9 @@
     </ClCompile>
     <ClCompile Include="constant\idpool.cpp">
       <Filter>Source Files\constant</Filter>
+    </ClCompile>
+    <ClCompile Include="multimedia\audio\audio.cpp">
+      <Filter>Source Files\multimedia\audio</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

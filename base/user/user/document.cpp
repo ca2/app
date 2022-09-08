@@ -1,7 +1,4 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "aura/message.h"
 #include "aura/user/user/wait_cursor.h"
 #include "document.h"
@@ -11,6 +8,7 @@
 #include "base/platform/session.h"
 #include "base/platform/system.h"
 #include "frame_window.h"
+#include "aura/user/user/window_util.h"
 
 
 namespace user

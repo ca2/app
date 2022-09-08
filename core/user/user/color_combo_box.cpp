@@ -2,9 +2,6 @@
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/path.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
 #include "color_combo_box.h"
 #include "core/user/user/user.h"
 #include "core/user/userex/color_impact.h"

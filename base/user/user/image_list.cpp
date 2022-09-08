@@ -1,11 +1,9 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "image_list.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/array.h"
 #include "aura/message/user.h"
+#include "aura/platform/session.h"
 
 
 namespace user

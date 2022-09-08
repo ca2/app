@@ -7,6 +7,7 @@
 #include "list_header.h"
 #include "list_column.h"
 #include "list_column_array.h"
+#include "aura/platform/application.h"
 
 
 namespace user

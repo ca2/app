@@ -1,17 +1,16 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "menu.h"
 #include "item.h"
 #include "aura/id.h"
 #include "aqua/xml.h"
 #include "acme/constant/timer.h"
 #include "aura/astr.h"
-#include "aura/user/menu/_component.h"
+//#include "aura/user/menu/_component.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "acme/platform/timer.h"
+#include "aura/platform/application.h"
 #include "aura/message/user.h"
+#include "aura/user/menu/command.h"
 #include "aura/user/user/button.h"
 #include "base/user/user/style.h"
 #include "base/platform/session.h"
@@ -1497,7 +1496,7 @@ namespace user
 
       }
 
-      auto pmenucommand= __create_new< ::user::menu_command>();
+      auto pmenucommand = __create_new< ::user::menu_command>();
 
       pmenucommand->m_pitema = pitemParent->m_pmenuitema;
 

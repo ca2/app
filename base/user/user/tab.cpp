@@ -1,7 +1,4 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "tab.h"
 #include "tab_pane_array.h"
 #include "acme/constant/timer.h"
@@ -18,6 +15,7 @@
 #include "acme/platform/timer.h"
 #include "aura/user/user/frame.h"
 #include "aura/user/user/system.h"
+#include "aura/user/user/window_util.h"
 #include "style.h"
 #include "aura/message/user.h"
 #include "tab_callback.h"

@@ -5,13 +5,11 @@
 #include "document.h"
 #include "span.h"
 #include "acme/platform/timer.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
 #include "acme/constant/timer.h"
 #include "aura/message/user.h"
 #include "aura/user/user/frame.h"
 #include "aura/user/user/copydesk.h"
+#include "aura/platform/session.h"
 
 
 

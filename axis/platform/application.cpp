@@ -1,5 +1,4 @@
 #include "framework.h"
-//#include "axis/user/_user.h"
 #include "aura/id.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
@@ -9,6 +8,7 @@
 #include "aura/user/user/button.h"
 #include "aura/user/user/still.h"
 #include "aura/user/user/check_box.h"
+#include "axis/database/simpledb/server.h"
 #include "system.h"
 
 

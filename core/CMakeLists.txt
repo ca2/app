@@ -15,8 +15,8 @@ list(APPEND library_source
    #const/check.h
    #const/context.h
    #const/id.h
-   const/idpool.cpp
-   const/idpool.h
+   constant/idpool.cpp
+   constant/idpool.h
    #const/impact.h
    #const/procedure.h
    #const/simple_command.h
@@ -26,8 +26,8 @@ list(APPEND library_source
    #const/thread.h
    #const/timer.h
    filesystem/filehandler/_.h
-   filesystem/filehandler/_data.h
-   filesystem/filehandler/_filehandler.h
+   #filesystem/filehandler/_data.h
+   #filesystem/filehandler/_filehandler.h
    filesystem/filehandler/handler.cpp
    filesystem/filehandler/handler.h
    filesystem/filehandler/item.cpp
@@ -41,13 +41,13 @@ list(APPEND library_source
    filesystem/filemanager/_.cpp
    filesystem/filemanager/_.h
    filesystem/filemanager/_data.h
-   filesystem/filemanager/_filemanager.h
+   #filesystem/filemanager/_filemanager.h
    filesystem/filemanager/_tree.h
    filesystem/filemanager/child_frame.cpp
    filesystem/filemanager/child_frame.h
    filesystem/filemanager/component.cpp
    filesystem/filemanager/component.h
-   filesystem/filemanager/const.h
+   #filesystem/filemanager/const.h
    filesystem/filemanager/context_menu.cpp
    filesystem/filemanager/context_menu.h
    filesystem/filemanager/data.cpp
@@ -125,7 +125,7 @@ list(APPEND library_source
    filesystem/filemanager/impact.cpp
    filesystem/filemanager/impact.h
    filesystem/fs/_.h
-   filesystem/fs/_fs.h
+   #filesystem/fs/_fs.h
    filesystem/fs/ftp_file.cpp
    filesystem/fs/ftp_file.h
    filesystem/fs/ftpfs.cpp
@@ -135,8 +135,8 @@ list(APPEND library_source
    filesystem/userfs/_.h
    filesystem/userfs/_data.h
    filesystem/userfs/_tree.h
-   filesystem/userfs/_userfs.h
-   filesystem/userfs/const.h
+   #filesystem/userfs/_userfs.h
+   #filesystem/userfs/const.h
    filesystem/userfs/document.cpp
    filesystem/userfs/document.h
    filesystem/userfs/item.cpp
@@ -157,88 +157,6 @@ list(APPEND library_source
    filesystem/userfs/userfs.h
    filesystem/_impl.h
    filesystem/filesystem.h
-   html/element/_.h
-   html/element/_element.h
-   html/element/element.cpp
-   html/element/element.h
-   html/graphics/_.h
-   html/graphics/_graphics.h
-   html/graphics/attribute.cpp
-   html/graphics/attribute.h
-   html/graphics/base.cpp
-   html/graphics/base.h
-   html/graphics/border.h
-   html/graphics/box.h
-   html/graphics/font.cpp
-   html/graphics/font.h
-   #html/graphics/form.cpp
-   #html/graphics/form.h
-   html/graphics/message.cpp
-   html/graphics/message.h
-   html/graphics/point.h
-   html/graphics/reader.cpp
-   html/graphics/reader.h
-   html/graphics/size.h
-   html/graphics/style.cpp
-   html/graphics/style.h
-   html/graphics/style_sheet.cpp
-   html/graphics/style_sheet.h
-   html/graphics/style_sheet_array.cpp
-   html/graphics/style_sheet_array.h
-   html/graphics/tag.cpp
-   html/graphics/tag.h
-   html/graphics/value.cpp
-   html/graphics/value.h
-   html/hi5/hi5_twitter_authorization.cpp
-   html/hi5/hi5_twitter_authorization.h
-   html/html/_.h
-   html/html/_html.h
-   html/html/core_data.cpp
-   html/html/core_data.h
-   html/html/data.cpp
-   html/html/data.h
-   html/impl/_.cpp
-   html/impl/_.h
-   html/impl/_impl.h
-   html/impl/cell.cpp
-   html/impl/cell.h
-   html/impl/element.cpp
-   html/impl/element.h
-   html/impl/form.cpp
-   html/impl/form.h
-   html/impl/image.cpp
-   html/impl/image.h
-   html/impl/input_button.cpp
-   html/impl/input_button.h
-   html/impl/input_checkbox.cpp
-   html/impl/input_checkbox.h
-   html/impl/input_text.cpp
-   html/impl/input_text.h
-   html/impl/select.cpp
-   html/impl/select.h
-   html/impl/table.cpp
-   html/impl/table.h
-   html/impl/table_elemental.cpp
-   html/impl/table_elemental.h
-   html/impl/table_row.cpp
-   html/impl/table_row.h
-   html/impl/text.cpp
-   html/impl/text.h
-   html/user/_.h
-   html/user/_user.h
-   #html/user/child_frame.cpp
-   html/user/child_frame.h
-   html/user/document.cpp
-   html/user/document.h
-   html/user/form.cpp
-   html/user/form.h
-   html/user/form_impact.cpp
-   html/user/form_impact.h
-   #html/user/frame.cpp
-   #html/user/frame.h
-   html/user/user.cpp
-   html/user/impact.cpp
-   html/user/impact.h
    #include/_.cpp
    include/_.h
    include/_c.h
@@ -313,17 +231,17 @@ list(APPEND library_source
    platform/user.h
    template/list.h
    user/account/_.h
-   user/account/_account.h
+   #user/account/_account.h
    #user/account/account.cpp
-   user/account/account_dialog.cpp
-   user/account/account_login.cpp
-   user/account/account_simple_ui.cpp
+   #user/account/account_dialog.cpp
+   #user/account/account_login.cpp
+   #user/account/account_simple_ui.cpp
    user/account/dialog.h
    user/account/login.h
    user/account/impact.cpp
    user/account/impact.h
    user/databaseuser/_.h
-   user/databaseuser/_databaseuser.h
+   #user/databaseuser/_databaseuser.h
    user/databaseuser/key_mesh_data.cpp
    user/databaseuser/key_mesh_data.h
    user/databaseuser/mesh_data.cpp
@@ -344,11 +262,11 @@ list(APPEND library_source
    #user/hotplugin/hotplugin_windows.cpp
    user/netuser/_.h
    user/netuser/_netuser.h
-   user/netuser/netuser_network_configuration.cpp
+   #user/netuser/netuser_network_configuration.cpp
    user/netuser/network_configuration.h
-   user/rich_text/_const.h
+   #user/rich_text/_const.h
    user/rich_text/_impl.h
-   user/rich_text/_rich_text.h
+   #user/rich_text/_rich_text.h
    user/rich_text/box.cpp
    user/rich_text/box.h
    user/rich_text/data.cpp
@@ -373,15 +291,15 @@ list(APPEND library_source
    user/rich_text/span.h
    user/rich_text/text_format.cpp
    user/rich_text/text_format.h
-   user/rich_text/text_format_object.cpp
-   user/rich_text/text_format_object.h
+   #user/rich_text/text_format_object.cpp
+   #user/rich_text/text_format_object.h
    #user/simple/_.cpp
    user/simple/_.h
    user/simple/_impl.h
    user/simple/_component.h
    user/simple/_tree.h
-   user/simple/child_frame.cpp
-   user/simple/child_frame.h
+   #user/simple/child_frame.cpp
+   #user/simple/child_frame.h
    user/simple/form_list_impact.cpp
    user/simple/form_list_impact.h
    user/simple/form_impact.cpp
@@ -405,8 +323,8 @@ list(APPEND library_source
    user/simple/printer_list_impact.cpp
    user/simple/printer_list_impact.h
    user/simple/simple.h
-   user/simple/static.cpp
-   user/simple/static.h
+   #user/simple/static.cpp
+   #user/simple/static.h
    user/simple/status_bar.cpp
    user/simple/status_bar.h
    user/simple/tab_control.cpp
@@ -420,11 +338,11 @@ list(APPEND library_source
    user/user/00.h
    #user/user/_.cpp
    user/user/_.h
-   user/user/_const.h
+   #user/user/_const.h
    user/user/_data.h
    user/user/_impl.h
    user/user/_tree.h
-   user/user/_user.h
+   #user/user/_user.h
    user/user/color_combo_box.cpp
    user/user/color_combo_box.h
    user/user/control_ddx_dbflags.h
@@ -499,10 +417,10 @@ list(APPEND library_source
    user/user/xfplayer_impact_line_selection.h
    user/user/xfplayer_impact_lines.cpp
    user/user/xfplayer_impact_lines.h
-   user/userex/-ehrror_dialog.cpp
+   #user/userex/-ehrror_dialog.cpp
    user/userex/_.h
    user/userex/_impl.h
-   user/userex/_userex.h
+   #user/userex/_userex.h
    user/userex/calculator_edit_impact.cpp
    user/userex/calculator_edit_impact.h
    user/userex/color_impact.cpp
@@ -512,7 +430,7 @@ list(APPEND library_source
    user/userex/dialog.h
    user/userex/dialog_frame.cpp
    user/userex/dialog_frame.h
-   user/userex/error_dialog.h
+   #user/userex/error_dialog.h
    user/userex/font_impact.cpp
    user/userex/font_impact.h
    user/userex/form_child_frame.cpp
@@ -558,8 +476,8 @@ list(APPEND library_source
    user/userex/top_toggle_impact.h
    user/userex/top_impact.cpp
    user/userex/top_impact.h
-   user/userex/user.cpp
-   user/userex/user.h
+   #user/userex/user.cpp
+   #user/userex/user.h
    user/userex/wait_message_dialog.cpp
    user/userex/wait_message_dialog.h
    user/userpresence/_.h

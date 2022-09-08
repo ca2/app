@@ -54,9 +54,9 @@ namespace user
       virtual ::user::interaction_child * get_user_interaction_child();
 
       
-      inline ::aura::application* get_app() const;
-      inline ::aura::session* get_session() const;
-      inline ::aura::system* get_system() const;
+      ::aura::application* get_app() const;
+      ::aura::session* get_session() const;
+      ::aura::system* get_system() const;
 
 
 
@@ -400,7 +400,7 @@ namespace user
       virtual void register_drop_target();
 
 
-      inline ::windowing::window* window();
+      ::windowing::window* window();
 
 
       virtual ::user::element * get_keyboard_focus();

@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "dataset.h"
+#include "database.h"
+#include "field.h"
 
 
 namespace database
@@ -22,27 +25,27 @@ namespace database
    }
 
 
-   void dataset::set_sql(e_sql esql, const ::string & pszSql)
+   void dataset::set_sql(enum_sql esql, const ::string & pszSql)
    {
 
       switch(esql)
       {
 
-      case sql_none:
+      case e_sql_none:
          break;
-      case       sql_execute:
+      case       e_sql_execute:
          m_strSqlExecute = pszSql;
          break;
-      case sql_select:
+      case e_sql_select:
          m_strSqlSelect = pszSql;
          break;
-      case sql_update:
+      case e_sql_update:
          m_strSqlUpdate = pszSql;
          break;
-      case sql_insert:
+      case e_sql_insert:
          m_strSqlInsert = pszSql;
          break;
-      case sql_delete:
+      case e_sql_delete:
          m_strSqlDelete = pszSql;
          break;
       default:
@@ -54,27 +57,27 @@ namespace database
    }
 
 
-   void dataset::clear_sql(e_sql esql)
+   void dataset::clear_sql(enum_sql esql)
    {
 
       switch (esql)
       {
 
-      case sql_none:
+      case e_sql_none:
          break;
-      case       sql_execute:
+      case       e_sql_execute:
          m_strSqlExecute.Empty();
          break;
-      case sql_select:
+      case e_sql_select:
          m_strSqlSelect.Empty();
          break;
-      case sql_update:
+      case e_sql_update:
          m_strSqlUpdate.erase_all();
          break;
-      case sql_insert:
+      case e_sql_insert:
          m_strSqlInsert.erase_all();
          break;
-      case sql_delete:
+      case e_sql_delete:
          m_strSqlDelete.erase_all();
          break;
       default:
@@ -85,18 +88,18 @@ namespace database
 
    }
 
-   string dataset::get_sql(e_sql esql)
+   string dataset::get_sql(enum_sql esql)
    {
 
       switch (esql)
       {
 
-      case sql_none:
+      case e_sql_none:
          break;
-      case       sql_execute:
+      case       e_sql_execute:
          return m_strSqlExecute;
          break;
-      case sql_select:
+      case e_sql_select:
          return m_strSqlSelect;
          break;
       default:
@@ -238,7 +241,7 @@ namespace database
 
       }
 
-      m_edataset = dataset_insert;
+      m_edataset = e_dataset_insert;
 
    }
 
@@ -246,7 +249,7 @@ namespace database
    void dataset::edit()
    {
 
-      if (m_edataset != dataset_select)
+      if (m_edataset != e_dataset_select)
       {
 
          return;
@@ -255,34 +258,34 @@ namespace database
 
       m_rowEdit = m_row;
 
-      m_edataset = dataset_edit;
+      m_edataset = e_dataset_edit;
 
    }
 
 
    void dataset::post()
    {
-      if (m_edataset == dataset_insert) make_insert();
-      else if (m_edataset == dataset_edit) make_edit();
+      if (m_edataset == e_dataset_insert) make_insert();
+      else if (m_edataset == e_dataset_edit) make_edit();
    }
 
 
    void dataset::deletion()
    {
-      if (m_edataset == dataset_select) make_deletion();
+      if (m_edataset == e_dataset_select) make_deletion();
    }
 
    row * dataset::proper_row()
    {
 
-      if (m_edataset == dataset_none)
+      if (m_edataset == e_dataset_none)
       {
 
          return nullptr;
 
       }
 
-      if (m_edataset == dataset_edit || m_edataset == dataset_insert)
+      if (m_edataset == e_dataset_edit || m_edataset == e_dataset_insert)
       {
 
          return &m_rowEdit;
@@ -373,7 +376,7 @@ namespace database
    ::payload dataset::select_field_value(index iField)
    {
 
-      if (m_edataset == dataset_none)
+      if (m_edataset == e_dataset_none)
       {
 
          return error_dataset_inactive;

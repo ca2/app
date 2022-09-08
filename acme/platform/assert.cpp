@@ -13,7 +13,7 @@
 //#else
 
 //#ifdef _UWP
-//void _os_message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process);
+//void _os_message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & future);
 //#else
 //int _os_message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox);
 //#endif
@@ -85,7 +85,7 @@ namespace acme
 //#ifdef _UWP
 //
 //
-//void message_box_synchronous(const char * pszText, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process)
+//void message_box_synchronous(const char * pszText, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & future)
 //{
 //
 //   return _os_message_box(pszText, pszTitle, emessagebox, process);
@@ -96,7 +96,7 @@ namespace acme
 //#else
 //
 //
-////void message_box_synchronous(const char * pszText, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & process)
+////void message_box_synchronous(const char * pszText, const char * pszTitle, const ::e_message_box & emessagebox, const ::future & future)
 ////{
 ////
 ////   auto posmessagebox = __new(::acme::message_box_synchronous(pszText, pszTitle, emessagebox));

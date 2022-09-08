@@ -32,6 +32,8 @@
 #include "interaction_style.h"
 #include "text_composition_client.h"
 #include "aura/platform/session.h"
+#include "plain_edit_style.h"
+#include "control_style.h"
 
 
 namespace aura

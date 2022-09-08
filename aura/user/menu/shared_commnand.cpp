@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "menu_shared_command.h"
-#include "menu_shared.h"
+#include "shared_command.h"
+#include "shared.h"
 
 
 menu_shared_command::menu_shared_command(int* pestatus) :

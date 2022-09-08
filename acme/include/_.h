@@ -2877,7 +2877,7 @@ namespace text
 #define __unbind(holder, ...) (holder)->__release((holder)-> __VA_ARGS__ )
 
 
-//CLASS_DECL_ACME ::e_status2 __realize(::matter * pmatter, const ::future & process);
+//CLASS_DECL_ACME ::e_status2 __realize(::matter * pmatter, const ::future & future);
 
 
 // C-includes

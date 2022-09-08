@@ -387,9 +387,9 @@ namespace user
 
       //class control_descriptor& descriptor();
       //const class control_descriptor& descriptor() const;
-      inline ::aura::application * get_app() const;
-      inline ::aura::session * get_session() const;
-      inline ::aura::system * get_system() const;
+      ::aura::application * get_app() const;
+      ::aura::session * get_session() const;
+      ::aura::system * get_system() const;
 
       bool _001CanEnterScreenSaver() override;
 
@@ -448,8 +448,8 @@ namespace user
       const class ::user::interaction_layout& const_layout() const { return m_layout; }
       class ::user::interaction_layout& layout() { return m_layout; }
 
-      inline double screen_scaler() const;
-      inline double font_scaler() const;
+      double screen_scaler() const;
+      double font_scaler() const;
 
 
       //void clear();
@@ -790,7 +790,7 @@ namespace user
       virtual void add_prodevian(::matter * pmatter) override;
       virtual void erase_prodevian(::matter * pmatter) override;
       virtual bool is_prodevian(const ::matter * pmatter) const override;
-      inline bool has_prodevian() const noexcept;
+      bool has_prodevian() const noexcept;
 
 
       virtual bool is_frame_window();
@@ -799,11 +799,11 @@ namespace user
       virtual bool sketch_on_display();
 
 
-      inline bool is_this_visible(enum_layout elayout = e_layout_design) const;
-      inline bool is_this_screen_visible(enum_layout elayout = e_layout_design) const;
+      bool is_this_visible(enum_layout elayout = e_layout_design) const;
+      bool is_this_screen_visible(enum_layout elayout = e_layout_design) const;
 
-      inline bool is_window_visible(enum_layout elayout = e_layout_design) const;
-      inline bool is_window_screen_visible(enum_layout elayout = e_layout_design) const;
+      bool is_window_visible(enum_layout elayout = e_layout_design) const;
+      bool is_window_screen_visible(enum_layout elayout = e_layout_design) const;
 
 
       virtual void create_message_queue(const ::string & strName) override;

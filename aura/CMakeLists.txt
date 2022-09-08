@@ -21,7 +21,7 @@ list(APPEND library_source
    filesystem/_impl.h
    filesystem/filesystem.h
    game/_.h
-   game/_game.h
+   #game/_game.h
    game/estamira.cpp
    game/estamira.h
    game/game.cpp
@@ -62,10 +62,10 @@ list(APPEND library_source
    graphics/draw2d/draw2d.cpp
    graphics/draw2d/draw2d.h
    graphics/draw2d/fwd.h
-   graphics/draw2d/glyph.cpp
-   graphics/draw2d/glyph.h
-   graphics/draw2d/glyph_set.cpp
-   graphics/draw2d/glyph_set.h
+   graphics/write_text/glyph.cpp
+   graphics/write_text/glyph.h
+   graphics/write_text/glyph_set.cpp
+   graphics/write_text/glyph_set.h
    graphics/draw2d/graphics.cpp
    graphics/draw2d/graphics.h
    graphics/draw2d/graphics_extension.cpp
@@ -301,14 +301,14 @@ list(APPEND library_source
    platform/application.cpp
    platform/application.h
    platform/aura.h
-   platform/aura.cpp
-   platform/aura_mq.cpp
+   #platform/aura.cpp
+   platform/message_queue.cpp
    platform/context.cpp
    platform/context.h
    platform/draw_context.cpp
    platform/draw_context2.h
-   platform/drawable.cpp
-   platform/drawable.h
+   user/user/drawable.cpp
+   user/user/drawable.h
    platform/message_queue.h
    platform/node.cpp
    platform/node.h
@@ -329,10 +329,15 @@ list(APPEND library_source
    template/list.h
    user/appearance/appearance.cpp
    user/appearance/appearance.h
-   user/appearance/_appearance.h
-   user/menu/_menu.h
-   user/menu/menu_command.cpp
-   user/menu/menu_command.h
+   #user/appearance/_appearance.h
+   #user/menu/_menu.h
+   user/menu/command.cpp
+   user/menu/command.h
+        user/menu/shared.cpp
+        user/menu/shared.h
+        user/menu/shared_commnand.cpp
+        user/menu/shared_command.h
+
    #user/micro/message_box.cpp
    #user/micro/message_box.h
    #user/user/_.cpp
@@ -344,7 +349,7 @@ list(APPEND library_source
    user/user/_impl.h
    user/user/_interaction_impl.h
    user/user/_prelude.h
-   user/user/_user.h
+   #user/user/_user.h
    user/user/box.cpp
    user/user/box.h
    user/user/button.cpp
@@ -425,10 +430,12 @@ list(APPEND library_source
    user/user/style.h
    user/user/style_base.cpp
    user/user/style_base.h
-   user/user/style_control.cpp
-   user/user/style_control.h
-   user/user/text_composition.cpp
-   user/user/text_composition.h
+   #user/user/style_control.cpp
+   #user/user/style_control.h
+   user/user/text_composition_client.cpp
+   user/user/text_composition_client.h
+        user/user/text_composition_composite.cpp
+        user/user/text_composition_composite.h
    user/user/tool_window.cpp
    user/user/tool_window.h
    user/user/user.cpp
@@ -441,6 +448,14 @@ list(APPEND library_source
    user/user/window_util.h
    user/user/windowing.cpp
    user/user/windowing.h
+        user/user/zorder.cpp
+        user/user/zorder.h
+        user/user/horizontal_scroll_base.cpp
+        user/user/horizontal_scroll_base.h
+        user/user/vertical_scroll_base.cpp
+        user/user/vertical_scroll_base.h
+        user/user/visual_state.cpp
+        user/user/visual_state.h
    #windowing/buffer.cpp
    #windowing/buffer.h
    windowing/cursor.cpp
@@ -486,7 +501,8 @@ list(APPEND library_source
    library.h
    message.h
    procedure.h
-   update.h)
+   #update.h
+        )
 
 if (WIN32)
 

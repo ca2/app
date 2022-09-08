@@ -6,6 +6,7 @@
 #include "axis/account/credentials.h"
 #include "axis/account/user.h"
 #include "aura/user/user/user.h"
+#include "aura/platform/system.h"
 
 
 CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::object* pobject);

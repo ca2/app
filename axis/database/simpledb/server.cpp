@@ -1,7 +1,9 @@
 #include "framework.h"
-#include "aura/operating_system.h"
-#include "_simpledb.h"
+#include "server.h"
 #include "storage.h"
+#include "simpledb.h"
+//#include "aura/operating_system.h"
+#include "axis/database/database/database.h"
 
 
 namespace simpledb

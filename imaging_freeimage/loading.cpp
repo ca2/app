@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "_imaging_freeimage.h"
+//#include "_imaging_freeimage.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 
 

@@ -2,7 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/user/_component.h"
 #endif
-#include "menu_command.h"
+#include "command.h"
 
 
 

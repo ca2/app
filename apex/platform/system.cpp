@@ -3,6 +3,7 @@
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
+#include "apex/networking/networking.h"
 //#include "apex/platform/app_core.h"
 #include "acme/id.h"
 //#include "apex/operating_system/_node.h"
@@ -5375,6 +5376,60 @@ namespace apex
 //      
 //      
 //   }
+
+   void system::initialize_networking()
+   {
+
+      try
+      {
+
+         ::e_status estatus = ::success_none;
+
+         auto& pfactoryNetworking = factory("networking", "bsd");
+
+         //if (!pfactoryCrypto)
+         //{
+
+         //   WARNING("Could not open crypto openssl plugin.");
+
+         //   //return pfactoryCrypto;
+
+         //}
+
+         pfactoryNetworking->merge_to_global_factory();
+
+         //estatus =
+         pfactoryNetworking->__compose(this, m_pnetworking);
+
+
+         if (!m_pnetworking)
+         {
+
+            //estatus = __compose_new(m_psockets);
+
+            //__compose(m_pnetworking);
+
+            //if (!estatus)
+            //{
+
+            //   return estatus;
+
+            //}
+
+         }
+
+         //return estatus;
+
+      }
+      catch (...)
+      {
+
+         m_bNetworking = false;
+
+      }
+
+   }
+
 
 
 } // namespace apex

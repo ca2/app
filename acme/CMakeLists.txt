@@ -412,11 +412,11 @@ list(APPEND library_source
    primitive/geometry2d/_collection_bounding_rect.h
    primitive/geometry2d/_collection_contains.h
    primitive/geometry2d/_defer.h
-   primitive/geometry2d/_impl.h
-   primitive/geometry2d/_rect_impl.h
+   #primitive/geometry2d/_impl.h
+   #primitive/geometry2d/_rect_impl.h
    primitive/geometry2d/_shape.cpp
    primitive/geometry2d/_shape.h
-   primitive/geometry2d/_size_impl.h
+   #primitive/geometry2d/_size_impl.h
    primitive/geometry2d/_struct.h
    primitive/geometry2d/align.h
    primitive/geometry2d/angle.h
@@ -1233,7 +1233,7 @@ list(APPEND library_source
    #platform/regex.h
    platform/restore.h
    platform/sequence.cpp
-   platform/sequence.h
+   platform/sequencer.h
    platform/serial.h
    #platform/serial_impl.h
    #platform/simple_app.h
@@ -1553,6 +1553,8 @@ else ()
       #operating_system/posix/file_memory_map.h
       operating_system/ansi/time.cpp
       operating_system/ansi/dir.cpp
+           operating_system/ansi/int_handle.cpp
+           operating_system/ansi/int_handle.h
       #operating_system/ansi/parallelization.cpp
       operating_system/ansi/windows_time.cpp
       operating_system/ansi/windows_time.h

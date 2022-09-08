@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "composite.h"
 
 
 namespace database
@@ -45,7 +46,7 @@ namespace database
    }
 
 
-   e_connection composite::connection_status()
+   enum_connection composite::connection_status()
    {
       
       return m_pdatabase->connection_status(); 

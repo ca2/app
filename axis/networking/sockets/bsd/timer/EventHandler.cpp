@@ -28,7 +28,12 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-#include "axis/networking/_networking.h"
+#include "event_handler.h"
+#include "event_time.h"
+#include "event.h"
+#include "ievent_owner.h"
+#include "apex/networking/sockets/basic/tcp_socket.h"
+#include "apex/networking/networking.h"
 
 
 namespace sockets

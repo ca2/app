@@ -1586,6 +1586,8 @@ namespace sockets
    bool base_socket::SetIpMulticastTTL(int ttl)
    {
 
+      return false;
+
 //#if defined(IP_MULTICAST_TTL) && defined(BSD_STYLE_SOCKETS)
 //
 //      if (setsockopt(GetSocket(), IPPROTO_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(ttl)) == -1)

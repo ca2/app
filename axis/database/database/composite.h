@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "axis/database/database/database.h"
+
+
 namespace database
 {
 
@@ -36,7 +39,7 @@ namespace database
 
 
       void init() override;
-      e_connection connection_status() override;
+      enum_connection connection_status() override;
       void set_error_code(int iErrorCode) override;
       string get_error_message() override;
       void* get_handle() override;

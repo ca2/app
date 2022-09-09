@@ -10,10 +10,10 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 /** \file */
-
 #pragma once
 
-//#include <nanogui/widget.h>
+
+#include "Widget.h"
 //#include <functional>
 //#include <unordered_map>
 

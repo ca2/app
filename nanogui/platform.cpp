@@ -2,7 +2,7 @@
 
 
 #include "aura/operating_system.h"
-
+#include <vector>
 
 void __wide_append(memory & memory, const char * psz);
 void __wide_append_null(memory & memory);

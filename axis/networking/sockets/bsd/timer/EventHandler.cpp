@@ -33,6 +33,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "event.h"
 #include "ievent_owner.h"
 #include "apex/networking/sockets/basic/tcp_socket.h"
+#include "apex/networking/sockets/basic/listen_socket.h"
 #include "apex/networking/networking.h"
 
 
@@ -301,7 +302,7 @@ namespace sockets
          m_ptcpsocket -> SetReconnect(true);
 #endif
          
-         auto paddress = m_psystem->m_papexsystem->networking()->create_address("127.0.0.1", m_port));
+         auto paddress = m_psystem->m_papexsystem->networking()->create_address("127.0.0.1", m_port);
 //         m_ptcpsocket -> open(::networking::address("127.0.0.1", m_port));
          
          m_ptcpsocket -> open(paddress);

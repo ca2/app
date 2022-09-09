@@ -6,7 +6,7 @@
 #include "aura/graphics/graphics/graphics.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/drawing.h"
-//#include "aura/graphics/draw2d/_component.h"
+////#include "aura/graphics/draw2d/_component.h"
 //#include "aura/graphics/graphics/_.h"
 //#include "aura/graphics/graphics/_graphics.h"
 #include "aura/windowing/windowing.h"

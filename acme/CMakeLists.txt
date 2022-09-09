@@ -225,6 +225,8 @@ list(APPEND library_source
    operating_system/argcargv.cpp
    operating_system/chronometer.cpp
    operating_system/console.cpp
+        operating_system/console_client.cpp
+        operating_system/console_client.h
    operating_system/debug.cpp
    operating_system/file.cpp
    #operating_system/http.cpp
@@ -1041,7 +1043,7 @@ list(APPEND library_source
    operating_system/_application.h
    operating_system/_impl.h
    operating_system/_operating_system.h
-   operating_system/_user.h
+   #operating_system/_user.h
    operating_system/ansi/_.h
    operating_system/ansi/_ansi.h
    operating_system/ansi/_c.h

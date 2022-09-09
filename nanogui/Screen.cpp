@@ -11,16 +11,13 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
+#include "Screen.h"
+#include "Window.h"
+#include "Popup.h"
 #include "aura/graphics/image/context_image.h"
+#include "aura/user/user/interaction.h"
+#include "aura/platform/context.h"
 
-//#include <nanogui/screen.h>
-//#include <nanogui/theme.h>
-//#include <nanogui/opengl.h>
-//#include <nanogui/window.h>
-//#include <nanogui/popup.h>
-//#include <nanogui/metal.h>
-//#include <map>
-//#include <iostream>
 //
 //#if defined(EMSCRIPTEN)
 //#  include <emscripten/emscripten.h>
@@ -937,7 +934,7 @@ bool Screen::mouse_button_event(const Vector2i & p, int button, bool down, const
       }*/
 
       //bool btn12 = button == GLFW_MOUSE_BUTTON_1 || button == GLFW_MOUSE_BUTTON_2;
-      bool btn12 = button == __MOUSE_LEFT_BUTTON || button == __MOUSE_RIGHT_BUTTON;
+      bool btn12 = button == ::user::e_mouse_left_button || button == ::user::e_mouse_right_button;
 
       //if (!m_drag_active && action == GLFW_PRESS && btn12) {
       if (!m_drag_active && down && btn12) {
@@ -1274,13 +1271,13 @@ int user_key_to_nano2d_button(::user::e_key ekeyButton)
    if (ekeyButton == ::user::e_key_left_button)
    {
 
-      return __MOUSE_LEFT_BUTTON;
+      return ::user::e_mouse_left_button;
 
    }
    else if (ekeyButton == ::user::e_key_right_button)
    {
 
-      return __MOUSE_RIGHT_BUTTON;
+      return ::user::e_mouse_right_button;
 
    }
    else

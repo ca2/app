@@ -5,7 +5,7 @@ project(programming CXX)
 list(APPEND library_source
     _.cpp
     _.h
-   _library.h
+   #_library.h
     framework.cpp
     framework.h
    dynamic_source/exit_exception.cpp

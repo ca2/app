@@ -113,6 +113,7 @@ namespace networking
       virtual bool is_ip6(const string& str);
 
 
+      virtual address_pointer create_address(const ::string & strAddress, port_t port);
       virtual address_pointer create_ip4_address(::i32 iIp, port_t port);
       //virtual bool convert(struct ::in_addr& l, const string& str, i32 ai_flags = 0);
       //virtual bool convert(struct ::in6_addr& l, const string& str, i32 ai_flags = 0);

@@ -104,16 +104,16 @@ list(APPEND library_source
         database/simpledb/thread_localdatabase.h
         database/simpledb/veiev_post.h
         database/_.h
-        geoip/_.h
-        geoip/city.cpp
-        geoip/city.h
-        geoip/geoip.cpp
-        geoip/global.h
-        geoip/internal.h
-        geoip/region_name.cpp
-        geoip/time_zone.cpp
-        geoip/update.cpp
-        geoip/update.h
+        #geoip/_.h
+        #geoip/city.cpp
+        #geoip/city.h
+        #geoip/geoip.cpp
+        #geoip/global.h
+        #geoip/internal.h
+        #geoip/region_name.cpp
+        #geoip/time_zone.cpp
+        #geoip/update.cpp
+        #geoip/update.h
         graphics/render/water_routine.cpp
         graphics/render/water_routine.h
         html/html/_.h

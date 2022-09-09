@@ -3,7 +3,7 @@
 //#include "core/html/impl/_impl.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "hi5_twitter_authorization.h"
-#include "core/user/simple/_component.h"
+//#include "core/user/simple/_component.h"
 #endif
 #include "core/user/user/user.h"
 #include "hi5_twitter_authorization.h"
@@ -15,7 +15,7 @@
 #include "axis/user/form/data.h"
 #include "base/user/user/tab_impact.h"
 #include "base/user/form/document.h"
-//#include "core/user/simple/_component.h"
+////#include "core/user/simple/_component.h"
 
 //#include <openssl/rsa.h>
 //#include <openssl/engine.h>

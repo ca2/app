@@ -11,10 +11,11 @@
  *
  * \brief Two-state check box Widget.
  */
-
 #pragma once
 
-//#include <nanogui/widget.h>
+
+#include "Widget.h"
+
 
 NAMESPACE_BEGIN(nanogui)
 

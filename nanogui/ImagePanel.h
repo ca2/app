@@ -10,12 +10,11 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 /** \file */
-
 #pragma once
 
 
+#include "Widget.h"
 
-//#include <nanogui/widget.h>
 
 NAMESPACE_BEGIN(nanogui)
 

@@ -250,6 +250,14 @@ namespace networking
    }
 
 
+   address_pointer networking::create_address(const ::string & strAddress, port_t port)
+   {
+
+      return nullptr;
+
+   }
+
+
    address_pointer networking::create_ip4_address(::i32 iIp, port_t port)
    {
 

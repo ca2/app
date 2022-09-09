@@ -31,7 +31,7 @@ namespace netserver
 
 
       socket_thread_base();
-      virtual ~socket_thread_base();
+      ~socket_thread_base() override;
 
 
       virtual void     run() override;

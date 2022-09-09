@@ -9,9 +9,7 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
-
-
-//#include <nanogui/screen.h>
+#include "Object.h"
 #include "aura/graphics/image/context_image.h"
 
 

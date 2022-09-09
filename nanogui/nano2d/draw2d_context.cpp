@@ -1,7 +1,11 @@
 // Created by camilo on 2022/03/18 9:00 AM <3ThomasBorregaardSørensen!! (Thomas Like number 5)
 #include "framework.h"
-
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/path.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/write_text/font.h"
 
 
 namespace nano2d

@@ -296,7 +296,7 @@ list(APPEND library_source
    #user/simple/_.cpp
    user/simple/_.h
    user/simple/_impl.h
-   user/simple/_component.h
+   #user/simple/_component.h
    user/simple/_tree.h
    #user/simple/child_frame.cpp
    #user/simple/child_frame.h
@@ -327,6 +327,8 @@ list(APPEND library_source
    #user/simple/static.h
    user/simple/status_bar.cpp
    user/simple/status_bar.h
+        user/simple/still.cpp
+        user/simple/still.h
    user/simple/tab_control.cpp
    user/simple/tab_control.h
    user/simple/tab_impact.cpp
@@ -411,6 +413,8 @@ list(APPEND library_source
    user/user/tree_data.cpp
    user/user/tree_data.h
    user/user/tree_window.cpp
+        user/user/user.cpp
+        user/user/user.h
    user/user/xfplayer_impact_line.cpp
    user/user/xfplayer_impact_line.h
    user/user/xfplayer_impact_line_selection.cpp

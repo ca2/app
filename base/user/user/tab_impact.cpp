@@ -11,6 +11,7 @@
 #include "base/user/menu/menu.h"
 #include "document.h"
 #include "base/user/menu/list_impact.h"
+#include "base/user/user/tab_drop_target_window.h"
 
 
 namespace user
@@ -470,7 +471,9 @@ namespace user
 
    void tab_impact::_001DropTargetWindowFinalize(::user::tab * pchannel)
    {
+
       __UNREFERENCED_PARAMETER(pchannel);
+
       if(m_pdroptargetwindow != nullptr)
       {
          //psystem->erase_frame(m_pdroptargetwindow);

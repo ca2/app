@@ -9,6 +9,10 @@ list(APPEND library_source
         constant/idpool.h
    #    const/procedure.h
         #include/_.cpp
+        html/user/document.cpp
+        html/user/form_impact.cpp
+        html/user/impact.cpp
+        html/user/user.cpp
         include/_.h
         include/_c.h
         include/_c_bridge.h
@@ -81,7 +85,7 @@ list(APPEND library_source
         user/menu/impact.h
         user/simple/_.h
         user/simple/_impl.h
-        user/simple/_component.h
+        #user/simple/_component.h
         user/simple/frame_window.cpp
         user/simple/frame_window.h
         user/simple/main_frame.cpp
@@ -96,7 +100,7 @@ list(APPEND library_source
         user/user/_data.h
         user/user/_impl.h
         user/user/_tree.h
-        user/user/_component.h
+        #user/user/_component.h
         user/user/composition_imm_client.h
         #user/user/control.cpp
         #user/user/control.h
@@ -124,6 +128,10 @@ list(APPEND library_source
         user/form/update_hint.h
         user/form/impact.cpp
         user/form/impact.h
+        user/simple/child_frame.cpp
+        user/simple/child_frame.h
+        user/simple/impact.cpp
+        user/simple/impact.h
         user/user/frame_window.cpp
         user/user/frame_window.h
         user/user/hotplugin.cpp
@@ -172,8 +180,6 @@ list(APPEND library_source
     user/user/print_task.h
     user/user/server.cpp
     user/user/server.h
-    user/simple/impact.cpp
-    user/simple/impact.h
     user/user/single_document_template.cpp
     user/user/single_document_template.h
     user/user/split_bar.cpp
@@ -194,6 +200,7 @@ list(APPEND library_source
     user/user/tab_callback.h
     user/user/tab_data.cpp
     user/user/tab_data.h
+        user/user/tab_drop_target_window.cpp
     user/user/tab_drop_target_window.h
     user/user/tab_pane.cpp
     user/user/tab_pane.h

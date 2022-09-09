@@ -46,8 +46,8 @@ namespace base
       void dump(dump_context & dumpcontext) const override;
 
 
-      inline ::base::system* get_system() const;
-      inline ::base::session* get_session() const;
+      ::base::system* get_system() const;
+      ::base::session* get_session() const;
 
 
       virtual __pointer(::user::document) defer_create_impact(string strImpact, ::user::interaction* puiParent = nullptr, ewindowflag ewindowflag = ::ewindowflag(), const ::atom& atom = ::atom());

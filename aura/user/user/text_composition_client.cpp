@@ -2,7 +2,7 @@
 // From text_composition.cpp by camilo on 2022-08-27 19:31 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_component.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "text_composition_client.h"
 #include "interaction.h"

@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "aqua/game/_component.h"
+//#include "aqua/game/_component.h"
 
 
 #include "game.h"

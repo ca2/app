@@ -5,7 +5,7 @@
 #include <math.h>
 #include "acme/id.h"
 #include "aura/graphics/user/control_box_icon.h"
-//#include "aura/graphics/draw2d/_component.h"
+////#include "aura/graphics/draw2d/_component.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/save_image.h"
 #include "aura/graphics/image/context_image.h"

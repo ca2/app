@@ -49,9 +49,9 @@ namespace windowing
       void dump(dump_context & dumpcontext) const override;
 
 
-      inline ::aura::application* get_app() const;
-      inline ::aura::session* get_session() const;
-      inline ::aura::system* get_system() const;
+      ::aura::application* get_app() const;
+      ::aura::session* get_session() const;
+      ::aura::system* get_system() const;
 
 
       void install_message_routing(::channel * pchannel) override;

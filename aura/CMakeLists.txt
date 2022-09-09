@@ -40,7 +40,7 @@ list(APPEND library_source
    graphics/draw2d/winrt/image_gif.cpp
    graphics/draw2d/_.cpp
    graphics/draw2d/_.h
-   graphics/draw2d/_component.h
+   #graphics/draw2d/_component.h
    graphics/draw2d/_impl.h
    graphics/draw2d/_visual_impl.h
    graphics/draw2d/alpha.cpp
@@ -76,6 +76,7 @@ list(APPEND library_source
    graphics/draw2d/holder.h
    graphics/draw2d/host.cpp
    graphics/draw2d/host.h
+        graphics/draw2d/item.cpp
    graphics/draw2d/item.h
    #graphics/draw2d/keep.cpp
    #graphics/draw2d/keep.h
@@ -350,6 +351,8 @@ list(APPEND library_source
    user/user/_interaction_impl.h
    user/user/_prelude.h
    #user/user/_user.h
+        user/user/alpha_source.cpp
+        user/user/alpha_source.h
    user/user/box.cpp
    user/user/box.h
    user/user/button.cpp
@@ -360,6 +363,7 @@ list(APPEND library_source
    user/user/check_box.h
    #user/user/control_descriptor.cpp
    user/user/control_descriptor.h
+        user/user/control_style.cpp
    user/user/copydesk.cpp
    user/user/copydesk.h
    user/user/system.cpp
@@ -408,10 +412,12 @@ list(APPEND library_source
    user/user/notify_icon_listener.h
    user/user/plain_edit.cpp
    user/user/plain_edit.h
+        user/user/plain_edit_style.h
    user/user/plain_text_data.cpp
    user/user/plain_text_data.h
    user/user/primitive_impl.cpp
    user/user/primitive_impl.h
+        user/user/prodevian.cpp
    user/user/prodevian.h
    user/user/progress.cpp
    user/user/progress.h
@@ -702,7 +708,7 @@ endif ()
 
 list(APPEND windowing_source
    windowing/_.h
-   windowing/_component.h
+   #windowing/_component.h
    #windowing/buffer.cpp
    #windowing/buffer.h
    #windowing/button.cpp

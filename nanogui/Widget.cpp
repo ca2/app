@@ -9,17 +9,15 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
-
 #include "Widget.h"
+#include "Layout.h"
+#include "Screen.h"
+#include "Window.h"
+#include "VScrollPanel.h"
 #include "nano2d/context.h"
 #include "nano2d/draw2d_context.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/user/user/interaction.h"
 
-//#include <nanogui/layout.h>
-//#include <nanogui/theme.h>
-//#include <nanogui/window.h>
-//#include <nanogui/opengl.h>
-//#include <nanogui/screen.h>
 
 /* Uncomment the following definition to draw red bounding
    boxes around widgets (useful for debugging drawing code) */
@@ -172,7 +170,7 @@ bool Widget::mouse_button_event(const Vector2i & p, int button, bool down, const
          return true;
    }
    
-   if (button == __MOUSE_LEFT_BUTTON && down && !m_focused)
+   if (button == ::user::e_mouse_left_button && down && !m_focused)
    {
 
       request_focus();

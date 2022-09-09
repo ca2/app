@@ -46,7 +46,7 @@ namespace net
 
 #if defined(BSD_STYLE_SOCKETS)
 
-#include "bsd/_component.h"
+//#include "bsd/_component.h"
 
 #if defined(LINUX) || defined(_UWP)
 

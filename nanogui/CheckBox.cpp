@@ -9,11 +9,10 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
+#include "CheckBox.h"
+#include "Screen.h"
+#include "aura/user/user/interaction.h"
 
-
-//#include <nanogui/m_pcheckbox.h>
-//#include <nanogui/opengl.h>
-//#include <nanogui/theme.h>
 
 NAMESPACE_BEGIN(nanogui)
 
@@ -30,7 +29,7 @@ bool CheckBox::mouse_button_event(const Vector2i & p, int button, bool down, con
    if (!m_enabled)
       return false;
 
-   if (button == __MOUSE_LEFT_BUTTON) {
+   if (button == ::user::e_mouse_left_button) {
       if (down) {
          m_bMouseDown = true;
          screen()->m_puserinteraction->set_need_redraw();

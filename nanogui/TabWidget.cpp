@@ -10,16 +10,14 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
-
-
-//#include <nanogui/tabwidget.h>
-//#include <nanogui/theme.h>
-//#include <nanogui/screen.h>
-//#include <nanogui/popup.h>
-//#include <nanogui/layout.h>
-//#include <nanogui/button.h>
-//#include <nanogui/opengl.h>
+#include "Layout.h"
+#include "TabWidget.h"
+#include "Screen.h"
 #include "Icons.h"
+#include "Popup.h"
+#include "Button.h"
+#include "aura/user/user/interaction.h"
+
 
 NAMESPACE_BEGIN(nanogui)
 
@@ -296,7 +294,7 @@ bool TabWidgetBase::mouse_button_event(const Vector2i & p, int button, bool down
    }
 
    bool drag_in_progress = m_tab_drag_index != -1 && m_tab_drag_start != m_tab_drag_end;
-   if (m_popup_callback && button == __MOUSE_RIGHT_BUTTON && down && index != -1 &&
+   if (m_popup_callback && button == ::user::e_mouse_right_button && down && index != -1 &&
       !drag_in_progress) {
       m_popup = m_popup_callback(tab_id(index), screen);
       m_popup->set_position(p + Vector2i(8, -6));
@@ -328,7 +326,7 @@ bool TabWidgetBase::mouse_button_event(const Vector2i & p, int button, bool down
       handled = true;
    }
 
-   if (button == __MOUSE_LEFT_BUTTON && m_popup == nullptr) {
+   if (button == ::user::e_mouse_left_button && m_popup == nullptr) {
       if (index >= 0) {
          if (close && m_tab_drag_index == -1) {
             if (down) {

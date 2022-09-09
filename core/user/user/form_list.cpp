@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include "core/user/user/_component.h"
+////#include "core/user/user/_component.h"
 #include "axis/user/user/validate.h"
 #include "acme/id.h"
 #include "form_list.h"

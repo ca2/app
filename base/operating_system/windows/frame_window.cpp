@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include "base/user/simple/_component.h"
+////#include "base/user/simple/_component.h"
 
 
 //void simple_frame_window::defer_set_icon()

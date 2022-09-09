@@ -137,17 +137,16 @@ namespace user
             if (pinteraction != puiExclude)
             {
 
-               TYPE * point = dynamic_cast <TYPE *> (pinteraction.m_p);
+               TYPE * p = dynamic_cast <TYPE *> (pinteraction.m_p);
 
-               if (point != nullptr)
+               if (p != nullptr)
                {
 
-                  return point;
+                  return p;
 
                }
 
             }
-
 
          }
 
@@ -157,12 +156,12 @@ namespace user
             if (pinteraction != puiExclude)
             {
 
-               TYPE * point = pinteraction->typed_descedant < TYPE >(pinteraction.m_p);
+               TYPE * p = pinteraction->typed_descendant < TYPE >(pinteraction.m_p);
 
-               if (point != nullptr)
+               if (p != nullptr)
                {
 
-                  return point;
+                  return p;
 
                }
 

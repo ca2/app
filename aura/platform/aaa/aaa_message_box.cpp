@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "base/user/user/_component.h"
+//#include "base/user/user/_component.h"
 
 
 message_box::message_box()

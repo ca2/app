@@ -1,7 +1,7 @@
 #pragma once
 
 
-//#include "core/user/simple/_component.h"
+////#include "core/user/simple/_component.h"
 //
 //
 //namespace filemanager

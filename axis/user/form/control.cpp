@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "axis/user/user/_component.h"
+//#include "axis/user/user/_component.h"
 #endif
 #include "control.h"
 #include "axis/user/user/validate.h"

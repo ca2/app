@@ -2,7 +2,7 @@
 
 
 
-class CLASS_DECL_APEX openweather_city
+class CLASS_DECL_NETWORKING_BSD openweather_city
 {
 public:
 

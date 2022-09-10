@@ -24,6 +24,12 @@
     <Filter Include="Source Files\sockets\bsd\basic">
       <UniqueIdentifier>{4a89243c-8a82-481a-8edf-739d61cc6a50}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\winsock2">
+      <UniqueIdentifier>{195257fa-ad36-48f2-b204-e655653a2caa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\winsock2">
+      <UniqueIdentifier>{7b29f43c-c407-405a-9e33-6a2b9795776a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -38,22 +44,7 @@
     <ClInclude Include="aaa__openssl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hasher.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="hasher_algorithm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="rsa.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="aaa_initializer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="initializer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="_impl.h">
@@ -71,31 +62,13 @@
     <ClInclude Include="networking.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="byte_order.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="email.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="email_address.h">
+    <ClInclude Include="_byte_order.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ip_enum.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="net.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="networking_application.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="networking_application_handler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="networking_application_socket.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="open_weather_city.h">
+    <ClInclude Include="_net.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="port_forward.h">
@@ -137,6 +110,12 @@
     <ClInclude Include="sockets\_.h">
       <Filter>Header Files\sockets</Filter>
     </ClInclude>
+    <ClInclude Include="_operating_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winsock2\_.h">
+      <Filter>Header Files\winsock2</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -148,43 +127,13 @@
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="crypto.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="hasher.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="hasher_algorithm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="rsa.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="initializer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="address.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="networking.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="email.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="email_address.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ip_enum.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="networking_application.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="networking_application_handler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="networking_application_socket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="port_forward.cpp">
@@ -243,6 +192,9 @@
     </ClCompile>
     <ClCompile Include="sockets\bsd\basic\udp_socket.cpp">
       <Filter>Source Files\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="winsock2\_.cpp">
+      <Filter>Source Files\winsock2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

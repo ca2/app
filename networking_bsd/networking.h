@@ -2,6 +2,7 @@
 #pragma once
 
 
+#include "apex/networking/networking.h"
 #include "address.h"
 
 
@@ -9,7 +10,7 @@ namespace networking_bsd
 {
 
 
-   class CLASS_DECL_APEX networking :
+   class CLASS_DECL_NETWORKING_BSD networking :
       public ::networking::networking
    {
    public:
@@ -24,7 +25,7 @@ namespace networking_bsd
       bool           m_bInitialized;
 
 
-      class CLASS_DECL_APEX dns_cache_item :
+      class CLASS_DECL_NETWORKING_BSD dns_cache_item :
          virtual public ::object
       {
       public:
@@ -47,7 +48,7 @@ namespace networking_bsd
 
       };
 
-      class CLASS_DECL_APEX reverse_cache_item :
+      class CLASS_DECL_NETWORKING_BSD reverse_cache_item :
          virtual public ::matter
       {
       public:
@@ -104,32 +105,32 @@ namespace networking_bsd
 
       bool isipv6(const string& str) override;
 
-      bool convert(struct ::in_addr& l, const string& str, i32 ai_flags = 0) override;
-      bool convert(struct ::in6_addr& l, const string& str, i32 ai_flags = 0) override;
-      bool convert(string& str, const struct ::in_addr& ip) override;
-      bool convert(string& str, const struct ::in6_addr& ip, bool mixed = false) override;
+      virtual bool convert(struct ::in_addr& l, const string& str, i32 ai_flags = 0);
+      virtual bool convert(struct ::in6_addr& l, const string& str, i32 ai_flags = 0);
+      virtual bool convert(string& str, const struct ::in_addr& ip);
+      virtual bool convert(string& str, const struct ::in6_addr& ip, bool mixed = false);
 
-      i32 in6_addr_compare(struct ::in6_addr a, struct ::in6_addr b) override;
+      virtual i32 in6_addr_compare(struct ::in6_addr a, struct ::in6_addr b);
 
-      void ResolveLocal() override;
+      virtual void ResolveLocal();
 
-      const string& GetLocalHostname() override;
+      virtual const string& GetLocalHostname();
 
-      in_addr GetLocalIP() override;
+      virtual in_addr GetLocalIP();
 
-      const string& GetLocalAddress() override;
+      virtual const string& GetLocalAddress();
 
-      const struct in6_addr& GetLocalIP6() override;
+      virtual const struct in6_addr& GetLocalIP6();
 
-      const string& GetLocalAddress6() override;
+      virtual const string& GetLocalAddress6();
 
-      string Sa2String(sockaddr* psa) override;
+      virtual string Sa2String(sockaddr* psa);
 
       bool reverse(string& hostname, ::networking::address * address) override;
 
-      bool reverse_schedule(reverse_cache_item* pitem) override;
+      virtual bool reverse_schedule(reverse_cache_item* pitem);
 
-      bool reverse_sync(reverse_cache_item* pitem) override;
+      virtual bool reverse_sync(reverse_cache_item* pitem);
 
       bool reverse(string& hostname, const string& number) override;
 
@@ -150,7 +151,7 @@ namespace networking_bsd
 
    };
 
-   //CLASS_DECL_APEX class address_department * address_department();
+   //CLASS_DECL_NETWORKING_BSD class address_department * address_department();
 
 } // namespace net
 

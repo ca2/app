@@ -15,7 +15,7 @@ namespace networking_bsd
 {
 
 
-   class CLASS_DECL_APEX address :
+   class CLASS_DECL_NETWORKING_BSD address :
       virtual public ::networking::address
    {
    public:
@@ -359,9 +359,9 @@ namespace networking_bsd
 #endif
 
 
-   CLASS_DECL_APEX address ipv4(u32 u, port_t port = 0);
+   CLASS_DECL_NETWORKING_BSD address ipv4(u32 u, port_t port = 0);
 
-   CLASS_DECL_APEX address ipv6(void * p128bits, port_t port = 0);
+   CLASS_DECL_NETWORKING_BSD address ipv6(void * p128bits, port_t port = 0);
 
 } // namespace sockets
 

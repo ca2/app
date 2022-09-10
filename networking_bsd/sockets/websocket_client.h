@@ -5,7 +5,7 @@ namespace networking_bsd
 {
 
 
-   class CLASS_DECL_APEX websocket_client :
+   class CLASS_DECL_NETWORKING_BSD websocket_client :
       virtual public http_client_socket
    {
    public:
@@ -84,7 +84,7 @@ namespace networking_bsd
 } // namespace networking_bsd
 
 
-CLASS_DECL_APEX void websocket_prefix_varuint32(memory & m, unsigned int u);
+CLASS_DECL_NETWORKING_BSD void websocket_prefix_varuint32(memory & m, unsigned int u);
 
 
 

@@ -1,5 +1,4 @@
 #include "framework.h"
-#include "apex/networking/networking_bsd/_sockets.h"
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
 #include <arpa/inet.h>
 #endif
@@ -81,7 +80,7 @@ static const uchar index_hex[256] =
 * or 0 if the input is not a valid IPv6 address string.
 * (Same as inet_pton(AF_INET6, string, addr).)
 */
-CLASS_DECL_APEX void from_string(in6_addr & addr, const ansichar * string)
+CLASS_DECL_NETWORKING_BSD void from_string(in6_addr & addr, const ansichar * string)
 {
    const uchar *s = (const uchar *)(const char *) string;
    i32 department = 0;        /* index of the current department (a 16-bit
@@ -220,7 +219,7 @@ static const char *basis_hex = "0123456789abcdef";
 * (Same as inet_ntop(AF_INET6, addr, buf, size), except that errno
 * is not set on failure.)
 */
-CLASS_DECL_APEX void to_string(string & str, const in6_addr  & addr)
+CLASS_DECL_NETWORKING_BSD void to_string(string & str, const in6_addr  & addr)
 {
 
    str.Empty();
@@ -351,7 +350,7 @@ struct c_in_addr
 //namespace str
 //{
 
-CLASS_DECL_APEX void from_string(in_addr & addrParam, const ansichar * string)
+CLASS_DECL_NETWORKING_BSD void from_string(in_addr & addrParam, const ansichar * string)
 {
 
    c_in_addr & addr = (c_in_addr &) addrParam;
@@ -432,7 +431,7 @@ inline string ip_to_string(byte b1, byte b2, byte b3, byte b4)
 //{
 
 
-CLASS_DECL_APEX void to_string(string & str, const in_addr &  addr)
+CLASS_DECL_NETWORKING_BSD void to_string(string & str, const in_addr &  addr)
 {
 #if defined(WINDOWS)
    str = ip_to_string(
@@ -447,7 +446,7 @@ CLASS_DECL_APEX void to_string(string & str, const in_addr &  addr)
 }
 
 
-CLASS_DECL_APEX void to_string(string & str, const sockaddr_in &  addr)
+CLASS_DECL_NETWORKING_BSD void to_string(string & str, const sockaddr_in &  addr)
 {
 
    return to_string(str, addr.sin_addr);
@@ -455,7 +454,7 @@ CLASS_DECL_APEX void to_string(string & str, const sockaddr_in &  addr)
 }
 
 
-CLASS_DECL_APEX void to_string(string & str, const sockaddr_in6 &  addr)
+CLASS_DECL_NETWORKING_BSD void to_string(string & str, const sockaddr_in6 &  addr)
 {
 
    return to_string(str, addr.sin6_addr);
@@ -463,7 +462,7 @@ CLASS_DECL_APEX void to_string(string & str, const sockaddr_in6 &  addr)
 }
 
 
-CLASS_DECL_APEX void from_string(sockaddr_in & addr, const ::string & str)
+CLASS_DECL_NETWORKING_BSD void from_string(sockaddr_in & addr, const ::string & str)
 {
 
    return from_string(addr.sin_addr, str);
@@ -471,7 +470,7 @@ CLASS_DECL_APEX void from_string(sockaddr_in & addr, const ::string & str)
 }
 
 
-CLASS_DECL_APEX void from_string(sockaddr_in6 & addr, const ::string & str)
+CLASS_DECL_NETWORKING_BSD void from_string(sockaddr_in6 & addr, const ::string & str)
 {
 
    return from_string(addr.sin6_addr, str);
@@ -479,7 +478,7 @@ CLASS_DECL_APEX void from_string(sockaddr_in6 & addr, const ::string & str)
 }
 
 
-CLASS_DECL_APEX void to_string(string & str, const sockaddr & addr)
+CLASS_DECL_NETWORKING_BSD void to_string(string & str, const sockaddr & addr)
 {
 
    if(addr.sa_family == AF_INET)
@@ -504,7 +503,7 @@ CLASS_DECL_APEX void to_string(string & str, const sockaddr & addr)
 }
 
 
-CLASS_DECL_APEX void from_string(const sockaddr & addr, string & str)
+CLASS_DECL_NETWORKING_BSD void from_string(const sockaddr & addr, string & str)
 {
 
    if (addr.sa_family == AF_INET)
@@ -532,7 +531,7 @@ CLASS_DECL_APEX void from_string(const sockaddr & addr, string & str)
 //} // namespace str
 
 
-CLASS_DECL_APEX i32 c_inet_pton(i32 af, const char *src, void *dst)
+CLASS_DECL_NETWORKING_BSD i32 c_inet_pton(i32 af, const char *src, void *dst)
 {
 
    if(af == AF_INET)
@@ -565,7 +564,7 @@ CLASS_DECL_APEX i32 c_inet_pton(i32 af, const char *src, void *dst)
 }
 
 
-CLASS_DECL_APEX string c_inet_ntop(i32 af, const void *src)
+CLASS_DECL_NETWORKING_BSD string c_inet_ntop(i32 af, const void *src)
 {
 
    string str;
@@ -591,7 +590,7 @@ CLASS_DECL_APEX string c_inet_ntop(i32 af, const void *src)
 
 }
 
-CLASS_DECL_APEX const char * c_inet_ntop(i32 af, const void *src, char *dst, i32 cnt)
+CLASS_DECL_NETWORKING_BSD const char * c_inet_ntop(i32 af, const void *src, char *dst, i32 cnt)
 {
 
    if(dst == nullptr)
@@ -613,7 +612,7 @@ CLASS_DECL_APEX const char * c_inet_ntop(i32 af, const void *src, char *dst, i32
 
 #define C_INADDR_NONE ((u32) -1)
 
-CLASS_DECL_APEX u32 c_inet_addr(const char * src)
+CLASS_DECL_NETWORKING_BSD u32 c_inet_addr(const char * src)
 {
 
    try
@@ -721,7 +720,7 @@ CLASS_DECL_APEX u32 c_inet_addr(const char * src)
 }
 
 
-CLASS_DECL_APEX string c_gethostbyname(const char * hostname)
+CLASS_DECL_NETWORKING_BSD string c_gethostbyname(const char * hostname)
 {
 
 //#ifdef _UWP
@@ -741,132 +740,6 @@ CLASS_DECL_APEX string c_gethostbyname(const char * hostname)
 
 
 
-
-string get_file_extension_mime_type(const ::string & strExtension)
-{
-
-   if(strExtension == "iso")
-   {
-      return "application/octetstream";
-   }
-   else if(strExtension == "mp3")
-   {
-      return "audio/mpeg";
-   }
-   else if(strExtension == "exe")
-   {
-      return "application/x-msdownload";
-   }
-   else if(strExtension == "spa")
-   {
-      return "application/x-spa";
-   }
-   else if(strExtension == "mid")
-   {
-      return "audio/midi";
-   }
-   else if(strExtension == "js")
-   {
-      return "text/javascript";
-   }
-   else if(strExtension == "css")
-   {
-      return "text/css";
-   }
-   else if(strExtension == "xpi")
-   {
-      return "application/x-xpinstall";
-   }
-   else if(strExtension == "ttf")
-   {
-      return "font/ttf";
-   }
-   else if(strExtension == "ogv")
-   {
-      return "video/ogg";
-   }
-   else if(strExtension == "mp4")
-   {
-      return "video/mp4";
-   }
-   else if(strExtension == "webm")
-   {
-      return "video/webm";
-   }
-   else if(strExtension == "zip")
-   {
-      return "application/x-zip-compressed";
-   }
-   else if(strExtension == "crx")
-   {
-      return "application/x-chrome-extension";
-   }
-   else if(strExtension == "swf")
-   {
-      return "application/x-shockwave-flash";
-   }
-   else if(strExtension == "cab")
-   {
-      return "application/vnd.ms-cab-compressed";
-   }
-   else if(strExtension == "jar")
-   {
-      return "application/x-jar";
-   }
-   else if(strExtension == "jpg")
-   {
-      return "image/jpeg";
-   }
-   else if(strExtension == "png")
-   {
-      return "image/png";
-   }
-   else if(strExtension == "gif")
-   {
-      return "image/gif";
-   }
-   else if(strExtension == "svg")
-   {
-      return "image/svg+xml";
-   }
-   else if(strExtension == "ttf")
-   {
-      return "application/x-font-ttf";
-   }
-   else if(strExtension == "otf")
-   {
-      return "application/x-font-opentype";
-   }
-   else if(strExtension == "woff")
-   {
-      return "application/x-font-woff";
-   }
-   else if(strExtension == "eot")
-   {
-      return "application/vnd.ms-fontobject";
-   }
-   else if(strExtension == "md5")
-   {
-      return "text/plain";
-   }
-   else if(strExtension == "html")
-   {
-      return "text/html";
-   }
-   else if(strExtension == "htm")
-   {
-      return "text/html";
-   }
-   else if(strExtension == "rdf")
-   {
-      return "application/rdf+xml";
-   }
-   else
-   {
-      return "";
-   }
-
-}
 
 
 namespace net
@@ -916,7 +789,7 @@ namespace net
 // {
 
 
-   CLASS_DECL_APEX string to_string(const struct sockaddr & sockaddr)
+   CLASS_DECL_NETWORKING_BSD string to_string(const struct sockaddr & sockaddr)
    {
 
       string str;

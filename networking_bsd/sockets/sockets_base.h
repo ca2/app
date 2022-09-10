@@ -5,7 +5,7 @@ namespace networking_bsd
 {
 
 
-   class CLASS_DECL_APEX sockets_base :
+   class CLASS_DECL_NETWORKING_BSD sockets_base :
       virtual public ::object
    {
    public:

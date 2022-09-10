@@ -31,14 +31,6 @@ CLASS_DECL_APEX const char * bsd_socket_error(i32 x);
 #endif
 
 
-namespace net
-{
-
-
-   CLASS_DECL_APEX i32 family_len(i32 family);
-
-
-};
 
 
 //#include "sockets_base.h"

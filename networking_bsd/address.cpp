@@ -1,26 +1,7 @@
 #include "framework.h" 
 #include "address.h"
-#include "apex/networking/networking_bsd/networking_bsd.h"
 
 
-#if defined(FREEBSD)
-
-#include <sys/socket.h>
-#include <netinet/in.h>
-
-#endif
-
-#if defined(__arm__)
-
-#if !defined(RASPBIAN)
-
-#include <sys/endian.h>
-
-#endif
-
-#include <arpa/inet.h>
-
-#endif
 
 
 namespace net

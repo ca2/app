@@ -893,9 +893,6 @@
     <ClInclude Include="networking\networking.h">
       <Filter>Header Files\networking</Filter>
     </ClInclude>
-    <ClInclude Include="networking\byte_order.h">
-      <Filter>Header Files\networking</Filter>
-    </ClInclude>
     <ClInclude Include="networking\email.h">
       <Filter>Header Files\networking</Filter>
     </ClInclude>
@@ -903,9 +900,6 @@
       <Filter>Header Files\networking</Filter>
     </ClInclude>
     <ClInclude Include="networking\ip_enum.h">
-      <Filter>Header Files\networking</Filter>
-    </ClInclude>
-    <ClInclude Include="networking\net.h">
       <Filter>Header Files\networking</Filter>
     </ClInclude>
     <ClInclude Include="networking\open_weather_city.h">
@@ -1384,9 +1378,6 @@
     <ClCompile Include="progress\real.cpp">
       <Filter>Source Files\progress</Filter>
     </ClCompile>
-    <ClCompile Include="networking\_.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
     <ClCompile Include="networking\address.cpp">
       <Filter>Source Files\networking</Filter>
     </ClCompile>
@@ -1632,9 +1623,6 @@
     </ClCompile>
     <ClCompile Include="networking\sockets\http\tunnel.cpp">
       <Filter>Source Files\networking\sockets\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\_system_networking.cpp">
-      <Filter>Source Files\networking</Filter>
     </ClCompile>
     <ClCompile Include="networking\sockets\basic\tcp_socket_impl.cpp">
       <Filter>Source Files\networking\sockets\basic</Filter>

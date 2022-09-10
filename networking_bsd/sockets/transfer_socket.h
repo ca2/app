@@ -42,7 +42,7 @@ namespace networking_bsd
 {
 
 
-   class CLASS_DECL_APEX transfer_socket_exception :
+   class CLASS_DECL_NETWORKING_BSD transfer_socket_exception :
       public ::exception
    {
    public:
@@ -56,7 +56,7 @@ namespace networking_bsd
 
    };
 
-   class CLASS_DECL_APEX transfer_socket :
+   class CLASS_DECL_NETWORKING_BSD transfer_socket :
       virtual public tcp_socket
    {
    public:
@@ -76,7 +76,7 @@ namespace networking_bsd
 
    };
 
-   class CLASS_DECL_APEX read_socket :
+   class CLASS_DECL_NETWORKING_BSD read_socket :
       virtual public transfer_socket
    {
    public:
@@ -94,7 +94,7 @@ namespace networking_bsd
    };
 
 
-   class CLASS_DECL_APEX write_socket :
+   class CLASS_DECL_NETWORKING_BSD write_socket :
       virtual public transfer_socket
    {
    public:
@@ -108,7 +108,7 @@ namespace networking_bsd
    };
 
 
-   //class CLASS_DECL_APEX http_transfer_socket :
+   //class CLASS_DECL_NETWORKING_BSD http_transfer_socket :
    //   virtual public transfer_socket
    //{
    //public:

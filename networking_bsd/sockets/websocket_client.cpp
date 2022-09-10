@@ -92,7 +92,7 @@ static inline memsize u32_pack(u32 value, u8 *out)
 }
 
 
-CLASS_DECL_APEX void websocket_prefix_varuint32(memory & m, unsigned int u)
+CLASS_DECL_NETWORKING_BSD void websocket_prefix_varuint32(memory & m, unsigned int u)
 {
 
    auto iSize = ::u32_size(u);

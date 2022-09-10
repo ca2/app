@@ -11,11 +11,11 @@ Copyright (ca) 1998 by PJ Naughter.
 #pragma once
 
 
-namespace net
+namespace networking_bsd
 {
 
 
-   class CLASS_DECL_APEX ip_enum :
+   class CLASS_DECL_NETWORKING_BSD ip_enum :
       virtual public ::object
    {
    public:

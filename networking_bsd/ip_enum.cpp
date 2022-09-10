@@ -1,8 +1,8 @@
 #include "framework.h"
-#include "apex/networking/networking_bsd/_sockets.h"
+#include "ip_enum.h"
 
 
-namespace net
+namespace networking_bsd
 {
 
 

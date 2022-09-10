@@ -8,7 +8,7 @@ namespace net
 {
 
 
-   class CLASS_DECL_APEX port_forward_change_callbacks :
+   class CLASS_DECL_NETWORKING_BSD port_forward_change_callbacks :
       virtual public object
    {
    public:
@@ -25,7 +25,7 @@ namespace net
    };
 
 
-   class CLASS_DECL_APEX port_forward :
+   class CLASS_DECL_NETWORKING_BSD port_forward :
       virtual public ::object
    {
    public:
@@ -53,7 +53,7 @@ namespace net
       // these are public because they are needed by classes that call the
       // GetPortMappingVector() and GetDeviceInformationContainer() methods
 
-      class CLASS_DECL_APEX port_map :
+      class CLASS_DECL_NETWORKING_BSD port_map :
          virtual public object
       {
       public:
@@ -66,7 +66,7 @@ namespace net
          string Description;
       };
 
-      class CLASS_DECL_APEX device :
+      class CLASS_DECL_NETWORKING_BSD device :
          virtual public object
       {
       public:

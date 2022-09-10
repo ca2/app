@@ -1,38 +1,77 @@
 #pragma once
 
 
+#include "apex/_.h"
+#include "_operating_system.h"
+
+
+#if defined(WINDOWS)
+#include <winsock2.h>
+#include <ws2tcpip.h>
+
+
+#elif defined(FREEBSD)
+
+#include <sys/socket.h>
+#include <netinet/in.h>
+
+#endif
+
+#if defined(__arm__)
+
+#if !defined(RASPBIAN)
+
+#include <sys/endian.h>
+
+#endif
+
+#include <arpa/inet.h>
+
+#endif
+
+
+#if defined(_NETWORKING_BSD_LIBRARY)
+#define CLASS_DECL_NETWORKING_BSD  CLASS_DECL_EXPORT
+#else
+#define CLASS_DECL_NETWORKING_BSD  CLASS_DECL_IMPORT
+#endif
+
+
+
+
 #ifdef WINDOWS
 
 using port_t = u16;
 
 #endif
 
-namespace net
+namespace networking_bsd
 {
 
 
    class address;
 
 
-} // namespace net
+   CLASS_DECL_NETWORKING_BSD i32 family_len(i32 family);
+
+
+};
 
 
 inline void __exchange(::stream & s, ::networking::address & address);
 
 
-CLASS_DECL_APEX u32 c_inet_addr(const char * src);
-CLASS_DECL_APEX i32 c_inet_pton(i32 af, const char * src, void * dst);
-CLASS_DECL_APEX const char * c_inet_ntop(i32 af, const void * src, char * dst, i32 cnt);
-CLASS_DECL_APEX string c_inet_ntop(i32 af, const void * src);
+CLASS_DECL_NETWORKING_BSD u32 c_inet_addr(const char * src);
+CLASS_DECL_NETWORKING_BSD i32 c_inet_pton(i32 af, const char * src, void * dst);
+CLASS_DECL_NETWORKING_BSD const char * c_inet_ntop(i32 af, const void * src, char * dst, i32 cnt);
+CLASS_DECL_NETWORKING_BSD string c_inet_ntop(i32 af, const void * src);
 
 
 
-CLASS_DECL_APEX string c_gethostbyname(const char * hostname);
-
-CLASS_DECL_APEX string get_file_extension_mime_type(const ::string & strExtension);
+CLASS_DECL_NETWORKING_BSD string c_gethostbyname(const char * hostname);
 
 
-#include "byte_order.h"
+#include "_byte_order.h"
 
 
 namespace networking_bsd
@@ -47,10 +86,10 @@ namespace networking_bsd
 } // namespace networking_bsd
 
 
-#include "http/_.h"
+//#include "http/_.h"
 
 
-#include "networking_bsd/_.h"
+//#include "networking_bsd/_.h"
 
 
 
@@ -64,35 +103,35 @@ namespace net
 } // namespace net
 
 
+//
+//#include "ip_enum.h"
+////#include "url_domain.h"
+//
+//
+//#include "email_address.h"
+//#include "email.h"
+//
+//
+//#include "port_forward.h"
+//
+//
+////#include "url.h"
+////#include "url_department.h"
+////#include "email_department.h"
+//
+//
+//
+//
+//class networking_application_socket;
+//
+//
+//#include "apex/networking/netserver/_.h"
+//
+//
+//#include "networking_application_handler.h"
+//
 
-#include "ip_enum.h"
-//#include "url_domain.h"
-
-
-#include "email_address.h"
-#include "email.h"
-
-
-#include "port_forward.h"
-
-
-//#include "url.h"
-//#include "url_department.h"
-//#include "email_department.h"
-
-
-
-
-class networking_application_socket;
-
-
-#include "apex/networking/netserver/_.h"
-
-
-#include "networking_application_handler.h"
-
-
-#include "networking_application.h"
+#include "sockets/_.h"
 
 
 

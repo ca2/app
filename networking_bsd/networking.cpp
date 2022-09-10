@@ -1,9 +1,14 @@
 // Created by camilo on 2021-03-10 06:22 BRT ThomasBS_!!
 #include "framework.h"
-#include "apex/networking/networking_bsd/_sockets.h"
+#include "networking.h"
 #define ERROR(...) TRACE_LOG_ERROR(__VA_ARGS__)
 
 //#include <stdio.h>
+
+
+bool defer_initialize_operating_system_networking();
+bool defer_finalize_operating_system_networking();
+
 
 #ifdef RASPBIAN
 #include <sys/types.h>
@@ -30,16 +35,20 @@
 #endif
 
 
-namespace net
+namespace networking_bsd
 {
 
-   class address_department* g_paddressdepartment = nullptr;
+   class networking* g_paddressdepartment = nullptr;
 
 
-   address_department::address_department()
+   networking::networking()
    {
 
       defer_create_mutex();
+
+      
+      defer_initialize_operating_system_networking();
+
 
       m_bInitialized = false;
       //m_mapCache.m_bAutoGudoSet = false;
@@ -51,13 +60,15 @@ namespace net
    }
 
 
-   address_department::~address_department()
+   networking::~networking()
    {
+
+      defer_finalize_operating_system_networking();
 
    }
 
 
-   void     address_department::initialize(::object * pobject)
+   void     networking::initialize(::object * pobject)
    {
 
       if (m_bInitialized)
@@ -83,9 +94,9 @@ namespace net
       //if(psystem->m_bGudoNetCache)
       {
 
-         //get_app()->gudo_get("networking_bsd::address_department::m_mapCache",m_mapCache);
+         //get_app()->gudo_get("networking_bsd::networking::m_mapCache",m_mapCache);
 
-         //get_app()->gudo_get("networking_bsd::address_department::m_mapReverseCache",m_mapReverseCache);
+         //get_app()->gudo_get("networking_bsd::networking::m_mapReverseCache",m_mapReverseCache);
 
       }
 
@@ -95,7 +106,7 @@ namespace net
    }
 
 
-   bool address_department::gudo_set()
+   bool networking::gudo_set()
    {
 
       if (!m_bInitialized)
@@ -110,7 +121,7 @@ namespace net
    }
 
 
-   void address_department::destroy()
+   void networking::destroy()
    {
 
       ::object::destroy();
@@ -131,7 +142,7 @@ namespace net
    * Encode string per RFC1738 URL encoding rules
    * tnx rstaveley
    */
-   string address_department::rfc1738_encode(const string& src)
+   string networking::rfc1738_encode(const string& src)
    {
       static   char hex[] = "0123456789ABCDEF";
       string dst;
@@ -161,7 +172,7 @@ namespace net
    * Decode string per RFC1738 URL encoding rules
    * tnx rstaveley
    */
-   string address_department::rfc1738_decode(const string& src)
+   string networking::rfc1738_decode(const string& src)
    {
       string dst;
       for (i32 i = 0; i < src.get_length(); i++)
@@ -187,7 +198,7 @@ namespace net
    } // rfc1738_decode
 
 
-   bool address_department::isipv4(const string& str)
+   bool networking::isipv4(const string& str)
    {
       i32 dots = 0;
       // %! ignore :port?
@@ -204,7 +215,7 @@ namespace net
    }
 
 
-   bool address_department::isipv6(const string& str)
+   bool networking::isipv6(const string& str)
    {
       if (str.is_empty())
          return false;
@@ -249,7 +260,7 @@ namespace net
       return true;
    }
 
-   bool address_department::convert(in_addr& l, const string& str, i32 ai_flags)
+   bool networking::convert(in_addr& l, const string& str, i32 ai_flags)
    {
 
       if (str.is_empty())
@@ -264,7 +275,7 @@ namespace net
             l = item.m_ipaddr;
          }
          //         ::duration tick2= ::duration::now();
-         /*FORMATTED_TRACE("Got from cache address_department::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+         /*FORMATTED_TRACE("Got from cache networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
          (u32)((byte*)&pitem->m_ipaddr)[0],
          (u32)((byte*)&pitem->m_ipaddr)[1],
          (u32)((byte*)&pitem->m_ipaddr)[2],
@@ -335,7 +346,7 @@ namespace net
       hints.ai_socktype = 0;
       hints.ai_protocol = 0;
       struct addrinfo* res;
-      if (address_department::isipv4(str))
+      if (networking::isipv4(str))
          hints.ai_flags |= AI_NUMERICHOST;
 
       i32 n = getaddrinfo(str, nullptr, &hints, &res);
@@ -377,12 +388,12 @@ namespace net
       //if(psystem->m_bGudoNetCache)
       {
 
-         //get_app()->gudo_set("networking_bsd::address_department::m_mapCache",m_mapCache);
+         //get_app()->gudo_set("networking_bsd::networking::m_mapCache",m_mapCache);
 
       }
 
       //      ::duration tick2= ::duration::now();
-      //      FORMATTED_TRACE("DNS lookup address_department::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
+      //      FORMATTED_TRACE("DNS lookup networking::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
          //       (u32)((byte*)&pitem->m_ipaddr)[0],
          //     (u32)((byte*)&pitem->m_ipaddr)[1],
          //   (u32)((byte*)&pitem->m_ipaddr)[2],
@@ -395,7 +406,7 @@ namespace net
    }
 
 
-   //bool address_department::convert(struct in6_addr& l, const ::string & str, i32 ai_flags)
+   //bool networking::convert(struct in6_addr& l, const ::string & str, i32 ai_flags)
    //{
 
 
@@ -405,7 +416,7 @@ namespace net
    //}
 
 
-   bool address_department::convert(string& str, const in_addr& ip)
+   bool networking::convert(string& str, const in_addr& ip)
    {
 
       struct sockaddr_in sa;
@@ -434,7 +445,7 @@ namespace net
    }
 
 
-   bool address_department::convert(string& str, const struct in6_addr& ip, bool mixed)
+   bool networking::convert(string& str, const struct in6_addr& ip, bool mixed)
    {
 
 
@@ -502,7 +513,7 @@ namespace net
    }
 
 
-   i32 address_department::in6_addr_compare(in6_addr a, in6_addr b)
+   i32 networking::in6_addr_compare(in6_addr a, in6_addr b)
    {
       for (index i = 0; i < 16; i++)
       {
@@ -514,7 +525,7 @@ namespace net
       return 0;
    }
 
-   void address_department::ResolveLocal()
+   void networking::ResolveLocal()
    {
 
       char h[256];
@@ -545,7 +556,7 @@ namespace net
    }
 
 
-   const string& address_department::GetLocalHostname()
+   const string& networking::GetLocalHostname()
    {
       if (!m_local_resolved)
       {
@@ -555,7 +566,7 @@ namespace net
    }
 
 
-   in_addr address_department::GetLocalIP()
+   in_addr networking::GetLocalIP()
    {
       if (!m_local_resolved)
       {
@@ -565,7 +576,7 @@ namespace net
    }
 
 
-   const string& address_department::GetLocalAddress()
+   const string& networking::GetLocalAddress()
    {
       if (!m_local_resolved)
       {
@@ -575,7 +586,7 @@ namespace net
    }
 
 
-   const struct in6_addr& address_department::GetLocalIP6()
+   const struct in6_addr& networking::GetLocalIP6()
    {
       if (!m_local_resolved)
       {
@@ -585,7 +596,7 @@ namespace net
    }
 
 
-   const string& address_department::GetLocalAddress6()
+   const string& networking::GetLocalAddress6()
    {
       if (!m_local_resolved)
       {
@@ -594,7 +605,7 @@ namespace net
       return m_local_addr6;
    }
 
-   string address_department::Sa2String(struct sockaddr* sa)
+   string networking::Sa2String(struct sockaddr* sa)
    {
       if (sa->sa_family == AF_INET6)
       {
@@ -615,7 +626,7 @@ namespace net
 
 
    /*
-   ::networking::address address_department::CreateAddress(struct sockaddr *sa,socklen_t sa_len)
+   ::networking::address networking::CreateAddress(struct sockaddr *sa,socklen_t sa_len)
    {
       retur
       switch (sa -> sa_family)
@@ -643,7 +654,7 @@ namespace net
    }
    */
 
-   /*   bool address_department::convert(in_addr & sa, const string & host, i32 ai_flags)
+   /*   bool networking::convert(in_addr & sa, const string & host, i32 ai_flags)
       {
 
          __memset(&sa, 0, sizeof(sa));
@@ -706,7 +717,7 @@ namespace net
          hints.ai_socktype = 0;
          hints.ai_protocol = 0;
          struct addrinfo *res;
-         if (address_department::isipv4(host))
+         if (networking::isipv4(host))
             hints.ai_flags |= AI_NUMERICHOST;
          i32 n = getaddrinfo(host, nullptr, &hints, &res);
          if (!n)
@@ -737,7 +748,7 @@ namespace net
       }*/
 
 
-   bool address_department::convert(struct in6_addr& sa, const string& host, i32 ai_flags)
+   bool networking::convert(struct in6_addr& sa, const string& host, i32 ai_flags)
    {
 
       try
@@ -813,7 +824,7 @@ namespace net
             string bytepair = *it;
             if (bytepair.get_length())
             {
-               addr16[i++] = htons(address_department::hgenunsigned(bytepair));
+               addr16[i++] = htons(networking::hgenunsigned(bytepair));
             }
             else
             {
@@ -850,7 +861,7 @@ namespace net
       hints.ai_socktype = SOCK_STREAM;
       hints.ai_protocol = IPPROTO_TCP;
       struct addrinfo* res;
-      if (address_department::isipv6(host))
+      if (networking::isipv6(host))
          hints.ai_flags |= AI_NUMERICHOST;
       i32 n = getaddrinfo(host, nullptr, &hints, &res);
       if (!n)
@@ -885,7 +896,7 @@ namespace net
    }
 
 
-   bool address_department::reverse(string& number, const string& hostname)
+   bool networking::reverse(string& number, const string& hostname)
    {
 
       ::networking::address address(hostname);
@@ -897,7 +908,7 @@ namespace net
    }
 
 
-   bool address_department::reverse_schedule(reverse_cache_item* pitem)
+   bool networking::reverse_schedule(reverse_cache_item* pitem)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -960,7 +971,7 @@ namespace net
    }
 
 
-   bool address_department::reverse(string& hostname, ::networking::address * address)
+   bool networking::reverse(string& hostname, ::networking::address * address)
    {
 
       single_lock synchronouslock(&m_mutexReverseCache, true);
@@ -993,7 +1004,7 @@ namespace net
    }
 
 
-   bool address_department::reverse_sync(reverse_cache_item* pitem)
+   bool networking::reverse_sync(reverse_cache_item* pitem)
    {
 
       int flags = NI_NUMERICHOST;
@@ -1131,7 +1142,7 @@ namespace net
 
 
 
-   //string address_department::reverse_name(::networking::address * address, bool bSynch, const ::duration& duration)
+   //string networking::reverse_name(::networking::address * address, bool bSynch, const ::duration& duration)
    //{
    //
    //   string strHostname;
@@ -1143,7 +1154,7 @@ namespace net
    //}
 
 
-   string address_department::reverse_name(::networking::address * address)
+   string networking::reverse_name(::networking::address * address)
    {
 
       string hostname;
@@ -1156,7 +1167,7 @@ namespace net
 
 
 
-   bool address_department::u2service(const string& name, i32& service, i32 ai_flags)
+   bool networking::u2service(const string& name, i32& service, i32 ai_flags)
    {
 
 #ifdef NO_GETADDRINFO
@@ -1191,7 +1202,7 @@ namespace net
    }
 
 
-   i32 address_department::service_port(const string& str, i32 flags)
+   i32 networking::service_port(const string& str, i32 flags)
    {
 
       if (::str().is_simple_natural(str))
@@ -1220,7 +1231,7 @@ namespace net
    }
 
 
-   string  address_department::service_name(i32 iPort, i32 flags)
+   string  networking::service_name(i32 iPort, i32 flags)
    {
 
       switch (iPort)
@@ -1235,7 +1246,7 @@ namespace net
 
    }
 
-   string address_department::canonical_name(::networking::address * address)
+   string networking::canonical_name(::networking::address * address)
    {
 
       string str;
@@ -1254,7 +1265,7 @@ namespace net
    }
 
 
-   string address_department::service_name(::networking::address * address)
+   string networking::service_name(::networking::address * address)
    {
 
       return service_name(address.get_service_number());
@@ -1262,7 +1273,7 @@ namespace net
    }
 
 
-   address_department::dns_cache_item::dns_cache_item()
+   networking::dns_cache_item::dns_cache_item()
    {
 
       __zero(m_ipaddr);
@@ -1272,7 +1283,7 @@ namespace net
    }
 
 
-   address_department::dns_cache_item::dns_cache_item(const dns_cache_item& item)
+   networking::dns_cache_item::dns_cache_item(const dns_cache_item& item)
    {
 
       this->operator = (item);
@@ -1280,7 +1291,7 @@ namespace net
    }
 
 
-   stream& address_department::dns_cache_item::write(stream& stream) const
+   stream& networking::dns_cache_item::write(stream& stream) const
    {
 
       string strAddress;
@@ -1297,7 +1308,7 @@ namespace net
    }
 
 
-   stream& address_department::dns_cache_item::read(stream& stream)
+   stream& networking::dns_cache_item::read(stream& stream)
    {
 
       string strAddress;
@@ -1315,7 +1326,7 @@ namespace net
    }
 
 
-   address_department::dns_cache_item& address_department::dns_cache_item::operator = (const dns_cache_item& item)
+   networking::dns_cache_item& networking::dns_cache_item::operator = (const dns_cache_item& item)
    {
 
       if (this == &item)
@@ -1331,7 +1342,7 @@ namespace net
    }
 
 
-   address_department::reverse_cache_item::reverse_cache_item()
+   networking::reverse_cache_item::reverse_cache_item()
    {
 
       //__zero(m_ipaddr);
@@ -1342,7 +1353,7 @@ namespace net
    }
 
 
-   address_department::reverse_cache_item::reverse_cache_item(const reverse_cache_item& item)
+   networking::reverse_cache_item::reverse_cache_item(const reverse_cache_item& item)
    {
 
       this->operator = (item);
@@ -1350,7 +1361,7 @@ namespace net
    }
 
 
-   stream& address_department::reverse_cache_item::write(stream& stream) const
+   stream& networking::reverse_cache_item::write(stream& stream) const
    {
 
       stream << m_address;
@@ -1365,7 +1376,7 @@ namespace net
    }
 
 
-   stream& address_department::reverse_cache_item::read(stream& stream)
+   stream& networking::reverse_cache_item::read(stream& stream)
    {
 
       stream >> m_address;
@@ -1380,7 +1391,7 @@ namespace net
    }
 
 
-   address_department::reverse_cache_item& address_department::reverse_cache_item::operator = (const reverse_cache_item& item)
+   networking::reverse_cache_item& networking::reverse_cache_item::operator = (const reverse_cache_item& item)
    {
 
       if (this == &item)
@@ -1399,7 +1410,7 @@ namespace net
 
 
 
-//   void address_department::ResolveLocal()
+//   void networking::ResolveLocal()
 //   {
 //
 //      char h[256];
@@ -1430,7 +1441,7 @@ namespace net
 //   }
 //
 //
-//   const string& address_department::GetLocalHostname()
+//   const string& networking::GetLocalHostname()
 //   {
 //      if (!m_local_resolved)
 //      {
@@ -1440,7 +1451,7 @@ namespace net
 //   }
 //
 //
-//   in_addr address_department::GetLocalIP()
+//   in_addr networking::GetLocalIP()
 //   {
 //      if (!m_local_resolved)
 //      {
@@ -1450,7 +1461,7 @@ namespace net
 //   }
 //
 //
-//   const string& address_department::GetLocalAddress()
+//   const string& networking::GetLocalAddress()
 //   {
 //      if (!m_local_resolved)
 //      {
@@ -1460,7 +1471,7 @@ namespace net
 //   }
 //
 //
-//   const struct in6_addr& address_department::GetLocalIP6()
+//   const struct in6_addr& networking::GetLocalIP6()
 //   {
 //      if (!m_local_resolved)
 //      {
@@ -1470,7 +1481,7 @@ namespace net
 //   }
 //
 //
-//   const string& address_department::GetLocalAddress6()
+//   const string& networking::GetLocalAddress6()
 //   {
 //      if (!m_local_resolved)
 //      {
@@ -1480,7 +1491,7 @@ namespace net
 //   }
 
 
-   CLASS_DECL_APEX class address_department* address_department()
+   CLASS_DECL_NETWORKING_BSD class networking* networking()
    {
 
       return g_paddressdepartment;
@@ -1489,6 +1500,9 @@ namespace net
 
 
 } // namespace net
+
+
+
 
 
 

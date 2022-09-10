@@ -12,7 +12,7 @@ namespace sockets
    class SSLInitializer;
 
 
-   class CLASS_DECL_APEX sockets :
+   class CLASS_DECL_NETWORKING_BSD sockets :
       virtual public sockets_base
    {
    public:

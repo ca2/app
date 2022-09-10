@@ -28,17 +28,29 @@ namespace wave
    class player;
 
    /// Intended purpose of player performance.
-   enum e_purpose
+   enum enum_purpose
    {
 
-      purpose_default,
-      purpose_playback,
-      purpose_live,
-      purpose_playground
+      e_purpose_default,
+      e_purpose_playback,
+      e_purpose_live,
+      e_purpose_playground
 
    };
 
 } // namespace wave
+
+
+namespace aqua
+{
+
+
+   class audio;
+
+   class sound_track_player;
+
+
+} // namespace aqua
 
 //#ifdef WINDOWS
 ////
@@ -82,11 +94,27 @@ namespace wave
 //
 //#endif // !defined WINDOWS
 
+//
+//#include "out.h"
+//
+//#include "speaker.h"
+//
+//#include "sound_track_player.h"
+//
+//
 
-#include "out.h"
 
-#include "speaker.h"
+namespace text_to_speech
+{
 
-#include "sound_track_player.h"
+
+   class speaker;
+
+
+   class client;
+
+
+} // namespace text_to_speech
+
 
 

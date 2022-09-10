@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "database_impl.h"
+#include "result_set.h"
 
 
 namespace database

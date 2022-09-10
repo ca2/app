@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "aura/graphics/user/control_box_button.h"
-#include "aura/graphics/draw2d/_component.h"
+//#include "aura/graphics/draw2d/_component.h"
 #include "acme/primitive/mathematics/mathematics.h"
 
 

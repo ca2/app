@@ -1,14 +1,21 @@
 #include "framework.h"
-#include "_.h"
-#include "apex//filesystem/filesystem/file_watcher.h"
+#include "script_compiler.h"
+#include "script_manager.h"
+#include "ds_script.h"
+#include "script_cache.h"
+#include "library.h"
+#include "script_main.h"
+#include "script_instance.h"
+#include "apex/filesystem/filesystem/file_watcher.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/primitive/text/context.h"
 #ifdef WINDOWS_DESKTOP
-#include "acme_windows/_.h"
-#include "acme_windows/_library.h"
+//#include "acme_windows/_.h"
+//#include "acme_windows/_library.h"
 //#include "acme/operating_system/windows/environment_variable.h"
 #endif
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "axis/platform/system.h"
 
 
 

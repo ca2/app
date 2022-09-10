@@ -12,29 +12,15 @@
  * \brief A collection of useful layout managers.  The \ref nanogui::GridLayout
  *        was contributed by Christian Schueller.
  */
-
 #pragma once
 
-//#include Object.h
-//#include <nanogui/vector.h>
+
+#include "Object.h"
 #include <unordered_map>
-//#include <vector>
+
 
 NAMESPACE_BEGIN(nanogui)
 
-/// The different kinds of alignments a layout can perform.
-enum class Alignment : uint8_t {
-   Minimum = 0, ///< Take only as much space as is required.
-   Middle,      ///< Center align.
-   Maximum,     ///< Take as much space as is allowed.
-   Fill         ///< Fill according to preferred sizes.
-};
-
-/// The direction of data flow for a layout.
-enum class Orientation {
-   Horizontal = 0, ///< Layout expands on horizontal axis.
-   Vertical        ///< Layout expands on vertical axis.
-};
 
 /**
  * \class Layout layout.h nanogui/layout.h

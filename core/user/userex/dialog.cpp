@@ -4,14 +4,9 @@
 #include "base/user/form/impact.h"
 #include "base/user/simple/frame_window.h"
 #include "core/platform/session.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
+#include "core/user/user/user.h"
 
 #include "aura/id.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
 #include "dialog.h"
 #include "user.h"
 
@@ -19,7 +14,7 @@
 dialog::dialog()
 {
 
-   m_pdocument = nullptr;
+   m_pformdocument = nullptr;
    m_pframe = nullptr;
 
 }
@@ -30,7 +25,7 @@ dialog::dialog(const ::string & pszMatter, __pointer(::user::interaction) puiPar
    initialize(puiParent);
 
    m_strMatter = pszMatter;
-   m_pdocument    = nullptr;
+   m_pformdocument    = nullptr;
    m_pframe       = nullptr;
 
 }
@@ -38,10 +33,10 @@ dialog::dialog(const ::string & pszMatter, __pointer(::user::interaction) puiPar
 
 dialog::~dialog()
 {
-   if(m_pdocument != nullptr)
+   if(m_pformdocument != nullptr)
    {
-      m_pdocument->on_close_document();
-      m_pdocument = nullptr;
+      m_pformdocument->on_close_document();
+      m_pformdocument = nullptr;
    }
    if(m_pframe != nullptr)
    {
@@ -99,9 +94,9 @@ bool dialog::show(const ::string & pszMatter)
    
    auto puser = psession->m_puser->m_pcoreuser;
 
-   m_pdocument = puser->create_form(this, this, psession->get_user_interaction_host(), payload, varArgs);
+   m_pformdocument = puser->create_form(this, this, psession->get_user_interaction_host(), payload, varArgs);
 
-   if(m_pdocument == nullptr)
+   if(m_pformdocument == nullptr)
    {
 
       string str;
@@ -114,13 +109,13 @@ bool dialog::show(const ::string & pszMatter)
 
    }
 
-   m_pframe = m_pdocument->get_impact()->parent_frame();
+   m_pframe = m_pformdocument->get_impact()->parent_frame();
 
    m_pframe->m_bCloseApplicationIfLastVisibleFrame = false;
 
    //m_pframe->add_each_routine_from(DIALOG_RESULT_PROCESS, this);
 
-   m_pform = m_pdocument->get_type_impact<::user::form>();
+   m_pform = m_pformdocument->get_typed_impact<::user::form>();
 
    on_position_parent_frame();
 
@@ -132,13 +127,13 @@ bool dialog::show(const ::string & pszMatter)
 
    //m_pframe->DestroyWindow();
 
-   //m_pdocument->close_document();
+   //m_pformdocument->close_document();
 
    //m_pform.release();
 
    //m_pframe.release();
 
-   //m_pdocument.release();
+   //m_pformdocument.release();
 
    return true;
 

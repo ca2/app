@@ -1,5 +1,6 @@
 #include "framework.h"
-
+#include "frame_008.h"
+#include "control_box.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "base/user/experience/frame_window.h"
@@ -22,8 +23,6 @@
 
 namespace experience_anthill
 {
-
-
 
 
    frame_008::frame_008()

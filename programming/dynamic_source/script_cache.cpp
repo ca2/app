@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "_.h"
+#include "script_cache.h"
+#include "script_manager.h"
+#include "ds_script.h"
 
 
 namespace dynamic_source

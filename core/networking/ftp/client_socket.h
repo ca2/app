@@ -43,6 +43,8 @@
 
 #include "transfer_notification.h"
 
+#include "apex/networking/sockets/basic/tcp_socket.h"
+
 
 namespace sockets
 {

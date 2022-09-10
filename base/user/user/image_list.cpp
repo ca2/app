@@ -1,11 +1,9 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "image_list.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/array.h"
 #include "aura/message/user.h"
+#include "aura/platform/session.h"
 
 
 namespace user
@@ -732,14 +730,14 @@ namespace user
       {
 
          throw ::exception(todo, "core");
-         //auto * peditview = _001TypedWindow < ::userex::top_edit_impact >();
+         //auto * peditimpact = _001TypedWindow < ::userex::top_edit_impact >();
 
-         //if (peditview != nullptr && ptopic->user_interaction() == peditview)
+         //if (peditimpact != nullptr && ptopic->user_interaction() == peditimpact)
          //{
 
          //   string strText;
 
-         //   peditview->_001GetText(strText);
+         //   peditimpact->_001GetText(strText);
 
          //}
 

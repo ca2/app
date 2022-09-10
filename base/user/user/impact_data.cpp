@@ -1,7 +1,4 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "impact_data.h"
 #include "aura/user/user/system.h"
 #include "aura/message/user.h"

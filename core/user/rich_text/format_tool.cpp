@@ -1,9 +1,6 @@
 #include "framework.h"
 #include "format_tool.h"
 #include "format.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font_list.h"

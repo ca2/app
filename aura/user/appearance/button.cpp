@@ -1,7 +1,7 @@
-// Created by camilo on 2022-03-18 04:52 <3ThomasBorregaardSørensen!! (Thomas likes number 5)!!
+// Created by camilo on 2022-03-18 04:52 <3ThomasBorregaardSï¿½rensen!! (Thomas likes number 5)!!
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_component.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "button.h"
 

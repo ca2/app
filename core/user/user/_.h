@@ -82,6 +82,7 @@ namespace user
 
    class scroll_info;
 
+   class controller;
 
 
 } // namespace user

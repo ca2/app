@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_component.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "aura/message.h"
 #include "acme/constant/simple_command.h"
@@ -8,6 +8,7 @@
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
 #include "box.h"
+#include "aura/platform/application.h"
 
 
 namespace user

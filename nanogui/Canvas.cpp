@@ -12,6 +12,9 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
+#include "Canvas.h"
+#include "Screen.h"
+#include "aura/user/user/interaction.h"
 
 
 #define __NANO2D_CONTEXT(ctx) ((::nano2d::context *) (ctx)->p)

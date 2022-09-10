@@ -306,70 +306,71 @@ namespace sockets
 #if defined(LINUX) || defined(MACOSX)
    i32 udp_socket::ReadTS(char *ioBuf, i32 inBufSize, struct sockaddr *from, socklen_t fromlen, struct timeval *ts)
    {
-      struct msghdr msg;
-      struct iovec vec[1];
-      union
-      {
-         struct cmsghdr cm;
-#ifdef MACOSX
-#ifdef __DARWIN_UNIX03
-#define ALIGNBYTES __DARWIN_ALIGNBYTES
-#endif
-#define myALIGN(p) (((u32)(p) + ALIGNBYTES) &~ ALIGNBYTES)
-#define myCMSG_SPACE(l) (myALIGN(sizeof(struct cmsghdr)) + myALIGN(l))
-         char data[ myCMSG_SPACE(sizeof(struct timeval)) ];
-#else
-         char data[ CMSG_SPACE(sizeof(struct timeval)) ];
-#endif
-      } cmsg_un;
-      struct cmsghdr *cmsg;
-      struct timeval *tv;
-
-      vec[0].iov_base = ioBuf;
-      vec[0].iov_len = inBufSize;
-
-      __memset(&msg, 0, sizeof(msg));
-      __memset(from, 0, fromlen);
-      __memset(ioBuf, 0, inBufSize);
-      __memset(&cmsg_un, 0, sizeof(cmsg_un));
-
-#ifdef WINDOWS
-      msg.msg_name = (caddr_t)from;
-#else
-      msg.msg_name = from;
-#endif
-      msg.msg_namelen = fromlen;
-      msg.msg_iov = vec;
-      msg.msg_iovlen = 1;
-      msg.msg_control = cmsg_un.data;
-      msg.msg_controllen = sizeof(cmsg_un.data);
-      msg.msg_flags = 0;
-
-      // Original version - for object only
-      //i32 n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
-
-      i32 n = recvmsg(GetSocket(), &msg, MSG_DONTWAIT);
-
-      // now ioBuf will contain the data, as if we used recvfrom
-
-      // Now get the time
-      if(n != -1 && msg.msg_controllen >= sizeof(struct cmsghdr) && !(msg.msg_flags & MSG_CTRUNC))
-      {
-         tv = 0;
-         for (cmsg = CMSG_FIRSTHDR(&msg); cmsg != nullptr; cmsg = CMSG_NXTHDR(&msg, cmsg))
-         {
-            if (cmsg->cmsg_level == SOL_SOCKET && cmsg->cmsg_type == SCM_TIMESTAMP)
-            {
-               tv = (struct timeval *)CMSG_DATA(cmsg);
-            }
-         }
-         if (tv)
-         {
-            ::memcpy_dup(ts, tv, sizeof(struct timeval));
-         }
-      }
-      // The address is in network order, but that's OK right now
-      return n;
+//      struct msghdr msg;
+//      struct iovec vec[1];
+//      union
+//      {
+//         struct cmsghdr cm;
+//#ifdef MACOSX
+//#ifdef __DARWIN_UNIX03
+//#define ALIGNBYTES __DARWIN_ALIGNBYTES
+//#endif
+//#define myALIGN(p) (((u32)(p) + ALIGNBYTES) &~ ALIGNBYTES)
+//#define myCMSG_SPACE(l) (myALIGN(sizeof(struct cmsghdr)) + myALIGN(l))
+//         char data[ myCMSG_SPACE(sizeof(struct timeval)) ];
+//#else
+//         char data[ CMSG_SPACE(sizeof(struct timeval)) ];
+//#endif
+//      } cmsg_un;
+//      struct cmsghdr *cmsg;
+//      struct timeval *tv;
+//
+//      vec[0].iov_base = ioBuf;
+//      vec[0].iov_len = inBufSize;
+//
+//      __memset(&msg, 0, sizeof(msg));
+//      __memset(from, 0, fromlen);
+//      __memset(ioBuf, 0, inBufSize);
+//      __memset(&cmsg_un, 0, sizeof(cmsg_un));
+//
+//#ifdef WINDOWS
+//      msg.msg_name = (caddr_t)from;
+//#else
+//      msg.msg_name = from;
+//#endif
+//      msg.msg_namelen = fromlen;
+//      msg.msg_iov = vec;
+//      msg.msg_iovlen = 1;
+//      msg.msg_control = cmsg_un.data;
+//      msg.msg_controllen = sizeof(cmsg_un.data);
+//      msg.msg_flags = 0;
+//
+//      // Original version - for object only
+//      //i32 n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+//
+//      i32 n = recvmsg(GetSocket(), &msg, MSG_DONTWAIT);
+//
+//      // now ioBuf will contain the data, as if we used recvfrom
+//
+//      // Now get the time
+//      if(n != -1 && msg.msg_controllen >= sizeof(struct cmsghdr) && !(msg.msg_flags & MSG_CTRUNC))
+//      {
+//         tv = 0;
+//         for (cmsg = CMSG_FIRSTHDR(&msg); cmsg != nullptr; cmsg = CMSG_NXTHDR(&msg, cmsg))
+//         {
+//            if (cmsg->cmsg_level == SOL_SOCKET && cmsg->cmsg_type == SCM_TIMESTAMP)
+//            {
+//               tv = (struct timeval *)CMSG_DATA(cmsg);
+//            }
+//         }
+//         if (tv)
+//         {
+//            ::memcpy_dup(ts, tv, sizeof(struct timeval));
+//         }
+//      }
+//      // The address is in network order, but that's OK right now
+//      return n;
+return -1;
    }
 #endif
 

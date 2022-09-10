@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace aura
+namespace aqua
 {
 
 
@@ -15,7 +15,7 @@ namespace aura
       ~sound_track_player() override;
 
 
-      virtual void defer_start(::wave::e_purpose epurpose);
+      virtual void defer_start(::wave::enum_purpose epurpose);
 
       virtual __pointer(::object) sound_plugin(const ::string &, bool bForceCreate = false, bool bLoop = false);
 
@@ -32,7 +32,7 @@ namespace aura
    };
 
 
-} // namespace aura
+} // namespace aqua
 
 
 

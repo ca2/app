@@ -194,12 +194,12 @@ namespace user
       }
 
 
-      //__pointer(format) span::fork_format()
-      //{
+      __pointer(format) span::fork_format()
+      {
 
-      //   return __new(class format(*m_pformat));
+         return __new(class format(*m_pformat));
 
-      //}
+      }
 
 
       void span::calculate_position(::draw2d::graphics_pointer & pgraphics)

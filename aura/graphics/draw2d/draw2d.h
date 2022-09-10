@@ -19,7 +19,7 @@
 #include "graphics.h"
 
 
-//#include "fastblur.h"
+#include "aura/platform/system.h"
 
 
 class save_image;
@@ -233,7 +233,7 @@ namespace draw2d
 
             pimage->get_graphics()->offset_origin(-rectangleCache.left + rectangle.left, -rectangleCache.top + rectangle.top);
 
-            __pointer(::aura::system) psystem = m_psystem;
+            auto psystem = m_psystem->m_paurasystem;
 
             psystem->imaging().channel_spread_set_color(pimageBlur->g(), nullptr, size, pimage->g(), nullptr, ::color::e_channel_alpha, iEffectiveSpreadRadius, argb(255, 255, 255, 255));
 

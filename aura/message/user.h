@@ -10,10 +10,6 @@
 #include "aura/user/user/message.h"
 #include "aura/user/user/key.h"
 
-#define MESSAGE_OLE_DRAGENTER WM_APP + 324
-#define MESSAGE_OLE_DRAGOVER WM_APP + 325
-#define MESSAGE_OLE_DRAGLEAVE WM_APP + 326
-#define MESSAGE_OLE_DRAGDROP WM_APP + 327
 
 
 namespace message

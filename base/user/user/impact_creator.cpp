@@ -1,10 +1,8 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "impact_creator.h"
 #include "impact_data.h"
 #include "place_holder.h"
+#include "aura/user/user/window_util.h"
 
 
 #ifdef LINUX

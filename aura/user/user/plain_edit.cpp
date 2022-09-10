@@ -1,9 +1,11 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_component.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "aura/operating_system.h"
-#include "_data.h"
+#include "aura/platform/application.h"
+#include "apex/filesystem/file/edit_file.h"
+#include "plain_text_tree.h"
 #include "aura/message.h"
 #ifdef WINDOWS_DESKTOP
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
@@ -29,6 +31,9 @@
 #include "copydesk.h"
 #include "interaction_style.h"
 #include "text_composition_client.h"
+#include "aura/platform/session.h"
+#include "plain_edit_style.h"
+#include "control_style.h"
 
 
 namespace aura

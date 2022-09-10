@@ -9,26 +9,24 @@ namespace database
    class server;
    class client_array;
 
-   
+   class database;
+   class dataset;
+
+   class field;
+
+   using field_array = __pointer_array(field);
+
+   using row = payload_array;
+
+   using row_array = __pointer_array(row);
+
+   class result_set;
+
+   class parameter_list;
+
 } // namespace database
 
 
 
-#include "const.h"
-
-#include "definition.h"
-
-#include "dataset.h"
-
-#include "database.h"
-
-#include "transaction.h"
-
-#include "database_composite.h"
-
-#include "database_impl.h"
-
-#include "field_definition.h"
-
-
+#include "_constant.h"
 

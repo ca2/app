@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include "aqua/xml.h"
+#include "field_definition.h"
 
 
 namespace database

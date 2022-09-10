@@ -11,8 +11,8 @@ namespace aqua
    public:
 
 
-      __composite(::aqua::game)                       m_pgame;
-      __pointer(::networking_application)                   m_pnetworkingapplication;
+      __composite(::aqua::game)                       m_paquagame;
+      __pointer(::networking_application)             m_pnetworkingapplication;
      
 
       application();

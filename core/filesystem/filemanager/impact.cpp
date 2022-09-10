@@ -12,6 +12,7 @@
 #include "data.h"
 #include "core/platform/application.h"
 #include "base/user/user/frame_window.h"
+#include "aura/platform/system.h"
 
 
 namespace filemanager

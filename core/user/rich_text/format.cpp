@@ -2,6 +2,8 @@
 #include "format.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font.h"
+#include "aura/platform/system.h"
+#include "aura/platform/node.h"
 
 
 namespace user

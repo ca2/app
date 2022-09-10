@@ -7,6 +7,9 @@
 #include "aura/graphics/write_text/font_list.h"
 #include "aura/message/user.h"
 #include "aura/user/user/user.h"
+#include "aura/platform/session.h"
+#include "aura/platform/system.h"
+#include "aura/platform/application.h"
 
 
 namespace user
@@ -483,6 +486,22 @@ namespace user
       synchronous_lock synchronouslock(m_pfontlist->mutex());
 
       return m_pfontlist->m_pfontlistdata->element_at(iItemHover)->m_strFont;
+
+   }
+
+
+   string font_list::get_sel_by_name()
+   {
+
+      return get_cur_sel_face_name();
+
+   }
+
+
+   string font_list::get_hover_by_name()
+   {
+
+      return get_cur_hover_face_name();
 
    }
 

@@ -1,11 +1,8 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "tab_impact.h"
 #include "tab_pane.h"
 #include "tab_data.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/user/user/window_util.h"
 #include "frame_window.h"
 #include "aura/message/user.h"
 #include "split_impact.h"
@@ -14,6 +11,7 @@
 #include "base/user/menu/menu.h"
 #include "document.h"
 #include "base/user/menu/list_impact.h"
+#include "base/user/user/tab_drop_target_window.h"
 
 
 namespace user
@@ -473,7 +471,9 @@ namespace user
 
    void tab_impact::_001DropTargetWindowFinalize(::user::tab * pchannel)
    {
+
       __UNREFERENCED_PARAMETER(pchannel);
+
       if(m_pdroptargetwindow != nullptr)
       {
          //psystem->erase_frame(m_pdroptargetwindow);

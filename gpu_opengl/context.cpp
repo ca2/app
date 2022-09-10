@@ -1,5 +1,7 @@
 #include "framework.h"
-
+#include "context.h"
+#include "program.h"
+#include "shader.h"
 #include "aura/graphics/image/image.h"
 #include "glm/mat4x4.hpp"
 

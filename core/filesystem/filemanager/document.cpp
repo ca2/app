@@ -9,7 +9,7 @@
 #include "tab_impact.h"
 #include "data.h"
 #include "child_frame.h"
-#include "core/user/userex/user.h"
+#include "core/user/user/user.h"
 #include "impact.h"
 #include "core/platform/session.h"
 #include "core/platform/application.h"
@@ -70,7 +70,7 @@ namespace filemanager
 
       __pointer(document) pdocument = this;
 
-      tab_impact * pimpact = pdocument->get_type_impact < tab_impact >();
+      tab_impact * pimpact = pdocument->get_typed_impact < tab_impact >();
 
 //#ifdef WINDOWS_DESKTOP
 //      oswindow oswindowDesktop = ::get_desktop_window();
@@ -475,7 +475,7 @@ namespace filemanager
    document * document::get_main_document()
    {
 
-      __pointer(tab_impact) ptabimpact = get_type_impact < tab_impact >();
+      __pointer(tab_impact) ptabimpact = get_typed_impact < tab_impact >();
 
       if (ptabimpact.is_set())
       {
@@ -846,7 +846,7 @@ namespace filemanager
 
       __pointer(document) pdocument = this;
 
-      __pointer(impact) pimpact = get_type_impact<impact>();
+      __pointer(impact) pimpact = get_typed_impact<impact>();
 
       if (pimpact.is_set())
       {
@@ -1302,7 +1302,7 @@ namespace filemanager
    operation_document * document::get_operation_doc(bool bSwitch)
    {
 
-      //::filemanager::tab_impact * ptabimpact = psession->m_pdocumenttemplateMain->get_document(0)->get_type_impact < ::filemanager::tab_impact >();
+      //::filemanager::tab_impact * ptabimpact = psession->m_pdocumenttemplateMain->get_document(0)->get_typed_impact < ::filemanager::tab_impact >();
 
       //if (ptabimpact == nullptr)
       //{

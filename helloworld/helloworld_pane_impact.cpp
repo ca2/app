@@ -515,14 +515,14 @@ namespace helloworld
       {
 
          if (pupdate->m_ehint == CONTROL_EVENT_UPDATE
-               && ptopic->user_interaction() == m_pfontview
+               && ptopic->user_interaction() == m_pfontimpact
                && m_pimpactLast != nullptr)
          {
 
             if(pupdate->m_pusercontrolevent->m_eevent == ::id_after_change_cur_sel)
             {
 
-               string strFont = m_pfontview->m_pimpact->get_cur_sel_face_name();
+               string strFont = m_pfontimpact->m_pimpact->get_cur_sel_face_name();
 
                if (strFont.has_char())
                {
@@ -539,7 +539,7 @@ namespace helloworld
             else if (pupdate->m_pusercontrolevent->m_eevent == ::id_after_change_cur_hover)
             {
 
-               string strFont = m_pfontview->m_pimpact->get_cur_hover_face_name();
+               string strFont = m_pfontimpact->m_pimpact->get_cur_hover_face_name();
 
                if (strFont.has_char())
                {

@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_component.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "aura/message.h"
 #include "interaction_thread.h"
@@ -12,6 +12,7 @@
 #include "user.h"
 #include "system.h"
 #include "message.h"
+#include "aura/platform/session.h"
 
 
 #ifdef WINDOWS_DESKTOP

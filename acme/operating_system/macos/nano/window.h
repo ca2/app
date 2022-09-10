@@ -122,7 +122,7 @@ namespace macos
       ::size_i32 get_main_screen_size() override;
       
       
-      ::atom do_synchronously() override;
+      virtual ::payload do_synchronously();
       
 
    };

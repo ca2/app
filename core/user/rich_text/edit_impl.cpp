@@ -5,9 +5,6 @@
 #include "data.h"
 #include "format.h"
 #include "acme/platform/timer.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
 #include "acme/constant/timer.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"

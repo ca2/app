@@ -9,12 +9,14 @@
     All rights reserved. Use of this source code is governed by a
     BSD-style license that can be found in the LICENSE.txt file.
 */
-#include  "framework.h"
-
-
-//#include <nanogui/imagepanel.h>
-//#include <nanogui/opengl.h>
+#include "framework.h"
+#include "ImagePanel.h"
+#include "VScrollPanel.h"
+#include "Screen.h"
 #include "aura/graphics/image/context_image.h"
+#include "aura/user/user/interaction.h"
+
+
 ::object * get_nano2d_object(NVGcontext * ctx);
 
 NAMESPACE_BEGIN(nanogui)

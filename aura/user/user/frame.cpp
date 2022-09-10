@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_component.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "aura/graphics/image/icon.h"
 #include "acme/parallelization/pool.h"
@@ -9,6 +9,8 @@
 #include "key.h"
 #include "style.h"
 #include "user.h"
+#include "aura/platform/session.h"
+#include "aura/platform/application.h"
 
 
 namespace user

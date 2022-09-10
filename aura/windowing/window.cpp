@@ -2,9 +2,9 @@
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_component.h"
+////#include "aura/user/user/_component.h"
 #endif
-#include "acme/operating_system/_user.h"
+//#include "acme/operating_system/_user.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/icon.h"
@@ -13,6 +13,7 @@
 #include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/copydesk.h"
 #include "aura/user/user/interaction.h"
+#include "aura/platform/session.h"
 
 
 namespace windowing

@@ -1,7 +1,10 @@
 #include "framework.h"
-
 #include "context_win32.h"
+#include "opengl.h"
+#include "buffer.h"
+#include "aura/gpu/gpu/approach.h"
 #include "aura/graphics/image/image.h"
+#include "aura/platform/system.h"
 
 
 namespace opengl

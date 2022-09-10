@@ -1,7 +1,4 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
 #include "core/user/user/font_list.h"
 #include "aura/user/user/frame.h"
 #include "aura/graphics/write_text/font_list.h"

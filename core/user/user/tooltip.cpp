@@ -5,6 +5,8 @@
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "tooltip.h"
+#include "aura/platform/system.h"
+#include "aura/platform/node.h"
 
 
 namespace user

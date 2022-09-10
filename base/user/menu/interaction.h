@@ -18,13 +18,13 @@ namespace user
 
 
       menu_interaction();
-      virtual ~menu_interaction();
+      ~menu_interaction() override;
 
       
       virtual void initialize_menu_interaction(menu_item* pmenuitem);
 
 
-      inline ::base::session* get_session() const;
+      ::base::session* get_session() const;
 
 
       void install_message_routing(::channel * pchannel) override;
@@ -38,6 +38,7 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void _001OnDrawDefault(::draw2d::graphics_pointer & pgraphics);
+
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);

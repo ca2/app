@@ -1,15 +1,13 @@
 #include "framework.h"
 //#include "aura/operating_system.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
-#include "aura/operating_system/_user.h"
+//#include "aura/operating_system/_user.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "control_bar.h"
 #include "frame_window.h"
 #include "aura/message/user.h"
+#include "aura/platform/session.h"
 
 
 namespace user
@@ -846,7 +844,23 @@ namespace user
          // only resize the interaction_impl if doing on_layout and not just rectangle_i32 query
          //if (playout->hDWP != nullptr)
 
-         ::user::__reposition_window(playout, this, &rectangle);
+         //::user::__reposition_window(playout, this, &rectangle);
+
+         ASSERT(::is_set(this));
+
+         __pointer(::user::interaction) puiParent = get_parent();
+
+         ASSERT(puiParent != nullptr);
+
+         ::rectangle_i32 rectangleOld;
+
+         get_window_rect(rectangleOld);
+
+         rectangleOld += puiParent->screen_to_client();
+
+         place(rectangle);
+
+         display(e_display_restored, e_activation_no_activate);
 
       }
 

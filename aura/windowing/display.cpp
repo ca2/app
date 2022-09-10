@@ -2,7 +2,7 @@
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_component.h"
+////#include "aura/user/user/_component.h"
 #endif
 //#include "_windowing.h"
 //#include "acme/primitive/geometry2d/_.h"
@@ -13,6 +13,7 @@
 #include "aura/windowing/monitor.h"
 #include "aura/windowing/window.h"
 #include "aura/user/user/interaction.h"
+#include "aura/platform/system.h"
 
 
 namespace windowing

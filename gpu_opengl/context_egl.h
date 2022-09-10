@@ -2,7 +2,7 @@
 
 
 #include "aura/operating_system.h"
-
+#include "context.h"
 //#include "aura/os/_os.h"
 #include <EGL/egl.h>
 #include <EGL/eglext.h>

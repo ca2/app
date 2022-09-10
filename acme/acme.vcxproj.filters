@@ -2798,6 +2798,12 @@
     <ClInclude Include="primitive\geometry2d\_shape.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\_.h">
+      <Filter>Header Files\filesystem</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\console_client.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -3834,6 +3840,12 @@
     </ClCompile>
     <ClCompile Include="platform\_main_hold_base.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\tracer.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\console_client.cpp">
+      <Filter>Source Files\operating_system</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
-#include "core/user/userex/user.h"
+#include "core/user/user/user.h"
 #include "core/user/userex/pane_tab_impact.h"
 #include "document.h"
 #include "data.h"

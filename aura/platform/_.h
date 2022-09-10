@@ -9,18 +9,28 @@
 
 class shell_open;
 
+namespace aura
+{
 
-#include "theme.h"
+   class application;
+   class session;
+   class system;
 
-#include "context.h"
-
-#include "application.h"
-
-#include "node.h"
-
-#include "session.h"
-
-#include "system.h"
+} // namespace aura
 
 
 
+//#include "theme.h"
+//
+//#include "context.h"
+//
+//#include "application.h"
+//
+//#include "node.h"
+//
+//#include "session.h"
+//
+//#include "system.h"
+//
+//
+//

@@ -1,14 +1,11 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
 
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
 #include "base/user/user/tab_pane.h"
 #include "core/user/user/font_list.h"
-#include "core/user/userex/user.h"
+#include "core/user/user/user.h"
 #include "pane_tab_impact.h"
 #include "font_impact.h"
 #include "color_impact.h"
@@ -23,7 +20,7 @@
 #include "axis/account/credentials.h"
 #include "core/user/account/impact.h"
 #include "aura/message/user.h"
-
+#include "aura/user/user/window_util.h"
 
 
 namespace core
@@ -48,7 +45,7 @@ namespace userex
    pane_tab_impact::pane_tab_impact()
    {
 
-      //m_pcolorview = nullptr;
+      //m_pcolorimpact = nullptr;
 
       //m_pfilemanager = nullptr;
 
@@ -176,14 +173,14 @@ namespace userex
    ::user::interaction * pane_tab_impact::get_font_interaction()
    {
      
-      if(::is_null(m_pfontview1))
+      if(::is_null(m_pfontimpact))
       {
          
          return nullptr;
          
       }
       
-      auto pimpact = m_pfontview1->m_pimpact;
+      auto pimpact = m_pfontimpact->m_pimpact;
       
       if(::is_null(pimpact))
       {
@@ -200,14 +197,14 @@ namespace userex
    ::user::interaction * pane_tab_impact::get_color_interaction()
    {
   
-      if(::is_null(m_pcolorview1))
+      if(::is_null(m_pcolorimpact))
       {
          
          return nullptr;
          
       }
       
-      auto pimpact = m_pcolorview1;
+      auto pimpact = m_pcolorimpact;
       
       if(::is_null(pimpact))
       {
@@ -332,7 +329,7 @@ namespace userex
       else if(m_pimpactdata->m_atom == OPTIONS_IMPACT)
       {
 
-         if (::is_set(m_pdocumentMenu))
+         if (::is_set(m_pformdocumentMenu))
          {
 
             auto strOptionsImpact = get_app()->prepare_impact_options();
@@ -349,7 +346,7 @@ namespace userex
 
 #endif
 
-            if (!m_pdocumentMenu->open_document(strOptionsImpact))
+            if (!m_pformdocumentMenu->open_document(strOptionsImpact))
             {
 
                output_error_message("Failed to open the menu.");
@@ -358,7 +355,7 @@ namespace userex
 
             }
 
-            auto pformview = m_pdocumentMenu->get_type_impact < ::user::form_impact>();
+            auto pformview = m_pformdocumentMenu->get_typed_impact < ::user::form_impact>();
 
             pformview->get_form()->add_handler(get_app());
 
@@ -567,7 +564,7 @@ namespace userex
 
                auto puser = user()->m_pcoreuser;
 
-               m_pdocumentMenu = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
+               m_pformdocumentMenu = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
 
                pimpactdata->m_eflag.add(::user::e_flag_hide_on_kill_focus);
 
@@ -603,22 +600,22 @@ namespace userex
 
          auto pdocument = ptemplate->open_document_file(get_app(), ::e_type_null, __visible(true).is_true(), pimpactdata->m_pplaceholder);
 
-         m_pfontview1 = pdocument->get_type_impact < font_impact >();
+         m_pfontimpact = pdocument->get_typed_impact < font_impact >();
 
-         m_pfontview1->set_need_layout();
+         m_pfontimpact->set_need_layout();
 
          pdocument->m_pviewTopic->set_notify_user_interaction(this);
 
          pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
          
-         m_pfontview1->m_pimpact->add_handler(this);
+         m_pfontimpact->m_pimpact->add_handler(this);
 
          __pointer(::user::interaction) pimpact = psession->get_bound_ui(FONTSEL_IMPACT);
 
          if(pimpact)
          {
 
-            m_pfontview1->m_pimpact->add_handler(pimpact);
+            m_pfontimpact->m_pimpact->add_handler(pimpact);
 
          }
 
@@ -640,20 +637,20 @@ namespace userex
 
          //auto pdocument = pimpactsystem->open_document_file(get_app(), ::e_type_null, __visible(false).is_true(), pimpactdata->m_pplaceholder);
 
-         m_pcolorview1 = create_impact < color_impact >(pimpactdata);
+         m_pcolorimpact = create_impact < color_impact >(pimpactdata);
 
 //         pdocument->m_pviewTopic->set_notify_user_interaction(this);
 
   //       pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
          
-         m_pcolorview1->add_handler(this);
+         m_pcolorimpact->add_handler(this);
 
          __pointer(::user::interaction) pimpact = psession->get_bound_ui(COLORSEL_IMPACT);
 
          if(pimpact)
          {
 
-            m_pcolorview1->add_handler(pimpact);
+            m_pcolorimpact->add_handler(pimpact);
 
          }
 
@@ -1003,7 +1000,7 @@ namespace userex
 
    //   m_pdocAppOptions = puser->create_child_form(this, this, pimpactdata->m_pplaceholder, strAppOptions);
 
-   //   //auto pform = m_pdocAppOptions->get_type_impact<::user::form>();
+   //   //auto pform = m_pdocAppOptions->get_typed_impact<::user::form>();
 
    //   //if (pform)
    //   //{

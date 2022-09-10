@@ -22,7 +22,7 @@ namespace netserver
       i32                                          m_iPortMaximum;
       i32                                          m_iConnectPort;
 
-      SOCKET                                       m_hsocket;
+      //SOCKET                                       m_hsocket;
       string                                       m_strCat;
       string                                       m_strCipherList;
 
@@ -31,7 +31,7 @@ namespace netserver
 
 
       socket_thread_base();
-      virtual ~socket_thread_base();
+      ~socket_thread_base() override;
 
 
       virtual void     run() override;

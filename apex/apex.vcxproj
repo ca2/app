@@ -185,7 +185,7 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <FloatingPointModel>Precise</FloatingPointModel>
-      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <FloatingPointExceptions>true</FloatingPointExceptions>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
@@ -330,7 +330,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -479,7 +479,7 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <FloatingPointModel>Precise</FloatingPointModel>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <FloatingPointExceptions>true</FloatingPointExceptions>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
@@ -629,7 +629,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <Optimization>MaxSpeed</Optimization>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -825,8 +825,8 @@
     <ClCompile Include="networking\networking_application_socket.cpp" />
     <ClCompile Include="networking\port_forward.cpp" />
     <ClCompile Include="networking\sockets.cpp" />
-    <ClCompile Include="networking\sockets\base\base_socket.cpp" />
-    <ClCompile Include="networking\sockets\base\base_socket_handler.cpp" />
+    <ClCompile Include="networking\sockets\base\socket.cpp" />
+    <ClCompile Include="networking\sockets\base\socket_handler.cpp" />
     <ClCompile Include="networking\sockets\base\socket_thread.cpp" />
     <ClCompile Include="networking\sockets\basic\listen_socket.cpp" />
     <ClCompile Include="networking\sockets\basic\sctp_socket.cpp" />
@@ -872,6 +872,8 @@
     <ClInclude Include="compress\not_dir.h" />
     <ClInclude Include="crypto\initializer.h" />
     <ClInclude Include="filesystem\filesystem\file_listener.h" />
+    <ClInclude Include="filesystem\file\_constant.h" />
+    <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="handler\context.h" />
     <ClInclude Include="handler\manager.h" />
     <ClInclude Include="handler\predicate.h" />
@@ -1016,8 +1018,8 @@
     <ClInclude Include="networking\ip_enum.h" />
     <ClInclude Include="networking\open_weather_city.h" />
     <ClInclude Include="networking\port_forward.h" />
-    <ClInclude Include="networking\sockets\base\base_socket.h" />
-    <ClInclude Include="networking\sockets\base\base_socket_handler.h" />
+    <ClInclude Include="networking\sockets\base\socket.h" />
+    <ClInclude Include="networking\sockets\base\socket_handler.h" />
     <ClInclude Include="networking\sockets\base\socket_thread.h" />
     <ClInclude Include="networking\sockets\basic\listen_socket.h" />
     <ClInclude Include="networking\sockets\basic\net.h" />

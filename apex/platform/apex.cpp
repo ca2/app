@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "apex/operating_system.h"
 #include "apex.h"
-#include "apex/networking/sockets/_sockets.h"
+#include "apex/networking/sockets/base/socket.h"
 //#include "apex/platform/app_core.h"
 #include "apex/astr.h"
 //#include "acme/exception/engine.h"
@@ -350,11 +350,11 @@ namespace apex
 
 
 
-#ifdef BSD_STYLE_SOCKETS
-
-      ::sockets::base_socket::s_pmutex = new ::mutex();
-
-#endif
+//#ifdef BSD_STYLE_SOCKETS
+//
+//      ::sockets::base_socket::s_pmutex = new ::mutex();
+//
+//#endif
 
 
 #ifdef __APPLE__
@@ -654,11 +654,11 @@ namespace apex
 
 #endif
 
-#ifdef BSD_STYLE_SOCKETS
-
-      ::acme::del(::sockets::base_socket::s_pmutex);
-
-#endif
+//#ifdef BSD_STYLE_SOCKETS
+//
+//      ::acme::del(::sockets::base_socket::s_pmutex);
+//
+//#endif
 
       //::acme::del(g_psimpletrace);
 

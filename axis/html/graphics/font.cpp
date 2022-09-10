@@ -5,6 +5,7 @@
 #include "aura/graphics/write_text/font.h"
 #include "font.h"
 #include "axis/platform/system.h"
+#include "aura/platform/node.h"
 
 
 namespace html

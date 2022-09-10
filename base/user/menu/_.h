@@ -12,6 +12,10 @@ namespace user
    class menu_item;
    class menu_item_ptra;
 
+   
+   class menu_list_impact;
+   class menu_impact;
+
 
 } // namespace user
 

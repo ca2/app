@@ -1,18 +1,18 @@
 #pragma once
 
 
-#ifdef __cplusplus
-
-
-#include "base/include/_.h"
-
-
-#elif defined(__MM)
+#if defined(__MM)
 
 
 #include "base/include/_c_bridge.h"
 #include "base/include/objc.h"
 #include "base/include/objcpp.h"
+
+
+#elif defined(__cplusplus)
+
+
+#include "base/include/_.h"
 
 
 #elif defined(__M)

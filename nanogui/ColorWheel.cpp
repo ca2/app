@@ -11,7 +11,7 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
-
+#include "ColorWheel.h"
 
 //#include <nanogui/colorwheel.h>
 //#include <nanogui/theme.h>
@@ -146,7 +146,7 @@ void ColorWheel::draw(NVGcontext * ctx)
 bool ColorWheel::mouse_button_event(const Vector2i & p, int button, bool down, const ::user::e_key & ekeyModifiers) 
 {
    Widget::mouse_button_event(p, button, down, ekeyModifiers);
-   if (!m_enabled || button != __MOUSE_LEFT_BUTTON)
+   if (!m_enabled || button != ::user::e_mouse_left_button)
       return false;
 
    if (down) {

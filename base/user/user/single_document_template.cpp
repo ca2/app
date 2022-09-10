@@ -1,7 +1,4 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "aura/user/user/wait_cursor.h"
 #include "single_document_template.h"
 #include "document.h"

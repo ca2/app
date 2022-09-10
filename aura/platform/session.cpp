@@ -1,12 +1,15 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_component.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "acme/platform/system_setup.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
 #include "aura/user/user/user.h"
 #include "aura/user/user/interaction.h"
+#include "aura/platform/session.h"
+#include "aura/platform/system.h"
+#include "aura/platform/application.h"
 
 
 #if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)
@@ -2404,7 +2407,7 @@ namespace aura
       if (m_applicationa.lookup(pszAppId, papp) && papp)
       {
 
-         //__pointer(::bergedge::pane_impact) ppaneimpact = get_document()->get_type_impact < ::bergedge::pane_impact >();
+         //__pointer(::bergedge::pane_impact) ppaneimpact = get_document()->get_typed_impact < ::bergedge::pane_impact >();
 
          //if(ppaneimpact != nullptr)
          //{

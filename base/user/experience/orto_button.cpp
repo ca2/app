@@ -4,7 +4,7 @@
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "acme/constant/timer.h"
-#include "aura/graphics/draw2d/_component.h"
+////#include "aura/graphics/draw2d/_component.h"
 #include "acme/platform/timer.h"
 
 

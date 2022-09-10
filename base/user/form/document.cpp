@@ -1,7 +1,4 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "document.h"
 #include "impact.h"
 
@@ -31,7 +28,7 @@ form_document::~form_document()
 bool form_document::on_open_document(const ::payload & payloadFile)
 {
 
-   auto pformview = get_type_impact < ::user::form_impact >();
+   auto pformview = get_typed_impact < ::user::form_impact >();
 
    if(!pformview)
    {

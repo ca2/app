@@ -70,42 +70,7 @@ namespace user
    };
 
 
-
-
-   class CLASS_DECL_AURA plain_text_tree:
-      public ::data::tree
-   {
-   public:
-
-
-      __pointer(plain_text_group_command)       m_pgroupcommand;
-      index                                     m_iBranch;
-      file_pointer                              m_pfile;
-      __pointer(::file::edit_file)              m_peditfile;
-
-
-      strsize                                   m_iSelBeg;
-      strsize                                   m_iSelEnd;
-
-
-      plain_text_tree();
-      virtual ~plain_text_tree();
-
-
-      void SetFile(file_pointer  pfile);
-
-
-   };
-
-
-
 } // namespace user
-
-
-
-
-
-
 
 
 

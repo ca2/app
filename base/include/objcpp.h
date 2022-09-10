@@ -23,16 +23,16 @@
 #pragma once
 
 
-#define __MM
-
-#ifdef MACOS
-
-#include "aura/os/macos/_mm.h"
-
-#else
-
-#include "aura/os/ios/_mm.h"
-
-#endif
+//#define __MM
+//
+//#ifdef MACOS
+//
+//#include "aura/os/macos/_mm.h"
+//
+//#else
+//
+//#include "aura/os/ios/_mm.h"
+//
+//#endif
 
 

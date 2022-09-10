@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_component.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "acme/include/_c_swap.h"
 #include "aura/windowing/windowing.h"
@@ -10,6 +10,7 @@
 #include "aura/user/user/user.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/interaction_impl.h"
+#include "aura/platform/session.h"
 
 
 #if defined(LINUX)

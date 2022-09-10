@@ -177,7 +177,7 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <FloatingPointModel>Precise</FloatingPointModel>
-      <AdditionalOptions>/bigobj -Zm512 </AdditionalOptions>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <FloatingPointExceptions>true</FloatingPointExceptions>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
@@ -326,7 +326,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <SmallerTypeCheck>false</SmallerTypeCheck>
-      <AdditionalOptions>/bigobj -Zm512 </AdditionalOptions>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -487,7 +487,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <FloatingPointModel>Precise</FloatingPointModel>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <AdditionalOptions>/bigobj -Zm512 </AdditionalOptions>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <FloatingPointExceptions>true</FloatingPointExceptions>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
@@ -638,7 +638,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <Optimization>MaxSpeed</Optimization>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <AdditionalOptions>/bigobj -Zm512 </AdditionalOptions>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -886,6 +886,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="filesystem\file\streamable.h" />
     <ClInclude Include="filesystem\file\transfer.h" />
     <ClInclude Include="filesystem\file\translatable.h" />
+    <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="handler\extended_topic.h" />
     <ClInclude Include="handler\handler.h" />
     <ClInclude Include="handler\item.h" />
@@ -1044,6 +1045,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="operating_system\argcargv.cpp" />
     <ClCompile Include="operating_system\chronometer.cpp" />
     <ClCompile Include="operating_system\console.cpp" />
+    <ClCompile Include="operating_system\console_client.cpp" />
     <ClCompile Include="operating_system\debug.cpp" />
     <ClCompile Include="operating_system\file.cpp" />
     <ClCompile Include="operating_system\parallelization.cpp" />
@@ -1191,6 +1193,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="primitive\primitive\match.cpp" />
     <ClCompile Include="primitive\primitive\payload.cpp" />
     <ClCompile Include="primitive\primitive\element.cpp" />
+    <ClCompile Include="primitive\primitive\tracer.cpp" />
     <ClCompile Include="primitive\primitive\work.cpp" />
     <ClCompile Include="primitive\promise\signalization.cpp" />
     <ClCompile Include="primitive\string\command_line.cpp" />
@@ -1335,6 +1338,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="operating_system\argcargv.h" />
     <ClInclude Include="operating_system\chronometer.h" />
     <ClInclude Include="operating_system\console.h" />
+    <ClInclude Include="operating_system\console_client.h" />
     <ClInclude Include="operating_system\cross.h" />
     <ClInclude Include="operating_system\file.h" />
     <ClInclude Include="operating_system\graphics.h" />

@@ -13,6 +13,7 @@ namespace sockets
 
 
    class ssl_context;
+   class ssl_client_context;
    class ssl_client_context_map;
 
 

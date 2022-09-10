@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_component.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "aura/graphics/graphics/multiple_buffer.h"
 #include "_.h"
@@ -51,7 +51,7 @@ namespace graphics
 
 #ifdef MACOS
 
-      m_pimageaBuffer->set_size(3);
+      m_pimageaBuffer->m_imagea.set_size(3);
 
 #else
 

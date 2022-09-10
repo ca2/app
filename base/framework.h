@@ -16,12 +16,12 @@
 
 #include "base/_.h"
 #include "base/platform/_platform.h"
-#if BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
+//#if BROAD_PRECOMPILED_HEADER
+////#include "base/user/user/_component.h"
 //#include "base/user/experience/_experience.h"
-//#include "base/user/simple/_component.h"
+////#include "base/user/simple/_component.h"
 //#include "base/user/menu/_menu.h"
-#endif
+//#endif
 
 #include "aura/_defer.h"
 

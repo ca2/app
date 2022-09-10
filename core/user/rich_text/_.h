@@ -22,6 +22,8 @@ namespace user
 
       class box;
 
+      class format;
+
       bool is_equal_bool(bool b1, bool b2);
 
       bool is_similar_font_size(double d1, double d2);

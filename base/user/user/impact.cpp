@@ -1,7 +1,4 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "impact.h"
 #include "aura/message/user.h"
 #include "aura/user/user/system.h"
@@ -13,6 +10,7 @@
 #include "impact_data.h"
 #include "base/user/user/place_holder.h"
 #include "base/user/user/user.h"
+#include "aura/user/user/window_util.h"
 
 
 namespace user

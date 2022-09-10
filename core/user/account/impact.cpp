@@ -12,6 +12,8 @@
 #include "aura/user/user/button.h"
 #include "aura/message/user.h"
 #include "axis/account/credentials.h"
+#include "aura/platform/system.h"
+#include "aura/platform/node.h"
 
 
 namespace account

@@ -9,13 +9,10 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
-
-
-//#include <nanogui/window.h>
-//#include <nanogui/theme.h>
-//#include <nanogui/opengl.h>
-//#include <nanogui/screen.h>
+#include "Window.h"
 #include "Layout.h"
+#include "Screen.h"
+
 
 NAMESPACE_BEGIN(nanogui)
 

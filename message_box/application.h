@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/platform/application.h"
+
+
 namespace app_message_box
 {
 

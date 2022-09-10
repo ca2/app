@@ -1,13 +1,13 @@
 #pragma once
 
-
-#include "apex/filesystem/fs/fs.h"
-
-
-#include "apex/networking/netserver/_.h"
-
-
-#include "apex/networking/netserver/_netserver.h"
+//
+//#include "apex/filesystem/fs/fs.h"
+//
+//
+//#include "apex/networking/netserver/_.h"
+//
+//
+//#include "apex/networking/netserver/_netserver.h"
 
 
 namespace dynamic_source
@@ -23,6 +23,18 @@ namespace dynamic_source
 
 
    typedef script_instance* (*NET_NODE_CREATE_INSTANCE_PROC)();
+
+   class ds_script;
+   class script;
+
+
+   class library;
+
+
+   class script_cache;
+   class script_compiler;
+
+   class session;
 
 
 } // namespace dynamic_source
@@ -52,39 +64,38 @@ namespace netnode
    class script_main;
    class script_impl;
 
-
 } // namespace netnode
 
-
-#include "exit_exception.h"
-
-#include "session.h"
-
-
-#include "apex/filesystem/file/html_file.h"
-
-
-#include "library.h"
-
-
-#include "script_interface.h"
-#include "script_composite.h"
-#include "script_instance.h"
-#include "script_main.h"
-
-
-#include "script.h"
-#include "script_cache.h"
-#include "script_compiler.h"
-
-
-#include "httpd_socket.h"
-
-
-#include "script_manager.h"
-
-
-#include "_impl.h"
-
-
-
+//
+//#include "exit_exception.h"
+//
+//#include "session.h"
+//
+//
+//#include "apex/filesystem/file/html_file.h"
+//
+//
+//#include "library.h"
+//
+//
+//#include "script_interface.h"
+//#include "script_composite.h"
+//#include "script_instance.h"
+//#include "script_main.h"
+//
+//
+//#include "script.h"
+//#include "script_cache.h"
+//#include "script_compiler.h"
+//
+//
+//#include "httpd_socket.h"
+//
+//
+//#include "script_manager.h"
+//
+//
+//#include "_impl.h"
+//
+//
+//

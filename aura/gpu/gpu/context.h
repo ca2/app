@@ -8,15 +8,6 @@ namespace gpu
 {
 
 
-   enum enum_shader_source
-   {
-
-      e_shader_source_neort,
-      e_shader_source_shadertoy,
-
-   };
-
-
    class CLASS_DECL_AURA context :
       virtual public ::object
    {

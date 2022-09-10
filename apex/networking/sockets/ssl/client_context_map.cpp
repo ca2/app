@@ -1,5 +1,6 @@
 #include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
+#include "client_context_map.h"
+//#include "apex/networking/sockets/_sockets.h"
 
 
 namespace sockets
@@ -20,21 +21,21 @@ namespace sockets
    }
 
 
-   __pointer(ssl_client_context) ssl_client_context_map::get_context(string strContext, const SSL_METHOD * pmethod)
-   {
-
-      __pointer(ssl_client_context) pcontext = m_map[strContext][pmethod];
-
-      if (pcontext.is_null())
-      {
-
-         pcontext = __new(ssl_client_context(pmethod));
-
-      }
-
-      return pcontext;
-
-   }
+//   __pointer(ssl_client_context) ssl_client_context_map::get_context(string strContext, const SSL_METHOD * pmethod)
+//   {
+//
+//      __pointer(ssl_client_context) pcontext = m_map[strContext][pmethod];
+//
+//      if (pcontext.is_null())
+//      {
+//
+//         pcontext = __new(ssl_client_context(pmethod));
+//
+//      }
+//
+//      return pcontext;
+//
+//   }
 
 
 } // namespace sockets

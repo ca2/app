@@ -1,7 +1,7 @@
 #include "framework.h"
 //#include "aura/operating_system.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_component.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "aura/user/user/shell.h"
 //#include "acme/compress/zip/_.h"
@@ -18,6 +18,7 @@
 #include "aura/windowing/icon.h"
 #include "window_util.h"
 #include "interaction.h"
+#include "aura/platform/node.h"
 
 
 #if defined(RASPBIAN)

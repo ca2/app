@@ -4,7 +4,7 @@
 #include "apex/message/command.h"
 #include "apex/user/primitive.h"
 #include "interaction_layout.h"
-#include "window_util.h"
+//#include "window_util.h"
 #include "prodevian.h"
 #include "drawable.h"
 
@@ -387,9 +387,9 @@ namespace user
 
       //class control_descriptor& descriptor();
       //const class control_descriptor& descriptor() const;
-      inline ::aura::application * get_app() const;
-      inline ::aura::session * get_session() const;
-      inline ::aura::system * get_system() const;
+      ::aura::application * get_app() const;
+      ::aura::session * get_session() const;
+      ::aura::system * get_system() const;
 
       bool _001CanEnterScreenSaver() override;
 
@@ -409,8 +409,8 @@ namespace user
       virtual bool on_set_size(const ::size_i32 & size, enum_layout elayout);
 
       //virtual interaction_draw2d * get_draw2d();
-      virtual double point_dpi(double d);
-      virtual double dpiy(double d);
+      double point_dpi(double d) override;
+      double dpiy(double d) override;
 
 
       virtual float get_dpi_for_window();
@@ -441,6 +441,8 @@ namespace user
 
       virtual bool has_link() const;
 
+      virtual __pointer_array(interaction) * children();
+
 
       inline iterator proper_children() { return {this, e_next_proper, this}; }
 
@@ -448,8 +450,8 @@ namespace user
       const class ::user::interaction_layout& const_layout() const { return m_layout; }
       class ::user::interaction_layout& layout() { return m_layout; }
 
-      inline double screen_scaler() const;
-      inline double font_scaler() const;
+      double screen_scaler() const;
+      double font_scaler() const;
 
 
       //void clear();
@@ -790,7 +792,7 @@ namespace user
       virtual void add_prodevian(::matter * pmatter) override;
       virtual void erase_prodevian(::matter * pmatter) override;
       virtual bool is_prodevian(const ::matter * pmatter) const override;
-      inline bool has_prodevian() const noexcept;
+      bool has_prodevian() const noexcept;
 
 
       virtual bool is_frame_window();
@@ -799,11 +801,11 @@ namespace user
       virtual bool sketch_on_display();
 
 
-      inline bool is_this_visible(enum_layout elayout = e_layout_design) const;
-      inline bool is_this_screen_visible(enum_layout elayout = e_layout_design) const;
+      bool is_this_visible(enum_layout elayout = e_layout_design) const;
+      bool is_this_screen_visible(enum_layout elayout = e_layout_design) const;
 
-      inline bool is_window_visible(enum_layout elayout = e_layout_design) const;
-      inline bool is_window_screen_visible(enum_layout elayout = e_layout_design) const;
+      bool is_window_visible(enum_layout elayout = e_layout_design) const;
+      bool is_window_screen_visible(enum_layout elayout = e_layout_design) const;
 
 
       virtual void create_message_queue(const ::string & strName) override;
@@ -828,6 +830,8 @@ namespace user
       virtual ::windowing::cursor * get_mouse_cursor() override;
 
       virtual ::point_i32 get_cursor_position();
+
+      virtual void set_cursor_position(const ::point_i32 & pointCursor);
 
       virtual void release_mouse_capture();
 
@@ -907,10 +911,10 @@ namespace user
       virtual i32 get_wheel_scroll_delta();
 
       template < typename TYPE >
-      TYPE* typed_descedant(::user::interaction* puiExclude = nullptr)
+      TYPE * typed_descendant(::user::interaction * puiExclude = nullptr)
       {
 
-         auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+         auto puserinteractionpointeraChild = children();
 
          if (!puserinteractionpointeraChild)
          {
@@ -919,13 +923,13 @@ namespace user
 
          }
 
-         for (auto& pinteraction : puserinteractionpointeraChild->interactiona())
+         for (auto & pinteraction : *puserinteractionpointeraChild)
          {
 
             if (pinteraction != puiExclude)
             {
 
-               TYPE* point = dynamic_cast <TYPE*> (pinteraction.m_p);
+               TYPE * point = dynamic_cast <TYPE *> (pinteraction.m_p);
 
                if (point != nullptr)
                {
@@ -935,19 +939,16 @@ namespace user
                }
 
             }
-
 
          }
 
-         //auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
-
-         for (auto& pinteraction :puserinteractionpointeraChild->interactiona())
+         for (auto & pinteraction : *puserinteractionpointeraChild)
          {
 
             if (pinteraction != puiExclude)
             {
 
-               TYPE* point = pinteraction->typed_descedant < TYPE >(pinteraction.m_p);
+               TYPE * point = pinteraction->typed_descendant < TYPE >(pinteraction.m_p);
 
                if (point != nullptr)
                {
@@ -957,11 +958,47 @@ namespace user
                }
 
             }
-
 
          }
 
          return nullptr;
+
+      }
+
+
+      template < typename CHILD >
+      inline bool get_typed_child(CHILD *& pchild, ::user::interaction * puiExclude = nullptr)
+      {
+
+         auto puserinteractionpointeraChild = children();
+
+         if (!puserinteractionpointeraChild)
+         {
+
+            return false;
+
+         }
+
+         for (auto & pinteraction : *puserinteractionpointeraChild)
+         {
+
+            if (pinteraction != puiExclude)
+            {
+
+               pchild = dynamic_cast <CHILD *> (pinteraction.m_p);
+
+               if (pchild != nullptr)
+               {
+
+                  return true;
+
+               }
+
+            }
+
+         }
+
+         return false;
 
       }
 
@@ -986,7 +1023,7 @@ namespace user
          while (pinteraction != nullptr)
          {
 
-            TYPE* point = pinteraction->typed_descedant < TYPE >(puiExclude);
+            TYPE* point = pinteraction->typed_descendant < TYPE >(puiExclude);
 
             if (point != nullptr)
             {
@@ -1169,7 +1206,7 @@ namespace user
       virtual void ShowOwnedPopups(bool bShow = true);
 
 
-      virtual bool is_composite();
+      virtual bool is_composite() override;
 
       //virtual u32 GetStyle() const override;
       //virtual u32 GetExStyle() const override;
@@ -1212,13 +1249,13 @@ namespace user
 
       virtual void _001PrintBuffer(::draw2d::graphics_pointer & pgraphics);
       virtual void _001Print(::draw2d::graphics_pointer & pgraphics) ;
-      virtual void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics);
+      void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics) ;
       virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) ;
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _008CallOnDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void _008OnDraw(::draw2d::graphics_pointer & pgraphics) ;
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics);
@@ -1445,7 +1482,7 @@ namespace user
       ::user::interaction * get_child_by_id(const atom & atom, ::index iItem = -1, i32 iLevel = -1) override;
       ::user::element * get_primitive_by_id(const atom & atom, ::index iItem, i32 iLevel) override;
 
-      ::user::interaction* child_from_point(const ::point_i32& point, const ::user::interaction_array& interactionaExclude = {});
+      ::user::interaction* child_from_point(const ::point_i32& point, const ::user::interaction_array * pinteractionaExclude = nullptr);
 
 
       virtual bool is_ascendant(const primitive * puiIsAscendant, bool bIncludeSelf) const override;
@@ -1780,6 +1817,8 @@ namespace user
 
       
       virtual bool set_sel_by_name(const ::string & strName);
+      virtual string get_sel_by_name();
+      virtual string get_hover_by_name();
       virtual void ensure_sel_visible();
       
       
@@ -1803,11 +1842,27 @@ namespace user
       virtual bool rget_child(__pointer(::user::interaction)& pinteraction);
 
 
-      template < typename CHILD >
-      inline bool get_typed_child(CHILD*& pchild);
+
+      //template < typename CHILD >
+      //inline __pointer(CHILD) get_typed_child();
 
       template < typename CHILD >
-      inline __pointer(CHILD) get_typed_child();
+      inline __pointer(CHILD) get_typed_child()
+      {
+
+         CHILD * pchild = nullptr;
+
+         if (!get_typed_child(pchild))
+         {
+
+            return {};
+
+         }
+
+         return pchild;
+
+      }
+
 
       virtual enum_input_type preferred_input_type() const;
 

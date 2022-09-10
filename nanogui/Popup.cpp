@@ -10,11 +10,8 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
+#include "Popup.h"
 
-
-//#include <nanogui/popup.h>
-//#include <nanogui/theme.h>
-//#include <nanogui/opengl.h>
 
 NAMESPACE_BEGIN(nanogui)
 

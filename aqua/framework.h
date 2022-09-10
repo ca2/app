@@ -12,15 +12,15 @@
 #include "_.h"
 
 
-#include "_library.h"
+//#include "_library.h"
 
 
 #include "aqua/xml.h"
 #if BROAD_PRECOMPILED_HEADER
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_component.h"
+////#include "aura/user/user/_component.h"
 #endif
-//#include "core/user/simple/_component.h"
+////#include "core/user/simple/_component.h"
 //#include "aura/user/rich_text/_rich_text.h"
 //#include "aura/filesystem/filemanager/_filemanager.h"
 //#include "aura/filesystem/filehandler/_filehandler.h"

@@ -6,7 +6,7 @@ list(APPEND library_source
         constant/idpool.cpp
         constant/idpool.h
         game/_.h
-        game/_game.h
+        #game/_game.h
         game/estamira.cpp
         game/estamira.h
         game/game.cpp
@@ -37,8 +37,8 @@ list(APPEND library_source
         multimedia/audio/speaker.h
         multimedia/_.h
         multimedia/_c.h
-        multimedia/audio.cpp
-        multimedia/audio.h
+        multimedia/audio/audio.cpp
+        multimedia/audio/audio.h
         multimedia/decoder.cpp
         multimedia/decoder.h
         multimedia/decoder_plugin.cpp

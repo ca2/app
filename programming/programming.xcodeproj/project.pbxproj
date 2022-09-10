@@ -50,13 +50,14 @@
 		9A7EDCEA2670F06500BC7094 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7EDCBB2670F06500BC7094 /* framework.cpp */; };
 		9A7EDCEB2670F06500BC7094 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7EDCC02670F06500BC7094 /* _.cpp */; };
 		9A7EDCED2670F06500BC7094 /* application.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7EDCC32670F06500BC7094 /* application.h */; };
-		9A7EDCF02670F06500BC7094 /* _programming.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7EDCC62670F06500BC7094 /* _programming.h */; };
 		9A7EDCF12670F06500BC7094 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7EDCC82670F06500BC7094 /* framework.h */; };
 		9A7EDCF22670F06500BC7094 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7EDCCC2670F06500BC7094 /* _.h */; };
 		9A7EDCF42670F66800BC7094 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7EDCF32670F66800BC7094 /* libacme.dylib */; };
 		9A7EDCF62670F66800BC7094 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7EDCF52670F66800BC7094 /* libapex.dylib */; };
 		9A7EDCF82670F66800BC7094 /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7EDCF72670F66800BC7094 /* libaqua.dylib */; };
 		9A7EDCFA2670F66800BC7094 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A7EDCF92670F66800BC7094 /* libaura.dylib */; };
+		9A979CC628C80D220013DC54 /* library.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A979CC428C80D210013DC54 /* library.cpp */; };
+		9A979CC728C80D220013DC54 /* library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A979CC528C80D210013DC54 /* library.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 9AE63E9A252A5B7800BED5B8;
 			remoteInfo = axis;
+		};
+		9A979CBF28C7EB630013DC54 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A325686271F89FA004A4955 /* axis.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A93B6912846EA94005ACD11;
+			remoteInfo = ios_axis;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -140,13 +148,15 @@
 		9A7EDCBB2670F06500BC7094 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		9A7EDCC02670F06500BC7094 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A7EDCC32670F06500BC7094 /* application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
-		9A7EDCC62670F06500BC7094 /* _programming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _programming.h; sourceTree = "<group>"; };
 		9A7EDCC82670F06500BC7094 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 		9A7EDCCC2670F06500BC7094 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A7EDCF32670F66800BC7094 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A7EDCF52670F66800BC7094 /* libapex.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libapex.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A7EDCF72670F66800BC7094 /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A7EDCF92670F66800BC7094 /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A979CC328C8073B0013DC54 /* ds_script.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ds_script.h; sourceTree = "<group>"; };
+		9A979CC428C80D210013DC54 /* library.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = library.cpp; sourceTree = "<group>"; };
+		9A979CC528C80D210013DC54 /* library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				9A32568B271F89FA004A4955 /* libaxis.dylib */,
+				9A979CC028C7EB630013DC54 /* libios_axis.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -234,7 +245,6 @@
 				9A7EDCC12670F06500BC7094 /* programming */,
 				9A7EDCC02670F06500BC7094 /* _.cpp */,
 				9A7EDCCC2670F06500BC7094 /* _.h */,
-				9A7EDCC62670F06500BC7094 /* _programming.h */,
 				9A7EDCBB2670F06500BC7094 /* framework.cpp */,
 				9A7EDCC82670F06500BC7094 /* framework.h */,
 			);
@@ -244,11 +254,11 @@
 		9A7EDC922670F06500BC7094 /* introjection */ = {
 			isa = PBXGroup;
 			children = (
+				9A7EDC952670F06500BC7094 /* _.h */,
+				9A7EDC942670F06500BC7094 /* compiler.cpp */,
+				9A7EDC932670F06500BC7094 /* compiler.h */,
 				9A6B7CAC2757D86800DB33D9 /* library.cpp */,
 				9A6B7CAD2757D86800DB33D9 /* library.h */,
-				9A7EDC932670F06500BC7094 /* compiler.h */,
-				9A7EDC942670F06500BC7094 /* compiler.cpp */,
-				9A7EDC952670F06500BC7094 /* _.h */,
 			);
 			path = introjection;
 			sourceTree = "<group>";
@@ -256,31 +266,34 @@
 		9A7EDC9F2670F06500BC7094 /* dynamic_source */ = {
 			isa = PBXGroup;
 			children = (
-				9A7EDCA02670F06500BC7094 /* script_main.cpp */,
-				9A7EDCA12670F06500BC7094 /* _impl.h */,
-				9A7EDCA22670F06500BC7094 /* httpd_socket.cpp */,
-				9A7EDCA32670F06500BC7094 /* script.h */,
-				9A7EDCA42670F06500BC7094 /* script_manager.h */,
-				9A7EDCA52670F06500BC7094 /* script_instance.h */,
-				9A7EDCA62670F06500BC7094 /* script_cache.h */,
-				9A7EDCA72670F06500BC7094 /* script.cpp */,
-				9A7EDCA82670F06500BC7094 /* exit_exception.h */,
-				9A7EDCA92670F06500BC7094 /* httpd_socket.h */,
-				9A7EDCAA2670F06500BC7094 /* script_interface.h */,
-				9A7EDCAB2670F06500BC7094 /* exit_exception.cpp */,
-				9A7EDCAC2670F06500BC7094 /* script_instance.cpp */,
-				9A7EDCAD2670F06500BC7094 /* script_compiler.cpp */,
-				9A7EDCAE2670F06500BC7094 /* script_interface.cpp */,
-				9A7EDCAF2670F06500BC7094 /* script_composite.cpp */,
-				9A7EDCB02670F06500BC7094 /* session.h */,
-				9A7EDCB12670F06500BC7094 /* session.cpp */,
-				9A7EDCB22670F06500BC7094 /* aaa_library_class.h */,
-				9A7EDCB32670F06500BC7094 /* script_manager.cpp */,
-				9A7EDCB42670F06500BC7094 /* script_main.h */,
-				9A7EDCB52670F06500BC7094 /* script_composite.h */,
-				9A7EDCB62670F06500BC7094 /* script_compiler.h */,
-				9A7EDCB82670F06500BC7094 /* script_cache.cpp */,
 				9A7EDCB92670F06500BC7094 /* _.h */,
+				9A7EDCA12670F06500BC7094 /* _impl.h */,
+				9A7EDCB22670F06500BC7094 /* aaa_library_class.h */,
+				9A979CC328C8073B0013DC54 /* ds_script.h */,
+				9A7EDCAB2670F06500BC7094 /* exit_exception.cpp */,
+				9A7EDCA82670F06500BC7094 /* exit_exception.h */,
+				9A7EDCA22670F06500BC7094 /* httpd_socket.cpp */,
+				9A7EDCA92670F06500BC7094 /* httpd_socket.h */,
+				9A979CC428C80D210013DC54 /* library.cpp */,
+				9A979CC528C80D210013DC54 /* library.h */,
+				9A7EDCB82670F06500BC7094 /* script_cache.cpp */,
+				9A7EDCA62670F06500BC7094 /* script_cache.h */,
+				9A7EDCAD2670F06500BC7094 /* script_compiler.cpp */,
+				9A7EDCB62670F06500BC7094 /* script_compiler.h */,
+				9A7EDCAF2670F06500BC7094 /* script_composite.cpp */,
+				9A7EDCB52670F06500BC7094 /* script_composite.h */,
+				9A7EDCAC2670F06500BC7094 /* script_instance.cpp */,
+				9A7EDCA52670F06500BC7094 /* script_instance.h */,
+				9A7EDCAE2670F06500BC7094 /* script_interface.cpp */,
+				9A7EDCAA2670F06500BC7094 /* script_interface.h */,
+				9A7EDCA02670F06500BC7094 /* script_main.cpp */,
+				9A7EDCB42670F06500BC7094 /* script_main.h */,
+				9A7EDCB32670F06500BC7094 /* script_manager.cpp */,
+				9A7EDCA42670F06500BC7094 /* script_manager.h */,
+				9A7EDCA72670F06500BC7094 /* script.cpp */,
+				9A7EDCA32670F06500BC7094 /* script.h */,
+				9A7EDCB12670F06500BC7094 /* session.cpp */,
+				9A7EDCB02670F06500BC7094 /* session.h */,
 			);
 			path = dynamic_source;
 			sourceTree = "<group>";
@@ -324,7 +337,7 @@
 				9A7EDCE52670F06500BC7094 /* script_composite.h in Headers */,
 				9A7EDCDA2670F06500BC7094 /* script_interface.h in Headers */,
 				9A7EDCE22670F06500BC7094 /* aaa_library_class.h in Headers */,
-				9A7EDCF02670F06500BC7094 /* _programming.h in Headers */,
+				9A979CC728C80D220013DC54 /* library.h in Headers */,
 				9A7EDCD82670F06500BC7094 /* exit_exception.h in Headers */,
 				9A7EDCE62670F06500BC7094 /* script_compiler.h in Headers */,
 				9A7EDCD42670F06500BC7094 /* script_manager.h in Headers */,
@@ -435,6 +448,13 @@
 			remoteRef = 9A32568A271F89FA004A4955 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		9A979CC028C7EB630013DC54 /* libios_axis.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = libios_axis.a;
+			remoteRef = 9A979CBF28C7EB630013DC54 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -478,6 +498,7 @@
 				9A7EDCEA2670F06500BC7094 /* framework.cpp in Sources */,
 				9A7EDCDF2670F06500BC7094 /* script_composite.cpp in Sources */,
 				9A7EDCE12670F06500BC7094 /* session.cpp in Sources */,
+				9A979CC628C80D220013DC54 /* library.cpp in Sources */,
 				9A7EDCDD2670F06500BC7094 /* script_compiler.cpp in Sources */,
 				9A7EDCCE2670F06500BC7094 /* compiler.cpp in Sources */,
 				9A7EDCD02670F06500BC7094 /* script_main.cpp in Sources */,
@@ -687,7 +708,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(WorkspaceDir)/operating-system/storage-$(PLATFORM_MODIFIER)/library",
-					
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;

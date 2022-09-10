@@ -185,8 +185,7 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <FloatingPointModel>Precise</FloatingPointModel>
-      <AdditionalOptions>
-      </AdditionalOptions>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <FloatingPointExceptions>true</FloatingPointExceptions>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
@@ -332,7 +331,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -482,8 +481,7 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <FloatingPointModel>Precise</FloatingPointModel>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <AdditionalOptions>
-      </AdditionalOptions>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <FloatingPointExceptions>true</FloatingPointExceptions>
@@ -634,7 +632,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <Optimization>MaxSpeed</Optimization>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -824,6 +822,7 @@
     <ClCompile Include="graphics\draw2d\region.cpp" />
     <ClCompile Include="graphics\draw2d\region_item.cpp" />
     <ClCompile Include="graphics\draw2d\task_tool.cpp" />
+    <ClCompile Include="graphics\draw2d\water_routine.cpp" />
     <ClCompile Include="graphics\draw2d\_.cpp" />
     <ClCompile Include="graphics\draw3d\ortho.cpp" />
     <ClCompile Include="graphics\graphics\bitmap_source_buffer.cpp" />
@@ -901,7 +900,7 @@
     <ClCompile Include="user\appearance\appearance.cpp" />
     <ClCompile Include="user\appearance\button.cpp" />
     <ClCompile Include="user\appearance\still.cpp" />
-    <ClCompile Include="user\menu\menu_command.cpp" />
+    <ClCompile Include="user\menu\command.cpp" />
     <ClCompile Include="user\user\alpha_source.cpp" />
     <ClCompile Include="user\user\box.cpp" />
     <ClCompile Include="user\user\button.cpp" />
@@ -1006,7 +1005,9 @@
     <ClInclude Include="gpu\gpu\program.h" />
     <ClInclude Include="gpu\gpu\shader.h" />
     <ClInclude Include="gpu\gpu\_.h" />
+    <ClInclude Include="gpu\gpu\_constant.h" />
     <ClInclude Include="gpu\gpu\_gpu.h" />
+    <ClInclude Include="gpu\_.h" />
     <ClInclude Include="graphics\draw2d\api.h" />
     <ClInclude Include="graphics\draw2d\bitmap.h" />
     <ClInclude Include="graphics\draw2d\brush.h" />
@@ -1118,6 +1119,7 @@
     <ClInclude Include="hardware\devices.h" />
     <ClInclude Include="hardware\device_listener.h" />
     <ClInclude Include="hardware\_.h" />
+    <ClInclude Include="hardware\_constant.h" />
     <ClInclude Include="id.h" />
     <ClInclude Include="include\objc.h" />
     <ClInclude Include="include\objcpp.h" />

@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "shader.h"
 
 
 namespace opengl

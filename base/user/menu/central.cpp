@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "central.h"
 #include "base/platform/system.h"
+#include "aura/platform/node.h"
 #include "aqua/xml.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/image/context_image.h"

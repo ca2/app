@@ -92,35 +92,6 @@ inline ___pointer < T > & ___pointer < T > ::operator = (ptr < T2 > && t)
 }
 
 
-//template < class T >
-//inline const char * ___pointer < T >::__type_name(this)
-//{
-//
-//   return __type_name(*m_p);
-//
-//}
-
-
-//namespace promise
-//{
-
-
-//   inline void routine::operator()() const { m_ppredicate->operator()(); }
-//
-//
-//   inline bool routine::should_run_async() const { return m_ppredicate->should_run_async(); }
-
-
-
-   //inline void process::operator()(const ::payload & payload) const { if (m_p) (*m_p)(payload); }
-
-
-   //inline bool process::should_run_async() const { return m_p->should_run_async(); }
-
-
-//} // namespace promise
-
-
 inline type::type(const ::element * pelement)
 {
 
@@ -2201,22 +2172,6 @@ inline ::payload operator + (::payload payload, const ::procedure & procedure)
 
 }
 
-
-//inline ::payload operator + (::payload payload, const ::future & process)
-//{
-//
-//   if (payload.get_type() != e_type_property_set)
-//   {
-//
-//      payload["message"] = payload.get_string();
-//
-//   }
-//
-//   payload["process"] = process;
-//
-//   return payload;
-//
-//}
 
 
 #if OBJECT_REFERENCE_COUNT_DEBUG

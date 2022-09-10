@@ -6,11 +6,11 @@
 #include "aura/message/user.h"
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/user.h"
-
+#include "aura/platform/system.h"
 
 #if !BROAD_PRECOMPILED_HEADER
 
-#include "aura/user/user/_component.h"
+////#include "aura/user/user/_component.h"
 
 #endif
 
@@ -937,8 +937,6 @@ namespace windowing
       return ::is_set(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr;
 
    }
-
-
 
 
 } // namespace windowing

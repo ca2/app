@@ -238,66 +238,68 @@ list(APPEND apex_source
    networking/netserver/socket_handler.h
    networking/netserver/socket_thread.cpp
    networking/netserver/socket_thread.h
-   networking/sockets/base/base_socket.cpp
-   networking/sockets/base/base_socket.h
-   networking/sockets/base/base_socket_handler.cpp
-   networking/sockets/base/base_socket_handler.h
+   networking/sockets/base/socket.cpp
+   networking/sockets/base/socket.h
+   networking/sockets/base/socket_handler.cpp
+   networking/sockets/base/socket_handler.h
    networking/sockets/base/socket_thread.cpp
    networking/sockets/base/socket_thread.h
-   networking/sockets/bsd/basic/_.h
-   networking/sockets/bsd/basic/basic_net.cpp
-   networking/sockets/bsd/basic/listen_socket.cpp
-   networking/sockets/bsd/basic/listen_socket.h
-   #net/sockets/bsd/basic/net.cpp
-   #net/sockets/bsd/basic/net.h
-   networking/sockets/bsd/basic/sctp_socket.cpp
-   networking/sockets/bsd/basic/sctp_socket.h
-   networking/sockets/bsd/basic/socket.cpp
-   networking/sockets/bsd/basic/socket.h
-   networking/sockets/bsd/basic/socket_handler.cpp
-   networking/sockets/bsd/basic/socket_handler.h
-   networking/sockets/bsd/basic/stream_socket.cpp
-   networking/sockets/bsd/basic/stream_socket.h
-   networking/sockets/bsd/basic/sync_socket_handler.cpp
-   networking/sockets/bsd/basic/sync_socket_handler.h
-   networking/sockets/bsd/basic/tcp_socket.cpp
-   networking/sockets/bsd/basic/tcp_socket.h
-   networking/sockets/bsd/basic/tls_socket.cpp
-   networking/sockets/bsd/basic/tls_socket.h
-   networking/sockets/bsd/basic/udp_socket.cpp
-   networking/sockets/bsd/basic/udp_socket.h
-   networking/sockets/bsd/dns/resolv_server.cpp
-   networking/sockets/bsd/dns/resolv_server.h
-   networking/sockets/bsd/dns/resolv_socket.cpp
-   networking/sockets/bsd/dns/resolv_socket.h
-   networking/sockets/bsd/ssl/client_context.cpp
-   networking/sockets/bsd/ssl/client_context.h
-   networking/sockets/bsd/ssl/client_context_map.cpp
-   networking/sockets/bsd/ssl/client_context_map.h
-   networking/sockets/bsd/ssl/context.cpp
-   networking/sockets/bsd/ssl/context.h
-   networking/sockets/bsd/ssl/initializer.cpp
-   networking/sockets/bsd/ssl/initializer.h
-   networking/sockets/bsd/ssl/ticket_key.h
-   networking/sockets/bsd/webserver/httpd_socket.cpp
-   networking/sockets/bsd/webserver/httpd_socket.h
-   networking/sockets/bsd/_.h
-   #networking/sockets/bsd/_strconv.cpp
-   networking/sockets/bsd/_strconv.h
-   networking/sockets/bsd/config.h
-   #networking/sockets/bsd/include.cpp
-   networking/sockets/bsd/socket_id_list.h
-   networking/sockets/bsd/sockets.cpp
-   networking/sockets/bsd/sockets.h
+   networking/sockets/basic/_.h
+   #networking/sockets/basic/basic_net.cpp
+   networking/sockets/basic/listen_socket.cpp
+   networking/sockets/basic/listen_socket.h
+   #net/sockets/basic/net.cpp
+   #net/sockets/basic/net.h
+   networking/sockets/basic/sctp_socket.cpp
+   networking/sockets/basic/sctp_socket.h
+   networking/sockets/basic/socket.cpp
+   networking/sockets/basic/socket.h
+   networking/sockets/basic/socket_handler.cpp
+   networking/sockets/basic/socket_handler.h
+   networking/sockets/basic/stream_socket.cpp
+   networking/sockets/basic/stream_socket.h
+   networking/sockets/basic/sync_socket_handler.cpp
+   networking/sockets/basic/sync_socket_handler.h
+   networking/sockets/basic/tcp_socket.cpp
+   networking/sockets/basic/tcp_socket.h
+        networking/sockets/basic/tcp_socket_impl.cpp
+        networking/sockets/basic/tcp_socket_impl.h
+   networking/sockets/basic/tls_socket.cpp
+   networking/sockets/basic/tls_socket.h
+   networking/sockets/basic/udp_socket.cpp
+   networking/sockets/basic/udp_socket.h
+   networking/sockets/dns/resolv_server.cpp
+   networking/sockets/dns/resolv_server.h
+   networking/sockets/dns/resolv_socket.cpp
+   networking/sockets/dns/resolv_socket.h
+   networking/sockets/ssl/client_context.cpp
+   networking/sockets/ssl/client_context.h
+   networking/sockets/ssl/client_context_map.cpp
+   networking/sockets/ssl/client_context_map.h
+   networking/sockets/ssl/context.cpp
+   networking/sockets/ssl/context.h
+   networking/sockets/ssl/initializer.cpp
+   networking/sockets/ssl/initializer.h
+   networking/sockets/ssl/ticket_key.h
+   networking/sockets/webserver/httpd_socket.cpp
+   networking/sockets/webserver/httpd_socket.h
+   networking/sockets/_.h
+   #networking/sockets/_strconv.cpp
+   networking/sockets/_strconv.h
+   networking/sockets/config.h
+   #networking/sockets/include.cpp
+   networking/sockets/socket_id_list.h
+   networking/sockets/sockets.cpp
+   networking/sockets/sockets.h
    networking/sockets/http/_.h
+   networking/sockets/http/base_socket.cpp
+   networking/sockets/http/base_socket.h
    networking/sockets/http/client_socket.cpp
    networking/sockets/http/client_socket.h
    networking/sockets/http/debug_socket.cpp
    networking/sockets/http/debug_socket.h
    networking/sockets/http/get_socket.cpp
    networking/sockets/http/get_socket.h
-   networking/sockets/http/http_base_socket.cpp
-   networking/sockets/http/http_base_socket.h
    networking/sockets/http/listener.cpp
    networking/sockets/http/listener.h
    networking/sockets/http/post_socket.cpp
@@ -311,7 +313,7 @@ list(APPEND apex_source
    networking/sockets/http/tunnel.cpp
    networking/sockets/http/tunnel.h
    networking/sockets/_.h
-   networking/sockets/_system_sockets.cpp
+   #networking/sockets/_system_sockets.cpp
    networking/sockets/http_batch_buffer.cpp
    networking/sockets/http_batch_buffer.h
    networking/sockets/http_buffer.h
@@ -320,8 +322,8 @@ list(APPEND apex_source
    networking/sockets/link_out_socket.cpp
    networking/sockets/link_out_socket.h
    networking/sockets/logger.h
-   networking/sockets/sockets_base.cpp
-   networking/sockets/sockets_base.h
+   networking/sockets/sockets.cpp
+   networking/sockets/sockets.h
    #networking/sockets/trace_interface.cpp
    #networking/sockets/trace_interface.h
    networking/sockets/transfer_socket.cpp
@@ -334,8 +336,8 @@ list(APPEND apex_source
    networking/_networking_impl.h
    networking/address.cpp
    networking/address.h
-   networking/address_department.cpp
-   networking/address_department.h
+   #networking/address_department.cpp
+   #networking/address_department.h
    networking/byte_order.h
    networking/email.cpp
    networking/email.h
@@ -350,6 +352,8 @@ list(APPEND apex_source
    networking/networking_application_handler.h
    networking/networking_application_socket.cpp
    networking/networking_application_socket.h
+   networking/networking.cpp
+   networking/networking.h
    networking/open_weather_city.h
    networking/port_forward.cpp
    networking/port_forward.h
@@ -550,10 +554,6 @@ list(APPEND apex_source
    user/language.h
    user/language_map.cpp
    user/language_map.h
-   user/menu_shared.cpp
-   user/menu_shared.h
-   user/menu_shared_commnand.cpp
-   user/menu_shared_command.h
    user/notify_icon_bridge.h
    user/primitive.cpp
    user/primitive.h

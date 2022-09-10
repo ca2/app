@@ -1,6 +1,7 @@
 #include "framework.h"
+#include "application.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_component.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "aura/id.h"
 #include "acme/platform/version.h"
@@ -23,6 +24,9 @@
 #include "aura/user/user/system.h"
 #include "aura/user/user/frame.h"
 #include "aura/user/user/plain_edit.h"
+#include "aura/platform/system.h"
+#include "aura/platform/session.h"
+#include "aura/platform/theme.h"
 
 
 extern "C"
@@ -8096,7 +8100,7 @@ namespace aura
    //}
 
 
-   void application::prepare_form(atom atom, ::form_document* pdocument)
+   void application::prepare_form(atom atom, ::form_document* pformdocument)
    {
 
 
@@ -8843,7 +8847,7 @@ namespace aura
    ::aura::game * application::game()
    {
       
-      return m_pgame->m_pauragame;
+      return m_paquagame->m_pauragame;
       
    }
 

@@ -5,6 +5,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
+#include "base/platform/system.h"
 
 
 namespace experience_tranquillum

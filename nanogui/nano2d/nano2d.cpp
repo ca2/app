@@ -17,7 +17,7 @@
 //
 #include "framework.h"
 
-#include "aura/graphics/draw2d/_component.h"
+//#include "aura/graphics/draw2d/_component.h"
 
 //#include <stdlib.h>
 //#include <stdio.h>

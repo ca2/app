@@ -7,6 +7,7 @@
 #include "aura/graphics/draw2d/path.h"
 #include "aura/windowing/windowing.h"
 #include "aura/message/user.h"
+#include "aura/platform/session.h"
 
 
 namespace user

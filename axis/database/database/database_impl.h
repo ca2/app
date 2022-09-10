@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "database.h"
+
+
 namespace database
 {
 
@@ -15,7 +18,7 @@ namespace database
 
 
       bool              m_bActive;
-      e_connection      m_econnection;
+      enum_connection   m_econnection;
       string            m_strError;
       string            m_strHost;
       string            m_strPort;
@@ -52,7 +55,7 @@ namespace database
 
 
       void     init() override;
-      e_connection connection_status() override { return m_econnection; }
+      enum_connection connection_status() override { return m_econnection; }
       void     set_error_code(int iErrorCode) override;
       string get_error_message() override;
       void* get_handle() override = 0;

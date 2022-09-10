@@ -23,6 +23,7 @@
 #include "axis/html/graphics/value.h"
 #include "axis/html/user/form.h"
 #include "axis/html/graphics/font.h"
+#include "aura/platform/system.h"
 
 
 void trim001(string & str);

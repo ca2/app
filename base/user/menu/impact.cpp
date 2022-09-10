@@ -1,7 +1,4 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "aqua/xml.h"
 #include "impact.h"
 #include "aura/graphics/write_text/font.h"
@@ -16,6 +13,7 @@
 #include "base/platform/application.h"
 #include "base/platform/system.h"
 #include "aura/user/user/system.h"
+#include "aura/platform/node.h"
 #include "aura/user/user/plain_edit.h"
 #include "base/user/user/impact_creator.h"
 
@@ -236,17 +234,22 @@ namespace user
 
       ::user::impact::handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == id_after_change_text)
+      if (ptopic)
       {
 
-         auto peditview = _001TypedWindow < ::user::plain_edit_impact >();
-
-         if (peditview != nullptr && ptopic->m_puserelement == peditview)
+         if (ptopic->m_atom == id_after_change_text)
          {
 
-            string strText;
+            auto peditimpact = _001TypedWindow < ::user::plain_edit_impact >();
 
-            peditview->_001GetText(strText);
+            if (peditimpact != nullptr && ptopic->m_puserelement == peditimpact)
+            {
+
+               string strText;
+
+               peditimpact->_001GetText(strText);
+
+            }
 
          }
 

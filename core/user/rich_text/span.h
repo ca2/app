@@ -60,7 +60,7 @@ namespace user
 
          ::e_align get_align() const;
 
-         inline __pointer(class format) fork_format();
+         __pointer(class format) fork_format();
 
          inline __pointer(class format) format() { return m_pformat; }
 

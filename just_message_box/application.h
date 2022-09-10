@@ -2,6 +2,9 @@
 
 
 
+#include "aura/platform/application.h"
+
+
 namespace app_just_message_box
 {
 

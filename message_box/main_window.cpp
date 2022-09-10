@@ -1,8 +1,7 @@
 #include "framework.h"
-
 #include "main_window.h"
 #include "aura/user/user/button.h"
-
+#include "aura/platform/application.h"
 
 
 namespace app_message_box

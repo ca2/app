@@ -4,7 +4,7 @@
 
 #if defined(__cplusplus) || defined(__cplusplus_winrt)
 
-#include "aura/user/user/_component.h"
+////#include "aura/user/user/_component.h"
 
 
 #define new ACME_NEW

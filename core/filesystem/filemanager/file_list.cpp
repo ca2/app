@@ -4,12 +4,12 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
-#include "aura/user/menu/menu_command.h"
+#include "aura/user/menu/command.h"
 #include "file_list.h"
 #include "core/filesystem/userfs/list_data.h"
 #include "core/filesystem/userfs/list_item.h"
 #include "core/filesystem/userfs/list_item_array.h"
-#include "core/user/userex/user.h"
+#include "core/user/user/user.h"
 #include "data.h"
 #include "document.h"
 #include "context_menu.h"
@@ -25,6 +25,7 @@
 #include "base/user/menu/item_ptra.h"
 #include "aura/user/user/button.h"
 #include "aura/user/user/plain_edit.h"
+#include "aura/user/user/window_util.h"
 
 
 namespace filemanager

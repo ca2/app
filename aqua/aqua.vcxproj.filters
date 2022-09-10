@@ -288,7 +288,7 @@
     <ClInclude Include="operating_system\_.h">
       <Filter>Header Files\operating_system</Filter>
     </ClInclude>
-    <ClInclude Include="multimedia\audio\_c_audio.h">
+    <ClInclude Include="multimedia\audio\_operating_system.h">
       <Filter>Header Files\multimedia\audio</Filter>
     </ClInclude>
     <ClInclude Include="constant\idpool.h">
@@ -365,9 +365,6 @@
     <ClCompile Include="platform\system.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="multimedia\audio.cpp">
-      <Filter>Source Files\multimedia</Filter>
-    </ClCompile>
     <ClCompile Include="multimedia\decoder.cpp">
       <Filter>Source Files\multimedia</Filter>
     </ClCompile>
@@ -412,6 +409,9 @@
     </ClCompile>
     <ClCompile Include="constant\idpool.cpp">
       <Filter>Source Files\constant</Filter>
+    </ClCompile>
+    <ClCompile Include="multimedia\audio\audio.cpp">
+      <Filter>Source Files\multimedia\audio</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

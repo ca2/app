@@ -1,11 +1,11 @@
 #pragma once
 
 
+#include "interaction.h"
+
+
 namespace user
 {
-
-
-   class interaction_array;
 
 
    class CLASS_DECL_AURA interaction_ptra:
@@ -85,11 +85,11 @@ namespace user
       interaction_array();
       interaction_array(const address_array < ::user::interaction * > & a);
       interaction_array(const __pointer_array(::user::interaction) & a) :
-      m_interactiona(a) {}
+         m_interactiona(a) {}
 
       template < typename OTHER >
       interaction_array(const __pointer_array(OTHER) & a) :
-      m_interactiona(a) {}
+         m_interactiona(a) {}
 
       interaction_array(const ::user::interaction_array & a)
       {
@@ -100,7 +100,7 @@ namespace user
 
 #ifdef MOVE_SEMANTICS
 
-      interaction_array(const ::user::interaction_array&& a)
+      interaction_array(const ::user::interaction_array && a)
       {
 
          m_interactiona.copy(a.m_interactiona);
@@ -127,8 +127,107 @@ namespace user
       virtual bool rget_child(__pointer(::user::interaction) & pinteraction);
 
 
+      template < typename TYPE >
+      TYPE * typed_descendant(::user::interaction * puiExclude)
+      {
+
+         for (auto & pinteraction : this->interactiona())
+         {
+
+            if (pinteraction != puiExclude)
+            {
+
+               TYPE * p = dynamic_cast <TYPE *> (pinteraction.m_p);
+
+               if (p != nullptr)
+               {
+
+                  return p;
+
+               }
+
+            }
+
+         }
+
+         for (auto & pinteraction : this->interactiona())
+         {
+
+            if (pinteraction != puiExclude)
+            {
+
+               TYPE * p = pinteraction->typed_descendant < TYPE >(pinteraction.m_p);
+
+               if (p != nullptr)
+               {
+
+                  return p;
+
+               }
+
+            }
+
+         }
+
+         return nullptr;
+
+      }
+
+
+      //template < typename CHILD >
+      //inline bool interaction::get_typed_child(CHILD *& pchild)
+      //{
+
+      //   auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+
+      //   if (!puserinteractionpointeraChild)
+      //   {
+
+      //      return false;
+
+      //   }
+
+      //   return puserinteractionpointeraChild->get_typed_child(pchild);
+
+      //}
+
+      //template < typename CHILD >
+      //bool get_typed_child(CHILD * & pchild);
+
       template < typename CHILD >
-      bool get_typed_child(CHILD * & pchild);
+      inline bool get_typed_child(CHILD *& pchild)
+      {
+
+         for (i32 i = 0; i < this->interaction_count(); i++)
+         {
+
+            pchild = this->interaction_at(i).cast < CHILD >();
+
+            if (pchild)
+            {
+
+               return true;
+
+            }
+
+         }
+
+         for (i32 i = 0; i < this->interaction_count(); i++)
+         {
+
+            if (this->interaction_at(i)->get_typed_child(pchild))
+            {
+
+               return true;
+
+            }
+
+         }
+
+         return false;
+
+      }
+
 
       template < typename CHILD >
       __pointer(CHILD) get_typed_child()

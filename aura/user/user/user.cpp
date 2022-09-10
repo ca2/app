@@ -1,9 +1,7 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_component.h"
+////#include "aura/user/user/_component.h"
 #endif
-//#include "aura/update.h"
-//#include "simple_impact.h"
 #include "acme/platform/system_setup.h"
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
@@ -21,6 +19,11 @@
 #include "still.h"
 #include "check_box.h"
 #include "button.h"
+#include "progress.h"
+#include "aura/platform/system.h"
+#include "aura/platform/session.h"
+#include "aura/platform/application.h"
+#include "aura/platform/node.h"
 
 
 ::mutex * g_pmutexUser = nullptr;
@@ -420,6 +423,8 @@ namespace user
       ::factory::add_factory_item <::user::button >();
       ::factory::add_factory_item <::user::check_box >();
       ::factory::add_factory_item <::user::still >();
+
+      ::factory::add_factory_item <::user::progress >();
 
    }
 
@@ -1014,12 +1019,12 @@ namespace aura
 //
 //      if (psession->m_bShowPlatform)
 //      {
-//         //__pointer(::simple_frame_window) pframeApp = get_document()->get_type_impact < ::bergedge::pane_impact >()->get_impact_uie();
+//         //__pointer(::simple_frame_window) pframeApp = get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_impact_uie();
 //         //if(pframeApp != nullptr)
 //         //{
 //         //   pframeApp->display(e_display_full_screen);
 //         //}
-//         //__pointer(::simple_frame_window) pframe = get_document()->get_type_impact < ::bergedge::pane_impact >()->get_parent_frame();
+//         //__pointer(::simple_frame_window) pframe = get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_parent_frame();
 //         //if(pframe != nullptr)
 //         //{
 //         //   pframe->display(e_display_restored);
@@ -1027,9 +1032,9 @@ namespace aura
 //      }
 //      else
 //      {
-//         //if(get_document() != nullptr && get_document()->get_type_impact < ::bergedge::impact >() != nullptr)
+//         //if(get_document() != nullptr && get_document()->get_typed_impact < ::bergedge::impact >() != nullptr)
 //         //{
-//         //   __pointer(::simple_frame_window) pframe = get_document()->get_type_impact < ::bergedge::impact >()->get_parent_frame();
+//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_impact < ::bergedge::impact >()->get_parent_frame();
 //         //   if(pframe != nullptr)
 //         //   {
 //         //      pframe->display(e_display_restored);
@@ -1251,18 +1256,18 @@ namespace aura
       //   if (get_document() != nullptr)
       //   {
 
-      //      //if(get_document()->get_type_impact < ::bergedge::pane_impact >() != nullptr)
+      //      //if(get_document()->get_typed_impact < ::bergedge::pane_impact >() != nullptr)
       //      //{
 
-      //      //   get_document()->get_type_impact < ::bergedge::pane_impact >()->set_current_tab_by_id("app:" + strAppName);
+      //      //   get_document()->get_typed_impact < ::bergedge::pane_impact >()->set_current_tab_by_id("app:" + strAppName);
 
-      //      //   puiParent = get_document()->get_type_impact < ::bergedge::pane_impact >()->get_tab_holder(get_document()->get_type_impact < ::bergedge::pane_impact >()->get_tab_by_id("app:" + strAppName));
+      //      //   puiParent = get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_tab_holder(get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_tab_by_id("app:" + strAppName));
 
       //      //}
       //      //else
       //      //{
 
-      //      //   puiParent = get_document()->get_type_impact < ::bergedge::impact >();
+      //      //   puiParent = get_document()->get_typed_impact < ::bergedge::impact >();
 
       //      //}
 

@@ -213,7 +213,7 @@ namespace sockets
 
    }
 
-   bool socket::is_valid()
+   bool socket::is_ok()
    {
 
       return Ready();
@@ -260,7 +260,7 @@ namespace sockets
 //   }
 
 
-   ::networking::address socket::get_peer_address() // const
+   ::networking::address_pointer socket::get_peer_address() // const
    {
       //ASSERT(psa != nullptr);
       //ASSERT(m_hSocket != INVALID_SOCKET);
@@ -282,7 +282,7 @@ namespace sockets
    }
 
 
-   ::networking::address socket::get_socket_address() // const
+   ::networking::address_pointer socket::get_socket_address() // const
    {
       //ASSERT(psa != nullptr);
       //ASSERT(m_hSocket != INVALID_SOCKET);

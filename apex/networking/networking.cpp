@@ -187,7 +187,7 @@ namespace networking
    } // rfc1738_decode
 
 
-   bool networking::isipv4(const string& str)
+   bool networking::is_ip4(const string& str)
    {
       i32 dots = 0;
       // %! ignore :port?
@@ -204,7 +204,7 @@ namespace networking
    }
 
 
-   bool networking::isipv6(const string& str)
+   bool networking::is_ip6(const string& str)
    {
       if (str.is_empty())
          return false;
@@ -248,6 +248,23 @@ namespace networking
       }
       return true;
    }
+
+
+   address_pointer networking::create_address(const ::string & strAddress, port_t port)
+   {
+
+      return nullptr;
+
+   }
+
+
+   address_pointer networking::create_ip4_address(::i32 iIp, port_t port)
+   {
+
+      return nullptr;
+
+   }
+
 
 //   bool networking::convert(in_addr& l, const string& str, i32 ai_flags)
 //   {

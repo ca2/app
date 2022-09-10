@@ -1,6 +1,8 @@
 #include "framework.h"
 //#include "aura/update.h"
 
+IMPLEMENT_APPLICATION(app_just_message_box);
+
 
 namespace app_just_message_box
 {

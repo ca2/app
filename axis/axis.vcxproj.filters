@@ -555,7 +555,7 @@
     <ClInclude Include="networking\_.h">
       <Filter>Header Files\networking</Filter>
     </ClInclude>
-    <ClInclude Include="geoip\_component.h">
+    <ClInclude Include="geoip\geoip.h">
       <Filter>Header Files\geoip</Filter>
     </ClInclude>
     <ClInclude Include="html\html\data.h">
@@ -714,6 +714,12 @@
     <ClInclude Include="user\form\_.h">
       <Filter>Header Files\user\form</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\object.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\plus_minus.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">
@@ -773,21 +779,6 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="geoip\city.cpp">
-      <Filter>Source Files\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="geoip\geoip.cpp">
-      <Filter>Source Files\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="geoip\region_name.cpp">
-      <Filter>Source Files\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="geoip\time_zone.cpp">
-      <Filter>Source Files\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="geoip\update.cpp">
-      <Filter>Source Files\geoip</Filter>
-    </ClCompile>
     <ClCompile Include="database\simpledb\file_set.cpp">
       <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
@@ -843,9 +834,6 @@
       <Filter>Source Files\graphics\render</Filter>
     </ClCompile>
     <ClCompile Include="database\database\database_impl.cpp">
-      <Filter>Source Files\database\database</Filter>
-    </ClCompile>
-    <ClCompile Include="database\database\database_composite.cpp">
       <Filter>Source Files\database\database</Filter>
     </ClCompile>
     <ClCompile Include="database\database\transaction.cpp">
@@ -1006,6 +994,15 @@
     </ClCompile>
     <ClCompile Include="user\user\validate.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\object.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\plus_minus.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="database\database\composite.cpp">
+      <Filter>Source Files\database\database</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

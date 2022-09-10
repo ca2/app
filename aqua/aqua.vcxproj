@@ -65,7 +65,7 @@
     <ClInclude Include="multimedia\audio\speaker.h" />
     <ClInclude Include="multimedia\audio\text_to_speech_client.h" />
     <ClInclude Include="multimedia\audio\_.h" />
-    <ClInclude Include="multimedia\audio\_c_audio.h" />
+    <ClInclude Include="multimedia\audio\_operating_system.h" />
     <ClInclude Include="multimedia\decoder.h" />
     <ClInclude Include="multimedia\decoder_plugin.h" />
     <ClInclude Include="multimedia\exception.h" />
@@ -125,7 +125,7 @@
     </ClCompile>
     <ClCompile Include="game\estamira.cpp" />
     <ClCompile Include="game\game.cpp" />
-    <ClCompile Include="multimedia\audio.cpp" />
+    <ClCompile Include="multimedia\audio\audio.cpp" />
     <ClCompile Include="multimedia\audio\audio_wave_out.cpp" />
     <ClCompile Include="multimedia\audio\sound_track_player.cpp" />
     <ClCompile Include="multimedia\audio\speaker.cpp" />
@@ -305,6 +305,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -363,6 +364,7 @@
       <OmitFramePointers>true</OmitFramePointers>
       <StringPooling>true</StringPooling>
       <FunctionLevelLinking>true</FunctionLevelLinking>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -426,6 +428,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -484,6 +487,7 @@
       <OmitFramePointers>true</OmitFramePointers>
       <StringPooling>true</StringPooling>
       <FunctionLevelLinking>true</FunctionLevelLinking>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

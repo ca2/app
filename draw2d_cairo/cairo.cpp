@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "aura/graphics/draw2d/matrix.h"
 //#include "aura/platform/static_start.h"
 
 
@@ -147,3 +147,32 @@ void term_cairo_mutex()
 //
 //
 //#endif
+
+
+void copy(::draw2d::matrix * pmatrix, const cairo_matrix_t * pcairomatrix)
+{
+
+   pmatrix->a1 = pcairomatrix->xx;
+   pmatrix->a2 = pcairomatrix->yx;
+   pmatrix->b1 = pcairomatrix->xy;
+   pmatrix->b2 = pcairomatrix->yy;
+   pmatrix->c1 = pcairomatrix->x0;
+   pmatrix->c2 = pcairomatrix->y0;
+
+}
+
+
+void copy(cairo_matrix_t* pcairomatrix,  const ::draw2d::matrix* pmatrix)
+{
+
+   pcairomatrix->xx = pmatrix->a1;
+   pcairomatrix->yx = pmatrix->a2;
+   pcairomatrix->xy = pmatrix->b1;
+   pcairomatrix->yy = pmatrix->b2;
+   pcairomatrix->x0 = pmatrix->c1;
+   pcairomatrix->y0 = pmatrix->c2;
+
+}
+
+
+

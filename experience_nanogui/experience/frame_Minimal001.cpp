@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/_component.h"
+//#include "aura/graphics/draw2d/_component.h"
 
 
 #define GRIP_CORNER_LARGE_CX 16

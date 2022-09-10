@@ -67,6 +67,9 @@ namespace multimedia
 #include "aqua/multimedia/_c.h"
 
 
+#include "aqua/multimedia/_.h"
+
+
 #include "aqua/game/_.h"
 
 

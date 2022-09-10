@@ -24,9 +24,9 @@ namespace userex
       __pointer(pane_impact)                   m_ppaneimpact;
       id_map < __pointer(::object) >         m_mapFileManager;
       __pointer(::user::document)            m_pdocAppOptions;
-      font_impact *                          m_pfontview1;
-      color_impact *                         m_pcolorview1;
-      ::form_document *                      m_pdocumentMenu;
+      __pointer(font_impact)                 m_pfontimpact;
+      __pointer(color_impact)                m_pcolorimpact;
+      __pointer(::form_document)             m_pformdocumentMenu;
 
 
 
@@ -88,7 +88,7 @@ namespace userex
 
       //void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void prepare_form(atom atom, ::form_document * pdocument);
+      virtual void prepare_form(atom atom, ::form_document * pformdocument);
 
 
    };

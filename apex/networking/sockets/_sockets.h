@@ -38,7 +38,7 @@ CLASS_DECL_APEX const char * bsd_socket_error(i32 x);
 
 //#if defined(BSD_STYLE_SOCKETS)
 //
-//#include "bsd/_component.h"
+////#include "bsd/_component.h"
 //
 //#if defined(LINUX) || defined(_UWP)
 //

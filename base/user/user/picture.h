@@ -79,7 +79,7 @@ namespace user
       virtual bool enable_picture(bool bEnable = true);
       virtual bool is_picture_enabled() const;
 
-      //using ::aura::drawable::hit_test;
+      using ::user::drawable::hit_test;
       virtual ::item_pointer hit_test(const ::point_i32 & point);
 
 

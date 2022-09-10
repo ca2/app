@@ -6,13 +6,7 @@
 //  Copyright © 2018 Camilo Sasuke Tsumanuma. All rights reserved.
 //
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
 #include "aura/message.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
 #include "apex/message/simple_command.h"
 #include "base/user/user/tab_pane.h"
 #include "base/user/user/document.h"
@@ -21,7 +15,7 @@
 #include "base/user/simple/child_frame.h"
 #include "pane_tab_impact.h"
 #include "font_impact.h"
-#include "core/user/userex/user.h"
+#include "core/user/user/user.h"
 #include "core/platform/application.h"
 #include "core/platform/session.h"
 
@@ -217,7 +211,7 @@ namespace userex
 
       }
 
-      return pdocTab->get_type_impact < ::userex::pane_tab_impact >();
+      return pdocTab->get_typed_impact < ::userex::pane_tab_impact >();
 
    }
 
@@ -383,7 +377,7 @@ namespace userex
                if (pdocument.is_set())
                {
 
-                  __pointer(::userex::pane_tab_impact) ptabimpact = pdocument->get_type_impact < ::userex::pane_tab_impact >();
+                  __pointer(::userex::pane_tab_impact) ptabimpact = pdocument->get_typed_impact < ::userex::pane_tab_impact >();
 
                   pframewindowTab = ptabimpact->parent_frame();
 
@@ -412,7 +406,7 @@ namespace userex
                   if (pdocument.is_set())
                   {
 
-                     __pointer(::userex::pane_tab_impact) ptabimpact = pdocument->get_type_impact < ::userex::pane_tab_impact >();
+                     __pointer(::userex::pane_tab_impact) ptabimpact = pdocument->get_typed_impact < ::userex::pane_tab_impact >();
 
                      ptabimpact->erase_tab_by_id(pframewindow->m_atom);
 
@@ -459,7 +453,7 @@ namespace userex
          if (pdocument != nullptr)
          {
 
-            __pointer(::userex::pane_tab_impact) ptabimpact = pdocument->get_type_impact < ::userex::pane_tab_impact >();
+            __pointer(::userex::pane_tab_impact) ptabimpact = pdocument->get_typed_impact < ::userex::pane_tab_impact >();
 
             if (ptabimpact != nullptr)
             {

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "client_context.h"
 #include "apex/networking/sockets/_sockets.h"
 
 

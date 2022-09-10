@@ -1,8 +1,5 @@
 #include "framework.h"
 #include "acme/platform/timer.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
 #include "top_edit_impact.h"
 #include "top_impact.h"
 #include "aura/message/user.h"

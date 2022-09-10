@@ -12,12 +12,14 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 /** \file */
-
 #pragma once
 
-//#include <nanogui/widget.h>
-//#include <cstdio>
+
+#include "Widget.h"
+#include "Screen.h"
+#include "aura/user/user/interaction.h"
 #include <sstream>
+
 
 NAMESPACE_BEGIN(nanogui)
 

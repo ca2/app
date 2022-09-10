@@ -3,6 +3,7 @@
 #include "aura/graphics/image/context_image.h"
 #include "array.h"
 #include "drawing.h"
+#include "aura/platform/context.h"
 
 
 image_array::image_array()

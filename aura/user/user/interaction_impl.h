@@ -731,7 +731,7 @@ namespace user
       //virtual void set_handle(::windowing::window * pwindow);
       
       
-      inline ::oswindow oswindow() const;
+      ::oswindow oswindow() const;
 
 
       ::graphics::graphics * get_window_graphics() override;

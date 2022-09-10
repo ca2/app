@@ -2,9 +2,6 @@
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/array.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
 #include "image_list.h"
 #include "top_edit_impact.h"
 #include "aura/message/user.h"
@@ -360,14 +357,14 @@ namespace userex
       if (ptopic->m_atom == id_after_change_text)
       {
 
-         auto * peditview = _001TypedWindow < ::userex::top_edit_impact >();
+         auto * peditimpact = _001TypedWindow < ::userex::top_edit_impact >();
 
-         if (peditview != nullptr && ptopic->m_puserelement == peditview)
+         if (peditimpact != nullptr && ptopic->m_puserelement == peditimpact)
          {
 
             string strText;
 
-            peditview->_001GetText(strText);
+            peditimpact->_001GetText(strText);
 
          }
 

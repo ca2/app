@@ -12,17 +12,16 @@
  * \brief Helper class to construct forms for editing a set of variables of
  *        various types.
  */
-
 #pragma once
 
-//#include <nanogui/screen.h>
-//#include <nanogui/label.h>
-//#include <nanogui/m_pcheckbox.h>
-//#include <nanogui/textbox.h>
-//#include <nanogui/combobox.h>
+
+#include "Layout.h"
 #include "ColorPicker.h"
-//#include <nanogui/layout.h>
-//#include <cassert>
+#include "Label.h"
+#include "CheckBox.h"
+#include "ComboBox.h"
+#include "TextBox.h"
+
 
 NAMESPACE_BEGIN(nanogui)
 
@@ -295,6 +294,7 @@ NAMESPACE_END(detail)
       /// The spacing between all other widgets.
       int m_variable_spacing = 5;
 };
+
 
 NAMESPACE_BEGIN(detail)
 

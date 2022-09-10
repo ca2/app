@@ -79,7 +79,7 @@ namespace dynamic_source
       ::mutex                                               m_mutexOutLink;
       string_map < __pointer(::sockets::link_out_socket) >  m_mapOutLink;
       ::mutex                                               m_mutexInLink;
-      ::sockets::in_link_map                                m_mapInLink;
+      __pointer(::sockets::in_link_map)                     m_pmapInLink;
       ::mutex                                               m_mutexTunnel;
       strmap(tunnel_map_item)                               m_mapTunnel;
 

@@ -369,6 +369,8 @@
 		9A7864982650A3CF0034A0E1 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A81F8CC2750744E003F38EC /* text_to_speech_client.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = text_to_speech_client.cpp; sourceTree = "<group>"; };
 		9A8E9EB9282A3210005FF778 /* libios_aqua.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_aqua.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A979CA628C6F0560013DC54 /* _include.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _include.h; sourceTree = "<group>"; };
+		9A979D9B28C831F00013DC54 /* _constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _constant.h; sourceTree = "<group>"; };
 		9A97C7BE28236AFA00755A0A /* idpool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = idpool.h; sourceTree = "<group>"; };
 		9A97C7BF28236AFA00755A0A /* idpool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = idpool.cpp; sourceTree = "<group>"; };
 		9ABA65A728B5D9090063B976 /* _library.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _library.h; sourceTree = "<group>"; };
@@ -533,8 +535,7 @@
 				9A28199A25242523009FA9CB /* audio */,
 				9A2819A625242523009FA9CB /* _.h */,
 				9A28199525242523009FA9CB /* _c.h */,
-				9A28199625242523009FA9CB /* audio.cpp */,
-				9A28199725242523009FA9CB /* audio.h */,
+				9A979D9B28C831F00013DC54 /* _constant.h */,
 				9A28199825242523009FA9CB /* decoder_plugin.cpp */,
 				9A28199425242523009FA9CB /* decoder_plugin.h */,
 				9A2819A325242523009FA9CB /* decoder.cpp */,
@@ -553,6 +554,8 @@
 			isa = PBXGroup;
 			children = (
 				9A2819A225242523009FA9CB /* _.h */,
+				9A28199625242523009FA9CB /* audio.cpp */,
+				9A28199725242523009FA9CB /* audio.h */,
 				9A28199E25242523009FA9CB /* audio_c.h */,
 				9A2819A125242523009FA9CB /* audio_wave_out.cpp */,
 				9A28199F25242523009FA9CB /* out.h */,
@@ -616,6 +619,7 @@
 				9ABA65A728B5D9090063B976 /* _library.h */,
 				9A601E9C285B62F200151842 /* _audio.h */,
 				9A601EA2285B631700151842 /* _estamira.h */,
+				9A979CA628C6F0560013DC54 /* _include.h */,
 			);
 			path = include;
 			sourceTree = "<group>";

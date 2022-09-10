@@ -9,6 +9,7 @@
 #include "core/user/user/mesh.h"
 #include "core/platform/session.h"
 #include "base/user/user/user.h"
+#include "aura/user/user/window_util.h"
 
 
 string _001FileSizeText(i64 i)

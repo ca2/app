@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "script_composite.h"
+
+
 namespace dynamic_source
 {
 

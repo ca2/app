@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "frame_002.h"
 #include "base/user/experience/frame_window.h"
 #include "base/user/experience/size_manager.h"
 #include "base/user/experience/dock_manager.h"

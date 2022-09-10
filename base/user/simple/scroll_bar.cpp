@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "base/user/simple/_component.h"
+////#include "base/user/simple/_component.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "acme/platform/timer.h"

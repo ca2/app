@@ -70,9 +70,18 @@ namespace user
       virtual ::item_pointer hover_item() override;
 
 
-      string get_cur_sel_face_name();
 
-      string get_cur_hover_face_name();
+
+      virtual string get_cur_sel_face_name();
+
+      virtual string get_cur_hover_face_name();
+
+
+      string get_sel_by_name() override;
+
+      string get_hover_by_name() override;
+
+
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);

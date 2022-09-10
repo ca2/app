@@ -6,17 +6,9 @@
 #include "base/user/user/document.h"
 #include "aura/user/user/frame.h"
 #include "aura/message/user.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
-
-//#include "aura/update.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
-
 #include "aura/operating_system/windows_common/graphics.h"
 #include "color_impact.h"
+#include "aura/platform/system.h"
 
 
 //#if defined(__APPLE__)
@@ -429,6 +421,7 @@ namespace userex
    void color_impact::set_sel_color(const ::color::hls& hls)
    {
 
+      set_color(hls);
 
    }
 
@@ -436,7 +429,7 @@ namespace userex
    ::color::hls color_impact::get_sel_color()
    {
 
-      return {};
+      return get_color().get_hls();
 
    }
 

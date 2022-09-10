@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "aura/operating_system.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_component.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "aura/message.h"
 #include "aura/message/timer.h"
@@ -9,7 +9,7 @@
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "interaction_thread.h"
-#include "acme/operating_system/_user.h"
+//#include "acme/operating_system/_user.h"
 #include "acme/platform/hyperlink.h"
 #include "acme/platform/timer.h"
 #include "acme/platform/timer_array.h"
@@ -40,6 +40,8 @@
 #include "aura/user/user/system.h"
 #include "aura/graphics/user/control_box_icon.h"
 #include "aura/graphics/user/control_box_button.h"
+#include "aura/platform/session.h"
+#include "aura/platform/application.h"
 
 
 #define INFO_LAYOUT_DISPLAY
@@ -2862,6 +2864,22 @@ namespace user
       
       return false;
       
+   }
+
+
+   string interaction::get_sel_by_name()
+   {
+
+      return "";
+
+   }
+
+
+   string interaction::get_hover_by_name()
+   {
+
+      return "";
+
    }
 
    
@@ -6451,7 +6469,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::child_from_point(const ::point_i32 & point, const ::user::interaction_array & interactionaExclude)
+   ::user::interaction * interaction::child_from_point(const ::point_i32 & point, const ::user::interaction_array * pinteractionaExclude)
    {
 
       auto pointClient = point;
@@ -6491,7 +6509,7 @@ namespace user
 
             auto & puserinteractionChild = puserinteractionpointeraChild->interaction_at(iChild);
 
-            if (!interactionaExclude.contains_interaction(puserinteractionChild))
+            if (::is_set(pinteractionaExclude) && !pinteractionaExclude->contains_interaction(puserinteractionChild))
             {
                //if (puserinteractionChild->is_this_visible()
                //&& (!puserinteractionChild->is_place_holder()
@@ -10192,6 +10210,21 @@ namespace user
    }
 
 
+   __pointer_array(interaction) * interaction::children()
+   {
+
+      if (::is_null(m_puserinteractionpointeraChild))
+      {
+
+         return nullptr;
+
+      }
+
+      return &m_puserinteractionpointeraChild->interactiona();
+
+   }
+
+
    void interaction::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -12438,6 +12471,23 @@ namespace user
       auto pointCursor = pwindow->get_cursor_position();
 
       return pointCursor;
+
+   }
+
+
+   void interaction::set_cursor_position(const ::point_i32 & pointCursor)
+   {
+
+      auto pwindow = window();
+
+      if (::is_null(pwindow))
+      {
+
+         throw ::exception(::error_wrong_state);
+
+      }
+
+      pwindow->set_cursor_position(pointCursor);
 
    }
 
@@ -15852,29 +15902,34 @@ namespace user
 
       //handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == REDRAW_ID || ptopic->m_atom == m_atom)
+      if (ptopic)
       {
 
-         if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
+         if (ptopic->m_atom == REDRAW_ID || ptopic->m_atom == m_atom)
          {
-            
-            set_need_redraw();
 
-            post_redraw();
-            
+            if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
+            {
+
+               set_need_redraw();
+
+               post_redraw();
+
+            }
+
          }
-
-      }
-      else if (ptopic->m_atom == id_user_style_change)
-      {
-         
-         if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
+         else if (ptopic->m_atom == id_user_style_change)
          {
 
-            set_need_redraw();
+            if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
+            {
 
-            post_redraw();
-            
+               set_need_redraw();
+
+               post_redraw();
+
+            }
+
          }
 
       }

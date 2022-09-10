@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "core/user/user/_component.h"
+////#include "core/user/user/_component.h"
 #include "axis/user/user/validate.h"
 #include "acme/id.h"
 #include "form_list.h"
@@ -10,6 +10,7 @@
 #include "axis/user/user/list_box.h"
 #include "aura/message/user.h"
 #include "core/platform/session.h"
+#include "aura/user/user/window_util.h"
 
 
 namespace user

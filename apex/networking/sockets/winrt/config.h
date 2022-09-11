@@ -252,7 +252,7 @@ namespace sockets
 namespace sockets
 {
    /** List type containing file descriptors. */
-   class CLASS_DECL_APEX socket_list :
+   class CLASS_DECL_APEX socket_id_list :
       public ::comparable_list<SOCKET>
    {
    };

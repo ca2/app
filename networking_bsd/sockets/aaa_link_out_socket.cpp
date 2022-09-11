@@ -1,5 +1,5 @@
 #include "framework.h" 
-#include "apex/networking/networking_bsd/_sockets.h"
+
 
 
 
@@ -43,7 +43,7 @@ namespace networking_bsd
    void link_out_socket::server_to_link_out(httpd_socket * psocket)
    {
       
-      //socket_handler & h = dynamic_cast < socket_handler & > (psocket->socket_handler());
+      //socket_handler * h = dynamic_cast < socket_handler * > (psocket->socket_handler());
 
       __pointer(::networking_bsd::socket_handler) phandler = psocket->socket_handler();
       

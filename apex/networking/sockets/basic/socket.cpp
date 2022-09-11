@@ -59,7 +59,7 @@ namespace sockets
    //}
 
 
-   //i32 socket::close_socket(SOCKET s)
+   //i32 socket::close_socket(socket_id s)
    //{
 
    //   return ::closesocket(s);
@@ -118,10 +118,10 @@ namespace sockets
    }
 
 
-//   SOCKET socket::CreateSocket(i32 af, i32 iType, const ::string & strProtocol)
+//   socket_id socket::CreateSocket(i32 af, i32 iType, const ::string & strProtocol)
 //   {
 //
-//      SOCKET s;
+//      socket_id s;
 //
 //      m_iSocketType = iType;
 //
@@ -221,7 +221,7 @@ namespace sockets
    }
 
 
-//   bool socket::SetNonblocking(bool bNb, SOCKET s)
+//   bool socket::SetNonblocking(bool bNb, socket_id s)
 //   {
 //#ifdef _WIN32
 //      u_long l = bNb ? 1 : 0;
@@ -268,7 +268,7 @@ namespace sockets
       //// gets the address of the socket at the other end
       //::networking::address psa;
       //socklen_t nLengthAddr = sizeof(SOCKADDR);
-      //if (getpeername(GetSocket(), psa.sa(), &nLengthAddr) == SOCKET_ERROR)
+      //if (getpeername(get_socket_id(), psa.sa(), &nLengthAddr) == SOCKET_ERROR)
       //{
       //   
       //   throw transfer_socket_exception("GetPeerName");
@@ -290,7 +290,7 @@ namespace sockets
       // gets the address of the socket at this end
       //::networking::address psa;
       //socklen_t nLengthAddr = sizeof(SOCKADDR);
-      //if (getsockname(GetSocket(), psa.sa(), &nLengthAddr) == SOCKET_ERROR)
+      //if (getsockname(get_socket_id(), psa.sa(), &nLengthAddr) == SOCKET_ERROR)
       //{
       //   
       //   throw transfer_socket_exception("GetSockName");

@@ -20,6 +20,8 @@ namespace networking
    {
    public:
 
+      void * m_p2;
+
 
       address();
       //address(const address& address);
@@ -40,7 +42,7 @@ namespace networking
       //virtual bool operator == (const address & address) const;
 
 
-      virtual  void copy(address * paddress);
+      //virtual  void copy(address * paddress);
 
       virtual string get_display_number() const;
 
@@ -53,8 +55,8 @@ namespace networking
       virtual bool is_equal(address * paddress) const;
 
 
-      virtual  bool is_ipv4() const;
-      virtual  bool is_ipv6() const;
+      virtual  bool is_ip4() const;
+      virtual  bool is_ip6() const;
 
 
       virtual  bool is_valid() const;
@@ -73,8 +75,8 @@ namespace networking
 //
 //#endif
 
-      virtual void parse_string(const ::string & strAddress);
-      virtual string get_string() const;
+      //virtual void parse_string(const ::string & strAddress);
+      //virtual string get_string() const;
 
 //#ifdef BSD_STYLE_SOCKETS
 //      virtual  void SetFlowinfo(u32 x);

@@ -122,7 +122,7 @@ namespace networking_bsd
 #elif defined(WINRT_SOCKETS)
 
       //::winrt::Windows::Networking::HostName^ m_hostname;
-      //port_t      m_port;
+      //::networking::port_t      m_port;
 
 
 #else
@@ -134,42 +134,46 @@ namespace networking_bsd
 
 
       address();
-      address(const address& address);
-      address(i32 family, port_t port = 0);
-      address(const ::string & strAddress, port_t port = 0);
-      address(::object * pobject, const ::string & strAddress, const ::string & strServiceName);
-#if defined(BSD_STYLE_SOCKETS)
-      address(const in_addr & a, port_t port = 0);
-      address(const in6_addr & a, port_t port = 0);
-      address(const sockaddr_in & a);
-      address(const sockaddr_in6 & a, int iLen = -1);
-      address(const sockaddr & sa, int iLen = -1);
-#endif
       ~address();
 
 
-      address & operator = (const address & address);
-      bool operator == (const address & address) const;
+      //address & operator = (const address & address);
+      //bool operator == (const address & address) const;
 
+      void set_address(::networking::address * paddress);
+      void set_family(i32 family, ::networking::port_t port = 0);
+      //void set_address(const ::string & strAddress, ::networking::port_t port = 0);
+      //void set_address(::object * pobject, const ::string & strAddress, const ::string & strServiceName);
+#if defined(BSD_STYLE_SOCKETS)
+      void set_address(const in_addr & a, ::networking::port_t port = 0);
+      void set_address(const in6_addr & a, ::networking::port_t port = 0);
+      void set_address(const sockaddr_in & a);
+      void set_address(const sockaddr_in6 & a, int iLen = -1);
+      void set_address(const sockaddr & sa, int iLen = -1);
+#endif
 
-      inline void copy(const address & address);
+      ::networking_bsd::address & operator=(const ::networking_bsd::address & address);
 
       string get_display_number() const;
 
-      port_t get_service_number() const;
-      port_t use_address_service_number_as_offset_for_base_port(port_t portBase) const;
-      void set_service_number(port_t port);
+      ::networking::port_t get_service_number() const;
+      ::networking::port_t use_address_service_number_as_offset_for_base_port(::networking::port_t portBase) const;
+      void set_service_number(::networking::port_t port);
 
 
-      bool is_in_same_net(const address & addr,const address & addrMask) const;
-      bool is_equal(const address & addr) const;
+      bool is_in_same_net(::networking::address * paddress, ::networking::address * paddressMask) const override;
+      bool is_equal(::networking::address * paddress) const override;
 
 
-      inline bool is_ipv4() const;
-      inline bool is_ipv6() const;
+      bool is_ip4() const override;
+      bool is_ip6() const override;
 
 
-      inline bool is_valid() const;
+      inline bool _is_ip4() const { return u.m_sa.sa_family == AF_INET; }
+      inline bool _is_ip6() const { return u.m_sa.sa_family == AF_INET6; }
+
+
+      bool is_valid() const override;
 
 
       inline i32 get_family() const;
@@ -185,8 +189,8 @@ namespace networking_bsd
 
 #endif
 
-      void parse_string(const ::string & strAddress);
-      string get_string() const;
+      //void parse_string(const ::string & strAddress);
+      //string get_string() const;
 
 #ifdef BSD_STYLE_SOCKETS
       inline void SetFlowinfo(u32 x);
@@ -219,7 +223,7 @@ namespace networking_bsd
          return AF_INET;
 
       }
-      else if (is_ipv6())
+      else if (_is_ip6())
       {
 
          return AF_INET6;
@@ -241,61 +245,6 @@ namespace networking_bsd
 
    }
 
-
-
-   inline bool address::is_ipv4() const
-   {
-
-
-#if defined(BSD_STYLE_SOCKETS)
-
-      return get_family() == AF_INET;
-
-#elif defined(WINRT_SOCKETS)
-
-      return false;
-
-#else
-
-#error "what socket?"
-
-#endif
-
-
-   }
-
-
-   inline bool address::is_ipv6() const
-   {
-
-
-#if defined(BSD_STYLE_SOCKETS)
-
-      return get_family() == AF_INET6;
-
-#elif defined(WINRT_SOCKETS)
-
-      return false;
-
-#else
-
-#error "what socket?"
-
-#endif
-
-   }
-
-
-   inline bool address::is_valid() const
-   {
-
-      return is_ipv6() || is_ipv4()
-//#if defined _UWP && defined(__cplusplus_winrt)
-//         || (m_posdata != nullptr && m_posdata->m_hostname != nullptr)
-//#endif
-         ;
-
-   }
 
 
 
@@ -326,14 +275,14 @@ namespace networking_bsd
 
    inline void address::SetFlowinfo(u32 x)
    {
-      ASSERT(is_ipv6());
+      ASSERT(_is_ip6());
       u.m_addr6.sin6_flowinfo = x;
    }
 
 
    inline u32 address::GetFlowinfo()
    {
-      ASSERT(is_ipv6());
+      ASSERT(_is_ip6());
       return u.m_addr6.sin6_flowinfo;
    }
 
@@ -345,25 +294,22 @@ namespace networking_bsd
 
    inline void address::SetScopeId(u32 x)
    {
-      ASSERT(is_ipv6());
+      ASSERT(_is_ip6());
       u.m_addr6.sin6_scope_id = x;
    }
 
 
    inline u32 address::GetScopeId()
    {
-      ASSERT(is_ipv6());
+      ASSERT(_is_ip6());
       return u.m_addr6.sin6_scope_id;
    }
 
 #endif
 
 
-   CLASS_DECL_NETWORKING_BSD address ipv4(u32 u, port_t port = 0);
 
-   CLASS_DECL_NETWORKING_BSD address ipv6(void * p128bits, port_t port = 0);
-
-} // namespace sockets
+} // namespace sockets_bsd
 
 
 

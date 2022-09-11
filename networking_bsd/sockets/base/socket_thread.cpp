@@ -29,7 +29,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
+#include "socket_thread.h"
+#include "socket.h"
+#include "networking_bsd/sockets/basic/socket_handler.h"
 #ifdef _WIN32
 #elif defined(LINUX)
 #include <netdb.h>
@@ -56,7 +58,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #endif
 
 
-namespace sockets
+namespace sockets_bsd
 {
 
 
@@ -89,7 +91,7 @@ namespace sockets
 
       //psocket->m_psockethandler.release();
 
-      passociation->m_psocket->m_psocketthread = this;
+      __Socket(passociation->m_psocket)->m_psocketthread = this;
 
       //m_psockethandler->SetSlave();
 
@@ -235,7 +237,7 @@ namespace sockets
    }
 
 
-} // namespace sockets
+} // namespace sockets_bsd
 
 
 

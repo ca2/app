@@ -5,7 +5,7 @@ namespace sockets
 {
    
    
-   using socket_list = ::comparable_list < SOCKET >;
+   using socket_id_list = ::comparable_list < SOCKET >;
 
 
 } // namespace sockets

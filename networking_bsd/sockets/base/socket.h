@@ -2,26 +2,30 @@
 #pragma once
 
 
-namespace sockets
+#include "apex/networking/sockets/base/socket.h"
+//#include "networking_bsd/sockets/ssl/context.h"
+
+
+namespace sockets_bsd
 {
 
 
    /** \defgroup basic Basic sockets */
    /** base_socket base class.
    \ingroup basic */
-   class CLASS_DECL_APEX base_socket :
-      virtual public ::object
+   class CLASS_DECL_NETWORKING_BSD base_socket :
+      virtual public ::sockets::base_socket
    {
    public:
 
 
-      class CLASS_DECL_APEX callback
+      class CLASS_DECL_NETWORKING_BSD callback
       {
       public:
          virtual void OnRawData(base_socket * psocket, void * pdata, memsize len) = 0;
       };
 
-      friend class base_socket_handler;
+      //friend class base_socket_handler;
 
 
 
@@ -48,14 +52,14 @@ namespace sockets
 #endif
       string                  m_password; ///< ssl password
 
-      __pointer(base_socket_handler)   m_psockethandler; /// |-xxx-Reference-xxx-> 2021-03-08pointer of base_socket_handler in control of this socket
+      //__pointer(::sockets::base_socket_handler)   m_psockethandler; /// |-xxx-Reference-xxx-> 2021-03-08pointer of base_socket_handler in control of this socket
       SOCKET                  m_socket; ///< File descriptor
 
       static ::mutex *        s_pmutex;
 
-      ::networking::address          m_addressRemote; ///< Remote end ::networking::address
-      ::networking::address          m_addressRemoteClient; ///< Address of last connect()
-      file_pointer            m_pfileTrafficMonitor;
+      __pointer(::networking::address)    m_paddressRemote; ///< Remote end ::networking::address
+      __pointer(::networking::address)    m_paddressRemoteClient; ///< Address of last connect()
+      file_pointer                        m_pfileTrafficMonitor;
 
       bool                    m_b_chunked;
 
@@ -100,13 +104,14 @@ namespace sockets
       bool                    m_bEnablePool; ///< true if this socket may enter in a pool
 
       bool                             m_bSocks4; ///< socks4 negotiation mode (tcp_socket)
-      in_addr                          m_socks4_host; ///< socks4 server ::networking::address
-      port_t                           m_socks4_port; ///< socks4 server port number
+      //in_addr                          m_socks4_host; ///< socks4 server ::networking::address
+      string m_socks4_host;
+      ::networking::port_t                           m_socks4_port; ///< socks4 server port number
       string                           m_socks4_userid; ///< socks4 server usedid
 
       bool                             m_bDetach; ///< base_socket ordered to detach flag
       bool                             m_bDetached; ///< base_socket has been detached
-      __pointer(::sockets::socket_thread)         m_psocketthread; ///< detach base_socket thread class pointer
+      __pointer(::sockets_bsd::socket_thread)         m_psocketthread; ///< detach base_socket thread class pointer
       //__pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler while detached
 
 
@@ -171,7 +176,7 @@ namespace sockets
       virtual ~base_socket();
 
 
-      virtual void initialize_socket(base_socket_handler* phandler);
+      virtual void initialize_socket(::sockets::base_socket_handler* phandler);
 
 
       /** base_socket class instantiation method. Used when a "non-standard" constructor
@@ -183,13 +188,13 @@ namespace sockets
       /** Returns object to sockethandler that owns the base_socket.
       If the base_socket is detached, this is a object to the slave sockethandler.
       */
-      base_socket_handler * socket_handler() const;
+      ::sockets::base_socket_handler * socket_handler() const;
 
       /** Returns object to sockethandler that owns the base_socket.
       This one always returns the object to the original sockethandler,
       even if the base_socket is detached.
       */
-      base_socket_handler * master_socket_handler() const;
+      ::sockets::base_socket_handler * master_socket_handler() const;
 
       virtual void destroy_ssl_session();
 
@@ -208,10 +213,12 @@ namespace sockets
 
       /** Assign this socket a file descriptor created
       by a call to socket() or otherwise. */
-      void create_socket();
+      //void create_socket() override;
 
       /** Return file descriptor assigned to this base_socket. */
-      SOCKET GetSocket();
+      //iptr get_socket_id() override;
+
+      virtual SOCKET GetSocketId();
 
       /** close connection immediately - internal use.
       \sa SetCloseAndDelete */
@@ -241,7 +248,7 @@ namespace sockets
       void set_parent(base_socket *);
 
       /** get listening port from listen_socket<>. */
-      virtual port_t GetPort();
+      virtual ::networking::port_t GetPort();
 
       /** Set base_socket non-block operation. */
       bool SetNonblocking(bool);
@@ -256,7 +263,7 @@ namespace sockets
       void SetClientRemoteAddress(::networking::address * address);
 
       /** get address/port of last connect() call. */
-      ::networking::address GetClientRemoteAddress();
+      __pointer(::networking::address) GetClientRemoteAddress();
 
 
       /** Outgoing traffic counter. */
@@ -387,19 +394,19 @@ namespace sockets
       /** Returns address/port of remote end: ipv6. */
       //struct in6_addr GetRemoteIP6();
       /** Returns remote port number: ipv4 and ipv6. */
-      virtual port_t GetRemotePort();
+      virtual ::networking::port_t GetRemotePort();
       /** Returns remote ip as string? ipv4 and ipv6. */
-      virtual ::networking::address GetRemoteAddress();
+      virtual __pointer(::networking::address) GetRemoteAddress();
       /** ipv4 and ipv6(not implemented) */
-      virtual ::networking::address GetRemoteHostname();
+      virtual __pointer(::networking::address) GetRemoteHostname();
       //@}
 
       /** Returns local port number for bound base_socket file descriptor. */
-      virtual port_t GetLocalPort();
+      virtual ::networking::port_t GetLocalPort();
       /** Returns local ipv4 address/port for bound base_socket file descriptor. */
       //ipaddr_t GetSockIP4();
       /** Returns local ipv4 address/port as text for bound base_socket file descriptor. */
-      virtual ::networking::address GetLocalAddress();
+      virtual __pointer(::networking::address) GetLocalAddress();
       /** Returns local ipv6 address/port for bound base_socket file descriptor. */
       //struct in6_addr GetSockIP6();
       /** Returns local ipv6 address/port as text for bound base_socket file descriptor. */
@@ -595,7 +602,7 @@ namespace sockets
       /** Protocol type from base_socket() call. */
       void SetSocketProtocol(const string & x);
       /** Protocol type from base_socket() call. */
-      const string & GetSocketProtocol();
+      string  GetSocketProtocol();
       /** Instruct a client base_socket to stay open in the connection pool after use.
       If you have connected to a server using tcp, you can call SetRetain
       to leave the connection open after your base_socket instance has been deleted.
@@ -625,21 +632,22 @@ namespace sockets
       void SetSocks4(bool x = true);
 
       /** Set socks4 server host address/port to use */
-      void SetSocks4Host(in_addr a);
-#if defined(BSD_STYLE_SOCKETS)
-      /** Set socks4 server hostname to use. */
-      void SetSocks4Host(const string & );
-#endif
+      void SetSocks4Host(const ::string & a);
+//#if defined(BSD_STYLE_SOCKETS)
+//      /** Set socks4 server hostname to use. */
+//      void SetSocks4Host(const string & );
+//#endif
       /** Socks4 server port to use. */
-      void SetSocks4Port(port_t point_i32);
+      void SetSocks4Port(::networking::port_t point_i32);
       /** Provide a socks4 userid if required by the socks4 server. */
       void SetSocks4Userid(const string & x);
       /** get the ip address/port of socks4 server to use.
       \return socks4 server host address/port */
-      in_addr GetSocks4Host();
+      //in_addr GetSocks4Host();
+      string GetSocks4Host();
       /** get the socks4 server port to use.
       \return socks4 server port */
-      port_t GetSocks4Port();
+      ::networking::port_t GetSocks4Port();
       /** get socks4 userid.
       \return Socks4 userid */
       const string & GetSocks4Userid();
@@ -650,14 +658,14 @@ namespace sockets
       \lparam host hostname to be resolved
       \lparam port port number passed along for the ride
       \return Resolve ID */
-      //int Resolve(const string & host,port_t port = 0);
-      //int Resolve6(const string & host, port_t port = 0);
+      //int Resolve(const string & host,::networking::port_t port = 0);
+      //int Resolve6(const string & host, ::networking::port_t port = 0);
       /** Callback returning a resolved ::networking::address.
       \lparam atom Resolve ID from Resolve call
       \lparam a resolved ip address/port
       \lparam port port number passed to Resolve */
       //virtual void OnResolved(int atom, ::networking::address * addr);
-      //virtual void OnResolved(int atom, in6_addr & a, port_t port);
+      //virtual void OnResolved(int atom, in6_addr & a, ::networking::port_t port);
       /** Request asynchronous reverse dns lookup.
       \lparam a in_addr to be translated */
       //int Resolve(in_addr a);
@@ -694,7 +702,7 @@ namespace sockets
       when ready for operation. */
       bool prepare_for_detach();
       /** Store the slave sockethandler pointer. */
-      void SetSlaveHandler(base_socket_handler *);
+      void SetSlaveHandler(::sockets::base_socket_handler *);
       /** create new thread for this base_socket to run detached in. */
       void DetachSocket(socket_map::association * passociation, socket_map * psocketmap);
       //@}
@@ -739,11 +747,7 @@ namespace sockets
    };
 
 
-
-   typedef comparable_list < socket_pointer > socket_pointer_list;
-
-
-} // namespace sockets
+} // namespace sockets_bsd
 
 
 #ifdef CPP17
@@ -753,7 +757,7 @@ __declare_pair_tuple_size(::sockets::socket_map);
 #endif
 
 
-using socket_list = ::comparable_list < SOCKET >;
+using socket_id_list = ::comparable_list < SOCKET >;
 
 
 

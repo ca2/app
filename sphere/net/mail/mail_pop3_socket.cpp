@@ -9,7 +9,7 @@ namespace mail
 {
 
 
-   pop3_socket::pop3_socket(::sockets::socket_handler & h) :
+   pop3_socket::pop3_socket(::sockets::socket_handler * h) :
       object(h.get_app()),
       base_socket(h),
       socket(h),

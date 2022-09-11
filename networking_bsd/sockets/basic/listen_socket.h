@@ -2,21 +2,23 @@
 **   \date  2004-02-13
 **   \author grymse@alhem.net
 **/
-
 // xxx ref_Anders_Hedstrom_sockets_library.txt
-
 #pragma once
 
 
+#include "socket.h"
+#include "apex/networking/sockets/basic/listen_socket.h"
 
-namespace sockets
+
+namespace sockets_bsd
 {
 
 
    /** Binds incoming port number to new socket class X.
    \ingroup basic */
-   class CLASS_DECL_APEX listen_socket_base :
-      virtual public socket
+   class CLASS_DECL_NETWORKING_BSD listen_socket :
+      virtual public socket,
+      virtual public ::sockets::listen_socket_base
    {
    public:
 
@@ -29,15 +31,12 @@ namespace sockets
       /** Constructor.
       \lparam h base_socket_handler object
       \lparam use_creator Optional use of creator (default true) */
-      listen_socket_base();
+      listen_socket();
+      virtual ~listen_socket();
 
+      void initialize(::object * pobject) override;
 
-
-
-      virtual ~listen_socket_base();
-
-
-      virtual __pointer(socket) create_listen_socket();
+      virtual __pointer(::sockets::socket) create_listen_socket();
 
       /** close file descriptor. */
       virtual void close();
@@ -45,7 +44,7 @@ namespace sockets
       /** Bind and listen to any interface.
       \lparam port Port (0 is random)
       \lparam depth Listen queue depth */
-      virtual i32 Bind(port_t port,i32 depth = 20);
+      virtual i32 Bind(::networking::port_t port,i32 depth = 20);
 
       virtual i32 Bind(::networking::address * paddress,i32 depth);
 
@@ -53,39 +52,39 @@ namespace sockets
       \lparam port Port (0 is random)
       \lparam protocol Network protocol
       \lparam depth Listen queue depth */
-      virtual i32 Bind(port_t port,const string & protocol,i32 depth = 20) ;
+      virtual i32 Bind(::networking::port_t port,const string & protocol,i32 depth = 20) ;
 
       /** Bind and listen to specific interface.
       \lparam intf Interface hostname
       \lparam port Port (0 is random)
       \lparam depth Listen queue depth */
-      virtual i32 Bind(const string & intf,port_t port,i32 depth = 20);
+      virtual i32 Bind(const string & intf,::networking::port_t port,i32 depth = 20);
 
       /** Bind and listen to specific interface.
       \lparam intf Interface hostname
       \lparam port Port (0 is random)
       \lparam protocol Network protocol
       \lparam depth Listen queue depth */
-      virtual i32 Bind(const string & intf,port_t port,const string & protocol,i32 depth = 20);
+      virtual i32 Bind(const string & intf,::networking::port_t port,const string & protocol,i32 depth = 20);
 
       /** Bind and listen to ipv4 interface.
       \lparam a Ipv4 interface address
       \lparam port Port (0 is random)
       \lparam depth Listen queue depth */
-      virtual i32 Bind(in_addr a,port_t port,i32 depth = 20);
+      virtual i32 Bind(in_addr a,::networking::port_t port,i32 depth = 20);
 
       /** Bind and listen to ipv4 interface.
       \lparam a Ipv4 interface address
       \lparam port Port (0 is random)
       \lparam protocol Network protocol
       \lparam depth Listen queue depth */
-      virtual i32 Bind(in_addr a,port_t port,const string & protocol,i32 depth);
+      virtual i32 Bind(in_addr a,::networking::port_t port,const string & protocol,i32 depth);
 
       /** Bind and listen to ipv6 interface.
       \lparam a Ipv6 interface address
       \lparam port Port (0 is random)
       \lparam depth Listen queue depth */
-      virtual i32 Bind(in6_addr a,port_t port,i32 depth = 20);
+      virtual i32 Bind(in6_addr a,::networking::port_t port,i32 depth = 20);
 
 
       /** Bind and listen to ipv6 interface.
@@ -93,7 +92,7 @@ namespace sockets
       \lparam port Port (0 is random)
       \lparam protocol Network protocol
       \lparam depth Listen queue depth */
-      virtual i32 Bind(in6_addr a,port_t port,const string & protocol,i32 depth);
+      virtual i32 Bind(in6_addr a,::networking::port_t port,const string & protocol,i32 depth);
 
       /** Bind and listen to network interface.
       \lparam ad Interface address
@@ -102,7 +101,7 @@ namespace sockets
       virtual i32 Bind(::networking::address * paddress,const string & protocol,i32 depth);
 
       /** Return assigned port number. */
-//         port_t GetPort()
+//         ::networking::port_t GetPort()
 //       {
 //        return GetSockPort();
       //   }
@@ -126,117 +125,7 @@ namespace sockets
    };
 
 
-   /** Binds incoming port number to new socket class X.
-   \ingroup basic */
-   template < class LISTENER >
-   class listen_socket :
-      virtual public listen_socket_base
-   {
-   public:
+} // namespace sockets_bsd
 
-
-      LISTENER *     m_creator;
-      bool           m_bHasCreate;
-      LISTENER *     m_psocket;
-
-
-      /** Constructor.
-      \lparam h base_socket_handler object
-      \lparam use_creator Optional use of creator (default true) */
-      listen_socket(bool use_creator = true) :
-         m_bHasCreate(false),
-         m_creator(nullptr)
-      {
-
-         if (use_creator)
-         {
-
-            //m_creator = new LISTENER(h);
-            m_creator = new LISTENER();
-
-            base_socket * plistener = m_creator->new_listen_socket();
-
-            if(plistener != nullptr)
-            {
-
-               if(dynamic_cast < LISTENER * >(plistener) != nullptr)
-               {
-
-                  m_bHasCreate = true;
-
-               }
-
-               delete plistener;
-            }
-
-         }
-      }
-
-      virtual ~listen_socket()
-      {
-         if (m_creator)
-         {
-            delete m_creator;
-         }
-      }
-
-
-      virtual __pointer(socket) create_listen_socket()
-      {
-
-         __pointer(::sockets::base_socket) pbasesocket;
-
-         if (HasCreator())
-         {
-
-            pbasesocket = m_creator->new_listen_socket();
-
-            m_psocket = dynamic_cast < LISTENER * > (pbasesocket.m_p);
-
-            if (m_psocket == nullptr)
-            {
-
-               pbasesocket.release();
-
-            }
-
-            m_pbasesocket = pbasesocket;
-
-         }
-         else
-         {
-
-            pbasesocket = __new(LISTENER());
-
-            m_psocket = dynamic_cast < LISTENER * >(pbasesocket.m_p);
-
-            if (pbasesocket == nullptr)
-            {
-
-               pbasesocket.release();
-
-               m_psocket = nullptr;
-
-            }
-
-            m_pbasesocket = pbasesocket;
-
-         }
-
-         return pbasesocket;
-
-      }
-
-
-      bool HasCreator()
-      {
-         return m_bHasCreate;
-      }
-
-
-   };
-
-
-} // namespace sockets
 
 

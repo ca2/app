@@ -248,7 +248,7 @@ namespace sockets
 
       void DisableInputBuffer(bool = true);
 
-      //void OnOptions(i32,i32,i32,SOCKET) override;
+      //void OnOptions(i32,i32,i32,socket_id) override;
 
       void SetLineProtocol(bool = true) override;
 

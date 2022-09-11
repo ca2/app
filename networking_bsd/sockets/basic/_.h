@@ -5,14 +5,14 @@
 //#endif
 
 
-namespace sockets
+namespace sockets_bsd
 {
 
 
    /** \defgroup basic Basic sockets */
    /** socket axis class.
    \ingroup basic */
-   class CLASS_DECL_APEX socket :
+   class CLASS_DECL_NETWORKING_BSD socket :
       virtual public base_socket
    {
    public:
@@ -72,7 +72,7 @@ namespace sockets
    };
 
 
-} // namespace sockets
+} // namespace sockets_bsd
 
 
 

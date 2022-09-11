@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace sockets
+namespace sockets_bsd
 {
 
 
-   class CLASS_DECL_APEX sync_socket_handler :
+   class CLASS_DECL_NETWORKING_BSD sync_socket_handler :
       virtual public ::object,
       public socket::callback
    {
@@ -40,7 +40,7 @@ namespace sockets
    };
 
 
-} // namespace sockets
+} // namespace sockets_bsd
 
 
 

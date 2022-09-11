@@ -50,7 +50,7 @@ namespace networking_bsd
 
       websocket_client();
       websocket_client(const string & url, const ::string & strProtocol);
-      //websocket_client(const string & host, port_t port, const string & url);
+      //websocket_client(const string & host, ::networking::port_t port, const string & url);
       ~websocket_client() override;
 
       virtual void InitSSLClient() override;

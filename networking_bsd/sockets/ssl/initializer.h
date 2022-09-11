@@ -31,10 +31,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 typedef struct bio_st BIO;
 
-namespace sockets
+namespace sockets_bsd
 {
 
-   class CLASS_DECL_APEX SSLInitializer :
+   class CLASS_DECL_NETWORKING_BSD SSLInitializer :
       public object
    {
    public:
@@ -78,7 +78,7 @@ namespace sockets
 
 
 
-} // namespace sockets
+} // namespace sockets_bsd
 
 
 

@@ -1,8 +1,8 @@
 #include "framework.h" 
-#include "apex/networking/sockets/_sockets.h"
+#include "socket_handler.h"
 
 
-namespace sockets
+namespace sockets_bsd
 {
 
 
@@ -35,10 +35,10 @@ namespace sockets
    }
 
 
-   base_socket_handler::base_socket_handler(::apex::log * plogger) 
+   base_socket_handler::base_socket_handler() 
    {
 
-      m_plogger = plogger;
+      ///m_plogger = plogger;
 
      /* if (plogger == nullptr)
       {

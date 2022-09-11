@@ -28,7 +28,12 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
+#include "socket.h"
+#include "socket_thread.h"
+#include "networking_bsd/sockets/basic/socket_handler.h"
+#include "apex/networking/networking.h"
+#include "networking_bsd/sockets/ssl/context.h"
+#include "networking_bsd/sockets/ssl/client_context.h"
 #ifdef _WIN32
 #elif defined(LINUX)
 #include <netdb.h>
@@ -54,11 +59,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <openssl/ssl.h>
 #endif
 
-namespace sockets
+namespace sockets_bsd
 {
 
 
-   ::mutex * base_socket::s_pmutex = nullptr;
+   //::mutex * base_socket::s_pmutex = nullptr;
 
 
    base_socket::base_socket() :
@@ -91,7 +96,7 @@ namespace sockets
       //,m_event(h.get_())
 //#endif
    {
-
+      m_p2 = this;
 #ifdef WINRT_SOCKETS
       m_bErrorReading = false;
       m_bErrorWriting = false;
@@ -119,16 +124,16 @@ namespace sockets
    }
 
 
-   void base_socket::initialize_socket(base_socket_handler* phandler)
+   void base_socket::initialize_socket(::sockets::base_socket_handler* phandler)
    {
 
       ::object::initialize(phandler);
 
       m_psockethandler = phandler;
 
-      m_socks4_host = m_psockethandler->GetSocks4Host();
-      m_socks4_port = m_psockethandler->GetSocks4Port();
-      m_socks4_userid = m_psockethandler->GetSocks4Userid();
+      //m_socks4_host = m_psockethandler->GetSocks4Host();
+      //m_socks4_port = m_psockethandler->GetSocks4Port();
+      //m_socks4_userid = m_psockethandler->GetSocks4Userid();
 
    }
 
@@ -229,6 +234,8 @@ namespace sockets
       return false;
    }
 
+   //void base_socket::create_sock
+
    /*   SOCKET base_socket::CreateSocket(int af,int iType, const ::string & strProtocol)
    {
    struct protoent *point = nullptr;
@@ -241,9 +248,9 @@ namespace sockets
    point = getprotobyname( strProtocol );
    if (!point_i32)
    {
-   FATAL("getprotobyname" << Errno << ", " << bsd_socket_error(Errno));
+   FATAL("getprotobyname" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
    SetCloseAndDelete();
-   throw ::exception(::exception(string("getprotobyname() failed: ") + bsd_socket_error(Errno)));
+   throw ::exception(::exception(string("getprotobyname() failed: ") + bsd_socket_error(networking_last_error())));
    return INVALID_SOCKET;
    }
    }
@@ -252,9 +259,9 @@ namespace sockets
    s = ::base_socket(af, iType, protno);
    if (s == INVALID_SOCKET)
    {
-   FATAL("base_socket" << Errno << ", " << bsd_socket_error(Errno));
+   FATAL("base_socket" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
    SetCloseAndDelete();
-   throw ::exception(::exception(string("base_socket() failed: ") + bsd_socket_error(Errno)));
+   throw ::exception(::exception(string("base_socket() failed: ") + bsd_socket_error(networking_last_error())));
    return INVALID_SOCKET;
    }
    attach(s);
@@ -284,7 +291,7 @@ namespace sockets
    }
 
 
-   SOCKET base_socket::GetSocket()
+   SOCKET base_socket::GetSocketId()
    {
       return m_socket;
    }
@@ -311,7 +318,7 @@ namespace sockets
          if(socket_handler())
          {
 
-            socket_handler()->socketlist_modify(m_socket, e_list_close, bCloseAndDelete);
+            __Handler(m_psockethandler)->socket_id_list_modify(m_socket, e_list_close, bCloseAndDelete);
 
          }
 
@@ -337,23 +344,23 @@ namespace sockets
    }
 
 
-   void base_socket::SetRemoteHostname(::networking::address * ad) //struct sockaddr* sa, socklen_t l)
+   void base_socket::SetRemoteHostname(::networking::address * paddress) //struct sockaddr* sa, socklen_t l)
    {
 
-      m_addressRemote = ad;
+      m_paddressRemote = paddress;
 
    }
 
 
-   ::networking::address base_socket::GetRemoteHostname()
+   __pointer(::networking::address) base_socket::GetRemoteHostname()
    {
 
-      return m_addressRemote;
+      return m_paddressRemote;
 
    }
 
 
-   base_socket_handler* base_socket::socket_handler() const
+   ::sockets::base_socket_handler* base_socket::socket_handler() const
    {
 
       //if (IsDetached())
@@ -368,7 +375,7 @@ namespace sockets
    }
 
 
-   base_socket_handler* base_socket::master_socket_handler() const
+   ::sockets::base_socket_handler* base_socket::master_socket_handler() const
    {
       
       return m_psockethandler;
@@ -413,7 +420,7 @@ namespace sockets
    }*/
 
 
-   /*   port_t base_socket::GetRemotePort()
+   /*   ::networking::port_t base_socket::GetRemotePort()
    {
 
    return m_addressRemote.get_service_number();
@@ -431,7 +438,7 @@ namespace sockets
       int n = ioctlsocket(m_socket, FIONBIO, &l);
       if (n != 0)
       {
-         INFORMATION("ioctlsocket(FIONBIO) " << Errno);
+         INFORMATION("ioctlsocket(FIONBIO) " << networking_last_error());
          return false;
       }
       return true;
@@ -440,7 +447,7 @@ namespace sockets
       {
          if (fcntl(m_socket, F_SETFL, O_NONBLOCK) == -1)
          {
-            ERROR("fcntl(F_SETFL, O_NONBLOCK) " << Errno << " " << bsd_socket_error(Errno));
+            ERROR("fcntl(F_SETFL, O_NONBLOCK) " << networking_last_error() << " " << bsd_socket_error(networking_last_error()));
             return false;
          }
       }
@@ -448,7 +455,7 @@ namespace sockets
       {
          if (fcntl(m_socket, F_SETFL, 0) == -1)
          {
-            ERROR("fcntl(F_SETFL, 0)" << Errno << " " << bsd_socket_error(Errno));
+            ERROR("fcntl(F_SETFL, 0)" << networking_last_error() << " " << bsd_socket_error(networking_last_error()));
             return false;
          }
       }
@@ -474,7 +481,7 @@ namespace sockets
          int n = ioctlsocket(s, FIONBIO, &l);
          if (n != 0)
          {
-         ERR(log_this, "ioctlsocket(FIONBIO)", Errno, "");
+         ERR(log_this, "ioctlsocket(FIONBIO)", networking_last_error(), "");
          return false;
          }
          return true;
@@ -483,7 +490,7 @@ namespace sockets
          {
          if (fcntl(s, F_SETFL, O_NONBLOCK) == -1)
          {
-         ERROR("fcntl(F_SETFL, O_NONBLOCK)" << Errno << ", " << bsd_socket_error(Errno);
+         ERROR("fcntl(F_SETFL, O_NONBLOCK)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error());
          return false;
          }
          }
@@ -491,7 +498,7 @@ namespace sockets
          {
          if (fcntl(s, F_SETFL, 0) == -1)
          {
-         ERROR("fcntl(F_SETFL, 0)" << Errno << ", " << bsd_socket_error(Errno);
+         ERROR("fcntl(F_SETFL, 0)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error());
          return false;
          }
          }
@@ -502,7 +509,9 @@ namespace sockets
 
    void base_socket::Set(bool bRead, bool bWrite, bool bException)
    {
-      socket_handler()->set(m_socket, bRead, bWrite, bException);
+      
+      __Handler(m_psockethandler)->set(m_socket, bRead, bWrite, bException);
+
    }
 
 
@@ -547,7 +556,7 @@ namespace sockets
    }
 
 
-   port_t base_socket::GetPort()
+   ::networking::port_t base_socket::GetPort()
    {
 
       WARNING("GetPort only implemented for listen_socket");
@@ -643,7 +652,7 @@ namespace sockets
    }
 
 
-   void base_socket::SetClientRemoteAddress(::networking::address * address)
+   void base_socket::SetClientRemoteAddress(::networking::address * paddress)
    {
 
       /*      if (!ad.IsValid())
@@ -651,12 +660,12 @@ namespace sockets
       ERROR("SetClientRemoteAddress", 0, "remote address not valid");
       }*/
 
-      m_addressRemoteClient = address;
+      m_paddressRemoteClient = paddress;
 
    }
 
 
-   ::networking::address base_socket::GetClientRemoteAddress()
+   __pointer(::networking::address) base_socket::GetClientRemoteAddress()
    {
 
       /*      if (m_addressRemoteClient.m_p == nullptr)
@@ -664,7 +673,7 @@ namespace sockets
       ERROR("GetClientRemoteAddress", 0, "remote address not yet set");
       }*/
 
-      return m_addressRemoteClient;
+      return m_paddressRemoteClient;
 
    }
 
@@ -759,7 +768,7 @@ namespace sockets
       //m_sbio = psocket->m_sbio; ///< ssl bio
       m_password = psocket->m_password; ///< ssl password
 
-      attach(psocket -> GetSocket());
+      attach(psocket -> GetSocketId());
 
       SetIpv6(psocket -> IsIpv6());
       
@@ -814,9 +823,11 @@ namespace sockets
    }
 
 
-   const string & base_socket::GetSocketProtocol()
+   string base_socket::GetSocketProtocol()
    {
+   
       return m_strSocketProtocol;
+
    }
 
 
@@ -869,9 +880,11 @@ namespace sockets
    void base_socket::SetSocks4Host(const string & host)
    {
 
-      auto paddressdepartment = ::networking::address_department();
+      //auto pnetworking = m_psystem->m_papexsystem->networking();
 
-      paddressdepartment->convert(m_socks4_host, host);
+      //paddressdepartment->convert(m_socks4_host, host);
+
+      m_socks4_host = host;
 
    }
 
@@ -881,7 +894,9 @@ namespace sockets
 
    bool base_socket::Socks4()
    {
+      
       return m_bSocks4;
+
    }
 
 
@@ -891,13 +906,13 @@ namespace sockets
    }
 
 
-   void base_socket::SetSocks4Host(in_addr a)
-   {
-      m_socks4_host = a;
-   }
+   //void base_socket::SetSocks4Host(const ::string & a)
+   //{
+   //   m_socks4_host = a;
+   //}
 
 
-   void base_socket::SetSocks4Port(port_t port)
+   void base_socket::SetSocks4Port(::networking::port_t port)
    {
 
       m_socks4_port = port;
@@ -911,15 +926,19 @@ namespace sockets
    }
 
 
-   in_addr base_socket::GetSocks4Host()
+   string base_socket::GetSocks4Host()
    {
+
       return m_socks4_host;
+
    }
 
 
-   port_t base_socket::GetSocks4Port()
+   ::networking::port_t base_socket::GetSocks4Port()
    {
+      
       return m_socks4_port;
+
    }
 
 
@@ -1009,17 +1028,17 @@ namespace sockets
    }
 
 
-   //void base_socket::SetSlaveHandler(base_socket_handler * phandler)
-   //{
+   void base_socket::SetSlaveHandler(::sockets::base_socket_handler * phandler)
+   {
 
-   //   m_phandlerSlave = phandler;
+      m_phandlerSlave = phandler;
 
-   //}
+   }
 
    //
 
 
-//   int base_socket::Resolve(const string & host,port_t port)
+//   int base_socket::Resolve(const string & host,::networking::port_t port)
 //   {
 //
 //      return socket_handler()->Resolve(this, host, port);
@@ -1027,7 +1046,7 @@ namespace sockets
 //   }
 
 
-//   int base_socket::Resolve6(const string & host,port_t port)
+//   int base_socket::Resolve6(const string & host,::networking::port_t port)
 //   {
 //
 //      return socket_handler()->Resolve6(this, host, port);
@@ -1074,10 +1093,10 @@ namespace sockets
 
 #if defined(IP_OPTIONS) && defined(BSD_STYLE_SOCKETS)
 
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_OPTIONS, (char *)point, len) == -1)
+      if (setsockopt(GetSocketId(), IPPROTO_IP, IP_OPTIONS, (char *)point, len) == -1)
       {
 
-         FATAL("setsockopt(IPPROTO_IP, IP_OPTIONS)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(IPPROTO_IP, IP_OPTIONS)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1103,10 +1122,10 @@ namespace sockets
 
       int optval = x ? 1 : 0;
 
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_PKTINFO, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(GetSocketId(), IPPROTO_IP, IP_PKTINFO, (char *)&optval, sizeof(optval)) == -1)
       {
       
-         FATAL("setsockopt(IPPROTO_IP, IP_PKTINFO) " << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(IPPROTO_IP, IP_PKTINFO) " << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
       
          return false;
 
@@ -1127,10 +1146,10 @@ namespace sockets
       
       int optval = x ? 1 : 0;
       
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVTOS, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(GetSocketId(), IPPROTO_IP, IP_RECVTOS, (char *)&optval, sizeof(optval)) == -1)
       {
       
-         FATAL("setsockopt(IPPROTO_IP, IP_RECVTOS) " << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(IPPROTO_IP, IP_RECVTOS) " << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
       
          return false;
 
@@ -1152,10 +1171,10 @@ namespace sockets
       
       int optval = x ? 1 : 0;
       
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVTTL, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(GetSocketId(), IPPROTO_IP, IP_RECVTTL, (char *)&optval, sizeof(optval)) == -1)
       {
          
-         FATAL("setsockopt(IPPROTO_IP, IP_RECVTTL) " << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(IPPROTO_IP, IP_RECVTTL) " << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
          
          return false;
 
@@ -1177,10 +1196,10 @@ namespace sockets
    
       int optval = x ? 1 : 0;
 
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVOPTS, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(GetSocketId(), IPPROTO_IP, IP_RECVOPTS, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         FATAL("setsockopt(IPPROTO_IP, IP_RECVOPTS) " << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(IPPROTO_IP, IP_RECVOPTS) " << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1201,10 +1220,10 @@ namespace sockets
    
       int optval = x ? 1 : 0;
 
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_RETOPTS, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(GetSocketId(), IPPROTO_IP, IP_RETOPTS, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         FATAL("setsockopt(IPPROTO_IP, IP_RETOPTS) " << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(IPPROTO_IP, IP_RETOPTS) " << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1223,10 +1242,10 @@ namespace sockets
 
 #if defined(IP_TOS) && defined(BSD_STYLE_SOCKETS)
       
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_TOS, (char *)&tos, sizeof(tos)) == -1)
+      if (setsockopt(GetSocketId(), IPPROTO_IP, IP_TOS, (char *)&tos, sizeof(tos)) == -1)
       {
       
-         FATAL("setsockopt(IPPROTO_IP, IP_TOS) " << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(IPPROTO_IP, IP_TOS) " << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1254,10 +1273,10 @@ namespace sockets
 
       socklen_t len = sizeof(tos);
 
-      if (getsockopt(GetSocket(), IPPROTO_IP, IP_TOS, (char *)&tos, &len) == -1)
+      if (getsockopt(GetSocketId(), IPPROTO_IP, IP_TOS, (char *)&tos, &len) == -1)
       {
       
-         FATAL("getsockopt(IPPROTO_IP, IP_TOS) " << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("getsockopt(IPPROTO_IP, IP_TOS) " << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       }
 
@@ -1277,10 +1296,10 @@ namespace sockets
 
 #if defined(IP_TTL) && defined(BSD_STYLE_SOCKETS)
 
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_TTL, (char *)&ttl, sizeof(ttl)) == -1)
+      if (setsockopt(GetSocketId(), IPPROTO_IP, IP_TTL, (char *)&ttl, sizeof(ttl)) == -1)
       {
 
-         FATAL("setsockopt(IPPROTO_IP, IP_TTL) " << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(IPPROTO_IP, IP_TTL) " << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1308,10 +1327,10 @@ namespace sockets
 
       socklen_t len = sizeof(ttl);
 
-      if (getsockopt(GetSocket(), IPPROTO_IP, IP_TTL, (char *)&ttl, &len) == -1)
+      if (getsockopt(GetSocketId(), IPPROTO_IP, IP_TTL, (char *)&ttl, &len) == -1)
       {
 
-         FATAL("getsockopt(IPPROTO_IP, IP_TTL) " << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("getsockopt(IPPROTO_IP, IP_TTL) " << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       }
 
@@ -1333,10 +1352,10 @@ namespace sockets
       
       int optval = x ? 1 : 0;
       
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_HDRINCL, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(GetSocketId(), IPPROTO_IP, IP_HDRINCL, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         FATAL("setsockopt(IPPROTO_IP, IP_HDRINCL) " << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(IPPROTO_IP, IP_HDRINCL) " << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1362,10 +1381,10 @@ namespace sockets
 
       int optval = x ? 1 : 0;
 
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVERR, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(GetSocketId(), IPPROTO_IP, IP_RECVERR, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         FATAL("setsockopt(IPPROTO_IP, IP_RECVERR)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(IPPROTO_IP, IP_RECVERR)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1385,10 +1404,10 @@ namespace sockets
    
       int optval = x ? 1 : 0;
 
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_MTU_DISCOVER, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(GetSocketId(), IPPROTO_IP, IP_MTU_DISCOVER, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         FATAL("setsockopt(IPPROTO_IP, IP_MTU_DISCOVER) " << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(IPPROTO_IP, IP_MTU_DISCOVER) " << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1410,10 +1429,10 @@ namespace sockets
 
       socklen_t len = sizeof(mtu);
 
-      if (getsockopt(GetSocket(), IPPROTO_IP, IP_MTU, (char *)&mtu, &len) == -1)
+      if (getsockopt(GetSocketId(), IPPROTO_IP, IP_MTU, (char *)&mtu, &len) == -1)
       {
 
-         FATAL("getsockopt(IPPROTO_IP, IP_MTU) " << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("getsockopt(IPPROTO_IP, IP_MTU) " << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       }
 
@@ -1431,10 +1450,10 @@ namespace sockets
    
       int optval = x ? 1 : 0;
    
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_ROUTER_ALERT, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(GetSocketId(), IPPROTO_IP, IP_ROUTER_ALERT, (char *)&optval, sizeof(optval)) == -1)
       {
    
-         FATAL("setsockopt(IPPROTO_IP, IP_ROUTER_ALERT) " << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(IPPROTO_IP, IP_ROUTER_ALERT) " << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
    
          return false;
 
@@ -1452,10 +1471,10 @@ namespace sockets
 
 #if defined(IP_MULTICAST_TTL) && defined(BSD_STYLE_SOCKETS)
 
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(ttl)) == -1)
+      if (setsockopt(GetSocketId(), IPPROTO_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(ttl)) == -1)
       {
 
-         FATAL("setsockopt(IPPROTO_IP, IP_MULTICAST_TTL) " << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(IPPROTO_IP, IP_MULTICAST_TTL) " << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1483,10 +1502,10 @@ namespace sockets
 
       socklen_t len = sizeof(ttl);
 
-      if (getsockopt(GetSocket(), IPPROTO_IP, IP_MULTICAST_TTL, (char *)&ttl, &len) == -1)
+      if (getsockopt(GetSocketId(), IPPROTO_IP, IP_MULTICAST_TTL, (char *)&ttl, &len) == -1)
       {
 
-         FATAL("getsockopt(IPPROTO_IP, IP_MULTICAST_TTL)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("getsockopt(IPPROTO_IP, IP_MULTICAST_TTL)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       }
 
@@ -1508,10 +1527,10 @@ namespace sockets
 
       int optval = x ? 1 : 0;
 
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_MULTICAST_LOOP, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(GetSocketId(), IPPROTO_IP, IP_MULTICAST_LOOP, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         FATAL("setsockopt(IPPROTO_IP, IP_MULTICAST_LOOP)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(IPPROTO_IP, IP_MULTICAST_LOOP)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1537,10 +1556,10 @@ namespace sockets
 
 #if defined(IP_ADD_MEMBERSHIP) && defined(BSD_STYLE_SOCKETS)
 
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_ADD_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreqn)) == -1)
+      if (setsockopt(GetSocketId(), IPPROTO_IP, IP_ADD_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreqn)) == -1)
       {
 
-         FATAL("setsockopt(IPPROTO_IP, IP_ADD_MEMBERSHIP)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(IPPROTO_IP, IP_ADD_MEMBERSHIP)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1566,10 +1585,10 @@ namespace sockets
 
 #if defined(IP_ADD_MEMBERSHIP) && defined(BSD_STYLE_SOCKETS)
       
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_ADD_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreq)) == -1)
+      if (setsockopt(GetSocketId(), IPPROTO_IP, IP_ADD_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreq)) == -1)
       {
 
-         FATAL("setsockopt(IPPROTO_IP, IP_ADD_MEMBERSHIP)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(IPPROTO_IP, IP_ADD_MEMBERSHIP)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1595,10 +1614,10 @@ namespace sockets
 
 #if defined(IP_DROP_MEMBERSHIP) && defined(BSD_STYLE_SOCKETS)
       
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_DROP_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreqn)) == -1)
+      if (setsockopt(GetSocketId(), IPPROTO_IP, IP_DROP_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreqn)) == -1)
       {
       
-         FATAL("setsockopt(IPPROTO_IP, IP_DROP_MEMBERSHIP)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(IPPROTO_IP, IP_DROP_MEMBERSHIP)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1624,10 +1643,10 @@ namespace sockets
 
 #if defined(IP_DROP_MEMBERSHIP) && defined(BSD_STYLE_SOCKETS)
       
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_DROP_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreq)) == -1)
+      if (setsockopt(GetSocketId(), IPPROTO_IP, IP_DROP_MEMBERSHIP, (char *)&ref, sizeof(struct ip_mreq)) == -1)
       {
 
-         FATAL("setsockopt(IPPROTO_IP, IP_DROP_MEMBERSHIP)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(IPPROTO_IP, IP_DROP_MEMBERSHIP)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1656,10 +1675,10 @@ namespace sockets
 
       int optval = x ? 1 : 0;
 
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_REUSEADDR, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_REUSEADDR, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         FATAL("setsockopt(SOL_SOCKET, SO_REUSEADDR)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_REUSEADDR)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1685,10 +1704,10 @@ namespace sockets
 
       int optval = x ? 1 : 0;
 
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_KEEPALIVE, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_KEEPALIVE, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         FATAL("setsockopt(SOL_SOCKET, SO_KEEPALIVE)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_KEEPALIVE)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1714,10 +1733,10 @@ namespace sockets
 
       int optval = x ? 1 : 0;
 
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_NOSIGPIPE, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_NOSIGPIPE, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         FATAL("setsockopt(SOL_SOCKET, SO_NOSIGPIPE)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_NOSIGPIPE)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1739,10 +1758,10 @@ namespace sockets
 
       socklen_t len = sizeof(value);
 
-      if (getsockopt(GetSocket(), SOL_SOCKET, SO_ACCEPTCONN, (char *)&value, &len) == -1)
+      if (getsockopt(GetSocketId(), SOL_SOCKET, SO_ACCEPTCONN, (char *)&value, &len) == -1)
       {
 
-         FATAL("getsockopt(SOL_SOCKET, SO_ACCEPTCONN)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("getsockopt(SOL_SOCKET, SO_ACCEPTCONN)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       }
 
@@ -1764,10 +1783,10 @@ namespace sockets
    
       int optval = x ? 1 : 0;
    
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_BSDCOMPAT, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_BSDCOMPAT, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         FATAL("setsockopt(SOL_SOCKET, SO_BSDCOMPAT)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_BSDCOMPAT)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1785,10 +1804,10 @@ namespace sockets
    bool base_socket::SetSoBindtodevice(const string & intf)
    {
    
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_BINDTODEVICE, (char *) (const char *)intf, intf.get_length()) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_BINDTODEVICE, (char *) (const char *)intf, intf.get_length()) == -1)
       {
 
-         FATAL("setsockopt(SOL_SOCKET, SO_BINDTODEVICE)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_BINDTODEVICE)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1808,10 +1827,10 @@ namespace sockets
       
       int optval = x ? 1 : 0;
       
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_BROADCAST, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_BROADCAST, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         FATAL("setsockopt(SOL_SOCKET, SO_BROADCAST)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_BROADCAST)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1837,10 +1856,10 @@ namespace sockets
       
       int optval = x ? 1 : 0;
       
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_DEBUG, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_DEBUG, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         FATAL("setsockopt(SOL_SOCKET, SO_DEBUG)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_DEBUG)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1868,10 +1887,10 @@ namespace sockets
       
       socklen_t len = sizeof(value);
 
-      if (getsockopt(GetSocket(), SOL_SOCKET, SO_ERROR, (char *)&value, &len) == -1)
+      if (getsockopt(GetSocketId(), SOL_SOCKET, SO_ERROR, (char *)&value, &len) == -1)
       {
 
-         FATAL("getsockopt(SOL_SOCKET, SO_ERROR)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("getsockopt(SOL_SOCKET, SO_ERROR)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       }
 
@@ -1893,10 +1912,10 @@ namespace sockets
       
       int optval = x ? 1 : 0;
 
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_DONTROUTE, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_DONTROUTE, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         FATAL("setsockopt(SOL_SOCKET, SO_DONTROUTE)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_DONTROUTE)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1926,10 +1945,10 @@ namespace sockets
 
       stl.l_linger = (u_short) linger;
 
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_LINGER, (char *)&stl, sizeof(stl)) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_LINGER, (char *)&stl, sizeof(stl)) == -1)
       {
 
-         FATAL("setsockopt(SOL_SOCKET, SO_LINGER)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_LINGER)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1955,10 +1974,10 @@ namespace sockets
       
       int optval = x ? 1 : 0;
 
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_OOBINLINE, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_OOBINLINE, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         FATAL("setsockopt(SOL_SOCKET, SO_OOBINLINE)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_OOBINLINE)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -1983,10 +2002,10 @@ namespace sockets
    {
       int optval = x ? 1 : 0;
 
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_PASSCRED, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_PASSCRED, (char *)&optval, sizeof(optval)) == -1)
       {
       
-         FATAL("setsockopt(SOL_SOCKET, SO_PASSCRED)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_PASSCRED)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
          
          return false;
 
@@ -2004,10 +2023,10 @@ namespace sockets
    bool base_socket::SoPeercred(struct ::ucred & ucr)
    {
 
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_PEERCRED, (char *)&ucr, sizeof(ucr)) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_PEERCRED, (char *)&ucr, sizeof(ucr)) == -1)
       {
       
-         FATAL("setsockopt(SOL_SOCKET, SO_PEERCRED)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_PEERCRED)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
          
          return false;
 
@@ -2025,10 +2044,10 @@ namespace sockets
    bool base_socket::SetSoPriority(int x)
    {
       
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_PRIORITY, (char *)&x, sizeof(x)) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_PRIORITY, (char *)&x, sizeof(x)) == -1)
       {
       
-         FATAL("setsockopt(SOL_SOCKET, SO_PRIORITY)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_PRIORITY)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
          
          return false;
 
@@ -2046,10 +2065,10 @@ namespace sockets
 
 #if defined(SO_RCVLOWAT) && defined(BSD_STYLE_SOCKETS)
 
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_RCVLOWAT, (char *)&x, sizeof(x)) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_RCVLOWAT, (char *)&x, sizeof(x)) == -1)
       {
 
-         FATAL("setsockopt(SOL_SOCKET, SO_RCVLOWAT)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_RCVLOWAT)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -2073,10 +2092,10 @@ namespace sockets
 
 #if defined(SO_SNDLOWAT) && defined(BSD_STYLE_SOCKETS)
 
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_SNDLOWAT, (char *)&x, sizeof(x)) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_SNDLOWAT, (char *)&x, sizeof(x)) == -1)
       {
 
-         FATAL("setsockopt(SOL_SOCKET, SO_SNDLOWAT)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_SNDLOWAT)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -2100,10 +2119,10 @@ namespace sockets
 
 #if defined(SO_RCVTIMEO) && defined(BSD_STYLE_SOCKETS)
 
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_RCVTIMEO, (char *)&tv, sizeof(tv)) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_RCVTIMEO, (char *)&tv, sizeof(tv)) == -1)
       {
 
-         FATAL("setsockopt(SOL_SOCKET, SO_RCVTIMEO)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_RCVTIMEO)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -2127,10 +2146,10 @@ namespace sockets
 
 #if defined(SO_SNDTIMEO) && defined(BSD_STYLE_SOCKETS)
 
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_SNDTIMEO, (char *)&tv, sizeof(tv)) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_SNDTIMEO, (char *)&tv, sizeof(tv)) == -1)
       {
 
-         FATAL("setsockopt(SOL_SOCKET, SO_SNDTIMEO)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_SNDTIMEO)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -2154,10 +2173,10 @@ namespace sockets
 
 #if defined(SO_RCVBUF) && defined(BSD_STYLE_SOCKETS)
 
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_RCVBUF, (char *)&x, sizeof(x)) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_RCVBUF, (char *)&x, sizeof(x)) == -1)
       {
 
-         FATAL("setsockopt(SOL_SOCKET, SO_RCVBUF)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_RCVBUF)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -2184,10 +2203,10 @@ namespace sockets
       
       socklen_t len = sizeof(value);
 
-      if (getsockopt(GetSocket(), SOL_SOCKET, SO_RCVBUF, (char *)&value, &len) == -1)
+      if (getsockopt(GetSocketId(), SOL_SOCKET, SO_RCVBUF, (char *)&value, &len) == -1)
       {
 
-         FATAL("getsockopt(SOL_SOCKET, SO_RCVBUF)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("getsockopt(SOL_SOCKET, SO_RCVBUF)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       }
 
@@ -2207,10 +2226,10 @@ namespace sockets
    bool base_socket::SetSoRcvbufforce(int x)
    {
 
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_RCVBUFFORCE, (char *)&x, sizeof(x)) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_RCVBUFFORCE, (char *)&x, sizeof(x)) == -1)
       {
 
-         FATAL("setsockopt(SOL_SOCKET, SO_RCVBUFFORCE)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_RCVBUFFORCE)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
          
          return false;
 
@@ -2228,10 +2247,10 @@ namespace sockets
 
 #if defined(SO_SNDBUF) && defined(BSD_STYLE_SOCKETS)
 
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_SNDBUF, (char *)&x, sizeof(x)) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_SNDBUF, (char *)&x, sizeof(x)) == -1)
       {
 
-         FATAL("setsockopt(SOL_SOCKET, SO_SNDBUF)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_SNDBUF)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -2259,10 +2278,10 @@ namespace sockets
       
       socklen_t len = sizeof(value);
 
-      if (getsockopt(GetSocket(), SOL_SOCKET, SO_SNDBUF, (char *)&value, &len) == -1)
+      if (getsockopt(GetSocketId(), SOL_SOCKET, SO_SNDBUF, (char *)&value, &len) == -1)
       {
 
-         FATAL("getsockopt(SOL_SOCKET, SO_SNDBUF)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("getsockopt(SOL_SOCKET, SO_SNDBUF)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       }
 
@@ -2282,10 +2301,10 @@ namespace sockets
    bool base_socket::SetSoSndbufforce(int x)
    {
 
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_SNDBUFFORCE, (char *)&x, sizeof(x)) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_SNDBUFFORCE, (char *)&x, sizeof(x)) == -1)
       {
 
-         FATAL("setsockopt(SOL_SOCKET, SO_SNDBUFFORCE)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_SNDBUFFORCE)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
          
          return false;
 
@@ -2305,10 +2324,10 @@ namespace sockets
    
       int optval = x ? 1 : 0;
    
-      if (setsockopt(GetSocket(), SOL_SOCKET, SO_TIMESTAMP, (char *)&optval, sizeof(optval)) == -1)
+      if (setsockopt(GetSocketId(), SOL_SOCKET, SO_TIMESTAMP, (char *)&optval, sizeof(optval)) == -1)
       {
 
-         FATAL("setsockopt(SOL_SOCKET, SO_TIMESTAMP)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("setsockopt(SOL_SOCKET, SO_TIMESTAMP)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          return false;
 
@@ -2329,10 +2348,10 @@ namespace sockets
       
       socklen_t len = sizeof(value);
       
-      if (getsockopt(GetSocket(), SOL_SOCKET, SO_TYPE, (char *)&value, &len) == -1)
+      if (getsockopt(GetSocketId(), SOL_SOCKET, SO_TYPE, (char *)&value, &len) == -1)
       {
 
-         FATAL("getsockopt(SOL_SOCKET, SO_TYPE)" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("getsockopt(SOL_SOCKET, SO_TYPE)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       }
 
@@ -2603,23 +2622,23 @@ namespace sockets
    }
 
 
-   port_t base_socket::GetRemotePort()
+   ::networking::port_t base_socket::GetRemotePort()
    {
 
-      return m_addressRemote.get_service_number();
+      return m_paddressRemote->get_service_number();
 
    }
 
 
-   ::networking::address base_socket::GetRemoteAddress()
+   __pointer(::networking::address) base_socket::GetRemoteAddress()
    {
 
-      return m_addressRemote;
+      return m_paddressRemote;
 
    }
 
 
-   port_t base_socket::GetLocalPort()
+   ::networking::port_t base_socket::GetLocalPort()
    {
 
       throw ::interface_only();
@@ -2629,12 +2648,12 @@ namespace sockets
    }
 
 
-   ::networking::address base_socket::GetLocalAddress()
+   __pointer(::networking::address) base_socket::GetLocalAddress()
    {
 
       throw ::interface_only();
 
-      return ::networking::address();
+      return nullptr;
 
    }
 
@@ -2660,9 +2679,9 @@ namespace sockets
    string base_socket::get_short_description()
    {
 
-      auto paddressdepartment = ::networking::address_department();
+      auto pnetworking = m_psystem->m_papexsystem->networking();
 
-      return paddressdepartment->canonical_name(GetRemoteAddress());
+      return pnetworking->canonical_name(GetRemoteAddress());
 
    }
 
@@ -2710,7 +2729,7 @@ namespace sockets
    }
 
 
-} // namespace sockets
+} // namespace sockets_bsd
 
 
 

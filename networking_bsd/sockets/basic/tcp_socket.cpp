@@ -1,20 +1,11 @@
 #include "framework.h"
-#include "apex/networking/networking_bsd/_sockets.h"
-
-
-#ifdef PARALLELIZATION_PTHREAD
-
-
-#include "acme/operating_system/ansi/_pthread.h"
-
-
-#endif
-
-
-#include <openssl/ssl.h>
-#include <openssl/safestack.h>
-#include <openssl/x509v3.h>
-#include <openssl/rsa.h>
+#include "tcp_socket.h"
+#include "networking_bsd/address.h"
+#include "networking_bsd/networking.h"
+#include "socket_handler.h"
+#include "networking_bsd/sockets/ssl/context.h"
+#include "networking_bsd/sockets/ssl/client_context.h"
+#include "networking_bsd/sockets/ssl/client_context_map.h"
 
 
 #if defined(LINUX) || defined(FREEBSD)
@@ -25,15 +16,12 @@
 
 #include <fcntl.h>
 //#include <assert.h>
-#include <openssl/rand.h>
-#include <openssl/err.h>
-#include <openssl/evp.h>
 
 static int SSL_app_data2_idx = -1;
 static int SSL_app_data3_idx = -1;
 
 
-i64 networking_last_error();
+i32 networking_last_error();
 
 
 void SSL_init_app_data2_3_idx(void)
@@ -80,7 +68,7 @@ void SSL_set_app_data2(SSL *ssl, void *arg)
 
 
 
-static int current_session_key(::networking_bsd::tcp_socket * c, ssl_ticket_key *key)
+static int current_session_key(::sockets_bsd::tcp_socket * c, ssl_ticket_key *key)
 {
    int result = false;
    synchronous_lock synchronouslock(c->mutex());
@@ -92,8 +80,11 @@ static int current_session_key(::networking_bsd::tcp_socket * c, ssl_ticket_key 
    //apr_thread_rwlock_unlock(c->::mutex);
    return result;
 }
-static int find_session_key(::networking_bsd::tcp_socket *c, unsigned char key_name[16], ssl_ticket_key *key, int *is_current_key)
+
+
+static int find_session_key(::sockets_bsd::tcp_socket *c, unsigned char key_name[16], ssl_ticket_key *key, int *is_current_key)
 {
+
    int result = false;
    synchronous_lock synchronouslock(c->mutex());
    for (auto & ticketkey : c->m_ticketkeya)
@@ -116,7 +107,8 @@ static int ssl_tlsext_ticket_key_evp_cb(SSL* s, unsigned char key_name[16],
    unsigned char iv[EVP_MAX_IV_LENGTH],
    EVP_CIPHER_CTX* ctx, EVP_MAC_CTX* hctx, int enc)
 {
-   ::networking_bsd::tcp_socket *c = (::networking_bsd::tcp_socket *) SSL_get_app_data2(s);
+
+   ::sockets_bsd::tcp_socket *c = (::sockets_bsd::tcp_socket *) SSL_get_app_data2(s);
    ssl_ticket_key key;
    int is_current_key;
    if (enc)   /* create new session */
@@ -212,8 +204,9 @@ static int ssl_tlsext_ticket_key_cb(SSL *s, unsigned char key_name[16], unsigned
 #endif
 
 
-namespace networking_bsd
+namespace sockets_bsd
 {
+
 
 #ifdef MACOS
    bool tcp_socket::s_bReuseSession = false;
@@ -319,7 +312,7 @@ namespace networking_bsd
 
 
    /*
-   bool tcp_socket::open(in_addr ip,port_t port,bool skip_socks)
+   bool tcp_socket::open(in_addr ip,::networking::port_t port,bool skip_socks)
    {
       address ad(get_app(), ip, port);
       address local(this);
@@ -327,32 +320,39 @@ namespace networking_bsd
    }
 
 
-   bool tcp_socket::open(in6_addr ip,port_t port,bool skip_socks)
+   bool tcp_socket::open(in6_addr ip,::networking::port_t port,bool skip_socks)
    {
       address ad(get_app(), ip, port);
       return open(ad, skip_socks);
    }
    */
 
-   bool tcp_socket::open(::networking::address * ad,bool skip_socks)
+   
+   bool tcp_socket::open(::networking::address * paddress,bool skip_socks)
    {
-      ::networking::address bind_ad("0.0.0.0",0);
-      return open(ad,bind_ad,skip_socks);
+
+      auto paddress2 = __Address(paddress);
+      
+      auto paddressBind2 = __new(::networking_bsd::address);
+
+      paddressBind2->set_family(paddress2->get_family());
+
+      return open(paddress2, paddressBind2.m_p, skip_socks);
+
    }
 
 
-   bool tcp_socket::open(::networking::address * ad,::networking::address * bind_ad,bool skip_socks)
+   bool tcp_socket::open(::networking::address * paddress,::networking::address * paddressBind,bool skip_socks)
    {
 
-      string strIp = ad.get_display_number();
+      string strIp = paddress->get_display_number();
 
-      int iPort = ad.get_service_number();
+      int iPort = paddress->get_service_number();
 
       INFORMATION("open address = " << strIp << ":" << iPort);
 
-      if(!ad.is_valid())
+      if(!paddress->is_valid())
       {
-
 
          FATAL("open Invalid ::networking::address");
 
@@ -362,10 +362,7 @@ namespace networking_bsd
 
       }
 
-
-
-
-//      if(socket_handler()->get_count() >= FD_SETSIZE)
+//      if(__Handler(m_psockethandler)->get_count() >= FD_SETSIZE)
 //      {
 //
 //
@@ -377,12 +374,13 @@ namespace networking_bsd
 //      }
 
       set_connecting(false);
+
       //SetSocks4(false);
 
-//      if(socket_handler()->PoolEnabled())
+//      if(__Handler(m_psockethandler)->PoolEnabled())
 //      {
 //
-//         __pointer(base_socket_handler::pool_socket) ppoolsocket = socket_handler()->FindConnection(SOCK_STREAM,"tcp",ad);
+//         __pointer(base_socket_handler::pool_socket) ppoolsocket = __Handler(m_psockethandler)->FindConnection(SOCK_STREAM,"tcp",ad);
 //
 //         if(ppoolsocket)
 //         {
@@ -403,55 +401,86 @@ namespace networking_bsd
 //
 //      }
 
+      auto paddress2 = __Address(paddress);
+
+      auto paddressBind2 = __Address(paddressBind);
+
       // if not, create new connection
-      SOCKET s = CreateSocket(ad.get_family(),SOCK_STREAM,"tcp");
+      SOCKET s = CreateSocket(paddress2->get_family(),SOCK_STREAM,"tcp");
+
       if(s == INVALID_SOCKET)
       {
+         
          return false;
+
       }
+      
       // socket must be nonblocking for async connect
       if(!SetNonblocking(true,s))
       {
+         
          SetCloseAndDelete();
+         
          ::closesocket(s);
+
          return false;
+
       }
+      
       SetIsClient(); // client because we connect
-      SetClientRemoteAddress(ad);
+      
+      SetClientRemoteAddress(paddress);
+      
       i32 n = 0;
-      if(bind_ad.get_service_number() != 0)
-      {
-         bind(s,bind_ad.sa(),bind_ad.sa_len());
-      }
-      in_addr addrSocks4 = GetSocks4Host();
-      if(!skip_socks && !__is_zero(addrSocks4) && GetSocks4Port())
+
+      if(paddressBind->get_service_number() != 0)
       {
          
-         ::networking::address sa(GetSocks4Host(),GetSocks4Port());
+         bind(s,paddressBind2->sa(),paddressBind2->sa_len());
 
+      }
+      
+      auto addrSocks4 = GetSocks4Host();
+
+      if(!skip_socks && addrSocks4.has_char() && GetSocks4Port())
+      {
+         
+         auto paddressSocks4 = __SystemNetworking(m_psystem)->create_address(addrSocks4);
+
+         //::networking::address sa(GetSocks4Host(),GetSocks4Port());
+
+         if (paddressSocks4 && paddressSocks4->is_ip4())
          {
-            
-            string sockshost;
 
-            auto paddressdepartment = ::networking::address_department();
 
-            paddressdepartment->convert(sockshost,GetSocks4Host());
 
-            INFORMATION("open: is_connecting to socks4 server @ " << sockshost << ":" << GetSocks4Port());
+            auto paddressSocks4_2 = __Address(paddressSocks4);
+
+            //{
+            //   
+            //   string sockshost;
+
+            //   auto paddressdepartment = ::networking::address_department();
+
+            //   paddressdepartment->convert(sockshost,GetSocks4Host());
+
+            //   INFORMATION("open: is_connecting to socks4 server @ " << sockshost << ":" << GetSocks4Port());
+
+            //}
+
+            SetSocks4();
+
+            n = connect(s, paddressSocks4_2->sa(), paddressSocks4_2->sa_len());
+
+            SetRemoteHostname(paddress);
 
          }
-
-         SetSocks4();
-
-         n = connect(s,sa.sa(),sa.sa_len());
-
-         SetRemoteHostname(sa);
 
       }
       else
       {
-         n = connect(s,ad.sa(),ad.sa_len());
-         SetRemoteHostname(ad);
+         n = connect(s,paddress2->sa(),paddress2->sa_len());
+         SetRemoteHostname(paddress);
       }
       if(n == -1)
       {
@@ -460,17 +489,17 @@ namespace networking_bsd
          i32 iError = ::WSAGetLastError();
          if(iError == WSAEWOULDBLOCK || iError == 0)
 #else
-         i32 iError = Errno;
+         i32 iError = networking_last_error();
          if(iError == EINPROGRESS)
 #endif
          {
             attach(s);
             set_connecting(true); // this flag will control fd_set's
          }
-         else if(Socks4() && socket_handler()->Socks4TryDirect()) // retry
+         else if(Socks4() && __Handler(m_psockethandler)->Socks4TryDirect()) // retry
          {
             ::closesocket(s);
-            return open(ad,true);
+            return open(paddress,true);
          }
          else if(Reconnect())
          {
@@ -504,85 +533,133 @@ namespace networking_bsd
    }
 
 
-   bool tcp_socket::open(const string &host,port_t port)
+   bool tcp_socket::open(const string &host,::networking::port_t port)
    {
 
       SetCloseAndDelete(false);
 
-      if(IsIpv6())
+      auto pnetworking2 = __SystemNetworking(m_psystem);
+
+      ::networking::address_pointer paddress;
+
+      if (IsIpv6())
       {
 
-         auto paddressdepartment = ::networking::address_department();
-
-         //if(!socket_handler()->ResolverEnabled() || paddressdepartment->isipv6(host))
-         if(paddressdepartment->isipv6(host))
+         //if(!__Handler(m_psockethandler)->ResolverEnabled() || paddressdepartment->isipv6(host))
+         if (!pnetworking2->is_ip6(host))
          {
 
-            in6_addr a;
-
-            if(!paddressdepartment->convert(a,host))
-            {
-
-               SetCloseAndDelete();
-
-               return false;
-
-            }
-
-            ::networking::address ad(a,port);
-
-            ::networking::address addrLocal;
-
-            if (!open(ad, addrLocal))
-            {
-
-               return false;
-
-            }
-
-            return true;
-
-         }
-
-         //m_resolver_id = Resolve6(host,port);
-
-         return true;
-
-      }
-
-      auto paddressdepartment = ::networking::address_department();
-
-      //if(!socket_handler()->ResolverEnabled() || paddressdepartment->isipv4(host))
-      ///if( paddressdepartment->isipv4(host))
-      {
-
-         in_addr l;
-
-         if (!paddressdepartment->convert(l, host))
-         {
-            
-            WARNING("paddressdepartment->convert failed");
-            
             SetCloseAndDelete();
-            
+
             return false;
 
          }
-         
-         ::networking::address ad(l, port);
-         
-         ::networking::address addrLocal;
 
-         if (!open(ad, addrLocal))
+         auto paddress = pnetworking2->create_ip6_address(host);
+
+         //if(!paddressdepartment->convert(a,host))
+         if (!paddress)
          {
 
+            SetCloseAndDelete();
+
             return false;
 
          }
 
-         return true;
+      }
+      else
+      {
+
+
+         //if(!__Handler(m_psockethandler)->ResolverEnabled() || paddressdepartment->isipv4(host))
+         if (!pnetworking2->is_ip4(host))
+         {
+
+            SetCloseAndDelete();
+
+            return false;
+
+         }
+
+         auto paddress = pnetworking2->create_ip4_address(host);
+
+         //if(!paddressdepartment->convert(a,host))
+         if (!paddress)
+         {
+
+            SetCloseAndDelete();
+
+            return false;
+
+         }
 
       }
+
+      paddress->set_service_number(port);
+
+      auto paddress2 = __Address(paddress);
+
+      //::networking::address ad(a,port);
+
+      //::networking::address addrLocal;
+
+      auto paddressLocal = __new(::networking_bsd::address);
+
+      paddressLocal->set_family(paddress2->get_family());
+
+      if (!open(paddress, paddressLocal.m_p))
+      {
+
+         return false;
+
+      }
+
+      //return true;
+
+         //}
+
+         ////m_resolver_id = Resolve6(host,port);
+
+         //return true;
+
+      //}
+
+      //auto paddressdepartment = ::networking::address_department();
+
+      
+
+      ////if(!__Handler(m_psockethandler)->ResolverEnabled() || paddressdepartment->isipv4(host))
+      /////if( paddressdepartment->isipv4(host))
+      //{
+
+      //   in_addr l;
+
+      //   if (!paddress)
+      //   {
+      //      
+      //      WARNING("paddressdepartment->convert failed");
+      //      
+      //      SetCloseAndDelete();
+      //      
+      //      return false;
+
+      //   }
+      //   
+      //   ::networking::address ad(l, port);
+      //   
+      //   ::networking::address addrLocal;
+
+      //   if (!open(ad, addrLocal))
+      //   {
+
+      //      return false;
+
+      //   }
+
+      //   return true;
+
+      //}
 
       // resolve using async resolver thread
 
@@ -607,9 +684,9 @@ namespace networking_bsd
 //            ::networking::address addrLocal;
 //            if(open(a,addrLocal))
 //            {
-//               if(!socket_handler()->Valid(this))
+//               if(!__Handler(m_psockethandler)->Valid(this))
 //               {
-//                  socket_handler()->add(this);
+//                  __Handler(m_psockethandler)->add(this);
 //               }
 //            }
 //         }
@@ -752,22 +829,22 @@ namespace networking_bsd
 #endif // HAVE_OPENSSL
       {
 #if defined(__APPLE__) || defined(SOLARIS)
-         //         n = (i32) recv(GetSocket(), buf, nBufSize, SO_NOSIGPIPE);
-         n = (i32) ::recv(GetSocket(),buf,nBufSize,0);
+         //         n = (i32) recv(GetSocketId(), buf, nBufSize, SO_NOSIGPIPE);
+         n = (i32) ::recv(GetSocketId(),buf,nBufSize,0);
 
 #else
-         n = ::recv(GetSocket(),(char *)buf,(int)nBufSize,MSG_NOSIGNAL);
+         n = ::recv(GetSocketId(),(char *)buf,(int)nBufSize,MSG_NOSIGNAL);
 #endif
          if(n == -1)
          {
 
-            FATAL("recv " << Errno << bsd_socket_error(Errno));
+            FATAL("recv " << networking_last_error() << bsd_socket_error(networking_last_error()));
 
             OnDisconnect();
             SetCloseAndDelete(true);
             SetFlushBeforeClose(false);
             SetLost();
-            INFORMATION("tcp_socket::recv (B1) recv error(" << bsd_socket_error(Errno) << ")");
+            INFORMATION("tcp_socket::recv (B1) recv error(" << bsd_socket_error(networking_last_error()) << ")");
          }
          else if(!n)
          {
@@ -1057,7 +1134,7 @@ namespace networking_bsd
          bool br;
          bool bw;
          bool bx;
-         socket_handler()->get(GetSocket(),br,bw,bx);
+         __Handler(m_psockethandler)->get(GetSocketId(),br,bw,bx);
          if(m_obuf.get_size())
             set(br,true);
          else
@@ -1121,16 +1198,16 @@ namespace networking_bsd
       {
 //         retry:
 #if defined(__APPLE__)
-         int iSocket = GetSocket();
+         int iSocket = GetSocketId();
          n = (int) (::send(iSocket,buf,len,SO_NOSIGPIPE));
 #elif defined(SOLARIS)
-         n = ::send(GetSocket(),(const char *)buf,(int)len,0);
+         n = ::send(GetSocketId(),(const char *)buf,(int)len,0);
 #else
-         n = ::send(GetSocket(),(const char *)buf,(int)len,MSG_NOSIGNAL);
+         n = ::send(GetSocketId(),(const char *)buf,(int)len,MSG_NOSIGNAL);
 #endif
          if(n == -1)
          {
-            int iError = Errno;
+            int iError = networking_last_error();
             // normal error codes:
             // WSAEWOULDBLOCK
             //       EAGAIN or EWOULDBLOCK
@@ -1141,13 +1218,13 @@ namespace networking_bsd
 #endif
             {
 
-               FATAL("send " << Errno << bsd_socket_error(Errno));
+               FATAL("send " << networking_last_error() << bsd_socket_error(networking_last_error()));
 
                OnDisconnect();
                SetCloseAndDelete(true);
                SetFlushBeforeClose(false);
                SetLost();
-               //throw ::exception(io_exception(bsd_socket_error(Errno)));
+               //throw ::exception(io_exception(bsd_socket_error(networking_last_error())));
             }
             //else
             //{
@@ -1155,12 +1232,12 @@ namespace networking_bsd
             //   fd_set e;
             //   FD_ZERO(&e);
             //   FD_ZERO(&w);
-            //   FD_SET(GetSocket(), &e);
-            //   FD_SET(GetSocket(), &w);
+            //   FD_SET(GetSocketId(), &e);
+            //   FD_SET(GetSocketId(), &w);
             //   struct timeval tv;
             //   tv.tv_sec = 1;
             //   tv.tv_usec = 0;
-            //   ::select((int) (GetSocket() + 1), nullptr, &w, &e, &tv);
+            //   ::select((int) (GetSocketId() + 1), nullptr, &w, &e, &tv);
             //   goto retry;
             //}
 
@@ -1245,10 +1322,10 @@ namespace networking_bsd
 
          WARNING("write: Attempt to write to a non-ready socket"); // warning
 
-         if (GetSocket() == INVALID_SOCKET)
+         if (GetSocketId() == INVALID_SOCKET)
          {
 
-            INFORMATION("write: * GetSocket() == INVALID_SOCKET");
+            INFORMATION("write: * GetSocketId() == INVALID_SOCKET");
 
 
          }
@@ -1305,7 +1382,7 @@ namespace networking_bsd
          bool br;
          bool bw;
          bool bx;
-         socket_handler()->get(GetSocket(),br,bw,bx);
+         __Handler(m_psockethandler)->get(GetSocketId(),br,bw,bx);
          if(m_obuf.get_size())
             set(br,true);
          else
@@ -1327,10 +1404,11 @@ namespace networking_bsd
       request[0] = 4; // socks v4
       request[1] = 1; // command code: CONNECT
       {
-         ::networking::address ad = GetClientRemoteAddress();
-         if(ad.is_valid())
+         auto paddress = GetClientRemoteAddress();
+         auto paddress2 = __Address(paddress);
+         if(paddress2->is_valid())
          {
-            struct sockaddr * psockaddr = (struct sockaddr *)ad.sa();
+            struct sockaddr * psockaddr = (struct sockaddr *)paddress2->sa();
             struct sockaddr_in *psockaddrin = (struct sockaddr_in *)psockaddr;
             if(psockaddrin->sin_family == AF_INET)
             {
@@ -1361,7 +1439,7 @@ namespace networking_bsd
       WARNING("OnSocks4ConnectFailed: connection to socks4 server failed, trying direct connection");
 
 
-      if(!socket_handler()->Socks4TryDirect())
+      if(!__Handler(m_psockethandler)->Socks4TryDirect())
       {
          set_connecting(false);
          SetCloseAndDelete();
@@ -1449,7 +1527,7 @@ namespace networking_bsd
 
       SetNonblocking(true);
 
-      //synchronous_lock slMap(psystem->networking_bsd().m_clientcontextmap.m_mutex);
+      //synchronous_lock slMap(pnetworking2->m_clientcontextmap.m_mutex);
 
       if (is_true("from_pool"))
          return;
@@ -1517,7 +1595,7 @@ namespace networking_bsd
 
          }
 
-         m_psslcontext->m_sbio = BIO_new_socket((i32)GetSocket(),BIO_NOCLOSE);
+         m_psslcontext->m_sbio = BIO_new_socket((i32)GetSocketId(),BIO_NOCLOSE);
 
          if(!m_psslcontext->m_sbio)
          {
@@ -1556,7 +1634,7 @@ namespace networking_bsd
 
       SetNonblocking(true);
 
-      //synchronous_lock slMap(psystem->networking_bsd().m_servercontextmap.m_mutex);
+      //synchronous_lock slMap(pnetworking2->m_servercontextmap.m_mutex);
 
       {
          if(m_psslcontext.is_set()
@@ -1588,7 +1666,7 @@ namespace networking_bsd
          }
          SSL_set_app_data2(m_psslcontext->m_ssl, this);
          //SSL_set_mode(m_psslcontext->m_ssl,SSL_MODE_AUTO_RETRY);
-         m_psslcontext->m_sbio = BIO_new_socket((i32)GetSocket(),BIO_NOCLOSE);
+         m_psslcontext->m_sbio = BIO_new_socket((i32)GetSocketId(),BIO_NOCLOSE);
          if(!m_psslcontext->m_sbio)
          {
             INFORMATION("m_sbio is nullptr");
@@ -1801,7 +1879,7 @@ namespace networking_bsd
       else // server
       {
          i32 r = SSL_accept(m_psslcontext->m_ssl);
-         int iError = Errno;
+         int iError = networking_last_error();
          if(r > 0)
          {
             SetSSLNegotiate(false);
@@ -1850,7 +1928,7 @@ namespace networking_bsd
                if (r == SSL_ERROR_SYSCALL)
                {
                   
-                  ERROR("SSL_ERROR_SYSCALL: Errno = " << iError);
+                  ERROR("SSL_ERROR_SYSCALL: networking_last_error() = " << iError);
 
                }
 
@@ -1890,9 +1968,9 @@ namespace networking_bsd
    void tcp_socket::InitializeContext(const string & context, const SSL_METHOD * pmethod)
    {
 
-      auto psystem = get_system()->m_papexsystem;
+      auto pnetworking2 = __SystemNetworking(m_psystem);
 
-      ssl_client_context_map & clientcontextmap = psystem->networking_bsd().m_clientcontextmap;
+      ssl_client_context_map & clientcontextmap = pnetworking2->m_clientcontextmap;
 
       __pointer(ssl_client_context) psslclientcontext = clientcontextmap.get_context(context, pmethod);
 
@@ -2105,15 +2183,18 @@ namespace networking_bsd
 
          auto psystem = get_system()->m_papexsystem;
 
-         int cnt = sizeof(psystem->networking_bsd().m_baTicketKey) / SSL_SESSION_TICKET_KEY_SIZE;
+         auto pnetworking2 = __SystemNetworking(m_psystem);
+
+
+         int cnt = sizeof(pnetworking2->m_baTicketKey) / SSL_SESSION_TICKET_KEY_SIZE;
          m_ticketkeya.set_size(cnt);
          int j;
          for (i = 0; i < cnt; ++i)
          {
             j = (SSL_SESSION_TICKET_KEY_SIZE * i);
-            ::memcpy_dup(m_ticketkeya[i].key_name, psystem->networking_bsd().m_baTicketKey + j, 16);
-            ::memcpy_dup(m_ticketkeya[i].hmac_key, psystem->networking_bsd().m_baTicketKey + j + 16, 16);
-            ::memcpy_dup(m_ticketkeya[i].aes_key, psystem->networking_bsd().m_baTicketKey + j + 32, 16);
+            ::memcpy_dup(m_ticketkeya[i].key_name, pnetworking2->m_baTicketKey + j, 16);
+            ::memcpy_dup(m_ticketkeya[i].hmac_key, pnetworking2->m_baTicketKey + j + 16, 16);
+            ::memcpy_dup(m_ticketkeya[i].aes_key, pnetworking2->m_baTicketKey + j + 32, 16);
          }
       }
 
@@ -2190,7 +2271,7 @@ namespace networking_bsd
    void tcp_socket::close()
    {
 
-      if (GetSocket() == INVALID_SOCKET) // this could happen
+      if (GetSocketId() == INVALID_SOCKET) // this could happen
       {
 
 
@@ -2207,13 +2288,13 @@ namespace networking_bsd
       if (!Lost() && IsConnected() && !(GetShutdownStatus() & SHUT_WR))
       {
 
-         if (shutdown(GetSocket(), SHUT_WR) == -1)
+         if (shutdown(GetSocketId(), SHUT_WR) == -1)
          {
 
             // failed...
 
 
-            ERROR("shutdown " << Errno << bsd_socket_error(Errno));
+            ERROR("shutdown " << networking_last_error() << bsd_socket_error(networking_last_error()));
 
 
 
@@ -2223,7 +2304,7 @@ namespace networking_bsd
 
       char tmp[1000];
 
-      if (!Lost() && (n = (i32) ::recv(GetSocket(), tmp, 1000, 0)) >= 0)
+      if (!Lost() && (n = (i32) ::recv(GetSocketId(), tmp, 1000, 0)) >= 0)
       {
 
          if (n)
@@ -2384,11 +2465,11 @@ namespace networking_bsd
    {
 #ifdef TCP_NODELAY
       i32 optval = x ? 1 : 0;
-      if(setsockopt(GetSocket(),IPPROTO_TCP,TCP_NODELAY,(char *)&optval,sizeof(optval)) == -1)
+      if(setsockopt(GetSocketId(),IPPROTO_TCP,TCP_NODELAY,(char *)&optval,sizeof(optval)) == -1)
       {
 
 
-         FATAL("setsockopt(IPPROTO_TCP, TCP_NODELAY) " << Errno << bsd_socket_error(Errno));
+         FATAL("setsockopt(IPPROTO_TCP, TCP_NODELAY) " << networking_last_error() << bsd_socket_error(networking_last_error()));
 
          return false;
       }
@@ -2462,7 +2543,7 @@ namespace networking_bsd
       if(is_connecting())
       {
 
-         i32 iError = this->socket_handler()->m_iSelectErrno;
+         i32 iError = __Handler(m_psockethandler)->m_iSelectErrno;
 
          if(iError == ETIMEDOUT)
          {
@@ -2494,7 +2575,7 @@ namespace networking_bsd
 
             char buf[nBufSize];
 
-            SOCKET iGetSocket = GetSocket();
+            SOCKET iGetSocket = GetSocketId();
 
             int n = ::recv(iGetSocket, (char*)buf, (int)nBufSize, MSG_OOB);
 
@@ -2786,7 +2867,7 @@ namespace networking_bsd
    }
 
 
-   port_t tcp_socket::get_connect_port()
+   ::networking::port_t tcp_socket::get_connect_port()
    {
 
       return m_iConnectPort;
@@ -2806,33 +2887,5 @@ namespace networking_bsd
    }
 
 
-} // namespace networking_bsd
-
-
-
-#ifdef WINDOWS
-
-
-i64 networking_last_error()
-{
-
-   return WSAGetLastError();
-
-}
-
-
-#else
-
-
-i64 networking_last_error()
-{
-
-   return errno;
-
-}
-
-
-#endif
-
-
+} // namespace sockets_bsd
 

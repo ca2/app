@@ -21,14 +21,14 @@ inline bool thread_has_sockets() { return task_flag().is_set(e_task_flag_using_s
 //#include "logger.h"
 ////#include "trace_interface.h"
 //
-
-#ifdef BSD_STYLE_SOCKETS
-
-
-CLASS_DECL_APEX const char * bsd_socket_error(i32 x);
-
-
-#endif
+//
+//#ifdef BSD_STYLE_SOCKETS
+//
+//
+//CLASS_DECL_APEX const char * bsd_socket_error(i32 x);
+//
+//
+//#endif
 
 
 

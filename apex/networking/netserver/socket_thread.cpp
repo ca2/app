@@ -110,7 +110,7 @@ namespace netserver
             while (::task_get_run() && m_iPortMaximum >= m_iPortMinimum)
             {
 
-               for (m_iCurrentPort = m_iPortMinimum; ::task_get_run() && m_iCurrentPort <= m_iPortMaximum; m_iCurrentPort++)
+               for (m_iCurrentPort = m_iPortMinimum; ::task_get_run() && m_iCurrentPort <= m_iPortMaximum; )
                {
 
                   int iError = m_plistensocket->Bind(m_strIp, (::networking::port_t)m_iCurrentPort);
@@ -122,6 +122,8 @@ namespace netserver
                      {
 
                         preempt(300_ms);
+
+                        m_iCurrentPort++;
 
                         continue;
 
@@ -141,7 +143,7 @@ namespace netserver
 
                   m_plistensocket->set_maximum_time(0_s);
 
-                  m_psockethandler->add2(m_plistensocket);
+                  m_psockethandler->add(m_plistensocket);
 
                   while (m_psockethandler->get_count() > 0 && task_get_run())
                   {

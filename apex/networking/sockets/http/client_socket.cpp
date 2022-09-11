@@ -313,7 +313,7 @@ namespace sockets
 
       m_memoryfile.seek_to_begin();
 
-#if !defined(BSD_STYLE_SOCKETS)
+#ifdef WINRT_SOCKETS
 
       if(m_content_length > 0)
       {
@@ -392,7 +392,7 @@ namespace sockets
 
       //}
 
-#if !defined(BSD_STYLE_SOCKETS)
+#ifdef WINRT_SOCKETS
 
       m_bExpectRequest = false;
 
@@ -441,7 +441,7 @@ namespace sockets
 
       increment_scalar(scalar_download_size, len);
 
-#if !defined(BSD_STYLE_SOCKETS)
+#ifdef WINRT_SOCKETS
 
       m_event.ResetEvent();
 

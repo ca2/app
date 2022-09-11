@@ -17,11 +17,11 @@ namespace sockets
       //http_client_socket(h)
    {
 
-#if !defined(BSD_STYLE_SOCKETS)
-
-      m_bExpectRequest = true;
-
-#endif
+//#if !defined(BSD_STYLE_SOCKETS)
+//
+//      m_bExpectRequest = true;
+//
+//#endif
 
    }
 
@@ -38,11 +38,11 @@ namespace sockets
       http_client_socket(url_in)
    {
 
-#if !defined(BSD_STYLE_SOCKETS)
-
-      m_bExpectRequest = true;
-
-#endif
+//#if !defined(BSD_STYLE_SOCKETS)
+//
+//      m_bExpectRequest = true;
+//
+//#endif
 
       m_emethod = http_method_get;
 
@@ -61,11 +61,11 @@ namespace sockets
       http_client_socket(url_in)
    {
 
-#if !defined(BSD_STYLE_SOCKETS)
-
-      m_bExpectRequest = true;
-
-#endif
+//#if !defined(BSD_STYLE_SOCKETS)
+//
+//      m_bExpectRequest = true;
+//
+//#endif
 
       m_emethod = http_method_get;
 

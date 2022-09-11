@@ -39,6 +39,7 @@ namespace networking
    networking::networking()
    {
 
+      m_p2 = nullptr;
       defer_create_mutex();
 
       //m_bInitialized = false;
@@ -252,6 +253,25 @@ namespace networking
 
    address_pointer networking::create_address(const ::string & strAddress, port_t port)
    {
+
+      if (is_ip6(strAddress))
+      {
+
+         return create_ip6_address(strAddress);
+
+      }
+      else if (is_ip4(strAddress))
+      {
+
+         return create_ip4_address(strAddress);
+
+      }
+      else
+      {
+
+         throw ::exception(error_parsing, "Unrecognized networking IP address");
+
+      }
 
       return nullptr;
 
@@ -1515,7 +1535,172 @@ namespace networking
    //}
 
 
-} // namespace net
+// i32 networking::_select(::sockets::socket_handler * psockethandler, const class ::wait & wait)
+//{
+//    return -1;
+//
+//}
+
+
+   __pointer(::networking::address) networking::create_ip4_address(const ::string & strIp4, ::networking::port_t port)
+   {
+
+      return nullptr;
+
+   }
+
+
+   __pointer(::networking::address) networking::create_ip6_address(const ::string & strIp6, ::networking::port_t port)
+   {
+
+      return nullptr;
+
+   }
+
+
+} // namespace networking
+
+
+
+
+
+string get_file_extension_mime_type(const ::string & strExtension)
+{
+
+   if (strExtension == "iso")
+   {
+      return "application/octetstream";
+   }
+   else if (strExtension == "mp3")
+   {
+      return "audio/mpeg";
+   }
+   else if (strExtension == "exe")
+   {
+      return "application/x-msdownload";
+   }
+   else if (strExtension == "spa")
+   {
+      return "application/x-spa";
+   }
+   else if (strExtension == "mid")
+   {
+      return "audio/midi";
+   }
+   else if (strExtension == "js")
+   {
+      return "text/javascript";
+   }
+   else if (strExtension == "css")
+   {
+      return "text/css";
+   }
+   else if (strExtension == "xpi")
+   {
+      return "application/x-xpinstall";
+   }
+   else if (strExtension == "ttf")
+   {
+      return "font/ttf";
+   }
+   else if (strExtension == "ogv")
+   {
+      return "video/ogg";
+   }
+   else if (strExtension == "mp4")
+   {
+      return "video/mp4";
+   }
+   else if (strExtension == "webm")
+   {
+      return "video/webm";
+   }
+   else if (strExtension == "zip")
+   {
+      return "application/x-zip-compressed";
+   }
+   else if (strExtension == "crx")
+   {
+      return "application/x-chrome-extension";
+   }
+   else if (strExtension == "swf")
+   {
+      return "application/x-shockwave-flash";
+   }
+   else if (strExtension == "cab")
+   {
+      return "application/vnd.ms-cab-compressed";
+   }
+   else if (strExtension == "jar")
+   {
+      return "application/x-jar";
+   }
+   else if (strExtension == "jpg")
+   {
+      return "image/jpeg";
+   }
+   else if (strExtension == "png")
+   {
+      return "image/png";
+   }
+   else if (strExtension == "gif")
+   {
+      return "image/gif";
+   }
+   else if (strExtension == "svg")
+   {
+      return "image/svg+xml";
+   }
+   else if (strExtension == "ttf")
+   {
+      return "application/x-font-ttf";
+   }
+   else if (strExtension == "otf")
+   {
+      return "application/x-font-opentype";
+   }
+   else if (strExtension == "woff")
+   {
+      return "application/x-font-woff";
+   }
+   else if (strExtension == "eot")
+   {
+      return "application/vnd.ms-fontobject";
+   }
+   else if (strExtension == "md5")
+   {
+      return "text/plain";
+   }
+   else if (strExtension == "html")
+   {
+      return "text/html";
+   }
+   else if (strExtension == "htm")
+   {
+      return "text/html";
+   }
+   else if (strExtension == "rdf")
+   {
+      return "application/rdf+xml";
+   }
+   else
+   {
+      return "";
+   }
+
+}
+
+
+
+
+
+
+
+
+
+// namespace str
+// {
+
 
 
 

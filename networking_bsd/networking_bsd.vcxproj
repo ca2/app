@@ -228,7 +228,7 @@
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
       </EntryPointSymbol>
-      <AdditionalDependencies>libcrypto.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcrypto.lib;libssl.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <EnableCOMDATFolding>
@@ -389,7 +389,7 @@
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>
       </EntryPointSymbol>
-      <AdditionalDependencies>libcrypto.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcrypto.lib;libssl.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
       <ShowProgress>NotSet</ShowProgress>
@@ -565,7 +565,7 @@
       </EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
-      <AdditionalDependencies>libcrypto.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcrypto.lib;libssl.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <MapFileName>
       </MapFileName>
       <EnableCOMDATFolding>
@@ -721,7 +721,7 @@
       </EntryPointSymbol>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
-      <AdditionalDependencies>libcrypto.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcrypto.lib;libssl.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
@@ -813,7 +813,27 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="address.h" />
+    <ClInclude Include="bsd\_.h" />
     <ClInclude Include="networking.h" />
+    <ClInclude Include="sockets\base\socket.h" />
+    <ClInclude Include="sockets\base\socket_handler.h" />
+    <ClInclude Include="sockets\base\socket_thread.h" />
+    <ClInclude Include="sockets\basic\listen_socket.h" />
+    <ClInclude Include="sockets\basic\sctp_socket.h" />
+    <ClInclude Include="sockets\basic\socket.h" />
+    <ClInclude Include="sockets\basic\socket_handler.h" />
+    <ClInclude Include="sockets\basic\stream_socket.h" />
+    <ClInclude Include="sockets\basic\tcp_socket.h" />
+    <ClInclude Include="sockets\basic\tls_socket.h" />
+    <ClInclude Include="sockets\basic\udp_socket.h" />
+    <ClInclude Include="sockets\basic\_.h" />
+    <ClInclude Include="sockets\config.h" />
+    <ClInclude Include="sockets\ssl\client_context.h" />
+    <ClInclude Include="sockets\ssl\client_context_map.h" />
+    <ClInclude Include="sockets\ssl\context.h" />
+    <ClInclude Include="sockets\ssl\initializer.h" />
+    <ClInclude Include="sockets\ssl\ticket_key.h" />
+    <ClInclude Include="sockets\ssl\_.h" />
     <ClInclude Include="winsock2\_.h" />
     <ClInclude Include="_byte_order.h" />
     <ClInclude Include="aaa_initializer.h" />
@@ -835,7 +855,6 @@
     <ClInclude Include="_.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="_impl.h" />
-    <ClInclude Include="_library.h" />
     <ClInclude Include="aaa__openssl.h" />
     <ClInclude Include="_networking.h" />
     <ClInclude Include="_networking_impl.h" />
@@ -846,24 +865,21 @@
     <ClCompile Include="networking.cpp" />
     <ClCompile Include="ip_enum.cpp" />
     <ClCompile Include="port_forward.cpp" />
-    <ClCompile Include="sockets.cpp" />
-    <ClCompile Include="sockets\bsd\basic\basic_net.cpp" />
-    <ClCompile Include="sockets\bsd\basic\listen_socket.cpp" />
-    <ClCompile Include="sockets\bsd\basic\sctp_socket.cpp" />
-    <ClCompile Include="sockets\bsd\basic\socket.cpp" />
-    <ClCompile Include="sockets\bsd\basic\socket_handler.cpp" />
-    <ClCompile Include="sockets\bsd\basic\stream_socket.cpp" />
-    <ClCompile Include="sockets\bsd\basic\sync_socket_handler.cpp" />
-    <ClCompile Include="sockets\bsd\basic\tcp_socket.cpp" />
-    <ClCompile Include="sockets\bsd\basic\tls_socket.cpp" />
-    <ClCompile Include="sockets\bsd\basic\udp_socket.cpp" />
-    <ClCompile Include="sockets\bsd\sockets.cpp" />
-    <ClCompile Include="sockets\http_batch_buffer.cpp" />
-    <ClCompile Include="sockets\link_in_socket.cpp" />
-    <ClCompile Include="sockets\link_out_socket.cpp" />
-    <ClCompile Include="sockets\sockets_base.cpp" />
-    <ClCompile Include="sockets\transfer_socket.cpp" />
-    <ClCompile Include="sockets\websocket_client.cpp" />
+    <ClCompile Include="sockets\base\socket.cpp" />
+    <ClCompile Include="sockets\base\socket_handler.cpp" />
+    <ClCompile Include="sockets\base\socket_thread.cpp" />
+    <ClCompile Include="sockets\basic\listen_socket.cpp" />
+    <ClCompile Include="sockets\basic\sctp_socket.cpp" />
+    <ClCompile Include="sockets\basic\socket.cpp" />
+    <ClCompile Include="sockets\basic\socket_handler.cpp" />
+    <ClCompile Include="sockets\basic\stream_socket.cpp" />
+    <ClCompile Include="sockets\basic\tcp_socket.cpp" />
+    <ClCompile Include="sockets\basic\tls_socket.cpp" />
+    <ClCompile Include="sockets\basic\udp_socket.cpp" />
+    <ClCompile Include="sockets\ssl\client_context.cpp" />
+    <ClCompile Include="sockets\ssl\client_context_map.cpp" />
+    <ClCompile Include="sockets\ssl\context.cpp" />
+    <ClCompile Include="sockets\ssl\initializer.cpp" />
     <ClCompile Include="winsock2\_.cpp" />
     <ClCompile Include="_.cpp" />
     <ClCompile Include="_factory.cpp" />

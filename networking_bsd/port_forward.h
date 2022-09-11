@@ -121,8 +121,6 @@ namespace net
    };
 
 
-   typedef ___pointer < port_forward > port_forward_pointer;
-
 
 } // namespace net
 

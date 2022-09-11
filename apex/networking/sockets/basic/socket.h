@@ -17,7 +17,7 @@ namespace sockets
    public:
 
 #ifdef _UWP
-      static SOCKET s_socketNextIdSeed;
+      static socket_id s_socketNextIdSeed;
 #endif
 
       /** "Default" constructor */
@@ -31,7 +31,7 @@ namespace sockets
       \lparam af Address family AF_INET / AF_INET6 / ...
       \lparam type SOCK_STREAM / SOCK_DGRAM / ...
       \lparam protocol "tcp" / "udp" / ... */
-      //SOCKET CreateSocket(i32 af,i32 type,const string & protocol = "");
+      //socket_id CreateSocket(i32 af,i32 type,const string & protocol = "");
 
 
 
@@ -48,7 +48,7 @@ namespace sockets
 
       virtual bool is_ok();
 
-      //virtual i32 close_socket(SOCKET s);
+      //virtual i32 close_socket(socket_id s);
 
 
 
@@ -61,7 +61,7 @@ namespace sockets
 
 
       using base_socket::SetNonblocking;
-      //bool SetNonblocking(bool bNb, SOCKET s);
+      //bool SetNonblocking(bool bNb, socket_id s);
 
 
       virtual ::networking::address_pointer get_peer_address();

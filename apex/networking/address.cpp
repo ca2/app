@@ -29,6 +29,7 @@ namespace networking
 
    address::address()
    {
+      m_p2 = nullptr;
 //
 //#ifdef BSD_STYLE_SOCKETS
 //      ::zero(this, sizeof(u.m_sa));
@@ -348,14 +349,14 @@ namespace networking
 
    }
 
-   bool address::is_ipv4() const
+   bool address::is_ip4() const
    {
 
       return false;
 
    }
 
-   bool address::is_ipv6() const
+   bool address::is_ip6() const
    {
 
       return false;
@@ -365,7 +366,7 @@ namespace networking
    bool address::is_valid() const
    {
 
-      return is_ipv4() || is_ipv6();
+      return is_ip4() || is_ip6();
 
    }
 
@@ -526,78 +527,78 @@ namespace networking
 //#endif
 //
 
-   void address::parse_string(const ::string & strAddress)
-   {
-
-//#if defined(BSD_STYLE_SOCKETS)
+//   void address::parse_string(const ::string & strAddress)
+//   {
 //
-//      auto paddressdepartment = ::networking::address_department();
+////#if defined(BSD_STYLE_SOCKETS)
+////
+////      auto paddressdepartment = ::networking::address_department();
+////
+////      if (paddressdepartment->isipv6(strAddress))
+////      {
+////       
+////         if (paddressdepartment->convert(u.m_addr6.sin6_addr, strAddress))
+////         {
+////
+////            u.s.set_family(AF_INET6);
+////
+////         }
 //
-//      if (paddressdepartment->isipv6(strAddress))
-//      {
-//       
-//         if (paddressdepartment->convert(u.m_addr6.sin6_addr, strAddress))
-//         {
-//
-//            u.s.set_family(AF_INET6);
-//
-//         }
-
-//      }
-//      else if (paddressdepartment->isipv4(strAddress))
-//      {
-//
-//         if (paddressdepartment->convert(u.m_addr.sin_addr, strAddress))
-//         {
-//
-//            u.s.set_family(AF_INET);
-//
-//         }
-//
-//      }
-//      else
-//      {
-//
-//         throw ::exception(error_parsing, "Unrecognized networking IP address");
-//
-//      }
-//
-//#elif defined(WINRT_SOCKETS)
-//
-//      m_hostname = ref new ::winrt::Windows::Networking::HostName(strAddress);
+////      }
+////      else if (paddressdepartment->isipv4(strAddress))
+////      {
+////
+////         if (paddressdepartment->convert(u.m_addr.sin_addr, strAddress))
+////         {
+////
+////            u.s.set_family(AF_INET);
+////
+////         }
+////
+////      }
+////      else
+////      {
+////
+////         throw ::exception(error_parsing, "Unrecognized networking IP address");
+////
+////      }
+////
+////#elif defined(WINRT_SOCKETS)
+////
+////      m_hostname = ref new ::winrt::Windows::Networking::HostName(strAddress);
+////
+////
+////#endif
+////
+//   }
 //
 //
-//#endif
+//   string address::get_string() const
+//   {
 //
-   }
-
-
-   string address::get_string() const
-   {
-
-      string str;
-
-//#if defined(BSD_STYLE_SOCKETS)
+//      string str;
 //
-//      if (is_ipv4())
-//      {
+////#if defined(BSD_STYLE_SOCKETS)
+////
+////      if (is_ipv4())
+////      {
+////
+////         ::to_string(str, u.m_addr);
+////
+////      }
+////      else if (is_ipv6())
+////      {
+////
+////         ::to_string(str, u.m_addr6);
+////
+////      }
+////         
+////#endif
 //
-//         ::to_string(str, u.m_addr);
+//      return str;
 //
-//      }
-//      else if (is_ipv6())
-//      {
+//   }
 //
-//         ::to_string(str, u.m_addr6);
-//
-//      }
-//         
-//#endif
-
-      return str;
-
-   }
-
 
 //#if defined(BSD_STYLE_SOCKETS)
 //
@@ -625,70 +626,70 @@ namespace networking
 //#endif
 //
 //
-   void address::copy(address *paddress)
-   {
+   //void address::copy(address *paddress)
+   //{
 
-      //::memcpy_dup(this, &address, sizeof(address));
+   //   //::memcpy_dup(this, &address, sizeof(address));
 
-      //sync_os_address();
-      //sync_os_service();
+   //   //sync_os_address();
+   //   //sync_os_service();
 
-   }
+   //}
 
 
-   address ipv4(u32 u, ::networking::port_t port)
-   {
-
-      address a;
-
-//#if defined(BSD_STYLE_SOCKETS)
+//   address ipv4(u32 u, ::networking::port_t port)
+//   {
 //
-//      ::zero(&a, sizeof(a));
+//      address a;
 //
-//      a.m_iLen = -1;
-//      a.u.m_addr.sin_family = AF_INET;
-//      a.u.m_addr.sin_port = port;
-//      ::memcpy_dup(&a.u.m_addr.sin_addr, &u, sizeof(a.u.m_addr.sin_addr));
-//#ifdef WINDOWS
-//      ::__swap(a.u.m_addr.sin_addr.S_un.S_un_b.s_b1, a.u.m_addr.sin_addr.S_un.S_un_b.s_b4);
-//      ::__swap(a.u.m_addr.sin_addr.S_un.S_un_b.s_b2, a.u.m_addr.sin_addr.S_un.S_un_b.s_b3);
-//#else
-////      ::__swap(&a.u.m_addr.sin_addr.s_addr.S_un_b.s_b1, &a.u.m_addr.sin_addr.s_addr.S_un_b.s_b4);
-////      ::__swap(&a.u.m_addr.sin_addr.s_addr.S_un_b.s_b2, &a.u.m_addr.sin_addr.s_addr.S_un_b.s_b3);
-//#endif
+////#if defined(BSD_STYLE_SOCKETS)
+////
+////      ::zero(&a, sizeof(a));
+////
+////      a.m_iLen = -1;
+////      a.u.m_addr.sin_family = AF_INET;
+////      a.u.m_addr.sin_port = port;
+////      ::memcpy_dup(&a.u.m_addr.sin_addr, &u, sizeof(a.u.m_addr.sin_addr));
+////#ifdef WINDOWS
+////      ::__swap(a.u.m_addr.sin_addr.S_un.S_un_b.s_b1, a.u.m_addr.sin_addr.S_un.S_un_b.s_b4);
+////      ::__swap(a.u.m_addr.sin_addr.S_un.S_un_b.s_b2, a.u.m_addr.sin_addr.S_un.S_un_b.s_b3);
+////#else
+//////      ::__swap(&a.u.m_addr.sin_addr.s_addr.S_un_b.s_b1, &a.u.m_addr.sin_addr.s_addr.S_un_b.s_b4);
+//////      ::__swap(&a.u.m_addr.sin_addr.s_addr.S_un_b.s_b2, &a.u.m_addr.sin_addr.s_addr.S_un_b.s_b3);
+////#endif
+////
+////      a.sync_os_address();
+////      a.sync_os_service();
+////
+////#endif
+////
+//      return a;
 //
-//      a.sync_os_address();
-//      a.sync_os_service();
+//   }
 //
-//#endif
+//   address ipv6(void * p128bits, ::networking::port_t port)
+//   {
 //
-      return a;
-
-   }
-
-   address ipv6(void * p128bits, ::networking::port_t port)
-   {
-
-      address a;
-
-//#if defined(BSD_STYLE_SOCKETS)
+//      address a;
 //
-//      ::zero(&a, sizeof(a));
+////#if defined(BSD_STYLE_SOCKETS)
+////
+////      ::zero(&a, sizeof(a));
+////
+////      a.m_iLen = sizeof(sockaddr_in6);
+////      a.u.m_addr6.sin6_family = AF_INET6;
+////      a.u.m_addr6.sin6_port = port;
+////      ::memcpy_dup(&a.u.m_addr6.sin6_addr, p128bits, sizeof(a.u.m_addr6.sin6_addr));
+////
+////      a.sync_os_address();
+////      a.sync_os_service();
+////
+////#endif
 //
-//      a.m_iLen = sizeof(sockaddr_in6);
-//      a.u.m_addr6.sin6_family = AF_INET6;
-//      a.u.m_addr6.sin6_port = port;
-//      ::memcpy_dup(&a.u.m_addr6.sin6_addr, p128bits, sizeof(a.u.m_addr6.sin6_addr));
+//      return a;
 //
-//      a.sync_os_address();
-//      a.sync_os_service();
+//   }
 //
-//#endif
-
-      return a;
-
-   }
-
 
    ::networking::port_t address::use_address_service_number_as_offset_for_base_port(::networking::port_t portBase) const
    {

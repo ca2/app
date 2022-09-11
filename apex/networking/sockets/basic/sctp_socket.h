@@ -80,7 +80,7 @@ namespace sockets
       /** recvmsg callback */
       virtual void OnReceiveMessage(const char *buf,memsize sz,struct sockaddr *sa,socklen_t sa_len,struct sctp_sndrcvinfo *sinfo,i32 msg_flags) = 0;
 
-      void OnOptions(i32,i32,i32,SOCKET) {}
+      void OnOptions(i32,i32,i32,socket_id) {}
 
       virtual i32 Protocol();
 

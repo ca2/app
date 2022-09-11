@@ -25,7 +25,7 @@ namespace sockets
       bool                 m_bDetach;
       base_socket *        m_pbasesocket;
 
-
+      __pointer(listen_socket_base) m_pcomposite;
       /** Constructor.
       \lparam h base_socket_handler object
       \lparam use_creator Optional use of creator (default true) */
@@ -36,6 +36,7 @@ namespace sockets
 
       virtual ~listen_socket_base();
 
+      void initialize(::object * pobject) override;
 
       virtual __pointer(socket) create_listen_socket();
 
@@ -115,11 +116,11 @@ namespace sockets
 
       /** Please don't use this method.
       "accept()" is handled automatically in the OnRead() method. */
-      //virtual SOCKET Accept(SOCKET socket, struct sockaddr *saptr, socklen_t *lenptr);
+      //virtual socket_id Accept(socket_id socket, struct sockaddr *saptr, socklen_t *lenptr);
 
       virtual bool HasCreator();
 
-      //virtual void OnOptions(i32,i32,i32,SOCKET);
+      //virtual void OnOptions(i32,i32,i32,socket_id);
 
 
 

@@ -8,7 +8,7 @@
 // transfer_socket_exception, transfer_socket, http_transfer_socket
 
 #include "framework.h"
-#include "apex/networking/networking_bsd/_sockets.h"
+
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
 
@@ -224,13 +224,13 @@ namespace networking_bsd
 
       fd_set fd;
       FD_ZERO(&fd);
-      FD_SET(GetSocket(), &fd);
+      FD_SET(GetSocketId(), &fd);
       TIMEVAL tv = { nSecsPatience, 0 };
 
       // static_cast is necessary to avoid compiler warning under WIN32;
       // This is no problem because the first parameter is included only
       // for compatibility with Berkeley networking_bsd.
-      const int iRet = ::select((int) (GetSocket() + 1), &fd, nullptr, nullptr, &tv);
+      const int iRet = ::select((int) (GetSocketId() + 1), &fd, nullptr, nullptr, &tv);
 
       if (iRet == SOCKET_ERROR)
       {
@@ -249,13 +249,13 @@ namespace networking_bsd
 
       fd_set fd;
       FD_ZERO(&fd);
-      FD_SET(GetSocket(), &fd);
+      FD_SET(GetSocketId(), &fd);
       TIMEVAL tv = { nSecsPatience, 0 };
 
       // static_cast is necessary to avoid compiler warning under WIN32;
       // This is no problem because the first parameter is included only
       // for compatibility with Berkeley networking_bsd.
-      const int iRet = ::select((int) (GetSocket() + 1), nullptr, &fd, nullptr, &tv);
+      const int iRet = ::select((int) (GetSocketId() + 1), nullptr, &fd, nullptr, &tv);
 
       if (iRet == SOCKET_ERROR)
       {
@@ -418,7 +418,7 @@ namespace networking_bsd
 
       // input buffer should be big enough for the entire datagram
       socklen_t nFromSize = sizeof(SOCKADDR);
-      const int nBytesReceived = (int) (::recvfrom(GetSocket(), pch, nSize, 0, psa, &nFromSize));
+      const int nBytesReceived = (int) (::recvfrom(GetSocketId(), pch, nSize, 0, psa, &nFromSize));
 
       if (nBytesReceived == SOCKET_ERROR)
       {
@@ -440,7 +440,7 @@ namespace networking_bsd
 
       }
 
-      const int nBytesSent = (int) (::sendto(GetSocket(), pch, nSize, 0, psa, sizeof(SOCKADDR)));
+      const int nBytesSent = (int) (::sendto(GetSocketId(), pch, nSize, 0, psa, sizeof(SOCKADDR)));
       
       if (nBytesSent == SOCKET_ERROR)
       {

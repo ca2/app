@@ -175,7 +175,7 @@ namespace sockets
 //      }
 
 //      // if not, create new connection
-//      SOCKET s = CreateSocket(ad.get_family(),SOCK_STREAM,"tcp");
+//      socket_id s = CreateSocket(ad.get_family(),SOCK_STREAM,"tcp");
 //      if(s == INVALID_SOCKET)
 //      {
 //         return false;
@@ -527,11 +527,11 @@ return true;
 //#endif // HAVE_OPENSSL
 //      {
 //#if defined(__APPLE__) || defined(SOLARIS)
-//         //         n = (i32) recv(GetSocket(), buf, nBufSize, SO_NOSIGPIPE);
-//         n = (i32) ::recv(GetSocket(),buf,nBufSize,0);
+//         //         n = (i32) recv(get_socket_id(), buf, nBufSize, SO_NOSIGPIPE);
+//         n = (i32) ::recv(get_socket_id(),buf,nBufSize,0);
 //
 //#else
-//         n = ::recv(GetSocket(),(char *)buf,(int)nBufSize,MSG_NOSIGNAL);
+//         n = ::recv(get_socket_id(),(char *)buf,(int)nBufSize,MSG_NOSIGNAL);
 //#endif
 //         if(n == -1)
 //         {
@@ -832,7 +832,7 @@ return true;
       //   bool br;
       //   bool bw;
       //   bool bx;
-      //   socket_handler()->get(GetSocket(),br,bw,bx);
+      //   socket_handler()->get(get_socket_id(),br,bw,bx);
       //   if(m_obuf.get_size())
       //      set(br,true);
       //   else
@@ -896,12 +896,12 @@ return true;
 //      {
 ////         retry:
 //#if defined(__APPLE__)
-//         int iSocket = GetSocket();
+//         int iSocket = get_socket_id();
 //         n = (int) (::send(iSocket,buf,len,SO_NOSIGPIPE));
 //#elif defined(SOLARIS)
-//         n = ::send(GetSocket(),(const char *)buf,(int)len,0);
+//         n = ::send(get_socket_id(),(const char *)buf,(int)len,0);
 //#else
-//         n = ::send(GetSocket(),(const char *)buf,(int)len,MSG_NOSIGNAL);
+//         n = ::send(get_socket_id(),(const char *)buf,(int)len,MSG_NOSIGNAL);
 //#endif
 //         if(n == -1)
 //         {
@@ -930,12 +930,12 @@ return true;
 //            //   fd_set e;
 //            //   FD_ZERO(&e);
 //            //   FD_ZERO(&w);
-//            //   FD_SET(GetSocket(), &e);
-//            //   FD_SET(GetSocket(), &w);
+//            //   FD_SET(get_socket_id(), &e);
+//            //   FD_SET(get_socket_id(), &w);
 //            //   struct timeval tv;
 //            //   tv.tv_sec = 1;
 //            //   tv.tv_usec = 0;
-//            //   ::select((int) (GetSocket() + 1), nullptr, &w, &e, &tv);
+//            //   ::select((int) (get_socket_id() + 1), nullptr, &w, &e, &tv);
 //            //   goto retry;
 //            //}
 //
@@ -1020,10 +1020,10 @@ return true;
 
       //   WARNING("write: Attempt to write to a non-ready socket"); // warning
 
-      //   if (GetSocket() == INVALID_SOCKET)
+      //   if (get_socket_id() == INVALID_SOCKET)
       //   {
 
-      //      INFORMATION("write: * GetSocket() == INVALID_SOCKET");
+      //      INFORMATION("write: * get_socket_id() == INVALID_SOCKET");
 
 
       //   }
@@ -1080,7 +1080,7 @@ return true;
       //   bool br;
       //   bool bw;
       //   bool bx;
-      //   socket_handler()->get(GetSocket(),br,bw,bx);
+      //   socket_handler()->get(get_socket_id(),br,bw,bx);
       //   if(m_obuf.get_size())
       //      set(br,true);
       //   else
@@ -1292,7 +1292,7 @@ return true;
 
       //   }
 
-      //   m_psslcontext->m_sbio = BIO_new_socket((i32)GetSocket(),BIO_NOCLOSE);
+      //   m_psslcontext->m_sbio = BIO_new_socket((i32)get_socket_id(),BIO_NOCLOSE);
 
       //   if(!m_psslcontext->m_sbio)
       //   {
@@ -1363,7 +1363,7 @@ return true;
       //   }
       //   SSL_set_app_data2(m_psslcontext->m_ssl, this);
       //   //SSL_set_mode(m_psslcontext->m_ssl,SSL_MODE_AUTO_RETRY);
-      //   m_psslcontext->m_sbio = BIO_new_socket((i32)GetSocket(),BIO_NOCLOSE);
+      //   m_psslcontext->m_sbio = BIO_new_socket((i32)get_socket_id(),BIO_NOCLOSE);
       //   if(!m_psslcontext->m_sbio)
       //   {
       //      INFORMATION("m_sbio is nullptr");
@@ -1966,7 +1966,7 @@ return true;
    {
       m_pimpl->close();
 
-//      if (GetSocket() == INVALID_SOCKET) // this could happen
+//      if (get_socket_id() == INVALID_SOCKET) // this could happen
 //      {
 //
 //
@@ -1983,7 +1983,7 @@ return true;
 //      if (!Lost() && IsConnected() && !(GetShutdownStatus() & SHUT_WR))
 //      {
 //
-//         if (shutdown(GetSocket(), SHUT_WR) == -1)
+//         if (shutdown(get_socket_id(), SHUT_WR) == -1)
 //         {
 //
 //            // failed...
@@ -1999,7 +1999,7 @@ return true;
 //
 //      char tmp[1000];
 //
-//      if (!Lost() && (n = (i32) ::recv(GetSocket(), tmp, 1000, 0)) >= 0)
+//      if (!Lost() && (n = (i32) ::recv(get_socket_id(), tmp, 1000, 0)) >= 0)
 //      {
 //
 //         if (n)
@@ -2137,7 +2137,7 @@ return true;
    }
 
 
-//   void tcp_socket::OnOptions(i32 family,i32 type,i32 protocol,SOCKET s)
+//   void tcp_socket::OnOptions(i32 family,i32 type,i32 protocol,socket_id s)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(family);
@@ -2164,7 +2164,7 @@ return true;
    {
 #ifdef TCP_NODELAY
       i32 optval = x ? 1 : 0;
-      if(setsockopt(GetSocket(),IPPROTO_TCP,TCP_NODELAY,(char *)&optval,sizeof(optval)) == -1)
+      if(setsockopt(get_socket_id(),IPPROTO_TCP,TCP_NODELAY,(char *)&optval,sizeof(optval)) == -1)
       {
 
 
@@ -2274,7 +2274,7 @@ return true;
 
          //   char buf[nBufSize];
 
-         //   SOCKET iGetSocket = GetSocket();
+         //   socket_id iGetSocket = get_socket_id();
 
          //   int n = ::recv(iGetSocket, (char*)buf, (int)nBufSize, MSG_OOB);
 

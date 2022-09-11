@@ -362,7 +362,7 @@ namespace sockets
 
       m_bTls = true;
 
-#if !defined(BSD_STYLE_SOCKETS)
+#ifdef WINRT_SOCKETS
 
       m_bExpectRequest = true;
 
@@ -403,7 +403,7 @@ namespace sockets
 
       m_bTls = true;
 
-#if !defined(BSD_STYLE_SOCKETS)
+#ifdef WINRT_SOCKETS
 
       m_bExpectRequest = true;
 
@@ -593,7 +593,7 @@ namespace sockets
          else
          inheader(__id(host)) = GetUrlHost();*/
 
-#if !defined(BSD_STYLE_SOCKETS)
+#ifdef WINRT_SOCKETS
 
          m_bExpectResponse = true;
 

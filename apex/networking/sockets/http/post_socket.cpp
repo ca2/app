@@ -199,7 +199,7 @@ namespace sockets
 
          inheader(__id(content_length)) = content_length;
 
-#if !defined(BSD_STYLE_SOCKETS)
+#ifdef WINRT_SOCKETS
 
          m_bExpectResponse = true;
 
@@ -366,7 +366,7 @@ namespace sockets
 
       inheader(__id(content_length)) = (i64) length;
 
-#if !defined(BSD_STYLE_SOCKETS)
+#ifdef WINRT_SOCKETS
 
       m_bExpectResponse = true;
 

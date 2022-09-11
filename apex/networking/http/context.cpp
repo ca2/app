@@ -1442,7 +1442,7 @@ namespace http
 //
 //         }
 //
-//         //psession->m_psockethandler->restart_socket(psession->GetSocket());
+//         //psession->m_psockethandler->restart_socket(psession->get_socket_id());
 //
 //         i32 iIteration = 0;
 //
@@ -2600,7 +2600,7 @@ namespace http
 
       pmessage->get_property_set() = process_set(*pmessage->m_ppropertyset, pmessageMessage->m_strUrl);
 
-      auto phandler = __create_new < ::sockets::socket_handler >();
+      auto phandler = __create< ::sockets::socket_handler >();
 
       property_set & set = pmessage->get_property_set();
 
@@ -2687,7 +2687,7 @@ namespace http
    bool context::download(const char * pszUrl, ::payload payloadFile, property_set & set)
    {
 
-      auto phandler = __create_new < ::sockets::socket_handler >();
+      auto phandler = __create < ::sockets::socket_handler >();
 
       __pointer(::sockets::http_client_socket) psocket;
 
@@ -2760,7 +2760,7 @@ namespace http
 
          synchronouslock.unlock();
 
-         auto phandler = __create_new < ::sockets::socket_handler >();
+         auto phandler = __create < ::sockets::socket_handler >();
 
          set["only_headers"] = true;
 

@@ -32,6 +32,7 @@ namespace sockets
       string               m_strLine;
       bool                 m_bRequest;
       bool                 m_bResponse;
+      //bool                 m_bExpectRequest;
       memsize               m_body_size_left;
       memsize               m_body_size_downloaded;
       double_scalar_source m_scalarsourceDownloadedRate;

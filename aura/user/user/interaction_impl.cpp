@@ -2713,7 +2713,7 @@ namespace user
             if (is_set(puserinteraction))
             {
 
-               auto pchild = puserinteraction->child_from_point(pmouse->m_point, &interactionaHandled);
+               auto pchild = puserinteraction->child_from_point(pmouse->m_point, -1, &interactionaHandled);
 
                if (::is_set(pchild))
                {

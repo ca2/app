@@ -1,8 +1,9 @@
 #include "framework.h"
-#include "apex/networking/networking_bsd/_sockets.h"
+#include "stream_socket.h"
+#include "socket_handler.h"
 
 
-namespace networking_bsd
+namespace sockets_bsd
 {
 
 
@@ -68,7 +69,7 @@ namespace networking_bsd
    bool stream_socket::Ready()
    {
 
-      if (GetSocket() != INVALID_SOCKET && !is_connecting() && !IsCloseAndDelete())
+      if (GetSocketId() != INVALID_SOCKET && !is_connecting() && !IsCloseAndDelete())
       {
 
          return true;
@@ -153,7 +154,7 @@ namespace networking_bsd
    void stream_socket::SetCallOnConnect(bool bCallOnConnect)
    {
 
-      socket_handler()->socketlist_modify(GetSocket(), e_list_call_on_connect, bCallOnConnect);
+      __Handler(m_psockethandler)->socket_id_list_modify(GetSocketId(), e_list_call_on_connect, bCallOnConnect);
 
       m_bCallOnConnect = bCallOnConnect;
 
@@ -171,7 +172,7 @@ namespace networking_bsd
    void stream_socket::SetRetryClientConnect(bool bSetRetryClientConnect)
    {
 
-      socket_handler()->socketlist_modify(GetSocket(), e_list_retry_client_connect, bSetRetryClientConnect);
+      __Handler(m_psockethandler)->socket_id_list_modify(GetSocketId(), e_list_retry_client_connect, bSetRetryClientConnect);
 
       m_bRetryClientConnect = bSetRetryClientConnect;
 
@@ -212,7 +213,7 @@ namespace networking_bsd
    }
 
 
-} // namespace networking_bsd
+} // namespace sockets_bsd
 
 
 

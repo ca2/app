@@ -53,6 +53,7 @@ namespace sockets
    /*   array < ssl_ticket_key >   m_ticketkeya;
 */
 
+      __pointer(tcp_socket)         m_ptcpsocketComposite;
       static bool s_bReuseSession; // Default psystem Wide Setting
 
       /** Output buffer struct.
@@ -250,7 +251,7 @@ namespace sockets
 
       void DisableInputBuffer(bool = true);
 
-      //void OnOptions(i32,i32,i32,SOCKET) override;
+      //void OnOptions(i32,i32,i32,socket_id) override;
 
       void SetLineProtocol(bool = true) override;
 

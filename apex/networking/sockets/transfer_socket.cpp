@@ -142,7 +142,7 @@ namespace sockets
    //{
    //   ASSERT(psa != nullptr);
    //   ASSERT(m_hSocket != INVALID_SOCKET);
-   //   ASSERT(sConnect.operator SOCKET() == INVALID_SOCKET);
+   //   ASSERT(sConnect.operator socket_id() == INVALID_SOCKET);
 
    //   // ATTENTION: dynamic_cast would be better (and then checking against nullptr)
    //   //            RTTI must be enabled to use dynamic_cast //+#
@@ -151,7 +151,7 @@ namespace sockets
    //   socklen_t nLengthAddr = sizeof(SOCKADDR);
    //   pConnect->m_hSocket = ::accept(m_hSocket, psa, &nLengthAddr);
 
-   //   if (pConnect->operator SOCKET() == INVALID_SOCKET)
+   //   if (pConnect->operator socket_id() == INVALID_SOCKET)
    //   {
    //      // no exception if the listen was canceled
    //      if (WSAGetLastError() != WSAEINTR)
@@ -224,13 +224,13 @@ namespace sockets
 
       //fd_set fd;
       //FD_ZERO(&fd);
-      //FD_SET(GetSocket(), &fd);
+      //FD_SET(get_socket_id(), &fd);
       //TIMEVAL tv = { nSecsPatience, 0 };
 
       //// static_cast is necessary to avoid compiler warning under WIN32;
       //// This is no problem because the first parameter is included only
       //// for compatibility with Berkeley sockets.
-      //const int iRet = ::select((int) (GetSocket() + 1), &fd, nullptr, nullptr, &tv);
+      //const int iRet = ::select((int) (get_socket_id() + 1), &fd, nullptr, nullptr, &tv);
 
       //if (iRet == SOCKET_ERROR)
       //{
@@ -250,13 +250,13 @@ namespace sockets
 
       //fd_set fd;
       //FD_ZERO(&fd);
-      //FD_SET(GetSocket(), &fd);
+      //FD_SET(get_socket_id(), &fd);
       //TIMEVAL tv = { nSecsPatience, 0 };
 
       //// static_cast is necessary to avoid compiler warning under WIN32;
       //// This is no problem because the first parameter is included only
       //// for compatibility with Berkeley sockets.
-      //const int iRet = ::select((int) (GetSocket() + 1), nullptr, &fd, nullptr, &tv);
+      //const int iRet = ::select((int) (get_socket_id() + 1), nullptr, &fd, nullptr, &tv);
 
       //if (iRet == SOCKET_ERROR)
       //{
@@ -420,7 +420,7 @@ namespace sockets
 
    //   // input buffer should be big enough for the entire datagram
    //   socklen_t nFromSize = sizeof(SOCKADDR);
-   //   const int nBytesReceived = (int) (::recvfrom(GetSocket(), pch, nSize, 0, psa, &nFromSize));
+   //   const int nBytesReceived = (int) (::recvfrom(get_socket_id(), pch, nSize, 0, psa, &nFromSize));
 
    //   if (nBytesReceived == SOCKET_ERROR)
    //   {
@@ -442,7 +442,7 @@ namespace sockets
 
    //   }
 
-   //   const int nBytesSent = (int) (::sendto(GetSocket(), pch, nSize, 0, psa, sizeof(SOCKADDR)));
+   //   const int nBytesSent = (int) (::sendto(get_socket_id(), pch, nSize, 0, psa, sizeof(SOCKADDR)));
    //   
    //   if (nBytesSent == SOCKET_ERROR)
    //   {

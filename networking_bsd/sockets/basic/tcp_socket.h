@@ -30,20 +30,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma once
 
 
-#include "acme/filesystem/file/circular_file.h"
+#include "stream_socket.h"
+#include "apex/networking/sockets/basic/tcp_socket.h"
+#include "networking_bsd/sockets/ssl/ticket_key.h"
 
 #define TCP_BUFSIZE_READ (16400)
 #define TCP_OUTPUT_CAPACITY 1024000
 
-namespace sockets
+namespace sockets_bsd
 {
 
 
 
    /** socket implementation for TCP.
    \ingroup basic */
-   class CLASS_DECL_APEX tcp_socket :
-      virtual public stream_socket
+   class CLASS_DECL_NETWORKING_BSD tcp_socket :
+      virtual public stream_socket,
+      virtual public ::sockets::tcp_socket
    {
       /** \defgroup internal Internal utility */
    public:
@@ -140,7 +143,7 @@ namespace sockets
       u32 m_socks4_dstip; ///< socks4 support
 
       string m_strConnectHost;
-      port_t m_iConnectPort;
+      ::networking::port_t m_iConnectPort;
 
       i32 m_resolver_id; ///< Resolver atom (if any) for current open call
 
@@ -169,7 +172,7 @@ namespace sockets
       /** open connection.
       \lparam host Hostname
       \lparam port Port number */
-      bool open(const string &host,port_t port);
+      bool open(const string &host,::networking::port_t port);
 
       /** Connect timeout callback. */
       void on_connection_timeout() override;
@@ -255,7 +258,7 @@ namespace sockets
       bool SetTcpNodelay(bool = true);
 
       virtual string get_connect_host();
-      virtual port_t get_connect_port();
+      virtual ::networking::port_t get_connect_port();
 
       virtual i32 Protocol() override;
 
@@ -321,7 +324,7 @@ namespace sockets
    i32 tcp_socket_SSL_password_cb(char *buf,i32 num,i32 rwflag,void *userdata);
 
 
-} // namespace sockets
+} // namespace sockets_bsd
 
 
 

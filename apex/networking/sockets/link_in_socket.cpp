@@ -90,7 +90,7 @@ namespace sockets
 
       __pointer(link_in_socket) pinsocket = __new(link_in_socket);
 
-      pinsocket->m_psockethandler = psocket->socket_handler();
+      pinsocket->initialize_socket(psocket->socket_handler());
 
       pinsocket->m_in = psocket;
 

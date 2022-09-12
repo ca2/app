@@ -242,9 +242,11 @@ namespace sockets
 
       SendResponse();
 
-      if(m_obuf_top == nullptr)
+      if(top_output_buffer() == nullptr)
       {
+
          OnWriteComplete();
+
       }
 
       response().file()->set_size(0);

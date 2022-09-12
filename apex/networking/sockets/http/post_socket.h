@@ -77,8 +77,11 @@ namespace sockets
       http_post_socket();
       /* client constructor,
       \lparam url_in = 'http://host:port/resource' */
-      http_post_socket(const string & url_in);
+      //http_post_socket(const string & url_in);
       virtual ~http_post_socket();
+
+
+      virtual void initialize_http_post_socket(const ::string & strUrl);
 
       // these must be specified before connecting / adding to handler
       /** add field to post. */

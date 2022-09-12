@@ -22,11 +22,8 @@ namespace sockets
          state_init_ssl
 
       };
-
-
-      http_tunnel();
       bool        m_bSslTunnel;
-      bool        m_bOk ;
+      bool        m_bOk;
       string m_host; ///< Hostname from url_in
       ::networking::port_t m_port; ///< Port from url_in
       string_array   m_straProxy;
@@ -40,6 +37,12 @@ namespace sockets
       bool        m_bDirect;
       string      m_strPasswordFile;
       string      m_strUserNameFile;
+
+
+      http_tunnel();
+      ~http_tunnel() override;
+
+      void initialize(::object * pobject) override;
 
       virtual const string & GetUrlHost();
       /** get port from url. */

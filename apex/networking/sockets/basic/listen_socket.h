@@ -25,7 +25,8 @@ namespace sockets
       bool                 m_bDetach;
       base_socket *        m_pbasesocket;
 
-      __pointer(listen_socket_base) m_pcomposite;
+      __pointer(listen_socket_base)       m_pcomposite;
+      bool                                m_bImpl;
       /** Constructor.
       \lparam h base_socket_handler object
       \lparam use_creator Optional use of creator (default true) */
@@ -37,6 +38,8 @@ namespace sockets
       virtual ~listen_socket_base();
 
       void initialize(::object * pobject) override;
+
+      base_socket * base_socket_composite() override;
 
       virtual __pointer(socket) create_listen_socket();
 

@@ -17,8 +17,8 @@ namespace sockets
    public:
 
 
-      //string               m_strProxy;
-      //i32                  m_iProxyPort;
+      string               m_strProxy;
+      i32                  m_iProxyPort;
 
 
       ::http::request      m_request;
@@ -53,16 +53,16 @@ namespace sockets
 
 
       http_socket();
-      virtual ~http_socket();
+      ~http_socket() override;
 
 
-      virtual void on_initialize_object() override;
+      void initialize(::object * pobject) override;
 
 
       virtual void OnEndChunk();
 
-      virtual void OnRawData(char *buf,memsize len) override;
-      virtual void OnLine(const string & line) override;
+      void OnRawData(char *buf,memsize len) override;
+      void OnLine(const string & line) override;
 
       /** Callback executes when first line has been received.
       GetMethod, GetUrl/GetUri, and GetHttpVersion are valid when this callback is executed. */

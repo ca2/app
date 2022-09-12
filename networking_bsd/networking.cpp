@@ -3416,6 +3416,8 @@ namespace networking_bsd
 
          paddress2->u.s.set_family(AF_INET);
 
+         paddress2->set_service_number(port);
+
       }
 
       return paddress2;
@@ -3431,6 +3433,8 @@ namespace networking_bsd
       {
 
          paddress2->u.s.set_family(AF_INET6);
+
+         paddress2->set_service_number(port);
 
       }
 

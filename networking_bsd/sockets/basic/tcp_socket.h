@@ -60,65 +60,6 @@ namespace sockets_bsd
       \ingroup internal */
       string m_strTlsHostName;
       
-      struct output :
-         virtual public object
-      {
-         
-         
-         i32 _b;
-         i32 _t;
-         i32 _q;
-         char * _buf;
-         memory m_memory;
-         int m_iTcpOuputCapacity;
-
-
-         output(int iTcpOutputCapacity) :
-            m_iTcpOuputCapacity(iTcpOutputCapacity),
-            _b(0), _t(0), _q(0)
-         {
-            m_memory.set_size(m_iTcpOuputCapacity);
-            _buf = (char*) m_memory.get_data();
-         }
-
-         output(int iTcpOutputCapacity, const char *buf, i32 len) :
-            m_iTcpOuputCapacity(iTcpOutputCapacity), 
-            _b(0), _t(len), _q(len)
-         {
-            m_memory.set_size(m_iTcpOuputCapacity);
-            _buf = (char *) m_memory.get_data();
-            ::memcpy_dup(_buf, buf, len);
-         }
-
-         virtual ~output()
-         {
-         }
-
-         i32 Space()
-         {
-            return m_iTcpOuputCapacity - _t;
-         }
-         void add(const char *buf, i32 len)
-         {
-            ::memcpy_dup(_buf + _t, buf, len);
-            _t += len;
-            _q += len;
-         }
-         i32 erase(i32 len)
-         {
-            _b += len;
-            _q -= len;
-            return _q;
-         }
-         const char *Buf()
-         {
-            return _buf + _b;
-         }
-         i32 Len()
-         {
-            return _q;
-         }
-      };
       typedef list<__pointer(output)> output_list;
 
       ::file::circular_file ibuf; ///< Circular input buffer
@@ -166,6 +107,9 @@ namespace sockets_bsd
       virtual ~tcp_socket();
 
 
+      void initialize(::object * pobject) override;
+
+
       //using ::sockets::stream_socket::open;
       bool open(::networking::address * address, bool skip_socks = false);
       bool open(::networking::address * address, ::networking::address * addressBind,bool skip_socks = false);
@@ -173,6 +117,24 @@ namespace sockets_bsd
       \lparam host Hostname
       \lparam port Port number */
       bool open(const string &host,::networking::port_t port);
+
+
+      void set_host(const ::string & strHost) override;
+      ::string get_host() const override;
+
+
+      void set_tls_hostname(const ::string & strTlsHostname) override;
+
+
+      void set_connect_host(const ::string & strConnectHost) override;
+      ::string get_connect_host() const override;
+      void set_connect_port(const ::networking::port_t portConnect) override;
+      ::networking::port_t get_connect_port() const override;
+
+
+      void set_url(const ::string & strUrl) override;
+      string get_url() const override;
+
 
       /** Connect timeout callback. */
       void on_connection_timeout() override;
@@ -216,6 +178,10 @@ namespace sockets_bsd
       /** get counter of number of bytes sent. */
       u64 GetBytesSent(bool clear = false) override;
 
+
+      output * top_output_buffer() override;
+
+      
 #if defined(BSD_STYLE_SOCKETS)
       /** Socks4 specific callback. */
       void OnSocks4Connect() override;
@@ -303,10 +269,10 @@ namespace sockets_bsd
       /** ssl; still negotiating connection. */
       bool SSLNegotiate() override;
       /** SSL; get ssl password. */
-      const string & GetPassword();
+      string GetPassword() override;
 
 
-      virtual string get_url();
+      string get_url() override;
 
       virtual string get_short_description() override;
 

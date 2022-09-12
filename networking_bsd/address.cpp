@@ -31,7 +31,7 @@ namespace networking_bsd
 
 #ifdef BSD_STYLE_SOCKETS
 
-      ::zero(this, sizeof(u.m_sa));
+      ::zero(&u.m_sa, sizeof(u.m_sa));
 
       m_iLen = -1;
 
@@ -63,19 +63,19 @@ namespace networking_bsd
 //
 //#endif
 
-      ::zero(this, sizeof(u.m_sa));
+      ::zero(&u.m_sa, sizeof(u.m_sa));
 
       if (sa.sa_family == AF_INET6)
       {
          m_iLen = iLen <= 0 ? sizeof(sockaddr_in6) : iLen;
-         ::memcpy_dup(&u.m_sa, &sa, m_iLen);
+         ::memcpy_dup(&u.m_addr6, &sa, m_iLen);
          sync_os_address();
          sync_os_service();
       }
       else if (sa.sa_family == AF_INET)
       {
-         m_iLen = -1;
-         ::memcpy_dup(&u.m_sa, &sa, sizeof(sockaddr_in));
+         m_iLen = iLen <= 0 ? sizeof(sockaddr_in) : iLen;
+         u.m_sa = sa;
          sync_os_address();
          sync_os_service();
       }

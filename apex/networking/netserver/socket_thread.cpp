@@ -148,7 +148,7 @@ namespace netserver
                   while (m_psockethandler->get_count() > 0 && task_get_run())
                   {
 
-                     m_psockethandler->select(1, 0);
+                     m_psockethandler->select(60, 0);
 
                   }
 

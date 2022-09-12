@@ -967,7 +967,7 @@ namespace user
 
 
       template < typename CHILD >
-      inline bool get_typed_child(CHILD *& pchild, ::user::interaction * puiExclude = nullptr)
+      inline bool get_typed_child(CHILD *& pchild, ::i32 iLevel = -1, ::user::interaction * puiExclude = nullptr)
       {
 
          auto puserinteractionpointeraChild = children();
@@ -991,6 +991,28 @@ namespace user
                {
 
                   return true;
+
+               }
+
+            }
+
+         }
+
+         if (iLevel < 0 || iLevel > 0)
+         {
+
+            for (auto & pinteraction : *puserinteractionpointeraChild)
+            {
+
+               if (pinteraction != puiExclude)
+               {
+
+                  if(pinteraction->get_typed_child(pchild, iLevel - 1, puiExclude))
+                  {
+
+                     return true;
+
+                  }
 
                }
 

@@ -52,7 +52,7 @@ namespace sockets_bsd
 #endif
       string                  m_password; ///< ssl password
 
-      //__pointer(::sockets::base_socket_handler)   m_psockethandler; /// |-xxx-Reference-xxx-> 2021-03-08pointer of base_socket_handler in control of this socket
+      __pointer(::sockets::base_socket_handler)   m_psockethandler; /// |-xxx-Reference-xxx-> 2021-03-08pointer of base_socket_handler in control of this socket
       SOCKET                  m_socket; ///< File descriptor
 
       static ::mutex *        s_pmutex;
@@ -112,7 +112,7 @@ namespace sockets_bsd
       bool                             m_bDetach; ///< base_socket ordered to detach flag
       bool                             m_bDetached; ///< base_socket has been detached
       __pointer(::sockets_bsd::socket_thread)         m_psocketthread; ///< detach base_socket thread class pointer
-      //__pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler while detached
+      __pointer(::sockets::base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler while detached
 
 
       // LineProtocol
@@ -603,6 +603,10 @@ namespace sockets_bsd
       void SetSocketProtocol(const string & x);
       /** Protocol type from base_socket() call. */
       string  GetSocketProtocol();
+
+      bool IsPoolEnabled() const override;
+
+      void EnablePool(bool bEnable) override;
       /** Instruct a client base_socket to stay open in the connection pool after use.
       If you have connected to a server using tcp, you can call SetRetain
       to leave the connection open after your base_socket instance has been deleted.

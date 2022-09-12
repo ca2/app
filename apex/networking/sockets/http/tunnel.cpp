@@ -15,12 +15,28 @@ namespace sockets
       //http_socket(h)
    {
 
+      ///m_memoryBuf.set_size(1024 * 16);
+      //m_iProxyPort = -1;
+
+   }
+
+   http_tunnel::~http_tunnel()
+   {
+
+
+   }
+
+
+   void http_tunnel::initialize(::object * pobject)
+   {
+
+
+      http_socket::initialize(pobject);
+
       SetLineProtocol();
       m_bOk = false;
       m_bDirect = false;
       m_estate = e_state_initial;
-      ///m_memoryBuf.set_size(1024 * 16);
-      //m_iProxyPort = -1;
 
    }
 
@@ -250,48 +266,49 @@ namespace sockets
    bool http_tunnel::open(bool bConfigProxy)
    {
 
-      //if (m_strProxy.has_char() && m_iProxyPort > 0 && !m_bDirect)
-      //{
-      //}
-      //else if (bConfigProxy)
-      //{
+      if (m_strProxy.has_char() && m_iProxyPort > 0 && !m_bDirect)
+      {
+      }
+      else 
+         if (bConfigProxy)
+      {
 
-      //   m_pcontext->m_papexcontext->http().config_proxy(get_url(), this);
+         m_pcontext->m_papexcontext->http().config_proxy(get_url(), this);
 
-      //}
-      //else
-      //{
+      }
+      else
+      {
 
-      //   m_bDirect = true;
+         m_bDirect = true;
 
-      //}
+      }
 
-      //if (m_bDirect)
-      //{
+      if (m_bDirect)
+      {
 
-      //   if (!tcp_socket::open(get_connect_host(), get_connect_port()))
-      //   {
+         if (!tcp_socket::open(get_connect_host(), get_connect_port()))
+         {
 
-      //      if (!is_connecting())
-      //      {
+            if (!is_connecting())
+            {
 
-      //         FATAL("http_get_socket: connect() failed miserably");
+               FATAL("http_get_socket: connect() failed miserably");
 
-      //         SetCloseAndDelete();
+               SetCloseAndDelete();
 
-      //      }
+            }
 
-      //      return false;
+            return false;
 
-      //   }
+         }
 
-      //}
-      //else
-      //{
+      }
+      else
+      {
 
-      //   return proxy_open(m_strProxy, (::networking::port_t)m_iProxyPort);
+         return proxy_open(m_strProxy, (::networking::port_t)m_iProxyPort);
 
-      //}
+      }
 
       return true;
 

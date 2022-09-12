@@ -200,7 +200,7 @@ namespace ftp
          return false;
       }
 
-      m_psockethandler->add2(this);
+      socket_handler()->add(this);
 
       return true;
 
@@ -319,7 +319,7 @@ namespace ftp
             strTemp = plogon->Hostname();
             ushPort = 990;
             EnableSSL();
-            m_strHost = strTemp;
+            set_host(strTemp);
 
          }
          else
@@ -861,7 +861,7 @@ namespace ftp
 
          pbasesocket2 = apSckDataConnection;
 
-         pbasesocket2->m_psockethandler = m_psockethandler;
+         pbasesocket2->initialize_socket(socket_handler());
 
          if (!OpenActiveDataConnection(*apSckDataConnection, crDatachannelCmd, strPath, dwByteOffset))
             return false;
@@ -1001,10 +1001,10 @@ namespace ftp
          return false;
       }
 
-      m_psockethandler->add2(&sckDataConnection);
-
+      socket_handler()->add(&sckDataConnection);
 
       ::u16 ushLocalSock = 0;
+
       try
       {
          // INADDR_ANY = ip ::networking::address of localhost
@@ -1054,7 +1054,7 @@ namespace ftp
       while (sckDataConnection.m_pbasesocket == nullptr)
       {
 
-         m_psockethandler->select(1, 0);
+         socket_handler()->select(1, 0);
 
       }
 
@@ -1123,7 +1123,7 @@ namespace ftp
          return false;
       }
 
-      m_psockethandler->add2(&sckDataConnection);
+      socket_handler()->add(&sckDataConnection);
 
       // if resuming is activated then set offset
       if (m_fResumeIfPossible &&
@@ -1470,7 +1470,7 @@ auto tickStart = ::duration::now();
             else
             {
 
-               m_psockethandler->select(1,0);
+               socket_handler()->select(1, 0);
 
                if (IsSSL())
                {

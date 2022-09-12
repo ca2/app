@@ -23,7 +23,7 @@ html_impact::~html_impact()
 void html_impact::install_message_routing(::channel * pchannel)
 {
 
-   html_form::install_message_routing(pchannel);
+   ::user::show < ::html_form >::install_message_routing(pchannel);
 
    MESSAGE_LINK(e_message_destroy, pchannel, this, &html_impact::on_message_destroy);
    MESSAGE_LINK(e_message_create, pchannel, this, &html_impact::on_message_create);
@@ -235,6 +235,23 @@ void html_impact::handle(::topic * ptopic, ::context * pcontext)
          set_need_redraw();
 
       }
+
+   }
+
+}
+
+
+void html_impact::on_form_implemented()
+{
+
+   ::html_form::on_form_implemented();
+
+   auto pdocument = get_document();
+
+   if (::is_set(pdocument))
+   {
+
+      pdocument->call_routines_with_id("load");
 
    }
 

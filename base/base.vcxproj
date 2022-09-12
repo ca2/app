@@ -767,7 +767,16 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="html\user\document.cpp" />
-    <ClCompile Include="html\user\form_impact.cpp" />
+    <ClCompile Include="html\user\aaa_form_impact.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="html\user\impact.cpp" />
     <ClCompile Include="html\user\user.cpp" />
     <ClCompile Include="operating_system\windows\frame_window.cpp" />
@@ -846,7 +855,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="html\user\child_frame.h" />
     <ClInclude Include="html\user\document.h" />
-    <ClInclude Include="html\user\form_impact.h" />
+    <ClInclude Include="html\user\aaa_form_impact.h" />
     <ClInclude Include="html\user\impact.h" />
     <ClInclude Include="html\user\_.h" />
     <ClInclude Include="html\user\_component.h" />

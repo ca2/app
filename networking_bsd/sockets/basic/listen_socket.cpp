@@ -324,15 +324,15 @@ namespace sockets_bsd
    void listen_socket::OnRead()
    {
 
-      char sz[sizeof(sockaddr_in6)];
+      auto socketid = GetSocketId();
 
-      struct sockaddr * psa = (sockaddr *)sz;
+      struct sockaddr sockaddr{};
 
-      socklen_t sa_len = sizeof(sz);
+      int sockaddr_len = sizeof(sockaddr);
 
-      SOCKET a_s = accept(GetSocketId(), psa, &sa_len);
+      SOCKET socketAccept = accept(socketid, &sockaddr, &sockaddr_len);
 
-      if (a_s == INVALID_SOCKET)
+      if (socketAccept == INVALID_SOCKET)
       {
 
          ERROR("accept" << networking_last_error() << bsd_socket_error(networking_last_error()));
@@ -346,7 +346,7 @@ namespace sockets_bsd
 
          WARNING("accept: -1 Not OK to accept");
 
-         close_socket(a_s);
+         close_socket(socketAccept);
 
          return;
 
@@ -357,7 +357,7 @@ namespace sockets_bsd
 
          FATAL("accept " << (i32)socket_handler()->get_count() << " base_socket_handler fd_set limit reached");
 
-         close_socket(a_s);
+         close_socket(socketAccept);
 
          return;
 
@@ -365,9 +365,9 @@ namespace sockets_bsd
 
       auto tmp1 = ::move(create_listen_socket());
 
-      auto tmp = __Socket(tmp1);
+      tmp1->initialize(this);
 
-      tmp->initialize(this);
+      auto tmp = __Socket(tmp1);
 
       tmp->set_start_time();
 
@@ -400,10 +400,10 @@ namespace sockets_bsd
       tmp -> EnableSSL(IsSSL()); // SSL Enabled socket
       tmp -> SetIpv6( IsIpv6() );
       tmp -> set_parent(this);
-      tmp -> attach(a_s);
+      tmp -> attach(socketAccept);
       tmp -> SetNonblocking(true);
       auto paddressRemote = __new(::networking_bsd::address);
-      paddressRemote->set_address(*psa);
+      paddressRemote->set_address(sockaddr, sockaddr_len);
       //tmp->SetRemoteHostname(::networking::address(*psa));
       tmp->SetRemoteHostname(paddressRemote);
       tmp->m_iBindPort = m_iBindPort;
@@ -466,12 +466,12 @@ namespace sockets_bsd
    //}
 
 
-   __pointer(::sockets::socket) listen_socket::create_listen_socket()
-   {
+   //__pointer(::sockets::socket) listen_socket::create_listen_socket()
+   //{
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
 } // namespace sockets_bsd

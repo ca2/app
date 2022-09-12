@@ -253,6 +253,8 @@ namespace user
                   for (index i = 0; i < m_pitem->m_pmesh->m_plist->m_iIconBlur; i++)
                   {
 
+                     m_pitem->m_pmesh->m_plist->__defer_construct_new(m_pitem->m_pmesh->m_plist->m_pfastblurIcon);
+
                      m_pitem->m_pmesh->m_plist->m_pfastblurIcon->blur(pimage, m_pitem->m_pmesh->m_plist->m_iIconBlurRadius);
 
                   }

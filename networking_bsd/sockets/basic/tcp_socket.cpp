@@ -311,6 +311,14 @@ namespace sockets_bsd
    }
 
 
+   void tcp_socket::initialize(::object * pobject)
+   {
+
+      stream_socket::initialize(pobject);
+
+   }
+
+
    /*
    bool tcp_socket::open(in_addr ip,::networking::port_t port,bool skip_socks)
    {
@@ -546,16 +554,16 @@ namespace sockets_bsd
       {
 
          //if(!__Handler(m_psockethandler)->ResolverEnabled() || paddressdepartment->isipv6(host))
-         if (!pnetworking2->is_ip6(host))
-         {
+         //if (!pnetworking2->is_ip6(host))
+         //{
 
-            SetCloseAndDelete();
+         //   SetCloseAndDelete();
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
-         auto paddress = pnetworking2->create_ip6_address(host);
+         paddress = pnetworking2->create_ip6_address(host);
 
          //if(!paddressdepartment->convert(a,host))
          if (!paddress)
@@ -572,17 +580,17 @@ namespace sockets_bsd
       {
 
 
-         //if(!__Handler(m_psockethandler)->ResolverEnabled() || paddressdepartment->isipv4(host))
-         if (!pnetworking2->is_ip4(host))
-         {
+         ////if(!__Handler(m_psockethandler)->ResolverEnabled() || paddressdepartment->isipv4(host))
+         //if (!pnetworking2->is_ip4(host))
+         //{
 
-            SetCloseAndDelete();
+         //   SetCloseAndDelete();
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
-         auto paddress = pnetworking2->create_ip4_address(host);
+         paddress = pnetworking2->create_ip4_address(host);
 
          //if(!paddressdepartment->convert(a,host))
          if (!paddress)
@@ -669,6 +677,77 @@ namespace sockets_bsd
 
    }
 
+
+   void tcp_socket::set_host(const ::string & strHost)
+   {
+
+      m_strHost = strHost;
+
+   }
+
+
+   ::string tcp_socket::get_host() const
+   {
+
+      return m_strHost;
+
+   }
+
+
+   void tcp_socket::set_tls_hostname(const ::string & strTlsHostname)
+   {
+
+      m_strTlsHostName = strTlsHostname;
+
+   }
+
+
+   void tcp_socket::set_connect_host(const ::string & strConnectHost)
+   {
+
+      m_strConnectHost = strConnectHost;
+
+   }
+
+
+   ::string tcp_socket::get_connect_host() const
+   {
+
+      return m_strConnectHost;
+
+   }
+
+
+   void tcp_socket::set_connect_port(const ::networking::port_t portConnect)
+   {
+
+      m_iConnectPort = portConnect;
+
+   }
+
+
+   ::networking::port_t tcp_socket::get_connect_port() const
+   {
+
+      return m_iConnectPort;
+
+   }
+
+
+   void tcp_socket::set_url(const ::string & strUrl)
+   {
+
+      m_strUrl = strUrl;
+
+   }
+
+
+   string tcp_socket::get_url() const
+   {
+
+      return m_strUrl;
+
+   }
 
 //   void tcp_socket::OnResolved(i32 atom,::networking::address * a)
 //   {
@@ -1391,8 +1470,11 @@ namespace sockets_bsd
    }
 
 
-   void tcp_socket::OnLine(const string &)
+   void tcp_socket::OnLine(const string & str)
    {
+
+      m_ptcpsocketComposite->OnLine(str);
+
    }
 
 
@@ -2400,6 +2482,14 @@ namespace sockets_bsd
    }
 
 
+   tcp_socket::output * tcp_socket::top_output_buffer()
+   {
+
+      return m_obuf_top;
+
+   }
+
+
    bool tcp_socket::Reconnect()
    {
       return m_bReconnect;
@@ -2422,7 +2512,7 @@ namespace sockets_bsd
    }
 
 
-   const string & tcp_socket::GetPassword()
+   string tcp_socket::GetPassword() 
    {
 
       return m_password;
@@ -2486,50 +2576,52 @@ namespace sockets_bsd
    void tcp_socket::on_connection_timeout()
    {
 
-      FATAL("connect: connect timeout");
+      m_ptcpsocketComposite->on_connection_timeout();
 
-      m_estatus = error_connection_timed_out;
+      //FATAL("connect: connect timeout");
 
-      if(Socks4())
-      {
+      //m_estatus = error_connection_timed_out;
 
-         OnSocks4ConnectFailed();
-         // retry direct connection
-      }
-      else if(GetMaximumConnectionRetryCount() == -1 ||
-              (GetMaximumConnectionRetryCount() && GetConnectionRetryCount() < GetMaximumConnectionRetryCount()))
-      {
+      //if(Socks4())
+      //{
 
-         IncrementConnectionRetryCount();
+      //   OnSocks4ConnectFailed();
+      //   // retry direct connection
+      //}
+      //else if(GetMaximumConnectionRetryCount() == -1 ||
+      //        (GetMaximumConnectionRetryCount() && GetConnectionRetryCount() < GetMaximumConnectionRetryCount()))
+      //{
 
-         // ask socket via OnConnectRetry callback if we should continue trying
-         if(OnConnectRetry())
-         {
+      //   IncrementConnectionRetryCount();
 
-            SetRetryClientConnect();
+      //   // ask socket via OnConnectRetry callback if we should continue trying
+      //   if(OnConnectRetry())
+      //   {
 
-         }
-         else
-         {
+      //      SetRetryClientConnect();
 
-            SetCloseAndDelete(true);
+      //   }
+      //   else
+      //   {
 
-            /// \todo state reason why connect failed
-            OnConnectFailed();
+      //      SetCloseAndDelete(true);
 
-         }
+      //      /// \todo state reason why connect failed
+      //      OnConnectFailed();
 
-      }
-      else
-      {
+      //   }
 
-         SetCloseAndDelete(true);
-         /// \todo state reason why connect failed
-         OnConnectFailed();
+      //}
+      //else
+      //{
 
-      }
-      
-      set_connecting(false);
+      //   SetCloseAndDelete(true);
+      //   /// \todo state reason why connect failed
+      //   OnConnectFailed();
+
+      //}
+      //
+      //set_connecting(false);
 
    }
 
@@ -2540,67 +2632,69 @@ namespace sockets_bsd
    void tcp_socket::OnException()
    {
 
-      if(is_connecting())
-      {
+      m_ptcpsocketComposite->OnException();
 
-         i32 iError = __Handler(m_psockethandler)->m_iSelectErrno;
+      //if(is_connecting())
+      //{
 
-         if(iError == ETIMEDOUT)
-         {
+      //   i32 iError = __Handler(m_psockethandler)->m_iSelectErrno;
 
-            m_estatus = error_connection_timed_out;
+      //   if(iError == ETIMEDOUT)
+      //   {
 
-         }
-         else
-         {
-            //m_estatus = status_failed;
-         }
+      //      m_estatus = error_connection_timed_out;
 
-         int iGetConnectionRetry = GetMaximumConnectionRetryCount();
+      //   }
+      //   else
+      //   {
+      //      //m_estatus = status_failed;
+      //   }
 
-         int iGetConnectionRetries = GetConnectionRetryCount();
+      //   int iGetConnectionRetry = GetMaximumConnectionRetryCount();
 
-         if (Socks4())
-         {
+      //   int iGetConnectionRetries = GetConnectionRetryCount();
 
-            OnSocks4ConnectFailed();
+      //   if (Socks4())
+      //   {
 
-         }
-         else if(iGetConnectionRetry == -1 ||
-                 (iGetConnectionRetry &&
-                    iGetConnectionRetries < iGetConnectionRetry))
-         {
+      //      OnSocks4ConnectFailed();
 
-            const int nBufSize = 1024;
+      //   }
+      //   else if(iGetConnectionRetry == -1 ||
+      //           (iGetConnectionRetry &&
+      //              iGetConnectionRetries < iGetConnectionRetry))
+      //   {
 
-            char buf[nBufSize];
+      //      const int nBufSize = 1024;
 
-            SOCKET iGetSocket = GetSocketId();
+      //      char buf[nBufSize];
 
-            int n = ::recv(iGetSocket, (char*)buf, (int)nBufSize, MSG_OOB);
+      //      SOCKET iGetSocket = GetSocketId();
 
-            INFORMATION("got " << n << " bytes of Out of Band Data");
+      //      int n = ::recv(iGetSocket, (char*)buf, (int)nBufSize, MSG_OOB);
 
-            // even though the connection failed at once, only retry after
-            // the connection timeout
-            // should we even try to connect again, when CheckConnect returns
-            // false it's because of a connection error - not a timeout...
-         }
-         else
-         {
-            set_connecting(false); // tnx snibbe
-            SetCloseAndDelete();
-            OnConnectFailed();
-         }
-         return;
-      }
-      // %! exception doesn't always mean something bad happened, this code should be reworked
-      // errno valid here?
-      i32 err = SoError();
+      //      INFORMATION("got " << n << " bytes of Out of Band Data");
 
-      FATAL("exception on select " << err << bsd_socket_error(err));
+      //      // even though the connection failed at once, only retry after
+      //      // the connection timeout
+      //      // should we even try to connect again, when CheckConnect returns
+      //      // false it's because of a connection error - not a timeout...
+      //   }
+      //   else
+      //   {
+      //      set_connecting(false); // tnx snibbe
+      //      SetCloseAndDelete();
+      //      OnConnectFailed();
+      //   }
+      //   return;
+      //}
+      //// %! exception doesn't always mean something bad happened, this code should be reworked
+      //// errno valid here?
+      //i32 err = SoError();
 
-      SetCloseAndDelete();
+      //FATAL("exception on select " << err << bsd_socket_error(err));
+
+      //SetCloseAndDelete();
    }
 
 
@@ -2610,7 +2704,7 @@ namespace sockets_bsd
    i32 tcp_socket::Protocol()
    {
 
-      return IPPROTO_TCP;
+      return m_ptcpsocketComposite->Protocol();
 
    }
 
@@ -2618,13 +2712,17 @@ namespace sockets_bsd
    void tcp_socket::SetTransferLimit(memsize sz)
    {
 
-      m_transfer_limit = sz;
+      //m_transfer_limit = sz;
+
+      m_ptcpsocketComposite->SetTransferLimit(sz);
 
    }
 
 
    void tcp_socket::OnTransferLimit()
    {
+
+      m_ptcpsocketComposite->OnTransferLimit();
 
    }
 

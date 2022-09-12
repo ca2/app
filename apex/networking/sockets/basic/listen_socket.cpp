@@ -14,7 +14,7 @@ namespace sockets
       m_depth(0),
       m_bDetach(false)
    {
-
+      m_bImpl = false;
    }
 
 
@@ -412,14 +412,26 @@ namespace sockets
       __construct(m_pcomposite);
 
       m_p2 = m_pcomposite->m_p2;
+
+      m_pcomposite->m_pcomposite = this;
+
+      m_pcomposite->m_bImpl = true;
       
+   }
+
+
+   base_socket * listen_socket_base::base_socket_composite()
+   {
+
+      return m_pcomposite;
+
    }
 
 
    __pointer(socket) listen_socket_base::create_listen_socket()
    {
 
-      return nullptr;
+      return m_pcomposite->create_listen_socket();
 
    }
 

@@ -257,13 +257,13 @@ namespace networking
       if (is_ip6(strAddress))
       {
 
-         return create_ip6_address(strAddress);
+         return create_ip6_address(strAddress, port);
 
       }
       else if (is_ip4(strAddress))
       {
 
-         return create_ip4_address(strAddress);
+         return create_ip4_address(strAddress, port);
 
       }
       else

@@ -127,7 +127,7 @@ namespace sockets_bsd
    void base_socket::initialize_socket(::sockets::base_socket_handler* phandler)
    {
 
-      ::object::initialize(phandler);
+      //::object::initialize(phandler);
 
       m_psockethandler = phandler;
 
@@ -178,6 +178,7 @@ namespace sockets_bsd
    {
       
 
+
 #ifdef BSD_STYLE_SOCKETS
 
       // %! exception doesn't always mean something bad happened, this code should be reworked
@@ -194,16 +195,30 @@ namespace sockets_bsd
 
    void base_socket::OnDelete()
    {
+
+      if (base_socket_composite())
+      {
+
+         base_socket_composite()->OnDelete();
+
+      }
+
    }
 
 
    void base_socket::OnConnect()
    {
+
+      base_socket_composite()->OnConnect();
+
    }
 
 
    void base_socket::OnAccept()
    {
+
+      base_socket_composite()->OnAccept();
+
    }
 
 
@@ -827,6 +842,22 @@ namespace sockets_bsd
    {
    
       return m_strSocketProtocol;
+
+   }
+
+
+   bool base_socket::IsPoolEnabled() const
+   {
+
+      return m_bEnablePool;
+
+   }
+
+
+   void base_socket::EnablePool(bool bEnable)
+   {
+
+      m_bEnablePool = bEnable;
 
    }
 
@@ -2618,6 +2649,8 @@ namespace sockets_bsd
          m_pcallback->OnRawData(this, buf, len);
 
       }
+
+      base_socket_composite()->OnRawData(buf, len);
 
    }
 

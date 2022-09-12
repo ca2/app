@@ -46,23 +46,23 @@ namespace sockets
 ////#ifdef BSD_STYLE_SOCKETS
 ////      __pointer(ssl_context)  m_psslcontext;
 ////#endif
-     string                  m_password; ///< ssl password
+     //string                  m_password; ///< ssl password
 
 //
-      __pointer(base_socket_handler)   m_psockethandler; /// |-xxx-Reference-xxx-> 2021-03-08pointer of base_socket_handler in control of this socket
+      //__pointer(base_socket_handler)   m_psockethandler; /// |-xxx-Reference-xxx-> 2021-03-08pointer of base_socket_handler in control of this socket
       //socket_id                  m_socket; ///< File descriptor
 //
 //      static ::mutex *        s_pmutex;
 //
-      ::networking::address_pointer          m_paddressRemote; ///< Remote end ::networking::address
-      ::networking::address_pointer          m_paddressRemoteClient; ///< Address of last connect()
+      //::networking::address_pointer          m_paddressRemote; ///< Remote end ::networking::address
+      //::networking::address_pointer          m_paddressRemoteClient; ///< Address of last connect()
 //      file_pointer            m_pfileTrafficMonitor;
 //
 //      bool                    m_b_chunked;
 //
 //
-__pointer(::memory_file) m_pmemfileInput;
-      bool                    m_bEnd; // should finish by not sending no more writes
+//__pointer(::memory_file) m_pmemfileInput;
+  //    bool                    m_bEnd; // should finish by not sending no more writes
 //      string                  m_strCat;
 //      string                  m_strCipherList;
 //      callback *              m_pcallback;
@@ -75,12 +75,12 @@ __pointer(::memory_file) m_pmemfileInput;
 //      int                     m_iBindPort;
 //      bool                    m_bDelete; ///< Delete by handler flag
       //bool                    m_bCloseAndDelete; ///< close and delete flag
-      __pointer(base_socket)           m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
-      ::duration              m_durationConnectionStart; ///< Set by SetTimeout
-      ::duration              m_durationConnectionLastActivity; ///< Set by SetTimeout
-      ::duration              m_durationConnectionMaximum; ///< Defined by SetTimeout
-      ::duration              m_durationStart; ///< Set by SetTimeout
-      ::duration              m_durationMaximum; ///< Defined by SetTimeout
+      //__pointer(base_socket)           m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
+      //::duration              m_durationConnectionStart; ///< Set by SetTimeout
+      //::duration              m_durationConnectionLastActivity; ///< Set by SetTimeout
+      //::duration              m_durationConnectionMaximum; ///< Defined by SetTimeout
+      //::duration              m_durationStart; ///< Set by SetTimeout
+      //::duration              m_durationMaximum; ///< Defined by SetTimeout
 //      bool                    m_bNonBlocking;
 //      //    unsigned long           m_flags; ///< tristate flags, replacing old 'bool' members
 //
@@ -108,7 +108,7 @@ __pointer(::memory_file) m_pmemfileInput;
 //      bool                             m_bDetach; ///< base_socket ordered to detach flag
 //      bool                             m_bDetached; ///< base_socket has been detached
 //      __pointer(::sockets::socket_thread)         m_psocketthread; ///< detach base_socket thread class pointer
-__pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler while detached
+//__pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler while detached
 //
 //
 //      // LineProtocol
@@ -119,15 +119,15 @@ __pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler whil
 //
 //      ::e_status             m_estatus;
 //      //::duration              m_durationStart;
-#ifdef WINRT_SOCKETS
-      bool                    m_bErrorWriting;
-      bool                    m_bErrorReading;
-      bool                    m_bWaitingResponse;
-      bool                    m_bExpectResponse;
-      bool                    m_bExpectRequest;
-      bool                    m_bReading;
-      bool                    m_bWriting;
-#endif
+//#ifdef WINRT_SOCKETS
+//      bool                    m_bErrorWriting;
+//      bool                    m_bErrorReading;
+//      bool                    m_bWaitingResponse;
+//      bool                    m_bExpectResponse;
+//      bool                    m_bExpectRequest;
+//      bool                    m_bReading;
+//      bool                    m_bWriting;
+//#endif
 //
 //      /** base_socket mode flags. */
 //      /*
@@ -168,10 +168,14 @@ __pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler whil
       /** "Default" constructor */
       base_socket();
 
-      virtual ~base_socket();
+      ~base_socket() override;
 
 
       virtual void initialize_socket(base_socket_handler* phandler);
+
+
+      virtual base_socket * base_socket_composite();
+      virtual const base_socket * base_socket_composite() const;
 
       ::networking::networking * networking();
       /** base_socket class instantiation method. Used when a "non-standard" constructor
@@ -596,6 +600,9 @@ __pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler whil
       virtual void SetSocketProtocol(const string & x);
       /** Protocol type from base_socket() call. */
       virtual string GetSocketProtocol();
+
+      virtual bool IsPoolEnabled() const;
+      virtual void EnablePool(bool bEnable);
       /** Instruct a client base_socket to stay open in the connection pool after use.
       If you have connected to a server using tcp, you can call SetRetain
       to leave the connection open after your base_socket instance has been deleted.

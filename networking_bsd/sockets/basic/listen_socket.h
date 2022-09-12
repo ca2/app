@@ -36,7 +36,7 @@ namespace sockets_bsd
 
       void initialize(::object * pobject) override;
 
-      virtual __pointer(::sockets::socket) create_listen_socket();
+      //virtual __pointer(::sockets::socket) create_listen_socket();
 
       /** close file descriptor. */
       virtual void close();

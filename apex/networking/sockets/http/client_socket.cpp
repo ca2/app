@@ -176,7 +176,14 @@ namespace sockets
    }
 
 
-   http_client_socket::http_client_socket(const ::string & strUrlParam) //:
+   http_client_socket::~http_client_socket()
+   {
+
+      memory_counter_decrement(this);
+
+   }
+
+   void http_client_socket::initialize_http_client_socket(const ::string & strUrlParam) //:
       //::object(&h),
       //base_socket(h),
       //socket(h),
@@ -194,12 +201,12 @@ namespace sockets
 
       url_this(strUrlParam, m_protocol, m_host, m_port, strRequestUri, m_url_filename);
 
-      m_strHost                                 = m_host;
-      m_request.header(__id(host))              = m_host;
-      m_request.attr(__id(http_protocol))       = m_protocol;
-      m_request.attr(__id(request_uri))         = strRequestUri;
-      m_response.attr(__id(request_uri))        = strRequestUri;
-      m_strUrl                                  = strUrlParam;
+      set_host(m_host);
+      m_request.header(__id(host)) = get_host();
+      m_request.attr(__id(http_protocol)) = m_protocol;
+      m_request.attr(__id(request_uri)) = strRequestUri;
+      m_response.attr(__id(request_uri)) = strRequestUri;
+      set_url(strUrlParam);
 
 #ifdef BSD_STYLE_SOCKETS
       if (m_host.is_empty())
@@ -220,23 +227,16 @@ namespace sockets
       }
 #endif
 
-      m_strConnectHost                          = m_host;
-      m_iConnectPort                            = m_port;
+      set_connect_host(get_host());
+      set_connect_port(m_port);
 
-      m_pfile                                   = nullptr;
-      m_iFinalSize                              = -1;
+      m_pfile = nullptr;
+      m_iFinalSize = -1;
 
       memory_counter_increment(this);
 
    }
 
-
-   http_client_socket::~http_client_socket()
-   {
-
-      memory_counter_decrement(this);
-
-   }
 
 
    void http_client_socket::OnConnect()
@@ -602,7 +602,7 @@ namespace sockets
       m_request.attr(__id(request_uri))       = strRequestUri;
       m_response.attr(__id(request_uri))      = strRequestUri;
 
-      m_strUrl = strUrlParam;
+      set_url(strUrlParam);
 
       m_pfile = nullptr;
 

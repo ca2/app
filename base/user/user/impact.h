@@ -2,7 +2,9 @@
 
 
 //#define WM_VIEW (WM_USER + 1023)
-
+#include "aura/user/user/box.h"
+#include "impact_data.h"
+#include "document.h"
 
 
 namespace user
@@ -34,10 +36,10 @@ namespace user
 
 
 
-      inline ::base::application* get_app() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }
-      inline ::base::session* get_session() const { return m_pcontext ? m_pcontext->m_pbasesession : nullptr; }
-      inline ::base::system* get_system() const { return m_psystem ? m_psystem->m_pbasesystem : nullptr; }
-      inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+      ::base::application * get_app() const;
+      ::base::session * get_session() const;
+      ::base::system * get_system() const;
+      ::base::user * user() const;
 
 
       virtual void set_notify_user_interaction(::user::interaction* puserinteractionNotify);
@@ -46,18 +48,43 @@ namespace user
 
       ::user::document * get_document() const;
 
+
       template < class DATA >
-      DATA * get_typed_data();
+      DATA * get_typed_data()
+      {
+
+         ASSERT(::is_set(this));
+
+         return m_pdocument->get_typed_data < DATA >();
+
+      }
+
 
       template < class DOCUMENT >
-      DOCUMENT * get_typed_document();
+      ::data::data * get_typed_document_data()
+      {
+
+         ASSERT(::is_set(this));
+
+         return m_pdocument->get_typed_document_data < DOCUMENT >();
+
+      }
+
 
       template < class DOCUMENT >
-      ::data::data * get_typed_document_data();
+      DOCUMENT * get_typed_document()
+      {
+
+         ASSERT(::is_set(this));
+
+         return m_pdocument->get_typed_document < DOCUMENT >();
+
+      }
+
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual bool IsSelected(const object* pDocItem) const; // support for OLE
+      virtual bool IsSelected(const ::object* pDocItem) const; // support for OLE
 
       // OLE scrolling support (used for drag/drop as well)
       virtual bool OnScroll(::u32 nScrollCode, ::u32 nPos, bool bDoScroll = true);
@@ -215,6 +242,34 @@ namespace user
    };
 
 
+
+   template < class VIEW >
+   inline __pointer(VIEW) impact::create_impact(::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
+   {
+
+      return create_impact(__type(VIEW), pdocument, puserinteractionParent, atom, pviewLast, pimpactdata);
+
+   }
+
+
+   template < class VIEW >
+   inline __pointer(VIEW) impact::create_impact(::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
+   {
+
+      return create_impact < VIEW >(get_document(), puserinteractionParent, atom, pviewLast, pimpactdata);
+
+   }
+
+
+   template < class VIEW >
+   inline __pointer(VIEW) impact::create_impact(::user::impact_data * pimpactdata, ::user::interaction * pviewLast)
+   {
+
+      pimpactdata->m_puserinteraction.release();
+
+      return create_impact < VIEW >(get_document(), pimpactdata->m_pplaceholder, pimpactdata->m_atom, pviewLast, pimpactdata);
+
+   }
 
 
    //CLASS_DECL_BASE __pointer(::user::interaction) create_impact(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast = nullptr);

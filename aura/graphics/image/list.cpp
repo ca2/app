@@ -481,7 +481,7 @@ i32 image_list::reserve_image(int iItem)
 //}
 
 
-i32 image_list::set(int iItem, ::image_drawing imagedrawing)
+i32 image_list::set(int iItem, const image_drawing & imagedrawing)
 {
 
    ::draw2d::lock draw2dlock(this);
@@ -499,9 +499,11 @@ i32 image_list::set(int iItem, ::image_drawing imagedrawing)
 
    m_pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
-   imagedrawing.m_rectangleTarget.set(::point_f64(iItem * m_size.cx, 0), m_size);
+   ::image_drawing imagedrawingTarget(imagedrawing);
 
-   m_pimage->get_graphics()->draw(imagedrawing);
+   imagedrawingTarget.m_rectangleTarget.set(::point_f64(iItem * m_size.cx, 0), m_size);
+
+   m_pimage->get_graphics()->draw(imagedrawingTarget);
 
    return iItem;
 

@@ -185,7 +185,7 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <FloatingPointModel>Precise</FloatingPointModel>
-      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <FloatingPointExceptions>true</FloatingPointExceptions>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
@@ -203,7 +203,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>Credui.lib;zlib.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Dxva2.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
       </EntryPointSymbol>
@@ -330,7 +330,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <SmallerTypeCheck>false</SmallerTypeCheck>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
@@ -344,7 +344,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>Credui.lib;zlib.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Dxva2.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -479,7 +479,7 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <FloatingPointModel>Precise</FloatingPointModel>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <FloatingPointExceptions>true</FloatingPointExceptions>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
@@ -499,7 +499,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>Credui.lib;zlib.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Dxva2.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -629,7 +629,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <Optimization>MaxSpeed</Optimization>
       <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <AdditionalOptions>/bigobj -Zm512</AdditionalOptions>
+      <AdditionalOptions>/bigobj</AdditionalOptions>
       <MinimalRebuild>false</MinimalRebuild>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -644,7 +644,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>Credui.lib;zlib.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Dxva2.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -804,7 +804,7 @@
     <ClCompile Include="message\simple_command.cpp" />
     <ClCompile Include="message\_.cpp" />
     <ClCompile Include="networking\address.cpp" />
-    <ClCompile Include="networking\address_department.cpp" />
+    <ClCompile Include="networking\networking.cpp" />
     <ClCompile Include="networking\email.cpp" />
     <ClCompile Include="networking\email_address.cpp" />
     <ClCompile Include="networking\http\context.cpp" />
@@ -825,31 +825,25 @@
     <ClCompile Include="networking\networking_application_socket.cpp" />
     <ClCompile Include="networking\port_forward.cpp" />
     <ClCompile Include="networking\sockets.cpp" />
-    <ClCompile Include="networking\sockets\base\base_socket.cpp" />
-    <ClCompile Include="networking\sockets\base\base_socket_handler.cpp" />
+    <ClCompile Include="networking\sockets\base\socket.cpp" />
+    <ClCompile Include="networking\sockets\base\socket_handler.cpp" />
     <ClCompile Include="networking\sockets\base\socket_thread.cpp" />
-    <ClCompile Include="networking\sockets\bsd\basic\basic_net.cpp" />
-    <ClCompile Include="networking\sockets\bsd\basic\listen_socket.cpp" />
-    <ClCompile Include="networking\sockets\bsd\basic\sctp_socket.cpp" />
-    <ClCompile Include="networking\sockets\bsd\basic\socket.cpp" />
-    <ClCompile Include="networking\sockets\bsd\basic\socket_handler.cpp" />
-    <ClCompile Include="networking\sockets\bsd\basic\stream_socket.cpp" />
-    <ClCompile Include="networking\sockets\bsd\basic\sync_socket_handler.cpp" />
-    <ClCompile Include="networking\sockets\bsd\basic\tcp_socket.cpp" />
-    <ClCompile Include="networking\sockets\bsd\basic\tls_socket.cpp" />
-    <ClCompile Include="networking\sockets\bsd\basic\udp_socket.cpp" />
-    <ClCompile Include="networking\sockets\bsd\dns\resolv_server.cpp" />
-    <ClCompile Include="networking\sockets\bsd\dns\resolv_socket.cpp" />
-    <ClCompile Include="networking\sockets\bsd\sockets.cpp" />
-    <ClCompile Include="networking\sockets\bsd\ssl\client_context.cpp" />
-    <ClCompile Include="networking\sockets\bsd\ssl\client_context_map.cpp" />
-    <ClCompile Include="networking\sockets\bsd\ssl\context.cpp" />
-    <ClCompile Include="networking\sockets\bsd\ssl\initializer.cpp" />
-    <ClCompile Include="networking\sockets\bsd\webserver\httpd_socket.cpp" />
+    <ClCompile Include="networking\sockets\basic\listen_socket.cpp" />
+    <ClCompile Include="networking\sockets\basic\sctp_socket.cpp" />
+    <ClCompile Include="networking\sockets\basic\socket.cpp" />
+    <ClCompile Include="networking\sockets\basic\socket_handler.cpp" />
+    <ClCompile Include="networking\sockets\basic\stream_socket.cpp" />
+    <ClCompile Include="networking\sockets\basic\sync_socket_handler.cpp" />
+    <ClCompile Include="networking\sockets\basic\tcp_socket.cpp" />
+    <ClCompile Include="networking\sockets\basic\tcp_socket_impl.cpp" />
+    <ClCompile Include="networking\sockets\basic\tls_socket.cpp" />
+    <ClCompile Include="networking\sockets\basic\udp_socket.cpp" />
+    <ClCompile Include="networking\sockets\dns\resolv_server.cpp" />
+    <ClCompile Include="networking\sockets\dns\resolv_socket.cpp" />
     <ClCompile Include="networking\sockets\http\client_socket.cpp" />
     <ClCompile Include="networking\sockets\http\debug_socket.cpp" />
     <ClCompile Include="networking\sockets\http\get_socket.cpp" />
-    <ClCompile Include="networking\sockets\http\http_base_socket.cpp" />
+    <ClCompile Include="networking\sockets\http\base_socket.cpp" />
     <ClCompile Include="networking\sockets\http\listener.cpp" />
     <ClCompile Include="networking\sockets\http\post_socket.cpp" />
     <ClCompile Include="networking\sockets\http\put_socket.cpp" />
@@ -859,11 +853,10 @@
     <ClCompile Include="networking\sockets\http_batch_buffer.cpp" />
     <ClCompile Include="networking\sockets\link_in_socket.cpp" />
     <ClCompile Include="networking\sockets\link_out_socket.cpp" />
-    <ClCompile Include="networking\sockets\sockets_base.cpp" />
+    <ClCompile Include="networking\sockets\sockets.cpp" />
     <ClCompile Include="networking\sockets\transfer_socket.cpp" />
+    <ClCompile Include="networking\sockets\webserver\httpd_socket.cpp" />
     <ClCompile Include="networking\sockets\websocket_client.cpp" />
-    <ClCompile Include="networking\sockets\_system_sockets.cpp" />
-    <ClCompile Include="networking\_.cpp" />
     <ClCompile Include="operating_system\windows_common\networking.cpp" />
     <ClCompile Include="_no_pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">NotUsing</PrecompiledHeader>
@@ -879,6 +872,8 @@
     <ClInclude Include="compress\not_dir.h" />
     <ClInclude Include="crypto\initializer.h" />
     <ClInclude Include="filesystem\filesystem\file_listener.h" />
+    <ClInclude Include="filesystem\file\_constant.h" />
+    <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="handler\context.h" />
     <ClInclude Include="handler\manager.h" />
     <ClInclude Include="handler\predicate.h" />
@@ -892,7 +887,6 @@
     <ClInclude Include="inline\implement\windows.h" />
     <ClCompile Include="operating_system\debug.cpp" />
     <ClCompile Include="operating_system\http.cpp" />
-    <ClCompile Include="operating_system\openssl_crypt.cpp" />
     <ClCompile Include="operating_system\operating_system.cpp" />
     <ClCompile Include="operating_system\thread.cpp" />
     <ClCompile Include="operating_system\windows\dpi.cpp" />
@@ -950,8 +944,6 @@
     <ClCompile Include="progress\real.cpp" />
     <ClCompile Include="user\language.cpp" />
     <ClCompile Include="user\language_map.cpp" />
-    <ClCompile Include="user\menu_shared.cpp" />
-    <ClCompile Include="user\menu_shared_commnand.cpp" />
     <ClCompile Include="user\primitive.cpp" />
     <ClInclude Include="astr.h" />
     <ClInclude Include="crypto\crypto.h" />
@@ -1019,46 +1011,40 @@
     <ClInclude Include="message\_impl.h" />
     <ClInclude Include="message\_message.h" />
     <ClInclude Include="networking\address.h" />
-    <ClInclude Include="networking\address_department.h" />
-    <ClInclude Include="networking\byte_order.h" />
+    <ClInclude Include="networking\netserver\socket.h" />
+    <ClInclude Include="networking\netserver\socket_handler.h" />
+    <ClInclude Include="networking\netserver\socket_thread.h" />
+    <ClInclude Include="networking\netserver\_.h" />
+    <ClInclude Include="networking\netserver\_netserver.h" />
+    <ClInclude Include="networking\networking.h" />
     <ClInclude Include="networking\email.h" />
     <ClInclude Include="networking\email_address.h" />
     <ClInclude Include="networking\ip_enum.h" />
-    <ClInclude Include="networking\net.h" />
+    <ClInclude Include="networking\networking_application.h" />
+    <ClInclude Include="networking\networking_application_handler.h" />
+    <ClInclude Include="networking\networking_application_socket.h" />
     <ClInclude Include="networking\open_weather_city.h" />
     <ClInclude Include="networking\port_forward.h" />
-    <ClInclude Include="networking\sockets\base\base_socket.h" />
-    <ClInclude Include="networking\sockets\base\base_socket_handler.h" />
+    <ClInclude Include="networking\sockets\base\socket.h" />
+    <ClInclude Include="networking\sockets\base\socket_handler.h" />
     <ClInclude Include="networking\sockets\base\socket_thread.h" />
-    <ClInclude Include="networking\sockets\bsd\aaa_want_to_remove_sockets_sockets.h" />
-    <ClInclude Include="networking\sockets\bsd\basic\listen_socket.h" />
-    <ClInclude Include="networking\sockets\bsd\basic\net.h" />
-    <ClInclude Include="networking\sockets\bsd\basic\sctp_socket.h" />
-    <ClInclude Include="networking\sockets\bsd\basic\socket.h" />
-    <ClInclude Include="networking\sockets\bsd\basic\socket_handler.h" />
-    <ClInclude Include="networking\sockets\bsd\basic\stream_socket.h" />
-    <ClInclude Include="networking\sockets\bsd\basic\sync_socket_handler.h" />
-    <ClInclude Include="networking\sockets\bsd\basic\tcp_socket.h" />
-    <ClInclude Include="networking\sockets\bsd\basic\tls_socket.h" />
-    <ClInclude Include="networking\sockets\bsd\basic\udp_socket.h" />
-    <ClInclude Include="networking\sockets\bsd\basic\_.h" />
-    <ClInclude Include="networking\sockets\bsd\config.h" />
-    <ClInclude Include="networking\sockets\bsd\dns\resolv_server.h" />
-    <ClInclude Include="networking\sockets\bsd\dns\resolv_socket.h" />
-    <ClInclude Include="networking\sockets\bsd\sockets.h" />
-    <ClInclude Include="networking\sockets\bsd\socket_id_list.h" />
-    <ClInclude Include="networking\sockets\bsd\ssl\client_context.h" />
-    <ClInclude Include="networking\sockets\bsd\ssl\client_context_map.h" />
-    <ClInclude Include="networking\sockets\bsd\ssl\context.h" />
-    <ClInclude Include="networking\sockets\bsd\ssl\initializer.h" />
-    <ClInclude Include="networking\sockets\bsd\ssl\ticket_key.h" />
-    <ClInclude Include="networking\sockets\bsd\webserver\httpd_socket.h" />
-    <ClInclude Include="networking\sockets\bsd\_.h" />
-    <ClInclude Include="networking\sockets\bsd\_strconv.h" />
+    <ClInclude Include="networking\sockets\basic\listen_socket.h" />
+    <ClInclude Include="networking\sockets\basic\net.h" />
+    <ClInclude Include="networking\sockets\basic\sctp_socket.h" />
+    <ClInclude Include="networking\sockets\basic\socket.h" />
+    <ClInclude Include="networking\sockets\basic\socket_handler.h" />
+    <ClInclude Include="networking\sockets\basic\stream_socket.h" />
+    <ClInclude Include="networking\sockets\basic\sync_socket_handler.h" />
+    <ClInclude Include="networking\sockets\basic\tcp_socket.h" />
+    <ClInclude Include="networking\sockets\basic\tcp_socket_impl.h" />
+    <ClInclude Include="networking\sockets\basic\tls_socket.h" />
+    <ClInclude Include="networking\sockets\basic\udp_socket.h" />
+    <ClInclude Include="networking\sockets\basic\_.h" />
+    <ClInclude Include="networking\sockets\config.h" />
     <ClInclude Include="networking\sockets\http\client_socket.h" />
     <ClInclude Include="networking\sockets\http\debug_socket.h" />
     <ClInclude Include="networking\sockets\http\get_socket.h" />
-    <ClInclude Include="networking\sockets\http\http_base_socket.h" />
+    <ClInclude Include="networking\sockets\http\base_socket.h" />
     <ClInclude Include="networking\sockets\http\listener.h" />
     <ClInclude Include="networking\sockets\http\post_socket.h" />
     <ClInclude Include="networking\sockets\http\put_socket.h" />
@@ -1071,11 +1057,15 @@
     <ClInclude Include="networking\sockets\link_in_socket.h" />
     <ClInclude Include="networking\sockets\link_out_socket.h" />
     <ClInclude Include="networking\sockets\logger.h" />
-    <ClInclude Include="networking\sockets\sockets_base.h" />
+    <ClInclude Include="networking\sockets\sockets.h" />
+    <ClInclude Include="networking\sockets\socket_id_list.h" />
     <ClInclude Include="networking\sockets\transfer_socket.h" />
     <ClInclude Include="networking\sockets\websocket_client.h" />
     <ClInclude Include="networking\sockets\_.h" />
+    <ClInclude Include="networking\sockets\_1.h" />
+    <ClInclude Include="networking\sockets\_component.h" />
     <ClInclude Include="networking\sockets\_sockets.h" />
+    <ClInclude Include="networking\sockets\_strconv.h" />
     <ClInclude Include="networking\_.h" />
     <ClInclude Include="networking\_impl.h" />
     <ClInclude Include="networking\_networking.h" />
@@ -1207,8 +1197,6 @@
     <ClInclude Include="user\language.h" />
     <ClInclude Include="user\language_map.h" />
     <ClInclude Include="user\aaa_range.h" />
-    <ClInclude Include="user\menu_shared.h" />
-    <ClInclude Include="user\menu_shared_command.h" />
     <ClInclude Include="user\primitive.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="user\ewindowflag.h" />

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "impact_base.h"
+
+
 namespace filemanager
 {
 
@@ -38,7 +41,7 @@ namespace filemanager
 
 
 
-      context_menu            m_contextmenu;
+      __pointer(context_menu)       m_pcontextmenu;
 
 
 //#ifdef WINDOWS_DESKTOP

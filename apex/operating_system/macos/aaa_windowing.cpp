@@ -671,7 +671,7 @@ rectangle_i32_array cg_get_window_rect_list_above(CGWindowID windowid)
 
    ::rectangle rMainScreen;
 
-   GetMainScreenRect(rMainScreen);
+   get_main_screen_rectangle(rMainScreen);
 
    long c = CFArrayGetCount(windowa);
 
@@ -812,7 +812,7 @@ rectangle_i32_array cg_get_window_rect_list_intersect_above(CGWindowID windowid)
    
    //rectangle rMainScreen;
    
-   //GetMainScreenRect(rMainScreen);
+   //get_main_screen_rectangle(rMainScreen);
    
    // "CG" Window Rects are like Windows (R) GDI Coordinates (Y down)
    
@@ -1084,7 +1084,7 @@ void cg_get_window_rect_list(rectangle_i32_array & recta, array < CGWindowID > &
    
    string strAppName;
    
-   //GetMainScreenRect(rMainScreen);
+   //get_main_screen_rectangle(rMainScreen);
    
    // "CG" Window Rects are like Windows (R) GDI Coordinates (Y down)
    

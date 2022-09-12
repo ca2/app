@@ -130,7 +130,7 @@ namespace sockets
 
          strEmailAddress.make_lower();
 
-         ::net::email_address addr( strEmailAddress );
+         ::networking::email_address addr( strEmailAddress );
 
          if (addr.get_name().get_length() > 64)
          {
@@ -167,7 +167,7 @@ namespace sockets
 
          // %! reject axisd on ::account::user / domain?
 
-         ::net::email_address addr(strEmailAddress);
+         ::networking::email_address addr(strEmailAddress);
 
          if(addr.get_name().get_length() > 64)
          {

@@ -4,6 +4,9 @@
 #pragma once
 
 
+#include "interaction.h"
+
+
 namespace user
 {
 
@@ -14,7 +17,7 @@ namespace user
    public:
 
 
-      virtual __pointer(::sequence < ::conversation >) show(::user::interaction * puserinteraction, const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox);
+      virtual __pointer(::sequencer < ::conversation >) show(::user::interaction * puserinteraction, const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox);
       virtual void add_button(const ::string & strTitle, enum_dialog_result edialogresult) = 0;
 
 
@@ -100,7 +103,7 @@ namespace user
 
 
       // message_box_interface
-      __pointer(::sequence < ::conversation >) show(::user::interaction * puserinteraction, const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox) override;
+      __pointer(::sequencer < ::conversation >) show(::user::interaction * puserinteraction, const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox) override;
       void add_button(const ::string & strTitle, enum_dialog_result edialogresult) override;
 
 

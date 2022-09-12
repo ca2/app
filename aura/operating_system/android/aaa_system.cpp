@@ -83,7 +83,7 @@ namespace aura
    //}
 
 
-   //void system::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, const ::future & process)
+   //void system::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox, const ::future & future)
    //{
 
    //   android_os_message_box(pszMessage, pszTitle, emessagebox, process);
@@ -93,7 +93,7 @@ namespace aura
    //}
 
 
-   //void system::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const ::future & process)
+   //void system::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const ::future & future)
    //{
 
    //   auto estatus = ::aura::get_system()->message_box_timeout(pszMessage, pszTitle, durationTimeout, emessagebox, process);

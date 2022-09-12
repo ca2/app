@@ -16,7 +16,7 @@ namespace filemanager
 
 
       left_impact();
-      virtual ~left_impact();
+      ~left_impact() override;
 
 
       void install_message_routing(::channel * pchannel) override;

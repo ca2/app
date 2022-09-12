@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/user/user/interaction.h"
+
+
 namespace user
 {
 
@@ -17,7 +20,7 @@ namespace user
 
 
       tab_drop_target_window();
-      virtual ~tab_drop_target_window();
+      ~tab_drop_target_window() override;
 
 
       virtual void initialize_tab_drop_target_window(::user::tab* ptab, index iTab);

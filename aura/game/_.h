@@ -1,14 +1,24 @@
+//////////////////////////////////////////////////////
+//
+//  by camilo 24-08-2022 01-26 <3ThomasBorregaardSorensen!!
+//
 #pragma once
 
 
 #include "aqua/game/_.h"
 
 
-#include "game.h"
+namespace aura
+{
 
 
-#include "estamira.h"
+   class game;
 
+
+   class estamira;
+
+
+} // namespace aura
 
 
 

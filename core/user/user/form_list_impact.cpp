@@ -1,7 +1,7 @@
 #include "framework.h"
-#include "core/user/user/_user.h"
-#include "aura/update.h"
-#include "acme/id.h"
+#include "form_list_impact.h"
+#include "base/user/form/document.h"
+#include "aura/user/user/interaction_impl.h"
 
 
 namespace user
@@ -188,18 +188,18 @@ namespace user
    }
 
 
-   void form_list_impact::set_impactport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
+   void form_list_impact::set_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
    {
 
-      ::user::list_impact::set_impactport_offset(pgraphics, x, y);
+      ::user::list_impact::set_context_offset(pgraphics, x, y);
 
    }
 
 
-   ::point_i32 form_list_impact::get_impactport_offset()
+   ::point_i32 form_list_impact::get_context_offset()
    {
 
-      return ::user::list_impact::get_impactport_offset();
+      return ::user::list_impact::get_context_offset();
 
    }
 

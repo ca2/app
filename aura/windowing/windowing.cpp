@@ -2,14 +2,22 @@
 // recreated by Camilo 2021-01-28 22:35 <3TBS, Mummi and bilbo!!
 // hi5 contribution...
 #include "framework.h"
-//#include "aura/node/windows/system_interaction.h"
-//#include "_windowing.h"
+#include "aura/user/user/interaction_impl.h"
+#include "aura/message/user.h"
+#include "aura/user/user/interaction.h"
+#include "aura/user/user/user.h"
+#include "aura/platform/system.h"
 
 #if !BROAD_PRECOMPILED_HEADER
 
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 
 #endif
+
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/cursor_manager.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/keyboard.h"
 
 
 namespace windowing
@@ -835,6 +843,30 @@ namespace windowing
    }
 
 
+   void windowing::os_menu_item_enable(void * pitem, bool bEnable)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void windowing::os_menu_item_check(void * pitem, bool bCheck)
+   {
+
+      throw ::interface_only();
+
+   }
+
+
+   void windowing::defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId)
+   {
+
+      //throw ::interface_only();
+
+   }
+
+
    ::e_status windowing::is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt)
    {
 
@@ -879,6 +911,30 @@ namespace windowing
    {
 
       //return ::success;
+
+   }
+
+
+   ::aura::application* windowing::get_app() const
+   {
+
+      return m_pcontext && m_pcontext->m_papplication ? m_pcontext->m_papplication->m_pauraapplication : nullptr;
+
+   }
+
+
+   ::aura::session* windowing::get_session() const
+   {
+
+      return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr;
+
+   }
+
+
+   ::aura::system* windowing::get_system() const
+   {
+
+      return ::is_set(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr;
 
    }
 

@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "aura/operating_system/linux/_user.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
 //#include <gtk/gtk.h>
 ////#include "sn/sn.h"

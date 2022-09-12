@@ -36,7 +36,7 @@ namespace user
       string_array                        m_straTitle;
       ::size_array                        m_sizeaText;
       point_i32                           m_point;
-      eflag                               m_eflag;
+      e_flag                              m_eflag;
       bool                                m_bNeedLayout;
 
 
@@ -57,7 +57,7 @@ namespace user
       void set_title(const ::string & pszTitle);
 
 
-      virtual void do_split_layout(::draw2d::graphics_extension & dc, ::draw2d::graphics_pointer & pgraphics);
+      virtual void do_split_layout(::draw2d::graphics_extension * pdc, ::draw2d::graphics_pointer & pgraphics);
 
 
    };

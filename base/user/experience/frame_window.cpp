@@ -1,7 +1,21 @@
 #include "framework.h"
-#include "base/user/experience/_experience.h"
-#include "aura/update.h"
+#include "frame_window.h"
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/display.h"
 #include "aura/message.h"
+#include "aura/message/user.h"
+#include "base/platform/session.h"
+#include "base/user/user/user.h"
+#include "department.h"
+#include "frame.h"
+#include "menu_manager.h"
+#include "dock_manager.h"
+#include "move_manager.h"
+#include "size_manager.h"
+#include "control_box.h"
+#include "axis/user/user/list_box.h"
+#include "base/platform/system.h"
 
 
 template < primitive_rectangle R1, primitive_rectangle R2 >
@@ -143,7 +157,7 @@ namespace experience
       m_bEnableFrameExperience = true;
       //m_bEatsDoubleClick = false;
 
-      m_eupdown = updown_normal_frame;
+      m_eupdown = e_updown_normal_frame;
 
       m_pupdowntarget = nullptr;
 
@@ -1887,13 +1901,13 @@ namespace experience
          else if (edisplay == ::e_display_up)
          {
 
-            m_eupdown = updown_up;
+            m_eupdown = e_updown_up;
 
          }
          else if (edisplay == ::e_display_down)
          {
 
-            m_eupdown = updown_down;
+            m_eupdown = e_updown_down;
 
          }
 

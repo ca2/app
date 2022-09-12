@@ -8,8 +8,9 @@
 
 #include "framework.h"
 #include "main.h"
-#include "aura/operating_system/_.h"
-#include "aura/update.h"
+#include "aura/windowing/window.h"
+//#include "aura/operating_system/_.h"
+//#include "aura/update.h"
 #include <dispatch/dispatch.h>
 #include <CoreGraphics/CoreGraphics.h>
 //char * ns_realpath(const ::string & pszPath);

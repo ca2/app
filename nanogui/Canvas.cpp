@@ -12,9 +12,10 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+#include "Canvas.h"
+#include "Screen.h"
+#include "aura/user/user/interaction.h"
+
 
 #define __NANO2D_CONTEXT(ctx) ((::nano2d::context *) (ctx)->p)
 //#include <nanogui/screen.h>
@@ -186,7 +187,7 @@ void Canvas::draw(NVGcontext * ctx) {
 //   }
 //   else {
 //      m_render_pass->resize(scr->framebuffer_size());
-//      m_render_pass->set_impactport(offset, fbsize);
+//      m_render_pass->set_context(offset, fbsize);
 //   }
 //
 //   m_render_pass->begin();

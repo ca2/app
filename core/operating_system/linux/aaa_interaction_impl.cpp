@@ -4744,7 +4744,7 @@ namespace linux
 //   }
 
 
-   void interaction_impl::set_impactport_org(::draw2d::graphics_pointer & pgraphics)
+   void interaction_impl::set_context_org(::draw2d::graphics_pointer & pgraphics)
    {
 
       pgraphics->set_origin(::point_i32());

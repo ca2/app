@@ -54,10 +54,10 @@ namespace sockets
       virtual bool OnHello(const string & domain) = 0;
 
       /** \return 'false' to abort */
-      virtual bool OnMailFrom(const ::net::email_address & addr) = 0;
+      virtual bool OnMailFrom(const ::networking::email_address & addr) = 0;
 
       /** \return 'false' to abort */
-      virtual bool OnRcptTo(const ::net::email_address & addr) = 0;
+      virtual bool OnRcptTo(const ::networking::email_address & addr) = 0;
 
       //using tcp_socket::OnHeader;
       virtual void OnHeader(atom idKey, const string & value) = 0;

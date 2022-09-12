@@ -9,15 +9,10 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+#include "ComboBox.h"
+#include "VScrollPanel.h"
+#include "Layout.h"
 
-//
-//#include <nanogui/combobox.h>
-//#include <nanogui/layout.h>
-//#include <nanogui/vscrollpanel.h>
-//#include <cassert>
 
 NAMESPACE_BEGIN(nanogui)
 

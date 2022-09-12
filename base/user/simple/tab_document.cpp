@@ -2,7 +2,8 @@
 // Created by camilo on 2022-08-03
 //
 #include "framework.h"
-#include "base/user/simple/_component.h"
+////#include "base/user/simple/_component.h"
+#include "tab_document.h"
 
 
 simple_tab_document::simple_tab_document()

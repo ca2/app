@@ -2,6 +2,8 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
+#include "folder_list_data.h"
+#include "core/user/user/list.h"
 
 
 namespace filemanager

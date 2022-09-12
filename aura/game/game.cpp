@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "game.h"
 
 
 namespace aura
@@ -25,6 +26,13 @@ namespace aura
 
 
 
+   }
+
+
+   void game::destroy()
+   {
+   
+   
    }
 
 

@@ -2,6 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
+#include "form_child_frame.h"
 
 
 namespace filemanager

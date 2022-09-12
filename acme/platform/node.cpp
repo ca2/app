@@ -139,6 +139,69 @@ namespace acme
    }
 
 
+   __pointer(::element) node::create_quit_element(__pointer(::acme::node) & pnode, __pointer(class ::system) & psystem)
+   {
+      
+      return nullptr;
+      
+   }
+
+
+   void node::implement(__pointer(::acme::node) & pnode, __pointer(class ::system) & psystem)
+   {
+      
+      m_pelementQuit = create_quit_element(pnode, psystem);
+
+      if(psystem->m_pfnImplement)
+      {
+         
+         psystem->init_task();
+         
+         (*psystem->m_pfnImplement)(psystem);
+
+         psystem->m_pnode.release();
+         
+         return;
+         
+      }
+      
+      //acme_application_main(pApplication, argc, argv);
+      
+      acme_application_main(psystem);
+      
+      //return psystem->m_estatus;
+      
+
+      //auto estatus =
+      
+      //::acme::apple::node::implement(pnode, psystem);
+
+   //         if(!estatus)
+   //         {
+   //
+   //            return estatus;
+   //
+   //         }
+   //
+   //         return estatus;
+
+   }
+
+
+   void node::acme_application_main(class ::system * psystem)
+   {
+      
+      
+   }
+
+
+   void node::_will_finish_launching()
+   {
+      
+      
+   }
+
+
    string node::audio_get_default_library_name()
    {
 
@@ -237,12 +300,12 @@ namespace acme
    }
 
 
-   void node::_will_finish_launching()
-   {
-
-      //return ::success;
-
-   }
+//   void node::_will_finish_launching()
+//   {
+//
+//      //return ::success;
+//
+//   }
 
 
    void node::reboot()
@@ -255,36 +318,36 @@ namespace acme
    }
 
 
-   void node::implement(__pointer(::acme::node) & pnode, __pointer(class ::system) & psystem)
-   {
-
-      //      auto psystem = m_psystem;
-      //
-      //      auto estatus = psystem->main();
-      //
-      //      if (!estatus)
-      //      {
-      //
-      //         return estatus;
-      //
-      //      }
-      //
-      //      return estatus;
-
-      /*auto estatus = */ system_main();
-
-
-
-      //if(!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
-
-   }
+//   void node::implement(__pointer(::acme::node) & pnode, __pointer(class ::system) & psystem)
+//   {
+//
+//      //      auto psystem = m_psystem;
+//      //
+//      //      auto estatus = psystem->main();
+//      //
+//      //      if (!estatus)
+//      //      {
+//      //
+//      //         return estatus;
+//      //
+//      //      }
+//      //
+//      //      return estatus;
+//
+//      /*auto estatus = */ system_main();
+//
+//
+//
+//      //if(!estatus)
+//      //{
+//
+//      //   return estatus;
+//
+//      //}
+//
+//      //return estatus;
+//
+//   }
 
 
    void node::install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension)
@@ -1668,20 +1731,20 @@ namespace acme
    }
 
 
-   __pointer(::sequence < ::conversation >) node::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox, const ::string & strDetails)
+   __pointer(::sequencer < ::conversation >) node::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
    {
 
-      auto psequence = __new(::sequence < ::conversation >());
+      auto psequencer = __new(::sequencer < ::conversation >());
 
       auto pmessagebox = create_new_message_box_conversation();
 
-      psequence->m_p = pmessagebox;
+      psequencer->m_psequence = pmessagebox;
 
-      pmessagebox->m_psequence = psequence;
+      pmessagebox->m_psequencer = psequencer;
 
-      pmessagebox->do_message_box(strMessage, strTitle, emessagebox, strDetails);
+      pmessagebox->initialize_message_box(strMessage, strTitle, emessagebox, strDetails);
 
-      return psequence;
+      return psequencer;
 
    }
 

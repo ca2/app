@@ -1,10 +1,9 @@
 #include "framework.h"
 #include "acme/platform/timer.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
-
-#include "aura/update.h"
+#include "top_edit_impact.h"
+#include "top_impact.h"
+#include "aura/message/user.h"
+#include "base/user/user/document.h"
 
 
 namespace userex
@@ -69,7 +68,7 @@ namespace userex
 
       }
 
-      m_ptopview = GetTypedParent < top_impact >();
+      m_ptopview = get_typed_parent < top_impact >();
 
    }
 

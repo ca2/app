@@ -1,11 +1,13 @@
 #include "framework.h"
 #include "aura/graphics/image/list.h"
+#include "aura/graphics/image/drawing.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
 #include "_data.h"
 #include "aqua/xml.h"
 #include "core/user/user/_tree.h"
+#include "fs_simple_impact.h"
 
 
 namespace filemanager

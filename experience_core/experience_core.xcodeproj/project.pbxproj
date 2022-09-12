@@ -75,6 +75,8 @@
 		9A93B4EC2846E655005ACD11 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F58F27505EB3003F38EC /* _.cpp */; };
 		9A93B4ED2846E655005ACD11 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A81F57B27505EB2003F38EC /* framework.cpp */; };
 		9A93B4EE2846E655005ACD11 /* frame_011.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0B4B7C27EB45E000C31E16 /* frame_011.cpp */; };
+		9ABA659D28B5BB660063B976 /* _library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ABA659C28B5BB660063B976 /* _library.h */; };
+		9ABA659E28B5BB660063B976 /* _library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ABA659C28B5BB660063B976 /* _library.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +150,7 @@
 		9A81F5FF27505F4D003F38EC /* libaura.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A81F60127505F4D003F38EC /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A93B4F92846E655005ACD11 /* libios_experience_core.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_experience_core.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		9ABA659C28B5BB660063B976 /* _library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _library.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +236,7 @@
 				9A0B4B6127EB45E000C31E16 /* user */,
 				9A81F58F27505EB3003F38EC /* _.cpp */,
 				9A81F5BF27505EB6003F38EC /* _.h */,
+				9ABA659C28B5BB660063B976 /* _library.h */,
 				9A81F5BB27505EB5003F38EC /* _factory.cpp */,
 				9A81F57B27505EB2003F38EC /* framework.cpp */,
 				9A81F5AA27505EB4003F38EC /* framework.h */,
@@ -282,6 +286,7 @@
 				9A0B4B9027EB45E000C31E16 /* frame_011.h in Headers */,
 				9A0B4B8927EB45E000C31E16 /* control_box_button.h in Headers */,
 				9A0B4B9227EB45E000C31E16 /* frame_001.h in Headers */,
+				9ABA659D28B5BB660063B976 /* _library.h in Headers */,
 				9A0B4B8527EB45E000C31E16 /* frame.h in Headers */,
 				9A0B4B7D27EB45E000C31E16 /* style.h in Headers */,
 			);
@@ -305,6 +310,7 @@
 				9A93B4DA2846E655005ACD11 /* frame_011.h in Headers */,
 				9A93B4DB2846E655005ACD11 /* control_box_button.h in Headers */,
 				9A93B4DC2846E655005ACD11 /* frame_001.h in Headers */,
+				9ABA659E28B5BB660063B976 /* _library.h in Headers */,
 				9A93B4DD2846E655005ACD11 /* frame.h in Headers */,
 				9A93B4DE2846E655005ACD11 /* style.h in Headers */,
 			);
@@ -549,7 +555,7 @@
 					"$(WorkspaceDir)/source",
 					"$(WorkspaceDir)/source/include",
 					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/source/app/_include",
+					"$(WorkspaceDir)/source/app/include",
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
@@ -643,7 +649,7 @@
 					"$(WorkspaceDir)/source",
 					"$(WorkspaceDir)/source/include",
 					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/source/app/_include",
+					"$(WorkspaceDir)/source/app/include",
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",

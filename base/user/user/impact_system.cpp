@@ -1,8 +1,9 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "aura/user/user/wait_cursor.h"
+#include "impact_system.h"
+#include "document.h"
+#include "aura/user/user/system.h"
+#include "frame_window.h"
 
 
 // 0000 -> 7FFF IDR range

@@ -87,7 +87,7 @@ enum enum_impact : ::i64
    impact_update,
 
 
-   impact_base = 100'000,
+   impact_base = BASE_IMPACT,
 
 
    impact_tooling= 1'000'000,

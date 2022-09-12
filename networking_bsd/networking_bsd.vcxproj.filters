@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{954ff0ad-f6ee-4de6-9851-289f58de1ba6}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{740b13d3-bf25-4793-a3e0-4d13e3e71c4a}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{2ec8ecd0-d089-4887-98eb-a66497a4e6c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets">
+      <UniqueIdentifier>{29be7e16-9d4e-45ca-9168-ba1112290f02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets">
+      <UniqueIdentifier>{6d57a343-df8d-4a47-a77e-7b6420a10268}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\winsock2">
+      <UniqueIdentifier>{195257fa-ad36-48f2-b204-e655653a2caa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\winsock2">
+      <UniqueIdentifier>{7b29f43c-c407-405a-9e33-6a2b9795776a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\basic">
+      <UniqueIdentifier>{4a89243c-8a82-481a-8edf-739d61cc6a50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\basic">
+      <UniqueIdentifier>{20562aed-ef9c-48fe-bbeb-e46516bb9c1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\bsd">
+      <UniqueIdentifier>{5f62b344-ac4a-4fa8-a04f-94a83b2b6490}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\bsd">
+      <UniqueIdentifier>{db71eb99-f28d-48a5-9a0d-bd953102cfcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\base">
+      <UniqueIdentifier>{a73cd3a7-d8e9-44f9-8162-476e46f7f48c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\ssl">
+      <UniqueIdentifier>{681c3481-b7e4-4478-ad7b-47b044394e6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\ssl">
+      <UniqueIdentifier>{9a6b835a-c5da-4eb5-9281-3f29c58dd3da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\base">
+      <UniqueIdentifier>{a7eb5daa-bd76-46ca-8a82-a7a18c29174d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aaa__openssl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="aaa_initializer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_networking.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_networking_impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="address.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="networking.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_byte_order.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ip_enum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_net.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="port_forward.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\websocket_client.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\transfer_socket.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sockets_base.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\sockets.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\logger.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\link_out_socket.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\link_in_socket.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\http_buffer.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\http_batch_buffer.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\_sockets.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\_.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="_operating_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winsock2\_.h">
+      <Filter>Header Files\winsock2</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\basic\udp_socket.h">
+      <Filter>Header Files\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\basic\tls_socket.h">
+      <Filter>Header Files\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\basic\tcp_socket.h">
+      <Filter>Header Files\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\basic\stream_socket.h">
+      <Filter>Header Files\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\basic\socket.h">
+      <Filter>Header Files\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\basic\sctp_socket.h">
+      <Filter>Header Files\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\basic\listen_socket.h">
+      <Filter>Header Files\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\basic\_.h">
+      <Filter>Header Files\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="bsd\_.h">
+      <Filter>Header Files\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\base\socket.h">
+      <Filter>Header Files\sockets\base</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\ssl\_.h">
+      <Filter>Header Files\sockets\ssl</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\ssl\client_context.h">
+      <Filter>Header Files\sockets\ssl</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\ssl\client_context_map.h">
+      <Filter>Header Files\sockets\ssl</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\ssl\context.h">
+      <Filter>Header Files\sockets\ssl</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\ssl\initializer.h">
+      <Filter>Header Files\sockets\ssl</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\ssl\ticket_key.h">
+      <Filter>Header Files\sockets\ssl</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\basic\socket_handler.h">
+      <Filter>Header Files\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\base\socket_handler.h">
+      <Filter>Header Files\sockets\base</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\base\socket_thread.h">
+      <Filter>Header Files\sockets\base</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\config.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_factory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="_.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="address.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="networking.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ip_enum.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="port_forward.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="winsock2\_.cpp">
+      <Filter>Source Files\winsock2</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\listen_socket.cpp">
+      <Filter>Source Files\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\sctp_socket.cpp">
+      <Filter>Source Files\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\socket.cpp">
+      <Filter>Source Files\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\stream_socket.cpp">
+      <Filter>Source Files\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\tcp_socket.cpp">
+      <Filter>Source Files\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\tls_socket.cpp">
+      <Filter>Source Files\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\udp_socket.cpp">
+      <Filter>Source Files\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\ssl\client_context.cpp">
+      <Filter>Source Files\sockets\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\ssl\client_context_map.cpp">
+      <Filter>Source Files\sockets\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\ssl\context.cpp">
+      <Filter>Source Files\sockets\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\ssl\initializer.cpp">
+      <Filter>Source Files\sockets\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\base\socket.cpp">
+      <Filter>Source Files\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\base\socket_handler.cpp">
+      <Filter>Source Files\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\socket_handler.cpp">
+      <Filter>Source Files\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\base\socket_thread.cpp">
+      <Filter>Source Files\sockets\base</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="deployment.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

@@ -68,7 +68,7 @@ void popup_button::calculate_size_and_position(int x, int y)
 }
 
 
-void popup_button::display(const ::string & strText, int x, int y)
+void popup_button::initialize_popup_button(const ::string & strText, int x, int y)
 {
 
    calculate_size_and_position(x, y);
@@ -101,16 +101,16 @@ void popup_button::display(const ::string & strText, int x, int y)
 
    }
 
-   main_asynchronous([this]()
-      {
+   //main_asynchronous([this]()
+   //   {
 
-         create();
+   //      create();
 
-         nano_window::display();
+   //      nano_window::display();
 
-         message_loop();
+   //      message_loop();
 
-      });
+   //   });
 
 }
 

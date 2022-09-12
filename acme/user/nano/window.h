@@ -62,6 +62,10 @@ public:
    ~nano_window() override;
 
 
+   ::payload do_synchronously(const class ::wait & wait = ::wait::infinite()) override;
+   void do_asynchronously() override;
+
+
    ::string get_message_box_message() override;
    ::string get_message_box_title() override;
    ::string get_message_box_details() override;
@@ -148,7 +152,7 @@ public:
    void _run_modal_loop() override;
    
    
-   ::atom do_synchronously() override;
+   //::atom do_synchronously() override;
    
 
 };

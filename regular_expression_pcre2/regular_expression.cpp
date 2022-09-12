@@ -1,7 +1,7 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+#include "regular_expression.h"
+#include "context.h"
+#include "result.h"
 
 
 namespace regular_expression_pcre2

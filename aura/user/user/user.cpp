@@ -1,13 +1,29 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
-#include "aura/update.h"
-//#include "simple_impact.h"
 #include "acme/platform/system_setup.h"
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "shell.h"
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/desktop_environment.h"
+#include "user.h"
+#include "style.h"
+#include "interaction_impl.h"
+#include "interaction.h"
+#include "aura/graphics/write_text/font_list.h"
+#include "aura/message/user.h"
+#include "plain_edit.h"
+#include "still.h"
+#include "check_box.h"
+#include "button.h"
+#include "progress.h"
+#include "aura/platform/system.h"
+#include "aura/platform/session.h"
+#include "aura/platform/application.h"
+#include "aura/platform/node.h"
 
 
 ::mutex * g_pmutexUser = nullptr;
@@ -401,35 +417,14 @@ namespace user
    void user::init1()
    {
 
-      ::factory::add_factory_item <::user::button >();
-      ::factory::add_factory_item <::user::check_box >();
-      ::factory::add_factory_item <::user::still >();
-      //add_factory_item <::user::document >();
-//#ifdef WINDOWS_DESKTOP
-//      ::factory::add_factory_item <::user::message_window >();
-//#endif
-      //add_factory_item <::user::simple_impact >();
-      //add_factory_item <::user::place_holder >();
-      //add_factory_item <::user::font_combo_box >();
-
-      //if(get_app()->is_system())
-      //{
-
-      //   add_factory_item <keyboard_layout >();
-
-      //}
-
-      //if (!
       ::acme::department::init1();
 
 
-      //{
+      ::factory::add_factory_item <::user::button >();
+      ::factory::add_factory_item <::user::check_box >();
+      ::factory::add_factory_item <::user::still >();
 
-      //   return false;
-
-      //}
-
-      //return true;
+      ::factory::add_factory_item <::user::progress >();
 
    }
 
@@ -1001,7 +996,7 @@ namespace aura
 
          __compose(m_pfontlistSingleColumn, __create_new < ::write_text::font_list > ());
 
-         m_pfontlistSingleColumn->set_font_list_type(::write_text::font_list::type_single_column);
+         m_pfontlistSingleColumn->set_font_list_type(::write_text::e_font_list_single_column);
 
          // m_pfontlistSingleColumn->set_need_layout();
 
@@ -1024,12 +1019,12 @@ namespace aura
 //
 //      if (psession->m_bShowPlatform)
 //      {
-//         //__pointer(::simple_frame_window) pframeApp = get_document()->get_type_impact < ::bergedge::pane_impact >()->get_impact_uie();
+//         //__pointer(::simple_frame_window) pframeApp = get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_impact_uie();
 //         //if(pframeApp != nullptr)
 //         //{
 //         //   pframeApp->display(e_display_full_screen);
 //         //}
-//         //__pointer(::simple_frame_window) pframe = get_document()->get_type_impact < ::bergedge::pane_impact >()->get_parent_frame();
+//         //__pointer(::simple_frame_window) pframe = get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_parent_frame();
 //         //if(pframe != nullptr)
 //         //{
 //         //   pframe->display(e_display_restored);
@@ -1037,15 +1032,15 @@ namespace aura
 //      }
 //      else
 //      {
-//         //if(get_document() != nullptr && get_document()->get_type_impact < ::bergedge::impact >() != nullptr)
+//         //if(get_document() != nullptr && get_document()->get_typed_impact < ::bergedge::impact >() != nullptr)
 //         //{
-//         //   __pointer(::simple_frame_window) pframe = get_document()->get_type_impact < ::bergedge::impact >()->get_parent_frame();
+//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_impact < ::bergedge::impact >()->get_parent_frame();
 //         //   if(pframe != nullptr)
 //         //   {
 //         //      pframe->display(e_display_restored);
-//         //      if(pframe->GetTypedParent < ::plugin::host_interaction > () != nullptr)
+//         //      if(pframe->get_typed_parent < ::plugin::host_interaction > () != nullptr)
 //         //      {
-//         //         pframe->GetTypedParent < ::plugin::host_interaction > ()->on_layout(pgraphics);
+//         //         pframe->get_typed_parent < ::plugin::host_interaction > ()->on_layout(pgraphics);
 //         //      }
 //         //      else
 //         //      {
@@ -1261,18 +1256,18 @@ namespace aura
       //   if (get_document() != nullptr)
       //   {
 
-      //      //if(get_document()->get_type_impact < ::bergedge::pane_impact >() != nullptr)
+      //      //if(get_document()->get_typed_impact < ::bergedge::pane_impact >() != nullptr)
       //      //{
 
-      //      //   get_document()->get_type_impact < ::bergedge::pane_impact >()->set_current_tab_by_id("app:" + strAppName);
+      //      //   get_document()->get_typed_impact < ::bergedge::pane_impact >()->set_current_tab_by_id("app:" + strAppName);
 
-      //      //   puiParent = get_document()->get_type_impact < ::bergedge::pane_impact >()->get_tab_holder(get_document()->get_type_impact < ::bergedge::pane_impact >()->get_tab_by_id("app:" + strAppName));
+      //      //   puiParent = get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_tab_holder(get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_tab_by_id("app:" + strAppName));
 
       //      //}
       //      //else
       //      //{
 
-      //      //   puiParent = get_document()->get_type_impact < ::bergedge::impact >();
+      //      //   puiParent = get_document()->get_typed_impact < ::bergedge::impact >();
 
       //      //}
 
@@ -1291,10 +1286,6 @@ namespace aura
 namespace user
 {
 
-   run_application::run_application()
-   {
-
-   }
 
    bool is_descendant(::user::interaction* puiParent, ::user::interaction* pinteraction)
       // helper for detecting whether child descendent of parent
@@ -1551,6 +1542,39 @@ namespace user
 
 
    __namespace_object_factory(user, ::system_setup::flag_object_user);
+
+
+   ::aura::application * user::get_app()
+   {
+
+      return m_pcontext && m_pcontext->m_papplication ? m_pcontext->m_papplication->m_pauraapplication : nullptr;
+
+   }
+
+   
+   ::aura::session * user::get_session()
+   {
+
+      return m_pcontext ? m_pcontext->m_paurasession : nullptr;
+
+   }
+
+
+   ::aura::system * user::get_system()
+   {
+
+      return ::is_set(m_psystem) ? dynamic_cast <::aura::system *> (m_psystem) : nullptr;
+
+   }
+
+   
+   __pointer(::user::plain_edit) user::create_calculator_plain_edit()
+   {
+
+      return __new(::user::plain_edit);
+
+   }
+
 
 
 } // namespace user

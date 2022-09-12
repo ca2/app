@@ -2040,7 +2040,7 @@ namespace user
    }
 
 
-   void primitive::set_impactport_org(::draw2d::graphics_pointer & pgraphics)
+   void primitive::set_context_org(::draw2d::graphics_pointer & pgraphics)
    {
 
       throw ::interface_only();
@@ -3998,7 +3998,7 @@ namespace user
    //::form_property_set * primitive::get_form_property_set()
    //{
 
-   //   auto pformpropertyset = GetTypedParent < ::form_property_set >();
+   //   auto pformpropertyset = get_typed_parent < ::form_property_set >();
 
    //   if (::is_set(pformpropertyset))
    //   {

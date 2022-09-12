@@ -1,14 +1,26 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
-#include "aura/update.h"
+#include "tab.h"
+#include "tab_pane_array.h"
 #include "acme/constant/timer.h"
 #include "aqua/xml.h"
 #include "tab_pane.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "tab_data.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/image/context_image.h"
+#include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/image/list.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/path.h"
 #include "acme/platform/timer.h"
+#include "aura/user/user/frame.h"
+#include "aura/user/user/system.h"
+#include "aura/user/user/window_util.h"
+#include "style.h"
+#include "aura/message/user.h"
+#include "tab_callback.h"
+#include "base/platform/application.h"
+#include "base/platform/system.h"
 
 
 //extern CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;
@@ -497,11 +509,9 @@ namespace user
 
             ::rectangle_i32 rectangleTab(get_data()->m_rectangleTab);
 
-            client_to_screen(rectangleTab);
+            rectangleTab+=client_to_screen();
 
-            auto pwindow = window();
-
-            auto pointCursor = pwindow->get_cursor_position();
+            auto pointCursor = get_cursor_position();
 
             bool bShowTabs = rectangleTab.contains(pointCursor);
 
@@ -553,9 +563,7 @@ namespace user
 
             bool bShowTabs;
 
-            auto pwindow = window();
-
-            auto pointCursor = pwindow->get_cursor_position();
+            auto pointCursor = get_cursor_position();
 
             if(get_data()->m_bVertical)
             {
@@ -1368,7 +1376,7 @@ namespace user
 
       pgraphics->set(get_font(pstyle, e_element_close_tab_button));
 
-      m_dcextension.get_text_extent(pgraphics,MAGIC_PALACE_TAB_SIZE,get_data()->m_sizeSep);
+      m_pdcextension->get_text_extent(pgraphics,MAGIC_PALACE_TAB_SIZE,get_data()->m_sizeSep);
 
       if(get_data()->m_bVertical)
       {
@@ -1395,11 +1403,11 @@ namespace user
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(m_dcextension, pgraphics);
+            ppane->do_split_layout(m_pdcextension, pgraphics);
 
             ::size_i32 size;
 
-            m_dcextension.get_text_extent(pgraphics, str, size);
+            m_pdcextension->get_text_extent(pgraphics, str, size);
 
             if(ppane->m_pimage->is_set())
             {
@@ -1504,11 +1512,11 @@ namespace user
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(m_dcextension,pgraphics);
+            ppane->do_split_layout(m_pdcextension,pgraphics);
 
             ::size_i32 size;
 
-            m_dcextension.get_text_extent(pgraphics, str, size);
+            m_pdcextension->get_text_extent(pgraphics, str, size);
 
             if(ppane->m_pimage->is_ok())
             {
@@ -1675,7 +1683,7 @@ namespace user
 
       pholder->get_window_rect(rectangleWindow);
 
-      screen_to_client(rectangleWindow);
+      rectangleWindow+=screen_to_client();
 
       if(bDisplay && iIndex == get_current_tab_index())
       {
@@ -1836,9 +1844,7 @@ namespace user
 
          m_bMouseDown = false;
 
-         auto pwindowing = windowing();
-
-         pwindowing->release_mouse_capture();
+         release_mouse_capture();
 
       }
 
@@ -1864,9 +1870,7 @@ namespace user
 
          // drag operation was about to start (but ended prematurely)
 
-         auto pwindowing = windowing();
-
-         pwindowing->release_mouse_capture();
+         release_mouse_capture();
 
          KillTimer(e_timer_drag_start);
 
@@ -1926,7 +1930,7 @@ namespace user
       if(m_bMouseDown)
       {
 
-         if (window()->windowing()->is_sandboxed())
+         if (is_sandboxed())
          {
 
             m_bTabScrollingActive = true;
@@ -2042,7 +2046,7 @@ namespace user
 
          float fDensity = 1.0f;
 
-         if (!window()->windowing()->is_sandboxed())
+         if (!is_sandboxed())
          {
 
             if (eelement == e_element_tab_near_scroll)
@@ -2059,7 +2063,7 @@ namespace user
 
                   prectangle->right = rectangle.right;
 
-                  fDensity = window()->get_density_for_window();
+                  fDensity = get_density_for_window();
 
                   prectangle->bottom = rectangle.top + (::i32)(8.0f * fDensity);
 
@@ -2073,7 +2077,7 @@ namespace user
 
                   prectangle->top = rectangle.top;
 
-                  fDensity = window()->get_density_for_window();
+                  fDensity = get_density_for_window();
 
                   prectangle->right = rectangle.left + (::i32)(8.0f * fDensity);
 
@@ -2094,7 +2098,7 @@ namespace user
 
                   prectangle->left = rectangle.left;
 
-                  fDensity = window()->get_density_for_window();
+                  fDensity = get_density_for_window();
 
                   prectangle->top = rectangle.bottom - (::i32)(8.0f * fDensity);
 
@@ -2108,7 +2112,7 @@ namespace user
 
                   ::rectangle_i32 rectangle = ptabdata->m_rectangleTab;
 
-                  fDensity = window()->get_density_for_window();
+                  fDensity = get_density_for_window();
 
                   prectangle->left = rectangle.right - (::i32)(8.0f * fDensity);
 
@@ -2410,7 +2414,7 @@ namespace user
       //__pointer(::user::interaction) pupdown = pinteraction;
 
       //if (pupdown.is_set()
-      //      && pupdown->m_eupdown != updown_normal_frame
+      //      && pupdown->m_eupdown != e_updown_normal_frame
       //      && pupdown->m_eupdown != updown_none)
       //{
 
@@ -2427,7 +2431,7 @@ namespace user
       //__pointer(::user::interaction) pupdown = pinteraction;
 
       //if (pupdown.is_set()
-      //      && pupdown->m_eupdown != updown_normal_frame
+      //      && pupdown->m_eupdown != e_updown_normal_frame
       //      && pupdown->m_eupdown != updown_none)
       //{
 
@@ -2452,7 +2456,7 @@ namespace user
       if(bScroll)
       {
 
-         if (window()->windowing()->is_sandboxed())
+         if (is_sandboxed())
          {
 
          }
@@ -2621,12 +2625,14 @@ namespace user
 
       __pointer(::user::message) pusermessage(pmessage);
 
-      if(pmessage->previous())
+      if (pmessage->previous())
+      {
+
          return;
 
-      auto pwindowing = windowing();
+      }
 
-      auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+      auto pcursor = get_mouse_cursor(e_cursor_arrow);
 
       set_mouse_cursor(pcursor);
 
@@ -3668,13 +3674,9 @@ namespace user
          //auto elapsed = g_tickDragStart.elapsed();
          KillTimer(e_timer_drag_start);
 
-         auto pwindowing = windowing();
+         release_mouse_capture();
 
-         pwindowing->release_mouse_capture();
-
-         auto pwindow = window();
-
-         auto pointCursor = pwindow->get_cursor_position();
+         auto pointCursor = get_cursor_position();
 
          auto pitem = hit_test(pointCursor);
 

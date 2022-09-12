@@ -1,7 +1,9 @@
 #include "framework.h"
+#include "image.h"
 #include "aura/graphics/image/context_image.h"
 #include "array.h"
 #include "drawing.h"
+#include "aura/platform/context.h"
 
 
 image_array::image_array()
@@ -96,7 +98,7 @@ bool image_array::explode(::object * pobject, const ::size_i32 & sizeParam, ::pa
 
          pimage->draw(imagedrawing);
 
-         add(pimage);
+         add_image(pimage);
 
       }
 

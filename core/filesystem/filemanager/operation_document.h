@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/user/user/document.h"
+
+
 namespace filemanager
 {
 
@@ -13,7 +16,7 @@ namespace filemanager
 
 
       
-      operation_thread  m_thread;
+      __pointer(operation_thread)      m_poperationthread;
 
 
       operation_document();

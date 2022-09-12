@@ -1,9 +1,12 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "aura/platform/draw_context2.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "scroll_bar.h"
+#include "aura/message/user.h"
+
 
 namespace user
 {
@@ -81,7 +84,7 @@ namespace user
    //}
 
 
-   point_i32 scroll_bar::get_ascendant_impactport_offset() const
+   point_i32 scroll_bar::get_ascendant_context_offset() const
    {
 
       if (get_parent() == nullptr)
@@ -91,12 +94,12 @@ namespace user
 
       }
 
-      return get_parent()->get_ascendant_impactport_offset();
+      return get_parent()->get_ascendant_context_offset();
 
    }
 
 
-   point_i32 scroll_bar::get_parent_impactport_offset() const
+   point_i32 scroll_bar::get_parent_context_offset() const
    {
 
       return nullptr;

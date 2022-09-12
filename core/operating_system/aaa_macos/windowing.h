@@ -32,7 +32,7 @@ NSWindow * __nswindow(oswindow oswindow);
 #define GetWindowLong GetWindowLongA
 #define SetWindowLong SetWindowLongA
 
-int GetMainScreenRect(RECT32 * prect);
+int get_main_screen_rectangle(RECT32 * prect);
 
 
 int GetScreenRect(RECT32 * prect, int iMonitor);
@@ -62,7 +62,7 @@ oswindow get_active_window();
 oswindow set_active_window(oswindow window);
 int_bool enable_window(oswindow hwnd, int_bool bEnable);
 
-//void GetMainScreenRect(RECT32 * prect);
+//void get_main_screen_rectangle(RECT32 * prect);
 
 
 int_bool SetForegroundWindow(oswindow window);

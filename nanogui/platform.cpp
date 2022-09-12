@@ -1,10 +1,8 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+
 
 #include "aura/operating_system.h"
-
+#include <vector>
 
 void __wide_append(memory & memory, const char * psz);
 void __wide_append_null(memory & memory);

@@ -16,7 +16,7 @@
 		9A1F6E96274DFD11000B7A22 /* crypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1F6E58274DFD0F000B7A22 /* crypt.h */; };
 		9A1F6E97274DFD11000B7A22 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F6E5C274DFD0F000B7A22 /* _.cpp */; };
 		9A1F6E98274DFD11000B7A22 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F6E5D274DFD0F000B7A22 /* file.cpp */; };
-		9A1F6E99274DFD11000B7A22 /* _folder_zip.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1F6E5E274DFD0F000B7A22 /* _folder_zip.h */; };
+		9A1F6E99274DFD11000B7A22 /* _library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1F6E5E274DFD0F000B7A22 /* _library.h */; };
 		9A1F6E9A274DFD11000B7A22 /* zip.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1F6E61274DFD0F000B7A22 /* zip.h */; };
 		9A1F6E9B274DFD11000B7A22 /* unzip.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1F6E63274DFD0F000B7A22 /* unzip.h */; };
 		9A1F6E9C274DFD11000B7A22 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1F6E65274DFD0F000B7A22 /* framework.h */; };
@@ -25,13 +25,13 @@
 		9A1F6EA9274DFD11000B7A22 /* folder.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1F6E7E274DFD11000B7A22 /* folder.h */; };
 		9A1F6EAA274DFD11000B7A22 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1F6E7F274DFD11000B7A22 /* _factory.cpp */; };
 		9A1F6EAC274DFD11000B7A22 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1F6E81274DFD11000B7A22 /* _.h */; };
-		9A1F6EB9274DFDCD000B7A22 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1F6EB3274DFDB1000B7A22 /* libacme.dylib */; };
+		9A1F6EB9274DFDCD000B7A22 /* acme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1F6EB3274DFDB1000B7A22 /* acme.dylib */; };
 		9A5D7608274E4D2100403BC3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5D7607274E4D2100403BC3 /* libz.tbd */; };
 		9A5D760B274E4EEE00403BC3 /* file_function_definitions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5D7609274E4EED00403BC3 /* file_function_definitions.h */; };
 		9A5D760C274E4EEE00403BC3 /* file_function_definitions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5D760A274E4EED00403BC3 /* file_function_definitions.cpp */; };
 		9AA14DC1282A17D900B1621E /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1F6E81274DFD11000B7A22 /* _.h */; };
 		9AA14DC2282A17D900B1621E /* file_function_definitions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5D7609274E4EED00403BC3 /* file_function_definitions.h */; };
-		9AA14DC3282A17D900B1621E /* _folder_zip.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1F6E5E274DFD0F000B7A22 /* _folder_zip.h */; };
+		9AA14DC3282A17D900B1621E /* _library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1F6E5E274DFD0F000B7A22 /* _library.h */; };
 		9AA14DC4282A17D900B1621E /* unzip.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1F6E63274DFD0F000B7A22 /* unzip.h */; };
 		9AA14DC5282A17D900B1621E /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1F6E4C274DFD0F000B7A22 /* file.h */; };
 		9AA14DC6282A17D900B1621E /* iowin32.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1F6E4A274DFD0F000B7A22 /* iowin32.h */; };
@@ -92,7 +92,7 @@
 		9A1F6E58274DFD0F000B7A22 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		9A1F6E5C274DFD0F000B7A22 /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A1F6E5D274DFD0F000B7A22 /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
-		9A1F6E5E274DFD0F000B7A22 /* _folder_zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _folder_zip.h; sourceTree = "<group>"; };
+		9A1F6E5E274DFD0F000B7A22 /* _library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _library.h; sourceTree = "<group>"; };
 		9A1F6E61274DFD0F000B7A22 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		9A1F6E63274DFD0F000B7A22 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
 		9A1F6E65274DFD0F000B7A22 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
@@ -116,7 +116,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A5D7608274E4D2100403BC3 /* libz.tbd in Frameworks */,
-				9A1F6EB9274DFDCD000B7A22 /* libacme.dylib in Frameworks */,
+				9A1F6EB9274DFDCD000B7A22 /* acme.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,7 +129,7 @@
 				9A1F6E5C274DFD0F000B7A22 /* _.cpp */,
 				9A1F6E81274DFD11000B7A22 /* _.h */,
 				9A1F6E7F274DFD11000B7A22 /* _factory.cpp */,
-				9A1F6E5E274DFD0F000B7A22 /* _folder_zip.h */,
+				9A1F6E5E274DFD0F000B7A22 /* _library.h */,
 				9A1F6E58274DFD0F000B7A22 /* crypt.h */,
 				9A1F6E5D274DFD0F000B7A22 /* file.cpp */,
 				9A1F6E4C274DFD0F000B7A22 /* file.h */,
@@ -153,7 +153,7 @@
 		9A1F6EAE274DFDB1000B7A22 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A1F6EB3274DFDB1000B7A22 /* libacme.dylib */,
+				9A1F6EB3274DFDB1000B7A22 /* acme.dylib */,
 				9A1F6EB5274DFDB1000B7A22 /* libios_acme.a */,
 			);
 			name = Products;
@@ -196,7 +196,7 @@
 			files = (
 				9AA14DC1282A17D900B1621E /* _.h in Headers */,
 				9AA14DC2282A17D900B1621E /* file_function_definitions.h in Headers */,
-				9AA14DC3282A17D900B1621E /* _folder_zip.h in Headers */,
+				9AA14DC3282A17D900B1621E /* _library.h in Headers */,
 				9AA14DC4282A17D900B1621E /* unzip.h in Headers */,
 				9AA14DC5282A17D900B1621E /* file.h in Headers */,
 				9AA14DC6282A17D900B1621E /* iowin32.h in Headers */,
@@ -214,7 +214,7 @@
 			files = (
 				9A1F6EAC274DFD11000B7A22 /* _.h in Headers */,
 				9A5D760B274E4EEE00403BC3 /* file_function_definitions.h in Headers */,
-				9A1F6E99274DFD11000B7A22 /* _folder_zip.h in Headers */,
+				9A1F6E99274DFD11000B7A22 /* _library.h in Headers */,
 				9A1F6E9B274DFD11000B7A22 /* unzip.h in Headers */,
 				9A1F6E90274DFD11000B7A22 /* file.h in Headers */,
 				9A1F6E8E274DFD11000B7A22 /* iowin32.h in Headers */,
@@ -304,9 +304,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A1F6EB3274DFDB1000B7A22 /* libacme.dylib */ = {
+		9A1F6EB3274DFDB1000B7A22 /* acme.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
+			name = acme.dylib;
 			path = libacme.dylib;
 			remoteRef = 9A1F6EB2274DFDB1000B7A22 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -314,6 +315,7 @@
 		9A1F6EB5274DFDB1000B7A22 /* libios_acme.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
+			name = ios_acme.a;
 			path = libios_acme.a;
 			remoteRef = 9A1F6EB4274DFDB1000B7A22 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -473,7 +475,7 @@
 					"$(WorkspaceDir)/source",
 					"$(WorkspaceDir)/source/include",
 					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/source/app/_include",
+					"$(WorkspaceDir)/source/app/include",
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
@@ -567,7 +569,7 @@
 					"$(WorkspaceDir)/source",
 					"$(WorkspaceDir)/source/include",
 					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/source/app/_include",
+					"$(WorkspaceDir)/source/app/include",
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",

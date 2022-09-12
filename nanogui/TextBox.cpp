@@ -12,17 +12,13 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
-
-//#include <nanogui/window.h>
-//#include <nanogui/screen.h>
-//#include <nanogui/textbox.h>
-//#include <nanogui/opengl.h>
-//#include <nanogui/theme.h>
+#include "TextBox.h"
 #include <regex>
-//#include <iostream>
+#include "aura/platform/session.h"
+#include "aura/windowing/window.h"
+#include "aura/user/user/copydesk.h"
+
+
 
 NAMESPACE_BEGIN(nanogui)
 
@@ -304,7 +300,7 @@ bool TextBox::mouse_button_event(const Vector2i & p, int button, bool down, cons
 {
 
 
-   if (button == __MOUSE_LEFT_BUTTON && down && !m_focused) 
+   if (button == ::user::e_mouse_left_button && down && !m_focused)
    {
       if (!m_spinnable || spin_area(p) == SpinArea::None) /* not on scrolling arrows */
          request_focus();

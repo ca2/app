@@ -11,17 +11,9 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
-
-//#include <nanogui/theme.h>
-//#include <nanogui/opengl.h>
+#include "Theme.h"
 #include "Icons.h"
-////#include <nanogui_resources.h>
-//#ifdef _WIN32
-//#include <Windows.h>
-//#endif
+
 
 char * read_resource_string(const char * psz);
 void read_resource(void *& p, size_t & s, const char * psz);

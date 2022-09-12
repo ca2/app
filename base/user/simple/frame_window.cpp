@@ -1,11 +1,32 @@
 #include "framework.h"
-#include "base/user/simple/_component.h"
+#include "frame_window.h"
+////#include "base/user/simple/_component.h"
 #include "aura/message.h"
-#include "aura/update.h"
 #include "aqua/xml.h"
 #include "acme/id.h"
+#include "aura/user/user/window_util.h"
 #include "acme/parallelization/pool.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/graphics/image/fastblur.h"
+#include "aura/windowing/icon.h"
+#include "aura/user/user/alpha_source.h"
+#include "base/user/user/user.h"
+#include "aura/user/user/primitive_impl.h"
+#include "base/platform/application.h"
+#include "aura/user/user/notify_icon.h"
+#include "base/platform/session.h"
+#include "base/user/experience/frame.h"
+#include "aura/message/user.h"
+#include "aura/user/user/system.h"
+#include "base/user/user/impact_system.h"
+#include "base/user/experience/control_box.h"
+#include "base/user/user/document.h"
+#include "base/user/user/toolbar.h"
+#include "base/user/user/place_holder.h"
+#include "base/user/user/impact_host.h"
+#include "aura/user/user/style.h"
 
 
 #define TEST 0
@@ -336,10 +357,10 @@ bool simple_frame_window::WindowDataLoadWindowRect()
    if (wfi_has_up_down())
    {
 
-      if (!(m_uiUserInteractionFlags & ::user::interaction_wfi_up_down_loading))
+      if (!(m_uiUserInteractionFlags & ::user::e_interaction_wfi_up_down_loading))
       {
 
-         __keep_on(&m_uiUserInteractionFlags, ::user::interaction_wfi_up_down_loading);
+         __keep_on(&m_uiUserInteractionFlags, ::user::e_interaction_wfi_up_down_loading);
 
          bool bWfiDown = true;
 
@@ -405,7 +426,7 @@ void simple_frame_window::WindowDataSaveWindowRect()
 
       bool bDown;
 
-      bDown = m_eupdown != updown_up;
+      bDown = m_eupdown != e_updown_up;
 
       auto papp = get_app();
 
@@ -2006,13 +2027,13 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
          if (wfi_has_up_down())
          {
 
-            if (m_eupdown == updown_up)
+            if (m_eupdown == e_updown_up)
             {
 
                puiParent = nullptr;
 
             }
-            else if (m_eupdown == updown_down)
+            else if (m_eupdown == e_updown_down)
             {
 
                __pointer(::user::document) pdocument = pusersystem->m_pdocumentCurrent;
@@ -2426,7 +2447,11 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
    {
 
+#ifdef VERBOSE_LOG
+
       ::duration t1 = ::duration::now();
+      
+#endif
 
       //pinteraction->_001OnDraw(pgraphics);
       if(dAlpha > 0.0)
@@ -2465,11 +2490,11 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
 #endif
 
-         ::duration d1 = t1.elapsed();
-
          string strType = __type_name(this);
 
 #ifdef VERBOSE_LOG
+
+         ::duration d1 = t1.elapsed();
 
          if(d1 > 50_ms)
          {
@@ -2491,13 +2516,17 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
          else
          {
 
+#ifdef VERBOSE_LOG
+
             ::duration t1 = ::duration::now();
+            
+#endif
 
             draw_frame_and_control_box_over(pgraphics);
 
-            auto d1 = t1.elapsed();
+#ifdef VERBOSE_LOG
 
-#ifdef VERBOSE_LOG            
+            auto d1 = t1.elapsed();
 
             if(d1 > 50_ms)
             {
@@ -2539,6 +2568,15 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
    }
 
+}
+
+
+bool simple_frame_window::_000OnBeforeDraw(::draw2d::graphics_pointer & pgraphicsParam)
+{
+
+
+   return true;
+   
 }
 
 
@@ -2624,7 +2662,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
                
             }
 
-            m_blur.blur(m_pimageBlur, 2);
+            m_pfastblur->blur(m_pimageBlur, 2);
             
             {
                
@@ -2769,7 +2807,7 @@ void simple_frame_window::defer_create_notification_icon()
 
    }
 
-   windowing()->windowing_post([this]
+   windowing_post([this]
    {
 
 //      if (m_pnotifyicon)
@@ -2839,7 +2877,7 @@ bool simple_frame_window::updown_get_down_enable()
 void simple_frame_window::design_down()
 {
 
-   m_eupdown = updown_down;
+   m_eupdown = e_updown_down;
 
    if (m_pframe)
    {
@@ -2848,7 +2886,7 @@ void simple_frame_window::design_down()
 
    }
 
-   __keep_on(&m_uiUserInteractionFlags, ::user::interaction_wfi_up_down_loading);
+   __keep_on(&m_uiUserInteractionFlags, ::user::e_interaction_wfi_up_down_loading);
 
    frame_Attach();
 
@@ -2881,7 +2919,7 @@ void simple_frame_window::WfiToggleShow()
 void simple_frame_window::design_up()
 {
 
-   m_eupdown = updown_up;
+   m_eupdown = e_updown_up;
 
    if (m_pframe)
    {
@@ -2890,11 +2928,11 @@ void simple_frame_window::design_up()
 
    }
 
-   __keep_on(&m_uiUserInteractionFlags, ::user::interaction_wfi_up_down_loading);
+   __keep_on(&m_uiUserInteractionFlags, ::user::e_interaction_wfi_up_down_loading);
 
    frame_Detach();
 
-   if (m_pupdowntarget->m_uiUserInteractionFlags & ::user::interaction_wfi_up_tool_window)
+   if (m_pupdowntarget->m_uiUserInteractionFlags & ::user::e_interaction_wfi_up_tool_window)
    {
 
       set_tool_window();
@@ -3199,9 +3237,7 @@ void simple_frame_window::handle(::topic * ptopic, ::context * pcontext)
 
          //OnNotifyIconContextMenu(ptopic->m_puserelement->m_atom);
 
-         auto pwindow = window();
-
-         auto pointCursor = pwindow->get_cursor_position();
+         auto pointCursor = get_cursor_position();
 
          string strXml = notification_area_get_xml_menu();
 
@@ -3358,7 +3394,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
       ::draw2d::savedc k(pgraphics);
 
-      //on_impactport_offset(pgraphics);
+      //on_context_offset(pgraphics);
       //if (0)
       {
 
@@ -3419,15 +3455,19 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    {
 
+#ifdef VERBOSE_LOG
+
       ::duration t1 = ::duration::now();
+
+#endif
 
       _001DrawThis(pgraphics);
 
       //return; // abcxxx
 
-      ::duration d1 = t1.elapsed();
+#ifdef VERBOSE_LOG
 
-#ifdef VERBOSE_LOG      
+      ::duration d1 = t1.elapsed();
 
       if(d1 > 50_ms)
       {
@@ -3464,7 +3504,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
       ::draw2d::savedc k(pgraphics);
 
-      //on_impactport_offset(pgraphics);
+      //on_context_offset(pgraphics);
 
       try
       {
@@ -3501,13 +3541,17 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
                      {
 
+#ifdef VERBOSE_LOG
+
                         ::duration t1 = ::duration::now();
+                        
+#endif
 
                         pinteraction->_000CallOnDraw(pgraphics);
 
-                        ::duration d1 = t1.elapsed();
+#ifdef VERBOSE_LOG
 
-#ifdef VERBOSE_LOG                        
+                        ::duration d1 = t1.elapsed();
 
                         if (d1 > 50_ms)
                         {
@@ -3555,13 +3599,17 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    {
 
+#ifdef VERBOSE_LOG
+
       ::duration t1 = ::duration::now();
+      
+#endif
 
       _008CallOnDraw(pgraphics);
 
-      ::duration d1 = t1.elapsed();
+#ifdef VERBOSE_LOG
 
-#ifdef VERBOSE_LOG      
+      ::duration d1 = t1.elapsed();
 
       if(d1 > 50_ms)
       {
@@ -3799,13 +3847,13 @@ class ::mini_dock_frame_window* simple_frame_window::CreateFloatingFrame(u32 uSt
 //   if (edisplay == ::e_display_up)
 //   {
 //
-//      m_eupdown = updown_up;
+//      m_eupdown = e_updown_up;
 //
 //   }
 //   else if (edisplay == ::e_display_down)
 //   {
 //
-//      m_eupdown = updown_down;
+//      m_eupdown = e_updown_down;
 //
 //   }
 //

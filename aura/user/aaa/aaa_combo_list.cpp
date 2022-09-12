@@ -393,7 +393,7 @@ namespace user
    {
 
       if (m_pscrollbarVertical != nullptr
-         && m_scrolldataVertical.m_bScroll
+         && m_pscrolldataVertical->m_bScroll
          && iItem >= 0 && iItem < m_pcombo->_001GetListCount())
       {
 

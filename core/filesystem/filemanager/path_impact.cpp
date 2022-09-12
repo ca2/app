@@ -2,6 +2,9 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
+#include "path_impact.h"
+#include "document.h"
+#include "data.h"
 
 
 namespace filemanager
@@ -295,7 +298,6 @@ namespace filemanager
       }
 
       filemanager_data()->m_pdocument->m_strTopic = str;
-
 
    }
 

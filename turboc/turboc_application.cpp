@@ -187,7 +187,7 @@ namespace turboc
 
       }
 
-      //pcreate->payload("document").cast < document >()->get_type_impact < pane_impact >()->get_parent_frame()->display(e_display_restore);
+      //pcreate->payload("document").cast < document >()->get_typed_impact < pane_impact >()->get_parent_frame()->display(e_display_restore);
 
    }
 

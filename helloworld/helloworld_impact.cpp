@@ -22,8 +22,8 @@ namespace helloworld
       prop(FONTSEL_IMPACT) = true;
 
 
-      m_flagNonClient.erase(non_client_background);
-      m_flagNonClient.erase(non_client_focus_rect);
+      m_flagNonClient.erase(e_non_client_background);
+      m_flagNonClient.erase(e_non_client_focus_rect);
 
       m_strNewFont = pnode->font_name(e_font_sans);
 
@@ -100,18 +100,18 @@ namespace helloworld
 
       data_get("cur_text",strText);
 
-      if(GetTypedParent<::user::split_impact>() != nullptr)
+      if(get_typed_parent<::user::split_impact>() != nullptr)
       {
 
-         if(GetTypedParent<::user::split_impact>()->get_child_by_id("top_edit_impact") != nullptr)
+         if(get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact") != nullptr)
          {
 
-            GetTypedParent<::user::split_impact>()->get_child_by_id("top_edit_impact")->_001SetText(strText,::e_source_initialize);
+            get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact")->_001SetText(strText,::e_source_initialize);
 
 
 //            m_psystem->m_pacmefile->put_contents("C:\\dennisheazle\\ft.txt", __string((iptr)get_top_level()->get_handle()));
 
-            //GetTypedParent<::user::split_impact>()->get_child_by_id("top_edit_impact")->_001SetText(__string((iptr)get_top_level()->get_handle()), ::e_source_initialize);
+            //get_typed_parent<::user::split_impact>()->get_child_by_id("top_edit_impact")->_001SetText(__string((iptr)get_top_level()->get_handle()), ::e_source_initialize);
 
 
          }
@@ -254,7 +254,7 @@ namespace helloworld
       if(rectangleClient.area() <= 0)
          return;
 
-      bool bHover = GetTypedParent < pane_impact >()->m_pimpactLast == this && GetTypedParent < pane_impact >()->get_current_tab_id() == FONTSEL_IMPACT;
+      bool bHover = get_typed_parent < pane_impact >()->m_pimpactLast == this && get_typed_parent < pane_impact >()->get_current_tab_id() == FONTSEL_IMPACT;
 
       if(m_prender->m_cx == rectangleClient.width()
             && m_prender->m_cy == rectangleClient.height()

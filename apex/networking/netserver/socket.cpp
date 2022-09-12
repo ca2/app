@@ -96,7 +96,7 @@ namespace netserver
 
       auto tickExecuteBeg = ::duration::now();
 
-      m_bEnd = false;
+      //m_bEnd = false;
 
       send_response();
 

@@ -17,7 +17,7 @@
 #include "apex/_.h"
 #include "apex/platform/_platform.h"
 #if BROAD_PRECOMPILED_HEADER
-//#include "core/user/simple/_component.h"
+////#include "core/user/simple/_component.h"
 //#include "apex/user/rich_text/_rich_text.h"
 //#include "apex/filesystem/filemanager/_filemanager.h"
 //#include "apex/filesystem/filehandler/_filehandler.h"

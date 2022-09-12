@@ -6,6 +6,7 @@
 #include "save_image.h"
 #include "image.h"
 #include "aura/graphics/draw2d/lock.h"
+#include "aura/windowing/icon.h"
 
 
 context_image::context_image()
@@ -176,10 +177,10 @@ void context_image::_save_to_file(const ::payload & payloadFile, const image * p
 }
 
 
-::icon_pointer context_image::get_icon(const ::payload & payloadFile, const ::image::load_options & loadoptions)
+::draw2d::icon_pointer context_image::get_icon(const ::payload & payloadFile, const ::image::load_options & loadoptions)
 {
 
-   icon_pointer picon;
+   ::draw2d::icon_pointer picon;
 
    //auto estatus = 
    

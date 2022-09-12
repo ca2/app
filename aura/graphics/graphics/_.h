@@ -31,4 +31,14 @@ namespace OPERATING_SYSTEM_NAMESPACE
 } // namespace OPERATING_SYSTEM_NAMESPACE
 
 
+namespace graphics
+{
+
+
+   class graphics;
+
+
+} // namespace graphics
+
+
 

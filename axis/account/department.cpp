@@ -11,6 +11,11 @@
 #include "acme/constant/timer.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/parallelization/pool.h"
+#include "department.h"
+#include "user_array.h"
+#include "product_array.h"
+#include "user.h"
+#include "axis/platform/session.h"
 
 
 namespace account

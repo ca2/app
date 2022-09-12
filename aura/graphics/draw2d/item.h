@@ -20,6 +20,8 @@ namespace draw2d
       ::rectangle_i32                        rcItem;
       uptr                          itemData;
       
+      item();
+      ~item();
       
    };
 

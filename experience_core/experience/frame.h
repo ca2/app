@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/user/experience/frame.h"
+
+
 namespace experience_core
 {
 

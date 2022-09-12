@@ -1,11 +1,17 @@
 #include "framework.h"
 #include "acme/platform/timer.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
-
+#include "aura/graphics/draw2d/graphics.h"
 #include "acme/constant/timer.h"
-#include "core/user/userex/progress.h"
+#include "progress.h"
+#include "user.h"
+#include "aura/user/user/frame.h"
+#include "base/user/user/multiple_document_template.h"
+#include "base/user/user/document.h"
+#include "aura/user/user/progress.h"
+#include "core/user/user/user.h"
+#include "aura/message/user.h"
+#include "aura/platform/session.h"
+
 
 namespace userex
 {
@@ -72,7 +78,7 @@ namespace userex
 
          m_pdocument = puser->m_ptemplateProgress2->open_document_file(get_app(), ::e_type_null, __visible(false).is_true());
 
-         m_pimpact = m_pdocument->get_type_impact<::userex::progress_impact>();
+         m_pimpact = m_pdocument->get_typed_impact<::userex::progress_impact>();
 
       }
 
@@ -265,38 +271,38 @@ namespace userex
    void progress_impact::_001OnTimer(::timer* ptimer)
    {
 
-      if (ptimer->m_uEvent == e_timer_update_current_area)
-      {
-
-         KillTimer(ptimer->m_uEvent);
-
-         ::rectangle_i32 rectangle;
-
-         auto pwindowing = windowing();
-
-         auto pdisplay = pwindowing->display();
-
-         pdisplay->get_main_monitor(rectangle);
-
-         rectangle.deflate(rectangle.width() / 6, rectangle.height() / 3, rectangle.width() / 6, rectangle.height() / 2);
-
-         auto pframe = parent_frame();
-
-         if (::is_set(pframe))
-         {
-
-            pframe->m_sizeMinimum.cx = 300;
-            pframe->m_sizeMinimum.cy = 50;
-
-            pframe->good_restore(nullptr, rectangle, true);
-
-            pframe->set_need_redraw();
-
-            pframe->post_redraw();
-
-         }
-
-      }
+//      if (ptimer->m_uEvent == e_timer_update_current_area)
+//      {
+//
+//         KillTimer(ptimer->m_uEvent);
+//
+//         ::rectangle_i32 rectangle;
+//
+//         auto pwindowing = windowing();
+//
+//         auto pdisplay = pwindowing->display();
+//
+//         pdisplay->get_main_monitor(rectangle);
+//
+//         rectangle.deflate(rectangle.width() / 6, rectangle.height() / 3, rectangle.width() / 6, rectangle.height() / 2);
+//
+//         auto pframe = parent_frame();
+//
+//         if (::is_set(pframe))
+//         {
+//
+//            pframe->m_sizeMinimum.cx = 300;
+//            pframe->m_sizeMinimum.cy = 50;
+//
+//            pframe->good_restore(nullptr, rectangle, true);
+//
+//            pframe->set_need_redraw();
+//
+//            pframe->post_redraw();
+//
+//         }
+//
+//      }
 
    }
 

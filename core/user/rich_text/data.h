@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "span.h"
+
+
 namespace user
 {
 
@@ -81,7 +84,7 @@ namespace user
          virtual void on_selection_change(format * pformat);
          virtual void get_selection_intersection_format(format* pformat, index iSelBeg, index iSelEnd);
 
-         virtual void _001SetSelFontFormat(const format * pformat, const eattribute & eattribute);
+         virtual void _001SetSelFontFormat(const format * pformat, const e_attribute & eattribute);
 
          virtual void _001Delete(strsize i1, strsize i2);
          virtual void _001InsertText(const ::string & psz, format * pformatParam = nullptr);

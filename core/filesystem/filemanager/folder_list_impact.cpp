@@ -2,7 +2,12 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
-#include "core/user/databaseuser/_databaseuser.h"
+////#include "core/user/databaseuser/_component.h"
+#include "folder_list_impact.h"
+#include "folder_list_data.h"
+#include "core/user/user/list_column.h"
+#include "data.h"
+#include "aura/user/user/check_box.h"
 
 
 namespace filemanager

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/user/simple/tab_document.h"
+
+
 class CLASS_DECL_CORE simple_pane_document :
    virtual public ::simple_tab_document
 {

@@ -283,8 +283,7 @@ namespace draw2d
    };
 
 
-   typedef __pointer(region) region_pointer;
-
+   
    //using arc_shape_region = _shape < ::arc, e_shape_arc, region>;
    ////using line_shape_with_region = _shape < ::line, e_shape_line, region >;
    //using rectangle_shape_region = _shape < ::rectangle, e_shape_rectangle, region >;
@@ -301,12 +300,15 @@ namespace draw2d
 
 
 
-   
-
-
-
-
 
 } // namespace draw2d
 
+
+//template < >
+//CLASS_DECL_AURA __pointer(___shape< ::draw2d::region>) __create_shape(const ::write_text::text_out & textout, holdee < ::draw2d::region>);
+//
+//template < >
+//CLASS_DECL_AURA __pointer(___shape< ::draw2d::region>) __create_shape(const ::write_text::draw_text & drawtext, holdee < ::draw2d::region>);
+//
+//
 

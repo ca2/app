@@ -1,13 +1,14 @@
 #pragma once
 
 
+#include "aura/user/user/scroll_base.h"
+
+
 class image_list;
 
 
 namespace user
 {
-
-
 
 
    class CLASS_DECL_CORE tree :
@@ -24,7 +25,7 @@ namespace user
       __composite(::data::tree_item_ptr_array)  m_pitemptraSelected;
       ::data::tree_item *                       m_pitemHover;
 
-      ::draw2d::graphics_extension              m_dcextension;
+      __pointer(::draw2d::graphics_extension)   m_pdcextension;
       index                                     m_dwFirstVisibleItem;
       index                                     m_iItemCount;
       ::u32                                     m_uiLButtonUpFlags;
@@ -122,7 +123,7 @@ namespace user
 
       virtual i32 get_wheel_scroll_delta() override;
 
-      virtual void on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics) override;
 
       __pointer(::image_list) get_image_list();
 
@@ -186,7 +187,7 @@ namespace user
 
       //virtual ::size_f64 get_total_size() override;
 
-      virtual void on_impactport_offset(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_context_offset(::draw2d::graphics_pointer & pgraphics) override;
 
 
    };

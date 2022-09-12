@@ -1,7 +1,7 @@
 #include "framework.h"
 //#include "aura/operating_system.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "aura/user/user/shell.h"
 //#include "acme/compress/zip/_.h"
@@ -15,6 +15,10 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/graphics/image/icon.h"
+#include "aura/windowing/icon.h"
+#include "window_util.h"
+#include "interaction.h"
+#include "aura/platform/node.h"
 
 
 #if defined(RASPBIAN)
@@ -213,9 +217,9 @@ namespace user
       for (auto iSize : m_iaSize)
       {
 
-         iImage = m_pil[iSize]->reserve_image(iImage);
+         iImage = m_pimagelist[iSize]->reserve_image(iImage);
 
-         iImage = m_pilHover[iSize]->reserve_image(iImage);
+         iImage = m_pimagelistHover[iSize]->reserve_image(iImage);
 
       }
 
@@ -380,31 +384,31 @@ namespace user
       for (auto iSize : m_iaSize)
       {
 
-         if (m_pil[iSize].is_null())
+         if (m_pimagelist[iSize].is_null())
          {
 
-            __refer(m_pil[iSize], __create_new < ::image_list >());
-            m_pil[iSize]->create(iSize, iSize, 0, 10, 10);
+            __refer(m_pimagelist[iSize], __create_new < ::image_list >());
+            m_pimagelist[iSize]->create(iSize, iSize, 0, 10, 10);
 
          }
          else
          {
 
-            m_pil[iSize]->erase_all();
+            m_pimagelist[iSize]->erase_all();
 
          }
 
-         if (m_pilHover[iSize].is_null())
+         if (m_pimagelistHover[iSize].is_null())
          {
 
-            __refer(m_pilHover[iSize], __create_new < ::image_list >());
-            m_pilHover[iSize]->create(iSize, iSize, 0, 10, 10);
+            __refer(m_pimagelistHover[iSize], __create_new < ::image_list >());
+            m_pimagelistHover[iSize]->create(iSize, iSize, 0, 10, 10);
 
          }
          else
          {
 
-            m_pilHover[iSize]->erase_all();
+            m_pimagelistHover[iSize]->erase_all();
 
          }
 
@@ -562,7 +566,7 @@ namespace user
 
       }
 
-      return m_pil[m_iaSize[i]];
+      return m_pimagelist[m_iaSize[i]];
 
    }
 
@@ -607,7 +611,7 @@ namespace user
 
       }
 
-      return m_pilHover[m_iaSize[i]];
+      return m_pimagelistHover[m_iaSize[i]];
 
    }
 
@@ -1362,7 +1366,7 @@ namespace user
 
          {
 
-            synchronous_lock sl1(m_pil[16]->mutex());
+            synchronous_lock sl1(m_pimagelist[16]->mutex());
 
             image_source imagesource(pimage1, pimage1->rectangle());
 
@@ -1372,13 +1376,13 @@ namespace user
 
             image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            getfileimage.m_iImage = m_pil[16]->set(getfileimage.m_iImage, imagedrawing);
+            getfileimage.m_iImage = m_pimagelist[16]->set(getfileimage.m_iImage, imagedrawing);
 
          }
 
          {
 
-            synchronous_lock sl2(m_pil[48]->mutex());
+            synchronous_lock sl2(m_pimagelist[48]->mutex());
 
             image_source imagesource(image48, image48->rectangle());
 
@@ -1388,13 +1392,13 @@ namespace user
 
             image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            getfileimage.m_iImage = m_pil[48]->set(getfileimage.m_iImage, imagedrawing);
+            getfileimage.m_iImage = m_pimagelist[48]->set(getfileimage.m_iImage, imagedrawing);
 
          }
 
          {
 
-            synchronous_lock sl1(m_pilHover[16]->mutex());
+            synchronous_lock sl1(m_pimagelistHover[16]->mutex());
 
             image_source imagesource(image16, image16->rectangle());
 
@@ -1404,15 +1408,15 @@ namespace user
 
             image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            getfileimage.m_iImage = m_pil[16]->set(getfileimage.m_iImage, imagedrawing);
+            getfileimage.m_iImage = m_pimagelist[16]->set(getfileimage.m_iImage, imagedrawing);
 
-            m_pilHover[16]->color_blend(m_pil[16], rgb(255, 255, 240), 64);
+            m_pimagelistHover[16]->color_blend(m_pimagelist[16], rgb(255, 255, 240), 64);
 
          }
 
          {
 
-            synchronous_lock sl1(m_pilHover[48]->mutex());
+            synchronous_lock sl1(m_pimagelistHover[48]->mutex());
 
             image_source imagesource(image48, image48->rectangle());
 
@@ -1422,9 +1426,9 @@ namespace user
 
             image_drawing imagedrawing(imagedrawingoptions, imagesource);
 
-            getfileimage.m_iImage = m_pil[48]->set(getfileimage.m_iImage, imagedrawing);
+            getfileimage.m_iImage = m_pimagelist[48]->set(getfileimage.m_iImage, imagedrawing);
 
-            m_pilHover[48]->color_blend(m_pil[48], rgb(255, 255, 240), 64);
+            m_pimagelistHover[48]->color_blend(m_pimagelist[48], rgb(255, 255, 240), 64);
 
          }
 
@@ -1772,17 +1776,17 @@ namespace user
 //   void shell::set_image(int iImage, int iSize, ::image * pimage)
 //   {
 //
-//      synchronous_lock synchronouslock(m_pil[iSize]->mutex());
+//      synchronous_lock synchronouslock(m_pimagelist[iSize]->mutex());
 //
-//      synchronous_lock slHover(m_pilHover[iSize]->mutex());
+//      synchronous_lock slHover(m_pimagelistHover[iSize]->mutex());
 //
-//      m_pil[iSize]->set(iImage, pimage);
+//      m_pimagelist[iSize]->set(iImage, pimage);
 //
-//      auto pimageHover = m_pil[iSize]->get_image(iImage);
+//      auto pimageHover = m_pimagelist[iSize]->get_image(iImage);
 //
 //      pimageHover->g()->fill_rectangle(pimage->rectangle(), ::color::color(255, 255, 240, 64));
 //
-//      m_pilHover[iSize]->set(iImage, pimageHover);
+//      m_pimagelistHover[iSize]->set(iImage, pimageHover);
 //
 //   }
 
@@ -1790,17 +1794,17 @@ namespace user
    void shell::set_image(int iImage, int iSize, image_drawing imagedrawing)
    {
 
-      synchronous_lock synchronouslock(m_pil[iSize]->mutex());
+      synchronous_lock synchronouslock(m_pimagelist[iSize]->mutex());
 
-      synchronous_lock slHover(m_pilHover[iSize]->mutex());
+      synchronous_lock slHover(m_pimagelistHover[iSize]->mutex());
 
-      m_pil[iSize]->set(iImage, imagedrawing);
+      m_pimagelist[iSize]->set(iImage, imagedrawing);
 
-      auto pimageHover = m_pil[iSize]->get_image(iImage);
+      auto pimageHover = m_pimagelist[iSize]->get_image(iImage);
 
       pimageHover->g()->fill_rectangle(pimageHover->rectangle(), ::color::color(255, 255, 240, 64));
 
-      m_pilHover[iSize]->set(iImage, imagedrawing);
+      m_pimagelistHover[iSize]->set(iImage, imagedrawing);
 
    }
 
@@ -1986,24 +1990,24 @@ namespace user
    //int shell::add_hover_image(int iSize, int iImage, ::color::color crBk)
    //{
 
-   //   synchronous_lock synchronouslock(m_pilHover[iSize]->mutex());
+   //   synchronous_lock synchronouslock(m_pimagelistHover[iSize]->mutex());
 
    //   if (crBk == 0)
    //   {
 
-   //      return m_pilHover[iSize]->predicate_add_image([&](auto pimage)
+   //      return m_pimagelistHover[iSize]->predicate_add_image([&](auto pimage)
    //         {
 
    //            psystem->imaging().color_blend(pimage, rgb(255, 255, 240), 64);
 
    //         }
-   //      , m_pil[iSize], iImage, iImage);
+   //      , m_pimagelist[iSize], iImage, iImage);
 
    //   }
    //   else
    //   {
 
-   //      iImage = m_pilHover[iSize]->add_image(m_pil[iSize], iImage);
+   //      iImage = m_pimagelistHover[iSize]->add_image(m_pimagelist[iSize], iImage);
 
    //      {
 
@@ -2012,25 +2016,25 @@ namespace user
    //         pimage->fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
    //         pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-   //         m_pilHover[iSize]->draw(pimage->get_graphics(), iImage, nullptr, 0);
-   //         m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-   //         m_pilHover[iSize]->m_pimage->g()->BitBlt(iImage * 48, 0, 48, 48, pimage->get_graphics());
-   //         m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   //         m_pimagelistHover[iSize]->draw(pimage->get_graphics(), iImage, nullptr, 0);
+   //         m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //         m_pimagelistHover[iSize]->m_pimage->g()->BitBlt(iImage * 48, 0, 48, 48, pimage->get_graphics());
+   //         m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    //      }
 
    //      {
-   //         ::image_pointer d = m_pilHover[iSize]->m_pimage;
-   //         size_i32 s = m_pil[iSize]->m_pimage->get_size();
+   //         ::image_pointer d = m_pimagelistHover[iSize]->m_pimage;
+   //         size_i32 s = m_pimagelist[iSize]->m_pimage->get_size();
    //         ::image_pointer pimage(this);
    //         pimage->create(d->size());
    //         pimage->fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
    //         pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
    //         pimage->get_graphics()->draw(nullptr, d->size(), d->get_graphics());
    //         pimage->get_graphics()->fill_solid_rect_dim(0, 0, d->size().cx, d->size().cy, argb(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
-   //         m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-   //         m_pil[iSize]->m_pimage->g()->draw(d->rectangle(), pimage->get_graphics());
-   //         m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   //         m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //         m_pimagelist[iSize]->m_pimage->g()->draw(d->rectangle(), pimage->get_graphics());
+   //         m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    //      }
 
@@ -2044,16 +2048,16 @@ namespace user
    //int shell::add_hover_image(int iSize, int iImage, const ::color::color& colorBackground)
    //{
 
-   //   synchronous_lock synchronouslock(m_pilHover[iSize]->mutex());
+   //   synchronous_lock synchronouslock(m_pimagelistHover[iSize]->mutex());
 
    //   if (colorBackground.is_transparent())
    //   {
 
-   //      auto pimage = m_pil[iSize]->get_image(iImage);
+   //      auto pimage = m_pimagelist[iSize]->get_image(iImage);
    //      
    //      pimage->g()->fill_rectangle(pimage->rectangle(), ::color::color(255, 255, 240, 64));
 
-   //      m_pilHover[iSize]->add_image(pimage, 0, 0, iImage);
+   //      m_pimagelistHover[iSize]->add_image(pimage, 0, 0, iImage);
 
    //      return iImage;
 
@@ -2061,9 +2065,9 @@ namespace user
    //   else
    //   {
 
-   //      auto pimage = m_pil[iSize]->get_image(iImage);
+   //      auto pimage = m_pimagelist[iSize]->get_image(iImage);
 
-   //      iImage = m_pilHover[iSize]->add_image(pimage, 0, 0,  iImage);
+   //      iImage = m_pimagelistHover[iSize]->add_image(pimage, 0, 0,  iImage);
 
    //      {
 
@@ -2077,21 +2081,21 @@ namespace user
 
    //         ::draw2d::graphics_pointer pgraphics = pimage->get_graphics();
 
-   //         m_pilHover[iSize]->draw(pgraphics, iImage, nullptr, 0);
+   //         m_pimagelistHover[iSize]->draw(pgraphics, iImage, nullptr, 0);
 
-   //         m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //         m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
 
    //         auto rectangleDraw = ::rectangle_f64(::point_f64(iImage * 48, 0), ::size_f64(48, 48));
 
-   //         m_pilHover[iSize]->m_pimage->g()->draw(rectangleDraw, pimage->get_graphics());
+   //         m_pimagelistHover[iSize]->m_pimage->g()->draw(rectangleDraw, pimage->get_graphics());
 
-   //         m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   //         m_pimagelistHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    //      }
 
    //      {
 
-   //         ::image_pointer d = m_pilHover[iSize]->m_pimage;
+   //         ::image_pointer d = m_pimagelistHover[iSize]->m_pimage;
 
    //         ::image_pointer pimage(this);
 
@@ -2101,9 +2105,9 @@ namespace user
    //         pimage->get_graphics()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
    //         pimage->get_graphics()->stretch(d->size(), d);
    //         pimage->get_graphics()->fill_rectangle(d->size(), argb(123, colorBackground.red, colorBackground.green, colorBackground.blue));
-   //         m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
-   //         m_pil[iSize]->m_pimage->g()->draw(d->rectangle(), pimage->get_graphics());
-   //         m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+   //         m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_set);
+   //         m_pimagelist[iSize]->m_pimage->g()->draw(d->rectangle(), pimage->get_graphics());
+   //         m_pimagelist[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
    //      }
 

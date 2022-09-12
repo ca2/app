@@ -1,11 +1,12 @@
 #include "framework.h"
+#include "exception.h"
 
 
 namespace multimedia
 {
 
 
-   exception::exception(e_exception eexception, const ::e_status & estatus, const char * pszMessage) :
+   exception::exception(enum_exception eexception, const ::e_status & estatus, const char * pszMessage) :
       ::exception(estatus, pszMessage)
    {
 
@@ -38,25 +39,25 @@ namespace multimedia
 
       string strMultimediaMessage = ::exception::get_message();
 
-      if (m_eexception == exception_undefined)
+      if (m_eexception == e_exception_undefined)
       {
 
          str = "Multimedia Undefined Error";
 
       }
-      else if (m_eexception == exception_multimedia)
+      else if (m_eexception == e_exception_multimedia)
       {
 
          str = "Multimedia get_system() Error";
 
       }
-      else if (m_eexception == exception_midi)
+      else if (m_eexception == e_exception_midi)
       {
 
          str = "Midi File Format Error";
 
       }
-      else if (m_eexception == exception_music)
+      else if (m_eexception == e_exception_music)
       {
 
          str = "Music Error";

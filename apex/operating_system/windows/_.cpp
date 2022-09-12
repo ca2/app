@@ -158,7 +158,7 @@ bool __node_apex_pos_term()
    //::CoUninitialize();
 
 
-   WSACleanup();
+   //WSACleanup();
 
 
    return true;

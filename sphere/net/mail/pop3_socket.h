@@ -55,7 +55,7 @@ namespace mail
       enum_state  m_estate;
 
 
-      pop3_socket(::sockets::socket_handler & handler);
+      pop3_socket(::sockets::socket_handler * handler);
       virtual ~pop3_socket();
       bool retrieve();
 

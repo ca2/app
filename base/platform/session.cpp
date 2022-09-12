@@ -1,6 +1,8 @@
 #include "framework.h"
-#include "base/user/experience/_experience.h"
+#include "session.h"
+////#include "base/user/experience/_component.h"
 #include "acme/platform/system_setup.h"
+#include "aura/user/user/user.h"
 
 
 namespace base
@@ -64,6 +66,13 @@ namespace base
 
    }
 
+   
+   ::base::user* session::user() const
+   { 
+      
+      return m_puser ? m_puser->m_pbaseuser : nullptr; 
+   
+   }
 
    
 } // namespace base

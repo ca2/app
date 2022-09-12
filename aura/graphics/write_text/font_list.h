@@ -18,20 +18,13 @@ namespace write_text
    public:
 
 
-      enum enum_type
-      {
-
-         type_wide,
-         type_single_column,
-
-      };
 
 
    protected:
 
 
       ::rectangle_i32                           m_rectangleClient;
-      enum_type                                 m_etype;
+      enum_font_list                            m_efontlist;
 
 
    public:
@@ -113,8 +106,8 @@ namespace write_text
 
       virtual void set_client_rectangle(const RECTANGLE_I32 * lpcrectangle);
 
-      virtual void set_font_list_type(enum_type etype);
-      virtual enum_type get_font_list_type() const;
+      virtual void set_font_list_type(enum_font_list efontlist);
+      virtual enum_font_list get_font_list_type() const;
 
 
    };

@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "aura/update.h"
+//#include "aura/update.h"
+
+IMPLEMENT_APPLICATION(app_just_message_box);
 
 
 namespace app_just_message_box
@@ -14,6 +16,8 @@ namespace app_just_message_box
       m_strAppName = "Just Message Box";
 
       m_strBaseSupportId = "app/just_message_box";
+
+      m_bNetworking = false;
 
       m_bLicense = false;
 

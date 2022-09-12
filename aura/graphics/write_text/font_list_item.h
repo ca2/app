@@ -3,6 +3,7 @@
 
 
 #include "font.h"
+#include "text_box.h"
 
 
 namespace write_text

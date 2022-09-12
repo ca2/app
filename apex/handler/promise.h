@@ -18,7 +18,7 @@
 //      ::matter_pointer              m_pmatter;
 //
 //
-//      promise(::matter *pmatter, const ::future & process);
+//      promise(::matter *pmatter, const ::future & future);
 //
 //      virtual ~promise();
 //

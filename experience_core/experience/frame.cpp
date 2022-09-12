@@ -1,8 +1,14 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
-#include "aura/graphics/draw2d/_component.h"
+
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "frame.h"
+#include "base/user/experience/control_box.h"
+#include "base/user/experience/frame_window.h"
+#include "aura/graphics/image/imaging.h"
+
 
 
 namespace experience_core
@@ -105,7 +111,7 @@ namespace experience_core
 
       ::rectangle_i32 rectangleWindow = rectangleClient;
 
-      pframewindow->client_to_screen(rectangleWindow);
+      rectangleWindow(pframewindow->client_to_screen());
 
       ::point_i32 pointInflate(iInflate, iInflate);
 

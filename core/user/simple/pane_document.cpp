@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "core/user/simple/_component.h"
+#include "core/user/simple/pane_document.h"
 
 
 simple_pane_document::simple_pane_document()

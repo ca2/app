@@ -5,6 +5,11 @@
 #endif
 
 #include "core/user/user/_tree.h"
+#include "userfs.h"
+#include "list.h"
+#include "core/user/user/user.h"
+#include "list_item.h"
+#include "main_impact.h"
 
 
 namespace userfs

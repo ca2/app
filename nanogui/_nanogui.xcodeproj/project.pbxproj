@@ -826,7 +826,7 @@
 				PLATFORM_MODIFIER = macos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/_include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/port/include $(WorkspaceDir)/source/port $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(PROJECT_DIR) $(HOME)/sensitive/sensitive/include";
+				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/port/include $(WorkspaceDir)/source/port $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(PROJECT_DIR) $(HOME)/sensitive/sensitive/include";
 				USE_HEADERMAP = NO;
 				WorkspaceDir = "$(SRCROOT)/../../..";
 			};
@@ -885,7 +885,7 @@
 				PLATFORM_MODIFIER = macos;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/_include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/port/include $(WorkspaceDir)/source/port $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(PROJECT_DIR) $(HOME)/sensitive/sensitive/include";
+				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/port/include $(WorkspaceDir)/source/port $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(PROJECT_DIR) $(HOME)/sensitive/sensitive/include";
 				USE_HEADERMAP = NO;
 				WorkspaceDir = "$(SRCROOT)/../../..";
 			};

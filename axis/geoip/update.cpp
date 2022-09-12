@@ -1,9 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "axis/geoip/_.h"
-#include "axis/geoip/_component.h"
-#endif
-#include "apex/networking/sockets/_sockets.h"
+#include "geoip.h"
 #include <stdio.h>
 
 
@@ -206,7 +202,7 @@ i16 parse_http_proxy(char **proxy_host, i32 *port) {
 string GeoIP_get_host_or_proxy()
 {
 
-   return ip_reverse(GeoIPUpdateHost);
+   return ::get_system()->m_papexsystem->networking()->ip_reverse(GeoIPUpdateHost);
 
 }
 

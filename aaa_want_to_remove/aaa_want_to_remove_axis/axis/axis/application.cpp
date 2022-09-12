@@ -984,7 +984,7 @@ m_durationHeartBeat.Now();
    }
 
 
-   bool application::update_appmatter(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const ::file::path & pszRoot,const string & pszRelative)
+   bool application::update_appmatter(::sockets::socket_handler * handler, __pointer(::sockets::http_session) & psession,const ::file::path & pszRoot,const string & pszRelative)
    {
 
       auto plocaleschema = __create_new < ::text::international::locale_schema >();
@@ -1022,7 +1022,7 @@ m_durationHeartBeat.Now();
 
    }
 
-   bool application::update_appmatter(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const ::file::path & pszRoot,const string & pszRelative,const string & pszLocale,const string & pszStyle)
+   bool application::update_appmatter(::sockets::socket_handler * handler, __pointer(::sockets::http_session) & psession,const ::file::path & pszRoot,const string & pszRelative,const string & pszLocale,const string & pszStyle)
    {
 
       string strLocale;

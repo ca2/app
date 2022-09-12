@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "unzip.h"
+#include "zip.h"
+
+
 namespace folder_zip
 {
 

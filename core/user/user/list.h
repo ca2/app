@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "mesh.h"
+
+
 namespace user
 {
 
@@ -23,16 +26,16 @@ namespace user
       //index_map < __pointer(draw_list_item) >      m_mapDrawListGroup;
       //index_map < __pointer(draw_list_subitem) >   m_mapDrawListSubitem;
 
-      ::user::list_column_array                    m_columna;
+      __pointer(::user::list_column_array)         m_pcolumna;
 
       __pointer(simple_list_data)                  m_psimplelistdata;
 
 
-      ::draw2d::fastblur                           m_blur;
+      __pointer(::draw2d::fastblur)                m_pfastblur;
       index_map < ::image_pointer >                m_mapBlur;
       index_map < string >                         m_mapText;
       index_map < ::color::color >                 m_mapBackColor;
-      ::draw2d::fastblur                           m_blurIcon;
+      __pointer(::draw2d::fastblur)                m_pfastblurIcon;
       index_map < ::image_pointer >                m_mapIconBlur;
       double                                       m_dIconSaturation;
       double                                       m_dIconLightness;
@@ -101,7 +104,7 @@ namespace user
       void _001OnSort() override;
 
 
-      inline ::user::list_column_array & column_array() { return m_columna; }
+      inline ::user::list_column_array & column_array() { return *m_pcolumna; }
 
       void _001OnBeforeDeleteRange(range & range) override;
       void _001OnDeleteRange(range & range) override;
@@ -374,7 +377,7 @@ namespace user
 
       virtual i32 get_wheel_scroll_delta() override;
 
-      virtual void on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual bool keyboard_focus_is_focusable() const override;
 
@@ -385,7 +388,7 @@ namespace user
 
       virtual void defer_create_mesh_data() override;
 
-      virtual void on_impactport_offset(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_context_offset(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 

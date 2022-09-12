@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/platform/session.h"
+
+
 namespace bred
 {
 
@@ -12,7 +15,8 @@ namespace bred
 
 
       session();
-      virtual ~session();
+      ~session() override;
+
 
       void common_construct();
 
@@ -21,9 +25,6 @@ namespace bred
 
 
       virtual void on_instantiate_application(::application* papp) override;
-
-
-      //inline ::bred::user* user() { return m_puser ? m_puser->m_pbreduser : nullptr; }
 
 
    };

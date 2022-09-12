@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "frame_008.h"
+
+
 namespace experience_tranquillum
 {
 

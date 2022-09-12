@@ -1,6 +1,8 @@
 #include "framework.h"
-#include "base/user/menu/_menu.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "list_window.h"
+#include "item.h"
+#include "item_ptra.h"
+#include "aura/graphics/draw2d/graphics.h"
 
 
 namespace user

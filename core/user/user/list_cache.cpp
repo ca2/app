@@ -1,5 +1,11 @@
 #include "framework.h"
-#include "core/user/user/_user.h"
+////#include "core/user/user/_component.h"
+#include "list_cache.h"
+#include "mesh.h"
+#include "mesh_item.h"
+#include "list.h"
+#include "list_column.h"
+#include "list_column_array.h"
 
 
 namespace user
@@ -46,10 +52,10 @@ namespace user
 
          index_to_string & m = m_map[iItem];
 
-         for(iColumn = 0; iColumn < plist->m_columna.get_count(); iColumn++)
+         for(iColumn = 0; iColumn < plist->m_pcolumna->get_count(); iColumn++)
          {
 
-            auto iSubItem = plist->m_columna.get_by_index(iColumn)->m_iSubItem;
+            auto iSubItem = plist->m_pcolumna->get_by_index(iColumn)->m_iSubItem;
 
             auto & psubitem = plist->get_subitem(iItem, iSubItem);
 

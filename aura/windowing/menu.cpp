@@ -5,7 +5,9 @@
 //  Created by Camilo Sasuke Tsumanuma on 10/08/20.
 //
 #include "framework.h"
-#include "aura/user/menu/_menu.h"
+#include "menu.h"
+#include "menu_command.h"
+////#include "aura/user/menu/_component.h"
 
 
 namespace windowing
@@ -34,141 +36,141 @@ namespace windowing
    }
 
 
-   __pointer(menu) create_menu_shared(::object * pobject, const string_array & straParent, const string_array & straMenu, const string_array & straId)
-   {
+   // __pointer(menu_shared) create_menu_shared(::object * pobject, const string_array & straParent, const string_array & straMenu, const string_array & straId)
+   // {
 
-      int iCount = (int)straParent.get_count();
+   //    int iCount = (int)straParent.get_count();
 
-      if (iCount <= 0
-         || iCount != straMenu.get_size()
-         || iCount != straId.get_size())
-      {
+   //    if (iCount <= 0
+   //       || iCount != straMenu.get_size()
+   //       || iCount != straId.get_size())
+   //    {
 
-         return nullptr;
+   //       return nullptr;
 
-      }
+   //    }
 
-      auto pmenu = pobject->__create < menu >();
+   //    auto pmenu = pobject->__create < menu >();
 
-      for (int i = 0; i < straParent.get_count(); i++)
-      {
+   //    for (int i = 0; i < straParent.get_count(); i++)
+   //    {
 
-         auto pitem = pobject->__create < menu_item >();
+   //       auto pitem = pobject->__create < menu_item >();
 
-         pitem->m_strParent = straParent[i];
-         pitem->m_strMenu = straMenu[i];
-         pitem->m_atom = straId[i];
+   //       pitem->m_strParent = straParent[i];
+   //       pitem->m_strMenu = straMenu[i];
+   //       pitem->m_atom = straId[i];
 
-         pmenu->m_itema.add(pitem);
+   //       pmenu->m_itema.add(pitem);
 
-      }
+   //    }
 
-      //pmenushared->m_iCount = iCount;
-      //pmenushared->m_ppszParent = alloc_c_string_array(straParent);
-      //pmenushared->m_ppszMenu = alloc_c_string_array(straMenu);
-      //pmenushared->m_ppszId = alloc_c_string_array(straId);
-      //pmenushared->m_ositema = new void * [iCount];
-      //pmenushared->m_statusa = new int[iCount];
+   //    //pmenushared->m_iCount = iCount;
+   //    //pmenushared->m_ppszParent = alloc_c_string_array(straParent);
+   //    //pmenushared->m_ppszMenu = alloc_c_string_array(straMenu);
+   //    //pmenushared->m_ppszId = alloc_c_string_array(straId);
+   //    //pmenushared->m_ositema = new void * [iCount];
+   //    //pmenushared->m_statusa = new int[iCount];
 
-      //memset(pmenushared->m_ositema, 0, sizeof(void *) * iCount);
-      //memset(pmenushared->m_statusa, 0, sizeof(menu::enum_status) * iCount);
+   //    //memset(pmenushared->m_ositema, 0, sizeof(void *) * iCount);
+   //    //memset(pmenushared->m_statusa, 0, sizeof(menu::enum_status) * iCount);
 
-      return ::move(pmenu);
+   //    return ::move(pmenu);
 
-   }
-
-
-   menu_item * menu::find_item(const ::string & pszParent, const ::string & pszId)
-   {
-
-      for (int i = 0; i < m_itema.get_count(); i++)
-      {
-
-         auto pitem = m_itema[i];
-
-         if (!strcmp(pszParent, pitem->m_strParent))
-         {
-
-            if (!strcmp(pszId, pitem->m_atom.to_string()))
-            {
-
-               return pitem;
-
-            }
-
-         }
-
-      }
-
-      return nullptr;
-
-   }
+   // }
 
 
-   void menu::on_idle_update()
-   {
+   // menu_item * menu::find_item(const ::string & pszParent, const ::string & pszId)
+   // {
 
-      for (int i = 0; i < m_itema.get_count(); i++)
-      {
+   //    for (int i = 0; i < m_itema.get_count(); i++)
+   //    {
 
-         auto pitem = m_itema[i];
+   //       auto pitem = m_itema[i];
 
-         if (pitem)
-         {
+   //       if (!strcmp(pszParent, pitem->m_strParent))
+   //       {
 
-            bool bCheck = pitem->is_checked();
+   //          if (!strcmp(pszId, pitem->m_atom.to_string()))
+   //          {
 
-            bool bSetCheck = pitem->should_set_checked();
+   //             return pitem;
 
-            if (is_different(bCheck, bSetCheck))
-            {
+   //          }
 
-               if (bCheck)
-               {
+   //       }
 
-                  pitem->add_status(e_status_set_checked);
+   //    }
 
-               }
-               else
-               {
+   //    return nullptr;
 
-                  pitem->erase_status(e_status_set_checked);
+   // }
 
-               }
 
-               //os_menu_item_check(pitem, bCheck);
+    void menu::on_idle_update()
+    {
 
-            }
+       for (int i = 0; i < m_itema.get_count(); i++)
+       {
 
-            bool bDisabled = pitem->is_disabled();
+          auto pitem = m_itema[i];
 
-            bool bSetDisabled = pitem->should_set_disabled();
+          if (pitem)
+          {
 
-            if (is_different(bCheck, bSetDisabled))
-            {
+             bool bCheck = pitem->is_checked();
 
-               if (bDisabled)
-               {
+             bool bSetCheck = pitem->should_set_checked();
 
-                  pitem->add_status(e_status_set_disabled);
+             if (is_different(bCheck, bSetCheck))
+             {
 
-               }
-               else
-               {
+                if (bCheck)
+                {
 
-                  pitem->erase_status(e_status_set_disabled);
+                   pitem->add_status(e_status_set_checked);
 
-               }
+                }
+                else
+                {
 
-               //os_menu_item_enable(pitem, !bDisabled);
+                   pitem->erase_status(e_status_set_checked);
 
-            }
+                }
 
-         }
+                //os_menu_item_check(pitem, bCheck);
 
-      }
+             }
 
-   }
+             bool bDisabled = pitem->is_disabled();
+
+             bool bSetDisabled = pitem->should_set_disabled();
+
+             if (is_different(bCheck, bSetDisabled))
+             {
+
+                if (bDisabled)
+                {
+
+                   pitem->add_status(e_status_set_disabled);
+
+                }
+                else
+                {
+
+                   pitem->erase_status(e_status_set_disabled);
+
+                }
+
+                //os_menu_item_enable(pitem, !bDisabled);
+
+             }
+
+          }
+
+       }
+
+    }
 
 
    void menu::on_idle(::channel * pchannel)

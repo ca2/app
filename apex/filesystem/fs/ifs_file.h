@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/networking/sockets/http_batch_buffer.h"
+
+
 class CLASS_DECL_APEX ifs_file :
    virtual public ::sockets::http_batch_buffer,
    virtual public ::object

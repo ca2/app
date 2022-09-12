@@ -1,18 +1,21 @@
 #pragma once
 
 
+#include "base/user/experience/experience.h"
+
+
 namespace experience_anthill
 {
 
 
    class CLASS_DECL_APP_EXPERIENCE_ANTHILL experience:
-      public ::experience::experience
+      virtual public ::experience::experience
    {
    public:
 
 
       experience();
-      virtual ~experience();
+      ~experience() override;
 
 
       virtual void initialize(::object * pobject) override;

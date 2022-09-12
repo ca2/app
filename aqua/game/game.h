@@ -18,11 +18,12 @@ namespace aqua
 
 
       game();
-      virtual ~game();
+      ~game() override;
 
       
       //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
+      void destroy() override;
 
       virtual string sound_path(const char* psz);
 

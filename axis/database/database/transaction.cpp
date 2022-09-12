@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "transaction.h"
+#include "database.h"
 
 
 namespace database

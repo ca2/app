@@ -1,9 +1,10 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
+#include "home_impact.h"
+#include "base/user/user/document.h"
+#include "aura/user/user/frame.h"
+#include "aura/message/user.h"
 
-#include "aura/update.h"
+//#include "aura/update.h"
 
 
 //#if defined(__APPLE__)
@@ -184,7 +185,7 @@ namespace userex
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       on_mouse(point);
 
@@ -202,15 +203,13 @@ namespace userex
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       on_mouse(point);
 
       pmouse->m_bRet = true;
 
-auto pwindowing = windowing();
-
-      pwindowing->release_mouse_capture();
+      release_mouse_capture();
 
       auto ptopic = create_topic(::id_after_change_cur_sel);
 

@@ -445,7 +445,7 @@ void object::call_routine2(const ::procedure & procedure)
 //}
 
 
-//void object::add_process(const ::atom & atom, const ::future & process)
+//void object::add_process(const ::atom & atom, const ::future & future)
 //{
 //
 //   get_meta()->m_mapProcess[atom].add(process);
@@ -2585,7 +2585,7 @@ string object::get_text(const ::payload& payload, const ::atom& atom)
 //}
 
 
-//void object::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, const ::future & process)
+//void object::message_box_timeout(const ::string & pszMessage, const ::string & pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, const ::future & future)
 //{
 //
 //   ::e_status estatus = error_failed;
@@ -3429,15 +3429,15 @@ void object::call_run()
 //}
 
 
-// void message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
+// void message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
 //{
 
 //   return message_box_timeout(nullptr, pszMessage, pszTitle, durationTimeout, emessagebox, process);
 
 //}
 
-// void message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
-// void message_box_timeout(::user::primitive* puserinteractionOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & process = ::future());
+// void message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
+// void message_box_timeout(::user::primitive* puserinteractionOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future());
 
 //void object::release_references()
 //{

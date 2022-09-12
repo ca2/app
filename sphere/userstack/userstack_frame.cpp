@@ -39,7 +39,7 @@ namespace userstack
 
       m_bWindowFrame = true;
 
-      m_bWindowFrame = GetTypedParent < ::plugin::host_interaction >() == nullptr;
+      m_bWindowFrame = get_typed_parent < ::plugin::host_interaction >() == nullptr;
 
       if(pmessage->previous())
          return;
@@ -171,7 +171,7 @@ namespace userstack
                ::rectangle_i32 rectangleClient;
                get_client_rect(rectangleClient);
                ::point_i32 point = pmouse->m_point;
-               screen_to_client(point);
+               screen_to_client()(point);
                if(rectangleClient.contains(point))
                {
                   get_wnd()->set_capture();

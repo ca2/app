@@ -141,14 +141,14 @@ public:
 
 class CLASS_DECL_AURA image_payload :
    public image_source
-   {
+{
 public:
 
 
-      image_payload(::object * pobject, const ::payload & payload);
+   image_payload(::object * pobject, const ::payload & payload);
 
 
-   };
+};
 
 
 

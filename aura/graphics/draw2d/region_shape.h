@@ -2,6 +2,10 @@
 #pragma once
 
 
+#include "holdee.h"
+#include "acme/primitive/geometry2d/shape.h"
+
+
 template < >
 inline __pointer(___shape<::draw2d::region>) __create_shape(const ::rectangle & rectangle, holdee < ::draw2d::region >)
 {

@@ -1,8 +1,7 @@
 #include "framework.h"
-#include "core/user/user/_user.h"
 #include "_data.h"
 #include "_tree.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/draw2d.h"
 
 
 namespace user

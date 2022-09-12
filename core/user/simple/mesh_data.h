@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "core/user/user/mesh_data.h"
+
+
 class simple_mesh_data:
    public ::user::mesh_data
 {

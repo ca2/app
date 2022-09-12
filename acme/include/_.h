@@ -250,6 +250,14 @@ namespace aura
 } // namespace aura
 
 
+
+
+template < typename HOLDEE >
+class holdee
+{
+};
+
+
 //namespace windowing_win32
 //{
 //
@@ -1774,16 +1782,7 @@ class synchronization_object;
 #include "acme/memory/_heap.h"
 
 
-//#include "acme/exception/_const.h"
-
-
-//#include "acme/primitive/primitive/bits.h"
-
 #include "acme/primitive/mathematics/_.h"
-
-//#include "acme/user/user/_const.h"
-
-//#include "acme/user/user/_experience_const.h"
 
 #include "acme/filesystem/file/_constant.h"
 
@@ -2878,7 +2877,7 @@ namespace text
 #define __unbind(holder, ...) (holder)->__release((holder)-> __VA_ARGS__ )
 
 
-//CLASS_DECL_ACME ::e_status2 __realize(::matter * pmatter, const ::future & process);
+//CLASS_DECL_ACME ::e_status2 __realize(::matter * pmatter, const ::future & future);
 
 
 // C-includes
@@ -3324,9 +3323,6 @@ concept xydim_rectangle = requires(RECTANGLE rectangle)
 #include "acme/platform/lparam.h"
 
 
-#include "acme/primitive/geometry2d/_.h"
-
-
 #include "acme/platform/_global.h"
 
 
@@ -3352,8 +3348,13 @@ class CLASS_DECL_ACME integral_byte { public: integral_byte(memsize memsize = 1)
 #include "acme/parallelization/synchronization_result.h"
 
 
-template < typename TYPE > class sequence;
+template < typename SEQUENCE > 
+class sequence;
 
+class conversation;
+
+template < typename SEQUENCE >
+class sequencer;
 
 
 #include "acme/primitive/primitive/particle.h"
@@ -3362,10 +3363,10 @@ template < typename TYPE > class sequence;
 #include "acme/primitive/primitive/element.h"
 #include "acme/primitive/primitive/function.h"
 #include "acme/platform/procedure.h"
-#include "acme/user/user/conversation.h"
 #include "acme/primitive/primitive/tracer.h"
 #include "acme/primitive/primitive/matter.h"
 //#include "acme/primitive/primitive/linked_property.h"
+
 
 
 
@@ -3379,8 +3380,6 @@ template < typename TYPE > class sequence;
 
 class manual_reset_event;
 
-
-#include "acme/platform/sequence.h"
 
 
 #include "acme/primitive/primitive/work.h"
@@ -3500,6 +3499,12 @@ namespace http
 } // namespace http
 
 
+template < typename HOLDEE >
+class ___shape;
+
+
+#include "acme/primitive/geometry2d/_struct.h"
+
 
 #ifdef WINDOWS_DESKTOP
 
@@ -3521,10 +3526,10 @@ struct MESSAGE
 {
 
    ::oswindow              oswindow;
-   ::atom                    m_atom;
+   ::atom                  m_atom;
    wparam                  wParam;
    lparam                  lParam;
-   point_i32               pt;
+   POINT_I32               pt;
    ::u64                   time;
 
 };
@@ -3617,10 +3622,13 @@ using exception_array = ::array < ::exception >;
 #include "acme/exception/_.h"
 
 
+#include "acme/primitive/geometry2d/_.h"
+
+
 #include "acme/primitive/primitive/pointer2.h"
 
 
-#include "acme/user/user/conversation.h"
+//#include "acme/user/user/conversation.h"
 
 
 namespace file
@@ -3652,6 +3660,12 @@ namespace file
 
 
 #include "acme/primitive/collection/_collection.h"
+
+
+#include "acme/primitive/geometry2d/polygon.h"
+
+
+//#include "acme/primitive/geometry2d/_shape.h"
 
 
 #include "acme/graphics/draw2d/_const.h"
@@ -3686,6 +3700,12 @@ namespace file
 #include "acme/platform/predicate_procedure.h"
 
 #include "acme/platform/predicate_process.h"
+
+
+#include "acme/platform/sequence1.h"
+#include "acme/user/user/conversation.h"
+#include "acme/platform/sequencer.h"
+
 
 
 #include "acme/parallelization/_preamble.h"

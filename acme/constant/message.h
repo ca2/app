@@ -208,6 +208,12 @@ e_message_queue_sentinel =    0x0379,
    e_message_forward_message = 0x037F,
 //#define WM_APPEXIT         WM_APP + 1444
 
+   e_message_ole_dragenter  =     WM_APP + 324,
+   e_message_ole_dragover   =  WM_APP + 325,
+   e_message_ole_dragleave  =     WM_APP + 326,
+   e_message_ole_dragdrop  =   WM_APP + 327,
+
+
    e_message_system = WM_APP + 1024,
    e_message_branch,
    e_message_system_command,
@@ -283,6 +289,14 @@ e_message_queue_sentinel =    0x0379,
 
    e_message_open_response,
    e_message_application_exit,
+
+   e_message_wave_in_data,
+
+
+   e_message_main_post = WM_USER + 23,
+   e_message_image_loaded,
+
+
 
 
 };

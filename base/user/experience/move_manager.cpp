@@ -1,5 +1,9 @@
 #include "framework.h"
-#include "base/user/experience/_experience.h"
+#include "move_manager.h"
+#include "frame_window.h"
+#include "frame.h"
+#include "aura/windowing/windowing.h"
+#include "aura/message/user.h"
 
 
 namespace experience
@@ -133,7 +137,7 @@ namespace experience
       if (pframewindow->get_parent() != nullptr)
       {
 
-         pframewindow->screen_to_client(pointMove);
+         pointMove+=pframewindow->screen_to_client();
 
       }
 

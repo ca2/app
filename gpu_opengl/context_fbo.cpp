@@ -6,11 +6,10 @@
 //  Copyright © 2020 Camilo Sasuke Tsumanuma. All rights reserved.
 //
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
 #include <OpenGL/OpenGL.h>
 #include "context_fbo.h"
+#include "opengl.h"
+#include "aura/platform/system.h"
 
 
 namespace opengl
@@ -205,7 +204,7 @@ namespace opengl
          
       }
       
-      glContext(0, 0, size.cx, size.cy);
+      glViewport(0, 0, size.cx, size.cy);
       
       //return ::success;
 
@@ -397,7 +396,7 @@ namespace opengl
       
       glRenderbufferStorageEXT(GL_RENDERBUFFER_EXT, GL_RGBA8, size.cx, size.cy);
 
-      glContext(0, 0, size.cx, size.cy);
+      glViewport(0, 0, size.cx, size.cy);
       
 //      return ::success;
 

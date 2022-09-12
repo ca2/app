@@ -37,34 +37,34 @@ namespace user
       // int                           m_iKey;
 
       //::atom                                m_atom;
-      bool                                m_bNew;
-      bool                                m_bVisible;
-      index                               m_iNextGlobalOrderKey;
-      ::user::list_column_array *         m_pcontainer;
-      index                               m_iOrder;
-      ::text::text                        m_text;
-      ::u32                               m_uiSmallBitmap;
-      ::color::color                      m_colorSmallMask;
-      i32                                 m_iSmallImageWidth;
-      index                               m_iSubItem;
-      index                               m_iColumn;
-      __pointer(::image_list)             m_pil;
-      __pointer(::image_list)             m_pilHover;
-      __pointer(draw_list_column)         m_pdrawlistcolumn;
-      __pointer(::user::interaction)      m_puserinteractionTemplate;
-      ::user::interaction_array           m_userinteractiona;
-      ::draw2d::icon_int_map              m_mapIcon;
-      ::size_i32                          m_sizeIcon;
-      bool                                m_bIcon;
-      ::i32                               m_iPosition;
-      ::i32                               m_iWidth;
-      bool                                m_bCustomDraw;
-      ::image_pointer                     m_pimageHeader;
+      bool                                   m_bNew;
+      bool                                   m_bVisible;
+      index                                  m_iNextGlobalOrderKey;
+      ::user::list_column_array *            m_pcontainer;
+      index                                  m_iOrder;
+      ::text::text                           m_text;
+      ::u32                                  m_uiSmallBitmap;
+      ::color::color                         m_colorSmallMask;
+      i32                                    m_iSmallImageWidth;
+      index                                  m_iSubItem;
+      index                                  m_iColumn;
+      __pointer(::image_list)                m_pimagelist;
+      __pointer(::image_list)                m_pimagelistHover;
+      __pointer(draw_list_column)            m_pdrawlistcolumn;
+      __pointer(::user::interaction)         m_puserinteractionTemplate;
+      __pointer(::user::interaction_array)   m_puserinteractiona;
+      ::draw2d::icon_int_map                 m_mapIcon;
+      ::size_i32                             m_sizeIcon;
+      bool                                   m_bIcon;
+      ::i32                                  m_iPosition;
+      ::i32                                  m_iWidth;
+      bool                                   m_bCustomDraw;
+      ::image_pointer                        m_pimageHeader;
 
       // form list attributes
-      bool                                m_bEditOnSecondClick;
-      //index                       m_iControl;
-      ::database::key                     m_datakey;
+      bool                                   m_bEditOnSecondClick;
+      //index                                m_iControl;
+      ::database::key                        m_datakey;
 
 
 

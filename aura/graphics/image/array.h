@@ -1,17 +1,21 @@
 #pragma once
 
 
+#include "acme/primitive/collection/array_base.h"
+
+
 class CLASS_DECL_AURA image_array :
-   virtual public __pointer_array(::image)
+   virtual public ::matter
 {
 public:
 
-
+   
+   DECLARE_ARRAY_OF(image_array, image, ::image);
+   
+   
    image_array();
-   virtual ~image_array();
+   ~image_array() override;
 
-
-   //::aura::application * application() { return m_papp.cast < ::aura::application > (); }
 
 
    virtual bool explode(::object * pobject, ::payload payloadFile, int cols, int rows, bool bCache = true, bool bCreateHelperMaps = false);

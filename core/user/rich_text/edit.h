@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "base/user/user/picture_interaction.h"
+#include "aura/user/user/text_composition_composite.h"
+
+
 namespace user
 {
 

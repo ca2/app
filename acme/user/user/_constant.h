@@ -542,3 +542,8 @@ enum enum_hit_test
    e_hit_test_help          =   21,
 
 };
+
+
+#include "acme/constant/activate.h"
+
+

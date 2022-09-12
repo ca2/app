@@ -1,13 +1,16 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "aura/id.h"
 #include "interaction_thread.h"
 #include "call_message_handler_task.h"
-#include "acme/operating_system/_user.h"
+//#include "acme/operating_system/_user.h"
 #include "acme/platform/timer_array.h"
-
+#include "primitive_impl.h"
+#include "interaction.h"
+#include "interaction_impl.h"
+#include "aura/message/user.h"
 
 
 namespace user
@@ -437,7 +440,7 @@ namespace user
    }
 
 
-   void primitive_impl::set_impactport_org(::draw2d::graphics_pointer & pgraphics)
+   void primitive_impl::set_origin(::draw2d::graphics_pointer & pgraphics)
    {
 
    }
@@ -2433,6 +2436,53 @@ namespace user
 
 #endif
 
+
+   ::user::interaction * primitive_impl::top_level() const
+   {
+      
+      return m_puserinteraction->m_puserinteractionTopLevel;
+
+   }
+
+
+   ::user::frame * primitive_impl::parent_frame() const
+   {
+      
+      return m_puserinteraction->m_puserframeParent;
+
+   }
+
+
+   ::windowing::window* primitive_impl::window()
+   {
+
+      return m_puserinteraction->m_pwindow;
+
+   }
+
+
+   ::aura::application * primitive_impl::get_app() const
+   {
+
+      return m_pcontext ? m_pcontext->m_pauraapplication : nullptr;
+
+   }
+
+
+   ::aura::session * primitive_impl::get_session() const
+   {
+
+      return m_pcontext ? m_pcontext->m_paurasession : nullptr;
+
+   }
+
+
+   ::aura::system * primitive_impl::get_system() const
+   {
+
+      return m_psystem ? m_psystem->m_paurasystem : nullptr;
+
+   }
 
 } // namespace user
 

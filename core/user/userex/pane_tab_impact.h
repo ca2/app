@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "base/user/user/tab_impact.h"
+#include "aura/user/user/form_callback.h"
+
+
 namespace userex
 {
 
@@ -20,9 +24,9 @@ namespace userex
       __pointer(pane_impact)                   m_ppaneimpact;
       id_map < __pointer(::object) >         m_mapFileManager;
       __pointer(::user::document)            m_pdocAppOptions;
-      font_impact *                            m_pfontview;
-      color_impact *                           m_pcolorview;
-      ::form_document *                      m_pdocumentMenu;
+      __pointer(font_impact)                 m_pfontimpact;
+      __pointer(color_impact)                m_pcolorimpact;
+      __pointer(::form_document)             m_pformdocumentMenu;
 
 
 
@@ -31,6 +35,10 @@ namespace userex
 
 
       void install_message_routing(::channel * pchannel) override;
+      
+      
+      virtual ::user::interaction * get_font_interaction();
+      virtual ::user::interaction * get_color_interaction();
 
 
       inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }
@@ -80,7 +88,7 @@ namespace userex
 
       //void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void prepare_form(atom atom, ::form_document * pdocument);
+      virtual void prepare_form(atom atom, ::form_document * pformdocument);
 
 
    };

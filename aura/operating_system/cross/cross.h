@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 #ifndef WINDOWS
 
 #ifdef cplusplus
@@ -10,12 +9,13 @@ class event;
 
 #endif
 
-struct oswindow_data;
+namespace windowing { class window; }
 
-typedef struct oswindow_data * oswindow;
+using oswindow_t = ::windowing::window;
+
+using oswindow = oswindow_t *;
 
 #endif
-
 
 
 /*

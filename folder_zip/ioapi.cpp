@@ -6,10 +6,7 @@
    Copyright (C) 1998-2003 Gilles Vollant
 */
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
-
+#include "ioapi.h"
 
 #include <stdio.h>
 

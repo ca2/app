@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "axis/platform/session.h"
+#include "base/user/user/document_manager_container.h"
+
+
 namespace base
 {
 
@@ -23,10 +27,10 @@ namespace base
       virtual void on_instantiate_application(::application* papp) override;
 
 
-      inline ::base::user* user() const;
+      ::base::user* user() const;
 
 
-      inline ::base::system* get_system() const;
+      ::base::system* get_system() const;
 
 
    };

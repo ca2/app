@@ -202,6 +202,12 @@ inline atom::atom(const ::payload & payload)
       operator = (e_type_empty);
 
    }
+   else if (payload.get_type() == ::e_type_id)
+   {
+
+      operator = (payload.m_atom);
+
+   }
    else if (payload.is_integer())
    {
       

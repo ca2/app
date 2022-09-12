@@ -1,11 +1,13 @@
 #include "framework.h"
 #include "lock.h"
 #include "aura/graphics/image/save_image.h"
+#include "aura/graphics/image/array.h"
 #include "graphics.h"
 #include "host.h"
 #include "brush.h"
 #include "draw2d.h"
 #include "task_tool.h"
+
 //
 //
 //namespace aura
@@ -64,6 +66,8 @@ namespace draw2d
 
       //}
 
+      __construct_new(m_pimagea);
+
       //estatus = 
 
       __construct_new(m_papi);
@@ -107,7 +111,7 @@ namespace draw2d
 
       critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
 
-      m_imagea.add(pimage);
+      m_pimagea->add_image(pimage);
 
    }
 
@@ -117,7 +121,7 @@ namespace draw2d
 
       critical_section_lock criticalsectionlock(&m_criticalsectionObjectList);
 
-      m_imagea.erase(pimage);
+      m_pimagea->erase_image(pimage);
 
    }
 
@@ -196,7 +200,7 @@ namespace draw2d
 
       critical_section_lock criticalsectionlock(&m_criticalsectionImageList);
 
-      for (auto & pimage : m_imagea)
+      for (auto & pimage : m_pimagea->imagea())
       {
 
          pimage->destroy_os_data();
@@ -380,7 +384,7 @@ namespace draw2d
 
          critical_section_lock criticalsectionlock(&m_criticalsectionImageList);
 
-         m_imagea.clear();
+         m_pimagea->m_imagea.clear();
 
       }
 

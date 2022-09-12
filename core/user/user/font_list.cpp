@@ -1,7 +1,15 @@
 #include "framework.h"
-#include "core/user/user/_user.h"
-#include "aura/update.h"
 #include "aura/procedure.h"
+#include "font_list.h"
+#include "aura/user/user/scroll_data.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/write_text/font_enumeration_item.h"
+#include "aura/graphics/write_text/font_list.h"
+#include "aura/message/user.h"
+#include "aura/user/user/user.h"
+#include "aura/platform/session.h"
+#include "aura/platform/system.h"
+#include "aura/platform/application.h"
 
 
 namespace user
@@ -21,11 +29,12 @@ namespace user
 
       m_econtroltype = ::user::e_control_type_list;
 
-      m_flagNonClient.add(non_client_hover_rect);
+      m_flagNonClient.add(e_non_client_hover_rect);
 
       m_bFirstShown = false;
       m_atomImpact = FONTSEL_IMPACT;
-      m_scrolldataVertical.m_bScrollEnable = true;
+      m_pscrolldataVertical = __new(::user::scroll_data);
+      m_pscrolldataVertical->m_bScrollEnable = true;
       m_bEnsureVisible = false;
 
    }
@@ -68,21 +77,21 @@ namespace user
    }
 
 
-   void font_list::set_font_list_type(::write_text::font_list::enum_type etype)
+   void font_list::set_font_list_type(::write_text::enum_font_list efontlist)
    {
 
       auto psession = get_session();
 
-      if (etype == ::write_text::font_list::type_single_column)
+      if (efontlist == ::write_text::e_font_list_single_column)
       {
 
          m_pfontlist = psession->get_single_column_font_list();
 
       }
-      else if (etype == ::write_text::font_list::type_wide)
+      else if (efontlist == ::write_text::e_font_list_wide)
       {
 
-         if (m_pfontlist.is_null() || m_pfontlist->get_font_list_type() != ::write_text::font_list::type_wide)
+         if (m_pfontlist.is_null() || m_pfontlist->get_font_list_type() != ::write_text::e_font_list_wide)
          {
 
             __defer_construct_new(m_pfontlist);
@@ -91,7 +100,7 @@ namespace user
 
             //m_pfontlist->initialize_font_list(this);
 
-            m_pfontlist->set_font_list_type(::write_text::font_list::type_wide);
+            m_pfontlist->set_font_list_type(::write_text::e_font_list_wide);
 
          }
 
@@ -305,7 +314,7 @@ namespace user
 
       auto rectangleClient = get_client_rect();
 
-      if (m_pfontlist->get_font_list_type() != ::write_text::font_list::type_wide)
+      if (m_pfontlist->get_font_list_type() != ::write_text::e_font_list_wide)
       {
 
          auto pstyle = get_style(pgraphics);
@@ -402,7 +411,7 @@ namespace user
 
       int iScrollBarWidth = get_int(pstyle, e_int_scroll_bar_width);
 
-      if (m_pfontlist->get_font_list_type() != ::write_text::font_list::type_wide)
+      if (m_pfontlist->get_font_list_type() != ::write_text::e_font_list_wide)
       {
 
          rectangleFontList.right -= iScrollBarWidth;
@@ -481,6 +490,22 @@ namespace user
    }
 
 
+   string font_list::get_sel_by_name()
+   {
+
+      return get_cur_sel_face_name();
+
+   }
+
+
+   string font_list::get_hover_by_name()
+   {
+
+      return get_cur_hover_face_name();
+
+   }
+
+
    item_pointer font_list::current_item()
    {
 
@@ -537,7 +562,7 @@ namespace user
    }
 
 
-   bool font_list::set_sel_by_name(string str)
+   bool font_list::set_sel_by_name(const ::string & strName)
    {
 
       if (!m_pfontlist)
@@ -547,7 +572,7 @@ namespace user
 
       }
 
-      if (!m_pfontlist->set_sel_by_name(str))
+      if (!m_pfontlist->set_sel_by_name(strName))
       {
 
          return false;

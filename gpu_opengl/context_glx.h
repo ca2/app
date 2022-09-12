@@ -2,7 +2,7 @@
 
 
 #include "aura/operating_system.h"
-
+#include "context.h"
 
 //#include "aura/operating_system/_operating_system.h"
 //#include "windowing_x11/_.h"
@@ -19,13 +19,14 @@ namespace opengl
    {
    public:
 
+
       GLXFBConfig *                    m_pconfig;
       GLXContext                       m_context;
       GLXPbuffer                       m_pbuffer;
 
 
       context_glx();
-      virtual ~context_glx();
+      ~context_glx() override;
 
 
       virtual void _create_offscreen_buffer(const ::size_i32& size) override;

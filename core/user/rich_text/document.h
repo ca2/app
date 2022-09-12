@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/user/user/document.h"
+
+
 namespace user
 {
 

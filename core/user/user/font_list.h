@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "axis/user/user/list_box.h"
+
+
 namespace user
 {
 
@@ -67,9 +70,18 @@ namespace user
       virtual ::item_pointer hover_item() override;
 
 
-      string get_cur_sel_face_name();
 
-      string get_cur_hover_face_name();
+
+      virtual string get_cur_sel_face_name();
+
+      virtual string get_cur_hover_face_name();
+
+
+      string get_sel_by_name() override;
+
+      string get_hover_by_name() override;
+
+
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
       DECLARE_MESSAGE_HANDLER(on_message_left_button_down);
@@ -86,9 +98,9 @@ namespace user
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool set_sel_by_name(string str);
+      bool set_sel_by_name(const string & strName) override;
 
-      virtual void ensure_sel_visible();
+      void ensure_sel_visible() override;
 
       virtual void __on_draw_ensure_sel_visible();
 
@@ -97,13 +109,10 @@ namespace user
 
       virtual void update_data(bool bSaveAndValidate) override;
 
-      virtual void set_font_list_type(::write_text::font_list::enum_type etype);
+      virtual void set_font_list_type(::write_text::enum_font_list efoldertype);
 
 
    };
-
-
-   typedef ::user::show < ::user::font_list > font_list_impact;
 
 
 } // namespace user

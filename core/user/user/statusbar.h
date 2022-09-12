@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/user/user/control_bar.h"
+
+
 namespace user
 {
 
@@ -117,11 +120,3 @@ namespace user
 
 } // namespace user
 
-
-// Styles for status bar panes
-#define SBPS_NORMAL     0x0000
-#define SBPS_NOBORDERS  SBT_NOBORDERS
-#define SBPS_POPOUT     SBT_POPOUT
-#define SBPS_OWNERDRAW  SBT_OWNERDRAW
-#define SBPS_DISABLED   0x04000000
-#define SBPS_STRETCH    0x08000000  // stretch to fill status bar

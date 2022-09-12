@@ -1,7 +1,8 @@
 #include "framework.h"
-#include "core/filesystem/fs/_fs.h"
 #include "core/networking/ftp/_.h"
 #include "ftp_file.h"
+#include "core/networking/ftp/client_socket.h"
+#include "ftpfs.h"
 
 
 
@@ -46,7 +47,6 @@ retry:
       m_pftp->defer_initialize(&pclient, m_filepath);
 
    }
-
 
    if (pclient->m_estate != ::ftp::client_socket::state_logged)
    {

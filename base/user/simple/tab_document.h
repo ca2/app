@@ -4,6 +4,9 @@
 #pragma once
 
 
+#include "base/user/user/document.h"
+
+
 class CLASS_DECL_BASE simple_tab_document :
    virtual public ::user::document
 {

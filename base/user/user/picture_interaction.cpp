@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
+#include "picture_interaction.h"
 
 
 namespace user

@@ -79,46 +79,6 @@ inline bool get_bounding_rectangle(RECTANGLE_F64* prectangleBounding, const line
 //}
 
 
-inline bool get_bounding_rectangle(RECTANGLE_I32 * prectangleBounding, const RECTANGLE_I32 * prectangle)
-{
-
-   copy(prectangleBounding, prectangle);
-
-   return true;
-
-}
-
-
-inline bool get_bounding_rectangle(RECTANGLE_F64* prectangleBounding, const RECTANGLE_I32 * prectangle)
-{
-
-   copy(prectangleBounding, prectangle);
-
-   return true;
-
-}
-
-
-inline bool get_bounding_rectangle(RECTANGLE_I32* prectangleBounding, const RECTANGLE_F64 * prectangle)
-{
-
-   copy(prectangleBounding, prectangle);
-
-   return true;
-
-}
-
-
-inline bool get_bounding_rectangle(RECTANGLE_F64* prectangleBounding, const RECTANGLE_F64 * prectangle)
-{
-
-   copy(prectangleBounding, prectangle);
-
-   return true;
-
-}
-
-
 inline bool get_bounding_rectangle(RECTANGLE_I32* prectangleBounding, const ellipse * pellipse)
 {
 

@@ -1,6 +1,9 @@
 #include "framework.h"
-#include "core/user/rich_text/_rich_text.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "format.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/write_text/font.h"
+#include "aura/platform/system.h"
+#include "aura/platform/node.h"
 
 
 namespace user
@@ -22,8 +25,8 @@ namespace user
          m_dFontSize = 12.0;
          m_colorForeground = argb(255, 0, 0, 0);
          m_colorBackground = 0;
-         m_escript = script_normal;
-         m_elineheight = line_height_single;
+         m_escript = e_script_normal;
+         m_elineheight = e_line_height_single;
          m_bUpdated = false;
 
 
@@ -103,10 +106,10 @@ namespace user
       }
 
 
-      void format::apply(const format * pformat, const eattribute & eattribute)
+      void format::apply(const format * pformat, const e_attribute & eattribute)
       {
 
-         if (eattribute & attribute_bold) 
+         if (eattribute & e_attribute_bold) 
          {
 
             if(!is_equal_bool(m_bBold, pformat->m_bBold))
@@ -120,7 +123,7 @@ namespace user
 
          }
 
-         if (eattribute & attribute_italic)
+         if (eattribute & e_attribute_italic)
          {
 
             if(!is_equal_bool(m_bItalic, pformat->m_bItalic))
@@ -134,7 +137,7 @@ namespace user
 
          }
 
-         if (eattribute & attribute_underline)
+         if (eattribute & e_attribute_underline)
          {
 
             if(!is_equal_bool(m_bUnderline, pformat->m_bUnderline))
@@ -148,7 +151,7 @@ namespace user
 
          }
 
-         if (eattribute & attribute_family)
+         if (eattribute & e_attribute_family)
          {
 
             if(m_strFontFamily != pformat->m_strFontFamily)
@@ -162,7 +165,7 @@ namespace user
 
          }
 
-         if (eattribute & attribute_size)
+         if (eattribute & e_attribute_size)
          {
 
             if(m_dFontSize != pformat->m_dFontSize)
@@ -176,7 +179,7 @@ namespace user
 
          }
 
-         if (eattribute & attribute_script)
+         if (eattribute & e_attribute_script)
          {
 
             if(m_escript != pformat->m_escript)
@@ -190,7 +193,7 @@ namespace user
 
          }
 
-         if (eattribute & attribute_foreground)
+         if (eattribute & e_attribute_foreground)
          {
 
             if(m_colorForeground != pformat->m_colorForeground)
@@ -205,6 +208,7 @@ namespace user
          }
 
       }
+
 
       void format::intersect(const format & format)
       {
@@ -271,7 +275,7 @@ namespace user
 
             double dFontSize = m_dFontSize;
 
-            if (m_escript == script_subscript || m_escript == script_superscript)
+            if (m_escript == e_script_subscript || m_escript == e_script_superscript)
             {
 
                dFontSize /= 1.333;

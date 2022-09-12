@@ -1,4 +1,5 @@
 #include "framework.h" 
+#include "get_socket.h" 
 #include "apex/id.h"
 #include "apex/networking/sockets/_sockets.h"
 
@@ -7,9 +8,7 @@ namespace http
 {
 
 
-   get_socket::get_socket(const string & url) :
-      ::sockets::http_client_socket(url),
-      ::sockets::http_get_socket(url)
+   get_socket::get_socket()
    {
 
       m_pcookies = nullptr;
@@ -17,21 +16,28 @@ namespace http
    }
 
       
-   get_socket::get_socket(const string & host, port_t port, const string & url) :
-      ::sockets::http_client_socket(url),
-      ::sockets::http_get_socket(host, port, url)
-   {
-
-      m_pcookies = nullptr;
-
-   }
-
-
    get_socket::~get_socket()
    {
 
 
    }
+
+
+   void get_socket::initialize_get_socket(const ::string & strUrl)
+   {
+
+      initialize_http_get_socket(strUrl);
+
+   }
+
+
+   void get_socket::initialize_get_socket(const string & host, ::networking::port_t port, const string & strUrl)
+   {
+
+      initialize_http_get_socket(host, port, strUrl);
+
+   }
+
 
    void get_socket::OnDataArrived(const char *, memsize len)
    {

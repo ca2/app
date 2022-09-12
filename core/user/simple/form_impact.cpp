@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "core/user/simple/_component.h"
+#include "form_impact.h"
 
 
 simple_form_impact:: simple_form_impact()

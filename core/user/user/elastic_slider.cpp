@@ -1,6 +1,10 @@
 #include "framework.h"
-#include "core/user/user/_user.h"
+////#include "core/user/user/_component.h"
 #include "acme/platform/timer.h"
+#include "elastic_slider.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "mesh.h"
+#include "aura/message/user.h"
 
 
 namespace user
@@ -83,7 +87,7 @@ namespace user
       
       auto point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       if(rectangle.contains(point))
       {
@@ -147,17 +151,9 @@ namespace user
    void elastic_slider::CalcTension()
    {
       
-      //auto psession = get_session();
+      auto pointCursor = get_cursor_position();
 
-      //auto puser = psession->user();
-
-      //auto pwindowing = puser->windowing();
-
-      auto pwindow = window();
-
-      auto pointCursor = pwindow->get_cursor_position();
-
-      screen_to_client(pointCursor);
+      screen_to_client()(pointCursor);
 
       CalcTension(pointCursor);
 
@@ -254,11 +250,9 @@ namespace user
          
          pgraphics->set_current_point(rectangle.center());
          
-         auto pwindow = window();
+         auto pointCursor = get_cursor_position();
 
-         auto pointCursor = pwindow->get_cursor_position();
-
-         screen_to_client(pointCursor);
+         screen_to_client()(pointCursor);
 
          pgraphics->line_to(pointCursor);
 

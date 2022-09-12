@@ -1,10 +1,14 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/_component.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
-
-#include "core/user/rich_text/_rich_text.h"
+#include "format_tool.h"
+#include "format.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/write_text/font_list.h"
+#include "aura/graphics/write_text/font_enumeration_item.h"
+#include "core/user/user/font_list.h"
+#include "core/user/user/font_combo_box.h"
+#include "aura/message/user.h"
+#include "aura/user/user/button.h"
 
 
 namespace user
@@ -142,18 +146,18 @@ namespace user
 
       m_pbuttonBold->create_control(this, "font_bold");
       m_pbuttonBold->LoadBitmaps("matter://fontformat/bold-text-option12.png");
-      m_pbuttonBold->m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
-      m_pbuttonBold->m_flagNonClient.erase(::user::interaction::non_client_background);
+      m_pbuttonBold->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
+      m_pbuttonBold->m_flagNonClient.erase(::user::interaction::e_non_client_background);
 
       m_pbuttonItalic->create_control(this, "font_italic");
       m_pbuttonItalic->LoadBitmaps("matter://fontformat/italicize-text12.png");
-      m_pbuttonItalic->m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
-      m_pbuttonItalic->m_flagNonClient.erase(::user::interaction::non_client_background);
+      m_pbuttonItalic->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
+      m_pbuttonItalic->m_flagNonClient.erase(::user::interaction::e_non_client_background);
 
       m_pbuttonUnderline->create_control(this, "font_underline");
       m_pbuttonUnderline->LoadBitmaps("matter://fontformat/underline-text-option12.png");
-      m_pbuttonUnderline->m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
-      m_pbuttonUnderline->m_flagNonClient.erase(::user::interaction::non_client_background);
+      m_pbuttonUnderline->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
+      m_pbuttonUnderline->m_flagNonClient.erase(::user::interaction::e_non_client_background);
 
       m_pcomboFamily->create_control(this, "combo_family");
       //auto pfont = m_pcomboFamily->create_point_font(::user::font_plain_edit, pnode->font_name(e_font_sans_ui), 9.0);
@@ -201,38 +205,38 @@ namespace user
       m_pbuttonForeground->create_control(this, "font_foreground");
       m_pbuttonForeground->LoadBitmaps("matter://fontformat/font-foreground12.png");
 
-      m_pbuttonForeground->m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
-      m_pbuttonForeground->m_flagNonClient.erase(::user::interaction::non_client_background);
+      m_pbuttonForeground->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
+      m_pbuttonForeground->m_flagNonClient.erase(::user::interaction::e_non_client_background);
 
       m_pbuttonBackground->create_control(this, "font_background");
       m_pbuttonBackground->LoadBitmaps("matter://fontformat/text-background12.png");
-      m_pbuttonBackground->m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
-      m_pbuttonBackground->m_flagNonClient.erase(::user::interaction::non_client_background);
+      m_pbuttonBackground->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
+      m_pbuttonBackground->m_flagNonClient.erase(::user::interaction::e_non_client_background);
 
       m_pbuttonSubscript->create_control(this, "font_subscript");
       m_pbuttonSubscript->LoadBitmaps("matter://fontformat/x2-symbol-of-a-letter-and-a-number-subscript12.png");
-      m_pbuttonSubscript->m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
-      m_pbuttonSubscript->m_flagNonClient.erase(::user::interaction::non_client_background);
+      m_pbuttonSubscript->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
+      m_pbuttonSubscript->m_flagNonClient.erase(::user::interaction::e_non_client_background);
 
       m_pbuttonSuperscript->create_control(this, "font_superscript");
       m_pbuttonSuperscript->LoadBitmaps("matter://fontformat/superscript-text-formatting12.png");
-      m_pbuttonSuperscript->m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
-      m_pbuttonSuperscript->m_flagNonClient.erase(::user::interaction::non_client_background);
+      m_pbuttonSuperscript->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
+      m_pbuttonSuperscript->m_flagNonClient.erase(::user::interaction::e_non_client_background);
 
       m_pbuttonAlignLeft->create_control(this, "e_align_left");
       m_pbuttonAlignLeft->LoadBitmaps("matter://fontformat/align-to-left12.png");
-      m_pbuttonAlignLeft->m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
-      m_pbuttonAlignLeft->m_flagNonClient.erase(::user::interaction::non_client_background);
+      m_pbuttonAlignLeft->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
+      m_pbuttonAlignLeft->m_flagNonClient.erase(::user::interaction::e_non_client_background);
 
       m_pbuttonAlignCenter->create_control(this, "e_align_center");
       m_pbuttonAlignCenter->LoadBitmaps("matter://fontformat/center-text-alignment12.png");
-      m_pbuttonAlignCenter->m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
-      m_pbuttonAlignCenter->m_flagNonClient.erase(::user::interaction::non_client_background);
+      m_pbuttonAlignCenter->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
+      m_pbuttonAlignCenter->m_flagNonClient.erase(::user::interaction::e_non_client_background);
 
       m_pbuttonAlignRight->create_control(this, "e_align_right");
       m_pbuttonAlignRight->LoadBitmaps("matter://fontformat/align-to-right12.png");
-      m_pbuttonAlignRight->m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
-      m_pbuttonAlignRight->m_flagNonClient.erase(::user::interaction::non_client_background);
+      m_pbuttonAlignRight->m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
+      m_pbuttonAlignRight->m_flagNonClient.erase(::user::interaction::e_non_client_background);
 
       //create_color(::user::color_background, argb(255, 200, 200, 200));
       //create_color(::user::color_button_background, argb(0, 0, 0, 0));
@@ -327,7 +331,7 @@ namespace user
 
                m_pbuttonBold->_001ToggleCheck(::e_source_user);
 
-               m_eattribute |= ::user::rich_text::attribute_bold;
+               m_eattribute |= ::user::rich_text::e_attribute_bold;
 
                update_data(true);
 
@@ -339,7 +343,7 @@ namespace user
 
                m_pbuttonItalic->_001ToggleCheck(::e_source_user);
 
-               m_eattribute |= ::user::rich_text::attribute_italic;
+               m_eattribute |= ::user::rich_text::e_attribute_italic;
 
                update_data(true);
 
@@ -351,7 +355,7 @@ namespace user
 
                m_pbuttonUnderline->_001ToggleCheck(::e_source_user);
 
-               m_eattribute |= ::user::rich_text::attribute_underline;
+               m_eattribute |= ::user::rich_text::e_attribute_underline;
 
                update_data(true);
 
@@ -370,7 +374,7 @@ namespace user
 
                }
 
-               m_eattribute |= ::user::rich_text::attribute_script;
+               m_eattribute |= ::user::rich_text::e_attribute_script;
 
                update_data(true);
 
@@ -389,7 +393,7 @@ namespace user
 
                }
 
-               m_eattribute |= ::user::rich_text::attribute_script;
+               m_eattribute |= ::user::rich_text::e_attribute_script;
 
                update_data(true);
 
@@ -416,7 +420,7 @@ namespace user
 
                }
 
-               m_eattribute |= ::user::rich_text::attribute_align;
+               m_eattribute |= ::user::rich_text::e_attribute_align;
 
                update_data(true);
 
@@ -442,7 +446,7 @@ namespace user
 
                }
 
-               m_eattribute |= ::user::rich_text::attribute_align;
+               m_eattribute |= ::user::rich_text::e_attribute_align;
 
                update_data(true);
 
@@ -468,7 +472,7 @@ namespace user
 
                }
 
-               m_eattribute |= ::user::rich_text::attribute_align;
+               m_eattribute |= ::user::rich_text::e_attribute_align;
 
                update_data(true);
 
@@ -492,7 +496,7 @@ namespace user
             if (ptopic->user_interaction()->m_atom == "combo_size")
             {
 
-               m_eattribute |= ::user::rich_text::attribute_size;
+               m_eattribute |= ::user::rich_text::e_attribute_size;
 
                update_data(true);
 
@@ -507,7 +511,7 @@ namespace user
             if (ptopic->user_interaction()->m_atom == "combo_size")
             {
 
-               m_eattribute |= ::user::rich_text::attribute_size;
+               m_eattribute |= ::user::rich_text::e_attribute_size;
 
                update_data(true);
 
@@ -522,7 +526,7 @@ namespace user
             if (ptopic->user_interaction()->m_atom == "combo_family")
             {
 
-               m_eattribute |= ::user::rich_text::attribute_family;
+               m_eattribute |= ::user::rich_text::e_attribute_family;
 
                update_data(true);
 
@@ -532,7 +536,7 @@ namespace user
             else if (ptopic->user_interaction()->m_atom == "combo_size")
             {
 
-               m_eattribute |= ::user::rich_text::attribute_size;
+               m_eattribute |= ::user::rich_text::e_attribute_size;
 
                update_data(true);
 
@@ -651,19 +655,19 @@ namespace user
          if (m_pbuttonSuperscript->echeck() == ::e_check_checked)
          {
 
-            m_pformata->first()->m_escript = ::user::rich_text::script_superscript;
+            m_pformata->first()->m_escript = ::user::rich_text::e_script_superscript;
 
          }
          else if (m_pbuttonSubscript->echeck() == ::e_check_checked)
          {
 
-            m_pformata->first()->m_escript = ::user::rich_text::script_subscript;
+            m_pformata->first()->m_escript = ::user::rich_text::e_script_subscript;
 
          }
          else
          {
 
-            m_pformata->first()->m_escript = ::user::rich_text::script_normal;
+            m_pformata->first()->m_escript = ::user::rich_text::e_script_normal;
 
          }
          if (m_pbuttonAlignRight->echeck() == ::e_check_checked)

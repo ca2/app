@@ -14,7 +14,9 @@
 
 #pragma once
 
-//#include <nanogui/widget.h>
+
+#include "aura/user/appearance/appearance.h"
+#include "Widget.h"
 //#include <nanogui/texture.h>
 
 

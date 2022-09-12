@@ -1281,6 +1281,10 @@
 		9A94DEB0282C3A9E00F5C1CA /* _nano.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A94DEAF282C3A9D00F5C1CA /* _nano.cpp */; };
 		9A956D0928240B4400002F51 /* chldstatus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A956D0728240B4400002F51 /* chldstatus.cpp */; };
 		9A956D0A28240B4400002F51 /* chldstatus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A956D0728240B4400002F51 /* chldstatus.cpp */; };
+		9A97BF4428C839DA00A43004 /* int_handle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BF4228C839D900A43004 /* int_handle.cpp */; };
+		9A97BF4528C839DA00A43004 /* int_handle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BF4228C839D900A43004 /* int_handle.cpp */; };
+		9A97BF4628C839DA00A43004 /* int_handle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A97BF4328C839D900A43004 /* int_handle.h */; };
+		9A97BF4728C839DA00A43004 /* int_handle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A97BF4328C839D900A43004 /* int_handle.h */; };
 		9A97C7A1282365C600755A0A /* __string.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A97C797282365C400755A0A /* __string.h */; };
 		9A97C7A2282365C600755A0A /* __string.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A97C797282365C400755A0A /* __string.h */; };
 		9A97C7A3282365C600755A0A /* to_string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97C798282365C400755A0A /* to_string.cpp */; };
@@ -2530,6 +2534,7 @@
 		9A5F8E122719A377002CB2B8 /* _unit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _unit.h; sourceTree = "<group>"; };
 		9A5F8E132719AB1E002CB2B8 /* _unit_operator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _unit_operator.h; sourceTree = "<group>"; };
 		9A5F8E142719ABA9002CB2B8 /* _string_format.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _string_format.h; sourceTree = "<group>"; };
+		9A615C0128B1B5B600377F68 /* __acme.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = __acme.h; sourceTree = "<group>"; };
 		9A6451512846458100A94AAB /* time_operator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = time_operator.h; sourceTree = "<group>"; };
 		9A6451522846458200A94AAB /* time.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = time.h; sourceTree = "<group>"; };
 		9A64515328464BFC00A94AAB /* time.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = time.cpp; sourceTree = "<group>"; };
@@ -3308,6 +3313,8 @@
 		9A94DEAF282C3A9D00F5C1CA /* _nano.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _nano.cpp; sourceTree = "<group>"; };
 		9A951331282AECA4009D7C28 /* _mm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _mm.h; sourceTree = "<group>"; };
 		9A956D0728240B4400002F51 /* chldstatus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = chldstatus.cpp; sourceTree = "<group>"; };
+		9A97BF4228C839D900A43004 /* int_handle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = int_handle.cpp; sourceTree = "<group>"; };
+		9A97BF4328C839D900A43004 /* int_handle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = int_handle.h; sourceTree = "<group>"; };
 		9A97C797282365C400755A0A /* __string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __string.h; sourceTree = "<group>"; };
 		9A97C798282365C400755A0A /* to_string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = to_string.cpp; sourceTree = "<group>"; };
 		9A97C799282365C400755A0A /* unicode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = unicode.cpp; sourceTree = "<group>"; };
@@ -3805,6 +3812,14 @@
 			path = integral;
 			sourceTree = "<group>";
 		};
+		9A615C0028B1B5B600377F68 /* __acme */ = {
+			isa = PBXGroup;
+			children = (
+				9A615C0128B1B5B600377F68 /* __acme.h */,
+			);
+			path = __acme;
+			sourceTree = "<group>";
+		};
 		9A68A40B25114352008DABD2 = {
 			isa = PBXGroup;
 			children = (
@@ -3812,6 +3827,7 @@
 				9A68A4522511442E008DABD2 /* acme */,
 				9AEA11DE275FE2FD006437A3 /* acme_framework */,
 				9AEA11EA275FE2FE006437A3 /* acme_frameworkTests */,
+				9A615C0028B1B5B600377F68 /* __acme */,
 				9A68A41525114352008DABD2 /* Products */,
 				9AD1996A2511B9C600B4C44A /* Frameworks */,
 			);
@@ -5302,6 +5318,8 @@
 				9AA8FA0427BA7296008FF9AA /* file_std.cpp */,
 				9AA8F9FD27BA7296008FF9AA /* file.cpp */,
 				9AA8F9F127BA7296008FF9AA /* file.h */,
+				9A97BF4228C839D900A43004 /* int_handle.cpp */,
+				9A97BF4328C839D900A43004 /* int_handle.h */,
 				9AA8F9FC27BA7296008FF9AA /* pmutex_lock.h */,
 				9AA8F9EA27BA7296008FF9AA /* process.cpp */,
 				9AA8F9EF27BA7296008FF9AA /* semun.h */,
@@ -6126,6 +6144,7 @@
 				9A787CA5264C04A6003DF8A0 /* extended_status.h in Headers */,
 				9A68AEE225114435008DABD2 /* compare.h in Headers */,
 				9A68AF3B25114435008DABD2 /* __c_ansi_impl.h in Headers */,
+				9A97BF4628C839DA00A43004 /* int_handle.h in Headers */,
 				9A68AD6225114434008DABD2 /* acme_str_pool.h in Headers */,
 				9A786197264B9096003DF8A0 /* enumeration.h in Headers */,
 				9AC01A2A2748B919006BEBCC /* universal_windows.h in Headers */,
@@ -6349,6 +6368,7 @@
 				9AD68E7E251A753A00C0EBD7 /* text_stream.h in Headers */,
 				9AA8F8E827BA7268008FF9AA /* message_box.h in Headers */,
 				9A892DFF26CD9062008D6412 /* character_set.h in Headers */,
+				9A97BF4728C839DA00A43004 /* int_handle.h in Headers */,
 				9AD68E82251A753A00C0EBD7 /* geometry.h in Headers */,
 				9AD68E86251A753A00C0EBD7 /* ___serialization_draft001.h in Headers */,
 				9AEA1BB226794D5B006F4A68 /* color32.h in Headers */,
@@ -7327,6 +7347,7 @@
 				9A78622E264B90B5003DF8A0 /* mathematics.cpp in Sources */,
 				9A7861B1264B9096003DF8A0 /* object.cpp in Sources */,
 				9A68AE7525114435008DABD2 /* memory_c.cpp in Sources */,
+				9A97BF4428C839DA00A43004 /* int_handle.cpp in Sources */,
 				9AA8FD5127BA729A008FF9AA /* base_file.cpp in Sources */,
 				9A956D0928240B4400002F51 /* chldstatus.cpp in Sources */,
 				9AA8FCA927BA7299008FF9AA /* process.cpp in Sources */,
@@ -7773,6 +7794,7 @@
 				9AD6926B251A753A00C0EBD7 /* base64.cpp in Sources */,
 				9A94DE44282C034800F5C1CA /* type.cpp in Sources */,
 				9A787BBF264BB154003DF8A0 /* predicate_holder.cpp in Sources */,
+				9A97BF4528C839DA00A43004 /* int_handle.cpp in Sources */,
 				9AA8021627BA72A6008FF9AA /* argcargv.cpp in Sources */,
 				9A97C7AE282365C600755A0A /* command_line.cpp in Sources */,
 				9A94DE32282C034800F5C1CA /* var_element.cpp in Sources */,
@@ -7923,7 +7945,7 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "@executable_path";
+				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
@@ -7953,7 +7975,7 @@
 					"$(WorkspaceDir)/source",
 					"$(WorkspaceDir)/source/include",
 					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/source/app/_include",
+					"$(WorkspaceDir)/source/app/include",
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
@@ -8035,7 +8057,7 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "@executable_path";
+				INSTALL_PATH = "@rpath";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
@@ -8064,7 +8086,7 @@
 					"$(WorkspaceDir)/source",
 					"$(WorkspaceDir)/source/include",
 					"$(WorkspaceDir)/source/app",
-					"$(WorkspaceDir)/source/app/_include",
+					"$(WorkspaceDir)/source/app/include",
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",

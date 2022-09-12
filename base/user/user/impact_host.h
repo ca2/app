@@ -1,6 +1,12 @@
 #pragma once
 
 
+#include "impact_data.h"
+#include "impact_kit.h"
+#include "impact.h"
+#include "impact_creator.h"
+
+
 namespace user
 {
 

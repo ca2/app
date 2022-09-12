@@ -15,12 +15,21 @@
 #define NANO2D_EXPORT CLASS_DECL_NANOGUI
 
 
+#include "nano2d/_.h"
+
+
 namespace nanogui
 {
 
 
 
 } // namespace nanogui
+
+
+#include "_constant.h"
+
+
+#include "_function.h"
 
 
 

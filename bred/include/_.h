@@ -38,13 +38,13 @@ namespace bred
 } // namespace bred
 
 
-#include "bred/platform/application.h"
-
-
-#include "bred/platform/session.h"
-
-
-#include "bred/platform/system.h"
+//#include "bred/platform/application.h"
+//
+//
+//#include "bred/platform/session.h"
+//
+//
+//#include "bred/platform/system.h"
 
 
 

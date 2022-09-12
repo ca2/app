@@ -2,6 +2,11 @@
 #pragma once
 
 
+//#include <zlib.h>
+//#include <zutil.h>
+#include "ioapi.h"
+
+
 namespace folder_zip
 {
 

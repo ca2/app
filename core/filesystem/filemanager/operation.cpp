@@ -2,6 +2,9 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
+#include "operation.h"
+#include "aura/user/user/interaction.h"
+#include "aura/platform/context.h"
 
 
 namespace filemanager
@@ -20,32 +23,40 @@ namespace filemanager
 
       m_bReplaceAll = false;
 
-      m_eoperation = operation_none;
+      m_eoperation = e_operation_none;
 
       m_iBufferSize = 1024 * 1024;
 
    }
 
+
    operation::~operation()
    {
+
+
    }
 
 
-   e_operation operation::get_operation()
+   enum_operation operation::get_operation()
    {
+
       return m_eoperation;
+
    }
 
-   void operation::set_operation(e_operation eoperation)
+
+   void operation::set_operation(enum_operation eoperation)
    {
+
       m_eoperation = eoperation;
+
    }
 
 
    bool operation::set_copy(::file::listing & stra,const ::file::path & pszDestBase,const ::file::path & pszSrcBase,bool bExpand)
    {
 
-      set_operation(operation_copy);
+      set_operation(e_operation_copy);
 
       if(bExpand)
       {
@@ -79,42 +90,64 @@ namespace filemanager
 
          for(i32 i = 1; i < stra.get_size(); i++)
          {
+            
             strCompare = stra[i].folder();
+
             for(i32 j = 0; j < minimum(strCompare.get_length(),strBase.get_length()); j++)
             {
+
                if(strCompare[j] != strBase[j])
                {
+                  
                   strBase = ::file::path(strCompare.Left(j)).folder();
+
                   break;
+
                }
+
             }
+
          }
+
       }
+
       m_strBase = strBase;
+
       m_dRead = 0.0;
+
       m_iFile = 0;
 
       try
       {
+
          initialize(this);
 
          return true;
+
       }
       catch (...)
       {
+
          return false;
 
       }
       
    }
 
+
    bool operation::set_move(::file::listing & stra,const ::file::path & psz)
    {
-      set_operation(operation_move);
+
+      set_operation(e_operation_move);
+
       m_stra = stra;
+
       m_str = psz;
+
       m_dRead = 0.0;
+
       m_iFile = 0;
+
       try
       {
 
@@ -135,9 +168,13 @@ namespace filemanager
 
    bool operation::set_delete(::file::listing & stra)
    {
-      set_operation(operation_delete);
+
+      set_operation(e_operation_delete);
+
       m_stra = stra;
+
       m_dRead = 0.0;
+
       m_iFile = 0;
 
       try
@@ -156,6 +193,7 @@ namespace filemanager
       }
       
    }
+
 
    bool operation::open_src_dst(const ::file::path & pszSrc,::file::path & strDst,const ::file::path & pszDir)
    {
@@ -269,9 +307,10 @@ namespace filemanager
 
    void operation::start()
    {
+
       switch(m_eoperation)
       {
-      case operation_copy:
+      case e_operation_copy:
       {
 
          m_iFile = 0;
@@ -296,11 +335,13 @@ namespace filemanager
 
       }
       break;
-      case operation_delete:
+
+      case e_operation_delete:
       {
       }
       break;
-      case operation_move:
+
+      case e_operation_move:
       {
 
          m_iFile = 0;
@@ -335,10 +376,16 @@ namespace filemanager
 
       switch(m_eoperation)
       {
-      case operation_copy:
+      case e_operation_copy:
       {
-         if(m_iFile >= m_stra.get_size())
+
+         if (m_iFile >= m_stra.get_size())
+         {
+
             return false;
+
+         }
+
          memsize uRead = m_fileSrc->read(m_pchBuffer,m_iBufferSize);
          if(uRead > 0)
          {
@@ -434,10 +481,15 @@ namespace filemanager
          }
          return true;
       }
-      case operation_delete:
+      case e_operation_delete:
       {
-         if(m_iFile >= m_stra.get_size())
+
+         if (m_iFile >= m_stra.get_size())
+         {
+
             return false;
+
+         }
 
          pcontext->m_papexcontext->file().erase(m_stra[m_iFile]);
 
@@ -445,11 +497,15 @@ namespace filemanager
 
       }
       break;
-      case operation_move:
+      case e_operation_move:
       {
 
-         if(m_iFile >= m_stra.get_size())
+         if (m_iFile >= m_stra.get_size())
+         {
+
             return false;
+
+         }
 
          memsize uRead = m_fileSrc->read(m_pchBuffer,m_iBufferSize);
 
@@ -485,7 +541,9 @@ namespace filemanager
 
          break;
       }
+
       return true;
+
    }
 
 
@@ -494,16 +552,16 @@ namespace filemanager
 
       switch(m_eoperation)
       {
-      case operation_copy:
+      case e_operation_copy:
       {
          free(m_pchBuffer);
       }
       break;
-      case operation_delete:
+      case e_operation_delete:
       {
       }
       break;
-      case operation_move:
+      case e_operation_move:
       {
          free(m_pchBuffer);
       }
@@ -512,11 +570,16 @@ namespace filemanager
 
          break;
       }
+
       if(m_oswindowCallback != nullptr)
       {
+
          m_oswindowCallback->send_message(m_atom,m_wparamCallback);
+
       }
+
       return true;
+
    }
 
 
@@ -609,84 +672,134 @@ namespace filemanager
 
       if(m_daSize[iItem] == 0.0)
       {
+
          if(m_iFile > iItem)
          {
+
             return 1.0;
+
          }
          else
          {
+
             return 0.0;
+
          }
+
       }
+
       return m_daRead[iItem] / m_daSize[iItem];
+
    }
+
 
    double operation::get_item_read(i32 iItem)
    {
+
       return m_daRead[iItem];
+
    }
+
 
    double operation::get_item_size(i32 iItem)
    {
+
       return m_daSize[iItem];
+
    }
+
 
    bool has_digit(string strName)
    {
+
       for(index i= 0; i < strName.get_length(); i++)
       {
+
          if(::ansi_char_is_digit(strName[i]))
          {
+
             return true;
+
          }
+
       }
+
       return false;
+
    }
+
 
    string get_number_mask(string strName)
    {
 
       string strResult;
+
       bool bFirst = true;
+
       for(index i= 0; i < strName.get_length(); i++)
       {
+
          if(::ansi_char_is_digit(strName[i]))
          {
+
             if(bFirst)
             {
+
                bFirst = false;
+
                strResult += "1";
+
             }
             else
             {
+
                strResult += "X";
+
             }
+
          }
          else
          {
+
             strResult += "0";
+
          }
+
       }
+
       return strResult;
 
    }
 
+
    i64 get_number_value(string strName)
    {
+
       string strResult;
+
       string strMask = get_number_mask(strName);
+
       index i;
+
       for(i= strMask.get_length() - 1; i >= 0 ; i--)
       {
+
          if(strMask[i] == '1' || strMask[i] == 'X')
          {
+
             strResult = strName[i] + strResult;
+
          }
+
          if(strMask[i] == '1')
          {
+
             break;
+
          }
+
       }
+
       return ansi_to_i64(strResult);
 
    }
@@ -694,9 +807,13 @@ namespace filemanager
 
    string set_number_value(string strName, i64 iValue)
    {
+
       string strValue = __string(iValue);
+
       string strResult = strName;
+
       string strMask = get_number_mask(strName);
+
       strsize j = strValue.get_length() - 1;
 
       if (strMask.get_length() < strValue.get_length())
@@ -706,35 +823,53 @@ namespace filemanager
 
       }
 
-
       index i;
+
       for(i= strMask.get_length()-1; i >= 0 ; i--)
       {
+
          if(strMask[i] == 'X' || strMask[i] == '1')
          {
+
             if(j >= 0)
             {
+
                strResult.set_at(i,strValue[j]);
+
                j--;
+
             }
             else
             {
+
                strResult.set_at(i, '0');
+
             }
+
             if(strMask[i] == '1')
             {
+
                break;
+
             }
+
          }
+
       }
+
       while(j >= 0)
       {
+
          strValue.Insert(i,strValue[j]);
+
          j--;
+
       }
+
       return strResult;
 
    }
+
 
    bool operation::make_duplicate_name(::file::path & str,const ::file::path & psz)
    {

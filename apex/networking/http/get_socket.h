@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/networking/sockets/http/get_socket.h"
+
+
 namespace http
 {
 
@@ -14,11 +17,11 @@ namespace http
       string               m_strHeaderLocation;
       ::http::cookies *    m_pcookies;
 
+      get_socket();
+      ~get_socket() override;
 
-      get_socket(const string & url);
-      get_socket(const string & host,port_t port,const string & url);
-      virtual ~get_socket();
-
+      virtual void initialize_get_socket(const string & url);
+      virtual void initialize_get_socket(const string & host, ::networking::port_t port, const string & url);
 
       virtual void OnDataArrived(const char *, memsize len);
       void OnHeader(atom idKey, const string & value);

@@ -1,6 +1,12 @@
 #pragma once
 
 
+#include "aura/user/user/form_callback.h"
+#include "base/user/user/impact_creator.h"
+#include "base/user/user/tab_callback.h"
+#include "aura/user/user/style.h"
+
+
 namespace hi5
 {
 
@@ -24,8 +30,8 @@ namespace hi5
          __pointer(::user::single_document_template)      m_ptemplatePane;
          __pointer(::user::document)                      m_pdocument;
          __pointer(::user::tab_impact)                      m_ptabimpact;
-         __pointer(::form_document)                       m_pdocAuth;
-         __pointer(::form_document)                       m_pdocMessage;
+         __pointer(::form_document)                       m_pformdocumentAuth;
+         __pointer(::form_document)                       m_pformdocumentMessage;
          __pointer(::user::form_impact)                     m_pviewAuth;
          bool                                      m_bAuth;
          string                                    m_strForm;

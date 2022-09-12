@@ -1,8 +1,12 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
-#include "aura/graphics/draw2d/_component.h"
+#include "frame_005.h"
+#include "base/user/experience/frame_window.h"
+#include "base/user/experience/size_manager.h"
+#include "base/user/experience/dock_manager.h"
+#include "base/user/experience/move_manager.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "base/platform/session.h"
 
 
 #define GRIP_CORNER_LARGE_CX 16
@@ -73,7 +77,7 @@ namespace experience_anthill
    {
        ::experience::enum_frame etest = ::experience::e_frame_client;
       {
-         //      m_pframewindow->GetEventWindow()->screen_to_client(point);
+         //      m_pframewindow->GetEventWindow()->screen_to_client()(point);
          ::rectangle_i32 rectangleEvent;
          m_pframewindow->get_window_rect(rectangleEvent);
          ::rectangle_i32 rectangle;
@@ -395,6 +399,7 @@ namespace experience_anthill
 
    void frame_005::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangleClient)
    {
+
       auto pmovemanager = m_pframewindow->move_manager();
 
       enum_border eborder = pmovemanager->GetBorderMask();

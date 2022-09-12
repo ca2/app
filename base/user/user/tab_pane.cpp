@@ -1,12 +1,12 @@
 // Created by Camilo 2021-01-08 <3TBS!!
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "aqua/xml.h"
+#include "tab.h"
 #include "tab_pane.h"
 #include "acme/primitive/text/_.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/graphics_extension.h"
+#include "aura/graphics/draw2d/brush.h"
+
 
 
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
@@ -120,7 +120,7 @@ namespace user
    }
 
 
-   void tab_pane::do_split_layout(::draw2d::graphics_extension & dc, ::draw2d::graphics_pointer & pgraphics)
+   void tab_pane::do_split_layout(::draw2d::graphics_extension * pdc, ::draw2d::graphics_pointer & pgraphics)
    {
 
       string_array straTitle = m_straTitle.c_stra();
@@ -132,7 +132,7 @@ namespace user
       for (int iTitle = 0; iTitle < straTitle.get_count(); iTitle++)
       {
 
-         dc.get_text_extent(pgraphics, straTitle[iTitle], m_sizeaText[iTitle]);
+         pdc->get_text_extent(pgraphics, straTitle[iTitle], m_sizeaText[iTitle]);
 
       }
 

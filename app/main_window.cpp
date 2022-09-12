@@ -1,10 +1,9 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+#include "main_window.h"
+#include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/user/control_box_button.h"
-#include "aura/graphics/draw2d/_component.h"
 #include "acme/primitive/mathematics/mathematics.h"
+#include "aura/platform/application.h"
 
 
 #define STEPPY_DEBUG 0
@@ -204,9 +203,7 @@ namespace app_app
 
          pitemClose->m_rectangle.bottom = pitemClose->m_rectangle.top + iSize;
 
-         auto pwindow = window();
-
-         auto pointCursor = pwindow->get_mouse_cursor_position();
+         auto pointCursor = get_cursor_position();
 
          auto pmouse = __create_new < ::user::mouse >();
 

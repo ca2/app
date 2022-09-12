@@ -75,8 +75,8 @@ namespace user
 
    protected:
 
-      ::i32_map < __pointer(::image_list) >                                   m_pil; // int is the size_i32
-      ::i32_map < __pointer(::image_list) >                                   m_pilHover; // int is the size;
+      ::i32_map < __pointer(::image_list) >                                   m_pimagelist; // int is the size_i32
+      ::i32_map < __pointer(::image_list) >                                   m_pimagelistHover; // int is the size;
 
    public:
 

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "core/user/user/list_data.h"
+
+
 class CLASS_DECL_CORE simple_list_data:
    virtual public ::user::list_data
 {
@@ -13,7 +16,7 @@ public:
 
 
    simple_list_data();
-   virtual ~simple_list_data();
+   ~simple_list_data() override;
 
 
    bool erase_item(index iItem);

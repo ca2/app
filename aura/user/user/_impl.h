@@ -5,151 +5,81 @@ namespace user
 {
 
 
-   inline bool interaction::has_prodevian() const noexcept { return m_pinteractionimpl ? m_pinteractionimpl->has_prodevian() : false; }
 
    
-   template < class T >
-   __pointer(T) primitive::GetTypedParent() const
-   {
-      
-      ASSERT_VALID(this);
-      
-      __pointer(T) p;
-      
-      ::user::interaction * puiParent = get_parent();  // start with one parent up
-      
-      while (puiParent != nullptr)
-      {
-         
-         p = puiParent;
-         
-         if (p.is_set())
-         {
-            
-            return p;
-            
-         }
-         
-         puiParent = puiParent->get_parent();
-    
-      }
-      
-      return nullptr;
-      
-   }
+   //template < typename CHILD >
+   //inline bool interaction::get_typed_child(CHILD*& pchild)
+   //{
 
-   template < typename CHILD >
-   inline bool interaction::get_typed_child(CHILD*& pchild)
-   {
+   //   auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
-      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+   //   if (!puserinteractionpointeraChild)
+   //   {
 
-      if (!puserinteractionpointeraChild)
-      {
+   //      return false;
 
-         return false;
+   //   }
 
-      }
+   //   return puserinteractionpointeraChild->get_typed_child(pchild);
 
-      return puserinteractionpointeraChild->get_typed_child(pchild);
+   //}
 
-   }
+   //template < typename CHILD >
+   //inline __pointer(CHILD) interaction::get_typed_child()
+   //{
 
-   template < typename CHILD >
-   inline __pointer(CHILD) interaction::get_typed_child()
-   {
+   //   auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
-      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+   //   if (!puserinteractionpointeraChild)
+   //   {
 
-      if (!puserinteractionpointeraChild)
-      {
+   //      return nullptr;
 
-         return nullptr;
+   //   }
 
-      }
+   //   return puserinteractionpointeraChild->get_typed_child < CHILD >();
 
-      return puserinteractionpointeraChild->get_typed_child < CHILD >();
-
-   }
+   //}
 
 
-   template < typename CHILD >
-   inline bool interaction_array::get_typed_child(CHILD*& pchild)
-   {
+   //template < typename CHILD >
+   //inline bool interaction_array::get_typed_child(CHILD*& pchild)
+   //{
 
-      for (i32 i = 0; i < this->interaction_count(); i++)
-      {
+   //   for (i32 i = 0; i < this->interaction_count(); i++)
+   //   {
 
-         pchild = this->interaction_at(i).cast < CHILD >();
+   //      pchild = this->interaction_at(i).cast < CHILD >();
 
-         if (pchild)
-         {
+   //      if (pchild)
+   //      {
 
-            return true;
+   //         return true;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      for (i32 i = 0; i < this->interaction_count(); i++)
-      {
+   //   for (i32 i = 0; i < this->interaction_count(); i++)
+   //   {
 
-         if (this->interaction_at(i)->get_typed_child(pchild))
-         {
+   //      if (this->interaction_at(i)->get_typed_child(pchild))
+   //      {
 
-            return true;
+   //         return true;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return false;
+   //   return false;
 
-   }
-
-
-   inline bool interaction::is_this_visible(enum_layout elayout) const
-   {
-
-      return m_layout.is_this_visible(elayout);
-
-   }
-
-
-   inline bool interaction::is_this_screen_visible(enum_layout elayout) const
-   {
-
-      return m_layout.is_this_screen_visible(elayout);
-
-   }
-
-
-   inline bool interaction::is_window_visible(enum_layout elayout) const
-   {
-
-      return m_puserinteractionParent && !m_puserinteractionParent->is_window_visible(elayout) ? false : m_layout.state(elayout).is_visible();
-
-   }
-
-
-   inline bool interaction::is_window_screen_visible(enum_layout elayout) const
-   {
-
-      return m_puserinteractionParent && !m_puserinteractionParent->is_window_screen_visible(elayout) ? false : is_screen_visible(m_layout.state(elayout).display());
-
-   }
+   //}
 
 
 } // namespace user
 
 
-inline prodevian::prodevian(::user::interaction* pinteraction) :
-   m_pinteraction(pinteraction)
-{
-
-   m_pinteraction->add_prodevian(this);
-
-}
 
 
 
@@ -274,160 +204,10 @@ namespace user
 {
 
 
-   inline ::user::interaction_impl * message::userinteractionimpl()
-   {
 
-      auto pwindow = window();
 
-      return pwindow ? pwindow->m_puserinteractionimpl : nullptr;
 
-   }
 
-
-   inline ::user::interaction * message::userinteraction()
-   {
-
-      auto pimpl = userinteractionimpl();
-
-      return pimpl ? pimpl->m_puserinteraction : nullptr;
-
-   }
-
-
-   inline ::aura::application* interaction::get_app() const
-   {
-
-      return m_pcontext && m_pcontext->m_papplication ? m_pcontext->m_papplication->m_pauraapplication : nullptr;
-
-   }
-
-
-   inline ::aura::session* interaction::get_session() const
-   {
-
-      return m_pcontext ? m_pcontext->m_paurasession : nullptr;
-
-   }
-
-
-   inline ::aura::system* interaction::get_system() const
-   {
-
-      return m_psystem ? m_psystem->m_paurasystem : nullptr;
-
-   }
-
-   
-   inline ::aura::application* user::get_app()
-   {
-
-      return m_pcontext && m_pcontext->m_papplication ? m_pcontext->m_papplication->m_pauraapplication : nullptr;
-
-   }
-
-
-   inline ::aura::session* user::get_session()
-   {
-
-      return m_pcontext ? m_pcontext->m_paurasession : nullptr;
-
-   }
-
-
-   inline ::aura::system* user::get_system()
-   {
-
-      return ::is_set(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr;
-
-   }
-
-
-   inline ::aura::application* primitive_impl::get_app() const
-   {
-
-      return m_pcontext ? m_pcontext->m_pauraapplication : nullptr;
-
-   }
-
-
-   inline ::aura::session* primitive_impl::get_session() const
-   {
-
-      return m_pcontext ? m_pcontext->m_paurasession : nullptr;
-
-   }
-
-
-   inline ::aura::system* primitive_impl::get_system() const
-   {
-
-      return m_psystem ? m_psystem->m_paurasystem : nullptr;
-
-   }
-
-
-   inline ::aura::application* form::get_app() const
-   {
-      
-      return m_pcontext ? m_pcontext->m_pauraapplication : nullptr; 
-   
-   }
-
-
-   inline ::aura::session* form::get_session() const 
-   {
-      
-      return m_pcontext ? m_pcontext->m_paurasession : nullptr; 
-   
-   }
-
-
-   inline double interaction::screen_scaler() const
-   {
-
-      return m_pinteractionScaler->screen_scaler();
-
-   }
-
-
-   inline double interaction::font_scaler() const
-   {
-
-      return m_pinteractionScaler->font_scaler();
-
-   }
-
-
-   inline ::oswindow interaction_impl::oswindow() const
-   {
-
-      return m_pwindow->m_oswindow;
-
-   }
-
-
-   inline ::user::interaction * primitive_impl::top_level() const
-   {
-      
-      return m_puserinteraction->m_puserinteractionTopLevel; 
-   
-   }
-
-
-   inline ::user::frame * primitive_impl::parent_frame() const 
-   { 
-      
-      return m_puserinteraction->m_puserframeParent; 
-   
-   }
-
-
-   inline ::windowing::window* primitive_impl::window()
-   {
-
-      return m_puserinteraction->m_pwindow;
-
-   }
 
 
 } // namespace user

@@ -1,6 +1,15 @@
 #include "framework.h"
-#include "base/user/experience/_experience.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "frame.h"
+////#include "aura/graphics/draw2d/_component.h"
+#include "base/platform/session.h"
+#include "frame_window.h"
+#include "control_box.h"
+#include "size_manager.h"
+#include "move_manager.h"
+#include "dock_manager.h"
+#include "aura/message/user.h"
+#include "experience.h"
+#include "aura/user/user/style.h"
 
 
 namespace experience
@@ -34,6 +43,38 @@ namespace experience
    frame::~frame()
    {
 
+   }
+
+
+   ::base::application * frame::get_app() const 
+   {
+      
+      return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; 
+   
+   }
+
+
+   ::base::session * frame::get_session() const 
+   {
+      
+      return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
+   
+   }
+
+
+   ::base::system * frame::get_system() const 
+   {
+      
+      return m_psystem ? m_psystem->m_pbasesystem : nullptr; 
+   
+   }
+
+
+   ::base::user * frame::user() const 
+   {
+      
+      return get_session() ? get_session()->user() : nullptr; 
+   
    }
 
 
@@ -1415,7 +1456,7 @@ namespace experience
 
       }
 
-      if (m_pframewindow->m_eupdown == ::user::interaction::updown_down)
+      if (m_pframewindow->m_eupdown == ::user::interaction::e_updown_down)
       {
 
          egrip = e_grip_none;

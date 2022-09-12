@@ -1,8 +1,16 @@
 #include "framework.h"
-#include "core/user/user/_user.h"
-#include "axis/user/validate.h"
-#include "aura/update.h"
+////#include "core/user/user/_component.h"
+#include "axis/user/user/validate.h"
 #include "acme/id.h"
+#include "form_list.h"
+#include "list_column.h"
+#include "list_column_array.h"
+#include "list_item.h"
+#include "axis/user/user/combo_box.h"
+#include "axis/user/user/list_box.h"
+#include "aura/message/user.h"
+#include "core/platform/session.h"
+#include "aura/user/user/window_util.h"
 
 
 namespace user
@@ -16,7 +24,7 @@ namespace user
 
       m_pcontrolEdit = nullptr;
 
-      m_iClickCount    = 0;
+      m_iClickCount = 0;
 
    }
 
@@ -27,18 +35,18 @@ namespace user
    }
 
 
-   void form_list::_001GetSelection(::database::key & key,::database::selection &selection)
+   void form_list::_001GetSelection(::database::key & key, ::database::selection & selection)
    {
 
-      list::_001GetSelection(key,selection);
+      list::_001GetSelection(key, selection);
 
    }
 
 
-   void form_list::install_message_routing(::channel *pchannel)
+   void form_list::install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(e_message_key_down,pchannel,this,&form_list::on_message_key_down);
+      MESSAGE_LINK(e_message_key_down, pchannel, this, &form_list::on_message_key_down);
 
       form_mesh::install_message_routing(pchannel);
 
@@ -88,7 +96,7 @@ namespace user
             }
 
          }
-         else if (m_columna.get_by_subitem(pitem->subitem_index())->m_bEditOnSecondClick)
+         else if (m_pcolumna->get_by_subitem(pitem->subitem_index())->m_bEditOnSecondClick)
          {
 
             if (m_pitemClick == pitem)
@@ -144,7 +152,7 @@ namespace user
    bool form_list::on_click(::item * pitem)
    {
 
-      if(!::is_set(pitem))
+      if (!::is_set(pitem))
       {
 
          _001HideEditingControls();
@@ -177,7 +185,7 @@ namespace user
             }
 
          }
-         else if (m_columna.get_by_subitem(pitem->subitem_index())->m_bEditOnSecondClick)
+         else if (m_pcolumna->get_by_subitem(pitem->subitem_index())->m_bEditOnSecondClick)
          {
 
             if (m_pitemClick == pitem)
@@ -220,7 +228,7 @@ namespace user
 
          _001HideEditingControls();
 
-         __pointer(::user::list_column) pcolumn = m_columna.get_by_subitem(pitem->subitem_index());
+         __pointer(::user::list_column) pcolumn = m_pcolumna->get_by_subitem(pitem->subitem_index());
 
          if (pcolumn.is_set() && pcolumn->m_atom)
          {
@@ -345,7 +353,7 @@ namespace user
 
       //synchronous_lock synchronouslock(mutex());
 
-      ::user::list_column * pcolumn = m_columna.get_by_subitem(iSubItem);
+      ::user::list_column * pcolumn = m_pcolumna->get_by_subitem(iSubItem);
 
       if (!pcolumn || pcolumn->m_atom.is_empty())
       {
@@ -467,7 +475,7 @@ namespace user
 
       //pitem->m_iSubItem = ;
 
-      psubitem->m_pcolumn = m_columna.get_visible((::index)pinteraction->m_iColumn);
+      psubitem->m_pcolumn = m_pcolumna->get_visible((::index)pinteraction->m_iColumn);
 
       if (!bOnlySizeAndPosition)
       {
@@ -480,14 +488,14 @@ namespace user
 
       psubitem->m_iOrder = _001MapSubItemToOrder(psubitem->m_iSubItem);
 
-      _001GetElementRect(*psubitem,::user::mesh::e_element_text);
+      _001GetElementRect(*psubitem, ::user::mesh::e_element_text);
 
-      if(psubitem->m_bOk)
+      if (psubitem->m_bOk)
       {
 
          rectangle_f64 rectangleControl(psubitem->m_pdrawmeshsubitem->m_rectangleSubItem);
 
-         auto pointContext = get_impactport_offset();
+         auto pointContext = get_context_offset();
 
          rectangleControl.offset(pointContext);
 
@@ -545,7 +553,7 @@ namespace user
                      pcombobox->_001ToggleDropDown();
 
                   }
-                  else if(pcombobox->m_plistbox != nullptr)
+                  else if (pcombobox->m_plistbox != nullptr)
                   {
 
                      __keep(pcombobox->m_plistbox->m_bMovingComboBox);
@@ -578,7 +586,7 @@ namespace user
                }
 
             }
-break_click:;
+         break_click:;
 
             _001OnShowControl(pinteraction);
 
@@ -604,7 +612,7 @@ break_click:;
 
             ::count iItemCount = _001GetItemCount();
 
-            for(index iItem = 0; iItem < iItemCount; iItem++)
+            for (index iItem = 0; iItem < iItemCount; iItem++)
             {
 
                if (_001GetSubItemCheck(iItem, pinteraction->m_iSubItemDuplicateCheckBox) == ::e_check_checked)
@@ -623,7 +631,7 @@ break_click:;
                         auto psubitemTarget = get_subitem(iItem, iSubItemTarget);
 
                         psubitemTarget->m_strText = psubitem->m_strText;
-                        
+
                         _001SetSubItemText(psubitemTarget);
 
                      }
@@ -652,7 +660,7 @@ break_click:;
       __task_guard(m_bOnEditUpdate);
 
       ASSERT(pinteraction->get_control_type() == e_control_type_edit
-             || pinteraction->get_control_type() == e_control_type_edit_plain_text);
+         || pinteraction->get_control_type() == e_control_type_edit_plain_text);
 
       __pointer(::user::plain_edit) pedit = pinteraction;
 
@@ -778,7 +786,7 @@ break_click:;
 
             string str(pinteraction->m_setValue[::e_check_checked].get_string());
 
-            if(str.has_char())
+            if (str.has_char())
             {
 
                psubitem->m_strText = str;
@@ -795,7 +803,7 @@ break_click:;
          else if (echeck == ::e_check_unchecked)
          {
 
-            string str (pinteraction->m_setValue[::e_check_unchecked].get_string());
+            string str(pinteraction->m_setValue[::e_check_unchecked].get_string());
 
             if (str.has_char())
             {
@@ -840,7 +848,7 @@ break_click:;
          ptopic->m_puserelement = pinteraction;
 
          route(ptopic);
-         
+
          //pformlist->handle_subject(ptopic);
 
          return true;
@@ -848,7 +856,7 @@ break_click:;
       }
 
       ASSERT(pinteraction->get_control_type() == e_control_type_edit || pinteraction->get_control_type() == e_control_type_edit_plain_text
-             || pinteraction->get_control_type() == e_control_type_combo_box);
+         || pinteraction->get_control_type() == e_control_type_combo_box);
 
       //auto pinteraction = get_child_by_id(pinteraction->m_atom);
 
@@ -911,7 +919,7 @@ break_click:;
       }
 
       if (pinteraction->has_function(e_control_function_vms_data_edit)
-            || pinteraction->has_function(e_control_function_data_selection))
+         || pinteraction->has_function(e_control_function_data_selection))
       {
 
          auto psubitem = get_subitem(pinteraction->m_iItem, pinteraction->m_iSubItem);
@@ -946,7 +954,7 @@ break_click:;
 
                   _001SetSubItemText(psubitemTarget);
 
-                  //__pointer(::list::column) pcolumn = m_columna.get_by_subitem(iSubItemTarget);
+                  //__pointer(::list::column) pcolumn = m_pcolumna->get_by_subitem(iSubItemTarget);
                   //
                   //if (pcolumn.is_set() && m_controldescriptorset.bounds(pcolumn->m_iControl))
                   //{
@@ -978,14 +986,14 @@ break_click:;
    void form_list::_001SetEditControl(::user::interaction * pinteraction)
    {
 
-      if(!pinteraction)
+      if (!pinteraction)
       {
 
-         if(m_pcontrolEdit)
+         if (m_pcontrolEdit)
          {
 
             _001HideControl(m_pcontrolEdit);
-            
+
             m_pcontrolEdit = nullptr;
 
          }
@@ -1016,7 +1024,7 @@ break_click:;
 
       auto pinteraction = _001GetEditControl();
 
-      if(pinteraction)
+      if (pinteraction)
       {
 
          _001PlaceControl(pinteraction, pinteraction->m_iItem, false, true);
@@ -1028,7 +1036,7 @@ break_click:;
 
    void form_list::_001OnHScroll(::message::message * pmessage)
    {
-      
+
       pmessage->previous();
 
       if (pmessage->m_bRet)
@@ -1040,7 +1048,7 @@ break_click:;
 
       auto pinteraction = _001GetEditControl();
 
-      if(pinteraction)
+      if (pinteraction)
       {
 
          _001PlaceControl(pinteraction, pinteraction->m_iItem, false, true);
@@ -1050,7 +1058,7 @@ break_click:;
    }
 
 
-   bool form_list::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::atom & atom, lresult & iResult)
+   bool form_list::_001OnMouseActivate(::user::interaction_impl * pDesktopWnd, ::u32 nHitTest, const ::atom & atom, lresult & iResult)
    {
 
       __UNREFERENCED_PARAMETER(pDesktopWnd);
@@ -1190,7 +1198,7 @@ break_click:;
    {
       auto pkey = pmessage->m_union.m_pkey;
 
-      if(pkey->m_ekey == ::user::e_key_return)
+      if (pkey->m_ekey == ::user::e_key_return)
       {
          _001SaveEdit(_001GetEditControl());
          _001HideEditingControls();
@@ -1221,21 +1229,21 @@ break_click:;
    }
 
 
-   bool form_list::_001IsPointInside(::user::interaction * pinteraction,point_i64 point)
+   bool form_list::_001IsPointInside(::user::interaction * pinteraction, point_i64 point)
    {
 
-      if(pinteraction != nullptr)
+      if (pinteraction != nullptr)
       {
 
-         if(pinteraction->m_econtroltype == e_control_type_edit
-               || pinteraction->m_econtroltype == e_control_type_edit_plain_text)
+         if (pinteraction->m_econtroltype == e_control_type_edit
+            || pinteraction->m_econtroltype == e_control_type_edit_plain_text)
          {
 
-            if(pinteraction == _001GetEditControl())
+            if (pinteraction == _001GetEditControl())
             {
 
                ::rectangle_i32 rectangleWindow;
-               
+
                pinteraction->get_window_rect(rectangleWindow);
 
                return rectangleWindow.contains(point);
@@ -1249,9 +1257,9 @@ break_click:;
             }
          }
       }
-      
+
       ::rectangle_i32 rectangleControl;
-      
+
       ::rectangle_i32 rectangle;
 
       //auto pitem = __new(draw_list_item(this));
@@ -1294,23 +1302,30 @@ break_click:;
 
          synchronous_lock synchronouslock(mutex());
 
-         for (index i = 0; i < m_columna.get_size(); i++)
+         for (index i = 0; i < m_pcolumna->get_size(); i++)
          {
 
-               auto pdescriptor = get_child_by_id(m_columna[i]->m_atom);
+            auto pdescriptor = get_child_by_id((*m_pcolumna)[i]->m_atom);
 
-               if (pdescriptor != nullptr)
+            if (pdescriptor != nullptr)
+            {
+
+               if ((*m_pcolumna)[i]->subitem_index() >= 0)
                {
-                  if (m_columna[i]->subitem_index() >= 0)
-                  {
-                     pdescriptor->m_iSubItem = m_columna[i]->subitem_index();
-                  }
-                  else if (pdescriptor->m_iSubItem >= 0)
-                  {
-                     m_columna[i]->m_iSubItem = pdescriptor->m_iSubItem;
-                  }
+
+                  pdescriptor->m_iSubItem = (*m_pcolumna)[i]->subitem_index();
+
                }
+               else if (pdescriptor->m_iSubItem >= 0)
+               {
+
+                  (*m_pcolumna)[i]->m_iSubItem = pdescriptor->m_iSubItem;
+
+               }
+
             }
+
+         }
 
       }
 
@@ -1324,227 +1339,227 @@ break_click:;
    }
 
 
-//   void form_list::_000OnMouse(::message::mouse * pmouse)
-//   {
-//      // must lock ::user::mutex_children() at top stack chain
-//// and only at top stack chain.
-//
-//      auto point = pmouse->m_point;
-//
-//      screen_to_client(point);
-//
-//      if (pmouse->m_atom == e_message_left_button_down)
-//      {
-//
-//         index iItem;
-//
-//         index iSubItem;
-//
-//         //::user::range range;
-//
-//         //_001GetSelection(range);
-//
-//         if (_001DisplayHitTest(point, iItem, iSubItem))
-//         {
-//
-//            auto pinteraction = get_subitem_control(iSubItem);
-//
-//            if (pinteraction 
-//                  && pinteraction->m_econtroltype == e_control_type_combo_box)
-//            {
-//
-//               _001PlaceControl(pinteraction, (::index) iItem, true);
-//
-//               //pinteraction->m_puserinteraction->message_handler(pmouse);
-//
-//               pmouse->m_bRet = true;
-//
-//               return;
-//
-//            }
-//         }
-//      }
-//      if (pmouse->m_bRet)
-//      {
-//
-//         return;
-//
-//      }
-//
-//
-//      form_mesh::_000OnMouse(pmouse);
-//
-//      if (pmouse->m_bRet)
-//      {
-//
-//         return;
-//
-//      }
-//
-//      //else if(emessage == e_message_left_button_up)
-//      //{
-//      //i32 iItem;
-//      //i32 iSubItem;
-//      //::user::range range;
-//      //_001GetSelection(range);
-//      //if(_001DisplayHitTest(point, iItem, iSubItem))
-//      //{
-//      //class ::user::control_descriptor * pinteraction = m_controldescriptorset.get_by_sub_item(iSubItem);
-//      //if(pinteraction != nullptr
-//      //&& pinteraction->m_pcontrol != nullptr
-//      //&& !pinteraction->m_pcontrol->is_window_visible()
-//      //&& (pinteraction->m_etype == type_edit
-//      //|| pinteraction->m_etype == type_edit_plain_text))
-//      //{
-//      //return false;
-//      //}
-//      //}
-//      //}*/
-//      //control_keep controlkeep(this,point_i32);
-//      //__pointer(::user::interaction) pinteraction = top_child();
-//      //__pointer(::user::interaction) puiBefore = nullptr;
-//      //bool bError;
-//      //try
-//      //{
-//      //   while(pinteraction != nullptr)
-//      //   {
-//      //      bError = false;
-//      //      try
-//      //      {
-//      //         if(pinteraction->is_window_visible() && pinteraction->_001IsPointInside(pmouse->m_point))
-//      //         {
-//      //            pinteraction->_000OnMouse(pmouse);
-//      //            if(pmouse->m_bRet)
-//      //               return;
-//      //            pinteraction->send(pmouse);
-//      //            if(pmouse->get_lresult() != 0)
-//      //               return;
-//      //         }
-//      //      }
-//      //      catch(...)
-//      //      {
-//      //         bError = true;
-//      //         puiBefore = pinteraction;
-//      //      }
-//      //      pinteraction = under_sibling(pinteraction);
-//      //      if(bError)
-//      //      {
-//      //         m_uiptraChild.erase(puiBefore);
-//      //      }
-//      //   }
-//      //}
-//      //catch(...)
-//      //{
-//      //}
-//      //try
-//      //{
-//      //   (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::message::message * > (pmouse->);
-//      //   if(pmouse->get_lresult() != 0)
-//      //      return;
-//      //}
-//      //catch(...)
-//      //{
-//      //}
-//
-//
-//
-//
-//
-//      //::point_i32 point = pmouse->m_point;
-//      //screen_to_client(point);
-//      ///*      if(emessage == e_message_left_button_down)
-//      //      {
-//      //      i32 iItem;
-//      //      i32 iSubItem;
-//      //      ::user::range range;
-//      //      _001GetSelection(range);
-//      //      if(_001DisplayHitTest(point, iItem, iSubItem))
-//      //      {
-//      //      class ::user::control_descriptor * pinteraction = m_controldescriptorset.get_by_sub_item(iSubItem);
-//      //      if(pinteraction != nullptr
-//      //      && pinteraction->m_pcontrol != nullptr
-//      //      && (pinteraction->m_etype == type_edit
-//      //      || pinteraction->m_etype == type_edit_plain_text)
-//      //      && !range.has_sub_item(iItem, iSubItem))
-//      //      {
-//      //      _001HideEditingControls();
-//      //      return false;
-//      //      }
-//      //      }
-//      //      }
-//      //      else if(emessage == e_message_left_button_up)
-//      //      {
-//      //      i32 iItem;
-//      //      i32 iSubItem;
-//      //      ::user::range range;
-//      //      _001GetSelection(range);
-//      //      if(_001DisplayHitTest(point, iItem, iSubItem))
-//      //      {
-//      //      class ::user::control_descriptor * pinteraction = m_controldescriptorset.get_by_sub_item(iSubItem);
-//      //      if(pinteraction != nullptr
-//      //      && pinteraction->m_pcontrol != nullptr
-//      //      && !pinteraction->m_pcontrol->is_window_visible()
-//      //      && (pinteraction->m_etype == type_edit
-//      //      || pinteraction->m_etype == type_edit_plain_text))
-//      //      {
-//      //      return false;
-//      //      }
-//      //      }
-//      //      }*/
-//      //control_keep controlkeep(this,point_i32);
-//      //__pointer(::user::interaction) pinteraction = top_child();
-//      //__pointer(::user::interaction) puiBefore = nullptr;
-//      //bool bError;
-//      //try
-//      //{
-//      //   while(pinteraction != nullptr)
-//      //   {
-//      //      bError = false;
-//      //      try
-//      //      {
-//      //         if(pinteraction->is_window_visible() && pinteraction->_001IsPointInside(pmouse->m_point))
-//      //         {
-//      //            pinteraction->_000OnMouse(pmouse);
-//      //            if(pmouse->m_bRet)
-//      //               return;
-//      //            pinteraction->send(pmouse);
-//      //            if(pmouse->get_lresult() != 0)
-//      //               return;
-//      //         }
-//      //      }
-//      //      catch(...)
-//      //      {
-//      //         bError = true;
-//      //         puiBefore = pinteraction;
-//      //      }
-//      //      pinteraction = under_sibling(pinteraction);
-//      //      if(bError)
-//      //      {
-//      //         m_uiptraChild.erase(puiBefore);
-//      //      }
-//      //   }
-//      //}
-//      //catch(...)
-//      //{
-//      //}
-//      //try
-//      //{
-//      //   (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast <::message::message *> (pmouse->);
-//      //   if(pmouse->get_lresult() != 0)
-//      //      return;
-//      //}
-//      //catch(...)
-//      //{
-//      //}
-//
-//   }
+   //   void form_list::_000OnMouse(::message::mouse * pmouse)
+   //   {
+   //      // must lock ::user::mutex_children() at top stack chain
+   //// and only at top stack chain.
+   //
+   //      auto point = pmouse->m_point;
+   //
+   //      screen_to_client()(point);
+   //
+   //      if (pmouse->m_atom == e_message_left_button_down)
+   //      {
+   //
+   //         index iItem;
+   //
+   //         index iSubItem;
+   //
+   //         //::user::range range;
+   //
+   //         //_001GetSelection(range);
+   //
+   //         if (_001DisplayHitTest(point, iItem, iSubItem))
+   //         {
+   //
+   //            auto pinteraction = get_subitem_control(iSubItem);
+   //
+   //            if (pinteraction 
+   //                  && pinteraction->m_econtroltype == e_control_type_combo_box)
+   //            {
+   //
+   //               _001PlaceControl(pinteraction, (::index) iItem, true);
+   //
+   //               //pinteraction->m_puserinteraction->message_handler(pmouse);
+   //
+   //               pmouse->m_bRet = true;
+   //
+   //               return;
+   //
+   //            }
+   //         }
+   //      }
+   //      if (pmouse->m_bRet)
+   //      {
+   //
+   //         return;
+   //
+   //      }
+   //
+   //
+   //      form_mesh::_000OnMouse(pmouse);
+   //
+   //      if (pmouse->m_bRet)
+   //      {
+   //
+   //         return;
+   //
+   //      }
+   //
+   //      //else if(emessage == e_message_left_button_up)
+   //      //{
+   //      //i32 iItem;
+   //      //i32 iSubItem;
+   //      //::user::range range;
+   //      //_001GetSelection(range);
+   //      //if(_001DisplayHitTest(point, iItem, iSubItem))
+   //      //{
+   //      //class ::user::control_descriptor * pinteraction = m_controldescriptorset.get_by_sub_item(iSubItem);
+   //      //if(pinteraction != nullptr
+   //      //&& pinteraction->m_pcontrol != nullptr
+   //      //&& !pinteraction->m_pcontrol->is_window_visible()
+   //      //&& (pinteraction->m_etype == type_edit
+   //      //|| pinteraction->m_etype == type_edit_plain_text))
+   //      //{
+   //      //return false;
+   //      //}
+   //      //}
+   //      //}*/
+   //      //control_keep controlkeep(this,point_i32);
+   //      //__pointer(::user::interaction) pinteraction = top_child();
+   //      //__pointer(::user::interaction) puiBefore = nullptr;
+   //      //bool bError;
+   //      //try
+   //      //{
+   //      //   while(pinteraction != nullptr)
+   //      //   {
+   //      //      bError = false;
+   //      //      try
+   //      //      {
+   //      //         if(pinteraction->is_window_visible() && pinteraction->_001IsPointInside(pmouse->m_point))
+   //      //         {
+   //      //            pinteraction->_000OnMouse(pmouse);
+   //      //            if(pmouse->m_bRet)
+   //      //               return;
+   //      //            pinteraction->send(pmouse);
+   //      //            if(pmouse->get_lresult() != 0)
+   //      //               return;
+   //      //         }
+   //      //      }
+   //      //      catch(...)
+   //      //      {
+   //      //         bError = true;
+   //      //         puiBefore = pinteraction;
+   //      //      }
+   //      //      pinteraction = under_sibling(pinteraction);
+   //      //      if(bError)
+   //      //      {
+   //      //         m_uiptraChild.erase(puiBefore);
+   //      //      }
+   //      //   }
+   //      //}
+   //      //catch(...)
+   //      //{
+   //      //}
+   //      //try
+   //      //{
+   //      //   (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ::message::message * > (pmouse->);
+   //      //   if(pmouse->get_lresult() != 0)
+   //      //      return;
+   //      //}
+   //      //catch(...)
+   //      //{
+   //      //}
+   //
+   //
+   //
+   //
+   //
+   //      //::point_i32 point = pmouse->m_point;
+   //      //screen_to_client()(point);
+   //      ///*      if(emessage == e_message_left_button_down)
+   //      //      {
+   //      //      i32 iItem;
+   //      //      i32 iSubItem;
+   //      //      ::user::range range;
+   //      //      _001GetSelection(range);
+   //      //      if(_001DisplayHitTest(point, iItem, iSubItem))
+   //      //      {
+   //      //      class ::user::control_descriptor * pinteraction = m_controldescriptorset.get_by_sub_item(iSubItem);
+   //      //      if(pinteraction != nullptr
+   //      //      && pinteraction->m_pcontrol != nullptr
+   //      //      && (pinteraction->m_etype == type_edit
+   //      //      || pinteraction->m_etype == type_edit_plain_text)
+   //      //      && !range.has_sub_item(iItem, iSubItem))
+   //      //      {
+   //      //      _001HideEditingControls();
+   //      //      return false;
+   //      //      }
+   //      //      }
+   //      //      }
+   //      //      else if(emessage == e_message_left_button_up)
+   //      //      {
+   //      //      i32 iItem;
+   //      //      i32 iSubItem;
+   //      //      ::user::range range;
+   //      //      _001GetSelection(range);
+   //      //      if(_001DisplayHitTest(point, iItem, iSubItem))
+   //      //      {
+   //      //      class ::user::control_descriptor * pinteraction = m_controldescriptorset.get_by_sub_item(iSubItem);
+   //      //      if(pinteraction != nullptr
+   //      //      && pinteraction->m_pcontrol != nullptr
+   //      //      && !pinteraction->m_pcontrol->is_window_visible()
+   //      //      && (pinteraction->m_etype == type_edit
+   //      //      || pinteraction->m_etype == type_edit_plain_text))
+   //      //      {
+   //      //      return false;
+   //      //      }
+   //      //      }
+   //      //      }*/
+   //      //control_keep controlkeep(this,point_i32);
+   //      //__pointer(::user::interaction) pinteraction = top_child();
+   //      //__pointer(::user::interaction) puiBefore = nullptr;
+   //      //bool bError;
+   //      //try
+   //      //{
+   //      //   while(pinteraction != nullptr)
+   //      //   {
+   //      //      bError = false;
+   //      //      try
+   //      //      {
+   //      //         if(pinteraction->is_window_visible() && pinteraction->_001IsPointInside(pmouse->m_point))
+   //      //         {
+   //      //            pinteraction->_000OnMouse(pmouse);
+   //      //            if(pmouse->m_bRet)
+   //      //               return;
+   //      //            pinteraction->send(pmouse);
+   //      //            if(pmouse->get_lresult() != 0)
+   //      //               return;
+   //      //         }
+   //      //      }
+   //      //      catch(...)
+   //      //      {
+   //      //         bError = true;
+   //      //         puiBefore = pinteraction;
+   //      //      }
+   //      //      pinteraction = under_sibling(pinteraction);
+   //      //      if(bError)
+   //      //      {
+   //      //         m_uiptraChild.erase(puiBefore);
+   //      //      }
+   //      //   }
+   //      //}
+   //      //catch(...)
+   //      //{
+   //      //}
+   //      //try
+   //      //{
+   //      //   (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast <::message::message *> (pmouse->);
+   //      //   if(pmouse->get_lresult() != 0)
+   //      //      return;
+   //      //}
+   //      //catch(...)
+   //      //{
+   //      //}
+   //
+   //   }
 
 
-   void form_list::control_get_client_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle)
+   void form_list::control_get_client_rect(::user::interaction * pinteraction, RECTANGLE_I32 * prectangle)
 
    {
 
-      if(pinteraction == nullptr)
+      if (pinteraction == nullptr)
       {
 
          ::null(prectangle);
@@ -1590,7 +1605,7 @@ break_click:;
 
       //pitem->m_iListItem = -1;
 
-      _001GetElementRect(*psubitem,::user::mesh::e_element_sub_item);
+      _001GetElementRect(*psubitem, ::user::mesh::e_element_sub_item);
 
       rectangleControl = psubitem->m_pdrawmeshsubitem->m_rectangleSubItem;
 
@@ -1602,14 +1617,14 @@ break_click:;
    }
 
 
-   void form_list::control_get_window_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle)
+   void form_list::control_get_window_rect(::user::interaction * pinteraction, RECTANGLE_I32 * prectangle)
 
    {
 
-      control_get_client_rect(pinteraction,prectangle);
+      control_get_client_rect(pinteraction, prectangle);
 
 
-      client_to_screen(prectangle);
+      client_to_screen()(*prectangle);
 
 
    }
@@ -1618,7 +1633,7 @@ break_click:;
    bool form_list::control_001DisplayHitTest(const ::point_i32 & point)
    {
 
-      return _001DisplayHitTest(point,m_pitemControl->m_iItem,m_pitemControl->m_iSubItem);
+      return _001DisplayHitTest(point, m_pitemControl->m_iItem, m_pitemControl->m_iSubItem);
 
    }
 
@@ -1637,13 +1652,13 @@ break_click:;
       for (index iColumn = iSubItemColumn - 1; iColumn >= 0; iColumn--)
       {
 
-         auto pcolumn = m_columna.get_visible(iColumn);
+         auto pcolumn = m_pcolumna->get_visible(iColumn);
 
          auto puserinteraction = get_control(pcolumn, iItem);
 
          if (pcolumn->m_atom
-               && puserinteraction != nullptr
-               && _001IsSubItemEnabled(iItem, pcolumn->m_iSubItem))
+            && puserinteraction != nullptr
+            && _001IsSubItemEnabled(iItem, pcolumn->m_iSubItem))
          {
 
             iColumnPrevious = iColumn;
@@ -1662,7 +1677,7 @@ break_click:;
          for (index iColumn = iColumnCount - 1; iColumn >= iSubItemColumn; iColumn--)
          {
 
-            auto pcolumn = m_columna.get_visible(iColumn);
+            auto pcolumn = m_pcolumna->get_visible(iColumn);
 
             auto puserinteraction = get_control(pcolumn, iItem);
 
@@ -1723,7 +1738,7 @@ break_click:;
       for (index iColumn = iSubItemColumn + 1; iColumn < iColumnCount; iColumn++)
       {
 
-         auto pcolumn = m_columna.get_visible(iColumn);
+         auto pcolumn = m_pcolumna->get_visible(iColumn);
 
          auto puserinteraction = get_control(pcolumn, iItem);
 
@@ -1746,7 +1761,7 @@ break_click:;
          for (index iColumn = 0; iColumn <= iSubItemColumn; iColumn++)
          {
 
-            auto pcolumn = m_columna.get_visible(iColumn);
+            auto pcolumn = m_pcolumna->get_visible(iColumn);
 
             auto puserinteraction = get_control(pcolumn, iItem);
 
@@ -1844,7 +1859,7 @@ break_click:;
 
       index iLowerItem = iItem + 1;
 
-      for (; iLowerItem <  _001GetItemCount() - 1; iLowerItem++)
+      for (; iLowerItem < _001GetItemCount() - 1; iLowerItem++)
       {
 
          if (_001GetControl(iLowerItem, iSubItem) != nullptr && _001IsSubItemEnabled(iLowerItem, iSubItem))
@@ -1897,7 +1912,7 @@ break_click:;
 
          auto iSubItem = puserinteraction->m_iSubItem;
 
-         auto pcolumn = m_columna.get_by_subitem(iSubItem);
+         auto pcolumn = m_pcolumna->get_by_subitem(iSubItem);
 
          if (::is_set(pcolumn))
          {
@@ -1928,7 +1943,7 @@ break_click:;
       else if (ptopic->m_atom == ::id_enter_key)
       {
 
-         if(m_pcontrolEdit != nullptr)
+         if (m_pcontrolEdit != nullptr)
          {
 
             _001SaveEdit(m_pcontrolEdit);
@@ -1979,7 +1994,7 @@ break_click:;
 
          }
 
-         if(bOk)
+         if (bOk)
          {
 
             auto pinteraction = _001GetControl(iItem, iSubItem);
@@ -1997,7 +2012,7 @@ break_click:;
          SCAST_PTR(::message::key, pkey, ptopic->m_actioncontext.m_pmessage.m_p);
 
          if (pkey->m_ekey == e_key_down || pkey->m_ekey == e_key_up
-               || pkey->m_ekey == e_key_left || pkey->m_ekey == e_key_right)
+            || pkey->m_ekey == e_key_left || pkey->m_ekey == e_key_right)
          {
 
             index iItem = 0;
@@ -2094,7 +2109,7 @@ break_click:;
 
                __pointer(::user::plain_edit) pedit = m_pcontrolEdit;
 
-               if(pedit.is_set())
+               if (pedit.is_set())
                {
 
                   if (pkey->m_ekey == e_key_left)
@@ -2135,15 +2150,15 @@ break_click:;
    }
 
 
-   bool form_list::_001HitTest_(const ::point_i32 & point,index &iItem,index &iSubItem)
+   bool form_list::_001HitTest_(const ::point_i32 & point, index & iItem, index & iSubItem)
    {
 
-      return ::user::list::_001HitTest_(point,iItem,iSubItem);
+      return ::user::list::_001HitTest_(point, iItem, iSubItem);
 
    }
 
 
-   ::user::interaction* form_list::get_control(::user::list_column* pcolumn, ::index iItem)
+   ::user::interaction * form_list::get_control(::user::list_column * pcolumn, ::index iItem)
    {
 
       if (!pcolumn->m_puserinteractionTemplate)
@@ -2153,11 +2168,11 @@ break_click:;
 
       }
 
-      auto & userinteractiona = pcolumn->m_userinteractiona;
+      auto puserinteractiona = pcolumn->m_puserinteractiona;
 
       ::index iIndex = iItem - m_iTopDisplayIndex;
 
-      auto & pinteraction = userinteractiona.interactiona().element_at_grow(iIndex);
+      auto & pinteraction = puserinteractiona->interactiona().element_at_grow(iIndex);
 
       if (!pinteraction)
       {
@@ -2199,13 +2214,13 @@ break_click:;
    }
 
 
-   void form_list::on_check_save(::user::interaction* puserinteraction)
+   void form_list::on_check_save(::user::interaction * puserinteraction)
    {
 
    }
 
 
-   void form_list::on_check_load(::user::interaction* puserinteraction)
+   void form_list::on_check_load(::user::interaction * puserinteraction)
    {
 
 
@@ -2307,31 +2322,31 @@ break_click:;
 
       //if (pdrawitem->m_pcolumn->m_bCustomDraw)
       {
-//
-      // trigger control creation
+         //
+               // trigger control creation
          auto pinteraction = _001GetControl(pdrawlistsubitem);
 
          if (pinteraction)
          {
-//
-//            //pdrawitem->m_rectangleClient = pdrawitem->m_rectangleSubItem;
-//
-//            //pdrawitem->m_rectangleWindow = pdrawitem->m_rectangleClient;
-//
+            //
+            //            //pdrawitem->m_rectangleClient = pdrawitem->m_rectangleSubItem;
+            //
+            //            //pdrawitem->m_rectangleWindow = pdrawitem->m_rectangleClient;
+            //
             pinteraction->place(pdrawlistsubitem->m_pdrawmeshsubitem->m_rectangleSubItem);
 
             pinteraction->display();
 
-//
-            //client_to_screen(pdrawitem->m_rectangleWindow);
+            //
+                        //client_to_screen(pdrawitem->m_rectangleWindow);
 
-            //::rectangle_i32 rectangleWindow;
+                        //::rectangle_i32 rectangleWindow;
 
-            //pinteraction->get_window_rect(rectangleWindow);
+                        //pinteraction->get_window_rect(rectangleWindow);
 
-            //screen_to_client(rectangleWindow);
+                        //screen_to_client(rectangleWindow);
 
-            //if (rectangleWindow != pdrawitem->m_rectangleClient)
+                        //if (rectangleWindow != pdrawitem->m_rectangleClient)
             {
 
                // pinteraction->set_window_position(0, pdrawitem->m_rectangleClient, SWP_HIDEWINDOW | SWP_NOZORDER);
@@ -2406,19 +2421,19 @@ break_click:;
                }
 
             }
-ok_control:;
-//
-//            ::draw2d::savedc savedc(pdrawitem->m_pgraphics);
-//
-//            on_impactport_offset(pdrawitem->m_pgraphics);
-//
-//            __keep(pinteraction->m_pdrawcontext, pdrawitem);
-//
-//            pinteraction->_001OnDraw(pdrawitem->m_pgraphics);
-//
-//            //pinteraction->_003CallCustomDraw(pdrawitem->m_pgraphics,pdrawitem);
-//            //pdrawitem->m_pgraphics->SelectClipRgn(nullptr);
-//            //_001OnClip(pdrawitem->m_pgraphics);
+         ok_control:;
+            //
+            //            ::draw2d::savedc savedc(pdrawitem->m_pgraphics);
+            //
+            //            on_context_offset(pdrawitem->m_pgraphics);
+            //
+            //            __keep(pinteraction->m_pdrawcontext, pdrawitem);
+            //
+            //            pinteraction->_001OnDraw(pdrawitem->m_pgraphics);
+            //
+            //            //pinteraction->_003CallCustomDraw(pdrawitem->m_pgraphics,pdrawitem);
+            //            //pdrawitem->m_pgraphics->SelectClipRgn(nullptr);
+            //            //_001OnClip(pdrawitem->m_pgraphics);
          }
       }
 
@@ -2430,7 +2445,7 @@ ok_control:;
    ::enum_check form_list::_001GetSubItemCheck(index iItem, index iSubItem)
    {
 
-      __pointer(::user::list_column) pcolumn = m_columna.get_by_subitem(iSubItem);
+      __pointer(::user::list_column) pcolumn = m_pcolumna->get_by_subitem(iSubItem);
 
       if (pcolumn.is_set() && pcolumn->m_atom)
       {
@@ -2480,7 +2495,7 @@ ok_control:;
    bool form_list::_001SetSubItemCheck(index iItem, index iSubItem, ::enum_check echeck)
    {
 
-      __pointer(::user::list_column) pcolumn = m_columna.get_by_subitem(iSubItem);
+      __pointer(::user::list_column) pcolumn = m_pcolumna->get_by_subitem(iSubItem);
 
       if (pcolumn.is_set() && pcolumn->m_atom)
       {
@@ -2524,7 +2539,7 @@ ok_control:;
    bool form_list::_001IsSubItemEnabled(index iItem, index iSubItem)
    {
 
-      __pointer(::user::list_column) pcolumn = m_columna.get_by_subitem(iSubItem);
+      __pointer(::user::list_column) pcolumn = m_pcolumna->get_by_subitem(iSubItem);
 
       if (pcolumn.is_set() && pcolumn->m_atom)
       {
@@ -2537,7 +2552,7 @@ ok_control:;
             if (pinteraction->has_function(::user::e_control_function_disable_on_check_box))
             {
 
-               if(_001GetSubItemCheck(iItem, pinteraction->m_iSubItemDisableCheckBox) == ::e_check_checked)
+               if (_001GetSubItemCheck(iItem, pinteraction->m_iSubItemDisableCheckBox) == ::e_check_checked)
                {
 
                   return false;

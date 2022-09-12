@@ -934,14 +934,25 @@ CLASS_DECL_ACME void __call(const ::procedure & procedure)
 }
 
 
-__pointer(::sequence < ::conversation >) matter::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+__pointer(::sequencer < ::conversation >) matter::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
 {
 
-   auto psequence = m_psystem->message_box(strMessage, strTitle, emessagebox, strDetails);
+   auto psequencer = m_psystem->create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails);
 
-   return psequence;
+   return psequencer;
 
 }
 
+
+//__pointer(::sequencer < ::conversation >) matter::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+//{
+//
+//   auto psequence = create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails);
+//
+//   psequencer->do_synchronously();
+//
+//   return psequencer;
+//
+//}
 
 

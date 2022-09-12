@@ -1,9 +1,10 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
 #include "acme/platform/system_setup.h"
 #include "base/constant/idpool.h"
+#include "application.h"
+#include "session.h"
+#include "system.h"
+#include "base/user/user/user.h"
 
 
 void base_factory(::factory::factory * pfactory);

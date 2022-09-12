@@ -1,9 +1,12 @@
 #include "framework.h"
-#include "core/user/user/_user.h"
+////#include "core/user/user/_component.h"
+#include "xfplayer_impact_line.h"
+#include "xfplayer_impact_lines.h"
+#include "xfplayer_impact_line_selection.h"
 
 
 xfplayer_impact_linea::xfplayer_impact_linea(::user::interaction * puserinteraction) :
-   m_selection(puserinteraction),
+   m_pselection(__new(xfplayer_impact_line_selection(puserinteraction))),
    m_puserinteraction(puserinteraction)
 {
 
@@ -218,9 +221,11 @@ void xfplayer_impact_linea::set_blend(double dBlend)
 }
 
 
-XfplayerImpactLineSelection & xfplayer_impact_linea::GetSelection()
+xfplayer_impact_line_selection & xfplayer_impact_linea::GetSelection()
 {
-   return m_selection;
+   
+   return *m_pselection;
+
 }
 
 
@@ -232,7 +237,7 @@ void xfplayer_impact_linea::get_sel_text(string & strSelText, const ::string & p
    index iLineEnd;
    index iCharEnd;
 
-   m_selection.GetNormalSelection(iLineStart, iCharStart, iLineEnd, iCharEnd);
+   m_pselection->GetNormalSelection(iLineStart, iCharStart, iLineEnd, iCharEnd);
 
    if (iLineEnd >= iLineStart)
    {

@@ -1,15 +1,14 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/_component.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
-
-#include "aura/update.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
-
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/image/drawing.h"
+#include "base/user/user/document.h"
+#include "aura/user/user/frame.h"
+#include "aura/message/user.h"
 #include "aura/operating_system/windows_common/graphics.h"
+#include "color_impact.h"
+#include "aura/platform/system.h"
 
 
 //#if defined(__APPLE__)
@@ -371,7 +370,7 @@ namespace userex
 
       m_bLButtonPressed = false;
 
-      m_atom = impact_color_sel;
+      m_atom = COLORSEL_IMPACT;
 
    }
 
@@ -415,6 +414,22 @@ namespace userex
       ::visual::colors_with_shades_of_grey(m_pimageTemplate);
 
       m_pimageLuminance = m_pcontext->m_pauracontext->create_image({100,  100});
+
+   }
+
+
+   void color_impact::set_sel_color(const ::color::hls& hls)
+   {
+
+      set_color(hls);
+
+   }
+
+
+   ::color::hls color_impact::get_sel_color()
+   {
+
+      return get_color().get_hls();
 
    }
 
@@ -840,7 +855,7 @@ namespace userex
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       on_mouse(point);
 
@@ -860,15 +875,13 @@ namespace userex
       
       ::point_i32 point = pmouse->m_point;
       
-      screen_to_client(point);
+      screen_to_client()(point);
 
       on_mouse(point);
 
       pmouse->m_bRet = true;
 
-auto pwindowing = windowing();
-
-      pwindowing->release_mouse_capture();
+      release_mouse_capture();
 
       m_bLButtonPressed = false;
       
@@ -898,7 +911,7 @@ auto pwindowing = windowing();
 
          ::point_i32 point = pmouse->m_point;
 
-         screen_to_client(point);
+         screen_to_client()(point);
 
          on_mouse(point);
 

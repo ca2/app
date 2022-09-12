@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "interaction.h"
+
+
 namespace user
 {
 
@@ -24,10 +27,10 @@ namespace user
       ~form() override;
 
 
-      inline ::aura::application* get_app() const;
-      inline ::aura::session* get_session() const;
-      inline ::aura::system* get_system() const { return ::is_set(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr; }
-      inline ::user::user * user() const { return get_session() ? get_session()->user() : nullptr; }
+      ::aura::application* get_app() const;
+      ::aura::session* get_session() const;
+      ::aura::system* get_system() const;
+      ::user::user * user() const;
 
 
       virtual void initialize(::object * pobject) override;

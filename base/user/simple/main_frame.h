@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "frame_window.h"
+
+
 class CLASS_DECL_BASE simple_main_frame :
    virtual public simple_frame_window
 {

@@ -8,6 +8,9 @@
 #pragma once
 
 
+#include "aura/user/menu/command.h"
+
+
 namespace windowing
 {
 

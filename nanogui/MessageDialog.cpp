@@ -9,14 +9,11 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+#include "MessageDialog.h"
+#include "Layout.h"
+#include "Label.h"
+#include "Button.h"
 
-//#include <nanogui/messagedialog.h>
-//#include <nanogui/layout.h>
-//#include <nanogui/button.h>
-//#include <nanogui/label.h>
 
 NAMESPACE_BEGIN(nanogui)
 

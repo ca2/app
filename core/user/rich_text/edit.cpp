@@ -1,11 +1,16 @@
 #include "framework.h"
-#include "core/user/rich_text/_rich_text.h"
+#include "edit.h"
+#include "edit_impl.h"
+#include "format_tool.h"
+#include "document.h"
+#include "span.h"
 #include "acme/platform/timer.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
-
 #include "acme/constant/timer.h"
+#include "aura/message/user.h"
+#include "aura/user/user/frame.h"
+#include "aura/user/user/copydesk.h"
+#include "aura/platform/session.h"
+
 
 
 namespace user
@@ -266,9 +271,7 @@ namespace user
       void edit::on_message_mouse_leave(::message::message * pmessage)
       {
 
-         auto pwindowing = windowing();
-
-         pwindowing->release_mouse_capture();
+         release_mouse_capture();
 
          set_need_redraw();
 
@@ -411,7 +414,7 @@ namespace user
 
             point_f64 point(pointParam);
 
-            screen_to_client(point);
+            screen_to_client()(point);
 
             ::rectangle_i32 rWindow;
             
@@ -421,7 +424,7 @@ namespace user
 
             __copy(rectangleWindow, rWindow);
             
-            get_parent()->screen_to_client(rectangleWindow);
+            get_parent()->screen_to_client()(rectangleWindow);
 
             copy(rectangleWindow, rectangleWindow);
 
@@ -612,9 +615,7 @@ namespace user
 
                }
 
-               auto pwindow = window();
-
-               auto pcopydesk = pwindow->copydesk();
+               auto pcopydesk = copydesk();
 
                pcopydesk->set_plain_text(str);
 
@@ -653,9 +654,7 @@ namespace user
 
                _001GetSelText(str);
 
-               auto pwindow = window();
-
-               auto pcopydesk = pwindow->copydesk();
+               auto pcopydesk = copydesk();
 
                pcopydesk->set_plain_text(str);
 

@@ -57,9 +57,6 @@
     <Filter Include="Header Files\platform">
       <UniqueIdentifier>{6e6bef37-2c89-4842-a307-c57af04f938f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\user\simple">
-      <UniqueIdentifier>{96c6dd28-7346-40a8-9af1-42d218048e5e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\constant">
       <UniqueIdentifier>{7c1254ce-a663-4741-9380-0b58d03bd502}</UniqueIdentifier>
     </Filter>
@@ -72,6 +69,27 @@
     <Filter Include="Source Files\operating_system\windows">
       <UniqueIdentifier>{28a64074-a430-491f-8487-bebfb7b69277}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\html">
+      <UniqueIdentifier>{9fdaa360-2a78-475f-8bc0-4d5d6eb302d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html\user">
+      <UniqueIdentifier>{cfb90598-4179-4173-918a-fa2423188953}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html">
+      <UniqueIdentifier>{4e0a112b-921f-4029-a0e7-7a3ebbe7ec76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html\user">
+      <UniqueIdentifier>{3a8ab612-4a91-4417-90a2-b625217bc05f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\form">
+      <UniqueIdentifier>{a535b4da-21af-4466-a4af-1b6da34a23f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\form">
+      <UniqueIdentifier>{ba1466e6-09e8-4496-8479-b602208c3ef9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\simple">
+      <UniqueIdentifier>{96c6dd28-7346-40a8-9af1-42d218048e5e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="user\user\control_descriptor_set.h">
@@ -80,7 +98,7 @@
     <ClInclude Include="user\user\form_data.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\_user.h">
+    <ClInclude Include="user\user\_component.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\edit_window.h">
@@ -209,7 +227,7 @@
     <ClInclude Include="user\user\split_impact.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\static_control.h">
+    <ClInclude Include="user\user\_aaa_static_control.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\tab.h">
@@ -365,7 +383,7 @@
     <ClInclude Include="user\experience\_constant.h">
       <Filter>Header Files\user\experience</Filter>
     </ClInclude>
-    <ClInclude Include="user\experience\_experience.h">
+    <ClInclude Include="user\experience\_component.h">
       <Filter>Header Files\user\experience</Filter>
     </ClInclude>
     <ClInclude Include="user\experience\button.h">
@@ -407,7 +425,7 @@
     <ClInclude Include="user\simple\_.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\_simple.h">
+    <ClInclude Include="user\simple\_component.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\frame_window.h">
@@ -428,7 +446,7 @@
     <ClInclude Include="user\menu\_.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
-    <ClInclude Include="user\menu\_menu.h">
+    <ClInclude Include="user\menu\_component.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
     <ClInclude Include="user\menu\button.h">
@@ -443,7 +461,7 @@
     <ClInclude Include="user\menu\list_window.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
-    <ClInclude Include="user\menu\menu_impact.h">
+    <ClInclude Include="user\menu\impact.h">
       <Filter>Header Files\user\menu</Filter>
     </ClInclude>
     <ClInclude Include="user\user\tab_drop_target_window.h">
@@ -464,20 +482,62 @@
     <ClInclude Include="user\simple\tab_document.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
+    <ClInclude Include="user\menu\item.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\interaction.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\menu.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_constant.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\impact.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\menu\item_ptra.h">
+      <Filter>Header Files\user\menu</Filter>
+    </ClInclude>
+    <ClInclude Include="html\user\impact.h">
+      <Filter>Header Files\html\user</Filter>
+    </ClInclude>
+    <ClInclude Include="html\user\aaa_form_impact.h">
+      <Filter>Header Files\html\user</Filter>
+    </ClInclude>
+    <ClInclude Include="html\user\document.h">
+      <Filter>Header Files\html\user</Filter>
+    </ClInclude>
+    <ClInclude Include="html\user\child_frame.h">
+      <Filter>Header Files\html\user</Filter>
+    </ClInclude>
+    <ClInclude Include="html\user\_component.h">
+      <Filter>Header Files\html\user</Filter>
+    </ClInclude>
+    <ClInclude Include="html\user\_.h">
+      <Filter>Header Files\html\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\form\document.h">
+      <Filter>Header Files\user\form</Filter>
+    </ClInclude>
+    <ClInclude Include="user\form\impact.h">
+      <Filter>Header Files\user\form</Filter>
+    </ClInclude>
+    <ClInclude Include="user\form\update_hint.h">
+      <Filter>Header Files\user\form</Filter>
+    </ClInclude>
+    <ClInclude Include="user\form\_.h">
+      <Filter>Header Files\user\form</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\child_frame.h">
+      <Filter>Header Files\user\simple</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\picture_impl.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="user\user\form_data.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\menu.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\menu_interaction.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\menu_item.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\place_holder.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -517,18 +577,6 @@
     <ClCompile Include="user\user\data_exchange.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\form_control.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\form_document.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\form_impact.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\form_window.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\frame_window.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -547,9 +595,6 @@
     <ClCompile Include="user\user\picture_interaction.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\simple_impact.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\split_bar.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -559,7 +604,7 @@
     <ClCompile Include="user\user\split_impact.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\static_control.cpp">
+    <ClCompile Include="user\user\_aaa_static_control.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\tab.cpp">
@@ -667,7 +712,7 @@
     <ClCompile Include="user\menu\list_window.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
-    <ClCompile Include="user\menu\menu_impact.cpp">
+    <ClCompile Include="user\menu\impact.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
     <ClCompile Include="user\user\tab_data.cpp">
@@ -693,6 +738,45 @@
     </ClCompile>
     <ClCompile Include="user\simple\tab_document.cpp">
       <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\menu.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\interaction.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\item.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\impact.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\tab_drop_target_window.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="html\user\document.cpp">
+      <Filter>Source Files\html\user</Filter>
+    </ClCompile>
+    <ClCompile Include="html\user\aaa_form_impact.cpp">
+      <Filter>Source Files\html\user</Filter>
+    </ClCompile>
+    <ClCompile Include="html\user\impact.cpp">
+      <Filter>Source Files\html\user</Filter>
+    </ClCompile>
+    <ClCompile Include="html\user\user.cpp">
+      <Filter>Source Files\html\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\form\document.cpp">
+      <Filter>Source Files\user\form</Filter>
+    </ClCompile>
+    <ClCompile Include="user\form\impact.cpp">
+      <Filter>Source Files\user\form</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\child_frame.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\picture_impl.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,5 @@
 #include "framework.h" 
-#include "apex/astr.h"
-#include "apex/id.h"
-#include "apex/networking/sockets/_sockets.h"
+#include "tunnel.h"
 
 
 namespace sockets
@@ -17,12 +15,28 @@ namespace sockets
       //http_socket(h)
    {
 
+      ///m_memoryBuf.set_size(1024 * 16);
+      //m_iProxyPort = -1;
+
+   }
+
+   http_tunnel::~http_tunnel()
+   {
+
+
+   }
+
+
+   void http_tunnel::initialize(::object * pobject)
+   {
+
+
+      http_socket::initialize(pobject);
+
       SetLineProtocol();
       m_bOk = false;
       m_bDirect = false;
       m_estate = e_state_initial;
-      ///m_memoryBuf.set_size(1024 * 16);
-      m_iProxyPort = -1;
 
    }
 
@@ -116,12 +130,12 @@ namespace sockets
 
             }
 
-            if (::str().begins(strStatus, astr.s200Space))
-            {
+            //if (::str().begins(strStatus, astr.s200Space))
+            //{
 
-               m_estate = state_proxy_ok;
+            //   m_estate = state_proxy_ok;
 
-            }
+            //}
 
          }
 
@@ -213,37 +227,37 @@ namespace sockets
    }
 
 
-   bool http_tunnel::proxy_open(const string &host, port_t port)
+   bool http_tunnel::proxy_open(const string &host, ::networking::port_t port)
    {
 
-      m_strProxy = host;
-
-      m_iProxyPort = port;
-
-#ifdef BSD_STYLE_SOCKETS
-      m_strInitSSLClientContext += "/" + m_strProxy + ":" + __string(port);
-#endif
-
-      m_bSslTunnel = IsSSL();
-      
-      EnableSSL(false);
-      
-      if (!tcp_socket::open(host, port))
-      {
-
-         if (!is_connecting())
-         {
-
-            FATAL("http_get_socket: connect() failed miserably");
-            
-            SetCloseAndDelete();
-
-         }
-
-         return false;
-
-      }
-
+//      m_strProxy = host;
+//
+//      m_iProxyPort = port;
+//
+//#ifdef BSD_STYLE_SOCKETS
+//      m_strInitSSLClientContext += "/" + m_strProxy + ":" + __string(port);
+//#endif
+//
+//      m_bSslTunnel = IsSSL();
+//      
+//      EnableSSL(false);
+//      
+//      if (!tcp_socket::open(host, port))
+//      {
+//
+//         if (!is_connecting())
+//         {
+//
+//            FATAL("http_get_socket: connect() failed miserably");
+//            
+//            SetCloseAndDelete();
+//
+//         }
+//
+//         return false;
+//
+//      }
+//
       return true;
 
    }
@@ -255,7 +269,8 @@ namespace sockets
       if (m_strProxy.has_char() && m_iProxyPort > 0 && !m_bDirect)
       {
       }
-      else if (bConfigProxy)
+      else 
+         if (bConfigProxy)
       {
 
          m_pcontext->m_papexcontext->http().config_proxy(get_url(), this);
@@ -291,7 +306,7 @@ namespace sockets
       else
       {
 
-         return proxy_open(m_strProxy, (port_t)m_iProxyPort);
+         return proxy_open(m_strProxy, (::networking::port_t)m_iProxyPort);
 
       }
 
@@ -306,7 +321,7 @@ namespace sockets
    }
 
 
-   port_t http_tunnel::GetUrlPort()
+   ::networking::port_t http_tunnel::GetUrlPort()
    {
       return m_port;
    }

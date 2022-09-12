@@ -317,7 +317,7 @@ namespace macos
    }
 
 
-   ::atom nano_window::do_synchronously()
+   ::payload nano_window::do_synchronously()
    {
       
       if(ns_app_is_running())
@@ -329,10 +329,10 @@ namespace macos
 
       atom atomResult;
 
-      m_pinterface->m_psequence->then([ &atomResult ](auto psequence)
+      m_pinterface->m_psequencer->then([ &atomResult ](auto psequence)
       {
 
-         atomResult = psequence->m_atomResult;
+         atomResult = psequence->m_payloadResult;
          
          ns_app_stop();
 

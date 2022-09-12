@@ -1,8 +1,16 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "acme/include/_c_swap.h"
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/window.h"
+#include "aura/message/user.h"
+#include "aura/user/user/system.h"
+#include "aura/user/user/user.h"
+#include "aura/user/user/interaction.h"
+#include "aura/user/user/interaction_impl.h"
+#include "aura/platform/session.h"
 
 
 #if defined(LINUX)
@@ -43,13 +51,6 @@ namespace message
    //   m_bDoSystemDefault = true;
 
    //}
-
-
-
-
-
-
-
 
 
    void create::set(oswindow oswindow, ::windowing::window * pwindow, const ::atom & atom, wparam wparam, ::lparam lparam)

@@ -1,7 +1,5 @@
 #include "framework.h" 
-#include "apex/id.h"
-#include "apex/networking/sockets/_sockets.h"
-#include <stdio.h>
+#include "put_socket.h"
 
 
 namespace sockets
@@ -24,25 +22,33 @@ namespace sockets
    }
 
 
-   http_put_socket::http_put_socket(const string & url_in) :
-      //::object(&h),
-      //base_socket(h),
-      //socket(h),
-      //stream_socket(h),
-      //tcp_socket(h),
-      //http_socket(h),
-      //http_tunnel(h),
-      //http_client_socket(h, url_in)
-      http_client_socket(url_in)
-   {
+   //http_put_socket::inithttp_put_socket(const string & url_in) :
+   //   //::object(&h),
+   //   //base_socket(h),
+   //   //socket(h),
+   //   //stream_socket(h),
+   //   //tcp_socket(h),
+   //   //http_socket(h),
+   //   //http_tunnel(h),
+   //   //http_client_socket(h, url_in)
+   //   http_client_socket(url_in)
+   //{
 
-      m_content_length = -1;
+   //   m_content_length = -1;
 
-   }
+   //}
 
 
    http_put_socket::~http_put_socket()
    {
+
+   }
+
+
+   void http_put_socket::initialize_http_put_socket(const string & strUrl)
+   {
+
+      initialize_http_client_socket(strUrl);
 
    }
 
@@ -61,9 +67,9 @@ namespace sockets
       else
       {
 
-#ifdef BSD_STYLE_SOCKETS
-         FATAL("SetFile " << Errno << bsd_socket_error(Errno));
-#endif
+//#ifdef BSD_STYLE_SOCKETS
+//         FATAL("SetFile " << Errno << bsd_socket_error(Errno));
+//#endif
 
          SetCloseAndDelete();
 

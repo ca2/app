@@ -26,7 +26,7 @@ int GetMainWkspaceRect(LPRECT lprect);
 //}
 
 
-//int GetMainScreenRect(LPRECT lprect)
+//int get_main_screen_rectangle(LPRECT lprect)
 //{
 //
 //   CGRect rect = [[UIScreen mainScreen] bounds];
@@ -44,7 +44,7 @@ int GetMainWkspaceRect(LPRECT lprect);
 int GetMainWkspaceRect(LPRECT lprect)
 {
 
-   GetMainScreenRect(lprect);
+   get_main_screen_rectangle(lprect);
    
    CGSize statusBarSize = [[UIApplication sharedApplication] statusBarFrame].size;
    
@@ -62,7 +62,7 @@ int GetMainWkspaceRect(LPRECT lprect)
 
 int GetScreenRect(LPRECT lprect, int iMonitor)
 {
-   return GetMainScreenRect(lprect);
+   return get_main_screen_rectangle(lprect);
 }
 
 int GetScreenCount()

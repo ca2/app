@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aqua/user/controller.h"
+
+
 namespace user
 {
 
@@ -43,10 +46,10 @@ namespace user
       void assert_ok() const override;
 
 
-      inline ::base::application* get_app() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }
-      inline ::base::session* get_session() const { return m_pcontext ? m_pcontext->m_pbasesession : nullptr; }
-      inline ::base::system* get_system() const { return m_psystem ? m_psystem->m_pbasesystem : nullptr; }
-      inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+      ::base::application * get_app() const;
+      ::base::session * get_session() const;
+      ::base::system * get_system() const;
+      ::base::user * user() const;
 
 
       ::user::interaction* impact_at(::index iImpact) const override;
@@ -110,7 +113,7 @@ namespace user
       }
 
       template < class T >
-      __pointer(T) get_type_impact(index indexFind = 0) const
+      __pointer(T) get_typed_impact(index indexFind = 0) const
       {
 
          synchronous_lock synchronouslock(((document *)this)->mutex());
@@ -237,7 +240,7 @@ namespace user
 
 
 
-      virtual __pointer(::user::impact) get_type_impact(::type info, index indexFind = 0);
+      virtual __pointer(::user::impact) get_typed_impact(::type info, index indexFind = 0);
 
       virtual __pointer(::user::impact) get_typed_impact_with_id(::type info,atom atom);
 

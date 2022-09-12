@@ -1,26 +1,47 @@
 #include "framework.h"
 #include "aura/operating_system.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
-//#include "apex/platform/app_core.h"
 #include "aura/message.h"
 #include "aura/message/timer.h"
 #include "acme/constant/timer.h"
-#include "acme/id.h"
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "interaction_thread.h"
-#include "acme/operating_system/_user.h"
-//#include "interaction_draw2d.h"
+//#include "acme/operating_system/_user.h"
 #include "acme/platform/hyperlink.h"
 #include "acme/platform/timer.h"
 #include "acme/platform/timer_array.h"
-#include "aura/graphics/draw2d/_component.h"
-#include "aura/graphics/graphics/_.h"
-#include "aura/graphics/graphics/_graphics.h"
-#include "acme/primitive/geometry2d/_shape.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/draw2d/path.h"
+#include "aura/graphics/graphics/graphics.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
+#include "acme/primitive/geometry2d/_collection.h"
 #include "acme/primitive/geometry2d/_defer_shape.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/display.h"
+#include "aura/windowing/cursor.h"
+#include "alpha_source.h"
+#include "message.h"
+#include "interaction.h"
+#include "interaction_impl.h"
+#include "interaction_scaler.h"
+#include "style.h"
+#include "user.h"
+#include "frame.h"
+#include "form.h"
+#include "interaction_child.h"
+#include "aura/message/user.h"
+#include "scroll_info.h"
+#include "aura/graphics/draw2d/graphics_call.h"
+#include "aura/user/appearance/appearance.h"
+#include "aura/user/user/system.h"
+#include "aura/graphics/user/control_box_icon.h"
+#include "aura/graphics/user/control_box_button.h"
+#include "aura/platform/session.h"
+#include "aura/platform/application.h"
 
 
 #define INFO_LAYOUT_DISPLAY
@@ -243,7 +264,7 @@ namespace user
 
       m_uiUserInteractionFlags = 0;
 
-      m_eupdown = ::user::interaction::updown_normal_frame;
+      m_eupdown = ::user::interaction::e_updown_normal_frame;
 
       //m_playout = NULL;
 
@@ -253,9 +274,9 @@ namespace user
 
       m_dItemHeight = -1;
 
-      m_flagNonClient.add(non_client_background);
+      m_flagNonClient.add(e_non_client_background);
 
-      m_flagNonClient.add(non_client_focus_rect);
+      m_flagNonClient.add(e_non_client_focus_rect);
 
       m_bMouseHover = false;
 
@@ -523,6 +544,41 @@ namespace user
    }
 
 
+   float interaction::get_dpi_for_window()
+   {
+
+      auto pwindow = window();
+
+      if (::is_null(pwindow))
+      {
+
+         return 96.0f;
+
+      }
+
+      return pwindow->get_dpi_for_window();
+
+   }
+
+
+   float interaction::get_density_for_window()
+   {
+
+      auto pwindow = window();
+
+      if (::is_null(pwindow))
+      {
+
+         return 1.0f;
+
+      }
+
+      return pwindow->get_density_for_window();
+
+   }
+
+
+
    ::windowing::window * interaction::_window() const
    {
       
@@ -570,30 +626,62 @@ namespace user
    }
 
 
-   //::windowing::windowing * interaction::windowing() const
-   //{
+   ::user::copydesk * interaction::copydesk()
+   {
+   
+      auto pwindow = window();
+      
+      if(::is_null(pwindow))
+      {
+         
+         return nullptr;
+         
+      }
+      
+      auto pcopydesk = pwindow->copydesk();
+      
+      if(::is_null(pcopydesk))
+      {
+       
+         return nullptr;
+         
+      }
+      
+      return pcopydesk;
 
-   //   auto pwindow = window();
+   }
 
-   //   if (::is_null(pwindow))
-   //   {
 
-   //      return nullptr;
+   ::windowing::windowing * interaction::windowing() const
+   {
 
-   //   }
+      auto pwindow = m_pwindow;
 
-   //   auto pwindowing = pwindow->windowing();
+      if (::is_null(pwindow))
+      {
 
-   //   if (::is_null(pwindowing))
-   //   {
+         auto psession = get_session();
 
-   //      return nullptr;
+         auto puser = psession->user();
 
-   //   }
+         auto pwindowing = puser->windowing1();
 
-   //   return pwindowing;
+         return pwindowing;
 
-   //}
+      }
+   
+      auto pwindowing = pwindow->m_pwindowing;
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+   
+      return pwindowing;
+
+   }
 
 
    ::windowing::display * interaction::get_display() const
@@ -803,7 +891,7 @@ namespace user
       interaction::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
-      if (m_flagNonClient.has(non_client_focus_rect))
+      if (m_flagNonClient.has(e_non_client_focus_rect))
       {
 
          double dFocusHeightWidth = get_double(pstyle, ::user::e_double_focus_height_width, estate, 2.0);
@@ -870,7 +958,7 @@ namespace user
    }
 
 
-   eflag interaction::get_draw_flags(style * pstyle) const
+   ::user::e_flag interaction::get_draw_flags(::user::style * pstyle) const
    {
 
       return e_null;
@@ -2771,6 +2859,52 @@ namespace user
    }
 
 
+   bool interaction::set_sel_by_name(const ::string & strName)
+   {
+      
+      return false;
+      
+   }
+
+
+   string interaction::get_sel_by_name()
+   {
+
+      return "";
+
+   }
+
+
+   string interaction::get_hover_by_name()
+   {
+
+      return "";
+
+   }
+
+   
+   void interaction::ensure_sel_visible()
+   {
+      
+      
+   }
+
+
+   void interaction::set_sel_color(const ::color::hls & hls)
+   {
+
+      
+   }
+
+
+   ::color::hls interaction::get_sel_color()
+   {
+
+      return {};
+   
+   }
+
+
    void interaction::get_horizontal_scroll_info(scroll_info & info)
    {
 
@@ -2778,7 +2912,7 @@ namespace user
 
       auto sizePage = get_page_size();
 
-      auto pointOffset = get_impactport_offset();
+      auto pointOffset = get_context_offset();
 
       info.nMin = 0;
       info.nMax = (::i32)sizeTotal.cx;
@@ -2796,7 +2930,7 @@ namespace user
 
       auto sizePage = get_page_size();
 
-      auto pointOffset = get_impactport_offset();
+      auto pointOffset = get_context_offset();
 
       info.nMin = 0;
       info.nMax = (::i32)sizeTotal.cy;
@@ -3207,6 +3341,7 @@ namespace user
       if (get_parent() == nullptr)
       {
 
+         if(m_psystem->m_bImaging)
          //if (!window()->defer_set_icon())
          {
 
@@ -3293,7 +3428,7 @@ namespace user
    }
 
 
-   void interaction::set_impactport_org(::draw2d::graphics_pointer & pgraphics)
+   void interaction::set_context_org(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (m_pprimitiveimpl == nullptr)
@@ -3303,7 +3438,7 @@ namespace user
 
       }
 
-      m_pprimitiveimpl->set_impactport_org(pgraphics);
+      m_pprimitiveimpl->set_origin(pgraphics);
 
    }
 
@@ -3415,9 +3550,9 @@ namespace user
 
                pinteraction->get_client_rect(rectangleClient);
 
-               pinteraction->client_to_host(rectangleClient);
+               rectangleClient += pinteraction->client_to_host();
 
-               host_to_client(rectangleClient);
+               rectangleClient += host_to_client();
 
                if (i == 0)
                {
@@ -3646,7 +3781,7 @@ namespace user
 
       }
 
-      //on_impactport_offset(pgraphics);
+      //on_context_offset(pgraphics);
 
 #ifdef __DEBUG
 
@@ -3751,7 +3886,7 @@ namespace user
       try
       {
 
-         set_impactport_org(pgraphics);
+         set_context_org(pgraphics);
 
          synchronous_lock synchronouslock(mutex());
 
@@ -3766,7 +3901,7 @@ namespace user
    }
 
 
-   void interaction::on_impactport_offset(::draw2d::graphics_pointer & pgraphics)
+   void interaction::on_context_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::point_i32 pointOffset;
@@ -3778,7 +3913,7 @@ namespace user
 
       }
 
-      auto pointContextOffset = get_impactport_offset();
+      auto pointContextOffset = get_context_offset();
 
       auto offset = pointOffset - pointContextOffset;
 
@@ -3845,7 +3980,7 @@ namespace user
 
          //::draw2d::savedc k(pgraphics);
 
-         //on_impactport_offset(pgraphics);
+         //on_context_offset(pgraphics);
          //// while drawing layout can occur and machine z-order.
          //// keep this past z-order
          //interaction_pointer_array uia;
@@ -4175,7 +4310,7 @@ namespace user
 
                auto pointCursor = pwindow->get_cursor_position();
 
-               screen_to_client(pointCursor, e_layout_design);
+               pointCursor += screen_to_client(e_layout_design);
 
                auto * pcursor = pwindowing->get_cursor();
 
@@ -4439,6 +4574,18 @@ namespace user
    }
 
 
+   void interaction::queue_graphics_call(const ::function<void(::draw2d::graphics_pointer&) > & function)
+   {
+
+      synchronous_lock synchronouslock(mutex());
+
+      __defer_construct_new(m_pgraphicscalla);
+
+      m_pgraphicscalla->add(__new(::draw2d::graphics_call(function)));
+
+   }
+
+
    void interaction::process_graphics_call_queue(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -4498,12 +4645,12 @@ namespace user
          //   if (!is_custom_draw() && pgraphics->m_pnext == nullptr)
          //   {
 
-         //      set_impactport_org(pgraphics);
+         //      set_context_org(pgraphics);
 
          //   }
 
          //}
-         ////         ::point_i32 pointParentOffset = get_parent_impactport_offset();
+         ////         ::point_i32 pointParentOffset = get_parent_context_offset();
          ////
          ////         pgraphics->offset_origin(-pointParentOffset.x, -pointParentOffset.y);
 
@@ -5268,6 +5415,40 @@ namespace user
    }
 
 
+   void interaction::windowing_send(const ::procedure& procedure)
+   {
+
+      auto pwindowing = windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      pwindowing->windowing_send(procedure);
+
+   }
+
+
+   void interaction::windowing_post(const ::procedure& procedure)
+   {
+
+      auto pwindowing = windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      pwindowing->windowing_post(procedure);
+
+   }
+
+
    void interaction::_000OnDrag(::message::drag_and_drop * pdrag)
    {
 
@@ -5754,7 +5935,7 @@ namespace user
 
       get_client_rect(rectangle);
 
-      client_to_screen(rectangle);
+      rectangle += client_to_screen();
 
       return rectangle;
 
@@ -6288,7 +6469,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::child_from_point(const ::point_i32 & point, const ::user::interaction_array & interactionaExclude)
+   ::user::interaction * interaction::child_from_point(const ::point_i32 & point, ::i32 iLevel, const ::user::interaction_array * pinteractionaExclude)
    {
 
       auto pointClient = point;
@@ -6296,6 +6477,13 @@ namespace user
       ::user::interaction * puserinteractionParent = nullptr;
 
       ::user::interaction * puserinteractionSearchChildren = this;
+
+      if (iLevel >= 0)
+      {
+
+         iLevel++;
+
+      }
 
       do
       {
@@ -6309,7 +6497,7 @@ namespace user
 
          puserinteractionParent = puserinteractionSearchChildren;
 
-         puserinteractionParent->parent_to_client(pointClient);
+         pointClient += puserinteractionParent->parent_to_client();
 
          auto puserinteractionpointeraChild = puserinteractionParent->m_puserinteractionpointeraChild;
 
@@ -6328,7 +6516,7 @@ namespace user
 
             auto & puserinteractionChild = puserinteractionpointeraChild->interaction_at(iChild);
 
-            if (!interactionaExclude.contains_interaction(puserinteractionChild))
+            if (::is_null(pinteractionaExclude) || !pinteractionaExclude->contains_interaction(puserinteractionChild))
             {
                //if (puserinteractionChild->is_this_visible()
                //&& (!puserinteractionChild->is_place_holder()
@@ -6340,6 +6528,8 @@ namespace user
 
                   if (puserinteractionChild->_001IsParentClientPointInsideInline(pointClient))
                   {
+
+                     iLevel--;
 
                      puserinteractionSearchChildren = puserinteractionChild;
 
@@ -6353,7 +6543,7 @@ namespace user
 
          }
 
-      } while (puserinteractionSearchChildren != nullptr);
+      } while (puserinteractionSearchChildren != nullptr && iLevel != 0);
 
       return puserinteractionParent;
 
@@ -8077,7 +8267,7 @@ namespace user
       // tasks should not be destroyed in destroy
       //m_pform && m_pform != this && m_pform->destroy();
       if (m_palphasource) m_palphasource->destroy();
-      if (m_pdrawableBackground) m_pdrawableBackground->destroy();
+      //if (m_pdrawableBackground) m_pdrawableBackground->destroy();
       if (m_pprimitiveimpl) m_pprimitiveimpl->destroy();
       if (m_pinteractionimpl) m_pinteractionimpl->destroy();
       if (m_puserinteractionpointeraOwned) m_puserinteractionpointeraOwned->destroy();
@@ -8098,14 +8288,14 @@ namespace user
       }
 
       m_pusersystem.release();
-      m_playout.release();
+      ///m_playout.release();
       m_pgraphicscalla.release();
       m_puserinteractionCustomWindowProc.release();
       m_puiLabel.release();
       m_useritema.erase_all();
       m_pform.release();
       m_palphasource.release();
-      m_pdrawableBackground.release();
+      //m_pdrawableBackground.release();
       m_pprimitiveimpl.release();
       m_pinteractionimpl.release();
       m_puserinteractionpointeraOwned.release();
@@ -10029,6 +10219,21 @@ namespace user
    }
 
 
+   __pointer_array(interaction) * interaction::children()
+   {
+
+      if (::is_null(m_puserinteractionpointeraChild))
+      {
+
+         return nullptr;
+
+      }
+
+      return &m_puserinteractionpointeraChild->interactiona();
+
+   }
+
+
    void interaction::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -10603,7 +10808,7 @@ namespace user
       //if (::sequence<::conversation>::m_p)
       {
 
-         m_atomResult = idResult;
+         m_payloadResult = idResult;
 
          m_estatus = ::success;
 
@@ -11095,6 +11300,14 @@ namespace user
       }
 
       return pwindow->set_active_window();
+
+   }
+
+
+   void interaction::bring_to_front()
+   {
+
+      window()->bring_to_front();
 
    }
 
@@ -11798,12 +12011,12 @@ namespace user
    }
 
 
-   ::oswindow interaction::_oswindow() const
-   {
+   //::oswindow interaction::_oswindow() const
+   //{
 
-      return oswindow();
+   //   return oswindow();
 
-   }
+   //}
 
 
    void interaction::OnLinkClick(const ::string & psz, const ::string & pszTarget)
@@ -12218,10 +12431,90 @@ namespace user
    }
 
 
+   __pointer(::windowing::cursor) interaction::get_mouse_cursor(enum_cursor ecursor)
+   {
+
+      auto pwindowing = windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pcursor = pwindowing->get_cursor(ecursor);
+
+      if (::is_null(pcursor))
+      {
+
+         return nullptr;
+
+      }
+
+      return pcursor;
+
+   }
+
+
    ::windowing::cursor * interaction::get_mouse_cursor()
    {
 
       return m_pcursor;
+
+   }
+
+
+   ::point_i32 interaction::get_cursor_position()
+   {
+
+      auto pwindow = window();
+
+      if (::is_null(pwindow))
+      {
+
+         return {};
+
+      }
+
+      auto pointCursor = pwindow->get_cursor_position();
+
+      return pointCursor;
+
+   }
+
+
+   void interaction::set_cursor_position(const ::point_i32 & pointCursor)
+   {
+
+      auto pwindow = window();
+
+      if (::is_null(pwindow))
+      {
+
+         throw ::exception(::error_wrong_state);
+
+      }
+
+      pwindow->set_cursor_position(pointCursor);
+
+   }
+
+
+   void interaction::release_mouse_capture()
+   {
+
+      auto pwindowing = windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         throw ::exception(::error_wrong_state);
+
+      }
+
+
+      pwindowing->release_mouse_capture();
 
    }
 
@@ -13630,7 +13923,7 @@ namespace user
 
       auto rectangle = get_client_rect();
 
-      client_to_screen(rectangle);
+      rectangle += client_to_screen();
 
       return rectangle;
 
@@ -14365,6 +14658,18 @@ namespace user
 
    }
 
+   
+   index interaction::get_best_monitor(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation)
+   {
+
+      auto pwindowing = windowing();
+
+      auto pdisplay = pwindowing->display();
+
+      return pdisplay->get_best_monitor(prectangle, rectangle, eactivation, window());
+
+   }
+
 
    index interaction::best_zoneing(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet, edisplay * pedisplay, ::e_activation eactivation, ::zorder zorderParam)
    {
@@ -14697,33 +15002,33 @@ namespace user
    }
 
 
-   void interaction::offset_impactport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
+   void interaction::offset_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
    {
 
-      auto pointOffset = get_impactport_offset();
+      auto pointOffset = get_context_offset();
 
-      set_impactport_offset(pgraphics, pointOffset.x + x, pointOffset.y + y);
+      set_context_offset(pgraphics, pointOffset.x + x, pointOffset.y + y);
 
    }
 
 
-   void interaction::offset_impactport_offset_x(::draw2d::graphics_pointer & pgraphics, int x)
+   void interaction::offset_context_offset_x(::draw2d::graphics_pointer & pgraphics, int x)
    {
 
-      offset_impactport_offset(pgraphics, x, 0);
+      offset_context_offset(pgraphics, x, 0);
 
    }
 
 
-   void interaction::offset_impactport_offset_y(::draw2d::graphics_pointer & pgraphics, int y)
+   void interaction::offset_context_offset_y(::draw2d::graphics_pointer & pgraphics, int y)
    {
 
-      offset_impactport_offset(pgraphics, 0, y);
+      offset_context_offset(pgraphics, 0, y);
 
    }
 
 
-   void interaction::set_impactport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
+   void interaction::set_context_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
    {
 
       ::point_i32 pointOffset(x, y);
@@ -14735,7 +15040,7 @@ namespace user
 
       }
 
-      if (!validate_impactport_offset(pointOffset))
+      if (!validate_context_offset(pointOffset))
       {
 
          return;
@@ -14744,12 +15049,12 @@ namespace user
 
       m_pointScroll = pointOffset;
 
-      on_change_impactport_offset(pgraphics);
+      on_change_context_offset(pgraphics);
 
    }
 
 
-   bool interaction::validate_impactport_offset(point_i32 & point)
+   bool interaction::validate_context_offset(point_i32 & point)
    {
 
       if (point == m_pointScroll)
@@ -14764,23 +15069,23 @@ namespace user
    }
 
 
-   void interaction::set_impactport_offset_x(::draw2d::graphics_pointer & pgraphics, int x)
+   void interaction::set_context_offset_x(::draw2d::graphics_pointer & pgraphics, int x)
    {
 
-      set_impactport_offset(pgraphics, x, (::i32)get_impactport_offset().y);
+      set_context_offset(pgraphics, x, (::i32)get_context_offset().y);
 
    }
 
 
-   void interaction::set_impactport_offset_y(::draw2d::graphics_pointer & pgraphics, int y)
+   void interaction::set_context_offset_y(::draw2d::graphics_pointer & pgraphics, int y)
    {
 
-      set_impactport_offset(pgraphics, (::i32)get_impactport_offset().x, y);
+      set_context_offset(pgraphics, (::i32)get_context_offset().x, y);
 
    }
 
 
-   void interaction::on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics)
+   void interaction::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
       //set_need_redraw();
@@ -14790,7 +15095,7 @@ namespace user
    }
 
 
-   point_i32 interaction::get_impactport_offset()
+   point_i32 interaction::get_context_offset()
    {
 
       ::point_i32 point = m_pointScroll;
@@ -14845,7 +15150,7 @@ namespace user
    }
 
 
-   point_i32 interaction::get_ascendant_impactport_offset() const
+   point_i32 interaction::get_ascendant_context_offset() const
    {
 
       __pointer(::user::interaction) puser = get_parent();
@@ -14855,7 +15160,7 @@ namespace user
       while (puser.is_set())
       {
 
-         point += puser->get_impactport_offset();
+         point += puser->get_context_offset();
 
          puser = puser->get_parent();
 
@@ -14903,7 +15208,7 @@ namespace user
    }
 
 
-   point_i32 interaction::get_parent_impactport_offset() const
+   point_i32 interaction::get_parent_context_offset() const
    {
 
       ::user::interaction * puser = get_parent();
@@ -14920,9 +15225,9 @@ namespace user
       if (puser != NULL)
       {
 
-         pointParentAccumulated = puser->get_impactport_offset();
+         pointParentAccumulated = puser->get_context_offset();
 
-         pointParentAccumulated += puser->get_parent_impactport_offset();
+         pointParentAccumulated += puser->get_parent_context_offset();
 
       }
 
@@ -15124,7 +15429,7 @@ namespace user
 
       bool bAttached = false;
 
-      pupdown->m_eupdown = updown_down;
+      pupdown->m_eupdown = e_updown_down;
 
       try
       {
@@ -15145,7 +15450,7 @@ namespace user
       if (!bAttached)
       {
 
-         pupdown->m_eupdown = updown_none;
+         pupdown->m_eupdown = e_updown_none;
 
       }
 
@@ -15157,7 +15462,7 @@ namespace user
 
       bool bDetached = false;
 
-      pupdown->m_eupdown = updown_up;
+      pupdown->m_eupdown = e_updown_up;
 
       try
       {
@@ -15178,7 +15483,7 @@ namespace user
       if (!bDetached)
       {
 
-         pupdown->m_eupdown = updown_none;
+         pupdown->m_eupdown = e_updown_none;
 
       }
 
@@ -15606,29 +15911,34 @@ namespace user
 
       //handle(ptopic, pcontext);
 
-      if (ptopic->m_atom == REDRAW_ID || ptopic->m_atom == m_atom)
+      if (ptopic)
       {
 
-         if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
+         if (ptopic->m_atom == REDRAW_ID || ptopic->m_atom == m_atom)
          {
-            
-            set_need_redraw();
 
-            post_redraw();
-            
+            if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
+            {
+
+               set_need_redraw();
+
+               post_redraw();
+
+            }
+
          }
-
-      }
-      else if (ptopic->m_atom == id_user_style_change)
-      {
-         
-         if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
+         else if (ptopic->m_atom == id_user_style_change)
          {
 
-            set_need_redraw();
+            if (m_puserinteraction->m_ewindowflag & ::e_window_flag_window_created)
+            {
 
-            post_redraw();
-            
+               set_need_redraw();
+
+               post_redraw();
+
+            }
+
          }
 
       }
@@ -16074,19 +16384,6 @@ namespace user
    //   }
 
 
-   double alpha_source::get_alpha(::user::interaction * puiTarget)
-   {
-
-      return 1.0;
-
-   }
-
-
-   void alpha_source::on_alpha_target_initial_frame_position()
-   {
-
-
-   }
 
 
    void interaction::on_after_graphical_update()
@@ -16407,7 +16704,7 @@ namespace user
 
    //   auto point = pmouse->m_point;
 
-   //   screen_to_client(point);
+   //   screen_to_client()(point);
 
    //   point += m_ptScroll;
 
@@ -16910,7 +17207,7 @@ namespace user
 
             ::point_i32 pointClient;
 
-            _screen_to_client(pointClient, pmouse->m_point);
+            pointClient = pmouse->m_point + screen_to_client();
 
             auto psession = m_puserinteraction->get_session();
 
@@ -17087,7 +17384,7 @@ namespace user
 
          ::point_i32 pointClient;
 
-         _screen_to_client(pointClient, pmouse->m_point);
+         pointClient = pmouse->m_point + screen_to_client();
 
          auto psession = m_puserinteraction->get_session();
 
@@ -17349,7 +17646,7 @@ namespace user
 
             ::point_i32 pointClient;
 
-            _screen_to_client(pointClient, pmouse->m_point);
+            pointClient= pmouse->m_point + screen_to_client();
 
             auto psession = m_puserinteraction->get_session();
 
@@ -17396,7 +17693,7 @@ namespace user
 
          ::point_i32 pointClient;
 
-         _screen_to_client(pointClient, pmouse->m_point);
+         pointClient = pmouse->m_point + screen_to_client();
 
          auto psession = m_puserinteraction->get_session();
 
@@ -17490,7 +17787,7 @@ namespace user
 
          ::point_i32 pointClient;
 
-         _screen_to_client(pointClient, pmouse->m_point);
+         pointClient = pmouse->m_point + screen_to_client();
 
          bool bRet;
 
@@ -17654,7 +17951,7 @@ namespace user
 
          ::point_i32 pointClient;
 
-         _screen_to_client(pointClient, pwheel->m_point);
+         pointClient = pwheel->m_point + screen_to_client();
 
          bool bRet;
 
@@ -17811,7 +18108,7 @@ namespace user
 
       ::point_i32 pointClient;
 
-      _screen_to_client(pointClient, pmouse->m_point);
+      pointClient =  pmouse->m_point + screen_to_client();
 
       auto pitem = hit_test(pointClient);
 
@@ -17971,7 +18268,7 @@ namespace user
    void interaction::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (m_flagNonClient.has(non_client_background)
+      if (m_flagNonClient.has(e_non_client_background)
          && !(top_level()->frame_is_transparent()))
       {
 
@@ -17979,7 +18276,7 @@ namespace user
 
       }
 
-      if (m_flagNonClient.has(non_client_focus_rect) && keyboard_focus_is_focusable())
+      if (m_flagNonClient.has(e_non_client_focus_rect) && keyboard_focus_is_focusable())
       {
 
          simple_ui_draw_focus_rect(pgraphics);
@@ -18368,6 +18665,54 @@ namespace user
    }
 
 
+   ::shift_i32 interaction::screen_to_client(enum_layout elayout)
+   {
+
+      return -client_to_screen(elayout);
+
+   }
+
+
+   ::shift_i32 interaction::client_to_screen(enum_layout elayout)
+   {
+
+      return (::shift_i32(screen_origin(elayout)) - ::shift_i32(get_parent_accumulated_scroll(elayout)));
+
+   }
+
+
+   ::shift_i32 interaction::parent_to_client(enum_layout elayout)
+   {
+
+      return -client_to_parent(elayout);
+
+   }
+
+
+   ::shift_i32 interaction::client_to_parent(enum_layout elayout)
+   {
+
+      return ::shift_i32(m_layout.origin(elayout));
+
+   }
+
+
+   ::shift_i32 interaction::host_to_client(enum_layout elayout)
+   {
+
+      return -client_to_host(elayout);
+
+   }
+
+
+   ::shift_i32 interaction::client_to_host(enum_layout elayout)
+   {
+
+      return (::shift_i32(host_origin(elayout)) - ::shift_i32(get_parent_accumulated_scroll(elayout)));
+
+   }
+
+
    // void interaction::initial_frame_placement()
    // {
 
@@ -18476,7 +18821,7 @@ namespace user
    bool interaction::wfi_is_up()
    {
 
-      return m_eupdown == updown_up;
+      return m_eupdown == e_updown_up;
 
    }
 
@@ -18484,7 +18829,7 @@ namespace user
    bool interaction::wfi_is_down()
    {
 
-      return m_eupdown == updown_down;
+      return m_eupdown == e_updown_down;
 
    }
 
@@ -19726,6 +20071,84 @@ namespace user
 
    //}
 
+
+   ::aura::application * interaction::get_app() const
+   {
+
+      return m_pcontext && m_pcontext->m_papplication ? m_pcontext->m_papplication->m_pauraapplication : nullptr;
+
+   }
+
+
+   ::aura::session * interaction::get_session() const
+   {
+
+      return m_pcontext ? m_pcontext->m_paurasession : nullptr;
+
+   }
+
+
+   ::aura::system * interaction::get_system() const
+   {
+
+      return m_psystem ? m_psystem->m_paurasystem : nullptr;
+
+   }
+
+
+   double interaction::screen_scaler() const
+   {
+
+      return m_pinteractionScaler->screen_scaler();
+
+   }
+
+
+   double interaction::font_scaler() const
+   {
+
+      return m_pinteractionScaler->font_scaler();
+
+   }
+
+   bool interaction::is_this_visible(enum_layout elayout) const
+   {
+
+      return m_layout.is_this_visible(elayout);
+
+   }
+
+
+   bool interaction::is_this_screen_visible(enum_layout elayout) const
+   {
+
+      return m_layout.is_this_screen_visible(elayout);
+
+   }
+
+
+   bool interaction::is_window_visible(enum_layout elayout) const
+   {
+
+      return m_puserinteractionParent && !m_puserinteractionParent->is_window_visible(elayout) ? false : m_layout.state(elayout).is_visible();
+
+   }
+
+
+   bool interaction::is_window_screen_visible(enum_layout elayout) const
+   {
+
+      return m_puserinteractionParent && !m_puserinteractionParent->is_window_screen_visible(elayout) ? false : is_screen_visible(m_layout.state(elayout).display());
+
+   }
+
+
+   bool interaction::has_prodevian() const noexcept 
+   {
+      
+      return m_pinteractionimpl ? m_pinteractionimpl->has_prodevian() : false;
+      
+   }
 
 
 } // namespace user

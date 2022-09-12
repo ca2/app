@@ -33,8 +33,9 @@ enum enum_timeout
 #define _as(p) { e_as, p }
 
 
-struct function_common
+class function_common
 {
+public:
 
 
    class ::wait m_waitTimeout;
@@ -51,7 +52,7 @@ struct function_common
 
 
 template < typename FUNCTION >
-struct function :
+class function :
    public function_common
 {
 

@@ -11,7 +11,8 @@ inline void copy(MESSAGE * pmessage, const MSG * pmsg)
    pmessage->m_atom = (enum_message)pmsg->message;
    pmessage->wParam = pmsg->wParam;
    pmessage->lParam = pmsg->lParam;
-   pmessage->pt = pmsg->pt;
+   pmessage->pt.x = pmsg->pt.x;
+   pmessage->pt.y = pmsg->pt.y;
    pmessage->time = pmsg->time;
 
 

@@ -10,9 +10,9 @@ public:
    __pointer(::user::interaction)   m_pinteraction;
 
 
-   inline prodevian(::user::interaction* pinteraction);
+   prodevian(::user::interaction* pinteraction);
 
-   virtual ~prodevian();
+   ~prodevian() override;
 
 };
 

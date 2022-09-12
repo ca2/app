@@ -2,9 +2,14 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "_userfs.h"
 #endif
-#include "core/user/user/_tree.h"
+#include "item.h"
+#include "acme/primitive/data/tree_item.h"
 #include "aura/user/user/shell.h"
-#include "_data.h"
+#include "tree.h"
+#include "core/user/user/tree.h"
+#include "core/platform/session.h"
+#include "base/user/user/user.h"
+#include "aura/user/user/window_util.h"
 
 
 namespace userfs

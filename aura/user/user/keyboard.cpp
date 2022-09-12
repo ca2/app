@@ -1,7 +1,13 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/keyboard.h"
+#include "user.h"
+#include "key.h"
+#include "aura/platform/system.h"
+#include "aura/platform/session.h"
 
 
 //#if defined(LINUX) || defined(SOLARIS)
@@ -280,6 +286,7 @@ namespace user
       
       
    }
+
 
    bool keyboard::load_os_layout(const ::file::path & pszPath)
    {

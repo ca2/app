@@ -45,7 +45,7 @@ void socket_event::SetSocketHandle(u32 socket)
    m_iSocket = socket;
 }
 //void SetSocketHandle(const SocketBase& socket) { m_iSocket = socket.get_handle_(); }   // MBO: alternative solution
-//void ChangeSocketHandle(SOCKET socket);
+//void ChangeSocketHandle(socket_id socket);
 
 ///  \brief		destructor
 void socket_event::SetUsedBySocketWaiterThread()
@@ -74,7 +74,7 @@ void socket_event::exit_wait ()
 	//std_cout << "exit wait " << static_cast<i32>(m_iSocket) << std::endl;
 };
 
-//void socket_event::ChangeSocketHandle (SOCKET socket)
+//void socket_event::ChangeSocketHandle (socket_id socket)
 //{
 //	internal::g_globals.socketWaiterThread_.RemoveEvent(this);
 //	m_iSocket = socket;

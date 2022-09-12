@@ -1,6 +1,12 @@
 #include "framework.h"
-#include "base/user/experience/_experience.h"
+#include "department.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "experience.h"
+#include "frame.h"
+#include "axis/platform/session.h"
+#include "base/platform/system.h"
+#include "base/user/user/user.h"
+
 
 
 namespace experience

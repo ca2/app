@@ -2,13 +2,23 @@
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
-#include "acme/operating_system/_user.h"
+//#include "acme/operating_system/_user.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/icon.h"
+#include "aura/user/user/user.h"
+#include "aura/message/user.h"
+#include "aura/user/user/interaction_impl.h"
+#include "aura/user/user/copydesk.h"
+#include "aura/user/user/interaction.h"
+#include "aura/platform/session.h"
 
 
 namespace windowing
 {
+
 
    window::window()
    {
@@ -1302,6 +1312,32 @@ namespace windowing
 
 
    }
+
+
+   ::aura::application* window::get_app() const
+   {
+
+      return m_pcontext && m_pcontext->m_papplication ? m_pcontext->m_papplication->m_pauraapplication : nullptr;
+
+   }
+
+
+   ::aura::session* window::get_session() const
+   {
+
+      return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr;
+
+   }
+
+
+   ::aura::system* window::get_system() const
+   {
+
+      return m_psystem ? m_psystem->m_paurasystem : nullptr;
+
+   }
+
+
 
 
 } // namespace windowing

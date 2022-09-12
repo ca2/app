@@ -9,7 +9,7 @@
 #include "apex/include/_no_templates.h"
 
 
-#define CLASS_DECL_AURA
+//#define CLASS_DECL_AURA
 
 
 //#include "acme/operating_system/thread.h"
@@ -20,6 +20,8 @@
 
 #include "aura/include/_c.h"
 #include "aura/operating_system/apple/_c_mm.h"
+
+#include "aura/user/menu/menu_shared.h"
 
 
 // #include "aura/platform/object_reference_count_debug.h"

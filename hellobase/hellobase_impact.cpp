@@ -22,8 +22,8 @@ namespace hellobase
       prop(FONTSEL_IMPACT) = true;
 
 
-      m_flagNonClient.erase(non_client_background);
-      m_flagNonClient.erase(non_client_focus_rect);
+      m_flagNonClient.erase(e_non_client_background);
+      m_flagNonClient.erase(e_non_client_focus_rect);
 
       m_strNewFont = pnode->font_name(e_font_sans);
 

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "base/user/menu/_menu.h"
+#include "list_impact.h"
 #include "acme/timer.h"
 
 
@@ -91,12 +91,6 @@ namespace user
    }
 
 
-   void tab_impact::create_impact_menu(::user::impact_data * pimpactdata)
-   {
-
-      ::user::impact::create_impact < ::user::menu_list_impact >(pimpactdata);
-
-   }
 
 
 

@@ -1,8 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "axis/geoip/_.h"
-#include "axis/geoip/_component.h"
-#endif
+#include "geoip.h"
 
 
 const char * GeoIP_region_name_by_code(const char * country_code,const char * region_code) {

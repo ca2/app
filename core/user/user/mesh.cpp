@@ -1,10 +1,22 @@
 #include "framework.h"
-#include "core/user/user/_user.h"
-//#include "acme/operating_system/cross/windows/_windows.h"
 #include "acme/constant/timer.h"
 #include "acme/platform/timer.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/image/list.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/graphics_extension.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "mesh.h"
+#include "list.h"
+#include "mesh_cache_interface.h"
+#include "list_data.h"
+#include "list_item.h"
+#include "list_column.h"
+#include "core/user/simple/mesh_data.h"
+#include "core/platform/session.h"
+#include "axis/platform/system.h"
+#include "aura/message/user.h"
+#include "base/user/user/user.h"
 
 
 #define DBLCLKMS 500
@@ -92,8 +104,8 @@ namespace user
 
       //   m_iItemCount = 0;
 
-      m_pilGroup        = nullptr;
-      m_pilGroupHover   = nullptr;
+      m_pimagelistGroup        = nullptr;
+      m_pimagelistGroupHover   = nullptr;
 
 
       m_iLeftMargin                       = 0;
@@ -175,7 +187,7 @@ namespace user
       get_client_rect(rectangleClient);
 
 
-      auto pointScroll = get_impactport_offset();
+      auto pointScroll = get_context_offset();
 
 
       //      pgraphics->SetBkMode(TRANSPARENT);
@@ -193,7 +205,7 @@ namespace user
 
          pgraphics->set(pbrushText);
          ::size_array sizea;
-         m_dcextension.get_text_extent(pgraphics,m_strTopText,sizea);
+         m_pdcextension->get_text_extent(pgraphics,m_strTopText,sizea);
          index x = 0;
          index right = (index)rectangleClient.right;
          double y = m_dItemHeight;
@@ -636,7 +648,7 @@ namespace user
       //if(m_eview == impact_grid)
       //{
 
-      //   pdrawitem->m_iOrder = maximum(get_impactport_offset().x, 0);
+      //   pdrawitem->m_iOrder = maximum(get_context_offset().x, 0);
 
       //}
       //else
@@ -1455,13 +1467,13 @@ namespace user
       if(m_eview == impact_grid)
       {
 
-         return (::index) minimum(maximum(0,get_impactport_offset().y),m_nGridItemCount);
+         return (::index) minimum(maximum(0,get_context_offset().y),m_nGridItemCount);
 
       }
       else
       {
 
-         auto pointScroll = get_impactport_offset();
+         auto pointScroll = get_context_offset();
 
          index iItem;
 
@@ -1697,7 +1709,7 @@ namespace user
 
       }
 
-      auto pointScroll = get_impactport_offset();
+      auto pointScroll = get_context_offset();
 
       if(m_eview == impact_icon || m_eview == impact_list)
       {
@@ -1759,7 +1771,7 @@ namespace user
 
       }
 
-      auto pointScroll = get_impactport_offset();
+      auto pointScroll = get_context_offset();
 
       if(m_eview == impact_report || m_eview == impact_grid)
       {
@@ -1969,7 +1981,7 @@ namespace user
 
       }
 
-      auto pointScroll = get_impactport_offset();
+      auto pointScroll = get_context_offset();
 
       if(m_eview == impact_grid)
       {
@@ -2368,7 +2380,7 @@ namespace user
       //   i32 x = pdrawitem->m_rectangleGroup.left;
       //   i32 iImageBottom = pdrawitem->m_rectangleGroup.top;
 
-      //   if(m_pilGroup != nullptr)
+      //   if(m_pimagelistGroup != nullptr)
       //   {
 
 
@@ -2377,7 +2389,7 @@ namespace user
       //      _001GetGroupImage(pdrawitem);
       //      if(pdrawitem->m_bOk && pdrawitem->m_iImage >= 0)
       //      {
-      //         m_pilGroup->get_image_info((i32)pdrawitem->m_iImage,&ii);
+      //         m_pimagelistGroup->get_image_info((i32)pdrawitem->m_iImage,&ii);
       //         if(eelement == ::user::mesh::element_group_image)
       //         {
       //            pdrawitem->m_rectangleImage.left      = x;
@@ -2522,7 +2534,7 @@ namespace user
             //      return_(pdrawitem->m_bOk,false);
             //   }
             //}
-            //else if(pdrawitem->m_pcolumnSubItemRect->m_pil != nullptr)
+            //else if(pdrawitem->m_pcolumnSubItemRect->m_pimagelist != nullptr)
             //{
 
             //   ::image_list::info ii;
@@ -2530,7 +2542,7 @@ namespace user
             //   _001GetItemImage(pdrawitem);
             //   if(pdrawitem->m_bOk && pdrawitem->m_iImage >= 0)
             //   {
-            //      pdrawitem->m_pcolumnSubItemRect->m_pil->get_image_info((i32)pdrawitem->m_iImage,&ii);
+            //      pdrawitem->m_pcolumnSubItemRect->m_pimagelist->get_image_info((i32)pdrawitem->m_iImage,&ii);
             //      if(eelement == ::user::mesh::element_image)
             //      {
             //         pdrawitem->m_rectangleImage.left      = x;
@@ -2580,7 +2592,7 @@ namespace user
          i32 x = pdrawmeshgroup->m_rectangleGroup.left;
          i32 iImageBottom = pdrawmeshgroup->m_rectangleGroup.top;
 
-         if (m_pilGroup != nullptr)
+         if (m_pimagelistGroup != nullptr)
          {
 
 
@@ -2589,7 +2601,7 @@ namespace user
             _001GetGroupImage(pdrawmeshgroup);
             if (pdrawmeshgroup->m_bOk && pdrawmeshgroup->m_iImage >= 0)
             {
-               m_pilGroup->get_image_info((i32)pdrawmeshgroup->m_iImage, &ii);
+               m_pimagelistGroup->get_image_info((i32)pdrawmeshgroup->m_iImage, &ii);
                if (egroupelement == ::user::mesh::e_group_element_image)
                {
                   pdrawmeshgroup->m_rectangleImage.left = x;
@@ -2767,7 +2779,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       pmouse->previous(); // give chance to child control
 
@@ -2826,9 +2838,7 @@ namespace user
 
       {
 
-         auto pwindow = window();
-
-         auto pointCursor = pwindow->get_cursor_position();
+         auto pointCursor = get_cursor_position();
 
          auto pmouse = __create_new < ::user::mouse >();
 
@@ -2883,7 +2893,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       if(dynamic_cast < list * >(this) == nullptr)
       {
@@ -3098,11 +3108,9 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
-auto pwindowing = windowing();
-
-      pwindowing->release_mouse_capture();
+      release_mouse_capture();
 
       if (m_bDrag)
       {
@@ -3197,7 +3205,7 @@ auto pwindowing = windowing();
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       if(!has_keyboard_focus())
       {
@@ -3248,7 +3256,7 @@ auto pwindowing = windowing();
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       if (!has_keyboard_focus())
       {
@@ -3493,7 +3501,10 @@ auto pwindowing = windowing();
 
       on_enable_hover_select();
 
-      m_dcextension.initialize(this);
+
+      __defer_construct_new(m_pdcextension);
+
+      m_pdcextension->initialize(this);
 
       //on_create_draw_item();
 
@@ -3594,11 +3605,11 @@ auto pwindowing = windowing();
    //   {
    //      return;
    //   }
-   //   if(pcolumn->m_pil == nullptr)
+   //   if(pcolumn->m_pimagelist == nullptr)
    //   {
-   //      pcolumn->m_pil = new ::image_list(this);
+   //      pcolumn->m_pimagelist = new ::image_list(this);
    //   }
-   //   //      __pointer(::image_list) pil = pcolumn->m_pil;
+   //   //      __pointer(::image_list) pil = pcolumn->m_pimagelist;
    //   //   if(pil != nullptr)
    //   //      pil->DeleteImageMesh();
    //   throw ::interface_only();
@@ -3619,11 +3630,9 @@ auto pwindowing = windowing();
 
       index iSubItemSel;
 
-      auto pwindow = window();
+      auto pointCursor = get_cursor_position();
 
-      auto pointCursor = pwindow->get_cursor_position();
-
-      screen_to_client(pointCursor);
+      screen_to_client()(pointCursor);
 
       try
       {
@@ -4102,7 +4111,7 @@ auto pwindowing = windowing();
 
       ::size_array sizea;
 
-      m_dcextension.get_text_extent(pgraphics,m_strTopText,sizea);
+      m_pdcextension->get_text_extent(pgraphics,m_strTopText,sizea);
 
       ::rectangle_i32 rectangleClient;
 
@@ -4273,12 +4282,12 @@ auto pwindowing = windowing();
       //item.m_iItem = iItem;
       //item.m_iSubItem = iSubItem;
       //item.m_iListItem = -1;
-      //if(pcolumn->m_pil != nullptr)
+      //if(pcolumn->m_pimagelist != nullptr)
       //{
       //   _001GetItemImage(&item);
       //   if(item.m_bOk && item.m_iImage >= 0)
       //   {
-      //      pcolumn->m_pil->get_image_info((i32)item.m_iImage,&ii);
+      //      pcolumn->m_pimagelist->get_image_info((i32)item.m_iImage,&ii);
       //      rectangle = ii.m_rectangle;
       //      cx += rectangle.width();
       //      cx += 2;
@@ -4292,7 +4301,7 @@ auto pwindowing = windowing();
 
          ::size_i32 size{};
          
-         m_dcextension.get_text_extent(pgraphics, psubitem->m_strText, size);
+         m_pdcextension->get_text_extent(pgraphics, psubitem->m_strText, size);
 
          cx += size.cx;
 
@@ -4357,7 +4366,7 @@ auto pwindowing = windowing();
    void mesh::_001EnsureVisible(index iItem,bool bRedraw)
    {
 
-      auto pointScroll = get_impactport_offset();
+      auto pointScroll = get_context_offset();
 
       if(iItem < pointScroll.y || (m_dItemHeight > 0 && iItem >= pointScroll.y / m_dItemHeight + m_nDisplayCount))
       {
@@ -4367,7 +4376,7 @@ auto pwindowing = windowing();
          queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
             {
 
-               set_impactport_offset_y(pgraphics, iy);
+               set_context_offset_y(pgraphics, iy);
 
             });
 
@@ -4386,7 +4395,7 @@ auto pwindowing = windowing();
    void mesh::_001ItemScroll(index iItem,bool bRedraw)
    {
 
-      //auto pointScroll = get_impactport_offset();
+      //auto pointScroll = get_context_offset();
 
       if(iItem < m_nItemCount)
       {
@@ -4396,7 +4405,7 @@ auto pwindowing = windowing();
          queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
             {
 
-               set_impactport_offset_y(pgraphics, iy);
+               set_context_offset_y(pgraphics, iy);
 
             });
 
@@ -4415,7 +4424,7 @@ auto pwindowing = windowing();
    void mesh::_001EnsureVisible(index iItem,range & range)
    {
 
-      auto pointScroll = get_impactport_offset();
+      auto pointScroll = get_context_offset();
 
       auto iyScroll = pointScroll.y / maximum(1,m_dItemHeight);
       if(iItem < iyScroll)
@@ -4435,9 +4444,9 @@ auto pwindowing = windowing();
          queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
             {
 
-               set_impactport_offset_y(pgraphics, iy);
+               set_context_offset_y(pgraphics, iy);
 
-               on_change_impactport_offset(pgraphics);
+               on_change_context_offset(pgraphics);
 
             });
 
@@ -4631,7 +4640,7 @@ auto pwindowing = windowing();
       queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
          {
 
-            set_impactport_offset(pgraphics, 0, 0);
+            set_context_offset(pgraphics, 0, 0);
 
          });
 
@@ -4832,7 +4841,7 @@ auto pwindowing = windowing();
       queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
          {
 
-            set_impactport_offset(pgraphics, 0, 0);
+            set_context_offset(pgraphics, 0, 0);
 
          });
 
@@ -5159,10 +5168,10 @@ auto pwindowing = windowing();
    //}
 
 
-   void mesh::on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics)
+   void mesh::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-//      ::user::interaction::on_change_impactport_offset();
+//      ::user::interaction::on_change_context_offset();
 
       m_iTopDisplayIndex = _001CalcDisplayTopIndex();
       index iLow = 0;
@@ -5176,9 +5185,7 @@ auto pwindowing = windowing();
 
       cache_hint();
 
-      auto pwindow = window();
-
-      auto pointCursor = pwindow->get_cursor_position();
+      auto pointCursor = get_cursor_position();
 
       auto pmouse = __create_new < ::user::mouse >();
 
@@ -5231,7 +5238,7 @@ auto pwindowing = windowing();
 
       ::item_pointer pitemHitTest = __new(::item);
       
-      auto pointClient = _001ScreenToClient(pmouse->m_point);
+      auto pointClient = screen_to_client().get(pmouse->m_point);
 
       bool & bAnyHoverChange = pitemHitTest->m_bAnyHoverChange;
 
@@ -5430,7 +5437,7 @@ auto pwindowing = windowing();
          if(pscroll->m_ecommand != e_scroll_command_thumb_track)
          {
 
-            auto pointScroll = get_impactport_offset();
+            auto pointScroll = get_context_offset();
 
             auto sizePage = get_page_size();
 
@@ -5470,7 +5477,7 @@ auto pwindowing = windowing();
          if(pscroll->m_ecommand != e_scroll_command_thumb_track)
          {
 
-            auto pointScroll = get_impactport_offset();
+            auto pointScroll = get_context_offset();
 
             auto sizePage = get_page_size();
 
@@ -5915,7 +5922,7 @@ auto pwindowing = windowing();
    bool draw_mesh_subitem::draw_image()
    {
      
-      m_pitem->m_pmesh->m_pilGroup->draw(m_pitem->m_pdrawlistitem->m_pgraphics,(i32)m_iImage,m_rectangleImage.top_left(),m_rectangleImage.size(),point_i32(0,0),0);
+      m_pitem->m_pmesh->m_pimagelistGroup->draw(m_pitem->m_pdrawlistitem->m_pgraphics,(i32)m_iImage,m_rectangleImage.top_left(),m_rectangleImage.size(),point_i32(0,0),0);
 
       return true;
 
@@ -6170,10 +6177,10 @@ auto pwindowing = windowing();
    }
 
 
-   ::point_i32 mesh::get_impactport_offset()
+   ::point_i32 mesh::get_context_offset()
    {
 
-      return ::user::interaction::get_impactport_offset();
+      return ::user::interaction::get_context_offset();
 
    }
 
@@ -6239,7 +6246,7 @@ auto pwindowing = windowing();
 
          get_client_rect(rectangleClient);
 
-         //auto pointScroll = get_impactport_offset();
+         //auto pointScroll = get_context_offset();
 
          ::size_i32 sizePage;
 

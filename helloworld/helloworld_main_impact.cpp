@@ -14,8 +14,8 @@ namespace helloworld
 
       m_ptopview = nullptr;
       m_pimpact    = nullptr;
-      m_flagNonClient.add(non_client_background);
-      m_flagNonClient.add(non_client_focus_rect);
+      m_flagNonClient.add(e_non_client_background);
+      m_flagNonClient.add(e_non_client_focus_rect);
 
 
    }

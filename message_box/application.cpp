@@ -1,8 +1,10 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
-#include "aura/update.h"
+
+#include "application.h"
+#include "main_window.h"
+
+
+IMPLEMENT_APPLICATION(app_message_box);
 
 
 namespace app_message_box
@@ -21,6 +23,8 @@ namespace app_message_box
       m_bLicense = false;
 
       m_bImaging = false;
+
+      m_bNetworking = false;
 
    }
 

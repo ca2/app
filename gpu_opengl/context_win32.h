@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "gpu_opengl/context.h"
+
+
 namespace opengl
 {
 

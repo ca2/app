@@ -1,7 +1,8 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
+#include "base/platform/session.h"
+#include "style.h"
+#include "user.h"
+
 
 
 namespace base
@@ -21,6 +22,38 @@ namespace base
    style::~style()
    {
 
+   }
+
+
+   ::base::application * style::get_app() const
+   {
+      
+      return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; 
+   
+   }
+
+
+   ::base::session * style::get_session() const 
+   {
+      
+      return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
+   
+   }
+
+
+   ::base::system * style::get_system() const 
+   {
+      
+      return m_psystem ? m_psystem->m_pbasesystem : nullptr; 
+   
+   }
+
+
+   ::base::user * style::user() const 
+   {
+      
+      return get_session() ? get_session()->user() : nullptr; 
+   
    }
 
 

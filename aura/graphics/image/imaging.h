@@ -12,7 +12,6 @@
 class image_list;
 
 
-#include "array.h"
 
 
 class CLASS_DECL_AURA imaging :
@@ -23,7 +22,7 @@ public:
 
    ::mutex                             m_mutexWork;
 
-   image_array                         m_imageaWork;
+   __pointer(image_array)              m_pimageaWork;
 
 
    imaging();

@@ -1,8 +1,12 @@
 #include "framework.h"
-#include "axis/user/_user.h"
 #include "acme/id.h"
-//#include "apex/platform/app_core.h"
 #include "acme/platform/system_setup.h"
+#include "session.h"
+#include "axis/account/department.h"
+#include "axis/account/credentials.h"
+#include "axis/account/user.h"
+#include "aura/user/user/user.h"
+#include "aura/platform/system.h"
 
 
 CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::object* pobject);
@@ -1280,6 +1284,15 @@ namespace axis
 
    }
 //   __namespace_session_factory(session);
+
+
+    ::axis::user * session::user()
+      {
+            
+         return ::is_set(m_puser) ? m_puser->m_paxisuser : nullptr; 
+         
+      }
+      
 
 } // namespace axis
 

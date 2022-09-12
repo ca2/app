@@ -1,5 +1,9 @@
 #include "framework.h"
-#include "base/user/experience/_experience.h"
+#include "size_manager.h"
+#include "frame_window.h"
+#include "frame.h"
+#include "aura/windowing/windowing.h"
+#include "aura/message/user.h"
 
 
 namespace experience
@@ -661,7 +665,7 @@ namespace experience
          if (m_pframewindow->get_parent() != nullptr)
          {
 
-            m_pframewindow->get_parent()->screen_to_client(rectangleParentClient);
+            rectangleParentClient+=m_pframewindow->get_parent()->screen_to_client();
 
          }
 

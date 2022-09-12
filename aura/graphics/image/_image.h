@@ -10,10 +10,6 @@ class image_map;
 class image_array;
 
 
-
-
-
-
 CLASS_DECL_AURA void cra_from_quada(colorref_array & colorrefa, WINRGBQUAD * prgbquad, int iCount);
 
 
@@ -22,7 +18,7 @@ CLASS_DECL_AURA void vertical_swap_copy_colorref(::color32_t * pcolorrefDst, int
 CLASS_DECL_AURA void vertical_swap_copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
 CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
 CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, int x, int y, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
-inline void copy_colorref(::color32_t * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
+CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
 CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::point_i32 & point, const ::size_i32 & size, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
 CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::rectangle_i32 & rectangle, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
 CLASS_DECL_AURA void copy_colorref_swap_red_blue(::color32_t * pcolorrefDst, int cx, int cy, int iStrideDst, const ::color32_t * pcolorrefSrc, int iStrideSrc = -1);
@@ -446,7 +442,6 @@ inline CLASS_DECL_AURA void copy_colorref(::color32_t * pcolorrefDst, const ::re
 
 #include "image.h"
 #include "frame.h"
-#include "array.h"
 #include "frame_array.h"
 #include "extension.h"
 #include "map.h"

@@ -3,7 +3,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
-
+#include "context_menu.h"
 
 
 namespace filemanager
@@ -14,6 +14,7 @@ namespace filemanager
    {
 
    }
+
 
    context_menu::~context_menu()
    {

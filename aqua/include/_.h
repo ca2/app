@@ -12,11 +12,8 @@
 //
 //  c(s)t(s)<tb(s)!!
 //
-
-
-
-
 #pragma once
+
 
 #undef LAYER_NAMESPACE
 #define LAYER_NAMESPACE aqua
@@ -66,16 +63,20 @@ namespace multimedia
 #undef APPLICATION_CLASS
 #define APPLICATION_CLASS ::aqua::application
 
+
 #include "aqua/multimedia/_c.h"
-
-
-#include "aqua/user/controller.h"
 
 
 #include "aqua/multimedia/_.h"
 
 
 #include "aqua/game/_.h"
+
+
+#include "aqua/user/controller.h"
+
+
+#include "aqua/multimedia/_.h"
 
 
 #include "aqua/platform/application.h"

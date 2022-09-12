@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "core/filesystem/userfs/document.h"
+#include "file_list_callback.h"
+
+
 namespace filemanager
 {
 
@@ -19,7 +23,7 @@ namespace filemanager
       ::file::path                        m_strTopic;
       bool                                m_bFullBrowse;
       string                              m_strManagerId;
-      ::userfs::e_mode                    m_emode;
+      ::userfs::enum_mode                 m_emode;
       bool                                m_bInitialized;
 
 

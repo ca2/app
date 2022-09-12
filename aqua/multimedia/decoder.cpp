@@ -1,5 +1,6 @@
 #include "framework.h"
-#include "aura/update.h"
+#include "decoder.h"
+#include "multimedia.h"
 
 
 namespace multimedia

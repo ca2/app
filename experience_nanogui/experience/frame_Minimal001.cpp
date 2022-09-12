@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/_component.h"
+//#include "aura/graphics/draw2d/_component.h"
 
 
 #define GRIP_CORNER_LARGE_CX 16
@@ -54,7 +54,7 @@ namespace experience_nanogui
    {
       ::experience::enum_frame etest = ::experience::e_frame_client;
       {
-         //      m_pframewindow->screen_to_client(point);
+         //      m_pframewindow->screen_to_client()(point);
          ::rectangle_i32 rectangleEvent;
          m_pframewindow->get_window_rect(rectangleEvent);
          ::rectangle_i32 rectangle;
@@ -1252,7 +1252,7 @@ SizingNone:;
 //   {
 //      ::experience::enum_frame etest = ::experience::e_frame_client;
 //      {
-//               m_pframewindow->screen_to_client(point);
+//               m_pframewindow->screen_to_client()(point);
 //         ::rectangle_i32 rectangleEvent;
 //         m_pframewindow->get_window_rect(rectangleEvent);
 //         ::rectangle_i32 rectangle;

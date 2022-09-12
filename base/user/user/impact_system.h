@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "server.h"
+
+
 namespace user
 {
 

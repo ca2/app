@@ -1,8 +1,12 @@
 #pragma once
 
 
+#include "place_holder.h"
+
+
 namespace user
 {
+
 
    class CLASS_DECL_BASE place_holder_container :
       virtual public interaction
@@ -49,4 +53,8 @@ namespace user
 
    };
 
+
 } // namespace user
+
+
+

@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "core/user/rich_text/_rich_text.h"
+#include "line.h"
+#include "box.h"
+//#include "core/user/rich_text/_rich_text.h"
 
 
 namespace user
@@ -312,6 +314,7 @@ namespace user
          return str;
 
       }
+
 
       string text(const __pointer_array(span) & spana)
       {

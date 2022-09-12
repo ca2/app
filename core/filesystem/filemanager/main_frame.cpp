@@ -2,6 +2,8 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
+#include "main_frame.h"
+#include "document.h"
 
 
 namespace filemanager

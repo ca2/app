@@ -5,7 +5,7 @@ project(database_sqlite3 CXX)
 list(APPEND database_sqlite3_source
    _.cpp
    _.h
-   _library.h
+   ##_library.h
    _factory.cpp
    database.cpp
    database.h

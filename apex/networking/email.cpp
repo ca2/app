@@ -2,7 +2,7 @@
 #include "acme/primitive/string/base64.h"
 
 
-namespace net
+namespace networking
 {
 
 

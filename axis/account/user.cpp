@@ -1,5 +1,10 @@
 #include "framework.h"
 #include "acme/constant/timer.h"
+#include "user.h"
+#include "axis/platform/session.h"
+#include "department.h"
+#include "credentials.h"
+#include "authenticator.h"
 
 
 string chunk_split(const string & body,i32 chunklen,const string & end)

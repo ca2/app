@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_ios.h"
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #include "aura/user/user.h"
 #include "aura/os/ios/oswindow_data.h"
 
@@ -2787,7 +2787,7 @@ namespace ios
 ////      if(m_puserinteraction == get_app()->m_psystem->m_possystemwindow->m_puserinteraction)
 ////      {
 ////
-////         if(!GetMainScreenRect(rect32))
+////         if(!get_main_screen_rectangle(rect32))
 ////         {
 ////
 ////            return false;
@@ -2826,7 +2826,7 @@ namespace ios
 //      if(m_puserinteraction == get_app()->m_psystem->m_possystemwindow->m_puserinteraction)
 //      {
 //
-//         if(!GetMainScreenRect(rect32))
+//         if(!get_main_screen_rectangle(rect32))
 //         {
 //
 //            return false;
@@ -4983,13 +4983,13 @@ namespace ios
 //   }
 
 
-   void interaction_impl::offset_impactport_org(RECTANGLE_I32 * lprectScreen)
+   void interaction_impl::offset_context_org(RECTANGLE_I32 * lprectScreen)
    {
 
    }
 
 
-   void interaction_impl::set_impactport_org(::draw2d::graphics_pointer & pgraphics)
+   void interaction_impl::set_context_org(::draw2d::graphics_pointer & pgraphics)
    {
 
       // graphics will be already set its impact port to the user::interaction for linux - cairo with xlib

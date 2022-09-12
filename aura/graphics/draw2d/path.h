@@ -19,31 +19,6 @@ namespace draw2d
    public:
 
 
-      class optimization :
-         virtual public ::element
-      {
-      public:
-
-         
-         virtual bool draw(::draw2d::graphics * pgraphics, ::draw2d::pen * ppen)
-         {
-
-            return false;
-
-         }
-
-
-         virtual bool fill(::draw2d::graphics * pgraphics, ::draw2d::brush * pbrush)
-         {
-
-            return false;
-
-         }
-
-
-      };
-
-
       bool                                m_bPersistent;
       __pointer(shape_array < path >)     m_pshapea;
       bool                                m_bHasPoint;
@@ -51,7 +26,7 @@ namespace draw2d
       point_f64                           m_pointEnd;
       ::draw2d::enum_fill_mode            m_efillmode;
       point_f64                           m_pointOffset;
-      __pointer(optimization)             m_poptimization;
+      __pointer(path_optimization)        m_ppathoptimization;
       bool                                m_bUseGeometryRealization;
 
 
@@ -192,11 +167,17 @@ namespace draw2d
    };
 
 
-   using path_pointer = __pointer(path);
-
-   
-   __pointer(::draw2d::path::optimization) create_path_simple_optimization(::draw2d::path * ppath);
+   __pointer(::draw2d::path_optimization) create_path_simple_optimization(::draw2d::path * ppath);
 
 
 } // namespace draw2d
 
+//
+//template < >
+//CLASS_DECL_AURA __pointer(___shape< ::draw2d::path>) __create_shape(const ::write_text::text_out & textout, holdee < ::draw2d::path>);
+//
+//template < >
+//CLASS_DECL_AURA __pointer(___shape< ::draw2d::path>) __create_shape(const ::write_text::draw_text & drawtext, holdee < ::draw2d::path>);
+//
+//
+//

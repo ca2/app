@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "_.h"
+#include "presence.h"
+#include "axis/account/department.h"
+#include "axis/platform/session.h"
 
 
 namespace userpresence

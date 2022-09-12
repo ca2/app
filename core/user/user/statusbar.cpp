@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "core/user/user/_user.h"
+#include "statusbar.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/message/user.h"
 
 
 #define SBPF_UPDATE 0x0001  // pending update of text

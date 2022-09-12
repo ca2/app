@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "base/user/experience/_experience.h"
+#include "menu_manager.h"
+#include "frame_window.h"
+#include "aura/message/user.h"
 
 
 namespace experience

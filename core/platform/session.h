@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "bred/platform/session.h"
+
+
 namespace core
 {
 
@@ -12,11 +15,10 @@ namespace core
 
 
       session();
-      virtual ~session();
+      ~session() override;
 
 
       inline ::core::system* get_system() const;
-      //inline ::core::user* user() const;
 
 
       void common_construct();

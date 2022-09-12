@@ -28,12 +28,12 @@ namespace userex
       };
 
 
-      size_f64                         m_size;
-      ::image_pointer                         m_pimage;
-      string_array                       m_straClass;
-      ::user::button                m_buttonMenu;
-      __pointer_array(group)                    m_groupa;
-      __pointer(::user::menu)              m_pmenu;
+      size_f64                        m_size;
+      ::image_pointer                 m_pimage;
+      string_array                    m_straClass;
+      __pointer(::user::button)       m_pbuttonMenu;
+      __pointer_array(group)          m_groupa;
+      __pointer(::user::menu)         m_pmenu;
       ::atom                          m_atomGroup;
 
 

@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "core/user/user/list.h"
+#include "base/user/user/show.h"
+
+
 namespace filemanager
 {
 
@@ -10,9 +14,6 @@ namespace filemanager
    {
    public:
 
-
-
-      
 
       typedef ::user::show < ::user::list > BASE;
 

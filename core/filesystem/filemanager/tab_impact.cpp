@@ -2,7 +2,16 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
-#include "aura/update.h"
+#include "tab_impact.h"
+#include "core/user/user/user.h"
+#include "form.h"
+#include "operation_document.h"
+#include "data.h"
+#include "document.h"
+#include "base/user/user/multiple_document_template.h"
+#include "aura/user/user/frame.h"
+#include "base/user/user/frame_window.h"
+#include "aura/platform/session.h"
 
 
 namespace filemanager
@@ -80,7 +89,7 @@ namespace filemanager
 
          }
 
-         form * pformview = pdocument->get_type_impact < form >();
+         form * pformview = pdocument->get_typed_impact < form >();
 
          auto ptopic = create_topic(BROWSE_ID);
 

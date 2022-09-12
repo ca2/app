@@ -36,7 +36,7 @@ public:
 	///  \lparam		socket socket handle
 	void SetSocketHandle(u32 socket);
 	//void SetSocketHandle(const SocketBase& socket) { socket_ = socket.get_handle_(); }   // MBO: alternative solution
-	//void ChangeSocketHandle(SOCKET socket);
+	//void ChangeSocketHandle(socket_id socket);
 
 
 	void init_wait();

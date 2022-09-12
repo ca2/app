@@ -1,11 +1,13 @@
 #pragma once
 
 
+#include "scroll_base.h"
+#include "text_composition_composite.h"
+
+
 class element_2d;
 
 
-#define TEXT_COMPOSITION_MESSAGE_UPDATE_CANDIDATE_WINDOW_POSITION 256
-#define TEXT_COMPOSITION_MESSAGE_UPDATE_CARET 512
 
 
 namespace colorertake5
@@ -287,11 +289,11 @@ namespace user
       void queue_selection_synchronization() override;
 
 
-      bool validate_impactport_offset(::point_i32 & point) override;
+      bool validate_context_offset(::point_i32 & point) override;
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void on_impactport_offset(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_context_offset(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void _001DeleteSel();
       virtual bool plain_edit_delete_sel(::draw2d::graphics_pointer& pgraphics, bool & bFullUpdate, index & iLineUpdate);
@@ -494,7 +496,7 @@ namespace user
 
       //virtual bool display(edisplay edisplay) override;
 
-      virtual void on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual ::size_f64 get_total_size() override;
 

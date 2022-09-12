@@ -1,8 +1,14 @@
 #pragma once
 
 
+#include "list.h"
+#include "base/user/user/margin.h"
+#include "base/user/user/show.h"
+
+
 namespace user
 {
+
 
    class CLASS_DECL_CORE list_impact:
       virtual public ::user::show < ::user::margin < ::user::list > >

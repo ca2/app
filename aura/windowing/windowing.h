@@ -4,18 +4,7 @@
 #pragma once
 
 
-inline ::user::interaction_impl * __interaction_impl(::windowing::window * pwindow)
-{
-
-   if (::is_null(pwindow)) return nullptr;
-
-   auto pimpl = pwindow->m_puserinteractionimpl.m_p;
-
-   if (::is_null(pimpl)) return nullptr;
-
-   return pimpl;
-
-}
+CLASS_DECL_AURA ::user::interaction_impl * __interaction_impl(::windowing::window * pwindow);
 
 
 namespace windowing
@@ -68,9 +57,9 @@ namespace windowing
       
 
 
-      inline ::aura::application* get_app() const;
-      inline ::aura::session* get_session() const;
-      inline ::aura::system* get_system() const;
+      ::aura::application* get_app() const;
+      ::aura::session* get_session() const;
+      ::aura::system* get_system() const;
 
 
       virtual void _initialize_windowing();
@@ -83,17 +72,11 @@ namespace windowing
 
       virtual void finalize_windowing();
 
-      //virtual void destroy() override;
-
       void destroy() override;
-
-
-      //virtual void start();
 
       virtual void windowing_main();
 
       virtual void windowing_post_quit();
-
 
       virtual text_editor_interface * get_text_editor_interface();
       
@@ -241,7 +224,12 @@ namespace windowing
 
 
 #endif
+       
+       
+      virtual void os_menu_item_enable(void * pitem, bool bEnable);
+      virtual void os_menu_item_check(void * pitem, bool bCheck);
 
+      virtual void defer_create_main_menu(const string_array & straParent, const string_array & straMenu, const string_array & straId);
 
       virtual ::e_status is_keyboard_hook_enabled(::user::interaction * puserinteractionEnablePrompt);
 

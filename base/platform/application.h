@@ -1,6 +1,12 @@
 #pragma once
 
 
+#include "axis/platform/application.h"
+#include "aura/user/user/form_callback.h"
+#include "base/user/user/impact_creator.h"
+#include "base/user/user/document_manager_container.h"
+
+
 namespace base
 {
 
@@ -40,8 +46,8 @@ namespace base
       void dump(dump_context & dumpcontext) const override;
 
 
-      inline ::base::system* get_system() const;
-      inline ::base::session* get_session() const;
+      ::base::system* get_system() const;
+      ::base::session* get_session() const;
 
 
       virtual __pointer(::user::document) defer_create_impact(string strImpact, ::user::interaction* puiParent = nullptr, ewindowflag ewindowflag = ::ewindowflag(), const ::atom& atom = ::atom());
@@ -136,8 +142,8 @@ namespace base
 //
 //
 //
-//      virtual bool update_appmatter(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative);
-//      virtual bool update_appmatter(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const ::string & strLocale, const ::string & strStyle);
+//      virtual bool update_appmatter(::sockets::socket_handler * handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative);
+//      virtual bool update_appmatter(::sockets::socket_handler * handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const ::string & strLocale, const ::string & strStyle);
 //
 //
 //      //virtual void SetCurrentHandles() override;
@@ -1213,7 +1219,7 @@ virtual void on_change_cur_sel(::user::tab* ptab);
 ////virtual bool _001OnAgreeExit() override;
 ////virtual void france_exit() override;
 //
-//virtual void prepare_form(atom atom, ::form_document* pdocument);
+//virtual void prepare_form(atom atom, ::form_document* pformdocument);
 //
 //
 //virtual void report_error(::exception* pexception, int iMessageFlags, const ::string & pszTopic);

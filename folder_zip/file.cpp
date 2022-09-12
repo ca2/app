@@ -1,13 +1,6 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
-//#include "_internal.h"
-
-
-//void * zip_filefuncdef_malloc();
-//void zip_filefuncdef_set_file(void * p, ::file::file * pfile);
-//
+#include "file.h"
+#include "folder.h"
 
 
 namespace folder_zip

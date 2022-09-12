@@ -1,9 +1,11 @@
 #include "framework.h"
-#include "core/user/user/_user.h"
 #include "acme/constant/timer.h"
 #include "tool_tip_window.h"
 #include "tool_tip_tool.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/display.h"
+#include "aura/message/user.h"
 
 
 namespace user
@@ -38,15 +40,15 @@ namespace user
          if(ptool->BaseToolTipGetWnd()->top_level() == pusermessage->userinteraction())
          {
             
-            auto pwindow = window();
+//            auto pwindow = window();
+//
+//            auto pointCursor = pwindow->get_cursor_position();
 
-            auto pointCursor = pwindow->get_cursor_position();
-
-            if(m_iEventTool != ptool->BaseToolTipGetIndex()
-                  || pointCursor != m_point)
+//            if(m_iEventTool != ptool->BaseToolTipGetIndex()
+  //                || pointCursor != m_point)
             {
                
-               m_point = pointCursor;
+//               m_point = pointCursor;
                
                m_iEventTool = ptool->BaseToolTipGetIndex();
                
@@ -79,21 +81,21 @@ namespace user
          return;
       }
 
-      if(!bForce)
-      {
-
-         auto pwindow = window();
-
-         auto pointCursor = pwindow->get_cursor_position();
-
-         if (pointCursor != m_point)
-         {
-
-            return;
-
-         }
-
-      }
+//      if(!bForce)
+//      {
+//
+//         auto pwindow = window();
+//
+//         auto pointCursor = pwindow->get_cursor_position();
+//
+//         if (pointCursor != m_point)
+//         {
+//
+//            return;
+//
+//         }
+//
+//      }
 
       if(!GetToolText(iTool, m_strTip))
          return;
@@ -121,8 +123,11 @@ namespace user
 
       while(true)
       {
+         
          m_sizeArrow.cx = 12;
+         
          m_sizeArrow.cy = 12;
+
          if(((m_ealign & AlignLeft) == AlignLeft) &&
                ((m_ealign & AlignTop) == AlignTop))
          {
@@ -142,7 +147,7 @@ namespace user
          }
          ::rectangle_i32 rectangleToolScreen;
          ptool->BaseToolTipGetRect(rectangleToolScreen);
-         ptool->BaseToolTipGetWnd()->client_to_screen(rectangleToolScreen);
+         ptool->BaseToolTipGetWnd()->client_to_screen()(rectangleToolScreen);
          CalcRect(pgraphics, rectangle, rectangleToolScreen, m_strTip);
 
          ::rectangle_i32 rectangleScreen;
@@ -154,6 +159,7 @@ namespace user
          pdisplay->get_main_monitor(rectangle);
 
          ::size_i32 sizeScreen;
+
          sizeScreen = rectangleScreen.size();
 
          if(rectangle.right > sizeScreen.cx && !bHRetry)

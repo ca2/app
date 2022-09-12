@@ -2,6 +2,16 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
+#include "impact_base.h"
+#include "document.h"
+#include "tab_impact.h"
+#include "data.h"
+#include "operation_document.h"
+#include "operation_thread.h"
+#include "aura/user/user/copydesk.h"
+#include "aura/message/user.h"
+#include "core/platform/application.h"
+#include "aura/user/user/frame.h"
 
 
 filemanager_impact_base::filemanager_impact_base()
@@ -125,9 +135,7 @@ void filemanager_impact_base::_001OnUpdateEditPaste(::message::message * pmessag
 
    __pointer(::message::command) pcommand(pmessage);
 
-   auto pwindow = window();
-   
-   auto pcopydesk = pwindow->copydesk();
+   auto pcopydesk = copydesk();
    
    bool bHasFile = pcopydesk->has_filea();
          
@@ -147,9 +155,7 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
 
    ::user::copydesk::enum_op eop;
 
-   auto pwindow = window();
-   
-   auto pcopydesk = pwindow->copydesk();
+   auto pcopydesk = copydesk();
    
    bool bOk = pcopydesk->get_filea(listing, eop);
 
@@ -175,7 +181,7 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
 
    }
 
-   auto ptabimpact = GetTypedParent <::filemanager::tab_impact >();
+   auto ptabimpact = get_typed_parent <::filemanager::tab_impact >();
 
    if(ptabimpact != nullptr)
    {
@@ -184,9 +190,9 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
 
       auto atomFileManager = filemanager_data()->m_atom;
 
-      ptabimpact->filemanager_document(atomFileManager)->get_operation_doc(true)->m_thread.queue_copy(listing, strDir, nullptr, true, false, bDeleteOriginOnSuccessfulCopy, this, WM_APP + 1024, 4096);
+      ptabimpact->filemanager_document(atomFileManager)->get_operation_doc(true)->m_poperationthread->queue_copy(listing, strDir, nullptr, true, false, bDeleteOriginOnSuccessfulCopy, this, WM_APP + 1024, 4096);
 
-      ptabimpact->filemanager_document(atomFileManager)->get_operation_doc(true)->m_thread.kick();
+      ptabimpact->filemanager_document(atomFileManager)->get_operation_doc(true)->m_poperationthread->kick();
 
    }
 

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/networking/sockets/basic/tcp_socket.h"
+
+
 namespace sockets
 {
 
@@ -23,12 +26,13 @@ namespace sockets
 
       bool                 m_b_http_1_1;
       bool                 m_b_keepalive;
-
+      bool                 m_bChunked;
       bool                 m_bFirst;
       bool                 m_bHeader;
       string               m_strLine;
       bool                 m_bRequest;
       bool                 m_bResponse;
+      //bool                 m_bExpectRequest;
       memsize               m_body_size_left;
       memsize               m_body_size_downloaded;
       double_scalar_source m_scalarsourceDownloadedRate;
@@ -41,7 +45,7 @@ namespace sockets
 
       bool                 m_bOnlyHeaders;
       bool                 m_bNoClose;
-      http::listener *     m_plistener;
+      __pointer(http::listener)     m_plistener;
 
 
 
@@ -49,16 +53,16 @@ namespace sockets
 
 
       http_socket();
-      virtual ~http_socket();
+      ~http_socket() override;
 
 
-      virtual void on_initialize_object() override;
+      void initialize(::object * pobject) override;
 
 
       virtual void OnEndChunk();
 
-      virtual void OnRawData(char *buf,memsize len) override;
-      virtual void OnLine(const string & line) override;
+      void OnRawData(char *buf,memsize len) override;
+      void OnLine(const string & line) override;
 
       /** Callback executes when first line has been received.
       GetMethod, GetUrl/GetUri, and GetHttpVersion are valid when this callback is executed. */
@@ -91,10 +95,15 @@ namespace sockets
       virtual string MyUseragent();
 
       /** Parse url. If protocol is https, EnableSSL() will be called. */
-      void url_this(string strUrl, string & strProtocol, string & strHost, port_t & port, string & strRequestUri, string & strFile);
+      void url_this(string strUrl, string & strProtocol, string & strHost, ::networking::port_t & port, string & strRequestUri, string & strFile);
 
       /** Transfer coding 'chunked' */
-      bool IsChunked() { return m_b_chunked; }
+      inline bool IsChunked()
+      {
+
+         return m_bChunked;
+
+      }
 
       property & inattr(const char * lpszName);
       property_set & inattrs();

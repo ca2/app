@@ -1,7 +1,10 @@
 #include "framework.h"
-#include "base/user/experience/_experience.h"
+#include "orto_button.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/pen.h"
 #include "acme/constant/timer.h"
-#include "aura/graphics/draw2d/_component.h"
+////#include "aura/graphics/draw2d/_component.h"
 #include "acme/platform/timer.h"
 
 

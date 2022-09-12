@@ -1,6 +1,11 @@
 #pragma once
 
 
+#include "impact_host.h"
+#include "tab.h"
+#include "tab_callback.h"
+
+
 namespace user
 {
 

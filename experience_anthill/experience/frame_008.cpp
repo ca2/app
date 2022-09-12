@@ -1,8 +1,12 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
-#include "aura/graphics/draw2d/_component.h"
+#include "frame_008.h"
+#include "control_box.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "base/user/experience/frame_window.h"
+#include "base/user/experience/size_manager.h"
+#include "base/user/experience/dock_manager.h"
+#include "base/user/experience/move_manager.h"
 
 
 #define GRIP_CORNER_LARGE_CX 16
@@ -19,8 +23,6 @@
 
 namespace experience_anthill
 {
-
-
 
 
    frame_008::frame_008()
@@ -69,7 +71,7 @@ namespace experience_anthill
    {
        ::experience::enum_frame etest = ::experience::e_frame_client;
       {
-         //      m_pframewindow->GetEventWindow()->screen_to_client(point);
+         //      m_pframewindow->GetEventWindow()->screen_to_client()(point);
          ::rectangle_i32 rectangleEvent;
          m_pframewindow->get_window_rect(rectangleEvent);
          ::rectangle_i32 rectangle;

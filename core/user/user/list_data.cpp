@@ -1,5 +1,10 @@
 #include "framework.h"
-#include "core/user/user/_user.h"
+////#include "core/user/user/_component.h"
+#include "list_data.h"
+#include "mesh.h"
+#include "list.h"
+#include "list_column.h"
+#include "list_column_array.h"
 
 
 namespace user
@@ -21,16 +26,12 @@ namespace user
    count list_data::_001GetColumnCount(mesh * pmesh)
    {
 
-      return pmesh->m_plist->m_columna.get_visible_count();
+      return pmesh->m_plist->m_pcolumna->get_visible_count();
 
    }
 
 
-
 } // namespace user
-
-
-
 
 
 

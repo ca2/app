@@ -1,11 +1,15 @@
-﻿#include "framework.h"
-#include "core/user/user/_user.h"
+#include "framework.h"
 #include "_data.h"
 #include "_tree.h"
 #include "acme/constant/timer.h"
 #include "aura/message.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/message/user.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/list.h"
+#include "aura/user/user/scroll_data.h"
+#include "base/user/user/impact.h"
+#include "base/user/user/document.h"
+#include "aura/user/user/primitive_impl.h"
 
 
 namespace user
@@ -33,7 +37,7 @@ namespace user
 
       m_bHoverStart = false;
 
-      m_flagNonClient += ::user::interaction::non_client_hover_rect;
+      m_flagNonClient += ::user::interaction::e_non_client_hover_rect;
 
       m_econtroltype = ::user::e_control_type_tree;
 
@@ -217,10 +221,9 @@ namespace user
 
          //pgraphics->fill_rectangle(rectangleClient, m_colorTreeBackground);
 
+         auto pointCursor = get_cursor_position();
 
-         auto pwindow = window();
-
-         auto pointCursor = _001ScreenToClient(pwindow->get_cursor_position());
+         screen_to_client()(pointCursor);
 
          auto dwHoverIn = 300_ms;
 
@@ -244,11 +247,11 @@ namespace user
             }
             else
             {
-               auto 😁 = MATH_PI;
+               auto pi = MATH_PI;
                auto f = 1.0 / duration(dwHoverIn).floating_second().m_d;
-               auto 😃 = -😁 * f; // omega pi
+               auto omega = -pi* f; // omega pi
                auto t = m_durationHoverStart.elapsed().floating_second().m_d;
-               ::u32 dwCurve =  (::u32) (255.0 * (1.0 - exp(😃 * t)));
+               ::u32 dwCurve =  (::u32) (255.0 * (1.0 - exp(omega * t)));
                if(m_uchHoverAlphaInit + dwCurve > 255)
                   m_uchHoverAlpha = 255;
                else
@@ -272,11 +275,11 @@ namespace user
             }
             else
             {
-               auto 😁 = MATH_PI;
+               auto pi = MATH_PI;
                auto f = 1.0 / ::duration(dwHoverOut).floating_second().m_d;
-               auto 😃 = -😁 * f; // omega pi
+               auto omega = -pi * f; // omega pi
                auto t = m_durationHoverStart.elapsed().floating_second().m_d;
-               ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(😃 * t)));
+               ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
                if(m_uchHoverAlphaInit < dwCurve)
                   m_uchHoverAlpha = 0;
                else
@@ -640,7 +643,7 @@ namespace user
 
       ::user::enum_tree_element eelement;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       pitem = _001HitTest(point, eelement);
 
@@ -679,7 +682,7 @@ namespace user
 
       ::user::enum_tree_element eelement;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       pitem = _001HitTest(point, eelement);
 
@@ -724,7 +727,7 @@ namespace user
 
       ::user::enum_tree_element eelement;
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       pitem = _001HitTest(point, eelement);
 
@@ -804,7 +807,7 @@ namespace user
 
       auto item_height = _001GetItemHeight();
 
-      auto pointOffset = get_impactport_offset();
+      auto pointOffset = get_context_offset();
 
       if(item_height != 0)
       {
@@ -886,7 +889,7 @@ namespace user
 
       sizeTotal.cy = (::i32)(get_proper_item_count() * _001GetItemHeight());
 
-      m_scrolldataVertical.m_iLine = (::i32) m_dItemHeight;
+      m_pscrolldataVertical->m_iLine = (::i32) m_dItemHeight;
 
       set_total_size(sizeTotal);
 
@@ -980,7 +983,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(bLayout);
 
-      auto pointOffset = get_impactport_offset();
+      auto pointOffset = get_context_offset();
 
       if(bExpand)
       {
@@ -1040,7 +1043,7 @@ namespace user
                   {
 
 
-                     set_impactport_offset_y(pgraphics, (int)maximum(iNewScroll, 0));
+                     set_context_offset_y(pgraphics, (int)maximum(iNewScroll, 0));
 
                   });
                //            _001SetYScroll(maximum(iNewScroll, 0), false);
@@ -1185,12 +1188,12 @@ namespace user
    }
 
 
-   void tree::on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics)
+   void tree::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
       m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
 
-      ::user::scroll_base::on_change_impactport_offset(pgraphics);
+      ::user::scroll_base::on_change_context_offset(pgraphics);
 
 //      auto psession = get_session();
 //
@@ -1263,7 +1266,7 @@ namespace user
 
       on_change_impact_size(pgraphics);
 
-      on_change_impactport_offset(pgraphics);
+      on_change_context_offset(pgraphics);
 
    }
 
@@ -1307,9 +1310,7 @@ namespace user
    void tree::update_tree_hover()
    {
 
-      auto pwindow = window();
-
-      auto pointCursor = pwindow->get_cursor_position();
+      auto pointCursor = get_cursor_position();
 
       update_tree_hover(pointCursor);
 
@@ -1319,7 +1320,7 @@ namespace user
    void tree::update_tree_hover(point_i32 point)
    {
 
-      screen_to_client(point);
+      screen_to_client()(point);
 
       ::user::enum_tree_element eelement;
 
@@ -1454,7 +1455,7 @@ namespace user
 
       }
 
-      auto pointOffset = get_impactport_offset();
+      auto pointOffset = get_context_offset();
 
       int iItemHeight = (int)(_001GetItemHeight());
 
@@ -1531,7 +1532,7 @@ namespace user
 
       defer_graphics(pgraphics);
 
-      auto pointOffset = get_impactport_offset();
+      auto pointOffset = get_context_offset();
 
       nOffset = (::index)(pointOffset.y / _001GetItemHeight());
 
@@ -2202,7 +2203,7 @@ namespace user
 
       index iIndex = get_proper_item_index(pitem, &iLevel);
 
-      auto pointOffset = get_impactport_offset();
+      auto pointOffset = get_context_offset();
 
       if (m_dItemHeight <= 0.)
       {
@@ -2225,7 +2226,7 @@ namespace user
          queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
             {
 
-               set_impactport_offset_y(pgraphics, iy);
+               set_context_offset_y(pgraphics, iy);
 
             });
 
@@ -2259,7 +2260,7 @@ namespace user
    }
 
 
-   void tree::on_impactport_offset(::draw2d::graphics_pointer & pgraphics)
+   void tree::on_context_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
    }

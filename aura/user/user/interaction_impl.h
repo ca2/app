@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "primitive_impl.h"
+#include "window_util.h"
+#include "interaction.h"
+
 
 #ifdef __DEBUG
 
@@ -727,7 +731,7 @@ namespace user
       //virtual void set_handle(::windowing::window * pwindow);
       
       
-      inline ::oswindow oswindow() const;
+      ::oswindow oswindow() const;
 
 
       ::graphics::graphics * get_window_graphics() override;
@@ -866,18 +870,7 @@ namespace user
 } // namespace user
 
 
-inline ::user::interaction * __interaction(::windowing::window * pwindow)
-{
-
-   if (::is_null(pwindow)) return nullptr;
-
-   auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
-
-   if (!puserinteractionimpl) return nullptr;
-
-   return puserinteractionimpl->m_puserinteraction;
-
-}
+CLASS_DECL_AURA ::user::interaction * __interaction(::windowing::window * pwindow);
 
 
 

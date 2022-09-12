@@ -1,7 +1,10 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
+#include "aura/windowing/cursor_manager.h"
+#include "aura/windowing/cursor.h"
+#include "aura/platform/system.h"
 
 
 namespace windowing
@@ -626,6 +629,32 @@ namespace windowing
       return pcursor;
 
    }
+
+
+   ::aura::application* cursor_manager::get_app() const
+   {
+
+      return m_pcontext && m_pcontext->m_papplication ? m_pcontext->m_papplication->m_pauraapplication : nullptr;
+
+   }
+
+
+   ::aura::session* cursor_manager::get_session() const
+   {
+
+      return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr;
+
+   }
+
+
+   ::aura::system* cursor_manager::get_system() const
+   {
+
+      return ::is_set(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr;
+
+   }
+
+
 
 
 } // namespace windowing

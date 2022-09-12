@@ -4,9 +4,28 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
-
-#include "aura/update.h"
-#include "aura/user/menu/menu_command.h"
+#include "aura/user/menu/command.h"
+#include "file_list.h"
+#include "core/filesystem/userfs/list_data.h"
+#include "core/filesystem/userfs/list_item.h"
+#include "core/filesystem/userfs/list_item_array.h"
+#include "core/user/user/user.h"
+#include "data.h"
+#include "document.h"
+#include "context_menu.h"
+#include "core/user/user/list_column.h"
+#include "aura/user/user/shell.h"
+#include "aura/message/user.h"
+#include "core/platform/application.h"
+#include "core/platform/session.h"
+#include "base/user/menu/menu.h"
+#include "aura/user/user/frame.h"
+#include "aura/user/user/copydesk.h"
+#include "base/user/menu/item.h"
+#include "base/user/menu/item_ptra.h"
+#include "aura/user/user/button.h"
+#include "aura/user/user/plain_edit.h"
+#include "aura/user/user/window_util.h"
 
 
 namespace filemanager
@@ -163,7 +182,7 @@ namespace filemanager
 
       auto point = pcontextmenu->m_point;
 
-      ::user::list::screen_to_client(point);
+      ::user::list::screen_to_client()(point);
 
       if (_001HitTest_(point, iItem))
       {
@@ -248,7 +267,7 @@ namespace filemanager
 
    //      i = 0;
 
-   //      while (i < fs_list()->m_itema.get_count() || is_window_visible())
+   //      while (i < fs_list()->m_pitema->get_count() || is_window_visible())
    //      {
 
    //         i64 i64Size;
@@ -264,7 +283,7 @@ namespace filemanager
 
    //         }
 
-   //         if (i >= fs_list()->m_itema.get_count())
+   //         if (i >= fs_list()->m_pitema->get_count())
    //         {
 
    //            i = 0;
@@ -367,7 +386,7 @@ namespace filemanager
    void file_list::_001OnShellCommand(::message::message * pmessage)
    {
       __pointer(::user::message) pcommand(pmessage);
-      m_contextmenu.OnCommand(pcommand->GetId());
+      m_pcontextmenu->OnCommand(pcommand->GetId());
    }
 
    void file_list::_001OnFileManagerItemCommand(::message::message * pmessage)
@@ -570,9 +589,7 @@ namespace filemanager
 
       auto patha = get_selected_final_path();
 
-      auto pwindow = window();
-
-      auto pcopydesk = pwindow->copydesk();
+      auto pcopydesk = copydesk();
 
       pcopydesk->set_filea(patha, ::user::copydesk::e_op_copy);
 
@@ -883,7 +900,7 @@ namespace filemanager
 
    //   string strFileCheck;
 
-   //   for (i32 i = 0; i < pdata->m_itema.get_count(); i++)
+   //   for (i32 i = 0; i < pdata->m_pitema->get_count(); i++)
    //   {
 
    //      if (fs_data()->is_dir(pdata->item(i)->m_filepathFinal)
@@ -1022,7 +1039,7 @@ namespace filemanager
 
          synchronous_lock lock(fs_list()->mutex());
 
-         fs_list()->m_itema.erase_all();
+         fs_list()->m_pitema->erase_all();
 
          for (i32 i = 0; i < stra.get_size(); i++)
          {
@@ -1048,7 +1065,7 @@ namespace filemanager
 
             item.m_strName = strName;
 
-            fs_list()->m_itema.add_fs_item(item);
+            fs_list()->m_pitema->add_fs_item(item);
 
          }
 
@@ -1117,14 +1134,14 @@ namespace filemanager
 
          auto cItem = listingUser.get_size();
 
-         fs_list()->m_itema.set_size(cItem);
+         fs_list()->m_pitema->set_size(cItem);
 
          m_pathaStrictOrder = listingUser;
 
          for (i32 i = 0; i < cItem; i++)
          {
 
-            auto & spitem = fs_list()->m_itema[i];
+            auto & spitem = (*fs_list()->m_pitema)[i];
 
             spitem.create_new(this);
 
@@ -1213,7 +1230,7 @@ namespace filemanager
          }
          else
          {
-            fs_list()->m_itema.arrange(::fs::arrange_by_name);
+            fs_list()->m_pitema->arrange(::fs::arrange_by_name);
          }
 
       }
@@ -1221,7 +1238,7 @@ namespace filemanager
       ///      _001CreateImageList();
 
       //file_size_add_request(true);
-      /*   for(i32 i = 0; i < m_itema.get_item_count(); i++)
+      /*   for(i32 i = 0; i < m_pitema->get_item_count(); i++)
       {
       pset->m_table.add_request(item(i)->m_strPath);
       }*/
@@ -1237,7 +1254,7 @@ namespace filemanager
       queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
          {
 
-            set_impactport_offset(pgraphics, 0, 0);
+            set_context_offset(pgraphics, 0, 0);
 
          });
 
@@ -1308,7 +1325,7 @@ namespace filemanager
             pcolumn->m_atom = atom;
             pcolumn->m_bCustomDraw = true;
             pcolumn->m_bEditOnSecondClick = true;
-            pcolumn->m_pil = pcallback->GetActionButtonImageList(i);
+            pcolumn->m_pimagelist = pcallback->GetActionButtonImageList(i);
 
          }
 
@@ -1334,8 +1351,8 @@ namespace filemanager
          
          auto puser = psession->m_puser->m_pcoreuser;
 
-         pcolumn->m_pil = puser->shell()->GetImageList(filemanager_data()->m_iIconSize);
-         pcolumn->m_pilHover = puser->shell()->GetImageListHover(filemanager_data()->m_iIconSize);
+         pcolumn->m_pimagelist = puser->shell()->GetImageList(filemanager_data()->m_iIconSize);
+         pcolumn->m_pimagelistHover = puser->shell()->GetImageListHover(filemanager_data()->m_iIconSize);
          pcolumn->m_iSubItem = m_iSelectionSubItem;
          i++;
       }
@@ -1397,9 +1414,9 @@ namespace filemanager
          
          auto puser = psession->m_puser->m_pcoreuser;
 
-         pcolumn->m_pil = puser->shell()->GetImageList(iIconSize);
+         pcolumn->m_pimagelist = puser->shell()->GetImageList(iIconSize);
 
-         pcolumn->m_pilHover = puser->shell()->GetImageListHover(iIconSize);
+         pcolumn->m_pimagelistHover = puser->shell()->GetImageListHover(iIconSize);
 
       }
 
@@ -1423,9 +1440,9 @@ namespace filemanager
 
          pcolumn->m_sizeIcon.cy = 0;
 
-         pcolumn->m_pilHover = nullptr;
+         pcolumn->m_pimagelistHover = nullptr;
 
-         pcolumn->m_pil = nullptr;
+         pcolumn->m_pimagelist = nullptr;
 
 
       }
@@ -1611,7 +1628,7 @@ namespace filemanager
 
             }
 
-            if (iItem >= fs_list()->m_itema.get_count())
+            if (iItem >= fs_list()->m_pitema->get_count())
             {
 
                continue;
@@ -1719,7 +1736,7 @@ namespace filemanager
    //            iItem++)
    //      {
 
-   //         if (iItem < fs_list()->m_itema.get_count() && !iaItem.contains(iItem))
+   //         if (iItem < fs_list()->m_pitema->get_count() && !iaItem.contains(iItem))
    //         {
 
    //            iaItem.add(iItem);
@@ -1762,7 +1779,7 @@ namespace filemanager
    ::count file_list::_001GetItemCount()
    {
 
-      return fs_list()->m_itema.get_count();
+      return fs_list()->m_pitema->get_count();
 
    }
 
@@ -1789,7 +1806,7 @@ namespace filemanager
 
       }
 
-      fs_list()->m_itema.add_fs_item(item);
+      fs_list()->m_pitema->add_fs_item(item);
 
       _001OnUpdateItemCount();
 
@@ -1837,7 +1854,7 @@ namespace filemanager
 
    //   single_lock synchronouslock(pset->m_table.mutex(), true);
 
-   //   for (i32 i = 0; i < fs_list()->m_itema.get_count(); i++)
+   //   for (i32 i = 0; i < fs_list()->m_pitema->get_count(); i++)
    //   {
 
    //      //pset->get_cache_fs_size(iSize, item(i)->m_strPath, bPending);

@@ -3,6 +3,7 @@
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
+#include "apex/networking/networking.h"
 //#include "apex/platform/app_core.h"
 #include "acme/id.h"
 //#include "apex/operating_system/_node.h"
@@ -31,7 +32,7 @@ CLASS_DECL_ACME void exception_message_box(::object * pobject, ::exception & exc
 
 //CLASS_DECL_APEX void apex_generate_random_bytes(void* p, memsize s);
 
-//int GetMainScreenRect(RECTANGLE_I32 * lprect);
+//int get_main_screen_rectangle(RECTANGLE_I32 * lprect);
 
 
 ///const ::string & g_pszMultimediaLibraryName = nullptr;
@@ -1188,7 +1189,13 @@ pacmedirectory->create("/ca2core");
       //on_update_matter_locator();
 
       //estatus = 
-      initialize_sockets();
+
+      if (m_bNetworking || m_bNetworking.is_optional())
+      {
+
+         initialize_networking();
+
+      }
 
       //if (!estatus)
       //{
@@ -5363,51 +5370,69 @@ namespace apex
 
    }
 
+//
+//   void system::windowing_post_quit()
+//   {
+//      
+//      
+//   }
+
+   void system::initialize_networking()
+   {
+
+      try
+      {
+
+         ::e_status estatus = ::success_none;
+
+         auto& pfactoryNetworking = factory("networking", "bsd");
+
+         //if (!pfactoryCrypto)
+         //{
+
+         //   WARNING("Could not open crypto openssl plugin.");
+
+         //   //return pfactoryCrypto;
+
+         //}
+
+         pfactoryNetworking->merge_to_global_factory();
+
+         //estatus =
+         pfactoryNetworking->__compose(this, m_pnetworking);
+
+
+         if (!m_pnetworking)
+         {
+
+            //estatus = __compose_new(m_psockets);
+
+            //__compose(m_pnetworking);
+
+            //if (!estatus)
+            //{
+
+            //   return estatus;
+
+            //}
+
+         }
+
+         //return estatus;
+
+      }
+      catch (...)
+      {
+
+         m_bNetworking = false;
+
+      }
+
+   }
+
+
 
 } // namespace apex
 
 
-//void apex_system_update(const ::atom & atom, const ::payload & payload)
-//{
-//
-//   psystem->process_subject(atom, payload);
-//
-//}
 
-//
-//
-//void apex_system_set_modified(const ::atom& atom)
-//{
-//
-//
-//
-//   psystem->set_modified(atom);
-//
-//}
-//
-//namespace apex
-//{
-//
-//
-//   void system::on_subject(::topic* ptopic)
-//   {
-//
-//
-//      ::manager::on_subject(ptopic);
-//
-//   }
-//
-//
-//
-//} // namespace apex
-//
-
-
-//void system_id_update(void* pSystem, ::i64 iUpdate, ::i64 iPayload)
-//{
-//
-//   auto psystem = (class ::system *) pSystem;
-//
-//   psystem->system_id_update(iUpdate, iPayload);
-//
-//}

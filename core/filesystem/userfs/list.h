@@ -1,10 +1,15 @@
 #pragma once
 
 
+#include "core/user/user/form_list_impact.h"
+
+
 namespace userfs
 {
 
+   
    class main_impact;
+
 
    class CLASS_DECL_CORE list :
       virtual public ::user::form_list_impact
@@ -113,7 +118,7 @@ namespace userfs
       __pointer(::user::mesh_data) create_mesh_data() override;
 
       //virtual ::fs::data * fs_data();
-      inline ::file::item * fs_list_item(index iIndex) { return fs_list()->m_itema[iIndex]; }
+      ::file::item * fs_list_item(index iIndex);
 
 
    };

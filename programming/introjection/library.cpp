@@ -1,9 +1,6 @@
 // From compiler.cpp by camilo on 2021-11-15 15:44 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
-#ifdef WINDOWS_DESKTOP
-#include "acme_windows/_.h"
-#include "acme_windows/_library.h"
-#endif
+#include "library.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 
 

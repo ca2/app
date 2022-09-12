@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "aura/update.h"
-
+//#include "aura/update.h"
+IMPLEMENT_APPLICATION(app_app);
 
 namespace app_app
 {

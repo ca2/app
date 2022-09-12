@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "acme/operating_system/_const_console.h"
 #include "acme/operating_system/console.h"
@@ -8,6 +8,9 @@
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/context_image.h"
+#include "aura/graphics/write_text/font.h"
+#include "aura/user/user/interaction.h"
+#include "aura/platform/context.h"
 
 
 namespace graphics

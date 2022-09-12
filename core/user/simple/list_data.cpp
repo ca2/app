@@ -1,15 +1,19 @@
 #include "framework.h"
-#include "core/user/simple/_component.h"
+#include "core/user/simple/list_data.h"
+#include "core/user/user/mesh.h"
 
 
 simple_list_data::simple_list_data()
 {
+
    m_bEnable = true;
+
 }
 
 
 simple_list_data::~simple_list_data()
 {
+
 
 }
 
@@ -78,19 +82,20 @@ void simple_list_data::set_item_text(index iItem,index iSubItem, const ::string 
 }
 
 void simple_list_data::set_item_text(::user::mesh * pmesh,index iItem,index iSubItem, const ::string & pcsz)
-
 {
 
    set_item_text(iItem,iSubItem,pcsz);
-
 
    pmesh->_001OnUpdateItemCount();
 
 }
 
+
 void simple_list_data::enable(bool bEnable)
 {
+
    m_bEnable = bEnable;
+
 }
 
 

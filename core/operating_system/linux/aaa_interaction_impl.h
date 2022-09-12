@@ -307,7 +307,7 @@ namespace linux
 //                                ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
       // xxx      virtual bool EnableScrollBar(i32 nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
 
-      virtual void set_impactport_org(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void set_context_org(::draw2d::graphics_pointer & pgraphics) override;
 
 //
 //      //virtual bool DrawAnimatedRects(i32 idAni, const LPRECTprcFrom, const LPRECTlprcTo);

@@ -18,21 +18,6 @@ namespace aura
 {
 
 
-   inline ::aura::system* application::get_system() 
-   {
-      
-      return ::is_set(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr; 
-   
-   }
-
-
-   inline ::aura::system* session::get_system() const
-   {
-      
-      return ::is_set(m_psystem) ? dynamic_cast <::aura::system*> (m_psystem) : nullptr; 
-   
-   }
-
 
 } // namespace aura
 

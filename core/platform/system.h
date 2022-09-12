@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "bred/platform/system.h"
+
+
 namespace core
 {
 
@@ -12,7 +15,8 @@ namespace core
 
 
       system();
-      virtual ~system();
+      ~system() override;
+
 
       void common_construct();
 
@@ -26,6 +30,7 @@ namespace core
 
       virtual void InsertTime(::ftp::file_status& ftpFileStatus);
      
+
    };
 
 

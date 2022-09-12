@@ -1,9 +1,17 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/_component.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
-
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/path.h"
+#include "color_combo_box.h"
+#include "core/user/user/user.h"
+#include "core/user/userex/color_impact.h"
+#include "aura/message/user.h"
+#include "aura/user/user/frame.h"
+#include "core/platform/application.h"
+#include "core/platform/session.h"
+#include "base/user/user/document.h"
+#include "base/user/user/impact_system.h"
+#include "base/user/simple/frame_window.h"
 
 
 namespace user
@@ -77,9 +85,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-auto pwindowing = windowing();
-
-      pwindowing->release_mouse_capture();
+      release_mouse_capture();
 
       if (m_bMouseDown)
       {
@@ -111,7 +117,7 @@ auto pwindowing = windowing();
 
                m_pdocument = puser->m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(get_app(), ::e_type_null, __visible(false).is_true());
 
-               m_pimpact = m_pdocument->get_type_impact < ::userex::color_impact >();
+               m_pimpact = m_pdocument->get_typed_impact < ::userex::color_impact >();
 
                m_pimpact->m_bCompact = true;
 

@@ -1,21 +1,13 @@
 #pragma once
 
 
+#include "acme/primitive/data/tree.h"
+
+
 namespace file
 {
 
 
-   enum enum_edit_item
-   {
-
-      e_edit_item_undefined,
-      e_edit_item_delete,
-      e_edit_item_edit,
-      e_edit_item_insert,
-      e_edit_item_group
-
-   };
-   
 
    class edit_item_base :
       public ::data::item
@@ -25,7 +17,9 @@ namespace file
 
       filesize   m_position;
 
+      
       edit_item_base();
+
 
       virtual bool read_byte(byte* pbyte, ::file::edit_file* pfile);
 

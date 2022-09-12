@@ -1,8 +1,8 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
+#include "split_impact.h"
 #include "split_pane.h"
+#include "aura/message/user.h"
+#include "base/platform/application.h"
 
 
 namespace user
@@ -12,7 +12,7 @@ namespace user
    split_impact::split_impact()
    {
 
-      m_flagNonClient -= non_client_background;
+      m_flagNonClient -= e_non_client_background;
 
    }
 

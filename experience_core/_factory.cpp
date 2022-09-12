@@ -1,8 +1,10 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
 #include "acme/platform/system_setup.h"
+#include "experience/experience.h"
+#include "experience/control_box.h"
+#include "experience/control_box_button.h"
+#include "user/style.h"
+
 
 //
 //namespace experience

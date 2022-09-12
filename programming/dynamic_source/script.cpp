@@ -1,6 +1,12 @@
 #include "framework.h"
-#include "_.h"
+#include "script.h"
+#include "script_instance.h"
+#include "ds_script.h"
+#include "script_manager.h"
+#include "script_compiler.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "aura/platform/application.h"
+#include "aura/operating_system.h"
 
 
 #if defined(LINUX) || defined(APPLEOS)

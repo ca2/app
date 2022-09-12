@@ -1,12 +1,16 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/save_image.h"
 #include "aura/graphics/image/frame_array.h"
 #include "aura/graphics/image/context_image.h"
 #include "acme/primitive/string/base64.h"
+#include "aura/windowing/window.h"
+#include "copydesk.h"
+#include "aura/platform/node.h"
+#include "aura/platform/application.h"
 
 
 namespace user

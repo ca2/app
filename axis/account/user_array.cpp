@@ -1,6 +1,11 @@
 #include "framework.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/constant/timer.h"
+#include "user_array.h"
+#include "user.h"
+#include "department.h"
+#include "axis/platform/session.h"
+#include "axis/platform/application.h"
 
 
 namespace account

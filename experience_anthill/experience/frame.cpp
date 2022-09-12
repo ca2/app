@@ -1,8 +1,12 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
-#include "aura/graphics/draw2d/_component.h"
+#include "frame.h"
+#include "control_box.h"
+#include "base/user/experience/frame_window.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/graphics/image/fastblur.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/draw2d/pen.h"
 
 
 namespace experience_anthill
@@ -88,7 +92,7 @@ namespace experience_anthill
 
       pimage2 = m_pcontext->m_pauracontext->create_image({ rectangleClient.width() + iInflate * 2,  rectangleClient.height() + iInflate * 2 });
       ::rectangle_i32 rectangleWindow = rectangleClient;
-      pframewindow->client_to_screen(rectangleWindow);
+      pframewindow->client_to_screen()(rectangleWindow);
       //pimage = create_image({rectangleClient.width(),  rectangleClient.height()});
       //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, pgraphics, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
 
@@ -108,7 +112,7 @@ namespace experience_anthill
       }
       //bool b = ::BitBlt(dc2, 0, 0, rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2, hdcScreen, rectangleClient.left - iInflate, rectangleClient.top - iInflate);
 
-      m_blur1.blur(pimage1, 2, ::rectangle_i32(::size_i32(rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2)));
+      m_pfastblur->blur(pimage1, 2, ::rectangle_i32(::size_i32(rectangleClient.width() + iInflate * 2, rectangleClient.height() + iInflate * 2)));
 
       //spgraphics->Draw3dRect(rectangleClient, 127 << 24, 127 << 24);
       //rectangleClient.deflate(1, 1);

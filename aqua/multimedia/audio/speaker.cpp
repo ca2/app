@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "speaker.h"
 
 
 namespace text_to_speech

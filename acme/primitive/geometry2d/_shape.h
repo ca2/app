@@ -1,19 +1,37 @@
-//
-// Created by camilo on 30/12/2021 19:55   BRT ThomasBorregaardSorensen!!
-//
+// Created by camilo on 2022-08-28 18:47 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
-
-#include "_collection_bounding_rect.h"
-
-#include "_collection_contains.h"
+#include "acme/primitive/geometry2d/shape.h"
 
 
-//using lines_shape = _shape < ::lines, e_shape_lines >;
-//using polygon_shape = _shape < ::polygon, e_shape_polygon >;
+#include "acme/primitive/geometry2d/shape_array.h"
+
+
+template < typename HOLDEE >
+inline __pointer(___shape<HOLDEE >) __create_shape(const enum_shape & eshape)
+{
+
+   switch (eshape)
+   {
+   case e_shape_none:
+      return nullptr;
+   case e_shape_begin_clip:
+      return __new(begin_clip_shape<HOLDEE>);
+   case e_shape_intersect_clip:
+      return __new(intersect_clip_shape<HOLDEE>);
+   case e_shape_begin_figure:
+      return __new(begin_figure_shape<HOLDEE>);
+   case e_shape_close_figure:
+      return __new(close_figure_shape<HOLDEE>);
+   case e_shape_end_figure:
+      return __new(end_figure_shape<HOLDEE>);
+   default:
+      throw ::exception(error_not_implemented, "new geometry processor or not a geometry processor?");
+      return nullptr;
+   }
+
+}
 
 
 
-
-//#include "_defer.h"

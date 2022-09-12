@@ -1,11 +1,13 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
 #include "context_glx.h"
+#include "opengl.h"
 #include "aura_posix/_.h"
 #include "aura_posix/_library.h"
 #include "aura_posix/x11/display_lock.h"
+#include "aura/platform/system.h"
+#include "aura/platform/session.h"
+#include "aura/user/user/user.h"
+#include "aura_posix/node.h"
 
 
 mutex * user_mutex();

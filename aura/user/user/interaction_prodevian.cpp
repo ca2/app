@@ -1,13 +1,16 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "aura/message.h"
 #include "interaction_prodevian.h"
 #include "interaction_thread.h"
 #include "acme/parallelization/message_queue.h"
-#include "acme/operating_system/_user.h"
+//#include "acme/operating_system/_user.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/windowing/window.h"
+#include "interaction_impl.h"
+#include "interaction.h"
 
 
 #define TIME_REPORTING 0
@@ -891,6 +894,7 @@ namespace user
          // IFDEF WINDOWS
          if (bStartWindowVisual)
          {
+
 
             m_pimpl->m_pwindow->window_show();
             //m_puserinteraction->post_procedure(m_procedureWindowShow);

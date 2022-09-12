@@ -29,32 +29,33 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
-#ifdef _WIN32
-#elif defined(LINUX)
-#include <netdb.h>
-#include <fcntl.h>
-#else
-#include <netdb.h>
-#include <fcntl.h>
-#endif
-////#include <ctype.h>
-#include <time.h>
-
-
-#ifdef PARALLELIZATION_PTHREAD
-
-
-#include "acme/operating_system/ansi/_pthread.h"
-
-
-#endif
-
-
-#ifdef BSD_STYLE_SOCKETS
-#include <openssl/ssl.h>
-#endif
-
+#include "socket_thread.h"
+#include "apex/networking/sockets/basic/socket_handler.h"
+//#ifdef _WIN32
+//#elif defined(LINUX)
+//#include <netdb.h>
+//#include <fcntl.h>
+//#else
+//#include <netdb.h>
+//#include <fcntl.h>
+//#endif
+//////#include <ctype.h>
+//#include <time.h>
+//
+//
+//#ifdef PARALLELIZATION_PTHREAD
+//
+//
+//#include "acme/operating_system/ansi/_pthread.h"
+//
+//
+//#endif
+//
+//
+//#ifdef BSD_STYLE_SOCKETS
+//#include <openssl/ssl.h>
+//#endif
+//
 
 namespace sockets
 {
@@ -71,37 +72,37 @@ namespace sockets
    }
 
 
-   void socket_thread::move(socket_map::association * passociation, socket_map * psocketmap)
-   {
+   //void socket_thread::move(socket_map::association * passociation, socket_map * psocketmap)
+   //{
 
-      //auto estatus = initialize(passociation->m_psocket);
+   //   //auto estatus = initialize(passociation->m_psocket);
 
-      initialize(passociation->m_psocket);
+   //   initialize(passociation->m_psocket);
 
-      //if (!estatus)
-      //{
+   //   //if (!estatus)
+   //   //{
 
-      //   return estatus;
+   //   //   return estatus;
 
-      //}
+   //   //}
 
-      m_psockethandler = ::move(__create_new < socket_handler > ());
+   //   m_psockethandler = ::move(__create_new < socket_handler > ());
 
-      //psocket->m_psockethandler.release();
+   //   //psocket->m_psockethandler.release();
 
-      passociation->m_psocket->m_psocketthread = this;
+   //   passociation->m_psocket->m_psocketthread = this;
 
-      //m_psockethandler->SetSlave();
+   //   //m_psockethandler->SetSlave();
 
-      //m_psocket->SetSlaveHandler(m_psockethandler);
+   //   //m_psocket->SetSlaveHandler(m_psockethandler);
 
-      m_psockethandler->move(passociation, psocketmap);
+   //   m_psockethandler->move(passociation, psocketmap);
 
-      branch();
+   //   branch();
 
-      //return estatus;
+   //   //return estatus;
 
-   }
+   //}
 
 
    socket_thread::~socket_thread()
@@ -166,16 +167,18 @@ namespace sockets
 
       }
 
-      auto passociation = m_psockethandler->m_socketmap.m_passociationHead;
+      return nullptr;
 
-      if (::is_null(passociation))
-      {
+      ////auto passociation = m_psockethandler->m_socketmap.m_passociationHead;
 
-         return nullptr;
+      ////if (::is_null(passociation))
+      ////{
 
-      }
+      ////   return nullptr;
 
-      return passociation->m_psocket;
+      ////}
+
+      //return passociation->m_psocket;
 
    }
 

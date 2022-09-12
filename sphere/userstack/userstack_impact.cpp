@@ -129,7 +129,7 @@ namespace userstack
 
       SetTimer(888888, 2000, nullptr);
 
-      __pointer(frame) pframe = GetTypedParent < frame > ();
+      __pointer(frame) pframe = get_typed_parent < frame > ();
 
       pframe->m_pimpact = this;
       pframe->m_pdocument = get_document();
@@ -276,7 +276,7 @@ namespace userstack
       pmouse->m_lresult = 1;
       KillTimer(5432180);
       auto point = pmouse->m_point;
-      screen_to_client(point);
+      screen_to_client()(point);
    }
 
    void impact::check_apps()

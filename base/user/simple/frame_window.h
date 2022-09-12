@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/user/experience/frame_window.h"
+
+
 class CLASS_DECL_BASE simple_frame_window :
    virtual public ::experience::frame_window
 {
@@ -21,7 +24,7 @@ public:
    ::duration                                      m_durationLastSaveWindowRectRequest;
    ::image_pointer                                 m_pimageBk;
    ::rectangle_i32                                 m_FullScreenWindowRect;
-   draw2d::fastblur                                m_blur;
+   __pointer(::draw2d::fastblur)                   m_pfastblur;
    ::image_pointer                                 m_pimageBlur;
    ::user::enum_translucency                       m_etranslucencyFrame;
    ::image_pointer                                 m_pimageAlpha;
@@ -128,6 +131,7 @@ public:
    virtual void pre_translate_message(::message::message * pmessage) override;
 
    virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+   virtual bool _000OnBeforeDraw(::draw2d::graphics_pointer & pgraphics);
    virtual void draw_frame_and_control_box_over(::draw2d::graphics_pointer & pgraphics);
 
    virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;

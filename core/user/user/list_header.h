@@ -2,11 +2,11 @@
 
 
 #include "aura/graphics/image/image.h"
-//#include "aura/graphics/draw2d/i.h"
+#include "aura/user/user/box.h"
 
 
 #ifndef HDS_HORZ
-// begin_r_commctrl
+
 
 #define HDS_HORZ                0x0000
 #define HDS_BUTTONS             0x0002
@@ -91,7 +91,7 @@ namespace user
       int                           m_iImageSpacing;
       //::write_text::font_pointer                 m_pfont;
       string                        m_strBuffer;
-      draw2d::graphics_extension    m_dcextension;
+      __pointer(draw2d::graphics_extension)    m_pdcextension;
 
       bool                          m_bTrack;
       bool                          m_bHover;
@@ -144,7 +144,7 @@ namespace user
       index & iItem);
 
 
-      virtual ::point_i32 get_parent_impactport_offset() const override;
+      virtual ::point_i32 get_parent_context_offset() const override;
 
       // Message Handlers
    protected:

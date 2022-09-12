@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/networking/sockets/basic/socket_handler.h"
+
+
 namespace simpledb
 {
 
@@ -14,7 +17,7 @@ namespace simpledb
 
 
       storage *                                 m_pstorage;
-      sockets::socket_handler                   m_handler;
+      __pointer(sockets::socket_handler)        m_phandler;
       __pointer(sockets::http_session)          m_phttpsession;
 
       pointer_array < queue_item >              m_itema;

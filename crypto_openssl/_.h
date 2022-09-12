@@ -5,6 +5,12 @@
 #include "apex/_.h"
 
 
+#include <openssl/err.h>
+#include <openssl/evp.h>
+#include <openssl/rsa.h>
+#include <openssl/bn.h>
+
+
 #if defined(_CRYPTO_OPENSSL_LIBRARY)
 #define CLASS_DECL_CRYPTO_OPENSSL  CLASS_DECL_EXPORT
 #else

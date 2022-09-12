@@ -1,9 +1,8 @@
 #include "framework.h"
 #include "acme/platform/timer.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
-
+#include "menu_impact.h"
+#include "axis/platform/application.h"
+#include "aura/user/user/frame.h"
 
 
 menu_impact::menu_impact()

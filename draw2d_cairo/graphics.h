@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/graphics/draw2d/graphics.h"
+
+
 typedef void FN_CAIRO_TEXT(cairo_t *, const char *);
 typedef FN_CAIRO_TEXT * PFN_CAIRO_TEXT;
 

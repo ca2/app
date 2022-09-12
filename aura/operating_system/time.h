@@ -9,7 +9,7 @@ public:
 
 #ifdef WINDOWS
    HANDLE m_hTimer;
-   SOCKET m_socket;
+   socket_id m_socket;
 
 #endif
 

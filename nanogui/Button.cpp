@@ -9,14 +9,11 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+#include "Button.h"
+#include "PopupButton.h"
+#include "Screen.h"
+#include "aura/user/user/interaction.h"
 
-//#include <nanogui/button.h>
-//#include <nanogui/popupbutton.h>
-//#include <nanogui/theme.h>
-//#include <nanogui/opengl.h>
 
 NAMESPACE_BEGIN(nanogui)
 
@@ -83,8 +80,8 @@ bool Button::mouse_button_event(const Vector2i & p, int button, bool down, const
    ref<Button> self = this;
 
    if (m_enabled == 1 &&
-      ((button == __MOUSE_LEFT_BUTTON && !(m_flags & MenuButton)) ||
-         (button == __MOUSE_RIGHT_BUTTON && (m_flags & MenuButton)))) 
+      ((button == ::user::e_mouse_left_button && !(m_flags & MenuButton)) ||
+         (button == ::user::e_mouse_right_button && (m_flags & MenuButton))))
    {
 
       bool bChecked = m_bChecked;

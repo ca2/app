@@ -1,10 +1,17 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
 #include "base/user/simple/scroll_bar.h"
 #include "base/user/user/tab_pane.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/write_text/font.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/graphics/draw2d/path.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "style.h"
+#include "base/user/user/tab.h"
+#include "base/user/user/tab_data.h"
+#include "base/platform/session.h"
 
 
 // pgraphics->get_text_extent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!
@@ -942,7 +949,7 @@ namespace experience_core
 
       pgraphics->set_font(ptab, ::e_element_none, ::user::e_state_selected);
 
-      ptab->m_dcextension.get_text_extent(pgraphics, MAGIC_PALACE_TAB_SIZE, ptab->get_data()->m_sizeSep);
+      ptab->m_pdcextension->get_text_extent(pgraphics, MAGIC_PALACE_TAB_SIZE, ptab->get_data()->m_sizeSep);
 
       if (ptab->get_data()->m_bVertical)
       {
@@ -960,11 +967,11 @@ namespace experience_core
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(ptab->m_dcextension, pgraphics);
+            ppane->do_split_layout(ptab->m_pdcextension, pgraphics);
 
             ::size_i32 size;
 
-            ptab->m_dcextension.get_text_extent(pgraphics, str, size);
+            ptab->m_pdcextension->get_text_extent(pgraphics, str, size);
 
 
 
@@ -1059,11 +1066,11 @@ namespace experience_core
 
             string str = ppane->get_title();
 
-            ppane->do_split_layout(ptab->m_dcextension, pgraphics);
+            ppane->do_split_layout(ptab->m_pdcextension, pgraphics);
 
             size_i32 size;
 
-            ptab->m_dcextension.get_text_extent(pgraphics, str, size);
+            ptab->m_pdcextension->get_text_extent(pgraphics, str, size);
 
             if (::is_ok(ppane->m_pimage))
             {
@@ -1871,7 +1878,7 @@ namespace experience_core
 
          ::point_i32 point1 = rectangleTrack.top_left() + pbar->m_sizeTrackOffset;
 
-         pbar->client_to_screen(point1);
+         pbar->client_to_screen()(point1);
 
          //auto psession = get_session();
 
@@ -1881,7 +1888,7 @@ namespace experience_core
 
          //auto pointCursor = pwindowing->get_cursor_position();
 
-         pbar->client_to_screen(point1);
+         pbar->client_to_screen()(point1);
 
          //      prop("tracking_window").cast < trw >()->point1 = point1;
 

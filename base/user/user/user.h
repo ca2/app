@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "axis/user/user/user.h"
+#include "base/user/user/document_manager_container.h"
+
 class keyboard;
 class front_end_schema;
 
@@ -28,10 +31,13 @@ namespace base
       __composite(::user::menu_central)               m_pmenucentral;
 
       __composite(::experience::department)           m_pexperience;
+      ::user::impact_system * m_ptemplateHtmlChildForm1;
+
+
 
 
       user();
-      virtual ~user();
+      ~user() override;
 
 
       inline ::base::application* get_app() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }
@@ -105,11 +111,13 @@ namespace base
 
       //virtual ::type get_pane_tab_impact_type_info();
       virtual ::type get_simple_frame_window_type_info();
-      //virtual ::type get_simple_child_frame_type_info();
+      virtual ::type get_simple_child_frame_type_info();
 
 
       virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::path_array& patha);
 
+
+      virtual void initialize_html();
 
 
    };

@@ -3,7 +3,7 @@
 
 
 #include "axis/_.h"
-#include "axis/mathematics/_component.h"
+//#include "axis/mathematics/_component.h"
 
 
 #include "time/calculator/_.h"

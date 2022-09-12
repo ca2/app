@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/platform/system.h"
+
+
 namespace bred
 {
 
@@ -12,7 +15,8 @@ namespace bred
 
 
       system();
-      virtual ~system();
+      ~system() override;
+
 
       void common_construct();
 
@@ -20,6 +24,7 @@ namespace bred
       virtual void initialize(::object * pobject) override;
 
       virtual void on_add_session(::apex::session * papexsession) override;
+
 
    };
 

@@ -1,10 +1,12 @@
 #pragma once
 
 
+#include "interaction.h"
+#include "scroll_info.h"
+
+
 namespace user
 {
-
-
 
 
    class CLASS_DECL_AURA scroll_bar :
@@ -34,8 +36,8 @@ namespace user
 
       virtual void post_scroll_message(enum_scroll_command ecommand);
 
-      virtual ::point_i32 get_parent_impactport_offset() const override;
-      virtual ::point_i32 get_ascendant_impactport_offset() const override;
+      virtual ::point_i32 get_parent_context_offset() const override;
+      virtual ::point_i32 get_ascendant_context_offset() const override;
       
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 

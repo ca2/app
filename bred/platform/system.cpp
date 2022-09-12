@@ -1,6 +1,9 @@
 #include "framework.h"
 #include "acme/platform/system_setup.h"
 #include "bred/const/idpool.h"
+#include "application.h"
+#include "session.h"
+#include "system.h"
 
 
 namespace bred

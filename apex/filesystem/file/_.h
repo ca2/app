@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "_constant.h"
+
+
 namespace file
 {
 
@@ -12,6 +15,4 @@ namespace file
 
 
 
-
-
-
+#include "_constant.h"

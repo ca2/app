@@ -4,9 +4,15 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
-
-#include "aura/update.h"
 #include "base/user/user/tab_pane.h"
+#include "document.h"
+#include "tab_impact.h"
+#include "data.h"
+#include "child_frame.h"
+#include "core/user/user/user.h"
+#include "impact.h"
+#include "core/platform/session.h"
+#include "core/platform/application.h"
 
 
 namespace filemanager
@@ -64,7 +70,7 @@ namespace filemanager
 
       __pointer(document) pdocument = this;
 
-      tab_impact * pimpact = pdocument->get_type_impact < tab_impact >();
+      tab_impact * pimpact = pdocument->get_typed_impact < tab_impact >();
 
 //#ifdef WINDOWS_DESKTOP
 //      oswindow oswindowDesktop = ::get_desktop_window();
@@ -469,7 +475,7 @@ namespace filemanager
    document * document::get_main_document()
    {
 
-      __pointer(tab_impact) ptabimpact = get_type_impact < tab_impact >();
+      __pointer(tab_impact) ptabimpact = get_typed_impact < tab_impact >();
 
       if (ptabimpact.is_set())
       {
@@ -549,7 +555,7 @@ namespace filemanager
 
             //set_data_key_modifier(m_strManagerId);
 
-  /*          __pointer(main_frame) pframe = get_impact()->GetTypedParent < main_frame >();
+  /*          __pointer(main_frame) pframe = get_impact()->get_typed_parent < main_frame >();
 
             if (pframe.is_set() && !pframe->m_atom.to_string().contains("::frame"))
             {
@@ -840,12 +846,12 @@ namespace filemanager
 
       __pointer(document) pdocument = this;
 
-      __pointer(impact) pimpact = get_type_impact<impact>();
+      __pointer(impact) pimpact = get_typed_impact<impact>();
 
       if (pimpact.is_set())
       {
 
-         __pointer(tab_impact) ptabimpact = pimpact->GetTypedParent <tab_impact>();
+         __pointer(tab_impact) ptabimpact = pimpact->get_typed_parent <tab_impact>();
 
          if (ptabimpact.is_set())
          {
@@ -1009,7 +1015,7 @@ namespace filemanager
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      if (m_emode == ::userfs::mode_saving || m_emode == ::userfs::mode_export)
+      if (m_emode == ::userfs::e_mode_saving || m_emode == ::userfs::e_mode_export)
       {
 
          auto ptopic = create_topic(id_topic_ok);
@@ -1030,7 +1036,7 @@ namespace filemanager
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      if (m_emode == ::userfs::mode_import)
+      if (m_emode == ::userfs::e_mode_import)
       {
 
          auto ptopic = create_topic(id_topic_ok);
@@ -1049,7 +1055,7 @@ namespace filemanager
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      if (m_emode == ::userfs::mode_saving)
+      if (m_emode == ::userfs::e_mode_saving)
       {
 
          auto ptopic = create_topic(id_topic_ok);
@@ -1296,7 +1302,7 @@ namespace filemanager
    operation_document * document::get_operation_doc(bool bSwitch)
    {
 
-      //::filemanager::tab_impact * ptabimpact = psession->m_pdocumenttemplateMain->get_document(0)->get_type_impact < ::filemanager::tab_impact >();
+      //::filemanager::tab_impact * ptabimpact = psession->m_pdocumenttemplateMain->get_document(0)->get_typed_impact < ::filemanager::tab_impact >();
 
       //if (ptabimpact == nullptr)
       //{
@@ -1351,7 +1357,7 @@ namespace filemanager
 
       pfilemanagerdata->m_pdocumentTopic = pdocument;
 
-      m_emode = ::userfs::mode_saving;
+      m_emode = ::userfs::e_mode_saving;
 
       auto pdocumentFilemanager = this;
 
@@ -1383,7 +1389,7 @@ namespace filemanager
 
       pfilemanagerdata->m_pdocumentTopic = pdocument;
 
-      m_emode = ::userfs::mode_import;
+      m_emode = ::userfs::e_mode_import;
 
       auto pdocumentFilemanager = this;
 
@@ -1415,7 +1421,7 @@ namespace filemanager
 
       pfilemanagerdata->m_pdocumentTopic = pdocument;
 
-      m_emode = ::userfs::mode_export;
+      m_emode = ::userfs::e_mode_export;
 
       auto pdocumentFilemanager = this;
 

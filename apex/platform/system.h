@@ -17,7 +17,7 @@ namespace apex
 
       __composite(::dump_context)                        m_pdumpcontext;
 
-      __composite(::sockets::sockets)                    m_psockets;
+      __composite(::networking::networking)              m_pnetworking;
 
       __composite(::crypto::crypto)                      m_pcrypto;
 
@@ -182,7 +182,7 @@ namespace apex
       inline ::parallelization::threading           *  threading() { return m_pthreading; }
 
 
-      virtual ::sockets::sockets & sockets() { return *m_psockets; }
+      virtual ::networking::networking * networking() { return m_pnetworking; }
 
 
       virtual void on_allocation_error(const ::string & strName, ::object * pobjectSometimes);
@@ -211,7 +211,7 @@ namespace apex
       //virtual string get_global_id_mutex_name(const ::string & pszAppName, const ::string & pszId);
 
 
-      virtual void initialize_sockets();
+      virtual void initialize_networking();
 
 
       virtual bool on_get_task_name(string& strTaskName) override;
@@ -432,7 +432,7 @@ namespace apex
 
       virtual void get_public_internet_domain_extension_list(string_array& stra) override;
 
-
+      
    };
 
 

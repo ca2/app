@@ -1,6 +1,6 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
 //#include "acme/operating_system/cross.h"
 #include "aura/platform/message_queue.h"
@@ -8,7 +8,7 @@
 #include "interaction_thread.h"
 #include "interaction_prodevian.h"
 #include "aura/operating_system/_node.h"
-#include "acme/operating_system/_user.h"
+//#include "acme/operating_system/_user.h"
 #include "aura/graphics/graphics/_.h"
 #include "aura/graphics/graphics/_graphics.h"
 #include "aura/graphics/image/image.h"
@@ -16,12 +16,18 @@
 #include "aura/windowing/text_editor_interface.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/lock.h"
-//#ifdef _UWP
-//#include "aura/operating_system/windows_common/draw2d_direct2d_global.h"
-//#endif
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/display.h"
+#include "interaction_impl.h"
+#include "interaction.h"
+#include "system.h"
+#include "user.h"
+#include "aura/message/user.h"
+#include "interaction_scaler.h"
+#include "aura/platform/session.h"
+#include "aura/platform/application.h"
 
-
-//#define REPORT_OFFSETS
 
 point_i32 g_pointLastBottomRight;
 
@@ -2707,7 +2713,7 @@ namespace user
             if (is_set(puserinteraction))
             {
 
-               auto pchild = puserinteraction->child_from_point(pmouse->m_point, interactionaHandled);
+               auto pchild = puserinteraction->child_from_point(pmouse->m_point, -1, &interactionaHandled);
 
                if (::is_set(pchild))
                {
@@ -5368,26 +5374,26 @@ namespace user
    }
 
 
-   CLASS_DECL_AURA void __reposition_window(SIZEPARENTPARAMS * pLayout, ::user::interaction * pinteraction,const ::rectangle_i32 & rectangle)
-   {
+   //CLASS_DECL_AURA void __reposition_window(SIZEPARENTPARAMS * pLayout, ::user::interaction * pinteraction,const ::rectangle_i32 & rectangle)
+   //{
 
-      ASSERT(::is_set(pinteraction));
+   //   ASSERT(::is_set(pinteraction));
 
-      __pointer(::user::interaction) puiParent = pinteraction->get_parent();
+   //   __pointer(::user::interaction) puiParent = pinteraction->get_parent();
 
-      ASSERT(puiParent != nullptr);
+   //   ASSERT(puiParent != nullptr);
 
-      ::rectangle_i32 rectangleOld;
+   //   ::rectangle_i32 rectangleOld;
 
-      pinteraction->get_window_rect(rectangleOld);
+   //   pinteraction->get_window_rect(rectangleOld);
 
-      puiParent->screen_to_client(rectangleOld);
+   //   rectangleOld += puiParent->screen_to_client();
 
-      pinteraction->place(rectangle);
+   //   pinteraction->place(rectangle);
 
-      pinteraction->display(e_display_restored, e_activation_no_activate);
+   //   pinteraction->display(e_display_restored, e_activation_no_activate);
 
-   }
+   //}
 
 
    void interaction_impl::prodevian_redraw(bool bUpdateBuffer)
@@ -7231,7 +7237,7 @@ namespace user
 
       ::rectangle_i32 rectangle(lpcrect);
 
-      m_puserinteraction->screen_to_client(rectangle);
+      rectangle += m_puserinteraction->screen_to_client();
 
       return rectangle.area() - m_pgraphics->get_screen_image()->get_rgba_area(colorTransparent, rectangle);
 
@@ -7243,7 +7249,7 @@ namespace user
 
       ::rectangle_i32 rectangle(lpcrect);
 
-      m_puserinteraction->screen_to_client(rectangle);
+      rectangle += m_puserinteraction->screen_to_client();
 
       return m_pgraphics->_001GetTopLeftWeightedOpaqueArea(rectangle);
 
@@ -7508,7 +7514,40 @@ namespace user
    }
 
 
+   ::oswindow interaction_impl::oswindow() const
+   {
+
+      return m_pwindow->m_oswindow;
+
+   }
+
+
 } // namespace user
 
 
+CLASS_DECL_AURA ::user::interaction * __interaction(::windowing::window * pwindow)
+{
 
+   if (::is_null(pwindow)) return nullptr;
+
+   auto puserinteractionimpl = pwindow->m_puserinteractionimpl;
+
+   if (!puserinteractionimpl) return nullptr;
+
+   return puserinteractionimpl->m_puserinteraction;
+
+}
+
+
+CLASS_DECL_AURA ::user::interaction_impl * __interaction_impl(::windowing::window * pwindow)
+{
+
+   if (::is_null(pwindow)) return nullptr;
+
+   auto pimpl = pwindow->m_puserinteractionimpl.m_p;
+
+   if (::is_null(pimpl)) return nullptr;
+
+   return pimpl;
+
+}

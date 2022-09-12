@@ -215,8 +215,8 @@ namespace ios
       virtual bool is_active() override;
 
 
-      virtual void set_impactport_org(::draw2d::graphics_pointer & pgraphics) override;
-      void offset_impactport_org(RECTANGLE_I32 * lprectScreen);
+      virtual void set_context_org(::draw2d::graphics_pointer & pgraphics) override;
+      void offset_context_org(RECTANGLE_I32 * lprectScreen);
 
 
       //virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, ::u32 flags) override;

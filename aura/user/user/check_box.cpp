@@ -1,13 +1,18 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "acme/constant/timer.h"
 #include "acme/platform/timer.h"
 #include "aura/platform/draw_context2.h"
-//#include "interaction_draw2d.h"
 #include "acme/primitive/mathematics/mathematics.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/path.h"
+#include "check_box.h"
+#include "style.h"
+#include "aura/message/user.h"
 
 
 void scroll_x(RECTANGLE_I32 * prectangle, double dRateX, const ::rectangle_i32 & rectangle)

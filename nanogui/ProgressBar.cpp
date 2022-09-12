@@ -9,12 +9,8 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+#include "ProgressBar.h"
 
-//#include <nanogui/progressbar.h>
-//#include <nanogui/opengl.h>
 
 NAMESPACE_BEGIN(nanogui)
 

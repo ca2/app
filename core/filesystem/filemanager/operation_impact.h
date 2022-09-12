@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/user/user/split_impact.h"
+
+
 namespace filemanager
 {
 
@@ -11,24 +14,14 @@ namespace filemanager
    public:
 
 
-      
-
-
-      enum e_message
+      enum enum_main_post
       {
 
-         MessageMainPost = WM_USER + 23,
+         e_main_post_file_operation,
+         e_main_post_file_operation_final,
 
       };
 
-
-      enum EMessageMainPost
-      {
-
-         MessageMainPostFileOperation,
-         MessageMainPostFileOperationFinal,
-
-      };
 
 
       operation_list_impact *    m_plistview;
@@ -38,7 +31,8 @@ namespace filemanager
 
 
       operation_impact();
-      virtual ~operation_impact();
+      ~operation_impact() override;
+
 
       __pointer(operation_document) get_document();
 

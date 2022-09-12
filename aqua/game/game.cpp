@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "game.h"
 
 
 namespace aqua
@@ -26,6 +27,14 @@ namespace aqua
 
 
    //}
+
+
+   void game::destroy()
+   {
+      
+      ::channel::destroy();
+      
+   }
 
 
    string game::sound_path(const char* psz)

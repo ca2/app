@@ -4,18 +4,18 @@
 #pragma once
 
 
-#include "acme/operating_system/_user.h"
-
-
-//#include PLATFORM_INCLUDE(_user.h)
-
-
-namespace user
-{
-
-   CLASS_DECL_AURA void __reposition_window(SIZEPARENTPARAMS * pLayout, ::user::interaction * pinteraction, const rectangle_i32 & rectangle);
-
-} // namespace user
-
+//#include "acme/operating_system/_user.h"
+//
+//
+////#include PLATFORM_INCLUDE(_user.h)
+//
+//
+//namespace user
+//{
+//
+//   CLASS_DECL_AURA void __reposition_window(SIZEPARENTPARAMS * pLayout, ::user::interaction * pinteraction, const rectangle_i32 & rectangle);
+//
+//} // namespace user
+//
 
 

@@ -49,9 +49,9 @@ namespace windowing
       void dump(dump_context & dumpcontext) const override;
 
 
-      inline ::aura::application* get_app() const;
-      inline ::aura::session* get_session() const;
-      inline ::aura::system* get_system() const;
+      ::aura::application* get_app() const;
+      ::aura::session* get_session() const;
+      ::aura::system* get_system() const;
 
 
       void install_message_routing(::channel * pchannel) override;
@@ -260,7 +260,7 @@ namespace windowing
       virtual void set_tool_window(bool bSet);
 
 
-      void set_impactport_org(::draw2d::graphics_pointer & pgraphics);
+      void set_context_org(::draw2d::graphics_pointer & pgraphics);
 
 
       void on_set_parent(::user::interaction * pinteraction);

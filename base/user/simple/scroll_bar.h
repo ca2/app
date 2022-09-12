@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/user/user/scroll_bar.h"
+
+
 class CLASS_DECL_BASE simple_scroll_bar :
    virtual public ::user::scroll_bar
 {

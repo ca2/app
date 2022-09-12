@@ -29,7 +29,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #pragma once
 
-//#include "sockets_http_client_socket.h"
+
+#include "client_socket.h"
+
 
 namespace sockets
 {
@@ -75,8 +77,11 @@ namespace sockets
       http_post_socket();
       /* client constructor,
       \lparam url_in = 'http://host:port/resource' */
-      http_post_socket(const string & url_in);
+      //http_post_socket(const string & url_in);
       virtual ~http_post_socket();
+
+
+      virtual void initialize_http_post_socket(const ::string & strUrl);
 
       // these must be specified before connecting / adding to handler
       /** add field to post. */

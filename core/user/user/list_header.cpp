@@ -1,11 +1,18 @@
 #include "framework.h"
-#include "aura/graphics/draw2d/_component.h"
-#include "core/user/user/_user.h"
+#include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/item.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/message/user.h"
+#include "list.h"
+#include "list_header.h"
+#include "list_column.h"
+#include "list_column_array.h"
+#include "aura/platform/application.h"
 
 
 namespace user
 {
+
 
    list_header::list_header()
    {
@@ -16,8 +23,8 @@ namespace user
       m_iImageSpacing = 4;
       m_bParentScrollY = false;
       //m_ecolorBackground = color_list_header_background;
-      m_flagNonClient.erase(::user::interaction::non_client_background);
-      m_flagNonClient.erase(::user::interaction::non_client_focus_rect);
+      m_flagNonClient.erase(::user::interaction::e_non_client_background);
+      m_flagNonClient.erase(::user::interaction::e_non_client_focus_rect);
    }
 
    list_header::~list_header()
@@ -41,15 +48,15 @@ namespace user
 
       list * plist = m_plist;
 
-      if (plist->m_columna.get_visible(iColumn)->m_pimageHeader->is_set() && plist->m_columna.get_visible(iColumn)->m_pimageHeader->area() > 0)
+      if (plist->m_pcolumna->get_visible(iColumn)->m_pimageHeader->is_set() && plist->m_pcolumna->get_visible(iColumn)->m_pimageHeader->area() > 0)
       {
 
          ::rectangle_i32 rectangle;
 
          rectangle.left = 0;
          rectangle.top = 0;
-         rectangle.right = plist->m_columna.get_visible(iColumn)->m_pimageHeader->width();
-         rectangle.bottom = plist->m_columna.get_visible(iColumn)->m_pimageHeader->height();
+         rectangle.right = plist->m_pcolumna->get_visible(iColumn)->m_pimageHeader->width();
+         rectangle.bottom = plist->m_pcolumna->get_visible(iColumn)->m_pimageHeader->height();
 
          ::rectangle_i32 rC;
 
@@ -59,7 +66,7 @@ namespace user
 
          rectangle.Align(::e_align_left_center, rC);
 
-         image_source imagesource(plist->m_columna.get_visible(iColumn)->m_pimageHeader);
+         image_source imagesource(plist->m_pcolumna->get_visible(iColumn)->m_pimageHeader);
 
          image_drawing_options imagedrawingoptions(rectangle);
 
@@ -178,7 +185,7 @@ namespace user
          
          xLast = x;
          
-         auto pcolumn = plist->m_columna.get_visible(iItem);
+         auto pcolumn = plist->m_pcolumna->get_visible(iItem);
          
          x += pcolumn->m_iWidth;
 
@@ -440,7 +447,7 @@ namespace user
          for (index iColumn = 0; iColumn < m_plist->_001GetColumnCount(); iColumn++)
          {
 
-            auto pcolumn = m_plist->m_columna.get_visible(iColumn);
+            auto pcolumn = m_plist->m_pcolumna->get_visible(iColumn);
 
             iaWidth.add(pcolumn->m_iWidth);
 
@@ -471,7 +478,7 @@ namespace user
             for (index iColumn = 0; iColumn < c; iColumn++)
             {
 
-               auto pcolumn = m_plist->m_columna.get_visible(iColumn);
+               auto pcolumn = m_plist->m_pcolumna->get_visible(iColumn);
 
                pcolumn->m_iWidth= iaWidth[iColumn];
 
@@ -500,7 +507,9 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pointCursor = _001ScreenToClient(pmouse->m_point);
+      auto pointCursor = pmouse->m_point;
+
+      screen_to_client()(pointCursor);
 
       if(hit_test(pointCursor, m_eelementLButtonDown, m_iItemLButtonDown))
       {
@@ -521,7 +530,9 @@ namespace user
 
       list * plist = m_plist;
 
-      auto pointCursor = _001ScreenToClient(pmouse->m_point);
+      auto pointCursor = pmouse->m_point;
+
+      screen_to_client()(pointCursor);
 
       if(m_bLButtonDown)
       {
@@ -550,12 +561,12 @@ namespace user
 
                   // The header item has been dragged
 
-                  index iKeyA = plist->m_columna.order_index(iItem);
-                  index iKeyB = plist->m_columna.order_index(iItem);
-                  index iOrderA = plist->m_columna.get_by_index(iKeyA)->m_iOrder;
-                  index iOrderB = plist->m_columna.get_by_index(iKeyB)->m_iOrder;
-                  plist->m_columna.get_by_index(iKeyA)->m_iOrder = iOrderB;
-                  plist->m_columna.get_by_index(iKeyB)->m_iOrder = iOrderA;
+                  index iKeyA = plist->m_pcolumna->order_index(iItem);
+                  index iKeyB = plist->m_pcolumna->order_index(iItem);
+                  index iOrderA = plist->m_pcolumna->get_by_index(iKeyA)->m_iOrder;
+                  index iOrderB = plist->m_pcolumna->get_by_index(iKeyB)->m_iOrder;
+                  plist->m_pcolumna->get_by_index(iKeyA)->m_iOrder = iOrderB;
+                  plist->m_pcolumna->get_by_index(iKeyB)->m_iOrder = iOrderA;
                   plist->_001OnColumnChange();
                   plist->DISaveOrder();
                   plist->set_need_redraw();
@@ -587,7 +598,9 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pointCursor = _001ScreenToClient(pmouse->m_point);
+      auto pointCursor = pmouse->m_point;
+
+      screen_to_client()(pointCursor);
 
       list * plist = m_plist;
 
@@ -613,9 +626,7 @@ namespace user
 
             m_bTrack = false;
 
-            auto pwindowing = windowing();
-
-            pwindowing->release_mouse_capture();
+            release_mouse_capture();
 
          }
 
@@ -644,18 +655,18 @@ namespace user
 
       auto pwindowing = windowing();
 
-      ::windowing::cursor* pcursor = nullptr;
+      __pointer(::windowing::cursor) pcursor;
 
       if(m_bHover && m_eelementHover == ElementDivider)
       {
          
-         pcursor = pwindowing->get_cursor(e_cursor_size_horizontal);
+         pcursor = get_mouse_cursor(e_cursor_size_horizontal);
 
       }
       else
       {
 
-         pcursor = pwindowing->get_cursor(e_cursor_arrow);
+         pcursor = get_mouse_cursor(e_cursor_arrow);
 
       }
 
@@ -671,7 +682,9 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto pointCursor = _001ScreenToClient(pmouse->m_point);
+      auto pointCursor = pmouse->m_point;
+
+      screen_to_client()(pointCursor);
 
       list * plist = m_plist;
 
@@ -934,7 +947,7 @@ namespace user
    }
 
 
-   ::point_i32 list_header::get_parent_impactport_offset() const
+   ::point_i32 list_header::get_parent_context_offset() const
    {
 
       __pointer(::user::interaction) puser = get_parent();
@@ -955,7 +968,7 @@ namespace user
 
       }
 
-      return puser->get_impactport_offset();
+      return puser->get_context_offset();
 
    }
 

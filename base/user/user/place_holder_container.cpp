@@ -1,14 +1,15 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
+#include "place_holder_container.h"
 
 
 namespace user
 {
 
+
    place_holder_container::place_holder_container()
    {
+
+
    }
 
 

@@ -1,11 +1,31 @@
 #include "framework.h"
-#include "base/user/simple/_component.h"
-#include "base/user/menu/_menu.h"
-#include "aura/update.h"
-#include "simple_impact.h"
+////#include "base/user/simple/_component.h"
+#include "aura/windowing/window.h"
 #include "acme/platform/system_setup.h"
+#include "base/platform/application.h"
+#include "base/platform/session.h"
+#include "base/platform/system.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/image/image.h"
+#include "user.h"
+#include "base/user/experience/department.h"
+#include "base/user/experience/experience.h"
+#include "base/user/simple/impact.h"
+#include "base/user/simple/tab_document.h"
+#include "base/user/simple/scroll_bar.h"
+#include "base/user/simple/frame_window.h"
+#include "base/user/simple/main_frame.h"
+#include "base/user/menu/list_impact.h"
+#include "base/user/menu/button.h"
+#include "base/user/menu/item.h"
+#include "base/user/menu/central.h"
+#include "base/user/form/impact.h"
+#include "impact_creator.h"
+#include "style.h"
+#include "split_impact.h"
+#include "tab_impact.h"
+#include "split_bar.h"
+#include "aura/message/user.h"
 
 
 namespace base
@@ -62,34 +82,21 @@ namespace base
    {
 
 
+      ::axis::user::init1();
+
+
       ::factory::add_factory_item <::user::document >();
-      //add_factory_item <::user::message_queue >();
-      ::factory::add_factory_item <::user::simple_impact >();
-      ::factory::add_factory_item <::user::still >();
-      ::factory::add_factory_item <::user::combo_box >();
+      ::factory::add_factory_item <::simple_impact >();
       ::factory::add_factory_item <::user::place_holder >();
 
 
       ::factory::add_factory_item <::simple_tab_document >();
 
+      ::factory::add_factory_item <::user::tab_impact >();
 
-      //add_factory_item <::user::font_combo_box >();
+      ::factory::add_factory_item < ::user::form_impact >();
 
-      ////if(get_app()->is_system())
-      //{
 
-      //   add_factory_item <keyboard_layout >();
-
-      //}
-
-      ::axis::user::init1();
-
-      //if (!::axis::user::init1())
-      //{
-
-      //   return false;
-
-      //}
 
       initialize1_experience();
 
@@ -691,12 +698,12 @@ namespace base
 //
 //      if (psession->m_bShowPlatform)
 //      {
-//         //__pointer(::simple_frame_window) pframeApp = get_document()->get_type_impact < ::bergedge::pane_impact >()->get_impact_uie();
+//         //__pointer(::simple_frame_window) pframeApp = get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_impact_uie();
 //         //if(pframeApp != nullptr)
 //         //{
 //         //   pframeApp->display(e_display_full_screen);
 //         //}
-//         //__pointer(::simple_frame_window) pframe = get_document()->get_type_impact < ::bergedge::pane_impact >()->get_parent_frame();
+//         //__pointer(::simple_frame_window) pframe = get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_parent_frame();
 //         //if(pframe != nullptr)
 //         //{
 //         //   pframe->display(e_display_restored);
@@ -704,15 +711,15 @@ namespace base
 //      }
 //      else
 //      {
-//         //if(get_document() != nullptr && get_document()->get_type_impact < ::bergedge::impact >() != nullptr)
+//         //if(get_document() != nullptr && get_document()->get_typed_impact < ::bergedge::impact >() != nullptr)
 //         //{
-//         //   __pointer(::simple_frame_window) pframe = get_document()->get_type_impact < ::bergedge::impact >()->get_parent_frame();
+//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_impact < ::bergedge::impact >()->get_parent_frame();
 //         //   if(pframe != nullptr)
 //         //   {
 //         //      pframe->display(e_display_restored);
-//         //      if(pframe->GetTypedParent < ::plugin::host_interaction > () != nullptr)
+//         //      if(pframe->get_typed_parent < ::plugin::host_interaction > () != nullptr)
 //         //      {
-//         //         pframe->GetTypedParent < ::plugin::host_interaction > ()->on_layout(pgraphics);
+//         //         pframe->get_typed_parent < ::plugin::host_interaction > ()->on_layout(pgraphics);
 //         //      }
 //         //      else
 //         //      {
@@ -898,18 +905,18 @@ namespace base
 //         if (get_document() != nullptr)
 //         {
 //
-//            //if(get_document()->get_type_impact < ::bergedge::pane_impact >() != nullptr)
+//            //if(get_document()->get_typed_impact < ::bergedge::pane_impact >() != nullptr)
 //            //{
 //
-//            //   get_document()->get_type_impact < ::bergedge::pane_impact >()->set_current_tab_by_id("app:" + strAppName);
+//            //   get_document()->get_typed_impact < ::bergedge::pane_impact >()->set_current_tab_by_id("app:" + strAppName);
 //
-//            //   puiParent = get_document()->get_type_impact < ::bergedge::pane_impact >()->get_tab_holder(get_document()->get_type_impact < ::bergedge::pane_impact >()->get_tab_by_id("app:" + strAppName));
+//            //   puiParent = get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_tab_holder(get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_tab_by_id("app:" + strAppName));
 //
 //            //}
 //            //else
 //            //{
 //
-//            //   puiParent = get_document()->get_type_impact < ::bergedge::impact >();
+//            //   puiParent = get_document()->get_typed_impact < ::bergedge::impact >();
 //
 //            //}
 //
@@ -1018,7 +1025,7 @@ namespace base
 
       ::point_i32 point = pmouse->m_point;
 
-      pinteraction->screen_to_client(point);
+      pinteraction->screen_to_client()(point);
 
       return track_popup_menu(pinteraction, pitem, iFlags, point, pchannelNotify);
 
@@ -1032,7 +1039,7 @@ namespace base
 
       auto point = pmouse->m_point;
 
-      pinteraction->screen_to_client(point);
+      pinteraction->screen_to_client()(point);
 
       return track_popup_xml_menu(pinteraction, strXml, iFlags, point, ::size_i32(), pchannelNotify);
 

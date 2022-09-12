@@ -1,9 +1,9 @@
 #pragma once
 
 
-//#include "sockets_http_get_socket.h"
-//#include "sockets_http_post_socket.h"
-//#include "sockets_http_put_socket.h"
+#include "get_socket.h"
+#include "post_socket.h"
+#include "put_socket.h"
 
 
 namespace sockets

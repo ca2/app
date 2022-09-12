@@ -1,8 +1,8 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+#include "folder.h"
+#include "file.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "file_function_definitions.h"
 
 
 #ifndef _MAX_PATH

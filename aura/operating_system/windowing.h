@@ -29,7 +29,7 @@
 //CLASS_DECL_AURA int_bool show_window(::windowing::window * pwindow, const ::e_display & edisplay, const ::e_activation & eactivation = e_activation_default);
 //CLASS_DECL_AURA int_bool set_foreground_window(::windowing::window * pwindow);
 
-//CLASS_DECL_AURA int GetMainScreenRect(RECTANGLE_I32 * lprect);
+//CLASS_DECL_AURA int get_main_screen_rectangle(RECTANGLE_I32 * lprect);
 
 
 

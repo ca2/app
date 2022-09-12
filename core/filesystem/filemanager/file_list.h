@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "impact_base.h"
+#include "core/filesystem/userfs/list.h"
+
+
 namespace filemanager
 {
 
@@ -11,7 +15,7 @@ namespace filemanager
    public:
 
       
-      context_menu                        m_contextmenu;
+      __pointer(context_menu)             m_pcontextmenu;
       string_array                        m_straOpenWith;
       bool                                m_bFileSize;
       bool                                m_bShow;

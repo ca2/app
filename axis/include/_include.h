@@ -1,39 +1,38 @@
 #pragma once
 
 
-#ifdef __cplusplus
+#if defined(__MM)
 
 
-#include "aura/include/_.h"
+#include "_c_bridge.h"
+#include "objc.h"
+#include "objcpp.h"
 
 
-#elif defined(__MM)
+#elif defined(__cplusplus)
 
 
-#include "aura/include/_c_bridge.h"
-#include "aura/include/objc.h"
-#include "aura/include/objcpp.h"
+#include "_.h"
 
 
 #elif defined(__M)
 
 
-#include "aura/include/_c.h"
-#include "aura/include/objc.h"
+#include "_c.h"
+#include "objc.h"
 
 
 #elif defined(__cplusplus_winrt)
 
 
-//#include "_c.h"
-#include "aura/include/_.h"
-#include "aura/include/winrt.h"
+#include "_.h"
+#include "winrt.h"
 
 
 #else
 
 
-#include "aura/include/_c_bridge.h"
+#include "_c_bridge.h"
 
 
 #endif

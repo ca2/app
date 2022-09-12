@@ -3,6 +3,13 @@
 #include "_userfs.h"
 #endif
 #include "aura/user/user/shell.h"
+#include "list_data.h"
+#include "list_item_array.h"
+#include "list_item.h"
+#include "core/user/user/mesh.h"
+#include "core/platform/session.h"
+#include "base/user/user/user.h"
+#include "aura/user/user/window_util.h"
 
 
 string _001FileSizeText(i64 i)
@@ -107,6 +114,24 @@ namespace userfs
    }
 
 
+   void list_data::initialize(::object * pobject)
+   {
+
+      ::user::list_data::initialize(pobject);
+
+      __construct_new(m_pitema);
+
+   }
+
+
+   ::userfs::list_item * list_data::item(index i)
+   { 
+      
+      return m_pitema->get_item(i); 
+   
+   }
+
+
    void list_data::_001GetSubItemText(::user::mesh_subitem * psubitem)
    {
 
@@ -118,7 +143,7 @@ namespace userfs
       if(psubitem->m_iSubItem == m_iNameSubItemText)
       {
 
-         if (psubitem->m_pitem->m_iItem < 0 || psubitem->m_pitem->m_iItem >= m_itema.get_size())
+         if (psubitem->m_pitem->m_iItem < 0 || psubitem->m_pitem->m_iItem >= m_pitema->get_size())
          {
 
             psubitem->m_bOk = false;
@@ -132,7 +157,7 @@ namespace userfs
          try
          {
 
-            psubitem->m_strText = m_itema.get_item((::index)psubitem->m_pitem->m_iItem)->m_strName;
+            psubitem->m_strText = m_pitema->get_item((::index)psubitem->m_pitem->m_iItem)->m_strName;
 
          }
          catch (...)
@@ -150,7 +175,7 @@ namespace userfs
          /*      bool bPendingSize = false;
 
                bool bGet;
-               bGet = psystem->get_fs_size(str, m_itema.get_item(iItem).m_strPath, bPendingSize);
+               bGet = psystem->get_fs_size(str, m_pitema->get_item(iItem).m_strPath, bPendingSize);
                if(bGet)
                {
                   m_straFileSize.set_at_grow(iItem, str);
@@ -164,7 +189,7 @@ namespace userfs
                }
                if(bPendingSize)
                {
-                  schedule_file_size(m_itema.get_item(iItem).m_strPath);
+                  schedule_file_size(m_pitema->get_item(iItem).m_strPath);
                   m_bPendingSize = true;
                }*/
 
@@ -173,9 +198,9 @@ namespace userfs
          try
          {
 
-            //::file::path path = pcontext->m_papexcontext->defer_process_path(m_itema.get_item(pitem->m_iItem)->m_filepathUser);
+            //::file::path path = pcontext->m_papexcontext->defer_process_path(m_pitema->get_item(pitem->m_iItem)->m_filepathUser);
 
-            //if (!m_itema.m_parray->contains_index(pitem->m_iItem) || m_itema[pitem->m_iItem].is_null())
+            //if (!m_pitema->m_parray->contains_index(pitem->m_iItem) || (*m_pitema)[pitem->m_iItem].is_null())
             //{
 
             //   pitem->m_bOk = false;
@@ -184,12 +209,12 @@ namespace userfs
 
             //}
 
-            auto & path = m_itema[psubitem->m_pitem->m_iItem]->final_path_reference();
+            auto & path = (*m_pitema)[psubitem->m_pitem->m_iItem]->final_path_reference();
 
             if (path.m_iDir < 0)
             {
 
-               m_itema[psubitem->m_pitem->m_iItem]->set_final_path_dir(pcontext->m_papexcontext->dir().is(path) ? 1 : 0);
+               (*m_pitema)[psubitem->m_pitem->m_iItem]->set_final_path_dir(pcontext->m_papexcontext->dir().is(path) ? 1 : 0);
 
             }
 
@@ -254,7 +279,7 @@ namespace userfs
    ::count list_data::_001GetItemCount()
    {
 
-      return m_itema.get_count();
+      return m_pitema->get_count();
 
    }
 
@@ -273,7 +298,7 @@ namespace userfs
       if(psubitem->m_iSubItem == m_iNameSubItemText)
       {
 
-         if (psubitem->m_pitem->m_iItem < 0 || psubitem->m_pitem->m_iItem >= m_itema.get_size())
+         if (psubitem->m_pitem->m_iItem < 0 || psubitem->m_pitem->m_iItem >= m_pitema->get_size())
          {
 
             psubitem->m_bOk = false;
@@ -290,7 +315,7 @@ namespace userfs
             if (psubitem->m_iImage < 0)
             {
 
-               auto & pathFinal = m_itema.get_item((::index)psubitem->m_pitem->m_iItem)->final_path();
+               auto & pathFinal = m_pitema->get_item((::index)psubitem->m_pitem->m_iItem)->final_path();
 
                __pointer(::core::session) psession = get_session();
 

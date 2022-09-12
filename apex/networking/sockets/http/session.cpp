@@ -1,13 +1,12 @@
 #include "framework.h" 
-#include "apex/id.h"
-#include "apex/networking/sockets/_sockets.h"
+#include "session.h"
 
 
-#ifdef LINUX
-
-#include <sys/time.h>
-
-#endif
+//#ifdef LINUX
+//
+//#include <sys/time.h>
+//
+//#endif
 
 namespace sockets
 {
@@ -27,7 +26,7 @@ namespace sockets
       http_put_socket(handler)*/
    {
 
-      m_bEnablePool = false;
+      //m_bEnablePool = false;
       m_strProtocol                 = protocol;
       m_host                        = host;
 
@@ -35,15 +34,15 @@ namespace sockets
 
       m_request.m_propertysetHeader[__id(host)] = host;
 
-      m_strUrl                      = protocol + "://" + host;
+      set_url(protocol + "://" + host);
 
       if(protocol == "http")
          m_port = 80;
       else
          m_port = 443;
 
-      m_strConnectHost              = m_host;
-      m_iConnectPort                = m_port;
+      set_connect_host(m_host);
+      set_connect_port(m_port);
 
       m_bRequestComplete            = false;
 
@@ -70,9 +69,9 @@ namespace sockets
       m_emethod                     = emethod;
       inattr(__id(request_uri))     = strRequest;
       inattr(__id(http_protocol))   = m_strProtocol;
-      m_strUrl                      = m_strProtocol + "://" + GetUrlHost() + inattr("request_uri");
+      set_url(m_strProtocol + "://" + GetUrlHost() + inattr("request_uri"));
       inattr(__id(http_version))    = "HTTP/1.1";
-      m_b_keepalive                 = true;
+      //m_b_keepalive                 = true;
       m_content_ptr                 = 0;
 
       if(m_bRequestComplete)

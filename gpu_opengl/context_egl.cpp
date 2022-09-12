@@ -1,8 +1,7 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
 #include "context_egl.h"
+#include "aura/platform/system.h"
+#include "opengl.h"
 
 
 namespace opengl

@@ -5,7 +5,7 @@ project(compress_zlib CXX)
 list(APPEND library_source
    _.cpp
    _.h
-   _library.h
+   ##_library.h
    compress.cpp
    compress.h
    uncompress.cpp

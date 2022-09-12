@@ -1,5 +1,6 @@
 #include "framework.h"
-#include "_.h"
+#include "session.h"
+#include "script_manager.h"
 #include "acme/primitive/text/international_locale_schema.h"
 
 

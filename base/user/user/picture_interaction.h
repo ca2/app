@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "picture.h"
+#include "aura/user/user/interaction.h"
+
+
 namespace user
 {
 

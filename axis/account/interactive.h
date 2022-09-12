@@ -4,6 +4,8 @@
 //
 //  Created by Camilo Sasuke Tsumanuma on 12/12/18.
 //
+#pragma once
+
 
 namespace account
 {

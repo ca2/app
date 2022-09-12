@@ -8,6 +8,12 @@
 #include "_data.h"
 #include "aura/template/list.h"
 #include "core/user/user/_tree.h"
+#include "document.h"
+#include "core/filesystem/userfs/item.h"
+#include "data.h"
+#include "context_menu.h"
+#include "base/user/user/user.h"
+#include "aura/message/user.h"
 
 
 namespace filemanager
@@ -219,7 +225,7 @@ namespace filemanager
 
       auto pcontext = get_context();
 
-      auto pointOffset = get_impactport_offset();
+      auto pointOffset = get_context_offset();
 
       ::file::path pathUser = filemanager_path();
 
@@ -483,7 +489,7 @@ namespace filemanager
       queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
          {
 
-            set_impactport_offset(pgraphics, pointOffset.x, pointOffset.y);
+            set_context_offset(pgraphics, pointOffset.x, pointOffset.y);
 
          });
 
@@ -781,7 +787,7 @@ namespace filemanager
    void tree::_001OnShellCommand(::message::message * pmessage)
    {
 
-      m_contextmenu.OnCommand(pmessage->GetId());
+      m_pcontextmenu->OnCommand(pmessage->GetId());
 
    }
 

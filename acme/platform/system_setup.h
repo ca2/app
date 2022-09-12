@@ -142,7 +142,7 @@ __namespace_object_factory(SESSION,:: system_setup::flag_session)
 
 
 
-template < typename APPLICATION >
+template < typename APPLICATION_TYPE >
 class static_application_factory :
    public system_setup
 {
@@ -152,7 +152,7 @@ public:
    virtual __pointer(::element) _create_application_as_element() override
    {
 
-      auto papp = __new(APPLICATION);
+      auto papp = __new(APPLICATION_TYPE);
 
       return papp;
 

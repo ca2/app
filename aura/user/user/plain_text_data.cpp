@@ -1,9 +1,9 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
-#include "_data.h"
-//#include "_tree.h"
+#include "plain_text_tree.h"
+#include "apex/filesystem/file/edit_file.h"
 
 
 namespace user

@@ -1,10 +1,13 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "aura/graphics/graphics/multiple_buffer.h"
 #include "_.h"
 #include "_graphics.h"
+#include "aura/user/user/interaction.h"
+#include "aura/user/user/interaction_impl.h"
+#include "aura/graphics/image/array.h"
 
 
 namespace graphics
@@ -44,17 +47,19 @@ namespace graphics
 
       //}
 
+      __construct_new(m_pimageaBuffer);
+
 #ifdef MACOS
 
-      m_imageaBuffer.set_size(3);
+      m_pimageaBuffer->m_imagea.set_size(3);
 
 #else
 
-      m_imageaBuffer.set_size(5);
+      m_pimageaBuffer->m_imagea.set_size(5);
 
 #endif
 
-      for (auto & pimage : m_imageaBuffer)
+      for (auto & pimage : m_pimageaBuffer->imagea())
       {
 
          __construct(pimage);
@@ -63,7 +68,7 @@ namespace graphics
 
       }
 
-      m_mutexa.set_size(m_imageaBuffer.get_size());
+      m_mutexa.set_size(m_pimageaBuffer->image_count());
 
       //return estatus;
 
@@ -86,7 +91,7 @@ namespace graphics
       //if (m_imageaBuffer[m_iBuffer]->size() != sizeBuffer)
       {
 
-         m_imageaBuffer[m_iBuffer]->create(sizeBuffer);
+         m_pimageaBuffer->image_at(m_iBuffer)->create(sizeBuffer);
 
          //if (!m_imageaBuffer[m_iBuffer]->create(sizeBuffer))
          //{
@@ -97,7 +102,7 @@ namespace graphics
 
       }
 
-      ::image_pointer & pimage = m_imageaBuffer[m_iBuffer];
+      ::image_pointer & pimage = m_pimageaBuffer->image_at(m_iBuffer);
 
       if (!pimage)
       {
@@ -126,19 +131,19 @@ namespace graphics
 
       bool bBigger = false;
 
-      if (m_imageaBuffer.get_size() == 1)
+      if (m_pimageaBuffer->image_count() == 1)
       {
 
          return 0;
 
       }
 
-      if (m_imageaBuffer[m_iDone])
+      if (m_pimageaBuffer->image_at(m_iDone))
       {
 
          iFound = m_iDone;
 
-         ::size_i32 sizeBuffer = m_imageaBuffer[iFound]->get_size();
+         ::size_i32 sizeBuffer = m_pimageaBuffer->image_at(iFound)->get_size();
 
          bBigger = sizeBuffer.cx > size.cx || sizeBuffer.cy > size.cy;
 
@@ -154,14 +159,14 @@ namespace graphics
 
          }
 
-         if (!m_imageaBuffer[i])
+         if (!m_pimageaBuffer->image_at(i))
          {
 
             break;
 
          }
 
-         ::size_i32 sizeBuffer = m_imageaBuffer[i]->get_size();
+         ::size_i32 sizeBuffer = m_pimageaBuffer->image_at(i)->get_size();
 
          if (size == sizeBuffer)
          {
@@ -192,7 +197,7 @@ namespace graphics
       if (!bFoundExact)
       {
 
-         for (index i = m_imageaBuffer.get_upper_bound(); i > m_iDone; i--)
+         for (index i = m_pimageaBuffer->m_imagea.get_upper_bound(); i > m_iDone; i--)
          {
 
             if(i == m_iBuffer)
@@ -202,14 +207,14 @@ namespace graphics
 
             }
 
-            if (!m_imageaBuffer[i])
+            if (!m_pimageaBuffer->image_at(i))
             {
 
                break;
 
             }
 
-            ::size_i32 sizeBuffer = m_imageaBuffer[i]->get_size();
+            ::size_i32 sizeBuffer = m_pimageaBuffer->image_at(i)->get_size();
 
             if (sizeBuffer == size)
             {
@@ -265,7 +270,7 @@ namespace graphics
       else
       {
 
-         iAge = (int)(m_imageaBuffer.get_count() - iGot + m_iDone);
+         iAge = (int)(m_pimageaBuffer->image_count() - iGot + m_iDone);
 
       }
 
@@ -317,7 +322,7 @@ namespace graphics
 
       m_iBuffer++;
 
-      m_iBuffer %= m_imageaBuffer.get_count();
+      m_iBuffer %= m_pimageaBuffer->image_count();
 
       return true;
 
@@ -346,7 +351,7 @@ namespace graphics
    ::image_pointer & multiple_buffer::get_screen_image()
    {
 
-      return m_imageaBuffer[m_iScreen];
+      return m_pimageaBuffer->image_at(m_iScreen);
 
    }
 

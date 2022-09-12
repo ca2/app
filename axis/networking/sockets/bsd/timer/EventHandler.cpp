@@ -28,7 +28,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-#include "axis/networking/_networking.h"
+#include "event_handler.h"
+#include "event_time.h"
+#include "event.h"
+#include "ievent_owner.h"
+#include "apex/networking/sockets/basic/tcp_socket.h"
+#include "apex/networking/sockets/basic/listen_socket.h"
+#include "apex/networking/networking.h"
 
 
 namespace sockets
@@ -233,19 +239,19 @@ namespace sockets
 
    void EventHandler::EventLoop()
    {
-      while (!m_bQuit)
-      {
-         struct timeval tv;
-         if (GetTimeUntilNextEvent(&tv))
-         {
-            select(&tv);
-            CheckEvents();
-         }
-         else
-         {
-            select();
-         }
-      }
+//      while (!m_bQuit)
+//      {
+//         struct timeval tv;
+//         if (GetTimeUntilNextEvent(&tv))
+//         {
+//            select(&tv);
+//            CheckEvents();
+//         }
+//         else
+//         {
+//            select();
+//         }
+//      }
    }
 
 
@@ -295,7 +301,11 @@ namespace sockets
 #ifdef ENABLE_RECONNECT
          m_ptcpsocket -> SetReconnect(true);
 #endif
-         m_ptcpsocket -> open(::net::address("127.0.0.1", m_port));
+         
+         auto paddress = m_psystem->m_papexsystem->networking()->create_address("127.0.0.1", m_port);
+//         m_ptcpsocket -> open(::networking::address("127.0.0.1", m_port));
+         
+         m_ptcpsocket -> open(paddress);
 
          socket_handler::add2(m_ptcpsocket);
 

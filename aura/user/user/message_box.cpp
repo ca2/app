@@ -3,9 +3,19 @@
 //
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "aura/graphics/draw2d/graphics.h"
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/display.h"
+#include "message_box.h"
+#include "button.h"
+#include "still.h"
+#include "aura/message/user.h"
+#include "interaction_scaler.h"
+#include "user.h"
+#include "style.h"
+#include "aura/platform/session.h"
 
 
 namespace user
@@ -33,7 +43,7 @@ namespace user
    }
 
 
-   __pointer(::sequence < ::conversation >) message_box::show(::user::interaction * puserinteraction, const string & strMessageParam, const string & strTitle, const ::e_message_box & emessagebox)
+   __pointer(::sequencer < ::conversation >) message_box::show(::user::interaction * puserinteraction, const string & strMessageParam, const string & strTitle, const ::e_message_box & emessagebox)
    {
 
       auto emessageboxType = emessagebox & e_message_box_type_mask;
@@ -87,14 +97,14 @@ namespace user
    }
 
 
-   __pointer(::sequence < ::conversation >) default_message_box::show(::user::interaction * puserinteraction, const string& strMessageParam, const string& strTitle, const ::e_message_box& emessagebox)
+   __pointer(::sequencer < ::conversation >) default_message_box::show(::user::interaction * puserinteraction, const string& strMessageParam, const string& strTitle, const ::e_message_box& emessagebox)
    {
 
-      auto psequence = __new(::sequence <::conversation >());
+      auto psequencer = __new(::sequencer <::conversation >());
 
-      psequence->m_p = this;
+      psequencer->m_psequence = this;
 
-      payload("sequence<conversation>") = psequence;
+      payload("sequence<conversation>") = psequencer;
 
       string strMessage(strMessageParam);
 
@@ -114,8 +124,8 @@ namespace user
 
       m_pbuttonClose->set_stock_icon(::e_stock_icon_close);
 
-      m_pbuttonClose->m_flagNonClient -= non_client_background;
-      m_pbuttonClose->m_flagNonClient -= non_client_focus_rect;
+      m_pbuttonClose->m_flagNonClient -= e_non_client_background;
+      m_pbuttonClose->m_flagNonClient -= e_non_client_focus_rect;
 
       ::user::message_box::show(puserinteraction, strMessageParam, strTitle, emessagebox);
 
@@ -153,7 +163,7 @@ namespace user
 
       do_show();
 
-      return psequence;
+      return psequencer;
 
    }
 
@@ -249,7 +259,7 @@ namespace user
       else if (ptopic->m_atom == ::id_click)
       {
 
-         m_atomResult = ptopic->m_puserelement->m_atom;
+         m_payloadResult = ptopic->m_puserelement->m_atom;
 
          m_estatus = ::success;
 

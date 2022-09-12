@@ -1,7 +1,6 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+#include "compress.h"
+#include "uncompress.h"
 
 
 __FACTORY_EXPORT void compress_zlib_factory(::factory::factory * pfactory)

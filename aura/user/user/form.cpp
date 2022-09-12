@@ -1,7 +1,11 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
+#include "form.h"
+#include "aura/message/user.h"
+#include "form_callback.h"
+#include "aura/platform/session.h"
 
 
 namespace user
@@ -25,6 +29,38 @@ namespace user
 
 
    }
+
+
+::aura::application* form::get_app() const
+{
+   
+   return ::is_set(m_pcontext) ? m_pcontext->m_pauraapplication : nullptr;
+   
+   
+}
+::aura::session* form::get_session() const
+{
+   
+   return ::is_set(m_pcontext) ? m_pcontext->m_paurasession : nullptr;
+   
+   
+}
+::aura::system* form::get_system() const
+{
+   
+   return ::is_set(m_psystem) ? m_psystem->m_paurasystem : nullptr;
+   
+
+
+}
+::user::user * form::user() const
+{
+   
+   
+   return get_session() ? get_session()->user() : nullptr;
+   
+   
+}
 
 
    //enum_control_type form::get_control_type() const
@@ -200,6 +236,22 @@ namespace user
       return false;
 
    }
+
+
+//   ::aura::application * form::get_app() const
+//   {
+//
+//      return m_pcontext ? m_pcontext->m_pauraapplication : nullptr;
+//
+//   }
+//
+//
+//   ::aura::session * form::get_session() const
+//   {
+//
+//      return m_pcontext ? m_pcontext->m_paurasession : nullptr;
+//
+//   }
 
 
 } // namespace user

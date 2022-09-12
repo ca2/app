@@ -70,7 +70,7 @@ namespace factory
       {
 
          return __new(TYPE);
-
+            
       }
 
 

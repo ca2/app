@@ -1,5 +1,6 @@
 #include "framework.h"
-#include "core/user/simple/_component.h"
+#include "core/user/simple/mesh_data.h"
+#include "core/user/user/list_column.h"
 
 
 simple_mesh_data::simple_mesh_data()

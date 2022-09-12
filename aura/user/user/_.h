@@ -4,18 +4,58 @@
 #include  "apex/_.h"
 
 
-namespace graphics
+#include "_constant.h"
+
+
+#include "_struct.h"
+
+
+namespace aura
 {
 
 
-   class graphics;
+   class draw_context;
 
 
-} // namespace graphics
+} // namespace aura
+
+
+namespace appearance
+{
+
+
+   class appearance;
+
+
+} // namespace appearance
+
+
+namespace windowing
+{
+
+
+   class windowing;
+   class display;
+   class icon;
+
+
+} // namespace windowing
+
 
 
 namespace user
 {
+
+
+   class interation;
+
+   class interaction_impl;
+
+   class interaction_scaler;
+
+   class style;
+
+   class alpha_source;
 
    class button;
 
@@ -27,29 +67,160 @@ namespace user
 
    class message;
 
+   class frame;
+
    class frame_window;
 
+   class tool_window;
+
+   class control_bar;
+
+   class toolbar;
+
+   class scroll_info;
+
+   class scroll_bar;
+
+   class scroll_data;
+
+   class split_layout;
+
+   class notify_icon;
+
+   class primitive_pointer_array;
+
+   class shell;
+
+   class text_composition_client_base;
+   class text_composition_client;
+   class text_composition_composite;
+
+
+   class progress;
+
+
+   CLASS_DECL_AURA bool is_descendant(::user::interaction * puiParent, ::user::interaction * puiChild);
+
+
+   //class form;
+   class tooltip;
+
+
+
+   class copydesk;
+   //class system;
+   class control_event;
+   //class control_descriptor;
+   class interaction_child;
+   class interaction_impl;
+   class interaction_array;
+
+
+   class interaction_ptra;
+
+
+   //class place_holder;
+   //class tab;
+   //class tab_pane;
+   //class check_box;
+   //class menu_interaction;
+   //class menu_button;
+   //class menu_item;
+   //class menu_item_ptra;
+   //class frame_window;
+   class toolbar;
+   class scroll_bar;
+   class split_layout;
+   class style;
+   class scroll_info;
+   //class window_map;
+   //class system_interaction;
+
+
+   //class place_holder;
+
+   //#if defined _UWP
+   //
+   //   class CLASS_DECL_AURA native_window_initialize
+   //   {
+   //   public:
+   //
+   //
+   //      Agile < ::winrt::Windows::UI::Core::CoreWindow >         m_window;
+   //      ::aura::system_window ^                         m_pwindow;
+   //
+   //
+   //   };
+   //
+   //#elif defined(APPLE_IOS) || defined(ANDROID)
+#if defined(APPLE_IOS) || defined(ANDROID)
+
+   class CLASS_DECL_AURA native_window_initialize
+   {
+   public:
+
+      RECTANGLE_I32   m_rectangle;
+
+   };
+
+#else
+
+   class native_window_initialize;
+
+#endif
+
+
+   class control_bar;
+
+
+   class control_event;
+   //class frame_window;
+
+   class notify_icon;
 
 } // namespace user
 
 
-#include "control_event_listener.h"
+class prodevian;
 
 
-#include "aura/graphics/user/control_box_button.h"
-#include "aura/graphics/user/control_box_icon.h"
+namespace experience
+{
+
+   class updown;
+
+} // namespace experience
+
+//#include "control_event_listener.h"
+namespace message
+{
 
 
-#include "aura/platform/drawable.h"
-#include "aura/user/user/layout_state.h"
+   class key;
+   class drag_and_drop;
+   class mouse_base;
+
+
+} // namespace message
+
+
+//#include "aura/graphics/user/control_box_button.h"
+//#include "aura/graphics/user/control_box_icon.h"
+
+
+//#include "aura/platform/drawable.h"
+//#include "aura/user/user/layout_state.h"
 //#include "aura/user/callback.h"
 
 
-#include "aura/user/user/style_control.h"
+//#include "aura/user/user/style_control.h"
+//
+//
+//#include "aura/user/user/style_base.h"
+//#include "aura/user/user/style.h"
 
 
-#include "aura/user/user/style_base.h"
-#include "aura/user/user/style.h"
+class zorder;
 
 
 class form_document;
@@ -59,12 +230,25 @@ namespace user
 {
 
 
+
+   //class interaction_impl;
+//class frame_window;
+   class mdi_child_window;
+   //class control_bar;
+
+
+   struct PrintThumbnailState;  // forward object (see afxext.h)
+
+
    class user;
    class interaction_array;
    class keyboard;
    class copydesk;
    class main_frame;
    class plain_edit;
+
+
+   class system;
 
 
 #ifdef WINDOWS_DESKTOP
@@ -78,38 +262,161 @@ namespace user
    class plain_text_tree;
    class plain_text_command;
    class tree_draw_item;
+   class interaction_child;
+   class box;
+   class control_style;
+   class plain_edit_style;
+   //class plain_edit_style;
+   class form_callback;
+   class impact;
+   class key;
+   class thread;
+
+   namespace rich_text
+   {
+
+
+      class edit_impl;
+
+
+   } // namespace rich_text
+
+
+   //class menu_item_ptra;
+   //class menu_item;
+   //class menu_item_ptra;
+   class front_end;
+   //class menu_item;
+
+   //class list_column_array;
+
+      //class list_header;
+   class scroll_bar;
+   //class list_column_array;
+
+   namespace rich_text
+   {
+
+
+      class edit;
+      class data;
+
+
+   }  // namespace rich_text
 
 
 } // namespace user
 
 
+struct CPrintThumbnailState;  // forward object (see afxext.h)
+namespace user
+{
+   class control_bar;          // forward object (see afxext.h)
+}
+
+
+class mini_dock_frame_window;    // forward object (see afxpriv.h)
+struct __SIZEPARENTPARAMS;
+
+
+#if defined(LINUX) || defined(FREEBSD)
+typedef struct _AppIndicator AppIndicator;
+#endif
+
+namespace user
+{
+
+   class shell;
+
+} // namespace user
+
+
+namespace user
+{
+
+
+   class user;
+
+
+} // namespace user
+
+
+
+namespace userex
+{
+
+
+   class color_impact;
+
+
+} // namespace userex
+
+
+class cregexp;
+
+namespace database
+{
+
+   class selection;
+
+} // namespace database
+
+class image_list;
+//class simple_list_data;
+
 CLASS_DECL_AURA ::user::primitive* __user_primitive(::windowing::window * pwindow);
 
+inline wparam __scroll_message_wparam(enum_scroll_command ecommand, int iPosition)
+{
 
-#include "system.h"
+   return ((((int)ecommand) & 0xffff) | ((iPosition << 16) & 0xffff0000));
 
-#include "acme/constant/button_state.h"
-
-//#include "mouse.h"
-
-#include "aura/user/user/message.h"
-
-#include "windowing.h"
-
-#include "key.h"
-
-#include "acme/constant/activate.h"
-
-#include "aura/message/user.h"
-
-
-#include "range.h"
+}
 
 
 
+//#include "system.h"
+//
+//#include "acme/constant/button_state.h"
+//
+////#include "mouse.h"
+//
+//#include "aura/user/user/message.h"
+//
+//#include "windowing.h"
+//
+//#include "key.h"
+//
+//#include "acme/constant/activate.h"
+//
+//#include "aura/message/user.h"
+//
+//
+//#include "range.h"
+//
+//
+//#include "aura/user/user/interaction.h"
+//
+//
+//#include "aura/user/user/button.h"
+//
+//
+////#include "message_window_listener.h"
 
 
-//#include "message_window_listener.h"
+
+
+
+
+struct __SIZEPARENTPARAMS;    // control bar implementationproperca2_property.h
+
+// Classes declared in this file
+
+//::draw2d::graphics_pointer
+class thumbnail_dc;               // Virtual DC for print thumbnail
+
+class mini_dock_frame_window;
+
 
 
 

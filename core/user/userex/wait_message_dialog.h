@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "dialog.h"
+
+
 namespace userex
 {
 

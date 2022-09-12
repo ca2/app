@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "impact_base.h"
+#include "aura/user/user/plain_edit.h"
+
+
 namespace filemanager
 {
 

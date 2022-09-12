@@ -3,7 +3,7 @@ project(nanogui CXX)
 
 
 list(APPEND library_source
-   nano2d/_component.h
+   #nano2d/_component.h
    nano2d/context.cpp
    nano2d/context.h
    nano2d/draw2d_context.cpp
@@ -13,7 +13,7 @@ list(APPEND library_source
    nano2d/nano2d.cpp
     _.cpp
     _.h
-    _library.h
+    ##_library.h
     Button.cpp
     Button.h
     Canvas.cpp
@@ -84,7 +84,7 @@ list(APPEND library_references
    )
 
 
-add_library(${PROJECT_NAME}  SHARED ${library_source})
+add_library(${PROJECT_NAME}  SHARED ${library_source} _function.h _constant.h)
 
 
 target_precompile_headers(${PROJECT_NAME}  PRIVATE framework.h)

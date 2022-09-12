@@ -1,8 +1,9 @@
 // From mesh.cpp by camilo on 2022-06-29 05:35 <3ThomasBorregaardSorensen!! ThomasLikesNumber5
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "core/user/user/_user.h"
+//#include "core/user/user/_component.h"
 #endif
+#include "mesh_item.h"
 
 
 
@@ -123,14 +124,14 @@ namespace user
 
    __pointer(::image_list) draw_mesh_subitem::get_image_list()
    {
-      //if(m_bListItemHover && m_pcolumn->m_pilHover != nullptr)
+      //if(m_bListItemHover && m_pcolumn->m_pimagelistHover != nullptr)
       //if(m_bListItemHover)
       //{
-      //   return m_pcolumn->m_pilHover;
+      //   return m_pcolumn->m_pimagelistHover;
       //}
       //else
       //{
-      //   return m_pcolumn->m_pil;
+      //   return m_pcolumn->m_pimagelist;
       //}
 
       return nullptr;

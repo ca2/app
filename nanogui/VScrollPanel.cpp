@@ -10,14 +10,11 @@
     BSD-style license that can be found in the LICENSE.txt file.
 */
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+#include "VScrollPanel.h"
+#include "Screen.h"
+#include "aura/user/user/interaction.h"
+#include "aura/windowing/windowing.h"
 
-//
-//#include <nanogui/vscrollpanel.h>
-//#include <nanogui/theme.h>
-//#include <nanogui/opengl.h>
 
 NAMESPACE_BEGIN(nanogui)
 
@@ -119,7 +116,7 @@ bool VScrollPanel::mouse_button_event(const Vector2i & p, int button, bool down,
    if (Widget::mouse_button_event(p, button, down, ekeyModifiers))
       return true;
 
-   if (down && button == __MOUSE_LEFT_BUTTON && !m_children.empty() &&
+   if (down && button == ::user::e_mouse_left_button && !m_children.empty() &&
       m_child_preferred_height > m_size.y() &&
       p.x() > m_pos.x() + m_size.x() - 13 &&
       p.x() < m_pos.x() + m_size.x() - 4) 

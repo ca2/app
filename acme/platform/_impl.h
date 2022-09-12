@@ -710,8 +710,8 @@ inline i64 ref_count(c_derived * pca)
 #ifndef __cplusplus_winrt
 
 
-template < typename TYPE >
-sequence < TYPE > ::sequence()
+template < typename SEQUENCE >
+sequencer < SEQUENCE > ::sequencer()
 {
 
    //m_ptask = ::get_task();
@@ -753,8 +753,8 @@ sequence < TYPE > ::sequence()
 //}
 
 
-template < typename TYPE >
-void sequence < TYPE > ::fork()
+template < typename SEQUENCE >
+void sequencer < SEQUENCE > ::fork()
 {
 
    m_psystem->fork(__routine([this]()
@@ -767,8 +767,8 @@ void sequence < TYPE > ::fork()
 }
 
 
-template < typename TYPE >
-void sequence < TYPE > ::on_sequence()
+template < typename SEQUENCE >
+void sequencer < SEQUENCE > ::on_sequence()
 {
 
    critical_section_lock lock(get_sequence_critical_section());
@@ -779,15 +779,15 @@ void sequence < TYPE > ::on_sequence()
       m_pevent->SetEvent();
 
    }
-   
-   while(m_stepa.has_element())
+
+   while (m_stepa.has_element())
    {
 
-      auto pfunction = m_stepa.pop_first();
+      auto step = m_stepa.pop_first();
 
       lock.unlock();
 
-      pfunction->process(*this);
+      step(m_psequence);
 
       lock.lock();
 
@@ -796,8 +796,8 @@ void sequence < TYPE > ::on_sequence()
 }
 
 
-//template < typename TYPE >
-//void sequence < TYPE > ::set_status(const ::e_status & estatus)
+//template < typename SEQUENCE >
+//void sequencer < SEQUENCE > ::set_status(const ::e_status & estatus)
 //{
 //
 //   critical_section_lock lock(get_sequence_critical_section());
@@ -837,13 +837,13 @@ void sequence < TYPE > ::on_sequence()
 //
 //}
 
-template < typename TYPE >
-TYPE & sequence < TYPE > ::topic(const ::duration& duration)
+template < typename SEQUENCE >
+sequence < SEQUENCE > * sequencer < SEQUENCE > ::topic(const ::duration& duration)
 {
 
    critical_section_lock lock(get_sequence_critical_section());
 
-   if (m_p.m_estatus == error_not_initialized)
+   if (m_psequence.m_estatus == error_not_initialized)
    {
 
       m_pevent = new manual_reset_event();
@@ -853,10 +853,10 @@ TYPE & sequence < TYPE > ::topic(const ::duration& duration)
 
          lock.lock();
 
-         if (m_p.m_estatus == error_not_initialized)
+         if (m_psequence.m_estatus == error_not_initialized)
          {
 
-            m_p.m_estatus = error_timeout;
+            m_psequence.m_estatus = error_timeout;
 
          }
 
@@ -866,18 +866,18 @@ TYPE & sequence < TYPE > ::topic(const ::duration& duration)
 
    }
 
-   return m_p;
+   return this->m_p;
 
 }
 
 
-template < typename TYPE >
-::e_status sequence < TYPE > ::wait(const class ::wait& wait)
+template < typename SEQUENCE >
+::e_status sequencer < SEQUENCE > ::wait(const class ::wait& wait)
 {
 
    critical_section_lock lock(get_sequence_critical_section());
 
-   if (m_p.m_estatus == error_not_initialized)
+   if (m_psequence.m_estatus == error_not_initialized)
    {
 
       m_pevent = __new(manual_reset_event);
@@ -889,10 +889,10 @@ template < typename TYPE >
 
          lock.lock();
 
-         if (m_p.m_estatus == error_not_initialized)
+         if (m_psequence.m_estatus == error_not_initialized)
          {
 
-            m_p.m_estatus = error_wait_timeout;
+            m_psequence.m_estatus = error_wait_timeout;
 
          }
 
@@ -902,22 +902,21 @@ template < typename TYPE >
 
    }
 
-   return m_p.m_estatus;
+   return m_psequence.m_estatus;
 
 }
 
 
-template < typename TYPE >
-template < typename OPERATION >
-sequence < TYPE > & sequence < TYPE > ::then(OPERATION operation)
+template < typename SEQUENCE >
+sequence < SEQUENCE > * sequencer < SEQUENCE > ::then(const sequence_step < SEQUENCE > & step)
 {
 
    critical_section_lock lock(get_sequence_critical_section());
 
-   if (m_p)
+   if (m_psequence.is_set())
    {
 
-      m_stepa.add(__new(step_operation < OPERATION >(operation)));
+      m_stepa.add(step);
 
    }
    else
@@ -925,26 +924,25 @@ sequence < TYPE > & sequence < TYPE > ::then(OPERATION operation)
 
       lock.unlock();
 
-      operation(*this);
+      step(m_psequence);
 
    }
    
-   return *this;
+   return m_psequence;
 
 }
 
 
-template < typename TYPE >
-template < typename OPERATION >
-sequence < TYPE > & sequence < TYPE > ::then(const ::duration& duration, OPERATION operation)
+template < typename SEQUENCE >
+sequence < SEQUENCE > * sequencer < SEQUENCE > ::then(const ::duration& duration, const sequence_step < SEQUENCE > & step)
 {
 
    critical_section_lock lock(get_sequence_critical_section());
 
-   if (m_p.m_estatus == error_not_initialized)
+   if (m_psequence.m_estatus == error_not_initialized)
    {
 
-      m_stepa.add(__new(step_operation < OPERATION >(operation)));
+      m_stepa.add(step);
 
       m_pevent = new manual_reset_event();
 
@@ -955,19 +953,19 @@ sequence < TYPE > & sequence < TYPE > ::then(const ::duration& duration, OPERATI
 
          lock.lock();
 
-         if (m_p.m_estatus == error_not_initialized)
+         if (m_psequence.m_estatus == error_not_initialized)
          {
 
-            m_p.m_estatus = error_timeout;
+            m_psequence.m_estatus = error_timeout;
 
          }
 
          lock.unlock();
 
-         if (m_p.m_estatus == error_timeout)
+         if (m_psequence.m_estatus == error_timeout)
          {
 
-            operation(*this);
+            step(m_psequence);
 
          }
 
@@ -979,11 +977,11 @@ sequence < TYPE > & sequence < TYPE > ::then(const ::duration& duration, OPERATI
 
       lock.unlock();
 
-      operation(*this);
+      step(m_psequence);
 
    }
 
-   return *this;
+   return m_psequence;
 
 }
 

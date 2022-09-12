@@ -1,12 +1,15 @@
 #include "framework.h"
 #include "aura/graphics/image/context_image.h"
-#include "aura/graphics/draw2d/_component.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
-
-#include "aura/update.h"
-//#include "image_list.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/graphics/image/array.h"
+#include "image_list.h"
+#include "top_edit_impact.h"
+#include "aura/message/user.h"
+#include "base/user/user/document.h"
+#include "base/user/user/impact.h"
+#include "base/user/user/impact_system.h"
+#include "base/platform/application.h"
+#include "core/platform/session.h"
 
 
 namespace userex
@@ -94,9 +97,9 @@ namespace userex
 
          synchronous_lock synchronouslock(mutex());
 
-         m_imageaThumb.erase_all();
+         m_pimageaThumb->m_imagea.clear();
 
-         m_imagea.erase_all();
+         m_pimagea->m_imagea.clear();
 
          auto pcontext = m_pcontext;
 
@@ -180,7 +183,7 @@ namespace userex
 
                   i++;
 
-                  m_imagea.add(pimage1);
+                  m_pimagea->add_image(pimage1);
 
                   set_need_layout();
 
@@ -246,7 +249,7 @@ namespace userex
 
    //   const ::point_i32 & point = pmouse->m_point;
 
-   //   screen_to_client(point);
+   //   screen_to_client()(point);
 
    //   int iMenuSel;
 
@@ -273,7 +276,7 @@ namespace userex
 
    //   const ::point_i32 & point = pmouse->m_point;
 
-   //   screen_to_client(point);
+   //   screen_to_client()(point);
 
    //   int iMenuHover;
 
@@ -354,14 +357,14 @@ namespace userex
       if (ptopic->m_atom == id_after_change_text)
       {
 
-         auto * peditview = _001TypedWindow < ::userex::top_edit_impact >();
+         auto * peditimpact = _001TypedWindow < ::userex::top_edit_impact >();
 
-         if (peditview != nullptr && ptopic->m_puserelement == peditview)
+         if (peditimpact != nullptr && ptopic->m_puserelement == peditimpact)
          {
 
             string strText;
 
-            peditview->_001GetText(strText);
+            peditimpact->_001GetText(strText);
 
          }
 

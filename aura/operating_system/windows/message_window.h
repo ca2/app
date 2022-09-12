@@ -2,6 +2,7 @@
 
 
 #include "message_window_listener.h"
+#include "aura/user/user/interaction.h"
 
 
 namespace user

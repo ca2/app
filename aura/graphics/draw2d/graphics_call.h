@@ -10,31 +10,31 @@ namespace draw2d
    {
    public:
 
-      virtual void call(::draw2d::graphics * pgraphics) = 0;
+      
+      virtual void call(::draw2d::graphics_pointer & pgraphics) = 0;
 
 
    };
 
-   template < typename PRED >
+
    class graphics_call :
       virtual public graphics_call_base
    {
+   public:
+      
+      
+      ::function<void(::draw2d::graphics_pointer &)> m_function;
 
-      PRED m_predicate;
+      graphics_call(const ::function<void(::draw2d::graphics_pointer&)> & function) : m_function(function) {}
 
-      graphics_call(PRED pred) : m_predicate(pred) {}
-
-      void call(::draw2d::graphics * pgraphics)
+      void call(::draw2d::graphics_pointer & pgraphics)
       {
 
-         m_predicate(pgraphics);
+         this->m_function(pgraphics);
 
       }
 
    };
-
-
-   using graphics_call_array = __pointer_array(graphics_call_base);
 
 
 } // namespace draw2d

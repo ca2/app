@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "aura/user/user/scroll.h"
+#include "aura/user/user/range.h"
+
+
 namespace user
 {
 
@@ -165,7 +169,7 @@ namespace user
       __pointer(mesh_cache_interface)              m_pmeshcache;
       e_cache_hinting                              m_ecachehinting;
 
-      draw2d::graphics_extension                   m_dcextension;
+      __pointer(draw2d::graphics_extension)        m_pdcextension;
 
       index                                        m_iClick;
       bool                                         m_bLButtonDown;
@@ -231,8 +235,8 @@ namespace user
       ::count                                      m_nGridItemCount;
       ::count                                      m_nGridColumnCount;
 
-      __pointer(::image_list)                      m_pilGroup;
-      __pointer(::image_list)                      m_pilGroupHover;
+      __pointer(::image_list)                      m_pimagelistGroup;
+      __pointer(::image_list)                      m_pimagelistGroupHover;
       bool                                         m_bGroup;
       bool                                         m_bLateralGroup;
       i32                                          m_iLateralGroupWidth;
@@ -557,7 +561,7 @@ namespace user
 
       virtual i32 get_wheel_scroll_delta() override;
 
-      virtual void on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual bool keyboard_focus_is_focusable() const override;
 
@@ -566,7 +570,7 @@ namespace user
 
       virtual void  defer_create_mesh_data();
 
-      virtual ::point_i32 get_impactport_offset() override;
+      virtual ::point_i32 get_context_offset() override;
 
       virtual ::size_f64 get_page_size() override;
 

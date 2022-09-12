@@ -1,11 +1,8 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
 
 #include "axis/mathematics/calculator/_.h"
 #include "calculator_edit_impact.h"
-#include "aura/update.h"
+//#include "aura/update.h"
 #include "acme/id.h"
 
 
@@ -398,12 +395,6 @@ namespace calculator
 
 
 
-::user::plain_edit* new_calculator_plain_edit()
-{
-
-   return new ::calculator::plain_edit_impact();
-
-}
 
 
 

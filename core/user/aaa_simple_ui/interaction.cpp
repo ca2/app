@@ -380,7 +380,7 @@ namespace simple_ui
 //
 //      auto point = pmouse->m_point;
 //
-//      screen_to_client(point);
+//      screen_to_client()(point);
 //
 //      point += m_ptScroll;
 //
@@ -424,7 +424,7 @@ namespace simple_ui
 //   bool interaction::on_action(const ::string & pszId)
 //   {
 //
-//      ::user::interaction * pinteraction = GetTypedParent < ::user::interaction >();
+//      ::user::interaction * pinteraction = get_typed_parent < ::user::interaction >();
 //
 //      if (pinteraction != nullptr)
 //      {
@@ -454,10 +454,10 @@ namespace simple_ui
 ////      if (m_puserstyle != nullptr)
 ////         return m_puserstyle;
 ////
-////      if (GetTypedParent < ::user::interaction >() == nullptr)
+////      if (get_typed_parent < ::user::interaction >() == nullptr)
 ////         return nullptr;
 ////
-////      return GetTypedParent < ::user::interaction >()->get_style();
+////      return get_typed_parent < ::user::interaction >()->get_style();
 ////
 ////   }
 //
@@ -536,7 +536,7 @@ namespace simple_ui
 //
 //      ::user::interaction::_001OnNcDraw(pgraphics);
 //
-//      if(m_flagNonClient.has(non_client_focus_rect) && keyboard_focus_is_focusable())
+//      if(m_flagNonClient.has(e_non_client_focus_rect) && keyboard_focus_is_focusable())
 //      {
 //
 //         simple_ui_draw_focus_rect(pgraphics);

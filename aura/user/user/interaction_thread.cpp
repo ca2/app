@@ -1,10 +1,18 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "aura/message.h"
 #include "interaction_thread.h"
 #include "interaction_prodevian.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/windowing.h"
+#include "interaction_impl.h"
+#include "interaction.h"
+#include "user.h"
+#include "system.h"
+#include "message.h"
+#include "aura/platform/session.h"
 
 
 #ifdef WINDOWS_DESKTOP

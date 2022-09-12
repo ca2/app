@@ -1,9 +1,7 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
-
 #include "acme/constant/timer.h"
+#include "wait_message_dialog.h"
+#include "base/user/form/impact.h"
 
 
 namespace userex
@@ -156,7 +154,7 @@ namespace userex
 
       }
 
-      if (m_pdocument != nullptr)
+      if (m_pformdocument != nullptr)
       {
 
          payload("wait_message_dialog_timeout") = second;

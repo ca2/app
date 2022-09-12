@@ -1,5 +1,10 @@
 #include "framework.h"
-#include "aura/update.h"
+#include "application.h"
+#include "main_window.h"
+#include "render.h"
+
+
+IMPLEMENT_APPLICATION(app_shader);
 
 
 namespace app_shader

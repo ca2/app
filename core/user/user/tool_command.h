@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/message/command.h"
+
+
 namespace user
 {
 

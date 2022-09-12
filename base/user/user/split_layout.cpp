@@ -1,9 +1,11 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
+#include "split_layout.h"
 #include "split_pane.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "split_bar.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/user/user/style.h"
+#include "aura/platform/session.h"
+#include "aura/user/user/window_util.h"
 
 
 namespace user
@@ -22,8 +24,8 @@ namespace user
       m_cyBorder = 1;
       m_iPaneCount = 0;
 
-      m_flagNonClient.erase(non_client_background);
-      m_flagNonClient.erase(non_client_focus_rect);
+      m_flagNonClient.erase(e_non_client_background);
+      m_flagNonClient.erase(e_non_client_focus_rect);
 
    }
 
@@ -282,9 +284,7 @@ namespace user
          if(m_iState != stateInitial)
          {
 
-            auto pwindowing = windowing();
-
-            pwindowing->release_mouse_capture();
+            release_mouse_capture();
 
             m_iState = stateInitial;
 

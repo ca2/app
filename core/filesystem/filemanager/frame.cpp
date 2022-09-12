@@ -2,6 +2,8 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
+#include "frame.h"
+#include "tab_impact.h"
 
 
 namespace filemanager
@@ -60,7 +62,7 @@ namespace filemanager
 
       string str;
 
-      ::filemanager::tab_impact * ptabimpact = GetTypedParent < ::filemanager::tab_impact >();
+      ::filemanager::tab_impact * ptabimpact = get_typed_parent < ::filemanager::tab_impact >();
       if (ptabimpact != nullptr)
       {
          get_window_text(str);

@@ -3,10 +3,9 @@
 #include "path_simple_optimization.h"
 #include "aura/graphics/write_text/_.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "acme/primitive/geometry2d/_geometry2d.h"
 #include "acme/primitive/geometry2d/_collection.h"
-#include "acme/primitive/geometry2d/_shape.h"
 #include "aura/graphics/write_text/_shape.h"
-#include "acme/primitive/geometry2d/_impl.h"
 #include "acme/primitive/geometry2d/_defer_shape.h"
 
 
@@ -274,7 +273,7 @@ namespace draw2d
 
 
 
-      __pointer(::draw2d::path::optimization) create_path_simple_optimization(::draw2d::path * ppath)
+      __pointer(::draw2d::path_optimization) create_path_simple_optimization(::draw2d::path * ppath)
       {
 
          return __new(path_simple_optimization(ppath));

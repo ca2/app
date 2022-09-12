@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "core/user/user/list_data.h"
+
+
 namespace filemanager
 {
 

@@ -1,11 +1,17 @@
 #include "framework.h"
-#include "core/user/rich_text/_rich_text.h"
+#include "edit_impl.h"
+#include "format_tool.h"
+#include "document.h"
+#include "data.h"
+#include "format.h"
 #include "acme/platform/timer.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
-
 #include "acme/constant/timer.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/message/user.h"
+#include "aura/user/user/frame.h"
+#include "aura/user/user/copydesk.h"
+#include "base/user/user/user.h"
+#include "core/platform/session.h"
 
 
 namespace user
@@ -420,9 +426,7 @@ namespace user
 
          auto pmouse = pmessage->m_union.m_pmouse;
 
-         auto pwindowing = windowing();
-
-         pwindowing->release_mouse_capture();
+         release_mouse_capture();
 
          if (!is_text_editable())
          {
@@ -482,9 +486,7 @@ namespace user
          if (::is_set(m_pitemHover))
          {
 
-            auto pwindowing = windowing();
-
-            auto pcursor = pwindowing->get_cursor(e_cursor_text_select);
+            auto pcursor = get_mouse_cursor(e_cursor_text_select);
 
             pmouse->m_pcursor = pcursor;
 
@@ -517,9 +519,7 @@ namespace user
          if (!m_bClickThrough)
          {
 
-            auto pwindowing = windowing();
-
-            auto pcursor = pwindowing->get_cursor(e_cursor_text_select);
+            auto pcursor = get_mouse_cursor(e_cursor_text_select);
 
             pmouse->m_pcursor = pcursor;
 
@@ -557,9 +557,7 @@ namespace user
       void edit_impl::on_message_mouse_leave(::message::message * pmessage)
       {
 
-         auto pwindowing = windowing();
-
-         pwindowing->release_mouse_capture();
+         release_mouse_capture();
 
          set_need_redraw();
 
@@ -567,7 +565,6 @@ namespace user
 
 
       bool edit_impl::get_element_rect(RECTANGLE_I32 * prectangle, index i, enum_element eelement)
-
       {
 
          if (eelement == ::e_element_icon)
@@ -881,7 +878,7 @@ namespace user
 
             point_f64 point(pointParam);
 
-            screen_to_client(point);
+            screen_to_client()(point);
 
             ::rectangle_i32 rWindow;
 
@@ -891,7 +888,7 @@ namespace user
 
             __copy(rectangleWindow, rWindow);
 
-            get_parent()->screen_to_client(rectangleWindow);
+            get_parent()->screen_to_client()(rectangleWindow);
 
             copy(rectangleWindow, rectangleWindow);
 
@@ -939,7 +936,7 @@ namespace user
             if (ptopic->user_interaction() == pformattool)
             {
 
-               if (pformattool->m_eattribute & attribute_align)
+               if (pformattool->m_eattribute & e_attribute_align)
                {
 
                   box_align(m_pdata->m_spana, find_span(m_pdata->m_spana, m_pdata->m_iSelEnd), pformattool->m_pformata->element_at(0)->m_ealign);
@@ -1119,9 +1116,7 @@ namespace user
 
                }
 
-               auto pwindow = window();
-               
-               auto pcopydesk = pwindow->copydesk();
+               auto pcopydesk = copydesk();
 
                pcopydesk->set_plain_text(str);
 
@@ -1143,9 +1138,7 @@ namespace user
 
                   string str;
 
-                  auto pwindow = window();
-
-                  auto pcopydesk = pwindow->copydesk();
+                  auto pcopydesk = copydesk();
 
                   pcopydesk->get_plain_text(str);
 
@@ -1170,9 +1163,7 @@ namespace user
 
                _001GetSelText(str);
 
-               auto pwindow = window();
-
-               auto pcopydesk = pwindow->copydesk();
+               auto pcopydesk = copydesk();
 
                pcopydesk->set_plain_text(str);
 
@@ -2066,7 +2057,7 @@ namespace user
          if (get_parent() != nullptr)
          {
 
-            get_parent()->screen_to_client(rectangleWindow);
+            get_parent()->screen_to_client()(rectangleWindow);
 
          }
 

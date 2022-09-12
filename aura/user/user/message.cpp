@@ -1,4 +1,8 @@
 #include "framework.h"
+#include "windowing/window.h"
+#include "message.h"
+#include "interaction_impl.h"
+#include "interaction.h"
 
 
 namespace user
@@ -134,6 +138,27 @@ namespace user
    //}
 
 #endif
+
+
+   ::user::interaction_impl * message::userinteractionimpl()
+   {
+
+      auto pwindow = window();
+
+      return pwindow ? pwindow->m_puserinteractionimpl : nullptr;
+
+   }
+
+
+   ::user::interaction * message::userinteraction()
+   {
+
+      auto pimpl = userinteractionimpl();
+
+      return pimpl ? pimpl->m_puserinteraction : nullptr;
+
+   }
+
 
 } // namespace user
 

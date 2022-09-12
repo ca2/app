@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "core/user/user/list_header.h"
+
+
 class CLASS_DECL_CORE simple_list_header_control :
    virtual public ::user::list_header
 {

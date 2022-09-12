@@ -2,6 +2,7 @@
 #include "icon.h"
 #include "map.h"
 #include "image.h"
+#include "aura/windowing/icon.h"
 
 
 namespace draw2d

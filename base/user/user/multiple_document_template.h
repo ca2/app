@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "impact_system.h"
+
+
 namespace user
 {
 

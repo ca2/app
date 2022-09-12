@@ -3,6 +3,7 @@
 #include "framework.h"
 //#include "_windowing.h"
 #include "aura/graphics/image/image.h"
+#include "aura/windowing/icon.h"
 
 
 namespace windowing

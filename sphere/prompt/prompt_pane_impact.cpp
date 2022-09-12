@@ -67,7 +67,7 @@ namespace prompt
    void pane_impact::on_change_cur_sel()
    {
       ::userex::pane_tab_impact::on_change_cur_sel();
-      __pointer(frame) pframe = GetTypedParent < frame > ();
+      __pointer(frame) pframe = get_typed_parent < frame > ();
 
       if(get_impact_id() == FILEMANAGER_IMPACT)
       {
@@ -244,7 +244,7 @@ namespace prompt
          if(pdocument == nullptr)
             return;
          ::user::impact_data * pimpactdata = new ::user::impact_data;
-         __pointer(::user::impact) pimpact = pdocument->get_type_impact < ::user::impact > ();
+         __pointer(::user::impact) pimpact = pdocument->get_typed_impact < ::user::impact > ();
          auto pupdate = new_update();
          pupdate->m_actioncontext = ::e_source_system;
          ptopic->m_atom = id_browse;

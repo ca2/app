@@ -122,7 +122,7 @@ namespace console
       if(key.m_ekey == ::user::e_key_escape)
       {
 
-         GetTypedParent < prompt_frame > ()->hide();
+         get_typed_parent < prompt_frame > ()->hide();
 
          papp->m_puiMain->m_puiThis->SetActiveWindow();
 
@@ -260,7 +260,7 @@ namespace console
 
    void prompt_impact::simple_ui_draw_focus_rect(::draw2d::graphics_pointer & pgraphics)
    {
-      //if(GetTypedParent <prompt_frame>()->get_display() != ::e_display_minimal)
+      //if(get_typed_parent <prompt_frame>()->get_display() != ::e_display_minimal)
       {
          ::user::impact::simple_ui_draw_focus_rect(pgraphics);
       }

@@ -10,7 +10,9 @@
 
 #pragma once
 
-//#include <nanogui/popupbutton.h>
+
+#include "PopupButton.h"
+
 
 NAMESPACE_BEGIN(nanogui)
 

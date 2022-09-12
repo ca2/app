@@ -1,11 +1,18 @@
 #include "framework.h"
 #include "aura/graphics/image/list.h"
+#include "aura/graphics/image/drawing.h"
 #include "acme/platform/timer.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
 
 #include "aqua/xml.h"
+#include "fs_simple_list_impact.h"
+#include "core/user/user/list_cache.h"
+#include "core/user/user/list_column.h"
+#include "fs_simple_impact.h"
+#include "core/user/user/mesh_item.h"
+#include "aura/message/user.h"
 
 
 namespace filemanager
@@ -78,36 +85,36 @@ namespace filemanager
 
             set_cache_interface(m_puserlistcache);
 
-            m_pil = __create_new< ::image_list>();
+            m_pimagelist = __create_new< ::image_list>();
 
-            m_pil->create(16, 16, 0, 0, 0);
+            m_pimagelist->create(16, 16, 0, 0, 0);
 
 #ifdef WINDOWS
 
-            //m_iIconFolder = m_pil->add(icon_payload("matter://mplite/vmskarlib_folder_normal.ico"));
+            //m_iIconFolder = m_pimagelist->add(icon_payload("matter://mplite/vmskarlib_folder_normal.ico"));
 
-            //m_iIconArtist = m_pil->add(icon_payload("matter://mplite/vmskarlib_artist_normal.ico"));
+            //m_iIconArtist = m_pimagelist->add(icon_payload("matter://mplite/vmskarlib_artist_normal.ico"));
 
-            //m_iIconSong = m_pil->add(icon_payload("matter://mplite/vmskarlib_song_normal.ico"));
+            //m_iIconSong = m_pimagelist->add(icon_payload("matter://mplite/vmskarlib_song_normal.ico"));
 
-            //m_iIconFolder = m_pil->add(icon_payload("matter://mplite/vmskarlib_folder_normal.ico"));
+            //m_iIconFolder = m_pimagelist->add(icon_payload("matter://mplite/vmskarlib_folder_normal.ico"));
 
-            //m_iIconArtist = m_pil->add(icon_payload("matter://mplite/vmskarlib_artist_normal.ico"));
+            //m_iIconArtist = m_pimagelist->add(icon_payload("matter://mplite/vmskarlib_artist_normal.ico"));
 
-            //m_iIconSong = m_pil->add(icon_payload("matter://mplite/vmskarlib_song_normal.ico"));
+            //m_iIconSong = m_pimagelist->add(icon_payload("matter://mplite/vmskarlib_song_normal.ico"));
 #endif
 
-            m_iIconFolder = m_pil->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_folder_normal"));
+            m_iIconFolder = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_folder_normal"));
 
-            m_iIconArtist = m_pil->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_artist_normal"));
+            m_iIconArtist = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_artist_normal"));
 
-            m_iIconSong = m_pil->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_song_normal"));
+            m_iIconSong = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_song_normal"));
 
-            m_iIconFolder = m_pil->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_folder_normal"));
+            m_iIconFolder = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_folder_normal"));
 
-            m_iIconArtist = m_pil->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_artist_normal"));
+            m_iIconArtist = m_pimagelist->add(icon_payload(this, "icon://app-veriwell/musical_player_lite/karaoke_library_artist_normal"));
 
-            m_iIconSong = m_pil->add(icon_payload(this, "matter://app-veriwell/musical_player_lite/karaoke_library_song_normal"));
+            m_iIconSong = m_pimagelist->add(icon_payload(this, "matter://app-veriwell/musical_player_lite/karaoke_library_song_normal"));
 
          }
 
@@ -125,7 +132,7 @@ namespace filemanager
                //      pcolumn->m_uiSmallBitmap = IDB_ALBUM_SMALL_256;
                pcolumn->m_iSmallImageWidth = 16;
                pcolumn->m_colorSmallMask = rgb(255, 0, 255);
-               pcolumn->m_pil = m_pil;
+               pcolumn->m_pimagelist = m_pimagelist;
                */
                pcolumn->m_iWidth = 170;
                //      pcolumn->m_uiText = IDS_PLAYLIST_CODE;
@@ -133,7 +140,7 @@ namespace filemanager
                //      pcolumn->m_uiSmallBitmap = IDB_ALBUM_SMALL_256;
                pcolumn->m_iSmallImageWidth = 16;
                pcolumn->m_colorSmallMask = rgb(255, 0, 255);
-               pcolumn->m_pil = m_pil;
+               pcolumn->m_pimagelist = m_pimagelist;
 
 
             }
@@ -711,7 +718,7 @@ namespace filemanager
 
             ::point_i32 point = pcontextmenu->GetPoint();
 
-            screen_to_client(point);
+            screen_to_client()(point);
 
             /*    if(_001HitTest_(point, iItem))
             {

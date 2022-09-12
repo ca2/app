@@ -1,6 +1,12 @@
 #include "framework.h"
-#include "_simpledb.h"
+#include "simpledb.h"
+#include "item.h"
+#include "server.h"
+#include "thread.h"
+#include "thread_localdatabase.h"
+#include "axis/database/database/database.h"
 #include "storage.h"
+#include "axis/platform/application.h"
 
 
 namespace simpledb

@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "impact.h"
+
+
 namespace user
 {
 
@@ -33,10 +36,10 @@ namespace user
       }
 
 
-      inline ::base::application* get_app() const { return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; }
-      inline ::base::session* get_session() const { return m_pcontext ? m_pcontext->m_pbasesession : nullptr; }
-      inline ::base::system* get_system() const { return m_psystem ? m_psystem->m_pbasesystem : nullptr; }
-      inline ::base::user* user() const { return get_session() ? get_session()->user() : nullptr; }
+      ::base::application* get_app() const { return ::user::impact::get_app(); }
+      ::base::session* get_session() const { return ::user::impact::get_session(); }
+      ::base::system* get_system() const { return ::user::impact::get_system(); }
+      ::base::user* user() const { return ::user::impact::user(); }
 
 
       virtual void initialize(::object* pobject) override

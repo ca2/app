@@ -1,12 +1,12 @@
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
 #include "aura/operating_system.h"
-#include "_data.h"
-#include "aura/update.h"
+#include "aura/platform/application.h"
+#include "apex/filesystem/file/edit_file.h"
+#include "plain_text_tree.h"
 #include "aura/message.h"
-//#include "aura/user/interaction_thread.h"
 #ifdef WINDOWS_DESKTOP
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
 #include "aura/user/windows_tsf/edit_window.h"
@@ -14,12 +14,26 @@
 #endif
 #include "acme/constant/timer.h"
 #include "acme/primitive/string/base64.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/brush.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "acme/platform/timer.h"
 #include "aura/windowing/text_editor_interface.h"
-//#include "_tree.h"
-
-//extern CLASS_DECL_AURA thread_int_ptr < DWORD_PTR > t_time1;
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/window.h"
+#include "scroll_data.h"
+#include "plain_edit.h"
+#include "style.h"
+#include "plain_edit_style.h"
+#include "aura/message/user.h"
+#include "user.h"
+#include "copydesk.h"
+#include "interaction_style.h"
+#include "text_composition_client.h"
+#include "aura/platform/session.h"
+#include "plain_edit_style.h"
+#include "control_style.h"
 
 
 namespace aura
@@ -215,9 +229,9 @@ namespace user
 
       m_bCalcLayoutHintNoTextChange = false;
 
-      m_scrolldataHorizontal.m_bScrollEnable = false;
+      m_pscrolldataHorizontal->m_bScrollEnable = false;
 
-      m_scrolldataVertical.m_bScrollEnable = false;
+      m_pscrolldataVertical->m_bScrollEnable = false;
 
       m_dy = -1;
       m_iImpactOffset = 0;
@@ -359,18 +373,18 @@ namespace user
    }
 
 
-   void plain_edit::on_impactport_offset(::draw2d::graphics_pointer & pgraphics)
+   void plain_edit::on_context_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::interaction::on_impactport_offset(pgraphics);
+      ::user::interaction::on_context_offset(pgraphics);
 
    }
 
 
-   bool plain_edit::validate_impactport_offset(::point_i32 & point)
+   bool plain_edit::validate_context_offset(::point_i32 & point)
    {
 
-      if (!::user::scroll_base::validate_impactport_offset(point))
+      if (!::user::scroll_base::validate_context_offset(point))
       {
 
          return false;
@@ -472,7 +486,7 @@ namespace user
 
       ::draw2d::brush_pointer & pbrushTextSel = m_pcontrolstyle->m_pbrushTextSel;
 
-      //auto pointOffset = get_impactport_offset();
+      //auto pointOffset = get_context_offset();
 
       //if (m_dLineHeight > 0.)
       //{
@@ -821,9 +835,9 @@ namespace user
 
                ::point_i32 point((long)(left + x1), (long)y);
 
-               client_to_screen(point);
+               point += client_to_screen();
 
-               get_wnd()->screen_to_client(point);
+               point += get_wnd()->screen_to_client();
 
                ::SetCaretPos(point.x, point.y);
 
@@ -843,9 +857,9 @@ namespace user
 
                ::point_i32 point((long)(left + x1), (long)y);
 
-               client_to_screen(point);
+               point+=client_to_screen();
 
-               get_wnd()->screen_to_client(point);
+               point+=get_wnd()->screen_to_client();
 
                ::SetCaretPos(point.x, point.y);
 
@@ -986,7 +1000,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client(point);
+      point += screen_to_client();
 
       m_bRMouseDown = true;
 
@@ -1030,7 +1044,7 @@ namespace user
 
       ::point_i32 point = pmouse->m_point;
 
-      screen_to_client(point);
+      point += screen_to_client();
 
       //{
 
@@ -1092,7 +1106,7 @@ namespace user
 
             auto pointCursor = pwindow->get_cursor_position();
 
-            screen_to_client(pointCursor);
+            pointCursor += screen_to_client();
 
             ::rectangle_i32 rectangleActiveClient;
 
@@ -1500,7 +1514,7 @@ namespace user
 
       get_client_rect(rectangleClient);
 
-      auto xContext = get_impactport_offset().x;
+      auto xContext = get_context_offset().x;
 
       int iBorder = 4;
 
@@ -1510,7 +1524,7 @@ namespace user
          xContext = 0;
 
       }
-      else if (xEnd - get_impactport_offset().x < rectangleClient.width() - iBorder * 2)
+      else if (xEnd - get_context_offset().x < rectangleClient.width() - iBorder * 2)
       {
 
          xContext = (int)maximum(0, xEnd - rectangleClient.width() + iBorder * 2);
@@ -1522,13 +1536,13 @@ namespace user
          xContext = x;
 
       }
-      else if (x > 0 && x < get_impactport_offset().x)
+      else if (x > 0 && x < get_context_offset().x)
       {
 
          xContext = maximum(0, x - rectangleClient.width() / 2);
 
       }
-      else if (x > get_impactport_offset().x + rectangleClient.width() - iBorder * 2)
+      else if (x > get_context_offset().x + rectangleClient.width() - iBorder * 2)
       {
 
          xContext = (int)maximum(0, xEnd - rectangleClient.width() + iBorder * 2);
@@ -1536,7 +1550,7 @@ namespace user
       }
 
 
-      if (iSelEnd == m_ptree->m_iSelEnd && iColumn == m_iColumn && xContext == get_impactport_offset().x)
+      if (iSelEnd == m_ptree->m_iSelEnd && iColumn == m_iColumn && xContext == get_context_offset().x)
       {
 
          return;
@@ -1547,10 +1561,10 @@ namespace user
 
       m_iColumn = iColumn;
 
-      if (xContext != get_impactport_offset().x)
+      if (xContext != get_context_offset().x)
       {
 
-         set_impactport_offset_x(pgraphics, (int)xContext);
+         set_context_offset_x(pgraphics, (int)xContext);
 
       }
 
@@ -1731,7 +1745,7 @@ namespace user
       if (!m_bMultiLine)
       {
 
-         set_impactport_offset_y(pgraphics, 0);
+         set_context_offset_y(pgraphics, 0);
 
       }
       else
@@ -1741,9 +1755,9 @@ namespace user
 
          GetFocusRect(rectangleClient);
 
-         int iCurrentPageTop = get_impactport_offset().y;
+         int iCurrentPageTop = get_context_offset().y;
 
-         int iCurrentPageBottom = get_impactport_offset().y + rectangleClient.height();
+         int iCurrentPageBottom = get_context_offset().y + rectangleClient.height();
 
          index iLineTop = (::index)(iLine * m_dLineHeight);
 
@@ -1752,13 +1766,13 @@ namespace user
          if (iLineTop < iCurrentPageTop)
          {
 
-            set_impactport_offset_y(pgraphics, (int)iLineTop);
+            set_context_offset_y(pgraphics, (int)iLineTop);
 
          }
          else if (iLineBottom >= iCurrentPageBottom)
          {
 
-            set_impactport_offset_y(pgraphics, ((int)iLineBottom - rectangleClient.height()) + (int)(m_dLineHeight / 4.0));
+            set_context_offset_y(pgraphics, ((int)iLineBottom - rectangleClient.height()) + (int)(m_dLineHeight / 4.0));
 
          }
 
@@ -1777,10 +1791,10 @@ namespace user
    }
 
 
-   void plain_edit::on_change_impactport_offset(::draw2d::graphics_pointer & pgraphics)
+   void plain_edit::on_change_context_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-      scroll_base::on_change_impactport_offset(pgraphics);
+      scroll_base::on_change_context_offset(pgraphics);
 
       plain_edit_on_calc_offset(pgraphics);
 
@@ -1819,7 +1833,7 @@ namespace user
 
             ::point_i32 point = pmouse->m_point;
 
-            screen_to_client(point);
+            point += screen_to_client();
 
             if (m_pointLastCursor != point)
             {
@@ -1884,7 +1898,7 @@ namespace user
 
          ::point_i32 point = pmouse->m_point;
 
-         screen_to_client(point);
+         point += screen_to_client();
 
          {
 
@@ -1952,7 +1966,7 @@ namespace user
 
          ::point_i32 point = pmouse->m_point;
 
-         screen_to_client(point);
+         point += screen_to_client();
 
          queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
             {
@@ -2044,7 +2058,7 @@ namespace user
 
       //}
 
-      //auto pointOffset = get_impactport_offset();
+      //auto pointOffset = get_context_offset();
 
       //m_iCurrentPagePotentialLineCount = (::count) ceil((double)rectangleClient.height() / m_dLineHeight);
 
@@ -2486,7 +2500,7 @@ namespace user
       //
       //      m_dLineHeight = metric.get_line_spacing();
       //
-      //      m_scrolldataVertical.m_iLine = (::i32) m_dLineHeight;
+      //      m_pscrolldataVertical->m_iLine = (::i32) m_dLineHeight;
       //
       //      if (m_dLineHeight <= 0)
       //      {
@@ -2495,7 +2509,7 @@ namespace user
       //
       //      }
       //
-      //      auto pointOffset = get_impactport_offset();
+      //      auto pointOffset = get_context_offset();
       //
       //      m_iCurrentPagePotentialLineCount = (::count) ceil((double) rectangleClient.height() / m_dLineHeight);
       //
@@ -2832,7 +2846,7 @@ namespace user
       //
       //      }
       //
-      //      m_scrolldataVertical.m_iLine = (int) m_dLineHeight;
+      //      m_pscrolldataVertical->m_iLine = (int) m_dLineHeight;
       //
       //      on_change_impact_size(pgraphics);
       //
@@ -2907,7 +2921,7 @@ namespace user
 
       }
 
-      auto pointOffset = get_impactport_offset();
+      auto pointOffset = get_context_offset();
 
       m_iCurrentPagePotentialLineCount = (::count)ceil((double)rectangleClient.height() / m_dLineHeight);
 
@@ -3273,7 +3287,7 @@ namespace user
 
 //}
 
-//auto pointOffset = get_impactport_offset();
+//auto pointOffset = get_context_offset();
 
 //m_iCurrentPagePotentialLineCount = (::count) ceil((double)rectangleClient.height() / m_dLineHeight);
 
@@ -3975,7 +3989,7 @@ namespace user
 
       point.y -= rectangleClient.top;
 
-      auto pointOffset = get_impactport_offset();
+      auto pointOffset = get_context_offset();
 
       if (m_dLineHeight > 0)
       {
@@ -4049,7 +4063,7 @@ namespace user
 
       GetFocusRect(rectangleClient);
 
-      auto pointOffset = get_impactport_offset();
+      auto pointOffset = get_context_offset();
 
       px -= (rectangleClient.left - pointOffset.x);
 
@@ -6293,7 +6307,7 @@ namespace user
 
       i32 x = m_iLastSelectionEndX;
 
-      double y = m_iLastSelectionEndLine * m_dLineHeight - get_impactport_offset().y;
+      double y = m_iLastSelectionEndLine * m_dLineHeight - get_context_offset().y;
 
       double y2 = y + m_dLineHeight;
 
@@ -6307,9 +6321,9 @@ namespace user
 
       rectangle.bottom = (::i32)y2;
 
-      client_to_screen(rectangle);
+      rectangle += client_to_screen();
 
-      get_wnd()->screen_to_client(rectangle);
+      rectangle += get_wnd()->screen_to_client();
 
    }
 
@@ -6979,9 +6993,9 @@ namespace user
    void plain_edit::plain_edit_one_line_up(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::point_i32 pointOffset = get_impactport_offset();
+      ::point_i32 pointOffset = get_context_offset();
 
-      set_impactport_offset_y(pgraphics, (int)(pointOffset.y - m_dLineHeight));
+      set_context_offset_y(pgraphics, (int)(pointOffset.y - m_dLineHeight));
 
       double dHeight = 0.;
 
@@ -6991,7 +7005,7 @@ namespace user
 
       ::index i = 0;
 
-      __copy(pointOffset, get_impactport_offset());
+      __copy(pointOffset, get_context_offset());
 
       while (pointOffset.y > dHeight && i < m_iaLineLength.get_size())
       {

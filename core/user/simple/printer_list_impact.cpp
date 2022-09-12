@@ -1,10 +1,10 @@
 #include "framework.h"
-#include "core/user/simple/_component.h"
+#include "core/user/simple/printer_list_impact.h"
+#include "core/user/simple/mesh_data.h"
 #include "aura/graphics/draw2d/printer.h"
 #include "base/user/user/print_task.h"
-//#ifdef WINDOWS_DESKTOP
-//#include <winspool.h>
-//#endif
+#include "core/user/user/list_column.h"
+#include "base/platform/application.h"
 
 
 simple_printer_list_impact::simple_printer_list_impact()

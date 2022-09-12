@@ -1,14 +1,32 @@
 #include "framework.h"
+#include "application.h"
+#if !BROAD_PRECOMPILED_HEADER
+////#include "aura/user/user/_component.h"
+#endif
 #include "aura/id.h"
 #include "acme/platform/version.h"
-//#include "apex/platform/app_core.h"
 #include "acme/platform/profiler.h"
 #include "acme/primitive/text/context.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/platform/node.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/image/icon.h"
 #include "acme/primitive/string/base64.h"
+#include "aura/windowing/window.h"
+#include "aura/windowing/windowing.h"
+#include "aqua/game/game.h"
+#include "aura/user/user/window_util.h"
+#include "aura/user/user/interaction.h"
+#include "shell_open.h"
+#include "aura/user/user/user.h"
+#include "aura/user/user/interaction_impl.h"
+#include "aura/user/user/message.h"
+#include "aura/user/user/system.h"
+#include "aura/user/user/frame.h"
+#include "aura/user/user/plain_edit.h"
+#include "aura/platform/system.h"
+#include "aura/platform/session.h"
+#include "aura/platform/theme.h"
 
 
 extern "C"
@@ -8082,7 +8100,7 @@ namespace aura
    //}
 
 
-   void application::prepare_form(atom atom, ::form_document* pdocument)
+   void application::prepare_form(atom atom, ::form_document* pformdocument)
    {
 
 
@@ -8825,6 +8843,13 @@ namespace aura
 
    }
 
+   
+   ::aura::game * application::game()
+   {
+      
+      return m_paquagame->m_pauragame;
+      
+   }
 
 
    void application::_001CloseApplication()
@@ -8939,10 +8964,14 @@ namespace aura
 
 
 
-   //void application::on_graphics_ready()
-   //{
+   ::aura::system * application::get_system()
+   {
 
-   //}
+      return ::is_set(m_psystem) ? dynamic_cast <::aura::system *> (m_psystem) : nullptr;
+
+   }
+
+
 
 
 } // namespace aura

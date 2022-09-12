@@ -1,11 +1,7 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
-//#include "aura/graphics/user/close_button.h"
-
-
-//#define STEPPY_DEBUG 0
+#include "main_window.h"
+#include "aura/user/user/button.h"
+#include "aura/platform/application.h"
 
 
 namespace app_message_box
@@ -41,12 +37,12 @@ namespace app_message_box
 
       pmessage->m_bRet = true;
 
-      auto psequence = m_psystem->message_box("Are you sure you want to close application?", nullptr, e_message_box_yes_no);
+      auto psequencer = m_psystem->create_message_box_sequencer("Are you sure you want to close application?", nullptr, e_message_box_yes_no);
 
-      psequence->then([this](auto psequence)
+      psequencer->then([this](auto * pmessagebox)
          {
 
-            if (psequence->m_atomResult == e_dialog_result_yes)
+            if (pmessagebox->m_payloadResult == e_dialog_result_yes)
             {
 
                auto papp = get_app();
@@ -54,7 +50,7 @@ namespace app_message_box
                papp->_001TryCloseApplication();
 
             }
-            else if (psequence->m_atomResult == e_dialog_result_cancel)
+            else if (pmessagebox->m_payloadResult == e_dialog_result_cancel)
             {
 
                show_message_box();
@@ -62,6 +58,8 @@ namespace app_message_box
             }
 
          });
+
+      psequencer->do_asynchronously();
 
    }
 
@@ -150,18 +148,18 @@ namespace app_message_box
    void main_window::show_message_box()
    {
 
-      auto psequence = m_psystem->message_box("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
+      auto psequencer = m_psystem->create_message_box_sequencer("Showing a message box as requested.\n\nIs it ok?", nullptr, e_message_box_yes_no_cancel);
 
-      psequence->then([this](auto psequence)
+      psequencer->then([this](auto pmessagebox)
          {
 
-            if (psequence->m_atomResult == e_dialog_result_yes)
+            if (pmessagebox->m_payloadResult == e_dialog_result_yes)
             {
 
                post_message(e_message_close);
 
             }
-            else if (psequence->m_atomResult == e_dialog_result_cancel)
+            else if (pmessagebox->m_payloadResult == e_dialog_result_cancel)
             {
 
                show_message_box();
@@ -169,6 +167,8 @@ namespace app_message_box
             }
 
          });
+
+      psequencer->do_asynchronously();
 
    }
 

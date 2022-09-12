@@ -1,7 +1,8 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
+#include "opengl.h"
+#include "program.h"
+#include "shader.h"
+#include "buffer.h"
 
 
 //BEGIN_FACTORY(gpu_opengl)

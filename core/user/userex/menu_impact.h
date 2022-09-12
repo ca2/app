@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/user/form/impact.h"
+
+
 class CLASS_DECL_CORE menu_impact :
    virtual public ::user::form_impact
 {

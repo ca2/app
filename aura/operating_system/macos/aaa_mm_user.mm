@@ -51,7 +51,7 @@ void mm_init_workspace_rect()
 //}
 
 
-int GetMainScreenRect(RECT * prect)
+int get_main_screen_rectangle(RECT * prect)
 {
    
    auto rect = [[NSScreen mainScreen] frame];

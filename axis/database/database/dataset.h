@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "result_set.h"
+#include "parameter_list.h"
+
+
 namespace database
 {
 
@@ -15,7 +19,7 @@ namespace database
 
 
       database *        m_pdatabase;
-      e_dataset         m_edataset;
+      enum_dataset      m_edataset;
       //field_array       m_fielda;
       ::database::row   m_row;
       ::database::row   m_rowEdit;
@@ -127,15 +131,15 @@ namespace database
       ::database::row & row() { return m_row; }
       ::database::row & edit_row() { return m_rowEdit; }
 
-      void set_dataset_state(e_dataset new_state) {m_edataset = new_state;};
+      void set_dataset_state(enum_dataset new_state) {m_edataset = new_state;};
 
-      e_dataset get_dataset_state() {return m_edataset; }
+      enum_dataset get_dataset_state() {return m_edataset; }
 
-      virtual void set_sql(e_sql esql, const ::string & sql);
+      virtual void set_sql(enum_sql esql, const ::string & sql);
 
-      virtual void clear_sql(e_sql esql);
+      virtual void clear_sql(enum_sql esql);
 
-      virtual string get_sql(e_sql esql);
+      virtual string get_sql(enum_sql esql);
 
       virtual __pointer(row_array) query_rows(const ::string &query);
       virtual __pointer(payload_array) query_items(const ::string &query);

@@ -1,36 +1,15 @@
 #include "framework.h"
-//#if !BROAD_PRECOMPILED_HEADER
 #if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/user/_user.h"
+////#include "aura/user/user/_component.h"
 #endif
-//#endif
-//#include "acme/id.h"
-//#include "apex/platform/app_core.h"
 #include "acme/platform/system_setup.h"
-//#include "apex/platform/str_context.h"
-
-//#ifdef LINUX
-//void enum_display_monitors(::aura::session * psession);
-//#endif // LINUX
-
-
-//namespace OPERATING_SYSTEM_NAMESPACE
-//{
-//
-//   CLASS_DECL_AURA bool adjust_monitor(index iMonitor, ::u32 dwTemperature, double dBrightness, double dGamma);
-//
-//} // namespace OPERATING_SYSTEM_NAMESPACE
-
-
-
-
-//
-//
-//#if defined(APPLE_IOS)
-//
-//#include "aura/node/ios/interaction_impl.h"
-//
-//#endif
+#include "aura/windowing/windowing.h"
+#include "aura/windowing/window.h"
+#include "aura/user/user/user.h"
+#include "aura/user/user/interaction.h"
+#include "aura/platform/session.h"
+#include "aura/platform/system.h"
+#include "aura/platform/application.h"
 
 
 #if defined(APPLE_IOS) || defined(_UWP) || defined(ANDROID)
@@ -2428,7 +2407,7 @@ namespace aura
       if (m_applicationa.lookup(pszAppId, papp) && papp)
       {
 
-         //__pointer(::bergedge::pane_impact) ppaneimpact = get_document()->get_type_impact < ::bergedge::pane_impact >();
+         //__pointer(::bergedge::pane_impact) ppaneimpact = get_document()->get_typed_impact < ::bergedge::pane_impact >();
 
          //if(ppaneimpact != nullptr)
          //{
@@ -2535,6 +2514,15 @@ namespace aura
       puserinteractionHost->post_redraw();
 
    }
+
+
+   ::aura::system * session::get_system() const
+   {
+
+      return ::is_set(m_psystem) ? dynamic_cast <::aura::system *> (m_psystem) : nullptr;
+
+   }
+
 
 
 } // namespace aura

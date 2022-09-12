@@ -19,4 +19,3 @@ CLASS_DECL_APEX int get_apex_init()
 
 
 
-

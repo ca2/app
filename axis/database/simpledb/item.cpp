@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "_simpledb.h"
+#include "item.h"
 
 
 namespace simpledb

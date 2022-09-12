@@ -4,6 +4,9 @@
 #include "aura/user/user/_.h"
 
 
+#include "_constant.h"
+
+
 class application_menu;
 
 
@@ -15,20 +18,19 @@ namespace user
    class impact_data;
    class impact_system;
    class form;
+   class form_impact;
    class document_manager;
    class tab;
+   class impact_kit;
+   class tab_data;
+   class tab_pane;
+   class tab_impact;
+   class tab_callback;
+   class place_holder;
+   class split_bar;
 
-
-} // namespace user
-
-
-
-class form_document;
-
-
-namespace user
-{
-
+   class picture;
+   class picture_impl;
 
    class user;
    class document_manager;
@@ -42,7 +44,6 @@ namespace user
    class copydesk;
    class main_frame;
    class window_map;
-   //class tree;
    class plain_edit;
 #ifdef WINDOWS_DESKTOP
    class message_window;
@@ -52,20 +53,25 @@ namespace user
    using scroll_impact = show < scroll_base >;
    using plain_edit_impact = show < plain_edit >;
 
-   //class mesh_cache_interface;
-   //class mesh_data;
-   //class mesh;
-   //class list;
-   //class list_item;
-   //class list_column;
-
-
    class plain_text_set_sel_command;
    class plain_text_tree;
    class plain_text_command;
    class tree_draw_item;
+   class impact_creator;
 
+
+   class data_exchange;
+
+   
    class shell;
+
+
+   CLASS_DECL_BASE __pointer(::user::document) __document(::create * pcreate);
+
+
+
+
+   typedef ::user::show < ::user::button > button_impact;
 
 
 
@@ -73,16 +79,8 @@ namespace user
 } // namespace user
 
 
-
-
-
-//#include "form_callback.h"
-#include "impact_creator.h"
-#include "document_manager_container.h"
-
-
-
-
+class form_data;
+class form_document;
 
 
 

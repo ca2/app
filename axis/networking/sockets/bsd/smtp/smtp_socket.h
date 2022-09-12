@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "apex/networking/sockets/basic/tcp_socket.h"
 
 
 namespace sockets
@@ -41,7 +42,7 @@ namespace sockets
 
       enum_state m_estate;
 
-      __pointer(::net::email)    m_pemail;
+      __pointer(::networking::email)    m_pemail;
 
 
    public:

@@ -1,7 +1,6 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
+#include "place_holder.h"
+#include "aura/user/user/window_util.h"
 
 
 namespace user
@@ -11,8 +10,8 @@ namespace user
    place_holder::place_holder()
    {
 
-      m_flagNonClient.erase(non_client_background);
-      m_flagNonClient.erase(non_client_focus_rect);
+      m_flagNonClient.erase(e_non_client_background);
+      m_flagNonClient.erase(e_non_client_focus_rect);
 
    }
 

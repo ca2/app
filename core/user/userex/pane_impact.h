@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "base/user/user/impact.h"
+#include "base/user/user/impact_creator.h"
+
+
 namespace userex
 {
 
@@ -12,13 +16,13 @@ namespace userex
    public:
 
       class menu :
-         virtual public object
+         virtual public ::element
       {
       public:
          
-         string   m_strMatter;
+         string      m_strMatter;
          
-         atom       m_atom;
+         atom        m_atom;
 
       };
 

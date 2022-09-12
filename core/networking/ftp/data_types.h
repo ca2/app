@@ -15,6 +15,11 @@
 #pragma once
 
 
+#include "interface.h"
+#include "axis/account/credentials.h"
+#include "axis/account/user.h"
+
+
 namespace ftp
 {
 

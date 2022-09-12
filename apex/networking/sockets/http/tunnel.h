@@ -1,11 +1,12 @@
 #pragma once
 
 
-//#include "sockets_http_socket.h"
+#include "socket.h"
 
 
 namespace sockets
 {
+
 
    class CLASS_DECL_APEX http_tunnel :
       virtual public http_socket
@@ -21,13 +22,10 @@ namespace sockets
          state_init_ssl
 
       };
-
-
-      http_tunnel();
       bool        m_bSslTunnel;
-      bool        m_bOk ;
+      bool        m_bOk;
       string m_host; ///< Hostname from url_in
-      port_t m_port; ///< Port from url_in
+      ::networking::port_t m_port; ///< Port from url_in
       string_array   m_straProxy;
       enum_state      m_estate;
       string      m_strRequest;
@@ -40,14 +38,20 @@ namespace sockets
       string      m_strPasswordFile;
       string      m_strUserNameFile;
 
+
+      http_tunnel();
+      ~http_tunnel() override;
+
+      void initialize(::object * pobject) override;
+
       virtual const string & GetUrlHost();
       /** get port from url. */
-      virtual port_t GetUrlPort();
+      virtual ::networking::port_t GetUrlPort();
 
 
       using ::sockets::http_socket::open;
       virtual bool open(bool bConfigProxy = true);
-      virtual bool proxy_open(const string &host, port_t port);
+      virtual bool proxy_open(const string &host, ::networking::port_t port);
 
 
       void OnConnect() override;

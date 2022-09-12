@@ -1,8 +1,10 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
-
+#include "frame_window.h"
+#include "impact.h"
+#include "impact_host.h"
+#include "base/platform/application.h"
+#include "place_holder.h"
+#include "document.h"
 
 
 namespace user
@@ -605,7 +607,7 @@ namespace user
       //__pointer(::user::interaction) pupdown = pinteraction;
 
       //if (pupdown.is_set()
-      //   && pupdown->m_eupdown != updown_normal_frame
+      //   && pupdown->m_eupdown != e_updown_normal_frame
       //   && pupdown->m_eupdown != updown_none)
       //{
 
@@ -637,7 +639,7 @@ namespace user
       //__pointer(::user::interaction) pupdown = pinteraction;
 
       //if (pupdown.is_set()
-      //   && pupdown->m_eupdown != updown_normal_frame
+      //   && pupdown->m_eupdown != e_updown_normal_frame
       //   && pupdown->m_eupdown != updown_none)
       //{
 
@@ -667,7 +669,7 @@ namespace user
       //__pointer(::user::interaction) pupdown = pinteraction;
 
       //if (pupdown.is_set()
-      //   && pupdown->m_eupdown != updown_normal_frame
+      //   && pupdown->m_eupdown != e_updown_normal_frame
       //   && pupdown->m_eupdown != updown_none)
       //{
 
@@ -697,7 +699,7 @@ namespace user
       /*__pointer(::user::interaction) pupdown = pinteraction;
 
       if (pupdown.is_set()
-         && pupdown->m_eupdown != updown_normal_frame
+         && pupdown->m_eupdown != e_updown_normal_frame
          && pupdown->m_eupdown != updown_none)
       {
 
@@ -802,10 +804,6 @@ namespace user
 
       if (pinteraction->m_ewindowflag & e_window_flag_window_created)
       {
-
-
-
-
 
          pinteraction->set_parent(pimpactdata->m_pplaceholder);
 

@@ -1,7 +1,16 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
+#include "impact.h"
+#include "aura/message/user.h"
+#include "aura/user/user/system.h"
+#include "document.h"
+#include "frame_window.h"
+#include "impact_system.h"
+#include "toolbar.h"
+#include "base/platform/session.h"
+#include "impact_data.h"
+#include "base/user/user/place_holder.h"
+#include "base/user/user/user.h"
+#include "aura/user/user/window_util.h"
 
 
 namespace user
@@ -132,7 +141,7 @@ namespace user
 
          }
 
-         auto pframe = GetTypedParent < ::user::frame_window >();
+         auto pframe = get_typed_parent < ::user::frame_window >();
 
          if (pframe != nullptr && pframe->m_pviewMain == nullptr)
          {
@@ -730,6 +739,38 @@ namespace user
    }
 
 
+   ::base::application * impact::get_app() const 
+   {
+      
+      return m_pcontext ? m_pcontext->m_pbaseapplication : nullptr; 
+   
+   }
+
+
+   ::base::session * impact::get_session() const 
+   {
+      
+      return m_pcontext ? m_pcontext->m_pbasesession : nullptr; 
+   
+   }
+
+
+   ::base::system * impact::get_system() const 
+   {
+      
+      return m_psystem ? m_psystem->m_pbasesystem : nullptr; 
+   
+   }
+
+
+   ::base::user * impact::user() const 
+   {
+      
+      return get_session() ? get_session()->user() : nullptr; 
+   
+   }
+
+
    void impact::set_notify_user_interaction(::user::interaction* puserinteractionNotify)
    {
 
@@ -1123,7 +1164,7 @@ namespace user
    {
 
       return ::user::box::_001CallOnDraw(pgraphics);
-      //on_impactport_offset(pgraphics);
+      //on_context_offset(pgraphics);
 
       //synchronous_lock slImpact(mutex());
 

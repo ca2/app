@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/networking/sockets/basic/socket_handler.h"
+
+
 namespace netserver
 {
 
@@ -11,8 +14,13 @@ namespace netserver
    public:
 
 
-      socket_handler(::apex::log * plogger = nullptr);
+      socket_handler();
       ~socket_handler() override;
+
+      void add(const ::sockets::socket_pointer & psocket) override;
+      //void move2(::sockets::socket_pointer && psocket) override;
+      //void erase(::sockets::base_socket *) override;
+      bool contains(::sockets::base_socket *) override;
 
 
    };

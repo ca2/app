@@ -1,5 +1,6 @@
 #include "framework.h"
-#include "core/user/simple/_component.h"
+#include "core/user/simple/list_control.h"
+#include "core/user/simple/list_data.h"
 
 
 simple_list_control::simple_list_control()

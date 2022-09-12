@@ -1,6 +1,5 @@
 #include "framework.h"
-#include "apex/id.h"
-#include "apex/networking/sockets/_sockets.h"
+#include "client_socket.h"
 
 
 #define HEAVY_HTTP_LOG 0
@@ -177,7 +176,14 @@ namespace sockets
    }
 
 
-   http_client_socket::http_client_socket(const ::string & strUrlParam) //:
+   http_client_socket::~http_client_socket()
+   {
+
+      memory_counter_decrement(this);
+
+   }
+
+   void http_client_socket::initialize_http_client_socket(const ::string & strUrlParam) //:
       //::object(&h),
       //base_socket(h),
       //socket(h),
@@ -195,12 +201,12 @@ namespace sockets
 
       url_this(strUrlParam, m_protocol, m_host, m_port, strRequestUri, m_url_filename);
 
-      m_strHost                                 = m_host;
-      m_request.header(__id(host))              = m_host;
-      m_request.attr(__id(http_protocol))       = m_protocol;
-      m_request.attr(__id(request_uri))         = strRequestUri;
-      m_response.attr(__id(request_uri))        = strRequestUri;
-      m_strUrl                                  = strUrlParam;
+      set_host(m_host);
+      m_request.header(__id(host)) = get_host();
+      m_request.attr(__id(http_protocol)) = m_protocol;
+      m_request.attr(__id(request_uri)) = strRequestUri;
+      m_response.attr(__id(request_uri)) = strRequestUri;
+      set_url(strUrlParam);
 
 #ifdef BSD_STYLE_SOCKETS
       if (m_host.is_empty())
@@ -221,23 +227,16 @@ namespace sockets
       }
 #endif
 
-      m_strConnectHost                          = m_host;
-      m_iConnectPort                            = m_port;
+      set_connect_host(get_host());
+      set_connect_port(m_port);
 
-      m_pfile                                   = nullptr;
-      m_iFinalSize                              = -1;
+      m_pfile = nullptr;
+      m_iFinalSize = -1;
 
       memory_counter_increment(this);
 
    }
 
-
-   http_client_socket::~http_client_socket()
-   {
-
-      memory_counter_decrement(this);
-
-   }
 
 
    void http_client_socket::OnConnect()
@@ -314,7 +313,7 @@ namespace sockets
 
       m_memoryfile.seek_to_begin();
 
-#if !defined(BSD_STYLE_SOCKETS)
+#ifdef WINRT_SOCKETS
 
       if(m_content_length > 0)
       {
@@ -386,14 +385,14 @@ namespace sockets
 
       OnContent();
 
-      if(!m_bNoClose || m_b_close_when_complete)
-      {
+      //if(!m_bNoClose || m_b_close_when_complete)
+      //{
 
-         SetCloseAndDelete();
+      //   SetCloseAndDelete();
 
-      }
+      //}
 
-#if !defined(BSD_STYLE_SOCKETS)
+#ifdef WINRT_SOCKETS
 
       m_bExpectRequest = false;
 
@@ -442,7 +441,7 @@ namespace sockets
 
       increment_scalar(scalar_download_size, len);
 
-#if !defined(BSD_STYLE_SOCKETS)
+#ifdef WINRT_SOCKETS
 
       m_event.ResetEvent();
 
@@ -572,7 +571,7 @@ namespace sockets
    }
 
 
-   void http_client_socket::Url(const string & url_in, string & host, port_t & port)
+   void http_client_socket::Url(const string & url_in, string & host, ::networking::port_t & port)
    {
 
       string url;
@@ -587,7 +586,7 @@ namespace sockets
 
       host = purl->get_server(url);
 
-      port = (port_t) purl->get_port(url);
+      port = (::networking::port_t) purl->get_port(url);
 
    }
 
@@ -603,7 +602,7 @@ namespace sockets
       m_request.attr(__id(request_uri))       = strRequestUri;
       m_response.attr(__id(request_uri))      = strRequestUri;
 
-      m_strUrl = strUrlParam;
+      set_url(strUrlParam);
 
       m_pfile = nullptr;
 

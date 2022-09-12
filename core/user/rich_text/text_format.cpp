@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "core/user/rich_text/_rich_text.h"
+#include "text_format.h"
 
 
 namespace user
@@ -10,7 +10,7 @@ namespace user
    {
 
 
-      void     text_format::text_format_load(data * pdata, ::file::file * pfileIn)
+      void text_format::text_format_load(data * pdata, ::file::file * pfileIn)
       {
 
          throw ::exception(error_not_implemented);

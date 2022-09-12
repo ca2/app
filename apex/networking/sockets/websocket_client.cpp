@@ -1,328 +1,329 @@
 #include "framework.h"
+#include "websocket_client.h"
 #include "apex/id.h"
 #include "apex/networking/sockets/_sockets.h"
 #include "acme/primitive/string/base64.h"
 
-
-#ifdef PARALLELIZATION_PTHREAD
-
-
-#include "acme/operating_system/ansi/_pthread.h"
-
-
-#endif
-
-
-#include <openssl/ssl.h>
-
-#define DEEP_DATA_DEBUG 0
-
-/**
-* Return the number of bytes required to store a variable-length unsigned
-* 32-bit integer in base-128 varint encoding.
-*
-* \lparam v
-*      Value to encode.
-* \return
-*      Number of bytes required.
-*/
-static inline memsize u32_size(u32 v)
-{
-   if (v < (1UL << 7))
-   {
-      return 1;
-   }
-   else if (v < (1UL << 14))
-   {
-      return 2;
-   }
-   else if (v < (1UL << 21))
-   {
-      return 3;
-   }
-   else if (v < (1UL << 28))
-   {
-      return 4;
-   }
-   else
-   {
-      return 5;
-   }
-}
-
-
-/**
-* Pack an unsigned 32-bit integer in base-128 varint encoding and return the
-* number of bytes written, which must be 5 or less.
-*
-* \lparam value
-*      Value to encode.
-* \lparam[out] out
-*      Packed value.
-* \return
-*      Number of bytes written to `out`.
-*/
-static inline memsize u32_pack(u32 value, u8 *out)
-{
-   unsigned rv = 0;
-
-   if (value >= 0x80)
-   {
-      out[rv++] = value | 0x80;
-      value >>= 7;
-      if (value >= 0x80)
-      {
-         out[rv++] = value | 0x80;
-         value >>= 7;
-         if (value >= 0x80)
-         {
-            out[rv++] = value | 0x80;
-            value >>= 7;
-            if (value >= 0x80)
-            {
-               out[rv++] = value | 0x80;
-               value >>= 7;
-            }
-         }
-      }
-   }
-   /* assert: value<128 */
-   out[rv++] = value;
-   return rv;
-}
-
-
-CLASS_DECL_APEX void websocket_prefix_varuint32(memory & m, unsigned int u)
-{
-
-   auto iSize = ::u32_size(u);
-
-   m.allocate_add_up(iSize);
-
-   m.move(iSize);
-
-   //auto iSize2 = ::u32_pack(u, m.get_data());
-   
-   ::u32_pack(u, m.get_data());
-
-}
-
-
-int client_send(memory & m, int fin, memory & memory, bool useMask)
-{
-
-   i64 message_size = memory.get_size();
-
-   int length = (int) ( 2 + message_size);
-
-   if (message_size >= 65536)
-   {
-
-      length += 8;
-
-   }
-   else if (message_size >= 126)
-   {
-
-      length += 2;
-
-   }
-
-   u8 masking_key[4];
-
-   if (useMask)
-   {
-
-      length += 4;
-
-      __random_bytes(masking_key, 4);
-
-   }
-
-   m.set_size(length);
-
-   u8 * frame = (byte*)m.get_data();
-
-   frame[0] = 0x80 | fin;
-
-   int iOffset = -1;
-
-   if (message_size < 126)
-   {
-
-      frame[1] = (message_size & 0xff) | (useMask ? 0x80 : 0);
-
-      iOffset = 2;
-
-   }
-   else if (message_size < 65536)
-   {
-
-      frame[1] = 126 | (useMask ? 0x80 : 0);
-      frame[2] = (message_size >> 8) & 0xff;
-      frame[3] = (message_size >> 0) & 0xff;
-
-      iOffset = 4;
-
-   }
-   else
-   {
-
-      frame[1] = 127 | (useMask ? 0x80 : 0);
-      frame[2] = (message_size >> 56) & 0xff;
-      frame[3] = (message_size >> 48) & 0xff;
-      frame[4] = (message_size >> 40) & 0xff;
-      frame[5] = (message_size >> 32) & 0xff;
-      frame[6] = (message_size >> 24) & 0xff;
-      frame[7] = (message_size >> 16) & 0xff;
-      frame[8] = (message_size >> 8) & 0xff;
-      frame[9] = (message_size >> 0) & 0xff;
-
-      iOffset = 10;
-
-   }
-
-   if (useMask)
-   {
-
-      frame[iOffset + 0] = masking_key[0];
-      frame[iOffset + 1] = masking_key[1];
-      frame[iOffset + 2] = masking_key[2];
-      frame[iOffset + 3] = masking_key[3];
-
-      iOffset += 4;
-
-   }
-
-   ::memcpy_dup(&frame[iOffset], memory.get_data(), memory.get_length());
-
-   if (useMask)
-   {
-
-      for (memsize i = 0; i < memory.get_length(); i++)
-      {
-
-         frame[iOffset + i] ^= masking_key[i & 3];
-
-      }
-
-   }
-
-   return (int) (m.get_size());
-
-}
-
-int client_send_binary(memory & m, memory & memory)
-{
-
-   return client_send(m, 0x82, memory, true);
-
-}
-
-int client_send(memory & m, int fin, const char* src)
-{
-
-   memsize len = 0;
-
-   if (src != nullptr)
-   {
-
-      len = strlen(src);
-
-   }
-
-   auto length = len
-                 + 1   //0x00
-                 + 1;  //0xFF
-
-   if (len >= 126)
-   {
-
-      if (len >= 65536)
-      {
-
-         length += 8;
-
-      }
-      else
-      {
-
-         length += 2;
-
-      }
-
-   }
-
-   m.set_size(length);
-
-   char* frame = (char*)m.get_data();
-
-   frame[0] = (char)fin;
-
-   int iOffset;
-
-   if (len >= 126)
-   {
-
-      if (len >= 65536)
-      {
-
-         iOffset = 10;
-
-         frame[1] = 127;
-         
-         *((i64*)&frame[2]) = HTONLL(len);
-         
-      }
-      else
-      {
-
-         iOffset = 4;
-
-         frame[1] = 126;
-
-         *((i16*)&frame[2]) = htons((u16) (len));
-
-      }
-
-   }
-   else
-   {
-
-      iOffset = 2;
-
-      frame[1] = (char) (len);
-
-   }
-
-   for (memsize i = 0; i < len; i++)
-   {
-
-      frame[iOffset + i] = src[i];//read src into frame
-
-   }
-
-   return (int) (m.get_size());
-
-}
-
-
-int client_send_text(memory & m, const char* src)
-{
-
-   return client_send(m, 0x81, src);
-
-}
-
-
-int client_send_text(memory & m, const char* src, bool bMasked)
-{
-
-   memory m2(src, strlen(src));
-
-   return client_send(m, 0x81, m2, bMasked);
-
-}
+//
+//#ifdef PARALLELIZATION_PTHREAD
+//
+//
+//#include "acme/operating_system/ansi/_pthread.h"
+//
+//
+//#endif
+//
+//
+//#include <openssl/ssl.h>
+//
+//#define DEEP_DATA_DEBUG 0
+//
+///**
+//* Return the number of bytes required to store a variable-length unsigned
+//* 32-bit integer in base-128 varint encoding.
+//*
+//* \lparam v
+//*      Value to encode.
+//* \return
+//*      Number of bytes required.
+//*/
+//static inline memsize u32_size(u32 v)
+//{
+//   if (v < (1UL << 7))
+//   {
+//      return 1;
+//   }
+//   else if (v < (1UL << 14))
+//   {
+//      return 2;
+//   }
+//   else if (v < (1UL << 21))
+//   {
+//      return 3;
+//   }
+//   else if (v < (1UL << 28))
+//   {
+//      return 4;
+//   }
+//   else
+//   {
+//      return 5;
+//   }
+//}
+//
+//
+///**
+//* Pack an unsigned 32-bit integer in base-128 varint encoding and return the
+//* number of bytes written, which must be 5 or less.
+//*
+//* \lparam value
+//*      Value to encode.
+//* \lparam[out] out
+//*      Packed value.
+//* \return
+//*      Number of bytes written to `out`.
+//*/
+//static inline memsize u32_pack(u32 value, u8 *out)
+//{
+//   unsigned rv = 0;
+//
+//   if (value >= 0x80)
+//   {
+//      out[rv++] = value | 0x80;
+//      value >>= 7;
+//      if (value >= 0x80)
+//      {
+//         out[rv++] = value | 0x80;
+//         value >>= 7;
+//         if (value >= 0x80)
+//         {
+//            out[rv++] = value | 0x80;
+//            value >>= 7;
+//            if (value >= 0x80)
+//            {
+//               out[rv++] = value | 0x80;
+//               value >>= 7;
+//            }
+//         }
+//      }
+//   }
+//   /* assert: value<128 */
+//   out[rv++] = value;
+//   return rv;
+//}
+//
+//
+//CLASS_DECL_APEX void websocket_prefix_varuint32(memory & m, unsigned int u)
+//{
+//
+//   auto iSize = ::u32_size(u);
+//
+//   m.allocate_add_up(iSize);
+//
+//   m.move(iSize);
+//
+//   //auto iSize2 = ::u32_pack(u, m.get_data());
+//   
+//   ::u32_pack(u, m.get_data());
+//
+//}
+//
+//
+//int client_send(memory & m, int fin, memory & memory, bool useMask)
+//{
+//
+//   i64 message_size = memory.get_size();
+//
+//   int length = (int) ( 2 + message_size);
+//
+//   if (message_size >= 65536)
+//   {
+//
+//      length += 8;
+//
+//   }
+//   else if (message_size >= 126)
+//   {
+//
+//      length += 2;
+//
+//   }
+//
+//   u8 masking_key[4];
+//
+//   if (useMask)
+//   {
+//
+//      length += 4;
+//
+//      __random_bytes(masking_key, 4);
+//
+//   }
+//
+//   m.set_size(length);
+//
+//   u8 * frame = (byte*)m.get_data();
+//
+//   frame[0] = 0x80 | fin;
+//
+//   int iOffset = -1;
+//
+//   if (message_size < 126)
+//   {
+//
+//      frame[1] = (message_size & 0xff) | (useMask ? 0x80 : 0);
+//
+//      iOffset = 2;
+//
+//   }
+//   else if (message_size < 65536)
+//   {
+//
+//      frame[1] = 126 | (useMask ? 0x80 : 0);
+//      frame[2] = (message_size >> 8) & 0xff;
+//      frame[3] = (message_size >> 0) & 0xff;
+//
+//      iOffset = 4;
+//
+//   }
+//   else
+//   {
+//
+//      frame[1] = 127 | (useMask ? 0x80 : 0);
+//      frame[2] = (message_size >> 56) & 0xff;
+//      frame[3] = (message_size >> 48) & 0xff;
+//      frame[4] = (message_size >> 40) & 0xff;
+//      frame[5] = (message_size >> 32) & 0xff;
+//      frame[6] = (message_size >> 24) & 0xff;
+//      frame[7] = (message_size >> 16) & 0xff;
+//      frame[8] = (message_size >> 8) & 0xff;
+//      frame[9] = (message_size >> 0) & 0xff;
+//
+//      iOffset = 10;
+//
+//   }
+//
+//   if (useMask)
+//   {
+//
+//      frame[iOffset + 0] = masking_key[0];
+//      frame[iOffset + 1] = masking_key[1];
+//      frame[iOffset + 2] = masking_key[2];
+//      frame[iOffset + 3] = masking_key[3];
+//
+//      iOffset += 4;
+//
+//   }
+//
+//   ::memcpy_dup(&frame[iOffset], memory.get_data(), memory.get_length());
+//
+//   if (useMask)
+//   {
+//
+//      for (memsize i = 0; i < memory.get_length(); i++)
+//      {
+//
+//         frame[iOffset + i] ^= masking_key[i & 3];
+//
+//      }
+//
+//   }
+//
+//   return (int) (m.get_size());
+//
+//}
+//
+//int client_send_binary(memory & m, memory & memory)
+//{
+//
+//   return client_send(m, 0x82, memory, true);
+//
+//}
+//
+//int client_send(memory & m, int fin, const char* src)
+//{
+//
+//   memsize len = 0;
+//
+//   if (src != nullptr)
+//   {
+//
+//      len = strlen(src);
+//
+//   }
+//
+//   auto length = len
+//                 + 1   //0x00
+//                 + 1;  //0xFF
+//
+//   if (len >= 126)
+//   {
+//
+//      if (len >= 65536)
+//      {
+//
+//         length += 8;
+//
+//      }
+//      else
+//      {
+//
+//         length += 2;
+//
+//      }
+//
+//   }
+//
+//   m.set_size(length);
+//
+//   char* frame = (char*)m.get_data();
+//
+//   frame[0] = (char)fin;
+//
+//   int iOffset;
+//
+//   if (len >= 126)
+//   {
+//
+//      if (len >= 65536)
+//      {
+//
+//         iOffset = 10;
+//
+//         frame[1] = 127;
+//         
+//         *((i64*)&frame[2]) = HTONLL(len);
+//         
+//      }
+//      else
+//      {
+//
+//         iOffset = 4;
+//
+//         frame[1] = 126;
+//
+//         *((i16*)&frame[2]) = htons((u16) (len));
+//
+//      }
+//
+//   }
+//   else
+//   {
+//
+//      iOffset = 2;
+//
+//      frame[1] = (char) (len);
+//
+//   }
+//
+//   for (memsize i = 0; i < len; i++)
+//   {
+//
+//      frame[iOffset + i] = src[i];//read src into frame
+//
+//   }
+//
+//   return (int) (m.get_size());
+//
+//}
+//
+//
+//int client_send_text(memory & m, const char* src)
+//{
+//
+//   return client_send(m, 0x81, src);
+//
+//}
+//
+//
+//int client_send_text(memory & m, const char* src, bool bMasked)
+//{
+//
+//   memory m2(src, strlen(src));
+//
+//   return client_send(m, 0x81, m2, bMasked);
+//
+//}
 
 namespace sockets
 {
@@ -361,7 +362,7 @@ namespace sockets
 
       m_bTls = true;
 
-#if !defined(BSD_STYLE_SOCKETS)
+#ifdef WINRT_SOCKETS
 
       m_bExpectRequest = true;
 
@@ -374,48 +375,24 @@ namespace sockets
    }
 
 
-   websocket_client::websocket_client(const string & url_in, const ::string & strProtocol) :
-      //::object(&h),
-      //base_socket(h),
-      //socket(h),
-      //stream_socket(h),
-      //tcp_socket(h),
-      //http_socket(h),
-      //http_tunnel(h),
-      //http_client_socket(h, url_in)
-      http_client_socket(url_in)
-   {
+   //websocket_client::websocket_client(const string & url_in, const ::string & strProtocol) :
+   //   //::object(&h),
+   //   //base_socket(h),
+   //   //socket(h),
+   //   //stream_socket(h),
+   //   //tcp_socket(h),
+   //   //http_socket(h),
+   //   //http_tunnel(h),
+   //   //http_client_socket(h, url_in)
+   //   http_client_socket(url_in)
+   //{
 
-      m_memPong.set_size(2);
-      m_memPong.get_data()[0] = 0x8a;
-      m_memPong.get_data()[1] = 0;
+   //  
 
-      m_durationLastPing.Now();
-
-      m_bUseMask = false;
-
-      m_strWebSocketProtocol = strProtocol;
-
-      m_bRequestSent = false;
-
-      m_bWebSocket = false;
-
-      m_bTls = true;
-
-#if !defined(BSD_STYLE_SOCKETS)
-
-      m_bExpectRequest = true;
-
-#endif
-
-      m_emethod = http_method_get;
-
-      m_durationLastPing.Now();
-
-   }
+   //}
 
 
-   //websocket_client::websocket_client(const string & host, port_t port, const string & url_in) :
+   //websocket_client::websocket_client(const string & host, ::networking::port_t port, const string & url_in) :
    //   object(h.get_app()),
    //   base_socket(h),
    //   socket(h),
@@ -445,6 +422,40 @@ namespace sockets
 
    websocket_client::~websocket_client()
    {
+
+   }
+
+   
+   void websocket_client::initialize_websocket_client(const string & url_in, const ::string & strProtocol)
+   {
+
+      initialize_http_client_socket(url_in);
+
+      m_memPong.set_size(2);
+      m_memPong.get_data()[0] = 0x8a;
+      m_memPong.get_data()[1] = 0;
+
+      m_durationLastPing.Now();
+
+      m_bUseMask = false;
+
+      m_strWebSocketProtocol = strProtocol;
+
+      m_bRequestSent = false;
+
+      m_bWebSocket = false;
+
+      m_bTls = true;
+
+#ifdef WINRT_SOCKETS
+
+      m_bExpectRequest = true;
+
+#endif
+
+      m_emethod = http_method_get;
+
+      m_durationLastPing.Now();
 
    }
 
@@ -592,7 +603,7 @@ namespace sockets
          else
          inheader(__id(host)) = GetUrlHost();*/
 
-#if !defined(BSD_STYLE_SOCKETS)
+#ifdef WINRT_SOCKETS
 
          m_bExpectResponse = true;
 
@@ -732,17 +743,17 @@ namespace sockets
 
    void websocket_client::InitSSLClient()
    {
-#if defined(HAVE_OPENSSL)
-      if(m_bTls)
-      {
-         InitializeContext("",TLS_client_method());
-         //m_strTlsHostName = m_host;
-      }
-      else
-      {
-         InitializeContext("", TLS_client_method());
-      }
-#endif
+//#if defined(HAVE_OPENSSL)
+//      if(m_bTls)
+//      {
+//         InitializeContext("",TLS_client_method());
+//         //m_strTlsHostName = m_host;
+//      }
+//      else
+//      {
+//         InitializeContext("", TLS_client_method());
+//      }
+//#endif
    }
 
 
@@ -750,20 +761,20 @@ namespace sockets
    long websocket_client::cert_common_name_check(const ::string & common_name)
    {
 
-#ifdef BSD_STYLE_SOCKETS
-
-      int iResult = (int) SSL_get_verify_result(m_psslcontext->m_ssl);
-
-#else
+//#ifdef BSD_STYLE_SOCKETS
+//
+//      int iResult = (int) SSL_get_verify_result(m_psslcontext->m_ssl);
+//
+//#else
 
       int iResult = 0;
 
-#endif
+//#endif
 
 
       return iResult;
 
-      return X509_V_ERR_APPLICATION_VERIFICATION;
+      //return X509_V_ERR_APPLICATION_VERIFICATION;
 
 
    }
@@ -1107,6 +1118,51 @@ namespace sockets
    {
 
    }
+
+
+   int websocket_client::client_send(memory & m, int fin, memory & memory, bool useMask)
+   {
+
+      throw interface_only();
+
+      return -1;
+
+   }
+
+
+   int websocket_client::client_send(memory & m, int fin, const char * src)
+   {
+      throw interface_only();
+
+      return -1;
+
+
+   }
+
+   
+   int websocket_client::client_send_text(memory & m, const char * src)
+   {
+      
+      return client_send(m, 0x81, src);
+
+   }
+
+
+   int websocket_client::client_send_binary(memory & m, memory & memory)
+{
+
+   return client_send(m, 0x82, memory, true);
+
+}
+
+   int websocket_client::client_send_text(memory & m, const char* src, bool bMasked)
+{
+
+   memory m2(src, strlen(src));
+
+   return client_send(m, 0x81, m2, bMasked);
+
+}
 
 } // namespace sockets
 

@@ -5,7 +5,7 @@
 //  Created by Camilo Sasuke Tsumanuma on 10/08/20.
 //
 #include "framework.h"
-#include "base/user/user/_component.h"
+//#include "base/user/user/_component.h"
 #include "menu_shared.h"
 
 
@@ -32,7 +32,7 @@ char * const * alloc_c_string_array(const string_array & stra);
 }
 
 
-__pointer(menu_shared) create_menu_shared(const string_array & straParent, const string_array & straMenu, const string_array & straId)
+__pointer(menu_shared) create_menu_shared(::object * pobject, const string_array & straParent, const string_array & straMenu, const string_array & straId)
 {
 
    int iCount = (int) straParent.get_count();

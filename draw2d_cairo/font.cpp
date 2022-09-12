@@ -1,8 +1,8 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_library.h"
-#endif
-#include "aura/user/user/_user.h"
+#include "font.h"
+#include "draw2d.h"
+#include "graphics.h"
+#include "aura/graphics/draw2d/host.h"
 
 
 namespace draw2d_cairo

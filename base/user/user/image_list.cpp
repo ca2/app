@@ -1,10 +1,9 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
-#include "aura/update.h"
 #include "image_list.h"
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/image/array.h"
+#include "aura/message/user.h"
+#include "aura/platform/session.h"
 
 
 namespace user
@@ -27,7 +26,7 @@ namespace user
       m_iPad = 10;
       m_ealign = e_align_top_left;
 
-      //m_scrolldataVertical.m_bScrollEnable = true;
+      //m_pscrolldataVertical->m_bScrollEnable = true;
 
    }
 
@@ -87,7 +86,7 @@ namespace user
 
       }
 
-      return m_imagea[m_iaSel[0]];
+      return m_pimagea->image_at(m_iaSel[0]);
 
    }
 
@@ -183,7 +182,14 @@ namespace user
       pcreate->previous();
 
       if (pcreate->m_bRet)
+      {
+
          return;
+
+      }
+
+      __construct_new(m_pimagea);
+      __construct_new(m_pimageaThumb);
 
 
    }
@@ -639,7 +645,7 @@ namespace user
 
          //m_iWheelDeltaScroll = (i16) (sizeImage.cy / 3);
 
-         m_imageaThumb.erase_all();
+         m_pimageaThumb->m_imagea.erase_all();
 
       }
 
@@ -651,7 +657,7 @@ namespace user
 
       //m_sizeTotal = rectangleTotal.size();
 
-      //m_scrolldataVertical.m_iPage = rectangleClient.height();
+      //m_pscrolldataVertical->m_iPage = rectangleClient.height();
 
       ::user::box::on_layout(pgraphics);
 
@@ -724,14 +730,14 @@ namespace user
       {
 
          throw ::exception(todo, "core");
-         //auto * peditview = _001TypedWindow < ::userex::top_edit_impact >();
+         //auto * peditimpact = _001TypedWindow < ::userex::top_edit_impact >();
 
-         //if (peditview != nullptr && ptopic->user_interaction() == peditview)
+         //if (peditimpact != nullptr && ptopic->user_interaction() == peditimpact)
          //{
 
          //   string strText;
 
-         //   peditview->_001GetText(strText);
+         //   peditimpact->_001GetText(strText);
 
          //}
 

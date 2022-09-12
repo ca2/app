@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/networking/sockets/basic/listen_socket.h"
+
+
 namespace netserver
 {
 
@@ -19,7 +22,7 @@ namespace netserver
       i32                                          m_iPortMaximum;
       i32                                          m_iConnectPort;
 
-      SOCKET                                       m_hsocket;
+      //SOCKET                                       m_hsocket;
       string                                       m_strCat;
       string                                       m_strCipherList;
 
@@ -28,7 +31,7 @@ namespace netserver
 
 
       socket_thread_base();
-      virtual ~socket_thread_base();
+      ~socket_thread_base() override;
 
 
       virtual void     run() override;
@@ -54,7 +57,9 @@ namespace netserver
       virtual ::sockets::listen_socket_base * new_listen_socket() override
       {
 
-         auto psocket = new ::sockets::listen_socket < SOCKET >;
+         auto psocket = __create_new< ::sockets::listen_socket < SOCKET > >();
+
+         psocket->increment_reference_count();
 
          //psocket->m_psockethandler = m_psockethandler;
 

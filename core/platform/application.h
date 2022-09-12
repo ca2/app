@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "bred/platform/application.h"
+
+
 namespace core
 {
 

@@ -1,14 +1,5 @@
 #include "framework.h" 
-#include "apex/id.h"
-#include "apex/networking/sockets/_sockets.h"
-
-
-#if defined(LINUX) || defined(__APPLE__)
-
-#include <sys/time.h>
-
-#endif
-
+#include "socket.h"
 #define HEAVY_HTTP_LOG 0
 
 namespace sockets
@@ -34,11 +25,8 @@ namespace sockets
       m_chunk_state(0)
    {
 
-      m_bOnlyHeaders = false;
-      m_bNoClose = false;
-      m_request.attr(__id(http_version)) = "HTTP/1.1";
-      SetLineProtocol();
-      DisableInputBuffer();
+      //m_bOnlyHeaders = false;
+      //m_bNoClose = false;
 
    }
 
@@ -49,12 +37,10 @@ namespace sockets
    }
 
 
-   void http_socket::on_initialize_object()
+   void http_socket::initialize(::object * pobject)
    {
 
-      //auto estatus = tcp_socket::on_initialize_object();
-
-      tcp_socket::on_initialize_object();
+      tcp_socket::initialize(pobject);
 
       //if (!estatus)
       //{
@@ -62,6 +48,10 @@ namespace sockets
       //   return estatus;
 
       //}
+
+      m_request.attr(__id(http_version)) = "HTTP/1.1";
+      SetLineProtocol();
+      DisableInputBuffer();
 
       m_request.m_psystem = m_psystem;
 
@@ -78,7 +68,7 @@ namespace sockets
       if (!m_bHeader)
       {
 
-         if (m_b_chunked)
+         if (m_bChunked)
          {
 
             memsize ptr = 0;
@@ -95,7 +85,7 @@ namespace sockets
                   {
                      OnDataComplete();
                      // prepare for next request(or response)
-                     m_b_chunked = false;
+                     m_bChunked = false;
                      SetLineProtocol( true );
                      m_bFirst = true;
                      m_bHeader = true;
@@ -307,7 +297,7 @@ namespace sockets
       if (!line.get_length())
       {
 
-         if (m_body_size_left || !m_b_keepalive || m_b_chunked)
+         if (m_body_size_left || !m_b_keepalive || m_bChunked)
          {
 
             SetLineProtocol(false);
@@ -318,7 +308,7 @@ namespace sockets
 
          OnHeaderComplete();
 
-         if(!m_body_size_left && !m_b_chunked)
+         if(!m_body_size_left && !m_bChunked)
          {
 
             OnDataComplete();
@@ -417,7 +407,7 @@ namespace sockets
       }
       if (::str().equals_ci(key, "transfer-encoding") && ::str().ends_ci(value, "chunked"))
       {
-         m_b_chunked = true;
+         m_bChunked = true;
       }
       /* If remote end tells us to keep connection alive, and we're operating
       in http/1.1 mode (not http/1.0 mode), then we mark the socket to be
@@ -600,12 +590,12 @@ namespace sockets
          strLine = "Host: " + m_request.m_propertysetHeader[__id(host)].get_string();
 
          if(m_iProxyPort > 0 ||
-               (m_iConnectPort != 80 && !IsSSL()) || (m_iConnectPort != 443 && IsSSL()))
+               (get_connect_port() != 80 && !IsSSL()) || (get_connect_port() != 443 && IsSSL()))
          {
 
             strLine += ":";
 
-            strLine += __string(m_iConnectPort);
+            strLine += __string(get_connect_port());
 
          }
 
@@ -673,8 +663,8 @@ namespace sockets
 
    void http_socket::Reset()
    {
-      m_bFirst       = true;
-      m_bHeader      = true;
+      //m_bFirst       = true;
+      //m_bHeader      = true;
       m_bRequest     = false;
       m_bResponse    = false;
       SetLineProtocol(true);
@@ -684,8 +674,7 @@ namespace sockets
 
 
 
-
-   void http_socket::url_this(string strUrl, string & strProtocol, string & strHost, port_t & port, string & strRequestUri, string & strFile)
+   void http_socket::url_this(string strUrl, string & strProtocol, string & strHost, ::networking::port_t & port, string & strRequestUri, string & strFile)
    {
 
       if (!strUrl.eat_before(strProtocol, "://"))
@@ -698,20 +687,20 @@ namespace sockets
       if(strProtocol.equals_ci("https") || strProtocol.equals_ci("wss"))
       {
 
-#ifdef HAVE_OPENSSL
+//#ifdef HAVE_OPENSSL
 
          EnableSSL();
 
-#else
-
-#ifndef _UWP
-
-
-         WARNING("url_this",-1,"SSL not available");
-
-#endif
-
-#endif
+//#else
+//
+//#ifndef _UWP
+//
+//
+//         WARNING("url_this",-1,"SSL not available");
+//
+//#endif
+//
+//#endif
          port = 443;
 
       }
@@ -768,30 +757,30 @@ namespace sockets
    void http_socket::OnHeaderComplete()
    {
 
-      if(IsRequest())
-      {
+      //if(IsRequest())
+      //{
 
-         m_request.header(__id(content_length)).as(m_body_size_left);
+      //   m_request.header(__id(content_length)).as(m_body_size_left);
 
-         m_body_size_downloaded = 0;
+      //   m_body_size_downloaded = 0;
 
-      }
+      //}
 
-      if(IsResponse())
-      {
+      //if(IsResponse())
+      //{
 
-         m_response.header(__id(content_length)).as(m_body_size_left);
+      //   m_response.header(__id(content_length)).as(m_body_size_left);
 
-         m_body_size_downloaded = 0;
+      //   m_body_size_downloaded = 0;
 
-      }
+      //}
 
-      if(m_bOnlyHeaders)
+      /*if(m_bOnlyHeaders)
       {
 
          SetCloseAndDelete();
 
-      }
+      }*/
 
    }
 
@@ -810,19 +799,25 @@ namespace sockets
    {
 
       //m_ssl             = psocket->m_ssl;
-      m_socket          = psocket->m_socket;
-      m_bSsl            = psocket->m_bSsl;
-      m_bSslServer      = psocket->m_bSslServer;
-      m_bEnableSsl      = psocket->m_bEnableSsl;
-      m_bConnected      = psocket->m_bConnected;
+      //m_socket          = psocket->m_socket;
+      //m_bSsl            = psocket->m_bSsl;
+      //m_bSslServer      = psocket->m_bSslServer;
+      //m_bEnableSsl      = psocket->m_bEnableSsl;
+      //m_bConnected      = psocket->m_bConnected;
 
       SetRemoteHostname(psocket->GetRemoteHostname());
 
    }
 
+
    void http_socket::OnEndChunk()
    {
+
+
    }
+
+
 } // namespace sockets
+
 
 

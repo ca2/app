@@ -1,15 +1,17 @@
 #include "framework.h"
-#include "core/user/simple/_component.h"
+#include "core/user/simple/tab_control.h"
 
 
 simple_tab_control::simple_tab_control()
 {
+
 
 }
 
 
 simple_tab_control::~simple_tab_control()
 {
+
 
 }
 

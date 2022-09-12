@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/user/form/document.h"
+
+
 namespace userfs
 {
 

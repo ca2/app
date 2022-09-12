@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "core/user/user/_user.h"
+////#include "core/user/user/_component.h"
 #include "tool_tip_window.h"
 #include "tool_tip_tool.h"
 

@@ -1,14 +1,26 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#endif
 
 #if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
 #endif
-#include "core/user/account/_account.h"
-#include "aura/update.h"
 #include "base/user/user/tab_pane.h"
+#include "core/user/user/font_list.h"
+#include "core/user/user/user.h"
+#include "pane_tab_impact.h"
+#include "font_impact.h"
+#include "color_impact.h"
+#include "core/filesystem/filemanager/document.h"
+#include "core/filesystem/filemanager/data.h"
+#include "core/platform/application.h"
+#include "core/platform/session.h"
+#include "base/user/user/frame_window.h"
+#include "base/user/form/impact.h"
+#include "base/user/user/tab_data.h"
+#include "base/user/user/impact_system.h"
+#include "axis/account/credentials.h"
+#include "core/user/account/impact.h"
+#include "aura/message/user.h"
+#include "aura/user/user/window_util.h"
 
 
 namespace core
@@ -33,7 +45,7 @@ namespace userex
    pane_tab_impact::pane_tab_impact()
    {
 
-      m_pcolorview = nullptr;
+      //m_pcolorimpact = nullptr;
 
       //m_pfilemanager = nullptr;
 
@@ -103,7 +115,7 @@ namespace userex
          pinteraction->get_window_rect(prectangle);
 
 
-         screen_to_client(prectangle);
+         screen_to_client()(*prectangle);
 
 
       }
@@ -138,7 +150,7 @@ namespace userex
 
          pinteraction->get_window_rect(prectangle);
 
-         screen_to_client(prectangle);
+         screen_to_client()(*prectangle);
 
       }
 
@@ -155,6 +167,54 @@ namespace userex
       add_command_handler("file_save_as", this, &pane_tab_impact::_001OnFileSaveAs);
       add_command_prober("file_save_as", this, &pane_tab_impact::_001OnUpdateFileSaveAs);
 
+   }
+
+
+   ::user::interaction * pane_tab_impact::get_font_interaction()
+   {
+     
+      if(::is_null(m_pfontimpact))
+      {
+         
+         return nullptr;
+         
+      }
+      
+      auto pimpact = m_pfontimpact->m_pimpact;
+      
+      if(::is_null(pimpact))
+      {
+         
+         return nullptr;
+         
+      }
+      
+      return pimpact;
+      
+   }
+
+
+   ::user::interaction * pane_tab_impact::get_color_interaction()
+   {
+  
+      if(::is_null(m_pcolorimpact))
+      {
+         
+         return nullptr;
+         
+      }
+      
+      auto pimpact = m_pcolorimpact;
+      
+      if(::is_null(pimpact))
+      {
+         
+         return nullptr;
+         
+      }
+      
+      return pimpact;
+      
    }
 
 
@@ -230,6 +290,7 @@ namespace userex
 
    }
 
+
    void pane_tab_impact::_001OnUpdateFileSaveAs(::message::message * pmessage)
    {
 
@@ -268,7 +329,7 @@ namespace userex
       else if(m_pimpactdata->m_atom == OPTIONS_IMPACT)
       {
 
-         if (::is_set(m_pdocumentMenu))
+         if (::is_set(m_pformdocumentMenu))
          {
 
             auto strOptionsImpact = get_app()->prepare_impact_options();
@@ -285,7 +346,7 @@ namespace userex
 
 #endif
 
-            if (!m_pdocumentMenu->open_document(strOptionsImpact))
+            if (!m_pformdocumentMenu->open_document(strOptionsImpact))
             {
 
                output_error_message("Failed to open the menu.");
@@ -294,7 +355,7 @@ namespace userex
 
             }
 
-            auto pformview = m_pdocumentMenu->get_type_impact < ::user::form_impact>();
+            auto pformview = m_pformdocumentMenu->get_typed_impact < ::user::form_impact>();
 
             pformview->get_form()->add_handler(get_app());
 
@@ -503,7 +564,7 @@ namespace userex
 
                auto puser = user()->m_pcoreuser;
 
-               m_pdocumentMenu = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
+               m_pformdocumentMenu = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
 
                pimpactdata->m_eflag.add(::user::e_flag_hide_on_kill_focus);
 
@@ -539,22 +600,22 @@ namespace userex
 
          auto pdocument = ptemplate->open_document_file(get_app(), ::e_type_null, __visible(true).is_true(), pimpactdata->m_pplaceholder);
 
-         m_pfontview = pdocument->get_type_impact < font_impact >();
+         m_pfontimpact = pdocument->get_typed_impact < font_impact >();
 
-         m_pfontview->set_need_layout();
+         m_pfontimpact->set_need_layout();
 
          pdocument->m_pviewTopic->set_notify_user_interaction(this);
 
          pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
          
-         m_pfontview->m_pimpact->add_handler(this);
+         m_pfontimpact->m_pimpact->add_handler(this);
 
          __pointer(::user::interaction) pimpact = psession->get_bound_ui(FONTSEL_IMPACT);
 
          if(pimpact)
          {
 
-            m_pfontview->m_pimpact->add_handler(pimpact);
+            m_pfontimpact->m_pimpact->add_handler(pimpact);
 
          }
 
@@ -576,20 +637,20 @@ namespace userex
 
          //auto pdocument = pimpactsystem->open_document_file(get_app(), ::e_type_null, __visible(false).is_true(), pimpactdata->m_pplaceholder);
 
-         m_pcolorview = create_impact < color_impact >(pimpactdata);
+         m_pcolorimpact = create_impact < color_impact >(pimpactdata);
 
 //         pdocument->m_pviewTopic->set_notify_user_interaction(this);
 
   //       pimpactdata->m_puserinteraction = pdocument->m_pviewTopic;
          
-         m_pcolorview->add_handler(this);
+         m_pcolorimpact->add_handler(this);
 
          __pointer(::user::interaction) pimpact = psession->get_bound_ui(COLORSEL_IMPACT);
 
          if(pimpact)
          {
 
-            m_pcolorview->add_handler(pimpact);
+            m_pcolorimpact->add_handler(pimpact);
 
          }
 
@@ -631,25 +692,25 @@ namespace userex
 
             auto & set = payload("filemanager_toolbar").as_propset();
 
-            if (set[::userfs::mode_normal].is_set())
-               pfilemanagerdata->m_setToolbar[::userfs::mode_normal] = set[::userfs::mode_normal];
+            if (set[::userfs::e_mode_normal].is_set())
+               pfilemanagerdata->m_setToolbar[::userfs::e_mode_normal] = set[::userfs::e_mode_normal];
             else
-               pfilemanagerdata->m_setToolbar[::userfs::mode_normal] = "filemanager_toolbar.xml";
+               pfilemanagerdata->m_setToolbar[::userfs::e_mode_normal] = "filemanager_toolbar.xml";
 
-            if (set[::userfs::mode_saving].is_set())
-               pfilemanagerdata->m_setToolbar[::userfs::mode_saving] = set[::userfs::mode_saving];
+            if (set[::userfs::e_mode_saving].is_set())
+               pfilemanagerdata->m_setToolbar[::userfs::e_mode_saving] = set[::userfs::e_mode_saving];
             else
-               pfilemanagerdata->m_setToolbar[::userfs::mode_saving] = "filemanager_saving_toolbar.xml";
+               pfilemanagerdata->m_setToolbar[::userfs::e_mode_saving] = "filemanager_saving_toolbar.xml";
 
-            if (set[::userfs::mode_import].is_set())
-               pfilemanagerdata->m_setToolbar[::userfs::mode_import] = set[::userfs::mode_import];
+            if (set[::userfs::e_mode_import].is_set())
+               pfilemanagerdata->m_setToolbar[::userfs::e_mode_import] = set[::userfs::e_mode_import];
             else
-               pfilemanagerdata->m_setToolbar[::userfs::mode_import] = "filemanager_import_toolbar.xml";
+               pfilemanagerdata->m_setToolbar[::userfs::e_mode_import] = "filemanager_import_toolbar.xml";
 
-            if (set[::userfs::mode_export].is_set())
-               pfilemanagerdata->m_setToolbar[::userfs::mode_export] = set[::userfs::mode_export];
+            if (set[::userfs::e_mode_export].is_set())
+               pfilemanagerdata->m_setToolbar[::userfs::e_mode_export] = set[::userfs::e_mode_export];
             else
-               pfilemanagerdata->m_setToolbar[::userfs::mode_export] = "filemanager_export_toolbar.xml";
+               pfilemanagerdata->m_setToolbar[::userfs::e_mode_export] = "filemanager_export_toolbar.xml";
 
          }
 //         else
@@ -939,7 +1000,7 @@ namespace userex
 
    //   m_pdocAppOptions = puser->create_child_form(this, this, pimpactdata->m_pplaceholder, strAppOptions);
 
-   //   //auto pform = m_pdocAppOptions->get_type_impact<::user::form>();
+   //   //auto pform = m_pdocAppOptions->get_typed_impact<::user::form>();
 
    //   //if (pform)
    //   //{

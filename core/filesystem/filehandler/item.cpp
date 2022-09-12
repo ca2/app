@@ -2,6 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "_filehandler.h"
 #endif
+#include "item.h"
 
 
 namespace filehandler

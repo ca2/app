@@ -52,6 +52,9 @@ enum enum_factory : ::i64
 //#define DEFAULT_ID (1 << 7)
 
 
+#define BASE_IMPACT 100'000
+
+
 #define FILEMANAGER_IMPACT 1'001'000
 #define COLORSEL_IMPACT 2'001'000
 #define FONTSEL_IMPACT 2'002'000

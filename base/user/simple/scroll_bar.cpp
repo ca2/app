@@ -1,16 +1,19 @@
 #include "framework.h"
-#include "base/user/simple/_component.h"
-#include "aura/graphics/draw2d/_component.h"
+////#include "base/user/simple/_component.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/draw2d/pen.h"
 #include "acme/platform/timer.h"
-//#include "aura/user/interaction_draw2d.h"
+#include "scroll_bar.h"
+#include "aura/message/user.h"
+#include "aura/user/user/style.h"
 
 
 simple_scroll_bar::simple_scroll_bar()
 {
 
    //m_pbrushNull->CreateStockObject(NULL_BRUSH);
-   m_flagNonClient.erase(non_client_background);
-   // m_flagNonClient.erase(non_client_focus_rect);
+   m_flagNonClient.erase(e_non_client_background);
+   // m_flagNonClient.erase(e_non_client_focus_rect);
    m_bTracking          = false;
    m_scrollinfo.nMin    = 0;
    m_scrollinfo.nMax    = 100;
@@ -86,7 +89,7 @@ void simple_scroll_bar::on_message_mouse_move(::message::message * pmessage)
 
    ::point_i32 pointClient;
 
-   _screen_to_client(pointClient, pmouse->m_point);
+   pointClient = pmouse->m_point + screen_to_client();
 
    if(m_bTracking)
    {
@@ -108,11 +111,7 @@ void simple_scroll_bar::on_message_mouse_move(::message::message * pmessage)
 
       pmouse->m_lresult = 1;
 
-      //pmouse->m_bRet = true;
-
-      auto pwindowing = windowing();
-
-      auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+      auto pcursor = get_mouse_cursor(e_cursor_arrow);
 
       pmouse->m_pcursor = pcursor;
 
@@ -125,9 +124,7 @@ void simple_scroll_bar::on_message_mouse_move(::message::message * pmessage)
       if(eelement.is_set())
       {
 
-         auto pwindowing = windowing();
-
-         auto pcursor = pwindowing->get_cursor(e_cursor_arrow);
+         auto pcursor = get_mouse_cursor(e_cursor_arrow);
 
          pmouse->m_pcursor = pcursor;
 
@@ -248,9 +245,7 @@ void simple_scroll_bar::on_message_left_button_down(::message::message * pmessag
 void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
 {
 
-   auto pwindowing = windowing();
-
-   pwindowing->release_mouse_capture();
+   release_mouse_capture();
 
    auto pmouse = pmessage->m_union.m_pmouse;
 
@@ -272,7 +267,7 @@ void simple_scroll_bar::on_message_left_button_up(::message::message * pmessage)
    if (bWasTracking)
    {
 
-      auto point = _001ScreenToClient(pmouse->m_point);
+      auto point = pmouse->m_point + screen_to_client();
 
       point -= m_sizeTrackOffset;
 
@@ -783,11 +778,9 @@ void simple_scroll_bar::_001OnTimer(::timer * ptimer)
 
    ::user::scroll_bar::_001OnTimer(ptimer);
 
-   auto pwindow = window();
+   auto pointCursor = get_cursor_position();
 
-   auto pointCursor = pwindow->get_cursor_position();
-
-   screen_to_client(pointCursor);
+   pointCursor+=screen_to_client();
 
    if(ptimer->m_uEvent == (uptr) this)
    {
@@ -1703,7 +1696,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
       //estatus =
       
-      ::size_i32 size((rectangleDraw.width() * iDiv), (rectangleDraw.height() * iDiv));
+      ::size_i32 size((::i32) (rectangleDraw.width() * iDiv), (::i32)(rectangleDraw.height() * iDiv));
       
       if(size.has_area())
       {

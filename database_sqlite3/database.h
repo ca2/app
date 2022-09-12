@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "axis/database/database/database_impl.h"
+
+
 namespace sqlite
 {
 
@@ -35,7 +38,7 @@ namespace sqlite
 
 
       //virtual __pointer(::database::dataset) dataset() override;
-      ::database::e_connection connection_status() override;
+      ::database::enum_connection connection_status() override;
 
       void set_error_code(i32 iErrorCode) override;
 

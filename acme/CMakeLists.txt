@@ -225,6 +225,8 @@ list(APPEND library_source
    operating_system/argcargv.cpp
    operating_system/chronometer.cpp
    operating_system/console.cpp
+        operating_system/console_client.cpp
+        operating_system/console_client.h
    operating_system/debug.cpp
    operating_system/file.cpp
    #operating_system/http.cpp
@@ -412,11 +414,11 @@ list(APPEND library_source
    primitive/geometry2d/_collection_bounding_rect.h
    primitive/geometry2d/_collection_contains.h
    primitive/geometry2d/_defer.h
-   primitive/geometry2d/_impl.h
-   primitive/geometry2d/_rect_impl.h
+   #primitive/geometry2d/_impl.h
+   #primitive/geometry2d/_rect_impl.h
    primitive/geometry2d/_shape.cpp
    primitive/geometry2d/_shape.h
-   primitive/geometry2d/_size_impl.h
+   #primitive/geometry2d/_size_impl.h
    primitive/geometry2d/_struct.h
    primitive/geometry2d/align.h
    primitive/geometry2d/angle.h
@@ -1041,7 +1043,7 @@ list(APPEND library_source
    operating_system/_application.h
    operating_system/_impl.h
    operating_system/_operating_system.h
-   operating_system/_user.h
+   #operating_system/_user.h
    operating_system/ansi/_.h
    operating_system/ansi/_ansi.h
    operating_system/ansi/_c.h
@@ -1233,7 +1235,7 @@ list(APPEND library_source
    #platform/regex.h
    platform/restore.h
    platform/sequence.cpp
-   platform/sequence.h
+   platform/sequencer.h
    platform/serial.h
    #platform/serial_impl.h
    #platform/simple_app.h
@@ -1553,6 +1555,8 @@ else ()
       #operating_system/posix/file_memory_map.h
       operating_system/ansi/time.cpp
       operating_system/ansi/dir.cpp
+           operating_system/ansi/int_handle.cpp
+           operating_system/ansi/int_handle.h
       #operating_system/ansi/parallelization.cpp
       operating_system/ansi/windows_time.cpp
       operating_system/ansi/windows_time.h

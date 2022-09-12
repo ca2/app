@@ -2,20 +2,6 @@
 #pragma once
 
 
-namespace hardware
-{
 
-
-   enum enum_device
-   {
-
-      e_device_none,
-      e_device_video_input,
-      e_device_monitor,
-
-   };
-
-
-} // namespace hardware
 
 

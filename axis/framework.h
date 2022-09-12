@@ -17,10 +17,10 @@
 #include "axis/_.h"
 #include "axis/platform/_platform.h"
 #if BROAD_PRECOMPILED_HEADER
-#include "axis/user/_user.h"
+//#include "axis/user/_user.h"
 #include "axis/html/html_lite/_.h"
 #include "axis/geoip/_.h"
-#include "axis/geoip/_component.h"
+////#include "axis/geoip/_component.h"
 #endif
 #include "axis/mathematics/_.h"
 #include "axis/mathematics/calculator/_.h"

@@ -1,9 +1,10 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "base/user/user/_component.h"
-#endif
+#include "aura/platform/context.h"
 #include <math.h>
-#include "aura/graphics/draw2d/_component.h"
+#include "aura/graphics/draw2d/matrix.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/image/drawing.h"
+#include "picture.h"
 
 
 property & operator << (property & property, const RECTANGLE_F64 & rectangle)

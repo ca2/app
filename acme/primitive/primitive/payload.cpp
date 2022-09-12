@@ -311,7 +311,7 @@ payload::payload(const ::property & property)
 //}
 
 
-//payload::payload(const ::future & process)
+//payload::payload(const ::future & future)
 //{
 //
 //   m_etype = e_type_new;
@@ -7519,7 +7519,7 @@ void payload::receive_response(const ::payload & payload)
 //}
 
 
-//::payload& payload::operator = (const ::future & process)
+//::payload& payload::operator = (const ::future & future)
 //{
 //
 //   set_type(type_process);

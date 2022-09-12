@@ -888,7 +888,7 @@ namespace userfs
    __pointer(::user::mesh_data) list::create_mesh_data()
    {
 
-      return __new(list_data);
+      return __create_new < list_data >();
 
    }
 

@@ -2011,7 +2011,7 @@ namespace http
 
       }
 
-      psocket->inheaders().add(set["headers"].propset());
+      psocket->inheaders().merge(set["headers"].as_propset());
 
       if (set.has_property("progress_listener"))
       {

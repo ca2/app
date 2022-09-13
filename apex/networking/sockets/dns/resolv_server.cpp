@@ -49,7 +49,7 @@ namespace sockets
    {
 
       //   trace_log log;
-      auto phandler = __create_new < socket_handler > ();
+      auto phandler = __create < socket_handler > ();
 
       auto plistensocket = __create_new < listen_socket<resolv_socket> >();
 
@@ -60,7 +60,7 @@ namespace sockets
 
       }
 
-      phandler->add2(plistensocket);
+      phandler->add(plistensocket);
 
       m_ready = true;
 

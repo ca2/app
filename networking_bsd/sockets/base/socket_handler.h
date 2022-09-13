@@ -30,37 +30,35 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma once
 
 
-#include "apex/networking/sockets/bsd/basic/socket.h"
+#include "networking_bsd/sockets/basic/socket.h"
+#include "apex/networking/sockets/base/socket_handler.h"
 
 
-namespace sockets
+namespace sockets_bsd
 {
 
 
-   enum enum_list
-   {
-      e_list_call_on_connect,
-      e_list_detach,
-      e_list_timeout,
-      e_list_retry_client_connect,
-      e_list_close
-   };
+   //enum enum_list
+   //{
+   //   e_list_call_on_connect,
+   //   e_list_detach,
+   //   e_list_timeout,
+   //   e_list_retry_client_connect,
+   //   e_list_close
+   //};
 
 
    /** socket container class, event generator.
    \ingroup basic */
-   class CLASS_DECL_APEX base_socket_handler:
-      virtual public ::object
+   class CLASS_DECL_NETWORKING_BSD base_socket_handler:
+      virtual public ::sockets::base_socket_handler
    {
    public:
 
 
-      friend class base_socket;
-      friend class socket;
-
       /** Connection pool class for internal use by the base_socket_handler.
       \ingroup internal */
-      class CLASS_DECL_APEX pool_socket : public socket
+      class CLASS_DECL_NETWORKING_BSD pool_socket : public sockets_bsd::socket
       {
       public:
 
@@ -80,8 +78,8 @@ namespace sockets
       __pointer(::apex::log)        m_plogger; ///< Registered log class, or nullptr
 
 
-      base_socket_handler(::apex::log * plogger = nullptr);
-      virtual ~base_socket_handler();
+      base_socket_handler();
+      ~base_socket_handler() override;
 
       ///** get ::mutex object for threadsafe operations. */
       //virtual clasync & GetMutex() const = 0;
@@ -95,17 +93,17 @@ namespace sockets
       // socket stuff
       // -------------------------------------------------------------------------
       /** add socket instance to socket ::map. Removal is always automatic. */
-      virtual void add2(const socket_pointer& psocket) = 0;
-      virtual void move2(socket_pointer && psocket) = 0;
+      virtual void add(const ::sockets::socket_pointer& psocket) = 0;
+      virtual void move2(::sockets::socket_pointer && psocket) = 0;
       virtual void move(socket_map::association * passociation, socket_map * psocketmap = nullptr) = 0;
       virtual void restart_socket(SOCKET socket) = 0;
       //virtual socket_map::association* new_association(socket_pointer && psocket) = 0;
-   private:
+   //private:
       /** erase socket from socket ::map, used by socket class. */
-      virtual void erase(base_socket *) = 0;
-   public:
+     virtual void erase(const ::sockets::socket_pointer & psocket) = 0;
+   
 
-      virtual bool contains(base_socket *) = 0;
+      virtual bool contains(::sockets::base_socket *) = 0;
 
       /** get status of read/write/exception file descriptor set for a socket. */
       virtual void get(SOCKET s,bool& r,bool& w,bool& e) = 0;
@@ -116,10 +114,10 @@ namespace sockets
       /** This method will not return until an event has been detected. */
       virtual int select() = 0;
       /** Wait for events, generate callbacks. */
-      virtual int select(struct timeval *tsel) = 0;
+      virtual int _select(struct timeval *tsel) = 0;
 
       /** Check that a socket really is handled by this socket handler. */
-      virtual bool Valid(base_socket *) = 0;
+      virtual bool Valid(::sockets::base_socket *) = 0;
       /** Return number of sockets handled by this handler.  */
       virtual ::count get_count() = 0;
 
@@ -127,13 +125,13 @@ namespace sockets
 
       /** Override and return false to deny all incoming connections.
       \lparam point_i32 listen_socket class pointer (use GetPort to identify which one) */
-      virtual bool OkToAccept(base_socket *point_i32) = 0;
+      virtual bool OkToAccept(::sockets::base_socket *point_i32) = 0;
 
       /** Called by socket when a socket changes state. */
-      virtual socket_list& socketlist_get(enum_list elist) = 0;
-      virtual void socketlist_modify(SOCKET s, enum_list elist, bool bAdd) = 0;
-      virtual void socketlist_add(SOCKET s, enum_list elist) = 0;
-      virtual void socketlist_erase(SOCKET s, enum_list elist) = 0;
+      virtual socket_id_list& socket_id_list_get(enum_list elist) = 0;
+      virtual void socket_id_list_modify(SOCKET s, enum_list elist, bool bAdd) = 0;
+      virtual void socket_id_list_add(SOCKET s, enum_list elist) = 0;
+      virtual void socket_id_list_erase(SOCKET s, enum_list elist) = 0;
 
       virtual void erase_socket(SOCKET s) = 0;
       // -------------------------------------------------------------------------
@@ -153,22 +151,22 @@ namespace sockets
       // -------------------------------------------------------------------------
 #if defined(BSD_STYLE_SOCKETS)
       /** Set socks4 server ip that all new tcp sockets should use. */
-      virtual void SetSocks4Host(in_addr) = 0;
+      //virtual void SetSocks4Host(in_addr) = 0;
       /** Set socks4 server hostname that all new tcp sockets should use. */
       virtual void SetSocks4Host(const string & ) = 0;
 #endif
       /** Set socks4 server port number that all new tcp sockets should use. */
-      virtual void SetSocks4Port(port_t) = 0;
+      virtual void SetSocks4Port(::networking::port_t) = 0;
       /** Set optional socks4 userid. */
       virtual void SetSocks4Userid(const string & ) = 0;
       /** If connection to socks4 server fails, immediately try direct connection to final host. */
       virtual void SetSocks4TryDirect(bool = true) = 0;
       /** get socks4 server ip.
       \return socks4 server ip */
-      virtual in_addr GetSocks4Host() = 0;
+      virtual string GetSocks4Host() = 0;
       /** get socks4 port number.
       \return socks4 port number */
-      virtual port_t GetSocks4Port() = 0;
+      virtual ::networking::port_t GetSocks4Port() = 0;
       /** get socks4 userid (optional).
       \return socks4 userid */
       virtual const string & GetSocks4Userid() = 0;
@@ -199,11 +197,11 @@ namespace sockets
       /** Returns true if socket waiting for a resolve event. */
       //virtual bool Resolving(base_socket *) = 0;
       /** Fetch unique trigger atom. */
-      virtual int TriggerID(base_socket *src) = 0;
+      virtual int TriggerID(::sockets::base_socket *src) = 0;
       /** Subscribe socket to trigger atom. */
-      virtual bool Subscribe(int atom, base_socket *dst) = 0;
+      virtual bool Subscribe(int atom, ::sockets::base_socket *dst) = 0;
       /** Unsubscribe socket from trigger atom. */
-      virtual bool Unsubscribe(int atom, base_socket *dst) = 0;
+      virtual bool Unsubscribe(int atom, ::sockets::base_socket *dst) = 0;
       /** Execute OnTrigger for subscribed sockets.
       \lparam atom Trigger ID
       \lparam data Data passed from source to destination
@@ -221,7 +219,7 @@ namespace sockets
    };
 
 
-} // namespace sockets
+} // namespace sockets_bsd
 
 
 

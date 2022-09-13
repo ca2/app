@@ -203,7 +203,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>Credui.lib;zlib.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Dxva2.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <EntryPointSymbol>
       </EntryPointSymbol>
@@ -344,7 +344,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>Credui.lib;zlib.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Dxva2.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -499,7 +499,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>Credui.lib;zlib.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Dxva2.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -644,7 +644,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>Credui.lib;zlib.lib;libcrypto.lib;libssl.lib;dwrite.lib;d2d1.lib;d3d11.lib;dxgi.lib;Dxva2.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Credui.lib;zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(OutDir)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -857,7 +857,6 @@
     <ClCompile Include="networking\sockets\transfer_socket.cpp" />
     <ClCompile Include="networking\sockets\webserver\httpd_socket.cpp" />
     <ClCompile Include="networking\sockets\websocket_client.cpp" />
-    <ClCompile Include="networking\_.cpp" />
     <ClCompile Include="operating_system\windows_common\networking.cpp" />
     <ClCompile Include="_no_pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">NotUsing</PrecompiledHeader>
@@ -888,7 +887,6 @@
     <ClInclude Include="inline\implement\windows.h" />
     <ClCompile Include="operating_system\debug.cpp" />
     <ClCompile Include="operating_system\http.cpp" />
-    <ClCompile Include="operating_system\openssl_crypt.cpp" />
     <ClCompile Include="operating_system\operating_system.cpp" />
     <ClCompile Include="operating_system\thread.cpp" />
     <ClCompile Include="operating_system\windows\dpi.cpp" />
@@ -1013,12 +1011,18 @@
     <ClInclude Include="message\_impl.h" />
     <ClInclude Include="message\_message.h" />
     <ClInclude Include="networking\address.h" />
+    <ClInclude Include="networking\netserver\socket.h" />
+    <ClInclude Include="networking\netserver\socket_handler.h" />
+    <ClInclude Include="networking\netserver\socket_thread.h" />
+    <ClInclude Include="networking\netserver\_.h" />
+    <ClInclude Include="networking\netserver\_netserver.h" />
     <ClInclude Include="networking\networking.h" />
-    <ClInclude Include="networking\byte_order.h" />
     <ClInclude Include="networking\email.h" />
     <ClInclude Include="networking\email_address.h" />
     <ClInclude Include="networking\ip_enum.h" />
-    <ClInclude Include="networking\net.h" />
+    <ClInclude Include="networking\networking_application.h" />
+    <ClInclude Include="networking\networking_application_handler.h" />
+    <ClInclude Include="networking\networking_application_socket.h" />
     <ClInclude Include="networking\open_weather_city.h" />
     <ClInclude Include="networking\port_forward.h" />
     <ClInclude Include="networking\sockets\base\socket.h" />

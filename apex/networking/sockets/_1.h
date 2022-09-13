@@ -121,7 +121,7 @@ in read operations - helps on ECOS */
 
 // all typedefs in this file will be declared outside the sockets namespace,
 // because some psystem's will already have one or more of the type defined.
-typedef i32 SOCKET;
+typedef i32 socket_id;
 #define Errno errno
 #define bsd_socket_error strerror
 
@@ -282,8 +282,8 @@ typedef u16 ::networking::port_t;
 //   class socket_handler;
 //
 //   __declare_map(socket_flag_map, socket_flag, base_socket*, m_pbasesocket, bool, m_bFlag);
-//   __declare_map(socket_socket_flag_map, socket_socket_flag, SOCKET, m_socket, socket_flag_map, m_pmap);
-//   __declare_map(socket_map, socket_pointer_pair, SOCKET, m_socket, socket_pointer, m_psocket);
+//   __declare_map(socket_socket_flag_map, socket_socket_flag, socket_id, m_socket, socket_flag_map, m_pmap);
+//   __declare_map(socket_map, socket_pointer_pair, socket_id, m_socket, socket_pointer, m_psocket);
 //
 //
 //} // namespace sockets
@@ -371,11 +371,11 @@ namespace sockets
    
    class net;
    
-   /* type, host, result */
-   typedef string_map < ::string_to_string >       resolv_cache_t;
+   ///* type, host, result */
+   //typedef string_map < ::string_to_string >       resolv_cache_t;
 
-   /* type, host, time */
-   typedef string_map < string_map < time_t > >    resolv_timeout_t;
+   ///* type, host, time */
+   //typedef string_map < string_map < time_t > >    resolv_timeout_t;
 
 
 
@@ -390,8 +390,8 @@ namespace sockets
    class socket_handler;
 
    __declare_map(socket_flag_map, socket_flag, base_socket *, m_pbasesocket, bool, m_bFlag);
-   __declare_map(socket_socket_flag_map, socket_socket_flag, SOCKET, m_socket, socket_flag_map, m_pmap);
-   __declare_map(socket_map, socket_pointer_pair, SOCKET, m_socket, socket_pointer, m_psocket);
+   __declare_map(socket_socket_flag_map, socket_socket_flag, socket_id, m_socket, socket_flag_map, m_pmap);
+   __declare_map(socket_map, socket_pointer_pair, socket_id, m_socket, socket_pointer, m_psocket);
 
 
 } // namespace sockets

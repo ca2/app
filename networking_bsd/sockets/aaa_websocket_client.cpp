@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "apex/id.h"
-#include "apex/networking/networking_bsd/_sockets.h"
+
 #include "acme/primitive/string/base64.h"
 
 
@@ -92,7 +92,7 @@ static inline memsize u32_pack(u32 value, u8 *out)
 }
 
 
-CLASS_DECL_APEX void websocket_prefix_varuint32(memory & m, unsigned int u)
+CLASS_DECL_NETWORKING_BSD void websocket_prefix_varuint32(memory & m, unsigned int u)
 {
 
    auto iSize = ::u32_size(u);
@@ -415,7 +415,7 @@ namespace networking_bsd
    }
 
 
-   //websocket_client::websocket_client(const string & host, port_t port, const string & url_in) :
+   //websocket_client::websocket_client(const string & host, ::networking::port_t port, const string & url_in) :
    //   object(h.get_app()),
    //   base_socket(h),
    //   socket(h),

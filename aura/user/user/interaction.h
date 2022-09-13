@@ -967,7 +967,7 @@ namespace user
 
 
       template < typename CHILD >
-      inline bool get_typed_child(CHILD *& pchild, ::user::interaction * puiExclude = nullptr)
+      inline bool get_typed_child(CHILD *& pchild, ::i32 iLevel = -1, ::user::interaction * puiExclude = nullptr)
       {
 
          auto puserinteractionpointeraChild = children();
@@ -991,6 +991,28 @@ namespace user
                {
 
                   return true;
+
+               }
+
+            }
+
+         }
+
+         if (iLevel < 0 || iLevel > 0)
+         {
+
+            for (auto & pinteraction : *puserinteractionpointeraChild)
+            {
+
+               if (pinteraction != puiExclude)
+               {
+
+                  if(pinteraction->get_typed_child(pchild, iLevel - 1, puiExclude))
+                  {
+
+                     return true;
+
+                  }
 
                }
 
@@ -1482,7 +1504,8 @@ namespace user
       ::user::interaction * get_child_by_id(const atom & atom, ::index iItem = -1, i32 iLevel = -1) override;
       ::user::element * get_primitive_by_id(const atom & atom, ::index iItem, i32 iLevel) override;
 
-      ::user::interaction* child_from_point(const ::point_i32& point, const ::user::interaction_array * pinteractionaExclude = nullptr);
+      
+      ::user::interaction* child_from_point(const ::point_i32& point, ::i32 iLevel = -1, const ::user::interaction_array * pinteractionaExclude = nullptr);
 
 
       virtual bool is_ascendant(const primitive * puiIsAscendant, bool bIncludeSelf) const override;

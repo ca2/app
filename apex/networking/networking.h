@@ -14,6 +14,9 @@ namespace networking
    {
    public:
 
+      void * m_p2;
+
+
       interlocked_i32                              m_lHttpGetSerial;
 
       
@@ -113,8 +116,8 @@ namespace networking
       virtual bool is_ip6(const string& str);
 
 
-      virtual address_pointer create_address(const ::string & strAddress, port_t port);
-      virtual address_pointer create_ip4_address(::i32 iIp, port_t port);
+      virtual address_pointer create_address(const ::string & strAddress, port_t port = 0);
+      virtual address_pointer create_ip4_address(::i32 iIp, port_t port = 0);
       //virtual bool convert(struct ::in_addr& l, const string& str, i32 ai_flags = 0);
       //virtual bool convert(struct ::in6_addr& l, const string& str, i32 ai_flags = 0);
       //virtual bool convert(string& str, const struct ::in_addr& ip);
@@ -158,6 +161,12 @@ namespace networking
       virtual string service_name(::networking::address * address);
 
       virtual string reverse_name(::networking::address * address);
+
+      //virtual i32 _select(::sockets::socket_handler * psockethandler, const class ::wait & wait);
+
+      virtual __pointer(::networking::address) create_ip4_address(const ::string & strIp4, ::networking::port_t port = 0);
+
+      virtual __pointer(::networking::address) create_ip6_address(const ::string & strIp6, ::networking::port_t port = 0);
 
 
    };

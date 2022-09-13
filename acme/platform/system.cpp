@@ -2470,6 +2470,15 @@ void system::_main_application_handle_url(const char * pszUrl, const ::function 
 
 
 
+string system::get_latest_deployment_number(const ::string & strBranch)
+{
+
+   return "(lastest deployed build)";
+
+}
+
+
+
 CLASS_DECL_ACME class ::system * get_system()
 {
    
@@ -2483,6 +2492,14 @@ CLASS_DECL_ACME class ::plane_system * get_plane_system()
    
    return get_system();
    
+}
+
+
+CLASS_DECL_ACME string get_latest_deployment_number(const ::string & strBranch)
+{
+
+   return get_system()->get_latest_deployment_number(strBranch);
+
 }
 
 

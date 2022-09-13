@@ -159,6 +159,9 @@ namespace netserver
    }
 
 
+
+
+
    void socket::simple_file_server(const ::string & pszPath, bool bMatter)
    {
 

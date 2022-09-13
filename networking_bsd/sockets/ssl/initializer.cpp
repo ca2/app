@@ -21,58 +21,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
-//
-//#ifdef WINDOWS
-//extern "C"
-//{
-//
-//#include "openssl/applink.c"
-// 
-//} // extern "C"
-//
-//#endif
-
-
-#ifdef PARALLELIZATION_PTHREAD
-
-
-#include "acme/operating_system/ansi/_pthread.h"
-
-
-#endif
-
-
-#ifdef HAVE_OPENSSL
-#include <openssl/ssl.h>
-#include <openssl/crypto.h>
-#include <openssl/rand.h>
-#include <openssl/engine.h>
-#include <openssl/conf.h>
-
-
-#include <openssl/conf.h>
-
-
-#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
-
-
-#include "acme/operating_system/ansi/_pthread.h"
-
-#endif
-
+#include "initializer.h"
 
 
 extern void *OPENSSL_UplinkTable[];
 
 
-//#ifdef _UWP
-//extern "C"
-//__declspec(dllimport)
-//void OPENSSL_UplinkAll();
-//#endif
-
-namespace sockets
+namespace sockets_bsd
 {
 
 
@@ -191,10 +146,7 @@ namespace sockets
    }
 
 
-} // namespace sockets
-
-
-#endif
+} // namespace sockets_bsd
 
 
 

@@ -34,10 +34,10 @@ namespace crypto
 {
 
 
-   CLASS_DECL_APEX void md5(void* ptarget, const void* psource, ::memsize size);
-   CLASS_DECL_APEX void sha1(void* ptarget, const void* psource, ::memsize size);
-   CLASS_DECL_APEX void sha256(void* ptarget, const void* psource, ::memsize size);
-   CLASS_DECL_APEX void nessie(void* ptarget, const void* psource, ::memsize size);
+   CLASS_DECL_NETWORKING_BSD void md5(void* ptarget, const void* psource, ::memsize size);
+   CLASS_DECL_NETWORKING_BSD void sha1(void* ptarget, const void* psource, ::memsize size);
+   CLASS_DECL_NETWORKING_BSD void sha256(void* ptarget, const void* psource, ::memsize size);
+   CLASS_DECL_NETWORKING_BSD void nessie(void* ptarget, const void* psource, ::memsize size);
 
 
 } //   namespace crypto
@@ -52,10 +52,10 @@ namespace crypto
 //{
 //
 //
-//   CLASS_DECL_APEX void md5(void* ptarget, const void* psource, ::memsize size);
-//   CLASS_DECL_APEX void sha1(void* ptarget, const void* psource, ::memsize size);
-//   CLASS_DECL_APEX void sha256(void* ptarget, const void* psource, ::memsize size);
-//   CLASS_DECL_APEX void nessie(void* ptarget, const void* psource, ::memsize size);
+//   CLASS_DECL_NETWORKING_BSD void md5(void* ptarget, const void* psource, ::memsize size);
+//   CLASS_DECL_NETWORKING_BSD void sha1(void* ptarget, const void* psource, ::memsize size);
+//   CLASS_DECL_NETWORKING_BSD void sha256(void* ptarget, const void* psource, ::memsize size);
+//   CLASS_DECL_NETWORKING_BSD void nessie(void* ptarget, const void* psource, ::memsize size);
 //
 //
 //} //   namespace crypto

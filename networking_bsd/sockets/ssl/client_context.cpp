@@ -1,23 +1,8 @@
 #include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
+#include "client_context.h"
 
 
-#ifdef PARALLELIZATION_PTHREAD
-
-
-#include "acme/operating_system/ansi/_pthread.h"
-
-
-#endif
-
-
-#include <openssl/ssl.h>
-#include <openssl/rand.h>
-#include <openssl/err.h>
-
-
-
-namespace sockets
+namespace sockets_bsd
 {
 
 
@@ -115,7 +100,7 @@ namespace sockets
    }
 
 
-} // namespace sockets
+} // namespace sockets_bsd
 
 
 

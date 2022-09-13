@@ -1,10 +1,13 @@
 /* (C) Copyright 2008 Nick Mudge <mudgen@gmail.com>
  * This code can be freely copied and modified.
  */
-#include  "framework.h"
+#include "framework.h"
+#include "token.h"
+
 
 namespace datetime
 {
+
 
    token::token()
    {
@@ -21,5 +24,6 @@ namespace datetime
 
 
 } // namespace datetime
+
 
 

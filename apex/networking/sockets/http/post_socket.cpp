@@ -22,7 +22,12 @@ namespace sockets
    }
 
 
-   http_post_socket::http_post_socket(const string & url_in) :
+
+   http_post_socket::~http_post_socket()
+   {
+   }
+
+   void http_post_socket::initialize_http_post_socket(const string & url_in)
       //::object(&h),
       //base_socket(h),
       //socket(h),
@@ -31,17 +36,13 @@ namespace sockets
       //http_socket(h),
       //http_tunnel(h),
       //http_client_socket(h, url_in)
-      http_client_socket(url_in)
    {
+
+      initialize_http_client_socket(url_in);
 
       m_emethod = http_method_post;
 
 
-   }
-
-
-   http_post_socket::~http_post_socket()
-   {
    }
 
 
@@ -199,7 +200,7 @@ namespace sockets
 
          inheader(__id(content_length)) = content_length;
 
-#if !defined(BSD_STYLE_SOCKETS)
+#ifdef WINRT_SOCKETS
 
          m_bExpectResponse = true;
 
@@ -366,7 +367,7 @@ namespace sockets
 
       inheader(__id(content_length)) = (i64) length;
 
-#if !defined(BSD_STYLE_SOCKETS)
+#ifdef WINRT_SOCKETS
 
       m_bExpectResponse = true;
 

@@ -2,11 +2,10 @@
 #pragma once
 
 
-
-
+//using socket_id = ::i64;
+//
 namespace sockets
 {
-
 
    class socket_thread;
 
@@ -29,7 +28,7 @@ namespace sockets
    //} // namespace sockets
 
 
-}
+} // namespace sockets
 
 
 #include "ssl/_.h"

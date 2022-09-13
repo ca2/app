@@ -27,13 +27,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <netinet/sctp.h>
 
 
-namespace sockets
+#include "stream_socket.h"
+#include "apex/networking/sockets/basic/SctpSocket.h"
+
+
+
+namespace sockets_bsd
 {
 
    #define SCTP_BUFSIZE_READ 16400
 
 
-   class SctpSocket : public stream_socket
+   class SctpSocket : 
+      public stream_socket
    {
    public:
       /** SctpSocket constructor.
@@ -43,17 +49,17 @@ namespace sockets
       ~SctpSocket();
 
       /** bind() */
-      i32 Bind(const string &,port_t);
+      i32 Bind(const string &,::networking::port_t);
       i32 Bind(::networking::address * address);
       /** sctp_bindx() */
-      i32 AddAddress(const string &,port_t);
+      i32 AddAddress(const string &,::networking::port_t);
       i32 AddAddress(::networking::address * address);
       /** sctp_bindx() */
-      i32 RemoveAddress(const string &,port_t);
+      i32 RemoveAddress(const string &,::networking::port_t);
       i32 RemoveAddress(::networking::address * address);
 
       /** connect() */
-      i32 open(const string &,port_t);
+      i32 open(const string &,::networking::port_t);
       i32 open(::networking::address * address);
 
       /** Connect timeout callback. */
@@ -65,7 +71,7 @@ namespace sockets
 
    #ifndef SOLARIS
       /** sctp_connectx() */
-      i32 AddConnection(const string &,port_t);
+      i32 AddConnection(const string &,::networking::port_t);
       i32 AddConnection(::networking::address * address);
    #endif
 
@@ -92,7 +98,7 @@ namespace sockets
       char *m_buf; ///< Temporary receive buffer
    };
 
-} // namespace sockets
+} // namespace sockets_bsd
 
  
 

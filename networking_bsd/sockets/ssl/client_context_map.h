@@ -1,12 +1,11 @@
 #pragma once
 
 
-
-namespace sockets
+namespace sockets_bsd
 {
 
 
-   class CLASS_DECL_APEX ssl_client_context_map :
+   class CLASS_DECL_NETWORKING_BSD ssl_client_context_map :
       virtual public object
    {
    public:
@@ -25,7 +24,7 @@ namespace sockets
    };
 
 
-} // namespace sockets
+} // namespace sockets_bsd
 
 
 

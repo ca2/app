@@ -114,6 +114,16 @@ namespace userfs
    }
 
 
+   void list_data::initialize(::object * pobject)
+   {
+
+      ::user::list_data::initialize(pobject);
+
+      __construct_new(m_pitema);
+
+   }
+
+
    ::userfs::list_item * list_data::item(index i)
    { 
       

@@ -8,9 +8,10 @@
 #define SSL_SESSION_TICKET_KEY_SIZE     48
 
 
-namespace sockets
+namespace sockets_bsd
 {
 
+   class SSLInitializer;
 
    class ssl_context;
    class ssl_client_context_map;

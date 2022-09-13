@@ -5,7 +5,7 @@ namespace networking_bsd
 {
 
 
-   class CLASS_DECL_APEX http_batch_buffer :
+   class CLASS_DECL_NETWORKING_BSD http_batch_buffer :
       virtual public ::file::file
    {
    public:

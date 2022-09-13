@@ -10,7 +10,7 @@ void thread_touch_sockets()
 }
 
 
-//CLASS_DECL_APEX void thread_touch_sockets()
+//CLASS_DECL_NETWORKING_BSD void thread_touch_sockets()
 //{
 //
 //   task_flag().set(e_task_flag_using_sockets, true);
@@ -18,7 +18,7 @@ void thread_touch_sockets()
 //}
 //
 //
-//CLASS_DECL_APEX bool thread_has_sockets()
+//CLASS_DECL_NETWORKING_BSD bool thread_has_sockets()
 //{
 //
 //   return task_flag().is_set(e_task_flag_using_sockets);

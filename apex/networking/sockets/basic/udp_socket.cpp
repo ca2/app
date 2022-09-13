@@ -86,19 +86,19 @@ namespace sockets
 
    i32 udp_socket::Bind(::networking::address & ad, i32 range)
    {
-      //if (GetSocket() == INVALID_SOCKET)
+      //if (get_socket_id() == INVALID_SOCKET)
       //{
       //   attach(CreateSocket(ad.get_family(), SOCK_DGRAM, "udp"));
       //}
-      //if (GetSocket() != INVALID_SOCKET)
+      //if (get_socket_id() != INVALID_SOCKET)
       //{
       //   SetNonblocking(true);
-      //   i32 n = bind(GetSocket(), ad.sa(), ad.sa_len());
+      //   i32 n = bind(get_socket_id(), ad.sa(), ad.sa_len());
       //   i32 tries = range;
       //   while (n == -1 && tries--)
       //   {
       //      ad.set_service_number(ad.get_service_number() + 1);
-      //      n = bind(GetSocket(), ad.sa(), ad.sa_len());
+      //      n = bind(get_socket_id(), ad.sa(), ad.sa_len());
       //   }
       //   if (n == -1)
       //   {
@@ -143,14 +143,14 @@ namespace sockets
 
    bool udp_socket::open(::networking::address * ad)
    {
-      //if (GetSocket() == INVALID_SOCKET)
+      //if (get_socket_id() == INVALID_SOCKET)
       //{
       //   attach(CreateSocket(ad.get_family(), SOCK_DGRAM, "udp"));
       //}
-      //if (GetSocket() != INVALID_SOCKET)
+      //if (get_socket_id() != INVALID_SOCKET)
       //{
       //   SetNonblocking(true);
-      //   if (connect(GetSocket(), ad.sa(), ad.sa_len()) == -1)
+      //   if (connect(get_socket_id(), ad.sa(), ad.sa_len()) == -1)
       //   {
 
       //      FATAL("connect" << Errno << ", " << bsd_socket_error(Errno));
@@ -169,9 +169,9 @@ namespace sockets
    {
       if (IsIpv6())
       {
-         //if (GetSocket() == INVALID_SOCKET)
+         //if (get_socket_id() == INVALID_SOCKET)
          //{
-         //   SOCKET s = CreateSocket(AF_INET6, SOCK_DGRAM, "udp");
+         //   socket_id s = CreateSocket(AF_INET6, SOCK_DGRAM, "udp");
          //   if (s == INVALID_SOCKET)
          //   {
          //      return;
@@ -181,9 +181,9 @@ namespace sockets
          //}
          return;
       }
-      //if (GetSocket() == INVALID_SOCKET)
+      //if (get_socket_id() == INVALID_SOCKET)
       {
-         //SOCKET s = CreateSocket(AF_INET, SOCK_DGRAM, "udp");
+         //socket_id s = CreateSocket(AF_INET, SOCK_DGRAM, "udp");
          //if (s == INVALID_SOCKET)
          //{
          //   return;
@@ -216,14 +216,14 @@ namespace sockets
 
    void udp_socket::SendToBuf(::networking::address * ad, const char *data, i32 len, i32 flags)
    {
-      //if (GetSocket() == INVALID_SOCKET)
+      //if (get_socket_id() == INVALID_SOCKET)
       //{
       //   attach(CreateSocket(ad.get_family(), SOCK_DGRAM, "udp"));
       //}
-      //if (GetSocket() != INVALID_SOCKET)
+      //if (get_socket_id() != INVALID_SOCKET)
       //{
       //   SetNonblocking(true);
-      //   if ((m_last_size_written = sendto(GetSocket(), data, len, flags, ad.sa(), (i32) ad.sa_len())) == -1)
+      //   if ((m_last_size_written = sendto(get_socket_id(), data, len, flags, ad.sa(), (i32) ad.sa_len())) == -1)
       //   {
 
 
@@ -288,7 +288,7 @@ namespace sockets
 
       }
 
-      //if ((m_last_size_written = ::send(GetSocket(), (const char *) data, (i32)len, m_iWriteFlags)) == -1)
+      //if ((m_last_size_written = ::send(get_socket_id(), (const char *) data, (i32)len, m_iWriteFlags)) == -1)
       //{
 
 
@@ -346,9 +346,9 @@ namespace sockets
 //      msg.msg_flags = 0;
 //
 //      // Original version - for object only
-//      //i32 n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+//      //i32 n = recvfrom(get_socket_id(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
 //
-//      i32 n = recvmsg(GetSocket(), &msg, MSG_DONTWAIT);
+//      i32 n = recvmsg(get_socket_id(), &msg, MSG_DONTWAIT);
 //
 //      // now ioBuf will contain the data, as if we used recvfrom
 //
@@ -395,7 +395,7 @@ return -1;
 //            timeval.tv_usec = (int) (duration.m_iNanosecond / 1'000);
 //
 //#if !defined(LINUX) && !defined(MACOSX)
-//            memsize n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+//            memsize n = recvfrom(get_socket_id(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
 //#else
 //            i32 n = ReadTS(m_ibuf, m_ibufsz, (struct sockaddr *)&sa, sa_len, &timeval);
 //#endif
@@ -429,7 +429,7 @@ return -1;
 //
 //         }
 //
-//         memsize n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+//         memsize n = recvfrom(get_socket_id(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
 //         i32 q = m_iConnectionRetryCount; // receive maximum 10 at one cycle
 //         while (n > 0)
 //         {
@@ -443,7 +443,7 @@ return -1;
 //            if (!q--)
 //               break;
 //            //
-//            n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+//            n = recvfrom(get_socket_id(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
 //         }
 //         if (n == -1)
 //         {
@@ -478,7 +478,7 @@ return -1;
 //
 //#if !defined(LINUX) && !defined(MACOSX)
 //
-//         memsize n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+//         memsize n = recvfrom(get_socket_id(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
 //
 //#else
 //
@@ -509,7 +509,7 @@ return -1;
 //         }
 //         return;
 //      }
-//      memsize n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+//      memsize n = recvfrom(get_socket_id(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
 //      i32 q = m_iConnectionRetryCount;
 //      while (n > 0)
 //      {
@@ -523,7 +523,7 @@ return -1;
 //         if (!q--)
 //            break;
 //         //
-//         n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+//         n = recvfrom(get_socket_id(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
 //      }
 //      if (n == -1)
 //      {
@@ -544,11 +544,11 @@ return -1;
 
    void udp_socket::SetMulticastTTL(i32 ttl)
    {
-      //if (GetSocket() == INVALID_SOCKET)
+      //if (get_socket_id() == INVALID_SOCKET)
       //{
       //   CreateConnection();
       //}
-      //if (setsockopt(GetSocket(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(i32)) == -1)
+      //if (setsockopt(get_socket_id(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(i32)) == -1)
       //{
 
       //   WARNING("SetMulticastTTL" << Errno << ", " << bsd_socket_error(Errno));
@@ -562,11 +562,11 @@ return -1;
       i32 ttl = 0;
       //socklen_t size = sizeof(i32);
 
-      //if (GetSocket() == INVALID_SOCKET)
+      //if (get_socket_id() == INVALID_SOCKET)
       //{
       //   CreateConnection();
       //}
-      //if (getsockopt(GetSocket(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, &size) == -1)
+      //if (getsockopt(get_socket_id(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, &size) == -1)
       //{
 
       //   WARNING("GetMulticastTTL" << Errno << ", " << bsd_socket_error(Errno));
@@ -578,14 +578,14 @@ return -1;
 
    bool udp_socket::SetMulticastLoop(bool x)
    {
-      //if (GetSocket() == INVALID_SOCKET)
+      //if (get_socket_id() == INVALID_SOCKET)
       //{
       //   CreateConnection();
       //}
       //if (IsIpv6())
       //{
       //   i32 val = x ? 1 : 0;
-      //   if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&val, sizeof(i32)) == -1)
+      //   if (setsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&val, sizeof(i32)) == -1)
       //   {
 
       //      WARNING("SetMulticastLoop" << Errno << ", " << bsd_socket_error(Errno));
@@ -594,7 +594,7 @@ return -1;
       //   return;
       //}
       //i32 val = x ? 1 : 0;
-      //if (setsockopt(GetSocket(), SOL_IP, IP_MULTICAST_LOOP, (char *)&val, sizeof(i32)) == -1)
+      //if (setsockopt(get_socket_id(), SOL_IP, IP_MULTICAST_LOOP, (char *)&val, sizeof(i32)) == -1)
       //{
 
       //   WARNING("SetMulticastLoop" << Errno << ", " << bsd_socket_error(Errno));
@@ -606,7 +606,7 @@ return -1;
 
    bool udp_socket::IsMulticastLoop()
    {
-      //if (GetSocket() == INVALID_SOCKET)
+      //if (get_socket_id() == INVALID_SOCKET)
       //{
       //   CreateConnection();
       //}
@@ -614,7 +614,7 @@ return -1;
       //{
       //   i32 is_loop = 0;
       //   socklen_t size = sizeof(i32);
-      //   if (getsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
+      //   if (getsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
       //   {
 
       //      WARNING("IsMulticastLoop" << Errno << ", " << bsd_socket_error(Errno));
@@ -624,7 +624,7 @@ return -1;
       //}
       i32 is_loop = 0;
       //socklen_t size = sizeof(i32);
-      //if (getsockopt(GetSocket(), SOL_IP, IP_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
+      //if (getsockopt(get_socket_id(), SOL_IP, IP_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
       //{
 
       //   WARNING("IsMulticastLoop" << Errno << ", " << bsd_socket_error(Errno));
@@ -636,7 +636,7 @@ return -1;
 
    void udp_socket::AddMulticastMembership(const string & group, const string & local_if, i32 if_index)
    {
-      //if (GetSocket() == INVALID_SOCKET)
+      //if (get_socket_id() == INVALID_SOCKET)
       //{
       //   CreateConnection();
       //}
@@ -651,7 +651,7 @@ return -1;
       //   {
       //      x.ipv6mr_multiaddr = addr;
       //      x.ipv6mr_interface = if_index;
-      //      if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
+      //      if (setsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
       //      {
 
       //         WARNING("AddMulticastMembership" << Errno << ", " << bsd_socket_error(Errno));
@@ -675,7 +675,7 @@ return -1;
 
       //   ::memcpy_dup(&x.imr_interface.s_addr, &addr, sizeof(addr));
       //   //      x.imr_ifindex = if_index;
-      //   if (setsockopt(GetSocket(), SOL_IP, IP_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
+      //   if (setsockopt(get_socket_id(), SOL_IP, IP_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
       //   {
 
       //      WARNING("AddMulticastMembership " << Errno << " , " << bsd_socket_error(Errno));
@@ -687,7 +687,7 @@ return -1;
 
    void udp_socket::DropMulticastMembership(const string & group, const string & local_if, i32 if_index)
    {
-      //if (GetSocket() == INVALID_SOCKET)
+      //if (get_socket_id() == INVALID_SOCKET)
       //{
       //   CreateConnection();
       //}
@@ -702,7 +702,7 @@ return -1;
       //   {
       //      x.ipv6mr_multiaddr = addr;
       //      x.ipv6mr_interface = if_index;
-      //      if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
+      //      if (setsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
       //      {
 
       //         WARNING("DropMulticastMembership " << Errno << " , " << bsd_socket_error(Errno));
@@ -723,7 +723,7 @@ return -1;
       //   paddressdepartment->convert(addr, local_if);
       //   ::memcpy_dup(&x.imr_interface.s_addr, &addr, sizeof(addr));
       //   //      x.imr_ifindex = if_index;
-      //   if (setsockopt(GetSocket(), SOL_IP, IP_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
+      //   if (setsockopt(get_socket_id(), SOL_IP, IP_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
       //   {
 
       //      WARNING("DropMulticastMembership " << Errno << ", " << bsd_socket_error(Errno));
@@ -735,7 +735,7 @@ return -1;
 
    void udp_socket::SetMulticastHops(i32 hops)
    {
-      //if (GetSocket() == INVALID_SOCKET)
+      //if (get_socket_id() == INVALID_SOCKET)
       //{
       //   CreateConnection();
       //}
@@ -746,7 +746,7 @@ return -1;
 
       //   return;
       //}
-      //if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, sizeof(i32)) == -1)
+      //if (setsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, sizeof(i32)) == -1)
       //{
 
       //   WARNING("SetMulticastHops" << Errno << ", " << bsd_socket_error(Errno));
@@ -757,7 +757,7 @@ return -1;
 
    i32 udp_socket::GetMulticastHops()
    {
-      //if (GetSocket() == INVALID_SOCKET)
+      //if (get_socket_id() == INVALID_SOCKET)
       //{
       //   CreateConnection();
       //}
@@ -770,7 +770,7 @@ return -1;
       //}
       i32 hops = 0;
       //socklen_t size = sizeof(i32);
-      //if (getsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, &size) == -1)
+      //if (getsockopt(get_socket_id(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, &size) == -1)
       //{
 
       //   WARNING("GetMulticastHops" << Errno << ", " << bsd_socket_error(Errno));

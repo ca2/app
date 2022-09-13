@@ -657,7 +657,7 @@ namespace sockets
    }
 
 
-   void socket_handler::CheckList(socket_list& ref,const string & listname)
+   void socket_handler::CheckList(socket_id_list& ref,const string & listname)
    {
       auto pnode = ref.get_head();
       while(pnode != nullptr)
@@ -692,7 +692,7 @@ namespace sockets
          TRACE("AddList:  invalid_socket\n");
          return;
       }
-      socket_list& ref =
+      socket_id_list& ref =
       (which_one == LIST_CALLONCONNECT) ? m_fds_callonconnect :
       (which_one == LIST_DETACH) ? m_fds_detach :
       (which_one == LIST_TIMEOUT) ? m_fds_timeout :

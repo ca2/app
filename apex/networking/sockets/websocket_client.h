@@ -52,9 +52,12 @@ namespace sockets
 
 
       websocket_client();
-      websocket_client(const string & url, const ::string & strProtocol);
+      
       //websocket_client(const string & host, ::networking::port_t port, const string & url);
       ~websocket_client() override;
+
+
+      virtual void initialize_websocket_client(const string & url, const ::string & strProtocol);
 
       virtual void InitSSLClient() override;
 

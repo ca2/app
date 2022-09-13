@@ -55,8 +55,11 @@ namespace sockets
       http_put_socket();
       /** client constructor,
       \lparam url_in = 'http://host:port/resource' */
-      http_put_socket(const string & url_in);
       ~http_put_socket();
+
+      
+      virtual void initialize_http_put_socket(const string & strUrl);
+
 
       // these must be specified before connecting / adding to handler
       /** Set filename to send. */

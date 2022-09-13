@@ -8,7 +8,7 @@ namespace networking_bsd
    class link_out_socket;
 
 
-   class CLASS_DECL_APEX link_in_socket : public tcp_socket
+   class CLASS_DECL_NETWORKING_BSD link_in_socket : public tcp_socket
    {
    public:
 

@@ -6470,7 +6470,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::child_from_point(const ::point_i32 & point, const ::user::interaction_array * pinteractionaExclude)
+   ::user::interaction * interaction::child_from_point(const ::point_i32 & point, ::i32 iLevel, const ::user::interaction_array * pinteractionaExclude)
    {
 
       auto pointClient = point;
@@ -6478,6 +6478,13 @@ namespace user
       ::user::interaction * puserinteractionParent = nullptr;
 
       ::user::interaction * puserinteractionSearchChildren = this;
+
+      if (iLevel >= 0)
+      {
+
+         iLevel++;
+
+      }
 
       do
       {
@@ -6510,7 +6517,7 @@ namespace user
 
             auto & puserinteractionChild = puserinteractionpointeraChild->interaction_at(iChild);
 
-            if (::is_set(pinteractionaExclude) && !pinteractionaExclude->contains_interaction(puserinteractionChild))
+            if (::is_null(pinteractionaExclude) || !pinteractionaExclude->contains_interaction(puserinteractionChild))
             {
                //if (puserinteractionChild->is_this_visible()
                //&& (!puserinteractionChild->is_place_holder()
@@ -6522,6 +6529,8 @@ namespace user
 
                   if (puserinteractionChild->_001IsParentClientPointInsideInline(pointClient))
                   {
+
+                     iLevel--;
 
                      puserinteractionSearchChildren = puserinteractionChild;
 
@@ -6535,7 +6544,7 @@ namespace user
 
          }
 
-      } while (puserinteractionSearchChildren != nullptr);
+      } while (puserinteractionSearchChildren != nullptr && iLevel != 0);
 
       return puserinteractionParent;
 

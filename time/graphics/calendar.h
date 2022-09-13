@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "time/graphical/calendar.h"
+
+
 namespace datetime
 {
 
@@ -10,7 +13,7 @@ namespace datetime
 
 
       class CLASS_DECL_CA2_TIME graphics :
-         virtual public ::datetime::calendar::visual
+         virtual public ::datetime::calendar::graphical
       {
       public:
 

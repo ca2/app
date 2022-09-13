@@ -503,7 +503,7 @@
     <ClInclude Include="html\user\impact.h">
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
-    <ClInclude Include="html\user\form_impact.h">
+    <ClInclude Include="html\user\aaa_form_impact.h">
       <Filter>Header Files\html\user</Filter>
     </ClInclude>
     <ClInclude Include="html\user\document.h">
@@ -757,7 +757,7 @@
     <ClCompile Include="html\user\document.cpp">
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
-    <ClCompile Include="html\user\form_impact.cpp">
+    <ClCompile Include="html\user\aaa_form_impact.cpp">
       <Filter>Source Files\html\user</Filter>
     </ClCompile>
     <ClCompile Include="html\user\impact.cpp">

@@ -1,9 +1,10 @@
 #include "framework.h"
-#include "apex/networking/networking_bsd/_sockets.h"
+#include "udp_socket.h"
+#include "networking_bsd/address.h"
+#include "networking_bsd/networking.h"
 
 
-
-namespace networking_bsd
+namespace sockets_bsd
 {
 
 
@@ -33,32 +34,41 @@ namespace networking_bsd
    }
 
 
-   i32 udp_socket::Bind(port_t &port, i32 range)
+   i32 udp_socket::Bind(const ::networking::port_t &port, i32 range)
    {
       if (IsIpv6())
       {
-         ::networking::address ad(AF_INET6, port);
-         return Bind((in6_addr) ad.u.m_addr6.sin6_addr, ad.u.m_addr6.sin6_port, range);
+         auto paddress = __new(networking_bsd::address);
+         paddress->set_family(AF_INET6, port);
+         //::networking::address ad(AF_INET6, port);
+         return Bind((in6_addr)paddress->u.m_addr6.sin6_addr, paddress->u.m_addr6.sin6_port, range);
       }
-      ::networking::address ad(AF_INET, port);
-      return Bind((in_addr)  ad.u.m_addr.sin_addr, ad.u.m_addr.sin_port, range);
+      auto paddress = __new(networking_bsd::address);
+      paddress->set_family(AF_INET, port);
+//      ::networking::address ad(AF_INET, port);
+      return Bind((in_addr)  paddress->u.m_addr.sin_addr, paddress->u.m_addr.sin_port, range);
    }
 
 
-   i32 udp_socket::Bind(const string & intf, port_t &port, i32 range)
+   i32 udp_socket::Bind(const string & intf, ::networking::port_t &port, i32 range)
    {
 
-      ::networking::address ad(intf, port);
+      auto paddress = m_psystem->m_papexsystem->networking()->create_address(intf, port);
+//      paddress->set_address(intf, port);
 
-      if (ad.is_valid())
+      //::networking::address ad(intf, port);
+
+      auto paddress2 = __Address(paddress);
+
+      if (paddress->is_valid())
       {
-         if(ad.is_ipv6())
+         if(__Address(paddress)->is_ip6())
          {
-            return Bind((in6_addr) ad.u.m_addr6.sin6_addr, ad.u.m_addr6.sin6_port, range);
+            return Bind((in6_addr) paddress2->u.m_addr6.sin6_addr, paddress2->u.m_addr6.sin6_port, range);
          }
-         else if(ad.is_ipv4())
+         else if(paddress->is_ip4())
          {
-            return Bind((in_addr)  ad.u.m_addr.sin_addr, ad.u.m_addr.sin_port, range);
+            return Bind((in_addr)  paddress2->u.m_addr.sin_addr, paddress2->u.m_addr.sin_port, range);
          }
 
       }
@@ -70,90 +80,142 @@ namespace networking_bsd
    }
 
 
-   i32 udp_socket::Bind(in_addr a, port_t &port, i32 range)
+   i32 udp_socket::Bind(in_addr a, ::networking::port_t &port, i32 range)
    {
-      ::networking::address ad(a, port);
-      return Bind(ad, range);
+      auto paddress = __new(networking_bsd::address);
+      paddress->set_address(a, port);
+
+//      ::networking::address ad(a, port);
+      return Bind(paddress, range);
    }
 
 
-   i32 udp_socket::Bind(in6_addr a, port_t &port, i32 range)
+   i32 udp_socket::Bind(in6_addr a, ::networking::port_t &port, i32 range)
    {
-      ::networking::address ad(a, port);
-      return Bind(ad, range);
+      auto paddress = __new(networking_bsd::address);
+      paddress->set_address(a, port);
+
+//      ::networking::address ad(a, port);
+      return Bind(paddress, range);
    }
 
 
-   i32 udp_socket::Bind(::networking::address & ad, i32 range)
+   i32 udp_socket::Bind(::networking::address * paddress, i32 range)
    {
-      if (GetSocket() == INVALID_SOCKET)
+
+      auto paddress2 = __Address(paddress);
+
+      if (GetSocketId() == INVALID_SOCKET)
       {
-         attach(CreateSocket(ad.get_family(), SOCK_DGRAM, "udp"));
+         attach(CreateSocket(paddress2->get_family(), SOCK_DGRAM, "udp"));
       }
-      if (GetSocket() != INVALID_SOCKET)
+      if (GetSocketId() != INVALID_SOCKET)
       {
          SetNonblocking(true);
-         i32 n = bind(GetSocket(), ad.sa(), ad.sa_len());
+         i32 n = bind(GetSocketId(), paddress2->sa(), paddress2->sa_len());
          i32 tries = range;
          while (n == -1 && tries--)
          {
-            ad.set_service_number(ad.get_service_number() + 1);
-            n = bind(GetSocket(), ad.sa(), ad.sa_len());
+            paddress2->set_service_number(paddress2->get_service_number() + 1);
+            n = bind(GetSocketId(), paddress2->sa(), paddress2->sa_len());
          }
          if (n == -1)
          {
 
-            FATAL("bind" << Errno << ", " << bsd_socket_error(Errno));
+            FATAL("bind" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
             SetCloseAndDelete();
-            throw ::exception(error_socket, "bind() failed for udp_socket, port:range: " + __string(ad.get_service_number()) + ":" + __string(range));
+
+            throw ::exception(error_socket, "bind() failed for udp_socket, port:range: " + __string(paddress2->get_service_number()) + ":" + __string(range));
+
             return -1;
+
          }
+         
          m_bind_ok = true;
-         m_port = ad.get_service_number();
+
+         m_port = paddress->get_service_number();
+
          return 0;
+
       }
+
       return -1;
+
    }
 
 
    /** if you wish to use Send, first open a connection */
-   bool udp_socket::open(in_addr l, port_t port)
+   bool udp_socket::open(in_addr l, ::networking::port_t port)
    {
-      ::networking::address ad(l, port);
-      return open(ad);
+      
+      //::networking::address ad(l, port);
+
+      auto paddress2 = __new(::networking_bsd::address);
+
+      paddress2->set_address(l, port);
+      
+      return open(paddress2);
+
    }
 
 
-   bool udp_socket::open(const string & host, port_t port)
+   bool udp_socket::open(const string & host, ::networking::port_t port)
    {
-      ::networking::address ad(host, port);
-      if(!ad.is_valid())
-         return false;
-      return open(ad);
-   }
+      
+      //::networking::address ad(host, port);
 
 
-   bool udp_socket::open(struct in6_addr& a, port_t port)
-   {
-      ::networking::address ad(a, port);
-      return open(ad);
-   }
+      auto paddress = m_psystem->m_papexsystem->networking()->create_address(host, port);
+      //      paddress->set_address(intf, port);
+
+            //::networking::address ad(intf, port);
+
+      auto paddress2 = __Address(paddress);
 
 
-   bool udp_socket::open(::networking::address * ad)
-   {
-      if (GetSocket() == INVALID_SOCKET)
+      if (!paddress2->is_valid())
       {
-         attach(CreateSocket(ad.get_family(), SOCK_DGRAM, "udp"));
+
+         return false;
+
       }
-      if (GetSocket() != INVALID_SOCKET)
+
+      return open(paddress2);
+
+   }
+
+
+   bool udp_socket::open(struct in6_addr& a, ::networking::port_t port)
+   {
+
+      //::networking::address ad(a, port);
+
+      auto paddress2 = __new(::networking_bsd::address);
+
+      paddress2->set_address(a, port);
+
+      return open(paddress2);
+
+   }
+
+
+   bool udp_socket::open(::networking::address * paddress)
+   {
+
+      auto paddress2 = __Address(paddress);
+
+      if (GetSocketId() == INVALID_SOCKET)
+      {
+         attach(CreateSocket(paddress2->get_family(), SOCK_DGRAM, "udp"));
+      }
+      if (GetSocketId() != INVALID_SOCKET)
       {
          SetNonblocking(true);
-         if (connect(GetSocket(), ad.sa(), ad.sa_len()) == -1)
+         if (connect(GetSocketId(), paddress2->sa(), paddress2->sa_len()) == -1)
          {
 
-            FATAL("connect" << Errno << ", " << bsd_socket_error(Errno));
+            FATAL("connect" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
             SetCloseAndDelete();
             return false;
@@ -169,7 +231,7 @@ namespace networking_bsd
    {
       if (IsIpv6())
       {
-         if (GetSocket() == INVALID_SOCKET)
+         if (GetSocketId() == INVALID_SOCKET)
          {
             SOCKET s = CreateSocket(AF_INET6, SOCK_DGRAM, "udp");
             if (s == INVALID_SOCKET)
@@ -181,7 +243,7 @@ namespace networking_bsd
          }
          return;
       }
-      if (GetSocket() == INVALID_SOCKET)
+      if (GetSocketId() == INVALID_SOCKET)
       {
          SOCKET s = CreateSocket(AF_INET, SOCK_DGRAM, "udp");
          if (s == INVALID_SOCKET)
@@ -195,42 +257,67 @@ namespace networking_bsd
 
 
    /** send to specified address */
-   void udp_socket::SendToBuf(const string & h, port_t p, const char *data, i32 len, i32 flags)
+   void udp_socket::SendToBuf(const string & h, ::networking::port_t p, const char *data, i32 len, i32 flags)
    {
-      SendToBuf(::networking::address(h, p), data, len, flags);
+      
+      auto paddress = m_psystem->m_papexsystem->networking()->create_address(h, p);
+      //      paddress->set_address(intf, port);
+
+            //::networking::address ad(intf, port);
+
+      SendToBuf(paddress.m_p, data, len, flags);
+
    }
 
 
    /** send to specified address */
-   void udp_socket::SendToBuf(const in_addr & a, port_t p, const char *data, i32 len, i32 flags)
+   void udp_socket::SendToBuf(const in_addr & a, ::networking::port_t p, const char *data, i32 len, i32 flags)
    {
-      SendToBuf(::networking::address(a, p), data, len, flags);
+
+      auto paddress2 = __new(::networking_bsd::address);
+
+      paddress2->set_address(a, p);
+
+      // SendToBuf(::networking::address(a, p), data, len, flags);
+
+      SendToBuf(paddress2, data, len, flags);
+
    }
 
 
-   void udp_socket::SendToBuf(const in6_addr & a, port_t p, const char *data, i32 len, i32 flags)
+   void udp_socket::SendToBuf(const in6_addr & a, ::networking::port_t p, const char *data, i32 len, i32 flags)
    {
-      SendToBuf(::networking::address(a, p), data, len, flags);
+
+      auto paddress2 = __new(::networking_bsd::address);
+
+      paddress2->set_address(a, p);
+
+      SendToBuf(paddress2, data, len, flags);
+
    }
 
 
-   void udp_socket::SendToBuf(::networking::address * ad, const char *data, i32 len, i32 flags)
+   void udp_socket::SendToBuf(::networking::address * paddress, const char *data, i32 len, i32 flags)
    {
-      if (GetSocket() == INVALID_SOCKET)
+
+      auto paddress2 = __Address(paddress);
+
+      if (GetSocketId() == INVALID_SOCKET)
       {
-         attach(CreateSocket(ad.get_family(), SOCK_DGRAM, "udp"));
+
+         attach(CreateSocket(paddress2->get_family(), SOCK_DGRAM, "udp"));
+
       }
-      if (GetSocket() != INVALID_SOCKET)
+
+      if (GetSocketId() != INVALID_SOCKET)
       {
+
          SetNonblocking(true);
-         if ((m_last_size_written = sendto(GetSocket(), data, len, flags, ad.sa(), (i32) ad.sa_len())) == -1)
+
+         if ((m_last_size_written = sendto(GetSocketId(), data, len, flags, paddress2->sa(), (i32) paddress2->sa_len())) == -1)
          {
 
-
-
-            ERROR("sendto" << Errno << ", " << bsd_socket_error(Errno));
-
-
+            ERROR("sendto" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          }
 
@@ -239,7 +326,7 @@ namespace networking_bsd
    }
 
 
-   void udp_socket::SendTo(const string & a, port_t port, const ::string & str, i32 flags)
+   void udp_socket::SendTo(const string & a, ::networking::port_t port, const ::string & str, i32 flags)
    {
       
       SendToBuf(a, port, str, (i32)str.get_length(), flags);
@@ -247,7 +334,7 @@ namespace networking_bsd
    }
 
 
-   void udp_socket::SendTo(in_addr a, port_t port, const ::string & str, i32 flags)
+   void udp_socket::SendTo(in_addr a, ::networking::port_t port, const ::string & str, i32 flags)
    {
 
       SendToBuf(a, port, str, (i32)str.get_length(), flags);
@@ -255,7 +342,7 @@ namespace networking_bsd
    }
 
 
-   void udp_socket::SendTo(in6_addr a, port_t port, const ::string & str, i32 flags)
+   void udp_socket::SendTo(in6_addr a, ::networking::port_t port, const ::string & str, i32 flags)
    {
       
       SendToBuf(a, port, str, (i32)str.get_length(), flags);
@@ -288,12 +375,12 @@ namespace networking_bsd
 
       }
 
-      if ((m_last_size_written = ::send(GetSocket(), (const char *) data, (i32)len, m_iWriteFlags)) == -1)
+      if ((m_last_size_written = ::send(GetSocketId(), (const char *) data, (i32)len, m_iWriteFlags)) == -1)
       {
 
 
 
-         ERROR("write" << Errno << ", " << bsd_socket_error(Errno));
+         ERROR("write" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
 
 
@@ -346,9 +433,9 @@ namespace networking_bsd
       msg.msg_flags = 0;
 
       // Original version - for object only
-      //i32 n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+      //i32 n = recvfrom(GetSocketId(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
 
-      i32 n = recvmsg(GetSocket(), &msg, MSG_DONTWAIT);
+      i32 n = recvmsg(GetSocketId(), &msg, MSG_DONTWAIT);
 
       // now ioBuf will contain the data, as if we used recvfrom
 
@@ -394,7 +481,7 @@ namespace networking_bsd
             timeval.tv_usec = (int) (duration.m_iNanosecond / 1'000);
 
 #if !defined(LINUX) && !defined(MACOSX)
-            memsize n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+            memsize n = recvfrom(GetSocketId(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
 #else
             i32 n = ReadTS(m_ibuf, m_ibufsz, (struct sockaddr *)&sa, sa_len, &timeval);
 #endif
@@ -407,17 +494,17 @@ namespace networking_bsd
             else if (n == -1)
             {
 #ifdef _WIN32
-               if (Errno != WSAEWOULDBLOCK)
+               if (networking_last_error() != WSAEWOULDBLOCK)
                {
 #else
-               if (Errno != EWOULDBLOCK)
+               if (networking_last_error() != EWOULDBLOCK)
                {
 
 #endif
 
 
 
-                  ERROR("recvfrom" << Errno << ", " << bsd_socket_error(Errno));
+                  ERROR("recvfrom" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
 
                }
@@ -428,7 +515,7 @@ namespace networking_bsd
 
          }
 
-         memsize n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+         memsize n = recvfrom(GetSocketId(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
          i32 q = m_iConnectionRetryCount; // receive maximum 10 at one cycle
          while (n > 0)
          {
@@ -442,19 +529,19 @@ namespace networking_bsd
             if (!q--)
                break;
             //
-            n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+            n = recvfrom(GetSocketId(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
          }
          if (n == -1)
          {
 #ifdef _WIN32
-            if (Errno != WSAEWOULDBLOCK)
+            if (networking_last_error() != WSAEWOULDBLOCK)
             {
 #else
-            if (Errno != EWOULDBLOCK)
+            if (networking_last_error() != EWOULDBLOCK)
             {
 #endif
 
-               ERROR("recvfrom " << Errno << ", " << bsd_socket_error(Errno));
+               ERROR("recvfrom " << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
             }
          }
@@ -477,7 +564,7 @@ namespace networking_bsd
 
 #if !defined(LINUX) && !defined(MACOSX)
 
-         memsize n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+         memsize n = recvfrom(GetSocketId(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
 
 #else
 
@@ -494,21 +581,21 @@ namespace networking_bsd
          else if (n == -1)
          {
 #ifdef _WIN32
-            if (Errno != WSAEWOULDBLOCK)
+            if (networking_last_error() != WSAEWOULDBLOCK)
             {
 #else
-            if (Errno != EWOULDBLOCK)
+            if (networking_last_error() != EWOULDBLOCK)
             {
 #endif
 
 
-               ERROR("recvfrom" << Errno << ", " << bsd_socket_error(Errno));
+               ERROR("recvfrom" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
             }
          }
          return;
       }
-      memsize n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+      memsize n = recvfrom(GetSocketId(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
       i32 q = m_iConnectionRetryCount;
       while (n > 0)
       {
@@ -522,19 +609,19 @@ namespace networking_bsd
          if (!q--)
             break;
          //
-         n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+         n = recvfrom(GetSocketId(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
       }
       if (n == -1)
       {
 #ifdef _WIN32
-         if (Errno != WSAEWOULDBLOCK)
+         if (networking_last_error() != WSAEWOULDBLOCK)
          {
 #else
-         if (Errno != EWOULDBLOCK)
+         if (networking_last_error() != EWOULDBLOCK)
          {
 #endif
 
-            ERROR("recvfrom" << Errno << ", " << bsd_socket_error(Errno));
+            ERROR("recvfrom" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          }
       }
@@ -543,14 +630,14 @@ namespace networking_bsd
 
    void udp_socket::SetMulticastTTL(i32 ttl)
    {
-      if (GetSocket() == INVALID_SOCKET)
+      if (GetSocketId() == INVALID_SOCKET)
       {
          CreateConnection();
       }
-      if (setsockopt(GetSocket(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(i32)) == -1)
+      if (setsockopt(GetSocketId(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(i32)) == -1)
       {
 
-         WARNING("SetMulticastTTL" << Errno << ", " << bsd_socket_error(Errno));
+         WARNING("SetMulticastTTL" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       }
    }
@@ -561,50 +648,63 @@ namespace networking_bsd
       i32 ttl = 0;
       socklen_t size = sizeof(i32);
 
-      if (GetSocket() == INVALID_SOCKET)
+      if (GetSocketId() == INVALID_SOCKET)
       {
          CreateConnection();
       }
-      if (getsockopt(GetSocket(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, &size) == -1)
+      if (getsockopt(GetSocketId(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, &size) == -1)
       {
 
-         WARNING("GetMulticastTTL" << Errno << ", " << bsd_socket_error(Errno));
+         WARNING("GetMulticastTTL" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       }
       return ttl;
    }
 
 
-   void udp_socket::SetMulticastLoop(bool x)
+   bool udp_socket::SetMulticastLoop(bool x)
    {
-      if (GetSocket() == INVALID_SOCKET)
+
+      if (GetSocketId() == INVALID_SOCKET)
       {
+
          CreateConnection();
+
       }
+
       if (IsIpv6())
       {
+
          i32 val = x ? 1 : 0;
-         if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&val, sizeof(i32)) == -1)
+
+         if (setsockopt(GetSocketId(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&val, sizeof(i32)) == -1)
          {
 
-            WARNING("SetMulticastLoop" << Errno << ", " << bsd_socket_error(Errno));
+            WARNING("SetMulticastLoop" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          }
-         return;
+
+         return false;
+
       }
+
       i32 val = x ? 1 : 0;
-      if (setsockopt(GetSocket(), SOL_IP, IP_MULTICAST_LOOP, (char *)&val, sizeof(i32)) == -1)
+
+      if (setsockopt(GetSocketId(), SOL_IP, IP_MULTICAST_LOOP, (char *)&val, sizeof(i32)) == -1)
       {
 
-         WARNING("SetMulticastLoop" << Errno << ", " << bsd_socket_error(Errno));
+         WARNING("SetMulticastLoop" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       }
+
+      return false;
+
    }
 
 
    bool udp_socket::IsMulticastLoop()
    {
-      if (GetSocket() == INVALID_SOCKET)
+      if (GetSocketId() == INVALID_SOCKET)
       {
          CreateConnection();
       }
@@ -612,20 +712,20 @@ namespace networking_bsd
       {
          i32 is_loop = 0;
          socklen_t size = sizeof(i32);
-         if (getsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
+         if (getsockopt(GetSocketId(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
          {
 
-            WARNING("IsMulticastLoop" << Errno << ", " << bsd_socket_error(Errno));
+            WARNING("IsMulticastLoop" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          }
          return is_loop ? true : false;
       }
       i32 is_loop = 0;
       socklen_t size = sizeof(i32);
-      if (getsockopt(GetSocket(), SOL_IP, IP_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
+      if (getsockopt(GetSocketId(), SOL_IP, IP_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
       {
 
-         WARNING("IsMulticastLoop" << Errno << ", " << bsd_socket_error(Errno));
+         WARNING("IsMulticastLoop" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       }
       return is_loop ? true : false;
@@ -634,106 +734,124 @@ namespace networking_bsd
 
    void udp_socket::AddMulticastMembership(const string & group, const string & local_if, i32 if_index)
    {
-      if (GetSocket() == INVALID_SOCKET)
-      {
-         CreateConnection();
-      }
-      if (IsIpv6())
-      {
-         struct ipv6_mreq x;
-         struct in6_addr addr;
 
-         auto paddressdepartment = ::networking::address_department();
+      throw ::exception::exception(todo);
 
-         if (paddressdepartment->convert( addr, group ))
-         {
-            x.ipv6mr_multiaddr = addr;
-            x.ipv6mr_interface = if_index;
-            if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
-            {
+      //if (GetSocketId() == INVALID_SOCKET)
+      //{
 
-               WARNING("AddMulticastMembership" << Errno << ", " << bsd_socket_error(Errno));
+      //   CreateConnection();
 
-            }
-         }
-         return;
-      }
-      struct ip_mreq x; // ip_mreqn
-      in_addr addr;
+      //}
 
-      auto paddressdepartment = ::networking::address_department();
+      //if (IsIpv6())
+      //{
 
-      if (paddressdepartment->convert(addr,  group ))
-      {
-         ::memcpy_dup(&x.imr_multiaddr.s_addr, &addr, sizeof(addr));
+      //   struct ipv6_mreq x;
 
-         auto psystem = get_system()->m_papexsystem;
+      //   struct in6_addr addr;
 
-         paddressdepartment->convert(addr,  local_if);
+      //   auto paddressdepartment = ::networking::address_department();
 
-         ::memcpy_dup(&x.imr_interface.s_addr, &addr, sizeof(addr));
-         //      x.imr_ifindex = if_index;
-         if (setsockopt(GetSocket(), SOL_IP, IP_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
-         {
+      //   if (paddressdepartment->convert( addr, group ))
+      //   {
+      //      x.ipv6mr_multiaddr = addr;
+      //      x.ipv6mr_interface = if_index;
+      //      if (setsockopt(GetSocketId(), IPPROTO_IPV6, IPV6_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
+      //      {
 
-            WARNING("AddMulticastMembership " << Errno << " , " << bsd_socket_error(Errno));
+      //         WARNING("AddMulticastMembership" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
-         }
-      }
+      //      }
+      //   }
+      //   return;
+      //}
+      //struct ip_mreq x; // ip_mreqn
+      //in_addr addr;
+
+      //auto paddressdepartment = ::networking::address_department();
+
+      //if (paddressdepartment->convert(addr,  group ))
+      //{
+      //   ::memcpy_dup(&x.imr_multiaddr.s_addr, &addr, sizeof(addr));
+
+      //   auto psystem = get_system()->m_papexsystem;
+
+      //   paddressdepartment->convert(addr,  local_if);
+
+      //   ::memcpy_dup(&x.imr_interface.s_addr, &addr, sizeof(addr));
+      //   //      x.imr_ifindex = if_index;
+      //   if (setsockopt(GetSocketId(), SOL_IP, IP_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
+      //   {
+
+      //      WARNING("AddMulticastMembership " << networking_last_error() << " , " << bsd_socket_error(networking_last_error()));
+
+      //   }
+      //}
    }
 
 
    void udp_socket::DropMulticastMembership(const string & group, const string & local_if, i32 if_index)
    {
-      if (GetSocket() == INVALID_SOCKET)
-      {
-         CreateConnection();
-      }
-      if (IsIpv6())
-      {
-         struct ipv6_mreq x;
-         struct in6_addr addr;
 
-         auto paddressdepartment = ::networking::address_department();
+      throw ::exception::exception(todo);
 
-         if (paddressdepartment->convert(addr, group))
-         {
-            x.ipv6mr_multiaddr = addr;
-            x.ipv6mr_interface = if_index;
-            if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
-            {
+      //if (GetSocketId() == INVALID_SOCKET)
+      //{
 
-               WARNING("DropMulticastMembership " << Errno << " , " << bsd_socket_error(Errno));
+      //   CreateConnection();
 
-            }
-         }
-         return;
-      }
-      struct ip_mreq x; // ip_mreqn
-      in_addr addr;
+      //}
 
-      auto paddressdepartment = ::networking::address_department();
+      //if (IsIpv6())
+      //{
 
-      if (paddressdepartment->convert(addr, group))
-      {
-         ::memcpy_dup(&x.imr_multiaddr.s_addr, &addr, sizeof(addr));
+      //   struct ipv6_mreq x;
 
-         paddressdepartment->convert(addr, local_if);
-         ::memcpy_dup(&x.imr_interface.s_addr, &addr, sizeof(addr));
-         //      x.imr_ifindex = if_index;
-         if (setsockopt(GetSocket(), SOL_IP, IP_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
-         {
+      //   struct in6_addr addr;
 
-            WARNING("DropMulticastMembership " << Errno << ", " << bsd_socket_error(Errno));
+      //   auto paddressdepartment = ::networking::address_department();
 
-         }
-      }
+      //   if (paddressdepartment->convert(addr, group))
+      //   {
+      //      x.ipv6mr_multiaddr = addr;
+      //      x.ipv6mr_interface = if_index;
+      //      if (setsockopt(GetSocketId(), IPPROTO_IPV6, IPV6_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ipv6_mreq)) == -1)
+      //      {
+
+      //         WARNING("DropMulticastMembership " << networking_last_error() << " , " << bsd_socket_error(networking_last_error()));
+
+      //      }
+      //   }
+      //   return;
+      //}
+      //struct ip_mreq x; // ip_mreqn
+      //in_addr addr;
+
+      //auto paddressdepartment = ::networking::address_department();
+
+      //if (paddressdepartment->convert(addr, group))
+      //{
+      //   ::memcpy_dup(&x.imr_multiaddr.s_addr, &addr, sizeof(addr));
+
+      //   paddressdepartment->convert(addr, local_if);
+      //   ::memcpy_dup(&x.imr_interface.s_addr, &addr, sizeof(addr));
+      //   //      x.imr_ifindex = if_index;
+      //   if (setsockopt(GetSocketId(), SOL_IP, IP_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
+      //   {
+
+      //      WARNING("DropMulticastMembership " << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
+
+      //   }
+      //}
+
    }
 
 
    void udp_socket::SetMulticastHops(i32 hops)
    {
-      if (GetSocket() == INVALID_SOCKET)
+
+      if (GetSocketId() == INVALID_SOCKET)
       {
          CreateConnection();
       }
@@ -744,10 +862,10 @@ namespace networking_bsd
 
          return;
       }
-      if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, sizeof(i32)) == -1)
+      if (setsockopt(GetSocketId(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, sizeof(i32)) == -1)
       {
 
-         WARNING("SetMulticastHops" << Errno << ", " << bsd_socket_error(Errno));
+         WARNING("SetMulticastHops" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       }
    }
@@ -755,7 +873,7 @@ namespace networking_bsd
 
    i32 udp_socket::GetMulticastHops()
    {
-      if (GetSocket() == INVALID_SOCKET)
+      if (GetSocketId() == INVALID_SOCKET)
       {
          CreateConnection();
       }
@@ -768,10 +886,10 @@ namespace networking_bsd
       }
       i32 hops = 0;
       socklen_t size = sizeof(i32);
-      if (getsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, &size) == -1)
+      if (getsockopt(GetSocketId(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, &size) == -1)
       {
 
-         WARNING("GetMulticastHops" << Errno << ", " << bsd_socket_error(Errno));
+         WARNING("GetMulticastHops" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
       }
       return hops;
@@ -803,7 +921,7 @@ namespace networking_bsd
    }
 
 
-   port_t udp_socket::GetPort()
+   ::networking::port_t udp_socket::GetPort()
    {
       return m_port;
    }
@@ -821,7 +939,7 @@ namespace networking_bsd
    }
 
 
-}
+} // namespace sockets_bsd
 
 
 

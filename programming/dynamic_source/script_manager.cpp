@@ -1380,13 +1380,13 @@ namespace dynamic_source
 
                pinsocket->m_in = phttpdsocket;
 
-               ASSERT(pinsocket->m_pmemfileInput != nullptr);
+               ASSERT(pinsocket->get_input_memory_file() != nullptr);
 
-               pinsocket->m_pmemfileInput->from(phttpdsocket->m_pmemfileInput);
+               pinsocket->get_input_memory_file()->from(phttpdsocket->get_input_memory_file());
 
                pinsocket->server_to_link_in(phttpdsocket);
 
-               phttpdsocket->m_bEnd = true;
+               phttpdsocket->set_end();
 
             }
 
@@ -1466,7 +1466,7 @@ namespace dynamic_source
 
       //psocket->m_phandler = phttpdsocket->m_phandler;
 
-      psocket->m_psockethandler = phttpdsocket->m_psockethandler;
+      psocket->initialize_socket(phttpdsocket->socket_handler());
 
       {
 

@@ -28,6 +28,9 @@ namespace userfs
       ~list_data() override;
 
 
+      void initialize(::object * pobject) override;
+
+
       ::userfs::list_item * item(index i);
 
       virtual void update();

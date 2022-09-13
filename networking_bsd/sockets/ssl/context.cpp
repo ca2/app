@@ -5,22 +5,12 @@
 //  Created by Camilo Sasuke Tsumanuma on 06/01/18.
 //
 #include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
+#include "context.h"
 
 
-#ifdef PARALLELIZATION_PTHREAD
-
-
-#include "acme/operating_system/ansi/_pthread.h"
-
-
-#endif
-
-
-#include <openssl/ssl.h>
-
-namespace sockets
+namespace sockets_bsd
 {
+
 
    ssl_context::ssl_context():
 #ifdef HAVE_OPENSSL
@@ -82,7 +72,11 @@ namespace sockets
          m_ssl = nullptr;
 
       }
+
    }
 
-} // namespace sockets
+
+} // namespace sockets_bsd
+
+
 

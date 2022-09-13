@@ -29,16 +29,18 @@ namespace sockets
    //   SetLost();
    //}
 
-   //void base_socket_handler::pool_socket::OnOptions(int, int, int, SOCKET)
+   //void base_socket_handler::pool_socket::OnOptions(int, int, int, socket_id)
    //{
 
    //}
 
 
-   base_socket_handler::base_socket_handler(::apex::log * plogger) 
+   base_socket_handler::base_socket_handler() 
    {
 
-      m_plogger = plogger;
+      m_p2 = nullptr;
+
+      //m_plogger = plogger;
 
      /* if (plogger == nullptr)
       {

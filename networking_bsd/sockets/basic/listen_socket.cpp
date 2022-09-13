@@ -1,13 +1,16 @@
 #include "framework.h"
-#include "apex/networking/networking_bsd/_sockets.h"
+#include "listen_socket.h"
+#include "socket_handler.h"
+#include "networking_bsd/address.h"
+#include "networking_bsd/networking.h"
 
 
-namespace networking_bsd
+namespace sockets_bsd
 {
 
 
-   //listen_socket_base::listen_socket_base() :
-   listen_socket_base::listen_socket_base() :
+   //listen_socket::listen_socket() :
+   listen_socket::listen_socket() :
       //::object(&h),
       //base_socket(h),
       //socket(h),
@@ -18,20 +21,40 @@ namespace networking_bsd
    }
 
 
-   listen_socket_base::~listen_socket_base()
+   listen_socket::~listen_socket()
    {
 
    }
 
 
-   /** close file descriptor. */
-   void listen_socket_base::close()
+   void listen_socket::initialize(::object * pobject)
    {
 
-      if (GetSocket() != INVALID_SOCKET)
+      socket::initialize(pobject);
+
+   }
+
+   void listen_socket::set_ssl_catalog(const ::string & strCat)
+   {
+
+      m_strCat = strCat;
+
+   }
+
+   void listen_socket::set_ssl_cipher_list(const ::string & strCipherList)
+   {
+
+      m_strCipherList = strCipherList;
+
+   }
+   /** close file descriptor. */
+   void listen_socket::close()
+   {
+
+      if (GetSocketId() != INVALID_SOCKET)
       {
 
-         close_socket(GetSocket());
+         close_socket(GetSocketId());
 
       }
 
@@ -40,21 +63,24 @@ namespace networking_bsd
    /** Bind and listen to any interface.
    \lparam port Port (0 is random)
    \lparam depth Listen queue depth */
-   i32 listen_socket_base::Bind(port_t port,i32 depth)
+   i32 listen_socket::Bind(::networking::port_t port,i32 depth)
    {
       if (IsIpv6())
       {
-         ::networking::address ad(AF_INET6, port);
-         return Bind(ad, depth);
+         auto paddress = __new(::networking_bsd::address);
+         paddress->set_family(AF_INET6, port);
+         //::networking::address ad(AF_INET6, port);
+         return Bind(paddress, depth);
       }
       else
       {
-         ::networking::address ad(AF_INET, port);
-         return Bind(ad, depth);
+         auto paddress = __new(::networking_bsd::address);
+         paddress->set_family(AF_INET, port);
+         return Bind(paddress, depth);
       }
    }
 
-   i32 listen_socket_base::Bind(::networking::address * ad,i32 depth)
+   i32 listen_socket::Bind(::networking::address * ad,i32 depth)
    {
 #ifdef USE_SCTP
       if (dynamic_cast<SctpSocket *>(m_creator))
@@ -69,17 +95,19 @@ namespace networking_bsd
    \lparam port Port (0 is random)
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   i32 listen_socket_base::Bind(port_t port,const string & protocol,i32 depth)
+   i32 listen_socket::Bind(::networking::port_t port,const string & protocol,i32 depth)
    {
       if (IsIpv6())
       {
-         ::networking::address ad(AF_INET6, port);
-         return Bind(ad.u.m_addr6.sin6_addr, port, protocol, depth);
+         auto paddress = __new(::networking_bsd::address);
+         paddress->set_family(AF_INET6, port);
+         return Bind(paddress->u.m_addr6.sin6_addr, port, protocol, depth);
       }
       else
       {
-         ::networking::address ad(AF_INET, port);
-         return Bind(ad.u.m_addr.sin_addr, port, protocol, depth);
+         auto paddress = __new(::networking_bsd::address);
+         paddress->set_family(AF_INET, port);
+         return Bind(paddress->u.m_addr.sin_addr, port, protocol, depth);
       }
    }
 
@@ -87,15 +115,15 @@ namespace networking_bsd
    \lparam intf Interface hostname
    \lparam port Port (0 is random)
    \lparam depth Listen queue depth */
-   i32 listen_socket_base::Bind(const string & intf,port_t port,i32 depth)
+   i32 listen_socket::Bind(const string & intf,::networking::port_t port,i32 depth)
    {
       
-      ::networking::address address(intf, port);
+      auto paddress = __SystemNetworking(m_psystem)->create_address(intf, port);
 
-      if (address.is_valid())
+      if (paddress->is_valid())
       {
 
-         return Bind(address, depth);
+         return Bind(paddress.m_p, depth);
 
       }
 
@@ -111,12 +139,16 @@ namespace networking_bsd
    \lparam port Port (0 is random)
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   i32 listen_socket_base::Bind(const string & intf,port_t port,const string & protocol,i32 depth)
+   i32 listen_socket::Bind(const string & intf,::networking::port_t port,const string & protocol,i32 depth)
    {
-      ::networking::address ad(intf, port);
-      if (ad.is_valid())
+
+      auto paddress = __SystemNetworking(m_psystem)->create_address(intf, port);
+
+      if (paddress->is_valid())
       {
-         return Bind(ad, protocol, depth);
+
+         return Bind(paddress.m_p, protocol, depth);
+
       }
 
       FATAL("Bind: name resolution of interface name failed");
@@ -130,64 +162,92 @@ namespace networking_bsd
    \lparam a Ipv4 interface address
    \lparam port Port (0 is random)
    \lparam depth Listen queue depth */
-   i32 listen_socket_base::Bind(in_addr a,port_t port,i32 depth)
+   i32 listen_socket::Bind(in_addr a,::networking::port_t port,i32 depth)
    {
-      ::networking::address ad(a, port);
+
+      auto paddress = __new(::networking_bsd::address);
+
+      paddress->set_address(a, port);
+
 #ifdef USE_SCTP
       if (dynamic_cast<SctpSocket *>(m_creator))
       {
          return Bind(ad, "sctp", depth);
       }
 #endif
-      return Bind(ad, "tcp", depth);
+      
+      return Bind(paddress, "tcp", depth);
+
    }
+
    /** Bind and listen to ipv4 interface.
    \lparam a Ipv4 interface address
    \lparam port Port (0 is random)
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   i32 listen_socket_base::Bind(in_addr a,port_t port,const string & protocol,i32 depth)
+   i32 listen_socket::Bind(in_addr a,::networking::port_t port,const string & protocol,i32 depth)
    {
-      ::networking::address ad(a, port);
-      return Bind(ad, protocol, depth);
+
+      auto paddress = __new(::networking_bsd::address);
+
+      paddress->set_address(a, port);
+
+      return Bind(paddress, protocol, depth);
+
    }
 
    /** Bind and listen to ipv6 interface.
    \lparam a Ipv6 interface address
    \lparam port Port (0 is random)
    \lparam depth Listen queue depth */
-   i32 listen_socket_base::Bind(in6_addr a,port_t port,i32 depth)
+   i32 listen_socket::Bind(in6_addr a,::networking::port_t port,i32 depth)
    {
-      ::networking::address ad(a, port);
+
+      auto paddress = __new(::networking_bsd::address);
+
+      paddress->set_address(a, port);
+
 #ifdef USE_SCTP
       if (dynamic_cast<SctpSocket *>(m_creator))
       {
          return Bind(ad, "sctp", depth);
       }
 #endif
-      return Bind(ad, "tcp", depth);
+      
+      return Bind(paddress, "tcp", depth);
+
    }
+
+
    /** Bind and listen to ipv6 interface.
    \lparam a Ipv6 interface address
    \lparam port Port (0 is random)
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   i32 listen_socket_base::Bind(in6_addr a,port_t port,const string & protocol,i32 depth)
+   i32 listen_socket::Bind(in6_addr a,::networking::port_t port,const string & protocol,i32 depth)
    {
-      ::networking::address ad(a, port);
-      return Bind(ad, protocol, depth);
+
+      auto paddress = __new(::networking_bsd::address);
+
+      paddress->set_address(a, port);
+
+      return Bind(paddress, protocol, depth);
+
    }
+
 
    /** Bind and listen to network interface.
    \lparam ad Interface address
    \lparam protocol Network protocol
    \lparam depth Listen queue depth */
-   i32 listen_socket_base::Bind(::networking::address * ad,const string & protocol,i32 depth)
+   i32 listen_socket::Bind(::networking::address * paddress,const string & protocol,i32 depth)
    {
 
+      auto paddress2 = __Address(paddress);
+
       SOCKET s;
-      m_iBindPort = ad.get_service_number();
-      if ( (s = CreateSocket(ad.get_family(), SOCK_STREAM, protocol)) == INVALID_SOCKET)
+      m_iBindPort = paddress->get_service_number();
+      if ( (s = CreateSocket(paddress2->get_family(), SOCK_STREAM, protocol)) == INVALID_SOCKET)
       {
          return -1;
       }
@@ -222,14 +282,14 @@ namespace networking_bsd
 
       //}
 
-      auto psockaddr = ad.sa();
+      auto psockaddr = paddress2->sa();
 
-      auto sockaddr_len = ad.sa_len();
+      auto sockaddr_len = paddress2->sa_len();
 
       if (bind(s, psockaddr, sockaddr_len) == -1)
       {
 
-         FATAL("bind() failed for port " << __string(ad.get_service_number()) << ", " << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("bind() failed for port " << __string(paddress2->get_service_number()) << ", " << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
          
          close_socket(s);
 
@@ -240,11 +300,11 @@ namespace networking_bsd
       if (listen(s, depth) == -1)
       {
 
-         FATAL("listen" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("listen" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          close_socket(s);
 
-         throw ::exception(error_socket, "listen() failed for port " + __string(ad.get_service_number()) + ": " + bsd_socket_error(Errno));
+         throw ::exception(error_socket, "listen() failed for port " + __string(paddress2->get_service_number()) + ": " + bsd_socket_error(networking_last_error()));
 
          return -1;
 
@@ -260,41 +320,60 @@ namespace networking_bsd
 
 
    /** Return assigned port number. */
-   //         port_t GetPort()
+   //         ::networking::port_t GetPort()
    //       {
    //        return GetSockPort();
    //   }
 
    /** Return listen queue depth. */
-   i32 listen_socket_base::GetDepth()
+   i32 listen_socket::GetDepth()
    {
       return m_depth;
    }
 
-
-   /** OnRead on a listen_socket_base receives an incoming connection. */
-   void listen_socket_base::OnRead()
+   void listen_socket::set_should_detach(bool bSet)
    {
-      char sz[sizeof(sockaddr_in6)];
-      struct sockaddr * psa = (sockaddr *)sz;
-      socklen_t sa_len = sizeof(sz);
-      SOCKET a_s = accept(GetSocket(), psa, &sa_len);
 
-      if (a_s == INVALID_SOCKET)
+      m_bDetach = bSet;
+
+   }
+
+
+   bool listen_socket::should_detach() const
+   {
+
+      return m_bDetach;
+
+   }
+
+
+   /** OnRead on a listen_socket receives an incoming connection. */
+   void listen_socket::OnRead()
+   {
+
+      auto socketid = GetSocketId();
+
+      struct sockaddr sockaddr{};
+
+      int sockaddr_len = sizeof(sockaddr);
+
+      SOCKET socketAccept = accept(socketid, &sockaddr, &sockaddr_len);
+
+      if (socketAccept == INVALID_SOCKET)
       {
 
-         ERROR("accept" << Errno << bsd_socket_error(Errno));
+         ERROR("accept" << networking_last_error() << bsd_socket_error(networking_last_error()));
 
          return;
 
       }
 
-      if (!socket_handler()->OkToAccept(this))
+      if (!__Handler(m_psockethandler)->OkToAccept(this))
       {
 
          WARNING("accept: -1 Not OK to accept");
 
-         close_socket(a_s);
+         close_socket(socketAccept);
 
          return;
 
@@ -305,22 +384,25 @@ namespace networking_bsd
 
          FATAL("accept " << (i32)socket_handler()->get_count() << " base_socket_handler fd_set limit reached");
 
-         close_socket(a_s);
+         close_socket(socketAccept);
 
          return;
 
       }
 
-      auto tmp = ::move(create_listen_socket());
+      auto tmp1 = ::move(create_listen_socket());
 
-      tmp->initialize(this);
+      tmp1->initialize(this);
+
+      auto tmp = __Socket(tmp1);
 
       tmp->set_start_time();
 
-
       auto psystem = get_system()->m_papexsystem;
 
-      auto lId = psystem->networking_bsd().m_lListenSocket++;
+      auto pnetworking2 = __SystemNetworking(psystem);
+
+      auto lId = pnetworking2->m_iListenSocket++;
 
       string strTopicText;
 
@@ -345,9 +427,12 @@ namespace networking_bsd
       tmp -> EnableSSL(IsSSL()); // SSL Enabled socket
       tmp -> SetIpv6( IsIpv6() );
       tmp -> set_parent(this);
-      tmp -> attach(a_s);
+      tmp -> attach(socketAccept);
       tmp -> SetNonblocking(true);
-      tmp->SetRemoteHostname(::networking::address(*psa));
+      auto paddressRemote = __new(::networking_bsd::address);
+      paddressRemote->set_address(sockaddr, sockaddr_len);
+      //tmp->SetRemoteHostname(::networking::address(*psa));
+      tmp->SetRemoteHostname(paddressRemote);
       tmp->m_iBindPort = m_iBindPort;
       tmp -> SetConnected(true);
       tmp -> Init();
@@ -379,37 +464,44 @@ namespace networking_bsd
 
       //socket_handler()->move(passociation);
 
-      socket_handler()->move2(::move(tmp));
+      __Handler(m_psockethandler)->move2(::move(tmp));
 
    }
 
    /** Please don't use this method.
    "accept()" is handled automatically in the OnRead() method. */
-   SOCKET listen_socket_base::Accept(SOCKET socket, struct sockaddr *saptr, socklen_t *lenptr)
+   SOCKET listen_socket::Accept(SOCKET socket, struct sockaddr *saptr, socklen_t *lenptr)
    {
       return accept(socket, saptr, lenptr);
    }
 
-   bool listen_socket_base:: HasCreator()
+   bool listen_socket:: HasCreator()
    {
       return false;
    }
 
-   void listen_socket_base::OnOptions(i32,i32,i32,SOCKET)
+   void listen_socket::OnOptions(i32,i32,i32,SOCKET)
    {
       SetSoReuseaddr(true);
    }
 
 
-   __pointer(socket) listen_socket_base::create_listen_socket()
-   {
-
-      return nullptr;
-
-   }
+   //void listen_socket::initialize(::object * pobject)
+   //{
 
 
-} // namespace networking_bsd
+   //}
+
+
+   //__pointer(::sockets::socket) listen_socket::create_listen_socket()
+   //{
+
+   //   return nullptr;
+
+   //}
+
+
+} // namespace sockets_bsd
 
 
 

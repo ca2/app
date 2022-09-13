@@ -271,7 +271,6 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>OleAut32.lib;user32.lib</AdditionalDependencies>
-      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -334,7 +333,6 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>OleAut32.lib;user32.lib</AdditionalDependencies>
-      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -397,7 +395,6 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>OleAut32.lib;user32.lib</AdditionalDependencies>
-      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -466,7 +463,6 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>OleAut32.lib;user32.lib</AdditionalDependencies>
-      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -536,7 +532,6 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>OleAut32.lib;user32.lib</AdditionalDependencies>
-      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -600,7 +595,6 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>OleAut32.lib;user32.lib</AdditionalDependencies>
-      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -670,7 +664,6 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>OleAut32.lib;user32.lib</AdditionalDependencies>
-      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -740,7 +733,6 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>OleAut32.lib;user32.lib</AdditionalDependencies>
-      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -815,7 +807,6 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>OleAut32.lib;user32.lib</AdditionalDependencies>
-      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -891,7 +882,6 @@
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>OleAut32.lib;user32.lib</AdditionalDependencies>
-      
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\library\;$(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\;$(SolutionDir)..\..\..\time\$(PlatformName)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -926,24 +916,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="calculator\_.h" />
-    <ClInclude Include="calculator\matter.h" />
+    <ClInclude Include="calculator\element.h" />
     <ClInclude Include="calculator\parser.h" />
     <ClInclude Include="calculator\parser_exception.h" />
     <ClInclude Include="calculator\scanner.h" />
     <ClInclude Include="calculator\token.h" />
+    <ClInclude Include="calculator\_constant.h" />
     <ClInclude Include="datetime\_.h" />
-    <ClInclude Include="datetime\calendar_visual.h" />
     <ClInclude Include="datetime\calendar.h" />
-    <ClInclude Include="datetime\clock_visual.h" />
     <ClInclude Include="datetime\clock.h" />
     <ClInclude Include="datetime\float_time.h" />
-    <ClInclude Include="datetime\windows_filetime.h" />
-    <ClInclude Include="datetime\_const.h" />
+    <ClInclude Include="datetime\_constant.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="graphical\calendar.h" />
+    <ClInclude Include="graphical\clock.h" />
+    <ClInclude Include="graphics\calendar.h" />
+    <ClInclude Include="graphics\clock.h" />
     <ClInclude Include="graphics\_.h" />
-    <ClInclude Include="graphics\visual\_.h" />
-    <ClInclude Include="graphics\visual\calendar.h" />
-    <ClInclude Include="graphics\visual\clock.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="_time.h" />
   </ItemGroup>
@@ -953,9 +942,7 @@
     <ClCompile Include="calculator\parser_exception.cpp" />
     <ClCompile Include="calculator\scanner.cpp" />
     <ClCompile Include="calculator\token.cpp" />
-    <ClCompile Include="datetime\calendar_html.cpp" />
     <ClCompile Include="datetime\calendar.cpp" />
-    <ClCompile Include="datetime\clock_html.cpp" />
     <ClCompile Include="datetime\clock.cpp" />
     <ClCompile Include="datetime\float_time.cpp" />
     <ClCompile Include="datetime\_.cpp" />
@@ -971,11 +958,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="graphics\visual\calendar.cpp" />
-    <ClCompile Include="graphics\visual\clock.cpp" />
+    <ClCompile Include="graphical\calendar.cpp" />
+    <ClCompile Include="graphical\clock.cpp" />
+    <ClCompile Include="graphics\calendar.cpp" />
+    <ClCompile Include="graphics\clock.cpp" />
   </ItemGroup>
   <ItemGroup>
-    
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\acme\acme.vcxproj">

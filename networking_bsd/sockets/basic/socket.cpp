@@ -1,5 +1,8 @@
 #include "framework.h"
-#include "apex/networking/networking_bsd/_sockets.h"
+#include "socket.h"
+#include "socket_handler.h"
+#include "networking_bsd/address.h"
+#include "networking_bsd/sockets/transfer_socket.h"
 
 
 #ifdef _WIN32
@@ -18,7 +21,8 @@
 #include <netdb.h>
 #endif
 
-namespace networking_bsd
+
+namespace sockets_bsd
 {
 
 
@@ -93,7 +97,7 @@ namespace networking_bsd
          {
 
             // failed...
-            ERROR("close" << Errno << ", " << bsd_socket_error(Errno));
+            ERROR("close" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          }
 
@@ -109,7 +113,7 @@ namespace networking_bsd
       if (::is_set(m_psockethandler))
       {
 
-         m_psockethandler->erase_socket(m_socket);
+         __Handler(m_psockethandler)->erase_socket(m_socket);
 
       }
 
@@ -156,11 +160,11 @@ namespace networking_bsd
             if (pprotoent == nullptr)
             {
 
-               FATAL("getprotobyname" << Errno << ", " << bsd_socket_error(Errno));
+               FATAL("getprotobyname" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
                SetCloseAndDelete();
 
-               throw ::exception(error_socket, string("getprotobyname() failed: ") + bsd_socket_error(Errno));
+               throw ::exception(error_socket, string("getprotobyname() failed: ") + bsd_socket_error(networking_last_error()));
 
                return INVALID_SOCKET;
 
@@ -184,10 +188,10 @@ namespace networking_bsd
       if (s == INVALID_SOCKET)
       {
 
-         FATAL("socket" << Errno << ", " << bsd_socket_error(Errno));
+         FATAL("socket" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
          SetCloseAndDelete();
-         throw ::exception(error_socket, string("socket() failed: ") + bsd_socket_error(Errno));
+         throw ::exception(error_socket, string("socket() failed: ") + bsd_socket_error(networking_last_error()));
          return INVALID_SOCKET;
       }
       attach(s);
@@ -197,21 +201,28 @@ namespace networking_bsd
    }
 
 
-
-
-
    void socket::set(bool bRead, bool bWrite, bool bException)
    {
-      socket_handler()->set(m_socket, bRead, bWrite, bException);
+      
+      __Handler(m_psockethandler)->set(m_socket, bRead, bWrite, bException);
+
    }
 
 
    bool socket::Ready()
    {
+
       if (m_socket != INVALID_SOCKET && !IsCloseAndDelete())
+      {
+
          return true;
+
+      }
+
       return false;
+
    }
+
 
    bool socket::is_valid()
    {
@@ -229,7 +240,7 @@ namespace networking_bsd
       if (n != 0)
       {
 
-         INFORMATION("ioctlsocket(FIONBIO) " << Errno);
+         INFORMATION("ioctlsocket(FIONBIO) " << networking_last_error());
 
          return false;
       }
@@ -240,7 +251,7 @@ namespace networking_bsd
          if (fcntl(s, F_SETFL, O_NONBLOCK) == -1)
          {
 
-            ERROR("fcntl(F_SETFL, O_NONBLOCK)" << Errno << ", " << bsd_socket_error(Errno));
+            ERROR("fcntl(F_SETFL, O_NONBLOCK)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
             return false;
          }
@@ -250,7 +261,7 @@ namespace networking_bsd
          if (fcntl(s, F_SETFL, 0) == -1)
          {
 
-            ERROR("fcntl(F_SETFL, 0)" << Errno << ", " << bsd_socket_error(Errno));
+            ERROR("fcntl(F_SETFL, 0)" << networking_last_error() << ", " << bsd_socket_error(networking_last_error()));
 
             return false;
          }
@@ -260,47 +271,47 @@ namespace networking_bsd
    }
 
 
-   ::networking::address socket::get_peer_address() // const
+   __pointer(::networking::address) socket::get_peer_address() // const
    {
       //ASSERT(psa != nullptr);
       //ASSERT(m_hSocket != INVALID_SOCKET);
 
       // gets the address of the socket at the other end
-      ::networking::address psa;
+      auto paddress = __new(::networking_bsd::address);
       socklen_t nLengthAddr = sizeof(SOCKADDR);
-      if (getpeername(GetSocket(), psa.sa(), &nLengthAddr) == SOCKET_ERROR)
+      if (getpeername(GetSocketId(), paddress->sa(), &nLengthAddr) == SOCKET_ERROR)
       {
          
-         throw transfer_socket_exception("GetPeerName");
+         throw ::exception(error_socket, "GetPeerName");
 
       }
 
-      return psa;
+      return paddress;
 
    }
 
 
-   ::networking::address socket::get_socket_address() // const
+   __pointer(::networking::address) socket::get_socket_address() // const
    {
       //ASSERT(psa != nullptr);
       //ASSERT(m_hSocket != INVALID_SOCKET);
 
       // gets the address of the socket at this end
-      ::networking::address psa;
+      auto paddress = __new(::networking_bsd::address);
       socklen_t nLengthAddr = sizeof(SOCKADDR);
-      if (getsockname(GetSocket(), psa.sa(), &nLengthAddr) == SOCKET_ERROR)
+      if (getsockname(GetSocketId(), paddress->sa(), &nLengthAddr) == SOCKET_ERROR)
       {
          
-         throw transfer_socket_exception("GetSockName");
+         throw ::exception(error_socket, "GetSockName");
 
       }
 
-      return psa;
+      return paddress;
 
    }
 
 
-} // namespace networking_bsd
+} // namespace sockets_bsd
 
 
 

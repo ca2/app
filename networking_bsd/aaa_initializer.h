@@ -11,7 +11,7 @@ namespace crypto_openssl
 {
 
 
-   class CLASS_DECL_APEX initializer :
+   class CLASS_DECL_NETWORKING_BSD initializer :
       virtual public ::crypto::initializer
    {
    public:

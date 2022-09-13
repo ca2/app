@@ -30,6 +30,8 @@ namespace sockets
    {
    }
 
+
+
    void link_out_socket::OnRead( char *buf, memsize n )
    {
 
@@ -46,13 +48,13 @@ namespace sockets
    void link_out_socket::server_to_link_out(httpd_socket * psocket)
    {
       
-      //socket_handler & h = dynamic_cast < socket_handler & > (psocket->socket_handler());
+      //socket_handler * h = dynamic_cast < socket_handler * > (psocket->socket_handler());
 
       //__pointer(::sockets::socket_handler) phandler = psocket->socket_handler();
       //
       //auto p = phandler->m_socketmap.begin();
 
-      //SOCKET key = psocket->m_socket;
+      //socket_id key = psocket->m_socket;
 
       //for (; p; p++)
       //{

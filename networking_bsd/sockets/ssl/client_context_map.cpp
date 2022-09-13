@@ -1,8 +1,9 @@
 #include "framework.h"
-#include "apex/networking/sockets/_sockets.h"
+#include "client_context_map.h"
+#include "client_context.h"
 
 
-namespace sockets
+namespace sockets_bsd
 {
 
 
@@ -37,11 +38,7 @@ namespace sockets
    }
 
 
-} // namespace sockets
-
-
-
-
+} // namespace sockets_bsd
 
 
 

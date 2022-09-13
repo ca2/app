@@ -286,7 +286,7 @@ list(APPEND apex_source
    networking/sockets/_.h
    #networking/sockets/_strconv.cpp
    networking/sockets/_strconv.h
-   networking/sockets/config.h
+   #networking/sockets/config.h
    #networking/sockets/include.cpp
    networking/sockets/socket_id_list.h
    networking/sockets/sockets.cpp
@@ -330,7 +330,7 @@ list(APPEND apex_source
    networking/sockets/transfer_socket.h
    networking/sockets/websocket_client.cpp
    networking/sockets/websocket_client.h
-   networking/_.cpp
+   #networking/_.cpp
    networking/_.h
    networking/_impl.h
    networking/_networking_impl.h
@@ -345,7 +345,7 @@ list(APPEND apex_source
    networking/email_address.h
    networking/ip_enum.cpp
    networking/ip_enum.h
-   networking/net.h
+   #networking/net.h
    networking/networking_application.cpp
    networking/networking_application.h
    networking/networking_application_handler.cpp

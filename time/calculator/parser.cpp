@@ -2,6 +2,10 @@
  * This code can be freely copied and modified.
  */
 #include "framework.h"
+#include "parser.h"
+#include "scanner.h"
+#include "element.h"
+#include "token.h"
 #include "acme/primitive/text/context.h"
 
 

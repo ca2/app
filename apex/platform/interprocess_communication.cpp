@@ -447,7 +447,7 @@ namespace interprocess_communication
          while (ptask->task_get_run())
          {
 
-            if (m_evDispatchItemNew.wait(1_s))
+            if (m_evDispatchItemNew._wait(1_s))
             {
 
                singlelock.lock();

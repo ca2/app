@@ -24,14 +24,14 @@
     <Filter Include="Header Files\graphics">
       <UniqueIdentifier>{a9c577a6-56db-45c9-8029-da20346a9620}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\graphics\visual">
-      <UniqueIdentifier>{79ee89df-0e11-476e-ac9f-2bac8fb3f5f8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\graphics">
       <UniqueIdentifier>{6e5bd918-358c-4d2c-ac7d-af2653205645}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\graphics\visual">
-      <UniqueIdentifier>{567a638a-71f5-41a2-aecc-8430b49dfb3c}</UniqueIdentifier>
+    <Filter Include="Header Files\graphical">
+      <UniqueIdentifier>{cac617ab-c481-449e-8fc0-394486131d3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\graphical">
+      <UniqueIdentifier>{a68f6589-1978-431f-bf55-7c0e2d059029}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -44,7 +44,7 @@
     <ClInclude Include="calculator\_.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\matter.h">
+    <ClInclude Include="calculator\element.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
     <ClInclude Include="calculator\parser.h">
@@ -65,38 +65,35 @@
     <ClInclude Include="datetime\float_time.h">
       <Filter>Header Files\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="datetime\windows_filetime.h">
-      <Filter>Header Files\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\_.h">
-      <Filter>Header Files\graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\_.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\calendar.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="graphics\visual\clock.h">
-      <Filter>Header Files\graphics\visual</Filter>
-    </ClInclude>
     <ClInclude Include="datetime\calendar.h">
       <Filter>Header Files\datetime</Filter>
     </ClInclude>
     <ClInclude Include="datetime\clock.h">
       <Filter>Header Files\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="datetime\_const.h">
-      <Filter>Header Files\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="datetime\calendar_visual.h">
-      <Filter>Header Files\datetime</Filter>
-    </ClInclude>
-    <ClInclude Include="datetime\clock_visual.h">
+    <ClInclude Include="datetime\_constant.h">
       <Filter>Header Files\datetime</Filter>
     </ClInclude>
     <ClInclude Include="_time.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\_constant.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\clock.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\calendar.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\_.h">
+      <Filter>Header Files\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="graphical\clock.h">
+      <Filter>Header Files\graphical</Filter>
+    </ClInclude>
+    <ClInclude Include="graphical\calendar.h">
+      <Filter>Header Files\graphical</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -118,19 +115,7 @@
     <ClCompile Include="datetime\float_time.cpp">
       <Filter>Source Files\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\visual\calendar.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\visual\clock.cpp">
-      <Filter>Source Files\graphics\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="datetime\calendar_html.cpp">
-      <Filter>Source Files\datetime</Filter>
-    </ClCompile>
     <ClCompile Include="datetime\calendar.cpp">
-      <Filter>Source Files\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="datetime\clock_html.cpp">
       <Filter>Source Files\datetime</Filter>
     </ClCompile>
     <ClCompile Include="datetime\clock.cpp">
@@ -142,10 +127,17 @@
     <ClCompile Include="calculator\element.cpp">
       <Filter>Source Files\calculator</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="time.def">
-      <Filter>Source Files</Filter>
-    </None>
+    <ClCompile Include="graphics\calendar.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\clock.cpp">
+      <Filter>Source Files\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="graphical\calendar.cpp">
+      <Filter>Source Files\graphical</Filter>
+    </ClCompile>
+    <ClCompile Include="graphical\clock.cpp">
+      <Filter>Source Files\graphical</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

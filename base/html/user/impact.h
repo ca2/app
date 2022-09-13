@@ -43,6 +43,8 @@ public:
    DECLARE_MESSAGE_HANDLER(on_message_context_menu);
    ////DECLARE_MESSAGE_HANDLER(on_message_set_cursor);
 
+   void on_form_implemented() override;
+
 
 };
 

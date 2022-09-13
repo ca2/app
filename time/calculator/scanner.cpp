@@ -1,8 +1,10 @@
 /* (C) Copyright 2008 Nick Mudge <mudgen@gmail.com>
  * This code can be freely copied and modified.
  */
-#include  "framework.h"
-#include  "acme/primitive/text/context.h"
+#include "framework.h"
+#include "scanner.h"
+#include "token.h"
+#include "acme/primitive/text/context.h"
 
 
 namespace datetime

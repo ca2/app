@@ -6,19 +6,19 @@
 namespace sockets
 {
 
-#ifdef MACOS
-   bool tcp_socket::s_bReuseSession = false;
-#else
-   bool tcp_socket::s_bReuseSession = true;
-#endif
+//#ifdef MACOS
+//   bool tcp_socket::s_bReuseSession = false;
+//#else
+//   bool tcp_socket::s_bReuseSession = true;
+//#endif
 
-   tcp_socket::tcp_socket():
+   tcp_socket::tcp_socket()//:
       //::object(&h),
       //base_socket(h),
       //socket(h),
       //stream_socket(h)
       //,
-      ibuf(TCP_BUFSIZE_READ)
+      /*ibuf(TCP_BUFSIZE_READ)
       ,m_b_input_buffer_disabled(false)
       ,m_bytes_sent(0)
       ,m_bytes_received(0)
@@ -27,13 +27,14 @@ namespace sockets
       ,m_socks4_state(0)
       ,m_resolver_id(0)
       ,m_bReconnect(false)
-      ,m_bTryingReconnect(false)
+      ,m_bTryingReconnect(false)*/
    {
-      m_bReuseSession = s_bReuseSession;
-//      SSL_init_app_data2_3_idx();
-      m_bClientSessionSet = false;
-      m_memRead.set_size(TCP_BUFSIZE_READ + 1);
-      m_bCertCommonNameCheckEnabled = true;
+      m_bImpl = false;
+//      m_bReuseSession = s_bReuseSession;
+////      SSL_init_app_data2_3_idx();
+//      m_bClientSessionSet = false;
+//      m_memRead.set_size(TCP_BUFSIZE_READ + 1);
+//      m_bCertCommonNameCheckEnabled = true;
       //m_pmutexSslCtx = nullptr;
    }
 #ifdef _MSC_VER
@@ -87,6 +88,38 @@ namespace sockets
    }
 
 
+   void tcp_socket::initialize(::object * pobject)
+   {
+
+      stream_socket::initialize(pobject);
+
+      __construct(m_ptcpsocketComposite);
+
+      m_ptcpsocketComposite->m_ptcpsocketComposite = this;
+
+      m_ptcpsocketComposite->m_bImpl = true;
+
+      m_p2 = m_ptcpsocketComposite->m_p2;
+
+   }
+
+
+   base_socket * tcp_socket::base_socket_composite()
+   {
+
+      return m_ptcpsocketComposite;
+
+   }
+
+
+   const base_socket * tcp_socket::base_socket_composite() const
+   {
+
+      return m_ptcpsocketComposite;
+
+   }
+
+
    /*
    bool tcp_socket::open(in_addr ip,::networking::port_t port,bool skip_socks)
    {
@@ -103,18 +136,19 @@ namespace sockets
    }
    */
 
-   bool tcp_socket::open(::networking::address * ad,bool skip_socks)
+   bool tcp_socket::open(::networking::address * paddress,bool skip_socks)
    {
       //::networking::address bind_ad("0.0.0.0",0);
       //return open(ad,bind_ad,skip_socks);
 
-      return false;
+      return m_ptcpsocketComposite->open(paddress, skip_socks);
+
    }
 
 
    bool tcp_socket::open(::networking::address * ad,::networking::address * bind_ad,bool skip_socks)
    {
-      return m_pimpl->open(ad, bind_ad, skip_socks);
+      return m_ptcpsocketComposite->open(ad, bind_ad, skip_socks);
       //string strIp = ad.get_display_number();
 
       //int iPort = ad.get_service_number();
@@ -175,7 +209,7 @@ namespace sockets
 //      }
 
 //      // if not, create new connection
-//      SOCKET s = CreateSocket(ad.get_family(),SOCK_STREAM,"tcp");
+//      socket_id s = CreateSocket(ad.get_family(),SOCK_STREAM,"tcp");
 //      if(s == INVALID_SOCKET)
 //      {
 //         return false;
@@ -281,90 +315,165 @@ return true;
    bool tcp_socket::open(const string &host,::networking::port_t port)
    {
 
-      SetCloseAndDelete(false);
+      return m_ptcpsocketComposite->open(host, port);
 
-      if(IsIpv6())
-      {
+      //SetCloseAndDelete(false);
 
-         //auto paddressdepartment = ::networking::address_department();
-
-         ////if(!socket_handler()->ResolverEnabled() || paddressdepartment->isipv6(host))
-         //if(paddressdepartment->isipv6(host))
-         //{
-
-         //   in6_addr a;
-
-         //   if(!paddressdepartment->convert(a,host))
-         //   {
-
-         //      SetCloseAndDelete();
-
-         //      return false;
-
-         //   }
-
-         //   ::networking::address ad(a,port);
-
-         //   ::networking::address addrLocal;
-
-         //   if (!open(ad, addrLocal))
-         //   {
-
-         //      return false;
-
-         //   }
-
-         //   return true;
-
-         //}
-
-         ////m_resolver_id = Resolve6(host,port);
-
-         return true;
-
-      }
-
-      //auto paddressdepartment = ::networking::address_department();
-
-      ////if(!socket_handler()->ResolverEnabled() || paddressdepartment->isipv4(host))
-      /////if( paddressdepartment->isipv4(host))
+      //if(IsIpv6())
       //{
 
-      //   in_addr l;
+      //   //auto paddressdepartment = ::networking::address_department();
 
-      //   if (!paddressdepartment->convert(l, host))
-      //   {
-      //      
-      //      WARNING("paddressdepartment->convert failed");
-      //      
-      //      SetCloseAndDelete();
-      //      
-      //      return false;
+      //   ////if(!socket_handler()->ResolverEnabled() || paddressdepartment->isipv6(host))
+      //   //if(paddressdepartment->isipv6(host))
+      //   //{
 
-      //   }
-      //   
-      //   ::networking::address ad(l, port);
-      //   
-      //   ::networking::address addrLocal;
+      //   //   in6_addr a;
 
-      //   if (!open(ad, addrLocal))
-      //   {
+      //   //   if(!paddressdepartment->convert(a,host))
+      //   //   {
 
-      //      return false;
+      //   //      SetCloseAndDelete();
 
-      //   }
+      //   //      return false;
+
+      //   //   }
+
+      //   //   ::networking::address ad(a,port);
+
+      //   //   ::networking::address addrLocal;
+
+      //   //   if (!open(ad, addrLocal))
+      //   //   {
+
+      //   //      return false;
+
+      //   //   }
+
+      //   //   return true;
+
+      //   //}
+
+      //   ////m_resolver_id = Resolve6(host,port);
 
       //   return true;
 
       //}
 
-      // resolve using async resolver thread
+      ////auto paddressdepartment = ::networking::address_department();
 
-      //m_resolver_id = Resolve(host,port);
+      //////if(!socket_handler()->ResolverEnabled() || paddressdepartment->isipv4(host))
+      ///////if( paddressdepartment->isipv4(host))
+      ////{
 
-      return true;
+      ////   in_addr l;
+
+      ////   if (!paddressdepartment->convert(l, host))
+      ////   {
+      ////      
+      ////      WARNING("paddressdepartment->convert failed");
+      ////      
+      ////      SetCloseAndDelete();
+      ////      
+      ////      return false;
+
+      ////   }
+      ////   
+      ////   ::networking::address ad(l, port);
+      ////   
+      ////   ::networking::address addrLocal;
+
+      ////   if (!open(ad, addrLocal))
+      ////   {
+
+      ////      return false;
+
+      ////   }
+
+      ////   return true;
+
+      ////}
+
+      //// resolve using async resolver thread
+
+      ////m_resolver_id = Resolve(host,port);
+
+      //return true;
 
    }
+
+
+   void tcp_socket::set_host(const ::string & strHost)
+   {
+
+      m_ptcpsocketComposite->set_host(strHost);
+
+   }
+
+
+   ::string tcp_socket::get_host() const
+   {
+
+      return m_ptcpsocketComposite->get_host();
+
+   }
+
+
+   void tcp_socket::set_tls_hostname(const ::string & strTlsHostname)
+   {
+
+      m_ptcpsocketComposite->set_tls_hostname(strTlsHostname);
+
+   }
+
+
+   void tcp_socket::set_connect_host(const ::string & strConnectHost)
+   {
+
+      m_ptcpsocketComposite->set_connect_host(strConnectHost);
+
+   }
+
+
+   ::string tcp_socket::get_connect_host() const
+   {
+
+      return m_ptcpsocketComposite->get_connect_host();
+
+   }
+
+
+   void tcp_socket::set_connect_port(const ::networking::port_t portConnect)
+   {
+
+      m_ptcpsocketComposite->set_connect_port(portConnect);
+
+   }
+
+
+   ::networking::port_t tcp_socket::get_connect_port() const
+   {
+
+      return m_ptcpsocketComposite->get_connect_port();
+
+   }
+
+
+   void tcp_socket::set_url(const ::string & strUrl)
+   {
+
+      m_ptcpsocketComposite->set_url(strUrl);
+
+   }
+
+
+   string tcp_socket::get_url() const
+   {
+
+      return m_ptcpsocketComposite->get_url();
+
+   }
+
 
 
 //   void tcp_socket::OnResolved(i32 atom,::networking::address * a)
@@ -527,11 +636,11 @@ return true;
 //#endif // HAVE_OPENSSL
 //      {
 //#if defined(__APPLE__) || defined(SOLARIS)
-//         //         n = (i32) recv(GetSocket(), buf, nBufSize, SO_NOSIGPIPE);
-//         n = (i32) ::recv(GetSocket(),buf,nBufSize,0);
+//         //         n = (i32) recv(get_socket_id(), buf, nBufSize, SO_NOSIGPIPE);
+//         n = (i32) ::recv(get_socket_id(),buf,nBufSize,0);
 //
 //#else
-//         n = ::recv(GetSocket(),(char *)buf,(int)nBufSize,MSG_NOSIGNAL);
+//         n = ::recv(get_socket_id(),(char *)buf,(int)nBufSize,MSG_NOSIGNAL);
 //#endif
 //         if(n == -1)
 //         {
@@ -593,51 +702,53 @@ return true;
    int tcp_socket::read(void * buf, int nBufSize)
    {
 
-      int n = (int) nBufSize;
+      return m_ptcpsocketComposite->read(buf, nBufSize);
 
-      n = recv(buf,nBufSize);
+      //int n = (int) nBufSize;
 
-      if(n > 0 && n <= nBufSize)
-      {
+      //n = recv(buf,nBufSize);
 
-         m_bytes_received += n;
+      //if(n > 0 && n <= nBufSize)
+      //{
 
-         if(GetTrafficMonitor())
-         {
+      //   m_bytes_received += n;
 
-            GetTrafficMonitor()->write(buf,n);
+      //   if(GetTrafficMonitor())
+      //   {
 
-         }
+      //      GetTrafficMonitor()->write(buf,n);
 
-         if(!m_b_input_buffer_disabled)
-         {
+      //   }
 
-            try
-            {
+      //   if(!m_b_input_buffer_disabled)
+      //   {
 
-
-               ibuf.write(buf,n);
-
-            }
-            catch(...)
-            {
+      //      try
+      //      {
 
 
-               WARNING( "tcp_socket::read : ibuf overflow");
+      //         ibuf.write(buf,n);
+
+      //      }
+      //      catch(...)
+      //      {
 
 
-            }
-         }
+      //         WARNING( "tcp_socket::read : ibuf overflow");
 
-      }
-      else if(n < 0)
-      {
 
-         ERROR("tcp_socket::read " << (i32)n << " abnormal value from rcv");
+      //      }
+      //   }
 
-      }
+      //}
+      //else if(n < 0)
+      //{
 
-      return n;
+      //   ERROR("tcp_socket::read " << (i32)n << " abnormal value from rcv");
+
+      //}
+
+      //return n;
 
    }
 
@@ -645,24 +756,26 @@ return true;
    void tcp_socket::OnRead()
    {
 
-      char * buf = (char *) m_memRead.get_data();
+      m_ptcpsocketComposite->OnRead();
 
-      int n = 0;
+      //char * buf = (char *) m_memRead.get_data();
 
-      try
-      {
+      //int n = 0;
 
-         n = read(buf,TCP_BUFSIZE_READ);
+      //try
+      //{
 
-      }
-      catch(...)
-      {
+      //   n = read(buf,TCP_BUFSIZE_READ);
 
-         return;
+      //}
+      //catch(...)
+      //{
 
-      }
+      //   return;
 
-      on_read(buf,n);
+      //}
+
+      //on_read(buf,n);
 
    }
 
@@ -671,38 +784,40 @@ return true;
    {
 
 
-      set_connection_last_activity();
+      //set_connection_last_activity();
 
-      // unbuffered
-      if(n > 0)
-      {
-
-         stream_socket::on_read(buf,n);
-
-      }
-
-      if(m_b_input_buffer_disabled)
-      {
-
-         return;
-
-      }
-
-
-      //// further processing: socks4
-      //if(Socks4())
+      //// unbuffered
+      //if(n > 0)
       //{
 
-      //   bool need_more = false;
-
-      //   while(GetInputLength() && !need_more && !IsCloseAndDelete())
-      //   {
-
-      //      need_more = OnSocks4Read();
-
-      //   }
+      //   stream_socket::on_read(buf,n);
 
       //}
+
+      //if(m_b_input_buffer_disabled)
+      //{
+
+      //   return;
+
+      //}
+
+
+      ////// further processing: socks4
+      ////if(Socks4())
+      ////{
+
+      ////   bool need_more = false;
+
+      ////   while(GetInputLength() && !need_more && !IsCloseAndDelete())
+      ////   {
+
+      ////      need_more = OnSocks4Read();
+
+      ////   }
+
+      ////}
+
+      m_ptcpsocketComposite->on_read(buf, n);
 
    }
 
@@ -832,7 +947,7 @@ return true;
       //   bool br;
       //   bool bw;
       //   bool bx;
-      //   socket_handler()->get(GetSocket(),br,bw,bx);
+      //   socket_handler()->get(get_socket_id(),br,bw,bx);
       //   if(m_obuf.get_size())
       //      set(br,true);
       //   else
@@ -896,12 +1011,12 @@ return true;
 //      {
 ////         retry:
 //#if defined(__APPLE__)
-//         int iSocket = GetSocket();
+//         int iSocket = get_socket_id();
 //         n = (int) (::send(iSocket,buf,len,SO_NOSIGPIPE));
 //#elif defined(SOLARIS)
-//         n = ::send(GetSocket(),(const char *)buf,(int)len,0);
+//         n = ::send(get_socket_id(),(const char *)buf,(int)len,0);
 //#else
-//         n = ::send(GetSocket(),(const char *)buf,(int)len,MSG_NOSIGNAL);
+//         n = ::send(get_socket_id(),(const char *)buf,(int)len,MSG_NOSIGNAL);
 //#endif
 //         if(n == -1)
 //         {
@@ -930,12 +1045,12 @@ return true;
 //            //   fd_set e;
 //            //   FD_ZERO(&e);
 //            //   FD_ZERO(&w);
-//            //   FD_SET(GetSocket(), &e);
-//            //   FD_SET(GetSocket(), &w);
+//            //   FD_SET(get_socket_id(), &e);
+//            //   FD_SET(get_socket_id(), &w);
 //            //   struct timeval tv;
 //            //   tv.tv_sec = 1;
 //            //   tv.tv_usec = 0;
-//            //   ::select((int) (GetSocket() + 1), nullptr, &w, &e, &tv);
+//            //   ::select((int) (get_socket_id() + 1), nullptr, &w, &e, &tv);
 //            //   goto retry;
 //            //}
 //
@@ -958,47 +1073,49 @@ return true;
    void tcp_socket::buffer(const void * pdata,int len)
    {
 
-      const char * buf = (const char *)pdata;
+      m_ptcpsocketComposite->buffer(pdata, len);
 
-      memsize ptr = 0;
+      //const char * buf = (const char *)pdata;
 
-      m_output_length += len;
+      //memsize ptr = 0;
 
-      while(::comparison::lt(ptr, len))
-      {
-         // buf/len => pbuf/sz
-         i32 space = 0;
-         
-         if(m_obuf_top && (space = m_obuf_top -> Space()) > 0)
-         {
-            const char *pbuf = buf + ptr;
-            i32 sz = (i32)(len - ptr);
-            if(space >= sz)
-            {
-               m_obuf_top -> add(pbuf,sz);
-               ptr += sz;
-            }
-            else
-            {
-               m_obuf_top -> add(pbuf,space);
-               ptr += space;
-            }
-         }
-         else
-         {
-            
-            if (m_obuf_top)
-            {
+      //m_output_length += len;
 
-               m_obuf.add_tail(m_obuf_top);
+      //while(::comparison::lt(ptr, len))
+      //{
+      //   // buf/len => pbuf/sz
+      //   i32 space = 0;
+      //   
+      //   if(m_obuf_top && (space = m_obuf_top -> Space()) > 0)
+      //   {
+      //      const char *pbuf = buf + ptr;
+      //      i32 sz = (i32)(len - ptr);
+      //      if(space >= sz)
+      //      {
+      //         m_obuf_top -> add(pbuf,sz);
+      //         ptr += sz;
+      //      }
+      //      else
+      //      {
+      //         m_obuf_top -> add(pbuf,space);
+      //         ptr += space;
+      //      }
+      //   }
+      //   else
+      //   {
+      //      
+      //      if (m_obuf_top)
+      //      {
 
-            }
+      //         m_obuf.add_tail(m_obuf_top);
 
-            m_obuf_top = __new(output(TCP_OUTPUT_CAPACITY));
+      //      }
 
-         }
+      //      m_obuf_top = __new(output(TCP_OUTPUT_CAPACITY));
 
-      }
+      //   }
+
+      //}
 
    }
 
@@ -1013,6 +1130,8 @@ return true;
    void tcp_socket::write(const void * pdata,memsize len)
    {
 
+      m_ptcpsocketComposite->write(pdata, len);
+
       //const u8 * buf = (const u8 *)pdata;
 
       //if(!Ready() && !is_connecting())
@@ -1020,10 +1139,10 @@ return true;
 
       //   WARNING("write: Attempt to write to a non-ready socket"); // warning
 
-      //   if (GetSocket() == INVALID_SOCKET)
+      //   if (get_socket_id() == INVALID_SOCKET)
       //   {
 
-      //      INFORMATION("write: * GetSocket() == INVALID_SOCKET");
+      //      INFORMATION("write: * get_socket_id() == INVALID_SOCKET");
 
 
       //   }
@@ -1080,7 +1199,7 @@ return true;
       //   bool br;
       //   bool bw;
       //   bool bx;
-      //   socket_handler()->get(GetSocket(),br,bw,bx);
+      //   socket_handler()->get(get_socket_id(),br,bw,bx);
       //   if(m_obuf.get_size())
       //      set(br,true);
       //   else
@@ -1089,10 +1208,12 @@ return true;
    }
 
 
-   void tcp_socket::OnLine(const string &)
+   void tcp_socket::OnLine(const string & str)
    {
-   }
 
+      m_ptcpsocketComposite->OnLine(str);
+
+   }
 
 
    //void tcp_socket::OnSocks4Connect()
@@ -1292,7 +1413,7 @@ return true;
 
       //   }
 
-      //   m_psslcontext->m_sbio = BIO_new_socket((i32)GetSocket(),BIO_NOCLOSE);
+      //   m_psslcontext->m_sbio = BIO_new_socket((i32)get_socket_id(),BIO_NOCLOSE);
 
       //   if(!m_psslcontext->m_sbio)
       //   {
@@ -1363,7 +1484,7 @@ return true;
       //   }
       //   SSL_set_app_data2(m_psslcontext->m_ssl, this);
       //   //SSL_set_mode(m_psslcontext->m_ssl,SSL_MODE_AUTO_RETRY);
-      //   m_psslcontext->m_sbio = BIO_new_socket((i32)GetSocket(),BIO_NOCLOSE);
+      //   m_psslcontext->m_sbio = BIO_new_socket((i32)get_socket_id(),BIO_NOCLOSE);
       //   if(!m_psslcontext->m_sbio)
       //   {
       //      INFORMATION("m_sbio is nullptr");
@@ -1964,9 +2085,9 @@ return true;
 
    void tcp_socket::close()
    {
-      m_pimpl->close();
+      m_ptcpsocketComposite->close();
 
-//      if (GetSocket() == INVALID_SOCKET) // this could happen
+//      if (get_socket_id() == INVALID_SOCKET) // this could happen
 //      {
 //
 //
@@ -1983,7 +2104,7 @@ return true;
 //      if (!Lost() && IsConnected() && !(GetShutdownStatus() & SHUT_WR))
 //      {
 //
-//         if (shutdown(GetSocket(), SHUT_WR) == -1)
+//         if (shutdown(get_socket_id(), SHUT_WR) == -1)
 //         {
 //
 //            // failed...
@@ -1999,7 +2120,7 @@ return true;
 //
 //      char tmp[1000];
 //
-//      if (!Lost() && (n = (i32) ::recv(GetSocket(), tmp, 1000, 0)) >= 0)
+//      if (!Lost() && (n = (i32) ::recv(get_socket_id(), tmp, 1000, 0)) >= 0)
 //      {
 //
 //         if (n)
@@ -2055,58 +2176,85 @@ return true;
    {
       //m_bReconnect = bReconnect;
 
-      m_pimpl->m_bReconnect;
+      // m_ptcpsocketComposite->m_bReconnect;
+
+      m_ptcpsocketComposite->SetReconnect(bReconnect);
+
    }
 
 
    void tcp_socket::OnRawData(char * buf_in, memsize len)
    {
 
-      socket::OnRawData(buf_in,len);
+      //socket::OnRawData(buf_in,len);
+
+      m_ptcpsocketComposite->OnRawData(buf_in, len);
+
 
    }
 
 
    memsize tcp_socket::GetInputLength()
    {
-      return (memsize)ibuf.get_length();
+
+      return m_ptcpsocketComposite->GetInputLength();
+      //return (memsize)ibuf.get_length();
    }
 
 
    memsize tcp_socket::GetOutputLength()
    {
-      return m_output_length;
+      //return m_output_length;
+
+      return m_ptcpsocketComposite->GetOutputLength();
+
    }
 
 
    u64 tcp_socket::GetBytesReceived(bool clear)
    {
-      u64 z = m_bytes_received;
-      if(clear)
-         m_bytes_received = 0;
-      return z;
+
+      return m_ptcpsocketComposite->GetBytesReceived(clear);
+
+      //u64 z = m_bytes_received;
+      //if(clear)
+      //   m_bytes_received = 0;
+      //return z;
    }
 
 
    u64 tcp_socket::GetBytesSent(bool clear)
    {
-      u64 z = m_bytes_sent;
-      if(clear)
-         m_bytes_sent = 0;
-      return z;
+      return m_ptcpsocketComposite->GetBytesSent(clear);
+      //u64 z = m_bytes_sent;
+      //if(clear)
+      //   m_bytes_sent = 0;
+      //return z;
+   }
+
+
+   tcp_socket::output * tcp_socket::top_output_buffer()
+   {
+
+      return m_ptcpsocketComposite->top_output_buffer();
+
    }
 
 
    bool tcp_socket::Reconnect()
    {
-      return m_bReconnect;
+      
+      return m_ptcpsocketComposite->Reconnect();
+
    }
 
 
    void tcp_socket::SetIsReconnect(bool bTryingReconnect)
    {
 
-      m_bTryingReconnect = bTryingReconnect;
+      //m_bTryingReconnect = bTryingReconnect;
+
+      m_ptcpsocketComposite->SetIsReconnect(bTryingReconnect);
 
    }
 
@@ -2114,7 +2262,9 @@ return true;
    bool tcp_socket::IsReconnect()
    {
 
-      return m_bTryingReconnect;
+      //return m_bTryingReconnect;
+
+      return m_ptcpsocketComposite->IsReconnect();
 
    }
 
@@ -2124,7 +2274,9 @@ return true;
 
       //return m_password;
 
-      return m_password;
+      //return m_password;
+
+      return m_ptcpsocketComposite->GetPassword();
 
    }
 
@@ -2132,12 +2284,14 @@ return true;
    void tcp_socket::DisableInputBuffer(bool x)
    {
 
-      m_b_input_buffer_disabled = x;
+      //m_b_input_buffer_disabled = x;
+
+      m_ptcpsocketComposite->DisableInputBuffer(x);
 
    }
 
 
-//   void tcp_socket::OnOptions(i32 family,i32 type,i32 protocol,SOCKET s)
+//   void tcp_socket::OnOptions(i32 family,i32 type,i32 protocol,socket_id s)
 //   {
 //
 //      __UNREFERENCED_PARAMETER(family);
@@ -2155,80 +2309,83 @@ return true;
 
    void tcp_socket::SetLineProtocol(bool x)
    {
-      stream_socket::SetLineProtocol(x);
-      DisableInputBuffer(x);
+
+      m_ptcpsocketComposite->SetLineProtocol(x);
+      //stream_socket::SetLineProtocol(x);
+      //DisableInputBuffer(x);
    }
 
 
    bool tcp_socket::SetTcpNodelay(bool x)
    {
-#ifdef TCP_NODELAY
-      i32 optval = x ? 1 : 0;
-      if(setsockopt(GetSocket(),IPPROTO_TCP,TCP_NODELAY,(char *)&optval,sizeof(optval)) == -1)
-      {
-
-
-         FATAL("setsockopt(IPPROTO_TCP, TCP_NODELAY) " << Errno << bsd_socket_error(Errno));
-
-         return false;
-      }
-      return true;
-#else
-
-      INFORMATION("socket option not available: TCP_NODELAY");
-
-      return false;
-#endif
+      return m_ptcpsocketComposite->SetTcpNodelay(x);
+//#ifdef TCP_NODELAY
+//      i32 optval = x ? 1 : 0;
+//      if(setsockopt(get_socket_id(),IPPROTO_TCP,TCP_NODELAY,(char *)&optval,sizeof(optval)) == -1)
+//      {
+//
+//
+//         FATAL("setsockopt(IPPROTO_TCP, TCP_NODELAY) " << Errno << bsd_socket_error(Errno));
+//
+//         return false;
+//      }
+//      return true;
+//#else
+//
+//      INFORMATION("socket option not available: TCP_NODELAY");
+//
+//      return false;
+//#endif
    }
 
 
    void tcp_socket::on_connection_timeout()
    {
+      m_ptcpsocketComposite->on_connection_timeout();
+      //FATAL("connect: connect timeout");
 
-      FATAL("connect: connect timeout");
+      //m_estatus = error_connection_timed_out;
 
-      m_estatus = error_connection_timed_out;
+      ////if(Socks4())
+      ////{
 
-      //if(Socks4())
-      //{
+      ////   OnSocks4ConnectFailed();
+      ////   // retry direct connection
+      ////}
+      ////else if(GetMaximumConnectionRetryCount() == -1 ||
+      ////        (GetMaximumConnectionRetryCount() && GetConnectionRetryCount() < GetMaximumConnectionRetryCount()))
+      ////{
 
-      //   OnSocks4ConnectFailed();
-      //   // retry direct connection
-      //}
-      //else if(GetMaximumConnectionRetryCount() == -1 ||
-      //        (GetMaximumConnectionRetryCount() && GetConnectionRetryCount() < GetMaximumConnectionRetryCount()))
-      //{
+      ////   IncrementConnectionRetryCount();
 
-      //   IncrementConnectionRetryCount();
+      ////   // ask socket via OnConnectRetry callback if we should continue trying
+      ////   if(OnConnectRetry())
+      ////   {
 
-      //   // ask socket via OnConnectRetry callback if we should continue trying
-      //   if(OnConnectRetry())
-      //   {
+      ////      SetRetryClientConnect();
 
-      //      SetRetryClientConnect();
+      ////   }
+      ////   else
+      ////   {
 
-      //   }
-      //   else
-      //   {
+      ////      SetCloseAndDelete(true);
 
-      //      SetCloseAndDelete(true);
+      ////      /// \todo state reason why connect failed
+      ////      OnConnectFailed();
 
-      //      /// \todo state reason why connect failed
-      //      OnConnectFailed();
+      ////   }
 
-      //   }
+      ////}
+      ////else
+      ////{
 
-      //}
-      //else
-      //{
+      ////   SetCloseAndDelete(true);
+      ////   /// \todo state reason why connect failed
+      ////   OnConnectFailed();
 
-      //   SetCloseAndDelete(true);
-      //   /// \todo state reason why connect failed
-      //   OnConnectFailed();
-
-      //}
-      //
-      //set_connecting(false);
+      ////}
+      ////
+      ////set_connecting(false);
 
    }
 
@@ -2239,67 +2396,69 @@ return true;
    void tcp_socket::OnException()
    {
 
-      if(is_connecting())
-      {
+      m_ptcpsocketComposite->OnException();
 
-         //i32 iError = this->socket_handler()->m_iSelectErrno;
+      //if(is_connecting())
+      //{
 
-         //if(iError == ETIMEDOUT)
-         //{
+      //   //i32 iError = this->socket_handler()->m_iSelectErrno;
 
-         //   m_estatus = error_connection_timed_out;
+      //   //if(iError == ETIMEDOUT)
+      //   //{
 
-         //}
-         //else
-         //{
-         //   //m_estatus = status_failed;
-         //}
+      //   //   m_estatus = error_connection_timed_out;
 
-         //int iGetConnectionRetry = GetMaximumConnectionRetryCount();
+      //   //}
+      //   //else
+      //   //{
+      //   //   //m_estatus = status_failed;
+      //   //}
 
-         //int iGetConnectionRetries = GetConnectionRetryCount();
+      //   //int iGetConnectionRetry = GetMaximumConnectionRetryCount();
 
-         //if (Socks4())
-         //{
+      //   //int iGetConnectionRetries = GetConnectionRetryCount();
 
-         //   OnSocks4ConnectFailed();
+      //   //if (Socks4())
+      //   //{
 
-         //}
-         //else if(iGetConnectionRetry == -1 ||
-         //        (iGetConnectionRetry &&
-         //           iGetConnectionRetries < iGetConnectionRetry))
-         //{
+      //   //   OnSocks4ConnectFailed();
 
-         //   const int nBufSize = 1024;
+      //   //}
+      //   //else if(iGetConnectionRetry == -1 ||
+      //   //        (iGetConnectionRetry &&
+      //   //           iGetConnectionRetries < iGetConnectionRetry))
+      //   //{
 
-         //   char buf[nBufSize];
+      //   //   const int nBufSize = 1024;
 
-         //   SOCKET iGetSocket = GetSocket();
+      //   //   char buf[nBufSize];
 
-         //   int n = ::recv(iGetSocket, (char*)buf, (int)nBufSize, MSG_OOB);
+      //   //   socket_id iGetSocket = get_socket_id();
 
-         //   INFORMATION("got " << n << " bytes of Out of Band Data");
+      //   //   int n = ::recv(iGetSocket, (char*)buf, (int)nBufSize, MSG_OOB);
 
-         //   // even though the connection failed at once, only retry after
-         //   // the connection timeout
-         //   // should we even try to connect again, when CheckConnect returns
-         //   // false it's because of a connection error - not a timeout...
-         //}
-         //else
-         //{
-         //   set_connecting(false); // tnx snibbe
-         //   SetCloseAndDelete();
-         //   OnConnectFailed();
-         //}
-         return;
-      }
-      //// %! exception doesn't always mean something bad happened, this code should be reworked
-      //// errno valid here?
-      //i32 err = SoError();
+      //   //   INFORMATION("got " << n << " bytes of Out of Band Data");
 
-      //FATAL("exception on select " << err << bsd_socket_error(err));
+      //   //   // even though the connection failed at once, only retry after
+      //   //   // the connection timeout
+      //   //   // should we even try to connect again, when CheckConnect returns
+      //   //   // false it's because of a connection error - not a timeout...
+      //   //}
+      //   //else
+      //   //{
+      //   //   set_connecting(false); // tnx snibbe
+      //   //   SetCloseAndDelete();
+      //   //   OnConnectFailed();
+      //   //}
+      //   return;
+      //}
+      ////// %! exception doesn't always mean something bad happened, this code should be reworked
+      ////// errno valid here?
+      ////i32 err = SoError();
 
-      SetCloseAndDelete();
+      ////FATAL("exception on select " << err << bsd_socket_error(err));
+
+      //SetCloseAndDelete();
    }
 
 
@@ -2309,9 +2468,10 @@ return true;
    i32 tcp_socket::Protocol()
    {
 
-      //return IPPROTO_TCP;
+      return m_ptcpsocketComposite->Protocol();
+      ////return IPPROTO_TCP;
 
-      return 0;
+      //return 0;
 
    }
 
@@ -2319,7 +2479,9 @@ return true;
    void tcp_socket::SetTransferLimit(memsize sz)
    {
 
-      m_transfer_limit = sz;
+      //m_transfer_limit = sz;
+
+      m_ptcpsocketComposite->SetTransferLimit(sz);
 
    }
 
@@ -2327,13 +2489,17 @@ return true;
    void tcp_socket::OnTransferLimit()
    {
 
+      m_ptcpsocketComposite->OnTransferLimit();
+
    }
 
 
    string tcp_socket::get_url()
    {
 
-      return m_strUrl;
+      //return m_strUrl;
+
+      return m_ptcpsocketComposite->get_url();
 
    }
 
@@ -2341,13 +2507,15 @@ return true;
    string tcp_socket::get_short_description()
    {
 
-      return get_url();
+      return m_ptcpsocketComposite->get_short_description();
 
    }
 
 
    long tcp_socket::cert_common_name_check(const ::string & common_name)
    {
+
+      return m_ptcpsocketComposite->cert_common_name_check(common_name);
 
 //      if(!m_bCertCommonNameCheckEnabled)
 //      {
@@ -2549,7 +2717,7 @@ return true;
 //
 //      return X509_V_ERR_APPLICATION_VERIFICATION;
 
-      return 0;
+      //return 0;
 
    }
 
@@ -2557,7 +2725,9 @@ return true;
    void tcp_socket::enable_cert_common_name_check(bool bEnable)
    {
 
-      m_bCertCommonNameCheckEnabled = bEnable;
+      //m_bCertCommonNameCheckEnabled = bEnable;
+
+      m_ptcpsocketComposite->enable_cert_common_name_check(bEnable);
 
    }
 
@@ -2565,7 +2735,7 @@ return true;
    string tcp_socket::get_connect_host()
    {
 
-      return m_strConnectHost;
+      return m_ptcpsocketComposite->get_connect_host();
 
    }
 
@@ -2573,14 +2743,14 @@ return true;
    ::networking::port_t tcp_socket::get_connect_port()
    {
 
-      return m_iConnectPort;
+      return m_ptcpsocketComposite->get_connect_port();
 
    }
 
 
    void tcp_socket::InitializeContextTLSClientMethod()
    {
-
+      m_ptcpsocketComposite->InitializeContextTLSClientMethod();
 //#if defined(HAVE_OPENSSL)
 //
 //      InitializeContext("", TLS_client_method());

@@ -11,10 +11,10 @@ namespace sockets
       //::object(&h),
       //base_socket(h),
       //socket(h),
-      m_depth(0),
-      m_bDetach(false)
+      m_depth(0)
+      //, m_bDetach(false)
    {
-
+      m_bImpl = false;
    }
 
 
@@ -28,14 +28,31 @@ namespace sockets
    void listen_socket_base::close()
    {
 
-      //if (GetSocket() != INVALID_SOCKET)
+      //if (get_socket_id() != INVALID_SOCKET)
       //{
 
-      //   close_socket(GetSocket());
+      //   close_socket(get_socket_id());
 
       //}
 
    }
+
+
+   void listen_socket_base::set_should_detach(bool bSet)
+   {
+
+      m_pcomposite->set_should_detach(bSet);
+
+   }
+
+
+   bool listen_socket_base::should_detach() const
+   {
+
+      return m_pcomposite->should_detach();
+
+   }
+
 
    /** Bind and listen to any interface.
    \lparam port Port (0 is random)
@@ -92,6 +109,7 @@ namespace sockets
    i32 listen_socket_base::Bind(const string & intf,::networking::port_t port,i32 depth)
    {
       
+      return m_pcomposite->Bind(intf, port, depth);
       //::networking::address address(intf, port);
 
       //if (address.is_valid())
@@ -187,7 +205,7 @@ namespace sockets
    i32 listen_socket_base::Bind(::networking::address * ad,const string & protocol,i32 depth)
    {
 
-      //SOCKET s;
+      //socket_id s;
       //m_iBindPort = ad.get_service_number();
       //if ( (s = CreateSocket(ad.get_family(), SOCK_STREAM, protocol)) == INVALID_SOCKET)
       //{
@@ -280,7 +298,7 @@ namespace sockets
 //      char sz[sizeof(sockaddr_in6)];
 //      struct sockaddr * psa = (sockaddr *)sz;
 //      socklen_t sa_len = sizeof(sz);
-//      SOCKET a_s = accept(GetSocket(), psa, &sa_len);
+//      socket_id a_s = accept(get_socket_id(), psa, &sa_len);
 //
 //      if (a_s == INVALID_SOCKET)
 //      {
@@ -387,7 +405,7 @@ namespace sockets
 
    ///** Please don't use this method.
    //"accept()" is handled automatically in the OnRead() method. */
-   //SOCKET listen_socket_base::Accept(SOCKET socket, struct sockaddr *saptr, socklen_t *lenptr)
+   //socket_id listen_socket_base::Accept(socket_id socket, struct sockaddr *saptr, socklen_t *lenptr)
    //{
    //   return accept(socket, saptr, lenptr);
    //}
@@ -397,18 +415,58 @@ namespace sockets
       return false;
    }
 
-   //void listen_socket_base::OnOptions(i32,i32,i32,SOCKET)
+   //void listen_socket_base::OnOptions(i32,i32,i32,socket_id)
    //{
    //   SetSoReuseaddr(true);
    //}
 
 
+   void listen_socket_base::initialize(::object * pobject)
+   {
+
+      socket::initialize(pobject);
+
+      __construct(m_pcomposite);
+
+      m_p2 = m_pcomposite->m_p2;
+
+      m_pcomposite->m_pcomposite = this;
+
+      m_pcomposite->m_bImpl = true;
+      
+   }
+
+
+   base_socket * listen_socket_base::base_socket_composite()
+   {
+
+      return m_pcomposite;
+
+   }
+
+
    __pointer(socket) listen_socket_base::create_listen_socket()
    {
 
-      return nullptr;
+      return m_pcomposite->create_listen_socket();
 
    }
+
+
+   void listen_socket_base::set_ssl_catalog(const ::string & strCat)
+   {
+
+      return m_pcomposite->set_ssl_catalog(strCat);
+
+   }
+
+   void listen_socket_base::set_ssl_cipher_list(const ::string & strCipherList)
+   {
+
+      return m_pcomposite->set_ssl_cipher_list(strCipherList);
+
+   }
+
 
 
 } // namespace sockets

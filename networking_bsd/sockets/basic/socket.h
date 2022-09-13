@@ -1,18 +1,20 @@
 #pragma once
 
 
-#include "apex/networking/sockets/base/base_socket.h"
+#include "networking_bsd/sockets/base/socket.h"
+#include "apex/networking/sockets/basic/socket.h"
 
 
-namespace sockets
+namespace sockets_bsd
 {
 
 
    /** \defgroup basic Basic sockets */
    /** socket axis class.
    \ingroup basic */
-   class CLASS_DECL_APEX socket :
-      virtual public base_socket
+   class CLASS_DECL_NETWORKING_BSD socket :
+      virtual public ::sockets_bsd::base_socket,
+      virtual public ::sockets::socket
    {
    public:
 
@@ -64,15 +66,14 @@ namespace sockets
       bool SetNonblocking(bool bNb, SOCKET s);
 
 
-      virtual ::networking::address get_peer_address();
-      virtual ::networking::address get_socket_address();
-
+      virtual __pointer(::networking::address) get_peer_address();
+      virtual __pointer(::networking::address) get_socket_address();
 
 
    };
 
 
-} // namespace sockets
+} // namespace sockets_bsd
 
 
 

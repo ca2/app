@@ -9,7 +9,7 @@
 //   class base_socket;
 
 
-//   class CLASS_DECL_APEX logger :
+//   class CLASS_DECL_NETWORKING_BSD logger :
 //      virtual public ::object
 //   {
 //      public:

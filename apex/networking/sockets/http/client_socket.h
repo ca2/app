@@ -62,9 +62,11 @@ namespace sockets
 
 
       http_client_socket();
-      http_client_socket(const string & url_in);
-      virtual ~http_client_socket();
+      // http_client_socket(const string & url_in);
+      ~http_client_socket() override;
 
+
+      virtual void initialize_http_client_socket(const ::string & strUrl);
 
       virtual void OnConnect() override;
 

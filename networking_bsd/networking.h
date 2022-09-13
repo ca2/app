@@ -2,14 +2,16 @@
 #pragma once
 
 
+#include "apex/networking/networking.h"
 #include "address.h"
+#include "networking_bsd/sockets/ssl/client_context_map.h"
 
 
 namespace networking_bsd
 {
 
 
-   class CLASS_DECL_APEX networking :
+   class CLASS_DECL_NETWORKING_BSD networking :
       public ::networking::networking
    {
    public:
@@ -24,7 +26,7 @@ namespace networking_bsd
       bool           m_bInitialized;
 
 
-      class CLASS_DECL_APEX dns_cache_item :
+      class CLASS_DECL_NETWORKING_BSD dns_cache_item :
          virtual public ::object
       {
       public:
@@ -47,18 +49,19 @@ namespace networking_bsd
 
       };
 
-      class CLASS_DECL_APEX reverse_cache_item :
+      class CLASS_DECL_NETWORKING_BSD reverse_cache_item :
          virtual public ::matter
       {
       public:
 
          
-         ::networking::address    m_address;
-         string            m_strReverse;
-         ::duration        m_durationLastChecked;
-         bool              m_bOk;
-         bool              m_bTimeout;
-         bool              m_bProcessing;
+         __pointer(::networking_bsd::address)   m_paddress;
+         string                                 m_strIpAddress;
+         string                                 m_strReverse;
+         ::duration                             m_durationLastChecked;
+         bool                                   m_bOk;
+         bool                                   m_bTimeout;
+         bool                                   m_bProcessing;
 
 
          reverse_cache_item();
@@ -77,6 +80,33 @@ namespace networking_bsd
       string_map < __pointer(reverse_cache_item) >       m_mapReverseCache;
       array < __pointer(reverse_cache_item) >            m_reversecacheaRequest;
       ::task_pointer                                     m_pthreadReverse;
+      ::i64                                              m_iListenSocket;
+      /*::mutex m_mutexPool;*/
+
+      interlocked_i32                  m_lListenSocket;
+
+      __pointer(::sockets_bsd::SSLInitializer)        m_psslinit;
+
+      byte                             m_baTicketKey[SSL_SESSION_TICKET_KEY_SIZE];
+
+#if defined(BSD_STYLE_SOCKETS)
+      ::sockets_bsd::ssl_client_context_map           m_clientcontextmap;
+#endif
+
+      ::count                          m_countHttpPostBoundary;
+      ::mutex                          m_mutexHttpPostBoundary;
+
+      ::sockets_bsd::resolv_cache_t                   m_resolvcache;
+      ::sockets_bsd::resolv_timeout_t                 m_resolvtimeout;
+      ::mutex                          m_mutexResolvCache;
+      //__pointer(::sockets::net)        m_pnet;
+#ifdef WINDOWS
+      ::net::port_forward_pointer      m_pportforward;
+#endif
+
+      ::mutex                          m_mutexPool;
+      ::sockets_bsd::socket_map                       m_pool; ///< Active sockets map
+
 
       networking();
       ~networking() override;
@@ -98,38 +128,38 @@ namespace networking_bsd
       * Decode string per RFC1738 URL encoding rules
       * tnx rstaveley
       */
-      string rfc1738_decode(const string& src) override;
+      virtual string rfc1738_decode(const string& src);
 
-      bool isipv4(const string& str) override;
+      bool is_ip4(const string& str) override;
 
-      bool isipv6(const string& str) override;
+      bool is_ip6(const string& str) override;
 
-      bool convert(struct ::in_addr& l, const string& str, i32 ai_flags = 0) override;
-      bool convert(struct ::in6_addr& l, const string& str, i32 ai_flags = 0) override;
-      bool convert(string& str, const struct ::in_addr& ip) override;
-      bool convert(string& str, const struct ::in6_addr& ip, bool mixed = false) override;
+      virtual bool convert(struct ::in_addr& l, const string& str, i32 ai_flags = 0);
+      virtual bool convert(struct ::in6_addr& l, const string& str, i32 ai_flags = 0);
+      virtual bool convert(string& str, const struct ::in_addr& ip);
+      virtual bool convert(string& str, const struct ::in6_addr& ip, bool mixed = false);
 
-      i32 in6_addr_compare(struct ::in6_addr a, struct ::in6_addr b) override;
+      virtual i32 in6_addr_compare(struct ::in6_addr a, struct ::in6_addr b);
 
-      void ResolveLocal() override;
+      virtual void ResolveLocal();
 
-      const string& GetLocalHostname() override;
+      virtual const string& GetLocalHostname();
 
-      in_addr GetLocalIP() override;
+      virtual in_addr GetLocalIP();
 
-      const string& GetLocalAddress() override;
+      virtual const string& GetLocalAddress();
 
-      const struct in6_addr& GetLocalIP6() override;
+      virtual const struct in6_addr& GetLocalIP6();
 
-      const string& GetLocalAddress6() override;
+      virtual const string& GetLocalAddress6();
 
-      string Sa2String(sockaddr* psa) override;
+      virtual string Sa2String(sockaddr* psa);
 
       bool reverse(string& hostname, ::networking::address * address) override;
 
-      bool reverse_schedule(reverse_cache_item* pitem) override;
+      virtual bool reverse_schedule(reverse_cache_item* pitem);
 
-      bool reverse_sync(reverse_cache_item* pitem) override;
+      virtual bool reverse_sync(reverse_cache_item* pitem);
 
       bool reverse(string& hostname, const string& number) override;
 
@@ -146,11 +176,34 @@ namespace networking_bsd
       string service_name(::networking::address * address) override;
 
       string reverse_name(::networking::address * address) override;
+      
+      //i32 _select(::sockets::socket_handler * psockethandler, const class ::wait & wait) override;
+
+      __pointer(::networking::address) create_ip4_address(const ::string & strIp4, ::networking::port_t port = 0);
+
+      __pointer(::networking::address) create_ip6_address(const ::string & strIp6, ::networking::port_t port = 0);
+
+      __pointer(address) create_ip4_address(u32 u, ::networking::port_t port = 0);
+
+      __pointer(address) create_ip6_address(void * p128bits, ::networking::port_t port = 0);
+
+    
+
+      //sockets();
+      //virtual ~sockets();
+
+      //class ::sockets::net & net();
+
+      //virtual void initialize(::object * pobject) override;
+
+      //virtual void destroy() override;
+
+      virtual string get_http_post_boundary();
 
 
    };
 
-   //CLASS_DECL_APEX class address_department * address_department();
+   //CLASS_DECL_NETWORKING_BSD class address_department * address_department();
 
 } // namespace net
 

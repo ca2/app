@@ -2,12 +2,12 @@
 #pragma once
 
 
-namespace sockets
+namespace sockets_bsd
 {
 
    /** Detached base_socket run thread.
    \ingroup internal */
-   class CLASS_DECL_APEX socket_thread :
+   class CLASS_DECL_NETWORKING_BSD socket_thread :
       virtual public ::task
    {
    public:
@@ -43,7 +43,7 @@ namespace sockets
    };
 
 
-} // namespace sockets
+} // namespace sockets_bsd
 
 
 

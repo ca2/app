@@ -1,7 +1,7 @@
 #pragma once
 
 
-string get_file_extension_mime_type(const ::string & strExtension);
+CLASS_DECL_APEX string get_file_extension_mime_type(const ::string & strExtension);
 
 
 namespace networking

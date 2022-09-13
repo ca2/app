@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "clock.h"
 
 
 namespace datetime
@@ -10,14 +11,14 @@ namespace datetime
 
 
 
-      visual::visual()
+      graphical::graphical()
    {
 
       //   ::earth::time time = ::earth::time::now();
 
    }
 
-      visual::~visual()
+      graphical::~graphical()
    {
 
 
@@ -29,5 +30,6 @@ namespace datetime
 
 
 } // namespace datetime
+
 
 

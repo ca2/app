@@ -14,7 +14,7 @@ namespace sockets
    {
    public:
 
-
+      void * m_p2;
 //      class CLASS_DECL_APEX callback
 //      {
 //      public:
@@ -46,22 +46,23 @@ namespace sockets
 ////#ifdef BSD_STYLE_SOCKETS
 ////      __pointer(ssl_context)  m_psslcontext;
 ////#endif
-     string                  m_password; ///< ssl password
+     //string                  m_password; ///< ssl password
+
 //
-      __pointer(base_socket_handler)   m_psockethandler; /// |-xxx-Reference-xxx-> 2021-03-08pointer of base_socket_handler in control of this socket
-//      //SOCKET                  m_socket; ///< File descriptor
+      //__pointer(base_socket_handler)   m_psockethandler; /// |-xxx-Reference-xxx-> 2021-03-08pointer of base_socket_handler in control of this socket
+      //socket_id                  m_socket; ///< File descriptor
 //
 //      static ::mutex *        s_pmutex;
 //
-      ::networking::address_pointer          m_paddressRemote; ///< Remote end ::networking::address
-      ::networking::address_pointer          m_paddressRemoteClient; ///< Address of last connect()
+      //::networking::address_pointer          m_paddressRemote; ///< Remote end ::networking::address
+      //::networking::address_pointer          m_paddressRemoteClient; ///< Address of last connect()
 //      file_pointer            m_pfileTrafficMonitor;
 //
 //      bool                    m_b_chunked;
 //
 //
-__pointer(::memory_file) m_pmemfileInput;
-      bool                    m_bEnd; // should finish by not sending no more writes
+//__pointer(::memory_file) m_pmemfileInput;
+  //    bool                    m_bEnd; // should finish by not sending no more writes
 //      string                  m_strCat;
 //      string                  m_strCipherList;
 //      callback *              m_pcallback;
@@ -73,13 +74,13 @@ __pointer(::memory_file) m_pmemfileInput;
 //      time_t                  m_timeClose; ///< time in seconds when ordered to close
 //      int                     m_iBindPort;
 //      bool                    m_bDelete; ///< Delete by handler flag
-//      bool                    m_bCloseAndDelete; ///< close and delete flag
-      __pointer(base_socket)           m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
-      ::duration              m_durationConnectionStart; ///< Set by SetTimeout
-      ::duration              m_durationConnectionLastActivity; ///< Set by SetTimeout
-      ::duration              m_durationConnectionMaximum; ///< Defined by SetTimeout
-      ::duration              m_durationStart; ///< Set by SetTimeout
-      ::duration              m_durationMaximum; ///< Defined by SetTimeout
+      //bool                    m_bCloseAndDelete; ///< close and delete flag
+      //__pointer(base_socket)           m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
+      //::duration              m_durationConnectionStart; ///< Set by SetTimeout
+      //::duration              m_durationConnectionLastActivity; ///< Set by SetTimeout
+      //::duration              m_durationConnectionMaximum; ///< Defined by SetTimeout
+      //::duration              m_durationStart; ///< Set by SetTimeout
+      //::duration              m_durationMaximum; ///< Defined by SetTimeout
 //      bool                    m_bNonBlocking;
 //      //    unsigned long           m_flags; ///< tristate flags, replacing old 'bool' members
 //
@@ -107,7 +108,7 @@ __pointer(::memory_file) m_pmemfileInput;
 //      bool                             m_bDetach; ///< base_socket ordered to detach flag
 //      bool                             m_bDetached; ///< base_socket has been detached
 //      __pointer(::sockets::socket_thread)         m_psocketthread; ///< detach base_socket thread class pointer
-__pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler while detached
+//__pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler while detached
 //
 //
 //      // LineProtocol
@@ -118,8 +119,7 @@ __pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler whil
 //
 //      ::e_status             m_estatus;
 //      //::duration              m_durationStart;
-//
-//#if !defined(BSD_STYLE_SOCKETS)
+//#ifdef WINRT_SOCKETS
 //      bool                    m_bErrorWriting;
 //      bool                    m_bErrorReading;
 //      bool                    m_bWaitingResponse;
@@ -168,12 +168,16 @@ __pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler whil
       /** "Default" constructor */
       base_socket();
 
-      virtual ~base_socket();
+      ~base_socket() override;
 
 
       virtual void initialize_socket(base_socket_handler* phandler);
 
-      ::networking::networking * networking();
+
+      virtual base_socket * base_socket_composite();
+      virtual const base_socket * base_socket_composite() const;
+
+      virtual ::networking::networking * networking();
       /** base_socket class instantiation method. Used when a "non-standard" constructor
       * needs to be used for the base_socket class. Note: the base_socket class still needs
       * the "default" constructor with one as input parameter.
@@ -190,6 +194,10 @@ __pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler whil
       even if the base_socket is detached.
       */
       virtual base_socket_handler * master_socket_handler() const;
+
+
+      virtual memory_file * get_input_memory_file();
+
 
       virtual void destroy_ssl_session();
 
@@ -211,15 +219,23 @@ __pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler whil
       //virtual void create_socket();
 
       /** Return file descriptor assigned to this base_socket. */
-      //SOCKET GetSocket();
+      //virtual iptr get_socket_id();
 
       /** close connection immediately - internal use.
       \sa SetCloseAndDelete */
       virtual void close();
 
+      virtual void _001InitSSLServer();
+      virtual void set_end();
 
-      //virtual i32 close_socket(SOCKET s);
 
+      virtual bool is_end() const;
+
+
+      //virtual i32 close_socket(socket_id s);
+
+
+      virtual ::networking::port_t get_bind_port() const;
 
       virtual bool is_connecting();
 
@@ -247,13 +263,13 @@ __pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler whil
       virtual bool SetNonblocking(bool);
 
       /** Set base_socket non-block operation. */
-      //bool SetNonblocking(bool, SOCKET);
+      //bool SetNonblocking(bool, socket_id);
 
       /** Total lifetime of instance. */
       virtual time_t Uptime();
 
       /** Set address/port of last connect() call. */
-      void SetClientRemoteAddress(::networking::address * address);
+      virtual void SetClientRemoteAddress(::networking::address * address);
 
       /** get address/port of last connect() call. */
       virtual ::networking::address_pointer GetClientRemoteAddress();
@@ -320,7 +336,7 @@ __pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler whil
       \lparam protocol Protocol number (tcp, udp, sctp, etc)
       \lparam s base_socket file descriptor
       */
-      //virtual void OnOptions(int family,int type,int protocol,SOCKET s) = 0;
+      //virtual void OnOptions(int family,int type,int protocol,socket_id s) = 0;
       /** Connection retry callback - return false to abort connection attempts */
       virtual bool OnConnectRetry();
       /** a reconnect has been made */
@@ -472,7 +488,7 @@ __pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler whil
 //#endif
 //      //@}
 //
-//      // SOCKET options
+//      // socket_id options
 //      /** @name base_socket Options */
 //      //@{
 
@@ -530,7 +546,7 @@ __pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler whil
       virtual string get_string() const override;
 
 
-      //virtual void attach(SOCKET s);
+      //virtual void attach(socket_id s);
 
       /** Called after OnRead if base_socket is in line protocol mode.
       \sa SetLineProtocol */
@@ -596,6 +612,9 @@ __pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler whil
       virtual void SetSocketProtocol(const string & x);
       /** Protocol type from base_socket() call. */
       virtual string GetSocketProtocol();
+
+      virtual bool IsPoolEnabled() const;
+      virtual void EnablePool(bool bEnable);
       /** Instruct a client base_socket to stay open in the connection pool after use.
       If you have connected to a server using tcp, you can call SetRetain
       to leave the connection open after your base_socket instance has been deleted.
@@ -612,17 +631,17 @@ __pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler whil
       /** \name Socks4 support */
       //@{
       ///** Socks4 client support internal use. \sa tcp_socket */
-      //virtual void OnSocks4Connect();
+      virtual void OnSocks4Connect();
       ///** Socks4 client support internal use. \sa tcp_socket */
-      //virtual void OnSocks4ConnectFailed();
+      virtual void OnSocks4ConnectFailed();
       ///** Socks4 client support internal use. \sa tcp_socket */
-      //virtual bool OnSocks4Read();
+      virtual bool OnSocks4Read();
       /** Called when the last write caused the tcp output buffer to
       * become is_empty. */
       /** base_socket still in socks4 negotiation mode */
-      //bool Socks4();
+      bool Socks4();
       ///** Set flag indicating Socks4 handshaking in progress */
-      //void SetSocks4(bool x = true);
+      void SetSocks4(bool x = true);
 
 ////      /** Set socks4 server host address/port to use */
 ////      //void SetSocks4Host(in_addr a);
@@ -718,7 +737,7 @@ __pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler whil
       /** Trigger callback, with data passed from source to destination. */
       //virtual void OnTrigger(int atom, const trigger_data & data);
       /** Trigger cancelled because source has been deleted (as in delete). */
-      //virtual void OnCancelled(SOCKET atom);
+      //virtual void OnCancelled(socket_id atom);
       //@}
 
 
@@ -740,8 +759,6 @@ __pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler whil
 
 
 
-   typedef comparable_list < socket_pointer > socket_pointer_list;
-
 
 } // namespace sockets
 
@@ -753,7 +770,7 @@ __declare_pair_tuple_size(::sockets::socket_map);
 #endif
 
 
-//using socket_list = ::comparable_list < SOCKET >;
+
 
 
 

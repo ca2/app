@@ -174,7 +174,7 @@ namespace sockets
       bool IsBound();
       /** Return Bind port number */
       //::networking::port_t GetPort();
-      //void OnOptions(i32, i32, i32, SOCKET) {}
+      //void OnOptions(i32, i32, i32, socket_id) {}
       memsize GetLastSizeWritten();
 
       /** Also read timestamp information from incoming message */

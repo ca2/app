@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "time/graphical/clock.h"
+
+
 namespace datetime
 {
 
@@ -10,7 +13,7 @@ namespace datetime
 
 
       class CLASS_DECL_CA2_TIME graphics :
-         virtual public ::datetime::clock::visual
+         virtual public ::datetime::clock::graphical
       {
       public:
 

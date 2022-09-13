@@ -1,20 +1,8 @@
 #include "framework.h"
-#include "apex/networking/networking_bsd/_sockets.h"
+#include "tls_socket.h"
 
 
-#ifdef PARALLELIZATION_PTHREAD
-
-
-#include "acme/operating_system/ansi/_pthread.h"
-
-
-#endif
-
-
-#include <openssl/ssl.h>
-
-
-namespace networking_bsd
+namespace sockets_bsd
 {
 
 
@@ -42,9 +30,7 @@ namespace networking_bsd
    }
 
 
-} // namespace networking_bsd
-
-
+} // namespace sockets_bsd
 
 
 

@@ -171,13 +171,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       public:
          socket_map     m_sockets; ///< Active sockets ::map
          socket_map     m_add; ///< Sockets to be added to sockets ::map
-         socket_list    m_delete; ///< Sockets to be deleted (failed when add)
+         socket_id_list    m_delete; ///< Sockets to be deleted (failed when add)
       protected:
          //::mutex & m_mutex; ///< Thread safety ::mutex
          bool m_b_use_mutex; ///< ::mutex correctly initialized
 
       private:
-         void CheckList(socket_list&,const string &); ///< Used by CheckSanity
+         void CheckList(socket_id_list&,const string &); ///< Used by CheckSanity
          /** erase socket from socket ::map, used by socket class. */
          void erase(base_socket *);
          SOCKET m_maxsock; ///< Highest file descriptor + 1 in active sockets list
@@ -189,13 +189,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          time_t m_tlast; ///< timeout control
 
          // state lists
-         socket_list m_fds; ///< Active file descriptor list
-         socket_list m_fds_erase; ///< File descriptors that are to be erased from m_sockets
-         socket_list m_fds_callonconnect; ///< checklist CallOnConnect
-         socket_list m_fds_detach; ///< checklist detach
-         socket_list m_fds_timeout; ///< checklist timeout
-         socket_list m_fds_retry; ///< checklist retry client connect
-         socket_list m_fds_close; ///< checklist close and delete
+         socket_id_list m_fds; ///< Active file descriptor list
+         socket_id_list m_fds_erase; ///< File descriptors that are to be erased from m_sockets
+         socket_id_list m_fds_callonconnect; ///< checklist CallOnConnect
+         socket_id_list m_fds_detach; ///< checklist detach
+         socket_id_list m_fds_timeout; ///< checklist timeout
+         socket_id_list m_fds_retry; ///< checklist retry client connect
+         socket_id_list m_fds_close; ///< checklist close and delete
          in_addr m_socks4_host; ///< Socks4 server host ip
          port_t m_socks4_port; ///< Socks4 server port number
          string m_socks4_userid; ///< Socks4 userid

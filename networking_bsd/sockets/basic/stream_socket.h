@@ -1,14 +1,19 @@
 #pragma once
 
 
-namespace sockets
+#include "socket.h"
+#include "apex/networking/sockets/basic/stream_socket.h"
+
+
+namespace sockets_bsd
 {
 
 
    /** SOCK_STREAM socket axis class.
    \ingroup basic */
-   class CLASS_DECL_APEX stream_socket :
-      virtual public socket
+   class CLASS_DECL_NETWORKING_BSD stream_socket :
+      virtual public socket,
+      virtual public ::sockets::stream_socket
    {
    public:
 
@@ -104,6 +109,6 @@ namespace sockets
    };
 
 
-} // namespace sockets
+} // namespace sockets_bsd
 
 

@@ -53,11 +53,13 @@ namespace sockets
    /*   array < ssl_ticket_key >   m_ticketkeya;
 */
 
-      static bool s_bReuseSession; // Default psystem Wide Setting
+      __pointer(tcp_socket)         m_ptcpsocketComposite;
+      bool                          m_bImpl;
+      //static bool s_bReuseSession; // Default psystem Wide Setting
 
       /** Output buffer struct.
       \ingroup internal */
-      string m_strTlsHostName;
+      //string m_strTlsHostName;
       
       struct output :
          virtual public object
@@ -120,41 +122,41 @@ namespace sockets
       };
       typedef list<__pointer(output)> output_list;
 
-      ::file::circular_file ibuf; ///< Circular input buffer
-      string m_strUrl;
-      ::mutex *        m_pmutexSslCtx;
-      //
-      bool m_b_input_buffer_disabled;
-      u64 m_bytes_sent;
-      u64 m_bytes_received;
-      memory         m_memRead;
-      output_list m_obuf; ///< output buffer
-      __pointer(output) m_obuf_top; ///< output buffer on top
-      memsize m_transfer_limit;
-      memsize m_output_length;
+      //::file::circular_file ibuf; ///< Circular input buffer
+      //string m_strUrl;
+      //::mutex *        m_pmutexSslCtx;
+      ////
+      //bool m_b_input_buffer_disabled;
+      //u64 m_bytes_sent;
+      //u64 m_bytes_received;
+      //memory         m_memRead;
+      //output_list m_obuf; ///< output buffer
+      //__pointer(output) m_obuf_top; ///< output buffer on top
+      //memsize m_transfer_limit;
+      //memsize m_output_length;
 
-      bool     m_bReuseSession;
-      i32 m_socks4_state; ///< socks4 support
-      char m_socks4_vn; ///< socks4 support, temporary ::payload
-      char m_socks4_cd; ///< socks4 support, temporary ::payload
-      u16 m_socks4_dstport; ///< socks4 support
-      u32 m_socks4_dstip; ///< socks4 support
+      //bool     m_bReuseSession;
+      //i32 m_socks4_state; ///< socks4 support
+      //char m_socks4_vn; ///< socks4 support, temporary ::payload
+      //char m_socks4_cd; ///< socks4 support, temporary ::payload
+      //u16 m_socks4_dstport; ///< socks4 support
+      //u32 m_socks4_dstip; ///< socks4 support
 
-      string m_strConnectHost;
-      ::networking::port_t m_iConnectPort;
+      //string m_strConnectHost;
+      //::networking::port_t m_iConnectPort;
 
-      i32 m_resolver_id; ///< Resolver atom (if any) for current open call
+      //i32 m_resolver_id; ///< Resolver atom (if any) for current open call
 
-      bool m_bReconnect; ///< Reconnect on lost connection flag
-      bool m_bTryingReconnect; ///< Trying to reconnect
-      string m_strHost;
-      bool m_bImpl;
+      //bool m_bReconnect; ///< Reconnect on lost connection flag
+      //bool m_bTryingReconnect; ///< Trying to reconnect
+      //string m_strHost;
+      //bool m_bImpl;
 
-      bool m_bCertCommonNameCheckEnabled;
+      //bool m_bCertCommonNameCheckEnabled;
 
-      bool                       m_bClientSessionSet;
-      string                     m_strInitSSLClientContext;
-      __pointer(tcp_socket_impl)    m_pimpl;
+      //bool                       m_bClientSessionSet;
+      //string                     m_strInitSSLClientContext;
+      //__pointer(tcp_socket_impl)    m_pimpl;
 
       /** Constructor with standard values on input/output buffers. */
       tcp_socket();
@@ -163,22 +165,48 @@ namespace sockets
       \lparam isize Input buffer size_i32
       \lparam osize Output buffer size_i32 */
       //tcp_socket(memsize isize,memsize osize);
-      virtual ~tcp_socket();
+      ~tcp_socket() override;
+
+
+      void initialize(::object * pobject) override;
+
+
+      base_socket * base_socket_composite() override;
+      const base_socket * base_socket_composite() const override;
 
 
       //using ::sockets::stream_socket::open;
-      bool open(::networking::address * address, bool skip_socks = false);
-      bool open(::networking::address * address, ::networking::address * addressBind,bool skip_socks = false);
+      virtual bool open(::networking::address * address, bool skip_socks = false);
+      virtual bool open(::networking::address * address, ::networking::address * addressBind,bool skip_socks = false);
       /** open connection.
       \lparam host Hostname
       \lparam port Port number */
-      bool open(const string &host,::networking::port_t port);
+      virtual bool open(const string &host,::networking::port_t port);
+
+      
+      
+      virtual void set_host(const ::string & strHost);
+      virtual string get_host() const;
+
+
+      virtual void set_tls_hostname(const ::string & strTlsHostname);
+
+
+      virtual void set_connect_host(const ::string & strConnectHost);
+      virtual string get_connect_host() const;
+      virtual void set_connect_port(const ::networking::port_t portConnect);
+      virtual ::networking::port_t get_connect_port() const;
+
+
+      virtual void set_url(const ::string & strUrl);
+      virtual string get_url() const;
+
 
       /** Connect timeout callback. */
       void on_connection_timeout() override;
 #ifdef _WIN32
       /** Connection failed reported as exception on win32 */
-      void OnException();
+      virtual void OnException();
 #endif
 
       /** close file descriptor - internal use only.
@@ -204,9 +232,9 @@ namespace sockets
       will not generate a call to this method. */
       virtual void OnWriteComplete();
       /** Number of bytes in input buffer. */
-      memsize GetInputLength();
+      virtual memsize GetInputLength();
       /** Number of bytes in output buffer. */
-      memsize GetOutputLength();
+      virtual memsize GetOutputLength();
 
       /** Callback fires when a socket in line protocol has read one full line.
       \lparam line Line read */
@@ -215,6 +243,9 @@ namespace sockets
       u64 GetBytesReceived(bool clear = false) override;
       /** get counter of number of bytes sent. */
       u64 GetBytesSent(bool clear = false) override;
+
+
+      virtual output * top_output_buffer();
 
 //#if defined(BSD_STYLE_SOCKETS)
 //      /** Socks4 specific callback. */
@@ -240,22 +271,22 @@ namespace sockets
       virtual void InitSSLServer();
 
       /** Flag that says a broken connection will try to reconnect. */
-      void SetReconnect(bool = true);
+      virtual void SetReconnect(bool = true);
       /** Check reconnect on lost connection flag status. */
-      bool Reconnect();
+      virtual bool Reconnect();
       /** Flag to determine if a reconnect is in progress. */
-      void SetIsReconnect(bool x = true);
+      virtual void SetIsReconnect(bool x = true);
       /** socket is reconnecting. */
-      bool IsReconnect();
+      virtual bool IsReconnect();
 
-      void DisableInputBuffer(bool = true);
+      virtual void DisableInputBuffer(bool = true);
 
-      //void OnOptions(i32,i32,i32,SOCKET) override;
+      //void OnOptions(i32,i32,i32,socket_id) override;
 
       void SetLineProtocol(bool = true) override;
 
       // TCP options
-      bool SetTcpNodelay(bool = true);
+      virtual bool SetTcpNodelay(bool = true);
 
       virtual string get_connect_host();
       virtual ::networking::port_t get_connect_port();
@@ -263,7 +294,7 @@ namespace sockets
       virtual i32 Protocol() override;
 
       /** Trigger limit for callback OnTransferLimit. */
-      void SetTransferLimit(memsize sz);
+      virtual void SetTransferLimit(memsize sz);
       /** This callback fires when the output buffer drops below the value
       set by SetTransferLimit. Default: 0 (disabled). */
       virtual void OnTransferLimit();
@@ -303,7 +334,7 @@ namespace sockets
       /** ssl; still negotiating connection. */
       bool SSLNegotiate() override;
       /** SSL; get ssl password. */
-      string GetPassword();
+      virtual string GetPassword();
 
 
       virtual string get_url();
@@ -314,9 +345,9 @@ namespace sockets
       /** the actual send() */
       int try_write(const void * buf, int len);
       /** add data to output buffer top */
-      void buffer(const void * buf, int len);
+      virtual void buffer(const void * buf, int len);
 
-      void InitializeContextTLSClientMethod();
+      virtual void InitializeContextTLSClientMethod();
 
    };
 

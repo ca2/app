@@ -17,16 +17,16 @@ namespace sockets
       //http_client_socket(h)
    {
 
-#if !defined(BSD_STYLE_SOCKETS)
-
-      m_bExpectRequest = true;
-
-#endif
+//#if !defined(BSD_STYLE_SOCKETS)
+//
+//      m_bExpectRequest = true;
+//
+//#endif
 
    }
 
 
-   http_get_socket::http_get_socket(const string & url_in) :
+   void http_get_socket::initialize_http_get_socket(const string & strUrl)
       //:
       //::object(&h),
       //base_socket(h),
@@ -35,21 +35,23 @@ namespace sockets
       //tcp_socket(h),
       //http_socket(h),
       //http_tunnel(h),
-      http_client_socket(url_in)
+      // http_client_socket(url_in)
    {
 
-#if !defined(BSD_STYLE_SOCKETS)
+//#if !defined(BSD_STYLE_SOCKETS)
+//
+//      m_bExpectRequest = true;
+//
+//#endif
 
-      m_bExpectRequest = true;
-
-#endif
-
+      initialize_http_client_socket(strUrl);
       m_emethod = http_method_get;
+
 
    }
 
 
-   http_get_socket::http_get_socket(const string & host,::networking::port_t port,const string & url_in) :
+   void http_get_socket::initialize_http_get_socket(const string & host,::networking::port_t port,const string & strUrl)
       //::object(&h),
       //base_socket(h),
       //socket(h),
@@ -58,14 +60,16 @@ namespace sockets
       //http_socket(h),
       //http_tunnel(h),
       //http_client_socket(h, url_in)
-      http_client_socket(url_in)
+      //http_client_socket(url_in)
    {
 
-#if !defined(BSD_STYLE_SOCKETS)
+//#if !defined(BSD_STYLE_SOCKETS)
+//
+//      m_bExpectRequest = true;
+//
+//#endif
 
-      m_bExpectRequest = true;
-
-#endif
+      initialize_http_client_socket(strUrl);
 
       m_emethod = http_method_get;
 

@@ -22,10 +22,10 @@ namespace sockets
 
 
       i32              m_depth;
-      bool                 m_bDetach;
       base_socket *        m_pbasesocket;
 
-
+      __pointer(listen_socket_base)       m_pcomposite;
+      bool                                m_bImpl;
       /** Constructor.
       \lparam h base_socket_handler object
       \lparam use_creator Optional use of creator (default true) */
@@ -36,11 +36,21 @@ namespace sockets
 
       virtual ~listen_socket_base();
 
+      void initialize(::object * pobject) override;
+
+      base_socket * base_socket_composite() override;
 
       virtual __pointer(socket) create_listen_socket();
 
+      virtual void set_ssl_catalog(const ::string & strCat);
+
+      virtual void set_ssl_cipher_list(const ::string & strCipherList);
+
       /** close file descriptor. */
       virtual void close();
+
+      virtual void set_should_detach(bool bSet);
+      virtual bool should_detach() const;
 
       /** Bind and listen to any interface.
       \lparam port Port (0 is random)
@@ -115,11 +125,11 @@ namespace sockets
 
       /** Please don't use this method.
       "accept()" is handled automatically in the OnRead() method. */
-      //virtual SOCKET Accept(SOCKET socket, struct sockaddr *saptr, socklen_t *lenptr);
+      //virtual socket_id Accept(socket_id socket, struct sockaddr *saptr, socklen_t *lenptr);
 
       virtual bool HasCreator();
 
-      //virtual void OnOptions(i32,i32,i32,SOCKET);
+      //virtual void OnOptions(i32,i32,i32,socket_id);
 
 
 

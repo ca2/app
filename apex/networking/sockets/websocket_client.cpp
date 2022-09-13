@@ -362,7 +362,7 @@ namespace sockets
 
       m_bTls = true;
 
-#if !defined(BSD_STYLE_SOCKETS)
+#ifdef WINRT_SOCKETS
 
       m_bExpectRequest = true;
 
@@ -375,45 +375,21 @@ namespace sockets
    }
 
 
-   websocket_client::websocket_client(const string & url_in, const ::string & strProtocol) :
-      //::object(&h),
-      //base_socket(h),
-      //socket(h),
-      //stream_socket(h),
-      //tcp_socket(h),
-      //http_socket(h),
-      //http_tunnel(h),
-      //http_client_socket(h, url_in)
-      http_client_socket(url_in)
-   {
+   //websocket_client::websocket_client(const string & url_in, const ::string & strProtocol) :
+   //   //::object(&h),
+   //   //base_socket(h),
+   //   //socket(h),
+   //   //stream_socket(h),
+   //   //tcp_socket(h),
+   //   //http_socket(h),
+   //   //http_tunnel(h),
+   //   //http_client_socket(h, url_in)
+   //   http_client_socket(url_in)
+   //{
 
-      m_memPong.set_size(2);
-      m_memPong.get_data()[0] = 0x8a;
-      m_memPong.get_data()[1] = 0;
+   //  
 
-      m_durationLastPing.Now();
-
-      m_bUseMask = false;
-
-      m_strWebSocketProtocol = strProtocol;
-
-      m_bRequestSent = false;
-
-      m_bWebSocket = false;
-
-      m_bTls = true;
-
-#if !defined(BSD_STYLE_SOCKETS)
-
-      m_bExpectRequest = true;
-
-#endif
-
-      m_emethod = http_method_get;
-
-      m_durationLastPing.Now();
-
-   }
+   //}
 
 
    //websocket_client::websocket_client(const string & host, ::networking::port_t port, const string & url_in) :
@@ -446,6 +422,40 @@ namespace sockets
 
    websocket_client::~websocket_client()
    {
+
+   }
+
+   
+   void websocket_client::initialize_websocket_client(const string & url_in, const ::string & strProtocol)
+   {
+
+      initialize_http_client_socket(url_in);
+
+      m_memPong.set_size(2);
+      m_memPong.get_data()[0] = 0x8a;
+      m_memPong.get_data()[1] = 0;
+
+      m_durationLastPing.Now();
+
+      m_bUseMask = false;
+
+      m_strWebSocketProtocol = strProtocol;
+
+      m_bRequestSent = false;
+
+      m_bWebSocket = false;
+
+      m_bTls = true;
+
+#ifdef WINRT_SOCKETS
+
+      m_bExpectRequest = true;
+
+#endif
+
+      m_emethod = http_method_get;
+
+      m_durationLastPing.Now();
 
    }
 
@@ -593,7 +603,7 @@ namespace sockets
          else
          inheader(__id(host)) = GetUrlHost();*/
 
-#if !defined(BSD_STYLE_SOCKETS)
+#ifdef WINRT_SOCKETS
 
          m_bExpectResponse = true;
 

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "calendar.h"
 #include "apex/filesystem/file/html_file.h"
 
 
@@ -11,7 +12,7 @@ namespace datetime
 
 
 
-   visual::visual()
+   graphical::graphical()
    {
 
       ::earth::time time = ::earth::time::now();
@@ -24,7 +25,7 @@ namespace datetime
 
 
 
-   visual::~visual()
+   graphical::~graphical()
    {
 
 
@@ -32,7 +33,7 @@ namespace datetime
 
 
 
-   void visual::initialize(::object * pobject)
+   void graphical::initialize(::object * pobject)
    {
 
       //auto estatus = 
@@ -51,7 +52,7 @@ namespace datetime
    }
 
 
-   void visual::_001GetHtml(::html::file * pfile)
+   void graphical::_001GetHtml(::html::file * pfile)
    {
 
 

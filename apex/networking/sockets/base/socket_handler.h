@@ -37,14 +37,6 @@ namespace sockets
 {
 
 
-   enum enum_list
-   {
-      e_list_call_on_connect,
-      e_list_detach,
-      e_list_timeout,
-      e_list_retry_client_connect,
-      e_list_close
-   };
 
 
    /** socket container class, event generator.
@@ -53,6 +45,9 @@ namespace sockets
       virtual public ::object
    {
    public:
+
+
+      void * m_p2;
 
 
       friend class base_socket;
@@ -70,7 +65,7 @@ namespace sockets
 
       //   
       //   void OnRead() override;
-      //   //void OnOptions(int, int, int, SOCKET) override;
+      //   //void OnOptions(int, int, int, socket_id) override;
 
 
       //};
@@ -80,8 +75,9 @@ namespace sockets
       __pointer(::apex::log)        m_plogger; ///< Registered log class, or nullptr
 
 
-      base_socket_handler(::apex::log * plogger = nullptr);
-      virtual ~base_socket_handler();
+      //base_socket_handler(::apex::log * plogger = nullptr);
+      base_socket_handler();
+      ~base_socket_handler() override;
 
       ///** get ::mutex object for threadsafe operations. */
       //virtual clasync & GetMutex() const = 0;
@@ -95,28 +91,28 @@ namespace sockets
       // socket stuff
       // -------------------------------------------------------------------------
       /** add socket instance to socket ::map. Removal is always automatic. */
-      virtual void add2(const socket_pointer& psocket) = 0;
-      virtual void move2(socket_pointer && psocket) = 0;
+      virtual void add(const socket_pointer& psocket) = 0;
+      //virtual void move2(socket_pointer && psocket) = 0;
       //virtual void move(socket_map::association * passociation, socket_map * psocketmap = nullptr) = 0;
-      //virtual void restart_socket(SOCKET socket) = 0;
+      //virtual void restart_socket(socket_id socket) = 0;
       //virtual socket_map::association* new_association(socket_pointer && psocket) = 0;
-   private:
+   //private:
       /** erase socket from socket ::map, used by socket class. */
-      virtual void erase(base_socket *) = 0;
+     // virtual void erase(base_socket *) = 0;
    public:
 
       virtual bool contains(base_socket *) = 0;
 
       ///** get status of read/write/exception file descriptor set for a socket. */
-      //virtual void get(SOCKET s,bool& r,bool& w,bool& e) = 0;
+      //virtual void get(socket_id s,bool& r,bool& w,bool& e) = 0;
       ///** Set read/write/exception file descriptor sets (fd_set). */
-      //virtual void set(SOCKET s,bool bRead,bool bWrite,bool bException = true) = 0;
+      //virtual void set(socket_id s,bool bRead,bool bWrite,bool bException = true) = 0;
       /** Wait for events, generate callbacks. */
       virtual int select(i32 sec, i32 usec) = 0;
       /** This method will not return until an event has been detected. */
       virtual int select() = 0;
       /** Wait for events, generate callbacks. */
-      //virtual int select(struct timeval *tsel) = 0;
+      virtual int select(const class ::wait & wait) = 0;
 
       /** Check that a socket really is handled by this socket handler. */
       virtual bool Valid(base_socket *) = 0;
@@ -130,12 +126,12 @@ namespace sockets
       virtual bool OkToAccept(base_socket *point_i32) = 0;
 
       ///** Called by socket when a socket changes state. */
-      //virtual socket_list& socketlist_get(enum_list elist) = 0;
-      //virtual void socketlist_modify(SOCKET s, enum_list elist, bool bAdd) = 0;
-      //virtual void socketlist_add(SOCKET s, enum_list elist) = 0;
-      //virtual void socketlist_erase(SOCKET s, enum_list elist) = 0;
+      //virtual socket_id_list& socket_id_list_get(enum_list elist) = 0;
+      //virtual void socket_id_list_modify(socket_id s, enum_list elist, bool bAdd) = 0;
+      //virtual void socket_id_list_add(socket_id s, enum_list elist) = 0;
+      //virtual void socket_id_list_erase(socket_id s, enum_list elist) = 0;
 
-      //virtual void erase_socket(SOCKET s) = 0;
+      //virtual void erase_socket_by_id(socket_id s) = 0;
       // -------------------------------------------------------------------------
       // Connection pool
       // -------------------------------------------------------------------------

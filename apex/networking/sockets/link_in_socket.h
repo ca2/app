@@ -15,13 +15,17 @@ namespace sockets
    {
    public:
 
-      socket *             m_in;
-      link_out_socket *    m_out;
-      event                m_eventFinished;
+
+      socket *                   m_in;
+      link_out_socket *          m_out;
+      event                      m_eventFinished;
 
 
       link_in_socket();
       ~link_in_socket();
+
+
+      void on_read(const void * pdata, memsize n) override;
 
 
       using ::sockets::tcp_socket::OnRead;

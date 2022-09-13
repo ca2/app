@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "clock.h"
 
 
 namespace datetime
@@ -7,7 +8,6 @@ namespace datetime
 
    namespace clock
    {
-
 
 
       clock::clock()
@@ -108,5 +108,6 @@ namespace datetime
 
 
 } // namespace datetime
+
 
 

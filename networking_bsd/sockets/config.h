@@ -66,7 +66,7 @@ in read operations - helps on ECOS */
 #define SOCKETS_DYNAMIC_TEMP
 
 //#include <openssl/ssl.h>
-#include "internal/SSLInitializer.h"
+//#include "ssl/initializer.h"
 
 /*
 // platform specific stuff
@@ -203,11 +203,11 @@ namespace sockets
 #define SHUT_WR 1
 
 #define Errno WSAGetLastError()
-CLASS_DECL_APEX const char * bsd_socket_error(i32 x);
+//CLASS_DECL_APEX const char * bsd_socket_error(i32 x);
 
 #elif defined(_UWP)
 
-CLASS_DECL_APEX const char *bsd_socket_error(i32 x);
+//CLASS_DECL_APEX const char *bsd_socket_error(i32 x);
 #define Errno get_last_error()
 
 
@@ -228,7 +228,7 @@ namespace sockets
 #endif
 
 
-#include "sockets_socket_id_list.h"
+//#include "sockets_socket_id_list.h"
 
 
 // getaddrinfo / getnameinfo replacements

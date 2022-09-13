@@ -192,6 +192,9 @@
     <Filter Include="Header Files\constant">
       <UniqueIdentifier>{d1dc7140-9c26-4249-9bf3-84fc6fbb92d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\networking\netserver">
+      <UniqueIdentifier>{cf4955de-5e95-45fe-a0c0-fe9ab11c19e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -893,9 +896,6 @@
     <ClInclude Include="networking\networking.h">
       <Filter>Header Files\networking</Filter>
     </ClInclude>
-    <ClInclude Include="networking\byte_order.h">
-      <Filter>Header Files\networking</Filter>
-    </ClInclude>
     <ClInclude Include="networking\email.h">
       <Filter>Header Files\networking</Filter>
     </ClInclude>
@@ -903,9 +903,6 @@
       <Filter>Header Files\networking</Filter>
     </ClInclude>
     <ClInclude Include="networking\ip_enum.h">
-      <Filter>Header Files\networking</Filter>
-    </ClInclude>
-    <ClInclude Include="networking\net.h">
       <Filter>Header Files\networking</Filter>
     </ClInclude>
     <ClInclude Include="networking\open_weather_city.h">
@@ -1154,6 +1151,30 @@
     <ClInclude Include="filesystem\_.h">
       <Filter>Header Files\filesystem</Filter>
     </ClInclude>
+    <ClInclude Include="networking\networking_application.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\networking_application_handler.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\networking_application_socket.h">
+      <Filter>Header Files\networking</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\netserver\socket_thread.h">
+      <Filter>Header Files\networking\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\netserver\socket_handler.h">
+      <Filter>Header Files\networking\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\netserver\socket.h">
+      <Filter>Header Files\networking\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\netserver\_netserver.h">
+      <Filter>Header Files\networking\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="networking\netserver\_.h">
+      <Filter>Header Files\networking\netserver</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1390,9 +1411,6 @@
     <ClCompile Include="progress\real.cpp">
       <Filter>Source Files\progress</Filter>
     </ClCompile>
-    <ClCompile Include="networking\_.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
     <ClCompile Include="networking\address.cpp">
       <Filter>Source Files\networking</Filter>
     </ClCompile>
@@ -1499,9 +1517,6 @@
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\http.cpp">
-      <Filter>Source Files\operating_system</Filter>
-    </ClCompile>
-    <ClCompile Include="operating_system\openssl_crypt.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\operating_system.cpp">

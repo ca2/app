@@ -30,20 +30,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma once
 
 
-#include "acme/filesystem/file/circular_file.h"
+#include "stream_socket.h"
+#include "apex/networking/sockets/basic/tcp_socket.h"
+#include "networking_bsd/sockets/ssl/ticket_key.h"
 
 #define TCP_BUFSIZE_READ (16400)
 #define TCP_OUTPUT_CAPACITY 1024000
 
-namespace sockets
+namespace sockets_bsd
 {
 
 
 
    /** socket implementation for TCP.
    \ingroup basic */
-   class CLASS_DECL_APEX tcp_socket :
-      virtual public stream_socket
+   class CLASS_DECL_NETWORKING_BSD tcp_socket :
+      virtual public stream_socket,
+      virtual public ::sockets::tcp_socket
    {
       /** \defgroup internal Internal utility */
    public:
@@ -57,65 +60,6 @@ namespace sockets
       \ingroup internal */
       string m_strTlsHostName;
       
-      struct output :
-         virtual public object
-      {
-         
-         
-         i32 _b;
-         i32 _t;
-         i32 _q;
-         char * _buf;
-         memory m_memory;
-         int m_iTcpOuputCapacity;
-
-
-         output(int iTcpOutputCapacity) :
-            m_iTcpOuputCapacity(iTcpOutputCapacity),
-            _b(0), _t(0), _q(0)
-         {
-            m_memory.set_size(m_iTcpOuputCapacity);
-            _buf = (char*) m_memory.get_data();
-         }
-
-         output(int iTcpOutputCapacity, const char *buf, i32 len) :
-            m_iTcpOuputCapacity(iTcpOutputCapacity), 
-            _b(0), _t(len), _q(len)
-         {
-            m_memory.set_size(m_iTcpOuputCapacity);
-            _buf = (char *) m_memory.get_data();
-            ::memcpy_dup(_buf, buf, len);
-         }
-
-         virtual ~output()
-         {
-         }
-
-         i32 Space()
-         {
-            return m_iTcpOuputCapacity - _t;
-         }
-         void add(const char *buf, i32 len)
-         {
-            ::memcpy_dup(_buf + _t, buf, len);
-            _t += len;
-            _q += len;
-         }
-         i32 erase(i32 len)
-         {
-            _b += len;
-            _q -= len;
-            return _q;
-         }
-         const char *Buf()
-         {
-            return _buf + _b;
-         }
-         i32 Len()
-         {
-            return _q;
-         }
-      };
       typedef list<__pointer(output)> output_list;
 
       ::file::circular_file ibuf; ///< Circular input buffer
@@ -140,7 +84,7 @@ namespace sockets
       u32 m_socks4_dstip; ///< socks4 support
 
       string m_strConnectHost;
-      port_t m_iConnectPort;
+      ::networking::port_t m_iConnectPort;
 
       i32 m_resolver_id; ///< Resolver atom (if any) for current open call
 
@@ -163,13 +107,34 @@ namespace sockets
       virtual ~tcp_socket();
 
 
+      void initialize(::object * pobject) override;
+
+
       //using ::sockets::stream_socket::open;
       bool open(::networking::address * address, bool skip_socks = false);
       bool open(::networking::address * address, ::networking::address * addressBind,bool skip_socks = false);
       /** open connection.
       \lparam host Hostname
       \lparam port Port number */
-      bool open(const string &host,port_t port);
+      bool open(const string &host,::networking::port_t port);
+
+
+      void set_host(const ::string & strHost) override;
+      ::string get_host() const override;
+
+
+      void set_tls_hostname(const ::string & strTlsHostname) override;
+
+
+      void set_connect_host(const ::string & strConnectHost) override;
+      ::string get_connect_host() const override;
+      void set_connect_port(const ::networking::port_t portConnect) override;
+      ::networking::port_t get_connect_port() const override;
+
+
+      void set_url(const ::string & strUrl) override;
+      string get_url() const override;
+
 
       /** Connect timeout callback. */
       void on_connection_timeout() override;
@@ -213,6 +178,10 @@ namespace sockets
       /** get counter of number of bytes sent. */
       u64 GetBytesSent(bool clear = false) override;
 
+
+      output * top_output_buffer() override;
+
+      
 #if defined(BSD_STYLE_SOCKETS)
       /** Socks4 specific callback. */
       void OnSocks4Connect() override;
@@ -236,6 +205,8 @@ namespace sockets
       the ssl action_context for an incoming connection. */
       virtual void InitSSLServer();
 
+      void _001InitSSLServer() override;
+
       /** Flag that says a broken connection will try to reconnect. */
       void SetReconnect(bool = true);
       /** Check reconnect on lost connection flag status. */
@@ -255,7 +226,7 @@ namespace sockets
       bool SetTcpNodelay(bool = true);
 
       virtual string get_connect_host();
-      virtual port_t get_connect_port();
+      virtual ::networking::port_t get_connect_port();
 
       virtual i32 Protocol() override;
 
@@ -300,10 +271,10 @@ namespace sockets
       /** ssl; still negotiating connection. */
       bool SSLNegotiate() override;
       /** SSL; get ssl password. */
-      const string & GetPassword();
+      string GetPassword() override;
 
 
-      virtual string get_url();
+      string get_url() override;
 
       virtual string get_short_description() override;
 
@@ -321,7 +292,7 @@ namespace sockets
    i32 tcp_socket_SSL_password_cb(char *buf,i32 num,i32 rwflag,void *userdata);
 
 
-} // namespace sockets
+} // namespace sockets_bsd
 
 
 

@@ -30,6 +30,16 @@ namespace sockets
    }
 
 
+
+   void link_in_socket::on_read(const void * pdata, memsize n)
+   {
+
+      tcp_socket::on_read(pdata, n);
+
+   }
+
+
+
    void link_in_socket::OnRead( char *buf, memsize n )
    {
 
@@ -90,7 +100,7 @@ namespace sockets
 
       __pointer(link_in_socket) pinsocket = __new(link_in_socket);
 
-      pinsocket->m_psockethandler = psocket->socket_handler();
+      pinsocket->initialize_socket(psocket->socket_handler());
 
       pinsocket->m_in = psocket;
 

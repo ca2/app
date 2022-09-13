@@ -11,22 +11,22 @@ Copyright (ca) 1998 by PJ Naughter.
 #pragma once
 
 
-namespace net
+namespace networking_bsd
 {
 
 
-   class CLASS_DECL_APEX ip_enum :
-      virtual public ::object
+   class CLASS_DECL_NETWORKING_BSD ip_enum :
+      virtual public ::networking::ip_enum
    {
    public:
 
 
 
       ip_enum();
-      virtual ~ip_enum();
+      ~ip_enum() override;
 
 
-      virtual ::count enumerate(array < ::networking::address > & ipa);
+      virtual ::count enumerate(__pointer_array(::networking::address) & ipa);
 
 
    };

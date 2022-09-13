@@ -468,7 +468,7 @@ void __node_acme_pos_term()
    //::CoUninitialize();
 
 
-   WSACleanup();
+   //WSACleanup();
 
 
    //return true;

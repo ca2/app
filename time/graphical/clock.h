@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "time/datetime/clock.h"
+
+
 namespace datetime
 {
 
@@ -9,7 +12,7 @@ namespace datetime
    {
 
 
-      class CLASS_DECL_CA2_TIME visual :
+      class CLASS_DECL_CA2_TIME graphical :
          virtual public clock
       {
       public:
@@ -19,8 +22,8 @@ namespace datetime
          size_i32     m_size;
 
 
-         visual();
-         virtual ~visual();
+         graphical();
+         virtual ~graphical();
 
 
       };

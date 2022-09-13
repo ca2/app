@@ -16,7 +16,7 @@ namespace sockets
    public:
 
 
-      bool m_bConnecting; ///< Flag indicating connection in progress
+      //bool m_bConnecting; ///< Flag indicating connection in progress
       //::second m_secsConnectionTimeout; ///< Connection timeout (seconds)
       bool m_bFlushBeforeClose; ///< Send all data before closing (default true)
       i32 m_iMaximumConnectionRetryCount; ///< Maximum connection retries (tcp)
@@ -31,11 +31,11 @@ namespace sockets
 
 
       /** socket should Check Connect on next write event from select(). */
-      void set_connecting(bool bSet = true);
+      //void set_connecting(bool bSet = true);
 
       /** Check connecting flag.
       \return true if the socket is still trying to connect */
-      bool is_connecting() override;
+      //bool is_connecting() override;
 
       /** Returns true when socket file descriptor is valid,
       socket connection is established, and socket is not about to

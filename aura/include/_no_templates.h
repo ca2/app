@@ -21,7 +21,7 @@
 #include "aura/include/_c.h"
 #include "aura/operating_system/apple/_c_mm.h"
 
-#include "aura/user/menu/menu_shared.h"
+#include "aura/user/menu/shared.h"
 
 
 // #include "aura/platform/object_reference_count_debug.h"

@@ -47,7 +47,7 @@ namespace sockets
       virtual void set_ssl_cipher_list(const ::string & strCipherList);
 
       /** close file descriptor. */
-      virtual void close();
+      void close() override;
 
       virtual void set_should_detach(bool bSet);
       virtual bool should_detach() const;
@@ -121,7 +121,7 @@ namespace sockets
       virtual i32 GetDepth();
 
       /** OnRead on a listen_socket receives an incoming connection. */
-      virtual void OnRead();
+      void OnRead() override;
 
       /** Please don't use this method.
       "accept()" is handled automatically in the OnRead() method. */

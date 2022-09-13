@@ -154,11 +154,11 @@ namespace networking_bsd
 
       ::networking_bsd::address & operator=(const ::networking_bsd::address & address);
 
-      string get_display_number() const;
+      string get_display_number() const override;
 
-      ::networking::port_t get_service_number() const;
-      ::networking::port_t use_address_service_number_as_offset_for_base_port(::networking::port_t portBase) const;
-      void set_service_number(::networking::port_t port);
+      ::networking::port_t get_service_number() const override;
+      ::networking::port_t use_address_service_number_as_offset_for_base_port(::networking::port_t portBase) const override;
+      void set_service_number(::networking::port_t port) override;
 
 
       bool is_in_same_net(::networking::address * paddress, ::networking::address * paddressMask) const override;
@@ -202,8 +202,8 @@ namespace networking_bsd
       inline u32 GetScopeId();
 #endif
 
-      void sync_os_address();
-      void sync_os_service();
+      void sync_os_address() override;
+      void sync_os_service() override;
 
    };
 

@@ -266,6 +266,11 @@ namespace sockets
       /** This method must be implemented to initialize
       the ssl action_context for an outgoing connection. */
       virtual void InitSSLClient();
+
+
+      virtual void set_init_ssl_client_context(const ::string & strInitSSLClientContext);
+
+
       /** This method must be implemented to initialize
       the ssl action_context for an incoming connection. */
       virtual void InitSSLServer();

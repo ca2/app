@@ -22,9 +22,9 @@ public:
    ~simple_still() override;
 
 
-   virtual void pre_subclass_window();
+   void pre_subclass_window() override;
    
-   virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+   void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
    //virtual ~simple_still();
 
    //LRESULT OnSetIcon(wparam wparam, lparam lparam);

@@ -9,6 +9,7 @@
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/context_image.h"
+#include "aura/graphics/image/drawing.h"
 #include "still.h"
 #include "aura/message/user.h"
 

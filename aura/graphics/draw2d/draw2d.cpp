@@ -2,6 +2,10 @@
 #include "lock.h"
 #include "aura/graphics/image/save_image.h"
 #include "aura/graphics/image/array.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/image/imaging.h"
+#include "aura/graphics/image/fastblur.h"
+#include "aura/graphics/image/drawing.h"
 #include "graphics.h"
 #include "host.h"
 #include "brush.h"
@@ -583,6 +587,122 @@ namespace draw2d
 
 
    }
+
+
+void draw2d::emboss_predicate(
+   ::draw2d::graphics_pointer & pgraphics,
+   const ::rectangle_i32 & rectangle,
+   const ::function < void(::draw2d::graphics *) > & functionDraw,
+   ::draw2d::fastblur & blur,
+   ::image_pointer & pimageBlur,
+   ::color::color crGlow,
+   int iSpreadRadius,
+   int iBlurRadius,
+   int iBlur,
+   bool bUpdate,
+   const ::color_filter & colorfilter)
+{
+
+   int iR = iSpreadRadius + iBlurRadius + iBlur + 1;
+
+   ::rectangle_i32 rectangleEmboss = rectangle;
+
+   rectangleEmboss.left -= (::i32)(iR * g_dEmboss);
+   rectangleEmboss.top -= (::i32)(iR * g_dEmboss);
+   rectangleEmboss.right += (::i32)(iR * g_dEmboss);
+   rectangleEmboss.bottom += (::i32)(iR * g_dEmboss);
+
+   if (bUpdate || !pimageBlur->is_ok())
+   {
+
+      int iEffectiveSpreadRadius = iSpreadRadius;
+
+      int iEffectiveBlurRadius = iBlurRadius;
+
+      const ::size_i32 & size = rectangleEmboss.size();
+
+      pimageBlur->create(rectangleEmboss);
+
+      pimageBlur->fill(0, 0, 0, 0);
+
+      ::rectangle_i32 rectangleCache;
+
+      rectangleCache.left = (::i32)(iR * g_dEmboss);
+      rectangleCache.top = (::i32)(iR * g_dEmboss);
+      rectangleCache.right = rectangleCache.left + rectangle.width();
+
+      rectangleCache.bottom = rectangleCache.top + rectangle.height();
+
+      ::image_pointer pimage;
+
+      //auto estatus =
+
+      __construct(pimage);
+
+      //if (!estatus)
+      //{
+
+      //   return false;
+
+      //}
+
+      //estatus =
+
+      pimage->create(size);
+
+      //if (!estatus)
+      //{
+
+      //   return false;
+
+      //}
+
+      pimage->fill(0, 0, 0, 0);
+
+      auto pbrushText = __create < ::draw2d::brush >();
+
+      pbrushText->create_solid(argb(255, 255, 255, 255));
+      pimage->get_graphics()->set(pbrushText);
+
+      pimage->get_graphics()->offset_origin(rectangleCache.left - rectangle.left, rectangleCache.top - rectangle.top);
+
+      functionDraw(pimage->get_graphics());
+
+      pimage->get_graphics()->offset_origin(-rectangleCache.left + rectangle.left, -rectangleCache.top + rectangle.top);
+
+      auto psystem = m_psystem->m_paurasystem;
+
+      psystem->imaging().channel_spread_set_color(pimageBlur->g(), nullptr, size, pimage->g(), nullptr, ::color::e_channel_alpha, iEffectiveSpreadRadius, argb(255, 255, 255, 255));
+
+      for (iptr i = 0; i < iBlur; i++)
+      {
+
+         blur.blur(pimageBlur, iEffectiveBlurRadius);
+
+      }
+
+      pimageBlur->set_rgb(crGlow);
+
+      pimageBlur->mult_alpha();
+
+   }
+
+   pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
+
+   image_source imagesource(pimageBlur);
+
+   image_drawing_options imagedrawingoptions(rectangleEmboss);
+
+   imagedrawingoptions = colorfilter;
+
+   image_drawing imagedrawing(imagedrawingoptions, imagesource);
+
+   pgraphics->draw(imagedrawing);
+
+   //return true;
+
+}
+
 
    void draw2d::alpha_spread__24CC(
       byte * lpbDst, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy,

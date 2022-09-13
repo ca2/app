@@ -1250,7 +1250,7 @@ namespace user
       virtual void _001PrintBuffer(::draw2d::graphics_pointer & pgraphics);
       virtual void _001Print(::draw2d::graphics_pointer & pgraphics) ;
       void _000CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics);
+      void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001DrawThis(::draw2d::graphics_pointer & pgraphics) ;
       virtual void _001DrawChildren(::draw2d::graphics_pointer & pgraphics) ;
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics);
@@ -1350,7 +1350,7 @@ namespace user
 
       //virtual void set_cursor(::windowing::cursor* pcursor);
 
-      virtual ::graphics::graphics* get_window_graphics();
+      ::graphics::graphics* get_window_graphics() override;
 
       //virtual void _001PrintBuffer(::draw2d::graphics_pointer& pgraphics);
       //virtual void _001Print(::draw2d::graphics_pointer& pgraphics);
@@ -1361,8 +1361,8 @@ namespace user
       //virtual void draw_control_background(::draw2d::graphics_pointer& pgraphics);
       //virtual void _000OnDraw(::draw2d::graphics_pointer& pgraphics) override;
 
-      virtual void _001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pgraphics);
-      virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pgraphics);
+      void _001DeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pgraphics) override;
+      void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pgraphics) override;
 
       
       //virtual ::oswindow _oswindow() const;
@@ -1981,13 +1981,13 @@ namespace user
 
       //virtual bool simple_on_control_event(::message::message* pmessage, ::enum_topic etopic);
 
-      virtual ::item_pointer hit_test(::user::mouse * pmouse);
+      ::item_pointer hit_test(::user::mouse * pmouse) override;
 
       //using ::aura::drawable::hit_test;
-      virtual ::item_pointer hit_test(const ::point_i32 & point);
+            //using ::aura::drawable::on_hit_test;
+      ::item_pointer hit_test(const ::point_i32 & point) override;
 
-      //using ::aura::drawable::on_hit_test;
-      virtual ::item_pointer on_hit_test(const ::point_i32 & point);
+      ::item_pointer on_hit_test(const ::point_i32 & point) override;
 
       //virtual bool update_hover(const ::point_i32 & point, bool bAvoidRedraw = true);
       virtual ::item_pointer update_hover(::user::mouse * pmouse, bool bAvoidRedraw = true);

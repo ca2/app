@@ -16,6 +16,8 @@
 #include "aura/windowing/windowing.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/task_tool.h"
+#include "aura/graphics/image/icon.h"
+#include "aura/graphics/image/imaging.h"
 #include "acme/platform/profiler.h"
 #include "aura/user/user/user.h"
 #include "aura/hardware/devices.h"

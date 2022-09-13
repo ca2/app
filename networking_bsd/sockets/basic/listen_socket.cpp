@@ -355,7 +355,7 @@ namespace sockets_bsd
 
       struct sockaddr sockaddr{};
 
-      int sockaddr_len = sizeof(sockaddr);
+      socklen_t sockaddr_len = sizeof(sockaddr);
 
       SOCKET socketAccept = accept(socketid, &sockaddr, &sockaddr_len);
 

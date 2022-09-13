@@ -278,7 +278,7 @@ namespace sockets_bsd
 
       // gets the address of the socket at the other end
       auto paddress = __new(::networking_bsd::address);
-      socklen_t nLengthAddr = sizeof(SOCKADDR);
+      socklen_t nLengthAddr = sizeof(sockaddr);
       if (getpeername(GetSocketId(), paddress->sa(), &nLengthAddr) == SOCKET_ERROR)
       {
          
@@ -298,7 +298,7 @@ namespace sockets_bsd
 
       // gets the address of the socket at this end
       auto paddress = __new(::networking_bsd::address);
-      socklen_t nLengthAddr = sizeof(SOCKADDR);
+      socklen_t nLengthAddr = sizeof(sockaddr);
       if (getsockname(GetSocketId(), paddress->sa(), &nLengthAddr) == SOCKET_ERROR)
       {
          

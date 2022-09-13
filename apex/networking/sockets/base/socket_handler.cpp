@@ -79,6 +79,12 @@ namespace sockets
    }
 
    
+   void base_socket_handler::add(const socket_pointer& psocket)
+   {
+      
+      
+   }
+   
    //void base_socket_handler::__tracef(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, base_socket * psocket, const ::string & strContext, i32 iError, const ::string & strMessage)
    //{
 

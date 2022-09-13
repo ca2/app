@@ -437,6 +437,7 @@
 		9ADB6C9A28D128D400608B22 /* composite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADB6C9728D128D400608B22 /* composite.cpp */; };
 		9ADB6C9B28D128D400608B22 /* composite.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADB6C9828D128D400608B22 /* composite.h */; };
 		9ADB6C9C28D128D400608B22 /* composite.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADB6C9828D128D400608B22 /* composite.h */; };
+		9ADB6CB128D1397200608B22 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ADB6CB028D1397200608B22 /* libacme.dylib */; };
 		9AE64461252A5BEF00BED5B8 /* procedure.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63EBF252A5BE900BED5B8 /* procedure.h */; };
 		9AE64462252A5BEF00BED5B8 /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63EC0252A5BE900BED5B8 /* console.h */; };
 		9AE64463252A5BEF00BED5B8 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE63EC3252A5BE900BED5B8 /* _impl.h */; };
@@ -575,7 +576,6 @@
 		9AE6493E252A5BF700BED5B8 /* policy_objcpp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64458252A5BEE00BED5B8 /* policy_objcpp.h */; };
 		9AE6493F252A5BF700BED5B8 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE64459252A5BEE00BED5B8 /* _.h */; };
 		9AE64941252A5BF700BED5B8 /* update.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE6445C252A5BEE00BED5B8 /* update.h */; };
-		9AE6494D252A638900BED5B8 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE6494C252A638900BED5B8 /* libacme.dylib */; };
 		9AE6494F252A638900BED5B8 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE6494E252A638900BED5B8 /* libapex.dylib */; };
 		9AE64951252A638900BED5B8 /* libaqua.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE64950252A638900BED5B8 /* libaqua.dylib */; };
 		9AE64952252A638900BED5B8 /* libaura.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE63EB1252A5BD200BED5B8 /* libaura.dylib */; };
@@ -786,6 +786,7 @@
 		9AC01E002748CC4B006BEBCC /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9ADB6C9728D128D400608B22 /* composite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = composite.cpp; sourceTree = "<group>"; };
 		9ADB6C9828D128D400608B22 /* composite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = composite.h; sourceTree = "<group>"; };
+		9ADB6CB028D1397200608B22 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE63E9B252A5B7800BED5B8 /* libaxis.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaxis.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE63EAA252A5BD200BED5B8 /* aura.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = aura.xcodeproj; path = ../aura/aura.xcodeproj; sourceTree = "<group>"; };
 		9AE63EBF252A5BE900BED5B8 /* procedure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = procedure.h; sourceTree = "<group>"; };
@@ -951,9 +952,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9ADB6CB128D1397200608B22 /* libacme.dylib in Frameworks */,
 				9AE64963252A641500BED5B8 /* libsqlite3.tbd in Frameworks */,
 				9AE64955252A63D100BED5B8 /* libbz2.tbd in Frameworks */,
-				9AE6494D252A638900BED5B8 /* libacme.dylib in Frameworks */,
 				9AE6494F252A638900BED5B8 /* libapex.dylib in Frameworks */,
 				9AE64951252A638900BED5B8 /* libaqua.dylib in Frameworks */,
 				9AE64952252A638900BED5B8 /* libaura.dylib in Frameworks */,
@@ -1580,6 +1581,7 @@
 		9AE6494B252A638900BED5B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9ADB6CB028D1397200608B22 /* libacme.dylib */,
 				9AE64962252A641500BED5B8 /* libsqlite3.tbd */,
 				9AE64954252A63D100BED5B8 /* libbz2.tbd */,
 				9AE6494C252A638900BED5B8 /* libacme.dylib */,

@@ -98,7 +98,7 @@ namespace sockets
       //virtual socket_map::association* new_association(socket_pointer && psocket) = 0;
    //private:
       /** erase socket from socket ::map, used by socket class. */
-     // virtual void erase(base_socket *) = 0;
+      virtual void erase(const socket_pointer & psocket) = 0;
    public:
 
       virtual bool contains(base_socket *) = 0;

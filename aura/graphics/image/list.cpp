@@ -3,6 +3,7 @@
 #include "image.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/lock.h"
+#include "aura/graphics/image/drawing.h"
 #include "context_image.h"
 
 /*

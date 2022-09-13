@@ -1,10 +1,6 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
-#include "_.h"
-#include "_graphics.h"
-#include "_defer.h"
+#include "buffer.h"
+#include "aura/graphics/image/image.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/interaction.h"
 

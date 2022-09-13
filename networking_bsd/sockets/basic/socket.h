@@ -25,7 +25,7 @@ namespace sockets_bsd
       /** "Default" constructor */
       socket();
 
-      virtual ~socket();
+      ~socket() override;
 
 
 

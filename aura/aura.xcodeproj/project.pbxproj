@@ -255,6 +255,13 @@
 		9A4AE70027F9549A00A4B000 /* control_box_button.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4AE6FD27F9549900A4B000 /* control_box_button.h */; };
 		9A4AE70127F9549A00A4B000 /* control_box_icon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4AE6FE27F9549900A4B000 /* control_box_icon.cpp */; };
 		9A5253D624A820EE0088E35A /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52538A24A801D80088E35A /* _.cpp */; };
+		9A5ECCB728CCBD700084D354 /* shared_commnand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A47A7DC28CBBD9C0002CAE0 /* shared_commnand.cpp */; };
+		9A5ECCB928CCBD760084D354 /* shared.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A47A7DF28CBBD9D0002CAE0 /* shared.cpp */; };
+		9A5ECD4028CCC3940084D354 /* item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECD3D28CCC3940084D354 /* item.cpp */; };
+		9A5ECD4128CCC3940084D354 /* shape.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5ECD3E28CCC3940084D354 /* shape.h */; };
+		9A5ECD4228CCC3940084D354 /* water_routine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECD3F28CCC3940084D354 /* water_routine.cpp */; };
+		9A5ECD4328CCC39A0084D354 /* water_routine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECD3F28CCC3940084D354 /* water_routine.cpp */; };
+		9A5ECD4428CCC39E0084D354 /* item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECD3D28CCC3940084D354 /* item.cpp */; };
 		9A68547A2432ED410002FE94 /* bitmap_source_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6854782432ED410002FE94 /* bitmap_source_buffer.h */; };
 		9A68547B2432ED420002FE94 /* bitmap_source_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6854792432ED410002FE94 /* bitmap_source_buffer.cpp */; };
 		9A750F4D282B8FB800C4861B /* drawer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE6378B26700C19005F3412 /* drawer.cpp */; };
@@ -965,11 +972,16 @@
 		9A3CD7F32512E5D600E811FA /* console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
 		9A3CD7F52512E5E500E811FA /* console_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console_common.h; sourceTree = "<group>"; };
 		9A3CD7F72512E5EF00E811FA /* application_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = application_common.h; sourceTree = "<group>"; };
+		9A47A7DC28CBBD9C0002CAE0 /* shared_commnand.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shared_commnand.cpp; sourceTree = "<group>"; };
+		9A47A7DF28CBBD9D0002CAE0 /* shared.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shared.cpp; sourceTree = "<group>"; };
 		9A4AE6FA27F9548A00A4B000 /* control_box_icon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = control_box_icon.h; sourceTree = "<group>"; };
 		9A4AE6FC27F9549900A4B000 /* control_box_button.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = control_box_button.cpp; sourceTree = "<group>"; };
 		9A4AE6FD27F9549900A4B000 /* control_box_button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = control_box_button.h; sourceTree = "<group>"; };
 		9A4AE6FE27F9549900A4B000 /* control_box_icon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = control_box_icon.cpp; sourceTree = "<group>"; };
 		9A52538A24A801D80088E35A /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
+		9A5ECD3D28CCC3940084D354 /* item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = item.cpp; sourceTree = "<group>"; };
+		9A5ECD3E28CCC3940084D354 /* shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shape.h; sourceTree = "<group>"; };
+		9A5ECD3F28CCC3940084D354 /* water_routine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = water_routine.cpp; sourceTree = "<group>"; };
 		9A6854782432ED410002FE94 /* bitmap_source_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitmap_source_buffer.h; sourceTree = "<group>"; };
 		9A6854792432ED410002FE94 /* bitmap_source_buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bitmap_source_buffer.cpp; sourceTree = "<group>"; };
 		9A68557A2432F2BF0002FE94 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -1671,6 +1683,7 @@
 				9A1FB50D28712FAC0042849A /* holder.h */,
 				9AE245DB27F1227900B849D0 /* host.cpp */,
 				9AE245DC27F1227900B849D0 /* host.h */,
+				9A5ECD3D28CCC3940084D354 /* item.cpp */,
 				9AB3DCC3278360390025099F /* item.h */,
 				9AF8CE50271B670C00BF80B7 /* lock.cpp */,
 				9AF8CE51271B670D00BF80B7 /* lock.h */,
@@ -1696,8 +1709,10 @@
 				9A1FB50A28712FAB0042849A /* region_shape.h */,
 				9A3764712409BF0B002D15D3 /* region.cpp */,
 				9A3764312409BF00002D15D3 /* region.h */,
+				9A5ECD3E28CCC3940084D354 /* shape.h */,
 				9AC2CE912653452A00CC8096 /* task_tool.cpp */,
 				9AC2CE922653452D00CC8096 /* task_tool.h */,
+				9A5ECD3F28CCC3940084D354 /* water_routine.cpp */,
 				9A37645D2409BF06002D15D3 /* water_routine.h */,
 			);
 			path = draw2d;
@@ -2138,6 +2153,15 @@
 			path = sandbox;
 			sourceTree = "<group>";
 		};
+		9ADB6CAE28D137DF00608B22 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				9A47A7DF28CBBD9D0002CAE0 /* shared.cpp */,
+				9A47A7DC28CBBD9C0002CAE0 /* shared_commnand.cpp */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		9AE7233517E83B69003E47F9 /* user */ = {
 			isa = PBXGroup;
 			children = (
@@ -2177,6 +2201,7 @@
 				9A4E846F1D1FD3A7008A419B /* Products */,
 				9A9799131DAC3C2B001CD6D9 /* Frameworks */,
 				9AEA1773275FF4F2006437A3 /* libios_aura.a */,
+				9ADB6CAE28D137DF00608B22 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2211,6 +2236,7 @@
 				9A2273BE27CF053B0042BAC2 /* true_type_font_utilities.h in Headers */,
 				9A92312F27EACF2100B5A78D /* extension.h in Headers */,
 				9A2270C727CEE2010042BAC2 /* ns_exception.h in Headers */,
+				9A5ECD4128CCC3940084D354 /* shape.h in Headers */,
 				9A750F9B282B90B700C4861B /* _experience_const.h in Headers */,
 				9AC2CECF2653455600CC8096 /* event.h in Headers */,
 				9A22712A27CEE2020042BAC2 /* _macos2.h in Headers */,
@@ -2678,11 +2704,13 @@
 				9A750FDF282B929E00C4861B /* cursor.cpp in Sources */,
 				9A201AC4247733D900A31CBF /* graphics_extension.cpp in Sources */,
 				9A8FCD892651AFAB00C0D8A1 /* font_list.cpp in Sources */,
+				9A5ECCB928CCBD760084D354 /* shared.cpp in Sources */,
 				9A750F59282B907700C4861B /* user.cpp in Sources */,
 				9A8FCD8B2651AFAB00C0D8A1 /* font_enumeration.cpp in Sources */,
 				9A750F5A282B907F00C4861B /* tool_window.cpp in Sources */,
 				9A94DE64282C0ADA00F5C1CA /* menu_item.cpp in Sources */,
 				9A750FEA282B932100C4861B /* node.cpp in Sources */,
+				9A5ECD4428CCC39E0084D354 /* item.cpp in Sources */,
 				9ACFE56A28497F9400911485 /* host_interaction.cpp in Sources */,
 				9A201AC5247733D900A31CBF /* graphics.cpp in Sources */,
 				9A94DE69282C0ADA00F5C1CA /* cursor.cpp in Sources */,
@@ -2693,6 +2721,7 @@
 				9A750FCB282B929E00C4861B /* fastblur.cpp in Sources */,
 				9A750FE0282B929E00C4861B /* icon.cpp in Sources */,
 				9A750F61282B909E00C4861B /* shell.cpp in Sources */,
+				9A5ECCB728CCBD700084D354 /* shared_commnand.cpp in Sources */,
 				9A94DE6A282C0ADA00F5C1CA /* menu_command.cpp in Sources */,
 				9A750F63282B90A700C4861B /* scroll_bar.cpp in Sources */,
 				9A750FA4282B910600C4861B /* check_box.cpp in Sources */,
@@ -2751,6 +2780,7 @@
 				9A750FA2282B90FE00C4861B /* button.cpp in Sources */,
 				9A750FAF282B913A00C4861B /* interaction_thread.cpp in Sources */,
 				9A750FEC282B932100C4861B /* draw_context.cpp in Sources */,
+				9A5ECD4328CCC39A0084D354 /* water_routine.cpp in Sources */,
 				9A94DE6F282C0ADA00F5C1CA /* icon.cpp in Sources */,
 				9A750FCA282B929E00C4861B /* map.cpp in Sources */,
 				9A8FCD912651AFAB00C0D8A1 /* write_text.cpp in Sources */,
@@ -2872,6 +2902,7 @@
 				9AC2CEF42653455600CC8096 /* menu_command.cpp in Sources */,
 				9A92314127EAD04F00B5A78D /* idpool.cpp in Sources */,
 				9A92311327EACF2100B5A78D /* image.cpp in Sources */,
+				9A5ECD4228CCC3940084D354 /* water_routine.cpp in Sources */,
 				9AF8CE54271B670D00BF80B7 /* lock.cpp in Sources */,
 				9A22713327CEE2020042BAC2 /* library.cpp in Sources */,
 				9AC2CEE72653455600CC8096 /* icon.cpp in Sources */,
@@ -2931,6 +2962,7 @@
 				9ADB6CA628D12AFB00608B22 /* shared.cpp in Sources */,
 				9A1FB51128712FAC0042849A /* path_simple_optimization.cpp in Sources */,
 				9A2270D627CEE2010042BAC2 /* windowing.cpp in Sources */,
+				9A5ECD4028CCC3940084D354 /* item.cpp in Sources */,
 				9A92312E27EACF2100B5A78D /* meta.cpp in Sources */,
 				9A92310C27EACF2100B5A78D /* extension.cpp in Sources */,
 				9A979D7228C82ACE0013DC54 /* alpha_source.cpp in Sources */,

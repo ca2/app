@@ -10,7 +10,7 @@
 class system;
 
 
-class CLASS_DECL_APEX menu_shared :
+class CLASS_DECL_AURA menu_shared :
    virtual public ::element
 {
 public:

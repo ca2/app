@@ -6,6 +6,7 @@
 #include "aura/message/user.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/list.h"
+#include "aura/graphics/image/drawing.h"
 #include "aura/user/user/scroll_data.h"
 #include "base/user/user/impact.h"
 #include "base/user/user/document.h"

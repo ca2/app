@@ -234,6 +234,22 @@ namespace sockets_bsd
    }
 
 
+   void base_socket::set_end()
+   {
+
+      m_bEnd = true;
+
+   }
+
+
+   bool base_socket::is_end() const
+   {
+
+      return m_bEnd;
+
+   }
+
+
    i32 base_socket::close_socket(SOCKET s)
    {
 
@@ -309,6 +325,14 @@ namespace sockets_bsd
    SOCKET base_socket::GetSocketId()
    {
       return m_socket;
+   }
+
+
+   ::networking::port_t base_socket::get_bind_port() const
+   {
+
+      return m_iBindPort;
+
    }
 
 
@@ -394,6 +418,14 @@ namespace sockets_bsd
    {
       
       return m_psockethandler;
+
+   }
+
+
+   memory_file * base_socket::get_input_memory_file()
+   {
+
+      return m_pmemfileInput;
 
    }
 
@@ -707,11 +739,17 @@ namespace sockets_bsd
 
    void base_socket::OnSSLConnect()
    {
+
+      base_socket_composite()->OnSSLConnect();
+
    }
 
 
    void base_socket::OnSSLAccept()
    {
+
+      base_socket_composite()->OnSSLAccept();
+
    }
 
 
@@ -1023,6 +1061,8 @@ namespace sockets_bsd
 
    void base_socket::OnDetached()
    {
+
+      //base_socket_composite()->OnDetached();
 
    }
 

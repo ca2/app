@@ -11,8 +11,8 @@ namespace sockets
       //::object(&h),
       //base_socket(h),
       //socket(h),
-      m_depth(0),
-      m_bDetach(false)
+      m_depth(0)
+      //, m_bDetach(false)
    {
       m_bImpl = false;
    }
@@ -36,6 +36,23 @@ namespace sockets
       //}
 
    }
+
+
+   void listen_socket_base::set_should_detach(bool bSet)
+   {
+
+      m_pcomposite->set_should_detach(bSet);
+
+   }
+
+
+   bool listen_socket_base::should_detach() const
+   {
+
+      return m_pcomposite->should_detach();
+
+   }
+
 
    /** Bind and listen to any interface.
    \lparam port Port (0 is random)
@@ -434,6 +451,22 @@ namespace sockets
       return m_pcomposite->create_listen_socket();
 
    }
+
+
+   void listen_socket_base::set_ssl_catalog(const ::string & strCat)
+   {
+
+      return m_pcomposite->set_ssl_catalog(strCat);
+
+   }
+
+   void listen_socket_base::set_ssl_cipher_list(const ::string & strCipherList)
+   {
+
+      return m_pcomposite->set_ssl_cipher_list(strCipherList);
+
+   }
+
 
 
 } // namespace sockets

@@ -37,18 +37,18 @@ namespace netserver
    bool socket_thread_base::initialize_listen_socket()
    {
 
-      //m_plistensocket->m_strCat = m_strCat;
+      m_plistensocket->set_ssl_catalog(m_strCat);
 
-      //m_plistensocket->m_strCipherList = m_strCipherList;
+      m_plistensocket->set_ssl_cipher_list(m_strCipherList);
 
-      //m_plistensocket->m_bDetach = true;
+      m_plistensocket->set_should_detach(true);
 
-      //if (m_plistensocket->m_strCat.has_char())
-      //{
+      if (m_strCat.has_char())
+      {
 
-      //   m_plistensocket->EnableSSL();
+         m_plistensocket->EnableSSL();
 
-      //}
+      }
 
       return true;
 

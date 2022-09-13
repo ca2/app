@@ -30,6 +30,16 @@ namespace sockets
    }
 
 
+
+   void link_in_socket::on_read(const void * pdata, memsize n)
+   {
+
+      tcp_socket::on_read(pdata, n);
+
+   }
+
+
+
    void link_in_socket::OnRead( char *buf, memsize n )
    {
 

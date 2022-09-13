@@ -1107,9 +1107,13 @@ namespace networking_bsd
    bool networking::reverse_schedule(reverse_cache_item* pitem)
    {
 
-      synchronous_lock synchronouslock(mutex());
+      {
 
-      m_reversecacheaRequest.add(pitem);
+         synchronous_lock synchronouslock(mutex());
+
+         m_reversecacheaRequest.add(pitem);
+
+      }
 
       if (!m_pthreadReverse)
       {
@@ -1145,12 +1149,7 @@ namespace networking_bsd
 
                      synchronouslock.unlock();
 
-                     if (!task_sleep(100_ms))
-                     {
-
-                        break;
-
-                     }
+                     preempt(100_ms);
 
                   }
 

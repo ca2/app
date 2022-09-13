@@ -177,7 +177,7 @@ namespace sockets
       virtual base_socket * base_socket_composite();
       virtual const base_socket * base_socket_composite() const;
 
-      ::networking::networking * networking();
+      virtual ::networking::networking * networking();
       /** base_socket class instantiation method. Used when a "non-standard" constructor
       * needs to be used for the base_socket class. Note: the base_socket class still needs
       * the "default" constructor with one as input parameter.
@@ -194,6 +194,10 @@ namespace sockets
       even if the base_socket is detached.
       */
       virtual base_socket_handler * master_socket_handler() const;
+
+
+      virtual memory_file * get_input_memory_file();
+
 
       virtual void destroy_ssl_session();
 
@@ -221,9 +225,17 @@ namespace sockets
       \sa SetCloseAndDelete */
       virtual void close();
 
+      virtual void _001InitSSLServer();
+      virtual void set_end();
+
+
+      virtual bool is_end() const;
+
 
       //virtual i32 close_socket(socket_id s);
 
+
+      virtual ::networking::port_t get_bind_port() const;
 
       virtual bool is_connecting();
 
@@ -257,7 +269,7 @@ namespace sockets
       virtual time_t Uptime();
 
       /** Set address/port of last connect() call. */
-      void SetClientRemoteAddress(::networking::address * address);
+      virtual void SetClientRemoteAddress(::networking::address * address);
 
       /** get address/port of last connect() call. */
       virtual ::networking::address_pointer GetClientRemoteAddress();

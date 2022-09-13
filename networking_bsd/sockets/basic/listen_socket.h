@@ -36,6 +36,16 @@ namespace sockets_bsd
 
       void initialize(::object * pobject) override;
 
+
+      void set_ssl_catalog(const ::string & strCat) override;
+
+
+      void set_ssl_cipher_list(const ::string & strCipherList) override;
+
+
+      void set_should_detach(bool bSet) override;
+      bool should_detach() const override;
+
       //virtual __pointer(::sockets::socket) create_listen_socket();
 
       /** close file descriptor. */

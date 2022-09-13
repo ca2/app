@@ -24,6 +24,8 @@ namespace sockets
       virtual ~link_out_socket();
 
       using ::sockets::tcp_socket::OnRead;
+
+      
       virtual void OnRead( char *buf, memsize n );
       void link_write(void * p, memsize size);
 

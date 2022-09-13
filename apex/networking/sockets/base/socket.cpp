@@ -263,6 +263,38 @@ namespace sockets
 
    }
 
+   void base_socket::_001InitSSLServer()
+   {
+
+
+
+   }
+
+
+   void base_socket::set_end()
+   {
+
+      base_socket_composite()->set_end();
+
+   }
+
+
+   bool base_socket::is_end() const
+   {
+
+      return base_socket_composite()->is_end();
+
+   }
+
+
+   ::networking::port_t base_socket::get_bind_port() const
+   {
+
+      return base_socket_composite()->get_bind_port();
+
+   }
+
+
 
    //i32 base_socket::close_socket(socket_id s)
    //{
@@ -444,6 +476,14 @@ namespace sockets
       //return m_psockethandler;
 
       return base_socket_composite()->master_socket_handler();
+
+   }
+
+
+   memory_file * base_socket::get_input_memory_file()
+   {
+
+      return base_socket_composite()->get_input_memory_file();
 
    }
 

@@ -64,8 +64,8 @@ namespace sockets_bsd
       bool                    m_b_chunked;
 
 
-      ::memory_file *         m_pmemfileInput;
-      bool                    m_bEnd; // should finish by not sending no more writes
+      __pointer(::memory_file)   m_pmemfileInput;
+      bool                       m_bEnd; // should finish by not sending no more writes
       string                  m_strCat;
       string                  m_strCipherList;
       callback *              m_pcallback;
@@ -196,6 +196,9 @@ namespace sockets_bsd
       */
       ::sockets::base_socket_handler * master_socket_handler() const;
 
+
+      memory_file * get_input_memory_file() override;
+
       virtual void destroy_ssl_session();
 
       virtual void get_ssl_session();
@@ -220,9 +223,18 @@ namespace sockets_bsd
 
       virtual SOCKET GetSocketId();
 
+
+      ::networking::port_t get_bind_port() const override;
+
+
       /** close connection immediately - internal use.
       \sa SetCloseAndDelete */
       virtual void close();
+
+
+      void set_end() override;
+
+      bool is_end() const override;
 
 
       virtual i32 close_socket(SOCKET s);

@@ -22,7 +22,6 @@ namespace sockets
 
 
       i32              m_depth;
-      bool                 m_bDetach;
       base_socket *        m_pbasesocket;
 
       __pointer(listen_socket_base)       m_pcomposite;
@@ -43,8 +42,15 @@ namespace sockets
 
       virtual __pointer(socket) create_listen_socket();
 
+      virtual void set_ssl_catalog(const ::string & strCat);
+
+      virtual void set_ssl_cipher_list(const ::string & strCipherList);
+
       /** close file descriptor. */
       virtual void close();
+
+      virtual void set_should_detach(bool bSet);
+      virtual bool should_detach() const;
 
       /** Bind and listen to any interface.
       \lparam port Port (0 is random)

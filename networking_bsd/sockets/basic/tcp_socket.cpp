@@ -2040,12 +2040,161 @@ namespace sockets_bsd
    void tcp_socket::InitSSLServer()
    {
 
+      m_ptcpsocketComposite->InitSSLServer();
 
-      FATAL("InitSSLServer: You MUST implement your own InitSSLServer method");
+      //FATAL("InitSSLServer: You MUST implement your own InitSSLServer method");
 
-      SetCloseAndDelete();
+      //SetCloseAndDelete();
    }
 
+
+   void tcp_socket::_001InitSSLServer()
+   {
+
+            // here's the server.pem file we just created above
+      // %! remember to machine the password to the one you used for your server key
+      //InitializeContext(m_strCat, m_strCat, "", SSLv23_server_method());
+
+      string strId = m_strCat;
+
+      auto psystem = m_psystem->m_papexsystem;
+
+      if (strId.begins_ci("cat://"))
+      {
+
+         auto pcrypto = psystem->crypto();
+
+         strId = "cat://" + psystem->crypto()->md5(strId);
+
+      }
+      InitializeContext(strId, m_strCat, "", TLS_server_method());
+
+      string strCipherList = m_strCipherList;
+
+      if (strCipherList.is_empty())
+      {
+
+         strCipherList = "ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-RC4-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:RSA:SHA:3DES:!aNULL:!eNULL:!EXP:!LOW:!MD5:@STRENGTH";
+
+      }
+
+      //if (strCipherList.find("DH") >= 0)
+      //{
+
+      //   int_array ia;
+
+      //   ia.add(512);
+      //   ia.add(1024);
+      //   ia.add(2048);
+      //   ia.add(4096);
+
+      //   for (index i = 0; i < ia.get_count(); i++)
+      //   {
+
+      //      int keylength = ia[i];
+
+      //      if (get_dh(keylength) == nullptr)
+      //      {
+
+      //         string strTitle = ::file::path(m_strCat).name();
+
+      //         if (strTitle.find_ci(".") >= 0)
+      //         {
+
+      //            strTitle = strTitle.Left(strTitle.reverse_find("."));
+
+      //         }
+
+      //         string strFile = ::file::path(m_strCat).sibling(strTitle) + ".dh" + __string(keylength) + ".pem";
+
+      //         FILE * paramfile = fopen(strFile, "r");
+
+      //         if (paramfile)
+      //         {
+
+      //            DH * pdh = PEM_read_DHparams(paramfile, nullptr, nullptr, nullptr);
+
+      //            set_dh(keylength, pdh);
+
+      //            fclose(paramfile);
+
+      //         }
+
+      //      }
+
+      //   }
+
+      //   SSL_CTX_set_tmp_dh_callback(m_psslcontext->m_pclientcontext->m_psslcontext, &tmp_dh_callback);
+
+      //}
+
+
+      //int nid = OBJ_sn2nid(ECDHE_CURVE);
+
+      if (strCipherList.find("ECDH") >= 0)
+      {
+
+         //EVP_PKEY_CTX_new_from_name(nullptr, )
+
+         //EC_KEY *ecdh = EC_KEY_new_by_curve_name(NID_secp384r1);
+
+         //SSL_CTX_set_tmp_ecdh(m_psslcontext->m_pclientcontext->m_psslcontext, ecdh);
+
+         i32_array iaCurves;
+         //int* curves_new;
+         char* cs = NULL;
+         //char* p, * q;
+         int rv = -1;
+         //int nid;
+
+
+#define TLS_ECDHE_CURVES	"X25519,P-256,P-384"
+         //const char* curves = NID_secp384r1;
+
+         //free(config->ecdhecurves);
+         //config->ecdhecurves = NULL;
+         //config->ecdhecurves_len = 0;
+
+         //if (curves == NULL || strcasecmp(curves, "default") == 0)
+         //   curves = TLS_ECDHE_CURVES;
+
+         iaCurves.add(NID_X25519);
+         iaCurves.add(NID_secp256k1);
+         iaCurves.add(NID_secp384r1);
+         // iaCurves.add(NID_secp521r1);
+
+         if (!SSL_CTX_set1_groups(m_psslcontext->m_pclientcontext->m_psslcontext, iaCurves.get_data(), (long) iaCurves.get_size()))
+         {
+         
+            WARNING("failed to set ecdhe curves");
+
+         }
+
+      }
+
+      //if (strCipherList.find("DH") >= 0)
+      //{
+
+      //   SSL_CTX_set_options(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_CTX_get_options(m_psslcontext->m_pclientcontext->m_psslcontext) | SSL_OP_SINGLE_DH_USE | SSL_OP_CIPHER_SERVER_PREFERENCE);
+
+      //}
+      //else
+      {
+
+         SSL_CTX_set_options(m_psslcontext->m_pclientcontext->m_psslcontext, SSL_CTX_get_options(m_psslcontext->m_pclientcontext->m_psslcontext) | SSL_OP_CIPHER_SERVER_PREFERENCE);
+
+      }
+
+      if (!SSL_CTX_set_cipher_list(m_psslcontext->m_pclientcontext->m_psslcontext, strCipherList))
+      {
+
+         WARNING("failed to set cipher_list");
+
+      }
+
+
+
+   }
 
    void tcp_socket::InitializeContext(const string & context, const SSL_METHOD * pmethod)
    {
@@ -2578,50 +2727,50 @@ namespace sockets_bsd
 
       m_ptcpsocketComposite->on_connection_timeout();
 
-      //FATAL("connect: connect timeout");
+      FATAL("connect: connect timeout");
 
-      //m_estatus = error_connection_timed_out;
+      m_estatus = error_connection_timed_out;
 
-      //if(Socks4())
-      //{
+      if(Socks4())
+      {
 
-      //   OnSocks4ConnectFailed();
-      //   // retry direct connection
-      //}
-      //else if(GetMaximumConnectionRetryCount() == -1 ||
-      //        (GetMaximumConnectionRetryCount() && GetConnectionRetryCount() < GetMaximumConnectionRetryCount()))
-      //{
+         OnSocks4ConnectFailed();
+         // retry direct connection
+      }
+      else if(GetMaximumConnectionRetryCount() == -1 ||
+              (GetMaximumConnectionRetryCount() && GetConnectionRetryCount() < GetMaximumConnectionRetryCount()))
+      {
 
-      //   IncrementConnectionRetryCount();
+         IncrementConnectionRetryCount();
 
-      //   // ask socket via OnConnectRetry callback if we should continue trying
-      //   if(OnConnectRetry())
-      //   {
+         // ask socket via OnConnectRetry callback if we should continue trying
+         if(OnConnectRetry())
+         {
 
-      //      SetRetryClientConnect();
+            SetRetryClientConnect();
 
-      //   }
-      //   else
-      //   {
+         }
+         else
+         {
 
-      //      SetCloseAndDelete(true);
+            SetCloseAndDelete(true);
 
-      //      /// \todo state reason why connect failed
-      //      OnConnectFailed();
+            /// \todo state reason why connect failed
+            OnConnectFailed();
 
-      //   }
+         }
 
-      //}
-      //else
-      //{
+      }
+      else
+      {
 
-      //   SetCloseAndDelete(true);
-      //   /// \todo state reason why connect failed
-      //   OnConnectFailed();
+         SetCloseAndDelete(true);
+         /// \todo state reason why connect failed
+         OnConnectFailed();
 
-      //}
-      //
-      //set_connecting(false);
+      }
+      
+      set_connecting(false);
 
    }
 
@@ -2634,67 +2783,67 @@ namespace sockets_bsd
 
       m_ptcpsocketComposite->OnException();
 
-      //if(is_connecting())
-      //{
+      if(is_connecting())
+      {
 
-      //   i32 iError = __Handler(m_psockethandler)->m_iSelectErrno;
+         i32 iError = __Handler(m_psockethandler)->m_iSelectErrno;
 
-      //   if(iError == ETIMEDOUT)
-      //   {
+         if(iError == ETIMEDOUT)
+         {
 
-      //      m_estatus = error_connection_timed_out;
+            m_estatus = error_connection_timed_out;
 
-      //   }
-      //   else
-      //   {
-      //      //m_estatus = status_failed;
-      //   }
+         }
+         else
+         {
+            //m_estatus = status_failed;
+         }
 
-      //   int iGetConnectionRetry = GetMaximumConnectionRetryCount();
+         int iGetConnectionRetry = GetMaximumConnectionRetryCount();
 
-      //   int iGetConnectionRetries = GetConnectionRetryCount();
+         int iGetConnectionRetries = GetConnectionRetryCount();
 
-      //   if (Socks4())
-      //   {
+         if (Socks4())
+         {
 
-      //      OnSocks4ConnectFailed();
+            OnSocks4ConnectFailed();
 
-      //   }
-      //   else if(iGetConnectionRetry == -1 ||
-      //           (iGetConnectionRetry &&
-      //              iGetConnectionRetries < iGetConnectionRetry))
-      //   {
+         }
+         else if(iGetConnectionRetry == -1 ||
+                 (iGetConnectionRetry &&
+                    iGetConnectionRetries < iGetConnectionRetry))
+         {
 
-      //      const int nBufSize = 1024;
+            const int nBufSize = 1024;
 
-      //      char buf[nBufSize];
+            char buf[nBufSize];
 
-      //      SOCKET iGetSocket = GetSocketId();
+            SOCKET iGetSocket = GetSocketId();
 
-      //      int n = ::recv(iGetSocket, (char*)buf, (int)nBufSize, MSG_OOB);
+            int n = ::recv(iGetSocket, (char*)buf, (int)nBufSize, MSG_OOB);
 
-      //      INFORMATION("got " << n << " bytes of Out of Band Data");
+            INFORMATION("got " << n << " bytes of Out of Band Data");
 
-      //      // even though the connection failed at once, only retry after
-      //      // the connection timeout
-      //      // should we even try to connect again, when CheckConnect returns
-      //      // false it's because of a connection error - not a timeout...
-      //   }
-      //   else
-      //   {
-      //      set_connecting(false); // tnx snibbe
-      //      SetCloseAndDelete();
-      //      OnConnectFailed();
-      //   }
-      //   return;
-      //}
-      //// %! exception doesn't always mean something bad happened, this code should be reworked
-      //// errno valid here?
-      //i32 err = SoError();
+            // even though the connection failed at once, only retry after
+            // the connection timeout
+            // should we even try to connect again, when CheckConnect returns
+            // false it's because of a connection error - not a timeout...
+         }
+         else
+         {
+            set_connecting(false); // tnx snibbe
+            SetCloseAndDelete();
+            OnConnectFailed();
+         }
+         return;
+      }
+      // %! exception doesn't always mean something bad happened, this code should be reworked
+      // errno valid here?
+      i32 err = SoError();
 
-      //FATAL("exception on select " << err << bsd_socket_error(err));
+      FATAL("exception on select " << err << bsd_socket_error(err));
 
-      //SetCloseAndDelete();
+      SetCloseAndDelete();
    }
 
 

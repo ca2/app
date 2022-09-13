@@ -663,8 +663,8 @@ namespace sockets
 
    void http_socket::Reset()
    {
-      //m_bFirst       = true;
-      //m_bHeader      = true;
+      m_bFirst       = true;
+      m_bHeader      = true;
       m_bRequest     = false;
       m_bResponse    = false;
       SetLineProtocol(true);

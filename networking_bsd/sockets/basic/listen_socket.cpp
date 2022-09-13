@@ -34,7 +34,19 @@ namespace sockets_bsd
 
    }
 
+   void listen_socket::set_ssl_catalog(const ::string & strCat)
+   {
 
+      m_strCat = strCat;
+
+   }
+
+   void listen_socket::set_ssl_cipher_list(const ::string & strCipherList)
+   {
+
+      m_strCipherList = strCipherList;
+
+   }
    /** close file descriptor. */
    void listen_socket::close()
    {
@@ -317,6 +329,21 @@ namespace sockets_bsd
    i32 listen_socket::GetDepth()
    {
       return m_depth;
+   }
+
+   void listen_socket::set_should_detach(bool bSet)
+   {
+
+      m_bDetach = bSet;
+
+   }
+
+
+   bool listen_socket::should_detach() const
+   {
+
+      return m_bDetach;
+
    }
 
 

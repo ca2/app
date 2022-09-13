@@ -205,6 +205,8 @@ namespace sockets_bsd
       the ssl action_context for an incoming connection. */
       virtual void InitSSLServer();
 
+      void _001InitSSLServer() override;
+
       /** Flag that says a broken connection will try to reconnect. */
       void SetReconnect(bool = true);
       /** Check reconnect on lost connection flag status. */

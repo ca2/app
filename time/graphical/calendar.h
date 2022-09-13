@@ -11,6 +11,9 @@ namespace html
 } // namespace html
 
 
+#include "time/datetime/calendar.h"
+
+
 namespace datetime
 {
 
@@ -19,7 +22,7 @@ namespace datetime
    {
 
 
-      class CLASS_DECL_CA2_TIME visual :
+      class CLASS_DECL_CA2_TIME graphical :
          virtual public calendar
       {
       public:
@@ -31,8 +34,8 @@ namespace datetime
          int32_t        m_iLineHeight;
 
 
-         visual();
-         virtual ~visual();
+         graphical();
+         virtual ~graphical();
 
 
          virtual void initialize(::object * pobject) override;

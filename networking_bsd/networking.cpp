@@ -275,7 +275,7 @@ namespace networking_bsd
          catch (...)
          {
 
-            bOk = false;
+            //bOk = false;
 
          }
 

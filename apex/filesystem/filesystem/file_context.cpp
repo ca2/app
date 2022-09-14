@@ -936,8 +936,12 @@ void file_context::put_memory(const ::payload &payloadFile, const block & block)
    file_pointer pfile;
 
    pfile = get_file(payloadFile,
-                     ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_write |
-                     ::file::e_open_defer_create_directory);
+                     ::file::e_open_binary 
+      | ::file::e_open_write
+      | ::file::e_open_create
+      | ::file::e_open_share_deny_write 
+      | ::file::e_open_no_truncate
+      | ::file::e_open_defer_create_directory);
 
    if (!::is_ok(pfile))
    {

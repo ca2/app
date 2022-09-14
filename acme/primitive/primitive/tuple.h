@@ -38,12 +38,12 @@ class tuple_recursion
 
 
 /////*
-//This is a partial specialization, so as long as there is at least one template argument, apart from the index, this specialization is preferred to the previously defined _tuple_recurr_base<std::size_t, typename …types>
+//This is a partial specialization, so as long as there is at least one template argument, apart from the index, this specialization is preferred to the previously defined _tuple_recurr_base<std::size_t, typename Eypes>
 //*/
-//template <std::size_t _index, typename L, typename… types>
-//class _tuple_recurr_base<_index, L, types…> :
+//template <std::size_t _index, typename L, typenameEtypes>
+//class _tuple_recurr_base<_index, L, typesE :
 //   public _tuple_impl<_index, typename std::remove_reference<L>::type>,
-//   public _tuple_recurr_base<_index + 1, types…>
+//   public _tuple_recurr_base<_index + 1, typesE
 //{
 //};
 template <::index i, typename L, typename... types>

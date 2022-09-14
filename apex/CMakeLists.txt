@@ -272,15 +272,15 @@ list(APPEND apex_source
    networking/sockets/dns/resolv_server.h
    networking/sockets/dns/resolv_socket.cpp
    networking/sockets/dns/resolv_socket.h
-   networking/sockets/ssl/client_context.cpp
-   networking/sockets/ssl/client_context.h
-   networking/sockets/ssl/client_context_map.cpp
-   networking/sockets/ssl/client_context_map.h
-   networking/sockets/ssl/context.cpp
-   networking/sockets/ssl/context.h
-   networking/sockets/ssl/initializer.cpp
-   networking/sockets/ssl/initializer.h
-   networking/sockets/ssl/ticket_key.h
+#   networking/sockets/ssl/client_context.cpp
+#   networking/sockets/ssl/client_context.h
+#   networking/sockets/ssl/client_context_map.cpp
+#   networking/sockets/ssl/client_context_map.h
+#   networking/sockets/ssl/context.cpp
+#   networking/sockets/ssl/context.h
+#   networking/sockets/ssl/initializer.cpp
+#   networking/sockets/ssl/initializer.h
+#   networking/sockets/ssl/ticket_key.h
    networking/sockets/webserver/httpd_socket.cpp
    networking/sockets/webserver/httpd_socket.h
    networking/sockets/_.h
@@ -391,7 +391,7 @@ list(APPEND apex_source
    operating_system/file.h
    operating_system/graphics.h
    operating_system/http.cpp
-   operating_system/openssl_crypt.cpp
+   #operating_system/openssl_crypt.cpp
    #operating_system/operating_system.h
    operating_system/operating_system.cpp
    #operating_system/os_windowing2.h
@@ -1399,18 +1399,18 @@ if (MSVC)
    target_link_libraries(apex PRIVATE acme zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32)
 elseif(LINUX OR FREEBSD)
 
-   if(NOT DONT_USE_PKG_CONFIG)
-      pkg_check_modules(PKGCONFIG libcrypto libssl)
-   endif()
+#   if(NOT DONT_USE_PKG_CONFIG)
+#      pkg_check_modules(PKGCONFIG libcrypto libssl)
+#   endif()
    target_compile_options(apex PRIVATE -fpermissive)
-   target_compile_options(apex PRIVATE ${PKGCONFIG_CFLAGS})
-   target_link_options(apex PRIVATE ${PKGCONFIG_LDFLAGS})
+   #target_compile_options(apex PRIVATE ${PKGCONFIG_CFLAGS})
+   #target_link_options(apex PRIVATE ${PKGCONFIG_LDFLAGS})
    #target_link_options(apex PRIVATE -Wl,-rpath=$ORIGIN)
    target_link_libraries(apex PRIVATE dl pthread idn z)
-   target_link_libraries(apex PRIVATE ${PKGCONFIG_LIBRARIES})
+   #target_link_libraries(apex PRIVATE ${PKGCONFIG_LIBRARIES})
    target_link_libraries(apex PRIVATE acme)
    target_link_options(apex PRIVATE -Wl,-z,defs)
-   message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+   #message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif ()
 
 

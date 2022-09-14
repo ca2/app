@@ -21,15 +21,15 @@ list(APPEND library_source
         sockets/_1.h
         sockets/_sockets.h
         sockets/_strconv.h
-        sockets/_system_sockets.cpp
-        sockets/aaa__component.h
-        sockets/aaa_http_batch_buffer.cpp
-        sockets/aaa_link_in_socket.cpp
-        sockets/aaa_link_out_socket.cpp
-        sockets/aaa_sockets_base.cpp
-        sockets/aaa_transfer_socket.cpp
-        sockets/aaa_want_to_remove_sockets_sockets.h
-        sockets/aaa_websocket_client.cpp
+        #sockets/_system_sockets.cpp
+        #sockets/aaa__component.h
+        #sockets/aaa_http_batch_buffer.cpp
+        #sockets/aaa_link_in_socket.cpp
+        #sockets/aaa_link_out_socket.cpp
+        #sockets/aaa_sockets_base.cpp
+        #sockets/aaa_transfer_socket.cpp
+        #sockets/aaa_want_to_remove_sockets_sockets.h
+        #sockets/aaa_websocket_client.cpp
         sockets/base/socket.cpp
         sockets/base/socket.h
         sockets/base/socket_handler.cpp
@@ -37,10 +37,10 @@ list(APPEND library_source
         sockets/base/socket_thread.cpp
         sockets/base/socket_thread.h
         sockets/basic/_.h
-        sockets/basic/aaa_basic_net.cpp
-        sockets/basic/aaa_net.h
-        sockets/basic/aaa_sync_socket_handler.cpp
-        sockets/basic/aaa_sync_socket_handler.h
+#        sockets/basic/aaa_basic_net.cpp
+#        sockets/basic/aaa_net.h
+#        sockets/basic/aaa_sync_socket_handler.cpp
+#        sockets/basic/aaa_sync_socket_handler.h
         sockets/basic/listen_socket.cpp
         sockets/basic/listen_socket.h
         sockets/basic/sctp_socket.cpp
@@ -58,39 +58,39 @@ list(APPEND library_source
         sockets/basic/udp_socket.cpp
         sockets/basic/udp_socket.h
         sockets/config.h
-        sockets/dns/resolv_server.cpp
-        sockets/dns/resolv_server.h
-        sockets/dns/resolv_socket.cpp
-        sockets/dns/resolv_socket.h
-        sockets/http/_.h
-        sockets/http/client_socket.cpp
-        sockets/http/client_socket.h
-        sockets/http/debug_socket.cpp
-        sockets/http/debug_socket.h
-        sockets/http/get_socket.cpp
-        sockets/http/get_socket.h
-        sockets/http/http_base_socket.cpp
-        sockets/http/http_base_socket.h
-        sockets/http/listener.cpp
-        sockets/http/listener.h
-        sockets/http/post_socket.cpp
-        sockets/http/post_socket.h
-        sockets/http/put_socket.cpp
-        sockets/http/put_socket.h
-        sockets/http/session.cpp
-        sockets/http/session.h
-        sockets/http/socket.cpp
-        sockets/http/socket.h
-        sockets/http/tunnel.cpp
-        sockets/http/tunnel.h
-        sockets/http_batch_buffer.h
-        sockets/http_buffer.h
-        sockets/link_in_socket.h
-        sockets/link_out_socket.h
-        sockets/logger.h
+#        sockets/dns/resolv_server.cpp
+#        sockets/dns/resolv_server.h
+#        sockets/dns/resolv_socket.cpp
+#        sockets/dns/resolv_socket.h
+#        sockets/http/_.h
+#        sockets/http/client_socket.cpp
+#        sockets/http/client_socket.h
+#        sockets/http/debug_socket.cpp
+#        sockets/http/debug_socket.h
+#        sockets/http/get_socket.cpp
+#        sockets/http/get_socket.h
+#        sockets/http/http_base_socket.cpp
+#        sockets/http/http_base_socket.h
+#        sockets/http/listener.cpp
+#        sockets/http/listener.h
+#        sockets/http/post_socket.cpp
+#        sockets/http/post_socket.h
+#        sockets/http/put_socket.cpp
+#        sockets/http/put_socket.h
+#        sockets/http/session.cpp
+#        sockets/http/session.h
+#        sockets/http/socket.cpp
+#        sockets/http/socket.h
+#        sockets/http/tunnel.cpp
+#        sockets/http/tunnel.h
+#        sockets/http_batch_buffer.h
+#        sockets/http_buffer.h
+#        sockets/link_in_socket.h
+#        sockets/link_out_socket.h
+#        sockets/logger.h
         sockets/socket_id_list.h
-        sockets/sockets.cpp
-        sockets/sockets.h
+        #sockets/sockets.cpp
+        #sockets/sockets.h
         sockets/sockets_base.h
         sockets/ssl/_.h
         sockets/ssl/client_context.cpp
@@ -103,9 +103,9 @@ list(APPEND library_source
         sockets/ssl/initializer.h
         sockets/ssl/ticket_key.h
         sockets/transfer_socket.h
-        sockets/webserver/httpd_socket.cpp
-        sockets/webserver/httpd_socket.h
-        sockets/websocket_client.h
+#        sockets/webserver/httpd_socket.cpp
+#        sockets/webserver/httpd_socket.h
+#        sockets/websocket_client.h
         _.cpp
         _.h
         _byte_order.h
@@ -153,7 +153,7 @@ if (MSVC)
 elseif(LINUX)
 
     if(NOT DONT_USE_PKG_CONFIG)
-        pkg_check_modules(PKGCONFIG libcrypto)
+        pkg_check_modules(PKGCONFIG libcrypto libssl)
     endif()
     target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})

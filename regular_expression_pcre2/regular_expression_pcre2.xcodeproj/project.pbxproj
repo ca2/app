@@ -87,6 +87,13 @@
 			remoteGlobalIDString = 07D6A8271B4CBB45004FEBC2;
 			remoteInfo = ios_pcre;
 		};
+		9AB6A3F328D157B800589FEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A87FEF2284B8C8F0084AA05 /* pcre.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9AA5E4C216F7C61B005C45CE;
+			remoteInfo = pcre;
+		};
 		9AE645FD284AE0F60079EBA0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A6543D42666B1F300F8A254 /* acme.xcodeproj */;
@@ -268,6 +275,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9AB6A3F428D157B800589FEB /* PBXTargetDependency */,
 				9A6543DE2666B20E00F8A254 /* PBXTargetDependency */,
 			);
 			name = regular_expression_pcre2;
@@ -407,6 +415,11 @@
 			isa = PBXTargetDependency;
 			name = ios_pcre;
 			targetProxy = 9A87FEFD284B8CB20084AA05 /* PBXContainerItemProxy */;
+		};
+		9AB6A3F428D157B800589FEB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = pcre;
+			targetProxy = 9AB6A3F328D157B800589FEB /* PBXContainerItemProxy */;
 		};
 		9AE645FE284AE0F60079EBA0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

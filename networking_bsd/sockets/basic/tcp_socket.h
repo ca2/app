@@ -201,6 +201,9 @@ namespace sockets_bsd
       /** This method must be implemented to initialize
       the ssl action_context for an outgoing connection. */
       virtual void InitSSLClient();
+
+      void set_init_ssl_client_context(const ::string & strInitSSLClientContext) override;
+
       /** This method must be implemented to initialize
       the ssl action_context for an incoming connection. */
       virtual void InitSSLServer();

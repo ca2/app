@@ -23,7 +23,7 @@ namespace aura
       ~game() override;
 
       
-      void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
+      void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       
       
       void destroy() override;

@@ -1,11 +1,11 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/list.h"
+#include "aura/graphics/image/context_image.h"
 #include "aura/windowing/windowing.h"
 #include "button.h"
 #include "style.h"

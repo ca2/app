@@ -2,14 +2,15 @@
 #pragma once
 
 
-
-
-
-
-#elif defined(FREEBSD)
-
-
 #include <sys/socket.h>
+
+
+using SOCKET = int;
+
+
+#if defined(FREEBSD)
+
+
 #include <netinet/in.h>
 
 
@@ -31,4 +32,6 @@
 
 
 #endif
+
+
 

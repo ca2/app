@@ -2037,6 +2037,14 @@ namespace sockets_bsd
    }
 
 
+   void tcp_socket::set_init_ssl_client_context(const ::string & strInitSSLClientContext)
+   {
+      
+      m_strInitSSLClientContext = strInitSSLClientContext;
+      
+   }
+
+
    void tcp_socket::InitSSLServer()
    {
 

@@ -2014,7 +2014,7 @@ end_processing_adding:
    }
 
 
-   void socket_handler::erase(::sockets::base_socket * psocketRemove)
+   void socket_handler::erase(const ::sockets::socket_pointer & psocketRemove)
    {
 
 //      if (m_resolve_q.has(psocketRemove))

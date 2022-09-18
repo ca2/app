@@ -190,7 +190,8 @@ namespace acme
 
    void node::acme_application_main(class ::system * psystem)
    {
-      
+
+      system_main();
       
    }
 

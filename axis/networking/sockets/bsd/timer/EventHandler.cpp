@@ -42,7 +42,7 @@ namespace sockets
 
 
    EventHandler::EventHandler(::object * pobject, ::apex::log * plog) :
-      socket_handler(plog),
+      //socket_handler(plog),
       m_bQuit(false), m_ptcpsocket(nullptr)
    {
 
@@ -292,7 +292,7 @@ namespace sockets
          plistensocket-> Bind("127.0.0.1", 0);
          m_port = plistensocket-> GetPort();
 
-         socket_handler::add2(plistensocket);
+         socket_handler::add(plistensocket);
 
          m_ptcpsocket = __new(tcp_socket());
          m_ptcpsocket -> SetDeleteByHandler();
@@ -307,11 +307,11 @@ namespace sockets
          
          m_ptcpsocket -> open(paddress);
 
-         socket_handler::add2(m_ptcpsocket);
+         socket_handler::add(m_ptcpsocket);
 
       }
 
-      socket_handler::add2( psocket );
+      socket_handler::add( psocket );
 
    }
 

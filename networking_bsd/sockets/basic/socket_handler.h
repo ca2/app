@@ -87,6 +87,9 @@ namespace sockets_bsd
       //void _move(socket_map::association* passociation, socket_map* psocketmap) override;
       void erase(const ::sockets::socket_pointer & psocket) override;
 
+
+      void erase(const ::sockets::socket_pointer & psocket) override;
+
       virtual bool contains(::sockets::base_socket *) override;
 
       /** get status of read/write/exception file descriptor set for a base_socket. */

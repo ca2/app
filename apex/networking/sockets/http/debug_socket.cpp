@@ -32,19 +32,19 @@ namespace sockets
       if (get_parent() -> GetPort() == 443)
       {
 
-#ifdef HAVE_OPENSSL
+//#ifdef HAVE_OPENSSL
 
          EnableSSL();
 
-#else
-
-#ifndef _UWP
-
-         WARNING("url_this", -1, "SSL not available");
-
-#endif
-
-#endif
+//#else
+//
+//#ifndef _UWP
+//
+//         WARNING("url_this", -1, "SSL not available");
+//
+//#endif
+//
+//#endif
 
       }
 

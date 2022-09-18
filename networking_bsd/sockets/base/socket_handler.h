@@ -56,7 +56,6 @@ namespace sockets_bsd
    public:
 
 
-
       /** Connection pool class for internal use by the base_socket_handler.
       \ingroup internal */
       class CLASS_DECL_NETWORKING_BSD pool_socket : public sockets_bsd::socket
@@ -101,8 +100,8 @@ namespace sockets_bsd
       //virtual socket_map::association* new_association(socket_pointer && psocket) = 0;
    //private:
       /** erase socket from socket ::map, used by socket class. */
-     virtual void erase(::sockets::base_socket *) = 0;
-   public:
+     virtual void erase(const ::sockets::socket_pointer & psocket) = 0;
+   
 
       virtual bool contains(::sockets::base_socket *) = 0;
 

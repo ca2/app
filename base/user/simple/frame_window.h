@@ -122,23 +122,23 @@ public:
    virtual void on_frame_position();
 
    __pointer(::user::interaction) WindowDataGetWnd();
-   virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
-   virtual void on_reposition() override;
-   virtual void ActivateFrame(::e_display edisplay = e_display_undefined) override;
-   virtual bool on_create_client(::user::system * pusersystem) override;
+   void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+   void on_reposition() override;
+   void ActivateFrame(::e_display edisplay = e_display_undefined) override;
+   bool on_create_client(::user::system * pusersystem) override;
 
-   virtual bool pre_create_window(::user::system * pusersystem) override;
-   virtual void pre_translate_message(::message::message * pmessage) override;
+   bool pre_create_window(::user::system * pusersystem) override;
+   void pre_translate_message(::message::message * pmessage) override;
 
-   virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-   virtual bool _000OnBeforeDraw(::draw2d::graphics_pointer & pgraphics);
+   void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+   bool _000OnBeforeDraw(::draw2d::graphics_pointer & pgraphics) override;
    virtual void draw_frame_and_control_box_over(::draw2d::graphics_pointer & pgraphics);
 
-   virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
+   void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
    virtual void draw_frame(::draw2d::graphics_pointer & pgraphics);
 
 
-   virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
+   void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
 
    //void command_handler(const ::atom & atom) override;

@@ -4,6 +4,8 @@
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/list.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/image/drawing.h"
 #include "toolbar.h"
 #include "base/user/menu/central.h"
 #include "aura/user/user/style.h"

@@ -14,7 +14,6 @@
 		9AA14DA2282A17C600B1621E /* initializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC0196B2748A057006BEBCC /* initializer.h */; };
 		9AA14DA3282A17C600B1621E /* hasher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC019652748A057006BEBCC /* hasher.h */; };
 		9AA14DA4282A17C600B1621E /* hasher_algorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC0198D2748A058006BEBCC /* hasher_algorithm.h */; };
-		9AA14DA5282A17C600B1621E /* _library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC019442748A057006BEBCC /* _library.h */; };
 		9AA14DA6282A17C600B1621E /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC0198F2748A059006BEBCC /* _.h */; };
 		9AA14DA7282A17C600B1621E /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC019732748A057006BEBCC /* framework.h */; };
 		9AA14DA8282A17C600B1621E /* rsa.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC019742748A057006BEBCC /* rsa.h */; };
@@ -27,7 +26,6 @@
 		9AA14DB0282A17C600B1621E /* hasher_algorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC0194A2748A057006BEBCC /* hasher_algorithm.cpp */; };
 		9AA14DB1282A17C600B1621E /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC019682748A057006BEBCC /* _.cpp */; };
 		9AA14DB2282A17C600B1621E /* rsa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC0198E2748A059006BEBCC /* rsa.cpp */; };
-		9AC019992748A059006BEBCC /* _library.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC019442748A057006BEBCC /* _library.h */; };
 		9AC0199C2748A059006BEBCC /* initializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC019472748A057006BEBCC /* initializer.cpp */; };
 		9AC0199D2748A059006BEBCC /* hasher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC019492748A057006BEBCC /* hasher.cpp */; };
 		9AC0199E2748A059006BEBCC /* hasher_algorithm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC0194A2748A057006BEBCC /* hasher_algorithm.cpp */; };
@@ -84,7 +82,6 @@
 		9A8E9ED6282A33D2005FF778 /* libios_acme.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AA14DBB282A17C600B1621E /* libios_crypto_openssl.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libios_crypto_openssl.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC019342748A002006BEBCC /* libcrypto_openssl.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libcrypto_openssl.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AC019442748A057006BEBCC /* _library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _library.h; sourceTree = "<group>"; };
 		9AC019472748A057006BEBCC /* initializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = initializer.cpp; sourceTree = "<group>"; };
 		9AC019492748A057006BEBCC /* hasher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hasher.cpp; sourceTree = "<group>"; };
 		9AC0194A2748A057006BEBCC /* hasher_algorithm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = hasher_algorithm.cpp; sourceTree = "<group>"; };
@@ -142,7 +139,6 @@
 			children = (
 				9AC019682748A057006BEBCC /* _.cpp */,
 				9AC0198F2748A059006BEBCC /* _.h */,
-				9AC019442748A057006BEBCC /* _library.h */,
 				9AC0196E2748A057006BEBCC /* crypto.cpp */,
 				9AC019612748A057006BEBCC /* crypto.h */,
 				9AC0196C2748A057006BEBCC /* _factory.cpp */,
@@ -191,7 +187,6 @@
 				9AA14DA2282A17C600B1621E /* initializer.h in Headers */,
 				9AA14DA3282A17C600B1621E /* hasher.h in Headers */,
 				9AA14DA4282A17C600B1621E /* hasher_algorithm.h in Headers */,
-				9AA14DA5282A17C600B1621E /* _library.h in Headers */,
 				9AA14DA6282A17C600B1621E /* _.h in Headers */,
 				9AA14DA7282A17C600B1621E /* framework.h in Headers */,
 				9AA14DA8282A17C600B1621E /* rsa.h in Headers */,
@@ -206,7 +201,6 @@
 				9AC019AE2748A059006BEBCC /* initializer.h in Headers */,
 				9AC019AC2748A059006BEBCC /* hasher.h in Headers */,
 				9AC019BF2748A059006BEBCC /* hasher_algorithm.h in Headers */,
-				9AC019992748A059006BEBCC /* _library.h in Headers */,
 				9AC019C12748A059006BEBCC /* _.h in Headers */,
 				9AC019B12748A059006BEBCC /* framework.h in Headers */,
 				9AC019B22748A059006BEBCC /* rsa.h in Headers */,

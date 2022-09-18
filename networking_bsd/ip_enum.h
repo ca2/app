@@ -26,7 +26,7 @@ namespace networking_bsd
       ~ip_enum() override;
 
 
-      virtual ::count enumerate(__pointer_array(::networking::address) & ipa);
+      ::count enumerate(__pointer_array(::networking::address) & ipa) override;
 
 
    };

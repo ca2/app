@@ -1773,6 +1773,14 @@ return true;
    }
 
 
+   void tcp_socket::set_init_ssl_client_context(const ::string & strInitSSLClientContext)
+   {
+
+      m_ptcpsocketComposite->set_init_ssl_client_context(strInitSSLClientContext);
+
+   }
+
+
    void tcp_socket::InitSSLServer()
    {
 

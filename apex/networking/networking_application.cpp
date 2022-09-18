@@ -53,33 +53,33 @@ void networking_application::create_networking_application()
 
    m_psocketthread->m_strIp = "127.0.0.1";
    
-   //auto pfolder = m_psystem->m_papexsystem->file().resource_folder();
+   auto pfolder = m_psystem->m_papexsystem->file().resource_folder();
 
-   //if (pfolder)
-   //{
+   if (pfolder)
+   {
 
-   //   auto pfile = pfolder->get_file("sensitive/sensitive/api/localwebserver.cat");
+      auto pfile = pfolder->get_file("sensitive/sensitive/api/localwebserver.cat");
 
-   //   if (pfile)
-   //   {
+      if (pfile)
+      {
 
-   //      string strCat;
+         string strCat;
 
-   //      pfile->full_read_string(strCat);
+         pfile->full_read_string(strCat);
 
-   //      if (strCat)
-   //      {
+         if (strCat)
+         {
 
-   //         m_psocketthread->m_strCat = "cat://"+strCat;
-   //         m_psocketthread->m_strCipherList = "ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-RC4-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:RSA:SHA:3DES:!aNULL:!eNULL:!EXP:!LOW:!MD5:@STRENGTH";
-   //         m_psocketthread->m_iSsl = 1;
+            m_psocketthread->m_strCat = "cat://"+strCat;
+            m_psocketthread->m_strCipherList = "ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-RC4-SHA:DHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA:RSA:SHA:3DES:!aNULL:!eNULL:!EXP:!LOW:!MD5:@STRENGTH";
+            m_psocketthread->m_iSsl = 1;
 
-   //      }
+         }
 
 
-   //   }
+      }
 
-   //}
+   }
 
 
    //      m_psocketthread->m_strCat = "cat://"+m_psystem->m_pacmefile->as_string("C:\\sensitive\\sensitive\\certificate\\localwebserver.app\\localwebserver.cat");

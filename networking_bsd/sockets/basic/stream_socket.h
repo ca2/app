@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "socket.h"
+#include "networking_bsd/sockets/basic/socket.h"
 #include "apex/networking/sockets/basic/stream_socket.h"
 
 
@@ -12,7 +12,7 @@ namespace sockets_bsd
    /** SOCK_STREAM socket axis class.
    \ingroup basic */
    class CLASS_DECL_NETWORKING_BSD stream_socket :
-      virtual public socket,
+      virtual public ::sockets_bsd::socket,
       virtual public ::sockets::stream_socket
    {
    public:

@@ -56,8 +56,6 @@ namespace sockets_bsd
    public:
 
 
-      friend class base_socket;
-      friend class socket;
 
       /** Connection pool class for internal use by the base_socket_handler.
       \ingroup internal */

@@ -4,7 +4,7 @@
 #include "acme/platform/library.h"
 
 
-CLASS_DECL_ACME class ::system * get_system();
+CLASS_DECL_ACME ::acme::system * get_system();
 
 
 namespace factory

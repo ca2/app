@@ -4,7 +4,7 @@
 //namespace acme
 //{
 //
-//   app::app()
+//   app::acme::application()
 //   {
 //
 //      m_iErrorCode = 0;

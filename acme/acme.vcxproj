@@ -896,6 +896,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="inline\application\windows.h" />
     <ClInclude Include="inline\implement_console.h" />
     <ClInclude Include="inline\windows\main.h" />
+    <ClInclude Include="inline\__implement.h" />
     <ClInclude Include="inline\_main_hold.h" />
     <ClInclude Include="memory\array_memory_allocate.h" />
     <None Include="inline\__apps.inl" />
@@ -1100,7 +1101,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="platform\acme.cpp" />
     <ClCompile Include="platform\apex_main_data.cpp" />
     <ClCompile Include="platform\apex_main_struct.cpp" />
-    <ClCompile Include="platform\app.cpp" />
+    <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\app_core.cpp" />
     <ClCompile Include="platform\assert.cpp" />
     <ClCompile Include="platform\aura_str_pool.cpp" />
@@ -1415,7 +1416,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="platform\acme_str_pool.h" />
     <ClInclude Include="platform\apex_main_data.h" />
     <ClInclude Include="platform\apex_main_struct.h" />
-    <ClInclude Include="platform\app.h" />
+    <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\app_core.h" />
     <ClInclude Include="platform\auto.h" />
     <ClInclude Include="platform\auto_pointer.h" />

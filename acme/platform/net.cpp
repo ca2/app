@@ -975,7 +975,7 @@ int ui_open_url(const char* psz);
 //CLASS_DECL_ACME int_bool freerdp_get_credentials(void * instance, char** username,char** password,char** domain, const char * pszServerName, int bInteractive)
 //{
 //
-//   ::application * papp = (::application *) instance;
+//   ::application * papp = (::apex::application *) instance;
 //
 //   ::account::user user;
 //

@@ -315,7 +315,7 @@ bool matter::thread_is_running() const
 }
 
 
-::app* matter::_get_app()
+::acme::application* matter::_get_app()
 {
 
    return nullptr;

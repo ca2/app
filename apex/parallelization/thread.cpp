@@ -1883,7 +1883,7 @@ void thread::main()
 void thread::init_task()
 {
 
-   if (get_app() && get_app()->m_papplication != this)
+   if (get_app() && get_app()->m_papexapplication != this)
    {
 
       try
@@ -2069,10 +2069,10 @@ void thread::app_pre_translate_message(::message::message * pmessage)
    try
    {
 
-      if(get_app() != nullptr && get_app()->m_papplication)
+      if(get_app() != nullptr && get_app()->m_papexapplication)
       {
 
-         get_app()->m_papplication->pre_translate_message(pmessage);
+         get_app()->m_papexapplication->pre_translate_message(pmessage);
 
          if(pmessage->m_bRet)
          {
@@ -2185,7 +2185,7 @@ void thread::process_window_procedure_exception(const ::exception & e,::message:
 void thread::process_message_filter(i32 code,::message::message * pmessage)
 {
 
-   get_app()->m_papplication->process_message_filter(code,pmessage);
+   get_app()->m_papexapplication->process_message_filter(code,pmessage);
 
 }
 
@@ -4129,7 +4129,7 @@ bool thread::process_message()
       if (get_app())
       {
 
-         pmessage = get_app()->m_papplication->get_message(&message);
+         pmessage = get_app()->m_papexapplication->get_message(&message);
 
       }
       else if(get_session())

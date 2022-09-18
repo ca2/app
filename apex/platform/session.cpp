@@ -609,7 +609,7 @@ namespace apex
    void session::on_message_erase_application(::message::message* pmessage)
    {
 
-      __pointer(::application) papp(pmessage->m_lparam);
+      __pointer(::apex::application) papp(pmessage->m_lparam);
 
       erase_application(papp);
 
@@ -798,7 +798,7 @@ namespace apex
 
             }
 
-            ::application * papp = application_get(strApp, true, true, pcreate);
+            auto papp = application_get(strApp, true, true, pcreate);
 
             if (papp == nullptr)
             {
@@ -972,7 +972,7 @@ namespace apex
 
       }
 
-      ::application* papp = application_get(strId, true, true, pcreate);
+      auto papp = application_get(strId, true, true, pcreate);
 
       if (papp == nullptr)
       {
@@ -988,7 +988,7 @@ namespace apex
    }
 
 
-   void session::on_instantiate_application(::application* papp)
+   void session::on_instantiate_application(::apex::application* papp)
    {
 
       papp->m_papexsession = this;
@@ -1002,7 +1002,7 @@ namespace apex
    //::application * session::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
    //{
 
-   //   __pointer(::application) papp;
+   //   __pointer(::apex::application) papp;
 
    //   if (m_applicationa.lookup(pszAppId, papp))
    //   {
@@ -1748,7 +1748,7 @@ namespace apex
    //}
 
 
-   __pointer(::application) session::get_current_application()
+   __pointer(::apex::application) session::get_current_application()
    {
 
       auto psession = get_session();
@@ -1904,7 +1904,7 @@ namespace apex
    void session::set_app_title(const ::string & pszAppId, const ::string & pszTitle)
    {
 
-      __pointer(::application) papp;
+      __pointer(::apex::application) papp;
 
       if (m_applicationa.lookup(pszAppId, papp) && papp)
       {
@@ -2352,7 +2352,7 @@ namespace apex
    void session::destroy()
    {
 
-      ::application_container::m_applicationa.erase_all();
+      ::apex::application_container::m_applicationa.erase_all();
 
       ::apex::context::destroy();
 

@@ -1547,7 +1547,7 @@ namespace user
    ::aura::application * user::get_app()
    {
 
-      return m_pcontext && m_pcontext->m_papplication ? m_pcontext->m_papplication->m_pauraapplication : nullptr;
+      return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
 
    }
 

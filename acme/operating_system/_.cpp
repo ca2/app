@@ -50,14 +50,14 @@ app_factory::app_factory(PFN_factory pfnFactory)
 }
 
 
-__pointer(::app)app_factory::new_app()
+__pointer(::acme::application)app_factory::new_app()
 {
 
    auto pfactory = __new(::factory::factory);
 
    g_pfnFactoryApp(pfactory);
 
-   auto papp = pfactory->create<::app>();
+   auto papp = pfactory->create<::acme::application>();
 
    return papp;
 

@@ -1,30 +1,35 @@
+// application back to apex namespace by camilo on 2022-09-17 18:51 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
-class CLASS_DECL_APEX application :
-   virtual public ::app,
-   //virtual public ::apex_main_struct,
-   virtual public ::apex::context,
-   virtual public int_scalar_source,
-   virtual public ::database::client,
-   virtual public ::application_exit,
-   virtual public ::networking_application_handler
+namespace apex
 {
-public:
 
 
-   //__creatable(application);
+   class CLASS_DECL_APEX application :
+      virtual public ::acme::application,
+      //virtual public ::apex_main_struct,
+      virtual public ::apex::context,
+      virtual public int_scalar_source,
+      virtual public ::database::client,
+      virtual public ::application_exit,
+      virtual public ::networking_application_handler
+   {
+   public:
 
-      void* m_pnativeapp;
+
+      //__creatable(application);
+
+      void * m_pnativeapp;
 
 
-      class application_impl *                        m_pappimpl;
+      class application_impl * m_pappimpl;
 
       // 2020-01-25: removing from ::apex::system, placing here (at ::context)
       // 2020-07-23: now at ::application
       __composite(::user::language_map)               m_puserlanguagemap;
 
-      //__reference(::application)                m_pappParent;
+      //__reference(::apex::application)                m_pappParent;
       ::text::text                                    m_textAppTitle;
       string                                          m_strBaseSupportId;
       string                                          m_strDatabaseAppId;
@@ -44,9 +49,9 @@ public:
       __reference(::user::primitive)                  m_puiCurrent;
       bool                                            m_bContextTheme;
 
-      #if defined(LINUX) || defined(FREEBSD)
+#if defined(LINUX) || defined(FREEBSD)
       bool                                            m_bSnLauncheeSetup;
-      #endif
+#endif
       semaphore                                       m_semCompiler;
       // former ::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
       string_array                                    m_straActivationMessage;
@@ -141,7 +146,7 @@ public:
       string_array                                    m_straAppInterest;
 
       __composite(::service_handler)                  m_pservicehandler;
-   
+
       __pointer(::networking_application)             m_pnetworkingapplication;
 
 
@@ -196,7 +201,7 @@ public:
       bool is_user_service() const override;
       virtual __pointer(::service) create_service();
 
-      virtual void on_service_request(::create* pcreate);
+      virtual void on_service_request(::create * pcreate);
 
 
       //virtual ::simpledb::server * simpledb();
@@ -271,7 +276,7 @@ public:
       virtual void process_exception(const ::exception & e) override;
 
 
-      //virtual __pointer(::application) assert_running(const ::string & pszAppId) override;
+      //virtual __pointer(::apex::application) assert_running(const ::string & pszAppId) override;
 
       virtual bool is_running();
 
@@ -343,8 +348,8 @@ public:
       //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow);
 
 
-      virtual void hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
-      virtual void hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      virtual void hotplugin_host_starter_start_sync(const ::string & pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
+      virtual void hotplugin_host_host_starter_start_sync(const ::string & pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
 
 
       virtual bool is_local_data() override;
@@ -471,7 +476,7 @@ public:
 
       //virtual void process_message_filter(i32 code,::message::message * pmessage) override;
 
-      virtual void on_thread_on_idle(::thread * pthread,::i32 lCount) override;
+      virtual void on_thread_on_idle(::thread * pthread, ::i32 lCount) override;
 
 
       virtual void app_set(string strPath, string strValue);
@@ -573,11 +578,11 @@ public:
 
 
 
-      virtual void get_temp_file_name_template(string & str,const ::string & lpszName,const ::string & pszExtension,const ::string & pszTemplate);
+      virtual void get_temp_file_name_template(string & str, const ::string & lpszName, const ::string & pszExtension, const ::string & pszTemplate);
 
-      virtual void get_temp_file_name(string & str,const ::string & lpszName,const ::string & pszExtension);
+      virtual void get_temp_file_name(string & str, const ::string & lpszName, const ::string & pszExtension);
 
-      inline ::service_handler* service_handler() const { return m_pservicehandler; }
+      inline ::service_handler * service_handler() const { return m_pservicehandler; }
 
       //virtual void on_service_request(::create * pcreate);
 
@@ -593,8 +598,8 @@ public:
       /// bHandled true if some action was done in response to this new additional instance creation
       virtual void on_exclusive_instance_local_conflict(bool & bHandled);
 
-            /// return true if this instance might continue execution
-      /// bHandled true if some action was done in response to this new additional instance creation
+      /// return true if this instance might continue execution
+/// bHandled true if some action was done in response to this new additional instance creation
       virtual void on_exclusive_instance_local_conflict_id(bool & bHandled, string strId);
 
       /// return true if the external additional instance might continue execution
@@ -619,10 +624,10 @@ public:
 
       virtual bool release_exclusive();
 
-      virtual void on_set_scalar(e_scalar escalar,i64 iValue,int iFlags) override;
-      virtual void get_scalar_minimum(e_scalar escalar,i64 & i) override;
-      virtual void get_scalar(e_scalar escalar,i64 & i) override;
-      virtual void get_scalar_maximum(e_scalar escalar,i64 & i) override;
+      virtual void on_set_scalar(e_scalar escalar, i64 iValue, int iFlags) override;
+      virtual void get_scalar_minimum(e_scalar escalar, i64 & i) override;
+      virtual void get_scalar(e_scalar escalar, i64 & i) override;
+      virtual void get_scalar_maximum(e_scalar escalar, i64 & i) override;
 
 
 
@@ -674,10 +679,10 @@ public:
 
 
       virtual void fill_locale_schema(::text::international::locale_schema & localeschema);
-      virtual void fill_locale_schema(::text::international::locale_schema & localeschema,const string & pszLocale,const string & pszSchema);
+      virtual void fill_locale_schema(::text::international::locale_schema & localeschema, const string & pszLocale, const string & pszSchema);
 
       virtual bool platform_open_by_file_extension(index iEdge, const ::string & pszPathName, ::create * pcreate = nullptr);
-      virtual bool platform_open_by_file_extension(index iEdge,::create * pcc);
+      virtual bool platform_open_by_file_extension(index iEdge, ::create * pcc);
 
 
       virtual bool on_start_application();
@@ -850,7 +855,7 @@ public:
       //virtual i32 _sync_message_box(::user::primitive* puiOwner, const ::string & pszMessage, const ::string & pszTitle, ::u32 fuStyle) override;
 
 
-      virtual void pre_translate_message(::message::message* pmessage) override;
+      virtual void pre_translate_message(::message::message * pmessage) override;
 
 
       //virtual void install_message_routing(::channel* pchannel) override;
@@ -895,7 +900,7 @@ public:
 
       // overrides for implementation
       virtual bool on_idle(::i32 lCount); // return true if more idle processing
-      virtual void process_window_procedure_exception(const ::exception & e, ::message::message* pmessage) override;
+      virtual void process_window_procedure_exception(const ::exception & e, ::message::message * pmessage) override;
 
       //      void EnableModelessEx(bool bEnable);
       ////#ifdef WINDOWS
@@ -1013,8 +1018,8 @@ public:
 
 
 
-      virtual bool get_fs_size(string& strSize, const ::string & pszPath, bool& bPending);
-      virtual bool get_fs_size(i64& i64Size, const ::string & pszPath, bool& bPending);
+      virtual bool get_fs_size(string & strSize, const ::string & pszPath, bool & bPending);
+      virtual bool get_fs_size(i64 & i64Size, const ::string & pszPath, bool & bPending);
 
       virtual void set_title(const ::string & pszTitle);
 
@@ -1027,7 +1032,7 @@ public:
 
 
 
-//      virtual __pointer(::application) create_platform(::apex::session* psession);
+      //      virtual __pointer(::apex::application) create_platform(::apex::session* psession);
 
 
 
@@ -1044,7 +1049,7 @@ public:
 
 
 
-      virtual void data_on_after_change(::database::client* pclient, const ::database::key& atom, const ::payload & payload, ::topic * ptopic) override;
+      virtual void data_on_after_change(::database::client * pclient, const ::database::key & atom, const ::payload & payload, ::topic * ptopic) override;
 
 
 
@@ -1055,7 +1060,7 @@ public:
       virtual void create_impact_system();
 
 
-      virtual void on_song_added(const string& str);
+      virtual void on_song_added(const string & str);
 
       string get_visual_studio_build();
 
@@ -1066,30 +1071,33 @@ public:
 
       virtual string as_string(const ::payload & payload);
 
-      #if defined(LINUX) || defined(FREEBSD)
+#if defined(LINUX) || defined(FREEBSD)
 
       virtual string get_wm_class() const;
 
-      #endif
+#endif
 
 
       virtual void on_create_app_shortcut();
       virtual void create_app_shortcut();
 
-   
-      virtual class networking_application* networking_application();
-   
-   
+
+      virtual class networking_application * networking_application();
+
+
       virtual void create_networking_application();
 
 
-   ::e_status on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost) override;
-   
-   
-   void handle_url(const ::string & strUrl) override;
+      ::e_status on_html_response(::string & strHtml, const ::string & strUrl, const ::property_set & setPost) override;
 
 
-};
+      void handle_url(const ::string & strUrl) override;
+
+
+   };
+
+
+} // namespace apex
 
 
 

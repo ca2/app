@@ -4133,7 +4133,7 @@ namespace user
    void primitive::on_check_change()
    {
 
-      get_app()->m_papplication->signal(m_propertyCheck->m_atom);
+      get_app()->m_papexapplication->signal(m_propertyCheck->m_atom);
 
    }
 

@@ -11,8 +11,8 @@ namespace acme
    public:
 
 
-      ::app *                                         m_papp;
-      ::application *                                 m_papplication;
+      ::acme::application *                           m_pacmeapplication;
+      ::apex::application *                           m_papexapplication;
       ::aqua::application *                           m_paquaapplication;
       ::aura::application *                           m_pauraapplication;
       ::axis::application *                           m_paxisapplication;
@@ -28,7 +28,7 @@ namespace acme
       ::base::session *                               m_pbasesession;
       ::bred::session *                               m_pbredsession;
       ::core::session *                               m_pcoresession;
-      class ::system *                                m_pacmesystem;
+      ::acme::system *                                m_pacmesystem;
       ::apex::system *                                m_papexsystem;
       ::aqua::system *                                m_paquasystem;
       ::aura::system *                                m_paurasystem;

@@ -139,7 +139,7 @@ namespace acme
    }
 
 
-   __pointer(::element) node::create_quit_element(__pointer(::acme::node) & pnode, __pointer(class ::system) & psystem)
+   __pointer(::element) node::create_quit_element(__pointer(::acme::node) & pnode, __pointer(::acme::system) & psystem)
    {
       
       return nullptr;
@@ -147,7 +147,7 @@ namespace acme
    }
 
 
-   void node::implement(__pointer(::acme::node) & pnode, __pointer(class ::system) & psystem)
+   void node::implement(__pointer(::acme::node) & pnode, __pointer(::acme::system) & psystem)
    {
       
       m_pelementQuit = create_quit_element(pnode, psystem);
@@ -188,7 +188,7 @@ namespace acme
    }
 
 
-   void node::acme_application_main(class ::system * psystem)
+   void node::acme_application_main(::acme::system * psystem)
    {
 
       system_main();
@@ -319,7 +319,7 @@ namespace acme
    }
 
 
-//   void node::implement(__pointer(::acme::node) & pnode, __pointer(class ::system) & psystem)
+//   void node::implement(__pointer(::acme::node) & pnode, __pointer(::acme::system) & psystem)
 //   {
 //
 //      //      auto psystem = m_psystem;
@@ -1707,7 +1707,7 @@ namespace acme
    }
 
 
-   void node::create_app_shortcut(::app * papp)
+   void node::create_app_shortcut(::acme::application * papp)
    {
 
 

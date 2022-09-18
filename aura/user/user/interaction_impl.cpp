@@ -2614,6 +2614,8 @@ namespace user
 
       if (pmouse->m_atom == e_message_mouse_move)
       {
+         string strType = __type_name(m_puserinteraction);
+
          // We are at the message handler procedure.
          // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
          // So the procedure starts by setting to the default cursor,
@@ -2626,7 +2628,7 @@ namespace user
 
          //FORMATTED_INFORMATION("windows::e_message_mouse_move(%d,%d)", pmouse->m_point.x, pmouse->m_point.y);
 
-         string strType;
+         //string strType;
 
          if (m_puserinteraction)
          {
@@ -4430,6 +4432,8 @@ namespace user
 
    void interaction_impl::on_message_create(::message::message * pmessage)
    {
+
+      string strType = __type_name(m_puserinteraction);
 
       m_pwindowing = m_puserinteraction->windowing();
 

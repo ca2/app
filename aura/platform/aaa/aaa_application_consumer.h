@@ -8,7 +8,7 @@ class app_consumer :
 public:
 
 
-   __pointer(APPLICATION) m_papp;
+   __pointer(APPLICATION) m_pacmeapplication;
 
 
    app_consumer()
@@ -27,12 +27,12 @@ public:
    void initialize_application_consumer()
    {
 
-      m_papp = get_app();
+      m_pacmeapplication = get_app();
 
    }
 
 
-   inline APPLICATION* get_app() { return m_papp.get(); }
+   inline APPLICATION* get_app() { return m_pacmeapplication.get(); }
 
 
 };

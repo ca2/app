@@ -362,6 +362,7 @@
     <ClCompile Include="operating_system\ansi\file.cpp" />
     <ClCompile Include="operating_system\ansi\file_raw.cpp" />
     <ClCompile Include="operating_system\ansi\file_std.cpp" />
+    <ClCompile Include="operating_system\ansi\int_handle.cpp" />
     <ClCompile Include="operating_system\ansi\process.cpp" />
     <ClCompile Include="operating_system\ansi\time.cpp" />
     <ClCompile Include="operating_system\ansi\windows_time.cpp" />
@@ -761,7 +762,7 @@
     <ClInclude Include="include\_include.h" />
     <ClInclude Include="include\_no_templates.h" />
     <ClInclude Include="include\_setup.h" />
-    <ClInclude Include="inline\application.h" />
+    <ClInclude Include="inline\_main_application.h" />
     <ClInclude Include="inline\application_common.h" />
     <ClInclude Include="inline\library.h" />
     <ClInclude Include="inline\_acid_app_impl.h" />

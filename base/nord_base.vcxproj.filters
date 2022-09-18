@@ -37,9 +37,6 @@
     <ClCompile Include="user\menu\list_window.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
-    <ClCompile Include="user\menu\menu_impact.cpp">
-      <Filter>Source Files\user\menu</Filter>
-    </ClCompile>
     <ClCompile Include="user\experience\button.cpp">
       <Filter>Source Files\user\experience</Filter>
     </ClCompile>
@@ -97,21 +94,6 @@
     <ClCompile Include="user\user\document_manager_container.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\form_control.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\form_data.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\form_document.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\form_impact.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\form_window.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\frame_window.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -142,15 +124,6 @@
     <ClCompile Include="user\user\margin.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\menu.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\menu_interaction.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\menu_item.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\multiple_document_template.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -175,9 +148,6 @@
     <ClCompile Include="user\user\server.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\simple_impact.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\single_document_template.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -191,9 +161,6 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\split_impact.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\static_control.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\style.cpp">
@@ -222,6 +189,45 @@
     </ClCompile>
     <ClCompile Include="user\user\user.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\impact.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\interaction.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\item.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\menu\menu.cpp">
+      <Filter>Source Files\user\menu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\form\document.cpp">
+      <Filter>Source Files\user\form</Filter>
+    </ClCompile>
+    <ClCompile Include="user\form\impact.cpp">
+      <Filter>Source Files\user\form</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\child_frame.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\impact.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\tab_document.cpp">
+      <Filter>Source Files\user\simple</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\tab_drop_target_window.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="html\user\document.cpp">
+      <Filter>Source Files\html\user</Filter>
+    </ClCompile>
+    <ClCompile Include="html\user\impact.cpp">
+      <Filter>Source Files\html\user</Filter>
+    </ClCompile>
+    <ClCompile Include="html\user\user.cpp">
+      <Filter>Source Files\html\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -649,6 +655,15 @@
     </Filter>
     <Filter Include="Source Files\constant">
       <UniqueIdentifier>{fc532802-f9c7-4ab1-a2d3-920c73189b3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\form">
+      <UniqueIdentifier>{a2d6eafe-37ab-42ad-a715-bdd6bcb756a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html">
+      <UniqueIdentifier>{ae78eff9-7b11-47c5-be17-16699e9c03f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html\user">
+      <UniqueIdentifier>{0dfd0254-b3d7-4e00-9cfc-165ac81f1144}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

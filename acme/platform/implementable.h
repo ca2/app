@@ -2,7 +2,7 @@
 #pragma once
 
 
-typedef void FN_IMPLEMENT(class ::system * psystem);
+typedef void FN_IMPLEMENT(::acme::system * psystem);
 typedef FN_IMPLEMENT* PFN_IMPLEMENT;
 
 
@@ -18,7 +18,7 @@ namespace acme
       PFN_IMPLEMENT              m_pfnImplement = nullptr;
 
 
-      virtual bool defer_implement(class ::system * psystem);
+      virtual bool defer_implement(::acme::system * psystem);
 
 
    };

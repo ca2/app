@@ -797,7 +797,7 @@ void object::call_request(::create* pcreate)
 }
 
 
-//::user::document* object::open_new_document(::application* pappOnBehalfOf)
+//::user::document* object::open_new_document(::apex::application* pappOnBehalfOf)
 //{
 //
 //   return open_document_file(pappOnBehalfOf, __visible(true));
@@ -2628,7 +2628,7 @@ string object::get_text(const ::payload& payload, const ::atom& atom)
 //}
 //
 //
-//void object::set_context_app(::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//void object::set_context_app(::apex::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 //{
 //
 //   m_papp.reset(pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
@@ -3015,14 +3015,14 @@ void object::initialize(::object* pobject)
 //#ifdef _DEBUG
 //    void set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //    void set_context_thread(::thread* pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-//    void set_context_app(::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//    void set_context_app(::apex::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //    void set_context_session(::apex::session* psessionContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //   // void set_context_system(::apex::system* psystemContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //   // void set_context_user(::object * puserContext);
 //#else
 //   inline void set_context(::context* pcontext);
 //   inline void set_context_thread(::thread* pthread);
-//   inline void set_context_app(::application* pappContext);
+//   inline void set_context_app(::apex::application* pappContext);
 //   inline void set_context_session(::apex::session* psessionContext);
 //   //inline void set_context_system(::apex::system* psystemContext);
 //   //inline void set_context_user(::object * puserContext);
@@ -3486,16 +3486,16 @@ void object::call_run()
 //}
 
 //// former user::server
-// ::user::document* open_new_document(::application* pappOnBehalfOf);
+// ::user::document* open_new_document(::apex::application* pappOnBehalfOf);
 //void object::on_request(::create* pcreate)
 //{
 //
 //
 //}
 
-// ::user::document* open_document_file(::application* pappOnBehalfOf);
-// ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::atom atom = ::atom());
-// ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile);
+// ::user::document* open_document_file(::apex::application* pappOnBehalfOf);
+// ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const ::payload& payloadFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::atom atom = ::atom());
+// ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const ::payload& payloadFile);
 // ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 //

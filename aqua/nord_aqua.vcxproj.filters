@@ -67,9 +67,6 @@
     <ClCompile Include="user\controller.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="multimedia\audio.cpp">
-      <Filter>Source Files\multimedia</Filter>
-    </ClCompile>
     <ClCompile Include="multimedia\decoder.cpp">
       <Filter>Source Files\multimedia</Filter>
     </ClCompile>
@@ -107,6 +104,9 @@
       <Filter>Source Files\constant</Filter>
     </ClCompile>
     <ClCompile Include="multimedia\audio\text_to_speech_client.cpp">
+      <Filter>Source Files\multimedia\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="multimedia\audio\audio.cpp">
       <Filter>Source Files\multimedia\audio</Filter>
     </ClCompile>
   </ItemGroup>

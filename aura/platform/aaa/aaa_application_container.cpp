@@ -227,10 +227,10 @@ __pointer(::aura::application) application_container::instantiate_application(co
    else
    {
 
-      if (::aura::get_system()->m_pappStartup.is_set())
+      if (::aura::get_system()->m_pacmeapplicationStartup.is_set())
       {
 
-         if (::aura::get_system()->m_pappStartup->m_strAppId != strAppId)
+         if (::aura::get_system()->m_pacmeapplicationStartup->m_strAppId != strAppId)
          {
 
             TRACE("Wrong papp Data Type");
@@ -239,9 +239,9 @@ __pointer(::aura::application) application_container::instantiate_application(co
 
          }
 
-         papp = ::aura::get_system()->m_pappStartup;
+         papp = ::aura::get_system()->m_pacmeapplicationStartup;
 
-         ::aura::get_system()->m_pappStartup.release();
+         ::aura::get_system()->m_pacmeapplicationStartup.release();
 
       }
       else

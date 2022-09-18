@@ -2262,10 +2262,10 @@ inline uptr uptr_hash < block >(block b)
 }
 
 
-inline ::app * object::get_app() const
+inline ::acme::application * object::get_app() const
 { 
    
-   return m_pcontext && m_pcontext->m_papp ? m_pcontext->m_papp : (m_psystem ? m_psystem->m_pappMain.get() : nullptr);
+   return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication : (m_psystem ? m_psystem->m_pacmeapplicationMain.get() : nullptr);
 
 }
 

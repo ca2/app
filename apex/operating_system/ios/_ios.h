@@ -7,7 +7,7 @@
 
 string get_error_message(::u32 dwError);
 
-::application *     ios_instantiate_application(::application * pappSystem, const char * pszId);
+::application *     ios_instantiate_application(::apex::application * pappSystem, const char * pszId);
 
 
 #define NULL_REF(class) (*((class *) nullptr))

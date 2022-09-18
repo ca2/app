@@ -34,9 +34,9 @@ namespace universal_windows
 
       ::mutex                                     m_mutex;
 
-      //class ::system *                          m_psystem;
+      //::acme::system *                          m_psystem;
 
-      //::acme::application *                     m_papp;
+      //::acme::application *                     m_pacmeapplication;
 
       __pointer(directx_interaction)            m_pdxi;
 
@@ -51,7 +51,7 @@ namespace universal_windows
       ::winrt::Windows::Foundation::Rect                 m_rectangleInputSelectionRect;
 
 
-      directx_framework_impact(class ::system * psystem,String ^ strId);
+      directx_framework_impact(::acme::system * psystem,String ^ strId);
 
 
       void install_directx_application_message_routing();
@@ -60,7 +60,7 @@ namespace universal_windows
 
       
 
-      class ::system * get_context_system() const;
+      ::acme::system * get_context_system() const;
 
    public:
 
@@ -141,11 +141,11 @@ namespace universal_windows
    {
    internal:
 
-      class ::system * m_psystem;
+      ::acme::system * m_psystem;
 
       string m_strId;
 
-      directx_application_source(class ::system * paxissystem,const ::string & strId);
+      directx_application_source(::acme::system * paxissystem,const ::string & strId);
 
    public:
 
@@ -154,7 +154,7 @@ namespace universal_windows
    };
 
 
-   CLASS_DECL_ACME directx_application_source ^ new_directx_application_source(class ::system * psystem, const ::string & str);
+   CLASS_DECL_ACME directx_application_source ^ new_directx_application_source(::acme::system * psystem, const ::string & str);
 
 
 } // namespace universal_windows

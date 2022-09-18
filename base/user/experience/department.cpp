@@ -91,7 +91,7 @@ namespace experience
 
             {
 
-               auto strExperience = papp->m_papplication->preferred_experience();
+               auto strExperience = papp->m_papexapplication->preferred_experience();
 
                straExperience.add(strExperience);
 
@@ -111,7 +111,7 @@ namespace experience
 
                {
 
-                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedirectory->config() / papp->m_papplication->m_strAppName / "experience.txt");
+                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedirectory->config() / papp->m_papexapplication->m_strAppName / "experience.txt");
 
                   straExperience.add(strExperience);
 
@@ -119,7 +119,7 @@ namespace experience
 
                {
 
-                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedirectory->config() / ::file::path(papp->m_papplication->m_strAppName).folder() / "experience.txt");
+                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedirectory->config() / ::file::path(papp->m_papexapplication->m_strAppName).folder() / "experience.txt");
 
                   straExperience.add(strExperience);
 
@@ -127,7 +127,7 @@ namespace experience
 
                {
 
-                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedirectory->config() / ::file::path(papp->m_papplication->m_strAppName).name() / "experience.txt");
+                  auto strExperience = pcontext->m_papexcontext->file().as_string(m_psystem->m_pacmedirectory->config() / ::file::path(papp->m_papexapplication->m_strAppName).name() / "experience.txt");
 
                   straExperience.add(strExperience);
 

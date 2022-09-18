@@ -31,7 +31,7 @@ namespace aqua
    void system::common_construct()
    {
 
-      ::factory::add_factory_item < ::aqua::application, ::application >();
+      ::factory::add_factory_item < ::aqua::application, ::apex::application >();
       ::factory::add_factory_item < ::aqua::session, ::apex::session >();
       ::factory::add_factory_item < ::aqua::idpool, ::acme::idpool >();
       ::factory::add_factory_item < ::aqua::multimedia >();
@@ -337,13 +337,6 @@ namespace aqua
 
    }
 
-   void initialize_system()
-   {
-
-      ::factory::add_factory_item< ::aqua::system, class ::system >();
-
-
-   }
 
 
 } // namespace aqua

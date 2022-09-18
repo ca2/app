@@ -2193,7 +2193,9 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
          if (nControlCount > 0)
          {
 
-            ap(___CONTROLPOS) pControl(new_array, nControlCount);
+            array < ___CONTROLPOS > controlposa;
+
+            controlposa.set_size(nControlCount);
 
             nControlCount = 0;
 

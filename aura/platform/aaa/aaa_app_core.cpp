@@ -1726,13 +1726,13 @@ bool app_core::has_aura_application_factory() const
 //   if (m_pmainstruct && m_pmainstruct->m_bConsole)
 //   {
 //
-//      ::aura::get_system()->get_session()->set_context_app(::aura::get_system()->m_pappStartup);
+//      ::aura::get_system()->get_session()->set_context_app(::aura::get_system()->m_pacmeapplicationStartup);
 //
-//      ::aura::get_system()->set_context_app(::aura::get_system()->m_pappStartup);
+//      ::aura::get_system()->set_context_app(::aura::get_system()->m_pacmeapplicationStartup);
 //
-//      ::aura::get_system()->get_session()->set_context(::aura::get_system()->m_pappStartup);
+//      ::aura::get_system()->get_session()->set_context(::aura::get_system()->m_pacmeapplicationStartup);
 //
-//      ::aura::get_system()->set_context(::aura::get_system()->m_pappStartup);
+//      ::aura::get_system()->set_context(::aura::get_system()->m_pacmeapplicationStartup);
 //
 //   }
 //

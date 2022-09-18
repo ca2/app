@@ -74,7 +74,7 @@ int SetThreadAffinityMask(htask_t h, unsigned int dwThreadAffinityMask)
 }
 
 
-CLASS_DECL_ACME class ::system * get_system();
+CLASS_DECL_ACME ::acme::system * get_system();
 
 
 void main_asynchronous(const ::procedure & procedure)

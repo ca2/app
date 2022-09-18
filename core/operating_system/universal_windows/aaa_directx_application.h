@@ -36,7 +36,7 @@ namespace universal_windows
 
       //::aura::system *                          m_psystem;
 
-      //::aura::application *                     m_papp;
+      //::aura::application *                     m_pacmeapplication;
 
       __pointer(directx_interaction)            m_pdxi;
 

@@ -41,7 +41,7 @@ namespace axis
 
       virtual void process_term() override;
 
-      virtual void on_instantiate_application(::application* papp) override;
+      virtual void on_instantiate_application(::apex::application* papp) override;
 
       //virtual ::user::style* user_style() override;
 

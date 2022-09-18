@@ -7,7 +7,7 @@
 
 string get_error_message(::u32 dwError);
 
-::app *     ios_instantiate_application(::app * pappSystem, const char * pszId);
+::acme::application *     ios_instantiate_application(::acme::application * pappSystem, const char * pszId);
 
 
 #define NULL_REF(class) (*((class *) nullptr))

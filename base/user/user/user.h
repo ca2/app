@@ -105,8 +105,8 @@ namespace base
 
 
       virtual void defer_instantiate_user_style(const ::string & strExperience = nullptr);
-      ::user::style_pointer instantiate_user_style(const ::string & strExperience, ::application* papp = nullptr);
-      ::user::style_pointer get_user_style(const ::string & strExperience, ::application* papp = nullptr);
+      ::user::style_pointer instantiate_user_style(const ::string & strExperience, ::apex::application* papp = nullptr);
+      ::user::style_pointer get_user_style(const ::string & strExperience, ::apex::application* papp = nullptr);
 
 
       //virtual ::type get_pane_tab_impact_type_info();

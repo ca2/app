@@ -89,14 +89,14 @@ public:
 
    void system_end();
 
-   __pointer(::app) new_app();
-   __pointer(::app) new_app(const char* pszAppId);
+   __pointer(::acme::application) new_app();
+   __pointer(::acme::application) new_app(const char* pszAppId);
 
 
-   //   __pointer(::application) get_new_application(::object* pobject);
-   //   __pointer(::application) get_new_application(::object* pobject, const char* pszAppId);
+   //   __pointer(::apex::application) get_new_application(::object* pobject);
+   //   __pointer(::apex::application) get_new_application(::object* pobject, const char* pszAppId);
 
-   virtual void initialize_application(::app * papp, ::object* pobject);
+   virtual void initialize_application(::acme::application * papp, ::object* pobject);
 
 
 };

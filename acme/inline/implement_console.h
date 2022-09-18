@@ -4,7 +4,7 @@
 
 
 //void stage();
-class ::system * acme_system_init();
+::acme::system * acme_system_init();
 void acme_system_term();
 
 //#include "acme/platform/layer.h"
@@ -17,7 +17,7 @@ void acme_system_term();
 #endif
 
 CLASS_DECL_ACME void process_set_args(int argc, platform_char ** argv);
-void implement(class ::system * psystem);
+void implement(::acme::system * psystem);
 
 namespace acme
 {

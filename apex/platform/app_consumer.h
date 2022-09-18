@@ -35,7 +35,7 @@ void dump(dump_context & dumpcontext) const override                            
 void on_initialize_object() override                                             \
 {                                                                                      \
                                                                                        \
-   m_papp = m_pcontext ? m_pcontext->m_papp : nullptr;             \
+   m_papplicationForConsumer = m_pcontext ? m_pcontext->m_pacmeapplication : nullptr;             \
                                                                                        \
    BASE1::on_initialize_object();                                      \
                                                                        \
@@ -88,7 +88,7 @@ class app_consumer :
 public:
 
 
-   __pointer(APP) m_papp;
+   __pointer(APP) m_papplicationForConsumer;
 
 
    app_consumer()
@@ -100,8 +100,8 @@ public:
    APP_CONSUMER_BODY
 
 
-   inline APP * get_app() { return m_papp.get(); }
-   inline APP * get_app() const { return (APP*)m_papp.get(); }
+   inline APP * get_app() { return m_papplicationForConsumer.get(); }
+   inline APP * get_app() const { return (APP*)m_papplicationForConsumer.get(); }
 
 
 };
@@ -118,7 +118,7 @@ class application_interaction :
 public:
 
 
-   __pointer(APP) m_papp;
+   __pointer(APP) m_papplicationForConsumer;
 
 
    application_interaction()
@@ -209,8 +209,8 @@ public:
    }
 
 
-   inline APP* get_app() { return m_papp.get(); }
-   inline APP* get_app() const { return (APP *) m_papp.get(); }
+   inline APP* get_app() { return m_papplicationForConsumer.get(); }
+   inline APP* get_app() const { return (APP *)m_papplicationForConsumer.get(); }
 
 
 };

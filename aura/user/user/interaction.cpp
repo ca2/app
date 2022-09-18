@@ -5290,6 +5290,13 @@ namespace user
    void interaction::on_message_create(::message::message * pmessage)
    {
 
+      if (pmessage->previous())
+      {
+
+         return;
+
+      }
+
       __UNREFERENCED_PARAMETER(pmessage);
 
       if (m_bEnableDragClient)
@@ -20076,7 +20083,7 @@ namespace user
    ::aura::application * interaction::get_app() const
    {
 
-      return m_pcontext && m_pcontext->m_papplication ? m_pcontext->m_papplication->m_pauraapplication : nullptr;
+      return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
 
    }
 

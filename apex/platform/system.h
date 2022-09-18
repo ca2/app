@@ -6,7 +6,7 @@ namespace apex
 
 
    class CLASS_DECL_APEX system:
-      virtual public ::system,
+      virtual public ::acme::system,
       virtual public ::apex::context
 #ifndef WINDOWS
       ,virtual public ::exception_translator
@@ -78,7 +78,7 @@ namespace apex
 
       void install_message_routing(::channel * pchannel) override;
 
-      void system_construct(const class ::main & main) override;
+      void system_construct(::acme::application * papplication) override;
 
 
 #ifdef WINDOWS_DESKTOP
@@ -96,7 +96,7 @@ namespace apex
       virtual void __task_init() override;
 
 
-      virtual ::app * get_main_app() override;
+      virtual ::acme::application * get_main_app() override;
 
 
       virtual void init();
@@ -344,8 +344,8 @@ namespace apex
       virtual void process_machine_event_data(machine_event_data * pdata);
 
       virtual string get_user_language();
-      virtual void set_user_language(::application * papp, index iSel);
-      virtual void set_user_language(::application * papp, string strLang);
+      virtual void set_user_language(::apex::application * papp, index iSel);
+      virtual void set_user_language(::apex::application * papp, string strLang);
 
       void chromium(string strUrl, string strBrowser, string strId, ::file::path path, string strProfile, string strParam);
 

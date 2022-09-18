@@ -28,7 +28,7 @@ namespace bred
    void system::common_construct()
    {
 
-      ::factory::add_factory_item < ::bred::application, ::application >();
+      ::factory::add_factory_item < ::bred::application, ::apex::application >();
       ::factory::add_factory_item < ::bred::session, ::apex::session >();
       ::factory::add_factory_item < ::bred::idpool, ::acme::idpool >();
       //add_factory_item < ::core::user, ::user::user >();

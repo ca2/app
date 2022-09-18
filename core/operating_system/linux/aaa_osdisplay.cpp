@@ -104,7 +104,7 @@ osdisplay_data * osdisplay_get(Display * pdisplay)
 
    ::osdisplay_data::s_pdataptra->add(pdisplaydata);
 
-   if(!::app::g_p->m_bGtkApp)
+   if(!::acme::application::g_p->m_bGtkApp)
    {
 
       if(!g_posdisplaydataMain)

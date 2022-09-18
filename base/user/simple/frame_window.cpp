@@ -708,6 +708,13 @@ bool simple_frame_window::would_display_notify_icon()
 void simple_frame_window::on_message_create(::message::message * pmessage)
 {
 
+   if (pmessage->previous())
+   {
+
+      return;
+
+   }
+
    __pointer(::message::create) pcreate(pmessage);
 
    auto pcreateContext = (::create *) pcreate->get_create();

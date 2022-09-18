@@ -115,12 +115,12 @@ namespace acme
       virtual void initialize(::object * pobject) override;
       
       
-      virtual __pointer(::element) create_quit_element(__pointer(::acme::node) & pnode, __pointer(class ::system) & psystem);
+      virtual __pointer(::element) create_quit_element(__pointer(::acme::node) & pnode, __pointer(::acme::system) & psystem);
       
       
-      virtual void implement(__pointer(::acme::node) & pnode, __pointer(class ::system) & psystem);
+      virtual void implement(__pointer(::acme::node) & pnode, __pointer(::acme::system) & psystem);
 
-      virtual void acme_application_main(class ::system * psystem);
+      virtual void acme_application_main(::acme::system * psystem);
       virtual void _will_finish_launching();
       
       //virtual void element_quit_post_quit();
@@ -424,7 +424,7 @@ namespace acme
       virtual void on_start_system();
 
 
-      virtual void create_app_shortcut(::app * papp);
+      virtual void create_app_shortcut(::acme::application * papplication);
 
 
       virtual void report_exception_to_user(::object* pobject, ::exception& exception, const ::string& strMoreDetails);

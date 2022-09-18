@@ -142,7 +142,7 @@ int g_iAuraRefCount = 0;
 
 
 
-//class ::system* create_acme_system()
+//::acme::system* create_acme_system()
 //{
 //
 //   return g_pfn_create_system();

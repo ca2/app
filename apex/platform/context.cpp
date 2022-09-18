@@ -531,7 +531,7 @@ namespace apex
       else if (::str().begins_eat_ci(path, "appconfig://"))
       {
 
-         path = get_app()->m_papplication->appconfig_folder() / path;
+         path = get_app()->m_papexapplication->appconfig_folder() / path;
 
       }
       else if (::str().begins_eat_ci(path, "download://"))
@@ -1098,7 +1098,7 @@ namespace apex
       if (get_app())
       {
 
-         get_app()->m_papplication->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
+         get_app()->m_papexapplication->locale_schema_matter(stra, straMatterLocator, strLocale, strSchema);
 
       }
       else if (get_session())
@@ -1130,7 +1130,7 @@ namespace apex
       if (get_app())
       {
 
-         return get_app()->m_papplication->get_locale_schema_dir();
+         return get_app()->m_papexapplication->get_locale_schema_dir();
 
       }
       else if (get_session())
@@ -1270,7 +1270,7 @@ namespace apex
    }
 
 
-   string context::matter_locator(::application * papp)
+   string context::matter_locator(::apex::application * papp)
    {
 
       return ::file::path(papp->m_strRoot) / "_matter" / papp->m_strDomain;
@@ -1290,7 +1290,7 @@ namespace apex
    }
 
 
-   void context::add_matter_locator(::application * papp)
+   void context::add_matter_locator(::apex::application * papp)
    {
 
       synchronous_lock synchronouslock(mutex());

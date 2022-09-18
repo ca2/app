@@ -1161,7 +1161,6 @@
     <ClInclude Include="platform\savings.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\shell_launcher.h" />
-    <ClInclude Include="platform\simple_app.h" />
     <ClInclude Include="platform\static_start.h" />
     <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\thread_set.h" />

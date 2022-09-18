@@ -68,11 +68,11 @@ namespace windowing
       int _groupCount;
       string_array _groupNames;
       string_array _symbolNames;
-      int _currentGroupNum;
+      //int _currentGroupNum;
 
-      int _deviceId;
-      int _baseEventCode;
-      int _baseErrorCode;
+      //int _deviceId;
+      //int _baseEventCode;
+      //int _baseErrorCode;
 
    };
 

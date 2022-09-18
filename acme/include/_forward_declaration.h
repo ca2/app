@@ -2,9 +2,9 @@
 #pragma once
 
 
-class system;
-class app;
-class application;
+namespace acme { class system; }
+namespace acme { class application; }
+namespace apex { class application; }
 class thread;
 class property_object;
 class task;

@@ -5,7 +5,10 @@
 #include "_sandbox.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/drawing.h"
+#include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/interaction_prodevian.h"
+#include "aura/platform/application.h"
+#include "aura/platform/message_queue.h"
 
 
 namespace sandbox_windowing

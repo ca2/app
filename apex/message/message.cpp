@@ -35,6 +35,15 @@ namespace message
 
    //}
 
+   bool message::route_message()
+   { 
+      
+      m_pdispatchera->m_pData[m_iRouteIndex]->handle(this); 
+      
+      return m_bRet; 
+   
+   }
+
 
    bool message::all_previous()
    {

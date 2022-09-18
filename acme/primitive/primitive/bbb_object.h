@@ -71,7 +71,7 @@ public:
    //inline ::object* this const { return this; }
    //virtual void set_object(::object* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
 
-   //inline ::application* application() { return m_papp; }
+   //inline ::application* application() { return m_pacmeapplication; }
 
    //template < typename TYPE, typename TYPE2 >
    //void __bind(reference < TYPE >& r, TYPE2& t)
@@ -133,7 +133,7 @@ public:
 
    inline ::thread* get_thread() const { return m_pthread; }
 
-   inline ::application* get_app() const { return m_papp; }
+   inline ::application* get_app() const { return m_pacmeapplication; }
 
    inline ::apex::session* get_session() const { return m_psession; }
 
@@ -141,21 +141,21 @@ public:
 
    //::object * get_context_user() const { return m_puserContext; }
 
-   //inline ::application * application() const { return m_papp; }
+   //inline ::application * application() const { return m_pacmeapplication; }
 
    virtual string get_text(const ::payload& payload, const ::atom& atom) override;
 
 #ifdef _DEBUG
    virtual void set_context(::context* pcontext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
    virtual void set_context_thread(::thread* pthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   virtual void set_context_app(::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   virtual void set_context_app(::apex::application* pappContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
    virtual void set_context_session(::apex::session* psessionContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
    //virtual void set_context_system(::apex::system* psystemContext OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
    //virtual void set_context_user(::object * puserContext);
 #else
    inline void set_context(::context* pcontext);
    inline void set_context_thread(::thread* pthread);
-   inline void set_context_app(::application* pappContext);
+   inline void set_context_app(::apex::application* pappContext);
    inline void set_context_session(::apex::session* psessionContext);
    //inline void set_context_system(::apex::system* psystemContext);
    //inline void set_context_user(::object * puserContext);
@@ -393,11 +393,11 @@ public:
    virtual void call_request(::create* pcreate);
 
    //// former user::server
-   //virtual ::user::document* open_new_document(::application* pappOnBehalfOf);
+   //virtual ::user::document* open_new_document(::apex::application* pappOnBehalfOf);
    virtual void on_request(::create* pcreate);
-   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf);
-   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::atom atom = ::atom());
-   //virtual ::user::document* open_document_file(::application* pappOnBehalfOf, const ::payload& payloadFile);
+   //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf);
+   //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const ::payload& payloadFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::atom atom = ::atom());
+   //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const ::payload& payloadFile);
    //virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 

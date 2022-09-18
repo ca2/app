@@ -165,7 +165,7 @@ namespace apex
    {
 
       //::factory::add_factory_item < ::apex::session >();
-      //::factory::add_factory_item < ::application >();
+      //::factory::add_factory_item < ::apex::application >();
       //add_factory_item < ::imaging >();
 
       m_bSimpleMessageLoop = false;
@@ -176,7 +176,7 @@ namespace apex
       m_bFinalizeIfNoSessionSetting = true;
       m_bFinalizeIfNoSession = false;
 
-      ::factory::add_factory_item < ::application >();
+      ::factory::add_factory_item < ::apex::application >();
       ::factory::add_factory_item < ::apex::session, ::apex::session >();
       ::factory::add_factory_item < ::apex::idpool, ::acme::idpool >();
       
@@ -190,7 +190,7 @@ namespace apex
    i64 system::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
    {
 
-      return ::system::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::acme::system::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
@@ -198,7 +198,7 @@ namespace apex
    i64 system::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS)
    {
 
-      return ::system::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+      return ::acme::system::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
 
    }
 
@@ -563,7 +563,7 @@ namespace apex
       ::factory::add_factory_item<http::context>();
 
       //auto estatus = 
-      ::system::process_init();
+      ::acme::system::process_init();
 
       //if (!estatus)
       //{
@@ -575,7 +575,7 @@ namespace apex
 
 #if !defined(ANDROID) && !defined(APPLE_IOS)
 
-      if (!m_pappStartup->m_papplication->is_service() || m_pappStartup->m_papplication->is_user_service())
+      if (!m_pacmeapplicationStartup->m_papexapplication->is_service() || m_pacmeapplicationStartup->m_papexapplication->is_user_service())
       {
 
          m_pmutexUserAppData = __new(::mutex(this, false, "Local\\ca2.UserAppData"));
@@ -692,7 +692,7 @@ namespace apex
 
       }
 
-      //string strAppId = m_pappStartup->m_strAppId;
+      //string strAppId = m_pacmeapplicationStartup->m_strAppId;
 
 
 #if !defined(_UWP)
@@ -1129,7 +1129,7 @@ pacmedirectory->create("/ca2core");
    {
 
       //auto estatus = 
-      ::system::init1();
+      ::acme::system::init1();
 
       //if (!estatus)
       //{
@@ -1495,7 +1495,7 @@ pacmedirectory->create("/ca2core");
    {
 
       //auto estatus = 
-      ::system::on_start_system();
+      ::acme::system::on_start_system();
 
       //if (!estatus)
       //{
@@ -1692,10 +1692,10 @@ pacmedirectory->create("/ca2core");
       if (strAppId.is_empty())
       {
 
-         if (m_pappStartup)
+         if (m_pacmeapplicationStartup)
          {
 
-            strAppId = m_pappStartup->m_strAppId;
+            strAppId = m_pacmeapplicationStartup->m_strAppId;
 
          }
 
@@ -1736,7 +1736,7 @@ pacmedirectory->create("/ca2core");
    void system::inline_init()
    {
 
-      ::system::inline_init();
+      ::acme::system::inline_init();
 
       ::apex::context::inline_init();
 
@@ -1798,10 +1798,10 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   ::app * system::get_main_app()
+   ::acme::application * system::get_main_app()
    {
 
-      return m_pappMain;
+      return m_pacmeapplicationMain;
 
    }
 
@@ -1810,7 +1810,7 @@ pacmedirectory->create("/ca2core");
    {
 
       //auto estatus = 
-      ::system::init_system();
+      ::acme::system::init_system();
 
       //if(!estatus)
       //{
@@ -1819,7 +1819,7 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-//      ::app * pappStartup = ::app::g_p;
+//      ::acme::application * pappStartup = ::acme::application::g_p;
 //
 //      if(::is_null(pappStartup))
 //      {
@@ -1835,13 +1835,13 @@ pacmedirectory->create("/ca2core");
 //
 //      //}
 //
-//      __refer(m_pappStartup, pappStartup);
+//      __refer(m_pacmeapplicationStartup, pappStartup);
 //
-//      m_pappStartup->initialize(this);
+//      m_pacmeapplicationStartup->initialize(this);
 //
-//      m_pappStartup->get_property_set().merge(get_property_set());
+//      m_pacmeapplicationStartup->get_property_set().merge(get_property_set());
 //
-//      set_main_struct(*m_pappStartup);
+//      set_main_struct(*m_pacmeapplicationStartup);
 
       //return estatus;
 
@@ -2043,7 +2043,7 @@ pacmedirectory->create("/ca2core");
    void system::TermSystem()
    {
 
-      ::system::TermSystem();
+      ::acme::system::TermSystem();
 
    }
 
@@ -2055,7 +2055,7 @@ pacmedirectory->create("/ca2core");
 
       //estatus = 
       
-      ::system::create_os_node();
+      ::acme::system::create_os_node();
 
       //if(!estatus)
       //{
@@ -3178,7 +3178,7 @@ pacmedirectory->create("/ca2core");
 
       }
 
-      ::application * papp = nullptr;
+      ::apex::application * papp = nullptr;
 
       auto psession = get_session();
       
@@ -3187,7 +3187,7 @@ pacmedirectory->create("/ca2core");
          
          auto psystem = m_psystem;
          
-         papp = psystem->m_pappMain ? psystem->m_pappMain->m_papplication : psystem->m_pappStartup->m_papplication;
+         papp = psystem->m_pacmeapplicationMain ? psystem->m_pacmeapplicationMain->m_papexapplication : psystem->m_pacmeapplicationStartup->m_papexapplication;
          
       }
       else
@@ -3353,16 +3353,16 @@ pacmedirectory->create("/ca2core");
       pcreate->m_payloadFile = pszFile;
       
       
-      auto papp = m_pappMain;
+      auto papp = m_pacmeapplicationMain;
       
       if(!papp)
       {
          
-         papp = m_pappStartup;
+         papp = m_pacmeapplicationStartup;
          
       }
       
-      papp->m_papplication->post_element(e_message_system, e_system_message_create, pcreate);
+      papp->m_papexapplication->post_element(e_message_system, e_system_message_create, pcreate);
 
 //      defer_accumulate_on_open_file({pszFile}, "");
       
@@ -3610,7 +3610,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   void system::set_user_language(::application * papp, index iSel)
+   void system::set_user_language(::apex::application * papp, index iSel)
    {
 
       auto psystem = get_system()->m_papexsystem;
@@ -3645,7 +3645,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   void system::set_user_language(::application * papp, string strLang)
+   void system::set_user_language(::apex::application * papp, string strLang)
    {
 
       auto psystem = get_system()->m_papexsystem;
@@ -3835,7 +3835,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
          //#elif defined(LINUX)
          //
-         //      class ::system("xdg-open \"" + strUrl + "\"");
+         //      ::acme::system("xdg-open \"" + strUrl + "\"");
          //
          //      return true;
          //
@@ -3882,7 +3882,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 
 #elif defined(MACOS)
 
-         class ::system("open -a /Applications/Safari.app \"" + strUrl + "\"");
+         ::acme::system("open -a /Applications/Safari.app \"" + strUrl + "\"");
 
 #elif defined(APPLE_IOS)
 
@@ -3969,7 +3969,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
          else
          {
 
-            class ::system("xdg-open " + strUrl);
+            ::acme::system("xdg-open " + strUrl);
 
          }
 
@@ -4559,7 +4559,7 @@ namespace apex
 //   void system::defer_initialize_x11()
 //   {
 //
-//      return class ::system::defer_initialize_x11();
+//      return ::acme::system::defer_initialize_x11();
 //
 //   }
 
@@ -5097,10 +5097,10 @@ namespace apex
       else if(ptopic->m_atom == id_app_activated)
       {
          
-         if(::is_set(m_pappMain))
+         if(::is_set(m_pacmeapplicationMain))
          {
          
-            m_pappMain->handle(ptopic, pcontext);
+            m_pacmeapplicationMain->handle(ptopic, pcontext);
             
          }
          
@@ -5162,7 +5162,7 @@ namespace apex
       else
       {
       
-         ::system::process_exit_status(pobject, estatus);
+         ::acme::system::process_exit_status(pobject, estatus);
       
       }
 
@@ -5203,11 +5203,11 @@ namespace apex
    }
 
 
-   void system::system_construct(const ::main & main)
+   void system::system_construct(::acme::application * papplication)
    {
 
       //auto estatus =
-      ::system::system_construct(main);
+      ::acme::system::system_construct(papplication);
 
       //if (!estatus)
       //{
@@ -5218,7 +5218,7 @@ namespace apex
 
       //estatus = 
       
-      apex_main_data::system_construct(main);
+      apex_main_data::system_construct(papplication);
 
       //if (!estatus)
       //{
@@ -5356,7 +5356,7 @@ namespace apex
    {
 
       //auto estatus = 
-      ::system::get_public_internet_domain_extension_list(stra);
+      ::acme::system::get_public_internet_domain_extension_list(stra);
       
       //return estatus;
 
@@ -5366,7 +5366,7 @@ namespace apex
    void system::system_main()
    {
 
-      ::system::system_main();
+      ::acme::system::system_main();
 
    }
 

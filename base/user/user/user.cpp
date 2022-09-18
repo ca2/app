@@ -1210,7 +1210,7 @@ namespace base
    }
 
 
-   ::user::style_pointer user::get_user_style(const ::string & pszExperienceLibrary, ::application* papp)
+   ::user::style_pointer user::get_user_style(const ::string & pszExperienceLibrary, ::apex::application* papp)
    {
 
       auto& pstyle = m_mapUserStyle[pszExperienceLibrary];
@@ -1229,7 +1229,7 @@ namespace base
    }
 
 
-   ::user::style_pointer user::instantiate_user_style(const ::string & strExperience, ::application* papp)
+   ::user::style_pointer user::instantiate_user_style(const ::string & strExperience, ::apex::application* papp)
    {
 
       auto pexperience = experience()->experience(papp, strExperience);

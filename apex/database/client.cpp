@@ -36,7 +36,7 @@ namespace database
 
       //auto linkedproperty = fetch_property(atom);
 
-      auto psignal = get_app()->m_papplication->get_signal(linkedproperty->m_atom);
+      auto psignal = get_app()->m_papexapplication->get_signal(linkedproperty->m_atom);
 
       psignal->add_handler(predicate([this, atom, linkedproperty](::topic * ptopic, ::context * pcontext)
 
@@ -373,7 +373,7 @@ namespace database
    key client::calc_parent_data_key()
    {
 
-      return get_app()->m_papplication->calc_data_key();
+      return get_app()->m_papexapplication->calc_data_key();
 
    }
 

@@ -4,124 +4,131 @@
 #include "apex/parallelization/service_handler.h"
 
 
-void application::enable_service()
+namespace apex
 {
 
-   //auto estatus = m_psystem->m_papexsystem->os_context()->enable_service();
 
-   m_psystem->m_papexsystem->os_context()->enable_service();
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //estatus = service_handler()->start_service();
-
-   service_handler()->start_service();
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return estatus;
-
-}
-
-
-//e_status application::disable_service()
-void application::disable_service()
-{
-
-   //auto estatus = 
-   
-   service_handler()->stop_service();
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //estatus = 
-   
-   os_context()->disable_service();
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return estatus;
-
-}
-
-
-
-void application::on_service_request(::create * pcreate)
-{
-
-   if (!is_service())
+   void application::enable_service()
    {
 
-      return;
+      //auto estatus = m_psystem->m_papexsystem->os_context()->enable_service();
 
-   }
+      m_psystem->m_papexsystem->os_context()->enable_service();
 
-   if (pcreate->has_property("create_service"))
-   {
+      //if (!estatus)
+      //{
 
-      enable_service();
+      //   return estatus;
 
-   }
-   else if (pcreate->has_property("start_service"))
-   {
+      //}
 
-      service_handler()->defer_service();
+      //estatus = service_handler()->start_service();
 
       service_handler()->start_service();
 
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //return estatus;
+
    }
-   else if (pcreate->has_property("stop_service"))
+
+
+   //e_status application::disable_service()
+   void application::disable_service()
    {
+
+      //auto estatus = 
 
       service_handler()->stop_service();
 
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //estatus = 
+
+      os_context()->disable_service();
+
+      //if (!estatus)
+      //{
+
+      //   return estatus;
+
+      //}
+
+      //return estatus;
+
    }
-   else if (pcreate->has_property("erase_service"))
+
+
+
+   void application::on_service_request(::create * pcreate)
    {
 
-      disable_service();
+      if (!is_service())
+      {
+
+         return;
+
+      }
+
+      if (pcreate->has_property("create_service"))
+      {
+
+         enable_service();
+
+      }
+      else if (pcreate->has_property("start_service"))
+      {
+
+         service_handler()->defer_service();
+
+         service_handler()->start_service();
+
+      }
+      else if (pcreate->has_property("stop_service"))
+      {
+
+         service_handler()->stop_service();
+
+      }
+      else if (pcreate->has_property("erase_service"))
+      {
+
+         disable_service();
+
+      }
+      else if (has_property("service"))
+      {
+
+         service_handler()->defer_service();
+
+         service_handler()->start_service();
+
+      }
+      else if (has_property("run"))
+      {
+
+         __compose(m_pservicehandler);
+
+         service_handler()->defer_service();
+
+         service_handler()->get_service()->run();
+
+      }
 
    }
-   else if (has_property("service"))
-   {
 
-      service_handler()->defer_service();
 
-      service_handler()->start_service();
-
-   }
-   else if (has_property("run"))
-   {
-
-      __compose(m_pservicehandler);
-
-      service_handler()->defer_service();
-
-      service_handler()->get_service()->run();
-
-   }
-
-}
+} // namespace apex
 
 
 

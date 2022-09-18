@@ -14,8 +14,8 @@ namespace acme
       m_pcontext = this;
 
 
-      m_papp = nullptr;
-      m_papplication = nullptr;
+      m_pacmeapplication = nullptr;
+      m_papexapplication = nullptr;
       m_paquaapplication = nullptr;
       m_pauraapplication = nullptr;
       m_paxisapplication = nullptr;

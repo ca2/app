@@ -576,7 +576,7 @@ void interprocess_intercommunication::on_interprocess_call(::payload & payload, 
 
          auto papp = get_app();
 
-         papp->m_papplication->on_additional_local_instance(
+         papp->m_papexapplication->on_additional_local_instance(
             payload["handled"].as_bool(),
             strModule, 
             propertyset["pid"].i32(),
@@ -602,7 +602,7 @@ void interprocess_intercommunication::on_new_instance(const ::string & strModule
 
    defer_add_module(strModule, idPid);
 
-   get_app()->m_papplication->on_new_instance(strModule, idPid);
+   get_app()->m_papexapplication->on_new_instance(strModule, idPid);
 
 }
 

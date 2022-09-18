@@ -191,7 +191,7 @@
     <ClCompile Include="framework.cpp" />
     <ClCompile Include="game\estamira.cpp" />
     <ClCompile Include="game\game.cpp" />
-    <ClCompile Include="multimedia\audio.cpp" />
+    <ClCompile Include="multimedia\audio\audio.cpp" />
     <ClCompile Include="multimedia\audio\audio_wave_out.cpp" />
     <ClCompile Include="multimedia\audio\sound_track_player.cpp" />
     <ClCompile Include="multimedia\audio\speaker.cpp" />

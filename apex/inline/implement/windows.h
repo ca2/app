@@ -8,7 +8,7 @@
 //#include "acme/inline/console/windows.h"
 //
 //
-//class ::system* acme_system_init();
+//::acme::system* acme_system_init();
 //
 //
 //void acme_system_term();

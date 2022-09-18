@@ -102,7 +102,7 @@ namespace base
       m_pbasesystem = this;
 
       ::factory::add_factory_item < ::base::session, ::apex::session >();
-      ::factory::add_factory_item < ::base::application, ::application >();
+      ::factory::add_factory_item < ::base::application, ::apex::application >();
       ::factory::add_factory_item < ::base::idpool, ::acme::idpool >();
       ::factory::add_factory_item < ::base::user, ::user::user >();
 

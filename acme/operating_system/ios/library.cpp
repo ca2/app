@@ -3,7 +3,7 @@
 #include <dlfcn.h>
 
 
-CLASS_DECL_ACME class ::system * get_system();
+CLASS_DECL_ACME ::acme::system * get_system();
 
 
 void * __node_library_open(const char * pszPath, string & strMessage);

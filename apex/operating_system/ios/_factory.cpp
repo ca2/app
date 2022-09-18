@@ -15,13 +15,13 @@
 //      add_factory_item < file                 >   (__type(::file::binary_file));
 ////      add_factory_item < file_set             >   (__type(::file::set));
 //      add_factory_item < file                 >   (__type(::file::file));
-//      //      add_factory_item < application                >   (__type(::application), 1);
+//      //      add_factory_item < application                >   (__type(::apex::application), 1);
 //      add_factory_item < ::thread               >   (__type(::thread));
 //
 //      add_factory_item < file_system                >   (__type(::file::system), 1);
 ////    add_factory_item < file_exception, ::file::exception >();
 ////    add_factory_item <    WinResource             >   (__type(::ca2::resource), 1);
-//      //add_factory_item < application                >   (__type(::application), 1);
+//      //add_factory_item < application                >   (__type(::apex::application), 1);
 //      add_factory_item < dir                        >   (__type(::file::system_dir), 1);
 ////    add_factory_item < folder_watch, ::ca2::folder_watch >();
 ////      add_factory_item < window_draw                >   (__type(::user::window_draw), 1);
@@ -65,11 +65,11 @@ void __node_apex_factory(::factory::factory * pfactory)
 //
 //   // add_factory_item < stdio_file         , ::file::text_file> ();
 //   // add_factory_item < file_set           , ::file::set));
-//   // add_factory_item < application        , ::application), 1);
+//   // add_factory_item < application        , ::apex::application), 1);
 //   // add_factory_item < ::thread           , ::thread));
 //   // add_factory_item < file_exception     , ::file::exception >();
 //   // add_factory_item < WinResource        , ::ca2::resource), 1);
-//   // add_factory_item < application        , ::application), 1);
+//   // add_factory_item < application        , ::apex::application), 1);
 //   // add_factory_item < ::ios::dir         , ::file::system_dir), 1);
 //   // add_factory_item < folder_watch       , ::ca2::folder_watch >();
 //   // add_factory_item < window_draw        , ::user::window_draw), 1);

@@ -71,9 +71,8 @@ public:
    
    string                              m_strCommandLine;
    string                              m_strAppId;
-   __pointer(::app)                    m_pappStartup;
-   __pointer(::app)                    m_pappMain;
-
+   __pointer(::acme::application)      m_pacmeapplicationStartup;
+   __pointer(::acme::application)      m_pacmeapplicationMain;
 
 
    main();
@@ -88,7 +87,7 @@ public:
 
 
 
-   virtual void system_construct(const main& main);
+   virtual void system_construct(const main * pmain);
 
    inline ::count _get_argc() const { return m_argc; }
 
@@ -106,7 +105,7 @@ public:
 };
 
 
-CLASS_DECL_ACME void __main(main & main);
+CLASS_DECL_ACME void __main(::acme::application * pacmeapplication);
 
 
 namespace acme

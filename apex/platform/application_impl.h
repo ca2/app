@@ -4,21 +4,28 @@
 #include "acme/platform/exclusive.h"
 
 
-class application_impl :
-   virtual public object
+namespace apex
 {
-public:
 
 
-   string_map < __pointer(::acme::exclusive) >   m_mapExclusive;
+   class application_impl :
+      virtual public object
+   {
+   public:
 
 
-   virtual __pointer(::acme::exclusive) get_exclusive(string str ARG_SEC_ATTRS_DEF);
-
-   virtual bool erase_exclusive(string str ARG_SEC_ATTRS_DEF);
+      string_map < __pointer(::acme::exclusive) >   m_mapExclusive;
 
 
-};
+      virtual __pointer(::acme::exclusive) get_exclusive(string str ARG_SEC_ATTRS_DEF);
+
+      virtual bool erase_exclusive(string str ARG_SEC_ATTRS_DEF);
+
+
+   };
+
+
+} // namespace apex
 
 
 

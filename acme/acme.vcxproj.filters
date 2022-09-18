@@ -2534,7 +2534,7 @@
     <ClInclude Include="platform\apex_main_struct.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\app.h">
+    <ClInclude Include="platform\application.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\app_core.h">
@@ -2803,6 +2803,9 @@
     </ClInclude>
     <ClInclude Include="operating_system\console_client.h">
       <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="inline\__implement.h">
+      <Filter>Header Files\inline</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3757,7 +3760,7 @@
     <ClCompile Include="platform\apex_main_struct.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\app.cpp">
+    <ClCompile Include="platform\application.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\app_core.cpp">

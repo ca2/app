@@ -512,7 +512,7 @@ namespace aura
 
          auto pnode = psystem->node()->m_papexnode;
 
-         auto papp = get_app()->m_papplication;
+         auto papp = get_app()->m_papexapplication;
 
          ::file::path path = pnode->get_desktop_file_path(papp);
 

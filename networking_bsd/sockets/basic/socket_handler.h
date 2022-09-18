@@ -88,7 +88,7 @@ namespace sockets_bsd
       void erase(const ::sockets::socket_pointer & psocket) override;
 
 
-      void erase(const ::sockets::socket_pointer & psocket) override;
+      //void erase(const ::sockets::socket_pointer & psocket) override;
 
       virtual bool contains(::sockets::base_socket *) override;
 

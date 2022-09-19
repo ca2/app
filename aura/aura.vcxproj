@@ -773,6 +773,7 @@
     <ClCompile Include="gpu\gpu\approach.cpp" />
     <ClCompile Include="gpu\gpu\buffer.cpp" />
     <ClCompile Include="gpu\gpu\context.cpp" />
+    <ClCompile Include="gpu\gpu\object.cpp" />
     <ClCompile Include="gpu\gpu\program.cpp" />
     <ClCompile Include="gpu\gpu\shader.cpp" />
     <ClCompile Include="graphics\draw2d\alpha.cpp" />
@@ -1002,6 +1003,7 @@
     <ClInclude Include="gpu\gpu\approach.h" />
     <ClInclude Include="gpu\gpu\buffer.h" />
     <ClInclude Include="gpu\gpu\context.h" />
+    <ClInclude Include="gpu\gpu\object.h" />
     <ClInclude Include="gpu\gpu\program.h" />
     <ClInclude Include="gpu\gpu\shader.h" />
     <ClInclude Include="gpu\gpu\_.h" />

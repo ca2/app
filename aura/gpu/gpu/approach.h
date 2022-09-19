@@ -55,6 +55,9 @@ namespace gpu
       //virtual void make_current();
 
 
+      virtual ::gpu::uniform load_dds(const ::string & strImagePath);
+
+
    };
 
 

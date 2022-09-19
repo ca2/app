@@ -8,9 +8,9 @@
 #ifdef CUBE
 #include "operating_system/appconfig.h"
 #include "_static_factory_.inl"
-#include "_main_hold.h"
 #endif
 
+#include "_main_hold.h"
 
 
 //DECLARE_APPLICATION(APPLICATION);

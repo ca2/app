@@ -4,7 +4,7 @@
 #include "main_window.h"
 
 
-IMPLEMENT_APPLICATION(app_message_box);
+//IMPLEMENT_APPLICATION(app_message_box);
 
 
 namespace app_message_box

@@ -3,7 +3,7 @@
 #include "main_window.h"
 
 
-IMPLEMENT_APPLICATION(app_app);
+//IMPLEMENT_APPLICATION(app_app);
 
 
 namespace app_app

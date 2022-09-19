@@ -379,6 +379,16 @@ namespace opengl
    }
 
 
+   ::gpu::uniform shader::get_uniform(const ::string & strUniform)
+   {
+      
+      auto uniform = glGetUniformLocation(m_uId, strUniform);
+
+      return uniform;
+
+   }
+
+
 } // namespace opengl
 
 

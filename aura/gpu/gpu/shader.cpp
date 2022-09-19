@@ -151,6 +151,16 @@ namespace gpu
 
    //}
 
+   uniform shader::get_uniform(const ::string & strUniform)
+   {
+
+
+      //m_iMatrixUniform = glGetUniformLocation(
+      //   m_pprogram->m_pshader->m_uId,
+      //   m_strMatrixUniform
+      return -1;
+   }
+
 
 } // namespace gpu
 

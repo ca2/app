@@ -5,8 +5,12 @@
 #include "acme/operating_system.h"
 #include "acme/platform/system_setup.h"
 
+#ifdef CUBE
+#include "operating_system/appconfig.h"
+#include "_static_factory_.inl"
+#include "_main_hold.h"
+#endif
 
-//#include "_main_hold.h"
 
 
 //DECLARE_APPLICATION(APPLICATION);
@@ -58,6 +62,8 @@ extern "C" int IDENTIFIER_CONCATENATE(main_, APPLICATION)(int argc, char* argv[]
 int main(int argc, char * argv[], char * envp[])
 #endif
 {
+
+   auto pmainhold = __new(main_hold);
 
    #ifdef WINDOWS
 

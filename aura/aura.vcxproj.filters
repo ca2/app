@@ -711,6 +711,9 @@
     <ClCompile Include="graphics\draw2d\water_routine.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
+    <ClCompile Include="gpu\gpu\object.cpp">
+      <Filter>Source Files\gpu\gpu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="windowing\_.h">
@@ -1723,6 +1726,9 @@
     </ClInclude>
     <ClInclude Include="hardware\_constant.h">
       <Filter>Header Files\hardware</Filter>
+    </ClInclude>
+    <ClInclude Include="gpu\gpu\object.h">
+      <Filter>Header Files\gpu\gpu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

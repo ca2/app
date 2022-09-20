@@ -201,7 +201,7 @@ namespace sockets_bsd
 
       void CheckList(socket_id_list&,const string &); ///< Used by CheckSanity
       /** erase base_socket from base_socket map, used by base_socket class. */
-      void erase(::sockets::base_socket *) override;
+      void erase(const ::sockets::socket_pointer & pointer) override;
 
 
    };

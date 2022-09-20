@@ -1,9 +1,8 @@
 #include "framework.h"
 
-//
-//namespace apex
-//{
 
+namespace apex
+{
 
 
 //   void application::_001InitializeShellOpen()
@@ -178,8 +177,9 @@
 //   }
 //
 //
-//} // namespace android
 
+
+} // namespace android
 
 
 

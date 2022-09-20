@@ -10,6 +10,14 @@ namespace sockets
    smtp_socket::smtp_socket()
    {
 
+   }
+
+
+   void smtp_socket::initialize(::object * pobject)
+   {
+
+      tcp_socket::initialize(pobject);
+
       SetLineProtocol();
 
    }

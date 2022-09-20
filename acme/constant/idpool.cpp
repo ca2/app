@@ -23,7 +23,7 @@ namespace acme
    }
 
 
-   void idpool::init(class ::system * psystem)
+   void idpool::init(::acme::system * psystem)
    {
 
       auto pidpool = psystem->__create < idpool >();

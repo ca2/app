@@ -10,7 +10,7 @@ class CLASS_DECL_ACME tracer
 public:
 
 
-   class ::system *           m_psystem;
+   ::acme::system *           m_psystem;
    string                     m_str;
    enum_trace_level           m_etracelevel;
    enum_trace_category        m_etracecategory;
@@ -20,7 +20,7 @@ public:
    logger *                   m_plogger;
 
 
-   tracer(class ::system * psystem, enum_trace_level etracelevel, enum_trace_category etracecategory = e_trace_category_general, const char * pszFunction = nullptr, const char * pszFile = nullptr, int iLine = -1, logger * plogger = nullptr) :
+   tracer(::acme::system * psystem, enum_trace_level etracelevel, enum_trace_category etracecategory = e_trace_category_general, const char * pszFunction = nullptr, const char * pszFile = nullptr, int iLine = -1, logger * plogger = nullptr) :
       m_psystem(psystem),
       m_etracelevel(etracelevel),
       m_etracecategory(etracecategory),

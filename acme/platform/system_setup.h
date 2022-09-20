@@ -183,7 +183,7 @@ public:
    app_factory(PFN_factory pfnFactory);
 
 
-   static __pointer(::app) new_app();
+   static __pointer(::acme::application) new_app();
     
 
 };

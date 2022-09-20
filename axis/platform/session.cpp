@@ -195,7 +195,7 @@ namespace axis
    //::aura::application * session::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
    //{
 
-   //   __pointer(::application) papp;
+   //   __pointer(::apex::application) papp;
 
    //   if (m_applicationa.lookup(pszAppId, papp))
    //   {
@@ -1210,7 +1210,7 @@ namespace axis
    }
 
 
-   void session::on_instantiate_application(::application* papp)
+   void session::on_instantiate_application(::apex::application* papp)
    {
 
       ::aura::session::on_instantiate_application(papp);

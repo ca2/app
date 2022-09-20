@@ -47,7 +47,7 @@ namespace core
    }
 
 
-   void session::on_instantiate_application(::application* papp)
+   void session::on_instantiate_application(::apex::application* papp)
    {
 
       ::bred::session::on_instantiate_application(papp);

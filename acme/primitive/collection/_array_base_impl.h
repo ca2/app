@@ -817,7 +817,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
       else
       {
 
-         copy_construct_count(m_pData, nNewSize, *ptype);
+         ALLOCATOR::copy_construct_count(m_pData, nNewSize, *ptype);
 
       }
 
@@ -841,7 +841,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
          else
          {
 
-            copy_construct_count(m_pData + m_nSize, nNewSize - m_nSize, *ptype);
+            ALLOCATOR::copy_construct_count(m_pData + m_nSize, nNewSize - m_nSize, *ptype);
 
          }
 
@@ -974,7 +974,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
          else
          {
 
-            copy_construct_count(pNewData + m_nSize, nNewSize - m_nSize, *ptype);
+            ALLOCATOR::copy_construct_count(pNewData + m_nSize, nNewSize - m_nSize, *ptype);
 
          }
 

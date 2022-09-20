@@ -187,32 +187,128 @@
     <ClCompile Include="mathematics\kissfft\ifftd.cpp">
       <Filter>Source Files\mathematics\kissfft</Filter>
     </ClCompile>
-    <ClCompile Include="user\combo_box.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\list_box.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui_draw.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\slider.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\style.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\validate.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
     <ClCompile Include="database\database\transaction.cpp">
       <Filter>Source Files\database\database</Filter>
     </ClCompile>
     <ClCompile Include="database\database\database_impl.cpp">
       <Filter>Source Files\database\database</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\combo_box.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\list_box.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\object.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\plus_minus.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\simple_ui_draw.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\slider.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\style.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\validate.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\form\control.cpp">
+      <Filter>Source Files\user\form</Filter>
+    </ClCompile>
+    <ClCompile Include="user\form\data.cpp">
+      <Filter>Source Files\user\form</Filter>
+    </ClCompile>
+    <ClCompile Include="user\form\window.cpp">
+      <Filter>Source Files\user\form</Filter>
+    </ClCompile>
+    <ClCompile Include="html\element\element.cpp">
+      <Filter>Source Files\html\element</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html\core_data.cpp">
+      <Filter>Source Files\html\html</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html\data.cpp">
+      <Filter>Source Files\html\html</Filter>
+    </ClCompile>
+    <ClCompile Include="html\graphics\attribute.cpp">
+      <Filter>Source Files\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="html\graphics\base.cpp">
+      <Filter>Source Files\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="html\graphics\font.cpp">
+      <Filter>Source Files\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="html\graphics\message.cpp">
+      <Filter>Source Files\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="html\graphics\reader.cpp">
+      <Filter>Source Files\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="html\graphics\style.cpp">
+      <Filter>Source Files\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="html\graphics\style_sheet.cpp">
+      <Filter>Source Files\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="html\graphics\style_sheet_array.cpp">
+      <Filter>Source Files\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="html\graphics\tag.cpp">
+      <Filter>Source Files\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="html\graphics\value.cpp">
+      <Filter>Source Files\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\text.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\table_row.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\table_elemental.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\table.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\select.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\input_text.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\input_checkbox.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\input_button.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\image.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\form.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\element.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\cell.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\_.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\user\form.cpp">
+      <Filter>Source Files\html\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -2611,6 +2707,24 @@
     </Filter>
     <Filter Include="Source Files\mathematics\kissfft">
       <UniqueIdentifier>{f685facc-9a77-4238-aae0-0b3d1afa0def}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\user">
+      <UniqueIdentifier>{6aa3978d-9f9f-412e-bdaa-b375f5b73aa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\form">
+      <UniqueIdentifier>{067a4bd1-fab7-499a-8fa5-4a4b2883565e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html\element">
+      <UniqueIdentifier>{e3262dd5-3093-40c1-af87-c0a7a32a0aab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html\graphics">
+      <UniqueIdentifier>{64f68823-ac75-4007-9dcf-a8cb22768dc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html\impl">
+      <UniqueIdentifier>{03b10c54-6265-45ef-bbae-883fcb09d61a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html\user">
+      <UniqueIdentifier>{7d3a3f1c-947e-4c6f-bd60-7a877ea3a6ed}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -13,7 +13,7 @@ public:
 
    class acme_acme                  m_acme;
    ********__pointer(acme_main_data)        m_pmaindata;
-   __pointer(::acme::application)   m_papp;
+   __pointer(::acme::application)   m_pacmeapplication;
 
 
    //static application *             s_papp;

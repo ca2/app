@@ -10,7 +10,7 @@
 class system;
 
 
-class CLASS_DECL_APEX menu_shared :
+class CLASS_DECL_AURA menu_shared :
    virtual public ::element
 {
 public:
@@ -32,7 +32,7 @@ public:
    void **              m_ositema;
    int  *               m_statusa;
    int                  m_iCount;
-   class ::system *     m_psystem;
+   ::acme::system *     m_psystem;
 
    menu_shared();
    virtual ~menu_shared();

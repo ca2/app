@@ -167,7 +167,7 @@ void* load_lib(const char* l)
 }
 
 
-//void os_application_system_run(class ::system* psystem);
+//void os_application_system_run(::acme::system* psystem);
 
 
 int SetMainScreenRect(LPCRECT32 lpcrect);
@@ -179,7 +179,7 @@ int SetMainScreenRect(LPCRECT32 lpcrect);
 //
 //   auto plocal = g_poslocal;
 //
-//   auto psystem = __new(class ::system());
+//   auto psystem = __new(::acme::system());
 //
 //   psystem->m_pathCacheDir = premote->getCacheDir();
 //

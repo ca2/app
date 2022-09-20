@@ -19,7 +19,7 @@ namespace axis
    void initialize()
    {
 
-      ::factory::add_factory_item< ::axis::system, class ::system>();
+      ::factory::add_factory_item< ::axis::system, ::acme::system>();
 
    }
 

@@ -10,7 +10,7 @@
 thread_local __pointer(logger) t_plogger;
 
 
-void logger::t_construct(class ::system * psystem)
+void logger::t_construct(::acme::system * psystem)
 {
 
    psystem->__construct(t_plogger);

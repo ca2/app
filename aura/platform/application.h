@@ -16,7 +16,7 @@ namespace aura
    public:
 
 
-      //__creatable_from_base(application, ::application);
+      //__creatable_from_base(application, ::apex::application);
 
 
       void* m_pnativeapp;
@@ -1002,7 +1002,7 @@ namespace aura
 
 
 
-//      virtual __pointer(::application) create_platform(::apex::session* psession) override;
+//      virtual __pointer(::apex::application) create_platform(::apex::session* psession) override;
 
 
 

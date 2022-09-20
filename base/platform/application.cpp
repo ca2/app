@@ -13,7 +13,7 @@ namespace base
    void initialize()
    {
 
-      ::factory::add_factory_item< ::base::system, class ::system>();
+      ::factory::add_factory_item< ::base::system, ::acme::system>();
 
    }
 

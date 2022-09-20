@@ -83,35 +83,35 @@ main::~main()
 //}
 
 
-void main::system_construct(const main& main)
+void main::system_construct(const main * pmain)
 {
 
-   *((PLAIN_MAIN*)this) = (const PLAIN_MAIN&)main;
+   *((PLAIN_MAIN*)this) = *pmain;
 
-   m_strCommandLine = main.m_strCommandLine;
+   m_strCommandLine = pmain->m_strCommandLine;
 
-   m_strAppId = main.m_strAppId;
+   m_strAppId = pmain->m_strAppId;
 
-   m_pfnImplement = main.m_pfnImplement;
+   m_pfnImplement = pmain->m_pfnImplement;
 
 #if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
 
    if(!m_pchar_binary__matter_zip_start && !m_pchar_binary__matter_zip_end
-   && main.m_pchar_binary__matter_zip_start && main.m_pchar_binary__matter_zip_end)
+   && pmain->m_pchar_binary__matter_zip_start && pmain->m_pchar_binary__matter_zip_end)
    {
 
-      m_pchar_binary__matter_zip_start = main.m_pchar_binary__matter_zip_start;
+      m_pchar_binary__matter_zip_start = pmain->m_pchar_binary__matter_zip_start;
 
-      m_pchar_binary__matter_zip_end = main.m_pchar_binary__matter_zip_end;
+      m_pchar_binary__matter_zip_end = pmain->m_pchar_binary__matter_zip_end;
 
    }
 
 #endif
    
-   if(!m_pappStartup && main.m_pappStartup)
+   if(!m_pacmeapplicationStartup && pmain->m_pacmeapplicationStartup)
    {
     
-      m_pappStartup = main.m_pappStartup;
+      m_pacmeapplicationStartup = pmain->m_pacmeapplicationStartup;
       
    }
 
@@ -212,8 +212,44 @@ void __main()
 }
 
 
-void __main(main& main)
+void __main(::acme::application * pacmeapplication)
 {
+
+   #ifdef WINDOWS_DESKTOP
+   //{
+
+   //   auto papp = ::app_factory::new_app();
+
+   pacmeapplication->m_argc = __argc;
+
+   pacmeapplication->m_argv = __argv;
+
+   pacmeapplication->m_wargv = __wargv;
+
+   pacmeapplication->m_envp = *__p__environ();
+
+   pacmeapplication->m_wenvp = *__p__wenviron();
+
+      //pacmeapplication->m_hinstanceThis = hinstanceThis;
+
+      //pacmeapplication->m_hinstancePrev = hinstancePrev;
+
+   pacmeapplication->m_strCommandLine = ::GetCommandLineW();
+
+      //pacmeapplication->m_nCmdShow = nCmdShow;
+
+      //pacmeapplication->m_bConsole = false;
+
+      //int iExitCode = pacmeapplication->main_loop();
+
+      //return iExitCode;
+
+#elif !defined(_UWP)
+
+   pacmeapplication->set_args(argc, argv, envp);
+
+#endif
+
 
    set_main_user_thread();
 
@@ -223,20 +259,22 @@ void __main(main& main)
 
    string strAppId;
 
-   if (!main.m_bConsole)
+   if (!pacmeapplication->m_bConsole)
    {
 
-      strAppId = main.m_strAppId;
+      strAppId = pacmeapplication->m_strAppId;
 
    }
 
-   main.m_bAudio = main_hold_base::is_audio_enabled();
+   //main.m_bAudio = main_hold_base::is_audio_enabled();
 
-   auto pfactoryitem = ::factory::get_factory()->get_factory_item<class::system>();
+   auto pfactoryitem = ::factory::get_factory()->get_factory_item<::acme::system>();
 
-   __pointer(class ::system) psystem = pfactoryitem->create_element();
+   __pointer(::acme::system) psystem = pfactoryitem->create_element();
 
-   psystem->system_construct(main);
+   //psystem->m_pacmeapplicationStartup = pacmeapplication;
+
+   psystem->system_construct(pacmeapplication);
 
    psystem->create_os_node();
 
@@ -244,10 +282,10 @@ void __main(main& main)
 
    pnode->implement(pnode, psystem);
 
-   if(main.m_iExitCode == 0 && psystem->m_iExitCode != 0)
+   if(pacmeapplication->m_iExitCode == 0 && psystem->m_iExitCode != 0)
    {
 
-      main.m_iExitCode = psystem->m_iExitCode;
+      pacmeapplication->m_iExitCode = psystem->m_iExitCode;
 
    }
 

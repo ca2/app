@@ -618,7 +618,7 @@ namespace html
 
 //#define papp (App(this))
 //#define ThisApp (*::app_consumer < application >::get_app())
-//#define m_papp->
+//#define m_pacmeapplication->
 
 
 //#undef Ctx
@@ -694,13 +694,13 @@ namespace aura
 //inline ::object * this;
 
 
-//CLASS_DECL_APEX void set_global_application(::application * papp);
+//CLASS_DECL_APEX void set_global_application(::apex::application * papp);
 //CLASS_DECL_APEX ::application * get_global_application();
 
 
 //CLASS_DECL_APEX ::application * get_app();
 //CLASS_DECL_APEX ::application * get_app(::object * pobject);
-//CLASS_DECL_APEX inline ::application * get_app(::application * papp);
+//CLASS_DECL_APEX inline ::application * get_app(::apex::application * papp);
 //CLASS_DECL_APEX inline ::application * get_app() { return get_app(); }
 
 
@@ -1221,7 +1221,7 @@ namespace xml
 #define return_(y, x) {y = x; return;}
 
 
-#include "apex/platform/simple_app.h"
+//#include "apex/platform/simple_app.h"
 
 
 namespace mathematics

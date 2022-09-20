@@ -150,7 +150,7 @@ namespace crypto_openssl
 
       CFDictionaryAddValue(parameters, kSecAttrKeyType, kSecAttrKeyTypeAES);
 
-      CFDataRef keyData = memSha1.get_os_cf_data();
+      CFDataRef keyData = get_os_cf_data(memSha1);
 
       CFErrorRef error = nullptr;
 
@@ -835,7 +835,7 @@ namespace crypto_openssl
    //}
 
 
-   //bool crypto::file_set(::payload payloadFile, const char* pszData, const char* pszSalt, ::application* papp)
+   //bool crypto::file_set(::payload payloadFile, const char* pszData, const char* pszSalt, ::apex::application* papp)
    //{
 
    //   memory memoryEncrypt;
@@ -859,7 +859,7 @@ namespace crypto_openssl
    //}
 
 
-   //void     crypto::file_get(::payload payloadFile, string& str, const char* pszSalt, ::application* papp)
+   //void     crypto::file_get(::payload payloadFile, string& str, const char* pszSalt, ::apex::application* papp)
    //{
 
    //   memory memoryEncrypt;

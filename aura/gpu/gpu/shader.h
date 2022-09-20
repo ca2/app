@@ -56,6 +56,9 @@ namespace gpu
       //static void program_compile_errors(GLuint program, string & strSummary);
 
 
+      virtual uniform get_uniform(const ::string & strName);
+
+
    };
 
 

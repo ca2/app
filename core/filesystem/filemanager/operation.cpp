@@ -292,7 +292,7 @@ namespace filemanager
 
          propertyset["filepath"] = strDst;
 
-         papp->m_papplication->dialog_box("filemanager\\not_accessible_destination_file.xhtml",propertyset);
+         papp->m_papexapplication->dialog_box("filemanager\\not_accessible_destination_file.xhtml",propertyset);
 
          return false;
 

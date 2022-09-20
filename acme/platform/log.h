@@ -8,7 +8,7 @@ class logger :
 public:
 
    
-   static void t_construct(class ::system * psystem);
+   static void t_construct(::acme::system * psystem);
    static void t_release();
 
 

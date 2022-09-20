@@ -85,6 +85,10 @@ namespace sockets_bsd
       void move2(::sockets::socket_pointer && psocket) override;
       void move(socket_map::association* passociation, socket_map* psocketmap = nullptr) override;
       //void _move(socket_map::association* passociation, socket_map* psocketmap) override;
+      void erase(const ::sockets::socket_pointer & psocket) override;
+
+
+      //void erase(const ::sockets::socket_pointer & psocket) override;
 
       virtual bool contains(::sockets::base_socket *) override;
 
@@ -201,7 +205,7 @@ namespace sockets_bsd
 
       void CheckList(socket_id_list&,const string &); ///< Used by CheckSanity
       /** erase base_socket from base_socket map, used by base_socket class. */
-      void erase(const ::sockets::socket_pointer & pointer) override;
+      //void erase(::sockets::base_socket *) override;
 
 
    };

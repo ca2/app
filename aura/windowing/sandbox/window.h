@@ -7,6 +7,9 @@
 #pragma once
 
 
+#include "aura/windowing/window.h"
+#include "aura/windowing/windowing.h"
+
 
 namespace sandbox_windowing
 {

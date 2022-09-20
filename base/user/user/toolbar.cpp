@@ -5,6 +5,7 @@
 #include "toolbar.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/image/context_image.h"
 #include "acme/timer.h"
 #include "aura/user/user/frame.h"
 #include "aura/message/user.h"

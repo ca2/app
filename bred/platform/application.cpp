@@ -10,7 +10,7 @@ namespace bred
    void initialize()
    {
 
-      ::factory::add_factory_item < ::bred::system, class ::system >();
+      ::factory::add_factory_item < ::bred::system, ::acme::system >();
 
    }
 
@@ -41,7 +41,7 @@ namespace bred
 
       //auto estatus = 
       
-      ::application::initialize(pobject);
+      ::axis::application::initialize(pobject);
 
       //if (!estatus)
       //{

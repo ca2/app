@@ -38,12 +38,12 @@ apex_main_data::~apex_main_data()
 }
 
 
-void apex_main_data::system_construct(const ::main & main)
+void apex_main_data::system_construct(const ::main * pmain)
 {
 
    //auto estatus = 
    
-   ::main::system_construct(main);
+   ::main::system_construct(pmain);
 
    //if (!estatus)
    //{

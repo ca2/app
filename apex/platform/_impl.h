@@ -25,7 +25,7 @@
 //
 //      }
 //
-//      __pointer(::application) papp;
+//      __pointer(::apex::application) papp;
 //
 //      papp = pappNew;
 //
@@ -285,7 +285,7 @@
 //}
 
 
-//CLASS_DECL_APEX inline ::application * get_app(::application * papp)
+//CLASS_DECL_APEX inline ::application * get_app(::apex::application * papp)
 //{
 //
 //  return papp;
@@ -593,10 +593,10 @@
 //}
 
 
-//inline void object::set_context_app(::application* pappContext)
+//inline void object::set_context_app(::apex::application* pappContext)
 //{
 //
-//   m_papp = pappContext;
+//   m_pacmeapplication = pappContext;
 //
 //}
 

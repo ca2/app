@@ -1019,7 +1019,7 @@ namespace http
    }
 
 
-   //void context::on_auth(property_set & set, ::application *      papp, string & strUrl, string & strSessId, __pointer(::account::user) & puser)
+   //void context::on_auth(property_set & set, ::apex::application *      papp, string & strUrl, string & strSessId, __pointer(::account::user) & puser)
    //{
 
    //   if (::is_null(papp))
@@ -1083,7 +1083,7 @@ namespace http
 
       string strProtocol = strProtocolParam;
 
-      __pointer(::application) papp = set["app"].cast < ::application >();
+      __pointer(::apex::application) papp = set["app"].cast < ::apex::application >();
 
       i32 iPort;
 
@@ -1287,7 +1287,7 @@ namespace http
 //
 //         auto tickTimeProfile1 = ::duration::now();
 //
-//         auto papplication = psession->m_psockethandler->get_app()->m_papplication;
+//         auto papplication = psession->m_psockethandler->get_app()->m_papexapplication;
 //
 //         string strRequest = purl->get_object(pszRequest);
 //
@@ -1822,9 +1822,9 @@ namespace http
 
       string strObject = purl->get_object(strUrl);
 
-      __pointer(::application) papp = set["app"].cast < ::application >();
+      __pointer(::apex::application) papp = set["app"].cast < ::apex::application >();
 
-      __pointer(::application) pappAgent = papp;
+      __pointer(::apex::application) pappAgent = papp;
 
       i32 iPort;
 
@@ -2417,12 +2417,6 @@ namespace http
          estatus = error_http;
 
       }
-      else if (::failed(psocket->m_estatus))
-      {
-
-         estatus = psocket->m_estatus;
-
-      }
       else if ((iStatusCode >= 200 && iStatusCode <= 299) || psocket->outattr("http_status_code").is_empty())
       {
 
@@ -2491,6 +2485,12 @@ namespace http
             }
 
          }
+
+      }
+      else if (::failed(psocket->m_estatus))
+      {
+
+         estatus = psocket->m_estatus;
 
       }
       else if (iStatusCode == 401)

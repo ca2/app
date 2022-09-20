@@ -3,7 +3,6 @@
 
 
 #include "apex/networking/sockets/base/socket.h"
-//#include "networking_bsd/sockets/ssl/context.h"
 
 
 namespace sockets_bsd
@@ -172,8 +171,7 @@ namespace sockets_bsd
 
       /** "Default" constructor */
       base_socket();
-
-      virtual ~base_socket();
+      ~base_socket() override;
 
 
       virtual void initialize_socket(::sockets::base_socket_handler* phandler);

@@ -46,6 +46,13 @@ void simple_main_frame::install_message_routing(::channel * pchannel)
 void simple_main_frame::on_message_create(::message::message * pmessage)
 {
 
+   if (pmessage->previous())
+   {
+
+      return;
+
+   }
+
    __pointer(::message::create) pcreate(pmessage);
 
    auto papp = get_app();

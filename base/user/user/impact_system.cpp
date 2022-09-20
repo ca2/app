@@ -139,7 +139,7 @@ namespace user
 
       }
 
-      ::app * papp = pcreate->create_get_app(get_app());
+      ::acme::application * papp = pcreate->create_get_app(get_app());
 
       __pointer(::user::document) pdocument;
 
@@ -217,7 +217,7 @@ namespace user
 
       }
 
-      ::app * papp = pcreate->create_get_app(get_app());
+      ::acme::application * papp = pcreate->create_get_app(get_app());
 
       __pointer(::user::frame_window) pframe;
 

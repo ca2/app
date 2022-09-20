@@ -137,7 +137,7 @@ namespace filemanager
    }
 
 
-   bool data::open(::application * pappOnBehalfOfParam, ::file::path path, const ::action_context & context)
+   bool data::open(::apex::application * pappOnBehalfOfParam, ::file::path path, const ::action_context & context)
    {
 
       __pointer(::core::application) pappOnBehalfOf = pappOnBehalfOfParam;

@@ -71,8 +71,8 @@ namespace crypto_openssl
       void hmac(void * result,const memory & memMessage,const memory & key) override;
       void hmac(void * result,const string & memMessage,const string & key) override;
 
-      //virtual bool file_set(::payload payloadFile,const char * pszData,const char * pszSalt, ::application * papp);
-      //virtual void     file_get(::payload payloadFile,string & str,const char * pszSalt, ::application * papp);
+      //virtual bool file_set(::payload payloadFile,const char * pszData,const char * pszSalt, ::apex::application * papp);
+      //virtual void     file_get(::payload payloadFile,string & str,const char * pszSalt, ::apex::application * papp);
 
       // get a new salt - 8 hexadecimal characters long
       // current PHP installations should not exceed 8 characters

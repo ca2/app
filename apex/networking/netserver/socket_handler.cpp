@@ -25,6 +25,13 @@ namespace netserver
 
    }
 
+   void socket_handler::erase(const ::sockets::socket_pointer & psocket)
+   {
+
+      m_pcomposite->erase(psocket);
+
+   }
+
 
    //void socket_handler::move2(::sockets::socket_pointer && psocket)
    //{

@@ -952,8 +952,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="ImageImpact.cpp" />
     <ClCompile Include="ImagePanel.cpp" />
-    <ClCompile Include="ImageView.cpp" />
     <ClCompile Include="Label.cpp" />
     <ClCompile Include="Layout.cpp" />
     <ClCompile Include="MessageDialog.cpp" />

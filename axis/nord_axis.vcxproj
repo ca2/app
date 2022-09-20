@@ -210,17 +210,69 @@
     <ClCompile Include="database\simpledb\thread.cpp" />
     <ClCompile Include="database\simpledb\thread_localdatabase.cpp" />
     <ClCompile Include="framework.cpp" />
-    <ClCompile Include="geoip\city.cpp" />
-    <ClCompile Include="geoip\geoip.cpp" />
-    <ClCompile Include="geoip\region_name.cpp" />
-    <ClCompile Include="geoip\time_zone.cpp" />
-    <ClCompile Include="geoip\update.cpp" />
+    <ClCompile Include="geoip\city.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="geoip\geoip.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="geoip\region_name.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="geoip\time_zone.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="geoip\update.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x86'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="graphics\render\water_routine.cpp" />
+    <ClCompile Include="html\element\element.cpp" />
+    <ClCompile Include="html\graphics\attribute.cpp" />
+    <ClCompile Include="html\graphics\base.cpp" />
+    <ClCompile Include="html\graphics\font.cpp" />
+    <ClCompile Include="html\graphics\message.cpp" />
+    <ClCompile Include="html\graphics\reader.cpp" />
+    <ClCompile Include="html\graphics\style.cpp" />
+    <ClCompile Include="html\graphics\style_sheet.cpp" />
+    <ClCompile Include="html\graphics\style_sheet_array.cpp" />
+    <ClCompile Include="html\graphics\tag.cpp" />
+    <ClCompile Include="html\graphics\value.cpp" />
+    <ClCompile Include="html\html\core_data.cpp" />
+    <ClCompile Include="html\html\data.cpp" />
     <ClCompile Include="html\html\html.cpp" />
     <ClCompile Include="html\html_lite\attributes.cpp" />
     <ClCompile Include="html\html_lite\entity_resolver.cpp" />
     <ClCompile Include="html\html_lite\reader.cpp" />
     <ClCompile Include="html\html_lite\tag.cpp" />
+    <ClCompile Include="html\impl\cell.cpp" />
+    <ClCompile Include="html\impl\element.cpp" />
+    <ClCompile Include="html\impl\form.cpp" />
+    <ClCompile Include="html\impl\image.cpp" />
+    <ClCompile Include="html\impl\input_button.cpp" />
+    <ClCompile Include="html\impl\input_checkbox.cpp" />
+    <ClCompile Include="html\impl\input_text.cpp" />
+    <ClCompile Include="html\impl\select.cpp" />
+    <ClCompile Include="html\impl\table.cpp" />
+    <ClCompile Include="html\impl\table_elemental.cpp" />
+    <ClCompile Include="html\impl\table_row.cpp" />
+    <ClCompile Include="html\impl\text.cpp" />
+    <ClCompile Include="html\impl\_.cpp" />
+    <ClCompile Include="html\user\form.cpp" />
     <ClCompile Include="mathematics\calculator\calculator.cpp" />
     <ClCompile Include="mathematics\calculator\element.cpp" />
     <ClCompile Include="mathematics\calculator\parser.cpp" />
@@ -245,13 +297,18 @@
     <ClCompile Include="platform\muldiv64.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />
-    <ClCompile Include="user\combo_box.cpp" />
-    <ClCompile Include="user\list_box.cpp" />
-    <ClCompile Include="user\simple_ui_draw.cpp" />
-    <ClCompile Include="user\slider.cpp" />
-    <ClCompile Include="user\style.cpp" />
-    <ClCompile Include="user\user.cpp" />
-    <ClCompile Include="user\validate.cpp" />
+    <ClCompile Include="user\form\control.cpp" />
+    <ClCompile Include="user\form\data.cpp" />
+    <ClCompile Include="user\form\window.cpp" />
+    <ClCompile Include="user\user\combo_box.cpp" />
+    <ClCompile Include="user\user\list_box.cpp" />
+    <ClCompile Include="user\user\object.cpp" />
+    <ClCompile Include="user\user\plus_minus.cpp" />
+    <ClCompile Include="user\user\simple_ui_draw.cpp" />
+    <ClCompile Include="user\user\slider.cpp" />
+    <ClCompile Include="user\user\style.cpp" />
+    <ClCompile Include="user\user\user.cpp" />
+    <ClCompile Include="user\user\validate.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="account\aaa_want_to_remove_account_authentication_map.h" />

@@ -108,7 +108,7 @@ class application_pane_tab_impact :
 public:
 
 
-   __pointer(APPLICATION) m_papp;
+   __pointer(APPLICATION) m_papplicationForConsumer;
 
 
    application_pane_tab_impact()
@@ -200,8 +200,8 @@ public:
    }
 
 
-   inline APPLICATION* get_app() { return m_papp.get(); }
-   inline APPLICATION* get_app() const { return (APPLICATION *) m_papp.get(); }
+   inline APPLICATION* get_app() { return m_papplicationForConsumer.get(); }
+   inline APPLICATION* get_app() const { return (APPLICATION *)m_papplicationForConsumer.get(); }
 
    void on_change_cur_sel() override = 0;
    void on_create_impact(::user::impact_data * pimpactdata) override = 0;

@@ -74,9 +74,9 @@
 //
 ////            auto pappStartup = m_psystem->new_application(strAppId);
 ////
-////            m_psystem->__refer(m_psystem->m_pappStartup, pappStartup);
+////            m_psystem->__refer(m_psystem->m_pacmeapplicationStartup, pappStartup);
 ////
-////            m_psystem->set_main_struct(*m_psystem->m_pappStartup);
+////            m_psystem->set_main_struct(*m_psystem->m_pacmeapplicationStartup);
 //
 //            m_psystem->m_bConsole = true;
 //
@@ -128,7 +128,7 @@
 //         int result()
 //         {
 //
-//            m_estatus = m_psystem->m_pappStartup->m_estatus;
+//            m_estatus = m_psystem->m_pacmeapplicationStartup->m_estatus;
 //
 //            ::i32 iErrorStatus = m_estatus.error_status();
 //

@@ -13,7 +13,7 @@ public:
 
    class aura_aura                  m_aura;
    __pointer(aura_main_data)        m_pmaindata;
-   __pointer(::aura::application)   m_papp;
+   __pointer(::aura::application)   m_pacmeapplication;
 
 
    //static application *             s_papp;

@@ -16,6 +16,7 @@
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/graphics/graphics.h"
+#include "aura/graphics/image/image.h"
 #include "acme/primitive/geometry2d/_geometry2d.h"
 #include "acme/primitive/geometry2d/_collection.h"
 #include "acme/primitive/geometry2d/_defer_shape.h"
@@ -5288,6 +5289,13 @@ namespace user
 
    void interaction::on_message_create(::message::message * pmessage)
    {
+
+      if (pmessage->previous())
+      {
+
+         return;
+
+      }
 
       __UNREFERENCED_PARAMETER(pmessage);
 
@@ -20075,7 +20083,7 @@ namespace user
    ::aura::application * interaction::get_app() const
    {
 
-      return m_pcontext && m_pcontext->m_papplication ? m_pcontext->m_papplication->m_pauraapplication : nullptr;
+      return m_pcontext && m_pcontext->m_papexapplication ? m_pcontext->m_papexapplication->m_pauraapplication : nullptr;
 
    }
 

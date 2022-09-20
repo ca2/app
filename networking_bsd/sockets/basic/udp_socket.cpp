@@ -735,7 +735,7 @@ namespace sockets_bsd
    void udp_socket::AddMulticastMembership(const string & group, const string & local_if, i32 if_index)
    {
 
-      throw ::exception::exception(todo);
+      throw ::exception(todo);
 
       //if (GetSocketId() == INVALID_SOCKET)
       //{
@@ -794,7 +794,7 @@ namespace sockets_bsd
    void udp_socket::DropMulticastMembership(const string & group, const string & local_if, i32 if_index)
    {
 
-      throw ::exception::exception(todo);
+      throw ::exception(todo);
 
       //if (GetSocketId() == INVALID_SOCKET)
       //{

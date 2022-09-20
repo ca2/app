@@ -6,7 +6,7 @@
 #pragma once
 
 
-#include "socket.h"
+#include "networking_bsd/sockets/basic/socket.h"
 #include "apex/networking/sockets/basic/listen_socket.h"
 
 
@@ -17,7 +17,7 @@ namespace sockets_bsd
    /** Binds incoming port number to new socket class X.
    \ingroup basic */
    class CLASS_DECL_NETWORKING_BSD listen_socket :
-      virtual public socket,
+      virtual public ::sockets_bsd::socket,
       virtual public ::sockets::listen_socket_base
    {
    public:

@@ -20,7 +20,7 @@ networking_application_socket::~networking_application_socket()
 void networking_application_socket::on_send_response()
 {
 
-   auto papp = get_app()->m_papplication;
+   auto papp = get_app()->m_papexapplication;
 
    string strUrl;
 

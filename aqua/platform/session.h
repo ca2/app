@@ -19,7 +19,7 @@ namespace aqua
 
       void initialize(::object * pobject) override;
 
-      void on_instantiate_application(::application* papp) override;
+      void on_instantiate_application(::apex::application* papp) override;
 
 
    };

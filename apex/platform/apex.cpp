@@ -420,7 +420,7 @@ namespace apex
 
       //::thread::g_pthreadmap = new ::thread_map();
 
-      ::factory::add_factory_item < ::apex::system, class ::system >();
+      ::factory::add_factory_item < ::apex::system, ::acme::system >();
       ::factory::add_factory_item < ::apex::context, ::acme::context >();
 
 

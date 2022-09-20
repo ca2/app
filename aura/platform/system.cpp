@@ -16,6 +16,8 @@
 #include "aura/windowing/windowing.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/task_tool.h"
+#include "aura/graphics/image/icon.h"
+#include "aura/graphics/image/imaging.h"
 #include "acme/platform/profiler.h"
 #include "aura/user/user/user.h"
 #include "aura/hardware/devices.h"
@@ -169,7 +171,7 @@ namespace aura
       m_bFinalizeIfNoSession = false;
 
       ::factory::add_factory_item < ::aura::session, ::apex::session >();
-      ::factory::add_factory_item < ::aura::application, ::application >();
+      ::factory::add_factory_item < ::aura::application, ::apex::application >();
       ::factory::add_factory_item < ::aura::idpool, ::acme::idpool >();
       ::factory::add_factory_item < ::user::user >();
 
@@ -685,9 +687,9 @@ namespace aura
 
       //}
 
-      //m_pappStartup = get_new_application(get_session(), m_XstrAppId);
+      //m_pacmeapplicationStartup = get_new_application(get_session(), m_XstrAppId);
 
-      //if (!m_pappStartup)
+      //if (!m_pacmeapplicationStartup)
       //{
 
       //   output_error_message("Failed to allocate papp!!");
@@ -696,9 +698,9 @@ namespace aura
 
       //}
 
-      //set_main_struct(*m_pappStartup);
+      //set_main_struct(*m_pacmeapplicationStartup);
 
-      //string strAppId = m_pappStartup->m_XstrAppId;
+      //string strAppId = m_pacmeapplicationStartup->m_XstrAppId;
 
       //auto pcommand = get_command();
 
@@ -6870,11 +6872,11 @@ namespace aura
    void system::windowing_post(const ::procedure & procedure)
    {
 
-      if(::is_null(m_pappMain)
-         || ::is_null(m_pappMain->m_pauraapplication)
-            || ::is_null(m_pappMain->m_pauraapplication->get_session())
-               || ::is_null(m_pappMain->m_pauraapplication->get_session()->user())
-                  || ::is_null(m_pappMain->m_pauraapplication->get_session()->user()->windowing1())
+      if(::is_null(m_pacmeapplicationMain)
+         || ::is_null(m_pacmeapplicationMain->m_pauraapplication)
+            || ::is_null(m_pacmeapplicationMain->m_pauraapplication->get_session())
+               || ::is_null(m_pacmeapplicationMain->m_pauraapplication->get_session()->user())
+                  || ::is_null(m_pacmeapplicationMain->m_pauraapplication->get_session()->user()->windowing1())
                )
       {
 
@@ -6882,7 +6884,7 @@ namespace aura
 
       }
 
-      auto pwindowing = m_pappMain->m_pauraapplication->get_session()->user()->windowing1();
+      auto pwindowing = m_pacmeapplicationMain->m_pauraapplication->get_session()->user()->windowing1();
 
       pwindowing->windowing_post(procedure);
 

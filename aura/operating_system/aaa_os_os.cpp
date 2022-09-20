@@ -8,7 +8,7 @@
 CLASS_DECL_AURA string & get_command_line_string()
 {
 
-   return ::app::g_p->m_strCommandLine;
+   return ::acme::application::g_p->m_strCommandLine;
 
 }
 

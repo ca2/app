@@ -1810,7 +1810,7 @@ void dir_context::get_matter_locator(string_array& straMatterLocator, bool bIncl
 ::file::path dir_context::locale_schema_matter(const ::string& strLocale, const ::string& strSchema, const ::file::path& pathRoot, const ::file::path& pathDomain)
 {
 
-   string strHint = pathRoot / "_matter" / pathDomain / get_app()->m_papplication->get_locale_schema_dir(strLocale, strSchema);
+   string strHint = pathRoot / "_matter" / pathDomain / get_app()->m_papexapplication->get_locale_schema_dir(strLocale, strSchema);
 
    return strHint;
 
@@ -2432,7 +2432,7 @@ ret:
 
       synchronous_lock synchronouslock(mutex());
 
-      straMatterLocator = get_app()->m_papplication->m_straMatterLocator;
+      straMatterLocator = get_app()->m_papexapplication->m_straMatterLocator;
 
    }
 
@@ -3034,31 +3034,31 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 
    }
 
-   if (m_psystem->m_pappStartup)
+   if (m_psystem->m_pacmeapplicationStartup)
    {
 
-      if (m_psystem->m_pappStartup->m_strAppId.is_empty())
+      if (m_psystem->m_pacmeapplicationStartup->m_strAppId.is_empty())
       {
 
          throw ::exception(error_wrong_state, "Application Startup App Id is empty");
 
       }
 
-      return dropbox() / "application" / m_psystem->m_pappStartup->m_strAppId;
+      return dropbox() / "application" / m_psystem->m_pacmeapplicationStartup->m_strAppId;
 
    }
 
-   if (m_psystem->m_pappMain)
+   if (m_psystem->m_pacmeapplicationMain)
    {
 
-      if (m_psystem->m_pappMain->m_strAppId.is_empty())
+      if (m_psystem->m_pacmeapplicationMain->m_strAppId.is_empty())
       {
 
          throw ::exception(error_wrong_state, "Application Main App Id is empty");
 
       }
 
-      return dropbox() / "application" / m_psystem->m_pappMain->m_strAppId;
+      return dropbox() / "application" / m_psystem->m_pacmeapplicationMain->m_strAppId;
 
    }
 

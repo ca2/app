@@ -230,7 +230,7 @@ namespace apex
    }
 
 
-//   extern __pointer(::application) g_papp;
+//   extern __pointer(::apex::application) g_papp;
 
    CLASS_DECL_APEX i32 SimpleDebugReport(i32 iReportType, const char * pszFileName,i32 iLine,const char *,const char * pszFormat, va_list list)
    {
@@ -259,7 +259,7 @@ namespace apex
             /*if(message_box(nullptr, str, strCaption, e_message_box_icon_information | MB_OKCANCEL | MB_DEFBUTTON1) == e_dialog_result_cancel)
             {
                string strCmdLine = "\"C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\IDE\\devenv.exe\" /edit \""+string(pszFileName)+ "\" /command \"edit.goto "+__string(iLine)+"\"";
-               class ::system(strCmdLine);
+               ::acme::system(strCmdLine);
                exit(0);
             }
             */

@@ -36,7 +36,7 @@ public:
    void set_main_struct(const apex_main_struct  & mainstruct);
 
 
-   void system_construct(const class ::main & main) override;
+   void system_construct(const class ::main * pmain) override;
 
 
    //void system_construct(int argc, char** argv, char ** envp);

@@ -6,7 +6,7 @@ namespace acme
 {
 
 
-   bool implementable::defer_implement(class ::system * psystem)
+   bool implementable::defer_implement(::acme::system * psystem)
    {
 
       if (!m_pfnImplement)

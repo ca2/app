@@ -64,7 +64,7 @@ namespace aura
       
       virtual void defer_dock_application(bool bDock);
 
-      void set_application_menu(::application_menu * pmenu, ::application * papp) override;
+      void set_application_menu(::application_menu * pmenu, ::apex::application * papp) override;
 
 //      virtual void * node_wrap_window(void * pdisplay, i64 window);
 

@@ -572,6 +572,14 @@ namespace opengl
    //}
 
 
+   void context::set_matrix_uniform(::gpu::uniform uniformMatrix)
+   {
+
+      m_iMatrixUniform = uniformMatrix;
+
+   }
+
+
 
 } // namespace opengl
 

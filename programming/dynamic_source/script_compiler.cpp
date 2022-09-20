@@ -1385,7 +1385,7 @@ pacmedirectory->create(pathDVP_Folder);
 
       //auto papp = get_app();
 
-      //l.m_straLibSourcePath.m_pprovider = papp->m_papplication;
+      //l.m_straLibSourcePath.m_pprovider = papp->m_papexapplication;
 
       l.m_straLibSourcePath.clear_results();
 
@@ -1415,7 +1415,7 @@ pacmedirectory->create(pathDVP_Folder);
          str.find_replace(":","");
          l.m_straLibCppPath.add(m_strTime / strLibRel / str + ".cpp");
       }
-      //l.m_straLibIncludePath.m_pprovider = papp->m_papplication;
+      //l.m_straLibIncludePath.m_pprovider = papp->m_papexapplication;
       l.m_straLibIncludePath.clear_results();
       l.m_straLibIncludePath.set_listing(m_pmanager->m_strNetseedDsCa2Path / "library" / strName, e_depth_recursively);
       pcontext->m_papexcontext->dir().enumerate(l.m_straLibIncludePath);

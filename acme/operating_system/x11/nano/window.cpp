@@ -826,7 +826,7 @@ namespace x11
 #define MAXSTR 1000
 
 
-CLASS_DECL_ACME class ::system * get_system();
+CLASS_DECL_ACME ::acme::system * get_system();
 
 
 void x11_asynchronous(::procedure function)

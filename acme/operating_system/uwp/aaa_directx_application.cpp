@@ -30,7 +30,7 @@ namespace universal_windows
 {
 
 
-   directx_framework_impact::directx_framework_impact(class ::system * psystem, ::String ^ strId)
+   directx_framework_impact::directx_framework_impact(::acme::system * psystem, ::String ^ strId)
    {
 
       draw2d_direct2d::direct2d_initialize();
@@ -300,7 +300,7 @@ namespace universal_windows
 
             //m_psystem->add_create(pcreate);
 
-            //auto papp = m_psystem->m_pappStartup;
+            //auto papp = m_psystem->m_pacmeapplicationStartup;
 
             //if (papp == nullptr)
             //{
@@ -687,7 +687,7 @@ namespace universal_windows
    }
 
 
-   directx_application_source::directx_application_source(class ::system * paxissystem, const ::string & strId)
+   directx_application_source::directx_application_source(::acme::system * paxissystem, const ::string & strId)
    {
 
       m_psystem     = paxissystem;
@@ -705,7 +705,7 @@ namespace universal_windows
    }
 
 
-   directx_application_source ^ new_directx_application_source(class ::system * paurasystem, const ::string & strId)
+   directx_application_source ^ new_directx_application_source(::acme::system * paurasystem, const ::string & strId)
    {
 
       string str = strId;

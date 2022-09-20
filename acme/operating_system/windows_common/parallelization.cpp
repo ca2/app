@@ -50,16 +50,18 @@ string get_task_name(htask_t htask)
 
    }
 
-   ::task* ptask = ::get_task();
+   return "";
 
-   if (::is_null(ptask))
-   {
+   //::task* ptask = ::get_task(htask);
 
-      return "";
+   //if (::is_null(ptask))
+   //{
 
-   }
+   //   return "";
 
-   return ::get_task_name(ptask);
+   //}
+
+   //return ptask->m_strTaskName;
 
 }
 
@@ -87,7 +89,7 @@ CLASS_DECL_ACME void task_set_name(htask_t htask, const char* pszName)
 
    }
 
-   if (!bOk1)
+   if (!bOk1 && ::is_debugger_attached())
    {
 
       bOk1 = SetThreadName(GetThreadId((HANDLE) htask), pszName) != false;

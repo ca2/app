@@ -449,9 +449,6 @@
     <ClInclude Include="platform\shell_launcher.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\simple_app.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="platform\static_start.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>

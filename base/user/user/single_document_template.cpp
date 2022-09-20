@@ -345,7 +345,7 @@ namespace user
 
          auto papp = get_app();
 
-         strDocName = papp->m_papplication->load_string("untitled");
+         strDocName = papp->m_papexapplication->load_string("untitled");
 
       }
 

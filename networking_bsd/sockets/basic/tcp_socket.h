@@ -30,7 +30,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma once
 
 
-#include "stream_socket.h"
+#include "networking_bsd/sockets/basic/stream_socket.h"
 #include "apex/networking/sockets/basic/tcp_socket.h"
 #include "networking_bsd/sockets/ssl/ticket_key.h"
 
@@ -201,6 +201,9 @@ namespace sockets_bsd
       /** This method must be implemented to initialize
       the ssl action_context for an outgoing connection. */
       virtual void InitSSLClient();
+
+      void set_init_ssl_client_context(const ::string & strInitSSLClientContext) override;
+
       /** This method must be implemented to initialize
       the ssl action_context for an incoming connection. */
       virtual void InitSSLServer();

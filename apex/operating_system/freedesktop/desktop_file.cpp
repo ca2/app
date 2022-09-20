@@ -265,7 +265,7 @@ namespace freedesktop
 
       }
 
-      auto papp = get_app()->m_papplication;
+      auto papp = get_app()->m_papexapplication;
 
       string strTitle = papp->title();
 

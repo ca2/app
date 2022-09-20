@@ -106,13 +106,13 @@ CLASS_DECL_APEX i32 ca2_main();
 //   if (m_pmainstruct->m_bConsole)
 //   {
 //
-//      psystem->get_session()->set_context_app(psystem->m_pappStartup);
+//      psystem->get_session()->set_context_app(psystem->m_pacmeapplicationStartup);
 //
-//      psystem->set_context_app(psystem->m_pappStartup);
+//      psystem->set_context_app(psystem->m_pacmeapplicationStartup);
 //
-//      psystem->get_session()->set_context(psystem->m_pappStartup);
+//      psystem->get_session()->set_context(psystem->m_pacmeapplicationStartup);
 //
-//      psystem->set_context(psystem->m_pappStartup);
+//      psystem->set_context(psystem->m_pacmeapplicationStartup);
 //
 //   }
 //
@@ -133,7 +133,7 @@ namespace apex
    // void system::system_main()
    // {
 
-   //    auto estatus = class ::system::system_main();
+   //    auto estatus = ::acme::system::system_main();
 
    //    if(!estatus)
    //    {

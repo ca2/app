@@ -1103,15 +1103,15 @@ bool app_core::has_apex_application_factory() const
 #endif
 
 
-__pointer(::app) app_core::new_app()
+__pointer(::acme::application) app_core::new_app()
 {
 
-   if(::app::g_p)
-   {
+   //if(::acme::application::g_p)
+   //{
 
-      return ::app::g_p;
+   //   return ::acme::application::g_p;
 
-   }
+   //}
 
    if (!m_pfnnewmatterApplication)
    {
@@ -1120,7 +1120,7 @@ __pointer(::app) app_core::new_app()
 
    }
 
-   __pointer(::app) papp;
+   __pointer(::acme::application) papp;
 
    papp = m_pfnnewmatterApplication();
 
@@ -1138,7 +1138,7 @@ __pointer(::app) app_core::new_app()
 
 
 
-void app_core::initialize_application(::app *papp, ::object * pobject)
+void app_core::initialize_application(::acme::application *papp, ::object * pobject)
 {
 
    //auto estatus = 

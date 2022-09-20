@@ -29,7 +29,7 @@ public:
 
    
    ::eobject                           m_eobject;
-   class ::system *                    m_psystem;
+   ::acme::system *                    m_psystem;
    ::e_status                          m_estatus;
 
 
@@ -51,13 +51,13 @@ public:
    inline matter(const eobject& eobject) : m_pmutex(nullptr), m_estatus(e_status_none), m_ematter(e_element_none), m_uError(0), m_countReference(0), m_eobject(eobject), m_psystem(nullptr), m_pobjrefdbg(nullptr) {  }
    inline matter(const matter& matter) : m_pmutex(nullptr), m_estatus(e_status_none), m_ematter(matter.m_ematter), m_uError(matter.m_uError), m_countReference(0), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem), m_pobjrefdbg(nullptr) {  }
    inline matter(matter&& matter) : referenceable(matter),m_pmutex(matter.m_pmutex), m_estatus(e_status_none), m_ematter(matter.m_ematter), m_uError(matter.m_uError), m_countReference(matter.m_countReference), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem), m_pobjrefdbg(matter.m_pobjrefdbg) { matter.m_pmutex = nullptr; matter.m_pobjrefdbg = nullptr; }
-   inline matter(class ::system * psystem) : m_psystem(psystem), m_pmutex(nullptr), m_estatus(e_status_none), m_ematter(e_element_none), m_uError(0), m_eobject(e_object_none), m_pobjrefdbg(matter.m_pobjrefdbg) { }
+   inline matter(::acme::system * psystem) : m_psystem(psystem), m_pmutex(nullptr), m_estatus(e_status_none), m_ematter(e_element_none), m_uError(0), m_eobject(e_object_none), m_pobjrefdbg(matter.m_pobjrefdbg) { }
 #else
    inline matter() : m_pmutex(nullptr), m_estatus(e_status_none), m_uError(0), m_eobject(e_object_none), m_psystem(nullptr) { }
    inline matter(const eobject& eobject) : m_pmutex(nullptr), m_estatus(e_status_none), m_uError(0), m_eobject(eobject), m_psystem(nullptr) { }
    inline matter(const matter& matter) : m_pmutex(nullptr), m_estatus(e_status_none), m_uError(matter.m_uError), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem) { if (matter.m_pmutex) defer_create_mutex(); }
    inline matter(matter&& matter) : element(matter), m_pmutex(matter.m_pmutex), m_estatus(e_status_none), m_uError(matter.m_uError), m_eobject(matter.m_eobject), m_psystem(matter.m_psystem) { matter.m_pmutex = nullptr; }
-   inline matter(class ::system * psystem) : m_psystem(psystem), m_estatus(e_status_none), m_pmutex(nullptr), m_uError(0), m_eobject(e_object_none) { }
+   inline matter(::acme::system * psystem) : m_psystem(psystem), m_estatus(e_status_none), m_pmutex(nullptr), m_uError(0), m_eobject(e_object_none) { }
 #endif
 
    ~matter() override;
@@ -115,11 +115,11 @@ public:
    //void branch();
 
 
-   inline class ::system* get_system() const { return (class ::system *) m_psystem; }
+   inline ::acme::system* get_system() const { return (::acme::system *) m_psystem; }
 
-   inline ::app* get_app() { return _get_app(); }
+   inline ::acme::application * get_app() { return _get_app(); }
 
-   virtual ::app* _get_app();
+   virtual ::acme::application * _get_app();
 
    virtual bool is_thread() const;
    virtual ::thread * get_thread();

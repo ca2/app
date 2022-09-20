@@ -108,7 +108,7 @@ namespace aura
 
       }
 
-      ::factory::add_factory_item<::aura::system, class ::system>();
+      ::factory::add_factory_item<::aura::system, ::acme::system>();
 
       g_bInitialize = true;
 
@@ -215,6 +215,8 @@ namespace aura
       m_strSchema = "_std";
 
       //m_iGcomBackgroundUpdateMillis = -1;
+
+
    }
 
 
@@ -223,7 +225,7 @@ namespace aura
 
       //auto estatus =
       
-      ::application::initialize(pobject);
+      ::aqua::application::initialize(pobject);
 
       //if (!estatus)
       //{
@@ -322,7 +324,7 @@ namespace aura
    {
 
       //auto estatus = 
-      ::application::destroy();
+      ::aqua::application::destroy();
 
       //return estatus;
 
@@ -410,7 +412,7 @@ namespace aura
    void application::assert_ok() const
    {
 
-      ::application::assert_ok();
+      ::aqua::application::assert_ok();
 
    }
 
@@ -418,7 +420,7 @@ namespace aura
    void application::dump(dump_context & dumpcontext) const
    {
 
-      ::application::dump(dumpcontext);
+      ::aqua::application::dump(dumpcontext);
 
       dumpcontext << "\nm_bHelpMode = " << m_strAppName;
 
@@ -430,7 +432,7 @@ namespace aura
    void application::install_message_routing(::channel * pchannel)
    {
 
-      ::application::install_message_routing(pchannel);
+      ::aqua::application::install_message_routing(pchannel);
 
       //add_command_handler("app_exit", &application::on_message_app_exit);
       add_command_handler("switch_context_theme", this, &application::_001OnSwitchContextTheme);
@@ -1585,7 +1587,7 @@ namespace aura
    void application::on_pos_run_thread()
    {
 
-      ::application::on_pos_run_thread();
+      ::aqua::application::on_pos_run_thread();
 
    }
 
@@ -1621,7 +1623,7 @@ namespace aura
 
       //auto estatus =
       
-      ::application::init_instance();
+      ::aqua::application::init_instance();
 
       //if (!estatus)
       //{
@@ -1871,7 +1873,7 @@ retry_license:
       if (is_service())
       {
 
-         ::application::on_install();
+         ::aqua::application::on_install();
 
          //if (!init_service())
          //{
@@ -1912,7 +1914,7 @@ retry_license:
 
       if (is_service())
       {
-         ::application::on_uninstall();
+         ::aqua::application::on_uninstall();
 
          //if (!os_erase_service())
          //{
@@ -1933,7 +1935,7 @@ retry_license:
 
       //auto estatus =
       
-      ::application::process_init();
+      ::aqua::application::process_init();
 
       //if (!estatus)
       //{
@@ -2092,7 +2094,7 @@ retry_license:
 
       //::e_status estatus = 
       
-      ::application::init1();
+      ::aqua::application::init1();
 
       //if (!estatus)
       //{
@@ -3490,7 +3492,7 @@ retry_license:
 
                synchronouslock.unlock();
 
-               get_app()->m_papplication->post_message(e_message_close);
+               get_app()->m_papexapplication->post_message(e_message_close);
 
             }
 
@@ -4676,7 +4678,7 @@ retry_license:
 
       //auto estatus = 
       
-      ::application::init();
+      ::aqua::application::init();
 
       //if(!estatus)
       //{
@@ -5171,7 +5173,7 @@ retry_license:
    string application::get_mutex_name_gen()
    {
       
-      return ::application::get_mutex_name_gen();
+      return ::aqua::application::get_mutex_name_gen();
 
    }
 
@@ -8061,7 +8063,7 @@ namespace aura
    //}
 
 
-//   __pointer(::application) application::create_platform(::apex::session* psession)
+//   __pointer(::apex::application) application::create_platform(::apex::session* psession)
 //   {
 //
 //      return __new(::aura::session);
@@ -8193,7 +8195,7 @@ namespace aura
       if (!m_ptheme)
       {
 
-         return ::application::get_theme();
+         return ::aqua::application::get_theme();
 
       }
 
@@ -8874,7 +8876,7 @@ namespace aura
       else
       {
 
-         ::application::_001CloseApplication();
+         ::aqua::application::_001CloseApplication();
 
       }
 

@@ -86,7 +86,7 @@ namespace account
       try
       {
 
-         psystem->crypto()->file_get(path, strValue, strToken, get_app()->m_papplication);
+         psystem->crypto()->file_get(path, strValue, strToken, get_app()->m_papexapplication);
 
       }
       catch (...)
@@ -116,7 +116,7 @@ namespace account
 
       path /= psystem->crypto()->md5(strToken + strKey);
       
-      psystem->crypto()->file_set(path, strValue, strToken, get_app()->m_papplication);
+      psystem->crypto()->file_set(path, strValue, strToken, get_app()->m_papexapplication);
       
    }
    

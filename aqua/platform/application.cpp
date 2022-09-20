@@ -6,17 +6,25 @@ namespace aqua
 {
 
 
-   void initialize_system();
+
+   void initialize()
+   {
+
+      ::factory::add_factory_item< ::aqua::system, ::acme::system >();
+
+
+   }
 
 
    application::application()
    {
 
 
-      initialize_system();
+      ::aqua::initialize();
 
       m_paquaapplication = this;
       ///set_layer(LAYERED_AQUA, this);
+
 
    }
 
@@ -39,7 +47,7 @@ namespace aqua
 
       //auto estatus = 
       
-      ::application::initialize(pobject);
+      ::apex::application::initialize(pobject);
 
       //if (!estatus)
       //{
@@ -74,7 +82,7 @@ namespace aqua
 
       //auto estatus = 
       
-      ::application::exit_application();
+      ::apex::application::exit_application();
 
       //if (!estatus)
       //{

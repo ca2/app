@@ -26,8 +26,9 @@ namespace windowing
 {
 
    keyboard::keyboard()
-      :  _groupCount(0), _currentGroupNum(0),
-        _deviceId(0)
+      :  _groupCount(0) // , 
+      //_currentGroupNum(0),
+        //_deviceId(0)
    {
 
    }

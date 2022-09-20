@@ -323,7 +323,7 @@ namespace programming
       string strLog;
 
 
-      __pointer(::application) papp = get_app();
+      __pointer(::apex::application) papp = get_app();
 
 
 #ifdef WINDOWS

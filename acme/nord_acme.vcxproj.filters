@@ -1090,6 +1090,9 @@
     <ClCompile Include="platform\_main_hold_base.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
+    <ClCompile Include="operating_system\ansi\int_handle.cpp">
+      <Filter>Source Files\operating_system\ansi</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -1779,7 +1782,7 @@
     <ClInclude Include="inline\_new_impl.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
-    <ClInclude Include="inline\application.h">
+    <ClInclude Include="inline\_main_application.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
     <ClInclude Include="inline\application_common.h">

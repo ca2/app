@@ -71,7 +71,7 @@ bool on_init_timer_thread()
 }
 
 
-CLASS_DECL_ACME class ::system * get_system();
+CLASS_DECL_ACME ::acme::system * get_system();
 
 
 CLASS_DECL_ACME void main_asynchronous(const ::procedure & procedure)
@@ -89,12 +89,19 @@ CLASS_DECL_ACME void main_asynchronous(const ::procedure & procedure)
 }
 
 
-void system::windowing_post(const ::procedure & procedure)
+namespace acme
 {
 
-   main_asynchronous(procedure);
 
-}
+   void system::windowing_post(const ::procedure & procedure)
+   {
+
+      main_asynchronous(procedure);
+
+   }
+
+
+} // namespace acme
 
 
 

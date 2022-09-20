@@ -54,7 +54,7 @@ namespace opengl
       virtual void shader_compile_errors(GLuint shader, GLenum type, string & strSummary);
 
       virtual void program_compile_errors(GLuint program, string & strSummary);
-
+      ::gpu::uniform get_uniform(const ::string & strUniform) override;
 
    };
 

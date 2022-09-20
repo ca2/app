@@ -1072,10 +1072,10 @@ namespace acme
    }
 
 
-   //class ::system * acme_create_system(app_core * pappcore)
+   //::acme::system * acme_create_system(app_core * pappcore)
    //{
 
-   //   auto psystem = new class ::system();
+   //   auto psystem = new ::acme::system();
 
    //   psystem->initialize(nullptr);
 
@@ -1123,7 +1123,7 @@ namespace acme
 
       //return true;
 
-      ::factory::add_factory_item < class ::system >();
+      ::factory::add_factory_item < ::acme::system >();
 
    }
 
@@ -1619,6 +1619,8 @@ namespace acme
    {
 
       increment_reference_count();
+
+      ::factory::add_factory_item< ::acme::system >();
 
    }
 

@@ -128,7 +128,7 @@ namespace networking_bsd
       * Decode string per RFC1738 URL encoding rules
       * tnx rstaveley
       */
-      virtual string rfc1738_decode(const string& src);
+      string rfc1738_decode(const string& src) override;
 
       bool is_ip4(const string& str) override;
 
@@ -179,9 +179,9 @@ namespace networking_bsd
       
       //i32 _select(::sockets::socket_handler * psockethandler, const class ::wait & wait) override;
 
-      __pointer(::networking::address) create_ip4_address(const ::string & strIp4, ::networking::port_t port = 0);
+      __pointer(::networking::address) create_ip4_address(const ::string & strIp4, ::networking::port_t port = 0) override;
 
-      __pointer(::networking::address) create_ip6_address(const ::string & strIp6, ::networking::port_t port = 0);
+      __pointer(::networking::address) create_ip6_address(const ::string & strIp6, ::networking::port_t port = 0) override;
 
       __pointer(address) create_ip4_address(u32 u, ::networking::port_t port = 0);
 

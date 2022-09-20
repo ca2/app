@@ -421,7 +421,7 @@ pacmedirectory->system() / "config\\plugin\\version.txt");
 
       set.parse_network_arguments(m_straLinesNativeLaunch[1]);
 
-      string strPath = ::path::app(process_platform_dir_name2());
+      string strPath = ::path::acme::application(process_platform_dir_name2());
 
       string strCommandLine;
 

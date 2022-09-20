@@ -91,6 +91,8 @@ namespace gpu
 
       virtual string get_shader_version_text();
 
+      virtual void set_matrix_uniform(uniform uniformMatrix);
+
 
    };
 

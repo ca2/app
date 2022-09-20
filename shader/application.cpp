@@ -4,7 +4,7 @@
 #include "render.h"
 
 
-IMPLEMENT_APPLICATION(app_shader);
+//IMPLEMENT_APPLICATION(app_shader);
 
 
 namespace app_shader

@@ -8,7 +8,7 @@
 
 //CLASS_DECL_APEX HRESULT os_create_link(::file::path pathObj, ::file::path pathLink, string strDesc, ::file::path pathIcon = nullptr, int iIcon = 0);
 
-const char* get_cube_app_id();
+const char * get_cube_app_id();
 
 
 
@@ -93,86 +93,85 @@ CLASS_DECL_APEX i32 ca2_main();
 //}
 
 
-//namespace apex
-//{
-
-
-bool application::os_on_start_application()
+namespace apex
 {
 
-   //if (!::is_debugger_attached())
+
+   bool application::os_on_start_application()
    {
 
-      ::file::path pathObj;
+      //if (!::is_debugger_attached())
+      {
 
-      ::file::path pathLnk;
+         ::file::path pathObj;
 
-      pathObj = m_pcontext->m_papexcontext->file().module();
+         ::file::path pathLnk;
 
-      string strLinkTitle;
+         pathObj = m_pcontext->m_papexcontext->file().module();
 
-      strLinkTitle = m_strAppName;
+         string strLinkTitle;
 
-      strLinkTitle.replace_with("_", "/");
-      strLinkTitle.replace_with("_", "\\");
-      strLinkTitle.replace_with("_", "-");
+         strLinkTitle = m_strAppName;
 
-      pathLnk = m_psystem->m_pacmedirectory->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
+         strLinkTitle.replace_with("_", "/");
+         strLinkTitle.replace_with("_", "\\");
+         strLinkTitle.replace_with("_", "-");
 
-      m_psystem->m_pacmedirectory->create(pathLnk.folder());
+         pathLnk = m_psystem->m_pacmedirectory->localconfig() / "desk/monitor-0/2desk" / strLinkTitle + ".lnk";
 
-      m_psystem->m_papexsystem->m_papexnode->shell_create_link(pathObj, pathLnk, "app=" + m_strAppName);
+         m_psystem->m_pacmedirectory->create(pathLnk.folder());
+
+         m_psystem->m_papexsystem->m_papexnode->shell_create_link(pathObj, pathLnk, "app=" + m_strAppName);
+
+      }
+
+      return true;
 
    }
 
-   return true;
-
-}
 
 
-//} // namespace apex
+} // namespace apex
 
 
 
-//
-//void os_post_quit()
-//{
-//
-//
-//
-//}
+
+   //
+   //void os_post_quit()
+   //{
+   //
+   //
+   //
+   //}
 
 
-//CLASS_DECL_APEX void main_async_runnable(const ::procedure & procedure)
-//{
-//
-//   //__pointer(::object) pobjectTask = pobjectTaskParam;
-//
-//
-//   
-//   psystem->post_predicate([routine]()
-//   {
-//
-//      routine();
-//
-//   });
-//
-//}
-//
-//
-//CLASS_DECL_APEX void main_sync_runnable(const ::procedure & procedure, ::duration durationTimeout)
-//{
-//   
-//   psystem->send_routine(routine, durationTimeout);
-//
-//}
+   //CLASS_DECL_APEX void main_async_runnable(const ::procedure & procedure)
+   //{
+   //
+   //   //__pointer(::object) pobjectTask = pobjectTaskParam;
+   //
+   //
+   //   
+   //   psystem->post_predicate([routine]()
+   //   {
+   //
+   //      routine();
+   //
+   //   });
+   //
+   //}
+   //
+   //
+   //CLASS_DECL_APEX void main_sync_runnable(const ::procedure & procedure, ::duration durationTimeout)
+   //{
+   //   
+   //   psystem->send_routine(routine, durationTimeout);
+   //
+   //}
 
 
-void apex_application_main(int argc, char* argv[], const char* pszCommandLine)
+void apex_application_main(int argc, char * argv[], const char * pszCommandLine)
 {
 
 
 }
-
-
-

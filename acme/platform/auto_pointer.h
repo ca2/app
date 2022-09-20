@@ -12,72 +12,72 @@ class auto_pointer
 public:
 
    T * m_p;
-   bool m_bArray;
+   //bool m_bArray;
 
    auto_pointer()
    {
 
       m_p = nullptr;
-      m_bArray = false;
+      //m_bArray = false;
 
    }
 
-   auto_pointer(e_new_array, ::count c)
-   {
-      m_bArray = true;
-      m_p = new T[(size_t) c];
+   //auto_pointer(e_new_array, ::count c)
+   //{
+   //   m_bArray = true;
+   //   m_p = new T[(size_t) c];
 
-   }
+   //}
 
-   auto_pointer(e_new_array, T * p)
-   {
-      m_bArray = true;
-      m_p = p;
+   //auto_pointer(e_new_array, T * p)
+   //{
+   //   m_bArray = true;
+   //   m_p = p;
 
-   }
-
-
-   template < typename TYPE >
-   auto_pointer(TYPE * p, ::count c)
-   {
-      
-      m_bArray = true;
-
-      m_p = new T[(size_t)c];
-
-      for (index i = 0; i < c; i++)
-      {
-         
-         ::copy(&m_p[(size_t)i], &p[(size_t) i]);
-
-      }
-
-   }
+   //}
 
 
-   template < typename TYPE, typename COPY >
-   auto_pointer(TYPE * p, ::count c, COPY copy)
-   {
+   //template < typename TYPE >
+   //auto_pointer(TYPE * p, ::count c)
+   //{
+   //   
+   //   m_bArray = true;
 
-      m_bArray = true;
+   //   m_p = new T[(size_t)c];
 
-      m_p = new T[(size_t)c];
+   //   for (index i = 0; i < c; i++)
+   //   {
+   //      
+   //      ::copy(&m_p[(size_t)i], &p[(size_t) i]);
 
-      for (index i = 0; i < c; i++)
-      {
+   //   }
 
-         copy(&m_p[(size_t)i], &p[(size_t)i]);
+   //}
 
-      }
 
-   }
+   //template < typename TYPE, typename COPY >
+   //auto_pointer(TYPE * p, ::count c, COPY copy)
+   //{
+
+   //   m_bArray = true;
+
+   //   m_p = new T[(size_t)c];
+
+   //   for (index i = 0; i < c; i++)
+   //   {
+
+   //      copy(&m_p[(size_t)i], &p[(size_t)i]);
+
+   //   }
+
+   //}
 
 
    auto_pointer(T * p)
    {
 
       m_p = p;
-      m_bArray = false;
+      //m_bArray = false;
 
    }
 
@@ -86,7 +86,7 @@ public:
    {
 
       m_p = op.m_p;
-      m_bArray = op.m_bArray;
+      //m_bArray = op.m_bArray;
 
    }
 
@@ -95,7 +95,7 @@ public:
    {
 
       m_p = op.m_p;
-      m_bArray = op.m_bArray;
+      //m_bArray = op.m_bArray;
       op.m_p = nullptr;
       
 
@@ -109,34 +109,34 @@ public:
 
    }
 
-   void create_array(::count c)
-   {
-      
-      destroy();
-      
-      m_bArray = true;
-      m_p = new T[(size_t)c];
+   //void create_array(::count c)
+   //{
+   //   
+   //   destroy();
+   //   
+   //   m_bArray = true;
+   //   m_p = new T[(size_t)c];
 
-   }
+   //}
 
 
    void destroy()
    {
 
-      if (m_bArray)
-      {
+      //if (m_bArray)
+      //{
 
-         if (m_p)
-         {
+      //   if (m_p)
+      //   {
 
-            delete[] m_p;
+      //      delete[] m_p;
 
-            m_p = NULL;
+      //      m_p = NULL;
 
-         }
+      //   }
 
-      }
-      else
+      //}
+      //else
       {
 
          ::acme::del(m_p);

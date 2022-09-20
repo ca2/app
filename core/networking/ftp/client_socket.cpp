@@ -982,7 +982,7 @@ namespace ftp
       //ll.m_strCat = m_strCat;
       //ll.m_strCipherList = m_strCipherList;
 
-      sckDataConnection.m_bDetach = true;
+      sckDataConnection.set_should_detach(true);
       //m_strIp = "127.0.0.1";
       //if (m_iPort == 443)
       //{

@@ -303,7 +303,7 @@ namespace app_shader
 
          }
 
-//         prender->m_pinteraction = this;
+         prender->initialize_render(this);
 
          string strText;
 

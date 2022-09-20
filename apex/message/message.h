@@ -81,7 +81,7 @@ namespace message
       inline bool is_thread_message() const { return is_message() && m_oswindow == nullptr; }
 
 
-      inline auto route_message() { m_pdispatchera->m_pData[m_iRouteIndex]->handle(this); return m_bRet; }
+      virtual bool route_message();
 
 
       bool all_previous(); // returns bRet

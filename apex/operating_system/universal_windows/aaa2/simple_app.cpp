@@ -4,7 +4,7 @@
 //namespace apex
 //{
 //
-//   app::app()
+//   app::acme::application()
 //   {
 //
 //      m_iErrorCode = 0;

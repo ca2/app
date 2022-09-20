@@ -232,7 +232,7 @@ namespace networking_bsd
 
       //   sockets_base::destroy();
 
-         bool bOk = true;
+         //bool bOk = true;
 
          //if (m_pnet)
          //{
@@ -275,7 +275,7 @@ namespace networking_bsd
          catch (...)
          {
 
-            bOk = false;
+            //bOk = false;
 
          }
 
@@ -1067,7 +1067,7 @@ namespace networking_bsd
          struct addrinfo* ai = res;
          int iSaSize = sizeof(sockaddr_in6);
          //char ipstringbuffer[46];
-         ::u32 ipbufferlength = 46;
+         //::u32 ipbufferlength = 46;
          while (ai)
          {
             // The buffer length is changed by each call to WSAAddresstoString
@@ -3319,7 +3319,7 @@ namespace networking_bsd
    string networking::get_http_post_boundary()
    {
 
-      auto psystem = get_system()->m_papexsystem;
+      //auto psystem = get_system()->m_papexsystem;
 
       single_lock lock(&m_mutexHttpPostBoundary, true);
 

@@ -133,7 +133,7 @@ namespace parallelization
    //}
 
 
-   void post_quit_to_all_threads(class ::system * psystem)
+   void post_quit_to_all_threads(::acme::system * psystem)
    {
 
       //auto psystem = get_system()->m_papexsystem;
@@ -377,7 +377,7 @@ namespace parallelization
 //::application * g_papp;
 //
 //
-//void set_global_application(::application* papp)
+//void set_global_application(::apex::application* papp)
 //{
 //
 //    g_papp = papp;
@@ -1049,7 +1049,7 @@ void thread_ptra::wait(const class ::wait & wait, synchronous_lock& synchronousl
 
    //}
 
-   auto pappContext = get_app()->m_papplication;
+   auto pappContext = get_app()->m_papexapplication;
 
    if (::is_set(pappContext) && pappContext != this)
    {

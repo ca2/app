@@ -105,7 +105,7 @@ public:
    void create_common_construct(const ::payload & varOptions, ::user::primitive * puiParent);
 
 
-   ::app * create_get_app(::app * pappFallback = nullptr);
+   ::acme::application * create_get_app(::acme::application * pappFallback = nullptr);
 
 
    void finish_initialization();

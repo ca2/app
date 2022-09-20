@@ -130,11 +130,20 @@ CLASS_DECL_ACME void acme_ref();
 #endif
 
 
-class system; // acme - cam
-class app; // apex(::application) - tbs offloading his deep stack in ::app(::acme):cstbs
+namespace acme
+{
+ 
+
+   class system; // acme - cam
 
 
-CLASS_DECL_ACME class system * get_system();
+   class application; // apex(::apex::application) - tbs offloading his deep stack in ::acme::application(::acme):cstbs
+
+
+} // namespace acme
+
+
+CLASS_DECL_ACME ::acme::system * get_system();
 
 
 namespace acme
@@ -1768,12 +1777,12 @@ class create;
 class synchronization_object;
 
 
-//CLASS_DECL_ACME i32 acme_run_system(class ::system* psystem);
+//CLASS_DECL_ACME i32 acme_run_system(::acme::system* psystem);
 
 
-//CLASS_DECL_ACME ::e_status2 acme_run_system_init(class ::system * psystem);
-//CLASS_DECL_ACME ::e_status2 acme_run_system_proc(class ::system * psystem);
-//CLASS_DECL_ACME ::e_status2 acme_run_system_term(class ::system * psystem);
+//CLASS_DECL_ACME ::e_status2 acme_run_system_init(::acme::system * psystem);
+//CLASS_DECL_ACME ::e_status2 acme_run_system_proc(::acme::system * psystem);
+//CLASS_DECL_ACME ::e_status2 acme_run_system_term(::acme::system * psystem);
 
 
 #include "acme/primitive/primitive/payload_type.h"
@@ -1887,7 +1896,7 @@ namespace write_text
 
 
 // From apex by camilo 2021-11-01 13:41 BRT <3ThomasBorregaardSørensen!!
-CLASS_DECL_ACME __pointer(class ::system) platform_create_system(const char * pszAppId);
+CLASS_DECL_ACME __pointer(::acme::system) platform_create_system(const char * pszAppId);
 
 
 
@@ -4534,7 +4543,7 @@ class task_tool;
 
 
 
-#include "acme/platform/app.h"
+#include "acme/platform/application.h"
 
 
 

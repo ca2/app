@@ -24,19 +24,19 @@ simple_main_frame::~simple_main_frame()
 
 void simple_main_frame::assert_ok() const
 {
-   simple_frame_window::assert_ok();
+   ::user::main_frame::assert_ok();
 }
 
 void simple_main_frame::dump(dump_context & dumpcontext) const
 {
-   simple_frame_window::dump(dumpcontext);
+   ::user::main_frame::dump(dumpcontext);
 }
 
 
 void simple_main_frame::install_message_routing(::channel * pchannel)
 {
 
-   simple_frame_window::install_message_routing(pchannel);
+   ::user::main_frame::install_message_routing(pchannel);
 
    MESSAGE_LINK(e_message_create,pchannel,this,&simple_main_frame::on_message_create);
 

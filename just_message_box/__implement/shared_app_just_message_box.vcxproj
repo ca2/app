@@ -101,35 +101,35 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-windows\Common.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
@@ -313,37 +313,13 @@
     <Image Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-windows\acme_windows\acme_windows.vcxproj">
-      <Project>{cc8e8200-00a9-414e-9829-7ca3f1091add}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-windows\apex_windows\apex_windows.vcxproj">
-      <Project>{c598e718-55ae-4d6e-81e0-53450fc3a649}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-windows\aura_windows\aura_windows.vcxproj">
-      <Project>{94c3715a-7fbf-4455-917b-20cb7f40c58c}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-windows_common\acme_windows_common\acme_windows_common.vcxproj">
-      <Project>{eb9dc9c0-0573-4da0-8700-4dbb371773f1}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-windows_common\apex_windows_common\apex_windows_common.vcxproj">
-      <Project>{a094e038-d195-4400-82ce-44a7edf91b78}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-windows_common\aura_windows_common\aura_windows_common.vcxproj">
-      <Project>{99f5abf0-7377-4cc7-b016-4ca7b365b9f1}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\app\acme\acme.vcxproj">
+    <ProjectReference Include="..\..\acme\acme.vcxproj">
       <Project>{638b242f-0f21-41c3-9f66-724660046133}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\apex\apex.vcxproj">
-      <Project>{e000ffaf-392f-4e32-bf51-777ca238991f}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\app\aqua\aqua.vcxproj">
-      <Project>{1b06fe5f-f783-41a1-ac68-0e02880dbbac}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\app\aura\aura.vcxproj">
+    <ProjectReference Include="..\..\aura\aura.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-fd7ed638991f}</Project>
     </ProjectReference>
-    <ProjectReference Include="just_app_message_box.vcxproj">
+    <ProjectReference Include="..\just_app_message_box.vcxproj">
       <Project>{5f24e5df-0984-45cf-bc93-c850814c0eeb}</Project>
     </ProjectReference>
   </ItemGroup>

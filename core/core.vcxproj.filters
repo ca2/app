@@ -449,9 +449,6 @@
     <ClInclude Include="user\simple\form_impact.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\frame_window.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple\list_control.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
@@ -1500,6 +1497,9 @@
     </ClCompile>
     <ClCompile Include="user\user\text_format_object.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\main_frame.cpp">
+      <Filter>Source Files\user\simple</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

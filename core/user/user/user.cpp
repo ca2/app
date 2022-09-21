@@ -165,10 +165,11 @@ namespace core
       ::factory::add_factory_item <::userex::top_toggle_impact >();
       ::factory::add_factory_item <::userex::top_impact >();
 
-
       ::factory::add_factory_item < ::user::font_combo_box >();
 
       ::factory::add_factory_item < simple_pane_document >();
+      ::factory::add_factory_item < simple_frame_window  >();
+
 
       ::factory::add_factory_item < ::simple_toolbar, ::user::toolbar >();
       

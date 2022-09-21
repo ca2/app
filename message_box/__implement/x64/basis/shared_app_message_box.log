@@ -1,0 +1,1 @@
+﻿C:\basis\source\app\message_box\__implement\shared_app_message_box.vcxproj(120,5): error MSB4019: The imported project "C:\basis\source\operating-system\operating-system-windows\Common.props" was not found. Confirm that the expression in the Import declaration "..\..\..\operating-system\operating-system-windows\Common.props" is correct, and that the file exists on disk.

@@ -3,7 +3,7 @@
 
 
 
-
+class simple_frame_window;
 class simple_list_data;
 class simple_toolbar;
 class simple_status_bar;

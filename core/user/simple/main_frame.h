@@ -1,11 +1,11 @@
 #pragma once
 
 
-#include "frame_window.h"
+#include "core/user/user/main_frame.h"
 
 
-class CLASS_DECL_BASE simple_main_frame :
-   virtual public simple_frame_window
+class CLASS_DECL_CORE simple_main_frame :
+   virtual public ::user::main_frame
 {
 public:
 

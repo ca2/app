@@ -190,6 +190,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="imaging.h" />
     <ClInclude Include="_.h" />
+    <ClInclude Include="_imaging_freeimage.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\acme\nord_acme.vcxproj">

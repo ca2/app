@@ -53,5 +53,8 @@
     <ClInclude Include="imaging.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="_imaging_freeimage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

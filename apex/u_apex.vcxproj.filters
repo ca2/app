@@ -167,21 +167,6 @@
     <Filter Include="Source Files\networking\sockets">
       <UniqueIdentifier>{e41a28e8-55b7-4fdc-882a-7e9f7f4cde99}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\networking\sockets\bsd">
-      <UniqueIdentifier>{78d7712b-07d7-4357-a51b-6ca56fd19456}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\networking\sockets\bsd\webserver">
-      <UniqueIdentifier>{f67cfc94-ce47-4375-9ce9-3bde9b125a9f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\networking\sockets\bsd\ssl">
-      <UniqueIdentifier>{de2b481a-1eef-4796-b8e9-75926d987567}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\networking\sockets\bsd\dns">
-      <UniqueIdentifier>{1894bdeb-a0e5-4c83-9102-0c3b94e1710f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\networking\sockets\bsd\basic">
-      <UniqueIdentifier>{afc13c6b-b6ee-4da9-a13b-316714fb11b3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\networking\sockets\base">
       <UniqueIdentifier>{f0be0806-f798-4c9c-a022-f314ffd1cf64}</UniqueIdentifier>
     </Filter>
@@ -221,6 +206,12 @@
     <Filter Include="Source Files\networking\netserver">
       <UniqueIdentifier>{414a359c-1bac-4154-9597-7a54f9c8d260}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\networking\sockets\basic">
+      <UniqueIdentifier>{2b5bcf69-223f-46b6-b5e5-4cb7fd997ae6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\networking\sockets\webserver">
+      <UniqueIdentifier>{42fa1359-9d51-4cd3-82c1-6be14a4af8d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -233,12 +224,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\language_map.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu_shared.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\menu_shared_commnand.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\edit_file.cpp">
@@ -352,7 +337,7 @@
     <ClCompile Include="networking\sockets\http\get_socket.cpp">
       <Filter>Source Files\networking\http</Filter>
     </ClCompile>
-    <ClCompile Include="networking\sockets\http\http_base_socket.cpp">
+    <ClCompile Include="networking\sockets\http\base_socket.cpp">
       <Filter>Source Files\networking\http</Filter>
     </ClCompile>
     <ClCompile Include="networking\sockets\http\listener.cpp">
@@ -373,68 +358,14 @@
     <ClCompile Include="networking\sockets\http\tunnel.cpp">
       <Filter>Source Files\networking\http</Filter>
     </ClCompile>
-    <ClCompile Include="networking\sockets\base\base_socket.cpp">
+    <ClCompile Include="networking\sockets\base\socket.cpp">
       <Filter>Source Files\networking\sockets\base</Filter>
     </ClCompile>
-    <ClCompile Include="networking\sockets\base\base_socket_handler.cpp">
+    <ClCompile Include="networking\sockets\base\socket_handler.cpp">
       <Filter>Source Files\networking\sockets\base</Filter>
     </ClCompile>
     <ClCompile Include="networking\sockets\base\socket_thread.cpp">
       <Filter>Source Files\networking\sockets\base</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\webserver\httpd_socket.cpp">
-      <Filter>Source Files\networking\sockets\bsd\webserver</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\ssl\initializer.cpp">
-      <Filter>Source Files\networking\sockets\bsd\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\ssl\context.cpp">
-      <Filter>Source Files\networking\sockets\bsd\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\ssl\client_context_map.cpp">
-      <Filter>Source Files\networking\sockets\bsd\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\ssl\client_context.cpp">
-      <Filter>Source Files\networking\sockets\bsd\ssl</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\dns\resolv_socket.cpp">
-      <Filter>Source Files\networking\sockets\bsd\dns</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\dns\resolv_server.cpp">
-      <Filter>Source Files\networking\sockets\bsd\dns</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\basic\basic_net.cpp">
-      <Filter>Source Files\networking\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\basic\listen_socket.cpp">
-      <Filter>Source Files\networking\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\basic\sctp_socket.cpp">
-      <Filter>Source Files\networking\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\basic\socket.cpp">
-      <Filter>Source Files\networking\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\basic\socket_handler.cpp">
-      <Filter>Source Files\networking\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\basic\stream_socket.cpp">
-      <Filter>Source Files\networking\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\basic\sync_socket_handler.cpp">
-      <Filter>Source Files\networking\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\basic\tcp_socket.cpp">
-      <Filter>Source Files\networking\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\basic\tls_socket.cpp">
-      <Filter>Source Files\networking\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\basic\udp_socket.cpp">
-      <Filter>Source Files\networking\sockets\bsd\basic</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\sockets\bsd\sockets.cpp">
-      <Filter>Source Files\networking\sockets\bsd</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\_.cpp">
       <Filter>Source Files\parallelization</Filter>
@@ -574,9 +505,6 @@
     <ClCompile Include="networking\http\transaction.cpp">
       <Filter>Source Files\networking\http</Filter>
     </ClCompile>
-    <ClCompile Include="networking\sockets\_system_sockets.cpp">
-      <Filter>Source Files\networking\sockets</Filter>
-    </ClCompile>
     <ClCompile Include="networking\sockets\http_batch_buffer.cpp">
       <Filter>Source Files\networking\sockets</Filter>
     </ClCompile>
@@ -586,22 +514,13 @@
     <ClCompile Include="networking\sockets\link_out_socket.cpp">
       <Filter>Source Files\networking\sockets</Filter>
     </ClCompile>
-    <ClCompile Include="networking\sockets\sockets_base.cpp">
-      <Filter>Source Files\networking\sockets</Filter>
-    </ClCompile>
     <ClCompile Include="networking\sockets\transfer_socket.cpp">
       <Filter>Source Files\networking\sockets</Filter>
     </ClCompile>
     <ClCompile Include="networking\sockets\websocket_client.cpp">
       <Filter>Source Files\networking\sockets</Filter>
     </ClCompile>
-    <ClCompile Include="networking\_.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
     <ClCompile Include="networking\address.cpp">
-      <Filter>Source Files\networking</Filter>
-    </ClCompile>
-    <ClCompile Include="networking\address_department.cpp">
       <Filter>Source Files\networking</Filter>
     </ClCompile>
     <ClCompile Include="networking\email.cpp">
@@ -714,6 +633,45 @@
     </ClCompile>
     <ClCompile Include="networking\netserver\socket_thread.cpp">
       <Filter>Source Files\networking\netserver</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\networking.cpp">
+      <Filter>Source Files\networking</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\basic\listen_socket.cpp">
+      <Filter>Source Files\networking\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\basic\sctp_socket.cpp">
+      <Filter>Source Files\networking\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\basic\socket.cpp">
+      <Filter>Source Files\networking\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\basic\socket_handler.cpp">
+      <Filter>Source Files\networking\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\basic\stream_socket.cpp">
+      <Filter>Source Files\networking\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\basic\sync_socket_handler.cpp">
+      <Filter>Source Files\networking\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\basic\tcp_socket.cpp">
+      <Filter>Source Files\networking\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\basic\tcp_socket_impl.cpp">
+      <Filter>Source Files\networking\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\basic\tls_socket.cpp">
+      <Filter>Source Files\networking\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\basic\udp_socket.cpp">
+      <Filter>Source Files\networking\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\sockets.cpp">
+      <Filter>Source Files\networking\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="networking\sockets\webserver\httpd_socket.cpp">
+      <Filter>Source Files\networking\sockets\webserver</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1877,10 +1835,5 @@
     <None Include="w_apex.def">
       <Filter>Source Files</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="networking\sockets\bsd\ref_Anders_Hedstrom_sockets_library.txt">
-      <Filter>Source Files\networking\sockets\bsd</Filter>
-    </Text>
   </ItemGroup>
 </Project>

@@ -77,6 +77,7 @@
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
     <ProjectName>acme</ProjectName>
+    <WindowsTargetPlatformMinVersion>10.0.19041.0</WindowsTargetPlatformMinVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
@@ -1021,7 +1022,7 @@
     <ClInclude Include="platform\acme_main_struct.h" />
     <ClInclude Include="platform\apex_main_data.h" />
     <ClInclude Include="platform\apex_main_struct.h" />
-    <ClInclude Include="platform\app.h" />
+    <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\app_core.h" />
     <ClInclude Include="platform\context.h" />
     <ClInclude Include="platform\c_class.h" />
@@ -1985,7 +1986,7 @@
     <ClCompile Include="platform\acme.cpp" />
     <ClCompile Include="platform\apex_main_data.cpp" />
     <ClCompile Include="platform\apex_main_struct.cpp" />
-    <ClCompile Include="platform\app.cpp" />
+    <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\app_core.cpp" />
     <ClCompile Include="platform\assert.cpp" />
     <ClCompile Include="platform\aura_str_pool.cpp" />

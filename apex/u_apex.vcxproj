@@ -77,6 +77,7 @@
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
     <ProjectName>apex</ProjectName>
+    <WindowsTargetPlatformMinVersion>10.0.19041.0</WindowsTargetPlatformMinVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">
@@ -1223,7 +1224,6 @@
     <ClCompile Include="message\simple_command.cpp" />
     <ClCompile Include="message\_.cpp" />
     <ClCompile Include="networking\address.cpp" />
-    <ClCompile Include="networking\address_department.cpp" />
     <ClCompile Include="networking\email.cpp" />
     <ClCompile Include="networking\email_address.cpp" />
     <ClCompile Include="networking\http\context.cpp" />
@@ -1239,36 +1239,29 @@
     <ClCompile Include="networking\netserver\socket.cpp" />
     <ClCompile Include="networking\netserver\socket_handler.cpp" />
     <ClCompile Include="networking\netserver\socket_thread.cpp" />
+    <ClCompile Include="networking\networking.cpp" />
     <ClCompile Include="networking\networking_application.cpp" />
     <ClCompile Include="networking\networking_application_handler.cpp" />
     <ClCompile Include="networking\networking_application_socket.cpp" />
     <ClCompile Include="networking\port_forward.cpp" />
     <ClCompile Include="networking\sockets.cpp" />
-    <ClCompile Include="networking\sockets\base\base_socket.cpp" />
-    <ClCompile Include="networking\sockets\base\base_socket_handler.cpp" />
+    <ClCompile Include="networking\sockets\base\socket.cpp" />
+    <ClCompile Include="networking\sockets\base\socket_handler.cpp" />
     <ClCompile Include="networking\sockets\base\socket_thread.cpp" />
-    <ClCompile Include="networking\sockets\bsd\basic\basic_net.cpp" />
-    <ClCompile Include="networking\sockets\bsd\basic\listen_socket.cpp" />
-    <ClCompile Include="networking\sockets\bsd\basic\sctp_socket.cpp" />
-    <ClCompile Include="networking\sockets\bsd\basic\socket.cpp" />
-    <ClCompile Include="networking\sockets\bsd\basic\socket_handler.cpp" />
-    <ClCompile Include="networking\sockets\bsd\basic\stream_socket.cpp" />
-    <ClCompile Include="networking\sockets\bsd\basic\sync_socket_handler.cpp" />
-    <ClCompile Include="networking\sockets\bsd\basic\tcp_socket.cpp" />
-    <ClCompile Include="networking\sockets\bsd\basic\tls_socket.cpp" />
-    <ClCompile Include="networking\sockets\bsd\basic\udp_socket.cpp" />
-    <ClCompile Include="networking\sockets\bsd\dns\resolv_server.cpp" />
-    <ClCompile Include="networking\sockets\bsd\dns\resolv_socket.cpp" />
-    <ClCompile Include="networking\sockets\bsd\sockets.cpp" />
-    <ClCompile Include="networking\sockets\bsd\ssl\client_context.cpp" />
-    <ClCompile Include="networking\sockets\bsd\ssl\client_context_map.cpp" />
-    <ClCompile Include="networking\sockets\bsd\ssl\context.cpp" />
-    <ClCompile Include="networking\sockets\bsd\ssl\initializer.cpp" />
-    <ClCompile Include="networking\sockets\bsd\webserver\httpd_socket.cpp" />
+    <ClCompile Include="networking\sockets\basic\listen_socket.cpp" />
+    <ClCompile Include="networking\sockets\basic\sctp_socket.cpp" />
+    <ClCompile Include="networking\sockets\basic\socket.cpp" />
+    <ClCompile Include="networking\sockets\basic\socket_handler.cpp" />
+    <ClCompile Include="networking\sockets\basic\stream_socket.cpp" />
+    <ClCompile Include="networking\sockets\basic\sync_socket_handler.cpp" />
+    <ClCompile Include="networking\sockets\basic\tcp_socket.cpp" />
+    <ClCompile Include="networking\sockets\basic\tcp_socket_impl.cpp" />
+    <ClCompile Include="networking\sockets\basic\tls_socket.cpp" />
+    <ClCompile Include="networking\sockets\basic\udp_socket.cpp" />
     <ClCompile Include="networking\sockets\http\client_socket.cpp" />
     <ClCompile Include="networking\sockets\http\debug_socket.cpp" />
     <ClCompile Include="networking\sockets\http\get_socket.cpp" />
-    <ClCompile Include="networking\sockets\http\http_base_socket.cpp" />
+    <ClCompile Include="networking\sockets\http\base_socket.cpp" />
     <ClCompile Include="networking\sockets\http\listener.cpp" />
     <ClCompile Include="networking\sockets\http\post_socket.cpp" />
     <ClCompile Include="networking\sockets\http\put_socket.cpp" />
@@ -1278,11 +1271,10 @@
     <ClCompile Include="networking\sockets\http_batch_buffer.cpp" />
     <ClCompile Include="networking\sockets\link_in_socket.cpp" />
     <ClCompile Include="networking\sockets\link_out_socket.cpp" />
-    <ClCompile Include="networking\sockets\sockets_base.cpp" />
+    <ClCompile Include="networking\sockets\sockets.cpp" />
     <ClCompile Include="networking\sockets\transfer_socket.cpp" />
+    <ClCompile Include="networking\sockets\webserver\httpd_socket.cpp" />
     <ClCompile Include="networking\sockets\websocket_client.cpp" />
-    <ClCompile Include="networking\sockets\_system_sockets.cpp" />
-    <ClCompile Include="networking\_.cpp" />
     <ClCompile Include="operating_system\debug.cpp" />
     <ClCompile Include="operating_system\http.cpp" />
     <ClCompile Include="operating_system\openssl_crypt.cpp" />
@@ -1339,8 +1331,6 @@
     <ClCompile Include="progress\real.cpp" />
     <ClCompile Include="user\language.cpp" />
     <ClCompile Include="user\language_map.cpp" />
-    <ClCompile Include="user\menu_shared.cpp" />
-    <ClCompile Include="user\menu_shared_commnand.cpp" />
     <ClCompile Include="user\primitive.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
@@ -1348,9 +1338,6 @@
     <ProjectReference Include="..\acme\u_acme.vcxproj">
       <Project>{74a3ea71-9358-4441-a0cc-d5771df8dfbd}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="networking\sockets\bsd\ref_Anders_Hedstrom_sockets_library.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

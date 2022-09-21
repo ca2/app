@@ -180,7 +180,7 @@ extern CLASS_DECL_APEX int g_bApex;
 //#define DOUBLEABS(d) (((d) >= 0.0) ? (d) : (-(d)))
 //
 #undef APPLICATION_CLASS
-#define APPLICATION_CLASS application
+#define APPLICATION_CLASS ::apex::application
 
 
 

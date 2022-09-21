@@ -282,14 +282,19 @@ void CLASS_DECL_APEX __cdecl _ca2_purecall()
 // }
 
 
-
-bool application::os_on_start_application()
+namespace apex
 {
 
-   return true;
 
-}
+   bool application::os_on_start_application()
+   {
 
+      return true;
+
+   }
+
+
+} // namespace apex
 
 
 // bool os_init_application()

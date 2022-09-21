@@ -454,34 +454,34 @@ namespace sockets
       //virtual bool IpDropMembership(struct ip_mreq&);
 
 //#ifdef IP_PKTINFO
-//      virtual bool SetIpPktinfo(bool x = true);
+      virtual bool SetIpPktinfo(bool x = true);
 //#endif
 //#ifdef IP_RECVTOS
-//      virtual bool SetIpRecvTOS(bool x = true);
+      virtual bool SetIpRecvTOS(bool x = true);
 //#endif
 //#ifdef IP_RECVTTL
-//      virtual bool SetIpRecvTTL(bool x = true);
+      virtual bool SetIpRecvTTL(bool x = true);
 //#endif
 //#ifdef IP_RECVOPTS
-//      virtual bool SetIpRecvopts(bool x = true);
+     virtual bool SetIpRecvopts(bool x = true);
 //#endif
 //#ifdef IP_RETOPTS
-//      virtual bool SetIpRetopts(bool x = true);
+      virtual bool SetIpRetopts(bool x = true);
 //#endif
 //#ifdef IP_RECVERR
-//      virtual bool SetIpRecverr(bool x = true);
+      virtual bool SetIpRecverr(bool x = true);
 //#endif
 //#ifdef IP_MTU_DISCOVER
-//      virtual bool SetIpMtudiscover(bool x = true);
+      virtual bool SetIpMtudiscover(bool x = true);
 //#endif
 //#ifdef IP_MTU
-//      virtual int IpMtu();
+      virtual int IpMtu();
 //#endif
 //#ifdef IP_ROUTER_ALERT
-//      virtual bool SetIpRouterAlert(bool x = true);
+      virtual bool SetIpRouterAlert(bool x = true);
 //#endif
 //#ifdef LINUX
-//      virtual bool IpAddMembership(struct ip_mreqn&);
+      //virtual bool IpAddMembership(struct ip_mreqn&);
 //#endif
 //#ifdef LINUX
 //      virtual bool IpDropMembership(struct ip_mreqn&);
@@ -512,31 +512,31 @@ namespace sockets
       virtual bool SetSoKeepalive(bool x = true);
 
 //#ifdef SO_BSDCOMPAT
-//      virtual bool SetSoBsdcompat(bool x = true);
+      virtual bool SetSoBsdcompat(bool x = true);
 //#endif
 //#ifdef SO_BINDTODEVICE
-//      virtual bool SetSoBindtodevice(const string & intf);
+      virtual bool SetSoBindtodevice(const string & intf);
 //#endif
 //#ifdef SO_PASSCRED
-//      virtual bool SetSoPasscred(bool x = true);
+      virtual bool SetSoPasscred(bool x = true);
 //#endif
 //#ifdef SO_PEERCRED
-//      virtual bool SoPeercred(ucred & );
+      //virtual bool SoPeercred(ucred & );
 //#endif
 //#ifdef SO_PRIORITY
-//      virtual bool SetSoPriority(int);
+      virtual bool SetSoPriority(int);
 //#endif
 //#ifdef SO_RCVBUFFORCE
-//      virtual bool SetSoRcvbufforce(int);
+     virtual bool SetSoRcvbufforce(int);
 //#endif
 //#ifdef SO_SNDBUFFORCE
-//      virtual bool SetSoSndbufforce(int);
+      virtual bool SetSoSndbufforce(int);
 //#endif
 //#ifdef SO_TIMESTAMP
-//      virtual bool SetSoTimestamp(bool x = true);
+      virtual bool SetSoTimestamp(bool x = true);
 //#endif
 //#ifdef SO_NOSIGPIPE
-//      virtual bool SetSoNosigpipe(bool x = true);
+      virtual bool SetSoNosigpipe(bool x = true);
 //#endif
       //@}
 
@@ -639,29 +639,29 @@ namespace sockets
       /** Called when the last write caused the tcp output buffer to
       * become is_empty. */
       /** base_socket still in socks4 negotiation mode */
-      bool Socks4();
+      virtual bool Socks4();
       ///** Set flag indicating Socks4 handshaking in progress */
-      void SetSocks4(bool x = true);
+      virtual void SetSocks4(bool x = true);
 
 ////      /** Set socks4 server host address/port to use */
 ////      //void SetSocks4Host(in_addr a);
 ////#if defined(BSD_STYLE_SOCKETS)
 ////      /** Set socks4 server hostname to use. */
-////      void SetSocks4Host(const string & );
+virtual      void SetSocks4Host(const string & );
 ////#endif
 ////      /** Socks4 server port to use. */
-////      void SetSocks4Port(::networking::port_t point_i32);
+virtual      void SetSocks4Port(::networking::port_t point_i32);
 ////      /** Provide a socks4 userid if required by the socks4 server. */
-////      void SetSocks4Userid(const string & x);
+virtual       void SetSocks4Userid(const string & x);
 ////      /** get the ip address/port of socks4 server to use.
 //      //\return socks4 server host address/port */
-//      ////in_addr GetSocks4Host();
+virtual string GetSocks4Host();
 //      /////** get the socks4 server port to use.
 //      ////\return socks4 server port */
-//      ////::networking::port_t GetSocks4Port();
+         virtual ::networking::port_t GetSocks4Port();
 //      /////** get socks4 userid.
 //      ////\return Socks4 userid */
-//      //const string & GetSocks4Userid();
+      virtual const string & GetSocks4Userid();
 //      ////@}
 //      ///** \name Asynchronous Resolver */
 //      ////@{

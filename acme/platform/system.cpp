@@ -1040,7 +1040,7 @@ namespace acme
 #endif
 
          //pfactory = (const ::extended::status&)plibrary;
-         throw ::exception(error_resource);
+         throw ::exception(error_resource, strComponent + "_" + strImplementation + "_factory not found!!");
 
       }
 

@@ -1741,6 +1741,13 @@ namespace http
 
       auto psystem = m_psystem->m_papexsystem;
 
+      if (!psystem->networking())
+      {
+
+         return false;
+
+      }
+
       auto purl = psystem->url();
 
       i64 iHttpGetSerial = ++psystem->networking()->m_lHttpGetSerial;

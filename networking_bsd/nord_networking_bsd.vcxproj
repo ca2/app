@@ -19,11 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D2DC518F-3219-41B4-89F1-AC6055677ED0}</ProjectGuid>
+    <ProjectGuid>{134A1ADC-6717-4FEF-9AD6-2C26C7C6533B}</ProjectGuid>
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
     <ApplicationTypeRevision>3.0</ApplicationTypeRevision>
-    <ProjectName>crypto_openssl</ProjectName>
+    <ProjectName>networking_bsd</ProjectName>
     <RootNamespace>app</RootNamespace>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
   </PropertyGroup>
@@ -195,23 +195,52 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="crypto.cpp" />
+    <ClCompile Include="address.cpp" />
+    <ClCompile Include="bsd\_.cpp" />
     <ClCompile Include="framework.cpp" />
-    <ClCompile Include="hasher.cpp" />
-    <ClCompile Include="hasher_algorithm.cpp" />
-    <ClCompile Include="initializer.cpp" />
-    <ClCompile Include="rsa.cpp" />
+    <ClCompile Include="ip_enum.cpp" />
+    <ClCompile Include="networking.cpp" />
+    <ClCompile Include="port_forward.cpp" />
+    <ClCompile Include="sockets.cpp" />
+    <ClCompile Include="sockets\base\socket.cpp" />
+    <ClCompile Include="sockets\base\socket_handler.cpp" />
+    <ClCompile Include="sockets\base\socket_thread.cpp" />
+    <ClCompile Include="sockets\basic\listen_socket.cpp" />
+    <ClCompile Include="sockets\basic\sctp_socket.cpp" />
+    <ClCompile Include="sockets\basic\socket.cpp" />
+    <ClCompile Include="sockets\basic\socket_handler.cpp" />
+    <ClCompile Include="sockets\basic\stream_socket.cpp" />
+    <ClCompile Include="sockets\basic\tcp_socket.cpp" />
+    <ClCompile Include="sockets\basic\tls_socket.cpp" />
+    <ClCompile Include="sockets\basic\udp_socket.cpp" />
+    <ClCompile Include="sockets\ssl\client_context.cpp" />
+    <ClCompile Include="sockets\ssl\client_context_map.cpp" />
+    <ClCompile Include="sockets\ssl\context.cpp" />
+    <ClCompile Include="sockets\ssl\initializer.cpp" />
     <ClCompile Include="_factory.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="aaa_initializer.h" />
     <ClInclude Include="aaa__openssl.h" />
+    <ClInclude Include="bsd\_.h" />
     <ClInclude Include="crypto.h" />
     <ClInclude Include="hasher.h" />
     <ClInclude Include="hasher_algorithm.h" />
     <ClInclude Include="initializer.h" />
     <ClInclude Include="rsa.h" />
+    <ClInclude Include="sockets\base\socket.h" />
+    <ClInclude Include="sockets\base\socket_handler.h" />
+    <ClInclude Include="sockets\base\socket_thread.h" />
+    <ClInclude Include="sockets\basic\listen_socket.h" />
+    <ClInclude Include="sockets\basic\sctp_socket.h" />
+    <ClInclude Include="sockets\basic\socket.h" />
+    <ClInclude Include="sockets\basic\socket_handler.h" />
+    <ClInclude Include="sockets\basic\stream_socket.h" />
+    <ClInclude Include="sockets\basic\tcp_socket.h" />
+    <ClInclude Include="sockets\basic\tls_socket.h" />
+    <ClInclude Include="sockets\basic\udp_socket.h" />
+    <ClInclude Include="sockets\basic\_.h" />
     <ClInclude Include="_crypto_openssl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

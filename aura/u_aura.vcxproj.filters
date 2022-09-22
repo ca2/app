@@ -1569,6 +1569,9 @@
     <ClCompile Include="windowing\desktop_environment.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\draw2d\item.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="aura.rc">

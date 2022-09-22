@@ -128,7 +128,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="_app_core_hellomultiverse.cpp">
+    <ClCompile Include="__implement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="framework.cpp">

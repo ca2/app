@@ -1,15 +1,15 @@
 #pragma once
 
 
-#include "base/user/simple/frame_window.h"
+#include "base/user/simple/main_frame.h"
 
 
 namespace user
 {
 
 
-   class CLASS_DECL_BASE main_frame : 
-      public simple_frame_window
+   class CLASS_DECL_CORE main_frame : 
+      public simple_main_frame
    {
    public:
 

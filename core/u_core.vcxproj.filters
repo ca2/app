@@ -127,9 +127,6 @@
     <Filter Include="Source Files\filesystem\filehandler">
       <UniqueIdentifier>{1868322a-80a4-4138-9585-54540a3fca27}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\const">
-      <UniqueIdentifier>{59853e0c-8e47-4228-bc11-13eb744c3a29}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\html">
       <UniqueIdentifier>{cf41a34c-9879-4232-87e2-ba8f37f380b2}</UniqueIdentifier>
     </Filter>
@@ -168,6 +165,9 @@
     </Filter>
     <Filter Include="Header Files\networking\ftp">
       <UniqueIdentifier>{94de05d4-e1e2-4583-b333-2e1d0f319dff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\constant">
+      <UniqueIdentifier>{59853e0c-8e47-4228-bc11-13eb744c3a29}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1621,9 +1621,6 @@
     <ClCompile Include="filesystem\filehandler\tree_interface.cpp">
       <Filter>Source Files\filesystem\filehandler</Filter>
     </ClCompile>
-    <ClCompile Include="const\idpool.cpp">
-      <Filter>Source Files\const</Filter>
-    </ClCompile>
     <ClCompile Include="html\impl\cell.cpp">
       <Filter>Source Files\html\impl</Filter>
     </ClCompile>
@@ -1770,6 +1767,9 @@
     </ClCompile>
     <ClCompile Include="user\user\list_item.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="constant\idpool.cpp">
+      <Filter>Source Files\constant</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

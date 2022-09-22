@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/user/experience/experience.h"
+
+
 namespace experience_nanogui
 {
 
@@ -11,28 +14,23 @@ namespace experience_nanogui
    public:
 
 
-
-
-
       experience();
-      virtual ~experience();
+      ~experience() override;
 
 
-      virtual void initialize(::object * pobject) override;
+      void initialize(::object * pobject) override;
 
 
-      virtual void update() override;
+      void update() override;
 
 
-      virtual void get_frame_list(string_array & stra) override;
+      void get_frame_list(string_array & stra) override;
 
 
-      virtual ::experience::frame * frame_experience(const ::string & strFrameSchema) override;
+      ::experience::frame * frame_experience(const ::string & strFrameSchema) override;
 
 
    };
-
-
 
 
 } // namespace experience_nanogui

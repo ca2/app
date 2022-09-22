@@ -81,27 +81,27 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -254,25 +254,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="..\..\..\operating-system\storage-universal_windows\binary\Win32\basis\libeay32.dll">
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\binary\Win32\basis\libeay32.dll">
       <DeploymentContent>true</DeploymentContent>
     </None>
-    <None Include="..\..\..\operating-system\storage-universal_windows\binary\Win32\basis\ssleay32.dll">
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\binary\Win32\basis\ssleay32.dll">
       <DeploymentContent>true</DeploymentContent>
     </None>
-    <None Include="..\..\..\operating-system\storage-universal_windows\third\binary\Win32\basis\bzip2.dll">
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\Win32\basis\bzip2.dll">
       <DeploymentContent>true</DeploymentContent>
     </None>
-    <None Include="..\..\..\operating-system\storage-universal_windows\third\binary\Win32\basis\pcre.dll">
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\Win32\basis\pcre.dll">
       <DeploymentContent>true</DeploymentContent>
     </None>
-    <None Include="..\..\..\operating-system\storage-universal_windows\third\binary\Win32\basis\sqlite.dll">
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\Win32\basis\sqlite.dll">
       <DeploymentContent>true</DeploymentContent>
     </None>
-    <None Include="..\..\..\operating-system\storage-universal_windows\third\binary\Win32\basis\zlib.dll">
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\Win32\basis\zlib.dll">
       <DeploymentContent>true</DeploymentContent>
     </None>
-    <None Include="uwp_app_simple_shader_TemporaryKey.pfx" />
+    <None Include="..\uwp_app_simple_shader_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package10.appxmanifest">
@@ -314,19 +314,19 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\source\app\aura\w_aura.vcxproj">
+    <ProjectReference Include="..\..\..\..\source\app\aura\w_aura.vcxproj">
       <Project>{b3e5b8e7-9e3b-44dd-9ede-e0a74d52c1c5}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\source\app\draw2d_direct2d\w_draw2d_direct2d.vcxproj">
+    <ProjectReference Include="..\..\..\..\source\app\draw2d_direct2d\w_draw2d_direct2d.vcxproj">
       <Project>{ba9bff50-1888-4722-8dee-73a3b5b32bcb}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\source\app\experience_lite\u_experience_lite.vcxproj">
+    <ProjectReference Include="..\..\..\..\source\app\experience_lite\u_experience_lite.vcxproj">
       <Project>{b2d7833b-9b59-4826-bbdf-c270a2115e86}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\source\app\wic_imaging\u_wic_imaging.vcxproj">
+    <ProjectReference Include="..\..\..\..\source\app\wic_imaging\u_wic_imaging.vcxproj">
       <Project>{b3a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
     </ProjectReference>
-    <ProjectReference Include="u_app_simple_shader.vcxproj">
+    <ProjectReference Include="..\u_app_simple_shader.vcxproj">
       <Project>{cac77a44-c0fa-49ed-8373-1e101f53d2d6}</Project>
     </ProjectReference>
   </ItemGroup>

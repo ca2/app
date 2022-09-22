@@ -232,6 +232,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="html\user\document.cpp" />
+    <ClCompile Include="html\user\impact.cpp" />
+    <ClCompile Include="html\user\user.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />
@@ -247,12 +250,19 @@
     <ClCompile Include="user\experience\move_manager.cpp" />
     <ClCompile Include="user\experience\orto_button.cpp" />
     <ClCompile Include="user\experience\size_manager.cpp" />
+    <ClCompile Include="user\form\document.cpp" />
+    <ClCompile Include="user\form\impact.cpp" />
     <ClCompile Include="user\menu\button.cpp" />
     <ClCompile Include="user\menu\central.cpp" />
+    <ClCompile Include="user\menu\interaction.cpp" />
+    <ClCompile Include="user\menu\item.cpp" />
     <ClCompile Include="user\menu\list_impact.cpp" />
     <ClCompile Include="user\menu\list_window.cpp" />
-    <ClCompile Include="user\menu\menu_impact.cpp" />
+    <ClCompile Include="user\menu\impact.cpp" />
+    <ClCompile Include="user\menu\menu.cpp" />
+    <ClCompile Include="user\simple\child_frame.cpp" />
     <ClCompile Include="user\simple\frame_window.cpp" />
+    <ClCompile Include="user\simple\impact.cpp" />
     <ClCompile Include="user\simple\main_frame.cpp" />
     <ClCompile Include="user\simple\scroll_bar.cpp" />
     <ClCompile Include="user\simple\tab_document.cpp" />
@@ -262,11 +272,6 @@
     <ClCompile Include="user\user\document.cpp" />
     <ClCompile Include="user\user\document_manager.cpp" />
     <ClCompile Include="user\user\document_manager_container.cpp" />
-    <ClCompile Include="user\user\form_control.cpp" />
-    <ClCompile Include="user\user\form_data.cpp" />
-    <ClCompile Include="user\user\form_document.cpp" />
-    <ClCompile Include="user\user\form_impact.cpp" />
-    <ClCompile Include="user\user\form_window.cpp" />
     <ClCompile Include="user\user\frame_window.cpp" />
     <ClCompile Include="user\user\hotplugin.cpp" />
     <ClCompile Include="user\user\image_list.cpp" />
@@ -277,28 +282,25 @@
     <ClCompile Include="user\user\impact_kit.cpp" />
     <ClCompile Include="user\user\impact_system.cpp" />
     <ClCompile Include="user\user\margin.cpp" />
-    <ClCompile Include="user\user\menu.cpp" />
-    <ClCompile Include="user\user\menu_interaction.cpp" />
-    <ClCompile Include="user\user\menu_item.cpp" />
     <ClCompile Include="user\user\multiple_document_template.cpp" />
     <ClCompile Include="user\user\network_configuration.cpp" />
     <ClCompile Include="user\user\picture.cpp" />
+    <ClCompile Include="user\user\picture_impl.cpp" />
     <ClCompile Include="user\user\picture_interaction.cpp" />
     <ClCompile Include="user\user\place_holder.cpp" />
     <ClCompile Include="user\user\place_holder_container.cpp" />
     <ClCompile Include="user\user\print_task.cpp" />
     <ClCompile Include="user\user\server.cpp" />
-    <ClCompile Include="user\user\simple_impact.cpp" />
     <ClCompile Include="user\user\single_document_template.cpp" />
     <ClCompile Include="user\user\split_bar.cpp" />
     <ClCompile Include="user\user\split_layout.cpp" />
     <ClCompile Include="user\user\split_pane.cpp" />
     <ClCompile Include="user\user\split_impact.cpp" />
-    <ClCompile Include="user\user\static_control.cpp" />
     <ClCompile Include="user\user\style.cpp" />
     <ClCompile Include="user\user\tab.cpp" />
     <ClCompile Include="user\user\tab_callback.cpp" />
     <ClCompile Include="user\user\tab_data.cpp" />
+    <ClCompile Include="user\user\tab_drop_target_window.cpp" />
     <ClCompile Include="user\user\tab_pane.cpp" />
     <ClCompile Include="user\user\tab_pane_array.cpp" />
     <ClCompile Include="user\user\tab_impact.cpp" />
@@ -334,6 +336,7 @@
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
     <ProjectName>base</ProjectName>
+    <WindowsTargetPlatformMinVersion>10.0.19041.0</WindowsTargetPlatformMinVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">

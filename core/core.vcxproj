@@ -858,7 +858,6 @@
     <ClCompile Include="user\simple\list_data.cpp" />
     <ClCompile Include="user\simple\list_header_control.cpp" />
     <ClCompile Include="user\simple\list_impact.cpp" />
-    <ClCompile Include="user\simple\main_frame.cpp" />
     <ClCompile Include="user\simple\menu_bar.cpp" />
     <ClCompile Include="user\simple\mesh_data.cpp" />
     <ClCompile Include="user\simple\pane_document.cpp" />
@@ -1124,7 +1123,6 @@
     <ClInclude Include="user\simple\list_data.h" />
     <ClInclude Include="user\simple\list_header_control.h" />
     <ClInclude Include="user\simple\list_impact.h" />
-    <ClInclude Include="user\simple\main_frame.h" />
     <ClInclude Include="user\simple\menu_bar.h" />
     <ClInclude Include="user\simple\mesh_data.h" />
     <ClInclude Include="user\simple\message_box.h" />

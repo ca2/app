@@ -461,9 +461,6 @@
     <ClInclude Include="user\simple\list_impact.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\main_frame.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple\menu_bar.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
@@ -1497,9 +1494,6 @@
     </ClCompile>
     <ClCompile Include="user\user\text_format_object.cpp">
       <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple\main_frame.cpp">
-      <Filter>Source Files\user\simple</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

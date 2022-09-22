@@ -17,26 +17,33 @@ simple_main_frame::simple_main_frame()
 
 }
 
+
 simple_main_frame::~simple_main_frame()
 {
+
 }
 
 
 void simple_main_frame::assert_ok() const
 {
-   ::user::main_frame::assert_ok();
+   
+   simple_frame_window::assert_ok();
+
 }
+
 
 void simple_main_frame::dump(dump_context & dumpcontext) const
 {
-   ::user::main_frame::dump(dumpcontext);
+
+   simple_frame_window::dump(dumpcontext);
+
 }
 
 
 void simple_main_frame::install_message_routing(::channel * pchannel)
 {
 
-   ::user::main_frame::install_message_routing(pchannel);
+   simple_frame_window::install_message_routing(pchannel);
 
    MESSAGE_LINK(e_message_create,pchannel,this,&simple_main_frame::on_message_create);
 

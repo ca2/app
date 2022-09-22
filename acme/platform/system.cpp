@@ -2321,6 +2321,27 @@ namespace acme
    }
 
 
+   void system::windowing_send(const ::procedure & procedure)
+   {
+
+      auto pmanualresetevent = __new(manual_reset_event);
+
+      windowing_post([this, pmanualresetevent, procedure]()
+         {
+
+            procedure();
+
+            pmanualresetevent->set_event();
+
+         }
+
+      );
+
+      pmanualresetevent->wait(procedure.m_waitTimeout);
+
+   }
+
+
 } // namespace acme
 
 

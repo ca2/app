@@ -81,30 +81,30 @@
     <AppxManifest Include="Package10.appxmanifest" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="uwp_app_net_TemporaryKey.pfx" />
-    <None Include="uwp_app_simple_app_TemporaryKey.pfx" />
-    <None Include="..\..\..\operating-system\storage-universal_windows\third\binary\x64\basis\pcre.dll">
+    <None Include="..\uwp_app_net_TemporaryKey.pfx" />
+    <None Include="..\uwp_app_simple_app_TemporaryKey.pfx" />
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\basis\pcre.dll">
       <Filter>Libraries\x64\basis</Filter>
     </None>
-    <None Include="..\..\..\operating-system\storage-universal_windows\third\binary\x64\basis\zlib.dll">
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\basis\zlib.dll">
       <Filter>Libraries\x64\basis</Filter>
     </None>
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\Win32\basis\binary\libcrypto-3.dll">
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\basis\binary\libcrypto-3.dll">
       <Filter>Libraries\x86\basis</Filter>
     </None>
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\Win32\basis\binary\libssl-3.dll">
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\basis\binary\libssl-3.dll">
       <Filter>Libraries\x86\basis</Filter>
     </None>
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\Win32\basis\third\binary\pcre.dll">
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\basis\third\binary\pcre.dll">
       <Filter>Libraries\x86\basis</Filter>
     </None>
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\Win32\basis\third\binary\zlib.dll">
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\basis\third\binary\zlib.dll">
       <Filter>Libraries\x86\basis</Filter>
     </None>
-    <None Include="_main.inl">
+    <None Include="..\_main.inl">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="_static_factory.inl">
+    <None Include="..\_static_factory.inl">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

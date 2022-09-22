@@ -13,6 +13,12 @@
 #include "_main_hold.h"
 
 
+#ifdef _UWP
+#if !defined(CUBE)
+#include "acme/asset/new.cpp"
+#endif
+#endif
+
 //DECLARE_APPLICATION(APPLICATION);
 
 

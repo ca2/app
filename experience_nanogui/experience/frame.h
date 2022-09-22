@@ -1,15 +1,18 @@
 #pragma once
 
 
+#include "base/user/experience/frame.h"
+
+
 namespace experience_nanogui
 {
-
 
 
    class CLASS_DECL_APP_EXPERIENCE_CORE frame :
       virtual public ::experience::frame
    {
    public:
+
 
       //e_style                           m_pframewindow->m_estyle;
       status < ::color::color >    m_colorFrameBorder;

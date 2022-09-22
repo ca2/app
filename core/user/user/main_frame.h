@@ -8,7 +8,7 @@ namespace user
 {
 
 
-   class CLASS_DECL_CORE main_frame : 
+   class CLASS_DECL_BASE main_frame : 
       public simple_frame_window
    {
    public:

@@ -4901,6 +4901,8 @@ namespace user
 
          //windowing::graphics_lock graphicslock(m_pwindow);
 
+         //m_pgraphics->update_buffer(rectangleWindow.size());
+
          ::draw2d::graphics_pointer pgraphics = m_pgraphics->on_begin_draw();
 
          slGraphics.unlock();

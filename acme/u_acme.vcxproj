@@ -1938,6 +1938,7 @@
     <ClCompile Include="operating_system\argcargv.cpp" />
     <ClCompile Include="operating_system\chronometer.cpp" />
     <ClCompile Include="operating_system\console.cpp" />
+    <ClCompile Include="operating_system\console_client.cpp" />
     <ClCompile Include="operating_system\debug.cpp" />
     <ClCompile Include="operating_system\file.cpp" />
     <ClCompile Include="operating_system\parallelization.cpp" />

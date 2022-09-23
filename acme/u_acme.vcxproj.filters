@@ -1249,6 +1249,9 @@
     <ClCompile Include="platform\_main_hold_base.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
+    <ClCompile Include="operating_system\console_client.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">

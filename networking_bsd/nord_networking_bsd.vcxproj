@@ -200,8 +200,8 @@
     <ClCompile Include="framework.cpp" />
     <ClCompile Include="ip_enum.cpp" />
     <ClCompile Include="networking.cpp" />
+    <ClCompile Include="networking_bsd.cpp" />
     <ClCompile Include="port_forward.cpp" />
-    <ClCompile Include="sockets.cpp" />
     <ClCompile Include="sockets\base\socket.cpp" />
     <ClCompile Include="sockets\base\socket_handler.cpp" />
     <ClCompile Include="sockets\base\socket_thread.cpp" />
@@ -221,14 +221,13 @@
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="aaa_initializer.h" />
-    <ClInclude Include="aaa__openssl.h" />
+    <ClInclude Include="address.h" />
     <ClInclude Include="bsd\_.h" />
-    <ClInclude Include="crypto.h" />
-    <ClInclude Include="hasher.h" />
-    <ClInclude Include="hasher_algorithm.h" />
-    <ClInclude Include="initializer.h" />
-    <ClInclude Include="rsa.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="ip_enum.h" />
+    <ClInclude Include="networking.h" />
+    <ClInclude Include="port_forward.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="sockets\base\socket.h" />
     <ClInclude Include="sockets\base\socket_handler.h" />
     <ClInclude Include="sockets\base\socket_thread.h" />
@@ -241,7 +240,13 @@
     <ClInclude Include="sockets\basic\tls_socket.h" />
     <ClInclude Include="sockets\basic\udp_socket.h" />
     <ClInclude Include="sockets\basic\_.h" />
-    <ClInclude Include="_crypto_openssl.h" />
+    <ClInclude Include="_.h" />
+    <ClInclude Include="_byte_order.h" />
+    <ClInclude Include="_impl.h" />
+    <ClInclude Include="_net.h" />
+    <ClInclude Include="_networking.h" />
+    <ClInclude Include="_networking_impl.h" />
+    <ClInclude Include="_operating_system.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

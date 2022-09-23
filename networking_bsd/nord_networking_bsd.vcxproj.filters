@@ -22,9 +22,6 @@
     <ClCompile Include="port_forward.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sockets.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sockets\basic\listen_socket.cpp">
       <Filter>Source Files\sockets\basic</Filter>
     </ClCompile>
@@ -73,32 +70,11 @@
     <ClCompile Include="bsd\_.cpp">
       <Filter>Source Files\bsd</Filter>
     </ClCompile>
+    <ClCompile Include="networking_bsd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="_crypto_openssl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aaa__openssl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="aaa_initializer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="crypto.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="hasher.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="hasher_algorithm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="initializer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="rsa.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="sockets\base\socket.h">
       <Filter>Header Files\sockets\base</Filter>
     </ClInclude>
@@ -137,6 +113,45 @@
     </ClInclude>
     <ClInclude Include="bsd\_.h">
       <Filter>Header Files\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="_.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_byte_order.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_net.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_networking.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_networking_impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="_operating_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="address.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ip_enum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="networking.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="port_forward.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

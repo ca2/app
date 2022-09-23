@@ -253,7 +253,22 @@ public:
    inline  bool begins_ci_skip(const char *& psz, const char * pszPrefix);
    inline  struct ::end_of_line_and_next_line end_of_line_and_next_line(const char * psz);
 
+   bool replace_prefix(::string & str, const char * pszPrefixReplacement, const char * pszPrefix);
+   inline bool begins_replace(::string & str, const char * pszPrefixReplacement, const char * pszPrefix)
+   {
+      
+      return replace_prefix(str, pszPrefixReplacement, pszPrefix);
 
+   }
+
+
+   bool replace_prefix_ci(::string & str, const char * pszPrefixReplacement, const char * pszPrefix);
+   inline bool begins_replace_ci(::string & str, const char * pszPrefixReplacement, const char * pszPrefix)
+   {
+
+      return replace_prefix_ci(str, pszPrefixReplacement, pszPrefix);
+
+   }
 
 
    bool           trim_any_quotes(string & str);

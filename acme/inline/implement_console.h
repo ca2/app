@@ -39,6 +39,12 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 
    __pointer(APPLICATION_CLASS) papp(__new(APPLICATION_CLASS));
 
+#ifdef NO_NETWORKING
+
+   papp->m_bNetworking = false;
+
+#endif
+
 #ifdef WINDOWS
 
    papp->get_arguments_from_command_line();
@@ -83,9 +89,26 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 
       papp->m_strAppId = __APP_ID;
 
-      int iExitCode = papp->main_loop();
+      try
+      {
 
-      return iExitCode;
+         int iExitCode = papp->main_loop();
+
+         return iExitCode;
+
+      }
+      catch (const ::exception & exception)
+      {
+
+         fprintf(stderr, "Exception has occurred \"%s\"(\"%s\")", exception.m_strMessage.c_str(), exception.m_strDetails.c_str());
+
+      }
+      catch (...)
+      {
+
+         fprintf(stderr, "Unknown Exception has occurred");
+
+      }
 
 
 //   process_set_args(argc, argv);

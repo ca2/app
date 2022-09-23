@@ -4549,6 +4549,39 @@ bool str::while_begins_with_chars_eat_ci(string & str, const char * pcszChars) /
 //
 //   }
 
+bool str::replace_prefix(::string & str, const char * pszPrefixReplacement, const char * pszPrefix)
+{
+
+   if (!str.begins_eat(pszPrefix))
+   {
+
+      return false;
+
+   }
+
+   str = ::string(pszPrefixReplacement) + str;
+
+   return true;
+
+}
+
+
+bool str::replace_prefix_ci(::string & str, const char * pszPrefixReplacement, const char * pszPrefix)
+{
+
+   if (!str.begins_eat_ci(pszPrefix))
+   {
+
+      return false;
+
+   }
+
+   str = ::string(pszPrefixReplacement) + str;
+
+   return true;
+
+}
+
 
 //   bool begins(const unichar * pcsz, const unichar * pcszPrefix)
 //

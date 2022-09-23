@@ -15,6 +15,23 @@ namespace factory
    }
 
 
+   inline __pointer(factory_item_interface) & get_existing_factory_item(const ::atom & atom)
+   {
+
+      auto & pfactoryitem = get_factory_item(atom);
+
+      if (!pfactoryitem)
+      {
+
+         throw ::exception(error_no_factory, "No factory for \"" + atom.to_string() + "\"");
+
+      }
+
+      return pfactoryitem;
+
+   }
+
+
    inline __pointer(factory_item_interface)& get_factory_item(const ::atom& atom, const ::atom& atomSource)
    {
 

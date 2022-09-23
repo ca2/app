@@ -262,6 +262,9 @@ namespace factory
    inline __pointer(factory_item_interface) & get_factory_item(const ::atom & atom);
 
 
+   inline __pointer(factory_item_interface) & get_existing_factory_item(const ::atom & atom);
+
+
    inline __pointer(factory_item_interface) & get_factory_item(const ::atom & atom, const ::atom & atomSource);
 
 

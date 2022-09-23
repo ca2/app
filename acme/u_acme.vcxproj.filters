@@ -3492,6 +3492,9 @@
     <ClInclude Include="primitive\geometry2d\_defer_shape.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\universal_windows\_winrt_foundation.h">
+      <Filter>Header Files\operating_system\universal_windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\datetime\_impl.h">

@@ -2777,14 +2777,7 @@ template < typename TYPE >
 inline void object::__id_construct(__pointer(TYPE)& p, const ::atom& atom)
 {
 
-   auto pfactory = ::factory::get_factory_item(atom);
-
-   if (!pfactory)
-   {
-
-      throw ::exception(error_no_factory);
-
-   }
+   auto & pfactory = ::factory::get_existing_factory_item(atom);
 
    auto ptypeNew = pfactory->create_element();
 

@@ -920,7 +920,6 @@
     </ClCompile>
     <ClCompile Include="main_window.cpp" />
     <ClCompile Include="_.cpp" />
-    <ClCompile Include="_factory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application.h" />

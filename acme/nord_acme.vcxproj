@@ -187,6 +187,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\stage\source\app\acme\platform\procedure_array.cpp" />
+    <ClCompile Include="asset\new.cpp" />
     <ClCompile Include="compress\compress.cpp" />
     <ClCompile Include="compress\uncompress.cpp" />
     <ClCompile Include="constant\idpool.cpp" />
@@ -407,7 +408,7 @@
     <ClCompile Include="platform\acme.cpp" />
     <ClCompile Include="platform\apex_main_data.cpp" />
     <ClCompile Include="platform\apex_main_struct.cpp" />
-    <ClCompile Include="platform\app.cpp" />
+    <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\app_core.cpp" />
     <ClCompile Include="platform\assert.cpp" />
     <ClCompile Include="platform\aura_str_pool.cpp" />

@@ -26,7 +26,7 @@ namespace OPERATING_SYSTEM_NAMESPACE
 
 //#ifdef CUBE
 //extern "C"
-//::application * cube_get_app();
+//::acme::application * cube_get_app();
 //#endif
 
 void defer_term_ui();

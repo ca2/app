@@ -1160,53 +1160,64 @@ void file_context::calculate_main_resource_memory()
 ::folder* file_context::resource_folder()
 {
 
-   synchronous_lock synchronouslock(mutex());
-
-   auto & pfactory = m_psystem->folder_factory();
-
-   if (m_bFolderResourceCalculated)
+   try
    {
-      
-      if(!m_pfolderResource)
+
+      synchronous_lock synchronouslock(mutex());
+
+      auto & pfactory = m_psystem->folder_factory();
+
+      if (m_bFolderResourceCalculated)
       {
-         
-         output_debug_string("m_pfolderResource is null? Why?");
-         
+
+         if (!m_pfolderResource)
+         {
+
+            output_debug_string("m_pfolderResource is null? Why?");
+
+         }
+
+         return m_pfolderResource;
+
       }
+
+      m_bFolderResourceCalculated = true;
+
+      auto block = get_main_resource_block();
+
+      if (!block)
+      {
+
+         return nullptr;
+
+      }
+
+      auto pmemory = __new(read_only_memory(block));
+
+      auto pfile = __new(::memory_file(pmemory));
+
+      m_psystem->m_pfactoryFolder->__construct(m_pfolderResource);
+
+      m_pfolderResource->initialize(this);
+
+      m_pfolderResource->open_for_reading(pfile);
+      //if (!)
+      //{
+
+
+      //   return nullptr;
+
+      //}
 
       return m_pfolderResource;
 
    }
-
-   m_bFolderResourceCalculated = true;
-
-   auto block = get_main_resource_block();
-
-   if (!block)
+   catch (...)
    {
 
       return nullptr;
 
    }
-
-   auto pmemory = __new(read_only_memory(block));
-
-   auto pfile = __new(::memory_file(pmemory));
-
-   m_psystem->m_pfactoryFolder->__construct(m_pfolderResource);
-
-   m_pfolderResource->initialize(this);
-
-   m_pfolderResource->open_for_reading(pfile);
-   //if (!)
-   //{
-
-
-   //   return nullptr;
-
-   //}
-
-   return m_pfolderResource;
 
 }
 

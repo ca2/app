@@ -111,12 +111,12 @@ namespace sockets_bsd
 
 
       //using ::sockets::stream_socket::open;
-      bool open(::networking::address * address, bool skip_socks = false);
-      bool open(::networking::address * address, ::networking::address * addressBind,bool skip_socks = false);
+      bool open(::networking::address * address, bool skip_socks = false) override;
+      bool open(::networking::address * address, ::networking::address * addressBind,bool skip_socks = false) override;
       /** open connection.
       \lparam host Hostname
       \lparam port Port number */
-      bool open(const string &host,::networking::port_t port);
+      bool open(const string &host,::networking::port_t port) override;
 
 
       void set_host(const ::string & strHost) override;
@@ -164,11 +164,11 @@ namespace sockets_bsd
       Note: Will only be called IF the output buffer has been used.
       Send's that was successful without needing the output buffer
       will not generate a call to this method. */
-      virtual void OnWriteComplete();
+      virtual void OnWriteComplete() override;
       /** Number of bytes in input buffer. */
-      memsize GetInputLength();
+      memsize GetInputLength() override;
       /** Number of bytes in output buffer. */
-      memsize GetOutputLength();
+      memsize GetOutputLength() override;
 
       /** Callback fires when a socket in line protocol has read one full line.
       \lparam line Line read */
@@ -200,57 +200,57 @@ namespace sockets_bsd
       void OnSSLAccept() override;
       /** This method must be implemented to initialize
       the ssl action_context for an outgoing connection. */
-      virtual void InitSSLClient();
+      void InitSSLClient()override;
 
       void set_init_ssl_client_context(const ::string & strInitSSLClientContext) override;
 
       /** This method must be implemented to initialize
       the ssl action_context for an incoming connection. */
-      virtual void InitSSLServer();
+      virtual void InitSSLServer()override;
 
       void _001InitSSLServer() override;
 
       /** Flag that says a broken connection will try to reconnect. */
-      void SetReconnect(bool = true);
+      void SetReconnect(bool = true)override;
       /** Check reconnect on lost connection flag status. */
-      bool Reconnect();
+      bool Reconnect()override;
       /** Flag to determine if a reconnect is in progress. */
-      void SetIsReconnect(bool x = true);
+      void SetIsReconnect(bool x = true)override;
       /** socket is reconnecting. */
-      bool IsReconnect();
+      bool IsReconnect() override;
 
-      void DisableInputBuffer(bool = true);
+      void DisableInputBuffer(bool = true) override;
 
       void OnOptions(i32,i32,i32,SOCKET) override;
 
       void SetLineProtocol(bool = true) override;
 
       // TCP options
-      bool SetTcpNodelay(bool = true);
+      bool SetTcpNodelay(bool = true) override;
 
-      virtual string get_connect_host();
-      virtual ::networking::port_t get_connect_port();
+      virtual string get_connect_host() override;
+      virtual ::networking::port_t get_connect_port() override;
 
       virtual i32 Protocol() override;
 
       /** Trigger limit for callback OnTransferLimit. */
-      void SetTransferLimit(memsize sz);
+      void SetTransferLimit(memsize sz) override;
       /** This callback fires when the output buffer drops below the value
       set by SetTransferLimit. Default: 0 (disabled). */
-      virtual void OnTransferLimit();
+      void OnTransferLimit() override;
 
 
       void OnRead() override;
       //using ::file::file::read;
       //using ::object::read;
-      virtual int read(void * buf, int n);
-      virtual int recv(void * buf, int n);
+      int read(void * buf, int n) override;
+      int recv(void * buf, int n) override;
       void on_read(const void * buf, memsize n ) override;
       void OnWrite() override;
 
 
-      virtual long cert_common_name_check(const ::string & common_name);
-      virtual void enable_cert_common_name_check(bool bEnable = true);
+      long cert_common_name_check(const ::string & common_name) override;
+      void enable_cert_common_name_check(bool bEnable = true) override;
 
       /** SSL; Initialize ssl action_context for a client socket.
       \lparam meth_in SSL method */
@@ -285,9 +285,9 @@ namespace sockets_bsd
       /** the actual send() */
       int try_write(const void * buf, int len);
       /** add data to output buffer top */
-      void buffer(const void * buf, int len);
+      void buffer(const void * buf, int len) override;
 
-      void InitializeContextTLSClientMethod();
+      void InitializeContextTLSClientMethod() override;
 
    };
 

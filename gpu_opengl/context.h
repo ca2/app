@@ -60,6 +60,8 @@ namespace opengl
       // virtual string load_fragment(const ::string & pszPath, enum_shader_source& eshadersource);
 
       //virtual string get_shader_version_text();
+      
+      void set_matrix_uniform(::gpu::uniform uniformMatrix) override;
 
 
    };

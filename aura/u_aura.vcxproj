@@ -421,6 +421,7 @@
     <ClCompile Include="graphics\draw2d\holdee.cpp" />
     <ClCompile Include="graphics\draw2d\holder.cpp" />
     <ClCompile Include="graphics\draw2d\host.cpp" />
+    <ClCompile Include="graphics\draw2d\item.cpp" />
     <ClCompile Include="graphics\draw2d\lock.cpp" />
     <ClCompile Include="graphics\draw2d\nano_svg.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
@@ -440,8 +441,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\glyph.cpp" />
-    <ClCompile Include="graphics\draw2d\glyph_set.cpp" />
     <ClCompile Include="graphics\draw2d\graphics.cpp" />
     <ClCompile Include="graphics\draw2d\graphics_extension.cpp" />
     <ClCompile Include="graphics\draw2d\matrix.cpp" />
@@ -510,6 +509,8 @@
     <ClCompile Include="graphics\write_text\font_enumeration_item.cpp" />
     <ClCompile Include="graphics\write_text\font_list.cpp" />
     <ClCompile Include="graphics\write_text\font_utf8_bom.cpp" />
+    <ClCompile Include="graphics\write_text\glyph.cpp" />
+    <ClCompile Include="graphics\write_text\glyph_set.cpp" />
     <ClCompile Include="graphics\write_text\text_box.cpp" />
     <ClCompile Include="graphics\write_text\text_out.cpp" />
     <ClCompile Include="graphics\write_text\text_out_array.cpp" />
@@ -522,10 +523,9 @@
     <ClCompile Include="operating_system\universal_windows\aura.cpp" />
     <ClCompile Include="operating_system\universal_windows\graphics.cpp" />
     <ClCompile Include="platform\application.cpp" />
-    <ClCompile Include="platform\aura_mq.cpp" />
     <ClCompile Include="platform\context.cpp" />
-    <ClCompile Include="platform\drawable.cpp" />
     <ClCompile Include="platform\draw_context.cpp" />
+    <ClCompile Include="platform\message_queue.cpp" />
     <ClCompile Include="platform\node.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\shell_open.cpp" />
@@ -534,15 +534,19 @@
     <ClCompile Include="user\appearance\appearance.cpp" />
     <ClCompile Include="user\appearance\button.cpp" />
     <ClCompile Include="user\appearance\still.cpp" />
-    <ClCompile Include="user\menu\menu_command.cpp" />
+    <ClCompile Include="user\menu\command.cpp" />
+    <ClCompile Include="user\user\alpha_source.cpp" />
     <ClCompile Include="user\user\box.cpp" />
     <ClCompile Include="user\user\button.cpp" />
     <ClCompile Include="user\user\call_message_handler_task.cpp" />
     <ClCompile Include="user\user\check_box.cpp" />
+    <ClCompile Include="user\user\control_style.cpp" />
     <ClCompile Include="user\user\copydesk.cpp" />
+    <ClCompile Include="user\user\drawable.cpp" />
     <ClCompile Include="user\user\form.cpp" />
     <ClCompile Include="user\user\form_callback.cpp" />
     <ClCompile Include="user\user\frame.cpp" />
+    <ClCompile Include="user\user\horizontal_scroll_base.cpp" />
     <ClCompile Include="user\user\interaction.cpp" />
     <ClCompile Include="user\user\interaction_child.cpp" />
     <ClCompile Include="user\user\interaction_impl.cpp" />
@@ -561,25 +565,31 @@
     <ClCompile Include="user\user\plain_edit.cpp" />
     <ClCompile Include="user\user\plain_text_data.cpp" />
     <ClCompile Include="user\user\primitive_impl.cpp" />
+    <ClCompile Include="user\user\prodevian.cpp" />
     <ClCompile Include="user\user\progress.cpp" />
     <ClCompile Include="user\user\range.cpp" />
+    <ClCompile Include="user\user\run_application.cpp" />
     <ClCompile Include="user\user\scroll.cpp" />
     <ClCompile Include="user\user\scroll_bar.cpp" />
     <ClCompile Include="user\user\shell.cpp" />
     <ClCompile Include="user\user\still.cpp" />
     <ClCompile Include="user\user\style.cpp" />
     <ClCompile Include="user\user\style_base.cpp" />
-    <ClCompile Include="user\user\style_control.cpp" />
     <ClCompile Include="user\user\system.cpp" />
-    <ClCompile Include="user\user\text_composition.cpp" />
+    <ClCompile Include="user\user\text_composition_client.cpp" />
+    <ClCompile Include="user\user\text_composition_composite.cpp" />
     <ClCompile Include="user\user\tool_window.cpp" />
     <ClCompile Include="user\user\user.cpp" />
+    <ClCompile Include="user\user\vertical_scroll_base.cpp" />
+    <ClCompile Include="user\user\visual_state.cpp" />
     <ClCompile Include="user\user\wait_cursor.cpp" />
     <ClCompile Include="user\user\windowing.cpp" />
     <ClCompile Include="user\user\window_util.cpp" />
+    <ClCompile Include="user\user\zorder.cpp" />
     <ClCompile Include="windowing\cursor.cpp" />
     <ClCompile Include="windowing\cursor_manager.cpp" />
     <ClCompile Include="windowing\debug.cpp" />
+    <ClCompile Include="windowing\desktop_environment.cpp" />
     <ClCompile Include="windowing\display.cpp" />
     <ClCompile Include="windowing\graphics_lock.cpp" />
     <ClCompile Include="windowing\icon.cpp" />
@@ -621,6 +631,7 @@
     <ApplicationType>Windows Store</ApplicationType>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
+    <WindowsTargetPlatformMinVersion>10.0.19041.0</WindowsTargetPlatformMinVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">

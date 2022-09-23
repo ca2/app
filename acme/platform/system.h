@@ -467,7 +467,7 @@ namespace acme
 
       //__pointer(::sequence < ::conversation >) message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
 
-
+      virtual void windowing_send(const ::procedure & procedure);
       virtual void windowing_post(const ::procedure & procedure);
 
       void _main_application_handle_url(const char * pszUrl, const ::function < void(bool) > & functionSucceeded) override;
@@ -475,6 +475,8 @@ namespace acme
       //virtual void windowing_post_quit();
 
       virtual string get_latest_deployment_number(const ::string & strBranch);
+
+
 
 
    };

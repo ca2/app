@@ -11,6 +11,21 @@
 #include "_main_hold_base.h"
 
 
+static int g_argc;
+static char ** g_argv;
+static char ** g_envp;
+
+
+void set_argc_argv_envp(int argc, char ** argv, char ** envp)
+{
+
+   g_argc = argc;
+   g_argv = argv;
+   g_envp = envp;
+
+}
+
+
 namespace acme
 {
 
@@ -203,13 +218,13 @@ string main::get_argument1(int iArgument) const
 CLASS_DECL_ACME void set_main_user_thread();
 
 
-void __main()
-{
-
-
-
-
-}
+//void __main()
+//{
+//
+//
+//
+//
+//}
 
 
 void __main(::acme::application * pacmeapplication)
@@ -246,7 +261,7 @@ void __main(::acme::application * pacmeapplication)
 
 #elif !defined(_UWP)
 
-   pacmeapplication->set_args(argc, argv, envp);
+   pacmeapplication->set_args(g_argc, g_argv, g_envp);
 
 #endif
 

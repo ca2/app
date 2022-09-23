@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/user/simple/frame_window.h"
+#include "core/user/user/main_frame.h"
 
 
 namespace filemanager
@@ -9,7 +9,7 @@ namespace filemanager
 
 
    class CLASS_DECL_CORE main_frame :
-      virtual public simple_frame_window
+      virtual public ::user::main_frame
    {
    public:
 

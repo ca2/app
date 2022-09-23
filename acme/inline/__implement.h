@@ -5,9 +5,19 @@
 #include "acme/operating_system.h"
 #include "acme/platform/system_setup.h"
 
+#ifdef CUBE
+#include "operating_system/appconfig.h"
+#include "_static_factory_.inl"
+#endif
 
-//#include "_main_hold.h"
+#include "_main_hold.h"
 
+
+#ifdef _UWP
+#if !defined(CUBE)
+#include "acme/asset/new.cpp"
+#endif
+#endif
 
 //DECLARE_APPLICATION(APPLICATION);
 
@@ -45,32 +55,43 @@ extern char _binary__matter_zip_end[];
 
 #ifdef WINDOWS
 CLASS_DECL_ACME void set_winmain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, int nCmdShow);
-#endif
+#elif defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN) || defined(ANDROID)
+void set_argc_argv_envp(int argc, char ** argv, char ** envp);
 void set_res(const char * p1, const char * p2);
+#endif
+
 
 int __implement();
 
 #if defined(WINDOWS)
 int WINAPI WinMain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, CHAR* pCmdLine, int nCmdShow)
 #elif defined(ANDROID)
-extern "C" int IDENTIFIER_CONCATENATE(main_, APPLICATION)(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
+extern "C" int android_main(int argc, char* argv[], char* envp[], const char* p1, const char* p2)
 #else
 int main(int argc, char * argv[], char * envp[])
 #endif
 {
 
+   auto pmainhold = __new(main_hold);
+
    #ifdef WINDOWS
 
       set_winmain(hinstanceThis, hinstancePrev, nCmdShow);
    
-   #elif defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN)
+   #else
+
+      set_argc_argv_envp(argc, argv, envp);
+
+      #if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN)
    
-      set_res(_binary__matter_zip_start, _binary__matter_zip_end);
+         set_res(_binary__matter_zip_start, _binary__matter_zip_end);
    
-   #elif defined(ANDROID)
+      #elif defined(ANDROID)
    
-      set_res(p1, p2);
-   
+         set_res(p1, p2);
+
+      #endif   
+
    #endif
 
    int iExitCode = __implement();

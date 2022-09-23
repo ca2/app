@@ -69,12 +69,19 @@ void main_asynchronous(const ::procedure & procedure)
 }
 
 
-void system::windowing_post(const ::procedure & procedure)
+namespace acme
 {
 
-   main_asynchronous(procedure);
 
-}
+   void system::windowing_post(const ::procedure & procedure)
+   {
+
+      main_asynchronous(procedure);
+
+   }
+
+
+} // namespace acme
 
 
 bool __os_init_thread()

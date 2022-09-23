@@ -1741,6 +1741,13 @@ namespace http
 
       auto psystem = m_psystem->m_papexsystem;
 
+      if (!psystem->networking())
+      {
+
+         return false;
+
+      }
+
       auto purl = psystem->url();
 
       i64 iHttpGetSerial = ++psystem->networking()->m_lHttpGetSerial;
@@ -2417,12 +2424,6 @@ namespace http
          estatus = error_http;
 
       }
-      else if (::failed(psocket->m_estatus))
-      {
-
-         estatus = psocket->m_estatus;
-
-      }
       else if ((iStatusCode >= 200 && iStatusCode <= 299) || psocket->outattr("http_status_code").is_empty())
       {
 
@@ -2491,6 +2492,12 @@ namespace http
             }
 
          }
+
+      }
+      else if (::failed(psocket->m_estatus))
+      {
+
+         estatus = psocket->m_estatus;
 
       }
       else if (iStatusCode == 401)

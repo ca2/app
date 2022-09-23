@@ -85,6 +85,16 @@ namespace sockets_bsd
    //}
 
 
+   int base_socket_handler::TriggerID(::sockets::base_socket * src)
+   {
+
+      throw interface_only();
+
+      return -1;
+
+   }
+
+
 } // namespace sockets
 
 

@@ -14,7 +14,7 @@
 #include "base/user/simple/tab_document.h"
 #include "base/user/simple/scroll_bar.h"
 #include "base/user/simple/frame_window.h"
-#include "base/user/simple/main_frame.h"
+//#include "base/user/simple/main_frame.h"
 #include "base/user/menu/list_impact.h"
 #include "base/user/menu/button.h"
 #include "base/user/menu/item.h"
@@ -137,7 +137,6 @@ namespace base
 
       ::factory::add_factory_item < simple_frame_window  >();
       //add_factory_item < prodevian_translucent_simple_frame_window  >();
-      ::factory::add_factory_item < simple_main_frame  >();
       ::factory::add_factory_item < ::user::document  >();
       ::factory::add_factory_item < ::user::split_impact  >();
 

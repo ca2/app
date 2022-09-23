@@ -289,7 +289,7 @@ class holdee
 
 
 
-#define APPLICATION_CLASS app
+#define APPLICATION_CLASS ::acme::application
 
 
 //namespace windowing_x11

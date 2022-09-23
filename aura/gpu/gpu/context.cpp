@@ -420,6 +420,15 @@ namespace gpu
 
    }
 
+
+   void context::set_matrix_uniform(uniform uniformMatrix)
+   {
+
+      throw interface_only();
+
+   }
+
+
    void context::translate_shader(string& strFragment)
    {
 

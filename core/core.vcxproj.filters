@@ -449,9 +449,6 @@
     <ClInclude Include="user\simple\form_impact.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\frame_window.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
     <ClInclude Include="user\simple\list_control.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
@@ -462,9 +459,6 @@
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\list_impact.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple\main_frame.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
     <ClInclude Include="user\simple\menu_bar.h">

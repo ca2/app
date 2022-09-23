@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "pole.h"
+
+
 using LOCATIOND = poled;
 using locationd = LOCATIOND;
 

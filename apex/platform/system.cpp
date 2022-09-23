@@ -1156,21 +1156,32 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      auto & pfactoryCrypto = factory("crypto", "openssl");
+      try
+      {
 
-      //if (!pfactoryCrypto)
-      //{
+         auto & pfactoryCrypto = factory("crypto", "openssl");
 
-      //   WARNING("Could not open crypto openssl plugin.");
+         //if (!pfactoryCrypto)
+         //{
 
-      //   //return pfactoryCrypto;
+         //   WARNING("Could not open crypto openssl plugin.");
 
-      //}
+         //   //return pfactoryCrypto;
 
-      pfactoryCrypto->merge_to_global_factory();
+         //}
 
-      //estatus = 
-      pfactoryCrypto->__compose(this, m_pcrypto);
+         pfactoryCrypto->merge_to_global_factory();
+
+         //estatus = 
+         pfactoryCrypto->__compose(this, m_pcrypto);
+
+      }
+      catch (...)
+      {
+
+         FORMATTED_ERROR("No crypto library!!");
+
+      }
 
       //if(!estatus)
       //{

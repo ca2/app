@@ -181,67 +181,67 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|ARM'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|ARM'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\..\operating-system\operating-system-universal_windows\Common.props" />
+    <Import Project="..\..\..\..\operating-system\operating-system-universal_windows\Common.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -692,7 +692,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\Win32\basis\binary\libcrypto-3.dll">
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\basis\binary\libcrypto-3.dll">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</DeploymentContent>
@@ -726,7 +726,7 @@
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">false</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</DeploymentContent>
     </None>
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\Win32\basis\binary\libssl-3.dll">
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\basis\binary\libssl-3.dll">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</DeploymentContent>
@@ -760,7 +760,7 @@
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">false</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</DeploymentContent>
     </None>
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\Win32\basis\third\binary\pcre.dll">
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\basis\third\binary\pcre.dll">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</DeploymentContent>
@@ -794,7 +794,7 @@
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">false</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</DeploymentContent>
     </None>
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\Win32\basis\third\binary\sqlite.dll">
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\basis\third\binary\sqlite.dll">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</DeploymentContent>
@@ -828,7 +828,7 @@
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">false</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</DeploymentContent>
     </None>
-    <None Include="..\..\..\..\operating-system\storage-universal_windows\Win32\basis\third\binary\zlib.dll">
+    <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\basis\third\binary\zlib.dll">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</DeploymentContent>
@@ -862,7 +862,7 @@
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">false</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</DeploymentContent>
     </None>
-    <None Include="..\..\..\operating-system\storage-universal_windows\binary\x64\basis\libcrypto-1_1-x64.dll">
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\binary\x64\basis\libcrypto-1_1-x64.dll">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</DeploymentContent>
@@ -896,7 +896,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</DeploymentContent>
     </None>
-    <None Include="..\..\..\operating-system\storage-universal_windows\binary\x64\basis\libssl-1_1-x64.dll">
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\binary\x64\basis\libssl-1_1-x64.dll">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</DeploymentContent>
@@ -930,7 +930,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</DeploymentContent>
     </None>
-    <None Include="..\..\..\operating-system\storage-universal_windows\third\binary\x64\basis\bzip2.dll">
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\basis\bzip2.dll">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</DeploymentContent>
@@ -964,7 +964,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</DeploymentContent>
     </None>
-    <None Include="..\..\..\operating-system\storage-universal_windows\third\binary\x64\basis\pcre.dll">
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\basis\pcre.dll">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</DeploymentContent>
@@ -998,7 +998,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</DeploymentContent>
     </None>
-    <None Include="..\..\..\operating-system\storage-universal_windows\third\binary\x64\basis\sqlite.dll">
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\basis\sqlite.dll">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</DeploymentContent>
@@ -1032,7 +1032,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</DeploymentContent>
     </None>
-    <None Include="..\..\..\operating-system\storage-universal_windows\third\binary\x64\basis\zlib.dll">
+    <None Include="..\..\..\..\operating-system\storage-universal_windows\third\binary\x64\basis\zlib.dll">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">false</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">false</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</DeploymentContent>
@@ -1066,8 +1066,8 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='stage|x64'">false</DeploymentContent>
     </None>
-    <None Include="uwp_app_core_hellomultiverse_TemporaryKey.pfx" />
-    <None Include="_matter.zip">
+    <None Include="..\uwp_app_core_hellomultiverse_TemporaryKey.pfx" />
+    <None Include="..\_matter.zip">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</DeploymentContent>
     </None>
   </ItemGroup>
@@ -1114,88 +1114,88 @@
     <ClInclude Include="framework.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-universal_windows\acme_universal_windows\u_acme_universal_windows.vcxproj">
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-universal_windows\acme_universal_windows\u_acme_universal_windows.vcxproj">
       <Project>{7d2387eb-a3de-4ea5-b061-48a856dd7211}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-universal_windows\apex_universal_windows\u_apex_universal_windows.vcxproj">
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-universal_windows\apex_universal_windows\u_apex_universal_windows.vcxproj">
       <Project>{699c5c28-fe00-4e04-91ee-47d857588020}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-universal_windows\aura_universal_windows\u_aura_universal_windows.vcxproj">
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-universal_windows\aura_universal_windows\u_aura_universal_windows.vcxproj">
       <Project>{05c4cf3f-fcb7-4017-a39b-1a03158ec0f3}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-universal_windows\node_universal_windows\u_node_universal_windows.vcxproj">
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-universal_windows\node_universal_windows\u_node_universal_windows.vcxproj">
       <Project>{6a3e3812-82b9-4423-bb63-c9687c967c67}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-universal_windows\windowing_universal_windows\u_windowing_universal_windows.vcxproj">
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-universal_windows\windowing_universal_windows\u_windowing_universal_windows.vcxproj">
       <Project>{14fd1464-37de-419c-9584-b35afd6ba322}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-windows_common\acme_windows_common\u_acme_windows_common.vcxproj">
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-windows_common\acme_windows_common\u_acme_windows_common.vcxproj">
       <Project>{4a44d9ca-a46e-4bb3-8ad5-8bcace5228ce}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-windows_common\apex_windows_common\u_apex_windows_common.vcxproj">
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-windows_common\apex_windows_common\u_apex_windows_common.vcxproj">
       <Project>{9b59539c-abd7-4ff5-a64b-521813534736}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-windows_common\aura_windows_common\u_aura_windows_common.vcxproj">
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-windows_common\aura_windows_common\u_aura_windows_common.vcxproj">
       <Project>{e256890d-cf1e-420b-b1f9-8c88434ca1c1}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-windows_common\direct2d\u_direct2d.vcxproj">
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-windows_common\direct2d\u_direct2d.vcxproj">
       <Project>{91608259-0b1f-4deb-a867-873618075395}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-windows_common\directx\u_directx.vcxproj">
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-windows_common\directx\u_directx.vcxproj">
       <Project>{134d39e3-ed4c-4b2f-bc9c-e56db236747d}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-windows_common\draw2d_direct2d\u_draw2d_direct2d.vcxproj">
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-windows_common\draw2d_direct2d\u_draw2d_direct2d.vcxproj">
       <Project>{e5945dd0-328c-4e97-a0dd-97e608e96db1}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-windows_common\imaging_wic\u_imaging_wic.vcxproj">
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-windows_common\imaging_wic\u_imaging_wic.vcxproj">
       <Project>{b3a245f9-c92f-4487-aef7-cb0531f665bd}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\operating-system\operating-system-windows_common\write_text_direct2d\u_write_text_direct2d.vcxproj">
+    <ProjectReference Include="..\..\..\..\operating-system\operating-system-windows_common\write_text_direct2d\u_write_text_direct2d.vcxproj">
       <Project>{e90b52b8-ab16-4d55-87d6-cf2389746776}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\acme\u_acme.vcxproj">
+    <ProjectReference Include="..\..\..\app\acme\u_acme.vcxproj">
       <Project>{74a3ea71-9358-4441-a0cc-d5771df8dfbd}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\apex\u_apex.vcxproj">
+    <ProjectReference Include="..\..\..\app\apex\u_apex.vcxproj">
       <Project>{b86508de-6e32-42ac-b45c-08bf0932dcf8}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\aqua\u_aqua.vcxproj">
+    <ProjectReference Include="..\..\..\app\aqua\u_aqua.vcxproj">
       <Project>{d6fc3dc0-a19a-4f63-a3f1-3426fe53920b}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\aura\u_aura.vcxproj">
+    <ProjectReference Include="..\..\..\app\aura\u_aura.vcxproj">
       <Project>{b3b6a9d8-7776-434e-8e3b-d2696632df39}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\axis\u_axis.vcxproj">
+    <ProjectReference Include="..\..\..\app\axis\u_axis.vcxproj">
       <Project>{0412ea6f-50d0-4baa-99e3-ac14fc63a879}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\base\u_base.vcxproj">
+    <ProjectReference Include="..\..\..\app\base\u_base.vcxproj">
       <Project>{0680a465-39a7-4e1b-8dc1-0607a3243ea2}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\bred\u_bred.vcxproj">
+    <ProjectReference Include="..\..\..\app\bred\u_bred.vcxproj">
       <Project>{08c317fc-6ee8-4371-84cb-18150e439021}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\core\u_core.vcxproj">
+    <ProjectReference Include="..\..\..\app\core\u_core.vcxproj">
       <Project>{65070f1f-14db-474e-96de-cb920740dcc4}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\crypto_openssl\u_crypto_openssl.vcxproj">
+    <ProjectReference Include="..\..\..\app\crypto_openssl\u_crypto_openssl.vcxproj">
       <Project>{bc919186-f67a-4ffc-b6be-0e63dc652a63}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\database_sqlite3\u_database_sqlite3.vcxproj">
+    <ProjectReference Include="..\..\..\app\database_sqlite3\u_database_sqlite3.vcxproj">
       <Project>{ba9bff50-1888-4722-8dee-73a3b5b32bcb}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\experience_core\u_experience_core.vcxproj">
+    <ProjectReference Include="..\..\..\app\experience_core\u_experience_core.vcxproj">
       <Project>{b2d7833b-9b59-4826-bbdf-c270a2115e86}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\folder_zip\u_folder_zip.vcxproj">
+    <ProjectReference Include="..\..\..\app\folder_zip\u_folder_zip.vcxproj">
       <Project>{fc96f9e0-d65e-4286-95b1-f1ff4873dace}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\app\regular_expression_pcre2\u_regular_expression_pcre2.vcxproj">
+    <ProjectReference Include="..\..\..\app\regular_expression_pcre2\u_regular_expression_pcre2.vcxproj">
       <Project>{dd9b6157-147b-4082-89cb-2c857fb41a28}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\gcom\u_gcom.vcxproj">
+    <ProjectReference Include="..\..\gcom\u_gcom.vcxproj">
       <Project>{b7afcefa-8451-7723-8f97-4543bb980265}</Project>
     </ProjectReference>
-    <ProjectReference Include="u_hellomultiverse.vcxproj">
+    <ProjectReference Include="..\u_hellomultiverse.vcxproj">
       <Project>{b7afcefa-3079-4b23-8f97-4543bb980265}</Project>
     </ProjectReference>
   </ItemGroup>
@@ -1203,7 +1203,7 @@
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="_app_core_hellomultiverse.cpp" />
+    <ClCompile Include="__implement.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

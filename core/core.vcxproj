@@ -1119,12 +1119,10 @@
     <ClInclude Include="user\simple\child_frame.h" />
     <ClInclude Include="user\simple\form_list_impact.h" />
     <ClInclude Include="user\simple\form_impact.h" />
-    <ClInclude Include="user\simple\frame_window.h" />
     <ClInclude Include="user\simple\list_control.h" />
     <ClInclude Include="user\simple\list_data.h" />
     <ClInclude Include="user\simple\list_header_control.h" />
     <ClInclude Include="user\simple\list_impact.h" />
-    <ClInclude Include="user\simple\main_frame.h" />
     <ClInclude Include="user\simple\menu_bar.h" />
     <ClInclude Include="user\simple\mesh_data.h" />
     <ClInclude Include="user\simple\message_box.h" />

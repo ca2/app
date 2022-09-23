@@ -15,23 +15,23 @@ namespace app_just_message_box
    public:
 
 
-      application();
-      ~application() override;
+      //application();
+      //~application() override;
 
 
-      void init_instance() override;
-      void term_application() override;
+      //void init_instance() override;
+      //void term_application() override;
 
 
       void on_request(::create * pcreate) override;
-
-
-#ifdef _DEBUG
-
-      virtual int64_t increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-      virtual int64_t decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
-
-#endif
+//
+//
+//#ifdef _DEBUG
+//
+//      virtual int64_t increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+//      virtual int64_t decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS) override;
+//
+//#endif
 
 
       virtual void show_message_box();

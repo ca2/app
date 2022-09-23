@@ -1040,7 +1040,7 @@ namespace acme
 #endif
 
          //pfactory = (const ::extended::status&)plibrary;
-         throw ::exception(error_resource);
+         throw ::exception(error_resource, strComponent + "_" + strImplementation + "_factory not found!!");
 
       }
 
@@ -2317,6 +2317,27 @@ namespace acme
    {
 
       return "(lastest deployed build)";
+
+   }
+
+
+   void system::windowing_send(const ::procedure & procedure)
+   {
+
+      auto pmanualresetevent = __new(manual_reset_event);
+
+      windowing_post([this, pmanualresetevent, procedure]()
+         {
+
+            procedure();
+
+            pmanualresetevent->set_event();
+
+         }
+
+      );
+
+      pmanualresetevent->wait(procedure.m_waitTimeout);
 
    }
 

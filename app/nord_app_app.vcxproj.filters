@@ -10,10 +10,10 @@
     <ClCompile Include="main_window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="_main.cpp">
+    <ClCompile Include="_factory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="_factory.cpp">
+    <ClCompile Include="..\..\app-core\store\_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

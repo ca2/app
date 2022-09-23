@@ -166,11 +166,11 @@
     <Filter Include="Source Files\windowing\sandbox">
       <UniqueIdentifier>{aae7216c-6076-43b2-8571-b2e126194179}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\user\platform">
-      <UniqueIdentifier>{3cdf2f94-1bab-4045-bf41-8cafa2d081fa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\windowing\sandbox">
       <UniqueIdentifier>{a5180dfc-089d-4317-be61-0e59d451a951}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\platform">
+      <UniqueIdentifier>{3cdf2f94-1bab-4045-bf41-8cafa2d081fa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1098,12 +1098,6 @@
     <ClCompile Include="graphics\draw2d\draw2d.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\glyph.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
-    <ClCompile Include="graphics\draw2d\glyph_set.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
     <ClCompile Include="graphics\draw2d\graphics.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
@@ -1138,19 +1132,19 @@
       <Filter>Source Files\graphics\graphics</Filter>
     </ClCompile>
     <ClCompile Include="platform\application.cpp">
-      <Filter>Source Files\user\platform</Filter>
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\draw_context.cpp">
-      <Filter>Source Files\user\platform</Filter>
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\session.cpp">
-      <Filter>Source Files\user\platform</Filter>
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\system.cpp">
-      <Filter>Source Files\user\platform</Filter>
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\theme.cpp">
-      <Filter>Source Files\user\platform</Filter>
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="message\user.cpp">
       <Filter>Source Files\message</Filter>
@@ -1173,9 +1167,6 @@
     <ClCompile Include="message\timer.cpp">
       <Filter>Source Files\message</Filter>
     </ClCompile>
-    <ClCompile Include="platform\drawable.cpp">
-      <Filter>Source Files\user\platform</Filter>
-    </ClCompile>
     <ClCompile Include="gpu\gpu\approach.cpp">
       <Filter>Source Files\gpu\gpu</Filter>
     </ClCompile>
@@ -1191,11 +1182,8 @@
     <ClCompile Include="gpu\gpu\shader.cpp">
       <Filter>Source Files\gpu\gpu</Filter>
     </ClCompile>
-    <ClCompile Include="platform\aura_mq.cpp">
-      <Filter>Source Files\user\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\shell_open.cpp">
-      <Filter>Source Files\user\platform</Filter>
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="graphics\write_text\drawer.cpp">
       <Filter>Source Files\graphics\write_text</Filter>
@@ -1273,10 +1261,10 @@
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
     <ClCompile Include="platform\context.cpp">
-      <Filter>Source Files\user\platform</Filter>
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\node.cpp">
-      <Filter>Source Files\user\platform</Filter>
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\lock.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
@@ -1386,13 +1374,7 @@
     <ClCompile Include="user\user\tool_window.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\user\text_composition.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\system.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\style_control.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user\style_base.cpp">
@@ -1491,7 +1473,7 @@
     <ClCompile Include="user\user\box.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\menu\menu_command.cpp">
+    <ClCompile Include="user\menu\command.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\host.cpp">
@@ -1540,6 +1522,54 @@
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="graphics\draw2d\path_simple_optimization.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\glyph.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\write_text\glyph_set.cpp">
+      <Filter>Source Files\graphics\write_text</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\message_queue.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\drawable.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\alpha_source.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\control_style.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\horizontal_scroll_base.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\prodevian.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\run_application.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\text_composition_client.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\text_composition_composite.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\vertical_scroll_base.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\visual_state.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\zorder.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\desktop_environment.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\item.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>

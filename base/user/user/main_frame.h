@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "base/user/simple/frame_window.h"
+#include "base/user/simple/main_frame.h"
 
 
 namespace user
@@ -9,7 +9,7 @@ namespace user
 
 
    class CLASS_DECL_BASE main_frame : 
-      public simple_frame_window
+      public main_frame
    {
    public:
 

@@ -361,11 +361,12 @@ namespace sockets
 
       }
 
-      if(m_pfile != nullptr && (m_response.attr(__id(http_status_code)) < 300 || m_response.attr(__id(http_status_code)) >= 400))
+      int iStatusCode = m_response.attr(__id(http_status_code));
+
+      if(m_pfile != nullptr && (iStatusCode < 300 || iStatusCode >= 400))
       {
 
          m_pfile->write(m_memoryfile.get_data(), (memsize) m_memoryfile.get_size());
-
 
 #if HEAVY_HTTP_LOG
          

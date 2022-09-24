@@ -87,6 +87,52 @@ system_setup* system_setup::get_first(::system_setup::enum_flag eflag, const cha
 }
 
 
+CLASS_DECL_ACME ::string get_library_component(const string & strName)
+{
+   
+   if (strName.begins("audio_resample_"))
+   {
+
+      return "audio_resample";
+
+   }
+   else if (strName.begins("audio_decode_"))
+   {
+
+      return "audio_resample";
+
+   }
+   else if (strName.begins("video_decode_"))
+   {
+
+      return "video_decode";
+
+   }
+   else if (strName.begins("video_input_"))
+   {
+
+      return "video_input";
+
+   }
+   else
+   {
+
+      auto iFind = strName.find('_');
+
+      if (iFind < 0)
+      {
+
+         return strName;
+
+      }
+
+      return strName.Left(iFind);
+
+   }
+
+}
+
+
 PFN_factory system_setup::get_factory_function(const char* pszName)
 {
 
@@ -97,19 +143,52 @@ PFN_factory system_setup::get_factory_function(const char* pszName)
 
    }
 
-   auto psetup = s_psetupList;
-
-   while (psetup != nullptr)
    {
 
-      if (psetup->m_eflag == flag_factory && !stricmp(pszName, psetup->m_pszName))
+      auto psetup = s_psetupList;
+
+      while (psetup != nullptr)
       {
 
-         return psetup->m_pfnFactory;
+         if (psetup->m_eflag == flag_factory && !stricmp(pszName, psetup->m_pszName))
+         {
+
+            return psetup->m_pfnFactory;
+
+         }
+
+         psetup = psetup->m_ppropertysetupNext;
 
       }
 
-      psetup = psetup->m_ppropertysetupNext;
+   }
+
+   {
+
+      auto psetup = s_psetupList;
+
+      string strComponentSearch = get_library_component(pszName);
+
+      while (psetup != nullptr)
+      {
+
+         if (psetup->m_eflag == flag_factory)
+         {
+
+            string strComponent = get_library_component(psetup->m_pszName);
+
+            if (strComponent == strComponentSearch)
+            {
+
+               return psetup->m_pfnFactory;
+
+            }
+
+         }
+
+         psetup = psetup->m_ppropertysetupNext;
+
+      }
 
    }
 

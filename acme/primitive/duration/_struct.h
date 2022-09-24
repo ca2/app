@@ -2,8 +2,7 @@
 #pragma once
 
 
-struct DURATION { time_t m_iSecond; /* Seconds - >= 0 */ long m_iNanosecond; /* Nanoseconds - [0, 999999999] */ };
-
+struct DURATION { ::i64 m_iSecond; ::i64 m_iNanosecond; };
 
 struct FREQUENCY { double m_d; /* Hz */ };
 

@@ -13,11 +13,14 @@
 #include "_main_hold.h"
 
 
-#ifdef _UWP
+#if defined(_UWP)
 #if !defined(CUBE)
 #include "acme/asset/new.cpp"
 #endif
+#elif defined(ANDROID)
+#include "acme/asset/new.cpp"
 #endif
+
 
 //DECLARE_APPLICATION(APPLICATION);
 

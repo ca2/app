@@ -2326,7 +2326,7 @@ namespace acme
 
       auto pmanualresetevent = __new(manual_reset_event);
 
-      windowing_post([this, pmanualresetevent, procedure]()
+      windowing_post([pmanualresetevent, procedure]()
          {
 
             procedure();

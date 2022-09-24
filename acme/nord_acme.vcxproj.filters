@@ -7,9 +7,6 @@
     <ClCompile Include="primitive\comparison\var_strict.cpp">
       <Filter>Source Files\primitive\comparison</Filter>
     </ClCompile>
-    <ClCompile Include="_.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="memory\inline\heap_bare.cpp">
       <Filter>Source Files\memory\inline</Filter>
     </ClCompile>
@@ -1092,9 +1089,6 @@
     </ClCompile>
     <ClCompile Include="operating_system\ansi\int_handle.cpp">
       <Filter>Source Files\operating_system\ansi</Filter>
-    </ClCompile>
-    <ClCompile Include="asset\new.cpp">
-      <Filter>Source Files\asset</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3646,9 +3640,6 @@
     </Filter>
     <Filter Include="Source Files\primitive\media_library">
       <UniqueIdentifier>{cca40843-f906-49e8-9c93-3ccb9dd83de4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\asset">
-      <UniqueIdentifier>{947f6e56-e917-4b9a-b8a9-9d596d16a3fa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

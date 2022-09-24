@@ -39,12 +39,12 @@ namespace experience_anthill
 
       //}
 
-      fork([this]()
-         {
+      //fork([this]()
+      //   {
 
-            //pdraw2d->set_cursor_set_from_matter("cursor/polar");
+      //      //pdraw2d->set_cursor_set_from_matter("cursor/polar");
 
-         });
+      //   });
 
       //return ::success;
 

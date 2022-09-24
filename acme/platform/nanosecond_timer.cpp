@@ -55,7 +55,13 @@ void nanosecond_timer::wait(const ::duration & duration)
 
 #else
 
-   ::nanosleep((timespec *) &duration, nullptr);
+   struct timespec timespec;
+
+   timespec.tv_sec = (time_t) duration.m_iSecond;
+
+   timespec.tv_nsec = (long) duration.m_iNanosecond;
+
+   ::nanosleep(&timespec, nullptr);
 
 #endif
 

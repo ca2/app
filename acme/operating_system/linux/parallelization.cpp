@@ -103,12 +103,19 @@ void main_asynchronous(const ::procedure & procedure)
 }
 
 
-void system::windowing_post(const ::procedure & procedure)
+namespace acme
 {
 
-   ::nano::display::g_p->display_post(procedure);
+   void system::windowing_post(const ::procedure &procedure)
+   {
 
-}
+      ::nano::display::g_p->display_post(procedure);
+
+   }
+
+
+} // namespace acme
+
 
 
 bool __os_init_thread()

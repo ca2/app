@@ -164,8 +164,8 @@ list(APPEND apex_source
    inline/console/windows.h
    inline/__debug_box_clear_impl.h
    inline/__debug_box_set_impl.h
-   inline/_acid_app_impl.h
-   inline/_app_impl1.h
+   #inline/_acid${PROJECT_NAME}.h
+   #inline/${PROJECT_NAME}.h
    inline/_application.h
    inline/_console_old.h
    inline/_draw2d_impl.h
@@ -519,7 +519,7 @@ list(APPEND apex_source
    platform/session.h
    platform/shell_launcher.cpp
    platform/shell_launcher.h
-   platform/simple_app.h
+   #platform/simple_app.h
    #platform/simple_log.cpp
    #platform/simple_log.h
    #platform/static_start.cpp
@@ -1414,13 +1414,12 @@ elseif(LINUX OR FREEBSD)
 endif ()
 
 
-target_include_directories(apex PRIVATE .)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
-
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+
 
 
 target_compile_definitions(apex PRIVATE _APEX_LIBRARY)

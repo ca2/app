@@ -13,6 +13,8 @@ list(APPEND library_source
     framework.cpp
     framework.h
     image_opengl.cpp
+        object.cpp
+        object.h
     opengl.cpp
     opengl.h
     program.cpp
@@ -67,7 +69,7 @@ if(LINUX OR FREEBSD)
 
 endif()
 
-add_library(gpu_opengl SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 target_precompile_headers(gpu_opengl PRIVATE framework.h)
 
@@ -105,12 +107,12 @@ endif()
 
 
 
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
-
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+
 
 
 target_compile_definitions(gpu_opengl PRIVATE _GPU_OPENGL_LIBRARY)

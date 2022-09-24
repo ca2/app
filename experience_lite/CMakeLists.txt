@@ -47,7 +47,7 @@ else()
 endif()
 
 
-add_library(experience_lite SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 target_precompile_headers(experience_lite PRIVATE framework.h)
@@ -74,12 +74,12 @@ endif()
 
 
 
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
-
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+
 
 
 target_compile_definitions(experience_lite PRIVATE _APP_EXPERIENCE_LITE_LIBRARY)

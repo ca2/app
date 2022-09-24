@@ -113,13 +113,13 @@ add_dependencies(${PROJECT_NAME}  ${app_common_dependencies})
 add_dependencies(${PROJECT_NAME}  database_sqlite3)
 
 
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
-
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(${PROJECT_NAME}  PRIVATE _APP_SIMPLE_APPLICATION_LIBRARY)
+
+target_compile_definitions(${PROJECT_NAME}  PRIVATE _NANOGUI_LIBRARY)
 

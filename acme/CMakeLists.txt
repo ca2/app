@@ -267,8 +267,8 @@ list(APPEND library_source
    platform/apex_main_data.h
    platform/apex_main_struct.cpp
    platform/apex_main_struct.h
-   platform/app.cpp
-   platform/app.h
+   platform/application.cpp
+   platform/application.h
    platform/app_core.cpp
    platform/app_core.h
    platform/assert.cpp
@@ -823,7 +823,7 @@ list(APPEND library_source
    _.h
    _defer.h
    _start.h
-   application.h
+   #application.h
    astr.h
    axispolicy/_.h
    axispolicy/_c.h
@@ -992,14 +992,14 @@ list(APPEND library_source
    include/winrt.h
    inline/__debug_box_clear_impl.h
    inline/__debug_box_set_impl.h
-   inline/_acid_app_impl.h
-   inline/_app_impl1.h
+   #inline/_acid.h
+   #inline/${PROJECT_NAME}.h
    inline/_application.h
    inline/_console_old.h
    inline/_draw2d_impl.h
    inline/_new_impl.h
    inline/application/linux.h
-   inline/application.h
+   #inline/application.h
    inline/application_common.h
    inline/console.h
    inline/console_common.h
@@ -2126,7 +2126,8 @@ if (LINUX OR FREEBSD)
 
 endif ()
 
-add_library(acme SHARED ${library_source})
+
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 if(NOT DEFINED NO_PRECOMPILED_HEADER)
@@ -2182,12 +2183,12 @@ target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operat
 target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating-system/storage-${OPERATING_SYSTEM_NAME}/third/library/x64/basis)
 
 
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
-
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+
 
 
 target_compile_definitions(acme PRIVATE _ACME_LIBRARY)

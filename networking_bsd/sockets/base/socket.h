@@ -482,10 +482,10 @@ namespace sockets_bsd
       bool SetIpRouterAlert(bool x = true) override;
 #endif
 #ifdef LINUX
-      bool IpAddMembership(struct ip_mreqn&) override;
+      virtual bool IpAddMembership(struct ip_mreqn&);
 #endif
 #ifdef LINUX
-      bool IpDropMembership(struct ip_mreqn&) override;
+      virtual bool IpDropMembership(struct ip_mreqn&);
 #endif
       //@}
 

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(_app_shader CXX)
+project(_app_app CXX)
 
 
 add_executable(${PROJECT_NAME} __implement.cpp)
@@ -10,9 +10,8 @@ list(APPEND executable_references
    apex
    aqua
    aura
-   app_shader
+   app_app
    )
-
 
 
 if(LINUX OR FREEBSD)
@@ -40,32 +39,25 @@ endif()
 
 if (MSVC)
 
-
-   target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-   target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-   target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
-   target_link_libraries(${PROJECT_NAME} PRIVATE ${executable_references})
-
+    target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+    target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${executable_references})
 
 elseif(LINUX OR FREEBSD)
 
-
-   target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
-   target_link_libraries(${PROJECT_NAME} PRIVATE ${executable_references})
-   target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
-
+    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${executable_references})
+    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
 
 endif ()
 
 
-
-add_dependencies(${PROJECT_NAME} ${default_draw2d})
-add_dependencies(${PROJECT_NAME} ${default_write_text})
 add_dependencies(${PROJECT_NAME} ${app_common_dependencies})
+add_dependencies(${PROJECT_NAME} ${default_draw2d})
+add_dependencies(${PROJECT_NAME} ${default_node})
 add_dependencies(${PROJECT_NAME} crypto_openssl)
 add_dependencies(${PROJECT_NAME} folder_zip)
-add_dependencies(${PROJECT_NAME} gpu_opengl)
-
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})

@@ -37,7 +37,7 @@ list(APPEND library_source
 
    )
 
-add_library(experience_core SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 target_precompile_headers(experience_core PRIVATE framework.h)
@@ -61,13 +61,12 @@ elseif(LINUX)
 endif()
 
 
-target_include_directories(experience_core PRIVATE .)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
-
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+
 
 
 target_compile_definitions(experience_core PRIVATE _APP_EXPERIENCE_CORE_LIBRARY)

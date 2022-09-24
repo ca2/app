@@ -457,6 +457,8 @@
 //   }
 
 
+namespace apex
+{
 
 
    bool application::os_on_start_application()
@@ -486,6 +488,12 @@
       return true;
 
    }
+
+
+} // namespace apex
+
+
+
 
 
 //} // namespace linux

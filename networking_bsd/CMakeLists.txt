@@ -13,10 +13,11 @@ list(APPEND library_source
         ip_enum.h
         networking.cpp
         networking.h
+        networking_bsd.cpp
         port_forward.cpp
         port_forward.h
         resource.h
-        sockets.cpp
+        #sockets.cpp
         sockets/_.h
         sockets/_1.h
         sockets/_sockets.h
@@ -165,12 +166,12 @@ elseif(LINUX)
 endif()
 
 
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
-
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+
 
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE _NETWORKING_BSD_LIBRARY)

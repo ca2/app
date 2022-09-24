@@ -25,7 +25,7 @@ list(APPEND library_references
    )
 
 
-add_library(scripting SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 target_precompile_headers(scripting PRIVATE framework.h)
@@ -56,12 +56,12 @@ elseif(LINUX)
 endif()
 
 
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
-
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+
 
 
 target_compile_definitions(scripting PRIVATE _SCRIPTING_LIBRARY)

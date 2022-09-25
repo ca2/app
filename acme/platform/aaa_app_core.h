@@ -18,7 +18,7 @@ class raw_fail {};
 // apex_apex class should be instantiated before any other ca2 framework 
 // class instantiation or any other ca2 framework function call.
 // It should be maintained allocated while process is running.
-// Not even new/delete/strings/ids can be used after it goes out of scope.
+// Not even memory_new/delete/strings/ids can be used after it goes out of scope.
 
 
 //

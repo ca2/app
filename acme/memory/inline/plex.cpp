@@ -7,7 +7,7 @@
 //#include "acme/platform/static_start.h"
 
 
-#undef new
+
 
 
 

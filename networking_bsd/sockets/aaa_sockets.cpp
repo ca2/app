@@ -112,7 +112,7 @@ namespace networking_bsd
 //      }
 
 
-      //m_pajpaxissocketinit = new AjpBaseSocket::Initializer;
+      //m_pajpaxissocketinit = memory_new AjpBaseSocket::Initializer;
 
       m_countHttpPostBoundary = 0;
 

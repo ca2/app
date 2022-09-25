@@ -16,7 +16,7 @@ namespace zip
    in_file::in_file()
    {
 
-      m_punzfileinfo = new unz_file_info;
+      m_punzfileinfo = memory_new unz_file_info;
 
    }
 

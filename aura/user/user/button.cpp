@@ -76,7 +76,7 @@ namespace user
    ::element * button::clone() const
    {
 
-      auto pcheckbox = new ::user::button;
+      auto pcheckbox = memory_new ::user::button;
 
       return pcheckbox;
 
@@ -1133,13 +1133,13 @@ namespace user
       if(estyle == e_style_image || estyle == e_style_image_and_text)
       {
 
-         m_pbitmap = new bitmap();
+         m_pbitmap = memory_new bitmap();
 
       }
       else if(estyle == e_style_list)
       {
 
-         m_plist = new list();
+         m_plist = memory_new list();
 
          //m_plist->m_pimagelistNormal         = nullptr;
          //m_plist->m_pimagelistItemHover      = nullptr;

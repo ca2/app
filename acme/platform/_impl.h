@@ -180,7 +180,7 @@ inline bool IsDirSep(widechar ch)
 }
 
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 
 template < typename T >
@@ -846,7 +846,7 @@ sequence < SEQUENCE > * sequencer < SEQUENCE > ::topic(const ::duration& duratio
    if (m_psequence.m_estatus == error_not_initialized)
    {
 
-      m_pevent = new manual_reset_event();
+      m_pevent = memory_new manual_reset_event();
 
       if (!m_pevent->wait(duration))
       {
@@ -944,7 +944,7 @@ sequence < SEQUENCE > * sequencer < SEQUENCE > ::then(const ::duration& duration
 
       m_stepa.add(step);
 
-      m_pevent = new manual_reset_event();
+      m_pevent = memory_new manual_reset_event();
 
       lock.unlock();
 

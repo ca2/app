@@ -266,7 +266,7 @@ namespace colorertake5
          return;
       }
 
-      file_type_impl *type = new file_type_impl(this);
+      file_type_impl *type = memory_new file_type_impl(this);
 
       type->name           = typeName;
 
@@ -309,7 +309,7 @@ namespace colorertake5
                continue;
             }
             string match = content->get_value();
-            cregexp *matchRE = new cregexp(match);
+            cregexp *matchRE = memory_new cregexp(match);
             matchRE->setPositionMoves(true);
             if (!matchRE->isOk())
             {
@@ -326,7 +326,7 @@ namespace colorertake5
             {
                prior = atof((content)->attr("weight"));
             }
-            FileTypeChooser *ftc = new FileTypeChooser(ctype, prior, matchRE);
+            FileTypeChooser *ftc = memory_new FileTypeChooser(ctype, prior, matchRE);
             type->chooserVector.add(ftc);
          }
          if (content->get_name() == "parameters")
@@ -432,7 +432,7 @@ namespace colorertake5
                continue;
             };
 
-            class region *region = new class region(qname1, regionDescr, getRegion(qname2), regionNamesVector.get_size());
+            class region *region = memory_new class region(qname1, regionDescr, getRegion(qname2), regionNamesVector.get_size());
             regionNamesVector.add(region);
             regionNamesHash.set_at(qname1, region);
 
@@ -508,7 +508,7 @@ namespace colorertake5
          return;
       }
 
-      scheme_impl *scheme = new scheme_impl(qSchemeName);
+      scheme_impl *scheme = memory_new scheme_impl(qSchemeName);
       scheme->fileType = parseType;
 
       schemeHash.set_at(scheme->schemeName, scheme);
@@ -534,7 +534,7 @@ namespace colorertake5
 
          if (next == nullptr)
          {
-            next = new SchemeNode();
+            next = memory_new SchemeNode();
          }
 
          if (tmpel->get_name() == "inherit")
@@ -592,7 +592,7 @@ namespace colorertake5
                      }
                      continue;
                   };
-                  next->virtualEntryVector.add(new VirtualEntry(schemeName, substName));
+                  next->virtualEntryVector.add(memory_new VirtualEntry(schemeName, substName));
                };
             };
             scheme->nodes.add(next.detach());
@@ -618,7 +618,7 @@ namespace colorertake5
             string entMatchParam = useEntities(matchParam);
             next->lowPriority = tmpel->attr("priority") == "low";
             next->type = SNT_RE;
-            next->start = new cregexp(entMatchParam);
+            next->start = memory_new cregexp(entMatchParam);
             next->start->setPositionMoves(false);
             if (!next->start || !next->start->isOk())
                if (errorHandler != nullptr) errorHandler->error(string("fault compiling regexp '")+entMatchParam+"' in scheme '"+scheme->schemeName+"'");
@@ -698,7 +698,7 @@ namespace colorertake5
             next->lowContentPriority = tmpel->attr("content-priority") == "low";
             next->innerRegion = tmpel->attr("inner-region") == "yes";
             next->type = SNT_SCHEME;
-            next->start = new cregexp(startParam);
+            next->start = memory_new cregexp(startParam);
             next->start->setPositionMoves(false);
             if (!next->start->isOk())
             {
@@ -707,7 +707,7 @@ namespace colorertake5
                   errorHandler->error(string("fault compiling regexp '")+startParam+"' in scheme '"+scheme->schemeName+"'");
                }
             }
-            next->end = new cregexp();
+            next->end = memory_new cregexp();
             next->end->setPositionMoves(true);
             next->end->setBackRE(next->start);
             next->end->setRE(endParam);
@@ -750,7 +750,7 @@ namespace colorertake5
                //delete entWordDiv;
             };
 
-            next->kwList = new KeywordList;
+            next->kwList = memory_new KeywordList;
             for(__pointer(::xml::node)keywrd_count = tmpel->first_child(); keywrd_count; keywrd_count = keywrd_count->get_next_sibling())
             {
                if (keywrd_count->get_name() == "u16" ||
@@ -760,7 +760,7 @@ namespace colorertake5
                }
             }
 
-            next->kwList->kwList = new KeywordInfo[next->kwList->num];
+            next->kwList->kwList = memory_new KeywordInfo[next->kwList->num];
             next->kwList->num = 0;
             KeywordInfo *pIDs = next->kwList->kwList;
             next->kwList->matchCase = isCase;

@@ -1,10 +1,10 @@
 //
-// From acme/user/nano/window by camilo on 2022-03-11 14:42 <3ThomasBorregaardSørensen!!
+// From acme/user/nano/window by camilo on 2022-03-11 14:42 <3ThomasBorregaardSï¿½rensen!!
 //
 #pragma once
 
 
-#undef new
+
 
 
 #include <winrt/Windows.UI.Popups.h>

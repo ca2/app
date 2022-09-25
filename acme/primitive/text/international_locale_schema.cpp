@@ -17,7 +17,7 @@ namespace text
       void create_rtl_map()
       {
 
-         g_pmapRTL = new id_to_id;
+         g_pmapRTL = memory_new id_to_id;
 
       }
 

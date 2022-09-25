@@ -47,7 +47,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstance, ::u32 dwReason, LPVOID pReserved)
 #if !defined(CUBE)
 
 
-#include "aura/asset/new.cpp"
+#include "aura/asset/memory_new.cpp"
 
 
 #endif

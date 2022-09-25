@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#undef new
+
 
 
 fixed_alloc_no_sync::fixed_alloc_no_sync(::u32 nAllocSize, ::u32 nBlockSize)
@@ -68,22 +68,22 @@ fixed_alloc_sync::fixed_alloc_sync(::u32 nAllocSize, ::u32 nBlockSize, i32 iShar
    m_protectptra.allocate(iShareCount);
    for(i32 i = 0; i < m_allocptra.get_count(); i++)
    {
-      m_allocptra[i] = new fixed_alloc_no_sync(nAllocSize + sizeof(i32), nBlockSize);
+      m_allocptra[i] = memory_new fixed_alloc_no_sync(nAllocSize + sizeof(i32), nBlockSize);
    }
    for(i32 i = 0; i < m_protectptra.get_count(); i++)
    {
-      m_protectptra[i] = new critical_section();
+      m_protectptra[i] = memory_new critical_section();
    }
 
    m_allocptra.allocate(iShareCount);
    m_protectptra.allocate(iShareCount);
    for(i32 i = 0; i < m_allocptra.get_count(); i++)
    {
-      m_allocptra[i] = new fixed_alloc_no_sync(nAllocSize + sizeof(i32), nBlockSize);
+      m_allocptra[i] = memory_new fixed_alloc_no_sync(nAllocSize + sizeof(i32), nBlockSize);
    }
    for(i32 i = 0; i < m_protectptra.get_count(); i++)
    {
-      m_protectptra[i] = new critical_section();
+      m_protectptra[i] = memory_new critical_section();
    }
 }
 
@@ -168,7 +168,7 @@ fixed_alloc::fixed_alloc(::u32 nAllocSize, ::u32 nBlockSize)
 
    for(i32 i = 0; i < m_allocptra.get_count(); i++)
    {
-      m_allocptra[i] = new fixed_alloc_sync(nAllocSize + sizeof(i32), nBlockSize, 12);
+      m_allocptra[i] = memory_new fixed_alloc_sync(nAllocSize + sizeof(i32), nBlockSize, 12);
    }
 
    m_iShareCount = iShareCount;

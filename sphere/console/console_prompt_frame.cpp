@@ -243,7 +243,7 @@ namespace console
 
 
 
-      m_pimagelist = new image_list(this);
+      m_pimagelist = memory_new image_list(this);
       m_pimagelist->create(16, 16, 0, 10, 10);
       m_pimagelist->add_matter_icon("system/language_change->ico");
 

@@ -229,7 +229,7 @@ void simple_ui_display::on_expose()
 //
 //
 //   // "*helvetica-normal-r-*-180-*"
-//   // "-adobe-new century schoolbook-bold-r-normal--24-240-75-75-p-149-iso8859-9"
+//   // "-adobe-memory_new century schoolbook-bold-r-normal--24-240-75-75-p-149-iso8859-9"
 //
 //   auto pfontDesired = XLoadQueryFont(m_display, "*helvetica-normal-r-*-180-*");
 //

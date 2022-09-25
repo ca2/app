@@ -20,7 +20,7 @@ CLASS_DECL_CORE int_bool ui_get_cursor_pos(POINT_I32 * ppt)
 
    ::point_i32 pointCursor;
 
-   ::wait(::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref new ::winrt::Windows::UI::Core::DispatchedHandler([=, &pointCursor, &iRet]()
+   ::wait(::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref memory_new ::winrt::Windows::UI::Core::DispatchedHandler([=, &pointCursor, &iRet]()
    {
 
       try
@@ -63,7 +63,7 @@ CLASS_DECL_CORE int_bool GetCursorPos(POINT_I32 * lppoint)
       return false;
 
    ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-          ref new ::winrt::Windows::UI::Core::DispatchedHandler([]()
+          ref memory_new ::winrt::Windows::UI::Core::DispatchedHandler([]()
    {
 
       ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Devices::Input::PointerDevice ^ > ^ deva = ::winrt::Windows::Devices::Input::PointerDevice::GetPointerDevices();
@@ -106,7 +106,7 @@ CLASS_DECL_CORE void defer_dock_application(int_bool bDock)
 //{
 //
 //   ::wait(
-//      ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref new ::winrt::Windows::UI::Core::DispatchedHandler([pobjectTask]()
+//      ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref memory_new ::winrt::Windows::UI::Core::DispatchedHandler([pobjectTask]()
 //   {
 //
 //            pobjectTask->call();

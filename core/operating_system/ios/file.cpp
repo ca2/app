@@ -76,7 +76,7 @@ namespace ios
 //      if(iNew == -1)
 //         return nullptr;
 //
-//      file* pFile = new file(get_app(), iNew);
+//      file* pFile = memory_new file(get_app(), iNew);
 //      pFile->m_iFile = (::u32)iNew;
 //      ASSERT(pFile->m_iFile != (::u32)hFileNull);
 ////      pFile->m_bCloseOnDelete = m_bCloseOnDelete;

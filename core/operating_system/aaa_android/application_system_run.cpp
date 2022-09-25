@@ -116,7 +116,7 @@ string ca2_command_line()
 //   //   //if (pimpl)
 //   //   //{
 //
-//   //   //   ::oswindow_data * pwindow = new oswindow_data;
+//   //   //   ::oswindow_data * pwindow = memory_new oswindow_data;
 //
 //   //   //   oswindow window = pwindow;
 //

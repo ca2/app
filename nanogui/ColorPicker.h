@@ -50,14 +50,14 @@ NAMESPACE_BEGIN(nanogui)
       }
 
       /**
-       * The callback to execute when a new Color is selected on the ColorWheel
+       * The callback to execute when a memory_new Color is selected on the ColorWheel
        * **and** the user clicks the \ref nanogui::ColorPicker::m_pick_button or
        * \ref nanogui::ColorPicker::m_reset_button.
        */
       std::function<void(const Color &)> final_callback() const { return m_final_callback; }
 
       /**
-       * The callback to execute when a new Color is selected on the ColorWheel
+       * The callback to execute when a memory_new Color is selected on the ColorWheel
        * **and** the user clicks the \ref nanogui::ColorPicker::m_pick_button or
        * \ref nanogui::ColorPicker::m_reset_button.
        */
@@ -84,7 +84,7 @@ NAMESPACE_BEGIN(nanogui)
       std::function<void(const Color &)> m_callback;
 
       /**
-       * The callback to execute when a new Color is selected on the ColorWheel
+       * The callback to execute when a memory_new Color is selected on the ColorWheel
        * **and** the user clicks the \ref nanogui::ColorPicker::m_pick_button or
        * \ref nanogui::ColorPicker::m_reset_button.
        */
@@ -102,13 +102,13 @@ NAMESPACE_BEGIN(nanogui)
        * The color of this Button will not affect \ref nanogui::ColorPicker::color
        * until the user has actively selected by clicking this pick button.
        * Similarly, the \ref nanogui::ColorPicker::m_callback function is only
-       * called when a user selects a new Color using by clicking this Button.
+       * called when a user selects a memory_new Color using by clicking this Button.
        */
       Button * m_pick_button;
 
       /**
        * Remains the Color of the active color selection, until the user picks a
-       * new Color on the ColorWheel **and** selects the
+       * memory_new Color on the ColorWheel **and** selects the
        * \ref nanogui::ColorPicker::m_pick_button.  The default value for the
        * caption of this Button is ``"Reset"``.  You can change it using
        * \ref nanogui::ColorPicker::set_reset_button_caption if you need.

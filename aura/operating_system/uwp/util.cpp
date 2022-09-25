@@ -153,5 +153,5 @@ void CLASS_DECL_AURA __global_free(HGLOBAL hGlobal)
 
 
 /////////////////////////////////////////////////////////////////////////////
-// Special new handler for safety pool on temp maps
+// Special memory_new handler for safety pool on temp maps
 

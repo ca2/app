@@ -6,12 +6,12 @@
 // no_track_object
 
 #if defined(_DEBUG) && !defined(___NO_DEBUG_CRT)
-#undef new
+
 void * PASCAL no_track_object::operator new(size_t nSize, const ::string &, i32)
 {
    return no_track_object::operator new(nSize);
 }
-#define new DEBUG_NEW
+#define memory_new DEBUG_NEW
 void PASCAL no_track_object::operator delete(void * pObject, const ::string &, i32)
 {
    if (pObject != nullptr)
@@ -19,7 +19,7 @@ void PASCAL no_track_object::operator delete(void * pObject, const ::string &, i
 }
 #endif
 
-#undef new
+
 void * PASCAL no_track_object::operator new(size_t nSize)
 {
    void * p = ::malloc(nSize);
@@ -27,7 +27,7 @@ void * PASCAL no_track_object::operator new(size_t nSize)
       throw memory_exception(::get_thread_app());
    return p;
 }
-#define new DEBUG_NEW
+#define memory_new DEBUG_NEW
 
 void PASCAL no_track_object::operator delete(void * p)
 {
@@ -73,13 +73,13 @@ struct slot_data
     ...
 }*/
 
-#undef new
+
 
 
 thread_local_storage::thread_local_storage()
 {
 
-   m_pthreadslotdata = new thread_slot_data();
+   m_pthreadslotdata = memory_new thread_slot_data();
 
 }
 
@@ -114,7 +114,7 @@ thread_slot_data * thread_local_storage::get_slot_data()
    return m_pthreadslotdata;
 
 }
-#define new DEBUG_NEW
+#define memory_new DEBUG_NEW
 
 
 thread_slot_data::thread_slot_data()

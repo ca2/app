@@ -32,7 +32,7 @@
 
 #ifdef __DEBUG
 #	ifdef _MSC_VER
-#		define new ACME_NEW
+#		define memory_new ACME_NEW
 #	endif
 #endif //__DEBUG
 

@@ -5,7 +5,7 @@
 #include <dwmapi.h>
 
 
-#undef new
+
 
 namespace opengl
 {
@@ -369,7 +369,7 @@ namespace draw2d_opengl
          if(m_pbitmap.is_null())
             return nullptr;
 
-         //(dynamic_cast < ::draw2d_opengl::bitmap * > (m_pbitmap.m_p))->m_pbitmap = new plusplus::Bitmap(hbitmap, nullptr);
+         //(dynamic_cast < ::draw2d_opengl::bitmap * > (m_pbitmap.m_p))->m_pbitmap = memory_new plusplus::Bitmap(hbitmap, nullptr);
 
          //if(m_pgraphics != nullptr)
          //{
@@ -391,7 +391,7 @@ namespace draw2d_opengl
 
          //}
 
-         //m_pgraphics = new plusplus::Graphics((plusplus::Bitmap *) m_pbitmap->get_os_data());
+         //m_pgraphics = memory_new plusplus::Graphics((plusplus::Bitmap *) m_pbitmap->get_os_data());
 
          //m_pgraphics->SetPageUnit(plusplus::UnitPixel);
 
@@ -629,7 +629,7 @@ namespace draw2d_opengl
 
       bool bOk1 = false;
 
-      //plusplus::Point * ppoints = new plusplus::Point[nCount];
+      //plusplus::Point * ppoints = memory_new plusplus::Point[nCount];
 
       //try
       //{
@@ -1184,7 +1184,7 @@ namespace draw2d_opengl
 
       //   bool bOk1 = false;
 
-      //   plusplus::PointF * ppoints = new plusplus::PointF[nCount];
+      //   plusplus::PointF * ppoints = memory_new plusplus::PointF[nCount];
 
       //   try
       //   {
@@ -1231,7 +1231,7 @@ namespace draw2d_opengl
 
       //   bool bOk1 = false;
 
-      //   plusplus::Point * ppoints = new plusplus::Point[nCount];
+      //   plusplus::Point * ppoints = memory_new plusplus::Point[nCount];
 
       //   try
       //   {
@@ -1275,7 +1275,7 @@ namespace draw2d_opengl
 
       //bool bOk1 = false;
 
-      //plusplus::Point * ppoints = new plusplus::Point[nCount];
+      //plusplus::Point * ppoints = memory_new plusplus::Point[nCount];
 
       //try
       //{
@@ -1320,7 +1320,7 @@ namespace draw2d_opengl
 
       //bool bOk1 = false;
 
-      //plusplus::PointF * ppoints = new plusplus::PointF[nCount];
+      //plusplus::PointF * ppoints = memory_new plusplus::PointF[nCount];
 
       //try
       //{
@@ -1366,7 +1366,7 @@ namespace draw2d_opengl
 
       //bool bOk2 = false;
 
-      //plusplus::Point * ppoints = new plusplus::Point[nCount];
+      //plusplus::Point * ppoints = memory_new plusplus::Point[nCount];
 
       //try
       //{
@@ -1446,7 +1446,7 @@ namespace draw2d_opengl
 
       //bool bOk2 = false;
 
-      //plusplus::PointF * ppoints = new plusplus::PointF[nCount];
+      //plusplus::PointF * ppoints = memory_new plusplus::PointF[nCount];
 
       //try
       //{
@@ -2109,7 +2109,7 @@ namespace draw2d_opengl
 
       //::StartPage(m_hdc);
 
-      //m_pgraphics = new plusplus::Graphics(m_hdc);
+      //m_pgraphics = memory_new plusplus::Graphics(m_hdc);
 
       //m_pgraphics->SetPageUnit(plusplus::UnitPixel);
 
@@ -2387,7 +2387,7 @@ namespace draw2d_opengl
       /*     if(m_ppath != nullptr)
               delete m_ppath;
 
-           m_ppath = new plusplus::GraphicsPath;
+           m_ppath = memory_new plusplus::GraphicsPath;
       */
 //      return m_ppath != nullptr;
 
@@ -2570,7 +2570,7 @@ namespace draw2d_opengl
    {
       Graphics graphics(hdc);
       // Create a Metafile object from an existing disk metafile.
-      Metafile* pMeta = new Metafile(L"SampleMetafile.emf", hdc);
+      Metafile* pMeta = memory_new Metafile(L"SampleMetafile.emf", hdc);
       {
          // Fill a rectangle_i32 and an ellipse in pMeta.
          Graphics metaGraphics(pMeta);
@@ -2594,7 +2594,7 @@ namespace draw2d_opengl
 
       //plusplus::rectF rectangle_i32((plusplus::REAL) rectangleBounds.left,(plusplus::REAL) rectangleBounds.top,(plusplus::REAL) width(rectangleBounds),(plusplus::REAL) height(rectangleBounds));
 
-      //plusplus::Metafile* pMeta = new plusplus::Metafile(hEnhMF, false);
+      //plusplus::Metafile* pMeta = memory_new plusplus::Metafile(hEnhMF, false);
 
       ////m_pgraphcis->EnumerateMetafile(pMeta, rectangle, metaCallback, PMETAHEADER);
 
@@ -3095,7 +3095,7 @@ namespace draw2d_opengl
             ::draw2d::region rgnLast, rgnUpdate;
             if (lpRectLast != nullptr)
             {
-               // find difference between new region and old region
+               // find difference between memory_new region and old region
                rgnLast.create_rect(0, 0, 0, 0);
                rgnOutside.SetRectRgn(lpRectLast);
                rectangle = *lpRectLast;
@@ -3122,7 +3122,7 @@ namespace draw2d_opengl
                pBrushOld = nullptr;
             }
 
-            // draw into the update/new region
+            // draw into the update/memory_new region
             SelectClipRgn(rgnUpdate.get_os_data() != nullptr ? &rgnUpdate : &rgnNew);
             get_clip_box(&rectangle);
             pBrushOld = SelectObject(pBrush);
@@ -3208,7 +3208,7 @@ namespace draw2d_opengl
       //if(hdc != nullptr)
       //{
 
-      //   m_pgraphics = new ::plusplus::Graphics((HDC) hdc);
+      //   m_pgraphics = memory_new ::plusplus::Graphics((HDC) hdc);
 
       //   m_pgraphics->SetPageUnit(plusplus::UnitPixel);
 

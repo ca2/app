@@ -54,7 +54,7 @@ namespace netserver
       virtual ::sockets::listen_socket_base * new_listen_socket() override
       {
 
-         auto psocket = new ::sockets::listen_socket < SOCKET >;
+         auto psocket = memory_new ::sockets::listen_socket < SOCKET >;
 
          //psocket->m_psockethandler = m_psockethandler;
 

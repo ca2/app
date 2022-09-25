@@ -268,7 +268,7 @@ namespace mathematics
    mathematics::mathematics()
    {
 
-      m_posdata = new math_os_data();
+      m_posdata = memory_new math_os_data();
 
       // initial rng seed
       m_dPi = atan(1.0) * 4.0;
@@ -588,7 +588,7 @@ namespace mathematics
       if (!g_pmathematics)
       {
 
-         g_pmathematics = new class mathematics;
+         g_pmathematics = memory_new class mathematics;
 
       }
 

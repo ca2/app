@@ -28,7 +28,7 @@ CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_send_event(void * input,int bKey,int down,
    if(g_pmutexRdpEvent == nullptr)
    {
 
-      g_pmutexRdpEvent = new ::mutex();
+      g_pmutexRdpEvent = memory_new ::mutex();
 
    }
 

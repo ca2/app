@@ -71,14 +71,14 @@ static struct PixmappedBlock *PixmappedRoot = NULL;
 // This is the function which is called by getimage to associate a Pixmap
 // with an already-allocated memory block.  If the block is not in the
 // list already, it will be added.  If the block *is* in the list, its old
-// Pixmap will be freed and then the new one added.  Returns 0 on success,
+// Pixmap will be freed and then the memory_new one added.  Returns 0 on success,
 // non-zero if out of memory.
 
 extern int
 AssociatePixmap (void *object, Pixmap handle)
 {
    struct PixmappedBlock *Block, *LastBlock = NULL;
-   // If the list is empty, just add the new block.
+   // If the list is empty, just add the memory_new block.
    if (PixmappedRoot == NULL)
    {
       PixmappedRoot =
@@ -101,7 +101,7 @@ AssociatePixmap (void *object, Pixmap handle)
          {
             // The block *is* already defined, but is associated with
             // a different Pixmap.  So free the old Pixmap and associate
-            // a new one!
+            // a memory_new one!
 //	    XFreePixmap (TcDisplay, Block->Pix);
             release(Block->Pix);
             Block->Pix = handle;

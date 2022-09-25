@@ -20,7 +20,7 @@ CLASS_DECL_APEX int g_iMouse = -1;
 //
 //   ::point_i32 pointCursor;
 //
-//   ::wait(::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref new ::winrt::Windows::UI::Core::DispatchedHandler([=, &pointCursor, &iRet]()
+//   ::wait(::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref memory_new ::winrt::Windows::UI::Core::DispatchedHandler([=, &pointCursor, &iRet]()
 //   {
 //
 //      try
@@ -63,7 +63,7 @@ CLASS_DECL_APEX int g_iMouse = -1;
 //      return false;
 //
 //   ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-//          ref new ::winrt::Windows::UI::Core::DispatchedHandler([]()
+//          ref memory_new ::winrt::Windows::UI::Core::DispatchedHandler([]()
 //   {
 //
 //      ::winrt::Windows::Foundation::Collections::IVectorView < ::winrt::Windows::Devices::Input::PointerDevice ^ > ^ deva = ::winrt::Windows::Devices::Input::PointerDevice::GetPointerDevices();

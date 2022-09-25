@@ -4459,7 +4459,7 @@ namespace user
             if (!m_puserinteraction->m_bMessageWindow)
             {
 
-               m_pcsDisplay = new(critical_section);
+               m_pcsDisplay = memory_new(critical_section);
 
                output_debug_string("interaction_impl m_pgraphics alloc");
 

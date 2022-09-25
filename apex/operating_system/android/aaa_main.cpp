@@ -24,7 +24,7 @@ void CLASS_DECL_APEX __cdecl _ca2_purecall()
 //   i32 nReturnCode = 0;
 //
 //
-//   ::android::main_init_data * pinitmaindata  = new ::android::main_init_data;
+//   ::android::main_init_data * pinitmaindata  = memory_new ::android::main_init_data;
 //
 //
 //   pinitmaindata->m_hInstance             = nullptr;
@@ -84,7 +84,7 @@ void CLASS_DECL_APEX __cdecl _ca2_purecall()
 //
 //      i32 nReturnCode = 0;
 //
-//      ::android::main_init_data * pinitmaindata  = new ::android::main_init_data;
+//      ::android::main_init_data * pinitmaindata  = memory_new ::android::main_init_data;
 //
 //      pinitmaindata->m_hInstance             = hInstance;
 //      pinitmaindata->m_hPrevInstance         = hPrevInstance;

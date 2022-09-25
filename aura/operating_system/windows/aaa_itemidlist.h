@@ -70,7 +70,7 @@ public:
    itemidlist & operator=(const ::string & pszPath);
    itemidlist & operator=(const itemidlist & pidl);
    itemidlist & operator=(LPCITEMIDLIST pidl);
-   itemidlist & operator/=(const itemidlist & ciidl);//Add a new pidl to tail.
+   itemidlist & operator/=(const itemidlist & ciidl);//Add a memory_new pidl to tail.
    itemidlist & operator-=(int i);//erase i Count items from tail.
    itemidlist operator -(int i) const;//erase i Count items from tail.
    bool operator==(const itemidlist & ciidl) const;

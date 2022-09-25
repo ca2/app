@@ -1784,7 +1784,7 @@ pacmedirectory->is(strPath))
 //
 //         }
 //
-//         image_key * pstore = new image_key(imagekey);
+//         image_key * pstore = memory_new image_key(imagekey);
 //
 //         {
 //
@@ -1922,7 +1922,7 @@ pacmedirectory->is(strPath))
 
       i32 iImage = 0x80000000;
 
-      image_key * pstore = new image_key(imagekey);
+      image_key * pstore = memory_new image_key(imagekey);
 
       {
 

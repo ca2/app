@@ -92,7 +92,7 @@ namespace acme
 
       }
 
-      //m_psystemimpl = new system_impl;
+      //m_psystemimpl = memory_new system_impl;
 
       //set_os_data(LAYERED_ACME, this);
 
@@ -2176,7 +2176,7 @@ namespace acme
                if (!papp)
                {
 
-                  ::output_debug_string("\n\n::apex::session::get_new_application\n...but this new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId + "  <--\n\nIs it missing application factory_item?\n\n\n");
+                  ::output_debug_string("\n\n::apex::session::get_new_application\n...but this memory_new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId + "  <--\n\nIs it missing application factory_item?\n\n\n");
 
                }
 
@@ -2391,7 +2391,7 @@ CLASS_DECL_ACME::acme::system * get_context_system()
 CLASS_DECL_ACME::acme::system * acme_system_init()
 {
 
-   g_psystem = new ::acme::system();
+   g_psystem = memory_new ::acme::system();
 
    return g_psystem;
 

@@ -4,7 +4,7 @@
 #ifdef CUBE
 
 
-#include "new.cpp"
+#include "memory_new.cpp"
 
 
 #endif

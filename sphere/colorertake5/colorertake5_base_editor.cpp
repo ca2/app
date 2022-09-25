@@ -131,11 +131,11 @@ namespace colorertake5
          delete lrSupport;
          if (regionCompact)
          {
-            lrSupport = new LineRegionsCompactSupport();
+            lrSupport = memory_new LineRegionsCompactSupport();
          }
          else
          {
-            lrSupport = new LineRegionsSupport();
+            lrSupport = memory_new LineRegionsSupport();
          }
          lrSupport->resize(lrSize);
          lrSupport->clear();
@@ -243,7 +243,7 @@ namespace colorertake5
 
       if (pair != nullptr)
       {
-         PairMatch *pm = new PairMatch(pair, lineNo, pair->region->hasParent(def_PairStart));
+         PairMatch *pm = memory_new PairMatch(pair, lineNo, pair->region->hasParent(def_PairStart));
          pm->setStart(pair);
          return pm;
       }
@@ -469,7 +469,7 @@ namespace colorertake5
       parseFrom = parseTo = (wStart+wSize);
 
       /*
-      * Calculate changes, required by new screen position, if any
+      * Calculate changes, required by memory_new screen position, if any
       */
       if (lrSize != wSize*2)
       {

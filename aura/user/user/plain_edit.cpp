@@ -197,7 +197,7 @@ namespace user
 
       m_bEnterKeyOnPaste = false;
 
-      //m_pcontrolstyle = new plain_edit_internal();
+      //m_pcontrolstyle = memory_new plain_edit_internal();
 
       m_ppropertysetsel = nullptr;
 

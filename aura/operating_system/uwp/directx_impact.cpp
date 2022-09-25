@@ -53,13 +53,13 @@ namespace universal_windows
 
       //coreTitleBar->ExtendViewIntoTitleBar = true;
 
-      m_tokenActivated = m_window->Activated += ref new TypedEventHandler < ::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::WindowActivatedEventArgs^>(this, &impact::CoreWindow_WindowActivated);
+      m_tokenActivated = m_window->Activated += ref memory_new TypedEventHandler < ::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::WindowActivatedEventArgs^>(this, &impact::CoreWindow_WindowActivated);
 
-      m_tokenClosed = m_window->Closed += ref new TypedEventHandler < ::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::CoreWindowEventArgs ^>(this, &impact::CoreWindow_CoreWindowClosed);
+      m_tokenClosed = m_window->Closed += ref memory_new TypedEventHandler < ::winrt::Windows::UI::Core::CoreWindow ^, ::winrt::Windows::UI::Core::CoreWindowEventArgs ^>(this, &impact::CoreWindow_CoreWindowClosed);
 
-      m_tokenKeyDown = m_window->KeyDown += ref new TypedEventHandler < ::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::KeyEventArgs^>(this, &impact::CoreWindow_KeyDown);
+      m_tokenKeyDown = m_window->KeyDown += ref memory_new TypedEventHandler < ::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::KeyEventArgs^>(this, &impact::CoreWindow_KeyDown);
 
-      m_tokenPointerPressed = m_window->PointerPressed += ref new TypedEventHandler < ::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::PointerEventArgs^>(this, &impact::CoreWindow_PointerPressed);
+      m_tokenPointerPressed = m_window->PointerPressed += ref memory_new TypedEventHandler < ::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::PointerEventArgs^>(this, &impact::CoreWindow_PointerPressed);
 
       CoreTextServicesManager ^ manager = CoreTextServicesManager::GetForCurrentImpact();
 
@@ -82,39 +82,39 @@ namespace universal_windows
       m_editcontext->InputScope = CoreTextInputScope::Text;
 
       // The system raises this event to request a specific range of text.
-      m_editcontext->TextRequested += ref new TypedEventHandler < CoreTextEditContext ^, CoreTextTextRequestedEventArgs^> (this, &impact::EditContext_TextRequested);
+      m_editcontext->TextRequested += ref memory_new TypedEventHandler < CoreTextEditContext ^, CoreTextTextRequestedEventArgs^> (this, &impact::EditContext_TextRequested);
 
       // The system raises this event to request the current selection.
-      m_editcontext->SelectionRequested += ref new TypedEventHandler < CoreTextEditContext^, CoreTextSelectionRequestedEventArgs^>(this, &impact::EditContext_SelectionRequested);
+      m_editcontext->SelectionRequested += ref memory_new TypedEventHandler < CoreTextEditContext^, CoreTextSelectionRequestedEventArgs^>(this, &impact::EditContext_SelectionRequested);
 
       // The system raises this event when it wants the edit control to erase focus.
-      m_editcontext->FocusRemoved += ref new TypedEventHandler < CoreTextEditContext^, Object^>(this, &impact::EditContext_FocusRemoved);
+      m_editcontext->FocusRemoved += ref memory_new TypedEventHandler < CoreTextEditContext^, Object^>(this, &impact::EditContext_FocusRemoved);
 
       // The system raises this event to update text in the edit control.
-      m_editcontext->TextUpdating += ref new TypedEventHandler < CoreTextEditContext^, CoreTextTextUpdatingEventArgs^>(this, &impact::EditContext_TextUpdating);
+      m_editcontext->TextUpdating += ref memory_new TypedEventHandler < CoreTextEditContext^, CoreTextTextUpdatingEventArgs^>(this, &impact::EditContext_TextUpdating);
 
       // The system raises this event to change the selection in the edit control.
-      m_editcontext->SelectionUpdating += ref new TypedEventHandler < CoreTextEditContext^, CoreTextSelectionUpdatingEventArgs^>(this, &impact::EditContext_SelectionUpdating);
+      m_editcontext->SelectionUpdating += ref memory_new TypedEventHandler < CoreTextEditContext^, CoreTextSelectionUpdatingEventArgs^>(this, &impact::EditContext_SelectionUpdating);
 
       // The system raises this event when it wants the edit control
       // to apply formatting on a range of text.
-      m_editcontext->FormatUpdating += ref new TypedEventHandler < CoreTextEditContext^, CoreTextFormatUpdatingEventArgs^>(this, &impact::EditContext_FormatUpdating);
+      m_editcontext->FormatUpdating += ref memory_new TypedEventHandler < CoreTextEditContext^, CoreTextFormatUpdatingEventArgs^>(this, &impact::EditContext_FormatUpdating);
 
       // The system raises this event to request layout information.
       // This is used to help choose a position for the IME candidate window.
-      m_editcontext->LayoutRequested += ref new TypedEventHandler < CoreTextEditContext^, CoreTextLayoutRequestedEventArgs^>(this, &impact::EditContext_LayoutRequested);
+      m_editcontext->LayoutRequested += ref memory_new TypedEventHandler < CoreTextEditContext^, CoreTextLayoutRequestedEventArgs^>(this, &impact::EditContext_LayoutRequested);
 
       // The system raises this event to notify the edit control
       // that the string composition has started.
-      m_editcontext->CompositionStarted += ref new TypedEventHandler < CoreTextEditContext^, CoreTextCompositionStartedEventArgs^>(this, &impact::EditContext_CompositionStarted);
+      m_editcontext->CompositionStarted += ref memory_new TypedEventHandler < CoreTextEditContext^, CoreTextCompositionStartedEventArgs^>(this, &impact::EditContext_CompositionStarted);
 
       // The system raises this event to notify the edit control
       // that the string composition is finished.
-      m_editcontext->CompositionCompleted += ref new TypedEventHandler < CoreTextEditContext^, CoreTextCompositionCompletedEventArgs^>(this, &impact::EditContext_CompositionCompleted);
+      m_editcontext->CompositionCompleted += ref memory_new TypedEventHandler < CoreTextEditContext^, CoreTextCompositionCompletedEventArgs^>(this, &impact::EditContext_CompositionCompleted);
 
       // The system raises this event when the NotifyFocusLeave operation has
       // completed. Our sample does not use this event.
-      m_editcontext->NotifyFocusLeaveCompleted += ref new TypedEventHandler < CoreTextEditContext ^, ::Platform::Object ^>(this, &impact::EditContext_NotifyFocusLeaveCompleted);
+      m_editcontext->NotifyFocusLeaveCompleted += ref memory_new TypedEventHandler < CoreTextEditContext ^, ::Platform::Object ^>(this, &impact::EditContext_NotifyFocusLeaveCompleted);
 
       // Set our initial UI.
       UpdateTextUI();
@@ -286,20 +286,20 @@ namespace universal_windows
    }
 
 
-   // Change the selection without notifying CoreTextEditContext of the new selection.
+   // Change the selection without notifying CoreTextEditContext of the memory_new selection.
    void impact::SetSelection(CoreTextRange selection)
    {
       
       // Modify the internal selection.
       m_selection = selection;
 
-      //Update the UI to show the new selection.
+      //Update the UI to show the memory_new selection.
       UpdateTextUI();
 
    }
 
 
-   // Change the selection and notify CoreTextEditContext of the new selection.
+   // Change the selection and notify CoreTextEditContext of the memory_new selection.
    void impact::SetSelectionAndNotify(CoreTextRange selection)
    {
 
@@ -420,7 +420,7 @@ namespace universal_windows
    void impact::EditContext_SelectionUpdating(CoreTextEditContext ^sender, CoreTextSelectionUpdatingEventArgs ^ args)
    {
 
-      // Set the new selection to the value specified by the system.
+      // Set the memory_new selection to the value specified by the system.
       CoreTextRange range = args->Selection;
 
       // Update the selection of the edit context. There is no need to notify the system
@@ -471,7 +471,7 @@ namespace universal_windows
       if (args->UnderlineType != nullptr)
       {
 
-         //TextDecoration underline = new TextDecoration(args.Range,args.UnderlineType.Value,args.UnderlineColor.Value);
+         //TextDecoration underline = memory_new TextDecoration(args.Range,args.UnderlineType.Value,args.UnderlineColor.Value);
 
          //InternalAddTextDecoration(underline);
 
@@ -604,7 +604,7 @@ namespace universal_windows
       }
 
       // This holds the range we intend to operate on, or which we intend
-      // to become the new selection. Start with the current selection.
+      // to become the memory_new selection. Start with the current selection.
       CoreTextRange  range = m_selection;
 
       // For the purpose of this sample, we will support only the left and right
@@ -745,7 +745,7 @@ namespace universal_windows
    void impact::UpdateFocusUI()
    {
 
-      //BorderPanel->BorderBrush = _internalFocus ? new ::winrt::Windows::UI::Xaml::Media::SolidColorBrush(::winrt::Windows::UI::Colors::Green) : null;
+      //BorderPanel->BorderBrush = _internalFocus ? memory_new ::winrt::Windows::UI::Xaml::Media::SolidColorBrush(::winrt::Windows::UI::Colors::Green) : null;
 
    }
 
@@ -786,8 +786,8 @@ namespace universal_windows
    //Rect impact::GetElementRect(FrameworkElement matter)
    //{
    //   GeneralTransform transform = matter.TransformToVisual(null);
-   //   Point point = transform.TransformPoint(new Point());
-   //   return new Rect(point, new Size(matter.ActualWidth, matter.ActualHeight));
+   //   Point point = transform.TransformPoint(memory_new Point());
+   //   return memory_new Rect(point, memory_new Size(matter.ActualWidth, matter.ActualHeight));
    //}
 
 

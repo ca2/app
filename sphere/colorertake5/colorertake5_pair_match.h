@@ -75,7 +75,7 @@ namespace colorertake5
             delete start;
          }
          if (pair != nullptr){
-            start = new LineRegion(*pair);
+            start = memory_new LineRegion(*pair);
          }
       }
 
@@ -88,7 +88,7 @@ namespace colorertake5
             delete end;
          }
          if (pair != nullptr){
-            end = new LineRegion(*pair);
+            end = memory_new LineRegion(*pair);
          }
       }
    private:

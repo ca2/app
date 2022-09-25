@@ -1,10 +1,10 @@
 #pragma once
 
-#ifdef new
-#undef new
+#ifdef memory_new
+
 #endif
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 
 namespace factory

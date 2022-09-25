@@ -51,17 +51,17 @@ void ComboBox::set_items(const std::vector<std::string> & items, const std::vect
       m_container->remove_child_at(m_container->child_count() - 1);
 
    if (m_scroll == nullptr && items.size() > 8) {
-      m_scroll = new VScrollPanel(m_popup);
+      m_scroll = memory_new VScrollPanel(m_popup);
       m_scroll->set_fixed_height(300);
-      m_container = new Widget(m_scroll);
-      m_popup->set_layout(new BoxLayout(Orientation::Horizontal, Alignment::Middle));
+      m_container = memory_new Widget(m_scroll);
+      m_popup->set_layout(memory_new BoxLayout(Orientation::Horizontal, Alignment::Middle));
    }
 
-   m_container->set_layout(new GroupLayout(10));
+   m_container->set_layout(memory_new GroupLayout(10));
 
    int index = 0;
    for (const auto & str : items) {
-      Button * button = new Button(m_container, str);
+      Button * button = memory_new Button(m_container, str);
       button->set_flags(Button::RadioButton);
       button->set_callback([&, index] {
          m_selected_index = index;

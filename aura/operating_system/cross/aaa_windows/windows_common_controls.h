@@ -604,7 +604,7 @@ typedef struct {
    int idCommand;    // [in] atom of button we're requesting info for
    DWORD_PTR lParam;  // [in] lParam of button
    int iImage;       // [out] image index
-   char * pszText;    // [out] new text for item
+   char * pszText;    // [out] memory_new text for item
    int cchText;      // [in] size of buffer pointed to by pszText
 } NMTBDISPINFOA,*LPNMTBDISPINFOA;
 
@@ -614,7 +614,7 @@ typedef struct {
    int idCommand;    // [in] atom of button we're requesting info for
    DWORD_PTR lParam;  // [in] lParam of button
    int iImage;       // [out] image index
-   LPWSTR pszText;   // [out] new text for item
+   LPWSTR pszText;   // [out] memory_new text for item
    int cchText;      // [in] size of buffer pointed to by pszText
 } NMTBDISPINFOW,*LPNMTBDISPINFOW;
 
@@ -724,7 +724,7 @@ typedef struct tagREBARINFO
 }   REBARINFO,*LPREBARINFO;
 
 
-#define RBBS_BREAK          0x00000001  // break to new line
+#define RBBS_BREAK          0x00000001  // break to memory_new line
 #define RBBS_FIXEDSIZE      0x00000002  // band can't be size_f64
 #define RBBS_CHILDEDGE      0x00000004  // edge around top & bottom of child window
 #define RBBS_HIDDEN         0x00000008  // don't show

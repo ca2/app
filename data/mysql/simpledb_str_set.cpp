@@ -227,7 +227,7 @@ void db_str_sync_queue::queue(const ::string & pszKey, const ::string & psz)
 
    single_lock synchronouslock(&m_mutex, true);
 
-   __pointer(db_str_set_queue_item) item(new db_str_set_queue_item);
+   __pointer(db_str_set_queue_item) item(memory_new db_str_set_queue_item);
 
    item->m_strKey = pszKey;
    item->m_str = psz;
@@ -242,7 +242,7 @@ matter(pserver->get_app()),
 m_mutex(pserver->get_app())
 {
 
-   m_pcore = new db_str_set_core(pserver);
+   m_pcore = memory_new db_str_set_core(pserver);
 
 }
 
@@ -452,7 +452,7 @@ bool db_str_set::save(const ::string & lpKey, const ::string & lpcsz)
       if(m_pcore->m_pqueue == nullptr)
       {
 
-         m_pcore->m_pqueue = new db_str_sync_queue(this);
+         m_pcore->m_pqueue = memory_new db_str_sync_queue(this);
          m_pcore->m_pqueue->m_ppropertyset = this;
          m_pcore->m_pqueue->begin();
 

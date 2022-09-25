@@ -379,8 +379,8 @@ int_bool file_path_is_equal(const char * psz1,const char * psz2)
    wstring pwsz2 = utf8_to_unicode(psz2);
 //   unichar * pwszFile1;
    // unichar * pwszFile2;
-   unichar * pwszPath1 = new unichar[iBufSize];
-   unichar * pwszPath2 = new unichar[iBufSize];
+   unichar * pwszPath1 = memory_new unichar[iBufSize];
+   unichar * pwszPath2 = memory_new unichar[iBufSize];
    int32_t iCmp = -1;
 //   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
    // {

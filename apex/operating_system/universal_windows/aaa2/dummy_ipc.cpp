@@ -180,7 +180,7 @@
 //
 //         }
 //
-//         m_pp = new rx_private;
+//         m_pp = memory_new rx_private;
 //
 //         try
 //         {
@@ -207,7 +207,7 @@
 //         }
 //
 //
-//         //::winrt::Windows::Storage::Search::QueryOptions ^ options = ref new ::winrt::Windows::Storage::Search::QueryOptions();
+//         //::winrt::Windows::Storage::Search::QueryOptions ^ options = ref memory_new ::winrt::Windows::Storage::Search::QueryOptions();
 //
 //         //options->FileTypeFilter->Append(wstring(".topic"));
 //
@@ -215,7 +215,7 @@
 //
 //         m_pp->result = m_pp->folderTopic->CreateFileQuery();
 //
-//         m_pp->result->ContentsChanged += ref new TypedEventHandler < ::winrt::Windows::Storage::Search::IStorageQueryResultBase ^,Object ^ >([this](::winrt::Windows::Storage::Search::IStorageQueryResultBase ^ result,Object ^ o)
+//         m_pp->result->ContentsChanged += ref memory_new TypedEventHandler < ::winrt::Windows::Storage::Search::IStorageQueryResultBase ^,Object ^ >([this](::winrt::Windows::Storage::Search::IStorageQueryResultBase ^ result,Object ^ o)
 //         {
 //
 //            ::winrt::Windows::Storage::StorageFile ^ f = ::wait(result->Folder->GetFileAsync(wstring("apex.topic")));

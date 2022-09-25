@@ -193,7 +193,7 @@ inline ::index property_set::find_index(const ::atom & atom, ::index i) const
 
 }
 
-#undef new
+
 
 inline property & property_set::get(const ::atom & atom)
 {
@@ -203,7 +203,7 @@ inline property & property_set::get(const ::atom & atom)
    if (!pproperty)
    {
 
-      pproperty = new property(atom);
+      pproperty = memory_new property(atom);
 
       add_item(pproperty);
 
@@ -213,7 +213,7 @@ inline property & property_set::get(const ::atom & atom)
 
 }
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 inline ::property * property_set::find(const ::atom & atom) const
 {
@@ -257,7 +257,7 @@ inline ::payload & property_set::topic(const atom & atom)
 }
 
 
-#undef new
+
 
 
 inline ::payload & property_set::set(const ::atom & atom)
@@ -268,7 +268,7 @@ inline ::payload & property_set::set(const ::atom & atom)
    if (!pproperty)
    {
 
-      pproperty = new property(atom);
+      pproperty = memory_new property(atom);
 
       add_item(pproperty);
 
@@ -279,7 +279,7 @@ inline ::payload & property_set::set(const ::atom & atom)
 }
 
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 //inline property * payload::find_property(const ::atom & atom) const
 //{

@@ -56,7 +56,7 @@
  * Revision 7 (April 21, 2004):
  * NPIdentifier becomes a void*, was int32_t
  * Remove NP_IsValidIdentifier, renamed NP_IdentifierFromUTF8 to NP_GetIdentifier
- * Added NPVariant and modified functions to use this new type.
+ * Added NPVariant and modified functions to use this memory_new type.
  *
  * Revision 8 (July 9, 2004):
  * Updated to joint Apple-Mozilla license.

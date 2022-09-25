@@ -6,7 +6,7 @@
 int __implement()
 {
 
-   auto papp = new app_just_message_box::application();
+   auto papp = memory_new app_just_message_box::application();
 
    papp->m_strAppId = "app/just_message_box";
 

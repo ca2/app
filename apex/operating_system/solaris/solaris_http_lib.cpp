@@ -275,7 +275,7 @@ tiny_http::http_retcode tiny_http::t_put(const char * data, i32 length, i32 over
  *
  * This function gets data from the http data server.
  * The data is read from the ressource named filename.
- * Address of new allocated memory block is filled in pdata
+ * Address of memory_new allocated memory block is filled in pdata
  * whose length is returned via plength.
  *
  * returns a negative error code or a positive code from the server

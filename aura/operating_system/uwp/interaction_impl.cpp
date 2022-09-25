@@ -94,7 +94,7 @@ namespace universal_windows
          manual_reset_event ev;
 
          ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-            ref new ::winrt::Windows::UI::Core::DispatchedHandler([this, pusersystem, &ev]()
+            ref memory_new ::winrt::Windows::UI::Core::DispatchedHandler([this, pusersystem, &ev]()
                {
 
                   //get_context_system()->m_paurasystem->m_applicationsource->m_pimplHook = this;
@@ -163,7 +163,7 @@ namespace universal_windows
 
          //::wait(m_impact->Dispatcher->RunAsync(
          //   ::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-         //   ref new ::winrt::Windows::UI::Core::DispatchedHandler([this, cs]()
+         //   ref memory_new ::winrt::Windows::UI::Core::DispatchedHandler([this, cs]()
          //      {
 
          //      })));
@@ -632,7 +632,7 @@ namespace universal_windows
 
       ::wait(m_window->Dispatcher->RunAsync(
              CoreDispatcherPriority::Normal,
-             ref new ::winrt::Windows::UI::Core::DispatchedHandler([this]()
+             ref memory_new ::winrt::Windows::UI::Core::DispatchedHandler([this]()
       {
 
          ::winrt::Windows::UI::ViewManagement::ApplicationView ^ applicationview = ::winrt::Windows::UI::ViewManagement::ApplicationImpact::GetForCurrentImpact();
@@ -905,7 +905,7 @@ namespace universal_windows
 
       }
 
-      pdispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref new ::winrt::Windows::UI::Core::DispatchedHandler([routine]()
+      pdispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref memory_new ::winrt::Windows::UI::Core::DispatchedHandler([routine]()
          {
 
             routine();
@@ -3593,7 +3593,7 @@ return true;
 
       m_window->Dispatcher->RunAsync(
       CoreDispatcherPriority::Normal,
-      ref new ::winrt::Windows::UI::Core::DispatchedHandler([this]()
+      ref memory_new ::winrt::Windows::UI::Core::DispatchedHandler([this]()
       {
 
          ::winrt::Windows::UI::ViewManagement::ApplicationView ^ applicationview = ::winrt::Windows::UI::ViewManagement::ApplicationImpact::GetForCurrentImpact();
@@ -3637,7 +3637,7 @@ return true;
    {
       __UNREFERENCED_PARAMETER(bRedraw);
       ASSERT(::is_window(get_handle()));
-      m_pfont = new ::write_text::font(*pfont);
+      m_pfont = memory_new ::write_text::font(*pfont);
    }
 
    ::write_text::font* interaction_impl::GetFont()
@@ -5610,7 +5610,7 @@ CLASS_DECL_AURA const char * __register_window_class(::u32 nClassStyle,
       return lpszName;
    }
 
-   // otherwise we need to register a new class
+   // otherwise we need to register a memory_new class
    wndcls.style = nClassStyle;
    wndcls.lpfnWndProc = DefWindowProc;
    wndcls.cbClsExtra = wndcls.cbWndExtra = 0;
@@ -5814,7 +5814,7 @@ bool CLASS_DECL_AURA __end_defer_register_class(::i32 fToRegisterParam, const ::
    }
 
 
-   // save new state of registered controls
+   // save memory_new state of registered controls
    pModuleState->m_fRegisteredClasses |= fRegisteredClasses;
 
    // special case for all common controls registered, turn on __WNDCOMMCTLS_REG
@@ -5932,7 +5932,7 @@ bool CLASS_DECL_AURA __register_class(WNDCLASS* lpWndClass)
          __MODULE_STATE* pModuleState = __get_module_state();
          single_lock synchronouslock(&pModuleState->m_mutexRegClassList, true);
          if(pModuleState->m_pstrUnregisterList == nullptr)
-            pModuleState->m_pstrUnregisterList = new string;
+            pModuleState->m_pstrUnregisterList = memory_new string;
          *pModuleState->m_pstrUnregisterList += lpWndClass->lpszClassName;
          *pModuleState->m_pstrUnregisterList +='\n';
       }

@@ -68,7 +68,7 @@ namespace hi5
 
          auto psystem = get_system()->m_pcoresystem;
 
-         m_ptemplatePane = new ::user::single_document_template(
+         m_ptemplatePane = memory_new ::user::single_document_template(
             "system/auth",
             __type(::user::document),
             __type(simple_frame_window),

@@ -813,7 +813,7 @@ namespace jwt {
 		 */
 		struct hmacsha {
 			/**
-			 * Construct new hmac algorithm
+			 * Construct memory_new hmac algorithm
 			 * \param key Key to use for HMAC
 			 * \param md Pointer to hash function
 			 * \param name Name of the algorithm
@@ -879,7 +879,7 @@ namespace jwt {
 		 */
 		struct rsa {
 			/**
-			 * Construct new rsa algorithm
+			 * Construct memory_new rsa algorithm
 			 * \param public_key RSA public key in PEM format
 			 * \param private_key RSA private key or empty string if not available. If empty, signing will always fail.
 			 * \param public_key_password Password to decrypt public key pem.
@@ -985,7 +985,7 @@ namespace jwt {
 // 		 */
 // 		struct ecdsa {
 // 			/**
-// 			 * Construct new ecdsa algorithm
+// 			 * Construct memory_new ecdsa algorithm
 // 			 * \param public_key ECDSA public key in PEM format
 // 			 * \param private_key ECDSA private key or empty string if not available. If empty, signing will always
 // 			 * fail. \param public_key_password Password to decrypt public key pem. \param private_key_password Password
@@ -1150,7 +1150,7 @@ namespace jwt {
 		 */
 		struct eddsa {
 			/**
-			 * Construct new eddsa algorithm
+			 * Construct memory_new eddsa algorithm
 			 * \param public_key EdDSA public key in PEM format
 			 * \param private_key EdDSA private key or empty string if not available. If empty, signing will always
 			 * fail.
@@ -1286,7 +1286,7 @@ namespace jwt {
 		 */
 		struct pss {
 			/**
-			 * Construct new pss algorithm
+			 * Construct memory_new pss algorithm
 			 * \param public_key RSA public key in PEM format
 			 * \param private_key RSA private key or empty string if not available. If empty, signing will always fail.
 			 * \param public_key_password Password to decrypt public key pem.
@@ -1424,7 +1424,7 @@ namespace jwt {
 		 */
 		struct hs256 : public hmacsha {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param key HMAC signing key
 			 */
 			explicit hs256(std::string key) : hmacsha(std::move(key), EVP_sha256, "HS256") {}
@@ -1434,7 +1434,7 @@ namespace jwt {
 		 */
 		struct hs384 : public hmacsha {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param key HMAC signing key
 			 */
 			explicit hs384(std::string key) : hmacsha(std::move(key), EVP_sha384, "HS384") {}
@@ -1444,7 +1444,7 @@ namespace jwt {
 		 */
 		struct hs512 : public hmacsha {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param key HMAC signing key
 			 */
 			explicit hs512(std::string key) : hmacsha(std::move(key), EVP_sha512, "HS512") {}
@@ -1454,7 +1454,7 @@ namespace jwt {
 		 */
 		struct rs256 : public rsa {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param public_key RSA public key in PEM format
 			 * \param private_key RSA private key or empty string if not available. If empty, signing will always fail.
 			 * \param public_key_password Password to decrypt public key pem.
@@ -1469,7 +1469,7 @@ namespace jwt {
 		 */
 		struct rs384 : public rsa {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param public_key RSA public key in PEM format
 			 * \param private_key RSA private key or empty string if not available. If empty, signing will always fail.
 			 * \param public_key_password Password to decrypt public key pem.
@@ -1484,7 +1484,7 @@ namespace jwt {
 		 */
 		struct rs512 : public rsa {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param public_key RSA public key in PEM format
 			 * \param private_key RSA private key or empty string if not available. If empty, signing will always fail.
 			 * \param public_key_password Password to decrypt public key pem.
@@ -1499,7 +1499,7 @@ namespace jwt {
 		//  */
 		// struct es256 : public ecdsa {
 		// 	/**
-		// 	 * Construct new instance of algorithm
+		// 	 * Construct memory_new instance of algorithm
 		// 	 * \param public_key ECDSA public key in PEM format
 		// 	 * \param private_key ECDSA private key or empty string if not available. If empty, signing will always
 		// 	 * fail.
@@ -1516,7 +1516,7 @@ namespace jwt {
 		//  */
 		// struct es384 : public ecdsa {
 		// 	/**
-		// 	 * Construct new instance of algorithm
+		// 	 * Construct memory_new instance of algorithm
 		// 	 * \param public_key ECDSA public key in PEM format
 		// 	 * \param private_key ECDSA private key or empty string if not available. If empty, signing will always
 		// 	 * fail.
@@ -1533,7 +1533,7 @@ namespace jwt {
 		//  */
 		// struct es512 : public ecdsa {
 		// 	/**
-		// 	 * Construct new instance of algorithm
+		// 	 * Construct memory_new instance of algorithm
 		// 	 * \param public_key ECDSA public key in PEM format
 		// 	 * \param private_key ECDSA private key or empty string if not available. If empty, signing will always
 		// 	 * fail.
@@ -1550,7 +1550,7 @@ namespace jwt {
 		//  */
 		// struct es256k : public ecdsa {
 		// 	/**
-		// 	 * Construct new instance of algorithm
+		// 	 * Construct memory_new instance of algorithm
 		// 	 * \param public_key ECDSA public key in PEM format
 		// 	 * \param private_key ECDSA private key or empty string if not available. If empty, signing will always
 		// 	 * fail.
@@ -1572,7 +1572,7 @@ namespace jwt {
 		 */
 		struct ed25519 : public eddsa {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param public_key Ed25519 public key in PEM format
 			 * \param private_key Ed25519 private key or empty string if not available. If empty, signing will always
 			 * fail.
@@ -1594,7 +1594,7 @@ namespace jwt {
 		 */
 		struct ed448 : public eddsa {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param public_key Ed448 public key in PEM format
 			 * \param private_key Ed448 private key or empty string if not available. If empty, signing will always
 			 * fail.
@@ -1613,7 +1613,7 @@ namespace jwt {
 		 */
 		struct ps256 : public pss {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param public_key RSA public key in PEM format
 			 * \param private_key RSA private key or empty string if not available. If empty, signing will always fail.
 			 * \param public_key_password Password to decrypt public key pem.
@@ -1628,7 +1628,7 @@ namespace jwt {
 		 */
 		struct ps384 : public pss {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param public_key RSA public key in PEM format
 			 * \param private_key RSA private key or empty string if not available. If empty, signing will always fail.
 			 * \param public_key_password Password to decrypt public key pem.
@@ -1643,7 +1643,7 @@ namespace jwt {
 		 */
 		struct ps512 : public pss {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param public_key RSA public key in PEM format
 			 * \param private_key RSA private key or empty string if not available. If empty, signing will always fail.
 			 * \param public_key_password Password to decrypt public key pem.
@@ -2559,7 +2559,7 @@ namespace jwt {
 	};
 
 	/**
-	 * Builder class to build and sign a new token
+	 * Builder class to build and sign a memory_new token
 	 * Use jwt::create() to get an instance of this class.
 	 */
 	template<typename json_traits>
@@ -3000,7 +3000,7 @@ namespace jwt {
 
 	public:
 		/**
-		 * Constructor for building a new verifier instance
+		 * Constructor for building a memory_new verifier instance
 		 * \param c Clock instance
 		 */
 		explicit verifier(Clock c) : clock(c) {
@@ -3477,7 +3477,7 @@ namespace jwt {
 	};
 
 	/**
-	 * Return a builder instance to create a new token
+	 * Return a builder instance to create a memory_new token
 	 */
 	template<typename json_traits>
 	builder<json_traits> create() {
@@ -3592,7 +3592,7 @@ namespace jwt {
 		return verify<default_clock, picojson_traits>(default_clock{});
 	}
 	/**
-	 * Return a picojson builder instance to create a new token
+	 * Return a picojson builder instance to create a memory_new token
 	 */
 	inline builder<picojson_traits> create() { return builder<picojson_traits>(); }
 #ifndef JWT_DISABLE_BASE64

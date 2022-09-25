@@ -57,9 +57,9 @@ namespace crypto
 
       m_rand_size = 1024;
 
-      g_pmapMutex = new map < i32, ::mutex*>;
+      g_pmapMutex = memory_new map < i32, ::mutex*>;
 
-      g_pmutexMap = new ::mutex();
+      g_pmutexMap = memory_new ::mutex();
 
       OpenSSL_add_all_digests();
 
@@ -164,7 +164,7 @@ extern "C" void crypto_initializer_SSL_locking_function(i32 mode, i32 n, const c
    if (::crypto::g_pmapMutex != nullptr && !::crypto::g_pmapMutex->lookup(n, pmutex))
    {
 
-      ::crypto::g_pmapMutex->operator [](n) = new ::mutex();
+      ::crypto::g_pmapMutex->operator [](n) = memory_new ::mutex();
 
       if (!::crypto::g_pmapMutex->lookup(n, pmutex))
       {

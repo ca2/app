@@ -191,7 +191,7 @@ bool imaging::load_image(::object * pobject, ::image * pimage, const ::memory & 
             if (FAILED(hrExif))
             {
 
-               PropVariantClear(&value); // Clear value for new query.
+               PropVariantClear(&value); // Clear value for memory_new query.
 
                PropVariantInit(&value);
 
@@ -206,7 +206,7 @@ bool imaging::load_image(::object * pobject, ::image * pimage, const ::memory & 
 
             }
 
-            PropVariantClear(&value); // Clear value for new query.
+            PropVariantClear(&value); // Clear value for memory_new query.
 
          }
 
@@ -369,7 +369,7 @@ bool node_save_image(::file::file * pfile, const ::image * pimage, ::save_image 
 
 #ifdef _UWP
 
-   ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref new ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream();
+   ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream ^ randomAccessStream = ref memory_new ::winrt::Windows::Storage::Streams::InMemoryRandomAccessStream();
 
    //::wait(randomAccessStream->WriteAsync(get_os_buffer()));
 

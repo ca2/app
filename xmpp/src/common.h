@@ -81,7 +81,7 @@ void xmpp_debug(const xmpp_ctx_t * const ctx,
 		...);
 
 /** jid */
-/* these return new strings that must be xmpp_free()'d */
+/* these return memory_new strings that must be xmpp_free()'d */
 char *xmpp_jid_new(xmpp_ctx_t *ctx, const ::string &node,
                                     const char *domain,
                                     const char *resource);

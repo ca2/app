@@ -4,7 +4,7 @@
 //////////////////////////////////////////////////////////////////////
 #include "framework.h"
 #include "aura/operating_system.h"
-#include "_image.h"
+//#include "_image.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "acme/primitive/mathematics/mathematics.h"
 #include "frame_array.h"
@@ -10158,11 +10158,11 @@ stream& image::read(::stream& stream)
 http://www.sparkhound.com/blog/detect-image-file-types-through-byte-arrays
 ::payload bmp = Encoding.ASCII.GetBytes("BM"); // BMP
 ::payload gif = Encoding.ASCII.GetBytes("GIF"); // GIF
-::payload png = new byte[]{ 137, 80, 78, 71 }; // PNG
-::payload tiff = new byte[]{ 73, 73, 42 }; // TIFF
-::payload tiff2 = new byte[]{ 77, 80, 42 }; // TIFF
-::payload jpeg = new byte[]{ 255, 216, 255, 224 }; // jpeg
-::payload jpeg2 = new byte[]{ 255, 216, 255, 225 }; // jpeg canon
+::payload png = memory_new byte[]{ 137, 80, 78, 71 }; // PNG
+::payload tiff = memory_new byte[]{ 73, 73, 42 }; // TIFF
+::payload tiff2 = memory_new byte[]{ 77, 80, 42 }; // TIFF
+::payload jpeg = memory_new byte[]{ 255, 216, 255, 224 }; // jpeg
+::payload jpeg2 = memory_new byte[]{ 255, 216, 255, 225 }; // jpeg canon
 */
 
 
@@ -10253,7 +10253,7 @@ void image::_unmap()
    if (::is_null(m_pextension))
    {
 
-      m_pextension = new image_extension();
+      m_pextension = memory_new image_extension();
 
    }
 

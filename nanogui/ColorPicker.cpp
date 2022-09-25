@@ -21,24 +21,24 @@ NAMESPACE_BEGIN(nanogui)
 ColorPicker::ColorPicker(Widget * parent, const Color & color) : PopupButton(parent, "") {
    set_background_color(color);
    Popup * popup = this->popup();
-   popup->set_layout(new GroupLayout());
+   popup->set_layout(memory_new GroupLayout());
 
    // initialize callback to do nothing; this is for users to hook into
-   // receiving a new color value
+   // receiving a memory_new color value
    m_callback = [](const Color &) {};
    m_final_callback = [](const Color &) {};
 
    // set the color wheel to the specified color
-   m_color_wheel = new ColorWheel(popup, color);
+   m_color_wheel = memory_new ColorWheel(popup, color);
 
    // set the pick button to the specified color
-   m_pick_button = new Button(popup, "Pick");
+   m_pick_button = memory_new Button(popup, "Pick");
    m_pick_button->set_background_color(color);
    m_pick_button->set_text_color(color.contrasting_color());
    m_pick_button->set_fixed_size(Vector2i(100, 20));
 
    // set the reset button to the specified color
-   m_reset_button = new Button(popup, "Reset");
+   m_reset_button = memory_new Button(popup, "Reset");
    m_reset_button->set_background_color(color);
    m_reset_button->set_text_color(color.contrasting_color());
    m_reset_button->set_fixed_size(Vector2i(100, 20));

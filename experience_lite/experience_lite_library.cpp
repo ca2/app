@@ -31,25 +31,25 @@
             if(string(pszClass) == "experience")
             {
 
-               return new experience(pobject);
+               return memory_new experience(pobject);
 
             }
             else if(string(pszClass) == "control_box")
             {
 
-               return new control_box(pobject);
+               return memory_new control_box(pobject);
 
             }
             else if(string(pszClass) == "control_box_button")
             {
 
-               return new button(pobject);
+               return memory_new button(pobject);
 
             }
             else if(string(pszClass) == "user_theme")
             {
 
-               return new ::experience_lite::theme(pobject);
+               return memory_new ::experience_lite::theme(pobject);
 
             }
             else
@@ -78,7 +78,7 @@ extern "C"
 ::acme::library * experience_lite_get_new_library(::object * pobject)
 {
 
-   return new ::user::experience::experience_lite::library(pobject);
+   return memory_new ::user::experience::experience_lite::library(pobject);
 
 }
 
@@ -89,7 +89,7 @@ extern "C"
 extern "C"
 ::acme::library * get_new_library(::object * pobject)
 {
-   return new ::user::experience::experience_lite::library (pobject);
+   return memory_new ::user::experience::experience_lite::library (pobject);
 }
 
 #endif

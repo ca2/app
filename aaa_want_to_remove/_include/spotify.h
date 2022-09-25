@@ -420,7 +420,7 @@ typedef struct sp_session_callbacks {
    * Called whenever metadata has been updated
    *
    * If you have metadata cached outside of libspotify, you should purge
-   * your caches and fetch new versions.
+   * your caches and fetch memory_new versions.
    *
    * @param[in]  session    Session
    */
@@ -719,7 +719,7 @@ typedef struct sp_session_config {
  * @until }
  *
  * @param[in]   config    The configuration to use for the session
- * @param[out]  sess      If successful, a new session - otherwise NULL
+ * @param[out]  sess      If successful, a memory_new session - otherwise NULL
  *
  * @return                One of the following errors, from ::sp_error
  *                        SP_ERROR_OK
@@ -2657,7 +2657,7 @@ SP_LIBEXPORT(const ::string &) sp_search_did_you_mean(sp_search *search);
 /**
  * Return the total number of tracks for the search query - regardless of the interval requested at creation.
  * If this value is larger than the interval specified at creation of the search object, more search results are available.
- * To fetch these, create a new search object with a new interval.
+ * To fetch these, create a memory_new search object with a memory_new interval.
  *
  * @param[in]  search     Search object
  *
@@ -2668,7 +2668,7 @@ SP_LIBEXPORT(int) sp_search_total_tracks(sp_search *search);
 /**
  * Return the total number of albums for the search query - regardless of the interval requested at creation.
  * If this value is larger than the interval specified at creation of the search object, more search results are available.
- * To fetch these, create a new search object with a new interval.
+ * To fetch these, create a memory_new search object with a memory_new interval.
  *
  * @param[in]  search     Search object
  *
@@ -2679,7 +2679,7 @@ SP_LIBEXPORT(int) sp_search_total_albums(sp_search *search);
 /**
  * Return the total number of artists for the search query - regardless of the interval requested at creation.
  * If this value is larger than the interval specified at creation of the search object, more search results are available.
- * To fetch these, create a new search object with a new interval.
+ * To fetch these, create a memory_new search object with a memory_new interval.
  *
  * @param[in]  search     Search object
  *
@@ -2690,7 +2690,7 @@ SP_LIBEXPORT(int) sp_search_total_artists(sp_search *search);
 /**
  * Return the total number of playlists for the search query - regardless of the interval requested at creation.
  * If this value is larger than the interval specified at creation of the search object, more search results are available.
- * To fetch these, create a new search object with a new interval.
+ * To fetch these, create a memory_new search object with a memory_new interval.
  *
  * @param[in]  search     Search object
  *
@@ -2774,7 +2774,7 @@ typedef struct sp_playlist_callbacks {
   void (SP_CALLCONV *tracks_moved)(sp_playlist *pl, const int *tracks, int num_tracks, int new_position, void *userdata);
 
   /**
-   * Called when a playlist has been renamed. sp_playlist_name() can be used to find out the new name
+   * Called when a playlist has been renamed. sp_playlist_name() can be used to find out the memory_new name
    *
    * @param[in]  pl         Playlist object
    * @param[in]  userdata   Userdata passed to sp_playlist_add_callbacks()
@@ -3223,7 +3223,7 @@ SP_LIBEXPORT(sp_error) sp_playlist_update_subscribers(sp_session *session, sp_pl
  *             nor extract playlist title until the application calls
  *             sp_playlist_set_in_ram(..., true). So an application
  *             that needs to stay within a low memory profile would need to
- *             cycle thru all new playlists in order to extract metadata.
+ *             cycle thru all memory_new playlists in order to extract metadata.
  *
  *             The easiest way to detect this case is when
  *             sp_playlist_is_in_ram() returns false and
@@ -3321,7 +3321,7 @@ SP_LIBEXPORT(sp_error) sp_playlist_release(sp_playlist *playlist);
  */
 typedef struct sp_playlistcontainer_callbacks {
   /**
-   * Called when a new playlist has been added to the playlist container.
+   * Called when a memory_new playlist has been added to the playlist container.
    *
    * @param[in]  pc         Playlist container
    * @param[in]  playlist   Playlist object.
@@ -3332,7 +3332,7 @@ typedef struct sp_playlistcontainer_callbacks {
 
 
   /**
-   * Called when a new playlist has been erased from playlist container
+   * Called when a memory_new playlist has been erased from playlist container
    *
    * @param[in]  pc         Playlist container
    * @param[in]  playlist   Playlist object.
@@ -3477,9 +3477,9 @@ SP_LIBEXPORT(sp_::u3264) sp_playlistcontainer_playlist_folder_id(sp_playlistcont
  * The name must not consist of only spaces and it must be shorter than 256 characters.
  *
  * @param[in]  pc        Playlist container
- * @param[in]  name      Name of new playlist
+ * @param[in]  name      Name of memory_new playlist
  *
- * @return               Pointer to the new playlist. Can be NULL if the operation fails.
+ * @return               Pointer to the memory_new playlist. Can be NULL if the operation fails.
  */
 SP_LIBEXPORT(sp_playlist *) sp_playlistcontainer_add_new_playlist(sp_playlistcontainer *pc, const ::string &name);
 
@@ -3489,7 +3489,7 @@ SP_LIBEXPORT(sp_playlist *) sp_playlistcontainer_add_new_playlist(sp_playlistcon
  * @param[in]  pc        Playlist container
  * @param[in]  link      Link object pointing to a playlist
  *
- * @return               Pointer to the new playlist. Will be NULL if the playlist already exists.
+ * @return               Pointer to the memory_new playlist. Will be NULL if the playlist already exists.
  */
 SP_LIBEXPORT(sp_playlist *) sp_playlistcontainer_add_playlist(sp_playlistcontainer *pc, sp_link *link);
 
@@ -3573,22 +3573,22 @@ SP_LIBEXPORT(sp_error) sp_playlistcontainer_add_ref(sp_playlistcontainer *pc);
 SP_LIBEXPORT(sp_error) sp_playlistcontainer_release(sp_playlistcontainer *pc);
 
 /**
- * Get the number of new tracks in a playlist since the corresponding
+ * Get the number of memory_new tracks in a playlist since the corresponding
  * function sp_playlistcontainer_clear_unseen_tracks() was called. The
- * function always returns the number of new tracks, and fills the
- * \p tracks array with the new tracks, but not more than specified in
+ * function always returns the number of memory_new tracks, and fills the
+ * \p tracks array with the memory_new tracks, but not more than specified in
  * \p num_tracks. The function will return a negative value on failure.
  *
  * @param[in]  pc         Playlist container.
  * @param[in]  playlist   Playlist object.
- * @param[out] tracks     Array of pointer to new tracks (maybe NULL)
+ * @param[out] tracks     Array of pointer to memory_new tracks (maybe NULL)
  * @param[in]  num_tracks Size of tracks array
  * @return     Returns the number of unseen tracks
  */
 SP_LIBEXPORT(int) sp_playlistcontainer_get_unseen_tracks(sp_playlistcontainer *pc, sp_playlist *playlist, sp_track **tracks, int num_tracks);
 
 /**
- * Clears a playlist from unseen tracks, so that next call to sp_playlistcontainer_get_unseen_tracks() will return 0 until a new track is added to the \p playslist.
+ * Clears a playlist from unseen tracks, so that next call to sp_playlistcontainer_get_unseen_tracks() will return 0 until a memory_new track is added to the \p playslist.
  *
  * @param[in]  pc       Playlist container.
  * @param[in]  playlist   Playlist object.

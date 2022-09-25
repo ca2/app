@@ -533,7 +533,7 @@ namespace sandbox_windowing
    //
    //      }
    //
-   //      ::window *pdata = new window;
+   //      ::window *pdata = memory_new window;
    //
    //      pdata->m_bMessageOnlyWindow = true;
    //      pdata->m_window = None;
@@ -584,7 +584,7 @@ namespace sandbox_windowing
    //   //
    //   //      }
    //   //
-   //   //      ::window *pdata = new ::window;
+   //   //      ::window *pdata = memory_new ::window;
 
    //   m_bMessageOnlyWindow = false;
    //   //m_osdisplay = osdisplay_get(Display());

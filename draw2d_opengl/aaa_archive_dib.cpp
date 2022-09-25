@@ -2457,7 +2457,7 @@ namespace draw2d_opengl
          return cy;
       }
       */
-#undef new
+
 
 //#define NO_SCREEN_PRE_MULTIPLY_ALPHA 0
 //
@@ -2659,7 +2659,7 @@ namespace draw2d_opengl
 //
 
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
    void image::map(bool bApplyTransform) const
    {

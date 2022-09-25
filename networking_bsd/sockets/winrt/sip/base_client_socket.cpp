@@ -119,7 +119,7 @@ namespace sockets
                request is HTTP/1.0 _or_ HTTP/1.1 and not keep-alive
 
                This means we destroy the connection after the response has been delivered,
-               hence no need to reset all internal state variables for a new incoming
+               hence no need to reset all internal state variables for a memory_new incoming
                request.
             */
             m_body_size_left -= len;

@@ -52,7 +52,7 @@ char * linux_get_command_line(int argc, char ** argv); // malloc/strdup equivale
 //#undef CoreApplication
 //
 
-#undef new
+
 
 [MTAThread]
 int main(Array < String ^ > ^ refstra)
@@ -60,7 +60,7 @@ int main(Array < String ^ > ^ refstra)
 
    class aura_aura aura;
 
-   ap(aura_main_data) pmaindata = new aura_main_data(refstra);
+   ap(aura_main_data) pmaindata = memory_new aura_main_data(refstra);
 
 #ifdef MAIN_STRING
 
@@ -75,7 +75,7 @@ int main(Array < String ^ > ^ refstra)
 #else
 
 
-#undef new
+
 
 int impl_main(int argc, char * argv[]);
 

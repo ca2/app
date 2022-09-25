@@ -11,7 +11,7 @@ namespace sockets_bsd
 
    SctpSocket::SctpSocket(i32 type) : stream_socket(h)
       ,m_type(type)
-      ,m_buf(new char[SCTP_BUFSIZE_READ])
+      ,m_buf(memory_new char[SCTP_BUFSIZE_READ])
    {
       if (type != SOCK_STREAM && type != SOCK_SEQPACKET)
       {

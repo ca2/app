@@ -1087,7 +1087,7 @@ strsize string_base < TYPE_CHAR >::replace_with(PCHARNEW pszNew, PCHAROLD pszOld
    if (nCount > 0)
    {
       // if the buffer is too small, just
-      //   allocate a new buffer (slow but sure)
+      //   allocate a memory_new buffer (slow but sure)
       strsize nOldLength = get_length();
       strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen) * nCount;
 
@@ -1153,7 +1153,7 @@ strsize string_base < TYPE_CHAR >::replace_with_ci(PCHARNEW pszOld, PCHAROLD psz
    if (nCount > 0)
    {
       // if the buffer is too small, just
-      //   allocate a new buffer (slow but sure)
+      //   allocate a memory_new buffer (slow but sure)
       strsize nOldLength = get_length();
       strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen) * nCount;
 
@@ -1221,7 +1221,7 @@ template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < T
    if (nCount > 0)
    {
       // if the buffer is too small, just
-      //   allocate a new buffer (slow but sure)
+      //   allocate a memory_new buffer (slow but sure)
       strsize nOldLength = get_length();
       strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen) * nCount;
 
@@ -1302,7 +1302,7 @@ template < raw_pointer_castable < TYPE_CHAR > PCHARNEW, raw_pointer_castable < T
    if (nCount > 0)
    {
       // if the buffer is too small, just
-      //   allocate a new buffer (slow but sure)
+      //   allocate a memory_new buffer (slow but sure)
       strsize nOldLength = get_length();
       strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen) * nCount;
 

@@ -725,7 +725,7 @@ CLASS_DECL_NETWORKING_BSD string c_gethostbyname(const char * hostname)
 
 //#ifdef _UWP
 //
-//   return (ref new ::winrt::Windows::Networking::HostName(string(hostname)))->DisplayName;
+//   return (ref memory_new ::winrt::Windows::Networking::HostName(string(hostname)))->DisplayName;
 //
 //#else
 

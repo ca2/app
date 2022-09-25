@@ -425,7 +425,7 @@ bool manager::__s_may_run_signal_handling()
 //{
 //
 //
-//#undef new
+//
 
 
  

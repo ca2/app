@@ -281,7 +281,7 @@ namespace user
 
       __pointer(::user::interaction) puserinteractionParent = pcreate->m_puserprimitiveParent;
 
-      // create new from resource
+      // create memory_new from resource
       if (!pframe->LoadFrame(m_atom,
                              //WS_OVERLAPPEDWINDOW |
                              (bAddToTitle ? FWS_ADDTOTITLE : 0),   // default frame styles

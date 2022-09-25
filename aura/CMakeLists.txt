@@ -144,7 +144,7 @@ list(APPEND library_source
    graphics/graphics/window.h
    graphics/graphics/window_buffer.h
    graphics/graphics/window_dc.h
-   graphics/image/_image.h
+   #graphics/image/_image.h
    graphics/image/_image_impl.h
    graphics/image/context_image.cpp
    graphics/image/context_image.h

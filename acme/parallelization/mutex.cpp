@@ -385,7 +385,7 @@ get_existing:
       m_semid = semget(
                 m_key, // a unique identifier to identify semaphore set
                 1,  // number of semaphore in the semaphore set
-                0// permissions (rwxrwxrwx) on the new
+                0// permissions (rwxrwxrwx) on the memory_new
                 //semaphore set and creation flag
                 );
 
@@ -411,7 +411,7 @@ get_existing:
          m_semid = semget(
                    m_key, // a unique identifier to identify semaphore set
                    1,  // number of semaphore in the semaphore set
-                   0777 | IPC_CREAT | IPC_EXCL// permissions (rwxrwxrwx) on the new
+                   0777 | IPC_CREAT | IPC_EXCL// permissions (rwxrwxrwx) on the memory_new
                    //semaphore set and creation flag
                    );
 
@@ -1696,7 +1696,7 @@ __pointer(mutex) open_mutex(::matter * pmatter, const char * lpszName)
    i32 semid = semget(
                key, // a unique identifier to identify semaphore set
                1,  // number of semaphore in the semaphore set
-               0666 // permissions (rwxrwxrwx) on the new
+               0666 // permissions (rwxrwxrwx) on the memory_new
                //semaphore set and creation flag
                );
    if(semid < 0)

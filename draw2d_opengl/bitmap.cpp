@@ -85,7 +85,7 @@ namespace draw2d_opengl
 
       //::acme::del(m_pbitmap);
 
-      //m_pbitmap = new ::plusplus::Bitmap(nWidth, nHeight, plusplus::PixelOffsetModeHighQuality);
+      //m_pbitmap = memory_new ::plusplus::Bitmap(nWidth, nHeight, plusplus::PixelOffsetModeHighQuality);
 
       return true;
 
@@ -199,7 +199,7 @@ namespace draw2d_opengl
 
 //      ::acme::del(m_pbitmap);
 
-      //    m_pbitmap = new ::plusplus::Bitmap(nWidth, nHeight, plusplus::PixelOffsetModeHighQuality);
+      //    m_pbitmap = memory_new ::plusplus::Bitmap(nWidth, nHeight, plusplus::PixelOffsetModeHighQuality);
 
       return true;
 
@@ -209,7 +209,7 @@ namespace draw2d_opengl
 
 //      ::acme::del(m_pbitmap);
 
-      //    m_pbitmap = new ::plusplus::Bitmap(nWidth, nHeight, plusplus::PixelOffsetModeHighQuality);
+      //    m_pbitmap = memory_new ::plusplus::Bitmap(nWidth, nHeight, plusplus::PixelOffsetModeHighQuality);
 
       return true;
    }
@@ -840,7 +840,7 @@ void resizeBilinear(memory & m, int w2, int h2, int * pixels, int w, int h)
 
    //memory m;
    m.set_size(sizeof(int) * w2* h2);
-   //int[] temp = new int[w2*h2];
+   //int[] temp = memory_new int[w2*h2];
    int * temp = (int *)m.get_data();
    int a, b, c, d, x, y, index;
    float x_ratio = ((float)(w - 1)) / w2;

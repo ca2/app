@@ -45,7 +45,7 @@ namespace text
    data* translator::create_text_data(const ::atom& atom)
    {
 
-      data* ptextdata = new data(this);
+      data* ptextdata = memory_new data(this);
 
       ptextdata->m_atom = atom;
 
@@ -57,7 +57,7 @@ namespace text
    data* translator::clone_text_data(const data* ptextdataParam)
    {
 
-      data* ptextdata = new data(this);
+      data* ptextdata = memory_new data(this);
 
       ptextdata->m_atom = ptextdataParam->m_atom;
 

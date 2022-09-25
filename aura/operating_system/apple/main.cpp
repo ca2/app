@@ -49,9 +49,9 @@
 //      else
 //      {
 //
-//         ::create * pcreate = new ::create(::get_context_system());
+//         ::create * pcreate = memory_new ::create(::get_context_system());
 //
-//         pcreate->m_pcommandline = new command_line(::get_context_system(), ::aura::get_system()->get_command_line());
+//         pcreate->m_pcommandline = memory_new command_line(::get_context_system(), ::aura::get_system()->get_command_line());
 //
 //         ::aura::get_system()->request({ pcreate });
 //

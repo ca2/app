@@ -40,7 +40,7 @@ public:
    virtual ::matter * new_object(::object * pobject) override
    {
 
-      return new TYPE(pobject);
+      return memory_new TYPE(pobject);
 
    }
 

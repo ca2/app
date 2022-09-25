@@ -15,7 +15,7 @@
       if(plconv == nullptr)
       {
 
-         plconv = new lconv;
+         plconv = memory_new lconv;
 
          plconv->decimal_point = ".";
 

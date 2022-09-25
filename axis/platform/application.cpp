@@ -2188,7 +2188,7 @@ namespace axis
    ::user::interaction* application::create_menu_interaction()
    {
 
-      return new ::user::button;
+      return memory_new ::user::button;
 
    }
 

@@ -1106,7 +1106,7 @@ namespace axis
    bool session::InitializeLocalDataCentral()
    {
 
-      //m_pdatabase = new nature::database(this);
+      //m_pdatabase = memory_new nature::database(this);
 
       //if(m_pdatabase == nullptr)
       //{

@@ -211,14 +211,14 @@ namespace draw2d
       //}
 
       const int wh = (wj)*(cy);
-#undef new
-      timage = new vector4[wh];
+
+      timage = memory_new vector4[wh];
       // temporary output space for first pass.
-      tsurface = new vector4[wh];
+      tsurface = memory_new vector4[wh];
 
-      m_stack = new vector4[div2];
+      m_stack = memory_new vector4[div2];
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 
       if(vxmin != nullptr)
@@ -235,8 +235,8 @@ namespace draw2d
       // lookup table for clamping pixel offsets
       // as the kernel passes the right (or lower) edge
       // of the input data
-      vxmin = new int[cx + 100 + div2];
-      vymin = new int[cy + 100 + div2];
+      vxmin = memory_new int[cx + 100 + div2];
+      vymin = memory_new int[cy + 100 + div2];
 
       const int r1 = radius + 1;
       
@@ -1078,12 +1078,12 @@ auto tick2 = ::duration::now();
       const int div = (radius * 2) + 1;
 
       // temporary output space for first pass.
-      //vector4* tsurface = new vector4[wh];
+      //vector4* tsurface = memory_new vector4[wh];
 
       // lookup table for clamping pixel offsets
       // as the kernel passes the right (or lower) edge
       // of the input data
-      //int* const vmin = new int[maximum(w,h)];
+      //int* const vmin = memory_new int[maximum(w,h)];
 
       // calculate divisor for pulling an output from the kernel
       //   the kernel is pyramid shaped.
@@ -1184,7 +1184,7 @@ auto tick2 = ::duration::now();
             outsum -= sir;
 
             // now this (same) stack entry is the "right" side
-            // add new pixel to the stack, and update accumulators
+            // add memory_new pixel to the stack, and update accumulators
             sir = p;
             insum += sir;
             sum += insum;

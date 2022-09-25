@@ -199,7 +199,7 @@ namespace aura
 
       enable_trace_category(e_trace_category_prodevian, false);
     
-      g_pmutexImage = new ::mutex();
+      g_pmutexImage = memory_new ::mutex();
 
       m_bProdevianMouse = false;
 
@@ -1160,7 +1160,7 @@ namespace aura
       //if (!estatus)
       //{
 
-      //   INFORMATION("Couldn't construct new draw2d.");
+      //   INFORMATION("Couldn't construct memory_new draw2d.");
 
       //   return false;
 
@@ -2942,7 +2942,7 @@ namespace aura
 //      return true;
 //#endif
 //
-//      /*      m_spfilehandler(new ::aura::filehandler::handler(this));*/
+//      /*      m_spfilehandler(memory_new ::aura::filehandler::handler(this));*/
 //
 ////      m_mapAppLibrary.erase_all();
 ////
@@ -4022,17 +4022,17 @@ namespace aura
 //#if defined(_UWP)
 //
 //
-//         string * pstrNew = new string(strUrl);
+//         string * pstrNew = memory_new string(strUrl);
 //
 //         ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-//            ref new ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew]()
+//            ref memory_new ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew]()
 //               {
 //
-//                  ::winrt::Windows::Foundation::Uri ^ uri = ref new ::winrt::Windows::Foundation::Uri(*pstrNew);
+//                  ::winrt::Windows::Foundation::Uri ^ uri = ref memory_new ::winrt::Windows::Foundation::Uri(*pstrNew);
 //
 //                  delete pstrNew;
 //
-//                  LauncherOptions ^ options = ref new LauncherOptions();
+//                  LauncherOptions ^ options = ref memory_new LauncherOptions();
 //
 //                  options->TreatAsUntrusted = false;
 //
@@ -4425,7 +4425,7 @@ namespace aura
 //      if (strUrl.has_char())
 //      {
 //
-//         strParam += " -new-tab \"" + strUrl + "\"";
+//         strParam += " -memory_new-tab \"" + strUrl + "\"";
 //
 //      }
 //
@@ -5166,8 +5166,8 @@ namespace aura
 //#endif
 
 #ifdef WINDOWS
-#undef new
-#define new ACME_NEW
+
+//#define memory_new ACME_NEW
 #endif
 
 #ifdef LINUX
@@ -5232,7 +5232,7 @@ namespace aura
   //
   //      //#if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
   //      //
-  //      //      m_possystemwindow = new os_system_window();
+  //      //      m_possystemwindow = memory_new os_system_window();
   //      //
   //      //#endif
   //
@@ -5253,7 +5253,7 @@ namespace aura
   //            //m_strInstallToken             = "core_system";
   //
   //      m_phistory = nullptr;
-  //      m_ppatch = new aura::patch();
+  //      m_ppatch = memory_new aura::patch();
   //      g_pszCooperativeLevel = "aura";
   //
   //      estatus = __compose(m_puserset, __new(::account::user_set(this)));
@@ -6355,7 +6355,7 @@ namespace aura
 //
 //#if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
 //
-//      m_possystemwindow = new os_system_window();
+//      m_possystemwindow = memory_new os_system_window();
 //
 //#endif
 //

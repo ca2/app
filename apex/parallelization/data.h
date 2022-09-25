@@ -96,7 +96,7 @@
 ////{
 ////public:
 ////
-////   inline operator T *() { if (get() == nullptr) { set(new T()); } return (T *)get(); }
+////   inline operator T *() { if (get() == nullptr) { set(memory_new T()); } return (T *)get(); }
 ////   inline T * operator ->() { return operator T *(); }
 ////
 ////};

@@ -46,7 +46,7 @@ int main()
 
     ::file pfile = pcontext->m_papexcontext->file().get_file("C:\\window.window");
 
-    auto pinteraction = new window();
+    auto pinteraction = memory_new window();
 
     ::stream stream(pfile);
 
@@ -306,5 +306,5 @@ stream & operator >> (stream & s, matter & o)
 
 window new_frame_window()
 {
-    return new frame_window();
+    return memory_new frame_window();
 }

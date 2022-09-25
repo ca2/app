@@ -10,7 +10,7 @@
 oswindow_data::oswindow_data()
 {
 
-   m_plongmap              = new int_to_int;
+   m_plongmap              = memory_new int_to_int;
 
    m_htask               = nullptr;
 
@@ -41,8 +41,8 @@ oswindow_data::~oswindow_data()
 #define CA2_X11_WINDOW_LONG_STYLE "ca2_ccwarehouse_fontopu_window_long_style"
 #define CA2_X11_WINDOW_LONG_STYLE_EX "ca2_ccwarehouse_fontopu_window_long_style_ex"
 
-oswindow_dataptra * oswindow_data::s_pdataptra = new oswindow_dataptra;
-::mutex * oswindow_data::s_pmutex = new ::mutex(nullptr);
+oswindow_dataptra * oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
+::mutex * oswindow_data::s_pmutex = memory_new ::mutex(nullptr);
 
 
 i32 oswindow_find_message_only_window(::user::interaction_impl * pinteraction)
@@ -116,7 +116,7 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * pint
    if(iFind >= 0)
       return ::oswindow_data::s_pdataptra->element_at(iFind);
 
-   ::oswindow_data * pdata = new oswindow_data;
+   ::oswindow_data * pdata = memory_new oswindow_data;
 
    pdata->m_bMessageOnlyWindow          = true;
    pdata->m_window                      = None;
@@ -140,7 +140,7 @@ oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual
    if(iFind >= 0)
       return ::oswindow_data::s_pdataptra->element_at(iFind);
 
-   ::oswindow_data * pdata = new ::oswindow_data;
+   ::oswindow_data * pdata = memory_new ::oswindow_data;
 
    pdata->m_bMessageOnlyWindow      = false;
    pdata->m_osdisplay               = osdisplay_get(pdisplay);

@@ -35,7 +35,7 @@ namespace sockets
       ,m_bytes_sent(0)
       ,m_bytes_received(0)
 #ifdef SOCKETS_DYNAMIC_TEMP
-      ,m_buf(new char[TCP_BUFSIZE_READ + 1])
+      ,m_buf(memory_new char[TCP_BUFSIZE_READ + 1])
 #endif
       ,m_obuf_top(nullptr)
       ,m_transfer_limit(0)
@@ -70,7 +70,7 @@ namespace sockets
       ,m_bytes_sent(0)
       ,m_bytes_received(0)
 #ifdef SOCKETS_DYNAMIC_TEMP
-      ,m_buf(new char[TCP_BUFSIZE_READ + 1])
+      ,m_buf(memory_new char[TCP_BUFSIZE_READ + 1])
 #endif
       ,m_obuf_top(nullptr)
       ,m_transfer_limit(0)
@@ -142,7 +142,7 @@ namespace sockets
 
       m_bConnecting = true;
 
-      m_streamsocket = ref new ::winrt::Windows::Networking::Sockets::StreamSocket;
+      m_streamsocket = ref memory_new ::winrt::Windows::Networking::Sockets::StreamSocket;
 
       //attach(data);
 
@@ -156,7 +156,7 @@ namespace sockets
       {
 
          m_streamsocket->ConnectAsync(ad.m_hostname, strService)->Completed =
-            ref new ::winrt::Windows::Foundation::AsyncActionCompletedHandler
+            ref memory_new ::winrt::Windows::Foundation::AsyncActionCompletedHandler
             ([this](::winrt::Windows::Foundation::IAsyncAction ^ action, ::winrt::Windows::Foundation::AsyncStatus status)
                {
 
@@ -211,15 +211,15 @@ namespace sockets
             }*/
 
 
-      m_streamsocket = ref new ::winrt::Windows::Networking::Sockets::StreamSocket;
+      m_streamsocket = ref memory_new ::winrt::Windows::Networking::Sockets::StreamSocket;
 
-      ::winrt::Windows::Networking::EndpointPair ^ pair = ref new ::winrt::Windows::Networking::EndpointPair(bind_ad.m_hostname,  ansi_string_from_i64(bind_ad.get_service_number()), ad.m_hostname, ansi_string_from_i64(ad.get_service_number()));
+      ::winrt::Windows::Networking::EndpointPair ^ pair = ref memory_new ::winrt::Windows::Networking::EndpointPair(bind_ad.m_hostname,  ansi_string_from_i64(bind_ad.get_service_number()), ad.m_hostname, ansi_string_from_i64(ad.get_service_number()));
       //::sockets::socket::os_data data;
       //data.o = m_posdata->m_streamsocket;
       //attach(data);
 
       m_streamsocket->ConnectAsync(pair)->Completed =
-      ref new ::winrt::Windows::Foundation::AsyncActionCompletedHandler
+      ref memory_new ::winrt::Windows::Foundation::AsyncActionCompletedHandler
       ([this](::winrt::Windows::Foundation::IAsyncAction ^ action, ::winrt::Windows::Foundation::AsyncStatus status)
       {
 
@@ -233,7 +233,7 @@ namespace sockets
       });
 
 
-      m_streamsocket = ref new ::winrt::Windows::Networking::Sockets::StreamSocket();
+      m_streamsocket = ref memory_new ::winrt::Windows::Networking::Sockets::StreamSocket();
 
       //data.o = m_posdata->m_streamsocket;
       
@@ -260,7 +260,7 @@ namespace sockets
             return true;
          }
       }*/
-      // if not, create new connection
+      // if not, create memory_new connection
       //SOCKET s = CreateSocket(ad.GetFamily(), SOCK_STREAM, "tcp");
       //if (s == INVALID_SOCKET)
       //{
@@ -458,7 +458,7 @@ namespace sockets
       //if(inputstream->UnconsumedBufferLength > 0)
       //{
 
-      //   Array < unsigned char, 1U > ^ ucha = ref new Array < unsigned char, 1U >(reader->UnconsumedBufferLength);
+      //   Array < unsigned char, 1U > ^ ucha = ref memory_new Array < unsigned char, 1U >(reader->UnconsumedBufferLength);
 
       //   reader->ReadBytes(ucha);
 
@@ -506,7 +506,7 @@ namespace sockets
 
 
       //op->Completed =
-      //ref new ::winrt::Windows::Foundation::AsyncOperationCompletedHandler < unsigned int >([=]
+      //ref memory_new ::winrt::Windows::Foundation::AsyncOperationCompletedHandler < unsigned int >([=]
       //      (::winrt::Windows::Foundation::IAsyncOperation<unsigned int> ^ asyncInfo, ::winrt::Windows::Foundation::AsyncStatus asyncStatus)
       //{
       //   if(IsCloseAndDelete())
@@ -516,7 +516,7 @@ namespace sockets
       //   else if(asyncStatus == ::winrt::Windows::Foundation::AsyncStatus::Completed)
       //   {
       //      //int n = reader->UnconsumedBufferLength;
-      //      Array < unsigned char, 1U > ^ ucha = ref new Array < unsigned char, 1U >(reader->UnconsumedBufferLength);
+      //      Array < unsigned char, 1U > ^ ucha = ref memory_new Array < unsigned char, 1U >(reader->UnconsumedBufferLength);
       //      reader->ReadBytes(ucha);
       //      memory mem;
       //      mem.assign(ucha->Data, ucha->Length);
@@ -687,7 +687,7 @@ namespace sockets
       m_bErrorWriting = false;
 
       m_streamsocket->OutputStream->WriteAsync(m_bufferWrite)
-         ->Completed = ref new ::winrt::Windows::Foundation::AsyncOperationWithProgressCompletedHandler <unsigned int, unsigned int >([this](::winrt::Windows::Foundation::IAsyncOperationWithProgress <unsigned int, unsigned int >^ operation, ::winrt::Windows::Foundation::AsyncStatus status)
+         ->Completed = ref memory_new ::winrt::Windows::Foundation::AsyncOperationWithProgressCompletedHandler <unsigned int, unsigned int >([this](::winrt::Windows::Foundation::IAsyncOperationWithProgress <unsigned int, unsigned int >^ operation, ::winrt::Windows::Foundation::AsyncStatus status)
             {
 
                if (status == ::winrt::Windows::Foundation::AsyncStatus::Completed)
@@ -760,7 +760,7 @@ namespace sockets
          }
          else
          {
-            m_obuf_top = new OUTPUT;
+            m_obuf_top = memory_new OUTPUT;
             m_obuf.add_tail( m_obuf_top );
          }
       }

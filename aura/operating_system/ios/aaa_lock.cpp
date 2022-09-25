@@ -66,7 +66,7 @@ int _c_lock(const ::string & pszName, void ** pdata)
       }
    }
 
-   int * pi = new int;
+   int * pi = memory_new int;
    *pi = fd;
    *pdata = pi;
 

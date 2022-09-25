@@ -21,7 +21,7 @@
 #endif
 
 
-#undef new
+
 
 //
 //struct myfx_CTLCOLOR

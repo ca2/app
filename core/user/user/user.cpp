@@ -57,7 +57,7 @@
 //#endif
 
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -293,7 +293,7 @@ namespace core
 
       add_document_template(ptemplate);
 
-      auto pmultitemplate = new ::user::multiple_document_template(
+      auto pmultitemplate = memory_new ::user::multiple_document_template(
          "main",
          __type(::user::document),
          __type(::userex::dialog_frame),
@@ -2112,7 +2112,7 @@ namespace core
    __pointer(::user::plain_edit) user::create_calculator_plain_edit()
    {
 
-      return new ::calculator::plain_edit_impact();
+      return memory_new ::calculator::plain_edit_impact();
 
    }
 

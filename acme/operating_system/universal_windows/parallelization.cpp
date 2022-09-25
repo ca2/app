@@ -172,7 +172,7 @@ void _on_aura_thread_detach()
 //   if (dwWakeMask & MWMO_ALERTABLE)
 //   {
 //
-//      HANDLE* ph = new HANDLE[nCount + 1];
+//      HANDLE* ph = memory_new HANDLE[nCount + 1];
 //
 //      ::memcpy_dup(ph, pHandles, sizeof(HANDLE) * nCount);
 //

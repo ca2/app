@@ -25,7 +25,7 @@ public:
    auto_pointer(e_new_array, ::count c)
    {
       m_bArray = true;
-      m_p = new T[(size_t) c];
+      m_p = memory_new T[(size_t) c];
 
    }
 
@@ -40,7 +40,7 @@ public:
    auto_pointer(TYPE * p, ::count c)
    {
       m_bArray = true;
-      m_p = new T[(size_t)c];
+      m_p = memory_new T[(size_t)c];
 
       for (index i = 0; i < c; i++)
       {

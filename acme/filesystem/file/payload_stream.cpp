@@ -225,7 +225,7 @@ payload_stream::~payload_stream()
 //void payload_stream::write_object(const ::atom & atom, ::matter * pobject)
 //{
 //
-//   payload_stream stream(new ::payload(&payload()[atom].propset()));
+//   payload_stream stream(memory_new ::payload(&payload()[atom].propset()));
 //
 //   ::atom idType = __type_name(pobject);
 //
@@ -243,7 +243,7 @@ payload_stream::~payload_stream()
 //__pointer(::matter) payload_stream::read_object(const ::atom & atom)
 //{
 //
-//   payload_stream stream(new ::payload(&payload()[atom].propset()));
+//   payload_stream stream(memory_new ::payload(&payload()[atom].propset()));
 //
 //   string strId;
 //

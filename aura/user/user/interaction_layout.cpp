@@ -60,7 +60,7 @@ namespace user
 
          m_iStateCount = iStateCount;
 
-         //m_pstate = new window_state[m_iStateCount];
+         //m_pstate = memory_new window_state[m_iStateCount];
 
          //for (int iState = 0; iState < m_iStateCount; iState++)
          //{

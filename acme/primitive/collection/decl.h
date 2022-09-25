@@ -141,7 +141,7 @@ namespace papaya
 * pugixml parser - version 1.5
 * --------------------------------------------------------
 * Copyright (C) 2006-2014, by Arseny Kapoulkine (arseny.kapoulkine@gmail.com)
-* Report bugs and download new versions at http://pugixml.org/
+* Report bugs and download memory_new versions at http://pugixml.org/
 *
 * This library is distributed under the MIT License. See notice at the end
 * of this file.
@@ -213,7 +213,7 @@ struct iterator_common :
 typedef CLASS_DECL_ACME numeric_array < index > index_array;
 typedef CLASS_DECL_ACME numeric_array < count > count_array;
 
-#undef new
+
 
 #ifdef LINUX
 #include <initializer_list>
@@ -613,7 +613,7 @@ namespace allocator
          {
             copy(pdst, &src);
             c--;
-   }
+         }
 
       }
 
@@ -974,7 +974,7 @@ namespace allocator
 } // namespace allocator
 
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 
 #include "tiny_array.h"

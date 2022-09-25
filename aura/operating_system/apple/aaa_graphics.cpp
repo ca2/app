@@ -184,7 +184,7 @@ CTFontRef CreateBoldFont(CTFontRef iFont, Boolean iMakeBold)
 CTFontRef CreateFontConvertedToFamily(CTFontRef iFont, CFStringRef iFamily)
 {
 
-   // Create a copy of the original font with the new family. This call
+   // Create a copy of the original font with the memory_new family. This call
    // attempts to preserve traits, and may return nullptr if that is not possible.
    // Pass in 0.0 and nullptr for size_i32 and matrix to preserve the values from
    // the original font.

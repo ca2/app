@@ -4,14 +4,14 @@
 
 #ifdef WINDOWS_DESKTOP
 
-#undef new
+
 
 #define minimum minimum
 #define maximum maximum
 
 #include <gdiplus.h>
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 #undef minimum
 #undef maximum

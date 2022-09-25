@@ -28,7 +28,7 @@
 //   if(hmutex == INVALID_HANDLE_VALUE)
 //      return 0;
 //
-//   HANDLE * phandle = new HANDLE;
+//   HANDLE * phandle = memory_new HANDLE;
 //   *phandle = hmutex;
 //   *pdata = phandle;
 //

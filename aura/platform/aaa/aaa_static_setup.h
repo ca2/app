@@ -71,7 +71,7 @@ class static_library_factory :
 public:
 
 
-   virtual ::acme::library* new_library() override { return new LIBRARY; }
+   virtual ::acme::library* new_library() override { return memory_new LIBRARY; }
 
 
    static_library_factory(const ::string & pszName = "") :
@@ -92,7 +92,7 @@ class static_object_factory :
 public:
 
 
-   virtual ::matter * new_object() override { return new OBJECT; }
+   virtual ::matter * new_object() override { return memory_new OBJECT; }
 
 
    static_object_factory(::system_setup::enum_flag eflag, const ::string & pszName = "") :

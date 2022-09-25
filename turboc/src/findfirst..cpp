@@ -24,7 +24,7 @@
   
   It's necessary to use globbing to immitate findfirst/findnext, but it's
   not possible to do it perfectly.  The problem is that each findfirst
-  has to create a new glob_t structure, but there is no function equivalent
+  has to create a memory_new glob_t structure, but there is no function equivalent
   to globfree that can free the data structure when we're finished with it.
   We do two tricks to get around this.  Firstly, if findnext reaches the
   end if the filelist, the glob_t structure is freed.  However, this will

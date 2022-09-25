@@ -117,7 +117,7 @@ int cef_main(HINSTANCE hInstance, HWND hwnd, RECTANGLE_I32 rectangle_i32)
    // SimpleApp implements application-level callbacks for the browser process.
    // It will create the first browser instance in OnContextInitialized() after
    // CEF has initialized.
-   CefRefPtr<SimpleApp> app(new SimpleApp());
+   CefRefPtr<SimpleApp> app(memory_new SimpleApp());
 
    // Initialize CEF.
    CefInitialize(main_args, settings, app.get(), nullptr);

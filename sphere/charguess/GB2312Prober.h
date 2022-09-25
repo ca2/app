@@ -29,7 +29,7 @@
 
 class nsGB18030Prober: public nsCharSetProber {
 public:
-  nsGB18030Prober(void){mCodingSM = new nsCodingStateMachine(&GB18030SMModel);
+  nsGB18030Prober(void){mCodingSM = memory_new nsCodingStateMachine(&GB18030SMModel);
                       Reset();};
   virtual ~nsGB18030Prober(void){delete mCodingSM;};
   nsProbingState HandleData(const ::string & aBuf, PR::u32 aLen);

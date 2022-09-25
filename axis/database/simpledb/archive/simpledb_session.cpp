@@ -24,7 +24,7 @@ namespace simpledb
    {
       if(m_pserver != nullptr)
          close();
-      server * pserver = new server(this);
+      server * pserver = memory_new server(this);
       if(pserver == nullptr)
          return false;
       if(!pserver->open(pszDatabase))

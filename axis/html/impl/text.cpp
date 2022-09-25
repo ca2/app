@@ -604,7 +604,7 @@ namespace html
 //         if(pdata->is_locked())
 //         {
 //
-//            // I am gonna blink and fail away (deleting?) // isn't new html page ready so you just call new drawing
+//            // I am gonna blink and fail away (deleting?) // isn't memory_new html page ready so you just call memory_new drawing
 //            return;
 //         }
 

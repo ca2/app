@@ -262,15 +262,15 @@ list(APPEND library_source
    platform/acme.cpp
    platform/acme.h
    #platform/acme_main_struct.cpp
-   platform/acme_main_struct.h
-   platform/apex_main_data.cpp
-   platform/apex_main_data.h
-   platform/apex_main_struct.cpp
-   platform/apex_main_struct.h
+   #platform/acme_main_struct.h
+   #platform/apex_main_data.cpp
+   #platform/apex_main_data.h
+   #platform/apex_main_struct.cpp
+   #platform/apex_main_struct.h
    platform/application.cpp
    platform/application.h
-   platform/app_core.cpp
-   platform/app_core.h
+   #platform/app_core.cpp
+   #platform/app_core.h
    platform/assert.cpp
    platform/aura_str_pool.cpp
    platform/build_debug.cpp

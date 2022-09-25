@@ -54,7 +54,7 @@
 
 // Supported text modes for conio.h.  The free Borland C++ 5.5 compiler has
 // lots of video modes that aren't present in Turbo C 2.0, so I've thrown them
-// in also.  EXITMODE is a new constant I've invented so that textmode(EXITMODE) 
+// in also.  EXITMODE is a memory_new constant I've invented so that textmode(EXITMODE) 
 // can be called at the end of the program to turn off ncurses.
 #define EXITMODE -2
 #define LASTMODE -1

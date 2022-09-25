@@ -189,7 +189,7 @@ namespace networking_bsd
    //      }
 
 
-         //m_pajpaxissocketinit = new AjpBaseSocket::Initializer;
+         //m_pajpaxissocketinit = memory_new AjpBaseSocket::Initializer;
 
       m_countHttpPostBoundary = 0;
 
@@ -832,7 +832,7 @@ namespace networking_bsd
          {
             struct sockaddr_in *point = (struct sockaddr_in *)sa;
             ::networking_bsd::address_pointer addr;
-            addr(new ::networking_bsd::ipv4_address(get_app(), *point_i32));
+            addr(memory_new ::networking_bsd::ipv4_address(get_app(), *point_i32));
             return addr;
          }
          break;
@@ -841,7 +841,7 @@ namespace networking_bsd
          {
             struct sockaddr_in6 *point = (struct sockaddr_in6 *)sa;
             ::networking_bsd::address_pointer addr;
-            addr(new ::networking_bsd::ipv6_address(get_app(), *point_i32));
+            addr(memory_new ::networking_bsd::ipv6_address(get_app(), *point_i32));
             return addr;
          }
          break;
@@ -2247,7 +2247,7 @@ namespace networking_bsd
          {
             struct sockaddr_in *point = (struct sockaddr_in *)sa;
             ::networking_bsd::address_pointer addr;
-            addr(new ::networking_bsd::ipv4_address(get_app(), *point_i32));
+            addr(memory_new ::networking_bsd::ipv4_address(get_app(), *point_i32));
             return addr;
          }
          break;
@@ -2256,7 +2256,7 @@ namespace networking_bsd
          {
             struct sockaddr_in6 *point = (struct sockaddr_in6 *)sa;
             ::networking_bsd::address_pointer addr;
-            addr(new ::networking_bsd::ipv6_address(get_app(), *point_i32));
+            addr(memory_new ::networking_bsd::ipv6_address(get_app(), *point_i32));
             return addr;
          }
          break;
@@ -3297,7 +3297,7 @@ namespace networking_bsd
 ////      }
 //
 //
-//      //m_pajpaxissocketinit = new AjpBaseSocket::Initializer;
+//      //m_pajpaxissocketinit = memory_new AjpBaseSocket::Initializer;
 //
 //   m_countHttpPostBoundary = 0;
 //

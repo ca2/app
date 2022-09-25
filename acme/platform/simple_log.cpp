@@ -140,7 +140,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const char * pszTag, const
 //      if (g_iMemoryCounters)
 //      {
 //
-//         g_pmutexMemoryCounters = new ::mutex(e_create_new, nullptr, false, "Global\\ca2_memory_counters");
+//         g_pmutexMemoryCounters = memory_new ::mutex(e_create_new, nullptr, false, "Global\\ca2_memory_counters");
 //
 //      }
 //
@@ -160,7 +160,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const char * pszTag, const
 //   if (g_iMemoryCountersStartable && g_pMemoryCounters == nullptr)
 //   {
 //
-//      g_pMemoryCounters = new ::file::path();
+//      g_pMemoryCounters = memory_new ::file::path();
 //
 //#if defined(_UWP)
 //

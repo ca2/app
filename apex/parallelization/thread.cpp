@@ -4420,7 +4420,7 @@ user_interaction_ptr_array & thread::uiptra()
       if (m_pmutexThreadUiPtra == nullptr)
       {
 
-         m_pmutexThreadUiPtra = new ::mutex();
+         m_pmutexThreadUiPtra = memory_new ::mutex();
 
       }
 
@@ -4431,7 +4431,7 @@ user_interaction_ptr_array & thread::uiptra()
    if (m_puiptraThread == nullptr)
    {
 
-      m_puiptraThread = new ::user_interaction_ptr_array();
+      m_puiptraThread = memory_new ::user_interaction_ptr_array();
 
    }
 

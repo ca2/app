@@ -14,7 +14,7 @@ void output_debug_string(const char * lpOutputString)
    //if (m_pstrOutputDebugStringA == nullptr)
    //{
 
-   //   m_pstrOutputDebugStringA = new string();
+   //   m_pstrOutputDebugStringA = memory_new string();
 
    //}
 

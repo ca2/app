@@ -1,4 +1,4 @@
-// Created by camilo on 2021-10-08 11:10 BRT <3ThomasBorregaardSørensen!!
+// Created by camilo on 2021-10-08 11:10 BRT <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
@@ -110,7 +110,7 @@ enum enum_create
 };
 
 
-enum enum_defer_new // new - for factoryless_allocation FACTORYLESS_ALLOCATION_ID
+enum enum_defer_new // memory_new - for factoryless_allocation FACTORYLESS_ALLOCATION_ID
 {
 
    e_defer_new

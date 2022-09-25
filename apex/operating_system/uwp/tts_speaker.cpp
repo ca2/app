@@ -58,7 +58,7 @@ namespace universal_windows
          //
          // Create text to speech engine
          //
-         ::winrt::Windows::Media::SpeechSynthesis::SpeechSynthesizer ^ psynth = ref new ::winrt::Windows::Media::SpeechSynthesis::SpeechSynthesizer();
+         ::winrt::Windows::Media::SpeechSynthesis::SpeechSynthesizer ^ psynth = ref memory_new ::winrt::Windows::Media::SpeechSynthesis::SpeechSynthesizer();
          if (psynth == nullptr)
          {
 
@@ -270,7 +270,7 @@ namespace universal_windows
 
       }
 
-      //actual creation of the stream using the new voice synthesis stream
+      //actual creation of the stream using the memory_new voice synthesis stream
       IAsyncOperation < SpeechSynthesisStream^ > ^ speaker::GetSpeechStreamTask(string strLang, string text)
       {
          return m_synth[strLang]->SynthesizeTextToStreamAsync(text);

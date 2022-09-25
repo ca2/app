@@ -136,7 +136,7 @@
 // * Set the per-thread error value.
 // *
 // * PARAMS
-// *  err [I] The new error value to set
+// *  err [I] The memory_new error value to set
 // *
 // * RETURNS
 // *  Nothing.
@@ -152,7 +152,7 @@
 // * Set the per-thread status and error values.
 // *
 // * PARAMS
-// *  err [I] The new status value to set
+// *  err [I] The memory_new status value to set
 // *
 // * RETURNS
 // *  Nothing.

@@ -3,7 +3,7 @@
 //#include "acme/platform/static_start_internal.h"
 
 
-#undef new
+
 
 
 #ifdef LINUX
@@ -1460,7 +1460,7 @@ property_set & property_set::append(const property_set & set)
       for(auto & pproperty : set)
       {
 
-         add_item(new property(*pproperty));
+         add_item(memory_new property(*pproperty));
 
       }
 

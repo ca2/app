@@ -291,7 +291,7 @@ namespace hotplugin
 
       throw todo();
 
-      //m_pplugin = new install::plugin(this);
+      //m_pplugin = memory_new install::plugin(this);
 
       //m_pplugin->set_host(this);
 
@@ -380,7 +380,7 @@ namespace hotplugin
 
       throw ::exception(todo);
 
-      //::install::starter_start * pstart    = new ::install::starter_start(pobject);
+      //::install::starter_start * pstart    = memory_new ::install::starter_start(pobject);
 
       //pstart->m_phost               = phost;
 
@@ -413,7 +413,7 @@ namespace hotplugin
 
       throw ::exception(todo);
 
-      //::install::starter_start * pstart = new ::install::starter_start(pobject);
+      //::install::starter_start * pstart = memory_new ::install::starter_start(pobject);
 
       //pstart->m_phost               = phost;
 

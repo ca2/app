@@ -41,7 +41,7 @@ NAMESPACE_BEGIN(nanogui)
    class NANOGUI_EXPORT Canvas : public Widget {
    public:
       /**
-       * Creates a new Canvas widget
+       * Creates a memory_new Canvas widget
        *
        * \param parent
        *     The parent widget

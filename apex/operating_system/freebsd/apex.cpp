@@ -30,7 +30,7 @@ CLASS_DECL_APEX bool __node_apex_pre_init()
 CLASS_DECL_APEX bool __node_apex_pos_init()
 {
 
-//   t_htask = new htask();
+//   t_htask = memory_new htask();
 //
 //    //t_htask-
 //

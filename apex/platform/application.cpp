@@ -232,7 +232,7 @@ namespace apex
 
       //m_durationGcomBackgroundUpdate = 30_s;
 
-      m_pappimpl = new application_impl;
+      m_pappimpl = memory_new application_impl;
 
 
    }
@@ -3738,7 +3738,7 @@ namespace apex
          if (bGlobalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceGlobal)
          {
 
-            INFORMATION("A instance of the application:<br><br> - " << m_strAppName << +"<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this new instance.");
+            INFORMATION("A instance of the application:<br><br> - " << m_strAppName << +"<br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine.<br><br>Exiting this memory_new instance.");
 
             try
             {
@@ -3768,7 +3768,7 @@ namespace apex
             if (bGlobalIdExclusiveFail)
             {
 
-               INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same atom.<br><br>Exiting this new instance.");
+               INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same machine<br>Only one instance of this application can run globally: at the same machine with the same atom.<br><br>Exiting this memory_new instance.");
 
                try
                {
@@ -3792,7 +3792,7 @@ namespace apex
          if (bLocalExclusiveFail && m_eexclusiveinstance == ExclusiveInstanceLocal)
          {
 
-            INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this new instance.");
+            INFORMATION("A instance of the application:<br><br>-" << m_strAppName << "<br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same account.<br><br>Exiting this memory_new instance.");
 
             on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocal, "");
 
@@ -3812,7 +3812,7 @@ namespace apex
                {
 
                   // Should in some way activate the other instance
-                  INFORMATION("A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same atom.<br><br>Exiting this new instance.");
+                  INFORMATION("A instance of the application:<br><br> - " << m_strAppName << " with the atom \"" << get_local_mutex_id() << "\" <br><br>seems to be already running at the same account.<br>Only one instance of this application can run locally: at the same ac::count with the same atom.<br><br>Exiting this memory_new instance.");
 
                   on_exclusive_instance_conflict(bHandled, ExclusiveInstanceLocalId, get_local_mutex_id());
                   //if(!)
@@ -5881,7 +5881,7 @@ namespace apex
       //
       //::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(
       //::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-      //ref new ::winrt::Windows::UI::Core::DispatchedHandler([this]()
+      //ref memory_new ::winrt::Windows::UI::Core::DispatchedHandler([this]()
       //{
       //::winrt::Windows::UI::ImpactManagement::ApplicationImpact::GetForCurrentImpact()->TryConsolidateAsync();
       //}));
@@ -7216,7 +7216,7 @@ namespace apex
    //::html::html * application::create_html()
    //{
 
-   //   return new ::html::html(get_app());
+   //   return memory_new ::html::html(get_app());
 
    //}
 
@@ -8838,7 +8838,7 @@ namespace apex
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_BINARY);
-   *ppData = new byte[*pBytes];
+   *ppData = memory_new byte[*pBytes];
    lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    *ppData, &dwCount);
@@ -8866,7 +8866,7 @@ namespace apex
    ASSERT(str.get_length()%2 == 0);
    iptr nLen = str.get_length();
    *pBytes = ::u32(nLen)/2;
-   *ppData = new byte[*pBytes];
+   *ppData = memory_new byte[*pBytes];
    for (i32 i=0;i<nLen;i+=2)
    {
    (*ppData)[i/2] = (byte)
@@ -8986,7 +8986,7 @@ namespace apex
    }
 
    // convert to string and write out
-   char * psz = new char[nBytes*2+1];
+   char * psz = memory_new char[nBytes*2+1];
 
    ::u32 i;
    for (i = 0; i < nBytes; i++)

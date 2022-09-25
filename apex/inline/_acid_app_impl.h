@@ -10,7 +10,7 @@
 ::application* get_acid_app()
 {
 
-   return new APP_TYPE();
+   return memory_new APP_TYPE();
 
 }
 

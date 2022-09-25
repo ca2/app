@@ -105,7 +105,7 @@ namespace helloaxis
 
       output_debug_string("\nfinished helloaxis::on_request");
 
-      m_prender = new ::helloaxis::render(this);
+      m_prender = memory_new ::helloaxis::render(this);
 
       ::helloaura::main_window(m_prender);
 
@@ -132,7 +132,7 @@ extern "C"
 ::acme::library * app_helloaxis_get_new_library(::object * pobject)
 {
 
-   return new ::apex::single_application_library < ::helloaxis::application > (pobject, "app/helloaxis");
+   return memory_new ::apex::single_application_library < ::helloaxis::application > (pobject, "app/helloaxis");
 
 }
 

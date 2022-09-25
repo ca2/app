@@ -24,7 +24,7 @@ namespace universal_windows
 
       m_bHasPlainText = false;
 
-      m_eventsink = ref new event_sink;
+      m_eventsink = ref memory_new event_sink;
 
       m_eventsink->m_pcopydesk = this;
 
@@ -125,7 +125,7 @@ namespace universal_windows
 
             on_content_changed();
 
-            ::winrt::Windows::ApplicationModel::DataTransfer::Clipboard::ContentChanged += ref new ::winrt::Windows::Foundation::EventHandler <::Platform::Object ^>(m_eventsink, &event_sink::ContentChanged);
+            ::winrt::Windows::ApplicationModel::DataTransfer::Clipboard::ContentChanged += ref memory_new ::winrt::Windows::Foundation::EventHandler <::Platform::Object ^>(m_eventsink, &event_sink::ContentChanged);
 
          }));
 
@@ -145,7 +145,7 @@ namespace universal_windows
    bool copydesk::_set_plain_text(const ::string & str)
    {
 
-      auto package = ref new ::winrt::Windows::ApplicationModel::DataTransfer::DataPackage;
+      auto package = ref memory_new ::winrt::Windows::ApplicationModel::DataTransfer::DataPackage;
 
       if (package == nullptr)
       {

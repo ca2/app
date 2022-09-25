@@ -2,7 +2,7 @@
 
 
 
-#undef new
+
 
 
 
@@ -937,7 +937,7 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
 //            throw ::exception(::exception("resource exception"));
 //         }
 
-         m_pmutexBitmap = new ::mutex(e_create_new, false, string("Global\\app_app_nest-") + hex::lower_from((iptr)this));
+         m_pmutexBitmap = memory_new ::mutex(e_create_new, false, string("Global\\app_app_nest-") + hex::lower_from((iptr)this));
 
       }
 

@@ -24,21 +24,21 @@
 
 nsSBCSGroupProber::nsSBCSGroupProber()
 {
-  mProbers[0] = new nsSingleByteCharSetProber(&Win1251Model);
-  mProbers[1] = new nsSingleByteCharSetProber(&Koi8rModel);
-  mProbers[2] = new nsSingleByteCharSetProber(&Latin5Model);
-  mProbers[3] = new nsSingleByteCharSetProber(&MacCyrillicModel);
-  mProbers[4] = new nsSingleByteCharSetProber(&Ibm866Model);
-  mProbers[5] = new nsSingleByteCharSetProber(&Ibm855Model);
-  mProbers[6] = new nsSingleByteCharSetProber(&Latin7Model);
-  mProbers[7] = new nsSingleByteCharSetProber(&Win1253Model);
-  mProbers[8] = new nsSingleByteCharSetProber(&Latin5BulgarianModel);
-  mProbers[9] = new nsSingleByteCharSetProber(&Win1251BulgarianModel);
+  mProbers[0] = memory_new nsSingleByteCharSetProber(&Win1251Model);
+  mProbers[1] = memory_new nsSingleByteCharSetProber(&Koi8rModel);
+  mProbers[2] = memory_new nsSingleByteCharSetProber(&Latin5Model);
+  mProbers[3] = memory_new nsSingleByteCharSetProber(&MacCyrillicModel);
+  mProbers[4] = memory_new nsSingleByteCharSetProber(&Ibm866Model);
+  mProbers[5] = memory_new nsSingleByteCharSetProber(&Ibm855Model);
+  mProbers[6] = memory_new nsSingleByteCharSetProber(&Latin7Model);
+  mProbers[7] = memory_new nsSingleByteCharSetProber(&Win1253Model);
+  mProbers[8] = memory_new nsSingleByteCharSetProber(&Latin5BulgarianModel);
+  mProbers[9] = memory_new nsSingleByteCharSetProber(&Win1251BulgarianModel);
 
   // disable latin2 before latin1 is available, otherwise all latin1 
   // will be detected as latin2 because of their similarity.
-  //mProbers[10] = new nsSingleByteCharSetProber(&Latin2HungarianModel);
-  //mProbers[11] = new nsSingleByteCharSetProber(&Win1250HungarianModel);
+  //mProbers[10] = memory_new nsSingleByteCharSetProber(&Latin2HungarianModel);
+  //mProbers[11] = memory_new nsSingleByteCharSetProber(&Win1250HungarianModel);
 
   Reset();
 }
@@ -162,8 +162,8 @@ nsProbingState nsSBCSGroupProber::HandleData(const ::string & aBuf, PR::u32 aLen
   char *newBuf1;
   PR::u32 newLen1;
 
-  //apply filter to original buffer, and we got new buffer back
-  //depend on what script it is, we will feed them the new buffer 
+  //apply filter to original buffer, and we got memory_new buffer back
+  //depend on what script it is, we will feed them the memory_new buffer 
   //we got after applying proper filter
   FilterWithoutEnglishLetters(aBuf, aLen, &newBuf1, newLen1);
 

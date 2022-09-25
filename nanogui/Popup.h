@@ -31,7 +31,7 @@ NAMESPACE_BEGIN(nanogui)
    public:
       enum Side { Left = 0, Right };
 
-      /// Create a new popup parented to a screen (first argument) and a parent window (if applicable)
+      /// Create a memory_new popup parented to a screen (first argument) and a parent window (if applicable)
       Popup(Widget * parent, Window * parent_window = nullptr);
 
       /// Return the anchor position in the parent window; the placement of the popup is relative to it

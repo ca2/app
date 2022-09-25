@@ -1,4 +1,4 @@
-#undef new
+
 
 
 void* MEMORY_DECL operator new(size_t nSize)
@@ -62,7 +62,7 @@ void MEMORY_DECL operator delete[](void* p) del_throw_spec
 
 
 
-#undef new
+
 
 
 #if defined(_UWP) //|| defined(ANDROID)
@@ -112,7 +112,7 @@ void operator delete(void* ptr, std::align_val_t) noexcept;
 #endif
 
 
-#define C_NEW new(c_class::s_cclass)
+#define C_NEW memory_new(c_class::s_cclass)
 
 
 #if !defined(NO_AURA_MEMORY_MANAGEMENT)

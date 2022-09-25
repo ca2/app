@@ -114,14 +114,14 @@ public:
 
    virtual void write_object(const ::atom & atom, const ::atom & idFactory, ::matter * pobject) override
    {
-      payload_stream stream(new ::payload(&payload()[atom].propset()));
+      payload_stream stream(memory_new ::payload(&payload()[atom].propset()));
       stream.exchange("id", idFactory);
       stream.exchange("", pobject);
    }
 
    virtual __pointer(::contex_object) read_object(const ::atom & atom) override
    {
-      payload_stream stream(new ::payload(&payload()[atom].propset()));
+      payload_stream stream(memory_new ::payload(&payload()[atom].propset()));
       ::atom idFactory;
       stream.exchange("id", idFactory);
       auto pobject = __id_create<::matter>(idFactory);
@@ -379,5 +379,5 @@ class exchanger
 
            window new_frame_window()
            {
-              return new frame_window();
+              return memory_new frame_window();
            }

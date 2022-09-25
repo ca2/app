@@ -1,11 +1,15 @@
 // ReCreated/Merged (from acme_main_data) on 2021-11-01 12:24 BRT <3ThomasBorregaardSørensen!!
 // Created by camilo 2021-03-12 12:08 BRT <3_ThomasBS, Mummi and bilbo!!
+// ReCreated/Merged (from acme_main_data and apex_main_data) on 2022-09-25 01:35 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
 
-struct CLASS_DECL_ACME PLAIN_MAIN // : public ::acme::reference
+struct CLASS_DECL_ACME MAIN // : public ::acme::reference
 {
 
+   bool                             m_bFork;
+   ::e_display                      m_edisplay;
+   ::e_activation                   m_eactivation;
 
    int               m_argc = 0;
 
@@ -28,28 +32,49 @@ struct CLASS_DECL_ACME PLAIN_MAIN // : public ::acme::reference
 
 #endif
 
-   int                           m_iExitCode = 0;
+   int                              m_iExitCode = 0;
 
-   ::tristate                     m_bLocalization;
-   ::tristate                     m_bNetworking;
-   ::tristate                     m_bConsole;
-   ::tristate                     m_bDraw2d;
-   ::tristate                     m_bWriteText;
-   ::tristate                     m_bUser;
-   ::tristate                     m_bUserEx;
-   ::tristate                     m_bImaging;
-   ::tristate                     m_bAudio;
-   ::tristate                     m_bMidi;
-   ::tristate                     m_bInitializeDataCentral;
+   ::tristate                       m_bLocalization;
+   ::tristate                       m_bNetworking;
+   ::tristate                       m_bConsole;
+   ::tristate                       m_bDraw2d;
+   ::tristate                       m_bWriteText;
+   ::tristate                       m_bUser;
+   ::tristate                       m_bUserEx;
+   ::tristate                       m_bImaging;
+   ::tristate                       m_bAudio;
+   ::tristate                       m_bMidi;
+   ::tristate                       m_bInitializeDataCentral;
 #ifdef WINDOWS_DESKTOP
-   ::tristate                     m_bGdiplus;
+   ::tristate                       m_bGdiplus;
 #elif defined(LINUX) || defined(FREEBSD)
-   ::tristate                     m_bGtkApp;
+   ::tristate                       m_bGtkApp;
 #endif
-   ::tristate                     m_bShowApplicationInformation;
-   //::tristate                     m_bPreferNoFrameWindow;
+   ::tristate                       m_bShowApplicationInformation;
+   ::tristate                       m_bDataCentralRequired;
 
-   PLAIN_MAIN();
+   ::tristate                       m_bExperienceMainFrame;
+
+   INT_STRING *                     m_pintstringLanguageResourceMap;
+   int                              m_iMatterFromHttpCache;
+
+   const char *                     m_pszMain;
+//   //PFN_NEW_MATTER                   m_pfnnewmatterApplication;
+//   //PFN_NEW_LIBRARY                  m_pfnnewlibrary;
+//   PFN_DEFER_TERM                      m_pfnDeferTerm;
+
+   MAIN();
+
+
+   MAIN & operator = (const MAIN & main)
+   {
+
+      memcpy(this, &main, sizeof(MAIN));
+
+      return *this;
+
+   }
+
 
 };
 
@@ -63,7 +88,8 @@ struct CLASS_DECL_ACME PLAIN_MAIN // : public ::acme::reference
 
 
 class CLASS_DECL_ACME main :
-   virtual public PLAIN_MAIN,
+   virtual public MAIN,
+   virtual public ::object,
    virtual public acme::implementable
 {
 public:
@@ -73,6 +99,21 @@ public:
    string                              m_strAppId;
    __pointer(::acme::application)      m_pacmeapplicationStartup;
    __pointer(::acme::application)      m_pacmeapplicationMain;
+
+
+   ///int                              m_iPathInstallFolderExeArg;
+   string                           m_strStandalone;
+   //LPFN_MAIN_RUNNER                 m_mainrunnera[64];
+   ::file::path                     m_pathCacheDirectory;
+
+ //string                            m_strCommandLine;
+   string                              m_strProgName;
+   ::duration                          m_durationStart;
+   ::duration                          m_durationAfterApplicationFirstRequest;
+   //::apex::system *                  m_psystem;
+   //__pointer(apex_main_data)         m_pmaindata;
+   __pointer(::acme::library)          m_plibrary;
+   array < ::e_status >                m_estatusa;
 
 
    main();
@@ -100,6 +141,89 @@ public:
    string get_executable() const;
 
    string get_argument1(int iArgument) const;
+
+//#ifdef WINDOWS
+//
+//   hinstance                        m_hinstance;
+//   hinstance                        m_hPrevInstance;
+//   int                              m_nCmdShow;
+//
+//#endif
+
+
+   //apex_main_data();
+   //~apex_main_data() override;
+
+
+
+
+   void system_construct(const class ::main * pmain) override;
+
+
+   //void system_construct(int argc, char** argv, char ** envp);
+   //void system_construct(int argc, wchar_t** argv, wchar_t ** envp);
+
+   virtual void on_system_construct();
+
+
+#ifdef WINDOWS_DESKTOP
+
+   void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, i32 nCmdShow);
+
+#elif defined(_UWP)
+
+   void system_construct(const string_array & stra);
+
+#else
+
+   void system_construct(const char * pszCommandLine, const ::e_display & edisplay = ::e_display_none);
+
+#endif
+
+   string get_arg(int i) const;
+   string get_env(const char *pszVariableName) const;
+
+
+   bool is_console_app() const;
+
+
+   //app_core(apex_main_data * pdata);
+   app_core();
+   ~app_core();
+
+   bool on_result(const ::e_status & estatus);
+
+   //static ::u32 WINAPI MAIN(void * pvoid);
+
+   //bool system_beg();
+
+   //bool system_init();
+
+   void system_proc();
+
+   bool has_apex_application_factory() const;
+
+   virtual void system_init();
+
+   virtual void system_prep();
+
+   //virtual void system_main();
+
+   //virtual void system_call();
+
+   string get_command_line();
+
+   void system_end();
+
+   __pointer(::acme::application) new_app();
+   __pointer(::acme::application) new_app(const char* pszAppId);
+
+
+   //   __pointer(::apex::application) get_new_application(::object* pobject);
+   //   __pointer(::apex::application) get_new_application(::object* pobject, const char* pszAppId);
+
+   virtual void initialize_application(::acme::application * papp, ::object* pobject);
+
 
 
 };

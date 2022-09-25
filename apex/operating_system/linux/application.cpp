@@ -91,7 +91,7 @@
 //
 //            if(dwResSize > 0)
 //            {
-//               LPVOID pdata = new byte[dwResSize];
+//               LPVOID pdata = memory_new byte[dwResSize];
 //
 //               if(GetFileVersionInfo(
 //                  pszModuleFilePath,
@@ -405,7 +405,7 @@
 //         {
 //            delete[] vmap[::payload];
 //         }
-//         vmap[::payload] = new char[payload.get_length() + 1 + value.get_length() + 1];
+//         vmap[::payload] = memory_new char[payload.get_length() + 1 + value.get_length() + 1];
 //         sprintf(vmap[::payload], "%s=%s", payload, value);
 //         putenv( vmap[::payload] );
 //      }

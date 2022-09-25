@@ -377,7 +377,7 @@ namespace ftp
       void insert(enum_command enCommand, const string& strServerString, const string& strCompleteServerStringSyntax, ::u32 uNumberOfParameters,
                   ::u32 uNumberOfOptionalParameters, TSpecificationEnum enSpecification, enum_type enType);
 
-      static info2& GetInstance() { if (g_pTheOneAndOnly == nullptr) g_pTheOneAndOnly = new info2(); return *g_pTheOneAndOnly; }
+      static info2& GetInstance() { if (g_pTheOneAndOnly == nullptr) g_pTheOneAndOnly = memory_new info2(); return *g_pTheOneAndOnly; }
 
       static const iextended_info& Get(enum_command enCommand);
 

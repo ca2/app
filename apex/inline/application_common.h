@@ -175,7 +175,7 @@ const char* br_init_get_symbol();
 //public:
 //
 //
-//   virtual ::application* new_application() { return new APPLICATION; }
+//   virtual ::application* new_application() { return memory_new APPLICATION; }
 //
 //
 //   static_application_factory(const char * pszName = "") :

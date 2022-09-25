@@ -1,7 +1,7 @@
 #pragma once
 
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 
 template < typename PAYLOAD, const int DEFAULT_HASH_TABLE_SIZE = 17 >
@@ -67,7 +67,7 @@ public:
          else
          {
 
-            m_ppassociationHash = new association *[nHashSize];
+            m_ppassociationHash = memory_new association *[nHashSize];
 
             ENSURE(m_ppassociationHash != nullptr);
 
@@ -416,10 +416,10 @@ public:
    }
    association * find_association(ARG_KEY key) const;
 
-   //add a new (key) association
+   //add a memory_new (key) association
    inline association * set_at(ARG_KEY key);
 
-   //add a new (key, value) association
+   //add a memory_new (key, value) association
    virtual void set_payload(const PAYLOAD& payload)
    {
       set_at(payload.key());
@@ -881,14 +881,14 @@ set < KEY, ARG_KEY, PAYLOAD >::new_association(ARG_KEY key)
    //   //   this->m_passociationFree = passociation;
 
    //   //}
-   //   this->m_passociationFree = new association();
+   //   this->m_passociationFree = memory_new association();
 
    //}
 
    //ENSURE(this->m_passociationFree != nullptr);  // we must have something
 
    typename set < KEY, ARG_KEY, PAYLOAD >::association * passociation =
-   new association(key);
+   memory_new association(key);
 
    //this->m_passociationFree  = this->m_passociationFree->m_pnext;
 
@@ -1111,7 +1111,7 @@ template < typename KEY, typename ARG_KEY, typename PAYLOAD >
 KEY& set < KEY, ARG_KEY, PAYLOAD >::operator[](ARG_KEY key)
 {
 
-   return get_association(key)->key();  // return new matter
+   return get_association(key)->key();  // return memory_new matter
 
 }
 
@@ -1119,7 +1119,7 @@ template < typename KEY, typename ARG_KEY, typename PAYLOAD >
 const KEY & set < KEY, ARG_KEY, PAYLOAD >::operator[](ARG_KEY key) const
 {
 
-   return get_association(key)->key();  // return new matter
+   return get_association(key)->key();  // return memory_new matter
 
 }
 

@@ -95,7 +95,7 @@ Display * x11_get_display();
 oswindow_data::oswindow_data()
 {
 
-   //m_plongmap  = new iptr_to_iptr;
+   //m_plongmap  = memory_new iptr_to_iptr;
 
    m_iXic = 0;
 
@@ -314,7 +314,7 @@ oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * pint
 
    }
 
-   ::oswindow_data * pdata = new oswindow_data;
+   ::oswindow_data * pdata = memory_new oswindow_data;
 
    pdata->m_bMessageOnlyWindow      = true;
    pdata->m_window                  = None;
@@ -363,7 +363,7 @@ oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual
 
    }
 
-   ::oswindow_data * pdata = new ::oswindow_data;
+   ::oswindow_data * pdata = memory_new ::oswindow_data;
 
    pdata->m_bMessageOnlyWindow      = false;
    pdata->m_osdisplay               = osdisplay_get(pdisplay);

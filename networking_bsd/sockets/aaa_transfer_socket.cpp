@@ -466,7 +466,7 @@ namespace networking_bsd
    //   tcp_socket(handler),
    //   transfer_socket(handler)
    //{
-   //   m_pReadBuf = new char[nSizeRecv];
+   //   m_pReadBuf = memory_new char[nSizeRecv];
    //   m_nReadBuf = 0;
    //}
 
@@ -543,7 +543,7 @@ namespace networking_bsd
    //__pointer(transfer_socket) create_default_transfer_socket()
    //{
 
-   //   return new transfer_socket(handler);
+   //   return memory_new transfer_socket(handler);
 
    //}
 

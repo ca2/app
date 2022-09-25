@@ -326,7 +326,7 @@
 //   template < class T >
 //   inline task < T > * create_task(task_completion_event < T > & ev, cancellation_token token = token::none())
 //   {
-//      return new task < T > (ev, token);
+//      return memory_new task < T > (ev, token);
 //   }
 //
 //} // namespace async

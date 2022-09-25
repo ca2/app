@@ -13,7 +13,7 @@
 
 //#ifdef EXCEPTION_TRANSLATOR_USE_SIGNAL
 //
-//      m_psig = new sig_companion;
+//      m_psig = memory_new sig_companion;
 //
 //#endif
 

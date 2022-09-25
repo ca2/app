@@ -545,8 +545,8 @@
 //   wstring pwsz2 = utf8_to_unicode(psz2);
 //   //   unichar * pwszFile1;
 //      // unichar * pwszFile2;
-//   widechar * pwszPath1 = new widechar[iBufSize];
-//   widechar * pwszPath2 = new widechar[iBufSize];
+//   widechar * pwszPath1 = memory_new widechar[iBufSize];
+//   widechar * pwszPath2 = memory_new widechar[iBufSize];
 //   i32 iCmp = -1;
 //   //   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
 //      // {

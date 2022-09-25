@@ -632,11 +632,7 @@ void payload::set_type(enum_type etype, bool bConvert)
       else if (etype == e_type_string)
       {
 
-#undef new
-
          ::new(&m_str) ::string();
-
-#define new ACME_NEW
 
       }
 
@@ -1483,7 +1479,7 @@ class ::payload & payload::operator = (::duration * pduration)
 
       set_type(e_type_memory, false);
 
-      m_pmemory = new ::memory(block);
+      m_pmemory = memory_new ::memory(block);
 
    }
 
@@ -3396,13 +3392,13 @@ class ::memory & payload::as_memory()
 
       set_type(e_type_memory, false);
 
-      m_pmemory = new ::memory();
+      m_pmemory = memory_new ::memory();
 
    }
    else if(::is_null(m_pmemory))
    {
 
-      m_pmemory = new ::memory();
+      m_pmemory = memory_new ::memory();
 
    }
 
@@ -3444,7 +3440,7 @@ class ::memory & payload::as_memory()
    else if (m_etype != ::e_type_path)
    {
 
-      auto ppath = new ::file::path_object();
+      auto ppath = memory_new ::file::path_object();
 
       ppath->assign(get_file_path());
 
@@ -3515,7 +3511,7 @@ string_array payload::stra() const
    else if (::is_null(m_pstra))
    {
 
-      //m_pstra = new string_array();
+      //m_pstra = memory_new string_array();
 
       return string_array();
 
@@ -3538,7 +3534,7 @@ string_array & payload::as_stra()
    else if (m_etype != e_type_string_array)
    {
 
-      auto pstra = new string_array();
+      auto pstra = memory_new string_array();
 
       try
       {
@@ -3566,7 +3562,7 @@ string_array & payload::as_stra()
    else if(::is_null(m_pstra))
    {
 
-      m_pstra = new string_array();
+      m_pstra = memory_new string_array();
 
    }
 
@@ -3646,7 +3642,7 @@ int_array & payload::as_ia()
    else if(m_etype != e_type_i32_array)
    {
 
-      auto pia = new int_array();
+      auto pia = memory_new int_array();
 
       try
       {
@@ -3674,7 +3670,7 @@ int_array & payload::as_ia()
    else if (::is_null(m_pia))
    {
 
-      m_pia = new int_array();
+      m_pia = memory_new int_array();
 
    }
 
@@ -3731,7 +3727,7 @@ i64_array payload::i64a() const
    else if (::is_null(m_pi64a))
    {
 
-      //m_pi64a = new i64_array();
+      //m_pi64a = memory_new i64_array();
       return i64_array();
 
    }
@@ -3759,7 +3755,7 @@ i64_array & payload::as_i64a()
    else if(m_etype != e_type_i64_array)
    {
 
-      auto pia64  = new i64_array();
+      auto pia64  = memory_new i64_array();
 
       try
       {
@@ -3787,7 +3783,7 @@ i64_array & payload::as_i64a()
    else if(::is_null(m_pi64a))
    {
 
-      m_pi64a = new i64_array();
+      m_pi64a = memory_new i64_array();
 
    }
 
@@ -3993,7 +3989,7 @@ payload_array payload::payloada() const
    else if (::is_null(m_ppayloada))
    {
 
-      //m_ppayloada = new payload_array();
+      //m_ppayloada = memory_new payload_array();
 
       return payload_array();
 
@@ -4022,7 +4018,7 @@ payload_array & payload::as_payloada()
    else if(m_etype != e_type_payload_array)
    {
 
-      auto pvara  = new payload_array();
+      auto pvara  = memory_new payload_array();
 
       try
       {
@@ -4057,7 +4053,7 @@ payload_array & payload::as_payloada()
    else if (::is_null(m_ppayloada))
    {
 
-      m_ppayloada = new payload_array();
+      m_ppayloada = memory_new payload_array();
 
    }
 
@@ -4112,7 +4108,7 @@ property_set payload::propset() const
    else if (::is_null(m_ppropertyset))
    {
 
-      //m_ppropertyset = new property_set();
+      //m_ppropertyset = memory_new property_set();
 
       return property_set();
 
@@ -4141,7 +4137,7 @@ property_set & payload::as_propset()
    else if (m_etype != e_type_property_set)
    {
 
-      auto pset = new property_set();
+      auto pset = memory_new property_set();
 
       if (is_empty() || !get_bool())
       {
@@ -4167,7 +4163,7 @@ property_set & payload::as_propset()
    else if (::is_null(m_ppropertyset))
    {
 
-      m_ppropertyset = new property_set();
+      m_ppropertyset = memory_new property_set();
 
    }
 
@@ -6736,7 +6732,7 @@ void payload::null()
    else
    {
 
-      auto ppath = new ::file::path_object(get_file_path());
+      auto ppath = memory_new ::file::path_object(get_file_path());
 
       *ppath |= eflag;
 

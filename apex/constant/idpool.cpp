@@ -177,7 +177,7 @@ namespace apex
 
       html_none = "none";
       html_unknown = "unknown";
-      html_new = "new";
+      html_new = "memory_new";
       html_initial = "initial";
       html_html = "html";
       html_head = "head";
@@ -284,7 +284,7 @@ namespace apex
    //   if (!g_pthis)
    //   {
 
-   //      g_pthis = new idpool();
+   //      g_pthis = memory_new idpool();
 
    //   }
 
@@ -315,7 +315,7 @@ namespace apex
    //void apex::init_id_pool()
    //{
 
-   //   ::idpool::g_p = new idpool();
+   //   ::idpool::g_p = memory_new idpool();
 
    //}
 

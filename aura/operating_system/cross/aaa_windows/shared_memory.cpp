@@ -123,7 +123,7 @@ HGLOBAL WINAPI GlobalAlloc(::u32 uFlags, SIZE_T dwBytes)
    i32 result;
 
 
-   HGLOBAL hglobal = new struct hglobal();
+   HGLOBAL hglobal = memory_new struct hglobal();
 
    strcpy(hglobal->m_szFile, "/ca2/time/global_alloc/XXXXXX.mmap");
 
@@ -165,7 +165,7 @@ HGLOBAL WINAPI GlobalAlloc(::u32 uFlags, SIZE_T dwBytes)
    }
 
    /* Something needs to be written at the end of the file to
-    * have the file actually have the new size.
+    * have the file actually have the memory_new size.
     * Just writing an empty string at the current file position will do.
     *
     * Note:

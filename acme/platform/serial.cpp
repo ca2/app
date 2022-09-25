@@ -801,7 +801,7 @@ namespace serial
 //   size)
 //{
 //   scoped_read_lock lock(this);
-//   u8 * buffer_ = new u8[size];
+//   u8 * buffer_ = memory_new u8[size];
 //   size_t bytes_read = this->read(buffer_, size);
 //   buffer.append(reinterpret_cast
 //   <const char *>(buffer_), bytes_read

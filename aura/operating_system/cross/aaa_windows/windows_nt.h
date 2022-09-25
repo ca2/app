@@ -534,7 +534,7 @@ typedef ::u32 FLONG;
 /* Argument 1 passed to the DllEntryProc. */
 #define	DLL_PROCESS_DETACH	0	/* detach process (unload library) */
 #define	DLL_PROCESS_ATTACH	1	/* attach process (load library) */
-#define	DLL_THREAD_ATTACH	2	/* attach new thread */
+#define	DLL_THREAD_ATTACH	2	/* attach memory_new thread */
 #define	DLL_THREAD_DETACH	3	/* detach thread */
 #ifdef __WINESRC__
 #define DLL_WINE_PREATTACH      8       /* called before process attach for Wine builtins */
@@ -3177,7 +3177,7 @@ typedef struct _IMAGE_IMPORT_DESCRIPTOR {
 	::u32	TimeDateStamp;	/* 0 if not bound,
 				 * -1 if bound, and real date\time stamp
 				 *    in IMAGE_DIRECTORY_ENTRY_BOUND_IMPORT
-				 * (new BIND)
+				 * (memory_new BIND)
 				 * otherwise date/time stamp of DLL bound to
 				 * (Old BIND)
 				 */

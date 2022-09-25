@@ -92,7 +92,7 @@ void aura_auto_debug_teste()
 //      if(true)
 //      {
 //         AUTO(debug_puts("two"));
-//         debug_puts("one"); // compiler knows this doesn't throw ::exception(new
+//         debug_puts("one"); // compiler knows this doesn't throw ::exception(memory_new
 //      }
 //      if(true)
 //      {

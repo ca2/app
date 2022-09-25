@@ -32,7 +32,7 @@
 
 
 
-#undef new
+
 
 
 

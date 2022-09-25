@@ -47,7 +47,7 @@
 //      if (m_statusresult.m_estatus == error_not_initialized)
 //      {
 //
-//         m_pevent = new manual_reset_event();
+//         m_pevent = memory_new manual_reset_event();
 //
 //         if (!m_pevent->wait(duration).succeeded())
 //         {

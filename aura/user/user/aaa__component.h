@@ -467,7 +467,7 @@ class COleDataObject;   // forward object (see afxole.h)
 //#include "slider.h"
 
 
-//#define new AURA_NEW
+//#define memory_new AURA_NEW
 
 //
 //

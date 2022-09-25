@@ -93,7 +93,7 @@
 //         // The file was renamed and this is the old name.
 //         return action_renamed_old_name;
 //      case FILE_ACTION_RENAMED_NEW_NAME:
-//         // The file was renamed and this is the new name.
+//         // The file was renamed and this is the memory_new name.
 //         return action_renamed_new_name;
 //      // ...
 //      default:

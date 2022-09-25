@@ -19,7 +19,7 @@ namespace opengl
    ::gpu::context * create_cgl_context()
    {
 
-      return new context_cgl();
+      return memory_new context_cgl();
 
    }
 

@@ -321,7 +321,7 @@ namespace filehandler
 
       }
 
-      ptreeitem = m_ptree->insert_item(new item, ::data::RelativeLastChild, m_ptree->get_base_item());
+      ptreeitem = m_ptree->insert_item(memory_new item, ::data::RelativeLastChild, m_ptree->get_base_item());
 
       auto pdataitem = ptreeitem->m_pdataitem.cast < item >();
 

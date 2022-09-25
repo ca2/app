@@ -82,7 +82,7 @@ namespace userex
 
       }
 
-      m_pimpact->m_pprogress->m_pscalar = new double_scalar(this, scalar_progress);
+      m_pimpact->m_pprogress->m_pscalar = memory_new double_scalar(this, scalar_progress);
 
       m_pimpact->m_pprogressreal = this;
 

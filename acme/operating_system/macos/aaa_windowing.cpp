@@ -50,7 +50,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //   }
 //
-//   ::oswindow_data * pdata = new ::oswindow_data;
+//   ::oswindow_data * pdata = memory_new ::oswindow_data;
 //
 //   pdata->m_nswindow    = window;
 //
@@ -66,7 +66,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //   m_nswindow  = nullptr;
 //   m_pimpl       = nullptr;
-//   m_plongmap  = new iptr_to_iptr;
+//   m_plongmap  = memory_new iptr_to_iptr;
 //   m_bNsWindowRect = false;
 //}
 //
@@ -76,7 +76,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //   m_nswindow  = window;
 //   m_pimpl       = nullptr;
-//   m_plongmap  = new iptr_to_iptr;
+//   m_plongmap  = memory_new iptr_to_iptr;
 //   m_bNsWindowRect = false;
 //}
 //
@@ -645,9 +645,9 @@ void ns_main_async(dispatch_block_t block);
 //
 ////   set_DispatchMessage(&axis_DispatchMessage);
 //
-//   g_pmutexOsWindowData = new ::mutex();
+//   g_pmutexOsWindowData = memory_new ::mutex();
 //
-//   g_poswindowdataptra = new oswindow_dataptra;
+//   g_poswindowdataptra = memory_new oswindow_dataptra;
 //
 //   mm_init_workspace_rect();
 //

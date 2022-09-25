@@ -34,10 +34,10 @@ bool initialize_memory_counter(::matter* pmatter)
       if (g_iMemoryCounters)
       {
 
-         //g_pmutexMemoryCounters = new ::mutex(e_create_new, false, "Global\\ca2_memory_counters");
-         g_pmutexMemoryCounters = new ::mutex();
+         //g_pmutexMemoryCounters = memory_new ::mutex(e_create_new, false, "Global\\ca2_memory_counters");
+         g_pmutexMemoryCounters = memory_new ::mutex();
 
-         g_pmapMemoryCounter = new string_map < iptr >;
+         g_pmapMemoryCounter = memory_new string_map < iptr >;
 
       }
 
@@ -55,7 +55,7 @@ bool initialize_memory_counter(::matter* pmatter)
 //   if (g_iMemoryCountersStartable && g_pMemoryCounters == nullptr)
 //   {
 //
-//      g_pMemoryCounters = new ::file::path();
+//      g_pMemoryCounters = memory_new ::file::path();
 //
 //#if defined(_UWP)
 //

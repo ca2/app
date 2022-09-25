@@ -46,12 +46,12 @@ namespace html
       __UNREFERENCED_PARAMETER(dwAppData);
       if(m_ptag == nullptr)
       {
-         m_ptag = new ::html::tag(nullptr);
+         m_ptag = memory_new ::html::tag(nullptr);
          m_ptagMain = m_ptag;
       }
       else
       {
-         ::html::tag * ptag = new ::html::tag(m_ptag);
+         ::html::tag * ptag = memory_new ::html::tag(m_ptag);
          m_ptag->baseptra().add(ptag);
          m_ptag = ptag;
       }
@@ -94,7 +94,7 @@ namespace html
       __UNREFERENCED_PARAMETER(dwAppData);
       if(m_ptag != nullptr)
       {
-         ::html::value * pvalue = new ::html::value(m_ptag);
+         ::html::value * pvalue = memory_new ::html::value(m_ptag);
          m_ptag->baseptra().add(pvalue);
          pvalue->set_value(rText);
       }

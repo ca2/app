@@ -78,7 +78,7 @@ i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 //
 //   }
 //
-//   m_pmeta = new object_meta();
+//   m_pmeta = memory_new object_meta();
 //
 //}
 

@@ -34,7 +34,7 @@ namespace universal_windows
          }
 
          ::wait(pdispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-            ref new ::winrt::Windows::UI::Core::DispatchedHandler([pred]()
+            ref memory_new ::winrt::Windows::UI::Core::DispatchedHandler([pred]()
                {
 
                   pred();
@@ -132,9 +132,9 @@ namespace universal_windows
       void SetText(String^ text, int iBeg, int iEnd);
       bool HasSelection();
 
-      // Change the selection without notifying CoreTextEditContext of the new selection.
+      // Change the selection without notifying CoreTextEditContext of the memory_new selection.
       void SetSelection(::winrt::Windows::UI::Text::Core::CoreTextRange selection);
-      // Change the selection and notify CoreTextEditContext of the new selection.
+      // Change the selection and notify CoreTextEditContext of the memory_new selection.
       void SetSelectionAndNotify(::winrt::Windows::UI::Text::Core::CoreTextRange selection);
 
       // Return the specified range of text. Note that the system may ask for more text

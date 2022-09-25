@@ -466,7 +466,7 @@ namespace ftp
       if (!IsMultiNetListing(pszLine))
          return false;
 
-      // name lookup of `i' changed for new ISO `for' scoping
+      // name lookup of `i' changed for memory_new ISO `for' scoping
       int i = 0;
       for (; i < iLength; ++i)
          if (pszLine[i] == (';'))

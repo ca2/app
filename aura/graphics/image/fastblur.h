@@ -42,7 +42,7 @@
 //	Nonethelss this approach causes the **INEVITABLE CODE BLOAT** when
 //	performing more complex math expressions.
 ///////////////////////////////////////////////////////////////////////////////
-#undef new
+
 __declspec(align(16)) class vector4
 {
 public:
@@ -244,7 +244,7 @@ inline vector4 Reflect(const vector4 & Incident,const vector4 & Normal)
    return Result;
 
 }
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 #endif // VECTOR3_SSE
 

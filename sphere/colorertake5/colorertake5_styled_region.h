@@ -90,7 +90,7 @@ public:
   }
 
   RegionDefine *clone() const {
-    RegionDefine *rd = new StyledRegion(*this);
+    RegionDefine *rd = memory_new StyledRegion(*this);
     return rd;
   }
 };

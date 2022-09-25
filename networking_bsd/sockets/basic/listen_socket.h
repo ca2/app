@@ -14,7 +14,7 @@ namespace sockets_bsd
 {
 
 
-   /** Binds incoming port number to new socket class X.
+   /** Binds incoming port number to memory_new socket class X.
    \ingroup basic */
    class CLASS_DECL_NETWORKING_BSD listen_socket :
       virtual public ::sockets_bsd::socket,

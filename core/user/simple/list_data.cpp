@@ -73,7 +73,7 @@ void simple_list_data::set_item_text(index iItem,index iSubItem, const ::string 
 
    while(iSubItem >= m_array.get_size())
    {
-      m_array.add(new string_array());
+      m_array.add(memory_new string_array());
    }
 
    m_array[iSubItem]->set_at_grow(iItem,pcsz);
@@ -116,7 +116,7 @@ void simple_list_data::get_data(string_array &stra)
 
 void simple_list_data::set_column_data(::user::mesh * pmesh,string_array & stra,index iColumn)
 {
-   m_array.set_at_grow(iColumn,new string_array(stra));
+   m_array.set_at_grow(iColumn,memory_new string_array(stra));
    for(i32 iSubItem = 0; iSubItem < m_array.get_count(); iSubItem++)
    {
       if(iColumn != iSubItem)

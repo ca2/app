@@ -55,7 +55,7 @@ void window_xlib::create(oswindow window, i64 cxParam, i64 cyParam, int iStrideP
 
 /*   m_pimage = XCreateImage(window->display(), window->draw2d(), window->m_iDepth, ZPixmap, 0, (char *) m_mem->get_data(), cxParam, cyParam, sizeof(color32_t) * 8, m_iScan);
 
-   m_pdc = new device_context();
+   m_pdc = memory_new device_context();
 
    XGCValues gcvalues;
 

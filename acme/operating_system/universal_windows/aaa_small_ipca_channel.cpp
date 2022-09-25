@@ -96,7 +96,7 @@
 
          string anotherappURI = m_strBaseChannel + ":///send?message=" + ::acme::get_system()->url_encode(pszMessage);
 
-         Uri ^uri = ref new Uri(anotherappURI);
+         Uri ^uri = ref memory_new Uri(anotherappURI);
 
          main_sync([uri, durationTimeout]()
             {
@@ -133,7 +133,7 @@
 
          string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __string(message)+ "," + ::acme::get_system()->url_encode(::acme::get_system()->base64().encode((byte *)pdata, len));
 
-         Uri ^uri = ref new Uri(anotherappURI);
+         Uri ^uri = ref memory_new Uri(anotherappURI);
 
          ::wait(Launcher::LaunchUriAsync(uri), durationTimeout);
 

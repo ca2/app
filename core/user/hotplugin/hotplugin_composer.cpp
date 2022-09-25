@@ -438,7 +438,7 @@ namespace hotplugin
 //      try
 //      {
 //
-//         m_pcomposersystem = new ::axis::system(nullptr);
+//         m_pcomposersystem = memory_new ::axis::system(nullptr);
 //
 //         ::axis::system * paxissystem = m_pcomposersystem;
 //

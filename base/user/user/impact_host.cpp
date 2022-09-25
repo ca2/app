@@ -128,7 +128,7 @@ namespace user
    void impact_host::add_impact_kit2(::user::impact_kit * pimpactkit)
    {
 
-      // try to find exclusive id for the new impact kit
+      // try to find exclusive id for the memory_new impact kit
 
       while (find_impact_kit(pimpactkit->m_atom))
       {

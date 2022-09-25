@@ -54,7 +54,7 @@ namespace data
    }
 
 
-/*#undef new
+/*
    void * simple_item::operator new(size_t, const char *, i32)
    {
       return _alloc001SimpleTreeItem.Alloc();
@@ -64,7 +64,7 @@ namespace data
    {
       return _alloc001SimpleTreeItem.Alloc();
    }
-#define new ACME_NEW*/
+//#define memory_new ACME_NEW*/
 
 /*   void simple_item::operator delete(void * p)
    {

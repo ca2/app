@@ -102,7 +102,7 @@ namespace file_lock
 
    //    }
 
-   //    i32 * pi = new i32;
+   //    i32 * pi = memory_new i32;
 
    //    *pi = fd;
 

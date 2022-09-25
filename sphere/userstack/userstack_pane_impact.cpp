@@ -23,7 +23,7 @@ namespace userstack
       m_ppropform       = nullptr;
       //m_dataid          = "ca2::bergedge::pane_impact";
 
-      get_data()->m_matchanyRestore.add(new ::aura::match::prefix("app:"));
+      get_data()->m_matchanyRestore.add(memory_new ::aura::match::prefix("app:"));
 
    }
 
@@ -177,7 +177,7 @@ namespace userstack
          if(!psession->appptra().lookup("application:" + strId, pappTab))
          {
 
-            application_bias * pappbias = new application_bias;
+            application_bias * pappbias = memory_new application_bias;
             pappbias->m_puserinteractionParent = pimpactdata->m_pplaceholder;
 
             __pointer(::create) pcreate(e_create);

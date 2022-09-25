@@ -91,7 +91,7 @@ namespace android
       	   virtual int_bool GetDeviceInformationUsingThread( oswindow hWnd );  // starts a thread that will get IGD (router) device information; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION message to hWnd when it's done
       	   virtual int_bool GetMappingsUsingThread( oswindow hWnd );  // starts a thread that will get all mappings; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION message to hWnd when it's done
       	   virtual int_bool EditMappingUsingThread( port_map& oldMapping, port_map& newMapping, oswindow hWnd );  // starts a thread that will edit one specific mapping; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION message to hWnd when it's done
-      	   virtual int_bool AddMappingUsingThread( port_map& newMapping, oswindow hWnd );  // starts a thread that will add one new mapping; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION message to hWnd when it's done
+      	   virtual int_bool AddMappingUsingThread( port_map& newMapping, oswindow hWnd );  // starts a thread that will add one memory_new mapping; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION message to hWnd when it's done
       	   virtual int_bool DeleteMappingUsingThread( port_map& oldMapping, oswindow hWnd );  // starts a thread that will delete one specific mapping; the thread posts a UWM_PORT_FORWARD_ENGINE_THREAD_NOTIFIcaTION message to hWnd when it's done
 
       	   virtual array_ptr_alloc < port_map > get_port_map() const;  // gets a copy of currently-known port mappings

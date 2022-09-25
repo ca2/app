@@ -9,7 +9,7 @@
 //CLASS_DECL_EXPORT ::acme::application * IDENTIFIER_CONCATENATE(new_, ALLOCATOR)() \
 //{ \
 //  \
-//   return new ::APPLICATION::application();  \
+//   return memory_new ::APPLICATION::application();  \
 //  \
 //}
 //

@@ -8,7 +8,7 @@
 #include "graphics.h"
 
 
-#include "aura/graphics/image/_image.h"
+////#include "aura/graphics/image/_image.h"
 
 
 #include "buffer.h"

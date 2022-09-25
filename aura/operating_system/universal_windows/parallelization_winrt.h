@@ -40,7 +40,7 @@ public:
 
       m_operation             = operation;
 
-      m_operation->Completed  = ref new ::winrt::Windows::Foundation::AsyncOperationCompletedHandler < T > ([this](::winrt::Windows::Foundation::IAsyncOperation < T > ^ operation, ::winrt::Windows::Foundation::AsyncStatus status)
+      m_operation->Completed  = ref memory_new ::winrt::Windows::Foundation::AsyncOperationCompletedHandler < T > ([this](::winrt::Windows::Foundation::IAsyncOperation < T > ^ operation, ::winrt::Windows::Foundation::AsyncStatus status)
       {
 
          m_status = status;
@@ -124,7 +124,7 @@ public:
 
       m_operation = operation;
 
-      m_operation->Completed = ref new ::winrt::Windows::Foundation::AsyncOperationWithProgressCompletedHandler < T, T2 >([this](::winrt::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > ^ operation, ::winrt::Windows::Foundation::AsyncStatus status)
+      m_operation->Completed = ref memory_new ::winrt::Windows::Foundation::AsyncOperationWithProgressCompletedHandler < T, T2 >([this](::winrt::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > ^ operation, ::winrt::Windows::Foundation::AsyncStatus status)
       {
 
          auto pholdThis = this;
@@ -191,7 +191,7 @@ public:
 
       m_action                = action;
 
-      m_action->Completed     = ref new ::winrt::Windows::Foundation::AsyncActionCompletedHandler([this](::winrt::Windows::Foundation::IAsyncAction ^ action, ::winrt::Windows::Foundation::AsyncStatus status)
+      m_action->Completed     = ref memory_new ::winrt::Windows::Foundation::AsyncActionCompletedHandler([this](::winrt::Windows::Foundation::IAsyncAction ^ action, ::winrt::Windows::Foundation::AsyncStatus status)
       {
 
          auto pholdThis = this;
@@ -242,7 +242,7 @@ void fork_then(::object * pobject, ::winrt::Windows::Foundation::IAsyncOperation
    pobject->fork([=]()
    {
 
-      auto pwaiter = ref new waiter_for_Windows_Foundation_IAsyncOperation < T >(operation, callbackcontext);
+      auto pwaiter = ref memory_new waiter_for_Windows_Foundation_IAsyncOperation < T >(operation, callbackcontext);
 
       pwaiter->wait(pred, dwMillis);
 
@@ -255,7 +255,7 @@ template < typename T, typename PRED >
 inline void wait_then(::winrt::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, ::u32 dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr, CallbackContext callbackcontext = CallbackContext::Any)
 {
 
-   auto pwaiter = ref new waiter_for_Windows_Foundation_IAsyncOperation < T >(operation, callbackcontext);
+   auto pwaiter = ref memory_new waiter_for_Windows_Foundation_IAsyncOperation < T >(operation, callbackcontext);
 
    pwaiter->wait(pred, dwMillis, pstatus);
 
@@ -266,7 +266,7 @@ template < typename T >
 inline T wait(::winrt::Windows::Foundation::IAsyncOperation < T > ^ operation, ::u32 dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr, CallbackContext callbackcontext = CallbackContext::Any)
 {
 
-   auto pwaiter = ref new waiter_for_Windows_Foundation_IAsyncOperation < T >(operation, callbackcontext);
+   auto pwaiter = ref memory_new waiter_for_Windows_Foundation_IAsyncOperation < T >(operation, callbackcontext);
 
    return pwaiter->wait(dwMillis, pstatus);
 
@@ -277,7 +277,7 @@ template < typename T, typename T2 >
 inline T wait(::winrt::Windows::Foundation::IAsyncOperationWithProgress < T, T2 > ^ operation, ::u32 dwMillis = U32_INFINITE_TIMEOUT, ::winrt::Windows::Foundation::AsyncStatus * pstatus = nullptr, CallbackContext callbackcontext = CallbackContext::Any)
 {
 
-   auto pwaiter = ref new waiter_for_Windows_Foundation_IAsyncOperationWithProgress < T, T2 > (operation, callbackcontext);
+   auto pwaiter = ref memory_new waiter_for_Windows_Foundation_IAsyncOperationWithProgress < T, T2 > (operation, callbackcontext);
 
    return pwaiter->wait(dwMillis, pstatus);
 
@@ -289,7 +289,7 @@ inline ::winrt::Windows::Foundation::AsyncStatus wait(::winrt::Windows::Foundati
 
    ::winrt::Windows::Foundation::AsyncStatus status = ::winrt::Windows::Foundation::AsyncStatus::Canceled; // for time out
 
-   auto pwaiter = ref new waiter_for_Windows_Foundation_IAsyncAction (action, callbackcontext);
+   auto pwaiter = ref memory_new waiter_for_Windows_Foundation_IAsyncAction (action, callbackcontext);
 
    pwaiter->wait(dwMillis, &status);
 

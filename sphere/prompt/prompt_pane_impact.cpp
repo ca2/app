@@ -243,7 +243,7 @@ namespace prompt
          __pointer(::user::document) pdocument = papp->create_form(this, this);
          if(pdocument == nullptr)
             return;
-         ::user::impact_data * pimpactdata = new ::user::impact_data;
+         ::user::impact_data * pimpactdata = memory_new ::user::impact_data;
          __pointer(::user::impact) pimpact = pdocument->get_typed_impact < ::user::impact > ();
          auto pupdate = new_update();
          pupdate->m_actioncontext = ::e_source_system;

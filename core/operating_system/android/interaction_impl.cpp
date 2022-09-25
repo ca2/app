@@ -373,7 +373,7 @@ namespace android
          if (m_puserinteraction->m_pthreadUserInteraction->m_puiptraThread == nullptr)
          {
 
-            m_puserinteraction->m_pthreadUserInteraction->m_puiptraThread = new user_interaction_ptr_array();
+            m_puserinteraction->m_pthreadUserInteraction->m_puiptraThread = memory_new user_interaction_ptr_array();
 
          }
 
@@ -2883,7 +2883,7 @@ namespace android
 
       __UNREFERENCED_PARAMETER(bRedraw);
 
-      //ASSERT(::is_window((oswindow) get_handle())); m_pfont = new ::write_text::font(*pfont);
+      //ASSERT(::is_window((oswindow) get_handle())); m_pfont = memory_new ::write_text::font(*pfont);
 
    }
 

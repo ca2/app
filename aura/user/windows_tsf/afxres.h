@@ -48,7 +48,7 @@
 // General style bits etc
 
 // Tab Control styles
-#ifndef TCS_MULTILINE // new in later versions of Win32
+#ifndef TCS_MULTILINE // memory_new in later versions of Win32
 #define TCS_MULTILINE       0x0200
 #endif
 

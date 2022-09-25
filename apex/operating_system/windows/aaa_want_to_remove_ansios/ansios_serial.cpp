@@ -440,7 +440,7 @@ serial::serial_impl::reconfigurePort ()
   // activate settings
   ::tcsetattr (fd_, TCSANOW, &options);
 
-  // Update byte_time_ based on the new settings.
+  // Update byte_time_ based on the memory_new settings.
   ::u32 bit_time_ns = 1e9 / baudrate_;
   byte_time_ns_ = bit_time_ns * (1 + ebytesize_ + eparity_ + estopbit_);
 

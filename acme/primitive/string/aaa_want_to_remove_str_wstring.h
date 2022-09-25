@@ -172,8 +172,8 @@ public:
    inline const unichar * c_str() const { return this->operator const unichar *();  }
 
 #if defined(_UWP) && defined(__cplusplus_winrt)
-   inline operator String ^ () const { return ref new String(operator const unichar *()); }
-   inline operator String ^ () { return ref new String(operator const unichar *()); }
+   inline operator String ^ () const { return ref memory_new String(operator const unichar *()); }
+   inline operator String ^ () { return ref memory_new String(operator const unichar *()); }
 #endif
 
    inline wstring & operator += (unichar wch) { append(wch); return *this; }

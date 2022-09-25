@@ -68,7 +68,7 @@ CLASS_DECL_APEX bool __node_apex_pre_init()
 CLASS_DECL_APEX bool __node_pos_init()
 {
 
-   //t_posthread = new os_thread(nullptr, nullptr);
+   //t_posthread = memory_new os_thread(nullptr, nullptr);
 
    //t_posthread->m_bRun = true;
 
@@ -159,7 +159,7 @@ unsigned int sleep(unsigned int seconds)
 CLASS_DECL_APEX bool __node_apex_pos_init()
 {
 
-   //   t_posthread = new os_thread(nullptr, nullptr);
+   //   t_posthread = memory_new os_thread(nullptr, nullptr);
    //
    //   t_posthread->m_bRun = true;
 

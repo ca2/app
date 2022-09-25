@@ -239,9 +239,9 @@ CLASS_DECL_ACME int_bool mq_get_message(MESSAGE * pMsg, oswindow oswindow, ::u32
 void initialize_global_message_queue()
 {
 
-   g_pmutexMq = new mutex();
+   g_pmutexMq = memory_new mutex();
 
-   g_pmapMq = new map < itask_t, __pointer(message_queue) >();
+   g_pmapMq = memory_new map < itask_t, __pointer(message_queue) >();
 
 }
 

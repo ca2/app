@@ -239,7 +239,7 @@ namespace x11
       if (g_p == nullptr)
       {
 
-         auto p = new display;
+         auto p = memory_new display;
 
          p->initialize(pobject);
 

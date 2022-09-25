@@ -7,7 +7,7 @@
 ////#include "aura/user/user/_component.h"
 
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 
 class simple_scroll_bar;

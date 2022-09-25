@@ -204,7 +204,7 @@ virtual void initialize_factory() override                              \
 CLASS_DECL_EXPORT ::acme::library * libname ## _ ## get_new_library(::object * pobject) \
 { \
 \
-   return new library(pobject); \
+   return memory_new library(pobject); \
  \
 } \
  \

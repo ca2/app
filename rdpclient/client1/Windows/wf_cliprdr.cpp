@@ -1297,7 +1297,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	return true;
 //}
 //
-///* path_name has a '\' at the end. e.g. c:\newfolder\, file_name is c:\newfolder\new.txt */
+///* path_name has a '\' at the end. e.g. c:\newfolder\, file_name is c:\newfolder\memory_new.txt */
 //static FILEDESCRIPTORW* wf_cliprdr_get_file_descriptor(WCHAR* file_name, int pathLen)
 //{
 //	HANDLE hFile;

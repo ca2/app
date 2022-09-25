@@ -164,7 +164,7 @@ namespace VistaTools
 
    /*
    Use RunNonElevated() to start a non-elevated process. If the current process is not elevated,
-   it calls ShellExecuteEx() to start the new process. If the current process is elevated,
+   it calls ShellExecuteEx() to start the memory_new process. If the current process is elevated,
    it injects itself into the (non-elevated) shell process, and starts a non-elevated process from there.
 
    Parameters:

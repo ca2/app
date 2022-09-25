@@ -170,7 +170,7 @@ namespace database
       //       eol_reached = true;
       //       }
 
-      //    // If new field and is in insert or edit mode - looks in edit_object
+      //    // If memory_new field and is in insert or edit mode - looks in edit_object
       //    if ((which_before == ":NEW_") && (which_field != "\0")) {
       //       which_field.squish();
       //                 f_value.assign(fv(which_field.getChars()));

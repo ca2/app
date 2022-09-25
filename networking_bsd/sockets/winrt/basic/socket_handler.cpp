@@ -330,7 +330,7 @@ namespace sockets
 
                   psocket->m_event.ResetEvent();
 
-                  writer->StoreAsync()->Completed = ref new ::winrt::Windows::Foundation::AsyncOperationCompletedHandler < unsigned int > ([=]
+                  writer->StoreAsync()->Completed = ref memory_new ::winrt::Windows::Foundation::AsyncOperationCompletedHandler < unsigned int > ([=]
                                                     (::winrt::Windows::Foundation::IAsyncOperation < unsigned int > ^ action, ::winrt::Windows::Foundation::AsyncStatus status)
                   {
                      writer->DetachStream();
@@ -445,7 +445,7 @@ namespace sockets
    int socket_handler::Resolve(base_socket * p,const string & host,port_t port)
    {
       // check cache
-      resolv_socket *resolv = new resolv_socket(*this, p, host, port);
+      resolv_socket *resolv = memory_new resolv_socket(*this, p, host, port);
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
       ::networking::address addressLocal("127.0.0.1", m_resolver_port);
@@ -464,7 +464,7 @@ namespace sockets
    int socket_handler::Resolve6(base_socket * p,const string & host,port_t port)
    {
       // check cache
-      resolv_socket *resolv = new resolv_socket(*this, p, host, port, true);
+      resolv_socket *resolv = memory_new resolv_socket(*this, p, host, port, true);
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
       ::networking::address addressLocal("127.0.0.1",m_resolver_port);
@@ -481,7 +481,7 @@ namespace sockets
    int socket_handler::Resolve(base_socket * p, in_addr a)
    {
       // check cache
-      resolv_socket *resolv = new resolv_socket(*this, p, a);
+      resolv_socket *resolv = memory_new resolv_socket(*this, p, a);
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
 //      ipaddr_t local;
@@ -499,7 +499,7 @@ namespace sockets
    int socket_handler::Resolve(base_socket * p,in6_addr& a)
    {
       // check cache
-      resolv_socket *resolv = new resolv_socket(*this, p, a);
+      resolv_socket *resolv = memory_new resolv_socket(*this, p, a);
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
       //ipaddr_t local;
@@ -519,7 +519,7 @@ namespace sockets
       if (!m_resolver)
       {
          m_resolver_port = port;
-         m_resolver = new resolv_server(get_app(), port);
+         m_resolver = memory_new resolv_server(get_app(), port);
       }
    }
 

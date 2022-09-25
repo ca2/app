@@ -251,7 +251,7 @@ void app_core::system_init()
 
       ::file::path pathModule = get_arg(m_iPathInstallFolderExeArg);
 
-      g_ppathInstallFolder = new ::file::path(pathModule.folder(4));
+      g_ppathInstallFolder = memory_new ::file::path(pathModule.folder(4));
 
    }
 
@@ -1019,7 +1019,7 @@ struct heap_test_struct :
 };
 
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 
 string_array get_c_args_from_string(const ::string & psz)
@@ -1838,7 +1838,7 @@ __pointer(::aura::application) app_core::get_new_application(::object* pobject, 
       if (!plibrary)
       {
 
-         plibrary = new ::acme::library();
+         plibrary = memory_new ::acme::library();
 
          plibrary->m_strName = "";
 

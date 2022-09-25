@@ -3079,7 +3079,7 @@ namespace ios
     void interaction_impl::SetFont(::write_text::font* pfont, bool bRedraw)
     {
     __UNREFERENCED_PARAMETER(bRedraw);
-    ASSERT(::is_window(get_handle())); m_pfont = new ::write_text::font(*pfont);
+    ASSERT(::is_window(get_handle())); m_pfont = memory_new ::write_text::font(*pfont);
     }
 
     ::write_text::font* interaction_impl::GetFont()

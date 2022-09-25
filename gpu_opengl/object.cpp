@@ -1,4 +1,4 @@
-// Created by camilo on 2022-04-25 21:02 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-04-25 21:02 <3ThomasBorregaardSï¿½rensen!!
 #include "framework.h"
 #include "object.h"
 #include <math.h>
@@ -6,7 +6,7 @@
 #include "acme/filesystem/file/text_reader.h"
 #include "assimp.h"
 #include "opengl.h"
-#undef new
+
 
 
 //GLuint loadDDS(const char * imagepath);

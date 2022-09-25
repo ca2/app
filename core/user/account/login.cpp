@@ -39,7 +39,7 @@ namespace account
 //         if(hicon95 != nullptr)
 //         {
 //
-//            m_picon95 = new ::draw2d::icon;
+//            m_picon95 = memory_new ::draw2d::icon;
 //
 //            m_picon95->attach_os_data(hicon95);
 //

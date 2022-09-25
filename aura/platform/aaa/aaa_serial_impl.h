@@ -159,7 +159,7 @@ size_t
 serial::read(string & buffer, size_t size)
 {
    scoped_read_lock lock(this->pimpl_);
-   u8 * buffer_ = new u8[size];
+   u8 * buffer_ = memory_new u8[size];
    size_t bytes_read = this->pimpl_->read(buffer_, size);
    buffer.append(reinterpret_cast<const char *>(buffer_), bytes_read);
    delete[] buffer_;

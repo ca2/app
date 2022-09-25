@@ -11,7 +11,7 @@
 //   if(!find_key(key, i))
 //   {
 //
-//      m_ptra.add(new pair(this, key));
+//      m_ptra.add(memory_new pair(this, key));
 //
 //      i = m_ptra.get_upper_bound();
 //
@@ -32,7 +32,7 @@
 //   if(!find_key(key, i))
 //   {
 //
-//      m_ptra.add(new pair(key));
+//      m_ptra.add(memory_new pair(key));
 //
 //      i = m_ptra.get_upper_bound();
 //
@@ -59,7 +59,7 @@
 //      for(index i = 0; i < attribmap.m_ptra.get_count(); i++)
 //      {
 //
-//         ppair      = new typename type_map::pair(this, attribmap.m_ptra[i]->element1());
+//         ppair      = memory_new typename type_map::pair(this, attribmap.m_ptra[i]->element1());
 //
 //         ppair->element2()    = attribmap.m_ptra[i]->element2();
 //

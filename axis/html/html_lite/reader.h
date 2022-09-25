@@ -61,7 +61,7 @@ public:
   @author Gurmeet S. Kochar
 
   @todo add support for multiple event handlers.
-  @todo add support for tag validation, a new interface, that
+  @todo add support for tag validation, a memory_new interface, that
         validator classes must implement, so reader can then
         make a call, such as isValidTag(...), to validate tag
         information and act accordingly.
@@ -182,9 +182,9 @@ public:
       { return (m_eventMask); }
 
    /**
-    * Sets a new event mask.
+    * Sets a memory_new event mask.
     *
-    * @lparam dwNewEventMask - new event mask
+    * @lparam dwNewEventMask - memory_new event mask
     *
     * @return previous event mask
     * @since 1.0
@@ -257,7 +257,7 @@ public:
 
    // returns the current value for the specified option
    bool getBoolOption(ReaderOptionsEnum option, bool& bCurVal) const;
-   // sets a new value for the specified option
+   // sets a memory_new value for the specified option
    bool setBoolOption(ReaderOptionsEnum option, bool bNewVal);
 
 // Operations

@@ -43,7 +43,7 @@ const char *WritingFile = "Writing uncompressed data to %s ...";
 const char * GeoIP_get_error_message(i32 i) {
   switch (i) {
   case GEOIP_NO_NEW_UPDATES:
-    return "no new updates";
+    return "no memory_new updates";
   case GEOIP_SUCCESS:
     return "Success";
   case GEOIP_LICENSE_KEY_INVALID_ERR:
@@ -234,7 +234,7 @@ string GeoIP_get_host_or_proxy()
 //   if(t_phostentGeoip == nullptr)
 //   {
 //
-//      t_phostentGeoip = new hostent;
+//      t_phostentGeoip = memory_new hostent;
 //
 //   }
 //
@@ -372,7 +372,7 @@ i16 GeoIP_update_database (char * license_key, i32 verbose, void (*f)( char * ))
 //   } else if (strstr(compr, "Invalid product ID or subscription expired") != nullptr){
 //      free(buf);
 //      return GEOIP_PRODUCT_ID_INVALID_ERR;
-//   } else if (strstr(compr, "No new updates available") != nullptr) {
+//   } else if (strstr(compr, "No memory_new updates available") != nullptr) {
 //      free(buf);
 //      return GEOIP_NO_NEW_UPDATES;
 //   }
@@ -790,7 +790,7 @@ i16 GeoIP_update_database_general (::object * pobject, char * user_id,char * lic
 //         GeoIP_printf(f,"Failed\n");
 //      free(buf);
 //      return GEOIP_LICENSE_KEY_INVALID_ERR;
-//   } else if (strstr(compr, "No new updates available") != nullptr) {
+//   } else if (strstr(compr, "No memory_new updates available") != nullptr) {
 //      free(buf);
 //      GeoIP_printf(f, "%s is up to date, no updates required\n", geoipfilename);
 //      return GEOIP_NO_NEW_UPDATES;

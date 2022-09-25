@@ -7,7 +7,7 @@ CLASS_DECL_CORE memsize read_buffer(void* p, ::winrt::Windows::Storage::Streams:
    
    ::winrt::Windows::Storage::Streams::DataReader^ r = ::winrt::Windows::Storage::Streams::DataReader::FromBuffer(ibuf);
    
-   Array<uchar, 1U>^ a = ref new Array<uchar, 1U>(ibuf->Length);
+   Array<uchar, 1U>^ a = ref memory_new Array<uchar, 1U>(ibuf->Length);
    
    r->ReadBytes(a);
 
@@ -49,7 +49,7 @@ CLASS_DECL_CORE memory_file_pointer create_memory_file(::winrt::Windows::Storage
    while (pthread && pthread->task_get_run())
    {
 
-      ::winrt::Windows::Storage::Streams::IBuffer^ buffer = ref new ::winrt::Windows::Storage::Streams::Buffer(1_mb);
+      ::winrt::Windows::Storage::Streams::IBuffer^ buffer = ref memory_new ::winrt::Windows::Storage::Streams::Buffer(1_mb);
 
       ::winrt::Windows::Storage::Streams::IBuffer^ buffer2 = ::wait(stream->ReadAsync(buffer, 1_mb, ::winrt::Windows::Storage::Streams::InputStreamOptions::None));
 

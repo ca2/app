@@ -132,7 +132,7 @@ pacmedirectory->config() / "system/memory_counters.txt") ? 1 : 0;
       if (g_iMemoryCounters)
       {
 
-         g_pmutexMemoryCounters = new ::mutex(e_create_new, nullptr, false, "Global\\ca2_memory_counters");
+         g_pmutexMemoryCounters = memory_new ::mutex(e_create_new, nullptr, false, "Global\\ca2_memory_counters");
 
       }
 
@@ -152,7 +152,7 @@ CLASS_DECL_AURA::file::path memory_counter_base_path()
    if (g_iMemoryCountersStartable && g_pMemoryCounters == nullptr)
    {
 
-      g_pMemoryCounters = new ::file::path();
+      g_pMemoryCounters = memory_new ::file::path();
 
 #if defined(_UWP)
 

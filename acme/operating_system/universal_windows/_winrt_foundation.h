@@ -2,7 +2,7 @@
 #pragma once
 
 
-#undef new
+
 #include <winrt/Windows.Foundation.h>
 
 inline winrt::hstring __hstring(const char * psz)

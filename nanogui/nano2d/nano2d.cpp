@@ -2575,7 +2575,7 @@ void __NANO2D_API(FontFace)(NANO2D_CONTEXT * ctx, const char * font)
 //	//// if next fontImage already have a texture
 //	//if (__NANO2D_CONTEXT(ctx)->fontImages[__NANO2D_CONTEXT(ctx)->fontImageIdx + 1] != 0)
 //	//	__NANO2D_API(ImageSize)(ctx, __NANO2D_CONTEXT(ctx)->fontImages[__NANO2D_CONTEXT(ctx)->fontImageIdx + 1], &iw, &ih);
-//	//else { // calculate the new font image size and create it.
+//	//else { // calculate the memory_new font image size and create it.
 //	//	__NANO2D_API(ImageSize)(ctx, __NANO2D_CONTEXT(ctx)->fontImages[__NANO2D_CONTEXT(ctx)->fontImageIdx], &iw, &ih);
 //	//	if (iw > ih)
 //	//		ih *= 2;
@@ -2868,7 +2868,7 @@ int __NANO2D_API(TextBreakLines)(NANO2D_CONTEXT * ctx, const char * string, cons
 	//	}
 
 	//	if (type == NVG_NEWLINE) {
-	//		// Always handle new lines.
+	//		// Always handle memory_new lines.
 	//		rows[nrows].start = rowStart != NULL ? rowStart : iter.str;
 	//		rows[nrows].end = rowEnd != NULL ? rowEnd : iter.str;
 	//		rows[nrows].width = rowWidth * invscale;
@@ -2930,9 +2930,9 @@ int __NANO2D_API(TextBreakLines)(NANO2D_CONTEXT * ctx, const char * string, cons
 	//				wordMinX = q.x0;
 	//			}
 
-	//			// Break to new line when a character is beyond break width.
+	//			// Break to memory_new line when a character is beyond break width.
 	//			if ((type == NVG_CHAR || type == NVG_CJK_CHAR) && nextWidth > breakRowWidth) {
-	//				// The run length is too long, need to break to new line.
+	//				// The run length is too long, need to break to memory_new line.
 	//				if (breakEnd == rowStart) {
 	//					// The current word is longer than the row length, just break it from here.
 	//					rows[nrows].start = rowStart;
@@ -2955,7 +2955,7 @@ int __NANO2D_API(TextBreakLines)(NANO2D_CONTEXT * ctx, const char * string, cons
 	//					wordMinX = q.x0 - rowStartX;
 	//				}
 	//				else {
-	//					// Break the line from the end of the last word, and start new line from the beginning of the new.
+	//					// Break the line from the end of the last word, and start memory_new line from the beginning of the memory_new.
 	//					rows[nrows].start = rowStart;
 	//					rows[nrows].end = breakEnd;
 	//					rows[nrows].width = breakWidth * invscale;
@@ -2985,7 +2985,7 @@ int __NANO2D_API(TextBreakLines)(NANO2D_CONTEXT * ctx, const char * string, cons
 	//	ptype = type;
 	//}
 
-	//// Break the line from the end of the last word, and start new line from the beginning of the new.
+	//// Break the line from the end of the last word, and start memory_new line from the beginning of the memory_new.
 	//if (rowStart != NULL) {
 	//	rows[nrows].start = rowStart;
 	//	rows[nrows].end = rowEnd;

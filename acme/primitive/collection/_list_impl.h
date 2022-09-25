@@ -7,7 +7,7 @@ typename list<TYPE, ARG_TYPE>::node * list<TYPE, ARG_TYPE>::add_head(ARG_TYPE ne
 
    ASSERT_VALID(this);
 
-   typename list < TYPE, ARG_TYPE >::node * pnodeNew = new typename list < TYPE, ARG_TYPE >::node(newElement, nullptr, this->m_phead);
+   typename list < TYPE, ARG_TYPE >::node * pnodeNew = memory_new typename list < TYPE, ARG_TYPE >::node(newElement, nullptr, this->m_phead);
 
    if(this->m_phead != nullptr)
       this->m_phead->m_pprevious = pnodeNew;
@@ -27,7 +27,7 @@ typename list<TYPE, ARG_TYPE>::node * list<TYPE, ARG_TYPE>::add_tail(ARG_TYPE ne
 {
    ASSERT_VALID(this);
 
-   auto pnodeNew = new typename list < TYPE, ARG_TYPE >::node(newElement, this->m_ptail, nullptr);
+   auto pnodeNew = memory_new typename list < TYPE, ARG_TYPE >::node(newElement, this->m_ptail, nullptr);
 
    pnodeNew->m_value = newElement;
 
@@ -55,7 +55,7 @@ typename list<TYPE, ARG_TYPE>::node * list<TYPE, ARG_TYPE>::insert_before(typena
 
    // Insert it before position
    auto pOldNode = position;
-   auto pnodeNew = new typename list < TYPE, ARG_TYPE >::node(newElement, pOldNode->m_pprevious, pOldNode);
+   auto pnodeNew = memory_new typename list < TYPE, ARG_TYPE >::node(newElement, pOldNode->m_pprevious, pOldNode);
    pnodeNew->m_value = newElement;
 
    if (pOldNode->m_pprevious != nullptr)
@@ -83,7 +83,7 @@ typename list<TYPE, ARG_TYPE>::node * list<TYPE, ARG_TYPE>::insert_after(typenam
    // Insert it before position
    auto pOldNode = position;
    ASSERT(__is_valid_address(pOldNode, sizeof(typename list < TYPE, ARG_TYPE >::node)));
-   auto pnodeNew = new typename list < TYPE, ARG_TYPE >::node(newElement, pOldNode, pOldNode->m_pnext);
+   auto pnodeNew = memory_new typename list < TYPE, ARG_TYPE >::node(newElement, pOldNode, pOldNode->m_pnext);
    pnodeNew->m_value = newElement;
 
    if (pOldNode->m_pnext != nullptr)

@@ -33,11 +33,11 @@ NAMESPACE_BEGIN(nanogui)
       /// Create an empty combo box
       ComboBox(Widget * parent);
 
-      /// Create a new combo box with the given items
+      /// Create a memory_new combo box with the given items
       ComboBox(Widget * parent, const std::vector<std::string> & items);
 
       /**
-       * \brief Create a new combo box with the given items, providing both short and
+       * \brief Create a memory_new combo box with the given items, providing both short and
        * long descriptive labels for each item
        */
       ComboBox(Widget * parent, const std::vector<std::string> & items,

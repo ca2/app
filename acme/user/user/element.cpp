@@ -986,7 +986,7 @@ namespace user
    //}
 
 
-   //// pmessage object should be allocated with new in
+   //// pmessage object should be allocated with memory_new in
    //// base or derived object and will be delete after
    //// handling
    //bool element::post(::message::message * pmessage)

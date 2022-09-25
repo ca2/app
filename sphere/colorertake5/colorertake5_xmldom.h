@@ -131,7 +131,7 @@ namespace colorertak5
      }
 
      /**
-      * Allocates new document object.
+      * Allocates memory_new document object.
       */
      Document *newDocument();
 
@@ -357,7 +357,7 @@ namespace colorertak5
    protected:
      i32 line, pos;
      __pointer(::xml::node)documentElement;
-     Document() : xml::node(xml::node::DOCUMENT_NODE, new string("#document")), documentElement(nullptr) {};
+     Document() : xml::node(xml::node::DOCUMENT_NODE, memory_new string("#document")), documentElement(nullptr) {};
      friend class DocumentBuilder;
    };
 
@@ -431,7 +431,7 @@ namespace colorertak5
      const string *target;
 
      ProcessingInstruction(const string *_target, const string *_data):
-           xml::node(xml::node::PROCESSING_INSTRUCTION_NODE, new string("#pi")),
+           xml::node(xml::node::PROCESSING_INSTRUCTION_NODE, memory_new string("#pi")),
            target(_target), data(_data) {}
 
      ~ProcessingInstruction()
@@ -464,7 +464,7 @@ namespace colorertak5
 
      const string *data;
 
-     CharacterData(i32 type, const string *_data): xml::node(type, new string("#cdata")), data(_data) {};
+     CharacterData(i32 type, const string *_data): xml::node(type, memory_new string("#cdata")), data(_data) {};
      ~CharacterData(){ delete data; };
      friend class Document;
    };

@@ -11,7 +11,7 @@ namespace opengl
    ::gpu::context * create_egl_context()
    {
 
-      return new context_egl();
+      return memory_new context_egl();
 
    }
 

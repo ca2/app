@@ -155,7 +155,7 @@ extern "C"
 ::acme::library * app_hellobase_get_new_library(::object * pobject)
 {
 
-   return new ::apex::single_application_library < ::hellobase::application > (pobject, "app/hellobase");
+   return memory_new ::apex::single_application_library < ::hellobase::application > (pobject, "app/hellobase");
 
 }
 

@@ -35,23 +35,23 @@ extern string_to_string *      g_pmapFontPath;
 void init_cairo_mutex()
 {
 
-   s_pmutex = new ::mutex();
+   s_pmutex = memory_new ::mutex();
 
 #ifdef LINUX
 
-   g_pmutexFc = new ::mutex();
+   g_pmutexFc = memory_new ::mutex();
 
-   g_pmapFontPath = new string_to_string();
+   g_pmapFontPath = memory_new string_to_string();
 
 #endif
 
-   g_pmapFontFace = new string_map < i32_map < FT_Face> > ();
+   g_pmapFontFace = memory_new string_map < i32_map < FT_Face> > ();
 
-   g_pmapCairoFontFace = new string_map < cairo_font_face_t * > ();
+   g_pmapCairoFontFace = memory_new string_map < cairo_font_face_t * > ();
 
-   g_pmapFontError = new string_to_int ();
+   g_pmapFontError = memory_new string_to_int ();
 
-   g_pmapFontError2 = new string_to_int ();
+   g_pmapFontError2 = memory_new string_to_int ();
 
 }
 

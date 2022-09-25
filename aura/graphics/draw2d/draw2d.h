@@ -10,7 +10,7 @@
 #include "aura/graphics/write_text/write_text.h"
 
 
-#include "aura/graphics/image/_image.h"
+//#include "aura/graphics/image/_image.h"
 
 
 #include "brush.h"

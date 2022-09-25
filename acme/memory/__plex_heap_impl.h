@@ -2,7 +2,7 @@
 
 //#include "plex_heap1.h"
 
-#undef new
+
 
 
 class CLASS_DECL_ACME plex_heap_alloc :
@@ -109,7 +109,7 @@ public:
 };
 
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 
 

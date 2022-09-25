@@ -41,7 +41,7 @@ pop3sock_t ssl_prepare(const int port)
 {
    pop3sock_t sock;
 	sock =(pop3sock_t)malloc(sizeof(pop3sock));
-	sock->m_psock = new TcpSocket();
+	sock->m_psock = memory_new TcpSocket();
 	if(nullptr==sock->m_psock)
    {
 	   perror("ssl_prepare.socket");

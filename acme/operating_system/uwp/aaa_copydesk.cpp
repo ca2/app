@@ -56,7 +56,7 @@ namespace universal_windows
 
          //   ::winrt::Windows::Storage::Streams::IInputStream ^ stream = (::winrt::Windows::Storage::Streams::IInputStream ^):: wait(impact->GetDataAsync("FileDrop"));
 
-         //   ::winrt::Windows::Storage::Streams::IBuffer ^ buffer = ref new ::winrt::Windows::Storage::Streams::Buffer(sizeof(HGLOBAL));
+         //   ::winrt::Windows::Storage::Streams::IBuffer ^ buffer = ref memory_new ::winrt::Windows::Storage::Streams::Buffer(sizeof(HGLOBAL));
 
          //   stream->ReadAsync(buffer, sizeof(HGLOBAL), ::winrt::Windows::Storage::Streams::InputStreamOptions::None);
 
@@ -223,7 +223,7 @@ namespace universal_windows
    bool copydesk::_set_plain_text(const ::string & str)
    {
 
-      auto package = ref new ::winrt::Windows::ApplicationModel::DataTransfer::DataPackage;
+      auto package = ref memory_new ::winrt::Windows::ApplicationModel::DataTransfer::DataPackage;
 
       if (package == nullptr)
       {

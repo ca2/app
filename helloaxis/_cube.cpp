@@ -3,7 +3,7 @@
 ::aura::application * get_acid_app(::object * pobject)
 {
 
-   return new ::helloaxis::application();
+   return memory_new ::helloaxis::application();
 
 }
 

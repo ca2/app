@@ -24,7 +24,7 @@ public:
 
 oswindow_dataptra * g_oswindow_dataptra()
 {
-   static oswindow_dataptra * s_pdataptra = new oswindow_dataptra;
+   static oswindow_dataptra * s_pdataptra = memory_new oswindow_dataptra;
 
    return s_pdataptra;
 }
@@ -63,7 +63,7 @@ index oswindow_find(::user::interaction_impl * pimpl)
 
 oswindow_data::oswindow_data(::user::interaction_impl * pimpl)
 {
-   m_plongptrmap = new iptr_to_iptr();
+   m_plongptrmap = memory_new iptr_to_iptr();
    m_pimpl = pimpl;
 
 }
@@ -251,7 +251,7 @@ oswindow oswindow_get(::user::interaction_impl * pimpl)
    if (iFind >= 0)
       return g_oswindow_dataptra()->element_at(iFind);
 
-   oswindow pdata = new oswindow_data;
+   oswindow pdata = memory_new oswindow_data;
 
    pdata->m_pimpl = pimpl;
 

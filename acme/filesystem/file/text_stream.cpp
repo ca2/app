@@ -464,9 +464,9 @@ void text_stream::read(string & str)
 
 void text_stream::read(property_set& set)
 {
-#undef new
+
    __exchange_load_array(*this, set);
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 }
 

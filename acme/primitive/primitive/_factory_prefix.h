@@ -14,9 +14,9 @@
 //
 // Short explanation at ca2 framework action_context
 //
-// create : land new independent matter (::pointer smart pointer)
+// create : land memory_new independent matter (::pointer smart pointer)
 // compose : ownership, acquisition, parenthood, containment, attach, be responsible for (::ownership member)
-// construct : new on place, build on place (::pointer smart pointer)
+// construct : memory_new on place, build on place (::pointer smart pointer)
 // refer : member-reserved reference (::composite)
 // add_reference : just a reference (matter)
 //

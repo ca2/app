@@ -81,8 +81,8 @@ Vector2i Window::preferred_size(NVGcontext * ctx, bool bRecalcTextSize)
 
 Widget * Window::button_panel() {
    if (!m_button_panel) {
-      m_button_panel = new Widget(this);
-      m_button_panel->set_layout(new BoxLayout(Orientation::Horizontal, Alignment::Middle, 0, 4));
+      m_button_panel = memory_new Widget(this);
+      m_button_panel->set_layout(memory_new BoxLayout(Orientation::Horizontal, Alignment::Middle, 0, 4));
    }
    return m_button_panel;
 }

@@ -219,7 +219,7 @@ namespace axis
 
          m_result.add(estatus);
 
-         TRACE("Failed to create new User Presence");
+         TRACE("Failed to create memory_new User Presence");
 
          return false;
 

@@ -653,7 +653,7 @@ namespace user
 
          //i64 i2 = get_nanos();
 
-         // calculates the next/new frame atom
+         // calculates the next/memory_new frame atom
          //m_iFrameId = (m_durationNow + durationFrame - 1) / (durationFrame);
 
          //m_durationNextFrame = m_iFrameId * durationFrame;

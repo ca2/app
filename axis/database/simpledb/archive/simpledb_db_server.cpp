@@ -5,7 +5,7 @@
 i32 g_idbchange;
 
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 
 db_server::db_server(::object * pobject) :

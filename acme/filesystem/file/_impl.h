@@ -776,7 +776,7 @@ inline void __exchange_array(::stream & stream, ARRAY & array)
 }
 
 
-inline payload_stream::payload_stream() : m_ppayload(new ::payload) {}
+inline payload_stream::payload_stream() : m_ppayload(memory_new ::payload) {}
 inline payload_stream::payload_stream(::payload * pvar) : m_ppayload(pvar) {}
 
 inline ::payload & payload_stream::payload() { return *m_ppayload; }
@@ -784,7 +784,7 @@ inline const ::payload & payload_stream::payload() const { return *m_ppayload; }
 
 //void payload_stream::write_object(const ::atom & atom, ::atom & idFactory, ::matter * pobject)
 //{
-//   payload_stream stream(new ::payload(&payload()[atom].propset()));
+//   payload_stream stream(memory_new ::payload(&payload()[atom].propset()));
 //   stream.exchange("", idFactory);
 //   pobject->exchange(stream);
 //}
@@ -792,7 +792,7 @@ inline const ::payload & payload_stream::payload() const { return *m_ppayload; }
 //
 //__pointer(::matter) payload_stream::read_object(const ::atom & atom)
 //{
-//   payload_stream stream(new ::payload(&payload()[atom].propset()));
+//   payload_stream stream(memory_new ::payload(&payload()[atom].propset()));
 //   ::atom idFactory;
 //   stream.exchange("", idFactory);
 //   auto pobject = __id_create<::matter>(idFactory);

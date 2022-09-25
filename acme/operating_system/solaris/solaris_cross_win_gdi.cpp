@@ -21,7 +21,7 @@
 // {
 
 
-//    HDC hdc = new device_context;
+//    HDC hdc = memory_new device_context;
 
 //    hdc->m_display    = XOpenDisplay(nullptr);
 //    hdc->m_hwnd       = hwnd;

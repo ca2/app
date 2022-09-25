@@ -29,7 +29,7 @@ void os_on_finish_launching();
 //   if (!g_pmutexOs)
 //   {
 //
-//      g_pmutexOs = new mutex();
+//      g_pmutexOs = memory_new mutex();
 //
 //   }
 //

@@ -183,7 +183,7 @@
 //   case e_shape_end_figure:
 //      return __new(end_figure_shape<HOLDEE>);
 //   default:
-//      throw ::exception(error_not_implemented, "new geometry processor or not a geometry processor?");
+//      throw ::exception(error_not_implemented, "memory_new geometry processor or not a geometry processor?");
 //      return nullptr;
 //   }
 //

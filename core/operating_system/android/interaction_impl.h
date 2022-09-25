@@ -228,7 +228,7 @@ namespace android
 
       virtual ::user::interaction * get_desktop_window();
 
-      // Obsolete and non-portable APIs - not recommended for new code
+      // Obsolete and non-portable APIs - not recommended for memory_new code
       virtual void CloseWindow() override;
       virtual bool OpenIcon() override;
 

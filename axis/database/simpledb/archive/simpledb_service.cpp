@@ -32,7 +32,7 @@ namespace simpledb
       ::set_thread(&Sys(pbaseapp));
 
 
-      m_pmanager = new ::simpledb::manager(pbaseapp);
+      m_pmanager = memory_new ::simpledb::manager(pbaseapp);
       
 
       /*App(pbaseapp).m_strFontopusServer		= psystem->m_simpledb.db().data_load("account_server");

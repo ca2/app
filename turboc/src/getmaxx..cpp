@@ -25,7 +25,7 @@
 				08/28/10 RSB	Changed the function names from
 								getmaxx() and getmaxy() to
 								turboc_getmaxx() and turboc_getmaxy(),
-								with macros relating the new names
+								with macros relating the memory_new names
 								to the old in graphics.h.  This is
 								because (thanks to Dick Borrett) I've
 								found that function with this name

@@ -63,7 +63,7 @@ void on_term_thread();
 //extern thread_local ::task_pointer t_pthread;
 
 
-#undef new
+
 
 
 namespace parallelization
@@ -344,7 +344,7 @@ namespace apex
 //
 //#ifndef WINDOWS
 //
-//      g_pcsDemangle = new critical_section;
+//      g_pcsDemangle = memory_new critical_section;
 //
 //#endif
 
@@ -352,14 +352,14 @@ namespace apex
 
 //#ifdef BSD_STYLE_SOCKETS
 //
-//      ::sockets::base_socket::s_pmutex = new ::mutex();
+//      ::sockets::base_socket::s_pmutex = memory_new ::mutex();
 //
 //#endif
 
 
 #ifdef __APPLE__
 
-      g_pmutexCvt = new ::mutex();
+      g_pmutexCvt = memory_new ::mutex();
 
 #endif
 
@@ -369,17 +369,17 @@ namespace apex
 
 #endif
 
-      g_paAura = new array < matter * >;
+      g_paAura = memory_new array < matter * >;
 
-      g_pmutexUiDestroyed = new ::mutex();
+      g_pmutexUiDestroyed = memory_new ::mutex();
 
-      g_pmutexMessageDispatch = new ::mutex();
+      g_pmutexMessageDispatch = memory_new ::mutex();
 
-      g_pmutexCred = new ::mutex();
+      g_pmutexCred = memory_new ::mutex();
 
 #if defined(LINUX) || defined(__APPLE__)
 
-      g_pmutexTz = new ::mutex();
+      g_pmutexTz = memory_new ::mutex();
 
 #endif // defined(LINUX) || defined(__APPLE__)
 
@@ -408,17 +408,17 @@ namespace apex
 
       ::channel::s_pmutexChannel = __new(mutex);
 
-      //g_papexstrpool = new apex_str_pool();
+      //g_papexstrpool = memory_new apex_str_pool();
 
       //::user::init_windowing();
 
-      //g_pcsRefDbg = new critical_section();
+      //g_pcsRefDbg = memory_new critical_section();
 
       g_bApex = true;
 
-      //::thread::g_pmutex = new mutex();
+      //::thread::g_pmutex = memory_new mutex();
 
-      //::thread::g_pthreadmap = new ::thread_map();
+      //::thread::g_pthreadmap = memory_new ::thread_map();
 
       ::factory::add_factory_item < ::apex::system, ::acme::system >();
       ::factory::add_factory_item < ::apex::context, ::acme::context >();
@@ -428,13 +428,13 @@ namespace apex
       g_iObjTypCtrInit = 1;
 #endif
 
-      g_pcsFont = new critical_section();
+      g_pcsFont = memory_new critical_section();
 
-      g_pmapFontFaceName = new string_to_string();
+      g_pmapFontFaceName = memory_new string_to_string();
 
-      //g_pmutexThreadDeferredCreation = new ::mutex;
+      //g_pmutexThreadDeferredCreation = memory_new ::mutex;
 
-      //g_pthreadaDeferredCreate = new ::array < __pointer(thread) >();
+      //g_pthreadaDeferredCreate = memory_new ::array < __pointer(thread) >();
 
 
 //      void static_start::init()
@@ -735,7 +735,7 @@ namespace apex
    //::apex::system * apex_create_system(app_core * pappcore)
    //{
 
-   //   auto psystem = new ::apex::system();
+   //   auto psystem = memory_new ::apex::system();
 
    //   psystem->initialize(nullptr);
 
@@ -802,7 +802,7 @@ namespace apex
 //CLASS_DECL_APEX void init_draw2d_mutex()
 //{
 //
-//   s_pmutexDraw2d = new ::mutex();
+//   s_pmutexDraw2d = memory_new ::mutex();
 //
 //}
 
@@ -887,13 +887,13 @@ namespace apex
 //         //
 //         //         set_DispatchMessage(&axis_DispatchMessage);
 //         //
-//         //         oswindow_data::s_pdataptra = new oswindow_dataptra;
+//         //         oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
 //         //
-//         //         oswindow_data::s_pmutex = new ::mutex;
+//         //         oswindow_data::s_pmutex = memory_new ::mutex;
 //         //
-//         //         osdisplay_data::s_pdataptra = new osdisplay_dataptra;
+//         //         osdisplay_data::s_pdataptra = memory_new osdisplay_dataptra;
 //         //
-//         //         osdisplay_data::s_pmutex = new ::mutex;
+//         //         osdisplay_data::s_pmutex = memory_new ::mutex;
 //
 //#endif // defined(LINUX)
 //
@@ -1018,19 +1018,19 @@ namespace apex
 ////         //#ifdef ANDROID
 ////         //
 ////         //
-////         //         g_plconv = new lconv;
+////         //         g_plconv = memory_new lconv;
 ////         //
 ////         //         g_plconv->decimal_point = strdup(".");
 ////         //
-////         //         //oswindow_data::s_pdataptra = new oswindow_dataptra;
+////         //         //oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
 ////         //
-////         //         //oswindow_data::s_pmutex = new ::mutex;
+////         //         //oswindow_data::s_pmutex = memory_new ::mutex;
 ////         //
 ////         //#endif
 ////
 ////         //#if defined(__APPLE__)
 ////         //
-////         //         g_poswindowdataptra = new oswindow_dataptra;
+////         //         g_poswindowdataptra = memory_new oswindow_dataptra;
 ////         //
 ////         //         g_poswindowdataptra->defer_create_mutex();
 ////         //

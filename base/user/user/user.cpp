@@ -654,7 +654,7 @@ namespace base
    //session_docs * create_session_docs()
    //{
 
-   //   return new session_docs();
+   //   return memory_new session_docs();
 
    //}
 

@@ -46,7 +46,7 @@ namespace turboc
    bool application::initialize_application()
    {
 
-      m_pcontext = new context(this);
+      m_pcontext = memory_new context(this);
 
 
       add_factory_item <::turboc::document >();
@@ -65,7 +65,7 @@ namespace turboc
          return false;
 
       ::user::single_document_template* pDocTemplate;
-      pDocTemplate = new ::user::single_document_template(
+      pDocTemplate = memory_new ::user::single_document_template(
       this,
       "main",
       __type(::turboc::document),
@@ -73,7 +73,7 @@ namespace turboc
       __type(::turboc::pane_impact));
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseMain = pDocTemplate;
-      pDocTemplate = new ::user::single_document_template(
+      pDocTemplate = memory_new ::user::single_document_template(
       this,
       "main",
       __type(::turboc::document),
@@ -81,7 +81,7 @@ namespace turboc
       __type(::turboc::main_impact));
       add_document_template(pDocTemplate);
       m_ptemplateHelloMultiverseImpact = pDocTemplate;
-      pDocTemplate = new ::user::single_document_template(
+      pDocTemplate = memory_new ::user::single_document_template(
       this,
       "main",
       __type(::turboc::document),
@@ -128,7 +128,7 @@ namespace turboc
 
       }
 
-      m_pmain = new ::turboc::main(this);
+      m_pmain = memory_new ::turboc::main(this);
 
       m_pmain->m_pfnMain = pfnMain;
 

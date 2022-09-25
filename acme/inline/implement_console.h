@@ -16,7 +16,8 @@ void acme_system_term();
 
 #endif
 
-CLASS_DECL_ACME void process_set_args(int argc, platform_char ** argv);
+//CLASS_DECL_ACME void process_set_args(int argc, platform_char ** argv);
+CLASS_DECL_ACME void set_argc_argv_envp(int argc, char ** argv, char ** envp);
 void implement(::acme::system * psystem);
 
 namespace acme
@@ -28,6 +29,7 @@ namespace acme
 
 }
 
+
 #ifdef WINDOWS
 int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
 #else
@@ -37,6 +39,8 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 
    main_hold mainhold;
 
+   set_argc_argv_envp(argc, argv, envp);
+
    __pointer(APPLICATION_CLASS) papp(__new(APPLICATION_CLASS));
 
 #ifdef NO_NETWORKING
@@ -45,15 +49,15 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 
 #endif
 
-#ifdef WINDOWS
-
-   papp->get_arguments_from_command_line();
-
-#else
-
-   papp->set_args(argc, argv, envp);
-
-#endif
+//#ifdef WINDOWS
+//
+//   papp->get_arguments_from_command_line();
+//
+//#else
+//
+//   papp->set_args(argc, argv, envp);
+//
+//#endif
 
 
 //   {
@@ -85,30 +89,34 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 
       papp->m_pfnImplement = &::implement;
 
-      papp->m_bConsole = true;
 
-      papp->m_strAppId = __APP_ID;
+      __main(papp);
 
-      try
-      {
 
-         int iExitCode = papp->main_loop();
-
-         return iExitCode;
-
-      }
-      catch (const ::exception & exception)
-      {
-
-         fprintf(stderr, "Exception has occurred \"%s\"(\"%s\")", exception.m_strMessage.c_str(), exception.m_strDetails.c_str());
-
-      }
-      catch (...)
-      {
-
-         fprintf(stderr, "Unknown Exception has occurred");
-
-      }
+//      papp->m_bConsole = true;
+//
+//      papp->m_strAppId = __APP_ID;
+//
+//      try
+//      {
+//
+//         int iExitCode = papp->main_loop();
+//
+//         return iExitCode;
+//
+//      }
+//      catch (const ::exception & exception)
+//      {
+//
+//         fprintf(stderr, "Exception has occurred \"%s\"(\"%s\")", exception.m_strMessage.c_str(), exception.m_strDetails.c_str());
+//
+//      }
+//      catch (...)
+//      {
+//
+//         fprintf(stderr, "Unknown Exception has occurred");
+//
+//      }
 
 
 //   process_set_args(argc, argv);

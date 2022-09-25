@@ -1208,7 +1208,7 @@ namespace draw2d_cairo
 //      if (!estatus)
 //      {
 //
-//         TRACE("Couldn't construct new draw2d.");
+//         TRACE("Couldn't construct memory_new draw2d.");
 //
 //         return false;
 //

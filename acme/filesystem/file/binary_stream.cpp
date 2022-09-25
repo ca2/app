@@ -989,11 +989,11 @@ void binary_stream::read_var_body(::payload & payload, enum_type etype)
    case e_type_property_set:
    {
 
-#undef new
+
 
       __exchange_load_array(*this, payload.as_propset());
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
    }
    break;

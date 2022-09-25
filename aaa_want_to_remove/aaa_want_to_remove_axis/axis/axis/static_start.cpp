@@ -27,13 +27,13 @@ namespace axis
 //
 //         set_DispatchMessage(&axis_DispatchMessage);
 //
-//         oswindow_data::s_pdataptra = new oswindow_dataptra;
+//         oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
 //
-//         oswindow_data::s_pmutex = new ::mutex;
+//         oswindow_data::s_pmutex = memory_new ::mutex;
 //
-//         osdisplay_data::s_pdataptra = new osdisplay_dataptra;
+//         osdisplay_data::s_pdataptra = memory_new osdisplay_dataptra;
 //
-//         osdisplay_data::s_pmutex = new ::mutex;
+//         osdisplay_data::s_pmutex = memory_new ::mutex;
 
 #endif // defined(LINUX)
 

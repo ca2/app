@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "_os_impl.h"
 #include "aura/graphics/graphics/double_buffer.h"
-#include "aura/graphics/image/_image.h"
+//#include "aura/graphics/image/_image.h"
 
 
 void android_edit_on_set_focus(int l, int t, int r, int b, const ::string & pszText, int iBeg, int iEnd);

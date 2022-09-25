@@ -13,7 +13,7 @@ namespace sockets
 {
 
 
-   /** Binds incoming port number to new socket class X.
+   /** Binds incoming port number to memory_new socket class X.
    \ingroup basic */
    class CLASS_DECL_APEX listen_socket_base :
       virtual public socket
@@ -136,7 +136,7 @@ namespace sockets
    };
 
 
-   /** Binds incoming port number to new socket class X.
+   /** Binds incoming port number to memory_new socket class X.
    \ingroup basic */
    template < class LISTENER >
    class listen_socket :
@@ -161,8 +161,8 @@ namespace sockets
          if (use_creator)
          {
 
-            //m_creator = new LISTENER(h);
-            m_creator = new LISTENER();
+            //m_creator = memory_new LISTENER(h);
+            m_creator = memory_new LISTENER();
 
             base_socket * plistener = m_creator->new_listen_socket();
 

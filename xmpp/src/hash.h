@@ -20,11 +20,11 @@ typedef struct _hash_t hash_t;
 
 typedef void (*hash_free_func)(const xmpp_ctx_t * const ctx, void *p);
 
-/** allocate and initialize a new hash table */
+/** allocate and initialize a memory_new hash table */
 hash_t *hash_new(xmpp_ctx_t * const ctx, const int size,
 		 hash_free_func free);
 
-/** allocate a new object to an existing hash table */
+/** allocate a memory_new object to an existing hash table */
 hash_t *hash_clone(hash_t * const table);
 
 /** release a hash table when no longer needed */
@@ -48,7 +48,7 @@ int hash_num_keys(hash_t *table);
 /** hash key iterator functions */
 typedef struct _hash_iterator_t hash_iterator_t;
 
-/** allocate and initialize a new iterator */
+/** allocate and initialize a memory_new iterator */
 hash_iterator_t *hash_iter_new(hash_t *table);
 
 /** release an iterator that is no longer needed */

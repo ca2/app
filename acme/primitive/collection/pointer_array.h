@@ -924,7 +924,7 @@ public:
 //* pugixml parser - version 1.5
 //* --------------------------------------------------------
 //* Copyright (C) 2006-2014, by Arseny Kapoulkine (arseny.kapoulkine@gmail.com)
-//* Report bugs and download new versions at http://pugixml.org/
+//* Report bugs and download memory_new versions at http://pugixml.org/
 //*
 //* This library is distributed under the MIT License. See notice at the end
 //* of this file.

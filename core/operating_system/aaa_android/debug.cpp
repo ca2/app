@@ -14,7 +14,7 @@ VOID WINAPI output_debug_string(const ::string & lpOutputString)
    //if (m_pstrOutputDebugStringA == nullptr)
    //{
 
-   //   m_pstrOutputDebugStringA = new string();
+   //   m_pstrOutputDebugStringA = memory_new string();
 
    //}
 

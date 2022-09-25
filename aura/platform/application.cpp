@@ -5363,7 +5363,7 @@ retry_license:
       //::html::html * application::create_html()
       //{
 
-      //   return new ::html::html(get_app());
+      //   return memory_new ::html::html(get_app());
 
       //}
 
@@ -7060,7 +7060,7 @@ namespace aura
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_BINARY);
-   *ppData = new byte[*pBytes];
+   *ppData = memory_new byte[*pBytes];
    lResult = RegQueryValueEx(hSecKey, (char *)pszEntry, nullptr, &dwType,
 
    *ppData, &dwCount);
@@ -7088,7 +7088,7 @@ namespace aura
    ASSERT(str.get_length()%2 == 0);
    iptr nLen = str.get_length();
    *pBytes = ::u32(nLen)/2;
-   *ppData = new byte[*pBytes];
+   *ppData = memory_new byte[*pBytes];
    for (i32 i=0;i<nLen;i+=2)
    {
    (*ppData)[i/2] = (byte)
@@ -7208,7 +7208,7 @@ namespace aura
    }
 
    // convert to string and write out
-   char * psz = new char[nBytes*2+1];
+   char * psz = memory_new char[nBytes*2+1];
 
    ::u32 i;
    for (i = 0; i < nBytes; i++)

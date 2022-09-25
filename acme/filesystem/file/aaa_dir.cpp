@@ -539,7 +539,7 @@ namespace dir
 //
 //   #endif
 //
-//      s_pstrCalc = new string(str);
+//      s_pstrCalc = memory_new string(str);
 //
 //      return *s_pstrCalc;
 //

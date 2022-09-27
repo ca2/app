@@ -210,9 +210,9 @@ namespace base
 
       bool bHasUninstall = psystem->is_true("uninstall");
 
-      debug_print("user::initialize bHasInstall %c", bHasInstall);
+      debug_print("base::user::initialize bHasInstall %c", bHasInstall);
 
-      debug_print("user::initialize bHasUninstall %c", bHasUninstall);
+      debug_print("base::user::initialize bHasUninstall %c", bHasUninstall);
 
       //return true;
 

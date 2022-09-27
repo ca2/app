@@ -3,7 +3,7 @@
 #include "_api.h"
 
 
-::string get_command_line()
+CLASS_DECL_ACME ::string get_command_line()
 {
 
    return ::GetCommandLineW();

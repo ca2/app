@@ -50,6 +50,8 @@ namespace acme
 MAIN::MAIN()
 {
 
+   __zero(this);
+
    ::acme::initialize();
 
 }

@@ -5,6 +5,7 @@
 #ifdef LINUX
 #include "acme/operating_system/ansi/binreloc.h"
 #endif
+#include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/platform/acme.h"
 #include "acme/platform/set_app_id.h"
 #include "acme/platform/system_setup.h"
@@ -12,11 +13,21 @@
 
 
 static int g_argc;
+
+
+#ifdef WINDOWS
+static wchar_t ** g_argv;
+static wchar_t ** g_envp;
+#else
 static char ** g_argv;
 static char ** g_envp;
+#endif
 
-
-void set_argc_argv_envp(int argc, char ** argv, char ** envp)
+#ifdef WINDOWS
+CLASS_DECL_ACME void set_argc_argv_envp(int argc, wchar_t ** argv, wchar_t ** envp)
+#else
+CLASS_DECL_ACME void set_argc_argv_envp(int argc, char ** argv, char ** envp)
+#endif
 {
 
    g_argc = argc;
@@ -36,7 +47,7 @@ namespace acme
 } // namespace acme
 
 
-PLAIN_MAIN::PLAIN_MAIN()
+MAIN::MAIN()
 {
 
    ::acme::initialize();
@@ -47,6 +58,23 @@ PLAIN_MAIN::PLAIN_MAIN()
 
 main::main()
 {
+
+
+
+#ifndef WINDOWS
+
+      ::unsetenv("LD_LIBRARY_PATH");
+
+#endif
+
+      //m_pfnDeferTerm = nullptr;
+
+      //m_iStatusCount = 0;
+
+      //m_iTotalStatusCount = 0;
+
+
+
 
 }
 
@@ -98,39 +126,6 @@ main::~main()
 //}
 
 
-void main::system_construct(const main * pmain)
-{
-
-   *((PLAIN_MAIN*)this) = *pmain;
-
-   m_strCommandLine = pmain->m_strCommandLine;
-
-   m_strAppId = pmain->m_strAppId;
-
-   m_pfnImplement = pmain->m_pfnImplement;
-
-#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
-
-   if(!m_pchar_binary__matter_zip_start && !m_pchar_binary__matter_zip_end
-   && pmain->m_pchar_binary__matter_zip_start && pmain->m_pchar_binary__matter_zip_end)
-   {
-
-      m_pchar_binary__matter_zip_start = pmain->m_pchar_binary__matter_zip_start;
-
-      m_pchar_binary__matter_zip_end = pmain->m_pchar_binary__matter_zip_end;
-
-   }
-
-#endif
-   
-   if(!m_pacmeapplicationStartup && pmain->m_pacmeapplicationStartup)
-   {
-    
-      m_pacmeapplicationStartup = pmain->m_pacmeapplicationStartup;
-      
-   }
-
-}
 
 
 string main::_get_argv(int iArgument) const
@@ -418,25 +413,46 @@ char * embed_resource::get_end()
 //#endif
 
 
-apex_main_data::apex_main_data()
-{
 
 
-}
-
-
-apex_main_data::~apex_main_data()
-{
-
-}
-
-
-void apex_main_data::system_construct(const ::main * pmain)
+void main::system_construct(const ::main * pmain)
 {
 
    //auto estatus = 
    
-   ::main::system_construct(pmain);
+   MAIN::copy_main(*pmain);
+
+
+      //*((MAIN *)this) = *pmain;
+
+      m_strCommandLine = pmain->m_strCommandLine;
+
+      m_strAppId = pmain->m_strAppId;
+
+      m_pfnImplement = pmain->m_pfnImplement;
+
+#if defined(LINUX) || defined(ANDROID) || defined(FREEBSD)
+
+      if (!m_pchar_binary__matter_zip_start && !m_pchar_binary__matter_zip_end
+         && pmain->m_pchar_binary__matter_zip_start && pmain->m_pchar_binary__matter_zip_end)
+      {
+
+         m_pchar_binary__matter_zip_start = pmain->m_pchar_binary__matter_zip_start;
+
+         m_pchar_binary__matter_zip_end = pmain->m_pchar_binary__matter_zip_end;
+
+      }
+
+#endif
+
+      if (!m_pacmeapplicationStartup && pmain->m_pacmeapplicationStartup)
+      {
+
+         m_pacmeapplicationStartup = pmain->m_pacmeapplicationStartup;
+
+      }
+
+
 
    //if (!estatus)
    //{
@@ -570,7 +586,7 @@ void apex_main_data::system_construct(const ::main * pmain)
 //}
 
 
-void apex_main_data::on_system_construct()
+void main::on_system_construct()
 {
 
    //return success;
@@ -680,15 +696,15 @@ void apex_main_data::system_construct(const char * pszCommandLine, const ::e_dis
 #endif
 
 
-void apex_main_data::set_main_struct(const apex_main_struct & mainstruct)
-{
+//void apex_main_data::set_main_struct(const apex_main_struct & mainstruct)
+//{
+//
+//   *((::apex_main_struct*)(this)) = mainstruct;
+//
+//}
 
-   *((::apex_main_struct*)(this)) = mainstruct;
 
-}
-
-
-string apex_main_data::get_arg(int i) const
+string main::get_arg(int i) const
 {
 
    if (m_wargv)
@@ -710,7 +726,7 @@ string apex_main_data::get_arg(int i) const
 }
 
 
-string apex_main_data::get_env(const char * pszVariableName) const
+string main::get_env(const char * pszVariableName) const
 {
 
    if (m_wenvp)
@@ -767,7 +783,7 @@ string apex_main_data::get_env(const char * pszVariableName) const
 }
 
 
-bool apex_main_data::is_console_app() const
+bool main::is_console_app() const
 {
 
    return m_bConsole;
@@ -775,19 +791,19 @@ bool apex_main_data::is_console_app() const
 }
 
 
-
-
-
-// Offloading apex(TBS) from deep stack stuff 2022-02-22 by camilo at 07:18 <3ThomasBorregaardSørensen!!
-#include "framework.h"
-#include "acme/operating_system.h"
-#include "app_core.h"
-#include "acme/platform/system_setup.h"
-//#include "apex/platform/static_start.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include <stdio.h>
-#include <time.h>
+//
+//
+//
+//// Offloading apex(TBS) from deep stack stuff 2022-02-22 by camilo at 07:18 <3ThomasBorregaardSørensen!!
+//#include "framework.h"
+//#include "acme/operating_system.h"
+//#include "app_core.h"
+//#include "acme/platform/system_setup.h"
+////#include "apex/platform/static_start.h"
+//#include "acme/filesystem/filesystem/acme_directory.h"
+//#include "acme/filesystem/filesystem/acme_file.h"
+//#include <stdio.h>
+//#include <time.h>
 
 
 
@@ -895,35 +911,14 @@ string apple_get_bundle_identifier();
 
 
 
-//app_core::app_core(apex_main_data* pdata)
-app_core::app_core()
-{
+
+//app_core::~app_core()
+//{
+//
+//}
 
 
-   #ifndef WINDOWS
-
-   ::unsetenv("LD_LIBRARY_PATH");
-
-   #endif
-
-   m_pfnDeferTerm = nullptr;
-
-   m_iStatusCount = 0;
-
-   m_iTotalStatusCount = 0;
-
-
-
-}
-
-
-app_core::~app_core()
-{
-
-}
-
-
-bool app_core::on_result(const ::e_status & estatus)
+bool main::on_result(const ::e_status & estatus)
 {
 
    if (estatus == ::success)
@@ -933,27 +928,23 @@ bool app_core::on_result(const ::e_status & estatus)
 
    }
 
-   if (m_iStatusCount >= APP_CORE_MAXIMUM_STATUS_COUNT)
-   {
+   //if (m_iStatusCount >= APP_CORE_MAXIMUM_STATUS_COUNT)
+   //{
 
-      m_iTotalStatusCount++;
+   //   m_iTotalStatusCount++;
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
-   m_estatusa[m_iStatusCount] = estatus;
-
-   m_iStatusCount++;
-
-   m_iTotalStatusCount = m_iStatusCount;
+   m_estatusa.add(estatus);
 
    return false;
 
 }
 
 
-void app_core::system_prep()
+void main::system_prep()
 {
 
 // prelude::defer_call_construct(this);
@@ -1013,7 +1004,7 @@ void app_core::system_prep()
 CLASS_DECL_ACME void set_debug_pointer(void * p);
 
 
-void app_core::system_init()
+void main::system_init()
 {
 
    ///// string test (NEW STRING 2019-11-26)
@@ -1321,7 +1312,7 @@ void app_core::system_init()
 
 
 
-string app_core::get_command_line()
+string main::get_command_line()
 {
 
    return m_strCommandLine;
@@ -1468,7 +1459,7 @@ string app_core::get_command_line()
 //}
 
 
-void app_core::system_end()
+void main::system_end()
 {
 
    //os_term_application();
@@ -1772,7 +1763,7 @@ typedef FN_GET_STRING * PFN_GET_STRING;
 #elif !defined(ANDROID)
 
 
-void app_core::system_proc()
+void main::system_proc()
 {
 
    //return ::error_failed;
@@ -1819,27 +1810,27 @@ void app_core::system_proc()
 //}
 
 
-bool app_core::has_apex_application_factory() const
-{
-
-   if (m_pfnnewmatterApplication)
-   {
-
-      return true;
-
-   }
-
-   //if (m_pfnNewAuraLibrary)
-   //{
-
-   //   return true;
-
-   //}
-
-   return false;
-
-}
-
+//bool main::has_apex_application_factory() const
+//{
+//
+//   if (m_pfnnewmatterApplication)
+//   {
+//
+//      return true;
+//
+//   }
+//
+//   //if (m_pfnNewAuraLibrary)
+//   //{
+//
+//   //   return true;
+//
+//   //}
+//
+//   return false;
+//
+//}
+//
 
 
 #ifdef __APPLE__
@@ -1883,42 +1874,42 @@ bool app_core::has_apex_application_factory() const
 #endif
 
 
-__pointer(::acme::application) app_core::new_app()
-{
-
-   //if(::acme::application::g_p)
-   //{
-
-   //   return ::acme::application::g_p;
-
-   //}
-
-   if (!m_pfnnewmatterApplication)
-   {
-
-      return nullptr;
-
-   }
-
-   __pointer(::acme::application) papp;
-
-   papp = m_pfnnewmatterApplication();
-
-   if (papp.is_null())
-   {
-
-      return nullptr;
-
-   }
-
-   return papp;
-
-}
-
-
+//__pointer(::acme::application) main::new_app()
+//{
+//
+//   //if(::acme::application::g_p)
+//   //{
+//
+//   //   return ::acme::application::g_p;
+//
+//   //}
+//
+//   if (!m_pfnnewmatterApplication)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   __pointer(::acme::application) papp;
+//
+//   papp = m_pfnnewmatterApplication();
+//
+//   if (papp.is_null())
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return papp;
+//
+//}
 
 
-void app_core::initialize_application(::acme::application *papp, ::object * pobject)
+
+
+void main::initialize_application(::acme::application *papp, ::object * pobject)
 {
 
    //auto estatus = 

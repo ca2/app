@@ -1,7 +1,7 @@
 
 
 #include "_main_hold.h"
-
+#include "acme/_api.h"
 
 //void stage();
 ::acme::system * acme_system_init();
@@ -16,9 +16,16 @@ void acme_system_term();
 
 #endif
 
-//CLASS_DECL_ACME void process_set_args(int argc, platform_char ** argv);
+
+#ifdef WINDOWS
+CLASS_DECL_ACME void set_argc_argv_envp(int argc, wchar_t ** argv, wchar_t ** envp);
+#else
 CLASS_DECL_ACME void set_argc_argv_envp(int argc, char ** argv, char ** envp);
+#endif
+
+
 void implement(::acme::system * psystem);
+
 
 namespace acme
 {
@@ -80,18 +87,45 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 //      main.m_envp = envp;
 //
 //#endif
-//
-//#ifdef __APP_ID
-//
-//      main.m_strAppId = __APP_ID;
-//
-//#endif
 
+#ifdef APP_ID
+
+      papp->m_strAppId = APP_ID;
+
+#endif
+
+      papp->m_bConsole = true;
+  
       papp->m_pfnImplement = &::implement;
 
+      try
+      {
 
-      __main(papp);
+         __main(papp);
 
+      }
+      catch (const ::exception & exception)
+      {
+
+         string strReport;
+
+         strReport += "Exception has occurred:\n";
+         strReport += exception.m_strMessage + ";\n";
+         strReport += "Command Line:\n";
+         strReport += get_command_line() + ";\n";
+         strReport += exception.m_strDetails;
+         strReport += "Callstack:\n";
+         strReport += exception.m_strCallstack;
+
+         fprintf(stderr, "%s", strReport.c_str());
+
+      }
+      catch (...)
+      {
+         
+         fprintf(stderr, "Unknown exception has occurred\n");
+         
+      }
 
 //      papp->m_bConsole = true;
 //

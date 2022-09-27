@@ -7,7 +7,7 @@ namespace acme
 
 
    class CLASS_DECL_ACME system :
-      virtual public ::app_core,
+      virtual public ::main,
       virtual public ::acme::context,
       virtual public ::task,
       virtual public ::plane_system
@@ -185,7 +185,7 @@ namespace acme
       virtual __pointer(::factory::factory) & folder_factory();
 
 
-      using app_core::system_construct;
+      using main::system_construct;
 
 
       virtual void system_construct(::acme::application * pacmeapplicationStartup);

@@ -66,12 +66,10 @@ struct CLASS_DECL_ACME MAIN // : public ::acme::reference
    MAIN();
 
 
-   MAIN & operator = (const MAIN & main)
+   void copy_main(const MAIN & main)
    {
 
       memcpy(this, &main, sizeof(MAIN));
-
-      return *this;
 
    }
 
@@ -85,6 +83,12 @@ struct CLASS_DECL_ACME MAIN // : public ::acme::reference
 //extern char _binary__matter_zip_end[] __attribute__((weak_import));
 //
 //#endif
+
+extern "C"
+typedef ::acme::library * NEW_LIBRARY();
+
+typedef NEW_LIBRARY * PFN_NEW_LIBRARY;
+
 
 
 class CLASS_DECL_ACME main :
@@ -157,7 +161,7 @@ public:
 
 
 
-   void system_construct(const class ::main * pmain) override;
+   //void system_construct(const class ::main * pmain) override;
 
 
    //void system_construct(int argc, char** argv, char ** envp);
@@ -188,8 +192,8 @@ public:
 
 
    //app_core(apex_main_data * pdata);
-   app_core();
-   ~app_core();
+   //app_core();
+   //~app_core();
 
    bool on_result(const ::e_status & estatus);
 
@@ -201,7 +205,7 @@ public:
 
    void system_proc();
 
-   bool has_apex_application_factory() const;
+   //bool has_apex_application_factory() const;
 
    virtual void system_init();
 
@@ -215,8 +219,8 @@ public:
 
    void system_end();
 
-   __pointer(::acme::application) new_app();
-   __pointer(::acme::application) new_app(const char* pszAppId);
+   //__pointer(::acme::application) new_app();
+   //__pointer(::acme::application) new_app(const char* pszAppId);
 
 
    //   __pointer(::apex::application) get_new_application(::object* pobject);

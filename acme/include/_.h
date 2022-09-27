@@ -1293,10 +1293,10 @@ inline const ::matter * context_trace_object() { return general_trace_object(); 
 #define FORMATTED_FATAL(...)                      TRACE_LOG_FORMATTED_FATAL(__VA_ARGS__)
 
 
-#define INFORMATION(...)                      TRACE_LOG_INFORMATION(__VA_ARGS__)
-#define WARNING(...)                      TRACE_LOG_WARNING(__VA_ARGS__)
-#define ERROR(...)                                                   TRACE_LOG_ERROR(__VA_ARGS__)
-#define FATAL(...)                      TRACE_LOG_FATAL(__VA_ARGS__)
+#define INFORMATION(...)               TRACE_LOG_INFORMATION(__VA_ARGS__)
+#define WARNING(...)                   TRACE_LOG_WARNING(__VA_ARGS__)
+#define ERROR(...)                     TRACE_LOG_ERROR(__VA_ARGS__)
+#define FATAL(...)                     TRACE_LOG_FATAL(__VA_ARGS__)
 
 
 //#define INFORMATION(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_information   , ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
@@ -4384,11 +4384,6 @@ inline string &to_network_payload(string &str, const T &value, bool bNewLine)
    return str = __string(value);
 
 }
-
-
-
-CLASS_DECL_ACME string get_last_error_string();
-
 
 
 

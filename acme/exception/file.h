@@ -12,7 +12,7 @@ public:
    string               m_strPath;
 
 
-   file_exception(::e_status estatus, int iOsError, const string& strPath);
+   file_exception(::e_status estatus, int iOsError, const string& strPath, const ::string & strMessage);
 
 
 };

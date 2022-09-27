@@ -5124,7 +5124,7 @@ namespace apex
    void system::destroy()
    {
 
-      ::app_core::destroy();
+      ::main::destroy();
 
       ::apex::context::destroy();
 
@@ -5219,7 +5219,7 @@ namespace apex
 
       ::acme::system::system_construct(papplication);
 
-      apex_main_data::system_construct(papplication);
+      main::system_construct(papplication);
 
    }
 

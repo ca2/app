@@ -2262,20 +2262,8 @@ inline uptr uptr_hash < block >(block b)
 }
 
 
-inline ::acme::application * object::get_app() const
-{ 
-   
-   return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication : (m_psystem ? m_psystem->m_pacmeapplicationMain.get() : nullptr);
-
-}
 
 
-inline ::apex::session * object::get_session() const
-{ 
-   
-   return m_pcontext ? m_pcontext->m_papexsession : nullptr; 
-
-}
 
 
 template < typename TYPE >

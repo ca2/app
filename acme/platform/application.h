@@ -30,7 +30,7 @@ namespace acme
 
 
    class CLASS_DECL_ACME application :
-      virtual public ::app_core,
+      virtual public ::main,
       virtual public ::acme::context,
       virtual public ::task
    {

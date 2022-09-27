@@ -101,7 +101,6 @@ void dir_context::init_context()
 }
 
 
-
 inline bool myspace(char ch)
 {
    return ch == ' ' ||
@@ -3034,37 +3033,26 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 
    }
 
-   if (m_psystem->m_pacmeapplicationStartup)
+   auto papplication = get_context_application();
+
+   if (papplication)
    {
 
-      if (m_psystem->m_pacmeapplicationStartup->m_strAppId.is_empty())
+      if (papplication->m_strAppId.is_empty())
       {
 
          throw ::exception(error_wrong_state, "Application Startup App Id is empty");
 
       }
 
-      return dropbox() / "application" / m_psystem->m_pacmeapplicationStartup->m_strAppId;
+      return dropbox() / "application" / papplication->m_strAppId;
 
    }
 
-   if (m_psystem->m_pacmeapplicationMain)
-   {
-
-      if (m_psystem->m_pacmeapplicationMain->m_strAppId.is_empty())
-      {
-
-         throw ::exception(error_wrong_state, "Application Main App Id is empty");
-
-      }
-
-      return dropbox() / "application" / m_psystem->m_pacmeapplicationMain->m_strAppId;
-
-   }
-
-   throw ::exception(error_wrong_state, "Neither Application Startup or Application Main are set");
+   throw ::exception(error_wrong_state, "No application is set");
 
    return {};
+
 }
 
 

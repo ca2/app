@@ -79,6 +79,7 @@ public:
    ~object() override;
 
 
+
 #ifdef _DEBUG
 
 
@@ -123,7 +124,6 @@ public:
 
    //inline ::application* get_app() { return _get_application(); }
 
-   //virtual ::application* _get_application() override;
 
    template < typename BASE_TYPE >
    __pointer(BASE_TYPE) file_as(const ::payload& payloadFile);
@@ -832,9 +832,9 @@ public:
 
    //inline ::context* get_context() const { return m_pcontext; }
 
-   inline ::acme::application * get_app() const;
+   ::acme::application * get_app() const;
 
-   inline ::apex::session * get_session() const;
+   ::apex::session * get_session() const;
 
    //::apex::system * psystem const { return m_psystemContext; }
 

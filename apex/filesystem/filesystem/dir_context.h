@@ -26,10 +26,8 @@
       virtual void init_system();
       virtual void init_context();
 
-
-
+      
       ::file::watcher & watcher();
-
 
 
       //bool _enumerates(::file::listing & listing) override;

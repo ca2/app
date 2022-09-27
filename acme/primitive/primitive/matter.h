@@ -84,6 +84,9 @@ public:
    void on_initialize_object() override;
 
 
+   virtual ::acme::application * get_context_application();
+
+
    //using element::operator();
    virtual void operator()(::message::message * pmessage);
    virtual void operator()(const ::payload & payload);

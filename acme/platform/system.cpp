@@ -805,7 +805,7 @@ namespace acme
 
       m_pacmeapplicationStartup->get_property_set().merge(get_property_set());
 
-      set_main_struct(*m_pacmeapplicationStartup);
+      copy_main(*m_pacmeapplicationStartup);
 
       process_init();
 
@@ -1795,7 +1795,7 @@ namespace acme
 
       m_etracelevel = etracelevel;
 
-      /*auto estatus = */ ::app_core::system_construct(papplication);
+      /*auto estatus = */ ::main::system_construct(papplication);
 
       /*  if (!estatus)
       {

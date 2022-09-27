@@ -63,6 +63,26 @@ void matter::on_initialize_object()
 }
 
 
+::acme::application * matter::get_context_application()
+{
+
+   if (m_psystem->m_pacmeapplicationMain)
+   {
+
+      return m_psystem->m_pacmeapplicationMain;
+
+   }
+
+   if (m_psystem->m_pacmeapplicationStartup)
+   {
+
+      return m_psystem->m_pacmeapplicationStartup;
+
+   }
+
+   return nullptr;
+
+}
 
 
 void matter::operator()(::message::message * pmessage)

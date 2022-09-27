@@ -869,34 +869,7 @@ void file_context::get_lines(string_array &stra, const ::payload &payloadFile, b
    try
    {
 
-      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary | (bNoExceptionIfFailToOpen ? ::file::e_open_no_exception_on_open : 0));
-
-      if (!pfile)
-      {
-
-         if (bNoExceptionIfFailToOpen)
-         {
-
-            return;
-
-         }
-
-         throw file_open_exception();
-
-      }
-      else if (::failed(pfile->m_estatus))
-      {
-
-         if (bNoExceptionIfFailToOpen)
-         {
-
-            return;
-
-         }
-
-         throw file_open_exception(pfile->m_estatus);
-
-      }
+      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary);
 
    }
    catch (const ::exception& exception)

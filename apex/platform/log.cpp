@@ -660,36 +660,36 @@ namespace apex
    void log::process_init()
    {
 
-      auto psystem = get_system()->m_papexsystem;
+      //auto psystem = get_system()->m_papexsystem;
 
-      if (is_debugger_attached() && !psystem->has_apex_application_factory())
-      {
+      //if (is_debugger_attached() && !psystem->has_apex_application_factory())
+      //{
 
-         /*fork([this]()
-            {
+      //   /*fork([this]()
+      //      {
 
-               while (::task_get_run())
-               {
+      //         while (::task_get_run())
+      //         {
 
-                  load_flags(m_pcontext->m_papexcontext->local_ini());
+      //            load_flags(m_pcontext->m_papexcontext->local_ini());
 
-                  //task_sleep(10_s);
+      //            //task_sleep(10_s);
 
-                  task_sleep(1_s);
+      //            task_sleep(1_s);
 
-                  //load_flags("localconfig"_ini);
+      //            //load_flags("localconfig"_ini);
 
-                  //task_sleep(1_s);
+      //            //task_sleep(1_s);
 
-                  //task_sleep(10_s);
+      //            //task_sleep(10_s);
 
-               }
+      //         }
 
-            });*/
+      //      });*/
 
-      }
+      //}
 
-      //return true;
+      ////return true;
 
    }
 

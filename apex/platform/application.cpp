@@ -2413,7 +2413,7 @@ namespace apex
       {
 
          message_box_synchronous(this, "Application failed to initialize (4). Unknown exception", m_strAppName, e_message_box_ok,
-            exception.m_strMessage + "\n\n" + exception.m_strDetails);
+            exception.m_strMessage + "\n\n" + exception.m_strDetails + "\n\n" + exception.m_strCallstack);
 
          throw exception;
 
@@ -2953,11 +2953,11 @@ namespace apex
 
          //}
          //else
-         {
+ /*        {
 
             set_has_installer(!psystem->has_apex_application_factory());
 
-         }
+         }*/
 
 #endif
 

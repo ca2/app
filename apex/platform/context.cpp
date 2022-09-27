@@ -519,6 +519,15 @@ namespace apex
       else if (::str().begins_eat_ci(path, "dropbox-app://"))
       {
 
+         auto papplication = get_context_application();
+
+         if (!papplication || papplication->m_strAppId.is_empty())
+         {
+
+            return false;
+
+         }
+
          path = dir().dropbox_app() / path;
 
       }

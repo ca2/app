@@ -668,7 +668,7 @@ void apex_main_data::system_construct(const ::string_array & straParam)
 #else
 
 
-void apex_main_data::system_construct(const char * pszCommandLine, const ::e_display & edisplay)
+void main::system_construct(const char * pszCommandLine, const ::e_display & edisplay)
 {
 
    m_strCommandLine = pszCommandLine;
@@ -2172,3 +2172,55 @@ void main::initialize_application(::acme::application *papp, ::object * pobject)
 ////
 //
 //
+
+
+#if !defined(WINDOWS)
+
+
+::string quote_if_has_space(const char *psz)
+{
+
+   if(strchr(psz, ' ') != nullptr)
+   {
+
+      return "\"" + string(psz) + "\"";
+
+   }
+   else
+   {
+
+      return psz;
+
+   }
+
+}
+
+
+::string get_command_line()
+{
+
+   ::string str;
+
+   for(int i = 0; i < g_argc; i++)
+   {
+
+      if (str.has_char())
+      {
+
+         str += " ";
+
+      }
+
+      str += quote_if_has_space(g_argv[i]);
+
+   }
+
+   return str;
+
+}
+
+
+#endif
+
+
+

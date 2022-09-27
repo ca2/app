@@ -1182,7 +1182,7 @@ namespace dynamic_source
          ppair->element2().m_p->~session();
 
 
-         ::memory_new(ppair->element2().m_p) ::dynamic_source::session();
+         ::new(ppair->element2().m_p) ::dynamic_source::session();
 //#define memory_new ACME_NEW
 
          ppair->element2()->initialize_dynamic_source_session(pszId, this);

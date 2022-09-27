@@ -109,8 +109,8 @@ list(APPEND library_source
    exception/extended_transport.h
    exception/file.cpp
    exception/file.h
-   exception/file_open.cpp
-   exception/file_open.h
+   #exception/file_open.cpp
+   #exception/file_open.h
    exception/interface_only.cpp
    exception/io.cpp
    exception/no_memory.cpp

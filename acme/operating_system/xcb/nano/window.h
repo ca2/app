@@ -56,7 +56,7 @@ namespace xcb
 
       void display() override;
 
-      virtual bool _on_event(xcb_generic_event_t *pevent);
+      bool _on_event(xcb_generic_event_t *pevent) override;
 
       virtual void _update_window();
 

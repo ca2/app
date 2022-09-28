@@ -164,6 +164,13 @@ namespace user
          if (::is_set(pdrag) && pitemButtonDown->m_eelement == pdrag->m_eelement)
          {
 
+            if(pdrag->m_eelement == e_element_resize)
+            {
+
+               INFORMATION("drag_on_button_down element_resize");
+
+            }
+
             drag_on_button_down(pdrag, pitemButtonDown->m_pmouse);
 
             return true;

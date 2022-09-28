@@ -1179,9 +1179,9 @@ namespace experience
 
       rectangleRequest = m_pframewindow->screen_rect();
 
-      bool bMoving = m_pframewindow->move_manager()->window_is_moving();
+      bool bMoving = m_pframewindow->move_manager() && m_pframewindow->move_manager()->window_is_moving();
 
-      bool bSizing = m_pframewindow->size_manager()->window_is_sizing();
+      bool bSizing = m_pframewindow->size_manager() && m_pframewindow->size_manager()->window_is_sizing();
 
       if (bMoving)
       {

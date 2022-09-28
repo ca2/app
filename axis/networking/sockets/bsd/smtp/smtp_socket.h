@@ -52,7 +52,7 @@ namespace sockets
       void initialize(::object * pobject) override;
 
 
-      void OnLine(const string &);
+      void OnLine(const string &) override;
 
       /** \return 'false' to abort */
       //virtual bool OnHello(const string & domain) = 0;

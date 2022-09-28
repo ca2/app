@@ -511,9 +511,13 @@ void nano_message_box::on_click(const ::atom & atom, ::user::mouse * pmouse)
    if (atom == "details")
    {
 
+      auto psequencer = __new(::sequencer < ::conversation >());
+
       auto pdetailswindow = __create_new < nano_details_window >();
 
-      pdetailswindow->m_strMessage = m_strDetails;
+      psequencer->m_psequence = pdetailswindow;
+
+      pdetailswindow->m_psequencer = psequencer;
 
       pdetailswindow->initialize_message_box(m_strDetails, m_strTitle + " : Details", e_message_box_ok, m_strDetails);
 

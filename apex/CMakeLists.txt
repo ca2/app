@@ -1250,7 +1250,7 @@ if (FREEBSD)
       operating_system/freebsd/graphics.cpp
       operating_system/freebsd/graphics.h
       operating_system/freebsd/graphics2.h
-      operating_system/freebsd/language.cpp
+      #operating_system/freebsd/language.cpp
       #operating_system/freebsd/library.cpp
       operating_system/freebsd/freebsd_freebsd.h
       #operating_system/freebsd/lock.cpp

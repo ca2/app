@@ -2044,7 +2044,7 @@ if (FREEBSD)
       operating_system/freebsd/process_pid.cpp
       operating_system/freebsd/simple_app.cpp
       operating_system/freebsd/time.cpp
-      operating_system/freebsd/user.cpp
+      #operating_system/freebsd/user.cpp
       operating_system/freebsd/win_base.cpp
       )
 

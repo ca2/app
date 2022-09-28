@@ -9,6 +9,8 @@
 #include "acme/operating_system/ansi/_pthread.h"
 
 
+   namespace apex
+   {
 
    bool application::os_on_start_application()
    {
@@ -39,7 +41,7 @@
    }
 
 
-//} // namespace linux
+} // namespace apex
 
 
 

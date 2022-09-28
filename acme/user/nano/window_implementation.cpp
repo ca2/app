@@ -115,7 +115,7 @@ void nano_window_implementation::handle(::topic * ptopic, ::context * pcontext)
 
    m_pinterface->nano_window::display();
 
-   //message_loop();
+   message_loop();
 
    auto pmanualresetevent = __new(manual_reset_event);
 
@@ -126,7 +126,12 @@ void nano_window_implementation::handle(::topic * ptopic, ::context * pcontext)
 
    });
 
-   pmanualresetevent->wait();
+   if(m_pinterface->m_payloadResult.is_new())
+   {
+      
+      pmanualresetevent->wait();
+      
+   }
 
    //   auto pmessagebox = pobject->__create_new < nano_message_box >();
    //

@@ -228,9 +228,9 @@ void ns_create_alias(const char * pszTarget, const char * pszSource);
 // void ns_log(const char * pszLog);
 
 
-//namespace apex
-//{
-//
+namespace apex
+{
+
 
    bool application::os_on_start_application()
    {
@@ -295,7 +295,7 @@ void ns_create_alias(const char * pszTarget, const char * pszSource);
    }
 
 
-//} // namespace apex
-//
+} // namespace apex
+
 
 

@@ -241,26 +241,24 @@ namespace acme
    //__main(main);
 
 
-   void * application_system(void * pApplication)
-   {
-
-      auto papp = (::acme::application *)pApplication;
-
-      return papp->m_psystem;
-
-   }
-
-
    void application::handle_url(const ::string & strUrl)
    {
 
-
+      
    }
-
 
 
 } // namespace acme
 
+
+void * application_system(void * pApplication)
+{
+
+   auto papp = (::acme::application *)pApplication;
+
+   return papp->m_psystem;
+
+}
 
 
 

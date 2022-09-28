@@ -436,14 +436,8 @@ namespace desktop_environment_xfce
 #endif
 
 
-#if defined(DEBUG) && !defined(NO_ACME_MEMORY_MANAGEMENT)
-#define memory_new new(__FILE__, __LINE__)
-#else
-#define memory_new new
-#endif
-
-
 #include "acme/platform/object_reference_count_debug.h"
+
 
 template < class root_derived >
 inline i64 increment_reference_count(root_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);

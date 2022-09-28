@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/platform/application.h"
 #include "_freebsd.h"
 #include "aura/operating_system/freebsd/_freebsd.h"
 #include "acme/filesystem/filesystem/acme_file.h"
@@ -499,6 +500,10 @@ namespace aura
 //   }
 
 
+//namespace aura
+//{
+
+
    bool application::os_on_start_application()
    {
 
@@ -543,7 +548,7 @@ namespace aura
    }
 
 
-} // namespace linux
+} // namespace aura
 
 
 namespace aura

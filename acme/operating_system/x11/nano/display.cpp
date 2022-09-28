@@ -86,14 +86,14 @@ namespace x11
 
       }
 
-      Atom atom = m_atoma[eatom];
+      Atom atom = m_atommap[eatom];
 
       if (atom == None)
       {
 
          atom = intern_atom(atom_name(eatom), bCreate);
 
-         m_atoma[eatom] = atom;
+         m_atommap[eatom] = atom;
 
       }
 

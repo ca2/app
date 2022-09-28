@@ -6,6 +6,7 @@
 
 #include "acme/user/nano/display.h"
 #include "event_listener.h"
+#include "acme/operating_system/x11/_atom.h"
 
 
 namespace x11
@@ -27,7 +28,7 @@ namespace x11
       __pointer_array(event_listener)        m_eventlistenera;
       __pointer_array(nano_window)           m_windowa;
       Window                                 m_windowActive;
-      Atom                                   m_atoma[e_atom_count];
+      map < enum_atom, Atom >                m_atommap;
 
 
       static display *                       g_p;

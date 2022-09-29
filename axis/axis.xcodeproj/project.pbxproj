@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -41,8 +41,6 @@
 		9A1626DD26F0041A003D9CB9 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1626B626F0041A003D9CB9 /* _.h */; };
 		9A47A7E228CBBF1D0002CAE0 /* composite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A47A7E028CBBF1D0002CAE0 /* composite.cpp */; };
 		9A47A7E328CBBF1D0002CAE0 /* composite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A47A7E028CBBF1D0002CAE0 /* composite.cpp */; };
-		9A47A7E428CBBF1D0002CAE0 /* composite.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A47A7E128CBBF1D0002CAE0 /* composite.h */; };
-		9A47A7E528CBBF1D0002CAE0 /* composite.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A47A7E128CBBF1D0002CAE0 /* composite.h */; };
 		9A5ECCD728CCBE040084D354 /* form.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCBB28CCBE040084D354 /* form.cpp */; };
 		9A5ECCD828CCBE040084D354 /* table_row.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCBC28CCBE040084D354 /* table_row.cpp */; };
 		9A5ECCD928CCBE040084D354 /* input_text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCBD28CCBE040084D354 /* input_text.cpp */; };
@@ -433,8 +431,6 @@
 		9AC01E1D2748CC4C006BEBCC /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01DFE2748CC4B006BEBCC /* _.h */; };
 		9AC01E1E2748CC4C006BEBCC /* _mathematics.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01DFF2748CC4B006BEBCC /* _mathematics.h */; };
 		9AC01E1F2748CC4C006BEBCC /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AC01E002748CC4B006BEBCC /* _.h */; };
-		9ADB6C9928D128D400608B22 /* composite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADB6C9728D128D400608B22 /* composite.cpp */; };
-		9ADB6C9A28D128D400608B22 /* composite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADB6C9728D128D400608B22 /* composite.cpp */; };
 		9ADB6C9B28D128D400608B22 /* composite.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADB6C9828D128D400608B22 /* composite.h */; };
 		9ADB6C9C28D128D400608B22 /* composite.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADB6C9828D128D400608B22 /* composite.h */; };
 		9ADB6CB128D1397200608B22 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ADB6CB028D1397200608B22 /* libacme.dylib */; };
@@ -1683,7 +1679,6 @@
 				9A93B5C92846EA94005ACD11 /* policy_objcpp.h in Headers */,
 				9A93B5CA2846EA94005ACD11 /* database_impl.h in Headers */,
 				9A93B5CC2846EA94005ACD11 /* _sockets.h in Headers */,
-				9A47A7E528CBBF1D0002CAE0 /* composite.h in Headers */,
 				9A93B5CD2846EA94005ACD11 /* application_common.h in Headers */,
 				9A93B5CE2846EA94005ACD11 /* console.h in Headers */,
 				9A93B5CF2846EA94005ACD11 /* ajp_base_socket.h in Headers */,
@@ -1882,7 +1877,6 @@
 				9AE6493E252A5BF700BED5B8 /* policy_objcpp.h in Headers */,
 				9A00E5F126614F9400517464 /* database_impl.h in Headers */,
 				9A1626D226F0041A003D9CB9 /* _sockets.h in Headers */,
-				9A47A7E428CBBF1D0002CAE0 /* composite.h in Headers */,
 				9AE645B1252A5BF200BED5B8 /* application_common.h in Headers */,
 				9AE64462252A5BEF00BED5B8 /* console.h in Headers */,
 				9A1626C626F0041A003D9CB9 /* ajp_base_socket.h in Headers */,
@@ -2037,7 +2031,7 @@
 		9AE63E93252A5B7800BED5B8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
 					9AE63E9A252A5B7800BED5B8 = {
@@ -2046,7 +2040,7 @@
 				};
 			};
 			buildConfigurationList = 9AE63E96252A5B7800BED5B8 /* Build configuration list for PBXProject "axis" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -2161,7 +2155,6 @@
 				9A979DEA28C835540013DC54 /* data.cpp in Sources */,
 				9A979D3928C81E430013DC54 /* base.cpp in Sources */,
 				9A93B66E2846EA94005ACD11 /* _.cpp in Sources */,
-				9ADB6C9A28D128D400608B22 /* composite.cpp in Sources */,
 				9A93B6712846EA94005ACD11 /* result.cpp in Sources */,
 				9A93B6722846EA94005ACD11 /* fftd.cpp in Sources */,
 				9A93B6742846EA94005ACD11 /* smtp_socket.cpp in Sources */,
@@ -2265,7 +2258,6 @@
 				9A979D3828C81E430013DC54 /* base.cpp in Sources */,
 				9A5ECCD928CCBE040084D354 /* input_text.cpp in Sources */,
 				9AE645C6252A5BF200BED5B8 /* _.cpp in Sources */,
-				9ADB6C9928D128D400608B22 /* composite.cpp in Sources */,
 				9AC01E0E2748CC4C006BEBCC /* result.cpp in Sources */,
 				9AC01E152748CC4C006BEBCC /* fftd.cpp in Sources */,
 				9A1626CE26F0041A003D9CB9 /* smtp_socket.cpp in Sources */,
@@ -2388,6 +2380,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2497,6 +2490,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2565,6 +2559,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2585,6 +2580,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

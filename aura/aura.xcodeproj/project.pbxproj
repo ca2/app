@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 47;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -2585,7 +2585,7 @@
 		CEA754BB14411F2B007E04DE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					9A20198924772E9000A31CBF = {
 						CreatedOnToolsVersion = 11.5;
@@ -2596,7 +2596,7 @@
 				};
 			};
 			buildConfigurationList = CEA754BE14411F2B007E04DE /* Build configuration list for PBXProject "aura" */;
-			compatibilityVersion = "Xcode 6.3";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -3126,6 +3126,7 @@
 		9A98A6131771D67E000AE16E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				PLATFORM_MODIFIER = macos;
 				SDKROOT = macosx;
@@ -3135,6 +3136,7 @@
 		9A98A6141771D67E000AE16E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				PLATFORM_MODIFIER = macos;
 				SDKROOT = macosx;
@@ -3253,6 +3255,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3297,8 +3300,33 @@
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(WorkspaceDir)/source/port/include $(WorkspaceDir)/source/port $(WorkspaceDir)/source/app";
-				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/port/include $(WorkspaceDir)/source/port $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(PROJECT_DIR) $(PROJECT_DIR)/.. $(PROJECT_DIR)/../.. $(HOME)/sensitive/sensitive/include";
+				SYSTEM_HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/operating-system",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(WorkspaceDir)/source/port/include",
+					"$(WorkspaceDir)/source/port",
+					"$(WorkspaceDir)/source/app",
+				);
+				USER_HEADER_SEARCH_PATHS = (
+					.,
+					"$(WorkspaceDir)/source",
+					"$(WorkspaceDir)/source/include",
+					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/source/app/include",
+					"$(WorkspaceDir)/operating-system",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/source/port/include",
+					"$(WorkspaceDir)/source/port",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/..",
+					"$(PROJECT_DIR)/../..",
+					"$(HOME)/sensitive/sensitive/include",
+				);
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = "";
 				WorkspaceDir = "$(SRCROOT)/../../..";
@@ -3345,6 +3373,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3387,8 +3416,33 @@
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(WorkspaceDir)/source/port/include $(WorkspaceDir)/source/port $(WorkspaceDir)/source/app";
-				USER_HEADER_SEARCH_PATHS = ". $(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/source/app $(WorkspaceDir)/source/app/include $(WorkspaceDir)/operating-system $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER) $(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/port/include $(WorkspaceDir)/source/port $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include $(PROJECT_DIR) $(PROJECT_DIR)/.. $(PROJECT_DIR)/../.. $(HOME)/sensitive/sensitive/include";
+				SYSTEM_HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/operating-system",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(WorkspaceDir)/source/port/include",
+					"$(WorkspaceDir)/source/port",
+					"$(WorkspaceDir)/source/app",
+				);
+				USER_HEADER_SEARCH_PATHS = (
+					.,
+					"$(WorkspaceDir)/source",
+					"$(WorkspaceDir)/source/include",
+					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/source/app/include",
+					"$(WorkspaceDir)/operating-system",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/source/port/include",
+					"$(WorkspaceDir)/source/port",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
+					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/..",
+					"$(PROJECT_DIR)/../..",
+					"$(HOME)/sensitive/sensitive/include",
+				);
 				USE_HEADERMAP = NO;
 				VALIDATE_PRODUCT = YES;
 				WARNING_CFLAGS = "";

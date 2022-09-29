@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -2747,7 +2747,7 @@
 		9A68A43E251143F8008DABD2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
 					9A68A445251143F8008DABD2 = {
@@ -2756,7 +2756,7 @@
 				};
 			};
 			buildConfigurationList = 9A68A441251143F8008DABD2 /* Build configuration list for PBXProject "apex" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -3150,6 +3150,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3266,6 +3267,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -3344,6 +3346,7 @@
 		9A68A450251143F8008DABD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				PLATFORM_MODIFIER = macos;
 				SDKROOT = macosx;
@@ -3353,6 +3356,7 @@
 		9A68A451251143F8008DABD2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				PLATFORM_MODIFIER = macos;
 				SDKROOT = macosx;

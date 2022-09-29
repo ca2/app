@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -260,7 +260,7 @@
 
 /* Begin PBXFileReference section */
 		9A2273AB27CF04460042BAC2 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
-		9A2818FE25242488009FA9CB /* aqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = aqua.dylib; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A2818FE25242488009FA9CB /* libaqua.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libaqua.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A28192825242523009FA9CB /* console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
 		9A28192925242523009FA9CB /* _defer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _defer.h; sourceTree = "<group>"; };
 		9A28192D25242523009FA9CB /* library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
@@ -419,7 +419,7 @@
 		9A2818FF25242488009FA9CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A2818FE25242488009FA9CB /* aqua.dylib */,
+				9A2818FE25242488009FA9CB /* libaqua.dylib */,
 				9A8E9EB9282A3210005FF778 /* libios_aqua.a */,
 			);
 			name = Products;
@@ -812,7 +812,7 @@
 			);
 			name = aqua;
 			productName = aqua;
-			productReference = 9A2818FE25242488009FA9CB /* aqua.dylib */;
+			productReference = 9A2818FE25242488009FA9CB /* libaqua.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9A8E9E37282A3210005FF778 /* ios_aqua */ = {
@@ -838,7 +838,7 @@
 		9A2818F625242488009FA9CB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
 					9A2818FD25242488009FA9CB = {
@@ -847,7 +847,7 @@
 				};
 			};
 			buildConfigurationList = 9A2818F925242488009FA9CB /* Build configuration list for PBXProject "aqua" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1031,6 +1031,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1148,6 +1149,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1227,6 +1229,7 @@
 		9A28190825242488009FA9CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				PLATFORM_MODIFIER = macos;
 				SDKROOT = macosx;
@@ -1236,6 +1239,7 @@
 		9A28190925242488009FA9CB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = YES;
 				EXECUTABLE_EXTENSION = dylib;
 				PLATFORM_MODIFIER = macos;
 				SDKROOT = macosx;

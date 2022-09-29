@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -2527,7 +2527,7 @@
 		9A64519D284660A600A94AAB /* ptr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ptr.h; sourceTree = "<group>"; };
 		9A64519E2846618B00A94AAB /* function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = function.h; sourceTree = "<group>"; };
 		9A6451A02846676E00A94AAB /* move.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = move.h; sourceTree = "<group>"; };
-		9A68A41425114352008DABD2 /* acme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; name = acme.dylib; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A68A41425114352008DABD2 /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A68A4552511442E008DABD2 /* procedure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = procedure.h; sourceTree = "<group>"; };
 		9A68A4562511442E008DABD2 /* console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = console.h; sourceTree = "<group>"; };
 		9A68A4862511442E008DABD2 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
@@ -3830,7 +3830,7 @@
 		9A68A41525114352008DABD2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A68A41425114352008DABD2 /* acme.dylib */,
+				9A68A41425114352008DABD2 /* libacme.dylib */,
 				9AD692B6251A753A00C0EBD7 /* ios_acme.a */,
 			);
 			name = Products;
@@ -7059,7 +7059,7 @@
 			);
 			name = acme;
 			productName = acme;
-			productReference = 9A68A41425114352008DABD2 /* acme.dylib */;
+			productReference = 9A68A41425114352008DABD2 /* libacme.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 		9AD68E39251A753A00C0EBD7 /* ios_acme */ = {
@@ -7085,7 +7085,7 @@
 		9A68A40C25114352008DABD2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
 					9A68A41325114352008DABD2 = {
@@ -7094,7 +7094,7 @@
 				};
 			};
 			buildConfigurationList = 9A68A40F25114352008DABD2 /* Build configuration list for PBXProject "acme" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -7907,6 +7907,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -8022,6 +8023,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -8099,6 +8101,7 @@
 		9A68A41E25114352008DABD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = YES;
 				PLATFORM_MODIFIER = macos;
 			};
 			name = Debug;
@@ -8106,6 +8109,7 @@
 		9A68A41F25114352008DABD2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEAD_CODE_STRIPPING = YES;
 				PLATFORM_MODIFIER = macos;
 			};
 			name = Release;

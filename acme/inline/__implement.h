@@ -57,10 +57,19 @@ extern char _binary__matter_zip_end[];
 #endif
 
 #ifdef WINDOWS
+
 CLASS_DECL_ACME void set_winmain(HINSTANCE hinstanceThis, HINSTANCE hinstancePrev, int nCmdShow);
-#elif defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN) || defined(ANDROID)
+
+#else
+
+   #if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN) || defined(ANDROID)
+
+   void set_res(const char * p1, const char * p2);
+
+#endif
+
 void set_argc_argv_envp(int argc, char ** argv, char ** envp);
-void set_res(const char * p1, const char * p2);
+
 #endif
 
 

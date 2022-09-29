@@ -1634,7 +1634,7 @@ namespace sockets_bsd
 //      if(!m_ssl_ctx)
       //    {
 
-      int iError = 0;
+      //int iError = 0;
 
 //retry_init_ssl_client:
 
@@ -1943,7 +1943,7 @@ namespace sockets_bsd
                if (r == SSL_ERROR_SYSCALL)
                {
 
-                  auto last_error = networking_last_error();
+//                  auto last_error = networking_last_error();
 
                   // output_debug_string("");
                 
@@ -2070,7 +2070,7 @@ namespace sockets_bsd
       if (strId.begins_ci("cat://"))
       {
 
-         auto pcrypto = psystem->crypto();
+         //auto pcrypto = psystem->crypto();
 
          strId = "cat://" + psystem->crypto()->md5(strId);
 
@@ -2150,9 +2150,9 @@ namespace sockets_bsd
 
          i32_array iaCurves;
          //int* curves_new;
-         char* cs = NULL;
+         //char* cs = NULL;
          //char* p, * q;
-         int rv = -1;
+         //int rv = -1;
          //int nid;
 
 
@@ -2420,7 +2420,7 @@ namespace sockets_bsd
          synchronous_lock synchronouslock(mutex());
          int i;
 
-         auto psystem = get_system()->m_papexsystem;
+         //auto psystem = get_system()->m_papexsystem;
 
          auto pnetworking2 = __SystemNetworking(m_psystem);
 

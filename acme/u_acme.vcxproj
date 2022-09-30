@@ -1153,7 +1153,7 @@
     <ClInclude Include="filesystem\file\stdio_file.h" />
     <ClInclude Include="filesystem\file\stream.h" />
     <ClInclude Include="filesystem\file\stream2.h" />
-    <ClInclude Include="filesystem\file\string_file.h" />
+    <ClInclude Include="filesystem\file\string_buffer.h" />
     <ClInclude Include="filesystem\file\text_file.h" />
     <ClInclude Include="filesystem\file\text_stream.h" />
     <ClInclude Include="filesystem\file\transfer_file.h" />
@@ -1565,7 +1565,7 @@
     <ClInclude Include="primitive\string\str.h" />
     <ClInclude Include="primitive\string\string.h" />
     <ClInclude Include="primitive\string\stringtow.h" />
-    <ClInclude Include="primitive\string\string_file.h" />
+    <ClInclude Include="primitive\string\string_buffer.h" />
     <ClInclude Include="primitive\string\string_inst.h" />
     <ClInclude Include="primitive\string\string_wide_conversion.h" />
     <ClInclude Include="primitive\string\sz.h" />
@@ -1688,7 +1688,7 @@
     <ClCompile Include="filesystem\file\stream.cpp" />
     <ClCompile Include="filesystem\file\streamable.cpp" />
     <ClCompile Include="filesystem\file\streamable_composite.cpp" />
-    <ClCompile Include="filesystem\file\string_file.cpp" />
+    <ClCompile Include="filesystem\file\string_buffer.cpp" />
     <ClCompile Include="filesystem\file\text_file.cpp" />
     <ClCompile Include="filesystem\file\text_stream.cpp" />
     <ClCompile Include="filesystem\file\transfer.cpp" />

@@ -2,7 +2,7 @@
 
 
 template < typename TYPE_CHAR >
-class CLASS_DECL_ACME string_file
+class CLASS_DECL_ACME string_buffer
 {
 public:
 
@@ -19,7 +19,7 @@ public:
       SET_LENGTH = 0x02  // set the length of the string matter at GetBuffer time
    };
 
-   explicit string_file(string_base < TYPE_CHAR >& str) THROWS :
+   explicit string_buffer(string_base < TYPE_CHAR >& str) THROWS :
    m_str(str),
       m_pszBuffer(nullptr),
       m_nLength(str.get_length()),
@@ -30,7 +30,7 @@ public:
 
    }
 
-   string_file(string_base& str, strsize nMinLength, u32 dwFlags = AUTO_LENGTH) THROWS :
+   string_buffer(string_base& str, strsize nMinLength, u32 dwFlags = AUTO_LENGTH) THROWS :
    m_str(str),
       m_pszBuffer(nullptr),
       m_nLength((dwFlags& AUTO_LENGTH) ? -1 : nMinLength),
@@ -53,7 +53,7 @@ public:
    }
 
 
-   ~string_file()
+   ~string_buffer()
    {
 
       m_str.ReleaseBuffer(m_nLength);
@@ -80,8 +80,8 @@ public:
 
 private:
 
-   string_file(const string_file&) noexcept;
-   string_file& operator=(const string_file&) noexcept;
+   string_buffer(const string_buffer&) noexcept;
+   string_buffer& operator=(const string_buffer&) noexcept;
 
 };
 

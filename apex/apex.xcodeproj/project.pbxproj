@@ -27,8 +27,6 @@
 		9A1FBB842872A9E80042849A /* socket_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB958287253E90042849A /* socket_thread.cpp */; };
 		9A1FBB852872A9EC0042849A /* socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB959287253E90042849A /* socket.cpp */; };
 		9A1FBB862872A9F00042849A /* socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB95C287253E90042849A /* socket_handler.cpp */; };
-		9A2199902760FFE3001E14CC /* libssl.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A21998E2760FFE2001E14CC /* libssl.3.dylib */; };
-		9A2199912760FFE3001E14CC /* libcrypto.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A21998F2760FFE2001E14CC /* libcrypto.3.dylib */; };
 		9A2269EB27CE8DB90042BAC2 /* _apple.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A22673627CE8DB70042BAC2 /* _apple.h */; };
 		9A2269EC27CE8DB90042BAC2 /* debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A22673727CE8DB70042BAC2 /* debug.h */; };
 		9A2269ED27CE8DB90042BAC2 /* image_gif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22673827CE8DB70042BAC2 /* image_gif.cpp */; };
@@ -1329,8 +1327,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A615C3728B1BDF700377F68 /* libacme.dylib in Frameworks */,
-				9A2199912760FFE3001E14CC /* libcrypto.3.dylib in Frameworks */,
-				9A2199902760FFE3001E14CC /* libssl.3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3148,6 +3144,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
@@ -3265,6 +3262,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;

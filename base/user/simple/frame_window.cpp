@@ -830,7 +830,7 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
             auto pcontext = get_context();
 
-            m_varFrame = pcontext->m_papexcontext->file().as_network_payload(pathFrameJson);
+            m_varFrame = pcontext->m_papexcontext->file().safe_get_network_payload(pathFrameJson);
 
          }
 

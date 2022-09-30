@@ -635,7 +635,7 @@ namespace file
    }
 
 
-   bool file::full_read(memory_base & memory)
+   void file::full_read(memory_base & memory)
    {
 
       auto fileLen = get_size();
@@ -654,7 +654,12 @@ namespace file
 
       auto readBytes = read(memory.get_data(), memory.length());
 
-      return readBytes == fileLen;
+      if(readBytes != fileLen)
+      {
+         
+         throw ::file::exception(error_io, {e_error_code_type_unknown, 0}, m_path, "readBytes != fileLen");
+         
+      }
 
    }
 

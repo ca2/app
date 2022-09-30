@@ -570,10 +570,35 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 }
 
 
-::payload file_context::as_network_payload(const ::payload &payloadFile, bool bNoExceptionOnFail)
+::payload file_context::as_network_payload(const ::payload & payloadFile)
 {
 
-   string str = as_string(payloadFile, bNoExceptionOnFail);
+   string str = as_string(payloadFile);
+
+   str.trim();
+
+   if (str.is_empty())
+   {
+
+      return ::e_type_new;
+
+   }
+
+   const char *pszJson = str;
+
+   ::payload v;
+
+   v.parse_network_payload(pszJson);
+
+   return v;
+
+}
+
+
+::payload file_context::safe_get_network_payload(const ::payload & payloadFile)
+{
+
+   string str = safe_get_string(payloadFile);
 
    str.trim();
 
@@ -616,24 +641,95 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 }
 
 
-string file_context::as_string(const ::payload &payloadFile, bool bNoExceptionOnFail)
+string file_context::as_string(const ::payload & payloadFile)
 {
 
    memory memory;
 
-   if (!as_memory(payloadFile, memory, bNoExceptionOnFail))
-   {
-
-      return "";
-
-   }
+   as_memory(payloadFile, memory);
 
    return memory.as_utf8();
 
 }
 
 
-bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem, bool bNoExceptionOnFail)
+string file_context::safe_get_string(const ::payload & payloadFile)
+{
+
+   memory memory;
+
+   safe_get_memory(payloadFile, memory);
+
+   return memory.as_utf8();
+
+}
+
+
+void file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
+{
+
+   file_pointer pfile;
+
+   //try
+   //{
+
+      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary);
+
+//      if (!pfile)
+//      {
+//
+//         return false;
+//
+//      }
+//      else if (::failed(pfile->m_estatus))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//   }
+//   catch (const ::exception & exception)
+//   {
+//
+//      if (bNoExceptionOnFail)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      throw exception;
+//
+//   }
+
+//   try
+  // {
+
+   pfile->full_read(mem);
+   
+   
+   
+//      {
+//
+//         return false;
+//
+//      }
+
+     //return true;
+
+  // }
+  // catch (...)
+  // {
+
+  // }
+
+   //return false;
+
+}
+
+
+void file_context::safe_get_memory(const ::payload &payloadFile, memory_base &mem)
 {
 
    file_pointer pfile;
@@ -641,18 +737,18 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem, boo
    try
    {
 
-      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary | (bNoExceptionOnFail ? ::file::e_open_no_exception_on_open : 0));
+      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary | ::file::e_open_no_exception_on_open);
 
       if (!pfile)
       {
 
-         return false;
+         return;
 
       }
       else if (::failed(pfile->m_estatus))
       {
 
-         return false;
+         return;
 
       }
 
@@ -660,28 +756,14 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem, boo
    catch (const ::exception & exception)
    {
 
-      if (bNoExceptionOnFail)
-      {
-
-         return false;
-
-      }
-
-      throw exception;
+      return;
 
    }
 
    try
    {
 
-      if (!pfile->full_read(mem))
-      {
-
-         return false;
-
-      }
-
-      return true;
+      pfile->full_read(mem);
 
    }
    catch (...)
@@ -689,8 +771,30 @@ bool file_context::as_memory(const ::payload &payloadFile, memory_base &mem, boo
 
    }
 
-   return false;
+}
 
+
+::memory file_context::as_memory(const ::payload &payloadFile)
+{
+   
+   ::memory memory;
+   
+   as_memory(payloadFile, memory);
+   
+   return ::move(memory);
+   
+}
+
+
+::memory file_context::safe_get_memory(const ::payload &payloadFile)
+{
+   
+   ::memory memory;
+   
+   safe_get_memory(payloadFile, memory);
+   
+   return ::move(memory);
+   
 }
 
 
@@ -2097,12 +2201,12 @@ file_pointer file_context::get(const ::file::path &name)
 
    file_pointer fileOut = get_file(name, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 
-   if (fileOut.is_null())
-   {
+//   if (fileOut.is_null())
+//   {
 
-      throw ::file::exception(error_file_not_found, -1L, -1, name);
+//      throw ::file::exception(error_file_not_found, -1L, -1, name);
 
-   }
+//   }
 
    return fileOut;
 

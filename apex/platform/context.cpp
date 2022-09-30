@@ -1225,7 +1225,7 @@ namespace apex
    string context::sys_get(string strPath, string strDefault)
    {
 
-      string strValue = file().as_string(m_psystem->m_pacmedirectory->config() / strPath);
+      string strValue = file().safe_get_string(m_psystem->m_pacmedirectory->config() / strPath);
 
       if (strValue.is_empty())
       {

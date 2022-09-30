@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/operating_system/error_code.h"
+
+
 class CLASS_DECL_ACME exception 
 {
 public:
@@ -14,7 +17,7 @@ public:
    bool                       m_bContinue;
    string                     m_strMessage; // Message for the user
    string                     m_strDetails; // Details about exception (if available/applicable)
-   string                     m_strException;
+   //string                     m_strException;
 
    // A exception class is meant to be a small utility/tool class.
    // m_bLog -> too much managing (micro-managing and also big-managing)
@@ -25,11 +28,12 @@ public:
    string                     m_strLink;
    string                     m_strFile;
    int                        m_iLine;
-   int                        m_iErrNo;
-#ifdef WINDOWS
-   HRESULT                    m_hresult;
-   ::u32                      m_uLastError;
-#endif
+   array < error_code >       m_errorcodea;
+//   int                        m_iErrNo;
+//#ifdef WINDOWS
+  // HRESULT                    m_hresult;
+   //::u32                      m_uLastError;
+//#endif
 
 
    static bool                s_bEnableCallStackBackTrace;

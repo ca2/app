@@ -7,13 +7,13 @@
 //{
 
 
-   class string_file;
+   class string_buffer;
 
 
-   typedef __pointer(string_file) string_file_pointer;
+   typedef __pointer(string_buffer) string_file_pointer;
 
 
-   class CLASS_DECL_ACME string_file :
+   class CLASS_DECL_ACME string_buffer :
       virtual public ::file::file
    {
    public:
@@ -23,10 +23,10 @@
       strsize        m_iPos;
 
 
-      string_file();
-      string_file(const ::string & str);
-      string_file(const string_file & str);
-      ~string_file() override;
+      string_buffer();
+      string_buffer(const ::string & str);
+      string_buffer(const string_buffer & str);
+      ~string_buffer() override;
 
 
       //using ::file::file::read;
@@ -105,13 +105,13 @@
       string get_string() const override;
 
 
-      string_file & operator += (const ::string & str)
+      string_buffer & operator += (const ::string & str)
       {
          append(str);
          return *this;
       }
 
-      string_file & operator = (const ::string & str)
+      string_buffer & operator = (const ::string & str)
       {
          set(str);
          return *this;

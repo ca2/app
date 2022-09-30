@@ -543,10 +543,10 @@
 		<Unit filename="/home/camilo/solution/basis/source/app/acme/filesystem/file/streamable_composite.h">
 			<Option target="acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/acme/filesystem/file/string_file.cpp">
+		<Unit filename="/home/camilo/solution/basis/source/app/acme/filesystem/file/string_buffer.cpp">
 			<Option target="acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/acme/filesystem/file/string_file.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/acme/filesystem/file/string_buffer.h">
 			<Option target="acme"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/source/app/acme/filesystem/file/text_file.cpp">
@@ -3165,7 +3165,7 @@
 		<Unit filename="/home/camilo/solution/basis/source/app/acme/primitive/string/string_ansi.cpp">
 			<Option target="acme"/>
 		</Unit>
-		<Unit filename="/home/camilo/solution/basis/source/app/acme/primitive/string/string_file.h">
+		<Unit filename="/home/camilo/solution/basis/source/app/acme/primitive/string/string_buffer.h">
 			<Option target="acme"/>
 		</Unit>
 		<Unit filename="/home/camilo/solution/basis/source/app/acme/primitive/string/string_inst.h">

@@ -1759,7 +1759,7 @@
     <ClCompile Include="filesystem\file\memory_file.cpp" />
     <ClCompile Include="filesystem\file\memory_map.cpp" />
     <ClCompile Include="filesystem\file\stream.cpp" />
-    <ClCompile Include="filesystem\file\string_file.cpp" />
+    <ClCompile Include="filesystem\file\string_buffer.cpp" />
     <ClCompile Include="filesystem\file\text_file.cpp" />
     <ClCompile Include="primitive\collection\array.cpp" />
     <ClCompile Include="primitive\collection\bit_array.cpp" />
@@ -1846,7 +1846,7 @@
     <ClInclude Include="filesystem\file\status.h" />
     <ClInclude Include="filesystem\file\stdio_file.h" />
     <ClInclude Include="filesystem\file\file_stream1.h" />
-    <ClInclude Include="filesystem\file\string_file.h" />
+    <ClInclude Include="filesystem\file\string_buffer.h" />
     <ClInclude Include="filesystem\file\text_file.h" />
     <ClInclude Include="filesystem\file\transfer_file.h" />
     <ClInclude Include="filesystem\file\_c.h" />
@@ -1999,7 +1999,7 @@
     <ClInclude Include="primitive\string\x\x_encodings.h" />
     <ClInclude Include="primitive\string\x\x_tables.h" />
     <ClInclude Include="primitive\string\_base_impl.h" />
-    <ClInclude Include="primitive\string\string_file.h" />
+    <ClInclude Include="primitive\string\string_buffer.h" />
     <ClInclude Include="primitive\string\string_inst.h" />
     <ClInclude Include="primitive\string\string_wide_conversion.h" />
     <ClInclude Include="primitive\string\aaa_want_to_remove_str_ch_class.h" />

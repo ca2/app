@@ -564,12 +564,7 @@ namespace crypto
 
          }
 
-         if (!m_pcontext->m_papexcontext->file().as_memory(payloadFile, memoryEncrypt))
-         {
-
-            throw ::exception(error_failed);
-
-         }
+         m_pcontext->m_papexcontext->file().as_memory(payloadFile, memoryEncrypt);
 
          decrypt(str, memoryEncrypt, pszSalt);
 

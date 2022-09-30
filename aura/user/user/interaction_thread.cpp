@@ -634,8 +634,16 @@ namespace user
          }
 
       }
+      catch(const ::exception & exception)
+      {
+         
+         ERROR("Exception Reached Thread Loop" << exception.m_strMessage << exception.m_strDetails);
+
+      }
       catch(...)
       {
+         
+         ERROR("Exception Reached Thread Loop");
 
       }
 

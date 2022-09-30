@@ -2,12 +2,13 @@
 //  _forward_declaration.h
 //  acme
 //
-//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 29/09/22.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 29/09/22 22:30
 //  Copyright © 2022 Camilo Sasuke Tsumanuma. All rights reserved.
 //
-
-#ifndef _forward_declaration_h
-#define _forward_declaration_h
+#pragma once
 
 
-#endif /* _forward_declaration_h */
+class error_code;
+
+
+

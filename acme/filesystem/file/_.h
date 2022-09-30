@@ -168,7 +168,7 @@ CLASS_DECL_ACME ::file::path dir_base_module();
 
 #include "memory_file.h"
 
-#include "string_file.h"
+#include "string_buffer.h"
 
 #include "text_stream.h"
 

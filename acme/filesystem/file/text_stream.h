@@ -245,11 +245,11 @@ class CLASS_DECL_ACME string_stream :
 public:
 
 
-   string_stream() : text_stream(memory_new string_file()) { }
-   string_stream(string_file * pfile) : text_stream(pfile) { }
+   string_stream() : text_stream(memory_new string_buffer()) { }
+   string_stream(string_buffer * pfile) : text_stream(pfile) { }
 
 
-   operator string & () {return m_p.cast < string_file>()->m_str; }
+   operator string & () {return m_p.cast < string_buffer>()->m_str; }
 
 
 };

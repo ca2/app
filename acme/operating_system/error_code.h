@@ -22,7 +22,7 @@ public:
 
    ::i64 m_iOsError;
    
-   void get_string(::text_stream & stream);
+   void get_string(::text_stream & stream) const;
    
 };
 

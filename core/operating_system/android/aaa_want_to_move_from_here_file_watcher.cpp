@@ -39,7 +39,7 @@
 //   os_watcher::os_watcher()
 //   {
 //
-//      //mDescriptorSet = new fd_set;
+//      //mDescriptorSet = memory_new fd_set;
 //
 //      mFD = inotify_init();
 //
@@ -108,7 +108,7 @@
 //
 //      }
 //
-//      __pointer(os_watch) pWatch = new os_watch();
+//      __pointer(os_watch) pWatch = memory_new os_watch();
 //
 //      pWatch->m_listenera.add(pwatcher);
 //      pWatch->m_atom = wd;

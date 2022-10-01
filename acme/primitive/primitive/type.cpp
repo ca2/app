@@ -293,7 +293,7 @@ string demangle(const char* name)
 //ptra * type::new_ptra()
 //{
 //
-//   return new ptra();
+//   return memory_new ptra();
 //
 //}
 //

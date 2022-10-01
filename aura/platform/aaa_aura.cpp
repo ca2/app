@@ -48,7 +48,7 @@
 //extern thread_local ::task_pointer t_pthread;
 
 
-#undef new
+
 
 
 //#ifdef LINUX
@@ -455,11 +455,11 @@ namespace aura
 //
 //#ifndef WINDOWS
 //
-//      g_pcsDemangle = new critical_section;
+//      g_pcsDemangle = memory_new critical_section;
 //
 //#endif
 //
-//      //g_pcsTrace = new critical_section;
+//      //g_pcsTrace = memory_new critical_section;
 //
 ////#ifdef WINDOWS
 //
@@ -491,17 +491,17 @@ namespace aura
 //
 //      //xxdebug_box("aura.dll base_static_start (0)", "box", e_message_box_ok);
 //
-//      //g_pexceptionengine = new ::OPERATING_SYSTEM_NAMESPACE::exception_engine();
+//      //g_pexceptionengine = memory_new ::OPERATING_SYSTEM_NAMESPACE::exception_engine();
 //
-//      //g_pmutexGlobals = new ::mutex();
+//      //g_pmutexGlobals = memory_new ::mutex();
 //
-//      g_pmutexChildren = new ::mutex();
+//      g_pmutexChildren = memory_new ::mutex();
 //
-//      //g_pcsGlobal = new critical_section();
+//      //g_pcsGlobal = memory_new critical_section();
 //
 ////#ifndef __MCRTDBG
 ////
-////      g_pheap = new plex_heap_alloc_array();
+////      g_pheap = memory_new plex_heap_alloc_array();
 ////
 ////#endif
 //
@@ -509,42 +509,42 @@ namespace aura
 //
 ////#ifdef ANDROID
 ////
-////      g_pmutexOutputDebugStringA = new ::mutex();
+////      g_pmutexOutputDebugStringA = memory_new ::mutex();
 ////
 ////#endif
 //
 //#if OBJECT_TYPE_COUNTER
 //
-//      g_pmapObjTypCtr = new map < const char*, const char *, ::i64, ::i64 >;
+//      g_pmapObjTypCtr = memory_new map < const char*, const char *, ::i64, ::i64 >;
 //
 //#endif
 //
 //      //trace_category_static_init();
 //
-//      //g_psimpletrace = new simple_trace;
+//      //g_psimpletrace = memory_new simple_trace;
 //
 //      //g_ptrace = g_psimpletrace;
 //
 ////#ifdef BSD_STYLE_SOCKETS
 ////
-////      ::sockets::base_socket::s_pmutex = new ::mutex();
+////      ::sockets::base_socket::s_pmutex = memory_new ::mutex();
 ////
 ////#endif
 //
 ////
 ////#ifdef __APPLE__
 ////
-////      g_pmutexCvt = new ::mutex();
+////      g_pmutexCvt = memory_new ::mutex();
 ////
 ////#endif
 //
-//      g_pmutexThreadWaitClose = new ::mutex();
+//      g_pmutexThreadWaitClose = memory_new ::mutex();
 //
-//      //g_pmutexThreadOn = new ::mutex();
+//      //g_pmutexThreadOn = memory_new ::mutex();
 //
-//      //g_pmapThreadOn = new ::map < itask_t, itask_t, itask_t, itask_t >;
+//      //g_pmapThreadOn = memory_new ::map < itask_t, itask_t, itask_t, itask_t >;
 //
-//      //g_pmutexSystemHeap = new critical_section();
+//      //g_pmutexSystemHeap = memory_new critical_section();
 //
 //#if MEMDLEAK
 //
@@ -554,29 +554,29 @@ namespace aura
 //
 //      //::factory::factory_init();
 //
-//      //g_paAura = new array < matter * >;
+//      //g_paAura = memory_new array < matter * >;
 //
-//      //g_pmapAura =new ::map < void *,void *,::aura::application *,::aura::application * >;
+//      //g_pmapAura =memory_new ::map < void *,void *,::aura::application *,::aura::application * >;
 //
-//      g_pmutexUiDestroyed = new ::mutex();
+//      g_pmutexUiDestroyed = memory_new ::mutex();
 //
-//      g_pmutexMessageDispatch = new ::mutex();
+//      g_pmutexMessageDispatch = memory_new ::mutex();
 //
-//      //g_pmutexCred = new ::mutex();
+//      //g_pmutexCred = memory_new ::mutex();
 //
 ////#if defined(LINUX) || defined(__APPLE__)
 ////
-////      g_pmutexTz = new ::mutex();
+////      g_pmutexTz = memory_new ::mutex();
 ////
 ////#endif // defined(LINUX) || defined(__APPLE__)
 //
 //      //g_pmapRTL = nullptr;
 //
-//      //psystem->g_mutexLibrary = new ::mutex;
+//      //psystem->g_mutexLibrary = memory_new ::mutex;
 //
-//      //g_pmapLibrary = new string_map < __pointer(::acme::library) >();
+//      //g_pmapLibrary = memory_new string_map < __pointer(::acme::library) >();
 //
-//      //g_pmapNewAuraLibrary = new string_map < PFN_NEW_AURA_LIBRARY >();
+//      //g_pmapNewAuraLibrary = memory_new string_map < PFN_NEW_AURA_LIBRARY >();
 //
 ////#ifndef _UWP
 ////
@@ -599,7 +599,7 @@ namespace aura
 //
 //#endif
 //
-//      //g_pmapLibCall = new string_map < __pointer(::acme::library) >();
+//      //g_pmapLibCall = memory_new string_map < __pointer(::acme::library) >();
 //
 //#ifdef MEMORY_COUNTERS
 //
@@ -615,17 +615,17 @@ namespace aura
 //
 //      //::channel::s_pmutexChannel = __new(::mutex);
 //
-//      //g_paurastrpool = new aura_str_pool();
+//      //g_paurastrpool = memory_new aura_str_pool();
 //
 //      ::user::init_windowing();
 //
-//      //g_pcsRefDbg = new critical_section();
+//      //g_pcsRefDbg = memory_new critical_section();
 //
 //      g_bAura = 1;
 //
-//      //::thread::g_pmutex = new mutex();
+//      //::thread::g_pmutex = memory_new mutex();
 //
-//      //::thread::g_pthreadmap = new ::thread_map();
+//      //::thread::g_pthreadmap = memory_new ::thread_map();
 //
 //      //::factory::add_factory_item < ::aura::context >();
 //
@@ -643,11 +643,11 @@ namespace aura
 ////
 ////#endif
 //
-//      g_pcsFont = new critical_section();
+//      g_pcsFont = memory_new critical_section();
 //
-//      g_pmapFontFaceName = new string_map < i32_map < string > >();
+//      g_pmapFontFaceName = memory_new string_map < i32_map < string > >();
 //
-//      g_pmutexWindowing = new mutex();
+//      g_pmutexWindowing = memory_new mutex();
 //
 //      init();
 //
@@ -929,7 +929,7 @@ namespace aura
    //::aura::system * aura_create_system(app_core * pappcore)
    //{
 
-   //   auto psystem = new ::aura::system();
+   //   auto psystem = memory_new ::aura::system();
 
    //   psystem->initialize(nullptr);
 
@@ -1022,7 +1022,7 @@ namespace aura
 //CLASS_DECL_AURA void init_draw2d_mutex()
 //{
 //
-//   s_pmutexDraw2d = new ::mutex();
+//   s_pmutexDraw2d = memory_new ::mutex();
 //
 //}
 
@@ -1107,13 +1107,13 @@ namespace aura
 //         //
 //         //         set_DispatchMessage(&axis_DispatchMessage);
 //         //
-//         //         oswindow_data::s_pdataptra = new oswindow_dataptra;
+//         //         oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
 //         //
-//         //         oswindow_data::s_pmutex = new ::mutex;
+//         //         oswindow_data::s_pmutex = memory_new ::mutex;
 //         //
-//         //         osdisplay_data::s_pdataptra = new osdisplay_dataptra;
+//         //         osdisplay_data::s_pdataptra = memory_new osdisplay_dataptra;
 //         //
-//         //         osdisplay_data::s_pmutex = new ::mutex;
+//         //         osdisplay_data::s_pmutex = memory_new ::mutex;
 //
 //#endif // defined(LINUX)
 //
@@ -1249,19 +1249,19 @@ namespace aura
 ////         //#ifdef ANDROID
 ////         //
 ////         //
-////         //         g_plconv = new lconv;
+////         //         g_plconv = memory_new lconv;
 ////         //
 ////         //         g_plconv->decimal_point = strdup(".");
 ////         //
-////         //         //oswindow_data::s_pdataptra = new oswindow_dataptra;
+////         //         //oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
 ////         //
-////         //         //oswindow_data::s_pmutex = new ::mutex;
+////         //         //oswindow_data::s_pmutex = memory_new ::mutex;
 ////         //
 ////         //#endif
 ////
 ////         //#if defined(__APPLE__)
 ////         //
-////         //         g_poswindowdataptra = new oswindow_dataptra;
+////         //         g_poswindowdataptra = memory_new oswindow_dataptra;
 ////         //
 ////         //         g_poswindowdataptra->defer_create_mutex();
 ////         //

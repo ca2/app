@@ -24,7 +24,7 @@
 //plane_system * create_plane_system()
 //{
 //
-//   return new ::plane_system();
+//   return memory_new ::plane_system();
 //
 //}
 //

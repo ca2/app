@@ -35,9 +35,9 @@ critical_section * get_pid_cs()
    if(g_pcsPid2 == nullptr)
    {
 
-      g_pcsPid2 = new critical_section();
+      g_pcsPid2 = memory_new critical_section();
 
-      g_ppid = new chldstatus_map();
+      g_ppid = memory_new chldstatus_map();
 
 
    }

@@ -50,7 +50,7 @@ oswindow_data * oswindow_get(nswindow window)
 
    }
 
-   ::oswindow_data * pdata = new ::oswindow_data;
+   ::oswindow_data * pdata = memory_new ::oswindow_data;
 
    pdata->m_nswindow    = window;
 
@@ -66,7 +66,7 @@ oswindow_data::oswindow_data()
 
    m_nswindow  = nullptr;
    m_pimpl       = nullptr;
-   m_plongmap  = new iptr_to_iptr;
+   m_plongmap  = memory_new iptr_to_iptr;
    m_bNsWindowRect = false;
 }
 
@@ -76,7 +76,7 @@ oswindow_data::oswindow_data(nswindow window)
 
    m_nswindow  = window;
    m_pimpl       = nullptr;
-   m_plongmap  = new iptr_to_iptr;
+   m_plongmap  = memory_new iptr_to_iptr;
    m_bNsWindowRect = false;
 }
 
@@ -640,9 +640,9 @@ int_bool os_init_windowing()
    
 //   set_DispatchMessage(&axis_DispatchMessage);
    
-   g_pmutexOsWindowData = new ::mutex();
+   g_pmutexOsWindowData = memory_new ::mutex();
          
-   g_poswindowdataptra = new oswindow_dataptra;
+   g_poswindowdataptra = memory_new oswindow_dataptra;
    
    mm_init_workspace_rect();
    

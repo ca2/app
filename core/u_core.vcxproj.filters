@@ -127,35 +127,14 @@
     <Filter Include="Source Files\filesystem\filehandler">
       <UniqueIdentifier>{1868322a-80a4-4138-9585-54540a3fca27}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\const">
-      <UniqueIdentifier>{59853e0c-8e47-4228-bc11-13eb744c3a29}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\html">
       <UniqueIdentifier>{cf41a34c-9879-4232-87e2-ba8f37f380b2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\html\impl">
-      <UniqueIdentifier>{aa6a9189-97fa-4315-8ce8-c0db960f202c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\html\html">
-      <UniqueIdentifier>{765161e2-7c06-44b9-86c5-59bcfec5aa0f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\html\graphics">
-      <UniqueIdentifier>{0362af8d-ce88-4803-bf7e-cc32b5696c71}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\html\user">
-      <UniqueIdentifier>{eda2524a-e755-4202-946f-b8e7ea5ef739}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\html\hi5">
-      <UniqueIdentifier>{8672b0f1-095c-4f98-ab37-4ced78d34e6c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\platform">
       <UniqueIdentifier>{062c77e9-de3c-472e-b0b3-04717fc151ef}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\html\element">
       <UniqueIdentifier>{69f0a763-0ed0-41f3-ab45-1d6a5febaf95}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\html\element">
-      <UniqueIdentifier>{4341eb08-4b1b-4049-8b79-8899300b345e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\networking">
       <UniqueIdentifier>{c0a173da-96c3-419c-b19e-cbdc73a404b7}</UniqueIdentifier>
@@ -168,6 +147,12 @@
     </Filter>
     <Filter Include="Header Files\networking\ftp">
       <UniqueIdentifier>{94de05d4-e1e2-4583-b333-2e1d0f319dff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\constant">
+      <UniqueIdentifier>{59853e0c-8e47-4228-bc11-13eb744c3a29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html\hi5">
+      <UniqueIdentifier>{92ff42a2-a2dc-44cc-bbe1-92da4ff683bf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1183,9 +1168,6 @@
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\child_frame.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
     <ClCompile Include="user\simple\form_list_impact.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
@@ -1214,9 +1196,6 @@
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\printer_list_impact.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple\static.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
     <ClCompile Include="user\simple\status_bar.cpp">
@@ -1324,9 +1303,6 @@
     <ClCompile Include="user\user\tooltip.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\-ehrror_dialog.cpp">
-      <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
     <ClCompile Include="user\userex\calculator_edit_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
@@ -1399,9 +1375,6 @@
     <ClCompile Include="user\userex\top_impact.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
-    <ClCompile Include="user\userex\user.cpp">
-      <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
     <ClCompile Include="user\userex\wait_message_dialog.cpp">
       <Filter>Source Files\user\userex</Filter>
     </ClCompile>
@@ -1438,28 +1411,22 @@
     <ClCompile Include="user\rich_text\text_format.cpp">
       <Filter>Source Files\user\rich_text</Filter>
     </ClCompile>
-    <ClCompile Include="user\rich_text\text_format_object.cpp">
-      <Filter>Source Files\user\rich_text</Filter>
-    </ClCompile>
     <ClCompile Include="user\databaseuser\key_mesh_data.cpp">
       <Filter>Source Files\user\databaseuser</Filter>
     </ClCompile>
     <ClCompile Include="user\databaseuser\mesh_data.cpp">
       <Filter>Source Files\user\databaseuser</Filter>
     </ClCompile>
-    <ClCompile Include="user\account\account_dialog.cpp">
+    <ClCompile Include="user\account\dialog.cpp">
       <Filter>Source Files\user\account</Filter>
     </ClCompile>
-    <ClCompile Include="user\account\account_login.cpp">
-      <Filter>Source Files\user\account</Filter>
-    </ClCompile>
-    <ClCompile Include="user\account\account_simple_ui.cpp">
+    <ClCompile Include="user\account\login.cpp">
       <Filter>Source Files\user\account</Filter>
     </ClCompile>
     <ClCompile Include="user\account\impact.cpp">
       <Filter>Source Files\user\account</Filter>
     </ClCompile>
-    <ClCompile Include="user\netuser\netuser_network_configuration.cpp">
+    <ClCompile Include="user\netuser\network_configuration.cpp">
       <Filter>Source Files\user\netuser</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\fs\ftpfs.cpp">
@@ -1621,99 +1588,6 @@
     <ClCompile Include="filesystem\filehandler\tree_interface.cpp">
       <Filter>Source Files\filesystem\filehandler</Filter>
     </ClCompile>
-    <ClCompile Include="const\idpool.cpp">
-      <Filter>Source Files\const</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\cell.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\form.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\image.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\input_button.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\input_checkbox.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\input_text.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\select.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\table.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\table_elemental.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\table_row.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\text.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\_.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\html\core_data.cpp">
-      <Filter>Source Files\html\html</Filter>
-    </ClCompile>
-    <ClCompile Include="html\html\data.cpp">
-      <Filter>Source Files\html\html</Filter>
-    </ClCompile>
-    <ClCompile Include="html\graphics\attribute.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html\graphics\base.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html\graphics\font.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html\graphics\message.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html\graphics\reader.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html\graphics\style.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html\graphics\style_sheet.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html\graphics\style_sheet_array.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html\graphics\tag.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html\graphics\value.cpp">
-      <Filter>Source Files\html\graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="html\user\document.cpp">
-      <Filter>Source Files\html\user</Filter>
-    </ClCompile>
-    <ClCompile Include="html\user\form.cpp">
-      <Filter>Source Files\html\user</Filter>
-    </ClCompile>
-    <ClCompile Include="html\user\form_impact.cpp">
-      <Filter>Source Files\html\user</Filter>
-    </ClCompile>
-    <ClCompile Include="html\user\user.cpp">
-      <Filter>Source Files\html\user</Filter>
-    </ClCompile>
-    <ClCompile Include="html\user\impact.cpp">
-      <Filter>Source Files\html\user</Filter>
-    </ClCompile>
-    <ClCompile Include="html\hi5\hi5_twitter_authorization.cpp">
-      <Filter>Source Files\html\hi5</Filter>
-    </ClCompile>
     <ClCompile Include="platform\application.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -1722,12 +1596,6 @@
     </ClCompile>
     <ClCompile Include="platform\system.cpp">
       <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="html\impl\element.cpp">
-      <Filter>Source Files\html\impl</Filter>
-    </ClCompile>
-    <ClCompile Include="html\element\element.cpp">
-      <Filter>Source Files\html\element</Filter>
     </ClCompile>
     <ClCompile Include="user\user\list_column.cpp">
       <Filter>Source Files\user\user</Filter>
@@ -1770,6 +1638,24 @@
     </ClCompile>
     <ClCompile Include="user\user\list_item.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="constant\idpool.cpp">
+      <Filter>Source Files\constant</Filter>
+    </ClCompile>
+    <ClCompile Include="html\hi5\hi5_twitter_authorization.cpp">
+      <Filter>Source Files\html\hi5</Filter>
+    </ClCompile>
+    <ClCompile Include="user\account\main_window.cpp">
+      <Filter>Source Files\user\account</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\main_frame.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\still.cpp">
+      <Filter>Source Files\user\simple</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

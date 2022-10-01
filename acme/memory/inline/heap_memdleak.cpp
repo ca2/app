@@ -742,7 +742,7 @@ pacmedirectory->system() / "m.html", get_mem_info_report1());
 void memdleak_init()
 {
 
-   g_pmutgen = new ::mutex();
+   g_pmutgen = memory_new ::mutex();
 
 }
 

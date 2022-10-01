@@ -1,4 +1,6 @@
+// added error_code::get_string by camilo on 2022-09-29 22:10 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "_api.h"
 #include <stdio.h>
 
 
@@ -89,9 +91,13 @@ exception::exception(const ::e_status & estatus, const char * pszMessage, const 
       }
 
 #ifdef ANDROID
+      
       m_strCallstack = unwind_callstack(callstack_default_format(), iSkip);
+
 #else
+      
       m_strCallstack = get_callstack(callstack_default_format(), iSkip, caller_address);
+
 #endif
 
    }
@@ -110,20 +116,7 @@ exception::exception(const ::e_status & estatus, const char * pszMessage, const 
 
    m_strMessage = pszMessage;
 
-   string strDetails;
-
-   strDetails = pszDetails;
-
-   if (strDetails.has_char())
-   {
-
-      strDetails += "\n\n";
-
-   }
-
-   strDetails += m_strCallstack;
-
-   m_strDetails = strDetails;
+   m_strDetails = pszDetails;
 
 }
 
@@ -152,6 +145,22 @@ string exception::get_message() const
    strMessage += m_strMessage;
 
    return strMessage;
+
+}
+
+
+string exception::get_consolidated_details() const
+{
+ 
+   string strConsolidatedDetails;
+   
+   strConsolidatedDetails += m_strDetails;
+   
+   strConsolidatedDetails += "\n";
+   
+   strConsolidatedDetails += m_strCallstack;
+
+   return strConsolidatedDetails;
 
 }
 
@@ -520,6 +529,5 @@ void throw_exception(enum_status estatus)
    throw ::exception(estatus);
 
 }
-
 
 

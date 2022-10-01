@@ -8,7 +8,7 @@
 //::winrt::Windows::Storage::Streams::IBuffer^ block::get_os_buffer(memsize pos, memsize size) const
 //{
 //
-//   ::winrt::Windows::Storage::Streams::DataWriter^ writer = ref new ::winrt::Windows::Storage::Streams::DataWriter();
+//   ::winrt::Windows::Storage::Streams::DataWriter^ writer = ref memory_new ::winrt::Windows::Storage::Streams::DataWriter();
 //
 //   Array < uchar, 1U >^ pbytes = get_os_bytes(pos, size);
 //
@@ -36,7 +36,7 @@
 //
 //   }
 //
-//   return ref new Array < uchar, 1U >(&((uchar*)get_data())[pos], size);
+//   return ref memory_new Array < uchar, 1U >(&((uchar*)get_data())[pos], size);
 //
 //}
 //

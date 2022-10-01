@@ -2,9 +2,9 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/text_metric.h"
 #include "acme/primitive/geometry2d/_geometry2d.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_impl.h"
-#endif
+// #if !BROAD_PRECOMPILED_HEADER
+// #include "_impl.h"
+// #endif
 #include "text.h"
 #include "aura/user/user/plain_edit.h"
 #include "axis/html/html/data.h"
@@ -604,7 +604,7 @@ namespace html
 //         if(pdata->is_locked())
 //         {
 //
-//            // I am gonna blink and fail away (deleting?) // isn't new html page ready so you just call new drawing
+//            // I am gonna blink and fail away (deleting?) // isn't memory_new html page ready so you just call memory_new drawing
 //            return;
 //         }
 

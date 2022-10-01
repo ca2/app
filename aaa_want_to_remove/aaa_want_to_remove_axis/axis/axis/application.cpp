@@ -1584,7 +1584,7 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
    //::html::html * application::create_html()
    //{
 
-   //   return new ::html::html(get_app());
+   //   return memory_new ::html::html(get_app());
 
    //}
 

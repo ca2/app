@@ -14,7 +14,7 @@ namespace sockets_bsd
 {
 
 
-   /** Binds incoming port number to new socket class X.
+   /** Binds incoming port number to memory_new socket class X.
    \ingroup basic */
    class CLASS_DECL_NETWORKING_BSD listen_socket :
       virtual public ::sockets_bsd::socket,
@@ -49,33 +49,33 @@ namespace sockets_bsd
       //virtual __pointer(::sockets::socket) create_listen_socket();
 
       /** close file descriptor. */
-      virtual void close();
+      void close() override;
 
       /** Bind and listen to any interface.
       \lparam port Port (0 is random)
       \lparam depth Listen queue depth */
-      virtual i32 Bind(::networking::port_t port,i32 depth = 20);
+      virtual i32 Bind(::networking::port_t port,i32 depth = 20) override;
 
-      virtual i32 Bind(::networking::address * paddress,i32 depth);
+      i32 Bind(::networking::address * paddress,i32 depth) override;
 
       /** Bind and listen to any interface, with optional protocol.
       \lparam port Port (0 is random)
       \lparam protocol Network protocol
       \lparam depth Listen queue depth */
-      virtual i32 Bind(::networking::port_t port,const string & protocol,i32 depth = 20) ;
+      i32 Bind(::networking::port_t port,const string & protocol,i32 depth = 20)  override;
 
       /** Bind and listen to specific interface.
       \lparam intf Interface hostname
       \lparam port Port (0 is random)
       \lparam depth Listen queue depth */
-      virtual i32 Bind(const string & intf,::networking::port_t port,i32 depth = 20);
+      i32 Bind(const string & intf,::networking::port_t port,i32 depth = 20) override;
 
       /** Bind and listen to specific interface.
       \lparam intf Interface hostname
       \lparam port Port (0 is random)
       \lparam protocol Network protocol
       \lparam depth Listen queue depth */
-      virtual i32 Bind(const string & intf,::networking::port_t port,const string & protocol,i32 depth = 20);
+      i32 Bind(const string & intf,::networking::port_t port,const string & protocol,i32 depth = 20) override;
 
       /** Bind and listen to ipv4 interface.
       \lparam a Ipv4 interface address
@@ -108,7 +108,7 @@ namespace sockets_bsd
       \lparam ad Interface address
       \lparam protocol Network protocol
       \lparam depth Listen queue depth */
-      virtual i32 Bind(::networking::address * paddress,const string & protocol,i32 depth);
+      i32 Bind(::networking::address * paddress,const string & protocol,i32 depth) override;
 
       /** Return assigned port number. */
 //         ::networking::port_t GetPort()
@@ -117,18 +117,18 @@ namespace sockets_bsd
       //   }
 
       /** Return listen queue depth. */
-      virtual i32 GetDepth();
+      i32 GetDepth() override;
 
       /** OnRead on a listen_socket receives an incoming connection. */
-      virtual void OnRead();
+      void OnRead() override;
 
       /** Please don't use this method.
       "accept()" is handled automatically in the OnRead() method. */
       virtual SOCKET Accept(SOCKET socket, struct sockaddr *saptr, socklen_t *lenptr);
 
-      virtual bool HasCreator();
+      virtual bool HasCreator() override;
 
-      virtual void OnOptions(i32,i32,i32,SOCKET);
+      void OnOptions(i32,i32,i32,SOCKET) override;
 
 
 

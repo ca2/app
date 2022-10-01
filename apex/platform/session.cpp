@@ -1227,7 +1227,7 @@ namespace apex
       if (m_pmapKeyPressed == nullptr)
       {
 
-         m_pmapKeyPressed = new ::map < ::user::enum_key, bool >;
+         m_pmapKeyPressed = memory_new ::map < ::user::enum_key, bool >;
 
       }
 
@@ -1312,7 +1312,7 @@ ret:
       if (m_pmapKeyPressed == nullptr)
       {
 
-         m_pmapKeyPressed = new ::map < ::user::enum_key, bool >;
+         m_pmapKeyPressed = memory_new ::map < ::user::enum_key, bool >;
 
       }
 
@@ -1372,7 +1372,7 @@ ret:
 
       //   m_result.add(estatus);
 
-      //   TRACE("Failed to create new User Presence");
+      //   TRACE("Failed to create memory_new User Presence");
 
       //   return false;
 
@@ -1821,7 +1821,7 @@ namespace apex
    bool session::InitializeLocalDataCentral()
    {
 
-      //m_pdatabase = new nature::database(this);
+      //m_pdatabase = memory_new nature::database(this);
 
       //if(m_pdatabase == nullptr)
       //{

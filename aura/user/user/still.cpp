@@ -565,7 +565,7 @@ namespace user
       if(::is_null(m_ptextouta))
       {
 
-         m_ptextouta = new write_text::text_out_array;
+         m_ptextouta = memory_new write_text::text_out_array;
 
       }
 

@@ -38,7 +38,7 @@
    inline  strsize            string_get_length(const ansichar * psz) noexcept;
    inline  strsize            get_char_length(const ansichar * psz) noexcept { return string_get_length(psz); }
    inline  strsize            get_formatted_length(const ansichar * pszFormat, va_list args) noexcept;
-   inline  strsize            string_format(ansichar * pszBuffer, const ansichar * pszFormat, va_list args) noexcept;
+//   inline  strsize            string_format(ansichar * pszBuffer, const ansichar * pszFormat, va_list args) noexcept;
    inline  strsize            string_format(ansichar * pszBuffer, strsize nlength, const ansichar * pszFormat, va_list args) noexcept;
    inline  void               flood_characters(ansichar * pwsz, ansichar wch, strsize len) noexcept;
 

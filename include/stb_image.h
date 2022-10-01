@@ -91,7 +91,7 @@
             STBI_NO_PNM   (.ppm and .pgm)
 
       - You can request *only* certain decoders and suppress all other ones
-        (this will be more forward-compatible, as addition of new decoders
+        (this will be more forward-compatible, as addition of memory_new decoders
         doesn't require you to disable them explicitly):
 
             STBI_ONLY_JPEG
@@ -352,7 +352,7 @@ distribute, and modify this file as you see fit.
 // (note, do not use _inverse_ constants; stbi_image will invert them
 // appropriately).
 //
-// Additionally, there is a new, parallel interface for loading files as
+// Additionally, there is a memory_new, parallel interface for loading files as
 // (linear) floats to preserve the full dynamic range:
 //
 //    float *data = stbi_loadf(filename, &x, &y, &n, 0);
@@ -1331,7 +1331,7 @@ static stbi__uint32 stbi__get32le(stbi__context * s)
 //    and it never has alpha, so very few cases ). png can automatically
 //    interleave an alpha=255 channel, but falls back to this for other cases
 //
-//  assume data buffer is malloced, so malloc a new one and free that one
+//  assume data buffer is malloced, so malloc a memory_new one and free that one
 //  only failure mode is malloc failing
 
 static stbi_uc stbi__compute_y(int r, int g, int b)
@@ -5795,7 +5795,7 @@ static stbi_uc * stbi__process_gif_raster(stbi__context * s, stbi__gif * g)
    for (;;) {
       if (valid_bits < codesize) {
          if (len == 0) {
-            len = stbi__get8(s); // start new block
+            len = stbi__get8(s); // start memory_new block
             if (len == 0)
                return g->out;
          }

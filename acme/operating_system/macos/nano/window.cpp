@@ -223,10 +223,18 @@ namespace macos
    void nano_window::message_loop()
    {
 
-      while(message_loop_step())
-      {
+ ///     while(message_loop_step())
+    //  {
 
-      }
+      //}
+      
+      ns_main_async(^()
+                    {
+         
+         m_pwindowbridge->_run_modal_loop();
+         
+      });
+      
 
    }
 

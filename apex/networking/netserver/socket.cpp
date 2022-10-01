@@ -193,7 +193,7 @@ namespace netserver
                if (straRange.get_count() == 2)
                {
                   
-                  rangea.add(new int_array());
+                  rangea.add(memory_new int_array());
                   
                   rangea.last_ptr()->add(atoi(straRange[0]));
                   

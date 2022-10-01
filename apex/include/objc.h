@@ -26,7 +26,7 @@
 
 #if defined(APPLE_IOS)
 
-#include "apex/os/ios/ios_m.h"
+#include "apex/operating_system/ios/_mm.h"
 
 #else
 

@@ -41,7 +41,7 @@ namespace helloworld
       m_prender                  = nullptr;
 
 
-      m_prender = new render(this);
+      m_prender = memory_new render(this);
 
       m_prender->m_pimpact = this;
 

@@ -20,7 +20,6 @@ namespace file
       
       edit_item_base();
 
-
       virtual bool read_byte(byte* pbyte, ::file::edit_file* pfile);
 
       virtual filesize get_position(bool bForward);
@@ -174,6 +173,7 @@ namespace file
       edit_file();
       ~edit_file() override;
 
+      virtual bool is_edit_file_modified() const;
 
       void SetFile(file_pointer  pfile);
 

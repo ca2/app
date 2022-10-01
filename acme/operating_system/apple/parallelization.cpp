@@ -88,13 +88,19 @@ string task_get_name()
 }
 
 
-void system::windowing_post(const ::procedure & procedure)
+namespace acme
 {
-   
-   main_asynchronous(procedure);
-   
-}
 
+
+   void system::windowing_post(const ::procedure & procedure)
+   {
+      
+      main_asynchronous(procedure);
+      
+   }
+
+
+} // namespace acme
 
 
 int get_current_process_affinity_order()

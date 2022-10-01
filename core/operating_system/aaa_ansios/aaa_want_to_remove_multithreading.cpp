@@ -208,15 +208,15 @@
 //void __node_init_multitasking()
 //{
 //
-//   //s_pmapHthreadHthread = new map < htask_t,htask_t,htask_t,htask_t >();
+//   //s_pmapHthreadHthread = memory_new map < htask_t,htask_t,htask_t,htask_t >();
 //
-//   //s_pmapDwordHthread = new map < ::u32,::u32,htask_t,htask_t >();
+//   //s_pmapDwordHthread = memory_new map < ::u32,::u32,htask_t,htask_t >();
 //
-//   //s_pmapHthreadDword = new map < htask_t,htask_t,::u32,::u32 >();
+//   //s_pmapHthreadDword = memory_new map < htask_t,htask_t,::u32,::u32 >();
 //
-//   //allthreaddata = new map < htask_t,htask_t,ThreadLocalData *,ThreadLocalData * >();
+//   //allthreaddata = memory_new map < htask_t,htask_t,ThreadLocalData *,ThreadLocalData * >();
 //
-//   //freeTlsIndices = new raw_array<::u32>();
+//   //freeTlsIndices = memory_new raw_array<::u32>();
 //
 //
 //}
@@ -354,7 +354,7 @@
 ////thread * StartThread(LPTHREAD_START_ROUTINE pfn,LPVOID pv,htask_t htask,i32 nPriority,SIZE_T cbStack)
 ////{
 ////
-////   os_thread * pthread = new os_thread(pfn,pv);
+////   os_thread * pthread = memory_new os_thread(pfn,pv);
 ////
 ////   pthread->m_htask = htask;
 ////
@@ -402,7 +402,7 @@
 ////   //assert(unusedThreadId == nullptr);
 ////
 ////   // Create a handle that will be signalled when the thread has completed
-////   htask_t threadHandle = new htask();
+////   htask_t threadHandle = memory_new htask();
 ////
 ////   if(threadHandle == NULL)
 ////      return NULL;
@@ -457,7 +457,7 @@
 ////         info.lpStartAddress     = lpStartAddress;
 ////         info.lpParameter        = lpParameter;
 ////         info.m_htask    = threadHandle;
-////         info.suspensionEvent    = new event(get_thread_app(),false,true);
+////         info.suspensionEvent    = memory_new event(get_thread_app(),false,true);
 ////         info.nPriority = 0;
 ////
 ////         synchronous_lock lock(g_pmutexPendingThreadsLock);
@@ -548,7 +548,7 @@
 ////
 ////   }
 ////
-////   // Store the new priority.
+////   // Store the memory_new priority.
 ////   threadInfo->m_element2.nPriority = nCa2Priority;
 ////
 ////   return true;
@@ -570,7 +570,7 @@
 ////      return result;
 ////   }
 ////
-////   // Allocate a new TLS slot.
+////   // Allocate a memory_new TLS slot.
 ////   return nextTlsIndex++;
 ////}
 ////
@@ -693,7 +693,7 @@
 ////      // First time allocation of TLS data for this thread.
 ////      try
 ////      {
-////         threadData = new ThreadLocalData;
+////         threadData = memory_new ThreadLocalData;
 ////
 ////         synchronous_lock lock(g_pmutexTlsData);
 ////
@@ -711,7 +711,7 @@
 ////      }
 ////   }
 ////
-////   // Store the new value for this slot.
+////   // Store the memory_new value for this slot.
 ////   threadData->set_at_grow(dwTlsIndex,lpTlsValue);
 ////
 ////   return true;
@@ -729,7 +729,7 @@
 ////      // First time allocation of TLS data for this thread.
 ////      try
 ////      {
-////         threadData = new ThreadLocalData;
+////         threadData = memory_new ThreadLocalData;
 ////
 ////         allthreaddata->set_at(htask,threadData);
 ////
@@ -743,7 +743,7 @@
 ////      }
 ////   }
 ////
-////   // Store the new value for this slot.
+////   // Store the memory_new value for this slot.
 ////   threadData->set_at_grow(dwTlsIndex,lpTlsValue);
 ////
 ////   return true;
@@ -1119,7 +1119,7 @@
 ////   if(pmq != NULL)
 ////      return pmq;
 ////
-////   pmq               = new message_queue();
+////   pmq               = memory_new message_queue();
 ////
 ////   pmq->m_htask    = h;
 ////

@@ -1,10 +1,10 @@
 #pragma once
 //
-//#undef new
+//
 //#ifdef WINDOWS_DESKTOP
 //#include <gdiplus.h>
 //#endif
-//#define new ACME_NEW
+////#define memory_new ACME_NEW
 
 
 template < typename BASE_TYPE, typename SIZE_BASE_TYPE, typename RECTANGLE_BASE_TYPE >

@@ -877,7 +877,7 @@ inline string string_from_u(const T& t)
 //
 //      // It is possible that pszSrc points to a locationd inside of our
 //      // buffer.  GetBuffer() might machine m_psz if (1) the buffer
-//      // is shared or (2) the buffer is too small to hold the new
+//      // is shared or (2) the buffer is too small to hold the memory_new
 //      // string.  We detect this aliasing, and modify pszSrc to point_i32
 //      // into the newly allocated buffer instead.
 //      if(pszSrc == nullptr)
@@ -931,7 +931,7 @@ inline string string_from_u(const T& t)
 //}
 
 //template < typename TYPE_CHAR >
-//inline void string_file < TYPE_CHAR >::set_length(strsize nLength )
+//inline void string_buffer < TYPE_CHAR >::set_length(strsize nLength )
 //{
 //
 //   ASSERT(nLength >= 0);

@@ -4,7 +4,7 @@
 ::aura::application * get_acid_app(::object * pobject)
 {
 
-   return new ::helloaura::application();
+   return memory_new ::helloaura::application();
 
 }
 

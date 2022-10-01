@@ -705,12 +705,12 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //{
 //}
 //
-//#undef new
+//
 //void __cdecl string::Construct(class string * pstring)
 //{
-//   new (pstring) class string;
+//   memory_new (pstring) class string;
 //}
-//#define new ACME_NEW
+////#define memory_new ACME_NEW
 //
 ////string::string(const ::string & strSrc,strsize -1,strsize len) :
 ////   string(strSrc.Mid(-1,len),::str().GetDefaultManager())
@@ -1669,7 +1669,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   if(nCount > 0)
 //   {
 //      // if the buffer is too small, just
-//      //   allocate a new buffer (slow but sure)
+//      //   allocate a memory_new buffer (slow but sure)
 //      strsize nOldLength = get_length();
 //      strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen)*nCount;
 //
@@ -1735,7 +1735,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   if (nCount > 0)
 //   {
 //      // if the buffer is too small, just
-//      //   allocate a new buffer (slow but sure)
+//      //   allocate a memory_new buffer (slow but sure)
 //      strsize nOldLength = get_length();
 //      strsize nNewLength = nOldLength + (nReplacementLen - nSourceLen)*nCount;
 //

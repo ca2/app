@@ -431,9 +431,6 @@
     <ClInclude Include="user\simple\frame_window.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\simple\main_frame.h">
-      <Filter>Header Files\user\simple</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\toolbar.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -535,6 +532,9 @@
     </ClInclude>
     <ClInclude Include="user\user\picture_impl.h">
       <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\simple\main_frame.h">
+      <Filter>Header Files\user\simple</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -691,9 +691,6 @@
     <ClCompile Include="user\simple\frame_window.cpp">
       <Filter>Source Files\user\simple</Filter>
     </ClCompile>
-    <ClCompile Include="user\simple\main_frame.cpp">
-      <Filter>Source Files\user\simple</Filter>
-    </ClCompile>
     <ClCompile Include="user\user\toolbar.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
@@ -777,6 +774,9 @@
     </ClCompile>
     <ClCompile Include="user\user\picture_impl.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\simple\main_frame.cpp">
+      <Filter>Source Files\user\simple</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

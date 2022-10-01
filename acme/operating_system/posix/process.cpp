@@ -77,7 +77,7 @@ void command_system(string_array & straOutput, int& iExitCode, const char* psz, 
 
       wordexp(pszCommandLine, &we, 0);
 
-      char ** argv = new char *[we.we_wordc+1];
+      char ** argv = memory_new char *[we.we_wordc+1];
 
       memcpy(argv, we.we_wordv, we.we_wordc * sizeof(char*));
 
@@ -290,7 +290,7 @@ critical_section * get_pid_cs()
    if(g_pcsPid2 == nullptr)
    {
 
-      g_pcsPid2 = new critical_section();
+      g_pcsPid2 = memory_new critical_section();
 
    }
 

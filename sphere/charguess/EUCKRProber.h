@@ -27,7 +27,7 @@
 
 class nsEUCKRProber: public nsCharSetProber {
 public:
-  nsEUCKRProber(void){mCodingSM = new nsCodingStateMachine(&EUCKRSMModel);
+  nsEUCKRProber(void){mCodingSM = memory_new nsCodingStateMachine(&EUCKRSMModel);
                       Reset();};
   virtual ~nsEUCKRProber(void){delete mCodingSM;};
   nsProbingState HandleData(const ::string & aBuf, PR::u32 aLen);

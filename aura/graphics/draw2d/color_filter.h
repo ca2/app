@@ -22,7 +22,7 @@ public:
    color_filter(const class ::color_filter & colorfilter) : 
       m_opacity(colorfilter.m_opacity), 
       m_pcolormatrix(
-         colorfilter.m_pcolormatrix ? new color_matrix(*colorfilter.m_pcolormatrix):nullptr)
+         colorfilter.m_pcolormatrix ? memory_new color_matrix(*colorfilter.m_pcolormatrix):nullptr)
    {
    
    }
@@ -36,7 +36,7 @@ public:
    inline void opacity(const class ::opacity & opacity) { m_opacity = opacity; }
    bool get_matrix(color_matrix & colormatrix) const;
 
-   color_matrix & matrix() { if (!m_pcolormatrix) m_pcolormatrix = new color_matrix; return *m_pcolormatrix; }
+   color_matrix & matrix() { if (!m_pcolormatrix) m_pcolormatrix = memory_new color_matrix; return *m_pcolormatrix; }
 
    const color_matrix & matrix() const { return *m_pcolormatrix; }
 
@@ -57,7 +57,7 @@ public:
          else
          {
 
-            m_pcolormatrix = new color_matrix(*colorfilter.m_pcolormatrix);
+            m_pcolormatrix = memory_new color_matrix(*colorfilter.m_pcolormatrix);
 
          }
 

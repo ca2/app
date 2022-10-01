@@ -1,6 +1,6 @@
 #pragma once
 
-#undef new
+
 
 class property;
 class action_context;
@@ -242,4 +242,4 @@ using property_ptra = auto_ptr_array < ::property >;
 //inline ::payload CLASS_DECL_ACME operator * (const ::payload & payload, const property& prop) { return operator * (payload, (const ::payload&)prop); }
 
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW

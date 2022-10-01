@@ -39,7 +39,7 @@ list(APPEND library_source
    region.h)
 
 
-add_library(draw2d_cairo SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 target_precompile_headers(draw2d_cairo PRIVATE framework.h)
@@ -70,12 +70,12 @@ elseif(LINUX OR FREEBSD)
 endif()
 
 
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
-
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+
 
 
 target_compile_definitions(draw2d_cairo PRIVATE _DRAW2D_CAIRO_LIBRARY)

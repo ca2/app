@@ -61,7 +61,7 @@ namespace papaya
       for (int i = 0; i < srca.get_size(); i++)
       {
          
-         dsta[i] = new TDST(*srca[i]);
+         dsta[i] = memory_new TDST(*srca[i]);
 
       }
 

@@ -28,7 +28,7 @@ namespace aura
       tx::tx()
       {
 
-         //mutex() = new ::mutex(pobject);
+         //mutex() = memory_new ::mutex(pobject);
 
       }
 

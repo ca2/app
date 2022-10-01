@@ -54,7 +54,7 @@ namespace user
    ::element * check_box::clone() const
    {
 
-      auto pcheckbox = new ::user::check_box;
+      auto pcheckbox = memory_new ::user::check_box;
 
       return pcheckbox;
 

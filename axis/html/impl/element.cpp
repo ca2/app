@@ -2,9 +2,9 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/brush.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_impl.h"
-#endif
+// #if !BROAD_PRECOMPILED_HEADER
+// #include "_impl.h"
+// #endif
 #include "element.h"
 #include "axis/html/html/data.h"
 #include "axis/html/html/core_data.h"

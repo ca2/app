@@ -48,7 +48,7 @@ namespace file
    ::file::file * create_limited_istream(stream *inStream, u64 pos, u64 size_i32)
    {
       
-      limited_istream *streamSpec = new limited_istream;
+      limited_istream *streamSpec = memory_new limited_istream;
 
       streamSpec->SetStream(inStream);
       streamSpec->InitAndSeek(pos, size);

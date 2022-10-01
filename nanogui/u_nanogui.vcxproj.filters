@@ -188,7 +188,7 @@
     <ClCompile Include="Label.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ImageView.cpp">
+    <ClCompile Include="ImageImpact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ImagePanel.cpp">

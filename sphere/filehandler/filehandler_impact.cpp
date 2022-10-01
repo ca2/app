@@ -10,7 +10,7 @@ namespace filehandler
       ::object(pobject),
       m_pfont(e_create)
    {
-      m_pxmldoc = new xml::document(this);
+      m_pxmldoc = memory_new xml::document(this);
       m_pfont->create_point_font(pnode->font_name(e_font_sans_ex),14.0);
 
    }

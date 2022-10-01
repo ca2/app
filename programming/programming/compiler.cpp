@@ -304,7 +304,7 @@ namespace programming
 #ifdef WINDOWS_DESKTOP
 
       u32 dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
-      LPWSTR lpsz = new wchar_t[dwSize + 1];
+      LPWSTR lpsz = memory_new wchar_t[dwSize + 1];
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1);
       str += lpsz;
       delete lpsz;
@@ -472,7 +472,7 @@ namespace programming
       //#ifdef WINDOWS_DESKTOP
       //   {
       //      u32 dwSize = GetEnvironmentVariable("PATH", nullptr, 0);
-      //      char * lpsz = new char[dwSize + 1];
+      //      char * lpsz = memory_new char[dwSize + 1];
       //      dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
       //      delete lpsz;
       //   }
@@ -546,7 +546,7 @@ namespace programming
       //   #ifdef WINDOWS_DESKTOP
       //   {
       //      u32 dwSize = GetEnvironmentVariable("PATH", nullptr, 0);
-      //      char * lpsz = new char[dwSize + 1];
+      //      char * lpsz = memory_new char[dwSize + 1];
       //      dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
       //      delete lpsz;
       //   }
@@ -605,7 +605,7 @@ namespace programming
       // strTemplate = strFolder, "app/_stage/aura/account/app/main/matter/dynamic_source_cl.bat", false);
       //#endif
       string str;
-      str = m_pcontext->m_papexcontext->file().as_string(strTemplate);
+      str = m_pcontext->m_papexcontext->file().safe_get_string(strTemplate);
       /*string strVars = getenv("VS100COMNTOOLS");
       m_pcontext->m_papexcontext->file().path().eat_end_level(strVars, 2, "/");
       strVars += "vc/bin/vcvars32.bat";*/

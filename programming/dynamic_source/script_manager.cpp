@@ -745,7 +745,7 @@ namespace dynamic_source
    {
       /*char * buf;
       u32 dwSize = GetDllDirectory(nullptr, nullptr);
-      buf = new char[dwSize + 1024];
+      buf = memory_new char[dwSize + 1024];
       GetDllDirectory(dwSize + 1024, buf);
       TRACE(buf);
       //SetDllDirectory(buf);
@@ -771,7 +771,7 @@ namespace dynamic_source
       string strNew;
 #ifdef WINDOWS_DESKTOP
       u32 dwSize = GetEnvironmentVariableW(L"PATH", nullptr, 0);
-      LPWSTR lpsz = new wchar_t[dwSize + 1024];
+      LPWSTR lpsz = memory_new wchar_t[dwSize + 1024];
       dwSize = GetEnvironmentVariableW(L"PATH", lpsz, dwSize + 1024);
       strNew = lpsz;
       delete lpsz;
@@ -1181,9 +1181,9 @@ namespace dynamic_source
 
          ppair->element2().m_p->~session();
 
-#undef new
+
          ::new(ppair->element2().m_p) ::dynamic_source::session();
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
          ppair->element2()->initialize_dynamic_source_session(pszId, this);
 
@@ -1328,7 +1328,7 @@ namespace dynamic_source
       item.m_strScript     = strScript;
       item.m_strPlugin     = strName;
 
-      m_pluginmapitema.add(new plugin_map_item(item));
+      m_pluginmapitema.add(memory_new plugin_map_item(item));
 
       m_pcache->register_script(strName, pscript);
 
@@ -1462,7 +1462,7 @@ namespace dynamic_source
    ::sockets::link_out_socket * script_manager::create_link_out(const ::string & pszServer, ::sockets::httpd_socket * phttpdsocket)
    {
 
-      ::sockets::link_out_socket * psocket = new sockets::link_out_socket();
+      ::sockets::link_out_socket * psocket = memory_new sockets::link_out_socket();
 
       //psocket->m_phandler = phttpdsocket->m_phandler;
 

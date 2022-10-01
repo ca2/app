@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#undef new
+
 
 
 namespace draw2d_opengl
@@ -53,7 +53,7 @@ namespace draw2d_opengl
       m_nPenStyle    = nPenStyle;
       m_dWidth       = dWidth;
       m_colorColor      = crColor;
-      m_ppen         = new plusplus::Pen(plusplus::Color(crColor), dWidth);
+      m_ppen         = memory_new plusplus::Pen(plusplus::Color(crColor), dWidth);
 
    }
 
@@ -364,12 +364,12 @@ namespace draw2d_opengl
       //   if (m_epen == ::draw2d::e_pen_brush)
       //   {
       //      
-      //      ((pen *) this)->m_ppen = new plusplus::Pen((plusplus::Brush *) m_br.cast < brush >()->get_os_data(), (plusplus::REAL) m_dWidth);
+      //      ((pen *) this)->m_ppen = memory_new plusplus::Pen((plusplus::Brush *) m_br.cast < brush >()->get_os_data(), (plusplus::REAL) m_dWidth);
 
       //   }
       //   else
       //   {
-      //      ((pen *) this)->m_ppen = new plusplus::Pen(plusplus::Color(
+      //      ((pen *) this)->m_ppen = memory_new plusplus::Pen(plusplus::Color(
       //         colorref_get_a_value(m_color),
       //         colorref_get_r_value(m_color),
       //         colorref_get_g_value(m_color),

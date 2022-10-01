@@ -67,9 +67,9 @@ namespace user
       //::u32                  m_nIDEmbeddingResource;        // IDR_ for OLE open frame/menu/accel
       //::u32                  m_nIDContainerResource;        // IDR_ for container frame/menu/accel
 
-      ::type               m_typeDocument;         // class for creating new documents
-      ::type               m_typeFrame;       // class for creating new frames
-      ::type               m_typeImpact;        // class for creating new views
+      ::type               m_typeDocument;         // class for creating memory_new documents
+      ::type               m_typeFrame;       // class for creating memory_new frames
+      ::type               m_typeImpact;        // class for creating memory_new views
       //::type       m_pOleFrameClass;    // class for creating in-place frame
       //::type       m_pOleImpactClass;     // class for creating in-place ::user::impact
 
@@ -114,7 +114,7 @@ namespace user
       virtual void close_all_documents(bool bEndSession);
       virtual void on_request(::create * pcreate) override = 0;
       // open named file
-      // if pszPathName == nullptr => create new file with this type
+      // if pszPathName == nullptr => create memory_new file with this type
 
       virtual void set_default_title(::user::document * pdocument) = 0;
 

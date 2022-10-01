@@ -458,7 +458,7 @@
     <ClInclude Include="primitive\string\static_string.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\string_file.h">
+    <ClInclude Include="primitive\string\string_buffer.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\string_inst.h">
@@ -617,7 +617,7 @@
     <ClInclude Include="filesystem\file\stdio_file.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\string_file.h">
+    <ClInclude Include="filesystem\file\string_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\text_file.h">
@@ -2141,7 +2141,7 @@
     <ClInclude Include="exception\io.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\file_open.h">
+    <ClInclude Include="exception\aaa_file_open.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\holder.h">
@@ -2807,6 +2807,15 @@
     <ClInclude Include="inline\__implement.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\_api.h">
+      <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="_api.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system\windows\_api.h">
+      <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -2938,7 +2947,7 @@
     <ClCompile Include="filesystem\file\stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\string_file.cpp">
+    <ClCompile Include="filesystem\file\string_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\text_file.cpp">
@@ -3571,9 +3580,6 @@
     <ClCompile Include="exception\serialization.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="exception\file_open.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="filesystem\file\payload_stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
@@ -3754,16 +3760,7 @@
     <ClCompile Include="platform\acme.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\apex_main_data.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\apex_main_struct.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\application.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\app_core.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\system_setup.cpp">
@@ -3848,6 +3845,15 @@
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
     <ClCompile Include="operating_system\console_client.cpp">
+      <Filter>Source Files\operating_system</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\windows\_api.cpp">
+      <Filter>Source Files\operating_system\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\conversation_message.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\error_code.cpp">
       <Filter>Source Files\operating_system</Filter>
     </ClCompile>
   </ItemGroup>

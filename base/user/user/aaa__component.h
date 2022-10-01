@@ -464,7 +464,7 @@
 ////#include "aura/user/netuser/_.h"
 //
 //
-//#define new ACME_NEW
+////#define memory_new ACME_NEW
 //
 //
 ////#include "form_mesh.h"

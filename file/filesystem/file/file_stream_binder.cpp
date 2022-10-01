@@ -82,11 +82,11 @@ namespace file
    void stream_binder::CreateStreams(__pointer(::file::file) & inStream, __pointer(::file::file) & outStream)
    {
       
-      reader_for_binder * inStreamSpec = new reader_for_binder;
+      reader_for_binder * inStreamSpec = memory_new reader_for_binder;
       inStreamSpec->set_binder(this);
       inStream = inStreamSpec;
 
-      writer_for_binder *outStreamSpec = new writer_for_binder;
+      writer_for_binder *outStreamSpec = memory_new writer_for_binder;
       outStreamSpec->set_binder(this);
       outStream = outStreamSpec;
 

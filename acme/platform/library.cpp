@@ -895,7 +895,7 @@ namespace acme
 
       string strName = m_strName;
 
-      INFORMATION("library::create_factory \""+strName+"\": starting...");
+      //INFORMATION("library::create_factory \""+strName+"\": starting...");
 
       auto pfactory = ::factory::get_factory(strName);
 
@@ -908,7 +908,7 @@ namespace acme
 
       }
 
-      INFORMATION("library::create_factory ::factory::get_factory(\""+strName+"\") succeeded!!");
+      //INFORMATION("library::create_factory ::factory::get_factory(\""+strName+"\") succeeded!!");
 
       if (!m_pfnFactory)
       {
@@ -917,8 +917,8 @@ namespace acme
 
          strFactoryFunction = strName + "_factory";
 
-         INFORMATION("library::create_factory factory function not initialized!!");
-         INFORMATION("library::create_factory factory function name: \"" << strFactoryFunction << "\"");
+         //INFORMATION("library::create_factory factory function not initialized!!");
+         //INFORMATION("library::create_factory factory function name: \"" << strFactoryFunction << "\"");
 
          auto pfnFactory = get < PFN_factory >(strFactoryFunction);
 
@@ -938,13 +938,13 @@ namespace acme
 
          }
 
-         INFORMATION("library::create_factory " << strFactoryFunction);
-
          m_pfnFactory = pfnFactory;
 
       }
 
       m_pfnFactory(pfactory);
+
+      INFORMATION(strName << "_factory succeeded!");
 
       return pfactory;
 

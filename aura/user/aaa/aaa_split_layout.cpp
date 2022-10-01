@@ -916,7 +916,7 @@ namespace user
 
       }
 
-      m_panea.insert_at(iIndex, new Pane);
+      m_panea.insert_at(iIndex, memory_new Pane);
 
       ASSERT(iIndex >= 0);
 

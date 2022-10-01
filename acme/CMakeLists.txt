@@ -109,8 +109,8 @@ list(APPEND library_source
    exception/extended_transport.h
    exception/file.cpp
    exception/file.h
-   exception/file_open.cpp
-   exception/file_open.h
+   #exception/file_open.cpp
+   #exception/file_open.h
    exception/interface_only.cpp
    exception/io.cpp
    exception/no_memory.cpp
@@ -148,7 +148,7 @@ list(APPEND library_source
    filesystem/file/streamable.h
    filesystem/file/streamable_composite.cpp
    filesystem/file/streamable_composite.h
-   filesystem/file/string_file.cpp
+   filesystem/file/string_buffer.cpp
    filesystem/file/text_file.cpp
    filesystem/file/text_stream.cpp
    filesystem/file/transfer.cpp
@@ -262,15 +262,15 @@ list(APPEND library_source
    platform/acme.cpp
    platform/acme.h
    #platform/acme_main_struct.cpp
-   platform/acme_main_struct.h
-   platform/apex_main_data.cpp
-   platform/apex_main_data.h
-   platform/apex_main_struct.cpp
-   platform/apex_main_struct.h
-   platform/app.cpp
-   platform/app.h
-   platform/app_core.cpp
-   platform/app_core.h
+   #platform/acme_main_struct.h
+   #platform/apex_main_data.cpp
+   #platform/apex_main_data.h
+   #platform/apex_main_struct.cpp
+   #platform/apex_main_struct.h
+   platform/application.cpp
+   platform/application.h
+   #platform/app_core.cpp
+   #platform/app_core.h
    platform/assert.cpp
    platform/aura_str_pool.cpp
    platform/build_debug.cpp
@@ -710,7 +710,7 @@ list(APPEND library_source
    primitive/string/stdstring.h
    primitive/string/str.cpp
    primitive/string/string_ansi.cpp
-   primitive/string/string_file.h
+   primitive/string/string_buffer.h
    primitive/string/string_inst.h
    primitive/string/string_wide.cpp
    primitive/string/string_wide_conversion.cpp
@@ -823,7 +823,7 @@ list(APPEND library_source
    _.h
    _defer.h
    _start.h
-   application.h
+   #application.h
    astr.h
    axispolicy/_.h
    axispolicy/_c.h
@@ -959,7 +959,7 @@ list(APPEND library_source
    filesystem/file/stdio_file.h
    filesystem/file/stream.h
    filesystem/file/streamable.h
-   filesystem/file/string_file.h
+   filesystem/file/string_buffer.h
    filesystem/file/text_file.h
    filesystem/file/text_stream.h
    filesystem/file/transfer_file.h
@@ -992,14 +992,14 @@ list(APPEND library_source
    include/winrt.h
    inline/__debug_box_clear_impl.h
    inline/__debug_box_set_impl.h
-   inline/_acid_app_impl.h
-   inline/_app_impl1.h
+   #inline/_acid.h
+   #inline/${PROJECT_NAME}.h
    inline/_application.h
    inline/_console_old.h
    inline/_draw2d_impl.h
    inline/_new_impl.h
    inline/application/linux.h
-   inline/application.h
+   #inline/application.h
    inline/application_common.h
    inline/console.h
    inline/console_common.h
@@ -2044,7 +2044,7 @@ if (FREEBSD)
       operating_system/freebsd/process_pid.cpp
       operating_system/freebsd/simple_app.cpp
       operating_system/freebsd/time.cpp
-      operating_system/freebsd/user.cpp
+      #operating_system/freebsd/user.cpp
       operating_system/freebsd/win_base.cpp
       )
 
@@ -2126,7 +2126,8 @@ if (LINUX OR FREEBSD)
 
 endif ()
 
-add_library(acme SHARED ${library_source})
+
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 
 if(NOT DEFINED NO_PRECOMPILED_HEADER)
@@ -2153,15 +2154,16 @@ elseif(LINUX OR FREEBSD)
 
 #//target_compile_options\([A-Za-z0-9_)]+\s+PRIVATE\s+\$\{PKGCONFIG_CFLAGS\}\)
 
-   if(NOT DONT_USE_PKG_CONFIG)
+   #if(NOT DONT_USE_PKG_CONFIG)
       pkg_check_modules(PKGCONFIG cairo freetype2 libidn ${extra_pkg_modules})
-   endif()
+   #endif()
    target_compile_options(acme PRIVATE -fpermissive)
       target_compile_options(acme PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(acme PRIVATE ${PKGCONFIG_LDFLAGS})
-   target_link_libraries(acme PRIVATE z dl idn pthread)
 if(FREEBSD)
-   target_link_libraries(acme PRIVATE iconv execinfo)
+   target_link_libraries(acme PRIVATE z dl pthread iconv execinfo)
+else()
+    target_link_libraries(acme PRIVATE z dl pthread idn)
 endif()
    target_link_libraries(acme PRIVATE  ${PKGCONFIG_LIBRARIES})
    target_link_options(acme PRIVATE -Wl,-z,defs)
@@ -2182,12 +2184,12 @@ target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operat
 target_link_directories(acme PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../operating-system/storage-${OPERATING_SYSTEM_NAME}/third/library/x64/basis)
 
 
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
-
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+
 
 
 target_compile_definitions(acme PRIVATE _ACME_LIBRARY)

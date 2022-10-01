@@ -14,7 +14,7 @@ namespace opengl
    ::gpu::context * create_system_context()
    {
 
-      return new context_win32();
+      return memory_new context_win32();
 
    }
 

@@ -39,13 +39,13 @@ namespace colorertake5
       bool special;
 
       /** Transforms this region's object into styled region define
-      and returns new pointer.
+      and returns memory_new pointer.
       */
       const StyledRegion *styled(){
          return StyledRegion::cast(rdef);
       };
       /** Transforms this region's object into text region define
-      and returns new pointer.
+      and returns memory_new pointer.
       */
       const TextRegion *texted(){
          return TextRegion::cast(rdef);

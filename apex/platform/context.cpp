@@ -519,6 +519,15 @@ namespace apex
       else if (::str().begins_eat_ci(path, "dropbox-app://"))
       {
 
+         auto papplication = get_context_application();
+
+         if (!papplication || papplication->m_strAppId.is_empty())
+         {
+
+            return false;
+
+         }
+
          path = dir().dropbox_app() / path;
 
       }
@@ -1216,7 +1225,7 @@ namespace apex
    string context::sys_get(string strPath, string strDefault)
    {
 
-      string strValue = file().as_string(m_psystem->m_pacmedirectory->config() / strPath);
+      string strValue = file().safe_get_string(m_psystem->m_pacmedirectory->config() / strPath);
 
       if (strValue.is_empty())
       {

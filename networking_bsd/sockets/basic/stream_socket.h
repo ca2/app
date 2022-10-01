@@ -104,7 +104,7 @@ namespace sockets_bsd
       i32 GetShutdownStatus();
 
       /** Returns IPPROTO_TCP or IPPROTO_SCTP */
-      virtual i32 Protocol();
+      i32 Protocol() override;
 
    };
 

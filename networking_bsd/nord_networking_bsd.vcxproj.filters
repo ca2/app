@@ -7,48 +7,150 @@
     <ClCompile Include="_factory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="crypto.cpp">
+    <ClCompile Include="address.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hasher.cpp">
+    <ClCompile Include="ip_enum.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hasher_algorithm.cpp">
+    <ClCompile Include="networking.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="initializer.cpp">
+    <ClCompile Include="port_forward.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="rsa.cpp">
+    <ClCompile Include="sockets\basic\listen_socket.cpp">
+      <Filter>Source Files\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\sctp_socket.cpp">
+      <Filter>Source Files\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\socket.cpp">
+      <Filter>Source Files\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\socket_handler.cpp">
+      <Filter>Source Files\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\stream_socket.cpp">
+      <Filter>Source Files\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\tcp_socket.cpp">
+      <Filter>Source Files\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\tls_socket.cpp">
+      <Filter>Source Files\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\basic\udp_socket.cpp">
+      <Filter>Source Files\sockets\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\base\socket.cpp">
+      <Filter>Source Files\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\base\socket_handler.cpp">
+      <Filter>Source Files\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\base\socket_thread.cpp">
+      <Filter>Source Files\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\ssl\client_context.cpp">
+      <Filter>Source Files\sockets\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\ssl\client_context_map.cpp">
+      <Filter>Source Files\sockets\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\ssl\context.cpp">
+      <Filter>Source Files\sockets\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\ssl\initializer.cpp">
+      <Filter>Source Files\sockets\ssl</Filter>
+    </ClCompile>
+    <ClCompile Include="bsd\_.cpp">
+      <Filter>Source Files\bsd</Filter>
+    </ClCompile>
+    <ClCompile Include="networking_bsd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="_crypto_openssl.h">
+    <ClInclude Include="sockets\base\socket.h">
+      <Filter>Header Files\sockets\base</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\base\socket_handler.h">
+      <Filter>Header Files\sockets\base</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\base\socket_thread.h">
+      <Filter>Header Files\sockets\base</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\basic\udp_socket.h">
+      <Filter>Header Files\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\basic\tls_socket.h">
+      <Filter>Header Files\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\basic\tcp_socket.h">
+      <Filter>Header Files\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\basic\stream_socket.h">
+      <Filter>Header Files\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\basic\socket_handler.h">
+      <Filter>Header Files\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\basic\socket.h">
+      <Filter>Header Files\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\basic\sctp_socket.h">
+      <Filter>Header Files\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\basic\listen_socket.h">
+      <Filter>Header Files\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\basic\_.h">
+      <Filter>Header Files\sockets\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="bsd\_.h">
+      <Filter>Header Files\bsd</Filter>
+    </ClInclude>
+    <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aaa__openssl.h">
+    <ClInclude Include="_byte_order.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="aaa_initializer.h">
+    <ClInclude Include="_impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="crypto.h">
+    <ClInclude Include="_net.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hasher.h">
+    <ClInclude Include="_networking.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hasher_algorithm.h">
+    <ClInclude Include="_networking_impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="initializer.h">
+    <ClInclude Include="_operating_system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="rsa.h">
+    <ClInclude Include="address.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ip_enum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="networking.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="port_forward.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -58,6 +160,33 @@
     </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{cc8b753b-ec04-407c-af15-6fa5db172756}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets">
+      <UniqueIdentifier>{2b4ec943-2291-46ec-8eaa-f3738a117d16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\basic">
+      <UniqueIdentifier>{0a4f0ab2-f920-4164-bf6d-9dd3ac6cd314}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\base">
+      <UniqueIdentifier>{5dccd74a-f46a-4cff-9f08-be9a05c5357a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets">
+      <UniqueIdentifier>{dfc7045d-98cd-4053-9a0e-36df827df7f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\base">
+      <UniqueIdentifier>{dad7681e-357a-410d-a7aa-d270a34c1697}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\basic">
+      <UniqueIdentifier>{3ff27439-b0a7-4e49-9dc9-834db2e4fa58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\ssl">
+      <UniqueIdentifier>{94fc4598-efd6-4442-95b6-cc560c377ccf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\bsd">
+      <UniqueIdentifier>{5ac97f82-73ec-4c13-94f5-7078426901b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\bsd">
+      <UniqueIdentifier>{7674bffa-60f1-4bf2-80ee-e8e3e74eccce}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

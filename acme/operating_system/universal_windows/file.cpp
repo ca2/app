@@ -99,8 +99,8 @@ int_bool file_is_equal_path_dup(const char* psz1, const char* psz2)
    //   int iCmp = pwsz1.compare_ci(pwsz2);
    ///*   unichar * pwszFile1;
    //   unichar * pwszFile2;
-   //   unichar * pwszPath1 = new unichar[iBufSize];
-   //   unichar * pwszPath2 = new unichar[iBufSize];
+   //   unichar * pwszPath1 = memory_new unichar[iBufSize];
+   //   unichar * pwszPath2 = memory_new unichar[iBufSize];
    //   i32 iCmp = -1;
    //   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
    //   {
@@ -171,7 +171,7 @@ string file_module_path_dup()
 //
 //   const i32 iMaxModuleCount = 1024;
 //
-//   HMODULE * hMods = new HMODULE[iMaxModuleCount];
+//   HMODULE * hMods = memory_new HMODULE[iMaxModuleCount];
 //
 //   const i32 iImageSize = MAX_PATH * 8;
 //
@@ -225,7 +225,7 @@ string file_module_path_dup()
 //{
 //   // Get the list of process identifiers.
 //
-//   ::u32 * aProcesses = new ::u32[1024 * 8];
+//   ::u32 * aProcesses = memory_new ::u32[1024 * 8];
 //
 //   ::u32 cbNeeded,cProcesses;
 //
@@ -404,7 +404,7 @@ string file_module_path_dup()
 // // {
 // //    THREAD_PARAMS* pThreadParam = (THREAD_PARAMS*)lParam;
 
-// //    FILE_NAME_INFO * pinfo = (FILE_NAME_INFO *)new byte[MAX_PATH * 8];
+// //    FILE_NAME_INFO * pinfo = (FILE_NAME_INFO *)memory_new byte[MAX_PATH * 8];
 
 // //    GetFinalPathNameByHandleDef pGetFinalPathNameByHandle = pThreadParam->pGetFinalPathNameByHandle;
 // //    for(g_CurrentIndex; g_CurrentIndex < pThreadParam->pSysHandleInformation->dwCount;)
@@ -480,7 +480,7 @@ string file_module_path_dup()
 // //    }
 
 // //    // Get the list of all handles in the file_system
-// //    PSYSTEM_HANDLE_INFORMATION pSysHandleInformation = new SYSTEM_HANDLE_INFORMATION;
+// //    PSYSTEM_HANDLE_INFORMATION pSysHandleInformation = memory_new SYSTEM_HANDLE_INFORMATION;
 // //    u32 size = sizeof(SYSTEM_HANDLE_INFORMATION);
 // //    ::u32 needed = 0;
 // //    NTSTATUS status = NtQuerySystemInformation(SystemHandleInformation,pSysHandleInformation, size,&needed);
@@ -493,7 +493,7 @@ string file_module_path_dup()
 // //       // The previously supplied buffer wasn't enough.
 // //       delete pSysHandleInformation;
 // //       size = needed + 1024;
-// //       pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)new byte[size_i32];
+// //       pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)memory_new byte[size_i32];
 // //       status = NtQuerySystemInformation(SystemHandleInformation,pSysHandleInformation, size,&needed);
 // //       if(!NT_SUCCESS(status))
 // //       {
@@ -682,7 +682,7 @@ string file_module_path_dup()
 // //    }
 
 // //    u32 dwsize = 300;
-// //    PDWORD pDwId = (PDWORD)new byte[dwsize];
+// //    PDWORD pDwId = (PDWORD)memory_new byte[dwsize];
 // //    ::u32 dwReturned = dwsize;
 // //    // Enum all the process first
 // //    while(1)
@@ -694,7 +694,7 @@ string file_module_path_dup()
 // //       }
 // //       delete pDwId;
 // //       dwsize += 50;
-// //       pDwId = (PDWORD)new byte[dwsize];
+// //       pDwId = (PDWORD)memory_new byte[dwsize];
 // //    }
 // //    i32 nCount = dwReturned / sizeof(u32);
 // //    i32 nItemCount = -1;
@@ -937,8 +937,8 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 //   wstring pwsz2 = utf8_to_unicode(psz2);
 //   unichar * pwszFile1;
 //   unichar * pwszFile2;
-//   unichar * pwszPath1 = new unichar[iBufSize];
-//   unichar * pwszPath2 = new unichar[iBufSize];
+//   unichar * pwszPath1 = memory_new unichar[iBufSize];
+//   unichar * pwszPath2 = memory_new unichar[iBufSize];
 //   i32 iCmp = -1;
 //   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
 //   {
@@ -1011,7 +1011,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   if(hFile == INVALID_HANDLE_VALUE)
 //      return 0;
 //
-//   FILE *file = new FILE;
+//   FILE *file = memory_new FILE;
 //   __memset(file,0,sizeof(FILE));
 //   file->_base = (char *)hFile;
 //
@@ -1043,7 +1043,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   if(hFile == INVALID_HANDLE_VALUE)
 //      return 0;
 //
-//   FILE *file = new FILE;
+//   FILE *file = memory_new FILE;
 //   __memset(file,0,sizeof(FILE));
 //   file->_base = (char *)hFile;
 //
@@ -1603,16 +1603,16 @@ hfile hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShar
 //   /*
 //   CREATE_ALWAYS
 //   2
-//   Creates a new file, always.
+//   Creates a memory_new file, always.
 //   If the specified file exists and is writable, the function overwrites the file, the function succeeds, and last-error code is set to ERROR_ALREADY_EXISTS (183).
-//   If the specified file does not exist and is a valid path, a new file is created, the function succeeds, and the last-error code is set to zero.
+//   If the specified file does not exist and is a valid path, a memory_new file is created, the function succeeds, and the last-error code is set to zero.
 //   For more information, see the Remarks section of this topic.
 //
 //   CREATE_NEW
 //   1
-//   Creates a new file, only if it does not already exist.
+//   Creates a memory_new file, only if it does not already exist.
 //   If the specified file exists, the function fails and the last-error code is set to ERROR_FILE_EXISTS (80).
-//   If the specified file does not exist and is a valid path to a writable location, a new file is created.
+//   If the specified file does not exist and is a valid path to a writable location, a memory_new file is created.
 //
 //   OPEN_ALWAYS
 //   4
@@ -1985,7 +1985,7 @@ filesize hfile_get_size(HANDLE h)
 //   
 //   ::winrt::Windows::Storage::Streams::DataReader^ r = ::winrt::Windows::Storage::Streams::DataReader::FromBuffer(ibuf);
 //   
-//   Array<uchar, 1U>^ a = ref new Array<uchar, 1U>(ibuf->Length);
+//   Array<uchar, 1U>^ a = ref memory_new Array<uchar, 1U>(ibuf->Length);
 //   
 //   r->ReadBytes(a);
 //
@@ -2025,7 +2025,7 @@ filesize hfile_get_size(HANDLE h)
 //   while (::task_get_run())
 //   {
 //
-//      ::winrt::Windows::Storage::Streams::IBuffer^ buffer = ref new ::winrt::Windows::Storage::Streams::Buffer(1_mb);
+//      ::winrt::Windows::Storage::Streams::IBuffer^ buffer = ref memory_new ::winrt::Windows::Storage::Streams::Buffer(1_mb);
 //
 //      ::winrt::Windows::Storage::Streams::IBuffer^ buffer2 = ::wait(stream->ReadAsync(buffer, 1_mb, ::winrt::Windows::Storage::Streams::InputStreamOptions::None));
 //

@@ -75,7 +75,7 @@ namespace HEAP_NAMESPACE
 #endif
 
 
-#undef new
+
 
 
 #include "inline/plex.cpp"

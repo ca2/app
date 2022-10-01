@@ -602,7 +602,7 @@
     <ClInclude Include="filesystem\file\stdio_file.h" />
     <ClInclude Include="filesystem\file\stream.h" />
     <ClInclude Include="filesystem\file\streamable.h" />
-    <ClInclude Include="filesystem\file\string_file.h" />
+    <ClInclude Include="filesystem\file\string_buffer.h" />
     <ClInclude Include="filesystem\file\text_file.h" />
     <ClInclude Include="filesystem\file\text_stream.h" />
     <ClInclude Include="filesystem\file\transfer_file.h" />

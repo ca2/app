@@ -178,7 +178,7 @@ extern "C" {
 		NVG_IMAGE_NEAREST = 1 << 5,		// Image interpolation is Nearest instead Linear
 	};
 
-	// Begin drawing a new frame
+	// Begin drawing a memory_new frame
 	// Calls to nanovg drawing API should be wrapped in __NANO2D_API(BeginFrame)() & __NANO2D_API(EndFrame)()
 	// __NANO2D_API(BeginFrame)() defines the size of the window to render to in relation currently
 	// set viewport (i.e. glContext on GL backends). Device pixel ration allows to
@@ -478,7 +478,7 @@ NANO2D_EXPORT int __NANO2D_API(CreateImageMem)(NVGcontext * ctx, int imageFlags,
 	//
 	// Paths
 	//
-	// Drawing a new shape starts with __NANO2D_API(BeginPath)(), it clears all the currently defined paths.
+	// Drawing a memory_new shape starts with __NANO2D_API(BeginPath)(), it clears all the currently defined paths.
 	// Then you define one or more paths and sub-paths which describe the shape. The are functions
 	// to draw common shapes like rectangles and circles, and lower level step-by-step functions,
 	// which allow to define a path curve by curve.
@@ -495,7 +495,7 @@ NANO2D_EXPORT int __NANO2D_API(CreateImageMem)(NVGcontext * ctx, int imageFlags,
 	// Clears the current path and sub-paths.
 	NANO2D_EXPORT void __NANO2D_API(BeginPath)(NVGcontext * ctx);
 
-	// Starts new sub-path with specified point as first point.
+	// Starts memory_new sub-path with specified point as first point.
 	NANO2D_EXPORT void __NANO2D_API(MoveTo)(NVGcontext * ctx, float x, float y);
 
 	// Adds line segment from the last point in the path to the specified point.
@@ -516,24 +516,24 @@ NANO2D_EXPORT int __NANO2D_API(CreateImageMem)(NVGcontext * ctx, int imageFlags,
 	// Sets the current sub-path winding, see NVGwinding and NVGsolidity.
 	NANO2D_EXPORT void __NANO2D_API(PathWinding)(NVGcontext * ctx, int dir);
 
-	// Creates new circle arc shaped sub-path. The arc center is at cx,cy, the arc radius is r,
+	// Creates memory_new circle arc shaped sub-path. The arc center is at cx,cy, the arc radius is r,
 	// and the arc is drawn from angle a0 to a1, and swept in direction dir (NVG_CCW, or NVG_CW).
 	// Angles are specified in radians.
 	NANO2D_EXPORT void __NANO2D_API(Arc)(NVGcontext * ctx, float cx, float cy, float r, float a0, float a1, int dir);
 
-	// Creates new rectangle shaped sub-path.
+	// Creates memory_new rectangle shaped sub-path.
 	NANO2D_EXPORT void __NANO2D_API(Rect)(NVGcontext * ctx, float x, float y, float w, float h);
 
-	// Creates new rounded rectangle shaped sub-path.
+	// Creates memory_new rounded rectangle shaped sub-path.
 	NANO2D_EXPORT void __NANO2D_API(RoundedRect)(NVGcontext * ctx, float x, float y, float w, float h, float r);
 
-	// Creates new rounded rectangle shaped sub-path with varying radii for each corner.
+	// Creates memory_new rounded rectangle shaped sub-path with varying radii for each corner.
 	NANO2D_EXPORT void __NANO2D_API(RoundedRectVarying)(NVGcontext * ctx, float x, float y, float w, float h, float radTopLeft, float radTopRight, float radBottomRight, float radBottomLeft);
 
-	// Creates new ellipse shaped sub-path.
+	// Creates memory_new ellipse shaped sub-path.
 	NANO2D_EXPORT void __NANO2D_API(Ellipse)(NVGcontext * ctx, float cx, float cy, float rx, float ry);
 
-	// Creates new circle shaped sub-path.
+	// Creates memory_new circle shaped sub-path.
 	NANO2D_EXPORT void __NANO2D_API(Circle)(NVGcontext * ctx, float cx, float cy, float r);
 
 	// Fills the current path with current fill style.
@@ -630,7 +630,7 @@ NANO2D_EXPORT int __NANO2D_API(CreateImageMem)(NVGcontext * ctx, int imageFlags,
 	NANO2D_EXPORT float __NANO2D_API(Text)(NVGcontext * ctx, float x, float y, const char * string, const char * end);
 
 	// Draws multi-line text string at specified location wrapped at the specified width. If end is specified only the sub-string up to the end is drawn.
-	// White space is stripped at the beginning of the rows, the text is split at word boundaries or when new-line characters are encountered.
+	// White space is stripped at the beginning of the rows, the text is split at word boundaries or when memory_new-line characters are encountered.
 	// Words longer than the max width are slit at nearest character (i.e. no hyphenation).
 	NANO2D_EXPORT void __NANO2D_API(TextBox)(NVGcontext * ctx, float x, float y, float breakRowWidth, const char * string, const char * end);
 
@@ -654,7 +654,7 @@ NANO2D_EXPORT int __NANO2D_API(CreateImageMem)(NVGcontext * ctx, int imageFlags,
 	NANO2D_EXPORT void __NANO2D_API(TextMetrics)(NVGcontext * ctx, float * ascender, float * descender, float * lineh);
 
 	// Breaks the specified text into lines. If end is specified only the sub-string will be used.
-	// White space is stripped at the beginning of the rows, the text is split at word boundaries or when new-line characters are encountered.
+	// White space is stripped at the beginning of the rows, the text is split at word boundaries or when memory_new-line characters are encountered.
 	// Words longer than the max width are slit at nearest character (i.e. no hyphenation).
 	NANO2D_EXPORT int __NANO2D_API(TextBreakLines)(NVGcontext * ctx, const char * string, const char * end, float breakRowWidth, NVGtextRow * rows, int maxRows);
 

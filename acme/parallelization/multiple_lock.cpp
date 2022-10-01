@@ -13,9 +13,9 @@
 #endif
 
 
-#undef new
 
-#define new ACME_NEW
+
+//#define memory_new ACME_NEW
 
 
 multiple_lock::multiple_lock()

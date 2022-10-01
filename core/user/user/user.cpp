@@ -57,7 +57,7 @@
 //#endif
 
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -165,10 +165,11 @@ namespace core
       ::factory::add_factory_item <::userex::top_toggle_impact >();
       ::factory::add_factory_item <::userex::top_impact >();
 
-
       ::factory::add_factory_item < ::user::font_combo_box >();
 
       ::factory::add_factory_item < simple_pane_document >();
+      ::factory::add_factory_item < simple_frame_window  >();
+
 
       ::factory::add_factory_item < ::simple_toolbar, ::user::toolbar >();
       
@@ -292,7 +293,7 @@ namespace core
 
       add_document_template(ptemplate);
 
-      auto pmultitemplate = new ::user::multiple_document_template(
+      auto pmultitemplate = memory_new ::user::multiple_document_template(
          "main",
          __type(::user::document),
          __type(::userex::dialog_frame),
@@ -330,36 +331,36 @@ namespace core
 
       TRACE("::user::application::initialize");
 
-      auto pxml = psystem->xml();
-
-      auto pdocumentUser = pxml->create_document();
-
-      auto pcontext = get_context();
-
-      string strUser = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata() / "langstyle_settings.xml");
-
-      string strLangUser;
-
-      string strStyleUser;
-
-      if (pdocumentUser->load(strUser))
-      {
-
-         if (pdocumentUser->get_child("lang") != nullptr)
-         {
-
-            strLangUser = pdocumentUser->get_child("lang")->get_value();
-
-         }
-
-         if (pdocumentUser->get_child("style") != nullptr)
-         {
-
-            strStyleUser = pdocumentUser->get_child("style")->get_value();
-
-         }
-
-      }
+//      auto pxml = psystem->xml();
+//
+//      auto pdocumentUser = pxml->create_document();
+//
+//      auto pcontext = get_context();
+//
+//      string strUser = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata() / "langstyle_settings.xml");
+//
+//      string strLangUser;
+//
+//      string strStyleUser;
+//
+//      if (pdocumentUser->load(strUser))
+//      {
+//
+//         if (pdocumentUser->get_child("lang") != nullptr)
+//         {
+//
+//            strLangUser = pdocumentUser->get_child("lang")->get_value();
+//
+//         }
+//
+//         if (pdocumentUser->get_child("style") != nullptr)
+//         {
+//
+//            strStyleUser = pdocumentUser->get_child("style")->get_value();
+//
+//         }
+//
+//      }
 
       //auto papp = get_se();
 
@@ -2111,7 +2112,7 @@ namespace core
    __pointer(::user::plain_edit) user::create_calculator_plain_edit()
    {
 
-      return new ::calculator::plain_edit_impact();
+      return memory_new ::calculator::plain_edit_impact();
 
    }
 

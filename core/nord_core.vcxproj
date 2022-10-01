@@ -276,6 +276,7 @@
     <ClCompile Include="user\simple\pane_document.cpp" />
     <ClCompile Include="user\simple\printer_list_impact.cpp" />
     <ClCompile Include="user\simple\status_bar.cpp" />
+    <ClCompile Include="user\simple\still.cpp" />
     <ClCompile Include="user\simple\tab_control.cpp" />
     <ClCompile Include="user\simple\tab_impact.cpp" />
     <ClCompile Include="user\simple\toolbar.cpp" />

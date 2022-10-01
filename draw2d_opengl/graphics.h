@@ -569,6 +569,6 @@ namespace draw2d_opengl
 } // namespace draw2d_opengl
 
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 

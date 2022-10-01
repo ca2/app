@@ -61,7 +61,7 @@ class static_application_factory :
 public:
 
 
-   virtual ::aura::application* new_application() override { return new APPLICATION; }
+   virtual ::aura::application* new_application() override { return memory_new APPLICATION; }
 
 
    static_application_factory(const ::string & pszName = "") :

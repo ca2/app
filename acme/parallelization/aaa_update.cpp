@@ -2,7 +2,7 @@
 #include "acme/platform/static_start.h"
 
 
-#undef new
+
 
 
 critical_section * update::g_pcs = nullptr;
@@ -105,7 +105,7 @@ __pointer(update) & update::task(::i64 iUpdate)
    if(!g_pmap)
    {
 
-      g_pmap = new i64_map < __pointer(update) >;
+      g_pmap = memory_new i64_map < __pointer(update) >;
 
    }
 
@@ -227,7 +227,7 @@ void update::_add(::i64 iUpdate, ::matter * pmatter)
    if(!ptask || ptask->is_ending())
    {
 
-      ptask = new update();
+      ptask = memory_new update();
 
       ptask->m_iUpdate = iUpdate;
 

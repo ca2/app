@@ -96,7 +96,7 @@ namespace axis
       //if (m_peengine != nullptr)
       //{
 
-      //   m_peengine = new ::exception_engine(this);
+      //   m_peengine = memory_new ::exception_engine(this);
 
       //}
 

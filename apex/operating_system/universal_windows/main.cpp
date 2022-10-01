@@ -144,7 +144,7 @@ void CLASS_DECL_APEX __cdecl _ca2_purecall()
 //
 //      _set_purecall_handler(_ca2_purecall);
 //
-//      ::apex::system * psystem = new ::apex::system();
+//      ::apex::system * psystem = memory_new ::apex::system();
 //
 //
 //      //sleep(30 * 1000);
@@ -154,7 +154,7 @@ void CLASS_DECL_APEX __cdecl _ca2_purecall()
 //
 //      int nReturnCode = 0;
 //
-//      ::universal_windows::main_init_data * pinitmaindata  = new ::universal_windows::main_init_data;
+//      ::universal_windows::main_init_data * pinitmaindata  = memory_new ::universal_windows::main_init_data;
 //
 //      pinitmaindata->m_hInstance             = hInstance;
 //      pinitmaindata->m_hPrevInstance         = hPrevInstance;
@@ -282,14 +282,19 @@ void CLASS_DECL_APEX __cdecl _ca2_purecall()
 // }
 
 
-
-bool application::os_on_start_application()
+namespace apex
 {
 
-   return true;
 
-}
+   bool application::os_on_start_application()
+   {
 
+      return true;
+
+   }
+
+
+} // namespace apex
 
 
 // bool os_init_application()

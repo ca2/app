@@ -193,7 +193,7 @@ inline ::index property_set::find_index(const ::atom & atom, ::index i) const
 
 }
 
-#undef new
+
 
 inline property & property_set::get(const ::atom & atom)
 {
@@ -203,7 +203,7 @@ inline property & property_set::get(const ::atom & atom)
    if (!pproperty)
    {
 
-      pproperty = new property(atom);
+      pproperty = memory_new property(atom);
 
       add_item(pproperty);
 
@@ -213,7 +213,7 @@ inline property & property_set::get(const ::atom & atom)
 
 }
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 inline ::property * property_set::find(const ::atom & atom) const
 {
@@ -257,7 +257,7 @@ inline ::payload & property_set::topic(const atom & atom)
 }
 
 
-#undef new
+
 
 
 inline ::payload & property_set::set(const ::atom & atom)
@@ -268,7 +268,7 @@ inline ::payload & property_set::set(const ::atom & atom)
    if (!pproperty)
    {
 
-      pproperty = new property(atom);
+      pproperty = memory_new property(atom);
 
       add_item(pproperty);
 
@@ -279,7 +279,7 @@ inline ::payload & property_set::set(const ::atom & atom)
 }
 
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 //inline property * payload::find_property(const ::atom & atom) const
 //{
@@ -2262,20 +2262,8 @@ inline uptr uptr_hash < block >(block b)
 }
 
 
-inline ::acme::application * object::get_app() const
-{ 
-   
-   return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication : (m_psystem ? m_psystem->m_pacmeapplicationMain.get() : nullptr);
-
-}
 
 
-inline ::apex::session * object::get_session() const
-{ 
-   
-   return m_pcontext ? m_pcontext->m_papexsession : nullptr; 
-
-}
 
 
 template < typename TYPE >
@@ -2777,14 +2765,7 @@ template < typename TYPE >
 inline void object::__id_construct(__pointer(TYPE)& p, const ::atom& atom)
 {
 
-   auto pfactory = ::factory::get_factory_item(atom);
-
-   if (!pfactory)
-   {
-
-      throw ::exception(error_no_factory);
-
-   }
+   auto & pfactory = ::factory::get_existing_factory_item(atom);
 
    auto ptypeNew = pfactory->create_element();
 

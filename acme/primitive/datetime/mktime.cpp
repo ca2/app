@@ -244,7 +244,7 @@ extern "C"
          if(dst_diff)
          {
             /* Move two hours in the direction indicated by the disagreement,
-            probe some more, and switch to a new time if found.
+            probe some more, and switch to a memory_new time if found.
             The largest known fallback due to daylight savings is two hours:
             once, in Newfoundland, 1988-10-30 02:00 -> 00:00.  */
             time_t ot = t - 2 * 60 * 60 * dst_diff;

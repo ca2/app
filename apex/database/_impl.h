@@ -46,7 +46,9 @@ namespace database
       if (::is_null(m_pdataserver))
       {
 
-         throw ::exception(error_null_pointer);
+         FORMATTED_WARNING("Data server is null trying to binary_get key=\"%s\".", key.m_strDataKey.c_str());
+         
+         return false;
 
       }
 

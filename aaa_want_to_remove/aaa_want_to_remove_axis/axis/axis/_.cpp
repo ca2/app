@@ -33,8 +33,8 @@ CLASS_DECL_AXIS int get_axis_init()
 ::aura::system * axis_create_aura_system()
 {
 
-   //return new ::axis::system(nullptr, pappcore);
-   return new ::axis::system();
+   //return memory_new ::axis::system(nullptr, pappcore);
+   return memory_new ::axis::system();
 
 }
 

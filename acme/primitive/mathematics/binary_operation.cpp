@@ -8,7 +8,7 @@ namespace mathematics
 
    binary_operation::binary_operation()
    {
-      m_pimpl = new value_impl;
+      m_pimpl = memory_new value_impl;
    }
 
    binary_operation::~binary_operation()

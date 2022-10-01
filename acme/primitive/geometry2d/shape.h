@@ -64,7 +64,7 @@ public:
    ::element * clone() const override
    {
 
-      return new begin_clip_shape();
+      return memory_new begin_clip_shape();
 
    }
 
@@ -84,7 +84,7 @@ public:
    ::element * clone() const override
    {
 
-      return new intersect_clip_shape();
+      return memory_new intersect_clip_shape();
 
    }
 
@@ -102,7 +102,7 @@ public:
    ::element * clone() const override
    {
 
-      return new begin_figure_shape();
+      return memory_new begin_figure_shape();
 
    }
 
@@ -120,7 +120,7 @@ public:
    ::element * clone() const override
    {
 
-      return new close_figure_shape();
+      return memory_new close_figure_shape();
 
    }
 
@@ -138,7 +138,7 @@ public:
    ::element * clone() const override
    {
 
-      return new end_figure_shape();
+      return memory_new end_figure_shape();
 
    }
 
@@ -192,7 +192,7 @@ public:
    ::element * clone() const override
    {
 
-      return new _shape(m_shape);
+      return memory_new _shape(m_shape);
 
    }
 };

@@ -81,8 +81,8 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -218,9 +218,7 @@
       </LinkTimeCodeGeneration>
       <FixedBaseAddress>false</FixedBaseAddress>
     </Link>
-    <PreBuildEvent>
-      <Command>$(SolutionDir)..\..\..\operating-system\tool-windows\bin\application_build_helper $(ProjectDir) $(ProjectName)</Command>
-    </PreBuildEvent>
+    <PreBuildEvent />
     <Manifest>
       <AdditionalManifestFiles>
       </AdditionalManifestFiles>
@@ -359,9 +357,7 @@
       </MergeSections>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
-    <PreBuildEvent>
-      <Command>$(SolutionDir)..\..\..\operating-system\tool-windows\bin\application_build_helper $(ProjectDir) $(ProjectName)</Command>
-    </PreBuildEvent>
+    <PreBuildEvent />
     <Manifest>
       <AdditionalManifestFiles>
       </AdditionalManifestFiles>
@@ -518,9 +514,7 @@
       </LinkTimeCodeGeneration>
       <FixedBaseAddress>false</FixedBaseAddress>
     </Link>
-    <PreBuildEvent>
-      <Command>$(SolutionDir)..\..\..\operating-system\tool-windows\bin\application_build_helper $(ProjectDir) $(ProjectName)</Command>
-    </PreBuildEvent>
+    <PreBuildEvent />
     <CustomBuildStep>
       <Command>
       </Command>
@@ -659,9 +653,7 @@
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
-    <PreBuildEvent>
-      <Command>$(SolutionDir)..\..\..\operating-system\tool-windows\bin\application_build_helper $(ProjectDir) $(ProjectName)</Command>
-    </PreBuildEvent>
+    <PreBuildEvent />
     <CustomBuildStep>
       <Command>
       </Command>

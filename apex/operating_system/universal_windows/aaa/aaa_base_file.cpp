@@ -83,8 +83,8 @@ int_bool file_is_equal_path_dup(const char * psz1,const char * psz2)
 //   int iCmp = pwsz1.compare_ci(pwsz2);
 ///*   unichar * pwszFile1;
 //   unichar * pwszFile2;
-//   unichar * pwszPath1 = new unichar[iBufSize];
-//   unichar * pwszPath2 = new unichar[iBufSize];
+//   unichar * pwszPath1 = memory_new unichar[iBufSize];
+//   unichar * pwszPath2 = memory_new unichar[iBufSize];
 //   i32 iCmp = -1;
 //   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
 //   {
@@ -152,7 +152,7 @@ string file_module_path_dup()
 //
 //   const i32 iMaxModuleCount = 1024;
 //
-//   HMODULE * hMods = new HMODULE[iMaxModuleCount];
+//   HMODULE * hMods = memory_new HMODULE[iMaxModuleCount];
 //
 //   const i32 iImageSize = MAX_PATH * 8;
 //
@@ -206,7 +206,7 @@ string file_module_path_dup()
 //{
 //   // Get the list of process identifiers.
 //
-//   ::u32 * aProcesses = new ::u32[1024 * 8];
+//   ::u32 * aProcesses = memory_new ::u32[1024 * 8];
 //
 //   ::u32 cbNeeded,cProcesses;
 //
@@ -385,7 +385,7 @@ string file_module_path_dup()
 // // {
 // //    THREAD_PARAMS* pThreadParam = (THREAD_PARAMS*)lParam;
 
-// //    FILE_NAME_INFO * pinfo = (FILE_NAME_INFO *)new byte[MAX_PATH * 8];
+// //    FILE_NAME_INFO * pinfo = (FILE_NAME_INFO *)memory_new byte[MAX_PATH * 8];
 
 // //    GetFinalPathNameByHandleDef pGetFinalPathNameByHandle = pThreadParam->pGetFinalPathNameByHandle;
 // //    for(g_CurrentIndex; g_CurrentIndex < pThreadParam->pSysHandleInformation->dwCount;)
@@ -461,7 +461,7 @@ string file_module_path_dup()
 // //    }
 
 // //    // Get the list of all handles in the file_system
-// //    PSYSTEM_HANDLE_INFORMATION pSysHandleInformation = new SYSTEM_HANDLE_INFORMATION;
+// //    PSYSTEM_HANDLE_INFORMATION pSysHandleInformation = memory_new SYSTEM_HANDLE_INFORMATION;
 // //    u32 size = sizeof(SYSTEM_HANDLE_INFORMATION);
 // //    ::u32 needed = 0;
 // //    NTSTATUS status = NtQuerySystemInformation(SystemHandleInformation,pSysHandleInformation,size,&needed);
@@ -474,7 +474,7 @@ string file_module_path_dup()
 // //       // The previously supplied buffer wasn't enough.
 // //       delete pSysHandleInformation;
 // //       size = needed + 1024;
-// //       pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)new byte[size];
+// //       pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)memory_new byte[size];
 // //       status = NtQuerySystemInformation(SystemHandleInformation,pSysHandleInformation,size,&needed);
 // //       if(!NT_SUCCESS(status))
 // //       {
@@ -663,7 +663,7 @@ string file_module_path_dup()
 // //    }
 
 // //    u32 dwsize = 300;
-// //    PDWORD pDwId = (PDWORD)new byte[dwsize];
+// //    PDWORD pDwId = (PDWORD)memory_new byte[dwsize];
 // //    ::u32 dwReturned = dwsize;
 // //    // Enum all the process first
 // //    while(1)
@@ -675,7 +675,7 @@ string file_module_path_dup()
 // //       }
 // //       delete pDwId;
 // //       dwsize += 50;
-// //       pDwId = (PDWORD)new byte[dwsize];
+// //       pDwId = (PDWORD)memory_new byte[dwsize];
 // //    }
 // //    i32 nCount = dwReturned / sizeof(u32);
 // //    i32 nItemCount = -1;
@@ -913,8 +913,8 @@ int_bool file_delete(const char * lpszFileName)
 //   wstring pwsz2 = utf8_to_unicode(psz2);
 //   unichar * pwszFile1;
 //   unichar * pwszFile2;
-//   unichar * pwszPath1 = new unichar[iBufSize];
-//   unichar * pwszPath2 = new unichar[iBufSize];
+//   unichar * pwszPath1 = memory_new unichar[iBufSize];
+//   unichar * pwszPath2 = memory_new unichar[iBufSize];
 //   i32 iCmp = -1;
 //   if(GetFullPathNameW(pwsz1,iBufSize,pwszPath1,&pwszFile1))
 //   {
@@ -987,7 +987,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   if(hFile == INVALID_HANDLE_VALUE)
 //      return 0;
 //
-//   FILE *file = new FILE;
+//   FILE *file = memory_new FILE;
 //   __memset(file,0,sizeof(FILE));
 //   file->_base = (char *)hFile;
 //
@@ -1019,7 +1019,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   if(hFile == INVALID_HANDLE_VALUE)
 //      return 0;
 //
-//   FILE *file = new FILE;
+//   FILE *file = memory_new FILE;
 //   __memset(file,0,sizeof(FILE));
 //   file->_base = (char *)hFile;
 //
@@ -1569,16 +1569,16 @@ int_bool close_handle(HANDLE h)
    /*
    CREATE_ALWAYS
    2
-   Creates a new file, always.
+   Creates a memory_new file, always.
    If the specified file exists and is writable, the function overwrites the file, the function succeeds, and last-error code is set to ERROR_ALREADY_EXISTS (183).
-   If the specified file does not exist and is a valid path, a new file is created, the function succeeds, and the last-error code is set to zero.
+   If the specified file does not exist and is a valid path, a memory_new file is created, the function succeeds, and the last-error code is set to zero.
    For more information, see the Remarks section of this topic.
 
    CREATE_NEW
    1
-   Creates a new file, only if it does not already exist.
+   Creates a memory_new file, only if it does not already exist.
    If the specified file exists, the function fails and the last-error code is set to ERROR_FILE_EXISTS (80).
-   If the specified file does not exist and is a valid path to a writable location, a new file is created.
+   If the specified file does not exist and is a valid path to a writable location, a memory_new file is created.
 
    OPEN_ALWAYS
    4

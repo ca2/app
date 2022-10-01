@@ -289,7 +289,7 @@ class holdee
 
 
 
-#define APPLICATION_CLASS app
+#define APPLICATION_CLASS ::acme::application
 
 
 //namespace windowing_x11
@@ -436,16 +436,8 @@ namespace desktop_environment_xfce
 #endif
 
 
-#if defined(DEBUG) && !defined(NO_ACME_MEMORY_MANAGEMENT)
-#define ACME_NEW new(__FILE__, __LINE__)
-#else
-#define ACME_NEW new
-#endif
-
-#define new ACME_NEW
-
-
 #include "acme/platform/object_reference_count_debug.h"
+
 
 template < class root_derived >
 inline i64 increment_reference_count(root_derived * pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
@@ -489,7 +481,7 @@ namespace message
 //};
 
 
-template < typename TYPE > inline TYPE *& __defer_new(TYPE *& p) { if (!p) p = new TYPE; return p; }
+template < typename TYPE > inline TYPE *& __defer_new(TYPE *& p) { if (!p) p = memory_new TYPE; return p; }
 
 
 struct INT_STRING
@@ -1295,10 +1287,10 @@ inline const ::matter * context_trace_object() { return general_trace_object(); 
 #define FORMATTED_FATAL(...)                      TRACE_LOG_FORMATTED_FATAL(__VA_ARGS__)
 
 
-#define INFORMATION(...)                      TRACE_LOG_INFORMATION(__VA_ARGS__)
-#define WARNING(...)                      TRACE_LOG_WARNING(__VA_ARGS__)
-#define ERROR(...)                                                   TRACE_LOG_ERROR(__VA_ARGS__)
-#define FATAL(...)                      TRACE_LOG_FATAL(__VA_ARGS__)
+#define INFORMATION(...)               TRACE_LOG_INFORMATION(__VA_ARGS__)
+#define WARNING(...)                   TRACE_LOG_WARNING(__VA_ARGS__)
+#define ERROR(...)                     TRACE_LOG_ERROR(__VA_ARGS__)
+#define FATAL(...)                     TRACE_LOG_FATAL(__VA_ARGS__)
 
 
 //#define INFORMATION(...) trace_object(ALOG_CONTEXT)->__alog(e_trace_level_information   , ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
@@ -1919,7 +1911,7 @@ inline auto &__typed_defer_new(TYPE &t) { return t; }
 template<class POINTER_TYPE>
 inline auto &__typed_defer_new(POINTER_TYPE *&p)
 {
-   if (!p) { p = new POINTER_TYPE; }
+   if (!p) { p = memory_new POINTER_TYPE; }
    return *p;
 }
 
@@ -1927,7 +1919,7 @@ inline auto &__typed_defer_new(POINTER_TYPE *&p)
 template<class POINTER_POINTER_TYPE>
 inline auto &__typed_defer_new(POINTER_POINTER_TYPE **p)
 {
-   if (!*p) { *p = new POINTER_POINTER_TYPE; }
+   if (!*p) { *p = memory_new POINTER_POINTER_TYPE; }
    return **p;
 }
 
@@ -1935,7 +1927,7 @@ inline auto &__typed_defer_new(POINTER_POINTER_TYPE **p)
 template<class T>
 inline auto &__typed_defer_new(__pointer(T) &p)
 {
-   if (!p) { p = new T; }
+   if (!p) { p = memory_new T; }
    return *p;
 }
 
@@ -2646,7 +2638,7 @@ namespace acme
 
       ::acme::del(p);
 
-      return p = new T;
+      return p = memory_new T;
 
    }
 
@@ -2989,10 +2981,10 @@ inline ptr < T > move_transfer(T * p);
 //inline T * set_heap_allocated(T * p) { p->set_heap_allocated();  return p; }
 
 
-//#define ___new(...) ::set_heap_allocated( new __VA_ARGS__ )
+//#define ___new(...) ::set_heap_allocated( memory_new __VA_ARGS__ )
 
 
-#define __new(...) ::move_transfer( new __VA_ARGS__ )
+#define __new(...) ::move_transfer( memory_new __VA_ARGS__ )
 
 
 #include "acme/primitive/primitive/pointer.h"
@@ -3988,7 +3980,7 @@ inline auto &__typed(__composite(POINTER_TYPE) *pp) { return *pp->operator POINT
 #include "acme/filesystem/file/stream.h"
 #include "acme/filesystem/file/binary_stream.h"
 #include "acme/filesystem/file/payload_stream.h"
-#include "acme/filesystem/file/string_file.h"
+#include "acme/filesystem/file/string_buffer.h"
 #include "acme/filesystem/file/text_stream.h"
 
 
@@ -4057,7 +4049,7 @@ using lresult = iptr;
 #include "acme/platform/cmp.h"
 
 
-#include "acme/filesystem/file/string_file.h"
+#include "acme/filesystem/file/string_buffer.h"
 
 
 #include "acme/filesystem/file/payload_stream.h"
@@ -4323,7 +4315,7 @@ namespace xml
 } // namespace xml
 
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 
 //#include "acme/operating_system/chronometer.h"
@@ -4386,11 +4378,6 @@ inline string &to_network_payload(string &str, const T &value, bool bNewLine)
    return str = __string(value);
 
 }
-
-
-
-CLASS_DECL_ACME string get_last_error_string();
-
 
 
 
@@ -4459,7 +4446,7 @@ using enum_application_capability_array = ::comparable_array < enum_application_
 #include "acme/platform/main.h"
 
 
-#include "acme/platform/acme_main_struct.h"
+//#include "acme/platform/acme_main_struct.h"
 
 
 CLASS_DECL_ACME string implementation_name(const ::string& strComponent, const ::string& strImplementation);
@@ -4539,7 +4526,7 @@ class task_tool;
 
 
 
-#include "acme/platform/app_core.h"
+//#include "acme/platform/app_core.h"
 
 
 

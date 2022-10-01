@@ -1,43 +1,12 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
+#include "plain_text_data.h"
 #include "plain_text_tree.h"
+#include "_constant.h"
 #include "apex/filesystem/file/edit_file.h"
 
 
 namespace user
 {
-
-
-   plain_text_tree::plain_text_tree()
-   {
-
-      //m_pgroupcommand      = nullptr;
-      m_pfile              = nullptr;
-      m_iBranch            = 0;
-      m_iSelBeg            = -1;
-      m_iSelEnd            = -1;
-
-      __construct_new(m_peditfile);
-
-   }
-
-
-   plain_text_tree::~plain_text_tree()
-   {
-
-   }
-
-
-   void plain_text_tree::SetFile(file_pointer  pfile)
-   {
-
-      m_peditfile->SetFile(pfile);
-
-   }
-
-
 
 
    e_plain_text_command plain_text_command::get_command()
@@ -57,32 +26,32 @@ namespace user
 
 
 
-   void plain_text_set_sel_command::Undo(plain_text_tree * pdocument)
+   void plain_text_set_sel_command::Undo(plain_text_tree * pplaintexttree)
    {
 
-      __UNREFERENCED_PARAMETER(pdocument);
+      __UNREFERENCED_PARAMETER(pplaintexttree);
 
-      pdocument->m_iSelBeg = m_iPreviousSelBeg;
+      pplaintexttree->m_iSelBeg = m_iPreviousSelBeg;
 
-      pdocument->m_iSelEnd = m_iPreviousSelEnd;
+      pplaintexttree->m_iSelEnd = m_iPreviousSelEnd;
 
    }
 
-   void plain_text_set_sel_command::Redo(plain_text_tree * pdocument)
+   void plain_text_set_sel_command::Redo(plain_text_tree * pplaintexttree)
    {
-      __UNREFERENCED_PARAMETER(pdocument);
-      pdocument->m_iSelBeg = m_iSelBeg;
-      pdocument->m_iSelEnd = m_iSelEnd;
+      __UNREFERENCED_PARAMETER(pplaintexttree);
+      pplaintexttree->m_iSelBeg = m_iSelBeg;
+      pplaintexttree->m_iSelEnd = m_iSelEnd;
    }
 
-   void plain_text_file_command::Undo(plain_text_tree * pdocument)
+   void plain_text_file_command::Undo(plain_text_tree * pplaintexttree)
    {
-      pdocument->m_peditfile->Undo();
+      pplaintexttree->m_peditfile->Undo();
    }
 
-   void plain_text_file_command::Redo(plain_text_tree * pdocument)
+   void plain_text_file_command::Redo(plain_text_tree * pplaintexttree)
    {
-      pdocument->m_peditfile->Redo();
+      pplaintexttree->m_peditfile->Redo();
    }
 
 
@@ -101,26 +70,26 @@ namespace user
 
    }
 
-   void plain_text_group_command::Undo(plain_text_tree * pdocument)
+   void plain_text_group_command::Undo(plain_text_tree * pplaintexttree)
    {
 
       for(index i = m_commanda.get_upper_bound(); i >= 0; i--)
       {
 
-         m_commanda.element_at(i)->Undo(pdocument);
+         m_commanda.element_at(i)->Undo(pplaintexttree);
 
       }
 
    }
 
 
-   void plain_text_group_command::Redo(plain_text_tree * pdocument)
+   void plain_text_group_command::Redo(plain_text_tree * pplaintexttree)
    {
 
       for(index i = 0; i < m_commanda.get_size(); i++)
       {
 
-         m_commanda.element_at(i)->Redo(pdocument);
+         m_commanda.element_at(i)->Redo(pplaintexttree);
 
       }
 

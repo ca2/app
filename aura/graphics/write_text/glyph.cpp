@@ -393,11 +393,11 @@ namespace write_text
 //            // type of contour.
 //         {
 //            point_i32_array pointset;
-//            //pPoints = new CPoints();
+//            //pPoints = memory_new CPoints();
 //            //         pPoints->m_lpPoints = point;
 //
 //            //point = (POINT_I32 *)malloc( dwBuffSize );
-//            //         point = (POINT_I32 *) new byte(dwBuffSize);
+//            //         point = (POINT_I32 *) memory_new byte(dwBuffSize);
 //            // Convert the starting point. It is an on curve point.
 //            // All other points are continuous from the "last"
 //            // point_i32 of the contour. Thus the start point_i32 the next

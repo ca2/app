@@ -1044,34 +1044,38 @@ string_array acme_file::lines(const char * pathParam)
 
    auto path = m_psystem->m_pacmepath->defer_process_relative_path(pathParam);
 
-   auto pfile = open(path, ::file::e_open_read | ::file::e_open_no_exception_on_open);
-
-   if (::nok(pfile))
+   try
    {
-   
-      if (pfile->m_estatus == error_file_not_found)
+
+      auto pfile = open(path, ::file::e_open_read | ::file::e_open_share_deny_none);
+
+      string_array straLines;
+
+      string strLine;
+
+      while (pfile->read_string(strLine))
       {
 
-         return { };
+         straLines.add(strLine);
 
       }
 
-      throw ::exception(error_io);
+      return ::move(straLines);
 
    }
-
-   string_array straLines;
-
-   string strLine;
-
-   while (pfile->read_string(strLine))
+   catch (const ::exception & exception)
    {
 
-      straLines.add(strLine);
+      if (exception.m_estatus == error_file_not_found)
+      {
+
+         return {};
+
+      }
+
+      throw exception;
 
    }
-
-   return ::move(straLines);
 
 }
 

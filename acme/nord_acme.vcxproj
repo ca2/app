@@ -101,7 +101,6 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CppLanguageStandard>
       </CppLanguageStandard>
-      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CLanguageStandard>c11</CLanguageStandard>
@@ -125,7 +124,6 @@
     <ClCompile>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
       <PreprocessorDefinitions>_ACME_LIBRARY;CUBE;DEBUG</PreprocessorDefinitions>
       <CLanguageStandard>c11</CLanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -151,7 +149,6 @@
       <CppLanguageStandard>
       </CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
-      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
       <Optimization>Full</Optimization>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
@@ -173,7 +170,6 @@
       <CppLanguageStandard>
       </CppLanguageStandard>
       <PreprocessorDefinitions>_ACME_LIBRARY;CUBE</PreprocessorDefinitions>
-      <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -std=c++20 -Wno-char-subscripts</AdditionalOptions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
@@ -236,7 +232,7 @@
     <ClCompile Include="filesystem\file\stream.cpp" />
     <ClCompile Include="filesystem\file\streamable.cpp" />
     <ClCompile Include="filesystem\file\streamable_composite.cpp" />
-    <ClCompile Include="filesystem\file\string_file.cpp" />
+    <ClCompile Include="filesystem\file\string_buffer.cpp" />
     <ClCompile Include="filesystem\file\text_file.cpp" />
     <ClCompile Include="filesystem\file\text_stream.cpp" />
     <ClCompile Include="filesystem\file\transfer.cpp" />
@@ -407,7 +403,7 @@
     <ClCompile Include="platform\acme.cpp" />
     <ClCompile Include="platform\apex_main_data.cpp" />
     <ClCompile Include="platform\apex_main_struct.cpp" />
-    <ClCompile Include="platform\app.cpp" />
+    <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\app_core.cpp" />
     <ClCompile Include="platform\assert.cpp" />
     <ClCompile Include="platform\aura_str_pool.cpp" />
@@ -599,7 +595,6 @@
     <ClCompile Include="user\user\os_colors.cpp" />
     <ClCompile Include="user\user\os_theme_colors.cpp" />
     <ClCompile Include="user\user\text.cpp" />
-    <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="compress\compress.h" />
@@ -723,7 +718,7 @@
     <ClInclude Include="filesystem\file\stdio_file.h" />
     <ClInclude Include="filesystem\file\stream.h" />
     <ClInclude Include="filesystem\file\streamable.h" />
-    <ClInclude Include="filesystem\file\string_file.h" />
+    <ClInclude Include="filesystem\file\string_buffer.h" />
     <ClInclude Include="filesystem\file\text_file.h" />
     <ClInclude Include="filesystem\file\text_stream.h" />
     <ClInclude Include="filesystem\file\transfer_file.h" />
@@ -1271,7 +1266,7 @@
     <ClInclude Include="primitive\string\stdstring.h" />
     <ClInclude Include="primitive\string\str.h" />
     <ClInclude Include="primitive\string\stringtow.h" />
-    <ClInclude Include="primitive\string\string_file.h" />
+    <ClInclude Include="primitive\string\string_buffer.h" />
     <ClInclude Include="primitive\string\string_inst.h" />
     <ClInclude Include="primitive\string\string_wide_conversion.h" />
     <ClInclude Include="primitive\string\sz.h" />

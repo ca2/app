@@ -3470,25 +3470,25 @@ CLASS_DECL_CORE void defer_dock_application(int_bool bDock)
 bool os_init_windowing()
 {
 
-   //g_pmutexX = new ::mutex();
+   //g_pmutexX = memory_new ::mutex();
 
    //g_pmutexX = nullptr;
 
-   sudo rebootx11_mutex() = new ::mutex();
+   sudo rebootx11_mutex() = memory_new ::mutex();
 
-   g_pobjectTaskptrlX11 = new list < sp(object) >();
+   g_pobjectTaskptrlX11 = memory_new list < sp(object) >();
 
    //set_TranslateMessage(&axis_TranslateMessage);
 
    //set_DispatchMessage(&axis_DispatchMessage);
 
-   oswindow_data::s_pdataptra = new oswindow_dataptra;
+   oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
 
-   oswindow_data::s_pmutex = new ::mutex;
+   oswindow_data::s_pmutex = memory_new ::mutex;
 
-   osdisplay_data::s_pdataptra = new osdisplay_dataptra;
+   osdisplay_data::s_pdataptra = memory_new osdisplay_dataptra;
 
-   osdisplay_data::s_pmutex = new ::mutex;
+   osdisplay_data::s_pmutex = memory_new ::mutex;
 
    c_xstart();
 

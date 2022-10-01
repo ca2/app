@@ -19,7 +19,7 @@ void initialize_sequence_critical_section()
    if (!g_pcriticalsectionSequence)
    {
 
-      g_pcriticalsectionSequence = new critical_section();
+      g_pcriticalsectionSequence = memory_new critical_section();
 
    }
 

@@ -1,9 +1,9 @@
 #pragma once
 
 
-#undef new
 
-#define new ACME_NEW
+
+//#define memory_new ACME_NEW
 
 template < typename PRED >
 class predicate_task:
@@ -190,16 +190,16 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 
 //CLASS_DECL_ACME int get_current_process_affinity_order();
 
-#undef new
 
-#define new ACME_NEW
+
+//#define memory_new ACME_NEW
 
 //
 //template < typename PRED >
 //__pointer(task) fork(::object * pobject, PRED pred)
 //{
 //
-//   ptask = new predicate_task < PRED >(pobject, pred);
+//   ptask = memory_new predicate_task < PRED >(pobject, pred);
 //
 //   ptask->begin();
 //

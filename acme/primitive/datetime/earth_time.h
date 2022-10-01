@@ -350,7 +350,7 @@ namespace earth
       inline void time::set(const ::duration & duration, const time_shift & timeshift)
       {
 
-         set({duration.m_iSecond }, duration.m_iNanosecond, timeshift);
+         set({(time_t) duration.m_iSecond }, duration.m_iNanosecond, timeshift);
 
       }
 

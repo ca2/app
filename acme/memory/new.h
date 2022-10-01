@@ -2,7 +2,7 @@
 
 #if !defined(NO_ACME_MEMORY_MANAGEMENT)
 
-#undef new
+
 
 #if defined(LINUX)
 #include <new>
@@ -42,7 +42,7 @@ void MEMORY_DECL operator delete[](void * p, i32 nType, const char * pszFileName
 #endif
 
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 
 

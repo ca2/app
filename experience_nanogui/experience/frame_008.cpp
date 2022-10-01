@@ -1,5 +1,11 @@
 #include "framework.h"
-//#include "aura/graphics/draw2d/_component.h"
+#include "frame_008.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "base/user/experience/frame_window.h"
+#include "base/user/experience/size_manager.h"
+#include "base/user/experience/dock_manager.h"
+#include "base/user/experience/move_manager.h"
 
 
 #define GRIP_CORNER_LARGE_CX 16
@@ -14,11 +20,8 @@
 #define GRIP_CENTER_SMALL_CY 7
 
 
-
 namespace experience_nanogui
 {
-
-
 
 
    frame_008::frame_008()

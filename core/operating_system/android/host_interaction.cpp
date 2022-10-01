@@ -86,7 +86,7 @@ namespace android
    ::user::interaction * create_host_window()
    {
       
-      return new host_interaction();
+      return memory_new host_interaction();
       
    }
 

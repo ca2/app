@@ -301,7 +301,7 @@ bool TabWidgetBase::mouse_button_event(const Vector2i & p, int button, bool down
       m_popup->set_anchor_offset(8);
       m_popup->set_anchor_size(8);
       if (m_popup->layout() == nullptr)
-         m_popup->set_layout(new GroupLayout(5, 3));
+         m_popup->set_layout(memory_new GroupLayout(5, 3));
       for (Widget * w : m_popup->children()) {
          Button * b = dynamic_cast<Button *>(w);
          if (!b)

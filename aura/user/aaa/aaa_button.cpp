@@ -993,13 +993,13 @@ namespace user
       if(estyle == style_bitmap || estyle == style_image_and_text)
       {
 
-         m_pbitmap = new bitmap();
+         m_pbitmap = memory_new bitmap();
 
       }
       else if(estyle == style_list)
       {
 
-         m_plist = new list();
+         m_plist = memory_new list();
 
          //m_plist->m_pimagelistNormal         = nullptr;
          //m_plist->m_pimagelistItemHover      = nullptr;

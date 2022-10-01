@@ -7,7 +7,7 @@ namespace mathematics
 
    number::number()
    {
-      m_pimpl = new value_impl;
+      m_pimpl = memory_new value_impl;
    }
 
    number::~number()

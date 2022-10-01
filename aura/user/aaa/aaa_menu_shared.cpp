@@ -52,8 +52,8 @@ __pointer(menu_shared) create_menu_shared(::object * pobject, const string_array
    pmenushared->m_ppszParent = alloc_c_string_array(straParent);
    pmenushared->m_ppszMenu = alloc_c_string_array(straMenu);
    pmenushared->m_ppszId = alloc_c_string_array(straId);
-   pmenushared->m_ositema = new void *[iCount];
-   pmenushared->m_statusa = new int[iCount];
+   pmenushared->m_ositema = memory_new void *[iCount];
+   pmenushared->m_statusa = memory_new int[iCount];
 
    memset(pmenushared->m_ositema, 0, sizeof(void *) * iCount);
    memset(pmenushared->m_statusa, 0, sizeof(menu_shared::enum_status) * iCount);

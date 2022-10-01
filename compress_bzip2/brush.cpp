@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#undef new
+
 
 
 namespace draw2d_gdiplus
@@ -44,7 +44,7 @@ namespace draw2d_gdiplus
          try
          {
 
-            m_pbrush = new Gdiplus::SolidBrush(gdiplus_color(m_color));
+            m_pbrush = normal_new Gdiplus::SolidBrush(gdiplus_color(m_color));
 
          }
          catch(...)
@@ -59,7 +59,7 @@ namespace draw2d_gdiplus
          try
          {
 
-            m_pbrush = new Gdiplus::LinearGradientBrush(
+            m_pbrush = normal_new Gdiplus::LinearGradientBrush(
             Gdiplus::PointF((Gdiplus::REAL) m_point1.x,(Gdiplus::REAL) m_point1.y),
             Gdiplus::PointF((Gdiplus::REAL) m_point2.x,(Gdiplus::REAL) m_point2.y),
             gdiplus_color(m_color1),
@@ -76,11 +76,11 @@ namespace draw2d_gdiplus
          try
          {
 
-            Gdiplus::GraphicsPath * ppath = new Gdiplus::GraphicsPath();
+            Gdiplus::GraphicsPath * ppath = normal_new Gdiplus::GraphicsPath();
 
             ppath->AddEllipse((Gdiplus::REAL) (m_point.x - m_size.cx / 2),(Gdiplus::REAL)(m_point.y - m_size.cy / 2),(Gdiplus::REAL) (m_size.cx),(Gdiplus::REAL) (m_size.cy));
 
-            Gdiplus::PathGradientBrush * pgradientbrush = new Gdiplus::PathGradientBrush(ppath);
+            Gdiplus::PathGradientBrush * pgradientbrush = normal_new Gdiplus::PathGradientBrush(ppath);
 
             auto c1 = gdiplus_color(m_color1);
             auto c2 = gdiplus_color(m_color2);
@@ -112,7 +112,7 @@ namespace draw2d_gdiplus
                if (::is_set(pimage))
                {
 
-                  Gdiplus::TextureBrush* ptexturebrush = new Gdiplus::TextureBrush(pimage);
+                  Gdiplus::TextureBrush* ptexturebrush = normal_new Gdiplus::TextureBrush(pimage);
 
                   m_pbrush = ptexturebrush;
 
@@ -133,7 +133,7 @@ namespace draw2d_gdiplus
          try
          {
 
-            m_pbrush = new Gdiplus::SolidBrush(gdiplus_color(m_color));
+            m_pbrush = normal_new Gdiplus::SolidBrush(gdiplus_color(m_color));
 
          }
          catch(...)

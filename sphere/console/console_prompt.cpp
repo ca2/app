@@ -12,7 +12,7 @@ namespace console
 
       ::user::single_document_template* pdoctemplate;
 
-      pdoctemplate = new ::user::single_document_template(
+      pdoctemplate = memory_new ::user::single_document_template(
       get_app(),
       "system/form",
       __type(prompt_document),

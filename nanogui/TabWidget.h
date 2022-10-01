@@ -28,7 +28,7 @@ NAMESPACE_BEGIN(nanogui)
  */
    class NANOGUI_EXPORT TabWidgetBase : public Widget {
    public:
-      /// Construct a new tab widget
+      /// Construct a memory_new tab widget
       TabWidgetBase(Widget * parent, const std::string & font = "sans-bold");
 
       /// Return the total number of tabs
@@ -40,10 +40,10 @@ NAMESPACE_BEGIN(nanogui)
       /// Return the index of the tab with a given ID (or throw an exception)
       int tab_index(int id) const;
 
-      /// Inserts a new tab at the specified position and returns its ID.
+      /// Inserts a memory_new tab at the specified position and returns its ID.
       int insert_tab(int index, const std::string & caption);
 
-      /// Appends a new tab and returns its ID.
+      /// Appends a memory_new tab and returns its ID.
       int append_tab(const std::string & caption);
 
       /// Removes a tab with the specified ID
@@ -152,25 +152,25 @@ NAMESPACE_BEGIN(nanogui)
  *    .. code-block:: cpp
  *
  *       // `this` might be say a nanogui::Screen instance
- *       Window *window = new Window(this, "Window Title");
+ *       Window *window = memory_new Window(this, "Window Title");
  *       TabWidget *tab_widget = window->add<TabWidget>();
  *       // this label would be a direct child of tabWidget,
  *       // which is forbidden, so an exception will be raised
- *       new Label(tab_widget, "Some Label");
+ *       memory_new Label(tab_widget, "Some Label");
  *
  *    Instead, you are expected to be creating tabs and adding widgets to those.
  *
  *    .. code-block:: cpp
  *
  *       // `this` might e.g. be a nanogui::Screen instance
- *       Window *window = new Window(this, "Window Title");
+ *       Window *window = memory_new Window(this, "Window Title");
  *       TabWidget *tab_widget = window->add<TabWidget>();
  *       // Create a tab first
- *       Widget *tab = new Widget(tab_widget);
+ *       Widget *tab = memory_new Widget(tab_widget);
  *       int tab_id = tab_widget->append_tab("Tab Name", tab);
  *       // Add children to the created tabs
- *       tab->set_layout(new GroupLayout());
- *       new Label(tab, "Some Label");
+ *       tab->set_layout(memory_new GroupLayout());
+ *       memory_new Label(tab, "Some Label");
  *
  *    A slightly more involved example of creating a TabWidget can also be found
  *    in :ref:`nanogui_example_1` (search for ``tab_widget`` in the file).
@@ -179,13 +179,13 @@ NAMESPACE_BEGIN(nanogui)
  */
 class NANOGUI_EXPORT TabWidget : public TabWidgetBase {
 public:
-   /// Construct a new tab widget
+   /// Construct a memory_new tab widget
    TabWidget(Widget * parent, const std::string & font = "sans-bold");
 
-   /// Inserts a new tab at the specified position and returns its ID.
+   /// Inserts a memory_new tab at the specified position and returns its ID.
    int insert_tab(int index, const std::string & caption, Widget * widget);
 
-   /// Appends a new tab and returns its ID.
+   /// Appends a memory_new tab and returns its ID.
    int append_tab(const std::string & caption, Widget * widget);
 
    /// Removes a tab with the specified ID

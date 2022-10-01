@@ -62,7 +62,7 @@ namespace calculator
    token * scanner::look_ahead()
    {
       token * token;
-      token = new class token;
+      token = memory_new class token;
       if(token == nullptr)
          throw ::exception(error_no_memory);
       while(::str::ch().is_space_char(input))

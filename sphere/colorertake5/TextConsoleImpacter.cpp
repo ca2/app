@@ -34,7 +34,7 @@ INPUT_RECORD ir;
   cci.bVisible = false;
   SetConsoleCursorInfo(hCon, &cci);
 
-  CHAR_INFO *buffer = new CHAR_INFO[csbi.dwSize.X * csbi.dwSize.Y];
+  CHAR_INFO *buffer = memory_new CHAR_INFO[csbi.dwSize.X * csbi.dwSize.Y];
   bool unc_fault = false;
   do{
     int lline = csbi.dwSize.Y;
@@ -98,7 +98,7 @@ INPUT_RECORD ir;
       if (ir.EventType == WINDOW_BUFFER_SIZE_EVENT){
         GetConsoleScreenBufferInfo(hCon, &csbi);
         delete[] buffer;
-        buffer = new CHAR_INFO[csbi.dwSize.X * csbi.dwSize.Y];
+        buffer = memory_new CHAR_INFO[csbi.dwSize.X * csbi.dwSize.Y];
         break;
       };
       if (ir.EventType == MOUSE_EVENT && ir.Event.MouseEvent.dwEventFlags == 0x4){

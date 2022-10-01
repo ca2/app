@@ -63,6 +63,26 @@ void matter::on_initialize_object()
 }
 
 
+::acme::application * matter::get_context_application()
+{
+
+   if (m_psystem->m_pacmeapplicationMain)
+   {
+
+      return m_psystem->m_pacmeapplicationMain;
+
+   }
+
+   if (m_psystem->m_pacmeapplicationStartup)
+   {
+
+      return m_psystem->m_pacmeapplicationStartup;
+
+   }
+
+   return nullptr;
+
+}
 
 
 void matter::operator()(::message::message * pmessage)
@@ -938,6 +958,40 @@ __pointer(::sequencer < ::conversation >) matter::create_message_box_sequencer(c
 {
 
    auto psequencer = m_psystem->create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails);
+
+   return psequencer;
+
+}
+
+
+__pointer(::sequencer < ::conversation >) matter::exception_message_box_sequencer(const ::exception & exception, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+{
+   
+   string strExceptionDetails = exception.get_consolidated_details();
+
+   auto psequencer = m_psystem->create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails + "\n" + strExceptionDetails);
+
+   return psequencer;
+
+}
+
+
+__pointer(::sequencer < ::conversation >) matter::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+{
+
+   auto psequencer = m_psystem->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails);
+
+   return psequencer;
+
+}
+
+
+__pointer(::sequencer < ::conversation >) matter::exception_message_sequencer(const ::exception & exception, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+{
+   
+   string strExceptionDetails = exception.get_consolidated_details();
+
+   auto psequencer = m_psystem->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails + "\n" + strExceptionDetails);
 
    return psequencer;
 

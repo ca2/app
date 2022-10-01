@@ -8,10 +8,10 @@
 
 // #endif
 
-#undef new
+
 #include "gdiplus.h"
 #include <ddeml.h>
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 
 void __term_threading();

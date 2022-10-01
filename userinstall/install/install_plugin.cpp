@@ -5,7 +5,7 @@
 #if defined()
 
 
-#undef new
+
 #if defined(WINDOWS)
 #define minimum minimum
 #define maximum maximum
@@ -1669,7 +1669,7 @@ restart:
 
 ::hotplugin::plugin * new_hotplugin(::object * pobject)
 {
-   return new ::install::plugin(pobject);
+   return memory_new ::install::plugin(pobject);
 }
 
 #endif

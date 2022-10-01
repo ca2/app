@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "application.h"
 
 
 __FACTORY_EXPORT void app_net_factory(::factory::factory* pfactory)

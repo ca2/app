@@ -76,7 +76,7 @@ namespace hi5
 
       /* Direct messages URLs */
       TWIT_DIRECTMESSAGES_URL("http://twitter.com/direct_messages.xml"),
-      TWIT_DIRECTMESSAGENEW_URL("http://twitter.com/direct_messages/new.xml"),
+      TWIT_DIRECTMESSAGENEW_URL("http://twitter.com/direct_messages/memory_new.xml"),
       TWIT_DIRECTMESSAGESSENT_URL("http://twitter.com/direct_messages/sent.xml"),
       TWIT_DIRECTMESSAGEDESTROY_URL("http://twitter.com/direct_messages/destroy/"),
 
@@ -744,7 +744,7 @@ namespace hi5
    /*++
    * @method: twit::statusUpdate
    *
-   * @description: method to update new status message in twitter profile
+   * @description: method to update memory_new status message in twitter profile
    *
    * @input: newStatus
    *
@@ -1121,7 +1121,7 @@ namespace hi5
       bool retVal = false;
       if( true && userInfo.get_length() && dMsg.get_length() )
       {
-         /* Prepare new direct message */
+         /* Prepare memory_new direct message */
          property_set post;
          post["text"] = dMsg;
 

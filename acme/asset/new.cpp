@@ -1,7 +1,7 @@
 #ifndef __ACME_ASSET_NEW_CPP__
 #define __ACME_ASSET_NEW_CPP__
 
-#undef new
+
 
 
 
@@ -67,7 +67,7 @@ void MEMORY_DECL operator delete[](void* p) del_throw_spec
 
 
 
-#undef new
+
 
 
 //#if !defined(_UNIVERSAL_WINDOWS)
@@ -123,7 +123,7 @@ void operator delete(void* ptr, std::align_val_t) noexcept;
 #endif
 
 
-#define C_NEW new(c_class::s_cclass)
+#define C_NEW memory_new(c_class::s_cclass)
 
 
 #if !defined(NO_ACME_MEMORY_MANAGEMENT)

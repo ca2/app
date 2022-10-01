@@ -13,7 +13,7 @@ __pointer_array(trace_category) * trace_category::s_ptracecategorya = nullptr;
 void trace_category_static_init()
 {
 
-   trace_category::s_ptracecategorya = new __pointer_array(trace_category);
+   trace_category::s_ptracecategorya = memory_new __pointer_array(trace_category);
 
    const char * psza[] =
    {

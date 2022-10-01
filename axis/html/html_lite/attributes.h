@@ -226,7 +226,7 @@ private:
     *  3. Ignores line feeds (LF).
     *  4. Replaces each carriage-return (CR) or tab with a single space.
     *
-    * @lparam pszValue - new attribute value
+    * @lparam pszValue - memory_new attribute value
 
     *
     * @since 1.0
@@ -279,7 +279,7 @@ public:
          const ::count nElemCount = rSource.getCount();
          if (nElemCount)
          {
-            if ((m_parrAttrib = new CElemAttrArray) == nullptr)
+            if ((m_parrAttrib = memory_new CElemAttrArray) == nullptr)
                throw ::exception(error_no_memory);
 
             LiteHTMLElemAttr   *pItem = nullptr;
@@ -288,7 +288,7 @@ public:
             /** DEEP COPY BEGIN */
             for (i32 iElem = 0; iElem < nElemCount; iElem++)
             {
-               if ((pItem = new LiteHTMLElemAttr(rSource[iElem])) == nullptr)
+               if ((pItem = memory_new LiteHTMLElemAttr(rSource[iElem])) == nullptr)
                {
                   eraseAll();
                   throw ::exception(error_no_memory);
@@ -452,7 +452,7 @@ public:
 // Operations
 public:
    /**
-    * Adds a new LiteHTMLElemAttr item to the collection
+    * Adds a memory_new LiteHTMLElemAttr item to the collection
     *
     * @lparam lpszName - attribute name (serves as the key to the item)
 
@@ -462,7 +462,7 @@ public:
     *        by lpszName already exists in the collection, this
 
     *        parameter is used to determine whether to replace the
-    *        existing item or add a new one
+    *        existing item or add a memory_new one
     *
     * @return pointer to a LiteHTMLElemAttr
     * @since 1.0

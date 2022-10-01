@@ -602,7 +602,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    inline payload & operator = (const ::file::path & path)
    {
       set_type(e_type_path, false);
-      m_ppath = new ::file::path_object(path);
+      m_ppath = memory_new ::file::path_object(path);
       return *this;
    }
 
@@ -996,7 +996,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
 
 
-   //#undef new
+   //
    // DECLARE_AXIS_FIXED_ALLOC(payload)
 
    void null();

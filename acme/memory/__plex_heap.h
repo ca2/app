@@ -5,7 +5,7 @@ class plex_heap;
 
 
 
-#undef new
+
 
 class CLASS_DECL_ACME plex_heap_alloc_sync
 {

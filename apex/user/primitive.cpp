@@ -1073,7 +1073,7 @@ namespace user
    }
 
 
-   // pmessage object should be allocated with new in
+   // pmessage object should be allocated with memory_new in
    // base or derived object and will be delete after
    // handling
    void primitive::post(::message::message * pmessage)

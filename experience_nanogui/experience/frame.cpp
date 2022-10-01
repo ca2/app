@@ -1,5 +1,14 @@
 #include "framework.h"
-//#include "aura/graphics/draw2d/_component.h"
+#include "frame.h"
+#include "aura/graphics/draw2d/draw2d.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/graphics/image/icon.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/image/imaging.h"
+#include "aura/platform/system.h"
+#include "base/user/experience/control_box.h"
+#include "base/user/experience/frame_window.h"
 
 
 namespace experience_nanogui
@@ -101,7 +110,7 @@ namespace experience_nanogui
 
       ::rectangle_i32 rectangleWindow = rectangleClient;
 
-      pframewindow->client_to_screen(rectangleWindow);
+      pframewindow->client_to_screen()(rectangleWindow);
 
       ::point_i32 pointInflate(iInflate, iInflate);
 

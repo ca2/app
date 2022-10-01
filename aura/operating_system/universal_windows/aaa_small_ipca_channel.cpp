@@ -95,7 +95,7 @@ namespace aura
 
          string anotherappURI = m_strBaseChannel + ":///send?message=" + ::aura::get_system()->url_encode(pszMessage);
 
-         Uri ^uri = ref new Uri(anotherappURI);
+         Uri ^uri = ref memory_new Uri(anotherappURI);
 
          main_sync([uri, durationTimeout]()
             {
@@ -132,7 +132,7 @@ namespace aura
 
          string anotherappURI = m_strBaseChannel + "://send?messagebin=" + __string(message)+ "," + ::aura::get_system()->url_encode(::aura::get_system()->base64().encode((byte *)pdata, len));
 
-         Uri ^uri = ref new Uri(anotherappURI);
+         Uri ^uri = ref memory_new Uri(anotherappURI);
 
          ::wait(Launcher::LaunchUriAsync(uri), durationTimeout);
 

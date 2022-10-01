@@ -506,7 +506,7 @@ namespace papaya
 
          for(int i = 0; i < srca.get_size(); i++)
          {
-            dsta.add(new TSRC(srca(i)));
+            dsta.add(memory_new TSRC(srca(i)));
             ca++;
          }
 

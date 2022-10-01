@@ -6,6 +6,9 @@
 #if !defined(WINDOWS)
 
 
+#include <unistd.h>
+
+
 int_handle::~int_handle()
 {
 

@@ -93,8 +93,8 @@ CLASS_DECL_ACME wstring gen_utf8_to_16(const char * psz);
 //
 //
 //#if defined(_UWP) && defined(__cplusplus_winrt)
-//   inline operator String ^ () const { return ref new String(operator const unichar *()); }
-//   inline operator String ^ () { return ref new String(operator const unichar *()); }
+//   inline operator String ^ () const { return ref memory_new String(operator const unichar *()); }
+//   inline operator String ^ () { return ref memory_new String(operator const unichar *()); }
 //#endif
 //
 //

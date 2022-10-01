@@ -343,278 +343,278 @@ namespace axis
 
 
 
-         string str;
-         // if system locale has changed (compared to last recorded one by aura)
-         // use the system locale
-         if (data_get({ "system_locale", true }, str))
-         {
+         //string str;
+         //// if system locale has changed (compared to last recorded one by aura)
+         //// use the system locale
+         //if (data_get({ "system_locale", true }, str))
+         //{
 
-            if (str.has_char())
-            {
+         //   if (str.has_char())
+         //   {
 
-               if (str != get_locale())
-               {
+         //      if (str != get_locale())
+         //      {
 
-                  try
-                  {
+         //         try
+         //         {
 
-                     data_set({ "system_locale", true }, get_locale());
+         //            data_set({ "system_locale", true }, get_locale());
 
-                     data_set({ "locale", true }, get_locale());
+         //            data_set({ "locale", true }, get_locale());
 
-                  }
-                  catch (...)
-                  {
+         //         }
+         //         catch (...)
+         //         {
 
-                  }
+         //         }
 
-               }
+         //      }
 
-            }
+         //   }
 
-         }
-         else
-         {
+         //}
+         //else
+         //{
 
-            data_set({ "system_locale", true }, get_locale());
+         //   data_set({ "system_locale", true }, get_locale());
 
-         }
+         //}
 
-         if (payload("locale").get_count() > 0)
-         {
+         //if (payload("locale").get_count() > 0)
+         //{
 
-            str = payload("locale").stra()[0];
+         //   str = payload("locale").stra()[0];
 
-            data_set({ "system_locale", true }, str);
+         //   data_set({ "system_locale", true }, str);
 
-            data_set({ "locale", true }, str);
+         //   data_set({ "locale", true }, str);
 
-            set_locale(str, ::e_source_database);
+         //   set_locale(str, ::e_source_database);
 
-         }
-         else if (payload("lang").get_count() > 0)
-         {
+         //}
+         //else if (payload("lang").get_count() > 0)
+         //{
 
-            str = payload("lang").stra()[0];
+         //   str = payload("lang").stra()[0];
 
-            data_set({ "system_locale", true }, str);
+         //   data_set({ "system_locale", true }, str);
 
-            data_set({ "locale", true }, str);
+         //   data_set({ "locale", true }, str);
 
-            set_locale(str, ::e_source_database);
+         //   set_locale(str, ::e_source_database);
 
-         }
-         else if (data_get({ "locale", true }, str))
-         {
+         //}
+         //else if (data_get({ "locale", true }, str))
+         //{
 
-            if (str.has_char())
-            {
+         //   if (str.has_char())
+         //   {
 
-               set_locale(str, ::e_source_database);
+         //      set_locale(str, ::e_source_database);
 
-            }
+         //   }
 
-         }
-         // if system schema has changed (compared to last recorded one by aura)
-         // use the system schema
-         if (data_get({ "system_schema", true }, str))
-         {
+         //}
+         //// if system schema has changed (compared to last recorded one by aura)
+         //// use the system schema
+         //if (data_get({ "system_schema", true }, str))
+         //{
 
-            if (str.has_char())
-            {
+         //   if (str.has_char())
+         //   {
 
-               if (str != get_schema())
-               {
+         //      if (str != get_schema())
+         //      {
 
-                  try
-                  {
+         //         try
+         //         {
 
-                     data_set({ "system_schema", true }, get_schema());
+         //            data_set({ "system_schema", true }, get_schema());
 
-                     data_set({ "schema", true }, get_schema());
+         //            data_set({ "schema", true }, get_schema());
 
-                  }
-                  catch (...)
-                  {
+         //         }
+         //         catch (...)
+         //         {
 
-                  }
+         //         }
 
-               }
+         //      }
 
-            }
+         //   }
 
-         }
-         else
-         {
+         //}
+         //else
+         //{
 
-            data_set({ "system_schema", true }, get_schema());
+         //   data_set({ "system_schema", true }, get_schema());
 
-         }
+         //}
 
-         if (payload("schema").get_count() > 0)
-         {
+         //if (payload("schema").get_count() > 0)
+         //{
 
-            str = payload("schema").stra()[0];
+         //   str = payload("schema").stra()[0];
 
-            data_set({ "system_schema", true }, str);
+         //   data_set({ "system_schema", true }, str);
 
-            data_set({ "schema", true }, str);
+         //   data_set({ "schema", true }, str);
 
-            set_schema(str, ::e_source_database);
+         //   set_schema(str, ::e_source_database);
 
-         }
-         else if (data_get({ "schema", true }, str))
-         {
+         //}
+         //else if (data_get({ "schema", true }, str))
+         //{
 
-            if (str.has_char())
-            {
+         //   if (str.has_char())
+         //   {
 
-               set_schema(str, ::e_source_database);
+         //      set_schema(str, ::e_source_database);
 
-            }
+         //   }
 
-         }
+         //}
 
-         //data_pulse_change({ "ca2.savings", true }, nullptr);
+         ////data_pulse_change({ "ca2.savings", true }, nullptr);
 
-         auto psystem = m_psystem->m_paurasystem;
+         //auto psystem = m_psystem->m_paurasystem;
 
-         psystem->appa_load_string_table();
+         //psystem->appa_load_string_table();
 
-         // if system locale has changed (compared to last recorded one by aura)
-         // use the system locale
-         if (data_get({ "system_locale", true }, str))
-         {
+         ////// if system locale has changed (compared to last recorded one by aura)
+         ////// use the system locale
+         ////if (data_get({ "system_locale", true }, str))
+         ////{
 
-            if (str.has_char())
-            {
+         ////   if (str.has_char())
+         ////   {
 
-               if (str != get_locale())
-               {
+         ////      if (str != get_locale())
+         ////      {
 
-                  try
-                  {
+         ////         try
+         ////         {
 
-                     data_set({ "system_locale", true }, get_locale());
+         ////            data_set({ "system_locale", true }, get_locale());
 
-                     data_set({ "locale", true }, get_locale());
+         ////            data_set({ "locale", true }, get_locale());
 
-                  }
-                  catch (...)
-                  {
+         ////         }
+         ////         catch (...)
+         ////         {
 
-                  }
+         ////         }
 
-               }
+         ////      }
 
-            }
+         ////   }
 
-         }
-         else
-         {
+         ////}
+         ////else
+         ////{
 
-            data_set({ "system_locale", true }, get_locale());
+         ////   data_set({ "system_locale", true }, get_locale());
 
-         }
+         ////}
 
-         if (payload("locale").get_count() > 0)
-         {
+         ////if (payload("locale").get_count() > 0)
+         ////{
 
-            str = payload("locale").stra()[0];
+         ////   str = payload("locale").stra()[0];
 
-            data_set({ "system_locale", true }, str);
+         ////   data_set({ "system_locale", true }, str);
 
-            data_set({ "locale", true }, str);
+         ////   data_set({ "locale", true }, str);
 
-            set_locale(str, ::e_source_database);
+         ////   set_locale(str, ::e_source_database);
 
-         }
-         else if (payload("lang").get_count() > 0)
-         {
+         ////}
+         ////else if (payload("lang").get_count() > 0)
+         ////{
 
-            str = payload("lang").stra()[0];
+         ////   str = payload("lang").stra()[0];
 
-            data_set({ "system_locale", true }, str);
+         ////   data_set({ "system_locale", true }, str);
 
-            data_set({ "locale", true }, str);
+         ////   data_set({ "locale", true }, str);
 
-            set_locale(str, ::e_source_database);
+         ////   set_locale(str, ::e_source_database);
 
-         }
-         else if (data_get({ "locale", true }, str))
-         {
+         ////}
+         ////else if (data_get({ "locale", true }, str))
+         ////{
 
-            if (str.has_char())
-            {
+         ////   if (str.has_char())
+         ////   {
 
-               set_locale(str, ::e_source_database);
+         ////      set_locale(str, ::e_source_database);
 
-            }
+         ////   }
 
-         }
-         // if system schema has changed (compared to last recorded one by aura)
-         // use the system schema
-         if (data_get({ "system_schema", true }, str))
-         {
+         ////}
+         ////// if system schema has changed (compared to last recorded one by aura)
+         ////// use the system schema
+         ////if (data_get({ "system_schema", true }, str))
+         ////{
 
-            if (str.has_char())
-            {
+         ////   if (str.has_char())
+         ////   {
 
-               if (str != get_schema())
-               {
+         ////      if (str != get_schema())
+         ////      {
 
-                  try
-                  {
+         ////         try
+         ////         {
 
-                     data_set({ "system_schema", true }, get_schema());
+         ////            data_set({ "system_schema", true }, get_schema());
 
-                     data_set({ "schema", true }, get_schema());
+         ////            data_set({ "schema", true }, get_schema());
 
-                  }
-                  catch (...)
-                  {
+         ////         }
+         ////         catch (...)
+         ////         {
 
-                  }
+         ////         }
 
-               }
+         ////      }
 
-            }
+         ////   }
 
-         }
-         else
-         {
+         ////}
+         ////else
+         ////{
 
-            data_set({ "system_schema", true }, get_schema());
+         ////   data_set({ "system_schema", true }, get_schema());
 
-         }
+         ////}
 
-         if (payload("schema").get_count() > 0)
-         {
+         ////if (payload("schema").get_count() > 0)
+         ////{
 
-            str = payload("schema").stra()[0];
+         ////   str = payload("schema").stra()[0];
 
-            data_set({ "system_schema", true }, str);
+         ////   data_set({ "system_schema", true }, str);
 
-            data_set({ "schema", true }, str);
+         ////   data_set({ "schema", true }, str);
 
-            set_schema(str, ::e_source_database);
+         ////   set_schema(str, ::e_source_database);
 
-         }
-         else if (data_get({ "schema", true }, str))
-         {
+         ////}
+         ////else if (data_get({ "schema", true }, str))
+         ////{
 
-            if (str.has_char())
-            {
+         ////   if (str.has_char())
+         ////   {
 
-               set_schema(str, ::e_source_database);
+         ////      set_schema(str, ::e_source_database);
 
-            }
+         ////   }
 
-         }
+         ////}
 
-         // data_pulse_change({ "ca2.savings", true }, nullptr);
+         ////// data_pulse_change({ "ca2.savings", true }, nullptr);
 
-         psystem->appa_load_string_table();
+         ////psystem->appa_load_string_table();
 
       //return true;
 
@@ -1179,66 +1179,75 @@ namespace axis
       //if(!m_spuser->init2())
       //return false;*/
 
-      if (m_bInitializeDataCentral)
+      try
       {
 
-         if (m_strDatabaseAppId.is_empty())
+         if (m_bInitializeDataCentral)
          {
 
-            m_strDatabaseAppId = m_strAppId;
+            if (m_strDatabaseAppId.is_empty())
+            {
 
-         }
+               m_strDatabaseAppId = m_strAppId;
 
-         ::file::path pathDatabase;
+            }
 
-         auto pcontext = get_context();
+            ::file::path pathDatabase;
 
-         ::file::path pathFolder = pcontext->m_papexcontext->dir().appdata(m_strDatabaseAppId);
+            auto pcontext = get_context();
 
-         if (is_system())
-         {
+            ::file::path pathFolder = pcontext->m_papexcontext->dir().appdata(m_strDatabaseAppId);
 
-            pathDatabase = pathFolder / "system.sqlite";
+            if (is_system())
+            {
 
-         }
-         else if (is_session())
-         {
+               pathDatabase = pathFolder / "system.sqlite";
 
-            pathDatabase = pathFolder / "session.sqlite";
+            }
+            else if (is_session())
+            {
 
-         }
-         else
-         {
+               pathDatabase = pathFolder / "session.sqlite";
 
-            pathDatabase = pathFolder / "app.sqlite";
+            }
+            else
+            {
 
-         }
+               pathDatabase = pathFolder / "app.sqlite";
 
-         //throw ::exception(todo("database"));
+            }
 
-         //auto estatus = 
-         
-         m_psimpledb->initialize_simpledb_server(this, pathDatabase);
+            //throw ::exception(todo("database"));
 
-         //if (!estatus)
-         //{
+            //auto estatus = 
 
-         //   m_result.add(estatus);
+            m_psimpledb->initialize_simpledb_server(this, pathDatabase);
 
-         //   if(m_bDataCentralRequired)
-         //   {
+            //if (!estatus)
+            //{
 
-         //      return estatus;
+            //   m_result.add(estatus);
 
-         //   }
+            //   if(m_bDataCentralRequired)
+            //   {
 
-         //}
-         //else
-         //{
+            //      return estatus;
+
+            //   }
+
+            //}
+            //else
+            //{
 
             set_data_server(m_psimpledb);
 
-         //}
+            //}
+
+         }
+
+      }
+      catch (...)
+      {
 
       }
 
@@ -2179,7 +2188,7 @@ namespace axis
    ::user::interaction* application::create_menu_interaction()
    {
 
-      return new ::user::button;
+      return memory_new ::user::button;
 
    }
 

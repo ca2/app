@@ -60,7 +60,7 @@ namespace colorertake5
             bool bback = ansi_char_is_digit((curel)->attr("back").last()) != false;
             i32 back = atoi((curel)->attr("back"));
             i32 style = atoi((curel)->attr("style"));
-            RegionDefine *rdef = new StyledRegion(bfore, bback, fore, back, style);
+            RegionDefine *rdef = memory_new StyledRegion(bfore, bback, fore, back, style);
             regionDefines.set_at(name, rdef);
          }
       }
@@ -107,7 +107,7 @@ namespace colorertake5
       delete rd_old;
 
       const StyledRegion *new_region = StyledRegion::cast(rd);
-      RegionDefine *rd_new = new StyledRegion(*new_region);
+      RegionDefine *rd_new = memory_new StyledRegion(*new_region);
       regionDefines.set_at(name, rd_new);
 
       // Searches and replaces old region references

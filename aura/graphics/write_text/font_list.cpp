@@ -936,7 +936,7 @@ namespace write_text
 
             }
 
-            // Make room for new fonts
+            // Make room for memory_new fonts
 
             for (index iItem = 0; iItem < m_pfontenumerationitema->get_count(); iItem++)
             {

@@ -59,19 +59,19 @@ namespace sphere
 
          if(::str().equals_ci(pszAppId, "calculator"))
          {
-            return new ::calculator::application();
+            return memory_new ::calculator::application();
          }
          else if(::str().equals_ci(pszAppId, "command"))
          {
-            return new ::command::application();
+            return memory_new ::command::application();
          }
          else if(::str().equals_ci(pszAppId, "userstack"))
          {
-            return new ::userstack::application();
+            return memory_new ::userstack::application();
          }
          else if(::str().equals_ci(pszAppId, "default_file_handler"))
          {
-            return new ::filehandler::application();
+            return memory_new ::filehandler::application();
          }
 
          return ::apex::single_application_library < application >::get_new_app(pszAppId);
@@ -88,6 +88,6 @@ extern "C"
 ::acme::library * get_new_library(::object * pobject)
 {
 
-   return new ::sphere::library(pobject);
+   return memory_new ::sphere::library(pobject);
 
 }

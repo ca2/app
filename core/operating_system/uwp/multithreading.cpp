@@ -174,7 +174,7 @@ CLASS_DECL_CORE ::u32 WINAPI MsgWaitForMultipleObjectsEx(::u32 nCount, const HAN
    if (dwWakeMask & MWMO_ALERTABLE)
    {
 
-      HANDLE* ph = new HANDLE[nCount + 1];
+      HANDLE* ph = memory_new HANDLE[nCount + 1];
 
       ::memcpy_dup(ph, pHandles, sizeof(HANDLE) * nCount);
 

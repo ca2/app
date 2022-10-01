@@ -457,12 +457,14 @@
 					"$(WorkspaceDir)/source/app/include",
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/source/port/include",
 					"$(WorkspaceDir)/source/port",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/..",
+					"$(PROJECT_DIR)/../..",
 					"$(HOME)/sensitive/sensitive/include",
 				);
 				USE_HEADERMAP = NO;
@@ -568,12 +570,14 @@
 					"$(WorkspaceDir)/source/app/include",
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/source/port/include",
 					"$(WorkspaceDir)/source/port",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/..",
+					"$(PROJECT_DIR)/../..",
 					"$(HOME)/sensitive/sensitive/include",
 				);
 				USE_HEADERMAP = NO;

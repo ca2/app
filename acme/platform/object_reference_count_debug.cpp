@@ -89,7 +89,7 @@ void matter::add_ref_history(matter* p, const char* pszObjRefDbg)
          if (m_pobjrefdbg == nullptr)
          {
 
-            m_pobjrefdbg = new object_reference_count_debug;
+            m_pobjrefdbg = memory_new object_reference_count_debug;
 
          }
 

@@ -517,19 +517,19 @@ namespace base
 //      //virtual string get_mutex_name_gen();
 //
 //      /// return true if this instance might continue execution
-//      /// bHandled true if some action was done in response to this new additional instance creation
+//      /// bHandled true if some action was done in response to this memory_new additional instance creation
 //      virtual bool on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId);
 //
 //      /// return true if this instance might continue execution
-//      /// bHandled true if some action was done in response to this new additional instance creation
+//      /// bHandled true if some action was done in response to this memory_new additional instance creation
 //      virtual bool on_exclusive_instance_local_conflict(bool & bHandled);
 //
 //            /// return true if this instance might continue execution
-//      /// bHandled true if some action was done in response to this new additional instance creation
+//      /// bHandled true if some action was done in response to this memory_new additional instance creation
 //      virtual bool on_exclusive_instance_local_conflict_id(bool & bHandled, string strId);
 //
 //      /// return true if the external additional instance might continue execution
-//      /// bHandled true if some action was done in response to the external new additional instance creation
+//      /// bHandled true if some action was done in response to the external memory_new additional instance creation
 //      virtual bool on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine);
 //
 //      virtual void on_new_instance(string strModule, const ::atom & idPid);
@@ -935,7 +935,7 @@ namespace base
 ////#endif
 //
 //      // Command Handlers
-//      // map to the following for file new/open
+//      // map to the following for file memory_new/open
 //      void _001OnFileNew();
 //      void on_file_open();
 //

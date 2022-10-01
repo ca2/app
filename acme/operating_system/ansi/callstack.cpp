@@ -38,6 +38,8 @@ string _ansi_stack_trace(void * const * ppui, int frames, const char * pszFormat
 
    for (; i < frames && *ppMessages != nullptr; ++i, ppMessages++)
    {
+      
+      //printf("backtrace %s\n", *ppMessages);
 #ifdef __USE_BFD
 
       if(resolve_addr_file_func_line(((void **)ppui)[i], &file, &func, iLine))

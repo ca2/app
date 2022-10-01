@@ -29,7 +29,7 @@ JNIEXPORT void JNICALL Java_com_android_1app_app_aura_1init(JNIEnv * penv, jobje
    if (!g_pmutexOs)
    {
 
-      g_pmutexOs = new mutex();
+      g_pmutexOs = memory_new mutex();
 
    }
 

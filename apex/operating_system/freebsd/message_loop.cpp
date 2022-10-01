@@ -87,7 +87,7 @@ sys_thread * sys_thread_pool::get(pthread_t pthread)
 
    }
 
-   m_threadptra.add(new sys_thread(pthread));
+   m_threadptra.add(memory_new sys_thread(pthread));
 
    return m_threadptra[m_threadptra.get_count() - 1];
 }

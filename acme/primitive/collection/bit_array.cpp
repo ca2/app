@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#undef new
+
 
 
 bit_array::bit_array()
@@ -36,7 +36,7 @@ void bit_array::set_size(i32 iBitCount, bool bSet)
    m_iDataCount         = (i32) ceil_div(m_iBitCount, (i32) 8 * sizeof(i32));
    if(m_iDataCount > 0)
    {
-      m_pdata              = new i32[m_iDataCount];
+      m_pdata              = memory_new i32[m_iDataCount];
       if(m_pdata != nullptr)
       {
          if(::index(pdataOld) == 1)

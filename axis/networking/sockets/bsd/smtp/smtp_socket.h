@@ -45,11 +45,14 @@ namespace sockets
       __pointer(::networking::email)    m_pemail;
 
 
-   public:
+   //public:
       smtp_socket();
 
 
-      void OnLine(const string &);
+      void initialize(::object * pobject) override;
+
+
+      void OnLine(const string &) override;
 
       /** \return 'false' to abort */
       //virtual bool OnHello(const string & domain) = 0;

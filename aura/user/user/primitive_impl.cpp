@@ -2137,7 +2137,7 @@ namespace user
       //if (g_p == nullptr)
       //{
 
-      //   g_p = new iptr_map < string >;
+      //   g_p = memory_new iptr_map < string >;
 
       //}
 

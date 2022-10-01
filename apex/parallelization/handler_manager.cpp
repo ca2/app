@@ -162,7 +162,7 @@ void handler_manager::handle_asynchronously(const ::procedure & procedure)
 
       synchronouslock.unlock();
 
-      m_pevTaskOnQueue->wait(1_s);
+      m_pevTaskOnQueue->_wait(1_s);
 
       synchronouslock.lock();
 

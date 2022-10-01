@@ -34,7 +34,7 @@ public:
    app_runner(int argc, char * argv[], char * envp[], char * res_start, char * res_end)
    {
 
-      m_pmain = new class ::main;
+      m_pmain = memory_new class ::main;
 
       m_pmain->m_argc = argc;
 

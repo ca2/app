@@ -129,7 +129,7 @@ void initialize_global_message_queue();
 void finalize_global_message_queue();
 
 
-#undef new
+
 
 
 #ifdef RASPBIAN
@@ -542,11 +542,11 @@ namespace acme
 
 #endif
 
-      m_pcriticalsectionFactory = new critical_section;
+      m_pcriticalsectionFactory = memory_new critical_section;
 
 #ifndef WINDOWS
 
-      g_pcsDemangle = new critical_section;
+      g_pcsDemangle = memory_new critical_section;
 
 #endif
 
@@ -580,17 +580,17 @@ namespace acme
 
       //xxdebug_box("acme.dll base_static_start (0)", "box", e_message_box_ok);
 
-      //g_pengine = new ::OPERATING_SYSTEM_NAMESPACE::exception_engine();
+      //g_pengine = memory_new ::OPERATING_SYSTEM_NAMESPACE::exception_engine();
 
-      g_pmutexGlobals = new ::mutex();
+      g_pmutexGlobals = memory_new ::mutex();
 
-      g_pmutexChildren = new ::mutex();
+      g_pmutexChildren = memory_new ::mutex();
 
-      g_pcsGlobal = new critical_section();
+      g_pcsGlobal = memory_new critical_section();
 
       ::initialize_sequence_critical_section();
 
-      //::update::g_pcs = new critical_section();
+      //::update::g_pcs = memory_new critical_section();
 
 #ifndef __MCRTDBG
 
@@ -604,7 +604,7 @@ namespace acme
 
       ::mathematics::initialize_mathematics();
 
-      ::atom_space::s_pidspace = new atom_space();
+      ::atom_space::s_pidspace = memory_new atom_space();
 
 //      ::acme::idpool::init();
 
@@ -613,50 +613,50 @@ namespace acme
 
 #ifdef ANDROID
 
-      g_pmutexOutputDebugStringA = new ::mutex();
+      g_pmutexOutputDebugStringA = memory_new ::mutex();
 
 #endif
 
 #if OBJECT_TYPE_COUNTER
 
-      g_pmapObjTypCtr = new map < const char*, const char*, ::i64, ::i64 >;
+      g_pmapObjTypCtr = memory_new map < const char*, const char*, ::i64, ::i64 >;
 
 #endif
 
 
-      //g_pcsTrace = new critical_section;
+      //g_pcsTrace = memory_new critical_section;
 
-      //g_psimpletrace = new simple_trace;
+      //g_psimpletrace = memory_new simple_trace;
 
       //g_ptrace = g_psimpletrace;
 
 
       // acme commented
-      //g_psimpletrace = new simple_trace;
+      //g_psimpletrace = memory_new simple_trace;
 
       //g_ptrace = g_psimpletrace;
 
       //acme commented
 //#ifdef BSD_STYLE_SOCKETS
 //
-//      ::sockets::base_socket::s_pmutex = new ::mutex();
+//      ::sockets::base_socket::s_pmutex = memory_new ::mutex();
 //
 //#endif
 
 
 #ifdef __APPLE__
 
-      g_pmutexCvt = new ::mutex();
+      g_pmutexCvt = memory_new ::mutex();
 
 #endif
 
-      //g_pmutexThreadWaitClose = new ::mutex();
+      //g_pmutexThreadWaitClose = memory_new ::mutex();
 
-      //g_pmutexThreadOn = new ::mutex();
+      //g_pmutexThreadOn = memory_new ::mutex();
 
-      //g_pmapThreadOn = new ::map < itask_t, itask_t, itask_t, itask_t >;
+      //g_pmapThreadOn = memory_new ::map < itask_t, itask_t, itask_t, itask_t >;
 
-      //g_pmutexSystemHeap = new critical_section();
+      //g_pmutexSystemHeap = memory_new critical_section();
 
 #if MEMDLEAK
 
@@ -666,19 +666,19 @@ namespace acme
 
       factory_init();
 
-      g_paAura = new array < matter * >;
+      g_paAura = memory_new array < matter * >;
 
-      //g_pmapAura =new ::map < void *,void *,::acme::application *,::acme::application * >;
+      //g_pmapAura =memory_new ::map < void *,void *,::acme::application *,::acme::application * >;
 
-      g_pmutexUiDestroyed = new ::mutex();
+      g_pmutexUiDestroyed = memory_new ::mutex();
 
-      g_pmutexMessageDispatch = new ::mutex();
+      g_pmutexMessageDispatch = memory_new ::mutex();
 
-      //g_pmutexCred = new ::mutex();
+      //g_pmutexCred = memory_new ::mutex();
 
 #if defined(LINUX) || defined(__APPLE__)
 
-      g_pmutexTz = new ::mutex();
+      g_pmutexTz = memory_new ::mutex();
 
 #endif // defined(LINUX) || defined(__APPLE__)
 
@@ -714,18 +714,18 @@ namespace acme
 
 #endif
 
-      g_pacmestrpool = new acme_str_pool();
+      g_pacmestrpool = memory_new acme_str_pool();
 
       //acme commented
       //::user::init_windowing();
 
-      //g_pcsRefDbg = new critical_section();
+      //g_pcsRefDbg = memory_new critical_section();
 
       g_bAcme = 1;
 
-      //::thread::g_pmutex = new mutex();
+      //::thread::g_pmutex = memory_new mutex();
 
-      //::thread::g_pthreadmap = new ::thread_map();
+      //::thread::g_pthreadmap = memory_new ::thread_map();
 
       // acme commented
       //add_factory_item < ::context >();
@@ -748,12 +748,12 @@ namespace acme
 #ifdef WINDOWS
 
 
-      g_pmutexSymDbgHelp = new ::mutex();
+      g_pmutexSymDbgHelp = memory_new ::mutex();
 
 
 #endif
 
-      //::acme::library::s_pmutexLoading = new ::mutex();
+      //::acme::library::s_pmutexLoading = memory_new ::mutex();
 
       init();
 
@@ -1075,7 +1075,7 @@ namespace acme
    //::acme::system * acme_create_system(app_core * pappcore)
    //{
 
-   //   auto psystem = new ::acme::system();
+   //   auto psystem = memory_new ::acme::system();
 
    //   psystem->initialize(nullptr);
 
@@ -1226,7 +1226,7 @@ namespace acme
 
       m_pfactory->InitHashTable(16189);
 
-      //::acme::acme::g_pstaticstatic->m_pfactorya = new factory_array();
+      //::acme::acme::g_pstaticstatic->m_pfactorya = memory_new factory_array();
 
 
 
@@ -1285,7 +1285,7 @@ namespace acme
 //CLASS_DECL_ACME void init_draw2d_mutex()
 //{
 //
-//   s_pmutexDraw2d = new ::mutex();
+//   s_pmutexDraw2d = memory_new ::mutex();
 //
 //}
 
@@ -1372,13 +1372,13 @@ CLASS_DECL_ACME ::e_status get_last_status()
 //         //
 //         //         set_DispatchMessage(&axis_DispatchMessage);
 //         //
-//         //         oswindow_data::s_pdataptra = new oswindow_dataptra;
+//         //         oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
 //         //
-//         //         oswindow_data::s_pmutex = new ::mutex;
+//         //         oswindow_data::s_pmutex = memory_new ::mutex;
 //         //
-//         //         osdisplay_data::s_pdataptra = new osdisplay_dataptra;
+//         //         osdisplay_data::s_pdataptra = memory_new osdisplay_dataptra;
 //         //
-//         //         osdisplay_data::s_pmutex = new ::mutex;
+//         //         osdisplay_data::s_pmutex = memory_new ::mutex;
 //
 //#endif // defined(LINUX)
 //
@@ -1553,7 +1553,7 @@ void add_release_on_end(::matter * pmatter)
 //   if (::is_null(::acme::g_pelementaddraReleaseOnEnd))
 //   {
 //
-//      ::acme::g_pelementaddraReleaseOnEnd = new element_address_array();
+//      ::acme::g_pelementaddraReleaseOnEnd = memory_new element_address_array();
 //
 //   }
 
@@ -1588,7 +1588,7 @@ namespace acme
       if(g_iReference == 1)
       {
 
-         new acme();
+         memory_new acme();
 
       }
 

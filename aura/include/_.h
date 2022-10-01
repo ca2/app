@@ -192,12 +192,12 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////
 ////
 ////#if defined(DEBUG) && !defined(NO_AURA_MEMORY_MANAGEMENT)
-////#define ACME_NEW new(__FILE__, __LINE__)
+////#define ACME_NEW memory_new(__FILE__, __LINE__)
 ////#else
-////#define ACME_NEW new
+////#define ACME_NEW memory_new
 ////#endif
 ////
-////#define new ACME_NEW
+//////#define memory_new ACME_NEW
 ////
 ////
 ////#include "aura/platform/object_reference_count_debug.h"
@@ -922,7 +922,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////
 ////};
 ////
-////enum enum_defer_new // new - for factoryless_allocation FACTORYLESS_ALLOCATION_ID
+////enum enum_defer_new // memory_new - for factoryless_allocation FACTORYLESS_ALLOCATION_ID
 ////{
 ////
 ////   e_defer_new
@@ -1409,7 +1409,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////
 ////#include "aura/platform/definition.h"
 ////
-////#include "aura/memory/new.h"
+////#include "aura/memory/memory_new.h"
 ////
 ////#include "aura/platform/lparam.h"
 ////#include "aura/platform/muldiv64.h"

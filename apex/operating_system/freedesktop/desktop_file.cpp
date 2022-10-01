@@ -1,9 +1,9 @@
 #include "framework.h"
-#include "app/apex/operating_system/linux/_linux.h"
-#include "app/apex/operating_system/linux/_user.h"
+#include "apex/operating_system.h"
 #include "desktop_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include <sys/stat.h>
 
 
 namespace freedesktop

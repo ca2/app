@@ -262,6 +262,9 @@
     <ClCompile Include="sockets\base\socket_thread.cpp">
       <Filter>Source Files\sockets\base</Filter>
     </ClCompile>
+    <ClCompile Include="networking_bsd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc">

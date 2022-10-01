@@ -42,14 +42,14 @@ public:
 
 
    //inline ___pointer(enum_create_new) :
-   //   m_p(new T)
+   //   m_p(memory_new T)
    //{
 
    //}
 
    template < typename OBJECT >
    inline ___pointer(enum_create_new, OBJECT * pobject) :
-      m_p(new T),
+      m_p(memory_new T),
       m_pelement(m_p)
    {
 
@@ -408,7 +408,7 @@ public:
 
       auto pOld = m_p;
 
-      m_p = new TYPE(*pobject);
+      m_p = memory_new TYPE(*pobject);
 
       m_pelement = m_p;
 

@@ -41,7 +41,7 @@ namespace html
 
       //}
 
-      //__compose_new(this, m_pentitysolver = new LiteHTMLEntityResolver(pobject);
+      //__compose_new(this, m_pentitysolver = memory_new LiteHTMLEntityResolver(pobject);
       __compose_new(m_pentitysolver);
 
       m_clrInvalid = 0xffffffff;

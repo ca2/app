@@ -1364,7 +1364,7 @@ void draw2d::emboss_predicate(
       //if (!estatus)
       //{
 
-      //   INFORMATION("Couldn't construct new write_text.");
+      //   INFORMATION("Couldn't construct memory_new write_text.");
 
       //   return estatus;
 

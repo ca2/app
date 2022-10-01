@@ -20,11 +20,11 @@ u32_array* g_puaThreadLocalDataFreeIndexes = nullptr;
 // void __node_init_cross_windows_threading()
 // {
 
-//    //g_pmutexThreadLocalData = new mutex();
+//    //g_pmutexThreadLocalData = memory_new mutex();
 
-//    //g_pmapThreadLocalData = new map < itask_t, itask_t, thread_local_data >();
+//    //g_pmapThreadLocalData = memory_new map < itask_t, itask_t, thread_local_data >();
 
-//    //g_puaThreadLocalDataFreeIndexes = new u32_array();
+//    //g_puaThreadLocalDataFreeIndexes = memory_new u32_array();
 
 // }
 

@@ -147,7 +147,7 @@ CLASS_DECL_APEX u32 call_sync(const char * pszPath, const char * pszParam, const
 CLASS_DECL_APEX bool main_initialize()
 {
 
-//   t_posthread = new os_thread(nullptr,nullptr);
+//   t_posthread = memory_new os_thread(nullptr,nullptr);
 
    //t_posthread->m_bRun = true;
 

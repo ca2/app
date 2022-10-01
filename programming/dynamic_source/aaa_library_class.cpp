@@ -11,7 +11,7 @@ namespace dynamic_source
    {
       char * lpEnvAddress;  // address of environment strings
       char * lpCmdLine;     // address of command line
-      char * lpCmdShow;     // how to show new program
+      char * lpCmdShow;     // how to show memory_new program
       u32 dwReserved;    // must be zero
    } LOADPARMS32;
 

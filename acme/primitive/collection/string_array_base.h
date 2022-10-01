@@ -1197,7 +1197,7 @@ void string_array_base < Type, RawType, t_etypePayload >::insert_empty(::index n
    {
       // inserting in the middle of the array
       ::count nOldSize = (::count) this->m_nSize;
-      this->set_size((::count) (this->m_nSize + nCount));  // grow it to new size_i32
+      this->set_size((::count) (this->m_nSize + nCount));  // grow it to memory_new size_i32
       // shift old data up to fill gap
       __memmov(&get_data()[nIndex + nCount],&get_data()[nIndex],(nOldSize - nIndex) * sizeof(Type));
 
@@ -1209,7 +1209,7 @@ void string_array_base < Type, RawType, t_etypePayload >::insert_empty(::index n
 
    }
 
-   // insert new value in the gap
+   // insert memory_new value in the gap
    ASSERT(nIndex + nCount <= this->m_nSize);
 }
 
@@ -1238,9 +1238,8 @@ Type & string_array_base < Type, RawType, t_etypePayload >::insert_empty(::index
 
       for(::index i = nIndex; i < nIndex + 1; i++)
       {
-#undef new
+
          new (this->ptr_at(nIndex)) RawType();
-#define new ACME_NEW
 
       }
 
@@ -1267,7 +1266,7 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 void string_array_base < Type, RawType, t_etypePayload >::insert_at(::index nIndex,const Type& newElement,::count nCount)
 {
 
-   // make room for new elements
+   // make room for memory_new elements
    insert_empty(nIndex,nCount);
 
 

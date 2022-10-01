@@ -25,7 +25,7 @@ public:
 
 };
 
-#undef new
+
 
 class x86_cache_oriented_memory_pool
 {
@@ -240,6 +240,6 @@ CLASS_DECL_ACME void x86_cache_oriented_memory_reset()
 
 }
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 

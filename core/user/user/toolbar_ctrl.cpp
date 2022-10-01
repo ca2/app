@@ -140,7 +140,7 @@ namespace user
    return false;
    ASSERT(pData->wVersion == 1);
 
-   ::u32* pItems = new ::u32[pData->wItemCount];
+   ::u32* pItems = memory_new ::u32[pData->wItemCount];
    for (i32 i = 0; i < pData->wItemCount; i++)
    pItems[i] = pData->items()[i];
    bool bResult = SetButtons(pItems, pData->wItemCount);
@@ -148,7 +148,7 @@ namespace user
 
    if (bResult)
    {
-   // set new sizes of the buttons
+   // set memory_new sizes of the buttons
    size_i32 sizeImage(pData->wWidth, pData->wHeight);
    size_i32 sizeButton(pData->wWidth + 7, pData->wHeight + 7);
    //      SetSizes(sizeButton, sizeImage);
@@ -184,7 +184,7 @@ namespace user
       if (pIDArray != nullptr)
 
       {
-      // add new buttons to the common control
+      // add memory_new buttons to the common control
       i32 iImage = 0;
       for (i32 i = 0; i < nIDCount; i++)
       {

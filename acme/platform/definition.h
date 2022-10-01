@@ -205,7 +205,7 @@ do {                                           \
 // destructor (if provided by the ::account::user) should not call anything that may cause
 // a virtual function call to occur back on the matter.
 ///////////////////////////////////////////////////////////////////////////////
-// By default, the wizards will generate new acme matter classes with this
+// By default, the wizards will generate memory_new acme matter classes with this
 // attribute (through the NO_VTABLE macro).  This is normally safe as long
 // the restriction mentioned above is followed.  It is always safe to erase
 // this macro from your class, so if in doubt, erase it.

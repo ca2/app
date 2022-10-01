@@ -70,7 +70,7 @@ namespace simpledb
 
 
 
-      /*   m_plistensocket = new netnodeListenSocket(this);
+      /*   m_plistensocket = memory_new netnodeListenSocket(this);
       //sleep(15000_ms);
       if(!m_plistensocket->create(80, SOCK_STREAM))
       {

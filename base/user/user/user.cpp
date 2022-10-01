@@ -90,6 +90,7 @@ namespace base
       ::factory::add_factory_item <::user::place_holder >();
 
 
+      ::factory::add_factory_item <::simple_main_frame >();
       ::factory::add_factory_item <::simple_tab_document >();
 
       ::factory::add_factory_item <::user::tab_impact >();
@@ -137,7 +138,6 @@ namespace base
 
       ::factory::add_factory_item < simple_frame_window  >();
       //add_factory_item < prodevian_translucent_simple_frame_window  >();
-      ::factory::add_factory_item < simple_main_frame  >();
       ::factory::add_factory_item < ::user::document  >();
       ::factory::add_factory_item < ::user::split_impact  >();
 
@@ -210,9 +210,9 @@ namespace base
 
       bool bHasUninstall = psystem->is_true("uninstall");
 
-      debug_print("user::initialize bHasInstall %c", bHasInstall);
+      debug_print("base::user::initialize bHasInstall %c", bHasInstall);
 
-      debug_print("user::initialize bHasUninstall %c", bHasUninstall);
+      debug_print("base::user::initialize bHasUninstall %c", bHasUninstall);
 
       //return true;
 
@@ -654,7 +654,7 @@ namespace base
    //session_docs * create_session_docs()
    //{
 
-   //   return new session_docs();
+   //   return memory_new session_docs();
 
    //}
 

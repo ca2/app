@@ -2,9 +2,9 @@
 #include "axis/id.h"
 #include "aura/graphics/image/context_image.h"
 #include "acme/platform/hyperlink.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_html.h"
-#endif
+// #if !BROAD_PRECOMPILED_HEADER
+// #include "_html.h"
+// #endif
 #include "core_data.h"
 #include "data.h"
 #include "axis/html/element/element.h"
@@ -284,9 +284,9 @@ namespace html
       if (m_ptag == nullptr)
       {
 
-         m_ptag = new tag(nullptr);
+         m_ptag = memory_new tag(nullptr);
 
-         class value * pvalue = new class value(m_ptag);
+         class value * pvalue = memory_new class value(m_ptag);
 
          m_ptag->baseptra().add(pvalue);
 
@@ -294,9 +294,9 @@ namespace html
 
       }
 
-      m_pelement = ::move_transfer(new ::html::element);
+      m_pelement = ::move_transfer(memory_new ::html::element);
 
-      //m_pelement->m_pbase = new ::html::tag(nullptr);
+      //m_pelement->m_pbase = memory_new ::html::tag(nullptr);
 
       m_pelement->initialize_html_elemental(this);
 

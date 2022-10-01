@@ -190,7 +190,7 @@ namespace os
 
       XGetWindowAttributes(m_window->display(), m_window->window(), &m_attr);
 
-      m_pgraphics = new window_xlib();
+      m_pgraphics = memory_new window_xlib();
 
       m_bComposite = XGetSelectionOwner(m_window->display(), XInternAtom(m_window->display(), "_NET_WM_CM_S0", True));
 
@@ -199,7 +199,7 @@ namespace os
          XStoreName(m_window->display(), m_window->window(), m_strText);
       }
 
-      m_pmutexGraphics = new ::mutex();
+      m_pmutexGraphics = memory_new ::mutex();
 
       //on_size(width(lpcrect), height(lpcrect));
 
@@ -209,7 +209,7 @@ namespace os
 
       XGetWindowAttributes(m_window->display(), m_window->window(), &m_attr);
 
-      m_pgraphics = new window_xlib();
+      m_pgraphics = memory_new window_xlib();
 
       if(m_bNoDecorations)
       {

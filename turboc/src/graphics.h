@@ -216,7 +216,7 @@ enum graphics_errors
 // any combination of these.
 //
 // The constants beginning TC_xxxx are used only for *defining* the
-// constants actually used by Turbo C.  If desirable, we can add new
+// constants actually used by Turbo C.  If desirable, we can add memory_new
 // TC_xxxx constants later -- say, to go up to resolutions of 1600x1200 --
 // as long as the number of x-resolutions times the number of y-resolutions,
 // times the number of pages, times the number of palettes remains
@@ -284,7 +284,7 @@ enum graphics_errors
 // up, and every value from 0 to TCXYGP-1 is a legal mode -- though 
 // not necessarily one which has been assigned a symbolic name below.
 //
-// Note that if we add new possibilities later -- say, 1600x1200 --
+// Note that if we add memory_new possibilities later -- say, 1600x1200 --
 // then the values of the constants below could differ in different 
 // versions of the TurboC library.
 #define CGAC0 (TC_X_320 + TCX*TC_Y_200 + TCXY*TC_PG_1 + TCXYG*TC_PAL_C0)

@@ -1156,21 +1156,32 @@ pacmedirectory->create("/ca2core");
 
       //}
 
-      auto & pfactoryCrypto = factory("crypto", "openssl");
+      try
+      {
 
-      //if (!pfactoryCrypto)
-      //{
+         auto & pfactoryCrypto = factory("crypto", "openssl");
 
-      //   WARNING("Could not open crypto openssl plugin.");
+         //if (!pfactoryCrypto)
+         //{
 
-      //   //return pfactoryCrypto;
+         //   WARNING("Could not open crypto openssl plugin.");
 
-      //}
+         //   //return pfactoryCrypto;
 
-      pfactoryCrypto->merge_to_global_factory();
+         //}
 
-      //estatus = 
-      pfactoryCrypto->__compose(this, m_pcrypto);
+         pfactoryCrypto->merge_to_global_factory();
+
+         //estatus = 
+         pfactoryCrypto->__compose(this, m_pcrypto);
+
+      }
+      catch (...)
+      {
+
+         FORMATTED_ERROR("No crypto library!!");
+
+      }
 
       //if(!estatus)
       //{
@@ -2876,7 +2887,7 @@ pacmedirectory->create("/ca2core");
 //      return true;
 //#endif
 //
-//      /*      m_spfilehandler(new ::apex::filehandler::handler(this));*/
+//      /*      m_spfilehandler(memory_new ::apex::filehandler::handler(this));*/
 //
 ////      m_mapAppLibrary.erase_all();
 ////
@@ -3815,17 +3826,17 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 #if defined(_UWP)
 
 
-         string * pstrNew = new string(strUrl);
+         string * pstrNew = memory_new string(strUrl);
 
          ::winrt::Windows::ApplicationModel::Core::CoreApplication::MainImpact->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal,
-            ref new ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew]()
+            ref memory_new ::winrt::Windows::UI::Core::DispatchedHandler([pstrNew]()
                {
 
-                  ::winrt::Windows::Foundation::Uri ^ uri = ref new ::winrt::Windows::Foundation::Uri(*pstrNew);
+                  ::winrt::Windows::Foundation::Uri ^ uri = ref memory_new ::winrt::Windows::Foundation::Uri(*pstrNew);
 
                   delete pstrNew;
 
-                  LauncherOptions ^ options = ref new LauncherOptions();
+                  LauncherOptions ^ options = ref memory_new LauncherOptions();
 
                   options->TreatAsUntrusted = false;
 
@@ -4224,7 +4235,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
       if (strUrl.has_char())
       {
 
-         strParam += " -new-tab \"" + strUrl + "\"";
+         strParam += " -memory_new-tab \"" + strUrl + "\"";
 
       }
 
@@ -4480,8 +4491,8 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
 //#endif
 
 #ifdef WINDOWS
-#undef new
-#define new ACME_NEW
+
+//#define memory_new ACME_NEW
 #endif
 
 #ifdef LINUX
@@ -5113,7 +5124,7 @@ namespace apex
    void system::destroy()
    {
 
-      ::app_core::destroy();
+      ::main::destroy();
 
       ::apex::context::destroy();
 
@@ -5206,88 +5217,11 @@ namespace apex
    void system::system_construct(::acme::application * papplication)
    {
 
-      //auto estatus =
       ::acme::system::system_construct(papplication);
 
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //estatus = 
-      
-      apex_main_data::system_construct(papplication);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
+      main::system_construct(papplication);
 
    }
-
-
-
-   //void system::system_construct(int argc, char** argv, char** envp)
-   //{
-
-   //   apex_main_data::system_construct(argc, argv, envp);
-
-   //}
-
-
-   //void system::system_construct(int argc, wchar_t** argv, wchar_t** envp)
-   //{
-
-   //   apex_main_data::system_construct(argc, argv, envp);
-
-   //}
-
-
-//#ifdef WINDOWS_DESKTOP
-//
-//   
-//   void system::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char* pCmdLine, i32 nCmdShow)
-//   {
-//
-//      return apex_main_data::system_construct(hinstanceThis, hPrevInstance, pCmdLine, nCmdShow);
-//
-//   }
-//
-//
-//#elif defined(_UWP)
-//
-//   
-//   void system::system_construct(const ::string_array & stra)
-//   {
-//
-//      return ::success;
-//
-//   }
-//
-//
-//#else
-//
-//
-//   void system::system_construct(const ::string & pszCommandLine, const ::e_display& edisplay)
-//   {
-//
-//      return ::success;
-//
-//   }
-//
-
-
-
-//#endif
-
-
-   //__namespace_system_factory(system);
 
 
 } // namespace apex

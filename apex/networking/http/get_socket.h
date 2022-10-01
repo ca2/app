@@ -23,8 +23,8 @@ namespace http
       virtual void initialize_get_socket(const string & url);
       virtual void initialize_get_socket(const string & host, ::networking::port_t port, const string & url);
 
-      virtual void OnDataArrived(const char *, memsize len);
-      void OnHeader(atom idKey, const string & value);
+      void OnDataArrived(const char *, memsize len) override;
+      void OnHeader(atom idKey, const string & value) override;
 
 
 

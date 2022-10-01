@@ -4,7 +4,7 @@ project(build CXX)
 
 list(APPEND library_source
    _.h
-   _app_build.h
+   ${PROJECT_NAME}.h
    _build.h
    build.cpp
    build.h
@@ -27,15 +27,13 @@ list(APPEND library_references
    )
 
 
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 
-add_library(build SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
-
-target_include_directories(build PRIVATE ${library_include_directories})
 
 
 target_link_directories(build PRIVATE ${library_link_directories})
@@ -61,5 +59,5 @@ elseif(LINUX OR FREEBSD)
 endif ()
 
 
-target_compile_definitions(build PRIVATE _build_LIBRARY)
+target_compile_definitions(build PRIVATE _BUILD_LIBRARY)
 

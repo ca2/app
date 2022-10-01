@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#undef new
+
 
 
 namespace draw2d_gdiplus
@@ -140,7 +140,7 @@ namespace draw2d_gdiplus
 
          ::acme::del(m_pfontcollection);
 
-         m_pfontcollection = new FontCollection();
+         m_pfontcollection = memory_new FontCollection();
 
          m_pfontcollection->AddFontFile(pcontext->m_papexcontext->dir().matter(m_strFontFamilyName));
 
@@ -168,7 +168,7 @@ namespace draw2d_gdiplus
       //                       PointF(10.0f, 10.0f), &strformat, &brush);
       //}
 
-      m_pfont = new Gdiplus::Font(
+      m_pfont = normal_new Gdiplus::Font(
       utf8_to_unicode(m_strFontFamilyName),
       (Gdiplus::REAL) m_dFontSize,
       iStyle,

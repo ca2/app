@@ -20,7 +20,7 @@ namespace file
 
    /// Actions to listen for. Rename will send two events, one for
    /// the deletion of the old file, and one for the creation of the
-   /// new file.
+   /// memory_new file.
    enum enum_action
    {
 

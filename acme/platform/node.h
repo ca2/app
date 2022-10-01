@@ -432,11 +432,16 @@ namespace acme
 
       virtual __pointer(::conversation) create_new_message_box_conversation();
 
+      virtual __pointer(::conversation) create_new_message_conversation();
+
 
       virtual __pointer(::sequencer < ::conversation >) create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails);
 
 
       //virtual void nano_message_box(::sequence < ::conversation > * psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox);
+
+      virtual __pointer(::sequencer < ::conversation >) create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails);
+
 
 
       virtual void shell_launch(const ::string & strAppId);
@@ -455,6 +460,9 @@ namespace acme
       virtual string get_global_mutex_name(const ::string & strAppId);
       virtual string get_global_id_mutex_name(const ::string & strAppId, const ::string & strId);
 
+      
+      virtual ::string get_callstack();
+      
 
    };
 

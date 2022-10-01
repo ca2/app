@@ -153,7 +153,7 @@ fixed_alloc * class_name::s_palloc = nullptr;
 
 
 #define IMPLEMENT_AXIS_FIXED_ALLOC_CONSTRUCTOR(class_name, block_size) \
-class_name::s_palloc = new fixed_alloc(sizeof(class_name), block_size);
+class_name::s_palloc = memory_new fixed_alloc(sizeof(class_name), block_size);
 
 #define IMPLEMENT_AXIS_FIXED_ALLOC_DESTRUCTOR(class_name) \
 if(class_name::s_palloc != nullptr) \

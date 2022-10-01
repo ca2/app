@@ -43,7 +43,7 @@ namespace acme
       m_papexnode = nullptr;
       m_pauranode = nullptr;
       
-      m_ptexttranslator = new ::text::translator();
+      m_ptexttranslator = memory_new ::text::translator();
 
       m_ptexttranslator->m_pcontext = this;
 

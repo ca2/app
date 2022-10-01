@@ -3225,7 +3225,7 @@ namespace linux
 
       __UNREFERENCED_PARAMETER(bRedraw);
 
-      //ASSERT(::is_window((oswindow) get_handle())); m_pfont = new ::write_text::font(*pfont);
+      //ASSERT(::is_window((oswindow) get_handle())); m_pfont = memory_new ::write_text::font(*pfont);
 
    }
 

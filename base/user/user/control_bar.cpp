@@ -117,7 +117,7 @@ namespace user
             break;
          }
 
-         // set new style if it matched one of the predefined border types
+         // set memory_new style if it matched one of the predefined border types
          if (dwNewStyle != 0)
          {
             m_dwStyle &= ~(CBRS_BORDER_ANY);
@@ -156,7 +156,7 @@ namespace user
       ASSERT(nElements >= 0 && cbElement >= 0);
       ASSERT(m_pData != nullptr || m_nCount == 0);
 
-      // allocate new data if necessary
+      // allocate memory_new data if necessary
       void * pData = nullptr;
       if (nElements > 0)
       {
@@ -166,7 +166,7 @@ namespace user
       }
       free(m_pData);      // free old data
 
-      // set new data and elements
+      // set memory_new data and elements
       m_pData = pData;
       m_nCount = nElements;
 
@@ -743,7 +743,7 @@ namespace user
 //            m_nStateFlags &= ~(delayShow|delayHide);
 //         }
 //      }
-//      return uStyle; // return new style
+//      return uStyle; // return memory_new style
    }
 
 

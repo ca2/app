@@ -78,8 +78,8 @@
 //   1.07 (2015-08-01) allow PackFontRanges to accept arrays of sparse codepoints;
 //                     variant PackFontRanges to pack and render in separate phases;
 //                     fix stbtt_GetFontOFfsetForIndex (never worked for non-0 input?);
-//                     fixed an assert() bug in the new rasterizer
-//                     replace assert() with STBTT_assert() in new rasterizer
+//                     fixed an assert() bug in the memory_new rasterizer
+//                     replace assert() with STBTT_assert() in memory_new rasterizer
 //
 //   Full history can be found at the end of this file.
 //
@@ -126,8 +126,8 @@
 //           stbtt_GetFontVMetricsOS2()
 //           stbtt_GetCodepointKernAdvance()
 //
-//   Starting with version 1.06, the rasterizer was replaced with a new,
-//   faster and generally-more-precise rasterizer. The new rasterizer more
+//   Starting with version 1.06, the rasterizer was replaced with a memory_new,
+//   faster and generally-more-precise rasterizer. The memory_new rasterizer more
 //   accurately measures pixel coverage for anti-aliasing, except in the case
 //   where multiple shapes overlap, in which case it overestimates the AA pixel
 //   coverage. Thus, anti-aliasing of intersecting shapes may look wrong. If
@@ -1775,7 +1775,7 @@ static int stbtt__GetGlyphShapeTT(const stbtt_fontinfo * info, int glyph_index, 
             if (i != 0)
                num_vertices = stbtt__close_shape(vertices, num_vertices, was_off, start_off, sx, sy, scx, scy, cx, cy);
 
-            // now start the new one
+            // now start the memory_new one
             start_off = !(flags & 1);
             if (start_off) {
                // if we start off with an off-curve point, then when we need to find a point on the curve
@@ -4644,7 +4644,7 @@ STBTT_DEF unsigned char * stbtt_GetGlyphSDF(const stbtt_fontinfo * info, float s
             float x_gspace = (sx / scale_x);
             float y_gspace = (sy / scale_y);
 
-            int winding = stbtt__compute_crossings_x(x_gspace, y_gspace, num_verts, verts); // @OPTIMIZE: this could just be a rasterization, but needs to be line vs. non-tesselated curves so a new path
+            int winding = stbtt__compute_crossings_x(x_gspace, y_gspace, num_verts, verts); // @OPTIMIZE: this could just be a rasterization, but needs to be line vs. non-tesselated curves so a memory_new path
 
             for (i = 0; i < num_verts; ++i) {
                float x0 = verts[i].x * scale_x, y0 = verts[i].y * scale_y;
@@ -5000,18 +5000,18 @@ STBTT_DEF int stbtt_CompareUTF8toUTF16_bigendian(const char * s1, int len1, cons
 //   1.07 (2015-08-01) allow PackFontRanges to accept arrays of sparse codepoints;
 //                     allow PackFontRanges to pack and render in separate phases;
 //                     fix stbtt_GetFontOFfsetForIndex (never worked for non-0 input?);
-//                     fixed an assert() bug in the new rasterizer
-//                     replace assert() with STBTT_assert() in new rasterizer
+//                     fixed an assert() bug in the memory_new rasterizer
+//                     replace assert() with STBTT_assert() in memory_new rasterizer
 //   1.06 (2015-07-14) performance improvements (~35% faster on x86 and x64 on test machine)
 //                     also more precise AA rasterizer, except if shapes overlap
 //                     remove need for STBTT_sort
 //   1.05 (2015-04-15) fix misplaced definitions for STBTT_STATIC
 //   1.04 (2015-04-15) typo in example
-//   1.03 (2015-04-12) STBTT_STATIC, fix memory leak in new packing, various fixes
+//   1.03 (2015-04-12) STBTT_STATIC, fix memory leak in memory_new packing, various fixes
 //   1.02 (2014-12-10) fix various warnings & compile issues w/ stb_rect_pack, C++
 //   1.01 (2014-12-08) fix subpixel position when oversampling to exactly match
 //                        non-oversampled; STBTT_POINT_SIZE for packed case only
-//   1.00 (2014-12-06) add new PackBegin etc. API, w/ support for oversampling
+//   1.00 (2014-12-06) add memory_new PackBegin etc. API, w/ support for oversampling
 //   0.99 (2014-09-18) fix multiple bugs with subpixel rendering (ryg)
 //   0.9  (2014-08-07) support certain mac/iOS fonts without an MS platformID
 //   0.8b (2014-07-07) fix a warning

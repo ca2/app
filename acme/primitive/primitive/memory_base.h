@@ -311,7 +311,7 @@ public:
 
    memory_base & erase(memsize pos = 0,memsize len = -1);
 
-   void fread(FILE * pfile);
+   //void fread(FILE * pfile);
 
 
 };

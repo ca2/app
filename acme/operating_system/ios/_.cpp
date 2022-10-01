@@ -22,7 +22,7 @@ CLASS_DECL_ACME void __node_acme_pre_init()
 CLASS_DECL_ACME void __node_acme_pos_init()
 {
 
-//   t_posthread = new os_thread(nullptr, nullptr);
+//   t_posthread = memory_new os_thread(nullptr, nullptr);
 //
 //   t_posthread->m_bRun = true;
 

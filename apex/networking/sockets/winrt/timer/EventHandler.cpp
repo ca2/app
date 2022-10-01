@@ -90,7 +90,7 @@ namespace sockets
 
    long EventHandler::AddEvent(IEventOwner *from,long sec,long usec)
    {
-      Event * peNew = new Event(from, sec, usec);
+      Event * peNew = memory_new Event(from, sec, usec);
       POSITION pos = m_events.get_head_position();
       while(pos != nullptr)
       {
@@ -175,12 +175,12 @@ namespace sockets
    {
       if (!m_socket)
       {
-         listen_socket<tcp_socket> *l = new listen_socket<tcp_socket>(*this);
+         listen_socket<tcp_socket> *l = memory_new listen_socket<tcp_socket>(*this);
          l -> SetDeleteByHandler();
          l -> Bind("127.0.0.1", 0);
          m_port = l -> GetPort();
          socket_handler::add(l);
-         m_socket = new tcp_socket( *this );
+         m_socket = memory_new tcp_socket( *this );
          m_socket -> SetDeleteByHandler();
          m_socket -> SetConnectTimeout(5);
          m_socket -> SetConnectionRetry(-1);

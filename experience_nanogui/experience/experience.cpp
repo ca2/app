@@ -1,4 +1,15 @@
 #include "framework.h"
+#include "frame_001.h"
+#include "frame_002.h"
+#include "frame_005.h"
+#include "frame_008.h"
+#include "frame_011.h"
+#include "frame_013.h"
+#include "frame_Minimal001.h"
+#include "experience.h"
+#include "base/platform/session.h"
+#include "base/user/user/user.h"
+#include "aura/windowing/windowing.h"
 
 
 namespace experience_nanogui
@@ -78,43 +89,43 @@ namespace experience_nanogui
       if (strSchema == "001")
       {
 
-         return new ::experience_nanogui::frame_001;
+         return memory_new ::experience_nanogui::frame_001;
 
       }
       else if (strSchema == "002")
       {
 
-         return new ::experience_nanogui::frame_002;
+         return memory_new ::experience_nanogui::frame_002;
 
       }
       else if (strSchema == "005")
       {
 
-         return new ::experience_nanogui::frame_005;
+         return memory_new ::experience_nanogui::frame_005;
 
       }
       else if (strSchema == "008")
       {
 
-         return new ::experience_nanogui::frame_008;
+         return memory_new ::experience_nanogui::frame_008;
 
       }
       else if (strSchema == "011")
       {
 
-         return new ::experience_nanogui::frame_011;
+         return memory_new ::experience_nanogui::frame_011;
 
       }
       else if (strSchema == "013")
       {
 
-         return new ::experience_nanogui::frame_013;
+         return memory_new ::experience_nanogui::frame_013;
 
       }
       else if (strSchema == "Minimal001")
       {
 
-         return new ::experience_nanogui::frame_Minimal001;
+         return memory_new ::experience_nanogui::frame_Minimal001;
 
       }
 

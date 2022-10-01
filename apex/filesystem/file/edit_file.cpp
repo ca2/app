@@ -471,6 +471,14 @@ namespace file
    }
 
 
+   bool edit_file::is_edit_file_modified() const
+   {
+   
+      return m_ptreeitemFlush != m_ptreeitem;
+   
+   }
+
+
    void edit_file::SetFile(file_pointer pfile)
    {
 

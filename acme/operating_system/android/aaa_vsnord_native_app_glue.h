@@ -68,7 +68,7 @@ extern "C" {
 * loop in a different thread instead. Here's how it works:
 *
 * 1/ The application must provide a function named "android_main()" that
-*    will be called when the activity is created, in a new thread that is
+*    will be called when the activity is created, in a memory_new thread that is
 *    distinct from the activity's main thread.
 *
 * 2/ android_main() receives a pointer to a valid "android_app" structure
@@ -240,14 +240,14 @@ enum
 {
    /**
    * Command from main thread: the AInputQueue has changed.  Upon processing
-   * this command, android_app->inputQueue will be updated to the new queue
+   * this command, android_app->inputQueue will be updated to the memory_new queue
    * (or nullptr).
    */
    APP_CMD_INPUT_CHANGED,
 
    /**
-   * Command from main thread: a new ANativeWindow is ready for use.  Upon
-   * receiving this command, android_app->window will contain the new window
+   * Command from main thread: a memory_new ANativeWindow is ready for use.  Upon
+   * receiving this command, android_app->window will contain the memory_new window
    * surface.
    */
    APP_CMD_INIT_WINDOW,
@@ -262,7 +262,7 @@ enum
 
    /**
    * Command from main thread: the current ANativeWindow has been resized.
-   * Please redraw with its new size.
+   * Please redraw with its memory_new size.
    */
    APP_CMD_WINDOW_RESIZED,
 
@@ -276,7 +276,7 @@ enum
    /**
    * Command from main thread: the content area of the window has changed,
    * such as from the soft input window being shown or hidden.  You can
-   * find the new content rectangle in android_app::contentRect.
+   * find the memory_new content rectangle in android_app::contentRect.
    */
    APP_CMD_CONTENT_RECT_CHANGED,
 
@@ -314,7 +314,7 @@ enum
    APP_CMD_RESUME,
 
    /**
-   * Command from main thread: the app should generate a new saved state
+   * Command from main thread: the app should generate a memory_new saved state
    * for itself, to restore from later if needed.  If you have saved state,
    * allocate it with malloc and place it in android_app.savedState with
    * the size in android_app.savedStateSize.  The will be freed for you

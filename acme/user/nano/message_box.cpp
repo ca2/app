@@ -27,14 +27,6 @@ nano_message_box::~nano_message_box()
 }
 
 
-::e_message_box nano_message_box::get_message_box_flags()
-{
-
-   return m_emessagebox;
-
-}
-
-
 void nano_message_box::on_draw(nano_device * pnanodevice)
 {
 
@@ -137,16 +129,12 @@ void nano_message_box::calculate_size()
 
 
 
-void nano_message_box::initialize_message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+void nano_message_box::initialize_conversation(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
 {
+   
+   conversation_message::initialize_conversation(strMessage, strTitle, emessagebox, strTitle);
 
    calculate_size();
-
-   m_strMessage = strMessage;
-
-   m_strDetails = strDetails;
-
-   m_strTitle = strTitle;
 
    auto emessageboxType = emessagebox & e_message_box_type_mask;
 
@@ -228,7 +216,6 @@ void nano_message_box::initialize_message_box(const ::string & strMessage, const
       iRight = pbutton->m_rectangle.left - wSpacing;
 
    }
-
 
 
 }
@@ -412,17 +399,17 @@ CLASS_DECL_ACME ::atom message_box_synchronous(::object * pobject, const char * 
 
 
 struct message_box :
-   virtual public element
+   virtual public conversation_message
 {
 public:
 
 
    ::function < void(const ::atom & atom) >     m_function;
    __pointer(::object)                          m_pobject;
-   string                                       m_strMessage;
-   string                                       m_strTitle;
-   e_message_box                                m_emessagebox;
-   string                                       m_strDetails;
+//   string                                       m_strMessage;
+//   string                                       m_strTitle;
+//   e_message_box                                m_emessagebox;
+//   string                                       m_strDetails;
 
 
 };
@@ -434,9 +421,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
    auto pmessagebox = __new(message_box);
 
    pmessagebox->m_pobject = pobject;
-   pmessagebox->m_strMessage = pszMessage;
-   pmessagebox->m_strTitle = pszTitle;
-   pmessagebox->m_strDetails = pszDetails;
+   pmessagebox->initialize_conversation(pszMessage,pszTitle, emessagebox, pszDetails);
 
    //pobject->fork([pmessagebox]()
    //{
@@ -478,7 +463,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
    
       manual_reset_event event;
 
-      pnanomessagebox->initialize_message_box(
+      pnanomessagebox->initialize_conversation(
          pmessagebox->m_strMessage,
          pmessagebox->m_strTitle,
          pmessagebox->m_emessagebox,
@@ -511,11 +496,15 @@ void nano_message_box::on_click(const ::atom & atom, ::user::mouse * pmouse)
    if (atom == "details")
    {
 
+      auto psequencer = __new(::sequencer < ::conversation >());
+
       auto pdetailswindow = __create_new < nano_details_window >();
 
-      pdetailswindow->m_strMessage = m_strDetails;
+      psequencer->m_psequence = pdetailswindow;
 
-      pdetailswindow->initialize_message_box(m_strDetails, m_strTitle + " : Details", e_message_box_ok, m_strDetails);
+      pdetailswindow->m_psequencer = psequencer;
+
+      pdetailswindow->initialize_conversation(m_strDetails, m_strTitle + " : Details", e_message_box_ok, m_strDetails);
 
       pdetailswindow->do_synchronously();
 

@@ -120,7 +120,7 @@ namespace file
       virtual bool read_string(string & str);
       virtual bool read_string(memory_base & mem);
       virtual bool read_block(const block & block);
-      virtual bool full_read(memory_base & memory);
+      virtual void full_read(memory_base & memory);
       virtual bool full_read_string(string & str);
 
       virtual void print(const ::string & str);

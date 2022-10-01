@@ -147,7 +147,7 @@ CLASS_DECL_AURA u32 call_sync(const ::string & pszPath, const ::string & pszPara
 CLASS_DECL_AURA bool main_initialize()
 {
 
-//   t_posthread = new os_thread(nullptr,nullptr);
+//   t_posthread = memory_new os_thread(nullptr,nullptr);
 
    //t_posthread->m_bRun = true;
 

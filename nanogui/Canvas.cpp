@@ -66,7 +66,7 @@ Canvas::Canvas(Widget * parent, uint8_t samples,
 //      }
 //   }
 //   else {
-      /*color_texture = new Texture(
+      /*color_texture = memory_new Texture(
          scr->pixel_format(),
          scr->component_format(),
          m_size,
@@ -81,7 +81,7 @@ Canvas::Canvas(Widget * parent, uint8_t samples,
       Texture * color_texture_resolved = nullptr;
 
       if (samples > 1) {
-         color_texture_resolved = new Texture(
+         color_texture_resolved = memory_new Texture(
             scr->pixel_format(),
             scr->component_format(),
             m_size,
@@ -92,13 +92,13 @@ Canvas::Canvas(Widget * parent, uint8_t samples,
             Texture::TextureFlags::RenderTarget
          );
 
-         m_render_pass_resolved = new RenderPass(
+         m_render_pass_resolved = memory_new RenderPass(
             { color_texture_resolved }
          );
       }
 #endif
 
-      depth_texture = new Texture(
+      depth_texture = memory_new Texture(
          has_stencil_buffer ? Texture::PixelFormat::DepthStencil
          : Texture::PixelFormat::Depth,
          Texture::ComponentFormat::Float32,
@@ -111,7 +111,7 @@ Canvas::Canvas(Widget * parent, uint8_t samples,
       );
    }
 
-   m_render_pass = new RenderPass(
+   m_render_pass = memory_new RenderPass(
       { color_texture },
       depth_texture,
       has_stencil_buffer ? depth_texture : nullptr,

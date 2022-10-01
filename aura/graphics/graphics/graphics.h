@@ -37,6 +37,8 @@ namespace graphics
 
       virtual void destroy_buffer();
 
+      virtual void on_after_graphical_update();
+
       virtual bool buffer_lock_round_swap_key_buffers();
 
       virtual bool update_screen();

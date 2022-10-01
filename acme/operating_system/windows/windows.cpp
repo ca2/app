@@ -340,9 +340,9 @@ void __node_acme_pre_init()
 
    //xxdebug_box("__node_acme_pre_init","box",e_message_box_ok);
 
-   //g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
+   //g_pgdiplusStartupInput     = normal_new Gdiplus::GdiplusStartupInput();
 
-   //g_pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
+   //g_pgdiplusStartupOutput    = normal_new Gdiplus::GdiplusStartupOutput();
 
    //g_gdiplusToken             = NULL;
 
@@ -576,5 +576,13 @@ void operating_system_get_main_screen_size(int& cx, int& cy)
 
 // }
 
+//
+//
+//CLASS_DECL_ACME string get_error_string(::i64 iError)
+//{
+//
+//
+//}
+//
 
 

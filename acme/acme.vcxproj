@@ -75,8 +75,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -207,11 +207,7 @@
       </LinkTimeCodeGeneration>
       <FixedBaseAddress>false</FixedBaseAddress>
     </Link>
-    <PreBuildEvent>
-      <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
-    </PreBuildEvent>
+    <PreBuildEvent />
     <Manifest>
       <AdditionalManifestFiles>
       </AdditionalManifestFiles>
@@ -275,11 +271,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
       <SubSystem>Windows</SubSystem>
       <ShowProgress>NotSet</ShowProgress>
     </Link>
-    <PreBuildEvent>
-      <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
-    </PreBuildEvent>
+    <PreBuildEvent />
     <Manifest>
       <AdditionalManifestFiles>
       </AdditionalManifestFiles>
@@ -356,11 +348,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
       </ModuleDefinitionFile>
       <AdditionalOptions>/EXPORT:wWinMain %(AdditionalOptions)</AdditionalOptions>
     </Link>
-    <PreBuildEvent>
-      <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
-    </PreBuildEvent>
+    <PreBuildEvent />
     <Manifest>
       <AdditionalManifestFiles>
       </AdditionalManifestFiles>
@@ -437,11 +425,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
       <MergeSections>
       </MergeSections>
     </Link>
-    <PreBuildEvent>
-      <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
-    </PreBuildEvent>
+    <PreBuildEvent />
     <Manifest>
       <AdditionalManifestFiles>
       </AdditionalManifestFiles>
@@ -522,11 +506,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
       </LinkTimeCodeGeneration>
       <FixedBaseAddress>false</FixedBaseAddress>
     </Link>
-    <PreBuildEvent>
-      <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
-    </PreBuildEvent>
+    <PreBuildEvent />
     <CustomBuildStep>
       <Command>
       </Command>
@@ -590,11 +570,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
       <MapFileName>
       </MapFileName>
     </Link>
-    <PreBuildEvent>
-      <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
-    </PreBuildEvent>
+    <PreBuildEvent />
     <CustomBuildStep>
       <Command>
       </Command>
@@ -666,11 +642,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <AdditionalOptions>/EXPORT:WinMain %(AdditionalOptions)</AdditionalOptions>
     </Link>
-    <PreBuildEvent>
-      <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
-    </PreBuildEvent>
+    <PreBuildEvent />
     <CustomBuildStep>
       <Command>
       </Command>
@@ -730,11 +702,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
       <MapFileName>$(TargetDir)$(TargetName).map</MapFileName>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
-    <PreBuildEvent>
-      <Command>xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\third\binary\*.* $(OutDir)
-xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformName)\$(Configuration)\library\*.pdb $(OutDir)</Command>
-    </PreBuildEvent>
+    <PreBuildEvent />
     <CustomBuildStep>
       <Command>
       </Command>
@@ -779,7 +747,6 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="exception\no_memory.cpp" />
     <ClCompile Include="exception\extended_status.cpp" />
     <ClCompile Include="exception\file.cpp" />
-    <ClCompile Include="exception\file_open.cpp" />
     <ClCompile Include="exception\interface_only.cpp" />
     <ClCompile Include="exception\io.cpp" />
     <ClCompile Include="exception\library_not_loaded.cpp" />
@@ -871,7 +838,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="constant\_enumeration.h" />
     <ClInclude Include="constant\_mathematics.h" />
     <ClInclude Include="exception\bad_file_format.h" />
-    <ClInclude Include="exception\file_open.h" />
+    <ClInclude Include="exception\aaa_file_open.h" />
     <ClInclude Include="exception\interface_only.h" />
     <ClInclude Include="exception\io.h" />
     <ClInclude Include="exception\library_not_loaded.h" />
@@ -1048,6 +1015,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="operating_system\console.cpp" />
     <ClCompile Include="operating_system\console_client.cpp" />
     <ClCompile Include="operating_system\debug.cpp" />
+    <ClCompile Include="operating_system\error_code.cpp" />
     <ClCompile Include="operating_system\file.cpp" />
     <ClCompile Include="operating_system\parallelization.cpp" />
     <ClCompile Include="operating_system\time.cpp" />
@@ -1066,6 +1034,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="operating_system\windows\parallelization.cpp" />
     <ClCompile Include="operating_system\windows\process.cpp" />
     <ClCompile Include="operating_system\windows\windows.cpp" />
+    <ClCompile Include="operating_system\windows\_api.cpp" />
     <ClCompile Include="operating_system\windows\_main.cpp" />
     <ClCompile Include="operating_system\windows_common\api.cpp" />
     <ClCompile Include="operating_system\windows_common\dll.cpp" />
@@ -1099,15 +1068,13 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="parallelization\tools.cpp" />
     <ClCompile Include="parallelization\_.cpp" />
     <ClCompile Include="platform\acme.cpp" />
-    <ClCompile Include="platform\apex_main_data.cpp" />
-    <ClCompile Include="platform\apex_main_struct.cpp" />
     <ClCompile Include="platform\application.cpp" />
-    <ClCompile Include="platform\app_core.cpp" />
     <ClCompile Include="platform\assert.cpp" />
     <ClCompile Include="platform\aura_str_pool.cpp" />
     <ClCompile Include="platform\build_debug.cpp" />
     <ClCompile Include="platform\checked.cpp" />
     <ClCompile Include="platform\context.cpp" />
+    <ClCompile Include="platform\conversation_message.cpp" />
     <ClCompile Include="platform\c_class.cpp" />
     <ClCompile Include="platform\debug.cpp" />
     <ClCompile Include="platform\department.cpp" />
@@ -1344,6 +1311,8 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="operating_system\file.h" />
     <ClInclude Include="operating_system\graphics.h" />
     <ClInclude Include="operating_system\microsecond_sleep.h" />
+    <ClInclude Include="operating_system\windows\_api.h" />
+    <ClInclude Include="operating_system\_api.h" />
     <ClInclude Include="operating_system\_common.h" />
     <ClInclude Include="operating_system\os_windowing2.h" />
     <ClInclude Include="operating_system\parallelization.h" />
@@ -1792,7 +1761,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClCompile Include="filesystem\file\memory_file.cpp" />
     <ClCompile Include="filesystem\file\memory_map.cpp" />
     <ClCompile Include="filesystem\file\stream.cpp" />
-    <ClCompile Include="filesystem\file\string_file.cpp" />
+    <ClCompile Include="filesystem\file\string_buffer.cpp" />
     <ClCompile Include="filesystem\file\text_file.cpp" />
     <ClCompile Include="primitive\collection\array.cpp" />
     <ClCompile Include="primitive\collection\bit_array.cpp" />
@@ -1879,7 +1848,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="filesystem\file\status.h" />
     <ClInclude Include="filesystem\file\stdio_file.h" />
     <ClInclude Include="filesystem\file\file_stream1.h" />
-    <ClInclude Include="filesystem\file\string_file.h" />
+    <ClInclude Include="filesystem\file\string_buffer.h" />
     <ClInclude Include="filesystem\file\text_file.h" />
     <ClInclude Include="filesystem\file\transfer_file.h" />
     <ClInclude Include="filesystem\file\_c.h" />
@@ -2032,7 +2001,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\string\x\x_encodings.h" />
     <ClInclude Include="primitive\string\x\x_tables.h" />
     <ClInclude Include="primitive\string\_base_impl.h" />
-    <ClInclude Include="primitive\string\string_file.h" />
+    <ClInclude Include="primitive\string\string_buffer.h" />
     <ClInclude Include="primitive\string\string_inst.h" />
     <ClInclude Include="primitive\string\string_wide_conversion.h" />
     <ClInclude Include="primitive\string\aaa_want_to_remove_str_ch_class.h" />
@@ -2086,6 +2055,7 @@ xcopy /Y $(SolutionDir)..\..\..\..\operating-system\storage-windows\$(PlatformNa
     <ClInclude Include="primitive\string\__c_wide_impl.h" />
     <ClInclude Include="primitive\string\___ch_impl.h" />
     <ClInclude Include="_.h" />
+    <ClInclude Include="_api.h" />
     <ClInclude Include="_c.h" />
     <ClInclude Include="_defer.h" />
     <ClInclude Include="_start.h" />

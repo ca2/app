@@ -151,9 +151,9 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::free_extra()
 
          pNewData = ALLOCATOR::alloc(m_nSize);
 
-#endif      // copy new data from old
+#endif      // copy memory_new data from old
 
-         // copy new data from old
+         // copy memory_new data from old
          ::acme::memcpy_s(pNewData, (size_t)m_nSize * sizeof(TYPE),m_pData, (size_t)m_nSize * sizeof(TYPE));
 
       }
@@ -237,7 +237,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
       // inserting in the middle of the array
       ::count nOldSize = (::count) m_nSize;
 
-      set_size((::count) m_nSize + nCount,-1);  // grow it to new size_i32
+      set_size((::count) m_nSize + nCount,-1);  // grow it to memory_new size_i32
       // destroy intial data before copying over it
       // shift old data up to fill gap
       ::acme::memmove_s(m_pData + nIndex + nCount,(size_t) ((nOldSize - nIndex) * sizeof(TYPE)),m_pData + nIndex,(size_t)((nOldSize - nIndex) * sizeof(TYPE)));
@@ -248,7 +248,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
 
    }
 
-   // insert new value in the gap
+   // insert memory_new value in the gap
    ASSERT(nIndex + nCount <= m_nSize);
 
    return nIndex;
@@ -403,7 +403,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
       // inserting in the middle of the array
       ::count nOldSize = (::count) m_nSize;
 
-      set_size((::count) (m_nSize + nCount), -1);  // grow it to new size_i32
+      set_size((::count) (m_nSize + nCount), -1);  // grow it to memory_new size_i32
       // destroy intial data before copying over it
       // shift old data up to fill gap
       ::acme::memmove_s(m_pData + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), m_pData + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
@@ -414,7 +414,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
 
    }
 
-   // insert new value in the gap
+   // insert memory_new value in the gap
    ASSERT(nIndex + nCount <= m_nSize);
 
    ::index nIndexParam = nIndex;
@@ -518,7 +518,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
       throw ::exception(error_bad_argument);
 
    if(nGrowBy >= 0)
-      m_nGrowBy = nGrowBy;  // set new size_i32
+      m_nGrowBy = nGrowBy;  // set memory_new size_i32
 
    if(nNewSize == 0)
    {
@@ -675,7 +675,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
 
       pNewData = ALLOCATOR::alloc(nNewMax);
 
-#endif      // copy new data from old
+#endif      // copy memory_new data from old
 
       ::acme::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
 
@@ -714,7 +714,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
    if(nGrowBy >= 0)
    {
 
-      m_nGrowBy = nGrowBy;  // set new size_i32
+      m_nGrowBy = nGrowBy;  // set memory_new size_i32
 
    }
 
@@ -956,7 +956,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
 
 #endif
 
-      // copy new data from old
+      // copy memory_new data from old
       ::acme::memcpy_s(pNewData,(size_t)nNewMax * sizeof(TYPE),m_pData,(size_t)m_nSize * sizeof(TYPE));
 
       // construct remaining elements

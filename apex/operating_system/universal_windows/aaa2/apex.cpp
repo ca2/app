@@ -21,15 +21,15 @@ namespace audio
 // {
 
 
-//    ::wait(::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref new ::winrt::Windows::UI::Core::DispatchedHandler ([=]()
+//    ::wait(::winrt::Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::winrt::Windows::UI::Core::CoreDispatcherPriority::Normal, ref memory_new ::winrt::Windows::UI::Core::DispatchedHandler ([=]()
 //    {
 
-//       ::winrt::Windows::UI::Popups::MessageDialog ^ msg = ref new ::winrt::Windows::UI::Popups::MessageDialog(wstring(pszMessage), wstring(pszTitle));
+//       ::winrt::Windows::UI::Popups::MessageDialog ^ msg = ref memory_new ::winrt::Windows::UI::Popups::MessageDialog(wstring(pszMessage), wstring(pszTitle));
 
-// //UICommand^ continueCommand = ref new UICommand(
+// //UICommand^ continueCommand = ref memory_new UICommand(
 //       //      "Try again",
-//       //    ref new UICommandInvokedHandler(this, &CancelCommand::CommandInvokedHandler));
-//       ::winrt::Windows::UI::Popups::UICommand ^ upgradeCommand = ref new ::winrt::Windows::UI::Popups::UICommand(
+//       //    ref memory_new UICommandInvokedHandler(this, &CancelCommand::CommandInvokedHandler));
+//       ::winrt::Windows::UI::Popups::UICommand ^ upgradeCommand = ref memory_new ::winrt::Windows::UI::Popups::UICommand(
 //             "OK");
 
 //       // Add the commands to the dialog
@@ -115,9 +115,9 @@ LPFN_RegGetValueW g_pfnRegGetValueW = nullptr;
 bool os_initialize()
 {
 
-   ::os_thread::s_pmutex = new ::mutex();
+   ::os_thread::s_pmutex = memory_new ::mutex();
 
-   ::os_thread::s_pptra = new simple_array < os_thread * > ();
+   ::os_thread::s_pptra = memory_new simple_array < os_thread * > ();
 
    //sleep(15 * 1000);
 
@@ -168,8 +168,8 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //
 //   //sleep(15 * 1000);
 //
-//   /*   g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
-//      g_pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
+//   /*   g_pgdiplusStartupInput     = normal_new Gdiplus::GdiplusStartupInput();
+//      g_pgdiplusStartupOutput    = normal_new Gdiplus::GdiplusStartupOutput();
 //      g_gdiplusToken             = nullptr;
 //      g_gdiplusHookToken         = nullptr;
 //
@@ -202,11 +202,11 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //      }
 //      */
 //
-//   //t_phtask = new htask();
+//   //t_phtask = memory_new htask();
 //
 //   //t_phtask->m_bRun = true;
 //
-//   //currentThread = new htask();
+//   //currentThread = memory_new htask();
 //
 //
 //   return true;
@@ -483,8 +483,8 @@ bool __node_apex_pos_init()
    //HMODULE hmoduleAdvApi32 = ::LoadLibrary("AdvApi32");
    //g_pfnRegGetValueW = (LPFN_RegGetValueW) ::GetProcAddress(hmoduleAdvApi32,"RegGetValueW");
 
-   //g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
-   //g_pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
+   //g_pgdiplusStartupInput     = normal_new Gdiplus::GdiplusStartupInput();
+   //g_pgdiplusStartupOutput    = normal_new Gdiplus::GdiplusStartupOutput();
    //g_gdiplusToken             = nullptr;
    //g_gdiplusHookToken         = nullptr;
 

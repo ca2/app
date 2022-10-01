@@ -2,7 +2,7 @@
 
 
 
-#undef new
+
 #define minimum minimum
 #define maximum maximum
 #include <GdiPlus.h>

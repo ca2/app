@@ -17,7 +17,7 @@
 #include <X11/extensions/XInput.h>
 #include <X11/extensions/XInput2.h>
 #include <X11/XKBlib.h>
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 #include "aura/os/x11/_x11.h"
 #include "acme/parallelization/message_queue.h"
 #include "_glib.h"
@@ -3869,7 +3869,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                   // we should let the flesh and the cake for the doctors,
                   // lawyers, politicians, google collaborators, drug-makers,
                   // ill-makers, sue-makers, idea-makers, religious-people,
-                  // that make new ammendments to ammendment itself,
+                  // that make memory_new ammendments to ammendment itself,
                   // people above-the-law... flesh save them...
                   // ... retired and poor, widow people, complaining of dead/gone people,
                   // must eat bird seed grains.... no redemption, only in paradise...
@@ -4363,7 +4363,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
          msgText.wParam = 0;
 
-         string * pstringText = new string(strText);
+         string * pstringText = memory_new string(strText);
 
          msgText.lParam = (LPARAM) (iptr) (string *) (pstringText);
 
@@ -4786,21 +4786,21 @@ int_bool os_init_windowing()
 
    acme_defer_os_init_windowing();
 
-   g_pmutexX11Runnable = new ::mutex();
+   g_pmutexX11Runnable = memory_new ::mutex();
 
-   g_prunnableptrlX11 = new list < __pointer(::matter) >();
+   g_prunnableptrlX11 = memory_new list < __pointer(::matter) >();
 
-//   g_pmutexX11Sync = new ::mutex();
+//   g_pmutexX11Sync = memory_new ::mutex();
 
-   //g_peventX11Sync = new manual_reset_event();
+   //g_peventX11Sync = memory_new manual_reset_event();
 
-   oswindow_data::s_pdataptra = new oswindow_dataptra;
+   oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
 
-   oswindow_data::s_pmutex = new ::mutex;
+   oswindow_data::s_pmutex = memory_new ::mutex;
 
-   osdisplay_data::s_pdataptra = new osdisplay_dataptra;
+   osdisplay_data::s_pdataptra = memory_new osdisplay_dataptra;
 
-   osdisplay_data::s_pmutex = new ::mutex;
+   osdisplay_data::s_pmutex = memory_new ::mutex;
 
 
    return true;

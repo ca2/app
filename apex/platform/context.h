@@ -47,7 +47,6 @@ namespace apex
 
       create * get_create();
 
-
       string get_store_server_base_url();
 
       bool contains(::create* pcreate) const;

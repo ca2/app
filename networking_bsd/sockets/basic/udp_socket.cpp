@@ -13,7 +13,7 @@ namespace sockets_bsd
       //,
       //base_socket(h)
       //,socket(h)
-      m_ibuf(new char[ibufsz])
+      m_ibuf(memory_new char[ibufsz])
       , m_ibufsz(ibufsz)
       , m_bind_ok(false)
       , m_port(0)

@@ -46,7 +46,7 @@ namespace colorertake5
          Called once for each parsed text line, when text_parser starts to parse
          specified line of text. This method is called before any of the region
          information passed, and used often to clear internal handler
-         structure of this line before adding new one.
+         structure of this line before adding memory_new one.
          @param lno Line number
          */
          virtual void clearLine(index lno, const ::string &line);

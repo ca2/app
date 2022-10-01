@@ -526,7 +526,7 @@ CLASS_DECL_ACME string executable_title_from_appid(string str)
 
 
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 
 //string_array get_c_args_from_string(const char* psz)

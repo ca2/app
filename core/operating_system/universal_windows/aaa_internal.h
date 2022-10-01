@@ -1,11 +1,11 @@
 #pragma once
 
 
-#undef new
+
 #include <GdiPlus.h>
 #include <Gdipluseffects.h>
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 #include <wincrypt.h>
 

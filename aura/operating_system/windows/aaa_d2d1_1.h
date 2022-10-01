@@ -1,10 +1,10 @@
 #pragma once
 
-#undef new
+
 
 #include <D2d1_1.h>
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 //
 //inline void copy(D2D1_RECT_F * prectTarget, const RECTANGLE_I32 * prectSource) { ::copy_rect(prectTarget, prectSource); }
 //inline void copy(D2D1_RECT_U * prectTarget, const RECTANGLE_I32 * prectSource) { ::copy_rect(prectTarget, prectSource); }

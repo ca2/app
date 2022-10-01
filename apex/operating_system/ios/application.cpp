@@ -1,11 +1,10 @@
 #include "framework.h"
 //#include <mach-o/dyld.h>
 
-//
-//
-//namespace apex
-//{
-//
+
+namespace apex
+{
+
 
 //   application::application(::object * pobject) :
 //      ::object(pobject)
@@ -293,7 +292,7 @@
 ////         {
 ////            delete[] vmap[::payload];
 ////         }
-////         vmap[::payload] = new char[payload.get_length() + 1 + value.get_length() + 1];
+////         vmap[::payload] = memory_new char[payload.get_length() + 1 + value.get_length() + 1];
 ////         sprintf(vmap[::payload], "%s=%s", payload, value);
 ////         putenv( vmap[::payload] );
 ////      }
@@ -433,6 +432,8 @@
 //   }
 
 //
+
+
    bool application::os_on_start_application()
    {
 
@@ -440,9 +441,8 @@
 
    }
 
-//
-//
-//} // namespace apex
-//
-//
+
+} // namespace apex
+
+
 

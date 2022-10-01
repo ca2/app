@@ -19,7 +19,7 @@ namespace opengl
    ::gpu::context * create_fbo_context()
    {
 
-      return new context_fbo();
+      return memory_new context_fbo();
 
    }
 

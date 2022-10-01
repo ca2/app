@@ -138,7 +138,7 @@ enum enum_message : ::i64
    e_message_recalc_parent,
 //#define WM_SIZECHILD        0x0369  // special notify from COleResizeBar
 // wParam = ID of child interaction_impl
-// lParam = pRectNew (new position/size_i32)
+// lParam = pRectNew (memory_new position/size_i32)
    e_message_size_child,
 //#define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in
    e_message_kick_idle,

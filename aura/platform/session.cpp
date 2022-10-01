@@ -1577,7 +1577,7 @@ namespace aura
 //      if (m_pmapKeyPressed == nullptr)
 //      {
 //
-//         m_pmapKeyPressed = new ::map < ::user::enum_key, bool >;
+//         m_pmapKeyPressed = memory_new ::map < ::user::enum_key, bool >;
 //
 //      }
 //
@@ -1652,7 +1652,7 @@ namespace aura
 //      if (m_pmapKeyPressed == nullptr)
 //      {
 //
-//         m_pmapKeyPressed = new ::map < ::user::enum_key, bool >;
+//         m_pmapKeyPressed = memory_new ::map < ::user::enum_key, bool >;
 //
 //      }
 //
@@ -2351,7 +2351,7 @@ namespace aura
    bool session::InitializeLocalDataCentral()
    {
 
-      //m_pdatabase = new nature::database(this);
+      //m_pdatabase = memory_new nature::database(this);
 
       //if(m_pdatabase == nullptr)
       //{

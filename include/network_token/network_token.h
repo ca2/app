@@ -703,7 +703,7 @@ namespace network_token {
 		 */
 		struct hmacsha {
 			/**
-			 * Construct new hmac algorithm
+			 * Construct memory_new hmac algorithm
 			 * \param key Key to use for HMAC
 			 * \param md Pointer to hash function
 			 * \param name Name of the algorithm
@@ -769,7 +769,7 @@ namespace network_token {
 		 */
 		struct rsa {
 			/**
-			 * Construct new rsa algorithm
+			 * Construct memory_new rsa algorithm
 			 * \param public_key RSA public key in PEM format
 			 * \param private_key RSA private key or empty string if not available. If empty, signing will always fail.
 			 * \param public_key_password Password to decrypt public key pem.
@@ -875,7 +875,7 @@ namespace network_token {
 		 */
 		struct ecdsa {
 			/**
-			 * Construct new ecdsa algorithm
+			 * Construct memory_new ecdsa algorithm
 			 * \param public_key ECDSA public key in PEM format
 			 * \param private_key ECDSA private key or empty string if not available. If empty, signing will always
 			 * fail. \param public_key_password Password to decrypt public key pem. \param private_key_password Password
@@ -1068,7 +1068,7 @@ namespace network_token {
 		 */
 		struct eddsa {
 			/**
-			 * Construct new eddsa algorithm
+			 * Construct memory_new eddsa algorithm
 			 * \param public_key EdDSA public key in PEM format
 			 * \param private_key EdDSA private key or empty string if not available. If empty, signing will always
 			 * fail.
@@ -1204,7 +1204,7 @@ namespace network_token {
 		 */
 		struct pss {
 			/**
-			 * Construct new pss algorithm
+			 * Construct memory_new pss algorithm
 			 * \param public_key RSA public key in PEM format
 			 * \param private_key RSA private key or empty string if not available. If empty, signing will always fail.
 			 * \param public_key_password Password to decrypt public key pem.
@@ -1347,7 +1347,7 @@ namespace network_token {
 		 */
 		struct hs256 : public hmacsha {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param key HMAC signing key
 			 */
 			explicit hs256(std::string key) : hmacsha(std::move(key), EVP_sha256, "HS256") {}
@@ -1357,7 +1357,7 @@ namespace network_token {
 		 */
 		struct hs384 : public hmacsha {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param key HMAC signing key
 			 */
 			explicit hs384(std::string key) : hmacsha(std::move(key), EVP_sha384, "HS384") {}
@@ -1367,7 +1367,7 @@ namespace network_token {
 		 */
 		struct hs512 : public hmacsha {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param key HMAC signing key
 			 */
 			explicit hs512(std::string key) : hmacsha(std::move(key), EVP_sha512, "HS512") {}
@@ -1377,7 +1377,7 @@ namespace network_token {
 		 */
 		struct rs256 : public rsa {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param public_key RSA public key in PEM format
 			 * \param private_key RSA private key or empty string if not available. If empty, signing will always fail.
 			 * \param public_key_password Password to decrypt public key pem.
@@ -1392,7 +1392,7 @@ namespace network_token {
 		 */
 		struct rs384 : public rsa {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param public_key RSA public key in PEM format
 			 * \param private_key RSA private key or empty string if not available. If empty, signing will always fail.
 			 * \param public_key_password Password to decrypt public key pem.
@@ -1407,7 +1407,7 @@ namespace network_token {
 		 */
 		struct rs512 : public rsa {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param public_key RSA public key in PEM format
 			 * \param private_key RSA private key or empty string if not available. If empty, signing will always fail.
 			 * \param public_key_password Password to decrypt public key pem.
@@ -1422,7 +1422,7 @@ namespace network_token {
 		 */
 		struct es256 : public ecdsa {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param public_key ECDSA public key in PEM format
 			 * \param private_key ECDSA private key or empty string if not available. If empty, signing will always
 			 * fail.
@@ -1439,7 +1439,7 @@ namespace network_token {
 		 */
 		struct es384 : public ecdsa {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param public_key ECDSA public key in PEM format
 			 * \param private_key ECDSA private key or empty string if not available. If empty, signing will always
 			 * fail.
@@ -1456,7 +1456,7 @@ namespace network_token {
 		 */
 		struct es512 : public ecdsa {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param public_key ECDSA public key in PEM format
 			 * \param private_key ECDSA private key or empty string if not available. If empty, signing will always
 			 * fail.
@@ -1473,7 +1473,7 @@ namespace network_token {
 		 */
 		struct es256k : public ecdsa {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param public_key ECDSA public key in PEM format
 			 * \param private_key ECDSA private key or empty string if not available. If empty, signing will always
 			 * fail.
@@ -1495,7 +1495,7 @@ namespace network_token {
 		 */
 		struct ed25519 : public eddsa {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param public_key Ed25519 public key in PEM format
 			 * \param private_key Ed25519 private key or empty string if not available. If empty, signing will always
 			 * fail.
@@ -1517,7 +1517,7 @@ namespace network_token {
 		 */
 		struct ed448 : public eddsa {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param public_key Ed448 public key in PEM format
 			 * \param private_key Ed448 private key or empty string if not available. If empty, signing will always
 			 * fail.
@@ -1536,7 +1536,7 @@ namespace network_token {
 		 */
 		struct ps256 : public pss {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param public_key RSA public key in PEM format
 			 * \param private_key RSA private key or empty string if not available. If empty, signing will always fail.
 			 * \param public_key_password Password to decrypt public key pem.
@@ -1551,7 +1551,7 @@ namespace network_token {
 		 */
 		struct ps384 : public pss {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param public_key RSA public key in PEM format
 			 * \param private_key RSA private key or empty string if not available. If empty, signing will always fail.
 			 * \param public_key_password Password to decrypt public key pem.
@@ -1566,7 +1566,7 @@ namespace network_token {
 		 */
 		struct ps512 : public pss {
 			/**
-			 * Construct new instance of algorithm
+			 * Construct memory_new instance of algorithm
 			 * \param public_key RSA public key in PEM format
 			 * \param private_key RSA private key or empty string if not available. If empty, signing will always fail.
 			 * \param public_key_password Password to decrypt public key pem.
@@ -2482,7 +2482,7 @@ namespace network_token {
 	};
 
 	/**
-	 * Builder class to build and sign a new token
+	 * Builder class to build and sign a memory_new token
 	 * Use network_token::create() to get an instance of this class.
 	 */
 	template<typename json_traits>
@@ -2923,7 +2923,7 @@ namespace network_token {
 
 	public:
 		/**
-		 * Constructor for building a new verifier instance
+		 * Constructor for building a memory_new verifier instance
 		 * \param c Clock instance
 		 */
 		explicit verifier(Clock c) : clock(c) {
@@ -3400,7 +3400,7 @@ namespace network_token {
 	};
 
 	/**
-	 * Return a builder instance to create a new token
+	 * Return a builder instance to create a memory_new token
 	 */
 	template<typename json_traits>
 	builder<json_traits> create() {
@@ -3515,7 +3515,7 @@ namespace network_token {
 		return verify<default_clock, quite_compact_network_payload_traits>(default_clock{});
 	}
 	/**
-	 * Return a quite_compact_network_payload builder instance to create a new token
+	 * Return a quite_compact_network_payload builder instance to create a memory_new token
 	 */
 	inline builder<quite_compact_network_payload_traits> create() { return builder<quite_compact_network_payload_traits>(); }
 #ifndef NETWORK_TOKEN_DISABLE_BASE64

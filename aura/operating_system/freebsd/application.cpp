@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/platform/application.h"
 #include "_freebsd.h"
 #include "aura/operating_system/freebsd/_freebsd.h"
 #include "acme/filesystem/filesystem/acme_file.h"
@@ -95,7 +96,7 @@ namespace aura
 //
 //            if(dwResSize > 0)
 //            {
-//               LPVOID pdata = new byte[dwResSize];
+//               LPVOID pdata = memory_new byte[dwResSize];
 //
 //               if(GetFileVersionInfo(
 //                  pszModuleFilePath,
@@ -423,7 +424,7 @@ namespace aura
 //         {
 //            delete[] vmap[::payload];
 //         }
-//         vmap[::payload] = new char[payload.get_length() + 1 + value.get_length() + 1];
+//         vmap[::payload] = memory_new char[payload.get_length() + 1 + value.get_length() + 1];
 //         sprintf(vmap[::payload], "%s=%s", payload, value);
 //         putenv( vmap[::payload] );
 //      }
@@ -499,6 +500,10 @@ namespace aura
 //   }
 
 
+//namespace aura
+//{
+
+
    bool application::os_on_start_application()
    {
 
@@ -543,7 +548,7 @@ namespace aura
    }
 
 
-} // namespace linux
+} // namespace aura
 
 
 namespace aura

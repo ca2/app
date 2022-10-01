@@ -101,12 +101,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          // Socks4
 #if defined(BSD_STYLE_SOCKETS)
-         /** Set socks4 server ip that all new tcp sockets should use. */
+         /** Set socks4 server ip that all memory_new tcp sockets should use. */
          void SetSocks4Host(in_addr);
-         /** Set socks4 server hostname that all new tcp sockets should use. */
+         /** Set socks4 server hostname that all memory_new tcp sockets should use. */
          void SetSocks4Host(const string & );
 #endif
-         /** Set socks4 server port number that all new tcp sockets should use. */
+         /** Set socks4 server port number that all memory_new tcp sockets should use. */
          void SetSocks4Port(port_t);
          /** Set optional socks4 userid. */
          void SetSocks4Userid(const string & );

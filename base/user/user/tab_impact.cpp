@@ -749,29 +749,29 @@ namespace user
    {
 
       _on_change_cur_sel();
-
+      
       if (m_pimpactdata->m_atom == MENU_IMPACT)
       {
-
-       //  create_impact_menu(m_pimpactdata);
-
+         
+         //  create_impact_menu(m_pimpactdata);
+         
          __pointer(::user::menu) pmenu = get_impact_uie();
          
          if(pmenu)
          {
-         
+            
             pmenu->m_menua.erase_all();
             
             pmenu->m_pmenuitem.release();
             
             pmenu->m_puserinteractionpointeraChild.release();
-
+            
             prepare_impact_menu(pmenu);
             
          }
-
+         
          return;
-
+         
       }
 
    }

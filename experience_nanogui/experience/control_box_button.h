@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "base/user/experience/button.h"
+
+
 namespace experience_nanogui
 {
 
@@ -12,9 +15,8 @@ namespace experience_nanogui
 
 
 
-
       control_box_button();
-      virtual ~control_box_button();
+      ~control_box_button() override;
 
 
       //virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;

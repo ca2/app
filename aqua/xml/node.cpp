@@ -417,7 +417,7 @@ namespace xml
 
             //m_ppropertyset.defer_create_new();
 
-            // add new attr
+            // add memory_new attr
             auto & property = m_set.get(strName);
 
             xml = pszEnd;
@@ -631,7 +631,7 @@ namespace xml
             // XML Attr Name
             _SetString( xml, pszEnd, &strName );
 
-            // add new attr
+            // add memory_new attr
             auto & property = m_set.get(strName);
 
             xml = pszEnd;

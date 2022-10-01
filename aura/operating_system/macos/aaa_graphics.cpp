@@ -260,7 +260,7 @@
 //CTFontRef CreateFontConvertedToFamily(CTFontRef iFont, CFStringRef iFamily)
 //{
 //
-//   // Create a copy of the original font with the new family. This call
+//   // Create a copy of the original font with the memory_new family. This call
 //   // attempts to preserve traits, and may return nullptr if that is not possible.
 //   // Pass in 0.0 and nullptr for size_i32 and matrix to preserve the values from
 //   // the original font.
@@ -644,7 +644,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 // HDC GetDC(oswindow hwnd)
 // {
 
-//     HDC hdc = new device_context;
+//     HDC hdc = memory_new device_context;
 
 
 //     hdc->m_window = hwnd;
@@ -1018,7 +1018,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 //CTFontRef CreateFontConvertedToFamily(CTFontRef iFont, CFStringRef iFamily)
 //{
 //
-//   // Create a copy of the original font with the new family. This call
+//   // Create a copy of the original font with the memory_new family. This call
 //   // attempts to preserve traits, and may return nullptr if that is not possible.
 //   // Pass in 0.0 and nullptr for size_i32 and matrix to preserve the values from
 //   // the original font.
@@ -1149,7 +1149,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const ::s
 //   if(pmutex == nullptr)
 //   {
 //
-//      pmutex = new ::mutex();
+//      pmutex = memory_new ::mutex();
 //
 //   }
 //

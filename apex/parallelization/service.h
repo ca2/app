@@ -5,7 +5,7 @@
 //      Date created:   10 April 2004
 //      Description:    Provides a apex class for a service that will exist as
 //                      part of a service application. service_base must be
-//                      derived when creating a new service class.
+//                      derived when creating a memory_new service class.
 //
 //*****************************************************************************
 // Recreated on 2021-03-17 by camilo 11:44 BRT <3ThomasBS_!!

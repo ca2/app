@@ -24,7 +24,7 @@ lite_html_tag::lite_html_tag(lite_html_tag &rSource, bool bCopy)
       try
       {
 
-         m_pcollAttr = new LiteHTMLAttributes(*(rSource.m_pcollAttr), true);
+         m_pcollAttr = memory_new LiteHTMLAttributes(*(rSource.m_pcollAttr), true);
 
       }
       catch(const ::exception & e)
@@ -204,7 +204,7 @@ lite_html_tag::~lite_html_tag()
       {
          ASSERT(pcollAttr == nullptr);
          // instantiate collection ...
-         if ((pcollAttr = new LiteHTMLAttributes) == nullptr)
+         if ((pcollAttr = memory_new LiteHTMLAttributes) == nullptr)
          {
 //            TRACE0("(Error) lite_html_tag::parseFromStr: Out of memory.\n");
             throw ::exception(error_no_memory);

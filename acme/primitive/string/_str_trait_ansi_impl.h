@@ -269,12 +269,12 @@
    }
 
 
-   inline strsize str::string_format(ansichar * pszBuffer, const ansichar * pszFormat, va_list args) noexcept
-   {
-
-      return vsprintf(pszBuffer, pszFormat, args);
-
-   }
+//   inline strsize str::string_format(ansichar * pszBuffer, const ansichar * pszFormat, va_list args) noexcept
+//   {
+//
+//      return vsprintf(pszBuffer, pszFormat, args);
+//
+//   }
 
 
    strsize  str::string_format(ansichar * pszBuffer, strsize nlength, const ansichar * pszFormat, va_list args) noexcept

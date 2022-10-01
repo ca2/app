@@ -136,6 +136,42 @@
     <Filter Include="Source Files\mathematics\calculator">
       <UniqueIdentifier>{c1246f14-7ac6-4333-826d-c396e6f451d0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\user\user">
+      <UniqueIdentifier>{a0a3b8f1-3e27-497f-8992-d4b7b4e51443}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\user\form">
+      <UniqueIdentifier>{060682af-3e3a-4118-a7b3-5a887f005b9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\user">
+      <UniqueIdentifier>{8e1000c3-726e-41b5-9dde-8aaff2589019}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\user\form">
+      <UniqueIdentifier>{7ce16dbd-0865-4009-86dc-1ce63d7da265}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html\element">
+      <UniqueIdentifier>{8ef68ae3-af5b-4b89-889f-050e50643590}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html\graphics">
+      <UniqueIdentifier>{aee3a9bd-aed0-449c-bfc7-64f24e8eb0c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html\impl">
+      <UniqueIdentifier>{54e07906-8a0c-416b-b8d9-c6cbae05e112}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\html\user">
+      <UniqueIdentifier>{98487dcb-edf4-48c7-8433-f31c95e5fc53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html\user">
+      <UniqueIdentifier>{f6b18572-86d2-48f8-a59d-c735a9da78ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html\graphics">
+      <UniqueIdentifier>{b55ff9a0-0ac3-4cf8-b27c-f8d7af666193}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html\element">
+      <UniqueIdentifier>{11c492e6-b426-4e5e-810a-d9b9b65727b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\html\impl">
+      <UniqueIdentifier>{53818c13-20d2-40c2-8a15-9e619be7aed9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -270,34 +306,7 @@
     <ClInclude Include="html\html_lite\_.h">
       <Filter>Header Files\html\html_lite</Filter>
     </ClInclude>
-    <ClInclude Include="user\combo_box.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\list_box.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\simple_ui_draw.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\slider.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\still.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\style.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\validate.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\_.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\_user.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="include\objc.h">
@@ -543,6 +552,165 @@
     <ClInclude Include="networking\networking_application.h">
       <Filter>Header Files\networking</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\user.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\style.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\slider.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\simple_ui_draw.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\plus_minus.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\object.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\list_box.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\combo_box.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\aaa__component.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\form\window.h">
+      <Filter>Header Files\user\form</Filter>
+    </ClInclude>
+    <ClInclude Include="user\form\data.h">
+      <Filter>Header Files\user\form</Filter>
+    </ClInclude>
+    <ClInclude Include="user\form\control.h">
+      <Filter>Header Files\user\form</Filter>
+    </ClInclude>
+    <ClInclude Include="user\form\_.h">
+      <Filter>Header Files\user\form</Filter>
+    </ClInclude>
+    <ClInclude Include="html\user\form.h">
+      <Filter>Header Files\html\user</Filter>
+    </ClInclude>
+    <ClInclude Include="html\impl\text.h">
+      <Filter>Header Files\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="html\impl\table_row.h">
+      <Filter>Header Files\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="html\impl\table_elemental.h">
+      <Filter>Header Files\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="html\impl\table.h">
+      <Filter>Header Files\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="html\impl\select.h">
+      <Filter>Header Files\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="html\impl\input_text.h">
+      <Filter>Header Files\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="html\impl\input_checkbox.h">
+      <Filter>Header Files\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="html\impl\input_button.h">
+      <Filter>Header Files\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="html\impl\image.h">
+      <Filter>Header Files\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="html\impl\form.h">
+      <Filter>Header Files\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="html\impl\element.h">
+      <Filter>Header Files\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="html\impl\cell.h">
+      <Filter>Header Files\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="html\impl\aaa__component.h">
+      <Filter>Header Files\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="html\impl\_.h">
+      <Filter>Header Files\html\impl</Filter>
+    </ClInclude>
+    <ClInclude Include="html\element\element.h">
+      <Filter>Header Files\html\element</Filter>
+    </ClInclude>
+    <ClInclude Include="html\element\aaa__component.h">
+      <Filter>Header Files\html\element</Filter>
+    </ClInclude>
+    <ClInclude Include="html\element\_.h">
+      <Filter>Header Files\html\element</Filter>
+    </ClInclude>
+    <ClInclude Include="html\graphics\_.h">
+      <Filter>Header Files\html\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="html\graphics\aaa__component.h">
+      <Filter>Header Files\html\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="html\graphics\attribute.h">
+      <Filter>Header Files\html\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="html\graphics\base.h">
+      <Filter>Header Files\html\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="html\graphics\border.h">
+      <Filter>Header Files\html\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="html\graphics\box.h">
+      <Filter>Header Files\html\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="html\graphics\font.h">
+      <Filter>Header Files\html\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="html\graphics\message.h">
+      <Filter>Header Files\html\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="html\graphics\point.h">
+      <Filter>Header Files\html\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="html\graphics\reader.h">
+      <Filter>Header Files\html\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="html\graphics\size.h">
+      <Filter>Header Files\html\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="html\graphics\style.h">
+      <Filter>Header Files\html\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="html\graphics\style_sheet.h">
+      <Filter>Header Files\html\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="html\graphics\style_sheet_array.h">
+      <Filter>Header Files\html\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="html\graphics\tag.h">
+      <Filter>Header Files\html\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="html\graphics\value.h">
+      <Filter>Header Files\html\graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html\data.h">
+      <Filter>Header Files\html\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html\core_data.h">
+      <Filter>Header Files\html\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html\aaa__component.h">
+      <Filter>Header Files\html\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html\_constant.h">
+      <Filter>Header Files\html\html</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html\_1.h">
+      <Filter>Header Files\html\html</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -605,21 +773,6 @@
     <ClCompile Include="account\user_set.cpp">
       <Filter>Source Files\account</Filter>
     </ClCompile>
-    <ClCompile Include="geoip\city.cpp">
-      <Filter>Source Files\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="geoip\geoip.cpp">
-      <Filter>Source Files\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="geoip\region_name.cpp">
-      <Filter>Source Files\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="geoip\time_zone.cpp">
-      <Filter>Source Files\geoip</Filter>
-    </ClCompile>
-    <ClCompile Include="geoip\update.cpp">
-      <Filter>Source Files\geoip</Filter>
-    </ClCompile>
     <ClCompile Include="html\html_lite\attributes.cpp">
       <Filter>Source Files\html\html_lite</Filter>
     </ClCompile>
@@ -634,27 +787,6 @@
     </ClCompile>
     <ClCompile Include="html\html\html.cpp">
       <Filter>Source Files\html\html</Filter>
-    </ClCompile>
-    <ClCompile Include="user\combo_box.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\list_box.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\simple_ui_draw.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\slider.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\style.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\validate.cpp">
-      <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="graphics\render\water_routine.cpp">
       <Filter>Source Files\graphics\render</Filter>
@@ -692,7 +824,7 @@
     <ClCompile Include="database\simpledb\thread_localdatabase.cpp">
       <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
-    <ClCompile Include="database\database\database_composite.cpp">
+    <ClCompile Include="database\database\composite.cpp">
       <Filter>Source Files\database\database</Filter>
     </ClCompile>
     <ClCompile Include="database\database\database_impl.cpp">
@@ -745,6 +877,123 @@
     </ClCompile>
     <ClCompile Include="mathematics\kissfft\ifftd.cpp">
       <Filter>Source Files\mathematics\kissfft</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\combo_box.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\list_box.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\object.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\plus_minus.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\simple_ui_draw.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\slider.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\style.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\user.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\validate.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\form\control.cpp">
+      <Filter>Source Files\user\form</Filter>
+    </ClCompile>
+    <ClCompile Include="user\form\data.cpp">
+      <Filter>Source Files\user\form</Filter>
+    </ClCompile>
+    <ClCompile Include="user\form\window.cpp">
+      <Filter>Source Files\user\form</Filter>
+    </ClCompile>
+    <ClCompile Include="html\user\form.cpp">
+      <Filter>Source Files\html\user</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\text.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\table_row.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\table_elemental.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\table.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\select.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\input_text.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\input_checkbox.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\input_button.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\image.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\form.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\element.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\cell.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\impl\_.cpp">
+      <Filter>Source Files\html\impl</Filter>
+    </ClCompile>
+    <ClCompile Include="html\graphics\attribute.cpp">
+      <Filter>Source Files\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="html\graphics\base.cpp">
+      <Filter>Source Files\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="html\graphics\font.cpp">
+      <Filter>Source Files\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="html\graphics\message.cpp">
+      <Filter>Source Files\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="html\graphics\reader.cpp">
+      <Filter>Source Files\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="html\graphics\style.cpp">
+      <Filter>Source Files\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="html\graphics\style_sheet.cpp">
+      <Filter>Source Files\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="html\graphics\style_sheet_array.cpp">
+      <Filter>Source Files\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="html\graphics\tag.cpp">
+      <Filter>Source Files\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="html\graphics\value.cpp">
+      <Filter>Source Files\html\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="html\element\element.cpp">
+      <Filter>Source Files\html\element</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html\core_data.cpp">
+      <Filter>Source Files\html\html</Filter>
+    </ClCompile>
+    <ClCompile Include="html\html\data.cpp">
+      <Filter>Source Files\html\html</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

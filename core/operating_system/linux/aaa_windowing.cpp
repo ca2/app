@@ -16,7 +16,7 @@
 //!!!#include <X11/extensions/XInput2.h>
 //!!!#include <X11/XKBlib.h>
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 ::point_i32 g_pointX11Cursor;
 //::duration g_tickLastMouseMove;
@@ -3917,7 +3917,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericE
 
          msgText.wParam = 0;
 
-         string * pstringText = new string(strText);
+         string * pstringText = memory_new string(strText);
 
          msgText.lParam = (LPARAM) (iptr) (string *) (pstringText);
 
@@ -4423,23 +4423,23 @@ int_bool os_init_windowing()
 
    pipe(g_fdX11);
 
-   g_pmutexX11 = new ::mutex();
+   g_pmutexX11 = memory_new ::mutex();
 
-   g_pmutexX11Runnable = new ::mutex();
+   g_pmutexX11Runnable = memory_new ::mutex();
 
-   g_prunnableptrlX11 = new list < __pointer(::matter) >();
+   g_prunnableptrlX11 = memory_new list < __pointer(::matter) >();
 
-//   g_pmutexX11Sync = new ::mutex();
+//   g_pmutexX11Sync = memory_new ::mutex();
 
-//   g_peventX11Sync = new manual_reset_event();
+//   g_peventX11Sync = memory_new manual_reset_event();
 
-   oswindow_data::s_pdataptra = new oswindow_dataptra;
+   oswindow_data::s_pdataptra = memory_new oswindow_dataptra;
 
-   oswindow_data::s_pmutex = new ::mutex;
+   oswindow_data::s_pmutex = memory_new ::mutex;
 
-   osdisplay_data::s_pdataptra = new osdisplay_dataptra;
+   osdisplay_data::s_pdataptra = memory_new osdisplay_dataptra;
 
-   osdisplay_data::s_pmutex = new ::mutex;
+   osdisplay_data::s_pmutex = memory_new ::mutex;
 
    if(!XInitThreads())
    {

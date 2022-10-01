@@ -89,11 +89,11 @@ namespace crypto_openssl
    //   switch (ehash)
    //   {
    //   case e_hash_md5:
-   //      return new ::cryptopenssl::hasher_algorithm(ehash, EVP_md5());
+   //      return memory_new ::cryptopenssl::hasher_algorithm(ehash, EVP_md5());
    //   case e_hash_sha1:
-   //      return new ::openssl::hasher_algorithm(ehash, EVP_sha1());
+   //      return memory_new ::openssl::hasher_algorithm(ehash, EVP_sha1());
    //   case e_hash_sha256:
-   //      return new ::openssl::hasher_algorithm(ehash, EVP_sha256());
+   //      return memory_new ::openssl::hasher_algorithm(ehash, EVP_sha256());
    //   default:
    //      return nullptr;
    //   }

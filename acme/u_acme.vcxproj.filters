@@ -233,6 +233,9 @@
     <Filter Include="Header Files\primitive\media_library">
       <UniqueIdentifier>{82ba40bf-dcc9-432b-82fb-311781d2fc74}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\asset">
+      <UniqueIdentifier>{be37a1f7-c5ed-4c87-a67b-a41f81a30bbb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -433,7 +436,7 @@
     <ClCompile Include="filesystem\file\stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\string_file.cpp">
+    <ClCompile Include="filesystem\file\string_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\text_file.cpp">
@@ -1180,7 +1183,7 @@
     <ClCompile Include="platform\apex_main_struct.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\app.cpp">
+    <ClCompile Include="platform\application.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\app_core.cpp">
@@ -1245,6 +1248,9 @@
     </ClCompile>
     <ClCompile Include="platform\_main_hold_base.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="operating_system\console_client.cpp">
+      <Filter>Source Files\operating_system</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1962,7 +1968,7 @@
     <ClInclude Include="primitive\string\_base_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\string_file.h">
+    <ClInclude Include="primitive\string\string_buffer.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\string_inst.h">
@@ -2262,7 +2268,7 @@
     <ClInclude Include="filesystem\file\stream2.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\string_file.h">
+    <ClInclude Include="filesystem\file\string_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\text_file.h">
@@ -3354,7 +3360,7 @@
     <ClInclude Include="platform\apex_main_struct.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\app.h">
+    <ClInclude Include="platform\application.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\app_core.h">
@@ -3489,6 +3495,9 @@
     <ClInclude Include="primitive\geometry2d\_defer_shape.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
+    <ClInclude Include="operating_system\universal_windows\_winrt_foundation.h">
+      <Filter>Header Files\operating_system\universal_windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\datetime\_impl.h">
@@ -3578,5 +3587,6 @@
     <None Include="u_acme.def">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

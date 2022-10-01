@@ -320,7 +320,7 @@ protected:
    Alignment m_default_alignment[2];
    /// The actual Alignment being used for each column/row
    std::vector<Alignment> m_alignment[2];
-   /// The number of rows or columns before starting a new one, depending on the Orientation.
+   /// The number of rows or columns before starting a memory_new one, depending on the Orientation.
    int m_resolution;
    /// The spacing used for each dimension.
    Vector2i m_spacing;
@@ -345,7 +345,7 @@ protected:
  * .. code-block:: cpp
  *
  *    using Anchor = AdvancedGridLayout::Anchor;
- *    Label *label = new Label(window, "A label");
+ *    Label *label = memory_new Label(window, "A label");
  *    // Add a centered label at grid position (1, 5), which spans two horizontal cells
  *    layout->set_anchor(label, Anchor(1, 5, 2, 1, Alignment::Middle, Alignment::Middle));
  *

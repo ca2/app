@@ -51,18 +51,17 @@ namespace aura
       if (m_psystem->m_papexsystem && m_psystem->m_papexsystem->m_bImaging)
       {
 
-         //estatus = 
+         try
+         {
 
-         __compose(m_pcontextimage);
+            __compose(m_pcontextimage);
 
-         //if (!estatus)
-         //{
+         }
+         catch (...)
+         {
 
-            //WARNING("No contextimage!!");
 
-            //return estatus;
-
-         //}
+         }
 
       }
 

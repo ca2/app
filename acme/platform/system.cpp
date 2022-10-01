@@ -92,7 +92,7 @@ namespace acme
 
       }
 
-      //m_psystemimpl = new system_impl;
+      //m_psystemimpl = memory_new system_impl;
 
       //set_os_data(LAYERED_ACME, this);
 
@@ -203,6 +203,16 @@ namespace acme
 
       }
 
+#if !defined(WINDOWS)
+      
+      __construct(m_pexceptiontranslator);
+      
+      m_pexceptiontranslator->attach();
+      
+      
+#endif
+
+
       //auto estatus = __construct(m_pnode);
       __construct(m_pnode);
 
@@ -253,7 +263,7 @@ namespace acme
 
    void system::process_init()
    {
-
+      
       ::acme::idpool::init(this);
 
       __compose_new(m_pdatetime);
@@ -805,7 +815,7 @@ namespace acme
 
       m_pacmeapplicationStartup->get_property_set().merge(get_property_set());
 
-      set_main_struct(*m_pacmeapplicationStartup);
+      copy_main(*m_pacmeapplicationStartup);
 
       process_init();
 
@@ -1001,53 +1011,87 @@ namespace acme
 
    __pointer(::factory::factory) & system::factory(const ::string & strComponent, const ::string & strImplementation)
    {
-
+      
       synchronous_lock synchronouslock(&m_mutexComponentFactory);
-
+      
       auto & pfactory = m_mapComponentFactory[strComponent][implementation_name(strComponent, strImplementation)];
-
+      
       if (pfactory)
       {
-
+         
          return pfactory;
-
+         
       }
-
+      
       string strLibrary;
-
+      
       strLibrary = library_name(strComponent, strImplementation);
-
+      
       auto & plibrary = library(strLibrary);
-
+      
       if (!plibrary)
       {
-
+         
 #ifdef CUBE
-
+         
          auto pfnFactory = ::system_setup::get_factory_function(strLibrary);
-
+         
          if (pfnFactory)
          {
-
+            
             pfactory = m_psystem->__create_new < ::factory::factory >();
-
+            
             pfnFactory(pfactory);
-
+            
             return pfactory;
-
+            
          }
-
+         
 #endif
-
+         
          //pfactory = (const ::extended::status&)plibrary;
-         throw ::exception(error_resource);
-
+         throw ::exception(error_resource, strComponent + "_" + strImplementation + "_factory not found!!");
+         
       }
-
+      
       pfactory = plibrary->create_factory();
-
+      
       return pfactory;
+         
+   }
 
+
+   __pointer(::factory::factory) & system::impact_factory(const ::string & strComponent, const ::string & strImplementation)
+   {
+      
+      synchronous_lock synchronouslock(&m_mutexComponentFactory);
+      
+      auto & pfactory = m_mapComponentFactory[strComponent][implementation_name(strComponent, strImplementation)];
+      
+      try
+      {
+         
+         return factory(strComponent, strImplementation);
+         
+      }
+      catch(const ::exception & exception)
+      {
+         
+         string strMessage = "Library couldn't be opened : " + exception.m_strMessage;
+         
+         string strDetails = exception.get_consolidated_details();
+         
+         auto psequencer = create_message_box_sequencer(strMessage, "Library Loading Failure", e_message_box_ok | e_message_box_icon_warning,
+                                                        strDetails);
+         
+         psequencer->do_asynchronously();
+         
+         throw exception;
+         
+      }
+      
+      return pfactory;
+      
    }
 
 
@@ -1795,7 +1839,7 @@ namespace acme
 
       m_etracelevel = etracelevel;
 
-      /*auto estatus = */ ::app_core::system_construct(papplication);
+      /*auto estatus = */ ::main::system_construct(papplication);
 
       /*  if (!estatus)
       {
@@ -2048,6 +2092,15 @@ namespace acme
 
    }
 
+   
+   __pointer(::sequencer < ::conversation >) system::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+   {
+
+      auto psequencer = m_pnode->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails);
+
+      return psequencer;
+
+   }
 
    //__pointer(::sequencer < ::conversation >) system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
    //{
@@ -2176,7 +2229,7 @@ namespace acme
                if (!papp)
                {
 
-                  ::output_debug_string("\n\n::apex::session::get_new_application\n...but this new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId + "  <--\n\nIs it missing application factory_item?\n\n\n");
+                  ::output_debug_string("\n\n::apex::session::get_new_application\n...but this memory_new found library:\n\n   -->  " + strLibrary + "  <--\n\ncannot instantiate application with following AppId:\n\n   -->  " + strAppId + "  <--\n\nIs it missing application factory_item?\n\n\n");
 
                }
 
@@ -2321,6 +2374,27 @@ namespace acme
    }
 
 
+   void system::windowing_send(const ::procedure & procedure)
+   {
+
+      auto pmanualresetevent = __new(manual_reset_event);
+
+      windowing_post([pmanualresetevent, procedure]()
+         {
+
+            procedure();
+
+            pmanualresetevent->set_event();
+
+         }
+
+      );
+
+      pmanualresetevent->wait(procedure.m_waitTimeout);
+
+   }
+
+
 } // namespace acme
 
 
@@ -2370,7 +2444,7 @@ CLASS_DECL_ACME::acme::system * get_context_system()
 CLASS_DECL_ACME::acme::system * acme_system_init()
 {
 
-   g_psystem = new ::acme::system();
+   g_psystem = memory_new ::acme::system();
 
    return g_psystem;
 

@@ -120,7 +120,7 @@ int g_i134 = 0;
 
 #endif // _UWP
 
-//#define new AURA_NEW
+//#define memory_new AURA_NEW
 
 
 namespace user
@@ -512,7 +512,7 @@ namespace user
    //   {
 
 
-   //      m_pinteractiondraw2d = new interaction_draw2d();
+   //      m_pinteractiondraw2d = memory_new interaction_draw2d();
 
    //   }
 
@@ -16945,7 +16945,7 @@ namespace user
       if (!g_pmutexChildren)
       {
 
-         g_pmutexChildren = new mutex();
+         g_pmutexChildren = memory_new mutex();
 
       }
 
@@ -20000,7 +20000,7 @@ namespace user
 
          //throw ::exception(todo);
 
-//            m_data.m_pcombobox = new Ex1FormInterfaceComboBox;
+//            m_data.m_pcombobox = memory_new Ex1FormInterfaceComboBox;
 
       }
       break;

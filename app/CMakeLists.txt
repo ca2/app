@@ -23,7 +23,7 @@ list(APPEND library_references
    )
 
 
-add_library(app_app SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 target_precompile_headers(app_app PRIVATE framework.h)
 
@@ -51,78 +51,12 @@ add_dependencies(app_app ${default_node})
 add_dependencies(app_app ${default_draw2d})
 
 
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
-
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
-target_include_directories(app_app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
-add_executable(_${PROJECT_NAME} _main.cpp)
-
-
-list(APPEND executable_references
-   acme
-   apex
-   aqua
-   aura
-   app_app
-   )
-
-
-if(LINUX OR FREEBSD)
-#
-#   add_custom_command(
-#      COMMAND ${APPLICATION_BUILD_HELPER} ${PROJECT_SOURCE_DIR}
-#      COMMAND ${CMAKE_COMMAND} -E touch ${PROJECT_BINARY_DIR}/matter.timestamp
-#      OUTPUT ${PROJECT_BINARY_DIR}/matter.timestamp
-#      WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-#      BYPRODUCTS ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o
-#      DEPENDS application_matter.txt matter.txt _console_application_build_helper
-#      VERBATIM
-#      )
-#
-#   add_custom_target(${PROJECT_NAME}_matter
-#      DEPENDS ${PROJECT_BINARY_DIR}/matter.timestamp
-#   )
-#
-list(APPEND executable_references ${PROJECT_SOURCE_DIR}/.link_object/_matter.zip.o)
-#
-#   add_dependencies(${PROJECT_NAME} ${PROJECT_NAME}_matter)
-#
-endif()
-
-
-if (MSVC)
-
-    target_compile_options(_app_app PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-    target_link_options(_app_app PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-    target_link_options(_app_app PRIVATE "/SUBSYSTEM:WINDOWS")
-    target_link_libraries(_app_app PRIVATE ${executable_references})
-
-elseif(LINUX OR FREEBSD)
-
-    target_compile_options(_app_app PRIVATE -fpermissive)
-    target_link_libraries(_app_app PRIVATE ${executable_references})
-    target_link_options(_app_app PRIVATE -Wl,-z,defs)
-
-endif ()
-
-
-add_dependencies(_app_app ${app_common_dependencies})
-add_dependencies(_app_app ${default_draw2d})
-add_dependencies(_app_app ${default_node})
-add_dependencies(_app_app crypto_openssl)
-add_dependencies(_app_app folder_zip)
-
-
-target_include_directories(_app_app PRIVATE ${library_include_directories})
-
-target_link_directories(_app_app PRIVATE ${library_link_directories})
-
-set_target_properties(_app_app PROPERTIES LINKER_LANGUAGE CXX)
-
-
+add_subdirectory(__implement)
 

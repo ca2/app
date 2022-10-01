@@ -252,7 +252,7 @@ WCHAR * ansi_to_wd16(const char * psz)
    if(iCount < 0)
       return nullptr;
 
-   WCHAR * pwz = new WCHAR[iCount + 1];
+   WCHAR * pwz = memory_new WCHAR[iCount + 1];
 
    utf8_to_16(pwz, psz);
 

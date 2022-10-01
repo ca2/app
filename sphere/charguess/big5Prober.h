@@ -27,7 +27,7 @@
 
 class nsBig5Prober: public nsCharSetProber {
 public:
-  nsBig5Prober(void){mCodingSM = new nsCodingStateMachine(&Big5SMModel);
+  nsBig5Prober(void){mCodingSM = memory_new nsCodingStateMachine(&Big5SMModel);
                       Reset();};
   virtual ~nsBig5Prober(void) {delete mCodingSM;};
   nsProbingState HandleData(const ::string & aBuf, PR::u32 aLen);

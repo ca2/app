@@ -48,9 +48,9 @@ namespace universal_windows
       // the apps's responsibility.
       m_window = window;
 
-      m_tokenKeyDown = m_window->KeyDown += ref new TypedEventHandler < ::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::KeyEventArgs^>(this, &impact::CoreWindow_KeyDown);
+      m_tokenKeyDown = m_window->KeyDown += ref memory_new TypedEventHandler < ::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::KeyEventArgs^>(this, &impact::CoreWindow_KeyDown);
 
-      m_tokenPointerPressed = m_window->PointerPressed += ref new TypedEventHandler < ::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::PointerEventArgs^>(this, &impact::CoreWindow_PointerPressed);
+      m_tokenPointerPressed = m_window->PointerPressed += ref memory_new TypedEventHandler < ::winrt::Windows::UI::Core::CoreWindow^, ::winrt::Windows::UI::Core::PointerEventArgs^>(this, &impact::CoreWindow_PointerPressed);
 
       // Create a CoreTextEditContext for our custom edit control.
       CoreTextServicesManager^ manager = CoreTextServicesManager::GetForCurrentImpact();
@@ -74,35 +74,35 @@ namespace universal_windows
       _editContext->InputScope = CoreTextInputScope::Text;
 
       // The system raises this event to request a specific range of text.
-      _editContext->TextRequested += ref new TypedEventHandler < CoreTextEditContext ^, CoreTextTextRequestedEventArgs^> (this, &impact::EditContext_TextRequested);
+      _editContext->TextRequested += ref memory_new TypedEventHandler < CoreTextEditContext ^, CoreTextTextRequestedEventArgs^> (this, &impact::EditContext_TextRequested);
 
       // The system raises this event to request the current selection.
-      _editContext->SelectionRequested += ref new TypedEventHandler < CoreTextEditContext^, CoreTextSelectionRequestedEventArgs^>(this, &impact::EditContext_SelectionRequested);
+      _editContext->SelectionRequested += ref memory_new TypedEventHandler < CoreTextEditContext^, CoreTextSelectionRequestedEventArgs^>(this, &impact::EditContext_SelectionRequested);
 
       // The system raises this event when it wants the edit control to erase focus.
-      _editContext->FocusRemoved += ref new TypedEventHandler < CoreTextEditContext^, Object^>(this, &impact::EditContext_FocusRemoved);
+      _editContext->FocusRemoved += ref memory_new TypedEventHandler < CoreTextEditContext^, Object^>(this, &impact::EditContext_FocusRemoved);
 
       // The system raises this event to update text in the edit control.
-      _editContext->TextUpdating += ref new TypedEventHandler < CoreTextEditContext^, CoreTextTextUpdatingEventArgs^>(this, &impact::EditContext_TextUpdating);
+      _editContext->TextUpdating += ref memory_new TypedEventHandler < CoreTextEditContext^, CoreTextTextUpdatingEventArgs^>(this, &impact::EditContext_TextUpdating);
 
       // The system raises this event to change the selection in the edit control.
-      _editContext->SelectionUpdating += ref new TypedEventHandler < CoreTextEditContext^, CoreTextSelectionUpdatingEventArgs^>(this, &impact::EditContext_SelectionUpdating);
+      _editContext->SelectionUpdating += ref memory_new TypedEventHandler < CoreTextEditContext^, CoreTextSelectionUpdatingEventArgs^>(this, &impact::EditContext_SelectionUpdating);
 
       // The system raises this event when it wants the edit control
       // to apply formatting on a range of text.
-      _editContext->FormatUpdating += ref new TypedEventHandler < CoreTextEditContext^, CoreTextFormatUpdatingEventArgs^>(this, &impact::EditContext_FormatUpdating);
+      _editContext->FormatUpdating += ref memory_new TypedEventHandler < CoreTextEditContext^, CoreTextFormatUpdatingEventArgs^>(this, &impact::EditContext_FormatUpdating);
 
       // The system raises this event to request layout information.
       // This is used to help choose a position for the IME candidate window.
-      _editContext->LayoutRequested += ref new TypedEventHandler < CoreTextEditContext^, CoreTextLayoutRequestedEventArgs^>(this, &impact::EditContext_LayoutRequested);
+      _editContext->LayoutRequested += ref memory_new TypedEventHandler < CoreTextEditContext^, CoreTextLayoutRequestedEventArgs^>(this, &impact::EditContext_LayoutRequested);
 
       // The system raises this event to notify the edit control
       // that the string composition has started.
-      _editContext->CompositionStarted += ref new TypedEventHandler < CoreTextEditContext^, CoreTextCompositionStartedEventArgs^>(this, &impact::EditContext_CompositionStarted);
+      _editContext->CompositionStarted += ref memory_new TypedEventHandler < CoreTextEditContext^, CoreTextCompositionStartedEventArgs^>(this, &impact::EditContext_CompositionStarted);
 
       // The system raises this event to notify the edit control
       // that the string composition is finished.
-      _editContext->CompositionCompleted += ref new TypedEventHandler < CoreTextEditContext^, CoreTextCompositionCompletedEventArgs^>(this, &impact::EditContext_CompositionCompleted);
+      _editContext->CompositionCompleted += ref memory_new TypedEventHandler < CoreTextEditContext^, CoreTextCompositionCompletedEventArgs^>(this, &impact::EditContext_CompositionCompleted);
 
       // The system raises this event when the NotifyFocusLeave operation has
       // completed. Our sample does not use this event.
@@ -245,18 +245,18 @@ namespace universal_windows
    }
 
 
-   // Change the selection without notifying CoreTextEditContext of the new selection.
+   // Change the selection without notifying CoreTextEditContext of the memory_new selection.
    void impact::SetSelection(CoreTextRange selection)
    {
       // Modify the internal selection.
       _selection = selection;
 
-      //Update the UI to show the new selection.
+      //Update the UI to show the memory_new selection.
       UpdateTextUI();
    }
 
 
-   // Change the selection and notify CoreTextEditContext of the new selection.
+   // Change the selection and notify CoreTextEditContext of the memory_new selection.
    void impact::SetSelectionAndNotify(CoreTextRange selection)
    {
 
@@ -355,7 +355,7 @@ namespace universal_windows
 
    void impact::EditContext_SelectionUpdating(CoreTextEditContext ^sender, CoreTextSelectionUpdatingEventArgs ^ args)
    {
-      // Set the new selection to the value specified by the system.
+      // Set the memory_new selection to the value specified by the system.
       CoreTextRange range = args->Selection;
 
       // Update the selection of the edit context. There is no need to notify the system
@@ -395,7 +395,7 @@ namespace universal_windows
       // A null value indicates that the default should be used.
       if (args->UnderlineType != nullptr)
       {
-         //TextDecoration underline = new TextDecoration(args.Range,args.UnderlineType.Value,args.UnderlineColor.Value);
+         //TextDecoration underline = memory_new TextDecoration(args.Range,args.UnderlineType.Value,args.UnderlineColor.Value);
 
          //InternalAddTextDecoration(underline);
       }
@@ -491,7 +491,7 @@ namespace universal_windows
       }
 
       // This holds the range we intend to operate on, or which we intend
-      // to become the new selection. Start with the current selection.
+      // to become the memory_new selection. Start with the current selection.
       CoreTextRange  range = _selection;
 
       // For the purpose of this sample, we will support only the left and right
@@ -618,7 +618,7 @@ namespace universal_windows
 
    void impact::UpdateFocusUI()
    {
-      //BorderPanel->BorderBrush = _internalFocus ? new ::winrt::Windows::UI::Xaml::Media::SolidColorBrush(::winrt::Windows::UI::Colors::Green) : null;
+      //BorderPanel->BorderBrush = _internalFocus ? memory_new ::winrt::Windows::UI::Xaml::Media::SolidColorBrush(::winrt::Windows::UI::Colors::Green) : null;
    }
 
    void impact::UpdateTextUI()
@@ -655,8 +655,8 @@ namespace universal_windows
    //Rect impact::GetElementRect(FrameworkElement matter)
    //{
    //   GeneralTransform transform = matter.TransformToVisual(null);
-   //   Point point = transform.TransformPoint(new Point());
-   //   return new Rect(point, new Size(matter.ActualWidth, matter.ActualHeight));
+   //   Point point = transform.TransformPoint(memory_new Point());
+   //   return memory_new Rect(point, memory_new Size(matter.ActualWidth, matter.ActualHeight));
    //}
 
 

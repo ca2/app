@@ -91,7 +91,7 @@ public:
    //inline operator const CHAR_TYPE* () const noexcept { return this->m_pdata; }
 
 //#if defined(_UWP)
-   //inline operator String ^ () const { return ref new String(wd16string(*this)); }
+   //inline operator String ^ () const { return ref memory_new String(wd16string(*this)); }
 //#endif
 
    string_base to_string_base() const { return *this; }

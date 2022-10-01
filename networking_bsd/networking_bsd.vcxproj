@@ -856,6 +856,7 @@
     <ClCompile Include="address.cpp" />
     <ClCompile Include="networking.cpp" />
     <ClCompile Include="ip_enum.cpp" />
+    <ClCompile Include="networking_bsd.cpp" />
     <ClCompile Include="port_forward.cpp" />
     <ClCompile Include="sockets\base\socket.cpp" />
     <ClCompile Include="sockets\base\socket_handler.cpp" />

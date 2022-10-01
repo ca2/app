@@ -77,6 +77,13 @@ namespace graphics
    }
 
 
+   void graphics::on_after_graphical_update()
+   {
+
+
+   }
+
+
    ::size_i32 graphics::window_size()
    {
 

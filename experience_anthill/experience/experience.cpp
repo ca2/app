@@ -39,12 +39,12 @@ namespace experience_anthill
 
       //}
 
-      fork([this]()
-         {
+      //fork([this]()
+      //   {
 
-            //pdraw2d->set_cursor_set_from_matter("cursor/polar");
+      //      //pdraw2d->set_cursor_set_from_matter("cursor/polar");
 
-         });
+      //   });
 
       //return ::success;
 
@@ -78,31 +78,31 @@ namespace experience_anthill
 
       if (strSchema == "001")
       {
-         return new ::experience_anthill::frame_001;
+         return memory_new ::experience_anthill::frame_001;
       }
       else if (strSchema == "002")
       {
-         return new ::experience_anthill::frame_002;
+         return memory_new ::experience_anthill::frame_002;
       }
       else if (strSchema == "005")
       {
-         return new ::experience_anthill::frame_005;
+         return memory_new ::experience_anthill::frame_005;
       }
       else if (strSchema == "008")
       {
-         return new ::experience_anthill::frame_008;
+         return memory_new ::experience_anthill::frame_008;
       }
       else if (strSchema == "011")
       {
-         return new ::experience_anthill::frame_011;
+         return memory_new ::experience_anthill::frame_011;
       }
       else if (strSchema == "013")
       {
-         return new ::experience_anthill::frame_013;
+         return memory_new ::experience_anthill::frame_013;
       }
       else if (strSchema == "Minimal001")
       {
-         return new ::experience_anthill::frame_Minimal001;
+         return memory_new ::experience_anthill::frame_Minimal001;
       }
 
       return nullptr;

@@ -48,7 +48,7 @@ CLASS_DECL_APEX i32 ca2_main();
 
 
 
-#undef new
+
 
 
 

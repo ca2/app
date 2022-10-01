@@ -160,7 +160,7 @@
 
 #ifdef CPP17
 
-#undef new
+
 
 void * __cdecl operator new(size_t size, std::align_val_t alignment)
 {

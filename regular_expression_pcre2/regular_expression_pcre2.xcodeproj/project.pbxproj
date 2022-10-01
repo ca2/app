@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,7 +21,7 @@
 		9A6543CE2666B05100F8A254 /* _factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6543AF2666B05100F8A254 /* _factory.cpp */; };
 		9A6543D12666B05100F8A254 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6543B32666B05100F8A254 /* framework.h */; };
 		9A6543D32666B05100F8A254 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6543BB2666B05100F8A254 /* _.h */; };
-		9A6543E02666B21C00F8A254 /* acme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6543DA2666B1F300F8A254 /* acme.dylib */; };
+		9A6543E02666B21C00F8A254 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6543DA2666B1F300F8A254 /* libacme.dylib */; };
 		9A8BCD2F2883679200DAA61A /* libpcre.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A87FEF8284B8C8F0084AA05 /* libpcre.dylib */; };
 		9A8BCD302883679200DAA61A /* libpcre.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 9A87FEF8284B8C8F0084AA05 /* libpcre.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		9AAF255127CFE93D00D96CB7 /* result.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AAF254F27CFE93D00D96CB7 /* result.cpp */; };
@@ -147,7 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A8BCD2F2883679200DAA61A /* libpcre.dylib in Frameworks */,
-				9A6543E02666B21C00F8A254 /* acme.dylib in Frameworks */,
+				9A6543E02666B21C00F8A254 /* libacme.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,7 +180,7 @@
 		9A6543D52666B1F300F8A254 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A6543DA2666B1F300F8A254 /* acme.dylib */,
+				9A6543DA2666B1F300F8A254 /* libacme.dylib */,
 				9A6543DC2666B1F300F8A254 /* ios_acme.a */,
 			);
 			name = Products;
@@ -307,7 +307,7 @@
 		9AE12E852661E9B4009F476A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					9AE12E8C2661E9B4009F476A = {
 						CreatedOnToolsVersion = 12.5;
@@ -315,7 +315,7 @@
 				};
 			};
 			buildConfigurationList = 9AE12E882661E9B4009F476A /* Build configuration list for PBXProject "regular_expression_pcre2" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -344,10 +344,9 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A6543DA2666B1F300F8A254 /* acme.dylib */ = {
+		9A6543DA2666B1F300F8A254 /* libacme.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			name = acme.dylib;
 			path = libacme.dylib;
 			remoteRef = 9A6543D92666B1F300F8A254 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -437,7 +436,6 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -462,8 +460,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				EXECUTABLE_PREFIX = lib;
@@ -515,12 +515,14 @@
 					"$(WorkspaceDir)/source/app/include",
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/source/port/include",
 					"$(WorkspaceDir)/source/port",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/..",
+					"$(PROJECT_DIR)/../..",
 					"$(HOME)/sensitive/sensitive/include",
 				);
 				USE_HEADERMAP = NO;
@@ -536,7 +538,6 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -561,8 +562,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				EXECUTABLE_PREFIX = lib;
@@ -607,12 +611,14 @@
 					"$(WorkspaceDir)/source/app/include",
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/source/port/include",
 					"$(WorkspaceDir)/source/port",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/..",
+					"$(PROJECT_DIR)/../..",
 					"$(HOME)/sensitive/sensitive/include",
 				);
 				USE_HEADERMAP = NO;

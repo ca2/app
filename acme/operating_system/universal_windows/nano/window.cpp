@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "_.h"
+#include "acme/operating_system/universal_windows/_winrt_foundation.h"
+#include <winrt/Windows.ApplicationModel.Core.h>
 #include <winrt/Windows.UI.Popups.h>
 #include <winrt/Windows.Foundation.Collections.h>
 

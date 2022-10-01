@@ -30,7 +30,7 @@ CLASS_DECL_CORE bool __node_aura_pre_init()
 CLASS_DECL_CORE bool __node_aura_pos_init()
 {
 
-//   t_htask = new htask();
+//   t_htask = memory_new htask();
 //
 //    //t_htask-
 //

@@ -90,43 +90,43 @@ namespace experience_core
       if(strSchema == "001")
       {
                
-         return new ::experience_core::frame_001;
+         return memory_new ::experience_core::frame_001;
 
       }
       else if(strSchema == "002")
       {
                
-         return new ::experience_core::frame_002;
+         return memory_new ::experience_core::frame_002;
 
       }
       else if(strSchema == "005")
       {
                
-         return new ::experience_core::frame_005;
+         return memory_new ::experience_core::frame_005;
 
       }
       else if(strSchema == "008")
       {
                
-         return new ::experience_core::frame_008;
+         return memory_new ::experience_core::frame_008;
 
       }
       else if(strSchema == "011")
       {
                
-         return new ::experience_core::frame_011;
+         return memory_new ::experience_core::frame_011;
 
       }
       else if(strSchema == "013")
       {
                
-         return new ::experience_core::frame_013;
+         return memory_new ::experience_core::frame_013;
 
       }
       else if(strSchema == "Minimal001")
       {
 
-         return new ::experience_core::frame_Minimal001;
+         return memory_new ::experience_core::frame_Minimal001;
 
       }
 

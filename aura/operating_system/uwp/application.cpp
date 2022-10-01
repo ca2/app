@@ -76,7 +76,7 @@ namespace aura
 //
 //      if(dwResSize > 0)
 //      {
-//         LPVOID lpdata = new byte[dwResSize];
+//         LPVOID lpdata = memory_new byte[dwResSize];
 //         if(GetFileVersionInfo(
 //               lpszModuleFilePath,
 //               0,
@@ -289,7 +289,7 @@ namespace aura
 //         {
 //            delete[] vmap[::payload];
 //         }
-//         vmap[::payload] = new char[payload.get_length() + 1 + value.get_length() + 1];
+//         vmap[::payload] = memory_new char[payload.get_length() + 1 + value.get_length() + 1];
 //         sprintf(vmap[::payload], "%s=%s", payload, value);
 //         putenv( vmap[::payload] );
 //      }

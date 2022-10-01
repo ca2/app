@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		9A0F8AF828D117E7002601B1 /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F8AE128D1166D002601B1 /* networking.cpp */; };
 		9A0F8AF928D117F0002601B1 /* ip_enum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F8AA128D1166C002601B1 /* ip_enum.cpp */; };
-		9A0F8AFA28D117F7002601B1 /* sockets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F8AA228D1166C002601B1 /* sockets.cpp */; };
 		9A0F8AFB28D11805002601B1 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F8AF628D1170B002601B1 /* _.cpp */; };
 		9A2199942761000D001E14CC /* libcrypto.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A2199932761000D001E14CC /* libcrypto.3.dylib */; };
 		9A226D4227CE99B40042BAC2 /* libssl.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A226D4127CE99B40042BAC2 /* libssl.3.dylib */; };
 		9A226D6427CEAE8E0042BAC2 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC019E22748A7D4006BEBCC /* libapex.dylib */; };
+		9A366DB628E598B40064C704 /* networking_bsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A366DB028E597CA0064C704 /* networking_bsd.cpp */; };
+		9A366DB728E598B60064C704 /* networking_bsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A366DB028E597CA0064C704 /* networking_bsd.cpp */; };
 		9A81FBE227518CAF003F38EC /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81FBE127518CAF003F38EC /* libacme.dylib */; };
 		9ADB6CB328D13FC900608B22 /* address.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F8AAA28D1166C002601B1 /* address.cpp */; };
 		9ADB6CB428D13FCA00608B22 /* address.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F8AAA28D1166C002601B1 /* address.cpp */; };
@@ -168,7 +169,6 @@
 		9A0F8A9528D1166C002601B1 /* _operating_system.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _operating_system.h; sourceTree = "<group>"; };
 		9A0F8A9F28D1166C002601B1 /* port_forward.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = port_forward.h; sourceTree = "<group>"; };
 		9A0F8AA128D1166C002601B1 /* ip_enum.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ip_enum.cpp; sourceTree = "<group>"; };
-		9A0F8AA228D1166C002601B1 /* sockets.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sockets.cpp; sourceTree = "<group>"; };
 		9A0F8AA328D1166C002601B1 /* _networking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _networking.h; sourceTree = "<group>"; };
 		9A0F8AA428D1166C002601B1 /* _.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A0F8AA528D1166C002601B1 /* _networking_impl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _networking_impl.h; sourceTree = "<group>"; };
@@ -187,6 +187,7 @@
 		9A0F8AF728D1170B002601B1 /* _.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
 		9A2199932761000D001E14CC /* libcrypto.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcrypto.3.dylib; path = "../../../operating-system/storage-macos/library/libcrypto.3.dylib"; sourceTree = "<group>"; };
 		9A226D4127CE99B40042BAC2 /* libssl.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libssl.3.dylib; path = "../../../operating-system/storage-macos/library/libssl.3.dylib"; sourceTree = "<group>"; };
+		9A366DB028E597CA0064C704 /* networking_bsd.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = networking_bsd.cpp; sourceTree = "<group>"; };
 		9A81FBDD27516603003F38EC /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A81FBE127518CAF003F38EC /* libacme.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libacme.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A8E9ED6282A33D2005FF778 /* libios_acme.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,10 +236,10 @@
 				9A0F89AD28D1166C002601B1 /* ip_enum.h */,
 				9A0F8AE128D1166D002601B1 /* networking.cpp */,
 				9A0F8AD528D1166D002601B1 /* networking.h */,
+				9A366DB028E597CA0064C704 /* networking_bsd.cpp */,
 				9A0F89AE28D1166C002601B1 /* port_forward.cpp */,
 				9A0F8A9F28D1166C002601B1 /* port_forward.h */,
 				9A0F8AAD28D1166C002601B1 /* resource.h */,
-				9A0F8AA228D1166C002601B1 /* sockets.cpp */,
 			);
 			name = networking_bsd;
 			sourceTree = "<group>";
@@ -497,7 +498,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastUpgradeCheck = 1310;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					9AC019332748A002006BEBCC = {
 						CreatedOnToolsVersion = 13.1;
@@ -554,6 +555,7 @@
 				9ADB6CC028D1401A00608B22 /* tcp_socket.cpp in Sources */,
 				9ADB6CC828D140F700608B22 /* socket_handler.cpp in Sources */,
 				9ADB6CC428D1402500608B22 /* listen_socket.cpp in Sources */,
+				9A366DB728E598B60064C704 /* networking_bsd.cpp in Sources */,
 				9ADB6CF128D1481B00608B22 /* _factory.cpp in Sources */,
 				9ADB6CCE28D1412F00608B22 /* socket.cpp in Sources */,
 				9ADB6CB828D13FE800608B22 /* context.cpp in Sources */,
@@ -583,11 +585,11 @@
 				9ADB6CF028D1481900608B22 /* _factory.cpp in Sources */,
 				9ADB6CC528D140EF00608B22 /* socket.cpp in Sources */,
 				9ADB6CBF28D1401900608B22 /* tcp_socket.cpp in Sources */,
-				9A0F8AFA28D117F7002601B1 /* sockets.cpp in Sources */,
 				9ADB6CC328D1402400608B22 /* listen_socket.cpp in Sources */,
 				9ADB6CBB28D13FF200608B22 /* client_context.cpp in Sources */,
 				9ADB6CB328D13FC900608B22 /* address.cpp in Sources */,
 				9A0F8AFB28D11805002601B1 /* _.cpp in Sources */,
+				9A366DB628E598B40064C704 /* networking_bsd.cpp in Sources */,
 				9A0F8AF828D117E7002601B1 /* networking.cpp in Sources */,
 				9ADB6CCF28D1426F00608B22 /* _.cpp in Sources */,
 				9A0F8AF928D117F0002601B1 /* ip_enum.cpp in Sources */,
@@ -638,7 +640,6 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
-				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -663,8 +664,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				EXECUTABLE_PREFIX = lib;
@@ -715,12 +718,14 @@
 					"$(WorkspaceDir)/source/app/include",
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/source/port/include",
 					"$(WorkspaceDir)/source/port",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/..",
+					"$(PROJECT_DIR)/../..",
 					"$(HOME)/sensitive/sensitive/include",
 				);
 				USE_HEADERMAP = NO;
@@ -735,7 +740,6 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
-				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
@@ -760,8 +764,10 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -806,12 +812,14 @@
 					"$(WorkspaceDir)/source/app/include",
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/source/port/include",
 					"$(WorkspaceDir)/source/port",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/..",
+					"$(PROJECT_DIR)/../..",
 					"$(HOME)/sensitive/sensitive/include",
 				);
 				USE_HEADERMAP = NO;

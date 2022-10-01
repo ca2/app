@@ -84,7 +84,7 @@ public:
 
    
    /**
-    * Create a new Screen instance
+    * Create a memory_new Screen instance
     *
     * \param size
     *     Size in pixels at 96 dpi (on high-DPI screens, the actual resolution

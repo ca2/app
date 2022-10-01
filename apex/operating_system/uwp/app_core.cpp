@@ -6,6 +6,6 @@
 
 
 #undef papp
-#undef new
+
 
 

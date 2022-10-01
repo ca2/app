@@ -18,11 +18,11 @@ namespace parallelization
    CLASS_DECL_APEX void initialize()
    {
 
-      //s_pcs2 = new critical_section();
+      //s_pcs2 = memory_new critical_section();
 
-      //s_piaThread2 = new comparable_eq_array<itask_t>;
+      //s_piaThread2 = memory_new comparable_eq_array<itask_t>;
 
-      //s_pthreadptra2 = new __pointer_array(thread);
+      //s_pthreadptra2 = memory_new __pointer_array(thread);
 
       __node_init_multitasking();
 

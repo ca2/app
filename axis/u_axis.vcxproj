@@ -122,15 +122,54 @@
     <ClInclude Include="geoip\update.h" />
     <ClInclude Include="geoip\_.h" />
     <ClInclude Include="graphics\render\water_routine.h" />
+    <ClInclude Include="html\element\aaa__component.h" />
+    <ClInclude Include="html\element\element.h" />
+    <ClInclude Include="html\element\_.h" />
+    <ClInclude Include="html\graphics\aaa__component.h" />
+    <ClInclude Include="html\graphics\attribute.h" />
+    <ClInclude Include="html\graphics\base.h" />
+    <ClInclude Include="html\graphics\border.h" />
+    <ClInclude Include="html\graphics\box.h" />
+    <ClInclude Include="html\graphics\font.h" />
+    <ClInclude Include="html\graphics\message.h" />
+    <ClInclude Include="html\graphics\point.h" />
+    <ClInclude Include="html\graphics\reader.h" />
+    <ClInclude Include="html\graphics\size.h" />
+    <ClInclude Include="html\graphics\style.h" />
+    <ClInclude Include="html\graphics\style_sheet.h" />
+    <ClInclude Include="html\graphics\style_sheet_array.h" />
+    <ClInclude Include="html\graphics\tag.h" />
+    <ClInclude Include="html\graphics\value.h" />
+    <ClInclude Include="html\graphics\_.h" />
+    <ClInclude Include="html\html\aaa__component.h" />
+    <ClInclude Include="html\html\core_data.h" />
+    <ClInclude Include="html\html\data.h" />
     <ClInclude Include="html\html\html.h" />
     <ClInclude Include="html\html\_.h" />
+    <ClInclude Include="html\html\_1.h" />
     <ClInclude Include="html\html\_const.h" />
+    <ClInclude Include="html\html\_constant.h" />
     <ClInclude Include="html\html_lite\attributes.h" />
     <ClInclude Include="html\html_lite\common.h" />
     <ClInclude Include="html\html_lite\entity_resolver.h" />
     <ClInclude Include="html\html_lite\reader.h" />
     <ClInclude Include="html\html_lite\tag.h" />
     <ClInclude Include="html\html_lite\_.h" />
+    <ClInclude Include="html\impl\aaa__component.h" />
+    <ClInclude Include="html\impl\cell.h" />
+    <ClInclude Include="html\impl\element.h" />
+    <ClInclude Include="html\impl\form.h" />
+    <ClInclude Include="html\impl\image.h" />
+    <ClInclude Include="html\impl\input_button.h" />
+    <ClInclude Include="html\impl\input_checkbox.h" />
+    <ClInclude Include="html\impl\input_text.h" />
+    <ClInclude Include="html\impl\select.h" />
+    <ClInclude Include="html\impl\table.h" />
+    <ClInclude Include="html\impl\table_elemental.h" />
+    <ClInclude Include="html\impl\table_row.h" />
+    <ClInclude Include="html\impl\text.h" />
+    <ClInclude Include="html\impl\_.h" />
+    <ClInclude Include="html\user\form.h" />
     <ClInclude Include="id.h" />
     <ClInclude Include="include\objc.h" />
     <ClInclude Include="include\objcpp.h" />
@@ -191,16 +230,21 @@
     <ClInclude Include="platform\openweather_city.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\system.h" />
-    <ClInclude Include="user\combo_box.h" />
-    <ClInclude Include="user\list_box.h" />
-    <ClInclude Include="user\simple_ui_draw.h" />
-    <ClInclude Include="user\slider.h" />
-    <ClInclude Include="user\still.h" />
-    <ClInclude Include="user\style.h" />
-    <ClInclude Include="user\user.h" />
-    <ClInclude Include="user\validate.h" />
+    <ClInclude Include="user\form\control.h" />
+    <ClInclude Include="user\form\data.h" />
+    <ClInclude Include="user\form\window.h" />
+    <ClInclude Include="user\form\_.h" />
+    <ClInclude Include="user\user\aaa__component.h" />
+    <ClInclude Include="user\user\combo_box.h" />
+    <ClInclude Include="user\user\list_box.h" />
+    <ClInclude Include="user\user\object.h" />
+    <ClInclude Include="user\user\plus_minus.h" />
+    <ClInclude Include="user\user\simple_ui_draw.h" />
+    <ClInclude Include="user\user\slider.h" />
+    <ClInclude Include="user\user\style.h" />
+    <ClInclude Include="user\user\user.h" />
+    <ClInclude Include="user\user\_.h" />
     <ClInclude Include="user\_.h" />
-    <ClInclude Include="user\_user.h" />
     <ClInclude Include="_.h" />
   </ItemGroup>
   <ItemGroup>
@@ -220,7 +264,7 @@
     <ClCompile Include="account\user_set.cpp" />
     <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="database\database\database.cpp" />
-    <ClCompile Include="database\database\database_composite.cpp" />
+    <ClCompile Include="database\database\composite.cpp" />
     <ClCompile Include="database\database\database_impl.cpp" />
     <ClCompile Include="database\database\dataset.cpp" />
     <ClCompile Include="database\database\definition.cpp" />
@@ -251,17 +295,39 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="geoip\city.cpp" />
-    <ClCompile Include="geoip\geoip.cpp" />
-    <ClCompile Include="geoip\region_name.cpp" />
-    <ClCompile Include="geoip\time_zone.cpp" />
-    <ClCompile Include="geoip\update.cpp" />
     <ClCompile Include="graphics\render\water_routine.cpp" />
+    <ClCompile Include="html\element\element.cpp" />
+    <ClCompile Include="html\graphics\attribute.cpp" />
+    <ClCompile Include="html\graphics\base.cpp" />
+    <ClCompile Include="html\graphics\font.cpp" />
+    <ClCompile Include="html\graphics\message.cpp" />
+    <ClCompile Include="html\graphics\reader.cpp" />
+    <ClCompile Include="html\graphics\style.cpp" />
+    <ClCompile Include="html\graphics\style_sheet.cpp" />
+    <ClCompile Include="html\graphics\style_sheet_array.cpp" />
+    <ClCompile Include="html\graphics\tag.cpp" />
+    <ClCompile Include="html\graphics\value.cpp" />
+    <ClCompile Include="html\html\core_data.cpp" />
+    <ClCompile Include="html\html\data.cpp" />
     <ClCompile Include="html\html\html.cpp" />
     <ClCompile Include="html\html_lite\attributes.cpp" />
     <ClCompile Include="html\html_lite\entity_resolver.cpp" />
     <ClCompile Include="html\html_lite\reader.cpp" />
     <ClCompile Include="html\html_lite\tag.cpp" />
+    <ClCompile Include="html\impl\cell.cpp" />
+    <ClCompile Include="html\impl\element.cpp" />
+    <ClCompile Include="html\impl\form.cpp" />
+    <ClCompile Include="html\impl\image.cpp" />
+    <ClCompile Include="html\impl\input_button.cpp" />
+    <ClCompile Include="html\impl\input_checkbox.cpp" />
+    <ClCompile Include="html\impl\input_text.cpp" />
+    <ClCompile Include="html\impl\select.cpp" />
+    <ClCompile Include="html\impl\table.cpp" />
+    <ClCompile Include="html\impl\table_elemental.cpp" />
+    <ClCompile Include="html\impl\table_row.cpp" />
+    <ClCompile Include="html\impl\text.cpp" />
+    <ClCompile Include="html\impl\_.cpp" />
+    <ClCompile Include="html\user\form.cpp" />
     <ClCompile Include="mathematics\calculator\calculator.cpp" />
     <ClCompile Include="mathematics\calculator\element.cpp" />
     <ClCompile Include="mathematics\calculator\parser.cpp" />
@@ -280,13 +346,18 @@
     <ClCompile Include="platform\geo_department.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />
-    <ClCompile Include="user\combo_box.cpp" />
-    <ClCompile Include="user\list_box.cpp" />
-    <ClCompile Include="user\simple_ui_draw.cpp" />
-    <ClCompile Include="user\slider.cpp" />
-    <ClCompile Include="user\style.cpp" />
-    <ClCompile Include="user\user.cpp" />
-    <ClCompile Include="user\validate.cpp" />
+    <ClCompile Include="user\form\control.cpp" />
+    <ClCompile Include="user\form\data.cpp" />
+    <ClCompile Include="user\form\window.cpp" />
+    <ClCompile Include="user\user\combo_box.cpp" />
+    <ClCompile Include="user\user\list_box.cpp" />
+    <ClCompile Include="user\user\object.cpp" />
+    <ClCompile Include="user\user\plus_minus.cpp" />
+    <ClCompile Include="user\user\simple_ui_draw.cpp" />
+    <ClCompile Include="user\user\slider.cpp" />
+    <ClCompile Include="user\user\style.cpp" />
+    <ClCompile Include="user\user\user.cpp" />
+    <ClCompile Include="user\user\validate.cpp" />
     <ClCompile Include="_.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -316,6 +387,7 @@
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
     <ProjectName>axis</ProjectName>
+    <WindowsTargetPlatformMinVersion>10.0.19041.0</WindowsTargetPlatformMinVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|Win32'" Label="Configuration">

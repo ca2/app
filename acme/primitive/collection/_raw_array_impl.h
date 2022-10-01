@@ -379,7 +379,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::~raw_array()
 //      throw ::exception(error_bad_argument);
 //
 //   if (nGrowBy >= 0)
-//      m_nGrowBy = nGrowBy;  // set new size_i32
+//      m_nGrowBy = nGrowBy;  // set memory_new size_i32
 //
 //   if (nNewSize == 0)
 //   {
@@ -403,12 +403,12 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::~raw_array()
 //      ASSERT(nNewSize <= SIZE_T_MAX/sizeof(TYPE));    // no overflow
 //#endif
 //      ::count nAllocSize = maximum(nNewSize, m_nGrowBy);
-////#undef new
-//      m_pData = (TYPE*) new byte[(size_t)nAllocSize * sizeof(TYPE)];
+////
+//      m_pData = (TYPE*) memory_new byte[(size_t)nAllocSize * sizeof(TYPE)];
 //      //__memset((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));
 ////      for( ::index i = 0; i < nNewSize; i++ )
-//  //       ::new( (void *)( m_pData + i ) ) TYPE;
-////#define new ACME_NEW
+//  //       ::memory_new( (void *)( m_pData + i ) ) TYPE;
+//////#define memory_new ACME_NEW
 //      m_nSize = nNewSize;
 //      m_nMaxSize = nAllocSize;
 //   }
@@ -417,12 +417,12 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::~raw_array()
 //      // it fits
 //      if (nNewSize > m_nSize)
 //      {
-//         // initialize the new elements
+//         // initialize the memory_new elements
 ////         __memset((void *)(m_pData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
 ////         for( i32 i = 0; i < nNewSize-m_nSize; i++ )
-////#undef new
-////            ::new( (void *)( m_pData + m_nSize + i ) ) TYPE;
-////#define new ACME_NEW
+////
+////            ::memory_new( (void *)( m_pData + m_nSize + i ) ) TYPE;
+//////#define memory_new ACME_NEW
 //      }
 //      else if (m_nSize > nNewSize)
 //      {
@@ -457,11 +457,11 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::~raw_array()
 //#ifdef SIZE_T_MAX
 //      ASSERT(nNewMax <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
 //#endif
-//#undef new
-//      TYPE* pNewData = (TYPE*) new byte[(size_t)nNewMax * sizeof(TYPE)];
-//#define new ACME_NEW
 //
-//      // copy new data from old
+//      TYPE* pNewData = (TYPE*) memory_new byte[(size_t)nNewMax * sizeof(TYPE)];
+////#define memory_new ACME_NEW
+//
+//      // copy memory_new data from old
 //      ::acme::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
 //         m_pData, (size_t)m_nSize * sizeof(TYPE));
 //
@@ -469,9 +469,9 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::~raw_array()
 //      ASSERT(nNewSize > m_nSize);
 ////      __memset((void *)(pNewData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
 ////      for( i32 i = 0; i < nNewSize-m_nSize; i++ )
-////#undef new
-////         ::new( (void *)( pNewData + m_nSize + i ) ) TYPE;
-////#define new ACME_NEW
+////
+////         ::memory_new( (void *)( pNewData + m_nSize + i ) ) TYPE;
+//////#define memory_new ACME_NEW
 //      // get rid of old stuff (note: no destructors called)
 //      delete[] (byte*)m_pData;
 //      m_pData = pNewData;
@@ -497,8 +497,8 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::~raw_array()
 //      TYPE* pNewData = nullptr;
 //      if (m_nSize != 0)
 //      {
-//         pNewData = (TYPE*) new byte[m_nSize * sizeof(TYPE)];
-//         // copy new data from old
+//         pNewData = (TYPE*) memory_new byte[m_nSize * sizeof(TYPE)];
+//         // copy memory_new data from old
 //         ::acme::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
 //            m_pData, m_nSize * sizeof(TYPE));
 //      }

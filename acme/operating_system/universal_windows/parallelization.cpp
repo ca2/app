@@ -6,7 +6,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 #include "framework.h"
 #include "acme/operating_system.h"
-#include "_.h"
 #include "acme/parallelization/message_queue.h"
 
 
@@ -173,7 +172,7 @@ void _on_aura_thread_detach()
 //   if (dwWakeMask & MWMO_ALERTABLE)
 //   {
 //
-//      HANDLE* ph = new HANDLE[nCount + 1];
+//      HANDLE* ph = memory_new HANDLE[nCount + 1];
 //
 //      ::memcpy_dup(ph, pHandles, sizeof(HANDLE) * nCount);
 //
@@ -256,12 +255,19 @@ itask_t get_main_user_itask()
 }
 
 
-void system::windowing_post(const ::procedure& procedure)
+namespace acme
 {
 
-   m_pnode->windowing_post(procedure);
 
-}
+   void system::windowing_post(const ::procedure & procedure)
+   {
+
+      m_pnode->windowing_post(procedure);
+
+   }
+
+
+} // namespace acme
 
 
 

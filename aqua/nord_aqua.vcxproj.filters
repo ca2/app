@@ -1116,7 +1116,7 @@
     <ClInclude Include="filesystem\file\streamable.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\string_file.h">
+    <ClInclude Include="filesystem\file\string_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\text_file.h">

@@ -1,7 +1,7 @@
 
 
 #include "_main_hold.h"
-
+#include "acme/_api.h"
 
 //void stage();
 ::acme::system * acme_system_init();
@@ -16,8 +16,16 @@ void acme_system_term();
 
 #endif
 
-CLASS_DECL_ACME void process_set_args(int argc, platform_char ** argv);
+
+#ifdef WINDOWS
+CLASS_DECL_ACME void set_argc_argv_envp(int argc, wchar_t ** argv, wchar_t ** envp);
+#else
+CLASS_DECL_ACME void set_argc_argv_envp(int argc, char ** argv, char ** envp);
+#endif
+
+
 void implement(::acme::system * psystem);
+
 
 namespace acme
 {
@@ -28,6 +36,7 @@ namespace acme
 
 }
 
+
 #ifdef WINDOWS
 int wmain(int argc, wchar_t* argv[], wchar_t* envp[])
 #else
@@ -37,17 +46,25 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 
    main_hold mainhold;
 
+   set_argc_argv_envp(argc, argv, envp);
+
    __pointer(APPLICATION_CLASS) papp(__new(APPLICATION_CLASS));
 
-#ifdef WINDOWS
+#ifdef NO_NETWORKING
 
-   papp->get_arguments_from_command_line();
-
-#else
-
-   papp->set_args(argc, argv, envp);
+   papp->m_bNetworking = false;
 
 #endif
+
+//#ifdef WINDOWS
+//
+//   papp->get_arguments_from_command_line();
+//
+//#else
+//
+//   papp->set_args(argc, argv, envp);
+//
+//#endif
 
 
 //   {
@@ -70,22 +87,70 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 //      main.m_envp = envp;
 //
 //#endif
-//
-//#ifdef __APP_ID
-//
-//      main.m_strAppId = __APP_ID;
-//
-//#endif
 
-      papp->m_pfnImplement = &::implement;
+#ifdef APP_ID
+
+      papp->m_strAppId = APP_ID;
+
+#endif
 
       papp->m_bConsole = true;
+  
+      papp->m_pfnImplement = &::implement;
 
-      papp->m_strAppId = __APP_ID;
+      try
+      {
 
-      int iExitCode = papp->main_loop();
+         __main(papp);
 
-      return iExitCode;
+      }
+      catch (const ::exception & exception)
+      {
+
+         string strReport;
+
+         strReport += "Exception has occurred:\n";
+         strReport += exception.m_strMessage + ";\n";
+         strReport += "Command Line:\n";
+         strReport += get_command_line() + ";\n";
+         strReport += exception.m_strDetails;
+         strReport += "Callstack:\n";
+         strReport += exception.m_strCallstack;
+
+         fprintf(stderr, "%s", strReport.c_str());
+
+      }
+      catch (...)
+      {
+         
+         fprintf(stderr, "Unknown exception has occurred\n");
+         
+      }
+
+//      papp->m_bConsole = true;
+//
+//      papp->m_strAppId = __APP_ID;
+//
+//      try
+//      {
+//
+//         int iExitCode = papp->main_loop();
+//
+//         return iExitCode;
+//
+//      }
+//      catch (const ::exception & exception)
+//      {
+//
+//         fprintf(stderr, "Exception has occurred \"%s\"(\"%s\")", exception.m_strMessage.c_str(), exception.m_strDetails.c_str());
+//
+//      }
+//      catch (...)
+//      {
+//
+//         fprintf(stderr, "Unknown Exception has occurred");
+//
+//      }
 
 
 //   process_set_args(argc, argv);

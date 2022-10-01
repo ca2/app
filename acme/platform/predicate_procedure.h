@@ -1,7 +1,7 @@
 #pragma once
 
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 
 void run_task(::matter * pobjectTask);

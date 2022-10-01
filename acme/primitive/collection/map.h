@@ -1,7 +1,7 @@
 #pragma once
 
 
-#define new ACME_NEW
+//#define memory_new ACME_NEW
 
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
@@ -260,7 +260,7 @@ public:
    }
    association * find_association(ARG_KEY key) const;
 
-   //add a new (key, value) association
+   //add a memory_new (key, value) association
    association * set_at(ARG_KEY key, ARG_VALUE newValue)
    {
 
@@ -273,7 +273,7 @@ public:
    }
 
 
-   //add a new (key, value) association
+   //add a memory_new (key, value) association
    virtual void set_payload(const PAIR & pair) override
    {
       set_at(pair.key(), pair.value());
@@ -798,13 +798,13 @@ map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::new_association(ARG_KEY key, ::u32
    //   //   this->m_passociationFree = passociation;
 
    //   //}
-   //   this->m_passociationFree = new association();
+   //   this->m_passociationFree = memory_new association();
 
    //}
 
    //ENSURE(this->m_passociationFree != nullptr);  // we must have something
 
-   auto passociation = new association(key);
+   auto passociation = memory_new association(key);
 
    attach(passociation, nHashBucket, nHashValue);
 
@@ -1063,7 +1063,7 @@ template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, t
 inline VALUE& map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::operator[](ARG_KEY key)
 {
 
-   return get_association(key)->element2();  // return new matter
+   return get_association(key)->element2();  // return memory_new matter
 
 }
 
@@ -1071,7 +1071,7 @@ template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, t
 inline const VALUE & map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::operator[](ARG_KEY key) const
 {
 
-   return get_association(key)->element2();  // return new matter
+   return get_association(key)->element2();  // return memory_new matter
 
 }
 

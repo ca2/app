@@ -646,7 +646,7 @@ namespace user
       if (!m_bHelpMode)
       return;
 
-      // only post new WM_EXITHELPMODE message if one doesn't already exist
+      // only post memory_new WM_EXITHELPMODE message if one doesn't already exist
       //  in the queue.
       MESSAGE msg;
       if (!::PeekMessage(&msg, get_handle(), WM_EXITHELPMODE, WM_EXITHELPMODE,
@@ -1516,7 +1516,7 @@ namespace user
       ////if (bStayActive)
       ////   pTopLevel->m_nFlags |= WF_STAYACTIVE;
 
-      //// synchronization_object floating windows to the new state
+      //// synchronization_object floating windows to the memory_new state
       //NotifyFloatingWindows(bStayActive ? FS_ACTIVATE : FS_DEACTIVATE);
 
       // get active ::user::impact (use active frame if no active ::user::impact)
@@ -1754,7 +1754,7 @@ namespace user
 
       string strMatter = pcontext->m_papexcontext->dir().matter(strToolbar);
 
-      string strXml = pcontext->m_papexcontext->file().as_string(strMatter);
+      string strXml = pcontext->m_papexcontext->file().safe_get_string(strMatter);
 
       ptoolbar->LoadXmlToolBar(strXml);
 
@@ -1977,7 +1977,7 @@ namespace user
 
    //   }
 
-   //   m_nIDLastMessage = (::u32)wParam;    // new ID (or 0)
+   //   m_nIDLastMessage = (::u32)wParam;    // memory_new ID (or 0)
 
    //   m_nIDTracking = (::u32)wParam;       // so F1 on toolbar buttons work
 

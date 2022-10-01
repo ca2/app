@@ -37,28 +37,6 @@ nano_window::~nano_window()
 }
 
 
-::string nano_window::get_message_box_message()
-{
-
-   return m_strMessage;
-
-}
-
-
-::string nano_window::get_message_box_title()
-{
-
-   return m_strTitle;
-
-}
-
-
-::string nano_window::get_message_box_details()
-{
-
-   return m_strDetails;
-
-}
 
 
 void nano_window::on_initialize_object()

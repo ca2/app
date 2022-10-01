@@ -27,11 +27,11 @@ namespace user
    CLASS_DECL_AURA void init_windowing()
    {
 
-      g_pcsImpl = new critical_section();
+      g_pcsImpl = memory_new critical_section();
 
-      g_pmapImpl = new map < oswindow, ::user::interaction_impl * >;
+      g_pmapImpl = memory_new map < oswindow, ::user::interaction_impl * >;
 
-      g_pmapHandle = new  map < ::user::interaction_impl *, oswindow >;
+      g_pmapHandle = memory_new  map < ::user::interaction_impl *, oswindow >;
       
 //      
 //#ifdef WINDOWS_DESKTOP

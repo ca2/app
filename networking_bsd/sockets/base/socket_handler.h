@@ -84,7 +84,7 @@ namespace sockets_bsd
       ///** get ::mutex object for threadsafe operations. */
       //virtual clasync & GetMutex() const = 0;
 
-      virtual void set_logger(::apex::log * plog);
+      void set_logger(::apex::log * plog) override;
 
       /** Log error to log class for print out / storage. */
       //virtual void log(base_socket *point,const string & user_text,int err,const string & sys_err, enum_trace_level elevel = e_trace_level_warning);
@@ -93,39 +93,39 @@ namespace sockets_bsd
       // socket stuff
       // -------------------------------------------------------------------------
       /** add socket instance to socket ::map. Removal is always automatic. */
-      virtual void add(const ::sockets::socket_pointer& psocket) = 0;
+      virtual void add(const ::sockets::socket_pointer& psocket) override = 0;
       virtual void move2(::sockets::socket_pointer && psocket) = 0;
       virtual void move(socket_map::association * passociation, socket_map * psocketmap = nullptr) = 0;
       virtual void restart_socket(SOCKET socket) = 0;
       //virtual socket_map::association* new_association(socket_pointer && psocket) = 0;
    //private:
       /** erase socket from socket ::map, used by socket class. */
-     virtual void erase(const ::sockets::socket_pointer & psocket) = 0;
+     virtual void erase(const ::sockets::socket_pointer & psocket) override = 0;
    
 
-      virtual bool contains(::sockets::base_socket *) = 0;
+      virtual bool contains(::sockets::base_socket *)override = 0;
 
       /** get status of read/write/exception file descriptor set for a socket. */
       virtual void get(SOCKET s,bool& r,bool& w,bool& e) = 0;
       /** Set read/write/exception file descriptor sets (fd_set). */
       virtual void set(SOCKET s,bool bRead,bool bWrite,bool bException = true) = 0;
       /** Wait for events, generate callbacks. */
-      virtual int select(i32 sec, i32 usec) = 0;
+      virtual int select(i32 sec, i32 usec) override = 0;
       /** This method will not return until an event has been detected. */
-      virtual int select() = 0;
+      virtual int select() override = 0;
       /** Wait for events, generate callbacks. */
       virtual int _select(struct timeval *tsel) = 0;
 
       /** Check that a socket really is handled by this socket handler. */
-      virtual bool Valid(::sockets::base_socket *) = 0;
+      virtual bool Valid(::sockets::base_socket *)override = 0;
       /** Return number of sockets handled by this handler.  */
-      virtual ::count get_count() = 0;
+      virtual ::count get_count()override = 0;
 
-      virtual bool socket_get_run() const;
+      virtual bool socket_get_run() const override;
 
       /** Override and return false to deny all incoming connections.
       \lparam point_i32 listen_socket class pointer (use GetPort to identify which one) */
-      virtual bool OkToAccept(::sockets::base_socket *point_i32) = 0;
+      virtual bool OkToAccept(::sockets::base_socket *point_i32) override = 0;
 
       /** Called by socket when a socket changes state. */
       virtual socket_id_list& socket_id_list_get(enum_list elist) = 0;
@@ -141,21 +141,21 @@ namespace sockets_bsd
       virtual __pointer(pool_socket) FindConnection(int type,const string & protocol, ::networking::address * address) = 0;
 
       /** enable connection pool (by default disabled). */
-      virtual void EnablePool(bool = true) = 0;
+      virtual void EnablePool(bool = true) override = 0;
       /** Check pool status.
       \return true if connection pool is enabled */
-      virtual bool PoolEnabled() = 0;
+      virtual bool PoolEnabled() override = 0;
 
       // -------------------------------------------------------------------------
       // Socks4
       // -------------------------------------------------------------------------
 #if defined(BSD_STYLE_SOCKETS)
-      /** Set socks4 server ip that all new tcp sockets should use. */
+      /** Set socks4 server ip that all memory_new tcp sockets should use. */
       //virtual void SetSocks4Host(in_addr) = 0;
-      /** Set socks4 server hostname that all new tcp sockets should use. */
+      /** Set socks4 server hostname that all memory_new tcp sockets should use. */
       virtual void SetSocks4Host(const string & ) = 0;
 #endif
-      /** Set socks4 server port number that all new tcp sockets should use. */
+      /** Set socks4 server port number that all memory_new tcp sockets should use. */
       virtual void SetSocks4Port(::networking::port_t) = 0;
       /** Set optional socks4 userid. */
       virtual void SetSocks4Userid(const string & ) = 0;
@@ -197,11 +197,11 @@ namespace sockets_bsd
       /** Returns true if socket waiting for a resolve event. */
       //virtual bool Resolving(base_socket *) = 0;
       /** Fetch unique trigger atom. */
-      virtual int TriggerID(::sockets::base_socket *src) = 0;
+      int TriggerID(::sockets::base_socket *src) override;
       /** Subscribe socket to trigger atom. */
-      virtual bool Subscribe(int atom, ::sockets::base_socket *dst) = 0;
+      bool Subscribe(int atom, ::sockets::base_socket *dst) override = 0;
       /** Unsubscribe socket from trigger atom. */
-      virtual bool Unsubscribe(int atom, ::sockets::base_socket *dst) = 0;
+      bool Unsubscribe(int atom, ::sockets::base_socket *dst) override = 0;
       /** Execute OnTrigger for subscribed sockets.
       \lparam atom Trigger ID
       \lparam data Data passed from source to destination

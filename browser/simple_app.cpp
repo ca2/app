@@ -77,7 +77,7 @@ void SimpleApp::OnContextInitialized()
    m_bCefInitialized = true;
 
 //   // SimpleHandler implements browser-level callbacks.
-//   CefRefPtr<SimpleHandler> handler(new SimpleHandler(use_impacts));
+//   CefRefPtr<SimpleHandler> handler(memory_new SimpleHandler(use_impacts));
 //
 //   // Specify CEF browser settings here.
 //   CefBrowserSettings browser_settings;
@@ -97,7 +97,7 @@ void SimpleApp::OnContextInitialized()
 //            handler, url, browser_settings, nullptr, nullptr);
 //
 //      // Create the Window. It will show itself after creation.
-//      CefWindow::CreateTopLevelWindow(new SimpleWindowDelegate(browser_impact));
+//      CefWindow::CreateTopLevelWindow(memory_new SimpleWindowDelegate(browser_impact));
 //   }
 //   else
 //   {

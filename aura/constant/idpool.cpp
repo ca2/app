@@ -176,7 +176,7 @@ namespace aura
 
       //html_none = "none";
       //html_unknown = "unknown";
-      //html_new = "new";
+      //html_new = "memory_new";
       //html_initial = "initial";
       //html_html = "html";
       //html_head = "head";

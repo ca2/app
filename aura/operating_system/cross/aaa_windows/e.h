@@ -2843,7 +2843,7 @@
 //
 // The policy of your user account does not allow you to change passwords too frequently.
 // This is done to prevent users from changing back to a familiar, but potentially discovered, password.
-// If you feel your password has been compromised then please contact your administrator immediately to have a new one assigned.
+// If you feel your password has been compromised then please contact your administrator immediately to have a memory_new one assigned.
 //
 #define ERROR_PWD_TOO_RECENT             616L
 
@@ -2910,7 +2910,7 @@
 //
 // {Illegal ::aura::get_system() DLL ReloCAtion}
 // The system DLL %hs was reloCAted in memory. The appliCAtion will not run properly.
-// The reloCAtion occurred because the DLL %hs occupied an address range reserved for Windows system DLLs. The vendor supplying the DLL should be contacted for a new DLL.
+// The reloCAtion occurred because the DLL %hs occupied an address range reserved for Windows system DLLs. The vendor supplying the DLL should be contacted for a memory_new DLL.
 //
 #define ERROR_ILLEGAL_DLL_RELOCATION     623L
 
@@ -3934,7 +3934,7 @@
 //
 // MessageText:
 //
-// A new volume has been mounted by a file system.
+// A memory_new volume has been mounted by a file system.
 //
 #define ERROR_VOLUME_MOUNTED             743L
 
@@ -5053,7 +5053,7 @@
 //
 // MessageText:
 //
-// When accessing a new tape of a multivolume partition, the current block size is incorrect.
+// When accessing a memory_new tape of a multivolume partition, the current block size is incorrect.
 //
 #define ERROR_INVALID_BLOCK_LENGTH       1106L
 
@@ -6697,7 +6697,7 @@
 //
 // MessageText:
 //
-// Unable to update the password. The value provided for the new password contains values that are not allowed in passwords.
+// Unable to update the password. The value provided for the memory_new password contains values that are not allowed in passwords.
 //
 #define ERROR_ILL_FORMED_PASSWORD        1324L
 
@@ -6706,7 +6706,7 @@
 //
 // MessageText:
 //
-// Unable to update the password. The value provided for the new password does not meet the length, complexity, or history requirements of the domain.
+// Unable to update the password. The value provided for the memory_new password does not meet the length, complexity, or history requirements of the domain.
 //
 #define ERROR_PASSWORD_RESTRICTION       1325L
 
@@ -7039,7 +7039,7 @@
 //
 // MessageText:
 //
-// Cannot start a new logon session with an ID that is already in use.
+// Cannot start a memory_new logon session with an ID that is already in use.
 //
 #define ERROR_LOGON_SESSION_EXISTS       1363L
 
@@ -7264,7 +7264,7 @@
 //
 // MessageText:
 //
-// A new member could not be added to a loCAl group because the member has the wrong account type.
+// A memory_new member could not be added to a loCAl group because the member has the wrong account type.
 //
 #define ERROR_INVALID_MEMBER             1388L
 
@@ -10869,7 +10869,7 @@
 //
 // MessageText:
 //
-// The DHCP client has obtained an IP address that is already in use on the network. The loCAl interface will be disabled until the DHCP client can obtain a new address.
+// The DHCP client has obtained an IP address that is already in use on the network. The loCAl interface will be disabled until the DHCP client can obtain a memory_new address.
 //
 #define ERROR_DHCP_ADDRESS_CONFLICT      4100L
 
@@ -11647,7 +11647,7 @@
 //
 // MessageText:
 //
-// The cluster group is not available for any new requests.
+// The cluster group is not available for any memory_new requests.
 //
 #define ERROR_GROUP_NOT_AVAILABLE        5012L
 
@@ -12740,7 +12740,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A new node can not be added since this cluster is already at its maximum number of nodes.
+// A memory_new node can not be added since this cluster is already at its maximum number of nodes.
 //
 #define ERROR_CLUSTER_MAX_NODES_IN_CLUSTER 5934L
 
@@ -13102,7 +13102,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// A new encrypted file is being created and a $EFS needs to be provided.
+// A memory_new encrypted file is being created and a $EFS needs to be provided.
 //
 #define ERROR_CS_ENCRYPTION_NEW_ENCRYPTED_FILE 6020L
 
@@ -13423,7 +13423,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// An new or existing archive tail or aura of the active log is invalid.
+// An memory_new or existing archive tail or aura of the active log is invalid.
 //
 #define ERROR_LOG_TAIL_INVALID           6627L
 
@@ -13710,7 +13710,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The Transaction object already has a superior enlistment, and the caller attempted an operation that would have created a new superior. Only a single superior enlistment is allow.
+// The Transaction object already has a superior enlistment, and the caller attempted an operation that would have created a memory_new superior. Only a single superior enlistment is allow.
 //
 #define ERROR_TRANSACTION_SUPERIOR_EXISTS 6709L
 
@@ -14394,7 +14394,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The handle is no longer properly associated with its transaction.  It may have been opened in a transactional resource manager that was subsequently forced to restart.  Please close the handle and open a new one.
+// The handle is no longer properly associated with its transaction.  It may have been opened in a transactional resource manager that was subsequently forced to restart.  Please close the handle and open a memory_new one.
 //
 #define ERROR_EXPIRED_HANDLE             6854L
 
@@ -16118,7 +16118,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The parent of a new subref must exist.
+// The parent of a memory_new subref must exist.
 //
 #define ERROR_DS_SUBREF_MUST_HAVE_PARENT 8356L
 
@@ -16811,7 +16811,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// This directory server is shutting down, and Cannot take composite of new floating single-master operation roles.
+// This directory server is shutting down, and Cannot take composite of memory_new floating single-master operation roles.
 //
 #define ERROR_DS_REFUSING_FSMO_ROLES     8433L
 
@@ -17090,7 +17090,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Synchronization attempt failed because the destination DC is currently waiting to synchronize new partial attributes from source. This condition is normal if a recent schema change modified the partial attribute set. The destination partial attribute set is not a subset of source partial attribute set.
+// Synchronization attempt failed because the destination DC is currently waiting to synchronize memory_new partial attributes from source. This condition is normal if a recent schema change modified the partial attribute set. The destination partial attribute set is not a subset of source partial attribute set.
 //
 #define ERROR_DS_DRA_INCOMPATIBLE_PARTIAL_SET 8464L
 
@@ -17487,7 +17487,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Adding a new mandatory attribute to an existing class, deleting a mandatory attribute from an existing class, or adding an optional attribute to the special class Top that is not a backlink attribute (directly or through inheritance, for example, by adding or deleting an auxiliary class) is not allowed.
+// Adding a memory_new mandatory attribute to an existing class, deleting a mandatory attribute from an existing class, or adding an optional attribute to the special class Top that is not a backlink attribute (directly or through inheritance, for example, by adding or deleting an auxiliary class) is not allowed.
 //
 #define ERROR_DS_NONSAFE_SCHEMA_CHANGE   8508L
 
@@ -17985,7 +17985,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The version of the operating system is incompatible with the current AD DS forest functional level or AD LDS Configuration Set functional level. You must upgrade to a new version of the operating system before this server can become an AD DS Domain Controller or add an AD LDS Instance in this AD DS Forest or AD LDS Configuration Set.
+// The version of the operating system is incompatible with the current AD DS forest functional level or AD LDS Configuration Set functional level. You must upgrade to a memory_new version of the operating system before this server can become an AD DS Domain Controller or add an AD LDS Instance in this AD DS Forest or AD LDS Configuration Set.
 //
 #define ERROR_DS_FOREST_VERSION_TOO_HIGH 8563L
 
@@ -17994,7 +17994,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The version of the operating system installed is incompatible with the current domain functional level. You must upgrade to a new version of the operating system before this server can become a domain controller in this domain.
+// The version of the operating system installed is incompatible with the current domain functional level. You must upgrade to a memory_new version of the operating system before this server can become a domain controller in this domain.
 //
 #define ERROR_DS_DOMAIN_VERSION_TOO_HIGH 8564L
 
@@ -21393,7 +21393,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Failed to obtain new SPI for the inbound SA from Ipsec driver. The most common CAuse for this is that the driver does not have the correct filter. Check your policy to verify the filters.
+// Failed to obtain memory_new SPI for the inbound SA from Ipsec driver. The most common CAuse for this is that the driver does not have the correct filter. Check your policy to verify the filters.
 //
 #define ERROR_IPSEC_IKE_GETSPIFAIL       13857L
 
@@ -21857,7 +21857,7 @@ Do not add any more error codes in that range.
 //
 #define ERROR_IPSEC_IKE_STRONG_CRED_AUTHORIZATION_AND_CERTMAP_FAILURE 13908L
 
-// Extended upper bound for IKE errors to accomodate new errors
+// Extended upper bound for IKE errors to accomodate memory_new errors
 //
 // MessageId: ERROR_IPSEC_IKE_NEG_STATUS_EXTENDED_END
 //
@@ -23365,7 +23365,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The resource is too new to be compatible.
+// The resource is too memory_new to be compatible.
 //
 #define ERROR_EVT_VERSION_TOO_NEW        15035L
 
@@ -33716,7 +33716,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The new CAche item exceeds the maximum per-item size defined for the CAche.
+// The memory_new CAche item exceeds the maximum per-item size defined for the CAche.
 //
 #define SCARD_W_CACHE_ITEM_TOO_BIG       _HRESULT_TYPEDEF_(0x80100072L)
 
@@ -34174,7 +34174,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A CLSID with the same GUID as the new appliCAtion ID is already installed on this machine
+// A CLSID with the same GUID as the memory_new appliCAtion ID is already installed on this machine
 //
 #define COMADMIN_E_APPLID_MATCHES_CLSID  _HRESULT_TYPEDEF_(0x80110446L)
 
@@ -35788,7 +35788,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Specified mode set is stale. Please reacquire the new mode set.
+// Specified mode set is stale. Please reacquire the memory_new mode set.
 //
 #define ERROR_GRAPHICS_STALE_MODESET     _HRESULT_TYPEDEF_(0xC0262320L)
 
@@ -35995,7 +35995,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Specified VidPN topology is stale. Please reacquire the new topology.
+// Specified VidPN topology is stale. Please reacquire the memory_new topology.
 //
 #define ERROR_GRAPHICS_STALE_VIDPN_TOPOLOGY _HRESULT_TYPEDEF_(0xC0262337L)
 
@@ -38078,7 +38078,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A new action_context could not be created because there are too many open contexts.
+// A memory_new action_context could not be created because there are too many open contexts.
 //
 #define TBS_E_TOO_MANY_TBS_CONTEXTS      _HRESULT_TYPEDEF_(0x80284009L)
 
@@ -38087,7 +38087,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A new virtual resource could not be created because there are too many open virtual resources.
+// A memory_new virtual resource could not be created because there are too many open virtual resources.
 //
 #define TBS_E_TOO_MANY_RESOURCES         _HRESULT_TYPEDEF_(0x8028400AL)
 
@@ -38633,7 +38633,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// No new entries can be added to the hash table.
+// No memory_new entries can be added to the hash table.
 //
 #define TBSIMP_E_HASH_TABLE_FULL         _HRESULT_TYPEDEF_(0x80290216L)
 
@@ -38642,7 +38642,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A new TBS action_context could not be created because there are too many open contexts.
+// A memory_new TBS action_context could not be created because there are too many open contexts.
 //
 #define TBSIMP_E_TOO_MANY_TBS_CONTEXTS   _HRESULT_TYPEDEF_(0x80290217L)
 
@@ -38651,7 +38651,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A new virtual resource could not be created because there are too many open virtual resources.
+// A memory_new virtual resource could not be created because there are too many open virtual resources.
 //
 #define TBSIMP_E_TOO_MANY_RESOURCES      _HRESULT_TYPEDEF_(0x80290218L)
 
@@ -40104,7 +40104,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// BitLocker Drive Encryption Cannot be applied to this drive as currently configured because of Group Policy settings. The certifiCAte you provided for drive encryption is self-signed. Current Group Policy settings do not permit the use of self-signed certifiCAtes. Obtain a new certifiCAte from your certifiCAtion authority before attempting to enable BitLocker.
+// BitLocker Drive Encryption Cannot be applied to this drive as currently configured because of Group Policy settings. The certifiCAte you provided for drive encryption is self-signed. Current Group Policy settings do not permit the use of self-signed certifiCAtes. Obtain a memory_new certifiCAte from your certifiCAtion authority before attempting to enable BitLocker.
 //
 #define FVE_E_POLICY_PROHIBITS_SELFSIGNED _HRESULT_TYPEDEF_(0x80310086L)
 
@@ -41835,7 +41835,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The message queue for the virtualization infrastructure driver is full and Cannot accept new messages. Restarting the virtual machine may fix the problem. If the problem persists, try restarting the physiCAl computer.
+// The message queue for the virtualization infrastructure driver is full and Cannot accept memory_new messages. Restarting the virtual machine may fix the problem. If the problem persists, try restarting the physiCAl computer.
 //
 #define ERROR_VID_QUEUE_FULL             _NDIS_ERROR_TYPEDEF_(0xC0370003L)
 
@@ -42254,7 +42254,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A majority of disks failed to be updated with the new configuration.
+// A majority of disks failed to be updated with the memory_new configuration.
 //
 #define ERROR_VOLMGR_PACK_CONFIG_UPDATE_FAILED _NDIS_ERROR_TYPEDEF_(0xC0380004L)
 
@@ -42965,7 +42965,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// All disks failed to be updated with the new content of the log.
+// All disks failed to be updated with the memory_new content of the log.
 //
 #define ERROR_VOLMGR_PACK_LOG_UPDATE_FAILED _NDIS_ERROR_TYPEDEF_(0xC0380053L)
 
@@ -43166,7 +43166,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Failed to write to the virtual hard disk failed because the system failed to alloCAte a new block in the virtual hard disk.
+// Failed to write to the virtual hard disk failed because the system failed to alloCAte a memory_new block in the virtual hard disk.
 //
 #define ERROR_VHD_BLOCK_ALLOCATION_FAILURE _NDIS_ERROR_TYPEDEF_(0xC03A0009L)
 

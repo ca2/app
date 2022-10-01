@@ -169,7 +169,7 @@ bool process_modules(string_array & stra, ::u32 processID)
 
    const int iMaxModuleCount = 1024 * 8;
 
-   HMODULE * hMods = new HMODULE[iMaxModuleCount];
+   HMODULE * hMods = memory_new HMODULE[iMaxModuleCount];
 
    const int iImageSize = MAX_PATH * 8;
 
@@ -325,7 +325,7 @@ int get_current_process_affinity_order()
 //
 //   string strUrl(pszUrl);
 //
-//   auto uri = ref new ::winrt::Windows::Foundation::Uri(strUrl);
+//   auto uri = ref memory_new ::winrt::Windows::Foundation::Uri(strUrl);
 //
 //   ::winrt::Windows::acme::get_system()::Launcher::LaunchUriAsync(uri);
 //

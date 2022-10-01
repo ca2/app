@@ -28,7 +28,7 @@
 //
 //   {
 //
-//      m_timer = ThreadPoolTimer::CreateTimer(ref new TimerElapsedHandler(pred), span);
+//      m_timer = ThreadPoolTimer::CreateTimer(ref memory_new TimerElapsedHandler(pred), span);
 //
 //      if (m_timer == nullptr)
 //      {
@@ -116,7 +116,7 @@
 //
 //   };
 //
-//   m_timer = ThreadPoolTimer::CreateTimer(ref new TimerElapsedHandler(pred), span);
+//   m_timer = ThreadPoolTimer::CreateTimer(ref memory_new TimerElapsedHandler(pred), span);
 //
 //   return true;
 //

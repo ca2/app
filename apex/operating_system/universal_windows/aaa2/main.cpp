@@ -141,7 +141,7 @@ CLASS_DECL_APEX void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //
 //      _set_purecall_handler(_ca2_purecall);
 //
-//      ::apex::system * psystem = new ::apex::system();
+//      ::apex::system * psystem = memory_new ::apex::system();
 //
 //
 //      //sleep(30 * 1000);
@@ -151,7 +151,7 @@ CLASS_DECL_APEX void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_
 //
 //      int nReturnCode = 0;
 //
-//      ::universal_windows::main_init_data * pinitmaindata  = new ::universal_windows::main_init_data;
+//      ::universal_windows::main_init_data * pinitmaindata  = memory_new ::universal_windows::main_init_data;
 //
 //      pinitmaindata->m_hInstance             = hInstance;
 //      pinitmaindata->m_hPrevInstance         = hPrevInstance;

@@ -14,6 +14,9 @@
 object::~object() = default;
 
 
+
+
+
 i64 object::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
@@ -78,7 +81,7 @@ i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 //
 //   }
 //
-//   m_pmeta = new object_meta();
+//   m_pmeta = memory_new object_meta();
 //
 //}
 
@@ -3792,3 +3795,25 @@ bool object::IsSerializable() const
 //   return ::predicate_run(this, bSync, procedure);
 //
 //}
+
+
+
+::acme::application * object::get_app() const
+{
+
+   return m_pcontext && m_pcontext->m_pacmeapplication ? m_pcontext->m_pacmeapplication : (m_psystem ? m_psystem->m_pacmeapplicationMain.get() : nullptr);
+
+}
+
+
+
+::apex::session * object::get_session() const
+{
+
+   return m_pcontext ? m_pcontext->m_papexsession : nullptr;
+
+}
+
+
+
+

@@ -400,7 +400,7 @@ __pointer(::image_list) imaging::CreateGrayVRCPImageList(
 ::draw2d::graphics * pgraphics,
 __pointer(::image_list) pilParam)
 {
-__pointer(::image_list) pil = new ::image_list();
+__pointer(::image_list) pil = memory_new ::image_list();
 
 pil->create(pilParam);
 
@@ -2271,7 +2271,7 @@ void imaging::blur_32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius)
 
    byte *pFilter;
 
-   byte * pFilterData = new byte[iFilterHeight *iFilterWidth];
+   byte * pFilterData = memory_new byte[iFilterHeight *iFilterWidth];
    __memset(pFilterData,1,iFilterHeight * iFilterWidth);
 
    byte * pSrc = (byte *)pimageSrc->get_data();
@@ -3831,7 +3831,7 @@ void imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
 
    byte *pFilter;
 
-   byte * pFilterData = new byte[iFilterHeight *iFilterWidth];
+   byte * pFilterData = memory_new byte[iFilterHeight *iFilterWidth];
 
    __memset(pFilterData,1,iFilterHeight * iFilterWidth);
 
@@ -4717,7 +4717,7 @@ void imaging::alpha_spread_R2_24CC(byte * pDst,i32 xDest,i32 yDest,i32 wDest,i32
 
    byte *pFilter;
 
-   byte * pFilterData = new byte[iFilterHeight *iFilterWidth];
+   byte * pFilterData = memory_new byte[iFilterHeight *iFilterWidth];
    __memset(pFilterData,1,iFilterHeight * iFilterWidth);
 
    i32 maxx1 = cx;

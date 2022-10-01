@@ -352,7 +352,7 @@ virtual_memory *  memory_container::get_virtual_memory()
 //   {
 //      return pmemory;
 //   }
-//   pmemory = new memory(*pmemorybase);
+//   pmemory = memory_new memory(*pmemorybase);
 //   delete pmemorybase;
 //   return pmemory;
 //}
@@ -368,7 +368,7 @@ virtual_memory *  memory_container::get_virtual_memory()
 //      {
 //         return psharedmemory;
 //      }
-//      psharedmemory = new shared_memory(*pmemorybase);
+//      psharedmemory = memory_new shared_memory(*pmemorybase);
 //      delete pmemorybase;
 //      return psharedmemory;
 //   }
@@ -384,7 +384,7 @@ virtual_memory *  memory_container::get_virtual_memory()
 //      {
 //         return pvirtualmemory;
 //      }
-//      pvirtualmemory = new virtual_memory(*pmemorybase);
+//      pvirtualmemory = memory_new virtual_memory(*pmemorybase);
 //      delete pmemorybase;
 //      return pvirtualmemory;
 //   }
@@ -429,7 +429,7 @@ void memory_container::str(const ::string & str)
 //   if(m_pvppa == nullptr)
 //   {
 //
-//      m_pvppa = new address_array < void ** > ();
+//      m_pvppa = memory_new address_array < void ** > ();
 //
 //   }
 //

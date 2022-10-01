@@ -30,7 +30,7 @@ else()
 endif()
 
 
-add_library(folder_zip SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 target_precompile_headers(folder_zip PRIVATE framework.h)
 
@@ -56,12 +56,12 @@ elseif(LINUX)
 endif()
 
 
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
-
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
-target_compile_definitions(folder_zip PRIVATE _COMPRESS_BZIP2_LIBRARY)
+
+target_compile_definitions(folder_zip PRIVATE _FOLDER_ZIP_LIBRARY)

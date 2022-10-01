@@ -46,7 +46,7 @@ void api::initialize_api(::object* pobject, const ::file::path & pathProfile)
 void api::load_profile()
 {
 
-   auto strNetworkPayload = m_pcontext->m_papexcontext->file().as_string(m_pathProfile);
+   auto strNetworkPayload =   m_pcontext->m_papexcontext->file().safe_get_string(m_pathProfile);
 
    try
    {

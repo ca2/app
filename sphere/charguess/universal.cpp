@@ -152,11 +152,11 @@ void nsUniversalDetector::HandleData(const ::string & aBuf, PR::u32 aLen)
 
         //start multibyte and singlebyte charset prober
         if (nsnull == mCharSetProbers[0])
-          mCharSetProbers[0] = new nsMBCSGroupProber;
+          mCharSetProbers[0] = memory_new nsMBCSGroupProber;
         if (nsnull == mCharSetProbers[1])
-          mCharSetProbers[1] = new nsSBCSGroupProber;
+          mCharSetProbers[1] = memory_new nsSBCSGroupProber;
         if (nsnull == mCharSetProbers[2])
-          mCharSetProbers[2] = new nsLatin1Prober; 
+          mCharSetProbers[2] = memory_new nsLatin1Prober; 
       }
     }
     else
@@ -177,7 +177,7 @@ void nsUniversalDetector::HandleData(const ::string & aBuf, PR::u32 aLen)
   {
   case eEscAscii:
     if (nsnull == mEscCharSetProber)
-      mEscCharSetProber = new nsEscCharSetProber;
+      mEscCharSetProber = memory_new nsEscCharSetProber;
     st = mEscCharSetProber->HandleData(aBuf, aLen);
     if (st == eFoundIt)
     {

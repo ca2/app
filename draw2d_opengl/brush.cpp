@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#undef new
+
 
 namespace draw2d_opengl
 {
@@ -25,7 +25,7 @@ namespace draw2d_opengl
    //      delete m_pbrush;
    //   }
 
-   //   m_pbrush = new plusplus::SolidBrush(plusplus::Color(colorref_get_a_value(crColor), colorref_get_r_value(crColor), colorref_get_g_value(crColor), colorref_get_b_value(crColor)));
+   //   m_pbrush = memory_new plusplus::SolidBrush(plusplus::Color(colorref_get_a_value(crColor), colorref_get_r_value(crColor), colorref_get_g_value(crColor), colorref_get_b_value(crColor)));
 
    //   return m_pbrush != nullptr;
    //      
@@ -126,7 +126,7 @@ namespace draw2d_opengl
    //   //   {
    //   //      try
    //   //      {
-   //   //         ((brush *) this)->m_pbrush = new plusplus::SolidBrush(plusplus::Color(colorref_get_a_value(m_color), colorref_get_r_value(m_color), colorref_get_g_value(m_color), colorref_get_b_value(m_color)));
+   //   //         ((brush *) this)->m_pbrush = memory_new plusplus::SolidBrush(plusplus::Color(colorref_get_a_value(m_color), colorref_get_r_value(m_color), colorref_get_g_value(m_color), colorref_get_b_value(m_color)));
    //   //      }
    //   //      catch(...)
    //   //      {
@@ -136,7 +136,7 @@ namespace draw2d_opengl
    //   //   {
    //   //      try
    //   //      {
-   //   //         ((brush *) this)->m_pbrush = new plusplus::LinearGradientBrush(
+   //   //         ((brush *) this)->m_pbrush = memory_new plusplus::LinearGradientBrush(
    //   //            plusplus::PointF((plusplus::REAL) m_point1.x,(plusplus::REAL) m_point1.y),
    //   //            plusplus::PointF((plusplus::REAL) m_point2.x,(plusplus::REAL) m_point2.y),
    //   //            plusplus::Color(colorref_get_a_value(m_color1), colorref_get_r_value(m_color1), colorref_get_g_value(m_color1), colorref_get_b_value(m_color1)),
@@ -151,10 +151,10 @@ namespace draw2d_opengl
    //   //      try
    //   //      {
 
-   //   //         plusplus::GraphicsPath * gp = new plusplus::GraphicsPath();
+   //   //         plusplus::GraphicsPath * gp = memory_new plusplus::GraphicsPath();
    //   //         gp->AddEllipse((plusplus::REAL) (m_point.x - m_size.cx / 2),(plusplus::REAL)(m_point.y - m_size.cy / 2),(plusplus::REAL) (m_size.cx),(plusplus::REAL) (m_size.cy));
 
-   //   //         plusplus::PathGradientBrush * pgb = new plusplus::PathGradientBrush(gp);
+   //   //         plusplus::PathGradientBrush * pgb = memory_new plusplus::PathGradientBrush(gp);
 
    //   //         plusplus::Color c1(colorref_get_a_value(m_color1),colorref_get_r_value(m_color1),colorref_get_g_value(m_color1),colorref_get_b_value(m_color1));
    //   //         plusplus::Color c2(colorref_get_a_value(m_color2),colorref_get_r_value(m_color2),colorref_get_g_value(m_color2),colorref_get_b_value(m_color2));
@@ -175,7 +175,7 @@ namespace draw2d_opengl
    //   //   {
    //   //      try
    //   //      {
-   //   //         ((brush *) this)->m_pbrush = new plusplus::SolidBrush(plusplus::Color(colorref_get_a_value(m_color), colorref_get_r_value(m_color), colorref_get_g_value(m_color), colorref_get_b_value(m_color)));
+   //   //         ((brush *) this)->m_pbrush = memory_new plusplus::SolidBrush(plusplus::Color(colorref_get_a_value(m_color), colorref_get_r_value(m_color), colorref_get_g_value(m_color), colorref_get_b_value(m_color)));
    //   //      }
    //   //      catch(...)
    //   //      {

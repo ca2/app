@@ -37,7 +37,7 @@ namespace colorertake5
          return;
       };
 
-      // finds position of new 'ladd' region
+      // finds position of memory_new 'ladd' region
       for(LineRegion *ln = lstart; ln; ln = ln->next)
       {
          // insert before first
@@ -83,7 +83,7 @@ namespace colorertake5
          // our region breaks previous region into two parts
          if (ladd->prev->end > ladd->end || (ladd->prev->end == -1 && ladd->end != -1))
          {
-            LineRegion *ln1 = new LineRegion(*ladd->prev);
+            LineRegion *ln1 = memory_new LineRegion(*ladd->prev);
             ln1->prev = ladd;
             ln1->next = ladd->next;
             if (ladd->next) ladd->next->prev = ln1;
@@ -118,7 +118,7 @@ namespace colorertake5
          {
             lnext->start = ladd->end;
          };
-         // make region zero-width, if it is hided by our new region
+         // make region zero-width, if it is hided by our memory_new region
          if ((lnext->end <= ladd->end && lnext->end != -1) || ladd->end == -1)
          {
             ladd->next = lnext->next;

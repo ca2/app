@@ -28,7 +28,7 @@ namespace user
    void main_frame::install_message_routing(::channel * pchannel)
    {
 
-      simple_main_frame::install_message_routing(pchannel);
+      simple_frame_window::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &main_frame::on_message_create);
 
@@ -38,7 +38,7 @@ namespace user
    void main_frame::assert_ok() const
    {
 
-      simple_main_frame::assert_ok();
+      simple_frame_window::assert_ok();
 
    }
 
@@ -46,7 +46,7 @@ namespace user
    void main_frame::dump(dump_context & dumpcontext) const
    {
 
-      simple_main_frame::dump(dumpcontext);
+      simple_frame_window::dump(dumpcontext);
 
    }
 

@@ -197,7 +197,7 @@ namespace user
 
       m_bEnterKeyOnPaste = false;
 
-      //m_pcontrolstyle = new plain_edit_internal();
+      //m_pcontrolstyle = memory_new plain_edit_internal();
 
       m_ppropertysetsel = nullptr;
 
@@ -246,6 +246,14 @@ namespace user
       m_iLastSelectionEndX = -1;
       m_iColumnX = -1;
 
+   }
+
+
+   bool plain_edit::is_plain_edit_modified() const
+   {
+   
+      return m_ptree->is_tree_modified();
+   
    }
 
 

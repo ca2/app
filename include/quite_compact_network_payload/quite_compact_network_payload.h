@@ -226,9 +226,9 @@ inline value::value(int type, bool) : type_(type), u_() {
 #ifdef QUITE_COMPACT_NETWORK_PAYLOAD_USE_INT64
     INIT(int64_, 0);
 #endif
-    INIT(string_, new std::string());
-    INIT(array_, new array());
-    INIT(object_, new object());
+    INIT(string_, memory_new std::string());
+    INIT(array_, memory_new array());
+    INIT(object_, memory_new object());
 #undef INIT
   default:
     break;
@@ -261,37 +261,37 @@ inline value::value(double n) : type_(number_type), u_() {
 }
 
 inline value::value(const std::string &s) : type_(string_type), u_() {
-  u_.string_ = new std::string(s);
+  u_.string_ = memory_new std::string(s);
 }
 
 inline value::value(const array &a) : type_(array_type), u_() {
-  u_.array_ = new array(a);
+  u_.array_ = memory_new array(a);
 }
 
 inline value::value(const object &o) : type_(object_type), u_() {
-  u_.object_ = new object(o);
+  u_.object_ = memory_new object(o);
 }
 
 #if QUITE_COMPACT_NETWORK_PAYLOAD_USE_RVALUE_REFERENCE
 inline value::value(std::string &&s) : type_(string_type), u_() {
-  u_.string_ = new std::string(std::move(s));
+  u_.string_ = memory_new std::string(std::move(s));
 }
 
 inline value::value(array &&a) : type_(array_type), u_() {
-  u_.array_ = new array(std::move(a));
+  u_.array_ = memory_new array(std::move(a));
 }
 
 inline value::value(object &&o) : type_(object_type), u_() {
-  u_.object_ = new object(std::move(o));
+  u_.object_ = memory_new object(std::move(o));
 }
 #endif
 
 inline value::value(const char *s) : type_(string_type), u_() {
-  u_.string_ = new std::string(s);
+  u_.string_ = memory_new std::string(s);
 }
 
 inline value::value(const char *s, size_t len) : type_(string_type), u_() {
-  u_.string_ = new std::string(s, len);
+  u_.string_ = memory_new std::string(s, len);
 }
 
 inline void value::clear() {
@@ -319,9 +319,9 @@ inline value::value(const value &x) : type_(x.type_), u_() {
   case p##type:                                                                                                                    \
     u_.p = v;                                                                                                                      \
     break
-    INIT(string_, new std::string(*x.u_.string_));
-    INIT(array_, new array(*x.u_.array_));
-    INIT(object_, new object(*x.u_.object_));
+    INIT(string_, memory_new std::string(*x.u_.string_));
+    INIT(array_, memory_new array(*x.u_.array_));
+    INIT(object_, memory_new object(*x.u_.object_));
 #undef INIT
   default:
     u_ = x.u_;
@@ -402,9 +402,9 @@ GET(double, u_.number_)
     setter                                                                                                                         \
   }
 SET(bool, boolean, u_.boolean_ = _val;)
-SET(std::string, string, u_.string_ = new std::string(_val);)
-SET(array, array, u_.array_ = new array(_val);)
-SET(object, object, u_.object_ = new object(_val);)
+SET(std::string, string, u_.string_ = memory_new std::string(_val);)
+SET(array, array, u_.array_ = memory_new array(_val);)
+SET(object, object, u_.object_ = memory_new object(_val);)
 SET(double, number, u_.number_ = _val;)
 #ifdef QUITE_COMPACT_NETWORK_PAYLOAD_USE_INT64
 SET(int64_t, int64, u_.int64_ = _val;)
@@ -418,9 +418,9 @@ SET(int64_t, int64, u_.int64_ = _val;)
     type_ = jtype##_type;                                                                                                          \
     setter                                                                                                                         \
   }
-MOVESET(std::string, string, u_.string_ = new std::string(std::move(_val));)
-MOVESET(array, array, u_.array_ = new array(std::move(_val));)
-MOVESET(object, object, u_.object_ = new object(std::move(_val));)
+MOVESET(std::string, string, u_.string_ = memory_new std::string(std::move(_val));)
+MOVESET(array, array, u_.array_ = memory_new array(std::move(_val));)
+MOVESET(object, object, u_.object_ = memory_new object(std::move(_val));)
 #undef MOVESET
 #endif
 

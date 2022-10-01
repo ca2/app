@@ -296,7 +296,7 @@ extern "C"
 CLASS_DECL_AURA::aura::system * aura_create_aura_system()
 {
 
-   return new ::aura::system();
+   return memory_new ::aura::system();
 
 }
 
@@ -321,7 +321,7 @@ CLASS_DECL_AURA::aura::system * aura_create_aura_system()
 //
 //   }
 //
-//   s_paurastrpool = new aura_str_pool();
+//   s_paurastrpool = memory_new aura_str_pool();
 //
 //   ::user::init_windowing();
 //
@@ -516,7 +516,7 @@ CLASS_DECL_AURA void load_factory_library(string strLibrary)
    if (!plibrary)
    {
 
-      plibrary = new ::acme::library();
+      plibrary = memory_new ::acme::library();
 
    }
 

@@ -15,7 +15,7 @@ namespace str
       void create_rtl_map()
       {
 
-         g_pmapRTL = new ::map < ::atom,const ::atom &,::atom,const ::atom & >();
+         g_pmapRTL = memory_new ::map < ::atom,const ::atom &,::atom,const ::atom & >();
 
       }
 

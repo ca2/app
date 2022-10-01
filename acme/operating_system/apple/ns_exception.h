@@ -15,6 +15,7 @@
 
 
 void InstallUncaughtExceptionHandler();
+void UninstallUncaughtExceptionHandler();
 void InstallNullExceptionHandler();
 
 

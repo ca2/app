@@ -181,7 +181,7 @@
 //
 //   virtual ::matter* new_application_as_matter() override
 //   {
-//      auto papp = new APPLICATION;
+//      auto papp = memory_new APPLICATION;
 //#ifdef NO_IMAGING
 //      papp->m_bImaging = false;
 //#endif

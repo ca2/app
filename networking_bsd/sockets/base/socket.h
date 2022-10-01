@@ -76,9 +76,9 @@ namespace sockets_bsd
       time_t                  m_timeClose; ///< time in seconds when ordered to close
       int                     m_iBindPort;
       bool                    m_bDelete; ///< Delete by handler flag
-      bool                    m_bCloseAndDelete; ///< close and delete flag
-      base_socket *           m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
-      ::duration              m_durationConnectionStart; ///< Set by SetTimeout
+      bool                       m_bCloseAndDelete; ///< close and delete flag
+      ::sockets::base_socket *   m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
+      ::duration                 m_durationConnectionStart; ///< Set by SetTimeout
       ::duration              m_durationConnectionLastActivity; ///< Set by SetTimeout
       ::duration              m_durationConnectionMaximum; ///< Defined by SetTimeout
       ::duration              m_durationStart; ///< Set by SetTimeout
@@ -174,32 +174,32 @@ namespace sockets_bsd
       ~base_socket() override;
 
 
-      virtual void initialize_socket(::sockets::base_socket_handler* phandler);
+       void initialize_socket(::sockets::base_socket_handler* phandler) override;
 
 
       /** base_socket class instantiation method. Used when a "non-standard" constructor
       * needs to be used for the base_socket class. Note: the base_socket class still needs
       * the "default" constructor with one as input parameter.
       */
-      virtual base_socket *new_listen_socket() { return nullptr; }
+      ::sockets::base_socket *new_listen_socket() override { return nullptr; }
 
       /** Returns object to sockethandler that owns the base_socket.
       If the base_socket is detached, this is a object to the slave sockethandler.
       */
-      ::sockets::base_socket_handler * socket_handler() const;
+      ::sockets::base_socket_handler * socket_handler() const override;
 
       /** Returns object to sockethandler that owns the base_socket.
       This one always returns the object to the original sockethandler,
       even if the base_socket is detached.
       */
-      ::sockets::base_socket_handler * master_socket_handler() const;
+      ::sockets::base_socket_handler * master_socket_handler() const override;
 
 
       memory_file * get_input_memory_file() override;
 
-      virtual void destroy_ssl_session();
+      void destroy_ssl_session() override;
 
-      virtual void get_ssl_session();
+      void get_ssl_session() override;
 
 
       /** Called by listen_socket after accept but before base_socket is added to handler.
@@ -209,7 +209,7 @@ namespace sockets_bsd
       * Also used to determine if incoming HTTP connection is normal (port 80)
       * or ssl (port 443).
       */
-      virtual void Init();
+      void Init() override;
 
 
       /** Assign this socket a file descriptor created
@@ -227,7 +227,7 @@ namespace sockets_bsd
 
       /** close connection immediately - internal use.
       \sa SetCloseAndDelete */
-      virtual void close();
+      void close() override;
 
 
       void set_end() override;
@@ -238,99 +238,99 @@ namespace sockets_bsd
       virtual i32 close_socket(SOCKET s);
 
 
-      virtual bool is_connecting();
+      bool is_connecting() override;
 
       /** add file descriptor to sockethandler fd_set's. */
-      void Set(bool bRead,bool bWrite,bool bException = true);
+      void Set(bool bRead,bool bWrite,bool bException = true) override;
 
       /** Returns true when base_socket file descriptor is valid
       and base_socket is not about to be closed. */
-      virtual bool Ready();
+      bool Ready() override;
 
-      virtual bool is_valid();
+      bool is_valid() override;
 
       /** Returns pointer to listen_socket that created this instance
       * on an incoming connection. */
-      base_socket *get_parent();
+      ::sockets::base_socket *get_parent() override;
 
       /** Used by listen_socket to set parent pointer of newly created
       * base_socket instance. */
-      void set_parent(base_socket *);
+      void set_parent(::sockets::base_socket *) override;
 
       /** get listening port from listen_socket<>. */
-      virtual ::networking::port_t GetPort();
+      ::networking::port_t GetPort() override;
 
       /** Set base_socket non-block operation. */
-      bool SetNonblocking(bool);
+      bool SetNonblocking(bool) override;
 
       /** Set base_socket non-block operation. */
       bool SetNonblocking(bool, SOCKET);
 
       /** Total lifetime of instance. */
-      time_t Uptime();
+      time_t Uptime() override;
 
       /** Set address/port of last connect() call. */
-      void SetClientRemoteAddress(::networking::address * address);
+      void SetClientRemoteAddress(::networking::address * address) override;
 
       /** get address/port of last connect() call. */
-      __pointer(::networking::address) GetClientRemoteAddress();
+      __pointer(::networking::address) GetClientRemoteAddress() override;
 
 
       /** Outgoing traffic counter. */
-      virtual u64 GetBytesSent(bool clear = false);
+      u64 GetBytesSent(bool clear = false) override;
 
       /** Incoming traffic counter. */
-      virtual u64 GetBytesReceived(bool clear = false);
+      u64 GetBytesReceived(bool clear = false) override;
 
       // LIST_TIMEOUT
 
       /** enable timeout control. 0=disable timeout check. */
-      virtual void set_connection_start_time();
+      void set_connection_start_time() override;
 
-      virtual void set_connection_last_activity();
+      void set_connection_last_activity() override;
 
-      virtual void set_maximum_connection_time(const ::duration & duration);
+      void set_maximum_connection_time(const ::duration & duration) override;
 
-      virtual void set_start_time();
+      void set_start_time() override;
 
-      virtual void set_maximum_time(const ::duration& duration);
+      void set_maximum_time(const ::duration& duration) override;
 
       /** Check timeout. \return true if time limit reached */
-      bool has_timed_out();
+      bool has_timed_out() override;
 
       /** Used by listen_socket. ipv4 and ipv6 */
-      void SetRemoteHostname(::networking::address * address);
+      void SetRemoteHostname(::networking::address * address) override;
 
       /** \name Event callbacks */
       //@{
 
       /** Called when there is something to be read from the file descriptor. */
-      virtual void OnRead();
+      void OnRead() override;
       /** Called when there is room for another write on the file descriptor. */
-      virtual void OnWrite();
+      void OnWrite() override;
       /** Called on base_socket exception. */
-      virtual void OnException();
+      void OnException() override;
       /** Called before a base_socket class is deleted by the base_socket_handler. */
-      virtual void OnDelete();
+      void OnDelete() override;
       /** Called when a connection has completed. */
-      virtual void OnConnect();
+      void OnConnect() override;
       /** Called when an incoming connection has been completed. */
-      virtual void OnAccept();
+      void OnAccept() override;
       //void OnAccept(::winrt::Windows::Foundation::IAsyncAction ^ action, ::winrt::Windows::Foundation::AsyncStatus status);
       /** Called when a complete line has been read and the base_socket is in
       * line protocol mode. */
-      virtual void OnLine(const string & );
+      void OnLine(const string & ) override;
 
 
-      virtual bool on_select_idle();
+      bool on_select_idle() override;
 
       //virtual memsize read(void * buf, memsize c);
 
-      virtual void on_read(const void * buf, memsize c);
-      virtual void OnRawData(char * buf, memsize len);
+      void on_read(const void * buf, memsize c) override;
+      void OnRawData(char * buf, memsize len) override;
 
       /** Called on connect timeout (5s). */
-      virtual void OnConnectFailed();
+      void OnConnectFailed() override;
       /** Called when a client base_socket is created, to set base_socket options.
       \lparam family AF_INET, AF_INET6, etc
       \lparam type SOCK_STREAM, SOCK_DGRAM, etc
@@ -339,59 +339,59 @@ namespace sockets_bsd
       */
       virtual void OnOptions(int family,int type,int protocol,SOCKET s) = 0;
       /** Connection retry callback - return false to abort connection attempts */
-      virtual bool OnConnectRetry();
+      bool OnConnectRetry()  override;
       /** a reconnect has been made */
-      virtual void OnReconnect();
+      void OnReconnect() override;
       /** tcp_socket: When a disconnect has been detected (recv/SSL_read returns 0 bytes). */
-      virtual void OnDisconnect();
+      void OnDisconnect() override;
       /** time_out callback. */
-      virtual void on_timeout();
+      void on_timeout() override;
       /** Connection timeout. */
-      virtual void on_connection_timeout();
+      void on_connection_timeout() override;
       //@}
 
       /** \name base_socket mode flags, set/reset */
       //@{
       /** Set delete by handler true when you want the sockethandler to
       delete the base_socket instance after use. */
-      void SetDeleteByHandler(bool = true);
+      void SetDeleteByHandler(bool = true) override;
       /** Check delete by handler flag.
       \return true if this instance should be deleted by the sockethandler */
-      bool DeleteByHandler();
+      bool DeleteByHandler() override;
 
       // LIST_CLOSE - conditional event queue
 
       /** Set close and delete to terminate the connection. */
-      void SetCloseAndDelete(bool = true);
+      void SetCloseAndDelete(bool = true) override;
       /** Check close and delete flag.
       \return true if this base_socket should be closed and the instance erased */
-      bool IsCloseAndDelete();
+      bool IsCloseAndDelete() override;
 
       /** Return number of seconds since base_socket was ordered to close. \sa SetCloseAndDelete */
-      time_t TimeSinceClose();
+      time_t TimeSinceClose() override;
 
       /** Ignore read events for an output only base_socket. */
-      void DisableRead(bool x = true);
+      void DisableRead(bool x = true) override;
       /** Check ignore read events flag.
       \return true if read events should be ignored */
-      bool IsDisableRead();
+      bool IsDisableRead() override;
 
       /** Set connected status. */
-      void SetConnected(bool = true);
+      void SetConnected(bool = true) override;
       /** Check connected status.
       \return true if connected */
-      bool IsConnected();
+      bool IsConnected() override;
 
       /** Connection lost - error while reading/writing from a base_socket - tcp_socket only. */
-      void SetLost();
+      void SetLost() override;
       /** Check connection lost status flag, used by tcp_socket only.
       \return true if there was an error while r/w causing the base_socket to close */
-      bool Lost();
+      bool Lost() override;
 
       /** Set flag indicating the base_socket is being actively deleted by the sockethandler. */
-      void SetErasedByHandler(bool x = true);
+      void SetErasedByHandler(bool x = true) override;
       /** get value of flag indicating base_socket is deleted by sockethandler. */
-      bool ErasedByHandler();
+      bool ErasedByHandler() override;
 
       //@}
 
@@ -404,19 +404,19 @@ namespace sockets_bsd
       /** Returns address/port of remote end: ipv6. */
       //struct in6_addr GetRemoteIP6();
       /** Returns remote port number: ipv4 and ipv6. */
-      virtual ::networking::port_t GetRemotePort();
+      ::networking::port_t GetRemotePort() override;
       /** Returns remote ip as string? ipv4 and ipv6. */
-      virtual __pointer(::networking::address) GetRemoteAddress();
+      __pointer(::networking::address) GetRemoteAddress() override;
       /** ipv4 and ipv6(not implemented) */
-      virtual __pointer(::networking::address) GetRemoteHostname();
+      __pointer(::networking::address) GetRemoteHostname() override;
       //@}
 
       /** Returns local port number for bound base_socket file descriptor. */
-      virtual ::networking::port_t GetLocalPort();
+      ::networking::port_t GetLocalPort() override;
       /** Returns local ipv4 address/port for bound base_socket file descriptor. */
       //ipaddr_t GetSockIP4();
       /** Returns local ipv4 address/port as text for bound base_socket file descriptor. */
-      virtual __pointer(::networking::address) GetLocalAddress();
+      __pointer(::networking::address) GetLocalAddress() override;
       /** Returns local ipv6 address/port for bound base_socket file descriptor. */
       //struct in6_addr GetSockIP6();
       /** Returns local ipv6 address/port as text for bound base_socket file descriptor. */
@@ -442,50 +442,50 @@ namespace sockets_bsd
       // IP options
       //@{
 
-      bool SetIpOptions(const void *point, socklen_t len);
-      bool SetIpTOS(unsigned char tos);
-      unsigned char IpTOS();
-      bool SetIpTTL(int ttl);
-      int IpTTL();
-      bool SetIpHdrincl(bool x = true);
-      bool SetIpMulticastTTL(int);
-      int IpMulticastTTL();
-      bool SetMulticastLoop(bool x = true);
-      bool IpAddMembership(struct ip_mreq&);
-      bool IpDropMembership(struct ip_mreq&);
+      virtual bool SetIpOptions(const void *point, socklen_t len);
+      bool SetIpTOS(unsigned char tos) override;
+      unsigned char IpTOS() override;
+      bool SetIpTTL(int ttl) override;
+      int IpTTL() override;
+      bool SetIpHdrincl(bool x = true) override;
+      bool SetIpMulticastTTL(int) override;
+      int IpMulticastTTL() override;
+      bool SetMulticastLoop(bool x = true) override;
+      virtual bool IpAddMembership(struct ip_mreq&);
+      virtual bool IpDropMembership(struct ip_mreq&);
 
 #ifdef IP_PKTINFO
-      bool SetIpPktinfo(bool x = true);
+      bool SetIpPktinfo(bool x = true) override;
 #endif
 #ifdef IP_RECVTOS
-      bool SetIpRecvTOS(bool x = true);
+      bool SetIpRecvTOS(bool x = true) override;
 #endif
 #ifdef IP_RECVTTL
-      bool SetIpRecvTTL(bool x = true);
+      bool SetIpRecvTTL(bool x = true) override;
 #endif
 #ifdef IP_RECVOPTS
-      bool SetIpRecvopts(bool x = true);
+      bool SetIpRecvopts(bool x = true) override;
 #endif
 #ifdef IP_RETOPTS
-      bool SetIpRetopts(bool x = true);
+      bool SetIpRetopts(bool x = true) override;
 #endif
 #ifdef IP_RECVERR
-      bool SetIpRecverr(bool x = true);
+      bool SetIpRecverr(bool x = true) override;
 #endif
 #ifdef IP_MTU_DISCOVER
-      bool SetIpMtudiscover(bool x = true);
+      bool SetIpMtudiscover(bool x = true) override;
 #endif
 #ifdef IP_MTU
-      int IpMtu();
+      int IpMtu() override;
 #endif
 #ifdef IP_ROUTER_ALERT
-      bool SetIpRouterAlert(bool x = true);
+      bool SetIpRouterAlert(bool x = true) override;
 #endif
 #ifdef LINUX
-      bool IpAddMembership(struct ip_mreqn&);
+      virtual bool IpAddMembership(struct ip_mreqn&);
 #endif
 #ifdef LINUX
-      bool IpDropMembership(struct ip_mreqn&);
+      virtual bool IpDropMembership(struct ip_mreqn&);
 #endif
       //@}
 
@@ -493,51 +493,51 @@ namespace sockets_bsd
       /** @name base_socket Options */
       //@{
 
-      bool SoAcceptconn();
-      bool SetSoBroadcast(bool x = true);
-      bool SetSoDebug(bool x = true);
-      int SoError();
-      bool SetSoDontroute(bool x = true);
-      bool SetSoLinger(int onoff, int linger);
-      bool SetSoOobinline(bool x = true);
-      bool SetSoRcvlowat(int);
-      bool SetSoSndlowat(int);
+      bool SoAcceptconn() override;
+      bool SetSoBroadcast(bool x = true) override;
+      bool SetSoDebug(bool x = true) override;
+      int SoError() override;
+      bool SetSoDontroute(bool x = true) override;
+      bool SetSoLinger(int onoff, int linger) override;
+      bool SetSoOobinline(bool x = true) override;
+      bool SetSoRcvlowat(int) override;
+      bool SetSoSndlowat(int) override;
       bool SetSoRcvtimeo(struct timeval&);
       bool SetSoSndtimeo(struct timeval&);
-      bool SetSoRcvbuf(int);
-      int SoRcvbuf();
-      bool SetSoSndbuf(int);
-      int SoSndbuf();
-      int SoType();
-      bool SetSoReuseaddr(bool x = true);
-      bool SetSoKeepalive(bool x = true);
+      bool SetSoRcvbuf(int) override;
+      int SoRcvbuf() override;
+      bool SetSoSndbuf(int) override;
+      int SoSndbuf() override;
+      int SoType() override;
+      bool SetSoReuseaddr(bool x = true) override;
+      bool SetSoKeepalive(bool x = true) override;
 
 #ifdef SO_BSDCOMPAT
-      bool SetSoBsdcompat(bool x = true);
+      bool SetSoBsdcompat(bool x = true) override;
 #endif
 #ifdef SO_BINDTODEVICE
-      bool SetSoBindtodevice(const string & intf);
+      bool SetSoBindtodevice(const string & intf) override;
 #endif
 #ifdef SO_PASSCRED
-      bool SetSoPasscred(bool x = true);
+      bool SetSoPasscred(bool x = true) override;
 #endif
 #ifdef SO_PEERCRED
-      bool SoPeercred(ucred & );
+      virtual      bool SoPeercred(ucred &);
 #endif
 #ifdef SO_PRIORITY
-      bool SetSoPriority(int);
+      bool SetSoPriority(int) override;
 #endif
 #ifdef SO_RCVBUFFORCE
-      bool SetSoRcvbufforce(int);
+      bool SetSoRcvbufforce(int) override;
 #endif
 #ifdef SO_SNDBUFFORCE
-      bool SetSoSndbufforce(int);
+      bool SetSoSndbufforce(int) override;
 #endif
 #ifdef SO_TIMESTAMP
-      bool SetSoTimestamp(bool x = true);
+      bool SetSoTimestamp(bool x = true) override;
 #endif
 #ifdef SO_NOSIGPIPE
-      bool SetSoNosigpipe(bool x = true);
+      bool SetSoNosigpipe(bool x = true) override;
 #endif
       //@}
 
@@ -553,11 +553,11 @@ namespace sockets_bsd
       \sa SetLineProtocol */
       /** enable the OnLine callback. Do not create your own OnRead
       * callback when using this. */
-      virtual void SetLineProtocol(bool = true);
+      void SetLineProtocol(bool = true) override;
 
       /** Check line protocol mode.
       \return true if base_socket is in line protocol mode */
-      bool LineProtocol();
+      bool LineProtocol() override;
 
 
 
@@ -567,52 +567,52 @@ namespace sockets_bsd
       /** @name SSL Support */
       //@{
       /** SSL client/server support - internal use. \sa tcp_socket */
-      virtual void OnSSLConnect();
+      void OnSSLConnect() override;
       /** SSL client/server support - internal use. \sa tcp_socket */
-      virtual void OnSSLAccept();
+      void OnSSLAccept() override;
       /** SSL negotiation failed for client connect. */
-      virtual void OnSSLConnectFailed();
+      void OnSSLConnectFailed() override;
       /** SSL negotiation failed for server accept. */
-      virtual void OnSSLAcceptFailed();
-      /** new SSL support */
-      virtual bool SSLNegotiate();
+      void OnSSLAcceptFailed() override;
+      /** memory_new SSL support */
+      bool SSLNegotiate() override;
       /** Check if SSL is Enabled for this tcp_socket.
       \return true if this is a tcp_socket with SSL enabled */
-      bool IsSSL();
+      bool IsSSL() override;
       /** enable SSL operation for a tcp_socket. */
-      void EnableSSL(bool x = true);
+      void EnableSSL(bool x = true) override;
       /** Still negotiating ssl connection.
       \return true if ssl negotiating is still in progress */
-      bool IsSSLNegotiate();
+      bool IsSSLNegotiate() override;
       /** Set flag indicating ssl handshaking still in progress. */
-      void SetSSLNegotiate(bool x = true);
+      void SetSSLNegotiate(bool x = true) override;
       /** OnAccept called with SSL Enabled.
       \return true if this is a tcp_socket with an incoming SSL connection */
-      bool IsSSLServer();
+      bool IsSSLServer() override;
       /** Set flag indicating that this is a tcp_socket with incoming SSL connection. */
-      void SetSSLServer(bool x = true);
+      void SetSSLServer(bool x = true) override;
       /** SSL; get pointer to ssl action_context structure. */
       //         virtual SSL_CTX *GetSslContext() { return nullptr; }
       /** SSL; get pointer to ssl structure. */
       //       virtual SSL *GetSsl() { return nullptr; }
       //@}
       /** enable ipv6 for this base_socket. */
-      void SetIpv6(bool x = true);
+      void SetIpv6(bool x = true) override;
       /** Check ipv6 base_socket.
       \return true if this is an ipv6 base_socket */
-      bool IsIpv6();
+      bool IsIpv6() override;
       /** @name Connection Pool */
       //@{
       /** Client = connecting tcp_socket. */
-      void SetIsClient();
+      void SetIsClient() override;
       /** base_socket type from base_socket() call. */
-      void SetSocketType(int x);
+      void SetSocketType(int x) override;
       /** base_socket type from base_socket() call. */
-      int GetSocketType();
+      int GetSocketType() override;
       /** Protocol type from base_socket() call. */
-      void SetSocketProtocol(const string & x);
+      void SetSocketProtocol(const string & x) override;
       /** Protocol type from base_socket() call. */
-      string  GetSocketProtocol();
+      string  GetSocketProtocol() override;
 
       bool IsPoolEnabled() const override;
 
@@ -623,48 +623,48 @@ namespace sockets_bsd
       The next connection you make to the same server will reuse the already
       opened connection, if it is still available.
       */
-      void SetRetain();
+      void SetRetain() override;
       /** Check retain flag.
       \return true if the base_socket should be moved to connection pool after use */
-      bool Retain();
+      bool Retain() override;
       /** copy connection parameters from sock. */
-      void CopyConnection(base_socket *sock);
+      virtual void CopyConnection(::sockets::base_socket *sock) override;
       //@}
       /** \name Socks4 support */
       //@{
       /** Socks4 client support internal use. \sa tcp_socket */
-      virtual void OnSocks4Connect();
+      void OnSocks4Connect() override;
       /** Socks4 client support internal use. \sa tcp_socket */
-      virtual void OnSocks4ConnectFailed();
+      void OnSocks4ConnectFailed() override;
       /** Socks4 client support internal use. \sa tcp_socket */
-      virtual bool OnSocks4Read();
+      bool OnSocks4Read() override;
       /** Called when the last write caused the tcp output buffer to
       * become is_empty. */
       /** base_socket still in socks4 negotiation mode */
-      bool Socks4();
+      bool Socks4() override;
       /** Set flag indicating Socks4 handshaking in progress */
-      void SetSocks4(bool x = true);
+      void SetSocks4(bool x = true) override;
 
       /** Set socks4 server host address/port to use */
-      void SetSocks4Host(const ::string & a);
+      void SetSocks4Host(const ::string & a) override;
 //#if defined(BSD_STYLE_SOCKETS)
 //      /** Set socks4 server hostname to use. */
 //      void SetSocks4Host(const string & );
 //#endif
       /** Socks4 server port to use. */
-      void SetSocks4Port(::networking::port_t point_i32);
+      void SetSocks4Port(::networking::port_t point_i32) override;
       /** Provide a socks4 userid if required by the socks4 server. */
-      void SetSocks4Userid(const string & x);
+      void SetSocks4Userid(const string & x) override;
       /** get the ip address/port of socks4 server to use.
       \return socks4 server host address/port */
       //in_addr GetSocks4Host();
-      string GetSocks4Host();
+      string GetSocks4Host() override;
       /** get the socks4 server port to use.
       \return socks4 server port */
-      ::networking::port_t GetSocks4Port();
+      ::networking::port_t GetSocks4Port() override;
       /** get socks4 userid.
       \return Socks4 userid */
-      const string & GetSocks4Userid();
+      const string & GetSocks4Userid() override;
       //@}
       /** \name Asynchronous Resolver */
       //@{
@@ -694,49 +694,49 @@ namespace sockets_bsd
       //@}
       /** \name Thread Support */
       //@{
-      /** Callback fires when a new base_socket thread has started and this
+      /** Callback fires when a memory_new base_socket thread has started and this
       base_socket is ready for operation again.
       \sa resolv_socket */
-      virtual void OnDetached();
+      void OnDetached() override;
 
       // LIST_DETACH
 
       /** Internal use. */
-      void SetDetach(bool x = true);
+      void SetDetach(bool x = true) override;
       /** Check detach flag.
       \return true if the base_socket should detach to its own thread */
-      bool IsDetach();
+      bool IsDetach() override;
 
       /** Internal use. */
-      void SetDetached(bool x = true);
+      void SetDetached(bool x = true) override;
       /** Check detached flag.
       \return true if the base_socket runs in its own thread. */
-      const bool IsDetached() const;
+      const bool IsDetached() const override;
       /** Order this base_socket to start its own thread and call OnDetached
       when ready for operation. */
-      bool prepare_for_detach();
+      bool prepare_for_detach() override;
       /** Store the slave sockethandler pointer. */
-      void SetSlaveHandler(::sockets::base_socket_handler *);
-      /** create new thread for this base_socket to run detached in. */
-      void DetachSocket(socket_map::association * passociation, socket_map * psocketmap);
+      void SetSlaveHandler(::sockets::base_socket_handler *) override;
+      /** create memory_new thread for this base_socket to run detached in. */
+      virtual void DetachSocket(socket_map::association * passociation, socket_map * psocketmap);
       //@}
 
 
-      virtual void write(const void * buf, memsize c);
-      void inline print(const ::string & str) { write(str.c_str(), str.get_length()); }
+      void write(const void * buf, memsize c) override;
+      //void inline print(const ::string & str) { write(str.c_str(), str.get_length()); }
 
 
       /** write traffic to an IFile. base_socket will not delete this object. */
-      void SetTrafficMonitor(file_pointer p) { m_pfileTrafficMonitor = p; }
+      void SetTrafficMonitor(file_pointer p) override;
       /** All traffic will be written to this IFile, if set. */
-      file_pointer GetTrafficMonitor() { return m_pfileTrafficMonitor; }
+      file_pointer GetTrafficMonitor() override;
 
       /** \name Triggers */
       //@{
       /** Subscribe to trigger atom. */
-      void Subscribe(int atom);
+      void Subscribe(int atom) override;
       /** Unsubscribe from trigger atom. */
-      void Unsubscribe(int atom);
+      void Unsubscribe(int atom) override;
       /** Trigger callback, with data passed from source to destination. */
       virtual void OnTrigger(int atom, const trigger_data & data);
       /** Trigger cancelled because source has been deleted (as in delete). */
@@ -744,16 +744,16 @@ namespace sockets_bsd
       //@}
 
 
-      virtual void run() override;
-      virtual bool step() override;
+      void run() override;
+      bool step() override;
 
       //virtual void __tracef(object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * pszFormat, ...);
       //virtual void __tracef(object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, e_log elog, const ::string & strContext, i32 err, const ::string & strMessage);
 
-      virtual string get_short_description();
+      string get_short_description() override;
 
 
-      virtual enum_trace_category trace_category() const override;
+      enum_trace_category trace_category() const override;
 
       //virtual void on_finalize() override;
 

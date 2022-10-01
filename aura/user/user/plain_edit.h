@@ -258,7 +258,7 @@ namespace user
 
       void plain_edit_common_construct();
 
-
+      virtual bool is_plain_edit_modified() const;
 
       virtual void set_format(const string& strFormat);
       virtual void set_callback(callback* pcallback);

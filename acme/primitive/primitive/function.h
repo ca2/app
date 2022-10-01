@@ -161,7 +161,7 @@ public:
    function(PREDICATE predicateParam)
    {
 
-      m_p = new class predicate <PREDICATE >(predicateParam);
+      m_p = memory_new class predicate <PREDICATE >(predicateParam);
 
    }
 
@@ -290,7 +290,7 @@ public:
    function(PREDICATE predicateParam)
    {
 
-      m_ppredicate.move(new class predicate <PREDICATE >(predicateParam));
+      m_ppredicate.move(memory_new class predicate <PREDICATE >(predicateParam));
 
    }
 
@@ -331,7 +331,7 @@ public:
    function & operator = (PREDICATE predicateParam)
    {
 
-      m_ppredicate.move(new class predicate <PREDICATE >(predicateParam));
+      m_ppredicate.move(memory_new class predicate <PREDICATE >(predicateParam));
 
       return *this;
 
@@ -428,7 +428,7 @@ public:
    function(FUNCTION functionParam)
    {
 
-      m_pbase.move(new class implementation < FUNCTION >(functionParam));
+      m_pbase.move(memory_new class implementation < FUNCTION >(functionParam));
 
    }
 
@@ -470,7 +470,7 @@ public:
    function & operator = (FUNCTION functionParam)
    {
 
-      m_pbase.move ( new class implementation <FUNCTION >(functionParam));
+      m_pbase.move ( memory_new class implementation <FUNCTION >(functionParam));
 
       return *this;
 
@@ -563,7 +563,7 @@ public:
    function(FUNCTION functionParam)
    {
 
-      m_pbase.move(new class implementation < FUNCTION >(functionParam));
+      m_pbase.move(memory_new class implementation < FUNCTION >(functionParam));
 
    }
 
@@ -605,7 +605,7 @@ public:
    function & operator = (FUNCTION functionParam)
    {
 
-      m_pbase.move ( new class implementation <FUNCTION >(functionParam));
+      m_pbase.move ( memory_new class implementation <FUNCTION >(functionParam));
 
       return *this;
 

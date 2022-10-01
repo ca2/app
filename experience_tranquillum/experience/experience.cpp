@@ -92,43 +92,43 @@ namespace experience_tranquillum
       if(strSchema == "001")
       {
 
-         return  new frame_001;
+         return  memory_new frame_001;
 
       }
       else if(strSchema == "002")
       {
 
-         return  new frame_002;
+         return  memory_new frame_002;
 
       }
       else if(strSchema == "005")
       {
 
-         return  new frame_005;
+         return  memory_new frame_005;
 
       }
       else if(strSchema == "008")
       {
 
-         return  new frame_008;
+         return  memory_new frame_008;
 
       }
       else if(strSchema == "011")
       {
 
-         return  new frame_011;
+         return  memory_new frame_011;
 
       }
       else if(strSchema == "013")
       {
 
-         return  new frame_013;
+         return  memory_new frame_013;
 
       }
       else if(strSchema == "Minimal001")
       {
 
-         return  new  frame_Minimal001;
+         return  memory_new  frame_Minimal001;
 
       }
 

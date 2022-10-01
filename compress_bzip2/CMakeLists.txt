@@ -25,7 +25,7 @@ else()
 endif()
 
 
-add_library(compress_bzip2 SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source})
 
 target_precompile_headers(compress_bzip2 PRIVATE framework.h)
 
@@ -76,12 +76,12 @@ endif()
 endif()
 
 
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
-
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+
 
 
 target_compile_definitions(compress_bzip2 PRIVATE _COMPRESS_BZIP2_LIBRARY)

@@ -21,7 +21,7 @@ namespace draw2d
    //   if (count == 0)
    //   {
 
-   //      s_pmutex = new ::mutex();
+   //      s_pmutex = memory_new ::mutex();
 
    //   }
 

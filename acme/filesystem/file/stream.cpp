@@ -937,7 +937,7 @@ void stream::save_var_type(enum_type etype)
    if (!m_pvarOptions)
    {
 
-      m_pvarOptions = new ::payload();
+      m_pvarOptions = memory_new ::payload();
 
    }
 

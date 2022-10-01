@@ -207,7 +207,7 @@ namespace acme
 
    html_none = "none";
    html_unknown = "unknown";
-   html_new = "new";
+   html_new = "memory_new";
    html_initial = "initial";
    html_html = "html";
    html_head = "head";
@@ -309,7 +309,7 @@ namespace acme
    //void acme::init_id_pool()
    //{
 
-   //   ::acme::idpool::g_p = new idpool();
+   //   ::acme::idpool::g_p = memory_new idpool();
 
    //}
 

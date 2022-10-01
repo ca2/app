@@ -84,20 +84,16 @@ namespace file
 
       //}
 
-      exception::exception(const ::e_status & estatus, ::u32 uLastError, int iErrNo, const ::file::path & path, const ::file::e_open & eopen) :
-         ::exception(estatus)
+      exception::exception(const ::e_status & estatus, const ::error_code & errorcode, const ::file::path & path, const ::string & strMessage, const ::file::e_open & eopen, const ::string & strDetails) :
+         ::exception(estatus, strMessage, strDetails)
          //::io_exception(::error_io, nullptr, should_ignore_file_exception_callstack(estatus) ? SKIP_CALLSTACK : CALLSTACK_DEFAULT_SKIP)
       {
 
          m_estatus = estatus;
 
-#ifdef WINDOWS
+         m_errorcodea.add(errorcode);
 
-         m_uLastError = uLastError;
-
-#endif
-
-         m_iErrNo = iErrNo;
+//         m_iErrNo = iErrNo;
 
 //         m_eopen = eopen;
 
@@ -113,20 +109,18 @@ namespace file
             psz = ::file::status_short_description(error_file);
 
          }
+         
+         auto pstringbuffer = __new(::string_buffer);
+         
+         text_stream textstream(pstringbuffer);
+         
+         errorcode.get_string(textstream);
 
          string strException;
 
-#ifdef WINDOWS_DESKTOP
+         strException.format("path = \"%s\"\nstatus = \"%s\"\nstatus_code = (%" PRId64 ")\nos_error = \"%s\"", path.c_str(), psz, estatus.m_estatus, pstringbuffer->m_str.c_str());
 
-         strException.format(":file(%hs(%" PRId64 "),%d,%s)", psz, estatus.m_estatus, uLastError, path.c_str());
-
-#else
-
-         strException.format(":file(%s(%" PRId64 "),%d,%s)", psz, estatus.m_estatus, iErrNo, path.c_str());
-
-#endif
-
-         m_strException += strException;
+         m_strMessage += strException;
 
       }
 

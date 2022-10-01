@@ -22,6 +22,7 @@
 // dnf install freeimage-devel
 // zypper install freeimage-devel
 // pacman -S freeimage
+// pkg install freeimage
 #include <FreeImage.h>
 
 #else

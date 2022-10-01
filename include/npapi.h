@@ -255,7 +255,7 @@ typedef enum
  *   NPPV selectors that pass around pointers to COM interfaces. Newer
  *   compilers on some platforms may generate vtables that are not
  *   compatible with older compilers. To prevent older plugins from
- *   not understanding a new browser's ABI, these masks change the
+ *   not understanding a memory_new browser's ABI, these masks change the
  *   values of those selectors on those platforms. To remain backwards
  *   compatible with differenet versions of the browser, plugins can
  *   use these masks to dynamically determine and use the correct C++

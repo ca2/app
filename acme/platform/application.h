@@ -9,7 +9,7 @@
 //CLASS_DECL_EXPORT ::acme::application * IDENTIFIER_CONCATENATE(new_, ALLOCATOR)() \
 //{ \
 //  \
-//   return new ::APPLICATION::application();  \
+//   return memory_new ::APPLICATION::application();  \
 //  \
 //}
 //
@@ -30,7 +30,7 @@ namespace acme
 
 
    class CLASS_DECL_ACME application :
-      virtual public ::app_core,
+      virtual public ::main,
       virtual public ::acme::context,
       virtual public ::task
    {

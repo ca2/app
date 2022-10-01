@@ -23,7 +23,7 @@ public:
 
 oswindow_dataptra * g_oswindow_dataptra()
 {
-   static oswindow_dataptra * s_pdataptra = new oswindow_dataptra;
+   static oswindow_dataptra * s_pdataptra = memory_new oswindow_dataptra;
 
    return s_pdataptra;
 }
@@ -64,7 +64,7 @@ oswindow oswindow_get(::user::interaction * pinteraction)
    if(iFind >= 0)
       return g_oswindow_dataptra()->element_at(iFind);
 
-   oswindow pdata  = new oswindow_data;
+   oswindow pdata  = memory_new oswindow_data;
 
    pdata->m_puserinteraction = pinteraction;
 

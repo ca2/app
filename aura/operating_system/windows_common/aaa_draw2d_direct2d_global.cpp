@@ -135,9 +135,9 @@ namespace draw2d_direct2d
       if (g_pdxgidebug == nullptr)
       {
 
-         g_pdxgidebug = new dxgidebug;
+         g_pdxgidebug = memory_new dxgidebug;
 
-         //g_pdirect2dplugin = new plugin;
+         //g_pdirect2dplugin = memory_new plugin;
 
          //g_pdirect2dplugin->initialize();
 

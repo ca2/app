@@ -198,4 +198,11 @@ typedef i64 filesize;
 #endif
 
 
+#if defined(DEBUG) && !defined(NO_ACME_MEMORY_MANAGEMENT)
+#define memory_new new(__FILE__, __LINE__)
+#else
+#define memory_new new
+#endif
+
+
 

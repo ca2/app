@@ -19,7 +19,7 @@
 
 #include "acme/platform/acme.h"
 
-#undef new
+
 
 
 void on_plex_heap_alloc(plex_heap_alloc* palloc);
@@ -123,7 +123,7 @@ plex_heap_alloc::plex_heap_alloc(memsize nAllocSize, ::u32 nBlockSize)
 
 }
 
-#undef new
+
 
 void Free_check_pointer_in_cpp(void * p);
 
@@ -193,12 +193,12 @@ void plex_heap_alloc::pre_finalize()
 plex_heap_alloc_array::plex_heap_alloc_array()
 {
 
-   add(new plex_heap_alloc(32       , 256)); 
-   add(new plex_heap_alloc(64       , 128)); 
-   add(new plex_heap_alloc(128      , 128)); 
-   add(new plex_heap_alloc(256      , 128)); 
-   add(new plex_heap_alloc(512      , 64)); 
-   add(new plex_heap_alloc(1024     , 64)); 
+   add(new plex_heap_alloc(32       , 256));
+   add(new plex_heap_alloc(64       , 128));
+   add(new plex_heap_alloc(128      , 128));
+   add(new plex_heap_alloc(256      , 128));
+   add(new plex_heap_alloc(512      , 64));
+   add(new plex_heap_alloc(1024     , 64));
    add(new plex_heap_alloc(2_kb     , 32));
    add(new plex_heap_alloc(4_kb     , 32));
    add(new plex_heap_alloc(8_kb     , 16));
@@ -814,7 +814,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
 
 
 
-#undef new
+
 
 
 class CLASS_DECL_ACME plex_heap     // warning ::payload length structure

@@ -238,7 +238,7 @@ LRESULT CALLBACK CTSFMainWnd::_WndProc( HWND hWnd,
 
 LRESULT CTSFMainWnd::_OnCreate(VOID)
 {
-    m_pTSFEditWnd = new CTSFEditWnd(m_hInst, m_hWnd);
+    m_pTSFEditWnd = memory_new CTSFEditWnd(m_hInst, m_hWnd);
 
     if(!m_pTSFEditWnd)
     {

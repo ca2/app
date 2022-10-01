@@ -27,12 +27,12 @@ namespace account
    impact::impact()
    {
 
-      m_pstillUser = new ::user::still;
-      m_peditUser = new ::user::plain_edit;
-      m_pstillPassword = new ::user::still;
-      m_peditPassword = new ::user::plain_edit;
-      m_pbutton = new ::user::button;
-      m_pbuttonClose = new ::user::button;
+      m_pstillUser = memory_new ::user::still;
+      m_peditUser = memory_new ::user::plain_edit;
+      m_pstillPassword = memory_new ::user::still;
+      m_peditPassword = memory_new ::user::plain_edit;
+      m_pbutton = memory_new ::user::button;
+      m_pbuttonClose = memory_new ::user::button;
 
       m_bSelfLayout = false;
 
@@ -47,7 +47,7 @@ namespace account
 //         if (hicon95 != nullptr)
 //         {
 //
-//            m_picon95 = new ::draw2d::icon;
+//            m_picon95 = memory_new ::draw2d::icon;
 //
 //            m_picon95->attach_os_data(hicon95);
 //
@@ -459,7 +459,7 @@ namespace account
 
       m_peditUser->set_keyboard_focus();
 
-      //m_pploginDeferTranslate = new impact *;
+      //m_pploginDeferTranslate = memory_new impact *;
 
       //*m_pploginDeferTranslate = this;
 

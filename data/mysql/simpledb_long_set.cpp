@@ -184,7 +184,7 @@ void db_long_sync_queue::queue(const ::string & pszKey,i64 l)
    item.m_strKey = pszKey;
    item.m_l = l;
 
-   m_itema.add(new db_long_set_queue_item(item));
+   m_itema.add(memory_new db_long_set_queue_item(item));
 
 }
 
@@ -193,7 +193,7 @@ db_long_set::db_long_set(db_server * pserver):
 matter(pserver->get_app())
 {
 
-   m_pcore = new db_long_set_core(pserver);
+   m_pcore = memory_new db_long_set_core(pserver);
 
 }
 
@@ -315,7 +315,7 @@ bool db_long_set::save(const ::string & lpKey, i64 lValue)
       if(m_pcore->m_pqueue == nullptr)
       {
 
-         m_pcore->m_pqueue = new db_long_sync_queue(this);
+         m_pcore->m_pqueue = memory_new db_long_sync_queue(this);
          m_pcore->m_pqueue->m_ppropertyset = this;
          m_pcore->m_pqueue->begin();
 

@@ -40,7 +40,7 @@ CLASS_DECL_AURA i32 ca2_main();
 
 
 
-#undef new
+
 
 
 

@@ -3,10 +3,34 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A0F53A828E8D7BC00025231 /* tcp_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFA328C83B0000A43004 /* tcp_socket.cpp */; };
+		9A0F53AA28E8D7C500025231 /* tls_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFAC28C83B0000A43004 /* tls_socket.cpp */; };
+		9A0F53AB28E8D7F500025231 /* tcp_socket_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BF9E28C83B0000A43004 /* tcp_socket_impl.cpp */; };
+		9A0F53AC28E8D7FA00025231 /* sync_socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BF9D28C83B0000A43004 /* sync_socket_handler.cpp */; };
+		9A0F53AD28E8D7FF00025231 /* stream_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFAD28C83B0000A43004 /* stream_socket.cpp */; };
+		9A0F53AE28E8D80400025231 /* socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFA128C83B0000A43004 /* socket.cpp */; };
+		9A0F53AF28E8D80900025231 /* socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFA828C83B0000A43004 /* socket_handler.cpp */; };
+		9A0F53B028E8D81300025231 /* sctp_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BF9C28C83B0000A43004 /* sctp_socket.cpp */; };
+		9A0F53B128E8D81700025231 /* listen_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFAB28C83B0000A43004 /* listen_socket.cpp */; };
+		9A0F53B228E8D86300025231 /* socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFD728C83B0100A43004 /* socket.cpp */; };
+		9A0F53B328E8D86800025231 /* socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFD828C83B0100A43004 /* socket_handler.cpp */; };
+		9A0F53B428E8D86D00025231 /* socket_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFD428C83B0100A43004 /* socket_thread.cpp */; };
+		9A0F53B528E8D8A900025231 /* debug_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFB528C83B0000A43004 /* debug_socket.cpp */; };
+		9A0F53B628E8D8A900025231 /* put_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFB728C83B0000A43004 /* put_socket.cpp */; };
+		9A0F53B728E8D8A900025231 /* socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFB828C83B0100A43004 /* socket.cpp */; };
+		9A0F53B828E8D8A900025231 /* session.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFBF28C83B0100A43004 /* session.cpp */; };
+		9A0F53B928E8D8A900025231 /* listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFC028C83B0100A43004 /* listener.cpp */; };
+		9A0F53BA28E8D8A900025231 /* base_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFC428C83B0100A43004 /* base_socket.cpp */; };
+		9A0F53BB28E8D8A900025231 /* get_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFC528C83B0100A43004 /* get_socket.cpp */; };
+		9A0F53BC28E8D8A900025231 /* post_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFB328C83B0000A43004 /* post_socket.cpp */; };
+		9A0F53BD28E8D8A900025231 /* client_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFC328C83B0100A43004 /* client_socket.cpp */; };
+		9A0F53BE28E8D8A900025231 /* tunnel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFBD28C83B0100A43004 /* tunnel.cpp */; };
+		9A0F53BF28E8D8BE00025231 /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97C07328C83BBD00A43004 /* networking.cpp */; };
+		9A0F53C028E8D8EB00025231 /* httpd_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A97BFDB28C83B0200A43004 /* httpd_socket.cpp */; };
 		9A1FB95F287253E90042849A /* _netserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FB957287253E90042849A /* _netserver.h */; };
 		9A1FB960287253E90042849A /* socket_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB958287253E90042849A /* socket_thread.cpp */; };
 		9A1FB961287253E90042849A /* socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB959287253E90042849A /* socket.cpp */; };
@@ -27,8 +51,6 @@
 		9A1FBB842872A9E80042849A /* socket_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB958287253E90042849A /* socket_thread.cpp */; };
 		9A1FBB852872A9EC0042849A /* socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB959287253E90042849A /* socket.cpp */; };
 		9A1FBB862872A9F00042849A /* socket_handler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FB95C287253E90042849A /* socket_handler.cpp */; };
-		9A2199902760FFE3001E14CC /* libssl.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A21998E2760FFE2001E14CC /* libssl.3.dylib */; };
-		9A2199912760FFE3001E14CC /* libcrypto.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A21998F2760FFE2001E14CC /* libcrypto.3.dylib */; };
 		9A2269EB27CE8DB90042BAC2 /* _apple.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A22673627CE8DB70042BAC2 /* _apple.h */; };
 		9A2269EC27CE8DB90042BAC2 /* debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A22673727CE8DB70042BAC2 /* debug.h */; };
 		9A2269ED27CE8DB90042BAC2 /* image_gif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A22673827CE8DB70042BAC2 /* image_gif.cpp */; };
@@ -179,7 +201,7 @@
 		9A4F4E1A25311DA400733584 /* rsa.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E1125311DA400733584 /* rsa.h */; };
 		9A4F4E1C25311DA400733584 /* hasher.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A4F4E1325311DA400733584 /* hasher.h */; };
 		9A4F4E1D25311DA400733584 /* rsa.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A4F4E1425311DA400733584 /* rsa.cpp */; };
-		9A615C3728B1BDF700377F68 /* acme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A615C2928B1B7A300377F68 /* acme.dylib */; };
+		9A615C3728B1BDF700377F68 /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A615C2928B1B7A300377F68 /* libacme.dylib */; };
 		9A68BB3A2511444D008DABD2 /* procedure.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B4092511444A008DABD2 /* procedure.h */; };
 		9A68BB3B2511444D008DABD2 /* console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B40A2511444A008DABD2 /* console.h */; };
 		9A68BB3C2511444D008DABD2 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B40D2511444A008DABD2 /* _impl.h */; };
@@ -1328,9 +1350,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A615C3728B1BDF700377F68 /* acme.dylib in Frameworks */,
-				9A2199912760FFE3001E14CC /* libcrypto.3.dylib in Frameworks */,
-				9A2199902760FFE3001E14CC /* libssl.3.dylib in Frameworks */,
+				9A615C3728B1BDF700377F68 /* libacme.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1592,7 +1612,7 @@
 		9A615C2328B1B7A300377F68 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A615C2928B1B7A300377F68 /* acme.dylib */,
+				9A615C2928B1B7A300377F68 /* libacme.dylib */,
 				9A615C2B28B1B7A300377F68 /* ios_acme.a */,
 			);
 			name = Products;
@@ -2747,7 +2767,7 @@
 		9A68A43E251143F8008DABD2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1400;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
 					9A68A445251143F8008DABD2 = {
@@ -2756,7 +2776,7 @@
 				};
 			};
 			buildConfigurationList = 9A68A441251143F8008DABD2 /* Build configuration list for PBXProject "apex" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -2781,10 +2801,9 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		9A615C2928B1B7A300377F68 /* acme.dylib */ = {
+		9A615C2928B1B7A300377F68 /* libacme.dylib */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
-			name = acme.dylib;
 			path = libacme.dylib;
 			remoteRef = 9A615C2828B1B7A300377F68 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -2994,6 +3013,7 @@
 				9AD694D7251A754800C0EBD7 /* application_array.cpp in Sources */,
 				9AD694D9251A754800C0EBD7 /* interprocess_communication.cpp in Sources */,
 				9A751044282B94EA00C4861B /* source.cpp in Sources */,
+				9A0F53BD28E8D8A900025231 /* client_socket.cpp in Sources */,
 				9AD694DB251A754800C0EBD7 /* process.cpp in Sources */,
 				9AD694DD251A754800C0EBD7 /* simple_command.cpp in Sources */,
 				9A751008282B942600C4861B /* email.cpp in Sources */,
@@ -3001,6 +3021,7 @@
 				9A94DEA7282C387900F5C1CA /* file.cpp in Sources */,
 				9A75103E282B948800C4861B /* cookie.cpp in Sources */,
 				9AD694E3251A754800C0EBD7 /* channel.cpp in Sources */,
+				9A0F53BE28E8D8A900025231 /* tunnel.cpp in Sources */,
 				9AD694E7251A754800C0EBD7 /* machine_event_data.cpp in Sources */,
 				9AD694EB251A754800C0EBD7 /* native_fs.cpp in Sources */,
 				9A75104C282B952400C4861B /* is_dir.cpp in Sources */,
@@ -3020,17 +3041,23 @@
 				9ADD656D26B5E58900D11298 /* application_exit.cpp in Sources */,
 				9AD69512251A754800C0EBD7 /* log.cpp in Sources */,
 				9A1FBB862872A9F00042849A /* socket_handler.cpp in Sources */,
+				9A0F53AF28E8D80900025231 /* socket_handler.cpp in Sources */,
 				9AD69513251A754800C0EBD7 /* savings.cpp in Sources */,
 				9A787D96264C960F003DF8A0 /* service.cpp in Sources */,
 				9AD69516251A754800C0EBD7 /* edit_file.cpp in Sources */,
+				9A0F53BF28E8D8BE00025231 /* networking.cpp in Sources */,
+				9A0F53AB28E8D7F500025231 /* tcp_socket_impl.cpp in Sources */,
 				9A787DDF264CA98C003DF8A0 /* create.cpp in Sources */,
 				9AD69522251A754800C0EBD7 /* file_system.cpp in Sources */,
+				9A0F53C028E8D8EB00025231 /* httpd_socket.cpp in Sources */,
 				9A787DF1264CA9F2003DF8A0 /* command.cpp in Sources */,
 				9AD69527251A754800C0EBD7 /* client.cpp in Sources */,
 				9A787DE5264CA98C003DF8A0 /* node.cpp in Sources */,
 				9AD6952E251A754800C0EBD7 /* file_context.cpp in Sources */,
 				9A751012282B942D00C4861B /* transfer_socket.cpp in Sources */,
 				9AD69537251A754800C0EBD7 /* os_context.cpp in Sources */,
+				9A0F53B528E8D8A900025231 /* debug_socket.cpp in Sources */,
+				9A0F53B628E8D8A900025231 /* put_socket.cpp in Sources */,
 				9AD6953C251A754800C0EBD7 /* fs.cpp in Sources */,
 				9AD6953E251A754800C0EBD7 /* app_launcher.cpp in Sources */,
 				9AD69540251A754800C0EBD7 /* language.cpp in Sources */,
@@ -3048,11 +3075,16 @@
 				9A94DE51282C045900F5C1CA /* integer.cpp in Sources */,
 				9AD6955A251A754800C0EBD7 /* ifs.cpp in Sources */,
 				9AD6955C251A754800C0EBD7 /* set.cpp in Sources */,
+				9A0F53B228E8D86300025231 /* socket.cpp in Sources */,
 				9AD69561251A754800C0EBD7 /* server.cpp in Sources */,
+				9A0F53B328E8D86800025231 /* socket_handler.cpp in Sources */,
+				9A0F53B728E8D8A900025231 /* socket.cpp in Sources */,
 				9AD69563251A754800C0EBD7 /* _.cpp in Sources */,
 				9A787D9E264C960F003DF8A0 /* threading.cpp in Sources */,
+				9A0F53A828E8D7BC00025231 /* tcp_socket.cpp in Sources */,
 				9AD6956A251A754800C0EBD7 /* application.cpp in Sources */,
 				9A75103A282B948800C4861B /* response.cpp in Sources */,
+				9A0F53B128E8D81700025231 /* listen_socket.cpp in Sources */,
 				9A24D17128516CB5000C9873 /* message.cpp in Sources */,
 				9AD6956C251A754800C0EBD7 /* history.cpp in Sources */,
 				9AD6956E251A754800C0EBD7 /* os_history.cpp in Sources */,
@@ -3061,6 +3093,7 @@
 				9AD69575251A754800C0EBD7 /* file_watcher.cpp in Sources */,
 				9AD69579251A754800C0EBD7 /* context.cpp in Sources */,
 				9A94DEEB282C583300F5C1CA /* application.cpp in Sources */,
+				9A0F53B028E8D81300025231 /* sctp_socket.cpp in Sources */,
 				9AD6957A251A754800C0EBD7 /* language_map.cpp in Sources */,
 				9A751043282B94EA00C4861B /* signal.cpp in Sources */,
 				9AD6957E251A754800C0EBD7 /* machine_event.cpp in Sources */,
@@ -3069,6 +3102,7 @@
 				9A751004282B941900C4861B /* initializer.cpp in Sources */,
 				9AD6958B251A754800C0EBD7 /* data.cpp in Sources */,
 				9A1FBB842872A9E80042849A /* socket_thread.cpp in Sources */,
+				9A0F53AC28E8D7FA00025231 /* sync_socket_handler.cpp in Sources */,
 				9A75103F282B948800C4861B /* signal.cpp in Sources */,
 				9A750FFE282B940A00C4861B /* _application_service.cpp in Sources */,
 				9A787DA0264C960F003DF8A0 /* service_handler.cpp in Sources */,
@@ -3077,18 +3111,27 @@
 				9AD69598251A754800C0EBD7 /* debug.cpp in Sources */,
 				9AD69599251A754800C0EBD7 /* system.cpp in Sources */,
 				9A750FFC282B93F600C4861B /* dispatcher.cpp in Sources */,
+				9A0F53AA28E8D7C500025231 /* tls_socket.cpp in Sources */,
 				9A751039282B948800C4861B /* get_socket.cpp in Sources */,
+				9A0F53BB28E8D8A900025231 /* get_socket.cpp in Sources */,
+				9A0F53B828E8D8A900025231 /* session.cpp in Sources */,
 				9A75100D282B942D00C4861B /* link_out_socket.cpp in Sources */,
 				9A1FBB812872A9D90042849A /* networking_application_handler.cpp in Sources */,
 				9A751006282B942600C4861B /* email_address.cpp in Sources */,
 				9AD6959B251A754800C0EBD7 /* application_menu.cpp in Sources */,
 				9A81ECAB274EDFCA003F38EC /* api.cpp in Sources */,
+				9A0F53AD28E8D7FF00025231 /* stream_socket.cpp in Sources */,
+				9A0F53B428E8D86D00025231 /* socket_thread.cpp in Sources */,
 				9A75100E282B942D00C4861B /* link_in_socket.cpp in Sources */,
 				9A75100C282B942600C4861B /* sockets.cpp in Sources */,
+				9A0F53BC28E8D8A900025231 /* post_socket.cpp in Sources */,
 				9A1FBB822872A9DC0042849A /* networking_application_socket.cpp in Sources */,
 				9AD6959E251A754800C0EBD7 /* key.cpp in Sources */,
+				9A0F53B928E8D8A900025231 /* listener.cpp in Sources */,
+				9A0F53BA28E8D8A900025231 /* base_socket.cpp in Sources */,
 				9A751000282B941900C4861B /* crypto.cpp in Sources */,
 				9AD695A5251A754800C0EBD7 /* remote_native_fs.cpp in Sources */,
+				9A0F53AE28E8D80400025231 /* socket.cpp in Sources */,
 				9AD695AB251A754800C0EBD7 /* selection.cpp in Sources */,
 				9AD695AE251A754800C0EBD7 /* ifs_file.cpp in Sources */,
 				9AD695B2251A754800C0EBD7 /* link.cpp in Sources */,
@@ -3149,9 +3192,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				EXECUTABLE_PREFIX = lib;
@@ -3175,7 +3220,7 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "@rpath";
+				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
@@ -3210,12 +3255,14 @@
 					"$(WorkspaceDir)/source/app/include",
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/source/port/include",
 					"$(WorkspaceDir)/source/port",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/..",
+					"$(PROJECT_DIR)/../..",
 					"$(HOME)/sensitive/sensitive/include",
 				);
 				USE_HEADERMAP = NO;
@@ -3263,9 +3310,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_POSTPROCESSING = YES;
+				DEVELOPMENT_TEAM = L8N5V6TZE5;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3288,7 +3337,7 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "@rpath";
+				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
@@ -3322,12 +3371,14 @@
 					"$(WorkspaceDir)/source/app/include",
 					"$(WorkspaceDir)/operating-system",
 					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)",
-					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/operating-system/operating-system-$(PLATFORM_MODIFIER)/include",
 					"$(WorkspaceDir)/source/port/include",
 					"$(WorkspaceDir)/source/port",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include/include",
 					"$(WorkspaceDir)/operating-system/third-$(PLATFORM_MODIFIER)/third/include",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/..",
+					"$(PROJECT_DIR)/../..",
 					"$(HOME)/sensitive/sensitive/include",
 				);
 				USE_HEADERMAP = NO;

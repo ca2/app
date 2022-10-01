@@ -564,12 +564,7 @@ namespace crypto
 
          }
 
-         if (!m_pcontext->m_papexcontext->file().as_memory(payloadFile, memoryEncrypt))
-         {
-
-            throw ::exception(error_failed);
-
-         }
+         m_pcontext->m_papexcontext->file().as_memory(payloadFile, memoryEncrypt);
 
          decrypt(str, memoryEncrypt, pszSalt);
 
@@ -600,7 +595,7 @@ namespace crypto
       }
 
 
-      // get a new salt - 8 hexadecimal characters long
+      // get a memory_new salt - 8 hexadecimal characters long
       // current PHP installations should not exceed 8 characters
       // on dechex( mt_rand() )
       // but we future proof it anyway with substr()

@@ -379,7 +379,7 @@ namespace linux
 
 #endif
 
-      // Obsolete and non-portable APIs - not recommended for new code
+      // Obsolete and non-portable APIs - not recommended for memory_new code
 //      virtual void CloseWindow();
 //      virtual bool OpenIcon();
 

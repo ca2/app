@@ -591,13 +591,13 @@ namespace sockets_bsd
    }
 
 
-   base_socket *base_socket::get_parent()
+   ::sockets::base_socket *base_socket::get_parent()
    {
       return m_psocketParent;
    }
 
 
-   void base_socket::set_parent(base_socket * psocketParent)
+   void base_socket::set_parent(::sockets::base_socket * psocketParent)
    {
       m_psocketParent = psocketParent;
    }
@@ -807,11 +807,13 @@ namespace sockets_bsd
 
 
 
-   void base_socket::CopyConnection(base_socket * psocket)
+   void base_socket::CopyConnection(::sockets::base_socket * psocket)
    {
 
+      auto psocket2 = __Socket(psocket);
+
 #ifdef BSD_STYLE_SOCKETS
-      m_psslcontext = psocket->m_psslcontext;
+      m_psslcontext = psocket2->m_psslcontext;
 #endif
       //m_ssl_ctx = psocket->m_ssl_ctx; ///< ssl context
       //m_ssl_session = psocket->m_ssl_session; ///< ssl session
@@ -819,9 +821,9 @@ namespace sockets_bsd
       //m_ssl = psocket->m_ssl; ///< ssl 'socket'
       //m_ssl = psocket->m_ssl; ///< ssl 'socket'
       //m_sbio = psocket->m_sbio; ///< ssl bio
-      m_password = psocket->m_password; ///< ssl password
+      m_password = psocket2->m_password; ///< ssl password
 
-      attach(psocket -> GetSocketId());
+      attach(psocket2 -> GetSocketId());
 
       SetIpv6(psocket -> IsIpv6());
       
@@ -833,20 +835,20 @@ namespace sockets_bsd
       
       SetRemoteHostname(psocket -> GetRemoteHostname());
 
-      psocket->m_socket = INVALID_SOCKET;
+      psocket2->m_socket = INVALID_SOCKET;
 
 #ifdef BSD_STYLE_SOCKETS
-      if (psocket->m_psslcontext)
+      if (psocket2->m_psslcontext)
       {
 
-         psocket->m_psslcontext.release();
+         psocket2->m_psslcontext.release();
 
       }
 #endif
       //psocket->m_psslcontext->m_iSslCtxRetry = 0;
       //psocket->m_psslcontext->m_ssl = nullptr;
       //psocket->m_psslcontext->m_sbio = nullptr;
-      psocket->m_password.Empty();
+      psocket2->m_password.Empty();
 
 
    }
@@ -2799,6 +2801,23 @@ namespace sockets_bsd
    {
 
 
+   }
+
+
+   void base_socket::SetTrafficMonitor(file_pointer p)
+   {
+      
+      m_pfileTrafficMonitor = p; 
+   
+   }
+
+
+   /** All traffic will be written to this IFile, if set. */
+   file_pointer base_socket::GetTrafficMonitor() 
+   {
+      
+      return m_pfileTrafficMonitor; 
+   
    }
 
 

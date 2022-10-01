@@ -55231,7 +55231,7 @@
     <frame>
       <ip>0x586F884</ip>
       <obj>/xcore/time/x64/basis/libaura.so</obj>
-      <fn>alloc_factory&lt;string_file, string_file&gt;::~alloc_factory()</fn>
+      <fn>alloc_factory&lt;string_buffer, string_buffer&gt;::~alloc_factory()</fn>
       <dir>/xcore/app/aura/../aura/</dir>
       <file>aura_class.h</file>
       <line>36</line>

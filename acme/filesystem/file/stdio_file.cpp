@@ -209,12 +209,18 @@ filesize stdio_file::translate(filesize offset, ::enum_seek eseek)
 
 #else
 
-   if(fseek(m_pfile, offset, nFrom))
+   int iFseekResult = fseek(m_pfile, offset, nFrom);
+   
+   if(iFseekResult != 0)
    {
 
-      // error;
-
-      throw ::file::exception(error_file, 0, errno, m_path);
+      i32 iErrNo = errno;
+      
+      auto errorcode = __errno(iErrNo);
+      
+      auto estatus = errno_to_status(iErrNo);
+      
+      throw ::file::exception(estatus, errorcode, m_path, "fseek != 0");
 
       return -1;
 
@@ -263,10 +269,16 @@ memsize stdio_file::read(void * pdata, memsize nCount)
 
       int iError = ferror(m_pfile);
 
-      if (iError > 0)
+      if (iError != 0)
       {
 
-         throw ::file::exception(error_file, -1, ::file::dos_to_os_error(iError), m_path);
+         i32 iErrNo = errno;
+         
+         auto errorcode = __errno(iErrNo);
+         
+         auto estatus = errno_to_status(iErrNo);
+         
+         throw ::file::exception(estatus, errorcode, m_path, "fread: !feof and ferror");
 
          return 0;
 

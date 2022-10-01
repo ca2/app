@@ -331,36 +331,36 @@ namespace core
 
       TRACE("::user::application::initialize");
 
-      auto pxml = psystem->xml();
-
-      auto pdocumentUser = pxml->create_document();
-
-      auto pcontext = get_context();
-
-      string strUser = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata() / "langstyle_settings.xml");
-
-      string strLangUser;
-
-      string strStyleUser;
-
-      if (pdocumentUser->load(strUser))
-      {
-
-         if (pdocumentUser->get_child("lang") != nullptr)
-         {
-
-            strLangUser = pdocumentUser->get_child("lang")->get_value();
-
-         }
-
-         if (pdocumentUser->get_child("style") != nullptr)
-         {
-
-            strStyleUser = pdocumentUser->get_child("style")->get_value();
-
-         }
-
-      }
+//      auto pxml = psystem->xml();
+//
+//      auto pdocumentUser = pxml->create_document();
+//
+//      auto pcontext = get_context();
+//
+//      string strUser = pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata() / "langstyle_settings.xml");
+//
+//      string strLangUser;
+//
+//      string strStyleUser;
+//
+//      if (pdocumentUser->load(strUser))
+//      {
+//
+//         if (pdocumentUser->get_child("lang") != nullptr)
+//         {
+//
+//            strLangUser = pdocumentUser->get_child("lang")->get_value();
+//
+//         }
+//
+//         if (pdocumentUser->get_child("style") != nullptr)
+//         {
+//
+//            strStyleUser = pdocumentUser->get_child("style")->get_value();
+//
+//         }
+//
+//      }
 
       //auto papp = get_se();
 

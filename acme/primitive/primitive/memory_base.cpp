@@ -523,49 +523,55 @@ void memory_base::transfer_from(::file::file * pfileIn,memsize uiBufferSize)
 }
 
 
-void memory_base::fread(FILE * pfile)
-{
-
-   ::memory buffer;
-
-   buffer.set_size(1024 * 1024);
-
-   while(true)
-   {
-
-      memsize iRead = ::fread(buffer, 1, buffer.size(), pfile);
-
-      if(iRead > 0)
-      {
-
-         append(buffer, 0, (::memsize) iRead);
-
-      }
-
-      if(iRead <= buffer.size())
-      {
-
-         if(::feof(pfile))
-         {
-
-            break;
-
-         }
-
-         if(::ferror(pfile))
-         {
-
-            throw ::file::exception(error_file, -1, errno, "");
-
-         }
-
-         break;
-
-      }
-
-   }
-
-}
+//void memory_base::fread(FILE * pfile)
+//{
+//
+//   ::memory buffer;
+//
+//   buffer.set_size(1024 * 1024);
+//
+//   while(true)
+//   {
+//
+//      memsize iRead = ::fread(buffer, 1, buffer.size(), pfile);
+//
+//      if(iRead > 0)
+//      {
+//
+//         append(buffer, 0, (::memsize) iRead);
+//
+//      }
+//
+//      if(iRead <= buffer.size())
+//      {
+//
+//         if(::feof(pfile))
+//         {
+//
+//            break;
+//
+//         }
+//
+//         if(::ferror(pfile))
+//         {
+//
+//            i32 iErrNo = errno;
+//            
+//            auto errorcode = __errno(iErrNo);
+//            
+//            auto estatus = errno_to_status(iErrNo);
+//            
+//            throw ::file::exception(estatus, errorcode, m_path, "");
+//
+//         }
+//
+//         break;
+//
+//      }
+//
+//   }
+//
+//}
 
 
 memory_base & memory_base::erase(memsize pos,memsize len)

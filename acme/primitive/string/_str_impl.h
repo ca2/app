@@ -931,7 +931,7 @@ inline string string_from_u(const T& t)
 //}
 
 //template < typename TYPE_CHAR >
-//inline void string_file < TYPE_CHAR >::set_length(strsize nLength )
+//inline void string_buffer < TYPE_CHAR >::set_length(strsize nLength )
 //{
 //
 //   ASSERT(nLength >= 0);

@@ -5,7 +5,7 @@
 //{
 //
 //
-string_file::string_file()
+string_buffer::string_buffer()
 {
       
    m_iPos = 0;
@@ -13,7 +13,7 @@ string_file::string_file()
 }
 
    
-string_file::string_file(const ::string & str)
+string_buffer::string_buffer(const ::string & str)
 {
 
    m_iPos = 0;
@@ -23,7 +23,7 @@ string_file::string_file(const ::string & str)
 }
 
 
-string_file::string_file(const string_file & text)
+string_buffer::string_buffer(const string_buffer & text)
 {
 
    m_iPos = 0;
@@ -33,7 +33,7 @@ string_file::string_file(const string_file & text)
 }
 
 
-string_file::~string_file()
+string_buffer::~string_buffer()
 {
 
    close();
@@ -41,7 +41,7 @@ string_file::~string_file()
 }
 
 
-memsize string_file::read(void *pdata, memsize nCount)
+memsize string_buffer::read(void *pdata, memsize nCount)
 
 {
 
@@ -55,7 +55,7 @@ memsize string_file::read(void *pdata, memsize nCount)
    return uRead;
 };
 
-void string_file::write(const void *pdata, memsize nCount)
+void string_buffer::write(const void *pdata, memsize nCount)
 
 {
    append((const char *) pdata, nCount);
@@ -63,7 +63,7 @@ void string_file::write(const void *pdata, memsize nCount)
 }
 
 
-::string string_file::str() const
+::string string_buffer::str() const
 {
 
    return m_str;
@@ -71,18 +71,18 @@ void string_file::write(const void *pdata, memsize nCount)
 }
 
 
-void string_file::flush()
+void string_buffer::flush()
 {
 }
 
-void string_file::close()
+void string_buffer::close()
 {
 
    destroy();
 
 }
 
-filesize string_file::get_position() const
+filesize string_buffer::get_position() const
 {
 
    return m_iPos;
@@ -90,7 +90,7 @@ filesize string_file::get_position() const
 }
 
 
-void string_file::destroy()
+void string_buffer::destroy()
 {
 
    /*auto estatus = */ ::file::file::destroy();
@@ -104,7 +104,7 @@ void string_file::destroy()
 }
 
 
-string string_file::get_string() const
+string string_buffer::get_string() const
 {
 
    return m_str;
@@ -112,7 +112,7 @@ string string_file::get_string() const
 }
 
 
-//void string_file::alloc(strsize iSize)
+//void string_buffer::alloc(strsize iSize)
 //{
 
 //   if(iSize < 0)
@@ -140,7 +140,7 @@ string string_file::get_string() const
 
 //}
 
-//void string_file::alloc_up(strsize iAtLeast)
+//void string_buffer::alloc_up(strsize iAtLeast)
 //{
 
 //   if(iAtLeast <= 0)
@@ -150,7 +150,7 @@ string string_file::get_string() const
 
 //}
 
-void string_file::set(const char * psz,strsize len)
+void string_buffer::set(const char * psz,strsize len)
 {
       
    if(psz == nullptr || *psz == '\0' || len <= 0)
@@ -163,7 +163,7 @@ void string_file::set(const char * psz,strsize len)
 
 }
 
-void string_file::append(const char * psz,strsize len)
+void string_buffer::append(const char * psz,strsize len)
 {
 
    if(psz == nullptr || *psz == '\0' || len <= 0)

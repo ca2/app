@@ -1725,8 +1725,8 @@
 		<Unit filename="filesystem/file/stream.cpp" />
 		<Unit filename="filesystem/file/stream.h" />
 		<Unit filename="filesystem/file/streamable.h" />
-		<Unit filename="filesystem/file/string_file.cpp" />
-		<Unit filename="filesystem/file/string_file.h" />
+		<Unit filename="filesystem/file/string_buffer.cpp" />
+		<Unit filename="filesystem/file/string_buffer.h" />
 		<Unit filename="filesystem/file/text_file.cpp" />
 		<Unit filename="filesystem/file/text_file.h" />
 		<Unit filename="filesystem/file/text_stream.cpp" />
@@ -2985,7 +2985,7 @@
 		<Unit filename="primitive/string/str.cpp" />
 		<Unit filename="primitive/string/str.h" />
 		<Unit filename="primitive/string/string_ansi.cpp" />
-		<Unit filename="primitive/string/string_file.h" />
+		<Unit filename="primitive/string/string_buffer.h" />
 		<Unit filename="primitive/string/string_inst.h" />
 		<Unit filename="primitive/string/string_wide.cpp" />
 		<Unit filename="primitive/string/string_wide_conversion.cpp" />

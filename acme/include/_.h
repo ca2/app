@@ -3980,7 +3980,7 @@ inline auto &__typed(__composite(POINTER_TYPE) *pp) { return *pp->operator POINT
 #include "acme/filesystem/file/stream.h"
 #include "acme/filesystem/file/binary_stream.h"
 #include "acme/filesystem/file/payload_stream.h"
-#include "acme/filesystem/file/string_file.h"
+#include "acme/filesystem/file/string_buffer.h"
 #include "acme/filesystem/file/text_stream.h"
 
 
@@ -4049,7 +4049,7 @@ using lresult = iptr;
 #include "acme/platform/cmp.h"
 
 
-#include "acme/filesystem/file/string_file.h"
+#include "acme/filesystem/file/string_buffer.h"
 
 
 #include "acme/filesystem/file/payload_stream.h"

@@ -458,7 +458,7 @@
     <ClInclude Include="primitive\string\static_string.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\string_file.h">
+    <ClInclude Include="primitive\string\string_buffer.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\string_inst.h">
@@ -617,7 +617,7 @@
     <ClInclude Include="filesystem\file\stdio_file.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\string_file.h">
+    <ClInclude Include="filesystem\file\string_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\text_file.h">
@@ -2947,7 +2947,7 @@
     <ClCompile Include="filesystem\file\stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\string_file.cpp">
+    <ClCompile Include="filesystem\file\string_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\text_file.cpp">

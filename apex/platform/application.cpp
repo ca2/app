@@ -5541,7 +5541,7 @@ namespace apex
 
       auto & file = psystem->file();
 
-      string strNetworkPayload = file.as_string(m_psystem->m_pacmedirectory->config() / strAppId / +"http.network_payload");
+      string strNetworkPayload = file.safe_get_string(m_psystem->m_pacmedirectory->config() / strAppId / +"http.network_payload");
 
       if (strNetworkPayload.has_char())
       {

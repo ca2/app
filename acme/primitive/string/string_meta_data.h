@@ -14,7 +14,7 @@ template < typename STRING >
 inline STRING & string_concatenate(STRING & strResult, const typename STRING::CHAR_TYPE * psz1, strsize nLength1, const typename STRING::CHAR_TYPE * psz2, strsize nLength2);
 
 //template < typename CHAR_TYPE >
-//class string_file;
+//class string_buffer;
 
 
 

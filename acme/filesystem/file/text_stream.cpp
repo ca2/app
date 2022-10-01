@@ -3,7 +3,8 @@
 
 text_stream::~text_stream()
 {
-
+   
+   
 }
 
 

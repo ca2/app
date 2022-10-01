@@ -1646,7 +1646,7 @@
     <ClInclude Include="primitive\string\x.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\string_file.h">
+    <ClInclude Include="primitive\string\string_buffer.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\aaa_want_to_remove_001.h">
@@ -3560,7 +3560,7 @@
     <ClInclude Include="filesystem\file\streamable.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
-    <ClInclude Include="filesystem\file\string_file.h">
+    <ClInclude Include="filesystem\file\string_buffer.h">
       <Filter>Header Files\filesystem\file</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\file\text_file.h">
@@ -5629,7 +5629,7 @@
     <ClCompile Include="filesystem\file\stream.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="filesystem\file\string_file.cpp">
+    <ClCompile Include="filesystem\file\string_buffer.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
     <ClCompile Include="filesystem\file\text_file.cpp">

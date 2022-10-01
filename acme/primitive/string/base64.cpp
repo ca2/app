@@ -566,7 +566,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
    string base64::encode(const ::block & block, e_mode emode)
    {
 
-      ::string_file file;
+      ::string_buffer file;
 
       encode(&file, (u8 *) block.m_pdata, (memsize) block.m_iSize, emode);
 
@@ -618,7 +618,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
 
       string str(pszBase64, s);
 
-      ::string_file fileIn(str);
+      ::string_buffer fileIn(str);
 
       memory_file fileOut(storageBinary);
 
@@ -632,7 +632,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
 
       string str(pszBase64, s);
 
-      ::string_file fileIn(str);
+      ::string_buffer fileIn(str);
 
       return decode(block, &fileIn);
 
@@ -658,7 +658,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
    bool base64::decode(::matter & matter, const char * pszBase64)
    {
 
-      ::string_file fileIn(pszBase64);
+      ::string_buffer fileIn(pszBase64);
 
       ::memory_stream streamObject;
 

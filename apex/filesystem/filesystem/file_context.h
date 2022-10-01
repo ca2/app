@@ -144,9 +144,14 @@ public:
    virtual bool try_create_file(const ::file::path & path, bool bTryDelete);
 
 
-   virtual ::payload as_network_payload(const ::payload & payloadFile, bool bNoExceptionOnFail = true);
-   virtual string as_string(const ::payload & payloadFile, bool bNoExceptionOnFail = true);
-   virtual bool as_memory(const ::payload & payloadFile, memory_base & mem, bool bNoExceptionOnFail = true);
+   virtual ::payload as_network_payload(const ::payload & payloadFile);
+   virtual ::payload safe_get_network_payload(const ::payload & payloadFile);
+   virtual string as_string(const ::payload & payloadFile);
+   virtual string safe_get_string(const ::payload & payloadFile);
+   virtual void as_memory(const ::payload & payloadFile, memory_base & mem);
+   virtual void safe_get_memory(const ::payload & payloadFile, memory_base & mem);
+   virtual ::memory as_memory(const ::payload & payloadFile);
+   virtual ::memory safe_get_memory(const ::payload & payloadFile);
    virtual memsize read(const ::payload& payloadFile, void * p, filesize position, memsize size, bool bNoExceptionOnFail = true);
    virtual memsize read_beginning(const ::payload& payloadFile, void * p, memsize size, bool bNoExceptionOnFail = true);
    virtual memory beginning(const ::payload& payloadFile, memsize size, bool bNoExceptionOnFail = true);
@@ -281,8 +286,8 @@ public:
 
 
 
-   inline ::memory as_primitive_memory(const ::payload & payloadFile) { ::memory m; as_memory(payloadFile, m); return m; }
-   inline ::memory as_memory(const ::payload & payloadFile) { return as_primitive_memory(payloadFile); }
+//   inline ::memory as_primitive_memory(const ::payload & payloadFile) { ::memory m; as_memory(payloadFile, m); return m; }
+//   inline ::memory as_memory(const ::payload & payloadFile) { return as_primitive_memory(payloadFile); }
 
 
    template < class OBJECT >

@@ -19,6 +19,8 @@
 
 #include "acme/platform/number.h"
 
+#include "_forward_declaration.h"
+
 #include "acme/include/_include.h"
 
 //

@@ -18,7 +18,7 @@ namespace file
    //   ::file::e_open        m_eopen;
 
 
-   exception(const ::e_status & estatus = error_file, ::u32 uLastError = -1, int iErrNo = -1, const ::file::path & path = nullptr, const ::file::e_open & eopen = e_null);
+   exception(const ::e_status & estatus, const ::error_code & errorcode, const ::file::path & path, const ::string & strMessage, const ::file::e_open & eopen = e_null, const ::string & strDetails = "");
 
 //      virtual ~exception();
 //

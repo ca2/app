@@ -148,7 +148,7 @@ list(APPEND library_source
    filesystem/file/streamable.h
    filesystem/file/streamable_composite.cpp
    filesystem/file/streamable_composite.h
-   filesystem/file/string_file.cpp
+   filesystem/file/string_buffer.cpp
    filesystem/file/text_file.cpp
    filesystem/file/text_stream.cpp
    filesystem/file/transfer.cpp
@@ -710,7 +710,7 @@ list(APPEND library_source
    primitive/string/stdstring.h
    primitive/string/str.cpp
    primitive/string/string_ansi.cpp
-   primitive/string/string_file.h
+   primitive/string/string_buffer.h
    primitive/string/string_inst.h
    primitive/string/string_wide.cpp
    primitive/string/string_wide_conversion.cpp
@@ -959,7 +959,7 @@ list(APPEND library_source
    filesystem/file/stdio_file.h
    filesystem/file/stream.h
    filesystem/file/streamable.h
-   filesystem/file/string_file.h
+   filesystem/file/string_buffer.h
    filesystem/file/text_file.h
    filesystem/file/text_stream.h
    filesystem/file/transfer_file.h

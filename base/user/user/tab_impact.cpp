@@ -750,61 +750,27 @@ namespace user
 
       _on_change_cur_sel();
       
-      m_pimpactdata = nullptr;
-      
-      try
+      if (m_pimpactdata->m_atom == MENU_IMPACT)
       {
          
-         if (m_pimpactdata->m_atom == MENU_IMPACT)
+         //  create_impact_menu(m_pimpactdata);
+         
+         __pointer(::user::menu) pmenu = get_impact_uie();
+         
+         if(pmenu)
          {
             
-            //  create_impact_menu(m_pimpactdata);
+            pmenu->m_menua.erase_all();
             
-            __pointer(::user::menu) pmenu = get_impact_uie();
+            pmenu->m_pmenuitem.release();
             
-            if(pmenu)
-            {
-               
-               pmenu->m_menua.erase_all();
-               
-               pmenu->m_pmenuitem.release();
-               
-               pmenu->m_puserinteractionpointeraChild.release();
-               
-               prepare_impact_menu(pmenu);
-               
-            }
+            pmenu->m_puserinteractionpointeraChild.release();
             
-            return;
+            prepare_impact_menu(pmenu);
             
          }
          
-         
-      }
-      
-      catch(const ::exception & exception)
-      {
-         
-         auto psequencer = create_message_box_sequencer("Standard Access Exception", "Standard Access Exception",
-                                                        e_message_box_ok,
-                                                        exception.get_consolidated_details());
-         
-         psequencer->do_asynchronously();
-         
-         
-         
-         
-      }
-      catch(...)
-      {
-         
-         auto psequencer = create_message_box_sequencer("Catch ALL", "Catch ALL",
-                                                        e_message_box_ok);
-         
-         psequencer->do_asynchronously();
-         
-         
-         
+         return;
          
       }
 

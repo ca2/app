@@ -1328,16 +1328,12 @@ namespace experience
 
       auto rectangleMargin = m_rectangleMarginNormal;
 
-      e_grip egrip;
-      e_border eborder;
-      e_dock edock;
+      e_grip egrip = e_grip_none;
+      e_border eborder = e_border_none;
+      e_dock edock = e_dock_none;
 
       if (!m_pframewindow->is_this_screen_visible() || is_zoomed(edisplay) || is_full_screen(edisplay))
       {
-
-         egrip = e_grip_none;
-         eborder = e_border_none;
-         edock = e_dock_none;
 
          rectangleMargin.Null();
 

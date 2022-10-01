@@ -13,9 +13,9 @@ class CLASS_DECL_APEX thread :
    virtual public ::manager,
    virtual public ::context,
    virtual public ::source
-#ifdef WINDOWS
-   ,virtual public ::exception_translator
-#endif
+//#ifdef WINDOWS
+//   ,virtual public ::exception_translator
+//#endif
 {
 public:
 

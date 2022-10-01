@@ -2961,7 +2961,7 @@ bool dir_context::is_inside(const ::file::path& pszDir, const ::file::path& pszP
 
       auto pathTxt = pathHome / "dropbox.txt";
 
-      string strPath = m_pcontext->m_papexcontext->file().as_string(pathTxt);
+      string strPath = m_pcontext->m_papexcontext->file().safe_get_string(pathTxt);
 
       strPath.trim();
 

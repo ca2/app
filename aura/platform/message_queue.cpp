@@ -1,7 +1,4 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
 #include "aura/platform/message_queue.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/windowing/window.h"

@@ -31,6 +31,8 @@
 		9A0E1D4428E679DF005E8DE6 /* error_code.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0E1D4128E679DF005E8DE6 /* error_code.cpp */; };
 		9A0E1D4528E679DF005E8DE6 /* error_code.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0E1D4228E679DF005E8DE6 /* error_code.h */; };
 		9A0E1D4628E679DF005E8DE6 /* error_code.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0E1D4228E679DF005E8DE6 /* error_code.h */; };
+		9A0F53C528E8D9DA00025231 /* __implement.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0F53C428E8D9DA00025231 /* __implement.h */; };
+		9A0F53C628E8D9DA00025231 /* __implement.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A0F53C428E8D9DA00025231 /* __implement.h */; };
 		9A110F5427CDD2450081BCCD /* serial_shared.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A110F4027CDD23E0081BCCD /* serial_shared.h */; };
 		9A110F5527CDD2450081BCCD /* serial_shared.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A110F4027CDD23E0081BCCD /* serial_shared.h */; };
 		9A110F5627CDD2450081BCCD /* system_setup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A110F4127CDD23E0081BCCD /* system_setup.cpp */; };
@@ -2366,6 +2368,7 @@
 		9A0E1D4228E679DF005E8DE6 /* error_code.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = error_code.h; sourceTree = "<group>"; };
 		9A0E1D4728E67A4C005E8DE6 /* error_code_type.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = error_code_type.h; sourceTree = "<group>"; };
 		9A0E1D4828E67E17005E8DE6 /* _forward_declaration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _forward_declaration.h; sourceTree = "<group>"; };
+		9A0F53C428E8D9DA00025231 /* __implement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __implement.h; sourceTree = "<group>"; };
 		9A110F4027CDD23E0081BCCD /* serial_shared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serial_shared.h; sourceTree = "<group>"; };
 		9A110F4127CDD23E0081BCCD /* system_setup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = system_setup.cpp; sourceTree = "<group>"; };
 		9A110F4827CDD2410081BCCD /* main1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main1.h; sourceTree = "<group>"; };
@@ -4797,6 +4800,7 @@
 		9A68A7E425114430008DABD2 /* inline */ = {
 			isa = PBXGroup;
 			children = (
+				9A0F53C428E8D9DA00025231 /* __implement.h */,
 				9AC01A252748B918006BEBCC /* application */,
 				9A68A7F025114430008DABD2 /* __debug_box_clear_impl.h */,
 				9A68A7EC25114430008DABD2 /* __debug_box_set_impl.h */,
@@ -5547,6 +5551,7 @@
 				9AA8FF2527BA729E008FF9AA /* aaa_2.h in Headers */,
 				9A15A743264B6F2D0080670E /* _data.h in Headers */,
 				9A68AF8025114435008DABD2 /* ___serialization_draft001.h in Headers */,
+				9A0F53C528E8D9DA00025231 /* __implement.h in Headers */,
 				9A786288264B90E7003DF8A0 /* _i64.h in Headers */,
 				9AA8FC9927BA7299008FF9AA /* time.h in Headers */,
 				9A787B75264BB118003DF8A0 /* node.h in Headers */,
@@ -6449,6 +6454,7 @@
 				9AD68EBD251A753A00C0EBD7 /* file.h in Headers */,
 				9A7861B8264B9096003DF8A0 /* enumeration1.h in Headers */,
 				9AD68EBF251A753A00C0EBD7 /* memory.h in Headers */,
+				9A0F53C628E8D9DA00025231 /* __implement.h in Headers */,
 				9AD68EC0251A753A00C0EBD7 /* _.h in Headers */,
 				9AD68EC5251A753A00C0EBD7 /* _c.h in Headers */,
 				9A15A68D264B59EE0080670E /* task.h in Headers */,

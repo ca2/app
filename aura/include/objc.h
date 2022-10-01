@@ -26,7 +26,7 @@
 
 #if defined(APPLE_IOS)
 
-#include "aura/os/ios/ios_m.h"
+#include "aura/operating_system/ios/_mm.h"
 
 #else
 

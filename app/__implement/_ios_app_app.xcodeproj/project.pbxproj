@@ -32,7 +32,7 @@
 		9A8E9C80282A2B90005FF778 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9A8E9AA1282A2B89005FF778 /* InfoPlist.strings */; };
 		9A8E9C82282A2B90005FF778 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A8E9AA4282A2B89005FF778 /* Images.xcassets */; };
 		9A8E9D85282A2C09005FF778 /* _matter.zip in Resources */ = {isa = PBXBuildFile; fileRef = 9A8E9D84282A2C09005FF778 /* _matter.zip */; };
-		9A8E9D9A282A2D4C005FF778 /* _main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8E9AA8282A2B89005FF778 /* _main.cpp */; };
+		9A8E9D9A282A2D4C005FF778 /* __implement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8E9AA8282A2B89005FF778 /* __implement.cpp */; };
 		9A8E9D9D282A2DAA005FF778 /* libios_acme.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8E9D9C282A2DAA005FF778 /* libios_acme.a */; };
 		9A8E9D9F282A2DAA005FF778 /* libios_apex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8E9D9E282A2DAA005FF778 /* libios_apex.a */; };
 		9A94DE59282C059200F5C1CA /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A94DE54282C04D400F5C1CA /* libiconv.tbd */; };
@@ -175,26 +175,24 @@
 		9A750E4A282B5C2000C4861B /* libios_aura_posix.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libios_aura_posix.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A750E4C282B5C2000C4861B /* libios_idn.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_idn.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A750F41282B89E100C4861B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		9A750F47282B8A9C00C4861B /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../../../operating-system/storage-ios/iphonesimulator/x86_64/library/libcrypto.a"; sourceTree = "<group>"; };
-		9A750F49282B8AA900C4861B /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../../../operating-system/storage-ios/iphonesimulator/x86_64/library/libssl.a"; sourceTree = "<group>"; };
+		9A750F47282B8A9C00C4861B /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../../../../operating-system/storage-ios/iphonesimulator/x86_64/library/libcrypto.a"; sourceTree = "<group>"; };
+		9A750F49282B8AA900C4861B /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../../../../operating-system/storage-ios/iphonesimulator/x86_64/library/libssl.a"; sourceTree = "<group>"; };
 		9A750F4B282B8F4E00C4861B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		9A8E9995282A2ACC005FF778 /* app_app.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = app_app.xcodeproj; sourceTree = "<group>"; };
-		9A8E999E282A2AD9005FF778 /* crypto_openssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = crypto_openssl.xcodeproj; path = ../crypto_openssl/crypto_openssl.xcodeproj; sourceTree = "<group>"; };
-		9A8E99A7282A2AE6005FF778 /* draw2d_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = draw2d_quartz2d.xcodeproj; path = "../../../operating-system/operating-system-apple/draw2d_quartz2d/draw2d_quartz2d.xcodeproj"; sourceTree = "<group>"; };
-		9A8E99B0282A2AF3005FF778 /* folder_zip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = folder_zip.xcodeproj; path = ../folder_zip/folder_zip.xcodeproj; sourceTree = "<group>"; };
-		9A8E99C0282A2B1B005FF778 /* node_ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = node_ios.xcodeproj; path = "../../../operating-system/operating-system-ios/node_ios/node_ios.xcodeproj"; sourceTree = "<group>"; };
+		9A8E9995282A2ACC005FF778 /* app_app.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = app_app.xcodeproj; path = ../app_app.xcodeproj; sourceTree = "<group>"; };
+		9A8E999E282A2AD9005FF778 /* crypto_openssl.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = crypto_openssl.xcodeproj; path = ../../crypto_openssl/crypto_openssl.xcodeproj; sourceTree = "<group>"; };
+		9A8E99A7282A2AE6005FF778 /* draw2d_quartz2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = draw2d_quartz2d.xcodeproj; path = "../../../../operating-system/operating-system-apple/draw2d_quartz2d/draw2d_quartz2d.xcodeproj"; sourceTree = "<group>"; };
+		9A8E99B0282A2AF3005FF778 /* folder_zip.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = folder_zip.xcodeproj; path = ../../folder_zip/folder_zip.xcodeproj; sourceTree = "<group>"; };
+		9A8E99C0282A2B1B005FF778 /* node_ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = node_ios.xcodeproj; path = "../../../../operating-system/operating-system-ios/node_ios/node_ios.xcodeproj"; sourceTree = "<group>"; };
 		9A8E9AA2282A2B89005FF778 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9A8E9AA4282A2B89005FF778 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9A8E9AA5282A2B89005FF778 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		9A8E9AA6282A2B89005FF778 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9A8E9AA8282A2B89005FF778 /* _main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _main.cpp; sourceTree = "<group>"; };
-		9A8E9D84282A2C09005FF778 /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = _matter.zip; sourceTree = "<group>"; };
+		9A8E9AA8282A2B89005FF778 /* __implement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = __implement.cpp; sourceTree = "<group>"; };
+		9A8E9D84282A2C09005FF778 /* _matter.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = _matter.zip; path = ../_matter.zip; sourceTree = "<group>"; };
 		9A8E9D9C282A2DAA005FF778 /* libios_acme.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_acme.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A8E9D9E282A2DAA005FF778 /* libios_apex.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libios_apex.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A94DE54282C04D400F5C1CA /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		9A94DE5B282C05CA00F5C1CA /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		9A94DE73282C0CB300F5C1CA /* _main.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _main.inl; sourceTree = "<group>"; };
-		9A94DE75282C0E7000F5C1CA /* _static_factory.inl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = _static_factory.inl; sourceTree = "<group>"; };
 		9A94DE77282C0E9100F5C1CA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		9A94DEB1282C3F6000F5C1CA /* libwindowing_ios.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libwindowing_ios.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A94DECE282C4ABB00F5C1CA /* libaura_ios.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libaura_ios.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,6 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A750E50282B5C2000C4861B /* libios_folder_zip.a in Frameworks */,
 				9A750F46282B89E100C4861B /* CoreGraphics.framework in Frameworks */,
 				9A750E4B282B5C2000C4861B /* libios_aura_posix.a in Frameworks */,
 				9A94DED6282C4ACB00F5C1CA /* libacme_ios.a in Frameworks */,
@@ -217,7 +216,6 @@
 				9A750E4F282B5C2000C4861B /* libios_draw2d_quartz2d.a in Frameworks */,
 				9A94DEB2282C3F6000F5C1CA /* libwindowing_ios.a in Frameworks */,
 				9A94DED3282C4AC400F5C1CA /* libapex_ios.a in Frameworks */,
-				9A750E50282B5C2000C4861B /* libios_folder_zip.a in Frameworks */,
 				9A94DE78282C0E9100F5C1CA /* CoreText.framework in Frameworks */,
 				9A94DECF282C4ABB00F5C1CA /* libaura_ios.a in Frameworks */,
 				9A750E4D282B5C2000C4861B /* libios_idn.a in Frameworks */,
@@ -309,10 +307,8 @@
 			isa = PBXGroup;
 			children = (
 				9A8E9AA0282A2B89005FF778 /* ios */,
-				9A94DE75282C0E7000F5C1CA /* _static_factory.inl */,
-				9A94DE73282C0CB300F5C1CA /* _main.inl */,
 				9A8E9D84282A2C09005FF778 /* _matter.zip */,
-				9A8E9AA8282A2B89005FF778 /* _main.cpp */,
+				9A8E9AA8282A2B89005FF778 /* __implement.cpp */,
 			);
 			name = app;
 			sourceTree = "<group>";
@@ -609,7 +605,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A8E9D9A282A2D4C005FF778 /* _main.cpp in Sources */,
+				9A8E9D9A282A2D4C005FF778 /* __implement.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -767,7 +763,7 @@
 					"$(HOME)/sensitive/sensitive/include",
 				);
 				USE_HEADERMAP = NO;
-				WorkspaceDir = "$(SRCROOT)/../../..";
+				WorkspaceDir = "$(SRCROOT)/../../../..";
 			};
 			name = Debug;
 		};
@@ -853,7 +849,7 @@
 				);
 				USE_HEADERMAP = NO;
 				VALIDATE_PRODUCT = YES;
-				WorkspaceDir = "$(SRCROOT)/../../..";
+				WorkspaceDir = "$(SRCROOT)/../../../..";
 			};
 			name = Release;
 		};

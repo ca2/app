@@ -1,11 +1,10 @@
 #include "framework.h"
 //#include <mach-o/dyld.h>
 
-//
-//
-//namespace apex
-//{
-//
+
+namespace apex
+{
+
 
 //   application::application(::object * pobject) :
 //      ::object(pobject)
@@ -433,6 +432,8 @@
 //   }
 
 //
+
+
    bool application::os_on_start_application()
    {
 
@@ -440,9 +441,8 @@
 
    }
 
-//
-//
-//} // namespace apex
-//
-//
+
+} // namespace apex
+
+
 

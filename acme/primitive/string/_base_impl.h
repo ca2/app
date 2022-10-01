@@ -2817,7 +2817,7 @@ void string_base < TYPE_CHAR >::append_format_arguments(const CHAR_TYPE* pszForm
 
 #else
 
-   ::str().string_format(pszBuffer + nCurrentLength, pszFormat, args);
+   ::str().string_format(pszBuffer + nCurrentLength, nAppendLength + 1, pszFormat, args);
 
 #endif
 
@@ -2859,7 +2859,7 @@ void string_base < TYPE_CHAR >::format_arguments(const CHAR_TYPE* pszFormat, va_
 
 #else
 
-   ::str().string_format(pszBuffer, pszFormat, ptr2);
+   ::str().string_format(pszBuffer, nLength + 1, pszFormat, ptr2);
 
 #endif
 

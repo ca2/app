@@ -35,6 +35,7 @@
 #endif
 
 
+CLASS_DECL_ACME void flush_stdin();
 
 
 

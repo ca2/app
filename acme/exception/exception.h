@@ -95,7 +95,7 @@ public:
       exception(error_win32)
    {
 
-      m_uLastError = uLastError;
+      m_errorcodea.add(__last_error(uLastError));
 
    }
 

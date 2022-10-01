@@ -74,6 +74,8 @@ void conversation_message::initialize_conversation(const ::string & strMessage, 
 {
    
    do_asynchronously();
+
+   return e_dialog_result_none;
    
 }
 

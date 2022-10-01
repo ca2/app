@@ -1015,6 +1015,7 @@
     <ClCompile Include="operating_system\console.cpp" />
     <ClCompile Include="operating_system\console_client.cpp" />
     <ClCompile Include="operating_system\debug.cpp" />
+    <ClCompile Include="operating_system\error_code.cpp" />
     <ClCompile Include="operating_system\file.cpp" />
     <ClCompile Include="operating_system\parallelization.cpp" />
     <ClCompile Include="operating_system\time.cpp" />
@@ -1073,6 +1074,7 @@
     <ClCompile Include="platform\build_debug.cpp" />
     <ClCompile Include="platform\checked.cpp" />
     <ClCompile Include="platform\context.cpp" />
+    <ClCompile Include="platform\conversation_message.cpp" />
     <ClCompile Include="platform\c_class.cpp" />
     <ClCompile Include="platform\debug.cpp" />
     <ClCompile Include="platform\department.cpp" />

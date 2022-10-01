@@ -25,3 +25,5 @@ void error_code::get_string(::text_stream & textstream) const
    };
    
 }
+
+

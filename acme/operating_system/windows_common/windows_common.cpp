@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/operating_system.h"
+#include "acme/operating_system/error_code.h"
 
 
 int __node_is_debugger_attached()
@@ -414,6 +415,15 @@ string last_error_message(u32 dwError)
    return str;
 
 }
+
+
+CLASS_DECL_ACME error_code __last_error()
+{
+
+   return __last_error(::GetLastError());
+
+}
+
 
 
 

@@ -200,7 +200,7 @@ filesize stdio_file::translate(filesize offset, ::enum_seek eseek)
 
       // error;
 
-      throw ::file::exception(error_file, GetLastError(), errno, m_path);
+      throw ::file::exception(error_file, __last_error(), errno, m_path);
 
       return -1;
 

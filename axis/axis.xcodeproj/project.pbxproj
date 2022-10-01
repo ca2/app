@@ -11,6 +11,21 @@
 		9A00E5F326614F9400517464 /* transaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A00E5ED26614F9400517464 /* transaction.cpp */; };
 		9A00E5F426614F9400517464 /* transaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A00E5EE26614F9400517464 /* transaction.h */; };
 		9A00E5F526614F9400517464 /* database_impl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A00E5EF26614F9400517464 /* database_impl.cpp */; };
+		9A0F542228E9065400025231 /* text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCC028CCBE040084D354 /* text.cpp */; };
+		9A0F542328E9065400025231 /* table_row.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCBC28CCBE040084D354 /* table_row.cpp */; };
+		9A0F542428E9065400025231 /* input_text.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCBD28CCBE040084D354 /* input_text.cpp */; };
+		9A0F542528E9065400025231 /* table_elemental.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCC728CCBE040084D354 /* table_elemental.cpp */; };
+		9A0F542628E9065400025231 /* form.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCBB28CCBE040084D354 /* form.cpp */; };
+		9A0F542728E9065400025231 /* cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCC828CCBE040084D354 /* cell.cpp */; };
+		9A0F542828E9065400025231 /* input_checkbox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCD228CCBE040084D354 /* input_checkbox.cpp */; };
+		9A0F542928E9065400025231 /* element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCD028CCBE040084D354 /* element.cpp */; };
+		9A0F542A28E9065400025231 /* select.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCBE28CCBE040084D354 /* select.cpp */; };
+		9A0F542B28E9065400025231 /* image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCBF28CCBE040084D354 /* image.cpp */; };
+		9A0F542C28E9065400025231 /* table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCC428CCBE040084D354 /* table.cpp */; };
+		9A0F542D28E9065400025231 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCCB28CCBE040084D354 /* _.cpp */; };
+		9A0F542E28E9065400025231 /* input_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCD128CCBE040084D354 /* input_button.cpp */; };
+		9A0F543028E9066F00025231 /* core_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCF528CCBE600084D354 /* core_data.cpp */; };
+		9A0F543128E9066F00025231 /* data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECCF628CCBE600084D354 /* data.cpp */; };
 		9A1626B726F0041A003D9CB9 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16268926F0041A003D9CB9 /* _impl.h */; };
 		9A1626B826F0041A003D9CB9 /* email_department.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16268A26F0041A003D9CB9 /* email_department.cpp */; };
 		9A1626B926F0041A003D9CB9 /* config.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A16268D26F0041A003D9CB9 /* config.h */; };
@@ -2098,15 +2113,19 @@
 				9A93B6342846EA94005ACD11 /* tag.cpp in Sources */,
 				9A979D3B28C81E430013DC54 /* tag.cpp in Sources */,
 				9A93B6362846EA94005ACD11 /* database.cpp in Sources */,
+				9A0F542D28E9065400025231 /* _.cpp in Sources */,
 				9A93B6372846EA94005ACD11 /* usera.cpp in Sources */,
 				9A93B63B2846EA94005ACD11 /* storage_client.cpp in Sources */,
 				9A979DBC28C835450013DC54 /* simple_ui_draw.cpp in Sources */,
+				9A0F542528E9065400025231 /* table_elemental.cpp in Sources */,
 				9A93B63C2846EA94005ACD11 /* checked.cpp in Sources */,
 				9A93B63D2846EA94005ACD11 /* EventTime.cpp in Sources */,
+				9A0F542E28E9065400025231 /* input_button.cpp in Sources */,
 				9A979D3D28C81E430013DC54 /* value.cpp in Sources */,
 				9A93B63E2846EA94005ACD11 /* ifft.cpp in Sources */,
 				9A979DEC28C835540013DC54 /* control.cpp in Sources */,
 				9A979DC228C835450013DC54 /* list_box.cpp in Sources */,
+				9A0F542228E9065400025231 /* text.cpp in Sources */,
 				9A93B6402846EA94005ACD11 /* entity_resolver.cpp in Sources */,
 				9A93B6412846EA94005ACD11 /* ifftd.cpp in Sources */,
 				9A93B6442846EA94005ACD11 /* user.cpp in Sources */,
@@ -2119,6 +2138,7 @@
 				9A979DB428C835450013DC54 /* style.cpp in Sources */,
 				9A93B64C2846EA94005ACD11 /* fft.cpp in Sources */,
 				9A93B64D2846EA94005ACD11 /* email_department.cpp in Sources */,
+				9A0F542728E9065400025231 /* cell.cpp in Sources */,
 				9A93B64F2846EA94005ACD11 /* thread_localdatabase.cpp in Sources */,
 				9A93B6512846EA94005ACD11 /* simpledb.cpp in Sources */,
 				9A93B6522846EA94005ACD11 /* attributes.cpp in Sources */,
@@ -2129,6 +2149,7 @@
 				9A93B6572846EA94005ACD11 /* session.cpp in Sources */,
 				9A93B6582846EA94005ACD11 /* parser.cpp in Sources */,
 				9A93B65A2846EA94005ACD11 /* html.cpp in Sources */,
+				9A0F542828E9065400025231 /* input_checkbox.cpp in Sources */,
 				9A93B65B2846EA94005ACD11 /* department.cpp in Sources */,
 				9A93B65C2846EA94005ACD11 /* contact_list.cpp in Sources */,
 				9A93B65D2846EA94005ACD11 /* Event.cpp in Sources */,
@@ -2136,6 +2157,7 @@
 				9A93B65F2846EA94005ACD11 /* scanner.cpp in Sources */,
 				9A979DBE28C835450013DC54 /* validate.cpp in Sources */,
 				9A93B6632846EA94005ACD11 /* idpool.cpp in Sources */,
+				9A0F542628E9065400025231 /* form.cpp in Sources */,
 				9A93B6642846EA94005ACD11 /* smtpd_socket.cpp in Sources */,
 				9A93B6652846EA94005ACD11 /* interactive.cpp in Sources */,
 				9A93B6662846EA94005ACD11 /* credentials.cpp in Sources */,
@@ -2153,10 +2175,13 @@
 				9A93B66D2846EA94005ACD11 /* system.cpp in Sources */,
 				9A979D2B28C81E430013DC54 /* message.cpp in Sources */,
 				9A979DEA28C835540013DC54 /* data.cpp in Sources */,
+				9A0F542328E9065400025231 /* table_row.cpp in Sources */,
 				9A979D3928C81E430013DC54 /* base.cpp in Sources */,
+				9A0F542428E9065400025231 /* input_text.cpp in Sources */,
 				9A93B66E2846EA94005ACD11 /* _.cpp in Sources */,
 				9A93B6712846EA94005ACD11 /* result.cpp in Sources */,
 				9A93B6722846EA94005ACD11 /* fftd.cpp in Sources */,
+				9A0F542B28E9065400025231 /* image.cpp in Sources */,
 				9A93B6742846EA94005ACD11 /* smtp_socket.cpp in Sources */,
 				9A93B6752846EA94005ACD11 /* item.cpp in Sources */,
 				9A93B6762846EA94005ACD11 /* database_impl.cpp in Sources */,
@@ -2171,11 +2196,16 @@
 				9A93B67F2846EA94005ACD11 /* element.cpp in Sources */,
 				9A93B6812846EA94005ACD11 /* transaction.cpp in Sources */,
 				9A93B6822846EA94005ACD11 /* product_array.cpp in Sources */,
+				9A0F542928E9065400025231 /* element.cpp in Sources */,
+				9A0F543128E9066F00025231 /* data.cpp in Sources */,
 				9A93B6832846EA94005ACD11 /* definition.cpp in Sources */,
 				9A979DCC28C835450013DC54 /* plus_minus.cpp in Sources */,
 				9A93B6842846EA94005ACD11 /* network_authenticator.cpp in Sources */,
+				9A0F542C28E9065400025231 /* table.cpp in Sources */,
 				9A93B6852846EA94005ACD11 /* EventHandler.cpp in Sources */,
 				9A93B6862846EA94005ACD11 /* system_storage.cpp in Sources */,
+				9A0F543028E9066F00025231 /* core_data.cpp in Sources */,
+				9A0F542A28E9065400025231 /* select.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

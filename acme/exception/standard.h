@@ -163,68 +163,68 @@ typedef struct _sig_ucontext
 //namespace exception
 //{
 //
-//   class standard_access_violation : public standard_exception
-//   {
-//   public:
-//#if defined(ANDROID) || defined(RASPBIAN)
-//
-//
-//      standard_access_violation (i32 signal, void * psiginfo, void * pc) :
-//         ::standard_exception(signal, psiginfo, pc)
-//      {
-//
-//      }
-//
-//#elif defined(FREEBSD_UNIX)
-//      standard_access_violation (i32 signal, void * psiginfo, void * pc) :
-//         standard_exception(signal, psiginfo, pc, 3, (void *) pc)
-//      {
-//
-//      }
-//
-//
-//#elif defined(LINUX) || defined(__APPLE__) || defined(SOLARIS)
-//      standard_access_violation (i32 signal, void * psiginfo, void * pc) :
-//#ifdef LINUX
-//#ifdef _LP64
-//         standard_exception(signal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip)
-//#else
-//         ::callstack(3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.eip)
-//#endif
-//#else
-//#ifdef _LP64
-//         standard_exception(signal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->uc_mcontext->__ss.__rip)
-//#else
-//#ifdef SOLARIS
-//         ::callstack(3, (void *) ((ucontext_t *) pc)->uc_mcontext.gregs[EIP])
-//#elif defined(APPLE_IOS)
-//         ::callstack(3, (void *) nullptr)
-//#else
-//         //::callstack(3, (void *) ((ucontext_t *) pc)->uc_mcontext.eip)
-//#endif
-//#endif
-//#endif
-////         ::exception(),
-//         //       ::standard_exception(pobject, signal, psiginfo, pc)
-//      {
-//
-//      }
-//
-//      /*       sig_ucontext_t * uc = (sig_ucontext_t *)ucontext;
-//
-//             void * caller_address = (void *) uc->uc_mcontext.eip; // x86 specific
-//
-//             str += "signal " + ansi_string_from_i64(sig_num) +
-//                       +" (" + ansi_string_from_i64(sig_num) + "), address is "  +
-//                       itohex_dup(info->si_addr) + " from " + itohex_dup(caller_address) + "\n\n";*/
-//
-//#else
-//
-//
-//
-//   public:
-//#endif
-//   };
+   class standard_access_violation : public standard_exception
+   {
+   public:
+#if defined(ANDROID) || defined(RASPBIAN)
+
+
+      standard_access_violation (i32 signal, void * psiginfo, void * pc) :
+         ::standard_exception(signal, psiginfo, pc)
+      {
+
+      }
+
+#elif defined(FREEBSD_UNIX)
+      standard_access_violation (i32 signal, void * psiginfo, void * pc) :
+         standard_exception(signal, psiginfo, pc, 3, (void *) pc)
+      {
+
+      }
+
+
+#elif defined(LINUX) || defined(__APPLE__) || defined(SOLARIS)
+      standard_access_violation (i32 signal, void * psiginfo, void * pc) :
+#ifdef LINUX
+#ifdef _LP64
+         standard_exception(signal, psiginfo, pc, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip)
+#else
+         ::callstack(3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.eip)
+#endif
+#else
+#ifdef _LP64
+         standard_exception(signal, psiginfo, pc, 3, (void *) ((ucontext_t *) pc)->uc_mcontext->__ss.__rip)
+#else
+#ifdef SOLARIS
+         ::callstack(3, (void *) ((ucontext_t *) pc)->uc_mcontext.gregs[EIP])
+#elif defined(APPLE_IOS)
+         ::callstack(3, (void *) nullptr)
+#else
+         //::callstack(3, (void *) ((ucontext_t *) pc)->uc_mcontext.eip)
+#endif
+#endif
+#endif
+//         ::exception(),
+         //       ::standard_exception(pobject, signal, psiginfo, pc)
+      {
+
+      }
+
+      /*       sig_ucontext_t * uc = (sig_ucontext_t *)ucontext;
+
+             void * caller_address = (void *) uc->uc_mcontext.eip; // x86 specific
+
+             str += "signal " + ansi_string_from_i64(sig_num) +
+                       +" (" + ansi_string_from_i64(sig_num) + "), address is "  +
+                       itohex_dup(info->si_addr) + " from " + itohex_dup(caller_address) + "\n\n";*/
+
+#else
+
+
+
+   public:
+#endif
+   };
 #if defined(ANDROID) || defined(RASPBIAN)
 
    class standard_sigfpe : public standard_exception

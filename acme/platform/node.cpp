@@ -1743,7 +1743,25 @@ namespace acme
 
       pmessagebox->m_psequencer = psequencer;
 
-      pmessagebox->initialize_message_box(strMessage, strTitle, emessagebox, strDetails);
+      pmessagebox->initialize_conversation(strMessage, strTitle, emessagebox, strDetails);
+
+      return psequencer;
+
+   }
+
+
+   __pointer(::sequencer < ::conversation >) node::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+   {
+
+      auto psequencer = __new(::sequencer < ::conversation >());
+
+      auto pmessage = create_new_message_conversation();
+
+      psequencer->m_psequence = pmessage;
+
+      pmessage->m_psequencer = psequencer;
+
+      pmessage->initialize_conversation(strMessage, strTitle, emessagebox, strDetails);
 
       return psequencer;
 
@@ -1875,6 +1893,14 @@ namespace acme
        return strMutex;
 
     }
+
+
+   ::string node::get_callstack()
+   {
+      
+      return {};
+      
+   }
 
 
 } // namespace acme

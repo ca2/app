@@ -2,29 +2,21 @@
 #include "framework.h"
 
 
-void conversation::initialize_message_box(const ::string & strMessage, const string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+void conversation::initialize_conversation(const ::string & strMessage, const string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
 {
 
 
 }
 
 
-void conversation::do_message_box(const ::string& strMessage, const string& strTitle, const ::e_message_box& emessagebox, const ::string & strDetails)
+void conversation::do_conversation(const ::string& strMessage, const string& strTitle, const ::e_message_box& emessagebox, const ::string & strDetails)
 {
 
 
 }
 
 
-::string conversation::get_message_box_message()
-{
-
-   return "";
-
-}
-
-
-::string conversation::get_message_box_title()
+::string conversation::get_conversation_message()
 {
 
    return "";
@@ -32,7 +24,15 @@ void conversation::do_message_box(const ::string& strMessage, const string& strT
 }
 
 
-::e_message_box conversation::get_message_box_flags()
+::string conversation::get_conversation_title()
+{
+
+   return "";
+
+}
+
+
+::e_message_box conversation::get_conversation_flags()
 {
 
    return e_message_box_ok;
@@ -40,7 +40,7 @@ void conversation::do_message_box(const ::string& strMessage, const string& strT
 }
 
 
-::string conversation::get_message_box_details()
+::string conversation::get_conversation_details()
 {
 
    return "";

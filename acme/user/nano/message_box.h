@@ -11,7 +11,6 @@ class nano_message_box :
 public:
 
 
-   e_message_box                       m_emessagebox;
    string                              m_strLabelDetails;
    __pointer(nano_still)               m_pstillDetails;
 
@@ -21,13 +20,13 @@ public:
 
 
 
-   ::e_message_box get_message_box_flags() override;
+   //::e_message_box get_conversation_flags() override;
 
 
    virtual void calculate_size();
 
 
-   void initialize_message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails = nullptr) override;
+   void initialize_conversation(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails = nullptr) override;
 
    // void initialize_message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails) override;
 

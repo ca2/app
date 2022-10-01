@@ -149,6 +149,22 @@ string exception::get_message() const
 }
 
 
+string exception::get_consolidated_details() const
+{
+ 
+   string strConsolidatedDetails;
+   
+   strConsolidatedDetails += m_strDetails;
+   
+   strConsolidatedDetails += "\n";
+   
+   strConsolidatedDetails += m_strCallstack;
+
+   return strConsolidatedDetails;
+
+}
+
+
 errno_t c_runtime_error_check(errno_t error)
 {
 

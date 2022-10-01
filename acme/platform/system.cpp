@@ -203,6 +203,16 @@ namespace acme
 
       }
 
+#if !defined(WINDOWS)
+      
+      __construct(m_pexceptiontranslator);
+      
+      m_pexceptiontranslator->attach();
+      
+      
+#endif
+
+
       //auto estatus = __construct(m_pnode);
       __construct(m_pnode);
 
@@ -253,7 +263,7 @@ namespace acme
 
    void system::process_init()
    {
-
+      
       ::acme::idpool::init(this);
 
       __compose_new(m_pdatetime);
@@ -1001,53 +1011,87 @@ namespace acme
 
    __pointer(::factory::factory) & system::factory(const ::string & strComponent, const ::string & strImplementation)
    {
-
+      
       synchronous_lock synchronouslock(&m_mutexComponentFactory);
-
+      
       auto & pfactory = m_mapComponentFactory[strComponent][implementation_name(strComponent, strImplementation)];
-
+      
       if (pfactory)
       {
-
+         
          return pfactory;
-
+         
       }
-
+      
       string strLibrary;
-
+      
       strLibrary = library_name(strComponent, strImplementation);
-
+      
       auto & plibrary = library(strLibrary);
-
+      
       if (!plibrary)
       {
-
+         
 #ifdef CUBE
-
+         
          auto pfnFactory = ::system_setup::get_factory_function(strLibrary);
-
+         
          if (pfnFactory)
          {
-
+            
             pfactory = m_psystem->__create_new < ::factory::factory >();
-
+            
             pfnFactory(pfactory);
-
+            
             return pfactory;
-
+            
          }
-
+         
 #endif
-
+         
          //pfactory = (const ::extended::status&)plibrary;
          throw ::exception(error_resource, strComponent + "_" + strImplementation + "_factory not found!!");
-
+         
       }
-
+      
       pfactory = plibrary->create_factory();
-
+      
       return pfactory;
+         
+   }
 
+
+   __pointer(::factory::factory) & system::impact_factory(const ::string & strComponent, const ::string & strImplementation)
+   {
+      
+      synchronous_lock synchronouslock(&m_mutexComponentFactory);
+      
+      auto & pfactory = m_mapComponentFactory[strComponent][implementation_name(strComponent, strImplementation)];
+      
+      try
+      {
+         
+         return factory(strComponent, strImplementation);
+         
+      }
+      catch(const ::exception & exception)
+      {
+         
+         string strMessage = "Library couldn't be opened : " + exception.m_strMessage;
+         
+         string strDetails = exception.get_consolidated_details();
+         
+         auto psequencer = create_message_box_sequencer(strMessage, "Library Loading Failure", e_message_box_ok | e_message_box_icon_warning,
+                                                        strDetails);
+         
+         psequencer->do_asynchronously();
+         
+         throw exception;
+         
+      }
+      
+      return pfactory;
+      
    }
 
 
@@ -2048,6 +2092,15 @@ namespace acme
 
    }
 
+   
+   __pointer(::sequencer < ::conversation >) system::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+   {
+
+      auto psequencer = m_pnode->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails);
+
+      return psequencer;
+
+   }
 
    //__pointer(::sequencer < ::conversation >) system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
    //{

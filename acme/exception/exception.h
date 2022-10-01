@@ -52,6 +52,8 @@ public:
 
 
    virtual string get_message() const;
+   
+   virtual string get_consolidated_details() const;
       
       
    inline ::e_status estatus() const { return m_estatus; }

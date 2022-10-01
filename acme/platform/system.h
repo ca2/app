@@ -18,7 +18,9 @@ namespace acme
       //__pointer(main_hold_base)                                         m_pmainholdbase;
       enum_windowing                                                    m_ewindowing;
       //__pointer(system_impl) *                                        m_psystemimpl;
-
+#if !defined(WINDOWS)
+      __pointer(::exception_translator)                                 m_pexceptiontranslator;
+#endif
       __pointer(::factory::factory)                                     m_pfactoryFolder;
 
       bool                                                              m_bPostedInitialRequest;
@@ -273,6 +275,8 @@ namespace acme
 
       virtual __pointer(::factory::factory) & factory(const ::string & strComponent, const ::string & strImplementation);
 
+      virtual __pointer(::factory::factory) & impact_factory(const ::string & strComponent, const ::string & strImplementation);
+
 
       virtual void open_profile_link(string strUrl, string strProfile, string strTarget);
       virtual void open_link(string strUrl, string strProfile, string strTarget);
@@ -465,7 +469,11 @@ namespace acme
 
       __pointer(::sequencer < ::conversation >) create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
 
+      
       //__pointer(::sequence < ::conversation >) message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
+      
+      __pointer(::sequencer < ::conversation >) create_message_sequencer(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
+
 
       virtual void windowing_send(const ::procedure & procedure);
       virtual void windowing_post(const ::procedure & procedure);

@@ -249,6 +249,14 @@ namespace user
    }
 
 
+   bool plain_edit::is_plain_edit_modified() const
+   {
+   
+      return m_ptree->is_tree_modified();
+   
+   }
+
+
    void plain_edit::install_message_routing(::channel * pchannel)
    {
 

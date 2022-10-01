@@ -31,6 +31,9 @@ namespace user
 
 
       void SetFile(file_pointer  pfile);
+      
+      
+      virtual bool is_tree_modified() const;
 
 
    };

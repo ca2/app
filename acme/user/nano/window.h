@@ -4,16 +4,17 @@
 #pragma once
 
 
+#include "acme/platform/conversation_message.h"
+
 
 class CLASS_DECL_ACME nano_window :
    virtual public ::nano_window_interface,
-   virtual public ::conversation,
+   virtual public ::conversation_message,
    virtual public ::user::drag_client
 {
 public:
 
 
-   string                                 m_strMessage;
    ::function < void(nano_window *) >     m_functionClose;
 
    __pointer(nano_window_implementation)  m_pimplementation;
@@ -30,7 +31,6 @@ public:
    ::color::color                         m_colorHyperlinkHover;
    ::color::color                         m_colorFocus;
    ::color::color                         m_colorWindow;
-   string                                 m_strTitle;
    bool                                   m_bNcActive;
 
    rectangle_i32                          m_rectangle;
@@ -44,7 +44,6 @@ public:
    __pointer(nano_child)                  m_pchildHover;
    __pointer(nano_child)                  m_pchildCapture;
 
-   string                                 m_strDetails;
 
    bool                                   m_bCapture;
    bool                                   m_bStartCentered;
@@ -66,9 +65,6 @@ public:
    void do_asynchronously() override;
 
 
-   ::string get_message_box_message() override;
-   ::string get_message_box_title() override;
-   ::string get_message_box_details() override;
 
 
    void on_initialize_object() override;

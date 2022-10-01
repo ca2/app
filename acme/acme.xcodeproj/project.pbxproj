@@ -1125,6 +1125,10 @@
 		9A787DC2264CA807003DF8A0 /* exit_status.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787DB9264CA807003DF8A0 /* exit_status.h */; };
 		9A787DC3264CA807003DF8A0 /* bidirectional_pipe.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787DBA264CA807003DF8A0 /* bidirectional_pipe.h */; };
 		9A787DC4264CA807003DF8A0 /* bidirectional_pipe.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A787DBA264CA807003DF8A0 /* bidirectional_pipe.h */; };
+		9A78F44928E7F275007F62C0 /* conversation_message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A78F44728E7F275007F62C0 /* conversation_message.cpp */; };
+		9A78F44A28E7F275007F62C0 /* conversation_message.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A78F44728E7F275007F62C0 /* conversation_message.cpp */; };
+		9A78F44B28E7F275007F62C0 /* conversation_message.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A78F44828E7F275007F62C0 /* conversation_message.h */; };
+		9A78F44C28E7F275007F62C0 /* conversation_message.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A78F44828E7F275007F62C0 /* conversation_message.h */; };
 		9A7F3EDE274D543A00D914CC /* implement.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7F3EDB274D543900D914CC /* implement.h */; };
 		9A7F3EDF274D543A00D914CC /* implement.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7F3EDB274D543900D914CC /* implement.h */; };
 		9A7F3EE0274D543A00D914CC /* implement_console.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7F3EDD274D543900D914CC /* implement_console.h */; };
@@ -3222,6 +3226,8 @@
 		9A787DB8264CA806003DF8A0 /* pipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pipe.h; sourceTree = "<group>"; };
 		9A787DB9264CA807003DF8A0 /* exit_status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exit_status.h; sourceTree = "<group>"; };
 		9A787DBA264CA807003DF8A0 /* bidirectional_pipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bidirectional_pipe.h; sourceTree = "<group>"; };
+		9A78F44728E7F275007F62C0 /* conversation_message.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = conversation_message.cpp; sourceTree = "<group>"; };
+		9A78F44828E7F275007F62C0 /* conversation_message.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = conversation_message.h; sourceTree = "<group>"; };
 		9A7F3EDB274D543900D914CC /* implement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = implement.h; sourceTree = "<group>"; };
 		9A7F3EDD274D543900D914CC /* implement_console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = implement_console.h; sourceTree = "<group>"; };
 		9A84D3E7284229AB00890F9D /* idn.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = idn.xcodeproj; path = ../../port/idn/idn.xcodeproj; sourceTree = "<group>"; };
@@ -4048,6 +4054,8 @@
 				9A68A5702511442F008DABD2 /* constraint.h */,
 				9A787B6C264BB117003DF8A0 /* context.cpp */,
 				9A787B6A264BB117003DF8A0 /* context.h */,
+				9A78F44728E7F275007F62C0 /* conversation_message.cpp */,
+				9A78F44828E7F275007F62C0 /* conversation_message.h */,
 				9A68A5762511442F008DABD2 /* debug.cpp */,
 				9A68A5422511442E008DABD2 /* debug.h */,
 				9A68A5492511442E008DABD2 /* definition.h */,
@@ -5859,6 +5867,7 @@
 				9AA8FDEB27BA729B008FF9AA /* _application.h in Headers */,
 				9A5F8DEB27193D4D002CB2B8 /* nanosecond.h in Headers */,
 				9ADD656526B5DB7E00D11298 /* array_memory_allocate.h in Headers */,
+				9A78F44B28E7F275007F62C0 /* conversation_message.h in Headers */,
 				9AA8FE0D27BA729C008FF9AA /* file_c.h in Headers */,
 				9A68AF6625114435008DABD2 /* dimension.h in Headers */,
 				9A68AF2925114435008DABD2 /* _c_trait_ansi.h in Headers */,
@@ -7023,6 +7032,7 @@
 				9AA8FF6C27BA729F008FF9AA /* factory_exchange.h in Headers */,
 				9AD69100251A753A00C0EBD7 /* _papaya_weak.h in Headers */,
 				9AD69102251A753A00C0EBD7 /* _fifo_map_impl.h in Headers */,
+				9A78F44C28E7F275007F62C0 /* conversation_message.h in Headers */,
 				9AD69104251A753A00C0EBD7 /* _c.h in Headers */,
 				9A787DC4264CA807003DF8A0 /* bidirectional_pipe.h in Headers */,
 				9AD69106251A753A00C0EBD7 /* heap_memory.h in Headers */,
@@ -7368,6 +7378,7 @@
 				9AA8FCA927BA7299008FF9AA /* process.cpp in Sources */,
 				9A68AE0125114435008DABD2 /* bit_array.cpp in Sources */,
 				9AAE6E94251920CE00F10692 /* _.cpp in Sources */,
+				9A78F44928E7F275007F62C0 /* conversation_message.cpp in Sources */,
 				9A15A746264B6F2D0080670E /* simple_item.cpp in Sources */,
 				9A13DCF928442369009ED8FC /* item.cpp in Sources */,
 				9ADD64C526B5CB3800D11298 /* log.cpp in Sources */,
@@ -7786,6 +7797,7 @@
 				9AD69252251A753A00C0EBD7 /* string_array.cpp in Sources */,
 				9AD69254251A753A00C0EBD7 /* build_debug.cpp in Sources */,
 				9A94DE4F282C03AD00F5C1CA /* context.cpp in Sources */,
+				9A78F44A28E7F275007F62C0 /* conversation_message.cpp in Sources */,
 				9A787DBC264CA807003DF8A0 /* bidirectional_pipe.cpp in Sources */,
 				9A787CC8264C04CD003DF8A0 /* international_locale_schema.cpp in Sources */,
 				9AD69255251A753A00C0EBD7 /* stringtow.cpp in Sources */,
@@ -7962,7 +7974,7 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "@rpath";
+				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
@@ -8077,7 +8089,7 @@
 				GCC_WARN_UNUSED_FUNCTION = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = "";
-				INSTALL_PATH = "@rpath";
+				INSTALL_PATH = "@executable_path";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (

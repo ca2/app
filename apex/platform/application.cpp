@@ -10194,6 +10194,19 @@ namespace apex
 
    void application::handle_url(const ::string & strUrl)
    {
+      
+      string strHtml;
+      
+      property_set setPost;
+      
+      auto estatus = on_html_response(strHtml, strUrl, setPost);
+
+      if(::succeeded(estatus))
+      {
+         
+         return;
+         
+      }
 
       if (m_pinterprocessintercommunication)
       {

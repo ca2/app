@@ -1,8 +1,8 @@
 #include "framework.h"
-
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/filesystem/filemanager/_filemanager.h"
-#endif
+//
+//#if !BROAD_PRECOMPILED_HEADER
+//#include "core/filesystem/filemanager/_filemanager.h"
+//#endif
 #include "base/user/user/tab_pane.h"
 #include "core/user/user/font_list.h"
 #include "core/user/user/user.h"

@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "aura/graphics/image/list.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/filesystem/filemanager/_filemanager.h"
-#endif
+//#if !BROAD_PRECOMPILED_HEADER
+//#include "core/filesystem/filemanager/_filemanager.h"
+//#endif
 #include "folder_list.h"
 #include "document.h"
 #include "core/user/user/list_column.h"

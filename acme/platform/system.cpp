@@ -2325,42 +2325,53 @@ namespace acme
 
    void system::_main_application_handle_url(const char * pszUrl, const ::function < void(bool) > & functionSucceeded)
    {
-
-      try
-      {
-
-         if (m_pacmeapplicationMain)
+      
+      string strUrl(pszUrl);
+      
+      fork([this, strUrl, functionSucceeded]()
+           {
+         
+         
+         try
          {
-
-            m_pacmeapplicationMain->handle_url(pszUrl);
-
+            
+            if (m_pacmeapplicationMain)
+            {
+               
+               m_pacmeapplicationMain->handle_url(strUrl);
+               
+            }
+            else if (m_pacmeapplicationStartup)
+            {
+               
+               m_pacmeapplicationStartup->handle_url(strUrl);
+               
+            }
+            
+            if (functionSucceeded)
+            {
+               
+               functionSucceeded(true);
+               
+            }
+            
+            return;
+            
          }
-         else if (m_pacmeapplicationStartup)
+         catch (...)
          {
-
-            m_pacmeapplicationStartup->handle_url(pszUrl);
-
+            
          }
-
+         
          if (functionSucceeded)
          {
-
-            functionSucceeded(true);
-
+            
+            functionSucceeded(false);
+            
          }
-
-      }
-      catch (...)
-      {
-
-      }
-
-      if (functionSucceeded)
-      {
-
-         functionSucceeded(false);
-
-      }
+         
+         
+      });
 
    }
 

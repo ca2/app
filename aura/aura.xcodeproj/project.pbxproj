@@ -243,7 +243,6 @@
 		9A3764C12409BF0C002D15D3 /* object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3764562409BF05002D15D3 /* object.cpp */; };
 		9A3764C22409BF0C002D15D3 /* graphics_extension.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A3764572409BF05002D15D3 /* graphics_extension.h */; };
 		9A3764C52409BF0C002D15D3 /* brush.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A37645A2409BF05002D15D3 /* brush.cpp */; };
-		9A3764C82409BF0C002D15D3 /* water_routine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A37645D2409BF06002D15D3 /* water_routine.h */; };
 		9A3764CB2409BF0C002D15D3 /* palette.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3764602409BF06002D15D3 /* palette.cpp */; };
 		9A3764D32409BF0C002D15D3 /* path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3764682409BF07002D15D3 /* path.cpp */; };
 		9A3764D72409BF0C002D15D3 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A37646C2409BF0B002D15D3 /* _.h */; };
@@ -268,8 +267,6 @@
 		9A5253D624A820EE0088E35A /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A52538A24A801D80088E35A /* _.cpp */; };
 		9A5ECD4028CCC3940084D354 /* item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECD3D28CCC3940084D354 /* item.cpp */; };
 		9A5ECD4128CCC3940084D354 /* shape.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A5ECD3E28CCC3940084D354 /* shape.h */; };
-		9A5ECD4228CCC3940084D354 /* water_routine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECD3F28CCC3940084D354 /* water_routine.cpp */; };
-		9A5ECD4328CCC39A0084D354 /* water_routine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECD3F28CCC3940084D354 /* water_routine.cpp */; };
 		9A5ECD4428CCC39E0084D354 /* item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECD3D28CCC3940084D354 /* item.cpp */; };
 		9A68547A2432ED410002FE94 /* bitmap_source_buffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A6854782432ED410002FE94 /* bitmap_source_buffer.h */; };
 		9A68547B2432ED420002FE94 /* bitmap_source_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6854792432ED410002FE94 /* bitmap_source_buffer.cpp */; };
@@ -963,7 +960,6 @@
 		9A3764562409BF05002D15D3 /* object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = object.cpp; sourceTree = "<group>"; };
 		9A3764572409BF05002D15D3 /* graphics_extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = graphics_extension.h; sourceTree = "<group>"; };
 		9A37645A2409BF05002D15D3 /* brush.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = brush.cpp; sourceTree = "<group>"; };
-		9A37645D2409BF06002D15D3 /* water_routine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = water_routine.h; sourceTree = "<group>"; };
 		9A3764602409BF06002D15D3 /* palette.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = palette.cpp; sourceTree = "<group>"; };
 		9A3764682409BF07002D15D3 /* path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = path.cpp; sourceTree = "<group>"; };
 		9A37646C2409BF0B002D15D3 /* _.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _.h; sourceTree = "<group>"; };
@@ -988,7 +984,6 @@
 		9A52538A24A801D80088E35A /* _.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _.cpp; sourceTree = "<group>"; };
 		9A5ECD3D28CCC3940084D354 /* item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = item.cpp; sourceTree = "<group>"; };
 		9A5ECD3E28CCC3940084D354 /* shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shape.h; sourceTree = "<group>"; };
-		9A5ECD3F28CCC3940084D354 /* water_routine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = water_routine.cpp; sourceTree = "<group>"; };
 		9A6854782432ED410002FE94 /* bitmap_source_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitmap_source_buffer.h; sourceTree = "<group>"; };
 		9A6854792432ED410002FE94 /* bitmap_source_buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bitmap_source_buffer.cpp; sourceTree = "<group>"; };
 		9A68557A2432F2BF0002FE94 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -1719,8 +1714,6 @@
 				9A5ECD3E28CCC3940084D354 /* shape.h */,
 				9AC2CE912653452A00CC8096 /* task_tool.cpp */,
 				9AC2CE922653452D00CC8096 /* task_tool.h */,
-				9A5ECD3F28CCC3940084D354 /* water_routine.cpp */,
-				9A37645D2409BF06002D15D3 /* water_routine.h */,
 			);
 			path = draw2d;
 			sourceTree = "<group>";
@@ -2410,7 +2403,6 @@
 				9AC2CEDD2653455600CC8096 /* _component.h in Headers */,
 				9A3764A52409BF0C002D15D3 /* api.h in Headers */,
 				9A2489E12453417F00F23D28 /* timer.h in Headers */,
-				9A3764C82409BF0C002D15D3 /* water_routine.h in Headers */,
 				9A2270C027CEE2010042BAC2 /* debug.h in Headers */,
 				9A92313B27EACF2100B5A78D /* _.h in Headers */,
 				9A979D9328C82B1C0013DC54 /* text_composition_composite.h in Headers */,
@@ -2780,7 +2772,6 @@
 				9A0F53A428E8D67600025231 /* text_composition_composite.cpp in Sources */,
 				9A750FAF282B913A00C4861B /* interaction_thread.cpp in Sources */,
 				9A750FEC282B932100C4861B /* draw_context.cpp in Sources */,
-				9A5ECD4328CCC39A0084D354 /* water_routine.cpp in Sources */,
 				9A94DE6F282C0ADA00F5C1CA /* icon.cpp in Sources */,
 				9A0F53C728E8DBB800025231 /* message_queue.cpp in Sources */,
 				9A0F53C128E8D92A00025231 /* visual_state.cpp in Sources */,
@@ -2907,7 +2898,6 @@
 				9AC2CEF42653455600CC8096 /* menu_command.cpp in Sources */,
 				9A92314127EAD04F00B5A78D /* idpool.cpp in Sources */,
 				9A92311327EACF2100B5A78D /* image.cpp in Sources */,
-				9A5ECD4228CCC3940084D354 /* water_routine.cpp in Sources */,
 				9AF8CE54271B670D00BF80B7 /* lock.cpp in Sources */,
 				9A22713327CEE2020042BAC2 /* library.cpp in Sources */,
 				9AC2CEE72653455600CC8096 /* icon.cpp in Sources */,

@@ -3226,9 +3226,9 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
 
    }
 
-   path = m_pcontext->m_papexcontext->defer_process_path(path);
+   auto pathProcessed = m_pcontext->m_papexcontext->defer_process_path(path);
 
-   if (path.is_empty())
+   if (pathProcessed.is_empty())
    {
 
       //INFORMATION("::file::file_context::get_file file with empty name!!");
@@ -3246,12 +3246,17 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
       else
       {
 
-         throw io_exception(::error_file_not_found);
+         throw file::exception(::error_file_not_found, __errno(ENOENT), path, "defer_process_path returns empty path");
 
       }
+      
+      return nullptr;
 
    }
-   else if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().find_file_extension("zip:", path) >= 0))
+   
+   path = pathProcessed;
+   
+   if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().find_file_extension("zip:", path) >= 0))
    {
 
       //auto pfile = get_reader(path);

@@ -179,6 +179,7 @@
 		9A2273BD27CF053B0042BAC2 /* _shape.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2273B827CF05390042BAC2 /* _shape.h */; };
 		9A2273BE27CF053B0042BAC2 /* true_type_font_utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2273B927CF053A0042BAC2 /* true_type_font_utilities.h */; };
 		9A2273BF27CF053B0042BAC2 /* text_metric.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A2273BA27CF053B0042BAC2 /* text_metric.h */; };
+		9A246CF728EA0721006806EA /* alpha_source.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A979D6928C82ACD0013DC54 /* alpha_source.cpp */; };
 		9A2485EF2452C48F00F23D28 /* _impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247FFD2452C48100F23D28 /* _impl.h */; };
 		9A2485F02452C48F00F23D28 /* theme.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A247FFE2452C48100F23D28 /* theme.h */; };
 		9A24860B2452C48F00F23D28 /* _features.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A24801B2452C48100F23D28 /* _features.h */; };
@@ -2695,6 +2696,7 @@
 				9A201AC4247733D900A31CBF /* graphics_extension.cpp in Sources */,
 				9A8FCD892651AFAB00C0D8A1 /* font_list.cpp in Sources */,
 				9A750F59282B907700C4861B /* user.cpp in Sources */,
+				9A246CF728EA0721006806EA /* alpha_source.cpp in Sources */,
 				9A8FCD8B2651AFAB00C0D8A1 /* font_enumeration.cpp in Sources */,
 				9A750F5A282B907F00C4861B /* tool_window.cpp in Sources */,
 				9A94DE64282C0ADA00F5C1CA /* menu_item.cpp in Sources */,

@@ -644,7 +644,6 @@ namespace networking_bsd
    bool networking::convert(string& str, const struct in6_addr& ip, bool mixed)
    {
 
-
       char slask[100]; // l2ip temporary
       *slask = 0;
       u32 prev = 0;
@@ -662,7 +661,8 @@ namespace networking_bsd
                ansi_concatenate(slask, ":");
             if (x || !ok_to_skip)
             {
-               sprintf(slask + strlen(slask), "%x", x);
+               auto iLen = strlen(slask);
+               snprintf(slask + iLen, sizeof(slask) - iLen, "%x", x);
                if (x && skipped)
                   ok_to_skip = false;
             }
@@ -673,9 +673,11 @@ namespace networking_bsd
             prev = x;
          }
          x = ntohs(addr16[6]);
-         sprintf(slask + strlen(slask), ":%u.%u", x / 256, x & 255);
+         auto iLen = strlen(slask);
+         snprintf(slask + iLen, sizeof(slask) - iLen, ":%u.%u", x / 256, x & 255);
          x = ntohs(addr16[7]);
-         sprintf(slask + strlen(slask), ".%u.%u", x / 256, x & 255);
+         iLen = strlen(slask);
+         snprintf(slask + iLen, sizeof(slask) - iLen, ".%u.%u", x / 256, x & 255);
       }
       else
       {

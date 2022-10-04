@@ -2,8 +2,8 @@
 //  context_cgl.cpp
 //  gpu_opengl
 //
-//  Created by Camilo Sasuke Tsumanuma on 24/07/20.
-//  Copyright © 2020 Camilo Sasuke Tsumanuma. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 24/07/20.
+//  Copyright © 2020 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
 //
 
 #include "framework.h"

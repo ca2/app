@@ -1,9 +1,9 @@
 #include "framework.h"
 #include "acme/platform/timer.h"
 #include "aura/graphics/image/list.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/filesystem/filemanager/_filemanager.h"
-#endif
+//#if !BROAD_PRECOMPILED_HEADER
+//#include "core/filesystem/filemanager/_filemanager.h"
+//#endif
 #include "aura/user/user/shell.h"
 #include "_data.h"
 #include "aura/template/list.h"
@@ -557,7 +557,7 @@ namespace filemanager
          if(_001IsItemVisible(iArrange))
          {
          m_bCreateImageListRedraw = true;
-         _001GetItemRect(iArrange, iArrange, rectangle);
+         index_item_rectangle(iArrange, iArrange, rectangle);
          set_need_redraw(rectangle);
          m_bCreateImageListRedraw = false;
          }*/

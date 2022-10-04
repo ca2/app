@@ -2,7 +2,7 @@
 //  user_create_struct.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Tsumanuma on 19/06/18.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 19/06/18.
 //
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER

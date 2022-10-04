@@ -78,7 +78,20 @@ struct ITEM_DATA_ADDITIONS
    ::rectangle_i32               m_rectangle;
    u64                           m_uFlags;
    __pointer(::element)          m_pelement;
-   void *                        m_data[4];
+   ::enum_item                   m_eitem;
+   union // small 1 bedroom ap
+   {
+      void *                        m_data[4];
+      struct // this part is structured?!?!?! (hipocritical but ok..)
+      {
+         // they are hipo, so... they think they are aligned...
+         ::user::tool_item *  m_ptoolitem;
+         // journalists inventing science that scientists get surprised when we mention to them, you know... - like global warming and ozone layer - so important as these comments... "so a kid is smarter than scientists..." - by lol, what a genius, right?!
+         // universities, media, police, justice, religion and politics, and lately also javascript and invented artificial programming languages, to ensure you give money to professors, journalists and artists, cops and lawyers, juddge, priests and suits, imposed by entertainement, guns, contracts, existence and cheering for a team you just choose. For having few food and fun, you have to give these impostors a lot of money, otherwise instead of movies, they make covid and they work together with universities, media, police, justice and polictis, and religious people obbey laws... ans so on..
+         // wait for the next... they have nothing to do and a lot of time in between to be creative, you know...
+         // journalists could teach to cook... and... universities to build... police muscles for night club entertenament... justice for history... policits for some directions and religion for interpreting the universe... because there are billions of galaxies... because sci-fi is not science, it is a religion of pretending to be better than rich people by knowning some physics... and rich people turn rich on flesh but they are later invited to trampolin to finance the circus above on the shoulders of slaves with some controlled youtube and macdonalds and starbucks...
+      };
+   };
    
 
    ITEM_DATA_ADDITIONS & operator = (const ITEM_DATA_ADDITIONS & itemdataadditions)
@@ -275,7 +288,7 @@ class CLASS_DECL_ACME item :
    virtual public ::matter
 {
 public:
-
+   
    // a user item is a "pointer"/address to a user interface matter
 
    __pointer(::draw2d::graphics)    m_pgraphics;
@@ -308,6 +321,8 @@ public:
       m_atom = atom;
 
       m_eelement = eelement;
+      
+      m_eitem = e_item_normal;
 
       m_iItem = iItem >= 0 ? iItem : m_eelement != ::e_element_none ? 0 : iItem;
 
@@ -323,6 +338,8 @@ public:
    {
 
       m_eelement = ::e_element_none;
+      
+      m_eitem = e_item_normal;
 
       m_iItem = -1;
 
@@ -478,6 +495,11 @@ public:
    bool in_element_range(enum_element eelement, int iCount) const { return m_eelement >= eelement && m_eelement < eelement + iCount; }
 
    bool is_valid_item(::count c) const { return m_iItem >= 0 && m_iItem < c; }
+   
+   
+   
+   inline ::user::tool_item * tool_item() { return m_eitem == e_item_tool ? m_ptoolitem : nullptr; }
+   inline ::user::tool_item * tool_item() const { return ((::item *)this)->tool_item(); }
 
 
 };
@@ -505,6 +527,8 @@ inline bool is_element(const ::item * pitem, ::enum_element eelement)
 }
 
 
+
+
 inline bool is_item(const ::item * pitem, ::index iItem)
 {
 
@@ -514,6 +538,7 @@ inline bool is_item(const ::item * pitem, ::index iItem)
 }
 
 
+
 inline bool is_subitem(const ::item * pitem, ::index iSubItem)
 {
 
@@ -521,6 +546,7 @@ inline bool is_subitem(const ::item * pitem, ::index iSubItem)
       && pitem->m_iSubItem == iSubItem;
 
 }
+
 
 inline bool subitem_less_than(const ::item * pitem, ::index iSubItem)
 {
@@ -597,6 +623,14 @@ inline ::index item_index(const ::item * pitem)
 
    return ::is_set(pitem) ? pitem->item_index() : -1;
 
+}
+
+
+inline bool is_item_index(const ::item * pitem, ::index iItem)
+{
+   
+   return ::is_element(pitem, ::e_element_item) && ::is_item(pitem, iItem);
+   
 }
 
 

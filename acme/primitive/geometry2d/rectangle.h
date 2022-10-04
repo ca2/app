@@ -256,15 +256,15 @@ public:
  rectangle_type & operator*=(const rectangle_type & rectangle) noexcept { return*::rect_multiply_inline(this, &rectangle); }
 
 
- inline rectangle_type& operator+=(const SHIFT_I32& shift) noexcept { this->left = (UNIT_TYPE)(this->left + shift.dx); this->top = (UNIT_TYPE)(this->top + shift.dy); this->right = (UNIT_TYPE)(this->right + shift.dx); this->bottom = (UNIT_TYPE)(this->bottom + shift.dy); return *this; }
- inline rectangle_type& operator-=(const SHIFT_I32& shift) noexcept { this->left = (UNIT_TYPE)(this->left - shift.dx); this->top = (UNIT_TYPE)(this->top - shift.dy); this->right = (UNIT_TYPE)(this->right + shift.dx); this->bottom = (UNIT_TYPE)(this->bottom + shift.dy); return *this; }
+ inline rectangle_type& operator+=(const SHIFT_I32& shift) noexcept { this->left = (UNIT_TYPE)(this->left + shift.Δx); this->top = (UNIT_TYPE)(this->top + shift.Δy); this->right = (UNIT_TYPE)(this->right + shift.Δx); this->bottom = (UNIT_TYPE)(this->bottom + shift.Δy); return *this; }
+ inline rectangle_type& operator-=(const SHIFT_I32& shift) noexcept { this->left = (UNIT_TYPE)(this->left - shift.Δx); this->top = (UNIT_TYPE)(this->top - shift.Δy); this->right = (UNIT_TYPE)(this->right + shift.Δx); this->bottom = (UNIT_TYPE)(this->bottom + shift.Δy); return *this; }
 
 
  inline rectangle_type& operator()(const SHIFT_I32& shift) noexcept { return operator +=(shift); }
 
 
- inline rectangle_type operator+(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->left + shift.dx), (UNIT_TYPE)(this->top + shift.dy), (UNIT_TYPE)(this->right + shift.dx), (UNIT_TYPE)(this->bottom + shift.dy) }; }
- inline rectangle_type operator-(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->left - shift.dx), (UNIT_TYPE)(this->top - shift.dy), (UNIT_TYPE)(this->right - shift.dx), (UNIT_TYPE)(this->bottom - shift.dy) }; }
+ inline rectangle_type operator+(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->left + shift.Δx), (UNIT_TYPE)(this->top + shift.Δy), (UNIT_TYPE)(this->right + shift.Δx), (UNIT_TYPE)(this->bottom + shift.Δy) }; }
+ inline rectangle_type operator-(const SHIFT_I32& shift) noexcept { return { (UNIT_TYPE)(this->left - shift.Δx), (UNIT_TYPE)(this->top - shift.Δy), (UNIT_TYPE)(this->right - shift.Δx), (UNIT_TYPE)(this->bottom - shift.Δy) }; }
 
 
  template < primitive_point POINT >
@@ -425,14 +425,14 @@ public:
 
    void DeflateBottomRightSizeByRate(double dRate)
    {
-      double dx = width();
-      double dy = height();
-      double dxNew = dx / dRate;
-      double dyNew = dy / dRate;
-      dx = dx - dxNew;
-      dy = dy - dyNew;
-      this->right -= (long)dx;
-      this->bottom -= (long)dy;
+      double Δx = width();
+      double Δy = height();
+      double dxNew = Δx / dRate;
+      double dyNew = Δy / dRate;
+      Δx = Δx - dxNew;
+      Δy = Δy - dyNew;
+      this->right -= (long)Δx;
+      this->bottom -= (long)Δy;
    }
 
    void SetBottomRightSize(UNIT_TYPE iWidth, UNIT_TYPE iHeight)
@@ -453,15 +453,15 @@ public:
       UNIT_TYPE cx = width();
       UNIT_TYPE cy = height();
 
-      double dx = ::width(rectangle);
-      double dy = ::height(rectangle);
-      double dr = ::maximum(dx / cx, dy / cy);
+      double Δx = ::width(rectangle);
+      double Δy = ::height(rectangle);
+      double dr = ::maximum(Δx / cx, Δy / cy);
 
       UNIT_TYPE cw = (UNIT_TYPE)(cx * dr);
       UNIT_TYPE ch = (UNIT_TYPE)(cy * dr);
 
-      this->left = (UNIT_TYPE)((dx - cw) / 2.0);
-      this->top = (UNIT_TYPE)((dy - ch) / 2.0);
+      this->left = (UNIT_TYPE)((Δx - cw) / 2.0);
+      this->top = (UNIT_TYPE)((Δy - ch) / 2.0);
       this->right = this->left + cw;
       this->bottom = this->top + ch;
 
@@ -473,15 +473,15 @@ public:
       UNIT_TYPE cx = size.cx;
       UNIT_TYPE cy = size.cy;
 
-      double dx = ::width(rectangle);
-      double dy = ::height(rectangle);
-      double dr = ::minimum(cx == 0 ? 1 : dx / cx, cy == 0 ? 1 : dy / cy);
+      double Δx = ::width(rectangle);
+      double Δy = ::height(rectangle);
+      double dr = ::minimum(cx == 0 ? 1 : Δx / cx, cy == 0 ? 1 : Δy / cy);
 
-      UNIT_TYPE cw = cx == 0 ? (UNIT_TYPE)dx : ((UNIT_TYPE)(cx * dr));
-      UNIT_TYPE ch = cy == 0 ? (UNIT_TYPE)dy : ((UNIT_TYPE)(cy * dr));
+      UNIT_TYPE cw = cx == 0 ? (UNIT_TYPE)Δx : ((UNIT_TYPE)(cx * dr));
+      UNIT_TYPE ch = cy == 0 ? (UNIT_TYPE)Δy : ((UNIT_TYPE)(cy * dr));
 
-      this->left = (UNIT_TYPE)((rectangle.left) + (dx - cw) / 2.0);
-      this->top = (UNIT_TYPE)((rectangle.top) + (dy - ch) / 2.0);
+      this->left = (UNIT_TYPE)((rectangle.left) + (Δx - cw) / 2.0);
+      this->top = (UNIT_TYPE)((rectangle.top) + (Δy - ch) / 2.0);
       this->right = this->left + cw;
       this->bottom = this->top + ch;
 
@@ -500,11 +500,11 @@ public:
     UNIT_TYPE cx = size.cx;
     UNIT_TYPE cy = size.cy;
 
-    UNIT_TYPE dx = ::width(rectangle);
-    UNIT_TYPE dy = ::height(rectangle);
+    UNIT_TYPE Δx = ::width(rectangle);
+    UNIT_TYPE Δy = ::height(rectangle);
 
-    this->left = rectangle.left + (dx - cx) / 2;
-    this->top = rectangle.top + (dy - cy) / 2;
+    this->left = rectangle.left + (Δx - cx) / 2;
+    this->top = rectangle.top + (Δy - cy) / 2;
     this->right = this->left + cx;
     this->bottom = this->top + cy;
 
@@ -518,13 +518,13 @@ public:
  }
 
 
- void ScaleRect(double dx, double dy, UNIT_TYPE ix, UNIT_TYPE iy)
+ void ScaleRect(double Δx, double Δy, UNIT_TYPE ix, UNIT_TYPE iy)
  {
 
-    this->left = (UNIT_TYPE)(((this->left - ix) * dx) + ix);
-    this->top = (UNIT_TYPE)(((this->top - iy) * dy) + iy);
-    this->right = (UNIT_TYPE)(((this->right - ix) * dx) + ix);
-    this->bottom = (UNIT_TYPE)(((this->bottom - iy) * dy) + iy);
+    this->left = (UNIT_TYPE)(((this->left - ix) * Δx) + ix);
+    this->top = (UNIT_TYPE)(((this->top - iy) * Δy) + iy);
+    this->right = (UNIT_TYPE)(((this->right - ix) * Δx) + ix);
+    this->bottom = (UNIT_TYPE)(((this->bottom - iy) * Δy) + iy);
 
  }
 

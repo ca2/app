@@ -82,11 +82,17 @@ namespace user
 
 
       //::duration                           m_durationFocusStart;
-      bool                             m_bUserElementOk;
-      ::user::primitive *              m_puserprimitive;
-      ::user::interaction *            m_puserinteraction;
+      bool                                   m_bUserElementOk;
+      ::user::primitive *                    m_puserprimitive;
+      ::user::interaction *                  m_puserinteraction;
+      __pointer(__pointer_array(::item))     m_pitema;
 
-
+      
+      __pointer(::item)                      m_pitemLButtonDown;
+      __pointer(::item)                      m_pitemCurrent;
+      __pointer(::item)                      m_pitemHover;
+      __pointer(::item)                      m_pitemHoverMouse;
+      __pointer(::item)                      m_pitemPressed;
 
 
       element();
@@ -132,7 +138,17 @@ namespace user
       virtual bool GetFocusRect(RECTANGLE_I32 * prectangle);
 
       virtual void defer_update_display();
+      
+      
+      virtual ::index item_index(const ::atom & atom) const;
 
+      virtual bool is_index_item_pressed(::index iIndex) const;
+      
+      virtual bool is_index_item_hover(::index iIndex) const;
+      
+      virtual bool is_item_pressed(const ::atom & atom) const;
+
+      virtual bool is_item_hover(const ::atom & atom) const;
       
       virtual enum_control_type get_control_type() const;
 

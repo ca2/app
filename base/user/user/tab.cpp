@@ -2621,8 +2621,13 @@ namespace user
    {
 
       auto psystem = m_psystem->m_pbasesystem;
-
-      m_bNoTabs = psystem->has_property("no_tabs");
+      
+      if(psystem->has_property("no_tabs"))
+      {
+         
+         m_bNoTabs = false;
+         
+      }
 
       __pointer(::user::message) pusermessage(pmessage);
 

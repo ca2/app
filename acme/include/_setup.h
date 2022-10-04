@@ -2,7 +2,7 @@
 //  _setup.h
 //  acme
 //
-//  Created by Camilo Sasuke Tsumanuma on 24/04/20.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 24/04/20.
 //
 
 

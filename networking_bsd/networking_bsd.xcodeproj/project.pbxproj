@@ -15,6 +15,8 @@
 		9A226D6427CEAE8E0042BAC2 /* libapex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC019E22748A7D4006BEBCC /* libapex.dylib */; };
 		9A366DB628E598B40064C704 /* networking_bsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A366DB028E597CA0064C704 /* networking_bsd.cpp */; };
 		9A366DB728E598B60064C704 /* networking_bsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A366DB028E597CA0064C704 /* networking_bsd.cpp */; };
+		9A5882FC28E93B6A001543FF /* networking.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F8AE128D1166D002601B1 /* networking.cpp */; };
+		9A5882FD28E93B9F001543FF /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F8AF628D1170B002601B1 /* _.cpp */; };
 		9A81FBE227518CAF003F38EC /* libacme.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A81FBE127518CAF003F38EC /* libacme.dylib */; };
 		9ADB6CB328D13FC900608B22 /* address.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F8AAA28D1166C002601B1 /* address.cpp */; };
 		9ADB6CB428D13FCA00608B22 /* address.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A0F8AAA28D1166C002601B1 /* address.cpp */; };
@@ -567,7 +569,9 @@
 				9ADB6CB428D13FCA00608B22 /* address.cpp in Sources */,
 				9ADB6CBA28D13FED00608B22 /* client_context_map.cpp in Sources */,
 				9ADB6CC628D140F100608B22 /* socket.cpp in Sources */,
+				9A5882FD28E93B9F001543FF /* _.cpp in Sources */,
 				9ADB6CBC28D13FF300608B22 /* client_context.cpp in Sources */,
+				9A5882FC28E93B6A001543FF /* networking.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

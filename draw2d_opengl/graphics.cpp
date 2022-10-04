@@ -1992,13 +1992,13 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::ScrollDC(i32 dx, i32 dy,
+   bool graphics::ScrollDC(i32 Δx, i32 Δy,
                            const RECTANGLE_I32 &  lpRectScroll,const RECTANGLE_I32 &  rectangleClip,
                            ::draw2d::region* pRgnUpdate, RECTANGLE_I32 * lpRectUpdate)
    {
       
       // ASSERT(m_hdc != nullptr);
-      //return ::ScrollDC(m_hdc,dx,dy,&rectangleClip,
+      //return ::ScrollDC(m_hdc,Δx,Δy,&rectangleClip,
         //                &rectangleClip, (HRGN)pRgnUpdate->get_os_data(), lpRectUpdate) != false;
       return 0;
 

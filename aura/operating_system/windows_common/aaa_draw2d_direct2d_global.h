@@ -100,7 +100,7 @@ namespace draw2d_direct2d
 
 } // namespace draw2d
 
-namespace dx
+namespace Δx
 {
 
    inline void throw_if_failed(HRESULT hr)
@@ -114,7 +114,7 @@ namespace dx
    }
 
 
-} // namespace dx
+} // namespace Δx
 
 
 CLASS_DECL_AURA void directx_debug();

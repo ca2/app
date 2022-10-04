@@ -25,7 +25,7 @@
 
 //
 //
-////  Created by Camilo Sasuke Tsumanuma on 05/01/18.
+////  Created by Camilo Sasuke Thomas Borregaard Sørensen on 05/01/18.
 //#pragma once
 //
 //

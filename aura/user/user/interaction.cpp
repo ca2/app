@@ -580,6 +580,7 @@ namespace user
 
 
 
+
    ::windowing::window * interaction::_window() const
    {
       
@@ -8271,7 +8272,7 @@ namespace user
       if (m_pgraphicscalla) m_pgraphicscalla->destroy();
       if (m_puserinteractionCustomWindowProc) m_puserinteractionCustomWindowProc->destroy();
       if (m_puiLabel) m_puiLabel->destroy();
-      m_useritema.destroy_all();
+      m_pitema->destroy_all();
       // tasks should not be destroyed in destroy
       //m_pform && m_pform != this && m_pform->destroy();
       if (m_palphasource) m_palphasource->destroy();
@@ -8300,7 +8301,7 @@ namespace user
       m_pgraphicscalla.release();
       m_puserinteractionCustomWindowProc.release();
       m_puiLabel.release();
-      m_useritema.erase_all();
+      m_pitema->erase_all();
       m_pform.release();
       m_palphasource.release();
       //m_pdrawableBackground.release();
@@ -18307,7 +18308,7 @@ namespace user
       }
 
       //::user::interaction::_001OnDraw(pgraphics);
-      if (m_useritema.has_element())
+      if (m_pitema->has_element())
       {
 
          _001DrawItems(pgraphics);
@@ -18345,7 +18346,7 @@ namespace user
 
       }
 
-      m_useritema.add(pitem);
+      m_pitema->add(pitem);
 
    }
 
@@ -19178,7 +19179,7 @@ namespace user
           nNewStyle |= TBBS_CHECKED;
       else if (nCheck == 2)
           nNewStyle |= TBBS_INDETERMINATE;
-      ASSERT(!(nNewStyle & e_toolbar_item_style_separator));
+      ASSERT(!(nNewStyle & e_tool_item_style_separator));
       pToolBar->SetButtonStyle(m_nIndex, nNewStyle | TBBS_CHECKBOX);*/
    }
 

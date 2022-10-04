@@ -2191,7 +2191,14 @@ namespace axis
       return memory_new ::user::button;
 
    }
-
+//
+//void application::handle_url(const ::string & strUrl)
+//{
+//   
+//
+//   ::aura::aplication::handle_url(strUrl);
+//
+//}
 
 } // namespace axis
 

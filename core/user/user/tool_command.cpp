@@ -29,14 +29,14 @@ namespace user
       ASSERT_KINDOF(toolbar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
 
-      auto estyleNew = pToolBar->get_item_style(m_iIndex) - e_toolbar_item_style_disabled;
+      auto estyleNew = pToolBar->get_item_style(m_iIndex) - e_tool_item_style_disabled;
 
       if (!bOn)
       {
 
-         estyleNew |= e_toolbar_item_style_disabled;
+         estyleNew |= e_tool_item_style_disabled;
 
-         estyleNew -= e_toolbar_item_style_pressed;
+         estyleNew -= e_tool_item_style_pressed;
 
       }
 
@@ -57,22 +57,22 @@ namespace user
       ASSERT_KINDOF(toolbar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
 
-      auto estyleNew = pToolBar->get_item_style(m_iIndex) - (e_toolbar_item_style_checked | e_toolbar_item_style_indeterminate);
+      auto estyleNew = pToolBar->get_item_style(m_iIndex) - (e_tool_item_style_checked | e_tool_item_style_indeterminate);
 
       if (nCheck == 1)
       {
 
-         estyleNew |= e_toolbar_item_style_checked;
+         estyleNew |= e_tool_item_style_checked;
 
       }
       else if (nCheck == 2)
       {
 
-         estyleNew |= e_toolbar_item_style_indeterminate;
+         estyleNew |= e_tool_item_style_indeterminate;
 
       }
 
-      pToolBar->set_item_style(m_iIndex, estyleNew | e_toolbar_item_style_checkbox);
+      pToolBar->set_item_style(m_iIndex, estyleNew | e_tool_item_style_checkbox);
 
 #else
       throw ::exception(todo);

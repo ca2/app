@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "aura/graphics/image/list.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_userfs.h"
-#endif
+//#if !BROAD_PRECOMPILED_HEADER
+//#include "_userfs.h"
+//#endif
 #include "aura/user/user/shell.h"
 #include "list.h"
 #include "document.h"

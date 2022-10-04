@@ -2,7 +2,7 @@
 //  macos_user.h
 //  acme
 //
-//  Created by Camilo Sasuke Tsumanuma on 21/10/17.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 21/10/17.
 //
 
 #pragma once
@@ -144,11 +144,11 @@
 ////      if(sz.x < x) x = sz.x; if(sz.y < y) y = sz.y;
 ////   }
 ////   
-////   void IncBy(int dx,int dy) { x += dx; y += dy; }
+////   void IncBy(int Δx,int Δy) { x += Δx; y += Δy; }
 ////   void IncBy(const wxSize& sz) { IncBy(sz.x,sz.y); }
 ////   void IncBy(int d) { IncBy(d,d); }
 ////   
-////   void DecBy(int dx,int dy) { IncBy(-dx,-dy); }
+////   void DecBy(int Δx,int Δy) { IncBy(-Δx,-Δy); }
 ////   void DecBy(const wxSize& sz) { DecBy(sz.x,sz.y); }
 ////   void DecBy(int d) { DecBy(d,d); }
 ////   
@@ -332,7 +332,7 @@
 ////  c_os_win_user.h
 ////  c
 ////
-////  Created by Camilo Sasuke Tsumanuma on 12/30/11.
+////  Created by Camilo Sasuke Thomas Borregaard Sørensen on 12/30/11.
 ////  Copyright (c) 2011 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 ////
 //

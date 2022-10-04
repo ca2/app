@@ -1,17 +1,13 @@
 #pragma once
 
 
-#include  "_constant.h"
+#include  "acme/constant/user/_.h"
 
 
 #include  "_constant_key.h"
 
 
 #include  "_style.h"
-
-
-DECLARE_ENUMERATION(e_toolbar_item_state, enum_toolbar_item_state);
-DECLARE_ENUMERATION(e_toolbar_item_style, enum_toolbar_item_style);
 
 
 class item;

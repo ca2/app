@@ -144,16 +144,47 @@ namespace url
 
       string str(strParam);
 
-      strsize iPos = str.find("://");
+      strsize iPos1 = str.find("://");
 
-      if (iPos < 0)
+      strsize iPos2 = str.find(":/");
+
+      strsize iPos;
+
+      if(iPos1 < 0)
       {
 
-         return strParam;
+         if (iPos2 < 0)
+         {
+
+            return strParam;
+
+         }
+         else
+         {
+
+            iPos = iPos2 + 2;
+
+         }
 
       }
+      else if(iPos2 < 0)
+      {
 
-      iPos += 3;
+         iPos = iPos1 + 3;
+
+      }
+      else if(iPos1 <= iPos2)
+      {
+
+         iPos = iPos1 + 3;
+
+      }
+      else
+      {
+
+         iPos = iPos2 + 2;         
+
+      }
 
       strsize iStart = str.find("/", iPos);
 

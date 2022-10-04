@@ -2,46 +2,11 @@
 
 
 #include "control_bar.h"
+#include "acme/constant/user/tool_item.h"
 
 
 namespace user
 {
-
-
-   class toolbar_item:
-      virtual public ::item
-   {
-   public:
-
-
-      //index                               m_iIndex;
-      index                               m_iImage;
-      ::image_pointer                     m_pimage;
-      //atom                                  m_atom;
-      e_toolbar_item_state                m_estate;
-      e_toolbar_item_style                m_estyle;
-      string                              m_str;
-      //::rectangle_i32                              m_rectangle;
-      bool                                m_bEnableIfHasCommandHandler;
-      ::write_text::font_pointer              m_pfont;
-
-
-      toolbar_item();
-      ~toolbar_item() override;
-
-
-   };
-
-
-   inline toolbar_item * __toolbar_item(::item * pitem)
-   {
-
-      return (toolbar_item*) pitem->m_data[0];
-
-   }
-
-
-   class toolbar_control; // forward object (see afxcmn.h for definition)
 
 
    class CLASS_DECL_BASE toolbar :
@@ -64,22 +29,26 @@ namespace user
 //      };
 
 
-      //__pointer_array(toolbar_item)    m_itema;
+      //__pointer_array(tool_item)    m_itema;
 
-      bool                             m_bDelayedButtonLayout; // used to manage when button on_layout should be done
+      bool                       m_bDelayedButtonLayout; // used to manage when button on_layout should be done
 
       ::size_i32               m_sizeImage;  // current image size_i32
       ::size_i32               m_sizeButton; // current button size_i32
       bool                 m_bSimpleLayout;
-      string_to_ptr *      m_pStringMap;  // used as CMapStringTo::u32
-      //index                m_iButtonPressItem;
+//      string_to_ptr *      m_pStringMap;  // used as CMapStringTo::u32
+//      //index                m_iButtonPressItem;
 
 
 
       toolbar();
       ~toolbar() override;
 
+      void assert_ok() const override;
+      void dump(dump_context & dumpcontext) const override;
 
+      
+      
       void install_message_routing(::channel * pchannel) override;
 
 
@@ -112,34 +81,44 @@ namespace user
       //virtual ::user::enum_state get_button_state(int iItem);
 
       // standard control bar things
-      index CommandToIndex(::u32 nIDFind);
-      ::u32 GetItemID(index nIndex);
-      virtual void GetItemRect(index nIndex, RECTANGLE_I32 * prectangle);
+      //virtual ::index atom_index(const ::atom & atom) const;
+      
+      //::u32 GetItemID(index nIndex);
+      
+//      virtual void index_item_rectangle(index nIndex, RECTANGLE_I32 * prectangle);
+      
+      //::index tool_item_index(const ::atom & atom) const;
+      
+      ::user::tool_item * tool_item(const ::atom & atom) const;
+      
+      e_tool_item_style tool_item_style(const ::atom & atom) const;
+      void set_tool_item_style(const ::atom & atom, const e_tool_item_style & estyle);
 
-      e_toolbar_item_style get_item_style(index iIndex);
-      void set_item_style(index iIndex, const e_toolbar_item_style & estyle);
+      e_tool_item_state tool_item_state(const ::atom & atom) const;
+      void set_tool_item_state(const ::atom & atom, const e_tool_item_state & estate);
+      void add_tool_item_state(const ::atom & atom, const e_tool_item_state & estate);
+      void erase_tool_item_state(const ::atom & atom, const e_tool_item_state & estate);
 
-      e_toolbar_item_state get_item_state(index iIndex);
-      void set_item_state(index iIndex, const e_toolbar_item_state & estate);
+      void hide_tool_item(const ::atom & atom);
+      void display_tool_item(const ::atom & atom);
+      
+      ::user::enum_state tool_item_user_state(const ::atom & atom) const;
 
-      ::user::enum_state get_item_user_state(index iIndex);
+      ::index tool_item_image(const ::atom & atom) const;
+      void set_tool_item_image(const ::atom & atom, index iImage);
+      void set_tool_item_text(const ::atom & atom, const ::string & pszText);
 
-      // for changing button info
-      void GetButtonInfo(index nIndex, ::u32& nID, ::u32& nStyle, index& iImage);
-      void SetButtonInfo(index nIndex, ::u32 nID, ::u32 nStyle, index iImage);
-      bool SetButtonText(index nIndex, const ::string & pszText);
-
-      string GetButtonText(index nIndex) const;
-      void GetButtonText(index nIndex, string & rString) const;
+      string tool_item_text(const ::atom & atom) const;
+//      void GetButtonText(const ::atom & atom, string & rString) const;
 
       // for direct access to the underlying common control
-      inline toolbar_control& GetToolBarCtrl() const;
+      //inline toolbar_control& GetToolBarCtrl() const;
 
       virtual ::size_i32 CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics);
       ::size_i32 CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
       virtual ::size_i32 CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, ::i32 nLength, u32 nMode) override;
       //virtual void OnUpdateCmdUI(__pointer(::user::frame_window) pTarget, bool bDisableIfNoHndler);
-      __pointer(::user::interaction)  set_owner(__pointer(::user::interaction) pOwnerWnd);
+      void set_owner(::user::interaction * pinteractionOwner);
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -149,19 +128,17 @@ namespace user
 
       void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle) override;
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
 
 
-      virtual bool LoadXmlToolBar(const ::string & pszFileName);
+      virtual bool load_xml_toolbar(const ::payload & payloadFile);
 
-      virtual bool _001GetItemRect(index iItem,RECTANGLE_I32 * prectangle);
+      virtual bool index_item_rectangle(index iItem,RECTANGLE_I32 * prectangle);
 
-      virtual bool _001GetElementRect(index iItem,RECTANGLE_I32 * prectangle,enum_element eelement, ::user::enum_state estate);
+      virtual bool index_element_rectangle(index iItem,RECTANGLE_I32 * prectangle,enum_element eelement, ::user::enum_state estate);
 
-      virtual bool _001SetItem(index iItem, toolbar_item * pitem);
-      virtual toolbar_item * _001GetItem(index iItem);
-      virtual index _001GetItemCount();
+      virtual void set_index_tool_item(index iItem, ::user::tool_item * pitem);
+      virtual ::user::tool_item * index_tool_item(index iItem) const;
+      virtual ::count tool_item_count();
 
 
       virtual ::size_i32 SimpleLayout(::draw2d::graphics_pointer& pgraphics);
@@ -205,7 +182,7 @@ namespace user
 //
 //// Styles for toolbar buttons
 //#define TBBS_BUTTON     __MAKE_LONG(TBSTYLE_BUTTON, 0) // this entry is button
-//#define e_toolbar_item_style_separator  __MAKE_LONG(TBSTYLE_SEP, 0)    // this entry is a separator
+//#define e_tool_item_style_separator  __MAKE_LONG(TBSTYLE_SEP, 0)    // this entry is a separator
 //#define TBBS_CHECKBOX   __MAKE_LONG(TBSTYLE_CHECK, 0)  // this is an auto check button
 //#define TBBS_GROUP      __MAKE_LONG(TBSTYLE_GROUP, 0)  // marks the start of a group
 //#define TBBS_CHECKGROUP (TBBS_GROUP|TBBS_CHECKBOX)  // normal use of TBBS_GROUP
@@ -216,7 +193,7 @@ namespace user
 //// styles for display states
 //#define TBBS_CHECKED    __MAKE_LONG(0, TBSTATE_CHECKED)    // button is checked/down
 //#define TBBS_PRESSED    __MAKE_LONG(0, TBSTATE_PRESSED)    // button is being depressed
-//#define e_toolbar_item_style_disabled   __MAKE_LONG(0, TBSTATE_ENABLED)    // button is disabled
+//#define e_tool_item_style_disabled   __MAKE_LONG(0, TBSTATE_ENABLED)    // button is disabled
 //#define TBBS_INDETERMINATE  __MAKE_LONG(0, TBSTATE_INDETERMINATE)  // third state
 //#define TBBS_HIDDEN     __MAKE_LONG(0, e_toolbar_button_hidden) // button is hidden
 //#define TBBS_WRAPPED    __MAKE_LONG(0, TBSTATE_WRAP)   // button is wrapped at this point_i32

@@ -35,19 +35,19 @@ namespace app_core_flag
 
       ::color::color crDenmarkRoed = argb(255, 200, 16, 46);
 
-      double dx = w / 90.0;
+      double Δx = w / 90.0;
 
-      double dy = h / 70.0;
+      double Δy = h / 70.0;
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 0, 90.0 * dx, 70.0 * dy), argb(255, 255, 255, 255));
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 0, 90.0 * Δx, 70.0 * Δy), argb(255, 255, 255, 255));
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 0, 30.0 * dx, 30.0 * dy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 0, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 40.0 * dx, y, 50 * dx, 30 * dy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 40.0 * Δx, y, 50 * Δx, 30 * Δy), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 40.0 * dy, 30.0 * dx, 30.0 * dy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 0, y + 40.0 * Δy, 30.0 * Δx, 30.0 * Δy), crDenmarkRoed);
 
-      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 40.0 * dx, y + 40.0 * dy, 50.0 * dx, 30.0 * dy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectangle_f64_dimension(x + 40.0 * Δx, y + 40.0 * Δy, 50.0 * Δx, 30.0 * Δy), crDenmarkRoed);
 
    }
 

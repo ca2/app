@@ -1,7 +1,7 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_impl.h"
-#endif
+// #if !BROAD_PRECOMPILED_HEADER
+// #include "_impl.h"
+// #endif
 #include "table.h"
 #include "table_row.h"
 #include "axis/html/html/data.h"

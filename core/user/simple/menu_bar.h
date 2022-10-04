@@ -71,7 +71,7 @@ protected:
    //void _001DrawItem(::draw2d::graphics_pointer & pgraphics, index iItem);
    //index _001HitTest(const POINT_I32 * point_i32);
    //bool _001CheckItem(index iItem, bool bCheck);
-   //bool _001GetItemRect(index iItem, RECTANGLE_I32 * prectangle, enum_element eelement);
+   //bool index_item_rectangle(index iItem, RECTANGLE_I32 * prectangle, enum_element eelement);
 
    //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
    bool ReloadMenuBar();

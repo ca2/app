@@ -1,9 +1,9 @@
 #include "framework.h"
 #include "aura/graphics/image/icon.h"
 #include "acme/primitive/mathematics/mathematics.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/filesystem/filemanager/_filemanager.h"
-#endif
+//#if !BROAD_PRECOMPILED_HEADER
+//#include "core/filesystem/filemanager/_filemanager.h"
+//#endif
 #include "_tree.h"
 #include "aura/user/user/shell.h"
 #include "acme/filesystem/filesystem/acme_directory.h"

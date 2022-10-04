@@ -176,7 +176,7 @@ i32 gdb_check()
 ////  macos_debug.cpp
 ////  acme
 ////
-////  Created by Camilo Sasuke Tsumanuma on 2013-09-17.
+////  Created by Camilo Sasuke Thomas Borregaard Sørensen on 2013-09-17.
 ////
 ////
 //

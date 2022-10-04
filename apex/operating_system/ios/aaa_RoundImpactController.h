@@ -2,7 +2,7 @@
 //  RoundImpactController.h
 //  apex
 //
-//  Created by Camilo Sasuke Tsumanuma on 14/05/14.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 14/05/14.
 //
 //
 

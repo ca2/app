@@ -1,7 +1,7 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "_graphics.h"
-#endif
+// #if !BROAD_PRECOMPILED_HEADER
+// #include "_graphics.h"
+// #endif 
 #include "style.h"
 #include "axis/html/element/element.h"
 #include "axis/html/html/data.h"

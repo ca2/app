@@ -812,17 +812,17 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //void wf_update_canvas_diff(wfContext* wfc)
 //{
 //	RECTANGLE_I32 rc_client, rc_wnd;
-//	int dx, dy;
+//	int Δx, Δy;
 //
 //	get_client_rect(wfc->hwnd, &rc_client);
 //	get_window_rect(wfc->hwnd, &rc_wnd);
 //	
-//	dx = (rc_wnd.right - rc_wnd.left) - rc_client.right;
-//	dy = (rc_wnd.bottom - rc_wnd.top) - rc_client.bottom;
+//	Δx = (rc_wnd.right - rc_wnd.left) - rc_client.right;
+//	Δy = (rc_wnd.bottom - rc_wnd.top) - rc_client.bottom;
 //
 //	if (!wfc->disablewindowtracking)
 //	{
-//		wfc->diff.x = dx;
-//		wfc->diff.y = dy;
+//		wfc->diff.x = Δx;
+//		wfc->diff.y = Δy;
 //	}
 //}

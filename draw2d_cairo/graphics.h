@@ -417,7 +417,7 @@ namespace draw2d_cairo
 //      bool DrawFrameControl(const ::rectangle_f64 & rectangle_f64, ::u32 nType, ::u32 nState) override;
 
 //      // Scrolling Functions
-//      bool ScrollDC(i32 dx, i32 dy, const ::rectangle_f64 & rectangleScroll, const ::rectangle_f64 & rectangleClip,
+//      bool ScrollDC(i32 Δx, i32 Δy, const ::rectangle_f64 & rectangleScroll, const ::rectangle_f64 & rectangleClip,
 //                    ::draw2d::region* pRgnUpdate, RECTANGLE_I32 * lpRectUpdate) override;
 
 //      // font Functions

@@ -2,7 +2,7 @@
 //  ios_plane_system.hpp
 //  ios_apex
 //
-//  Created by Camilo Sasuke Tsumanuma on 03/10/17.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 03/10/17.
 //
 
 #pragma once

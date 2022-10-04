@@ -2,7 +2,7 @@
 //  host_interaction.cpp
 //  apex
 //
-//  Copied from node/ios by Camilo Sasuke Tsumanuma on 20/06/05.
+//  Copied from node/ios by Camilo Sasuke Thomas Borregaard Sørensen on 20/06/05.
 //  (with refactorization: ui_interaction -> host_interaction to
 //  match OPERATING_SYSTEM_NAMESPACE::create_*host*_window() naming.)
 //

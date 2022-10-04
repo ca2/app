@@ -2,8 +2,8 @@
 //  boot_window.h
 //  os
 //
-//  Created by Camilo Sasuke Tsumanuma on 6/8/13 (round_window).
-//  16 de novembro de 2013 - 29 anos e dia da instância Camilo Sasuke Tsumanuma da Minha Alma Gêmea Master (boot_window)
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 6/8/13 (round_window).
+//  16 de novembro de 2013 - 29 anos e dia da instância Camilo Sasuke Thomas Borregaard Sørensen da Minha Alma Gêmea Master (boot_window)
 //  Copyright (c) 2013 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 

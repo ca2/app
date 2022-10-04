@@ -744,7 +744,7 @@ NANO2D_EXPORT int __NANO2D_API(CreateImageMem)(NVGcontext * ctx, int imageFlags,
 
 	struct NVGpoint {
 		float x, y;
-		float dx, dy;
+		float Δx, Δy;
 		float len;
 		float dmx, dmy;
 		unsigned char flags;

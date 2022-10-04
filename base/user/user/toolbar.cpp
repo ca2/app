@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/user/user/tool_item.h"
 #include "aura/operating_system.h"
 #include "aqua/xml.h"
 #include "aura/operating_system/_user.h"
@@ -36,7 +37,7 @@ namespace user
       m_bSimpleLayout = true;
 
       // initialize state
-      m_pStringMap = nullptr;
+      //m_pStringMap = nullptr;
 
       m_bDelayedButtonLayout = true;
 
@@ -60,7 +61,7 @@ namespace user
 //#else
       //    throw ::exception(todo);
 //#endif
-      delete m_pStringMap;
+      //delete m_pStringMap;
 
       //m_nCount = 0;
    }
@@ -108,56 +109,60 @@ namespace user
 
       command.m_puiOther = (this);
 
-      command.m_iCount = _001GetItemCount();
+      command.m_iCount = tool_item_count();
 
       for (command.m_iIndex = 0; command.m_iIndex < command.m_iCount; command.m_iIndex++)
       {
+         
+         auto ptoolitem = index_tool_item(command.m_iIndex);
 
-         if (m_useritema[command.m_iIndex]->m_atom != "separator")
+         if (ptoolitem->is_separator())
+         {
+            
+            continue;
+            
+         }
+
+         command.m_atom = ptoolitem->m_atom;
+
+         // allow reflections
+         //if (::user::interaction::on_command(0,
+         //   MAKELONG((index)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
+         //   &state, nullptr))
+         //   continue;
+
+         command.m_bEnableChanged = false;
+
+         // allow the toolbar itself to have update handlers
+         _001SendCommandProbe(&command);
+
+         if (command.m_bRet)
          {
 
-            command.m_atom = m_useritema[command.m_iIndex]->m_atom;
-
-            // allow reflections
-            //if (::user::interaction::on_command(0,
-            //   MAKELONG((index)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
-            //   &state, nullptr))
-            //   continue;
-
-            command.m_bEnableChanged = false;
-
-            // allow the toolbar itself to have update handlers
-            _001SendCommandProbe(&command);
-
-            if (command.m_bRet)
-            {
-
-               continue;
-
-            }
-
-            //if (!state.m_bEnableChanged)
-            //{
-            //
-            //   if (m_useritema[state.m_iIndex]->m_bEnableIfHasCommandHandler)
-            //   {
-
-            //      if (!state.m_bHasCommandHandler)
-            //      {
-
-            //         continue;
-
-
-            //      }
-
-            //   }
-
-            //}
-
-            // allow the owner to process the update
-            command.do_probe(puserinteraction);
+            continue;
 
          }
+
+         //if (!state.m_bEnableChanged)
+         //{
+         //
+         //   if (m_useritema[state.m_iIndex]->m_bEnableIfHasCommandHandler)
+         //   {
+
+         //      if (!state.m_bHasCommandHandler)
+         //      {
+
+         //         continue;
+
+
+         //      }
+
+         //   }
+
+         //}
+
+         // allow the owner to process the update
+         command.do_probe(puserinteraction);
 
       }
 
@@ -165,7 +170,6 @@ namespace user
       update_dialog_controls(puserinteraction);
 
    }
-
 
 
    //bool toolbar::create_interaction(::user::interaction * puiParent,u32 uStyle, ::atom atom)
@@ -210,7 +214,7 @@ namespace user
 //   }
 
 
-   __pointer(::user::interaction) toolbar::set_owner(__pointer(::user::interaction) pOwnerWnd)
+   void toolbar::set_owner(::user::interaction * pinteractionNewOwner)
    {
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT_VALID(this);
@@ -220,7 +224,8 @@ namespace user
 //      throw ::exception(todo);
 //
 //#endif
-      return ::user::control_bar::set_owner(pOwnerWnd);
+      //return
+      ::user::control_bar::set_owner(pinteractionNewOwner);
 
    }
 
@@ -424,7 +429,7 @@ namespace user
 //
 //      //VERIFY(pBar->default_window_procedure(TB_GETBUTTON, (WPARAM) nIndex, (LPARAM)pButton));
 //
-//      //// TBSTATE_ENABLED == e_toolbar_item_style_disabled so invert it
+//      //// TBSTATE_ENABLED == e_tool_item_style_disabled so invert it
 //
 //      //pButton->fsState ^= TBSTATE_ENABLED;
 //
@@ -443,7 +448,7 @@ namespace user
 ////      // prepare for old/memory_new button comparsion
 ////      button.bReserved[0] = 0;
 ////      button.bReserved[1] = 0;
-////      // TBSTATE_ENABLED == e_toolbar_item_style_disabled so invert it
+////      // TBSTATE_ENABLED == e_tool_item_style_disabled so invert it
 ////      pButton->fsState ^= TBSTATE_ENABLED;
 ////      pButton->bReserved[0] = 0;
 ////      pButton->bReserved[1] = 0;
@@ -500,42 +505,42 @@ namespace user
 ////#endif
 //   }
 
-   ::u32 toolbar::GetItemID(index nIndex)
-   {
-      ASSERT_VALID(this);
-      ASSERT(is_window());
-
-//#ifdef WINDOWS_DESKTOP
-//      TBBUTTON button;
-//      _GetButton(nIndex, &button);
-//      return button.idCommand;
-//#else
-//      throw ::exception(todo);
-//#endif
-      return 0;
-   }
-
-   void toolbar::GetItemRect(index nIndex, RECTANGLE_I32 * prectangle)
-
-   {
-      ASSERT_VALID(this);
-      ASSERT(is_window());
-
-      // handle any delayed on_layout
-      //if (m_bDelayedButtonLayout)
-      //   ((toolbar*)this)->set_need_layout(pgraphics);
-
-//      // now it is safe to get the item rectangle_i32
-//#ifdef WINDOWS_DESKTOP
-//      toolbar* pBar = (toolbar*)this;
-//      if (!pBar->default_window_procedure(TB_GETITEMRECT, (WPARAM) nIndex, (LPARAM)prectangle))
+//   ::u32 toolbar::GetItemID(index nIndex)
+//   {
+//      ASSERT_VALID(this);
+//      ASSERT(is_window());
 //
-//         ::SetRectEmpty(prectangle);
+////#ifdef WINDOWS_DESKTOP
+////      TBBUTTON button;
+////      _GetButton(nIndex, &button);
+////      return button.idCommand;
+////#else
+////      throw ::exception(todo);
+////#endif
+//      return 0;
+//   }
+
+//   void toolbar::GetItemRect(index nIndex, RECTANGLE_I32 * prectangle)
 //
-//#else
-//      throw ::exception(todo);
-//#endif
-   }
+//   {
+//      ASSERT_VALID(this);
+//      ASSERT(is_window());
+//
+//      // handle any delayed on_layout
+//      //if (m_bDelayedButtonLayout)
+//      //   ((toolbar*)this)->set_need_layout(pgraphics);
+//
+////      // now it is safe to get the item rectangle_i32
+////#ifdef WINDOWS_DESKTOP
+////      toolbar* pBar = (toolbar*)this;
+////      if (!pBar->default_window_procedure(TB_GETITEMRECT, (WPARAM) nIndex, (LPARAM)prectangle))
+////
+////         ::SetRectEmpty(prectangle);
+////
+////#else
+////      throw ::exception(todo);
+////#endif
+//   }
 
    void toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
@@ -555,48 +560,93 @@ namespace user
    }
 
 
-   e_toolbar_item_style toolbar::get_item_style(index iIndex)
+   e_tool_item_style toolbar::tool_item_style(const ::atom & atom) const
    {
+      
+      auto pitem = tool_item(atom);
 
-      return m_useritema[iIndex].cast <toolbar_item>()->m_estyle;
+      return pitem->m_estyle;
 
    }
 
 
-   void toolbar::set_item_style(index iIndex, const e_toolbar_item_style &estyle)
+   void toolbar::set_tool_item_style(const ::atom & atom, const e_tool_item_style &estyle)
    {
+      
+      auto pitem = tool_item(atom);
 
-      m_useritema[iIndex].cast <toolbar_item>()->m_estyle = estyle;
+      pitem->m_estyle = estyle;
 
    }
 
 
-#define CX_OVERLAP  0
+#define CX_OVERLAP 0
 
 
-   ::e_toolbar_item_state toolbar::get_item_state(::index iItem)
+//   ::index toolbar::tool_item_index(const ::atom & atom) const
+//   {
+//   
+//      auto iIndex = atom.m_i;
+//   
+//      if(!m_pitema->is_index_ok(iIndex))
+//      {
+//
+//         iIndex = m_pitema->predicate_find_first([&atom](auto & pitem)
+//         {
+//
+//            return pitem->m_id == atom;
+//
+//         });
+//         
+//         if(!m_pitema->is_index_ok(iIndex))
+//         {
+//
+//            // still not ok? couldn't find then, right?!...;
+//
+//            return -1;
+//      
+//         }
+//
+//      }
+//      
+//      return iIndex;
+//   
+//   }
+
+
+   ::user::tool_item * toolbar::tool_item(const ::atom & atom) const
+   {
+      
+      auto iIndex = item_index(atom);
+      
+      return index_tool_item(iIndex);
+      
+   }
+
+
+   ::e_tool_item_state toolbar::tool_item_state(const ::atom & atom) const
    {
 
-      __pointer(::user::toolbar_item) pitem = m_useritema[iItem];
+      auto pitem = tool_item(atom);
 
       auto & estate = pitem->m_estate;
 
       auto & estyle = pitem->m_estyle;
 
-      if (!(estyle & e_toolbar_item_style_separator))
+      if (!(estyle & e_tool_item_style_separator))
       {
 
-         bool bEnabled = !(estyle & e_toolbar_item_style_disabled);
+         bool bEnabled = !(estyle & e_tool_item_style_disabled);
 
-         estate.set(e_toolbar_item_state_enabled, bEnabled);
+         estate.set(e_tool_item_state_enabled, bEnabled);
 
-         bool bPressed = ::is_element(m_pitemPressed, ::e_element_item) && ::is_item(m_pitemPressed, iItem);
+         bool bPressed = is_item_pressed(atom);
 
-         estate.set(e_toolbar_item_state_pressed, bPressed);
+         estate.set(e_tool_item_state_pressed, bPressed);
 
-         bool bHover = ::is_element(m_pitemHover, ::e_element_item) && ::is_item(m_pitemHover, iItem);
+         bool bHover = is_item_hover(atom);
 
-         estate.set(e_toolbar_item_state_hover, bHover);
+         estate.set(e_tool_item_state_hover, bHover);
 
       }
 
@@ -605,35 +655,35 @@ namespace user
    }
 
 
-   ::user::enum_state toolbar::get_item_user_state(index iIndex)
+   ::user::enum_state toolbar::item_user_state(const ::atom & atom)
    {
 
-      auto eitemstate = get_item_state(iIndex);
+      auto eitemstate = tool_item_state(atom);
 
       ::user::e_state estate = e_state_none;
 
-      if(eitemstate & e_toolbar_item_state_checked)
+      if(eitemstate & e_tool_item_state_checked)
       {
 
          estate += ::user::e_state_checked;
 
       }
 
-      if(eitemstate & e_toolbar_item_state_pressed)
+      if(eitemstate & e_tool_item_state_pressed)
       {
 
          estate += ::user::e_state_pressed;
 
       }
 
-      if (eitemstate & e_toolbar_item_state_hover)
+      if (eitemstate & e_tool_item_state_hover)
       {
 
          estate += ::user::e_state_hover;
 
       }
 
-      if(!(eitemstate & e_toolbar_item_state_enabled))
+      if(!(eitemstate & e_tool_item_state_enabled))
       {
 
          estate += ::user::e_state_disabled;
@@ -729,15 +779,15 @@ namespace user
 //   //      if (pData[i].fsState & e_toolbar_button_hidden)
 //   //         continue;
 //   //      GetButtonText(i, str);
-//   //      index dx, dxNext;
+//   //      index Δx, dxNext;
 //   //      if (pData[i].fsStyle & TBSTYLE_SEP)
 //   //      {
-//   //         dx = pData[i].iBitmap;
-//   //         dxNext = dx;
+//   //         Δx = pData[i].iBitmap;
+//   //         dxNext = Δx;
 //   //      }
 //   //      else if (!str.is_empty())
 //   //      {
-//   //         dx = m_sizeButton.cx;
+//   //         Δx = m_sizeButton.cx;
 //   //         string str;
 //   //         str = utf8_to_unicode(str);
 //   //         //         str = (const unichar *) pData[i].iString;
@@ -747,16 +797,16 @@ namespace user
 //   //         str,
 //   //         (index) str.get_length(),
 //   //         &size);
-//   //         dx += size.cx;
-//   //         dxNext = dx - CX_OVERLAP;
+//   //         Δx += size.cx;
+//   //         dxNext = Δx - CX_OVERLAP;
 //   //      }
 //   //      else
 //   //      {
-//   //         dx = m_sizeButton.cx;
-//   //         dxNext = dx - CX_OVERLAP;
+//   //         Δx = m_sizeButton.cx;
+//   //         dxNext = Δx - CX_OVERLAP;
 //   //      }
 //
-//   //      if (x + dx > nWidth)
+//   //      if (x + Δx > nWidth)
 //   //      {
 //   //         bool bFound = false;
 //   //         for (index j = i; j >= 0  &&  !(pData[j].fsState & TBSTATE_WRAP); j--)
@@ -1148,8 +1198,13 @@ return { 0,0 };
 
    }
 
+void simple_toolbar::set_tool_item_image(const ::atom & atom, index iImage)
+{
 
-   void toolbar::GetButtonInfo(index nIndex, ::u32& nID, ::u32& nStyle, index& iImage)
+   tool_item(atom)->m_iImage = iImage;
+
+}
+   ::index toolbar::tool_item_image(const ::atom & atom)
    {
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT_VALID(this);
@@ -1163,37 +1218,40 @@ return { 0,0 };
 //#else
 //      throw ::exception(todo);
 //#endif
+      return tool_item(atom)->m_iImage;
    }
 
-   void toolbar::SetButtonInfo(index nIndex, ::u32 nID, ::u32 nStyle, index iImage)
-   {
-      ASSERT_VALID(this);
-//#ifdef WINDOWS_DESKTOP
-//      TBBUTTON button;
-//      _GetButton(nIndex, &button);
-//      TBBUTTON save;
-//      ::memcpy_dup(&save, &button, sizeof(save));
-//      button.idCommand = nID;
-//      button.iBitmap = iImage;
-//      button.fsStyle = (byte)LOWORD(nStyle);
-//      button.fsState = (byte)HIWORD(nStyle);
-//      if (__memcmp(&save, &button, sizeof(save)) != 0)
-//      {
-//         _SetButton(nIndex, &button);
-//         m_bDelayedButtonLayout = true;
-//      }
-//#else
-//      throw ::exception(todo);
-//#endif
+//   void toolbar::SetButtonInfo(const ::atom & atom, ::u32 nID, ::u32 nStyle, index iImage)
+//   {
+//      ASSERT_VALID(this);
+////#ifdef WINDOWS_DESKTOP
+////      TBBUTTON button;
+////      _GetButton(nIndex, &button);
+////      TBBUTTON save;
+////      ::memcpy_dup(&save, &button, sizeof(save));
+////      button.idCommand = nID;
+////      button.iBitmap = iImage;
+////      button.fsStyle = (byte)LOWORD(nStyle);
+////      button.fsState = (byte)HIWORD(nStyle);
+////      if (__memcmp(&save, &button, sizeof(save)) != 0)
+////      {
+////         _SetButton(nIndex, &button);
+////         m_bDelayedButtonLayout = true;
+////      }
+////#else
+////      throw ::exception(todo);
+////#endif
+//
+//   }
 
-   }
 
-
-   bool toolbar::SetButtonText(index nIndex, const ::string & pszText)
+   bool toolbar::set_tool_item_text(const ::atom & atom, const ::string & str)
 
    {
       
-      throw todo;
+      tool_item(atom)->m_str = str;
+      
+      //throw todo;
 //      // attempt to lookup string index in map
 //      iptr nString = -1;
 //      void * p;
@@ -1254,15 +1312,19 @@ return { 0,0 };
       return true;
    }
 
-   string toolbar::GetButtonText(index nIndex) const
+   string toolbar::GetButtonText(const ::atom & atom) const
    {
       string strResult;
-      GetButtonText(nIndex, strResult);
+      GetButtonText(atom, strResult);
       return strResult;
    }
 
-   void toolbar::GetButtonText(index nIndex, string & rWString) const
+   void toolbar::GetButtonText(const ::atom & atom, string & rstr) const
    {
+      
+      auto pitem = get_tool_item(atom);
+      
+      rstr = pitem->m_strText;
 //#ifdef WINDOWS_DESKTOP
 //      if (m_pStringMap != nullptr)
 //      {
@@ -1748,41 +1810,32 @@ return { 0,0 };
    bool toolbar::LoadBitmap(::u32 nIDResource)
       { return LoadBitmap(MAKEINTRESOURCE(nIDResource)); }*/
 
-   index toolbar::_001GetItemCount()
+   ::count toolbar::_001GetItemCount()
    {
 
-      return (index)m_useritema.get_size();
+      return m_pitema->count();
 
    }
 
 
-   bool toolbar::_001GetItemRect(index iItem,RECTANGLE_I32 * prectangle)
+   bool toolbar::index_item_rectangle(index iItem, RECTANGLE_I32 * prectangle)
    {
 
-      //// handle any delayed on_layout
-      //if(m_bDelayedButtonLayout)
-      //   on_layout(pgraphics);
-
-      if(iItem >= 0 && iItem < m_useritema.get_size())
+      if(!m_pitema->is_ok_index(iItem))
       {
-
-         *prectangle = m_useritema[iItem]->m_rectangle;
-
-
-         return true;
-
-      }
-      else
-      {
-
+         
          return false;
-
+         
       }
+
+      *prectangle = m_useritema[iItem]->m_rectangle;
+
+      return true;
 
    }
 
 
-   bool toolbar::_001GetElementRect(index iItem,RECTANGLE_I32 * prectangle,enum_element eelement, ::user::enum_state estate)
+   bool toolbar::index_element_rectangle(index iItem,RECTANGLE_I32 * prectangle,enum_element eelement, ::user::enum_state estate)
    {
 
       return false;
@@ -1790,25 +1843,25 @@ return { 0,0 };
    }
 
 
-   ::user::toolbar_item * toolbar::_001GetItem(index iItem)
+   ::user::tool_item * toolbar::_001GetItem(index iItem)
    {
 
-      if(iItem < 0 || iItem >= m_useritema.get_size())
+      if(!m_pitema->is_index_ok(iItem))
       {
 
          return nullptr;
 
       }
 
-      return m_useritema[iItem].cast <toolbar_item>();
+      return m_useritema[iItem].cast <tool_item>();
 
    }
 
 
-   bool toolbar::_001SetItem(index iItem,::user::toolbar_item *pitem)
+   bool toolbar::_001SetItem(index iItem,::user::tool_item *pitem)
    {
 
-      if(iItem < 0 || iItem >= m_useritema.get_size())
+      if(iItem < 0 || iItem >= m_pitema->get_size())
       {
 
          return false;
@@ -1828,7 +1881,7 @@ return { 0,0 };
 
       synchronous_lock synchronouslock(mutex());
 
-      m_useritema.erase_all();
+      m_pitema->erase_all();
 
       auto pxmldocument = __create_new < xml::document >();
 
@@ -1842,7 +1895,7 @@ return { 0,0 };
 
       auto & children = pxmldocument->root()->children();
 
-      __pointer(::user::toolbar_item) pitem;
+      __pointer(::user::tool_item) pitem;
 
       //auto papp = get_app();
 
@@ -1854,9 +1907,9 @@ return { 0,0 };
          if(pchild->get_name() == "button")
          {
 
-            pitem = __new(::user::toolbar_item);
+            pitem = __new(::user::tool_item);
 
-            pitem->m_iItem = m_useritema.get_size();
+            pitem->m_iItem = m_pitema->get_size();
 
             auto pattribute = pchild->find_attribute("id");
 
@@ -1882,25 +1935,25 @@ return { 0,0 };
 
             }
 
-            pitem->m_estyle -= e_toolbar_item_style_separator;
+            pitem->m_estyle -= e_tool_item_style_separator;
 
-            m_useritema.add(pitem);
+            m_pitema->add(pitem);
 
          }
          else if(pchild->get_name() == "separator")
          {
 
-            pitem = __new(::user::toolbar_item);
+            pitem = __new(::user::tool_item);
 
-            pitem->m_iItem = m_useritema.get_size();
+            pitem->m_iItem = m_pitema->get_size();
 
             pitem->m_atom = "separator";
 
             pitem->m_str = "";
 
-            pitem->m_estyle |= e_toolbar_item_style_separator;
+            pitem->m_estyle |= e_tool_item_style_separator;
 
-            m_useritema.add(pitem);
+            m_pitema->add(pitem);
 
          }
 
@@ -1911,32 +1964,14 @@ return { 0,0 };
    }
 
 
-   void toolbar::set_item_state(index iIndex, const e_toolbar_item_state &estate)
+   void toolbar::set_item_state(index iIndex, const e_tool_item_state &estate)
    {
 
-      m_useritema[iIndex].cast <toolbar_item>()->m_estate = estate;
+      m_useritema[iIndex].cast <tool_item>()->m_estate = estate;
 
    }
 
 
-   toolbar_item::toolbar_item()
-   {
-
-      m_data[0]                     = this;
-      m_eelement                    = e_element_item;
-      m_iImage                      = -1;
-      m_estate                      = e_toolbar_item_state_none;
-      m_estyle                      = e_toolbar_item_style_none;
-      m_bEnableIfHasCommandHandler  = true;
-
-
-   }
-
-   toolbar_item::~toolbar_item()
-   {
-
-
-   }
 
 
 //   index toolbar::_001GetHoverItem()
@@ -1972,20 +2007,20 @@ void user_toolbar_command::enable(bool bEnable, const ::action_context & context
 
    __pointer(::user::toolbar) pToolBar = m_puiOther;
 
-   auto estateNew = pToolBar->get_item_state(m_iIndex) - e_toolbar_item_state_enabled;
+   auto estateNew = pToolBar->get_item_state(m_iIndex) - e_tool_item_state_enabled;
 
-   auto estyleNew = pToolBar->get_item_style(m_iIndex) - e_toolbar_item_style_disabled;
+   auto estyleNew = pToolBar->get_item_style(m_iIndex) - e_tool_item_style_disabled;
 
    if (bEnable)
    {
 
-      estateNew |= e_toolbar_item_state_enabled;
+      estateNew |= e_tool_item_state_enabled;
 
    }
    else
    {
 
-      estyleNew |= e_toolbar_item_style_disabled;
+      estyleNew |= e_tool_item_style_disabled;
 
    }
 
@@ -2011,26 +2046,26 @@ void user_toolbar_command::_001SetCheck(enum_check echeck, const ::action_contex
 
    auto estateNew = pToolBar->get_item_state(m_iIndex);
 
-   estateNew -= e_toolbar_item_state_checked;
+   estateNew -= e_tool_item_state_checked;
 
-   estateNew -= e_toolbar_item_state_indeterminate;
+   estateNew -= e_tool_item_state_indeterminate;
 
    if (echeck == e_check_checked)
    {
 
-      estateNew |= e_toolbar_item_state_checked;
+      estateNew |= e_tool_item_state_checked;
 
    }
    else if (echeck == e_check_tristate)
    {
 
-      estateNew |= e_toolbar_item_state_indeterminate;
+      estateNew |= e_tool_item_state_indeterminate;
 
    }
 
    auto estyle = pToolBar->get_item_style(m_iIndex);
 
-   if (estyle & e_toolbar_item_style_separator)
+   if (estyle & e_tool_item_style_separator)
    {
 
       throw ::exception(::error_failed);
@@ -2039,7 +2074,7 @@ void user_toolbar_command::_001SetCheck(enum_check echeck, const ::action_contex
 
    pToolBar->set_item_state((index)m_iIndex, estateNew);
 
-   pToolBar->set_item_style((index)m_iIndex, estyle | e_toolbar_item_style_checkbox);
+   pToolBar->set_item_style((index)m_iIndex, estyle | e_tool_item_style_checkbox);
 
 }
 

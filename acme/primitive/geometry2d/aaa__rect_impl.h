@@ -737,14 +737,14 @@
 //      double cx = size.cx;
 //      double cy = size.cy;
 //
-//      double dx = ::width(RECT_TEMPLATE);
+//      double Δx = ::width(RECT_TEMPLATE);
 //
-//      double dy = ::height(RECT_TEMPLATE);
+//      double Δy = ::height(RECT_TEMPLATE);
 //
 //
-//      left = RECT_TEMPLATE.left + (dx - cx) / 2;
+//      left = RECT_TEMPLATE.left + (Δx - cx) / 2;
 //
-//      top = RECT_TEMPLATE.top + (dy - cy) / 2;
+//      top = RECT_TEMPLATE.top + (Δy - cy) / 2;
 //
 //      right = left + cx;
 //      bottom = top + cy;

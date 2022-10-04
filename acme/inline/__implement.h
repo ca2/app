@@ -19,6 +19,8 @@
 #endif
 #elif defined(ANDROID)
 #include "acme/asset/new.cpp"
+#elif defined(APPLE_IOS)
+#include "acme/asset/new.cpp"
 #endif
 
 

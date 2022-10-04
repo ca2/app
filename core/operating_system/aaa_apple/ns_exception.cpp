@@ -2,7 +2,7 @@
 //  macos_ns_exception.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Tsumanuma on 21/07/17.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 21/07/17.
 //
 //
 

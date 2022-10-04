@@ -104,7 +104,7 @@ getmodename (int mode_number)
       strcpy (ModeName, "Invalid graphics mode");
       return (ModeName);
     }
-  sprintf (ModeName, "%dx%d %d-page ", Xres, Yres, Pcnt);
+  sprintf (ModeName, "%Δx%d %d-page ", Xres, Yres, Pcnt);
   // Set up the default colors in the palette.
   switch ((mode_number / TCXYG) % TCP)
     {

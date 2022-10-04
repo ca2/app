@@ -2,7 +2,7 @@
 //  property_object.h
 //  apex
 //
-//  Created by Camilo Sasuke Tsumanuma on 02/06/19.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 02/06/19.
 //
 #pragma once
 

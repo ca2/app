@@ -283,8 +283,13 @@ void ui_open_url(const char  *pszUrl)
    NSString * strUrl = [ [ NSString alloc ] initWithUTF8String:pszUrl];
    
    NSURL * url = [ NSURL URLWithString: strUrl ];
-   
-   [ [ UIApplication sharedApplication ] openURL: url options:@{} completionHandler:nil];
+
+   ns_main_async(^()
+                 {
+      
+      [ [ UIApplication sharedApplication ] openURL: url options:@{} completionHandler:nil];
+      
+   });
 
 }
 

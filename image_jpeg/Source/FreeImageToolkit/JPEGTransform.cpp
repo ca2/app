@@ -145,7 +145,7 @@ getCropString(char* crop, int* left, int* top, int* right, int* bottom, int widt
 	}
 
 	// build the crop option
-	sprintf(crop, "%dx%d+%d+%d", *right - *left, *bottom - *top, *left, *top);
+	sprintf(crop, "%Δx%d+%d+%d", *right - *left, *bottom - *top, *left, *top);
 
 	return true;
 }

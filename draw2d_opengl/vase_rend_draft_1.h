@@ -108,16 +108,16 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 	double Rx=0,Ry=0; //fading edge of a line
 	double cx=0,cy=0; //cap of a line
 	double ALW=0.01;
-	double dx=x2-x1;
-	double dy=y2-y1;
-	if ( GET_ABS(dx) < ALW) {
+	double Δx=x2-x1;
+	double Δy=y2-y1;
+	if ( GET_ABS(Δx) < ALW) {
 		//vertical
 		tx=t; ty=0;
 		Rx=R; Ry=0;
 		if ( w>0.0 && w<=1.0) { //m:2
 			tx = 0.5; Rx=0.0;
 		}
-	} else if ( GET_ABS(dy) < ALW) {
+	} else if ( GET_ABS(Δy) < ALW) {
 		//horizontal
 		tx=0; ty=t;
 		Rx=0; Ry=R;
@@ -126,7 +126,7 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 		}
 	} else {
 		if ( w < 3) { //approximate to make things even faster
-			double m=dy/dx;
+			double m=Δy/Δx;
 			//and calculate tx,ty,Rx,Ry
 			if ( m>-0.4142 && m<=0.4142) {
 				// -22.5< angle <= 22.5, approximate to 0 (degree)
@@ -149,14 +149,14 @@ void line( double x1, double y1, double x2, double y2, //coordinates of the line
 				//printf( "error in determining angle: m=%.4f\n",m);
 			}
 		} else { //calculate to exact
-			dx=y1-y2;
-			dy=x2-x1;
-			double L=sqrt(dx*dx+dy*dy);
-			dx/=L;
-			dy/=L;
-			cx=-dy; cy=dx; //m:3
-			tx=t*dx; ty=t*dy;
-			Rx=R*dx; Ry=R*dy;
+			Δx=y1-y2;
+			Δy=x2-x1;
+			double L=sqrt(Δx*Δx+Δy*Δy);
+			Δx/=L;
+			Δy/=L;
+			cx=-Δy; cy=Δx; //m:3
+			tx=t*Δx; ty=t*Δy;
+			Rx=R*Δx; Ry=R*Δy;
 		}
 	}
 	
@@ -227,18 +227,18 @@ void hair_line( double x1, double y1, double x2, double y2, bool alphablend=0)
 	//determine angle of the line to horizontal
 	double tx=0,ty=0, Rx=0,Ry=0;
 	double ALW=0.01;
-	double dx=x2-x1;
-	double dy=y2-y1;
-	if ( GET_ABS(dx) < ALW) {
+	double Δx=x2-x1;
+	double Δy=y2-y1;
+	if ( GET_ABS(Δx) < ALW) {
 		//vertical
 		tx = 0.5; ty = 0.0;
 		Rx = 0.0; Ry = 0.0;
-	} else if ( GET_ABS(dy) < ALW) {
+	} else if ( GET_ABS(Δy) < ALW) {
 		//horizontal
 		tx = 0.0; ty = 0.5;
 		Rx = 0.0; Ry = 0.0;
 	} else {
-		double m=dy/dx;
+		double m=Δy/Δx;
 		if ( m>-0.4142 && m<=0.4142) {
 			// -22.5< angle <= 22.5, approximate to 0 (degree)
 			tx=t*0.1; ty=t;

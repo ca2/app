@@ -159,7 +159,7 @@ namespace axis
      
       virtual ::type control_type_from_id(const ::atom& atom, ::user::enum_control_type& econtroltype) override;
       ::user::interaction* create_menu_interaction() override;
-
+//      void handle_url(const ::string & strUrl) override;
 
    };
 

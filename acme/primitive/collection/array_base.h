@@ -628,7 +628,9 @@ public:
    }
 
 
-   inline bool is_valid_index(::index i) const { return i >= 0 && i < get_count(); }
+   inline bool is_index_ok(::index iIndex) const { return iIndex >= 0 && iIndex < get_count(); }
+
+   inline bool is_last_index(::index iIndex) const { return iIndex >= get_upper_bound(); }
 
    template < typename PRED >
    bool predicate_contains(PRED pred, ::index iStart = 0, ::index iEnd = -1) const

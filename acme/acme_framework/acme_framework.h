@@ -3,7 +3,7 @@
 //  acme_framework
 //
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 07/12/21.
-//  Copyright © 2021 Camilo Sasuke Tsumanuma. All rights reserved.
+//  Copyright © 2021 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

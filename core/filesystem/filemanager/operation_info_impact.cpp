@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "acme/platform/timer.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/filesystem/filemanager/_filemanager.h"
-#endif
+//#if !BROAD_PRECOMPILED_HEADER
+//#include "core/filesystem/filemanager/_filemanager.h"
+//#endif
 #include "aura/graphics/draw2d/graphics.h"
 #include "operation_info_impact.h"
 #include "operation_document.h"

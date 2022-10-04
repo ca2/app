@@ -437,47 +437,6 @@ enum enum_toolbar_style_ex
 };
 
 
-enum enum_toolbar_item_state
-{
-
-   e_toolbar_item_state_none            = 0,
-   e_toolbar_item_state_checked         = 0x01,
-   e_toolbar_item_state_pressed         = 0x02,
-   e_toolbar_item_state_enabled         = 0x04,
-   e_toolbar_item_state_hidden          = 0x08,
-   e_toolbar_item_state_indeterminate   = 0x10,
-   e_toolbar_item_state_wrap            = 0x20,
-   e_toolbar_item_state_ellipses        = 0x40,
-   e_toolbar_item_state_marked          = 0x80,
-   e_toolbar_item_state_hover           = 0x100,
-
-};
-
-
-enum enum_toolbar_item_style
-{
-
-   e_toolbar_item_style_none = e_toolbar_style_none,
-   e_toolbar_item_style_separator = e_toolbar_style_separator,
-   e_toolbar_item_style_checkbox = e_toolbar_style_check,
-   e_toolbar_item_style_group = e_toolbar_style_group,
-   e_toolbar_item_style_check_group = e_toolbar_item_style_group | e_toolbar_item_style_checkbox,
-   e_toolbar_item_style_dropdown = e_toolbar_style_dropdown,
-   e_toolbar_item_style_autosize = e_toolbar_style_autosize,
-   e_toolbar_item_style_noprefix = e_toolbar_style_noprefix,
-//#define TBBS_AUTOSIZE   __MAKE_LONG(TBSTYLE_AUTOSIZE, 0) // autocalc button width
-//#define TBBS_NOPREFIX   __MAKE_LONG(TBSTYLE_NOPREFIX, 0) // no accel prefix for this button
-   e_toolbar_item_style_checked = __MAKE_LONG(0, e_toolbar_item_state_checked),
-   e_toolbar_item_style_pressed = __MAKE_LONG(0, e_toolbar_item_state_pressed),
-   e_toolbar_item_style_disabled = __MAKE_LONG(0, e_toolbar_item_state_enabled),
-   e_toolbar_item_style_indeterminate = __MAKE_LONG(0, e_toolbar_item_state_indeterminate),
-   e_toolbar_item_style_hidden = __MAKE_LONG(0, e_toolbar_item_state_hidden),
-   e_toolbar_item_style_wrapped = __MAKE_LONG(0, e_toolbar_item_state_wrap),
-   e_toolbar_item_style_ellipses = __MAKE_LONG(0, e_toolbar_item_state_ellipses),
-   e_toolbar_item_style_marked = __MAKE_LONG(0, e_toolbar_item_state_marked),
-};
-
-
 enum enum_scroll_command
 {
 

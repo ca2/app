@@ -75,7 +75,7 @@ bar (int x1, int y1, int x2, int y2)
 void
 bar3d (int x1, int y1, int x2, int y2, int depth, int topflag)
 {
-  int dx, dy;
+  int Δx, Δy;
   int i1, i2, j1, j2;
   // Order the coordinates correctly.
   if (x1 > x2)
@@ -101,13 +101,13 @@ bar3d (int x1, int y1, int x2, int y2, int depth, int topflag)
   // a 60-degree angle.
   if (depth <= 0)
     return;
-  dy = (depth + 1) / 2;		// dy = depth * sin(30)
-  dx = (depth * 866 + 500) / 1000;	// dx = depth * cos(30);
+  Δy = (depth + 1) / 2;		// Δy = depth * sin(30)
+  Δx = (depth * 866 + 500) / 1000;	// Δx = depth * cos(30);
   // Draw the right-hand side.
-  i1 = x1 + dx;
-  j1 = y1 - dy;
-  i2 = x2 + dx;
-  j2 = y2 - dy;
+  i1 = x1 + Δx;
+  j1 = y1 - Δy;
+  i2 = x2 + Δx;
+  j2 = y2 - Δy;
   line (x2, y2, i2, j2);
   line (i2, j2, i2, j1);
   // Draw the top.

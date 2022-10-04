@@ -3596,8 +3596,8 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    }
 
-   auto dx = tx.elapsed();
-   if(dx > 50_ms)
+   auto Δx = tx.elapsed();
+   if(Δx > 50_ms)
    {
 
       //output_debug_string("what???");

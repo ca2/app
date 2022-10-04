@@ -2,10 +2,10 @@
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/write_text/fonts.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "core/user/userex/_userex.h"
-#include "core/filesystem/filemanager/_filemanager.h"
-#endif
+//#if !BROAD_PRECOMPILED_HEADER
+//#include "core/user/userex/_userex.h"
+//#include "core/filesystem/filemanager/_filemanager.h"
+//#endif
 #include "core/user/account/impact.h"
 #include "aura/user/user/check_box.h"
 #include "aura/user/user/progress.h"

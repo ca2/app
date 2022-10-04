@@ -171,7 +171,7 @@ bool simple_menu_bar::_track_popup_menu(index iItem)
    m_pitemPressed = __new(::item(::e_element_item, iItem));
    set_need_redraw();
    ::rectangle_i32 rectangle;
-   _001GetElementRect(iItem, rectangle, ::e_element_item, ::user::e_state_none);
+   index_element_rectangle(iItem, rectangle, ::e_element_item, ::user::e_state_none);
    client_to_screen()(rectangle);
 
    /*#ifdef WINDOWS_DESKTOP
@@ -407,7 +407,7 @@ i32_spreadset * prel,
 void simple_menu_bar::RemoveAllButtons()
 {
    
-   m_useritema.erase_all();
+   m_pitema->erase_all();
 
 }
 
@@ -536,7 +536,7 @@ bool simple_menu_bar::ReloadMenuBar()
 
 }
 */
-/*bool simple_menu_bar::_001GetItemRect(index iItem, RECTANGLE_I32 * prectangle, enum_element eelement)
+/*bool simple_menu_bar::index_item_rectangle(index iItem, RECTANGLE_I32 * prectangle, enum_element eelement)
 
 {
    if(iItem < 0 ||
@@ -777,13 +777,13 @@ size_i32 simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
       }
    }
 
-   _001GetItemRect(iItem, rectangleItem, eelement);
-   _001GetItemRect(iItem, rectangleText, eelementText);
+   index_item_rectangle(iItem, rectangleItem, eelement);
+   index_item_rectangle(iItem, rectangleText, eelementText);
 
    if(eelement == element_item_hover)
    {
       ::rectangle_i32 rectangleShadow;
-      _001GetItemRect(iItem, rectangleShadow, e_element_item);
+      index_item_rectangle(iItem, rectangleShadow, e_element_item);
 
       ::draw2d::pen_pointer ppenShadow(get_app(), PS_SOLID, 1, rgb(127, 127, 127));
       ::draw2d::brush_pointer pbrushShadow(get_app(), rgb(127, 127, 127));
@@ -800,7 +800,7 @@ size_i32 simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
       pgraphics->set(pbrushOld);
 
       ::rectangle_i32 rectangle;
-      _001GetItemRect(iItem, rectangle, e_element_text);
+      index_item_rectangle(iItem, rectangle, e_element_text);
       pgraphics->set_text_color(rgb(192, 192, 192));
       draw2d::graphics_extension::_DrawText(pgraphics,
          button.m_wstr,

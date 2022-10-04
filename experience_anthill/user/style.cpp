@@ -1570,7 +1570,7 @@ namespace experience_anthill
 
       pgraphics->set_font(ptoolbar, ::e_element_none);
 
-      auto pitem = ::user::__toolbar_item(ptoolbar->m_useritema[iItem]);
+      auto pitem = ::user::__tool_item(ptoolbar->m_useritema[iItem]);
 
       auto estyle = ptoolbar->get_item_style(iItem);
 
@@ -1585,9 +1585,9 @@ namespace experience_anthill
       //      ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
       //      ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
       //      ::user::toolbar::enum_element eelementText = ::user::toolbar::e_element_text;
-      //      if ((nStyle & e_toolbar_item_style_separator) == 0)
+      //      if ((nStyle & e_tool_item_style_separator) == 0)
       //      {
-      //         if ((nStyle & e_toolbar_item_style_disabled) == 0)
+      //         if ((nStyle & e_tool_item_style_disabled) == 0)
       //         {
       //            // item is enabled
       //            if (ptoolbar->m_iButtonPressItem >= 0)
@@ -1634,11 +1634,11 @@ namespace experience_anthill
             //int iOffsetX = 0;
             //int iOffsetY = 0;
 
-      ptoolbar->_001GetElementRect(iItem, rectangleItem, ::e_element_item, estate);
+      ptoolbar->index_element_rectangle(iItem, rectangleItem, ::e_element_item, estate);
 
-      ptoolbar->_001GetElementRect(iItem, rectangleImage, ::e_element_image, estate);
+      ptoolbar->index_element_rectangle(iItem, rectangleImage, ::e_element_image, estate);
 
-      if ((estyle & e_toolbar_item_style_separator) != 0)
+      if ((estyle & e_tool_item_style_separator) != 0)
       {
          ::rectangle_i32 rectangleSeparator;
          rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;
@@ -1658,9 +1658,9 @@ namespace experience_anthill
             if (estate & ::user::e_state_checked)
             {
 
-               ptoolbar->_001GetElementRect(iItem, rectangleItem, ::e_element_item, estate);
+               ptoolbar->index_element_rectangle(iItem, rectangleItem, ::e_element_item, estate);
 
-               ptoolbar->_001GetElementRect(iItem, rectangleImage, ::e_element_image, estate);
+               ptoolbar->index_element_rectangle(iItem, rectangleImage, ::e_element_image, estate);
 
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
@@ -1697,7 +1697,7 @@ namespace experience_anthill
 
                ::rectangle_i32 rectangleShadow;
 
-               ptoolbar->_001GetElementRect(iItem, rectangleShadow, ::e_element_item, estate);
+               ptoolbar->index_element_rectangle(iItem, rectangleShadow, ::e_element_item, estate);
 
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
@@ -1719,7 +1719,7 @@ namespace experience_anthill
 
                   ::rectangle_i32 rectangle;
 
-                  ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_image, ::user::e_state_hover);
+                  ptoolbar->index_element_rectangle(iItem, rectangle, ::e_element_image, ::user::e_state_hover);
 
                   image_source imagesource(pitem->m_pimage, ::rectangle_f64(rectangle.size()));
 
@@ -1737,7 +1737,7 @@ namespace experience_anthill
 
                   ::rectangle_i32 rectangle;
 
-                  ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_item, ::user::e_state_hover);
+                  ptoolbar->index_element_rectangle(iItem, rectangle, ::e_element_item, ::user::e_state_hover);
 
                   pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
 
@@ -1770,7 +1770,7 @@ namespace experience_anthill
 
                ::rectangle_i32 rectangle;
 
-               ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_image, ::user::e_state_pressed);
+               ptoolbar->index_element_rectangle(iItem, rectangle, ::e_element_image, ::user::e_state_pressed);
 
                image_source imagesource(pitem->m_pimage, ::rectangle_f64(rectangle.size()));
 
@@ -1795,7 +1795,7 @@ namespace experience_anthill
             if (!(estate & ::user::e_state_disabled))
             {
 
-               ptoolbar->_001GetElementRect(iItem, rectangleItem, ::e_element_item, ::user::e_state_none);
+               ptoolbar->index_element_rectangle(iItem, rectangleItem, ::e_element_item, ::user::e_state_none);
 
                pgraphics->fill_rectangle(rectangleItem, argb(190, 255, 255, 255));
 
@@ -1813,7 +1813,7 @@ namespace experience_anthill
 
                ::rectangle_i32 rectangle;
 
-               ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_image, ::user::e_state_none);
+               ptoolbar->index_element_rectangle(iItem, rectangle, ::e_element_image, ::user::e_state_none);
 
                image_source imagesource(pitem->m_pimage, ::rectangle_f64(rectangle.size()));
 
@@ -1857,7 +1857,7 @@ namespace experience_anthill
 
          auto pbrushText = __create < ::draw2d::brush >();
 
-         if (!(estyle & e_toolbar_item_style_disabled))
+         if (!(estyle & e_tool_item_style_disabled))
          {
 
             pbrushText->create_solid(argb(255, 0, 0, 0));
@@ -1872,7 +1872,7 @@ namespace experience_anthill
 
          pgraphics->set(pbrushText);
 
-         if (ptoolbar->_001GetElementRect(iItem, rectangleText, ::e_element_text, ::user::e_state_none) && rectangleText.right > 0)
+         if (ptoolbar->index_element_rectangle(iItem, rectangleText, ::e_element_text, ::user::e_state_none) && rectangleText.right > 0)
          {
 
             pgraphics->_DrawText(pitem->m_str, rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
@@ -1896,7 +1896,7 @@ namespace experience_anthill
 
       pgraphics->set_font(ptoolbar, ::e_element_none);
 
-      auto pitem = ::user::__toolbar_item(ptoolbar->m_useritema[iItem]);
+      auto pitem = ::user::__tool_item(ptoolbar->m_useritema[iItem]);
 
       //auto estyle = ptoolbar->get_item_style(iItem);
 
@@ -1910,9 +1910,9 @@ namespace experience_anthill
 
       ::user::enum_state estate = ptoolbar->get_item_user_state(iItem);
 
-      ptoolbar->_001GetElementRect(iItem, rectangleItem, ::e_element_item, estate);
+      ptoolbar->index_element_rectangle(iItem, rectangleItem, ::e_element_item, estate);
 
-      ptoolbar->_001GetElementRect(iItem, rectangleImage, ::e_element_image, estate);
+      ptoolbar->index_element_rectangle(iItem, rectangleImage, ::e_element_image, estate);
 
       if (pitem->m_atom.compare_ci("separator") == 0)
       {
@@ -1932,9 +1932,9 @@ namespace experience_anthill
             if (estate & ::user::e_state_checked)
             {
 
-               ptoolbar->_001GetElementRect(iItem, rectangleItem, ::e_element_item, estate);
+               ptoolbar->index_element_rectangle(iItem, rectangleItem, ::e_element_item, estate);
 
-               ptoolbar->_001GetElementRect(iItem, rectangleImage, ::e_element_image, estate);
+               ptoolbar->index_element_rectangle(iItem, rectangleImage, ::e_element_image, estate);
 
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
@@ -1971,7 +1971,7 @@ namespace experience_anthill
 
                ::rectangle_i32 rectangleShadow;
 
-               ptoolbar->_001GetElementRect(iItem, rectangleShadow, ::e_element_item, estate);
+               ptoolbar->index_element_rectangle(iItem, rectangleShadow, ::e_element_item, estate);
 
                if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
                {
@@ -1993,7 +1993,7 @@ namespace experience_anthill
 
                   ::rectangle_i32 rectangle;
 
-                  ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_image, ::user::e_state_hover);
+                  ptoolbar->index_element_rectangle(iItem, rectangle, ::e_element_image, ::user::e_state_hover);
 
                   image_source imagesource(pitem->m_pimage, ::rectangle_f64(rectangle.size()));
 
@@ -2011,7 +2011,7 @@ namespace experience_anthill
 
                   ::rectangle_i32 rectangle;
 
-                  ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_item, ::user::e_state_hover);
+                  ptoolbar->index_element_rectangle(iItem, rectangle, ::e_element_item, ::user::e_state_hover);
 
                   pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
 
@@ -2044,7 +2044,7 @@ namespace experience_anthill
 
                ::rectangle_i32 rectangle;
 
-               ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_image, ::user::e_state_pressed);
+               ptoolbar->index_element_rectangle(iItem, rectangle, ::e_element_image, ::user::e_state_pressed);
 
                image_source imagesource(pitem->m_pimage);
 
@@ -2069,7 +2069,7 @@ namespace experience_anthill
             //if (!(estate & ::user::e_state_disabled))
             //{
 
-            //   ptoolbar->_001GetElementRect(iItem, rectangleItem, ::e_element_item, ::user::e_state_none);
+            //   ptoolbar->index_element_rectangle(iItem, rectangleItem, ::e_element_item, ::user::e_state_none);
 
             //   pgraphics->fill_rectangle(rectangleItem, ptoolbar->get_color(pstyle, ::e_element_background));
 
@@ -2102,7 +2102,7 @@ namespace experience_anthill
 
                ::rectangle_i32 rectangle;
 
-               ptoolbar->_001GetElementRect(iItem, rectangle, ::e_element_image, estate);
+               ptoolbar->index_element_rectangle(iItem, rectangle, ::e_element_image, estate);
 
                image_source imagesource(pitem->m_pimage);
 
@@ -2165,7 +2165,7 @@ namespace experience_anthill
 
          }
 
-         if (ptoolbar->_001GetElementRect(iItem, rectangleText, ::e_element_text, estate) && rectangleText.right > 0)
+         if (ptoolbar->index_element_rectangle(iItem, rectangleText, ::e_element_text, estate) && rectangleText.right > 0)
          {
 
             pgraphics->set(pbrushText);

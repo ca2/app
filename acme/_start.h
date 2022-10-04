@@ -2,8 +2,8 @@
 //  _start.h
 //  acme
 //
-//  Created by Camilo Sasuke Tsumanuma on 16/09/20.
-//  Copyright © 2020 Camilo Sasuke Tsumanuma. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 16/09/20.
+//  Copyright © 2020 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
 //
 #pragma once
 
@@ -203,6 +203,9 @@ typedef i64 filesize;
 #else
 #define memory_new new
 #endif
+
+
+#include "_forward_declaration.h"
 
 
 

@@ -4,7 +4,7 @@
 //
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 02/02/22.
 //  09:10
-//  Copyright © 2022 Camilo Sasuke Tsumanuma. All rights reserved.
+//  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
 //
 
 //

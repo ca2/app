@@ -3,7 +3,7 @@
 //  (account_e_success.h)
 //  acme
 //
-//  Created by Camilo Sasuke Tsumanuma on 12/12/18.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 12/12/18.
 //
 
 

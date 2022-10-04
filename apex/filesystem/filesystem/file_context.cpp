@@ -756,7 +756,9 @@ void file_context::safe_get_memory(const ::payload &payloadFile, memory_base &me
    catch (const ::exception & exception)
    {
 
-      return;
+      auto psequencer = exception_message_sequencer(exception);
+
+      psequencer->do_asynchronously();
 
    }
 

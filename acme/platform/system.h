@@ -484,7 +484,8 @@ namespace acme
 
       virtual string get_latest_deployment_number(const ::string & strBranch);
 
-
+      
+      void destroy() override;
 
 
    };

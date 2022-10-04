@@ -423,6 +423,14 @@ void* task::s_os_task(void* p)
 
       //ptask->release(OBJECT_REFERENCE_COUNT_DEBUG_P_FUNCTION_LINE(ptask));
 
+#if defined(WINDOWS)
+
+      ptask->__defer_construct(ptask->m_pexceptiontranslator);
+
+      ptask->m_pexceptiontranslator->attach();
+
+#endif
+
       try
       {
 
@@ -454,6 +462,17 @@ void* task::s_os_task(void* p)
       clear_message_queue(ptask->m_itask);
 
       ptask->set(e_flag_task_terminated);
+
+#if defined(WINDOWS)
+
+      ptask->m_pexceptiontranslator->detach();
+
+      ptask->m_pexceptiontranslator->destroy();
+
+      ptask->release();
+
+#endif
+
 
 #if OBJECT_REFERENCE_COUNT_DEBUG
 

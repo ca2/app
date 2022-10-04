@@ -2881,7 +2881,7 @@ namespace user
          iIndex = m_pitema->predicate_find_first([&atom](auto & pitem)
          {
 
-            return pitem->m_id == atom;
+            return pitem->m_atom == atom;
 
          });
          
@@ -2922,7 +2922,7 @@ namespace user
 
       auto iIndex = item_index(atom);
    
-      return ::is_index_item_pressed(iIndex);
+      return is_index_item_pressed(iIndex);
 
    }
 
@@ -2932,7 +2932,7 @@ namespace user
       
       auto iIndex = item_index(atom);
 
-      return ::is_index_item_hover(m_pitemHover, iIndex);
+      return is_index_item_hover(iIndex);
 
    }
 

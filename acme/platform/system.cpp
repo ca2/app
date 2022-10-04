@@ -203,12 +203,15 @@ namespace acme
 
       }
 
-#if !defined(WINDOWS)
+
+#if defined(WINDOWS)
       
+
       __construct(m_pexceptiontranslator);
       
+
       m_pexceptiontranslator->attach();
-      
+
       
 #endif
 
@@ -2402,6 +2405,26 @@ namespace acme
       );
 
       pmanualresetevent->wait(procedure.m_waitTimeout);
+
+   }
+
+
+   void system::destroy()
+   {
+
+#if !defined(WINDOWS_DESKTOP)
+
+      m_pexceptiontranslator->detach();
+
+      m_pexceptiontranslator->destroy();
+
+      m_pexceptiontranslator.release();
+
+#endif
+
+      ::acme::context::destroy();
+
+      ::task::destroy();
 
    }
 

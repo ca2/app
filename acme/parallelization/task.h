@@ -31,6 +31,12 @@ public:
 
    ::u64                                           m_uThreadAffinityMask;
 
+#if defined(WINDOWS)
+
+   __pointer(::exception_translator)               m_pexceptiontranslator;
+
+#endif
+
 
    htask_t                                         m_htask;
    itask_t                                         m_itask;
@@ -38,7 +44,6 @@ public:
    string                                          m_strTaskTag;
 
    ::element_array                                 m_elementaHold;
-
    __pointer(manual_reset_event)                   m_peventInitialization;
 
    ::procedure                                     m_procedure;

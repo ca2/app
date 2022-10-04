@@ -8,12 +8,17 @@ namespace apex
    class CLASS_DECL_APEX system:
       virtual public ::acme::system,
       virtual public ::apex::context
-#ifndef WINDOWS
-      ,virtual public ::exception_translator
-#endif
    {
    public:
 
+
+#ifndef WINDOWS
+
+
+      __pointer(::exception_translator)                  m_pexceptiontranslator;
+
+
+#endif
 
       __composite(::dump_context)                        m_pdumpcontext;
 

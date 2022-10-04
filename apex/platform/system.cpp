@@ -4,9 +4,7 @@
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
 #include "apex/networking/networking.h"
-//#include "apex/platform/app_core.h"
 #include "acme/id.h"
-//#include "apex/operating_system/_node.h"
 #include "acme/platform/profiler.h"
 #include "acme/platform/system_setup.h"
 #include "apex/id.h"
@@ -152,11 +150,11 @@ namespace apex
    system::~system()
    {
 
-#ifndef WINDOWS
-
-      exception_translator::detach();
-
-#endif
+//#ifndef WINDOWS
+//
+//      exception_translator::detach();
+//
+//#endif
 
    }
 
@@ -5128,12 +5126,6 @@ namespace apex
 
       ::apex::context::destroy();
 
-#ifdef WINDOWS_DESKTOP
-
-      ::exception_translator::destroy();
-
-#endif
-
       for (auto& plibrary : m_mapLibrary4.values())
       {
 
@@ -5151,6 +5143,8 @@ namespace apex
       //m_mapLibrary4.clear();
 
       //return ::success;
+
+      ::acme::system::destroy();
 
    }
 

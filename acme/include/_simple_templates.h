@@ -2,7 +2,7 @@
 //  _no_templates.h
 //  acme
 //
-//  Created by Camilo Sasuke Tsumanuma on 24/04/20.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 24/04/20.
 //
 #define NO_TEMPLATE
 
@@ -69,7 +69,7 @@ class object;
 class duration;
 
 
-#include "acme/include/_forward_declaration.h"
+//#include "acme/include/_forward_declaration.h"
 
 
 #include "acme/platform/object_reference_count_debug.h"

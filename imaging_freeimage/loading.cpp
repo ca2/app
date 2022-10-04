@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/platform/context.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 
@@ -266,19 +266,11 @@ namespace imaging_freeimage
 
       ::file::path pathProcess = m_pcontext->m_papexcontext->defer_process_path(path);
 
-      auto bOk = m_pcontext->m_papexcontext->file().as_memory(payloadFile, memory);
+      m_pcontext->m_papexcontext->file().as_memory(payloadFile, memory);
 
       auto p1 = memory.get_data();
 
       auto s1 = memory.get_size();
-
-      if(!bOk)
-      {
-
-         return;
-
-      }
-
 
       //m_pcontext->m_papexcontext->file().non_empty_memory(payloadFile, *pmemory);
 

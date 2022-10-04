@@ -1978,6 +1978,54 @@ namespace user
 
    }
 
+   
+   void toolbar::add_tool_item_state(const ::atom & atom, const e_tool_item_state & estateAdd)
+   {
+
+      auto estateCurrent = tool_item_state(atom);
+
+      set_tool_item_state(atom, estateCurrent | estateAdd);
+
+   }
+
+
+   void toolbar::erase_tool_item_state(const ::atom & atom, const e_tool_item_state & estateErase)
+   {
+
+      auto estateCurrent = tool_item_state(atom);
+
+      set_tool_item_state(atom, estateCurrent - estateErase);
+
+   }
+
+
+   void toolbar::hide_tool_item(const ::atom & atom)
+   {
+
+      add_tool_item_state(atom, e_tool_item_state_hidden);
+
+      set_need_layout();
+
+      set_need_redraw();
+
+      post_redraw();
+
+   }
+
+
+   void toolbar::display_tool_item(const ::atom & atom)
+   {
+
+      erase_tool_item_state(atom, e_tool_item_state_hidden);
+
+      set_need_layout();
+
+      set_need_redraw();
+
+      post_redraw();
+
+   }
+
 
 } // namespace user
 

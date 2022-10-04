@@ -1047,6 +1047,7 @@
     <ClCompile Include="operating_system\winpr_keycode.cpp" />
     <ClCompile Include="operating_system\winpr_scancode.cpp" />
     <ClCompile Include="operating_system\_.cpp" />
+    <ClCompile Include="operating_system\_api.cpp" />
     <ClCompile Include="parallelization\condition.cpp" />
     <ClCompile Include="parallelization\condition_variable.cpp" />
     <ClCompile Include="parallelization\critical_section.cpp" />

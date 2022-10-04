@@ -116,7 +116,7 @@ gdb_check(void)
 //  macos_debug.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Tsumanuma on 2013-09-17.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 2013-09-17.
 //
 //
 

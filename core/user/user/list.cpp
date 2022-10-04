@@ -589,7 +589,7 @@ namespace user
 
          //}
 
-         _001GetItemRect(*pitem);
+         index_item_rectangle(*pitem);
 
          if (!pitem->m_bOk)
          {
@@ -886,7 +886,7 @@ namespace user
 
       pdrawlistsubitem->m_bOk = false;
 
-      _001GetElementRect(pdrawlistsubitem, ::user::list::e_element_image);
+      index_element_rectangle(pdrawlistsubitem, ::user::list::e_element_image);
 
       if (pdrawlistsubitem->m_bOk)
       {
@@ -910,7 +910,7 @@ namespace user
 
       //pdrawlistsubitem->m_iListItem = -1;
 
-      _001GetElementRect(pdrawlistsubitem, ::user::mesh::e_element_text);
+      index_element_rectangle(pdrawlistsubitem, ::user::mesh::e_element_text);
 
       if (pdrawlistsubitem->m_bOk)
       {
@@ -1204,7 +1204,7 @@ namespace user
 
             //itemFirst.m_iDisplayItem = 0;
 
-            _001GetItemRect(*pitem);
+            index_item_rectangle(*pitem);
 
             rectangle.top = rectangleClient.top;
 
@@ -1252,7 +1252,7 @@ namespace user
 
             //itemFirst.m_iDisplayItem = 0;
 
-            _001GetItemRect(*pitem);
+            index_item_rectangle(*pitem);
 
             rectangle = pitem->m_pdrawlistitem->m_rectangleItem;
 
@@ -1278,7 +1278,7 @@ namespace user
 
          //itemFirst.m_iDisplayItem = 0;
 
-         _001GetItemRect(*pitemFirst);
+         index_item_rectangle(*pitemFirst);
 
          if (pitemFirst->m_bOk)
          {
@@ -1302,7 +1302,7 @@ namespace user
 
             }
 
-            _001GetItemRect(*pitemLast);
+            index_item_rectangle(*pitemLast);
 
             if (pitemLast->m_bOk)
             {
@@ -1998,7 +1998,7 @@ namespace user
 
             //}
 
-            _001GetItemRect(*pitem);
+            index_item_rectangle(*pitem);
 
             if (pitem->m_bOk)
             {
@@ -2494,7 +2494,7 @@ namespace user
 
       //itemFirst.m_iGroup = pdrawitem->m_iGroupRectGroup;
 
-      _001GetItemRect(*pitemFirst);
+      index_item_rectangle(*pitemFirst);
 
       auto iItemLast = _001DisplayToStrict(iDisplayItemLast);
 
@@ -2502,7 +2502,7 @@ namespace user
 
       pitemLast->m_iDisplayItem = iDisplayItemLast;
 
-      _001GetItemRect(*pitemLast);
+      index_item_rectangle(*pitemLast);
 
       pdrawlistgroup->m_rectangleGroup.unite(pitemFirst->m_pdrawlistitem->m_rectangleItem, pitemLast->m_pdrawlistitem->m_rectangleItem);
 
@@ -2517,7 +2517,7 @@ namespace user
    }
 
 
-   void list::_001GetItemRect(::user::draw_list_item * pdrawitem)
+   void list::index_item_rectangle(::user::draw_list_item * pdrawitem)
    {
 
       if (pdrawitem->m_iDisplayItem < 0)
@@ -2840,7 +2840,7 @@ namespace user
       if (pdrawlistsubitem->m_pitem->m_iDisplayItem != pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_iRectangleDisplayItem)
       {
 
-         _001GetItemRect(*pdrawlistsubitem->m_pitem);
+         index_item_rectangle(*pdrawlistsubitem->m_pitem);
 
          if (!pdrawlistsubitem->m_pitem->m_bOk)
          {
@@ -2951,7 +2951,7 @@ namespace user
    }
 
 
-   void list::_001GetElementRect(::user::draw_list_subitem * pdrawlistsubitem, ::user::mesh::enum_element eelement)
+   void list::index_element_rectangle(::user::draw_list_subitem * pdrawlistsubitem, ::user::mesh::enum_element eelement)
    {
 
       if (pdrawlistsubitem->m_pitem->m_iDisplayItem != pdrawlistsubitem->m_pitem->m_pdrawlistitem->m_iRectangleDisplayItem)
@@ -2959,7 +2959,7 @@ namespace user
 
          pdrawlistsubitem->m_bOk = false;
 
-         _001GetItemRect(*pdrawlistsubitem->m_pitem);
+         index_item_rectangle(*pdrawlistsubitem->m_pitem);
 
          if (!pdrawlistsubitem->m_pitem->m_bOk)
          {
@@ -3908,7 +3908,7 @@ namespace user
 
                item.m_iDisplayItem = m_iDisplayItemLButtonDown1;
 
-               _001GetItemRect(&item);
+               index_item_rectangle(&item);
 
                payload("offx") = point.x - item.m_rectangleItem.left;
 
@@ -5529,7 +5529,7 @@ namespace user
 
       item.m_iDisplayItem = iItem;
 
-      _001GetItemRect(&item);
+      index_item_rectangle(&item);
 
       if (!item.m_bOk)
       {

@@ -39,7 +39,7 @@ public:
 
 
    simple_toolbar();
-   virtual ~simple_toolbar();
+   ~simple_toolbar() override;
 
    virtual int  get_image_spacing();
    virtual ::size_i32 get_press_shift();
@@ -67,12 +67,12 @@ public:
    void RemoveAllTools();
 //   virtual index _001GetHoverItem() override;
    //virtual void OnUpdateHover();
-   void SetItemImage(index iItem, index iImage);
-   void GetButtonText(index i, string & str);
-   //void SetButtonStyle(index nIndex, const enumeration < ::enum_toolbar_item_style > & nStyle);
-   //enumeration < ::enum_toolbar_item_style > GetButtonStyle(index iButton);
-   //bool SetItemStyle(index iItem, const enumeration < ::enum_toolbar_item_style > & bStyle);
-   //enumeration < ::enum_toolbar_item_style > GetItemStyle(index iItem);
+   //void SetItemImage(index iItem, index iImage);
+   //void GetButtonText(index i, string & str);
+   //void SetButtonStyle(index nIndex, const enumeration < ::enum_tool_item_style > & nStyle);
+   //enumeration < ::enum_tool_item_style > GetButtonStyle(index iButton);
+   //bool SetItemStyle(index iItem, const enumeration < ::enum_tool_item_style > & bStyle);
+   //enumeration < ::enum_tool_item_style > GetItemStyle(index iItem);
    void _001SetImageList(__pointer(::image_list) imagelist);
    void _001DiscardImageList();
    virtual bool on_click(::item * pitem) override;
@@ -96,9 +96,9 @@ public:
       bool LoadBitmap(::u32 nIDResource);
    */
 
-//  virtual bool _001GetItemRect(index iItem,RECTANGLE_I32 * prectangle)
+//  virtual bool index_item_rectangle(index iItem,RECTANGLE_I32 * prectangle)
 
-   virtual bool _001GetElementRect(index iItem,RECTANGLE_I32 * prectangle, ::enum_element eelement,
+   bool index_element_rectangle(index iItem,RECTANGLE_I32 * prectangle, ::enum_element eelement,
                                    ::user::enum_state estate) override;
 
 

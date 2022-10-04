@@ -101,39 +101,39 @@ namespace html
 
          __UNREFERENCED_PARAMETER(pdata);
 
-         float dx;
+         float Δx;
 
-         float dy;
+         float Δy;
 
          if (point.x < m_box.left)
          {
 
-            dx = m_box.left - point.x;
+            Δx = m_box.left - point.x;
 
          }
          else if (point.x > m_box.right)
          {
-            dx = point.x - m_box.right;
+            Δx = point.x - m_box.right;
          }
          else
          {
-            dx = 0;
+            Δx = 0;
          }
 
          if (point.y <m_box.top)
          {
-            dy = m_box.top - point.y;
+            Δy = m_box.top - point.y;
          }
          else if (point.y > m_box.bottom)
          {
-            dy = point.y - m_box.bottom;
+            Δy = point.y - m_box.bottom;
          }
          else
          {
-            dy = 0;
+            Δy = 0;
          }
 
-         return sqrt(dx * dx + dy * dy);
+         return sqrt(Δx * Δx + Δy * Δy);
       }
 
       void element::OnLButtonDown(::message::message * pmessage)

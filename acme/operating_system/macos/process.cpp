@@ -3,7 +3,7 @@
 //  acme
 //
 //  Created by Camilo Sasuke on 2021-05-13 18:25 BRT <3ThomasBorregaardSørensen_!!
-//  Copyright © 2021 Camilo Sasuke Tsumanuma. All rights reserved.
+//  Copyright © 2021 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
 //
 #include "framework.h"
 #include "acme/filesystem/filesystem/acme_directory.h"

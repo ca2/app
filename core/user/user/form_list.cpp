@@ -488,7 +488,7 @@ namespace user
 
       psubitem->m_iOrder = _001MapSubItemToOrder(psubitem->m_iSubItem);
 
-      _001GetElementRect(*psubitem, ::user::mesh::e_element_text);
+      index_element_rectangle(*psubitem, ::user::mesh::e_element_text);
 
       if (psubitem->m_bOk)
       {
@@ -1278,7 +1278,7 @@ namespace user
 //      pitem->subitem_index() = pinteraction->subitem_index();
 //      pitem->m_iOrder = _001MapSubItemToOrder(pitem->subitem_index());
 //      pitem->m_iListItem = -1;
-//      //_001GetElementRect(&item, ::user::mesh::element_sub_item);
+//      //index_element_rectangle(&item, ::user::mesh::element_sub_item);
 //      rectangleControl = pitem->m_rectangleSubItem;
 //      client_to_screen(rectangleControl);
 //      rectangle_i64 rectangleForm;
@@ -1605,7 +1605,7 @@ namespace user
 
       //pitem->m_iListItem = -1;
 
-      _001GetElementRect(*psubitem, ::user::mesh::e_element_sub_item);
+      index_element_rectangle(*psubitem, ::user::mesh::e_element_sub_item);
 
       rectangleControl = psubitem->m_pdrawmeshsubitem->m_rectangleSubItem;
 
@@ -2268,7 +2268,7 @@ namespace user
       //   //      if (pdescriptor->has_function(::user::e_control_function_check_box))
       //   //      {
 
-      //   //         _001GetElementRect(pdrawitem, ::user::mesh::e_element_text);
+      //   //         index_element_rectangle(pdrawitem, ::user::mesh::e_element_text);
 
       //   //         if (pdrawitem->m_bOk)
       //   //         {

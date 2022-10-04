@@ -237,9 +237,9 @@ namespace user
       virtual void _001OnAddColumn(list_column * pcolumn);
 
       virtual void _001GetGroupRect(draw_list_group * pdrawlistgroup);
-      virtual void _001GetItemRect(draw_list_item * pdrawlistitem);
+      virtual void index_item_rectangle(draw_list_item * pdrawlistitem);
       virtual void _001GetSubItemRect(draw_list_subitem * pdrawlistsubitem);
-      virtual void _001GetElementRect(draw_list_subitem * pdrawlistsubitem, ::user::mesh::enum_element eelement);
+      virtual void index_element_rectangle(draw_list_subitem * pdrawlistsubitem, ::user::mesh::enum_element eelement);
       virtual void _001GetGroupElementRect(draw_list_group * pdrawlistgroup, ::user::mesh::enum_group_element egroupelement);
 
       virtual ::user::interaction * get_subitem_control(::index iSubItem);

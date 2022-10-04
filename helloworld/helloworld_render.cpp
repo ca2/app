@@ -2,8 +2,8 @@
 //  helloworld_render.cpp
 //  app_core_helloworld
 //
-//  Created by Camilo Sasuke Tsumanuma on 8/6/15 23:27;24.
-//  Copyright (c) 2015 Camilo Sasuke Tsumanuma. All rights reserved.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 8/6/15 23:27;24.
+//  Copyright (c) 2015 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
 //
 
 

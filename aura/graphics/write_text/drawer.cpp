@@ -477,19 +477,19 @@ namespace write_text
       if (ealign & (e_align_vertical_center | e_align_bottom))
       {
 
-         double dy = (h - cy);
+         double Δy = (h - cy);
 
          if (ealign & e_align_vertical_center)
          {
 
-            dy /= 2.0;
+            Δy /= 2.0;
 
          }
 
          for (auto & ptextout : textouta.text_outa())
          {
 
-            ptextout->m_point.y += dy;
+            ptextout->m_point.y += Δy;
 
          }
 

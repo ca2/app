@@ -438,9 +438,9 @@ namespace user
 
 
       virtual void  _001GetGroupRect(draw_mesh_group * pgroup);
-      virtual void  _001GetItemRect(draw_mesh_item * pitem);
+      virtual void  index_item_rectangle(draw_mesh_item * pitem);
       virtual void  _001GetSubItemRect(draw_mesh_subitem * psubitem);
-      virtual void  _001GetElementRect(draw_mesh_subitem * psubitem,::user::mesh::enum_element eelement);
+      virtual void  index_element_rectangle(draw_mesh_subitem * psubitem,::user::mesh::enum_element eelement);
       virtual void  _001GetGroupElementRect(draw_mesh_group * pgroup, ::user::mesh::enum_group_element egrouplement);
 
       virtual bool  _001SetColumnWidth(index iColumn,i32 iWidth);

@@ -930,7 +930,7 @@ namespace draw2d
 //*/
 
       //// Scolorolling Functions
-      //virtual void ScrollDC(i32 dx, i32 dy, const ::rectangle_f64 &  pRectScoloroll, const ::rectangle_f64 &  lpRectClip,
+      //virtual void ScrollDC(i32 Δx, i32 Δy, const ::rectangle_f64 &  pRectScoloroll, const ::rectangle_f64 &  lpRectClip,
 
       //                      ::draw2d::region* pregionUpdate, ::rectangle_f64 * pRectUpdate);
 

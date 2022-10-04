@@ -429,7 +429,7 @@ namespace linux
 //      //      virtual CScrollBar* GetScrollBarCtrl(i32 nBar) const;
 //      // return sibling scrollbar control (or nullptr if none)
 //
-//      virtual i32 ScrollWindowEx(i32 dx, i32 dy,
+//      virtual i32 ScrollWindowEx(i32 Δx, i32 Δy,
 //                                 const rectangle & pRectScroll, const rectangle & lpRectClip,
 //
 //                                 ::draw2d::region* prgnUpdate, RECT32 * pRectUpdate, ::u32 flags);

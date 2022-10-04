@@ -4016,13 +4016,13 @@ namespace linux
 //
 //   }
 //
-//   i32 interaction_impl::ScrollWindowEx(i32 dx, i32 dy, const rectangle & pRectScroll, const rectangle & lpRectClip, ::draw2d::region * prgnUpdate, RECT32 * lpRectUpdate, ::u32 flags)
+//   i32 interaction_impl::ScrollWindowEx(i32 Δx, i32 Δy, const rectangle & pRectScroll, const rectangle & lpRectClip, ::draw2d::region * prgnUpdate, RECT32 * lpRectUpdate, ::u32 flags)
 //
 //   {
 //
 //      throw ::not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
-////      return ::ScrollWindowEx(get_handle(), dx, dy, pRectScroll, lpRectClip, (HRGN)prgnUpdate->get_handle(), lpRectUpdate, flags);
+////      return ::ScrollWindowEx(get_handle(), Δx, Δy, pRectScroll, lpRectClip, (HRGN)prgnUpdate->get_handle(), lpRectUpdate, flags);
 //
 //
 //   }

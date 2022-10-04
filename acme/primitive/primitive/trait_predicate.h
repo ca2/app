@@ -2,7 +2,7 @@
 ////  trait_predicate.h
 ////  acme
 ////
-////  Created by Camilo Sasuke Tsumanuma on 02/06/19.
+////  Created by Camilo Sasuke Thomas Borregaard Sørensen on 02/06/19.
 ////
 //
 //

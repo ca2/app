@@ -289,11 +289,6 @@ namespace user
       string                                       m_strInteractionTag;
 
       ::index                                      m_iIndex;
-      __pointer(::item)                            m_pitemLButtonDown;
-      __pointer(::item)                            m_pitemCurrent;
-      __pointer(::item)                            m_pitemHover;
-      __pointer(::item)                            m_pitemHoverMouse;
-      __pointer(::item)                            m_pitemPressed;
       ::size_i32                                   m_sizeRestoreBroad;
       ::size_i32                                   m_sizeRestoreCompact;
       enumeration < enum_non_client >              m_flagNonClient;
@@ -350,7 +345,6 @@ namespace user
       __pointer(::draw2d::graphics_call_array)     m_pgraphicscalla;
       __pointer(::user::interaction)               m_puserinteractionCustomWindowProc;
       __pointer(::user::interaction)               m_puiLabel;
-      __pointer_array(::item)                m_useritema;
       __pointer(::user::form)                      m_pform;
       __pointer(alpha_source)                      m_palphasource;
       //__pointer(::aura::drawable)                  m_pdrawableBackground;
@@ -416,7 +410,10 @@ namespace user
       virtual float get_dpi_for_window();
 
       virtual float get_density_for_window();
+      
+      virtual bool index_item_pressed(::index iIndex) const;
 
+      virtual bool index_item_hover(::index iIndex) const;
 
          //}
          //else

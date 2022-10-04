@@ -509,12 +509,6 @@ public:
 };
 
 
-template<class T>
-   class ___pointer;
-
-
-template<class T>
-   class pointer_array;
 
 
 //#define __FACTORY(xxx) __CONCAT(xxx, _factory)
@@ -1838,7 +1832,7 @@ namespace install
 class task;
 
 
-#include "_forward_declaration.h"
+//#include "_forward_declaration.h"
 
 
 using handler_pointer = __pointer(handler);

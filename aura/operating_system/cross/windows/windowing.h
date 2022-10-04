@@ -2,7 +2,7 @@
 //  windowing.h
 //  aura
 //
-//  Created by Camilo Sasuke Tsumanuma on 16/09/20.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 16/09/20.
 //
 #pragma once
 

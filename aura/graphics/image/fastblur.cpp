@@ -657,10 +657,10 @@ auto tick2 = ::duration::now();
 
 
    inline void boxBlurNEON(u32* sourcePixel,u32* destinationPixel,
-                           unsigned dx,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
+                           unsigned Δx,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
    {
 
-      float32x4_t deltaX = vdupq_n_f32(1.0 / dx);
+      float32x4_t deltaX = vdupq_n_f32(1.0 / Δx);
 
       int pixelLine = strideLine / 4;
 
@@ -887,10 +887,10 @@ auto tick2 = ::duration::now();
 #if VECTOR3_SSE
 
    inline void boxBlurSSE(vector4* sourcePixel,vector4* destinationPixel,
-                          unsigned dx,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
+                          unsigned Δx,int dxLeft,int dxRight,int stride,int strideLine,int effectWidth,int effectHeight)
    {
 
-      vector4 deltaX = vector4(1.0f / dx,1.0f / dx,1.0f / dx,1.0f / dx);
+      vector4 deltaX = vector4(1.0f / Δx,1.0f / Δx,1.0f / Δx,1.0f / Δx);
 
       int pixelLine = strideLine / 4;
 

@@ -557,7 +557,7 @@ namespace filemanager
          if(_001IsItemVisible(iArrange))
          {
          m_bCreateImageListRedraw = true;
-         _001GetItemRect(iArrange, iArrange, rectangle);
+         index_item_rectangle(iArrange, iArrange, rectangle);
          set_need_redraw(rectangle);
          m_bCreateImageListRedraw = false;
          }*/

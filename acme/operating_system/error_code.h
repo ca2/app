@@ -3,7 +3,7 @@
 //  acme
 //
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 29/09/22 ~22:12
-//  Copyright © 2022 Camilo Sasuke Tsumanuma. All rights reserved.
+//  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
 //
 #pragma once
 

@@ -3,7 +3,7 @@
 // File Name: vmsaudio.h
 // Long Name: Veriwell Musical Audio papp Programming Interface
 //
-// Author: Camilo Sasuke Tsumanuma
+// Author: Camilo Sasuke Thomas Borregaard Sørensen
 //
 // Creation Date: 2003-03-07
 //

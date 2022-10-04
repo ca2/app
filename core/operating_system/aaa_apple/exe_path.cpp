@@ -2,7 +2,7 @@
 //  ns_exe_path.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Tsumanuma on 8/3/15.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 8/3/15.
 //
 //
 #include "framework.h"

@@ -3651,45 +3651,45 @@ namespace draw2d
 
       size_f64 size = get_text_extent(str);
 
-      double dx;
+      double Δx;
 
-      double dy;
+      double Δy;
 
       if(ealign & e_align_right)
       {
 
-         dx = rectangleParam.right - rectangleParam.left - size.cx;
+         Δx = rectangleParam.right - rectangleParam.left - size.cx;
 
       }
       else if(ealign & e_align_horizontal_center)
       {
 
-         dx = ((rectangleParam.right - rectangleParam.left) - (size.cx)) / 2.0;
+         Δx = ((rectangleParam.right - rectangleParam.left) - (size.cx)) / 2.0;
 
       }
       else
       {
 
-         dx = 0.;
+         Δx = 0.;
 
       }
 
       if(ealign & e_align_bottom)
       {
 
-         dy = rectangleParam.bottom - rectangleParam.top - size.cy;
+         Δy = rectangleParam.bottom - rectangleParam.top - size.cy;
 
       }
       else if(ealign & e_align_vertical_center)
       {
 
-         dy = ((rectangleParam.bottom - rectangleParam.top) - (size.cy)) / 2.0;
+         Δy = ((rectangleParam.bottom - rectangleParam.top) - (size.cy)) / 2.0;
 
       }
       else
       {
 
-         dy = 0.;
+         Δy = 0.;
 
       }
 
@@ -3713,7 +3713,7 @@ namespace draw2d
 
          str.replace_with("", "\n");
 
-         text_out(rectangleParam.left + dx, rectangleParam.top + dy, str);
+         text_out(rectangleParam.left + Δx, rectangleParam.top + Δy, str);
 
       }
       else
@@ -3732,7 +3732,7 @@ namespace draw2d
 
             auto size1 = get_text_extent(str);
 
-            text_out(rectangleParam.left + dx, rectangleParam.top + dy + offsety, str);
+            text_out(rectangleParam.left + Δx, rectangleParam.top + Δy + offsety, str);
 
             offsety += (i32) size1.cy;
 
@@ -5061,27 +5061,27 @@ namespace draw2d
 
          auto wscan = scan / sizeof(::color32_t);
 
-         for (double dx = 0; dx < w; dx += dStep)
+         for (double Δx = 0; Δx < w; Δx += dStep)
          {
-            dCircleX = fmod(dx, (double)(dPeriod));
+            dCircleX = fmod(Δx, (double)(dPeriod));
             double dSign = dCircleX < (dPeriod / 2.0) ? 1.0 : -1.0;
             dCircleX -= dPeriod / 2.0;
             dTint = dBaseTint * 0.51;
             dCircleY = dSign * sqrt(dPeriod * dPeriod / 4.0 - dCircleX * dCircleX) * 0.05;
             {
-               double dy = (sin((double)dx * 2.0 * 3.1415 / dPeriod) - fmod(dx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               double Δy = (sin((double)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
                ;
-               dy = (dy * dHalfH + dH - dHSpan);
-               int x = (int)round(dx);
-               int y = (int)round(dy);
+               Δy = (Δy * dHalfH + dH - dHSpan);
+               int x = (int)round(Δx);
+               int y = (int)round(Δy);
                if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
                {
                }
                else
                {
                   int A = (colorref[x + wscan * y] >> 24) & 0xff;
-                  double fy = 1.0 - fmod(fabs(dy), 1.0);
-                  double fx = 1.0 - fmod(fabs(dx), 1.0);
+                  double fy = 1.0 - fmod(fabs(Δy), 1.0);
+                  double fx = 1.0 - fmod(fabs(Δx), 1.0);
                   A = (int)(A + ((fx * fy) * 255.0 * dStep * dTint));
                   A = minimum(A, 255);
                   colorref[x + wscan * y] = argb((A * iA) / 255, iB, iG, iR);
@@ -5089,18 +5089,18 @@ namespace draw2d
             }
             dTint = dBaseTint * 0.51;
             {
-               double dy = (sin((double)dx * 2.0 * 3.1415 / dPeriod) - fmod(dx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
-               dy = (dy * dHalfH + dH + dHSpan);
-               int x = (int)round(dx);
-               int y = (int)round(dy);
+               double Δy = (sin((double)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               Δy = (Δy * dHalfH + dH + dHSpan);
+               int x = (int)round(Δx);
+               int y = (int)round(Δy);
                if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
                {
                }
                else
                {
                   int A = (colorref[x + wscan * y] >> 24) & 0xff;
-                  double fy = 1.0 - fmod(fabs(dy), 1.0);
-                  double fx = 1.0 - fmod(fabs(dx), 1.0);
+                  double fy = 1.0 - fmod(fabs(Δy), 1.0);
+                  double fx = 1.0 - fmod(fabs(Δx), 1.0);
                   A = (int)(A + ((fx * fy) * 255.0 * dStep * dTint));
                   A = minimum(A, 255);
                   colorref[x + wscan * y] = argb((A * iA) / 255, iB, iG, iR);
@@ -5111,18 +5111,18 @@ namespace draw2d
             dTint = dBaseTint * 2.3;
 
             {
-               double dy = (sin((double)dx * 2.0 * 3.1415 / dPeriod) - fmod(dx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
-               dy = (dy * dHalfH + dH);
-               int x = (int)round(dx);
-               int y = (int)round(dy);
+               double Δy = (sin((double)Δx * 2.0 * 3.1415 / dPeriod) - fmod(Δx, (double)(dPeriod / 2.0)) / (dPeriod * dCurl)) + dCircleY;
+               Δy = (Δy * dHalfH + dH);
+               int x = (int)round(Δx);
+               int y = (int)round(Δy);
                if (x < 0 || y < 0 || x >= pimage->width() || y >= pimage->height())
                {
                }
                else
                {
                   int A = (colorref[x + wscan] >> 24) & 0xff;
-                  double fy = 1.0 - fmod(fabs(dy), 1.0);
-                  double fx = 1.0 - fmod(fabs(dx), 1.0);
+                  double fy = 1.0 - fmod(fabs(Δy), 1.0);
+                  double fx = 1.0 - fmod(fabs(Δx), 1.0);
                   A = (int)(A + ((fx * fy) * 255.0 * dStep * dTint));
                   A = minimum(A, 255);
                   colorref[x + wscan * y] = argb((A * iA) / 255, iB, iG, iR);
@@ -5442,19 +5442,19 @@ namespace draw2d
    float graphics::nanosvg_distPtSeg(float x, float y, float px, float py, float qx, float qy)
    {
 
-      float pqx, pqy, dx, dy, d, t;
+      float pqx, pqy, Δx, Δy, d, t;
       pqx = qx - px;
       pqy = qy - py;
-      dx = x - px;
-      dy = y - py;
+      Δx = x - px;
+      Δy = y - py;
       d = pqx*pqx + pqy*pqy;
-      t = pqx*dx + pqy*dy;
+      t = pqx*Δx + pqy*Δy;
       if (d > 0) t /= d;
       if (t < 0) t = 0;
       else if (t > 1) t = 1;
-      dx = px + t*pqx - x;
-      dy = py + t*pqy - y;
-      return dx*dx + dy*dy;
+      Δx = px + t*pqx - x;
+      Δy = py + t*pqy - y;
+      return Δx*Δx + Δy*Δy;
 
    }
 

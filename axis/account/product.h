@@ -2,7 +2,7 @@
 //  account_license.h
 //  aura
 //
-//  Created by Camilo Sasuke Tsumanuma on 11/12/18.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 11/12/18.
 //
 
 namespace account

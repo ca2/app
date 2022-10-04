@@ -2,7 +2,7 @@
 //  process.cpp
 //  ios_apex
 //
-//  Created by Camilo Sasuke Tsumanuma on 20/05/20.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 20/05/20.
 //
 #include "framework.h"
 

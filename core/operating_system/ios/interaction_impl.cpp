@@ -3888,12 +3888,12 @@ namespace ios
 
    }
 
-//   i32 interaction_impl::ScrollWindowEx(i32 dx, i32 dy, const ::rectangle_i32 & rectangleScroll, const ::rectangle_i32 & rectangleClip, ::draw2d::region* prgnUpdate, RECTANGLE_I32 * lpRectUpdate, ::u32 flags)
+//   i32 interaction_impl::ScrollWindowEx(i32 Δx, i32 Δy, const ::rectangle_i32 & rectangleScroll, const ::rectangle_i32 & rectangleClip, ::draw2d::region* prgnUpdate, RECTANGLE_I32 * lpRectUpdate, ::u32 flags)
 //   {
 //
 //      throw ::not_implemented();
 //      //      ASSERT(::is_window(get_handle()));
-//      //      return ::ScrollWindowEx(get_handle(), dx, dy, lpRectScroll, lpRectClip, (HRGN)prgnUpdate->get_handle(), lpRectUpdate, flags);
+//      //      return ::ScrollWindowEx(get_handle(), Δx, Δy, lpRectScroll, lpRectClip, (HRGN)prgnUpdate->get_handle(), lpRectUpdate, flags);
 //
 //   }
 

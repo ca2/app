@@ -2,7 +2,7 @@
 //  account_interactive.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Tsumanuma on 12/12/18.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 12/12/18.
 //
 #include "framework.h"
 #include "interactive.h"

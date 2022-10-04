@@ -2,7 +2,7 @@
 //  aura_application_menu.hpp
 //  aura
 //
-//  Created by Camilo Sasuke Tsumanuma on 13/11/18.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 13/11/18.
 //
 #pragma once
 

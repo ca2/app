@@ -118,7 +118,7 @@
 //
 //struct NVGpoint {
 //	float x, y;
-//	float dx, dy;
+//	float Δx, Δy;
 //	float len;
 //	float dmx, dmy;
 //	unsigned char flags;
@@ -637,10 +637,10 @@ int __NANO2D_API(TransformInverse)(float * inv, const float * t)
 	return 1;
 }
 
-void __NANO2D_API(TransformPoint)(float * dx, float * dy, const float * t, float sx, float sy)
+void __NANO2D_API(TransformPoint)(float * Δx, float * Δy, const float * t, float sx, float sy)
 {
-	*dx = sx * t[0] + sy * t[2] + t[4];
-	*dy = sx * t[1] + sy * t[3] + t[5];
+	*Δx = sx * t[0] + sy * t[2] + t[4];
+	*Δy = sx * t[1] + sy * t[3] + t[5];
 }
 
 float __NANO2D_API(DegToRad)(float deg)
@@ -919,27 +919,27 @@ NANO2D_PAINT __NANO2D_API(LinearGradient)(NANO2D_CONTEXT * ctx,
 
 	return __NANO2D_CONTEXT(ctx)->linear_gradient(sx, sy, ex, ey, icol, ocol);
 	//NANO2D_PAINT p;
-	//float dx, dy, d;
+	//float Δx, Δy, d;
 	//const float large = 1e5;
 	//NVG_NOTUSED(ctx);
 	//memset(&p, 0, sizeof(p));
 
 	//// Calculate transform aligned to the line
-	//dx = ex - sx;
-	//dy = ey - sy;
-	//d = sqrtf(dx * dx + dy * dy);
+	//Δx = ex - sx;
+	//Δy = ey - sy;
+	//d = sqrtf(Δx * Δx + Δy * Δy);
 	//if (d > 0.0001f) {
-	//	dx /= d;
-	//	dy /= d;
+	//	Δx /= d;
+	//	Δy /= d;
 	//}
 	//else {
-	//	dx = 0;
-	//	dy = 1;
+	//	Δx = 0;
+	//	Δy = 1;
 	//}
 
-	//p.xform[0] = dy; p.xform[1] = -dx;
-	//p.xform[2] = dx; p.xform[3] = dy;
-	//p.xform[4] = sx - dx * large; p.xform[5] = sy - dy * large;
+	//p.xform[0] = Δy; p.xform[1] = -Δx;
+	//p.xform[2] = Δx; p.xform[3] = Δy;
+	//p.xform[4] = sx - Δx * large; p.xform[5] = sy - Δy * large;
 
 	//p.extent[0] = large;
 	//p.extent[1] = large + d * 0.5f;
@@ -1130,26 +1130,26 @@ void __NANO2D_API(GlobalCompositeBlendFuncSeparate)(NANO2D_CONTEXT * ctx, int sr
 
 static int __NANO2D_API(__ptEquals)(float x1, float y1, float x2, float y2, float tol)
 {
-	float dx = x2 - x1;
-	float dy = y2 - y1;
-	return dx * dx + dy * dy < tol * tol;
+	float Δx = x2 - x1;
+	float Δy = y2 - y1;
+	return Δx * Δx + Δy * Δy < tol * tol;
 }
 
 static float __NANO2D_API(__distPtSeg)(float x, float y, float px, float py, float qx, float qy)
 {
-	float pqx, pqy, dx, dy, d, t;
+	float pqx, pqy, Δx, Δy, d, t;
 	pqx = qx - px;
 	pqy = qy - py;
-	dx = x - px;
-	dy = y - py;
+	Δx = x - px;
+	Δy = y - py;
 	d = pqx * pqx + pqy * pqy;
-	t = pqx * dx + pqy * dy;
+	t = pqx * Δx + pqy * Δy;
 	if (d > 0) t /= d;
 	if (t < 0) t = 0;
 	else if (t > 1) t = 1;
-	dx = px + t * pqx - x;
-	dy = py + t * pqy - y;
-	return dx * dx + dy * dy;
+	Δx = px + t * pqx - x;
+	Δy = py + t * pqy - y;
+	return Δx * Δx + Δy * Δy;
 }
 
 static void __NANO2D_API(__appendCommands)(NANO2D_CONTEXT * ctx, float * vals, int nvals)
@@ -1364,7 +1364,7 @@ static void __NANO2D_API(__appendCommands)(NANO2D_CONTEXT * ctx, float * vals, i
 //	int level, int type)
 //{
 //	float x12, y12, x23, y23, x34, y34, x123, y123, x234, y234, x1234, y1234;
-//	float dx, dy, d2, d3;
+//	float Δx, Δy, d2, d3;
 //
 //	if (level > 10) return;
 //
@@ -1377,12 +1377,12 @@ static void __NANO2D_API(__appendCommands)(NANO2D_CONTEXT * ctx, float * vals, i
 //	x123 = (x12 + x23) * 0.5f;
 //	y123 = (y12 + y23) * 0.5f;
 //
-//	dx = x4 - x1;
-//	dy = y4 - y1;
-//	d2 = __NANO2D_API(__absf)(((x2 - x4) * dy - (y2 - y4) * dx));
-//	d3 = __NANO2D_API(__absf)(((x3 - x4) * dy - (y3 - y4) * dx));
+//	Δx = x4 - x1;
+//	Δy = y4 - y1;
+//	d2 = __NANO2D_API(__absf)(((x2 - x4) * Δy - (y2 - y4) * Δx));
+//	d3 = __NANO2D_API(__absf)(((x3 - x4) * Δy - (y3 - y4) * Δx));
 //
-//	if ((d2 + d3) * (d2 + d3) < __NANO2D_CONTEXT(ctx)->tessTol * (dx * dx + dy * dy)) {
+//	if ((d2 + d3) * (d2 + d3) < __NANO2D_CONTEXT(ctx)->tessTol * (Δx * Δx + Δy * Δy)) {
 //		__NANO2D_API(__addPoint)(ctx, x4, y4, type);
 //		return;
 //	}
@@ -1486,9 +1486,9 @@ static void __NANO2D_API(__appendCommands)(NANO2D_CONTEXT * ctx, float * vals, i
 //
 //		for (i = 0; i < path->count; i++) {
 //			// Calculate segment direction and length
-//			p0->dx = p1->x - p0->x;
-//			p0->dy = p1->y - p0->y;
-//			p0->len = __NANO2D_API(__normalize)(&p0->dx, &p0->dy);
+//			p0->Δx = p1->x - p0->x;
+//			p0->Δy = p1->y - p0->y;
+//			p0->len = __NANO2D_API(__normalize)(&p0->Δx, &p0->Δy);
 //			// Update bounds
 //			cache->bounds[0] = __NANO2D_API(__minf)(cache->bounds[0], p0->x);
 //			cache->bounds[1] = __NANO2D_API(__minf)(cache->bounds[1], p0->y);
@@ -1510,10 +1510,10 @@ static void __NANO2D_API(__appendCommands)(NANO2D_CONTEXT * ctx, float * vals, i
 //	float * x0, float * y0, float * x1, float * y1)
 //{
 //	if (bevel) {
-//		*x0 = p1->x + p0->dy * w;
-//		*y0 = p1->y - p0->dx * w;
-//		*x1 = p1->x + p1->dy * w;
-//		*y1 = p1->y - p1->dx * w;
+//		*x0 = p1->x + p0->Δy * w;
+//		*y0 = p1->y - p0->Δx * w;
+//		*x1 = p1->x + p1->Δy * w;
+//		*y1 = p1->y - p1->Δx * w;
 //	}
 //	else {
 //		*x0 = p1->x + p1->dmx * w;
@@ -1528,10 +1528,10 @@ static void __NANO2D_API(__appendCommands)(NANO2D_CONTEXT * ctx, float * vals, i
 //	float fringe)
 //{
 //	int i, n;
-//	float dlx0 = p0->dy;
-//	float dly0 = -p0->dx;
-//	float dlx1 = p1->dy;
-//	float dly1 = -p1->dx;
+//	float dlx0 = p0->Δy;
+//	float dly0 = -p0->Δx;
+//	float dlx1 = p1->Δy;
+//	float dly1 = -p1->Δx;
 //	NVG_NOTUSED(fringe);
 //
 //	if (p1->flags & NVG_PT_LEFT) {
@@ -1590,10 +1590,10 @@ static void __NANO2D_API(__appendCommands)(NANO2D_CONTEXT * ctx, float * vals, i
 //{
 //	float rx0, ry0, rx1, ry1;
 //	float lx0, ly0, lx1, ly1;
-//	float dlx0 = p0->dy;
-//	float dly0 = -p0->dx;
-//	float dlx1 = p1->dy;
-//	float dly1 = -p1->dx;
+//	float dlx0 = p0->Δy;
+//	float dly0 = -p0->Δx;
+//	float dlx1 = p1->Δy;
+//	float dly1 = -p1->Δx;
 //	NVG_NOTUSED(fringe);
 //
 //	if (p1->flags & NVG_PT_LEFT) {
@@ -1662,50 +1662,50 @@ static void __NANO2D_API(__appendCommands)(NANO2D_CONTEXT * ctx, float * vals, i
 //}
 
 //static NVGvertex * __NANO2D_API(__buttCapStart)(NVGvertex * dst, NVGpoint * p,
-//	float dx, float dy, float w, float d,
+//	float Δx, float Δy, float w, float d,
 //	float aa, float u0, float u1)
 //{
-//	float px = p->x - dx * d;
-//	float py = p->y - dy * d;
-//	float dlx = dy;
-//	float dly = -dx;
-//	__NANO2D_API(__vset)(dst, px + dlx * w - dx * aa, py + dly * w - dy * aa, u0, 0); dst++;
-//	__NANO2D_API(__vset)(dst, px - dlx * w - dx * aa, py - dly * w - dy * aa, u1, 0); dst++;
+//	float px = p->x - Δx * d;
+//	float py = p->y - Δy * d;
+//	float dlx = Δy;
+//	float dly = -Δx;
+//	__NANO2D_API(__vset)(dst, px + dlx * w - Δx * aa, py + dly * w - Δy * aa, u0, 0); dst++;
+//	__NANO2D_API(__vset)(dst, px - dlx * w - Δx * aa, py - dly * w - Δy * aa, u1, 0); dst++;
 //	__NANO2D_API(__vset)(dst, px + dlx * w, py + dly * w, u0, 1); dst++;
 //	__NANO2D_API(__vset)(dst, px - dlx * w, py - dly * w, u1, 1); dst++;
 //	return dst;
 //}
 
 //static NVGvertex * __NANO2D_API(__buttCapEnd)(NVGvertex * dst, NVGpoint * p,
-//	float dx, float dy, float w, float d,
+//	float Δx, float Δy, float w, float d,
 //	float aa, float u0, float u1)
 //{
-//	float px = p->x + dx * d;
-//	float py = p->y + dy * d;
-//	float dlx = dy;
-//	float dly = -dx;
+//	float px = p->x + Δx * d;
+//	float py = p->y + Δy * d;
+//	float dlx = Δy;
+//	float dly = -Δx;
 //	__NANO2D_API(__vset)(dst, px + dlx * w, py + dly * w, u0, 1); dst++;
 //	__NANO2D_API(__vset)(dst, px - dlx * w, py - dly * w, u1, 1); dst++;
-//	__NANO2D_API(__vset)(dst, px + dlx * w + dx * aa, py + dly * w + dy * aa, u0, 0); dst++;
-//	__NANO2D_API(__vset)(dst, px - dlx * w + dx * aa, py - dly * w + dy * aa, u1, 0); dst++;
+//	__NANO2D_API(__vset)(dst, px + dlx * w + Δx * aa, py + dly * w + Δy * aa, u0, 0); dst++;
+//	__NANO2D_API(__vset)(dst, px - dlx * w + Δx * aa, py - dly * w + Δy * aa, u1, 0); dst++;
 //	return dst;
 //}
 //
 
 //static NVGvertex * __NANO2D_API(__roundCapStart)(NVGvertex * dst, NVGpoint * p,
-//	float dx, float dy, float w, int ncap,
+//	float Δx, float Δy, float w, int ncap,
 //	float aa, float u0, float u1)
 //{
 //	int i;
 //	float px = p->x;
 //	float py = p->y;
-//	float dlx = dy;
-//	float dly = -dx;
+//	float dlx = Δy;
+//	float dly = -Δx;
 //	NVG_NOTUSED(aa);
 //	for (i = 0; i < ncap; i++) {
 //		float a = i / (float)(ncap - 1) * NVG_PI;
 //		float ax = cosf(a) * w, ay = sinf(a) * w;
-//		__NANO2D_API(__vset)(dst, px - dlx * ax - dx * ay, py - dly * ax - dy * ay, u0, 1); dst++;
+//		__NANO2D_API(__vset)(dst, px - dlx * ax - Δx * ay, py - dly * ax - Δy * ay, u0, 1); dst++;
 //		__NANO2D_API(__vset)(dst, px, py, 0.5f, 1); dst++;
 //	}
 //	__NANO2D_API(__vset)(dst, px + dlx * w, py + dly * w, u0, 1); dst++;
@@ -1714,14 +1714,14 @@ static void __NANO2D_API(__appendCommands)(NANO2D_CONTEXT * ctx, float * vals, i
 //}
 
 //static NVGvertex * __NANO2D_API(__roundCapEnd)(NVGvertex * dst, NVGpoint * p,
-//	float dx, float dy, float w, int ncap,
+//	float Δx, float Δy, float w, int ncap,
 //	float aa, float u0, float u1)
 //{
 //	int i;
 //	float px = p->x;
 //	float py = p->y;
-//	float dlx = dy;
-//	float dly = -dx;
+//	float dlx = Δy;
+//	float dly = -Δx;
 //	NVG_NOTUSED(aa);
 //	__NANO2D_API(__vset)(dst, px + dlx * w, py + dly * w, u0, 1); dst++;
 //	__NANO2D_API(__vset)(dst, px - dlx * w, py - dly * w, u1, 1); dst++;
@@ -1729,7 +1729,7 @@ static void __NANO2D_API(__appendCommands)(NANO2D_CONTEXT * ctx, float * vals, i
 //		float a = i / (float)(ncap - 1) * NVG_PI;
 //		float ax = cosf(a) * w, ay = sinf(a) * w;
 //		__NANO2D_API(__vset)(dst, px, py, 0.5f, 1); dst++;
-//		__NANO2D_API(__vset)(dst, px - dlx * ax + dx * ay, py - dly * ax + dy * ay, u0, 1); dst++;
+//		__NANO2D_API(__vset)(dst, px - dlx * ax + Δx * ay, py - dly * ax + Δy * ay, u0, 1); dst++;
 //	}
 //	return dst;
 //}
@@ -1755,10 +1755,10 @@ static void __NANO2D_API(__appendCommands)(NANO2D_CONTEXT * ctx, float * vals, i
 //
 //		for (j = 0; j < path->count; j++) {
 //			float dlx0, dly0, dlx1, dly1, dmr2, cross, limit;
-//			dlx0 = p0->dy;
-//			dly0 = -p0->dx;
-//			dlx1 = p1->dy;
-//			dly1 = -p1->dx;
+//			dlx0 = p0->Δy;
+//			dly0 = -p0->Δx;
+//			dlx1 = p1->Δy;
+//			dly1 = -p1->Δx;
 //			// Calculate extrusions
 //			p1->dmx = (dlx0 + dlx1) * 0.5f;
 //			p1->dmy = (dly0 + dly1) * 0.5f;
@@ -1776,7 +1776,7 @@ static void __NANO2D_API(__appendCommands)(NANO2D_CONTEXT * ctx, float * vals, i
 //			p1->flags = (p1->flags & NVG_PT_CORNER) ? NVG_PT_CORNER : 0;
 //
 //			// Keep track of left turns.
-//			cross = p1->dx * p0->dy - p0->dx * p1->dy;
+//			cross = p1->Δx * p0->Δy - p0->Δx * p1->Δy;
 //			if (cross > 0.0f) {
 //				nleft++;
 //				p1->flags |= NVG_PT_LEFT;
@@ -1854,7 +1854,7 @@ static void __NANO2D_API(__appendCommands)(NANO2D_CONTEXT * ctx, float * vals, i
 //		NVGpoint * p0;
 //		NVGpoint * p1;
 //		int s, e, loop;
-//		float dx, dy;
+//		float Δx, Δy;
 //
 //		path->fill = 0;
 //		path->nfill = 0;
@@ -1881,15 +1881,15 @@ static void __NANO2D_API(__appendCommands)(NANO2D_CONTEXT * ctx, float * vals, i
 //
 //		if (loop == 0) {
 //			// Add cap
-//			dx = p1->x - p0->x;
-//			dy = p1->y - p0->y;
-//			__NANO2D_API(__normalize)(&dx, &dy);
+//			Δx = p1->x - p0->x;
+//			Δy = p1->y - p0->y;
+//			__NANO2D_API(__normalize)(&Δx, &Δy);
 //			if (lineCap == NVG_BUTT)
-//				dst = __NANO2D_API(__buttCapStart)(dst, p0, dx, dy, w, -aa * 0.5f, aa, u0, u1);
+//				dst = __NANO2D_API(__buttCapStart)(dst, p0, Δx, Δy, w, -aa * 0.5f, aa, u0, u1);
 //			else if (lineCap == NVG_BUTT || lineCap == NVG_SQUARE)
-//				dst = __NANO2D_API(__buttCapStart)(dst, p0, dx, dy, w, w - aa, aa, u0, u1);
+//				dst = __NANO2D_API(__buttCapStart)(dst, p0, Δx, Δy, w, w - aa, aa, u0, u1);
 //			else if (lineCap == NVG_ROUND)
-//				dst = __NANO2D_API(__roundCapStart)(dst, p0, dx, dy, w, ncap, aa, u0, u1);
+//				dst = __NANO2D_API(__roundCapStart)(dst, p0, Δx, Δy, w, ncap, aa, u0, u1);
 //		}
 //
 //		for (j = s; j < e; ++j) {
@@ -1915,15 +1915,15 @@ static void __NANO2D_API(__appendCommands)(NANO2D_CONTEXT * ctx, float * vals, i
 //		}
 //		else {
 //			// Add cap
-//			dx = p1->x - p0->x;
-//			dy = p1->y - p0->y;
-//			__NANO2D_API(__normalize)(&dx, &dy);
+//			Δx = p1->x - p0->x;
+//			Δy = p1->y - p0->y;
+//			__NANO2D_API(__normalize)(&Δx, &Δy);
 //			if (lineCap == NVG_BUTT)
-//				dst = __NANO2D_API(__buttCapEnd)(dst, p1, dx, dy, w, -aa * 0.5f, aa, u0, u1);
+//				dst = __NANO2D_API(__buttCapEnd)(dst, p1, Δx, Δy, w, -aa * 0.5f, aa, u0, u1);
 //			else if (lineCap == NVG_BUTT || lineCap == NVG_SQUARE)
-//				dst = __NANO2D_API(__buttCapEnd)(dst, p1, dx, dy, w, w - aa, aa, u0, u1);
+//				dst = __NANO2D_API(__buttCapEnd)(dst, p1, Δx, Δy, w, w - aa, aa, u0, u1);
 //			else if (lineCap == NVG_ROUND)
-//				dst = __NANO2D_API(__roundCapEnd)(dst, p1, dx, dy, w, ncap, aa, u0, u1);
+//				dst = __NANO2D_API(__roundCapEnd)(dst, p1, Δx, Δy, w, ncap, aa, u0, u1);
 //		}
 //
 //		path->nstroke = (int)(dst - verts);
@@ -1978,10 +1978,10 @@ static void __NANO2D_API(__appendCommands)(NANO2D_CONTEXT * ctx, float * vals, i
 //			p1 = &pts[0];
 //			for (j = 0; j < path->count; ++j) {
 //				if (p1->flags & NVG_PT_BEVEL) {
-//					float dlx0 = p0->dy;
-//					float dly0 = -p0->dx;
-//					float dlx1 = p1->dy;
-//					float dly1 = -p1->dx;
+//					float dlx0 = p0->Δy;
+//					float dly0 = -p0->Δx;
+//					float dlx1 = p1->Δy;
+//					float dly1 = -p1->Δx;
 //					if (p1->flags & NVG_PT_LEFT) {
 //						float lx = p1->x + p1->dmx * woff;
 //						float ly = p1->y + p1->dmy * woff;
@@ -2179,7 +2179,7 @@ void __NANO2D_API(Arc)(NANO2D_CONTEXT * ctx, float cx, float cy, float r, float 
 {
 	__NANO2D_CONTEXT(ctx)->arc(cx, cy, r, a0, a1, dir);
 	//float a = 0, da = 0, hda = 0, kappa = 0;
-	//float dx = 0, dy = 0, x = 0, y = 0, tanx = 0, tany = 0;
+	//float Δx = 0, Δy = 0, x = 0, y = 0, tanx = 0, tany = 0;
 	//float px = 0, py = 0, ptanx = 0, ptany = 0;
 	//float vals[3 + 5 * 7 + 100];
 	//int i, ndivs, nvals;
@@ -2215,12 +2215,12 @@ void __NANO2D_API(Arc)(NANO2D_CONTEXT * ctx, float cx, float cy, float r, float 
 	//nvals = 0;
 	//for (i = 0; i <= ndivs; i++) {
 	//	a = a0 + da * (i / (float)ndivs);
-	//	dx = __NANO2D_API(__cosf)(a);
-	//	dy = __NANO2D_API(__sinf)(a);
-	//	x = cx + dx * r;
-	//	y = cy + dy * r;
-	//	tanx = -dy * r * kappa;
-	//	tany = dx * r * kappa;
+	//	Δx = __NANO2D_API(__cosf)(a);
+	//	Δy = __NANO2D_API(__sinf)(a);
+	//	x = cx + Δx * r;
+	//	y = cy + Δy * r;
+	//	tanx = -Δy * r * kappa;
+	//	tany = Δx * r * kappa;
 
 	//	if (i == 0) {
 	//		vals[nvals++] = (float)move;
@@ -3070,16 +3070,16 @@ void __NANO2D_API(TextBoxBounds)(NANO2D_CONTEXT * ctx, float x, float y, float b
 //	while ((nrows = __NANO2D_API(TextBreakLines)(ctx, string, end, breakRowWidth, rows, 2))) {
 //		for (i = 0; i < nrows; i++) {
 //			NVGtextRow * row = &rows[i];
-//			float rminx, rmaxx, dx = 0;
+//			float rminx, rmaxx, Δx = 0;
 //			// Horizontal bounds
 //			if (haling & NVG_ALIGN_LEFT)
-//				dx = 0;
+//				Δx = 0;
 //			else if (haling & NVG_ALIGN_CENTER)
-//				dx = breakRowWidth * 0.5f - row->width * 0.5f;
+//				Δx = breakRowWidth * 0.5f - row->width * 0.5f;
 //			else if (haling & NVG_ALIGN_RIGHT)
-//				dx = breakRowWidth - row->width;
-//			rminx = x + row->minx + dx;
-//			rmaxx = x + row->maxx + dx;
+//				Δx = breakRowWidth - row->width;
+//			rminx = x + row->minx + Δx;
+//			rmaxx = x + row->maxx + Δx;
 //			minx = __NANO2D_API(__minf)(minx, rminx);
 //			maxx = __NANO2D_API(__maxf)(maxx, rmaxx);
 //			// Vertical bounds.

@@ -780,4 +780,13 @@ enum enum_service_status
 #include "parallelization.h"
 
 
+enum enum_item : ::i64
+{
+
+   e_item_normal = 0,
+   e_item_tool,
+
+};
+
+
 

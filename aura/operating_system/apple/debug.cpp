@@ -2,7 +2,7 @@
 //  apple_debug.cpp
 //  aura
 //
-//  Created by Camilo Sasuke Tsumanuma on 06/01/18.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 06/01/18.
 //
 
 #include "debug.h"

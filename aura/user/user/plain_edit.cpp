@@ -4015,7 +4015,7 @@ namespace user
 
       double dLineHeight;
 
-      double dy = 0;
+      double Δy = 0;
 
       bool bFound = false;
 
@@ -4030,7 +4030,7 @@ namespace user
       for (iLine = m_iCurrentPageLineStart; iLine < m_iCurrentPageLineEnd; iLine++)
       {
 
-         if (point.y < dy + dLineHeight)
+         if (point.y < Δy + dLineHeight)
          {
 
             bFound = true;
@@ -4039,7 +4039,7 @@ namespace user
 
          }
 
-         dy += dLineHeight;
+         Δy += dLineHeight;
 
          iOffset += m_iaLineLength[iLine];
 

@@ -2,7 +2,7 @@
 //  geometry3d_location.cpp
 //  acme
 //
-//  Created by Camilo Sasuke Tsumanuma on 19/06/19.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 19/06/19.
 //
 #include "framework.h"
 #include "_.h"

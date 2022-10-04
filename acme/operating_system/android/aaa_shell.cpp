@@ -2,7 +2,7 @@
 //  user_shell_ios.cpp
 //  acme
 //
-//  Created by Camilo Sasuke Tsumanuma on 30/12/16.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 30/12/16.
 //  Copyright © 2016 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 

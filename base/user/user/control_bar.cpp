@@ -1089,19 +1089,19 @@ namespace user
             //   rectangle.top+m_rectangleBorder.top,
             //   CX_GRIPPER, rectangle.height()-m_rectangleBorder.top-m_rectangleBorder.bottom,
             //   afxData.clrBtnHilite, afxData.clrBtnShadow);
-            i32 dx = CX_GRIPPER / 2;
-            i32 dy = CY_GRIPPER / 2;
+            i32 Δx = CX_GRIPPER / 2;
+            i32 Δy = CY_GRIPPER / 2;
             i32 ix = rectangle.left + CX_BORDER_GRIPPER;
-            i32 iy = rectangle.top + m_rectangleBorder.top + dy / 2;
-            i32 cy = rectangle.bottom - m_rectangleBorder.top - m_rectangleBorder.bottom - dy * 3;
+            i32 iy = rectangle.top + m_rectangleBorder.top + Δy / 2;
+            i32 cy = rectangle.bottom - m_rectangleBorder.top - m_rectangleBorder.bottom - Δy * 3;
 
-            for(; iy < cy; iy += dy)
+            for(; iy < cy; iy += Δy)
             {
-               DrawGripperElement001(pgraphics, ix + dx, iy);
-               iy += dy;
+               DrawGripperElement001(pgraphics, ix + Δx, iy);
+               iy += Δy;
                DrawGripperElement001(pgraphics, ix,      iy);
             }
-            DrawGripperElement001(pgraphics, ix + dx, iy);
+            DrawGripperElement001(pgraphics, ix + Δx, iy);
          }
          else
          {
@@ -1109,19 +1109,19 @@ namespace user
             //            rectangle.top+CY_BORDER_GRIPPER,
             //            rectangle.width()-m_rectangleBorder.top-m_rectangleBorder.bottom, CY_GRIPPER,
             //            afxData.clrBtnHilite, afxData.clrBtnShadow);
-            i32 dx = CX_GRIPPER / 2;
-            i32 dy = CY_GRIPPER / 2;
-            i32 ix = rectangle.left + m_rectangleBorder.top + dx / 2;
+            i32 Δx = CX_GRIPPER / 2;
+            i32 Δy = CY_GRIPPER / 2;
+            i32 ix = rectangle.left + m_rectangleBorder.top + Δx / 2;
             i32 iy = rectangle.top + CY_BORDER_GRIPPER;
-            i32 cx = rectangle.right - m_rectangleBorder.top - m_rectangleBorder.bottom - dx * 3;
+            i32 cx = rectangle.right - m_rectangleBorder.top - m_rectangleBorder.bottom - Δx * 3;
 
-            for(; ix < cx; ix += dx)
+            for(; ix < cx; ix += Δx)
             {
-               DrawGripperElement001(pgraphics, ix, iy + dy);
-               ix += dx;
+               DrawGripperElement001(pgraphics, ix, iy + Δy);
+               ix += Δx;
                DrawGripperElement001(pgraphics, ix, iy);
             }
-            DrawGripperElement001(pgraphics, ix, iy + dy);
+            DrawGripperElement001(pgraphics, ix, iy + Δy);
          }
       }
    }

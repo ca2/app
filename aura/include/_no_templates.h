@@ -2,11 +2,11 @@
 //  _no_templates.h
 //  aura
 //
-//  Created by Camilo Sasuke Tsumanuma on 24/04/20.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 24/04/20.
 //
 
 
-#include "apex/include/_no_templates.h"
+#include "apex/include/_simple_templates.h"
 
 
 //#define CLASS_DECL_AURA

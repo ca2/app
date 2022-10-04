@@ -4185,14 +4185,14 @@ namespace user
    //}
 
 
-   //i32 interaction_impl::ScrollWindowEx(i32 dx,i32 dy,
+   //i32 interaction_impl::ScrollWindowEx(i32 Δx,i32 Δy,
    //                                     const RECTANGLE_I32 * prectScroll,
    //                                       const RECTANGLE_I32 * prectClip,
    //                                     ::draw2d::region* prgnUpdate,RECTANGLE_I32 * pRectUpdate,::u32 flags)
    //{
 
-   //   __UNREFERENCED_PARAMETER(dx);
-   //   __UNREFERENCED_PARAMETER(dy);
+   //   __UNREFERENCED_PARAMETER(Δx);
+   //   __UNREFERENCED_PARAMETER(Δy);
    //   __UNREFERENCED_PARAMETER(prectScroll);
    //   __UNREFERENCED_PARAMETER(prectClip);
    //   __UNREFERENCED_PARAMETER(prgnUpdate);

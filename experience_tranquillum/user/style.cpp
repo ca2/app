@@ -1385,7 +1385,7 @@ namespace experience_tranquillum
 
    //   pgraphics->set_font(ptoolbar);
 
-   //   ::user::toolbar_item & item = ptoolbar->m_itema(iItem);
+   //   ::user::tool_item & item = ptoolbar->m_itema(iItem);
 
    //   ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
 
@@ -1396,9 +1396,9 @@ namespace experience_tranquillum
    //   ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
    //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
    //   ::user::toolbar::enum_element eelementText = ::user::toolbar::e_element_text;
-   //   if ((nStyle & e_toolbar_item_style_separator) == 0)
+   //   if ((nStyle & e_tool_item_style_separator) == 0)
    //   {
-   //      if ((nStyle & e_toolbar_item_style_disabled) == 0)
+   //      if ((nStyle & e_tool_item_style_disabled) == 0)
    //      {
    //         // item is enabled
    //         if (ptoolbar->m_iButtonPressItem >= 0)
@@ -1445,11 +1445,11 @@ namespace experience_tranquillum
    //   //int iOffsetX = 0;
    //   //int iOffsetY = 0;
 
-   //   ptoolbar->_001GetElementRect(iItem, rectangleItem, eelement);
+   //   ptoolbar->index_element_rectangle(iItem, rectangleItem, eelement);
 
-   //   ptoolbar->_001GetElementRect(iItem, rectangleImage, eelementImage);
+   //   ptoolbar->index_element_rectangle(iItem, rectangleImage, eelementImage);
 
-   //   if ((nStyle & e_toolbar_item_style_separator) != 0)
+   //   if ((nStyle & e_tool_item_style_separator) != 0)
    //   {
    //      ::rectangle_i32 rectangleSeparator;
    //      rectangleSeparator.left = (rectangleImage.left + rectangleImage.right) / 2 - 1;
@@ -1465,9 +1465,9 @@ namespace experience_tranquillum
    //         if ((nStyle & TBBS_CHECKED) != 0)
    //         {
 
-   //            ptoolbar->_001GetElementRect(iItem, rectangleItem, ::user::toolbar::e_element_item);
+   //            ptoolbar->index_element_rectangle(iItem, rectangleItem, ::user::toolbar::e_element_item);
 
-   //            ptoolbar->_001GetElementRect(iItem, rectangleImage, ::user::toolbar::element_image);
+   //            ptoolbar->index_element_rectangle(iItem, rectangleImage, ::user::toolbar::element_image);
 
    //            if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
    //            {
@@ -1486,7 +1486,7 @@ namespace experience_tranquillum
    //            if (uImage != 0xffffffffu)
    //            {
 
-   //               if ((nStyle & e_toolbar_item_style_disabled) == 0)
+   //               if ((nStyle & e_tool_item_style_disabled) == 0)
    //               {
 
    //                  // button is enabled
@@ -1509,7 +1509,7 @@ namespace experience_tranquillum
 
    //            ::rectangle_i32 rectangleShadow;
 
-   //            ptoolbar->_001GetElementRect(iItem, rectangleShadow, ::user::toolbar::element_item_hover);
+   //            ptoolbar->index_element_rectangle(iItem, rectangleShadow, ::user::toolbar::element_item_hover);
 
    //            if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
    //            {
@@ -1535,7 +1535,7 @@ namespace experience_tranquillum
 
    //               ::rectangle_i32 rectangle;
 
-   //               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_hover);
+   //               ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_hover);
 
    //               pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.80);
 
@@ -1545,7 +1545,7 @@ namespace experience_tranquillum
 
    //               ::rectangle_i32 rectangle;
 
-   //               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_item_hover);
+   //               ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_item_hover);
 
    //               psession->userex()->menu()->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
 
@@ -1580,7 +1580,7 @@ namespace experience_tranquillum
 
    //            ::rectangle_i32 rectangle;
 
-   //            ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_press);
+   //            ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_press);
 
    //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
 
@@ -1596,10 +1596,10 @@ namespace experience_tranquillum
    //      else
    //      {
 
-   //         if ((nStyle & e_toolbar_item_style_disabled) == 0)
+   //         if ((nStyle & e_tool_item_style_disabled) == 0)
    //         {
 
-   //            ptoolbar->_001GetElementRect(iItem, rectangleItem, ::user::toolbar::e_element_item);
+   //            ptoolbar->index_element_rectangle(iItem, rectangleItem, ::user::toolbar::e_element_item);
 
    //            pgraphics->fill_rectangle(rectangleItem, argb(184, 255, 255, 255));
 
@@ -1617,7 +1617,7 @@ namespace experience_tranquillum
 
    //            ::rectangle_i32 rectangle;
 
-   //            ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image);
+   //            ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image);
 
    //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.20);
 
@@ -1625,7 +1625,7 @@ namespace experience_tranquillum
    //         else if (uImage != 0xffffffff)
    //         {
 
-   //            if ((nStyle & e_toolbar_item_style_disabled) == 0)
+   //            if ((nStyle & e_tool_item_style_disabled) == 0)
    //            {
 
    //               psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
@@ -1653,7 +1653,7 @@ namespace experience_tranquillum
 
    //      auto pbrushText = __create < ::draw2d::brush > ();
 
-   //      if ((nStyle & e_toolbar_item_style_disabled) == 0)
+   //      if ((nStyle & e_tool_item_style_disabled) == 0)
    //      {
 
    //         pbrushText->create_solid(argb(255, 0, 0, 0));
@@ -1668,7 +1668,7 @@ namespace experience_tranquillum
 
    //      pgraphics->set(pbrushText);
 
-   //      if (ptoolbar->_001GetElementRect(iItem, rectangleText, eelementText) && rectangleText.right > 0)
+   //      if (ptoolbar->index_element_rectangle(iItem, rectangleText, eelementText) && rectangleText.right > 0)
    //      {
 
    //         pgraphics->_DrawText(item.m_str, item.m_str.get_length(), rectangleText, e_align_bottom_left, e_draw_text_no_prefix);
@@ -1691,7 +1691,7 @@ namespace experience_tranquillum
 
    //   ptoolbar->select_font(pgraphics, ::user::font_toolbar);
 
-   //   ::user::toolbar_item & item = ptoolbar->m_itema(iItem);
+   //   ::user::tool_item & item = ptoolbar->m_itema(iItem);
 
    //   ::u32 nStyle = ptoolbar->GetButtonStyle(iItem);
 
@@ -1702,9 +1702,9 @@ namespace experience_tranquillum
    //   ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
    //   ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
    //   ::user::toolbar::enum_element eelementText = ::user::toolbar::e_element_text;
-   //   if ((nStyle & e_toolbar_item_style_separator) == 0)
+   //   if ((nStyle & e_tool_item_style_separator) == 0)
    //   {
-   //      if ((nStyle & e_toolbar_item_style_disabled) == 0)
+   //      if ((nStyle & e_tool_item_style_disabled) == 0)
    //      {
    //         // item is enabled
    //         if (ptoolbar->m_iButtonPressItem >= 0)
@@ -1751,9 +1751,9 @@ namespace experience_tranquillum
    //   //int iOffsetX = 0;
    //   //int iOffsetY = 0;
 
-   //   ptoolbar->_001GetElementRect(iItem, rectangleItem, eelement);
+   //   ptoolbar->index_element_rectangle(iItem, rectangleItem, eelement);
 
-   //   ptoolbar->_001GetElementRect(iItem, rectangleImage, eelementImage);
+   //   ptoolbar->index_element_rectangle(iItem, rectangleImage, eelementImage);
 
    //   if (item.m_atom.compare_ci("separator") == 0)
    //   {
@@ -1771,9 +1771,9 @@ namespace experience_tranquillum
    //         if ((nStyle & TBBS_CHECKED) != 0)
    //         {
 
-   //            ptoolbar->_001GetElementRect(iItem, rectangleItem, ::user::toolbar::e_element_item);
+   //            ptoolbar->index_element_rectangle(iItem, rectangleItem, ::user::toolbar::e_element_item);
 
-   //            ptoolbar->_001GetElementRect(iItem, rectangleImage, ::user::toolbar::element_image);
+   //            ptoolbar->index_element_rectangle(iItem, rectangleImage, ::user::toolbar::element_image);
 
    //            if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
    //            {
@@ -1792,7 +1792,7 @@ namespace experience_tranquillum
    //            if (uImage != 0xffffffffu)
    //            {
 
-   //               if ((nStyle & e_toolbar_item_style_disabled) == 0)
+   //               if ((nStyle & e_tool_item_style_disabled) == 0)
    //               {
 
    //                  // button is enabled
@@ -1815,7 +1815,7 @@ namespace experience_tranquillum
 
    //            ::rectangle_i32 rectangleShadow;
 
-   //            ptoolbar->_001GetElementRect(iItem, rectangleShadow, ::user::toolbar::element_item_hover);
+   //            ptoolbar->index_element_rectangle(iItem, rectangleShadow, ::user::toolbar::element_item_hover);
 
    //            if ((ptoolbar->m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
    //            {
@@ -1839,7 +1839,7 @@ namespace experience_tranquillum
 
    //               ::rectangle_i32 rectangle;
 
-   //               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_hover);
+   //               ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_hover);
 
    //               pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.80);
 
@@ -1849,7 +1849,7 @@ namespace experience_tranquillum
 
    //               ::rectangle_i32 rectangle;
 
-   //               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_item_hover);
+   //               ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_item_hover);
 
    //               psession->userex()->menu()->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
 
@@ -1884,7 +1884,7 @@ namespace experience_tranquillum
 
    //            ::rectangle_i32 rectangle;
 
-   //            ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_press);
+   //            ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image_press);
 
    //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
 
@@ -1900,10 +1900,10 @@ namespace experience_tranquillum
    //      else
    //      {
 
-   //         if ((nStyle & e_toolbar_item_style_disabled) == 0)
+   //         if ((nStyle & e_tool_item_style_disabled) == 0)
    //         {
 
-   //            ptoolbar->_001GetElementRect(iItem, rectangleItem, ::user::toolbar::e_element_item);
+   //            ptoolbar->index_element_rectangle(iItem, rectangleItem, ::user::toolbar::e_element_item);
 
    //            pgraphics->fill_rectangle(rectangleItem, argb(184, 255, 255, 255));
 
@@ -1922,13 +1922,13 @@ namespace experience_tranquillum
    //            auto ppen = __create < ::draw2d::pen > ();
 
    //            ppen->create_solid(1, ptoolbar->_001GetColor(
-   //                              (nStyle & e_toolbar_item_style_disabled) == 0 ?
+   //                              (nStyle & e_tool_item_style_disabled) == 0 ?
    //                              ::user::color_button_background :
    //                              ::user::color_button_background_disabled));
    //            auto pbrush = __create < ::draw2d::brush >();
 
    //            pbrush->create_solid(ptoolbar->_001GetColor(
-   //                                (nStyle & e_toolbar_item_style_disabled) == 0 ?
+   //                                (nStyle & e_tool_item_style_disabled) == 0 ?
    //                                ::user::color_button_background :
    //                                ::user::color_button_background_disabled));
    //            ::draw2d::pen * ppenOld = pgraphics->set(ppen);
@@ -1944,7 +1944,7 @@ namespace experience_tranquillum
 
    //            ::rectangle_i32 rectangle;
 
-   //            ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image);
+   //            ptoolbar->index_element_rectangle(iItem, rectangle, ::user::toolbar::element_image);
 
    //            pgraphics->color_blend(rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.20);
 
@@ -1952,7 +1952,7 @@ namespace experience_tranquillum
    //         else if (uImage != 0xffffffff)
    //         {
 
-   //            if ((nStyle & e_toolbar_item_style_disabled) == 0)
+   //            if ((nStyle & e_tool_item_style_disabled) == 0)
    //            {
 
    //               psession->userex()->menu()->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectangleImage.top_left(), 0);
@@ -1980,7 +1980,7 @@ namespace experience_tranquillum
 
    //      auto pbrushText = __create < ::draw2d::brush > ();
 
-   //      if ((nStyle & e_toolbar_item_style_disabled) == 0)
+   //      if ((nStyle & e_tool_item_style_disabled) == 0)
    //      {
 
    //         pbrushText->create_solid(argb(255, 255, 255, 255));
@@ -1999,7 +1999,7 @@ namespace experience_tranquillum
 
    //      }
 
-   //      if (ptoolbar->_001GetElementRect(iItem, rectangleText, eelementText) && rectangleText.right > 0)
+   //      if (ptoolbar->index_element_rectangle(iItem, rectangleText, eelementText) && rectangleText.right > 0)
    //      {
 
    //         pgraphics->_DrawText(item.m_str, item.m_str.get_length(), rectangleText, e_align_bottom_left, e_draw_text_no_prefix);

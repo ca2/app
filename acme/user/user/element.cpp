@@ -8,6 +8,7 @@
 #include "text.h"
 #include "element.h"
 
+
 namespace user
 {
 
@@ -2865,6 +2866,73 @@ namespace user
    void element::defer_update_display()
    {
 
+
+   }
+
+
+   ::index element::item_index(const ::atom & atom) const
+   {
+
+      auto iIndex = atom.m_i;
+
+      if(!m_pitema->is_index_ok(iIndex))
+      {
+
+         iIndex = m_pitema->predicate_find_first([&atom](auto & pitem)
+         {
+
+            return pitem->m_id == atom;
+
+         });
+         
+         if(iIndex < 0)
+         {
+
+            // still not ok? couldn't find then, right?!...;
+
+            return -1;
+      
+         }
+
+      }
+      
+      return iIndex;
+
+   }
+
+
+   bool element::is_index_item_pressed(::index iIndex) const
+   {
+
+      return ::is_item_index(m_pitemPressed, iIndex);
+
+   }
+
+
+   bool element::is_index_item_hover(::index iIndex) const
+   {
+   
+      return ::is_item_index(m_pitemHover, iIndex);
+   
+   }
+
+
+   bool element::is_item_pressed(const ::atom & atom) const
+   {
+
+      auto iIndex = item_index(atom);
+   
+      return ::is_index_item_pressed(iIndex);
+
+   }
+
+
+   bool element::is_item_hover(const ::atom & atom) const
+   {
+      
+      auto iIndex = item_index(atom);
+
+      return ::is_index_item_hover(m_pitemHover, iIndex);
 
    }
 

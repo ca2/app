@@ -2,7 +2,7 @@
 //  c_os_file.cpp
 //  c
 //
-//  Created by Camilo Sasuke Tsumanuma on 1/14/12.
+//  Created by Camilo Sasuke Thomas Borregaard Sørensen on 1/14/12.
 //  Copyright (c) 2012 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 

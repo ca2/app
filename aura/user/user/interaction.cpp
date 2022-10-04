@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/operating_system.h"
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
@@ -5212,7 +5212,7 @@ namespace user
    ::item_pointer interaction::get_user_item(const ::item & item)
    {
 
-      for (auto & pitem : m_useritema)
+      for (auto & pitem : *m_pitema)
       {
 
          if (*pitem == (ITEM_BASE_ADDITIONS &)item)
@@ -5290,6 +5290,8 @@ namespace user
 
    void interaction::on_message_create(::message::message * pmessage)
    {
+
+      __defer_construct_new(m_pitema);
 
       if (pmessage->previous())
       {
@@ -10260,7 +10262,7 @@ namespace user
 
       }
 
-      for (auto & puseritem : m_useritema)
+      for (auto & puseritem : *m_pitema)
       {
 
          if (puseritem && puseritem->m_eelement != ::e_element_item)
@@ -13299,7 +13301,7 @@ namespace user
 
       pmessage->m_bRet = true;
 
-      for (auto & pitem : m_useritema)
+      for (auto & pitem : *m_pitema)
       {
 
          if (pitem->m_eelement == ::e_element_close_button || pitem->m_eelement == ::e_element_close_icon)
@@ -18149,7 +18151,7 @@ namespace user
 
       auto pointScroll = point + m_pointScroll;
 
-      for (auto & pitem : m_useritema)
+      for (auto & pitem : *m_pitema)
       {
 
          if (pitem->m_ppath)
@@ -18356,7 +18358,7 @@ namespace user
 
       int iCount = 0;
 
-      for (auto & pitem : m_useritema)
+      for (auto & pitem : *m_pitema)
       {
 
          ::user::e_state estate = ::user::e_state_none;

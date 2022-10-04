@@ -708,11 +708,11 @@
     <ClCompile Include="user\menu\command.cpp">
       <Filter>Source Files\user\menu</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\draw2d\water_routine.cpp">
-      <Filter>Source Files\graphics\draw2d</Filter>
-    </ClCompile>
     <ClCompile Include="gpu\gpu\object.cpp">
       <Filter>Source Files\gpu\gpu</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\plain_text_tree.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

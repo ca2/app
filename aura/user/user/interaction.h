@@ -411,9 +411,6 @@ namespace user
 
       virtual float get_density_for_window();
       
-      virtual bool index_item_pressed(::index iIndex) const;
-
-      virtual bool index_item_hover(::index iIndex) const;
 
          //}
          //else

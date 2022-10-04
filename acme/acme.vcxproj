@@ -1206,6 +1206,7 @@
     <ClCompile Include="user\user\os_colors.cpp" />
     <ClCompile Include="user\user\os_theme_colors.cpp" />
     <ClCompile Include="user\user\text.cpp" />
+    <ClCompile Include="user\user\tool_item.cpp" />
     <ClCompile Include="_.cpp" />
     <ClInclude Include="astr.h" />
     <ClInclude Include="callback.h" />

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "menu.h"
 #include "item.h"
 #include "aura/id.h"
@@ -260,9 +260,7 @@ namespace user
 
       m_psystem->m_paquasystem->_xml();
 
-      auto papp = get_app();
-
-      auto strXml = papp->as_string(varXml.string());
+      auto strXml = m_pcontext->m_papexcontext->file().as_string(varXml);
 
       if (strXml.is_empty())
       {

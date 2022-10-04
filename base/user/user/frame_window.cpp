@@ -1756,9 +1756,9 @@ namespace user
 
       string strXml = pcontext->m_papexcontext->file().safe_get_string(strMatter);
 
-      ptoolbar->LoadXmlToolBar(strXml);
+      ptoolbar->load_xml_toolbar(strXml);
 
-      //if(!toolbartransport->LoadXmlToolBar(strXml))
+      //if(!toolbartransport->load_xml_toolbar(strXml))
       //{
 
       //   return error_failed;

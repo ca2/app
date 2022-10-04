@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "water_routine.h"
 
 
@@ -572,7 +572,7 @@ namespace draw2d
             if(lIndex < lBreak && lIndex > 0)
             {
                ca = pSrcImage[lIndex];// - (Δx>>LightModifier);
-               ca = GetShiftedColor(ca,Δx);
+               ca = GetShiftedColor(ca, Δx);
                //      temp[offset] = (ca < 0) ? 0 : (ca > 255) ? 255 : ca;
                pTargetImage[offset] = ca;
             }

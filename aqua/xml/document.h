@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace xml
@@ -54,8 +54,8 @@ namespace xml
       const node * root() const { return m_pnodeRoot; }
 
       bool load_location(const char * psz);
-      bool load(stream & s);
-      bool load(const char * psz);
+      bool parse_xml_text(stream & s);
+      bool parse_xml_text(const char * pszXmlText);
 
       inline operator bool() const { return ::is_set(this) && m_pnodeRoot.is_set(); }
       inline bool operator !() const { return !operator bool(); }

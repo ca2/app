@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aqua/xml.h"
 
 
@@ -56,7 +56,7 @@ namespace xml
    }
 
    
-   bool document::load(stream & s)
+   bool document::parse_xml_text(stream & s)
    {
 
       memory memory;
@@ -165,12 +165,12 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   bool document::load(const char * psz)
+   bool document::parse_xml_text(const char * pszXmlText)
    {
 
       m_nodea.erase_all();
 
-      m_strData1 = psz;
+      m_strData1 = pszXmlText;
 
       m_memoryData.assign(m_strData1.c_str(), m_strData1.get_length_in_bytes_with_null_terminator());
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "frame_window.h"
 ////#include "base/user/simple/_component.h"
 #include "aura/message.h"

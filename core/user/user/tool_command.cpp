@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "tool_command.h"
 #include "base/user/user/toolbar.h"
 
@@ -29,7 +29,7 @@ namespace user
       ASSERT_KINDOF(toolbar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
 
-      auto estyleNew = pToolBar->get_item_style(m_iIndex) - e_tool_item_style_disabled;
+      auto estyleNew = pToolBar->tool_item_style(m_iIndex) - e_tool_item_style_disabled;
 
       if (!bOn)
       {
@@ -40,11 +40,14 @@ namespace user
 
       }
 
-      pToolBar->set_item_style(m_iIndex, estyleNew);
+      pToolBar->set_tool_item_style(m_iIndex, estyleNew);
 
 #else
+      
       throw ::exception(todo);
+
 #endif
+
    }
 
    void tool_command::SetCheck(i32 nCheck)
@@ -57,7 +60,7 @@ namespace user
       ASSERT_KINDOF(toolbar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
 
-      auto estyleNew = pToolBar->get_item_style(m_iIndex) - (e_tool_item_style_checked | e_tool_item_style_indeterminate);
+      auto estyleNew = pToolBar->tool_item_style(m_iIndex) - (e_tool_item_style_checked | e_tool_item_style_indeterminate);
 
       if (nCheck == 1)
       {
@@ -72,11 +75,14 @@ namespace user
 
       }
 
-      pToolBar->set_item_style(m_iIndex, estyleNew | e_tool_item_style_checkbox);
+      pToolBar->set_tool_item_style(m_iIndex, estyleNew | e_tool_item_style_checkbox);
 
 #else
+      
       throw ::exception(todo);
+
 #endif
+
    }
 
    void tool_command::SetText(const ::string &)

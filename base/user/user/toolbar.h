@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "control_bar.h"
@@ -102,7 +102,7 @@ namespace user
       void hide_tool_item(const ::atom & atom);
       void display_tool_item(const ::atom & atom);
       
-      ::user::enum_state tool_item_user_state(const ::atom & atom) const;
+      ::user::e_state tool_item_user_state(const ::atom & atom) const;
 
       ::index tool_item_image(const ::atom & atom) const;
       void set_tool_item_image(const ::atom & atom, index iImage);
@@ -138,7 +138,7 @@ namespace user
 
       virtual void set_index_tool_item(index iItem, ::user::tool_item * pitem);
       virtual ::user::tool_item * index_tool_item(index iItem) const;
-      virtual ::count tool_item_count();
+      virtual ::count tool_item_count() const;
 
 
       virtual ::size_i32 SimpleLayout(::draw2d::graphics_pointer& pgraphics);

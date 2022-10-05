@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "tab_impact.h"
 #include "tab_pane.h"
 #include "tab_data.h"
@@ -626,6 +626,13 @@ namespace user
             }
             
             m_pimpactdata->m_puserinteraction = pinteraction;
+
+            auto p1 = m_pimpactdata->m_puserinteraction.m_p;
+
+            string strType =  typeid(*p1).name();
+
+            output_debug_string("the type is " + strType);
+
             
          }
 

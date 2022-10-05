@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "toolbar.h"
 #include "acme/user/user/tool_item.h"
 #include "aura/graphics/write_text/font.h"

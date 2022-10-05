@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aqua/xml.h"
 
 
@@ -201,7 +201,11 @@ namespace xml
 
          //m_pnodeRoot.release();
 
-         return false;
+         throw ::exception(error_parsing);
+
+         //return false;
+
+         return;
 
       }
 
@@ -219,7 +223,7 @@ namespace xml
 
       }
 
-      return true;
+      //return true;
 
    }
 

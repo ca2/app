@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "bred/platform/application.h"
@@ -12,6 +12,9 @@ namespace core
       virtual public ::bred::application
    {
    public:
+
+
+      __pointer(::userex::pane_tab_impact)      m_ppaneimpactCore;
 
 
       application();
@@ -37,6 +40,8 @@ namespace core
       virtual string prepare_impact_options_header();
       virtual string prepare_impact_options_main_body();
       virtual string prepare_impact_options_footer();
+
+      void text_command(const char * psz) override;
 
 
    };

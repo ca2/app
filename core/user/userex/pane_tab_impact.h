@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "base/user/user/tab_impact.h"
@@ -19,6 +19,17 @@ namespace userex
    public:
 
 
+      class CLASS_DECL_CORE handler :
+         virtual public ::object
+      {
+      public:
+
+
+         virtual void handle(pane_tab_impact * ppanetabimpact, ::topic * ptopic, ::context * pcontext) = 0;
+
+
+      };
+
       
       id_map < __pointer(::form_document) >  m_mapForm;
       __pointer(pane_impact)                   m_ppaneimpact;
@@ -27,6 +38,7 @@ namespace userex
       __pointer(font_impact)                 m_pfontimpact;
       __pointer(color_impact)                m_pcolorimpact;
       __pointer(::form_document)             m_pformdocumentMenu;
+      __pointer_array(handler)               m_handlera;
 
 
 
@@ -39,6 +51,8 @@ namespace userex
       
       virtual ::user::interaction * get_font_interaction();
       virtual ::user::interaction * get_color_interaction();
+
+      void add_pane_tab_impact_handler(const ::string & strLibrary);
 
 
       inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }

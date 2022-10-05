@@ -1785,14 +1785,14 @@ namespace user
 
       auto pviewOld = m_pviewActive;
 
-      auto pframewindow = parent_frame();
+      //auto pframewindow = parent_frame();
 
-      if (pframewindow)
-      {
+      //if (pframewindow)
+      //{
 
-         pframewindow->set_active_impact(pviewNew, bNotify);
+      //   pframewindow->set_active_impact(pviewNew, bNotify);
 
-      }
+      //}
 
       if (pviewNew == pviewOld)
       {

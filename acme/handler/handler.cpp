@@ -1,4 +1,4 @@
-// From event_handler to handler at primitive_subject on day after ThomasBirthday2021 05:05 BRT
+﻿// From event_handler to handler at primitive_subject on day after ThomasBirthday2021 05:05 BRT
 // From user namespace to global at apex by camilo on day after ThomasBirthday2021 04:36 BRT
 // From aura by camilo on ThomasBirthday2021 20:00 BRT
 //
@@ -74,6 +74,13 @@ void handler::call(const ::atom & atom, i64 wParam, i64 lParam, ::matter * pmatt
 {
 
    return __call(this, atom, wParam, lParam, pmatter);
+
+}
+
+
+void handler::text_command(const char *)
+{
+
 
 }
 

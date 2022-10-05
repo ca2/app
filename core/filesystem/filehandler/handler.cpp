@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "handler.h"
 #include "menu_library.h"
 #include "item.h"

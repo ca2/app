@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "application.h"
 #include "system.h"
 #include "acme/platform/system_setup.h"
@@ -158,6 +158,24 @@ namespace core
       strOptionsHtml += "</html>";
 
       return strOptionsHtml;
+
+   }
+
+   
+   void application::text_command(const char * psz)
+   {
+
+      ::string strCommand(psz);
+
+      if (strCommand.begins_eat_ci("::userex::pane_tab_impact add_pane_tab_impact_handler "))
+      {
+
+         string strLibrary = strCommand;
+
+         m_ppaneimpactCore->add_pane_tab_impact_handler(strLibrary);
+
+      }
+
 
    }
 

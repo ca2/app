@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 19/01/2021. --<33ThomasBS!!
 //
 #include "framework.h"
@@ -87,7 +87,7 @@ namespace apex
       
    }
 
-   
+
    string node::system_options_html()
    {
 
@@ -95,6 +95,8 @@ namespace apex
 
       if (m_psystem->m_bAudio)
       {
+
+         m_psystem->m_pacmeapplicationMain->text_command("::userex::pane_tab_impact add_pane_tab_impact_handler user_text_to_speech");
 
          strFooter__ += "<br/>";
          strFooter__ += "<br/>";

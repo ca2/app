@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "core/filesystem/filemanager/_filemanager.h"
@@ -218,10 +218,31 @@ namespace userex
    }
 
 
+   void pane_tab_impact::add_pane_tab_impact_handler(const ::string & strLibrary)
+   {
+
+      auto & pfactory = m_psystem->factory(strLibrary);
+
+      auto phandler = pfactory->create <handler>();
+
+      phandler->initialize(this);
+
+      m_handlera.add(phandler);
+
+   }
+
+
    void pane_tab_impact::on_message_create(::message::message * pmessage)
    {
 
       __pointer(::message::create) pcreate(pmessage);
+
+      if (!get_app()->m_ppaneimpactCore)
+      {
+
+         get_app()->m_ppaneimpactCore = this;
+       
+      }
 
       //m_pusersystem->m_pcreate = (::create *) pcreate->get_create();
 
@@ -919,6 +940,20 @@ namespace userex
    {
 
       ::user::tab_impact::handle(ptopic, pcontext);
+
+      for (auto & phandler : m_handlera)
+      {
+
+         phandler->handle(this, ptopic, pcontext);
+
+         if(ptopic->m_bRet)
+         {
+
+            return;
+
+         }
+
+      }
 
       if (ptopic->m_atom == ::id_context_menu_close)
       {

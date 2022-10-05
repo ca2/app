@@ -524,6 +524,15 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
    for (i = 0; i < iC; i++)
    {
 
+      auto ptoolitem = index_tool_item(i);
+
+      if (ptoolitem->is_hidden())
+      {
+
+         continue;
+
+      }
+
       if (!bFirstInRow)
       {
 
@@ -532,10 +541,6 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
       }
 
       bFirstInRow = false;
-
-      auto ptoolitem = index_tool_item(i);
-
-      //index cySep = ptoolitem->m_iImage;
 
       if (ptoolitem->m_estyle & e_tool_item_style_separator)
       {
@@ -574,13 +579,6 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
          buttonx += (index) (size.cx + EXTRA_TEXT_CX);
 
          buttony += (index) (size.cy + EXTRA_TEXT_CY);
-
-      }
-
-      if (ptoolitem->m_estate & e_tool_item_state_hidden)
-      {
-
-         continue;
 
       }
 
@@ -641,6 +639,13 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
       
       auto ptoolitemHere = index_tool_item(j);
 
+      if (ptoolitemHere->is_hidden())
+      {
+
+         continue;
+
+      }
+
       ptoolitemHere->m_rectangle.top = sizeResult.cy;
 
       ptoolitemHere->m_rectangle.bottom = sizeResult.cy + cur.y;
@@ -697,7 +702,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    auto ptoolitem = index_tool_item(iItem);
 
-   if (::is_null(ptoolitem))
+   if (::is_null(ptoolitem) || ptoolitem->is_hidden())
    {
 
       return;
@@ -1022,6 +1027,13 @@ bool simple_toolbar::index_element_rectangle(index iItem, RECTANGLE_I32 * precta
 
    auto ptoolitem = index_tool_item(iItem);
 
+   if (ptoolitem->is_hidden())
+   {
+
+      return false;
+
+   }
+
    if ((ptoolitem->m_estyle & e_tool_item_style_separator) != 0)
    {
 
@@ -1262,6 +1274,13 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
                   
                   auto ptoolitemHere = index_tool_item(j);
 
+                  if (ptoolitemHere->is_hidden())
+                  {
+
+                     continue;
+
+                  }
+
                   iTotalX += ptoolitemHere->m_rectangle.width() + get_item_spacing().cx;
 
                }
@@ -1272,6 +1291,13 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
                {
                   
                   auto ptoolitemHere = index_tool_item(j);
+
+                  if (ptoolitemHere->is_hidden())
+                  {
+
+                     continue;
+
+                  }
 
                   ptoolitemHere->m_rectangle.offset(offsetx, 0);
 
@@ -1816,14 +1842,14 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
       auto ptoolitem = index_tool_item(iItem);
 
-      ptoolitem->m_estate -= e_tool_item_state_wrap;
-
       if (ptoolitem->is_hidden())
       {
 
          continue;
 
       }
+
+      ptoolitem->m_estate -= e_tool_item_state_wrap;
 
       str = ptoolitem->m_str;
 
@@ -1880,6 +1906,13 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
          {
             
             auto ptoolitemHere = index_tool_item(iItemHere);
+
+            if (ptoolitemHere->is_hidden())
+            {
+
+               continue;
+
+            }
             
             if(ptoolitemHere->should_wrap())
             {
@@ -1919,6 +1952,13 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
             {
                
                auto ptoolitemHere = index_tool_item(iItemHere);
+
+               if (ptoolitemHere->is_hidden())
+               {
+
+                  continue;
+
+               }
                
                if(ptoolitemHere->should_wrap())
                {
@@ -2217,6 +2257,13 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
          for (i = 0; i < count; i++)
          {
 
+            if (index_tool_item(i)->is_hidden())
+            {
+
+               continue;
+
+            }
+
             if (index_tool_item(i)->is_separator())
             {
 
@@ -2239,6 +2286,13 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
             {
                
                auto ptoolitem = index_tool_item(i);
+
+               if (ptoolitem->is_hidden())
+               {
+
+                  continue;
+
+               }
 
                if (ptoolitem->is_custom_control())
                {

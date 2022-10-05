@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/user/user/tool_item.h"
 #include "aura/operating_system.h"
 #include "aqua/xml.h"
@@ -114,6 +114,13 @@ namespace user
       {
 
          auto ptoolitem = index_tool_item(command.m_iIndex);
+
+         if (ptoolitem->is_hidden())
+         {
+
+            continue;
+
+         }
 
          if (ptoolitem->is_separator())
          {

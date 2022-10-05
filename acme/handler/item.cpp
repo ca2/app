@@ -1,4 +1,4 @@
-// From aura by camilo on ThomasBirthday2021 21:12 BRT
+﻿// From aura by camilo on ThomasBirthday2021 21:12 BRT
 #include "framework.h"
 
 //
@@ -66,9 +66,12 @@ item & item::operator = (::index iItem)
 }
 
 
-//
-//
-//} // namespace user
-//
-//
+bool item::is_hidden() const
+{
+
+   return false;
+
+}
+
+
 

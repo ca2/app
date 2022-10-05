@@ -1,4 +1,4 @@
-// Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:46 BRT
+﻿// Injected in acme (camilo) from apex(thomas) by camilo on ThomasMonth19-2021 12:46 BRT
 // From user namespace to global at apex by camilo on day after ThomasBirthday2021 04:36 BRT
 // From aura by camilo on ThomasBirthday2021 21:12 BRT
 #pragma once
@@ -393,6 +393,7 @@ public:
    template < primitive_integral INTEGRAL >
    operator INTEGRAL() const { return (INTEGRAL)m_iItem; }
 
+   virtual bool is_hidden() const;
 
 
    //item & operator = (const ::particle & particle) { m_atom = if ((PARTICLE *) this != (PARTICLE *)&particle) memcpy((PARTICLE *) this, (PARTICLE *) &particle, sizeof(PARTICLE)); return *this; }

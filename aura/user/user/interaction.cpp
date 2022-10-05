@@ -18154,6 +18154,13 @@ namespace user
       for (auto & pitem : *m_pitema)
       {
 
+         if (pitem->is_hidden())
+         {
+
+            continue;
+
+         }
+
          if (pitem->m_ppath)
          {
 

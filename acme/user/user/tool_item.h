@@ -1,4 +1,4 @@
-//
+﻿//
 //  tool_item.hpp
 //  acme
 //
@@ -34,18 +34,18 @@ namespace user
       ~tool_item() override;
       
 
-      bool is_hidden() const { return m_estate & e_tool_item_state_hidden; }
-      bool displayed() const { return !is_hidden(); }
+      bool is_hidden() const override; 
+      bool displayed() const;
 
-      void hide() { m_estate |= e_tool_item_state_hidden; }
+      void hide();
 
-      bool should_wrap() const { return m_estate & e_tool_item_state_wrap; }
-      void set_should_wrap(bool bSet = true) { return m_estate.set(e_tool_item_state_wrap, bSet); }
+      bool should_wrap() const;
+      void set_should_wrap(bool bSet = true);
 
       
-      bool is_separator() const { return m_estyle & e_tool_item_style_separator; }
+      bool is_separator() const;
 
-      bool is_custom_control() const { return m_estyle & e_tool_item_style_separator; }
+      bool is_custom_control() const;
 
    };
 

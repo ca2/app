@@ -127,48 +127,50 @@ namespace user
    void tab_impact::OnActivateImpact(bool bActivate, __pointer(impact) pActivateImpact, __pointer(impact) pDeactiveImpact)
    {
 
-      __pointer(::user::interaction) pinteraction = get_impact_uie();
+      return impact_host::OnActivateImpact(bActivate, pActivateImpact, pDeactiveImpact);
 
-      __pointer(::user::impact) pimpact = pinteraction;
+      //__pointer(::user::interaction) pinteraction = get_impact_uie();
 
-      if (pimpact.is_null() && pinteraction.is_set())
-      {
+      //__pointer(::user::impact) pimpact = pinteraction;
 
-         if (pinteraction->is_place_holder())
-         {
+      //if (pimpact.is_null() && pinteraction.is_set())
+      //{
 
-            auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
-            pimpact = puserinteractionpointeraChild->first_interaction();
+      //   if (pinteraction->is_place_holder())
+      //   {
 
-         }
-         else
-         {
+      //      auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
+      //      pimpact = puserinteractionpointeraChild->first_interaction();
 
-            __pointer(::user::frame_window) pframe = pinteraction;
+      //   }
+      //   else
+      //   {
 
-            if (pframe.is_set())
-            {
+      //      __pointer(::user::frame_window) pframe = pinteraction;
 
-               pimpact = pframe->get_active_impact();
+      //      if (pframe.is_set())
+      //      {
 
-            }
+      //         pimpact = pframe->get_active_impact();
 
-         }
+      //      }
 
-      }
+      //   }
 
-      if (pimpact.is_set() && pimpact != this)
-      {
+      //}
 
-         pimpact->OnActivateImpact(bActivate, pActivateImpact, pDeactiveImpact);
+      //if (pimpact.is_set() && pimpact != this)
+      //{
 
-      }
-      else
-      {
+      //   pimpact->OnActivateImpact(bActivate, pActivateImpact, pDeactiveImpact);
 
-         ::user::impact::OnActivateImpact(bActivate, pActivateImpact, pDeactiveImpact);
+      //}
+      //else
+      //{
 
-      }
+      //   ::user::impact::OnActivateImpact(bActivate, pActivateImpact, pDeactiveImpact);
+
+      //}
 
    }
 
@@ -632,7 +634,6 @@ namespace user
             string strType =  typeid(*p1).name();
 
             output_debug_string("the type is " + strType);
-
             
          }
 
@@ -745,10 +746,10 @@ namespace user
          if(pframeImpact != pframe)
          {
          
-            pframeImpact->set_active_impact(pimpact);
-            
             pframe->set_active_impact(this);
             
+            pframeImpact->set_active_impact(pimpact);
+
          }
          else
          {

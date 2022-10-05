@@ -1,4 +1,4 @@
-//
+﻿//
 //  tool_item.cpp
 //  acme
 //
@@ -13,7 +13,7 @@ namespace user
 {
 
 
-   tool_item::tool_item()
+   tool_tool_item::tool_item()
    {
       
       m_ptoolitem                   = this;
@@ -27,10 +27,66 @@ namespace user
    }
 
 
-   tool_item::~tool_item()
+   tool_tool_item::~tool_item()
    {
       
       
+   }
+
+
+   bool tool_item::is_hidden() const
+   {
+      
+      return m_estate & e_tool_item_state_hidden; 
+   
+   }
+
+
+   bool tool_item::displayed() const
+   { 
+      
+      return !is_hidden(); 
+   
+   }
+
+
+   void tool_item::hide() 
+   {
+      
+      m_estate |= e_tool_item_state_hidden; 
+   
+   }
+
+
+   bool tool_item::should_wrap() const 
+   {
+      
+      return m_estate & e_tool_item_state_wrap; 
+   
+   }
+
+
+   void tool_item::set_should_wrap(bool bSet = true)
+   {
+      
+      return m_estate.set(e_tool_item_state_wrap, bSet); 
+   
+   }
+
+
+   bool tool_item::is_separator() const 
+   {
+      
+      return m_estyle & e_tool_item_style_separator; 
+   
+   }
+
+
+   bool tool_item::is_custom_control() const 
+   {
+      
+      return m_estyle & e_tool_item_style_separator; 
+   
    }
 
 

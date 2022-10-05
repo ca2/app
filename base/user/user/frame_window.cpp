@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/message.h"
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
@@ -1225,7 +1225,7 @@ namespace user
 
             pimpact = pwindow;
 
-            set_active_impact(pimpact, false);
+            //set_active_impact(pimpact, false);
 
          }
 

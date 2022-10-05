@@ -11,7 +11,6 @@ namespace user
 {
 
 
-
    class CLASS_DECL_BASE impact :
       virtual public ::user::box
    {
@@ -20,10 +19,9 @@ namespace user
 
 
       string                              m_strImpactTitle;
-      atom                                  m_atomCreator;
+      atom                                m_atomCreator;
       __pointer(::user::document)         m_pdocument;
       __pointer(::user::interaction)      m_puserinteractionImpactNotify;
-
       bool                                m_bToolbar;
 
 
@@ -228,10 +226,6 @@ namespace user
 
       virtual void walk_pre_translate_tree(::message::message * pmessage,__pointer(::user::interaction) puiStop);
 
-
-      //virtual string calc_parent_data_key() override;
-
-      //virtual bool is_local_data() override;
       virtual bool has_toolbar();
 
       virtual ::atom get_toolbar_id();
@@ -272,14 +266,7 @@ namespace user
    }
 
 
-   //CLASS_DECL_BASE __pointer(::user::interaction) create_impact(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast = nullptr);
-   //CLASS_DECL_BASE __pointer(::user::interaction) create_impact(::user::system * pusersystem, ::user::interaction * puserinteractionParent, const ::atom & atom);
-   //CLASS_DECL_BASE ::user::document * get_document(::user::interaction * pinteraction);
-
-
 } // namespace user
-
-
 
 
 

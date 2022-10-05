@@ -608,14 +608,25 @@ namespace user
 
       if (m_pimpactdata->m_puserinteraction == nullptr)
       {
+         
+         __pointer(::user::interaction) pinteraction;
+         
+         pinteraction = m_pimpactdata->m_pplaceholder->first_child();
 
-         auto puserinteractionpointeraChild = m_pimpactdata->m_pplaceholder->m_puserinteractionpointeraChild;
-
-         if (puserinteractionpointeraChild && puserinteractionpointeraChild->has_interaction())
+         if(pinteraction)
          {
+            
+            __pointer(::user::frame_window) pframewindow = pinteraction;
 
-            m_pimpactdata->m_puserinteraction = puserinteractionpointeraChild->first_interaction();
-
+            if(pframewindow->first_child())
+            {
+               
+               pinteraction = pframewindow->first_child();
+               
+            }
+            
+            m_pimpactdata->m_puserinteraction = pinteraction;
+            
          }
 
       }
@@ -702,7 +713,7 @@ namespace user
       }
 
       ::user::impact * pimpact = nullptr;
-
+      
       if (m_pimpactdata->m_puserinteraction)
       {
 
@@ -719,11 +730,26 @@ namespace user
 
       auto pframe = parent_frame();
 
-      if (::is_set(pframe))
+      auto pframeImpact = pimpact->parent_frame();
+      
+      if(pframe && pframeImpact)
       {
-
-         pframe->set_active_impact(pimpact);
-
+      
+         if(pframeImpact != pframe)
+         {
+         
+            pframeImpact->set_active_impact(pimpact);
+            
+            pframe->set_active_impact(this);
+            
+         }
+         else
+         {
+            
+            pframe->set_active_impact(pimpact);
+            
+         }
+         
       }
 
       auto papp = get_app();
@@ -745,6 +771,7 @@ namespace user
       
    }
 
+
    void tab_impact::on_change_cur_sel()
    {
 
@@ -753,7 +780,7 @@ namespace user
       if (m_pimpactdata->m_atom == MENU_IMPACT)
       {
          
-         //  create_impact_menu(m_pimpactdata);
+         // create_impact_menu(m_pimpactdata);
          
          __pointer(::user::menu) pmenu = get_impact_uie();
          

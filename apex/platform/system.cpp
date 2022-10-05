@@ -300,11 +300,11 @@ namespace apex
 
 #endif
 
-#ifndef WINDOWS
-
-      exception_translator::attach();
-
-#endif
+//#if def WINDOWS
+//
+//      exception_translator::attach();
+//
+//#endif
 
       m_nSafetyPoolSize = 512;        // default size_i32
 

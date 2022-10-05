@@ -247,6 +247,7 @@ public:
 
 
    virtual string topic_text() const;
+   virtual string class_title() const;
 
 
    inline tracer trace(enum_trace_level etracelevel, enum_trace_category etracecategory) { return tracer(m_psystem, etracelevel, etracecategory); }

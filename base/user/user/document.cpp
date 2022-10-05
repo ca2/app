@@ -387,7 +387,7 @@ namespace user
    ::atom document::get_toolbar_id()
    {
 
-      return m_pimpactsystem->m_atom.to_string() + "/top";
+      return m_pimpactsystem->m_atom.to_string() + "/" + class_title();
 
    }
 
@@ -402,7 +402,7 @@ namespace user
 
       }
 
-      auto toolbartransport = pframewindow->m_puserframewindow->get_toolbar(get_toolbar_id(), bCreate);
+      auto toolbartransport = pframewindow->m_puserframewindow->get_toolbar( get_toolbar_id(), bCreate);
 
       if(!toolbartransport)
       {

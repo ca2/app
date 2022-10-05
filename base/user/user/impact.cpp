@@ -427,7 +427,7 @@ namespace user
    ::atom impact::get_toolbar_id()
    {
 
-      return get_document()->m_pimpactsystem->m_atom.to_string() + "/" + m_atom.to_string();
+      return get_document()->m_pimpactsystem->m_atom.to_string() + "/" + class_title();
 
    }
 
@@ -458,11 +458,13 @@ namespace user
 
    void impact::OnActivateImpact(bool bActivate, __pointer(::user::impact) pActivateImpact, __pointer(::user::impact))
    {
-      //    UNUSED(pActivateImpact);   // unused in release builds
+
+      auto pdocument = get_document();
+      
+      auto pframewindow = parent_frame();
 
       if (bActivate)
       {
-         //ASSERT(pActivateImpact == this);
 
          // take the focus if this frame/::user::impact/pane is now active
          if (IsTopParentActive())
@@ -471,63 +473,67 @@ namespace user
             set_keyboard_focus();
 
          }
-
-         auto pdocument = get_document();
-
-         auto pframewindow = parent_frame();
-
-         if (pdocument && pdocument->has_toolbar() && pframewindow)
+         
+         if(pframewindow)
          {
-
-            auto ptoolbar = pdocument->get_toolbar(pframewindow, true);
-
-            pframewindow->show_control_bar(ptoolbar);
-
-         }
-
-         if (has_toolbar() && pframewindow)
-         {
-
-            auto ptoolbar = get_toolbar(pframewindow, true);
-
-            pframewindow->show_control_bar(ptoolbar);
-
+            
+            if (pdocument && pdocument->has_toolbar())
+            {
+               
+               auto ptoolbar = pdocument->get_toolbar(pframewindow, true);
+               
+               pframewindow->show_control_bar(ptoolbar);
+               
+            }
+            
+            if (has_toolbar())
+            {
+               
+               auto ptoolbar = get_toolbar(pframewindow, true);
+               
+               pframewindow->show_control_bar(ptoolbar);
+               
+            }
+            
          }
 
       }
       else
       {
 
-         auto pdocument = get_document();
-
          auto pframewindow = parent_frame();
-
-         if (pdocument && pdocument->has_toolbar() && pframewindow)
+         
+         if(pframewindow)
          {
-
-            auto ptoolbar = pdocument->get_toolbar(pframewindow, false);
-
-            if(::is_set(ptoolbar))
+            
+            if (pdocument && pdocument->has_toolbar())
             {
-
-               pframewindow->hide_control_bar(ptoolbar);
-
+               
+               auto ptoolbar = pdocument->get_toolbar(pframewindow, false);
+               
+               if(::is_set(ptoolbar))
+               {
+                  
+                  pframewindow->hide_control_bar(ptoolbar);
+                  
+               }
+               
             }
-
-         }
-
-         if (has_toolbar() && pframewindow)
-         {
-
-            auto ptoolbar = get_toolbar(pframewindow, false);
-
-            if (::is_set(ptoolbar))
+            
+            if (has_toolbar())
             {
-
-               pframewindow->hide_control_bar(ptoolbar);
-
+               
+               auto ptoolbar = get_toolbar(pframewindow, false);
+               
+               if (::is_set(ptoolbar))
+               {
+                  
+                  pframewindow->hide_control_bar(ptoolbar);
+                  
+               }
+               
             }
-
+            
          }
 
       }

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/user/user/tool_item.h"
 #include "aura/operating_system.h"
 #include "aqua/xml.h"
@@ -1880,7 +1880,7 @@ namespace user
    }
 
 
-   bool toolbar::load_xml_toolbar(const ::payload & payloadFile)
+   void toolbar::load_xml_toolbar(const ::payload & payloadFile)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -1891,16 +1891,17 @@ namespace user
 
       auto strXmlText = m_pcontext->m_papexcontext->file().as_string(payloadFile);
 
-      if (!pxmldocument->parse_xml_text(strXmlText))
-      {
-
-         return false;
-
-      }
+      pxmldocument->parse_xml_text(strXmlText);
+//      if (!pxmldocument->parse_xml_text(strXmlText))
+//      {
+//
+//         return false;
+//
+//      }
 
       auto & children = pxmldocument->root()->children();
 
-      __pointer(::user::tool_item) pitem;
+      __pointer(::user::tool_item) ptoolitem;
 
       //auto papp = get_app();
 
@@ -1912,15 +1913,15 @@ namespace user
          if (pchild->get_name() == "button")
          {
 
-            pitem = __new(::user::tool_item);
+            ptoolitem = __new(::user::tool_item);
 
-            pitem->m_iItem = m_pitema->get_size();
+            ptoolitem->m_iItem = m_pitema->get_size();
 
-            auto pattribute = pchild->find_attribute("id");
+            auto pattributeId = pchild->find_attribute("id");
 
-            pitem->m_atom = pattribute->string();
+            ptoolitem->m_atom = pattributeId->string();
 
-            pitem->m_str = pchild->get_value();
+            ptoolitem->m_str = pchild->get_value();
 
             if (pchild->attribute("image").has_char())
             {
@@ -1929,42 +1930,49 @@ namespace user
 
                auto pcontextimage = pcontext->context_image();
 
-               pitem->m_pimage = pcontextimage->load_image(pchild->attribute("image"), { .cache = false });
+               ptoolitem->m_pimage = pcontextimage->load_image(pchild->attribute("image"), { .cache = false });
 
+            }
+            
+            if (pchild->attribute("hidden").string().compare_ci("true") == 0)
+            {
+               
+               ptoolitem->hide();
+               
             }
 
             if (pchild->attribute("enable_if_has_command_handler").has_char())
             {
 
-               pitem->m_bEnableIfHasCommandHandler = pchild->attribute("enable_if_has_command_handler").string().compare_ci("true") == 0;
+               ptoolitem->m_bEnableIfHasCommandHandler = pchild->attribute("enable_if_has_command_handler").string().compare_ci("true") == 0;
 
             }
 
-            pitem->m_estyle -= e_tool_item_style_separator;
+            ptoolitem->m_estyle -= e_tool_item_style_separator;
 
-            m_pitema->add(pitem);
+            m_pitema->add(ptoolitem);
 
          }
          else if (pchild->get_name() == "separator")
          {
 
-            pitem = __new(::user::tool_item);
+            ptoolitem = __new(::user::tool_item);
 
-            pitem->m_iItem = m_pitema->get_size();
+            ptoolitem->m_iItem = m_pitema->get_size();
 
-            pitem->m_atom = "separator";
+            ptoolitem->m_atom = "separator";
 
-            pitem->m_str = "";
+            ptoolitem->m_str = "";
 
-            pitem->m_estyle |= e_tool_item_style_separator;
+            ptoolitem->m_estyle |= e_tool_item_style_separator;
 
-            m_pitema->add(pitem);
+            m_pitema->add(ptoolitem);
 
          }
 
       }
 
-      return true;
+      //return true;
 
    }
 

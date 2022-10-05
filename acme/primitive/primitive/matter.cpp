@@ -500,6 +500,25 @@ string matter::topic_text() const
 }
 
 
+string matter::class_title() const
+{
+   
+   auto strTypeName =  __type_name(this);
+   
+   auto findLastColonColon = strTypeName.reverse_find("::");
+   
+   if(findLastColonColon < 0)
+   {
+    
+      return strTypeName;
+      
+   }
+    
+   return strTypeName.Mid(findLastColonColon + 2);
+   
+}
+
+
 void matter::trace_arguments(enum_trace_level etracelevel, enum_trace_category etracecategory, const char * pszFormat, va_list & arguments)
 {
 

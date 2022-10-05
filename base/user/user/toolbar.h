@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "control_bar.h"
@@ -128,9 +128,7 @@ namespace user
 
       void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle) override;
 
-
-
-      virtual bool load_xml_toolbar(const ::payload & payloadFile);
+      virtual void load_xml_toolbar(const ::payload & payloadFile);
 
       virtual bool index_item_rectangle(index iItem,RECTANGLE_I32 * prectangle);
 

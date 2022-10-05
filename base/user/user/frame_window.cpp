@@ -1753,10 +1753,10 @@ namespace user
       }
 
       string strMatter = pcontext->m_papexcontext->dir().matter(strToolbar);
+//
+//      string strXml = pcontext->m_papexcontext->file().safe_get_string(strMatter);
 
-      string strXml = pcontext->m_papexcontext->file().safe_get_string(strMatter);
-
-      ptoolbar->load_xml_toolbar(strXml);
+      ptoolbar->load_xml_toolbar(strMatter);
 
       //if(!toolbartransport->load_xml_toolbar(strXml))
       //{

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aqua/xml.h"
 
 
@@ -165,7 +165,7 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   bool document::parse_xml_text(const char * pszXmlText)
+   void document::parse_xml_text(const char * pszXmlText)
    {
 
       m_nodea.erase_all();

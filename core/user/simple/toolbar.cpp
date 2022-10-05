@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "toolbar.h"
 #include "acme/user/user/tool_item.h"
 #include "aura/graphics/write_text/font.h"
@@ -272,6 +272,8 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
       //if (!::is_item(m_ptoolitemHover, iItem))
       //{
+      
+      
 
          _001DrawItem(pgraphics, iItem);
 
@@ -660,6 +662,15 @@ size_i32 simple_toolbar::CalcSize(::draw2d::graphics_pointer & pgraphics, index 
 
 void simple_toolbar::_001DrawItem(::draw2d::graphics_pointer & pgraphics, index iItem)
 {
+   
+   auto ptoolitem = index_tool_item(iItem);
+
+   if (::is_null(ptoolitem) || ptoolitem->is_hidden())
+   {
+
+      return;
+
+   }
 
    auto pstyle = get_style(pgraphics);
 

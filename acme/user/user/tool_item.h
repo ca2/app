@@ -36,7 +36,9 @@ namespace user
 
       bool is_hidden() const { return m_estate & e_tool_item_state_hidden; }
       bool displayed() const { return !is_hidden(); }
-      
+
+      void hide() { m_estate |= e_tool_item_state_hidden; }
+
       bool should_wrap() const { return m_estate & e_tool_item_state_wrap; }
       void set_should_wrap(bool bSet = true) { return m_estate.set(e_tool_item_state_wrap, bSet); }
 

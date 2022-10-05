@@ -148,11 +148,9 @@ namespace filemanager
       bool set_filemanager_data(::filemanager::data * pdata);
 
 
-      //virtual ::user::toolbar * get_toolbar(::user::frame * pframe, bool bCreate) override;
-
-
       ::atom get_toolbar_id() override;
-
+      
+      //virtual ::user::toolbar * get_toolbar(::user::frame * pframe, bool bCreate) override;
 
       virtual void start_full_browse(__pointer(::file::item) pitem, const ::action_context & action_context);
       virtual void full_browse(__pointer(::file::item) pitem, const ::action_context & action_context);

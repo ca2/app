@@ -383,15 +383,13 @@ namespace user
       }
 
 
-
-
       virtual void form_document_set_property_set(const property_set & set);
       virtual property_set * form_document_get_property_set();
       virtual property_set & form_document_property_set();
 
 
       virtual bool has_toolbar();
-
+      
       virtual ::atom get_toolbar_id();
 
       virtual toolbar * get_toolbar(::user::frame * pframe, bool bCreate = true);
@@ -401,6 +399,7 @@ namespace user
 
 
    CLASS_DECL_BASE __pointer(::user::document) __document(::create * pcreate);
+
 
 } // namespace user
 

@@ -2077,7 +2077,7 @@ namespace handle
 
       string str;
 
-      pfile->full_read_string(str);
+      pfile->as(str);
 
       parse_ini(str);
 

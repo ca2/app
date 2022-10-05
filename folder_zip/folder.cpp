@@ -266,7 +266,7 @@ namespace folder_zip
 
       auto pfile = get_file(pszFile);
 
-      pfile->full_read(m);
+      m = pfile->as_memory();
 
    }
 

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "node.h"
+
+
 namespace xml
 {
 

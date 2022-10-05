@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "aqua/multimedia/multimedia.h"
+#include "aqua/xml/document.h"
 
 
 namespace aqua

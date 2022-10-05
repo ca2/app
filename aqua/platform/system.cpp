@@ -1,9 +1,10 @@
 #include "framework.h"
+#include "acme/parallelization/pool.h"
 #include "acme/platform/system_setup.h"
 #include "aqua/constant/idpool.h"
-#include "acme/parallelization/pool.h"
 #include "aqua/multimedia/audio/audio.h"
 #include "aqua/multimedia/multimedia.h"
+#include "aqua/xml/xml.h"
 
 
 namespace aqua

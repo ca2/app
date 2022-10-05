@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "core/user/netuser/_netuser.h"
-#include "aqua/xml.h"
+#include "aqua/xml/document.h"
 #include "core/user/user/user.h"
 #include "core/platform/session.h"
 #include "base/user/user/document.h"

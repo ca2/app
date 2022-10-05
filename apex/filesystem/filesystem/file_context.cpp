@@ -706,8 +706,7 @@ void file_context::as_memory(const ::payload &payloadFile, memory_base &mem)
 //   try
   // {
 
-   pfile->full_read(mem);
-   
+   mem = pfile->as_memory();
    
    
 //      {
@@ -765,7 +764,7 @@ void file_context::safe_get_memory(const ::payload &payloadFile, memory_base &me
    try
    {
 
-      pfile->full_read(mem);
+      pfile->as_memory(mem);
 
    }
    catch (...)
@@ -1979,7 +1978,7 @@ __pointer(::handle::ini) file_context::get_ini(const ::payload& payloadFile)
 
    string str;
 
-   preader->full_read_string(str);
+   preader->as(str);
 
    auto pini = __create_new < handle::ini >();
 

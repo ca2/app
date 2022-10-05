@@ -129,7 +129,11 @@ namespace xml
       // search node
       node *                  rfind( const char * name, i32 iDepth = -1);
       node *                  rfind(const char * pcszName, const property_set & set, index iDepth = -1);
+      
+      index find_child_with_name_and_value(const char * pszName, const char * pszValue);
+      node * child_with_name_and_value(const char * pszName, const char * pszValue);
 
+      string plist_get(const char * pszKey);
 
       // modify DOM
       ::count get_children_count();

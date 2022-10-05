@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "exportable.h"
+#include "importable.h"
+
+
 namespace xml
 {
 

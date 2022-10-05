@@ -1,5 +1,8 @@
 #include "framework.h"
-#include "aqua/xml.h"
+#include "var_exchange.h"
+#include "output_tree.h"
+#include "document.h"
+#include "input_tree.h"
 
 
 namespace xml

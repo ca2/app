@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "base/platform/application.h"
-#include "aqua/xml.h"
+#include "aqua/xml/document.h"
 #include "aura/graphics/image/context_image.h"
 #include "apex/message/command.h"
 #include "item.h"

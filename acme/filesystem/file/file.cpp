@@ -635,7 +635,7 @@ namespace file
    }
 
 
-   void file::full_read(memory_base & memory)
+   void file::as(memory_base & memory)
    {
 
       auto fileLen = get_size();
@@ -664,17 +664,41 @@ namespace file
    }
 
 
-   bool file::full_read_string(string & str)
+   ::memory file::as_memory()
+   {
+      
+      ::memory memory;
+      
+      as(memory);
+      
+      return ::move(memory);
+      
+   }
+
+
+   void file::as(string & str)
    {
 
       ::memory memory;
 
-      full_read(memory);
+      as(memory);
 
       str = memory.get_string();
 
       return true;
 
+   }
+
+
+   ::string file::as_string()
+   {
+      
+      ::string string;
+      
+      as(string);
+      
+      return ::move(string);
+      
    }
 
 
@@ -1321,7 +1345,7 @@ namespace file
 
       auto position = pfile->get_position();
 
-      pfile->full_read_string(str);
+      pfile->as(str);
 
       pfile->set_position(position);
 
@@ -1337,7 +1361,7 @@ namespace file
 
       auto position = pfile->get_position();
 
-      pfile->full_read(memory);
+      pfile->as(memory);
 
       pfile->set_position(position);
 

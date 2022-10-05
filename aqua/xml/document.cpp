@@ -1,5 +1,5 @@
-﻿#include "framework.h"
-#include "aqua/xml.h"
+#include "framework.h"
+#include "document.h"
 
 
 namespace xml

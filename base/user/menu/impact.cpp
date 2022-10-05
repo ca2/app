@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aqua/xml.h"
+#include "aqua/xml/document.h"
 #include "impact.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/draw2d/brush.h"

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "tree_base.h"
+
+
 namespace xml
 {
 

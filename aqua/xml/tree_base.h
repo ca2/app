@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "var_exchange.h"
+
+
 namespace xml
 {
 

@@ -1,31 +1,35 @@
 #include "framework.h"
-#include "aqua/xml.h"
+#include "tree_schema.h"
 
 
 namespace xml
 {
 
 
-tree_schema::tree_schema()
-{
+   tree_schema::tree_schema()
+   {
 
-}
+   }
 
-tree_schema::~tree_schema()
-{
+   tree_schema::~tree_schema()
+   {
 
-}
+   }
 
-string tree_schema::get_node_name(i32 iNameIndex)
-{
-   return m_stra[iNameIndex];
-}
+   string tree_schema::get_node_name(i32 iNameIndex)
+   {
+      return m_stra[iNameIndex];
+   }
 
-void tree_schema::set_node_name(i32 iNameIndex, const char * pcszName)
+   void tree_schema::set_node_name(i32 iNameIndex, const char * pcszName)
 
-{
-   m_stra.set_at_grow(iNameIndex, pcszName);
+   {
+      m_stra.set_at_grow(iNameIndex, pcszName);
 
-}
+   }
+
 
 } // namespace xml
+
+
+

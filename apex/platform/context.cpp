@@ -1064,7 +1064,7 @@ namespace apex
 
          string str;
 
-         pfile->full_read_string(str);
+         pfile->as(str);
 
          ini.parse_ini(str);
 

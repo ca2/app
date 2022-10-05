@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "document.h"
+#include "acme/primitive/data/data.h"
+
 
 namespace xml
 {
@@ -14,7 +17,7 @@ namespace xml
 
 
       data(::xml::parse_info * pparseinfo = nullptr);
-      virtual ~data();
+      ~data() override;
 
 
       virtual void edit(edit * pedit);

@@ -58,7 +58,7 @@ namespace user
 
          string str;
 
-         pfile->full_read_string(str);
+         str = pfile->as_string();
 
          parse_rtf_text(str);
 

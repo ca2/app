@@ -1,10 +1,18 @@
 #include "framework.h"
-#include "aqua/xml.h"
+#include "node.h"
+#include "document.h"
+#include "edit.h"
+#include "xml.h"
+#include "xmlite.h"
+#include "entity.h"
+#include "parse_info.h"
+#include "disp_option.h"
 #include "aura/astr.h"
 #include "aqua/_defer.h"
 
 
 // https://www.codeproject.com/Articles/3426/XMLite-simple-XML-parser
+
 
 namespace xml
 {
@@ -1902,6 +1910,74 @@ namespace xml
 
    }
 
+
+   ::index node::find_child_with_name_and_value(const char * pszName, const char * pszValue)
+   {
+      
+      for (::index iNode = 0; iNode < m_nodea.count(); iNode++)
+      {
+         
+         auto pnode = m_nodea[iNode];
+         
+         if(pnode->m_strName == pszName && pnode->m_strValue == pszValue)
+         {
+            
+            return iNode;
+            
+         }
+         
+      }
+
+      return -1;
+      
+   }
+
+
+   node * node::child_with_name_and_value(const char * pszName, const char * pszValue)
+   {
+
+      auto iIndex = find_child_with_name_and_value(pszName, pszValue);
+      
+      if(!m_nodea.is_index_ok(iIndex))
+      {
+         
+         return nullptr;
+         
+      }
+      
+      auto pnode = m_nodea[iIndex]->get_xml_node();
+      
+      return pnode;
+      
+   }
+
+
+   string node::plist_get(const char * pszKey)
+   {
+      
+      auto iKey = find_child_with_name_and_value("key", pszKey);
+      
+      if(iKey < 0)
+      {
+       
+         throw exception(error_not_found);
+         
+      }
+      
+      auto pnode = get_child_at(iKey + 1);
+      
+      if(!pnode)
+      {
+       
+         throw exception(error_index_out_of_bounds);
+         
+      }
+      
+      auto str = pnode->value();
+
+      return str;
+      
+   }
 
    //========================================================
    // Name   : add_child

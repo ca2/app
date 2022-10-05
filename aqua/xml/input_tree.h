@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "tree_base.h"
+#include "node.h"
+
+
 namespace xml
 {
 
@@ -22,7 +26,7 @@ namespace xml
       input_tree();
       input_tree(const ::string & strXml);
       input_tree(tree_schema * pschema);
-      virtual ~input_tree();
+      ~input_tree() override;
 
 
       virtual node * import_node(const char * pcszName, importable & importable);

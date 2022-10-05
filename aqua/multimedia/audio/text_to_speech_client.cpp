@@ -1,4 +1,4 @@
-//
+﻿//
 //  text_to_speech_client.cpp
 //  aqua
 //
@@ -8,6 +8,7 @@
 #include "framework.h"
 #include "text_to_speech_client.h"
 #include "aqua/multimedia/audio/audio.h"
+#include "aqua/multimedia/audio/speaker.h"
 
 
 namespace text_to_speech
@@ -37,7 +38,13 @@ namespace text_to_speech
 
       auto paudio = psystem->audio();
 
-      m_ptexttospeechspeaker = paudio->create_text_to_speech_speaker();
+      if (!m_ptexttospeechspeaker || m_ptexttospeechspeaker->m_strTtsImplementation != 
+         paudio->m_strTtsImplementation)
+      {
+
+         m_ptexttospeechspeaker = paudio->create_text_to_speech_speaker();
+
+      }
 
    }
 

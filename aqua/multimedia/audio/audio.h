@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace aqua
@@ -12,11 +12,11 @@ namespace aqua
       
 
       bool                 m_bTtsOptionInitialized;
-      ::string             m_strTtsImplementation;
 
 
    public:
 
+      ::string             m_strTtsImplementation;
 
       ::audio::audio *     m_paudio;
       bool                 m_bLocalFileSystemSynch;

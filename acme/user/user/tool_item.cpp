@@ -1,4 +1,4 @@
-﻿//
+//
 //  tool_item.cpp
 //  acme
 //
@@ -13,7 +13,7 @@ namespace user
 {
 
 
-   tool_tool_item::tool_item()
+   tool_item::tool_item()
    {
       
       m_ptoolitem                   = this;
@@ -27,7 +27,7 @@ namespace user
    }
 
 
-   tool_tool_item::~tool_item()
+   tool_item::~tool_item()
    {
       
       
@@ -66,7 +66,7 @@ namespace user
    }
 
 
-   void tool_item::set_should_wrap(bool bSet = true)
+   void tool_item::set_should_wrap(bool bSet)
    {
       
       return m_estate.set(e_tool_item_state_wrap, bSet); 

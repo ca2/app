@@ -2,8 +2,9 @@
 #include "application.h"
 #include "system.h"
 #include "acme/platform/system_setup.h"
-#include "core/user/userex/progress.h"
 #include "aura/platform/node.h"
+#include "core/user/userex/progress.h"
+#include "core/user/userex/pane_tab_impact.h"
 
 
 namespace core

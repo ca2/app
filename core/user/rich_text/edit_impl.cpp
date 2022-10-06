@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "edit_impl.h"
 #include "format_tool.h"
 #include "document.h"
@@ -886,11 +886,11 @@ namespace user
 
             rectangle_f64 rectangleWindow;
 
-            __copy(rectangleWindow, rWindow);
+            copy(&rectangleWindow, &rWindow);
 
             get_parent()->screen_to_client()(rectangleWindow);
 
-            copy(rectangleWindow, rectangleWindow);
+            copy(&rectangleWindow, &rectangleWindow);
 
             point += rectangleWindow.top_left();
 

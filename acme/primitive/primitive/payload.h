@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -737,7 +737,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    payload & operator = (const T & t)
    {
 
-      __copy(this, &t);
+      ::copy(this, &t);
 
       return *this;
 

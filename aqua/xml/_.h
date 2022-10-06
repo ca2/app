@@ -16,6 +16,8 @@ namespace xml
    class tree_schema;
 
    class entities;
+
+   class edit;
    
    //CLASS_DECL_AQUA string from(const property* pprop, ::xml::disp_option* popt = nullptr/*= &optDefault*/);
    //CLASS_DECL_AQUA string from(const property& prop, ::xml::disp_option* popt = nullptr/*= &optDefault*/);

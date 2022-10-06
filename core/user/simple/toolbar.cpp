@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "toolbar.h"
 #include "acme/user/user/tool_item.h"
 #include "aura/graphics/write_text/font.h"
@@ -1311,7 +1311,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    }
    
-   ::rectangle rectangleSize;
+   ::rectangle_i32 rectangleSize;
    
    bool bFirstToolItemRectangle = true;
    

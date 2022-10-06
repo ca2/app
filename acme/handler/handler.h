@@ -25,8 +25,8 @@ public:
 
 
    // ThomasBorregaardSørensen!! Like handlers
-   virtual void handle(::topic * ptopic, ::context * pcontext) = 0;
-   virtual void handle(::message::message * pmessage) = 0;
+   virtual void handle(::topic * ptopic, ::context * pcontext);
+   virtual void handle(::message::message * pmessage);
    virtual void text_command(const char *);
 
 

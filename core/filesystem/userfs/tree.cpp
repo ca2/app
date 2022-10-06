@@ -1,14 +1,9 @@
-#include "framework.h"
-#include "_data.h"
-//#include "aura/update.h"
+﻿#include "framework.h"
+#include "tree.h"
 #include "acme/platform/timer.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "_userfs.h"
-//#endif
-//
-#include "core/user/user/_tree.h"
 #include "document.h"
 #include "item.h"
+#include "aura/user/user/interaction.h"
 
 
 namespace userfs

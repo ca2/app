@@ -1,9 +1,17 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "document.h"
+#include "xml.h"
+#include "exception.h"
 
 
 namespace xml
 {
+
+
+   static const char chXMLTagOpen = '<';
+   static const char chXMLTagClose = '>';
+   static const char chXMLTagPre = '/';
+   static const char chXMLEscape = '\\';   // for m_strValue field escape
 
 
    document::document(parse_info * pparseinfo, string_to_string * pentitiesHash)
@@ -40,36 +48,36 @@ namespace xml
    }
 
 
-   bool document::load_location(const char * psz)
-   {
+   //void document::load_location(const char * psz)
+   //{
 
-      m_pathLocation = psz;
-      
-      string str;
+   //   m_pathLocation = psz;
+   //   
+   //   string str;
 
-      auto psystem = m_psystem->m_paurasystem;
+   //   auto psystem = m_psystem->m_paurasystem;
 
-      str = m_pcontext->m_papexcontext->file().as_string(psz);
+   //   str = m_pcontext->m_papexcontext->file().as_string(psz);
 
-      return load(str);
+   //   load(str);
 
-   }
+   //}
 
    
-   bool document::parse_xml_text(stream & s)
-   {
+   //void document::parse_xml_text(stream & s)
+   //{
 
-      memory memory;
+   //   memory memory;
 
-      s.read(memory);
+   //   s.read(memory);
 
-      string str;
+   //   string str;
 
-      str = memory.get_string();
+   //   str = memory.get_string();
 
-      return load(str);
+   //   load(str);
 
-   }
+   //}
 
 
    void document::create_root(const ::string & strName)
@@ -118,6 +126,76 @@ namespace xml
 
    }
 
+//   // <TAG attr1="value1" attr2='value2' attr3=value3 >
+//// </TAG>
+//// or
+//// <TAG />
+////        ^- return pointer
+////========================================================
+//// Name   : Load
+//// Desc   : load xml plain text
+//// Param  : pszXml - plain xml text
+////          pparseinfo = parser information
+//// Return : advanced string pointer  (error return nullptr)
+////--------------------------------------------------------
+//// Coder    Date                      Desc
+//// bro      2002-10-29
+////========================================================
+//   void document::_load(const char * & xml, const char * pszXml, const char * pszEndXml, parse_info * pparseinfo)
+//   {
+//
+//      // close it
+//      close();
+//
+//      if (pparseinfo == nullptr)
+//      {
+//
+//         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+//
+//      }
+//
+//      xml = pszXml;
+//
+//      xml = strchr(xml, chXMLTagOpen);
+//      if (xml == nullptr)
+//         return;
+//
+//      // close Tag
+//      if (*(xml + 1) == chXMLTagPre) // </close
+//         return;
+//
+//      // Load Other Node before <Tag>(pparseinfo, comment, CDATA etc)
+//      bool bRet = false;
+//      const char * ret = nullptr;
+//      ret = LoadOtherNodes(&bRet, xml, pparseinfo);
+//      if (ret != nullptr)
+//         xml = ret;
+//      if (bRet)
+//      {
+//       
+//         return;
+//
+//      }
+//
+//      create_root();
+//
+//      m_pnodeRoot->_load(xml, xml, pszEndXml, pparseinfo);
+//
+//   }
+
+
+   void document::ensure_root()
+   {
+
+      if (!m_pnodeRoot)
+      {
+
+         create_root();
+
+      }
+
+   }
+
 
    void document::create_root()
    {
@@ -149,83 +227,83 @@ namespace xml
    }
 
 
-   // <?xml version='1.0'?>
-   // <TAG attr1="value1" attr2='value2' attr3=value3 >
-   // </TAG>
-   // or
-   // <TAG />
-   //        ^- return pointer
-   //========================================================
-   // Name   : Load
-   // Desc   : load xml plain text for xml document
-   // Param  : pszXml - plain xml text
-   //          pparseinfo = parser information
-   // Return : advanced string pointer  (error return nullptr)
-   //--------------------------------------------------------
-   // Coder    Date                      Desc
-   // bro      2002-10-29
-   //========================================================
-   void document::parse_xml_text(const char * pszXmlText)
-   {
+   //// <?xml version='1.0'?>
+   //// <TAG attr1="value1" attr2='value2' attr3=value3 >
+   //// </TAG>
+   //// or
+   //// <TAG />
+   ////        ^- return pointer
+   ////========================================================
+   //// Name   : Load
+   //// Desc   : load xml plain text for xml document
+   //// Param  : pszXml - plain xml text
+   ////          pparseinfo = parser information
+   //// Return : advanced string pointer  (error return nullptr)
+   ////--------------------------------------------------------
+   //// Coder    Date                      Desc
+   //// bro      2002-10-29
+   ////========================================================
+   //void document::parse_xml_text(const char * pszXmlText)
+   //{
 
-      m_nodea.erase_all();
+   //   m_nodea.erase_all();
 
-      m_strData1 = pszXmlText;
+   //   m_strData1 = pszXmlText;
 
-      m_memoryData.assign(m_strData1.c_str(), m_strData1.get_length_in_bytes_with_null_terminator());
+   //   m_memoryData.assign(m_strData1.c_str(), m_strData1.get_length_in_bytes_with_null_terminator());
 
-      const char * pszXml = (const char *) m_memoryData.get_data();
+   //   const char * pszXml = (const char *) m_memoryData.get_data();
 
-      ensure_root();
+   //   ensure_root();
 
-      const char * pszNext = pszXml;
+   //   const char * pszNext = pszXml;
 
-      // Load Other Node after </Tag>(pparseinfo, comment, CDATA etc)
-      const char * pszRet;
+   //   // Load Other Node after </Tag>(pparseinfo, comment, CDATA etc)
+   //   const char * pszRet;
 
-      bool bRet = false;
+   //   bool bRet = false;
 
-      pszRet = LoadOtherNodes(&bRet, pszNext, m_pparseinfo);
+   //   pszRet = LoadOtherNodes(&bRet, pszNext, m_pparseinfo);
 
-      if (pszRet != nullptr)
-      {
+   //   if (pszRet != nullptr)
+   //   {
 
-         pszNext = pszRet;
+   //      pszNext = pszRet;
 
-      }
+   //   }
 
-      if((pszNext = m_pnodeRoot->load(pszNext, m_pparseinfo )) == nullptr)
-      {
+   //   if((pszNext = m_pnodeRoot->_load(pszNext, m_pparseinfo )) == nullptr)
+   //   {
 
-         m_nodea.erase_all();
+   //      m_nodea.erase_all();
 
-         //m_pnodeRoot.release();
+   //      //m_pnodeRoot.release();
 
-         throw ::exception(error_parsing);
+   //      throw ::exception(error_parsing);
 
-         //return false;
+   //      //return false;
 
-         return;
+   //      return;
 
-      }
+   //   }
 
-      // Load Other Node after </Tag>(pparseinfo, comment, CDATA etc)
-      //const char * ret;
+   //   // Load Other Node after </Tag>(pparseinfo, comment, CDATA etc)
+   //   //const char * ret;
 
-      //bool bRet = false;
+   //   //bool bRet = false;
 
-      pszRet = LoadOtherNodes(&bRet, pszNext, m_pparseinfo);
+   //   pszRet = LoadOtherNodes(&bRet, pszNext, m_pparseinfo);
 
-      if (pszRet != nullptr)
-      {
+   //   if (pszRet != nullptr)
+   //   {
 
-         pszNext = pszRet;
+   //      pszNext = pszRet;
 
-      }
+   //   }
 
-      //return true;
+   //   //return true;
 
-   }
+   //}
 
 
    //node * document::get_root() const

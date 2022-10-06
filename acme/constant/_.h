@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 04/12/2020. <3Tbs, Mummi and bilbo!!
 //
 #pragma once
@@ -52,6 +52,9 @@ enum enum_flag : u64
 
 
 #include "earth.h"
+
+
+#include "data.h"
 
 
 #include "error_code_type.h"

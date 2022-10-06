@@ -1,18 +1,15 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "tree.h"
 #include "acme/platform/timer.h"
 #include "aura/graphics/image/list.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
 #include "aura/user/user/shell.h"
-#include "_data.h"
 #include "aura/template/list.h"
-#include "core/user/user/_tree.h"
 #include "document.h"
 #include "core/filesystem/userfs/item.h"
 #include "data.h"
 #include "context_menu.h"
 #include "base/user/user/user.h"
+#include "core/user/user/tree.h"
 #include "aura/message/user.h"
 
 
@@ -108,7 +105,7 @@ namespace filemanager
 
       }
 
-      if(!(pitem->m_dwState & ::data::tree_item_state_expanded))
+      if(!(pitem->m_dwState & ::data::e_tree_item_state_expanded))
       {
 
          _001ExpandItem(pitem,context,true,false,false);
@@ -190,9 +187,9 @@ namespace filemanager
          if(listing.has_elements())
          {
 
-            pitem->m_dwState |= ::data::tree_item_state_expanded;
+            pitem->m_dwState |= ::data::e_tree_item_state_expanded;
 
-            pitem->m_dwState |= ::data::tree_item_state_expandable;
+            pitem->m_dwState |= ::data::e_tree_item_state_expandable;
 
          }
 
@@ -267,12 +264,12 @@ namespace filemanager
 
                   pitemChild->m_flags.add(::file::e_flag_folder);
 
-                  ptreeitemChild = insert_item(pitemChild, ::data::RelativeLastChild, ptreeitemParent);
+                  ptreeitemChild = insert_item(pitemChild, ::data::e_relative_last_child, ptreeitemParent);
 
                   if (pitemChild->m_flags.has(::file::e_flag_has_subfolder))
                   {
 
-                     ptreeitemChild->m_dwState |= ::data::tree_item_state_expandable;
+                     ptreeitemChild->m_dwState |= ::data::e_tree_item_state_expandable;
 
                   }
 
@@ -368,7 +365,7 @@ namespace filemanager
             if (pitemChild->m_flags.has(::file::e_flag_has_subfolder))
             {
 
-               ptreeitemChild->m_dwState |= ::data::tree_item_state_expandable;
+               ptreeitemChild->m_dwState |= ::data::e_tree_item_state_expandable;
 
             }
 
@@ -417,7 +414,7 @@ namespace filemanager
                && !(dynamic_cast <::user::tree *> (filemanager_data()->m_ptreeFileTreeMerge))->m_ptree->contains(this))
          {
 
-            filemanager_data()->m_ptreeFileTreeMerge->m_ptree->insert_item(this, ::data::RelativeFirstChild);
+            filemanager_data()->m_ptreeFileTreeMerge->m_ptree->insert_item(this, ::data::e_relative_first_child);
 
          }
 

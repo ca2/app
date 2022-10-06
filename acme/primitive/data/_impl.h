@@ -71,13 +71,13 @@ inline stream & operator >>(stream & s, ::data::tree & tree)
       if (iLevel == iPreviousLevel)
       {
 
-         ptreeitem = tree.insert_item(pitem, ::data::RelativeLastSibling, ptreeitem);
+         ptreeitem = tree.insert_item(pitem, ::data::e_relative_last_sibling, ptreeitem);
 
       }
       else if (iLevel > iPreviousLevel)
       {
 
-         ptreeitem = tree.insert_item(pitem, ::data::RelativeFirstChild, ptreeitem);
+         ptreeitem = tree.insert_item(pitem, ::data::e_relative_first_child, ptreeitem);
 
       }
       else
@@ -92,7 +92,7 @@ inline stream & operator >>(stream & s, ::data::tree & tree)
 
          }
 
-         ptreeitem = tree.insert_item(pitem, ::data::RelativeLastSibling, ptreeitem);
+         ptreeitem = tree.insert_item(pitem, ::data::e_relative_last_sibling, ptreeitem);
 
       }
 

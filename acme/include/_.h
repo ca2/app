@@ -1,4 +1,4 @@
-//        acme / camilo made by thomas
+﻿//        acme / camilo made by thomas
 // 
 //   
 //    
@@ -1448,7 +1448,7 @@ namespace core
 {
 
 
-   class idpool;
+//   class idpool;
 
 
    class application;

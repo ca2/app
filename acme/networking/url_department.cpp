@@ -1,7 +1,7 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/operating_system.h"
 #include "acme/id.h"
-#include "acme/astr.h"
+//#include "acme/astr.h"
 
 #ifdef WINDOWS_DESKTOP
 #include "idn/idna.h"
@@ -1772,7 +1772,7 @@ namespace url
       if(bOverrideQuery && strQuery.is_empty())
          strQuery = strQueryOver;
 
-      if(!::str().begins(strScript,astr.Slash))
+      if (!::str().begins(strScript, "/"))
          strScript = "/" + strScript;
 
       return strProtocol + "://" + strRoot + strScript + ::str().has_char(strQuery, "?");
@@ -1804,7 +1804,7 @@ namespace url
       if(strQueryOver.has_char())
          strQuery = strQueryOver;
 
-      if(!::str().begins(strScript, astr.Slash))
+      if (!::str().begins(strScript, "/"))
          strScript = "/" + strScript;
 
       return strProtocol + "://" + strRoot + strScript + ::str().has_char(strQuery, "?");

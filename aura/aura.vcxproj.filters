@@ -1544,7 +1544,7 @@
     <ClInclude Include="application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="astr.h">
+    <ClInclude Include="aaa_astr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="console.h">

@@ -1,11 +1,11 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/operating_system.h"
 #include "acme.h"
 //#include "static_start_internal.h"
 //#include "acme/memory/plex_heap1.h"
 //#include "acme/memory/plex_heap_impl1.h"
 #include "acme/primitive/primitive/malloc.h"
-#include "acme/astr.h"
+//#include "acme/astr.h"
 #include "acme/platform/simple_log.h"
 #include "acme/platform/library.h"
 
@@ -289,7 +289,7 @@ namespace acme
 
 #endif
 
-   CLASS_DECL_ACME acme_str_pool* g_pacmestrpool;
+   //CLASS_DECL_ACME acme_str_pool* g_pacmestrpool;
 
    // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
@@ -447,7 +447,7 @@ namespace acme
 
 #endif
 
-      g_pacmestrpool = nullptr;
+      //g_pacmestrpool = nullptr;
 
       // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
@@ -714,7 +714,7 @@ namespace acme
 
 #endif
 
-      g_pacmestrpool = memory_new acme_str_pool();
+      //g_pacmestrpool = memory_new acme_str_pool();
 
       //acme commented
       //::user::init_windowing();
@@ -870,7 +870,7 @@ namespace acme
 
       g_bAcme = 0;
 
-      ::acme::del(g_pacmestrpool);
+      //::acme::del(g_pacmestrpool);
 
 
 

@@ -1,6 +1,6 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "apex/operating_system.h"
-#include "acme/platform/acme_str_pool.h"
+//#include "acme/platform/acme_str_pool.h"
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
@@ -2960,7 +2960,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 
    domain.create(purl->get_server(path));
 
-   bool bSaveCache = domain.m_strRadix != "ca2" || !::str().begins(purl->get_object(path), astr.MatterUri);
+   bool bSaveCache = domain.m_strRadix != "ca2" || !::str().begins(purl->get_object(path), "/matter/");
 
    ::file::path pathCache;
 

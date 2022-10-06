@@ -5,7 +5,7 @@
 #include "aqua/xml/document.h"
 #include "aqua/xml/xml.h"
 #include "acme/constant/timer.h"
-#include "aura/astr.h"
+//#include "aura/astr.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "acme/platform/timer.h"
 #include "aura/platform/application.h"
@@ -269,23 +269,26 @@ namespace user
 
       }
 
-      auto pdocument = __create_new < ::xml::document >();
+      auto pxmldocument = __create_new < ::xml::document >();
 
-      if (!pdocument->load(strXml))
+      try
       {
 
-         if (is_debugger_attached())
-         {
+         pxmldocument->load(strXml);
 
-            output_error_message("menu::load_xml_string_menu\n\nBad XML document!!");
+      }
+      catch(const ::exception & exception)
+      {
 
-         }
+         auto psequencer = exception_message_sequencer(exception);
+
+         psequencer->do_asynchronously();
 
          return false;
 
       }
 
-      return add_menu(pdocument->root());
+      return add_menu(pxmldocument->root());
 
    }
 
@@ -943,7 +946,7 @@ namespace user
             if (pitem != nullptr && !pitem->m_bPopup)
             {
 
-               if (ptopic->user_interaction()->m_atom.begins(astr.ingSysCommand))
+               if (ptopic->user_interaction()->m_atom.begins("syscommand::"))
                {
 
                   auto pchannelNotify = get_notify_channel();

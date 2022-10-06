@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 class image_list;
@@ -209,34 +209,6 @@ namespace data
    class tree;
 
 
-   enum ERelative
-   {
-      RelativeParent,
-      RelativeFirstChild,
-      RelativeLastChild,
-      RelativeFirstSibling,
-      RelativePreviousSibling,
-      RelativeNextSibling,
-      RelativeLastSibling,
-      RelativeReplace,
-      RelativeMacroRecord
-   };
-
-
-   enum ETreeNavigation
-   {
-      TreeNavigationExpandedForward,
-      TreeNavigationProperForward,
-   };
-
-
-   enum e_tree_item_state
-   {
-      tree_item_state_expandable = 1,
-      tree_item_state_expanded   = 2,
-      tree_item_state_selected   = 4,
-   };
-
 
    class CLASS_DECL_ACME tree_item :
       virtual public matter
@@ -301,7 +273,7 @@ namespace data
       ::count get_proper_descendant_count();
       tree_item * get_expandable_child(index iIndex);
 
-      bool insert(ERelative erelative, ::data::tree_item * pitemNew);
+      bool insert(enum_relative erelative, ::data::tree_item * pitemNew);
 
       index calc_level();
       index get_level() { return m_iLevel >= 0 ? m_iLevel : calc_level(); }
@@ -345,7 +317,7 @@ namespace data
       inline tree_item * get_proper_next(index* pindexLevel = nullptr)
       {
 
-         if ((m_dwState & ::data::tree_item_state_expanded))
+         if ((m_dwState & ::data::e_tree_item_state_expanded))
          {
 
             return get_child_next_or_parent(pindexLevel);
@@ -360,8 +332,8 @@ namespace data
 
       }
 
-      tree_item * get_item(ETreeNavigation enavigation, index * piLevelOffset = nullptr);
-      tree_item * get_item(ERelative erelative);
+      tree_item * get_item(enum_tree_navigation enavigation, index * piLevelOffset = nullptr);
+      tree_item * get_item(enum_relative erelative);
 
       virtual tree_item * get_proper_item(index iIndex, index * piLevel);
       virtual index get_proper_item_index(tree_item * pitem, index * piLevel);

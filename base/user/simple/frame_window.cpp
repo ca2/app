@@ -4222,9 +4222,9 @@ void simple_frame_window::notification_area_action(const ::string & pszId)
 string simple_frame_window::notification_area_get_xml_menu()
 {
 
-   auto pdocument = __create_new<::xml::document>();
+   auto pxmldocument = __create_new < ::xml::document >();
 
-   pdocument->create_root("menu");
+   pxmldocument->create_root("menu");
 
    for (auto & pitem : m_pnotifyicon->m_notifyiconitema)
    {
@@ -4232,19 +4232,19 @@ string simple_frame_window::notification_area_get_xml_menu()
       if (pitem->m_strId == "separator")
       {
 
-         pdocument->root()->add_child("separator");
+         pxmldocument->root()->add_child("separator");
 
       }
       else
       {
 
-         pdocument->root()->add_child("item", { "id", pitem->m_strId }, pitem->m_strName);
+         pxmldocument->root()->add_child("item", { "id", pitem->m_strId }, pitem->m_strName);
 
       }
 
    }
 
-   return pdocument->get_xml();
+   return pxmldocument->get_xml();
 
 }
 

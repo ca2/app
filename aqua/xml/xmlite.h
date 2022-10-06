@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 namespace xml
 {
@@ -284,21 +284,21 @@ namespace xml
 namespace xml
 {
 
-   // ansi_scan(xml," />\t\r\n");
+   //// ansi_scan(xml," />\t\r\n");
 
-   inline bool is_end_open_tag_name_char(uchar ch)
-   {
-      return ch == ' ' || ch == '/' || ch == '>' || ch == '\t' || ch == '\r' || ch == '\n' || ch == '\0';
-   }
+   //inline bool is_end_open_tag_name_char(uchar ch)
+   //{
+   //   return ch == ' ' || ch == '/' || ch == '>' || ch == '\t' || ch == '\r' || ch == '\n' || ch == '\0';
+   //}
 
-   inline const char * end_open_tag_name(const char * psz)
-   {
-      while(!is_end_open_tag_name_char(*psz))
-      {
-         psz++;
-      }
-      return psz;
-   }
+   //inline const char * end_open_tag_name(const char * psz)
+   //{
+   //   while(!is_end_open_tag_name_char(*psz))
+   //   {
+   //      psz++;
+   //   }
+   //   return psz;
+   //}
 
 
 } // namespace xml

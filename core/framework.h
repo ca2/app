@@ -1,4 +1,4 @@
-#ifndef __GNUC__
+﻿#ifndef __GNUC__
 #pragma once
 #endif
 
@@ -27,7 +27,7 @@
 ////#include "core/user/account/_component.h"
 ////#include "core/user/databaseuser/_component.h"
 #endif
-#include "core/_defer.h"
+//#include "core/_defer.h"
 
 
 

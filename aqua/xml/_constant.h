@@ -1,21 +1,18 @@
-#pragma once
+﻿#pragma once
 
 
 namespace xml
 {
 
    
-
-
-
-   enum e_parse_error
+   enum enum_parse_error
    {
       
-      parse_error_welformed = 0,
-      parse_error_alone_not_closed,
-      parse_error_not_closed,
-      parse_error_not_nested,
-      parse_error_attr_no_value
+      e_parse_error_welformed = 0,
+      e_parse_error_alone_not_closed,
+      e_parse_error_not_closed,
+      e_parse_error_not_nested,
+      e_parse_error_attr_no_value
          
    };
    

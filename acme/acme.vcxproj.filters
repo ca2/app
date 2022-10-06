@@ -956,7 +956,7 @@
     <ClInclude Include="platform\_generic_object_constructor_impl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="astr.h">
+    <ClInclude Include="aaa_astr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="callback.h">
@@ -2525,7 +2525,7 @@
     <ClInclude Include="platform\acme_main_struct.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="platform\acme_str_pool.h">
+    <ClInclude Include="platform\aaa_str.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
     <ClInclude Include="platform\apex_main_data.h">
@@ -2815,6 +2815,9 @@
     </ClInclude>
     <ClInclude Include="operating_system\windows\_api.h">
       <Filter>Header Files\operating_system\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="constant\data.h">
+      <Filter>Header Files\constant</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3159,9 +3162,6 @@
     </ClCompile>
     <ClCompile Include="filesystem\filesystem\path_object.cpp">
       <Filter>Source Files\filesystem\filesystem</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\aura_str_pool.cpp">
-      <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\match.cpp">
       <Filter>Source Files\primitive\primitive</Filter>

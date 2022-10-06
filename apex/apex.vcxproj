@@ -929,7 +929,7 @@
     <ClCompile Include="user\language.cpp" />
     <ClCompile Include="user\language_map.cpp" />
     <ClCompile Include="user\primitive.cpp" />
-    <ClInclude Include="astr.h" />
+    <ClInclude Include="aaa_astr.h" />
     <ClInclude Include="crypto\crypto.h" />
     <ClInclude Include="crypto\hasher.h" />
     <ClInclude Include="crypto\hasher_algorithm.h" />

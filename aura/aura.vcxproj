@@ -977,7 +977,7 @@
     <ClInclude Include="..\..\..\..\basis\source\app\aura\operating_system\windows\message_window.h" />
     <ClInclude Include="..\..\..\..\basis\source\app\aura\operating_system\windows\message_window_listener.h" />
     <ClInclude Include="application.h" />
-    <ClInclude Include="astr.h" />
+    <ClInclude Include="aaa_astr.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="console_slim.h" />
     <ClInclude Include="constant\hardware.h" />

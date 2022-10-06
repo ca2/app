@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 typedef __pointer_array(::matter) object_array;
@@ -190,6 +190,9 @@ public:
    void run() override;
 
    virtual void stop_task();
+
+
+   void destroy() override;
 
 
    //virtual bool task_set_name(const char* pszThreadName);

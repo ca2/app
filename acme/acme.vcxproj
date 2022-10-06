@@ -817,6 +817,7 @@
     <ClInclude Include="constant\code_page.h" />
     <ClInclude Include="constant\context.h" />
     <ClInclude Include="constant\cursor.h" />
+    <ClInclude Include="constant\data.h" />
     <ClInclude Include="constant\filesystem.h" />
     <ClInclude Include="constant\future.h" />
     <ClInclude Include="constant\GLOBAL_ID.h" />
@@ -1071,7 +1072,6 @@
     <ClCompile Include="platform\acme.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\assert.cpp" />
-    <ClCompile Include="platform\aura_str_pool.cpp" />
     <ClCompile Include="platform\build_debug.cpp" />
     <ClCompile Include="platform\checked.cpp" />
     <ClCompile Include="platform\context.cpp" />
@@ -1209,7 +1209,7 @@
     <ClCompile Include="user\user\text.cpp" />
     <ClCompile Include="user\user\tool_item.cpp" />
     <ClCompile Include="_.cpp" />
-    <ClInclude Include="astr.h" />
+    <ClInclude Include="aaa_astr.h" />
     <ClInclude Include="callback.h" />
     <ClInclude Include="compress\_.h" />
     <ClInclude Include="console.h" />
@@ -1385,7 +1385,7 @@
     <ClInclude Include="parallelization\_types.h" />
     <ClInclude Include="platform\acme.h" />
     <ClInclude Include="platform\acme_main_struct.h" />
-    <ClInclude Include="platform\acme_str_pool.h" />
+    <ClInclude Include="platform\aaa_str.h" />
     <ClInclude Include="platform\apex_main_data.h" />
     <ClInclude Include="platform\apex_main_struct.h" />
     <ClInclude Include="platform\application.h" />

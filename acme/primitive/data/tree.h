@@ -79,8 +79,8 @@ namespace data
 
       virtual const tree_item * get_base_item() const;
 
-      virtual tree_item * insert_item(item * pitemdataNew, ERelative erelativeNewItem = RelativeLastChild, tree_item * pitemRelative = nullptr, bool bVoidTreeDataChangeEvent = false);
-      virtual bool insert_item(tree_item * pitemNew, ERelative erelativeNewItem = RelativeLastChild, tree_item * pitemRelative = nullptr, bool bVoidTreeDataChangeEvent = false);
+      virtual tree_item * insert_item(item * pitemdataNew, enum_relative erelativeNewItem = e_relative_last_child, tree_item * pitemRelative = nullptr, bool bVoidTreeDataChangeEvent = false);
+      virtual bool insert_item(tree_item * pitemNew, enum_relative erelativeNewItem = e_relative_last_child, tree_item * pitemRelative = nullptr, bool bVoidTreeDataChangeEvent = false);
 
       ::image_list * get_image_list() const override;
 

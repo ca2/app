@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "node.h"
 #include "document.h"
 #include "edit.h"
@@ -7,8 +7,7 @@
 #include "entity.h"
 #include "parse_info.h"
 #include "disp_option.h"
-#include "aura/astr.h"
-#include "aqua/_defer.h"
+#include "exception.h"
 
 
 // https://www.codeproject.com/Articles/3426/XMLite-simple-XML-parser
@@ -403,16 +402,25 @@ namespace xml
             if( pszEnd == nullptr )
             {
 
-               // error
-               if( pparseinfo->m_bErrorOccur == false )
-               {
+               //// error
+               //if( pparseinfo->m_bErrorOccur == false )
+               //{
 
-                  pparseinfo->m_bErrorOccur = true;
-                  pparseinfo->m_pszErrorPointer = xml;
-                  pparseinfo->m_eparseerror = parse_error_attr_no_value;
-                  pparseinfo->m_strError.format( "<%s> attr has error ", m_strName.c_str() );
+               //   pparseinfo->m_bErrorOccur = true;
+               //   pparseinfo->m_pszErrorPointer = xml;
+               //   pparseinfo->m_eparseerror = e_parse_error_attr_no_value;
+               //   pparseinfo->m_strError.format("<%s> attr has error ", m_strName.c_str());
 
-               }
+               //   
+
+
+               //}
+
+               string strError;
+
+               strError.format("<%s> attr has error ", m_strName.c_str());
+
+               throw ::xml::exception(e_parse_error_attr_no_value, strError, xml);
 
                return nullptr;
 
@@ -552,7 +560,7 @@ namespace xml
       }
 
       // find the end of pparseinfo
-      const char * end = _tcsenistr( pszXml, astr.XMLPIClose, astr.XMLPIClose.get_length(), pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
+      const char * end = _tcsenistr( pszXml, "?>", 2, pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
       if(end == nullptr)
          return nullptr;
 
@@ -572,7 +580,7 @@ namespace xml
          pnode->m_pdocument = m_pdocument;
          pnode->m_enode = ::data::e_node_xml_pi;
 
-         xml += astr.XMLPIOpen.get_length();
+         xml += 2; // "<?";
          const char* pTagEnd = ansi_scan( xml, " ?>" );
          _SetString( xml, pTagEnd, &pnode->m_strName );
          xml = pTagEnd;
@@ -580,11 +588,15 @@ namespace xml
          pnode->LoadAttributes( xml, end, pparseinfo );
 
          m_pdocument->m_nodea.add( pnode );
+
       }
 
-      end += astr.XMLPIClose.get_length();
+      end += 2; // "?>";
+
       return end;
+
    }
+
 
    // attr1="value1" attr2='value2' attr3=value3 />
    //                                            ^- return pointer
@@ -624,14 +636,21 @@ namespace xml
             const char* pszEnd = ansi_scan( xml, " =" );
             if( pszEnd == nullptr )
             {
-               // error
-               if( pparseinfo->m_bErrorOccur == false )
-               {
-                  pparseinfo->m_bErrorOccur = true;
-                  pparseinfo->m_pszErrorPointer = xml;
-                  pparseinfo->m_eparseerror = parse_error_attr_no_value;
-                  pparseinfo->m_strError.format( "<%s> attr has error ", m_strName.c_str() );
-               }
+               //// error
+               //if( pparseinfo->m_bErrorOccur == false )
+               //{
+               //   pparseinfo->m_bErrorOccur = true;
+               //   pparseinfo->m_pszErrorPointer = xml;
+               //   pparseinfo->m_eparseerror = e_parse_error_attr_no_value;
+               //   pparseinfo->m_strError.format( "<%s> attr has error ", m_strName.c_str() );
+               //}
+
+               string strError;
+
+               strError.format("<%s> attr has error ", m_strName.c_str());
+
+               throw ::xml::exception(e_parse_error_attr_no_value, strError, xml);
+
                return nullptr;
             }
 
@@ -715,7 +734,7 @@ namespace xml
       }
 
       // find the end of comment
-      const char * end = _tcsenistr( pszXml, astr.XMLCommentClose, astr.XMLCommentClose.get_length(), pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
+      const char * end = _tcsenistr( pszXml, "-->", 3, pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
       if( end == nullptr )
          return nullptr;
 
@@ -726,7 +745,7 @@ namespace xml
       if( par )
       {
          const char * xml =pszXml;
-         xml += astr.XMLCommentOpen.get_length();
+         xml += 4; // "<!--";
 
          auto pnode = __new(node(this));
          pnode->m_pnodeParent = par;
@@ -736,10 +755,13 @@ namespace xml
          _SetString( xml, end, &pnode->m_strValue, false );
 
          par->m_nodea.add( pnode );
+
       }
 
-      end += astr.XMLCommentClose.get_length();
+      end += 3; // "-->"
+
       return end;
+
    }
 
    // <![CDATA[ cdata ]]>
@@ -765,7 +787,7 @@ namespace xml
       }
 
       // find the end of CDATA
-      const char * end = _tcsenistr( pszXml, astr.XMLCDATAClose, astr.XMLCDATAClose.get_length(), pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
+      const char * end = _tcsenistr( pszXml, "]]>", 3, pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
       if( end == nullptr )
          return nullptr;
 
@@ -776,7 +798,7 @@ namespace xml
       if( pnodeParent )
       {
          const char * xml = pszXml;
-         xml += astr.XMLCDATAOpen.get_length();
+         xml += 9;  // "<![CDATA["
 
          auto pnode = __new(node(this));
          pnode->m_pnodeParent = this;
@@ -788,8 +810,10 @@ namespace xml
          pnodeParent->m_nodea.add( pnode );
       }
 
-      end += astr.XMLCDATAClose.get_length();
+      end += 3; // "]]>"
+      
       return end;
+
    }
 
 
@@ -827,7 +851,7 @@ namespace xml
          xml = _tcsskip( xml );
          const char * prev = xml;
          // is PI( Processing Instruction ) Node?
-         if(ansi_count_compare_ci( xml, astr.XMLPIOpen, astr.XMLPIOpen.get_length() ) == 0 )
+         if(ansi_count_compare_ci( xml, "<?", 2 ) == 0 )
          {
             // processing instrunction parse
             // return pointer is next node of pparseinfo
@@ -845,7 +869,7 @@ namespace xml
          if(m_pnodeParent != nullptr && m_pnodeParent->m_enode == ::data::e_node_xml_document)
          {
             // is DOCTYPE
-            if(::str().begins(xml, astr.XMLDOCTYPEOpen))
+            if(::str().begins(xml, "<!DOCTYPE"))
             {
                // processing instrunction parse
                // return pointer is next node of pparseinfo
@@ -862,7 +886,7 @@ namespace xml
          }
 
          // is comment Node?
-         if(ansi_count_compare_ci( xml, astr.XMLCommentOpen, astr.XMLCommentOpen.get_length() ) == 0 )
+         if(ansi_count_compare_ci( xml, "<!--", 4) == 0 )
          {
             // processing comment parse
             // return pointer is next node of comment
@@ -884,7 +908,7 @@ namespace xml
          xml = _tcsskip( xml );
          prev = xml;
          // is CDATA Node?
-         if(ansi_count_compare_ci( xml, astr.XMLCDATAOpen, astr.XMLCDATAOpen.get_length() ) == 0 )
+         if(ansi_count_compare_ci( xml, "<![CDATA[", 9) == 0 )
          {
             // processing CDATA parse
             // return pointer is next node of CDATA
@@ -906,12 +930,20 @@ namespace xml
       return xml;
    }
 
-   const char * node::load(const char * pszXml, parse_info * pi)
+   
+   void node::load(const ::string & strXml, parse_info * pparseinfo)
    {
 
-      return _load(pszXml, pszXml + strlen(pszXml), pi);
+      auto pszStart = strXml;
+
+      auto pszEnd = pszStart + strXml.length();
+
+      const char * pszNext = nullptr;
+
+      _load(pszNext, pszStart, pszEnd, pparseinfo);
 
    }
+
 
    // <TAG attr1="value1" attr2='value2' attr3=value3 >
    // </TAG>
@@ -928,42 +960,63 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   const char * node::_load(const char * pszXml,const char * pszEndXml,parse_info * pparseinfo)
+   void node::_load(const char * & xml, const char * pszXml,const char * pszEndXml,parse_info * pparseinfo)
    {
 
-      // close it
+      //// close it
       close();
 
-      if (pparseinfo == nullptr)
+      //if (pparseinfo == nullptr)
+      //{
+
+      //   pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+
+      //}
+      xml = pszXml;
+
+      xml = strchr( xml, chXMLTagOpen );
+
+      if (xml == nullptr)
       {
 
-         pparseinfo = get_system()->xml()->m_pparseinfoDefault;
+         return;
 
       }
 
-      const char * xml = pszXml;
+      //// close Tag
+      if (*(xml + 1) == chXMLTagPre) // </close
+      {
 
-      xml = strchr( xml, chXMLTagOpen );
-      if( xml == nullptr )
-         return nullptr;
+         return;
 
-      // close Tag
-      if( *(xml+1) == chXMLTagPre ) // </close
-         return xml;
+      }
 
-      // Load Other Node before <Tag>(pparseinfo, comment, CDATA etc)
+      //// Load Other Node before <Tag>(Processing Instruction, Comment, CDATA etc)
+
       bool bRet = false;
+
       const char * ret = nullptr;
+
       ret = LoadOtherNodes(&bRet, xml, pparseinfo );
-      if( ret != nullptr )
+      
+      if (ret != nullptr)
+      {
+
          xml = ret;
-      if( bRet )
-         return xml;
+
+      }
+
+      if (bRet)
+      {
+
+         return;
+
+      }
 
       // XML Node Tag Name open
       xml++;
-      //char* pTagEnd = ansi_scan( xml, " />\t\r\n" );
-      const char* pTagEnd = end_open_tag_name(xml);
+
+      const char* pTagEnd = ansi_scan(xml, " />\t\r\n");
       _SetString( xml, pTagEnd, &m_strName );
       xml = pTagEnd;
       // Generate XML Attributte List
@@ -973,22 +1026,37 @@ namespace xml
          if(  *xml == chXMLTagPre )
          {
             xml++;
-            if( *xml == chXMLTagClose )
+            if (*xml == chXMLTagClose)
+            {
+               
                // wel-formed tag
-               return ++xml;
+               xml++;
+
+               return;
+
+            }
             else
             {
-               // error: <TAG ... / >
-               if( pparseinfo->m_bErrorOccur == false )
-               {
-                  pparseinfo->m_bErrorOccur = true;
-                  pparseinfo->m_pszErrorPointer = xml;
-                  pparseinfo->m_eparseerror = parse_error_alone_not_closed;
-                  pparseinfo->m_strError = "Element must be closed.";
-               }
+               //// error: <TAG ... / >
+               //if( pparseinfo->m_bErrorOccur == false )
+               //{
+               //   pparseinfo->m_bErrorOccur = true;
+               //   pparseinfo->m_pszErrorPointer = xml;
+               //   pparseinfo->m_eparseerror = e_parse_error_alone_not_closed;
+               //   pparseinfo->m_strError = "Element must be closed.";
+               //}
+
+               string strError;
+
+               strError = "Element must be closed.";
+
+               throw ::xml::exception(e_parse_error_alone_not_closed, strError, xml);
+
                // not wel-formed tag
-               return nullptr;
+               return;
+
             }
+
          }
          else if(*xml)
             // open/close tag <TAG ..> ... </TAG>
@@ -1002,15 +1070,23 @@ namespace xml
                const char* pszEnd = _tcsechr( ++xml, chXMLTagOpen, chXMLEscape );
                if( pszEnd == nullptr )
                {
-                  if( pparseinfo->m_bErrorOccur == false )
-                  {
-                     pparseinfo->m_bErrorOccur = true;
-                     pparseinfo->m_pszErrorPointer = xml;
-                     pparseinfo->m_eparseerror = parse_error_not_closed;
-                     pparseinfo->m_strError.format("%s must be closed with </%s>", m_strName.c_str() );
-                  }
+                  //if( pparseinfo->m_bErrorOccur == false )
+                  //{
+                  //   pparseinfo->m_bErrorOccur = true;
+                  //   pparseinfo->m_pszErrorPointer = xml;
+                  //   pparseinfo->m_eparseerror = e_parse_error_not_closed;
+                  //   pparseinfo->m_strError.format("%s must be closed with </%s>", m_strName.c_str() );
+                  //}
+
+                  string strError;
+
+                  strError.format(" % s must be closed with < / % s>", m_strName.c_str());
+
+                  throw ::xml::exception(e_parse_error_not_closed, strError, xml);
+
                   // error cos not exist CloseTag </TAG>
-                  return nullptr;
+                  return;
+
                }
 
                bool trim = pparseinfo->m_bTrimValue;
@@ -1044,7 +1120,7 @@ namespace xml
                pnode->m_pdocument = m_pdocument;
                pnode->m_enode = m_enode;
 
-               xml = pnode->load( xml,pparseinfo );
+               pnode->_load(xml, xml, pszEndXml, pparseinfo );
                if(pnode->m_strName.has_char())
                {
                   m_nodea.add(pnode);
@@ -1070,23 +1146,33 @@ namespace xml
                      const  char* pszEnd = ansi_scan( xml, " >" );
                      if( pszEnd == nullptr )
                      {
-                        if( pparseinfo->m_bErrorOccur == false )
-                        {
-                           pparseinfo->m_bErrorOccur = true;
-                           pparseinfo->m_pszErrorPointer = xml;
-                           pparseinfo->m_eparseerror = parse_error_not_closed;
-                           pparseinfo->m_strError.format("it must be closed with </%s>", m_strName.c_str() );
-                        }
-                        // error
-                        return nullptr;
+                        //if( pparseinfo->m_bErrorOccur == false )
+                        //{
+                        //   pparseinfo->m_bErrorOccur = true;
+                        //   pparseinfo->m_pszErrorPointer = xml;
+                        //   pparseinfo->m_eparseerror = parse_error_not_closed;
+                        //   pparseinfo->m_strError.format("it must be closed with </%s>", m_strName.c_str() );
+                        //}
+                        //// error
+
+                        string strError;
+
+                        strError.format("it must be closed with </%s>", m_strName.c_str());
+
+                        throw ::xml::exception(e_parse_error_not_closed, strError, xml);
+
+                        return;
+
                      }
+
                      _SetString( xml, pszEnd, &closename );
+
                      if( closename == this->m_strName )
                      {
                         // wel-formed open/close
                         xml = pszEnd+1;
                         // return '>' or ' ' after pointer
-                        return xml;
+                        return;
                      }
                      else
                      {
@@ -1096,17 +1182,28 @@ namespace xml
                         if( pparseinfo->m_bForceParse == false )
                         {
                            // not welformed open/close
-                           if( pparseinfo->m_bErrorOccur == false )
-                           {
-                              pparseinfo->m_bErrorOccur = true;
-                              pparseinfo->m_pszErrorPointer = xml;
-                              pparseinfo->m_eparseerror = parse_error_not_nested;
-                              pparseinfo->m_strError.format("'<%s> ... </%s>' is not wel-formed.", m_strName.c_str(), closename.c_str() );
-                           }
-                           return nullptr;
+                           //if( pparseinfo->m_bErrorOccur == false )
+                           //{
+                           //   pparseinfo->m_bErrorOccur = true;
+                           //   pparseinfo->m_pszErrorPointer = xml;
+                           //   pparseinfo->m_eparseerror = e_parse_error_not_nested;
+                           //   pparseinfo->m_strError.format("'<%s> ... </%s>' is not wel-formed.", m_strName.c_str(), closename.c_str() );
+                           //}
+
+                           string strError;
+
+                           strError.format("'<%s> ... </%s>' is not wel-formed.", m_strName.c_str(), closename.c_str());
+
+                           throw ::xml::exception(e_parse_error_not_nested, strError, xml);
+
+                           return;
+
                         }
+
                      }
+
                   }
+
                }
                else if(xml && *xml)  // Alone child Tag Loaded
                   // else 해야하는지 말아야하는지 의심간다.
@@ -1120,14 +1217,21 @@ namespace xml
                      if( pszEnd == nullptr )
                      {
                         // error cos not exist CloseTag </TAG>
-                        if( pparseinfo->m_bErrorOccur == false )
-                        {
-                           pparseinfo->m_bErrorOccur = true;
-                           pparseinfo->m_pszErrorPointer = xml;
-                           pparseinfo->m_eparseerror = parse_error_not_closed;
-                           pparseinfo->m_strError.format("it must be closed with </%s>", m_strName.c_str() );
-                        }
-                        return nullptr;
+                        //if( pparseinfo->m_bErrorOccur == false )
+                        //{
+                        //   pparseinfo->m_bErrorOccur = true;
+                        //   pparseinfo->m_pszErrorPointer = xml;
+                        //   pparseinfo->m_eparseerror = parse_error_not_closed;
+                        //   pparseinfo->m_strError.format("it must be closed with </%s>", m_strName.c_str() );
+                        //}
+                        string strError;
+
+                        strError.format("it must be closed with </%s>", m_strName.c_str());
+
+                        throw ::xml::exception(e_parse_error_not_closed, strError, xml);
+
+                        return;
+
                      }
 
                      bool trim = pparseinfo->m_bTrimValue;
@@ -1150,15 +1254,23 @@ namespace xml
                      _SetString( xml, pszEnd, &m_strValue, trim, escape );
                      xml = pszEnd;
                      //TEXTVALUE
-                     if( pparseinfo->m_bEntityValue && pparseinfo->m_pentities )
+                     if (pparseinfo->m_bEntityValue && pparseinfo->m_pentities)
+                     {
+
                         m_strValue = pparseinfo->m_pentities->ref_to_entity(m_strValue);
+
+                     }
+
                   }
+
                }
+
             }
+
          }
+
       }
 
-      return xml;
    }
 
 
@@ -1237,7 +1349,7 @@ namespace xml
          if (m_enode == ::data::e_node_xml_pi)
          {
             // <?TAG
-            ostring += astr.XMLPIOpen + m_strName;
+            ostring += "<?" +m_strName;
             // <?TAG Attr1="Val1"
             if (m_set.has_elements())
             {
@@ -1252,23 +1364,23 @@ namespace xml
                ostring += pxml->from(pproperty, opt);
             }
             //?>
-            ostring += astr.XMLPIClose;
+            ostring += "?>";
             return ostring;
          }
          else if (m_enode == ::data::e_node_xml_comment)
          {
-            // <--comment
-            ostring += astr.XMLCommentOpen + m_strValue;
+            // <!--comment
+            ostring += "<!--" + m_strValue;
             //-->
-            ostring += astr.XMLCommentClose;
+            ostring += "-->";
             return ostring;
          }
          else if (m_enode == ::data::e_node_xml_cdata)
          {
             // <--comment
-            ostring += astr.XMLCDATAOpen + m_strValue;
+            ostring += "<![CDATA[" + m_strValue;
             //-->
-            ostring += astr.XMLCDATAClose;
+            ostring += "]]>";
             return ostring;
          }
 
@@ -1960,7 +2072,7 @@ namespace xml
       if(iKey < 0)
       {
        
-         throw exception(error_not_found);
+         throw ::exception(error_not_found);
          
       }
       
@@ -1969,7 +2081,7 @@ namespace xml
       if(!pnode)
       {
        
-         throw exception(error_index_out_of_bounds);
+         throw ::exception(error_parsing);
          
       }
       

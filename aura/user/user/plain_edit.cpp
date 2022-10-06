@@ -7344,7 +7344,7 @@ namespace user
          return;
       }
 
-      m_ptreeitem = m_ptree->insert_item(pcommand, ::data::RelativeMacroRecord, m_ptreeitem);
+      m_ptreeitem = m_ptree->insert_item(pcommand, ::data::e_relative_macro_record, m_ptreeitem);
 
    }
 

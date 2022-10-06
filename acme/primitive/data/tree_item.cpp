@@ -97,7 +97,7 @@ namespace data
       while(true)
       {
 
-         ptreeitem = ptreeitem->get_item(TreeNavigationExpandedForward);
+         ptreeitem = ptreeitem->get_item(e_tree_navigation_expanded_forward);
 
          if (!ptreeitem)
          {
@@ -149,10 +149,10 @@ namespace data
    }
 
 
-   bool tree_item::insert(ERelative erelative, tree_item * pitemNew)
+   bool tree_item::insert(enum_relative erelative, tree_item * pitemNew)
    {
 
-      if (erelative == RelativeFirstChild)
+      if (erelative == e_relative_first_child)
       {
 
          pitemNew->erase_item_from_parent();
@@ -166,7 +166,7 @@ namespace data
          return true;
 
       }
-      else if (erelative == RelativeLastChild)
+      else if (erelative == e_relative_last_child)
       {
 
          pitemNew->erase_item_from_parent();
@@ -180,7 +180,7 @@ namespace data
          return true;
 
       }
-      else if (erelative == RelativePreviousSibling)
+      else if (erelative == e_relative_previous_sibling)
       {
 
          ASSERT(m_pparent != nullptr);
@@ -219,7 +219,7 @@ namespace data
 
 
       }
-      else if(erelative == RelativeNextSibling)
+      else if(erelative == e_relative_next_sibling)
       {
 
          if (m_pparent == nullptr)
@@ -248,7 +248,7 @@ namespace data
          pitemNew->m_pparent = m_pparent;
 
       }
-      else if(erelative == RelativeLastSibling)
+      else if(erelative == e_relative_last_sibling)
       {
 
          list_add(m_pparent, pitemNew);
@@ -258,7 +258,7 @@ namespace data
          pitemNew->m_pparent = m_pparent;
 
       }
-      else if(erelative == RelativeReplace)
+      else if(erelative == e_relative_replace)
       {
 
          index iFind = list_find_first(m_pparent,this);
@@ -383,7 +383,7 @@ namespace data
       for(;;)
       {
 
-         pitem = pitem->get_item(TreeNavigationProperForward, &iLevel);
+         pitem = pitem->get_item(e_tree_navigation_proper_forward, &iLevel);
 
          if (pitem == nullptr || iLevel <= 0)
          {
@@ -561,16 +561,16 @@ namespace data
    }
 
 
-   tree_item * tree_item::get_item(ETreeNavigation enavigation, index * pindexLevel)
+   tree_item * tree_item::get_item(enum_tree_navigation enavigation, index * pindexLevel)
    {
 
       switch(enavigation)
       {
-      case TreeNavigationExpandedForward:
+      case e_tree_navigation_expanded_forward:
 
          return get_child_next_or_parent(pindexLevel);
 
-      case TreeNavigationProperForward:
+      case e_tree_navigation_proper_forward:
 
          return get_proper_next(pindexLevel);
 
@@ -583,41 +583,41 @@ namespace data
    }
 
 
-   tree_item * tree_item::get_item(ERelative erelative)
+   tree_item * tree_item::get_item(enum_relative erelative)
    {
 
       switch(erelative)
       {
-      case RelativeFirstChild:
+      case e_relative_first_child:
       {
          return m_phead;
       }
       break;
-      case RelativeLastChild:
+      case e_relative_last_child:
       {
          return m_ptail;
       }
-      case RelativeParent:
+      case e_relative_parent:
       {
          return m_pparent;
       }
       break;
-      case RelativeFirstSibling:
+      case e_relative_first_sibling:
       {
          return m_pparent->m_phead;
       }
       break;
-      case RelativePreviousSibling:
+      case e_relative_previous_sibling:
       {
          return m_pprevious;
       }
       break;
-      case RelativeNextSibling:
+      case e_relative_next_sibling:
       {
          return m_pnext;
       }
       break;
-      case RelativeLastSibling:
+      case e_relative_last_sibling:
       {
          return m_pparent->m_ptail;
       }
@@ -699,7 +699,7 @@ namespace data
       while(pitem && iIndex >= 0)
       {
 
-         pitem = pitem->get_item(TreeNavigationProperForward, piLevel);
+         pitem = pitem->get_item(e_tree_navigation_proper_forward, piLevel);
 
          iIndex--;
 
@@ -734,7 +734,7 @@ namespace data
       while(pitem)
       {
 
-         pitem = pitem->get_item(TreeNavigationProperForward, piLevel);
+         pitem = pitem->get_item(e_tree_navigation_proper_forward, piLevel);
 
          if (pitem == pitemParam)
          {
@@ -764,7 +764,7 @@ namespace data
       while(pitem)
       {
 
-         pitem = pitem->get_item(TreeNavigationProperForward, &iLevel);
+         pitem = pitem->get_item(e_tree_navigation_proper_forward, &iLevel);
 
          iCount++;
 
@@ -792,7 +792,7 @@ namespace data
    bool tree_item::is_expanded() const
    {
 
-      return (m_dwState & ::data::tree_item_state_expanded) != 0;
+      return (m_dwState & ::data::e_tree_item_state_expanded) != 0;
 
    }
 
@@ -800,7 +800,7 @@ namespace data
    bool tree_item::is_expandable() const
    {
 
-      return (m_dwState & ::data::tree_item_state_expandable) != 0;
+      return (m_dwState & ::data::e_tree_item_state_expandable) != 0;
 
    }
 

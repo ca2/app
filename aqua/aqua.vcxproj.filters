@@ -294,6 +294,9 @@
     <ClInclude Include="game\_component.h">
       <Filter>Header Files\game</Filter>
     </ClInclude>
+    <ClInclude Include="exception.h">
+      <Filter>Header Files\xml</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -409,6 +412,9 @@
     </ClCompile>
     <ClCompile Include="multimedia\audio\audio.cpp">
       <Filter>Source Files\multimedia\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="xml\exception.cpp">
+      <Filter>Source Files\xml</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

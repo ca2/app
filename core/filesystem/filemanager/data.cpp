@@ -1,16 +1,11 @@
-#include "framework.h"
-#include "aura/graphics/image/image.h"
-#include "aura/graphics/write_text/font.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
-#include "_data.h"
-#include "core/user/user/_tree.h"
-#include "aura/astr.h"
+﻿#include "framework.h"
 #include "data.h"
 #include "document.h"
-#include "core/platform/application.h"
+#include "aura/graphics/image/image.h"
+#include "aura/graphics/write_text/font.h"
+#include "aura/user/user/interaction.h"
 #include "base/user/user/multiple_document_template.h"
+#include "core/platform/application.h"
 
 
 namespace filemanager
@@ -361,8 +356,8 @@ namespace filemanager
 
       __pointer(::core::application) papp = pobject->get_app();
 
-      if (::str().begins(path, astr.UifsProtocol)
-         || ::str().begins(path, astr.FsProtocol))
+      if (::str().begins(path, "uifs://")
+         || ::str().begins(path, "fs://"))
       {
 
          papp->data_set({ m_datakey.m_bLocalData, m_datakey.m_strDataKey +".last_browse_folder" }, strPath);

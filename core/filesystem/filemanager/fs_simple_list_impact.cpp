@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/drawing.h"
 #include "acme/platform/timer.h"
@@ -747,30 +747,17 @@ namespace filemanager
             }*/
          }
 
-         void list_impact::parse(const ::string & pszSource)
 
+         void list_impact::parse(const ::string & strXml)
          {
-            m_itema.erase_all();
-            _001OnUpdateItemCount(0);
 
-            string str;
+            m_itema.erase_all();
+
+            _001OnUpdateItemCount(0);
 
             auto pxmldocument = __create_new < xml::document >();
 
-            if(pxmldocument->load(pszSource))
-            {
-
-               str  = pxmldocument->get_xml();
-
-            }
-            else
-            {
-
-               output_error_message("error"); // simple parsing error check
-
-               return;
-
-            }
+            pxmldocument->load(strXml);
 
             pxmldocument->root()->attribute("id").as(m_iParentFolder);
 

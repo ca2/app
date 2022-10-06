@@ -1,11 +1,11 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "apex/networking/networking.h"
 #include "apex/networking/sockets/http/tunnel.h"
 #include "apex/networking/sockets/http/session.h"
 #include "apex/networking/http/get_socket.h"
 #include "apex/networking/sockets/basic/socket_handler.h"
 #include "apex/constant/idpool.h"
-#include "apex/astr.h"
+//#include "apex/astr.h"
 #include <time.h>
 
 
@@ -2595,7 +2595,7 @@ namespace http
 
       domain.create(purl->get_server(pmessageMessage->m_strUrl));
 
-      if (domain.m_strRadix == "ca2" && ::str().begins(purl->get_object(pmessageMessage->m_strUrl), astr.MatterUri))
+      if (domain.m_strRadix == "ca2" && ::str().begins(purl->get_object(pmessageMessage->m_strUrl), "/matter/"))
       {
 
          string strUrl(pmessageMessage->m_strUrl);
@@ -2793,7 +2793,7 @@ namespace http
 
          domain.create(purl->get_server(pszUrl));
 
-         if (::str().begins(purl->get_object(pszUrl), astr.MatterUri))
+         if (::str().begins(purl->get_object(pszUrl), "/matter/"))
          {
 
             set["raw_http"] = true;
@@ -2847,7 +2847,7 @@ namespace http
 
       domain.create(purl->get_server(pszUrl));
 
-      if (::str().begins(purl->get_object(pszUrl), astr.MatterUri))
+      if (::str().begins(purl->get_object(pszUrl), "/matter/"))
       {
 
          set["disable_ca2_sessid"] = true;

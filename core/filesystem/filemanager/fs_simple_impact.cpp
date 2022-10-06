@@ -1,12 +1,8 @@
-#include "framework.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
-//
-#include "_data.h"
-#include "core/user/user/_tree.h"
+﻿#include "framework.h"
 #include "fs_simple_impact.h"
 #include "fs_simple_list_impact.h"
+#include "fs_simple_tree.h"
+#include "core/user/user/tree.h"
 
 
 namespace filemanager

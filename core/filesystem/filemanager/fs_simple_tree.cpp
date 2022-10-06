@@ -1,12 +1,9 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "fs_simple_tree.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/drawing.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
-#include "_data.h"
 #include "aqua/xml/document.h"
-#include "core/user/user/_tree.h"
+#include "acme/primitive/data/simple_item.h"
 #include "fs_simple_impact.h"
 
 
@@ -97,20 +94,7 @@ namespace filemanager
 
             auto pxmldocument = __create_new < ::xml::document >();
 
-            if(pxmldocument->load(pszSource))
-            {
-
-               str  = pxmldocument->get_xml();
-
-            }
-            else
-            {
-
-               output_error_message("error"); // simple parsing error check
-
-               return;
-
-            }
+            pxmldocument->load(pszSource);
 
             pxmldocument->root()->attribute("id").as(m_iParentFolder);
 
@@ -217,7 +201,7 @@ namespace filemanager
                if(ptreeitemChild)
                {
 
-                  ptreeitemChild = insert_item(__new(::data::simple_item(this)), ::data::RelativeLastChild, ptreeitemParent);
+                  ptreeitemChild = insert_item(__new(::data::simple_item(this)), ::data::e_relative_last_child, ptreeitemParent);
 
                }
 

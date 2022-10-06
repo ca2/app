@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace xml
@@ -23,7 +23,7 @@ namespace xml
       string               m_strXml;            // [get] xml source
       bool                 m_bErrorOccur;       // [get] is occurance of error?
       const char *         m_pszErrorPointer;   // [get] error position of xml source
-      e_parse_error        m_eparseerror;       // [get] error code
+      enum_parse_error     m_eparseerror;       // [get] error code
       string               m_strError;          // [get] error string
 
       __pointer(::xml::document)        m_pdocument;

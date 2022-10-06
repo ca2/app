@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "node.h"
@@ -35,30 +35,20 @@ namespace xml
       void initialize(::object * pobject) override;
       
 
-      inline void ensure_root()
-      {
-
-         if (!m_pnodeRoot)
-         {
-
-            create_root();
-
-         }
-
-      }
-
+      virtual void ensure_root();
       void create_root();
       void create_root(const ::string & strName);
 
+   
       string consume_entity_ref(const char * & pszXml, string & strName, bool useExtEnt, bool & bExt);
       char * patch_entity_ref(const char * & pszXml, int bUseExtEnt);
 
       node* root() { return m_pnodeRoot; }
       const node * root() const { return m_pnodeRoot; }
 
-      bool load_location(const char * psz);
-      bool parse_xml_text(stream & s);
-      void parse_xml_text(const char * pszXmlText);
+      //void load_location(const char * psz);
+      //void parse_xml_text(stream & s);
+      //void parse_xml_text(const char * pszXmlText);
 
       inline operator bool() const { return ::is_set(this) && m_pnodeRoot.is_set(); }
       inline bool operator !() const { return !operator bool(); }

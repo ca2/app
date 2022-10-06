@@ -690,13 +690,13 @@ namespace file
       if(m_ptreeitem != nullptr && m_ptreeitem->get_next() != nullptr)
       {
 
-         pitemNew = insert_item(pitem,::data::RelativeFirstChild, m_ptreeitem);
+         pitemNew = insert_item(pitem,::data::e_relative_first_child, m_ptreeitem);
 
       }
       else
       {
 
-         pitemNew = insert_item(pitem,::data::RelativeLastSibling, m_ptreeitem);
+         pitemNew = insert_item(pitem,::data::e_relative_last_sibling, m_ptreeitem);
 
       }
 

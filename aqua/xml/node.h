@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace xml
@@ -74,8 +74,17 @@ namespace xml
 
 
       // Load/Save XML
-      const char *   load(const char * pszXml, parse_info * pi = nullptr);
-      const char *   _load(const char * pszXml, const char * pszEndXml, parse_info * pi = nullptr);
+      virtual void load(const ::string & strXml, parse_info * pi = nullptr);
+
+
+   protected:
+
+
+      virtual void _load(const char * & pszNext, const char * pszXml, const char * pszEndXml, parse_info * pi = nullptr);
+
+
+   public:
+
 
       string get_xml(disp_option * opt = nullptr) const;
       string get_text(disp_option * opt = nullptr) const;

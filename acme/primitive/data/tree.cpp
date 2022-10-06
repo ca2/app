@@ -1,4 +1,4 @@
-#include "framework.h" 
+﻿#include "framework.h" 
 #include "_data.h"
 
 
@@ -22,9 +22,9 @@ namespace data
 
       //}
 
-      m_dwState |= ::data::tree_item_state_expandable;
+      m_dwState |= ::data::e_tree_item_state_expandable;
 
-      m_dwState |= ::data::tree_item_state_expanded;
+      m_dwState |= ::data::e_tree_item_state_expanded;
 
       m_ptree = this;
 
@@ -65,7 +65,7 @@ namespace data
 
       __pointer(::data::tree_item) pitem = this;
 
-      for(; pitem != nullptr; pitem = pitem->get_item(TreeNavigationExpandedForward))
+      for(; pitem != nullptr; pitem = pitem->get_item(e_tree_navigation_expanded_forward))
       {
          
          if(pitem->m_pdataitem == pitemdata)
@@ -116,7 +116,7 @@ namespace data
       
       ::data::tree_item * pitem = this;
 
-      for(; pitem != nullptr; pitem = pitem->get_item(TreeNavigationExpandedForward))
+      for(; pitem != nullptr; pitem = pitem->get_item(e_tree_navigation_expanded_forward))
       {
 
          if (pitem == pitemParam)
@@ -338,7 +338,7 @@ namespace data
    }
 
 
-   ::data::tree_item * tree::insert_item(::data::item * pitemdataNew, ERelative erelativeNewItem, ::data::tree_item *pitemRelative, bool bVoidTreeDataChangeEvent)
+   ::data::tree_item * tree::insert_item(::data::item * pitemdataNew, enum_relative erelativeNewItem, ::data::tree_item *pitemRelative, bool bVoidTreeDataChangeEvent)
    {
 
       if (pitemRelative == nullptr)
@@ -348,7 +348,7 @@ namespace data
 
       }
 
-      if(erelativeNewItem == RelativeReplace)
+      if(erelativeNewItem == e_relative_replace)
       {
 
          if(!contains(pitemRelative))
@@ -387,7 +387,7 @@ namespace data
    }
 
 
-   bool tree::insert_item(::data::tree_item *pitemNew, ERelative erelativeNewItem, ::data::tree_item *pitemRelative, bool bVoidTreeDataChangeEvent)
+   bool tree::insert_item(::data::tree_item *pitemNew, enum_relative erelativeNewItem, ::data::tree_item *pitemRelative, bool bVoidTreeDataChangeEvent)
    {
 
       __pointer(tree) ptreeNew = pitemNew;
@@ -422,20 +422,20 @@ namespace data
 
       }
 
-      if (erelativeNewItem == RelativeParent)
+      if (erelativeNewItem == e_relative_parent)
       {
 
          return false;
 
       }
 
-      if(erelativeNewItem == RelativeLastSibling)
+      if(erelativeNewItem == e_relative_last_sibling)
       {
          
          if(pitemRelative == this)
          {
 
-            erelativeNewItem = RelativeFirstChild;
+            erelativeNewItem = e_relative_first_child;
 
          }
 
@@ -445,42 +445,42 @@ namespace data
 
       switch(erelativeNewItem)
       {
-      case RelativeFirstChild:
+      case e_relative_first_child:
       {
 
          bOk=pitemRelative->insert(erelativeNewItem, pitemNew);
 
       }
       break;
-      case RelativeLastChild:
+      case e_relative_last_child:
       {
 
          bOk = pitemRelative->insert(erelativeNewItem, pitemNew);
 
       }
       break;
-      case RelativePreviousSibling:
+      case e_relative_previous_sibling:
       {
 
          bOk = pitemRelative->insert(erelativeNewItem, pitemNew);
 
       }
       break;
-      case RelativeNextSibling:
+      case e_relative_next_sibling:
       {
 
          bOk = pitemRelative->insert(erelativeNewItem, pitemNew);
 
       }
       break;
-      case RelativeLastSibling:
+      case e_relative_last_sibling:
       {
 
          bOk = pitemRelative->insert(erelativeNewItem, pitemNew);
 
       }
       break;
-      case RelativeReplace:
+      case e_relative_replace:
       {
 
          pitemNew->m_dwUser         = pitemRelative->m_dwUser;
@@ -495,19 +495,19 @@ namespace data
       }
       break;
 
-      case RelativeMacroRecord:
+      case e_relative_macro_record:
       {
 
          if (pitemRelative->get_next() != nullptr)
          {
 
-            insert_item(pitemNew, ::data::RelativeFirstChild, pitemRelative);
+            insert_item(pitemNew, ::data::e_relative_first_child, pitemRelative);
 
          }
          else
          {
 
-            insert_item(pitemNew, ::data::RelativeLastSibling, pitemRelative);
+            insert_item(pitemNew, ::data::e_relative_last_sibling, pitemRelative);
 
          }
 
@@ -638,8 +638,8 @@ namespace data
 
       if (pitem->get_children_count() > 0)
       {
-         pitem->m_dwState |= ::data::tree_item_state_expanded;
-         pitem->m_dwState |= ::data::tree_item_state_expandable;
+         pitem->m_dwState |= ::data::e_tree_item_state_expanded;
+         pitem->m_dwState |= ::data::e_tree_item_state_expandable;
       }
 
       /*      for (index i = 0; i < m_treeptra.get_count(); i++)
@@ -662,9 +662,9 @@ namespace data
          return;
       if (pitem->get_children_count() > 0)
       {
-         pitem->m_dwState |= ::data::tree_item_state_expandable;
+         pitem->m_dwState |= ::data::e_tree_item_state_expandable;
       }
-      pitem->m_dwState &= ~::data::tree_item_state_expanded;
+      pitem->m_dwState &= ~::data::e_tree_item_state_expanded;
       /*for (index i = 0; i < m_treeptra.get_count(); i++)
       {
 

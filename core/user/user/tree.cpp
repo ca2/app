@@ -1,6 +1,6 @@
-#include "framework.h"
-#include "_data.h"
-#include "_tree.h"
+﻿#include "framework.h"
+#include "tree.h"
+#include "tree_data.h"
 #include "acme/constant/timer.h"
 #include "aura/message.h"
 #include "aura/message/user.h"
@@ -42,13 +42,13 @@ namespace user
 
       m_econtroltype = ::user::e_control_type_tree;
 
-      m_pitemFirstVisible        = nullptr;
-      m_pitemHover                = nullptr;
-      m_iItemCount               = 0;
-      m_dItemHeight              = 0.;
-      m_iImageExpand             = -1;
-      m_iImageCollapse           = -1;
-      m_uchHoverAlphaInit        = 0;
+      m_pitemFirstVisible = nullptr;
+      m_pitemHover = nullptr;
+      m_iItemCount = 0;
+      m_dItemHeight = 0.;
+      m_iImageExpand = -1;
+      m_iImageCollapse = -1;
+      m_uchHoverAlphaInit = 0;
       m_ealignText = e_align_left_center;
       m_edrawtext = e_draw_text_none;
       m_evOpen.m_eobject += e_object_alertable_wait;
@@ -74,7 +74,7 @@ namespace user
 
 
       //auto estatus =
-      
+
       __compose_new(m_ptree);
 
       //if (!estatus)
@@ -87,7 +87,7 @@ namespace user
       //}
 
       //estatus = 
-      
+
       __construct_new(m_pimagelist);
 
       //if (!estatus)
@@ -100,7 +100,7 @@ namespace user
       //}
 
       //estatus = 
-      
+
       m_pimagelist->create(16, 16, 0, 10, 10);
 
       //if (!estatus)
@@ -131,7 +131,7 @@ namespace user
 
                   auto pitem = m_treeitemaExpand.pop();
 
-                  _001ExpandItem(pitem, ::e_source_user, !(pitem->m_dwState & ::data::tree_item_state_expanded));
+                  _001ExpandItem(pitem, ::e_source_user, !(pitem->m_dwState & ::data::e_tree_item_state_expanded));
 
                   m_treeitemaExpand.erase_all();
 
@@ -232,9 +232,9 @@ namespace user
 
          bool bTreeHover = rectangleClient.contains(pointCursor);
 
-         if(bTreeHover)
+         if (bTreeHover)
          {
-            if(!m_bHoverStart)
+            if (!m_bHoverStart)
             {
                m_bHoverStart = true;
                m_uchHoverAlphaInit = m_uchHoverAlpha;
@@ -242,7 +242,7 @@ namespace user
                m_durationHoverStart.Now();
 
             }
-            if(m_durationHoverStart.elapsed() > dwHoverIn)
+            if (m_durationHoverStart.elapsed() > dwHoverIn)
             {
                m_uchHoverAlpha = 255;
             }
@@ -250,18 +250,18 @@ namespace user
             {
                auto pi = MATH_PI;
                auto f = 1.0 / duration(dwHoverIn).floating_second().m_d;
-               auto omega = -pi* f; // omega pi
+               auto omega = -pi * f; // omega pi
                auto t = m_durationHoverStart.elapsed().floating_second().m_d;
-               ::u32 dwCurve =  (::u32) (255.0 * (1.0 - exp(omega * t)));
-               if(m_uchHoverAlphaInit + dwCurve > 255)
+               ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
+               if (m_uchHoverAlphaInit + dwCurve > 255)
                   m_uchHoverAlpha = 255;
                else
-                  m_uchHoverAlpha =  (byte) (m_uchHoverAlphaInit + dwCurve);
+                  m_uchHoverAlpha = (byte)(m_uchHoverAlphaInit + dwCurve);
             }
          }
          else
          {
-            if(m_bHoverStart)
+            if (m_bHoverStart)
             {
                m_bHoverStart = false;
                m_uchHoverAlphaInit = m_uchHoverAlpha;
@@ -270,7 +270,7 @@ namespace user
 
             }
 
-            if(m_durationHoverEnd.elapsed()  > dwHoverOut)
+            if (m_durationHoverEnd.elapsed() > dwHoverOut)
             {
                m_uchHoverAlpha = 0;
             }
@@ -281,10 +281,10 @@ namespace user
                auto omega = -pi * f; // omega pi
                auto t = m_durationHoverStart.elapsed().floating_second().m_d;
                ::u32 dwCurve = (::u32)(255.0 * (1.0 - exp(omega * t)));
-               if(m_uchHoverAlphaInit < dwCurve)
+               if (m_uchHoverAlphaInit < dwCurve)
                   m_uchHoverAlpha = 0;
                else
-                  m_uchHoverAlpha = (byte) (m_uchHoverAlphaInit - dwCurve);
+                  m_uchHoverAlpha = (byte)(m_uchHoverAlphaInit - dwCurve);
             }
          }
 
@@ -308,7 +308,7 @@ namespace user
 
          index iIndex = 0;
 
-         for(; pitem != nullptr; pitem = pitem->get_item(::data::TreeNavigationProperForward))
+         for (; pitem != nullptr; pitem = pitem->get_item(::data::e_tree_navigation_proper_forward))
          {
 
             drawitemdata.m_pitem = pitem;
@@ -317,11 +317,11 @@ namespace user
 
             drawitemdata.m_rectangle = drawitemdata.m_rectangleClient;
 
-            drawitemdata.m_rectangle.left = (::i32) (drawitemdata.m_iIndentation * pitem->m_iLevel);
+            drawitemdata.m_rectangle.left = (::i32)(drawitemdata.m_iIndentation * pitem->m_iLevel);
 
-            drawitemdata.m_rectangle.top = (::i32) (iItem * drawitemdata.m_dItemHeight);
+            drawitemdata.m_rectangle.top = (::i32)(iItem * drawitemdata.m_dItemHeight);
 
-            drawitemdata.m_rectangle.bottom = (::i32) (drawitemdata.m_rectangle.top + drawitemdata.m_dItemHeight);
+            drawitemdata.m_rectangle.bottom = (::i32)(drawitemdata.m_rectangle.top + drawitemdata.m_dItemHeight);
 
             drawitemdata.m_rectangle.right = m_iCurrentImpactWidth;
 
@@ -398,32 +398,32 @@ namespace user
 
       __pointer(::image_list) pimagelistTree = get_image_list();
 
-      bool bSelected    = ptree->is_selected(pitem.m_p);
+      bool bSelected = ptree->is_selected(pitem.m_p);
 
-      bool bHover       = ptree->is_hover(pitem);
+      bool bHover = ptree->is_hover(pitem);
 
       data.m_pdc->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-      if(m_uchHoverAlpha > 0)
+      if (m_uchHoverAlpha > 0)
       {
 
-         if(ptree != nullptr && pimagelistTree.is_set() && data.m_pitem->m_dwState & ::data::tree_item_state_expandable)
+         if (ptree != nullptr && pimagelistTree.is_set() && data.m_pitem->m_dwState & ::data::e_tree_item_state_expandable)
          {
 
             _001GetItemElementRect(rectangle, data, e_tree_element_expand_box);
 
             i32 iImage;
 
-            if(data.m_pitem->m_dwState & ::data::tree_item_state_expanded)
+            if (data.m_pitem->m_dwState & ::data::e_tree_item_state_expanded)
             {
 
-               iImage = (i32) ptree->m_iImageCollapse;
+               iImage = (i32)ptree->m_iImageCollapse;
 
             }
             else
             {
 
-               iImage = (i32) ptree->m_iImageExpand;
+               iImage = (i32)ptree->m_iImageExpand;
 
             }
 
@@ -455,13 +455,13 @@ namespace user
 
       }
 
-      if(bSelected) // selected
+      if (bSelected) // selected
       {
 
          //if(psession->m_paurasession->savings().is_trying_to_save(::e_resource_processing))
          //{
 
-            data.m_pdc->fill_rectangle(data.m_rectangle, argb(127, 96,96,96));
+         data.m_pdc->fill_rectangle(data.m_rectangle, argb(127, 96, 96, 96));
 
          //}
          //else
@@ -495,12 +495,12 @@ namespace user
 
       }
 
-      if(pimagelistItem != nullptr)
+      if (pimagelistItem != nullptr)
       {
 
-         i32 iImage = (i32) data.m_pitem->get_image();
+         i32 iImage = (i32)data.m_pitem->get_image();
 
-         if(iImage >= 0 && pimagelistItem && ::is_ok(pimagelistItem->m_pimage.get()))
+         if (iImage >= 0 && pimagelistItem && ::is_ok(pimagelistItem->m_pimage.get()))
          {
 
             if (_001GetItemElementRect(rectangle, data, e_tree_element_image))
@@ -518,15 +518,15 @@ namespace user
 
       string strItem = pitemData->get_text();
 
-      if(strItem.has_char() && _001GetItemElementRect(rectangle, data, e_tree_element_text))
+      if (strItem.has_char() && _001GetItemElementRect(rectangle, data, e_tree_element_text))
       {
 
          ::draw2d::brush_pointer pbrushText;
 
-         if(bSelected) // selected
+         if (bSelected) // selected
          {
 
-            if(bHover)
+            if (bHover)
             {
 
                pbrushText = m_pbrushTextSelectedHighlight;
@@ -543,7 +543,7 @@ namespace user
          else
          {
 
-            if(bHover)
+            if (bHover)
             {
 
                pbrushText = m_pbrushTextSelected;
@@ -616,13 +616,13 @@ namespace user
 
       pitem = _001HitTest(pmouse->m_point, eelement);
 
-      if(pitem != nullptr)
+      if (pitem != nullptr)
       {
 
-         if(eelement == e_tree_element_expand_box || eelement == e_tree_element_image || eelement == e_tree_element_text)
+         if (eelement == e_tree_element_expand_box || eelement == e_tree_element_image || eelement == e_tree_element_text)
          {
 
-            _001ExpandItem(pitem, ::e_source_user, !(pitem->m_dwState & ::data::tree_item_state_expanded));
+            _001ExpandItem(pitem, ::e_source_user, !(pitem->m_dwState & ::data::e_tree_item_state_expanded));
 
          }
 
@@ -662,7 +662,7 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      m_uiLButtonUpFlags = (::u32) pmouse->m_nFlags;
+      m_uiLButtonUpFlags = (::u32)pmouse->m_nFlags;
 
       m_pointLButtonUp = pmouse->m_point;
 
@@ -687,7 +687,7 @@ namespace user
 
       pitem = _001HitTest(point, eelement);
 
-      if(pitem != nullptr)
+      if (pitem != nullptr)
       {
 
          if (eelement == e_tree_element_expand_box)
@@ -810,10 +810,10 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      if(item_height != 0)
+      if (item_height != 0)
       {
 
-         iItem = (i32) ((iy + pointOffset.y) / item_height);
+         iItem = (i32)((iy + pointOffset.y) / item_height);
 
       }
 
@@ -837,12 +837,12 @@ namespace user
 
       index iLevel = pitem->m_iLevel;
 
-      index x = (i32) (point. x - _001GetIndentation() * (iLevel) + pointOffset.x);
-      if(x >= 0 && x < 16)
+      index x = (i32)(point.x - _001GetIndentation() * (iLevel)+pointOffset.x);
+      if (x >= 0 && x < 16)
          eelement = e_tree_element_expand_box;
-      if(x >= 18 && x < 34)
+      if (x >= 18 && x < 34)
          eelement = e_tree_element_image;
-      if(x >= 36)
+      if (x >= 36)
          eelement = e_tree_element_text;
 
       return pitem;
@@ -876,7 +876,7 @@ namespace user
       MESSAGE_LINK(e_message_hscroll, pchannel, this, &tree::_001OnHScroll);
       MESSAGE_LINK(e_message_vscroll, pchannel, this, &tree::_001OnVScroll);
       MESSAGE_LINK(e_message_change_experience, pchannel, this, &tree::_001OnChangeExperience);
-//      //MESSAGE_LINK(e_message_timer         , pchannel, this, &tree::_001OnTimer);
+      //      //MESSAGE_LINK(e_message_timer         , pchannel, this, &tree::_001OnTimer);
 
    }
 
@@ -890,7 +890,7 @@ namespace user
 
       sizeTotal.cy = (::i32)(get_proper_item_count() * _001GetItemHeight());
 
-      m_pscrolldataVertical->m_iLine = (::i32) m_dItemHeight;
+      m_pscrolldataVertical->m_iLine = (::i32)m_dItemHeight;
 
       set_total_size(sizeTotal);
 
@@ -900,20 +900,20 @@ namespace user
 
 
    bool tree::_001GetItemElementRect(
-   RECTANGLE_I32 * prectangle,
+      RECTANGLE_I32 * prectangle,
 
-   ::user::tree_draw_item &drawitem,
-   ::user::enum_tree_element eelement)
+      ::user::tree_draw_item & drawitem,
+      ::user::enum_tree_element eelement)
    {
-      switch(eelement)
+      switch (eelement)
       {
       case e_tree_element_expand_box:
       {
-         prectangle->left   = (::i32)(drawitem.m_rectangle.left);
+         prectangle->left = (::i32)(drawitem.m_rectangle.left);
 
-         prectangle->right  = (::i32)minimum(prectangle->left + 16, drawitem.m_rectangle.right);
+         prectangle->right = (::i32)minimum(prectangle->left + 16, drawitem.m_rectangle.right);
 
-         prectangle->top    = (::i32)(drawitem.m_rectangle.top);
+         prectangle->top = (::i32)(drawitem.m_rectangle.top);
 
          prectangle->bottom = (::i32)(drawitem.m_rectangle.bottom);
 
@@ -921,20 +921,20 @@ namespace user
       break;
       case e_tree_element_image:
       {
-         prectangle->left   = (::i32)(drawitem.m_rectangle.left + 18);
+         prectangle->left = (::i32)(drawitem.m_rectangle.left + 18);
 
-         prectangle->right  = (::i32)minimum(prectangle->left + 16, drawitem.m_rectangle.right);
+         prectangle->right = (::i32)minimum(prectangle->left + 16, drawitem.m_rectangle.right);
 
          int iHDiff = 0;
 
          if (m_pimagelist != nullptr)
          {
 
-            iHDiff = (::i32) (drawitem.m_rectangle.height() - m_pimagelist->m_size.cy);
+            iHDiff = (::i32)(drawitem.m_rectangle.height() - m_pimagelist->m_size.cy);
 
          }
 
-         prectangle->top    = (::i32)(drawitem.m_rectangle.top +iHDiff/2);
+         prectangle->top = (::i32)(drawitem.m_rectangle.top + iHDiff / 2);
 
          prectangle->bottom = (::i32)(drawitem.m_rectangle.bottom - iHDiff / 2);
 
@@ -942,11 +942,11 @@ namespace user
       break;
       case e_tree_element_text:
       {
-         prectangle->left   = (::i32)(drawitem.m_rectangle.left + 38);
+         prectangle->left = (::i32)(drawitem.m_rectangle.left + 38);
 
-         prectangle->right  = (::i32)(drawitem.m_rectangle.right);
+         prectangle->right = (::i32)(drawitem.m_rectangle.right);
 
-         prectangle->top    = (::i32)(drawitem.m_rectangle.top);
+         prectangle->top = (::i32)(drawitem.m_rectangle.top);
 
          prectangle->bottom = (::i32)(drawitem.m_rectangle.bottom);
 
@@ -986,13 +986,13 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      if(bExpand)
+      if (bExpand)
       {
 
-         if(!(pitem->m_dwState & ::data::tree_item_state_expanded))
+         if (!(pitem->m_dwState & ::data::e_tree_item_state_expanded))
          {
 
-            pitem->m_dwState |= ::data::tree_item_state_expanded;
+            pitem->m_dwState |= ::data::e_tree_item_state_expanded;
 
             _001OnItemExpand(pitem, context);
 
@@ -1017,21 +1017,21 @@ namespace user
             else
             {
 
-               iDivision = (::index) (pointOffset.y / _001GetItemHeight());
+               iDivision = (::index)(pointOffset.y / _001GetItemHeight());
 
             }
 
-            index iLastVisibleIndex = (index) (iDivision + _001GetVisibleItemCount()) + 1;
+            index iLastVisibleIndex = (index)(iDivision + _001GetVisibleItemCount()) + 1;
 
 
 
             index iObscured; // obscured proper descendants
-            iObscured = iLastChildIndex  - iLastVisibleIndex;
+            iObscured = iLastChildIndex - iLastVisibleIndex;
 
-            if(iObscured > 0)
+            if (iObscured > 0)
             {
 
-               index iNewScroll = (i32) (pointOffset.y + iObscured * _001GetItemHeight());
+               index iNewScroll = (i32)(pointOffset.y + iObscured * _001GetItemHeight());
 
                if (iNewScroll > (iParentIndex * _001GetItemHeight()))
                {
@@ -1054,10 +1054,10 @@ namespace user
       }
       else
       {
-         if ((pitem->m_dwState & ::data::tree_item_state_expanded))
+         if ((pitem->m_dwState & ::data::e_tree_item_state_expanded))
          {
 
-            pitem->m_dwState &= ~::data::tree_item_state_expanded;
+            pitem->m_dwState &= ~::data::e_tree_item_state_expanded;
 
             _001OnItemCollapse(pitem, context);
 
@@ -1065,7 +1065,7 @@ namespace user
       }
 
       set_need_layout();
-      if(bRedraw)
+      if (bRedraw)
       {
          set_need_redraw();
       }
@@ -1155,12 +1155,12 @@ namespace user
    }
 
 
-   void tree::_001OnChangeExperience(::message::message* pmessage)
+   void tree::_001OnChangeExperience(::message::message * pmessage)
    {
 
       pmessage->previous();
 
-//      style_context context(this);
+      //      style_context context(this);
 
       auto psystem = m_psystem->m_paurasystem;
 
@@ -1196,23 +1196,23 @@ namespace user
 
       ::user::scroll_base::on_change_context_offset(pgraphics);
 
-//      auto psession = get_session();
-//
-//      auto puser = psession->user();
-//
-//      auto pwindowing = puser->windowing();
-//
-//      auto pointCursor = pwindowing->get_cursor_position();
-//
-//      auto pmouse = __create_new < ::user::mouse >();
-//
-//      pmouse->m_point = pointCursor;
-//
-//      update_hover(pmouse);
-//
-//      set_need_redraw();
-//
-//      post_redraw();
+      //      auto psession = get_session();
+      //
+      //      auto puser = psession->user();
+      //
+      //      auto pwindowing = puser->windowing();
+      //
+      //      auto pointCursor = pwindowing->get_cursor_position();
+      //
+      //      auto pmouse = __create_new < ::user::mouse >();
+      //
+      //      pmouse->m_point = pointCursor;
+      //
+      //      update_hover(pmouse);
+      //
+      //      set_need_redraw();
+      //
+      //      post_redraw();
 
    }
 
@@ -1233,23 +1233,23 @@ namespace user
 
       }
 
-//      auto preferredDensity = preferred_density();
+      //      auto preferredDensity = preferred_density();
 
-//      m_dItemHeight = 18.0 * preferredDensity;
+      //      m_dItemHeight = 18.0 * preferredDensity;
 
-      //if (m_puserstyle == nullptr)
-      //{
+            //if (m_puserstyle == nullptr)
+            //{
 
-      //   m_puserstyle = get_top_level();
+            //   m_puserstyle = get_top_level();
 
-      //}
+            //}
 
-      //if (m_puserstyle == nullptr)
-      //{
+            //if (m_puserstyle == nullptr)
+            //{
 
-      //   m_puserstyle = papp->userstyle();
+            //   m_puserstyle = papp->userstyle();
 
-      //}
+            //}
 
       _001CalculateItemHeight(pgraphics);
 
@@ -1334,7 +1334,7 @@ namespace user
 
       //}
 
-      if(pitem != m_pitemHover)
+      if (pitem != m_pitemHover)
       {
 
          m_pitemHover = pitem;
@@ -1396,7 +1396,7 @@ namespace user
 
       i32 iWidth;
 
-      index iIndent  = _001GetIndentation();
+      index iIndent = _001GetIndentation();
 
       __pointer(::data::tree_item) pitem = m_pitemFirstVisible;
 
@@ -1407,19 +1407,19 @@ namespace user
 
       }
 
-      for(i32 i = 0; i < iCount; i++)
+      for (i32 i = 0; i < iCount; i++)
       {
 
-         iWidth = (i32) (200 + iIndent * pitem->m_iLevel);
+         iWidth = (i32)(200 + iIndent * pitem->m_iLevel);
 
-         if(iWidth > iMaxWidth)
+         if (iWidth > iMaxWidth)
          {
 
             iMaxWidth = iWidth;
 
          }
 
-         pitem = pitem->get_item(::data::TreeNavigationProperForward);
+         pitem = pitem->get_item(::data::e_tree_navigation_proper_forward);
 
          if (pitem == nullptr)
          {
@@ -1466,36 +1466,36 @@ namespace user
 
       iProperIndex = 0;
 
-         pitem = m_ptree->get_base_item();
+      pitem = m_ptree->get_base_item();
 
-         for (;;)
+      for (;;)
+      {
+
+         ::data::tree_item * pitemNext = pitem->get_item(::data::e_tree_navigation_proper_forward);
+
+         if (pitemNext == nullptr)
          {
 
-            ::data::tree_item * pitemNext = pitem->get_item(::data::TreeNavigationProperForward);
-
-            if (pitemNext == nullptr)
-            {
-
-               break;
-
-            }
-
-            pitem = pitemNext;
-
-            if (nOffset <= 0)
-            {
-
-               return pitem;
-
-            }
-
-            nOffset--;
-
-            iProperIndex++;
+            break;
 
          }
 
-         return pitem;
+         pitem = pitemNext;
+
+         if (nOffset <= 0)
+         {
+
+            return pitem;
+
+         }
+
+         nOffset--;
+
+         iProperIndex++;
+
+      }
+
+      return pitem;
 
    }
 
@@ -1568,13 +1568,13 @@ namespace user
       __pointer_array(::data::tree_item) spitema;
 
       pitem = m_ptree->get_base_item();
-      
+
       iLevel = 0;
 
       for (;;)
       {
 
-         pitem = pitem->get_item(::data::TreeNavigationProperForward, &iLevel);
+         pitem = pitem->get_item(::data::e_tree_navigation_proper_forward, &iLevel);
 
          if (pitem == nullptr)
          {
@@ -1583,7 +1583,7 @@ namespace user
 
          }
 
-         if (spitema.find_first(pitem)>= 0)
+         if (spitema.find_first(pitem) >= 0)
          {
 
             //output_debug_string("what!?!");
@@ -1626,7 +1626,7 @@ namespace user
    int tree::_001CalcTotalImpactHeight()
    {
 
-      return (int) (_001GetProperItemCount() * _001GetItemHeight());
+      return (int)(_001GetProperItemCount() * _001GetItemHeight());
 
    }
 
@@ -1654,7 +1654,7 @@ namespace user
       for (;;)
       {
 
-         ptreeitem = ptreeitem->get_item(::data::TreeNavigationProperForward, &iLevel);
+         ptreeitem = ptreeitem->get_item(::data::e_tree_navigation_proper_forward, &iLevel);
 
          if (!ptreeitem)
          {
@@ -1709,7 +1709,7 @@ namespace user
    i32 tree::get_wheel_scroll_delta()
    {
 
-      return (::i32) (3.0 * m_dItemHeight);
+      return (::i32)(3.0 * m_dItemHeight);
 
    }
 
@@ -2063,7 +2063,7 @@ namespace user
 
       __pointer(::user::impact) pimpact = this;
 
-      if(pimpact.is_set())
+      if (pimpact.is_set())
       {
 
          pimpact->get_document()->add_data(ptree);
@@ -2102,7 +2102,7 @@ namespace user
    }
 
 
-   __pointer(::data::tree_item) tree::_get_proper_item(index i, index* piLevel, index* piCount)
+   __pointer(::data::tree_item) tree::_get_proper_item(index i, index * piLevel, index * piCount)
    {
 
       if (!m_ptree)
@@ -2137,7 +2137,7 @@ namespace user
    }
 
 
-   index tree::get_proper_item_index(::data::tree_item *pitemParam, index * piLevel)
+   index tree::get_proper_item_index(::data::tree_item * pitemParam, index * piLevel)
    {
 
       index iCount = 0;
@@ -2191,10 +2191,10 @@ namespace user
 
       ::data::tree_item * pitemExpand = pitem;
 
-      while(pitemExpand != nullptr)
+      while (pitemExpand != nullptr)
       {
 
-         pitemExpand->m_dwState |= ::data::tree_item_state_expanded;
+         pitemExpand->m_dwState |= ::data::e_tree_item_state_expanded;
 
          pitemExpand = pitemExpand->m_pparent;
 

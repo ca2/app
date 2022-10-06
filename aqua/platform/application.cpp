@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aqua/multimedia/multimedia.h"
 #include "aqua/xml/document.h"
 
@@ -106,16 +106,22 @@ namespace aqua
    bool application::load_cached_string(string& str, const ::atom& atom, bool bLoadStringTable)
    {
 
-      auto pdocument = __create_new<::xml::document>();
+      auto pxmldocument = __create_new < ::xml::document >();
 
-      if (!pdocument->load(atom))
+      try
+      {
+
+         pxmldocument->load(atom);
+
+      }
+      catch(...)
       {
 
          return load_cached_string_by_id(str, atom, bLoadStringTable);
 
       }
 
-      auto pnodeRoot = pdocument->root();
+      auto pnodeRoot = pxmldocument->root();
 
       if (pnodeRoot->get_name() == "string")
       {

@@ -1,4 +1,7 @@
-#pragma once
+﻿#pragma once
+
+
+#include "impact.h"
 
 
 namespace filemanager

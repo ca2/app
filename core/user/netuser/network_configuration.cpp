@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "core/user/netuser/_netuser.h"
 #include "aqua/xml/document.h"
 #include "core/user/user/user.h"
@@ -92,24 +92,21 @@ namespace usernet
 
       xml::document doc;
 
-      if(doc.load(pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata()/"proxy.xml")))
-      {
+      doc.load(pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().appdata() / "proxy.xml"));
          
-         string strProxy(doc.root()->attribute("server").get_string());
+      string strProxy(doc.root()->attribute("server").get_string());
 
-         i32 iProxyPort;
+      i32 iProxyPort;
 
-         doc.root()->attribute("port").as(iProxyPort);
+      doc.root()->attribute("port").as(iProxyPort);
          
-         auto pinteraction = m_pimpact->get_child_by_name("server");
+      auto pinteraction = m_pimpact->get_child_by_name("server");
          
-         pinteraction->_001SetText(strProxy, ::action_context(::e_source_data) +  ::e_source_load);
+      pinteraction->_001SetText(strProxy, ::action_context(::e_source_data) +  ::e_source_load);
 
-         pinteraction = m_pimpact->get_child_by_name("port");
+      pinteraction = m_pimpact->get_child_by_name("port");
          
-         pinteraction->_001SetText(__string(iProxyPort), ::action_context(::e_source_data) +  ::e_source_load);
-
-      }
+      pinteraction->_001SetText(__string(iProxyPort), ::action_context(::e_source_data) +  ::e_source_load);
 
    }
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/operating_system.h"
 
 
@@ -355,6 +355,23 @@ void task::stop_task()
 }
 
 
+void task::destroy()
+{
+   
+   ::object::destroy();
+
+   if (m_pexceptiontranslator)
+   {
+
+      m_pexceptiontranslator->detach();
+
+      m_pexceptiontranslator.release();
+
+   }
+
+}
+
+
 void task::__task_init()
 {
 
@@ -463,15 +480,9 @@ void* task::s_os_task(void* p)
 
       ptask->set(e_flag_task_terminated);
 
-#if defined(WINDOWS)
-
-      ptask->m_pexceptiontranslator->detach();
-
-      ptask->m_pexceptiontranslator->destroy();
+      ptask->destroy();
 
       ptask->release();
-
-#endif
 
 
 #if OBJECT_REFERENCE_COUNT_DEBUG

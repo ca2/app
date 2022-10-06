@@ -1,6 +1,6 @@
-#include "framework.h"
-#include "_data.h"
-#include "_tree.h"
+﻿#include "framework.h"
+#include "tree_data.h"
+#include "tree.h"
 #include "aura/graphics/draw2d/draw2d.h"
 
 
@@ -159,9 +159,9 @@ namespace user
       if(pitem->get_children_count() > 0)
       {
 
-         pitem->m_dwState |= ::data::tree_item_state_expanded;
+         pitem->m_dwState |= ::data::e_tree_item_state_expanded;
 
-         pitem->m_dwState |= ::data::tree_item_state_expandable;
+         pitem->m_dwState |= ::data::e_tree_item_state_expandable;
 
       }
 
@@ -185,9 +185,9 @@ namespace user
          return;
       if(pitem->get_children_count() > 0)
       {
-         pitem->m_dwState |= ::data::tree_item_state_expandable;
+         pitem->m_dwState |= ::data::e_tree_item_state_expandable;
       }
-      pitem->m_dwState &= ~::data::tree_item_state_expanded;
+      pitem->m_dwState &= ~::data::e_tree_item_state_expanded;
       /*for (index i = 0; i < m_usertreea.get_count(); i++)
       {
 

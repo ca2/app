@@ -749,7 +749,6 @@
     <Lib />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="filesystem\filehandler\handler.cpp" />
     <ClCompile Include="filesystem\filehandler\item.cpp" />
     <ClCompile Include="filesystem\filehandler\library.cpp" />
@@ -921,10 +920,6 @@
     <ClCompile Include="user\user\xfplayer_impact_lines.cpp" />
     <ClCompile Include="user\user\xfplayer_impact_line_selection.cpp" />
     <ClCompile Include="_.cpp" />
-    <ClInclude Include="astr.h" />
-    <ClInclude Include="console.h" />
-    <ClInclude Include="constant\idpool.h" />
-    <ClInclude Include="const\procedure.h" />
     <ClInclude Include="filesystem\filehandler\aaa_data.h" />
     <ClInclude Include="filesystem\filemanager\component.h" />
     <ClInclude Include="filesystem\filemanager\impact.h" />
@@ -934,11 +929,9 @@
     <ClInclude Include="filesystem\userfs\_tree.h" />
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="framework_c.h" />
     <ClInclude Include="html\hi5\_.h" />
     <ClInclude Include="html\hi5\hi5_twitter_authorization.h" />
     <ClInclude Include="html\_.h" />
-    <ClInclude Include="id.h" />
     <ClInclude Include="inline\application\linux.h" />
     <ClInclude Include="inline\application\macos.h" />
     <ClInclude Include="inline\application\universal_windows.h" />
@@ -952,7 +945,6 @@
     <ClInclude Include="inline\_app_impl1.h" />
     <ClInclude Include="inline\_console_old.h" />
     <ClInclude Include="inline\_new_impl.h" />
-    <ClInclude Include="message.h" />
     <ClInclude Include="networking\ftp\client_socket.h" />
     <ClInclude Include="networking\ftp\data_types.h" />
     <ClInclude Include="networking\ftp\file.h" />
@@ -965,18 +957,11 @@
     <ClInclude Include="networking\ftp\_.h" />
     <ClInclude Include="networking\_.h" />
     <ClInclude Include="networking\_impl.h" />
-    <ClInclude Include="net\_net_impl.h" />
-    <ClInclude Include="node\opengl\buffer.h" />
-    <ClInclude Include="node\opengl\context.h" />
-    <ClInclude Include="node\opengl\opengl.h" />
-    <ClInclude Include="node\opengl\program.h" />
-    <ClInclude Include="node\opengl\shader.h" />
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\core.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\_.h" />
-    <ClInclude Include="platform\_generic_object_constructor_impl.h" />
     <ClInclude Include="include\objc.h" />
     <ClInclude Include="include\objcpp.h" />
     <ClInclude Include="include\winrt.h" />
@@ -1011,14 +996,11 @@
     <ClInclude Include="user\userex\group_image_list.h" />
     <ClInclude Include="user\userex\image_list.h" />
     <ClInclude Include="user\userex\progress.h" />
-    <ClInclude Include="user\user\aaa_shell.h" />
     <ClInclude Include="user\user\impact.h" />
     <ClInclude Include="user\user\text_format_object.h" />
     <ClInclude Include="user\user\user.h" />
-    <ClInclude Include="user\user\_tree.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="version\version.h" />
-    <ClInclude Include="xml.h" />
     <ClInclude Include="filesystem\filehandler\_.h" />
     <ClInclude Include="filesystem\filehandler\_component.h" />
     <ClInclude Include="filesystem\filehandler\handler.h" />
@@ -1159,7 +1141,6 @@
     <ClInclude Include="user\userex\_.h" />
     <ClInclude Include="user\userex\_impl.h" />
     <ClInclude Include="user\userex\_component.h" />
-    <ClInclude Include="user\user\00.h" />
     <ClInclude Include="user\user\color_combo_box.h" />
     <ClInclude Include="user\user\control_ddx_dbflags.h" />
     <ClInclude Include="user\user\elastic_slider.h" />
@@ -1170,7 +1151,6 @@
     <ClInclude Include="user\user\form_mesh.h" />
     <ClInclude Include="user\user\form_update_hint.h" />
     <ClInclude Include="user\user\image_manager.h" />
-    <ClInclude Include="user\user\inline.h" />
     <ClInclude Include="user\user\list.h" />
     <ClInclude Include="user\user\list_cache.h" />
     <ClInclude Include="user\user\list_column.h" />
@@ -1189,12 +1169,10 @@
     <ClInclude Include="user\user\statusbar.h" />
     <ClInclude Include="user\user\step_slider.h" />
     <ClInclude Include="user\user\toggle_switch.h" />
-    <ClInclude Include="user\user\toolbar.h" />
     <ClInclude Include="user\user\toolbar_control.h" />
     <ClInclude Include="user\user\tool_command.h" />
     <ClInclude Include="user\user\tool_tip_tool.h" />
     <ClInclude Include="user\user\tool_tip_window.h" />
-    <ClInclude Include="user\user\tool_window.h" />
     <ClInclude Include="user\user\tree.h" />
     <ClInclude Include="user\user\tree_data.h" />
     <ClInclude Include="user\user\xfplayer_impact_line.h" />
@@ -1203,12 +1181,9 @@
     <ClInclude Include="user\user\_.h" />
     <ClInclude Include="user\user\tooltip.h" />
     <ClInclude Include="user\user\_constant.h" />
-    <ClInclude Include="user\user\_component.h" />
     <ClInclude Include="_.h" />
-    <ClInclude Include="_defer.h" />
     <None Include="filesystem\_impl.h" />
     <None Include="user\rich_text\_impl.h" />
-    <None Include="user\user\_impl.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="deployment.rc" />

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aqua/xml/document.h"
 #include "impact.h"
 #include "aura/graphics/write_text/font.h"
@@ -676,10 +676,20 @@ namespace user
 
       auto pcontext = get_context();
 
-      string str = pcontext->m_papexcontext->file().as_string(payloadFile);
+      string strXml = pcontext->m_papexcontext->file().as_string(payloadFile);
 
-      if (!m_pxmldoc->load(str))
+      try
       {
+
+         m_pxmldoc->load(strXml);
+
+      }
+      catch (const ::exception & exception)
+      {
+
+         auto psequencer = exception_message_sequencer(exception);
+
+         psequencer->do_asynchronously();
 
          return false;
 

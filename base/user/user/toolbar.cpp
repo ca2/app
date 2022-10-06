@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/user/user/tool_item.h"
 #include "aura/operating_system.h"
 #include "aqua/xml/document.h"
@@ -1896,12 +1896,27 @@ namespace user
 
       m_pitema->erase_all();
 
-      auto pxmldocument = __create_new < xml::document >();
+      auto pxmldocument = __create_new < ::xml::document >();
 
-      auto strXmlText = m_pcontext->m_papexcontext->file().as_string(payloadFile);
+      auto strXml = m_pcontext->m_papexcontext->file().as_string(payloadFile);
 
-      pxmldocument->parse_xml_text(strXmlText);
-//      if (!pxmldocument->parse_xml_text(strXmlText))
+      //try
+      //{
+
+         pxmldocument->load(strXml);
+
+      //}
+      //catch (const ::exception & exception)
+      //{
+
+      //   auto psequencer = exception_message_sequencer(exception);
+
+      //   psequencer->do_asynchronously();
+
+      //   return false;
+
+      //}
+      //      if (!pxmldocument->parse_xml_text(strXmlText))
 //      {
 //
 //         return false;

@@ -536,7 +536,7 @@
     <ClInclude Include="node\opengl\shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="astr.h">
+    <ClInclude Include="aaa_astr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="console_slim.h">

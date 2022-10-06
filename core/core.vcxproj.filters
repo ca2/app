@@ -149,9 +149,6 @@
     <ClInclude Include="user\simple\message_box.h">
       <Filter>Header Files\user\simple</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\_component.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\_constant.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -191,9 +188,6 @@
     <ClInclude Include="user\user\_.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\00.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="user\user\color_combo_box.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
@@ -222,9 +216,6 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\image_manager.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\inline.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\list.h">
@@ -285,12 +276,6 @@
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\tool_tip_window.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\tool_window.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\toolbar.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user\toolbar_control.h">
@@ -692,31 +677,13 @@
     <ClInclude Include="version\version.h">
       <Filter>Header Files\version</Filter>
     </ClInclude>
-    <ClInclude Include="id.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="update.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="framework_c.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="message.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="xml.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="user.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="_defer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="console.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="user\userex\progress.h">
@@ -821,35 +788,8 @@
     <ClInclude Include="filesystem\userfs\_tree.h">
       <Filter>Header Files\filesystem\userfs</Filter>
     </ClInclude>
-    <ClInclude Include="platform\_generic_object_constructor_impl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="user\_.h">
       <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="const\procedure.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="net\_net_impl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\buffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\context.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\opengl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\program.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="node\opengl\shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="astr.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\aaa_want_to_erase_callback.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
@@ -862,9 +802,6 @@
     </ClInclude>
     <ClInclude Include="filesystem\filemanager\component.h">
       <Filter>Header Files\filesystem\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\_tree.h">
-      <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="platform\application.h">
       <Filter>Header Files\platform</Filter>
@@ -907,9 +844,6 @@
     </ClInclude>
     <ClInclude Include="user\rich_text\format_tool.h">
       <Filter>Header Files\user\rich_text</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user\aaa_shell.h">
-      <Filter>Header Files\user\user</Filter>
     </ClInclude>
     <ClInclude Include="platform\_impl.h">
       <Filter>Header Files\platform</Filter>
@@ -979,9 +913,6 @@
     </ClInclude>
     <ClInclude Include="html\hi5\_.h">
       <Filter>Header Files\html\hi5</Filter>
-    </ClInclude>
-    <ClInclude Include="constant\idpool.h">
-      <Filter>Header Files\constant</Filter>
     </ClInclude>
     <ClInclude Include="filesystem\filehandler\aaa_data.h">
       <Filter>Header Files\filesystem\filehandler</Filter>
@@ -1483,9 +1414,6 @@
     <ClCompile Include="user\user\mesh_item.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="constant\idpool.cpp">
-      <Filter>Source Files\constant</Filter>
-    </ClCompile>
     <ClCompile Include="user\account\main_window.cpp">
       <Filter>Source Files\user\account</Filter>
     </ClCompile>
@@ -1499,9 +1427,6 @@
   <ItemGroup>
     <None Include="filesystem\_impl.h">
       <Filter>Header Files\filesystem</Filter>
-    </None>
-    <None Include="user\user\_impl.h">
-      <Filter>Header Files\user\user</Filter>
     </None>
     <None Include="user\rich_text\_impl.h">
       <Filter>Header Files\user\rich_text</Filter>

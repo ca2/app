@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "tab_impact.h"
 #include "tab_pane.h"
 #include "tab_data.h"
@@ -620,7 +620,7 @@ namespace user
             
             __pointer(::user::frame_window) pframewindow = pinteraction;
 
-            if(pframewindow->first_child())
+            if(pframewindow && pframewindow->first_child())
             {
                
                pinteraction = pframewindow->first_child();

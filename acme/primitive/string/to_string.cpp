@@ -1,6 +1,9 @@
 // Created by camilo on 2022-04-24 04:50 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 
+// Sort of Canonical to serve as example and general correct solution
+// Developers can created local versions or inline/template libraries for optmized instantiation
+
 
 #if defined(ANDROID) || defined(WINDOWS) || defined(__APPLE__) || defined(RASPBIAN)
 
@@ -31,7 +34,7 @@ CLASS_DECL_ACME void to_string(string & str, const bool & b);
    {
 
    str = "\"true\"";
-   
+
 }
  else
  {

@@ -417,6 +417,8 @@ list(APPEND library_source
         user/user/plain_edit_style.h
    user/user/plain_text_data.cpp
    user/user/plain_text_data.h
+        user/user/plain_text_tree.cpp
+        user/user/plain_text_tree.h
    user/user/primitive_impl.cpp
    user/user/primitive_impl.h
         user/user/prodevian.cpp

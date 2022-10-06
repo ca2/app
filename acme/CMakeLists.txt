@@ -581,6 +581,8 @@ list(APPEND library_source
    primitive/primitive/object.h
    primitive/primitive/object.h
    primitive/primitive/papaya.h
+        primitive/primitive/particle.cpp
+        primitive/primitive/particle.h
    primitive/primitive/payload.cpp
    primitive/primitive/payload.h
    primitive/primitive/payload2.h
@@ -865,6 +867,9 @@ list(APPEND library_source
    constant/status_range_authentication.h
    constant/thread.h
    constant/timer.h
+        constant/user/_.h
+        constant/user/tool_item.h
+
    exception/_.h
    exception/_c.h
    #exception/_const.h
@@ -988,7 +993,7 @@ list(APPEND library_source
    include/_c.h
    include/_c_bridge.h
    include/_include.h
-   include/_no_templates.h
+   include/_simple_templates.h
    include/_setup.h
    include/objc.h
    include/objcpp.h
@@ -1046,6 +1051,7 @@ list(APPEND library_source
    operating_system/_application.h
    operating_system/_impl.h
    operating_system/_operating_system.h
+        operating_system/_api.cpp
    #operating_system/_user.h
    operating_system/ansi/_.h
    operating_system/ansi/_ansi.h
@@ -1063,7 +1069,8 @@ list(APPEND library_source
    operating_system/ansi/semun.h
    operating_system/file.h
    operating_system/graphics.h
-
+        operating_system/error_code.cpp
+    operating_system/error_code.h
    operating_system/os_windowing2.h
    operating_system/parallelization.h
    operating_system/posix/callstack.cpp
@@ -1204,6 +1211,8 @@ list(APPEND library_source
    platform/common.h
    platform/const.h
    platform/constraint.h
+        platform/conversation_message.cpp
+        platform/conversation_message.h
    platform/debug.h
    platform/definition.h
    platform/display.h
@@ -1365,7 +1374,7 @@ list(APPEND library_source
    template/list.h
    update.h
    user/user/_.h
-   user/user/_constant.h
+   #user/user/_constant.h
    user/user/_constant_key.h
    user/user/os_colors.h
    #user/user/mouse.cpp

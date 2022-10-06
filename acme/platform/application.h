@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 22/02/2022. 01:19 <3ThomasBorregaardSorensen!!
 //
 // app to application and back to acme namespace by camilo on 2022-09-17 18:51 <3ThomasBorregaardSorensen!!
@@ -31,8 +31,7 @@ namespace acme
 
    class CLASS_DECL_ACME application :
       virtual public ::main,
-      virtual public ::acme::context,
-      virtual public ::task
+      virtual public ::acme::context
    {
    public:
 

@@ -1,4 +1,4 @@
-// application back to apex namespace by camilo on 2022-09-17 18:51 <3ThomasBorregaardSorensen!!
+﻿// application back to apex namespace by camilo on 2022-09-17 18:51 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -727,7 +727,7 @@ namespace apex
       virtual string get_app_user_friendly_task_bar_name();
 
       //void signal(::signal * psignal) override;
-      void handle(::topic * ptopic, ::context * pcontext) override;
+      //void handle(::topic * ptopic, ::context * pcontext) override;
 
       //virtual bool compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed);
 

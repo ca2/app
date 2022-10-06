@@ -7,6 +7,14 @@
 #include "framework.h"
 
 
+handler::~handler()
+{
+
+
+
+}
+
+
 CLASS_DECL_ACME void __call(handler * phandler, const ::atom & atom, i64 wParam, i64 lParam, ::matter * pmatter)
 {
 

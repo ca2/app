@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "apex/message/application.h"
 #include "apex/id.h"
 #include "acme/platform/version.h"
@@ -4796,11 +4796,11 @@ namespace apex
    //}
 
 
-   void application::handle(::topic * ptopic, ::context * pcontext)
-   {
+   //void application::handle(::topic * ptopic, ::context * pcontext)
+   //{
 
 
-   }
+   //}
 
 
    //bool application::compress_ungz(::file::file * pfileUncompressed, ::file::file * pfileCompressed)

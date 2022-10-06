@@ -1154,6 +1154,7 @@
     <ClCompile Include="primitive\media_library\item.cpp" />
     <ClCompile Include="primitive\primitive\block.cpp" />
     <ClCompile Include="primitive\primitive\object.cpp" />
+    <ClCompile Include="primitive\primitive\particle.cpp" />
     <ClCompile Include="primitive\primitive\property_object.cpp" />
     <ClCompile Include="primitive\primitive\estatus.cpp" />
     <ClCompile Include="primitive\primitive\material_object.cpp" />

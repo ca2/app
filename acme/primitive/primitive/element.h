@@ -1,4 +1,4 @@
-// Created by camilo on 2021-08-01 22:55 Thomas Month!! <3ThomasBS__!!
+﻿// Created by camilo on 2021-08-01 22:55 Thomas Month!! <3ThomasBS__!!
 #pragma once
 
 
@@ -28,7 +28,7 @@ public:
    inline element(const element& element) : m_eflagElement(element.m_eflagElement), m_countReference(1) { }
 #endif
    inline element(element && element) : m_eflagElement(element.m_eflagElement), m_countReference(element.m_countReference) {  }
-   virtual ~element() {}
+   ~element() override;
 
 
 #ifdef _DEBUG
@@ -45,7 +45,7 @@ public:
 
 #endif
 
-   virtual void delete_this() { delete this; };
+   virtual void delete_this();
 
 
    // <3ThomasBorregaardSørensen__!! likes handler concept...
@@ -58,8 +58,8 @@ public:
    virtual void call_member(::i64 i64);
    // <3ThomasBS_!! handle -> handle <3ThomasBS_!!
    //void handle(const  emessage, i64 iData = 0, ::matter * pmatter = nullptr) override;
-   void handle(::topic * ptopic, ::context * pcontext) override;
-   void handle(::message::message * pmessage) override;
+   //void handle(::topic * ptopic, ::context * pcontext) override;
+   //void handle(::message::message * pmessage) override;
 
 
    virtual void init_task();

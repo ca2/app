@@ -15,8 +15,7 @@ class CLASS_DECL_ACME handler :
 public:
 
 
-   virtual ~handler() {}
-
+   ~handler() override;
 
    // ThomasBorregaardSørensen!! Like handlers
    //virtual void call(const enum_message, i64 iData = 0, ::matter * pmatter = nullptr);

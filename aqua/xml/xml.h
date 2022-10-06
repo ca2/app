@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace xml
@@ -25,7 +25,7 @@ namespace xml
 
       virtual void init();
 
-      virtual __pointer(::xml::document) create_document(); 
+      //virtual __pointer(::xml::document) create_document(); 
 
 
       string special_chars(const char * psz);

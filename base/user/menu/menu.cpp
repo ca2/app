@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "menu.h"
 #include "item.h"
 #include "aura/id.h"
@@ -269,11 +269,7 @@ namespace user
 
       }
 
-      auto psystem = get_system()->m_paquasystem;
-
-      auto pxml = psystem->xml();
-
-      auto pdocument = pxml->create_document();
+      auto pdocument = __create_new < ::xml::document >();
 
       if (!pdocument->load(strXml))
       {

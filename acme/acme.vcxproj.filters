@@ -3862,6 +3862,9 @@
     <ClCompile Include="user\user\tool_item.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="primitive\primitive\particle.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\string\aaa_want_to_remove_str.inl">

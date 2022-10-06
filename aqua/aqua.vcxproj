@@ -82,7 +82,6 @@
     <ClInclude Include="platform\_impl.h" />
     <ClInclude Include="platform\_platform.h" />
     <ClInclude Include="user\controller.h" />
-    <ClInclude Include="xml.h" />
     <ClInclude Include="xml\attr.h" />
     <ClInclude Include="xml\base_array.h" />
     <ClInclude Include="xml\data.h" />

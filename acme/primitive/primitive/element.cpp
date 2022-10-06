@@ -1,5 +1,20 @@
-// Created by camilo on 2021-08-01 23:42 Thomas Month!! <3ThomasBS__!!
+﻿// Created by camilo on 2021-08-01 23:42 Thomas Month!! <3ThomasBS__!!
 #include "framework.h"
+
+
+element::~element()
+{
+
+
+}
+
+
+void element::delete_this()
+{
+   
+   delete this; 
+
+}
 
 
 #ifdef _DEBUG
@@ -79,18 +94,18 @@ void element::call_member(::i64 iId)
 //
 
 
-void element::handle(::topic * ptopic, ::context * pcontext)
-{
+//void element::handle(::topic * ptopic, ::context * pcontext)
+//{
+//
+//
+//}
 
 
-}
-
-
-void element::handle(::message::message * pmessage)
-{
-
-
-}
+//void element::handle(::message::message * pmessage)
+//{
+//
+//
+//}
 
 
 ::duration element::timeout() const

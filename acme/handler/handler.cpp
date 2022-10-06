@@ -78,6 +78,20 @@ void handler::call(const ::atom & atom, i64 wParam, i64 lParam, ::matter * pmatt
 }
 
 
+void handler::handle(::topic * ptopic, ::context * pcontext)
+{
+
+
+}
+
+
+void handler::handle(::message::message * pmessage)
+{
+
+
+}
+
+
 void handler::text_command(const char *)
 {
 

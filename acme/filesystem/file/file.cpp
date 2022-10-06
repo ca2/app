@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include <stdio.h>
 #include <stdarg.h>
 
@@ -684,8 +684,6 @@ namespace file
       as(memory);
 
       str = memory.get_string();
-
-      return true;
 
    }
 

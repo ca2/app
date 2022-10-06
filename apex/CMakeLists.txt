@@ -148,7 +148,7 @@ list(APPEND apex_source
    include/_c.h
    include/_c_bridge.h
    include/_include.h
-   include/_no_templates.h
+   include/_simple_templates.h
    include/_setup.h
    include/objc.h
    include/objcpp.h

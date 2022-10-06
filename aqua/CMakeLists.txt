@@ -61,6 +61,8 @@ list(APPEND library_source
         user/controller.cpp
         user/controller.h
         xml/_.h
+        xml/_constant.h
+
         #xml/_from.cpp
         xml/_geometry2d_impl.h
         xml/_impl.h
@@ -79,7 +81,6 @@ list(APPEND library_source
         xml/edit.h
         xml/entity.cpp
         xml/entity.h
-        xml/enum.h
         xml/exportable.cpp
         xml/exportable.h
         xml/glue.h
@@ -114,7 +115,8 @@ list(APPEND library_source
         framework.h
         id.h
         library.h
-        xml.h)
+        #xml.h
+        )
 
 if(MACOS)
     list(APPEND aqua_source

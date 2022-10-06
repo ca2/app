@@ -63,19 +63,13 @@ namespace user
       bool                             m_bShowTabs;
       bool                             m_bNoTabs;
       ::item_pointer                   m_pitemClick;
-      bool                             m_bTabScrollingActive;
-      ::point_i32                      m_pointLeftButtonDown;
       ::write_text::font_pointer           m_pfontTab;
       //__pointer(::create)              m_pcreate;
       ::count                          m_iRestoredTabCount;
       bool                             m_bDrawTabAtBackground;
       ::tristate                     m_bitLastShowTabs;
       enum_display                        m_edisplayParentFrameAutoHide;
-      int                              m_iTabScroll;
-      int                              m_iTabScrollStart;
-      int                              m_iTabScrollMax;
       int                              m_iTabSize;
-      bool                             m_bMouseDown;
       bool                             m_bCreatedTabs;
       bool                             m_bAutoCreateTabsOnCreate;
 
@@ -266,7 +260,6 @@ namespace user
 
       virtual bool defer_handle_auto_hide_tabs(bool bLayout = true);
 
-      inline bool _001HasTabScrolling() const { return m_iTabScrollMax > 0; }
 
 
    };

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/operating_system.h"
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
@@ -138,7 +138,17 @@ namespace user
 
    interaction::interaction()
    {
-
+      
+      
+      m_bDragScrollLeftButtonDown = false;
+      
+      m_bHorizontalDragScroll = false;
+      m_bHorizontalDragScrollingActive = false;
+      m_bVerticalDragScroll = false;
+      m_bVerticalDragScrollingActive = false;
+      m_pointDragScroll = {};
+      m_pointDragScrollMax = {};
+      
 #ifdef REPORT_OFFSETS
 
       if((offsetof(::user::interaction, m_oswindow) & 4) != 0)
@@ -3459,6 +3469,7 @@ namespace user
          {
 
             pointScroll.x += pChild->get_parent()->m_pointScroll.x;
+            pointScroll.x += pChild->get_parent()->m_pointDragScroll.x;
 
          }
 
@@ -3466,6 +3477,7 @@ namespace user
          {
 
             pointScroll.y += pChild->get_parent()->m_pointScroll.y;
+            pointScroll.y += pChild->get_parent()->m_pointDragScroll.y;
 
          }
 
@@ -3581,7 +3593,7 @@ namespace user
 
          pgraphics->reset_clip();
 
-         pgraphics->m_pointAddShapeTranslate = m_pointScroll;
+         pgraphics->m_pointAddShapeTranslate = m_pointScroll + m_pointDragScroll;
 
          pgraphics->intersect_clip(m_rectangleClip);
 
@@ -3783,6 +3795,15 @@ namespace user
 
       }
 
+      point_i32 pointDragScroll = m_pointDragScroll;
+
+      if (!pointDragScroll.is_null())
+      {
+
+         pgraphics->offset_origin(-pointDragScroll.x, -pointDragScroll.y);
+
+      }
+
       //on_context_offset(pgraphics);
 
 #ifdef __DEBUG
@@ -3973,6 +3994,8 @@ namespace user
 
       point_i32 pointScroll = m_pointScroll;
 
+      point_i32 pointDragScroll = m_pointDragScroll;
+
       bool bParentScrollX = false;
 
       bool bParentScrollY = false;
@@ -4025,6 +4048,7 @@ namespace user
                         {
 
                            pgraphics->offset_origin(-pointScroll.x, 0);
+                           pgraphics->offset_origin(-pointDragScroll.x, 0);
 
                            bParentScrollX = true;
 
@@ -4033,6 +4057,8 @@ namespace user
                         {
 
                            pgraphics->offset_origin(pointScroll.x, 0);
+                           pgraphics->offset_origin(pointDragScroll.x, 0);
+
 
                            bParentScrollX = false;
 
@@ -4042,6 +4068,7 @@ namespace user
                         {
 
                            pgraphics->offset_origin(0, -pointScroll.y);
+                           pgraphics->offset_origin(0, -pointDragScroll.y);
 
                            bParentScrollY = true;
 
@@ -4050,6 +4077,7 @@ namespace user
                         {
 
                            pgraphics->offset_origin(0, pointScroll.y);
+                           pgraphics->offset_origin(0, pointDragScroll.y);
 
                            bParentScrollY = false;
 
@@ -9655,6 +9683,7 @@ namespace user
 
       }
 
+      on_drag_scroll_layout(pgraphics);
 
       //if (::is_set(m_playout))
       //{
@@ -10475,6 +10504,25 @@ namespace user
       }
 
    }
+
+
+void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
+{
+   
+   //if(m_bVerticalDragScroll)
+   //{
+      auto rectangleClient = get_client_rect();
+      m_pointDragScrollMax = m_sizeDragScroll - rectangleClient.size();
+   //}
+   //if(m_bHorizontalDragScroll)
+//   {
+//      //auto rectangleClient = get_client_rect();
+//      //m_iHorizontalDragScrollMax = m_iHorizontalDragSize - rectangleClient.width();
+//
+//   }
+
+   
+}
 
 
    void interaction::window_show_change_visibility()
@@ -15044,7 +15092,7 @@ namespace user
 
       ::point_i32 pointOffset(x, y);
 
-      if (pointOffset == m_pointScroll)
+      if (pointOffset == (m_pointScroll + m_pointDragScroll))
       {
 
          return;
@@ -15109,7 +15157,7 @@ namespace user
    point_i32 interaction::get_context_offset()
    {
 
-      ::point_i32 point = m_pointScroll;
+      ::point_i32 point = m_pointScroll + m_pointDragScroll;
 
       return point;
 
@@ -17236,7 +17284,20 @@ namespace user
          }
 
       }
+      
+      if(m_bHorizontalDragScroll || m_bVerticalDragScroll)
+      {
+         
+         m_pointDragScrollLeftButtonDown = pmouse->m_point;
+         
+         m_bDragScrollLeftButtonDown = true;
+         
+         m_pointDragScrollStart = m_pointDragScroll;
 
+         set_mouse_capture();
+         
+      }
+         
       m_pitemLButtonDown = update_hover(pmouse);
 
       if (drag_on_button_down(m_pitemLButtonDown))
@@ -17414,6 +17475,30 @@ namespace user
 
       if (!is_window_enabled())
       {
+
+         return;
+
+      }
+      
+      if(m_bHorizontalDragScroll || m_bVerticalDragScroll)
+      {
+         
+//         m_pointDragScrollLeftButtonDown = pmouse->m_point;
+         
+         m_bDragScrollLeftButtonDown = false;
+         
+         release_mouse_capture();
+         
+      }
+
+      if (m_bHorizontalDragScrollingActive)
+      {
+
+         pmouse->m_bRet = true;
+
+         pmouse->m_lresult = 1;
+
+         m_bHorizontalDragScrollingActive = false;
 
          return;
 
@@ -17831,7 +17916,63 @@ namespace user
          }
 
       }
+      
+      if(m_bDragScrollLeftButtonDown)
+      {
+         
+         if (m_bHorizontalDragScroll)
+         {
+            
+            m_bHorizontalDragScrollingActive = true;
+            
+            int iOffset = m_pointDragScrollLeftButtonDown.x - pmouse->m_point.x;
+            
+            auto iHorizontalDragScroll = minimum_maximum(m_pointDragScrollStart.x + iOffset, 0, m_pointDragScrollMax.x);
+            
+            if (iHorizontalDragScroll != m_pointDragScroll.x)
+            {
+               
+               m_pointDragScroll.x = iHorizontalDragScroll;
+               
+               set_need_redraw();
+               
+               post_redraw();
+               
+            }
+            
+            pmouse->m_bRet = true;
+            
+            return;
+            
+         }
 
+         if (m_bVerticalDragScroll)
+         {
+            
+            m_bVerticalDragScrollingActive = true;
+            
+            int iOffset = m_pointDragScrollLeftButtonDown.y - pmouse->m_point.y;
+            
+            auto iVerticalDragScroll = minimum_maximum(m_pointDragScrollStart.y + iOffset, 0, m_pointDragScrollMax.y);
+            
+            if (iVerticalDragScroll != m_pointDragScroll.y)
+            {
+               
+               m_pointDragScroll.y = iVerticalDragScroll;
+               
+               set_need_redraw();
+               
+               post_redraw();
+               
+            }
+            
+         }
+         
+         pmouse->m_bRet = true;
+         
+         return;
+         
+      }
 
       {
 
@@ -18149,8 +18290,8 @@ namespace user
 
       synchronous_lock synchronouslock(mutex());
 
-      auto pointScroll = point + m_pointScroll;
-
+      auto pointScroll = point + m_pointScroll + m_pointDragScroll;
+      
       for (auto & pitem : *m_pitema)
       {
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "toolbar.h"
 #include "acme/user/user/tool_item.h"
 #include "aura/graphics/write_text/font.h"
@@ -1310,7 +1310,44 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
       }
 
    }
-
+   
+   ::rectangle rectangleSize;
+   
+   bool bFirstToolItemRectangle = true;
+   
+   for(index iItem = 0; iItem < tool_item_count(); iItem++)
+   {
+      
+      auto ptoolitem = index_tool_item(iItem);
+      
+      if(ptoolitem->is_hidden())
+      {
+         
+         continue;
+         
+      }
+      
+      if(bFirstToolItemRectangle)
+      {
+         
+         bFirstToolItemRectangle = false;
+         
+         rectangleSize = ptoolitem->m_rectangle;
+         
+      }
+      else
+      {
+         
+         rectangleSize.unite(ptoolitem->m_rectangle);
+         
+      }
+      
+   }
+   
+   m_sizeDragScroll.cx = rectangleSize.right + m_rectangleBorder.right;
+   
+   m_sizeDragScroll.cy = rectangleSize.bottom + m_rectangleBorder.bottom;
+      
 }
 
 

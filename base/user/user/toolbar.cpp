@@ -1521,6 +1521,8 @@ namespace user
    void toolbar::on_message_create(::message::message * pmessage)
    {
 
+      m_bHorizontalDragScroll = is_sandboxed();
+      
       set_timer(e_timer_command_probe, 333_ms);
 
    }

@@ -42,16 +42,14 @@ namespace user
    tab::tab()
    {
 
-      m_bTabScrollingActive = false;
+
 
       m_bHoverDefaultMouseHandling = true;
 
       m_econtroltype = e_control_type_tab;
 
-      m_bMouseDown = false;
+      //m_bMouseDown = false;
 
-      m_iTabScroll = 0;
-      m_iTabScrollMax = 0;
       m_iTabSize = 0;
       m_edisplayParentFrameAutoHide = ::e_display_none;
       m_estate = e_state_initial;
@@ -1627,18 +1625,15 @@ namespace user
       if(m_pdata->m_bVertical)
       {
 
-         m_iTabSize = (int) m_pdata->m_tabpanecompositea.get_count() * m_pdata->m_iTabHeight;
+         m_sizeDragScroll.cy = (int) m_pdata->m_tabpanecompositea.get_count() * m_pdata->m_iTabHeight;
 
-         m_iTabScrollMax = m_iTabSize - rectangleClient.height();
 
       }
       else
       {
 
-         m_iTabSize = m_pdata->m_tabpanecompositea.last()->m_point.x +
+         m_sizeDragScroll.cx = m_pdata->m_tabpanecompositea.last()->m_point.x +
          m_pdata->m_tabpanecompositea.last()->m_size.cx;
-
-         m_iTabScrollMax = m_iTabSize - rectangleClient.width();
 
       }
 
@@ -1737,19 +1732,17 @@ namespace user
 
       get_data()->m_iClickTab = -1;
 
-      m_pointLeftButtonDown = pmouse->m_point;
+      ///m_pointLeftButtonDown = pmouse->m_point;
       
-      m_iTabScrollStart = m_iTabScroll;
-
-      m_bMouseDown = true;
+      //m_bMouseDown = true;
 
       if(::is_element(m_pitemClick, e_element_tab_near_scroll))
       {
 
-         if(m_iTabScroll > 0)
+         if(m_pointDragScroll.x > 0)
          {
 
-            m_iTabScroll--;
+            m_pointDragScroll.x--;
 
             set_need_redraw();
 
@@ -1767,10 +1760,10 @@ namespace user
       else if(::is_element(m_pitemClick, e_element_tab_far_scroll))
       {
 
-         if(m_iTabScroll < m_iTabScrollMax)
+         if(m_pointDragScroll.x < m_pointDragScrollMax.x)
          {
 
-            m_iTabScroll++;
+            m_pointDragScroll.x++;
 
             set_need_redraw();
 
@@ -1840,27 +1833,14 @@ namespace user
 
       auto pmouse = pmessage->m_union.m_pmouse;
 
-      if(m_bMouseDown)
-      {
-
-         m_bMouseDown = false;
-
-         release_mouse_capture();
-
-      }
-
-      if (m_bTabScrollingActive)
-      {
-
-         pmouse->m_bRet = true;
-
-         pmouse->m_lresult = 1;
-
-         m_bTabScrollingActive = false;
-
-         return;
-
-      }
+//      if(m_bMouseDown)
+//      {
+//
+//         m_bMouseDown = false;
+//
+//         release_mouse_capture();
+//
+//      }
 
       auto pitem = hit_test(pmouse);
 
@@ -1927,46 +1907,26 @@ namespace user
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
+      
+      if(pmessage->previous())
+      {
+         
+         return;
+         
+      }
 
-      if(m_bMouseDown)
+      if(m_bDragScrollLeftButtonDown)
       {
 
-         if (is_sandboxed())
-         {
-
-            m_bTabScrollingActive = true;
-
-            int iOffset = m_pointLeftButtonDown.x - pmouse->m_point.x;
-
-            auto iTabScroll = minimum_maximum(m_iTabScrollStart + iOffset, 0, m_iTabScrollMax);
-
-            if (iTabScroll != m_iTabScroll)
-            {
-
-               m_iTabScroll = iTabScroll;
-
-               set_need_redraw();
-
-               post_redraw();
-
-            }
-
-            pmouse->m_bRet = true;
-
-            return;
-
-
-         }
-         else
          {
             
             if (::is_element(m_pitemClick, e_element_tab_far_scroll))
             {
 
-               if (m_iTabScroll < m_iTabScrollMax)
+               if (m_pointDragScroll.x < m_pointDragScrollMax.x)
                {
 
-                  m_iTabScroll++;
+                  m_pointDragScroll.x++;
 
                   set_need_redraw();
 
@@ -1982,10 +1942,10 @@ namespace user
             else if (::is_element(m_pitemClick, e_element_tab_near_scroll))
             {
 
-               if (m_iTabScroll > 0)
+               if (m_pointDragScroll.x > 0)
                {
 
-                  m_iTabScroll--;
+                  m_pointDragScroll.x--;
 
                   set_need_redraw();
 
@@ -2042,7 +2002,7 @@ namespace user
 
       auto ptabdata = get_data();
 
-      if(_001HasTabScrolling())
+      if(_001HasHorizontalDragScrolling())
       {
 
          float fDensity = 1.0f;
@@ -2452,7 +2412,7 @@ namespace user
 
       ::rectangle_i32 rectangleScroll;
 
-      bool bScroll = _001HasTabScrolling();
+      bool bScroll = _001HasHorizontalDragScrolling();
 
       if(bScroll)
       {
@@ -2492,18 +2452,7 @@ namespace user
 
       }
       
-      if(get_data()->m_bVertical)
-      {
-         
-         point.y += m_iTabScroll;
-         
-      }
-      else
-      {
-         
-         point.x += m_iTabScroll;
-         
-      }
+      point += m_pointDragScroll;
 
       ::rectangle_i32 rectangle;
 
@@ -2619,6 +2568,8 @@ namespace user
 
    void tab::on_message_create(::message::message * pmessage)
    {
+      
+      m_bHorizontalDragScroll = is_sandboxed();
 
       auto psystem = m_psystem->m_pbasesystem;
       

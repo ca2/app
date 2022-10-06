@@ -196,7 +196,20 @@ namespace user
       bool                                         m_bPendingZorder;
       bool                                         m_bPadding001;
       bool                                         m_bPadding002;
-
+      
+      bool                                         m_bDragScrollLeftButtonDown;
+      
+      ::point_i32                                  m_pointDragScrollLeftButtonDown;
+      ::point_i32                                  m_pointDragScroll;
+      ::point_i32                                  m_pointDragScrollStart;
+      ::point_i32                                  m_pointDragScrollMax;
+      ::size_i32                                   m_sizeDragScroll;
+                  
+      bool                                         m_bHorizontalDragScroll;
+      bool                                         m_bHorizontalDragScrollingActive;
+            
+      bool                                         m_bVerticalDragScroll;
+      bool                                         m_bVerticalDragScrollingActive;
 
       ::oswindow                                   m_oswindow;
 
@@ -1126,6 +1139,8 @@ namespace user
       virtual void on_reposition() override;
       virtual void on_show_window() override;
       virtual void _on_show_window();
+      
+      virtual void on_drag_scroll_layout(::draw2d::graphics_pointer & pgraphics);
 
       virtual void window_show_change_visibility();
 
@@ -2279,6 +2294,8 @@ namespace user
       //template < typename GEOMETRY >
       //inline GEOMETRY _001ClientToHostNoScroll(const GEOMETRY& s, enum_layout elayout = e_layout_design) const { GEOMETRY g; _client_to_host_no_scroll(g, s); return g; }
 
+      inline bool _001HasHorizontalDragScrolling() const { return m_pointDragScrollMax.x > 0; }
+      inline bool _001HasVerticalDragScrolling() const { return m_pointDragScrollMax.y > 0; }
 
    };
 

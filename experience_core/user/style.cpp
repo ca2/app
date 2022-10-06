@@ -84,18 +84,18 @@ namespace experience_core
       
       ::draw2d::savedc savedc(pgraphics);
       
-      if (ptab->get_data()->m_bVertical)
-      {
-         
-         pgraphics->offset_origin(0., -ptab->m_iTabScroll);
-         
-      }
-      else
-      {
-         
-         pgraphics->offset_origin(-ptab->m_iTabScroll, 0.);
-         
-      }
+//      if (ptab->get_data()->m_bVertical)
+//      {
+//         
+//         pgraphics->offset_origin(0., -ptab->m_iVerticalDragScroll);
+//         
+//      }
+//      else
+//      {
+//         
+//         pgraphics->offset_origin(-ptab->m_iHorizontalDragScroll, 0.);
+//         
+//      }
 
       ptab->get_data()->m_ppen->create_solid(1, rgb(32, 32, 32));
 
@@ -780,7 +780,7 @@ namespace experience_core
 
       ::rectangle_i32 rectangleScroll;
 
-      bool bScroll = ptab->_001HasTabScrolling();
+      bool bScroll = ptab->_001HasHorizontalDragScrolling();
 
       if (bScroll)
       {
@@ -1192,7 +1192,7 @@ namespace experience_core
 
          ptab->m_iTabSize = (int)(ptab->get_data()->m_tabpanecompositea.get_count() * ptab->get_data()->m_iTabHeight);
 
-         ptab->m_iTabScrollMax = ptab->m_iTabSize - rcClient.height();
+         ptab->m_pointDragScrollMax.y = ptab->m_sizeDragScroll.cy - rcClient.height();
 
       }
       else
@@ -1201,10 +1201,9 @@ namespace experience_core
          ptab->m_iTabSize = ptab->get_data()->m_tabpanecompositea.last()->m_point.x +
             ptab->get_data()->m_tabpanecompositea.last()->m_size.cx;
 
-         ptab->m_iTabScrollMax = ptab->m_iTabSize - rcClient.width();
+         ptab->m_pointDragScrollMax.x = ptab->m_sizeDragScroll.cx - rcClient.width();
 
       }
-
 
       return true;
 

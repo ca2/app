@@ -1,4 +1,4 @@
-// Created by camilo on 2022-04-24 04:50 <3ThomasBorregaardSørensen!!
+﻿// Created by camilo on 2022-04-24 04:50 <3ThomasBorregaardSørensen!!
 #include "framework.h"
 
 // Sort of Canonical to serve as example and general correct solution
@@ -27,7 +27,7 @@ CLASS_DECL_ACME void to_string(string & str, const long int & i)
 #endif
 
 
-CLASS_DECL_ACME void to_string(string & str, const bool & b);
+CLASS_DECL_ACME void to_string(string & str, const bool & b)
 {
 
    if(b)
@@ -46,13 +46,13 @@ str = "\"false\"";
 }
 
 
-CLASS_DECL_ACME void to_string(string & str, const ansichar & ansich);
+CLASS_DECL_ACME void to_string(string & str, const ansichar & ansich)
 {
 
 str = ansich;
 
 }
-CLASS_DECL_ACME void to_string(string & str, const widechar & widech);
+CLASS_DECL_ACME void to_string(string & str, const widechar & widech)
 {
 
 str = widech;
@@ -60,27 +60,13 @@ str = widech;
 }
 
 
-CLASS_DECL_ACME void to_string(string & str, const char * psz);
+CLASS_DECL_ACME void to_string(string & str, const char * psz)
 {
 
 str = psz;
 
 }
-CLASS_DECL_ACME void to_string(string & str, char * const psz);
-{
-
-str = psz;
-
-}
-
-
-CLASS_DECL_ACME void to_string(string & str, const wd16char * psz);
-{
-
-str = psz;
-
-}
-CLASS_DECL_ACME void to_string(string & str, wd16char * const psz);
+CLASS_DECL_ACME void to_string(string & str, char * const psz)
 {
 
 str = psz;
@@ -88,13 +74,13 @@ str = psz;
 }
 
 
-CLASS_DECL_ACME void to_string(string & str, const wd32char * psz);
+CLASS_DECL_ACME void to_string(string & str, const wd16char * psz)
 {
 
 str = psz;
 
 }
-CLASS_DECL_ACME void to_string(string & str, wd32char * const psz);
+CLASS_DECL_ACME void to_string(string & str, wd16char * const psz)
 {
 
 str = psz;
@@ -102,78 +88,92 @@ str = psz;
 }
 
 
-CLASS_DECL_ACME void to_string(string & str, const signed char & ch);
+CLASS_DECL_ACME void to_string(string & str, const wd32char * psz)
 {
 
-str.format("%c", ch);
+str = psz;
+
+}
+CLASS_DECL_ACME void to_string(string & str, wd32char * const psz)
+{
+
+str = psz;
 
 }
 
 
-CLASS_DECL_ACME void to_string(string & str, const ansichar & ch);
+CLASS_DECL_ACME void to_string(string & str, const signed char & ch)
 {
 
-str.format("%c", ch);
-
-}
-CLASS_DECL_ACME void to_string(string & str, const uchar & uch);
-{
-
-str.format("%c", uch);
+str.format("%c", ch)
 
 }
 
 
-
-CLASS_DECL_ACME void to_string(string & str, const i16 & i);
+CLASS_DECL_ACME void to_string(string & str, const ansichar & ch)
 {
 
-str.format("%d", i);
+str.format("%c", ch)
 
 }
-CLASS_DECL_ACME void to_string(string & str, const u16 & u);
+CLASS_DECL_ACME void to_string(string & str, const uchar & uch)
 {
 
-str.format("%u", u);
-
-}
-
-CLASS_DECL_ACME void to_string(string & str, const i32 & i);
-{
-
-str.format("%d", i);
-
-}
-CLASS_DECL_ACME void to_string(string & str, const u32 & u);
-{
-
-str.format("%u", u);
-
-}
-CLASS_DECL_ACME void to_string(string & str, const i64 & i);
-{
-
-str.format("%lld", i);
-
-}
-CLASS_DECL_ACME void to_string(string & str, const u64 & u);
-{
-
-str.format("%llu", u);
+str.format("%c", uch)
 
 }
 
 
-CLASS_DECL_ACME void to_string(string & str, const float & f);
+
+CLASS_DECL_ACME void to_string(string & str, const i16 & i)
 {
 
-str.format("%f", f);
+str.format("%d", i)
+
+}
+CLASS_DECL_ACME void to_string(string & str, const u16 & u)
+{
+
+str.format("%u", u)
+
+}
+
+CLASS_DECL_ACME void to_string(string & str, const i32 & i)
+{
+
+str.format("%d", i)
+
+}
+CLASS_DECL_ACME void to_string(string & str, const u32 & u)
+{
+
+str.format("%u", u)
+
+}
+CLASS_DECL_ACME void to_string(string & str, const i64 & i)
+{
+
+str.format("%lld", i)
+
+}
+CLASS_DECL_ACME void to_string(string & str, const u64 & u)
+{
+
+str.format("%llu", u)
+
+}
+
+
+CLASS_DECL_ACME void to_string(string & str, const float & f)
+{
+
+str.format("%f", f)
 
 }
 CLASS_DECL_ACME void to_string(string & str, const double & d)
 {
 
-str.format("%f", d);
+str.format("%f", d)
 
 }
 
@@ -181,13 +181,13 @@ str.format("%f", d);
 CLASS_DECL_ACME void to_string(string & str, const unsigned long int & ul)
 {
 
-str.format("%llu", ul);
+str.format("%llu", ul)
 
 }
 CLASS_DECL_ACME void to_string(string & str, const long int & i)
 {
 
-str.format("%lld", i);
+str.format("%lld", i)
 
 }
 

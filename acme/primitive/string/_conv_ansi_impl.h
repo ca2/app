@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #ifndef __cplusplus_winrt
@@ -16,10 +16,10 @@ inline string __string(const T& t)
 
 }
 
-
-template < >
-CLASS_DECL_ACME string __string(const ::enum_status & estatus);
-
+//
+//template < >
+//CLASS_DECL_ACME string __string(const ::enum_status & estatus);
+//
 
 
 template < typename T >
@@ -34,159 +34,159 @@ inline string __string(const T * & p)
 
 }
 
+//
+//inline string __string(const ansichar* psz)
+//{
+//
+//   return string(psz);
+//
+//}
+//
+//
+//inline string __string(ansichar* psz)
+//{
+//
+//   return string((const ansichar *) psz);
+//
+//}
+//
+//
+//inline string __string(const widechar * pwsz)
+//{
+//
+//   return string(pwsz);
+//
+//}
+//
+//
+//inline string __string(widechar * pwsz)
+//{
+//
+//   return string(pwsz);
+//
+//}
+//
+//
+//template < >
+//inline string __string(const ansistring * & p)
+//{
+//
+//   return *p;
+//
+//}
+//
+//
+//template < >
+//inline string __string(const widestring *& p)
+//{
+//
+//   return string(*p);
+//
+//}
+//
+//
+//template < >
+//inline string __string(const natural_ansistring & naturalansistr)
+//{
+//
+//   return naturalansistr.m_pdata;
+//
+//}
+//
+//
+//template < >
+//inline string __string(const natural_widestring & naturalwidestr)
+//{
+//
+//   return string(naturalwidestr);
+//
+//}
+//
+//
 
-inline string __string(const ansichar* psz)
-{
+   //inline void to_string(string & str, const char * psz)
+   //{
 
-   return string(psz);
+   //   str = psz;
 
-}
+   //}
 
+   //inline void to_string(string & str, char * const psz)
+   //{
 
-inline string __string(ansichar* psz)
-{
+   //   str = psz;
 
-   return string((const ansichar *) psz);
+   //}
 
-}
 
+   //inline void to_string(string & str, const wd16char * psz)
+   //{
 
-inline string __string(const widechar * pwsz)
-{
+   //   str = psz;
 
-   return string(pwsz);
+   //}
 
-}
+   //inline void to_string(string & str, wd16char * const psz)
+   //{
 
+   //   str = psz;
 
-inline string __string(widechar * pwsz)
-{
+   //}
 
-   return string(pwsz);
 
-}
+   //inline void to_string(string & str, const wd32char * psz)
+   //{
 
+   //   str = psz;
 
-template < >
-inline string __string(const ansistring * & p)
-{
+   //}
 
-   return *p;
+   //inline void to_string(string & str, wd32char * const psz)
+   //{
 
-}
+   //   str = psz;
 
+   //}
 
-template < >
-inline string __string(const widestring *& p)
-{
 
-   return string(*p);
+   //   inline void to_string(string & str, const signed char & ch)
+   //{
 
-}
+   //   str = (ansichar) ch;
 
+   //}
 
-template < >
-inline string __string(const natural_ansistring & naturalansistr)
-{
 
-   return naturalansistr.m_pdata;
+   //inline void to_string(string& str, const ansichar& ch)
+   //{
 
-}
+   //   str = ch;
 
+   //}
 
-template < >
-inline string __string(const natural_widestring & naturalwidestr)
-{
 
-   return string(naturalwidestr);
+   //inline void to_string(string& str, const widechar& wch)
+   //{
 
-}
+   //   str = wch;
 
+   //}
 
 
-   inline void to_string(string & str, const char * psz)
-   {
+   //inline void to_string(string& str, const uchar& uch)
+   //{
 
-      str = psz;
+   //   str = (const ansichar&)uch;
 
-   }
+   //}
 
-   inline void to_string(string & str, char * const psz)
-   {
 
-      str = psz;
+   //inline void to_string(string& str, const string& strSrc)
+   //{
 
-   }
+   //   str.assign(strSrc);
 
-
-   inline void to_string(string & str, const wd16char * psz)
-   {
-
-      str = psz;
-
-   }
-
-   inline void to_string(string & str, wd16char * const psz)
-   {
-
-      str = psz;
-
-   }
-
-
-   inline void to_string(string & str, const wd32char * psz)
-   {
-
-      str = psz;
-
-   }
-
-   inline void to_string(string & str, wd32char * const psz)
-   {
-
-      str = psz;
-
-   }
-
-
-      inline void to_string(string & str, const signed char & ch)
-   {
-
-      str = (ansichar) ch;
-
-   }
-
-
-   inline void to_string(string& str, const ansichar& ch)
-   {
-
-      str = ch;
-
-   }
-
-
-   inline void to_string(string& str, const widechar& wch)
-   {
-
-      str = wch;
-
-   }
-
-
-   inline void to_string(string& str, const uchar& uch)
-   {
-
-      str = (const ansichar&)uch;
-
-   }
-
-
-   inline void to_string(string& str, const string& strSrc)
-   {
-
-      str.assign(strSrc);
-
-   }
+   //}
 
 
 // } // namespace str

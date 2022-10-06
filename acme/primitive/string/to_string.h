@@ -57,4 +57,7 @@ CLASS_DECL_ACME void to_string(string & str, const ::wd16string & wd16str);
 CLASS_DECL_ACME void to_string(string & str, const ::wd32string & wd16str);
 
 
+CLASS_DECL_ACME void to_string(string & str, const enum_status & estatus);
+
+
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #if !defined(WINDOWS) && !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(FREEBSD)
@@ -357,39 +357,39 @@ inline __pointer(T) & ___pointer < T >::clone(T2 * p)
 //
 //#endif // !__DEBUG
 
-
-#ifndef __cplusplus_winrt
-
-
-// namespace str
-// {
-
-
-
-inline void to_string(string & str, const bool & b)
-{
-
-   if(b)
-   {
-
-      str = "{[(true)]}";
-
-   }
-   else
-   {
-
-      str = "{[(false)]}";
-
-   }
-
-}
-
-
-// } // namespace str
-
-
-#endif // __cplusplus_winrt
-
+//
+//#ifndef __cplusplus_winrt
+//
+//
+//// namespace str
+//// {
+//
+//
+//
+////inline void to_string(string & str, const bool & b)
+////{
+////
+////   if(b)
+////   {
+////
+////      str = "{[(true)]}";
+////
+////   }
+////   else
+////   {
+////
+////      str = "{[(false)]}";
+////
+////   }
+////
+////}
+//
+//
+//// } // namespace str
+//
+//
+//#endif // __cplusplus_winrt
+//
 
 inline void copy(void *, const void *) /* = 0 */ { throw ::interface_only(); }
 

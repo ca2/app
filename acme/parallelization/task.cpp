@@ -360,6 +360,8 @@ void task::destroy()
    
    ::object::destroy();
 
+#ifdef WINDOWS
+
    if (m_pexceptiontranslator)
    {
 
@@ -368,6 +370,8 @@ void task::destroy()
       m_pexceptiontranslator.release();
 
    }
+
+#endif
 
 }
 

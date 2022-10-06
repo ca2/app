@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/write_text/fonts.h"
@@ -11,7 +11,6 @@
 #include "aura/user/user/progress.h"
 #include "font_list.h"
 #include "acme/platform/system_setup.h"
-#include "aqua/xml.h"
 #include "core/user/simple/toolbar.h"
 #include "tree.h"
 #include "user.h"

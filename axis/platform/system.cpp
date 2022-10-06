@@ -1,6 +1,4 @@
-#include "framework.h"
-#include "aqua/xml.h"
-//#include "apex/platform/app_core.h"
+﻿#include "framework.h"
 #include "acme/id.h"
 #include "acme/platform/profiler.h"
 #include "acme/platform/system_setup.h"

@@ -1,47 +1,47 @@
-#pragma once
+﻿#pragma once
 
 
 class text_stream;
 
 
-template < typename TYPE >
-inline void __string_exchange(text_stream & s, TYPE & t);
+//template < typename TYPE >
+//inline void __string_exchange(text_stream & s, TYPE & t);
+//
+//
+//inline void __string_exchange(stream & s, ::payload & payload);
+//
+//inline void __string_exchange(text_stream & s, ansichar & ansich);
+//inline void __string_exchange(text_stream & s, widechar & widech);
+//inline void __string_exchange(text_stream & s, i8 & i);
+//inline void __string_exchange(text_stream & s, i16 & i);
+//inline void __string_exchange(text_stream & s, i32 & i);
+//inline void __string_exchange(text_stream & s, i64 & i);
+//inline void __string_exchange(text_stream & s, u8 & u);
+//inline void __string_exchange(text_stream & s, u16 & u);
+//inline void __string_exchange(text_stream & s, u32 & u);
+//inline void __string_exchange(text_stream & s, u64 & u);
+//inline void __string_exchange(text_stream & s, float & f);
+//inline void __string_exchange(text_stream & s, double & d);
+//inline void __string_exchange(text_stream & s, ::earth::time & time);
+//inline void __string_exchange(text_stream & s, const char * psz);
+//inline void __string_exchange(text_stream & s, char * sz);
+//inline void __string_exchange(text_stream & s, string & str);
+//inline void __string_exchange(text_stream & s, ::file::path & path);
+//inline void __string_exchange(text_stream & s, ::atom & atom);
+//inline void __string_exchange(text_stream & s, void * & p);
+////inline void __string_exchange(text_stream & s, oswindow & oswindow);
+//inline void __string_exchange(text_stream & s, wchar_t sz[]);
+////inline void __string_exchange(text_stream & s, ::matter & matter);
+//
+////inline void __string_exchange(text_stream & s, ::rectangle_i32 & r);
+//
+//
 
-
-inline void __string_exchange(stream & s, ::payload & payload);
-
-inline void __string_exchange(text_stream & s, ansichar & ansich);
-inline void __string_exchange(text_stream & s, widechar & widech);
-inline void __string_exchange(text_stream & s, i8 & i);
-inline void __string_exchange(text_stream & s, i16 & i);
-inline void __string_exchange(text_stream & s, i32 & i);
-inline void __string_exchange(text_stream & s, i64 & i);
-inline void __string_exchange(text_stream & s, u8 & u);
-inline void __string_exchange(text_stream & s, u16 & u);
-inline void __string_exchange(text_stream & s, u32 & u);
-inline void __string_exchange(text_stream & s, u64 & u);
-inline void __string_exchange(text_stream & s, float & f);
-inline void __string_exchange(text_stream & s, double & d);
-inline void __string_exchange(text_stream & s, ::earth::time & time);
-inline void __string_exchange(text_stream & s, const char * psz);
-inline void __string_exchange(text_stream & s, char * sz);
-inline void __string_exchange(text_stream & s, string & str);
-inline void __string_exchange(text_stream & s, ::file::path & path);
-inline void __string_exchange(text_stream & s, ::atom & atom);
-inline void __string_exchange(text_stream & s, void * & p);
-//inline void __string_exchange(text_stream & s, oswindow & oswindow);
-inline void __string_exchange(text_stream & s, wchar_t sz[]);
-//inline void __string_exchange(text_stream & s, ::matter & matter);
-
-//inline void __string_exchange(text_stream & s, ::rectangle_i32 & r);
-
-
-
-template < typename STRINGABLE >
-inline void __exchange_as_string(stream & s, STRINGABLE & stringable);
+//template < typename STRINGABLE >
+//inline void __exchange_as_string(stream & s, STRINGABLE & stringable);
 
 class CLASS_DECL_ACME text_stream :
-   public stream
+   virtual public stream_base
 {
 public:
 
@@ -62,13 +62,13 @@ public:
    {
 
    }
-   ~text_stream() override;
+   ~text_stream() ;
 
-   //virtual void destroy() override;
+   //virtual void destroy() ;
 
-   void destroy() override;
+   void destroy() ;
 
-   string get_string() const override;
+   string as_string() const ;
 
    template < typename TYPE >
    void number_read(TYPE & t)
@@ -89,7 +89,7 @@ public:
 
       string str;
 
-      ::to_string(str, t);
+      str = __string(t);
 
       m_p->print(str);
 
@@ -124,7 +124,7 @@ public:
 
       string str;
 
-      ::to_string(str, t);
+      str = __string(t);
 
       m_p->print(str);
 
@@ -144,11 +144,11 @@ public:
    void network_payload_exchange(TYPE & t);
 
 
-   template < typename TYPE >
-   void write_only(TYPE & t) { is_loading() ? throw ::exception(error_io) : write(t); }
+   /*template < typename TYPE >
+   void write_only(TYPE & t) { is_loading() ? throw ::exception(error_io) : operator <<(t); }
 
    template < typename TYPE >
-   void exchange(const ::atom & atom, TYPE & t) { ::__string_exchange(*this, t); }
+   void exchange(const ::atom & atom, TYPE & t) { ::__string_exchange(*this, t); }*/
 
 
    //virtual void exchange(const ::atom &, i8 & i) { default_exchange(i); }
@@ -170,30 +170,30 @@ public:
    virtual bool is_stream_null();
    virtual bool is_stream_set();
 
-   virtual void close() override;
+   virtual void close() ;
 
-   virtual void write (bool b) override;
-   virtual void write (char ch)  override;
-   virtual void write (uchar uch)  override;
+   text_stream & operator <<(bool b) ;
+   text_stream & operator <<(char ch)  ;
+   text_stream & operator <<(uchar uch)  ;
 #ifdef WINDOWS
-   virtual void write (unichar wch)  override;
+   text_stream & operator <<(unichar wch)  ;
 #endif
-   virtual void write (i16 sh)  override;
-   virtual void write (u16 u)  override;
-   virtual void write (i32 i)  override;
-   virtual void write (u32 u)  override;
-   virtual void write (i64 i)  override;
-   virtual void write (u64 u)  override;
-   virtual void write (float f)  override;
-   virtual void write (double d)  override;
-   //virtual void write(const POINT_I32 & point) override;
-   //virtual void write(const SIZE_I32 & size) override;
-   //virtual void write(const RECTANGLE_I32 & rectangle) override;
+   text_stream & operator <<(i16 sh)  ;
+   text_stream & operator <<(u16 u)  ;
+   text_stream & operator <<(i32 i)  ;
+   text_stream & operator <<(u32 u)  ;
+   text_stream & operator <<(i64 i)  ;
+   text_stream & operator <<(u64 u)  ;
+   text_stream & operator <<(float f)  ;
+   text_stream & operator <<(double d)  ;
+   //virtual void write(const POINT_I32 & point) ;
+   //virtual void write(const SIZE_I32 & size) ;
+   //virtual void write(const RECTANGLE_I32 & rectangle) ;
 
-   virtual void write (const char * psz) override;
-   virtual void write(const ::atom & atom) override;
-   virtual void write(const ::string & str) override;
-   virtual void write(const property_set& set) override;
+   text_stream & operator <<(const char * psz) ;
+   text_stream & operator <<(const ::atom & atom) ;
+   text_stream & operator <<(const ::string & str) ;
+   text_stream & operator <<(const property_set& set) ;
    template < typename TYPE >
    void network_payload_write(const TYPE & t);
 
@@ -205,29 +205,29 @@ public:
 
    virtual ::string get_location() const;
 
-   virtual ::filesize get_position() const override;
-   virtual void write(const void * psz, strsize s) override;
+   virtual ::filesize get_position() const ;
+   virtual void write(const void * psz, strsize s) ;
 
    operator void * () { return this; }
 
-   virtual void read (bool & b) override;
-   virtual void read (char & ch) override;
-   virtual void read (uchar & uch) override;
+   text_stream & operator >>(bool & b) ;
+   text_stream & operator >>(char & ch) ;
+   text_stream & operator >>(uchar & uch) ;
 #ifdef WINDOWS
-   virtual void read (unichar & wch) ;
+   text_stream & operator >>(unichar & wch) ;
 #endif
-   virtual void read(i8 & i) override;
-   virtual void read (i16 & sh) override;
-   virtual void read (u16 & u) override;
-   virtual void read (i32 & i) override;
-   virtual void read (u32 & u) override;
-   virtual void read (i64 & i) override;
-   virtual void read (u64 & u) override;
-   virtual void read (float & f) override;
-   virtual void read (double & d) override;
-   virtual void read(string & str) override;
-   virtual void read(property_set& set) override;
-   virtual void read(::atom & atom) override;
+   text_stream & operator >>(i8 & i) ;
+   text_stream & operator >>(i16 & sh) ;
+   text_stream & operator >>(u16 & u) ;
+   text_stream & operator >>(i32 & i) ;
+   text_stream & operator >>(u32 & u) ;
+   text_stream & operator >>(i64 & i) ;
+   text_stream & operator >>(u64 & u) ;
+   text_stream & operator >>(float & f) ;
+   text_stream & operator >>(double & d) ;
+   text_stream & operator >>(string & str) ;
+   text_stream & operator >>(property_set& set) ;
+   text_stream & operator >>(::atom & atom) ;
 
    template < typename TYPE >
    void network_payload_read(TYPE & matter);
@@ -259,9 +259,9 @@ public:
 // {
 
 
-   CLASS_DECL_ACME void to_string(string & str, const text_stream & strstream);
+   CLASS_DECL_ACME ::string __string(const text_stream & strstream);
 
-   CLASS_DECL_ACME void to_string(string & str, const string_stream & strstream);
+   CLASS_DECL_ACME ::string __string(const string_stream & strstream);
 
 
 // } // namespace str

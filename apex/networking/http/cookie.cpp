@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include <time.h>
 
 
@@ -22,10 +22,10 @@ namespace http
    }
 
 
-   string cookie::get_string() const
+   string cookie::as_string() const
    {
 
-      return m_varValue.get_string();
+      return m_varValue;
 
    }
 

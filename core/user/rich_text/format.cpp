@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "format.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font.h"
@@ -320,23 +320,52 @@ namespace user
 
       }
       
-      
 
 
-      void format::exchange(::stream & stream)
+      //void format::write(::binary_stream & stream) const
+      //{
+
+      //   stream.exchange("italic", m_bItalic);
+      //   stream.exchange("underline", m_bUnderline);
+      //   stream.exchange("family", m_strFontFamily);
+      //   stream.exchange("size_i32", m_dFontSize);
+      //   stream.exchange("foreground", (u32 &)m_colorForeground);
+      //   stream.exchange("background", (u32 &)m_colorBackground);
+      //   stream.exchange("script", (i32 &)m_escript);
+      //   stream.exchange("lineheight", (i32 &)m_elineheight);
+
+      //}
+
+
+
+      void format::write(::binary_stream & stream) const
       {
 
-         stream.exchange("italic", m_bItalic);
-         stream.exchange("underline", m_bUnderline);
-         stream.exchange("family", m_strFontFamily);
-         stream.exchange("size_i32", m_dFontSize);
-         stream.exchange("foreground", (u32 &)m_colorForeground);
-         stream.exchange("background", (u32 &)m_colorBackground);
-         stream.exchange("script", (i32 &)m_escript);
-         stream.exchange("lineheight", (i32 &)m_elineheight);
+         stream << m_bItalic;
+         stream << m_bUnderline;
+         stream << m_strFontFamily;
+         stream << m_dFontSize;
+         stream << (u32) m_colorForeground;
+         stream << (u32)m_colorBackground;
+         stream << (i32)m_escript;
+         stream << (i32)m_elineheight;
 
       }
 
+
+      void format::read(::binary_stream & stream)
+      {
+
+         stream>>  m_bItalic;
+         stream>> m_bUnderline;
+         stream>> m_strFontFamily;
+         stream>> m_dFontSize;
+         stream>> (u32 &)m_colorForeground;
+         stream>> (u32 &)m_colorBackground;
+         stream>> (i32 &)m_escript;
+         stream>> (i32 &)m_elineheight;
+
+      }
 
       //stream & format::write(::stream & stream) const
       //{

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace papaya
@@ -9,177 +9,177 @@ namespace papaya
    {
 
 
-      template < typename ARRAY >
-      inline void load(ARRAY & a, stream & s)
-      {
+      //template < typename ARRAY >
+      //inline void load(ARRAY & a, stream & s)
+      //{
 
-         ::count cSerialized = 0;
+      //   ::count cSerialized = 0;
 
-         ::count c = 0;
+      //   ::count c = 0;
 
-         s >> c;
+      //   s >> c;
 
-         //if (!s.fail())
-         /*{
+      //   //if (!s.fail())
+      //   /*{
 
-            try
-            {*/
+      //      try
+      //      {*/
 
-               for (::index i = 0; i < c; i++)
-               {
+      //   for (::index i = 0; i < c; i++)
+      //   {
 
-                  a.set_size(i + 1, minimum((size_t)(c - i), 96_mb / sizeof(a[0])));
+      //      a.set_size(i + 1, minimum((size_t)(c - i), 96_mb / sizeof(a[0])));
 
-                  auto & item = __typed(a[i]);
+      //      auto & item = __typed(a[i]);
 
-                  s >> item;
+      //      s >> item;
 
-                  cSerialized++;
+      //      cSerialized++;
 
-                  //if (s.fail())
-                  //{
+      //      //if (s.fail())
+      //      //{
 
-                  //   break;
+      //      //   break;
 
-                  //}
+      //      //}
 
-               }
+      //   }
 
-            //}
-            //catch (...)
-            //{
+      //   //}
+      //   //catch (...)
+      //   //{
 
-            //   //s.set_fail_bit();
+      //   //   //s.set_fail_bit();
 
-            //}
+      //   //}
 
-            //if (s.fail())
-            {
+      //   //if (s.fail())
+      //   {
 
-               a.set_size(cSerialized);
+      //      a.set_size(cSerialized);
 
-            }
+      //   }
 
-         //}
+      //   //}
 
-      }
+      //}
 
 
-      template < typename TYPE >
-      ::stream & exchange_container_as_parent(::stream & stream, const __pointer_array(TYPE) & a)
-      {
+      //template < typename TYPE >
+      //::stream & exchange_container_as_parent(::stream & stream, const __pointer_array(TYPE) & a)
+      //{
 
-         ::count c = a.get_count();
+      //   ::count c = a.get_count();
 
-         stream.exchange(::atom(), c);
+      //   stream.exchange(::atom(), c);
 
-         //if (stream.fail())
-         //{
+      //   //if (stream.fail())
+      //   //{
 
-         //   return stream;
+      //   //   return stream;
 
-         //}
+      //   //}
 
-         for (index i = 0; i < c; i++)
-         {
+      //   for (index i = 0; i < c; i++)
+      //   {
 
-            auto & pitem = ((__pointer_array(TYPE) &) a).element_at_grow(i);
+      //      auto & pitem = ((__pointer_array(TYPE) &) a).element_at_grow(i);
 
-            if (!pitem)
-            {
+      //      if (!pitem)
+      //      {
 
-               pitem = __new(TYPE(&(__pointer_array(TYPE) &)a));
+      //         pitem = __new(TYPE(&(__pointer_array(TYPE) &)a));
 
-            }
+      //      }
 
-            pitem->exchange(stream);
+      //      pitem->exchange(stream);
 
-            //if (stream.fail())
-            //{
+      //      //if (stream.fail())
+      //      //{
 
-            //   break;
+      //      //   break;
 
-            //}
+      //      //}
 
-         }
+      //   }
 
-         return stream;
+      //   return stream;
 
-      }
+      //}
 
 
-      template < typename TYPE, typename INITIALIZER >
-      ::stream & exchange_container(::stream & stream, INITIALIZER * pinitializer, const __pointer_array(TYPE) & a)
-      {
+      //template < typename TYPE, typename INITIALIZER >
+      //::stream & exchange_container(::stream & stream, INITIALIZER * pinitializer, const __pointer_array(TYPE) & a)
+      //{
 
-         ::count c = a.get_count();
+      //   ::count c = a.get_count();
 
-         stream.exchange(::atom(), c);
+      //   stream.exchange(::atom(), c);
 
-         //if (stream.fail())
-         //{
+      //   //if (stream.fail())
+      //   //{
 
-         //   return stream;
+      //   //   return stream;
 
-         //}
+      //   //}
 
-         for(index i = 0; i < c; i++)
-         {
+      //   for (index i = 0; i < c; i++)
+      //   {
 
-            auto & pitem = ((__pointer_array(TYPE) &) a).element_at_grow(i);
+      //      auto & pitem = ((__pointer_array(TYPE) &) a).element_at_grow(i);
 
-            if (!pitem)
-            {
+      //      if (!pitem)
+      //      {
 
-               pinitializer->__initialize(pitem);
+      //         pinitializer->__initialize(pitem);
 
-               //pitem = __new(TYPE(&(__pointer_array(TYPE) &)a));
+      //         //pitem = __new(TYPE(&(__pointer_array(TYPE) &)a));
 
-            }
+      //      }
 
-            pitem->exchange(stream);
+      //      pitem->exchange(stream);
 
-            //if (stream.fail())
-            //{
+      //      //if (stream.fail())
+      //      //{
 
-            //   break;
+      //      //   break;
 
-            //}
+      //      //}
 
-         }
+      //   }
 
-         return stream;
+      //   return stream;
 
-      }
+      //}
 
 
-      template < typename TYPE >
-      ::stream & write_container_as_parent(::stream & stream, const __pointer_array(TYPE) & a)
-      {
+      //template < typename TYPE >
+      //::stream & write_container_as_parent(::stream & stream, const __pointer_array(TYPE) & a)
+      //{
 
-         ::count c = a.get_count();
+      //   ::count c = a.get_count();
 
-         stream << c;
+      //   stream << c;
 
-         //if (stream.fail())
-         //{
+      //   //if (stream.fail())
+      //   //{
 
-         //   return stream;
+      //   //   return stream;
 
-         //}
+      //   //}
 
-         for (auto & item : a)
-         {
+      //   for (auto & item : a)
+      //   {
 
-            stream << item;
+      //      stream << item;
 
-            c--;
+      //      c--;
 
-         }
+      //   }
 
-         return stream;
+      //   return stream;
 
-      }
+      //}
 
 
       template < typename Type, typename RawType, enum_type t_etypePayload >
@@ -225,21 +225,7 @@ namespace papaya
          else if (payload.get_type() == ::e_type_i32_array)
          {
 
-            auto ia = payload.ia();
-
-            for (::index i = 0; i < ia.get_count(); i++)
-            {
-
-               auto iItem = ::papaya::array::add(array, __string(ia[i]));
-
-               if (i < 0)
-               {
-
-                  i = iItem;
-
-               }
-
-            }
+            array.copy(payload.ia());
 
          }
          else if (payload.get_type() == ::e_type_property_set)
@@ -262,6 +248,7 @@ namespace papaya
          }
          else
          {
+
             i = ::papaya::array::add(array, payload.string());
 
          }
@@ -271,53 +258,53 @@ namespace papaya
       }
 
 
-      template < typename TYPE >
-      ::stream & read_container_as_parent(::stream & stream, __pointer_array(TYPE) & a)
-      {
+      //template < typename TYPE >
+      //::stream & read_container_as_parent(::stream & stream, __pointer_array(TYPE) & a)
+      //{
 
-         ::count c = 0;
+      //   ::count c = 0;
 
-         stream >> c;
+      //   stream >> c;
 
-         //if (stream.fail())
-         //{
+      //   //if (stream.fail())
+      //   //{
 
-         //   return stream;
+      //   //   return stream;
 
-         //}
+      //   //}
 
-         while (c > 0)
-         {
+      //   while (c > 0)
+      //   {
 
-            auto p = __new(TYPE(&a));
+      //      auto p = __new(TYPE(&a));
 
-            stream >> *p;
+      //      stream >> *p;
 
-  /*          if (stream.fail())
-            {
+      //      /*          if (stream.fail())
+      //                {
 
-               break;
+      //                   break;
 
-            }*/
+      //                }*/
 
-            a.add(p);
+      //      a.add(p);
 
-            c--;
+      //      c--;
 
-         }
+      //   }
 
-         return stream;
+      //   return stream;
 
-      }
+      //}
 
 
-      template < class TDST,class TSRC >
-      ::count copy(TDST & dsta,const TSRC & srca)
+      template < class TDST, class TSRC >
+      ::count copy(TDST & dsta, const TSRC & srca)
       {
 
          dsta.erase_all();
 
-         for(int i = 0; i < srca.get_size(); i++)
+         for (int i = 0; i < srca.get_size(); i++)
          {
 
             dsta.add((typename TDST::BASE_TYPE) srca[i]);
@@ -328,9 +315,9 @@ namespace papaya
 
       }
 
-   
-      template < class TDST,class TSRC >
-      ::count __copy(TDST & dsta,const TSRC & srca);
+
+      template < class TDST, class TSRC >
+      ::count __copy(TDST & dsta, const TSRC & srca);
 
 
       template < typename CONTAINER, class TYPE >
@@ -483,7 +470,7 @@ namespace papaya
 
       dsta.erase_all();
 
-      for(int i = 0; i < srca.get_size(); i++)
+      for (int i = 0; i < srca.get_size(); i++)
       {
          dsta.add(__new(TSRC(srca(i))));
          ca++;
@@ -496,15 +483,15 @@ namespace papaya
    namespace ptra
    {
 
-      template < class TDST,class TSRC >
-      ::count copy(address_array < TDST > & dsta,const address_array < TSRC > & srca)
+      template < class TDST, class TSRC >
+      ::count copy(address_array < TDST > & dsta, const address_array < TSRC > & srca)
       {
 
          ::count ca = 0;
 
          dsta.erase_all();
 
-         for(int i = 0; i < srca.get_size(); i++)
+         for (int i = 0; i < srca.get_size(); i++)
          {
             dsta.add(memory_new TSRC(srca(i)));
             ca++;
@@ -539,7 +526,7 @@ namespace papaya
    void array_permute(A2D & perm, const A & a)
    {
       ::count count = a.get_count();
-      if(count == 1)
+      if (count == 1)
       {
          perm.add(a);
          return;
@@ -547,22 +534,22 @@ namespace papaya
       A elema;
       A topermut;
       A2D perm2;
-      for(i32 i = 0; i < count; i++)
+      for (i32 i = 0; i < count; i++)
       {
          elema.erase_all();
          elema.add(a[i]);
          topermut.erase_all();
-         for(i32 j = 0; j < i; j++)
+         for (i32 j = 0; j < i; j++)
          {
             topermut.add(a[j]);
          }
-         for(i32 j = i + 1; j < count; j++)
+         for (i32 j = i + 1; j < count; j++)
          {
             topermut.add(a[j]);
          }
          perm2.erase_all();
          array_permute(perm2, topermut);
-         for(i32 j = 0; j < perm2.get_count(); j++)
+         for (i32 j = 0; j < perm2.get_count(); j++)
          {
             perm.add(elema + perm2[j]);
          }
@@ -570,10 +557,10 @@ namespace papaya
    }
 
    template < class A >
-   void array_permute(pointer_array < A > & perm,const A & a)
+   void array_permute(pointer_array < A > & perm, const A & a)
    {
       ::count count = a.get_count();
-      if(count == 1)
+      if (count == 1)
       {
          perm.add(__new(A(a)));
          return;
@@ -581,22 +568,22 @@ namespace papaya
       A elema;
       A topermut;
       pointer_array < A > perm2;
-      for(i32 i = 0; i < count; i++)
+      for (i32 i = 0; i < count; i++)
       {
          elema.erase_all();
          elema.add(a[i]);
          topermut.erase_all();
-         for(i32 j = 0; j < i; j++)
+         for (i32 j = 0; j < i; j++)
          {
             topermut.add(a[j]);
          }
-         for(i32 j = i + 1; j < count; j++)
+         for (i32 j = i + 1; j < count; j++)
          {
             topermut.add(a[j]);
          }
          perm2.erase_all();
-         array_permute(perm2,topermut);
-         for(i32 j = 0; j < perm2.get_count(); j++)
+         array_permute(perm2, topermut);
+         for (i32 j = 0; j < perm2.get_count(); j++)
          {
             perm.add(__new(A(elema + perm2[j])));
          }
@@ -679,7 +666,7 @@ namespace papaya
       inline ::index add(string_array & stra, const ::property & property)
       {
 
-         return add(stra, (const ::payload & ) property);
+         return add(stra, (const ::payload &)property);
 
       }
 
@@ -734,12 +721,12 @@ namespace papaya
 
          c += erase_lesser_than_or_greater_than(aParam, start, end);
 
-         for(index i = aParam.get_upper_bound(); i >= 0; i--)
+         for (index i = aParam.get_upper_bound(); i >= 0; i--)
          {
 
             index iFind = 0;
 
-            if(::papaya::array::binary_search(a, aParam.element_at(i), iFind, &::numeric_compare < typename ::numeric_array < TYPE, t_etypePayload >::BASE_ARG_TYPE >))
+            if (::papaya::array::binary_search(a, aParam.element_at(i), iFind, &::numeric_compare < typename ::numeric_array < TYPE, t_etypePayload >::BASE_ARG_TYPE >))
             {
 
                a.erase_at(iFind);
@@ -766,31 +753,31 @@ namespace papaya
 
 
       template<class ARRAY>
-      bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index & iIndex,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE))
+      bool binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, index(*fCompare) (typename ARRAY::BASE_ARG_TYPE, typename ARRAY::BASE_ARG_TYPE))
       {
 
-         if(a.get_size() == 0)
+         if (a.get_size() == 0)
          {
             return false;
          }
 
          index iLowerBound = 0;
-         index iMaxBound   = a.get_upper_bound();
+         index iMaxBound = a.get_upper_bound();
          index iUpperBound = iMaxBound;
          index iCompare;
          // do binary search
          iIndex = (iUpperBound + iLowerBound) / 2;
-         while(iUpperBound - iLowerBound >= 8)
+         while (iUpperBound - iLowerBound >= 8)
          {
-            iCompare = fCompare(a.element_at(iIndex),t);
-            if(iCompare == 0)
+            iCompare = fCompare(a.element_at(iIndex), t);
+            if (iCompare == 0)
             {
                return true;
             }
-            else if(iCompare > 0)
+            else if (iCompare > 0)
             {
                iUpperBound = iIndex - 1;
-               if(iUpperBound < 0)
+               if (iUpperBound < 0)
                {
                   iIndex = 0;
                   break;
@@ -799,7 +786,7 @@ namespace papaya
             else
             {
                iLowerBound = iIndex + 1;
-               if(iLowerBound > iMaxBound)
+               if (iLowerBound > iMaxBound)
                {
                   iIndex = iMaxBound + 1;
                   break;
@@ -808,24 +795,24 @@ namespace papaya
             iIndex = (iUpperBound + iLowerBound) / 2;
          }
          // do sequential search
-         while(iIndex < a.get_count())
+         while (iIndex < a.get_count())
          {
-            iCompare = fCompare(a.element_at(iIndex),t);
-            if(iCompare == 0)
+            iCompare = fCompare(a.element_at(iIndex), t);
+            if (iCompare == 0)
                return true;
-            else if(iCompare < 0)
+            else if (iCompare < 0)
                iIndex++;
             else
                break;
          }
-         if(iIndex >= a.get_count())
+         if (iIndex >= a.get_count())
             return false;
-         while(iIndex >= 0)
+         while (iIndex >= 0)
          {
-            iCompare = fCompare(a.element_at(iIndex),t);
-            if(iCompare == 0)
+            iCompare = fCompare(a.element_at(iIndex), t);
+            if (iCompare == 0)
                return true;
-            else if(iCompare > 0)
+            else if (iCompare > 0)
                iIndex--;
             else
                break;
@@ -840,7 +827,7 @@ namespace papaya
       bool binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, less_predicateicate_base < typename ARRAY::BASE_ARG_TYPE > * pless, index_array & ia)
       {
 
-         if(a.get_size() == 0)
+         if (a.get_size() == 0)
          {
 
             return false;
@@ -848,30 +835,30 @@ namespace papaya
          }
 
          index iLowerBound = 0;
-         index iMaxBound   = a.get_upper_bound();
+         index iMaxBound = a.get_upper_bound();
          index iUpperBound = iMaxBound;
          index iCompare;
 
          // do binary search
          iIndex = (iUpperBound + iLowerBound) / 2;
 
-         while(iUpperBound - iLowerBound >= 8)
+         while (iUpperBound - iLowerBound >= 8)
          {
 
             iCompare = pless->less(a.element_at(iIndex), t);
 
-            if(iCompare == 0)
+            if (iCompare == 0)
             {
 
                return true;
 
             }
-            else if(iCompare > 0)
+            else if (iCompare > 0)
             {
 
                iUpperBound = iIndex - 1;
 
-               if(iUpperBound < 0)
+               if (iUpperBound < 0)
                {
 
                   iIndex = 0;
@@ -886,7 +873,7 @@ namespace papaya
 
                iLowerBound = iIndex + 1;
 
-               if(iLowerBound > iMaxBound)
+               if (iLowerBound > iMaxBound)
                {
 
                   iIndex = iMaxBound + 1;
@@ -902,19 +889,19 @@ namespace papaya
          }
 
          // do sequential search
-         while(iIndex < a.get_count())
+         while (iIndex < a.get_count())
          {
 
             iCompare = pless->less(a.element_at(iIndex), t);
 
-            if(iCompare == 0)
+            if (iCompare == 0)
             {
 
                return true;
 
             }
 
-            else if(iCompare < 0)
+            else if (iCompare < 0)
             {
 
                iIndex++;
@@ -929,26 +916,26 @@ namespace papaya
 
          }
 
-         if(iIndex >= a.get_count())
+         if (iIndex >= a.get_count())
          {
 
             return false;
 
          }
 
-         while(iIndex >= 0)
+         while (iIndex >= 0)
          {
 
             iCompare = pless->less(a.element_at(iIndex), t);
 
-            if(iCompare == 0)
+            if (iCompare == 0)
             {
 
                return true;
 
             }
 
-            else if(iCompare > 0)
+            else if (iCompare > 0)
             {
 
                iIndex--;
@@ -971,18 +958,18 @@ namespace papaya
 
 
       template < typename TYPE, enum_type t_etypePayload >
-      ::count append_sequence(::numeric_array < TYPE, t_etypePayload > & a, TYPE iterator,TYPE end,TYPE increment)
+      ::count append_sequence(::numeric_array < TYPE, t_etypePayload > & a, TYPE iterator, TYPE end, TYPE increment)
       {
-         if(increment == 0)
+         if (increment == 0)
          {
             a.add(iterator);
             a.add(end);
             return 2;
          }
-         else if(increment > 0)
+         else if (increment > 0)
          {
             ::count ca = 0;
-            for(; iterator <= end; iterator +=increment)
+            for (; iterator <= end; iterator += increment)
             {
                a.add(iterator);
                ca++;
@@ -992,7 +979,7 @@ namespace papaya
          else
          {
             ::count ca = 0;
-            for(; iterator >= end; iterator +=increment)
+            for (; iterator >= end; iterator += increment)
             {
                a.add(iterator);
                ca++;
@@ -1003,10 +990,10 @@ namespace papaya
 
 
       template < typename TYPE, enum_type t_etypePayload >
-      ::count set_sequence(::numeric_array < TYPE, t_etypePayload > & a, TYPE start,TYPE end,TYPE increment)
+      ::count set_sequence(::numeric_array < TYPE, t_etypePayload > & a, TYPE start, TYPE end, TYPE increment)
       {
          a.erase_all();
-         return append_sequence(a, start,end,increment);
+         return append_sequence(a, start, end, increment);
       }
 
 
@@ -1035,19 +1022,19 @@ namespace papaya
 
 
       template < typename ARRAY >
-      inline index push(ARRAY & a,typename ARRAY::BASE_ARG_TYPE newElement,index n)
+      inline index push(ARRAY & a, typename ARRAY::BASE_ARG_TYPE newElement, index n)
       {
 
-         return a.insert_at(a.get_upper_bound(n),newElement);
+         return a.insert_at(a.get_upper_bound(n), newElement);
 
       }
 
 
       template < typename ARRAY >
-      inline void push_back(ARRAY & a,typename ARRAY::BASE_ARG_TYPE newElement,index n)
+      inline void push_back(ARRAY & a, typename ARRAY::BASE_ARG_TYPE newElement, index n)
       {
 
-         a.insert_at(a.get_upper_bound(n),newElement);
+         a.insert_at(a.get_upper_bound(n), newElement);
 
       }
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace data
@@ -22,25 +22,19 @@ namespace data
    class CLASS_DECL_ACME node :
       virtual public ::matter
    {
-   protected:
-
-
-      ::xml::node* m_pxmlnode;
 
    public:
 
 
       typedef __pointer_array(node) array;
 
-
+      ::xml::node *              m_pxmlnode;
       node *                     m_pnodeParent;
       enum_node                  m_enode;
       string                     m_strName;
       string                     m_strValue;
       property_set               m_set;
       node::array                m_nodea;
-
-      
 
       node();
       ~node() override;

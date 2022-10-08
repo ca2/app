@@ -5,7 +5,7 @@
 //#ifdef WINDOWS
 //#include "acme/primitive/collection/strdup_array.h"
 //#endif
-#include "acme/_defer.h"
+//#include "acme/_defer.h"
 
 
 #include "implement_console.h"

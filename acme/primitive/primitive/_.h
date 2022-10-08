@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/primitive/property_set.h"
@@ -129,18 +129,18 @@ namespace papaya
 
 
 
-inline stream & operator << (stream & s, const memory_container & memcontainer);
+//inline stream & operator << (stream & s, const memory_container & memcontainer);
+//
+//
+//CLASS_DECL_ACME stream & operator >> (stream & s, memory_container & memcontainer);
+//
+//
+//inline stream & operator << (stream & s, const memory_base & mem);
+//
+//
+//inline stream & operator >> (stream & s, memory_base & mem);
+//
+//
+//CLASS_DECL_ACME string __string(const ::e_status & estatus);
 
-
-CLASS_DECL_ACME stream & operator >> (stream & s, memory_container & memcontainer);
-
-
-inline stream & operator << (stream & s, const memory_base & mem);
-
-
-inline stream & operator >> (stream & s, memory_base & mem);
-
-
-CLASS_DECL_ACME string __string(const ::e_status & estatus);
-
-CLASS_DECL_ACME void to_string(string & str, const ::e_status & estatus);
+CLASS_DECL_ACME ::string __string(const ::e_status & estatus);

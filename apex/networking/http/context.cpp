@@ -1765,7 +1765,7 @@ namespace http
       if (set.has_property("try"))
       {
 
-         set["try"].as(iTryCount);
+         iTryCount = set["try"];
 
          if (iTryCount > 5)
          {
@@ -2018,7 +2018,7 @@ namespace http
 
       }
 
-      psocket->inheaders().merge(set["headers"].as_propset());
+      psocket->inheaders().merge(set["headers"]);
 
       if (set.has_property("progress_listener"))
       {
@@ -2356,7 +2356,7 @@ namespace http
 
       i32 iStatusCode;
 
-      psocket->outattr("http_status_code").as(iStatusCode);
+      iStatusCode = psocket->outattr("http_status_code");
 
       set["http_status_code"] = iStatusCode;
 
@@ -2679,7 +2679,7 @@ namespace http
 
       i32 iStatusCode;
 
-      psocket->outattr("http_status_code").as(iStatusCode);
+      iStatusCode = psocket->outattr("http_status_code");
 
       pmessage->m_bRet = iStatusCode == 200;
 
@@ -2813,7 +2813,7 @@ namespace http
 
          }
 
-         psocket->outattr("http_status_code").as(iStatusCode);
+         iStatusCode = psocket->outattr("http_status_code");
 
          synchronouslock.lock();
 
@@ -2865,7 +2865,7 @@ namespace http
 
       i32 iStatusCode;
 
-      psocket->outattr("http_status_code").as(iStatusCode);
+      iStatusCode = psocket->outattr("http_status_code");
 
       if (iStatusCode == 200)
       {

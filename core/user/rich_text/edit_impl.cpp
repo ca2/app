@@ -12,6 +12,7 @@
 #include "aura/user/user/copydesk.h"
 #include "base/user/user/user.h"
 #include "core/platform/session.h"
+#include "acme/primitive/geometry2d/_binary_stream.h"
 
 
 namespace user
@@ -2043,7 +2044,7 @@ namespace user
       }
 
 
-      stream & edit_impl::write(::stream & stream) const
+      void edit_impl::write(::binary_stream & stream) const
       {
 
          ::user::picture::write(stream);
@@ -2063,12 +2064,12 @@ namespace user
 
          stream << rectangleWindow;
 
-         return stream;
+         //return stream;
 
       }
 
 
-      stream & edit_impl::read(::stream & stream)
+      void edit_impl::read(::binary_stream & stream)
       {
 
          ::user::picture::read(stream);
@@ -2085,7 +2086,7 @@ namespace user
 
          set_need_layout();
 
-         return stream;
+         //return stream;
 
       }
 

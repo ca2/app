@@ -1,4 +1,4 @@
-// added error_code::get_string by camilo on 2022-09-29 22:10 <3ThomasBorregaardSorensen!!
+﻿// added error_code::get_string by camilo on 2022-09-29 22:10 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "_api.h"
 #include <stdio.h>

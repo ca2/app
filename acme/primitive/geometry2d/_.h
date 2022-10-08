@@ -1705,7 +1705,7 @@ namespace geometry
 
 
 template < primitive_point POINT >
-inline void to_string(string & str, const POINT & point)
+inline ::string __string(const POINT & point)
 {
 
    str = __string(point.x) + ", " + __string(point.y);
@@ -1714,7 +1714,7 @@ inline void to_string(string & str, const POINT & point)
 
 
 template < primitive_size SIZE >
-inline void to_string(string & str, const SIZE & size)
+inline ::string __string(const SIZE & size)
 {
 
    str = __string(size.cx) + ", " + __string(size.cy);
@@ -1734,11 +1734,11 @@ inline void to_string(string & str, const SIZE & size)
 
 
 template < primitive_point POINT >
-inline void to_string(string & str, const POINT & point);
+inline ::string __string(const POINT & point);
 
 
 template < primitive_size SIZE >
-inline void to_string(string & str, const SIZE & size);
+inline ::string __string(const SIZE & size);
 
 
 

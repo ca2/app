@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 template < class T, class T_to_T = map < T, T, T, T > >
@@ -435,116 +435,116 @@ biunique < T, T_to_T > & biunique < T, T_to_T > ::operator = (const biunique & i
 }
 
 
-template < class t1, class t2, class t3, class t4 >
-void serialize_write(stream & ostream, map < t1, t2, t3, t4 > & m)
-{
-   ::count count = m.get_count();
-   typename map < t1, t2, t3, t4 >::assoc * passoc = m.get_start();
-   ostream << count;
-   while(passoc != nullptr)
-   {
-      ostream << passoc->element1();
-      ostream << passoc->element2();
-      passoc = m.get_next(passoc);
-   }
-}
-
-template < class t1, class t2, class t3, class t4 >
-void serialize_read(stream & istream, map < t1, t2, t3, t4 > & m)
-{
-   try
-   {
-      t1 iCount;
-//      class map < t1, t2, t3, t4 >::assoc * passoc =
-      //       m.get_start();
-      istream >> iCount;
-      t1 key;
-      t3 value;
-      m.erase_all();
-      for(i32 i = 0; i < iCount; i++)
-      {
-         istream >> key;
-         istream >> value;
-         m.set_at(key, value);
-      }
-   }
-   catch(const char * psz)
-   {
-      m.erase_all();
-      throw ::exception(psz);
-   }
-}
-
-
-template < class T, class T_to_T >
-inline stream & operator << (stream & stream, const biunique < T, T_to_T > &biunique)
-{
-
-   stream << biunique.m_bBiunivoca;
-   stream << biunique.m_iMaxA;
-   stream << biunique.m_iMaxB;
-   stream << biunique.m_iEmptyA;
-   stream << biunique.m_iEmptyB;
-
-   if (biunique.m_bBiunivoca)
-   {
-      stream << biunique.m_ab;
-   }
-   else
-   {
-      stream << biunique.m_ab;
-      stream << biunique.m_ba;
-   }
-
-   return stream;
-
-}
-
-
-template < class T, class T_to_T >
-inline stream & operator >> (stream & stream, biunique < T, T_to_T > & biunique)
-{
-
-   stream >> biunique.m_bBiunivoca;
-   stream >> biunique.m_iMaxA;
-   stream >> biunique.m_iMaxB;
-   stream >> biunique.m_iEmptyA;
-   stream >> biunique.m_iEmptyB;
-
-   try
-   {
-      if (biunique.m_bBiunivoca)
-      {
-         T_to_T ab;
-         stream >> ab;
-         typename T_to_T::assoc * passoc = ab.get_start();
-         while (passoc != nullptr)
-         {
-            biunique.set(passoc->element1(), passoc->element2());
-            passoc = ab.get_next(passoc);
-         }
-      }
-      else
-      {
-         stream >> biunique.m_ab;
-         stream >> biunique.m_ba;
-      }
-   }
-   catch (const char * psz)
-   {
-      biunique.m_ab.erase_all();
-      biunique.m_ba.erase_all();
-      biunique.m_bBiunivoca = true;
-      biunique.m_iEmptyA = -1;
-      biunique.m_iEmptyB = -1;
-      biunique.m_iMaxA = -1;
-      biunique.m_iMaxB = -1;
-      throw ::exception(psz);
-   }
-
-   return stream;
-
-}
+//template < class t1, class t2, class t3, class t4 >
+//void serialize_write(stream & ostream, map < t1, t2, t3, t4 > & m)
+//{
+//   ::count count = m.get_count();
+//   typename map < t1, t2, t3, t4 >::assoc * passoc = m.get_start();
+//   ostream << count;
+//   while(passoc != nullptr)
+//   {
+//      ostream << passoc->element1();
+//      ostream << passoc->element2();
+//      passoc = m.get_next(passoc);
+//   }
+//}
+//
+//template < class t1, class t2, class t3, class t4 >
+//void serialize_read(stream & istream, map < t1, t2, t3, t4 > & m)
+//{
+//   try
+//   {
+//      t1 iCount;
+////      class map < t1, t2, t3, t4 >::assoc * passoc =
+//      //       m.get_start();
+//      istream >> iCount;
+//      t1 key;
+//      t3 value;
+//      m.erase_all();
+//      for(i32 i = 0; i < iCount; i++)
+//      {
+//         istream >> key;
+//         istream >> value;
+//         m.set_at(key, value);
+//      }
+//   }
+//   catch(const char * psz)
+//   {
+//      m.erase_all();
+//      throw ::exception(psz);
+//   }
+//}
+//
+//
+//template < class T, class T_to_T >
+//inline stream & operator << (stream & stream, const biunique < T, T_to_T > &biunique)
+//{
+//
+//   stream << biunique.m_bBiunivoca;
+//   stream << biunique.m_iMaxA;
+//   stream << biunique.m_iMaxB;
+//   stream << biunique.m_iEmptyA;
+//   stream << biunique.m_iEmptyB;
+//
+//   if (biunique.m_bBiunivoca)
+//   {
+//      stream << biunique.m_ab;
+//   }
+//   else
+//   {
+//      stream << biunique.m_ab;
+//      stream << biunique.m_ba;
+//   }
+//
+//   return stream;
+//
+//}
+//
+//
+//template < class T, class T_to_T >
+//inline stream & operator >> (stream & stream, biunique < T, T_to_T > & biunique)
+//{
+//
+//   stream >> biunique.m_bBiunivoca;
+//   stream >> biunique.m_iMaxA;
+//   stream >> biunique.m_iMaxB;
+//   stream >> biunique.m_iEmptyA;
+//   stream >> biunique.m_iEmptyB;
+//
+//   try
+//   {
+//      if (biunique.m_bBiunivoca)
+//      {
+//         T_to_T ab;
+//         stream >> ab;
+//         typename T_to_T::assoc * passoc = ab.get_start();
+//         while (passoc != nullptr)
+//         {
+//            biunique.set(passoc->element1(), passoc->element2());
+//            passoc = ab.get_next(passoc);
+//         }
+//      }
+//      else
+//      {
+//         stream >> biunique.m_ab;
+//         stream >> biunique.m_ba;
+//      }
+//   }
+//   catch (const char * psz)
+//   {
+//      biunique.m_ab.erase_all();
+//      biunique.m_ba.erase_all();
+//      biunique.m_bBiunivoca = true;
+//      biunique.m_iEmptyA = -1;
+//      biunique.m_iEmptyB = -1;
+//      biunique.m_iMaxA = -1;
+//      biunique.m_iMaxB = -1;
+//      throw ::exception(psz);
+//   }
+//
+//   return stream;
+//
+//}
 
 
 template < class T, class T_to_T >

@@ -26,6 +26,7 @@ namespace xml
 
    node::node()
    {
+      m_iFirstXmlNode = -1;
       m_pxmlnode = this;
       m_pdocument                  = nullptr;
       m_enode                 = ::data::e_node_xml_document;
@@ -38,6 +39,7 @@ namespace xml
 
       initialize_matter(pnodeParent);
 
+      m_iFirstXmlNode = -1;
       m_pxmlnode = this;
       m_pnodeParent           = pnodeParent;
       m_pdocument                  = pnodeParent->m_pdocument;
@@ -259,23 +261,40 @@ namespace xml
       return pnodeParent->child_at(i);
    }
 
+
    node * node::first_child()
    {
-      if(m_nodea.get_count() <= 0)
-         return nullptr;
-      return child_at(0);
-   }
 
+      if (m_nodea.get_count() <= 0)
+      {
+      
+         return nullptr;
+
+      }
+
+      return child_at(0);
+
+   }
 
 
    const char * node::LoadDocType( const char * pszXml, parse_info * pparseinfo)
    {
 
       auto pxml = get_system()->xml();
-      if(pparseinfo == nullptr)
+
+      if (pparseinfo == nullptr)
+      {
+      
          pparseinfo = pxml->m_pparseinfoDefault;
-      if(pszXml[0] != '<' || pszXml[1] != '!')
+
+      }
+
+      if (pszXml[0] != '<' || pszXml[1] != '!')
+      {
+
          return pszXml;
+
+      }
 
       ::str().consume(pszXml, "<!DOCTYPE");
       ::str().consume_spaces(pszXml);
@@ -856,8 +875,8 @@ namespace xml
             // processing instrunction parse
             // return pointer is next node of pparseinfo
             xml = LoadProcessingInstruction( xml, pparseinfo );
-            //if( xml == nullptr )
-            //   return nullptr;
+            if( xml == nullptr )
+               return nullptr;
             // restart xml parse
          }
 
@@ -866,7 +885,8 @@ namespace xml
          xml = _tcsskip( xml );
          prev = xml;
 
-         if(m_pnodeParent != nullptr && m_pnodeParent->m_enode == ::data::e_node_xml_document)
+         //if(m_pnodeParent != nullptr && m_pnodeParent->m_enode == ::data::e_node_xml_document)
+         if (m_enode == ::data::e_node_xml_document)
          {
             // is DOCTYPE
             if(::str().begins(xml, "<!DOCTYPE"))
@@ -874,8 +894,8 @@ namespace xml
                // processing instrunction parse
                // return pointer is next node of pparseinfo
                xml = LoadDocType( xml, pparseinfo );
-               //if( xml == nullptr )
-               //   return nullptr;
+               if( xml == nullptr )
+                  return nullptr;
                // restart xml parse
             }
 
@@ -892,8 +912,7 @@ namespace xml
             // return pointer is next node of comment
             xml = LoadComment( xml, pparseinfo );
             // comment node is terminal node
-            if(m_pnodeParent != nullptr && m_pnodeParent->m_enode != ::data::e_node_xml_document
-                  && xml != prev )
+            if(m_enode != ::data::e_node_xml_document && xml != prev )
             {
                *pbRet = true;
                xml = _tcsskip( xml );
@@ -914,8 +933,7 @@ namespace xml
             // return pointer is next node of CDATA
             xml = LoadCDATA( xml, pparseinfo );
             // CDATA node is terminal node
-            if(m_pnodeParent && m_pnodeParent->m_enode != ::data::e_node_xml_document
-                  && xml != prev )
+            if(m_enode != ::data::e_node_xml_document && xml != prev )
             {
                *pbRet = true;
                return xml;
@@ -940,6 +958,8 @@ namespace xml
 
       const char * pszNext = nullptr;
 
+      close();
+
       _load(pszNext, pszStart, pszEnd, pparseinfo);
 
    }
@@ -960,243 +980,345 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   void node::_load(const char * & xml, const char * pszXml,const char * pszEndXml,parse_info * pparseinfo)
+   void node::_load(const char *& xml, const char * pszXml, const char * pszEndXml, parse_info * pparseinfo)
    {
 
-      //// close it
-      close();
+      ////// close it
+      //close();
 
-      //if (pparseinfo == nullptr)
-      //{
 
-      //   pparseinfo = get_system()->xml()->m_pparseinfoDefault;
-
-      //}
+      // Changed xmlite node loading...
+      // XML does accept only one root one
+      // This implementation allow multiple nodes in the root (apart other nodes)
       xml = pszXml;
 
-      xml = strchr( xml, chXMLTagOpen );
 
-      if (xml == nullptr)
+
+      while (true)
       {
 
-         return;
-
-      }
-
-      //// close Tag
-      if (*(xml + 1) == chXMLTagPre) // </close
-      {
-
-         return;
-
-      }
-
-      //// Load Other Node before <Tag>(Processing Instruction, Comment, CDATA etc)
-
-      bool bRet = false;
-
-      const char * ret = nullptr;
-
-      ret = LoadOtherNodes(&bRet, xml, pparseinfo );
-      
-      if (ret != nullptr)
-      {
-
-         xml = ret;
-
-      }
-
-      if (bRet)
-      {
-
-         return;
-
-      }
-
-      // XML Node Tag Name open
-      xml++;
-
-      const char* pTagEnd = ansi_scan(xml, " />\t\r\n");
-      _SetString( xml, pTagEnd, &m_strName );
-      xml = pTagEnd;
-      // Generate XML Attributte List
-      if( (xml = LoadAttributes( xml, pparseinfo )) )
-      {
-         // alone tag <TAG ... />
-         if(  *xml == chXMLTagPre )
+         if (pparseinfo == nullptr)
          {
-            xml++;
-            if (*xml == chXMLTagClose)
-            {
-               
-               // wel-formed tag
-               xml++;
 
-               return;
-
-            }
-            else
-            {
-               //// error: <TAG ... / >
-               //if( pparseinfo->m_bErrorOccur == false )
-               //{
-               //   pparseinfo->m_bErrorOccur = true;
-               //   pparseinfo->m_pszErrorPointer = xml;
-               //   pparseinfo->m_eparseerror = e_parse_error_alone_not_closed;
-               //   pparseinfo->m_strError = "Element must be closed.";
-               //}
-
-               string strError;
-
-               strError = "Element must be closed.";
-
-               throw ::xml::exception(e_parse_error_alone_not_closed, strError, xml);
-
-               // not wel-formed tag
-               return;
-
-            }
+            pparseinfo = get_system()->xml()->m_pparseinfoDefault;
 
          }
-         else if(*xml)
-            // open/close tag <TAG ..> ... </TAG>
-            //                        ^- current pointer
+
+         xml = strchr(xml, chXMLTagOpen);
+
+         if (xml == nullptr)
          {
-            // if text m_strValue is not exist, then assign m_strValue
-            //if( this->m_strValue.is_empty() || this->m_strValue == "" )
-            if(::str().trimmed_is_empty(m_strValue))
+
+            return;
+
+         }
+
+         //// close Tag
+         if (*(xml + 1) == chXMLTagPre) // </close
+         {
+
+            return;
+
+         }
+
+         //// Load Other Node before <Tag>(Processing Instruction, Comment, CDATA etc)
+
+         bool bRet = false;
+
+         const char * ret = nullptr;
+
+         ret = LoadOtherNodes(&bRet, xml, pparseinfo);
+
+         if (ret != nullptr)
+         {
+
+            xml = ret;
+
+         }
+
+         if (bRet)
+         {
+
+            return;
+
+         }
+
+         
+         ////pnode->_load(xml, xml, pszEndXml, pparseinfo);
+         //if (pnode->m_strName.has_char())
+         //{
+         //   m_nodea.add(pnode);
+
+         //   //                  ::release(pnode);
+         //}
+         //else
+         //{
+         //   //delete pnode;
+         //   pnode.release();
+         //}
+
+         __pointer(node) pnode = __new(node(this));
+         //pnode->m_pnodeParent = this;
+         //pnode->m_pdocument = m_pdocument;
+         //pnode->m_enode = m_enode;
+
+         // XML Node Tag Name open
+         xml++;
+
+         const char * pTagEnd = ansi_scan(xml, " />\t\r\n");
+         _SetString(xml, pTagEnd, &pnode->m_strName);
+         xml = pTagEnd;
+         // Generate XML Attributte List
+         if ((xml = pnode->LoadAttributes(xml, pparseinfo)))
+         {
+            // alone tag <TAG ... />
+            if (*xml == chXMLTagPre)
             {
-               // Text Value
-               const char* pszEnd = _tcsechr( ++xml, chXMLTagOpen, chXMLEscape );
-               if( pszEnd == nullptr )
+               xml++;
+               if (*xml == chXMLTagClose)
                {
+
+                  // wel-formed tag
+                  xml++;
+
+                  //return;
+
+               }
+               else
+               {
+                  //// error: <TAG ... / >
                   //if( pparseinfo->m_bErrorOccur == false )
                   //{
                   //   pparseinfo->m_bErrorOccur = true;
                   //   pparseinfo->m_pszErrorPointer = xml;
-                  //   pparseinfo->m_eparseerror = e_parse_error_not_closed;
-                  //   pparseinfo->m_strError.format("%s must be closed with </%s>", m_strName.c_str() );
+                  //   pparseinfo->m_eparseerror = e_parse_error_alone_not_closed;
+                  //   pparseinfo->m_strError = "Element must be closed.";
                   //}
 
                   string strError;
 
-                  strError.format(" % s must be closed with < / % s>", m_strName.c_str());
+                  strError = "Element must be closed.";
 
-                  throw ::xml::exception(e_parse_error_not_closed, strError, xml);
+                  throw ::xml::exception(e_parse_error_alone_not_closed, strError, xml);
 
-                  // error cos not exist CloseTag </TAG>
+                  // not wel-formed tag
                   return;
 
                }
 
-               bool trim = pparseinfo->m_bTrimValue;
-               char escape = pparseinfo->m_chEscapeValue;
-               //_SetString( xml, pszEnd, &m_strValue, trim, chXMLEscape );
-               pszEnd = xml;
-               while(*pszEnd != '<' && *pszEnd != '\0')
-               {
-               //   if(pszEnd[0] == '&')
-               ////   {
-               ////      pszEnd = m_pdocument->patch_entity_ref((const char * &) pszEnd, true, &xml, nullptr);
-               ////   }
-               ////   else
-               ////   {
-                   ::str().increment(pszEnd);
-               //   }
-               }
-               _SetString( xml, pszEnd, &m_strValue, trim, escape );
-               xml = pszEnd;
-
-               // TEXTVALUE object
-               if( pparseinfo->m_bEntityValue && pparseinfo->m_pentities )
-                  m_strValue = pparseinfo->m_pentities->ref_to_entity(m_strValue);
             }
-
-            // generate child nodes
-            while( xml && *xml )
-            {
-               __pointer(node) pnode = __new(node(this));
-               pnode->m_pnodeParent = this;
-               pnode->m_pdocument = m_pdocument;
-               pnode->m_enode = m_enode;
-
-               pnode->_load(xml, xml, pszEndXml, pparseinfo );
-               if(pnode->m_strName.has_char())
-               {
-                  m_nodea.add(pnode);
-//                  ::release(pnode);
-               }
-               else
-               {
-                  //delete pnode;
-                  pnode.release();
-               }
-
+            else if (*xml)
                // open/close tag <TAG ..> ... </TAG>
-               //                             ^- current pointer
-               // CloseTag case
-               if( xml && *xml && *(xml+1) && *xml == chXMLTagOpen && *(xml+1) == chXMLTagPre )
+               //                        ^- current pointer
+            {
+               // if text m_strValue is not exist, then assign m_strValue
+               //if( this->m_strValue.is_empty() || this->m_strValue == "" )
+               if (::str().trimmed_is_empty(pnode->m_strValue))
                {
-                  // </close>
-                  xml+=2; // C
-
-                  if( (xml = _tcsskip( xml )) )
+                  // Text Value
+                  const char * pszEnd = _tcsechr(++xml, chXMLTagOpen, chXMLEscape);
+                  if (pszEnd == nullptr)
                   {
-                     string closename;
-                     const  char* pszEnd = ansi_scan( xml, " >" );
-                     if( pszEnd == nullptr )
+                     //if( pparseinfo->m_bErrorOccur == false )
+                     //{
+                     //   pparseinfo->m_bErrorOccur = true;
+                     //   pparseinfo->m_pszErrorPointer = xml;
+                     //   pparseinfo->m_eparseerror = e_parse_error_not_closed;
+                     //   pparseinfo->m_strError.format("%s must be closed with </%s>", m_strName.c_str() );
+                     //}
+
+                     string strError;
+
+                     strError.format(" % s must be closed with < / % s>", pnode->m_strName.c_str());
+
+                     throw ::xml::exception(e_parse_error_not_closed, strError, xml);
+
+                     // error cos not exist CloseTag </TAG>
+                     return;
+
+                  }
+
+                  bool trim = pparseinfo->m_bTrimValue;
+                  char escape = pparseinfo->m_chEscapeValue;
+                  //_SetString( xml, pszEnd, &m_strValue, trim, chXMLEscape );
+                  pszEnd = xml;
+                  pszEnd = strchr(pszEnd, '<');
+                  //while (*pszEnd != '<' && *pszEnd != '\0')
+                  //{
+                  //   //   if(pszEnd[0] == '&')
+                  //   ////   {
+                  //   ////      pszEnd = m_pdocument->patch_entity_ref((const char * &) pszEnd, true, &xml, nullptr);
+                  //   ////   }
+                  //   ////   else
+                  //   ////   {
+                  //   ::str().increment(pszEnd);
+                  //   //   }
+                  //}
+                  _SetString(xml, pszEnd, &pnode->m_strValue, trim, escape);
+                  xml = pszEnd;
+
+                  // TEXTVALUE object
+                  if (pparseinfo->m_bEntityValue && pparseinfo->m_pentities)
+                     pnode->m_strValue = pparseinfo->m_pentities->ref_to_entity(pnode->m_strValue);
+               }
+
+               // generate child nodes
+               if(xml && *xml)
+               {
+                  //__pointer(node) pnode = __new(node(this));
+                  //if (m_pdocument == this)
+                  //{
+                  //   if (!m_pdocument->m_pnodeRoot)
+                  //   {
+
+                  //      m_pdocument->m_pnodeRoot = pnode;
+
+                  //   }
+
+                  //}
+                  //pnode->m_pnodeParent = this;
+                  //pnode->m_pdocument = m_pdocument;
+                  //pnode->m_enode = m_enode;
+
+                  pnode->_load(xml, xml, pszEndXml, pparseinfo);
+                  //if (pnode->m_strName.has_char())
+                  //{
+                  //   m_nodea.add(pnode);
+
+                  //   //                  ::release(pnode);
+                  //}
+                  //else
+                  //{
+                  //   //delete pnode;
+                  //   pnode.release();
+                  //}
+
+                  // open/close tag <TAG ..> ... </TAG>
+                  //                             ^- current pointer
+                  // CloseTag case
+                  if (xml && *xml && *(xml + 1) && *xml == chXMLTagOpen && *(xml + 1) == chXMLTagPre)
+                  {
+                     // </close>
+                     xml += 2; // C
+
+                     if ((xml = _tcsskip(xml)))
                      {
-                        //if( pparseinfo->m_bErrorOccur == false )
-                        //{
-                        //   pparseinfo->m_bErrorOccur = true;
-                        //   pparseinfo->m_pszErrorPointer = xml;
-                        //   pparseinfo->m_eparseerror = parse_error_not_closed;
-                        //   pparseinfo->m_strError.format("it must be closed with </%s>", m_strName.c_str() );
-                        //}
-                        //// error
-
-                        string strError;
-
-                        strError.format("it must be closed with </%s>", m_strName.c_str());
-
-                        throw ::xml::exception(e_parse_error_not_closed, strError, xml);
-
-                        return;
-
-                     }
-
-                     _SetString( xml, pszEnd, &closename );
-
-                     if( closename == this->m_strName )
-                     {
-                        // wel-formed open/close
-                        xml = pszEnd+1;
-                        // return '>' or ' ' after pointer
-                        return;
-                     }
-                     else
-                     {
-                        xml = pszEnd+1;
-                        // 2004.6.15 - example <B> alone tag
-                        // now it can parse with attr 'force_arse'
-                        if( pparseinfo->m_bForceParse == false )
+                        string closename;
+                        const  char * pszEnd = ansi_scan(xml, " >");
+                        if (pszEnd == nullptr)
                         {
-                           // not welformed open/close
                            //if( pparseinfo->m_bErrorOccur == false )
                            //{
                            //   pparseinfo->m_bErrorOccur = true;
                            //   pparseinfo->m_pszErrorPointer = xml;
-                           //   pparseinfo->m_eparseerror = e_parse_error_not_nested;
-                           //   pparseinfo->m_strError.format("'<%s> ... </%s>' is not wel-formed.", m_strName.c_str(), closename.c_str() );
+                           //   pparseinfo->m_eparseerror = parse_error_not_closed;
+                           //   pparseinfo->m_strError.format("it must be closed with </%s>", m_strName.c_str() );
                            //}
+                           //// error
 
                            string strError;
 
-                           strError.format("'<%s> ... </%s>' is not wel-formed.", m_strName.c_str(), closename.c_str());
+                           strError.format("it must be closed with </%s>", pnode->m_strName.c_str());
 
-                           throw ::xml::exception(e_parse_error_not_nested, strError, xml);
+                           throw ::xml::exception(e_parse_error_not_closed, strError, xml);
 
                            return;
+
+                        }
+
+                        _SetString(xml, pszEnd, &closename);
+
+                        if (closename == pnode->m_strName)
+                        {
+                           // wel-formed open/close
+                           xml = pszEnd + 1;
+                           // return '>' or ' ' after pointer
+                           //return;
+                        }
+                        else
+                        {
+                           xml = pszEnd + 1;
+                           // 2004.6.15 - example <B> alone tag
+                           // now it can parse with attr 'force_arse'
+                           if (pparseinfo->m_bForceParse == false)
+                           {
+                              // not welformed open/close
+                              //if( pparseinfo->m_bErrorOccur == false )
+                              //{
+                              //   pparseinfo->m_bErrorOccur = true;
+                              //   pparseinfo->m_pszErrorPointer = xml;
+                              //   pparseinfo->m_eparseerror = e_parse_error_not_nested;
+                              //   pparseinfo->m_strError.format("'<%s> ... </%s>' is not wel-formed.", m_strName.c_str(), closename.c_str() );
+                              //}
+
+                              string strError;
+
+                              strError.format("'<%s> ... </%s>' is not wel-formed.", pnode->m_strName.c_str(), closename.c_str());
+
+                              throw ::xml::exception(e_parse_error_not_nested, strError, xml);
+
+                              return;
+
+                           }
+
+                        }
+
+                     }
+
+                  }
+                  else if (xml && *xml)  // Alone child Tag Loaded
+                     // else 해야하는지 말아야하는지 의심간다.
+                  {
+
+                     //if( xml && this->m_strValue.is_empty() && *xml !=chXMLTagOpen )
+                     if (xml && ::str().trimmed_is_empty(pnode->m_strValue) && *xml != chXMLTagOpen)
+                     {
+                        // Text Value
+                        const char * pszEnd = _tcsechr(xml, chXMLTagOpen, chXMLEscape);
+                        if (pszEnd == nullptr)
+                        {
+                           // error cos not exist CloseTag </TAG>
+                           //if( pparseinfo->m_bErrorOccur == false )
+                           //{
+                           //   pparseinfo->m_bErrorOccur = true;
+                           //   pparseinfo->m_pszErrorPointer = xml;
+                           //   pparseinfo->m_eparseerror = parse_error_not_closed;
+                           //   pparseinfo->m_strError.format("it must be closed with </%s>", m_strName.c_str() );
+                           //}
+                           string strError;
+
+                           strError.format("it must be closed with </%s>", pnode->m_strName.c_str());
+
+                           throw ::xml::exception(e_parse_error_not_closed, strError, xml);
+
+                           return;
+
+                        }
+
+                        bool trim = pparseinfo->m_bTrimValue;
+                        char escape = pparseinfo->m_chEscapeValue;
+                        //_SetString( xml, pszEnd, &m_strValue, trim, chXMLEscape );
+                        pszEnd = xml;
+                        //while(*pszEnd != '<' && *pszEnd != '\0' && pszEnd < pszEndXml)
+                        //{
+                        //   if(pszEnd[0] == '&')
+                        //   {
+                        //      pszEnd = m_pdocument->patch_entity_ref((const char * &) pszEnd, true, &xml, nullptr);
+                        //   }
+                        //   else
+                        //   {
+                        //      pszEnd = (char *) ::str().__utf8_inc(pszEnd);
+                        //   }
+                        //}
+                        if (pszEnd > pszEndXml)
+                           pszEnd = (char *)pszEndXml;
+                        _SetString(xml, pszEnd, &pnode->m_strValue, trim, escape);
+                        xml = pszEnd;
+                        //TEXTVALUE
+                        if (pparseinfo->m_bEntityValue && pparseinfo->m_pentities)
+                        {
+
+                           pnode->m_strValue = pparseinfo->m_pentities->ref_to_entity(pnode->m_strValue);
 
                         }
 
@@ -1205,67 +1327,28 @@ namespace xml
                   }
 
                }
-               else if(xml && *xml)  // Alone child Tag Loaded
-                  // else 해야하는지 말아야하는지 의심간다.
-               {
-
-                  //if( xml && this->m_strValue.is_empty() && *xml !=chXMLTagOpen )
-                  if( xml && ::str().trimmed_is_empty(m_strValue) && *xml !=chXMLTagOpen )
-                  {
-                     // Text Value
-                     const char* pszEnd = _tcsechr( xml, chXMLTagOpen, chXMLEscape );
-                     if( pszEnd == nullptr )
-                     {
-                        // error cos not exist CloseTag </TAG>
-                        //if( pparseinfo->m_bErrorOccur == false )
-                        //{
-                        //   pparseinfo->m_bErrorOccur = true;
-                        //   pparseinfo->m_pszErrorPointer = xml;
-                        //   pparseinfo->m_eparseerror = parse_error_not_closed;
-                        //   pparseinfo->m_strError.format("it must be closed with </%s>", m_strName.c_str() );
-                        //}
-                        string strError;
-
-                        strError.format("it must be closed with </%s>", m_strName.c_str());
-
-                        throw ::xml::exception(e_parse_error_not_closed, strError, xml);
-
-                        return;
-
-                     }
-
-                     bool trim = pparseinfo->m_bTrimValue;
-                     char escape = pparseinfo->m_chEscapeValue;
-                     //_SetString( xml, pszEnd, &m_strValue, trim, chXMLEscape );
-                     pszEnd = xml;
-                     //while(*pszEnd != '<' && *pszEnd != '\0' && pszEnd < pszEndXml)
-                     //{
-                     //   if(pszEnd[0] == '&')
-                     //   {
-                     //      pszEnd = m_pdocument->patch_entity_ref((const char * &) pszEnd, true, &xml, nullptr);
-                     //   }
-                     //   else
-                     //   {
-                     //      pszEnd = (char *) ::str().__utf8_inc(pszEnd);
-                     //   }
-                     //}
-                     if(pszEnd > pszEndXml)
-                        pszEnd = (char *) pszEndXml;
-                     _SetString( xml, pszEnd, &m_strValue, trim, escape );
-                     xml = pszEnd;
-                     //TEXTVALUE
-                     if (pparseinfo->m_bEntityValue && pparseinfo->m_pentities)
-                     {
-
-                        m_strValue = pparseinfo->m_pentities->ref_to_entity(m_strValue);
-
-                     }
-
-                  }
-
-               }
 
             }
+
+         }
+
+         if (pnode->m_strName.has_char())
+         {
+
+            m_nodea.add(pnode);
+
+            if (m_iFirstXmlNode < 0)
+            {
+
+               m_iFirstXmlNode = m_nodea.get_upper_bound();
+
+            }
+
+         }
+         else
+         {
+
+            pnode.release();
 
          }
 
@@ -2686,6 +2769,8 @@ namespace xml
 
       m_nodea.erase_all();
 
+      m_iFirstXmlNode = -1;
+
       //m_ppropertyset.release();
 
    }
@@ -2758,7 +2843,7 @@ namespace xml
 
       ::count iColCount;
 
-      attribute("column_count").as(iColCount);
+      iColCount = attribute("column_count");
 
       if(m_nodea.get_count() == 0 ||  iColCount <= 0)
       {
@@ -2806,32 +2891,32 @@ namespace xml
    }
 
 
-   stream & node::write(::stream & stream) const
-   {
+   //stream & node::write(::stream & stream) const
+   //{
 
-      string str;
+   //   string str;
 
-      str = get_xml();
+   //   str = get_xml();
 
-      stream.write(str);
+   //   stream.write(str);
 
-      return stream;
+   //   return stream;
 
-   }
+   //}
 
 
-   stream & node::read(::stream & stream)
-   {
+   //stream & node::read(::stream & stream)
+   //{
 
-      string str;
+   //   string str;
 
-      stream.read(str);
+   //   stream.read(str);
 
-      load(str);
+   //   load(str);
 
-      return stream;
+   //   return stream;
 
-   }
+   //}
 
    
 

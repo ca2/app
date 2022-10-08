@@ -53,10 +53,10 @@ inline string __string(const natural_widestring & naturalwidestr);
 
 
 template < typename TYPE >
-inline void to_string(string & str, const TYPE & t);
+inline ::string __string(const TYPE & t);
 
 template < typename TYPE >
-inline void to_string(string & str, const ::matter & t);
+inline ::string __string(const ::matter & t);
 
 inline void to_string(string& str, const bool & b);
 
@@ -97,11 +97,11 @@ CLASS_DECL_ACME void to_string(string& str, const long int & i);
 
 inline void to_string(string& str, const string& strSrc);
 
-inline void to_string(string & str, const ::atom & atom);
+inline ::string __string(const ::atom & atom);
 
-inline void to_string(string & str, const ::wd16string & wd16str);
+inline ::string __string(const ::wd16string & wd16str);
 
-inline void to_string(string & str, const ::wd32string & wd16str);
+inline ::string __string(const ::wd32string & wd16str);
 
 
 

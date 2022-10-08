@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
 #endif
@@ -336,7 +336,7 @@ namespace aura
 
       pcreateNew->m_puserprimitiveParent = pcreate->m_puserprimitiveParent;
 
-      return open_by_file_extension(pcreateNew);
+      return open_by_file_extension(pcreateNew.get());
 
       //return papp->platform_open_by_file_extension(m_iEdge, pszPathName, pcreate);
 

@@ -338,19 +338,20 @@ namespace user
 
       ::user::interaction::dump(dumpcontext);
 
-//#ifdef WINDOWS_DESKTOP
-//      dumpcontext << "m_hAccelTable = " << (uptr)m_hAccelTable;
-//#endif
-      dumpcontext << "\nm_nWindow = " << m_nWindow;
-      dumpcontext << "\nm_nIDHelp = " << m_strMatterHelp;
-      dumpcontext << "\nm_nIDTracking = " << m_nIDTracking;
-      dumpcontext << "\nm_nIDLastMessage = " << m_nIDLastMessage;
-      if (m_pviewActive != nullptr)
-         dumpcontext << "\nwith active ::user::impact: " << ::hex::lower_from((::iptr)m_pviewActive);
-      else
-         dumpcontext << "\nno active ::user::impact";
+////#ifdef WINDOWS_DESKTOP
+////      dumpcontext << "m_hAccelTable = " << (uptr)m_hAccelTable;
+////#endif
+//      dumpcontext << "\nm_nWindow = " << m_nWindow;
+//      dumpcontext << "\nm_nIDHelp = " << m_strMatterHelp;
+//      dumpcontext << "\nm_nIDTracking = " << m_nIDTracking;
+//      dumpcontext << "\nm_nIDLastMessage = " << m_nIDLastMessage;
+//      if (m_pviewActive != nullptr)
+//         dumpcontext << "\nwith active ::user::impact: " << ::hex::lower_from((::iptr)m_pviewActive);
+//      else
+//         dumpcontext << "\nno active ::user::impact";
+//
+//      dumpcontext << "\n";
 
-      dumpcontext << "\n";
    }
 
 

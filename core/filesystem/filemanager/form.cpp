@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "core/filesystem/filemanager/_filemanager.h"
 //#endif
@@ -80,11 +80,11 @@ namespace filemanager
 
                auto pinteraction = get_child_by_name("find");
 
-               pinteraction->_001GetText(ptopic->payload(id_find).as_string());
+               pinteraction->_001GetText(ptopic->payload(id_find));
 
                pinteraction = get_child_by_name("replace");
 
-               pinteraction->_001GetText(ptopic->payload(id_replace).as_string());
+               pinteraction->_001GetText(ptopic->payload(id_replace));
 
                auto pdocument =  filemanager_document();
 
@@ -98,7 +98,7 @@ namespace filemanager
 
                auto pinteraction = get_child_by_name("name");
 
-               pinteraction->_001GetText(ptopic->payload(id_text).as_string());
+               pinteraction->_001GetText(ptopic->payload(id_text));
 
                auto pdocument = filemanager_document();
 

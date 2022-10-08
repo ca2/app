@@ -1,6 +1,6 @@
-#include "framework.h"
+﻿#include "framework.h"
 
-CLASS_DECL_ACME string url_decode(const string& str);
+CLASS_DECL_ACME string url_decode(const string & str);
 
 //CLASS_DECL_ACME::file::path __xxxnode_full_file_path(file::path path);
 
@@ -10,90 +10,77 @@ namespace file
 {
 
 
-//   path::path(nullptr_t)
-//   {
-//
-//      m_epath = path_file;
-//
-//   }
 
 
-//   path::path(e_path epath)
-//   {
-//
-//      m_epath = epath;
-//
-//   }
+   //   path::path(nullptr_t)
+   //   {
+   //
+   //      m_epath = path_file;
+   //
+   //   }
 
 
-//   path::path(const unichar * pwsz, strsize iCount, e_path epath, int iDir, bool bNormalizePath, i64 iSize) :
-//      string(pwsz, iCount),
-//      path_meta(epath, iSize, iDir)
-//   {
-//
-//      if (m_epath == path_none)
-//      {
-//
-//         m_epath = file_path_get_type(*this, epath);
-//
-//      }
-//
-//      if (bNormalizePath)
-//      {
-//
-//         bool bCertainlySyntathicallyDir = normalize_path_inline(*this, m_epath);
-//
-//         if (bCertainlySyntathicallyDir)
-//         {
-//
-//            m_iDir = 1;
-//
-//         }
-//         else
-//         {
-//
-//            m_iDir = iDir;
-//
-//         }
-//
-//      }
-//
-//   }
+   //   path::path(e_path epath)
+   //   {
+   //
+   //      m_epath = epath;
+   //
+   //   }
+      //namespace file
+      //{
 
-   path::path(const ::string & str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
-      string(str)
+   path::path(const path & path) :
+      string((const string &)path),
+      path_meta(path)
    {
 
-      m_iSize = iSize;
+   }
+
+
+   path::path(const path_object & path) :
+      ::file::path((const ::file::path &)path)
+   {
+
+   }
+
+
+   void path::construct(const ::string & str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize)
+   {
+
+      ::file::path path;
+
+      ((::string &)path) = str;
+
+      path.m_iSize = iSize;
 
       if (epath == e_path_none)
       {
 
-         m_epath = file_path_get_type(str, epath);
+         path.m_epath = file_path_get_type(str, epath);
 
       }
       else
       {
 
-         m_epath = epath;
+         path.m_epath = epath;
 
       }
 
       if (bNormalizePath)
       {
 
-         bool bCertainlySyntathicallyDir = file_path_normalize_inline(*this, m_epath);
+         bool bCertainlySyntathicallyDir = file_path_normalize_inline(path, path.m_epath);
 
          if (bCertainlySyntathicallyDir)
          {
 
-            m_iDir = 1;
+            path.m_iDir = 1;
 
          }
          else
          {
 
-            m_iDir = iDir;
+            path.m_iDir = iDir;
 
          }
 
@@ -101,64 +88,109 @@ namespace file
       else
       {
 
-         m_iDir = iDir;
+         path.m_iDir = iDir;
 
       }
+
+      *this = path;
 
    }
 
 
-//   path::path(const atom & atom,e_path epath, int iDir) :
-//      path(string(atom), epath, iDir)
-//   {
-//
-//   }
 
 
-//   path::path(const ::payload & payload, e_path epath, int iDir) :
-//      path(payload.get_string(), epath, iDir)
-//   {
-//
-//
-//   }
+   //
+   //} // namespace file
+   //
 
 
-//   path::path(const path & path) :
-//      ::string((const string &)path),
-//      path_meta((path_meta &)path),
-//      path_os((path_os &) path)
-//   {
-//
-//   }
+   //   path::path(const unichar * pwsz, strsize iCount, e_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+   //      string(pwsz, iCount),
+   //      path_meta(epath, iSize, iDir)
+   //   {
+   //
+   //      if (m_epath == path_none)
+   //      {
+   //
+   //         m_epath = file_path_get_type(*this, epath);
+   //
+   //      }
+   //
+   //      if (bNormalizePath)
+   //      {
+   //
+   //         bool bCertainlySyntathicallyDir = normalize_path_inline(*this, m_epath);
+   //
+   //         if (bCertainlySyntathicallyDir)
+   //         {
+   //
+   //            m_iDir = 1;
+   //
+   //         }
+   //         else
+   //         {
+   //
+   //            m_iDir = iDir;
+   //
+   //         }
+   //
+   //      }
+   //
+   //   }
 
 
-//   path::path(path && path) :
-//      string(::move(path)),
-//      path_meta((path_meta &) path),
-//      path_os(::move(path))
-//   {
-//
-//   }
+
+   //   path::path(const atom & atom,e_path epath, int iDir) :
+   //      path(string(atom), epath, iDir)
+   //   {
+   //
+   //   }
 
 
-//   path::path(const char * psz, e_path epath, int iDir):
-//      path(string(psz), epath, iDir)
-//   {
-//
-//   }
-
-//   path::path(const unichar * psz, e_path epath, int iDir) :
-//      path(string(psz), epath, iDir)
-//   {
-//
-//   }
+   //   path::path(const ::payload & payload, e_path epath, int iDir) :
+   //      path(payload.get_string(), epath, iDir)
+   //   {
+   //
+   //
+   //   }
 
 
-//   path::path(const wstring & wstr, e_path epath, int iDir):
-//      path(string(wstr), epath, iDir)
-//   {
-//
-//   }
+   //   path::path(const path & path) :
+   //      ::string((const string &)path),
+   //      path_meta((path_meta &)path),
+   //      path_os((path_os &) path)
+   //   {
+   //
+   //   }
+
+
+   //   path::path(path && path) :
+   //      string(::move(path)),
+   //      path_meta((path_meta &) path),
+   //      path_os(::move(path))
+   //   {
+   //
+   //   }
+
+
+   //   path::path(const char * psz, e_path epath, int iDir):
+   //      path(string(psz), epath, iDir)
+   //   {
+   //
+   //   }
+
+   //   path::path(const unichar * psz, e_path epath, int iDir) :
+   //      path(string(psz), epath, iDir)
+   //   {
+   //
+   //   }
+
+
+   //   path::path(const wstring & wstr, e_path epath, int iDir):
+   //      path(string(wstr), epath, iDir)
+   //   {
+   //
+   //   }
 
    path::~path() noexcept
    {
@@ -167,59 +199,59 @@ namespace file
    }
 
 
-//   bool path::is_equal(const path & path) const
-//   {
-//
-//
-//#ifdef WINDOWS
-//
-//      if (((const string &)*this).compare_ci((const string &)path) == 0) // undoubtely eaqual...
-//         return true;
-//
-//#else
-//
-//      if (((const string &)*this).operator == ((const string &)path)) // undoubtely eaqual...
-//         return true;
-//
-//#endif
-//
-//      return false;
-//
-//      // find extend equalitys..
-//
-//      ::file::path_array patha1;
-//
-//      split(patha1);
-//
-//      ::file::path_array patha2;
-//
-//      path.split(patha2);
-//
-//      if(patha1.get_size() == patha2.get_size())
-//      {
-//
-//         for(index i = 0; i < patha1.get_size(); i++)
-//         {
-//
-//            if(patha1[i].::string::operator!=(patha2[i]))
-//            {
-//
-//               goto there_s_difference_in_this_step_1;
-//
-//            }
-//
-//         }
-//
-//         return true;
-//
-//      }
-//
-//      there_s_difference_in_this_step_1:
-//
-//
-//      return false;
-//
-//   }
+   //   bool path::is_equal(const path & path) const
+   //   {
+   //
+   //
+   //#ifdef WINDOWS
+   //
+   //      if (((const string &)*this).compare_ci((const string &)path) == 0) // undoubtely eaqual...
+   //         return true;
+   //
+   //#else
+   //
+   //      if (((const string &)*this).operator == ((const string &)path)) // undoubtely eaqual...
+   //         return true;
+   //
+   //#endif
+   //
+   //      return false;
+   //
+   //      // find extend equalitys..
+   //
+   //      ::file::path_array patha1;
+   //
+   //      split(patha1);
+   //
+   //      ::file::path_array patha2;
+   //
+   //      path.split(patha2);
+   //
+   //      if(patha1.get_size() == patha2.get_size())
+   //      {
+   //
+   //         for(index i = 0; i < patha1.get_size(); i++)
+   //         {
+   //
+   //            if(patha1[i].::string::operator!=(patha2[i]))
+   //            {
+   //
+   //               goto there_s_difference_in_this_step_1;
+   //
+   //            }
+   //
+   //         }
+   //
+   //         return true;
+   //
+   //      }
+   //
+   //      there_s_difference_in_this_step_1:
+   //
+   //
+   //      return false;
+   //
+   //   }
 
 
    void path::split(string_array & patha) const
@@ -239,23 +271,23 @@ namespace file
 
       ::file::path str;
 
-      if(stra.get_count() > 0)
+      if (stra.get_count() > 0)
       {
          str = stra[0];
          straParam.add(str);
-         if(ppathaRelative != nullptr)
+         if (ppathaRelative != nullptr)
          {
             ppathaRelative->add(::file::path(stra.slice(1).implode("/")));
          }
       }
 
-      for(i32 i = 1; i < stra.get_size(); i++)
+      for (i32 i = 1; i < stra.get_size(); i++)
       {
          str /= stra[i];
          straParam.add(str);
-         if(ppathaRelative != nullptr)
+         if (ppathaRelative != nullptr)
          {
-            ppathaRelative->add(::file::path(stra.slice(i+1).implode("/")));
+            ppathaRelative->add(::file::path(stra.slice(i + 1).implode("/")));
          }
       }
 
@@ -303,7 +335,7 @@ namespace file
 
       string strPath = *this;
 
-      if(strPath == "/")
+      if (strPath == "/")
       {
 
          straParam.add("/");
@@ -352,11 +384,11 @@ namespace file
       {
          straParam[0] = "\\\\?\\" + straParam[0];
       }
-      else if(this->begins_ci("/"))
+      else if (this->begins_ci("/"))
       {
          straParam[0] = "/" + straParam[0];
       }
-      else if(this->begins_ci("\\\\"))
+      else if (this->begins_ci("\\\\"))
       {
          straParam[0] = "\\\\" + straParam[0];
       }
@@ -371,7 +403,7 @@ namespace file
 
       ::file::path path(*this);
 
-      while(i > 0)
+      while (i > 0)
       {
 
          path = path.folder();
@@ -396,7 +428,7 @@ namespace file
    path & path::ascend(int i)
    {
 
-      while(i > 0)
+      while (i > 0)
       {
 
          ascend();
@@ -536,13 +568,13 @@ namespace file
 
       }
 
-      if(strPath.is_empty())
+      if (strPath.is_empty())
       {
 
          strPath = separator();
 
       }
-      else if(strPath.get_length() == 1 && strPath[0] == separator())
+      else if (strPath.get_length() == 1 && strPath[0] == separator())
       {
 
       }
@@ -673,7 +705,7 @@ namespace file
    void path::set_type(enum_path epath)
    {
 
-      if(epath != m_epath)
+      if (epath != m_epath)
       {
 
          m_epath = epath;
@@ -691,14 +723,14 @@ namespace file
    path & path::operator = (const ::file::path & path)
    {
 
-      if(&path != this)
+      if (&path != this)
       {
 
-         string::operator  = ((const string &) path);
+         string::operator  = ((const string &)path);
          *((path_meta *)this) = (const path_meta &)path;
-//#ifdef WINDOWS_DESKTOP
-//         m_idlist = path.m_idlist;
-//#endif
+         //#ifdef WINDOWS_DESKTOP
+         //         m_idlist = path.m_idlist;
+         //#endif
 
       }
 
@@ -711,7 +743,7 @@ namespace file
    path & path::operator = (const ::string & str)
    {
 
-      *((path_meta*)this) = path_meta();
+      *((path_meta *)this) = path_meta();
 
       m_epath = file_path_get_type(str);
 
@@ -725,7 +757,7 @@ namespace file
    path path::operator + (const path & path) const
    {
 
-      return ::file::path((const string &)*this  + string((const string &)path), m_epath);
+      return ::file::path((const string &)*this + string((const string &)path), m_epath);
 
    }
 
@@ -733,7 +765,7 @@ namespace file
    path path::operator + (const ::string & str) const
    {
 
-      return ::file::path((const string &)*this + (m_iDir > 0 ? separator_sz() : "" ) + string((const string &)str),m_epath);
+      return ::file::path((const string &)*this + (m_iDir > 0 ? separator_sz() : "") + string((const string &)str), m_epath);
 
    }
 
@@ -794,7 +826,7 @@ namespace file
    path & path::operator *= (const path & path)
    {
 
-      if(this != &path)
+      if (this != &path)
       {
 
          *this = sibling(path);
@@ -812,7 +844,7 @@ namespace file
    ::file::path path::title() const
    {
 
-      return ::file_path_title(operator const char*());
+      return ::file_path_title(operator const char * ());
 
    }
 
@@ -820,7 +852,7 @@ namespace file
    string path::name() const
    {
 
-      return ::file_path_name(operator const char*());
+      return ::file_path_name(operator const char * ());
 
    }
 
@@ -842,7 +874,7 @@ namespace file
 
    }
 
-   
+
    index path::find_final_extension() const
    {
 
@@ -929,6 +961,22 @@ namespace file
    {
 
       return !is_empty();
+
+   }
+
+
+   bool path::operator == (const ::string & str) const
+   {
+
+      return operator == (path(str));
+
+   }
+
+
+   bool path::operator != (const ::string & str) const
+   {
+
+      return operator != (path(str));
 
    }
 

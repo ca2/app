@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/constant/timer.h"
 #include "acme/platform/timer.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -20,6 +20,7 @@
 #include "axis/platform/system.h"
 #include "aura/message/user.h"
 #include "base/user/user/user.h"
+//#include "aura/_defer.h"
 
 
 #define DBLCLKMS 500
@@ -6333,6 +6334,23 @@ namespace user
 
 
 } // namespace user
+
+
+binary_stream operator <<(binary_stream & s, const ::user::mesh::icon_layout & layout)
+{
+
+   return s << layout.m_iaDisplayToStrict;
+
+}
+
+
+binary_stream operator >>(binary_stream & s, ::user::mesh::icon_layout & layout)
+{
+
+   return s >> layout.m_iaDisplayToStrict;
+
+}
+
 
 
 

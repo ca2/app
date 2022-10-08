@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/id.h"
 #include "international_locale_schema.h"
 
@@ -96,7 +96,7 @@ namespace text
             _add_locale_variant(idLocale2, idSchema2);
          }
 
-         strsize iStart =idLocale2.str().get_length() + 1;
+         strsize iStart =::string(idLocale2).get_length() + 1;
          strsize iEnd;
          strsize iLen;
          string str;
@@ -106,7 +106,7 @@ namespace text
             iEnd = iStart - 1;
             if((iEnd - 1) < 0)
                break;
-            iStart = idLocale2.str().reverse_find('-', iEnd - 1);
+            iStart = ::string(idLocale2).reverse_find('-', iEnd - 1);
             bEnd = iStart < 0;
             if(bEnd)
             {

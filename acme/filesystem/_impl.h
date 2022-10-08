@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace file
@@ -13,13 +13,13 @@ namespace file
    inline path & path::operator += (const property & property) { return operator += ((const ::payload &) property); }
    inline path path::operator + (const ::payload & payload) const { return operator + (payload.string()); }
    inline path path::operator + (const property & property) const { return operator + (property.string()); }
-   inline path path::operator + (const atom & atom) const { return operator + (atom.str()); }
+   inline path path::operator + (const atom & atom) const { return operator + (::string(atom)); }
    inline path path::operator / (const ::payload & payload) const { return operator /(::file::path(payload)); }
    inline path path::operator / (const property & property) const { return operator /(::file::path(property)); }
    inline path path::operator * (const property & property) const { return operator *(::file::path(property)); }
    inline path & path::operator *= (const property & property) { return operator *=(::file::path(property)); }
-   inline path path::folder() const { return { ::file_path_folder(*this), m_epath }; }
-   inline path path::sibling(const path & path) const { return { ::file_path_folder(*this) + separator() + ::sz::trim_left_path_sep(path), m_epath }; }
+   inline path path::folder() const { return { ::file_path_folder(*this), m_epath };}
+   inline path path::sibling(const path & path) const { return {::file_path_folder(*this) + separator() + ::sz::trim_left_path_sep(path), m_epath}; }
    inline path path::sibling(const ::string & str) const { return { ::file_path_folder(*this) + separator() + ::sz::trim_left_path_sep(str), m_epath }; }
    inline path path::sibling(const char * psz) const { return { ::file_path_folder(*this) + separator() + ::sz::trim_left_path_sep(psz), m_epath }; }
    inline string path::all_extensions() const { return &m_pdata[find_skip_or_length('.', rfind(separator()) + 1)]; }
@@ -716,20 +716,20 @@ namespace file
 
 
 
-inline stream & operator << (stream & s, const ::file::path_object & path)
-{
-
-   return s << (const ::file::path&)path;
-
-}
-
-
-inline stream & operator >>(stream & s, ::file::path_object & path)
-{
-
-   return s >> (::file::path &)path;
-
-}
+//inline stream & operator << (stream & s, const ::file::path_object & path)
+//{
+//
+//   return s << (const ::file::path&)path;
+//
+//}
+//
+//
+//inline stream & operator >>(stream & s, ::file::path_object & path)
+//{
+//
+//   return s >> (::file::path &)path;
+//
+//}
 
 // namespace file
 //{
@@ -768,29 +768,29 @@ inline uptr uptr_hash < const ::file::path & >(const ::file::path & key)
 }
 
 
-inline stream & operator << (stream & s, const ::file::path & path)
-{
-
-   return s << (const string &)path;
-
-}
-
-
-inline stream & operator >> (stream & s, ::file::path & path)
-{
-
-   string str;
-
-   s >> str;
-
-   path = str;
-
-   return s;
-
-}
+//inline stream & operator << (stream & s, const ::file::path & path)
+//{
+//
+//   return s << (const string &)path;
+//
+//}
 
 
-inline filesize stream_meta::precision(filesize prec)
+//inline stream & operator >> (stream & s, ::file::path & path)
+//{
+//
+//   string str;
+//
+//   s >> str;
+//
+//   path = str;
+//
+//   return s;
+//
+//}
+
+
+inline filesize stream_base::precision(filesize prec)
 {
 
    return m_precision = prec;
@@ -798,14 +798,14 @@ inline filesize stream_meta::precision(filesize prec)
 }
 
 
-inline filesize stream_meta::width() const
+inline filesize stream_base::width() const
 {
 
    return m_width;
 
 }
 
-inline filesize stream_meta::width(filesize prec)
+inline filesize stream_base::width(filesize prec)
 {
 
    return m_width = prec;
@@ -813,7 +813,7 @@ inline filesize stream_meta::width(filesize prec)
 }
 
 
-inline filesize stream_meta::precision() const
+inline filesize stream_base::precision() const
 {
 
    return m_precision;

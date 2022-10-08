@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 namespace earth
@@ -18,10 +18,10 @@ namespace earth
 
 dump_context & operator <<(dump_context & dumpcontext,::earth::time_span timeSpan)
 {
-   dumpcontext << "time_span(" << timeSpan.GetDays() << " days, " <<
-               timeSpan.GetHours() << " hours, " <<
-               timeSpan.GetMinutes() << " minutes and " <<
-               timeSpan.GetSeconds() << " seconds)";
+   //dumpcontext << "time_span(" << timeSpan.GetDays() << " days, " <<
+   //            timeSpan.GetHours() << " hours, " <<
+   //            timeSpan.GetMinutes() << " minutes and " <<
+   //            timeSpan.GetSeconds() << " seconds)";
 
    return dumpcontext;
 }
@@ -30,24 +30,24 @@ dump_context & operator <<(dump_context & dumpcontext,::earth::time_span timeSpa
 #endif
 
 
-stream & operator << (stream & os, ::earth::time_span span)
-{
-
-   os.write((i64)span.m_i);
-
-   return os;
-
-}
-
-
-stream & operator >> (stream & is, ::earth::time_span & span)
-{
-
-   is.read((i64 &)span.m_i);
-
-   return is;
-
-}
+//stream & operator << (stream & os, ::earth::time_span span)
+//{
+//
+//   os.write((i64)span.m_i);
+//
+//   return os;
+//
+//}
+//
+//
+//stream & operator >> (stream & is, ::earth::time_span & span)
+//{
+//
+//   is.read((i64 &)span.m_i);
+//
+//   return is;
+//
+//}
 
 
 namespace earth

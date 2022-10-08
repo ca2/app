@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 // property set key is case insensitive
@@ -158,8 +158,8 @@ public:
    inline ::payload value(atom idName, ::payload varDefault) const;
 
    bool payload_bool(const atom & atom, bool bDefault = false) const;
-   ::string payload_string(const atom & atom, const ::string & strDefault = "") const;
-   ::file::path payload_file_path(const atom & atom, const ::file::path & pathDefault = "") const;
+   ::string payload_string(const atom & atom, const ::string & strDefault = nullptr) const;
+   ::file::path payload_file_path(const atom & atom, const ::file::path & pathDefault ={}) const;
 
    template < typename TYPE >
    inline void exchange(const ::atom & atom, TYPE & t)
@@ -265,7 +265,7 @@ public:
 
       }
 
-      t = (TYPE &) payload_reference(*pproperty);
+      t = (TYPE &) *pproperty;
 
       return true;
 

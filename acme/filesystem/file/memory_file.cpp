@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 memory_file::memory_file() :
@@ -472,10 +472,10 @@ void memory_file::flush()
 }
 
 
-string memory_file::get_string() const
+string memory_file::as_string() const
 {
    
-   return memory_container::get_string();
+   return memory_container::as_string();
    
 }
 

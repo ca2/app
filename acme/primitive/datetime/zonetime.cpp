@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #if defined(LINUX)
 #include <time.h>
 #elif defined(__APPLE__)
@@ -321,23 +321,23 @@ namespace earth
 
 dump_context & operator <<(dump_context & dumpcontext, ::earth::zonetime zonetime)
 {
-   char psz[32];
-   psz[0] = '\0';
+   //char psz[32];
+   //psz[0] = '\0';
 
-   //   time_t tmp = zonetime.get_time();
-   //   errno_t err = _ctime64_s(psz, sizeof(psz), &tmp);
+   ////   time_t tmp = zonetime.get_time();
+   ////   errno_t err = _ctime64_s(psz, sizeof(psz), &tmp);
 
-   errno_t err = 0;
+   //errno_t err = 0;
 
-   if ((err != 0) || (psz[0] == '\0') || (zonetime.get_time() == 0))
-   {
-      dumpcontext << "::earth::zonetime(invalid #" << (iptr)zonetime.get_time() << ")";
+   //if ((err != 0) || (psz[0] == '\0') || (zonetime.get_time() == 0))
+   //{
+   //   dumpcontext << "::earth::zonetime(invalid #" << (iptr)zonetime.get_time() << ")";
 
-      return dumpcontext;
-   }
+   //   return dumpcontext;
+   //}
 
-   // format it
-   dumpcontext << "::earth::zonetime(\"" << psz << "\")";
+   //// format it
+   //dumpcontext << "::earth::zonetime(\"" << psz << "\")";
 
    return dumpcontext;
 }

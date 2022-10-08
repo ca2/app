@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -116,9 +116,9 @@ inline string_base < TYPE_CHAR > operator+(const string_base < TYPE_CHAR > & str
 
 
 inline ::string operator+(const char * psz, const ::string & str) { return string(psz) + str; }
-inline ::string operator+(const char * psz, const ::atom & atom) { return string(psz) + atom.to_string(); }
-inline ::string operator+(const char * psz, const ::payload & payload) { return string(psz) + payload.get_string(); }
-inline ::string operator+(const char * psz, const ::property& property) { return string(psz) + property.get_string(); }
+inline ::string operator+(const char * psz, const ::atom & atom) { return string(psz) + string(atom); }
+inline ::string operator+(const char * psz, const ::payload & payload) { return string(psz) + string(payload); }
+inline ::string operator+(const char * psz, const ::property& property) { return string(psz) + string(property); }
 
 
 //inline ::ansistring CLASS_DECL_ACME operator + (ansichar ansich, const ::ansistring & str2)
@@ -173,16 +173,16 @@ inline ::wstring operator+(const widechar* pszLeft, const ::wstring & wstringabl
 //}
 
 
-template < >
-inline string __string(const ::payload & payload) { return payload; }
+//template < >
+//inline string __string(const ::payload & payload) { return payload; }
 
 
-template < >
-inline string __string(const ::file::path & path) { return path.c_str(); }
+//template < >
+//inline string __string(const ::file::path & path) { return path.c_str(); }
 
 
-template < >
-inline string __string(const ::property & property) { return property; }
+//template < >
+//inline string __string(const ::property & property) { return property; }
 
 
 #include "___ch_impl.h"

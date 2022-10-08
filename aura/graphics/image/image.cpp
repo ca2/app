@@ -9849,248 +9849,248 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image* m_p, i32 Δx, i32 Δy, void* 
 
 
 
-stream& image::write(::stream& stream) const
-{
-
-   //throw ::exception(todo("write_link"));
-   //if(stream.write_link(this))
-   //{
-
-   //   return stream;
-
-   //}
-
-   i32 iWidth = width();
-
-   stream << (::i32)iWidth;
-
-   i32 iHeight = height();
-
-   stream << (::i32)iHeight;
-
-   stream << (::i32)m_sizeAlloc.cx;
-
-   stream << (::i32)m_sizeAlloc.cy;
-
-   stream << (::i32)m_iScan;
-
-   stream << (::i32)m_emipmap;
-
-   if (area() > 0)
-   {
-
-      map();
-
-      stream.write(colorref(), m_iScan * height());
-
-   }
-
-   return stream;
-
-}
-
-
-
-stream& image::read(::stream& stream)
-{
-
-   //throw ::exception(todo("write_link"));
-   //string strLink;
-
-   //bool bReadOnly;
-
-   //if (stream.get_object_link(*this, strLink, bReadOnly))
-   //{
-
-   //   stream.read_link(*this);
-
-   //   return stream;
-
-   //}
-
-   i32 width;
-
-   stream >> width;
-
-   //if (stream.fail())
-   //{
-
-   //   return stream;
-
-   //}
-
-   i32 height;
-
-   stream >> height;
-
-   //if (stream.fail())
-   //{
-
-   //   return stream;
-
-   //}
-
-   i32 widthAlloc;
-   stream >> widthAlloc;
-   //if (stream.fail())
-   //{
-
-   //   return stream;
-
-   //}
-
-   i32 heightAlloc;
-   stream >> heightAlloc;
-   //if (stream.fail())
-   //{
-
-   //   return stream;
-
-   //}
-
-   i32 iScan;
-   stream >> iScan;
-   //if (stream.fail())
-   //{
-
-   //   return stream;
-
-   //}
-
-   i32 iMipmap;
-   stream >> iMipmap;
-   //if (stream.fail())
-   //{
-
-   //   return stream;
-
-   //}
-
-   if (width <= 0)
-   {
-      //stream.setstate(::file::badbit);
-
-      throw ::exception(::error_io);
-
-      return stream;
-
-   }
-
-   if (height <= 0)
-   {
-
-      throw ::exception(::error_io);
-
-      return stream;
-
-   }
-
-   if (widthAlloc <= 0)
-   {
-      
-      throw ::exception(::error_io);
-
-      return stream;
-
-   }
-
-   if (heightAlloc <= 0)
-   {
-     
-      throw ::exception(::error_io);
-
-      return stream;
-
-   }
-
-   if (iScan <= 0)
-   {
-      
-      throw ::exception(::error_io);
-
-      return stream;
-
-   }
-
-   if (widthAlloc < width)
-   {
-      
-      throw ::exception(::error_io);
-
-      return stream;
-
-   }
-
-   if (heightAlloc < height)
-   {
-     
-      throw ::exception(::error_io);
-
-      return stream;
-
-   }
-
-   if (iScan < widthAlloc / (i32)sizeof(color32_t))
-   {
-      
-      throw ::exception(::error_io);
-
-      return stream;
-
-   }
-
-   create({ widthAlloc, heightAlloc });
-
-   //if (!create({ widthAlloc, heightAlloc }))
-   //{
-
-   //   throw ::exception(::error_io);
-
-   //   return stream;
-
-   //}
-
-   map();
-
-   if (iScan == m_iScan)
-   {
-
-      stream.exchange("bitmap", get_data(), iScan * this->height());
-
-   }
-   else
-   {
-
-      memory mem;
-
-      mem.set_size(iScan * this->height());
-
-      stream.exchange("bitmap", mem.get_data(), iScan * this->height());
-
-      auto size = stream.m_gcount;
-
-      if (size / iScan < height)
-      {
-
-         // stream.setstate(::file::badbit);
-
-         throw ::exception(error_io);
-
-         return stream;
-
-      }
-
-      ::copy_colorref(get_data(), width, height, m_iScan, (color32_t*)mem.get_data(), iScan);
-
-   }
-
-   m_size.cx = width;
-
-   m_size.cy = height;
-
-   return stream;
-
-}
+//stream& image::write(::stream& stream) const
+//{
+//
+//   //throw ::exception(todo("write_link"));
+//   //if(stream.write_link(this))
+//   //{
+//
+//   //   return stream;
+//
+//   //}
+//
+//   i32 iWidth = width();
+//
+//   stream << (::i32)iWidth;
+//
+//   i32 iHeight = height();
+//
+//   stream << (::i32)iHeight;
+//
+//   stream << (::i32)m_sizeAlloc.cx;
+//
+//   stream << (::i32)m_sizeAlloc.cy;
+//
+//   stream << (::i32)m_iScan;
+//
+//   stream << (::i32)m_emipmap;
+//
+//   if (area() > 0)
+//   {
+//
+//      map();
+//
+//      stream.write(colorref(), m_iScan * height());
+//
+//   }
+//
+//   return stream;
+//
+//}
+//
+//
+//
+//stream& image::read(::stream& stream)
+//{
+//
+//   //throw ::exception(todo("write_link"));
+//   //string strLink;
+//
+//   //bool bReadOnly;
+//
+//   //if (stream.get_object_link(*this, strLink, bReadOnly))
+//   //{
+//
+//   //   stream.read_link(*this);
+//
+//   //   return stream;
+//
+//   //}
+//
+//   i32 width;
+//
+//   stream >> width;
+//
+//   //if (stream.fail())
+//   //{
+//
+//   //   return stream;
+//
+//   //}
+//
+//   i32 height;
+//
+//   stream >> height;
+//
+//   //if (stream.fail())
+//   //{
+//
+//   //   return stream;
+//
+//   //}
+//
+//   i32 widthAlloc;
+//   stream >> widthAlloc;
+//   //if (stream.fail())
+//   //{
+//
+//   //   return stream;
+//
+//   //}
+//
+//   i32 heightAlloc;
+//   stream >> heightAlloc;
+//   //if (stream.fail())
+//   //{
+//
+//   //   return stream;
+//
+//   //}
+//
+//   i32 iScan;
+//   stream >> iScan;
+//   //if (stream.fail())
+//   //{
+//
+//   //   return stream;
+//
+//   //}
+//
+//   i32 iMipmap;
+//   stream >> iMipmap;
+//   //if (stream.fail())
+//   //{
+//
+//   //   return stream;
+//
+//   //}
+//
+//   if (width <= 0)
+//   {
+//      //stream.setstate(::file::badbit);
+//
+//      throw ::exception(::error_io);
+//
+//      return stream;
+//
+//   }
+//
+//   if (height <= 0)
+//   {
+//
+//      throw ::exception(::error_io);
+//
+//      return stream;
+//
+//   }
+//
+//   if (widthAlloc <= 0)
+//   {
+//      
+//      throw ::exception(::error_io);
+//
+//      return stream;
+//
+//   }
+//
+//   if (heightAlloc <= 0)
+//   {
+//     
+//      throw ::exception(::error_io);
+//
+//      return stream;
+//
+//   }
+//
+//   if (iScan <= 0)
+//   {
+//      
+//      throw ::exception(::error_io);
+//
+//      return stream;
+//
+//   }
+//
+//   if (widthAlloc < width)
+//   {
+//      
+//      throw ::exception(::error_io);
+//
+//      return stream;
+//
+//   }
+//
+//   if (heightAlloc < height)
+//   {
+//     
+//      throw ::exception(::error_io);
+//
+//      return stream;
+//
+//   }
+//
+//   if (iScan < widthAlloc / (i32)sizeof(color32_t))
+//   {
+//      
+//      throw ::exception(::error_io);
+//
+//      return stream;
+//
+//   }
+//
+//   create({ widthAlloc, heightAlloc });
+//
+//   //if (!create({ widthAlloc, heightAlloc }))
+//   //{
+//
+//   //   throw ::exception(::error_io);
+//
+//   //   return stream;
+//
+//   //}
+//
+//   map();
+//
+//   if (iScan == m_iScan)
+//   {
+//
+//      stream.exchange("bitmap", get_data(), iScan * this->height());
+//
+//   }
+//   else
+//   {
+//
+//      memory mem;
+//
+//      mem.set_size(iScan * this->height());
+//
+//      stream.exchange("bitmap", mem.get_data(), iScan * this->height());
+//
+//      auto size = stream.m_gcount;
+//
+//      if (size / iScan < height)
+//      {
+//
+//         // stream.setstate(::file::badbit);
+//
+//         throw ::exception(error_io);
+//
+//         return stream;
+//
+//      }
+//
+//      ::copy_colorref(get_data(), width, height, m_iScan, (color32_t*)mem.get_data(), iScan);
+//
+//   }
+//
+//   m_size.cx = width;
+//
+//   m_size.cy = height;
+//
+//   return stream;
+//
+//}
 
 
 ::element * image::clone() const

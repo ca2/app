@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 enum enum_method : ::i32;
@@ -891,7 +891,7 @@ public:
    //static u32 s_thread_proc(void* p);
 
 
-   string get_string() const override;
+   string as_string() const override;
 
 
    // for composition (ownership)
@@ -1349,7 +1349,7 @@ class __ ## xxx ## _properties : \
 public: \
 
 
-#define __PROPERTY(type, name, ID) type & name = payload_reference(topic(ID))
+#define __PROPERTY(type, name, ID) type & name = topic(ID)
 
 
 

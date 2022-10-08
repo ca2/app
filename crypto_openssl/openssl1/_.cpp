@@ -28,7 +28,7 @@
 //mdctx = EVP_MD_CTX_new();
 
 
-   CLASS_DECL_APEX void to_string(string & str, EVP_MD_CTX * pctx)
+   CLASS_DECL_APEX ::string __string(EVP_MD_CTX * pctx)
    {
 
       unsigned int md_len = 0;
@@ -44,7 +44,7 @@
    }
 
 
-   //CLASS_DECL_APEX void to_string(string & str, const WHIRLPOOL_CTX & ctx)
+   //CLASS_DECL_APEX ::string __string(const WHIRLPOOL_CTX & ctx)
    //{
 
    //   unsigned char digest[WHIRLPOOL_DIGEST_LENGTH];

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/comparison/equals.h"
@@ -122,24 +122,24 @@ inline uptr uptr_hash < const type & >(const ::type & type)
 }
 
 
-inline stream & operator << (stream & stream, const ::type & type)
-{
-
-   stream << type.m_strName;
-
-   return stream;
-
-}
-
-
-inline stream & operator >> (stream & stream, type & type)
-{
-
-   stream >> type.m_strName;
-
-   return stream;
-
-}
+//inline stream & operator << (stream & stream, const ::type & type)
+//{
+//
+//   stream << type.m_strName;
+//
+//   return stream;
+//
+//}
+//
+//
+//inline stream & operator >> (stream & stream, type & type)
+//{
+//
+//   stream >> type.m_strName;
+//
+//   return stream;
+//
+//}
 
 
 // bool get_memory::get_base64(const ::string & str)
@@ -303,21 +303,6 @@ inline ::payload & property_set::set(const ::atom & atom)
 //
 //}
 
-
-inline string  atom::operator +(const char * psz) const
-{
-
-   return to_string() + psz;
-
-}
-
-
-inline string  atom::operator +(const ::string & str) const
-{
-
-   return to_string() +str;
-
-}
 
 
 //inline CLASS_DECL_ACME string atom::operator + (const atom & atom) const
@@ -561,85 +546,6 @@ inline __pointer(::handle::ini) operator ""_pini(const char * psz, size_t s)
 //inline class ::payload & payload::operator *= (const class property & property) { operator *=(property);  return *this; }
 
 
-inline ::property * payload::find_property(const ::atom & atom) const
-{
-
-   if (m_etype == e_type_payload_pointer)
-   {
-
-      return m_ppayload->find_property(atom);
-
-   }
-   else if (m_etype == e_type_property)
-   {
-
-      return m_pproperty->find_property(atom);
-
-   }
-   else if (m_etype == e_type_property_set)
-   {
-
-      return m_ppropertyset->find_property(atom);
-
-   }
-
-   return nullptr;
-
-}
-
-
-inline ::index payload::property_index(const ::atom & atom) const
-{
-
-   if (m_etype == e_type_payload_pointer)
-   {
-
-      return m_ppayload->property_index(atom);
-
-   }
-   else if (m_etype == e_type_property)
-   {
-
-      return m_pproperty->property_index(atom);
-
-   }
-   else if (m_etype == e_type_property_set)
-   {
-
-      return m_ppropertyset->find_index(atom);
-
-   }
-
-   return -1;
-
-}
-
-
-inline property & payload::get_property(const ::atom & atom)
-{
-
-   if (m_etype == e_type_payload_pointer)
-   {
-
-      return m_ppayload->get_property(atom);
-
-   }
-   else if (m_etype == e_type_property)
-   {
-
-      return m_pproperty->get_property(atom);
-
-   }
-   else if (m_etype == e_type_property_set)
-   {
-
-      return m_ppropertyset->get(atom);
-
-   }
-
-   return as_propset()[atom];
-
-}
 
 template < class T >
 template < typename VAR >
@@ -728,7 +634,7 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const payload_type < VA
                   ::output_debug_string("POINTER: stream::alloc_object_from_text failed (2.1)");
 
                }
-               else if(__type_name(p) != atom.to_string())
+               else if(__type_name(p) != atom.as_string())
                {
 
                   ::output_debug_string("POINTER: allocated matter type is different from streamed matter type (2.2)");
@@ -1510,27 +1416,27 @@ inline __pointer(T) & ___pointer<T> ::defer_create(OBJECT * pobject)
 }
 
 
-template < class T >
-inline stream & operator << (stream & os, const ___pointer < T > & sp)
-{
-
-   os << *sp.m_p;
-
-   return os;
-
-}
-
-
-template < class T >
-inline stream & operator >> (stream & is, ___pointer < T > & sp)
-{
-
-   is >> *sp.m_p;
-
-   return is;
-
-}
-
+//template < class T >
+//inline stream & operator << (stream & os, const ___pointer < T > & sp)
+//{
+//
+//   os << *sp.m_p;
+//
+//   return os;
+//
+//}
+//
+//
+//template < class T >
+//inline stream & operator >> (stream & is, ___pointer < T > & sp)
+//{
+//
+//   is >> *sp.m_p;
+//
+//   return is;
+//
+//}
+//
 
 //inline void context::load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload* pvarOptions)
 //{
@@ -1786,11 +1692,10 @@ inline payload::operator ::memory() const
 //}
 
 
-
 inline bool type::operator == (const ::atom& atom) const
 {
 
-   return m_strName == atom.to_string();
+   return m_strName == atom.as_string();
 
 }
 

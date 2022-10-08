@@ -1,4 +1,4 @@
-// From picture.cpp by camilo on 2022-09-04 01:19 <3ThomasBorregaardSorensen!!
+﻿// From picture.cpp by camilo on 2022-09-04 01:19 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "picture_impl.h"
 //#include <math.h>
@@ -76,39 +76,39 @@ namespace user
 
    }
 
-   void picture_impl::exchange(::stream & stream)
-   {
+   //void picture_impl::exchange(::stream & stream)
+   //{
 
-      __EXCHANGE(rectangle);
-      __EXCHANGE(rectangleDrawing);
-      __EXCHANGE(rectangleCursor);
-      __EXCHANGE(bDrag);
-      __EXCHANGE(dRotate);
-      __EXCHANGE(rectangleBounding);
-      __EXCHANGE(polygon);
-      __EXCHANGE(polygonDrawing);
-      __EXCHANGE(pointaCursor);
-      __EXCHANGE(dZoom);
-      __EXCHANGE(pointDrag2);
-
-
-      __EXCHANGE(bOutline);
-      __EXCHANGE(iOutlineWidth);
-      __EXCHANGE(hlsOutline);
-
-      __EXCHANGE(bGlowDropShadow);
-      __EXCHANGE(iGlowDropShadowOffset);
-      __EXCHANGE(iGlowDropShadowBlur);
-      __EXCHANGE(hlsGlowDropShadow);
-
-      __EXCHANGE(iBlur);
-      __EXCHANGE(bGrayscale);
-      __EXCHANGE(bInvert);
-      __EXCHANGE(iOpacity);
-      __EXCHANGE(iSaturation);
+   //   __EXCHANGE(rectangle);
+   //   __EXCHANGE(rectangleDrawing);
+   //   __EXCHANGE(rectangleCursor);
+   //   __EXCHANGE(bDrag);
+   //   __EXCHANGE(dRotate);
+   //   __EXCHANGE(rectangleBounding);
+   //   __EXCHANGE(polygon);
+   //   __EXCHANGE(polygonDrawing);
+   //   __EXCHANGE(pointaCursor);
+   //   __EXCHANGE(dZoom);
+   //   __EXCHANGE(pointDrag2);
 
 
-   }
+   //   __EXCHANGE(bOutline);
+   //   __EXCHANGE(iOutlineWidth);
+   //   __EXCHANGE(hlsOutline);
+
+   //   __EXCHANGE(bGlowDropShadow);
+   //   __EXCHANGE(iGlowDropShadowOffset);
+   //   __EXCHANGE(iGlowDropShadowBlur);
+   //   __EXCHANGE(hlsGlowDropShadow);
+
+   //   __EXCHANGE(iBlur);
+   //   __EXCHANGE(bGrayscale);
+   //   __EXCHANGE(bInvert);
+   //   __EXCHANGE(iOpacity);
+   //   __EXCHANGE(iSaturation);
+
+
+   //}
 
 
 

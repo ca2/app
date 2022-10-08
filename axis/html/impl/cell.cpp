@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 // #if !BROAD_PRECOMPILED_HEADER
 // #include "_impl.h"
 // #endif
@@ -95,14 +95,14 @@ namespace html
          if (!m_pelemental->m_propertyset.is_new_or_null("colspan"))
          {
 
-            m_pelemental->m_propertyset["colspan"].as(m_iColSpan);
+            m_iColSpan = m_pelemental->m_propertyset["colspan"];
 
          }
 
          if (!m_pelemental->m_propertyset.is_new_or_null("rowspan"))
          {
 
-            m_pelemental->m_propertyset["rowspan"].as(m_iRowSpan);
+            m_iRowSpan = m_pelemental->m_propertyset["rowspan"];
 
          }
 

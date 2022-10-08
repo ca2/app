@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 class synchronization_lock;
@@ -243,11 +243,8 @@ public:
    i32            uni_to_utf8_2_or_more(ansichar * dest, i32 ch);
 
 
-   const ansichar * utf8_dec(::utf8_char * pchar, const ansichar * pszBeg, const ansichar * psz);
+   //const ansichar * utf8_dec(const ::character & character, const ansichar * pszBeg, const ansichar * psz);
    const ansichar * utf8_dec(const ansichar * pszBeg, const ansichar * psz);
-
-
-
 
 
    inline  bool begins_ci_skip(const char *& psz, const char * pszPrefix);
@@ -355,21 +352,14 @@ public:
 
    string q_valid(string str);
 
-   inline  ansichar * dup(const ::string & psz)
-   {
 
+   inline ansichar * dup(const ::string & str)
+   {
 
       try
       {
 
-         if (psz == nullptr)
-         {
-
-            return nullptr;
-
-         }
-
-         return ansi_dup(psz);
+         return ansi_dup(str);
 
       }
       catch (...)
@@ -380,6 +370,7 @@ public:
       return nullptr;
 
    }
+
 
    //namespace str
    //{

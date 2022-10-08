@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -79,12 +79,12 @@ public:
    }
 
 
-   void io(::stream & stream)
-   {
+   //void io(::stream & stream)
+   //{
 
-      __io_array(stream, m_ia);
+   //   __io_array(stream, m_ia);
 
-   }
+   //}
 
 
 };

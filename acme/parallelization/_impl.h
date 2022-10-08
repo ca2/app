@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 inline ::payload& task_property(const ::atom& atom) { return ::get_task()->payload(atom); }
@@ -123,6 +123,8 @@ inline void preempt()
 }
 
 
+
+DEFINE_COMPARISON_WITH_DURATION(wait)
 
 
 

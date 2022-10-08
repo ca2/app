@@ -1,10 +1,11 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/region.h"
 #include "aura/graphics/image/fastblur.h"
 #include "aura/user/user/drawable.h"
+#include "acme/graphics/draw2d/_binary_stream.h"
 
 
 namespace user
@@ -61,7 +62,7 @@ namespace user
          ~picture_impl() override;
 
          
-         virtual void exchange(::stream & stream) override;
+         //virtual void exchange(::stream & stream) override;
 
 
       };
@@ -150,7 +151,8 @@ namespace user
       virtual void move_to(point_f64 point, ::size_f64 sizePage, ::size_f64 sizeClient, const ::rectangle_f64 & rectangleMargin);
 
 
-      virtual void exchange(::stream & stream) override;
+      void read(::binary_stream & stream);
+      void write(::binary_stream & stream) const;
 
 
    };
@@ -159,4 +161,7 @@ namespace user
 } // namespace user
 
 
-
+CLASS_DECL_BASE binary_stream & operator << (binary_stream & stream, const ::user::picture::picture_impl & t);
+CLASS_DECL_BASE binary_stream & operator >> (binary_stream & stream, ::user::picture::picture_impl & t);
+CLASS_DECL_BASE binary_stream & operator << (binary_stream & stream, const ::user::picture::picture_impl & t);
+CLASS_DECL_BASE binary_stream & operator >> (binary_stream & stream, ::user::picture::picture_impl & t);

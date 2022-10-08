@@ -1,4 +1,12 @@
-#include "framework.h"
+﻿#include "framework.h"
+
+
+string __string_image(const ::property_set & set)
+{
+
+   throw ::exception(todo);
+
+}
 
 
 text_stream::~text_stream()
@@ -21,17 +29,17 @@ void text_stream::destroy()
 
    m_p.release();
 
-   /* auto estatus = */ stream::destroy();
+   ///* auto estatus = */ stream::destroy();
 
    /* return estatus; */
 
 }
 
 
-string text_stream::get_string() const
+string text_stream::as_string() const
 {
    
-   return m_p->get_string();
+   return m_p->as_string();
    
 }
 
@@ -42,21 +50,22 @@ bool text_stream::is_stream_set()
    return m_p;
 
 }
-//
-//void text_stream::read(char & ch)
-//{
-//
-//   m_gcount = m_p->read(&ch, 1);
-//
-//   if (m_gcount <= 0)
-//   {
-//
-//      throw ::exception(error_io);
-//
-//   }
-//
-//
-//}
+
+text_stream & text_stream::operator >>(i8 & ch)
+{
+
+   m_gcount = m_p->read(&ch, 1);
+
+   if (m_gcount <= 0)
+   {
+
+      throw ::exception(error_io);
+
+   }
+
+   return *this;
+
+}
 
 
 void text_stream::close()
@@ -68,7 +77,7 @@ void text_stream::close()
 
 
 
-void text_stream::write(bool b)
+text_stream & text_stream::operator <<(bool b)
 {
 
    if (b)
@@ -84,47 +93,59 @@ void text_stream::write(bool b)
 
    }
 
+   return *this;
+
 }
 
 
-void text_stream::write(char ch)
+text_stream & text_stream::operator <<(char ch)
 {
 
    m_p->write(&ch, sizeof(ch)); // treat as char - character
 
-}
-
-
-void text_stream::write(uchar uch)
-{
-
-   write((u32)uch);
+   return *this;
 
 }
 
 
-void text_stream::write(i16 i)
+text_stream & text_stream::operator <<(uchar uch)
 {
 
-    write((i32)i);
+   operator <<((u32)uch);
+
+   return *this;
 
 }
 
 
-void text_stream::write(u16 u)
+text_stream & text_stream::operator <<(i16 i)
 {
 
-   write((u32)u);
+    operator <<((i32)i);
+
+    return *this;
+
+}
+
+
+text_stream & text_stream::operator <<(u16 u)
+{
+
+   operator <<((u32)u);
+
+   return *this;
 
 }
 
 
 #ifdef WINDOWS
 
-void text_stream::write(unichar wch)
+text_stream & text_stream::operator <<(unichar wch)
 {
 
    raw_print(::str().uni_to_utf8(wch));
+
+   return *this;
 
 }
 
@@ -162,39 +183,47 @@ void text_stream::print_number(const ::string & str)
 }
 
 
-void text_stream::write(i32 i)
+text_stream & text_stream::operator <<(i32 i)
 {
 
    print_number(__string(i));
 
+   return *this;
+
 }
 
 
-void text_stream::write(u32 u)
+text_stream & text_stream::operator <<(u32 u)
 {
 
    print_number(__string(u));
 
+   return *this;
+
 }
 
 
-void text_stream::write(i64 i)
+text_stream & text_stream::operator <<(i64 i)
 {
 
    print_number(__string(i));
 
+   return *this;
+
 }
 
 
-void text_stream::write(u64 u)
+text_stream & text_stream::operator <<(u64 u)
 {
 
    print_number(__string(u));
 
+   return *this;
+
 }
 
 
-void text_stream::write(float f)
+text_stream & text_stream::operator <<(float f)
 {
 
    string str;
@@ -203,10 +232,12 @@ void text_stream::write(float f)
 
    print_number(str);
 
+   return *this;
+
 }
 
 
-void text_stream::write(double d)
+text_stream & text_stream::operator <<(double d)
 {
 
    string str;
@@ -215,10 +246,12 @@ void text_stream::write(double d)
 
    print_number(__string(d));
 
+   return *this;
+
 }
 
 
-//void text_stream::write(const RECTANGLE_I32 & rectangle)
+//text_stream & text_stream::operator <<(const RECTANGLE_I32 & rectangle)
 //{
 //
 //   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
@@ -228,7 +261,7 @@ void text_stream::write(double d)
 //}
 //
 //
-//void text_stream::write(const SIZE_I32 * psize)
+//text_stream & text_stream::operator <<(const SIZE_I32 * psize)
 //{
 //
 //   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
@@ -239,7 +272,7 @@ void text_stream::write(double d)
 //
 //
 //
-//void text_stream::write(const POINT_I32 * ppoint)
+//text_stream & text_stream::operator <<(const POINT_I32 * ppoint)
 //{
 //
 //   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
@@ -250,7 +283,7 @@ void text_stream::write(double d)
 
 
 
-void text_stream::write(const char * psz)
+text_stream & text_stream::operator <<(const char * psz)
 {
 
    if (::is_null(psz))
@@ -266,31 +299,40 @@ void text_stream::write(const char * psz)
 
    }
 
+   return *this;
+
 }
 
 
-void text_stream::write(const ::atom & atom)
+text_stream & text_stream::operator <<(const ::atom & atom)
 {
 
-   write(atom.to_string());
+   operator <<(atom.as_string());
+
+   return *this;
 
 }
 
 
-void text_stream::write(const ::string & str)
+text_stream & text_stream::operator <<(const ::string & str)
 {
 
-   write(str.c_str());
+   operator <<(str.c_str());
+
+   return *this;
 
 }
 
 
-void text_stream::write(const property_set& set)
+text_stream & text_stream::operator <<(const property_set& set)
 {
 
-   __exchange_save_array(*this, set);
+   operator << (__string_image(set));
+
+   return *this;
 
 }
+
 
 void text_stream::raw_print(const ::string & str)
 {
@@ -302,23 +344,25 @@ void text_stream::raw_print(const ::string & str)
 }
 
 
-void text_stream::read(bool & b)
+text_stream & text_stream::operator >>(bool & b)
 {
 
    m_p->read(&b, sizeof(b));
 
-}
-
-
-void text_stream::read(signed char & ch)
-{
-
-   return read((char &)ch);
+   return *this;
 
 }
 
+//
+//text_stream & text_stream::operator >>(char & ch)
+//{
+//
+//   return operator >>((char &)ch);
+//
+//}
 
-void text_stream::read(char & ch)
+
+text_stream & text_stream::operator >>(char & ch)
 {
 
    m_gcount = m_p->read(&ch, sizeof(ch));
@@ -330,13 +374,17 @@ void text_stream::read(char & ch)
 
    }
 
+   return *this;
+
 }
 
 
-void text_stream::read(uchar & uch)
+text_stream & text_stream::operator >>(uchar & uch)
 {
 
    m_p->read(&uch, sizeof(uch));
+
+   return *this;
    
 }
 
@@ -344,60 +392,98 @@ void text_stream::read(uchar & uch)
 #ifdef WINDOWS
 
 
-void text_stream::read(unichar & wch)
+text_stream & text_stream::operator >>(unichar & wch)
 {
    
    m_p->read(&wch, sizeof(wch));
+
+   return *this;
    
 }
 
 #endif
 
-void text_stream::read(i16 & sh)
+
+text_stream & text_stream::operator >>(i16 & sh)
 {
+   
    m_p->read(&sh, sizeof(sh));
+
+   return *this;
+
 }
 
-void text_stream::read(u16 & u)
+
+text_stream & text_stream::operator >>(u16 & u)
 {
+   
    m_p->read(&u, sizeof(u));
-}
 
-void text_stream::read(i32 & i)
-{
-   number_read(i);
-}
+   return *this;
 
-void text_stream::read(u32 & u)
-{
-   number_read(u);
 }
 
 
-void text_stream::read(i64 & i)
+text_stream & text_stream::operator >>(i32 & i)
 {
-
+   
    number_read(i);
 
+   return *this;
+
 }
 
 
-void text_stream::read(u64 & u)
+text_stream & text_stream::operator >>(u32 & u)
 {
+
    number_read(u);
+
+   return *this;
+
 }
 
-void text_stream::read(float & f)
+
+text_stream & text_stream::operator >>(i64 & i)
 {
+
+   number_read(i);
+
+   return *this;
+
+}
+
+
+text_stream & text_stream::operator >>(u64 & u)
+{
+   
+   number_read(u);
+
+   return *this;
+
+}
+
+
+text_stream & text_stream::operator >>(float & f)
+{
+   
    number_read(f);
+
+   return *this;
+
 }
 
-void text_stream::read(double & d)
+
+text_stream & text_stream::operator >>(double & d)
 {
+   
    number_read(d);
+
+   return *this;
+
 }
 
-//void text_stream::read(RECTANGLE_I32 * prectangle)
+//text_stream & text_stream::operator >>(RECTANGLE_I32 * prectangle)
 //
 //{
 //   m_p->read(&prectangle->left, sizeof(prectangle->left));
@@ -410,20 +496,20 @@ void text_stream::read(double & d)
 //   
 //}
 //
-//void text_stream::read(SIZE_I32 * psize)
+//text_stream & text_stream::operator >>(SIZE_I32 * psize)
 //{
 //   m_p->read(&psize->cx, sizeof(psize->cx));
 //   m_p->read(&psize->cy, sizeof(psize->cy));
 //}
 //
-//void text_stream::read(POINT_I32 * ppoint)
+//text_stream & text_stream::operator >>(POINT_I32 * ppoint)
 //{
 //   m_p->read(&ppoint->x, sizeof(ppoint->x));
 //   m_p->read(&ppoint->y, sizeof(ppoint->y));
 //}
 
 
-void text_stream::read(string & str)
+text_stream & text_stream::operator >>(string & str)
 {
 
    str.Empty();
@@ -433,7 +519,7 @@ void text_stream::read(string & str)
    while(true)
    {
 
-      read(ch);
+      operator >>(ch);
 
       if (ch == '\0')
       {
@@ -460,28 +546,32 @@ void text_stream::read(string & str)
 
    } 
 
+   return *this;
+
 }
 
 
-void text_stream::read(property_set& set)
+text_stream & text_stream::operator >>(property_set& set)
 {
 
-   __exchange_load_array(*this, set);
+   //__exchange_load_array(*this, set);
 //#define memory_new ACME_NEW
+
+   return *this;
 
 }
 
 
-void text_stream::read(::atom & atom)
+text_stream & text_stream::operator >>(::atom & atom)
 {
 
    string str;
 
-   read(str);
-
+   operator >> (str);
 
    atom = str;
 
+   return *this;
 
 }
 

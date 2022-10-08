@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 19/01/2021. <33TBS!!
 //
 
@@ -402,7 +402,7 @@ namespace acme
 
 
 
-      virtual void shell_open(const ::file::path & path, const string & strParams = "", const ::file::path & pathFolder = "");
+      virtual void shell_open(const ::file::path & path, const string & strParams = "", const ::file::path & pathFolder = {});
       virtual void open_url(const ::string & strUrl);
 
 

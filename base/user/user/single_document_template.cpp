@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/user/user/wait_cursor.h"
 #include "single_document_template.h"
 #include "document.h"
@@ -359,20 +359,20 @@ namespace user
 
       impact_system::dump(dumpcontext);
 
-      if (m_pdocument)
-      {
+      //if (m_pdocument)
+      //{
 
-         dumpcontext << "with ::user::document: " << (void*)m_pdocument;
+      //   dumpcontext << "with ::user::document: " << (void*)m_pdocument;
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         dumpcontext << "with no ::user::document";
+      //   dumpcontext << "with no ::user::document";
 
-      }
+      //}
 
-      dumpcontext << "\n";
+      //dumpcontext << "\n";
 
    }
 

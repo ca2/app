@@ -1308,7 +1308,7 @@
     <ClInclude Include="windowing\_impl.h" />
     <ClInclude Include="windowing\_windowing.h" />
     <ClInclude Include="_.h" />
-    <ClInclude Include="_defer.h" />
+    <ClInclude Include="__defer.h" />
     <ClInclude Include="_factory.h" />
     <ClInclude Include="_h.h" />
     <ClInclude Include="_library.h" />

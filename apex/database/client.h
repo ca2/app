@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace database
@@ -64,11 +64,13 @@ namespace database
       inline void data_set(const key & key, const TYPE & t)
       {
 
-         payload_stream stream;
+         memory_file memoryfile;
+
+         binary_stream stream(&memoryfile);
 
          stream.set_storing();
 
-         __exchange(stream, (TYPE &) t);
+         stream << t;
 
          //if (stream.fail())
          //{
@@ -76,7 +78,7 @@ namespace database
          //   return false;
 
          //}
-         binary_set(key, stream.payload());
+         binary_set(key, memoryfile.memory());
          //if (!)
          //{
 
@@ -125,25 +127,29 @@ namespace database
       inline bool data_get(const key & key, TYPE & t)
       {
 
-         payload_stream stream;
+         memory_file memoryfile;
 
-         if (!binary_get(key, stream.payload()))
+         if (!binary_get(key, memoryfile.memory()))
          {
 
             return false;
 
          }
 
+         binary_stream stream(&memoryfile);
+
+
+
          stream.set_loading();
 
-         __exchange(stream, t);
+         stream >> t;
 
-         //if (stream.fail())
-         //{
+         if (stream.nok())
+         {
 
-         //   return false;
+            return false;
 
-         //}
+         }
 
          return true;
 

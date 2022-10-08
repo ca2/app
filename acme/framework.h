@@ -1,4 +1,4 @@
-#ifndef __GNUC__
+﻿#ifndef __GNUC__
 #pragma once
 #endif
 
@@ -12,7 +12,7 @@
 
 #include "acme/platform/_platform.h"
 #include "acme/operating_system.h"
-#include "acme/_defer.h"
+//#include "acme/_defer.h"
 
 
 #endif

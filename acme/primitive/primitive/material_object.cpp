@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 material_object::~material_object()
@@ -28,7 +28,7 @@ material_object::~material_object()
 //}
 
 
-::string material_object::get_string() const
+::string material_object::as_string() const
 {
 
    return __type_name(this);

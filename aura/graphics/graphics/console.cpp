@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
 #endif
@@ -795,12 +795,12 @@ namespace graphics
    }
 
 
-   string console::get_string() const
+   string console::as_string() const
    {
 
       throw ::not_implemented();
 
-      return "";
+      return {};
 
    }
 

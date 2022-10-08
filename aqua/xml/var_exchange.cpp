@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "var_exchange.h"
 #include "output_tree.h"
 #include "document.h"
@@ -55,7 +55,7 @@ namespace xml
       
       i32 i;
 
-      pnode->attribute("type").as(i);
+      i = pnode->attribute("type");
       
       m_ppayload->m_etype = (::enum_type) i;
 

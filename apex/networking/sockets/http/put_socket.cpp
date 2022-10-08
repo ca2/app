@@ -1,4 +1,4 @@
-#include "framework.h" 
+﻿#include "framework.h" 
 #include "put_socket.h"
 
 
@@ -61,7 +61,7 @@ namespace sockets
 
          m_filename = file;
 
-         m_pcontext->m_papexcontext->file().length(file).as(m_content_length);
+         m_content_length = m_pcontext->m_papexcontext->file().length(file);
 
       }
       else

@@ -1,4 +1,4 @@
-// From picture.cpp by camilo on 2022-09-04 01:23 <3ThomasBorregaardSorensen!!
+﻿// From picture.cpp by camilo on 2022-09-04 01:23 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -56,7 +56,7 @@ namespace user
       ~picture_impl() override;
 
 
-      virtual void exchange(::stream & stream) override;
+      ///virtual void exchange(::stream & stream) override;
 
 
    };

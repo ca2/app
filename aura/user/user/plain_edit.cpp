@@ -7592,7 +7592,7 @@ namespace user
          if (::is_set(m_propertyText))
          {
 
-            plain_edit_get_text(m_propertyText.m_pproperty->as_string());
+            plain_edit_get_text(*m_propertyText.m_pproperty);
 
             auto papp = get_app();
 

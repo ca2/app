@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //namespace str
@@ -707,7 +707,7 @@
    inline ansistring & str::assign(ansistring & ansistrDst, const atom & atom)
    {
 
-      ansistrDst.assign(atom.to_string());
+      ansistrDst.assign(atom.as_string());
 
       return ansistrDst;
 
@@ -717,16 +717,17 @@
    inline wd16string & str::assign(wd16string & widestrDst, const atom & atom)
    {
 
-      widestrDst.assign(atom.to_string());
+      widestrDst.assign(atom.as_string());
 
       return widestrDst;
 
    }
 
+
    inline wd32string & str::assign(wd32string& widestrDst, const atom& atom)
    {
 
-      widestrDst.assign(atom.to_string());
+      widestrDst.assign(atom.as_string());
 
       return widestrDst;
 

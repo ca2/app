@@ -1,4 +1,4 @@
-#ifndef __GNUC__
+﻿#ifndef __GNUC__
 #pragma once
 #endif
 
@@ -26,7 +26,7 @@
 #include "axis/mathematics/calculator/_.h"
 #include "axis/mathematics/kissfft/_.h"
 //#include "aura/crypto/crypto_openssl.h"
-#include "aura/_defer.h"
+//#include "aura/_defer.h"
 
 
 

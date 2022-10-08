@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/platform/timer.h"
 #include "aura/graphics/image/list.h"
 //#if !BROAD_PRECOMPILED_HEADER
@@ -2134,7 +2134,7 @@ namespace filemanager
 
             FilterBegin();
 
-            Filter1(ptopic->payload(id_filter).as_string());
+            Filter1(ptopic->payload(id_filter));
 
          }
 

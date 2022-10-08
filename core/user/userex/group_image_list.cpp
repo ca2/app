@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/graphics/image/context_image.h"
 #include "group_image_list.h"
 #include "base/user/menu/button.h"
@@ -100,7 +100,7 @@ namespace userex
 
       pgroup->m_strTitle = strTitle;
 
-      m_idaHandledCommands.add("menu_item_" + idGroup.to_string());
+      m_idaHandledCommands.add("menu_item_" + idGroup);
 
       m_groupa.add(pgroup);
 
@@ -395,7 +395,7 @@ namespace userex
       {
 
          str += "<item id=\"menu_item_";
-         str += pgroup->m_atomGroup.to_string();
+         str += pgroup->m_atomGroup;
          str += "\" pimage =\"";
          str += pgroup->m_strIcon;
          str += "\">";

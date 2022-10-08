@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/user/user/scroll.h"
@@ -98,7 +98,7 @@ namespace user
 
 
          icon_layout();
-         virtual ~icon_layout();
+         ~icon_layout() override;
 
 
       };
@@ -585,42 +585,8 @@ namespace user
 } // namespace user
 
 
-
-inline stream operator <<(stream & s, const ::user::mesh::icon_layout & layout)
-{
-
-      return s << layout.m_iaDisplayToStrict;
-
-}
-
-
-inline stream operator >>(stream & s, ::user::mesh::icon_layout & layout)
-{
-
-      return s >> layout.m_iaDisplayToStrict;
-
-}
-
-
-inline stream operator <<(stream & s, const ::user::mesh::mesh_layout & layout)
-{
-
-   s << layout.m_iaDisplayToStrict;
-   return s << layout.m_iWidth;
-
-}
-
-
-inline stream operator >>(stream & s, ::user::mesh::mesh_layout & layout)
-{
-
-   s >> layout.m_iaDisplayToStrict;
-
-   return s >> layout.m_iWidth;
-
-}
-
-
+CLASS_DECL_CORE binary_stream operator <<(binary_stream & s, const ::user::mesh::mesh_layout & layout);
+CLASS_DECL_CORE binary_stream operator >>(binary_stream & s, ::user::mesh::mesh_layout & layout);
 
 
 

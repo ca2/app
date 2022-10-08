@@ -325,25 +325,15 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    //inline ::microsecond & as_micros() { if (get_type() != e_type_micros)set_type(e_type_micros); return m_micros; }
    //inline ::nanosecond & as_nanos() { if (get_type() != e_type_nanos)set_type(e_type_nanos); return m_nanos; }
 
-
-   ::string & as_string(::string & str);
-   ::atom & as_id(const ::atom & idDefault = nullptr);
-
-   ::memory & as_memory();
-
-   ::string_array & as_stra();
-   ::int_array & as_ia();
-   ::i64_array & as_i64a();
-   ::payload_array & as_payloada();
-   ::duration & as_duration();
-   ::property_set & as_propset();
-   ::property & as_property();
+   void as(::string & str) const;
+   void as(::memory_base & memory) const;
 
 
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
    long get_long(long lDefault = 0) const;
    unsigned long get_unsigned_long(unsigned long ulDefault = 0) const;
 #endif
+
 
    ::i8 i8(::i8 iDefault = 0) const;
    ::u8 u8(::u8 uDefault = 0) const;
@@ -497,37 +487,52 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::block block() const;
 
 
-   ::string & as_string(const char * pszOnNull = nullptr);
+   ::string & string_reference(const char * pszOnNull = nullptr);
+
+   ::memory & memory_reference();
 
 
-   ::file::path & as_file_path();
+   ::atom & id_reference(const ::atom & idDefault);
 
 
-   ::file_time & as_file_time();
-   ::earth::time & as_datetime_time();
-   ::color::color & as_color();
-   ::color::hls & as_color_hls();
+   operator ::string_array &();
+   operator ::int_array &();
+   operator ::i64_array &();
+   operator ::payload_array &();
+   operator ::duration &();
+   operator ::property_set &();
+   operator ::property &();
 
-   template < typename TYPE >
-   inline TYPE & as(TYPE & t);
 
 
 
-   bool & as_bool();
+   operator ::file::path & ();
+
+
+
+   operator ::file_time & ();
+   operator ::earth::time &();
+   operator ::color::color &();
+   operator ::color::hls &();
+
+   operator ::enum_check &();
+
+
+   operator bool &();
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
-   long & as_long();
-   unsigned long & as_unsigned_long();
+   operator long &();
+   operator unsigned long &();
 #endif
-   ::i8 &  as_i8();
-   ::u8 &  as_u8();
-   ::i16 & as_i16();
-   ::u16 & as_u16();
-   ::i32 & as_i32();
-   ::u32 & as_u32();
-   ::i64 & as_i64();
-   ::u64 & as_u64();
-   ::f32 & as_f32();
-   ::f64 & as_f64();
+   operator ::i8 & ();
+   operator ::u8 & ();
+   operator ::i16 & ();
+   operator ::u16 &();
+   operator ::i32 &();
+   operator ::u32 &();
+   operator ::i64 &();
+   operator ::u64 &();
+   operator ::f32 &();
+   operator ::f64 &();
 
 
    strsize length() const;
@@ -908,10 +913,10 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
 #endif
 
-   inline ::index property_index(const ::atom & atom) const;
-   inline ::property * find_property(const ::atom & atom) const;
+   ::index property_index(const ::atom & atom) const;
+   ::property * find_property(const ::atom & atom) const;
 
-   inline ::property & get_property(const ::atom & atom);
+   ::property & get_property(const ::atom & atom);
 
    ::payload at(index i);
    inline ::payload at(index i) const { return ((::payload *)this)->at(i); }
@@ -1017,115 +1022,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
 
 
-class CLASS_DECL_ACME payload_reference
-{
-public:
 
-   payload & m_payload;
-
-   payload_reference(payload & payload) :
-      m_payload(payload)
-   {
-
-   }
-
-   operator enum_check & () { return m_payload.as_echeck(); }
-
-   operator bool & () { return m_payload.as_bool(); }
-   operator i8 & () { return m_payload.as_i8(); }
-   operator u8 & () { return m_payload.as_u8(); }
-   operator i16 & () { return m_payload.as_i16(); }
-   operator u16 & () { return m_payload.as_u16(); }
-   operator i32 & () { return m_payload.as_i32(); }
-   operator u32 & () { return m_payload.as_u32(); }
-   operator i64 & () { return m_payload.as_i64(); }
-   operator u64 & () { return m_payload.as_u64(); }
-   
-   
-#ifdef __APPLE__
-   
-   operator long & () { return m_payload.as_long(); }
-   operator unsigned long & () { return m_payload.as_unsigned_long(); }
-   
-#endif
-   
-
-   operator f32 & () { return m_payload.as_f32(); }
-   operator f64 & () { return m_payload.as_f64(); }
-
-
-   //operator second & () { return m_payload.as_secs(); }
-   //operator ::duration & () { return m_payload.as_millis(); }
-   //operator microsecond & () { return m_payload.as_micros(); }
-   //operator nanosecond & () { return m_payload.as_nanos(); }
-
-   operator duration & () { return m_payload.as_duration(); }
-   operator earth::time & () { return m_payload.as_datetime_time(); }
-
-
-   operator string & () { return m_payload.as_string(); }
-   operator property & () { return m_payload.as_property(); }
-
-
-   operator int_array & () { return m_payload.as_ia(); }
-   operator i64_array & () { return m_payload.as_i64a(); }
-   operator string_array & () { return m_payload.as_stra(); }
-   operator payload_array & () { return m_payload.as_payloada(); }
-   operator property_set & () { return m_payload.as_propset(); }
-   operator ::file::path & () { return m_payload.as_file_path(); }
-
-
-};
-
-
-
-
-
-class CLASS_DECL_ACME payload_cast
-{
-public:
-
-   const payload & m_payload;
-
-   payload_cast(const ::payload & payload) :
-      m_payload(payload)
-   {
-
-   }
-
-
-   operator enum_check () const { return m_payload.echeck(); }
-
-   operator bool () const { return m_payload.get_bool(); }
-   operator i8 ()const { return m_payload.i8(); }
-   operator u8 ()const { return m_payload.u8(); }
-   operator i16 () const { return m_payload.i16(); }
-   operator u16 ()const { return m_payload.u16(); }
-   operator i32 () const { return m_payload.i32(); }
-   operator u32 ()const { return m_payload.u32(); }
-   operator i64 () const { return m_payload.i64(); }
-   operator u64 ()const { return m_payload.u64(); }
-
-   operator f32 () const { return m_payload.f32(); }
-   operator f64 ()const { return m_payload.f64(); }
-
-   operator duration ()const { return m_payload.duration(); }
-   operator earth::time ()const { return m_payload.datetime_time(); }
-
-
-   operator string ()const { return m_payload.string(); }
-   //operator property ()const { return m_payload.property(); }
-
-
-   operator int_array ()const { return m_payload.ia(); }
-   operator i64_array ()const { return m_payload.i64a(); }
-   operator string_array ()const { return m_payload.stra(); }
-   inline operator payload_array () const;
-   inline operator property_set () const;
-   inline operator ::file::path () const;
-
-
-};
 
 
 
@@ -1372,12 +1269,17 @@ inline payload::operator long() const
 #endif
 
 
-inline ::string & payload::as_string(::string & str)
-{
+//inline ::string & payload::string_reference(const char * pszOnNull)
+//{
+//
+//   set_type(e_type_string, true);
+//
+//   return m_str;
+//
+//}
 
-   return str = this->string();
 
-}
+
 
 inline ::string payload::get_string() const
 {
@@ -1575,10 +1477,7 @@ inline ::payload payload::operator * (FLOATING f) const
 }
 
 
-
-
-
-
+#include "payload_cast.h"
 
 
 template < primitive_integral INTEGRAL, payload_class PAYLOAD >
@@ -1726,14 +1625,19 @@ inline bool strictly_different(bool b, const PAYLOAD & payload);
 
 
 
+//#include "payload_reference.h"
+//
+//
+//template < typename TYPE >
+//TYPE & payload::reference(TYPE & t)
+//{
+//
+//   return t = payload_reference(*this);
+//
+//}
+//
+
+CLASS_DECL_ACME::string __string(const ::payload & payload);
 
 
-
-template < typename TYPE >
-TYPE & payload::as(TYPE & t)
-{
-
-   return t = payload_reference(*this);
-
-}
 

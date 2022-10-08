@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "data.h"
 #include "edit.h"
 
@@ -51,7 +51,7 @@ namespace xml
 
             case ::xml::action_set_name:
             {
-               pnode = m_pnodeRoot->get_node_from_indexed_path(pitem->m_iaPath);
+               pnode = root()->get_node_from_indexed_path(pitem->m_iaPath);
                if (!pnode)
                   return;
                pnode->set_name(pitem->m_strValue);
@@ -60,7 +60,7 @@ namespace xml
 
             case ::xml::action_set_value:
             {
-               pnode = m_pnodeRoot->get_node_from_indexed_path(pitem->m_iaPath);
+               pnode = root()->get_node_from_indexed_path(pitem->m_iaPath);
                if (!pnode)
                   return;
                pnode->set_value(pitem->m_strValue);
@@ -69,7 +69,7 @@ namespace xml
 
             case ::xml::action_set_attribute:
             {
-               pnode = m_pnodeRoot->get_node_from_indexed_path(pitem->m_iaPath);
+               pnode = root()->get_node_from_indexed_path(pitem->m_iaPath);
                if (!pnode)
                   return;
                pnode->set_attribute(pitem->m_strName, pitem->m_strValue);
@@ -111,20 +111,20 @@ namespace xml
    }
 
    
-   ::stream & data::write(::stream & stream) const
-   {
+   //::stream & data::write(::stream & stream) const
+   //{
 
-      return ::xml::document::write(stream);
+   //   return ::xml::document::write(stream);
 
-   }
-   
+   //}
+   //
 
-   ::stream & data::read(::stream & stream)
-   {
+   //::stream & data::read(::stream & stream)
+   //{
 
-      return ::xml::document::read(stream);
+   //   return ::xml::document::read(stream);
 
-   }
+   //}
 
 
 } // namespace aura

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "entity.h"
 
 
@@ -98,33 +98,26 @@ namespace xml
 
                char * end = nullptr;
 
-               long int l;
+               wd32char wd32char;
 
                if(*pes == 'X' || *pes == 'x')
                {
 
                   pes++;
 
-                  l = strtol(pes, &end, 16);
+                  wd32char = strtol(pes, &end, 16);
 
                }
                else
                {
 
-                  l = strtol(pes, &end, 10);
+                  wd32char = strtol(pes, &end, 10);
 
                }
 
-               ::utf8_char utf8char(l);
+               auto iLength = wd32_to_ansi(ps, &wd32char, 1);
 
-               for(char i = 0; i < utf8char.m_chLen; i++)
-               {
-
-                  ps[i] = utf8char.m_sz[i];
-
-               }
-
-               ps += utf8char.m_chLen;
+               ps += iLength;
 
                pes = end;
 

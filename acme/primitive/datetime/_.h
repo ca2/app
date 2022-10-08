@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 struct system_time_t;
@@ -109,8 +109,19 @@ namespace earth
 
     class time;
     class time_span;
+    class zonetime;
  
-} // namespace datetime
+} // namespace earth
+
+
+namespace datetime
+{
+
+   
+   class time_zone;
+
+
+} // namespace datetime;
 
 
 #include "micro_duration.h"

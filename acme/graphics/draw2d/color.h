@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "color32.h"
@@ -34,9 +34,6 @@ inline string _hex_color(const COLOR32 & c)
 }
 
 
-inline bool operator == (const COLOR32 & color1, const COLOR32 & color2) { return color1.u32 == color2.u32; }
-
-
 auto inline red(::color32_t rgba) { return ((byte)(rgba & 0xff)); }
 auto inline green(::color32_t rgba) { return ((byte)((rgba >> 8) & 0xff)); }
 auto inline blue(::color32_t rgba) { return ((byte)((rgba >> 16) & 0xff)); }
@@ -45,20 +42,28 @@ auto inline alpha(::color32_t rgba) { return ((byte)((rgba >> 24) & 0xff)); }
 
 namespace color
 {
-
-
-   class CLASS_DECL_ACME hls
+   
+   struct HLS
    {
-   public:
-
-
+     
       double m_dH;
       double m_dL;
       double m_dS;
 
+   };
+
+
+   class CLASS_DECL_ACME hls :
+      public HLS
+   {
+   public:
+
+
+ 
+
       hls() {}
-      hls(e_zero_init) : m_dH(0.0), m_dL(0.0), m_dS(0.0) {}
-      hls(double dH, double dL = 0.5, double dS = 1.0) : m_dH(dH), m_dL(dL), m_dS(dS) {}
+      hls(e_zero_init) : HLS{ 0.0,0.0, 0.0 } {}
+      hls(double dH, double dL = 0.5, double dS = 1.0) :HLS{ dH, dL, dS } {}
 
       hls & operator =(const ::payload & payload);
 
@@ -384,11 +389,11 @@ CLASS_DECL_ACME ::color::color opaque_color(enum_color ecolor);
 
 
 
-CLASS_DECL_ACME void __exchange(::stream & s, ::color::color & color);
-
-
-
-CLASS_DECL_ACME void __exchange(::stream & s, ::color::hls & hls);
+//CLASS_DECL_ACME void __exchange(::stream & s, ::color::color & color);
+//
+//
+//
+//CLASS_DECL_ACME void __exchange(::stream & s, ::color::hls & hls);
 
 
 CLASS_DECL_ACME ::payload & assign(::payload & payload, const ::color::hls & hls);

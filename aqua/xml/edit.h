@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace xml
@@ -37,8 +37,8 @@ namespace xml
       void set_attribute(const __pointer(::xml::node) pnode, const property * pproperty);
 
 
-      virtual ::stream & write(::stream & stream) const override;
-      virtual ::stream & read(::stream & stream) override;
+      //virtual ::stream & write(::stream & stream) const override;
+      //virtual ::stream & read(::stream & stream) override;
 
 
    };

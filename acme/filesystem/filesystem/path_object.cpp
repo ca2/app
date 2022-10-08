@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 namespace file
@@ -58,12 +58,12 @@ namespace file
    }
 
 
-   void path_object::exchange(::stream& s)
+   /*void path_object::exchange(::stream& s)
    {
 
       s.exchange(atom::e_type_null, (::file::path&) * this);
 
-   }
+   }*/
 
 
    strsize path_object::sz_len() const

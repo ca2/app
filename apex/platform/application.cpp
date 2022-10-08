@@ -434,9 +434,9 @@ namespace apex
 
       //dumpcontext << "\nm_strCmdLine = " << m_strCmdLine;
       //dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
-      dumpcontext << "\nm_bHelpMode = " << m_strAppName;
+      //dumpcontext << "\nm_bHelpMode = " << m_strAppName;
 
-      dumpcontext << "\n";
+      //dumpcontext << "\n";
 
    }
 
@@ -636,20 +636,20 @@ namespace apex
    }
 
 
-   bool application::app_data_set(const ::atom & atom, stream & os)
-   {
+   //bool application::app_data_set(const ::atom & atom, stream & os)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   bool application::app_data_get(const ::atom & atom, stream & is)
-   {
+   //bool application::app_data_get(const ::atom & atom, stream & is)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    bool application::app_data_set(const ::atom & atom, ::object & obj)
@@ -1076,7 +1076,7 @@ namespace apex
    bool application::load_cached_string_by_id(string & str, const ::atom & atom, bool bLoadStringTable)
    {
 
-      string strId(atom.str());
+      string strId(atom);
 
       string strTable;
 
@@ -5641,9 +5641,7 @@ namespace apex
       if (!load_string(str, atom))
       {
 
-         atom.to_string(str);
-
-         return str;
+         return atom;
 
       }
 
@@ -6588,11 +6586,11 @@ namespace apex
 
          string strLocale;
 
-         plocaleschema->m_idaLocale[i].to_string(strLocale);
+         strLocale = plocaleschema->m_idaLocale[i];
 
          string strSchema;
 
-         plocaleschema->m_idaSchema[i].to_string(strSchema);
+         strSchema = plocaleschema->m_idaSchema[i];
 
          update_appmatter(psession, pszRoot, pszRelative, strLocale, strSchema);
 

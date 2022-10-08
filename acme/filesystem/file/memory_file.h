@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/primitive/memory_container.h"
@@ -73,7 +73,7 @@ public:
 
    void flush() override;
 
-   string get_string() const override;
+   string as_string() const override;
 
    //virtual void full_load(::payload payloadFile);
 
@@ -190,30 +190,30 @@ public:
 };
 
 
-inline stream & operator << (stream & s, ::memory_file * pfile)
-{
-
-   s.write(&pfile->get_data()[pfile->get_position()], (memsize) pfile->get_remaining_byte_count());
-
-   return s;
-
-}
-
-
-class CLASS_DECL_ACME memory_stream :
-   public binary_stream
-{
-public:
+//inline stream & operator << (stream & s, ::memory_file * pfile)
+//{
+//
+//   s.write(&pfile->get_data()[pfile->get_position()], (memsize) pfile->get_remaining_byte_count());
+//
+//   return s;
+//
+//}
 
 
-   memory_stream() : binary_stream(__new(::memory_file)) {}
-   memory_stream(::memory_base & memory) : binary_stream(__new(::memory_file(memory))) {}
-
-   ::memory_file * operator ->() { return m_p.cast < ::memory_file >().m_p; }
-   const ::memory_file * operator ->() const { return m_p.cast < ::memory_file >().m_p; }
-
-
-};
+//class CLASS_DECL_ACME memory_stream :
+//   public binary_stream
+//{
+//public:
+//
+//
+//   memory_stream() : binary_stream(__new(::memory_file)) {}
+//   memory_stream(::memory_base & memory) : binary_stream(__new(::memory_file(memory))) {}
+//
+//   ::memory_file * operator ->() { return m_p.cast < ::memory_file >().m_p; }
+//   const ::memory_file * operator ->() const { return m_p.cast < ::memory_file >().m_p; }
+//
+//
+//};
 
 //auto __create_memory_stream() { return ::memory_stream(; }
 

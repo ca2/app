@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/id.h"
 //#include "apex/platform/app_core.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
@@ -1320,7 +1320,7 @@ namespace apex
 
       binary_stream reader(m_pcontext->m_papexcontext->file().get_reader(payloadFile));
 
-      read(reader);
+      //read(reader);
 
       ///return reader.m_estatus;
 
@@ -1332,7 +1332,7 @@ namespace apex
 
       binary_stream writer(m_pcontext->m_papexcontext->file().get_writer(payloadFile));
 
-      write(writer);
+      //write(writer);
 
       ///return writer.m_estatus;
 

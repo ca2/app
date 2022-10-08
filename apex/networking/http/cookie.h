@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 class http_socket;
@@ -50,7 +50,7 @@ namespace http
       }
 
 
-      string get_string() const override;
+      string as_string() const override;
 
 
       //inline string to_string() const

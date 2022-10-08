@@ -1,4 +1,4 @@
-// Added get_time_zone memberby camilo on 2021-12-02 14:23 BRT <3ThomasBorregaardSørensen!!
+﻿// Added get_time_zone memberby camilo on 2021-12-02 14:23 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -26,14 +26,26 @@ public:
 };
 
 
-inline void __exchange(::stream& stream, class ::string_timeout& t)
+inline binary_stream & operator <<(binary_stream& stream, const class ::string_timeout& t)
 {
 
-   __TYPE_EXCHANGE(str);
-   __TYPE_EXCHANGE(duration);
+   stream << t.m_str;
+   stream << t.m_duration;
+
+   return stream;
 
 }
 
+
+inline binary_stream & operator >>(binary_stream & stream, class ::string_timeout & t)
+{
+
+   stream >> t.m_str;
+   stream >> t.m_duration;
+
+   return stream;
+
+}
 
 namespace geo
 {
@@ -48,33 +60,33 @@ namespace geo
 
 
       //bool                                                            m_bInitialCountryTimeZoneInit;
-      bool                                                              m_bInitialLocalityTimeZoneInit;
+      bool                                                  m_bInitialLocalityTimeZoneInit;
 
-      ::mutex                                                           m_mutexOpenweatherCity;
+      ::mutex                                               m_mutexOpenweatherCity;
       
-      ::mutex                                                           m_mutexCityTimeZone;
-      index_map < ::datetime::department::time_zone >                   m_cityTimeZone;
-      bool                                                              m_bLoadedCityTimeZoneFromFile;
-      ::file::path                                                      m_pathCityTimeZoneFile;
-      task_pointer                                                      m_ptaskSaveCityTimeZone;
-      bool                                                              m_bCityTimeZoneModified;
+      ::mutex                                               m_mutexCityTimeZone;
+      index_map < ::datetime::time_zone >                   m_cityTimeZone;
+      bool                                                  m_bLoadedCityTimeZoneFromFile;
+      ::file::path                                          m_pathCityTimeZoneFile;
+      task_pointer                                          m_ptaskSaveCityTimeZone;
+      bool                                                  m_bCityTimeZoneModified;
 
 
 
-      ::mutex                                                           m_mutexLocalityTimeZone;
-      double_map < double_map < ::datetime::department::time_zone > >   m_localityTimeZone;
-      bool                                                              m_bLoadedLocalityTimeZoneFromFile;
-      ::file::path                                                      m_pathLocalityTimeZoneFile;
-      task_pointer                                                      m_ptaskSaveLocalityTimeZone;
-      bool                                                              m_bLocalityTimeZoneModified;
+      ::mutex                                               m_mutexLocalityTimeZone;
+      double_map < double_map < ::datetime::time_zone > >   m_localityTimeZone;
+      bool                                                  m_bLoadedLocalityTimeZoneFromFile;
+      ::file::path                                          m_pathLocalityTimeZoneFile;
+      task_pointer                                          m_ptaskSaveLocalityTimeZone;
+      bool                                                  m_bLocalityTimeZoneModified;
 
 
-      ::mutex                                                           m_mutexCityWeather;
-      index_map < string_timeout >                                      m_cityWeather;
-      bool                                                              m_bLoadedCityWeatherFromFile;
-      ::file::path                                                      m_pathCityWeatherFile;
-      task_pointer                                                      m_ptaskSaveCityWeather;
-      bool                                                              m_bCityWeatherModified;
+      ::mutex                                               m_mutexCityWeather;
+      index_map < string_timeout >                          m_cityWeather;
+      bool                                                  m_bLoadedCityWeatherFromFile;
+      ::file::path                                          m_pathCityWeatherFile;
+      task_pointer                                          m_ptaskSaveCityWeather;
+      bool                                                  m_bCityWeatherModified;
 
 
       //string_map < time_zone >      m_countryTimeZone;
@@ -114,13 +126,13 @@ namespace geo
       virtual double time_zone(string str, string strCountryCode);
 
 
-      virtual ::datetime::department::time_zone get_time_zone(openweather_city* pcity);
+      virtual ::datetime::time_zone get_time_zone(openweather_city* pcity);
 
-      virtual ::datetime::department::time_zone _get_time_zone(openweather_city* pcity);
+      virtual ::datetime::time_zone _get_time_zone(openweather_city* pcity);
 
-      virtual ::datetime::department::time_zone get_time_zone(double dLat, double dLng);
+      virtual ::datetime::time_zone get_time_zone(double dLat, double dLng);
 
-      virtual ::datetime::department::time_zone _get_time_zone(double dLat, double dLng);
+      virtual ::datetime::time_zone _get_time_zone(double dLat, double dLng);
 
       virtual string get_weather(openweather_city* pcity);
 

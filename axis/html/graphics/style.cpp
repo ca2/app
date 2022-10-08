@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 // #if !BROAD_PRECOMPILED_HEADER
 // #include "_graphics.h"
 // #endif 
@@ -864,7 +864,7 @@ namespace html
 
       }
 
-      m_propertyset["opacity"].as(d);
+      d = m_propertyset["opacity"];
 
       return true;
 

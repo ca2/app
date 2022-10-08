@@ -15,7 +15,7 @@
 #include "path.h"
 #include "acme/primitive/geometry2d/_geometry2d.h"
 #include "acme/primitive/geometry2d/_collection.h"
-#include "_defer.h"
+//#include "_defer.h"
 #include "acme/primitive/geometry2d/_defer_shape.h"
 #include "aura/user/user/interaction.h"
 

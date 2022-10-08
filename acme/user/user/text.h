@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace user
@@ -52,7 +52,7 @@ namespace user
 
 
       inline string strtext() const { return m_propertyText->string(); }
-      inline string & as_strtext() { return m_propertyText->as_string(); }
+      inline string & strtext_reference() { return m_propertyText->string_reference(); }
       //inline string as_string() const { return m_propertyText->get_string(); }
 
       

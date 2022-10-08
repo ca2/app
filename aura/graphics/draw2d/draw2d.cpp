@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "lock.h"
 #include "aura/graphics/image/save_image.h"
 #include "aura/graphics/image/array.h"
@@ -466,7 +466,7 @@ namespace draw2d
 
       }
 
-      varOptions["dpi"].as(psaveimage->m_iDpi);
+      psaveimage->m_iDpi = varOptions["dpi"];
 
       if (psaveimage->m_iDpi == 0)
       {

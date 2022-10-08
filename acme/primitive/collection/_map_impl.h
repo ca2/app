@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
@@ -24,23 +24,23 @@ void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::dump(dump_context& dumpcontex
 
    ::matter::dump(dumpcontext);
 
-   dumpcontext << "with " << this->m_nCount << " elements";
-   if (dumpcontext.GetDepth() > 0)
-   {
-      // Dump in format "[key] -> value"
+   //dumpcontext << "with " << this->m_nCount << " elements";
+   //if (dumpcontext.GetDepth() > 0)
+   //{
+   //   // Dump in format "[key] -> value"
 
-      const association* passociation = get_start();
-      while (passociation != nullptr)
-      {
-         passociation = get_next(passociation);
-         dumpcontext << "\n\t[";
-         dump_elements<KEY>(dumpcontext, &passociation->element1(), 1);
-         dumpcontext << "] = ";
-         dump_elements<VALUE>(dumpcontext, &passociation->element2(), 1);
-      }
-   }
+   //   const association* passociation = get_start();
+   //   while (passociation != nullptr)
+   //   {
+   //      passociation = get_next(passociation);
+   //      dumpcontext << "\n\t[";
+   //      dump_elements<KEY>(dumpcontext, &passociation->element1(), 1);
+   //      dumpcontext << "] = ";
+   //      dump_elements<VALUE>(dumpcontext, &passociation->element2(), 1);
+   //   }
+   //}
 
-   dumpcontext << "\n";
+   //dumpcontext << "\n";
 }
 
 

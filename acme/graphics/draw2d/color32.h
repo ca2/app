@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 28/01/2021. 03:28 CamiloSasukeThomasBorregaardSørensen
 //
 #pragma once
@@ -31,6 +31,10 @@ public:
       };
 
    };
+
+
+   inline bool operator == (const COLOR32 & color) const { return u32 == color.u32; }
+
 
 };
 

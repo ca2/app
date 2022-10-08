@@ -172,11 +172,11 @@ public:
    [[nodiscard]] virtual ::enum_type get_payload_type() const;
 
 
-   virtual void exchange(::stream& s);
-   virtual void exchange(::payload_stream& s);
+   //virtual void exchange(::stream& s);
+   //virtual void exchange(::payload_stream& s);
 
-   virtual stream& write(::stream& stream) const;
-   virtual stream& read(::stream& stream);
+   virtual void write(::binary_stream& stream) const;
+   virtual void read(::binary_stream& stream);
 
 
    virtual void add_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/id.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
@@ -82,11 +82,11 @@ namespace axis
 //
 //#endif
 
-      //dumpcontext << "\nm_strCmdLine = " << m_strCmdLine;
-      //dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
-      dumpcontext << "\nm_bHelpMode = " << m_strAppName;
+      ////dumpcontext << "\nm_strCmdLine = " << m_strCmdLine;
+      ////dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
+      //dumpcontext << "\nm_bHelpMode = " << m_strAppName;
 
-      dumpcontext << "\n";
+      //dumpcontext << "\n";
 
    }
 
@@ -131,20 +131,20 @@ namespace axis
    //}
 
 
-   bool application::app_data_set(const ::atom & atom, stream & os)
-   {
+   //bool application::app_data_set(const ::atom & atom, stream & os)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   bool application::app_data_get(const ::atom & atom, stream & is)
-   {
+   //bool application::app_data_get(const ::atom & atom, stream & is)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    bool application::app_data_set(const ::atom & atom, ::object & obj)

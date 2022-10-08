@@ -1,4 +1,4 @@
-#ifndef __GNUC__
+﻿#ifndef __GNUC__
 #pragma once
 #endif
 
@@ -9,13 +9,13 @@
 #include "aura/_.h"
 
 
-#if !defined(__OBJC__)
-
-
-#include "aura/_defer.h"
-
-
-#endif
+//#if !defined(__OBJC__)
+//
+//
+//#include "aura/_defer.h"
+//
+//
+//#endif
 
 //#ifdef __cplusplus
 //

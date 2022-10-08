@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "base64.h"
 
 
@@ -639,39 +639,41 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
    }
 
 
-   string base64::encode_element(::matter & matter, e_mode emode)
-   {
+   //string base64::encode_element(::matter & matter, e_mode emode)
+   //{
 
-      ::memory_stream streamObject;
+   //   memory_file memoryfile;
 
-      streamObject.set_storing();
+   //   ::binary_stream streamObject;
 
-      matter.write(streamObject);
+   //   streamObject.set_storing();
 
-      auto str = encode(streamObject->memory());
+   //   streamObject << matter;
 
-      return str;
+   //   auto str = encode(memoryfile.memory());
 
-   }
+   //   return str;
+
+   //}
 
 
-   bool base64::decode(::matter & matter, const char * pszBase64)
-   {
+   //bool base64::decode(::matter & matter, const char * pszBase64)
+   //{
 
-      ::string_buffer fileIn(pszBase64);
+   //   ::string_buffer fileIn(pszBase64);
 
-      ::memory_stream streamObject;
+   //   ::memory_stream streamObject;
 
-      if (!decode(streamObject->memory(), &fileIn))
-      {
-         return false;
-      }
+   //   if (!decode(streamObject->memory(), &fileIn))
+   //   {
+   //      return false;
+   //   }
 
-      matter.read(streamObject);
+   //   matter.read(streamObject);
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
    // https://stackoverflow.com/questions/13195143/range-of-valid-character-for-a-base-64-encoding
 

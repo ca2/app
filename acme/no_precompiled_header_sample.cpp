@@ -1,4 +1,4 @@
-#define NO_TEMPLATE
+﻿#define NO_TEMPLATE
 
 struct DURATION;
 
@@ -10,8 +10,8 @@ class payload;
 class duration;
 class task_pool;
 class object;
-class stream;
-class payload_stream;
+//class stream;
+//class payload_stream;
 
 
 namespace message

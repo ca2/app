@@ -1,4 +1,4 @@
-// Created by CSTBS on 2021-10-06 19:38 BRT <3ThomasBorregaardSørensen!!
+﻿// Created by CSTBS on 2021-10-06 19:38 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -7,6 +7,19 @@ struct DURATION { ::i64 m_iSecond; ::i64 m_iNanosecond; };
 struct FREQUENCY { double m_d; /* Hz */ };
 
 constexpr FREQUENCY operator "" _Hz(long double d) { return { (double) d }; }
+
+
+class duration;
+
+
+#define DECLARE_COMPARISON_WITH_DURATION \
+inline bool operator == (const ::duration & duration) const; \
+inline bool operator < (const ::duration & duration) const; \
+inline bool operator <= (const ::duration & duration) const; \
+inline bool operator > (const ::duration & duration) const; \
+inline bool operator >= (const ::duration & duration) const; \
+inline bool operator != (const ::duration & duration)  const;
+
 
 #define DURATION_UNIT(unit, type, member)             \
 struct unit                                           \
@@ -18,6 +31,8 @@ struct unit                                           \
    constexpr unit():member{} {}                       \
    constexpr unit(enum_zero):member{} {}              \
    constexpr unit(type t):member(t){}                 \
+                                                      \
+   DECLARE_COMPARISON_WITH_DURATION                   \
                                                       \
 };
 

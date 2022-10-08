@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include <stdio.h>
 
 
@@ -1050,7 +1050,7 @@ namespace color
                str.trim();
                ::payload a;
                a.stra().explode(",", str);
-               auto & ia = a.as_ia();
+               i32_array & ia = a;
                if (ia.get_count() == 3)
                {
                   set_COLORREF(argb(255, ia[0], ia[1], ia[2]));
@@ -1198,15 +1198,15 @@ CLASS_DECL_ACME ::color::color opaque_color(enum_color ecolor)
 
 
 
-void __exchange(::stream & s, ::color::color & color32)
-{
-
-   s.exchange("red", color32.red);
-   s.exchange("green", color32.green);
-   s.exchange("blue", color32.blue);
-   s.exchange("alpha", color32.alpha);
-
-}
+//void __exchange(::stream & s, ::color::color & color32)
+//{
+//
+//   s.exchange("red", color32.red);
+//   s.exchange("green", color32.green);
+//   s.exchange("blue", color32.blue);
+//   s.exchange("alpha", color32.alpha);
+//
+//}
 
 
 namespace color
@@ -1263,15 +1263,15 @@ namespace color
 
 }
 
-
-void __exchange(::stream & s, ::color::hls & hls)
-{
-
-   s.exchange("hue", hls.m_dH);
-   s.exchange("lightness", hls.m_dL);
-   s.exchange("saturation", hls.m_dS);
-
-}
+//
+//void __exchange(::stream & s, ::color::hls & hls)
+//{
+//
+//   s.exchange("hue", hls.m_dH);
+//   s.exchange("lightness", hls.m_dL);
+//   s.exchange("saturation", hls.m_dS);
+//
+//}
 
 ::color::color g_color20[] = {
 ::color::color(0xff808080),

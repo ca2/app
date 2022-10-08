@@ -1691,37 +1691,37 @@ namespace user
    {
       ::user::control_bar::dump(dumpcontext);
 
-      //      dumpcontext << "m_hbmImageWell = " << (::u32)m_hbmImageWell;
-      //      dumpcontext << "\nm_hInstImageWell = " << (::u32)m_hInstImageWell;
-      //      dumpcontext << "\nm_hRsrcImageWell = " << (::u32)m_hRsrcImageWell;
-      dumpcontext << "\nm_sizeButton = " << m_sizeButton;
-      dumpcontext << "\nm_sizeImage = " << m_sizeImage;
+      ////      dumpcontext << "m_hbmImageWell = " << (::u32)m_hbmImageWell;
+      ////      dumpcontext << "\nm_hInstImageWell = " << (::u32)m_hInstImageWell;
+      ////      dumpcontext << "\nm_hRsrcImageWell = " << (::u32)m_hRsrcImageWell;
+      //dumpcontext << "\nm_sizeButton = " << m_sizeButton;
+      //dumpcontext << "\nm_sizeImage = " << m_sizeImage;
 
-      //      if (dumpcontext.GetDepth() > 0)
-      //      {
-      //#ifdef WINDOWS_DESKTOP
-      //         toolbar* pBar = (toolbar*)this;
-      //         LRESULT nCount = pBar->default_window_procedure(TB_BUTTONCOUNT, 0, 0);
-      //         for (index i = 0; i < nCount; i++)
-      //         {
-      //            TBBUTTON button;
-      //            _GetButton(i, &button);
-      //            dumpcontext << "\ntoolbar button[" << i << "] = {";
-      //            dumpcontext << "\n\tnID = " << button.idCommand;
-      //            dumpcontext << "\n\tnStyle = " << MAKELONG(button.fsStyle, button.fsState);
-      //            if (button.fsStyle & TBSTYLE_SEP)
-      //               dumpcontext << "\n\tiImage (separator width) = " << button.iBitmap;
-      //            else
-      //               dumpcontext <<"\n\tiImage (bitmap image index) = " << button.iBitmap;
-      //            dumpcontext << "\n}";
-      //         }
-      //#else
-      //         throw ::exception(todo);
-      //
-      //#endif
-      //      }
+      ////      if (dumpcontext.GetDepth() > 0)
+      ////      {
+      ////#ifdef WINDOWS_DESKTOP
+      ////         toolbar* pBar = (toolbar*)this;
+      ////         LRESULT nCount = pBar->default_window_procedure(TB_BUTTONCOUNT, 0, 0);
+      ////         for (index i = 0; i < nCount; i++)
+      ////         {
+      ////            TBBUTTON button;
+      ////            _GetButton(i, &button);
+      ////            dumpcontext << "\ntoolbar button[" << i << "] = {";
+      ////            dumpcontext << "\n\tnID = " << button.idCommand;
+      ////            dumpcontext << "\n\tnStyle = " << MAKELONG(button.fsStyle, button.fsState);
+      ////            if (button.fsStyle & TBSTYLE_SEP)
+      ////               dumpcontext << "\n\tiImage (separator width) = " << button.iBitmap;
+      ////            else
+      ////               dumpcontext <<"\n\tiImage (bitmap image index) = " << button.iBitmap;
+      ////            dumpcontext << "\n}";
+      ////         }
+      ////#else
+      ////         throw ::exception(todo);
+      ////
+      ////#endif
+      ////      }
 
-      dumpcontext << "\n";
+      //dumpcontext << "\n";
    }
 
 

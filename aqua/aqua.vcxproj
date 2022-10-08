@@ -109,7 +109,7 @@
     <ClInclude Include="xml\_.h" />
     <ClInclude Include="xml\_impl.h" />
     <ClInclude Include="_.h" />
-    <ClInclude Include="_defer.h" />
+    <ClInclude Include="__defer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="constant\idpool.cpp" />

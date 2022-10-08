@@ -19,14 +19,15 @@ namespace xml
 
 
       // name and value
-      //string                  m_strName;
-      //string                  m_strValue;
+      //string                   m_strName;
+      //string                   m_strValue;
 
-      //node *                  m_pnodeParent;      // parent node
-      //node::array             m_nodea;            // children pointer node array
-      //e_node                  m_etype;            // node type
+      //node *                   m_pnodeParent;      // parent node
+      //node::array              m_nodea;            // children pointer node array
+      //e_node                   m_etype;            // node type
       ::xml::document *          m_pdocument;             // document
-      //property_set            m_set;
+      //property_set             m_set;
+      ::index                    m_iFirstXmlNode;
 
 
       node();
@@ -59,6 +60,11 @@ namespace xml
       index get_index() const;
 
 
+      node * first_child();
+      const node * first_child() const { return ((node *)this)->first_child(); }
+
+      node * first_xml_node() { return m_iFirstXmlNode >= 0 ? m_nodea[m_iFirstXmlNode]->m_pxmlnode : nullptr; }
+      const node * first_xml_node() const { return m_iFirstXmlNode >= 0 ? m_nodea[m_iFirstXmlNode]->m_pxmlnode : nullptr; }
 
       virtual index find(node * pnode);
       virtual index find(const char * pcszName, index iStart = 0);
@@ -67,10 +73,6 @@ namespace xml
 
       //virtual bool contains(const property_set & set) const;
       virtual node * get_next_sibling();
-
-      virtual node * first_child();
-
-
 
 
       // Load/Save XML
@@ -187,8 +189,8 @@ namespace xml
       void close();
 
 
-      ::stream & write(::stream & stream) const override;
-      ::stream & read(::stream & stream) override;
+      //::stream & write(::stream & stream) const override;
+      //::stream & read(::stream & stream) override;
 
       
    private:

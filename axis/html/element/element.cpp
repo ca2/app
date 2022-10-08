@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "axis/id.h"
 // #if !BROAD_PRECOMPILED_HEADER
 // #include "_element.h"
@@ -1676,7 +1676,7 @@ namespace html
 
             str += " ";
 
-            str += pproperty->m_atom.to_string();
+            str += pproperty->m_atom;
 
             str += "=";
 

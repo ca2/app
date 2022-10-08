@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#include "acme/primitive/string/_str.h"
 #include <stdio.h>
 
@@ -2270,164 +2270,164 @@ const char * unicode_next(const char * psz, int * piError)
 
 
 
-const char * str::utf8_dec(::utf8_char * pchar, const char * pszBeg, const char * psz)
-{
-
-   if (psz <= pszBeg)
-   {
-
-      pchar->m_chLen = -1;
-
-      return nullptr;
-
-   }
-
-   if ((*(psz - 1) & 0x80) == 0x00)
-   {
-
-      if ((psz - 1) < pszBeg)
-      {
-
-         pchar->m_chLen = -1;
-
-         return nullptr;
-
-      }
-
-      pchar->m_sz[0] = psz[-1];
-      pchar->m_sz[1] = '\0';
-      pchar->m_chLen = 1;
-
-      return psz - 1;
-
-   }
-   else if ((*(psz - 2) & 0xE0) == 0xC0)
-   {
-
-      if ((psz - 2) < pszBeg)
-      {
-
-         pchar->m_chLen = -1;
-
-         return nullptr;
-
-      }
-
-      pchar->m_sz[0] = psz[-2];
-      pchar->m_sz[1] = psz[-1];
-      pchar->m_sz[2] = '\0';
-      pchar->m_chLen = 2;
-
-      return psz - 2;
-
-   }
-   else if ((*(psz - 3) & 0xF0) == 0xE0)
-   {
-
-      if ((psz - 3) < pszBeg)
-      {
-
-         pchar->m_chLen = -1;
-
-         return nullptr;
-
-      }
-
-      pchar->m_sz[0] = psz[-3];
-      pchar->m_sz[1] = psz[-2];
-      pchar->m_sz[2] = psz[-1];
-      pchar->m_sz[3] = '\0';
-      pchar->m_chLen = 3;
-
-      return psz - 3;
-
-   }
-   else if ((*(psz - 4) & 0xF8) == 0xF0)
-   {
-
-      if ((psz - 4) < pszBeg)
-      {
-
-         pchar->m_chLen = -1;
-
-         return nullptr;
-
-      }
-
-      pchar->m_sz[0] = psz[-4];
-      pchar->m_sz[1] = psz[-3];
-      pchar->m_sz[2] = psz[-2];
-      pchar->m_sz[3] = psz[-1];
-      pchar->m_sz[4] = '\0';
-      pchar->m_chLen = 4;
-
-      return psz - 4;
-
-   }
-   else if ((*(psz - 5) & 0xFC) == 0xF8)
-   {
-
-      if ((psz - 5) < pszBeg)
-      {
-
-         pchar->m_chLen = -1;
-
-         return nullptr;
-
-      }
-
-      pchar->m_sz[0] = psz[-5];
-      pchar->m_sz[1] = psz[-4];
-      pchar->m_sz[2] = psz[-3];
-      pchar->m_sz[3] = psz[-2];
-      pchar->m_sz[4] = psz[-1];
-      pchar->m_sz[5] = '\0';
-      pchar->m_chLen = 5;
-
-      return psz - 5;
-
-   }
-   else if ((*(psz - 6) & 0xFE) == 0xFC)
-   {
-
-      if ((psz - 6) < pszBeg)
-      {
-
-         pchar->m_chLen = -1;
-
-         return nullptr;
-
-      }
-
-      pchar->m_sz[0] = psz[-6];
-      pchar->m_sz[1] = psz[-5];
-      pchar->m_sz[2] = psz[-4];
-      pchar->m_sz[3] = psz[-3];
-      pchar->m_sz[4] = psz[-2];
-      pchar->m_sz[5] = psz[-1];
-      pchar->m_sz[6] = '\0';
-      pchar->m_chLen = 6;
-
-      return psz - 6;
-
-   }
-
-   if ((psz - 1) < pszBeg)
-   {
-
-      pchar->m_chLen = -1;
-
-      return nullptr;
-
-   }
-
-   pchar->m_sz[0] = psz[-1];
-   pchar->m_sz[1] = '\0';
-   pchar->m_chLen = 1;
-
-   return psz - 1;
-
-}
+//const char * str::utf8_dec(const character & character, const char * pszBeg, const char * psz)
+//{
+//
+//   if (psz <= pszBeg)
+//   {
+//
+//      pchar->m_chLen = -1;
+//
+//      return nullptr;
+//
+//   }
+//
+//   if ((*(psz - 1) & 0x80) == 0x00)
+//   {
+//
+//      if ((psz - 1) < pszBeg)
+//      {
+//
+//         pchar->m_chLen = -1;
+//
+//         return nullptr;
+//
+//      }
+//
+//      pchar->m_sz[0] = psz[-1];
+//      pchar->m_sz[1] = '\0';
+//      pchar->m_chLen = 1;
+//
+//      return psz - 1;
+//
+//   }
+//   else if ((*(psz - 2) & 0xE0) == 0xC0)
+//   {
+//
+//      if ((psz - 2) < pszBeg)
+//      {
+//
+//         pchar->m_chLen = -1;
+//
+//         return nullptr;
+//
+//      }
+//
+//      pchar->m_sz[0] = psz[-2];
+//      pchar->m_sz[1] = psz[-1];
+//      pchar->m_sz[2] = '\0';
+//      pchar->m_chLen = 2;
+//
+//      return psz - 2;
+//
+//   }
+//   else if ((*(psz - 3) & 0xF0) == 0xE0)
+//   {
+//
+//      if ((psz - 3) < pszBeg)
+//      {
+//
+//         pchar->m_chLen = -1;
+//
+//         return nullptr;
+//
+//      }
+//
+//      pchar->m_sz[0] = psz[-3];
+//      pchar->m_sz[1] = psz[-2];
+//      pchar->m_sz[2] = psz[-1];
+//      pchar->m_sz[3] = '\0';
+//      pchar->m_chLen = 3;
+//
+//      return psz - 3;
+//
+//   }
+//   else if ((*(psz - 4) & 0xF8) == 0xF0)
+//   {
+//
+//      if ((psz - 4) < pszBeg)
+//      {
+//
+//         pchar->m_chLen = -1;
+//
+//         return nullptr;
+//
+//      }
+//
+//      pchar->m_sz[0] = psz[-4];
+//      pchar->m_sz[1] = psz[-3];
+//      pchar->m_sz[2] = psz[-2];
+//      pchar->m_sz[3] = psz[-1];
+//      pchar->m_sz[4] = '\0';
+//      pchar->m_chLen = 4;
+//
+//      return psz - 4;
+//
+//   }
+//   else if ((*(psz - 5) & 0xFC) == 0xF8)
+//   {
+//
+//      if ((psz - 5) < pszBeg)
+//      {
+//
+//         pchar->m_chLen = -1;
+//
+//         return nullptr;
+//
+//      }
+//
+//      pchar->m_sz[0] = psz[-5];
+//      pchar->m_sz[1] = psz[-4];
+//      pchar->m_sz[2] = psz[-3];
+//      pchar->m_sz[3] = psz[-2];
+//      pchar->m_sz[4] = psz[-1];
+//      pchar->m_sz[5] = '\0';
+//      pchar->m_chLen = 5;
+//
+//      return psz - 5;
+//
+//   }
+//   else if ((*(psz - 6) & 0xFE) == 0xFC)
+//   {
+//
+//      if ((psz - 6) < pszBeg)
+//      {
+//
+//         pchar->m_chLen = -1;
+//
+//         return nullptr;
+//
+//      }
+//
+//      pchar->m_sz[0] = psz[-6];
+//      pchar->m_sz[1] = psz[-5];
+//      pchar->m_sz[2] = psz[-4];
+//      pchar->m_sz[3] = psz[-3];
+//      pchar->m_sz[4] = psz[-2];
+//      pchar->m_sz[5] = psz[-1];
+//      pchar->m_sz[6] = '\0';
+//      pchar->m_chLen = 6;
+//
+//      return psz - 6;
+//
+//   }
+//
+//   if ((psz - 1) < pszBeg)
+//   {
+//
+//      pchar->m_chLen = -1;
+//
+//      return nullptr;
+//
+//   }
+//
+//   pchar->m_sz[0] = psz[-1];
+//   pchar->m_sz[1] = '\0';
+//   pchar->m_chLen = 1;
+//
+//   return psz - 1;
+//
+//}
 
 
 const char * str::utf8_dec(const char * pszBeg, const char * psz)
@@ -2534,18 +2534,18 @@ const char * str::utf8_dec(const char * pszBeg, const char * psz)
 string str::get_utf8_char(const char * psz)
 {
 
-   ::utf8_char ch;
+   i32 iLength;
+   
+   auto iIndex = ch().uni_index_len(psz, iLength);
 
-   i32 len = ch.parse(psz);
-
-   if (len < 0)
+   if (iLength < 0)
    {
 
       return "";
 
    }
 
-   return string(ch.m_sz);
+   return string(psz, iLength);
 
 }
 
@@ -5175,35 +5175,35 @@ void str::fill(string & str, char ch)
 //
 //} // namespace str
 
-
-void to_string(string & str, const float & f)
-{
-
-   char sz[256];
-
-   sprintf(sz, "%f", f);
-
-   str = sz;
-
-   str.replace_with(".", ",");
-
-}
-
-
-void to_string(string & str, const double & d)
-{
-
-   char sz[256];
-
-   sprintf(sz, "%f", d);
-
-   str = sz;
-
-   str.replace_with(".", ",");
-
-}
-
-
+//
+//::string __string(const float & f)
+//{
+//
+//   char sz[256];
+//
+//   sprintf(sz, "%f", f);
+//
+//   str = sz;
+//
+//   str.replace_with(".", ",");
+//
+//}
+//
+//
+//::string __string(const double & d)
+//{
+//
+//   char sz[256];
+//
+//   sprintf(sz, "%f", d);
+//
+//   str = sz;
+//
+//   str.replace_with(".", ",");
+//
+//}
+//
+//
 
 
 //namespace str
@@ -5388,19 +5388,18 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
 }
 
 
-
-void to_string(string & str, const ::string_stream & strstream)
+::string __string(const ::string_stream & strstream)
 {
 
-   str = strstream.get_string();
+   return strstream.as_string();
 
 }
 
 
-void to_string(string & str, const ::text_stream & strstream)
+::string __string(const ::text_stream & strstream)
 {
 
-   str = strstream.get_string();
+   return strstream.as_string();
 
 }
 

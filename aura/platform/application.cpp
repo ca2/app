@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "application.h"
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
@@ -422,9 +422,9 @@ namespace aura
 
       ::aqua::application::dump(dumpcontext);
 
-      dumpcontext << "\nm_bHelpMode = " << m_strAppName;
+      //dumpcontext << "\nm_bHelpMode = " << m_strAppName;
 
-      dumpcontext << "\n";
+      //dumpcontext << "\n";
 
    }
 
@@ -4743,11 +4743,11 @@ retry_license:
 
          string strLocale;
 
-         plocaleschema->m_idaLocale[i].to_string(strLocale);
+         strLocale = plocaleschema->m_idaLocale[i];
 
          string strSchema;
 
-         plocaleschema->m_idaSchema[i].to_string(strSchema);
+         strSchema = plocaleschema->m_idaSchema[i];
 
          update_appmatter(psession, pszRoot, pszRelative, strLocale, strSchema);
 

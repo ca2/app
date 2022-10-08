@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "post_socket.h"
 
 
@@ -260,7 +260,7 @@ namespace sockets
 
             ::payload & payload = *pproperty;
 
-            strFields += "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + atom.to_string() + "\"\r\n\r\n";
+            strFields += "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + atom + "\"\r\n\r\n";
 
             string value = payload.string();
 

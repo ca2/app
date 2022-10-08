@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace graphics
@@ -67,7 +67,7 @@ namespace graphics
       virtual void update_image();
       virtual void draw_write(char ch, int x, int y, enum_dos_color edoscolor);
 
-      string get_string() const override;
+      string as_string() const override;
 
 
    };

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "base/user/user/picture_interaction.h"
@@ -123,8 +123,8 @@ namespace user
 
          virtual strsize _001GetTextLength() const override;
 
-         virtual ::stream & write(::stream & stream) const override;
-virtual ::stream & read(::stream & stream) override;
+         void write(::binary_stream & stream) const override;
+         void read(::binary_stream & stream) override;
 
          virtual void _001GetSel(strsize & iBeg, strsize & iEnd) const override;
          virtual void _001GetSelLineText(string & str) const;

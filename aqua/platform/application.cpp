@@ -123,6 +123,13 @@ namespace aqua
 
       auto pnodeRoot = pxmldocument->root();
 
+      if (!pnodeRoot)
+      {
+
+         return atom;
+
+      }
+
       if (pnodeRoot->get_name() == "string")
       {
 

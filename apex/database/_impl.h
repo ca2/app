@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace database
@@ -16,7 +16,9 @@ namespace database
 
       }
 
-      memory_stream stream;
+      memory_file memoryfile;
+
+      binary_stream stream(&memoryfile);
 
       stream << t;
 
@@ -26,7 +28,7 @@ namespace database
       //   return false;
 
       //}
-      m_pdataserver->_data_server_save(this, key, stream->memory());
+      m_pdataserver->_data_server_save(this, key, memoryfile.memory());
       //if (!m_pdataserver->_data_server_save(this, key, stream->memory()))
       //{
 
@@ -52,14 +54,18 @@ namespace database
 
       }
 
-      memory_stream stream;
+      memory_file memoryfile;
 
-      if (!m_pdataserver->_data_server_load(this, key, stream->memory()))
+      if (!m_pdataserver->_data_server_load(this, key, memoryfile.memory()))
       {
 
          return false;
 
       }
+
+
+      binary_stream stream(&memoryfile);
+
 
       ////if (!m_pdataserver->_data_server_load(this, key, stream->memory()))
       //{

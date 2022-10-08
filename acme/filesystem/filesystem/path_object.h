@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace file
@@ -19,7 +19,7 @@ namespace file
       ~path_object() override;
 
 
-      virtual void exchange(::stream& s) override;
+      //virtual void exchange(::stream& s) override;
 
       virtual strsize sz_len() const override;
       virtual void to_sz(char* sz, strsize size) const override;

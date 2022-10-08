@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 namespace data
@@ -38,20 +38,20 @@ namespace data
    }
 
 
-   ::stream & item::write(::stream& s) const
-   {
+   //::stream & item::write(::stream& s) const
+   //{
 
-      return s;
+   //   return s;
 
-   }
+   //}
 
 
-   ::stream & item::read(::stream& s)
-   {
+   //::stream & item::read(::stream& s)
+   //{
 
-      return s;
+   //   return s;
 
-   }
+   //}
 
 
 } // namespace data

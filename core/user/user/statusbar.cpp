@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "statusbar.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
@@ -935,20 +935,20 @@ namespace user
    {
       ::user::control_bar::dump(dumpcontext);
 
-      if (dumpcontext.GetDepth() > 0)
-      {
-         for (i32 i = 0; i < m_panecompositea.get_count(); i++)
-         {
-            __STATUSPANE * ppane = ((status_bar *) this)->_GetPanePtr(i);
-            dumpcontext << "\nstatus pane[" << i << "] = {";
-            dumpcontext << "\n\tnID = " << (const ::string &) ppane->m_atom;
-            dumpcontext << "\n\tnStyle = " << ppane->nStyle;
-            dumpcontext << "\n\tcxText = " << ppane->cxText;
-            dumpcontext << "\n\tstrText = " << ppane->strText;
-            dumpcontext << "\n\t}";
-         }
-      }
-      dumpcontext << "\n";
+      //if (dumpcontext.GetDepth() > 0)
+      //{
+      //   for (i32 i = 0; i < m_panecompositea.get_count(); i++)
+      //   {
+      //      __STATUSPANE * ppane = ((status_bar *) this)->_GetPanePtr(i);
+      //      dumpcontext << "\nstatus pane[" << i << "] = {";
+      //      dumpcontext << "\n\tnID = " << (const ::string &) ppane->m_atom;
+      //      dumpcontext << "\n\tnStyle = " << ppane->nStyle;
+      //      dumpcontext << "\n\tcxText = " << ppane->cxText;
+      //      dumpcontext << "\n\tstrText = " << ppane->strText;
+      //      dumpcontext << "\n\t}";
+      //   }
+      //}
+      //dumpcontext << "\n";
    }
 
 

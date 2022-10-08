@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "edit.h"
 #include "document.h"
 
@@ -54,30 +54,30 @@ namespace xml
    //}
 
 
-   stream & edit_item::write(::stream & stream) const
-   {
+   //stream & edit_item::write(::stream & stream) const
+   //{
 
-      stream << (i32 &) m_eaction;
-      stream << m_iaPath;
-      stream << m_strName;
-      stream << m_strValue;
+   //   stream << (i32 &) m_eaction;
+   //   stream << m_iaPath;
+   //   stream << m_strName;
+   //   stream << m_strValue;
 
-      return stream;
+   //   return stream;
 
-   }
+   //}
 
 
-   stream & edit_item::read(::stream & stream)
-   {
+   //stream & edit_item::read(::stream & stream)
+   //{
 
-      stream >> (i32 &)m_eaction;
-      stream >> m_iaPath;
-      stream >> m_strName;
-      stream >> m_strValue;
+   //   stream >> (i32 &)m_eaction;
+   //   stream >> m_iaPath;
+   //   stream >> m_strName;
+   //   stream >> m_strValue;
 
-      return stream;
+   //   return stream;
 
-   }
+   //}
 
 
    edit::edit()

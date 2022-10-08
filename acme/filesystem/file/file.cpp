@@ -683,7 +683,7 @@ namespace file
 
       as(memory);
 
-      str = memory.get_string();
+      str = memory.as_string();
 
    }
 
@@ -1334,7 +1334,7 @@ namespace file
     }
 
 
-   string file::get_string() const
+   string file::as_string() const
    {
 
       string str;
@@ -1388,7 +1388,7 @@ namespace file
       else
       {
 
-         payload.as_file_path() |= ::file::e_flag_bypass_cache;
+         ((::file::path & )payload) |= ::file::e_flag_bypass_cache;
 
       }
 

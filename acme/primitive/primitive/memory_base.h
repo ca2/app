@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //#include "acme/filesystem/file/serializable.h"
@@ -150,8 +150,8 @@ public:
    //virtual void random_bytes(::count c = -1);
 
 
-   virtual ::stream & write(::stream & stream) const override;
-   virtual ::stream & read(::stream & stream) override;
+   //virtual ::stream & write(::stream & stream) const override;
+   //virtual ::stream & read(::stream & stream) override;
 
 
    virtual memsize calc_allocation(memsize size);
@@ -211,9 +211,9 @@ public:
    void append_from_string(const ::string & str);
    void append_from_string(const ::payload & payload);
    void append_byte(byte b){ append(&b, 1);}
-   //void to_string(string & str, memsize iStart = 0, memsize uiSize = -1) const;
-   string get_string() const override;
-   string get_string(memsize iStart, memsize uiSize = -1) const;
+   //::string __string(memsize iStart = 0, memsize uiSize = -1) const;
+   string as_string() const override;
+   virtual string as_string(memsize iStart, memsize uiSize = -1) const;
 
    void delete_begin(memsize iSize);
    void eat_begin(void * pdata, memsize iSize);

@@ -1,4 +1,4 @@
-// From definition.h by camilo on 2022-09-06 17:21 <3ThomasBorregaardSorensen!!
+﻿// From definition.h by camilo on 2022-09-06 17:21 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -23,8 +23,8 @@ namespace database
       result_set();
 
 
-      virtual ::stream & write(::stream & stream) const override;
-virtual ::stream & read(::stream & stream) override;
+//      virtual ::stream & write(::stream & stream) const override;
+//virtual ::stream & read(::stream & stream) override;
 
 
    };

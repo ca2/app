@@ -1529,7 +1529,7 @@
     <ClInclude Include="_.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="_defer.h">
+    <ClInclude Include="__defer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="_factory.h">

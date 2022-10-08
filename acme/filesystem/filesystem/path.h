@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace file
@@ -47,21 +47,24 @@ namespace file
 
       path() { m_epath = e_path_file; }
       path(nullptr_t) {}
-      path(enum_path epath) { m_epath = epath; }
-      path(const ::string & str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
-      path(const path& path);
-      path(const path_object& path);
-
       template < typename TYPE >
-      inline path(const TYPE & t, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
-         path(__string(t), epath, iDir, bNormalize, iSize)
+      path(const TYPE & t, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1)
       {
 
-      }
+         construct(__string(t), epath, iDir, bNormalize, iSize);
 
+      }
+      path(enum_path epath) { m_epath = epath; }
+      path(const path& path);
+      path(const path_object& path);
       ~path() noexcept;
 
 
+      void construct() { *this = ::file::path(); }
+      void construct(const ::string & str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
+
+
+      
       void set_type(enum_path epath);
 
       //::file::path replace_extension(const char * pszNewExtension, const char * pszOldExtension);
@@ -144,12 +147,7 @@ namespace file
 
       }
 
-      bool operator == (const ::string & str) const
-      {
-
-         return operator == (path(str));
-
-      }
+      bool operator == (const ::string & str) const;
 
 
       bool operator == (const char * psz) const
@@ -167,14 +165,7 @@ namespace file
 
       }
 
-
-      bool operator != (const ::string & str) const
-      {
-
-         return operator != (path(str));
-
-      }
-
+      bool operator != (const ::string & str) const;
 
       bool operator != (const char * psz) const
       {
@@ -359,6 +350,9 @@ namespace file
 } // namespace file
 
 
+
+
+
 inline const char * FormatArgument(const ::file::path & value) noexcept;
 
 
@@ -372,6 +366,7 @@ inline uptr uptr_hash < const ::file::path & >(const ::file::path & key);
 //CLASS_DECL_ACME ::file::path __xxxnode_full_file_path(file::path path);
 
 
+
 inline ::file::path CLASS_DECL_ACME operator / (const ansichar * psz, const ::file::path & pathConcat)
 {
 
@@ -382,4 +377,6 @@ inline ::file::path CLASS_DECL_ACME operator / (const ansichar * psz, const ::fi
    return path / pathConcat;
 
 }
+
+
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/id.h"
 #include "acme/platform/context.h"
 #include "context.h"
@@ -333,17 +333,18 @@ namespace text
       if(bIdAsDefaultValue)
       {
 
-         return atom.to_string();
+         return atom;
 
       }
       else
       {
 
-         return "";
+         return {};
 
       }
 
    }
+
 
    string table::get(const context * pcontext,const ::atom & atom,const ::atom & idLocale,const ::atom & idSchema,bool bIdAsDefaultValue) const
    {

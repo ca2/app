@@ -1,8 +1,8 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "_.h"
 #include "_gpu.h"
 #include "aura/graphics/image/image.h"
-#include "_defer.h"
+//#include "_defer.h"
 
 
 namespace gpu

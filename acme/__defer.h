@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #if !defined(DEBUG) && !defined(CUBE)
@@ -9,11 +9,6 @@
 
 #endif
 
-
-#include "acme/primitive/string/_defer.h"
-
-
-#include "acme/filesystem/file/_defer.h"
 
 
 namespace primitive

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 namespace http
@@ -63,7 +63,7 @@ namespace http
 
       string str;
 
-      str = pmemory->get_string();
+      str = *pmemory;
 
       return str;
 

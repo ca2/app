@@ -1,10 +1,13 @@
-#pragma once
+﻿#pragma once
 
 
 class CLASS_DECL_ACME dump_context :
-   public text_stream
+   virtual public ::object
 {
 public:
+
+
+   __pointer(text_stream)     m_pstream;
 
    
    dump_context(::file::file * pfile = nullptr);
@@ -18,52 +21,52 @@ public:
    void SetDepth(i32 nNewDepth);
 
 
-   void write(const char * psz) override;
+   //void write(const char * psz) override;
 
-
-#ifdef WINDOWS
-
-   void write(const unichar * psz) ; // automatically thinned
-
-#endif
-
-   void write(const ::string & str) override ;
-   void write(const void * p);
-          
-   void write(const ::matter * pobject) override;
-   void write(const ::matter & matter) override;
-   void write(char i) override;
-   void write(uchar u)  override;
-   void write(i16 i) override;
-   void write(u16 u) override;
-   void write(i32 i) override;
-   void write(u32 u)  override;
-   void write(i64 i)  override;
-   void write(u64 u)  override;
-   void hex_dump(i8 i);
-   void hex_dump(u8 i);
-   void hex_dump(i16 i);
-   void hex_dump(u16 i);
-   void hex_dump(i32 i);
-   void hex_dump(u32 i);
-   void hex_dump(i64 i);
-   void hex_dump(u64 i);
-   void write(float f) override;
-   void write(double d) override;
-//   void write(oswindow h);
-//   void write(HDC h);
 //
 //#ifdef WINDOWS
-//   void write(HMENU h);
-//   void write(HACCEL h);
-//   void write(HFONT h);
+//
+//   void write(const unichar * psz) ; // automatically thinned
 //
 //#endif
 //
-   void hex_dump(const char * pszLine, byte* pby, i32 nBytes, i32 nWidth);
-
-   void flush() override;
-
+//   void write(const ::string & str) override ;
+//   void write(const void * p);
+//          
+//   void write(const ::matter * pobject) override;
+//   void write(const ::matter & matter) override;
+//   void write(char i) override;
+//   void write(uchar u)  override;
+//   void write(i16 i) override;
+//   void write(u16 u) override;
+//   void write(i32 i) override;
+//   void write(u32 u)  override;
+//   void write(i64 i)  override;
+//   void write(u64 u)  override;
+//   void hex_dump(i8 i);
+//   void hex_dump(u8 i);
+//   void hex_dump(i16 i);
+//   void hex_dump(u16 i);
+//   void hex_dump(i32 i);
+//   void hex_dump(u32 i);
+//   void hex_dump(i64 i);
+//   void hex_dump(u64 i);
+//   void write(float f) override;
+//   void write(double d) override;
+////   void write(oswindow h);
+////   void write(HDC h);
+////
+////#ifdef WINDOWS
+////   void write(HMENU h);
+////   void write(HACCEL h);
+////   void write(HFONT h);
+////
+////#endif
+////
+//   void hex_dump(const char * pszLine, byte* pby, i32 nBytes, i32 nWidth);
+//
+//   void flush() override;
+//
    void output_string(const char * psz);
 
 protected:

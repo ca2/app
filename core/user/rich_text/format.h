@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace user
@@ -43,7 +43,8 @@ namespace user
 
          virtual void initialize_user_rich_text_format(__pointer_array(format)* pcontainer);
 
-         virtual void exchange(::stream & stream) override;
+         void write(::binary_stream & stream) const override;
+         void read(::binary_stream & stream) override;
 
 
          void apply(const format * pformat, const e_attribute & eattribute);

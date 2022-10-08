@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/operating_system.h"
 #include "acme/primitive/string/base64.h"
 
@@ -373,24 +373,24 @@ memsize memory_base::calc_allocation(memsize size)
 
 
 
-stream & memory_base::write(::stream & stream) const
-{
-
-   __mutable(this)->exchange(stream);
-
-   return stream;
-
-}
-
-
-stream & memory_base::read(::stream & stream)
-{
-
-   exchange(stream);
-
-   return stream;
-
-}
+//stream & memory_base::write(::stream & stream) const
+//{
+//
+//   __mutable(this)->exchange(stream);
+//
+//   return stream;
+//
+//}
+//
+//
+//stream & memory_base::read(::stream & stream)
+//{
+//
+//   exchange(stream);
+//
+//   return stream;
+//
+//}
 
 
 void memory_base::delete_begin(memsize iSize)
@@ -1456,15 +1456,15 @@ void memory_base::append_from_string(const ::payload & payload)
 }
 
 
-string memory_base::get_string() const
+string memory_base::as_string() const
 {
 
-   return get_string(0);
+   return as_string(0);
 
 }
 
 
-string memory_base::get_string(memsize iStart, memsize iCount) const
+string memory_base::as_string(memsize iStart, memsize iCount) const
 {
 
    string str;
@@ -2284,40 +2284,40 @@ namespace papaya
 
 
 
-CLASS_DECL_ACME stream & operator << (stream & stream, memory_container & memcontainer)
-{
-
-   if (memcontainer.get_memory() == nullptr)
-   {
-
-      memcontainer.set_memory(__new(memory(&memcontainer)));
-
-   }
-
-   stream << *memcontainer.get_memory();
-
-   return stream;
-
-}
-
-
-
-CLASS_DECL_ACME stream & operator >> (stream & stream, memory_container & memcontainer)
-{
-
-   if (memcontainer.get_memory() == nullptr)
-   {
-
-      memcontainer.set_memory(__new(memory(&memcontainer)));
-
-   }
-
-   stream >> *memcontainer.get_memory();
-
-   return stream;
-
-}
-
+//CLASS_DECL_ACME stream & operator << (stream & stream, memory_container & memcontainer)
+//{
+//
+//   if (memcontainer.get_memory() == nullptr)
+//   {
+//
+//      memcontainer.set_memory(__new(memory(&memcontainer)));
+//
+//   }
+//
+//   stream << *memcontainer.get_memory();
+//
+//   return stream;
+//
+//}
+//
+//
+//
+//CLASS_DECL_ACME stream & operator >> (stream & stream, memory_container & memcontainer)
+//{
+//
+//   if (memcontainer.get_memory() == nullptr)
+//   {
+//
+//      memcontainer.set_memory(__new(memory(&memcontainer)));
+//
+//   }
+//
+//   stream >> *memcontainer.get_memory();
+//
+//   return stream;
+//
+//}
+//
 
 //CLASS_DECL_ACME stream & operator << (stream & stream, memory_base & mem)
 //{

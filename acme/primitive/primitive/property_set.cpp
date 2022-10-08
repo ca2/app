@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/platform/acme.h"
 //#include "acme/platform/static_start_internal.h"
 
@@ -678,7 +678,7 @@ void property_set::_008Add(const char * pszKey, const char * pszValue)
    while(i  < straKey.get_upper_bound())
    {
 
-      pset = &(*pset)[straKey[i]].as_propset();
+      *pset = (property_set &)(*pset)[straKey[i]];
 
       i++;
 
@@ -879,7 +879,7 @@ void property_set::parse_ini(const ::string & strIni)
 
          strLine.trim_right("]");
 
-         pset = &operator[](strLine).as_propset();
+         pset = &(property_set &)operator[](strLine);
 
       }
       else

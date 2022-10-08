@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "axis/account/interactive.h"
@@ -104,8 +104,8 @@ namespace axis
 
 
 
-      virtual bool app_data_set(const ::atom & atom, stream & os) override;
-      virtual bool app_data_get(const ::atom & atom, stream & is) override;
+      //virtual bool app_data_set(const ::atom & atom, stream & os) override;
+      //virtual bool app_data_get(const ::atom & atom, stream & is) override;
 
       virtual bool app_data_set(const ::atom & atom, ::object & obj) override;
       virtual bool app_data_get(const ::atom & atom, ::object & obj) override;

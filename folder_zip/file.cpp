@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "file.h"
 #include "folder.h"
 
@@ -43,9 +43,9 @@ namespace folder_zip
    void file::dump(dump_context& dumpcontext) const
    {
 
-      dumpcontext << "with handle " << (uptr)m_pfolder.m_p;
-      dumpcontext << " and name \"" << m_strFileName << "\"";
-      dumpcontext << "\n";
+      //dumpcontext << "with handle " << (uptr)m_pfolder.m_p;
+      //dumpcontext << " and name \"" << m_strFileName << "\"";
+      //dumpcontext << "\n";
 
    }
 

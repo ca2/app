@@ -1246,7 +1246,7 @@
     <ClInclude Include="net\http\transaction.h" />
     <ClInclude Include="net\http\_.h" />
     <ClInclude Include="_.h" />
-    <ClInclude Include="_defer.h" />
+    <ClInclude Include="__defer.h" />
     <None Include="filesystem\_impl.h" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-// Created by Camilo on 2021-10-04 12:06 BRT <3ThomasBorregaardSørensen!!
+﻿// Created by Camilo on 2021-10-04 12:06 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -80,7 +80,7 @@ public:
 
       string str;
 
-      to_string(str, stringable);
+      str = __string(stringable);
 
       return operator << (str);
 

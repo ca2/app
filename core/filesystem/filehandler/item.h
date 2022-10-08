@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace filehandler
@@ -38,7 +38,7 @@ namespace filehandler
 } // namespace filehandler
 
 
-inline stream & operator <<(stream & s, const ::filehandler::item & item)
+inline binary_stream & operator <<(binary_stream & s, const ::filehandler::item & item)
 {
 
    s << (::i32) item.m_etopictype;
@@ -51,7 +51,7 @@ inline stream & operator <<(stream & s, const ::filehandler::item & item)
 }
 
 
-inline stream & operator >>(stream & s, ::filehandler::item & item)
+inline binary_stream & operator >>(binary_stream & s, ::filehandler::item & item)
 {
 
    s >> (int &) item.m_etopictype;

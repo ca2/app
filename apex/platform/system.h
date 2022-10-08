@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace apex
@@ -310,9 +310,9 @@ namespace apex
 
 
       virtual void on_start_find_applications_from_cache();
-      virtual void on_end_find_applications_from_cache(stream & is);
+      //virtual void on_end_find_applications_from_cache(stream & is);
 
-      virtual void on_end_find_applications_to_cache(stream & os);
+      //virtual void on_end_find_applications_to_cache(stream & os);
 
       virtual void on_map_application_library(::acme::library & library);
 

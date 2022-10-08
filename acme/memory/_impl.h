@@ -7,7 +7,7 @@
 
 
 template < typename POINTER >
-inline void to_string(string & str, const ::acme::memory_allocate < POINTER > & memoryallocpointer)
+inline ::string __string(const ::acme::memory_allocate < POINTER > & memoryallocpointer)
 {
 
    to_string(str, memoryallocpointer.m_p);

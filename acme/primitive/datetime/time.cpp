@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/operating_system.h"
 #include <time.h>
 #include "acme/primitive/datetime/_string.h"
@@ -846,39 +846,39 @@ namespace earth
 
 dump_context & operator <<(dump_context & dumpcontext, ::earth::time & time)
 {
-   char psz[32];
-   psz[0] = '\0';
-
-//   time_t tmp = time.get_time();
-//   errno_t err = _ctime64_s(psz, sizeof(psz), &tmp);
-
-   errno_t err = 0;
-
-   if ((err != 0) || (psz[0] == '\0') || (time.get_time() == 0))
-   {
-      dumpcontext << "::earth::time(invalid #" << (iptr) time.get_time() << ")";
-
-      return dumpcontext;
-   }
-
-   // format it
-   dumpcontext << "::earth::time(\"" << psz << "\")";
+//   char psz[32];
+//   psz[0] = '\0';
+//
+////   time_t tmp = time.get_time();
+////   errno_t err = _ctime64_s(psz, sizeof(psz), &tmp);
+//
+//   errno_t err = 0;
+//
+//   if ((err != 0) || (psz[0] == '\0') || (time.get_time() == 0))
+//   {
+//      dumpcontext << "::earth::time(invalid #" << (iptr) time.get_time() << ")";
+//
+//      return dumpcontext;
+//   }
+//
+//   // format it
+//   dumpcontext << "::earth::time(\"" << psz << "\")";
 
    return dumpcontext;
 }
 
 #endif
 
-stream & operator <<(stream & os, ::earth::time & time)
-{
-
-   os.write((i64) time.m_i);
-
-   return os;
-
-}
-
-
+//stream & operator <<(stream & os, ::earth::time & time)
+//{
+//
+//   os.write((i64) time.m_i);
+//
+//   return os;
+//
+//}
+//
+//
 
 
 

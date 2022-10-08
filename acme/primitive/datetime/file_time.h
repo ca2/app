@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -117,6 +117,7 @@ namespace earth
 {
 
    class time;
+   class zonetime;
 
 } // namespace earth
 

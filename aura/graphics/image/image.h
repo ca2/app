@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "meta.h"
@@ -422,8 +422,8 @@ public:
 
 
 
-   ::stream & write(::stream & stream) const override;
-   ::stream & read(::stream & stream) override;
+   //::stream & write(::stream & stream) const override;
+   //::stream & read(::stream & stream) override;
 
    
    ::element * clone() const override;

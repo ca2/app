@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "apex/operating_system.h"
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"
@@ -4536,21 +4536,21 @@ namespace apex
    }
 
 
-   void system::on_end_find_applications_from_cache(stream& is)
-   {
+   //void system::on_end_find_applications_from_cache(stream& is)
+   //{
 
-      //throw ::exception(todo("filehandler"));
-      //is >> *m_pfilehandler;
+   //   //throw ::exception(todo("filehandler"));
+   //   //is >> *m_pfilehandler;
 
-   }
+   //}
 
-   void system::on_end_find_applications_to_cache(stream& os)
-   {
+   //void system::on_end_find_applications_to_cache(stream& os)
+   //{
 
-      //throw ::exception(todo("filehandler"));
-      //os << *m_pfilehandler;
+   //   //throw ::exception(todo("filehandler"));
+   //   //os << *m_pfilehandler;
 
-   }
+   //}
 
    void system::on_map_application_library(::acme::library& library)
    {

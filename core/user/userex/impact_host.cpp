@@ -1,4 +1,4 @@
-//
+﻿//
 //  userex_impact_container.cpp
 //  app_veriwell_musical_player
 //
@@ -700,7 +700,7 @@ namespace userex
 
       auto papp = get_app();
 
-      papp->data_set("frame::" + idImpact.to_string() + ".visible", bShow);
+      papp->data_set("frame::" + idImpact + ".visible", bShow);
 
       auto pcontext = m_pcontext;
       

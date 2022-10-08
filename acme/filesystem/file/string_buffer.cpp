@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 //namespace file
@@ -28,7 +28,7 @@ string_buffer::string_buffer(const string_buffer & text)
 
    m_iPos = 0;
 
-   append(__string(text));
+   append(text.as_string());
 
 }
 
@@ -104,7 +104,7 @@ void string_buffer::destroy()
 }
 
 
-string string_buffer::get_string() const
+string string_buffer::as_string() const
 {
 
    return m_str;

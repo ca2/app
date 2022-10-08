@@ -50,7 +50,7 @@
 #endif
 
 
-#include "acme/_defer.h"
+//#include "acme/_defer.h"
 
 
 #if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN)

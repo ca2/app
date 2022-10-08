@@ -1,9 +1,6 @@
 ﻿#pragma once
 
 
-#ifndef __cplusplus_winrt
-
-
 template < typename T >
 inline string __string(const T& t)
 {
@@ -104,29 +101,14 @@ inline string __string(const T * & p)
 //
 //
 
-   //inline void to_string(string & str, const char * psz)
+   //inline ::string __string(const char * psz)
    //{
 
    //   str = psz;
 
    //}
 
-   //inline void to_string(string & str, char * const psz)
-   //{
-
-   //   str = psz;
-
-   //}
-
-
-   //inline void to_string(string & str, const wd16char * psz)
-   //{
-
-   //   str = psz;
-
-   //}
-
-   //inline void to_string(string & str, wd16char * const psz)
+   //inline ::string __string(char * const psz)
    //{
 
    //   str = psz;
@@ -134,14 +116,14 @@ inline string __string(const T * & p)
    //}
 
 
-   //inline void to_string(string & str, const wd32char * psz)
+   //inline ::string __string(const wd16char * psz)
    //{
 
    //   str = psz;
 
    //}
 
-   //inline void to_string(string & str, wd32char * const psz)
+   //inline ::string __string(wd16char * const psz)
    //{
 
    //   str = psz;
@@ -149,7 +131,22 @@ inline string __string(const T * & p)
    //}
 
 
-   //   inline void to_string(string & str, const signed char & ch)
+   //inline ::string __string(const wd32char * psz)
+   //{
+
+   //   str = psz;
+
+   //}
+
+   //inline ::string __string(wd32char * const psz)
+   //{
+
+   //   str = psz;
+
+   //}
+
+
+   //   inline ::string __string(const signed char & ch)
    //{
 
    //   str = (ansichar) ch;

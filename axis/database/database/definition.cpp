@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "exception.h"
 #include "parameter_list.h"
 #include "field.h"
@@ -68,38 +68,38 @@ namespace database
    }
 
 
-   stream & field::write(::stream & stream) const
-   {
+   //stream & field::write(::stream & stream) const
+   //{
 
-      stream.write(m_iIndex);
-      stream.write((::i32 &)m_edatatype);
-      stream.write(m_strName);
-      stream.write(m_strDisplayMame);
-      stream.write(m_strFieldTable);
-      stream.write(m_bReadOnly);
-      stream.write(m_iLength);
-      stream.write(m_ulFlag);
+   //   stream.write(m_iIndex);
+   //   stream.write((::i32 &)m_edatatype);
+   //   stream.write(m_strName);
+   //   stream.write(m_strDisplayMame);
+   //   stream.write(m_strFieldTable);
+   //   stream.write(m_bReadOnly);
+   //   stream.write(m_iLength);
+   //   stream.write(m_ulFlag);
 
-      return stream;
+   //   return stream;
 
-   }
+   //}
 
 
-   stream & field::read(::stream & stream) 
-   {
+   //stream & field::read(::stream & stream) 
+   //{
 
-      stream.read(m_iIndex);
-      stream.read((::i32 &)m_edatatype);
-      stream.read(m_strName);
-      stream.read(m_strDisplayMame);
-      stream.read(m_strFieldTable);
-      stream.read(m_bReadOnly);
-      stream.read(m_iLength);
-      stream.read(m_ulFlag);
+   //   stream.read(m_iIndex);
+   //   stream.read((::i32 &)m_edatatype);
+   //   stream.read(m_strName);
+   //   stream.read(m_strDisplayMame);
+   //   stream.read(m_strFieldTable);
+   //   stream.read(m_bReadOnly);
+   //   stream.read(m_iLength);
+   //   stream.read(m_ulFlag);
 
-      return stream;
+   //   return stream;
 
-   }
+   //}
 
 
    bool parameter_list::is_empty()
@@ -146,26 +146,26 @@ namespace database
 
 
 
-   stream & result_set::write(::stream & stream) const
-   {
+   //stream & result_set::write(::stream & stream) const
+   //{
 
-      stream << *m_pfielda;
-      stream << *m_prowa;
+   //   stream << *m_pfielda;
+   //   stream << *m_prowa;
 
-      return stream;
+   //   return stream;
 
-   }
+   //}
 
 
-   stream & result_set::read(::stream & stream)
-   {
+   //stream & result_set::read(::stream & stream)
+   //{
 
-      stream >> *m_pfielda;
-      stream >> *m_prowa;
+   //   stream >> *m_pfielda;
+   //   stream >> *m_prowa;
 
-      return stream;
+   //   return stream;
 
-   }
+   //}
 
 
 

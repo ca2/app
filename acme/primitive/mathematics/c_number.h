@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -295,18 +295,18 @@ namespace numeric_info_internal
 }
 
 
-template < typename T >
-inline stream &  operator >>(stream & istream, c_number < T > & t)
-{
-
-   return istream >> t.m_number;
-
-}
-
-template < typename T >
-inline stream &  operator <<(stream & ostream, const c_number < T > & t)
-{
-
-   return ostream << t.m_number;
-
-}
+//template < typename T >
+//inline stream &  operator >>(stream & istream, c_number < T > & t)
+//{
+//
+//   return istream >> t.m_number;
+//
+//}
+//
+//template < typename T >
+//inline stream &  operator <<(stream & ostream, const c_number < T > & t)
+//{
+//
+//   return ostream << t.m_number;
+//
+//}

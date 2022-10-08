@@ -1,4 +1,4 @@
-// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSørensen
+﻿// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSørensen
 #pragma once
 
 
@@ -355,7 +355,7 @@ public:
    void raw_set(const char * psz);
 
 #ifndef NO_TEMPLATE
-   string str() const;
+   operator ::string() const;
 #endif
 
    enum_type primitive_type() const
@@ -532,12 +532,6 @@ public:
 //   atom & operator = (const enum_dialog_result & edialogresult);
 
 
-#ifndef NO_TEMPLATE
-
-   inline ansistring to_string_base() const { return to_string(); }
-
-#endif
-
    inline operator ::i64() const;
    inline ::i64 i64() const;
    inline ::i32 i32() const { return (::i32) i64(); }
@@ -552,8 +546,8 @@ public:
 #ifndef NO_TEMPLATE
 
 
-   inline void to_string(string & str) const;
-   inline string to_string() const;
+   inline void as(string & str) const;
+   inline string as_string() const;
    //inline string __string() const;
 
 #endif
@@ -861,6 +855,41 @@ inline bool atom::operator >= (const ::string & str) const
 }
 
 
+
+inline string  atom::operator +(const char * psz) const
+{
+
+   return as_string() + psz;
+
+}
+
+
+inline string  atom::operator +(const ::string & str) const
+{
+
+   return as_string() + str;
+
+}
+
+
+inline void atom::as(string & strRet) const
+{
+
+   strRet = *this;
+
+}
+
+
+inline string atom::as_string() const
+{
+
+   return *this;
+
+}
+
+
+
+
 #endif
 
 
@@ -872,24 +901,6 @@ inline atom::operator const char *() const
 }
 
 
-#ifndef NO_TEMPLATE
-
-inline void atom::to_string(string & strRet) const
-{
-
-   strRet =  str();
-
-}
-
-
-inline string atom::to_string() const
-{
-
-   return str();
-
-}
-
-#endif
 
 //inline string atom::__string() const
 //{
@@ -924,47 +935,6 @@ inline void atom::raw_set(const char * psz)
 }
 
 
-#ifndef NO_TEMPLATE
-
-
-inline string atom::str() const
-{
-
-   if(m_etype == e_type_null)
-   {
-
-      return "(null)";
-
-   }
-   else if(m_etype == e_type_empty)
-   {
-
-      return "(empty)";
-
-   }
-   else if(is_text())
-   {
-
-      return m_psz;
-
-   }
-   else if(is_integer())
-   {
-
-      return __string(m_i);
-
-   }
-   else
-   {
-
-      return string("(type:") + __string(m_iType) + ",body:" + __string(m_iBody) + ")";
-
-   }
-
-}
-
-
-#endif
 
 
 inline int atom::compare(const char * psz) const
@@ -1444,6 +1414,43 @@ inline bool EqualElements< atom >(atom element1, atom element2)
 
 
 #ifndef NO_TEMPLATE
+
+
+inline atom::operator string() const
+{
+
+   if (m_etype == e_type_null)
+   {
+
+      return "(null)";
+
+   }
+   else if (m_etype == e_type_empty)
+   {
+
+      return "(empty)";
+
+   }
+   else if (is_text())
+   {
+
+      return m_psz;
+
+   }
+   else if (is_integer())
+   {
+
+      return __string(m_i);
+
+   }
+   else
+   {
+
+      return string("(atom : type:") + __string(m_iType) + ",body:" + __string(m_iBody) + ")";
+
+   }
+
+}
 
 
 template < >

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "websocket_client.h"
 #include "apex/id.h"
 #include "apex/networking/sockets/_sockets.h"
@@ -649,7 +649,7 @@ namespace sockets
 
       int iHttpStatusCode;
 
-      outattr(__id(http_status_code)).as(iHttpStatusCode);
+      iHttpStatusCode = outattr(__id(http_status_code));
 
       string strStatus;
       

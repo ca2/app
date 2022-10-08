@@ -267,7 +267,7 @@ namespace acme
 } // namespace acme
 
 
-inline stream & operator >> (stream & s, ::earth::time & time);
+//inline stream & operator >> (stream & s, ::earth::time & time);
 
 
 template < typename BASE >
@@ -366,7 +366,7 @@ inline __pointer(T) & ___pointer < T >::clone(T2 * p)
 //
 //
 //
-////inline void to_string(string & str, const bool & b)
+////inline ::string __string(const bool & b)
 ////{
 ////
 ////   if(b)
@@ -469,74 +469,74 @@ inline RESULT muldiv(MULTIPLICATOR iMultiplicator, NUMERATOR iNumerator, DENOMIN
 inline string __string(const ::e_display & edisplay) { return __string((::enum_display) edisplay); }
 
 
-template < typename TYPE >
-::stream & read_container_as_parent(::stream & stream, __pointer_array(TYPE) & a)
-{
-
-   ::count c = 0;
-
-   stream >> c;
-
- /*  if (stream.fail())
-   {
-
-      return stream;
-
-   }*/
-
-   while (c > 0)
-   {
-
-      auto p = __new(TYPE(&a));
-
-      stream >> *p;
-
-      //if (stream.fail())
-      //{
-
-      //   break;
-
-      //}
-
-      a.add(p);
-
-      c--;
-
-   }
-
-   return stream;
-
-}
-
-
-template < typename TYPE >
-::stream & write_container_as_parent(::stream & stream, const __pointer_array(TYPE) & a)
-{
-
-   ::count c = a.get_count();
-
-   stream << c;
-
-   //if (stream.fail())
-   //{
-
-   //   return stream;
-
-   //}
-
-   for (auto & item : a)
-   {
-
-      stream >> item;
-
-      c--;
-
-   }
-
-   return stream;
-
-}
-
+//template < typename TYPE >
+//::stream & read_container_as_parent(::stream & stream, __pointer_array(TYPE) & a)
+//{
+//
+//   ::count c = 0;
+//
+//   stream >> c;
+//
+// /*  if (stream.fail())
+//   {
+//
+//      return stream;
+//
+//   }*/
+//
+//   while (c > 0)
+//   {
+//
+//      auto p = __new(TYPE(&a));
+//
+//      stream >> *p;
+//
+//      //if (stream.fail())
+//      //{
+//
+//      //   break;
+//
+//      //}
+//
+//      a.add(p);
+//
+//      c--;
+//
+//   }
+//
+//   return stream;
+//
+//}
+//
+//
+//template < typename TYPE >
+//::stream & write_container_as_parent(::stream & stream, const __pointer_array(TYPE) & a)
+//{
+//
+//   ::count c = a.get_count();
+//
+//   stream << c;
+//
+//   //if (stream.fail())
+//   //{
+//
+//   //   return stream;
+//
+//   //}
+//
+//   for (auto & item : a)
+//   {
+//
+//      stream >> item;
+//
+//      c--;
+//
+//   }
+//
+//   return stream;
+//
+//}
+//
 
 #endif // __cplusplus_winrt
 

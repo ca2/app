@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "_userfs.h"
 //#endif
@@ -60,24 +60,20 @@ namespace userfs
    }
 
 
-   stream& item::write(stream& s) const
+   void item::write(binary_stream& s) const
    {
 
       ::data::item::write(s);
       ::file::item::write(s);
 
-      return s;
-
    }
 
 
-   stream& item::read(stream& s)
+   void item::read(binary_stream& s)
    {
 
       ::data::item::read(s);
       ::file::item::read(s);
-
-      return s;
 
    }
 

@@ -1,4 +1,4 @@
-#include "framework.h" 
+﻿#include "framework.h" 
 #include "socket.h"
 #define HEAVY_HTTP_LOG 0
 
@@ -479,7 +479,7 @@ namespace sockets
 
          string strKey = pproperty->name();
 
-         string_array & straValue = pproperty->as_stra();
+         string_array & straValue = *pproperty;
 
          if (!http_filter_response_header(strKey, straValue))
          {

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -144,12 +144,12 @@ inline bool payload::is_array() const
 
 
 
-inline bool operator == (const string& str, const ::payload & payload)
-{
-
-   return str == payload.string();
-
-}
+//inline bool operator == (const string& str, const ::payload & payload)
+//{
+//
+//   return str == payload.string();
+//
+//}
 
 
 
@@ -616,7 +616,7 @@ inline ::payload & payload:: operator *= (const PAYLOAD & payload)
 
 inline bool strictly_equal(const char * psz, const class ::payload & payload)
 {
-   return payload.m_etype == ::e_type_string && psz == payload.m_str;
+   return payload.m_etype == ::e_type_string && payload.m_str == psz;
 }
 
 inline bool strictly_equal(const ::string & str, const class ::payload & payload)

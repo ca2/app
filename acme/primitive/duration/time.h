@@ -1,4 +1,4 @@
-// Created by camilo on 2022-05-31 05:43 AM <3ThomasLikesNumber5 (really will he raise ca-square)
+﻿// Created by camilo on 2022-05-31 05:43 AM <3ThomasLikesNumber5 (really will he raise ca-square)
 #pragma once
 
 
@@ -27,6 +27,20 @@ public:
 
 
    inline bool operator !() const { return m_d <= 0.; }
+
+
+   DECLARE_COMPARISON_WITH_DURATION
+
+
+   inline class ::time operator + (const class ::time & timeduration2) const { return m_d + timeduration2.m_d; }
+   inline class ::time operator - (const class ::time & timeduration2) const { return m_d - timeduration2.m_d; }
+
+
+   template < primitive_number NUMBER >
+   inline class time operator / (const NUMBER & number)const{ return (double)(m_d / number); }
+   template < primitive_number NUMBER >
+   inline class time operator * (const NUMBER & number) const{ return (double)(m_d * number); }
+
 
    
 };

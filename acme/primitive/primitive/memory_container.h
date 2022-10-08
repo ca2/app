@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "memory_base.h"
@@ -53,12 +53,12 @@ public:
    void from_string(const char * psz);
    void from_string(const ::string & str);
    void from_string(const ::payload & str);
-   virtual string get_string() const override;
+   string as_string() const override;
 
    void read(memory_base *pmemorystorage);
 
-   virtual stream & write(::stream & stream) const override;
-   virtual stream & read(::stream & stream) override;
+   //virtual stream & write(::stream & stream) const override;
+   //virtual stream & read(::stream & stream) override;
 
    byte * get_data();
    const byte * get_data() const;
@@ -172,7 +172,7 @@ inline void memory_container ::from_string(const ::payload & payload)
 }
 
 
-inline string memory_container::get_string() const
+inline string memory_container::as_string() const
 {
 
    if (!m_pmemory)
@@ -182,7 +182,7 @@ inline string memory_container::get_string() const
 
    }
 
-   return m_pmemory->get_string();
+   return m_pmemory->as_string();
 
 }
 

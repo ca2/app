@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 class CLASS_DECL_APEX file_context :
@@ -83,27 +83,27 @@ public:
    virtual file_pointer get(const ::file::path & name);
 
 
-   template < class T >
-   string time_square(T * p, bool (T:: * pfnOutput)(::stream &, const ::file::path &), const ::file::path & pszSource)
-   {
+   //template < class T >
+   //string time_square(T * p, bool (T:: * pfnOutput)(::stream &, const ::file::path &), const ::file::path & pszSource)
+   //{
 
-      string strTime = time_square(p);
+   //   string strTime = time_square(p);
 
-      if (strTime.has_char())
-      {
+   //   if (strTime.has_char())
+   //   {
 
-         if (!output(strTime, p, pfnOutput, pszSource))
-         {
+   //      if (!output(strTime, p, pfnOutput, pszSource))
+   //      {
 
-            return "";
+   //         return "";
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return strTime;
+   //   return strTime;
 
-   }
+   //}
 
 
    template < typename TYPE >
@@ -116,7 +116,7 @@ public:
 
       stream.defer_set_loading();
 
-      stream.exchange(::atom::e_type_null, t);
+      stream >> t;
 
       //return stream.fail() ? ::error_failed : ::success;
 
@@ -133,7 +133,7 @@ public:
 
       stream.defer_set_storing();
 
-      stream.exchange(::atom::e_type_null, t);
+      stream << t;
 
       //return stream.fail() ? ::error_failed : ::success;
 

@@ -1,4 +1,4 @@
-//
+﻿//
 //  _no_templates.h
 //  acme
 //
@@ -28,8 +28,8 @@
 
 class trait;
 class matter;
-class stream;
-class payload_stream;
+//class stream;
+//class payload_stream;
 class string;
 typedef iptr strsize;
 class payload;

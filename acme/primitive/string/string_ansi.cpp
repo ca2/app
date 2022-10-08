@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include <stdio.h>
 
 
@@ -3418,3 +3418,24 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //
+
+
+CLASS_DECL_ACME::string __string_format(const char * pszFormat, ...)
+{
+
+   ::string str;
+
+   va_list argList;
+
+   va_start(argList, pszFormat);
+
+   str.format_arguments(pszFormat, argList);
+
+   va_end(argList);
+
+   return str;
+
+}
+
+
+

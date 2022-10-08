@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "apex/constant/method.h"
 #include "apex/platform/launcher.h"
 #include "apex/platform/app_launcher.h"
@@ -324,11 +324,17 @@ string interprocess_intercommunication::key(const string &strApp, const ::atom &
 string interprocess_intercommunication::str_from_va(const payload_array & payloada)
 {
 
-   memory_stream stream;
+   //memory_file memoryfile;
 
-   stream << payloada;
+   //binary_stream stream(&memoryfile);
 
-   return stream->get_primitive_memory()->to_hex();
+   //stream << payloada;
+
+   //return memoryfile.memory()->to_hex();
+
+   throw ::exception(todo);
+
+   return {};
 
 }
 
@@ -577,7 +583,7 @@ void interprocess_intercommunication::on_interprocess_call(::payload & payload, 
          auto papp = get_app();
 
          papp->m_papexapplication->on_additional_local_instance(
-            payload["handled"].as_bool(),
+            (bool &) payload["handled"],
             strModule, 
             propertyset["pid"].i32(),
             strCommandLine);

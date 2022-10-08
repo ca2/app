@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "frame_window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
@@ -815,7 +815,7 @@ namespace experience
 
          auto atom = ptopic->user_element_id();
 
-         FORMATTED_TRACE("frame_window::handle_event btn_clkd=%s", atom.to_string().c_str());
+         FORMATTED_TRACE("frame_window::handle_event btn_clkd=%s", string(atom).c_str());
 
          auto ebutton = m_pframe->get_control_box()->get_control_box_button_type(atom);
 

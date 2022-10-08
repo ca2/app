@@ -1,7 +1,8 @@
-// Added get_time_zone memberby camilo on 2021-12-02 14:23 BRT <3ThomasBorregaardSørensen!!
+﻿// Added get_time_zone memberby camilo on 2021-12-02 14:23 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "system.h"
+#include "acme/primitive/datetime/_binary_stream.h"
 
 
 namespace geo
@@ -82,14 +83,18 @@ namespace geo
 
       auto& file = pcontext->m_papexcontext->file();
 
+      auto pfile = file.get_reader(pathFolder / "weather.bin");
+
+      binary_stream stream(pfile);
+
       try
       {
 
-         *file.get_reader(pathFolder / "weather-cit.bin") >> m_straCity;
-         *file.get_reader(pathFolder / "weather-cil.bin") >> m_straCityLo;
-         *file.get_reader(pathFolder / "weather-ids.bin") >> m_iaIds;
-         *file.get_reader(pathFolder / "weather-lon.bin") >> m_daLon;
-         *file.get_reader(pathFolder / "weather-lat.bin") >> m_daLat;
+         stream >> m_straCity;
+         stream >> m_straCityLo;
+         stream >> m_iaIds;
+         stream >> m_daLon;
+         stream >> m_daLat;
 
 
          //pcontext->m_papexcontext->file().to_array(m_straCity,          auto psystem = m_psystem;
@@ -138,11 +143,7 @@ namespace geo
          try
          {
 
-            file.erase(pathFolder / "weather-cit.bin");
-            file.erase(pathFolder / "weather-cil.bin");
-            file.erase(pathFolder / "weather-ids.bin");
-            file.erase(pathFolder / "weather-lon.bin");
-            file.erase(pathFolder / "weather-lat.bin");
+            file.erase(pathFolder / "weather.bin");
 
             m_straCityLo.erase_all();
             m_straCity.erase_all();
@@ -198,7 +199,7 @@ namespace geo
 
                i64 iId;
 
-               v["_id"].as(iId);
+               iId = v["_id"];
 
                m_iaIds.add(iId);
 
@@ -212,11 +213,15 @@ namespace geo
 
             }
 
-            *file.get_writer(pathFolder / "weather-cit.bin") << m_straCity;
-            *file.get_writer(pathFolder / "weather-cil.bin") << m_straCityLo;
-            *file.get_writer(pathFolder / "weather-ids.bin") << m_iaIds;
-            *file.get_writer(pathFolder / "weather-lon.bin") << m_daLon;
-            *file.get_writer(pathFolder / "weather-lat.bin") << m_daLat;
+            auto pfile = file.get_writer(pathFolder / "weather.bin");
+
+            binary_stream stream(pfile);
+
+            stream << m_straCity;
+            stream << m_straCityLo;
+            stream << m_iaIds;
+            stream << m_daLon;
+            stream << m_daLat;
 
          }
 
@@ -589,7 +594,7 @@ namespace geo
    string department::initial_locality_time_zone(openweather_city* pcity, double& dZone)
    {
 
-      ::datetime::department::time_zone timezone;
+      ::datetime::time_zone timezone;
 
       timezone = get_time_zone(pcity);
 
@@ -1275,7 +1280,7 @@ namespace geo
    }
 
 
-   ::datetime::department::time_zone department::get_time_zone(openweather_city* pcity)
+   ::datetime::time_zone department::get_time_zone(openweather_city* pcity)
    {
 
 
@@ -1365,7 +1370,7 @@ namespace geo
    }
 
 
-   ::datetime::department::time_zone department::_get_time_zone(openweather_city* pcity)
+   ::datetime::time_zone department::_get_time_zone(openweather_city* pcity)
    {
 
       return get_time_zone(pcity->m_dLat, pcity->m_dLon);
@@ -1373,7 +1378,7 @@ namespace geo
    }
 
 
-   ::datetime::department::time_zone department::get_time_zone(double dLat, double dLng)
+   ::datetime::time_zone department::get_time_zone(double dLat, double dLng)
    {
 
       if (!m_bLoadedLocalityTimeZoneFromFile)
@@ -1451,10 +1456,10 @@ namespace geo
    }
 
 
-   ::datetime::department::time_zone department::_get_time_zone(double dLat, double dLng)
+   ::datetime::time_zone department::_get_time_zone(double dLat, double dLng)
    {
 
-      ::datetime::department::time_zone timezone;
+      ::datetime::time_zone timezone;
 
       property_set set;
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace factory
@@ -23,7 +23,7 @@ namespace factory
       if (!pfactoryitem)
       {
 
-         throw ::exception(error_no_factory, "No factory for \"" + atom.to_string() + "\"");
+         throw ::exception(error_no_factory, "No factory for \"" + atom.as_string() + "\"");
 
       }
 

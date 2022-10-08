@@ -25,7 +25,7 @@ namespace xml
       string                        m_strData1;
       __pointer(::xml::edit)        m_pedit;
       memory                        m_memoryData;
-      __pointer(node)               m_pnodeRoot;
+      //__pointer(node)               m_pnodeRoot;
 
 
       document(parse_info * pparseinfo = nullptr, string_to_string * pentitiesHash = nullptr);
@@ -43,22 +43,22 @@ namespace xml
       string consume_entity_ref(const char * & pszXml, string & strName, bool useExtEnt, bool & bExt);
       char * patch_entity_ref(const char * & pszXml, int bUseExtEnt);
 
-      node* root() { return m_pnodeRoot; }
-      const node * root() const { return m_pnodeRoot; }
+      node* root() { return first_xml_node(); }
+      const node * root() const { return first_xml_node(); }
 
       //void load_location(const char * psz);
       //void parse_xml_text(stream & s);
       //void parse_xml_text(const char * pszXmlText);
 
-      inline operator bool() const { return ::is_set(this) && m_pnodeRoot.is_set(); }
+      inline operator bool() const { return ::is_set(this) && root(); }
       inline bool operator !() const { return !operator bool(); }
 
       void set_name(const ::string & strName) override;
 
       document & operator = (const document & document);
 
-      ::stream & write(::stream & stream) const override;
-      ::stream & read(::stream & stream) override;
+      //::stream & write(::stream & stream) const override;
+      //::stream & read(::stream & stream) override;
 
 
    };

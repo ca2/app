@@ -1,10 +1,8 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "trace.h"
 #include "acme/operating_system.h"
 #include <stdio.h>
-//#ifndef WINDOWS
-//#include "acme/operating_system/cross/windows/_windows.h"
-//#endif
-#include "trace.h"
+//#include "acme/_defer.h"
 
 
 thread_local __pointer(logger) t_plogger;

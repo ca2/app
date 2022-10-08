@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 CLASS_DECL_ACME int trailingBytesForUTF8(ansichar ch);
@@ -7,7 +7,7 @@ CLASS_DECL_ACME int trailingBytesForUTF8(ansichar ch);
 typedef i32 HRes;
 
 
-#include "utf8_char.h"
+#include "character.h"
 
 
 
@@ -109,9 +109,14 @@ public:
 #include "acme/primitive/primitive/natural.h"
 
 
-//#include "_trait_ansi.h"
-//#include "_trait_wd16.h"
-//#include "_trait_wd32.h"
+template < typename T >
+concept has_string_getter = requires(T t, ::string & str)
+{
+
+   { t.as(str) } -> std::same_as < void >;
+
+};
+
 
 #include "string_meta_data.h"
 
@@ -120,6 +125,8 @@ public:
 #include "string_iterator.h"
 
 #include "string_base.h"
+
+#include "__string.h"
 
 
 #include "acme/primitive/string/x/x_charcategory.h"
@@ -174,10 +181,7 @@ inline  wd32char * next_char(const wd32char *& p)
 #include "string_inst.h"
 
 
-#include "__string.h"
-
-
-#include "to_string.h"
+//#include "__string.h"
 
 
 //#include "_trait.h"

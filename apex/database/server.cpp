@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 namespace database
@@ -141,11 +141,13 @@ namespace database
    ::payload server::data_load(client * pclient, const key & atom, ::topic * ptopic)
    {
 
-      ::memory_stream is;
+      memory_file memoryfile;
+
+      ::binary_stream is(&memoryfile);
 
       {
 
-         if (!_data_server_load(pclient, atom, is->memory(), ptopic))
+         if (!_data_server_load(pclient, atom, memoryfile.memory(), ptopic))
          {
 
             return ::e_type_null;
@@ -166,11 +168,13 @@ namespace database
    void server::data_save(client * pclient, const key & atom, ::payload & payload, ::topic * ptopic)
    {
 
-      ::memory_stream writer;
+      ::memory_file memoryfile;
+
+      ::binary_stream writer(&memoryfile);
 
       writer << payload;
 
-      _data_server_save(pclient, atom, writer->memory(), ptopic);
+      _data_server_save(pclient, atom, memoryfile.memory(), ptopic);
 
    }
 

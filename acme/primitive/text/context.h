@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/text/international_locale_schema.h"
@@ -233,8 +233,14 @@ namespace text
 
       inline string get(const ::atom& atom) const
       {
+         
          if (m_ptable == nullptr)
-            return atom.to_string();
+         {
+
+            return atom;
+
+         }
+
          return m_ptable->get(this, atom);
 
       }

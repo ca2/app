@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/message.h"
 #include "aura/user/user/wait_cursor.h"
 #include "document.h"
@@ -234,22 +234,22 @@ namespace user
    {
       ::object::dump(dumpcontext);
 
-      dumpcontext << "\nm_pDocTemplate = " << (void *)m_pimpactsystem;
+      //dumpcontext << "\nm_pDocTemplate = " << (void *)m_pimpactsystem;
 
-      if (dumpcontext.GetDepth() > 0)
-      {
-         ::count count = get_impact_count();
-         for (index index = 0; index < count; index++)
-         {
-            __pointer(::user::impact) pimpact = get_impact(index);
-            dumpcontext << "\nwith ::user::impact " << (void *)pimpact;
-         }
-      }
+      //if (dumpcontext.GetDepth() > 0)
+      //{
+      //   ::count count = get_impact_count();
+      //   for (index index = 0; index < count; index++)
+      //   {
+      //      __pointer(::user::impact) pimpact = get_impact(index);
+      //      dumpcontext << "\nwith ::user::impact " << (void *)pimpact;
+      //   }
+      //}
 
-      dumpcontext << "m_strTitle = " << m_strTitle;
-      dumpcontext << "\nm_path = " << m_path;
-      dumpcontext << "\nm_bModified = " << m_bModified;
-      dumpcontext << "\n";
+      //dumpcontext << "m_strTitle = " << m_strTitle;
+      //dumpcontext << "\nm_path = " << m_path;
+      //dumpcontext << "\nm_bModified = " << m_bModified;
+      //dumpcontext << "\n";
 
 
    }
@@ -387,7 +387,7 @@ namespace user
    ::atom document::get_toolbar_id()
    {
 
-      return m_pimpactsystem->m_atom.to_string() + "/" + class_title();
+      return m_pimpactsystem->m_atom + "/" + class_title();
 
    }
 
@@ -1042,9 +1042,9 @@ namespace user
    bool document::on_open_document(::file::file * pfile)
    {
 
-      ::binary_stream reader(pfile);
+      //::binary_stream reader(pfile);
 
-      read(reader);
+      //read(reader);
 
       return true;
 
@@ -1099,13 +1099,13 @@ namespace user
    bool document::on_save_document(::file::file * pfile)
    {
 
-      {
+      //{
 
-         ::binary_stream writer(pfile);
+      //   ::binary_stream writer(pfile);
 
-         write(writer);
+      //   write(writer);
 
-      }
+      //}
 
       return true;
 

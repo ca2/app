@@ -96,7 +96,7 @@ namespace filemanager
 
             pxmldocument->load(pszSource);
 
-            pxmldocument->root()->attribute("id").as(m_iParentFolder);
+            m_iParentFolder = pxmldocument->root()->attribute("id");
 
             __pointer(::data::tree_item) ptreeitemParent;
 

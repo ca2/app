@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "core/filesystem/filemanager/_filemanager.h"
 //#endif
@@ -235,12 +235,12 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
 
          __pointer(::database::client) pclient = parent_frame();
 
-         if (pclient != nullptr && !pclient->m_atom.to_string().contains("::frame"))
+         if (pclient != nullptr && !::string(pclient->m_atom).contains("::frame"))
          {
 
             string str;
 
-            str.format("frame(%s)", filemanager_data()->m_atom.str().c_str());
+            str.format("frame(%s)", ::string(filemanager_data()->m_atom).c_str());
 
             pclient->set_data_key_modifier(str);
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/user/user/wait_cursor.h"
 #include "impact_system.h"
 #include "document.h"
@@ -397,27 +397,27 @@ namespace user
    {
       channel::dump(dumpcontext);
 
-      dumpcontext << "m_strMatter = " << m_atom.to_string();
-      dumpcontext << "\nm_strDocStrings: " << m_strDocStrings;
+      //dumpcontext << "m_strMatter = " << m_atom;
+      //dumpcontext << "\nm_strDocStrings: " << m_strDocStrings;
 
-      if (m_typeDocument)
-         dumpcontext << "\nm_pDocClass = " << m_typeDocument.name();
-      else
-         dumpcontext << "\nm_pDocClass = nullptr";
+      //if (m_typeDocument)
+      //   dumpcontext << "\nm_pDocClass = " << m_typeDocument.name();
+      //else
+      //   dumpcontext << "\nm_pDocClass = nullptr";
 
-      if (dumpcontext.GetDepth() > 0)
-      {
-         dumpcontext << "\ndocument list = {";
-         ::count count = get_document_count();
-         for (index index = 0; index < count; index++)
-         {
-            __pointer(::user::document) pdocument = get_document(index);
-            dumpcontext << (void *)pdocument.m_p;
-         }
-         dumpcontext << "\n}";
-      }
+      //if (dumpcontext.GetDepth() > 0)
+      //{
+      //   dumpcontext << "\ndocument list = {";
+      //   ::count count = get_document_count();
+      //   for (index index = 0; index < count; index++)
+      //   {
+      //      __pointer(::user::document) pdocument = get_document(index);
+      //      dumpcontext << (void *)pdocument.m_p;
+      //   }
+      //   dumpcontext << "\n}";
+      //}
 
-      dumpcontext << "\n";
+      //dumpcontext << "\n";
    }
 
    void impact_system::assert_ok() const

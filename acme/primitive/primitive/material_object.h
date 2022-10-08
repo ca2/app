@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 class CLASS_DECL_ACME material_object :
@@ -26,7 +26,7 @@ public:
    ~material_object() override;
 
 
-   virtual ::string get_string() const;
+   virtual ::string as_string() const;
 
    using ::property_object::cast;
 

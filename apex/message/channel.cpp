@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "apex/message.h"
 #include "apex/message/command.h"
 
@@ -444,7 +444,7 @@ bool channel::has_command_handler(::message::command * pcommand)
 
    ___scoped_restore(pcommand->m_atom.m_etype);
 
-   string strText = pcommand->m_atom.to_string();
+   string strText = pcommand->m_atom;
 
    if (strText.has_char())
    {

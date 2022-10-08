@@ -1,4 +1,4 @@
-/** \file socket_thread.cpp
+﻿/** \file socket_thread.cpp
 **   \date  2021-07-26
 **   \author grymse@alhem.net
 **/  
@@ -2951,10 +2951,10 @@ namespace sockets
    }
 
 
-   string base_socket::get_string() const
+   string base_socket::as_string() const
    {
 
-      return base_socket_composite()->get_string();
+      return base_socket_composite()->as_string();
 
    }
 

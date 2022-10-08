@@ -1,4 +1,4 @@
-// Moved by camilo on 2021-07-26 02:20 BRT <3ThomasBorregaardSørensen!!
+﻿// Moved by camilo on 2021-07-26 02:20 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -543,7 +543,7 @@ namespace sockets
       // TCP options in tcp_socket.h/tcp_socket.cpp
 
 
-      virtual string get_string() const override;
+      string as_string() const override;
 
 
       //virtual void attach(socket_id s);

@@ -1,4 +1,4 @@
-// Created by camilo on 2021-10-04 04:57 BRT <3ThomasBorregaardSørensen!!
+﻿// Created by camilo on 2021-10-04 04:57 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -28,6 +28,11 @@ public:
    inline bool is_infinite() const { return m_d >= __infinite(); }
 
    inline bool is_null() const { return m_d <= 0; }
+
+
+   DECLARE_COMPARISON_WITH_DURATION
+
+
 
 
 };

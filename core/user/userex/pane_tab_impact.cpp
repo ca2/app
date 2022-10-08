@@ -681,7 +681,7 @@ namespace userex
 
          pimpactdata->m_eflag.add(::user::e_flag_tool_impact);
 
-         auto pfilemanagerdata = cast < ::filemanager::data >("data." + pimpactdata->m_atom.str());
+         auto pfilemanagerdata = cast < ::filemanager::data >("data." + pimpactdata->m_atom);
 
          auto pcontext = m_pcontext;
          
@@ -711,7 +711,7 @@ namespace userex
                && payload("filemanager_toolbar").m_etype == ::e_type_property_set)
          {
 
-            auto & set = payload("filemanager_toolbar").as_propset();
+            auto & set = payload("filemanager_toolbar");
 
             if (set[::userfs::e_mode_normal].is_set())
                pfilemanagerdata->m_setToolbar[::userfs::e_mode_normal] = set[::userfs::e_mode_normal];

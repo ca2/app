@@ -381,31 +381,31 @@ bool element::should_run_async() const
 }
 
 
-void element::exchange(stream& s)
-{
+//void element::exchange(stream& s)
+//{
+//
+//}
+//
+//
+//void element::exchange(payload_stream& s)
+//{
+//
+//}
 
-}
-
-
-void element::exchange(payload_stream& s)
-{
-
-}
-
-stream & element::write(stream& s) const
-{
-
-   return s;
-
-}
-
-
-stream& element::read(stream& s)
-{
-
-   return s;
-
-}
+//stream & element::write(stream& s) const
+//{
+//
+//   return s;
+//
+//}
+//
+//
+//stream& element::read(stream& s)
+//{
+//
+//   return s;
+//
+//}
 
 
 //void matter::finish(::property_object * pcontextobjectFinish)
@@ -460,6 +460,22 @@ void element::destroy_os_data()
 void element::on_sequence()
 {
 
+
+}
+
+
+void element::write(::binary_stream & stream) const
+{
+
+   throw interface_only();
+
+}
+
+
+void element::read(::binary_stream & stream)
+{
+
+   throw interface_only();
 
 }
 

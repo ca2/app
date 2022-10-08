@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 class image_list;
@@ -30,8 +30,8 @@ namespace data
       virtual void data_item_on_fill_children(::data::tree_item * pitem);
 
 
-      virtual stream & write(stream& s) const override;
-      virtual stream & read(stream& s) override;
+      //virtual stream & write(stream& s) const override;
+      //virtual stream & read(stream& s) override;
 
 
    };

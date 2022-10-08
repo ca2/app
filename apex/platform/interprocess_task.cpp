@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 interprocess_task::interprocess_task(interprocess_call* pcall, const ::atom& idPid, i64 iTask) :
@@ -42,7 +42,7 @@ void interprocess_task::do_task(const string& strObject, const string& strMember
       strApp.find_replace("/", "-");
       strApp.find_replace(".", "-");
 
-      string str = strApp + "://" + strObject + "/" + strMember + "?" + strNetworkArguments + "&protocol.call_id=" + __string(m_iTask) + "&" + strSource + "&protocol.target_pid=" + m_atomPid.to_string();
+      string str = strApp + "://" + strObject + "/" + strMember + "?" + strNetworkArguments + "&protocol.call_id=" + __string(m_iTask) + "&" + strSource + "&protocol.target_pid=" + m_atomPid;
 
       //txc.send(str, m_pcall->m_duration);
       txc.send(str, 1_min);

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "impact.h"
 #include "aura/message/user.h"
 #include "aura/user/user/system.h"
@@ -427,7 +427,7 @@ namespace user
    ::atom impact::get_toolbar_id()
    {
 
-      return get_document()->m_pimpactsystem->m_atom.to_string() + "/" + class_title();
+      return get_document()->m_pimpactsystem->m_atom + "/" + class_title();
 
    }
 
@@ -730,10 +730,10 @@ namespace user
    {
       ::user::interaction::dump(dumpcontext);
 
-      if (((impact *) this)->::user::impact::get_document() != nullptr)
-         dumpcontext << "with ::user::document: ";
-      else
-         dumpcontext << "with no ::user::document\n";
+      //if (((impact *) this)->::user::impact::get_document() != nullptr)
+      //   dumpcontext << "with ::user::document: ";
+      //else
+      //   dumpcontext << "with no ::user::document\n";
    }
 
 

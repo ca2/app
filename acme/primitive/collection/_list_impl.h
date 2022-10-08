@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 template<class TYPE, class ARG_TYPE>
@@ -130,62 +130,62 @@ void list<TYPE, ARG_TYPE>::dump(dump_context& dumpcontext) const
 
    matter::dump(dumpcontext);
 
-   dumpcontext << "with " << this->m_count << " elements";
+   //dumpcontext << "with " << this->m_count << " elements";
 
-   if (dumpcontext.GetDepth() > 0)
-   {
+   //if (dumpcontext.GetDepth() > 0)
+   //{
 
-      auto pnode = this->get_head();
+   //   auto pnode = this->get_head();
 
-      while (::is_set(pnode))
-      {
+   //   while (::is_set(pnode))
+   //   {
 
-         dumpcontext << "\n";
+   //      dumpcontext << "\n";
 
-         dump_elements(dumpcontext, &pnode->m_value, 1);
+   //      dump_elements(dumpcontext, &pnode->m_value, 1);
 
-         pnode = pnode->m_pnext;
+   //      pnode = pnode->m_pnext;
 
-      }
+   //   }
 
-   }
+   //}
 
-   dumpcontext << "\n";
-
-}
-
-
-template < typename TYPE >
-inline stream& operator <<(stream& stream, const stringl& list)
-{
-
-   stream << list.get_count();
-
-   for (auto& pitem : list)
-   {
-      stream << *pitem;
-   }
-
-   return stream;
+   //dumpcontext << "\n";
 
 }
 
 
-template < typename TYPE >
-inline stream& operator >>(stream& stream, stringl& list)
-{
-
-   i32 iSize;
-   stream >> iSize;
-   string str;
-   for (i32 i = 0; i < iSize; i++)
-   {
-      stream >> str;
-      list.add_tail(str);
-   }
-   return stream;
-}
-
+//template < typename TYPE >
+//inline stream& operator <<(stream& stream, const stringl& list)
+//{
+//
+//   stream << list.get_count();
+//
+//   for (auto& pitem : list)
+//   {
+//      stream << *pitem;
+//   }
+//
+//   return stream;
+//
+//}
+//
+//
+//template < typename TYPE >
+//inline stream& operator >>(stream& stream, stringl& list)
+//{
+//
+//   i32 iSize;
+//   stream >> iSize;
+//   string str;
+//   for (i32 i = 0; i < iSize; i++)
+//   {
+//      stream >> str;
+//      list.add_tail(str);
+//   }
+//   return stream;
+//}
+//
 
 
 

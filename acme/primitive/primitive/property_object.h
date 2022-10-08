@@ -1,4 +1,4 @@
-//
+﻿//
 //  property_object.h
 //  apex
 //
@@ -66,8 +66,8 @@ public:
 
 
 
-   virtual void exchange(::stream & stream) override;
-   virtual void exchange(::payload_stream& stream) override;
+   //virtual void exchange(::stream & stream) override;
+   //virtual void exchange(::payload_stream& stream) override;
 
 
    virtual void handle_exception(const ::exception& e);
@@ -78,8 +78,8 @@ public:
 
 
 
-   virtual stream & write(::stream & stream) const override;
-   virtual stream & read(::stream & stream) override;
+   //virtual stream & write(::stream & stream) const override;
+   //virtual stream & read(::stream & stream) override;
 
 
 

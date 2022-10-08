@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -3812,13 +3812,6 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator = (const 
 //
 //}
 
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const string_base & str)
-{
-
-   return append(str);
-
-}
 
 
 //template < typename TYPE_CHAR >
@@ -3912,84 +3905,70 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const s
 //}
 
 
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(ansichar ansich) const
-{
 
-   string_base < TYPE_CHAR > ansistr(*this);
-
-   ansistr += ansich;
-
-   //string_concatenate(ansistr, this->c_str(), this->length(), &ch, 1);
-
-   return ansistr;
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(wd16char wd16ch) const
-{
-
-   string_base < TYPE_CHAR > ansistr;
-
-   ansistr.append(wd16ch);
-
-   return ansistr;
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(wd32char wd32ch) const
-{
-
-   string_base < TYPE_CHAR > ansistr;
-
-   ansistr.append(wd32ch);
-
-   return ansistr;
-
-}
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(wd16char wd16ch) const
+//{
+//
+//   string_base < TYPE_CHAR > ansistr;
+//
+//   ansistr.append(wd16ch);
+//
+//   return ansistr;
+//
+//}
+//
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(wd32char wd32ch) const
+//{
+//
+//   string_base < TYPE_CHAR > ansistr;
+//
+//   ansistr.append(wd32ch);
+//
+//   return ansistr;
+//
+//}
 
 
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const ansichar * psz) const
-{
-
-   string_base < TYPE_CHAR > ansistr(*this);
-
-   ansistr += psz;
-
-   return ansistr;
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const wd16char * pwsz) const
-{
-
-   string_base < TYPE_CHAR > ansistr(*this);
-
-   ansistr += pwsz;
-
-   return ansistr;
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const wd32char * pwsz) const
-{
-
-   string_base < TYPE_CHAR > ansistr(*this);
-
-   ansistr += pwsz;
-
-   return ansistr;
-
-}
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const ansichar * psz) const
+//{
+//
+//   string_base < TYPE_CHAR > ansistr(*this);
+//
+//   ansistr += psz;
+//
+//   return ansistr;
+//
+//}
+//
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const wd16char * pwsz) const
+//{
+//
+//   string_base < TYPE_CHAR > ansistr(*this);
+//
+//   ansistr += pwsz;
+//
+//   return ansistr;
+//
+//}
+//
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const wd32char * pwsz) const
+//{
+//
+//   string_base < TYPE_CHAR > ansistr(*this);
+//
+//   ansistr += pwsz;
+//
+//   return ansistr;
+//
+//}
 
 
 //template < typename TYPE_CHAR >
@@ -4005,43 +3984,43 @@ inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const wd3
 //}
 
 
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const ansistring & strAddUp) const
-{
-
-   string_base < TYPE_CHAR > ansistr(*this);
-
-   ansistr += strAddUp;
-
-   return ansistr;
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const wd16string & wstrAddUp) const
-{
-
-   string_base < TYPE_CHAR > ansistr(*this);
-
-   ansistr += wstrAddUp;
-
-   return ansistr;
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const wd32string & wstrAddUp) const
-{
-
-   string_base < TYPE_CHAR > ansistr(*this);
-
-   ansistr += wstrAddUp;
-
-   return ansistr;
-
-}
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const ansistring & strAddUp) const
+//{
+//
+//   string_base < TYPE_CHAR > ansistr(*this);
+//
+//   ansistr += strAddUp;
+//
+//   return ansistr;
+//
+//}
+//
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const wd16string & wstrAddUp) const
+//{
+//
+//   string_base < TYPE_CHAR > ansistr(*this);
+//
+//   ansistr += wstrAddUp;
+//
+//   return ansistr;
+//
+//}
+//
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const wd32string & wstrAddUp) const
+//{
+//
+//   string_base < TYPE_CHAR > ansistr(*this);
+//
+//   ansistr += wstrAddUp;
+//
+//   return ansistr;
+//
+//}
 
 
 template < typename TYPE_CHAR >

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace user
@@ -68,8 +68,8 @@ namespace user
 
          __pointer(class span) fork(const class format * pformat, const e_attribute & eattribute);
 
-         virtual ::stream & write(::stream & stream) const override;
-virtual ::stream & read(::stream & stream) override;
+         void write(::binary_stream & stream) const override;
+         void read(::binary_stream & stream) override;
 
          span & operator=(const span & span);
 

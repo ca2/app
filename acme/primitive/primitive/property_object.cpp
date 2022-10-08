@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 property_object::~property_object()
@@ -80,8 +80,8 @@ public:
 
 
    debug_test_reference() :
-      m_bTest1(payload_reference(topic("bTest1"))),
-      m_strText1(payload_reference(topic("strTest1")))
+      m_bTest1(topic("bTest1")),
+      m_strText1(topic("strTest1"))
    {
 
    }
@@ -292,20 +292,20 @@ void property_object::call_run()
 //
 
 
-void property_object::exchange(::stream & stream)
-{
-
-   __exchange(stream, *m_ppropertyset);
-
-}
-
-
-void property_object::exchange(::payload_stream& stream)
-{
-
-   __exchange(stream, *m_ppropertyset);
-
-}
+//void property_object::exchange(::stream & stream)
+//{
+//
+//   __exchange(stream, *m_ppropertyset);
+//
+//}
+//
+//
+//void property_object::exchange(::payload_stream& stream)
+//{
+//
+//   __exchange(stream, *m_ppropertyset);
+//
+//}
 
 
 void property_object::handle_exception(const ::exception& e)
@@ -337,32 +337,32 @@ void property_object::on_catch_all_exception()
 }
 
 
-stream & property_object::write(::stream & stream) const
-{
-
-   ((property_object*)this)->exchange(stream);
-
-   return stream;
-
-}
-
-
-stream & property_object::read(::stream & stream)
-{
-
-   exchange(stream);
-   //property_object::read(stream);
-
-   //if (has_flag(object_default_property_exchange))
-   //{
-
-   //   do_property_exchange(stream);
-
-   //}
-
-   return stream;
-
-}
+//stream & property_object::write(::stream & stream) const
+//{
+//
+//   ((property_object*)this)->exchange(stream);
+//
+//   return stream;
+//
+//}
+//
+//
+//stream & property_object::read(::stream & stream)
+//{
+//
+//   exchange(stream);
+//   //property_object::read(stream);
+//
+//   //if (has_flag(object_default_property_exchange))
+//   //{
+//
+//   //   do_property_exchange(stream);
+//
+//   //}
+//
+//   return stream;
+//
+//}
 
 
 

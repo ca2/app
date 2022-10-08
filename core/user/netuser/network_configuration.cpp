@@ -98,7 +98,7 @@ namespace usernet
 
       i32 iProxyPort;
 
-      doc.root()->attribute("port").as(iProxyPort);
+      iProxyPort = doc.root()->attribute("port");
          
       auto pinteraction = m_pimpact->get_child_by_name("server");
          

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "context.h"
 #include "buffer.h"
 //#include "_.h"
@@ -6,7 +6,7 @@
 #include "aura/platform/system.h"
 ////#include "aura/graphics/draw2d/_component.h"
 #include "aura/graphics/image/image.h"
-#include "_defer.h"
+//#include "_defer.h"
 
 namespace gpu
 {

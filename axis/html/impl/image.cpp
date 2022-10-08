@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
@@ -78,14 +78,14 @@ namespace html
             if (pelement->m_propertyset.has_property("width"))
             {
 
-               pelement->m_propertyset["width"].as(cx);
+               cx = pelement->m_propertyset["width"];
 
             }
 
             if (pelement->m_propertyset.has_property("height"))
             {
                
-               pelement->m_propertyset["height"].as(cy);
+               cy = pelement->m_propertyset["height"];
 
             }
 
@@ -116,14 +116,14 @@ namespace html
                if (m_pelemental->m_propertyset.has_property("width"))
                {
                   
-                  m_pelemental->m_propertyset["width"].as(cx);
+                  cx = m_pelemental->m_propertyset["width"];
 
                }
 
                if (m_pelemental->m_propertyset.has_property("height"))
                {
                   
-                  m_pelemental->m_propertyset["height"].as(cy);
+                  cy = m_pelemental->m_propertyset["height"];
 
                }
 

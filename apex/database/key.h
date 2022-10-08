@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace database
@@ -18,157 +18,36 @@ namespace database
       key();
       key(const std::initializer_list < ::payload > & list);
 
-      key(string strDataKey, bool bLocalData = false)
-      {
+      key(string strDataKey, bool bLocalData = false);
 
-         m_strDataKey = strDataKey;
 
-         m_bLocalData = bLocalData;
+      key(const char * pszDataKey, bool bLocalData = false);
 
-      }
+      key(const atom & idDataKey, bool bLocalData = false);
 
+      key(const key & key, bool bLocalData = false);
+      key & operator = (const key & key);
+      key & operator = (const char * pszDataKey);
 
-      key(const char * pszDataKey, bool bLocalData = false)
-      {
 
-         m_strDataKey = pszDataKey;
+      bool operator == (const key & key) const;
 
-         m_bLocalData = bLocalData;
 
-      }
+      key & operator +=(const key & key);
+    
 
-      key(const atom & idDataKey, bool bLocalData = false)
-      {
+      key operator + (const key & key) const;
+      
 
-         m_strDataKey = __string(idDataKey);
+      key & operator +=(const ::string & strDataKey);
+     
+      key operator + (const ::string & strDataKey) const;
+    
 
-         m_bLocalData = bLocalData;
+      bool is_empty() const;
+ 
 
-      }
-
-
-      key(const key & key, bool bLocalData = false)
-      {
-
-         m_strDataKey = key.m_strDataKey;
-
-         m_bLocalData = key.m_bLocalData || bLocalData;
-
-      }
-
-
-      key & operator = (const key & key)
-      {
-
-         m_strDataKey = key.m_strDataKey;
-
-         m_bLocalData = key.m_bLocalData;
-
-         return *this;
-
-      }
-
-
-      key & operator = (const char * pszDataKey)
-      {
-
-         m_strDataKey = pszDataKey;
-
-         return *this;
-
-      }
-
-
-      bool operator == (const key & key) const
-      {
-
-         return m_strDataKey == key.m_strDataKey;
-
-      }
-
-
-      key & operator +=(const key & key)
-      {
-
-         if (m_strDataKey.is_empty())
-         {
-
-            m_strDataKey = key.m_strDataKey;
-
-         }
-         else if (key.m_strDataKey.has_char())
-         {
-
-            m_strDataKey += "/" + key.m_strDataKey;
-
-         }
-
-         m_bLocalData = m_bLocalData || key.m_bLocalData;
-
-         return *this;
-
-      }
-
-
-      key operator + (const key & key) const
-      {
-
-         ::database::key keyAdd(*this);
-
-         keyAdd += key;
-
-         return keyAdd;
-
-      }
-
-
-      key & operator +=(const ::string & strDataKey)
-      {
-
-         if (m_strDataKey.is_empty())
-         {
-
-            m_strDataKey = strDataKey;
-
-         }
-         else if (strDataKey.has_char())
-         {
-
-            m_strDataKey += "/" + strDataKey;
-
-         }
-
-         return *this;
-
-      }
-
-
-      key operator + (const ::string & strDataKey) const
-      {
-
-         ::database::key keyAdd(*this);
-
-         keyAdd += strDataKey;
-
-         return keyAdd;
-
-      }
-
-
-      bool is_empty() const
-      {
-
-         return m_strDataKey.is_empty();
-
-      }
-
-
-      void set_local_data(bool bLocalData = true)
-      {
-
-         m_bLocalData = bLocalData;
-
-      }
+      void set_local_data(bool bLocalData = true);
 
    };
 

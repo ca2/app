@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 template < typename ARG_TYPE >
@@ -398,7 +398,7 @@ void numeric_array < TYPE, t_etypePayload >::implode(string & str, const char * 
       string strSeparator(pcszSeparator);
 
       index i = start;
-      str = __string(this->element_at(i));
+      str == __string(this->element_at(i));
       i++;
       for(; i <= last; i++)
       {

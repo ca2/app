@@ -1973,7 +1973,7 @@ void simple_frame_window::_001OnActivate(::message::message * pmessage)
 bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
 {
 
-   m_atom = pusersystem->m_atom.to_string() + "::frame";
+   m_atom = pusersystem->m_atom + "::frame";
 
    __UNREFERENCED_PARAMETER(puiParent);
 

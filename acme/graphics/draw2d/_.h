@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -24,7 +24,7 @@ inline byte clampAndConvert(double v)
 
 
 
-#include "_const.h"
+#include "_constant.h"
 
 
 #include "_system_color.h"

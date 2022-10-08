@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #if defined(ANDROID) || defined(__APPLE__)
@@ -220,6 +220,8 @@ namespace earth
       time_span abs_diff(const ::earth::time & time) const;
 
 
+      DECLARE_COMPARISON_WITH_DURATION
+
    };
 
 
@@ -361,7 +363,7 @@ namespace earth
 } // namespace earth
 
 
-COMPARISON_WITH_DURATION(::earth::time)
+DEFINE_COMPARISON_WITH_DURATION(::earth::time)
 
 
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/data/tree_item.h"
@@ -118,11 +118,11 @@ namespace data
 
 } // namespace acme
 
-
-
-inline stream & operator <<(stream & s, const ::data::tree & tree);
-
-inline stream & operator >>(stream & s, ::data::tree & tree);
-
-
+//
+//
+//inline stream & operator <<(stream & s, const ::data::tree & tree);
+//
+//inline stream & operator >>(stream & s, ::data::tree & tree);
+//
+//
 

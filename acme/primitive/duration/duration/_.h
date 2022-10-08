@@ -1,35 +1,46 @@
-// Created by camilo on 2021-10-05 12:54 BRT <3ThomasBorregaardSørensen!![ THE ONE GOD ]
+﻿// Created by camilo on 2021-10-05 12:54 BRT <3ThomasBorregaardSørensen!![ THE ONE GOD ]
 #pragma once
 
 
 #include "duration.h"
 
 
-#define COMPARISON_WITH_DURATION(TYPE) \
-inline bool operator == (const TYPE & t, const ::duration & duration) { return ::duration(t) == duration; } \
-inline bool operator < (const TYPE & t, const ::duration & duration) { return ::duration(t) < duration; } \
-inline bool operator <= (const TYPE & t, const ::duration & duration) { return ::duration(t) <= duration; } \
-inline bool operator > (const TYPE & t, const ::duration & duration) { return ::duration(t) > duration; } \
-inline bool operator >= (const TYPE & t, const ::duration & duration) { return ::duration(t) >= duration; } \
-inline bool operator != (const TYPE & t, const ::duration & duration) { return ::duration(t) != duration; } 
 
 
-COMPARISON_WITH_DURATION(INTEGRAL_NANOSECOND)
-COMPARISON_WITH_DURATION(INTEGRAL_MICROSECOND)
-COMPARISON_WITH_DURATION(INTEGRAL_MILLISECOND)
-COMPARISON_WITH_DURATION(INTEGRAL_SECOND)
-COMPARISON_WITH_DURATION(INTEGRAL_MINUTE)
-COMPARISON_WITH_DURATION(INTEGRAL_HOUR)
-COMPARISON_WITH_DURATION(INTEGRAL_DAY)
+#define DEFINE_COMPARISON_WITH_DURATION(TYPE) \
+inline bool TYPE::operator == (const ::duration & duration) const { return ::duration(*this) == duration; } \
+inline bool TYPE::operator < (const ::duration & duration) const { return ::duration(*this) < duration; } \
+inline bool TYPE::operator <= (const ::duration & duration) const { return ::duration(*this) <= duration; } \
+inline bool TYPE::operator > (const ::duration & duration) const { return ::duration(*this) > duration; } \
+inline bool TYPE::operator >= (const ::duration & duration) const { return ::duration(*this) >= duration; } \
+inline bool TYPE::operator != (const ::duration & duration) const { return ::duration(*this) != duration; } 
 
 
-COMPARISON_WITH_DURATION(FLOATING_NANOSECOND)
-COMPARISON_WITH_DURATION(FLOATING_MICROSECOND)
-COMPARISON_WITH_DURATION(FLOATING_MILLISECOND)
-COMPARISON_WITH_DURATION(FLOATING_SECOND)
-COMPARISON_WITH_DURATION(FLOATING_MINUTE)
-COMPARISON_WITH_DURATION(FLOATING_HOUR)
-COMPARISON_WITH_DURATION(FLOATING_DAY)
+
+//#define COMPARISON_WITH_DURATION(TYPE) \
+//inline bool operator == (const TYPE & t, const ::duration & duration) { return ::duration(t) == duration; } \
+//inline bool operator < (const TYPE & t, const ::duration & duration) { return ::duration(t) < duration; } \
+//inline bool operator <= (const TYPE & t, const ::duration & duration) { return ::duration(t) <= duration; } \
+//inline bool operator > (const TYPE & t, const ::duration & duration) { return ::duration(t) > duration; } \
+//inline bool operator >= (const TYPE & t, const ::duration & duration) { return ::duration(t) >= duration; } \
+//inline bool operator != (const TYPE & t, const ::duration & duration) { return ::duration(t) != duration; } 
+
+
+DEFINE_COMPARISON_WITH_DURATION(INTEGRAL_NANOSECOND)
+DEFINE_COMPARISON_WITH_DURATION(INTEGRAL_MICROSECOND)
+DEFINE_COMPARISON_WITH_DURATION(INTEGRAL_MILLISECOND)
+DEFINE_COMPARISON_WITH_DURATION(INTEGRAL_SECOND)
+DEFINE_COMPARISON_WITH_DURATION(INTEGRAL_MINUTE)
+DEFINE_COMPARISON_WITH_DURATION(INTEGRAL_HOUR)
+DEFINE_COMPARISON_WITH_DURATION(INTEGRAL_DAY)
+
+DEFINE_COMPARISON_WITH_DURATION(FLOATING_NANOSECOND)
+DEFINE_COMPARISON_WITH_DURATION(FLOATING_MICROSECOND)
+DEFINE_COMPARISON_WITH_DURATION(FLOATING_MILLISECOND)
+DEFINE_COMPARISON_WITH_DURATION(FLOATING_SECOND)
+DEFINE_COMPARISON_WITH_DURATION(FLOATING_MINUTE)
+DEFINE_COMPARISON_WITH_DURATION(FLOATING_HOUR)
+DEFINE_COMPARISON_WITH_DURATION(FLOATING_DAY)
 
 
 #include "nanosecond.h"

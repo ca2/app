@@ -1,4 +1,4 @@
-//
+﻿//
 //  _forward_declaration.h
 //  acme
 //
@@ -30,7 +30,8 @@ class __id;
 class string_exchange;
 namespace message { class message; }
 class payload;
-class stream;
+class binary_stream;
+class text_stream;
 
 
 //namespace topic

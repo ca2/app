@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/constant/message.h"
 #include "acme/update.h"
 #if OBJECT_REFERENCE_COUNT_DEBUG
@@ -86,7 +86,7 @@ i64 object::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 //}
 
 
-string object::get_string() const
+string object::as_string() const
 {
 
    return string(__type_name(this)) + " (0x" + ::hex::lower_from((uptr)this) + ")";

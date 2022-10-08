@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 memory_container::memory_container(memsize size)
@@ -26,7 +26,7 @@ memory_container::memory_container(::payload & payload)
 
    //m_pvppa = nullptr;
 
-   m_pmemory = &payload.as_memory();
+   m_pmemory = &payload.memory_reference();
 
 }
 
@@ -184,37 +184,37 @@ void memory_container ::read(memory_base * pmemory)
 }
 
 
-stream & memory_container ::write(::stream & stream) const
-{
-
-   if (!m_pmemory)
-   {
-
-      stream.write_buffer_length(0);
-
-   }
-   else
-   {
-
-      stream << *m_pmemory;
-
-   }
-
-   return stream;
-
-}
-
-
-stream & memory_container::read(::stream & stream)
-{
-
-   defer_create_default_memory();
-
-   stream >> *m_pmemory;
-
-   return stream;
-
-}
+//stream & memory_container ::write(::stream & stream) const
+//{
+//
+//   if (!m_pmemory)
+//   {
+//
+//      stream.write_buffer_length(0);
+//
+//   }
+//   else
+//   {
+//
+//      stream << *m_pmemory;
+//
+//   }
+//
+//   return stream;
+//
+//}
+//
+//
+//stream & memory_container::read(::stream & stream)
+//{
+//
+//   defer_create_default_memory();
+//
+//   stream >> *m_pmemory;
+//
+//   return stream;
+//
+//}
 
 
 //void memory_container ::keep_pointer(void **ppvoid)

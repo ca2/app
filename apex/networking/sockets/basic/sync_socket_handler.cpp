@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "sync_socket_handler.h"
 
 
@@ -92,7 +92,7 @@ namespace sockets
    void sync_socket_handler::read_full_string(string & str)
    {
 
-      str = ((::file::file &)m_file).get_string();
+      str = ((::file::file &)m_file).as_string();
 
    }
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "span.h"
 #include "data.h"
 #include "format.h"
@@ -151,7 +151,7 @@ namespace user
       }
 
 
-      stream & span::write(::stream & stream) const
+      void span::write(::binary_stream & stream) const
       {
 
          property_set set;
@@ -163,12 +163,10 @@ namespace user
 
          stream << set;
 
-         return stream;
-
       }
 
 
-      stream & span::read(::stream & stream)
+      void span::read(::binary_stream & stream)
       {
 
          property_set set;
@@ -179,7 +177,7 @@ namespace user
          m_str = set["text"];
          ::index iFormatIndex;
 
-         set["format_index"].as(iFormatIndex);
+         iFormatIndex = set["format_index"];
          if (iFormatIndex >= 0 && iFormatIndex < m_pdata->m_pformata->get_count())
          {
             m_pformat = m_pdata->m_pformata->element_at(iFormatIndex);
@@ -188,8 +186,6 @@ namespace user
          {
             output_debug_string("corruption... non fatal... partially recoverable...");
          }
-
-         return stream;
 
       }
 

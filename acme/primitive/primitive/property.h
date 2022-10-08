@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -155,7 +155,7 @@ public:
 
       str += "\"";
 
-      str += m_atom.str();
+      str += m_atom;
 
       str += "\"";
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace file
@@ -7,40 +7,40 @@ namespace file
    namespace array
    {
 
-      template < class ARRAY >
-      void write(stream & ostream, const ARRAY & a)
-      {
-         ::count count = a.get_count();
-         ostream.write(count);
-         for (index index = 0; index < count; index++)
-         {
-            ostream << a.element_at(index);
-         }
-      }
+      //template < class ARRAY >
+      //void write(stream & ostream, const ARRAY & a)
+      //{
+      //   ::count count = a.get_count();
+      //   ostream.write(count);
+      //   for (index index = 0; index < count; index++)
+      //   {
+      //      ostream << a.element_at(index);
+      //   }
+      //}
 
-      template < class ARRAY >
-      void read(stream & istream, ARRAY & a)
-      {
-         ::count count;
-         //istream >> count;
-         istream.read(count);
+      //template < class ARRAY >
+      //void read(stream & istream, ARRAY & a)
+      //{
+      //   ::count count;
+      //   //istream >> count;
+      //   istream.read(count);
 
-         /*if (istream.fail())
-         {
-            return;
-         }*/
+      //   /*if (istream.fail())
+      //   {
+      //      return;
+      //   }*/
 
-         a.allocate(count);
-         for (index index = 0; index < count; index++)
-         {
-            istream >> a.element_at(index);
-            //if (istream.fail())
-            //{
-            //   return;
-            //}
-         }
-         a.on_after_read();
-      }
+      //   a.allocate(count);
+      //   for (index index = 0; index < count; index++)
+      //   {
+      //      istream >> a.element_at(index);
+      //      //if (istream.fail())
+      //      //{
+      //      //   return;
+      //      //}
+      //   }
+      //   a.on_after_read();
+      //}
 
 
    } // namespace array
@@ -48,40 +48,40 @@ namespace file
    namespace ptra
    {
 
-      template < class ARRAY >
-      void write(stream & ostream, const ARRAY & a)
-      {
-         ::count count = a.get_count();
-         ostream.write(count);
-         for (index index = 0; index < count; index++)
-         {
-            ostream << *a.element_at(index);
-         }
-      }
+      //template < class ARRAY >
+      //void write(stream & ostream, const ARRAY & a)
+      //{
+      //   ::count count = a.get_count();
+      //   ostream.write(count);
+      //   for (index index = 0; index < count; index++)
+      //   {
+      //      ostream << *a.element_at(index);
+      //   }
+      //}
 
-      template < class ARRAY >
-      void read(stream & istream, ARRAY & a)
-      {
-         ::count count;
-         //istream >> count;
-         istream.read(count);
+      //template < class ARRAY >
+      //void read(stream & istream, ARRAY & a)
+      //{
+      //   ::count count;
+      //   //istream >> count;
+      //   istream.read(count);
 
-         //if (istream.fail())
-         //{
-         //   return;
-         //}
+      //   //if (istream.fail())
+      //   //{
+      //   //   return;
+      //   //}
 
-         a.allocate(count);
-         for (index index = 0; index < count; index++)
-         {
-            istream >> *a.element_at(index);
-            //if (istream.fail())
-            //{
-            //   return;
-            //}
-         }
-         a.on_after_read();
-      }
+      //   a.allocate(count);
+      //   for (index index = 0; index < count; index++)
+      //   {
+      //      istream >> *a.element_at(index);
+      //      //if (istream.fail())
+      //      //{
+      //      //   return;
+      //      //}
+      //   }
+      //   a.on_after_read();
+      //}
 
 
    } // namespace array
@@ -89,75 +89,75 @@ namespace file
    namespace map
    {
 
-      template < class type_map >
-      void write(stream & ostream, const type_map & m)
-      {
+      //template < class type_map >
+      //void write(stream & ostream, const type_map & m)
+      //{
 
-         ostream.write(m.get_count());
+      //   ostream.write(m.get_count());
 
-         auto p = m.get_start();
+      //   auto p = m.get_start();
 
-         while (p != nullptr)
-         {
+      //   while (p != nullptr)
+      //   {
 
-            ostream << p->element1();
+      //      ostream << p->element1();
 
-            ostream << p->element2();
+      //      ostream << p->element2();
 
-            p = m.get_next(p);
+      //      p = m.get_next(p);
 
-         }
+      //   }
 
-      }
+      //}
 
 
-      template < class type_map >
-      void read(stream & istream, type_map & m)
-      {
+      //template < class type_map >
+      //void read(stream & istream, type_map & m)
+      //{
 
-         ::count count;
+      //   ::count count;
 
-         istream.read(count);
+      //   istream.read(count);
 
-         //if (istream.fail())
-         //{
+      //   //if (istream.fail())
+      //   //{
 
-         //   return;
+      //   //   return;
 
-         //}
+      //   //}
 
-         typename type_map::BASE_KEY key;
+      //   typename type_map::BASE_KEY key;
 
-         typename type_map::BASE_VALUE value;
+      //   typename type_map::BASE_VALUE value;
 
-         for (index index = 0; index < count; index++)
-         {
+      //   for (index index = 0; index < count; index++)
+      //   {
 
-            istream >> key;
+      //      istream >> key;
 
-            //if (istream.fail())
-            //{
+      //      //if (istream.fail())
+      //      //{
 
-            //   return;
+      //      //   return;
 
-            //}
+      //      //}
 
-            istream >> value;
+      //      istream >> value;
 
-            //if (istream.fail())
-            //{
+      //      //if (istream.fail())
+      //      //{
 
-            //   return;
+      //      //   return;
 
-            //}
+      //      //}
 
-            m.set_at(key, value);
+      //      m.set_at(key, value);
 
-         }
+      //   }
 
-         m.on_after_read();
+      //   m.on_after_read();
 
-      }
+      //}
 
    } // namespace map
 

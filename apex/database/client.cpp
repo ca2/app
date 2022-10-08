@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 
@@ -151,11 +151,13 @@ namespace database
 
       }
 
-      ::memory_stream os;
+      memory_file memoryfile;
+
+      ::binary_stream os(&memoryfile);
 
       os << payload;
 
-      m_pdataserver->_data_server_save(this, key, os->memory(), ptopic);
+      m_pdataserver->_data_server_save(this, key, memoryfile.memory(), ptopic);
 
    }
 
@@ -170,7 +172,9 @@ namespace database
 
       }
 
-      ::memory_stream os;
+      memory_file memoryfile;
+
+      ::binary_stream os(&memoryfile);
 
       os << payload;
 
@@ -183,7 +187,7 @@ namespace database
 
          auto & item = selection.get_item(iItem);
 
-         m_pdataserver->_data_server_save(this, item.m_datakey, os->memory(), ptopic);
+         m_pdataserver->_data_server_save(this, item.m_datakey, memoryfile.memory(), ptopic);
          //{
 
          //   bOk = false;
@@ -217,16 +221,16 @@ namespace database
          else
          {
 
-            ::memory_stream is;
+            ::memory_file memoryfile;
 
-            if (!m_pdataserver->_data_server_load(this, key, is->memory()))
+            if (!m_pdataserver->_data_server_load(this, key, memoryfile.memory()))
             {
 
                return false;
 
             }
 
-            is.initialize(this);
+            binary_stream is(&memoryfile);
 
             try
             {

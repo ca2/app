@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "data.h"
 #include "edit_impl.h"
 #include "format.h"
@@ -2135,29 +2135,19 @@ namespace user
       }
 
 
-      stream & data::write(::stream & stream) const
+      void data::write(::binary_stream & stream) const
       {
 
          synchronous_lock synchronouslock(mutex());
 
-         {
+         stream << m_pformata;
 
-            ::papaya::array::exchange_container(stream, (data *) this, *m_pformata);
-
-         }
-
-         {
-
-            stream << m_spana;
-
-         }
-
-         return stream;
+         stream << m_spana;
 
       }
 
 
-      stream & data::read(::stream & stream)
+      void data::read(::binary_stream & stream)
       {
 
          synchronous_lock synchronouslock(mutex());
@@ -2168,19 +2158,9 @@ namespace user
 
          m_spana.erase_all();
 
-         {
+         stream >> m_pformata;
 
-            ::papaya::array::exchange_container(stream, this, *m_pformata);
-
-         }
-
-         {
-
-            stream >> m_spana;
-
-         }
-
-         return stream;
+         stream >> m_spana;
 
       }
 

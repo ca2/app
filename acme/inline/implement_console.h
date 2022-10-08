@@ -246,7 +246,7 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 #endif
 
 
-#include "acme/_defer.h"
+//#include "acme/_defer.h"
 
 
 

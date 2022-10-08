@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/message.h"
 #include "multiple_document_template.h"
 #include "document.h"
@@ -251,16 +251,16 @@ namespace user
    {
       impact_system::dump(dumpcontext);
 
-      dumpcontext << "\nm_nUntitledCount = " << m_nUntitledCount;
-      dumpcontext << "\nwith " << m_docptra.get_count() << " open documents";
-      ::count count = get_document_count();
-      for(index index = 0; index < count; index++)
-      {
-         __pointer(::user::document) pdocument = get_document(index);
-         dumpcontext << "\nwith ::user::document " << (void *)pdocument;
-      }
+      //dumpcontext << "\nm_nUntitledCount = " << m_nUntitledCount;
+      //dumpcontext << "\nwith " << m_docptra.get_count() << " open documents";
+      //::count count = get_document_count();
+      //for(index index = 0; index < count; index++)
+      //{
+      //   __pointer(::user::document) pdocument = get_document(index);
+      //   dumpcontext << "\nwith ::user::document " << (void *)pdocument;
+      //}
 
-      dumpcontext << "\n";
+      //dumpcontext << "\n";
    }
 
    void multiple_document_template::assert_ok() const

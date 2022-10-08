@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 template < typename CHAR_TYPE >
@@ -600,29 +600,29 @@ inline void from_string(::atom & atom, const ansichar * psz)
 }
 
 
-inline void from_string(::element & element, const ansichar * psz)
-{
+//inline void from_string(::element & element, const ansichar * psz)
+//{
+//
+//   payload_stream stream;
+//
+//   stream.m_ppayload->parse_network_payload(psz);
+//
+//   element.exchange(stream);
+//
+//}
+//
 
-   payload_stream stream;
-
-   stream.m_ppayload->parse_network_payload(psz);
-
-   element.exchange(stream);
-
-}
-
-
-template < typename TYPE >
-inline void to_string(string & str, const TYPE & t)
-{
-
-   str = t.get_string();
-
-}
+//template < typename TYPE >
+//inline ::string __string(const TYPE & t)
+//{
+//
+//   str = t.get_string();
+//
+//}
 
 
 
-//inline void to_string(string & str, const element & t)
+//inline ::string __string(const element & t)
 //{
 
 //   auto len = t.sz_len();
@@ -648,8 +648,11 @@ inline void to_string(string & str, const TYPE & t)
 //
 //#endif
 
-inline void to_string(string & str, const element & o)
+
+inline ::string __string(const element & o)
 {
+
+   ::string str;
 
    auto len = o.sz_len();
 
@@ -659,10 +662,12 @@ inline void to_string(string & str, const element & o)
 
    str.release_string_buffer();
 
+   return ::move(str);
+
 }
 
 
-//inline void to_string(string & str, const element & o)
+//inline ::string __string(const element & o)
 //{
 
 //   o.to_string(str);
@@ -670,34 +675,34 @@ inline void to_string(string & str, const element & o)
 //}
 
 
-inline void to_string(string & str, const ::atom & atom)
-{
-
-   atom.to_string(str);
-
-}
-
-
-inline void to_string(string & str, const ::wd16string & wd16str)
-{
-
-   str = wd16str;
-
-}
+//inline ::string __string(const ::atom & atom)
+//{
+//
+//   atom.to_string(str);
+//
+//}
 
 
-inline void to_string(string & str, const ::wd32string & wd32str)
-{
+//inline ::string __string(const ::wd16string & wd16str)
+//{
+//
+//   str = wd16str;
+//
+//}
+//
+//
+//inline ::string __string(const ::wd32string & wd32str)
+//{
+//
+//   str = wd32str;
+//
+//}
 
-   str = wd32str;
 
-}
-
-
-CLASS_DECL_ACME void to_string(string & str, const ::string_stream & strstream);
+CLASS_DECL_ACME ::string __string(const ::string_stream & strstream);
 
 
-CLASS_DECL_ACME void to_string(string & str, const ::text_stream & strstream);
+CLASS_DECL_ACME ::string __string(const ::text_stream & strstream);
 
 
 inline string _001Concatenate(const ::string & str1, const ::string & strMid, const ::string & str2)
@@ -1189,52 +1194,6 @@ inline void std_string_assign(wstring& t, const wstring* pwstr)
 //}
 
 
-inline void to_string(string& str, const i16& i)
-{
-
-   str = i64toa_dup(i);
-
-}
-
-
-inline void to_string(string& str, const u16& u)
-{
-
-   str = ui64toa_dup(u);
-
-}
-
-
-inline void to_string(string& str, const i32& i)
-{
-
-   str = i64toa_dup(i);
-
-}
-
-
-inline void to_string(string& str, const u32& u)
-{
-
-   str = ui64toa_dup(u);
-
-}
-
-
-inline void to_string(string& str, const i64& i)
-{
-
-   str = i64toa_dup(i);
-
-}
-
-
-inline void to_string(string& str, const u64& u)
-{
-
-   str = ui64toa_dup(u, 10);
-
-}
 
 
 /// 
@@ -1273,7 +1232,7 @@ CLASS_DECL_ACME void to_string(string& str, const double & d);
 //#ifdef WINDOWS
 //
 //
-//inline void to_string(string & str, const long & l)
+//inline ::string __string(const long & l)
 //{
 //
 //   str = i64toa_dup(l);
@@ -1282,7 +1241,7 @@ CLASS_DECL_ACME void to_string(string& str, const double & d);
 //
 //
 //
-////inline void to_string(string & str, const unsigned long &ul)
+////inline ::string __string(const unsigned long &ul)
 ////{
 ////
 ////   str = ui64toa_dup(ul);

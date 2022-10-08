@@ -1181,14 +1181,14 @@ namespace user
    {
       ::user::interaction::dump(dumpcontext);
 
-      dumpcontext << "\nm_cxLeftBorder = " << m_rectangleBorder.left;
-      dumpcontext << "\nm_cxRightBorder = " << m_rectangleBorder.right;
-      dumpcontext << "\nm_cyTopBorder = " << m_rectangleBorder.top;
-      dumpcontext << "\nm_cyBottomBorder = " << m_rectangleBorder.bottom;
-      dumpcontext << "\nm_cxDefaultGap = " << m_cxDefaultGap;
-      dumpcontext << "\nm_bAutoDelete = " << m_bAutoDelete;
+      //dumpcontext << "\nm_cxLeftBorder = " << m_rectangleBorder.left;
+      //dumpcontext << "\nm_cxRightBorder = " << m_rectangleBorder.right;
+      //dumpcontext << "\nm_cyTopBorder = " << m_rectangleBorder.top;
+      //dumpcontext << "\nm_cyBottomBorder = " << m_rectangleBorder.bottom;
+      //dumpcontext << "\nm_cxDefaultGap = " << m_cxDefaultGap;
+      //dumpcontext << "\nm_bAutoDelete = " << m_bAutoDelete;
 
-      dumpcontext << "\n";
+      //dumpcontext << "\n";
    }
 
 

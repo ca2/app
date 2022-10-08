@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "context_image.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "icon.h"
@@ -728,7 +728,7 @@ void context_image::_load_dib(image * pimage, const ::file::path & pathDib)
 
       ::binary_stream reader(pfile);
 
-      read(reader);
+      //read(reader);
 
       //reader.fail()
       //{
@@ -811,7 +811,7 @@ void context_image::save_dib(const ::file::path & pathDib, const image * pimage)
 
          ::binary_stream writer(pfile);
 
-         write(writer);
+         //write(writer);
 
          //return true;
 

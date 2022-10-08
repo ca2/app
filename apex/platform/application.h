@@ -368,8 +368,8 @@ namespace apex
       virtual __pointer(::handle::ini) get_ini();
 
 
-      virtual bool app_data_set(const ::atom & atom, stream & os);
-      virtual bool app_data_get(const ::atom & atom, stream & is);
+      //virtual bool app_data_set(const ::atom & atom, stream & os);
+      //virtual bool app_data_get(const ::atom & atom, stream & is);
 
       virtual bool app_data_set(const ::atom & atom, ::object & obj);
       virtual bool app_data_get(const ::atom & atom, ::object & obj);

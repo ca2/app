@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "axis/html/html_lite/_.h"
 #endif
@@ -684,7 +684,7 @@ namespace html
 
       }
 
-      atom idConcatFallback = (atom)(id1.str() + id2.str());
+      atom idConcatFallback = (atom)(::string(id1) + id2);
 
       INFORMATION("atom not pre setup concat html " << idConcatFallback.m_psz);
 

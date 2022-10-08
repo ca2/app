@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/primitive/string/base64.h"
 #include "initializer.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
@@ -268,7 +268,7 @@ namespace crypto
 
          /*i32 plainlen =*/ decrypt(storageDecrypt, storageEncrypt, storageKey);
 
-         strDecrypt = storageDecrypt.get_string();
+         strDecrypt = storageDecrypt.as_string();
 
          //return plainlen;
 
@@ -1186,7 +1186,7 @@ namespace crypto
 
          string str;
 
-         str = memory.get_string();
+         str = memory.as_string();
 
          return str;
 

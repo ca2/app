@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //namespace str
@@ -962,7 +962,9 @@ void string_array_base < Type, RawType, t_etypePayload >::copy(const i64_array &
 
    for(::index i = 0; i < this->m_nSize; i++)
    {
+      
       get_data()[i] = __string(src[i]);
+
    }
 
 }
@@ -1204,7 +1206,9 @@ void string_array_base < Type, RawType, t_etypePayload >::insert_empty(::index n
       // re-init slots we copied from
       for(::index i = nIndex; i < nIndex + nCount; i++)
       {
+         
          get_data()[i].construct();
+
       }
 
    }

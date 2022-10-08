@@ -563,8 +563,8 @@ public:
 
 class matter;
 class element;
-class stream;
-class payload_stream;
+//class stream;
+//class payload_stream;
 
 
 
@@ -1683,24 +1683,21 @@ using string = string_base < ansichar >;
 using wstring = string_base < widechar >;
 
 
+
+
+
+
 #define __c_str(x) __string((x)).c_str()
 
 
-template < typename T >
-concept has_to_string = requires(T t)
-{
+//template < typename T >
+//concept has_as_string = requires(T t)
+//{
+//
+//   { t.as_string() } -> std::same_as < ::string >;
+//
+//};
 
-   { t.to_string() } -> std::same_as < ::string >;
-
-};
-
-template < typename T >
-concept has_get_string = requires(T t)
-{
-
-   { t.get_string() } -> std::same_as < ::string >;
-
-};
 
 
 class machine_event_central;
@@ -3045,18 +3042,18 @@ using folder_pointer = __pointer(::folder);
 class binary_stream;
 
 
-template<typename BASE_TYPE>
-inline stream &__save_object(stream &stream, BASE_TYPE *p);
-
-
-template<typename BASE_TYPE>
-inline stream &__save_object(stream &stream, const __pointer(BASE_TYPE) &p)
-{
-
-   return __save_object(stream, (BASE_TYPE *) p.m_p);
-
-}
-
+//template<typename BASE_TYPE>
+//inline stream &__save_object(stream &stream, BASE_TYPE *p);
+//
+//
+//template<typename BASE_TYPE>
+//inline stream &__save_object(stream &stream, const __pointer(BASE_TYPE) &p)
+//{
+//
+//   return __save_object(stream, (BASE_TYPE *) p.m_p);
+//
+//}
+//
 
 
 using wparam = c_number<iptr>;
@@ -3663,7 +3660,7 @@ namespace file
 //#include "acme/primitive/geometry2d/_shape.h"
 
 
-#include "acme/graphics/draw2d/_const.h"
+#include "acme/graphics/draw2d/_constant.h"
 
 
 #include "acme/graphics/draw2d/opacity.h"
@@ -4364,7 +4361,6 @@ namespace _std
 }
 
 
-
 template<typename T>
 inline string &to_network_payload(string &str, const T &value, bool bNewLine)
 {
@@ -4372,7 +4368,6 @@ inline string &to_network_payload(string &str, const T &value, bool bNewLine)
    return str = __string(value);
 
 }
-
 
 
 #include "acme/platform/error.h"
@@ -4663,3 +4658,10 @@ class task_tool;
 #include "acme/exception/_impl.h"
 
 
+#include "acme/primitive/string/_defer.h"
+
+
+#include "acme/filesystem/file/_defer.h"
+
+
+#include "acme/__defer.h"

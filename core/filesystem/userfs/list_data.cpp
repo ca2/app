@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "_userfs.h"
 //#endif
@@ -230,7 +230,7 @@ namespace userfs
                if (path.m_iSize < 0)
                {
 
-                  pcontext->m_papexcontext->file().length(path).as(path.m_iSize);
+                  path.m_iSize = pcontext->m_papexcontext->file().length(path);
 
                }
 

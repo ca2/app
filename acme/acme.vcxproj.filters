@@ -917,7 +917,7 @@
     <ClInclude Include="framework_c.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="_defer.h">
+    <ClInclude Include="__defer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\block.h">
@@ -1115,7 +1115,7 @@
     <ClInclude Include="memory\_impl.h">
       <Filter>Header Files\memory</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\draw2d\_const.h">
+    <ClInclude Include="graphics\draw2d\_constant.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\result.h">
@@ -2417,7 +2417,7 @@
     <ClInclude Include="user\user\mouse.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\to_string.h">
+    <ClInclude Include="primitive\string\__string.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\from_numeric_type.h">
@@ -2450,7 +2450,7 @@
     <ClInclude Include="primitive\string\_str_to.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\utf8_char.h">
+    <ClInclude Include="primitive\string\character.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\_str_ch.h">
@@ -2818,6 +2818,42 @@
     </ClInclude>
     <ClInclude Include="constant\data.h">
       <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\payload_reference.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\payload_cast.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\string_base.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\time_operator.h">
+      <Filter>Header Files\primitive\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\file\payload_stream.h">
+      <Filter>Header Files\filesystem\file</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\time_zone.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="_binary_stream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\duration\_binary_stream.h">
+      <Filter>Header Files\primitive\duration</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry2d\_binary_stream.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\_binary_stream.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\_binary_stream.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="_forward_declaration.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3811,7 +3847,7 @@
     <ClCompile Include="parallelization\fork.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\to_string.cpp">
+    <ClCompile Include="primitive\string\__string.cpp">
       <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
     <ClCompile Include="primitive\string\command_line.cpp">
@@ -3829,7 +3865,7 @@
     <ClCompile Include="primitive\duration\time.cpp">
       <Filter>Source Files\primitive\duration</Filter>
     </ClCompile>
-    <ClCompile Include="primitive\string\utf8_char.cpp">
+    <ClCompile Include="primitive\string\character.cpp">
       <Filter>Source Files\primitive\string</Filter>
     </ClCompile>
     <ClCompile Include="primitive\string\_string.cpp">
@@ -3863,6 +3899,9 @@
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\particle.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\atom.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
   </ItemGroup>

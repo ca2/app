@@ -1,4 +1,4 @@
-// From definition.h by camilo on 2022-09-06 17:19 <3ThomasBorregaardSorensen!!
+﻿// From definition.h by camilo on 2022-09-06 17:19 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -25,8 +25,8 @@ namespace database
 
       field();
 
-      virtual ::stream & write(::stream & stream) const override;
-virtual ::stream & read(::stream & stream) override;
+//      virtual ::stream & write(::stream & stream) const override;
+//virtual ::stream & read(::stream & stream) override;
 
    };
 

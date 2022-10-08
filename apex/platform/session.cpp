@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "apex/operating_system.h"
 #include "acme/id.h"
 //#include "apex/platform/app_core.h"
@@ -896,7 +896,7 @@ namespace apex
 
       pcreateNew->m_puserprimitiveParent = pcreate->m_puserprimitiveParent;
 
-      return open_by_file_extension(pcreateNew);
+      return open_by_file_extension(pcreateNew.get());
 
       //return get_app()->platform_open_by_file_extension(m_iEdge, pszPathName, pcreate);
 

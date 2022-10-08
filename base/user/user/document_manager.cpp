@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "document_manager.h"
 #include "document.h"
 #include "impact.h"
@@ -738,19 +738,19 @@ namespace user
    {
       object::dump(dumpcontext);
 
-      if (dumpcontext.GetDepth() != 0)
-      {
-         dumpcontext << "\nm_templateList[] = {";
-         ::count count = m_templateptra.get_count();
-         for(index index = 0; index < count; index++)
-         {
-            __pointer(::user::impact_system) ptemplate = m_templateptra[index];
-            dumpcontext << "\ntemplate " << ::hex::lower_from((::iptr)ptemplate.m_p);
-         }
-         dumpcontext << "}";
-      }
+      //if (dumpcontext.GetDepth() != 0)
+      //{
+      //   dumpcontext << "\nm_templateList[] = {";
+      //   ::count count = m_templateptra.get_count();
+      //   for(index index = 0; index < count; index++)
+      //   {
+      //      __pointer(::user::impact_system) ptemplate = m_templateptra[index];
+      //      dumpcontext << "\ntemplate " << ::hex::lower_from((::iptr)ptemplate.m_p);
+      //   }
+      //   dumpcontext << "}";
+      //}
 
-      dumpcontext << "\n";
+      //dumpcontext << "\n";
    }
 
 

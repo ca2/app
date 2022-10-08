@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace file
@@ -76,7 +76,7 @@ namespace file
 
       virtual ::filesize get_left() const;
 
-      string get_string() const override;
+      string as_string() const override;
 
       virtual void as_memory(memory_base & memory) const;
 

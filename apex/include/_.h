@@ -1,4 +1,4 @@
-//        apex / thomas thomas thomas my pray my life my GOD
+﻿//        apex / thomas thomas thomas my pray my life my GOD
 // 
 //   
 //    
@@ -509,6 +509,7 @@ namespace earth
 
    class time;
    class time_span;
+   class zonetime;
 
 
 } // namespace datetime

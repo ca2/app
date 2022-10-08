@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -102,7 +102,7 @@
       }
 
 
-      string get_string() const override;
+      string as_string() const override;
 
 
       string_buffer & operator += (const ::string & str)

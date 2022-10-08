@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "document.h"
@@ -25,8 +25,8 @@ namespace xml
 
       virtual void validate_edit(::xml::edit* pedit);
 
-      virtual ::stream & write(::stream & stream) const override;
-      virtual ::stream & read(::stream & stream) override;
+      //virtual ::stream & write(::stream & stream) const override;
+      //virtual ::stream & read(::stream & stream) override;
 
 
    };

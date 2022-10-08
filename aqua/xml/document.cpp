@@ -15,9 +15,11 @@ namespace xml
 
 
    document::document(parse_info * pparseinfo, string_to_string * pentitiesHash)
+      //m_pparseinfo(pparseinfo),
+      //m_pentitiesHash
    {
 
-      //m_pdocument            = this;
+      m_pdocument            = this;
 //      m_pparseinfo      = ::is_set(pparseinfo) ? pparseinfo : get_system()->m_pxml->m_pparseinfoDefault.m_p;
 //      m_pentitiesHash   = ::is_set(pentitiesHash) ? pentitiesHash : get_system()->m_pxml->m_pentitiesHashDefault.m_p;
       m_pedit           = nullptr;
@@ -85,7 +87,7 @@ namespace xml
 
       create_root();
 
-      m_pnodeRoot->set_name(strName);
+      root()->set_name(strName);
 
    }
 
@@ -115,10 +117,10 @@ namespace xml
 
       //}
 
-      if (m_pnodeRoot)
+      if (root())
       {
 
-         m_pnodeRoot->initialize_matter(this);
+         root()->initialize_matter(this);
 
       }
 
@@ -179,7 +181,7 @@ namespace xml
 //
 //      create_root();
 //
-//      m_pnodeRoot->_load(xml, xml, pszEndXml, pparseinfo);
+//      root()->_load(xml, xml, pszEndXml, pparseinfo);
 //
 //   }
 
@@ -187,7 +189,7 @@ namespace xml
    void document::ensure_root()
    {
 
-      if (!m_pnodeRoot)
+      if (!root())
       {
 
          create_root();
@@ -200,18 +202,21 @@ namespace xml
    void document::create_root()
    {
 
-      if (m_pnodeRoot)
+      if (root())
       {
 
          return;
 
       }
 
-      m_pnodeRoot = __new(class node((node *) this));
+      auto pnode = __new(class node((node *) this));
 
-      m_pnodeRoot->initialize_matter(this);
+      m_nodea.add(pnode);
 
-      m_nodea.add(m_pnodeRoot.m_p);
+      m_iFirstXmlNode = m_nodea.get_upper_bound();
+
+      root()->initialize_matter(this);
+
 
    }
 
@@ -221,7 +226,7 @@ namespace xml
 
       ensure_root();
 
-      m_pnodeRoot->set_name(strName);
+      root()->set_name(strName);
 
 
    }
@@ -272,12 +277,12 @@ namespace xml
 
    //   }
 
-   //   if((pszNext = m_pnodeRoot->_load(pszNext, m_pparseinfo )) == nullptr)
+   //   if((pszNext = root()->_load(pszNext, m_pparseinfo )) == nullptr)
    //   {
 
    //      m_nodea.erase_all();
 
-   //      //m_pnodeRoot.release();
+   //      //root().release();
 
    //      throw ::exception(error_parsing);
 
@@ -309,7 +314,7 @@ namespace xml
    //node * document::get_root() const
    //{
 
-   //   if (!m_pnodeRoot)
+   //   if (!root())
    //   {
 
    //      // Not found: create one.
@@ -320,11 +325,11 @@ namespace xml
    //      pnodeRoot->m_etype = node_element;
    //      pnodeRoot->m_pdocument = ((document *)this);
 
-   //      ((document *)this)->m_pnodeRoot = pnodeRoot;
+   //      ((document *)this)->root() = pnodeRoot;
 
    //   }
 
-   //   return m_pnodeRoot;
+   //   return root();
 
    //}
 
@@ -486,20 +491,20 @@ namespace xml
    }
 
 
-   ::stream& document::write(::stream& stream) const
-   {
+   //::stream& document::write(::stream& stream) const
+   //{
 
-      return node::write(stream);
+   //   return node::write(stream);
 
-   }
+   //}
 
 
-   ::stream& document::read(::stream& stream)
-   {
+   //::stream& document::read(::stream& stream)
+   //{
 
-      return node::read(stream);
+   //   return node::read(stream);
 
-   }
+   //}
 
 
 } // namespace xml

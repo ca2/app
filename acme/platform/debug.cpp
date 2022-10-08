@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/id.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "acme/user/user/_user.h"
@@ -240,82 +240,81 @@ string get_status_message(const ::e_status & estatus)
 }
 
 
-template < >
-string __string(const ::enum_status & estatus)
-{
+// CLASS_DECL_ACME ::string __string(const ::e_status & estatus)
+// {
 
-   string str = "estatus=";
+//    string str = "estatus=";
 
-   if(estatus == success)
-   {
+//    if(estatus == success)
+//    {
 
-      str += "success";
+//       str += "success";
 
-   }
-   else if(::succeeded(estatus))
-   {
+//    }
+//    else if(::succeeded(estatus))
+//    {
 
-      str += "\"succeeded status=" + ::hex::lower_from(estatus) + "...\"";
+//       str += "\"succeeded status=" + ::hex::lower_from(estatus) + "...\"";
 
-   }
-   else if(estatus == error_not_implemented)
-   {
+//    }
+//    else if(estatus == error_not_implemented)
+//    {
 
-      str += "error_not_implemented";
+//       str += "error_not_implemented";
 
-   }
-   else if(estatus == error_no_factory)
-   {
+//    }
+//    else if(estatus == error_no_factory)
+//    {
 
-      str += "error_no_factory";
+//       str += "error_no_factory";
 
-   }
-   else if (estatus == error_file_not_found)
-   {
+//    }
+//    else if (estatus == error_file_not_found)
+//    {
 
-      str += "error_file_not_found";
+//       str += "error_file_not_found";
 
-   }
-   else if (estatus == error_bad_path)
-   {
+//    }
+//    else if (estatus == error_bad_path)
+//    {
 
-      str += "error_bad_path";
+//       str += "error_bad_path";
 
-   }
-   else if (estatus == error_library_not_found)
-   {
+//    }
+//    else if (estatus == error_library_not_found)
+//    {
 
-      str += "error_library_not_found";
+//       str += "error_library_not_found";
 
-   }
-   else if(estatus == error_failed)
-   {
+//    }
+//    else if(estatus == error_failed)
+//    {
 
-      str += "error_failed";
+//       str += "error_failed";
 
-   }
-   else if (estatus == error_already_exists)
-   {
+//    }
+//    else if (estatus == error_already_exists)
+//    {
 
-      str += "error_already_exists";
+//       str += "error_already_exists";
 
-   }
-   else if (estatus == error_wrong_state)
-   {
+//    }
+//    else if (estatus == error_wrong_state)
+//    {
 
-      str += "error_wrong_state";
+//       str += "error_wrong_state";
 
-   }
-   else if(failed(estatus))
-   {
+//    }
+//    else if(failed(estatus))
+//    {
 
-      str += "\"failed status=" + ::hex::lower_from(estatus) + "...\"";
+//       str += "\"failed status=" + ::hex::lower_from(estatus) + "...\"";
 
-   }
+//    }
 
-   return str;
+//    return str;
 
-}
+// }
 
 
 

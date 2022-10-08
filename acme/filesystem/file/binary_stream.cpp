@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 binary_stream::binary_stream(const ::file_pointer & p) :
@@ -50,15 +50,89 @@ binary_stream::~binary_stream()
 }
 
 
+   // This number represents a following stream of data with this length.
+   // So the extra bytes representing the variable length quantity are
+   // neglectable and worth due the very fast variable length encoding.
+   void binary_stream::write_buffer_length(::u64 u)
+   {
+
+      if (u < 255)
+      {
+
+         operator <<((::u8) u);
+
+      }
+      else if (u < 65535)
+      {
+
+         operator <<((::u8)255);
+         operator <<((::u16)u);
+
+      }
+      else
+      {
+
+         operator <<((::u8)255);
+         operator <<((::u16)65535);
+         operator <<((::u64)u);
+
+      }
+
+   }
+
+
+   ::u64 binary_stream::read_buffer_length()
+   {
+
+      ::u8 uRead;
+
+      operator >>(uRead);
+
+      if (uRead < 255)
+      {
+
+         return uRead;
+
+      }
+      else
+      {
+
+         ::u16 uRead;
+
+         operator >>(uRead);
+
+         if (uRead < 65535)
+         {
+
+            return uRead;
+
+         }
+         else
+         {
+
+            ::u64 u = 0;
+
+            operator >>(u);
+
+            return u;
+
+         }
+
+      }
+
+   }
+
+
+
 string binary_stream::factory_id_to_text(const ::atom & atom)
 {
 
-   return atom;
+   return atom.as_string();
 
 }
 
 
-::atom binary_stream::text_to_factory_id(string str)
+::atom binary_stream::text_to_factory_id(const ::string & str)
 {
 
    return str;
@@ -66,66 +140,66 @@ string binary_stream::factory_id_to_text(const ::atom & atom)
 }
 
 
-bool binary_stream::is_open() const
-{
-
-   if (m_p.is_null())
-   {
-
-      return false;
-
-   }
-
-   if (!m_p->is_opened())
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-}
-
-
-void binary_stream::close()
-{
-
-   m_p.release();
-
-}
-
-
-::file::path binary_stream::get_file_path() const
-{
-
-   return m_p->get_file_path();
-
-}
-
-
-filesize binary_stream::translate(filesize offset, ::enum_seek eseek)
-{
-
-   return m_p->translate(offset, eseek);
-
-}
+//bool binary_stream::is_open() const
+//{
+//
+//   if (m_p.is_null())
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   if (!m_p->is_opened())
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
+//
+//
+//void binary_stream::close()
+//{
+//
+//   m_p.release();
+//
+//}
+//
+//
+//::file::path binary_stream::get_file_path() const
+//{
+//
+//   return m_p->get_file_path();
+//
+//}
 
 
+//filesize binary_stream::translate(filesize offset, ::enum_seek eseek)
+//{
+//
+//   return m_p->translate(offset, eseek);
+//
+//}
+//
+//
+//
+//
+//bool binary_stream::is_stream_null()
+//{
+//   //return is_writer_null() && is_reader_null();
+//   return m_p.is_null();
+//}
 
 
-bool binary_stream::is_stream_null()
-{
-   //return is_writer_null() && is_reader_null();
-   return m_p.is_null();
-}
-
-
-bool binary_stream::is_stream_set()
-{
-   //return is_writer_set() || is_reader_set();
-   return m_p.is_set();
-}
+//bool binary_stream::is_stream_set()
+//{
+//   //return is_writer_set() || is_reader_set();
+//   return m_p.is_set();
+//}
 
 
 void binary_stream::write_from_hex(const void * pdata, memsize nCount)
@@ -146,7 +220,6 @@ void binary_stream::write(const void * pdata, memsize nCount)
 }
 
 
-
 void binary_stream::write(const void * pdata, memsize nCount, memsize * dwWritten)
 {
 
@@ -163,7 +236,7 @@ void binary_stream::write(const void * pdata, memsize nCount, memsize * dwWritte
 
 
 
-void binary_stream::write(const atom & atom)
+binary_stream & binary_stream::operator <<(const atom & atom)
 {
 
    raw_write(atom.m_etype);
@@ -171,13 +244,13 @@ void binary_stream::write(const atom & atom)
    if(atom.m_etype == ::atom::e_type_text)
    {
 
-      write(atom.m_psz);
+      operator <<(atom.m_psz);
 
    }
    else if(atom.m_etype == ::atom::e_type_integer)
    {
 
-      write(atom.m_i);
+      operator <<(atom.m_i);
 
    }
    else if (atom.m_etype >= ::atom::e_type_property)
@@ -199,10 +272,12 @@ void binary_stream::write(const atom & atom)
 
    }
 
+   return *this;
+
 }
 
 
-void binary_stream::write(const ::payload & payload)
+binary_stream & binary_stream::operator <<(const ::payload & payload)
 {
 
    enum_type etype = payload.get_type();
@@ -223,12 +298,12 @@ void binary_stream::write(const ::payload & payload)
       break;
    case e_type_string:
    {
-      write(payload.m_str);
+      operator <<(payload.m_str);
    }
    break;
    case e_type_pstring:
    {
-      write(*payload.m_pstr);
+      operator <<(*payload.m_pstr);
    }
    break;
    case e_type_i8:
@@ -286,19 +361,24 @@ void binary_stream::write(const ::payload & payload)
       *this << payload.m_b;
       break;
    case e_type_i32_array:
-      *this << payload.ia();
+      throw ::exception(todo);
+      //*this << payload.ia();
       break;
    case e_type_memory:
-      *this << *payload.m_pmemory;
+      throw ::exception(todo);
+      //*this << *payload.m_pmemory;
       break;
    case e_type_string_array:
-      *this << *payload.m_pstra;
+      //*this << *payload.m_pstra;
+      throw ::exception(todo);
       break;
    case e_type_property_set:
-      *this << *payload.m_ppropertyset;
+      //*this << *payload.m_ppropertyset;
+      throw ::exception(todo);
       break;
    case e_type_i64_array:
-      *this << *payload.m_pi64a;
+      //*this << *payload.m_pi64a;
+      throw ::exception(todo);
       break;
    //case type_image:
    //   *this << *payload.m_pimage;
@@ -310,7 +390,9 @@ void binary_stream::write(const ::payload & payload)
    case e_type_path:
    {
 
-      __save_object(*this, payload.cast < ::matter >());
+      throw ::exception(todo);
+
+      //__save_object(*this, payload.cast < ::matter >());
 
    }
    break;
@@ -319,63 +401,65 @@ void binary_stream::write(const ::payload & payload)
       //throw ::exception(::exception("payload::write ::payload type not recognized"));
    }
 
-   return;
+   return *this;
 
 }
 
 
-void binary_stream::write(const property & property)
+binary_stream & binary_stream::operator <<(const property & property)
 {
 
-   write(property.m_atom);
-   write((const ::payload &) property);
+   operator <<(property.m_atom);
+   operator <<((const ::payload &) property);
 
-   return;
+   return *this;
 
 }
 
 
-void binary_stream::write(const property_set& set)
+binary_stream & binary_stream::operator <<(const property_set& set)
 {
 
-   __exchange_save_array(*this, (property_set &) set);
+   throw ::exception(todo);
 
-   return;
+   //__exchange_save_array(*this, (property_set &) set);
 
-}
-
-
-
-void binary_stream::flush()
-{
-
-   if (m_p.is_set())
-   {
-
-      m_p->flush();
-
-   }
+   return *this;
 
 }
 
 
-bool binary_stream::is_writer_null()
-{
 
-   return m_p.is_null();
-
-}
-
-
-bool binary_stream::is_writer_set()
-{
-
-   return m_p.is_set();
-
-}
+//void binary_stream::flush()
+//{
+//
+//   if (m_p.is_set())
+//   {
+//
+//      m_p->flush();
+//
+//   }
+//
+//}
 
 
-void binary_stream::write(const ansichar * psz)
+//bool binary_stream::is_writer_null()
+//{
+//
+//   return m_p.is_null();
+//
+//}
+
+//
+//bool binary_stream::is_writer_set()
+//{
+//
+//   return m_p.is_set();
+//
+//}
+
+
+binary_stream & binary_stream::operator <<(const ansichar * psz)
 {
 
    auto len = ::str().string_safe_length(psz);
@@ -384,72 +468,84 @@ void binary_stream::write(const ansichar * psz)
 
    write(psz, len);
 
-   return;
+   return *this;
 
 }
 
 
-void binary_stream::write(const ::string & str)
+binary_stream & binary_stream::operator <<(const ::string & str)
 {
 
    write_buffer_length(str.get_length());
 
    write(str.c_str(), str.get_length());
 
-   return;
+   return *this;
 
 }
 
 
-void binary_stream::write(const matter * pobject)
-{
+//binary_stream & binary_stream::operator <<(const matter * pobject)
+//{
+//
+//   pobject->write(*this);
+//
+//   return * this;
+//
+//}
+//
+//
+//binary_stream & binary_stream::operator <<(const matter& matter)
+//{
+//
+//   matter.write(*this);
+//
+//   return * this;
+//
+//}
 
-   pobject->write(*this);
 
-   return;
-
-}
-
-
-void binary_stream::write(const matter& matter)
-{
-
-   matter.write(*this);
-
-   return;
-
-}
-
-
-void binary_stream::write(const block & block)
+binary_stream & binary_stream::operator <<(const block & block)
 {
 
    write_buffer_length(block.get_size());
 
    write(block.get_data(), block.get_size());
 
+   return *this;
+
 }
 
 
-void binary_stream::set_size(filesize len)
+binary_stream & binary_stream::operator <<(const ::element & element)
 {
 
-   m_p->set_size(len);
+   element.write(*this);
+
+   return *this;
 
 }
+
+
+//void binary_stream::set_size(filesize len)
+//{
+//
+//   m_p->set_size(len);
+//
+//}
 
 
 void binary_stream::put(char ch)
 {
 
-   write(ch);
+   operator <<(ch);
 
    return;
 
 }
 
 
-void binary_stream::read(memory_base & m)
+binary_stream & binary_stream::operator >>(memory_base & m)
 {
 
    ::u64 u = 0;
@@ -460,20 +556,24 @@ void binary_stream::read(memory_base & m)
 
    read(m.get_data(), m.get_size());
 
+   return *this;
+
 }
 
 
-void binary_stream::write(const memory_base & m)
+binary_stream & binary_stream::operator <<(const memory_base & m)
 {
 
    write_length(m.get_size());
 
    write(m.get_data(), m.get_size());
 
+   return *this;
+
 }
 
 
-void binary_stream::read(atom & atom)
+binary_stream & binary_stream::operator >>(atom & atom)
 {
 
    raw_read(atom.m_etype);
@@ -483,7 +583,7 @@ void binary_stream::read(atom & atom)
 
       string str;
 
-      read(str);
+      operator >>(str);
 
       atom = str;
 
@@ -493,7 +593,7 @@ void binary_stream::read(atom & atom)
 
       i64 i;
 
-      read(i);
+      operator >>(i);
 
       atom = i;
 
@@ -516,6 +616,8 @@ void binary_stream::read(atom & atom)
       raw_read(atom.m_etasktool);
 
    }
+
+   return *this;
 
 }
 
@@ -827,14 +929,16 @@ void binary_stream::read(atom & atom)
 //}
 
 
-void binary_stream::read(::payload & payload)
+binary_stream & binary_stream::operator >>(::payload & payload)
 {
 
    enum_type etype = e_type_new;
 
    read_var_type(etype);
    
-   return read_var_body(payload, etype);
+   read_var_body(payload, etype);
+
+   return *this;
 
 }
 
@@ -856,6 +960,7 @@ void binary_stream::read_var_type(enum_type & etype)
    return;
 
 }
+
 
 void binary_stream::save_var_type(enum_type etype)
 {
@@ -894,7 +999,7 @@ void binary_stream::read_var_body(::payload & payload, enum_type etype)
 
       payload.set_type(e_type_string, false);
 
-      read(payload.m_str);
+      operator >>(payload.m_str);
 
    }
    break;
@@ -968,30 +1073,32 @@ void binary_stream::read_var_body(::payload & payload, enum_type etype)
    case e_type_i32_array:
    {
 
-      __exchange_load_array(*this, payload.as_ia());
+      throw ::exception(todo);
+
+//throw ::exception(todo);      __exchange_load_array(*this, (::i32_array &) payload);
 
    }
    break;
    case e_type_memory:
    {
 
-      *this >> payload.as_memory();
+      *this >> (::memory &) payload;
 
    }
    break;
    case e_type_string_array:
    {
 
-      __exchange_load_array(*this, payload.as_stra());
+      throw ::exception(todo);
+      //__exchange_load_array(*this, (string_array &) payload);
 
    }
    break;
    case e_type_property_set:
    {
+      throw ::exception(todo);
 
-
-
-      __exchange_load_array(*this, payload.as_propset());
+      //__exchange_load_array(*this, (property_set &) payload);
 
 //#define memory_new ACME_NEW
 
@@ -1010,7 +1117,8 @@ void binary_stream::read_var_body(::payload & payload, enum_type etype)
    case e_type_path:
    {
 
-      payload._set_element(::__load_object<::matter>(*this));
+      throw ::exception(todo);
+      //payload._set_element(::__load_object<::matter>(*this));
 
    }
    break;
@@ -1029,23 +1137,23 @@ void binary_stream::read_var_body(::payload & payload, enum_type etype)
 }
 
 
-void binary_stream::read(property & property)
+binary_stream & binary_stream::operator >>(property & property)
 {
 
-   read(property.m_atom);
-   read((::payload &) property);
+   operator >>(property.m_atom);
+   operator >>((::payload &) property);
 
-   return;
+   return *this;
 
 }
 
 
-void binary_stream::read(string & str)
+binary_stream & binary_stream::operator >>(string & str)
 {
 
    ::u64 u = 0;
 
-   read_buffer_length(u);
+   u = read_buffer_length();
 
    //if (!fail() && u > 0)
    if(u > 0)
@@ -1061,99 +1169,112 @@ void binary_stream::read(string & str)
 
    }
 
-   return;
+   return *this;
 
 }
 
 
 
 
-filesize binary_stream::get_position()
+//filesize binary_stream::get_position()
+//{
+//
+//   return m_p->get_position();
+//
+//}
+//
+
+//binary_stream & binary_stream::operator >>(matter & matter)
+//{
+//
+//   matter.read(*this);
+//
+//   return * this;
+//
+//}
+//
+
+binary_stream & binary_stream::operator >>(property_set & set)
 {
 
-   return m_p->get_position();
+   throw ::exception(todo);
+
+   //__exchange_load_array(*this, set);
+
+   return *this;
 
 }
 
 
-void binary_stream::read(matter & matter)
-{
-
-   matter.read(*this);
-
-   return;
-
-}
-
-
-void binary_stream::read(property_set & set)
-{
-
-   __exchange_load_array(*this, set);
-
-   return;
-
-}
-
-
-void binary_stream::read(block & block)
+binary_stream & binary_stream::operator >>(block & block)
 {
 
    u64 u = 0;
 
-   read_buffer_length(u);
+   u = read_buffer_length();
 
    if (u != block.get_size())
    {
 
       throw ::exception(error_io);
 
-      return;
+      return *this;
 
    }
 
    m_p->read(block.get_data(), block.get_size());
 
+   return *this;
+
 }
 
 
-
-void * binary_stream::get_internal_data()
+binary_stream & binary_stream::operator >>(::element & element)
 {
 
-   return m_p->get_internal_data();
+   element.read(*this);
+
+   return *this;
 
 }
 
 
-
-
-memsize binary_stream::get_internal_data_size() const
-{
-
-   return m_p->get_internal_data_size();
-
-}
-
+//void * binary_stream::get_internal_data()
+//{
+//
+//   return m_p->get_internal_data();
+//
+//}
 
 
 
-bool binary_stream::set_internal_data_size(memsize c)
-{
+//
+//memsize binary_stream::get_internal_data_size() const
+//{
+//
+//   return m_p->get_internal_data_size();
+//
+//}
 
-   return m_p->set_internal_data_size(c);
 
-}
+//
+//
+//bool binary_stream::set_internal_data_size(memsize c)
+//{
+//
+//   return m_p->set_internal_data_size(c);
+//
+//}
+//
+//
 
-
-
-
-filesize binary_stream::get_position() const
-{
-
-   return m_p->get_position();
-
-}
+//
+//filesize binary_stream::get_position() const
+//{
+//
+//   return m_p->get_position();
+//
+//}
 
 
 ::byte binary_stream::get_byte()
@@ -1208,32 +1329,32 @@ void binary_stream::getline(char * sz, strsize n)
 
 
 
-::filesize binary_stream::get_left() const
-{
-
-   return m_p->get_left();
-
-}
-
-
-
-
-bool binary_stream::is_reader_null()
-{
-
-   return m_p.is_null() || !(m_p->m_eopen & ::file::e_open_read);
-
-}
+//::filesize binary_stream::get_left() const
+//{
+//
+//   return m_p->get_left();
+//
+//}
 
 
 
 
-bool binary_stream::is_reader_set()
-{
-
-   return m_p.is_set() && (m_p->m_eopen & ::file::e_open_read);
-
-}
+//bool binary_stream::is_reader_null()
+//{
+//
+//   return m_p.is_null() || !(m_p->m_eopen & ::file::e_open_read);
+//
+//}
+//
+//
+//
+//
+//bool binary_stream::is_reader_set()
+//{
+//
+//   return m_p.is_set() && (m_p->m_eopen & ::file::e_open_read);
+//
+//}
 
 
 
@@ -1250,7 +1371,7 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
    if (tickStart == (filesize)-1)
    {
 
-      tickStart = get_position();
+      tickStart = m_p->get_position();
 
    }
    else
@@ -1276,7 +1397,7 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 
    }
 
-   while ((uRead = read(&memory.get_data()[uiPos], minimum(memory.get_size() - uiPos, (memsize)nCount))) > 0)
+   while ((uRead = m_p->read(&memory.get_data()[uiPos], minimum(memory.get_size() - uiPos, (memsize)nCount))) > 0)
    {
       uiPos += uRead;
       nCount -= uRead;
@@ -1309,4 +1430,41 @@ __pointer(::matter) binary_stream::create_object_from_text(string strText)
 
 
 
+
+//
+//
+//::atom binary_stream::text_to_factory_id(const ::string & str)
+//{
+//
+//   return str;
+//
+//}
+//
+//
+//::string binary_stream::factory_id_to_text(const ::atom & atom)
+//{
+//
+//   return atom;
+//
+//}
+
+
+void binary_stream::read(void * pdata, memsize nCount)
+{
+
+   //if (!fail())
+   //{
+
+   m_gcount = m_p->read(pdata, nCount);
+
+   if (m_gcount != nCount)
+   {
+
+      set_nok();
+
+   }
+
+   /*     }*/
+
+}
 

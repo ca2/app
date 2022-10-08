@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 class CLASS_DECL_ACME stringl :
@@ -33,12 +33,12 @@ public:
 
 
 
-template < typename TYPE >
-inline stream& operator <<(stream& stream, const stringl& list);
-
-
-template < typename TYPE >
-inline stream& operator >>(stream& stream, stringl& list);
+//template < typename TYPE >
+//inline stream& operator <<(stream& stream, const stringl& list);
+//
+//
+//template < typename TYPE >
+//inline stream& operator >>(stream& stream, stringl& list);
 
 
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 template < typename TYPE_CHAR >
@@ -20,12 +20,6 @@ public:
    string_base(for_moving) { }
    string_base(e_get_buffer, strsize len) { get_string_buffer(len); }
    string_base(string_base && s) noexcept : POINTER(e_no_initialize) { this->m_pdata = s.m_pdata; s.m_pdata = nullptr; }
-
-   template < has_to_string HAS_TO_STRING >
-   string_base(const HAS_TO_STRING & has_to_string) : string_base(has_to_string.to_string()) { }
-   template < has_get_string HAS_GET_STRING >
-   string_base(const HAS_GET_STRING & has_get_string) : string_base(has_get_string.get_string()) { }
-
    string_base(const ansichar * pansichar);
    string_base(const ansichar * pansichar, strsize len);
    string_base(const ansichar * pansichar, strsize len, strsize pos) : string_base(pansichar + pos, len) { }
@@ -48,6 +42,11 @@ public:
    string_base(ansichar ansich, strsize repeat = 1);
    string_base(wd16char wd16ch, strsize repeat = 1);
    string_base(wd32char wd32ch, strsize repeat = 1);
+   string_base(const character & character, strsize repeat = 1) :string_base(character.m_wd32char) {}
+
+   template < non_pointer TYPE >
+   string_base(const TYPE & t);
+
 
 //#ifdef _UWP
    //string_base(Array <byte > ^ a);
@@ -123,23 +122,19 @@ public:
    //template < typename TYPE >
    //inline string_base & operator=(const TYPE & t);
 
+   template < typename TYPE >
+   string_base& operator += (const TYPE & t);
 
-   string_base& operator += (const string_base& ansistr);
+   //string_base & operator += (const ansichar * pszsrc);
+   //string_base & operator += (const wd16char * pszsrc);
+   //string_base & operator += (const wd32char * pszsrc);
+   //string_base & operator += (const ansistring & ansistr);
+   //string_base & operator += (const wd16string & wd16str);
+   //string_base & operator += (const wd32string & wd32str);
+   //string_base & operator += (ansichar ansich);
+   //string_base & operator += (wd16char wd16ch);
+   //string_base & operator += (wd32char wd32ch);
 
-
-//   string_base & operator += (const ansichar * pszSrc);
-//   string_base & operator += (const wd16char * pszSrc);
-//   string_base & operator += (const wd32char * pszSrc);
-//   string_base & operator += (const ansistring & ansistr);
-//   string_base & operator += (const wd16string & wd16str);
-//   string_base & operator += (const wd32string & wd32str);
-//   string_base & operator += (ansichar ansich);
-//   string_base & operator += (wd16char wd16ch);
-//   string_base & operator += (wd32char wd32ch);
-//#ifdef WINDOWS
-//   string_base & operator += (const USHORT * pshSrc) { return operator=((const wd16char *)pshSrc); }
-//#endif
-//
 //   template < int t_nSize >
 //   inline string_base & operator +=(const static_string<CHAR_TYPE, t_nSize > & ansistrSrc);
 //
@@ -147,21 +142,18 @@ public:
 //   inline string_base & operator +=(const TYPE & t);
 //
 
-   string_base operator + (const ansichar * pszSrc) const;
-   string_base operator + (const wd16char * pszSrc) const;
-   string_base operator + (const wd32char * pszSrc) const;
-   string_base operator + (const ansistring & ansistr) const;
-   string_base operator + (const wd16string & wd16str)  const;
-   string_base operator + (const wd32string & wd32str)  const;
-   string_base operator + (ansichar ansich)  const;
-   string_base operator + (wd16char wd16ch)  const;
-   string_base operator + (wd32char wd32ch)  const;
-#ifdef WINDOWS
-   string_base operator + (const USHORT * pshSrc) const { return operator +((const wd16char *)pshSrc); }
-#endif
-
    template < typename TYPE >
    inline string_base operator +(const TYPE & t) const;
+
+   //string_base operator + (const ansichar * pszSrc) const;
+   //string_base operator + (const wd16char * pszSrc) const;
+   //string_base operator + (const wd32char * pszSrc) const;
+   //string_base operator + (const ansistring & ansistr) const;
+   //string_base operator + (const wd16string & wd16str)  const;
+   //string_base operator + (const wd32string & wd32str)  const;
+   //string_base operator + (character character)  const;
+   //string_base operator + (wd16char wd16ch)  const;
+   //string_base operator + (wd32char wd32ch)  const;
 
    template < typename TYPE >
    inline string_base & operator /=(const TYPE & t)
@@ -331,11 +323,10 @@ public:
 
    inline bool is_empty() const noexcept { return *this->m_pdata == '\0'; }
 
-   template < typename TYPE >
-   inline bool is_empty(const TYPE& t)
+   inline bool is_empty(const string_base & str)
    {
       if (!is_empty()) return false;
-      operator =(t);
+      operator =(str);
       return true;
    }
 
@@ -987,21 +978,16 @@ public:
    bool equals(const CHAR_TYPE * psz) const;
    bool equals_ci(const CHAR_TYPE * psz) const;
 
-   bool operator==(const CHAR_TYPE * psz2) const;
-   bool operator==(CHAR_TYPE ch) const;
-
-   bool operator>(const CHAR_TYPE * psz2) const;
-   bool operator>(CHAR_TYPE ch) const;
-
-   bool operator<(const CHAR_TYPE * psz2) const;
-   bool operator<(CHAR_TYPE ch) const;
-
+   inline bool operator==(const CHAR_TYPE * psz2) const;
+   inline bool operator==(CHAR_TYPE ch) const;
+   inline bool operator>(const CHAR_TYPE * psz2) const;
+   inline bool operator>(CHAR_TYPE ch) const;
+   inline bool operator<(const CHAR_TYPE * psz2) const;
+   inline bool operator<(CHAR_TYPE ch) const;
    inline bool operator!=(const CHAR_TYPE * psz) const { return !operator ==(psz); }
    inline bool operator!=(CHAR_TYPE ch) const { return !operator ==(ch); }
-
    inline bool operator>=(const CHAR_TYPE * psz) const { return !operator <(psz); }
    inline bool operator>=(CHAR_TYPE ch) const { return !operator <(ch); }
-
    inline bool operator<=(const CHAR_TYPE * psz) const { return !operator >(psz); }
    inline bool operator<=(CHAR_TYPE ch) const { return !operator >(ch); }
 
@@ -1047,4 +1033,9 @@ inline ::wd32string operator + (wd32char wch, const ::wd32string & wstrRight)
    return wstr + wstrRight;
 
 }
+
+
+CLASS_DECL_ACME ::string __string_format(const char * pszFormat, ...);
+
+
 

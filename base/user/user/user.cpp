@@ -992,28 +992,28 @@ namespace base
    }
 
 
-   ::pointer<::user::menu>user::track_popup_xml_menu_text(::user::interaction* pinteraction, string strXml, i32 iFlags, ::channel* pchannelNotify)
-   {
+   //::pointer<::user::menu>user::track_popup_xml_menu_text(::user::interaction* pinteraction, string strXml, i32 iFlags, ::channel* pchannelNotify)
+   //{
 
-      auto pwindow = pinteraction->window();
+   //   auto pwindow = pinteraction->window();
 
-      auto pointCursor = pwindow->get_cursor_position();
+   //   auto pointCursor = pwindow->get_cursor_position();
 
-      return track_popup_xml_menu(pinteraction, strXml, iFlags, pointCursor, ::size_i32(), pchannelNotify);
+   //   return track_popup_xml_menu(pinteraction, strXml, iFlags, pointCursor, ::size_i32(), pchannelNotify);
 
-   }
+   //}
 
 
-   ::pointer<::user::menu>user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const ::string & pszMatter, i32 iFlags, ::channel* pchannelNotify)
-   {
+   //::pointer<::user::menu>user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const ::string & pszMatter, i32 iFlags, ::channel* pchannelNotify)
+   //{
 
-      auto pwindow = pinteraction->window();
+   //   auto pwindow = pinteraction->window();
 
-      auto pointCursor = pwindow->get_cursor_position();
+   //   auto pointCursor = pwindow->get_cursor_position();
 
-      return track_popup_xml_matter_menu(pinteraction, pszMatter, iFlags, pointCursor, pchannelNotify);
+   //   return track_popup_xml_matter_menu(pinteraction, pszMatter, iFlags, pointCursor, pchannelNotify);
 
-   }
+   //}
 
 
 
@@ -1031,30 +1031,30 @@ namespace base
    }
 
 
-   ::pointer<::user::menu>user::track_popup_xml_menu_text(::user::interaction* pinteraction, string strXml, i32 iFlags, ::message::message * pmessage, ::channel* pchannelNotify)
-   {
+   //::pointer<::user::menu>user::track_popup_xml_menu_text(::user::interaction* pinteraction, string strXml, i32 iFlags, ::message::message * pmessage, ::channel* pchannelNotify)
+   //{
 
-      auto pmouse = pmessage->m_union.m_pmouse;
+   //   auto pmouse = pmessage->m_union.m_pmouse;
 
-      auto point = pmouse->m_point;
+   //   auto point = pmouse->m_point;
 
-      pinteraction->screen_to_client()(point);
+   //   pinteraction->screen_to_client()(point);
 
-      return track_popup_xml_menu(pinteraction, strXml, iFlags, point, ::size_i32(), pchannelNotify);
+   //   return track_popup_xml_menu(pinteraction, strXml, iFlags, point, ::size_i32(), pchannelNotify);
 
-   }
+   //}
 
 
-   ::pointer<::user::menu>user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const ::string & pszMatter, i32 iFlags, ::message::message * pmessage, ::channel* pchannelNotify)
-   {
+   //::pointer<::user::menu>user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const ::string & pszMatter, i32 iFlags, ::message::message * pmessage, ::channel* pchannelNotify)
+   //{
 
-      auto pmouse = pmessage->m_union.m_pmouse;
+   //   auto pmouse = pmessage->m_union.m_pmouse;
 
-      ::point_i32 point = pmouse->m_point;
+   //   ::point_i32 point = pmouse->m_point;
 
-      return track_popup_xml_matter_menu(pinteraction, pszMatter, iFlags, point, pchannelNotify);
+   //   return track_popup_xml_matter_menu(pinteraction, pszMatter, iFlags, point, pchannelNotify);
 
-   }
+   //}
 
 
    bool user::track_popup_menu(::user::interaction* pinteraction, ::user::menu_item * pitem, i32 iFlags, const ::point_i32 & point, ::channel* pchannelNotify)
@@ -1078,14 +1078,14 @@ namespace base
    }
 
 
-   ::pointer<::user::menu>user::track_popup_xml_menu(::user::interaction* pinteraction, const ::payload & varXml, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum, ::channel* pchannelNotify)
+   ::pointer<::user::menu>user::track_popup_xml_menu(::user::interaction* pinteraction, const ::string & strXml, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum, ::channel* pchannelNotify)
    {
 
       ::pointer<::user::menu>pmenu = pinteraction->__create <  ::user::menu  > ();
 
       pmenu->m_sizeMinimum = sizeMinimum;
 
-      if (!pmenu->load_xml_menu(varXml))
+      if (!pmenu->load_xml_menu(strXml))
       {
 
          pmenu.release();
@@ -1110,92 +1110,92 @@ namespace base
    }
 
 
-   ::pointer<::user::menu>user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const ::string & pszMatter, i32 iFlags, const ::point_i32 & pointParam, ::channel * pchannelNotify)
-   {
+   //::pointer<::user::menu>user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const ::string & pszMatter, i32 iFlags, const ::point_i32 & pointParam, ::channel * pchannelNotify)
+   //{
 
-      string strMatterSource(pszMatter);
+   //   string strMatterSource(pszMatter);
 
-      ::point_i32 point(pointParam);
+   //   ::point_i32 point(pointParam);
 
-      fork([this, strMatterSource, iFlags, point, pinteraction, pchannelNotify]()
-      {
+   //   fork([this, strMatterSource, iFlags, point, pinteraction, pchannelNotify]()
+   //   {
 
-         auto pmenu = __create <  ::user::menu  >();
+   //      auto pmenu = __create <  ::user::menu  >();
 
-         string strMatter(strMatterSource);
+   //      string strMatter(strMatterSource);
 
-         if (!strMatter.begins_ci("matter://"))
-         {
+   //      if (!strMatter.begins_ci("matter://"))
+   //      {
 
-            strMatter = "matter://" + strMatter;
+   //         strMatter = "matter://" + strMatter;
 
-         }
+   //      }
 
-         if (!pmenu->load_xml_menu(strMatter))
-         {
+   //      if (!pmenu->load_xml_menu(strMatter))
+   //      {
 
-            pmenu.release();
+   //         pmenu.release();
 
-            return false;
+   //         return false;
 
-         }
+   //      }
 
-         pmenu->hints(iFlags, point);
+   //      pmenu->hints(iFlags, point);
 
-         if (!pmenu->track_popup_menu(pchannelNotify, pinteraction))
-         {
+   //      if (!pmenu->track_popup_menu(pchannelNotify, pinteraction))
+   //      {
 
-            pmenu.release();
+   //         pmenu.release();
 
-            return false;
+   //         return false;
 
-         }
+   //      }
 
-         return true;
+   //      return true;
 
-      });
+   //   });
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
-   ::pointer<::user::menu>user::track_popup_xml_menu_file(::user::interaction * pinteraction, ::payload varXmlFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum, ::channel* pchannelNotify)
-   {
+   //::pointer<::user::menu>user::track_popup_xml_menu_file(::user::interaction * pinteraction, ::payload varXmlFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum, ::channel* pchannelNotify)
+   //{
 
-      auto pcontext = get_context();
+   //   auto pcontext = get_context();
 
-      string strXml = pcontext->m_papexcontext->file().as_string(varXmlFile);
+   //   string strXml = pcontext->m_papexcontext->file().as_string(varXmlFile);
 
-      return track_popup_xml_menu(pinteraction, strXml, iFlags, point, sizeMinimum, pchannelNotify);
+   //   return track_popup_xml_menu(pinteraction, strXml, iFlags, point, sizeMinimum, pchannelNotify);
 
-      //::pointer<::user::menu>pmenu = alloc <  ::user::menu  > ();
+   //   //::pointer<::user::menu>pmenu = alloc <  ::user::menu  > ();
 
-      //pmenu->m_sizeMinimum = sizeMinimum;
+   //   //pmenu->m_sizeMinimum = sizeMinimum;
 
-      //if (!pmenu->load_xml_menu_file(varXmlFile))
-      //{
+   //   //if (!pmenu->load_xml_menu_file(varXmlFile))
+   //   //{
 
-      //   pmenu.release();
+   //   //   pmenu.release();
 
-      //   return pmenu;
+   //   //   return pmenu;
 
-      //}
+   //   //}
 
-      //pmenu->hints(iFlags, point);
+   //   //pmenu->hints(iFlags, point);
 
-      //if (!pmenu->track_popup_menu(this))
-      //{
+   //   //if (!pmenu->track_popup_menu(this))
+   //   //{
 
-      //   pmenu.release();
+   //   //   pmenu.release();
 
-      //   return pmenu;
+   //   //   return pmenu;
 
-      //}
+   //   //}
 
-      //return pmenu;
+   //   //return pmenu;
 
-   }
+   //}
 
 
    ::type user::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)

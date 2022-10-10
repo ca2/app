@@ -417,17 +417,17 @@ binary_stream & binary_stream::operator <<(const property & property)
 }
 
 
-binary_stream & binary_stream::operator <<(const property_set& set)
-{
-
-   throw ::exception(todo);
-
-   //__exchange_save_array(*this, (property_set &) set);
-
-   return *this;
-
-}
-
+//binary_stream & binary_stream::operator <<(const property_set& set)
+//{
+//
+//   throw ::exception(todo);
+//
+//   //__exchange_save_array(*this, (property_set &) set);
+//
+//   return *this;
+//
+//}
+//
 
 
 //void binary_stream::flush()
@@ -1194,16 +1194,16 @@ binary_stream & binary_stream::operator >>(string & str)
 //}
 //
 
-binary_stream & binary_stream::operator >>(property_set & set)
-{
-
-   throw ::exception(todo);
-
-   //__exchange_load_array(*this, set);
-
-   return *this;
-
-}
+//binary_stream & binary_stream::operator >>(property_set & set)
+//{
+//
+//   throw ::exception(todo);
+//
+//   //__exchange_load_array(*this, set);
+//
+//   return *this;
+//
+//}
 
 
 binary_stream & binary_stream::operator >>(block & block)

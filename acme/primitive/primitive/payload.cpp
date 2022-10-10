@@ -6076,7 +6076,7 @@ void payload::parse_network_payload(const char *& pszJson, const char * pszEnd)
    if (*pszJson == '{')
    {
 
-      ((::property_set &) (*this)).parse_network_payload(pszJson, pszEnd);
+      property_set_reference().parse_network_payload(pszJson, pszEnd);
 
    }
    else if (*pszJson == '\"')
@@ -6129,7 +6129,7 @@ void payload::parse_network_payload(const char *& pszJson, const char * pszEnd)
    else if (*pszJson == '[')
    {
 
-      ((::payload_array &)(*this)).parse_network_payload(pszJson, pszEnd);
+      payload_array_reference().parse_network_payload(pszJson, pszEnd);
 
    }
    else if (*pszJson == ']')

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "script_compiler.h"
 #include "script_manager.h"
 #include "ds_script.h"
@@ -866,7 +866,7 @@ pacmedirectory->create(pathDVP_Folder);
 
             }
 
-            pscript->m_strError = ostreamError.get_string();
+            pscript->m_strError = ostreamError.as_string();
 
             return;
 
@@ -1011,7 +1011,7 @@ pacmedirectory->create(pathDVP_Folder);
 
             }
 
-            pscript->m_strError = pscript->m_pfileError->get_string();
+            pscript->m_strError = pscript->m_pfileError->as_string();
 
             pscript->m_strError.trim();
 
@@ -2642,7 +2642,7 @@ ch_else:
 
                string strScriptError;
 
-               strScriptError = pdsscript->m_pfileError->get_string();
+               strScriptError = pdsscript->m_pfileError->as_string();
 
                m_pmanager->m_strPersistentError += strScriptError;
 

@@ -1033,10 +1033,10 @@ namespace user
 
 
       template < typename TYPE >
-      ::pointer<TYPE> _001TypedWindow(::pointer<TYPE>sp)
+      ::pointer<TYPE> _001TypedWindow(::pointer<TYPE> & p)
       {
 
-         return sp = _001TypedWindow<TYPE>();
+         return p = _001TypedWindow<TYPE>();
 
       }
 

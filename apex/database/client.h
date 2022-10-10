@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace database
@@ -137,8 +137,6 @@ namespace database
          }
 
          binary_stream stream(&memoryfile);
-
-
 
          stream.set_loading();
 

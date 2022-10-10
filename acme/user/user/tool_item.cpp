@@ -1,4 +1,4 @@
-//
+﻿//
 //  tool_item.cpp
 //  acme
 //
@@ -85,7 +85,9 @@ namespace user
    bool tool_item::is_custom_control() const 
    {
       
-      return m_estyle & e_tool_item_style_separator; 
+      //return m_estyle & e_tool_item_style_separator; 
+
+      return false;
    
    }
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "script_interface.h"
 #include "script_main.h"
 #include "httpd_socket.h"
@@ -663,7 +663,7 @@ namespace dynamic_source
       string & script_interface::gstr(const ::atom & atom)
       {
 
-         return gprop(atom).as_string();
+         return gprop(atom).string_reference();
 
       }
 

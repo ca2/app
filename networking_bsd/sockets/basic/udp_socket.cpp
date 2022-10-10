@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "udp_socket.h"
 #include "networking_bsd/address.h"
 #include "networking_bsd/networking.h"
@@ -86,7 +86,7 @@ namespace sockets_bsd
       paddress->set_address(a, port);
 
 //      ::networking::address ad(a, port);
-      return Bind(paddress, range);
+      return Bind(paddress.m_p, range);
    }
 
 
@@ -96,7 +96,7 @@ namespace sockets_bsd
       paddress->set_address(a, port);
 
 //      ::networking::address ad(a, port);
-      return Bind(paddress, range);
+      return Bind(paddress.m_p, range);
    }
 
 

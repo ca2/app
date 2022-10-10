@@ -1,4 +1,4 @@
-// cs<3tbs!! 2020-11-28 21:25 BRT
+﻿// cs<3tbs!! 2020-11-28 21:25 BRT
 #pragma once
 
 
@@ -45,7 +45,7 @@ namespace sockets_bsd
 
    class base_socket;
 
-   using socket_pointer = ::pointer<base_socket>
+   using socket_pointer = ::pointer<base_socket>;
 
 
    typedef comparable_list < socket_pointer > socket_pointer_list;

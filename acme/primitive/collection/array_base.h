@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 template < typename ARRAY >
@@ -814,6 +814,18 @@ public:
       this->last() = newElement;
 
       return (::index) nIndex;
+
+   }
+
+
+   TYPE & add_new()
+   {
+
+      auto nIndex = this->m_nSize;
+
+      this->allocate((::count)(nIndex + 1));
+
+      return this->last();
 
    }
 

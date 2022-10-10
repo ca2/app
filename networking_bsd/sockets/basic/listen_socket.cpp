@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "listen_socket.h"
 #include "socket_handler.h"
 #include "networking_bsd/address.h"
@@ -70,13 +70,13 @@ namespace sockets_bsd
          auto paddress = __new(::networking_bsd::address);
          paddress->set_family(AF_INET6, port);
          //::networking::address ad(AF_INET6, port);
-         return Bind(paddress, depth);
+         return Bind(paddress.m_p, depth);
       }
       else
       {
          auto paddress = __new(::networking_bsd::address);
          paddress->set_family(AF_INET, port);
-         return Bind(paddress, depth);
+         return Bind(paddress.m_p, depth);
       }
    }
 
@@ -176,7 +176,7 @@ namespace sockets_bsd
       }
 #endif
       
-      return Bind(paddress, "tcp", depth);
+      return Bind(paddress.m_p, "tcp", depth);
 
    }
 
@@ -192,7 +192,7 @@ namespace sockets_bsd
 
       paddress->set_address(a, port);
 
-      return Bind(paddress, protocol, depth);
+      return Bind(paddress.m_p, protocol, depth);
 
    }
 
@@ -214,7 +214,7 @@ namespace sockets_bsd
       }
 #endif
       
-      return Bind(paddress, "tcp", depth);
+      return Bind(paddress.m_p, "tcp", depth);
 
    }
 
@@ -231,7 +231,7 @@ namespace sockets_bsd
 
       paddress->set_address(a, port);
 
-      return Bind(paddress, protocol, depth);
+      return Bind(paddress.m_p, protocol, depth);
 
    }
 

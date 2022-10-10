@@ -314,7 +314,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    inline operator ::e_ ## ENUMTYPE () const { return ::e_ ## ENUMTYPE(); } \
    ::e_ ## ENUMTYPE & e_ ## ENUMTYPE ## _reference();         \
    inline payload & operator = (const ::e_ ## ENUMTYPE & e) { set_type(::e_type_enum_ ## ENUMTYPE, false); m_e ## ENUMTYPE = e; return *this; } \
-   inline payload & operator = (::enum_ ## ENUMTYPE & e) { set_type(::e_type_enum_ ## ENUMTYPE, false); m_e ## ENUMTYPE = e; return *this; } \
+   inline payload & operator = (::enum_ ## ENUMTYPE e) { set_type(::e_type_enum_ ## ENUMTYPE, false); m_e ## ENUMTYPE = e; return *this; } \
    inline bool operator == (::e_ ## ENUMTYPE e) const { return m_etype == ::e_type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e; } \
    inline bool operator != (::e_ ## ENUMTYPE e) const { return !operator ==(e); }
    DECL_VAR_ENUM(status);

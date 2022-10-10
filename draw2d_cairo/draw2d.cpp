@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "draw2d.h"
 
 
@@ -1444,7 +1444,7 @@ namespace draw2d_cairo
 
       _synchronous_lock synchronouslock(cairo_mutex());
 
-      ::file::path pathFile = payloadFile.get_file_path();
+      ::file::path pathFile = payloadFile.file_path();
 
       auto & pprivatefont = m_mapPrivateFont[pathFile];
 

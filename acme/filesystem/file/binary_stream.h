@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -301,7 +301,7 @@ public:
    binary_stream & operator <<(const ::string & str);
    //binary_stream & operator <<(const matter * pobject) ;
    //binary_stream & operator <<(const matter& matter) ;
-   binary_stream & operator <<(const property_set & set);
+   //binary_stream & operator <<(const property_set & set);
    binary_stream & operator <<(const block & block);
    binary_stream & operator <<(const element & element);
 
@@ -371,7 +371,7 @@ public:
    binary_stream & operator >>(string & str);
    //virtual void read(matter * pobject);
    //binary_stream & operator >>(matter& matter) ;
-   binary_stream & operator >>(property_set & set);
+   //binary_stream & operator >>(property_set & set);
    binary_stream & operator >>(block & block);
    binary_stream & operator >>(element & element);
 
@@ -466,6 +466,7 @@ public:
    inline binary_stream & operator >>(::pointer<TYPE>& p) { *this >> *p; return *this; }
 
 
+
    template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, enum_type t_etypePayload >
    inline binary_stream & operator <<(const ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
    {
@@ -492,18 +493,24 @@ public:
 
       ::count c;
       *this >> c;
-      TYPE t;
-      auto i = c;
-      while (i > 0)
+      if (is_ok())
       {
-         *this >> t;
-         if (nok())
+         auto i = c;
+         while (i > 0)
          {
-            break;
+            auto & t = a.add_new();
+            *this >> t;
+            if (nok())
+            {
 
+               a.erase_last();
+
+               break;
+
+            }
+            i--;
          }
-         a.add(t);
-         i--;
+
       }
 
       return *this;

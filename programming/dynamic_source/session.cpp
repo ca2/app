@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "session.h"
 #include "script_manager.h"
 #include "acme/primitive/text/international_locale_schema.h"
@@ -20,7 +20,7 @@ namespace dynamic_source
       ::text::international::locale_schema * pls = m_set["locale_schema"].cast < ::text::international::locale_schema > ();
       if(pls != nullptr)
       {
-         ::output_debug_string("locale_schema.m_atomLocale=" + pls->m_atomLocale.str());
+         ::output_debug_string("locale_schema.m_atomLocale=" + pls->m_atomLocale);
       }
       if(m_set.has_property("rsa_n"))
       {
@@ -47,7 +47,7 @@ namespace dynamic_source
 
       //estatus = 
       
-      __refer(m_pmanager, pmanager);
+      m_pmanager = pmanager;
 
       //if (!estatus)
       //{

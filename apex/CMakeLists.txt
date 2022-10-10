@@ -564,7 +564,7 @@ list(APPEND apex_source
    _defer.h
    aaa_want_to_move_xml.h
    application.h
-   astr.h
+   #astr.h
    console.h
    console_slim.h
 #   context_glx.cpp

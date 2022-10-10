@@ -496,21 +496,21 @@ list(APPEND library_source
    version/version.h
    _.cpp
    _.h
-   __matter_ca2.cpp
-   _defer.h
-   _h.h
-   application.h
-   astr.h
-   console.h
-   console_slim.h
-   context_glx.cpp
+   #__matter_ca2.cpp
+   #_defer.h
+   #_h.h
+   #application.h
+   #astr.h
+   #console.h
+   #console_slim.h
+   #context_glx.cpp
    framework.cpp
    framework.h
-   framework_c.h
-   id.h
-   library.h
-   message.h
-   procedure.h
+   #framework_c.h
+   #id.h
+   #library.h
+   #message.h
+   #procedure.h
    #update.h
         )
 

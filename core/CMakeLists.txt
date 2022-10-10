@@ -15,8 +15,8 @@ list(APPEND library_source
    #const/check.h
    #const/context.h
    #const/id.h
-   constant/idpool.cpp
-   constant/idpool.h
+   #constant/idpool.cpp
+   #constant/idpool.h
    #const/impact.h
    #const/procedure.h
    #const/simple_command.h
@@ -40,9 +40,9 @@ list(APPEND library_source
    filesystem/filehandler/tree_interface.h
    filesystem/filemanager/_.cpp
    filesystem/filemanager/_.h
-   filesystem/filemanager/_data.h
+   #filesystem/filemanager/_data.h
    #filesystem/filemanager/_filemanager.h
-   filesystem/filemanager/_tree.h
+   #filesystem/filemanager/_tree.h
    filesystem/filemanager/child_frame.cpp
    filesystem/filemanager/child_frame.h
    filesystem/filemanager/component.cpp
@@ -133,8 +133,8 @@ list(APPEND library_source
    filesystem/fs/ftpnet.cpp
    filesystem/fs/ftpnet.h
    filesystem/userfs/_.h
-   filesystem/userfs/_data.h
-   filesystem/userfs/_tree.h
+   #filesystem/userfs/_data.h
+   #filesystem/userfs/_tree.h
    #filesystem/userfs/_userfs.h
    #filesystem/userfs/const.h
    filesystem/userfs/document.cpp
@@ -337,13 +337,13 @@ list(APPEND library_source
    user/simple/toolbar.h
    user/simple/tree_impact.cpp
    user/simple/tree_impact.h
-   user/user/00.h
+   #user/user/00.h
    #user/user/_.cpp
    user/user/_.h
    #user/user/_const.h
-   user/user/_data.h
-   user/user/_impl.h
-   user/user/_tree.h
+   #user/user/_data.h
+   #user/user/_impl.h
+   #user/user/_tree.h
    #user/user/_user.h
    user/user/color_combo_box.cpp
    user/user/color_combo_box.h
@@ -363,7 +363,7 @@ list(APPEND library_source
    user/user/form_update_hint.h
    user/user/image_manager.cpp
    user/user/image_manager.h
-   user/user/inline.h
+   #user/user/inline.h
    user/user/list.cpp
    user/user/list.h
    user/user/list_cache.cpp
@@ -496,19 +496,19 @@ list(APPEND library_source
    _.cpp
    _.h
    #__matter_ca2.cpp
-   _defer.h
-   application.h
+   #_defer.h
+   #application.h
    #astr.h
-   callback.h
-   console.h
+   #callback.h
+   #console.h
    #context_glx.cpp
    framework.cpp
    framework.h
-   framework_c.h
-   id.h
-   library.h
-   message.h
-   procedure.h
+   #framework_c.h
+   #id.h
+   #library.h
+   #message.h
+   #procedure.h
    #timer.mm
    update.h
    user.h

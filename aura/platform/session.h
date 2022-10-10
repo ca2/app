@@ -25,24 +25,24 @@ namespace aura
       ::user::interaction_impl *                            m_pimplPendingFocus2;
       ::user::interaction *                                 m_puiLastUserInputPopup;
 
-      //__pointer_array(::user::interaction)                  m_uiptraToolWindow;
+      //pointer_array < ::user::interaction >                  m_uiptraToolWindow;
 
       ::user::interaction *                                 m_puiMouseMoveCapture;
       ::user::interaction *                                 m_puiLastLButtonDown;
 
 
-      __composite(::apex::savings)                          m_psavings;
+      ::pointer<::apex::savings>                         m_psavings;
 
       //index                                                 m_iMainMonitor;
       //index                                                 m_iMainWorkspace;
 
       id_map < ::user::interaction * >                      m_mapboundui;
 
-      __composite(::write_text::font_list)                      m_pfontlistSingleColumn;
-      __composite(::user::user)                             m_puser;
-      //__composite(::user::style)                            m_puserstyle;
+      ::pointer<::write_text::font_list>                     m_pfontlistSingleColumn;
+      ::pointer<::user::user>                            m_puser;
+      //::pointer<::user::style>                           m_puserstyle;
       //bool                                                  m_bUiInit;
-      //__pointer(::aura::node)                               m_pnode;
+      //::pointer<::aura::node>                              m_pnode;
 
 
       session();
@@ -191,11 +191,11 @@ namespace aura
 
       virtual bool open_by_file_extension(::create * pcc) override;
 
-      //__pointer(::aura::application) get_new_application(::object * pobject, const ::string & pszAppId);
+      //::pointer<::aura::application>get_new_application(::object * pobject, const ::string & pszAppId);
 
       inline ::apex::savings &                  savings()      { return *m_psavings; }
 
-      //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle, ::user::menu_item * pitem);
+      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::user::menu_item * pitem);
 
       virtual ::color::color get_default_color(u64 u) override;
 
@@ -260,8 +260,8 @@ namespace aura
 
 
       //virtual void defer_instantiate_user_theme(const ::string & pszUiInteractionLibrary = nullptr);
-      //__pointer(::user::theme) instantiate_user_theme(const ::string & pszExperienceLibrary, ::aura::application * papp = nullptr);
-      //__pointer(::user::theme) get_user_theme(const ::string & pszExperienceLibrary, ::aura::application * papp = nullptr);
+      //::pointer<::user::theme>instantiate_user_theme(const ::string & pszExperienceLibrary, ::aura::application * papp = nullptr);
+      //::pointer<::user::theme>get_user_theme(const ::string & pszExperienceLibrary, ::aura::application * papp = nullptr);
 
 
       //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText);
@@ -295,17 +295,17 @@ namespace aura
       //virtual void destroy() override;
 
       //template < typename VIEW >
-      //__pointer(::user::document)   create_form(__pointer(::user::interaction) puserinteractionParent = nullptr, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(::type point, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(::user::form_callback* pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(__pointer(::user::form) pimpact, ::user::form_callback* pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::user::form_callback* pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_form(::pointer<::user::interaction>userinteractionParent = nullptr, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_form(::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_form(::user::form_callback* pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_form(::pointer<::user::form>impact, ::user::form_callback* pcallback, ::pointer<::user::interaction>serinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_child_form(::user::form_callback* pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
       //template < typename VIEW >
-      //__pointer(::user::document)   create_child_form(__pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(__pointer(::user::form) pimpact, ::user::form_callback* pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_child_form(::pointer<::user::interaction>userinteractionParent, ::payload payload = payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_child_form(::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_child_form(::pointer<::user::form>impact, ::user::form_callback* pcallback, ::pointer<::user::interaction>serinteractionParent, ::payload payload = payload(::e_type_empty_argument));
 
-      //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle,::user::menu_item* pitem) override;
+      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle,::user::menu_item* pitem) override;
 
       virtual bool InitializeLocalDataCentral() override;
 
@@ -354,10 +354,10 @@ namespace aura
 
 
 
-      //user __pointer(::user::document)                   get_document();
-      //user __pointer(::user::impact)                     get_impact();
-      //user __pointer(::user::document)                   get_platform();
-      //user __pointer(::user::document)                   get_nature();
+      //user ::pointer<::user::document>                  get_document();
+      //user ::pointer<::user::impact>                    get_impact();
+      //user ::pointer<::user::document>                  get_platform();
+      //user ::pointer<::user::document>                  get_nature();
 
 
       //inline ::userex::userex* userex() { return m_puserex; }
@@ -381,7 +381,7 @@ namespace aura
 
       //void on_request(::create* pcreate) override;
 
-      __pointer(::aura::application) get_current_application();
+      ::pointer<::aura::application>get_current_application();
 
 
 

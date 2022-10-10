@@ -144,10 +144,10 @@ bool is_space_key(XIRawEvent *event)
 
 // Tutor Exilius Q(t)List streaming contribution
 ::mutex * g_pmutexX11Runnable = nullptr;
-list < __pointer(::matter) > * g_prunnableptrlX11 = nullptr;
+list < ::pointer<::matter >>* g_prunnableptrlX11 = nullptr;
 //::mutex * g_pmutexX11Sync = nullptr;
 //manual_reset_event * g_peventX11Sync = nullptr;
-//__pointer(::matter) g_prunnableX11Sync;
+//::pointer<::matter>g_prunnableX11Sync;
 Window g_windowX11Client = 0;
 
 
@@ -173,7 +173,7 @@ int_bool x11_get_cursor_pos(POINT_I32 * ppointCursor);
 #if !defined(RASPBIAN)
 
 int xi_opcode = -1;
-__pointer(object_array) g_pobjectaExtendedEventListener;
+::pointer<object_array>g_pobjectaExtendedEventListener;
 void x11_register_extended_event_listener(::matter * pdata, bool bMouse, bool bKeyboard)
 {
 
@@ -1549,7 +1549,7 @@ int_bool destroy_window(oswindow window)
    if(::is_set(window->m_pimpl))
    {
 
-      __pointer(::user::interaction) pinteraction = window->m_pimpl->m_puserinteraction;
+      ::pointer<::user::interaction>pinteraction = window->m_pimpl->m_puserinteraction;
 
       if(pinteraction.is_set())
       {
@@ -2861,7 +2861,7 @@ bool x11_step()
       while(g_prunnableptrlX11->has_elements() && ::task_get_run())
       {
 
-         __pointer(::matter) prunnable = g_prunnableptrlX11->pop_front();
+         ::pointer<::matter>prunnable = g_prunnableptrlX11->pop_front();
 
          synchronouslock.unlock();
 
@@ -3520,7 +3520,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
          bool bOk = true;
 
-         __pointer(::user::interaction) pinteraction = msg.hwnd->m_pimpl->m_puserinteraction;
+         ::pointer<::user::interaction>pinteraction = msg.hwnd->m_pimpl->m_puserinteraction;
 
          if(pinteraction.is_set())
          {
@@ -3645,7 +3645,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
          //msg.hwnd->m_pimpl->_001UpdateScreen();
 
-            //__pointer(::user::interaction) pinteraction = msg.hwnd->m_pimpl->m_puserinteraction;
+            //::pointer<::user::interaction>pinteraction = msg.hwnd->m_pimpl->m_puserinteraction;
 
             //pinteraction->set_need_redraw();
 
@@ -4516,14 +4516,14 @@ namespace user
 
       XEvent * pevent = (XEvent *) pvoidEvent;
 
-      ___pointer < ::user::message > spbase;
+      ::pointer<::user::message>spbase;
 
       spbase = psession->get_message_base(pvoidEvent, m_puserinteraction);
 
       try
       {
 
-         __pointer(::user::interaction) pinteraction = m_puserinteraction;
+         ::pointer<::user::interaction>pinteraction = m_puserinteraction;
 
          while(pinteraction != nullptr && pinteraction->get_parent() != nullptr)
          {
@@ -4583,7 +4583,7 @@ namespace user
 //{
 //
 //
-   __pointer(::user::message) channel::get_message_base(void * pevent,::user::interaction * puserinteraction)
+   ::pointer<::user::message>channel::get_message_base(void * pevent,::user::interaction * puserinteraction)
    {
 
       throw ::exception(todo);
@@ -4788,7 +4788,7 @@ int_bool os_init_windowing()
 
    g_pmutexX11Runnable = memory_new ::mutex();
 
-   g_prunnableptrlX11 = memory_new list < __pointer(::matter) >();
+   g_prunnableptrlX11 = memory_new list < ::pointer<::matter >>);
 
 //   g_pmutexX11Sync = memory_new ::mutex();
 
@@ -5133,10 +5133,10 @@ int_bool WINAPI SetWindowPos(oswindow hWnd,oswindow hWndInsertAfter,i32 X,i32 Y,
 
 
 extern ::mutex * g_pmutexX11Runnable;
-extern list < __pointer(::matter) > * g_prunnableptrlX11;
+extern list < ::pointer<::matter >>* g_prunnableptrlX11;
 extern ::mutex * g_pmutexX11Sync;
 extern manual_reset_event * g_peventX11Sync;
-extern __pointer(::matter) g_prunnableX11Sync;
+extern ::pointer<::matter>g_prunnableX11Sync;
 
 
 void x11_async_runnable(::matter * prunnable)

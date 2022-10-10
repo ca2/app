@@ -1,4 +1,4 @@
-// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
+﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
@@ -83,7 +83,7 @@ namespace windowing
 
          auto pobject = pmessage->m_union.m_pobject;
 
-         __pointer(::message::message) pmessagePost = pobject->m_pelement;
+         ::pointer<::message::message>pmessagePost = pobject->m_pelement;
 
          if (::is_null(pmessagePost))
          {
@@ -204,7 +204,7 @@ namespace windowing
       if (!m_pcopydesk)
       {
 
-         __raw_compose(m_pcopydesk);
+         __raw_construct(m_pcopydesk);
 
          if (m_pcopydesk)
          {
@@ -247,7 +247,7 @@ namespace windowing
 
             m_pcopydesk->destroy();
 
-            __release(m_pcopydesk);
+            m_pcopydesk.release();
 
          }
 
@@ -756,7 +756,7 @@ namespace windowing
    }
 
 
-   __pointer(::windowing::icon) window::load_icon(const ::payload& payloadFile)
+   ::pointer<::windowing::icon>window::load_icon(const ::payload& payloadFile)
    {
 
       auto picon = __create < icon >();
@@ -783,7 +783,7 @@ namespace windowing
    }
     
     
-   __pointer(::windowing::icon) window::get_icon() const
+   ::pointer<::windowing::icon>window::get_icon() const
    {
 
       return m_picon;

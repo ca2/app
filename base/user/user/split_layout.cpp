@@ -60,7 +60,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      //__pointer(::message::show_window) pshowwindow(pmessage);
+      //::pointer<::message::show_window>pshowwindow(pmessage);
 
       //bool bIsWindowVisible = pshowwindow->m_bShow;
 
@@ -68,7 +68,7 @@ namespace user
 
       //split_pane * pcomponent;
 
-      //__pointer(::user::interaction) puserinteraction;
+      //::pointer<::user::interaction>puserinteraction;
 
       //i32 i;
 
@@ -192,7 +192,7 @@ namespace user
 
             //auto estatus =
             
-            __compose_new(ppane);
+            __construct_new(ppane);
 
             ////if (!estatus)
             //{
@@ -228,7 +228,7 @@ namespace user
       for(::index i = 0; i < m_splitpanecompositea.get_count(); i++)
       {
 
-         __compose_new(m_splitpanecompositea[i]);
+         __construct_new(m_splitpanecompositea[i]);
 
          if(m_splitpanecompositea[i]->m_pplaceholder.is_null())
          {
@@ -508,7 +508,7 @@ namespace user
 
       split_pane * pcomponent;
 
-      __pointer(::user::interaction) puserinteraction;
+      ::pointer<::user::interaction>puserinteraction;
 
       //::u32 uBaseFlags = SWP_NOZORDER;
       ::u32 uBaseFlags = 0;
@@ -727,7 +727,7 @@ namespace user
 
       }
 
-      __pointer(::user::place_holder) pholder = ppane->m_pplaceholder;
+      ::pointer<::user::place_holder>pholder = ppane->m_pplaceholder;
 
       if (pholder == nullptr)
       {
@@ -962,7 +962,7 @@ namespace user
 
       //auto estatus = 
       
-      __compose_new(ppane);
+      __construct_new(ppane);
 
       //if (!estatus)
       //{
@@ -1324,7 +1324,7 @@ namespace user
    ::user::interaction * split_layout::get_pane_window(index iPane)
    {
 
-      __pointer(::user::place_holder) pholder = get_pane_holder(iPane);
+      ::pointer<::user::place_holder>pholder = get_pane_holder(iPane);
 
       if (pholder == nullptr)
       {

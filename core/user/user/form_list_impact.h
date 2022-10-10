@@ -50,7 +50,7 @@ namespace user
 
       //virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
-      virtual void OnActivateImpact(bool bActivate, __pointer(::user::impact) pActivateImpact, __pointer(::user::impact) pviewDeactivate) override;
+      virtual void OnActivateImpact(bool bActivate, ::pointer<::user::impact>pActivateImpact, ::pointer<::user::impact>viewDeactivate) override;
 
       virtual index _001GetCurItem() override;
 

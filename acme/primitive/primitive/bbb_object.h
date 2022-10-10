@@ -19,8 +19,8 @@ class CLASS_DECL_APEX object :
 protected:
 
 
-   __pointer(matter_array)                            m_pcompositea;
-   __pointer(matter_array)                            m_preferencea;
+   ::pointer<matter_array>                           m_pcompositea;
+   ::pointer<matter_array>                           m_preferencea;
 
 
 
@@ -85,7 +85,7 @@ public:
 
 
    template < typename BASE_TYPE >
-   __pointer(BASE_TYPE) file_as(const ::payload& payloadFile);
+   ::pointer<BASE_TYPE>file_as(const ::payload& payloadFile);
 
 
    virtual void add_procedure(const ::atom& idRoutine, const ::procedure & procedure);
@@ -201,83 +201,83 @@ public:
    //::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
    //template < typename BASE_TYPE >
-   //inline __pointer(BASE_TYPE) __create();
+   //inline ::pointer<BASE_TYPE>__create();
 
    //template < typename BASE_TYPE >
-   //inline __pointer(BASE_TYPE) __id_create(const ::atom& atom);
+   //inline ::pointer<BASE_TYPE>__id_create(const ::atom& atom);
 
    //template < typename TYPE >
-   //inline __pointer(TYPE) __create_new();
+   //inline ::pointer<TYPE>__create_new();
 
-   //inline void __compose(__composite(::image) & pimage);
+   //inline void __construct(::pointer<::image>& pimage);
 
-   //inline void __compose(__composite(::image) & pimage, ::image * pimageSource);
+   //inline void __construct(::pointer<::image>& pimage, ::image * pimageSource);
 
-   //inline void __defer_compose(__composite(::image) & pimage) { return !pimage ? __compose(pimage) : void(::success); }
+   //inline void __defer_construct(::pointer<::image>& pimage) { return !pimage ? __construct(pimage) : void(::success); }
 
    // for composition (ownership)
 
    template < typename BASE_TYPE >
-   inline void __compose(__composite(BASE_TYPE)& pusermessage);
+   inline void __construct(::pointer<BASE_TYPE> pusermessage);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline void __compose(__composite(BASE_TYPE)& pusermessage, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void __construct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline void __compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void __construct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename BASE_TYPE >
-   inline void __id_compose(__composite(BASE_TYPE)& pusermessage, const ::atom& atom);
+   inline void __id_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
 
    template < typename BASE_TYPE >
-   inline void __raw_compose(__composite(BASE_TYPE)& pusermessage);
+   inline void __raw_construct(::pointer<BASE_TYPE> pusermessage);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline void __raw_compose(__composite(BASE_TYPE)& pusermessage, const SOURCE* psource);
+   inline void __raw_construct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline void __raw_compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource);
+   inline void __raw_construct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource);
 
    template < typename TYPE >
-   inline void __raw_compose_new(__composite(TYPE)& ptype);
+   inline void __raw_construct_new(::pointer<TYPE> ptype);
 
    template < typename TYPE >
-   inline void __compose_new(__composite(TYPE)& ptype);
+   inline void __construct_new(::pointer<TYPE> ptype);
 
 
 
 
    template < typename BASE_TYPE >
-   inline void __defer_compose(__composite(BASE_TYPE)& pusermessage) { return !pusermessage ? __compose(pusermessage) : void(::success); }
+   inline void __defer_construct(::pointer<BASE_TYPE> pusermessage) { return !pusermessage ? __construct(pusermessage) : void(::success); }
 
    template < typename BASE_TYPE >
-   inline void __defer_id_compose(__composite(BASE_TYPE)& pusermessage, const ::atom& atom) { return !pusermessage ? __id_compose(pusermessage) : void(::success); }
+   inline void __defer_id_compose(::pointer<BASE_TYPE> pusermessage, const ::atom& atom) { return !pusermessage ? __id_construct(pusermessage) : void(::success); }
 
    template < typename TYPE >
-   inline void __defer_raw_compose_new(__composite(TYPE)& ptype) { return !ptype ? __raw_compose_new(ptype) : void(::success); }
+   inline void __defer_raw_compose_new(::pointer<TYPE> ptype) { return !ptype ? __raw_construct_new(ptype) : void(::success); }
 
    template < typename TYPE >
-   inline void __defer_compose_new(__composite(TYPE)& ptype) { return !ptype ? __compose_new(ptype) : void(::success); }
+   inline void __defer_construct_new(::pointer<TYPE> ptype) { return !ptype ? __construct_new(ptype) : void(::success); }
 
 
 
    //template < typename BASE_TYPE >
-   //inline void __construct(__pointer(BASE_TYPE)& pusermessage);
+   //inline void __construct(::pointer<BASE_TYPE> pusermessage);
 
    //template < typename BASE_TYPE >
-   //inline void __id_construct(__pointer(BASE_TYPE)& pusermessage, const ::atom& atom);
+   //inline void __id_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
 
    //template < typename TYPE >
-   //inline void __construct_new(__pointer(TYPE)& pusermessage);
+   //inline void __construct_new(::pointer<TYPE> pusermessage);
 
    template < typename BASE_TYPE >
-   inline void __release(__composite(BASE_TYPE)& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void __release(::pointer<BASE_TYPE> pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename BASE_TYPE >
-   inline void __release(__reference(BASE_TYPE)& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void __release(::pointer<BASE_TYPE> preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename SOURCE >
-   inline void __release(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void __release(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
    virtual void add_composite(::matter* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS) override;
@@ -290,25 +290,25 @@ public:
 
 
    template < typename BASE_TYPE >
-   inline void add_composite(__composite(BASE_TYPE)& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void add_composite(::pointer<BASE_TYPE> pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline void __refer(__reference(BASE_TYPE)& preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void __refer(::pointer<BASE_TYPE> preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline void __refer(__reference(BASE_TYPE)& preference, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void __refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline void __refer(__reference(BASE_TYPE)& preference, const ::primitive::member < SOURCE >& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void __refer(::pointer<BASE_TYPE> preference, const ::primitive::member < SOURCE >& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename SOURCE >
    inline void add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename SOURCE >
-   inline void add_reference(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void add_reference(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    template < typename SOURCE >
-   inline void add_reference(__reference(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   inline void add_reference(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
    virtual void delete_this() override;
 
@@ -360,7 +360,7 @@ public:
 
    virtual void do_request(::create* pcreate);
 
-   virtual __pointer(::extended::future < ::conversation >)  message_box(const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
+   virtual pointer< ::extended::future < ::conversation > >  message_box(const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box& emessagebox = e_message_box_ok);
    //{
    //
    //   return message_box(nullptr, pszMessage, pszTitle, emessagebox, process);
@@ -380,7 +380,7 @@ public:
 
    virtual void release_references();
 
-   virtual __pointer(::matter) running(const char* pszTag) const;
+   virtual ::pointer<::matter>running(const char* pszTag) const;
 
    virtual bool ___is_reference(::matter* pobject) const;
 
@@ -431,7 +431,7 @@ public:
    using topic::manager::defer_fork;
 
    template < typename THREAD >
-   inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread, const ::procedure & procedure)
+   inline ::pointer<THREAD> defer_fork(::pointer<THREAD>pthread, const ::procedure & procedure)
    {
 
       if (pthread && pthread->is_running())
@@ -449,7 +449,7 @@ public:
 
 
    template < typename THREAD >
-   inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread)
+   inline ::pointer<THREAD> defer_fork(::pointer<THREAD>pthread)
    {
 
       if (pthread && pthread->is_running())
@@ -470,7 +470,7 @@ public:
 
 
    //template < typename THREAD >
-   //inline __pointer(THREAD)& start(__pointer(THREAD) & pthread)
+   //inline ::pointer<THREAD> start(::pointer<THREAD> pthread)
    //{
 
    //   pthread->_start(pthread);

@@ -1,8 +1,8 @@
-﻿#pragma once
+#pragma once
 
 
-typedef __pointer_array(::matter) object_array;
-typedef map < itask_t, __pointer(task) > task_map;
+typedef pointer_array < ::matter > object_array;
+typedef map < itask_t, ::pointer<task >>task_map;
 typedef map < task *, itask_t > task_id_map;
 
 
@@ -33,7 +33,7 @@ public:
 
 #if defined(WINDOWS)
 
-   __pointer(::exception_translator)               m_pexceptiontranslator;
+   ::pointer<::exception_translator>              m_pexceptiontranslator;
 
 #endif
 
@@ -44,10 +44,10 @@ public:
    string                                          m_strTaskTag;
 
    ::element_array                                 m_elementaHold;
-   __pointer(manual_reset_event)                   m_peventInitialization;
+   ::pointer<manual_reset_event>                  m_peventInitialization;
 
    ::procedure                                     m_procedure;
-   __pointer(manual_reset_event)                   m_pevSleep;
+   ::pointer<manual_reset_event>                  m_pevSleep;
 
 #ifdef WINDOWS
    HRESULT                                         m_hresultCoInitialize;
@@ -56,7 +56,7 @@ public:
 #ifdef __DEBUG
    char *                                          m_pszDebug;
 #endif
-   __pointer(counter)                              m_pcounter;
+   ::pointer<counter>                             m_pcounter;
    ::task_pointer                                  m_ptask;
    ::procedure                                     m_procedureNext;
    ::procedure_array                               m_procedurea;
@@ -128,12 +128,12 @@ public:
 
    
 
-   __pointer(::task) branch(
+   ::pointer<::task>branch(
       ::enum_priority epriority = ::e_priority_normal,
       ::u32 nStackSize = 0,
       u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
 
-   __pointer(::task) branch_synchronously(
+   ::pointer<::task>branch_synchronously(
       ::enum_priority epriority = ::e_priority_normal,
       ::u32 nStackSize = 0,
       u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
@@ -211,7 +211,7 @@ public:
 };
 
 
-using task_array = __pointer_array(task);
+using task_array = pointer_array < task >;
 
 
 

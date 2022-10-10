@@ -53,10 +53,10 @@ inline typename PAIR::TYPE2& __value(const map_association<PAIR>& pair)
 
 
 template <  typename TYPE >
-inline __pointer(TYPE) & __value(const __pointer(TYPE) & p)
+inline ::pointer<TYPE>& __value(const ::pointer<TYPE> p)
 {
 
-   return (__pointer(TYPE) &) p;
+   return (::pointer<TYPE>&) p;
 
 }
 

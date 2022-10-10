@@ -5,11 +5,11 @@ im_post::im_post(db_server * pserver) :
    db_set(pserver, "im_post")
 {
 
-   __pointer(::sqlite::database) pdb = db()->get_database();
+   ::pointer<::sqlite::database>pdb = db()->get_database();
 
    single_lock slDatabase(pdb->mutex());
 
-   __pointer(::sqlite::dataset)  pds = (__pointer(::sqlite::dataset)) pdb->create_dataset();
+   ::pointer<::sqlite::dataset> pds = (::pointer<::sqlite::dataset>pdb->create_dataset();
 
    pdb->start_transaction();
 
@@ -43,7 +43,7 @@ im_post::~im_post()
 bool im_post::write(::payload rec)
 {
 
-   __pointer(::sqlite::database) pdb = db()->get_database();
+   ::pointer<::sqlite::database>pdb = db()->get_database();
 
    single_lock slDatabase(pdb->mutex());
 
@@ -87,7 +87,7 @@ bool im_post::write(::payload rec)
 ::payload im_post::get_since(::payload rec)
 {
 
-   __pointer(::sqlite::database) pdb = db()->get_database();
+   ::pointer<::sqlite::database>pdb = db()->get_database();
 
    single_lock slDatabase(pdb->mutex());
 
@@ -144,7 +144,7 @@ bool im_post::write(::payload rec)
    if(m_pdataserver == nullptr)
       return false;
 
-   __pointer(::sqlite::database) pdb = db()->get_database();
+   ::pointer<::sqlite::database>pdb = db()->get_database();
 
    single_lock slDatabase(pdb->mutex());
 

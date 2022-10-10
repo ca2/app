@@ -201,7 +201,7 @@ image_pointer html_data::get_image(const ::string & pszUrl)
 }
 
 
-bool html_data::contains(__pointer(::user::interaction) pinteraction)
+bool html_data::contains(::pointer<::user::interaction>pinteraction)
 {
 
    return m_pcoredata->contains(pinteraction);
@@ -209,7 +209,7 @@ bool html_data::contains(__pointer(::user::interaction) pinteraction)
 }
 
 
-bool html_data::on_create_interaction(__pointer(::user::interaction) pinteraction)
+bool html_data::on_create_interaction(::pointer<::user::interaction>pinteraction)
 {
 
    return m_pcoredata->on_create_interaction(pinteraction);
@@ -253,7 +253,7 @@ bool html_data::open_html(const ::string & str)
    return m_pcoredata->m_pform;
 }
 
-__pointer(::user::interaction) html_data::get_frame()
+::pointer<::user::interaction>html_data::get_frame()
 {
    return  (get_form()->parent_frame());
 }

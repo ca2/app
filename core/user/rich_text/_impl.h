@@ -8,7 +8,7 @@ namespace user
    {
 
       
-      inline __pointer(format) span::fork_format()
+      inline ::pointer<format> span::fork_format()
       { 
          
       

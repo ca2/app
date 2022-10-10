@@ -42,8 +42,8 @@ namespace networking_bsd
          dns_cache_item(const dns_cache_item& item);
 
 
-         virtual ::stream& write(::stream& stream) const;
-         virtual ::stream& read(::stream& stream);
+         void write(::binary_stream & stream) const override;
+         void read(::binary_stream& stream) override;
 
          dns_cache_item& operator = (const dns_cache_item& item);
 
@@ -55,7 +55,7 @@ namespace networking_bsd
       public:
 
          
-         __pointer(::networking_bsd::address)   m_paddress;
+         ::pointer<::networking_bsd::address>  m_paddress;
          string                                 m_strIpAddress;
          string                                 m_strReverse;
          ::duration                             m_durationLastChecked;
@@ -67,8 +67,8 @@ namespace networking_bsd
          reverse_cache_item();
          reverse_cache_item(const reverse_cache_item& item);
 
-         virtual ::stream& write(::stream& stream) const;
-         virtual ::stream& read(::stream& stream);
+         void write(::binary_stream & stream) const override;
+         void read(::binary_stream& stream);
 
          reverse_cache_item& operator = (const reverse_cache_item& item);
 
@@ -77,15 +77,15 @@ namespace networking_bsd
       ::mutex                                            m_mutexCache;
       ::mutex                                            m_mutexReverseCache;
       string_map < dns_cache_item >                      m_mapCache;
-      string_map < __pointer(reverse_cache_item) >       m_mapReverseCache;
-      array < __pointer(reverse_cache_item) >            m_reversecacheaRequest;
+      string_map < ::pointer<reverse_cache_item >>      m_mapReverseCache;
+      array < ::pointer<reverse_cache_item >>           m_reversecacheaRequest;
       ::task_pointer                                     m_pthreadReverse;
       ::i64                                              m_iListenSocket;
       /*::mutex m_mutexPool;*/
 
       interlocked_i32                  m_lListenSocket;
 
-      __pointer(::sockets_bsd::SSLInitializer)        m_psslinit;
+      ::pointer<::sockets_bsd::SSLInitializer>       m_psslinit;
 
       byte                             m_baTicketKey[SSL_SESSION_TICKET_KEY_SIZE];
 
@@ -99,7 +99,7 @@ namespace networking_bsd
       ::sockets_bsd::resolv_cache_t                   m_resolvcache;
       ::sockets_bsd::resolv_timeout_t                 m_resolvtimeout;
       ::mutex                          m_mutexResolvCache;
-      //__pointer(::sockets::net)        m_pnet;
+      //::pointer<::sockets::net>       m_pnet;
 #ifdef WINDOWS
       ::net::port_forward_pointer      m_pportforward;
 #endif
@@ -136,8 +136,8 @@ namespace networking_bsd
 
       virtual bool convert(struct ::in_addr& l, const string& str, i32 ai_flags = 0);
       virtual bool convert(struct ::in6_addr& l, const string& str, i32 ai_flags = 0);
-      virtual bool convert(string& str, const struct ::in_addr& ip);
-      virtual bool convert(string& str, const struct ::in6_addr& ip, bool mixed = false);
+      virtual bool convert(string& str, const struct ::in_addr& inaddr);
+      virtual bool convert(string& str, const struct ::in6_addr& inaddr6);
 
       virtual i32 in6_addr_compare(struct ::in6_addr a, struct ::in6_addr b);
 
@@ -179,13 +179,13 @@ namespace networking_bsd
       
       //i32 _select(::sockets::socket_handler * psockethandler, const class ::wait & wait) override;
 
-      __pointer(::networking::address) create_ip4_address(const ::string & strIp4, ::networking::port_t port = 0) override;
+      ::pointer<::networking::address>create_ip4_address(const ::string & strIp4, ::networking::port_t port = 0) override;
 
-      __pointer(::networking::address) create_ip6_address(const ::string & strIp6, ::networking::port_t port = 0) override;
+      ::pointer<::networking::address>create_ip6_address(const ::string & strIp6, ::networking::port_t port = 0) override;
 
-      __pointer(address) create_ip4_address(u32 u, ::networking::port_t port = 0);
+      ::pointer<address>create_ip4_address(u32 u, ::networking::port_t port = 0);
 
-      __pointer(address) create_ip6_address(void * p128bits, ::networking::port_t port = 0);
+      ::pointer<address>create_ip6_address(void * p128bits, ::networking::port_t port = 0);
 
     
 

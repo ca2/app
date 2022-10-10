@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "tree.h"
 #include "acme/platform/timer.h"
 #include "document.h"
@@ -116,7 +116,7 @@ namespace userfs
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
-//      __pointer(::message::context_menu) pcontextmenu(pmessage);
+//      ::pointer<::message::context_menu>pcontextmenu(pmessage);
       //   i32 iItem;
       //   HRESULT hr;
 //         auto point = pcontextmenu->GetPoint();
@@ -128,7 +128,7 @@ namespace userfs
          {
          CSimpleMenu* pPopup = (CSimpleMenu *) menu.GetSubMenu(0);
          ASSERT(pPopup != nullptr);
-         __pointer(::user::frame_window) pframe = top_level_frame();
+         ::pointer<::user::frame_window>pframe = top_level_frame();
 
          pframe->set_active_impact(this);
 
@@ -167,7 +167,7 @@ namespace userfs
          {
          ::user::menu* pPopup = menu.GetSubMenu(0);
          ASSERT(pPopup != nullptr);
-         __pointer(::user::frame_window) pframe = top_level_frame();
+         ::pointer<::user::frame_window>pframe = top_level_frame();
          pPopup->track_popup_menu(
          point.x, point.y,
          (::user::interaction_impl *) pframe);
@@ -228,7 +228,7 @@ namespace userfs
    }
 
 
-   void tree::_017OpenFolder(__pointer(::file::item) pitem, const ::action_context & context)
+   void tree::_017OpenFolder(::pointer<::file::item>pitem, const ::action_context & context)
    {
 
       get_document()->browse(pitem, context);

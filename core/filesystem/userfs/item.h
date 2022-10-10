@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace userfs
@@ -26,7 +26,7 @@ namespace userfs
       virtual index data_item_get_image(::object * pobject) const override;
       virtual ::image_list * data_item_get_image_list(::object * pobject) const override;
 
-      static index CompareArrangeByName(const __pointer(::data::tree_item) & pitema, const __pointer(::data::tree_item) & pitemb);
+      static index CompareArrangeByName(const ::pointer<::data::tree_item>& pitema, const ::pointer<::data::tree_item> pitemb);
       i32 get_index() const;
       bool is_folder() const;
 

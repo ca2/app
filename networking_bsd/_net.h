@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #if defined(FREEBSD)
@@ -68,56 +68,41 @@ CLASS_DECL_NETWORKING_BSD void from_string(in_addr & addr, const ansichar * psz)
 CLASS_DECL_NETWORKING_BSD ::string __string(const in_addr & addr);
 CLASS_DECL_NETWORKING_BSD ::string __string(const sockaddr_in & addr);
 CLASS_DECL_NETWORKING_BSD ::string __string(const sockaddr_in6 & addr);
-CLASS_DECL_NETWORKING_BSD void from_string(sockaddr_in & addr, const ansichar * psz);
-CLASS_DECL_NETWORKING_BSD void from_string(sockaddr_in6 & addr, const ansichar * psz);
+//CLASS_DECL_NETWORKING_BSD void from_string(sockaddr_in & addr, const ansichar * psz);
+//CLASS_DECL_NETWORKING_BSD void from_string(sockaddr_in6 & addr, const ansichar * psz);
 #ifdef BSD_STYLE_SOCKETS
 CLASS_DECL_NETWORKING_BSD ::string __string(const sockaddr & addr);
-CLASS_DECL_NETWORKING_BSD void from_string(sockaddr & addr, ansichar * psz);
+//CLASS_DECL_NETWORKING_BSD void from_string(sockaddr & addr, ansichar * psz);
 #endif
 
 
 // } // namespace str
 
 
-
-
-
-inline stream & operator <<(stream & s, const ::in6_addr & addr)
+inline binary_stream & operator <<(binary_stream & s, const ::in6_addr & addr)
 {
 
-   string str;
-
-   to_string(str, addr);
-
-   s << str;
+   s.write(&addr, sizeof(addr));
 
    return s;
 
 }
 
 
-inline stream & operator >>(stream & s, ::in6_addr & addr)
+inline binary_stream & operator >>(binary_stream & s, ::in6_addr & addr)
 {
 
-   string str;
-
-   s >> str;
-
-   from_string(addr, str);
+   s.read(&addr, sizeof(addr));
 
    return s;
 
 }
 
 
-inline stream & operator <<(stream & s, const ::in_addr & addr)
+inline binary_stream & operator <<(binary_stream & s, const ::in_addr & addr)
 {
 
-   string str;
-
-   to_string(str, addr);
-
-   s << str;
+   s.write(&addr, sizeof(addr));
 
    return s;
 
@@ -125,24 +110,20 @@ inline stream & operator <<(stream & s, const ::in_addr & addr)
 
 
 
-inline stream & operator >>(stream & s, ::in_addr & addr)
+inline binary_stream & operator >>(binary_stream & s, ::in_addr & addr)
 {
 
-   string str;
-
-   s >> str;
-
-   from_string(addr, str);
+   s.read(&addr, sizeof(addr));
 
    return s;
 
 }
 
 
-CLASS_DECL_NETWORKING_BSD u32 c_inet_addr(const char *src);
-CLASS_DECL_NETWORKING_BSD i32 c_inet_pton(i32 af,const char *src,void *dst);
-CLASS_DECL_NETWORKING_BSD const char * c_inet_ntop(i32 af,const void *src,char *dst,i32 cnt);
-CLASS_DECL_NETWORKING_BSD string c_inet_ntop(i32 af,const void *src);
+//CLASS_DECL_NETWORKING_BSD u32 c_inet_addr(const char *src);
+//CLASS_DECL_NETWORKING_BSD i32 c_inet_pton(i32 af,const char *src,void *dst);
+//CLASS_DECL_NETWORKING_BSD const char * c_inet_ntop(i32 af,const void *src,char *dst,i32 cnt);
+//CLASS_DECL_NETWORKING_BSD string c_inet_ntop(i32 af,const void *src);
 
 
 

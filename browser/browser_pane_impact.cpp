@@ -235,7 +235,7 @@ namespace browser
             for (auto & pslide : m_pimpactLastBilbo->m_prender->slideshow())
             {
 
-               __pointer(::user::check_box) pcheck = pimpact->get_child_by_id("slide" + __string(i));
+               ::pointer<::user::check_box>pcheck = pimpact->get_child_by_id("slide" + __string(i));
 
                m_checkptraBilbo.add(pcheck);
 
@@ -251,7 +251,7 @@ namespace browser
       else if (get_impact_id() == FONTSEL_IMPACT)
       {
 
-         __pointer(::user::font_list_impact) pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_impact");
+         ::pointer<::user::font_list_impact>pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_impact");
 
          if (m_pimpactLastBilbo != nullptr && pfontview.is_set())
          {
@@ -276,7 +276,7 @@ namespace browser
       if (m_pimpactdataOld != nullptr && m_pimpactdataOld->m_atom == FONTSEL_IMPACT)
       {
 
-         __pointer(::user::font_list_impact) pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_impact");
+         ::pointer<::user::font_list_impact>pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_impact");
 
          if (m_pimpactLastBilbo != nullptr && pfontview.is_set())
          {
@@ -442,7 +442,7 @@ namespace browser
 
                   int iCheck = atoi(strCheck);
 
-                  __pointer(::user::check) pcheck = ptopic->user_interaction();
+                  ::pointer<::user::check>pcheck = ptopic->user_interaction();
 
                   if (m_pimpactLastBilbo != nullptr && pcheck.is_set())
                   {

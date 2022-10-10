@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "axis/id.h"
 #include "aura/graphics/image/context_image.h"
 #include "acme/platform/hyperlink.h"
@@ -657,7 +657,7 @@ namespace html
    }
 
 
-   bool core_data::contains(__pointer(::user::interaction) pinteraction)
+   bool core_data::contains(::pointer<::user::interaction>pinteraction)
    {
 
       return m_uiptra.contains(pinteraction);
@@ -665,7 +665,7 @@ namespace html
    }
 
 
-   bool core_data::on_create_interaction(__pointer(::user::interaction) pinteraction)
+   bool core_data::on_create_interaction(::pointer<::user::interaction>pinteraction)
    {
       m_uiptra.add_unique(pinteraction);
       return true;
@@ -744,11 +744,11 @@ namespace html
 
       //payload = 3;
 
-      ::file::path pathUrl = payloadFile.get_file_path();
+      ::file::path pathUrl = payloadFile.file_path();
 
       payloadFile["url"] = pathUrl;
 
-      string strDebugUrl1 = payloadFile.get_file_path();
+      string strDebugUrl1 = payloadFile.file_path();
 
       if (m_strPathName.has_char())
       {
@@ -789,7 +789,7 @@ namespace html
 
       payloadFile["nocache"] = bNoCache;
 
-      string strDebugUrl2 = payloadFile.get_file_path();
+      string strDebugUrl2 = payloadFile.file_path();
 
       auto pcontext = get_context();
 
@@ -821,7 +821,7 @@ namespace html
 
       if (str.is_empty())
       {
-         string strCandidate = m_strPathName / payloadFile.get_file_path();
+         string strCandidate = m_strPathName / payloadFile.file_path();
          str = pcontext->m_papexcontext->file().as_string(strCandidate);
          if (str.is_empty())
          {
@@ -926,7 +926,7 @@ namespace html
    }
 
    
-   __pointer(::user::interaction) core_data::get_frame()
+   ::pointer<::user::interaction>core_data::get_frame()
    {
       
       return  (get_form()->parent_frame());

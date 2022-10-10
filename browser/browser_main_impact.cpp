@@ -106,7 +106,7 @@ namespace browser
 
       }
 
-      __pointer(::userex::top_edit_impact) peditview = get_child_by_id("top_edit_impact");
+      ::pointer<::userex::top_edit_impact>peditview = get_child_by_id("top_edit_impact");
 
       peditview->m_bParseDataPacks = true;
 

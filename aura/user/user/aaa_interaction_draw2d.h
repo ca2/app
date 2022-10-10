@@ -17,8 +17,8 @@
 //   public:
 //
 //
-//      __pointer(shape_array)                       m_pshapeaClip;
-//      __pointer(::aura::draw_context)              m_pdrawcontext;
+//      ::pointer<shape_array>                      m_pshapeaClip;
+//      ::pointer<::aura::draw_context>             m_pdrawcontext;
 //
 //      ::draw2d::path_pointer                       m_pathFocusRect1;
 //      ::draw2d::path_pointer                       m_pathFocusRect2;

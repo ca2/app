@@ -16,7 +16,7 @@
 class synchronization_object;
 
 
-using HSYNC = __pointer(synchronization_object);
+using HSYNC = ::pointer<synchronization_object>
 
 
 #define PM_NOREMOVE 0

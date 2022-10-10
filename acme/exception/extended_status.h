@@ -31,7 +31,7 @@ CLASS_DECL_ACME const char * status_short_description(const ::e_status & estatus
 //      ///   rarely queried.
 //
 //      ::e_status                      m_estatus;
-//      __pointer(::exception_array)     m_pexceptiona;
+//      ::pointer<::exception_array>    m_pexceptiona;
 //
 //
 //      status();
@@ -145,9 +145,9 @@ CLASS_DECL_ACME const char * status_short_description(const ::e_status & estatus
 //using exception_pointer = ::exception::exception_pointer;
 
 template < typename EXCEPTION >
-inline __pointer(EXCEPTION) __move_throw_exception(EXCEPTION * pexceptionNew);
+inline ::pointer<EXCEPTION>__move_throw_exception(EXCEPTION * pexceptionNew);
 
-CLASS_DECL_ACME __pointer(::exception) __trace_context_move_throw_exception(::matter * pobject, ::exception * pexceptionNew);
+CLASS_DECL_ACME ::pointer<::exception>__trace_context_move_throw_exception(::matter * pobject, ::exception * pexceptionNew);
 
 
 

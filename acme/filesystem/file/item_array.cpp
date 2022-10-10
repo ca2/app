@@ -12,14 +12,14 @@ namespace file
 
 
    item_array::item_array(const item_array & itema) :
-      __pointer_array(item)(itema)
+      pointer_array < item >(itema)
    {
 
    }
 
 
    item_array::item_array(item_array && itema) :
-      __pointer_array(item)(::move(itema))
+      pointer_array < item >(::move(itema))
    {
 
    }
@@ -146,7 +146,7 @@ namespace file
    item_array & item_array::operator = (const item_array & itema)
    {
 
-      __pointer_array(item)::operator = (itema);
+      pointer_array < item >::operator = (itema);
 
       return *this;
 
@@ -156,7 +156,7 @@ namespace file
    item_array & item_array::operator = (item_array && itema)
    {
 
-      __pointer_array(item)::operator = (::move(itema));
+      pointer_array < item >::operator = (::move(itema));
 
       return *this;
 

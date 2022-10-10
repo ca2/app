@@ -141,4 +141,4 @@
 //};
 //
 //
-//typedef __pointer(::procedure_array) procedure_array_pointer;
+//typedef ::pointer<::procedure_array>procedure_array_pointer;

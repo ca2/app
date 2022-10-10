@@ -500,7 +500,7 @@ namespace database
    }
 
 
-   __pointer(field) dataset::field_at(index n)
+   ::pointer<field>dataset::field_at(index n)
    {
 
       if (n < 0 || n >= field_count())
@@ -533,10 +533,10 @@ namespace database
    //   return -1;
    //}
 
-   __pointer(row_array) dataset::query_rows(const ::string & pszQuery)
+   ::pointer<row_array>dataset::query_rows(const ::string & pszQuery)
    {
 
-      __pointer(row_array) rows;
+      ::pointer<row_array>rows;
 
       if (!query_rows(rows, pszQuery))
       {
@@ -550,7 +550,7 @@ namespace database
    }
 
 
-   bool dataset::query_rows(__pointer(row_array) & rows, const ::string & pszQuery)
+   bool dataset::query_rows(::pointer<row_array>& rows, const ::string & pszQuery)
    {
 
       if (!query(pszQuery))
@@ -569,10 +569,10 @@ namespace database
    }
 
 
-   __pointer(payload_array) dataset::query_items(const ::string & pszQuery)
+   ::pointer<payload_array>dataset::query_items(const ::string & pszQuery)
    {
 
-      __pointer(payload_array) items;
+      ::pointer<payload_array>items;
 
       if (!query_items(items, pszQuery))
       {
@@ -586,7 +586,7 @@ namespace database
    }
 
 
-   bool dataset::query_items(__pointer(payload_array) & items, const ::string & pszQuery)
+   bool dataset::query_items(::pointer<payload_array>& items, const ::string & pszQuery)
    {
 
       if (!query(pszQuery))

@@ -25,13 +25,13 @@ namespace html
    };
 
 
-   class attribute_array : public __pointer_array(attribute)
+   class attribute_array : public pointer_array < attribute >
    {
    public:
 
 
-      __pointer(class attribute) get(atom idName);
-      __pointer(class attribute) get(atom idName) const;
+      ::pointer<class attribute> get(atom idName);
+      ::pointer<class attribute> get(atom idName) const;
       string get_value(atom idName) const;
 
 

@@ -3,7 +3,7 @@
 
 template < typename HOLDEE >
 class shape_array :
-    virtual public __pointer_array(___shape<HOLDEE>)
+    virtual public ::pointer_array < ___shape<HOLDEE> >
  {
 public:
 

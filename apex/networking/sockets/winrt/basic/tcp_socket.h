@@ -138,7 +138,7 @@ namespace sockets
 
       bool m_bCertCommonNameCheckEnabled;
 
-//         __pointer(ssl_client_context)     m_spsslclientcontext;
+//         ::pointer<ssl_client_context>    m_spsslclientcontext;
 //       string                     m_strInitSSLClientContext;
 
       /** Constructor with standard values on input/output buffers. */

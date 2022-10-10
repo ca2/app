@@ -14,11 +14,11 @@ namespace database
 
    class field;
 
-   using field_array = __pointer_array(field);
+   using field_array = pointer_array < field >;
 
    using row = payload_array;
 
-   using row_array = __pointer_array(row);
+   using row_array = pointer_array < row >;
 
    class result_set;
 

@@ -27,7 +27,7 @@ namespace browser
       double                  m_dFps;
       ::duration                    m_durationRoll;
 
-      __pointer(regex)               m_ppcre;
+      ::pointer<regex>              m_ppcre;
 
       e_effect                m_eeffect;
 
@@ -43,7 +43,7 @@ namespace browser
       ::image_pointer        m_pimage1;
       ::image_pointer        m_pimage2;
 
-      __pointer(render)              m_prender;
+      ::pointer<render>             m_prender;
 
 
       musical_tick_array                    m_tickaFrame;

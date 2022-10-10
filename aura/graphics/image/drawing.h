@@ -1,4 +1,4 @@
-// Created by CamiloSasukeThomasBorregaardSoerensen 2021-01-23 01:07
+﻿// Created by CamiloSasukeThomasBorregaardSoerensen 2021-01-23 01:07
 // This is how things starts happening, promise of Life, in a virgin Temple...
 // to be or not to be, or will it be or won't, that is the question....
 #pragma once
@@ -69,9 +69,6 @@ public:
 
 
 };
-
-
-//using image_drawing_options_pointer = __pointer(image_drawing_options);
 
 
 class CLASS_DECL_AURA image_drawing :
@@ -227,7 +224,7 @@ public:
 };
 
 
-using image_drawing_pointer = __pointer(image_drawing);
+using image_drawing_pointer = ::pointer<image_drawing>;
 
 
 

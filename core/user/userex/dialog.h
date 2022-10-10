@@ -11,14 +11,14 @@ class CLASS_DECL_CORE dialog :
 public:
 
 
-   __pointer(::form_document)             m_pformdocument;
-   __pointer(simple_frame_window)         m_pframe;
-   __pointer(::user::form_impact)           m_pform;
+   ::pointer<::form_document>            m_pformdocument;
+   ::pointer<simple_frame_window>        m_pframe;
+   ::pointer<::user::form_impact>          m_pform;
    string                                 m_strMatter;
 
 
    dialog();
-   dialog(const ::string & pszMatter, __pointer(::user::interaction) puiParent);
+   dialog(const ::string & pszMatter, ::pointer<::user::interaction>puiParent);
    virtual ~dialog();
 
    virtual void on_position_parent_frame();

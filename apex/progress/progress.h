@@ -1,4 +1,4 @@
-// Created by camilo on 2021-08-08 14:11 BRT <3ThomasBorregaardSørensen!!
+// Created by camilo on 2021-08-08 14:11 BRT <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
@@ -6,7 +6,7 @@ namespace progress
 {
 
    class CLASS_DECL_APEX progress :
-      public __pointer(::progress::real)
+      public ::pointer<::progress::real>
    {
    public:
 

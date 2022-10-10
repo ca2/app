@@ -583,7 +583,7 @@
 //// void update_session_cursor(class user::interaction_impl * puiimpl)
 //// {
 //
-////    __pointer(::ios::interaction_impl) pimpl = puiimpl;
+////    ::pointer<::ios::interaction_impl>pimpl = puiimpl;
 //
 ////    if (pimpl.is_set())
 ////    {

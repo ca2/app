@@ -30,7 +30,7 @@ namespace sockets
       resolv_socket::timeout_t                  m_resolvtimeout;
       ::mutex                                   m_mutexResolvCache;
 
-      __pointer(::sockets::net)                 m_spnet;
+      ::pointer<::sockets::net>                m_spnet;
 
 
       sockets();

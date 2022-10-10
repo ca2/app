@@ -14,7 +14,7 @@ namespace dynamic_source
    public:
 
 
-      __pointer(script_interface)      m_pinterface;
+      ::pointer<script_interface>      m_pinterface;
 
 
       script_composite();

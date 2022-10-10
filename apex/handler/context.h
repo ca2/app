@@ -25,7 +25,7 @@ public:
 };
 
 
-using context_pointer = __pointer(context);
+using context_pointer = ::pointer<context>;
 
 
 

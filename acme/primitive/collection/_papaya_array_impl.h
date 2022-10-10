@@ -66,7 +66,7 @@ namespace papaya
 
 
       //template < typename TYPE >
-      //::stream & exchange_container_as_parent(::stream & stream, const __pointer_array(TYPE) & a)
+      //::stream & exchange_container_as_parent(::stream & stream, const pointer_array < TYPE > & a)
       //{
 
       //   ::count c = a.get_count();
@@ -83,12 +83,12 @@ namespace papaya
       //   for (index i = 0; i < c; i++)
       //   {
 
-      //      auto & pitem = ((__pointer_array(TYPE) &) a).element_at_grow(i);
+      //      auto & pitem = ((pointer_array < TYPE > &) a).element_at_grow(i);
 
       //      if (!pitem)
       //      {
 
-      //         pitem = __new(TYPE(&(__pointer_array(TYPE) &)a));
+      //         pitem = __new(TYPE(&(pointer_array < TYPE > &)a));
 
       //      }
 
@@ -109,7 +109,7 @@ namespace papaya
 
 
       //template < typename TYPE, typename INITIALIZER >
-      //::stream & exchange_container(::stream & stream, INITIALIZER * pinitializer, const __pointer_array(TYPE) & a)
+      //::stream & exchange_container(::stream & stream, INITIALIZER * pinitializer, const pointer_array < TYPE > & a)
       //{
 
       //   ::count c = a.get_count();
@@ -126,14 +126,14 @@ namespace papaya
       //   for (index i = 0; i < c; i++)
       //   {
 
-      //      auto & pitem = ((__pointer_array(TYPE) &) a).element_at_grow(i);
+      //      auto & pitem = ((pointer_array < TYPE > &) a).element_at_grow(i);
 
       //      if (!pitem)
       //      {
 
       //         pinitializer->__initialize(pitem);
 
-      //         //pitem = __new(TYPE(&(__pointer_array(TYPE) &)a));
+      //         //pitem = __new(TYPE(&(pointer_array < TYPE > &)a));
 
       //      }
 
@@ -154,7 +154,7 @@ namespace papaya
 
 
       //template < typename TYPE >
-      //::stream & write_container_as_parent(::stream & stream, const __pointer_array(TYPE) & a)
+      //::stream & write_container_as_parent(::stream & stream, const pointer_array < TYPE > & a)
       //{
 
       //   ::count c = a.get_count();
@@ -259,7 +259,7 @@ namespace papaya
 
 
       //template < typename TYPE >
-      //::stream & read_container_as_parent(::stream & stream, __pointer_array(TYPE) & a)
+      //::stream & read_container_as_parent(::stream & stream, pointer_array < TYPE > & a)
       //{
 
       //   ::count c = 0;
@@ -463,7 +463,7 @@ namespace papaya
 
 
    template < class TDST, class TSRC >
-   ::count copy(__pointer_array(TDST) & dsta, const __pointer_array(TSRC) & srca)
+   ::count copy(pointer_array < TDST > & dsta, const pointer_array < TSRC > & srca)
    {
 
       ::count ca = 0;

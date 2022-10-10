@@ -12,11 +12,11 @@ namespace user
 
 
       INT_STRING *                                 m_pintstring;
-      string_map < __pointer(::user::language) >   m_languagemap;
+      string_map < ::pointer<::user::language >>  m_languagemap;
       string_array                                 m_straLang;
       string                                       m_strLang;
       string_to_string *                           m_pstringmap;
-      __pointer(::user::language)                  m_planguage;
+      ::pointer<::user::language>                 m_planguage;
 
 
       language_map();

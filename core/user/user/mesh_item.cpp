@@ -122,7 +122,7 @@ namespace user
    }
 
 
-   __pointer(::image_list) draw_mesh_subitem::get_image_list()
+   ::pointer<::image_list>draw_mesh_subitem::get_image_list()
    {
       //if(m_bListItemHover && m_pcolumn->m_pimagelistHover != nullptr)
       //if(m_bListItemHover)
@@ -161,7 +161,7 @@ namespace user
    }
 
 
-   //__pointer(::image_list) get_image_list();
+   //::pointer<::image_list>get_image_list();
    //bool draw_image();
    void draw_mesh_group::draw_group_image()
    {

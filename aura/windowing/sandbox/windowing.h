@@ -26,14 +26,14 @@ namespace sandbox_windowing
    public:
 
 
-      __pointer(::sandbox_windowing::window)          m_pwindowKeyboardFocus;
-      __pointer(::sandbox_windowing::window)          m_pwindowMouseCapture;
-      __pointer(::sandbox_windowing::window)          m_pwindowActive;
+      ::pointer<::sandbox_windowing::window>         m_pwindowKeyboardFocus;
+      ::pointer<::sandbox_windowing::window>         m_pwindowMouseCapture;
+      ::pointer<::sandbox_windowing::window>         m_pwindowActive;
 
 
-      __pointer(host_interaction)                     m_phostinteraction;
+      ::pointer<host_interaction>                    m_phostinteraction;
 
-      __pointer(::windowing::window)                  m_pwindowApplicationHost;
+      ::pointer<::windowing::window>                 m_pwindowApplicationHost;
 
       itask_t                                         m_itask;
 
@@ -64,7 +64,7 @@ namespace sandbox_windowing
       //::windowing::display* display() override;
 
 
-      virtual __pointer(::windowing::cursor) load_default_cursor(enum_cursor ecursor) override;
+      virtual ::pointer<::windowing::cursor>load_default_cursor(enum_cursor ecursor) override;
 
       ::windowing::window* new_window(::user::interaction_impl* pimpl) override;
 
@@ -96,7 +96,7 @@ namespace sandbox_windowing
       using ::windowing::windowing::get_cursor;
 
 
-      __pointer(::windowing::cursor) get_cursor(enum_cursor ecursor) override;
+      ::pointer<::windowing::cursor>get_cursor(enum_cursor ecursor) override;
 
       
       

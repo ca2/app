@@ -39,7 +39,7 @@ namespace draw2d
       };
 
 
-      __pointer(document_properties)     m_pdocumentproperties;
+      ::pointer<document_properties>    m_pdocumentproperties;
 
 
       printer();

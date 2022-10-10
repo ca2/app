@@ -58,7 +58,7 @@ namespace fs
       //if(doc.root()->get_name() != "folder")
       //   return false;
 
-      //__pointer(::xml::node) pnode = doc.get_child("folder");
+      //::pointer<::xml::node>pnode = doc.get_child("folder");
 
       //if(pnode == nullptr)
       //   return false;
@@ -135,7 +135,7 @@ namespace fs
       //if(doc.root()->get_name() != "folder")
       //   return listing = ::error_failed;
 
-      //__pointer(::xml::node) pnode = doc.root()->get_child("folder");
+      //::pointer<::xml::node>pnode = doc.root()->get_child("folder");
 
       //if(pnode != nullptr)
       //{

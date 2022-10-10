@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 inline property_object::property_object(const property_object & propertyobject) :
@@ -141,7 +141,7 @@ template < typename TYPE > inline TYPE & property_object::get_cast(const ::atom 
 }
 
 
-template < typename TYPE > inline __pointer(TYPE) property_object::cast(const ::atom & atom) const
+template < typename TYPE > inline ::pointer<TYPE>property_object::cast(const ::atom & atom) const
 {
 
    auto pproperty = find_property(atom);
@@ -168,10 +168,10 @@ inline ::payload & property_object::payload(const atom & atom)
 }
 
 
-inline bool property_object::is_true(const ::atom & atom) const
+inline bool property_object::is_true(const ::atom & atom, bool bDefault) const
 {
 
-   return m_ppropertyset && payload(atom).is_true();
+   return m_ppropertyset && payload(atom).is_true(bDefault);
 
 }
 
@@ -184,12 +184,12 @@ inline bool property_object::is_false(const ::atom& atom) const
 }
 
 
-inline bool property_object::is_true(const ::atom & atom, const ::payload & varDefault, bool bDefault = false) const
-{
-
-   return payload(atom).is_true(varDefault, bDefault);
-
-}
+//inline bool property_object::__is_true(const ::atom & atom, const ::payload & varDefault, bool bDefault = false) const
+//{
+//
+//   return payload(atom).__is_true(varDefault, bDefault);
+//
+//}
 
 
 inline ::payload & property_object::operator[](const ::atom & atom) { return payload(atom); }

@@ -53,7 +53,7 @@ void simple_list_header_control::install_message_routing(::channel * pchannel)
 void simple_list_header_control::_001OnEndTrack(::message::message * pmessage)
 {
 
-   __pointer(::message::notify) pnotify(pmessage);
+   ::pointer<::message::notify>pnotify(pmessage);
 
    get_parent()->send_message(::user::list::MESSAGE_ENDCOLUMNHEADERTRACK);
 
@@ -65,7 +65,7 @@ void simple_list_header_control::_001OnEndTrack(::message::message * pmessage)
 void simple_list_header_control::_001OnTrack(::message::message * pmessage)
 {
 
-   __pointer(::message::notify) pnotify(pmessage);
+   ::pointer<::message::notify>pnotify(pmessage);
 
    get_parent()->send_message(::user::list::MESSAGE_COLUMNHEADERTRACK);
 
@@ -77,7 +77,7 @@ void simple_list_header_control::_001OnTrack(::message::message * pmessage)
 void simple_list_header_control::on_message_create(::message::message * pmessage)
 {
 
-   __pointer(::message::create) pcreate(pmessage);
+   ::pointer<::message::create>pcreate(pmessage);
 
    pcreate->m_bRet = false;
 
@@ -87,7 +87,7 @@ void simple_list_header_control::on_message_create(::message::message * pmessage
 void simple_list_header_control::_001OnEndDrag(::message::message * pmessage)
 {
 
-   __pointer(::message::notify) pnotify(pmessage);
+   ::pointer<::message::notify>pnotify(pmessage);
 
    get_parent()->send_message(::user::list::MESSAGE_ENDCOLUMNHEADERDRAG);
 

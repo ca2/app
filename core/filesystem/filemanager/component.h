@@ -11,13 +11,13 @@ namespace filemanager
    public:
 
 
-      id_map < __composite(data) >                       m_datamap;
+      id_map < ::pointer<data >>                      m_datamap;
 
       bool                                               m_bRestoring;
 
 
-      __composite(::user::multiple_document_template)    m_pdocumenttemplateForm;
-      __composite(::user::multiple_document_template)    m_pdocumenttemplateOperation;
+      ::pointer<::user::multiple_document_template>   m_pdocumenttemplateForm;
+      ::pointer<::user::multiple_document_template>   m_pdocumenttemplateOperation;
 
       ::file::path                                       m_pathFilemanagerProject;
 
@@ -35,10 +35,10 @@ namespace filemanager
       virtual void filemanager_finalize();
 
 
-      __pointer(data) filemanager_create_data(atom atom);
+      ::pointer<data>filemanager_create_data(atom atom);
 
 
-      id_map < __composite(data) > & datamap() { return m_datamap; }
+      id_map < ::pointer<data >>& datamap() { return m_datamap; }
 
 
       void filemanager_set_data(atom idData, data * pdata);
@@ -74,7 +74,7 @@ namespace filemanager
       /// other ids? SAME BEHAVIOUR!! for that/this atom.
 
       //document * open_main(::aura::application * pappOnBehalfOf, ::atom atom = -1, ::create * pcreate = nullptr, ::fs::data * pfsdata = nullptr, callback * pcallback = nullptr);
-      //document * open_child(bool bMakeVisible = true, bool bTransparentBackground = false, __pointer(::user::interaction) puiParent = nullptr, callback * pcallback = nullptr);
+      //document * open_child(bool bMakeVisible = true, bool bTransparentBackground = false, ::pointer<::user::interaction>puiParent = nullptr, callback * pcallback = nullptr);
       data * filemanager(atom atom = FILEMANAGER_IMPACT);
       //document * get_list(atom atom);
       //document * get_folder_selection_list(atom atom);

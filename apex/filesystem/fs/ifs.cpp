@@ -174,7 +174,7 @@ bool ifs::enumerate(::file::listing & listing)
 
    //}
 
-   //__pointer(::xml::node) pnode = doc.root()->get_child("folder");
+   //::pointer<::xml::node>pnode = doc.root()->get_child("folder");
 
    //if(pnode != nullptr)
    //{

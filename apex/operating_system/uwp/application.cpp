@@ -173,7 +173,7 @@ namespace apex
    //   set_os_data(nullptr);
    //   //i32 iRet = ::application::term_instance();
 
-   //   //pointer < application_base >::destroy();
+   //   //::pointer<application_base>:destroy();
 
    //   //return iRet;
    //   //return 0;

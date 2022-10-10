@@ -65,7 +65,7 @@ namespace account
    void user_array::_get_user(::file::path pathUrl, bool bInteractive)
    {
 
-      __pointer(user) puser;
+      ::pointer<user>puser;
 
       auto psystem = m_psystem;
 
@@ -141,7 +141,7 @@ namespace account
    }
 
 
-   __pointer(user) user_array::allocate_user()
+   ::pointer<user>user_array::allocate_user()
    {
 
       return __create < user > ();
@@ -196,7 +196,7 @@ namespace account
 
       synchronouslock.unlock();
 
-      __pointer(::axis::session) psession = get_session();
+      ::pointer<::axis::session>psession = get_session();
 
       for(auto & pair : map)
       {
@@ -223,7 +223,7 @@ namespace account
    user * user_array::get_user(::file::path pathUrl, bool bFetch, bool bInteractive)
    {
 
-      __pointer(axis::session) psession = get_session();
+      ::pointer<axis::session>psession = get_session();
 
       if(pathUrl.is_empty())
       {
@@ -263,7 +263,7 @@ namespace account
    bool user_array::is_authenticated(::file::path pathUrl, bool bInteractive)
    {
 
-      __pointer(::axis::application) papp = get_app();
+      ::pointer<::axis::application>papp = get_app();
 
       auto puser = papp->get_user(pathUrl, true, bInteractive);
 

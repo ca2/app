@@ -33,7 +33,7 @@ namespace universal_windows
       iptr_to_iptr                        m_mapLong;
       ::mutex                                     m_mutexQueue;
       manual_reset_event                        m_evQueue;
-      __pointer_array(::user::message)                      m_messageaQueue;
+      pointer_array < ::user::message >                      m_messageaQueue;
 
 
       interaction_impl();
@@ -295,7 +295,7 @@ namespace universal_windows
 
       // the foreground ::user::interaction_impl applies only to top-level windows (frame windows)
       virtual bool SetForegroundWindow();
-      static __pointer(::user::interaction_impl) GetForegroundWindow();
+      static ::pointer<::user::interaction_impl>GetForegroundWindow();
 
       virtual atom SetDlgCtrlId(atom atom);
       virtual atom GetDlgCtrlId();
@@ -370,8 +370,8 @@ namespace universal_windows
       // Window Access Functions
       virtual ::user::interaction *  ChildWindowFromPoint(POINT32 point);
       virtual ::user::interaction *  ChildWindowFromPoint(POINT32 point, ::u32 nFlags);
-      static __pointer(::user::interaction_impl) FindWindow(const ::string & lpszClassName, const ::string & lpszWindowName);
-      static __pointer(::user::interaction_impl) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const ::string & lpszClass, const ::string & lpszWindow);
+      static ::pointer<::user::interaction_impl>FindWindow(const ::string & lpszClassName, const ::string & lpszWindowName);
+      static ::pointer<::user::interaction_impl>FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const ::string & lpszClass, const ::string & lpszWindow);
 
       //      virtual ::user::interaction * GetNextWindow(::u32 nFlag = GW_HWNDNEXT);
       virtual ::user::interaction *  GetTopWindow();
@@ -383,7 +383,7 @@ namespace universal_windows
       virtual ::user::interaction *  get_parent();
       using ::user::interaction_impl::SetParent;
 //      ::user::interaction *  SetParent(::user::interaction *  pWndNewParent);
-      static __pointer(::user::interaction_impl) WindowFromPoint(POINT32 point);
+      static ::pointer<::user::interaction_impl>WindowFromPoint(POINT32 point);
 
       // Alert Functions
 

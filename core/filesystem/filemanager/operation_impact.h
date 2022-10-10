@@ -34,7 +34,7 @@ namespace filemanager
       ~operation_impact() override;
 
 
-      __pointer(operation_document) get_document();
+      ::pointer<operation_document>get_document();
 
       void install_message_routing(::channel * pchannel) override;
 

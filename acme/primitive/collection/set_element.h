@@ -61,10 +61,10 @@ inline typename ELEMENT::TYPE2& __value(const set_element_item<ELEMENT>& pair)
 
 
 //template <  typename TYPE >
-//inline __pointer(TYPE) & __value(const __pointer(TYPE) & p)
+//inline ::pointer<TYPE>& __value(const ::pointer<TYPE> p)
 //{
 //
-//   return (__pointer(TYPE) &) p;
+//   return (::pointer<TYPE>&) p;
 //
 //}
 

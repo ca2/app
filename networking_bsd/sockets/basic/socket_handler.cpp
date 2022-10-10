@@ -1740,7 +1740,7 @@ end_processing_adding:
 //
 //      // check cache
 //
-//      __pointer(resolv_socket) presolvsocket = __new(resolv_socket(pbasesocket, host, port));
+//      ::pointer<resolv_socket>presolvsocket = __new(resolv_socket(pbasesocket, host, port));
 //
 //      presolvsocket->m_psockethandler = this;
 //
@@ -1777,7 +1777,7 @@ end_processing_adding:
 //
 //      // check cache
 //
-//      __pointer(resolv_socket) resolv = __new(resolv_socket(pbasesocket, host, port, true));
+//      ::pointer<resolv_socket>resolv = __new(resolv_socket(pbasesocket, host, port, true));
 //
 //      resolv->m_psockethandler = this;
 //
@@ -1812,7 +1812,7 @@ end_processing_adding:
 //
 //      // check cache
 //
-//      __pointer(resolv_socket) resolv = __new(resolv_socket(pbasesocket, a));
+//      ::pointer<resolv_socket>resolv = __new(resolv_socket(pbasesocket, a));
 //
 //      resolv->m_psockethandler = this;
 //
@@ -1847,7 +1847,7 @@ end_processing_adding:
 //
 //      // check cache
 //
-//      __pointer(resolv_socket) resolv = __new(resolv_socket(pbasesocket, a));
+//      ::pointer<resolv_socket>resolv = __new(resolv_socket(pbasesocket, a));
 //
 //      resolv->m_psockethandler = this;
 //
@@ -1960,7 +1960,7 @@ end_processing_adding:
 //   }
 
 
-   __pointer(base_socket_handler::pool_socket) socket_handler::FindConnection(i32 type, const string & protocol, ::networking::address * ad)
+   ::pointer<base_socket_handler::pool_socket>socket_handler::FindConnection(i32 type, const string & protocol, ::networking::address * ad)
    {
 
       auto pnetworking2 = __SystemNetworking(m_psystem);

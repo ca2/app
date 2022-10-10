@@ -11,7 +11,7 @@ class CLASS_DECL_ACME conversation :
 public:
 
 
-   //__pointer(::sequence < ::conversation >)           m_psequence;
+   //pointer< ::sequence < ::conversation > >           m_psequence;
    //::atom                                             m_atomResult;
 
 

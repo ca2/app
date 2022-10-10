@@ -25,10 +25,10 @@ public:
    virtual ::aura::application * application_get(const ::string & pszAppId, bool bCreate = true, bool bSynch = true, ::create * pcreate = nullptr);
 
 
-   virtual __pointer(::aura::application) instantiate_application(const ::string & pszAppId, ::create * pcreate);
-   virtual __pointer(::aura::application) create_application(const ::string & pszAppId, bool bSynch, ::create * pcreate);
-   virtual __pointer(::aura::application) create_platform(::aura::session * psession);
-   virtual __pointer(::aura::application) start_application(const ::string & pszAppId, ::create * pcreate, const ::string & strLocale, const ::string & strSchema);
+   virtual ::pointer<::aura::application>instantiate_application(const ::string & pszAppId, ::create * pcreate);
+   virtual ::pointer<::aura::application>create_application(const ::string & pszAppId, bool bSynch, ::create * pcreate);
+   virtual ::pointer<::aura::application>create_platform(::aura::session * psession);
+   virtual ::pointer<::aura::application>start_application(const ::string & pszAppId, ::create * pcreate, const ::string & strLocale, const ::string & strSchema);
 
    virtual void request_exit();
 
@@ -40,7 +40,7 @@ public:
    virtual void app_erase(::aura::application * papp);
 
 
-   __pointer(::aura::application) assert_running(const ::string & pszAppId, const ::string & strLocale, const ::string & strSchema);
+   ::pointer<::aura::application>assert_running(const ::string & pszAppId, const ::string & strLocale, const ::string & strSchema);
 
 
 };

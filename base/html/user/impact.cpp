@@ -97,7 +97,7 @@ void html_impact::on_message_context_menu(::message::message * pmessage)
 //void html_impact::on_message_set_cursor(::message::message * pmessage)
 //{
 //
-//   __pointer(::message::set_cursor) psetcursor(pmessage);
+//   ::pointer<::message::set_cursor>psetcursor(pmessage);
 //
 //   auto psession = get_session();
 //

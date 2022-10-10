@@ -1,4 +1,4 @@
-﻿// From definition.h by camilo on 2022-09-06 17:21 <3ThomasBorregaardSorensen!!
+// From definition.h by camilo on 2022-09-06 17:21 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -13,8 +13,8 @@ namespace database
 
 
       
-      __pointer(field_array)     m_pfielda;
-      __pointer(row_array)       m_prowa;
+      ::pointer<field_array>    m_pfielda;
+      ::pointer<row_array>      m_prowa;
 
       ::count                    m_iMaxRowCount;
       ::count                    m_iMaxColumnCount;

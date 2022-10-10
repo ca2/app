@@ -52,7 +52,7 @@ namespace turboc
    void lite_impact::on_message_create(signal_details * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       pcreate->previous();
 

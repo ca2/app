@@ -77,7 +77,7 @@ namespace user
       POSITION pos = m_templateptra.get_head_position();
       for (i32 nTemplateIndex = 1; pos != nullptr; nTemplateIndex++)
       {
-      __pointer(impact_system) ptemplate = (__pointer(impact_system))m_templateptra.get_next(pos);
+      ::pointer<impact_system>ptemplate = (::pointer<impact_system>_templateptra.get_next(pos);
 
       string strFilterExt, strFileTypeId, strFileTypeName;
       if (ptemplate->GetDocString(strFileTypeId,
@@ -167,7 +167,7 @@ namespace user
       POSITION pos = m_templateptra.get_head_position();
       for (i32 nTemplateIndex = 1; pos != nullptr; nTemplateIndex++)
       {
-      __pointer(impact_system) ptemplate = (__pointer(impact_system))m_templateptra.get_next(pos);
+      ::pointer<impact_system>ptemplate = (::pointer<impact_system>_templateptra.get_next(pos);
 
       string strOpenCommandLine = strPathName;
       string strPrintCommandLine = strPathName;
@@ -313,7 +313,7 @@ namespace user
 
    /*
    __STATIC void _::aura::AppendFilterSuffix(string & filter, OPENFILENAME& ofn,
-   __pointer(impact_system) ptemplate, string* pstrDefaultExt)
+   ::pointer<impact_system>ptemplate, string* pstrDefaultExt)
    {
    ENSURE_VALID(ptemplate);
    ASSERT_KINDOF(impact_system, ptemplate);
@@ -430,7 +430,7 @@ namespace user
       ::count count = m_templateptra.get_count();
       for(index index = 0; index < count; index++)
       {
-         __pointer(::user::impact_system) ptemplate = m_templateptra[index];
+         ::pointer<::user::impact_system>ptemplate = m_templateptra[index];
          ASSERT_KINDOF(::user::impact_system, ptemplate);
          if (!ptemplate->save_all_modified())
             return false;
@@ -448,7 +448,7 @@ namespace user
       for(index index = 0; index < count; index++)
       {
 
-         __pointer(::user::impact_system) ptemplate = m_templateptra[index];
+         ::pointer<::user::impact_system>ptemplate = m_templateptra[index];
 
          ASSERT_KINDOF(::user::impact_system, ptemplate);
 
@@ -469,7 +469,7 @@ namespace user
       for(index index = 0; index < count; index++)
       {
 
-         __pointer(::user::impact_system) ptemplate = m_templateptra[index];
+         ::pointer<::user::impact_system>ptemplate = m_templateptra[index];
 
          ASSERT_KINDOF(::user::impact_system, ptemplate);
 
@@ -505,7 +505,7 @@ namespace user
       ::count count = m_templateptra.get_count();
       for(index index = 0; index < count; index++)
       {
-         __pointer(::user::impact_system) ptemplate = m_templateptra[index];
+         ::pointer<::user::impact_system>ptemplate = m_templateptra[index];
          nCount += ptemplate->get_document_count();
       }
       return nCount;
@@ -518,7 +518,7 @@ namespace user
 
       /*string strCommand = pszCommand;
 
-      __pointer(::user::document) pDoc = nullptr;
+      ::pointer<::user::document>pDoc = nullptr;
 
       // open format is "[open("%s")]" - no whitespace allowed, one per line
       // print format is "[print("%s")]" - no whitespace allowed, one per line
@@ -560,7 +560,7 @@ namespace user
       if (cmdInfo.m_nShellCommand == command_line::FileOpen)
       {
       // show the application window
-      __pointer(::user::interaction) pMainWnd = psystem->m_puiMain;
+      ::pointer<::user::interaction>pMainWnd = psystem->m_puiMain;
       edisplay edisplay = psystem->m_nCmdShow;
       if (nCmdShow == -1 || nCmdShow == SW_SHOWNORMAL)
       {
@@ -681,7 +681,7 @@ namespace user
    return;
    }
 
-   __pointer(impact_system) ptemplate = (__pointer(impact_system))m_templateptra.first();
+   ::pointer<impact_system>ptemplate = (::pointer<impact_system>_templateptra.first();
    if (m_templateptra.get_count() > 1)
    {
    // more than one document template to choose from
@@ -703,7 +703,7 @@ namespace user
    {
       // prompt the ::account::user (with all document templates)
 
-      __pointer(::create) pcreate(e_create, this);
+      ::pointer<::create>pcreate(e_create, this);
 
       if (!do_prompt_file_name(pcreate->m_payloadFile, "" /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, true, nullptr, nullptr))
          return; // open cancelled
@@ -725,7 +725,7 @@ namespace user
       for(index index = 0; index < count; index++)
       {
 
-         __pointer(::user::impact_system) ptemplate = (__pointer(::user::impact_system)) m_templateptra[index];
+         ::pointer<::user::impact_system>ptemplate = m_templateptra[index];
 
          ASSERT_VALID(ptemplate);
 
@@ -744,7 +744,7 @@ namespace user
       //   ::count count = m_templateptra.get_count();
       //   for(index index = 0; index < count; index++)
       //   {
-      //      __pointer(::user::impact_system) ptemplate = m_templateptra[index];
+      //      ::pointer<::user::impact_system>ptemplate = m_templateptra[index];
       //      dumpcontext << "\ntemplate " << ::hex::lower_from((::iptr)ptemplate.m_p);
       //   }
       //   dumpcontext << "}";
@@ -770,7 +770,7 @@ namespace user
 
       ::user::impact_system::Confidence bestMatch = ::user::impact_system::noAttempt;
 
-      __pointer(::user::impact_system) pBestTemplate;
+      ::pointer<::user::impact_system>pBestTemplate;
 
       ::user::document * pOpenDocument = nullptr;
 
@@ -803,7 +803,7 @@ namespace user
 
       for(index index = 0; index < count; index++)
       {
-         __pointer(::user::impact_system) ptemplate = m_templateptra[index];
+         ::pointer<::user::impact_system>ptemplate = m_templateptra[index];
          ASSERT_KINDOF(::user::impact_system, ptemplate);
 
          ::user::impact_system::Confidence match;
@@ -932,7 +932,7 @@ namespace user
 //
 //   //   ASSERT(papp->m_pdocmanager != nullptr);
 //
-//   //   __pointer(::create) cc(e_create);
+//   //   ::pointer<::create>cc(e_create);
 //
 //   //   cc->m_pcommandline->m_payloadFile = pszFileName;
 //

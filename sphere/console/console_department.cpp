@@ -44,7 +44,7 @@ namespace console
    void department::pre_translate_message(::message::message * pmessage)
    {
 
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
 
       if(pusermessage != nullptr)
       {
@@ -77,7 +77,7 @@ namespace console
    void department::_001OnImpact(::message::message * pmessage)
    {
 
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
 
 
       bool bShow = pmessage->m_wparam & 1;

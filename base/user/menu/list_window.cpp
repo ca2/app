@@ -169,7 +169,7 @@ namespace user
 
       }
 
-      __pointer(menu_item) pitem = get_menu_item();
+      ::pointer<menu_item>pitem = get_menu_item();
 
       if(pitem == nullptr)
       {

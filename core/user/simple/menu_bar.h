@@ -21,14 +21,14 @@ class CLASS_DECL_CORE simple_menu_bar :
 public:
 
 
-   __pointer(::image_list)             m_pimagelist;
-   __pointer(::image_list)             m_pimagelistDisabled;
+   ::pointer<::image_list>            m_pimagelist;
+   ::pointer<::image_list>            m_pimagelistDisabled;
    i32_spreadset *                     m_prel;
    bool                                m_bTracking;
    index                               m_iTracking;
    ::u32                                m_uResourceId;
    index                               m_iTopMenuCount;
-   __composite(::user::menu)           m_pmenu;
+   ::pointer<::user::menu>          m_pmenu;
 
 
    simple_menu_bar();
@@ -75,12 +75,12 @@ protected:
 
    //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
    bool ReloadMenuBar();
-   virtual void OnUpdateCmdUI(__pointer(::user::frame_window) pTarget, bool bDisableIfNoHndler);
+   virtual void OnUpdateCmdUI(::pointer<::user::frame_window>pTarget, bool bDisableIfNoHndler);
    void RemoveAllButtons();
 
    bool Initialize(
-   __pointer(::image_list) imagelist,
-   __pointer(::image_list) imagelistDisabled,
+   ::pointer<::image_list>imagelist,
+   ::pointer<::image_list>imagelistDisabled,
    ::i32_spreadset * prel,
    ::write_text::font * pfont);
 

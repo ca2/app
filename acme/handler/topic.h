@@ -19,9 +19,9 @@ public:
    ::item_pointer                         m_pitem;
    ::user::enum_key                       m_ekey;
    ::action_context                       m_actioncontext;
-   __pointer(::property_object)           m_psender;
-   __pointer(::user::element)             m_puserelement; // user::interaction
-   __pointer(::matter)                    m_pmatter;
+   ::pointer<::property_object>          m_psender;
+   ::pointer<::user::element>            m_puserelement; // user::interaction
+   ::pointer<::matter>                   m_pmatter;
 
 
    topic(const ::atom & atom) : 

@@ -343,7 +343,7 @@ namespace user
       //for(i32 i = 0; i < doc.root()->get_children_count(); i++)
       //{
 
-      //   __pointer(::xml::node) pnode = doc.root()->child_at(i);
+      //   ::pointer<::xml::node>pnode = doc.root()->child_at(i);
 
       //   if(pnode->get_name().compare_ci("item") == 0)
       //   {
@@ -418,7 +418,7 @@ namespace user
    //}
 
 
-   //void keyboard::process_escape(__pointer(::xml::node) pnode, property_set & set)
+   //void keyboard::process_escape(::pointer<::xml::node>pnode, property_set & set)
    //{
    //   m_playout->process_escape(pnode, set);
    //}

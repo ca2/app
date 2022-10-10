@@ -12,8 +12,8 @@ namespace datetime
    public:
 
       
-      __pointer(scanner)                        m_pscanner;
-      __pointer_array(::datetime::element)      m_elementa;
+      ::pointer<scanner>                       m_pscanner;
+      pointer_array < ::datetime::element >      m_elementa;
 
 
       parser();

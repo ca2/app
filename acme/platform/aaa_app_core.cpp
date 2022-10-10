@@ -1103,7 +1103,7 @@ bool app_core::has_apex_application_factory() const
 #endif
 
 
-__pointer(::acme::application) app_core::new_app()
+::pointer<::acme::application>app_core::new_app()
 {
 
    //if(::acme::application::g_p)
@@ -1120,7 +1120,7 @@ __pointer(::acme::application) app_core::new_app()
 
    }
 
-   __pointer(::acme::application) papp;
+   ::pointer<::acme::application>papp;
 
    papp = m_pfnnewmatterApplication();
 

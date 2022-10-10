@@ -638,8 +638,8 @@ namespace file
    void file::as(memory_base & memory)
    {
 
-      auto fileLen = get_size();
-      if(fileLen > 100000000000000)
+      auto left = get_left();
+      if(left > 100000000000000)
       {
 
          int i = 1;
@@ -650,14 +650,14 @@ namespace file
 
       }
 
-      memory.set_size((memsize)fileLen);
+      memory.set_size((memsize)left);
 
       auto readBytes = read(memory.get_data(), memory.length());
 
-      if(readBytes != fileLen)
+      if(readBytes != left)
       {
          
-         throw ::file::exception(error_io, {e_error_code_type_unknown, 0}, m_path, "readBytes != fileLen");
+         throw ::file::exception(error_io, {e_error_code_type_unknown, 0}, m_path, "readBytes != left");
          
       }
 

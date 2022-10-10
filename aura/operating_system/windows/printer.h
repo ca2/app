@@ -21,7 +21,7 @@ namespace windows
          HDC            m_hdc;
 
 
-         document_properties(__pointer(base_application) papp);
+         document_properties(::pointer<base_application>papp);
          virtual ~document_properties();
 
 
@@ -36,7 +36,7 @@ namespace windows
       document_properties     m_documentproperties;
 
 
-      printer(__pointer(base_application) papp);
+      printer(::pointer<base_application>papp);
       virtual ~printer();
 
 

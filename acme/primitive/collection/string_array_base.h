@@ -183,12 +183,12 @@ public:
    void trim_right();
    void trim_left();
    void trim();
+   
    ::index add_unique(const RawString & pcsz);
-
-   ::count add_unique(const string_array_base & stra);
    ::index add_unique_ci(const RawString & pcsz);
 
-   ::count add_unique_ci(const string_array_base & stra);
+   ::count append_unique(const string_array_base & stra);
+   ::count append_unique_ci(const string_array_base & stra);
 
    void make_lower();
    void make_upper();
@@ -1828,7 +1828,7 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
-::count string_array_base < Type, RawType, t_etypePayload > ::add_unique(const string_array_base & stra)
+::count string_array_base < Type, RawType, t_etypePayload > ::append_unique(const string_array_base & stra)
 {
 
    ::count count = 0;
@@ -1870,7 +1870,7 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
-::count string_array_base < Type, RawType, t_etypePayload > ::add_unique_ci(const string_array_base & stra)
+::count string_array_base < Type, RawType, t_etypePayload > ::append_unique_ci(const string_array_base & stra)
 {
 
    ::count count = 0;

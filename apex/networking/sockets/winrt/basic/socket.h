@@ -20,7 +20,7 @@ namespace sockets
 
       friend class base_socket_handler;
 
-      __pointer(base_socket_handler)   m_phandler; ///< Reference of base_socket_handler in control of this socket
+      ::pointer<base_socket_handler>  m_phandler; ///< Reference of base_socket_handler in control of this socket
 
       static SOCKET           s_socketNextIdSeed;
       static socket_map       s_mapSocket;

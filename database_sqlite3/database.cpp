@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "database.h"
 #include "axis/database/database/result_set.h"
 #include "axis/database/database/exception.h"
@@ -42,7 +42,7 @@ namespace sqlite
    }
 
 
-   //__pointer(::database::dataset) database::dataset()
+   //::pointer<::database::dataset>database::dataset()
    //{
 
    //   return __new(class dataset(this));
@@ -181,7 +181,7 @@ namespace sqlite
    }
 
 
-   __pointer(::database::result_set) database::query_result(const ::string & pszQuery, ::count iRowCount,
+   ::pointer<::database::result_set>database::query_result(const ::string & pszQuery, ::count iRowCount,
                                                             ::count iColumnCount)
    {
 
@@ -200,7 +200,7 @@ namespace sqlite
 
       m_strLastError.Empty();
 
-      __pointer(::database::result_set) presultset = __new(::database::result_set());
+      ::pointer<::database::result_set>presultset = __new(::database::result_set());
 
       char * errmsg = nullptr;
 
@@ -236,7 +236,7 @@ namespace sqlite
    }
 
 
-   __pointer(::database::result_set) database::query(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
+   ::pointer<::database::result_set>database::query(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
    {
 
       return query_result(pszQuery, iRowCount, iColumnCount);
@@ -268,7 +268,7 @@ namespace sqlite
    }
 
 
-   ___pointer<class payload_array> database::query_row(const ::string & psz)
+   ::pointer<class payload_array> database::query_row(const ::string & psz)
    {
 
       return ::database::database_impl::query_row(psz);
@@ -284,7 +284,7 @@ namespace sqlite
    }
 
 
-   __pointer(payload_array) database::query_items(const ::string & psz)
+   ::pointer<payload_array>database::query_items(const ::string & psz)
    {
 
       return ::database::database_impl::query_items(psz);
@@ -325,7 +325,7 @@ namespace sqlite
    }
 
 
-   __pointer(__pointer_array(payload_array)) database::query_rows(const ::string & psz)
+   pointer< pointer_array < payload_array > > database::query_rows(const ::string & psz)
    {
 
       return ::database::database_impl::query_rows(psz);

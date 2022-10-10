@@ -40,7 +40,7 @@ menu_shared::~menu_shared()
 }
 
 
-__pointer(menu_shared) create_menu_shared(::object * pobject, const string_array & straParent, const string_array & straMenu, const string_array & straId)
+::pointer<menu_shared>create_menu_shared(::object * pobject, const string_array & straParent, const string_array & straMenu, const string_array & straId)
 {
 
    int iCount = (int) straParent.get_count();
@@ -54,7 +54,7 @@ __pointer(menu_shared) create_menu_shared(::object * pobject, const string_array
 
    }
 
-   __pointer(menu_shared) pmenushared = ::move_transfer(memory_new menu_shared);
+   ::pointer<menu_shared>pmenushared = ::move_transfer(memory_new menu_shared);
 
    pmenushared->m_iCount = iCount;
    pmenushared->m_ppszParent = alloc_c_string_array(straParent);

@@ -27,7 +27,7 @@ namespace interprocess_communication
    }
 
 
-   void rx::receiver::on_interprocess_receive(rx * prx, __pointer(class dispatch_item) && pdispatchitem)
+   void rx::receiver::on_interprocess_receive(rx * prx, ::pointer<class dispatch_item> && pdispatchitem)
    {
 
       if (pdispatchitem->is_text_message())
@@ -418,7 +418,7 @@ namespace interprocess_communication
       }
 
 
-      void rx::dispatch_item(__pointer(class dispatch_item) && pdispatchitem)
+      void rx::dispatch_item(::pointer<class dispatch_item> && pdispatchitem)
       {
 
          synchronous_lock synchronouslock(&m_mutexDispatch);

@@ -79,10 +79,10 @@ namespace userex
             //cc.m_pCurrentDoc = get_document();
             //cc.m_typeNewImpact = __type(::user::menu_list_impact);
 
-            __pointer(::user::impact) pimpact = create_impact < ::user::impact > ();
+            ::pointer<::user::impact>pimpact = create_impact < ::user::impact > ();
             if(pimpact != nullptr)
             {
-//               __pointer(::user::menu_list_impact) pmenuview = (__pointer(::user::menu_list_impact)) pimpact;
+//               ::pointer<::user::menu_list_impact>pmenuview = (::pointer<::user::menu_list_impact>pimpact;
    /* xxx           xml::node node(this);
                node.load(pcontext->m_papexcontext->file().as_string(pcontext->m_papexcontext->dir().matter(
                   "mplite_popup_lyricview.xml")));
@@ -102,7 +102,7 @@ namespace userex
    void pane_impact::set_menu_info(atom atom, const ::string & pszMatter, ::atom idCommand)
    {
 
-      __pointer(menu) pmenu;
+      ::pointer<menu>pmenu;
 
       for(i32 i = 0; i < m_menua.get_size(); i++)
       {

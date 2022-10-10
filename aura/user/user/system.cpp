@@ -130,14 +130,14 @@ namespace user
    }
 
 
-   __pointer(::user::interaction) system::create_impact(::user::interaction * puserinteractionParent, const ::atom & atom)
+   ::pointer<::user::interaction>system::create_impact(::user::interaction * puserinteractionParent, const ::atom & atom)
    {
 
       ASSERT(m_typeNewImpact || m_puserprimitiveNew != nullptr);
 
       auto papp = puserinteractionParent->get_app();
 
-      __pointer(::user::interaction) pinteraction;
+      ::pointer<::user::interaction>pinteraction;
 
       //::e_status estatus = ::success;
 
@@ -150,7 +150,7 @@ namespace user
       else
       {
 
-         __pointer(::object) pobject = m_pdocumentCurrent;
+         ::pointer<::object>pobject = m_pdocumentCurrent;
 
          if(pobject.is_null())
          {
@@ -204,7 +204,7 @@ namespace user
       pinteraction->signal(id_initial_update);
       
 
-//      __pointer(::user::impact) pimpact = pinteraction;
+//      ::pointer<::user::impact>pimpact = pinteraction;
 //
 //      if (pimpact.is_set())
 //      {

@@ -83,7 +83,7 @@ namespace user
       if (pcreate->m_atom.is_null())
       {
 
-         pcreate->m_atom = m_typeImpact.m_strName;
+         pcreate->m_atom = m_typeImpact;
 
       }
 
@@ -104,12 +104,12 @@ namespace user
       }
 
       //bool bMakeVisible = pcreate->payload("make_visible_boolean") || pcreate->m_bMakeVisible;
-      //   __pointer(::user::interaction) puserinteractionParent = pcreate->payload("parent_user_interaction").cast < ::user::interaction > ();
-      //   __pointer(::user::impact) pviewAlloc = pcreate->payload("allocation_impact").cast < ::user::impact > ();
+      //   ::pointer<::user::interaction>puserinteractionParent = pcreate->payload("parent_user_interaction").cast < ::user::interaction > ();
+      //   ::pointer<::user::impact>pviewAlloc = pcreate->payload("allocation_impact").cast < ::user::impact > ();
 
-      __pointer(::user::document) pdocument;
+      ::pointer<::user::document>pdocument;
 
-      __pointer(::user::frame_window) pFrame;
+      ::pointer<::user::frame_window>pFrame;
 
       bool bCreated = false;      // => doc and frame created
 

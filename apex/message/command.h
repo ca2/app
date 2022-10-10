@@ -18,11 +18,11 @@ namespace message
    public:
 
 
-      __pointer(::channel)                        m_pcommandtargetSource;
+      ::pointer<::channel>                       m_pcommandtargetSource;
       atom                                           m_atomControl;     // menu item or other index
       index                                        m_iIndex;
       ::count                                      m_iCount;        // last + 1 for iterating m_iIndex
-      __pointer_array(::channel)                   m_commandtargetptraHandle;
+      pointer_array < ::channel >                   m_commandtargetptraHandle;
 
       bool                                         m_bEnable;
       enum_check                                   m_echeck; // m_bCheckChanged is similar to m_echeck != undefined
@@ -37,7 +37,7 @@ namespace message
       // if a popup sub menu - ID is for first in popup
 
       // if from some other interaction_impl
-      __pointer(::user::command_update_target)     m_puiOther;         // nullptr if a menu or not a interaction_impl
+      ::pointer<::user::command_update_target>    m_puiOther;         // nullptr if a menu or not a interaction_impl
 
       bool                                         m_bEnableChanged;
       bool                                         m_bHasCommandHandler;
@@ -60,8 +60,8 @@ namespace message
 
 
       virtual void enable(bool bOn = true, const ::action_context & action_context = ::e_source_system);
-      virtual void _001SetCheck(bool bCheck = true, const ::action_context & action_context = ::e_source_system);   // true or false
-      virtual void _001SetCheck(enum_check echeck, const ::action_context & action_context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
+      //virtual void _001SetCheck(bool bCheck = true, const ::action_context & action_context = ::e_source_system);   // true or false
+      virtual void _001SetCheck(const ::e_check & echeck, const ::action_context & action_context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
       virtual void SetRadio(bool bOn = true, const ::action_context & action_context = ::e_source_system);
       virtual void SetText(const char * pszText, const ::action_context & action_context = ::e_source_system);
 

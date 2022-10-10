@@ -181,7 +181,8 @@ public:
 
 
    template < typename T >
-   inline __pointer(T)& defer_get(__pointer(T)& pointer) { return pointer = cast < T >(); }
+   inline ::pointer< T >& defer_get(::pointer< T >& pointer) { return pointer = cast < T >(); }
+
 
 };
 

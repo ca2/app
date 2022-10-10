@@ -22,7 +22,7 @@
 //#include <openssl/err.h>
 
 
-//typedef string ( *SALT)(__pointer(::aura::application), const ::string & , string_array &);
+//typedef string ( *SALT)(::pointer<::aura::application> const ::string & , string_array &);
 
 namespace hi5
 {
@@ -107,7 +107,7 @@ namespace hi5
 
          }
 
-         __pointer(::create) pcreate(e_create, this);
+         ::pointer<::create>pcreate(e_create, this);
 
          auto psystem = m_psystem->m_paurasystem;
 
@@ -122,7 +122,7 @@ namespace hi5
          if(m_pdocument == nullptr)
             return;
 
-         __pointer(user::tab_impact) ptabimpact = m_pdocument->get_typed_impact < user::tab_impact >();
+         ::pointer<user::tab_impact>ptabimpact = m_pdocument->get_typed_impact < user::tab_impact >();
          m_ptabimpact = ptabimpact;
 
          auto pimpactkit = ptabimpact->get_impact_kit();
@@ -200,7 +200,7 @@ namespace hi5
 
          //::html::impl::text * ptext = dynamic_cast < ::html::impl::text * > (pelemental->m_pimpl);
 
-         ////__pointer(::user::interaction) ptext = m_pformdocumentAuth->get_html_data()->get_child_by_id("authorization_link");
+         ////::pointer<::user::interaction>ptext = m_pformdocumentAuth->get_html_data()->get_child_by_id("authorization_link");
 
          //ptext->m_strLink = "ext://" + m_strAuthorizationUrl;
 
@@ -226,7 +226,7 @@ namespace hi5
 
          rectangleOpen.top = iHeight * 2 / 3;
 
-         //__pointer(::user::frame_window) pframe = m_pviewAuth->get_parent_frame();
+         //::pointer<::user::frame_window>pframe = m_pviewAuth->get_parent_frame();
 
          //if(pframe != nullptr)
          //{

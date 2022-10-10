@@ -56,7 +56,7 @@ public:
 
 
 class CLASS_DECL_ACME predicate_array :
-   virtual public array < __pointer(predicate_holder_base) >
+   virtual public array < ::pointer<predicate_holder_base >>
 {
 public:
 

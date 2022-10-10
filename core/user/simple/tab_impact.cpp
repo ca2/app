@@ -59,7 +59,7 @@ void simple_tab_impact::get_client_rect(RECTANGLE_I32 * prectangle)
 void simple_tab_impact::on_message_create(::message::message * pmessage)
 {
 
-   __pointer(::message::create) pcreate(pmessage);
+   ::pointer<::message::create>pcreate(pmessage);
 
    if(pcreate->previous())
       return;

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "data.h"
 #include "document.h"
 #include "aura/graphics/image/image.h"
@@ -135,12 +135,12 @@ namespace filemanager
    bool data::open(::apex::application * pappOnBehalfOfParam, ::file::path path, const ::action_context & context)
    {
 
-      __pointer(::core::application) pappOnBehalfOf = pappOnBehalfOfParam;
+      ::pointer<::core::application>pappOnBehalfOf = pappOnBehalfOfParam;
 
       if (::is_null(m_pdocument))
       {
 
-         __pointer(::user::interaction) puiParent = m_puserinteractionParent;
+         ::pointer<::user::interaction>puiParent = m_puserinteractionParent;
 
          bool bMakeVisible = m_bMakeVisible;
 
@@ -207,7 +207,7 @@ namespace filemanager
             if (::is_set(pappOnBehalfOf))
             {
 
-               __pointer(::filemanager::callback) pcallback = pappOnBehalfOf;
+               ::pointer<::filemanager::callback>pcallback = pappOnBehalfOf;
 
                if (::is_set(pcallback))
                {
@@ -273,7 +273,7 @@ namespace filemanager
 
       string strPath;
 
-      __pointer(::core::application) papp = pobject->get_app();
+      ::pointer<::core::application>papp = pobject->get_app();
 
       auto pcontext = m_pcontext;
 
@@ -354,7 +354,7 @@ namespace filemanager
 
       string strPath(path);
 
-      __pointer(::core::application) papp = pobject->get_app();
+      ::pointer<::core::application>papp = pobject->get_app();
 
       if (::str().begins(path, "uifs://")
          || ::str().begins(path, "fs://"))

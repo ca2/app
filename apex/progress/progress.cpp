@@ -1,4 +1,4 @@
-// Created by camilo on 2021-08-08 14:11 BRT <3ThomasBorregaardSørensen!!
+﻿// Created by camilo on 2021-08-08 14:11 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "apex/user/primitive.h"
 
@@ -16,7 +16,7 @@ namespace progress
 
       auto pprogress = papp->m_papexapplication->show_progress(puserinteractionTopLevel, strTitle, iStepCount);
 
-      ___pointer<::progress::real>::operator =(pprogress);
+      ::pointer<::progress::real>::operator =(pprogress);
 
    }
 

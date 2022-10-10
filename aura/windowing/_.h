@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 01/01/2021. 6:52 BRT <3Tbs, Mummi and bilbo!!
 //
 // created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
@@ -47,9 +47,11 @@ namespace windowing
 
    };
 
+   
    DECLARE_ENUMERATION(e_status, enum_status);
 
-   using display_map = iptr_map < __pointer(display) >;
+   
+   using display_map = iptr_map < ::pointer<display > >;
 
 
    class menu_item;

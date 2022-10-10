@@ -460,7 +460,7 @@ void nano_window_bridge::on_char(int iChar)
 void nano_window_bridge::_on_draw_frame(CGContextRef cg, CGSize sizeFrame)
 {
    
-   __pointer(quartz2d::nano_device) pnanodevice = __new(quartz2d::nano_device(cg));
+   ::pointer<quartz2d::nano_device>pnanodevice = __new(quartz2d::nano_device(cg));
    
    m_pwindow->_draw(pnanodevice);
    

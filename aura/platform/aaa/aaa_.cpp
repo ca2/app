@@ -9,7 +9,7 @@
 
 #endif
 
-//extern string_map < __pointer(::acme::library) >* g_pmapLibrary;
+//extern string_map < ::pointer<::acme::library >> g_pmapLibrary;
 
 //extern ::mutex* ::aura::get_system()->m_mutexLibrary;
 
@@ -211,7 +211,7 @@ void __post_quit_message(i32 nExitCode)
 }
 
 
-//string_map < __pointer(::acme::library) >* g_pmapLibrary = nullptr;
+//string_map < ::pointer<::acme::library >> g_pmapLibrary = nullptr;
 //string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary = nullptr;
 
 
@@ -226,7 +226,7 @@ CLASS_DECL_AURA string_map < PFN_NEW_AURA_LIBRARY >& __get_new_aura_library()
 }
 
 
-CLASS_DECL_AURA string_map < __pointer(::acme::library) >& __library()
+CLASS_DECL_AURA string_map < ::pointer<::acme::library >> __library()
 {
 
    return ::aura::get_system()->m_mapLibrary;
@@ -511,7 +511,7 @@ CLASS_DECL_AURA void load_factory_library(string strLibrary)
 
    synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
-   __pointer(::acme::library)& plibrary = ::aura::get_system()->m_mapLibrary[strLibrary];
+   ::pointer<::acme::library> plibrary = ::aura::get_system()->m_mapLibrary[strLibrary];
 
    if (!plibrary)
    {

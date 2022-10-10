@@ -112,13 +112,13 @@ namespace user
       if (bEnable)
       {
 
-         __compose_new(m_ppictureimpl);
+         __construct_new(m_ppictureimpl);
 
       }
       else
       {
 
-         __release(m_ppictureimpl);
+         m_ppictureimpl.release();
 
       }
 

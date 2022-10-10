@@ -160,7 +160,7 @@ namespace user
 
       initial_frame_placement();
 
-      __pointer(::aura::application) papp = get_app();
+      ::pointer<::aura::application>papp = get_app();
 
       string strCaption = papp->get_app_user_friendly_task_bar_name();
 

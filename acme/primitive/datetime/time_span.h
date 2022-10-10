@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace earth
@@ -40,7 +40,7 @@ namespace earth
 
       }
 
-      
+      DECLARE_COMPARISON_WITH_DURATION
    };
 
 

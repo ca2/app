@@ -53,7 +53,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-      //__pointer(::message::show_window) pshowwindow(pmessage);
+      //::pointer<::message::show_window>pshowwindow(pmessage);
 
       //bool bIsWindowVisible = pshowwindow->m_bShow;
 
@@ -61,7 +61,7 @@ namespace user
 
       //split_layout::Pane * pcomponent;
 
-      //__pointer(::user::interaction) puserinteraction;
+      //::pointer<::user::interaction>puserinteraction;
 
       //i32 i;
 
@@ -487,7 +487,7 @@ namespace user
 
       split_layout::Pane * pcomponent;
 
-      __pointer(::user::interaction) puserinteraction;
+      ::pointer<::user::interaction>puserinteraction;
 
       ::u32 uBaseFlags = SWP_NOZORDER;
 
@@ -696,7 +696,7 @@ namespace user
 
       }
 
-      __pointer(::user::place_holder) pholder = ppane->m_pholder;
+      ::pointer<::user::place_holder>pholder = ppane->m_pholder;
 
       if (pholder == nullptr)
       {
@@ -1257,7 +1257,7 @@ namespace user
    }
 
 
-   __pointer(::user::place_holder) split_layout::get_pane_holder(index iPane)
+   ::pointer<::user::place_holder>split_layout::get_pane_holder(index iPane)
    {
 
       ASSERT(iPane >= 0);
@@ -1276,10 +1276,10 @@ namespace user
    }
 
 
-   __pointer(::user::interaction) split_layout::get_pane_window(index iPane)
+   ::pointer<::user::interaction>split_layout::get_pane_window(index iPane)
    {
 
-      __pointer(::user::place_holder) pholder = get_pane_holder(iPane);
+      ::pointer<::user::place_holder>pholder = get_pane_holder(iPane);
 
       if (pholder == nullptr)
       {

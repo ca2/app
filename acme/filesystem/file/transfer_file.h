@@ -11,10 +11,10 @@ namespace file
    public:
 
 
-      __pointer(::file::timeout_file)       m_pointimeoutfile;
-      __pointer(memory_base)     m_pmemory;
-      __pointer(::memory_file)        m_pmemoryfileIn;
-      __pointer(::memory_file)        m_pmemoryfileOut;
+      ::pointer<::file::timeout_file>      m_pointimeoutfile;
+      ::pointer<memory_base>    m_pmemory;
+      ::pointer<::memory_file>       m_pmemoryfileIn;
+      ::pointer<::memory_file>       m_pmemoryfileOut;
       ::mutex                        m_spmutex;
 
 

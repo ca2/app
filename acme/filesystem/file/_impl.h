@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //template < typename TYPE >
@@ -223,7 +223,7 @@
 //
 //
 //template < typename TYPE >
-//inline binary_stream & operator <<(binary_stream & s, const __pointer_array(TYPE) & a)
+//inline binary_stream & operator <<(binary_stream & s, const pointer_array < TYPE > & a)
 //{
 //
 //   ::count c = a.get_count();
@@ -259,7 +259,7 @@
 //
 //
 //template < typename TYPE >
-//inline binary_stream & operator >>(binary_stream & s, __pointer_array(TYPE) & a)
+//inline binary_stream & operator >>(binary_stream & s, pointer_array < TYPE > & a)
 //{
 //
 //   ::count c = 0;
@@ -299,7 +299,7 @@
 //
 //
 ////template < typename TYPE >
-////void binary_stream::write_array_2d(const __pointer_array(TYPE) & a)
+////void binary_stream::write_array_2d(const pointer_array < TYPE > & a)
 ////{
 ////
 ////   if (is_storing())
@@ -353,7 +353,7 @@
 ////      for (; i < c; i++)
 ////      {
 ////
-////         __pointer(TYPE) pmatter;
+////         ::pointer<TYPE>pmatter;
 ////
 ////         pmatter->alloc(this);
 ////
@@ -466,7 +466,7 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //
 //
 //template < typename BASE_TYPE >
-//__pointer(BASE_TYPE) __load_object(binary_stream & binary_stream)
+//::pointer<BASE_TYPE>__load_object(binary_stream & binary_stream)
 //{
 //
 //   string strText;
@@ -493,7 +493,7 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //
 //   }
 //
-//   __pointer(matter) p = binary_stream.create_object_from_text(strText);
+//   ::pointer<matter>p = binary_stream.create_object_from_text(strText);
 //
 //   if (!p)
 //   {
@@ -608,7 +608,7 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 ////}
 ////
 ////template < typename TYPE >
-////inline void __io(property_set & set, const __pointer(TYPE) & p)
+////inline void __io(property_set & set, const ::pointer<TYPE>& p)
 ////{
 ////
 ////   ((TYPE *) p.m_p)->exchange(set[atom].propset());
@@ -617,7 +617,7 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 ////
 ////
 ////template < typename TYPE >
-////inline void __io(property_set & set, __pointer(TYPE) & p)
+////inline void __io(property_set & set, ::pointer<TYPE>& p)
 ////{
 ////
 ////   p->exchange(set[atom].propset());
@@ -755,7 +755,7 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 ////}
 //
 ////
-////__pointer(::matter) payload_stream::read_object(const ::atom & atom)
+////::pointer<::matter>payload_stream::read_object(const ::atom & atom)
 ////{
 ////   payload_stream binary_stream(memory_new ::payload(&payload()[atom].propset()));
 ////   ::atom idFactory;

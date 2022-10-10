@@ -149,8 +149,8 @@ namespace http
    public:
 
 
-      __pointer(::sockets::socket_handler)         m_phandler;
-      __pointer(::sockets::http_client_socket)     m_psocket;
+      ::pointer<::sockets::socket_handler>        m_phandler;
+      ::pointer<::sockets::http_client_socket>    m_psocket;
 
 
       // session(::object* pobject);

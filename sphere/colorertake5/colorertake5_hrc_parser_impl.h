@@ -62,14 +62,14 @@ namespace colorertake5
       void loadFileType(file_type *filetype);
 
       void parseHRC(const ::string & psz);
-      void addPrototype(__pointer(::xml::node)elem);
-      void addType(__pointer(::xml::node)elem);
+      void addPrototype(::pointer<::xml::node>lem);
+      void addType(::pointer<::xml::node>lem);
 
-      void addScheme(__pointer(::xml::node)elem);
-      void addSchemeNodes(scheme_impl *scheme, __pointer(::xml::node)elem);
+      void addScheme(::pointer<::xml::node>lem);
+      void addSchemeNodes(scheme_impl *scheme, ::pointer<::xml::node>lem);
 
-      void loadBlockRegions(SchemeNode *node, __pointer(::xml::node)el);
-      void loadRegions(SchemeNode *node, __pointer(::xml::node)el, bool st);
+      void loadBlockRegions(SchemeNode *node, ::pointer<::xml::node>l);
+      void loadRegions(SchemeNode *node, ::pointer<::xml::node>l, bool st);
 
       string qualifyOwnName(const ::string &name);
       bool checkNameExist(const ::string &name, file_type_impl *parseType, QualifyNameType qntype, bool logErrors);
@@ -77,7 +77,7 @@ namespace colorertake5
 
       void updateLinks();
       string useEntities(const ::string & name);
-      class region *getNCRegion(__pointer(::xml::node)el, const ::string & tag);
+      class region *getNCRegion(::pointer<::xml::node>l, const ::string & tag);
       class region *getNCRegion(const ::string &name, bool logErrors);
 
 

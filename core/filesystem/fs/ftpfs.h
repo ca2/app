@@ -35,7 +35,7 @@ public:
 
    string_array                     m_straFtpServer;
 
-   __composite(ftpnet)              m_pftpnet;
+   ::pointer<ftpnet>             m_pftpnet;
 
 
 

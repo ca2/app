@@ -59,7 +59,7 @@ namespace user
    //}
 
 
-   //__pointer(class control_descriptor) form_control::new_form_control()
+   //::pointer<class control_descriptor> form_control::new_form_control()
    //{
 
    //   auto pdescriptor = __new(::user::control_descriptor());
@@ -105,7 +105,7 @@ namespace user
 
       ::atom atom(first_u16(wparam));
 
-      __pointer(::user::interaction) pinteraction = get_child_by_id(atom);
+      ::pointer<::user::interaction>pinteraction = get_child_by_id(atom);
 
       if (!pinteraction)
       {
@@ -234,7 +234,7 @@ namespace user
       //{
       //case CBN_SELCHANGE:
       //{
-      //   /* linux         __pointer(::user::combo_box) pcombo = (__pointer(::user::combo_box)) get_child_by_id(pinteraction->m_atom);
+      //   /* linux         ::pointer<::user::combo_box>pcombo = (::pointer<::user::combo_box>get_child_by_id(pinteraction->m_atom);
       //   i32 iSel = pcombo->current_item();
       //   if(iSel != CB_ERR)
       //   {
@@ -447,7 +447,7 @@ namespace user
       if (ptopic->m_atom == ::id_tab_key)
       {
 
-         __pointer(::user::primitive) pfocus = ptopic->user_interaction()->keyboard_get_next_focusable();
+         ::pointer<::user::primitive>pfocus = ptopic->user_interaction()->keyboard_get_next_focusable();
 
          if (pfocus != nullptr)
          {
@@ -460,7 +460,7 @@ namespace user
       else if (ptopic->m_atom == ::id_click)
       {
 
-         __pointer(interaction) pinteraction = ptopic->user_interaction();
+         ::pointer<interaction>pinteraction = ptopic->user_interaction();
 
          if (::is_null(pinteraction))
          {
@@ -495,7 +495,7 @@ namespace user
       else if (ptopic->m_atom == ::id_set_check && ptopic->m_actioncontext.is_user_source())
       {
 
-         __pointer(interaction) pinteraction = ptopic->user_interaction();
+         ::pointer<interaction>pinteraction = ptopic->user_interaction();
 
          if (!pinteraction)
          {
@@ -509,7 +509,7 @@ namespace user
 
             int_array ia;
 
-            __pointer(::database::client) pclient = pinteraction;
+            ::pointer<::database::client>pclient = pinteraction;
 
             if (pclient.is_null())
             {
@@ -522,7 +522,7 @@ namespace user
 
             pclient->data_get(pinteraction->m_datakey, ia);
 
-            __pointer(check) pcheck = ptopic->user_interaction();
+            ::pointer<check>pcheck = ptopic->user_interaction();
 
             if (pcheck->echeck() == ::e_check_checked)
             {
@@ -674,7 +674,7 @@ namespace user
       iptr iSel = pinteraction->GetComboBox()->m_dwaData.find_first((u32) i);
       if(iSel >= 0)
       {
-      __pointer(::user::combo_box) pcombo = (__pointer(::user::combo_box)) get_child_by_id(pinteraction->m_atom);
+      ::pointer<::user::combo_box>pcombo = (::pointer<::user::combo_box>get_child_by_id(pinteraction->m_atom);
       pcombo->set_current_item(iSel);
       }
       }*/
@@ -769,7 +769,7 @@ namespace user
    void form_control::_000OnPosCreate(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-      //      __pointer(::user::message) pusermessage(pmessage);
+      //      ::pointer<::user::message>pusermessage(pmessage);
    }
 
    void form_control::_001InitializeFormPreData()
@@ -795,7 +795,7 @@ namespace user
    bool form_control::_001GetData(atom uId,bool &bData)
    {
 
-      __pointer(::user::interaction) pinteraction = get_child_by_id(uId);
+      ::pointer<::user::interaction>pinteraction = get_child_by_id(uId);
 
       if(pinteraction == nullptr)
       {
@@ -823,7 +823,7 @@ namespace user
    bool form_control::_001SetData(atom uId,bool bData)
    {
 
-      __pointer(::user::interaction) pinteraction = get_child_by_id(uId);
+      ::pointer<::user::interaction>pinteraction = get_child_by_id(uId);
 
       if(pinteraction == nullptr)
       {
@@ -900,7 +900,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-      __pointer(::message::notify) pnotify(pmessage);
+      ::pointer<::message::notify>pnotify(pmessage);
 
       pnotify->m_bRet = false;
 
@@ -916,7 +916,7 @@ namespace user
    void form_control::_001OnMessageNotify(::message::message * pmessage)
    {
 
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
 
       // revamp pusermessage->set_lresult(user::NotifyRetContinue);
 
@@ -1080,7 +1080,7 @@ namespace user
    void form_control::_001OnAppLanguage(::message::message * pmessage)
    {
 
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
 
       __keep(m_bOnLanguageChange);
 
@@ -1094,7 +1094,7 @@ namespace user
    void form_control::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pmessagecreate(pmessage);
+      ::pointer<::message::create>pmessagecreate(pmessage);
 
       auto pcreate = (::create *) pmessagecreate->get_create();
 
@@ -1142,7 +1142,7 @@ namespace user
       pinteraction->GetComboBox()->m_datakeyFill,
       0, 0,
       ::payload);
-      __pointer(::user::combo_box) pcombo = (__pointer(::user::combo_box)) pinteraction->m_puserinteraction;
+      ::pointer<::user::combo_box>pcombo = (::pointer<::user::combo_box>pinteraction->m_puserinteraction;
       pcombo->reset_content();
       string str;
       for(i32 i = 0; i < pinteraction->GetComboBox()->m_wstra.get_size(); i++)
@@ -1217,7 +1217,7 @@ namespace user
    //   //   return false;
    //   //}
 
-   ///*   __pointer(object) pobject;
+   ///*   ::pointer<object>pobject;
 
    //   __id_construct(pobject, pdescriptor->m_type);
 
@@ -1230,7 +1230,7 @@ namespace user
 
    //   }
 
-   //   __pointer(interaction) pinteraction = pobject;
+   //   ::pointer<interaction>pinteraction = pobject;
 
    //   if(!pinteraction)
    //   {
@@ -1411,7 +1411,7 @@ namespace user
    //   if(ptopic->m_atom == ::id_tab_key)
    //   {
 
-   //      __pointer(::user::primitive) pfocus = ptopic->user_interaction()->keyboard_get_next_focusable();
+   //      ::pointer<::user::primitive>pfocus = ptopic->user_interaction()->keyboard_get_next_focusable();
 
    //      if(pfocus != nullptr)
    //      {
@@ -1424,7 +1424,7 @@ namespace user
    //   else if(ptopic->m_atom == ::id_click)
    //   {
 
-   //      __pointer(interaction) pinteraction = ptopic->user_interaction();
+   //      ::pointer<interaction>pinteraction = ptopic->user_interaction();
 
    //      if (::is_null(pinteraction))
    //      {
@@ -1459,7 +1459,7 @@ namespace user
    //   else if(ptopic->m_atom == ::id_set_check && ptopic->m_actioncontext.is_user_source())
    //   {
 
-   //      __pointer(interaction) pinteraction = ptopic->user_interaction();
+   //      ::pointer<interaction>pinteraction = ptopic->user_interaction();
 
    //      if (!pinteraction)
    //      {
@@ -1473,7 +1473,7 @@ namespace user
 
    //         int_array ia;
 
-   //         __pointer(::database::client) pclient = pinteraction;
+   //         ::pointer<::database::client>pclient = pinteraction;
 
    //         if (pclient.is_null())
    //         {
@@ -1486,7 +1486,7 @@ namespace user
 
    //         pclient->data_get(pinteraction->m_datakey, ia);
 
-   //         __pointer(check) pcheck = ptopic->user_interaction();
+   //         ::pointer<check>pcheck = ptopic->user_interaction();
 
    //         if(pcheck->echeck() == ::e_check_checked)
    //         {
@@ -1730,7 +1730,7 @@ namespace user
 
    void form_control::_001OnUser123(::message::message * pmessage)
    {
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
 
 #ifdef WINDOWS_DESKTOP
 

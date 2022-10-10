@@ -2552,7 +2552,7 @@ namespace draw2d_opengl
 //
 //      glFlush();
 //
-//      __pointer(bitmap) b = m_pbitmap;
+//      ::pointer<bitmap>b = m_pbitmap;
 //
 //      b->defer_reveal();
 //
@@ -2586,7 +2586,7 @@ namespace draw2d_opengl
 //   bool image::print_window(::aura::draw_interface * puserinteraction,::message::message * pmessage)
 //   {
 //
-//      __pointer(::user::message) pusermessage(pmessage);
+//      ::pointer<::user::message>pusermessage(pmessage);
 //
 //      if(pusermessage->m_wparam == nullptr)
 //         return false;

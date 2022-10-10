@@ -4,7 +4,7 @@
 class sync_future;
 
 
-inline __pointer(sync_future) __sync_future();
+inline ::pointer<sync_future>__sync_future();
 
 
 
@@ -13,7 +13,7 @@ class CLASS_DECL_ACME sync_future :
 {
 protected:
 
-   friend __pointer(sync_future) __sync_future();
+   friend ::pointer<sync_future>__sync_future();
 
    sync_future()
    {
@@ -25,7 +25,7 @@ public:
 
 
    ::payload                                    m_var;
-   __pointer(manual_reset_event)          m_peventCompletion;
+   ::pointer<manual_reset_event>         m_peventCompletion;
 
 
    virtual ~sync_future() {}
@@ -52,7 +52,7 @@ public:
 };
 
 
-inline __pointer(sync_future) __sync_future()
+inline ::pointer<sync_future>__sync_future()
 {
 
    return __new(sync_future);

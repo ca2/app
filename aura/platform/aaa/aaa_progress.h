@@ -76,7 +76,7 @@ public:
 
 
 class CLASS_DECL_AURA progress :
-   public __pointer(::progress_control)
+   public ::pointer<::progress_control>
 {
 public:
 

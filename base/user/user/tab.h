@@ -57,14 +57,14 @@ namespace user
 
 
       enum_state                       m_estate;
-      __pointer(tab_data)              m_pdata;
-      __pointer(::draw2d::graphics_extension)     m_pdcextension;
+      ::pointer<tab_data>             m_pdata;
+      ::pointer<::draw2d::graphics_extension>    m_pdcextension;
       bool                             m_bDisableSavingRestorableTabs;
       bool                             m_bShowTabs;
       bool                             m_bNoTabs;
       ::item_pointer                   m_pitemClick;
       ::write_text::font_pointer           m_pfontTab;
-      //__pointer(::create)              m_pcreate;
+      //::pointer<::create>             m_pcreate;
       ::count                          m_iRestoredTabCount;
       bool                             m_bDrawTabAtBackground;
       ::tristate                     m_bitLastShowTabs;

@@ -15,7 +15,7 @@ namespace write_text
       bool                                            m_bTrueType : 1;
       bool                                            m_bOther : 1;
       int                                             m_iUpdateId;
-      __pointer(font_enumeration_item_array)          m_pfontenumerationitema;
+      ::pointer<font_enumeration_item_array>         m_pfontenumerationitema;
       bool                                            m_bUpdating;
       manual_reset_event                              m_eventReady;
 
@@ -51,7 +51,7 @@ namespace write_text
       //double font_similarity(const ::string & pszSystem, const ::string & pszUser);
 
 
-      virtual __pointer(font_enumeration_item) similar_font(const ::string & psz);
+      virtual ::pointer<font_enumeration_item>similar_font(const ::string & psz);
       virtual void adapt_font_name(string & str);
       virtual bool has_font_name(const string& str);
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/id.h"
 #include "node.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
@@ -20,10 +20,13 @@ CLASS_DECL_ACME void trace_category_static_term();
 static ::acme::system * g_psystem = nullptr;
 
 
-extern const char8_t * g_pszTopLevelDomainList[];
+extern const char * g_pszTopLevelDomainList[];
 
 
 enum_dialog_result message_box_for_console(const char * psz, const char * pszTitle, const ::enum_message_box & emessagebox);
+
+
+
 
 
 namespace acme
@@ -33,6 +36,7 @@ namespace acme
    system::system()
    {
 
+      m_psubsystem = ::subsystem::get();
 
 #ifdef PARALLELIZATION_PTHREAD
 #if defined(__APPLE__)
@@ -111,7 +115,7 @@ namespace acme
 
       trace_category_static_term();
 
-      m_mapLibrary4.clear();
+      //m_mapLibrary4.clear();
 
       //::acme::del(m_psystemimpl);
 
@@ -245,7 +249,7 @@ namespace acme
    }
 
 
-   __pointer(::factory::factory) & system::node_factory()
+   ::pointer<::factory::factory>& system::node_factory()
    {
 
       auto & pfactory = factory("acme", OPERATING_SYSTEM_NAME);
@@ -269,7 +273,7 @@ namespace acme
       
       ::acme::idpool::init(this);
 
-      __compose_new(m_pdatetime);
+      __construct_new(m_pdatetime);
 
       m_pnode->m_htaskSystem = m_htask;
 
@@ -291,7 +295,7 @@ namespace acme
 
       // }
 
-      //estatus = __compose(m_pacmenode);
+      //estatus = __construct(m_pacmenode);
 
       //if (!m_pacmenode)
       //{
@@ -300,9 +304,9 @@ namespace acme
 
       //}
 
-      //auto estatus = __raw_compose(m_pacmedirectory);
+      //auto estatus = __raw_construct(m_pacmedirectory);
 
-      __raw_compose(m_pacmedirectory);
+      __raw_construct(m_pacmedirectory);
 
       /*if (!estatus)
       {
@@ -315,9 +319,9 @@ namespace acme
 
       //    m_pacmedirectory->increment_reference_count();
 
-         //estatus = __raw_compose(m_pacmefile);
+         //estatus = __raw_construct(m_pacmefile);
 
-      __raw_compose(m_pacmefile);
+      __raw_construct(m_pacmefile);
 
       //if (!estatus)
       //{
@@ -326,9 +330,9 @@ namespace acme
 
       //}
 
-      //estatus = __raw_compose(m_pacmepath);
+      //estatus = __raw_construct(m_pacmepath);
 
-      __raw_compose(m_pacmepath);
+      __raw_construct(m_pacmepath);
 
       //if (!estatus)
       //{
@@ -642,7 +646,7 @@ namespace acme
    }
 
 
-   //__pointer(::extended::sequence < ::conversation >) system::message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
+   //pointer< ::extended::sequence < ::conversation > > system::message_box(::user::interaction * puserinteraction, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
    //{
 
    //   auto psequence = __new(::sequence < ::conversation >);
@@ -902,7 +906,7 @@ namespace acme
    }
 
 
-   __pointer(::acme::library) system::create_library(const ::string & strLibrary)
+   ::pointer<::acme::library>system::create_library(const ::string & strLibrary)
    {
 
 #ifdef CUBE
@@ -955,7 +959,7 @@ namespace acme
    }
 
 
-   __pointer(::acme::library) & system::library(const ::string & str)
+   ::pointer<::acme::library>& system::library(const ::string & str)
    {
 
       // Ex. "audio" (library)
@@ -967,11 +971,11 @@ namespace acme
 
       }
 
-      synchronous_lock synchronouslock(&m_mutexLibrary4);
+      synchronous_lock synchronouslock(&m_psubsystem->m_mutexLibrary4);
 
       string strLibrary = library_filter(str);
 
-      auto & plibrary = m_mapLibrary4[strLibrary];
+      auto & plibrary = m_psubsystem->m_mapLibrary4[strLibrary];
 
       if (plibrary)
       {
@@ -987,7 +991,7 @@ namespace acme
    }
 
 
-   //__pointer(::acme::library)& system::library(const ::string& strComponent, const ::string& strImplementationParam)
+   //::pointer<::acme::library> system::library(const ::string& strComponent, const ::string& strImplementationParam)
    //{
 
    //   string strImplementation(strImplementationParam);
@@ -1012,7 +1016,7 @@ namespace acme
    //}
 
 
-   __pointer(::factory::factory) & system::factory(const ::string & strComponent, const ::string & strImplementation)
+   ::pointer<::factory::factory>& system::factory(const ::string & strComponent, const ::string & strImplementation)
    {
       
       synchronous_lock synchronouslock(&m_mutexComponentFactory);
@@ -1064,7 +1068,7 @@ namespace acme
    }
 
 
-   __pointer(::factory::factory) & system::impact_factory(const ::string & strComponent, const ::string & strImplementation)
+   ::pointer<::factory::factory>& system::impact_factory(const ::string & strComponent, const ::string & strImplementation)
    {
       
       synchronous_lock synchronouslock(&m_mutexComponentFactory);
@@ -1098,7 +1102,7 @@ namespace acme
    }
 
 
-   __pointer(::factory::factory) & system::factory(const ::string & strLibraryRequest)
+   ::pointer<::factory::factory>& system::factory(const ::string & strLibraryRequest)
    {
 
       synchronous_lock synchronouslock(&m_mutexFactory);
@@ -1161,7 +1165,7 @@ namespace acme
    }
 
 
-   //__pointer(::acme::library) & system::library(const ::string & strComponent, const ::string & strImplementation)
+   //::pointer<::acme::library>& system::library(const ::string & strComponent, const ::string & strImplementation)
    //{
 
    //   // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
@@ -1197,7 +1201,7 @@ namespace acme
    //}
 
 
-   //__pointer(::acme::library) system::open_containerized_component_library(const ::string & pszComponent, const ::string & pszImplementation)
+   //::pointer<::acme::library>system::open_containerized_component_library(const ::string & pszComponent, const ::string & pszImplementation)
    //{
 
    //   // Ex. "draw2d" (Component) and implementation: either "draw2dcairo", "cairo", "draw2d_cairo"
@@ -1227,7 +1231,7 @@ namespace acme
 
    //   synchronous_lock synchronouslock(&psystem->m_mutexContainerizedLibrary);
 
-   //   __pointer(::acme::library) plibrary = psystem->m_mapContainerizedLibrary[strComponent][strImplementation];
+   //   ::pointer<::acme::library>plibrary = psystem->m_mapContainerizedLibrary[strComponent][strImplementation];
 
    //   if (plibrary && plibrary->is_opened())
    //   {
@@ -1442,7 +1446,7 @@ namespace acme
    }
 
 
-   __pointer(::regular_expression::context) system::get_regular_expression_context(const ::string & pszStyle)
+   ::pointer<::regular_expression::context>system::get_regular_expression_context(const ::string & pszStyle)
    {
 
       __defer_construct_new(m_pmapRegularExpressionContext);
@@ -1478,7 +1482,7 @@ namespace acme
    }
 
 
-   __pointer(::regular_expression::context) system::get_pcre_context()
+   ::pointer<::regular_expression::context>system::get_pcre_context()
    {
 
       return get_regular_expression_context("pcre2");
@@ -1508,7 +1512,7 @@ namespace acme
       while (*psz != nullptr)
       {
 
-         string str(psz);
+         string str(*psz);
 
          auto iStart = str.find('(');
 
@@ -1768,7 +1772,7 @@ namespace acme
    }
 
 
-   __pointer(::factory::factory) & system::folder_factory()
+   ::pointer<::factory::factory>& system::folder_factory()
    {
 
       if (m_pfactoryFolder)
@@ -2016,7 +2020,7 @@ namespace acme
    void system::compress(::file::file * pfileOut, ::file::file * pfileIn, const char * pszImplementation)
    {
 
-      __pointer(::compress) pcompress;
+      ::pointer<::compress>pcompress;
 
       /*auto estatus =*/ new_compress(&pcompress.m_p, pszImplementation);
 
@@ -2044,7 +2048,7 @@ namespace acme
    void system::uncompress(::file::file * pfileOut, ::file::file * pfileIn, const char * pszImplementation)
    {
 
-      __pointer(::uncompress) puncompress;
+      ::pointer<::uncompress>puncompress;
 
       /*auto estatus = */ new_uncompress(&puncompress.m_p, pszImplementation);
 
@@ -2086,7 +2090,7 @@ namespace acme
    }
 
 
-   __pointer(::sequencer < ::conversation >) system::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+   pointer< ::sequencer < ::conversation > > system::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
    {
 
       auto psequencer = m_pnode->create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails);
@@ -2096,7 +2100,7 @@ namespace acme
    }
 
    
-   __pointer(::sequencer < ::conversation >) system::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+   pointer< ::sequencer < ::conversation > > system::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
    {
 
       auto psequencer = m_pnode->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails);
@@ -2105,7 +2109,7 @@ namespace acme
 
    }
 
-   //__pointer(::sequencer < ::conversation >) system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+   //pointer< ::sequencer < ::conversation > > system::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
    //{
    //
    //   auto psequencer = create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails);
@@ -2116,10 +2120,10 @@ namespace acme
    //
    //}
 
-   __pointer(::acme::application) system::new_app(const char * pszAppId)
+   ::pointer<::acme::application>system::new_app(const char * pszAppId)
    {
 
-      __pointer(::acme::application) papp;
+      ::pointer<::acme::application>papp;
 
       string strAppId = pszAppId;
 
@@ -2539,7 +2543,7 @@ void system_on_open_file(void * pSystem, const char * pszFile)
 }
 
 
-__pointer(::acme::system) platform_create_system(const char * pszAppId)
+::pointer<::acme::system>platform_create_system(const char * pszAppId)
 {
 
    string strAppId(pszAppId);
@@ -2606,7 +2610,7 @@ __pointer(::acme::system) platform_create_system(const char * pszAppId)
 
    }
 
-   __pointer(::acme::system) psystem = pelement;
+   ::pointer<::acme::system>psystem = pelement;
 
    if (!psystem)
    {

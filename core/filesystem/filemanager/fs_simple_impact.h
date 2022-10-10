@@ -26,10 +26,10 @@ namespace filemanager
          public:
 
 
-            __composite(tree)             m_ptree;
+            ::pointer<tree>            m_ptree;
             ::user::tree *                m_pusertree;
 
-            __pointer(list_impact)          m_plist;
+            ::pointer<list_impact>         m_plist;
             ::object *                    m_prequestinterface;
 
 

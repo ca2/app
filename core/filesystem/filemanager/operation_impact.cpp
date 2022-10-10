@@ -74,14 +74,14 @@ namespace filemanager
       MESSAGE_LINK(e_message_destroy,pchannel,this,&operation_impact::on_message_destroy);
    }
 
-   __pointer(operation_document) operation_impact::get_document()
+   ::pointer<operation_document>operation_impact::get_document()
    {
       return  (::user::impact::get_document());
    }
 
    void operation_impact::_001OnMainPostMessage(::message::message * pmessage)
    {
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
       if(pusermessage->m_wparam == e_main_post_file_operation)
       {
          m_pinfoview->OnFileOperationStep((i32)pusermessage->m_lparam,false);

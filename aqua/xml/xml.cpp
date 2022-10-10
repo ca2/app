@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "xml.h"
 #include "edit.h"
 #include "entity.h"
@@ -100,7 +100,7 @@ namespace xml
    }
 
    
-   //__pointer(::xml::document) xml::create_document()
+   //::pointer<::xml::document>xml::create_document()
    //{ 
    //   
    //   auto pxmldocument = __create_new < ::xml::document >(); 

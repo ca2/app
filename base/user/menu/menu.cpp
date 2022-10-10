@@ -255,26 +255,17 @@ namespace user
    }
 
 
-   bool menu::load_xml_menu(const ::payload & varXml)
+   bool menu::load_xml_menu(const ::payload & payload)
    {
 
       m_psystem->m_paquasystem->_xml();
-
-      auto strXml = m_pcontext->m_papexcontext->file().as_string(varXml);
-
-      if (strXml.is_empty())
-      {
-
-         return false;
-
-      }
 
       auto pxmldocument = __create_new < ::xml::document >();
 
       try
       {
 
-         pxmldocument->load(strXml);
+         pxmldocument->load(payload);
 
       }
       catch(const ::exception & exception)
@@ -296,7 +287,7 @@ namespace user
    void menu::on_message_show_window(::message::message * pmessage)
    {
 
-      __pointer(::message::show_window) pshow(pmessage);
+      ::pointer<::message::show_window>pshow(pmessage);
 
       if (pshow->m_bShow)
       {
@@ -519,7 +510,7 @@ namespace user
 
             m_pitemClose->m_pmenu = this;
 
-            __pointer(::user::interaction) pinteraction = m_pitemClose->m_puserinteraction;
+            ::pointer<::user::interaction>pinteraction = m_pitemClose->m_puserinteraction;
 
             pinteraction = create_menu_button(pgraphics, m_pitemClose);
 
@@ -536,7 +527,7 @@ namespace user
 
          }
 
-         __pointer(::user::button) pbutton = m_pitemClose->m_puserinteraction;
+         ::pointer<::user::button>pbutton = m_pitemClose->m_puserinteraction;
 
          if (pbutton)
          {
@@ -684,9 +675,9 @@ namespace user
 
       m_dHeaderHeight = dMaxHeight;
 
-      __pointer(::user::menu_item) pitem = get_menu_item();
+      ::pointer<::user::menu_item>pitem = get_menu_item();
 
-      __pointer(::user::menu_item_ptra) pmenuitema = pitem->m_pmenuitema;
+      ::pointer<::user::menu_item_ptra>pmenuitema = pitem->m_pmenuitema;
 
       auto rectangleMargin = get_margin(pstyle);
 
@@ -789,7 +780,7 @@ namespace user
 
       ::count iItemCount = pmenuitema->get_size();
 
-      __pointer(::base::style) pbasestyle = pstyle;
+      ::pointer<::base::style>pbasestyle = pstyle;
 
       for (i32 i = 0; i < iItemCount; i++)
       {
@@ -941,7 +932,7 @@ namespace user
          else
          {
 
-            __pointer(::user::menu_item) pitem = ptopic->user_interaction()->m_pmenuitem;
+            ::pointer<::user::menu_item>pitem = ptopic->user_interaction()->m_pmenuitem;
 
             if (pitem != nullptr && !pitem->m_bPopup)
             {
@@ -1018,7 +1009,7 @@ namespace user
 //
 //                  {
 //
-//                     __pointer(::user::menu_item) pitem = ptopic->user_interaction()->m_pmenuitem;
+//                     ::pointer<::user::menu_item>pitem = ptopic->user_interaction()->m_pmenuitem;
 //
 //                     if (pitem)
 //                     {
@@ -1115,7 +1106,7 @@ namespace user
 
       ::user::interaction::_001OnTimer(ptimer);
 
-      __pointer(::user::menu_item) pitemThis = get_menu_item();
+      ::pointer<::user::menu_item>pitemThis = get_menu_item();
 
       if (pitemThis == nullptr)
       {
@@ -1124,7 +1115,7 @@ namespace user
 
       }
 
-      __pointer(::user::menu_item_ptra) pmenuitema = pitemThis->m_pmenuitema;
+      ::pointer<::user::menu_item_ptra>pmenuitema = pitemThis->m_pmenuitema;
 
       if (ptimer->m_uEvent == e_timer_menu)
       {
@@ -1180,7 +1171,7 @@ namespace user
          //      commandui.m_atom        = pmenuitema->element_at(i)->m_atom;
          //      commandui.m_pOther    = pmenuitema->element_at(i)->m_puserinteraction;
          //
-         //      __pointer(::user::interaction) puiTarget = get_target_window();
+         //      ::pointer<::user::interaction>puiTarget = get_target_window();
          //
          //      if(puiTarget != nullptr)
          //      {
@@ -1220,11 +1211,11 @@ namespace user
    //    void menu::_001OnIdleUpdateCmdUI(::message::message * pmessage)
    //    {
    //       __UNREFERENCED_PARAMETER(pmessage);
-   //       //      __pointer(::user::message) pusermessage(pmessage);
+   //       //      ::pointer<::user::message>pusermessage(pmessage);
 
-   //       __pointer(::user::menu_item) pitemThis = get_item();
+   //       ::pointer<::user::menu_item>pitemThis = get_item();
 
-   //       __pointer(::user::menu_item_ptra) pmenuitema = pitemThis->m_spmenuitema;
+   //       ::pointer<::user::menu_item_ptra>pmenuitema = pitemThis->m_spmenuitema;
 
    //       if(pmenuitema != nullptr)
    //       {
@@ -1237,7 +1228,7 @@ namespace user
    //             commandui.m_atom        = pmenuitema->element_at(i)->m_atom;
    //             commandui.m_pOther    = pmenuitema->element_at(i)->m_puserinteraction;
 
-   //             __pointer(::user::interaction) puserinteractionParent = m_puiNotify;
+   //             ::pointer<::user::interaction>puserinteractionParent = m_puiNotify;
    //             if(puserinteractionParent != nullptr)
    //             {
    //                /*
@@ -1265,7 +1256,7 @@ namespace user
    void menu::_001OnNcCreate(::message::message * pmessage)
    {
 
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
 
       pusermessage->m_bRet = true;
 
@@ -1277,7 +1268,7 @@ namespace user
    void menu::_001OnNcActivate(::message::message * /*pmessage */)
    {
 
-      //__pointer(::message::nc_activate) pncactivate(pmessage);
+      //::pointer<::message::nc_activate>pncactivate(pmessage);
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1311,7 +1302,7 @@ namespace user
    void menu::_001OnActivate(::message::message * pmessage)
    {
 
-      __pointer(::message::activate) pactivate(pmessage);
+      ::pointer<::message::activate>pactivate(pmessage);
 
       pactivate->m_lresult = 0;
 
@@ -1323,7 +1314,7 @@ namespace user
    void menu::_001OnMouseActivate(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse_activate) pmouseactivate(pmessage);
+      ::pointer<::message::mouse_activate>pmouseactivate(pmessage);
 
       pmouseactivate->m_lresult = e_mouse_activate_no_activate;
 
@@ -1343,7 +1334,7 @@ namespace user
    void menu::on_message_non_client_calculate_size(::message::message * pmessage)
    {
 
-      ///__pointer(::user::message) pusermessage(pmessage);
+      ///::pointer<::user::message>pusermessage(pmessage);
 
       pmessage->previous();
 
@@ -1409,7 +1400,7 @@ namespace user
    }
 
 
-   __pointer(::user::menu_item) menu::get_menu_item()
+   ::pointer<::user::menu_item>menu::get_menu_item()
    {
 
       return m_pmenuitem;
@@ -1417,10 +1408,10 @@ namespace user
    }
 
 
-   //__pointer(::user::menu_item) menu::get_menu_item(::user::interaction * pinteraction)
+   //::pointer<::user::menu_item>menu::get_menu_item(::user::interaction * pinteraction)
    //{
 
-   //   __pointer(::user::interaction) pbutton = pinteraction;
+   //   ::pointer<::user::interaction>pbutton = pinteraction;
 
    //   if (pbutton.is_null())
    //   {
@@ -1502,7 +1493,7 @@ namespace user
       for (pmenucommand->m_iIndex = 0; pmenucommand->m_iIndex < pmenucommand->m_iCount; pmenucommand->m_iIndex++)
       {
 
-         __pointer(menu_item) pitem = pitemParent->m_pmenuitema->element_at(pmenucommand->m_iIndex);
+         ::pointer<menu_item>pitem = pitemParent->m_pmenuitema->element_at(pmenucommand->m_iIndex);
 
          if (pitem->m_atom.is_empty())
          {
@@ -1542,7 +1533,7 @@ namespace user
       for (pmenucommand->m_iIndex = 0; pmenucommand->m_iIndex < pmenucommand->m_iCount; pmenucommand->m_iIndex++)
       {
 
-         __pointer(menu_item) pitem = pitemParent->m_pmenuitema->element_at(pmenucommand->m_iIndex);
+         ::pointer<menu_item>pitem = pitemParent->m_pmenuitema->element_at(pmenucommand->m_iIndex);
 
          pmenucommand->m_atom = pitem->m_atom;
 
@@ -1566,12 +1557,12 @@ namespace user
    }
 
 
-   __pointer(::user::menu_interaction) menu::create_menu_button(::draw2d::graphics_pointer & pgraphics, menu_item * pitem)
+   ::pointer<::user::menu_interaction>menu::create_menu_button(::draw2d::graphics_pointer & pgraphics, menu_item * pitem)
    {
 
       auto pstyle = get_style(pgraphics);
 
-      __pointer(::base::session) psession = get_session();
+      ::pointer<::base::session>psession = get_session();
 
       auto puser = psession->user();
 

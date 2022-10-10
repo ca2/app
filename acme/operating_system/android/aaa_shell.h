@@ -42,7 +42,7 @@ namespace android
       address_array < image_key * >                               m_keyptra;
       manual_reset_event                                          m_evKey;
       ::mutex                                                     m_mutexQueue;
-      __pointer_array(::thread)                                   m_threadaGetImage;
+      pointer_array < ::thread >                                   m_threadaGetImage;
 
 
       shell();

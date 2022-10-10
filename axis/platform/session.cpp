@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/id.h"
 #include "acme/platform/system_setup.h"
 #include "session.h"
@@ -45,7 +45,7 @@ void defer_term_ui();
 
 //bool is_verbose();
 
-//extern string_map < __pointer(::acme::library) >* g_pmapLibrary;
+//extern string_map < ::pointer<::acme::library >> g_pmapLibrary;
 //extern ::mutex * psystem->m_mutexLibrary;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
@@ -195,7 +195,7 @@ namespace axis
    //::aura::application * session::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
    //{
 
-   //   __pointer(::apex::application) papp;
+   //   ::pointer<::apex::application>papp;
 
    //   if (m_applicationa.lookup(pszAppId, papp))
    //   {
@@ -267,12 +267,12 @@ namespace axis
    //}
 
 
-//   __pointer(::aura::application) session::get_new_application(::object * pobject, const ::string & pszAppId)
+//   ::pointer<::aura::application>session::get_new_application(::object * pobject, const ::string & pszAppId)
 //   {
 //
 //      string strAppId(pszAppId);
 //
-//      __pointer(::aura::application) papp;
+//      ::pointer<::aura::application>papp;
 //
 //      if (!papp)
 //      {
@@ -306,7 +306,7 @@ namespace axis
 //         }
 //         synchronous_lock synchronouslock(psystem->m_mutexLibrary);
 //
-//         __pointer(::acme::library) & plibrary = psystem->m_mapLibrary[pszAppId];
+//         ::pointer<::acme::library>& plibrary = psystem->m_mapLibrary[pszAppId];
 //
 //         if (!plibrary)
 //         {
@@ -725,11 +725,10 @@ namespace axis
 
       ::aura::session::term();
 
-
       try
       {
 
-         __release(m_paccount);
+         m_paccount.release();
 
       }
       catch (...)
@@ -869,7 +868,7 @@ namespace axis
 
 
 
-   //   auto estatus = __compose_new(m_puserex);
+   //   auto estatus = __construct_new(m_puserex);
 
    //   if (!estatus)
    //   {

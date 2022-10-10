@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "tree.h"
 #include "acme/platform/timer.h"
 #include "aura/graphics/image/list.h"
@@ -82,7 +82,7 @@ namespace filemanager
 
       auto puser = user();
 
-      __compose(m_pimagelist, puser->shell()->GetImageList(16));
+      __construct(m_pimagelist, puser->shell()->GetImageList(16));
 
       //return estatus;
 
@@ -231,7 +231,7 @@ namespace filemanager
 
          ::file::path path = filemanager_path();
 
-         __pointer(::userfs::item) pitemChild;
+         ::pointer<::userfs::item>pitemChild;
 
          ::data::tree_item * ptreeitemParent = get_base_item();
 
@@ -242,7 +242,7 @@ namespace filemanager
          for (auto & pathAscendant : patha)
          {
 
-            __pointer(::data::tree_item) ptreeitemChild = find_item_by_user_path(pathAscendant);
+            ::pointer<::data::tree_item>ptreeitemChild = find_item_by_user_path(pathAscendant);
 
             string strName;
 
@@ -309,7 +309,7 @@ namespace filemanager
 
          ::file::listing & listingFinal = ::userfs::tree::get_document()->m_listingFolderFinal2;
 
-         __pointer_array(::data::tree_item) childrenNew;
+         pointer_array < ::data::tree_item > childrenNew;
 
          auto cListingUser = listingUser.get_count();
 
@@ -318,7 +318,7 @@ namespace filemanager
 
             ::file::path pathUser = listingUser[i];
 
-            __pointer(::data::tree_item) ptreeitemChild = find_item_by_user_path(pathUser);
+            ::pointer<::data::tree_item>ptreeitemChild = find_item_by_user_path(pathUser);
 
             if (ptreeitemChild.is_null())
             {
@@ -437,7 +437,7 @@ namespace filemanager
 
             _017EnsureVisible(pathUser, context);
 
-            __pointer(::data::tree_item) ptreeitem = find_item_by_user_path(pathUser);
+            ::pointer<::data::tree_item>ptreeitem = find_item_by_user_path(pathUser);
 
             _001SelectItem(ptreeitem);
 
@@ -448,7 +448,7 @@ namespace filemanager
             while (ptreeitem)
             {
 
-               __pointer(::data::tree_item) ptreeitemNext = ptreeitem->get_child_next_or_parent();
+               ::pointer<::data::tree_item>ptreeitemNext = ptreeitem->get_child_next_or_parent();
 
                if (ptreeitem->m_iLevel >= iMaxLevel && !ptreeitem->is_expanded())
                {
@@ -495,7 +495,7 @@ namespace filemanager
       if (::is_null(m_pimagelist))
       {
 
-         __compose(m_pimagelist, puser->shell()->GetImageList(filemanager_data()->m_iIconSize));;
+         __construct(m_pimagelist, puser->shell()->GetImageList(filemanager_data()->m_iIconSize));;
 
       }
 
@@ -536,7 +536,7 @@ namespace filemanager
    void tree::_001OnMainPostMessage(::message::message * pmessage)
    {
       
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
       
       switch(pusermessage->m_wparam)
       {
@@ -708,7 +708,7 @@ namespace filemanager
    }
 
 
-   void tree::_017OpenFolder(__pointer(::file::item) pitem, const ::action_context & context)
+   void tree::_017OpenFolder(::pointer<::file::item>pitem, const ::action_context & context)
    {
 
       filemanager_document()->browse(pitem,context);

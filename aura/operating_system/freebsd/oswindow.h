@@ -120,8 +120,8 @@
 //   int                                    m_iDepth;
 //   int                                    m_iScreen;
 //   bool                                   m_bMessageOnlyWindow;
-//   __pointer(::user::interaction_impl)    m_pimpl;
-//   __pointer(message_queue)                          m_pmq;
+//   ::pointer<::user::interaction_impl>   m_pimpl;
+//   ::pointer<message_queue>                         m_pmq;
 //   htask_t                                m_htask;
 //   Colormap                               m_colormap;
 //   ::duration                                   m_durationLastMouseMove;

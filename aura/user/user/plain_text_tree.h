@@ -16,10 +16,10 @@ namespace user
    public:
 
 
-      __pointer(plain_text_group_command)       m_pgroupcommand;
+      ::pointer<plain_text_group_command>      m_pgroupcommand;
       index                                     m_iBranch;
       file_pointer                              m_pfile;
-      __pointer(::file::edit_file)              m_peditfile;
+      ::pointer<::file::edit_file>             m_peditfile;
 
 
       strsize                                   m_iSelBeg;

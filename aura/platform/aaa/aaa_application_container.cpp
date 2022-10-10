@@ -200,12 +200,12 @@ application_array application_container::get_applicationa()
 //}
 
 
-__pointer(::aura::application) application_container::instantiate_application(const ::string & pszAppId, ::create * pcreate)
+::pointer<::aura::application>application_container::instantiate_application(const ::string & pszAppId, ::create * pcreate)
 {
 
    INFORMATION("aura::application::instantiate_application");
 
-   __pointer(::aura::application) papp;
+   ::pointer<::aura::application>papp;
 
    string strAppId(pszAppId);
 
@@ -291,10 +291,10 @@ __pointer(::aura::application) application_container::instantiate_application(co
 }
 
 
-__pointer(::aura::application) application_container::create_application(const ::string & pszAppId, bool bSynch, ::create * pcreate)
+::pointer<::aura::application>application_container::create_application(const ::string & pszAppId, bool bSynch, ::create * pcreate)
 {
 
-   __pointer(::aura::application) papp = instantiate_application(pszAppId, pcreate);
+   ::pointer<::aura::application>papp = instantiate_application(pszAppId, pcreate);
 
    if (!papp)
    {
@@ -315,7 +315,7 @@ __pointer(::aura::application) application_container::create_application(const :
 }
 
 
-__pointer(::aura::application) application_container::create_platform(::aura::session * psession)
+::pointer<::aura::application>application_container::create_platform(::aura::session * psession)
 {
 
    return nullptr;
@@ -328,10 +328,10 @@ __pointer(::aura::application) application_container::create_platform(::aura::se
 
 
 
-__pointer(::aura::application) application_container::assert_running(const ::string & pszAppId, const ::string & strLocale, const ::string & strSchema)
+::pointer<::aura::application>application_container::assert_running(const ::string & pszAppId, const ::string & strLocale, const ::string & strSchema)
 {
 
-  __pointer(::aura::application) papp;
+  ::pointer<::aura::application>papp;
 
   {
 
@@ -344,7 +344,7 @@ __pointer(::aura::application) application_container::assert_running(const ::str
   if (papp.is_null())
   {
 
-     __pointer(::create) spcreate(e_create_new);
+     ::pointer<::create>spcreate(e_create_new);
 
      papp = start_application(pszAppId, spcreate, strLocale, strSchema);
 
@@ -357,7 +357,7 @@ __pointer(::aura::application) application_container::assert_running(const ::str
 
 
 
-__pointer(::aura::application) application_container::start_application(const ::string & pszAppId, ::create * pcreate, const ::string & strLocale, const ::string & strSchema)
+::pointer<::aura::application>application_container::start_application(const ::string & pszAppId, ::create * pcreate, const ::string & strLocale, const ::string & strSchema)
 {
 
    string strApp(pszAppId);
@@ -466,7 +466,7 @@ __pointer(::aura::application) application_container::start_application(const ::
 ::aura::application * application_container::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
    {
 
-      __pointer(::aura::application) papp;
+      ::pointer<::aura::application>papp;
 
       if(m_applicationa.lookup(pszAppId,papp))
       {

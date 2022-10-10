@@ -54,7 +54,7 @@ namespace sphere
    }
 
 
-   /*   __pointer(::aura::application) library::get_new_app(const ::string & pszAppId)
+   /*   ::pointer<::aura::application>library::get_new_app(const ::string & pszAppId)
       {
 
          if(::str().equals_ci(pszAppId, "calculator"))

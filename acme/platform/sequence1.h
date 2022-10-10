@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 template < typename SEQUENCE >
@@ -12,7 +12,7 @@ class sequence :
 public:
 
 
-   __pointer(sequencer < SEQUENCE >)      m_psequencer;
+   pointer< sequencer < SEQUENCE > >   m_psequencer;
    ::payload                              m_payloadResult;
 
 

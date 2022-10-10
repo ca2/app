@@ -16,7 +16,7 @@ application_array::application_array()
 
 
 application_array::application_array(const application_array & array):
-   __pointer_array(::aura::application)(array)
+   pointer_array < ::aura::application >(array)
 {
 
 }
@@ -25,7 +25,7 @@ application_array::application_array(const application_array & array):
 application_array & application_array::operator = (const application_array & array)
 {
 
-   __pointer_array(::aura::application)::operator = (array);
+   pointer_array < ::aura::application >::operator = (array);
 
    return *this;
 
@@ -33,7 +33,7 @@ application_array & application_array::operator = (const application_array & arr
 
 
 application_array::application_array(application_array && array):
-   __pointer_array(::aura::application)(array)
+   pointer_array < ::aura::application >(array)
 {
 
 }
@@ -42,7 +42,7 @@ application_array::application_array(application_array && array):
 application_array & application_array::operator = (application_array && array)
 {
 
-   __pointer_array(::aura::application)::operator = (array);
+   pointer_array < ::aura::application >::operator = (array);
 
    return *this;
 
@@ -112,7 +112,7 @@ restart:
 ::aura::application * application_array::find_running_defer_try_quit_damaged(string strAppName)
 {
 
-   __pointer(::aura::application) papp = find_by_app_name(strAppName);
+   ::pointer<::aura::application>papp = find_by_app_name(strAppName);
 
    if (papp.is_null())
    {
@@ -155,7 +155,7 @@ restart:
 }
 
 
-bool application_array::lookup(string strAppName, __pointer(::aura::application) & papp)
+bool application_array::lookup(string strAppName, ::pointer<::aura::application>& papp)
 {
 
    papp = find_running_defer_try_quit_damaged(strAppName);

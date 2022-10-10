@@ -92,7 +92,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          // Connection pool
          /** find available open connection (used by connection pool). */
-         __pointer(pool_socket) FindConnection(int type, const string & protocol, ::networking::address *);
+         ::pointer<pool_socket>FindConnection(int type, const string & protocol, ::networking::address *);
          /** Enable connection pool (by default disabled). */
          void EnablePool(bool x = true);
          /** Check pool status.

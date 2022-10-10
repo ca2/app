@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "aura/graphics/draw2d/pen.h"
@@ -71,7 +71,7 @@ namespace user
       point_f64_array                  m_pointaCache1;
 
 
-      __composite(picture_impl)     m_ppictureimpl;
+      ::pointer<picture_impl>    m_ppictureimpl;
 
 
       picture();

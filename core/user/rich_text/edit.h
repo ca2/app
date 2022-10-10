@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "base/user/user/picture_interaction.h"
@@ -32,7 +32,7 @@ namespace user
          double get_rotate() override;
 
 
-         //__pointer(span) add_span(::e_align ealignNewLine = e_align_none);
+         //::pointer<span>add_span(::e_align ealignNewLine = e_align_none);
 
          ::item_pointer on_hit_test(const ::point_i32 & point) override;
 
@@ -81,7 +81,7 @@ namespace user
 
          virtual void draw_impl(::draw2d::graphics_pointer & pgraphics) override;
 
-         __pointer(format_tool) get_format_tool(bool bCreate);
+         ::pointer<format_tool>get_format_tool(bool bCreate);
 
          using ::user::interaction::_001GetText;
          virtual void _001GetText(string & str) const override;

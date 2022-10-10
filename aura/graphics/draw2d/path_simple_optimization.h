@@ -1,4 +1,4 @@
-// From path.h by camilo on 2022-06-25 22:31 <3ThomasBorregaardSørensen!!
+// From path.h by camilo on 2022-06-25 22:31 <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
@@ -18,7 +18,7 @@ namespace draw2d
       int m_iTopicLines = 0;
       int m_iClose = 0;
       ::point_f64_array m_pointa;
-      __pointer(___shape< path>) m_pshapeTopic;
+      ::pointer<___shape< path>> m_pshapeTopic;
 
       path_simple_optimization(::draw2d::path * ppath);
 

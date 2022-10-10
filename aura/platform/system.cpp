@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
 #endif
@@ -57,7 +57,7 @@ extern "C"
 //void enum_display_monitors(::aura::system * psystem);
 
 #ifdef WINDOWS_DESKTOP
-CLASS_DECL_AURA __pointer(::user::interaction) create_system_message_window(::object * pobject);
+CLASS_DECL_AURA ::pointer<::user::interaction>create_system_message_window(::object * pobject);
 #endif
 
 
@@ -65,7 +65,7 @@ CLASS_DECL_AURA __pointer(::user::interaction) create_system_message_window(::ob
 #include <sys/time.h>
 #endif
 
-extern string_map < __pointer(::acme::library) > * g_pmapLibrary;
+extern string_map < ::pointer<::acme::library >>* g_pmapLibrary;
 
 
 CLASS_DECL_AURA void __simple_tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz);
@@ -379,12 +379,12 @@ namespace aura
 //      if (plibrary.is_null())
 //      {
 //
-//         __compose(plibrary, on_get_library(strLibrary));
+//         __construct(plibrary, on_get_library(strLibrary));
 //
 //         if (plibrary.is_null())
 //         {
 //
-//            __compose_new(plibrary);
+//            __construct_new(plibrary);
 //
 //            if (!plibrary->open(strLibrary))
 //            {
@@ -585,7 +585,7 @@ namespace aura
    //}
 
 
-   __pointer(::factory::factory) & system::node_factory()
+   ::pointer<::factory::factory>& system::node_factory()
    {
 
       auto & pfactory = factory("node", OPERATING_SYSTEM_NAME);
@@ -831,7 +831,7 @@ namespace aura
 //
 //      }
 
-      //estatus = __compose_new(m_pxml);
+      //estatus = __construct_new(m_pxml);
 
       //if (!estatus)
       //{
@@ -948,7 +948,7 @@ namespace aura
 //
 //#ifndef APPLE_IOS
 //
-//         auto estatus = __compose_new(m_pmachineeventcentral);
+//         auto estatus = __construct_new(m_pmachineeventcentral);
 //
 //         if (!estatus)
 //         {
@@ -975,7 +975,7 @@ namespace aura
 //
 //      }
 
-      //if(!__compose(m_pfilesystem))
+      //if(!__construct(m_pfilesystem))
       //{
 
       //   ERROR("failed to initialize file-system");
@@ -984,7 +984,7 @@ namespace aura
 
       //}
 
-      //if(!__compose(m_pdirsystem))
+      //if(!__construct(m_pdirsystem))
       //{
 
       //   ERROR("failed to initialize dir-system");
@@ -1038,7 +1038,7 @@ namespace aura
       ////output_debug_string("Common App Data (matter) : " + pcontext->m_papexcontext->dir().commonappdata() + "\n");
       ////output_debug_string("common app data (matter) : " + pcontext->m_papexcontext->dir().commonappdata() + "\n");
 
-      //__compose_new(m_pcrypto);
+      //__construct_new(m_pcrypto);
 
       //if (!::is_set(m_pcrypto))
       //{
@@ -1151,7 +1151,7 @@ namespace aura
 
       auto psystem = get_system();
 
-      synchronous_lock synchronouslock(&m_mutexLibrary4);
+      synchronous_lock synchronouslock(&m_psubsystem->m_mutexLibrary4);
 
       ///estatus = 
       
@@ -1219,7 +1219,7 @@ namespace aura
    }
 
 
-   __pointer(::factory::factory) & system::draw2d_factory()
+   ::pointer<::factory::factory>& system::draw2d_factory()
    {
 
       string strLibrary;
@@ -1368,7 +1368,7 @@ namespace aura
    }
 
 
-   __pointer(::factory::factory) & system::imaging_factory()
+   ::pointer<::factory::factory>& system::imaging_factory()
    {
 
       string strLibrary;
@@ -1575,7 +1575,7 @@ namespace aura
 
       m_durationHeartBeat.Now();
 
-      __pointer(::aura::session) psession = get_session();
+      ::pointer<::aura::session>psession = get_session();
 
       if (has_property("save_processing"))
       {
@@ -1653,7 +1653,7 @@ namespace aura
 //
 //#endif
 
-      //auto estatus = __compose_new(m_puserstr);
+      //auto estatus = __construct_new(m_puserstr);
 
       //if (!m_puserstr || !estatus)
       //{
@@ -1686,7 +1686,7 @@ namespace aura
 
       //throw ::exception(todo("filehandler"));
 
-      //estatus = __compose_new(m_pfilehandler);
+      //estatus = __construct_new(m_pfilehandler);
 
       //if (!estatus)
       //{
@@ -1863,7 +1863,7 @@ namespace aura
 
       ::aqua::system::term();
 
-      __release(m_phistory);
+      m_phistory.release();
 
    }
 
@@ -2392,7 +2392,7 @@ namespace aura
    //}
 
 
-   //__pointer(regex) system::create_regular_expression(const ::string & pszStyle, const string& str)
+   //::pointer<regex>system::create_regular_expression(const ::string & pszStyle, const string& str)
    //{
 
    //   return nullptr;
@@ -2400,7 +2400,7 @@ namespace aura
    //}
 
 
-   //__pointer(regex_context) system::create_regular_expression_context(const ::string & pszStyle, int iCount)
+   //::pointer<regex_context>system::create_regular_expression_context(const ::string & pszStyle, int iCount)
    //{
 
    //   return nullptr;
@@ -2433,7 +2433,7 @@ namespace aura
    //}
 
 
-//__pointer_array(::aura::session) & system::basesessionptra()
+//pointer_array < ::aura::session > & system::basesessionptra()
 //{
 
 //   return m_basesessionptra;
@@ -2459,7 +2459,7 @@ namespace aura
 
    //   }
 
-   //   auto estatus = __compose_new(m_ptrace);
+   //   auto estatus = __construct_new(m_ptrace);
 
    //   if (!estatus)
    //   {
@@ -2780,7 +2780,7 @@ namespace aura
    //}
 
 
-   //__pointer(::apex::session) system::on_create_session(index iEdge)
+   //::pointer<::apex::session>system::on_create_session(index iEdge)
    //{
 
    //   return ::aqua::system::on_create_session(iEdge);
@@ -3154,7 +3154,7 @@ namespace aura
    // }
 
 
-   //__pointer(::account::user_set) system::userset()
+   //::pointer<::account::user_set>system::userset()
    //{
 
    //   return m_puserset;
@@ -3227,7 +3227,7 @@ namespace aura
    //   if(papp != nullptr)
    //   {
 
-   //      __pointer(::create) pcreate(e_create_new);
+   //      ::pointer<::create>pcreate(e_create_new);
 
    //      merge_accumulated_on_open_file(pcreate);
 
@@ -3834,7 +3834,7 @@ namespace aura
 //
 //         auto puserinteraction = __user_interaction(pframe);
 //
-//         __pointer(::universal_windows::interaction_impl) pimpl = puserinteraction->m_pimpl;
+//         ::pointer<::universal_windows::interaction_impl>pimpl = puserinteraction->m_pimpl;
 //
 //         if (pimpl.is_set())
 //         {
@@ -4559,7 +4559,7 @@ namespace aura
 //      if (!m_pestamira)
 //      {
 //
-//         __compose_new(m_pestamira);
+//         __construct_new(m_pestamira);
 //
 //         m_pestamira->init_instance();
 //
@@ -4619,7 +4619,7 @@ namespace aura
 
       //auto estatus =
       
-      pfactoryGpu->__compose(this, m_pgpu);
+      pfactoryGpu->__construct(this, m_pgpu);
 
       //if (!estatus)
       //{
@@ -4698,7 +4698,7 @@ namespace aura
 
    //   }
 
-   //   __pointer(thread_toolset) & pset = m_toolset.element_at_grow((index)etool);
+   //   ::pointer<thread_toolset>& pset = m_toolset.element_at_grow((index)etool);
 
    //   if (pset.is_null())
    //   {
@@ -4879,7 +4879,7 @@ namespace aura
 
 
 
-   //__pointer(::aura::session) system::on_create_session()
+   //::pointer<::aura::session>system::on_create_session()
    //{
 
    //   return __new(::axis::session);
@@ -5256,7 +5256,7 @@ namespace aura
   //      m_ppatch = memory_new aura::patch();
   //      g_pszCooperativeLevel = "aura";
   //
-  //      estatus = __compose(m_puserset, __new(::account::user_set(this)));
+  //      estatus = __construct(m_puserset, __new(::account::user_set(this)));
   //
   //      if (!estatus)
   //      {
@@ -5339,7 +5339,7 @@ namespace aura
      //}
 
 
-   //void system::discard_to_factory(__pointer(object) pca)
+   //void system::discard_to_factory(::pointer<object>pca)
    //{
 
    //   __UNREFERENCED_PARAMETER(pca);
@@ -5365,7 +5365,7 @@ namespace aura
 
    //   }
 
-   //   auto estatus = __compose_new(m_pxml);
+   //   auto estatus = __construct_new(m_pxml);
 
    //   if (!estatus)
    //   {
@@ -5426,7 +5426,7 @@ namespace aura
 
       //estatus = 
       
-      __compose_new(m_phistory);
+      __construct_new(m_phistory);
 
       //if(!estatus)
       //{
@@ -5465,7 +5465,7 @@ namespace aura
       if (m_bImaging)
       {
 
-         __compose_new(m_pimaging);
+         __construct_new(m_pimaging);
 
       }
       /*/if (!estatus)
@@ -5525,7 +5525,7 @@ namespace aura
 //   }
 
 
-   __pointer(::data::node) system::load_xml(const ::string & pszXml)
+   ::pointer<::data::node>system::load_xml(const ::string & pszXml)
    {
 
       throw ::interface_only();
@@ -5875,7 +5875,7 @@ namespace aura
 //   }
 
 
-   //__pointer(::aura::session) system::on_create_session()
+   //::pointer<::aura::session>system::on_create_session()
    //{
 
    //   return __new(::aura::session);
@@ -5919,7 +5919,7 @@ namespace aura
    //void system::set_history(::apex::history* phistory)
    //{
 
-   //   auto estatus = __compose(m_phistory, phistory);
+   //   auto estatus = __construct(m_phistory, phistory);
 
    //   if (!estatus)
    //   {
@@ -5936,7 +5936,7 @@ namespace aura
    //::acme::library * system::on_get_library(const ::string & pszLibrary)
    //{
 
-   //   __pointer(::acme::library) plibrary;
+   //   ::pointer<::acme::library>plibrary;
 
    //   bool bLibraryOk = false;
 
@@ -6296,7 +6296,7 @@ namespace aura
    }
 
 
-   //__pointer_array(::aura::session) & system::planesessionptra()
+   //pointer_array < ::aura::session > & system::planesessionptra()
    //{
 
    //   return m_planesessionptra;
@@ -6429,11 +6429,11 @@ namespace aura
        //}
 
        //auto estatus =
-       pfactory->__compose(this, m_pestamira);
+       pfactory->__construct(this, m_pestamira);
 
       //auto estatus = 
       
-//      __compose(m_pestamira, pfactory->create < ::aqua::estamira > ());
+//      __construct(m_pestamira, pfactory->create < ::aqua::estamira > ());
 
       //if (!estatus)
       //{

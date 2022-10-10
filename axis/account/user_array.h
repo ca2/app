@@ -12,7 +12,7 @@ namespace account
 
 
       department *               m_paccount;
-      string_map < __pointer(user) >    m_map;
+      string_map < ::pointer<user >>   m_map;
 
 
       user_array();
@@ -22,7 +22,7 @@ namespace account
       virtual void initialize_user_array(department* pdepartment);
 
 
-      virtual __pointer(user) allocate_user();
+      virtual ::pointer<user>allocate_user();
       
       
       virtual void logout();

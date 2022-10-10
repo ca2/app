@@ -400,7 +400,7 @@ namespace ios
 
    bool interaction_impl::create_window_ex(
    ::user::interaction * pinteraction,
-   __pointer(::user::system) pusersystem,
+   ::pointer<::user::system>pusersystem,
    ::user::interaction * puiParent,
    atom atom)
    {
@@ -419,7 +419,7 @@ namespace ios
    }
 
 
-   bool interaction_impl::_native_create_window_ex(__pointer(::user::system) pusersystem)
+   bool interaction_impl::_native_create_window_ex(::pointer<::user::system>pusersystem)
    {
 
       if(::is_window(get_handle()))
@@ -486,7 +486,7 @@ namespace ios
 
          m_puserinteraction->place(rectangleCreate);
 
-         __compose(m_pgraphics, __new(::graphics::double_buffer));
+         __construct(m_pgraphics, __new(::graphics::double_buffer));
 
          m_pgraphics->initialize_graphics_graphics(this);
          
@@ -1100,7 +1100,7 @@ namespace ios
       if(pusermessage->m_atom == e_message_key_down || pusermessage->m_atom == e_message_key_up || pusermessage->m_atom == e_message_char)
       {
 
-         __pointer(::message::key) pkey(pusermessage);
+         ::pointer<::message::key>pkey(pusermessage);
 
          psession->translate_os_key_message(pkey);
 
@@ -1391,7 +1391,7 @@ namespace ios
 
    /*
 
-    __pointer(::user::frame_window) interaction_impl::get_parent_frame()
+    ::pointer<::user::frame_window>interaction_impl::get_parent_frame()
     {
     if (get_handle() == nullptr) // no oswindow attached
     {
@@ -1508,7 +1508,7 @@ namespace ios
 
    /*
 
-    __pointer(::user::frame_window) interaction_impl::top_level_frame()
+    ::pointer<::user::frame_window>interaction_impl::top_level_frame()
     {
     if (get_handle() == nullptr) // no oswindow attached
     return nullptr;
@@ -1722,11 +1722,11 @@ namespace ios
       ASSERT(puiStop == nullptr || puiStop->is_window());
       ASSERT(pmessage != nullptr);
 
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
       // walk from the target user::interaction up to the hWndStop user::interaction checking
       //  if any user::interaction wants to translate this message
 
-      for (__pointer(::user::interaction) pinteraction = pusermessage->m_puserinteraction; pinteraction != nullptr; pinteraction->get_parent())
+      for (::pointer<::user::interaction>pinteraction = pusermessage->m_puserinteraction; pinteraction != nullptr; pinteraction->get_parent())
       {
 
          pinteraction->pre_translate_message(pmessage);
@@ -2360,7 +2360,7 @@ namespace ios
    void interaction_impl::_001OnPrint(::message::message * pmessage)
    {
       throw ::not_implemented();
-      //      __pointer(::user::message) pusermessage(pmessage);
+      //      ::pointer<::user::message>pusermessage(pmessage);
       //
       //      if(pusermessage->m_wparam == nullptr)
       //         return;
@@ -3024,7 +3024,7 @@ namespace ios
 //
 //      return ::user::interaction_impl::send_message(message, wparam, lparam);
 //
-//      //      ::pointer < ::user::message > spbase;
+//      //      ::pointer<::user::message> spbase;
 //
 //      //    spbase = get_base(message, wparam, lparam);
 //
@@ -3144,7 +3144,7 @@ namespace ios
 
    /*
 
-    __pointer(::user::frame_window) interaction_impl::EnsureParentFrame()
+    ::pointer<::user::frame_window>interaction_impl::EnsureParentFrame()
     {
     ::user::frame_window * pFrameWnd=get_parent_frame();
     ENSURE_VALID(pFrameWnd);
@@ -4276,7 +4276,7 @@ namespace ios
 
    // void interaction_impl::on_message_set_cursor(::message::message * pmessage)
    // {
-   //    __pointer(::user::message) pusermessage(pmessage);
+   //    ::pointer<::user::message>pusermessage(pmessage);
    //    if(psession->get_cursor() != nullptr
    //          && psession->get_cursor()->m_ecursor != cursor_system)
    //    {
@@ -4854,7 +4854,7 @@ namespace ios
 
    // void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
    // {
-   //    __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
+   //    ::pointer<::message::erase_bkgnd>perasebkgnd(pmessage);
    //    perasebkgnd->m_bRet = true;
    //    perasebkgnd->set_result(true);
    // }
@@ -5141,7 +5141,7 @@ namespace ios
    bool interaction_impl::round_window_key_down(::user::enum_key ekey)
    {
 
-      __pointer(::user::message) spbase;
+      ::pointer<::user::message>spbase;
 
       auto pkey  = __new(::message::key());
 
@@ -5161,7 +5161,7 @@ namespace ios
    bool interaction_impl::round_window_key_up(::user::enum_key ekey)
    {
 
-      __pointer(::user::message) spbase;
+      ::pointer<::user::message>spbase;
 
       auto pkey  = __new(::message::key());
 
@@ -5180,7 +5180,7 @@ namespace ios
    void interaction_impl::defer_update_text_impact()
    {
 
-      __pointer(::user::text) ptext = psession->get_keyboard_focus();
+      ::pointer<::user::text>ptext = psession->get_keyboard_focus();
 
       if(ptext.is_null())
       {
@@ -5239,9 +5239,9 @@ namespace ios
    bool interaction_impl::round_window_on_text(const ::string & pszText, long iSelBeg, long iSelEnd)
    {
 
-      __pointer(raw_key) prawkey = psession->get_keyboard_focus();
+      ::pointer<raw_key>prawkey = psession->get_keyboard_focus();
 
-      __pointer(::user::plain_edit) pedit = psession->get_keyboard_focus();
+      ::pointer<::user::plain_edit>pedit = psession->get_keyboard_focus();
 
       if(pedit.is_set() && !prawkey.is_set())
       {
@@ -5276,7 +5276,7 @@ namespace ios
       else
       {
 
-         __pointer(::user::message) spbase;
+         ::pointer<::user::message>spbase;
 
          auto pkey  = __new(::message::key());
 
@@ -5369,9 +5369,9 @@ namespace ios
    long interaction_impl::round_window_edit_hit_test(int x, int y)
    {
 
-      __pointer(raw_key) prawkey = psession->get_keyboard_focus();
+      ::pointer<raw_key>prawkey = psession->get_keyboard_focus();
 
-      __pointer(::user::plain_edit) pedit = psession->get_keyboard_focus();
+      ::pointer<::user::plain_edit>pedit = psession->get_keyboard_focus();
 
       if(pedit.is_set() && !prawkey.is_set())
       {
@@ -5388,9 +5388,9 @@ namespace ios
    bool interaction_impl::round_window_edit_caret_rect(CGRect * prectangle, long iSel)
    {
       
-      __pointer(raw_key) prawkey = psession->get_keyboard_focus();
+      ::pointer<raw_key>prawkey = psession->get_keyboard_focus();
 
-     __pointer(::user::plain_edit) pedit = psession->get_keyboard_focus();
+     ::pointer<::user::plain_edit>pedit = psession->get_keyboard_focus();
 
      if(pedit.is_set() && !prawkey.is_set())
      {
@@ -5421,9 +5421,9 @@ namespace ios
    bool interaction_impl::round_window_on_sel_text(long iBeg, long iEnd)
    {
 
-      __pointer(::user::interaction) pinteraction = psession->get_keyboard_focus();
+      ::pointer<::user::interaction>pinteraction = psession->get_keyboard_focus();
 
-      __pointer(::user::text) pedit = pinteraction;
+      ::pointer<::user::text>pedit = pinteraction;
 
       if(pedit.is_set())
       {
@@ -5483,7 +5483,7 @@ namespace ios
 
       defer_create_thread(this);
       
-      __pointer(::user::message) pusermessage = pbaseParam;
+      ::pointer<::user::message>pusermessage = pbaseParam;
 
       post(pusermessage);
 
@@ -5501,7 +5501,7 @@ namespace ios
    void interaction_impl::round_window_mouse_down(double x, double y)
    {
 
-      __pointer(::user::message) spbase;
+      ::pointer<::user::message>spbase;
 
       if(!is_active())
       {
@@ -5562,7 +5562,7 @@ namespace ios
    void interaction_impl::round_window_mouse_up(double x, double y)
    {
 
-      __pointer(::user::message) spbase;
+      ::pointer<::user::message>spbase;
 
       auto pmouse = __new(::message::mouse());
 
@@ -5582,7 +5582,7 @@ namespace ios
    void interaction_impl::round_window_mouse_moved(double x, double y)
    {
 
-      __pointer(::user::message) spbase;
+      ::pointer<::user::message>spbase;
 
       auto pmouse = __new(::message::mouse());
 
@@ -5602,7 +5602,7 @@ namespace ios
    void interaction_impl::round_window_mouse_dragged(double x, double y)
    {
 
-      __pointer(::user::message) spbase;
+      ::pointer<::user::message>spbase;
 
       auto pmouse = __new(::message::mouse());
 

@@ -39,8 +39,8 @@ void interprocess_task::do_task(const string& strObject, const string& strMember
       string strApp = m_pcall->m_strApp;
       
       strApp.find_replace("_", "-");
-      strApp.find_replace("/", "-");
       strApp.find_replace(".", "-");
+      strApp.find_replace("/", ".");
 
       string str = strApp + "://" + strObject + "/" + strMember + "?" + strNetworkArguments + "&protocol.call_id=" + __string(m_iTask) + "&" + strSource + "&protocol.target_pid=" + m_atomPid;
 

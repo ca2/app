@@ -55,7 +55,7 @@ namespace acme
       :: IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)::node *  m_pAuraPlatform;
       
       
-      __pointer(::element)                                  m_pelementQuit;
+      ::pointer<::element>                                 m_pelementQuit;
       
 
       //:: IDENTIFIER_PREFIX_OPERATING_SYSTEM(_node)::node *  m_pNode;
@@ -115,10 +115,10 @@ namespace acme
       virtual void initialize(::object * pobject) override;
       
       
-      virtual __pointer(::element) create_quit_element(__pointer(::acme::node) & pnode, __pointer(::acme::system) & psystem);
+      virtual ::pointer<::element>create_quit_element(::pointer<::acme::node> & pnode, ::pointer<::acme::system> & psystem);
       
       
-      virtual void implement(__pointer(::acme::node) & pnode, __pointer(::acme::system) & psystem);
+      virtual void implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> & psystem);
 
       virtual void acme_application_main(::acme::system * psystem);
       virtual void _will_finish_launching();
@@ -430,17 +430,17 @@ namespace acme
       virtual void report_exception_to_user(::object* pobject, ::exception& exception, const ::string& strMoreDetails);
 
 
-      virtual __pointer(::conversation) create_new_message_box_conversation();
+      virtual ::pointer<::conversation>create_new_message_box_conversation();
 
-      virtual __pointer(::conversation) create_new_message_conversation();
+      virtual ::pointer<::conversation>create_new_message_conversation();
 
 
-      virtual __pointer(::sequencer < ::conversation >) create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails);
+      virtual pointer< ::sequencer < ::conversation > > create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails);
 
 
       //virtual void nano_message_box(::sequence < ::conversation > * psequence, const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox);
 
-      virtual __pointer(::sequencer < ::conversation >) create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails);
+      virtual pointer< ::sequencer < ::conversation > > create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails);
 
 
 

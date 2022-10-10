@@ -14,10 +14,10 @@ namespace user
       id_map < int >          m_mapCommandImage;
       ::i32_map < atom >        m_mapImageCommand;
 
-      __pointer(::image_list)      m_pimagelist;
-      __pointer(::image_list)      m_pimagelistHue;
-      __pointer(::image_list)      m_pimagelistBlend;
-      __pointer(::image_list)      m_pimagelistHueLight;
+      ::pointer<::image_list>     m_pimagelist;
+      ::pointer<::image_list>     m_pimagelistHue;
+      ::pointer<::image_list>     m_pimagelistBlend;
+      ::pointer<::image_list>     m_pimagelistHueLight;
       ::write_text::font_pointer       m_pfontMenu;
 
 
@@ -28,10 +28,10 @@ namespace user
       virtual void defer_initialize();
 
 
-      __pointer(::image_list) MenuV033GetImageList();
-      __pointer(::image_list) MenuV033GetImageListHue();
-      __pointer(::image_list) MenuV033GetImageListBlend();
-      __pointer(::image_list) MenuV033GetImageListHueLight();
+      ::pointer<::image_list>MenuV033GetImageList();
+      ::pointer<::image_list>MenuV033GetImageListHue();
+      ::pointer<::image_list>MenuV033GetImageListBlend();
+      ::pointer<::image_list>MenuV033GetImageListHueLight();
 
 
       bool MenuV033AddImageMap(::object * pobject, ::xml::node * pnode);

@@ -17,7 +17,7 @@ namespace crypto
 
       virtual void hash(memory & memoryHash, const block & block) = 0;
 
-      virtual __pointer(::crypto::hasher) create_hasher() = 0;
+      virtual ::pointer<::crypto::hasher>create_hasher() = 0;
 
 
    };

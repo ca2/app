@@ -42,13 +42,13 @@ namespace crypto
    };
 
 
-   typedef __pointer_array(rsa) rsa_pointer_array;
+   typedef pointer_array < rsa > rsa_pointer_array;
 
 
 } // namespace crypto
 
 
 
-//__pointer(::crypto::rsa) __create_rsa(const string& str);
+//::pointer<::crypto::rsa>__create_rsa(const string& str);
 
 

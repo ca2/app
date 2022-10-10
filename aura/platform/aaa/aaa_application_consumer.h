@@ -8,7 +8,7 @@ class app_consumer :
 public:
 
 
-   __pointer(APPLICATION) m_pacmeapplication;
+   ::pointer<APPLICATION>m_pacmeapplication;
 
 
    app_consumer()

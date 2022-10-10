@@ -83,6 +83,8 @@ public:
 
    inline ::payload & topic(const atom & atom);
 
+   inline ::payload_reference reference(const atom & atom) { return topic(atom); }
+
    ::payload & set(const atom & atom);
 
    property & at(index iId);
@@ -338,7 +340,7 @@ public:
 
 
    template < class T >
-   __pointer(T) cast(atom idName, T * pDefault = nullptr)
+   pointer < T > cast(atom idName, T * pDefault = nullptr)
    {
 
       if (!has_property(idName))
@@ -350,7 +352,7 @@ public:
 
 
    template < class T >
-   __pointer(T) cast(atom idName, T * pDefault = nullptr) const
+   pointer < T > cast(atom idName, T * pDefault = nullptr) const
    {
 
       return ((property_set *) this)->cast < T >(idName, pDefault);
@@ -408,13 +410,13 @@ namespace handle
 } // namespace handle
 
 
-//inline __pointer(::handle::ini) operator ""_pini(const char * psz, size_t s);
+//inline ::pointer<::handle::ini>operator ""_pini(const char * psz, size_t s);
 
 
 //inline ::handle::ini operator ""_ini(const char * psz, size_t s);
 
 
-//inline __pointer(::property_set) localconfigini();
+//inline ::pointer<::property_set>localconfigini();
 
 
 

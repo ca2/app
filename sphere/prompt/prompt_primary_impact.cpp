@@ -223,7 +223,7 @@ namespace prompt
 
    void primary_impact::_001OnUpdateEditCopy(::message::message * pmessage)
    {
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
       pcommand->enable(true);
    }
 
@@ -235,7 +235,7 @@ namespace prompt
 
    void primary_impact::_001OnUpdateEditPaste(::message::message * pmessage)
    {
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
       pcommand->enable(true);
    }
 
@@ -250,7 +250,7 @@ namespace prompt
    void primary_impact::on_message_context_menu(::message::message * pmessage)
    {
 
-      __pointer(::message::context_menu) pcontextmenu(pmessage);
+      ::pointer<::message::context_menu>pcontextmenu(pmessage);
 
       track_popup_xml_menu("matter://command/popup_primary_verbing.xml", 0, pcontextmenu->GetPoint());
 

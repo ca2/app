@@ -33,28 +33,28 @@ namespace user
       ::bred::user* m_pbreduser;
       ::core::user* m_pcoreuser;
 
-      __pointer(::user::primitive)              m_pmousefocusLButtonDown;
-      __pointer(::user::primitive)              m_pmousefocusRButtonDown;
+      ::pointer<::user::primitive>             m_pmousefocusLButtonDown;
+      ::pointer<::user::primitive>             m_pmousefocusRButtonDown;
       string_array                              m_straEscape;
       ::user::style_pointer                     m_puserstyle;
       string_map < ::user::style_pointer >      m_mapUserStyle;
 
-      __composite(::html::html)                 m_phtml; // defined in upper level
+      ::pointer<::html::html>                m_phtml; // defined in upper level
 
       ::type                                    m_typeHtmlDocument;
       ::type                                    m_typeHtmlImpact;
       
-      __pointer_array(::user::interaction)      m_uiptraToolWindow;
+      pointer_array < ::user::interaction >      m_uiptraToolWindow;
 
-      __composite(::windowing::windowing)       m_pwindowing;
+      ::pointer<::windowing::windowing>      m_pwindowing;
 
       ::mutex                                   m_mutexRunnable;
 
-      ::list < __pointer(::matter) >            m_listRunnable;
+      ::list < ::pointer<::matter >>           m_listRunnable;
 
-      __composite(::user::shell)                m_pshell;
+      ::pointer<::user::shell>               m_pshell;
 
-      __pointer(::windowing::desktop_environment)  m_pdesktopenvironment;
+      ::pointer<::windowing::desktop_environment> m_pdesktopenvironment;
 
       bool                                      m_bOnInitializeWindowObject;
 
@@ -139,12 +139,12 @@ namespace user
 
       virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype);
 
-      //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style * pstyle, menu_item * pitem);
+      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style * pstyle, menu_item * pitem);
 
 
       virtual bool runnable_step();
 
-      virtual __pointer(::user::plain_edit) create_calculator_plain_edit();
+      virtual ::pointer<::user::plain_edit>create_calculator_plain_edit();
 
 
 

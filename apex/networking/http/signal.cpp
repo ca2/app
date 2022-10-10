@@ -63,7 +63,7 @@ namespace http
 
       string str;
 
-      str = *pmemory;
+      str = pmemory->as_string();
 
       return str;
 

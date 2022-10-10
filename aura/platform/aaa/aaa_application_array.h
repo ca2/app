@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_AURA application_array:
-   virtual public __pointer_array(::aura::application)
+   virtual public pointer_array < ::aura::application >
 {
 public:
 
@@ -21,7 +21,7 @@ public:
 
    ::aura::application * find_running_defer_try_quit_damaged(string strAppName);
 
-   bool lookup(string strAppName, __pointer(::aura::application) & papp);
+   bool lookup(string strAppName, ::pointer<::aura::application>& papp);
 
 
 };

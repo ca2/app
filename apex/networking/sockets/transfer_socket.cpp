@@ -542,7 +542,7 @@ namespace sockets
    //}
 
 
-   //__pointer(transfer_socket) create_default_transfer_socket()
+   //::pointer<transfer_socket>create_default_transfer_socket()
    //{
 
    //   return memory_new transfer_socket(handler);

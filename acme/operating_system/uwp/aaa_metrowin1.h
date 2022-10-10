@@ -61,7 +61,7 @@ CLASS_DECL_ACME void __init_thread();
 //CLASS_DECL_ACME void __term_thread(::matter * pobject);
 
 
-//CLASS_DECL_ACME __pointer(::user::interaction) __get_main_window();
+//CLASS_DECL_ACME ::pointer<::user::interaction>__get_main_window();
 
 
 CLASS_DECL_ACME void __delete_object(HGDIOBJ* pObject);

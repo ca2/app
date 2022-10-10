@@ -40,7 +40,7 @@ namespace sockets
       virtual ~listen_socket_base();
 
 
-      virtual __pointer(socket) create_listen_socket();
+      virtual ::pointer<socket>create_listen_socket();
 
       /** close file descriptor. */
       virtual void close();

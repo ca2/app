@@ -8,10 +8,10 @@ public:
 
 
    int                           m_iCheck;
-   __pointer(::task)             m_ptaskExit;
+   ::pointer<::task>             m_ptaskExit;
 
 
-   exit_exception(__pointer(::task) playeredThreadExit = nullptr, const char * pszMessage = nullptr);
+   exit_exception(::pointer<::task> playeredThreadExit = nullptr, const char * pszMessage = nullptr);
    virtual ~exit_exception();
 
 

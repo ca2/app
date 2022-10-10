@@ -1,4 +1,4 @@
-// Created by camilo on 2022-03-18 19:44 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-03-18 19:44 <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
@@ -19,7 +19,7 @@ namespace appearance
       ~still() override;
 
 
-      __pointer(::user::still)      m_pstill;
+      ::pointer<::user::still>      m_pstill;
 
 
    };

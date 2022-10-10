@@ -28,12 +28,12 @@ namespace aura
 //
 //   void application::_001OnFileNew()
 //   {
-//      //      ::ca2::pointer < ::application_base > ::m_p->_001OnFileNew(nullptr);
+//      //      ::ca2pointer< ::application_base > ::m_p->_001OnFileNew(nullptr);
 //   }
 //
 //   ::user::document * application::_001OpenDocumentFile(::payload payloadFile)
 //   {
-//      //    return ::ca2::pointer < ::application_base > ::m_p->_001OpenDocumentFile(payloadFile);
+//      //    return ::ca2pointer< ::application_base > ::m_p->_001OpenDocumentFile(payloadFile);
 //      return nullptr;
 //   }
 

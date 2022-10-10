@@ -2,7 +2,7 @@
 #include "aura/platform/system_setup.h"
 
 
-//extern string_map < __pointer(::acme::library) > * g_pmapLibrary;
+//extern string_map < ::pointer<::acme::library >>* g_pmapLibrary;
 
 //extern ::mutex * ::aura::get_system()->m_mutexLibrary;
 
@@ -564,7 +564,7 @@ namespace aura
    }
 
 
-   __pointer(::aura::application) library::get_new_application(::object * pobject, const ::string & pszAppId)
+   ::pointer<::aura::application>library::get_new_application(::object * pobject, const ::string & pszAppId)
    {
 
       synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
@@ -736,7 +736,7 @@ namespace aura
    }
 
 
-   __pointer(::matter) library::create_object(::object * pobject, const ::string & pszClass)
+   ::pointer<::matter>library::create_object(::object * pobject, const ::string & pszClass)
    {
 
       synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
@@ -880,7 +880,7 @@ namespace aura
    }
 
 
-   __pointer(::matter) library::factory_create(::object * pobject, const ::string & lpszClass)
+   ::pointer<::matter>library::factory_create(::object * pobject, const ::string & lpszClass)
    {
 
       library_object_allocator_base * pallocator = find_allocator(lpszClass);
@@ -965,7 +965,7 @@ namespace aura
 } // namespace aura
 
 
-//string_map < __pointer(::acme::library) > * g_pmapLibCall = nullptr;
+//string_map < ::pointer<::acme::library >>* g_pmapLibCall = nullptr;
 
 
 ::acme::library * lib(const ::string & psz)
@@ -978,7 +978,7 @@ namespace aura
 
    //}
 
-   __pointer(::acme::library) & plibrary = ::aura::get_system()->m_mapLibCall[psz];
+   ::pointer<::acme::library>& plibrary = ::aura::get_system()->m_mapLibCall[psz];
 
    if(!plibrary)
    {

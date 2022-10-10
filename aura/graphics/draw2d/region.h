@@ -105,7 +105,7 @@ namespace draw2d
       {
       public:
 
-         __pointer_array(::polygon) m_polygona;
+         pointer_array < ::polygon > m_polygona;
          ::draw2d::enum_fill_mode            m_efillmode;
 
          void translate(const POINT_I32 & point) override;
@@ -120,10 +120,10 @@ namespace draw2d
       {
       public:
 
-         __pointer_array(::polygon) m_polygon;
+         pointer_array < ::polygon > m_polygon;
 
-         __pointer(::draw2d::region)   m_pregion1;
-         __pointer(::draw2d::region)   m_pregion2;
+         ::pointer<::draw2d::region>  m_pregion1;
+         ::pointer<::draw2d::region>  m_pregion2;
          enum_combine                        m_ecombine;
 
          void translate(const POINT_I32 & point) override;
@@ -153,7 +153,7 @@ namespace draw2d
 
 
       enum_region                         m_eregion;
-      __pointer(item)                     m_pitem;
+      ::pointer<item>                    m_pitem;
       //union
       //{
 
@@ -291,7 +291,7 @@ namespace draw2d
    //using polygon_shape_region = _shape < ::polygon, e_shape_polygon, region >;
 
    /*template < >
-   inline __pointer(___shape) __create_shape(const ::line & line)
+   inline ::pointer<___shape>__create_shape(const ::line & line)
    {
 
       return __new(line_shape_with_region(line));
@@ -305,10 +305,10 @@ namespace draw2d
 
 
 //template < >
-//CLASS_DECL_AURA __pointer(___shape< ::draw2d::region>) __create_shape(const ::write_text::text_out & textout, holdee < ::draw2d::region>);
+//CLASS_DECL_AURA ::pointer<___shape< ::draw2d::region>> __create_shape(const ::write_text::text_out & textout, holdee < ::draw2d::region>);
 //
 //template < >
-//CLASS_DECL_AURA __pointer(___shape< ::draw2d::region>) __create_shape(const ::write_text::draw_text & drawtext, holdee < ::draw2d::region>);
+//CLASS_DECL_AURA ::pointer<___shape< ::draw2d::region>> __create_shape(const ::write_text::draw_text & drawtext, holdee < ::draw2d::region>);
 //
 //
 

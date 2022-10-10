@@ -146,7 +146,7 @@ CLASS_DECL_AURA i32 ca2_main();
 //CLASS_DECL_AURA void main_async_runnable(::object * pobjectTaskParam)
 //{
 //
-//   __pointer(::object) pobjectTask = pobjectTaskParam;
+//   ::pointer<::object>pobjectTask = pobjectTaskParam;
 //   
 //   psystem->post_predicate([pobjectTask]()
 //   {
@@ -161,7 +161,7 @@ CLASS_DECL_AURA i32 ca2_main();
 //CLASS_DECL_AURA void main_sync_runnable(::object * pobjectTaskParam, ::duration durationTimeout)
 //{
 //   
-//   __pointer(::object) pobjectTask = pobjectTaskParam;
+//   ::pointer<::object>pobjectTask = pobjectTaskParam;
 //   
 //   psystem->send_predicate([pobjectTask]()
 //   {

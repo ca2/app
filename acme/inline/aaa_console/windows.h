@@ -10,7 +10,7 @@ namespace acme
 
       
       void m_estatus;
-      //__pointer(::acme::system) m_psystem;
+      //::pointer<::acme::system>m_psystem;
 
    //   void create_system()
    //   {

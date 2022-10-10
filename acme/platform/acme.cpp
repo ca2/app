@@ -164,7 +164,7 @@ namespace acme
 {
 
 
-   static __pointer_array(::matter) g_elementaddraReleaseOnEnd;
+   static pointer_array < ::matter > g_elementaddraReleaseOnEnd;
 
 
 #if OBJECT_TYPE_COUNTER

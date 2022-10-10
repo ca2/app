@@ -726,11 +726,11 @@ class xlib_message_box :
 public:
 
 
-   __pointer_array(::simple_ui::label) m_labela;
+   pointer_array < ::simple_ui::label > m_labela;
 
    ::rectangle_i32 m_rectangleDesktop;
 
-   xlib_message_box(__pointer(base_application) papp) : ::object(pobject), ::os::simple_ui(pobject), ::user::interaction(pobject)
+   xlib_message_box(::pointer<base_application>papp) : ::object(pobject), ::os::simple_ui(pobject), ::user::interaction(pobject)
    {
    }
 

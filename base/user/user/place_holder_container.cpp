@@ -62,7 +62,7 @@ namespace user
 
    ::user::place_holder * place_holder_container::place_hold(::user::interaction * pinteraction,const ::rectangle_i32 & rectangleCreate)
    {
-      __pointer(place_holder) pholder = get_new_place_holder(rectangleCreate);
+      ::pointer<place_holder>pholder = get_new_place_holder(rectangleCreate);
       if(!on_place_hold(pinteraction, pholder))
       {
          erase_place_holder(pholder);
@@ -145,7 +145,7 @@ namespace user
 
       place_holder_ptra holderptra;
 
-      __pointer(place_holder) pholder;
+      ::pointer<place_holder>pholder;
 
       for(i32 i = 0; i < this->get_count(); i++)
       {

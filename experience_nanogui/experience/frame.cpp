@@ -61,7 +61,7 @@ namespace experience_nanogui
    }
 
 
-   void frame::OnMove(__pointer(::user::interaction) pframewindow)
+   void frame::OnMove(::pointer<::user::interaction>pframewindow)
    {
 
       __UNREFERENCED_PARAMETER(pframewindow);

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "edit.h"
 #include "document.h"
 
@@ -13,7 +13,7 @@ namespace xml
    }
 
 
-   void edit_item::set_name(const __pointer(::xml::node) pnode)
+   void edit_item::set_name(const ::pointer<::xml::node>pnode)
    {
 
       m_eaction      = ::xml::action_set_name;
@@ -22,7 +22,7 @@ namespace xml
 
    }
 
-   void edit_item::set_value(const __pointer(::xml::node) pnode)
+   void edit_item::set_value(const ::pointer<::xml::node>pnode)
    {
 
       m_eaction      = ::xml::action_set_value;
@@ -32,7 +32,7 @@ namespace xml
    }
 
 
-   void edit_item::set_attribute(const __pointer(::xml::node) pnode, const property * pproperty)
+   void edit_item::set_attribute(const ::pointer<::xml::node>pnode, const property * pproperty)
    {
 
       m_eaction      = ::xml::action_set_attribute;
@@ -43,7 +43,7 @@ namespace xml
    }
 
 
-   //void edit_item::add_attr(const __pointer(::xml::node) pnode, const attr * pattr)
+   //void edit_item::add_attr(const ::pointer<::xml::node>pnode, const attr * pattr)
    //{
 
    //   m_eaction      = ::xml::action_add_attr;
@@ -94,7 +94,7 @@ namespace xml
    }
 
 
-   void edit::set_name(const __pointer(::xml::node) pnode)
+   void edit::set_name(const ::pointer<::xml::node>pnode)
    {
 
       if (pnode->get_document() != m_pdocument)
@@ -110,7 +110,7 @@ namespace xml
 
    }
 
-   void edit::set_value(const __pointer(::xml::node) pnode)
+   void edit::set_value(const ::pointer<::xml::node>pnode)
    {
 
       if (pnode->get_document() != m_pdocument)
@@ -127,7 +127,7 @@ namespace xml
    }
 
 
-   void edit::set_attribute(const __pointer(::xml::node) pnode, const property * pproperty)
+   void edit::set_attribute(const ::pointer<::xml::node>pnode, const property * pproperty)
    {
 
       if (pnode->get_document() != m_pdocument)
@@ -144,7 +144,7 @@ namespace xml
    }
 
 
-   //void edit::add_attr(const __pointer(::xml::node) pnode, const ::xml::attr * pattr)
+   //void edit::add_attr(const ::pointer<::xml::node>pnode, const ::xml::attr * pattr)
    //{
 
    //   if(pnode->get_document() != m_spdata.m_p)

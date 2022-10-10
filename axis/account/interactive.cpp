@@ -30,7 +30,7 @@ namespace account
          else
          {
 
-            __pointer(::axis::application) papp = get_app();
+            ::pointer<::axis::application>papp = get_app();
 
             papp->interactive_credentials(pcredentials);
 

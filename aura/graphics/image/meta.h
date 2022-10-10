@@ -26,8 +26,8 @@ class CLASS_DECL_AURA image_meta :
 public:
 
 
-   __pointer(::draw2d::bitmap)      m_pbitmap;
-   __pointer(::draw2d::graphics)    m_pgraphics;
+   ::pointer<::draw2d::bitmap>     m_pbitmap;
+   ::pointer<::draw2d::graphics>   m_pgraphics;
    double                           m_dSpeed;
    double                           m_dIsotropicRate;
    ::size_i32                       m_sizeAlloc;
@@ -39,7 +39,7 @@ public:
    index                            m_iFrame;
    int                              m_iExifOrientation;
    bool                             m_bCreateHelperMaps;
-   __pointer(::image_extension)     m_pextension;
+   ::pointer<::image_extension>    m_pextension;
    image_dynamic                    m_dynamic;
 
 
@@ -66,7 +66,7 @@ public:
    ~image_meta();
 
 
-   //inline __pointer(::image_frame_array) frames();
+   //inline ::pointer<::image_frame_array>frames();
 
 
 

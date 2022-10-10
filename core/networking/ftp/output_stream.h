@@ -17,7 +17,7 @@ namespace ftp
       class implementation;
 
 
-      __pointer(implementation)      m_pimpl;
+      ::pointer<implementation>     m_pimpl;
 
 
       output_stream(const string& strEolCharacterSequence, const string& strStreamName);

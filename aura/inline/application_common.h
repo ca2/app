@@ -72,7 +72,7 @@
 //
 //#ifdef MAIN_STRING
 //
-//   __pointer(::aura::system) psystem = m_psystem;
+//   ::pointer<::aura::system>psystem = m_psystem;
 //
 //   psystem->m_pszMain = MAIN_STRING;
 //

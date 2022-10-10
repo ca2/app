@@ -15,11 +15,11 @@ namespace account
    public:
 
 
-      __pointer(user_array)                        m_pusera;
-      __pointer(product_array)                     m_pproducta;
-      __pointer(class storage)                     m_pstorage;
-      __pointer(class authenticator)               m_pauthenticator;
-      __pointer(::task_pool)                       m_ptaskpool;
+      ::pointer<user_array>                       m_pusera;
+      ::pointer<product_array>                    m_pproducta;
+      ::pointer<class storage>                     m_pstorage;
+      ::pointer<class authenticator>               m_pauthenticator;
+      ::pointer<::task_pool>                      m_ptaskpool;
 
 #if !MOBILE_PLATFORM
       
@@ -39,7 +39,7 @@ namespace account
       void initialize(::object * pobject) override;
 
 
-      class __pointer(class authenticator) authenticator();
+      class ::pointer<class authenticator> authenticator();
 
 
       ::file::path system_storage_default_path_prefix();
@@ -50,7 +50,7 @@ namespace account
 
       bool is_authenticated(::file::path pathUrl = nullptr, bool bInteractive = true);
 
-      //__pointer(credentials) get_credentials(::file::path pathUrl, bool bInteractive = true);
+      //::pointer<credentials>get_credentials(::file::path pathUrl, bool bInteractive = true);
 
       virtual product * get_product(string strAppId, bool bFetch = false, bool bInteractive = true);
 //      virtual product * interactive_get_product(string strAppId);

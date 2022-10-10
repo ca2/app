@@ -15,7 +15,7 @@ namespace experience
 
 
       enum_button                   m_ebutton;
-      __pointer(control_box)        m_pcontrolbox;
+      ::pointer<control_box>       m_pcontrolbox;
       ::draw2d::region_pointer      m_pregion;
 
 

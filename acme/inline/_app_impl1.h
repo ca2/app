@@ -141,9 +141,9 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLi
 //
 //   {
 //
-//      __pointer(class acme_acme) pacme;
+//      ::pointer<class acme_acme> pacme;
 //
-//      __pointer(class acme_main_data) pmaindata;
+//      ::pointer<class acme_main_data> pmaindata;
 //
 //      {
 //

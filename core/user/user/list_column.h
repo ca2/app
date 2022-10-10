@@ -48,11 +48,11 @@ namespace user
       i32                                    m_iSmallImageWidth;
       index                                  m_iSubItem;
       index                                  m_iColumn;
-      __pointer(::image_list)                m_pimagelist;
-      __pointer(::image_list)                m_pimagelistHover;
-      __pointer(draw_list_column)            m_pdrawlistcolumn;
-      __pointer(::user::interaction)         m_puserinteractionTemplate;
-      __pointer(::user::interaction_array)   m_puserinteractiona;
+      ::pointer<::image_list>               m_pimagelist;
+      ::pointer<::image_list>               m_pimagelistHover;
+      ::pointer<draw_list_column>           m_pdrawlistcolumn;
+      ::pointer<::user::interaction>        m_puserinteractionTemplate;
+      ::pointer<::user::interaction_array>  m_puserinteractiona;
       ::draw2d::icon_int_map                 m_mapIcon;
       ::size_i32                             m_sizeIcon;
       bool                                   m_bIcon;
@@ -77,10 +77,10 @@ namespace user
    
    
 
-      static int CompareOrderSectEndNonVisible(const __pointer(list_column) & columna, const __pointer(list_column) & columnb);
-      static int CompareOrder(const __pointer(list_column) & columna, const __pointer(list_column) & columnb);
+      static int CompareOrderSectEndNonVisible(const ::pointer<list_column>& columna, const ::pointer<list_column> columnb);
+      static int CompareOrder(const ::pointer<list_column>& columna, const ::pointer<list_column> columnb);
 
-      static inline bool less_SectEndNonVisible(const __pointer(list_column)& columna, const __pointer(list_column)& columnb)
+      static inline bool less_SectEndNonVisible(const ::pointer<list_column> columna, const ::pointer<list_column>columnb)
       {
          return CompareOrderSectEndNonVisible(columna, columnb) < 0;
 
@@ -93,7 +93,7 @@ namespace user
 
       //};
 
-      static int CompareKey(const __pointer(list_column) & columna, const __pointer(list_column) & columnb);
+      static int CompareKey(const ::pointer<list_column>& columna, const ::pointer<list_column> columnb);
 
       bool operator ==(const ::user::list_column & pcolumn) const;
       //list_column & operator = (const list_column & column);

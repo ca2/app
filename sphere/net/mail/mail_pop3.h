@@ -17,8 +17,8 @@ namespace mail
    public:
 
 
-      __pointer(::sockets::socket_handler)    m_phandler;
-      __pointer(pop3_socket)                  m_psocket;
+      ::pointer<::sockets::socket_handler>   m_phandler;
+      ::pointer<pop3_socket>                 m_psocket;
       event                            m_evFinish;
 
       string_array                          m_straIndex;

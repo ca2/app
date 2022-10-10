@@ -264,7 +264,7 @@ namespace sockets
    //}
 
 
-   __pointer(::networking::address) sockets::create_address(const ::string & strHostname)
+   ::pointer<::networking::address>sockets::create_address(const ::string & strHostname)
    {
 
       return nullptr;

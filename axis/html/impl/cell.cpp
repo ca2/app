@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 // #if !BROAD_PRECOMPILED_HEADER
 // #include "_impl.h"
 // #endif
@@ -52,7 +52,7 @@ namespace html
             if(pelement == nullptr)
                return nullptr;
 
-            __pointer(table) ptable = pelement->m_pimpl;
+            ::pointer<table>ptable = pelement->m_pimpl;
 
             if(ptable != nullptr)
                return ptable;
@@ -75,7 +75,7 @@ namespace html
             if(pelement == nullptr)
                return nullptr;
 
-            __pointer(table_row) prow = pelement->m_pimpl;
+            ::pointer<table_row>prow = pelement->m_pimpl;
 
             if(prow != nullptr)
                return prow;
@@ -559,7 +559,7 @@ namespace html
                if(pelement == m_pelemental)
                   break;
 
-               __pointer(cell) pcell = pelement->m_pimpl;
+               ::pointer<cell>pcell = pelement->m_pimpl;
 
                if(pcell != nullptr)
                {

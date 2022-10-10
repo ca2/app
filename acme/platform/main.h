@@ -101,8 +101,8 @@ public:
    
    string                              m_strCommandLine;
    string                              m_strAppId;
-   __pointer(::acme::application)      m_pacmeapplicationStartup;
-   __pointer(::acme::application)      m_pacmeapplicationMain;
+   ::pointer<::acme::application>     m_pacmeapplicationStartup;
+   ::pointer<::acme::application>     m_pacmeapplicationMain;
 
 
    ///int                              m_iPathInstallFolderExeArg;
@@ -115,8 +115,8 @@ public:
    ::duration                          m_durationStart;
    ::duration                          m_durationAfterApplicationFirstRequest;
    //::apex::system *                  m_psystem;
-   //__pointer(apex_main_data)         m_pmaindata;
-   __pointer(::acme::library)          m_plibrary;
+   //::pointer<apex_main_data>        m_pmaindata;
+   ::pointer<::acme::library>         m_plibrary;
    array < ::e_status >                m_estatusa;
 
 
@@ -219,12 +219,12 @@ public:
 
    void system_end();
 
-   //__pointer(::acme::application) new_app();
-   //__pointer(::acme::application) new_app(const char* pszAppId);
+   //::pointer<::acme::application>new_app();
+   //::pointer<::acme::application>new_app(const char* pszAppId);
 
 
-   //   __pointer(::apex::application) get_new_application(::object* pobject);
-   //   __pointer(::apex::application) get_new_application(::object* pobject, const char* pszAppId);
+   //   ::pointer<::apex::application>get_new_application(::object* pobject);
+   //   ::pointer<::apex::application>get_new_application(::object* pobject, const char* pszAppId);
 
    virtual void initialize_application(::acme::application * papp, ::object* pobject);
 
@@ -232,6 +232,7 @@ public:
 
 };
 
+class subsystem;
 
 CLASS_DECL_ACME void __main(::acme::application * pacmeapplication);
 

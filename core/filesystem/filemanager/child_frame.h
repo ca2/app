@@ -22,7 +22,7 @@ namespace filemanager
 
       //void OnChangeEditSearch();
 
-      __pointer(document) filemanager_document();
+      ::pointer<document>filemanager_document();
 
 
       virtual ::file::item_array get_selected_items();

@@ -196,7 +196,7 @@ namespace axis
 
       synchronous_lock synchronouslock(&m_mutexStr);
 
-      __pointer(string_to_string) pmap;
+      ::pointer<string_to_string>pmap;
 
       if(m_stringtableStd.lookup(strTable,pmap))
       {
@@ -545,17 +545,17 @@ resume_on_exception:
    }
 
 
-   //__pointer(::aura::application) application::assert_running(const ::string & pszAppId)
+   //::pointer<::aura::application>application::assert_running(const ::string & pszAppId)
    //{
 
-   //   __pointer(::aura::application) papp;
+   //   ::pointer<::aura::application>papp;
 
    //   papp = psession->m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
 
    //   if(papp.is_null())
    //   {
 
-   //      __pointer(::create) spcreate(e_create);
+   //      ::pointer<::create>spcreate(e_create);
 
    //      papp = psession->start_application(pszAppId,spcreate);
 
@@ -984,7 +984,7 @@ m_durationHeartBeat.Now();
    }
 
 
-   bool application::update_appmatter(::sockets::socket_handler * handler, __pointer(::sockets::http_session) & psession,const ::file::path & pszRoot,const string & pszRelative)
+   bool application::update_appmatter(::sockets::socket_handler * handler, ::pointer<::sockets::http_session>& psession,const ::file::path & pszRoot,const string & pszRelative)
    {
 
       auto plocaleschema = __create_new < ::text::international::locale_schema >();
@@ -1022,7 +1022,7 @@ m_durationHeartBeat.Now();
 
    }
 
-   bool application::update_appmatter(::sockets::socket_handler * handler, __pointer(::sockets::http_session) & psession,const ::file::path & pszRoot,const string & pszRelative,const string & pszLocale,const string & pszStyle)
+   bool application::update_appmatter(::sockets::socket_handler * handler, ::pointer<::sockets::http_session>& psession,const ::file::path & pszRoot,const string & pszRelative,const string & pszLocale,const string & pszStyle)
    {
 
       string strLocale;
@@ -1206,7 +1206,7 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
    void application::process_message_filter(i32 code,::message::message * pmessage)
    {
 
-      //__pointer(::user::message) pusermessage(pmessage);
+      //::pointer<::user::message>pusermessage(pmessage);
 
       __UNREFERENCED_PARAMETER(code);
 
@@ -1426,7 +1426,7 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
    }
 
 
-   //__pointer(::user::message) application::get_message_base(LPMESSAGE pmsg)
+   //::pointer<::user::message>application::get_message_base(LPMESSAGE pmsg)
 
    //{
 

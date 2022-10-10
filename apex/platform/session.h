@@ -20,7 +20,7 @@ namespace apex
 
 
       class CLASS_DECL_APEX map:
-         virtual public ::map < index, __pointer(::apex::session) >
+         virtual public ::map < index, ::pointer<::apex::session >>
       {
 
 
@@ -45,12 +45,12 @@ namespace apex
       // ... is is the "Main Window" (sometimes just a concept) holding the App.
       // For Desktop Applications a meaning should be given or this member could be ignored?
       // The Main papp window?
-      __pointer(::user::primitive)                         m_puserprimitiveHost;
-      //__pointer(::layered)     m_pimplLastSeed;
-      //__pointer(::layered)                        m_puiMain2;
+      ::pointer<::user::primitive>                        m_puserprimitiveHost;
+      //::pointer<::layered>    m_pimplLastSeed;
+      //::pointer<::layered>                       m_puiMain2;
 
       // apex commented
-      //__composite(::user::keyboard)                         m_pkeyboard;
+      //::pointer<::user::keyboard>                        m_pkeyboard;
 
       index                                                 m_iEdge;
 
@@ -63,7 +63,7 @@ namespace apex
       bool                                                  m_bSystemSynchronizedCursor;
       point_i32                                                 m_pointCursor;
 
-      //comparable_array < __reference(::layered) > m_uiptraToolWindow;
+      //comparable_array < ::pointer<::layered >>m_uiptraToolWindow;
 
       // apex commented
       //::user::interaction_impl *                            m_pimplPendingFocus2;
@@ -77,10 +77,10 @@ namespace apex
       //::layered *                                 m_puiCapture;
       //bool                                                  m_bDrawCursor;
 
-      //__pointer(::object)                                   m_pobjectCoreUser;
+      //::pointer<::object>                                  m_pobjectCoreUser;
 
       // apex commented
-      //__composite(::user::copydesk)                         m_pcopydesk;
+      //::pointer<::user::copydesk>                        m_pcopydesk;
 
       // apex commented
       //::layered *                                 m_puiMouseMoveCapture;
@@ -92,15 +92,15 @@ namespace apex
 
       //index                                               m_iEdge;
 
-      //__composite(::account::department)                    m_paccount;
-      //__pointer(::account::licensing)                     m_plicensing;
-      //__composite(::layered)                      m_puserinteractionSystem;
+      //::pointer<::account::department>                   m_paccount;
+      //::pointer<::account::licensing>                    m_plicensing;
+      //::pointer<::layered>                     m_puserinteractionSystem;
 
       ::payload                                                   m_varTopicFile;
       ::payload                                                   m_varCurrentImpactFile;
       bool                                                  m_bShowPlatform;
 
-      __composite(::text::context)                      m_ptextcontext;
+      ::pointer<::text::context>                     m_ptextcontext;
 
 
 
@@ -113,14 +113,14 @@ namespace apex
 
 
 
-      //__composite(::userpresence::department)               m_puserpresence;
+      //::pointer<::userpresence::department>              m_puserpresence;
 
 
-      __composite(::ftpfs)                                  m_pftpfs;
-      __composite(::fs::remote_native)                      m_premotefs;
-      __composite(::fs::fs)                                 m_pfs;
-      __composite(::fs::data)                               m_pfsdata;
-      __composite(::ifs)                                    m_pifs;
+      ::pointer<::ftpfs>                                 m_pftpfs;
+      ::pointer<::fs::remote_native>                     m_premotefs;
+      ::pointer<::fs::fs>                                m_pfs;
+      ::pointer<::fs::data>                              m_pfsdata;
+      ::pointer<::ifs>                                   m_pifs;
       //ke
       bool                                                  m_bIfs;
 
@@ -359,8 +359,8 @@ namespace apex
 
 
       //virtual void defer_instantiate_user_theme(const ::string & pszUiInteractionLibrary = nullptr);
-      //__pointer(::user::theme) instantiate_user_theme(const ::string & pszExperienceLibrary, ::apex::application * papp = nullptr);
-      //__pointer(::user::theme) get_user_theme(const ::string & pszExperienceLibrary, ::apex::application * papp = nullptr);
+      //::pointer<::user::theme>instantiate_user_theme(const ::string & pszExperienceLibrary, ::apex::application * papp = nullptr);
+      //::pointer<::user::theme>get_user_theme(const ::string & pszExperienceLibrary, ::apex::application * papp = nullptr);
 
 
       //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & pbrushText);
@@ -396,18 +396,18 @@ namespace apex
       virtual void destroy() override;
 
       //template < typename VIEW >
-      //__pointer(::user::document)   create_form(__pointer(::user::interaction) puserinteractionParent = nullptr, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(::type point, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(::user::form_callback* pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(__pointer(::user::form) pimpact, ::user::form_callback* pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::user::form_callback* pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_form(::pointer<::user::interaction>userinteractionParent = nullptr, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_form(::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_form(::user::form_callback* pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_form(::pointer<::user::form>impact, ::user::form_callback* pcallback, ::pointer<::user::interaction>serinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_child_form(::user::form_callback* pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
       //template < typename VIEW >
-      //__pointer(::user::document)   create_child_form(__pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(__pointer(::user::form) pimpact, ::user::form_callback* pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_child_form(::pointer<::user::interaction>userinteractionParent, ::payload payload = payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_child_form(::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_child_form(::pointer<::user::form>impact, ::user::form_callback* pcallback, ::pointer<::user::interaction>serinteractionParent, ::payload payload = payload(::e_type_empty_argument));
 
 
-      //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle,::user::menu_item* pitem) override;
+      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle,::user::menu_item* pitem) override;
 
 
 
@@ -462,10 +462,10 @@ namespace apex
 
 
 
-      //user __pointer(::user::document)                   get_document();
-      //user __pointer(::user::impact)                     get_impact();
-      //user __pointer(::user::document)                   get_platform();
-      //user __pointer(::user::document)                   get_nature();
+      //user ::pointer<::user::document>                  get_document();
+      //user ::pointer<::user::impact>                    get_impact();
+      //user ::pointer<::user::document>                  get_platform();
+      //user ::pointer<::user::document>                  get_nature();
 
 
       //inline ::userex::userex* userex() { return m_puserex; }
@@ -483,11 +483,11 @@ namespace apex
 
       virtual void defer_initialize_host_window(const RECTANGLE_I32 * lpcrect = nullptr);
 
-      __pointer(::apex::application) get_current_application();
+      ::pointer<::apex::application>get_current_application();
 
       virtual void set_app_title(const ::string & pszAppId, const ::string & pszTitle);
 
-      virtual __pointer(::apex::session) get_session();
+      virtual ::pointer<::apex::session>get_session();
 
       virtual bool is_remote_session();
 

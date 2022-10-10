@@ -49,7 +49,7 @@ namespace filemanager
       return get_document()->m_poperationthread->get_item_count();
    }
 
-   __pointer(operation_document) operation_list_impact::get_document()
+   ::pointer<operation_document>operation_list_impact::get_document()
    {
       return  (::user::impact::get_document());
    }

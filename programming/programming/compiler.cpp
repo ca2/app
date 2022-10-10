@@ -150,7 +150,7 @@ namespace programming
 
 #endif
 
-      __pointer(::aura::application) papp = get_app();
+      ::pointer<::aura::application>papp = get_app();
 
 #ifdef WINDOWS_DESKTOP
 
@@ -323,7 +323,7 @@ namespace programming
       string strLog;
 
 
-      __pointer(::apex::application) papp = get_app();
+      ::pointer<::apex::application>papp = get_app();
 
 
 #ifdef WINDOWS

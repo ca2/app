@@ -51,7 +51,7 @@ message_queue * get_message_queue(itask_t idthread, bool bCreate);
 
    }
 
-   __pointer(message_queue) pmq;
+   ::pointer<message_queue>pmq;
 
    if (dwWakeMask > 0)
    {

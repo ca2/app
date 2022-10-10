@@ -27,12 +27,12 @@ namespace hi5
          string                                    m_strPin;
          string                                    m_strAuthorizationUrl;
          i32                                   m_iImpact;
-         __pointer(::user::single_document_template)      m_ptemplatePane;
-         __pointer(::user::document)                      m_pdocument;
-         __pointer(::user::tab_impact)                      m_ptabimpact;
-         __pointer(::form_document)                       m_pformdocumentAuth;
-         __pointer(::form_document)                       m_pformdocumentMessage;
-         __pointer(::user::form_impact)                     m_pviewAuth;
+         ::pointer<::user::single_document_template>     m_ptemplatePane;
+         ::pointer<::user::document>                     m_pdocument;
+         ::pointer<::user::tab_impact>                     m_ptabimpact;
+         ::pointer<::form_document>                      m_pformdocumentAuth;
+         ::pointer<::form_document>                      m_pformdocumentMessage;
+         ::pointer<::user::form_impact>                    m_pviewAuth;
          bool                                      m_bAuth;
          string                                    m_strForm;
          string                                    m_strLicense;

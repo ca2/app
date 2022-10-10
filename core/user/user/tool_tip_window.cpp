@@ -31,7 +31,7 @@ namespace user
    {
       if(is_window())
          return;
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
       switch(pusermessage->m_atom)
       {
       case e_message_mouse_move:
@@ -114,7 +114,7 @@ namespace user
 
       m_ealign = m_ealignDefault;
 
-      __pointer(::user::interaction) puserinteraction = m_puserinteraction;
+      ::pointer<::user::interaction>puserinteraction = m_puserinteraction;
       
       ::user::tool_tip_tool * ptool = GetTool(iTool);
 

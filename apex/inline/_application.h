@@ -12,8 +12,8 @@ public:
 
 
    class apex_apex                  m_apex;
-   __pointer(apex_main_data)        m_pmaindata;
-   __pointer(::apex::application)   m_pacmeapplication;
+   ::pointer<apex_main_data>        m_pmaindata;
+   ::pointer<::apex::application>   m_pacmeapplication;
 
 
    //static application *             s_papp;

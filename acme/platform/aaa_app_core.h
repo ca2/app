@@ -54,8 +54,8 @@ public:
    ::duration                          m_durationStart;
    ::duration                          m_durationAfterApplicationFirstRequest;
    //::apex::system *                  m_psystem;
-   //__pointer(apex_main_data)         m_pmaindata;
-   __pointer(::acme::library)          m_plibrary;
+   //::pointer<apex_main_data>        m_pmaindata;
+   ::pointer<::acme::library>         m_plibrary;
    ::e_status                          m_estatusa[APP_CORE_MAXIMUM_STATUS_COUNT];
    int                                 m_iStatusCount;
    int                                 m_iTotalStatusCount;
@@ -89,12 +89,12 @@ public:
 
    void system_end();
 
-   __pointer(::acme::application) new_app();
-   __pointer(::acme::application) new_app(const char* pszAppId);
+   ::pointer<::acme::application>new_app();
+   ::pointer<::acme::application>new_app(const char* pszAppId);
 
 
-   //   __pointer(::apex::application) get_new_application(::object* pobject);
-   //   __pointer(::apex::application) get_new_application(::object* pobject, const char* pszAppId);
+   //   ::pointer<::apex::application>get_new_application(::object* pobject);
+   //   ::pointer<::apex::application>get_new_application(::object* pobject, const char* pszAppId);
 
    virtual void initialize_application(::acme::application * papp, ::object* pobject);
 

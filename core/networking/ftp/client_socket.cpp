@@ -143,7 +143,7 @@ namespace ftp
    }
 
    /// Sets the file list parser which is used for parsing the results of the LIST command.
-   void client_socket::SetFileListParser(__pointer(ifile_list_parser) apFileListParser)
+   void client_socket::SetFileListParser(::pointer<ifile_list_parser>apFileListParser)
    {
       m_apFileListParser = apFileListParser;
    }
@@ -537,7 +537,7 @@ namespace ftp
       outputStream.SetStartPosition();
       while (outputStream.GetNextLine(strLine))
       {
-         __pointer(file_status) spFtpFileStatus(__new(file_status));
+         ::pointer<file_status>spFtpFileStatus(__new(file_status));
          if (m_apFileListParser->Parse(*spFtpFileStatus, strLine))
          {
             spFtpFileStatus->m_strPath = strPath;
@@ -567,7 +567,7 @@ namespace ftp
       outputStream.SetStartPosition();
       while (outputStream.GetNextLine(strLine))
       {
-         __pointer(file_status) spFtpFileStatus(__new(file_status));
+         ::pointer<file_status>spFtpFileStatus(__new(file_status));
          spFtpFileStatus->m_strPath = strPath;
          spFtpFileStatus->m_strName = strLine;
          vFileList.push_back(spFtpFileStatus);
@@ -797,14 +797,14 @@ namespace ftp
 
       bool fTransferOK = false;
 
-      __pointer(::sockets::base_socket) pbasesocket;
+      ::pointer<::sockets::base_socket>pbasesocket;
 
-      __pointer(::sockets::base_socket) pbasesocket2;
+      ::pointer<::sockets::base_socket>pbasesocket2;
 
       if (fPasv)
       {
 
-         __pointer(::sockets::transfer_socket) apSckDataConnection;
+         ::pointer<::sockets::transfer_socket>apSckDataConnection;
 
          if (crDatachannelCmd.IsDatachannelWriteCommand())
          {
@@ -838,7 +838,7 @@ namespace ftp
       else
       {
 
-         __pointer(::sockets::listen_socket_base) apSckDataConnection;
+         ::pointer<::sockets::listen_socket_base>apSckDataConnection;
 
          if (crDatachannelCmd.IsDatachannelWriteCommand())
          {
@@ -866,7 +866,7 @@ namespace ftp
          if (!OpenActiveDataConnection(*apSckDataConnection, crDatachannelCmd, strPath, dwByteOffset))
             return false;
 
-         __pointer(::sockets::transfer_socket) psocket = apSckDataConnection->m_pbasesocket;
+         ::pointer<::sockets::transfer_socket>psocket = apSckDataConnection->m_pbasesocket;
 
          pbasesocket = psocket;
 

@@ -13,7 +13,7 @@ bool os_history::hist(const char * psz)
 
 #if !defined(_UWP)
 
-   //__pointer() plauncher;
+   //pointer <  > plauncher;
    
    auto plauncher = __create<::apex::shell_launcher>();
 

@@ -16,9 +16,9 @@ public:
 
    virtual ::count match_count(const ::string & psz, strsize len) = 0;
 
-   virtual __pointer(::strsize_range_array) matches_ranges(const string& str) = 0;
+   virtual ::pointer<::strsize_range_array>matches_ranges(const string& str) = 0;
 
-   virtual __pointer(::strsize_range_array) matches_ranges(const ::string & psz, strsize len) = 0;
+   virtual ::pointer<::strsize_range_array>matches_ranges(const ::string & psz, strsize len) = 0;
 
    virtual bool replace(string& str, const string& strPrefix, string& strRet) = 0;
 
@@ -44,12 +44,12 @@ class CLASS_DECL_AURA regex_context :
 {
 public:
 
-   virtual __pointer(regex) compile(const string& str) = 0;
+   virtual ::pointer<regex>compile(const string& str) = 0;
 
 };
 
 
-using regex_pointer = __pointer(regex);
+using regex_pointer = ::pointer<regex>
 
 
 

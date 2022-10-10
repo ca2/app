@@ -25,7 +25,7 @@ namespace acme
 
 #endif
 
-      __pointer(::mutex)      m_pmutex;
+      ::pointer<::mutex>     m_pmutex;
 
 
       exclusive(::object * pobject, string str ARG_SEC_ATTRS_DEF);

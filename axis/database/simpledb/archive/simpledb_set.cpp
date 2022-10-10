@@ -6,12 +6,12 @@ db_set::db_set(db_server * pserver, const ::string & pszTable)
 
    m_pdataserver = pserver;
 
-   __pointer(::sqlite::database) pdb   = db()->get_database();
+   ::pointer<::sqlite::database>pdb   = db()->get_database();
 
    if(pdb != nullptr)
    {
 
-      m_pdataset = (__pointer(::sqlite::dataset)) pdb->create_dataset();
+      m_pdataset = (::pointer<::sqlite::dataset> pdb->create_dataset();
 
    }
 

@@ -1336,7 +1336,7 @@ namespace user
    }
 
 
-   //bool primitive::create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::atom & atom)
+   //bool primitive::create_window_ex(::pointer<::user::system>pcs, ::user::interaction * puiParent, const ::atom & atom)
    void primitive::create_host()
    {
 
@@ -1665,7 +1665,7 @@ namespace user
    //bool primitive::SetFocus()
    //{
 
-   //   __pointer(::user::interaction) pinteraction = get_wnd();
+   //   ::pointer<::user::interaction>pinteraction = get_wnd();
 
    //   if(pinteraction.is_null())
    //   {
@@ -3211,7 +3211,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) primitive::track_popup_xml_menu_text(string strXml,i32 iFlags)
+   //::pointer<::user::menu>primitive::track_popup_xml_menu_text(string strXml,i32 iFlags)
    //{
 
    //   throw ::interface_only();
@@ -3221,7 +3221,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) primitive::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags)
+   //::pointer<::user::menu>primitive::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags)
    //{
 
    //   throw ::interface_only();
@@ -3242,7 +3242,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) primitive::track_popup_xml_menu_text(string strXml,i32 iFlags,::message::message * pmessage)
+   //::pointer<::user::menu>primitive::track_popup_xml_menu_text(string strXml,i32 iFlags,::message::message * pmessage)
    //{
 
    //   throw ::interface_only();
@@ -3252,7 +3252,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) primitive::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags,::message::message * pmessage)
+   //::pointer<::user::menu>primitive::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags,::message::message * pmessage)
    //{
 
    //   throw ::interface_only();
@@ -3272,7 +3272,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) primitive::track_popup_xml_menu(const ::payload & varXml,i32 iFlags, const ::point_i32 & point, const size_i32 & size)
+   //::pointer<::user::menu>primitive::track_popup_xml_menu(const ::payload & varXml,i32 iFlags, const ::point_i32 & point, const size_i32 & size)
    //{
 
    //   throw ::interface_only();
@@ -3282,7 +3282,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) primitive::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags, const ::point_i32 & point)
+   //::pointer<::user::menu>primitive::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags, const ::point_i32 & point)
    //{
 
    //   throw ::interface_only();
@@ -3292,7 +3292,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) primitive::track_popup_xml_menu_file(::payload payloadFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
+   //::pointer<::user::menu>primitive::track_popup_xml_menu_file(::payload payloadFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
    //{
 
    //   throw ::interface_only();
@@ -3710,10 +3710,10 @@ namespace user
    }
 
 
-//   __pointer(::message::message) primitive::get_message(const ::atom & atom, wparam wparam, lparam lparam)
+//   ::pointer<::message::message>primitive::get_message(const ::atom & atom, wparam wparam, lparam lparam)
 //   {
 //
-//      __pointer(::message::message) pmessage;
+//      ::pointer<::message::message>pmessage;
 //
 //      auto eprototype = ::message::get_message_prototype((enum_message) atom.i64(), 0);
 //
@@ -3867,7 +3867,7 @@ namespace user
          if(wparam==1)
          {
 
-            __pointer(::message::message) pmessage(lparam);
+            ::pointer<::message::message>pmessage(lparam);
 
             lparam = 0;
 
@@ -4133,7 +4133,7 @@ namespace user
    void primitive::on_check_change()
    {
 
-      get_app()->m_papexapplication->signal(m_propertyCheck->m_atom);
+      get_app()->m_papexapplication->signal(m_linkedpropertyCheck->m_atom);
 
    }
 
@@ -4230,9 +4230,9 @@ namespace user
    element * primitive::keyboard_get_next_focusable(element * pfocus, bool bSkipChild, bool bSkipSiblings, bool bSkipParent)
    {
 
-     __pointer(primitive) puiThis = this;
+     ::pointer<primitive>puiThis = this;
 
-     __pointer(primitive) puiFocus = pfocus != nullptr ? pfocus : this;
+     ::pointer<primitive>puiFocus = pfocus != nullptr ? pfocus : this;
 
      element * pfocusTry;
 
@@ -4252,7 +4252,7 @@ namespace user
 
      single_lock(puiThis->get_app()->mutex(), true);
 
-     __pointer(primitive) pprimitive;
+     ::pointer<primitive>pprimitive;
 
      if (!bSkipChild)
      {

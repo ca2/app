@@ -1125,7 +1125,7 @@ pacmedirectory->system() / "user" / "databin.bin";
 #else
 
 
-   __pointer(::crypto::rsa) crypto::generate_rsa_key()
+   ::pointer<::crypto::rsa>crypto::generate_rsa_key()
    {
 
       ::winrt::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider^ provider =
@@ -1138,7 +1138,7 @@ pacmedirectory->system() / "user" / "databin.bin";
    }
 
 
-   /*void crypto::free_rsa_key(__pointer(::crypto::rsa) prsa)
+   /*void crypto::free_rsa_key(::pointer<::crypto::rsa>prsa)
    {
 
       __UNREFERENCED_PARAMETER(prsa);
@@ -1681,7 +1681,7 @@ pacmedirectory->system() / "user" / "databin.bin";
    }
 
 
-//   __pointer(::crypto::rsa) crypto::generate_rsa_key()
+//   ::pointer<::crypto::rsa>crypto::generate_rsa_key()
 //   {
 //
 //      auto popensslrsa = __new(::winrt::rsa);
@@ -1771,7 +1771,7 @@ pacmedirectory->system() / "user" / "databin.bin";
 //   }
 //
 //
-   __pointer(rsa) crypto::read_priv_pem(const string& strFile)
+   ::pointer<rsa>crypto::read_priv_pem(const string& strFile)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -1804,7 +1804,7 @@ pacmedirectory->system() / "user" / "databin.bin";
    }
 
 
-   __pointer(rsa) crypto::read_pub_pem(const string& strFile)
+   ::pointer<rsa>crypto::read_pub_pem(const string& strFile)
    {
 
       FILE* pfile = ::fopen(strFile, "rb");

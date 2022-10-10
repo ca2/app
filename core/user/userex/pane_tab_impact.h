@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "base/user/user/tab_impact.h"
@@ -31,14 +31,14 @@ namespace userex
       };
 
       
-      id_map < __pointer(::form_document) >  m_mapForm;
-      __pointer(pane_impact)                   m_ppaneimpact;
-      id_map < __pointer(::object) >         m_mapFileManager;
-      __pointer(::user::document)            m_pdocAppOptions;
-      __pointer(font_impact)                 m_pfontimpact;
-      __pointer(color_impact)                m_pcolorimpact;
-      __pointer(::form_document)             m_pformdocumentMenu;
-      __pointer_array(handler)               m_handlera;
+      id_map < ::pointer<::form_document >> m_mapForm;
+      ::pointer<pane_impact>                  m_ppaneimpact;
+      id_map < ::pointer<::object >>        m_mapFileManager;
+      ::pointer<::user::document>           m_pdocAppOptions;
+      ::pointer<font_impact>                m_pfontimpact;
+      ::pointer<color_impact>               m_pcolorimpact;
+      ::pointer<::form_document>            m_pformdocumentMenu;
+      pointer_array < handler >               m_handlera;
 
 
 
@@ -122,7 +122,7 @@ class application_pane_tab_impact :
 public:
 
 
-   __pointer(APPLICATION) m_papplicationForConsumer;
+   ::pointer<APPLICATION>m_papplicationForConsumer;
 
 
    application_pane_tab_impact()

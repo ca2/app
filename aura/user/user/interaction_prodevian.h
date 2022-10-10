@@ -18,10 +18,10 @@ namespace user
 
       manual_reset_event                        m_evUpdateScreen;
 
-      __pointer(::user::interaction)            m_puserinteraction;
-      __pointer(::user::interaction_impl)       m_pimpl;
+      ::pointer<::user::interaction>           m_puserinteraction;
+      ::pointer<::user::interaction_impl>      m_pimpl;
 
-      __reference(::user::thread)               m_puserthread;
+      ::pointer<::user::thread>              m_puserthread;
       nanosecond_timer                          m_nanosecondtimer;
 
       ::duration                                m_durationNow;

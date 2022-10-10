@@ -10,10 +10,10 @@ class CLASS_DECL_AXIS html_data :
 public:
 
 
-   __pointer(::html_data)              m_pimplHtml;
-   __pointer(::html_document)          m_pdocument;
+   ::pointer<::html_data>             m_pimplHtml;
+   ::pointer<::html_document>         m_pdocument;
    ::html::core_data *                 m_pcoredata;
-   __composite(::html::core_data)      m_pcompositeCoreData;
+   ::pointer<::html::core_data>     m_pcompositeCoreData;
 
 
    html_data();
@@ -35,7 +35,7 @@ public:
 
 
    virtual ::user::form * get_form();
-   virtual __pointer(::user::interaction) get_frame();
+   virtual ::pointer<::user::interaction>get_frame();
 
 
    //virtual bool is_locked();
@@ -65,9 +65,9 @@ public:
    void destroy() override;
    void delete_implementation();
 
-   virtual bool contains(__pointer(::user::interaction) pinteraction);
+   virtual bool contains(::pointer<::user::interaction>pinteraction);
 
-   virtual bool on_create_interaction(__pointer(::user::interaction) pinteraction);
+   virtual bool on_create_interaction(::pointer<::user::interaction>pinteraction);
 
 
    ::html::font * get_font(::html::element * pelemental);

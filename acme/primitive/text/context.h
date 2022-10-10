@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/text/international_locale_schema.h"
@@ -114,21 +114,21 @@ namespace text
 
       friend class table;
 
-      __pointer(::text::international::locale_schema)       m_plocaleschema;
+      ::pointer<::text::international::locale_schema>      m_plocaleschema;
 
 
-      __pointer(table)                                      m_ptable;
+      ::pointer<table>                                     m_ptable;
 
-      __pointer(locale)                                     m_plocale;
+      ::pointer<locale>                                    m_plocale;
 
-      __pointer(schema)                                     m_pschema;
-      __pointer(schema)                                     m_pschemaLocale;
-      __pointer(schema)                                     m_pschemaSchemaEn;
-      __pointer(schema)                                     m_pschemaSchemaStd;
+      ::pointer<schema>                                    m_pschema;
+      ::pointer<schema>                                    m_pschemaLocale;
+      ::pointer<schema>                                    m_pschemaSchemaEn;
+      ::pointer<schema>                                    m_pschemaSchemaStd;
 
 
 
-      __pointer_array(schema)                               m_schemaptra;
+      pointer_array < schema >                               m_schemaptra;
 
 
    public:

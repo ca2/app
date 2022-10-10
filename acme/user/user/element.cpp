@@ -1244,7 +1244,7 @@ namespace user
    }
 
 
-   //bool element::create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::atom & atom)
+   //bool element::create_window_ex(::pointer<::user::system>pcs, ::user::interaction * puiParent, const ::atom & atom)
    void element::create_host()
    {
 
@@ -1571,7 +1571,7 @@ namespace user
    //bool element::SetFocus()
    //{
 
-   //   __pointer(::user::interaction) pinteraction = get_wnd();
+   //   ::pointer<::user::interaction>pinteraction = get_wnd();
 
    //   if(pinteraction.is_null())
    //   {
@@ -3154,7 +3154,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) element::track_popup_xml_menu_text(string strXml,i32 iFlags)
+   //::pointer<::user::menu>element::track_popup_xml_menu_text(string strXml,i32 iFlags)
    //{
 
    //   throw ::interface_only();
@@ -3164,7 +3164,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) element::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags)
+   //::pointer<::user::menu>element::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags)
    //{
 
    //   throw ::interface_only();
@@ -3185,7 +3185,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) element::track_popup_xml_menu_text(string strXml,i32 iFlags,::message::message * pmessage)
+   //::pointer<::user::menu>element::track_popup_xml_menu_text(string strXml,i32 iFlags,::message::message * pmessage)
    //{
 
    //   throw ::interface_only();
@@ -3195,7 +3195,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) element::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags,::message::message * pmessage)
+   //::pointer<::user::menu>element::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags,::message::message * pmessage)
    //{
 
    //   throw ::interface_only();
@@ -3215,7 +3215,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) element::track_popup_xml_menu(const ::payload & varXml,i32 iFlags, const ::point_i32 & point, const size_i32 & size)
+   //::pointer<::user::menu>element::track_popup_xml_menu(const ::payload & varXml,i32 iFlags, const ::point_i32 & point, const size_i32 & size)
    //{
 
    //   throw ::interface_only();
@@ -3225,7 +3225,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) element::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags, const ::point_i32 & point)
+   //::pointer<::user::menu>element::track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags, const ::point_i32 & point)
    //{
 
    //   throw ::interface_only();
@@ -3235,7 +3235,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) element::track_popup_xml_menu_file(::payload payloadFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
+   //::pointer<::user::menu>element::track_popup_xml_menu_file(::payload payloadFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
    //{
 
    //   throw ::interface_only();
@@ -3586,10 +3586,10 @@ namespace user
    //}
 
 
-//   __pointer(::message::message) element::get_message(const ::atom & atom, wparam wparam, lparam lparam)
+//   ::pointer<::message::message>element::get_message(const ::atom & atom, wparam wparam, lparam lparam)
 //   {
 //
-//      __pointer(::message::message) pmessage;
+//      ::pointer<::message::message>pmessage;
 //
 //      auto eprototype = ::message::get_message_prototype((enum_message) atom.i64(), 0);
 //
@@ -4081,9 +4081,9 @@ namespace user
    element * element::keyboard_get_next_focusable(element * pfocus, bool bSkipChild, bool bSkipSiblings, bool bSkipParent)
    {
 
-     //__pointer(element) puiThis = this;
+     //::pointer<element>puiThis = this;
 
-     //__pointer(element) puiFocus = pfocus != nullptr ? pfocus : this;
+     //::pointer<element>puiFocus = pfocus != nullptr ? pfocus : this;
 
      //element * pfocusTry;
 
@@ -4103,7 +4103,7 @@ namespace user
 
      //single_lock(puiThis->get_app()->mutex(), true);
 
-     //__pointer(element) pprimitive;
+     //::pointer<element>pprimitive;
 
      //if (!bSkipChild)
      //{

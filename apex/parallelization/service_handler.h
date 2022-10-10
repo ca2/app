@@ -8,7 +8,7 @@ class CLASS_DECL_APEX service_handler :
 public:
 
 
-   __pointer(::service)       m_pservice;
+   ::pointer<::service>      m_pservice;
 
 
    service_handler();

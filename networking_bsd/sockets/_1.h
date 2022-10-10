@@ -277,7 +277,7 @@ typedef u16 port_t;
 //
 //   class base_socket;
 //
-//   using socket_pointer = __pointer(base_socket);
+//   using socket_pointer = ::pointer<base_socket>
 //
 //   class socket_handler;
 //
@@ -385,7 +385,7 @@ namespace sockets
 
    class base_socket;
 
-   using socket_pointer = __pointer(base_socket);
+   using socket_pointer = ::pointer<base_socket>
 
    class socket_handler;
 

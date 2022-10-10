@@ -15,9 +15,9 @@ namespace simpledb
 
       single_lock synchronouslock(mutex());
 
-      __pointer(::axis::application) papp = get_app();
+      ::pointer<::axis::application>papp = get_app();
 
-      __pointer(::axis::session) psession = papp->get_session();
+      ::pointer<::axis::session>psession = papp->get_session();
 
       try
       {

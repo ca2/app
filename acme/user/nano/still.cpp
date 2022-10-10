@@ -13,7 +13,7 @@ nano_still::~nano_still()
 void nano_still::on_draw(nano_device * pnanodevice)
 {
 
-   __pointer(nano_pen) ppenBorder;
+   ::pointer<nano_pen>ppenBorder;
 
    if (m_pnanowindow->m_pchildHover == this || m_pnanowindow->m_pchildFocus == this)
    {

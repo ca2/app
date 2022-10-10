@@ -22,7 +22,7 @@ CLASS_DECL_APEX int32_t process_get_scheduling_priority(int iOsPolicy, const sch
 //
 //   }
 //
-//   __pointer(message_queue) pmq;
+//   ::pointer<message_queue>pmq;
 //
 //   if(dwWakeMask > 0)
 //   {
@@ -367,7 +367,7 @@ int g_iDebug_post_thread_msg_time;
 CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(itask_t iThreadId,::u32 Msg,WPARAM wParam,LPARAM lParam)
 {
 
-   __pointer(message_queue) pmq = __get_mq(iThreadId);
+   ::pointer<message_queue>pmq = __get_mq(iThreadId);
 
    if(pmq == nullptr)
    {

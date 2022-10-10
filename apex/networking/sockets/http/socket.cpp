@@ -479,7 +479,7 @@ namespace sockets
 
          string strKey = pproperty->name();
 
-         string_array & straValue = *pproperty;
+         auto & straValue = pproperty->string_array_reference();
 
          if (!http_filter_response_header(strKey, straValue))
          {

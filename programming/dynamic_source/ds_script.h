@@ -21,7 +21,7 @@ namespace dynamic_source
    public:
 
 
-      __pointer(::acme::library)       m_plibrary;
+      ::pointer<::acme::library>      m_plibrary;
 
 
       file_time_set                     m_ft;
@@ -66,7 +66,7 @@ namespace dynamic_source
 
       //virtual ::aura::application * get_app() const override;
 
-      __pointer(script_instance) create_instance() override;
+      ::pointer<script_instance>create_instance() override;
 
 
    };

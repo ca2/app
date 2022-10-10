@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/graphics/image/image.h"
@@ -50,8 +50,8 @@ namespace draw2d_cairo
       void SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy) override;
 
 
-      ::stream & write(::stream & stream) const override;
-      ::stream & read(::stream & stream) override;
+      void write(::binary_stream & stream) const override;
+      void read(::binary_stream & stream) override;
 
 
       void blend(const ::point_i32 & ptDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, byte bA) override;

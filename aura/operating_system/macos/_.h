@@ -6,7 +6,7 @@ string get_error_message(::u32 dwError);
 
 ::aura::application *     macos_instantiate_application(::aura::application * pappSystem, const ::string & pszId);
 
-//CLASS_DECL_AURA void vfxThrowFileException(__pointer(::aura::application) papp, i32 cause, ::i32 lOsError, const ::string & lpszFileName = nullptr);
+//CLASS_DECL_AURA void vfxThrowFileException(::pointer<::aura::application>papp, i32 cause, ::i32 lOsError, const ::string & lpszFileName = nullptr);
 //
 //CLASS_DECL_AURA ::file::exception * get_FileException(::object * pobject, const ::e_status & estatus, ::i32 lOsError, const ::string & lpszFileName = nullptr);
 

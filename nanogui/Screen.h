@@ -57,7 +57,7 @@ public:
    //   Cursor m_cursor;
       std::vector<Widget *> m_focus_path;
       Widget * m_pwidgetLeftButtonDown{nullptr};
-      __pointer(::nano2d::font_sink)       m_pfontsink;
+      ::pointer<::nano2d::font_sink>      m_pfontsink;
    //   Vector2i m_fbsize;
       float m_pixel_ratio;
       //::user::e_key m_mouse_state;

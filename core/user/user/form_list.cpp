@@ -228,7 +228,7 @@ namespace user
 
          _001HideEditingControls();
 
-         __pointer(::user::list_column) pcolumn = m_pcolumna->get_by_subitem(pitem->subitem_index());
+         ::pointer<::user::list_column>pcolumn = m_pcolumna->get_by_subitem(pitem->subitem_index());
 
          if (pcolumn.is_set() && pcolumn->m_atom)
          {
@@ -542,7 +542,7 @@ namespace user
             if (bClick)
             {
 
-               __pointer(::user::combo_box) pcombobox = pinteraction;
+               ::pointer<::user::combo_box>pcombobox = pinteraction;
 
                if (pcombobox.is_set() && !pcombobox->m_bEdit)
                {
@@ -574,7 +574,7 @@ namespace user
                }
 
 
-               __pointer(::user::plain_edit) pedit = pinteraction;
+               ::pointer<::user::plain_edit>pedit = pinteraction;
 
                if (pedit.is_set())
                {
@@ -662,7 +662,7 @@ namespace user
       ASSERT(pinteraction->get_control_type() == e_control_type_edit
          || pinteraction->get_control_type() == e_control_type_edit_plain_text);
 
-      __pointer(::user::plain_edit) pedit = pinteraction;
+      ::pointer<::user::plain_edit>pedit = pinteraction;
 
       //if (pedit.is_set())
       //{
@@ -691,7 +691,7 @@ namespace user
          //if (selection.get_item_count() > 0)
          //{
          //   ::database::selection_item & item = selection.get_item(0);
-         //   __pointer(::user::edit_text) ptext = nullptr;
+         //   ::pointer<::user::edit_text>ptext = nullptr;
          //   if (get_child_by_id(pinteraction->m_atom) != nullptr)
          //   {
          //      ptext = get_child_by_id(pinteraction->m_atom);
@@ -743,7 +743,7 @@ namespace user
 
       ASSERT(pinteraction->get_control_type() == e_control_type_combo_box);
 
-      __pointer(::user::combo_box) pcombo = pinteraction;
+      ::pointer<::user::combo_box>pcombo = pinteraction;
 
       if (pinteraction->has_function(e_control_function_data_selection))
       {
@@ -775,7 +775,7 @@ namespace user
       if (pinteraction->get_control_type() == e_control_type_check_box)
       {
 
-         __pointer(::user::check) pcheckbox = pinteraction;
+         ::pointer<::user::check>pcheckbox = pinteraction;
 
          auto echeck = pcheckbox->echeck();
 
@@ -954,12 +954,12 @@ namespace user
 
                   _001SetSubItemText(psubitemTarget);
 
-                  //__pointer(::list::column) pcolumn = m_pcolumna->get_by_subitem(iSubItemTarget);
+                  //::pointer<::list::column>pcolumn = m_pcolumna->get_by_subitem(iSubItemTarget);
                   //
                   //if (pcolumn.is_set() && m_controldescriptorset.bounds(pcolumn->m_iControl))
                   //{
 
-                  //   __pointer(class ::user::control_descriptor) pdescriptorTarget = m_controldescriptorset.sp_at(pcolumn->m_iControl);
+                  //   ::pointer<class ::user::control_descriptor> pdescriptorTarget = m_controldescriptorset.sp_at(pcolumn->m_iControl);
 
                   //   if (pdescriptorTarget.is_set())
                   //   {
@@ -1085,7 +1085,7 @@ namespace user
       /*
       lresult = user::NotifyRetContinue;
 
-      __pointer(control) pinteraction = m_controldescriptorset.get_control_by_id(wparam);
+      ::pointer<control>pinteraction = m_controldescriptorset.get_control_by_id(wparam);
 
       if(pinteraction == nullptr)
       return true;
@@ -1416,8 +1416,8 @@ namespace user
    //      //}
    //      //}*/
    //      //control_keep controlkeep(this,point_i32);
-   //      //__pointer(::user::interaction) pinteraction = top_child();
-   //      //__pointer(::user::interaction) puiBefore = nullptr;
+   //      //::pointer<::user::interaction>pinteraction = top_child();
+   //      //::pointer<::user::interaction>puiBefore = nullptr;
    //      //bool bError;
    //      //try
    //      //{
@@ -1507,8 +1507,8 @@ namespace user
    //      //      }
    //      //      }*/
    //      //control_keep controlkeep(this,point_i32);
-   //      //__pointer(::user::interaction) pinteraction = top_child();
-   //      //__pointer(::user::interaction) puiBefore = nullptr;
+   //      //::pointer<::user::interaction>pinteraction = top_child();
+   //      //::pointer<::user::interaction>puiBefore = nullptr;
    //      //bool bError;
    //      //try
    //      //{
@@ -2022,7 +2022,7 @@ namespace user
             if (m_pcontrolEdit != nullptr)
             {
 
-               __pointer(::user::plain_edit) pedit = m_pcontrolEdit;
+               ::pointer<::user::plain_edit>pedit = m_pcontrolEdit;
 
                if (pedit.is_set())
                {
@@ -2107,7 +2107,7 @@ namespace user
 
                _001PlaceControl(pinteraction, iItem);
 
-               __pointer(::user::plain_edit) pedit = m_pcontrolEdit;
+               ::pointer<::user::plain_edit>pedit = m_pcontrolEdit;
 
                if (pedit.is_set())
                {
@@ -2260,7 +2260,7 @@ namespace user
       //   //if (pdrawitem->m_pcolumn->m_iControl >= 0 && pdrawitem->m_pcolumn->m_iControl < m_controldescriptorset.get_count())
       //   //{
 
-      //   //   __pointer(class ::user::control_descriptor) pdescriptor = m_controldescriptorset.sp_at(pdrawitem->m_pcolumn->m_iControl);
+      //   //   ::pointer<class ::user::control_descriptor> pdescriptor = m_controldescriptorset.sp_at(pdrawitem->m_pcolumn->m_iControl);
 
       //   //   if (pdescriptor.is_set())
       //   //   {
@@ -2363,7 +2363,7 @@ namespace user
             if (!pinteraction->has_keyboard_focus())
             {
 
-               __pointer(::user::combo_box) pcombobox = pinteraction;
+               ::pointer<::user::combo_box>pcombobox = pinteraction;
 
                if (pcombobox.is_set() && !pcombobox->m_bEdit)
                {
@@ -2392,7 +2392,7 @@ namespace user
 
                }
 
-               __pointer(::user::plain_edit) pedit = pinteraction;
+               ::pointer<::user::plain_edit>pedit = pinteraction;
 
                if (pedit.is_set())
                {
@@ -2445,7 +2445,7 @@ namespace user
    ::enum_check form_list::_001GetSubItemCheck(index iItem, index iSubItem)
    {
 
-      __pointer(::user::list_column) pcolumn = m_pcolumna->get_by_subitem(iSubItem);
+      ::pointer<::user::list_column>pcolumn = m_pcolumna->get_by_subitem(iSubItem);
 
       if (pcolumn.is_set() && pcolumn->m_atom)
       {
@@ -2495,7 +2495,7 @@ namespace user
    bool form_list::_001SetSubItemCheck(index iItem, index iSubItem, ::enum_check echeck)
    {
 
-      __pointer(::user::list_column) pcolumn = m_pcolumna->get_by_subitem(iSubItem);
+      ::pointer<::user::list_column>pcolumn = m_pcolumna->get_by_subitem(iSubItem);
 
       if (pcolumn.is_set() && pcolumn->m_atom)
       {
@@ -2539,7 +2539,7 @@ namespace user
    bool form_list::_001IsSubItemEnabled(index iItem, index iSubItem)
    {
 
-      __pointer(::user::list_column) pcolumn = m_pcolumna->get_by_subitem(iSubItem);
+      ::pointer<::user::list_column>pcolumn = m_pcolumna->get_by_subitem(iSubItem);
 
       if (pcolumn.is_set() && pcolumn->m_atom)
       {

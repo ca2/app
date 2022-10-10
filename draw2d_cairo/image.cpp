@@ -36,7 +36,7 @@ namespace draw2d_cairo
    }
 
 
-   ::stream & image::read(::stream & stream)
+   void image::read(::binary_stream & stream)
    {
 
       synchronous_lock ml(cairo_mutex());
@@ -52,19 +52,15 @@ namespace draw2d_cairo
 
       }
 
-      return stream;
-
    }
 
 
-   stream & image::write(::stream & stream) const
+   void image::write(::binary_stream & stream) const
    {
 
       synchronous_lock ml(cairo_mutex());
 
       ::image::write(stream);
-
-      return stream;
 
    }
 
@@ -778,7 +774,7 @@ namespace draw2d_cairo
 //   bool image::print_window(::aura::draw_interface * puserinteraction, ::message::message * pmessage)
 //   {
 //
-//      __pointer(::user::message) pusermessage(pmessage);
+//      ::pointer<::user::message>pusermessage(pmessage);
 //
 //      if(pusermessage->m_wparam == 0)
 //         return false;

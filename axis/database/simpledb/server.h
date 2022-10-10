@@ -11,17 +11,17 @@ namespace simpledb
    public:
 
 
-      __pointer(::database::database)     m_pdatabaseLocal;
+      ::pointer<::database::database>    m_pdatabaseLocal;
 
-      __composite(storage)                m_pstorage;
+      ::pointer<storage>               m_pstorage;
 
-      __composite(simpledb)               m_psimpledb;
+      ::pointer<simpledb>              m_psimpledb;
 
       bool                                m_bWorking;
 
       string                              m_strDatabase;
 
-      __pointer(::database::database)     m_pdatabaseUser;
+      ::pointer<::database::database>    m_pdatabaseUser;
 
       string                              m_strUser;
 
@@ -30,7 +30,7 @@ namespace simpledb
       virtual ~server();
 
 
-      __pointer(::database::database) get_local_database();
+      ::pointer<::database::database>get_local_database();
 
       
       virtual bool _data_server_load(::database::client * pclient, const ::database::key & atom, get_memory getmemory, ::topic * ptopic = nullptr) override;

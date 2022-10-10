@@ -58,7 +58,7 @@ public:
    
    enum_sub_image                      m_esubimage;
    ::rectangle_f64                     m_rectangleSubImage;
-   __pointer(image_source_interface)   m_pimagesource;
+   ::pointer<image_source_interface>  m_pimagesource;
 
 
    image_source() :

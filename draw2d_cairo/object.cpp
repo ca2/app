@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "object.h"
 
 
@@ -83,8 +83,8 @@ namespace draw2d_cairo
 
       ::draw2d::object::dump(dumpcontext);
 
-      dumpcontext << "get_handle() = " << 0;
-      dumpcontext << "\n";
+      /*dumpcontext << "get_handle() = " << 0;
+      dumpcontext << "\n";*/
 
    }
 

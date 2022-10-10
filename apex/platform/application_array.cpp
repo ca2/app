@@ -18,7 +18,7 @@ namespace apex
 
 
    application_array::application_array(const application_array & array) :
-      __pointer_array(::apex::application)(array)
+      pointer_array < ::apex::application >(array)
    {
 
    }
@@ -27,7 +27,7 @@ namespace apex
    application_array & application_array::operator = (const application_array & array)
    {
 
-      __pointer_array(::apex::application)::operator = (array);
+      pointer_array < ::apex::application >::operator = (array);
 
       return *this;
 
@@ -35,7 +35,7 @@ namespace apex
 
 
    application_array::application_array(application_array && array) :
-      __pointer_array(::apex::application)(array)
+      pointer_array < ::apex::application >(array)
    {
 
    }
@@ -44,7 +44,7 @@ namespace apex
    application_array & application_array::operator = (application_array && array)
    {
 
-      __pointer_array(::apex::application)::operator = (array);
+      pointer_array < ::apex::application >::operator = (array);
 
       return *this;
 
@@ -114,7 +114,7 @@ namespace apex
    ::apex::application * application_array::find_running_defer_try_quit_damaged(string strAppName)
    {
 
-      __pointer(::apex::application) papp = find_by_app_name(strAppName);
+      ::pointer<::apex::application>papp = find_by_app_name(strAppName);
 
       if (papp.is_null())
       {
@@ -157,7 +157,7 @@ namespace apex
    }
 
 
-   bool application_array::lookup(string strAppName, __pointer(::apex::application) & papp)
+   bool application_array::lookup(string strAppName, ::pointer<::apex::application>& papp)
    {
 
       papp = find_running_defer_try_quit_damaged(strAppName);

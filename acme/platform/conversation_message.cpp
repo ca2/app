@@ -13,7 +13,7 @@ namespace acme
 {
 
 
-   __pointer(::conversation) node::create_new_message_conversation()
+   ::pointer<::conversation>node::create_new_message_conversation()
    {
    
       return __create_new < ::conversation_message >();

@@ -18,7 +18,7 @@ namespace html
       public:
 
 
-         __pointer(::user::plain_edit)        m_pedit;
+         ::pointer<::user::plain_edit>       m_pedit;
 
          array < ::size_f32 >             m_sizea;
          string_array                       m_straLines;

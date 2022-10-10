@@ -9,7 +9,7 @@ class CLASS_DECL_APEX source :
 public:
 
 
-   __pointer(__pointer_array(::matter))    m_phandlera;
+   pointer< pointer_array < ::matter > >    m_phandlera;
 
 
    inline bool has_handler() const

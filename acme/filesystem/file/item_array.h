@@ -6,7 +6,7 @@ namespace file
 
 
    class CLASS_DECL_ACME item_array :
-      virtual public __pointer_array(item)
+      virtual public pointer_array < item >
    {
    public:
 

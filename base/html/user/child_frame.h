@@ -12,7 +12,7 @@
 //   simple_toolbar        m_toolbar;
 //
 //
-//   __pointer(form_document) get_document();
-//   __pointer(html_impact) get_impact();
+//   ::pointer<form_document> get_document();
+//   ::pointer<html_impact> get_impact();
 //
 //};

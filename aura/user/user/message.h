@@ -11,7 +11,7 @@ namespace user
    public:
 
       ::channel * m_pchannel;
-      __pointer(::windowing::window)   m_pwindow;
+      ::pointer<::windowing::window>  m_pwindow;
       bool                             m_bConditional;
       bool                             m_bReflect;
       bool                             m_bDestroyed;

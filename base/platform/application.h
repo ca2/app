@@ -32,7 +32,7 @@ namespace base
    public:
 
 
-      //__pointer(::aura::application_menu)       m_pappmenu;
+      //::pointer<::aura::application_menu>      m_pappmenu;
 
 
       application();
@@ -50,7 +50,7 @@ namespace base
       ::base::session* get_session() const;
 
 
-      virtual __pointer(::user::document) defer_create_impact(string strImpact, ::user::interaction* puiParent = nullptr, ewindowflag ewindowflag = ::ewindowflag(), const ::atom& atom = ::atom());
+      virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction* puiParent = nullptr, ewindowflag ewindowflag = ::ewindowflag(), const ::atom& atom = ::atom());
 
 ///*
 //
@@ -142,8 +142,8 @@ namespace base
 //
 //
 //
-//      virtual bool update_appmatter(::sockets::socket_handler * handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative);
-//      virtual bool update_appmatter(::sockets::socket_handler * handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const ::string & strLocale, const ::string & strStyle);
+//      virtual bool update_appmatter(::sockets::socket_handler * handler, ::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative);
+//      virtual bool update_appmatter(::sockets::socket_handler * handler, ::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative, const ::string & strLocale, const ::string & strStyle);
 //
 //
 //      //virtual void SetCurrentHandles() override;
@@ -152,7 +152,7 @@ namespace base
 //      virtual bool process_exception(const ::exception & e) override;
 //
 //
-//      //virtual __pointer(::aura::application) assert_running(const ::string & pszAppId) override;
+//      //virtual ::pointer<::aura::application>assert_running(const ::string & pszAppId) override;
 //
 //      virtual bool is_running();
 //
@@ -319,7 +319,7 @@ namespace base
 //      virtual string get_theme();
 //
 //
-//      virtual __pointer(::acme::exclusive) get_exclusive(string str, LPSECURITY_ATTRIBUTES psa);
+//      virtual ::pointer<::acme::exclusive>get_exclusive(string str, LPSECURITY_ATTRIBUTES psa);
 //      virtual bool exclusive_fails(string str, LPSECURITY_ATTRIBUTES psa);
 //
 //
@@ -335,7 +335,7 @@ namespace base
 //      //virtual void record(::create * pcommand);
 //
 //      //virtual void on_event(::u64 u, ::object * pobject) override;
-//      //virtual __pointer(::thread_toolset) create_thread_toolset(::enum_task_tool etool);
+//      //virtual ::pointer<::thread_toolset>create_thread_toolset(::enum_task_tool etool);
 //
 //
 //      //// ca2verses
@@ -408,7 +408,7 @@ namespace base
 //
 //      virtual string get_version();
 //
-//      virtual __pointer(::interprocess_intercommunication) create_interprocess_intercommunication();
+//      virtual ::pointer<::interprocess_intercommunication>create_interprocess_intercommunication();
 //
 //      //virtual void process_init();
 //      virtual void process_term();
@@ -681,10 +681,10 @@ namespace base
 //
 //      virtual ::user::interaction * main_window();
 //
-////         virtual __pointer(::user::message) get_message_base(MESSAGE * pmsg) override;
+////         virtual ::pointer<::user::message>get_message_base(MESSAGE * pmsg) override;
 //
 //
-//      virtual bool get_frame(__pointer(::user::interaction) & pinteraction);
+//      virtual bool get_frame(::pointer<::user::interaction>& pinteraction);
 //      virtual void add_frame(::user::interaction * puserinteraction);
 //      virtual void erase_frame(::user::interaction * puserinteraction);
 //
@@ -738,7 +738,7 @@ namespace base
 //      virtual void close(e_end eend);
 //
 //
-//      virtual __pointer(::user::document) defer_create_impact(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom = nullptr);
+//      virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom = nullptr);
 //
 //
 //      virtual void HideApplication();
@@ -801,7 +801,7 @@ namespace base
 //      //virtual string sync_message_box(const string & pszMatter,property_set & propertyset) override;
 //
 //
-//      virtual __pointer(::user::interaction) uie_from_point(const ::point_i32& point);
+//      virtual ::pointer<::user::interaction>uie_from_point(const ::point_i32& point);
 //
 //      //virtual bool on_application_menu_action(const ::string & pszCommand) override;
 //
@@ -874,7 +874,7 @@ namespace base
 //      //virtual bool on_application_menu_action(const ::string & pszCommand) override;
 //
 //
-//      //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle,::user::menu_item * pitem) override;
+//      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle,::user::menu_item * pitem) override;
 //
 //      // set regsitry key name to be used by application's
 //      // profile member functions; prevents writing to an INI spfile->
@@ -969,7 +969,7 @@ namespace base
 //
 //
 //      // helper for message boxes; can work when no application can be found
-//      //static i32 ShowAppMessageBox(__pointer(application)pApp, const ::string & pszPrompt,::u32 nType,::u32 nIDPrompt);
+//      //static i32 ShowAppMessageBox(::pointer<application>App, const ::string & pszPrompt,::u32 nType,::u32 nIDPrompt);
 //
 //      static void DoEnableModeless(bool bEnable); // to disable OLE in-place dialogs
 //
@@ -1058,7 +1058,7 @@ namespace base
 //
 //      //virtual string dialog_box(const ::string & pszMatter, property_set& propertyset) override;
 //
-//      virtual i32 track_popup_menu(const ::string & pszMatter, const ::point_i32& point, __pointer(::user::interaction) puie);
+//      virtual i32 track_popup_menu(const ::string & pszMatter, const ::point_i32& point, ::pointer<::user::interaction>puie);
 //
 //      virtual bool get_fs_size(string& strSize, const ::string & pszPath, bool& bPending);
 //      virtual bool get_fs_size(i64& i64Size, const ::string & pszPath, bool& bPending);
@@ -1066,7 +1066,7 @@ namespace base
 //      virtual void set_title(const ::string & pszTitle);
 //
 //
-//      virtual bool _001CloseApplicationByUser(__pointer(::user::interaction) puserinteractionExcept);
+//      virtual bool _001CloseApplicationByUser(::pointer<::user::interaction>puserinteractionExcept);
 //
 //
 //#ifdef WINDOWS_DESKTOP
@@ -1104,7 +1104,7 @@ namespace base
 //
 //
 //
-//      virtual __pointer(::aura::application) create_platform(::aura::session* psession) override;
+//      virtual ::pointer<::aura::application>create_platform(::aura::session* psession) override;
 //
 //
 //
@@ -1128,8 +1128,8 @@ namespace base
 //      //////////////////////////////////////////////////////////////////////////////////////////////////
 //      // Session/Session
 //      //
-//      //         virtual __pointer(::bergedge::impact) get_impact();
-//      //       virtual __pointer(::bergedge::document) get_document();
+//      //         virtual ::pointer<::bergedge::impact>get_impact();
+//      //       virtual ::pointer<::bergedge::document>get_document();
 //
 //
 //      //virtual void add_library(::acme::library * plibrary);
@@ -1139,8 +1139,8 @@ namespace base
 ////virtual void initialize1_experience();
 //virtual void userfs_process_init();
 //
-////virtual __pointer(::userex::userex) create_userex();
-////virtual __pointer(::userfs::userfs) create_userfs();
+////virtual ::pointer<::userex::userex>create_userex();
+////virtual ::pointer<::userfs::userfs>create_userfs();
 //
 //
 //
@@ -1158,11 +1158,9 @@ namespace base
 //
 ////virtual void on_request(::create * pcreate);
 //
-////__pointer(::aura::application) get_context_system();
+////::pointer<::aura::application>get_context_system();
 //
-////virtual __pointer(::aura::application) assert_running(const ::string & pszAppdId);
-//
-//
+////virtual ::pointer<::aura::application>assert_running(const ::string & pszAppdId);
 //
 //
 //
@@ -1170,7 +1168,9 @@ namespace base
 //
 //
 //
-//// pointer < ::cubebase::application >::oattrib
+//
+//
+//// ::pointer<::cubebase::application>:oattrib
 //// or any function needing it
 //application& operator = (const application& app)
 //{
@@ -1191,7 +1191,7 @@ namespace base
 //
 //
 //
-//virtual i32 GetVisibleTopLevelFrameCountExcept(__pointer(::user::interaction) puserinteractionExcept);
+//virtual i32 GetVisibleTopLevelFrameCountExcept(::pointer<::user::interaction>puserinteractionExcept);
 //virtual i32 GetVisibleFrameCount();
 //
 ////virtual void on_create_keyboard() override;
@@ -1200,7 +1200,7 @@ namespace base
 //
 ////virtual void set_form_impact_system(::user::impact_system * pdoctemplate,::user::impact_system * pdoctemplateChild,::user::impact_system * pdoctemplatePlaceHolder);
 //
-//::user::document* hold(__pointer(::user::interaction) pinteraction);
+//::user::document* hold(::pointer<::user::interaction>pinteraction);
 //
 ////virtual bool platform_open_by_file_extension(int iEdge, const ::string & pszPathName,application_bias * pappbias = nullptr);
 ////virtual bool platform_open_by_file_extension(int iEdge,::create * pcc);
@@ -1257,7 +1257,7 @@ virtual void on_create_impact(::user::impact_data* pimpactdata) override;
 //
 //
 //
-////virtual __pointer(::user::user) create_user();
+////virtual ::pointer<::user::user>create_user();
 //
 ////virtual bool on_thread_on_idle(::thread* pthread, ::i32 lCount) override;
 //
@@ -1290,7 +1290,7 @@ virtual void on_create_impact(::user::impact_data* pimpactdata) override;
 //
 //virtual ::user::interaction* create_menu_interaction();
 //
-////      virtual __pointer(::user::document) defer_create_impact(string strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::atom& atom = nullptr) override;
+////      virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::atom& atom = nullptr) override;
 //
 //      // multimedia
 //
@@ -1313,7 +1313,7 @@ virtual void on_create_impact(::user::impact_data* pimpactdata) override;
 //
 //CLASS_DECL_BASE ::u32 c_cdecl application_thread_procedure(LPVOID pvoid);
 //
-//typedef __pointer(::aura::application) (*LPFN_instantiate_application)(__pointer(::aura::application) pappParent, const ::string & pszId);
+//typedef ::pointer<::aura::application>(*LPFN_instantiate_application)(::pointer<::aura::application>appParent, const ::string & pszId);
 //
 //extern CLASS_DECL_BASE LPFN_instantiate_application g_lpfn_instantiate_application;
 //

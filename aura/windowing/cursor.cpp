@@ -91,7 +91,7 @@ namespace windowing
    //virtual void defer_create_os_cursor();
 
 
-   //__pointer(cursor) cursor::set_cursor_file(const ::file::path& pathParam, bool bFromCache)
+   //::pointer<cursor>cursor::set_cursor_file(const ::file::path& pathParam, bool bFromCache)
    //{
 
    //   auto path = pathParam;

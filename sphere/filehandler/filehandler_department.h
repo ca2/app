@@ -11,8 +11,8 @@ namespace filehandler
    public:
 
 
-      __pointer(pane_impact)                                  m_ppaneimpact;
-      __pointer(::user::single_document_template)       m_ptemplateMenu;
+      ::pointer<pane_impact>                                 m_ppaneimpact;
+      ::pointer<::user::single_document_template>      m_ptemplateMenu;
 
 
       department(::object * pobject);

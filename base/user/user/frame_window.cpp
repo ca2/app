@@ -469,7 +469,7 @@ namespace user
 //      // use ::user::document specific accelerator table over m_hAccelTable
 //      HACCEL hAccelTable = m_hAccelTable;
 //      HACCEL hAccel;
-//      __pointer(::user::document) pDoc = get_active_document();
+//      ::pointer<::user::document>pDoc = get_active_document();
 //      if (pDoc != nullptr && (hAccel = pDoc->GetDefaultAccelerator()) != nullptr)
 //         hAccelTable = hAccel;
 //
@@ -488,7 +488,7 @@ namespace user
       //if (pMsg->message == e_message_left_button_down || pMsg->message == e_message_non_client_left_button_down)
       //   __cancel_modes(pMsg->oswindow);    // filter clicks
 
-      __pointer(::message::key) pkey = pmessage;
+      ::pointer<::message::key>pkey = pmessage;
 
       if (pkey.is_set())
       {
@@ -501,7 +501,7 @@ namespace user
             if (pkey->m_ekey == ::user::e_key_p)
             {
 
-               __pointer(::user::interaction_impl) pimpl = m_pprimitiveimpl;
+               ::pointer<::user::interaction_impl>pimpl = m_pprimitiveimpl;
 
                if (pimpl.is_set())
                {
@@ -625,7 +625,7 @@ namespace user
       //release();
    }
 
-   void frame_window::OnPaletteChanged(__pointer(::user::interaction) pFocusWnd)
+   void frame_window::OnPaletteChanged(::pointer<::user::interaction>pFocusWnd)
    {
       __UNREFERENCED_PARAMETER(pFocusWnd);
       // trans user::frame_window::OnPaletteChanged(pFocusWnd);
@@ -666,21 +666,21 @@ namespace user
 
          pwindowing->release_capture();
 
-      __pointer(::user::frame_window) pFrameWnd = top_level_frame();
+      ::pointer<::user::frame_window>pFrameWnd = top_level_frame();
       ENSURE_VALID(pFrameWnd);
       pFrameWnd->m_bHelpMode = m_bHelpMode = HELP_INACTIVE;
       PostMessage(WM_KICKIDLE);   // trigger idle update
       */
    }
 
-   bool frame_window::OnSetCursor(__pointer(::user::interaction) pwindow, ::u32 nHitTest, const ::atom & atom)
+   bool frame_window::OnSetCursor(::pointer<::user::interaction>pwindow, ::u32 nHitTest, const ::atom & atom)
    {
       
       __UNREFERENCED_PARAMETER(pwindow);
       __UNREFERENCED_PARAMETER(nHitTest);
       __UNREFERENCED_PARAMETER(atom);
       
-      __pointer(::user::frame_window) pFrameWnd = top_level_frame();
+      ::pointer<::user::frame_window>pFrameWnd = top_level_frame();
 
       ENSURE_VALID(pFrameWnd);
       if (pFrameWnd->m_bHelpMode)
@@ -728,7 +728,7 @@ namespace user
    //   //   ::oswindow oswindow_Ctrl = (::oswindow) lParam;
    //   //   ::u32 nID = LOWORD(wParam);
 
-   //   __pointer(::user::frame_window) pFrameWnd = top_level_frame();
+   //   ::pointer<::user::frame_window>pFrameWnd = top_level_frame();
    //   ENSURE_VALID(pFrameWnd);
    //   /*   if (pFrameWnd->m_bHelpMode && oswindow_Ctrl == nullptr &&
    //   nID != ID_HELP && nID != ID_DEFAULT_HELP && nID != ID_CONTEXT_HELP)
@@ -764,7 +764,7 @@ namespace user
 
       /*
       // disable all windows connected to this frame (and add them to the list)
-      __pointer(::user::interaction) oswindow = psystem->get_desktop_window()->GetWindow(GW_CHILD);
+      ::pointer<::user::interaction>oswindow = psystem->get_desktop_window()->GetWindow(GW_CHILD);
 
       while (oswindow != nullptr)
       {
@@ -952,7 +952,7 @@ namespace user
             if(!pinteraction)
             {
 
-               WARNING("the impact wasn't created: " << pusersystem->m_typeNewImpact.to_string());
+               WARNING("the impact wasn't created: " << pusersystem->m_typeNewImpact.string());
 
             }
 
@@ -993,7 +993,7 @@ namespace user
 
 //#endif
 
-      __pointer(::message::create) pcreatemessage(pmessage);
+      ::pointer<::message::create>pcreatemessage(pmessage);
 
       if (!(m_ewindowflag & e_window_flag_window_created))
       {
@@ -1077,7 +1077,7 @@ namespace user
 
       ::rectangle_i32 rectangleFrame;
 
-      __pointer(::user::place_holder) pholder;
+      ::pointer<::user::place_holder>pholder;
 
       if (puiParent != nullptr && (pholder = puiParent).is_set())
       {
@@ -1195,7 +1195,7 @@ namespace user
 //      if (hMenuAlt == nullptr)
 //      {
 //         // attempt to get default menu from ::user::document
-//         __pointer(::user::document) pDoc = get_active_document();
+//         ::pointer<::user::document>pDoc = get_active_document();
 //         if (pDoc != nullptr)
 //            hMenuAlt = pDoc->GetDefaultMenu();
 //         // use default menu stored in frame if none from ::user::document
@@ -1214,12 +1214,12 @@ namespace user
    {
 
       // if the frame does not have an active ::user::impact, set to first pane
-      __pointer(::user::impact) pimpact;
+      ::pointer<::user::impact>pimpact;
 
       if (get_active_impact() == nullptr)
       {
 
-         __pointer(::user::interaction) pwindow = get_child_by_id(FIRST_PANE);
+         ::pointer<::user::interaction>pwindow = get_child_by_id(FIRST_PANE);
 
          if (pwindow != nullptr && base_class < ::user::impact > ::bases(pwindow))
          {
@@ -1327,7 +1327,7 @@ namespace user
       (*m_lpfnCloseProc)(this);
 
       // Note: only queries the active ::user::document
-      __pointer(::user::document) pdocument = get_active_document();
+      ::pointer<::user::document>pdocument = get_active_document();
       if (pdocument != nullptr && !pdocument->can_close_frame(this))
       {
       // ::user::document can't close right now -- don't close it
@@ -1364,7 +1364,7 @@ namespace user
       POSITION pos = pdocument->get_impact_count();
       while (pos != nullptr)
       {
-      __pointer(::user::impact) pimpact = pdocument->get_impact(pos);
+      ::pointer<::user::impact>pimpact = pdocument->get_impact(pos);
       ENSURE_VALID(pimpact);
       if (pimpact->get_parent_frame() != this)
       {
@@ -1409,7 +1409,7 @@ namespace user
       if (bRouteToKeyDescendant)
       {
 
-         __pointer(::user::impact) pimpact = get_active_impact();
+         ::pointer<::user::impact>pimpact = get_active_impact();
 
          if (pimpact != nullptr)
          {
@@ -1436,7 +1436,7 @@ namespace user
    // Delegate scroll messages to active ::user::impact as well
    void frame_window::OnHScroll(::u32, ::u32, CScrollBar*)
    {
-      __pointer(::user::interaction) pActiveImpact = get_active_impact();
+      ::pointer<::user::interaction>pActiveImpact = get_active_impact();
       if (pActiveImpact != nullptr)
       {
          // trans const MESSAGE* pMsg = GetCurrentMessage();
@@ -1446,7 +1446,7 @@ namespace user
 
    void frame_window::OnVScroll(::u32, ::u32, CScrollBar*)
    {
-      __pointer(::user::interaction) pActiveImpact = get_active_impact();
+      ::pointer<::user::interaction>pActiveImpact = get_active_impact();
       if (pActiveImpact != nullptr)
       {
          // trans      const MESSAGE* pMsg = GetCurrentMessage();
@@ -1469,7 +1469,7 @@ namespace user
    //   //thread *pThread = get_task();
    //   //ASSERT(pThread);
    //   
-   //   __pointer(::user::impact) pActiveImpact = get_active_impact();
+   //   ::pointer<::user::impact>pActiveImpact = get_active_impact();
 
    //   if (pActiveImpact == nullptr)
    //   {
@@ -1491,15 +1491,15 @@ namespace user
 
    void frame_window::_001OnActivate(::message::message * pmessage)
    {
-      __pointer(::message::activate) pactivate(pmessage);
+      ::pointer<::message::activate>pactivate(pmessage);
 
-      __pointer(::user::interaction) pActive = (pactivate->m_eactivate == e_activate_inactive ? pactivate->m_pWndOther : this);
+      ::pointer<::user::interaction>pActive = (pactivate->m_eactivate == e_activate_inactive ? pactivate->m_pWndOther : this);
 
       pmessage->previous();
 
       // get top level frame unless this is a child interaction_impl
       // determine if interaction_impl should be active or not
-      //__pointer(::user::frame_window) pTopLevel = (GetStyle() & WS_CHILD) ? this : top_level_frame();
+      //::pointer<::user::frame_window>pTopLevel = (GetStyle() & WS_CHILD) ? this : top_level_frame();
 
       //if (pTopLevel == nullptr)
       //{
@@ -1522,7 +1522,7 @@ namespace user
 
       // get active ::user::impact (use active frame if no active ::user::impact)
       
-      __pointer(::user::impact) pActiveImpact = get_active_impact();
+      ::pointer<::user::impact>pActiveImpact = get_active_impact();
 
       if (pActiveImpact == nullptr)
       {
@@ -1549,7 +1549,7 @@ namespace user
    void frame_window::_001OnNcActivate(::message::message * pmessage)
    {
 
-      //__pointer(::message::nc_activate) pncactivate(pmessage);
+      //::pointer<::message::nc_activate>pncactivate(pmessage);
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1585,7 +1585,7 @@ namespace user
    //   
    //   __UNREFERENCED_PARAMETER(lParam);
 
-   //   __pointer(::user::frame_window) pFrameWnd = top_level_frame();
+   //   ::pointer<::user::frame_window>pFrameWnd = top_level_frame();
 
    //   ENSURE_VALID(pFrameWnd);
 
@@ -1698,7 +1698,7 @@ namespace user
    }
 
 
-   __pointer(toolbar) frame_window::get_toolbar(const ::atom & idToolbar, bool bCreate, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+   ::pointer<toolbar>frame_window::get_toolbar(const ::atom & idToolbar, bool bCreate, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
    {
 
       auto & ptoolbartransport = m_mapToolbar[idToolbar];
@@ -1722,7 +1722,7 @@ namespace user
    }
 
 
-   __pointer(toolbar) frame_window::create_toolbar(const ::atom & idToolbar, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+   ::pointer<toolbar>frame_window::create_toolbar(const ::atom & idToolbar, const ::string & strToolbarParam, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
    {
 
       auto ptoolbar = __id_create < toolbar >(type);
@@ -1843,7 +1843,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Special ::user::impact swapping/activation
 
-   void frame_window::OnSetFocus(__pointer(::user::interaction) pOldWnd)
+   void frame_window::OnSetFocus(::pointer<::user::interaction>pOldWnd)
    {
       __UNREFERENCED_PARAMETER(pOldWnd);
       if (m_pviewActive != nullptr)
@@ -1859,7 +1859,7 @@ namespace user
 
       ASSERT_VALID(this);
 
-      __pointer(::user::impact) pimpact = get_active_impact();
+      ::pointer<::user::impact>pimpact = get_active_impact();
 
       if (pimpact != nullptr)
       {
@@ -1923,7 +1923,7 @@ namespace user
 
    //   //      m_nFlags &= ~WF_NOPOPMSG;
 
-   //   __pointer(::user::interaction) pMessageBar = GetMessageBar();
+   //   ::pointer<::user::interaction>pMessageBar = GetMessageBar();
 
    //   if (pMessageBar != nullptr)
    //   {
@@ -1965,7 +1965,7 @@ namespace user
 
 
    //      // update owner of the bar in terms of last message selected
-   //      __pointer(::user::frame_window) pFrameWnd = pMessageBar->get_parent_frame();
+   //      ::pointer<::user::frame_window>pFrameWnd = pMessageBar->get_parent_frame();
 
    //      if (pFrameWnd != nullptr)
    //      {
@@ -1992,12 +1992,12 @@ namespace user
    //   return (LRESULT)&m_dwPromptContext;
    //}
 
-   __pointer(::user::interaction) frame_window::GetMessageBar()
+   ::pointer<::user::interaction>frame_window::GetMessageBar()
    {
       return get_child_by_id("status_bar");
    }
 
-//   void frame_window::OnEnterIdle(::u32 nWhy, __pointer(::user::interaction) pWho)
+//   void frame_window::OnEnterIdle(::u32 nWhy, ::pointer<::user::interaction>pWho)
 //   {
 //      __UNREFERENCED_PARAMETER(pWho);
 //      // trans user::frame_window::OnEnterIdle(nWhy, pWho);
@@ -2043,7 +2043,7 @@ namespace user
       }
 
 
-      __pointer(::user::document) pdocument = get_active_document();
+      ::pointer<::user::document>pdocument = get_active_document();
       if (bAddToTitle && pdocument != nullptr)
          UpdateFrameTitleForDocument(pdocument->get_title());
       else
@@ -2143,10 +2143,10 @@ namespace user
             m_lpfnCloseProc = nullptr;
 
             // shift original FIRST_PANE back to its rightful ID
-                  __pointer(::user::interaction) oswindow = get_child_by_id(__IDW_PANE_SAVE);
+                  ::pointer<::user::interaction>oswindow = get_child_by_id(__IDW_PANE_SAVE);
             if (oswindow != nullptr)
             {
-            __pointer(::user::interaction) oswindow_Temp = get_child_by_id(FIRST_PANE);
+            ::pointer<::user::interaction>oswindow_Temp = get_child_by_id(FIRST_PANE);
             if (oswindow_Temp != nullptr)
             __set_dialog_control_id_(oswindow_Temp, __IDW_PANE_SAVE);
             __set_dialog_control_id_(oswindow, FIRST_PANE);
@@ -2178,7 +2178,7 @@ namespace user
 //#endif
 
 
-   __pointer(::user::frame_window) frame_window::GetActiveFrame()
+   ::pointer<::user::frame_window>frame_window::GetActiveFrame()
    {
       // by default, the active frame is the frame itself (MDI is different)
       return this;
@@ -2574,7 +2574,7 @@ namespace user
    }
 
 
-   __pointer(::user::interaction) frame_window::WindowDataGetWnd()
+   ::pointer<::user::interaction>frame_window::WindowDataGetWnd()
    {
 
       return this;

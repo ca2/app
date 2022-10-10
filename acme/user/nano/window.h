@@ -17,15 +17,15 @@ public:
 
    ::function < void(nano_window *) >     m_functionClose;
 
-   __pointer(nano_window_implementation)  m_pimplementation;
-   __pointer(nano_brush)                  m_pbrushWindow;
-   __pointer(nano_brush)                  m_pbrushText;
-   __pointer(nano_brush)                  m_pbrushHyperlink;
-   __pointer(nano_brush)                  m_pbrushHyperlinkHover;
-   __pointer(nano_pen)                    m_ppenBorder;
-   __pointer(nano_pen)                    m_ppenBorderFocus;
-   __pointer(nano_pen)                    m_ppenNull;
-   __pointer(nano_font)                   m_pfont;
+   ::pointer<nano_window_implementation> m_pimplementation;
+   ::pointer<nano_brush>                 m_pbrushWindow;
+   ::pointer<nano_brush>                 m_pbrushText;
+   ::pointer<nano_brush>                 m_pbrushHyperlink;
+   ::pointer<nano_brush>                 m_pbrushHyperlinkHover;
+   ::pointer<nano_pen>                   m_ppenBorder;
+   ::pointer<nano_pen>                   m_ppenBorderFocus;
+   ::pointer<nano_pen>                   m_ppenNull;
+   ::pointer<nano_font>                  m_pfont;
    ::color::color                         m_colorText;
    ::color::color                         m_colorHyperlink;
    ::color::color                         m_colorHyperlinkHover;
@@ -35,14 +35,14 @@ public:
 
    rectangle_i32                          m_rectangle;
 
-   __pointer_array(nano_child)            m_childa;
+   pointer_array < nano_child >            m_childa;
    ::atom                                 m_atomLeftButtonDown;
    ::atom                                 m_atomLeftButtonUp;
    ::atom                                 m_atomRightButtonDown;
    ::atom                                 m_atomRightButtonUp;
-   __pointer(nano_child)                  m_pchildFocus;
-   __pointer(nano_child)                  m_pchildHover;
-   __pointer(nano_child)                  m_pchildCapture;
+   ::pointer<nano_child>                 m_pchildFocus;
+   ::pointer<nano_child>                 m_pchildHover;
+   ::pointer<nano_child>                 m_pchildCapture;
 
 
    bool                                   m_bCapture;
@@ -54,7 +54,7 @@ public:
    bool                                   m_bTopMost;
 
 
-   __pointer_array(nano_button)           m_buttona;
+   pointer_array < nano_button >           m_buttona;
 
 
    nano_window();
@@ -142,7 +142,7 @@ public:
    void display_temporary_file_with_text(const ::string & str);
 
    
-   __pointer(nano_device) create_device();
+   ::pointer<nano_device>create_device();
 
    
    void _run_modal_loop() override;

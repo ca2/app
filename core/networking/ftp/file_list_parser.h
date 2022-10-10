@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////
+﻿////////////////////////////////////////////////////////////////////////////////
 //
 // Code taken from D. J. Bernstein (C ==> C++)
 //
@@ -61,19 +61,19 @@ namespace ftp
       file_list_parser();
       virtual ~file_list_parser();
 
-      bool Parse(file_status& ftpFileStatus, const string& strLineToParse);
+      bool Parse(file_status& ftpFileStatus, const ::string & strLineToParse);
 
-      bool IsEPLS(const ::string & pszLine);
-      bool ParseEPLF(file_status& ftpFileStatus, const ::string & pszLine, int iLength);
+      bool IsEPLS(const char * pszLine);
+      bool ParseEPLF(file_status& ftpFileStatus, const char * pszLine, int iLength);
 
-      bool IsUNIXStyleListing(const ::string & pszLine);
-      bool ParseUNIXStyleListing(file_status& ftpFileStatus, const ::string & pszLine, int iLength);
+      bool IsUNIXStyleListing(const char * pszLine);
+      bool ParseUNIXStyleListing(file_status& ftpFileStatus, const char * pszLine, int iLength);
 
-      bool IsMultiNetListing(const ::string & pszLine);
-      bool ParseMultiNetListing(file_status& ftpFileStatus, const ::string & pszLine, int iLength);
+      bool IsMultiNetListing(const char * pszLine);
+      bool ParseMultiNetListing(file_status& ftpFileStatus, const char * pszLine, int iLength);
 
-      bool IsMSDOSListing(const ::string & pszLine);
-      bool ParseMSDOSListing(file_status& ftpFileStatus, const ::string & pszLine, int iLength);
+      bool IsMSDOSListing(const char * pszLine);
+      bool ParseMSDOSListing(file_status& ftpFileStatus, const char * pszLine, int iLength);
 
       bool CheckMonth(const ::string & pszBuffer, const ::string & pszMonthName) const;
       int  GetMonth(const ::string & pszBuffer, int iLength) const;

@@ -51,7 +51,7 @@ namespace user
    void split_impact::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       pcreate->previous();
 
@@ -124,7 +124,7 @@ namespace user
 
    void split_impact::on_message_size(::message::message * pmessage)
    {
-      __pointer(::message::size) psize(pmessage);
+      ::pointer<::message::size>psize(pmessage);
       psize->previous();
       //on_layout(pgraphics);
    }
@@ -217,7 +217,7 @@ namespace user
 
    void split_impact::on_message_show_window(::message::message * pmessage)
    {
-      __pointer(::message::show_window) pshowwindow(pmessage);
+      ::pointer<::message::show_window>pshowwindow(pmessage);
       pshowwindow->previous();
       //on_layout(pgraphics);
    }

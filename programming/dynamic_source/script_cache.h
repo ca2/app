@@ -11,8 +11,8 @@ namespace dynamic_source
    public:
 
 
-      string_map < __pointer(script) >    m_map;
-      __pointer(script_manager)           m_pmanager;
+      string_map < ::pointer<script >>   m_map;
+      ::pointer<script_manager>          m_pmanager;
 
 
       script_cache();
@@ -21,14 +21,14 @@ namespace dynamic_source
 
       virtual void initialize_script_cache(script_manager * pscriptmanager);
 
-      __pointer(script_instance) create_instance(const ::string & lpcszName, __pointer(script) & pscript);
+      ::pointer<script_instance>create_instance(const ::string & lpcszName, ::pointer<script> pscript);
 
       void set_all_out_of_date();
 
       void set_out_of_date(string str);
 
       //void cache(script * pscript);
-      __pointer(ds_script) create_new_ds_script(const ::string & strName);
+      ::pointer<ds_script>create_new_ds_script(const ::string & strName);
       void uncache(script * pscript);
 
       script * get(const ::string & lpcszName);

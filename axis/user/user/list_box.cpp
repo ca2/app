@@ -755,7 +755,7 @@ namespace user
    void list_box::on_message_show_window(::message::message * pmessage)
    {
 
-      __pointer(::message::show_window) pshowwindow(pmessage);
+      ::pointer<::message::show_window>pshowwindow(pmessage);
 
       if (pshowwindow->m_bShow)
       {
@@ -794,7 +794,7 @@ namespace user
 
             set_timer(e_timer_kill_focus, 300_ms);
 
-            //__pointer(::message::kill_focus) pkillfocus(pmessage);
+            //::pointer<::message::kill_focus>pkillfocus(pmessage);
 
             //oswindow oswindowThis = get_safe_handle();
 
@@ -858,9 +858,9 @@ namespace user
    void list_box::_001OnActivate(::message::message * pmessage)
    {
 
-      __pointer(::message::activate) pactivate(pmessage);
+      ::pointer<::message::activate>pactivate(pmessage);
 
-      __pointer(::user::interaction) pActive = (pactivate->m_eactivate == e_activate_inactive ? pactivate->m_pWndOther : this);
+      ::pointer<::user::interaction>pActive = (pactivate->m_eactivate == e_activate_inactive ? pactivate->m_pWndOther : this);
 
       if (pactivate->m_eactivate == e_activate_inactive)
       {
@@ -884,7 +884,7 @@ namespace user
    void list_box::_001OnMouseActivate(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse_activate) pactivate(pmessage);
+      ::pointer<::message::mouse_activate>pactivate(pmessage);
 
       pactivate->m_lresult = e_mouse_activate_no_activate;
 
@@ -910,7 +910,7 @@ namespace user
 
          m_pcombo->ShowDropDown(false);
 
-         __pointer(::user::primitive) pelemental = m_pcombo->keyboard_get_next_focusable();
+         ::pointer<::user::primitive>pelemental = m_pcombo->keyboard_get_next_focusable();
 
          if (pelemental.is_set())
          {
@@ -940,7 +940,7 @@ namespace user
 
          m_pcombo->ShowDropDown(false);
 
-         __pointer(::user::primitive) pelemental = m_pcombo->keyboard_get_next_focusable();
+         ::pointer<::user::primitive>pelemental = m_pcombo->keyboard_get_next_focusable();
 
          if (pelemental.is_set())
          {

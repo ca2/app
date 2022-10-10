@@ -220,7 +220,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 }
 
 
-//__pointer(message_queue) get_message_queue(itask_t idthread, bool bCreate)
+//::pointer<message_queue>get_message_queue(itask_t idthread, bool bCreate)
 //{
 //
 //   ::thread * pthread = ::aura::get_system()->get_task(idthread);
@@ -317,7 +317,7 @@ int_bool message_queue::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsg
 //
 //   }
 //
-//   pthread->__raw_compose_new(pthread->m_pmq);
+//   pthread->__raw_construct_new(pthread->m_pmq);
 //
 //   pthread->m_pmq->m_itask = idthread;
 //

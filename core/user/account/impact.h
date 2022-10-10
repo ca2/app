@@ -14,7 +14,7 @@ namespace account
    public:
 
       
-      __pointer(::account::credentials)      m_pcredentials;
+      ::pointer<::account::credentials>     m_pcredentials;
       ::mutex                                m_mutexResponse;
       manual_reset_event                     m_evSubmit;
       string                                 m_strResponse;

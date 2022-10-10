@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace aqua
@@ -33,7 +33,7 @@ namespace aqua
       virtual string text_to_speech_implementation();
       virtual void text_to_speech_implementation(const ::string & strImplementation);
 
-      virtual __pointer(::text_to_speech::speaker) create_text_to_speech_speaker(const ::string& strImplementation = nullptr);
+      virtual ::pointer<::text_to_speech::speaker>create_text_to_speech_speaker(const ::string& strImplementation = nullptr);
 
 
       virtual void speak(const ::string & strText);

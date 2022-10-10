@@ -61,7 +61,7 @@ CLASS_DECL_CORE void __init_thread();
 //CLASS_DECL_CORE void __term_thread(::object * pobject);
 
 
-//CLASS_DECL_CORE __pointer(::user::interaction) __get_main_window();
+//CLASS_DECL_CORE ::pointer<::user::interaction>__get_main_window();
 
 
 CLASS_DECL_CORE void __delete_object(HGDIOBJ* pObject);

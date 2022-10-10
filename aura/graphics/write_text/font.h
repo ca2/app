@@ -131,7 +131,7 @@ namespace write_text
    };
 
 
-   typedef ___pointer < font > font_pointer;
+   typedef ::pointer<font>font_pointer;
 
 
 

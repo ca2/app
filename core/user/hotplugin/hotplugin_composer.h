@@ -70,7 +70,7 @@ namespace hotplugin
       virtual ~composer();
 
 
-      virtual ::hotplugin::host * create_host(__pointer(::aura::system) psystem) ;
+      virtual ::hotplugin::host * create_host(::pointer<::aura::system>psystem) ;
 
       virtual void hotplugin_composer_on_timer();
 

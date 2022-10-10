@@ -42,7 +42,7 @@ namespace user
       for(i32 i = 0; i < pnode->children().get_count(); i++)
       {
 
-         __pointer(::xml::node) pchild = pnode->child_at(i);
+         ::pointer<::xml::node>pchild = pnode->child_at(i);
 
          string strId;
 
@@ -194,7 +194,7 @@ namespace user
    }
 
 
-   __pointer(image_list) menu_central::MenuV033GetImageList()
+   ::pointer<image_list>menu_central::MenuV033GetImageList()
    {
 
       defer_initialize();
@@ -204,7 +204,7 @@ namespace user
    }
 
 
-   __pointer(image_list) menu_central::MenuV033GetImageListHue()
+   ::pointer<image_list>menu_central::MenuV033GetImageListHue()
    {
 
       return m_pimagelistHue;
@@ -212,7 +212,7 @@ namespace user
    }
 
 
-   __pointer(image_list) menu_central::MenuV033GetImageListBlend()
+   ::pointer<image_list>menu_central::MenuV033GetImageListBlend()
    {
 
       return m_pimagelistBlend;
@@ -220,7 +220,7 @@ namespace user
    }
 
 
-   __pointer(image_list) menu_central::MenuV033GetImageListHueLight()
+   ::pointer<image_list>menu_central::MenuV033GetImageListHueLight()
    {
 
       return m_pimagelistHueLight;

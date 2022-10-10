@@ -28,8 +28,8 @@ namespace user
       ::draw2d::brush_pointer             m_pbrushFillHover;
       atom                                m_atom;
       ::image_pointer                     m_pimage;
-      __pointer(place_holder)             m_pplaceholder;
-      __pointer(impact_data)              m_pimpactdata;
+      ::pointer<place_holder>            m_pplaceholder;
+      ::pointer<impact_data>             m_pimpactdata;
       bool                                m_bTabPaneVisible;
       bool                                m_bPermanent;
       size_i32                            m_size;

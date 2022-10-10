@@ -323,7 +323,7 @@ namespace universal_windows
 
 
 
-            pointer < ::user::message > spbase;
+            ::pointer<::user::message>spbase;
 
             auto pkey = __new(::message::key);
 

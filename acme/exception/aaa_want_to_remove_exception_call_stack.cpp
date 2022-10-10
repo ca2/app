@@ -91,7 +91,7 @@ const char * callstack::xxxstack_trace() const
 }
 
 
-CLASS_DECL_ACME  __pointer(callstack) get_callstack(const char* pszFormat, iptr iSkip, void* caller_address, iptr iCount)
+CLASS_DECL_ACME  ::pointer<callstack>get_callstack(const char* pszFormat, iptr iSkip, void* caller_address, iptr iCount)
 {
 
    if (iSkip >= 0)
@@ -108,7 +108,7 @@ CLASS_DECL_ACME  __pointer(callstack) get_callstack(const char* pszFormat, iptr 
 }
 
 
-CLASS_DECL_ACME __pointer(callstack) get_callstack(e_callstack ecallstack, int iCallStackAddUp)
+CLASS_DECL_ACME ::pointer<callstack>get_callstack(e_callstack ecallstack, int iCallStackAddUp)
 {
 
    iCallStackAddUp++;

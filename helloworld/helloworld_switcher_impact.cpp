@@ -102,7 +102,7 @@ namespace helloworld
          if(ptopic->user_element_id() == "switcher_toggle")
          {
 
-            __pointer(impact) pimpact = m_pimpact;
+            ::pointer<impact>pimpact = m_pimpact;
 
             pimpact->m_prender->m_bLite = !pimpact->m_prender->m_bLite;
 

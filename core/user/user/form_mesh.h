@@ -40,7 +40,7 @@ namespace user
       };
 
 
-      __pointer(::user::interaction)      m_pcontrolEdit;
+      ::pointer<::user::interaction>     m_pcontrolEdit;
 
       ::count                             m_iClickCount;
       ::item_pointer                      m_pitemClick;

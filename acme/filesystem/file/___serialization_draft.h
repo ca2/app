@@ -57,7 +57,7 @@ public:
    
 
    template < typename OBJECT >
-   inline void exchange(const ::atom & atom, __pointer(OBJECT) & pobject)
+   inline void exchange(const ::atom & atom, ::pointer<OBJECT>& pobject)
    {
       if (is_storing())
       {
@@ -76,7 +76,7 @@ public:
       exchange("", pobject);
    }
 
-   virtual __pointer(::matter) read_object(const ::atom & atom)
+   virtual ::pointer<::matter>read_object(const ::atom & atom)
    {
       ::atom idFactory;
       exchange("id", idFactory);
@@ -119,7 +119,7 @@ public:
       stream.exchange("", pobject);
    }
 
-   virtual __pointer(::contex_object) read_object(const ::atom & atom) override
+   virtual ::pointer<::contex_object>read_object(const ::atom & atom) override
    {
       payload_stream stream(memory_new ::payload(&payload()[atom].propset()));
       ::atom idFactory;
@@ -153,7 +153,7 @@ public:
    i8                   m_iVisible;
    string               m_strTitle;
    in_addr              m_addr;
-   __pointer(::matter)  m_pobject;
+   ::pointer<::matter> m_pobject;
 
    virtual void exchange(stream & s);
 

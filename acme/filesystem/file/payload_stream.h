@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 //class payload_stream;
@@ -40,7 +40,7 @@
 //
 //
 //template < typename OBJECT >
-//inline void __exchange(::payload_stream& s, __pointer(OBJECT)& pobject);
+//inline void __exchange(::payload_stream& s, ::pointer<OBJECT> pobject);
 //
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
 //inline void __exchange(::payload_stream& stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >& array);
@@ -93,7 +93,7 @@
 //   void var_exchange(const ::atom & atom, TYPE & t);
 //
 //   //virtual void write_object(const ::atom & atom, ::matter * pobject) ;
-//   //virtual __pointer(::matter) read_object(const ::atom & atom) ;
+//   //virtual ::pointer<::matter>read_object(const ::atom & atom) ;
 //
 //
 //   virtual void read(block & block) ;

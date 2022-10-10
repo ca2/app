@@ -14,7 +14,7 @@ namespace app_shader
    public:
 
 
-      __composite(::app_shader::main_window)                    m_pmainwindow;
+      ::pointer<::app_shader::main_window>                   m_pmainwindow;
 
 
       application();

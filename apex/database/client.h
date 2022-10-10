@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace database
@@ -52,7 +52,7 @@ namespace database
 
 
       template < typename TYPE >
-      inline void binary_set(const key & key, const __pointer(TYPE) & p)
+      inline void binary_set(const key & key, const ::pointer<TYPE>& p)
       {
 
          binary_set(key, *p);
@@ -96,7 +96,7 @@ namespace database
       inline bool binary_get(const key & key, TYPE & t);
 
       template < typename TYPE >
-      inline bool binary_get(const key & key, __pointer(TYPE) & p)
+      inline bool binary_get(const key & key, ::pointer<TYPE>& p)
       {
 
          return binary_get(key, *p);

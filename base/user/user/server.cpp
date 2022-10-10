@@ -34,7 +34,7 @@ namespace user
    void server::on_request(::create* pcreateParam)
    {
 
-      __pointer(::create) pcreate(pcreateParam);
+      ::pointer<::create>pcreate(pcreateParam);
       
       if (pcreate == nullptr)
       {

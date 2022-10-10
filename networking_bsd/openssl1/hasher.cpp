@@ -6,7 +6,7 @@
 //{
 //
 //
-//   __pointer(::crypto::hasher) get_hasher(enum_hash ehash)
+//   ::pointer<::crypto::hasher>get_hasher(enum_hash ehash)
 //   {
 //
 //      switch (ehash)

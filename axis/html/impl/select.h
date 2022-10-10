@@ -18,7 +18,7 @@ namespace html
 
 
          i32                    m_iFont;
-         __pointer(::user::combo_box)     m_pcombo;
+         ::pointer<::user::combo_box>    m_pcombo;
 
 
          select();

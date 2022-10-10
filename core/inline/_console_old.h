@@ -11,8 +11,8 @@ class CLASS_DECL_CORE console :
 public:
 
    class aura_aura                  m_aura;
-   __pointer(::aura::system)        m_psystem;
-   //__pointer(::aura::application)   m_pacmeapplication;
+   ::pointer<::aura::system>        m_psystem;
+   //::pointer<::aura::application>   m_pacmeapplication;
 
    console(int argc, wchar_t * argv[]);
    console(int argc, char * argv[]);

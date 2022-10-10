@@ -6,7 +6,7 @@
 //{
 //
 //
-//   CLASS_DECL_APEX __pointer(::crypto::hasher) __create_hasher(enum_hash ehash)
+//   CLASS_DECL_APEX ::pointer<::crypto::hasher>__create_hasher(enum_hash ehash)
 //   {
 //
 //      auto pprovider = ::winrt::hasher::get_os_provider(ehash);

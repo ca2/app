@@ -107,7 +107,7 @@ namespace simple_drawing
 
       }
 
-      __pointer(::userex::top_edit_view) peditview = get_child_by_id("top_edit_view");
+      ::pointer<::userex::top_edit_view>peditview = get_child_by_id("top_edit_view");
 
       if(peditview.is_set())
       {

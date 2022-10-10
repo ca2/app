@@ -29,14 +29,14 @@ namespace filemanager
       /// fix this concept if there are app exclusive file systems.... but,
       /// other file systems can be included in more incluse fs::data
       /// (or just exclusive file systems at fs::data (ftp only file system?)
-      __pointer(::create) m_pcreate;
+      ::pointer<::create>m_pcreate;
       ::file::path m_filepath;
       bool m_bMakeVisible;
       bool m_bTransparentBackground;
       ::user::interaction * m_puserinteractionParent;
-      __pointer(::fs::data)       m_pfsdata;
+      ::pointer<::fs::data>      m_pfsdata;
       callback *                 m_pcallback;
-      //bool bMakeVisible = true, bool bTransparentBackground = false, __pointer(::user::interaction) puiParent = nullptr, ::fs::data * pfsdata = nullptr, __pointer(data) pdata = nullptr, callback * pcallback = nullptr
+      //bool bMakeVisible = true, bool bTransparentBackground = false, ::pointer<::user::interaction>puiParent = nullptr, ::fs::data * pfsdata = nullptr, ::pointer<data>data = nullptr, callback * pcallback = nullptr
       ::user::multiple_document_template * m_pdocumenttemplate;
       ::write_text::font_pointer                   m_pfont;
       ::user::document *                  m_pdocumentTopic;
@@ -68,7 +68,7 @@ namespace filemanager
       ::database::key                     m_dataidStatic;
 
 
-      __pointer(file_list_callback)       m_pfilelistcallback;
+      ::pointer<file_list_callback>      m_pfilelistcallback;
 
       string                              m_strLevelUp;
       i32                                 m_iIconSize;

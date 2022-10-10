@@ -181,7 +181,7 @@ namespace aura
 
    //   }
 
-   //   __compose_new(m_puserstyle);
+   //   __construct_new(m_puserstyle);
 
    //   m_puserstyle->default_style_construct();
 
@@ -246,7 +246,7 @@ namespace aura
       //}
 
 
-      //estatus = __compose_new(m_ptextcontext);
+      //estatus = __construct_new(m_ptextcontext);
 
       //if (!estatus)
       //{
@@ -821,7 +821,7 @@ namespace aura
 ////
 ////      //         }
 ////
-////      //         __pointer(::user::interaction) pinteraction = pkeyboardfocusOld;
+////      //         ::pointer<::user::interaction>pinteraction = pkeyboardfocusOld;
 ////
 ////      //         if (pinteraction.is_set())
 ////      //         {
@@ -986,7 +986,7 @@ namespace aura
 //
 //      //         }
 //
-//      //         __pointer(::user::interaction) pinteraction = pkeyboardfocusOld;
+//      //         ::pointer<::user::interaction>pinteraction = pkeyboardfocusOld;
 //
 //      //         if (pinteraction.is_set())
 //      //         {
@@ -1144,7 +1144,7 @@ namespace aura
 //
 //      //         }
 //
-//      //         __pointer(::user::interaction) pinteraction = pkeyboardfocusOld;
+//      //         ::pointer<::user::interaction>pinteraction = pkeyboardfocusOld;
 //
 //      //         if (pinteraction.is_set())
 //      //         {
@@ -1267,7 +1267,7 @@ namespace aura
 
       }
 
-      __pointer(::user::interaction) puiFocus = pprimitiveFocus;
+      ::pointer<::user::interaction>puiFocus = pprimitiveFocus;
 
       if (puiFocus.is_set())
       {
@@ -1298,7 +1298,7 @@ namespace aura
 //         main_async([this]()
 //         {
 //
-//            __pointer(::ios::interaction_impl) pimpl = psession->get_user_interaction_host()->m_pimpl;
+//            ::pointer<::ios::interaction_impl>pimpl = psession->get_user_interaction_host()->m_pimpl;
 //
 //            if (pimpl.is_set())
 //            {
@@ -1361,7 +1361,7 @@ namespace aura
    //      if(m_uiptraToolWindow.has_element())
    //      {
 
-   //         __pointer_array(::user::interaction) uiptraToolWindow;
+   //         pointer_array < ::user::interaction > uiptraToolWindow;
 
    //         {
 
@@ -1727,7 +1727,7 @@ namespace aura
 
       //}
 
-      //auto estatus = __compose_new(m_pfs);
+      //auto estatus = __construct_new(m_pfs);
 
       //if (!estatus)
       //{
@@ -1746,7 +1746,7 @@ namespace aura
       //if (!m_pifs)
       //{
 
-      //   estatus = __compose(m_pifs, __new(ifs("")));
+      //   estatus = __construct(m_pifs, __new(ifs("")));
 
       //   if (!estatus)
       //   {
@@ -1762,7 +1762,7 @@ namespace aura
       //if (!m_premotefs)
       //{
 
-      //   estatus = __compose(m_premotefs, __new(::fs::remote_native("")));
+      //   estatus = __construct(m_premotefs, __new(::fs::remote_native("")));
 
       //   if (!estatus)
       //   {
@@ -1788,7 +1788,7 @@ namespace aura
 
       //   pset->m_spafsdata.add(__create_new < ::fs::native>());
 
-      //   estatus = __compose(m_pfsdata, pset);
+      //   estatus = __construct(m_pfsdata, pset);
 
       //   if (!estatus)
       //   {
@@ -1815,12 +1815,12 @@ namespace aura
          //if (psetup)
          //{
 
-         //   estatus = __compose(m_puser, psetup->create_new_object());
+         //   estatus = __construct(m_puser, psetup->create_new_object());
 
          //   if(!estatus)
          //   {
 
-         //      output_debug_string("\nFailed to __compose(m_puser)");
+         //      output_debug_string("\nFailed to __construct(m_puser)");
 
          //   }
 
@@ -1831,14 +1831,14 @@ namespace aura
 
          //estatus =
          
-         __compose(m_puser);
+         __construct(m_puser);
 
          //}
 
          if (!m_puser)
          {
 
-            output_debug_string("\nFailed to __compose_new(m_puser)");
+            output_debug_string("\nFailed to __construct_new(m_puser)");
 
             ERROR(".4");
 
@@ -2007,7 +2007,7 @@ namespace aura
 
       //estatus = 
       
-      __compose_new(m_psavings);
+      __construct_new(m_psavings);
 
       //return estatus;
 
@@ -2022,7 +2022,7 @@ namespace aura
       ::apex::session::init();
 
 
-      //__pointer(::fs::set) pfsset = m_pfsdata;
+      //::pointer<::fs::set>pfsset = m_pfsdata;
 
       //if (m_bIfs)
       //{
@@ -2030,7 +2030,7 @@ namespace aura
       //   if (m_pfsdata.is_null())
       //   {
 
-      //      __compose(m_pfsdata, __new(::fs::set));
+      //      __construct(m_pfsdata, __new(::fs::set));
 
       //   }
 
@@ -2084,7 +2084,7 @@ namespace aura
 
    //   m_bUiInit = true;
 
-   //   __compose_new(m_puserstyleDefault);
+   //   __construct_new(m_puserstyleDefault);
 
    //   m_puserstyleDefault->default_style_construct();
 
@@ -2112,7 +2112,7 @@ namespace aura
 
          }
 
-         __release(m_puser);
+         m_puser.release();
 
       }
 
@@ -2274,7 +2274,7 @@ namespace aura
    //}
 
 
-   __pointer(::aura::application) session::get_current_application()
+   ::pointer<::aura::application>session::get_current_application()
    {
 
       auto psession = get_session();
@@ -2402,12 +2402,12 @@ namespace aura
    void session::set_app_title(const ::string & pszAppId, const ::string & pszTitle)
    {
 
-      __pointer(::apex::application) papp;
+      ::pointer<::apex::application>papp;
 
       if (m_applicationa.lookup(pszAppId, papp) && papp)
       {
 
-         //__pointer(::bergedge::pane_impact) ppaneimpact = get_document()->get_typed_impact < ::bergedge::pane_impact >();
+         //::pointer<::bergedge::pane_impact>ppaneimpact = get_document()->get_typed_impact < ::bergedge::pane_impact >();
 
          //if(ppaneimpact != nullptr)
          //{

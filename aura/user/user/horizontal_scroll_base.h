@@ -15,8 +15,8 @@ namespace user
    public:
 
 
-      __pointer(scroll_bar)      m_pscrollbarHorizontal;
-      __pointer(scroll_data)     m_pscrolldataHorizontal;
+      ::pointer<scroll_bar>     m_pscrollbarHorizontal;
+      ::pointer<scroll_data>    m_pscrolldataHorizontal;
 
 
       horizontal_scroll_base();

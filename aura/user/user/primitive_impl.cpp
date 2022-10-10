@@ -75,7 +75,7 @@ namespace user
    //}
 
 
-   //void primitive_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, atom atom)
+   //void primitive_impl::create_window_ex(::user::interaction * pinteraction, ::pointer<::user::system>pcs, ::user::primitive * puiParent, atom atom)
    //{
 
    //   throw ::interface_only();
@@ -210,7 +210,7 @@ namespace user
 
    //   SIZEPARENTPARAMS sizeparentparams;
 
-   //   __pointer(::user::interaction) puiLeft;
+   //   ::pointer<::user::interaction>puiLeft;
 
    //   sizeparentparams.bStretch = bStretch;
 
@@ -236,7 +236,7 @@ namespace user
 
    //   }
 
-   //   __pointer(::user::interaction) pinteraction;
+   //   ::pointer<::user::interaction>pinteraction;
 
    //   while (m_puserinteraction->get_child(pinteraction))
    //   {
@@ -1471,7 +1471,7 @@ namespace user
    lresult primitive_impl::message_call(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32& point)
    {
 
-      ___pointer < ::message::message > pmessage;
+      ::pointer<::message::message>pmessage;
 
       if (m_puserinteraction)
       {
@@ -1629,7 +1629,7 @@ namespace user
       if (m_ptimerarray.is_null())
       {
 
-         __compose_new(m_ptimerarray);
+         __construct_new(m_ptimerarray);
 
          m_ptimerarray->m_pcallback = m_puserinteraction;
 
@@ -1749,9 +1749,9 @@ namespace user
 
       }
 
-      __pointer(::user::primitive_impl) pimplThis = this;
+      ::pointer<::user::primitive_impl>pimplThis = this;
 
-      __pointer(::user::interaction) puiThis = m_puserinteraction;
+      ::pointer<::user::interaction>puiThis = m_puserinteraction;
 
       if(puiThis)
       {
@@ -1954,7 +1954,7 @@ namespace user
    void primitive_impl::post_non_client_destroy()
    {
 
-      __pointer(primitive_impl) pimpl = this;
+      ::pointer<primitive_impl>pimpl = this;
 
       {
 
@@ -2020,7 +2020,7 @@ namespace user
    void primitive_impl::on_message_show_window(::message::message * pmessage)
    {
 
-      __pointer(::message::show_window) pshowwindow(pmessage);
+      ::pointer<::message::show_window>pshowwindow(pmessage);
 
       m_puserinteraction->set_need_redraw();
 
@@ -2219,7 +2219,7 @@ namespace user
 
    //   }
 
-   //   __pointer(::user::interaction) pinteraction = m_puserinteraction->get_host_window();
+   //   ::pointer<::user::interaction>pinteraction = m_puserinteraction->get_host_window();
 
    //   if (pinteraction.is_null())
    //   {
@@ -2242,7 +2242,7 @@ namespace user
 
    //   }
 
-   //   __pointer(::user::interaction_impl) pimpl = pinteraction->m_pimpl;
+   //   ::pointer<::user::interaction_impl>pimpl = pinteraction->m_pimpl;
 
    //   if (pimpl.is_null())
    //   {

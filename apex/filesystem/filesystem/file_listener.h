@@ -65,7 +65,7 @@ namespace file
 
       //listener_function    m_function;
 
-      comparable_array < __pointer(watch) >        m_watcha;
+      comparable_array < ::pointer<watch >>       m_watcha;
 
       using function::function;
 

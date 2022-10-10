@@ -17,7 +17,7 @@ namespace operating_system
       public:
 
          string                                    m_strCmdLine;
-         __pointer(::operating_system::process)    m_pprocess;
+         ::pointer<::operating_system::process>   m_pprocess;
          string *                                  m_pstrRead;
          manual_reset_event *                      m_pevReady;
          ::duration                                m_durationTimeout;
@@ -54,7 +54,7 @@ namespace operating_system
          bool                             m_bInitFailure;
          bool                             m_bPotentialTimeout;
          bool *                           m_pbPotentialTimeout;
-         __pointer(process_thread)        m_pthread;
+         ::pointer<process_thread>       m_pthread;
          exit_status                      m_exitstatus;
          bool                             m_bElevated;
 

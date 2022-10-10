@@ -141,9 +141,9 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLi
 //
 //   {
 //
-//      __pointer(class apex_apex) papex;
+//      ::pointer<class apex_apex> papex;
 //
-//      __pointer(class apex_main_data) pmaindata;
+//      ::pointer<class apex_main_data> pmaindata;
 //
 //      {
 //

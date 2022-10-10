@@ -1,4 +1,4 @@
-//
+﻿//
 //  estatus.h
 //  acme
 //
@@ -70,9 +70,7 @@ public:
 
    int exit_code() const { return succeeded() ? 0 : (int)_status_exit_code(m_estatus); }
 
-   e_status& operator =(enum_status estatus) { m_estatus = estatus; return *this; }
    e_status& operator =(const e_status & estatus) { m_estatus = (enum_status) estatus; return *this; }
-   e_status& operator =(bool b) { m_estatus = b ? success : error_failed; return *this; }
 
    bool operator ==(enum_status estatus) const { return m_estatus == estatus; }
    bool operator ==(const e_status& estatus) const { return m_estatus == estatus; }

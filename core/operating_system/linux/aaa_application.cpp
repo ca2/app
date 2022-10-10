@@ -245,7 +245,7 @@ namespace aura
 //
 //      //i32 iRet = ::aura::application::term_instance();
 //
-//      //::ca2::pointer<::ca2::application>::destroy();
+//      //::ca2pointer<::ca2::application>::destroy();
 //
 //
 //
@@ -269,7 +269,7 @@ namespace aura
 
 
       // Advanced: access to GetMainWnd()
-      __pointer(::user::primitive) application::GetMainWnd()
+      ::pointer<::user::primitive>application::GetMainWnd()
       {
          return ::win::thread::GetMainWnd();
       }

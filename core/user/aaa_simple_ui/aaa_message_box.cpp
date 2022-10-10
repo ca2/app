@@ -75,7 +75,7 @@ namespace simple_ui
    }
 
 
-   void message_box::create_button(__pointer_array(tap) & tapa,atom atom, const ::string & pszText)
+   void message_box::create_button(pointer_array < tap > & tapa,atom atom, const ::string & pszText)
    {
 
       auto ptap = __new(::simple_ui::tap);
@@ -244,7 +244,7 @@ namespace simple_ui
 
       pgraphics->fill_rectangle(rectangleClient,crBk);
 
-      __pointer(::write_text::font) font(e_create);
+      ::pointer<::write_text::font>font(e_create);
 
       pfont->create_point_font(pnode->font_name(e_font_sans),12);
 
@@ -294,7 +294,7 @@ namespace simple_ui
       for(index i = 0; i < m_tapaA.get_count(); i++)
       {
 
-         __pointer(tap) ptap = m_tapaA[i];
+         ::pointer<tap>ptap = m_tapaA[i];
 
          ptap->order(e_zorder_top);
 
@@ -313,7 +313,7 @@ namespace simple_ui
       for(index i = m_tapaB.get_upper_bound(); i >= 0; i--)
       {
 
-         __pointer(tap) ptap = m_tapaB[i];
+         ::pointer<tap>ptap = m_tapaB[i];
 
          ptap->order(e_zorder_top);
 
@@ -535,7 +535,7 @@ namespace simple_ui
 //
 //   {
 //
-//      __pointer(::simple_ui::message_box) pmessagebox = __new(::simple_ui::message_box(get_app(),pText,lpCaption,uFlags));
+//      ::pointer<::simple_ui::message_box>pmessagebox = __new(::simple_ui::message_box(get_app(),pText,lpCaption,uFlags));
 //
 //      try
 //      {

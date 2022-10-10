@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 2021-10-05. <3ThomasBS_ [ THE ONE GOD ]
 //
 
@@ -19,6 +19,7 @@ public:
    operator INTEGRAL_NANOSECOND() const { return INTEGRAL_NANOSECOND((::i64)fmod(m_d, 1'000'000'000.0)); }
 
    operator FLOATING_SECOND() const { return FLOATING_SECOND(m_d / 1'000'000'000.0); }
+
 
 
 };

@@ -15,7 +15,7 @@ namespace user
 
 
       ::image_pointer                     m_pimageMem;
-      __composite(::xml::document)        m_pxmldoc;
+      ::pointer<::xml::document>       m_pxmldoc;
       ::image_pointer                     m_pimageLogo;
       ::write_text::font_pointer          m_pfontTitle;
       ::write_text::font_pointer          m_pfont;

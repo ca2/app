@@ -32,7 +32,7 @@ namespace experience_anthill
 
 
 
-      __pointer(::draw2d::fastblur)          m_pfastblur;
+      ::pointer<::draw2d::fastblur>         m_pfastblur;
       ::draw2d::pen_pointer                  m_ppenText1;
       ::draw2d::pen_pointer                  m_ppenFace1;
       ::draw2d::pen_pointer                  m_ppenHilight1;
@@ -64,7 +64,7 @@ namespace experience_anthill
 
       virtual void on_style_change_001_and_002(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void OnMove(__pointer(::user::interaction) pframewindow) override;
+      virtual void OnMove(::pointer<::user::interaction>pframewindow) override;
 
       virtual ::user::enum_style get_style() const;
 

@@ -15,7 +15,7 @@ namespace write_text
    public:
 
 
-      __pointer(class fonts)                          m_pfonts;
+      ::pointer<class fonts>                          m_pfonts;
 
 
       critical_section                                m_csFont;

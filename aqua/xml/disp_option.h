@@ -15,7 +15,7 @@ namespace xml
       bool                 m_bNewLine;          // newline when memory_new tag
       bool                 m_bReferenceValue;   // do convert from entity to object ( < -> &lt; )
       char                 m_chQuote;           // val="" (default value quotation mark "
-      __pointer(entities)  m_pentities;         // entity table for entity encode
+      ::pointer<entities> m_pentities;         // entity table for entity encode
       i32                  m_iTabBase;          // internal usage
       
       

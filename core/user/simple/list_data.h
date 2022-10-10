@@ -12,7 +12,7 @@ public:
 
    bool                 m_bEnable;
 
-   __pointer_array(string_array)         m_array;
+   pointer_array < string_array >         m_array;
 
 
    simple_list_data();

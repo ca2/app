@@ -57,7 +57,7 @@ void simple_frame_window::defer_set_icon()
 
          //hicon = load_icon(get_app(), straMatter, "icon.ico", 24, 24);
 
-         __compose(m_picon, papp->load_icon("matter://icon.ico"));
+         __construct(m_picon, papp->load_icon("matter://icon.ico"));
 
       }
 

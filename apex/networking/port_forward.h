@@ -121,7 +121,7 @@ namespace networking
    };
 
 
-   typedef ___pointer < port_forward > port_forward_pointer;
+   typedef ::pointer<port_forward>port_forward_pointer;
 
 
 } // namespace net

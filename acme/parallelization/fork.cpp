@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-//__pointer(::task) & branch(__pointer(::task) & ptask, ::object * pobject, const ::procedure & procedure)
+//::pointer<::task> & branch(::pointer<::task> & ptask, ::object * pobject, const ::procedure & procedure)
 //{
 //
 //   ptask = __new(predicate_task < PRED >(pobject, pred));

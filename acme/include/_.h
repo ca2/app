@@ -887,6 +887,13 @@ CLASS_DECL_ACME int throw_assert_exception(const char *pszFileName, int iLineNum
 #include "acme/primitive/primitive/enumeration.h"
 
 
+#include "acme/constant/check.h"
+
+
+#include "acme/primitive/primitive/echeck.h"
+
+
+DECLARE_ENUMERATION(e_command, enum_command);
 
 
 
@@ -1715,8 +1722,8 @@ inline u32 u32_hash(ARG_KEY key) { return (u32) (uptr_hash<ARG_KEY>(key)); }
 //#endif
 
 
-// #define __base(TYPE, ptarget, psource) for(__pointer(TYPE) ptarget = psource; ptarget.is_set(); ptarget.release())
-// #define __base_reference(TYPE, ptarget, source) for(__pointer(TYPE) ptarget = &source; ptarget.is_set(); ptarget.release())
+// #define __base(TYPE, ptarget, psource) for(::pointer<TYPE>ptarget = psource; ptarget.is_set(); ptarget.release())
+// #define __base_reference(TYPE, ptarget, source) for(::pointer<TYPE>ptarget = &source; ptarget.is_set(); ptarget.release())
 // #define __exception(TYPE) __base(TYPE, pe, e)
 
 #define __rethrow(pe) throw pe;
@@ -1784,25 +1791,6 @@ class synchronization_object;
 
 
 
-enum enum_command
-{
-
-   e_command_file_nothing = -1,
-   e_command_none = 0,
-   e_command_default,
-   e_command_application_start,
-   e_command_file_new,
-   e_command_file_open,
-   e_command_file_print,
-   e_command_file_print_to,
-   e_command_file_dde,
-   e_command_app_unregister,
-   e_command_request_exit,
-   e_command_protocol
-
-};
-
-
 class composite_base;
 
 
@@ -1832,20 +1820,20 @@ class task;
 //#include "_forward_declaration.h"
 
 
-using handler_pointer = __pointer(handler);
-using manager_pointer = __pointer(manager);
-using context_pointer = __pointer(context);
+using handler_pointer = ::pointer<handler>;
+using manager_pointer = ::pointer<manager>;
+using context_pointer = ::pointer<context>;
 
 
-using topic_pointer = __pointer(topic);
-using extended_topic_pointer = __pointer(extended_topic);
+using topic_pointer = ::pointer<topic>;
+using extended_topic_pointer = ::pointer<extended_topic>;
 
 
 template<typename THREAD_POINTER>
 class ___task_pool;
 
 
-using task_pointer = __pointer(::task);
+using task_pointer = ::pointer<::task>;
 
 
 class task_pool;
@@ -1858,7 +1846,7 @@ namespace write_text
    class font_enumeration_item;
 
 
-   using font_enumeration_item_array = __pointer_array(font_enumeration_item);
+   using font_enumeration_item_array = pointer_array < font_enumeration_item >;
 
 
 } // namespace write_text
@@ -1875,11 +1863,11 @@ namespace write_text
 //} // namespace extended
 //
 
-//#define __pointer(T) ::extended::transport < T >
+//#define pointer < T > ::extended::transport < T >
 
 
 // From apex by camilo 2021-11-01 13:41 BRT <3ThomasBorregaardSørensen!!
-CLASS_DECL_ACME __pointer(::acme::system) platform_create_system(const char * pszAppId);
+CLASS_DECL_ACME ::pointer<::acme::system>platform_create_system(const char * pszAppId);
 
 
 
@@ -1916,7 +1904,7 @@ inline auto &__typed_defer_new(POINTER_POINTER_TYPE **p)
 
 
 template<class T>
-inline auto &__typed_defer_new(__pointer(T) &p)
+inline auto &__typed_defer_new(pointer < T > &p)
 {
    if (!p) { p = memory_new T; }
    return *p;
@@ -1924,7 +1912,7 @@ inline auto &__typed_defer_new(__pointer(T) &p)
 
 //
 //template<class T>
-//inline auto &__typed_defer_create(__pointer(T) &p)
+//inline auto &__typed_defer_create(pointer < T > &p)
 //{
 //   if (!p) { __construct(p); }
 //   return *p;
@@ -1950,18 +1938,18 @@ inline void __dynamic_cast(TARGET*& ptarget, const SOURCE* psource)
 
 
 template<typename T>
-inline bool __found(const __pointer(T) &p);
+inline bool __found(const pointer < T > &p);
 
 
 template<typename T>
-inline bool __not_found(const __pointer(T) &p);
+inline bool __not_found(const pointer < T > &p);
 
 
 template<typename TDST, typename TSRC>
-inline __pointer(TDST) &clone(__pointer(TDST) &dst, const __pointer(TSRC) &src);
+inline ::pointer<TDST>&clone(::pointer<TDST>dst, const ::pointer<TSRC>rc);
 
 template<typename T>
-inline __pointer(T) clone(const __pointer(T) &t);
+inline pointer < T > clone(const pointer < T > &t);
 
 
 template<class T>
@@ -2077,7 +2065,7 @@ inline bool is_ok(const TYPE *p)
 
 
 template<typename TYPE>
-inline bool is_ok(const __pointer(TYPE) &p)
+inline bool is_ok(const ::pointer<TYPE>&p)
 {
 
    return ::is_ok(p.m_p);
@@ -2146,7 +2134,7 @@ inline bool is_impact_subgroup(::u64 u, ::u64 uGroup) { return u >= uGroup && u 
 //class command_line;
 
 
-//using command_line_pointer = __pointer(command_line);
+//using command_line_pointer = ::pointer<command_line>
 
 
 namespace message
@@ -2864,9 +2852,9 @@ namespace text
 #include "acme/platform/auto_pointer.h"
 
 
-#define __m_own(owner, member_reference, ...) (owner)->__compose(member_reference, __VA_ARGS__ )
-#define __own(owner, member, ...) __m_own(owner, (owner)->member, __VA_ARGS__ )
-#define __unbind(holder, ...) (holder)->__release((holder)-> __VA_ARGS__ )
+//#define __m_own(owner, member_reference, ...) (owner)->__construct(member_reference, __VA_ARGS__ )
+//#define __own(owner, member, ...) __m_own(owner, (owner)->member, __VA_ARGS__ )
+//#define __unbind(holder, ...) (holder)->__release((holder)-> __VA_ARGS__ )
 
 
 //CLASS_DECL_ACME ::e_status2 __realize(::matter * pmatter, const ::future & future);
@@ -2886,23 +2874,25 @@ class thread_parameter;
 #include "acme/primitive/primitive/uid.h"
 
 
-namespace primitive
-{
+//namespace primitive
+//{
+//
+//
+//   template<typename TYPE>
+//   class member;
+//
+//
+//   template<typename TYPE>
+//   class composite;
+//
+//
+//   template<typename TYPE>
+//   class reference;
+//
+//
+//} // namespace primitive
 
 
-   template<typename TYPE>
-   class member;
-
-
-   template<typename TYPE>
-   class composite;
-
-
-   template<typename TYPE>
-   class reference;
-
-
-} // namespace primitive
 #include "acme/primitive/primitive/ptr.h"
 
 
@@ -2920,11 +2910,11 @@ concept an_object = !std::is_pointer < T >::value
 
 
 template<typename TYPE>
-inline bool is_null(const __pointer(TYPE)& p);
+inline bool is_null(const ::pointer<TYPE> & p);
 
 
 template<typename TYPE>
-inline bool is_set(const __pointer(TYPE)& p);
+inline bool is_set(const ::pointer<TYPE> & p);
 
 
 template < non_pointer NOT_A_POINTER >
@@ -2953,19 +2943,19 @@ inline bool is_set(const TYPE & t)
 
 
 template < typename TYPE >
-inline ::i64 release(__pointer(TYPE) & pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+inline ::i64 release(::pointer<TYPE>& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
 template < typename TYPE >
-inline ::i64 __finalize(__pointer(TYPE) & pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+inline ::i64 __finalize(::pointer<TYPE>& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
 template < class REFERENCE >
-inline ::i64 release(__reference(REFERENCE) & preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+inline ::i64 release(::pointer<REFERENCE>& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
 template<typename T>
-inline ptr < T > move_transfer(T * p);
+inline ::pointer < T > move_transfer(T * p);
 
 
 //template < typename T >
@@ -2987,7 +2977,7 @@ template < typename FROM, typename TO_POINTER >
 concept pointer_castable =
    ::std::is_convertible < FROM, TO_POINTER * >::value ||
    ::std::is_convertible < FROM, const TO_POINTER * >::value ||
-   ::std::is_convertible < FROM, __pointer(TO_POINTER) >::value;
+   ::std::is_convertible < FROM, ::pointer < TO_POINTER > >::value;
 
 
 template < typename FROM >
@@ -2998,10 +2988,10 @@ template < typename FROM >
 concept non_matter_pointer_castable = !pointer_castable < FROM, ::matter >;
 
 
-using element_pointer = __pointer(::element);
+using element_pointer = ::pointer<::element>;
 
 
-using matter_pointer = __pointer(::matter);
+using matter_pointer = ::pointer<::matter>;
 
 
 namespace message
@@ -3018,7 +3008,7 @@ namespace message
 
 
 template<class POINTER_TYPE>
-inline auto &__typed(__pointer(POINTER_TYPE) &p) { return *p; }
+inline auto &__typed(::pointer<POINTER_TYPE>&p) { return *p; }
 
 
 class duration;
@@ -3028,16 +3018,11 @@ class folder;
 
 class memory_file;
 
-using file_pointer = __pointer(::file::file);
+using file_pointer = ::pointer<::file::file>;
 
-using file_pointer = __pointer(::file::file);
+using memory_file_pointer = ::pointer<::memory_file>;
 
-using memory_file_pointer = __pointer(::memory_file);
-
-using folder_pointer = __pointer(::folder);
-
-using folder_pointer = __pointer(::folder);
-
+using folder_pointer = ::pointer<::folder>;
 
 class binary_stream;
 
@@ -3047,7 +3032,7 @@ class binary_stream;
 //
 //
 //template<typename BASE_TYPE>
-//inline stream &__save_object(stream &stream, const __pointer(BASE_TYPE) &p)
+//inline stream &__save_object(stream &stream, const ::pointer<BASE_TYPE>&p)
 //{
 //
 //   return __save_object(stream, (BASE_TYPE *) p.m_p);
@@ -3089,7 +3074,7 @@ using wparam = c_number<iptr>;
 //} // namespace status
 
 template<typename T>
-void __destroy_and_release(__pointer(T) & p)
+void __destroy_and_release(pointer < T > & p)
 {
 
    if (::is_null(p))
@@ -3138,7 +3123,7 @@ class children;
 
    class exception;
 
-   //using exception_pointer = __pointer(exception);
+   //using exception_pointer = ::pointer<exception>
 
 
 //} // namespace exception
@@ -3468,19 +3453,19 @@ inline const ::matter *trace_object(const ::matter *pobject) { return pobject; }
 template<typename POINTER_TYPE>
 class ptr_array;
 
-using object_ptra = __pointer_array(::matter); // Please use just for keeping non-member-based references.
+using object_ptra = pointer_array < ::matter >; // Please use just for keeping non-member-based references.
 
-using matter_array = __pointer_array(::matter); // Please use just for keeping non-member-based references.
+using matter_array = pointer_array < ::matter >; // Please use just for keeping non-member-based references.
 
-using task_array = __pointer_array(::task); // Please use just for keeping non-member-based references.
+using task_array = pointer_array < ::task >; // Please use just for keeping non-member-based references.
 
 //using object_addra = __address_array(::matter); // Please use just for keeping non-member-based references.
 
 class object_meta;
 
 
-#define __composite_array(TYPE) ::array < __composite(TYPE) >
-#define __reference_array(TYPE) ::array < __reference(TYPE) >
+#define __composite_array(TYPE) ::array < ::pointer<TYPE >>
+#define __reference_array(TYPE) ::array < ::pointer<TYPE >>
 
 
 namespace http
@@ -3527,8 +3512,7 @@ struct MESSAGE
 };
 
 
-using generic_pointer = __pointer(::matter);
-
+using generic_pointer = ::pointer<::matter>;
 
 
 namespace core
@@ -3729,7 +3713,7 @@ namespace draw2d
 
    class graphics;
 
-   using graphics_pointer = __pointer(graphics);
+   using graphics_pointer = ::pointer<graphics>;
 
 
 } // namespace draw2d
@@ -3829,10 +3813,10 @@ CLASS_DECL_ACME string merge_colon_args(const array<string_array> &str2a);
 //class callstack;
 
 
-//CLASS_DECL_ACME __pointer(callstack) get_callstack(const char *pszFormat = "%f(%l) %s\n", iptr iSkip = -1000,
+//CLASS_DECL_ACME ::pointer<callstack>get_callstack(const char *pszFormat = "%f(%l) %s\n", iptr iSkip = -1000,
                                                    //void *caller_address = nullptr, iptr iCount = -1);
 
-//CLASS_DECL_ACME __pointer(callstack) get_callstack(e_callstack ecallstack, int iCallStackAddUp = 0);
+//CLASS_DECL_ACME ::pointer<callstack>get_callstack(e_callstack ecallstack, int iCallStackAddUp = 0);
 
 //CLASS_DECL_ACME void set_callstack_mask(enumeration<e_callstack> ecallstack);
 
@@ -3951,7 +3935,7 @@ namespace acme
 
 
 template<class POINTER_TYPE>
-inline auto &__typed(__composite(POINTER_TYPE) *pp) { return *pp->operator POINTER_TYPE *(); }
+inline auto &__typed(::pointer<POINTER_TYPE>*pp) { return *pp->operator POINTER_TYPE *(); }
 
 
 
@@ -4205,7 +4189,7 @@ struct lib_main_int
 
 
 //class CLASS_DECL_ACME ptra :
-//        virtual public __pointer_array(matter)
+//        virtual public pointer_array < matter >
 //{
 //public:
 //
@@ -4213,17 +4197,17 @@ struct lib_main_int
 //};
 
 //
-//template < typename KEY, typename VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type, class PAIR = pair<__pointer(KEY), VALUE, __pointer(KEY), ARG_VALUE> >
-//using pointer_map = map < __pointer(KEY), __pointer(KEY), VALUE, ARG_VALUE, PAIR >;
+//template < typename KEY, typename VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type, class PAIR = pair<::pointer<KEY> VALUE, ::pointer<KEY>ARG_VALUE>>
+//using pointer_map = map < ::pointer<KEY> ::pointer<KEY>VALUE, ARG_VALUE, PAIR >;
 //
-//template < typename KEY, typename VALUE, class PAIR = pair<__pointer(KEY), __pointer(VALUE), __pointer(KEY), __pointer(VALUE)> >
-//using pointer_to_pointer = pointer_map < KEY, __pointer(VALUE), __pointer(VALUE), PAIR >;
+//template < typename KEY, typename VALUE, class PAIR = pair<::pointer<KEY> ::pointer<VALUE>::pointer<KEY>:p::pointer<VALUE>>>
+//using pointer_to_pointer = pointer_map < KEY, ::pointer<VALUE> ::pointer<VALUE>PAIR>;
 //
-//template < typename KEY, typename VALUE, class PAIR = pair< KEY, __pointer(VALUE), KEY, __pointer(VALUE)> >
-//using map_to_pointer = map < KEY, KEY, __pointer(VALUE), __pointer(VALUE), PAIR >;
+//template < typename KEY, typename VALUE, class PAIR = pair< KEY, ::pointer<VALUE> KEY, ::pointer<VALUE >>>
+//using map_to_pointer = map < KEY, KEY, ::pointer<VALUE> ::pointer<VALUE>PAIR>;
 
-//using matter_to_matter = map < __pointer(matter), __pointer(matter) >;
-//using matter_to_ptra = map < __pointer(matter), ptra > ;
+//using matter_to_matter = map < ::pointer<matter> ::pointer<matter>>
+//using matter_to_ptra = map < ::pointer<matter> ptra> ;
 
 
 //namespace zip
@@ -4506,7 +4490,7 @@ namespace acme
    class library;
 
 
-   using library_map = string_map < __pointer(::acme::library) >;
+   using library_map = string_map < ::pointer<::acme::library >>;
 
 } // namespace acme
 

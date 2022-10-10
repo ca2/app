@@ -16,10 +16,10 @@ namespace user
       index                               m_iEdge;
       string                              m_strApp;
       string                              m_strQuery;
-      __pointer(::aura::session)          m_pbergedgeParent;
-      __pointer(::aura::application)      m_pacmeapplication;
+      ::pointer<::aura::session>         m_pbergedgeParent;
+      ::pointer<::aura::application>     m_pacmeapplication;
       bool                                m_bMakeVisible;
-      __pointer(::user::interaction)      m_puserinteractionParent;
+      ::pointer<::user::interaction>     m_puserinteractionParent;
       property_set                        m_setParameters;
 
       run_application();

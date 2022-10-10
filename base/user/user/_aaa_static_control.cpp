@@ -140,7 +140,7 @@
 //   void static_control::on_message_mouse_leave(::message::message * pmessage)
 //   {
 //
-////      __pointer(::message::mouse) pleave(pmessage);
+////      ::pointer<::message::mouse>pleave(pmessage);
 //      __UNREFERENCED_PARAMETER(pmessage);
 //
 //      m_bLButtonDown = false;

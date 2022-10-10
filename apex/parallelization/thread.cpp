@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "apex/operating_system.h"
 #include "apex/message.h"
 #include "acme/update.h"
@@ -720,7 +720,7 @@ void thread::on_message_branch(::message::message* pmessage)
 }
 
 
-//__pointer(::matter) thread::running(const char * pszTag) const
+//::pointer<::matter>thread::running(const char * pszTag) const
 //{
 //
 //   auto pmatter = ::channel::running(pszTag);
@@ -1283,7 +1283,7 @@ void thread::post_quit()
    //    /// this is quite dangerous
    //    synchronous_lock synchronouslock(mutex());
 
-   //    __pointer(manual_reset_event) pev = m_pevSync;
+   //    ::pointer<manual_reset_event>pev = m_pevSync;
 
    //    if (pev.is_set())
    //    {
@@ -1304,7 +1304,7 @@ void thread::post_quit()
       /// this is quite dangerous
       synchronous_lock synchronouslock(mutex());
 
-      __pointer(manual_reset_event) pev = m_pevSleep;
+      ::pointer<manual_reset_event>pev = m_pevSleep;
 
       if (pev.is_set())
       {
@@ -2234,7 +2234,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //}
 
 
-__pointer(::task) thread::branch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
+::pointer<::task>thread::branch(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
    unset_finishing();
@@ -2383,7 +2383,7 @@ __pointer(::task) thread::branch(::enum_priority epriority, ::u32 nStackSize, u3
 //}
 
 
-__pointer(::task) thread::branch_synchronously(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
+::pointer<::task>thread::branch_synchronously(::enum_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
    auto ptask = ::task::branch_synchronously(epriority, nStackSize, uiCreateFlags ADD_PARAM_SEC_ATTRS);
@@ -3295,7 +3295,7 @@ message_queue* thread::_get_message_queue()
       if (m_pmessagequeue)
       {
 
-         __release(m_pmessagequeue);
+         m_pmessagequeue.release();
 
       }
 
@@ -3327,7 +3327,7 @@ message_queue* thread::_get_message_queue()
    }
 
    //auto estatus =
-   __compose(m_pmessagequeue, pmq);
+   __construct(m_pmessagequeue, pmq);
 
    /*if (!estatus)
    {
@@ -3711,7 +3711,7 @@ void thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
          }
 
-         __release(m_pmessagequeue);
+         m_pmessagequeue.release();
 
       }
 
@@ -4061,7 +4061,7 @@ bool thread::process_message()
          if (message.wParam == e_system_message_create)
          {
 
-            __pointer(::create) pcreate(message.lParam);
+            ::pointer<::create>pcreate(message.lParam);
 
             if (pcreate.is_set())
             {
@@ -4084,7 +4084,7 @@ bool thread::process_message()
          //else if (msg.wParam == system_message_runnable)
          //{
 
-         //   __pointer(::object) pobjectTask((lparam)msg.lParam);
+         //   ::pointer<::object>pobjectTask((lparam)msg.lParam);
 
          //   pobjectTask->call();
 
@@ -4092,7 +4092,7 @@ bool thread::process_message()
          else if (message.wParam == e_system_message_meta)
          {
 
-            __pointer(::send_thread_message) pmessage(message.lParam);
+            ::pointer<::send_thread_message>pmessage(message.lParam);
 
             m_message = pmessage->m_message;
 
@@ -4124,7 +4124,7 @@ bool thread::process_message()
 
       }
 
-      __pointer(::message::message) pmessage;
+      ::pointer<::message::message>pmessage;
 
       if (get_app())
       {
@@ -4187,7 +4187,7 @@ bool thread::raw_process_message()
    try
    {
 
-      ___pointer < ::message::message > pmessage;
+      ::pointer<::message::message>pmessage;
 
       pmessage = get_message(&m_message);
 
@@ -4553,7 +4553,7 @@ bool thread::pump_sleep(const class ::wait & wait, synchronization_object * psyn
 //::mutex * g_pmutexThreadDeferredCreation = nullptr;
 //
 //
-//::array < __pointer(thread) > * g_pthreadaDeferredCreate = nullptr;
+//::array < ::pointer<thread >>* g_pthreadaDeferredCreate = nullptr;
 //
 //
 //CLASS_DECL_APEX void defer_create_thread(::object * pobject)
@@ -4650,7 +4650,7 @@ bool thread::is_running() const
 }
 
 
-//__pointer(::task) thread::branch(
+//::pointer<::task>thread::branch(
 //   ::matter * pmatter,
 //   ::enum_priority epriority,
 //   u32 nStackSize,

@@ -47,7 +47,7 @@ namespace experience
       ::experience::experience *             m_pexperience;
       ::experience::frame_window *           m_pframewindow;
 
-      __composite(control_box)               m_pcontrolbox;
+      ::pointer<control_box>              m_pcontrolbox;
 
       i32                                    m_iCaptionHeight;
       i32                                    m_iTitleBottom;
@@ -133,10 +133,10 @@ namespace experience
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
       virtual void on_reposition();
 
-      virtual __pointer(control_box) get_control_box();
+      virtual ::pointer<control_box>get_control_box();
 
 
-      virtual void OnMove(__pointer(::user::interaction) pframewindow);
+      virtual void OnMove(::pointer<::user::interaction>pframewindow);
 
 
       virtual void handle(::topic * ptopic, ::context * pcontext) override;

@@ -1,4 +1,4 @@
-// Created by camilo on 2022-03-14 18:10 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-03-14 18:10 <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
@@ -22,13 +22,13 @@ namespace user
          string                     m_strIcon;
          bool                       m_bVisible = true;
          bool                       m_bPermanent = false;
-         __pointer(impact_creator)  m_pimpactcreator;
+         ::pointer<impact_creator> m_pimpactcreator;
 
 
       };
 
 
-      __pointer_array(item)               m_itema;
+      pointer_array < item >               m_itema;
 
 
       virtual void add_impact_item(const ::atom & atom, const ::string & strTitle, ::user::impact_creator * pimpactcreator);

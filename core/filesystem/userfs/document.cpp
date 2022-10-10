@@ -39,7 +39,7 @@ namespace userfs
 
       //estatus = 
       
-      __compose_new(m_pfsset);
+      __construct_new(m_pfsset);
 
       //if (!estatus)
       //{
@@ -77,7 +77,7 @@ namespace userfs
    }
 
 
-   bool document::browse(__pointer(::file::item) pitem, const ::action_context & context)
+   bool document::browse(::pointer<::file::item>pitem, const ::action_context & context)
    {
 
       {

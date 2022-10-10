@@ -67,7 +67,7 @@ namespace user
 
       }
 
-      __pointer(::user::interaction) puiParent = get_parent();
+      ::pointer<::user::interaction>puiParent = get_parent();
 
       puiParent->post(pscroll);
 

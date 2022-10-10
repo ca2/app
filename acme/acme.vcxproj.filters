@@ -2855,6 +2855,12 @@
     <ClInclude Include="_forward_declaration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\primitive\echeck.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\subsystem.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -3903,6 +3909,9 @@
     </ClCompile>
     <ClCompile Include="primitive\primitive\atom.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\subsystem.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

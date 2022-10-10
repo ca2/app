@@ -19,7 +19,7 @@ public:
    ~nano_message_box();
 
    virtual void display_synchronously(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox);
-   //__pointer(::sequence < ::conversation >) display(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox);
+   //pointer< ::sequence < ::conversation > > display(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox);
 
    void on_draw(HDC hdc) override;
 

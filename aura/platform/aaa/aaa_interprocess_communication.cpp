@@ -155,7 +155,7 @@ namespace aura
    }
 
 
-   __pointer(synchronization_array) interprocess_communication::call::synca()
+   ::pointer<synchronization_array>interprocess_communication::call::synca()
    {
 
       auto psynca = __new(synchronization_array);
@@ -674,7 +674,7 @@ pacmedirectory->system() / "interprocess_communication" / strApp / __string(idPi
    }
 
 
-   __pointer(class interprocess_communication::task) interprocess_communication::create_task(call * pcall, const ::atom & idPid)
+   ::pointer<class interprocess_communication::task> interprocess_communication::create_task(call * pcall, const ::atom & idPid)
    {
 
       auto pobjectTask = __new(class task(pcall, idPid, atomic_increment(&m_iTaskSeed)));
@@ -690,7 +690,7 @@ pacmedirectory->system() / "interprocess_communication" / strApp / __string(idPi
    }
 
 
-   __pointer(class interprocess_communication::task) interprocess_communication::get_task(i64 iTask)
+   ::pointer<class interprocess_communication::task> interprocess_communication::get_task(i64 iTask)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -700,7 +700,7 @@ pacmedirectory->system() / "interprocess_communication" / strApp / __string(idPi
    }
 
 
-   __pointer(class interprocess_communication::call) interprocess_communication::create_call(const ::string & strApp, const ::string & strObject, const ::string & strMember)
+   ::pointer<class interprocess_communication::call> interprocess_communication::create_call(const ::string & strApp, const ::string & strObject, const ::string & strMember)
    {
 
       return __new(class call(this, strApp, strObject, strMember));
@@ -708,7 +708,7 @@ pacmedirectory->system() / "interprocess_communication" / strApp / __string(idPi
    }
 
 
-   __pointer(class interprocess_communication::call) interprocess_communication::create_call(const ::string & strObject, const ::string & strMember)
+   ::pointer<class interprocess_communication::call> interprocess_communication::create_call(const ::string & strObject, const ::string & strMember)
    {
 
       return create_call(m_strApp, strObject, strMember);

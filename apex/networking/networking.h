@@ -20,7 +20,7 @@ namespace networking
       interlocked_i32                              m_lHttpGetSerial;
 
       
-      __pointer(::sockets::sockets)     m_psockets;
+      ::pointer<::sockets::sockets>    m_psockets;
 
 
       //string         m_host; ///< local hostname
@@ -48,7 +48,7 @@ namespace networking
       //   dns_cache_item(const dns_cache_item& item);
 
 
-      //   virtual ::stream& write(::stream& stream) const;
+      //   void write(::binary_stream & stream) const override;
       //   virtual ::stream& read(::stream& stream);
 
       //   dns_cache_item& operator = (const dns_cache_item& item);
@@ -72,7 +72,7 @@ namespace networking
       //   reverse_cache_item();
       //   reverse_cache_item(const reverse_cache_item& item);
 
-      //   virtual ::stream& write(::stream& stream) const;
+      //   void write(::binary_stream & stream) const override;
       //   virtual ::stream& read(::stream& stream);
 
       //   reverse_cache_item& operator = (const reverse_cache_item& item);
@@ -82,8 +82,8 @@ namespace networking
       //::mutex                                            m_mutexCache;
       //::mutex                                            m_mutexReverseCache;
       //string_map < dns_cache_item >                      m_mapCache;
-      //string_map < __pointer(reverse_cache_item) >       m_mapReverseCache;
-      //array < __pointer(reverse_cache_item) >            m_reversecacheaRequest;
+      //string_map < ::pointer<reverse_cache_item >>      m_mapReverseCache;
+      //array < ::pointer<reverse_cache_item >>           m_reversecacheaRequest;
       //::task_pointer                                     m_pthreadReverse;
 
       networking();
@@ -164,9 +164,9 @@ namespace networking
 
       //virtual i32 _select(::sockets::socket_handler * psockethandler, const class ::wait & wait);
 
-      virtual __pointer(::networking::address) create_ip4_address(const ::string & strIp4, ::networking::port_t port = 0);
+      virtual ::pointer<::networking::address>create_ip4_address(const ::string & strIp4, ::networking::port_t port = 0);
 
-      virtual __pointer(::networking::address) create_ip6_address(const ::string & strIp6, ::networking::port_t port = 0);
+      virtual ::pointer<::networking::address>create_ip6_address(const ::string & strIp6, ::networking::port_t port = 0);
 
 
    };

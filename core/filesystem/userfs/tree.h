@@ -66,7 +66,7 @@ namespace userfs
       virtual void _001OnItemCollapse(::data::tree_item * pitem, const ::action_context & action_context) override;
 
 
-      virtual void _017OpenFolder(__pointer(::file::item) pitem, const ::action_context & action_context);
+      virtual void _017OpenFolder(::pointer<::file::item>pitem, const ::action_context & action_context);
 
       virtual ::color::color get_background_color();
 

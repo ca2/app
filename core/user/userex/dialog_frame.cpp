@@ -75,9 +75,9 @@ namespace userex
    void dialog_frame::_001OnActivate(::message::message * pmessage)
    {
 
-      __pointer(::message::activate) pactivate(pmessage);
+      ::pointer<::message::activate>pactivate(pmessage);
 
-      __pointer(::user::interaction) pActive = (pactivate->inactive() ? pactivate->m_pWndOther : this);
+      ::pointer<::user::interaction>pActive = (pactivate->inactive() ? pactivate->m_pWndOther : this);
 
       if (pactivate->inactive())
       {
@@ -132,7 +132,7 @@ namespace userex
    void dialog_frame::_001OnMouseActivate(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse_activate) pactivate(pmessage);
+      ::pointer<::message::mouse_activate>pactivate(pmessage);
 
       pactivate->m_lresult = e_mouse_activate_no_activate;
 

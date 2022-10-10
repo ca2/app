@@ -44,10 +44,10 @@ void context_image::initialize(::object * pobject)
 }
 
 
-void context_image::destroy_composites()
+void context_image::on_destroy()
 {
 
-   return ::object::destroy_composites();
+   return ::object::on_destroy();
 
 }
 
@@ -157,8 +157,8 @@ image_pointer context_image::path_image(const char * path)
 
    return load_image(
       payloadFile,
-      { .cache = !varOptions.is_true("cache", true),
-      .helper_maps = varOptions.is_true("create_helper_maps", false) });
+      { .cache = !varOptions.is_property_true("cache", true),
+      .helper_maps = varOptions.is_property_true("create_helper_maps", false) });
 
 }
 
@@ -688,7 +688,7 @@ void context_image::_load_thumbnail(image * pimage, const ::payload & payloadFil
 void context_image::_load_thumbnail(image * pimage, const ::payload & payloadFile)
 {
 
-   ::file::path path = payloadFile.get_file_path();
+   ::file::path path = payloadFile.file_path();
 
    //if (!pimage->create_thumbnail(path))
    pimage->create_thumbnail(path);
@@ -830,7 +830,7 @@ void context_image::save_dib(const ::file::path & pathDib, const image * pimage)
 
 
 
-void context_image::_load_image(::image* pimage, __pointer(image_frame_array)& pframea, ::memory & memory)
+void context_image::_load_image(::image* pimage, ::pointer<image_frame_array> & pframea, ::memory & memory)
 {
 
    //return ::success;
@@ -843,7 +843,7 @@ void context_image::_load_image(::image* pimage, __pointer(image_frame_array)& p
 //bool context_image::_load_multi_frame_image(::image * pimage, memory_pointer pmemory)
 //{
 //
-//   __pointer(image_frame_array) pframea;
+//   ::pointer<image_frame_array>pframea;
 //
 //   __construct_new(pframea);
 //
@@ -909,7 +909,7 @@ void context_image::_load_image(::image* pimage, __pointer(image_frame_array)& p
 void context_image::_load_multi_frame_image(image * pimage, memory & memory)
 {
 
-   __pointer(image_frame_array) pframea;
+   ::pointer<image_frame_array>pframea;
 
    __construct_new(pframea);
 
@@ -1017,7 +1017,7 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
 
    pimage->m_estatus = ::error_failed;
 
-   ::file::path path = payload.get_file_path();
+   ::file::path path = payload.file_path();
 
    memory memory;
 
@@ -1138,7 +1138,7 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
 ::image_pointer context_image::get_cache_image(const ::payload & payloadFile)
 {
 
-   ::file::path path = payloadFile.get_file_path();
+   ::file::path path = payloadFile.file_path();
 
    if (path.is_empty())
    {
@@ -1163,7 +1163,7 @@ void context_image::_os_load_image(::image * pimage, memory & memory)
    if (!pimage)
    {
 
-      __refer(pimage, __create<image>());
+      pimage = __create<image>();
 
       pimage->set_nok();
 

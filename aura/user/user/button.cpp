@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -256,7 +256,7 @@ namespace user
    }
 
 
-   void button::_001SetCheck(::enum_check echeck, const ::action_context & context)
+   void button::_001SetCheck(const ::e_check & echeck, const ::action_context & context)
    {
 
       if (echeck != this->get_echeck())
@@ -294,7 +294,7 @@ namespace user
 
       }
 
-      m_propertyCheck = fetch_property(m_atom, true);
+      m_linkedpropertyCheck = fetch_property(m_atom, true);
 
    }
 
@@ -585,7 +585,7 @@ namespace user
 
       auto colorBackground = get_color(pstyle, ::e_element_background, get_state());
 
-      auto & propertyCheck = m_propertyCheck;
+      auto & linkedpropertyCheck = m_linkedpropertyCheck;
 
       auto echeck = get_echeck();
 
@@ -640,7 +640,7 @@ namespace user
 
       //::color::color crBackground = _001GetButtonBackgroundColor();
 
-      auto & propertyCheck = m_propertyCheck;
+      auto & linkedpropertyCheck = m_linkedpropertyCheck;
 
       auto echeck = get_echeck();
 

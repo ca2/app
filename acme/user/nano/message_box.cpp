@@ -278,7 +278,7 @@ void nano_message_box::on_create()
 }
 
 
-//__pointer(::sequence < ::conversation >) nano_message_box::display(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+//pointer< ::sequence < ::conversation > > nano_message_box::display(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
 //{
 //
 //   auto psequence = __new(::sequence <::conversation >());
@@ -403,7 +403,7 @@ public:
 
 
    ::function < void(const ::atom & atom) >     m_function;
-   __pointer(::object)                          m_pobject;
+   ::pointer<::object>                         m_pobject;
 //   string                                       m_strMessage;
 //   string                                       m_strTitle;
 //   e_message_box                                m_emessagebox;

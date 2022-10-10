@@ -42,7 +42,7 @@ namespace draw2d
    };
 
 
-   typedef ___pointer < palette > palette_pointer;
+   typedef ::pointer<palette>palette_pointer;
 
 
 } // namespace draw2d

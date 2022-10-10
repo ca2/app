@@ -428,7 +428,7 @@ namespace openssl
 } // namespace openssl
 
 
-__pointer(::crypto::rsa) __create_rsa(const string& str)
+::pointer<::crypto::rsa>__create_rsa(const string& str)
 {
 
    return __new(::openssl::rsa(str));

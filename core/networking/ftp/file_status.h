@@ -231,7 +231,7 @@ namespace ftp
       };
    };
 
-   typedef __pointer_array(file_status) file_status_ptra;
+   typedef pointer_array < file_status > file_status_ptra;
 
 
 } // namespace ftp

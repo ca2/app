@@ -265,7 +265,7 @@ namespace user
    bool control_bar::SetStatusText(i32 nHit)
    {
 
-      __pointer(::user::interaction) pOwner = get_owner();
+      ::pointer<::user::interaction>pOwner = get_owner();
 
       //if (nHit == -1)
       //{
@@ -303,11 +303,11 @@ namespace user
       if(pmessage->m_bRet)
          return;
 
-      __pointer(::user::interaction) pOwner = get_owner();
+      ::pointer<::user::interaction>pOwner = get_owner();
 
 #ifdef WINDOWS_DESKTOP
 
-//      __pointer(::user::message) pmessage(pmessage);
+//      ::pointer<::user::message>pmessage(pmessage);
 //
 //      ::u32 message;
 //
@@ -325,7 +325,7 @@ namespace user
 #endif
 
       // don't translate dialog messages when in Shift+F1 help mode
-      __pointer(::user::frame_window) pFrameWnd = top_level_frame();
+      ::pointer<::user::frame_window>pFrameWnd = top_level_frame();
       if (pFrameWnd != nullptr && pFrameWnd->m_bHelpMode)
          return;
 
@@ -432,7 +432,7 @@ namespace user
    void control_bar::_001OnHelpHitTest(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-//      __pointer(::user::message) pmessage(pmessage);
+//      ::pointer<::user::message>pmessage(pmessage);
       ASSERT_VALID(this);
 
    }
@@ -454,7 +454,7 @@ namespace user
       if(pmessage->previous())
          return;
 
-      __pointer(::user::frame_window) pframe = get_parent();
+      ::pointer<::user::frame_window>pframe = get_parent();
 
       if (pframe)
       {
@@ -496,7 +496,7 @@ namespace user
 
    void control_bar::_001OnMouseActivate(::message::message * pmessage)
    {
-      __pointer(::message::mouse_activate) pmouseactivate(pmessage);
+      ::pointer<::message::mouse_activate>pmouseactivate(pmessage);
       // call default when toolbar is not floating
       if (!IsFloating())
       {
@@ -588,7 +588,7 @@ namespace user
    void control_bar::_001OnCtlColor(::message::message * pmessage)
    {
       
-      __pointer(::message::ctl_color) pctlcolor(pmessage);
+      ::pointer<::message::ctl_color>pctlcolor(pmessage);
 
       auto pinteraction =pctlcolor->userinteraction();
       
@@ -848,7 +848,7 @@ namespace user
 
          ASSERT(::is_set(this));
 
-         __pointer(::user::interaction) puiParent = get_parent();
+         ::pointer<::user::interaction>puiParent = get_parent();
 
          ASSERT(puiParent != nullptr);
 
@@ -1193,7 +1193,7 @@ namespace user
 
 
 
-   __pointer(::user::frame_window) control_bar::GetDockingFrame()
+   ::pointer<::user::frame_window>control_bar::GetDockingFrame()
    {
 
       auto pframewindow = parent_frame();

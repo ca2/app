@@ -80,7 +80,7 @@ namespace write_text
    };
 
 
-   using enum_item_array = __pointer_array(font_enumeration_item);
+   using enum_item_array = pointer_array < font_enumeration_item >;
 
 
 } // namespace write_text

@@ -26,7 +26,7 @@ namespace user
 
       virtual bool BaseToolTipGetText(string & str);
       virtual i32 BaseToolTipGetIndex();
-      virtual __pointer(::user::interaction) BaseToolTipGetWnd();
+      virtual ::pointer<::user::interaction>BaseToolTipGetWnd();
 
       tool_tip_window *  m_pbasetooltiphdl;      // Base tooltip handler
       ::u32              m_uiBaseToolTipText;    // Base tooltip text atom

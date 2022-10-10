@@ -93,7 +93,7 @@ namespace draw2d
    };
 
 
-   typedef ___pointer < bitmap > bitmap_pointer;
+   typedef ::pointer<bitmap>bitmap_pointer;
 
 
 } // namespace draw2d

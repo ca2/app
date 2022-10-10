@@ -70,7 +70,7 @@ namespace user
    }
 
 
-   bool interaction_ptra::get_child(__pointer(::user::interaction) & pinteraction)
+   bool interaction_ptra::get_child(::pointer<::user::interaction>& pinteraction)
    {
 
       //synchronous_lock synchronouslock(mutex());
@@ -126,7 +126,7 @@ namespace user
 
    }
 
-   bool interaction_ptra::rget_child(__pointer(::user::interaction) & pinteraction)
+   bool interaction_ptra::rget_child(::pointer<::user::interaction>& pinteraction)
    {
 
       //synchronous_lock synchronouslock(mutex());
@@ -218,7 +218,7 @@ namespace user
       for (i32 i = 0; i < primitive_count(); i++)
       {
 
-         __pointer(::user::interaction) puserinteraction = primitive_at(i);
+         ::pointer<::user::interaction>puserinteraction = primitive_at(i);
 
          if (puserinteraction && puserinteraction->get_safe_oswindow() == oswindow)
          {
@@ -234,7 +234,7 @@ namespace user
    }
 
 
-   bool primitive_pointer_array::get_child(__pointer(::user::primitive) & pprimitive)
+   bool primitive_pointer_array::get_child(::pointer<::user::primitive>& pprimitive)
    {
 
       if (has_no_primitive())
@@ -289,7 +289,7 @@ namespace user
    }
 
 
-   bool primitive_pointer_array::rget_child(__pointer(::user::primitive) & pprimitive)
+   bool primitive_pointer_array::rget_child(::pointer<::user::primitive>& pprimitive)
    {
 
       if (has_no_primitive())
@@ -372,7 +372,7 @@ namespace user
    }
 
 
-   __pointer(::user::interaction) interaction_array::find_first(oswindow oswindow)
+   ::pointer<::user::interaction>interaction_array::find_first(oswindow oswindow)
    {
 
       for (i32 i = 0; i < this->interaction_count(); i++)
@@ -392,7 +392,7 @@ namespace user
    }
 
 
-   interaction_array & interaction_array::operator = (const __pointer_array(::user::interaction) & a)
+   interaction_array & interaction_array::operator = (const pointer_array < ::user::interaction > & a)
    {
 
       m_interactiona.copy(a);
@@ -456,7 +456,7 @@ namespace user
    }
 
 
-   bool interaction_array::get_child(__pointer(::user::interaction) & pinteraction)
+   bool interaction_array::get_child(::pointer<::user::interaction>& pinteraction)
    {
 
       if (interaction_count() <= 0)
@@ -511,7 +511,7 @@ namespace user
    }
 
 
-   bool interaction_array::rget_child(__pointer(::user::interaction) & pinteraction)
+   bool interaction_array::rget_child(::pointer<::user::interaction>& pinteraction)
    {
 
       if (interaction_count() <= 0)

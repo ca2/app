@@ -60,7 +60,7 @@ namespace filemanager
    }
 
 
-   __pointer(document) child_frame::filemanager_document()
+   ::pointer<document>child_frame::filemanager_document()
    {
 
       return  get_active_document();
@@ -99,7 +99,7 @@ namespace filemanager
    ::file::item_array child_frame::get_selected_items()
    {
 
-      __pointer(file_list) plist = get_active_impact();
+      ::pointer<file_list>plist = get_active_impact();
 
       if (plist.is_null())
       {

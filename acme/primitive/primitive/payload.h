@@ -40,7 +40,8 @@ public:
 
       void * m_pvoid;
       para_return                m_parareturn;
-      atom                         m_atom;
+      atom                       m_atom;
+      type                       m_type;
       bool                       m_b;
       bool * m_pb;
       ::i8                       m_i8;
@@ -70,39 +71,39 @@ public:
       atom * m_pid;
       ::property * m_pproperty;
       integral_nanosecond        m_integralnanosecond;
-      integral_nanosecond *      m_pintegralnanosecond;
+      integral_nanosecond * m_pintegralnanosecond;
       integral_microsecond       m_integralmicrosecond;
-      integral_microsecond *     m_pintegralmicrosecond;
+      integral_microsecond * m_pintegralmicrosecond;
       integral_millisecond       m_integralmillisecond;
-      integral_millisecond *     m_pintegralmillisecond;
+      integral_millisecond * m_pintegralmillisecond;
       integral_second            m_integralsecond;
-      integral_second *          m_pintegralsecond;
+      integral_second * m_pintegralsecond;
       integral_minute            m_integralminute;
-      integral_minute *          m_pintegralminute;
+      integral_minute * m_pintegralminute;
       integral_hour              m_integralhour;
-      integral_hour *            m_pintegralhour;
+      integral_hour * m_pintegralhour;
       integral_day               m_integralday;
-      integral_day *             m_pintegralday;
+      integral_day * m_pintegralday;
       floating_nanosecond        m_floatingnanosecond;
-      floating_nanosecond *      m_pfloatingnanosecond;
+      floating_nanosecond * m_pfloatingnanosecond;
       floating_microsecond       m_floatingmicrosecond;
-      floating_microsecond *     m_pfloatingmicrosecond;
+      floating_microsecond * m_pfloatingmicrosecond;
       floating_millisecond       m_floatingmillisecond;
-      floating_millisecond *     m_pfloatingmillisecond;
+      floating_millisecond * m_pfloatingmillisecond;
       floating_second            m_floatingsecond;
-      floating_second *          m_pfloatingsecond;
+      floating_second * m_pfloatingsecond;
       floating_minute            m_floatingminute;
-      floating_minute *          m_pfloatingminute;
+      floating_minute * m_pfloatingminute;
       floating_hour              m_floatinghour;
-      floating_hour *            m_pfloatinghour;
+      floating_hour * m_pfloatinghour;
       floating_day               m_floatingday;
-      floating_day *             m_pfloatingday;
+      floating_day * m_pfloatingday;
       class duration             m_duration;
-      class duration *           m_pduration;
-      ::enum_status              m_estatus;
-      ::enum_command             m_ecommand;
-      ::enum_check               m_echeck;
-      ::enum_flag                m_eflag;
+      class duration * m_pduration;
+      ::e_status                 m_estatus;
+      ::e_command                m_ecommand;
+      ::e_check                  m_echeck;
+      ::e_flag                   m_eflag;
       ::color::color             m_color;
       ::color::hls               m_hls;
 
@@ -170,7 +171,7 @@ public:
    }
 
    template < class T >
-   payload(const __pointer(T) & p)
+   payload(const ::pointer < T > & p)
    {
       m_etype = e_type_new;
       operator = (p.m_p);
@@ -184,7 +185,7 @@ public:
    }
 
    //template < class T >
-   //payload(const __pointer(T)& resultpointer)
+   //payload(const pointer < T >& resultpointer)
    //{
    //   m_etype = e_type_new;
 
@@ -199,19 +200,19 @@ public:
       operator = (memorytemplate.block());
    }
 
-   template < typename ENUM >
-   payload(const ::enumeration < ENUM > & eflag)
-   {
-      m_etype = e_type_new;
-      operator = (eflag);
-   }
+   //template < typename ENUM >
+   //payload(const ::enumeration < ENUM > & eflag)
+   //{
+   //   m_etype = e_type_new;
+   //   operator = (eflag);
+   //}
 
-   template < a_enum ENUM >
-   payload(const ENUM & eenum)
-   {
-      m_etype = e_type_new;
-      operator = (eenum);
-   }
+   //template < a_enum ENUM >
+   //payload(const ENUM & eenum)
+   //{
+   //   m_etype = e_type_new;
+   //   operator = (eenum);
+   //}
 
    template < typename T >
    payload(const T & t)
@@ -221,11 +222,11 @@ public:
    }
 
 
-   payload(const ::e_status & estatus)
-   {
-      m_etype = e_type_new;
-      operator = (estatus.m_estatus);
-   }
+   //payload(const ::e_status & estatus)
+   //{
+   //   m_etype = e_type_new;
+   //   operator = (estatus.m_estatus);
+   //}
 
    ~payload();
 
@@ -241,7 +242,7 @@ public:
 
 
    template < typename T >
-   void set_pointer(const __pointer(T) & p)
+   void set_pointer(const ::pointer < T > & p)
    {
 
       operator[](__type_name < T >()) = p;
@@ -265,7 +266,7 @@ public:
    }
 
    template < typename T >
-   __pointer(T) pointer() const;
+   ::pointer < T > pointer() const;
 
    bool get_type(::type & type) const;
 
@@ -308,12 +309,14 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
 
 #define DECL_VAR_ENUM(ENUMTYPE) \
-   inline payload(::enum_ ## ENUMTYPE e ## ENUMTYPE) { m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; } \
-   inline ::enum_ ## ENUMTYPE e ## ENUMTYPE(::enum_ ## ENUMTYPE e ## ENUMTYPE ## Default = enum_default < ::enum_ ## ENUMTYPE >()) const { return e < ::enum_ ## ENUMTYPE >(e ## ENUMTYPE ## Default); } \
-   ::enum_ ## ENUMTYPE & as_e ## ENUMTYPE ();         \
-   inline payload & operator = (::enum_ ## ENUMTYPE e ## ENUMTYPE) { release(); if(m_etype != ::e_type_enum_ ## ENUMTYPE) m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; return *this; } \
-   inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_etype == ::e_type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e ## ENUMTYPE; } \
-   inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !operator ==(e ## ENUMTYPE); }
+   inline payload(const ::e_ ## ENUMTYPE & e) { m_etype = ::e_type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e; } \
+   inline ::e_ ## ENUMTYPE e ## ENUMTYPE(::enum_ ## ENUMTYPE eDefault = enum_default < ::enum_ ## ENUMTYPE >()) const { return e < ::enum_ ## ENUMTYPE >(eDefault); } \
+   inline operator ::e_ ## ENUMTYPE () const { return ::e_ ## ENUMTYPE(); } \
+   ::e_ ## ENUMTYPE & e_ ## ENUMTYPE ## _reference();         \
+   inline payload & operator = (const ::e_ ## ENUMTYPE & e) { set_type(::e_type_enum_ ## ENUMTYPE, false); m_e ## ENUMTYPE = e; return *this; } \
+   inline payload & operator = (::enum_ ## ENUMTYPE & e) { set_type(::e_type_enum_ ## ENUMTYPE, false); m_e ## ENUMTYPE = e; return *this; } \
+   inline bool operator == (::e_ ## ENUMTYPE e) const { return m_etype == ::e_type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e; } \
+   inline bool operator != (::e_ ## ENUMTYPE e) const { return !operator ==(e); }
    DECL_VAR_ENUM(status);
    DECL_VAR_ENUM(command);
    DECL_VAR_ENUM(check);
@@ -345,10 +348,17 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::u64 u64(::u64 uiDefault = 0)  const;
    ::f32 f32(::f32 fDefault = 0) const;
    ::f64 f64(::f64 fDefault = 0) const;
+
+
    inline ::iptr iptr(iptr iDefault = 0)  const;
    inline ::uptr uptr(uptr uiDefault = 0)  const;
+
+   ::file::path file_path() const;
+   ::file_time file_time() const;
+   ::earth::time earth_time() const;
    ::color::color color(const ::color::color & colorDefault = ::color::color())  const;
    ::color::hls hls(const ::color::hls & hlsDefault = ::color::hls())  const;
+   ::block block() const;
 
 
    ::procedure get_procedure() const;
@@ -407,15 +417,16 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    bool is_false() const;
    bool is_bool_false() const;
    bool is_set_false() const;
-   bool is_true(const payload & payload = false, bool bDefault = false) const;
+   bool is_true(bool bDefault = false) const;
 
+   //bool is_property_true(const ::atom & atom, bool bDefault = false) const;
 
    bool casts_to(::enum_type etype) const;
 
 
    ///property * defer_get_property(const ::atom & atom) const;
    bool has_property(const ::atom & atom) const;
-   bool is_property_true(const ::atom & atom) const;
+   bool is_property_true(const ::atom & atom, bool bDefault = false) const;
    bool is_property_false(const ::atom & atom) const;
 
 
@@ -455,36 +466,31 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    }
 
 
-   operator bool() const;
+   bool b() const;
 
-   operator ::i8() const;
-   operator ::u8() const;
-   operator ::i16() const;
-   operator ::u16() const;
-   operator ::i32() const;
-   operator ::u32() const;
-   operator ::i64() const;
-   operator ::u64() const;
-   
-#if defined(__APPLE__) || defined(RASBPIAN) || defined(ANDROID)
-   operator long() const;
-   operator unsigned long() const;
-#endif
+   operator ::i8() const { return this->i8(); }
+   operator ::u8() const { return this->u8(); }
+   operator ::i16() const { return this->i16(); }
+   operator ::u16() const { return this->u16(); }
+   operator ::i32() const { return this->i32(); }
+   operator ::u32() const { return this->u32(); }
+   operator ::i64() const { return this->i64(); }
+   operator ::u64() const { return this->u64(); }
 
 
-   
-   operator ::f32() const;
-   operator ::f64() const;
-   operator ::string() const;
-   operator ::memory() const;
-   operator ::file::path() const;
+
+   operator ::f32() const { return this->f32(); }
+   operator ::f64() const { return this->f64(); }
+   //operator ::string() const;
+   //::memory memory() const;
+   //operator ::file::path() const { return this->file_path(); }
 
 
-   ::file_time file_time() const;
-   ::earth::time datetime_time() const;
-   ::color::color color() const;
-   ::color::hls color_hls() const;
-   ::block block() const;
+   operator ::file_time() const { return this->file_time(); }
+   operator ::earth::time() const { return this->earth_time(); }
+   operator ::color::color() const { return this->color(); }
+   operator ::color::hls() const { return this->hls(); }
+   operator ::block() const { return this->block(); }
 
 
    ::string & string_reference(const char * pszOnNull = nullptr);
@@ -495,53 +501,49 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    ::atom & id_reference(const ::atom & idDefault);
 
 
-   operator ::string_array &();
-   operator ::int_array &();
-   operator ::i64_array &();
-   operator ::payload_array &();
-   operator ::duration &();
-   operator ::property_set &();
-   operator ::property &();
+   ::string_array & string_array_reference();
+   ::i32_array & i32_array_reference();
+   ::i64_array & i64_array_reference();
+   ::payload_array & payload_array_reference();
+   ::duration & duration_reference();
+   ::property_set & property_set_reference();
+   ::property & property_reference();
 
 
+   ::file::path & file_path_reference();
 
 
-   operator ::file::path & ();
+   ::file_time & file_time_reference();
+   ::earth::time & earth_time_reference();
+   ::color::color & color_reference();
+   ::color::hls & color_hls_reference();
+
+   //operator ::enum_check &();
 
 
-
-   operator ::file_time & ();
-   operator ::earth::time &();
-   operator ::color::color &();
-   operator ::color::hls &();
-
-   operator ::enum_check &();
-
-
-   operator bool &();
+   bool & bool_reference();
 #if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
-   operator long &();
-   operator unsigned long &();
+   long & long_reference();
+   unsigned long & unsigned_long_reference();
 #endif
-   operator ::i8 & ();
-   operator ::u8 & ();
-   operator ::i16 & ();
-   operator ::u16 &();
-   operator ::i32 &();
-   operator ::u32 &();
-   operator ::i64 &();
-   operator ::u64 &();
-   operator ::f32 &();
-   operator ::f64 &();
-
+   ::i8 & i8_reference();
+   ::u8 & u8_reference();
+   ::i16 & i16_reference();
+   ::u16 & u16_reference();
+   ::i32 & i32_reference();
+   ::u32 & u32_reference();
+   ::i64 & i64_reference();
+   ::u64 & u64_reference();
+   ::f32 & f32_reference();
+   ::f64 & f64_reference();
 
    strsize length() const;
 
    template < typename TYPE >
-   inline payload & operator = (const __composite(TYPE) & composite)
+   inline payload & operator = (const ::pointer<TYPE> & pointer)
    {
 
-      _set_element(composite.get());
+      _set_element(pointer.m_pelement);
 
       return *this;
 
@@ -611,24 +613,24 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
       return *this;
    }
 
-   template < typename ENUM >
-   payload& operator = (const enumeration < ENUM > & eflag)
-   {
-      return operator =(eflag.m_eenum);
-   }
+   //template < typename ENUM >
+   //payload& operator = (const enumeration < ENUM > & eflag)
+   //{
+   //   return operator =(eflag.m_eenum);
+   //}
 
-   template < a_enum ENUM >
-   payload & operator = (const ENUM & eenum)
-   {
-      return operator =((::i64) eenum);
-   }
+   //template < a_enum ENUM >
+   //payload & operator = (const ENUM & eenum)
+   //{
+   //   return operator =((::i64) eenum);
+   //}
 
    payload & operator |= (enumeration < ::file::enum_flag > eflag);
 
-   payload& operator = (const ::e_status & estatus)
-   {
-      return operator =(estatus.m_estatus);
-   }
+   //payload& operator = (const ::e_status & estatus)
+   //{
+   //   return operator =(estatus.m_estatus);
+   //}
 
    payload & operator = (para_return & eret);
    payload & operator = (bool b);
@@ -704,13 +706,13 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    }
 
-   template < class T >
-   payload & operator = (const __pointer(T) & p)
-   {
+   //template < class T >
+   //payload & operator = (const pointer< T > & p)
+   //{
 
-      return this->operator = (p.m_p);
+   //   return this->operator = (p.m_p);
 
-   }
+   //}
 
    template < class T >
    payload& operator = (const ptr < T > & p)
@@ -720,7 +722,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    }
    //template < class T >
-   //payload & operator = (const __pointer(T) & resultpointer)
+   //payload & operator = (const pointer < T > & resultpointer)
    //{
 
    //   if (!resultpointer)
@@ -758,13 +760,13 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
 
    template < class T >
-   __pointer(T) cast(T * pDefault);
+   ::pointer< T > cast(T * pDefault);
 
    template < class T >
    T & defer_create_type(T * pdefault = nullptr)
    {
 
-      __pointer(T) p = pdefault;
+      ::pointer< T > p = pdefault;
 
       if (!p)
       {
@@ -785,14 +787,14 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
 
    template < class T >
-   __pointer(T) cast(T * pDefault) const
+   ::pointer< T > cast(T * pDefault) const
    {
       return ((payload *) this)->cast < T >(pDefault);
    }
 
 
    template < class T >
-   __pointer(T) cast();
+   ::pointer< T > cast();
 
    ::element * element()
    {
@@ -1006,7 +1008,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    void null();
 
-   ::file::path get_file_path() const;
+
 
    void _001Add(const ::string_array & stra);
 
@@ -1031,12 +1033,12 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 //{
 
 
-   inline CLASS_DECL_ACME void from(::string & str, const payload & payload)
-   {
+   //inline CLASS_DECL_ACME void from(::string & str, const payload & payload)
+   //{
 
-      str = payload;
+   //   str = payload;
 
-   }
+   //}
 
 //
 //} // namespace str
@@ -1407,7 +1409,7 @@ public:
 
 
    template < typename TYPE >
-   pack(const __pointer(TYPE)& p) { set_pointer(p); }
+   pack(const ::pointer<TYPE>& p) { set_pointer(p); }
    pack(const ::std::initializer_list < pack >& list);
 
 };
@@ -1621,7 +1623,16 @@ inline bool strictly_different(::i32 i, const PAYLOAD & payload);
 template < payload_class PAYLOAD >
 inline bool strictly_different(bool b, const PAYLOAD & payload);
 
-//#define __reference(payload) ::payload_reference(payload)
+
+#include "payload_reference.h"
+
+
+inline ::payload_reference __reference(payload & payload)
+{
+
+   return payload;
+
+}
 
 
 

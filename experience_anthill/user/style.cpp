@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "style.h"
 #include "acme/user/user/tool_item.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -1577,7 +1577,7 @@ namespace experience_anthill
 
       auto puser = user();
 
-      __pointer(::user::menu_central) pmenucentral = puser->menu();
+      ::pointer<::user::menu_central>pmenucentral = puser->menu();
 
       ::u32 uImage = pmenucentral->command_image(ptoolitem->m_atom);
 
@@ -1905,7 +1905,7 @@ namespace experience_anthill
 
       auto puser = user();
 
-      __pointer(::user::menu_central) pmenucentral = puser->menu();
+      ::pointer<::user::menu_central>pmenucentral = puser->menu();
 
       ::u32 uImage = pmenucentral->command_image(ptoolitem->m_atom);
 

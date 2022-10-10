@@ -300,13 +300,13 @@ namespace draw2d
    }
 
 
-
    enum_format draw2d::file_extension_to_format(const ::payload & payloadFile)
    {
 
-      return text_to_format(payloadFile.get_file_path().final_extension());
+      return text_to_format(payloadFile.file_path().final_extension());
 
    }
+
 
    enum_format draw2d::text_to_format(string strText)
    {
@@ -418,7 +418,7 @@ namespace draw2d
    }
 
 
-   __pointer(save_image) draw2d::new_save_image(const ::payload & payloadFile, const ::payload & varOptions)
+   ::pointer<save_image>draw2d::new_save_image(const ::payload & payloadFile, const ::payload & varOptions)
    {
 
       auto psaveimage = __new(save_image);
@@ -432,9 +432,9 @@ namespace draw2d
       if (eformat != ::draw2d::e_format_none)
       {
 
-         __pointer(::aura::system) psystem = m_psystem;
+         ::pointer<::aura::system>psystem = m_psystem;
 
-         eformat = pdraw2d->file_extension_to_format(payloadFile.get_file_path());
+         eformat = pdraw2d->file_extension_to_format(payloadFile.file_path());
 
       }
 
@@ -1395,7 +1395,7 @@ void draw2d::emboss_predicate(
    }
 
 
-   __pointer(::factory::factory) & draw2d::write_text_factory()
+   ::pointer<::factory::factory>& draw2d::write_text_factory()
    {
 
       string strLibrary;
@@ -1425,7 +1425,7 @@ void draw2d::emboss_predicate(
       if (strLibrary.has_char())
       {
 
-         __pointer(::aura::system) psystem = m_psystem;
+         ::pointer<::aura::system>psystem = m_psystem;
 
          auto & pfactoryWriteText = psystem->factory("write_text", strLibrary);
 
@@ -1472,7 +1472,7 @@ void draw2d::emboss_predicate(
       if (strLibrary != "write_text_gdiplus")
       {
 
-         __pointer(::aura::system) psystem = m_psystem;
+         ::pointer<::aura::system>psystem = m_psystem;
 
          auto & pfactoryWriteText = psystem->factory("write_text", "gdiplus");
 
@@ -1489,7 +1489,7 @@ void draw2d::emboss_predicate(
       if (strLibrary != "write_text_direct2d")
       {
 
-         __pointer(::aura::system) psystem = m_psystem;
+         ::pointer<::aura::system>psystem = m_psystem;
 
          auto & pfactoryWriteText = psystem->factory("write_text", "direct2d");
 

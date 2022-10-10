@@ -27,8 +27,8 @@ namespace file
    inline path_array path::ascendants_path() const { path_array patha; return ascendants_path(patha); }
    inline string_array path::ascendants_name() const { string_array patha; return ascendants_name(patha); }
    //   inline path path::folder() const { return ::file_path_folder(*this); }
-   inline bool path::operator == (const ::payload & payload) const { return operator == (payload.get_file_path()); }
-   inline bool path::operator != (const ::payload & payload) const { return operator != (payload.get_file_path()); }
+   inline bool path::operator == (const ::payload & payload) const { return operator == (payload.file_path()); }
+   inline bool path::operator != (const ::payload & payload) const { return operator != (payload.file_path()); }
 
 } // namespace file
 

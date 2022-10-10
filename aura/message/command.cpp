@@ -192,7 +192,7 @@
 //         if (m_puiOther != nullptr)
 //         {
 //
-//            __pointer(command_update_target) pcheck = m_puiOther;
+//            ::pointer<command_update_target>pcheck = m_puiOther;
 //
 //            if (pcheck)
 //            {

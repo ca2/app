@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 CLASS_DECL_APEX string get_file_extension_mime_type(const ::string & strExtension);
@@ -14,7 +14,7 @@ namespace networking
    class address;
 
    
-   using address_pointer = __pointer(address);
+   using address_pointer = ::pointer<address>;
 
 
 } // namespace networking

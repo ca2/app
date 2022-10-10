@@ -59,7 +59,7 @@ namespace crypto_openssl
       virtual void hash(memory& memoryHash, const block& block) override;
 
 
-      virtual __pointer(::crypto::hasher) create_hasher() override;
+      virtual ::pointer<::crypto::hasher>create_hasher() override;
 
 
    };

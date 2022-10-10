@@ -1154,7 +1154,7 @@ namespace crypto
 #else
 
 
-   __pointer(::crypto::rsa) crypto::generate_rsa_key()
+   ::pointer<::crypto::rsa>crypto::generate_rsa_key()
    {
 
       ::winrt::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider^ provider =
@@ -1166,7 +1166,7 @@ namespace crypto
 
    }
 
-   /*void crypto::free_rsa_key(__pointer(::crypto::rsa) prsa)
+   /*void crypto::free_rsa_key(::pointer<::crypto::rsa>prsa)
    {
 
       __UNREFERENCED_PARAMETER(prsa);
@@ -1709,7 +1709,7 @@ namespace crypto
    }
 
 
-   __pointer(::crypto::rsa) crypto::generate_rsa_key()
+   ::pointer<::crypto::rsa>crypto::generate_rsa_key()
    {
 
       auto popensslrsa = __new(::openssl::rsa);
@@ -1799,7 +1799,7 @@ namespace crypto
    }
 
 
-   __pointer(rsa) crypto::read_priv_pem(const string& strFile)
+   ::pointer<rsa>crypto::read_priv_pem(const string& strFile)
    {
 
       auto memory = m_psystem->m_pacmefile->as_memory(strFile);
@@ -1826,7 +1826,7 @@ namespace crypto
    }
 
 
-   __pointer(rsa) crypto::read_pub_pem(const string& strFile)
+   ::pointer<rsa>crypto::read_pub_pem(const string& strFile)
    {
 
       auto memory = m_psystem->m_pacmefile->as_memory(strFile);

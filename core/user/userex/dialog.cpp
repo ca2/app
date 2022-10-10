@@ -19,7 +19,7 @@ dialog::dialog()
 
 }
 
-dialog::dialog(const ::string & pszMatter, __pointer(::user::interaction) puiParent)
+dialog::dialog(const ::string & pszMatter, ::pointer<::user::interaction>puiParent)
 {
 
    initialize(puiParent);

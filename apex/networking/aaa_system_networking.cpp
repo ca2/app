@@ -28,15 +28,15 @@ namespace apex
          pfactoryNetworking->merge_to_global_factory();
 
          //estatus = 
-         pfactoryNetworking->__compose(this, m_pnetworking);
+         pfactoryNetworking->__construct(this, m_pnetworking);
 
 
          if (!m_pnetworking)
          {
 
-            //estatus = __compose_new(m_psockets);
+            //estatus = __construct_new(m_psockets);
 
-            //__compose(m_pnetworking);
+            //__construct(m_pnetworking);
 
             //if (!estatus)
             //{

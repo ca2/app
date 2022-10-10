@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "simpledb.h"
 #include "item.h"
 #include "server.h"
@@ -68,7 +68,7 @@ namespace simpledb
 
       }
 
-      auto pstorage = __cast < storage >(pserver->m_pstorage);
+      ::pointer < storage > pstorage = pserver->m_pstorage;
 
       if (!pstorage)
       {
@@ -199,7 +199,7 @@ namespace simpledb
 
          synchronouslock.unlock();
 
-         __pointer(::axis::application) papp = get_app();
+         ::pointer<::axis::application>papp = get_app();
 
          papp->assert_user_logged_in();
 
@@ -398,7 +398,7 @@ namespace simpledb
 
             pstorage->m_pthreadlocal->initialize(pstorage);
 
-            __refer(pstorage->m_pthreadlocal->m_pstorage, pstorage);
+            pstorage->m_pthreadlocal->m_pstorage = pstorage;
 
             pstorage->m_pthreadlocal->branch();
 

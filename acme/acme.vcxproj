@@ -1106,6 +1106,7 @@
     <ClCompile Include="platform\sequence.cpp" />
     <ClCompile Include="platform\serial.cpp" />
     <ClCompile Include="platform\simple_log.cpp" />
+    <ClCompile Include="platform\subsystem.cpp" />
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="platform\system_setup.cpp" />
     <ClCompile Include="platform\text.cpp" />
@@ -1452,6 +1453,7 @@
     <ClInclude Include="platform\simple_log.h" />
     <ClInclude Include="platform\status.h" />
     <ClInclude Include="platform\string_exchange.h" />
+    <ClInclude Include="platform\subsystem.h" />
     <ClInclude Include="platform\synchronized_predicate_routine.h" />
     <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\system_setup.h" />
@@ -1661,6 +1663,7 @@
     <ClInclude Include="primitive\primitive\bits.h" />
     <ClInclude Include="primitive\primitive\block.h" />
     <ClInclude Include="primitive\primitive\compare_predicate.h" />
+    <ClInclude Include="primitive\primitive\echeck.h" />
     <ClInclude Include="primitive\primitive\element.h" />
     <ClInclude Include="primitive\primitive\element_array.h" />
     <ClInclude Include="primitive\primitive\enumeration.h" />

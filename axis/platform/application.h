@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "axis/account/interactive.h"
@@ -27,7 +27,7 @@ namespace axis
    public:
 
 
-      __pointer(::simpledb::server)                         m_psimpledb;
+      ::pointer<::simpledb::server>                        m_psimpledb;
       
 
       application();

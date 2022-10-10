@@ -22,7 +22,7 @@ namespace bred
 
 
       virtual void initialize(::object * pobject) override;
-      //virtual __pointer(progress_control) show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::count iProgressCount);
+      //virtual ::pointer<progress_control>show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::count iProgressCount);
 
    };
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 ////#include "core/user/simple/_component.h"
 ////#include "aura/graphics/draw2d/_component.h"
 #include "toolbar.h"
@@ -20,7 +20,7 @@
 simple_menu_bar::simple_menu_bar()
 {
 
-   __compose_new(m_pmenu);
+   __construct_new(m_pmenu);
 
    m_bTracking = false;
    m_iTopMenuCount = 0;
@@ -203,7 +203,7 @@ bool simple_menu_bar::_track_popup_menu(index iItem)
 void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 {
 
-   __pointer(::user::message) pusermessage(pmessage);
+   ::pointer<::user::message>pusermessage(pmessage);
 
    if (pusermessage->m_atom == WM_USER && pusermessage->userinteraction() == this)
    {
@@ -227,7 +227,7 @@ void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 void simple_menu_bar::on_message_create(::message::message * pmessage)
 {
 
-   //   __pointer(::message::create) pcreate(pmessage);
+   //   ::pointer<::message::create>pcreate(pmessage);
 
    if (pmessage->previous())
    {
@@ -251,7 +251,7 @@ void simple_menu_bar::on_message_create(::message::message * pmessage)
       pmfmh->MessageFilterHook(this);*/
 
 
-   //m_menuhook.Install((__pointer(::user::frame_window)) (__pointer(::user::interaction))this);
+   //m_menuhook.Install((::pointer<::user::frame_window> (::pointer<::user::interaction>his);
 
    //   SetFont(pdraw2d->fonts().GetMenuFont());
 
@@ -381,8 +381,8 @@ void simple_menu_bar::on_message_destroy(::message::message * pmessage)
 }
 
 bool simple_menu_bar::Initialize(
-__pointer(::image_list)   imagelist,
-__pointer(::image_list)   imagelistDisabled,
+::pointer<::image_list>  imagelist,
+::pointer<::image_list>  imagelistDisabled,
 i32_spreadset * prel,
 ::write_text::font *        pfont)
 {
@@ -420,7 +420,7 @@ void simple_menu_bar::_001OnMenuChar(::message::message * pmessage)
 }
 
 
-void simple_menu_bar::OnUpdateCmdUI(__pointer(::user::frame_window)pTarget, bool bDisableIfNoHndler)
+void simple_menu_bar::OnUpdateCmdUI(::pointer<::user::frame_window>pTarget, bool bDisableIfNoHndler)
 {
    __UNREFERENCED_PARAMETER(pTarget);
    __UNREFERENCED_PARAMETER(bDisableIfNoHndler);
@@ -930,7 +930,7 @@ bool simple_menu_bar::on_click(::item * pitem)
 
 //void simple_menu_bar::_001OnAppLanguage(::message::message * pmessage)
 //{
-//   __pointer(::user::message) pusermessage(pmessage);
+//   ::pointer<::user::message>pusermessage(pmessage);
 //   send_message(WM_CANCELMODE);
 //   LoadMenuBar(m_uResourceId);
 //   set_need_redraw();

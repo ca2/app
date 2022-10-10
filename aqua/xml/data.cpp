@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "data.h"
 #include "edit.h"
 
@@ -36,7 +36,7 @@ namespace xml
 
       //}
 
-      __pointer(::xml::node) pnode;
+      ::pointer<::xml::node>pnode;
 
       for (index iEdit = pedit->m_iEdit; iEdit < pedit->m_edititema.get_count(); iEdit++)
       {

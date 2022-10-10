@@ -20,12 +20,12 @@ task_pool::~task_pool()
 }
 
 
-__composite(::task) task_pool::defer_branch(const ::atom& atom, const ::procedure & procedure)
+::pointer<::task>task_pool::defer_branch(const ::atom& atom, const ::procedure & procedure)
 {
 
    auto & ptask = task(atom);
 
-   __defer_compose_new(ptask);
+   __defer_construct_new(ptask);
 
    if (ptask->m_bIsRunning)
    {

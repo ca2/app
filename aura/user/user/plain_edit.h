@@ -178,7 +178,7 @@ namespace user
       int                                 m_iDrawTextFlags;
       ::duration                              m_durationLastDraw;
       array < error >                     m_errora;
-      __pointer(::message::key)           m_pmessagekeyLast;
+      ::pointer<::message::key>          m_pmessagekeyLast;
 
       //bool                                m_bPendingOnSetText;
       //bool                                m_bPendingOnUpdate;
@@ -187,7 +187,7 @@ namespace user
       bool                                m_bNewSel;
       bool                                m_bCaretVisible;
       string                              m_strEmtpyText;
-      __pointer(plain_edit_style)         m_pcontrolstyle;
+      ::pointer<plain_edit_style>        m_pcontrolstyle;
       bool                                m_bNeedCalcLayout;
       bool                                m_bCalcLayoutHintNoTextChange;
       int                                 m_iInputConnectionBatch;
@@ -239,7 +239,7 @@ namespace user
       index_array                         m_iaLineStart;
 
       bool                                m_bOwnData;
-      __composite(plain_text_tree)        m_ptree;
+      ::pointer<plain_text_tree>       m_ptree;
       ::data::tree_item *                 m_ptreeitem;
 
 
@@ -473,7 +473,7 @@ namespace user
 
 
       virtual void MacroBegin() override;
-      void MacroRecord(__pointer(plain_text_command) pcommand);
+      void MacroRecord(::pointer<plain_text_command>pcommand);
       virtual void MacroEnd() override;
 
       bool plain_edit_undo();
@@ -488,7 +488,7 @@ namespace user
 
 
 
-      virtual __pointer(::data::item) on_allocate_item();
+      virtual ::pointer<::data::item>on_allocate_item();
 
       void set_root(plain_text_tree * pdata, bool bOwnData);
 

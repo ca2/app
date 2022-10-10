@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 25/11/2020. CamiloSasukeThomasBS_<3tbs!!
 //
 #pragma once
@@ -13,7 +13,7 @@
 
    class context;
 
-   using context_pointer = __pointer(::context);
+   using context_pointer = ::pointer<::context>;
 
    using matter_context = map < ::matter_pointer, ::context_pointer >;
 

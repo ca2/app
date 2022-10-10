@@ -172,7 +172,7 @@ namespace acme
    //   set_os_data(nullptr);
    //   //i32 iRet = ::acme::application::term_instance();
 
-   //   //pointer < application_base >::destroy();
+   //   //::pointer<application_base>:destroy();
 
    //   //return iRet;
    //   //return 0;

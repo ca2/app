@@ -14,10 +14,10 @@ namespace account
    public:
 
 
-      __reference(::account::credentials)    m_pcredentials;
+      ::pointer<::account::credentials>   m_pcredentials;
 
-      __pointer(::account::style)            m_pstyle;
-      __composite(login)                     m_plogin;
+      ::pointer<::account::style>           m_pstyle;
+      ::pointer<login>                    m_plogin;
       bool                                   m_bFontopusSimpleUiLayout;
       ::rectangle_i32                        m_rectangleParent;
 

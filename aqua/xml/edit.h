@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace xml
@@ -32,9 +32,9 @@ namespace xml
       edit_item();
 
 
-      void set_name(const __pointer(::xml::node) pnode);
-      void set_value(const __pointer(::xml::node) pnode);
-      void set_attribute(const __pointer(::xml::node) pnode, const property * pproperty);
+      void set_name(const ::pointer<::xml::node>pnode);
+      void set_value(const ::pointer<::xml::node>pnode);
+      void set_attribute(const ::pointer<::xml::node>pnode, const property * pproperty);
 
 
       //virtual ::stream & write(::stream & stream) const override;
@@ -50,18 +50,18 @@ namespace xml
    public:
 
 
-      __pointer(document)              m_pdocument;
+      ::pointer<document>             m_pdocument;
       index                            m_iEdit;
-      __pointer_array(edit_item)       m_edititema;
+      pointer_array < edit_item >       m_edititema;
 
 
       edit();
       virtual ~edit();
 
 
-      void set_name(const __pointer(::xml::node) pnode);
-      void set_value(const __pointer(::xml::node) pnode);
-      void set_attribute(const __pointer(::xml::node) pnode, const property * pproperty);
+      void set_name(const ::pointer<::xml::node>pnode);
+      void set_value(const ::pointer<::xml::node>pnode);
+      void set_attribute(const ::pointer<::xml::node>pnode, const property * pproperty);
 
 
    };

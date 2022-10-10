@@ -18,7 +18,7 @@ namespace filemanager
       typedef ::user::show < ::user::list > BASE;
 
 
-      __pointer(::user::list_cache)       m_puserlistcache;
+      ::pointer<::user::list_cache>      m_puserlistcache;
       ::duration                              m_durationLastUpdate;
 
 
@@ -42,7 +42,7 @@ namespace filemanager
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-      __pointer(operation_document) get_document();
+      ::pointer<operation_document>get_document();
 
 
    };

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "core/user/user/tree_data.h"
@@ -42,7 +42,7 @@ namespace filemanager
 
 
          class FolderArray :
-            public __pointer_array(folder)
+            public pointer_array < folder >
          {
          public:
 
@@ -63,7 +63,7 @@ namespace filemanager
             i32                                          m_iIconFolderSelected;
             i32                                          m_iIconArtistNormal;
             i32                                          m_iIconArtistSelected;
-            __pointer(::filemanager::fs::simple::impact)   m_pserver;
+            ::pointer<::filemanager::fs::simple::impact>  m_pserver;
             FolderArray                                  m_foldera;
             i64                                          m_iParentFolder;
 
@@ -80,8 +80,8 @@ namespace filemanager
             void parse(const ::string & pszSource);
 
 
-            __pointer(::data::tree_item) FindTreeItem(i64 iFolder);
-            index _001GetItemImage(__pointer(::data::tree_item) pitem, bool bSelected);
+            ::pointer<::data::tree_item>FindTreeItem(i64 iFolder);
+            index _001GetItemImage(::pointer<::data::tree_item>pitem, bool bSelected);
 
 
             void assert_ok() const override;

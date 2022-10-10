@@ -232,7 +232,7 @@ namespace user
 
             }
 
-            __pointer(::aura::application) papp = get_app();
+            ::pointer<::aura::application>papp = get_app();
 
             auto psystem = m_psystem->m_paurasystem;
 

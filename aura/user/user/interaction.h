@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "apex/message/command.h"
@@ -215,7 +215,7 @@ namespace user
 
       enum_text_wrap                               m_etextwrap;
 
-      __pointer(::user::interaction_scaler)        m_pinteractionScaler;
+      ::pointer<::user::interaction_scaler>       m_pinteractionScaler;
 
 
 
@@ -223,7 +223,7 @@ namespace user
       ewindowflag                                  m_ewindowflag;
 
       // <3ThomasBorreggardSørensen_!!
-      __pointer(::material_object)                 m_pmaterialCommandHandler;
+      ::pointer<::material_object>                m_pmaterialCommandHandler;
 
       ::user::interaction::enum_updown             m_eupdown;
 
@@ -264,7 +264,7 @@ namespace user
 
 
       ::rectangle                               m_rectangleClip;
-      __pointer(::aura::draw_context)           m_pdrawcontext;
+      ::pointer<::aura::draw_context>          m_pdrawcontext;
 
       ::draw2d::path_pointer                    m_pathFocusRect1;
       ::draw2d::path_pointer                    m_pathFocusRect2;
@@ -325,7 +325,7 @@ namespace user
       ::duration                                   m_durationLastVisualChange;
       string                                       m_strName;
       u64                                          m_uiUserInteractionFlags;
-      __pointer(::windowing::cursor)               m_pcursor;
+      ::pointer<::windowing::cursor>              m_pcursor;
       string                                       m_strWindowText;
       atom                                           m_atomModalResult; // for return values from interaction_impl::RunModalLoop
       i32                                          m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
@@ -342,33 +342,33 @@ namespace user
 
 
       // references
-      __reference(::file::insert_item)             m_pitemComposing;
-      __reference(::thread)                        m_pthreadUserInteraction;
-      __pointer(::user::interaction)               m_puserinteractionParent;
-      __pointer(::user::interaction)               m_pupdowntarget;
+      ::pointer<::file::insert_item>            m_pitemComposing;
+      ::pointer<::thread>                       m_pthreadUserInteraction;
+      ::pointer<::user::interaction>              m_puserinteractionParent;
+      ::pointer<::user::interaction>              m_pupdowntarget;
       ::task_pointer                               m_ptaskModal;
-      __pointer(interaction)                       m_puserinteractionOwner;
+      ::pointer<interaction>                      m_puserinteractionOwner;
 
       // ownership
-      __pointer(::user::system)                    m_pusersystem;
+      ::pointer<::user::system>                   m_pusersystem;
    protected:
       ::user::interaction_layout                   m_layout;
    public:
-      //__pointer(drag_move)                         m_pdragmove;
-      __pointer(::draw2d::graphics_call_array)     m_pgraphicscalla;
-      __pointer(::user::interaction)               m_puserinteractionCustomWindowProc;
-      __pointer(::user::interaction)               m_puiLabel;
-      __pointer(::user::form)                      m_pform;
-      __pointer(alpha_source)                      m_palphasource;
-      //__pointer(::aura::drawable)                  m_pdrawableBackground;
-      __pointer(primitive_impl)                    m_pprimitiveimpl;
-      __pointer(interaction_impl)                  m_pinteractionimpl;
-      __pointer(primitive_pointer_array)           m_puserinteractionpointeraOwned;
-      __pointer(interaction_array)                 m_puserinteractionpointeraChild;
-      __pointer(interaction)                       m_ptooltip;
-      __pointer(::object)                          m_pmenuitem;
-      __pointer_array(interaction)                 m_menua;
-      __pointer(::appearance::appearance)          m_pappearance;
+      //::pointer<drag_move>                        m_pdragmove;
+      ::pointer<::draw2d::graphics_call_array>    m_pgraphicscalla;
+      ::pointer<::user::interaction>              m_puserinteractionCustomWindowProc;
+      ::pointer<::user::interaction>              m_puiLabel;
+      ::pointer<::user::form>                     m_pform;
+      ::pointer<alpha_source>                     m_palphasource;
+      //::pointer<::aura::drawable>                 m_pdrawableBackground;
+      ::pointer<primitive_impl>                   m_pprimitiveimpl;
+      ::pointer<interaction_impl>                 m_pinteractionimpl;
+      ::pointer<primitive_pointer_array>          m_puserinteractionpointeraOwned;
+      ::pointer<interaction_array>                m_puserinteractionpointeraChild;
+      ::pointer<interaction>                      m_ptooltip;
+      ::pointer<::object>                         m_pmenuitem;
+      pointer_array < interaction >                 m_menua;
+      ::pointer<::appearance::appearance>         m_pappearance;
 
 
       interaction();
@@ -448,7 +448,7 @@ namespace user
 
       virtual bool has_link() const;
 
-      virtual __pointer_array(interaction) * children();
+      virtual pointer_array < interaction > * children();
 
 
       inline iterator proper_children() { return {this, e_next_proper, this}; }
@@ -476,7 +476,7 @@ namespace user
 
       //index find_control(::user::interaction * pinteraction);
 
-      __pointer(interaction) alloc();
+      ::pointer<interaction>alloc();
       
       
       
@@ -588,7 +588,7 @@ namespace user
 
       virtual ::user::style * get_style(::draw2d::graphics_pointer& pgraphics) const;
 
-      __pointer(::message::message) get_message(const ::atom & atom, wparam wparam, lparam lparam) override;
+      ::pointer<::message::message>get_message(const ::atom & atom, wparam wparam, lparam lparam) override;
 
       inline ::user::style * get_style(::user::style * pstyle) const
       {
@@ -832,7 +832,7 @@ namespace user
       virtual double get_output_fps();
 
 
-      virtual __pointer(::windowing::cursor) get_mouse_cursor(enum_cursor ecursor);
+      virtual ::pointer<::windowing::cursor>get_mouse_cursor(enum_cursor ecursor);
 
       virtual ::windowing::cursor * get_mouse_cursor() override;
 
@@ -1033,7 +1033,7 @@ namespace user
 
 
       template < typename TYPE >
-      __pointer(TYPE)& _001TypedWindow(__pointer(TYPE)& sp)
+      ::pointer<TYPE> _001TypedWindow(::pointer<TYPE>sp)
       {
 
          return sp = _001TypedWindow<TYPE>();
@@ -1173,7 +1173,7 @@ namespace user
 
       // virtual bool create_interaction(const ::string & pszClassName, const ::string & pszWindowName, u32 uStyle, ::user::interaction * puiParent, ::create * pcreate = nullptr) override;
 
-      //virtual bool create_window_ex(__pointer(::user::system) pcs, ::user::interaction* puiParent = nullptr, const ::atom& atom = ::atom()) override;
+      //virtual bool create_window_ex(::pointer<::user::system>pcs, ::user::interaction* puiParent = nullptr, const ::atom& atom = ::atom()) override;
       //enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
       //virtual void CalcWindowRect(RECTANGLE_I32* pClientRect, ::u32 nAdjustType = adjustBorder) override;
 
@@ -1191,9 +1191,7 @@ namespace user
 
       //virtual void set_finish_composites(::property_object* pcontextobjectFinish) override;
 
-   
-
-      void destroy_composites() override;
+      void on_destroy() override;
 
       //void destroy() override;
 
@@ -1662,7 +1660,7 @@ namespace user
 
       virtual bool is_selected(::data::item* pitem) override;
 
-      //virtual __pointer(place_holder) place_hold(::user::interaction* pinteraction) override;
+      //virtual ::pointer<place_holder>place_hold(::user::interaction* pinteraction) override;
 
 #if defined(_UWP) && defined(__cplusplus_winrt)
       static Agile<::winrt::Windows::UI::Core::CoreWindow>(*s_get_os_window)(interaction* pinteraction);
@@ -1689,7 +1687,7 @@ namespace user
 
 
       //virtual void track_popup_menu(::user::menu_item* pitem, i32 iFlags, const ::point_i32& point) override;
-      //virtual __pointer(::user::menu) track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point_i32& pointScreen = nullptr, const ::size_i32& sizeMinimum = nullptr) override;
+      //virtual ::pointer<::user::menu>track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point_i32& pointScreen = nullptr, const ::size_i32& sizeMinimum = nullptr) override;
 
 
       virtual void _001OnExitIconic() override;
@@ -1870,16 +1868,16 @@ namespace user
       //void keyboard_focus_OnKillFocus(oswindow oswindowNew) override;
       //void keyboard_focus_OnChildKillFocus() override;
 
-      virtual bool get_child(__pointer(::user::interaction)& pinteraction);
-      virtual bool rget_child(__pointer(::user::interaction)& pinteraction);
+      virtual bool get_child(::pointer<::user::interaction> & pinteraction);
+      virtual bool rget_child(::pointer<::user::interaction> & pinteraction);
 
 
 
       //template < typename CHILD >
-      //inline __pointer(CHILD) get_typed_child();
+      //inline ::pointer<CHILD>get_typed_child();
 
       template < typename CHILD >
-      inline __pointer(CHILD) get_typed_child()
+      inline ::pointer<CHILD>get_typed_child()
       {
 
          CHILD * pchild = nullptr;
@@ -2057,14 +2055,14 @@ namespace user
       virtual bool has_function(enum_control_function econtrolfunction) const;
       //virtual enum_control_type get_control_type() const;
       //virtual void _003CallCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
-      //virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) puserinteraction, const ::atom & atom, wparam wparam, lparam lparam, lresult& lresult);
+      //virtual bool _003CallCustomWindowProc(::pointer<::user::interaction>puserinteraction, const ::atom & atom, wparam wparam, lparam lparam, lresult& lresult);
       //virtual void _003OnCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
       //virtual void _003CustomWindowProc(::message::message* pmessage);
       //virtual form_list * get_form_list();
       //virtual bool _001IsPointInside(::point_i32 point) override;
       //control null() { return control(); }
       //bool Validate(string& str);
-      bool get_data(__pointer(::user::interaction) puserinteraction, ::payload& payload);
+      bool get_data(::pointer<::user::interaction>puserinteraction, ::payload& payload);
       //void SetEditItem(index iItem);
       //void SetEditSubItem(index iItem);
       //index GetEditSubItem();
@@ -2093,7 +2091,7 @@ namespace user
       //virtual void on_notify_control_event(control_event* pevent) override;
       //virtual void handle(::topic * ptopic, ::context * pcontext) override;
       //virtual bool simple_on_control_event(::message::message * pmessage, ::enum_topic etopic) override;
-      //virtual void walk_pre_translate_tree(::message::message * pmessage,__pointer(::user::interaction) puiStop);
+      //virtual void walk_pre_translate_tree(::message::message * pmessage,::pointer<::user::interaction>puiStop);
       //virtual bool get_element_rect(RECTANGLE_I32* prectangle, enum_element eelement);
       virtual void get_simple_drop_down_open_arrow_polygon(point_f64_array& pointa);
       // control member functions END

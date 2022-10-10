@@ -64,7 +64,7 @@ namespace app_shader
    void main_window::on_message_create(::message::message* pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       pcreate->previous();
 

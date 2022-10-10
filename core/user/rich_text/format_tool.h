@@ -22,20 +22,20 @@ namespace user
          ::user::rich_text::e_attribute                           m_eattribute;
          // an array just to hold one format
          // the one the tool is editing
-         __pointer(__pointer_array(::user::rich_text::format))    m_pformata;
-         __composite(::user::button)                              m_pbuttonBold;
-         __composite(::user::button)                              m_pbuttonItalic;
-         __composite(::user::button)                              m_pbuttonUnderline;
-         __composite(::user::font_combo_box)                      m_pcomboFamily;
-         __composite(::user::combo_box)                           m_pcomboSize;
-         __composite(::user::button)                              m_pbuttonForeground;
-         __composite(::user::button)                              m_pbuttonBackground;
-         __composite(::user::button)                              m_pbuttonSubscript;
-         __composite(::user::button)                              m_pbuttonSuperscript;
-         __composite(::user::button)                              m_pbuttonLineHeight;
-         __composite(::user::button)                              m_pbuttonAlignLeft;
-         __composite(::user::button)                              m_pbuttonAlignCenter;
-         __composite(::user::button)                              m_pbuttonAlignRight;
+         pointer< pointer_array < ::user::rich_text::format > >    m_pformata;
+         ::pointer<::user::button>                             m_pbuttonBold;
+         ::pointer<::user::button>                             m_pbuttonItalic;
+         ::pointer<::user::button>                             m_pbuttonUnderline;
+         ::pointer<::user::font_combo_box>                     m_pcomboFamily;
+         ::pointer<::user::combo_box>                          m_pcomboSize;
+         ::pointer<::user::button>                             m_pbuttonForeground;
+         ::pointer<::user::button>                             m_pbuttonBackground;
+         ::pointer<::user::button>                             m_pbuttonSubscript;
+         ::pointer<::user::button>                             m_pbuttonSuperscript;
+         ::pointer<::user::button>                             m_pbuttonLineHeight;
+         ::pointer<::user::button>                             m_pbuttonAlignLeft;
+         ::pointer<::user::button>                             m_pbuttonAlignCenter;
+         ::pointer<::user::button>                             m_pbuttonAlignRight;
 
 
 

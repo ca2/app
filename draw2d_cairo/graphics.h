@@ -549,24 +549,24 @@ namespace draw2d_cairo
       bool _set(const enum_shape & eshape);
 
 
-      bool _set(const ::arc & arc, const __pointer(::draw2d::region) & pregion);
+      bool _set(const ::arc & arc, const ::pointer<::draw2d::region>& pregion);
       //bool _set(const ::line & line);
       //bool _set(const ::lines & lines);
-      bool _set(const ::rectangle & rectangle, const __pointer(::draw2d::region) & pregion);
-      bool _set(const ::ellipse & ellipse, const __pointer(::draw2d::region) & pregion);
-      bool _set(const ::polygon & polygon, const __pointer(::draw2d::region) & pregion);
-      bool _set(const ::write_text::text_out & textout, const __pointer(::draw2d::region) & pregion);
-      bool _set(const ::write_text::draw_text & drawtext, const __pointer(::draw2d::region) & pregion);
+      bool _set(const ::rectangle & rectangle, const ::pointer<::draw2d::region>& pregion);
+      bool _set(const ::ellipse & ellipse, const ::pointer<::draw2d::region>& pregion);
+      bool _set(const ::polygon & polygon, const ::pointer<::draw2d::region>& pregion);
+      bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::region>& pregion);
+      bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::region>& pregion);
 
 
-      bool _set(const ::arc & arc, const __pointer(::draw2d::path) & ppath);
-      bool _set(const ::line & line, const __pointer(::draw2d::path) & ppath);
-      bool _set(const ::lines & lines, const __pointer(::draw2d::path) & ppath);
-      bool _set(const ::rectangle & rectangle, const __pointer(::draw2d::path) & ppath);
-      bool _set(const ::ellipse & ellipse, const __pointer(::draw2d::path) & ppath);
-      bool _set(const ::polygon & polygon, const __pointer(::draw2d::path) & ppath);
-      bool _set(const ::write_text::text_out & textout, const __pointer(::draw2d::path) & ppath);
-      bool _set(const ::write_text::draw_text & drawtext, const __pointer(::draw2d::path) & ppath);
+      bool _set(const ::arc & arc, const ::pointer<::draw2d::path>& ppath);
+      bool _set(const ::line & line, const ::pointer<::draw2d::path>& ppath);
+      bool _set(const ::lines & lines, const ::pointer<::draw2d::path>& ppath);
+      bool _set(const ::rectangle & rectangle, const ::pointer<::draw2d::path>& ppath);
+      bool _set(const ::ellipse & ellipse, const ::pointer<::draw2d::path>& ppath);
+      bool _set(const ::polygon & polygon, const ::pointer<::draw2d::path>& ppath);
+      bool _set(const ::write_text::text_out & textout, const ::pointer<::draw2d::path>& ppath);
+      bool _set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::path>& ppath);
 
 
       bool _set(const ::arc & arc);

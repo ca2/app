@@ -90,7 +90,7 @@
 
 #endif
 
-//CLASS_DECL_APEX __pointer(message_queue) __get_mq(itask_t atom, bool bCreate);
+//CLASS_DECL_APEX ::pointer<message_queue>__get_mq(itask_t atom, bool bCreate);
 
 
 

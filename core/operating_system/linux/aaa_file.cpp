@@ -72,7 +72,7 @@ namespace linux
 
    }
 
-//   __pointer(::file::file) file::Duplicate() const
+//   ::pointer<::file::file>file::Duplicate() const
 //
 //   {
 //
@@ -809,7 +809,7 @@ CLASS_DECL_CORE void vfxGetModuleShortFileName(HINSTANCE hInst, string& strShort
 }
 
 
-CLASS_DECL_CORE bool vfxResolveShortcut(string & strTarget, const ::string & pszSource, __pointer(::user::primitive) puiMessageParentOptional)
+CLASS_DECL_CORE bool vfxResolveShortcut(string & strTarget, const ::string & pszSource, ::pointer<::user::primitive>puiMessageParentOptional)
 {
 
 

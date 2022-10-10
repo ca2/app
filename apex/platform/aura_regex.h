@@ -35,7 +35,7 @@ class CLASS_DECL_APEX regex_context :
 {
 public:
 
-   virtual __pointer(regex) compile(const string& str) = 0;
+   virtual ::pointer<regex>compile(const string& str) = 0;
 
 };
 

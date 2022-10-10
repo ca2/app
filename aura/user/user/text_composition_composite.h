@@ -15,7 +15,7 @@ namespace user
 	public:
 
 
-		__pointer(text_composition_client)	m_ptextcompositionclient;
+		::pointer<text_composition_client>m_ptextcompositionclient;
 
 
 		text_composition_composite();

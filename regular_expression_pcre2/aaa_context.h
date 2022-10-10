@@ -18,7 +18,7 @@ namespace regular_expression_pcre2
       virtual ~context();
 
 
-      //static __pointer(pcre_context)
+      //static ::pointer<pcre_context>
 
       //create_context(int iSizeData);
 

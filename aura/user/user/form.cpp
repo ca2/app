@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
 #endif
@@ -79,7 +79,7 @@ namespace user
    //}
 
 
-   //__pointer(control_descriptor) form::new_form_control()
+   //::pointer<control_descriptor>form::new_form_control()
    //{
 
    //   return nullptr;
@@ -160,7 +160,7 @@ namespace user
    void form::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       pcreate->previous();
       
@@ -175,7 +175,7 @@ namespace user
 
       //auto estatus = 
       
-      __refer(m_pcallback, pcallback);
+      m_pcallback = pcallback;
 
  /*     if (!estatus)
       {
@@ -193,7 +193,7 @@ namespace user
    {
 
       //auto estatus =
-      __refer(m_pformParent, pform);
+      m_pformParent = pform;
 
       //if (!estatus)
       //{

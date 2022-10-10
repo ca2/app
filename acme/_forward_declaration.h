@@ -45,18 +45,18 @@ class text_stream;
 
 
 template<class T>
-class ___pointer;
+class pointer;
 
 
 template<class T>
 class pointer_array;
 
 
-//#define __composite(TYPE) ::reference < TYPE >
+//#define ::pointer<TYPE>::reference < TYPE >
 
 
-#define __pointer(TYPE) ::___pointer < TYPE >
-#define __pointer_array(TYPE) ::pointer_array < TYPE >
+//#define ::pointer<TYPE>::pointer<TYPE>
+//#define pointer_array < TYPE > ::pointer_array < TYPE >
 
 //
 //template < typename TYPE >
@@ -84,7 +84,7 @@ class pointer_array;
 //   bool operator !() const { return is_null(); }
 //
 //   template < typename OBJECT >
-//   __pointer(OBJECT) cast() const;
+//   ::pointer<OBJECT>cast() const;
 //
 //
 //   template < typename INTERMEDIATE >
@@ -125,17 +125,21 @@ namespace user
 
 
 class image;
+class e_check;
+class tristate;
+
+
 
 
 template<class T>
-   class ___pointer;
+class pointer;
 
 
 template<class T>
-   class pointer_array;
+class pointer_array;
 
 
-using image_pointer = __pointer(::image);
+using image_pointer = ::pointer<::image>;
 
 
 namespace write_text
@@ -144,7 +148,7 @@ namespace write_text
 
    class font;
    
-   using font_pointer = __pointer(font);
+   using font_pointer = ::pointer<font>;
 
 
 } // namespace write_text

@@ -1084,7 +1084,7 @@ pacmedirectory->create(dir::appdata() / "time" / "aura");
 
       wparam     = pusermessage->m_wparam;
 
-      __pointer(::message::mouse) spmouse = pusermessage;
+      ::pointer<::message::mouse>spmouse = pusermessage;
 
       if(spmouse.is_set())
       {

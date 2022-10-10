@@ -42,7 +42,7 @@ namespace winrt
    }
 
 
-   __pointer(::crypto::hasher) hasher_algorithm::create_hasher()
+   ::pointer<::crypto::hasher>hasher_algorithm::create_hasher()
    {
 
       return __new(hasher(m_pprovider->CreateHash(), ehash()));

@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 30/10/2021 ~ 00:00 <3ThomasBorregaardSorensen!!
 //
 #include "framework.h"
@@ -282,9 +282,11 @@ void __main(::acme::application * pacmeapplication)
 
    auto pfactoryitem = ::factory::get_factory()->get_factory_item<::acme::system>();
 
-   __pointer(::acme::system) psystem = pfactoryitem->create_element();
+   ::pointer<::acme::system>psystem = pfactoryitem->create_element();
 
    //psystem->m_pacmeapplicationStartup = pacmeapplication;
+
+   //psystem->m_psubsystem = psubsystem;
 
    psystem->system_construct(pacmeapplication);
 
@@ -1876,7 +1878,7 @@ void main::system_proc()
 #endif
 
 
-//__pointer(::acme::application) main::new_app()
+//::pointer<::acme::application>main::new_app()
 //{
 //
 //   //if(::acme::application::g_p)
@@ -1893,7 +1895,7 @@ void main::system_proc()
 //
 //   }
 //
-//   __pointer(::acme::application) papp;
+//   ::pointer<::acme::application>papp;
 //
 //   papp = m_pfnnewmatterApplication();
 //

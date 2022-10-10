@@ -13,7 +13,7 @@ inline binary_stream & operator <<(binary_stream & s, const ::DURATION & duratio
 }
 
 
-inline binary_stream & operator <<(binary_stream & s, ::DURATION & duration)
+inline binary_stream & operator >>(binary_stream & s, ::DURATION & duration)
 {
 
    s >> duration.m_iSecond;

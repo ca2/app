@@ -92,7 +92,7 @@ namespace ios
       // advanced creation (allows access to extended styles)
       virtual bool create_window_ex(
       ::user::interaction * pinteraction,
-      __pointer(::user::system) pusersystem,
+      ::pointer<::user::system>pusersystem,
       ::user::interaction * puiParent,
       atom atom) override;
 

@@ -82,7 +82,7 @@ namespace html
 
             strStyle.make_lower();
 
-            __pointer(::axis::session) psession = get_session();
+            ::pointer<::axis::session>psession = get_session();
 
             auto puser = psession->user();
 

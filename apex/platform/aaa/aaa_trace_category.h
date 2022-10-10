@@ -12,7 +12,7 @@ public:
    bool                 m_bEnable;
 
 
-   static __pointer_array(trace_category) * s_ptracecategorya;
+   static pointer_array < trace_category > * s_ptracecategorya;
 
    
 

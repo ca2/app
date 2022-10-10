@@ -11,7 +11,7 @@ namespace user
 
 
    template < typename CONTROL_STYLE >
-   void style::get(__pointer(CONTROL_STYLE) & pcontrolstyleImpl, ::draw2d::graphics_pointer & pgraphics, ::user::interaction * pinteraction)
+   void style::get(::pointer<CONTROL_STYLE>& pcontrolstyleImpl, ::draw2d::graphics_pointer & pgraphics, ::user::interaction * pinteraction)
    {
 
       auto & pcontrolstyle = m_controlstyle[pinteraction->m_econtroltype];

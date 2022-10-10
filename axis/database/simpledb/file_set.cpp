@@ -24,7 +24,7 @@ namespace simpledb
    void file_set::data_on_after_change(::message::message * pmessage)
    {
 
-      __pointer(::database::change_event) pchange(pmessage);
+      ::pointer<::database::change_event>pchange(pmessage);
 
       if(pchange->m_datakey == m_datakey)
       {
@@ -41,11 +41,11 @@ namespace simpledb
 
       ::file::set::clear_search();
 
-      __pointer(::file::path_array) ppatha;
+      ::pointer<::file::path_array>ppatha;
 
       __construct_new(ppatha);
 
-      __pointer(bool_array) pbaRecursive;
+      ::pointer<bool_array>pbaRecursive;
 
       __construct_new(pbaRecursive);
 

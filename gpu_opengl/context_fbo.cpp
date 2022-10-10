@@ -50,7 +50,7 @@ namespace opengl
 
       auto pgpu = m_psystem->m_paurasystem->get_gpu();
 
-      __pointer(opengl) popengl = pgpu;
+      ::pointer<opengl>popengl = pgpu;
 
       if (::is_null(popengl))
       {

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "apex/networking/networking.h"
 #include "apex/networking/sockets/http/tunnel.h"
 #include "apex/networking/sockets/http/session.h"
@@ -74,7 +74,7 @@ namespace http
    }
 
 
-   bool context::get(__pointer(::sockets::http_client_socket) & psession, const char * pszUrl, property_set & set)
+   bool context::get(::pointer<::sockets::http_client_socket>& psession, const char * pszUrl, property_set & set)
    {
 
       return http_get(psession, pszUrl, process_set(set, pszUrl));
@@ -354,7 +354,7 @@ namespace http
    //}
 
 
-   //bool context::download(__pointer(::sockets::http_session) & psession, const char * pszUrl, ::payload payloadFile, property_set & set)
+   //bool context::download(::pointer<::sockets::http_session>& psession, const char * pszUrl, ::payload payloadFile, property_set & set)
    //{
 
    //   return download(psession, pszUrl, payloadFile, process_set(set, pszUrl));
@@ -424,7 +424,7 @@ namespace http
       //
       //      property_set set;
       //
-      //      __pointer(::sockets::http_session) psession;
+      //      ::pointer<::sockets::http_session>psession;
       //
       //      string strFontopusServer;
       //
@@ -906,7 +906,7 @@ namespace http
       //::networking::address ipHost(strHost, iHostPort);
       //for (i32 iNode = 0; iNode < doc.root()->get_children_count(); iNode++)
       //{
-      //   __pointer(::xml::node) pnode = doc.root()->child_at(iNode);
+      //   ::pointer<::xml::node>pnode = doc.root()->child_at(iNode);
       //   if (pnode->get_name() == "proxy")
       //   {
 
@@ -1019,7 +1019,7 @@ namespace http
    }
 
 
-   //void context::on_auth(property_set & set, ::apex::application *      papp, string & strUrl, string & strSessId, __pointer(::account::user) & puser)
+   //void context::on_auth(property_set & set, ::apex::application *      papp, string & strUrl, string & strSessId, ::pointer<::account::user>& puser)
    //{
 
    //   if (::is_null(papp))
@@ -1072,7 +1072,7 @@ namespace http
    //}
 
 
-   bool context::open(__pointer(::sockets::http_session) & psession, const ::string & strHost, const ::string & strProtocolParam, property_set & set, const string &strVersionParam)
+   bool context::open(::pointer<::sockets::http_session>& psession, const ::string & strHost, const ::string & strProtocolParam, property_set & set, const string &strVersionParam)
    {
 
       auto tickTimeProfile1 = ::duration::now();
@@ -1083,7 +1083,7 @@ namespace http
 
       string strProtocol = strProtocolParam;
 
-      __pointer(::apex::application) papp = set["app"].cast < ::apex::application >();
+      ::pointer<::apex::application>papp = set["app"].cast < ::apex::application >();
 
       i32 iPort;
 
@@ -1140,7 +1140,7 @@ namespace http
 
       psession = __new(::sockets::http_session(strProtocol, strHost));
 
-      /*__pointer(::account::user) puser;
+      /*::pointer<::account::user>puser;
 
       on_auth(set, papp, strUrl, strSessId, puser);*/
 
@@ -1180,7 +1180,7 @@ namespace http
    }
 
 
-   bool context::request(__pointer(::sockets::http_session) & psession, const char * pszRequest, property_set & set)
+   bool context::request(::pointer<::sockets::http_session>& psession, const char * pszRequest, property_set & set)
    {
 
 //      INFORMATION("http context request : " << pszRequest);
@@ -1314,7 +1314,7 @@ namespace http
 //
 //         string strSessId;
 //
-//         //__pointer(::account::user) puser;
+//         //::pointer<::account::user>puser;
 //
 //         //on_auth(set, papp, strUrl, strSessId, puser);
 //
@@ -1732,7 +1732,7 @@ namespace http
 
 
 
-   bool context::http_get(__pointer(::sockets::http_client_socket) & psocket, const char * pszUrl1, property_set & set)
+   bool context::http_get(::pointer<::sockets::http_client_socket>& psocket, const char * pszUrl1, property_set & set)
    {
 
       //auto ptask = ::get_task();
@@ -1829,9 +1829,9 @@ namespace http
 
       string strObject = purl->get_object(strUrl);
 
-      __pointer(::apex::application) papp = set["app"].cast < ::apex::application >();
+      ::pointer<::apex::application>papp = set["app"].cast < ::apex::application >();
 
-      __pointer(::apex::application) pappAgent = papp;
+      ::pointer<::apex::application>pappAgent = papp;
 
       i32 iPort;
 
@@ -1873,9 +1873,9 @@ namespace http
 
    //retry_session:
 
-   //   __pointer(::account::user) puser;
+   //   ::pointer<::account::user>puser;
 
-      __pointer(::object) pobjectCreator = pappAgent;
+      ::pointer<::object>pobjectCreator = pappAgent;
 
       if (pobjectCreator.is_null())
       {
@@ -1977,7 +1977,7 @@ namespace http
 
       }
 
-      __pointer(::sockets::base_socket_handler) psockethandler = psocket->socket_handler();
+      ::pointer<::sockets::base_socket_handler>psockethandler = psocket->socket_handler();
 
       if (!psockethandler)
       {
@@ -2576,7 +2576,7 @@ namespace http
    void context::get(::message::message * pmessage)
    {
 
-      __pointer(message) pmessageMessage(pmessage);
+      ::pointer<message>pmessageMessage(pmessage);
 
       if (pmessageMessage == nullptr)
       {
@@ -2585,7 +2585,7 @@ namespace http
 
       }
 
-      //__pointer(message) pmessage(pmessage);
+      //::pointer<message>pmessage(pmessage);
 
       ::url_domain domain;
 
@@ -2653,7 +2653,7 @@ namespace http
 
       }
 
-      __pointer(::sockets::http_client_socket) psocket;
+      ::pointer<::sockets::http_client_socket>psocket;
 
       if (!http_get(psocket, pmessageMessage->m_strUrl, set))
       {
@@ -2688,7 +2688,7 @@ namespace http
    }
 
 
-   bool context::download(__pointer(::sockets::http_session) & psession, const char * pszRequest, ::payload payloadFile, property_set & set)
+   bool context::download(::pointer<::sockets::http_session>& psession, const char * pszRequest, ::payload payloadFile, property_set & set)
    {
 
       file_pointer spfile = m_pcontext->m_papexcontext->file().get_file(payloadFile,
@@ -2710,7 +2710,7 @@ namespace http
 
       auto phandler = __create < ::sockets::socket_handler >();
 
-      __pointer(::sockets::http_client_socket) psocket;
+      ::pointer<::sockets::http_client_socket>psocket;
 
       bool bOk = false;
 
@@ -2800,7 +2800,7 @@ namespace http
 
          }
 
-         __pointer(::sockets::http_client_socket) psocket;
+         ::pointer<::sockets::http_client_socket>psocket;
 
          if (!http_get(psocket, pszUrl, set))
          {
@@ -2854,7 +2854,7 @@ namespace http
 
       }
 
-      __pointer(::sockets::http_client_socket) psocket;
+      ::pointer<::sockets::http_client_socket>psocket;
 
       if (http_get(psocket, pszUrl, set))
       {

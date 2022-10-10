@@ -8,7 +8,7 @@ void nano_button::on_draw(nano_device * pnanodevice)
 
    //::SelectObject(hdc, m_pnanowindow->m_hbrushWindow);
 
-   __pointer(nano_pen) ppenBorder;
+   ::pointer<nano_pen>ppenBorder;
 
    if (m_pnanowindow->m_pchildFocus == this)
    {

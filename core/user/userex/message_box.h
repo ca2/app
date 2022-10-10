@@ -14,7 +14,7 @@ namespace userex
    public:
 
 
-      //__pointer(::future < ::atom >)     m_pprocess;
+      //pointer< ::future < ::atom > >     m_pprocess;
       
       
       message_box();

@@ -25,7 +25,7 @@
          }
 
 
-         __pointer(::object) library::alloc(::object * pobject, const ::string & pszClass, object * p)
+         ::pointer<::object>library::alloc(::object * pobject, const ::string & pszClass, object * p)
          {
 
             if(string(pszClass) == "experience")

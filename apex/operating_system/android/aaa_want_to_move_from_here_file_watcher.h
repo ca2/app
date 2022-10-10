@@ -33,7 +33,7 @@
 //      os_watch();
 //      virtual ~os_watch();
 //      /// type for a map from atom to watch_struct pointer
-//      //typedef map < atom, atom, __pointer(watch), __pointer(watch) > WatchMap;
+//      //typedef map < atom, atom, ::pointer<watch> ::pointer<watch>>atchMap;
 //
 //   ////public:
 //   //   ///

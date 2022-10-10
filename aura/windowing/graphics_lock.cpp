@@ -15,7 +15,7 @@ namespace windowing
 ////
 ////      m_psystem = pinteraction->m_psystem;
 ////
-////      __pointer(::aura::system) psystem = m_psystem;
+////      ::pointer<::aura::system>psystem = m_psystem;
 ////
 ////      auto pdraw2d = psystem->draw2d();
 ////
@@ -35,7 +35,7 @@ namespace windowing
 ////
 ////      //m_D2DMultitask->Leave();
 ////
-////      __pointer(::aura::system) psystem = m_psystem;
+////      ::pointer<::aura::system>psystem = m_psystem;
 ////
 ////      auto pdraw2d = psystem->draw2d();
 ////

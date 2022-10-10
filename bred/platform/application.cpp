@@ -55,7 +55,7 @@ namespace bred
    }
 
 
-   //__pointer(progress_control) application::show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::count iProgressCount)
+   //::pointer<progress_control>application::show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::count iProgressCount)
    //{
 
    //   auto pprogresscontrol = __create_new <  ::userex::progress_control >();

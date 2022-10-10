@@ -222,7 +222,7 @@ namespace user
    //}
 
 
-   void form_list_impact::OnActivateImpact(bool bActivate, __pointer(::user::impact) pActivateImpact, __pointer(::user::impact) pviewDeactive)
+   void form_list_impact::OnActivateImpact(bool bActivate, ::pointer<::user::impact>pActivateImpact, ::pointer<::user::impact>viewDeactive)
    {
       //    UNUSED(pActivateImpact);   // unused in release builds
 
@@ -237,7 +237,7 @@ namespace user
             if(get_wnd()->m_pinteractionimpl)
             {
 
-               __pointer(::user::interaction) puiFocus = get_wnd()->m_pinteractionimpl->m_puserinteractionKeyboardFocus;
+               ::pointer<::user::interaction>puiFocus = get_wnd()->m_pinteractionimpl->m_puserinteractionKeyboardFocus;
 
                if (puiFocus.is_null() || !is_ascendant_of(puiFocus, true))
                {

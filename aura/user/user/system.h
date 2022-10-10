@@ -33,23 +33,23 @@ namespace user
    public:
 
 
-      __pointer(::user::primitive)           m_puserprimitiveOwner;
+      ::pointer<::user::primitive>          m_puserprimitiveOwner;
       ::procedure                              m_procedureSuccess;
       ::procedure                              m_procedureFailure;
-      __pointer(::user::interaction_impl)    m_puserinteractionimpl;
-      __pointer(::create)                    m_pcreate;
-      __pointer(::windowing::window)         m_pwindow;
+      ::pointer<::user::interaction_impl>   m_puserinteractionimpl;
+      ::pointer<::create>                   m_pcreate;
+      ::pointer<::windowing::window>        m_pwindow;
 
       tristate                                m_bWindowFrame;
       ::type                                 m_typeNewImpact;
-      __pointer(::object)                    m_pdocumentCurrent;
-      __pointer(::user::primitive)           m_puserprimitiveNew;
+      ::pointer<::object>                   m_pdocumentCurrent;
+      ::pointer<::user::primitive>          m_puserprimitiveNew;
 
-      __pointer(::object)                    m_ptemplateNewDocument;
+      ::pointer<::object>                   m_ptemplateNewDocument;
 
-      __pointer(::user::primitive)           m_puserprimitiveLastImpact;
-      __pointer(::user::primitive)           m_puserprimitiveCurrentFrame;
-      __pointer(::matter)                    m_pimpactdata;
+      ::pointer<::user::primitive>          m_puserprimitiveLastImpact;
+      ::pointer<::user::primitive>          m_puserprimitiveCurrentFrame;
+      ::pointer<::matter>                   m_pimpactdata;
 
 
       system(const system&);
@@ -81,7 +81,7 @@ namespace user
 
       //inline auto get_rect() { ::rectangle_i32 rectangle(e_no_initialize); get_rect(&rectangle); return rectangle; }
 
-      __pointer(::user::interaction) create_impact(::user::interaction * puserinteractionParent, const ::atom & atom);
+      ::pointer<::user::interaction>create_impact(::user::interaction * puserinteractionParent, const ::atom & atom);
 
 
    };

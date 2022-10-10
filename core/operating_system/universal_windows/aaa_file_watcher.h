@@ -83,7 +83,7 @@ namespace file
 
 
    //   /// type for a map from atom to watch_struct pointer
-   //   typedef map < atom, atom, __pointer(watch), __pointer(watch) > watch_map;
+   //   typedef map < atom, atom, ::pointer<watch> ::pointer<watch>>atch_map;
 
 
    //private:

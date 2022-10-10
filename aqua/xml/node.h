@@ -40,8 +40,8 @@ namespace xml
       ~node() override;
 
 
-      inline __pointer(::xml::document) get_document() { return m_pdocument; }
-      inline const __pointer(::xml::document) get_document() const { return m_pdocument; }
+      inline ::pointer<::xml::document>get_document() { return m_pdocument; }
+      inline const ::pointer<::xml::document>get_document() const { return m_pdocument; }
 
 
       virtual void set_name(const ::string & strName);

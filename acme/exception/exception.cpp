@@ -1,4 +1,4 @@
-﻿// added error_code::get_string by camilo on 2022-09-29 22:10 <3ThomasBorregaardSorensen!!
+// added error_code::get_string by camilo on 2022-09-29 22:10 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "_api.h"
 #include <stdio.h>
@@ -384,7 +384,7 @@ void __cdecl __clearerr_s(FILE *stream)
 //
 
 
-//CLASS_DECL_ACME __pointer(::exception) __trace_context_move_throw_exception(::matter * trace_context, ::exception * pexceptionNew)
+//CLASS_DECL_ACME ::pointer<::exception>__trace_context_move_throw_exception(::matter * trace_context, ::exception * pexceptionNew)
 //{
 //
 //   __trace_logger_level(trace_context, e_trace_level_error);

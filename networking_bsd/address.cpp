@@ -1,4 +1,4 @@
-#include "framework.h" 
+﻿#include "framework.h" 
 #include "address.h"
 #include "networking.h"
 
@@ -319,13 +319,13 @@ namespace networking_bsd
       if (_is_ip4())
       {
 
-         ::to_string(str, (in_addr &)u.m_addr.sin_addr);
+         str = __string(u.m_addr.sin_addr);
 
       }
       else if (_is_ip6())
       {
 
-         ::to_string(str, (in_addr6 &) u.m_addr6.sin6_addr);
+         str = __string(u.m_addr6.sin6_addr);
 
       }
 
@@ -760,6 +760,23 @@ namespace networking_bsd
 
    }
 
+
+   void address::write(::binary_stream & stream) const
+   {
+
+      stream.write(&u.m_sa, sizeof(u.m_sa));
+      stream<< m_iLen;
+
+   }
+
+
+   void address::read(::binary_stream & stream)
+   {
+
+      stream.read(&u.m_sa, sizeof(u.m_sa));
+      stream >> m_iLen;
+
+   }
 
 
 

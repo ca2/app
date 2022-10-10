@@ -218,7 +218,7 @@ namespace experience
       else
       {
 
-         //      __pointer(::user::interaction) puserinteraction = ::user::interaction::get_parent();
+         //      ::pointer<::user::interaction>puserinteraction = ::user::interaction::get_parent();
 
 
          ::rectangle_i32 rectangle;

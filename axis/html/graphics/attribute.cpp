@@ -43,7 +43,7 @@ namespace html
 
    // attribute_array
 
-   __pointer(attribute) attribute_array::get(atom idName)
+   ::pointer<attribute>attribute_array::get(atom idName)
    {
 
       for(i32 i = 0; i < this->get_size(); i++)
@@ -59,7 +59,7 @@ namespace html
    }
 
 
-   __pointer(attribute) attribute_array::get(atom idName) const
+   ::pointer<attribute>attribute_array::get(atom idName) const
    {
 
       return const_cast < attribute_array * > (this)->get(idName);

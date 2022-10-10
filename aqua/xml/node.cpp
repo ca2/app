@@ -594,7 +594,7 @@ namespace xml
       {
          const char * xml = pszXml;
 
-         __pointer(node) pnode = __new(node(this));
+         ::pointer<node>pnode = __new(node(this));
          pnode->m_pnodeParent = this;
          pnode->m_pdocument = m_pdocument;
          pnode->m_enode = ::data::e_node_xml_pi;
@@ -952,7 +952,7 @@ namespace xml
    void node::load(const ::string & strXml, parse_info * pparseinfo)
    {
 
-      auto pszStart = strXml;
+      auto pszStart = strXml.c_str();
 
       auto pszEnd = pszStart + strXml.length();
 
@@ -1057,7 +1057,7 @@ namespace xml
          //   pnode.release();
          //}
 
-         __pointer(node) pnode = __new(node(this));
+         ::pointer<node>pnode = __new(node(this));
          //pnode->m_pnodeParent = this;
          //pnode->m_pdocument = m_pdocument;
          //pnode->m_enode = m_enode;
@@ -1165,7 +1165,7 @@ namespace xml
                // generate child nodes
                if(xml && *xml)
                {
-                  //__pointer(node) pnode = __new(node(this));
+                  //::pointer<node>pnode = __new(node(this));
                   //if (m_pdocument == this)
                   //{
                   //   if (!m_pdocument->m_pnodeRoot)
@@ -2803,7 +2803,7 @@ namespace xml
          for(index iCol = 0; iCol < iColCount; iCol++)
          {
 
-            __pointer(::xml::node) pcol = add_child("ca");
+            ::pointer<::xml::node>pcol = add_child("ca");
 
             iRowCount = str2a[iCol].get_count();
 
@@ -2858,7 +2858,7 @@ namespace xml
 
       ::count iRowCount = 0;
 
-      __pointer(::xml::node) pheader = m_nodea.element_at(0);
+      ::pointer<::xml::node>pheader = m_nodea.element_at(0);
 
       for(::index iCol = 0; iCol < iColCount; iCol++)
       {

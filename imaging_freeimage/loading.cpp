@@ -249,7 +249,7 @@ namespace imaging_freeimage
 
       {
 
-         auto tmp = payloadFile.get_file_path();
+         auto tmp = payloadFile.file_path();
 
          if (tmp.ends_ci(".gif"))
          {
@@ -262,7 +262,7 @@ namespace imaging_freeimage
 
       set_bypass_cache_if_empty(payloadFile);
 
-      ::file::path path = payloadFile.get_file_path();
+      ::file::path path = payloadFile.file_path();
 
       ::file::path pathProcess = m_pcontext->m_papexcontext->defer_process_path(path);
 

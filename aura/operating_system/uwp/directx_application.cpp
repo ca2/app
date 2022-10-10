@@ -398,7 +398,7 @@ namespace universal_windows
       if (puserinteractionHost->m_pimpl == nullptr)
          return;
 
-      __pointer(::user::message) pusermessage;
+      ::pointer<::user::message>pusermessage;
 
       auto pkey  = __new(::message::key);
 
@@ -431,7 +431,7 @@ namespace universal_windows
       if (puserinteractionHost->m_pimpl == nullptr)
          return;
 
-      __pointer(::user::message) pusermessage;
+      ::pointer<::user::message>pusermessage;
 
       auto pkey  = __new(::message::key);
 
@@ -482,7 +482,7 @@ namespace universal_windows
       if (puserinteractionHost->m_pimpl == nullptr)
          return;
 
-      __pointer(::user::message) pusermessage;
+      ::pointer<::user::message>pusermessage;
 
       ::message::key * pkey = memory_new  ::message::key;
 
@@ -624,7 +624,7 @@ namespace universal_windows
       if (puserinteractionHost->m_pimpl == nullptr)
          return;
 
-      __pointer(::user::message) pusermessage;
+      ::pointer<::user::message>pusermessage;
 
       ::winrt::Windows::UI::Input::PointerPoint^ pointerPoint = args->CurrentPoint;
 
@@ -680,7 +680,7 @@ namespace universal_windows
 
       }
 
-      __pointer(::user::message) pusermessage;
+      ::pointer<::user::message>pusermessage;
 
       ::winrt::Windows::UI::Input::PointerPoint^ pointerPoint = args->CurrentPoint;
 
@@ -756,7 +756,7 @@ namespace universal_windows
       if (puserinteractionHost->m_pimpl == nullptr)
          return;
 
-      __pointer(::user::message) pusermessage;
+      ::pointer<::user::message>pusermessage;
 
       ::message::mouse * pmouse = memory_new  ::message::mouse;
 

@@ -1,4 +1,4 @@
-// Created by camilo on 2022-05-15 12:21 <3ThomasBorregaardSørensen!! and Mummi!!
+// Created by camilo on 2022-05-15 12:21 <3ThomasBorregaardSï¿½rensen!! and Mummi!!
 #pragma once
 
 
@@ -15,7 +15,7 @@ namespace hardware
    public:
 
 
-      map < enum_device, __pointer(device_listener_array) >             m_mapdevicelistenera;
+      map < enum_device, ::pointer<device_listener_array >>            m_mapdevicelistenera;
 
       devices();
       ~devices() override;

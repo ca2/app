@@ -54,7 +54,7 @@ namespace aura
          try
          {
 
-            __compose(m_pcontextimage);
+            __construct(m_pcontextimage);
 
          }
          catch (...)
@@ -69,7 +69,7 @@ namespace aura
 
 
 
-   //__pointer(::extended::sequence < ::conversation >) context::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+   //pointer< ::extended::sequence < ::conversation > > context::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
    //{
 
    //   auto pmessagebox = __create < ::user::message_box >();

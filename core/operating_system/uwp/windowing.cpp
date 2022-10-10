@@ -580,7 +580,7 @@ CLASS_DECL_CORE int_bool show_window(oswindow oswindow, int iShowCmd)
 // void update_session_cursor(class user::interaction_impl * puiimpl)
 // {
 
-//    __pointer(::universal_windows::interaction_impl) pimpl = puiimpl;
+//    ::pointer<::universal_windows::interaction_impl>pimpl = puiimpl;
 
 //    if (pimpl.is_set())
 //    {

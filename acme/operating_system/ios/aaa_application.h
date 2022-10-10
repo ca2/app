@@ -67,8 +67,8 @@
 //      
 //      
 //      
-////      __pointer(::user::interaction) window_from_os_data(void * pdata);
-////      __pointer(::user::interaction) window_from_os_data_permanent(void * pdata);
+////      ::pointer<::user::interaction>window_from_os_data(void * pdata);
+////      ::pointer<::user::interaction>window_from_os_data_permanent(void * pdata);
 //      
 //      virtual ::thread * GetThread();
 //      virtual void set_thread(::thread * pthread);
@@ -81,7 +81,7 @@
 //      virtual itask_t get_thread_id();
 //      
 //      
-////      virtual __pointer(::user::printer) get_printer(const char * pszDeviceName);
+////      virtual ::pointer<::user::printer>get_printer(const char * pszDeviceName);
 //
 //       string draw2d_get_default_library_name();
 //      string multimedia_audio_mixer_get_default_library_name();

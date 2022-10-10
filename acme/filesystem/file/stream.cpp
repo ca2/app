@@ -1,4 +1,4 @@
-﻿
+
 #include "framework.h"
 #include <stdio.h>
 //#include "acme/xml/_.h"
@@ -42,7 +42,7 @@
 //}
 //
 //
-//__pointer(::element) binary_stream::read_element(const ::atom & atom)
+//::pointer<::element>binary_stream::read_element(const ::atom & atom)
 //{
 //
 //   string strId;
@@ -279,7 +279,7 @@
 ////void static_debug_load_object()
 ////{
 ////
-////   __pointer(::file::path_object) ppathobject;
+////   ::pointer<::file::path_object>ppathobject;
 ////
 ////   memory_stream stream;
 ////
@@ -944,7 +944,7 @@ bool binary_stream::is_version(index i)
 //}
 //
 //
-//__pointer(::matter) stream::create_object_from_text(string strText)
+//::pointer<::matter>stream::create_object_from_text(string strText)
 //{
 //
 //   if (strText.is_empty())

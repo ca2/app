@@ -46,7 +46,7 @@ namespace simpledb
 
       virtual bool initialize();
 
-      virtual __pointer(result) query(const ::string & pszSql);
+      virtual ::pointer<result>query(const ::string & pszSql);
       virtual ::payload query_item(const ::string & pszSql,::payload varDefault = false);
       virtual bool query_blob(memory_base & memory, const ::string & pszSql);
       virtual ::payload query_items(const ::string & pszSql);

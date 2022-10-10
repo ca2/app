@@ -58,7 +58,7 @@ namespace user
    void menu_list_impact::route_command(::message::command * pcommand, bool bRouteToKeyDescendant)
    {
 
-      __pointer(::user::interaction) puserinteractionNotify;
+      ::pointer<::user::interaction>puserinteractionNotify;
 
       if (::is_set(m_pchannelNotify)
             && m_pchannelNotify != this

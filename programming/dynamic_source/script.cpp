@@ -448,10 +448,10 @@ namespace dynamic_source
    }
 
 
-   __pointer(script_instance) ds_script::create_instance()
+   ::pointer<script_instance>ds_script::create_instance()
    {
 
-      __pointer(::aura::application) papp = get_app();
+      ::pointer<::aura::application>papp = get_app();
 
       synchronous_lock slCompiler(&papp->m_semCompiler);
 
@@ -459,7 +459,7 @@ namespace dynamic_source
 
       defer_build();
 
-      __pointer(script_instance) pinstance;
+      ::pointer<script_instance>pinstance;
 
       if(m_lpfnCreateInstance == nullptr)
       {

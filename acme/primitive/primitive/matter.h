@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 class CLASS_DECL_ACME matter :
@@ -222,7 +222,7 @@ public:
    // returns success when object is ready to have destroy called
    // returns error_pending if any child or ascendant is still active
    //virtual void finish(::property_object * pcontextobjectFinish = nullptr);
-   virtual void destroy_composites();
+   //virtual void destroy_composites();
 
 
    virtual void post_quit();
@@ -300,17 +300,17 @@ public:
    virtual void clear_member() { }
 
 
-   __pointer(::sequencer < ::conversation >) create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
+   pointer< ::sequencer < ::conversation > > create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
    
    
-   __pointer(::sequencer < ::conversation >) exception_message_box_sequencer(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
+   pointer< ::sequencer < ::conversation > > exception_message_box_sequencer(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
 
-   __pointer(::sequencer < ::conversation >) create_message_sequencer(const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
+   pointer< ::sequencer < ::conversation > > create_message_sequencer(const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
    
-   __pointer(::sequencer < ::conversation >) exception_message_sequencer(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
+   pointer< ::sequencer < ::conversation > > exception_message_sequencer(const ::exception & exception, const ::string & strMessage = nullptr, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
 
 
-   //__pointer(::sequencer < ::conversation >) message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
+   //pointer< ::sequencer < ::conversation > > message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
 
 
    inline ::topic_pointer create_topic(const ::atom & atom);

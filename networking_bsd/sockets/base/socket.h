@@ -47,23 +47,23 @@ namespace sockets_bsd
       };
 
 #ifdef BSD_STYLE_SOCKETS
-      __pointer(ssl_context)  m_psslcontext;
+      ::pointer<ssl_context> m_psslcontext;
 #endif
       string                  m_password; ///< ssl password
 
-      __pointer(::sockets::base_socket_handler)   m_psockethandler; /// |-xxx-Reference-xxx-> 2021-03-08pointer of base_socket_handler in control of this socket
+      ::pointer<::sockets::base_socket_handler>  m_psockethandler; /// |-xxx-Reference-xxx-> 2021-03-08pointer of base_socket_handler in control of this socket
       SOCKET                  m_socket; ///< File descriptor
 
       static ::mutex *        s_pmutex;
 
-      __pointer(::networking::address)    m_paddressRemote; ///< Remote end ::networking::address
-      __pointer(::networking::address)    m_paddressRemoteClient; ///< Address of last connect()
+      ::pointer<::networking::address>   m_paddressRemote; ///< Remote end ::networking::address
+      ::pointer<::networking::address>   m_paddressRemoteClient; ///< Address of last connect()
       file_pointer                        m_pfileTrafficMonitor;
 
       bool                    m_b_chunked;
 
 
-      __pointer(::memory_file)   m_pmemfileInput;
+      ::pointer<::memory_file>  m_pmemfileInput;
       bool                       m_bEnd; // should finish by not sending no more writes
       string                  m_strCat;
       string                  m_strCipherList;
@@ -110,8 +110,8 @@ namespace sockets_bsd
 
       bool                             m_bDetach; ///< base_socket ordered to detach flag
       bool                             m_bDetached; ///< base_socket has been detached
-      __pointer(::sockets_bsd::socket_thread)         m_psocketthread; ///< detach base_socket thread class pointer
-      __pointer(::sockets::base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler while detached
+      ::pointer<::sockets_bsd::socket_thread>        m_psocketthread; ///< detach base_socket thread class pointer
+      ::pointer<::sockets::base_socket_handler>  m_phandlerSlave; ///< Actual sockethandler while detached
 
 
       // LineProtocol
@@ -273,7 +273,7 @@ namespace sockets_bsd
       void SetClientRemoteAddress(::networking::address * address) override;
 
       /** get address/port of last connect() call. */
-      __pointer(::networking::address) GetClientRemoteAddress() override;
+      ::pointer<::networking::address>GetClientRemoteAddress() override;
 
 
       /** Outgoing traffic counter. */
@@ -406,9 +406,9 @@ namespace sockets_bsd
       /** Returns remote port number: ipv4 and ipv6. */
       ::networking::port_t GetRemotePort() override;
       /** Returns remote ip as string? ipv4 and ipv6. */
-      __pointer(::networking::address) GetRemoteAddress() override;
+      ::pointer<::networking::address>GetRemoteAddress() override;
       /** ipv4 and ipv6(not implemented) */
-      __pointer(::networking::address) GetRemoteHostname() override;
+      ::pointer<::networking::address>GetRemoteHostname() override;
       //@}
 
       /** Returns local port number for bound base_socket file descriptor. */
@@ -416,7 +416,7 @@ namespace sockets_bsd
       /** Returns local ipv4 address/port for bound base_socket file descriptor. */
       //ipaddr_t GetSockIP4();
       /** Returns local ipv4 address/port as text for bound base_socket file descriptor. */
-      __pointer(::networking::address) GetLocalAddress() override;
+      ::pointer<::networking::address>GetLocalAddress() override;
       /** Returns local ipv6 address/port for bound base_socket file descriptor. */
       //struct in6_addr GetSockIP6();
       /** Returns local ipv6 address/port as text for bound base_socket file descriptor. */
@@ -544,7 +544,7 @@ namespace sockets_bsd
       // TCP options in tcp_socket.h/tcp_socket.cpp
 
 
-      string get_string() const override;
+      string as_string() const override;
 
 
       virtual void attach(SOCKET s);

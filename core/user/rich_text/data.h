@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "span.h"
@@ -26,14 +26,14 @@ namespace user
          //::rectangle_f64                            m_rectangle;
          
          // storage data
-         __pointer_array(span)                        m_spana;
-         __pointer(__pointer_array(format))           m_pformata;
+         pointer_array < span >                        m_spana;
+         pointer< pointer_array < format > >           m_pformata;
 
-         __pointer(format)                            m_pformatCurrent;
+         ::pointer<format>                           m_pformatCurrent;
 
          /// runtime span, ephemeral, derived
          /// should be easily rebuildable from "storage" data and a client rectangle_i32
-         __pointer(__pointer_array(line))             m_plinea;
+         pointer< pointer_array < line > >             m_plinea;
 
          strsize                                      m_iSelBeg;
          strsize                                      m_iSelEnd;
@@ -51,19 +51,19 @@ namespace user
          void initialize_data(::data::data_container_base * pdocument) override;
 
 
-         virtual void __initialize(__pointer(::user::rich_text::format) & pformat);
+         virtual void __initialize(::pointer<::user::rich_text::format>& pformat);
 
 
          virtual ::rectangle_f64 get_drawing_rect();
 
          // if span has alignment set, it generates memory_new line
-         __pointer(span) create_span(::e_align ealignNewLine = e_align_none);
+         ::pointer<span>create_span(::e_align ealignNewLine = e_align_none);
 
-         __pointer(format) add_format();
+         ::pointer<format>add_format();
 
-         __pointer(span) add_span(::e_align ealignNewLine = e_align_none);
+         ::pointer<span>add_span(::e_align ealignNewLine = e_align_none);
 
-         __pointer(span) add_span(const span & span);
+         ::pointer<span>add_span(const span & span);
 
          //index fork_format(index iFormat);
 

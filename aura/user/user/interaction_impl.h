@@ -102,11 +102,11 @@ namespace user
       ::u32                                     m_uCodePage;
       int                                       m_iLangId;
       ::duration                                    m_durationLastExposureAddUp;
-      __reference(prodevian)                    m_pprodevian;
-      __reference(::user::thread)               m_puserthread;
-      __pointer_array(::matter)                 m_matteraProdevian;
+      ::pointer<prodevian>                   m_pprodevian;
+      ::pointer<::user::thread>              m_puserthread;
+      pointer_array < ::matter >                 m_matteraProdevian;
       string                                    m_strBitmapSource;
-      __pointer(::windowing::windowing)         m_pwindowing;
+      ::pointer<::windowing::windowing>        m_pwindowing;
       double                                    m_dProdevianFps;
       double                                    m_dNominalFps;
       double                                    m_dOutputFps;
@@ -117,23 +117,23 @@ namespace user
       ::rectangle_i32                           m_rectangleUpdateBuffer;
       ::thread_pointer                          m_pthreadMouseLeave;
 
-      ::list < __pointer(::message::message) >  m_messagelist;
+      ::list < ::pointer<::message::message >> m_messagelist;
 
       ::point_i32                               m_pointInside;
       //::user::primitive *                       m_pprimitiveFocus;
-      __pointer(::user::element)                m_pelementSoftwareKeyboard;
+      ::pointer<::user::element>               m_pelementSoftwareKeyboard;
 
-      __pointer(::windowing::window)            m_pwindow;
+      ::pointer<::windowing::window>           m_pwindow;
 
       point_i32                                 m_point;
       size_i32                                  m_size;
 
       //native_window *                         m_pwindow;
 
-      __composite(::graphics::graphics)         m_pgraphics;
+      ::pointer<::graphics::graphics>        m_pgraphics;
 
-      __pointer(::mutex)                        m_pmutexDraw;
-      __pointer(::mutex)                        m_pmutexRedraw;
+      ::pointer<::mutex>                       m_pmutexDraw;
+      ::pointer<::mutex>                       m_pmutexRedraw;
 
       ::user::interaction_ptra                  m_userinteractionaMouseHover;
 
@@ -142,12 +142,12 @@ namespace user
       lparam                                    m_lparam;
       lparam                                    m_lparamLastMouseMove;
 
-      __pointer(::user::interaction)            m_puserinteractionMouseCapture;
-      __pointer(::user::interaction)            m_puserinteractionKeyboardFocus;
-      __pointer(::user::interaction)            m_puserinteractionKeyboardFocusRequest;
+      ::pointer<::user::interaction>           m_puserinteractionMouseCapture;
+      ::pointer<::user::interaction>           m_puserinteractionKeyboardFocus;
+      ::pointer<::user::interaction>           m_puserinteractionKeyboardFocusRequest;
       /// message handling helper besides (possibly duplicate of) m_puserinteractionKeyboardFocusRequest
-      __pointer(::user::interaction)            m_puserinteractionKeyboardGainingFocusIfAny;
-      __pointer(::user::interaction)            m_puserinteractionToKillKeyboardFocus;
+      ::pointer<::user::interaction>           m_puserinteractionKeyboardGainingFocusIfAny;
+      ::pointer<::user::interaction>           m_puserinteractionToKillKeyboardFocus;
 
       ::duration                                m_durationLastRedraw;
       ::user::interaction_array                 m_userinteractionaHideOnConfigurationChange;
@@ -260,7 +260,7 @@ namespace user
 
 
       virtual void set_icon(::windowing::icon* picon);
-      virtual __pointer(::windowing::icon) get_icon() const;
+      virtual ::pointer<::windowing::icon>get_icon() const;
 
 
       void mouse_hover_add(::user::interaction * pinterface) override;
@@ -346,7 +346,7 @@ namespace user
 
 
       // advanced creation (allows access to extended styles)
-      //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, atom atom) override;
+      //virtual bool create_window_ex(::user::interaction * pinteraction, ::pointer<::user::system>pcs, ::user::primitive * puiParent, atom atom) override;
 
       //virtual bool create_interaction() override;
 
@@ -354,9 +354,9 @@ namespace user
       //virtual bool _native_create_window(::user::interaction * pinteraction, ::windowing::window * pwindow);
 
       
-      //virtual bool _native_create_window_ex(__pointer(::user::system) pusersystem);
+      //virtual bool _native_create_window_ex(::pointer<::user::system>pusersystem);
 
-      //virtual bool _native_create_window_ex(__pointer(::user::system) pusersystem);
+      //virtual bool _native_create_window_ex(::pointer<::user::system>pusersystem);
 
       //virtual bool create_host();
 
@@ -462,7 +462,7 @@ namespace user
       //virtual bool _is_window_visible() override;
       void ShowOwnedPopups(bool bShow = true) override;
 
-      //virtual __pointer(::draw2d::graphics) GetDCEx(::draw2d::region* prgnClip,u32 flags);
+      //virtual ::pointer<::draw2d::graphics>GetDCEx(::draw2d::region* prgnClip,u32 flags);
       virtual void LockWindowUpdate();
       virtual void UnlockWindowUpdate();
 

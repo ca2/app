@@ -11,8 +11,8 @@ namespace file
    public:
 
 
-      __pointer(::file::path_array)      m_ppathaSearch;
-      __pointer(bool_array)         m_pbaRecursive;
+      ::pointer<::file::path_array>     m_ppathaSearch;
+      ::pointer<bool_array>        m_pbaRecursive;
       string_array                  m_straFilter;
       ::file::listing               m_listing;
       ::file::listing               m_listingAddUp;
@@ -50,7 +50,7 @@ namespace file
    };
 
 
-   typedef ___pointer < set > set_pointer;
+   typedef ::pointer<set>set_pointer;
 
 
 } // namespace file

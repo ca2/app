@@ -141,9 +141,9 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLi
 //
 //   {
 //
-//      __pointer(class aura_aura) paura;
+//      ::pointer<class aura_aura> paura;
 //
-//      __pointer(class aura_main_data) pmaindata;
+//      ::pointer<class aura_main_data> pmaindata;
 //
 //      {
 //

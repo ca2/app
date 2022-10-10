@@ -27,7 +27,7 @@ void debug_object_event_promisse_predicate()
    //o += { ok, id_text, [&](auto & result) { output_debug_string("o += ok, id_text ..."); return ::success; } };
 
 
-   //__pointer(::object) pobject;
+   //::pointer<::object>pobject;
 
    //__keep(pobject, nullptr);
    ////   // 4 arguments

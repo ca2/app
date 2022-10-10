@@ -85,13 +85,13 @@ namespace networking_bsd
 CLASS_DECL_NETWORKING_BSD ::i32 networking_last_error();
 
 
-inline void __exchange(::stream & s, ::networking::address & address);
+//inline void __exchange(::binary_stream & s, ::networking::address & address);
 
 
-CLASS_DECL_NETWORKING_BSD u32 c_inet_addr(const char * src);
-CLASS_DECL_NETWORKING_BSD i32 c_inet_pton(i32 af, const char * src, void * dst);
-CLASS_DECL_NETWORKING_BSD const char * c_inet_ntop(i32 af, const void * src, char * dst, i32 cnt);
-CLASS_DECL_NETWORKING_BSD string c_inet_ntop(i32 af, const void * src);
+//CLASS_DECL_NETWORKING_BSD u32 c_inet_addr(const char * src);
+//CLASS_DECL_NETWORKING_BSD i32 c_inet_pton(i32 af, const char * src, void * dst);
+//CLASS_DECL_NETWORKING_BSD const char * c_inet_ntop(i32 af, const void * src, char * dst, i32 cnt);
+//CLASS_DECL_NETWORKING_BSD string c_inet_ntop(i32 af, const void * src);
 
 
 
@@ -107,7 +107,7 @@ namespace net
 
    class email;
    class port_forward;
-   typedef ___pointer < port_forward > port_forward_pointer;
+   typedef ::pointer<port_forward>port_forward_pointer;
 
 
 

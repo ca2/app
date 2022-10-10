@@ -46,7 +46,7 @@ namespace app_net
    void application::on_request(::create * pcreate)
    {
 
-      __compose_new(m_pwindow);
+      __construct_new(m_pwindow);
 
       m_pwindow->create_main_window();
 

@@ -46,7 +46,7 @@ namespace sandbox_windowing
    ::windowing::window* windowing::new_window(::user::interaction_impl* pimpl)
    {
 
-      __pointer(::sandbox_windowing::window) pwindow;
+      ::pointer<::sandbox_windowing::window>pwindow;
 
       if (::is_null(m_psystem->m_paurasystem->m_pwindowMain->m_puserinteractionimpl))
       {
@@ -323,7 +323,7 @@ namespace sandbox_windowing
    //}
 
 
-   __pointer(::windowing::cursor) windowing::load_default_cursor(enum_cursor ecursor)
+   ::pointer<::windowing::cursor>windowing::load_default_cursor(enum_cursor ecursor)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -595,7 +595,7 @@ namespace sandbox_windowing
    }
 
 
-   __pointer(::windowing::cursor) windowing::get_cursor(enum_cursor ecursor)
+   ::pointer<::windowing::cursor>windowing::get_cursor(enum_cursor ecursor)
    {
 
       return nullptr;

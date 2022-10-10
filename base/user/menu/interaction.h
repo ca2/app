@@ -14,7 +14,7 @@ namespace user
    public:
 
 
-      __pointer(menu_item)        m_pmenuitem;
+      ::pointer<menu_item>       m_pmenuitem;
 
 
       menu_interaction();

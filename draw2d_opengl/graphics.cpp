@@ -1600,7 +1600,7 @@ namespace draw2d_opengl
          if (pgraphicsSrc->get_current_bitmap()->get_os_data() == nullptr)
             return false;
 
-         __pointer(bitmap) pbitmap = pgraphicsSrc->get_current_bitmap();
+         ::pointer<bitmap>pbitmap = pgraphicsSrc->get_current_bitmap();
 
          //pbitmap->create_texture(0);
 
@@ -1844,7 +1844,7 @@ namespace draw2d_opengl
 
       }
 
-      __pointer(font) pfont = m_pfont;
+      ::pointer<font>pfont = m_pfont;
 
       TEXTMETRIC tm;
 
@@ -4653,7 +4653,7 @@ namespace draw2d_opengl
 
       set(m_pfont);
 
-      __pointer(font) pfont = m_pfont;
+      ::pointer<font>pfont = m_pfont;
 
       SIZE_I32 s = { 0 };
 
@@ -4725,7 +4725,7 @@ namespace draw2d_opengl
 
       set(m_pfont);
 
-      __pointer(font) pfont = m_pfont;
+      ::pointer<font>pfont = m_pfont;
 
       ::size_i32 s;
 
@@ -4810,7 +4810,7 @@ namespace draw2d_opengl
 
       set(m_pfont);
 
-      __pointer(font) pfont = m_pfont;
+      ::pointer<font>pfont = m_pfont;
 
       ::size_i32 s;
 
@@ -4835,7 +4835,7 @@ namespace draw2d_opengl
 
       set(m_pfont);
 
-      __pointer(font) pfont = m_pfont;
+      ::pointer<font>pfont = m_pfont;
 
       ::size_i32 s;
 
@@ -4960,7 +4960,7 @@ namespace draw2d_opengl
 
       set(m_pfont);
 
-      __pointer(font) pfont = m_pfont;
+      ::pointer<font>pfont = m_pfont;
 
       int length = 0;
 

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace user
@@ -19,7 +19,7 @@ namespace user
 
 
          class data *            m_pdata;
-         __pointer(class format)        m_pformat;
+         ::pointer<class format>        m_pformat;
 
 
          ::e_align           m_ealignNewLine;
@@ -60,13 +60,13 @@ namespace user
 
          ::e_align get_align() const;
 
-         __pointer(class format) fork_format();
+         ::pointer<class format> fork_format();
 
-         inline __pointer(class format) format() { return m_pformat; }
+         inline ::pointer<class format> format() { return m_pformat; }
 
-         __pointer(class span) fork();
+         ::pointer<class span> fork();
 
-         __pointer(class span) fork(const class format * pformat, const e_attribute & eattribute);
+         ::pointer<class span> fork(const class format * pformat, const e_attribute & eattribute);
 
          void write(::binary_stream & stream) const override;
          void read(::binary_stream & stream) override;

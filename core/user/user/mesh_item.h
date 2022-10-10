@@ -28,18 +28,18 @@ namespace user
    public:
 
 
-      __pointer(mesh_item)          m_pitem;
+      ::pointer<mesh_item>         m_pitem;
 
 
       draw_mesh_subitem *           m_pdrawmeshsubitem;
       list_subitem *                m_plistsubitem;
       draw_list_subitem *           m_pdrawlistsubitem;
 
-      __pointer(mesh_item)          m_pmeshitem;
+      ::pointer<mesh_item>         m_pmeshitem;
       ::index                       m_iSubItem;
       ::index                       m_iOrder;
       ::index                       m_iImage;
-      __pointer(list_column)        m_pcolumn;
+      ::pointer<list_column>       m_pcolumn;
 
 
       bool                          m_bOk;
@@ -90,7 +90,7 @@ namespace user
       void initialize_draw_mesh_subitem(mesh_item * pmeshitem);
 
 
-      __pointer(::image_list) get_image_list();
+      ::pointer<::image_list>get_image_list();
       bool draw_image();
       void update_color();
       // void draw_group_image();
@@ -118,7 +118,7 @@ namespace user
       index                                     m_iItem;
       index                                     m_iDisplayItem;
       //index                                     m_iSubItem;
-      ::index_map < __pointer(mesh_subitem) >   m_mapSubItem;
+      ::index_map < ::pointer<mesh_subitem >>  m_mapSubItem;
 //      index                                   m_iListItem;
       i32                                       m_iState;
       bool                                      m_bOk;
@@ -207,7 +207,7 @@ namespace user
       index                                     m_iItem;
       //index                                     m_iDisplayItem;
       //index                                     m_iSubItem;
-      //::index_map < __pointer(mesh_subitem) >   m_mapSubitem;
+      //::index_map < ::pointer<mesh_subitem >>  m_mapSubitem;
       //      index                                   m_iListItem;
       ::index                                   m_iImage;
       i32                                       m_iState;
@@ -276,7 +276,7 @@ namespace user
       void initialize_draw_mesh_group(mesh * pmesh);
 
 
-      //__pointer(::image_list) get_image_list();
+      //::pointer<::image_list>get_image_list();
       //bool draw_image();
       void draw_group_image();
       void update_group_color();

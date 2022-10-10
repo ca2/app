@@ -5,7 +5,7 @@
 //{
 //public:
 //
-//   __pointer(::user::primitive)     m_puserprimitive;
+//   ::pointer<::user::primitive>    m_puserprimitive;
 //   string                           m_strMessage;
 //   string                           m_strTitle;
 //   const ::e_message_box &                    m_emessagebox;

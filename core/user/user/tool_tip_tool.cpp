@@ -41,7 +41,7 @@ namespace user
       m_pbasetooltiphdl = phandler;
    }
 
-   __pointer(::user::interaction) tool_tip_tool::BaseToolTipGetWnd()
+   ::pointer<::user::interaction>tool_tip_tool::BaseToolTipGetWnd()
    {
       return (this);
    }

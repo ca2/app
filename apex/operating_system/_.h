@@ -82,7 +82,7 @@ inline bool predicate_Sleep(int iTime, PRED pred);
 
 //
 //
-////__pointer(pcre_context) pcre_context::create_context(int iSizeData)
+////::pointer<pcre_context>pcre_context::create_context(int iSizeData)
 ////{
 ////
 ////   return __new(pcre_context_impl( iSizeData));
@@ -90,10 +90,10 @@ inline bool predicate_Sleep(int iTime, PRED pred);
 ////}
 //////
 ////
-////__pointer(regex) pcre_regex::compile(::object* pobject, const string& str)
+////::pointer<regex>pcre_regex::compile(::object* pobject, const string& str)
 ////{
 ////
-////   __pointer(pcre_context_impl) pcreContextImpl = pcre_context::create_context(pobject, 0);
+////   ::pointer<pcre_context_impl>pcreContextImpl = pcre_context::create_context(pobject, 0);
 ////
 ////   auto putil = __new(pcre_util_impl(pcreContextImpl));
 ////
@@ -104,10 +104,10 @@ inline bool predicate_Sleep(int iTime, PRED pred);
 ////}
 ////
 ////
-////__pointer(pcre_code) pcre_code::compile(pcre_context* m_pcreContext, const string& str)
+////::pointer<pcre_code>pcre_code::compile(pcre_context* m_pcreContext, const string& str)
 ////{
 ////
-////   __pointer(pcre_context_impl) pimpl = m_pcreContext;
+////   ::pointer<pcre_context_impl>pimpl = m_pcreContext;
 ////
 ////   auto pcode = __new(pcre_code_impl(pimpl));
 ////
@@ -122,14 +122,14 @@ inline bool predicate_Sleep(int iTime, PRED pred);
 ////{
 ////
 ////
-////   __pointer(regex) system::compile_pcre(const string& str)
+////   ::pointer<regex>system::compile_pcre(const string& str)
 ////   {
 ////
 ////      return pcre_regex::compile(this, str);
 ////
 ////   }
 ////
-////   __pointer(regex_context) system::create_pcre_context(int iCount)
+////   ::pointer<regex_context>system::create_pcre_context(int iCount)
 ////   {
 ////
 ////      return pcre_context::create_context(this, iCount);

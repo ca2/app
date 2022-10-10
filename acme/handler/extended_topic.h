@@ -26,8 +26,8 @@ public:
    bool                                   m_bModified;
    ::duration                             m_durationSleep;
 
-   __pointer(::property_object)           m_pobjectTopic;
-   __pointer(::file::item)                m_pfileitem;
+   ::pointer<::property_object>          m_pobjectTopic;
+   ::pointer<::file::item>               m_pfileitem;
 
 
    extended_topic(const ::atom & atom);

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/graphics/image/context_image.h"
 #include "group_image_list.h"
 #include "base/user/menu/button.h"
@@ -90,7 +90,7 @@ namespace userex
    ::userex::image_list_impact * group_image_list_impact::add_group(::atom idGroup, string strIcon, string strTitle, ::file::path pathFolder)
    {
 
-      __pointer(group) pgroup = __new(group);
+      ::pointer<group>pgroup = __new(group);
 
       pgroup->m_iIndex = m_groupa.get_size();
 
@@ -125,7 +125,7 @@ namespace userex
    void group_image_list_impact::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       auto pcontext = m_pcontext->m_pauracontext;
 
@@ -217,7 +217,7 @@ namespace userex
    ::userex::image_list_impact * group_image_list_impact::get_group_list(::atom idGroup)
    {
 
-      __pointer(group) pgroup = get_group(idGroup);
+      ::pointer<group>pgroup = get_group(idGroup);
 
       if (pgroup.is_null())
       {
@@ -300,7 +300,7 @@ namespace userex
    bool group_image_list_impact::show_group(::atom idGroup, ::file::path pathFolder)
    {
 
-      __pointer(group) pgroup = get_group(idGroup);
+      ::pointer<group>pgroup = get_group(idGroup);
 
       if (pgroup.is_null())
       {
@@ -435,7 +435,7 @@ namespace userex
       for (auto & item : *m_pmenu->m_pmenuitem->m_pmenuitema)
       {
 
-         __pointer(::user::menu_button) pbutton = item->m_puserinteraction;
+         ::pointer<::user::menu_button>pbutton = item->m_puserinteraction;
 
          ::image_pointer pimage;
          

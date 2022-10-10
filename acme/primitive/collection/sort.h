@@ -970,7 +970,7 @@ namespace sort
 
    template < typename TYPE >
    void BubbleSortByPtrAtGetSize(
-   __pointer_array(TYPE) & a,
+   pointer_array < TYPE > & a,
    bool bAsc = true);
 
    template < class TYPE,class ARG_TYPE = const TYPE &,class DEFCONSTRUCTOR >
@@ -1093,7 +1093,7 @@ namespace sort
 
    template < typename TYPE >
    void BubbleSortByPtrAtGetSize(
-   __pointer_array(TYPE) & a,
+   pointer_array < TYPE > & a,
    bool bAsc)
    {
       TYPE t;

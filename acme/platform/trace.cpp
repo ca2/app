@@ -1,11 +1,11 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "trace.h"
 #include "acme/operating_system.h"
 #include <stdio.h>
 //#include "acme/_defer.h"
 
 
-thread_local __pointer(logger) t_plogger;
+thread_local ::pointer<logger>t_plogger;
 
 
 void logger::t_construct(::acme::system * psystem)

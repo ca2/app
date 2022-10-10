@@ -33,7 +33,7 @@ namespace file
    };
 
 
-   using path_pointer = __pointer(path_object);
+   using path_pointer = ::pointer<path_object>;
 
 
 } // namespace file

@@ -273,7 +273,7 @@ namespace draw2d
 
 
 
-      __pointer(::draw2d::path_optimization) create_path_simple_optimization(::draw2d::path * ppath)
+      ::pointer<::draw2d::path_optimization>create_path_simple_optimization(::draw2d::path * ppath)
       {
 
          return __new(path_simple_optimization(ppath));

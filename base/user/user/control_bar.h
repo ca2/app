@@ -77,7 +77,7 @@ namespace user
 
       u32                                       m_dwStyle;
       u32                                       m_dwDockStyle;
-      __pointer(::user::frame_window)     m_pframewindowDockSite;
+      ::pointer<::user::frame_window>    m_pframewindowDockSite;
       BaseDockBar*                              m_pDockBar;
       BaseDockContext *                         m_pDockContext; // used during dragging
       u32                                       m_dwCtrlStyle;
@@ -103,7 +103,7 @@ namespace user
       void SetBorders(i32 cxLeft = 0, i32 cyTop = 0, i32 cxRight = 0, i32 cyBottom = 0);
       ::rectangle_i32 GetBorders();
 
-      __pointer(::user::frame_window) GetDockingFrame();
+      ::pointer<::user::frame_window>GetDockingFrame();
       bool IsFloating();
       virtual ::size_i32 CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz);
       virtual ::size_i32 CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, ::i32 nLength, u32 nMode);
@@ -147,7 +147,7 @@ namespace user
       void EraseNonClient(::draw2d::graphics_pointer & pgraphics);
 
       void GetBarInfo(BaseControlBarInfo* pInfo);
-      void SetBarInfo(BaseControlBarInfo* pInfo, __pointer(::user::frame_window) pFrameWnd);
+      void SetBarInfo(BaseControlBarInfo* pInfo, ::pointer<::user::frame_window>pFrameWnd);
 
       void _001OnTimer(::timer * ptimer) override;
       DECLARE_MESSAGE_HANDLER(on_message_create);

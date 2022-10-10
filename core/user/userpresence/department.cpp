@@ -9,7 +9,7 @@
 void debug_pointer_defer_new()
 {
 
-//   __pointer(::user::interaction) p;
+//   ::pointer<::user::interaction>p;
 //
 //   p.create_new(this);
 

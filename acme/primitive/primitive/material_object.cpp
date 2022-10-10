@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 material_object::~material_object()
@@ -7,7 +7,7 @@ material_object::~material_object()
 }
 
 
-//__pointer(task) material_object::branch(
+//::pointer<task>material_object::branch(
 //   ::matter* pmatter,
 //   ::enum_priority epriority,
 //   u32 nStackSize,

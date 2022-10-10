@@ -17,8 +17,8 @@ namespace simpledb
 
 
       storage *                                 m_pstorage;
-      __pointer(sockets::socket_handler)        m_phandler;
-      __pointer(sockets::http_session)          m_phttpsession;
+      ::pointer<sockets::socket_handler>       m_phandler;
+      ::pointer<sockets::http_session>         m_phttpsession;
 
       pointer_array < queue_item >              m_itema;
 

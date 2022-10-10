@@ -1,4 +1,4 @@
-// Created by camilo on 2021-10-05 12:16 BRT <3ThomasBorregaardSørensen!![ THE ONE GOD ]
+﻿// Created by camilo on 2021-10-05 12:16 BRT <3ThomasBorregaardSørensen!![ THE ONE GOD ]
 #pragma once
 
 
@@ -152,6 +152,12 @@ public:
 //      return str;
 //
 //   }
+
+   //__DURATION_SETUP__(integral_duration, m_i);
+
+   //DECLARE_COMPARISON_WITH_DURATION
+   INLINE_COMPARISON_WITH_DURATION
+
 
 };
 

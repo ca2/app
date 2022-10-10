@@ -11,8 +11,8 @@ namespace operating_system
    public:
 
 
-      __pointer(pipe)    m_ppipeIn;
-      __pointer(pipe)    m_ppipeOut;
+      ::pointer<pipe>    m_ppipeIn;
+      ::pointer<pipe>    m_ppipeOut;
 
 
       bidirectional_pipe();

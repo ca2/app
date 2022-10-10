@@ -9,13 +9,13 @@ class CLASS_DECL_APEX networking_application :
 protected:
 
    
-   string_map < __pointer(::networking_application_handler) >   m_maphandler;
+   string_map < ::pointer<::networking_application_handler >>  m_maphandler;
 
 
 public:
 
 
-   __composite(::netserver::socket_thread_base)                 m_psocketthread;
+   ::pointer<::netserver::socket_thread_base>                m_psocketthread;
 
 
    networking_application();

@@ -100,16 +100,16 @@ namespace ftp
 
       memory                     m_vBuffer;                  ///< buffer for sending and receiving
       string_list                m_qResponseBuffer;          ///< buffer for server-responses
-      __pointer(representation)         m_apCurrentRepresentation;  ///< representation currently set
+      ::pointer<representation>        m_apCurrentRepresentation;  ///< representation currently set
 
       //this class is now a tcp_socket and it is this control connection socket
-      //__pointer(::sockets::blocking_socket)         m_apSckControlConnection;   ///< socket for connection to FTP server
-      __pointer(ifile_list_parser)      m_apFileListParser;         ///< object which is used for parsing the result of the LIST command
+      //::pointer<::sockets::blocking_socket>        m_apSckControlConnection;   ///< socket for connection to FTP server
+      ::pointer<ifile_list_parser>     m_apFileListParser;         ///< object which is used for parsing the result of the LIST command
       bool                       m_fTransferInProgress;      ///< if true, a file transfer is in progress
       bool                       m_fAbortTransfer;           ///< indicates that a running filetransfer should be canceled
       bool                       m_fResumeIfPossible;        ///< try to resume download/upload if possible
       observer_array             m_setObserver;              ///< list of observers, which are notified about particular actions
-      __pointer(logon)           m_plogon;            ///< logon-info, which was used at the last call of login
+      ::pointer<logon>          m_plogon;            ///< logon-info, which was used at the last call of login
 
       enum_state                    m_estate;
 
@@ -125,7 +125,7 @@ namespace ftp
 
       void AttachObserver(notification* pObserver);
       void DetachObserver(notification* pObserver);
-      void SetFileListParser(__pointer(ifile_list_parser) apFileListParser);
+      void SetFileListParser(::pointer<ifile_list_parser>apFileListParser);
 
       bool _is_connected();
       bool IsTransferringData();

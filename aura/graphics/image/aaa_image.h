@@ -379,7 +379,7 @@
 ////
 ////
 ////
-////   virtual __pointer(::object) clone() const = 0;
+////   virtual ::pointer<::object>clone() const = 0;
 ////
 ////
 ////

@@ -14,7 +14,7 @@ namespace apex
       string   m_strApp;
       string   m_strPlatform;
 
-      __pointer(::launcher) m_plauncher;
+      ::pointer<::launcher>m_plauncher;
 
 
 

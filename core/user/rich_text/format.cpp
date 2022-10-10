@@ -33,7 +33,7 @@ namespace user
       }
 
 
-      //format::format(__pointer_array(format)* pcontainer)
+      //format::format(pointer_array < format >* pcontainer)
       //{
 
 
@@ -74,7 +74,7 @@ namespace user
       }
 
 
-      void format::initialize_user_rich_text_format(__pointer_array(format)* pcontainer)
+      void format::initialize_user_rich_text_format(pointer_array < format >* pcontainer)
       {
 
          m_pcontainer = pcontainer;

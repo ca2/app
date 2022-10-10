@@ -18,7 +18,7 @@ namespace fs
    }
 
 
-   string_map < __pointer(::fs::data) > & set::fsmap()
+   string_map < ::pointer<::fs::data >>& set::fsmap()
    {
 
       return m_fsdatamap;
@@ -26,7 +26,7 @@ namespace fs
    }
 
 
-   __pointer_array(::fs::data) & set::fsa()
+   pointer_array < ::fs::data > & set::fsa()
    {
 
       return m_spafsdata;
@@ -103,7 +103,7 @@ namespace fs
    }
 
 
-   __pointer(data) set::path_data(const ::file::path & psz)
+   ::pointer<data>set::path_data(const ::file::path & psz)
    {
 
       single_lock synchronouslock(mutex(), true);
@@ -114,7 +114,7 @@ namespace fs
 
       {
 
-         __pointer(::fs::data) pdata;
+         ::pointer<::fs::data>pdata;
 
          for(;p;p++)
          {
@@ -141,7 +141,7 @@ namespace fs
 
       {
 
-         __pointer(::fs::data) pdata;
+         ::pointer<::fs::data>pdata;
 
          for (; p; p++)
          {
@@ -171,10 +171,10 @@ namespace fs
    }
 
 
-   __pointer(data) set::node_path_data(const  ::file::path & psz)
+   ::pointer<data>set::node_path_data(const  ::file::path & psz)
    {
 
-      __pointer(data) pdata = path_data(psz);
+      ::pointer<data>pdata = path_data(psz);
 
       if(pdata == nullptr)
          return this;

@@ -55,7 +55,7 @@ namespace apex
    void log::initialize_log(enum_trace_level etracelevelMin, const ::atom & atom)
    {
 
-      /*auto estatus = */ __compose_new(m_ptrace);
+      /*auto estatus = */ __construct_new(m_ptrace);
 
       //if (!estatus)
       //{
@@ -230,7 +230,7 @@ namespace apex
    }
 
 
-//   extern __pointer(::apex::application) g_papp;
+//   extern ::pointer<::apex::application>g_papp;
 
    CLASS_DECL_APEX i32 SimpleDebugReport(i32 iReportType, const char * pszFileName,i32 iLine,const char *,const char * pszFormat, va_list list)
    {

@@ -66,7 +66,7 @@ namespace filemanager
                || pimpactdata->m_atom == "new_folder")
       {
 
-         __pointer(::create) pcreate(e_create, this);
+         ::pointer<::create>pcreate(e_create, this);
 
          pcreate->m_bMakeVisible = false;
 
@@ -80,7 +80,7 @@ namespace filemanager
 
          puser->m_pdocumenttemplateForm->do_request(pcreate);
 
-         __pointer(::user::document) pdocument = ::user::__document(pcreate);
+         ::pointer<::user::document>pdocument = ::user::__document(pcreate);
 
          if (pdocument == nullptr)
          {
@@ -128,7 +128,7 @@ namespace filemanager
       else if(pimpactdata->m_atom == "filemanager::operation")
       {
 
-         __pointer(::create) pcreate(e_create, this);
+         ::pointer<::create>pcreate(e_create, this);
 
          pcreate->m_bMakeVisible = false;
 
@@ -142,7 +142,7 @@ namespace filemanager
 
          puser->m_pdocumenttemplateOperation->do_request(pcreate);
 
-         __pointer(operation_document) pdocument = ::user::__document(pcreate);
+         ::pointer<operation_document>pdocument = ::user::__document(pcreate);
 
          if (pdocument == nullptr)
          {
@@ -171,7 +171,7 @@ namespace filemanager
 
          pfilemanagerdata->m_bTransparentBackground = true;
 
-         __pointer(::create) pcreate(e_create, this);
+         ::pointer<::create>pcreate(e_create, this);
 
          pcreate->m_bMakeVisible = true;
 
@@ -200,10 +200,10 @@ namespace filemanager
 
          //puser->filemanager()->m_pdocumenttemplateChild->do_request(pcreate);
 
-         //__pointer(document) pdocument = ::user::__document(pcreate);
+         //::pointer<document>pdocument = ::user::__document(pcreate);
 
-         //__pointer(simple_frame_window) puserinteractionTopLevel;
-         __pointer(document) pdocument = get_document();
+         //::pointer<simple_frame_window>puserinteractionTopLevel;
+         ::pointer<document>pdocument = get_document();
 
          create_impact < impact >(pimpactdata);
 
@@ -218,7 +218,7 @@ namespace filemanager
 
             //          pdocument->filemanager_data()->m_iDocument = puser->filemanager()->m_iNextDocument++;
 
-            __pointer(::user::impact) pimpact = pdocument->get_impact(0);
+            ::pointer<::user::impact>pimpact = pdocument->get_impact(0);
 
             auto pframe = (pimpact->parent_frame());
 
@@ -275,7 +275,7 @@ namespace filemanager
    }
 
 
-   __pointer(document) tab_impact::get_document()
+   ::pointer<document>tab_impact::get_document()
    {
 
       return ::user::impact::get_document();
@@ -319,7 +319,7 @@ namespace filemanager
             //
             //               str.format("(%d,%d)",filemanager_document().filemanager_data()->m_iTemplate,filemanager_document().filemanager_data()->m_iDocument);
             //
-            //               __pointer(::database::client) pclient = get_parent_frame();
+            //               ::pointer<::database::client>pclient = get_parent_frame();
             //
             //               if (pclient.is_set())
             //               {

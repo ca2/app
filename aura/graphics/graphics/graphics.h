@@ -13,8 +13,8 @@ namespace graphics
    public:
 
 
-      __pointer(::user::interaction_impl)          m_pimpl;
-      __pointer(::windowing::window)               m_pwindow;
+      ::pointer<::user::interaction_impl>         m_pimpl;
+      ::pointer<::windowing::window>              m_pwindow;
       bool                                         m_bNewBuffer;
 
       union

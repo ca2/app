@@ -132,7 +132,7 @@ namespace windowing
    }
 
 
-   __pointer(cursor) cursor_manager::get_cursor(enum_cursor ecursor)
+   ::pointer<cursor>cursor_manager::get_cursor(enum_cursor ecursor)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -157,7 +157,7 @@ namespace windowing
    }
 
 
-   __pointer(cursor) cursor_manager::set_cursor_file(enum_cursor ecursor, const ::file::path & pathParam, bool bFromCache)
+   ::pointer<cursor>cursor_manager::set_cursor_file(enum_cursor ecursor, const ::file::path & pathParam, bool bFromCache)
    {
 
       cursor * pcursor = nullptr;
@@ -605,7 +605,7 @@ namespace windowing
    }
 
 
-   __pointer(cursor) cursor_manager::set_system_default_cursor(enum_cursor ecursor)
+   ::pointer<cursor>cursor_manager::set_system_default_cursor(enum_cursor ecursor)
    {
 
       synchronous_lock synchronouslock(mutex());

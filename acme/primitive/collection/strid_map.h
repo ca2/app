@@ -89,5 +89,5 @@ public:
 
 
 
-#define stridsp(ca) strid_map < __pointer(ca) >
+#define stridsp(ca) strid_map < ::pointer<ca >>
 

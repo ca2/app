@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #if defined(LINUX) || defined(FREEBSD)
@@ -205,6 +205,10 @@ namespace networking_bsd
       void sync_os_address() override;
       void sync_os_service() override;
 
+      void write(::binary_stream & stream) const override;
+      void read(::binary_stream & stream) override;
+
+
    };
 
 
@@ -315,6 +319,6 @@ namespace networking_bsd
 
 
 
-inline void __exchange(::stream& s, ::networking::address& address);
+//inline void __exchange(::stream& s, ::networking::address& address);
 
 

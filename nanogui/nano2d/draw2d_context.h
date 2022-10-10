@@ -19,7 +19,7 @@ namespace nano2d
 
       
       ::draw2d::graphics_pointer       m_pgraphics;
-      __pointer(::nano2d::font_sink)   m_pfontsink;
+      ::pointer<::nano2d::font_sink>  m_pfontsink;
       int                              m_iPaint = -1;
 
       
@@ -72,8 +72,8 @@ namespace nano2d
       };
 
 
-      __pointer_array(state)           m_statea;
-      __pointer(state)                 m_pstate;
+      pointer_array < state >           m_statea;
+      ::pointer<state>                m_pstate;
       ::i32                            m_iPaintImageSeed;
       i32_map < paint_image >          m_mapPaintImage;
 

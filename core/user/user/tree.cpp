@@ -34,7 +34,7 @@ namespace user
    void tree::user_tree_common_construct()
    {
 
-      __compose_new(m_pitemptraSelected);
+      __construct_new(m_pitemptraSelected);
 
       m_bHoverStart = false;
 
@@ -63,7 +63,7 @@ namespace user
    void tree::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       if (pmessage->previous())
       {
@@ -75,7 +75,7 @@ namespace user
 
       //auto estatus =
 
-      __compose_new(m_ptree);
+      __construct_new(m_ptree);
 
       //if (!estatus)
       //{
@@ -376,11 +376,11 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      __pointer(tree) ptree = this;
+      ::pointer<tree>ptree = this;
 
-      __pointer(::data::tree_item) pitem = data.m_pitem;
+      ::pointer<::data::tree_item>pitem = data.m_pitem;
 
-      __pointer(::image_list) pimagelistItem = pitem->get_image_list();
+      ::pointer<::image_list>pimagelistItem = pitem->get_image_list();
 
       if (pimagelistItem)
       {
@@ -396,7 +396,7 @@ namespace user
 
       }
 
-      __pointer(::image_list) pimagelistTree = get_image_list();
+      ::pointer<::image_list>pimagelistTree = get_image_list();
 
       bool bSelected = ptree->is_selected(pitem.m_p);
 
@@ -610,7 +610,7 @@ namespace user
 
       //on_click(item);
 
-      __pointer(::data::tree_item) pitem;
+      ::pointer<::data::tree_item>pitem;
 
       ::user::enum_tree_element eelement;
 
@@ -640,7 +640,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      __pointer(::data::tree_item) pitem;
+      ::pointer<::data::tree_item>pitem;
 
       ::user::enum_tree_element eelement;
 
@@ -679,7 +679,7 @@ namespace user
 
       auto point = m_pointLButtonUp;
 
-      __pointer(::data::tree_item) pitem;
+      ::pointer<::data::tree_item>pitem;
 
       ::user::enum_tree_element eelement;
 
@@ -724,7 +724,7 @@ namespace user
 
       auto point(pointCursor);
 
-      __pointer(::data::tree_item) pitem;
+      ::pointer<::data::tree_item>pitem;
 
       ::user::enum_tree_element eelement;
 
@@ -799,7 +799,7 @@ namespace user
    }
 
 
-   __pointer(::data::tree_item) tree::_001HitTest(const ::point_i32 & point, ::user::enum_tree_element & eelement)
+   ::pointer<::data::tree_item>tree::_001HitTest(const ::point_i32 & point, ::user::enum_tree_element & eelement)
    {
 
       index iy = point.y;
@@ -826,7 +826,7 @@ namespace user
 
       synchronous_lock synchronouslock(m_ptree ? m_ptree->mutex() : nullptr);
 
-      __pointer(::data::tree_item) pitem = get_proper_item(iItem);
+      ::pointer<::data::tree_item>pitem = get_proper_item(iItem);
 
       if (pitem == nullptr)
       {
@@ -1073,7 +1073,7 @@ namespace user
    }
 
 
-   __pointer(::data::tree) tree::find_tree(::data::tree_item * pitem) const
+   ::pointer<::data::tree>tree::find_tree(::data::tree_item * pitem) const
    {
 
       //return m_ptree->contains(pitem);
@@ -1083,7 +1083,7 @@ namespace user
    }
 
 
-   __pointer(::data::tree_item) tree::find(::data::item * pitem, index * piIndex)
+   ::pointer<::data::tree_item>tree::find(::data::item * pitem, index * piIndex)
    {
 
       return  m_ptree->find(pitem, piIndex);
@@ -1113,7 +1113,7 @@ namespace user
    void tree::_001OnItemExpand(::data::tree_item * pitem, const ::action_context & context)
    {
 
-      __pointer(::data::tree) ptree = find_tree(pitem);
+      ::pointer<::data::tree>ptree = find_tree(pitem);
 
       if (ptree.is_set())
       {
@@ -1127,7 +1127,7 @@ namespace user
    void tree::_001OnItemCollapse(::data::tree_item * pitem, const ::action_context & context)
    {
 
-      __pointer(::data::tree) ptree = find_tree(pitem);
+      ::pointer<::data::tree>ptree = find_tree(pitem);
 
       if (ptree.is_set())
       {
@@ -1325,7 +1325,7 @@ namespace user
 
       ::user::enum_tree_element eelement;
 
-      __pointer(::data::tree_item) pitem = _001HitTest(point, eelement);
+      ::pointer<::data::tree_item>pitem = _001HitTest(point, eelement);
 
       //if(eelement != e_tree_element_image && eelement != e_tree_element_text)
       //{
@@ -1398,7 +1398,7 @@ namespace user
 
       index iIndent = _001GetIndentation();
 
-      __pointer(::data::tree_item) pitem = m_pitemFirstVisible;
+      ::pointer<::data::tree_item>pitem = m_pitemFirstVisible;
 
       if (pitem == nullptr)
       {
@@ -1435,7 +1435,7 @@ namespace user
    }
 
 
-   __pointer(::data::tree_item) tree::CalcFirstVisibleItem(index & iProperIndex)
+   ::pointer<::data::tree_item>tree::CalcFirstVisibleItem(index & iProperIndex)
    {
 
       synchronous_lock synchronouslock(m_ptree ? m_ptree->mutex() : nullptr);
@@ -1565,7 +1565,7 @@ namespace user
 
       //on_ui_event(event_calc_item_height, object_tree, this);
 
-      __pointer_array(::data::tree_item) spitema;
+      pointer_array < ::data::tree_item > spitema;
 
       pitem = m_ptree->get_base_item();
 
@@ -1647,7 +1647,7 @@ namespace user
 
       ::data::tree_item * ptreeitem = nullptr;
 
-      __pointer_array(::data::tree_item) treeitema;
+      pointer_array < ::data::tree_item > treeitema;
 
       ptreeitem = m_ptree->get_base_item();
 
@@ -1698,7 +1698,7 @@ namespace user
    }
 
 
-   __pointer(::image_list) tree::get_image_list()
+   ::pointer<::image_list>tree::get_image_list()
    {
 
       return m_pimagelist;
@@ -2051,7 +2051,7 @@ namespace user
       if (bBind)
       {
 
-         __refer(m_treeaBound.add_new(), ptree);
+         m_treeaBound.add(ptree);
 
          ptree->m_usertreeaBound.add(this);
 
@@ -2061,7 +2061,7 @@ namespace user
 
       ptree->m_usertreea.add_unique(this);
 
-      __pointer(::user::impact) pimpact = this;
+      ::pointer<::user::impact>pimpact = this;
 
       if (pimpact.is_set())
       {
@@ -2078,7 +2078,7 @@ namespace user
    }
 
 
-   __pointer(::data::tree_item) tree::get_proper_item(index i, index * piLevel)
+   ::pointer<::data::tree_item>tree::get_proper_item(index i, index * piLevel)
    {
 
       if (!m_ptree)
@@ -2102,7 +2102,7 @@ namespace user
    }
 
 
-   __pointer(::data::tree_item) tree::_get_proper_item(index i, index * piLevel, index * piCount)
+   ::pointer<::data::tree_item>tree::_get_proper_item(index i, index * piLevel, index * piCount)
    {
 
       if (!m_ptree)
@@ -2114,7 +2114,7 @@ namespace user
 
       index iCount = 0;
 
-      __pointer(::data::tree_item) pitem;
+      ::pointer<::data::tree_item>pitem;
 
       pitem = m_ptree->_get_proper_item(i, piLevel, &iCount);
 

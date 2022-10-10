@@ -15,8 +15,8 @@ namespace user
    public:
 
 
-      __pointer(scroll_bar)         m_pscrollbarVertical;
-      __pointer(scroll_data)        m_pscrolldataVertical;
+      ::pointer<scroll_bar>        m_pscrollbarVertical;
+      ::pointer<scroll_data>       m_pscrolldataVertical;
       i16                           m_iWheelDelta;
       i16                           m_iWheelDeltaScroll;
 

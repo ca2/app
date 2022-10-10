@@ -36,9 +36,9 @@ namespace folder_zip
       string                              m_strFileName;
       u64                                 m_iPosition;
       string_array                        m_straPath;
-      __pointer(folder)                   m_pfolder;
-      //__pointer_array(::file_container)   m_filea;
-      //__pointer_array(::zip::in_file)     m_infilea;
+      ::pointer<folder>                  m_pfolder;
+      //pointer_array < ::file_container >   m_filea;
+      //pointer_array < ::zip::in_file >     m_infilea;
       string_array                        m_straPrefix;
       e_mode                              m_emode;
       string                              m_strZipFile;

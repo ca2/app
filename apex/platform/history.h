@@ -11,7 +11,7 @@ namespace apex
    public:
 
 
-      __composite(history)    m_phistory;
+      ::pointer<history>    m_phistory;
 
 
       history();

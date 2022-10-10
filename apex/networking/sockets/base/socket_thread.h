@@ -13,8 +13,8 @@ namespace sockets
    public:
 
 
-      __pointer(socket_handler)        m_psockethandler;
-      //__pointer(base_socket)           m_psocket;
+      ::pointer<socket_handler>       m_psockethandler;
+      //::pointer<base_socket>          m_psocket;
 
 
       socket_thread();

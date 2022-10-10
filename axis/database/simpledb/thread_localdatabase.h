@@ -11,9 +11,9 @@ namespace simpledb
    public:
 
 
-      __reference(storage)                   m_pstorage;
+      ::pointer<storage>                   m_pstorage;
 
-      __pointer_array(queue_item)            m_itema;
+      pointer_array < queue_item >            m_itema;
 
 
       thread_localdatabase();

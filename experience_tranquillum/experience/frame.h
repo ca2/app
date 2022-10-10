@@ -60,7 +60,7 @@ namespace experience_tranquillum
 
       //virtual color32_t get_style_moveable_border_color(e_style estyle);
 
-      virtual void OnMove(__pointer(::user::interaction) pframewindow) override;
+      virtual void OnMove(::pointer<::user::interaction>pframewindow) override;
 
 
       virtual void title_bar_layout(::draw2d::graphics_pointer & pgraphics) override;

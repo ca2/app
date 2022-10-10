@@ -678,7 +678,7 @@ void property_set::_008Add(const char * pszKey, const char * pszValue)
    while(i  < straKey.get_upper_bound())
    {
 
-      *pset = (property_set &)(*pset)[straKey[i]];
+      pset = &(property_set &)(*pset)[straKey[i]];
 
       i++;
 
@@ -2204,7 +2204,7 @@ bool property_set::payload_bool(const atom & atom, bool bDefault) const
 
    }
 
-   return pproperty->get_file_path();
+   return *pproperty;
 
 }
 

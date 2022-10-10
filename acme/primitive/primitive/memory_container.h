@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "memory_base.h"
@@ -14,7 +14,7 @@ class CLASS_DECL_ACME memory_container :
 protected:
 
 
-   __pointer(memory_base)                        m_pmemory;
+   ::pointer<memory_base>                       m_pmemory;
 
 
 public:
@@ -27,7 +27,7 @@ public:
    memory_container(memory_base & memory);
    memory_container(memory_base * pmemory);
    template < typename MEMORY>
-   memory_container(const __pointer(MEMORY)& pmemory, const ::file::e_open & eopen = e_null) : memory_container((MEMORY*)pmemory.get(), eopen) {}
+   memory_container(const ::pointer<MEMORY> pmemory, const ::file::e_open & eopen = e_null) : memory_container((MEMORY*)pmemory.get(), eopen) {}
    virtual ~memory_container();
 
    virtual void create_default_memory();
@@ -38,9 +38,9 @@ public:
    void set_size(memsize dwNewLength);
    void allocate_internal(memsize dwNewLength);
 
-   virtual __pointer(memory_base) create_memory(const void * p = nullptr, memsize s = 0);
-   __pointer(memory_base) get_memory();
-   void set_memory(__pointer(memory_base) pmemory);
+   virtual ::pointer<memory_base>create_memory(const void * p = nullptr, memsize s = 0);
+   ::pointer<memory_base>get_memory();
+   void set_memory(::pointer<memory_base>pmemory);
 
 
    inline memory_base & memory() { return *get_memory(); }

@@ -6,7 +6,7 @@
 //
 //
 //   template < class VIEW >
-//   inline __pointer(VIEW) split_impact::create_pane_impact(index iPane, atom atom, ::user::interaction* pviewLast)
+//   inline ::pointer<VIEW>split_impact::create_pane_impact(index iPane, atom atom, ::user::interaction* pviewLast)
 //   {
 //
 //      return create_impact < VIEW >(get_pane_holder(iPane), atom, pviewLast);

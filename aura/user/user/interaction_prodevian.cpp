@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
 #endif
@@ -325,7 +325,7 @@ namespace user
          if (m_pimpl->m_pprodevian == this)
          {
 
-            m_pimpl->__release(m_pimpl->m_pprodevian);
+            m_pimpl->m_pprodevian.release();
 
          }
 

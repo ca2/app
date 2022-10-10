@@ -7,7 +7,7 @@ namespace user
 
 
    class CLASS_DECL_BASE menu_item_ptra :
-      public __pointer_array(menu_item)
+      public pointer_array < menu_item >
    {
    public:
 

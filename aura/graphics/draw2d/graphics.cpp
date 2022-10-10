@@ -3280,7 +3280,7 @@ namespace draw2d
 //      throw interface_only();
 ////      //auto estatus =
 ////
-////      __pointer(::draw2d::region) pregion;
+////      ::pointer<::draw2d::region>pregion;
 ////
 ////      _add_clipping_shape(ellipse, pregion);
 ////
@@ -3336,7 +3336,7 @@ namespace draw2d
 //   void graphics::intersect_clip(const ::polygon_f64 & polygon)
 //   {
 //
-//      __pointer(::draw2d::region) pregion;
+//      ::pointer<::draw2d::region>pregion;
 //
 //      //auto estatus = 
 //      _add_clipping_shape(polygon, pregion);
@@ -4806,7 +4806,7 @@ namespace draw2d
 //         m_ppen->m_dWidth *= 2.0;
 //         m_ppen->set_modified();
 
-         __pointer(::draw2d::path) ppath;
+         ::pointer<::draw2d::path>ppath;
 
          __construct(ppath);
 
@@ -5906,7 +5906,7 @@ namespace draw2d
 
       rectangle.inflate(iWidth + 1, iWidth + 1);
 
-      __pointer(pen) point = m_ppen;
+      ::pointer<pen>point = m_ppen;
 
       pen_pointer point1(e_create, this);
 

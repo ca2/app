@@ -16,7 +16,7 @@ namespace regular_expression
 
       void *                     m_pRegularExpression;
 
-      __pointer(context)         m_pcontext;
+      ::pointer<context>        m_pcontext;
 
       string                     m_str;
 
@@ -29,7 +29,7 @@ namespace regular_expression
 
       virtual void compile(const string& str);
 
-      virtual __pointer(result) run(const ::string & str);
+      virtual ::pointer<result>run(const ::string & str);
 
       virtual bool replace(string & strFind, const ::string & strReplace, string & strResult);
 

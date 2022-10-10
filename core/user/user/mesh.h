@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "aura/user/user/scroll.h"
@@ -166,10 +166,10 @@ namespace user
 
 
       bool                                         m_bSortEnable;
-      __pointer(mesh_cache_interface)              m_pmeshcache;
+      ::pointer<mesh_cache_interface>             m_pmeshcache;
       e_cache_hinting                              m_ecachehinting;
 
-      __pointer(draw2d::graphics_extension)        m_pdcextension;
+      ::pointer<draw2d::graphics_extension>       m_pdcextension;
 
       index                                        m_iClick;
       bool                                         m_bLButtonDown;
@@ -212,15 +212,15 @@ namespace user
       bool                                         m_bTopText;
       string                                       m_strTopText;
       ::rectangle_i32                              m_rectangleTopText;
-      __pointer(mesh_data)                         m_pmeshdata;
+      ::pointer<mesh_data>                        m_pmeshdata;
 //      ::write_text::font_pointer                 m_pfont;
       //    ::write_text::font_pointer             m_pfontHover;
       ::draw2d::pen_pointer                        m_ppenFocused;
       ::draw2d::pen_pointer                        m_ppenHighlight;
       EImpact                                      m_eview;
       flags < enum_flag >                          m_flags;
-      __pointer(icon_layout)                       m_piconlayout;
-      __pointer(mesh_layout)                       m_pmeshlayout;
+      ::pointer<icon_layout>                      m_piconlayout;
+      ::pointer<mesh_layout>                      m_pmeshlayout;
       //::mutex                            m_mutex;
 
 
@@ -235,8 +235,8 @@ namespace user
       ::count                                      m_nGridItemCount;
       ::count                                      m_nGridColumnCount;
 
-      __pointer(::image_list)                      m_pimagelistGroup;
-      __pointer(::image_list)                      m_pimagelistGroupHover;
+      ::pointer<::image_list>                     m_pimagelistGroup;
+      ::pointer<::image_list>                     m_pimagelistGroupHover;
       bool                                         m_bGroup;
       bool                                         m_bLateralGroup;
       i32                                          m_iLateralGroupWidth;
@@ -254,14 +254,14 @@ namespace user
       // (i.e. a simple_mesh_data class object or a simple_mesh_data based class object)
       // It should match the pointer of m_pmeshdata and yes, may kind
       // of memory waste and dangling appendix in some (or many cases).
-      __reference(simple_mesh_data)                m_psimplemeshdata;
+      ::pointer<simple_mesh_data>               m_psimplemeshdata;
 
 
       i32                                          m_iLeftMargin;
       i32                                          m_iTopMargin;
 
-      index_map < __pointer(mesh_item) >           m_mapItem;
-      index_map < __pointer(mesh_group) >          m_mapGroup;
+      index_map < ::pointer<mesh_item >>          m_mapItem;
+      index_map < ::pointer<mesh_group >>         m_mapGroup;
       ::task_pointer                               m_ptaskHoverSelect;
       ::duration                                   m_durationLastHoverSelect;
       bool                                         m_bPendingHoverSelect;
@@ -397,9 +397,9 @@ namespace user
 
 
 
-      virtual __pointer(mesh_item) & get_item(::index iItem);
-      virtual __pointer(mesh_subitem) & get_subitem(::index iItem, ::index iSubItem);
-      virtual __pointer(mesh_subitem) & get_subitem(mesh_item * pitem, ::index iSubItem);
+      virtual ::pointer<mesh_item>& get_item(::index iItem);
+      virtual ::pointer<mesh_subitem>& get_subitem(::index iItem, ::index iSubItem);
+      virtual ::pointer<mesh_subitem>& get_subitem(mesh_item * pitem, ::index iSubItem);
 
 
       virtual void  _001GetSubItemImage(mesh_subitem * psubitem);
@@ -424,7 +424,7 @@ namespace user
 
       virtual void  draw_framing(::draw2d::graphics_pointer & pgraphics);
 
-      virtual __pointer(::user::mesh_data)  create_mesh_data();
+      virtual ::pointer<::user::mesh_data> create_mesh_data();
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

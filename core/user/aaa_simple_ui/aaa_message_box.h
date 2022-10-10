@@ -12,8 +12,8 @@ namespace simple_ui
 
 
       string_array                     m_stra;
-      __pointer_array(tap)             m_tapaA;
-      __pointer_array(tap)             m_tapaB;
+      pointer_array < tap >             m_tapaA;
+      pointer_array < tap >             m_tapaB;
       i32                              m_iResult;
       string                           m_strMessage;
       string                           m_strTitle;
@@ -37,7 +37,7 @@ namespace simple_ui
 
       virtual void create_a_button(atom atom, const ::string & pszText);
       virtual void create_b_button(atom atom, const ::string & pszText);
-      virtual void create_button(__pointer_array(tap) & tapa, atom atom, const ::string & pszText);
+      virtual void create_button(pointer_array < tap > & tapa, atom atom, const ::string & pszText);
 
 
       virtual void pre_translate_message(::message::message * pmessage) override;

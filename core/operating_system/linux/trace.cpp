@@ -91,7 +91,7 @@ static void TraceDDE(const ::string & pszPrefix, const MESSAGE* pMsg)
 ////   ENSURE_ARG(AfxIsValidString(pszPrefix));
 
 //   ENSURE_ARG(pmessage != nullptr);
-//   __pointer(::user::message) pusermessage(pmessage);
+//   ::pointer<::user::message>pusermessage(pmessage);
 //
 //   if (pusermessage->m_atom == e_message_mouse_move || pusermessage->m_atom == e_message_non_client_mouse_move ||
 //      pusermessage->m_atom == e_message_non_client_hittest || pusermessage->m_atom == e_message_set_cursor ||

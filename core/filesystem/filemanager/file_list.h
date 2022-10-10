@@ -15,7 +15,7 @@ namespace filemanager
    public:
 
       
-      __pointer(context_menu)             m_pcontextmenu;
+      ::pointer<context_menu>            m_pcontextmenu;
       string_array                        m_straOpenWith;
       bool                                m_bFileSize;
       bool                                m_bShow;
@@ -45,11 +45,11 @@ namespace filemanager
 
       //void schedule_file_size(const ::string & psz);
 
-      void _017OpenContextMenuFolder(__pointer(::file::item) item, const ::action_context & action_context) override;
+      void _017OpenContextMenuFolder(::pointer<::file::item>item, const ::action_context & action_context) override;
       void _017OpenContextMenuFile(const ::file::item_array &itema, const ::action_context & action_context) override;
       void _017OpenContextMenu(const ::action_context & action_context) override;
       void _017OpenFile(const ::file::item_array & itema, const ::action_context & action_context) override;
-      void _017OpenFolder(__pointer(::file::item) pitem, const ::action_context & action_context) override;
+      void _017OpenFolder(::pointer<::file::item>pitem, const ::action_context & action_context) override;
       virtual void RenameFile(i32 iLine, string & str, const ::action_context & action_context);
 
       //void FileSize();

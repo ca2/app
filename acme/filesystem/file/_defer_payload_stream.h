@@ -132,7 +132,7 @@ inline void __exchange_load_array(::payload_stream& stream, ARRAY& array)
 
 
 template < typename OBJECT >
-inline void __exchange(::payload_stream& s, __pointer(OBJECT)& pobject)
+inline void __exchange(::payload_stream& s, ::pointer<OBJECT> pobject)
 {
 
    s.__defer_construct(pobject);

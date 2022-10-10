@@ -13,7 +13,7 @@ namespace calculator
 
       element *      m_pparent;
 
-      __pointer(token)      m_ptoken;
+      ::pointer<token>      m_ptoken;
       element *      m_pelement1;
       element *      m_pelement2;
       element *      m_pelement3;

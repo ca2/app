@@ -7,11 +7,11 @@ class CLASS_DECL_CORE ftpfs_file :
 public:
 
 
-   __pointer(ftpfs)                 m_pftp;
+   ::pointer<ftpfs>                m_pftp;
    file_pointer                     m_pfile;
    ::payload                        m_payloadFile;
    ::file::path                     m_filepath;
-   __pointer(::ftp::client_socket)  m_pclient;
+   ::pointer<::ftp::client_socket> m_pclient;
 
 
    // Download false

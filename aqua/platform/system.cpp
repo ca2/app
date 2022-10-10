@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/parallelization/pool.h"
 #include "acme/platform/system_setup.h"
 #include "aqua/constant/idpool.h"
@@ -106,7 +106,7 @@ namespace aqua
 
       //auto estatus = 
       
-      __compose_new(m_pxml);
+      __construct_new(m_pxml);
 
       //if (!estatus)
       //{
@@ -154,7 +154,7 @@ namespace aqua
       //}
 
       //auto estatus = 
-      pfactory->__compose(this, m_paudio);
+      pfactory->__construct(this, m_paudio);
 
       //if (!estatus)
       //{
@@ -203,7 +203,7 @@ namespace aqua
 
       }
 
-      synchronous_lock synchronouslock(&m_mutexLibrary4);
+      synchronous_lock synchronouslock(&m_psubsystem->m_mutexLibrary4);
 
       try
       {
@@ -226,7 +226,7 @@ namespace aqua
 
             //auto estatus = 
             
-            __compose(m_pmultimedia, pelement);
+            __construct(m_pmultimedia, pelement);
 
             //if (!estatus)
             //{
@@ -283,7 +283,7 @@ namespace aqua
 
 //         auto pgetnewmultimedia = plibrary->get<PFUNCTION_GET_NEW_MULTIMEDIA>("get_new_multimedia");
 
-  //       __compose(m_pmultimedia, ::move_transfer(pgetnewmultimedia()));
+  //       __construct(m_pmultimedia, ::move_transfer(pgetnewmultimedia()));
 
 //    m_pmultimedia->initialize_multimedia(this);
 
@@ -291,7 +291,7 @@ namespace aqua
       //else
       //{
 
-      //   __compose(m_pmultimedia);
+      //   __construct(m_pmultimedia);
 
       //}
 

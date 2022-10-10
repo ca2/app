@@ -15,8 +15,8 @@
 //      ::payload                                    m_payloadFile;
 //      __reference_array(::create)            m_createaPending;
 //      __reference_array(::create)            m_createaHistory;
-//      __reference(::create)                  m_pcreate;
-//      //__pointer(::task_pool)                 m_ptaskpool;
+//      ::pointer<::create>                 m_pcreate;
+//      //::pointer<::task_pool>                m_ptaskpool;
 //
 //
 //      context_thread();

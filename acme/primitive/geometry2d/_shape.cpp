@@ -10,7 +10,7 @@
 
 
 //template < >
-//CLASS_DECL_ACME __pointer(___shape) __create_shape(const ::lines & lines)
+//CLASS_DECL_ACME ::pointer<___shape>__create_shape(const ::lines & lines)
 //{
 //
 //   return __new(lines_shape(lines));
@@ -19,7 +19,7 @@
 //
 //
 //template < >
-//CLASS_DECL_ACME __pointer(___shape) __create_shape(const ::polygon & polygon)
+//CLASS_DECL_ACME ::pointer<___shape>__create_shape(const ::polygon & polygon)
 //{
 //
 //   return __new(polygon_shape(polygon));

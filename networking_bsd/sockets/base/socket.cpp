@@ -391,7 +391,7 @@ namespace sockets_bsd
    }
 
 
-   __pointer(::networking::address) base_socket::GetRemoteHostname()
+   ::pointer<::networking::address>base_socket::GetRemoteHostname()
    {
 
       return m_paddressRemote;
@@ -712,7 +712,7 @@ namespace sockets_bsd
    }
 
 
-   __pointer(::networking::address) base_socket::GetClientRemoteAddress()
+   ::pointer<::networking::address>base_socket::GetClientRemoteAddress()
    {
 
       /*      if (m_addressRemoteClient.m_p == nullptr)
@@ -2674,10 +2674,10 @@ namespace sockets_bsd
    }
 
 
-   string base_socket::get_string() const
+   string base_socket::as_string() const
    {
 
-      return ::object::get_string();
+      return ::object::as_string();
 
    }
 
@@ -2705,7 +2705,7 @@ namespace sockets_bsd
    }
 
 
-   __pointer(::networking::address) base_socket::GetRemoteAddress()
+   ::pointer<::networking::address>base_socket::GetRemoteAddress()
    {
 
       return m_paddressRemote;
@@ -2723,7 +2723,7 @@ namespace sockets_bsd
    }
 
 
-   __pointer(::networking::address) base_socket::GetLocalAddress()
+   ::pointer<::networking::address>base_socket::GetLocalAddress()
    {
 
       throw ::interface_only();

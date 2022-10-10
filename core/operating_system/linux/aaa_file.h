@@ -81,7 +81,7 @@ namespace linux
       void WriteHuge(const void * pBuffer, u64 dwCount);
 
 
-//      virtual __pointer(::file::file) Duplicate() const;
+//      virtual ::pointer<::file::file>Duplicate() const;
 
       virtual filesize seek(filesize lOff, ::enum_seek eseek) override;
       virtual void set_size(filesize dwNewLen) override;
@@ -115,7 +115,7 @@ namespace linux
 ////      void PASCAL ErrnoToException(i32 nErrno);
 //      void throw_os_error(::i32 lOsError, const ::string & pszFileName = nullptr);
 
-//      //void PASCAL ThrowErrno(__pointer(::aura::application) papp, i32 nErrno, const ::string & pszFileName = nullptr);
+//      //void PASCAL ThrowErrno(::pointer<::aura::application>papp, i32 nErrno, const ::string & pszFileName = nullptr);
 
 //
 //

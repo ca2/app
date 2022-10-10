@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/id.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
@@ -1154,7 +1154,7 @@ namespace axis
 
       //m_durationHeartBeat.Now();
 
-      ////estatus = __compose(m_puserfs);
+      ////estatus = __construct(m_puserfs);
 
       ////if (!estatus)
       ////{
@@ -1613,7 +1613,7 @@ namespace axis
    void application::interactive_credentials(::account::credentials * pcredentials)
    {
 
-      __pointer(::axis::session) psession = get_session();
+      ::pointer<::axis::session>psession = get_session();
 
       psession->interactive_credentials(pcredentials);
 
@@ -1630,7 +1630,7 @@ namespace axis
 
       }
 
-      __pointer(::axis::session) psession = get_session();
+      ::pointer<::axis::session>psession = get_session();
 
       return psession->get_user(pathUrl, bFetch, bInteractive);
 
@@ -1887,17 +1887,17 @@ namespace axis
    //}
 
 
-   //__pointer(::aura::application) application::assert_running(const ::string & pszAppId)
+   //::pointer<::aura::application>application::assert_running(const ::string & pszAppId)
    //{
 
-   //   __pointer(::aura::application) papp;
+   //   ::pointer<::aura::application>papp;
 
    //   papp = psession->m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
 
    //   if(papp.is_null())
    //   {
 
-   //      __pointer(::create) spcreate(e_create);
+   //      ::pointer<::create>spcreate(e_create);
 
    //      papp = psession->start_application(pszAppId,spcreate);
 
@@ -2113,7 +2113,7 @@ namespace axis
 
       }
 
-      __pointer(::axis::session) psession = get_session();
+      ::pointer<::axis::session>psession = get_session();
 
       if (psession->account() == nullptr)
       {

@@ -126,7 +126,7 @@ namespace userex
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
-      //__pointer(::message::show_window) pshowwindow(pmessage);
+      //::pointer<::message::show_window>pshowwindow(pmessage);
 
    }
 

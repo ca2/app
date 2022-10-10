@@ -33,7 +33,7 @@ public:
    operator f64 ()const { return m_payload.f64(); }
 
    operator duration ()const { return m_payload.duration(); }
-   operator earth::time()const { return m_payload.datetime_time(); }
+   operator earth::time()const { return m_payload.earth_time(); }
 
 
    operator string ()const { return m_payload.string(); }

@@ -121,7 +121,7 @@ namespace aura
    void department::on_application_message(::message::message * pmessage)
    {
 
-      __pointer(::aura::application_message) pappsignal(pmessage);
+      ::pointer<::aura::application_message>pappsignal(pmessage);
 
       try
       {

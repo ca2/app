@@ -38,7 +38,7 @@ namespace data
 
 
    class CLASS_DECL_ACME item_array :
-      public __pointer_array(item)
+      public pointer_array < item >
    {
    public:
 

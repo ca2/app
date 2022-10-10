@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 class CLASS_DECL_ACME material_object :
@@ -7,8 +7,8 @@ class CLASS_DECL_ACME material_object :
 public:
 
 
-   __pointer(::id_map < ::procedure_array >)       m_pmapPropertyProcedure;
-   __pointer(::i64_array)                          m_pia;
+   pointer< ::id_map < ::procedure_array > >     m_pmapPropertyProcedure;
+   ::pointer<::i64_array>                          m_pia;
 
 
    material_object() { }
@@ -31,10 +31,10 @@ public:
    using ::property_object::cast;
 
    template < typename TYPE >
-   inline __pointer(TYPE) cast() { return this; }
+   inline ::pointer<TYPE>cast() { return this; }
 
    template < typename TYPE >
-   inline __pointer(TYPE) cast() const { return (::property_object*)this; }
+   inline ::pointer<TYPE>cast() const { return (::property_object*)this; }
 
    template < typename TYPE >
    inline bool is_a() const { return cast < TYPE >(); }
@@ -46,7 +46,7 @@ public:
 
 
 
-//   __pointer(task) branch(
+//   ::pointer<task>branch(
 //      ::matter* pmatter,
 //      ::enum_priority epriority = e_priority_normal,
 //      u32 nStackSize = 0,

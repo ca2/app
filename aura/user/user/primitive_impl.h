@@ -27,13 +27,13 @@ namespace user
       bool                                      m_bDestroyImplOnly;
       //bool                                      m_bDestroying;
       int                                       m_iPendingRectMatch;
-      __pointer(::user::interaction)            m_puserinteraction;
-      __pointer(::user::box)                    m_puserbox;
+      ::pointer<::user::interaction>           m_puserinteraction;
+      ::pointer<::user::box>                   m_puserbox;
       bool                                      m_bIgnoreSizeEvent;
       bool                                      m_bIgnoreMoveEvent;
       ap(critical_section)                      m_pcsDisplay;
 
-      __composite(::acme::timer_array)          m_ptimerarray;
+      ::pointer<::acme::timer_array>         m_ptimerarray;
 
       const char *                              m_pszInteractionImplBaseDebug;
 

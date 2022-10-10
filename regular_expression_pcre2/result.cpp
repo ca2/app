@@ -123,7 +123,7 @@ namespace regular_expression_pcre2
 //   }
 
 
-//   __pointer(::strsize_range_array) result::matches_ranges(const string& str)
+//   ::pointer<::strsize_range_array>result::matches_ranges(const string& str)
 //   {
 //
 //      return matches_ranges(str.c_str(), str.get_length());
@@ -131,7 +131,7 @@ namespace regular_expression_pcre2
 //   }
 //
 //
-//   __pointer(::strsize_range_array) result::matches_ranges(const ::string & psz, strsize len)
+//   ::pointer<::strsize_range_array>result::matches_ranges(const ::string & psz, strsize len)
 //   {
 //
 //      auto c = match_count(psz, len);

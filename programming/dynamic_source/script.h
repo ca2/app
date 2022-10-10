@@ -11,7 +11,7 @@ namespace dynamic_source
    public:
 
 
-      __pointer(script_manager)                 m_pmanager;
+      ::pointer<script_manager>                m_pmanager;
       string                                    m_strName;
       memory_file_pointer                       m_pfileError;
       ::text_stream                             m_streamError;
@@ -26,7 +26,7 @@ namespace dynamic_source
       void on_initialize_object() override;
 
 
-      virtual __pointer(::dynamic_source::script_instance) create_instance() = 0;
+      virtual ::pointer<::dynamic_source::script_instance>create_instance() = 0;
 
       virtual void run(script_instance * pinstance);
 
@@ -52,7 +52,7 @@ namespace dynamic_source
       };
 
 
-      virtual __pointer(script_instance) create_instance()
+      virtual ::pointer<script_instance>create_instance()
       {
          
          return __new(T());

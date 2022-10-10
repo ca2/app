@@ -46,7 +46,7 @@ namespace user
 
       //estatus = 
       
-      __compose_new(m_pdocmanager);
+      __construct_new(m_pdocmanager);
 
       //if (!estatus)
       //{
@@ -74,7 +74,7 @@ namespace user
       if (!m_pdocmanager)
       {
 
-         __compose_new(m_pdocmanager);
+         __construct_new(m_pdocmanager);
 
       }
 

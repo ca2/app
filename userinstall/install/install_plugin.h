@@ -138,9 +138,9 @@ namespace install
 
       virtual bool set_host(::hotplugin::host * phost);
 
-      //__pointer(::user::interaction) GetFocus();
+      //::pointer<::user::interaction>GetFocus();
 
-      //__pointer(::user::interaction) SetFocus();
+      //::pointer<::user::interaction>SetFocus();
 
       virtual void on_host_timer();
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/id.h"
 //#include "acme/primitive/primitive/layered.h"
 
@@ -119,12 +119,12 @@ void matter::operator()(const ::payload & payload)
 
 
 //void matter::set_finish_composites(::property_object * pcontextobjectFinish)
-void matter::destroy_composites()
-{
-
-   //return ::success;
-
-}
+//void matter::destroy_composites()
+//{
+//
+//   //return ::success;
+//
+//}
 
 
 
@@ -408,6 +408,7 @@ void matter::delete_this()
 
    try
    {
+
 
       delete this;
 
@@ -973,7 +974,7 @@ CLASS_DECL_ACME void __call(const ::procedure & procedure)
 }
 
 
-__pointer(::sequencer < ::conversation >) matter::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+pointer< ::sequencer < ::conversation > > matter::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
 {
 
    auto psequencer = m_psystem->create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails);
@@ -983,7 +984,7 @@ __pointer(::sequencer < ::conversation >) matter::create_message_box_sequencer(c
 }
 
 
-__pointer(::sequencer < ::conversation >) matter::exception_message_box_sequencer(const ::exception & exception, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+pointer< ::sequencer < ::conversation > > matter::exception_message_box_sequencer(const ::exception & exception, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
 {
    
    string strExceptionDetails = exception.get_consolidated_details();
@@ -995,7 +996,7 @@ __pointer(::sequencer < ::conversation >) matter::exception_message_box_sequence
 }
 
 
-__pointer(::sequencer < ::conversation >) matter::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+pointer< ::sequencer < ::conversation > > matter::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
 {
 
    auto psequencer = m_psystem->create_message_sequencer(strMessage, strTitle, emessagebox, strDetails);
@@ -1005,7 +1006,7 @@ __pointer(::sequencer < ::conversation >) matter::create_message_sequencer(const
 }
 
 
-__pointer(::sequencer < ::conversation >) matter::exception_message_sequencer(const ::exception & exception, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+pointer< ::sequencer < ::conversation > > matter::exception_message_sequencer(const ::exception & exception, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
 {
    
    string strExceptionDetails = exception.get_consolidated_details();
@@ -1017,7 +1018,7 @@ __pointer(::sequencer < ::conversation >) matter::exception_message_sequencer(co
 }
 
 
-//__pointer(::sequencer < ::conversation >) matter::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+//pointer< ::sequencer < ::conversation > > matter::message_box(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
 //{
 //
 //   auto psequence = create_message_box_sequencer(strMessage, strTitle, emessagebox, strDetails);

@@ -30,13 +30,13 @@ namespace networking
       ~ip_enum() override;
 
 
-      virtual ::count enumerate(__pointer_array(::networking::address) & ipa);
+      virtual ::count enumerate(pointer_array < ::networking::address > & ipa);
 
 
    };
 
 
-   typedef ___pointer < ip_enum > ip_enum_pointer;
+   typedef ::pointer<ip_enum>ip_enum_pointer;
 
 
 } // namespace net

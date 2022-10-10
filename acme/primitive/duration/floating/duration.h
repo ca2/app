@@ -1,4 +1,4 @@
-// Created by camilo on 2021-10-05 12:31 BRT <3ThomasBorregaardSørensen!![ THE ONE GOD ]
+﻿// Created by camilo on 2021-10-05 12:31 BRT <3ThomasBorregaardSørensen!![ THE ONE GOD ]
 #pragma once
 
 
@@ -133,6 +133,14 @@ public:
    bool operator <(const BASE_TYPE & duration) const { return this->m_d < duration.m_d; }
    bool operator <=(const BASE_TYPE & duration) const { return this->m_d <= duration.m_d; }
    bool operator !=(const BASE_TYPE & duration) const { return this->m_d != duration.m_d; }
+
+
+
+   //__DURATION_SETUP__(floating_duration, m_d);
+
+
+   INLINE_COMPARISON_WITH_DURATION
+
 
 
 };

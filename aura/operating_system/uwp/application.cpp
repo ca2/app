@@ -175,7 +175,7 @@ namespace aura
    //   set_os_data(nullptr);
    //   //i32 iRet = ::aura::application::term_instance();
 
-   //   //pointer < application_base >::destroy();
+   //   //::pointer<application_base>:destroy();
 
    //   //return iRet;
    //   //return 0;

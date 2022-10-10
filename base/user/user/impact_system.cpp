@@ -90,7 +90,7 @@ namespace user
       ::count count = get_document_count();
       for (index index = 0; index < count; index++)
       {
-         __pointer(::user::document) pdocument = get_document(index);
+         ::pointer<::user::document>pdocument = get_document(index);
          if (pdocument->get_file_path() == pszPathName)
 
          {
@@ -124,7 +124,7 @@ namespace user
    }
 
 
-   __pointer(::user::document) impact_system::create_new_document(::create * pcreate)
+   ::pointer<::user::document>impact_system::create_new_document(::create * pcreate)
    {
 
       // default implementation constructs one from ::type
@@ -141,7 +141,7 @@ namespace user
 
       ::acme::application * papp = pcreate->create_get_app(get_app());
 
-      __pointer(::user::document) pdocument;
+      ::pointer<::user::document>pdocument;
 
       //auto estatus = 
       
@@ -150,7 +150,7 @@ namespace user
       if (!pdocument)
       {
 
-         CATEGORY_WARNING(appmsg, "Warning: Dynamic create of ::user::document type %hs failed.\n" << m_typeDocument.name());
+         CATEGORY_WARNING(appmsg, "Warning: Dynamic create of ::user::document type %hs failed.\n" << m_typeDocument.string());
 
          return nullptr;
 
@@ -167,14 +167,14 @@ namespace user
    }
 
 
-   __pointer(::user::frame_window) impact_system::create_new_frame(::user::document * pdocument, __pointer(::user::frame_window) pOther, ::create * pcreate)
+   ::pointer<::user::frame_window>impact_system::create_new_frame(::user::document * pdocument, ::pointer<::user::frame_window>pOther, ::create * pcreate)
    {
 
       bool bAddToTitle = is_true("add_to_title");
 
       ASSERT(m_atom.has_char());
 
-      __pointer(::user::system) pusersystem = pcreate->m_pmatterUserPayload;
+      ::pointer<::user::system>pusersystem = pcreate->m_pmatterUserPayload;
 
       if (!pusersystem)
       {
@@ -219,7 +219,7 @@ namespace user
 
       ::acme::application * papp = pcreate->create_get_app(get_app());
 
-      __pointer(::user::frame_window) pframe;
+      ::pointer<::user::frame_window>pframe;
 
       //auto estatus =
       
@@ -228,11 +228,11 @@ namespace user
       if (!pframe)
       {
 
-         CATEGORY_WARNING(appmsg,"Warning: Dynamic create of frame %hs failed.\n", m_typeFrame.name().c_str());
+         CATEGORY_WARNING(appmsg,"Warning: Dynamic create of frame %hs failed.\n", m_typeFrame.string().c_str());
 
          string strMessage;
 
-         strMessage.format("Warning: Dynamic create of frame %hs failed.\n\n(Does allocation was implemented)?", m_typeFrame.name().c_str());
+         strMessage.format("Warning: Dynamic create of frame %hs failed.\n\n(Does allocation was implemented)?", m_typeFrame.string().c_str());
 
          //message_box(strMessage);
 
@@ -279,7 +279,7 @@ namespace user
 
       }
 
-      __pointer(::user::interaction) puserinteractionParent = pcreate->m_puserprimitiveParent;
+      ::pointer<::user::interaction>puserinteractionParent = pcreate->m_puserprimitiveParent;
 
       // create memory_new from resource
       if (!pframe->LoadFrame(m_atom,
@@ -318,7 +318,7 @@ namespace user
       ::count count = get_document_count();
       for (index index = 0; index < count; index++)
       {
-         __pointer(::user::document) pdocument = get_document(index);
+         ::pointer<::user::document>pdocument = get_document(index);
          if (!pdocument->save_modified())
             return false;
       }
@@ -378,7 +378,7 @@ namespace user
       ::count count = get_document_count();
       for (index index = 0; index < count; index++)
       {
-         __pointer(::user::document) pdocument = get_document(index);
+         ::pointer<::user::document>pdocument = get_document(index);
          ASSERT_KINDOF(::user::document, pdocument);
          pdocument->on_idle();
       }
@@ -411,7 +411,7 @@ namespace user
       //   ::count count = get_document_count();
       //   for (index index = 0; index < count; index++)
       //   {
-      //      __pointer(::user::document) pdocument = get_document(index);
+      //      ::pointer<::user::document>pdocument = get_document(index);
       //      dumpcontext << (void *)pdocument.m_p;
       //   }
       //   dumpcontext << "\n}";
@@ -427,7 +427,7 @@ namespace user
       ::count count = get_document_count();
       for (index index = 0; index < count; index++)
       {
-         __pointer(::user::document) pdocument = get_document(index);
+         ::pointer<::user::document>pdocument = get_document(index);
          pdocument->assert_ok();
       }
    }

@@ -77,7 +77,7 @@ namespace regular_expression_pcre2
 
 
 
-   __pointer(::regular_expression::result) regular_expression::run(const string& str)
+   ::pointer<::regular_expression::result>regular_expression::run(const string& str)
    {
 
       auto presult = __new(class result);

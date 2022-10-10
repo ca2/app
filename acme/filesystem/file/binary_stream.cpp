@@ -127,7 +127,7 @@ binary_stream::~binary_stream()
 string binary_stream::factory_id_to_text(const ::atom & atom)
 {
 
-   return atom.as_string();
+   return atom;
 
 }
 
@@ -1411,7 +1411,7 @@ void binary_stream::read_to_hex(string & str, filesize tickStart, filesize tickE
 }
 
 
-__pointer(::matter) binary_stream::create_object_from_text(string strText)
+::pointer<::matter>binary_stream::create_object_from_text(string strText)
 {
 
    if (strText.is_empty())

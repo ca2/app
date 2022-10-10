@@ -25,15 +25,15 @@ public:
    task_group *                   m_pgroup;
    task_tool *                    m_ptool;
    task_tool_item *               m_pitem;
-   __pointer(manual_reset_event)    m_pevStart;
-   __pointer(manual_reset_event)    m_pevReady;
+   ::pointer<manual_reset_event>   m_pevStart;
+   ::pointer<manual_reset_event>   m_pevReady;
    void *                           m_pdata;
    index                            m_cCount;
    index                            m_iIndex;
    ::count                          m_iScan;
    ::count                          m_iCount;
-   __pointer(::predicate_holder_base)    m_ppred;
-   __pointer(matter)                m_pholdref;
+   ::pointer<::predicate_holder_base>   m_ppred;
+   ::pointer<matter>               m_pholdref;
 
 
    tool_task();
@@ -105,7 +105,7 @@ public:
    ::count                                m_cIteration;
    ::count                                m_cSpan;
    ::enum_task_op                       m_etaskop;
-   __pointer(::task_tool)               m_ptool;
+   ::pointer<::task_tool>              m_ptool;
    ::enum_priority                           m_epriority;
 
 
@@ -177,7 +177,7 @@ public:
       for (index iOrder = 0; iOrder < iScan; iOrder++)
       {
 
-         __pointer(predicate_holder_base) pusermessage = __new(forking_count_predicate < PRED >(pobject, iOrder, iOrder + iStart, iScan, iCount, pred));
+         ::pointer<predicate_holder_base>pusermessage = __new(forking_count_predicate < PRED >(pobject, iOrder, iOrder + iStart, iScan, iCount, pred));
 
          if (!add_predicate(pusermessage))
          {
@@ -225,8 +225,8 @@ inline ::count fork_count_end(::matter* pobject, ::count iCount, PRED pred, inde
 
 
 
-using task_group_map = map < enum_priority, __pointer_array(::task_group) >;
-using task_tool_map = map < enum_task_tool, __pointer_array(::task_tool) >;
+using task_group_map = map < enum_priority, pointer_array < ::task_group > >;
+using task_tool_map = map < enum_task_tool, pointer_array < ::task_tool > >;
 
 
 

@@ -1,4 +1,4 @@
-﻿// application back to apex namespace by camilo on 2022-09-17 18:51 <3ThomasBorregaardSorensen!!
+// application back to apex namespace by camilo on 2022-09-17 18:51 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -27,9 +27,9 @@ namespace apex
 
       // 2020-01-25: removing from ::apex::system, placing here (at ::context)
       // 2020-07-23: now at ::application
-      __composite(::user::language_map)               m_puserlanguagemap;
+      ::pointer<::user::language_map>              m_puserlanguagemap;
 
-      //__reference(::apex::application)                m_pappParent;
+      //::pointer<::apex::application>               m_pappParent;
       ::text::text                                    m_textAppTitle;
       string                                          m_strBaseSupportId;
       string                                          m_strDatabaseAppId;
@@ -42,11 +42,11 @@ namespace apex
 
       bool                                            m_bReadStringTable;
 
-      __composite(application_menu)                   m_pappmenu;
+      ::pointer<application_menu>                  m_pappmenu;
 
-      //__composite(::game::game)                       m_pgame;
+      //::pointer<::game::game>                      m_pgame;
 
-      __reference(::user::primitive)                  m_puiCurrent;
+      ::pointer<::user::primitive>                 m_puiCurrent;
       bool                                            m_bContextTheme;
 
 #if defined(LINUX) || defined(FREEBSD)
@@ -60,7 +60,7 @@ namespace apex
 
       bool                                            m_bAppHasInstallerProtected;
       bool                                            m_bAppHasInstallerChangedProtected;
-      __composite(::install::installer)               m_pinstaller;
+      ::pointer<::install::installer>              m_pinstaller;
 
       reference_addressa                              m_objectptraEventHook;
 
@@ -72,12 +72,12 @@ namespace apex
 
       bool                                            m_bEnableAutoStartOption;
       bool                                            m_bInterprocessIntercommunication;
-      __composite(interprocess_intercommunication)    m_pinterprocessintercommunication;
-      //__composite(service)                            m_pservice;
+      ::pointer<interprocess_intercommunication>   m_pinterprocessintercommunication;
+      //::pointer<service>                           m_pservice;
 
       // apex commented
       //::mutex                                         m_mutexFrame;
-      //__composite(::user::interaction_pointer_array)  m_puiptraFrame;
+      //::pointer<::user::interaction_pointer_array> m_puiptraFrame;
 
       enum_thread_context                             m_ethreadcontextClose;
 
@@ -96,13 +96,13 @@ namespace apex
       string_table                                    m_stringtableStd;
       id_map < string >                               m_stringmap;
 
-      id_map < __composite(::channel) >               m_mapNotify;
+      id_map < ::pointer<::channel >>              m_mapNotify;
 
       string                                          m_strLicense;
 
       i32                                             m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
 
-      //__pointer(::simpledb::server)                   m_psimpledb;
+      //::pointer<::simpledb::server>                  m_psimpledb;
 
       //::userex::pane_tab_impact *                       m_pmainpane;
 
@@ -139,15 +139,15 @@ namespace apex
 
       i32                                             m_iResourceId;
 
-      //__composite(::experience::department)           m_pexperience;
-      //__composite(::apex::theme)                      m_ptheme;
+      //::pointer<::experience::department>          m_pexperience;
+      //::pointer<::apex::theme>                     m_ptheme;
 
 
       string_array                                    m_straAppInterest;
 
-      __composite(::service_handler)                  m_pservicehandler;
+      ::pointer<::service_handler>                 m_pservicehandler;
 
-      __pointer(::networking_application)             m_pnetworkingapplication;
+      ::pointer<::networking_application>            m_pnetworkingapplication;
 
 
 
@@ -199,7 +199,7 @@ namespace apex
 
       bool is_service() const override;
       bool is_user_service() const override;
-      virtual __pointer(::service) create_service();
+      virtual ::pointer<::service>create_service();
 
       virtual void on_service_request(::create * pcreate);
 
@@ -264,8 +264,8 @@ namespace apex
 
 
 
-      virtual void update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative);
-      virtual void update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const ::string & strLocale, const ::string & strStyle);
+      virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative);
+      virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative, const ::string & strLocale, const ::string & strStyle);
 
 
       //virtual void SetCurrentHandles() override;
@@ -276,7 +276,7 @@ namespace apex
       virtual void process_exception(const ::exception & e) override;
 
 
-      //virtual __pointer(::apex::application) assert_running(const ::string & pszAppId) override;
+      //virtual ::pointer<::apex::application>assert_running(const ::string & pszAppId) override;
 
       virtual bool is_running();
 
@@ -365,7 +365,7 @@ namespace apex
 
 
       virtual ::file::path get_app_localconfig_folder();
-      virtual __pointer(::handle::ini) get_ini();
+      virtual ::pointer<::handle::ini>get_ini();
 
 
       //virtual bool app_data_set(const ::atom & atom, stream & os);
@@ -424,7 +424,7 @@ namespace apex
       //virtual void record(::create * pcommand);
 
       //virtual void on_event(::u64 u, ::object * pobject) override;
-      //virtual __pointer(::thread_toolset) create_thread_toolset(::enum_task_tool etool);
+      //virtual ::pointer<::thread_toolset>create_thread_toolset(::enum_task_tool etool);
 
 
       //// ca2verses
@@ -493,7 +493,7 @@ namespace apex
 
       virtual string get_version();
 
-      virtual __pointer(::interprocess_intercommunication) create_interprocess_intercommunication();
+      virtual ::pointer<::interprocess_intercommunication>create_interprocess_intercommunication();
 
       //virtual void process_init();
       virtual void process_term();
@@ -762,10 +762,10 @@ namespace apex
 
       //virtual ::user::interaction * main_window();
 
-      //         virtual __pointer(::user::message) get_message_base(MESSAGE * pmsg) override;
+      //         virtual ::pointer<::user::message>get_message_base(MESSAGE * pmsg) override;
 
 
-      //virtual bool get_frame(__pointer(::user::interaction) & pinteraction);
+      //virtual bool get_frame(::pointer<::user::interaction>& pinteraction);
       //virtual void add_frame(::user::interaction * puserinteraction);
       //virtual void erase_frame(::user::interaction * puserinteraction);
 
@@ -822,7 +822,7 @@ namespace apex
       virtual void close(::apex::enum_end eend);
 
 
-      //user virtual __pointer(::user::document) defer_create_impact(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom = nullptr);
+      //user virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom = nullptr);
 
 
       virtual void HideApplication();
@@ -881,7 +881,7 @@ namespace apex
       //virtual string sync_message_box(const string & pszMatter,property_set & propertyset) override;
 
 
-      //virtual __pointer(::user::interaction) uie_from_point(const ::point_i32& point);
+      //virtual ::pointer<::user::interaction>uie_from_point(const ::point_i32& point);
 
       //virtual bool on_application_menu_action(const ::string & pszCommand) override;
 
@@ -926,7 +926,7 @@ namespace apex
       void route_command(::message::command * pcommand, bool bRouteToKeyDescendant = false) override;
 
 
-      //virtual __pointer(::extended::future < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+      //virtual pointer< ::extended::future < ::conversation > > message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
       //virtual ::enum_dialog_result message_box_timeout(const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future()) override;
 
 
@@ -954,7 +954,7 @@ namespace apex
       //virtual bool on_application_menu_action(const ::string & pszCommand) override;
 
 
-      //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle,::user::menu_item * pitem) override;
+      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle,::user::menu_item * pitem) override;
 
       // set regsitry key name to be used by application's
       // profile member functions; prevents writing to an INI spfile->
@@ -1032,12 +1032,12 @@ namespace apex
 
 
 
-      //      virtual __pointer(::apex::application) create_platform(::apex::session* psession);
+      //      virtual ::pointer<::apex::application>create_platform(::apex::session* psession);
 
 
 
 
-      virtual __pointer(::progress::real) show_progress(::user::interaction * puiParent, const ::string & strTitle, ::count iProgressCount);
+      virtual ::pointer<::progress::real>show_progress(::user::interaction * puiParent, const ::string & strTitle, ::count iProgressCount);
 
       virtual void userfs_init1();
       virtual void userfs_process_init();

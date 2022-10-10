@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "image.h"
@@ -28,7 +28,7 @@ public:
 
    //virtual void set_finish_composites(::property_object* pcontextobjectRootFinishingInitiator) override;
 
-   void destroy_composites() override;
+   void on_destroy() override;
 
 
    virtual i32 image_integer(const char * path);
@@ -80,7 +80,7 @@ public:
    virtual ::image_pointer _load_image_from_file(const ::payload & payloadFile, const ::payload & varOptions);
    virtual void _save_to_file(const ::payload & payloadFile, const image * pimage, const ::payload & varOptions);
    
-   virtual void _load_image(::image* pimage, __pointer(image_frame_array)& pframea, memory & memory);
+   virtual void _load_image(::image* pimage, ::pointer<image_frame_array> & pframea, memory & memory);
    
    virtual void _load_multi_frame_image(::image* pimage, memory & memory);
 

@@ -26,7 +26,7 @@ namespace file
       stream_binder(::object * pobject);
       HRes CreateEvents();
 
-      virtual void CreateStreams(__pointer(::file::file) & inStream, __pointer(::file::file) & outStream);
+      virtual void CreateStreams(::pointer<::file::file>& inStream, ::pointer<::file::file> outStream);
 
       virtual memsize read(void *lpBuf, memsize nCount);
       virtual void CloseRead();

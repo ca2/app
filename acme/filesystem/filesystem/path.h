@@ -16,7 +16,7 @@ namespace file
       int                        m_iDir; // if negative, not set/calculated/retrieved whether is a directory/folder/(file/folder/(...) container)
       strsize                    m_iName; // if negative, not set/calculated/retrieved where name starts
       strsize                    m_iBasePathLength; // if negative, not set/calculated/retrieved base path length in the path
-      __pointer(::matter)        m_pmatterOsPath;
+      ::pointer<::matter>       m_pmatterOsPath;
 
 
       path_meta(enum_path epath = e_path_none, i64 iSize = -1, i32 iDir = -1, i64 iName = -1, strsize iBasePathLength = -1, enumeration < ::file::enum_flag > eflag = ::file::e_flag_none)
@@ -47,21 +47,30 @@ namespace file
 
       path() { m_epath = e_path_file; }
       path(nullptr_t) {}
-      template < typename TYPE >
-      path(const TYPE & t, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1)
-      {
-
-         construct(__string(t), epath, iDir, bNormalize, iSize);
-
-      }
+      path(const ::string & str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
+      path(const ::wd16string & wd16str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
+         path((const::string &)wd16str, epath, iDir, bNormalize, iSize) {}
+      path(const ::wd32string & wd32str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
+         path((const::string &)wd32str, epath, iDir, bNormalize, iSize) {}
+      path(const char * psz, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
+         path((const::string &)psz, epath, iDir, bNormalize, iSize) {}
+      path(const wd16char * pwd16sz, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
+         path((const::string &)pwd16sz, epath, iDir, bNormalize, iSize) {}
+      path(const wd32char * pwd32sz, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
+         path((const::string &)pwd32sz, epath, iDir, bNormalize, iSize) {}
+      path(ansichar ch, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1) :
+         path((const::string &)ch, epath, iDir, bNormalize, iSize) {}
       path(enum_path epath) { m_epath = epath; }
       path(const path& path);
       path(const path_object& path);
+      path(const payload & payload);
+      path(const property & property);
+      path(const atom & atom);
       ~path() noexcept;
 
 
-      void construct() { *this = ::file::path(); }
-      void construct(const ::string & str, enum_path epath = e_path_none, int iDir = -1, bool bNormalize = true, i64 iSize = -1);
+      //void construct() { *this = ::file::path(); }
+      
 
 
       

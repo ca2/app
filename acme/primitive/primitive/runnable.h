@@ -17,5 +17,5 @@
 
 
 //using ::matter = ::matter;
-//using runnablea = __pointer_array(::matter);
+//using runnablea = pointer_array < ::matter >;
 

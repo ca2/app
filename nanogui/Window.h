@@ -25,7 +25,7 @@ NAMESPACE_BEGIN(nanogui)
    class NANOGUI_EXPORT Window : public Widget {
    public:
 
-      __pointer(::user::box)           m_pbox;
+      ::pointer<::user::box>          m_pbox;
       bool                             m_bPendingCentering;
       float                            m_boundsHeader[4];
 

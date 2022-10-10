@@ -168,7 +168,7 @@ namespace user
    void menu_button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      __pointer(::base::style) pbasestyle = get_style(pgraphics);
+      ::pointer<::base::style>pbasestyle = get_style(pgraphics);
 
       if (pbasestyle)
       {
@@ -198,7 +198,7 @@ namespace user
 //         if (m_pmenuitem != nullptr)
 //         {
 //
-//            __pointer(::user::menu) pinteraction = m_pmenuitem->m_pmenuitem;
+//            ::pointer<::user::menu>pinteraction = m_pmenuitem->m_pmenuitem;
 //
 //            if (pinteraction.is_set() && pinteraction->m_puserinteractionParent != nullptr)
 //            {
@@ -261,7 +261,7 @@ namespace user
          ::rectangle_i32 rectangleImageBorder = rectangleImage;
          rectangleImageBorder.inflate(2, 2);
          ::image_list::info ii;
-         __pointer(image_list) pimagelist;
+         ::pointer<image_list>pimagelist;
 
          auto psession = get_session();
 

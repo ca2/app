@@ -127,7 +127,7 @@ namespace user
    void horizontal_scroll_base::_001OnHScroll(::message::message * pmessage)
    {
 
-      __pointer(::message::scroll) pscroll(pmessage);
+      ::pointer<::message::scroll>pscroll(pmessage);
 
       queue_graphics_call([this, pscroll](::draw2d::graphics_pointer & pgraphics)
          {

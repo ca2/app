@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "bitmap.h"
 
 
@@ -367,7 +367,7 @@ namespace draw2d_cairo
 
       object::dump(dumpcontext);
 
-      dumpcontext << "\n";
+      //dumpcontext << "\n";
 
    }
 

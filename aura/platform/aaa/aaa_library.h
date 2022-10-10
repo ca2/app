@@ -15,13 +15,13 @@ namespace aura
       string                        m_strFolder;
       string                        m_strName;
       void *                        m_plibrary;
-      __pointer(library)            m_pca2library;
+      ::pointer<library>           m_pca2library;
       string                        m_strCa2Name;
       string                        m_strRoot;
       ::file::path                  m_strPath;
       string                        m_strMessage;
       bool                          m_bAutoUnload;
-      __pointer_array(library_object_allocator_base) m_allocatorptra;                     \
+      pointer_array < library_object_allocator_base > m_allocatorptra;                     \
 
 
       library() {}
@@ -72,14 +72,14 @@ namespace aura
 
 
       // impl
-      virtual __pointer(::aura::application) get_new_application(::object * pobject, const ::string & pszAppId);
+      virtual ::pointer<::aura::application>get_new_application(::object * pobject, const ::string & pszAppId);
       virtual void get_app_list(string_array & stra);
 
 
       virtual ::matter* new_object(::object* pobject, const ::string & pszClass);
 
 
-      virtual __pointer(::matter) create_object(::object* pobject, const ::string & pszClass);
+      virtual ::pointer<::matter>create_object(::object* pobject, const ::string & pszClass);
       virtual bool has_object_class(const ::string & lpszClass);
 
 
@@ -94,7 +94,7 @@ namespace aura
       virtual ::matter * factory_new(::object * pobject, const ::string & lpszClass);
 
 
-      virtual __pointer(::matter) factory_create(::object * pobject, const ::string & lpszClass);
+      virtual ::pointer<::matter>factory_create(::object * pobject, const ::string & lpszClass);
       virtual bool factory_has_object_class(const ::string & lpszClass);
 
       library_object_allocator_base * find_allocator(const ::string & lpszClass);
@@ -131,7 +131,7 @@ namespace aura
       }
 
       // impl
-      virtual __pointer(::aura::application) get_new_application(::object * pobject, const ::string & pszAppId) override;
+      virtual ::pointer<::aura::application>get_new_application(::object * pobject, const ::string & pszAppId) override;
 
 
       virtual void get_extension_list(string_array & stra) override;

@@ -21,21 +21,21 @@ namespace user
       bool                                         m_bHeaderCtrl;
       bool                                         m_bSingleColumnMode;
 
-      __pointer(list_header)                       m_plistheader;
+      ::pointer<list_header>                      m_plistheader;
 
-      //index_map < __pointer(draw_list_item) >      m_mapDrawListGroup;
-      //index_map < __pointer(draw_list_subitem) >   m_mapDrawListSubitem;
+      //index_map < ::pointer<draw_list_item >>     m_mapDrawListGroup;
+      //index_map < ::pointer<draw_list_subitem >>  m_mapDrawListSubitem;
 
-      __pointer(::user::list_column_array)         m_pcolumna;
+      ::pointer<::user::list_column_array>        m_pcolumna;
 
-      __pointer(simple_list_data)                  m_psimplelistdata;
+      ::pointer<simple_list_data>                 m_psimplelistdata;
 
 
-      __pointer(::draw2d::fastblur)                m_pfastblur;
+      ::pointer<::draw2d::fastblur>               m_pfastblur;
       index_map < ::image_pointer >                m_mapBlur;
       index_map < string >                         m_mapText;
       index_map < ::color::color >                 m_mapBackColor;
-      __pointer(::draw2d::fastblur)                m_pfastblurIcon;
+      ::pointer<::draw2d::fastblur>               m_pfastblurIcon;
       index_map < ::image_pointer >                m_mapIconBlur;
       double                                       m_dIconSaturation;
       double                                       m_dIconLightness;
@@ -75,12 +75,12 @@ namespace user
       //virtual ::index list_item_index(::user::interaction * pinteractionControl);
       virtual ::index column_index(::user::interaction * pinteractionControl);
 
-      __pointer(mesh_item) & get_item(::index iItem) override;
-      __pointer(mesh_subitem) & get_subitem(mesh_item * pitem, ::index iSubItem) override;
+      ::pointer<mesh_item>& get_item(::index iItem) override;
+      ::pointer<mesh_subitem>& get_subitem(mesh_item * pitem, ::index iSubItem) override;
 
       using mesh::get_subitem;
 
-      __pointer(list_column) new_list_column();
+      ::pointer<list_column>new_list_column();
 
 
       void on_hover_select_timer() override;
@@ -220,8 +220,8 @@ namespace user
       ::count _001GetColumnCount() override;
 
 
-      virtual __pointer(::user::list_header) create_list_header();
-      __pointer(::user::mesh_data) create_mesh_data() override;
+      virtual ::pointer<::user::list_header>create_list_header();
+      ::pointer<::user::mesh_data>create_mesh_data() override;
 
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -233,7 +233,7 @@ namespace user
       void _001OnInitialize() override;
 
 
-      //virtual __pointer(list_column) new_column();
+      //virtual ::pointer<list_column>new_column();
       virtual void _001OnAddColumn(list_column * pcolumn);
 
       virtual void _001GetGroupRect(draw_list_group * pdrawlistgroup);

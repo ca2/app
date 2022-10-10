@@ -11,7 +11,7 @@ namespace console
    public:
 
 
-      __pointer(prompt) m_spprompt;
+      ::pointer<prompt>m_spprompt;
 
 
       department(::object * pobject);

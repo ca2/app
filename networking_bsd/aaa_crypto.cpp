@@ -1073,7 +1073,7 @@ namespace crypto_openssl
 //#else
 //
 //
-//      __pointer(::crypto::rsa) crypto::generate_rsa_key()
+//      ::pointer<::crypto::rsa>crypto::generate_rsa_key()
 //      {
 //
 //         ::winrt::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider^ provider =
@@ -1085,7 +1085,7 @@ namespace crypto_openssl
 //
 //      }
 //
-//      /*void crypto::free_rsa_key(__pointer(::crypto::rsa) prsa)
+//      /*void crypto::free_rsa_key(::pointer<::crypto::rsa>prsa)
 //      {
 //
 //         __UNREFERENCED_PARAMETER(prsa);
@@ -1212,7 +1212,7 @@ namespace crypto_openssl
    }
 
       
-   __pointer(::crypto::rsa) crypto::create_rsa_key(const ::string& strRsa)
+   ::pointer<::crypto::rsa>crypto::create_rsa_key(const ::string& strRsa)
    {
 
       auto popensslrsa = __new(::crypto_openssl::rsa);
@@ -1224,7 +1224,7 @@ namespace crypto_openssl
    }
 
 
-   __pointer(::crypto::rsa) crypto::generate_rsa_key()
+   ::pointer<::crypto::rsa>crypto::generate_rsa_key()
    {
 
       auto popensslrsa = __new(::crypto_openssl::rsa);
@@ -1424,7 +1424,7 @@ namespace crypto_openssl
    }
 
 
-   __pointer(::crypto::rsa) crypto::read_priv_pem(const string& strFile)
+   ::pointer<::crypto::rsa>crypto::read_priv_pem(const string& strFile)
    {
 
       auto memory = m_psystem->m_pacmefile->as_memory(strFile);
@@ -1463,7 +1463,7 @@ namespace crypto_openssl
    }
 
 
-   __pointer(::crypto::rsa) crypto::read_pub_pem(const string& strFile)
+   ::pointer<::crypto::rsa>crypto::read_pub_pem(const string& strFile)
    {
 
       auto memory = m_psystem->m_pacmefile->as_memory(strFile);
@@ -1498,7 +1498,7 @@ namespace crypto_openssl
    {
 
       //auto estatus = 
-      __defer_compose(m_pinitializer);
+      __defer_construct(m_pinitializer);
 
       //if (!estatus)
       //{

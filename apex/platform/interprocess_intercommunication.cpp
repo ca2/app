@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "apex/constant/method.h"
 #include "apex/platform/launcher.h"
 #include "apex/platform/app_launcher.h"
@@ -509,7 +509,7 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 }
 
 
-__pointer(interprocess_task) interprocess_intercommunication::create_task(interprocess_call * pcall, const ::atom & idPid)
+::pointer<interprocess_task>interprocess_intercommunication::create_task(interprocess_call * pcall, const ::atom & idPid)
 {
 
    auto pobjectTask = __new(interprocess_task(pcall, idPid, m_iTaskSeed++));
@@ -525,7 +525,7 @@ __pointer(interprocess_task) interprocess_intercommunication::create_task(interp
 }
 
 
-__pointer(interprocess_task) interprocess_intercommunication::get_task(i64 iTask)
+::pointer<interprocess_task>interprocess_intercommunication::get_task(i64 iTask)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -535,7 +535,7 @@ __pointer(interprocess_task) interprocess_intercommunication::get_task(i64 iTask
 }
 
 
-__pointer(interprocess_call) interprocess_intercommunication::create_call(const ::string & strApp, const ::string & strObject, const ::string & strMember)
+::pointer<interprocess_call>interprocess_intercommunication::create_call(const ::string & strApp, const ::string & strObject, const ::string & strMember)
 {
 
    return __new(interprocess_call(this, strApp, strObject, strMember));
@@ -543,7 +543,7 @@ __pointer(interprocess_call) interprocess_intercommunication::create_call(const 
 }
 
 
-__pointer(interprocess_call) interprocess_intercommunication::create_call(const ::string & strObject, const ::string & strMember)
+::pointer<interprocess_call>interprocess_intercommunication::create_call(const ::string & strObject, const ::string & strMember)
 {
 
    return create_call(m_strApp, strObject, strMember);

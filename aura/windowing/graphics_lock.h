@@ -40,7 +40,7 @@ namespace windowing
    public:
 
       
-      __pointer(::windowing::window)         m_pwindow;
+      ::pointer<::windowing::window>        m_pwindow;
 
 
       graphics_lock(::windowing::window * pwindow) :

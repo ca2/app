@@ -23,8 +23,8 @@ namespace user
       ::e_align               m_ealign;
       string_to_string        m_mapName;
 
-      __pointer(image_array)  m_pimagea;
-      __pointer(image_array)  m_pimageaThumb;
+      ::pointer<image_array> m_pimagea;
+      ::pointer<image_array> m_pimageaThumb;
 
       index_array             m_iaSel;
       //::item                m_itemLButtonDown;

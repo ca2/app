@@ -206,7 +206,7 @@ namespace draw2d_cairo
 
       object::dump(dumpcontext);
 
-      dumpcontext << "\n";
+      //dumpcontext << "\n";
 
    }
 
@@ -5810,7 +5810,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::arc & arc, const __pointer(::draw2d::region) & pregion)
+   bool graphics::_set(const ::arc & arc, const ::pointer<::draw2d::region>& pregion)
    {
 
       return _set(arc);
@@ -5820,7 +5820,7 @@ namespace draw2d_cairo
 
    //bool _set(const ::line & line);
    //bool _set(const ::lines & lines);
-   bool graphics::_set(const ::rectangle & rectangle, const __pointer(::draw2d::region) & pregion)
+   bool graphics::_set(const ::rectangle & rectangle, const ::pointer<::draw2d::region>& pregion)
    {
 
       return _set(rectangle);
@@ -5828,7 +5828,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::ellipse & ellipse, const __pointer(::draw2d::region) & pregion)
+   bool graphics::_set(const ::ellipse & ellipse, const ::pointer<::draw2d::region>& pregion)
    {
 
       return _set(ellipse);
@@ -5836,7 +5836,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::polygon & polygon, const __pointer(::draw2d::region) & pregion)
+   bool graphics::_set(const ::polygon & polygon, const ::pointer<::draw2d::region>& pregion)
    {
 
       return _set(polygon);
@@ -5844,7 +5844,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::write_text::text_out & textout, const __pointer(::draw2d::region) & pregion)
+   bool graphics::_set(const ::write_text::text_out & textout, const ::pointer<::draw2d::region>& pregion)
    {
 
       return _set(textout);
@@ -5852,7 +5852,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::write_text::draw_text & drawtext, const __pointer(::draw2d::region) & pregion)
+   bool graphics::_set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::region>& pregion)
    {
 
       return _set(drawtext);
@@ -5860,7 +5860,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::arc & arc, const __pointer(::draw2d::path) & ppath)
+   bool graphics::_set(const ::arc & arc, const ::pointer<::draw2d::path>& ppath)
    {
 
       return _set(arc);
@@ -5868,7 +5868,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::line & line, const __pointer(::draw2d::path) & ppath)
+   bool graphics::_set(const ::line & line, const ::pointer<::draw2d::path>& ppath)
    {
 
       return _set(line);
@@ -5876,7 +5876,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::lines & lines, const __pointer(::draw2d::path) & ppath)
+   bool graphics::_set(const ::lines & lines, const ::pointer<::draw2d::path>& ppath)
    {
 
       return _set(lines);
@@ -5884,7 +5884,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::rectangle & rectangle, const __pointer(::draw2d::path) & ppath)
+   bool graphics::_set(const ::rectangle & rectangle, const ::pointer<::draw2d::path>& ppath)
    {
 
       return _set(rectangle);
@@ -5892,7 +5892,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::ellipse & ellipse, const __pointer(::draw2d::path) & ppath)
+   bool graphics::_set(const ::ellipse & ellipse, const ::pointer<::draw2d::path>& ppath)
    {
 
       return _set(ellipse);
@@ -5900,7 +5900,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::polygon & polygon, const __pointer(::draw2d::path) & ppath)
+   bool graphics::_set(const ::polygon & polygon, const ::pointer<::draw2d::path>& ppath)
    {
 
       return _set(polygon);
@@ -5908,7 +5908,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::write_text::text_out & textout, const __pointer(::draw2d::path) & ppath)
+   bool graphics::_set(const ::write_text::text_out & textout, const ::pointer<::draw2d::path>& ppath)
    {
 
       return _set(textout);
@@ -5916,7 +5916,7 @@ namespace draw2d_cairo
    }
 
 
-   bool graphics::_set(const ::write_text::draw_text & drawtext, const __pointer(::draw2d::path) & ppath)
+   bool graphics::_set(const ::write_text::draw_text & drawtext, const ::pointer<::draw2d::path>& ppath)
    {
 
       return _set(drawtext);
@@ -6559,7 +6559,7 @@ namespace draw2d_cairo
 //
 //    printf("Total fonts: %d", n_families);
 //
-//    __pointer(::write_text::font_enumeration_item) item;
+//    ::pointer<::write_text::font_enumeration_item>item;
 //
 //    for (int i = 0; i < n_families; i++)
 //    {
@@ -6590,7 +6590,7 @@ namespace draw2d_cairo
 ////void graphics::enum_fonts(::write_text::font_enumeration_item_array & itema)
 ////{
 ////
-////   __pointer(::write_text::font_enumeration_item) pitem;
+////   ::pointer<::write_text::font_enumeration_item>pitem;
 ////
 ////#if DEBUG_WINDOWS_C_ANDROID_FONTS
 ////
@@ -6598,7 +6598,7 @@ namespace draw2d_cairo
 ////
 ////   listing.ls_pattern_file("C:/android_fonts", {"*.ttf"});
 ////
-////   __pointer(ttf_util) putil;
+////   ::pointer<ttf_util>putil;
 ////
 ////   ::e_status estatus = __construct_new(putil);
 ////

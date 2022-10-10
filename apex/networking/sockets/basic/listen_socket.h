@@ -24,7 +24,7 @@ namespace sockets
       i32              m_depth;
       base_socket *        m_pbasesocket;
 
-      __pointer(listen_socket_base)       m_pcomposite;
+      ::pointer<listen_socket_base>      m_pcomposite;
       bool                                m_bImpl;
       /** Constructor.
       \lparam h base_socket_handler object
@@ -40,7 +40,7 @@ namespace sockets
 
       base_socket * base_socket_composite() override;
 
-      virtual __pointer(socket) create_listen_socket();
+      virtual ::pointer<socket>create_listen_socket();
 
       virtual void set_ssl_catalog(const ::string & strCat);
 
@@ -191,10 +191,10 @@ namespace sockets
       }
 
 
-      virtual __pointer(socket) create_listen_socket()
+      virtual ::pointer<socket>create_listen_socket()
       {
 
-         __pointer(::sockets::base_socket) pbasesocket;
+         ::pointer<::sockets::base_socket>pbasesocket;
 
          if (HasCreator())
          {

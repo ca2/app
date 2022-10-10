@@ -10,16 +10,16 @@ namespace user
    public:
 
 
-      /*__pointer(::user::document)               m_pdocument;
-      __pointer(::user::form)                   m_pimpact;*/
+      /*::pointer<::user::document>              m_pdocument;
+      ::pointer<::user::form>                  m_pimpact;*/
 
 
       network_configuration();
       virtual ~network_configuration();
 
 
-      bool initialize(__pointer(::user::interaction) puiParent);
-      bool initialize_child(__pointer(::user::interaction) puiParent);
+      bool initialize(::pointer<::user::interaction>puiParent);
+      bool initialize_child(::pointer<::user::interaction>puiParent);
 
       void on_show();
 

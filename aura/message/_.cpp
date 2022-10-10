@@ -17,7 +17,7 @@ namespace message
 //   CLASS_DECL_AURA bool is_idle_message(::message::message * pmessage)
 //   {
 //
-//      __pointer(::user::message) pusermessage(pmessage);
+//      ::pointer<::user::message>pusermessage(pmessage);
 //
 //      // Return false if the message just dispatched should _not_
 //      // cause on_idle to be run.  Messages which do not usually

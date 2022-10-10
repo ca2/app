@@ -49,7 +49,7 @@ namespace user
    void font_combo_box::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       pcreate->previous();
 
@@ -61,7 +61,7 @@ namespace user
 
       defer_create_list_box();
 
-      __pointer(::user::font_list) pfontlist = m_plistbox;
+      ::pointer<::user::font_list>pfontlist = m_plistbox;
 
       pfontlist->set_font_list_type(::write_text::e_font_list_single_column);
 
@@ -80,7 +80,7 @@ namespace user
       if (ptopic->m_atom == id_font_enumeration)
       {
 
-         __pointer(::user::font_list) pfontlist = m_plistbox;
+         ::pointer<::user::font_list>pfontlist = m_plistbox;
 
          synchronous_lock synchronouslock(pfontlist->mutex());
 

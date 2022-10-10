@@ -16,7 +16,7 @@ namespace fs
 
 
       ::file::path                  m_strTitle;
-      __pointer(::file::listing)    m_plisting;
+      ::pointer<::file::listing>   m_plisting;
 
 
       link();

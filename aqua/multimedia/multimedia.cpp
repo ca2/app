@@ -38,7 +38,7 @@ namespace aqua
 
 //#ifdef WINDOWS
 //
-//      estatus = __compose_new(m_pmediafoundation);
+//      estatus = __construct_new(m_pmediafoundation);
 //
 //      if (!estatus)
 //      {
@@ -75,7 +75,7 @@ namespace aqua
    }
 
 
-   __pointer(::user::controller) multimedia::defer_create_impact(::object* pobject, const string& strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::atom& atom)
+   ::pointer<::user::controller>multimedia::defer_create_impact(::object* pobject, const string& strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::atom& atom)
    {
 
       return nullptr;
@@ -125,7 +125,7 @@ namespace aqua
 //      if (!m_pmediafoundation)
 //      {
 //
-//         auto estatus = __compose(m_pmediafoundation);
+//         auto estatus = __construct(m_pmediafoundation);
 //
 //         if (!estatus)
 //         {

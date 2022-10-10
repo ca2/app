@@ -19,11 +19,11 @@ namespace xcb
    public:
 
 
-      __pointer(class display)        m_pdisplay;
+      ::pointer<class display>        m_pdisplay;
       xcb_window_t                    m_window;
       cairo_surface_t *               m_psurface;
-      __pointer(nano_device)          m_pnanodevice;
-      //__pointer(nano_font)          m_pfont;
+      ::pointer<nano_device>         m_pnanodevice;
+      //::pointer<nano_font>         m_pfont;
       //color32_t                     m_colorText;
       //color32_t                     m_colorFocus;
       //color32_t                     m_colorWindow;
@@ -34,11 +34,11 @@ namespace xcb
       //rectangle_i32                 m_rectangle;
       //rectangle_i32                 m_rectangleClient;
 
-      //__pointer_array(nano_child)   m_childa;
+      //pointer_array < nano_child >   m_childa;
       //::atom                          m_atomLeftButtonDown;
       //::atom                          m_atomLeftButtonUp;
       //::atom                             m_atomResult;
-      //__pointer(nano_child)         m_pchildFocus;
+      //::pointer<nano_child>        m_pchildFocus;
 
 
       nano_window();

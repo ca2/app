@@ -1,4 +1,4 @@
-﻿//
+//
 //  text_to_speech_client.cpp
 //  aqua
 //
@@ -49,7 +49,7 @@ namespace text_to_speech
    }
 
 
-   __pointer(::text_to_speech::speaker) client::speaker()
+   ::pointer<::text_to_speech::speaker>client::speaker()
    {
    
       if(!m_ptexttospeechspeaker)

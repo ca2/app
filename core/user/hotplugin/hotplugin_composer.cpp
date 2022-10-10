@@ -48,7 +48,7 @@ namespace hotplugin
    }
 
 
-   ::hotplugin::host * composer::create_host(__pointer(::aura::system) psystem)
+   ::hotplugin::host * composer::create_host(::pointer<::aura::system>psystem)
    {
 
       return nullptr;

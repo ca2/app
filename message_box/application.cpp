@@ -63,7 +63,7 @@ namespace app_message_box
    void application::on_request(::create * pcreate)
    {
 
-      __compose_new(m_pmainwindow);
+      __construct_new(m_pmainwindow);
 
       m_pmainwindow->display(e_display_restored);
 

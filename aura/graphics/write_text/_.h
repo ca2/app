@@ -1,4 +1,4 @@
-// Created by camilo 
+﻿// Created by camilo 
 // Recreated by camilo 2021-02-10 <3TBS_!!
 #pragma once
 
@@ -28,8 +28,8 @@ namespace write_text
 
    class font_list;
    class font;
-   using font_pointer = __pointer(font);
-   using font_pointer_array = __pointer_array(font);
+   using font_pointer = ::pointer<font>;
+   using font_pointer_array = pointer_array < font >;
 
 
    enum enum_font_list
@@ -65,17 +65,17 @@ namespace write_text
 
 
 //template < >
-//CLASS_DECL_AURA __pointer(___shape< ::draw2d::path>) __create_shape(const ::write_text::text_out & textout, holdee < ::draw2d::path>);
+//CLASS_DECL_AURA ::pointer<___shape< ::draw2d::path>> __create_shape(const ::write_text::text_out & textout, holdee < ::draw2d::path>);
 //
 //template < >
-//CLASS_DECL_AURA __pointer(___shape< ::draw2d::path>) __create_shape(const ::write_text::draw_text & drawtext, holdee < ::draw2d::path>);
+//CLASS_DECL_AURA ::pointer<___shape< ::draw2d::path>> __create_shape(const ::write_text::draw_text & drawtext, holdee < ::draw2d::path>);
 //
 //
 //template < >
-//CLASS_DECL_AURA __pointer(___shape< ::draw2d::region>) __create_shape(const ::write_text::text_out & textout, holdee < ::draw2d::region>);
+//CLASS_DECL_AURA ::pointer<___shape< ::draw2d::region>> __create_shape(const ::write_text::text_out & textout, holdee < ::draw2d::region>);
 //
 //template < >
-//CLASS_DECL_AURA __pointer(___shape< ::draw2d::region>) __create_shape(const ::write_text::draw_text & drawtext, holdee < ::draw2d::region>);
+//CLASS_DECL_AURA ::pointer<___shape< ::draw2d::region>> __create_shape(const ::write_text::draw_text & drawtext, holdee < ::draw2d::region>);
 //
 //
 

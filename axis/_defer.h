@@ -19,7 +19,7 @@
 //
 //   template < typename TYPE >
 //   template < typename OBJECT >
-//   __pointer(OBJECT) member < TYPE >::cast() const
+//   ::pointer<OBJECT>member < TYPE >::cast() const
 //   {
 //
 //      return ::is_null((TYPE*)m_p) ? nullptr : (TYPE*)m_p;
@@ -32,7 +32,7 @@
 //
 //template < class T >
 //template < typename T2 >
-//inline __pointer(T) & pointer < T >::defer_create_new()
+//inline pointer < T > & pointer < T >::defer_create_new()
 //{
 //
 //   if (is_null())
@@ -49,7 +49,7 @@
 //
 //template < class T >
 //template < typename T2 >
-//inline __pointer(T) & pointer < T >::defer_assign_to(T2 * & p)
+//inline pointer < T > & pointer < T >::defer_assign_to(T2 * & p)
 //{
 //
 //   if (!is_null())
@@ -75,7 +75,7 @@
 //
 //template < class T >
 //template < typename T2 >
-//inline __pointer(T) & pointer < T >::create_new()
+//inline pointer < T > & pointer < T >::create_new()
 //{
 //
 //   auto p = __new(T2);
@@ -87,7 +87,7 @@
 //
 //template < class T >
 //template < typename T2, typename OBJECT >
-//inline __pointer(T) & pointer < T >::defer_create_new(OBJECT * pobject)
+//inline pointer < T > & pointer < T >::defer_create_new(OBJECT * pobject)
 //{
 //
 //   if (is_null())
@@ -104,7 +104,7 @@
 //
 //template < class T >
 //template < typename T2, typename OBJECT >
-//inline __pointer(T) & pointer < T >::create_new(OBJECT * pobject)
+//inline pointer < T > & pointer < T >::create_new(OBJECT * pobject)
 //{
 //
 //   auto p = __new(T2);

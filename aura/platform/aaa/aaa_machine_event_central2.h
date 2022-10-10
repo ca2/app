@@ -23,7 +23,7 @@ public:
 
    bool is_close_application();
 
-   //void command(__pointer(::xml::node) pnodeCommand);
+   //void command(::pointer<::xml::node>pnodeCommand);
 
 };
 

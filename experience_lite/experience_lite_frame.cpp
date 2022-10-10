@@ -66,7 +66,7 @@
 
 
 
-            void frame::OnMove(__pointer(::user::interaction) pframewindow)
+            void frame::OnMove(::pointer<::user::interaction>pframewindow)
             {
 
                __UNREFERENCED_PARAMETER(pframewindow);
@@ -95,7 +95,7 @@
                rectangleInflate = rectangleClient;
                rectangleInflate.inflate(iInflate, iInflate);
 
-               //__pointer(::user::interaction) puserinteractionDesktop = psystem->get_desktop_window();
+               //::pointer<::user::interaction>puserinteractionDesktop = psystem->get_desktop_window();
 
                ::rectangle_i32 rectangleScreen;
 

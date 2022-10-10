@@ -244,7 +244,7 @@ namespace acme
 //
 //      //i32 iRet = ::acme::application::term_instance();
 //
-//      //::ca2::pointer<::ca2::application>::destroy();
+//      //::ca2pointer<::ca2::application>::destroy();
 //
 //
 //
@@ -268,7 +268,7 @@ namespace acme
 
 
       // Advanced: access to GetMainWnd()
-      __pointer(::user::primitive) application::GetMainWnd()
+      ::pointer<::user::primitive>application::GetMainWnd()
       {
          return ::win::thread::GetMainWnd();
       }

@@ -16,7 +16,7 @@ namespace aura
    public:
 
 
-      __reference(::user::interaction)    m_pinteraction;
+      ::pointer<::user::interaction>   m_pinteraction;
 
 
       game();

@@ -1,4 +1,4 @@
-//#include "application_common.h"
+﻿//#include "application_common.h"
 //#include "__apps.inl"
 
 
@@ -85,6 +85,8 @@ extern "C" int android_main(int argc, char* argv[], char* envp[], const char* p1
 int main(int argc, char * argv[], char * envp[])
 #endif
 {
+
+   auto psubsystem = __new(subsystem);
 
    auto pmainhold = __new(main_hold);
 

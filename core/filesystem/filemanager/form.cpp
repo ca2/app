@@ -80,11 +80,11 @@ namespace filemanager
 
                auto pinteraction = get_child_by_name("find");
 
-               pinteraction->_001GetText(ptopic->payload(id_find));
+               pinteraction->_001GetText(ptopic->payload(id_find).string_reference());
 
                pinteraction = get_child_by_name("replace");
 
-               pinteraction->_001GetText(ptopic->payload(id_replace));
+               pinteraction->_001GetText(ptopic->payload(id_replace).string_reference());
 
                auto pdocument =  filemanager_document();
 
@@ -98,7 +98,7 @@ namespace filemanager
 
                auto pinteraction = get_child_by_name("name");
 
-               pinteraction->_001GetText(ptopic->payload(id_text));
+               pinteraction->_001GetText(__reference(ptopic->payload(id_text)));
 
                auto pdocument = filemanager_document();
 

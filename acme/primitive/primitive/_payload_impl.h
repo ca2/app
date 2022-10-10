@@ -665,26 +665,26 @@ inline bool strictly_different(bool b, const class ::payload & payload)
 }
 
 
-inline payload::operator bool() const { return this->get_bool(); }
-
-inline payload::operator ::i8() const { return this->i8(); }
-inline payload::operator ::u8() const { return this->u8(); }
-inline payload::operator ::i16() const { return this->i16(); }
-inline payload::operator ::u16() const { return this->u16(); }
-inline payload::operator ::i32() const { return this->i32(); }
-inline payload::operator ::u32() const { return this->u32(); }
-inline payload::operator ::i64() const { return this->i64(); }
-inline payload::operator ::u64() const { return this->u64(); }
-inline payload::operator ::f32() const { return this->f32(); }
-inline payload::operator ::f64() const { return this->f64(); }
-
-
-inline payload::operator ::string() const
-{
-
-   return this->string();
-
-}
+//inline payload::operator bool() const { return this->get_bool(); }
+//
+//inline payload::operator ::i8() const { return this->i8(); }
+//inline payload::operator ::u8() const { return this->u8(); }
+//inline payload::operator ::i16() const { return this->i16(); }
+//inline payload::operator ::u16() const { return this->u16(); }
+//inline payload::operator ::i32() const { return this->i32(); }
+//inline payload::operator ::u32() const { return this->u32(); }
+//inline payload::operator ::i64() const { return this->i64(); }
+//inline payload::operator ::u64() const { return this->u64(); }
+//inline payload::operator ::f32() const { return this->f32(); }
+//inline payload::operator ::f64() const { return this->f64(); }
+//
+//
+//inline payload::operator ::string() const
+//{
+//
+//   return this->string();
+//
+//}
 
 
 

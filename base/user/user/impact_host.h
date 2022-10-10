@@ -40,8 +40,8 @@ namespace user
 
       impact_data_map                              m_impactdatamap;
 
-      __pointer_array(::user::impact_kit)          m_impactkita;
-      __pointer_array(::user::impact_kit::item)    m_impactkititema;
+      pointer_array < ::user::impact_kit >          m_impactkita;
+      pointer_array < ::user::impact_kit::item >    m_impactkititema;
 
 
       impact_host();
@@ -107,7 +107,7 @@ namespace user
 
 
       template < class VIEW >
-      __pointer(VIEW) host_impact(const ::atom & atom)
+      ::pointer<VIEW>host_impact(const ::atom & atom)
       {
 
          impact_data* pimpactdata = allocate_impact_data(atom);
@@ -143,17 +143,17 @@ namespace user
       virtual ::count get_impact_count();
 
       virtual atom get_impact_id();
-      virtual __pointer(::user::impact) get_impact();
+      virtual ::pointer<::user::impact>get_impact();
       virtual ::user::document * get_impact_document();
 
 
       virtual void hide_all_except(const id_array & atom);
 
 
-      template < class T > __pointer(T) get_typed_document()
+      template < class T > pointer < T > get_typed_document()
       {
 
-         __pointer(T) pdocument;
+         pointer < T > pdocument;
 
          for(auto & pair : m_impactdatamap)
          {

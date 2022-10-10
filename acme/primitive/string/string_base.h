@@ -44,8 +44,8 @@ public:
    string_base(wd32char wd32ch, strsize repeat = 1);
    string_base(const character & character, strsize repeat = 1) :string_base(character.m_wd32char) {}
 
-   template < non_pointer TYPE >
-   string_base(const TYPE & t);
+   //template < non_pointer TYPE >
+   //string_base(const TYPE & t);
 
 
 //#ifdef _UWP
@@ -53,9 +53,9 @@ public:
    //string_base(Object ^ o);
 //#endif
 
-   //string_base(const ::payload & payload);
-   //string_base(const ::property & property);
-   //string_base(const ::atom & atom);
+   string_base(const ::payload & payload);
+   string_base(const ::property & property);
+   string_base(const ::atom & atom);
    //string_base(::payload & payload);
    //string_base(property & property);
    //string_base(atom & atom);
@@ -125,6 +125,10 @@ public:
    template < typename TYPE >
    string_base& operator += (const TYPE & t);
 
+
+   //string_base & operator += (const ::string_base < TYPE_CHAR > & str);
+
+
    //string_base & operator += (const ansichar * pszsrc);
    //string_base & operator += (const wd16char * pszsrc);
    //string_base & operator += (const wd32char * pszsrc);
@@ -144,6 +148,7 @@ public:
 
    template < typename TYPE >
    inline string_base operator +(const TYPE & t) const;
+   //inline string_base operator +(const ::string_base < TYPE_CHAR > & str) const;
 
    //string_base operator + (const ansichar * pszSrc) const;
    //string_base operator + (const wd16char * pszSrc) const;
@@ -157,6 +162,8 @@ public:
 
    template < typename TYPE >
    inline string_base & operator /=(const TYPE & t)
+    //  template < typename TYPE >
+   //inline string_base & operator /=(const ::string_base < TYPE_CHAR > & str)
    {
 
       string_base strRight(t);
@@ -172,11 +179,12 @@ public:
 
    template < typename TYPE >
    inline string_base operator /(const TYPE & t) const
+   //inline string_base operator /(const ::string_base < TYPE_CHAR > & str) const
    {
 
       string_base strRight(t);
 
-      string str(*this);
+      string_base str(*this);
 
       str /= strRight;
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "tab_impact.h"
 #include "tab_pane.h"
 #include "tab_data.h"
@@ -124,14 +124,14 @@ namespace user
    }
 
 
-   void tab_impact::OnActivateImpact(bool bActivate, __pointer(impact) pActivateImpact, __pointer(impact) pDeactiveImpact)
+   void tab_impact::OnActivateImpact(bool bActivate, ::pointer<impact>pActivateImpact, ::pointer<impact>pDeactiveImpact)
    {
 
       return impact_host::OnActivateImpact(bActivate, pActivateImpact, pDeactiveImpact);
 
-      //__pointer(::user::interaction) pinteraction = get_impact_uie();
+      //::pointer<::user::interaction>pinteraction = get_impact_uie();
 
-      //__pointer(::user::impact) pimpact = pinteraction;
+      //::pointer<::user::impact>pimpact = pinteraction;
 
       //if (pimpact.is_null() && pinteraction.is_set())
       //{
@@ -146,7 +146,7 @@ namespace user
       //   else
       //   {
 
-      //      __pointer(::user::frame_window) pframe = pinteraction;
+      //      ::pointer<::user::frame_window>pframe = pinteraction;
 
       //      if (pframe.is_set())
       //      {
@@ -229,7 +229,7 @@ namespace user
    void tab_impact::_001OnMenuMessage(::message::message * pmessage)
    {
       
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
 
       if(pusermessage->m_wparam == 0 && pusermessage->m_lparam == 0)
       {
@@ -273,7 +273,7 @@ namespace user
       if (ptabpane->m_pplaceholder.is_set())
       {
 
-         __pointer(::user::interaction) puiChild;
+         ::pointer<::user::interaction>puiChild;
 
          ptabpane->m_pplaceholder->get_child(puiChild);
 
@@ -342,7 +342,7 @@ namespace user
 
          add_tab(strName1 + "->:<-" + strName2, id3, true, false, pimpactdata->m_pplaceholder);
 
-         __pointer(::user::split_impact) psplitview = impact::create_impact < ::user::split_impact >(pimpactdata);
+         ::pointer<::user::split_impact>psplitview = impact::create_impact < ::user::split_impact >(pimpactdata);
 
          pimpactdata->m_puserinteraction = psplitview;
 
@@ -365,9 +365,9 @@ namespace user
 
          psplitview->initialize_split_layout();
 
-         __pointer(::user::interaction) puserinteraction1;
+         ::pointer<::user::interaction>puserinteraction1;
 
-         __pointer(::user::interaction) puserinteraction2;
+         ::pointer<::user::interaction>puserinteraction2;
 
          ppane1->m_pplaceholder->get_child(puserinteraction1);
 
@@ -611,14 +611,14 @@ namespace user
       if (m_pimpactdata->m_puserinteraction == nullptr)
       {
          
-         __pointer(::user::interaction) pinteraction;
+         ::pointer<::user::interaction>pinteraction;
          
          pinteraction = m_pimpactdata->m_pplaceholder->first_child();
 
          if(pinteraction)
          {
             
-            __pointer(::user::frame_window) pframewindow = pinteraction;
+            ::pointer<::user::frame_window>pframewindow = pinteraction;
 
             if(pframewindow && pframewindow->first_child())
             {
@@ -790,7 +790,7 @@ namespace user
          
          // create_impact_menu(m_pimpactdata);
          
-         __pointer(::user::menu) pmenu = get_impact_uie();
+         ::pointer<::user::menu>pmenu = get_impact_uie();
          
          if(pmenu)
          {
@@ -839,7 +839,9 @@ namespace user
    void tab_impact::prepare_impact_menu(::user::menu * pmenu)
    {
 
-      if (pmenu->load_xml_menu("matter://impact.menu"))
+      auto strXml = get_app()->file().as_string("matter://impact.menu");
+
+      if (pmenu->load_xml_menu(strXml))
       {
 
          pmenu->create_inline_menu(this, m_pimpactdata->m_pplaceholder);
@@ -1178,7 +1180,7 @@ namespace user
 
       //throw ::exception(todo, "experience");
 
-      //__pointer(::user::frame) pframewindow = pimpactdata->m_puserinteraction;
+      //::pointer<::user::frame>pframewindow = pimpactdata->m_puserinteraction;
 
       //if(pframewindow.is_set())
       //{

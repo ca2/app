@@ -17,7 +17,7 @@ namespace database
    public:
 
 
-      __pointer(::database::database)  m_pdatabase;
+      ::pointer<::database::database> m_pdatabase;
 
 
       composite();
@@ -32,7 +32,7 @@ namespace database
    public:
       
       
-      //virtual __pointer(class dataset) dataset() = 0;
+      //virtual ::pointer<class dataset> dataset() = 0;
 
 
       bool isActive() override;
@@ -67,7 +67,7 @@ namespace database
       //virtual string escape(const ::string & psz);
 
 
-      //inline __pointer(class transaction) transaction();
+      //inline ::pointer<class transaction> transaction();
 
 
       ::count get_affected_rows_count() override;
@@ -79,8 +79,8 @@ namespace database
       bool exec(const ::string & pszQuery) override;
 
 
-      __pointer(result_set) query_result(const ::string & pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) override;
-      __pointer(result_set) query(const ::string & pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) override;
+      ::pointer<result_set>query_result(const ::string & pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) override;
+      ::pointer<result_set>query(const ::string & pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) override;
 
 
       virtual ::payload get_agent(const ::string & pszTable, const ::string & psz, const ::string & pszUser) override;
@@ -94,9 +94,9 @@ namespace database
 
       //virtual ::payload query(const ::string & pszQuery, ::count iMaxRowCount = -1, ::count iMaxColumnCount = -1);
       bool query_table_item(::payload& payload, const ::string & table, const ::string & item, const ::string & where) override;
-      bool query_rows(__pointer(row_array) & prowarray, const ::string & pszQuery) override;
-      bool query_row(__pointer(row) & prow, const ::string & pszQuery) override;
-      bool query_items(__pointer(payload_array) & pvara, const ::string & pszQuery) override;
+      bool query_rows(::pointer<row_array>& prowarray, const ::string & pszQuery) override;
+      bool query_row(::pointer<row>& prow, const ::string & pszQuery) override;
+      bool query_items(::pointer<payload_array>& pvara, const ::string & pszQuery) override;
       bool query_item(::payload & payload, const ::string & pszQuery) override;
        bool query_blob(get_memory getmemory, const ::string & pszQuery) override;
 

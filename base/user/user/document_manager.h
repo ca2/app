@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      __pointer_array(::user::impact_system)       m_templateptra;
+      pointer_array < ::user::impact_system >       m_templateptra;
 
 
       static const char gen_ShellOpenFmt[];

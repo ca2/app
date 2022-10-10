@@ -1085,7 +1085,7 @@ pacmedirectory->is(strPath))
 
       }
 
-      //estatus = __compose_new(m_pmessagequeue);
+      //estatus = __construct_new(m_pmessagequeue);
 
 
       //if (!estatus)
@@ -1384,7 +1384,7 @@ namespace core
       if (!m_pshell)
       {
 
-         estatus = __compose(m_pshell, __new(::windows::shell));
+         estatus = __construct(m_pshell, __new(::windows::shell));
 
          if (!estatus)
          {

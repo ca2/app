@@ -1702,7 +1702,7 @@ void image::fork_blend(const ::point_i32& pointDstParam, ::image* pimageSrc, con
 
    }
 
-   __pointer(::aura::system) psystem = m_psystem;
+   ::pointer<::aura::system>psystem = m_psystem;
 
    auto pgroup = psystem->task_group();
 
@@ -1728,7 +1728,7 @@ void image::fork_blend(const ::point_i32& pointDstParam, ::image* pimageSrc, con
    for (auto& ptoolitem : ptool->m_itema)
    {
 
-      __pointer(::draw2d::task_tool_item) pitem = ptoolitem;
+      ::pointer<::draw2d::task_tool_item>pitem = ptoolitem;
 
       pitem->m_eop = ::draw2d::task_tool_item::op_blend;
 
@@ -9507,14 +9507,14 @@ save_image::save_image()
 //save_image::save_image(::matter * pmatter, const ::payload & payloadFile, const ::payload & varOptions)
 //{
 //
-//   __pointer(::aura::system) psystem = m_psystem;
+//   ::pointer<::aura::system>psystem = m_psystem;
 //
 //   auto eformat = pdraw2d->text_to_format(varOptions["format"]);
 //
 //   if (eformat != ::draw2d::e_format_none)
 //   {
 //
-//      __pointer(::aura::system) psystem = m_psystem;
+//      ::pointer<::aura::system>psystem = m_psystem;
 //
 //      eformat = pdraw2d->file_extension_to_format(payloadFile.get_file_path());
 //
@@ -9651,7 +9651,7 @@ void image::defer_update_image()
 }
 
 
-__pointer(::image) image::get_image(const ::size_i32 & size)
+::pointer<::image>image::get_image(const ::size_i32 & size)
 {
 
    if (size == get_size())
@@ -9678,7 +9678,7 @@ __pointer(::image) image::get_image(const ::size_i32 & size)
 }
 
 
-__pointer(::image) image::get_image(::i32 cx, ::i32 cy)
+::pointer<::image>image::get_image(::i32 cx, ::i32 cy)
 {
 
    auto pimageNew = get_image( ::size_i32( cx, cy ));

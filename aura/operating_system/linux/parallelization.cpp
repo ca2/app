@@ -173,7 +173,7 @@ int get_current_process_affinity_order()
 CLASS_DECL_AURA void main_sync_runnable(::object * pobjectRunnable, ::duration durationTimeout)
 {
 
-   __pointer(object) prunnable = pobjectRunnable;
+   ::pointer<object>prunnable = pobjectRunnable;
 
    auto pevent = __new(manual_reset_event);
 

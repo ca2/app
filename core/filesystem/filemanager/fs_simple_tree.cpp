@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "fs_simple_tree.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/drawing.h"
@@ -45,7 +45,7 @@ namespace filemanager
 
             //}
 
-            __compose_new(m_pimagelist);
+            __construct_new(m_pimagelist);
 
             m_pimagelist->create(16, 16);
 
@@ -98,9 +98,9 @@ namespace filemanager
 
             m_iParentFolder = pxmldocument->root()->attribute("id");
 
-            __pointer(::data::tree_item) ptreeitemParent;
+            ::pointer<::data::tree_item>ptreeitemParent;
 
-            __pointer(::data::tree_item) ptreeitemChild;
+            ::pointer<::data::tree_item>ptreeitemChild;
 
             ptreeitemParent = FindTreeItem(m_iParentFolder);
 
@@ -137,7 +137,7 @@ namespace filemanager
 
                index iNewItem = m_foldera.find_absolute(iFolder);
 
-               __pointer(folder) pfolder;
+               ::pointer<folder>pfolder;
 
                if (iNewItem < 0)
                {
@@ -223,7 +223,7 @@ namespace filemanager
          }
 
 
-         __pointer(::data::tree_item) tree::FindTreeItem(i64 iFolder)
+         ::pointer<::data::tree_item>tree::FindTreeItem(i64 iFolder)
          {
             i32 iUser;
 
@@ -268,7 +268,7 @@ namespace filemanager
          }
 
 
-         index tree::_001GetItemImage(__pointer(::data::tree_item) pitem, bool bSelected)
+         index tree::_001GetItemImage(::pointer<::data::tree_item>pitem, bool bSelected)
          {
 
             if(bSelected)

@@ -910,7 +910,7 @@ namespace write_text
 
          // Remove absent/erased fonts
 
-         __pointer(font_list_item) pitem;
+         ::pointer<font_list_item>pitem;
 
          {
 
@@ -946,7 +946,7 @@ namespace write_text
                if (pitem && pitem->m_strName.has_char() && pitem->m_strName != m_pfontenumerationitema->ptr_at(iItem)->m_strName)
                {
 
-                  __pointer(font_list_item) pitemNewEmpty;
+                  ::pointer<font_list_item>pitemNewEmpty;
 
                   pfontlistdata->insert_at(iItem, pitemNewEmpty);
 
@@ -999,9 +999,9 @@ namespace write_text
 
          ::rectangle_i32 rectangle;
 
-         __pointer(font_list_item) plistitem;
+         ::pointer<font_list_item>plistitem;
 
-         __pointer(font_enumeration_item) penumitem;
+         ::pointer<font_enumeration_item>penumitem;
 
          //single_lock lock(mutex());
 

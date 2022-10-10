@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "tab.h"
 #include "tab_pane_array.h"
 #include "acme/constant/timer.h"
@@ -202,7 +202,7 @@ namespace user
 
       auto & ppane = get_data()->m_tabpanecompositea.add_new();
 
-      __compose_new(ppane);
+      __construct_new(ppane);
 
       ppane->initialize_tab_pane(this);
 
@@ -249,7 +249,7 @@ namespace user
 
       auto & ppane = get_data()->m_tabpanecompositea.add_new();
 
-      __compose_new(ppane);
+      __construct_new(ppane);
 
       ppane->initialize_tab_pane(this);
 
@@ -433,7 +433,7 @@ namespace user
 
       //}
 
-      //__pointer(::experience::frame_window) pchannel = top_level_frame();
+      //::pointer<::experience::frame_window>pchannel = top_level_frame();
       //
       //if (pchannel != nullptr && pchannel->m_bInitialFramePosition)
       //{
@@ -635,7 +635,7 @@ namespace user
 
       pgraphics->get_clip_box(&rClip);
 
-      __pointer(::base::style) pstyle = get_style(pgraphics);
+      ::pointer<::base::style>pstyle = get_style(pgraphics);
 
       if(pstyle)
       {
@@ -969,7 +969,7 @@ namespace user
          if (true)
          {
 
-            __pointer(::base::style) pbasestyle = pstyle;
+            ::pointer<::base::style>pbasestyle = pstyle;
 
             if (pbasestyle && get_element_rect(iIndex, rectangleText, ::e_element_text))
             {
@@ -1316,7 +1316,7 @@ namespace user
 
       }
 
-      __pointer(::base::style) pstyle = get_style(pgraphics);
+      ::pointer<::base::style>pstyle = get_style(pgraphics);
 
       if(pstyle)
       {
@@ -1981,7 +1981,7 @@ namespace user
    {
 
       __UNREFERENCED_PARAMETER(pmessage);
-      //__pointer(::user::message) pusermessage(pmessage);
+      //::pointer<::user::message>pusermessage(pmessage);
 
    }
 
@@ -2371,7 +2371,7 @@ namespace user
    void tab::on_hide_child(::user::interaction * pinteraction)
    {
 
-      //__pointer(::user::interaction) pupdown = pinteraction;
+      //::pointer<::user::interaction>pupdown = pinteraction;
 
       //if (pupdown.is_set()
       //      && pupdown->m_eupdown != e_updown_normal_frame
@@ -2388,7 +2388,7 @@ namespace user
    void tab::on_hide_place_holder_child(::user::interaction * pinteraction)
    {
 
-      //__pointer(::user::interaction) pupdown = pinteraction;
+      //::pointer<::user::interaction>pupdown = pinteraction;
 
       //if (pupdown.is_set()
       //      && pupdown->m_eupdown != e_updown_normal_frame
@@ -2579,7 +2579,7 @@ namespace user
          
       }
 
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
 
       if (pmessage->previous())
       {
@@ -3075,7 +3075,7 @@ namespace user
    ::user::interaction * tab::tab_window(::index iIndex)
    {
 
-      __pointer(place_holder) pholder = tab_holder(iIndex);
+      ::pointer<place_holder>pholder = tab_holder(iIndex);
 
       if (pholder.is_null())
       {
@@ -3109,7 +3109,7 @@ namespace user
    ::user::interaction * tab::pane_window(::index iIndex)
    {
 
-      __pointer(place_holder) pholder = pane_holder(iIndex);
+      ::pointer<place_holder>pholder = pane_holder(iIndex);
 
       if (pholder.is_null())
       {
@@ -3225,7 +3225,7 @@ namespace user
 
       }
 
-      __pointer(::base::application) papp = get_app();
+      ::pointer<::base::application>papp = get_app();
 
       papp->on_change_cur_sel(this);
 
@@ -3736,7 +3736,7 @@ namespace user
 
    //   }
 
-   //   __pointer(::user::interaction) pinteraction;
+   //   ::pointer<::user::interaction>pinteraction;
 
 
    //   while(rget_child(pinteraction))
@@ -4160,7 +4160,7 @@ namespace user
 
       __UNREFERENCED_PARAMETER(pmessage);
 
-//      __pointer(::message::show_window) pshowwindow(pmessage);
+//      ::pointer<::message::show_window>pshowwindow(pmessage);
 
 //      ::user::place_holder * pholder = tab_holder(get_current_tab_index());
 //

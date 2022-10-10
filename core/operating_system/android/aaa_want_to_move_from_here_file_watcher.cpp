@@ -108,7 +108,7 @@
 //
 //      }
 //
-//      __pointer(os_watch) pWatch = memory_new os_watch();
+//      ::pointer<os_watch>pWatch = memory_new os_watch();
 //
 //      pWatch->m_listenera.add(pwatcher);
 //      pWatch->m_atom = wd;

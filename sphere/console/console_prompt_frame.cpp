@@ -195,7 +195,7 @@ namespace console
       
       hide();
 
-      __pointer(prompt_impact) pimpact = m_pviewMain;
+      ::pointer<prompt_impact>pimpact = m_pviewMain;
 
       if(pimpact.is_set())
       {
@@ -323,7 +323,7 @@ namespace console
    void prompt_frame::on_message_show_window(::message::message * pmessage)
    {
 
-      //__pointer(::message::show_window) pshowwindow(pmessage);
+      //::pointer<::message::show_window>pshowwindow(pmessage);
 
       //if(!pshowwindow->m_bShow)
       //{
@@ -363,7 +363,7 @@ namespace console
    void prompt_frame::message_queue_message_handler(::message::message * pmessage)
    {
 
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
       if(pusermessage->m_atom == (WM_APP + 2000))
       {
          _001OnApp2000(pusermessage);
@@ -373,7 +373,7 @@ namespace console
 
    void prompt_frame::_001OnApp2000(::message::message * pmessage)
    {
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
 
 
       if(pusermessage->m_wparam == 0)
@@ -483,7 +483,7 @@ namespace console
    }
 
 
-   __pointer(::experience::frame) prompt_frame::frame_experience()
+   ::pointer<::experience::frame>prompt_frame::frame_experience()
    {
 
       auto pframe = papp->experience()->frame_experience("experience_lite","002");

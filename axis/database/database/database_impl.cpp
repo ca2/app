@@ -149,7 +149,7 @@ namespace database
    }
 
 
-   __pointer(row_array) database_impl::query_rows(const ::string & pszQuery)
+   ::pointer<row_array>database_impl::query_rows(const ::string & pszQuery)
    {
 
       auto pset = query_result(pszQuery);
@@ -166,7 +166,7 @@ namespace database
    }
 
 
-   __pointer(row) database_impl::query_row(const ::string & pszQuery)
+   ::pointer<row>database_impl::query_row(const ::string & pszQuery)
    {
 
       auto pset = query_result(pszQuery, 1);
@@ -183,7 +183,7 @@ namespace database
    }
 
 
-   __pointer(payload_array) database_impl::query_items(const ::string & pszQuery)
+   ::pointer<payload_array>database_impl::query_items(const ::string & pszQuery)
    {
 
       auto pset = query_result(pszQuery, -1, 1);
@@ -235,7 +235,7 @@ namespace database
 
 
    /*
-      bool database_impl::query_rows(__pointer(row_array) & rows, const ::string & pszQuery)
+      bool database_impl::query_rows(::pointer<row_array>& rows, const ::string & pszQuery)
       {
 
          auto pset = query_result(pszQuery);
@@ -254,7 +254,7 @@ namespace database
       }
 
 
-      bool database_impl::query_row(__pointer(row) & row, const ::string & pszQuery)
+      bool database_impl::query_row(::pointer<row>& row, const ::string & pszQuery)
       {
 
          auto pset = query_result(pszQuery);
@@ -283,7 +283,7 @@ namespace database
    }
 
 
-   __pointer(::database::result_set) database_impl::query_result(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
+   ::pointer<::database::result_set>database_impl::query_result(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
    {
 
       return nullptr;
@@ -291,7 +291,7 @@ namespace database
    }
 
 
-   //bool database_impl::query_items(__pointer(payload_array) & pitems, const ::string & pszQuery)
+   //bool database_impl::query_items(::pointer<payload_array>& pitems, const ::string & pszQuery)
    //{
 
    //   auto pset = query_result(pszQuery);

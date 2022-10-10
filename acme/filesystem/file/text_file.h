@@ -1,4 +1,7 @@
-#pragma once
+﻿#pragma once
+
+
+#include "file.h"
 
 
 namespace file
@@ -32,7 +35,7 @@ namespace file
    };
 
 
-   typedef ___pointer < text_file > text_buffer_pointer;
+   typedef ::pointer<text_file>text_buffer_pointer;
 
 
 } // namespace file

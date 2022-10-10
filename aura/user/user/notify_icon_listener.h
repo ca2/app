@@ -34,7 +34,7 @@ namespace user
       };
 
 
-      __pointer_array(item)      m_notifyiconitema;
+      pointer_array < item >      m_notifyiconitema;
 
 
       notify_icon_listener();

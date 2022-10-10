@@ -14,7 +14,7 @@ namespace windowing
 
 
       bool                                      m_bUnhook;
-      __pointer(::windowing::windowing)         m_pwindowing;
+      ::pointer<::windowing::windowing>        m_pwindowing;
 
 
       desktop_environment();

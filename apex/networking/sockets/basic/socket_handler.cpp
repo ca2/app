@@ -1560,7 +1560,7 @@ namespace sockets
 //
 //      // check cache
 //
-//      __pointer(resolv_socket_id) presolvsocket_id = __new(resolv_socket_id(pbasesocket_id, host, port));
+//      ::pointer<resolv_socket_id>presolvsocket_id = __new(resolv_socket_id(pbasesocket_id, host, port));
 //
 //      presolvsocket_id->m_psocket_idhandler = this;
 //
@@ -1597,7 +1597,7 @@ namespace sockets
 //
 //      // check cache
 //
-//      __pointer(resolv_socket_id) resolv = __new(resolv_socket_id(pbasesocket_id, host, port, true));
+//      ::pointer<resolv_socket_id>resolv = __new(resolv_socket_id(pbasesocket_id, host, port, true));
 //
 //      resolv->m_psocket_idhandler = this;
 //
@@ -1632,7 +1632,7 @@ namespace sockets
 //
 //      // check cache
 //
-//      __pointer(resolv_socket_id) resolv = __new(resolv_socket_id(pbasesocket_id, a));
+//      ::pointer<resolv_socket_id>resolv = __new(resolv_socket_id(pbasesocket_id, a));
 //
 //      resolv->m_psocket_idhandler = this;
 //
@@ -1667,7 +1667,7 @@ namespace sockets
 //
 //      // check cache
 //
-//      __pointer(resolv_socket_id) resolv = __new(resolv_socket_id(pbasesocket_id, a));
+//      ::pointer<resolv_socket_id>resolv = __new(resolv_socket_id(pbasesocket_id, a));
 //
 //      resolv->m_psocket_idhandler = this;
 //
@@ -1780,7 +1780,7 @@ namespace sockets
 //   }
 
 
-   //__pointer(base_socket_handler::pool_socket_id) socket_handler::FindConnection(i32 type, const string & protocol, ::networking::address * ad)
+   //::pointer<base_socket_handler::pool_socket_id>socket_handler::FindConnection(i32 type, const string & protocol, ::networking::address * ad)
    //{
 
    //   auto psystem = get_system()->m_papexsystem;

@@ -358,7 +358,7 @@ void LiteHTMLElemAttr::putValue(::lite_html_reader * preader, const ::string & p
 
    string strChar;
 
-   __pointer(::axis::system) psystem = preader->get_system();
+   ::pointer<::axis::system>psystem = preader->get_system();
 
    do
    {

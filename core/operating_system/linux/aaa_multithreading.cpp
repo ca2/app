@@ -168,7 +168,7 @@ CLASS_DECL_CORE i64 get_nanos()
 CLASS_DECL_CORE void main_sync_runnable(::object * pobjectRunnable, ::duration durationTimeout)
 {
 
-   __pointer(object) prunnable = pobjectRunnable;
+   ::pointer<object>prunnable = pobjectRunnable;
 
    auto pevent = __new(manual_reset_event);
 
@@ -198,7 +198,7 @@ CLASS_DECL_CORE void main_sync_runnable(::object * pobjectRunnable, ::duration d
 CLASS_DECL_CORE void main_async_runnable(::object * prunnableParam)
 {
 
-   __pointer(object) prunnable = prunnableParam;
+   ::pointer<object>prunnable = prunnableParam;
 
    gdk_fork([prunnable]()
    {

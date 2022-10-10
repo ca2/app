@@ -22,7 +22,7 @@ public:
 
    ::mutex                             m_mutexWork;
 
-   __pointer(image_array)              m_pimageaWork;
+   ::pointer<image_array>             m_pimageaWork;
 
 
    imaging();
@@ -288,7 +288,7 @@ public:
    //
    //}
 
-   //inline void load_image(::image_pointer & pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory)
+   //inline void load_image(::image_pointer & pimage, ::pointer<image_frame_array>& pframea, ::memory_pointer pmemory)
    //{
 
    //   auto estatus = __construct(pimage);

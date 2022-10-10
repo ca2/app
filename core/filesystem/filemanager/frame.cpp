@@ -56,7 +56,7 @@ namespace filemanager
 
    void  frame::_001OnSetText(::message::message * pmessage)
    {
-      //   __pointer(::user::message) pusermessage(pmessage);
+      //   ::pointer<::user::message>pusermessage(pmessage);
 
       pmessage->previous();
 

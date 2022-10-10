@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/graphics/image/icon.h"
 #include "apex/filesystem/filesystem/file_watcher.h"
 //#if !BROAD_PRECOMPILED_HEADER
@@ -68,7 +68,7 @@ namespace filemanager
 
       ASSERT(bOpenFileDialog == false);
 
-      __pointer(document) pdocument = this;
+      ::pointer<document>pdocument = this;
 
       tab_impact * pimpact = pdocument->get_typed_impact < tab_impact >();
 
@@ -94,7 +94,7 @@ namespace filemanager
    }
 
 
-   bool document::browse(__pointer(::file::item) pitem, const ::action_context & context)
+   bool document::browse(::pointer<::file::item>pitem, const ::action_context & context)
    {
 
       if (m_pfsset->m_spafsdata.is_empty())
@@ -184,7 +184,7 @@ namespace filemanager
    }
 
 
-   void document::on_file_manager_open_context_menu_folder(__pointer(::file::item)  item, string_array & straCommand, string_array & straCommandTitle, const ::action_context & context)
+   void document::on_file_manager_open_context_menu_folder(::pointer<::file::item> item, string_array & straCommand, string_array & straCommandTitle, const ::action_context & context)
    {
 
       auto pfilemanagerdata = filemanager_data();
@@ -245,7 +245,7 @@ namespace filemanager
       if (pfilemanagerdata->is_topic() && itema.get_count() == 1)
       {
 
-         __pointer(document) pdocument = this;
+         ::pointer<document>pdocument = this;
 
          auto ptopic = create_topic(TOPIC_OK_ID);
 
@@ -333,7 +333,7 @@ namespace filemanager
    }
 
 
-   void document::on_file_manager_open_folder(__pointer(::file::item)  item, const ::action_context & context)
+   void document::on_file_manager_open_folder(::pointer<::file::item> item, const ::action_context & context)
    {
 
       auto pfilemanagerdata = filemanager_data();
@@ -384,7 +384,7 @@ namespace filemanager
    }
 
 
-   //void document::browse(__pointer(::file::item) item, const ::action_context & context)
+   //void document::browse(::pointer<::file::item>item, const ::action_context & context)
    //{
 
    //   ASSERT(filemanager_document() != nullptr);
@@ -424,7 +424,7 @@ namespace filemanager
 
       ::file::path pathFinal = pcontext->m_papexcontext->defer_process_path(pathUser);
 
-      __pointer(::file::item) pitem = __new(::file::item(pathUser, pathFinal));
+      ::pointer<::file::item>pitem = __new(::file::item(pathUser, pathFinal));
 
       browse(pitem, context);
 
@@ -475,7 +475,7 @@ namespace filemanager
    document * document::get_main_document()
    {
 
-      __pointer(tab_impact) ptabimpact = get_typed_impact < tab_impact >();
+      ::pointer<tab_impact>ptabimpact = get_typed_impact < tab_impact >();
 
       if (ptabimpact.is_set())
       {
@@ -488,12 +488,12 @@ namespace filemanager
             if (ptabpane != nullptr && ptabpane->m_pplaceholder != nullptr)
             {
 
-               __pointer(child_frame) pchildframe = ptabpane->m_pplaceholder->first_child();
+               ::pointer<child_frame>pchildframe = ptabpane->m_pplaceholder->first_child();
 
                if (pchildframe.is_set())
                {
 
-                  __pointer(document) pdocument = pchildframe->get_active_document();
+                  ::pointer<document>pdocument = pchildframe->get_active_document();
 
                   if (pdocument.is_set())
                   {
@@ -555,7 +555,7 @@ namespace filemanager
 
             //set_data_key_modifier(m_strManagerId);
 
-  /*          __pointer(main_frame) pframe = get_impact()->get_typed_parent < main_frame >();
+  /*          ::pointer<main_frame>pframe = get_impact()->get_typed_parent < main_frame >();
 
             if (pframe.is_set() && !pframe->m_atom.to_string().contains("::frame"))
             {
@@ -566,7 +566,7 @@ namespace filemanager
 
          }
 
-         __pointer(document) pdocument = get_main_document();
+         ::pointer<document>pdocument = get_main_document();
 
          if (pdocument.is_set() && pdocument.m_p != this && pdocument->m_strManagerId != m_strManagerId)
          {
@@ -626,7 +626,7 @@ namespace filemanager
    bool document::on_open_document(const ::payload & payloadFile)
    {
 
-      ::file::path path = payloadFile.get_file_path();
+      ::file::path path = payloadFile.file_path();
 
       path.trim();
 
@@ -663,7 +663,7 @@ namespace filemanager
    }
 
 
-   void document::start_full_browse(__pointer(::file::item) pitem, const ::action_context & context)
+   void document::start_full_browse(::pointer<::file::item>pitem, const ::action_context & context)
    {
 
       if (!fs_data()->is_zero_latency(pitem->final_path()))
@@ -689,7 +689,7 @@ namespace filemanager
    }
 
 
-   void document::full_browse(__pointer(::file::item) pitem, const ::action_context & context)
+   void document::full_browse(::pointer<::file::item>pitem, const ::action_context & context)
    {
 
       __task_guard(m_bFullBrowse);
@@ -800,7 +800,7 @@ namespace filemanager
    void document::_001OnUpdateNewManager(::message::message * pmessage)
    {
 
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
 
       pcommand->enable(true);
 
@@ -832,7 +832,7 @@ namespace filemanager
    void document::_001OnUpdateDelManager(::message::message * pmessage)
    {
 
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
 
       pcommand->enable(true);
 
@@ -844,14 +844,14 @@ namespace filemanager
    void document::_001OnDelManager(::message::message * pmessage)
    {
 
-      __pointer(document) pdocument = this;
+      ::pointer<document>pdocument = this;
 
-      __pointer(impact) pimpact = get_typed_impact<impact>();
+      ::pointer<impact>pimpact = get_typed_impact<impact>();
 
       if (pimpact.is_set())
       {
 
-         __pointer(tab_impact) ptabimpact = pimpact->get_typed_parent <tab_impact>();
+         ::pointer<tab_impact>ptabimpact = pimpact->get_typed_parent <tab_impact>();
 
          if (ptabimpact.is_set())
          {
@@ -878,7 +878,7 @@ namespace filemanager
    void document::_001OnUpdateLevelUp(::message::message * pmessage)
    {
 
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
 
       if (m_pitem.is_null() || m_pitem->user_path().is_empty())
       {
@@ -908,7 +908,7 @@ namespace filemanager
    void document::_001OnUpdateAddLocation(::message::message * pmessage)
    {
 
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
 
       pcommand->enable(true);
 
@@ -930,7 +930,7 @@ namespace filemanager
    void document::_001OnUpdateReplaceText(::message::message * pmessage)
    {
 
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
 
       pcommand->enable(true);
 
@@ -954,7 +954,7 @@ namespace filemanager
    void document::_001OnUpdateNewFolder(::message::message * pmessage)
    {
 
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
 
       pcommand->enable(true);
 
@@ -977,7 +977,7 @@ namespace filemanager
 
    void document::_001OnUpdateEditPaste(::message::message * pmessage)
    {
-      //      __pointer(::message::command) pcommand(pmessage);
+      //      ::pointer<::message::command>pcommand(pmessage);
 
       //         pcommand->enable(psystem->m_strCopy.is_empty());
       pmessage->m_bRet = true;
@@ -993,19 +993,19 @@ namespace filemanager
 
    void document::_001OnUpdateFileSaveAs(::message::message * pmessage)
    {
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
       pcommand->enable(true);
    }
 
    void document::_001OnUpdateFileImport(::message::message * pmessage)
    {
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
       pcommand->enable(true);
    }
 
    void document::_001OnUpdateFileExport(::message::message * pmessage)
    {
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
       pcommand->enable(true);
    }
 
@@ -1471,7 +1471,7 @@ namespace filemanager
       //if (m_pfilemanagerdata.is_null())
       //{
 
-      //   //__pointer(manager_template) ptemplate = pcreate->prop("filemanager::template").cast < manager_template >();
+      //   //::pointer<manager_template>ptemplate = pcreate->prop("filemanager::template").cast < manager_template >();
 
       //   //if (ptemplate.is_null())
       //   //{
@@ -1512,10 +1512,10 @@ namespace filemanager
    }
 
 
-   __pointer(::filemanager::data) document::create_file_manager_data(::create * pcreate)
+   ::pointer<::filemanager::data>document::create_file_manager_data(::create * pcreate)
    {
 
-      __pointer(::filemanager::data) pfilemanagerdata(__new(data));
+      ::pointer<::filemanager::data>pfilemanagerdata(__new(data));
 
       ::filemanager::callback * pcallback = nullptr;
 

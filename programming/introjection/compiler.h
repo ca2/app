@@ -56,7 +56,7 @@ namespace introjection
 
       ::mutex                                     m_mutexLibrary;
 
-      string_map < __pointer(library) >                m_lib;
+      string_map < ::pointer<library >>               m_lib;
 
 
       compiler();

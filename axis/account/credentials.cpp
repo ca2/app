@@ -156,7 +156,7 @@ namespace account
 
       }
 
-      __pointer(::axis::application) papp = get_app();
+      ::pointer<::axis::application>papp = get_app();
 
       papp->interactive_credentials(this);
 

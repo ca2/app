@@ -608,9 +608,9 @@ namespace user
       if (!m_pshell)
       {
 
-         //estatus = __compose(m_pshell, __new(::windows::shell));
+         //estatus = __construct(m_pshell, __new(::windows::shell));
          //estatus =
-         __compose(m_pshell);
+         __construct(m_pshell);
 
          //if (!estatus)
          //{
@@ -692,11 +692,11 @@ namespace user
       for (auto& papp : psession->m_applicationa)
       {
 
-         __pointer(::aura::application) pappAura = papp;
+         ::pointer<::aura::application>pappAura = papp;
 
          synchronous_lock synchronouslock(&pappAura->m_mutexFrame);
 
-         __pointer(::user::interaction) pinteraction;
+         ::pointer<::user::interaction>pinteraction;
 
          while (pappAura->get_frame(pinteraction))
          {
@@ -786,7 +786,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu_interaction) user::create_menu_button(::user::style * pstyle, menu_item* pitem)
+   //::pointer<::user::menu_interaction>user::create_menu_button(::user::style * pstyle, menu_item* pitem)
    //{
 
    //   return nullptr;
@@ -794,7 +794,7 @@ namespace user
    //}
 
 
-//   __pointer(::user::impact) user::get_impact()
+//   ::pointer<::user::impact>user::get_impact()
 //   {
 //
 //      return nullptr;
@@ -810,11 +810,11 @@ namespace user
 //   }
 
 
-   //CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam);
+   //CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam);
 
 
-   //CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam)
-   CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, ::user::interaction * pinteractionParent)
+   //CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, atom atom, HINSTANCE hInstance, LPVOID pParam)
+   CLASS_DECL_AURA ::pointer<::user::interaction>create_virtual_window(::object * pobject, ::user::interaction * pinteractionParent)
    {
 
       auto pinteraction = pobject->__create_new < ::user::interaction >();
@@ -994,7 +994,7 @@ namespace aura
       if (m_pfontlistSingleColumn.is_null())
       {
 
-         __compose(m_pfontlistSingleColumn, __create_new < ::write_text::font_list > ());
+         __construct(m_pfontlistSingleColumn, __create_new < ::write_text::font_list > ());
 
          m_pfontlistSingleColumn->set_font_list_type(::write_text::e_font_list_single_column);
 
@@ -1019,12 +1019,12 @@ namespace aura
 //
 //      if (psession->m_bShowPlatform)
 //      {
-//         //__pointer(::simple_frame_window) pframeApp = get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_impact_uie();
+//         //::pointer<::simple_frame_window>pframeApp = get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_impact_uie();
 //         //if(pframeApp != nullptr)
 //         //{
 //         //   pframeApp->display(e_display_full_screen);
 //         //}
-//         //__pointer(::simple_frame_window) pframe = get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_parent_frame();
+//         //::pointer<::simple_frame_window>pframe = get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_parent_frame();
 //         //if(pframe != nullptr)
 //         //{
 //         //   pframe->display(e_display_restored);
@@ -1034,7 +1034,7 @@ namespace aura
 //      {
 //         //if(get_document() != nullptr && get_document()->get_typed_impact < ::bergedge::impact >() != nullptr)
 //         //{
-//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_impact < ::bergedge::impact >()->get_parent_frame();
+//         //   ::pointer<::simple_frame_window>pframe = get_document()->get_typed_impact < ::bergedge::impact >()->get_parent_frame();
 //         //   if(pframe != nullptr)
 //         //   {
 //         //      pframe->display(e_display_restored);
@@ -1064,7 +1064,7 @@ namespace aura
 //   }
 
 
-   //__pointer(::user::document) session::get_document()
+   //::pointer<::user::document>session::get_document()
    //{
 
    //   //return m_pdocs->m_pbergedgedocument;
@@ -1073,7 +1073,7 @@ namespace aura
    //}
 
 
-   //__pointer(::user::impact) session::get_impact()
+   //::pointer<::user::impact>session::get_impact()
    //{
 
    //   if (get_document() == nullptr)
@@ -1088,13 +1088,13 @@ namespace aura
    //}
 
 
-   //__pointer(::user::document) session::get_platform()
+   //::pointer<::user::document>session::get_platform()
    //{
    //   //return m_pdocs->m_pplatformdocument;
    //   return nullptr;
    //}
 
-   //__pointer(::user::document) session::get_nature()
+   //::pointer<::user::document>session::get_nature()
    //{
    //   //return m_pdocs->m_pnaturedocument;
    //   return nullptr;
@@ -1180,7 +1180,7 @@ namespace aura
    {
 
 
-      __pointer(::user::interaction) puserinteractionParent;
+      ::pointer<::user::interaction>puserinteractionParent;
 
       if (pcreate->payload("uicontainer").cast < ::user::interaction >() != nullptr)
       {
@@ -1221,7 +1221,7 @@ namespace aura
 
       }*/
 
-      __pointer(::aura::application) papp = pinteraction->get_app();
+      ::pointer<::aura::application>papp = pinteraction->get_app();
 
       if (pcreate->m_bExperienceMainFrame ||
             papp->m_bExperienceMainFrame ||
@@ -1364,7 +1364,7 @@ namespace user
          if(m_uiptraToolWindow.has_element())
          {
 
-            __pointer_array(::user::interaction) uiptraToolWindow;
+            pointer_array < ::user::interaction > uiptraToolWindow;
 
             {
 
@@ -1417,7 +1417,7 @@ namespace user
 
       m_pdesktopenvironment->m_bUnhook = m_psystem->m_pauranode->m_bUnhookX;
 
-      __compose(m_pwindowing);
+      __construct(m_pwindowing);
 
       m_pdesktopenvironment->m_pwindowing = m_pwindowing;
 
@@ -1480,7 +1480,7 @@ namespace user
 //
 //         }
 //
-//         estatus = __compose(m_pwindowing);
+//         estatus = __construct(m_pwindowing);
 //
 //         if (!estatus)
 //         {
@@ -1568,7 +1568,7 @@ namespace user
    }
 
    
-   __pointer(::user::plain_edit) user::create_calculator_plain_edit()
+   ::pointer<::user::plain_edit>user::create_calculator_plain_edit()
    {
 
       return __new(::user::plain_edit);

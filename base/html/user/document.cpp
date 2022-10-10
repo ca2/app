@@ -73,7 +73,7 @@ void html_document::dump(dump_context & dumpcontext) const
 //void html_document::create_html_data()
 //{
 //
-//   auto estatus = __compose_new(m_phtmldata);
+//   auto estatus = __construct_new(m_phtmldata);
 //
 //   if (!estatus)
 //   {
@@ -421,7 +421,7 @@ bool html_document::load_html(const ::string & str)
 }
 
 
-__pointer(::user::interaction) html_document::get_frame()
+::pointer<::user::interaction>html_document::get_frame()
 {
 
    return get_html_data()->get_frame();

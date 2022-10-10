@@ -1050,7 +1050,7 @@ namespace color
                str.trim();
                ::payload a;
                a.stra().explode(",", str);
-               i32_array & ia = a;
+               i32_array & ia = __reference(a);
                if (ia.get_count() == 3)
                {
                   set_COLORREF(argb(255, ia[0], ia[1], ia[2]));

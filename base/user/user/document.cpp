@@ -79,7 +79,7 @@ namespace user
       ::count count = get_impact_count();
       for (index index = 0; index < count; index++)
       {
-         __pointer(::user::impact) pimpact = get_impact(index);
+         ::pointer<::user::impact>pimpact = get_impact(index);
          ASSERT_VALID(pimpact);
       }
    }
@@ -152,7 +152,7 @@ namespace user
    }
 
    
-   void document::destroy_composites()
+   void document::on_destroy()
    {
 
       //bool bStillFinishing = false;
@@ -177,7 +177,7 @@ namespace user
 
       //auto estatus = 
       
-      ::user::controller::destroy_composites();
+      ::user::controller::on_destroy();
 
       /*if (estatus == ::error_pending)
       {
@@ -241,7 +241,7 @@ namespace user
       //   ::count count = get_impact_count();
       //   for (index index = 0; index < count; index++)
       //   {
-      //      __pointer(::user::impact) pimpact = get_impact(index);
+      //      ::pointer<::user::impact>pimpact = get_impact(index);
       //      dumpcontext << "\nwith ::user::impact " << (void *)pimpact;
       //   }
       //}
@@ -324,7 +324,7 @@ namespace user
    //   //}
 
    //   // then pump through parent
-   //   __pointer(::user::interaction) puiParent = get_parent();
+   //   ::pointer<::user::interaction>puiParent = get_parent();
    //   while (puiParent)
    //   {
 
@@ -356,7 +356,7 @@ namespace user
 
    //   }
 
-   //   __pointer(channel) ptarget = psession->get_keyboard_focus();
+   //   ::pointer<channel>ptarget = psession->get_keyboard_focus();
 
    //   if (ptarget != nullptr && ptarget != this && ptarget != get_active_impact()
    //      && !m_interactionaCommandHandlers.contains(ptarget))
@@ -507,13 +507,13 @@ namespace user
       for (index index = 0; index < m_impacta.get_count(); index++)
       {
 
-         __pointer(::user::impact) pimpact = m_impacta[index];
+         ::pointer<::user::impact>pimpact = m_impacta[index];
 
          ASSERT_VALID(pimpact);
 
          ASSERT_KINDOF(::user::impact, pimpact);
 
-         pimpact->__release(pimpact->m_pdocument);
+         pimpact->m_pdocument.release();
 
       }
 
@@ -547,7 +547,7 @@ namespace user
    }
 
 
-   __pointer(::user::impact) document::get_impact(index index) const
+   ::pointer<::user::impact>document::get_impact(index index) const
    {
 
       synchronous_lock synchronouslock(((document *)this)->mutex());
@@ -559,7 +559,7 @@ namespace user
 
       }
 
-      __pointer(::user::impact) pimpact = m_impacta[index];
+      ::pointer<::user::impact>pimpact = m_impacta[index];
 
       ASSERT_KINDOF(::user::impact, pimpact);
 
@@ -569,7 +569,7 @@ namespace user
 
 
 
-   //void document::send_update(__pointer(::user::impact) pSender, LPARAM lHint, ::object * pHint)
+   //void document::send_update(::pointer<::user::impact>pSender, LPARAM lHint, ::object * pHint)
    //// walk through all views
    //{
    //   ASSERT(pSender == nullptr || !m_impacta.is_empty());
@@ -579,7 +579,7 @@ namespace user
    //   ::count count = get_impact_count();
    //   for (index index = 0; index < count; index++)
    //   {
-   //      __pointer(::user::impact) pimpact = get_impact(index);
+   //      ::pointer<::user::impact>pimpact = get_impact(index);
 
    //      ptask = memory_new update;
    //      ptask->m_pSender = pSender;
@@ -599,7 +599,7 @@ namespace user
    }
 
 
-   __pointer(::user::impact) document::get_typed_impact(::type info, index indexFind)
+   ::pointer<::user::impact>document::get_typed_impact(::type info, index indexFind)
    {
 
       single_lock synchronouslock(mutex(), true);
@@ -608,7 +608,7 @@ namespace user
 
       ::count countFind = 0;
 
-      __pointer(::user::impact) pimpact;
+      ::pointer<::user::impact>pimpact;
 
       for (index index = 0; index < countImpact; index++)
       {
@@ -640,12 +640,12 @@ namespace user
    }
 
 
-   __pointer(::user::impact) document::get_typed_impact_with_id(::type info, atom atom)
+   ::pointer<::user::impact>document::get_typed_impact_with_id(::type info, atom atom)
    {
       single_lock synchronouslock(mutex(), true);
       ::count countImpact = get_impact_count();
       ::count countFind = 0;
-      __pointer(::user::impact) pimpact;
+      ::pointer<::user::impact>pimpact;
       for (index index = 0; index < countImpact; index++)
       {
          pimpact = get_impact(index);
@@ -671,7 +671,7 @@ namespace user
       for (index index = 0; index < count; index++)
       {
 
-         __pointer(::user::impact) pimpact = get_impact(index);
+         ::pointer<::user::impact>pimpact = get_impact(index);
 
          enum_activation eactivation = e_activation_default;
 
@@ -907,7 +907,7 @@ namespace user
 
       m_bModified = false;
 
-      m_path = payloadFile.get_file_path();
+      m_path = payloadFile.file_path();
 
       m_strTitle = m_path.name();
 
@@ -1061,7 +1061,7 @@ namespace user
       if(!::is_ok(pwriter))
       {
 
-         ::file::path path = payloadFile.get_file_path();
+         ::file::path path = payloadFile.file_path();
 
          FORMATTED_TRACE("Failed to save document : file path : %s", path.c_str());
 
@@ -1117,9 +1117,9 @@ namespace user
 
       pre_close_document();
 
-      __pointer(::object) pthis = this;
+      ::pointer<::object>pthis = this;
 
-      __pointer_array(::user::frame_window) frameptra;
+      pointer_array < ::user::frame_window > frameptra;
 
       {
 
@@ -1168,7 +1168,7 @@ namespace user
    void document::pre_close_document()
    {
 
-      __pointer(::object) pthis = this;
+      ::pointer<::object>pthis = this;
 
       synchronous_lock synchronouslock(mutex());
 
@@ -1372,7 +1372,7 @@ namespace user
       for (index index = 0; index < count; index++)
       {
 
-         __pointer(::user::impact) pimpact = get_impact(index);
+         ::pointer<::user::impact>pimpact = get_impact(index);
 
          ASSERT_VALID(pimpact);
 
@@ -1542,7 +1542,7 @@ namespace user
       if (newName.is_empty())
       {
 
-         __pointer(impact_system) ptemplate = get_document_template();
+         ::pointer<impact_system>ptemplate = get_document_template();
 
          ASSERT(ptemplate != nullptr);
 
@@ -1842,7 +1842,7 @@ namespace user
 
       }
 
-      pimpact->__release(pimpact->m_pdocument);
+      pimpact->m_pdocument.release();
 
       on_changed_impact_list();    // must be the last thing done to the document
 
@@ -1916,7 +1916,7 @@ namespace user
    }
 
 
-   __pointer(::user::document) __document(::create * pcreate)
+   ::pointer<::user::document>__document(::create * pcreate)
    {
 
       if (pcreate == nullptr)

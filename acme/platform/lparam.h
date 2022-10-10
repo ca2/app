@@ -30,12 +30,12 @@ public:
 
    /// posting/sending element
    template < typename T >
-   inline lparam(const __pointer(T) & p) : lparam((const ::element *) p.m_p) { }
+   inline lparam(const pointer < T > & p) : lparam((const ::element *) p.m_p) { }
    template < typename T >
    inline lparam(const ptr < T > & p) : lparam((const ::element *) p.m_p) { }
 
    template < typename T >
-   inline lparam(__pointer(T) && p) : m_lparam((iptr)(::element *) p.m_p) { p.m_p = nullptr; p.m_pelement = nullptr; }
+   inline lparam(pointer < T > && p) : m_lparam((iptr)(::element *) p.m_p) { p.m_p = nullptr; p.m_pelement = nullptr; }
    template < typename T >
    inline lparam(ptr < T > && p) : m_lparam((iptr)(::element *) p.m_p) { p.m_p = nullptr; }
 
@@ -88,7 +88,7 @@ public:
    }
 
 
-   __pointer(::element) detach_element()
+   ::pointer<::element>detach_element()
    {
 
       auto p = ::move_transfer((element *)m_lparam);
@@ -101,7 +101,7 @@ public:
 
   
    template < typename T >
-   __pointer(T) detach()
+   pointer < T > detach()
    {
 
       return detach_element();
@@ -150,11 +150,11 @@ public:
 
 
 template < class T >
-   inline bool operator ==(lparam l, const ___pointer < T > & pointer) { return ((::element *) l.m_lparam) == pointer.m_pelement; }
+   inline bool operator ==(lparam l, const pointer < T > & pointer) { return ((::element *) l.m_lparam) == pointer.m_pelement; }
 
 
 template < class T >
-   inline bool operator !=(lparam l, const ___pointer < T > & pointer) { return ((::element *) l.m_lparam) != pointer.m_pelement; }
+   inline bool operator !=(lparam l, const pointer < T > & pointer) { return ((::element *) l.m_lparam) != pointer.m_pelement; }
 
 
 

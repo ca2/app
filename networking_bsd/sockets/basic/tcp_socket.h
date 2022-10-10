@@ -60,7 +60,7 @@ namespace sockets_bsd
       \ingroup internal */
       string m_strTlsHostName;
       
-      typedef list<__pointer(output)> output_list;
+      typedef list<::pointer<output >> output_list;
 
       ::file::circular_file ibuf; ///< Circular input buffer
       string m_strUrl;
@@ -72,7 +72,7 @@ namespace sockets_bsd
       u64 m_bytes_received;
       memory         m_memRead;
       output_list m_obuf; ///< output buffer
-      __pointer(output) m_obuf_top; ///< output buffer on top
+      ::pointer<output>m_obuf_top; ///< output buffer on top
       memsize m_transfer_limit;
       memsize m_output_length;
 

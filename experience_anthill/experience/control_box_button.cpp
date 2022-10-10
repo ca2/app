@@ -170,7 +170,7 @@ namespace experience_anthill
    void control_box_button::on_message_show_window(::message::message * pmessage)
    {
 
-      __pointer(::message::show_window) pshowwindow(pmessage);
+      ::pointer<::message::show_window>pshowwindow(pmessage);
 
       if (pshowwindow->m_bShow)
       {

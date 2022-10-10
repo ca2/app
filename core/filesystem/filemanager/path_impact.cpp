@@ -77,7 +77,7 @@ namespace filemanager
 
    //   //_001GetText(str);
 
-   //   //__pointer(document) pdocument = filemanager_document();
+   //   //::pointer<document>pdocument = filemanager_document();
 
    //   //if (pdocument == nullptr)
    //   //{
@@ -226,7 +226,7 @@ namespace filemanager
 
       _001GetText(str);
 
-      __pointer(document) pdocument = filemanager_document();
+      ::pointer<document>pdocument = filemanager_document();
 
       if (pdocument == nullptr)
       {

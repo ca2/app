@@ -20,8 +20,8 @@ namespace user
       // on m_rectangleParentClient values of the interaction_impl and its ascendants.
       size_i32                                m_size;
       bool                                m_bCreate;
-      __pointer(::user::interaction)      m_puserinteractionMessage;
-      __pointer(primitive)                m_puserprimitiveOwner;
+      ::pointer<::user::interaction>     m_puserinteractionMessage;
+      ::pointer<primitive>               m_puserprimitiveOwner;
       ::mutex                             m_mutexLongPtr;
       //iptr_to_iptr                  m_longptr;
       uptr                                m_uStyle;
@@ -83,7 +83,7 @@ namespace user
       void create_child(::user::interaction * pinteraction, ::user::primitive * pprimitiveParent) override;
 
 
-      //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, atom atom) override;
+      //virtual bool create_window_ex(::user::interaction * pinteraction, ::pointer<::user::system>pcs, ::user::primitive * puiParent, atom atom) override;
 
       //virtual bool create_interaction() override;
 

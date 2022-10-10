@@ -18,7 +18,7 @@ namespace userfs
       list_item();
       list_item(const list_item & item);
 
-      //static index CompareArrangeByName(const __pointer(list_item) & pitema, const __pointer(list_item) & pitemb);
+      //static index CompareArrangeByName(const ::pointer<list_item>& pitema, const ::pointer<list_item> pitemb);
       //index CompareArrangeByName(const list_item & item) const;
       //index GetIndex() const;
 

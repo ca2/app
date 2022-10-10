@@ -40,9 +40,9 @@ namespace acme
       ::apex::node *                                  m_papexnode;
       ::aura::node *                                  m_pauranode;
 
-      __pointer(::text::translator)                   m_ptexttranslator;
+      ::pointer<::text::translator>                  m_ptexttranslator;
 
-      __composite(::context_image)                    m_pcontextimage;
+      ::pointer<::context_image>                   m_pcontextimage;
 
 
       context();

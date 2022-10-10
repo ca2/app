@@ -386,14 +386,14 @@ inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const TYP
 //}
 
 
-template < typename TYPE_CHAR >
-template < non_pointer NONPOINTER >
-inline string_base < TYPE_CHAR >::string_base(const NONPOINTER & nonpointer) :
-   string_base(__string(nonpointer))
-{
-
-
-}
+//template < typename TYPE_CHAR >
+//template < non_pointer NONPOINTER >
+//inline string_base < TYPE_CHAR >::string_base(const NONPOINTER & nonpointer) :
+//   string_base(__string(nonpointer))
+//{
+//
+//
+//}
 
 
 

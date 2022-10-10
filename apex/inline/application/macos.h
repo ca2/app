@@ -13,7 +13,7 @@ int main(int argc, char * argv[], char ** envp)
    
    ::i32 iErrorStatus = -1;
    
-   __pointer(::acme::node) pacmenode;
+   ::pointer<::acme::node>pacmenode;
    
    {
 

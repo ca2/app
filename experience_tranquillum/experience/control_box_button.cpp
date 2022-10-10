@@ -166,7 +166,7 @@ namespace experience_tranquillum
    {
 
 
-      __pointer(::message::show_window) pshowwindow(pmessage);
+      ::pointer<::message::show_window>pshowwindow(pmessage);
 
 
       if (pshowwindow->m_bShow)

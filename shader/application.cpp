@@ -67,7 +67,7 @@ namespace app_shader
    void application::on_request(::create * pcreate)
    {
 
-      __compose(m_pmainwindow, __create_new < ::app_shader::main_window > ());
+      __construct(m_pmainwindow, __create_new < ::app_shader::main_window > ());
 
       m_pmainwindow->display(e_display_restored);
 

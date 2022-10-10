@@ -14,7 +14,7 @@ namespace user
    class CLASS_DECL_CORE tree_draw_item
    {
    public:
-      __pointer(::data::tree_item)     m_pitem;
+      ::pointer<::data::tree_item>    m_pitem;
       ::draw2d::graphics *             m_pdc;
       index                            m_iItem;
       index                            m_iIndentation;
@@ -30,9 +30,9 @@ namespace user
    public:
 
 
-      __pointer_array(::user::tree)       m_usertreea;
-      __pointer_array(::user::tree)       m_usertreeaBound;
-      __composite(::image_list)           m_pimagelist;
+      pointer_array < ::user::tree >       m_usertreea;
+      pointer_array < ::user::tree >       m_usertreeaBound;
+      ::pointer<::image_list>          m_pimagelist;
 
 
 

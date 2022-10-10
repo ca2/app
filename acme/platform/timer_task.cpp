@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/id.h"
 #include "timer_task.h"
 
@@ -67,7 +67,7 @@ void timer_task::initialize_timer(::object * pobject, ::acme::timer_array * ptim
    if (m_ptimera)
    {
 
-      __refer(m_ptimera->m_map[uiTimer], this);
+      m_ptimera->m_map[uiTimer] = this;
 
    }
 

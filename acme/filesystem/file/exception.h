@@ -36,7 +36,7 @@ namespace file
    };
 
 
-   //using exception_pointer = __pointer(exception);
+   //using exception_pointer = ::pointer<exception>
 
 
    CLASS_DECL_ACME bool should_ignore_file_exception_callstack(const ::e_status& estatus);

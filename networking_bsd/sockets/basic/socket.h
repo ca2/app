@@ -66,8 +66,8 @@ namespace sockets_bsd
       bool SetNonblocking(bool bNb, SOCKET s);
 
 
-      __pointer(::networking::address) get_peer_address() override;
-      __pointer(::networking::address) get_socket_address() override;
+      ::pointer<::networking::address>get_peer_address() override;
+      ::pointer<::networking::address>get_socket_address() override;
 
 
    };

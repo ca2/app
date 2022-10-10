@@ -170,13 +170,13 @@ namespace colorertak5
      void consumeXmlDecl();
      void consumeDTD();
      bool isElement();
-     void consumeElement(__pointer(::xml::node)root);
-     void consumeContent(__pointer(::xml::node)root);
+     void consumeElement(::pointer<::xml::node>oot);
+     void consumeContent(::pointer<::xml::node>oot);
 
-     void appendToLastTextNode(__pointer(::xml::node)root, string *stext);
+     void appendToLastTextNode(::pointer<::xml::node>oot, string *stext);
      bool isCDataSection();
-     void consumeCDataSection(__pointer(::xml::node)root);
-     void consumeText(__pointer(::xml::node)root);
+     void consumeCDataSection(::pointer<::xml::node>oot);
+     void consumeText(::pointer<::xml::node>oot);
      bool isCharRef();
      unichar consumeCharRef();
      bool isEntityRef();
@@ -188,10 +188,10 @@ namespace colorertak5
      string *consumeNCName();
      string *consumeName();
      bool isComment();
-     void consumeComment(__pointer(::xml::node)root);
+     void consumeComment(::pointer<::xml::node>oot);
      bool isPI();
-     void consumePI(__pointer(::xml::node)root);
-     void consumeMisc(__pointer(::xml::node)root);
+     void consumePI(::pointer<::xml::node>oot);
+     void consumeMisc(::pointer<::xml::node>oot);
      void consume(string &s);
      void consume(char *s, i32 len = -1);
      void incDocumentLine();
@@ -233,7 +233,7 @@ namespace colorertak5
        return src[ppos++];
      }
 
-     __pointer(::xml::node)next;
+     ::pointer<::xml::node>ext;
    };
 
    /**
@@ -254,12 +254,12 @@ namespace colorertak5
        return firstChild != nullptr;
      }
 
-     __pointer(::xml::node)getFirstChild()
+     ::pointer<::xml::node>etFirstChild()
      {
        return firstChild;
      }
 
-     __pointer(::xml::node)getLastChild()
+     ::pointer<::xml::node>etLastChild()
      {
        if (firstChild == nullptr){
          return nullptr;
@@ -268,18 +268,18 @@ namespace colorertak5
        }
      }
 
-     __pointer(::xml::node)getParent()
+     ::pointer<::xml::node>etParent()
      {
        return parent;
      }
 
-     __pointer(::xml::node)getNextSibling()
+     ::pointer<::xml::node>etNextSibling()
      {
        if (parent == nullptr) return nullptr;
        return next != parent->firstChild ? next : nullptr;
      }
 
-     __pointer(::xml::node)getPrevSibling()
+     ::pointer<::xml::node>etPrevSibling()
      {
        if (parent == nullptr) return nullptr;
        return this != parent->firstChild ? prev : nullptr;
@@ -305,9 +305,9 @@ namespace colorertak5
        return ownerDocument;
      }
 
-     virtual __pointer(::xml::node)appendChild(__pointer(::xml::node)newChild);
+     virtual ::pointer<::xml::node>ppendChild(::pointer<::xml::node>wChild);
 
-     //virtual __pointer(::xml::node)cloneNode(bool deep) = 0;
+     //virtual ::pointer<::xml::node>loneNode(bool deep) = 0;
 
      virtual ~xml::node()
      {
@@ -315,8 +315,8 @@ namespace colorertak5
      };
    protected:
      i32 type;
-     __pointer(::xml::node)next, *prev;
-     __pointer(::xml::node)parent, *firstChild;
+     ::pointer<::xml::node>ext, *prev;
+     ::pointer<::xml::node>arent, *firstChild;
      const string *name;
      Document *ownerDocument;
      xml::node(i32 _type, const string *_name): type(_type), name(_name),
@@ -331,12 +331,12 @@ namespace colorertak5
    class Document : public xml::node
    {
    public:
-     __pointer(::xml::node)getDocumentElement()
+     ::pointer<::xml::node>etDocumentElement()
      {
        return documentElement;
      }
 
-     __pointer(::xml::node)appendChild(__pointer(::xml::node)newChild){
+     ::pointer<::xml::node>ppendChild(::pointer<::xml::node>wChild){
        if (newChild->getNodeType() == xml::node::ELEMENT_NODE)
        {
          if (documentElement != nullptr)
@@ -349,14 +349,14 @@ namespace colorertak5
        return newChild;
      }
 
-     __pointer(::xml::node)createElement(const string *tagName);
+     ::pointer<::xml::node>reateElement(const string *tagName);
      Text *createTextNode(const string *data);
      Comment *createComment(const string *data);
      ProcessingInstruction *createProcessingInstruction(const string *target, const string *data);
 
    protected:
      i32 line, pos;
-     __pointer(::xml::node)documentElement;
+     ::pointer<::xml::node>ocumentElement;
      Document() : xml::node(xml::node::DOCUMENT_NODE, memory_new string("#document")), documentElement(nullptr) {};
      friend class DocumentBuilder;
    };

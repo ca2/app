@@ -12,10 +12,10 @@ public:
 
 
    string_to_string                    m_mapCachedLatestBuild;
-   __composite(::http::context)        m_phttp;
-   __composite(::dir_context)          m_pdir;
-   __composite(::file_context)         m_pfile;
-   __composite(::os_context)           m_pos;
+   ::pointer<::http::context>       m_phttp;
+   ::pointer<::dir_context>         m_pdir;
+   ::pointer<::file_context>        m_pfile;
+   ::pointer<::os_context>          m_pos;
 
 
    string                              m_strLocale;

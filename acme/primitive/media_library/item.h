@@ -1,4 +1,4 @@
-// Created by camilo on 2022-05-28 02:30 <3ThomasBorregaardSørensen
+// Created by camilo on 2022-05-28 02:30 <3ThomasBorregaardSï¿½rensen
 #pragma once
 
 
@@ -32,7 +32,7 @@ namespace media_library
 
    };
 
-   using item_array = __pointer_array(item);
+   using item_array = pointer_array < item >;
 
    using item_map = ::map < enum_media_library, item_array >;
 

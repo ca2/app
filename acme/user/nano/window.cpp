@@ -54,7 +54,7 @@ void nano_window::on_initialize_object()
 void nano_window::draw(nano_device * pnanodevice)
 {
 
-   __pointer(::nano_pen) pnanopenBorder;
+   ::pointer<::nano_pen>pnanopenBorder;
 
    if (is_active())
    {
@@ -719,7 +719,7 @@ void nano_window::release_capture()
 }
 
 
-__pointer(nano_device) nano_window::create_device()
+::pointer<nano_device>nano_window::create_device()
 {
 
    throw interface_only();

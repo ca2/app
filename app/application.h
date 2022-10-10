@@ -14,7 +14,7 @@ namespace app_app
    public:
 
 
-      __composite(::app_app::main_window)       m_pmainwindow;
+      ::pointer<::app_app::main_window>      m_pmainwindow;
 
 
       application();

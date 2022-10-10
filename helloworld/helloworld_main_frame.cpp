@@ -65,7 +65,7 @@ namespace helloworld
 
 
 
-      //__pointer(::user::experience::main_frame::main_frame) pschema = papp->experience()->frame_experience("experience_lite", "001");
+      //::pointer<::user::experience::main_frame::main_frame>pschema = papp->experience()->frame_experience("experience_lite", "001");
 
       auto pframe = papp->experience()->frame_experience(nullptr, "013");
 

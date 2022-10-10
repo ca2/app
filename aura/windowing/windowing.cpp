@@ -1,4 +1,4 @@
-// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
+﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:35 <3TBS, Mummi and bilbo!!
 // hi5 contribution...
 #include "framework.h"
@@ -63,7 +63,7 @@ namespace windowing
 
       //auto estatus = 
       
-      __refer(m_puser, puser);
+      m_puser = puser;
 
 
       ::factory::add_factory_item < cursor_manager >();
@@ -167,7 +167,7 @@ namespace windowing
    }
    
    
-   __pointer(cursor) windowing::get_cursor(enum_cursor ecursor)
+   ::pointer<cursor>windowing::get_cursor(enum_cursor ecursor)
    {
 
       synchronous_lock synchronouslock(mutex());
@@ -453,7 +453,7 @@ namespace windowing
    }
 
 
-   __pointer(::windowing::cursor) windowing::load_default_cursor(enum_cursor ecursor)
+   ::pointer<::windowing::cursor>windowing::load_default_cursor(enum_cursor ecursor)
    {
 
       return nullptr;
@@ -552,7 +552,7 @@ namespace windowing
    //}
 
 
-   //__pointer(::future < enum_dialog_result >) windowing::message_box(const ::string &pszMessage, const ::string &pszTitle, const ::e_message_box &emessagebox)
+   //pointer< ::future < enum_dialog_result > > windowing::message_box(const ::string &pszMessage, const ::string &pszTitle, const ::e_message_box &emessagebox)
    //{
 
    //   return nullptr;
@@ -756,7 +756,7 @@ namespace windowing
       if (!m_pkeyboard)
       {
 
-         __compose(m_pkeyboard);
+         __construct(m_pkeyboard);
 
          initialize_keyboard(m_pkeyboard);
 

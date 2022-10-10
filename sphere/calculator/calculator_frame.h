@@ -13,7 +13,7 @@ namespace calculator
 
       
       
-      __pointer(image_list)               m_pimagelist;
+      ::pointer<image_list>              m_pimagelist;
       bool                       m_bTimerOn;
 
 

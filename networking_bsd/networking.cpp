@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "networking.h"
 #include "sockets/ssl/initializer.h"
+#include "acme/primitive/duration/_binary_stream.h"
 #define ERROR(...) TRACE_LOG_ERROR(__VA_ARGS__)
 
 //#include <stdio.h>
@@ -612,21 +613,13 @@ namespace networking_bsd
    //}
 
 
-   bool networking::convert(string& str, const in_addr& ip)
+   bool networking::convert(string& str, const in_addr& inaddr)
    {
-
-      struct sockaddr_in sa;
-
-      __memset(&sa, 0, sizeof(sa));
-
-      sa.sin_family = AF_INET;
-
-      sa.sin_addr = ip;
 
       try
       {
 
-         ::to_string(str, sa);
+         str = __string(inaddr);
 
          return true;
 
@@ -641,73 +634,24 @@ namespace networking_bsd
    }
 
 
-   bool networking::convert(string& str, const struct in6_addr& ip, bool mixed)
+   bool networking::convert(string& str, const struct in6_addr& inaddr6)
    {
 
-      char slask[100]; // l2ip temporary
-      *slask = 0;
-      u32 prev = 0;
-      bool skipped = false;
-      bool ok_to_skip = true;
-      if (mixed)
-      {
-         u16 x;
-         u16 addr16[8];
-         ::memcpy_dup(addr16, &ip, sizeof(addr16));
-         for (index i = 0; i < 6; i++)
-         {
-            x = ntohs(addr16[i]);
-            if (*slask && (x || !ok_to_skip || prev))
-               ansi_concatenate(slask, ":");
-            if (x || !ok_to_skip)
-            {
-               auto iLen = strlen(slask);
-               snprintf(slask + iLen, sizeof(slask) - iLen, "%x", x);
-               if (x && skipped)
-                  ok_to_skip = false;
-            }
-            else
-            {
-               skipped = true;
-            }
-            prev = x;
-         }
-         x = ntohs(addr16[6]);
-         auto iLen = strlen(slask);
-         snprintf(slask + iLen, sizeof(slask) - iLen, ":%u.%u", x / 256, x & 255);
-         x = ntohs(addr16[7]);
-         iLen = strlen(slask);
-         snprintf(slask + iLen, sizeof(slask) - iLen, ".%u.%u", x / 256, x & 255);
-      }
-      else
+      try
       {
 
-         struct sockaddr_in6 sa;
+         str = __string(inaddr6);
 
-         __memset(&sa, 0, sizeof(sa));
-
-         sa.sin6_family = AF_INET6;
-
-         sa.sin6_addr = ip;
-
-         try
-         {
-
-            ::to_string(str, sa);
-
-            return true;
-
-         }
-         catch (...)
-         {
-
-         }
-
-         return false;
+         return true;
 
       }
-      str = slask;
-      return true;
+      catch (...)
+      {
+
+      }
+
+      return false;
+
    }
 
 
@@ -1494,24 +1438,22 @@ namespace networking_bsd
    }
 
 
-   stream& networking::dns_cache_item::write(stream& stream) const
+   void networking::dns_cache_item::write(binary_stream& stream) const
    {
 
       string strAddress;
 
-      ::to_string(strAddress, m_ipaddr);
+      strAddress = __string(m_ipaddr);
 
       stream << strAddress;
       stream << m_durationLastChecked;
       stream << m_bOk;
       stream << m_bTimeout;
 
-      return stream;
-
    }
 
 
-   stream& networking::dns_cache_item::read(stream& stream)
+   void networking::dns_cache_item::read(binary_stream& stream)
    {
 
       string strAddress;
@@ -1524,7 +1466,7 @@ namespace networking_bsd
       stream >> m_bOk;
       stream >> m_bTimeout;
 
-      return stream;
+      //return stream;
 
    }
 
@@ -1564,7 +1506,7 @@ namespace networking_bsd
    }
 
 
-   stream& networking::reverse_cache_item::write(stream& stream) const
+   void networking::reverse_cache_item::write(binary_stream& stream) const
    {
 
       stream << m_strIpAddress;
@@ -1574,12 +1516,12 @@ namespace networking_bsd
       stream << m_bTimeout;
       stream << m_bProcessing;
 
-      return stream;
+      //return stream;
 
    }
 
 
-   stream& networking::reverse_cache_item::read(stream& stream)
+   void networking::reverse_cache_item::read(binary_stream& stream)
    {
 
       stream >> m_strIpAddress;
@@ -1589,7 +1531,7 @@ namespace networking_bsd
       stream >> m_bTimeout;
       stream >> m_bProcessing;
 
-      return stream;
+      //return stream;
 
    }
 
@@ -3350,7 +3292,7 @@ namespace networking_bsd
    }
 
 
-   __pointer(address) networking::create_ip4_address(u32 u, ::networking::port_t port)
+   ::pointer<address>networking::create_ip4_address(u32 u, ::networking::port_t port)
    {
 
       auto paddress2 = __new(address);
@@ -3383,7 +3325,7 @@ namespace networking_bsd
 
    }
 
-   __pointer(address) networking::create_ip6_address(void * p128bits, ::networking::port_t port)
+   ::pointer<address>networking::create_ip6_address(void * p128bits, ::networking::port_t port)
    {
 
       auto paddress2 = __new(address);
@@ -3407,7 +3349,7 @@ namespace networking_bsd
    }
 
 
-   __pointer(::networking::address) networking::create_ip4_address(const ::string & strAddress, ::networking::port_t port)
+   ::pointer<::networking::address>networking::create_ip4_address(const ::string & strAddress, ::networking::port_t port)
    {
 
       auto paddress2 = __new(address);
@@ -3425,7 +3367,7 @@ namespace networking_bsd
 
    }
 
-   __pointer(::networking::address) networking::create_ip6_address(const ::string & strAddress, ::networking::port_t port)
+   ::pointer<::networking::address>networking::create_ip6_address(const ::string & strAddress, ::networking::port_t port)
    {
 
       auto paddress2 = __new(address);

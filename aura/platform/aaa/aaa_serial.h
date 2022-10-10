@@ -664,7 +664,7 @@ namespace serial
 
       // Pimpl idiom, d_pointer
       class serial_impl;
-      __pointer(serial_impl) pimpl_;
+      ::pointer<serial_impl>pimpl_;
 
       // Scoped Lock Classes
       class scoped_read_lock;

@@ -69,12 +69,12 @@ namespace userfs
       void _001OnInitializeForm(::user::interaction * pinteraction) override;
       void _001OnButtonAction(::user::interaction * pinteraction) override;
 
-      virtual void _017OpenItem(__pointer(::file::item) pitem, bool bOpenFile, const ::action_context & action_context);
+      virtual void _017OpenItem(::pointer<::file::item>pitem, bool bOpenFile, const ::action_context & action_context);
       virtual void _017OpenFile(const ::file::item_array & itema, const ::action_context & action_context);
-      virtual void _017OpenFolder(__pointer(::file::item) pitem, const ::action_context & action_context);
+      virtual void _017OpenFolder(::pointer<::file::item>pitem, const ::action_context & action_context);
       virtual bool _017OpenSelected(bool bOpenFile, const ::action_context & action_context);
       virtual void _017OpenContextMenuSelected(const ::action_context & action_context);
-      virtual void _017OpenContextMenuFolder(__pointer(::file::item)  item, const ::action_context & action_context);
+      virtual void _017OpenContextMenuFolder(::pointer<::file::item> item, const ::action_context & action_context);
       virtual void _017OpenContextMenuFile(const ::file::item_array &itema, const ::action_context & action_context);
       virtual void _017OpenContextMenu(const ::action_context & action_context);
       //void TakeAnimationSnapshot();
@@ -115,7 +115,7 @@ namespace userfs
       void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
-      __pointer(::user::mesh_data) create_mesh_data() override;
+      ::pointer<::user::mesh_data>create_mesh_data() override;
 
       //virtual ::fs::data * fs_data();
       ::file::item * fs_list_item(index iIndex);

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "main_impact.h"
 #include "list.h"
 #include "tree.h"
@@ -26,7 +26,7 @@ namespace userfs
       if(pmessage->m_bRet)
          return;
 
-//      __pointer(application) papp =  (this);
+//      ::pointer<application>papp =  (this);
       //papp->m_pmainimpact = this;
       
       SetPaneCount(2);
@@ -37,13 +37,13 @@ namespace userfs
       
       initialize_split_layout();
       
-      __pointer(::create) cc(e_create, this);
+      ::pointer<::create>cc(e_create, this);
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();
   //    cc->m_usercreatecontext.m_typeNewImpact = __type(tree);
-      __pointer(::user::interaction) puserinteraction = create_impact(__type(tree),get_document(),get_pane_holder(0),100);
+      ::pointer<::user::interaction>puserinteraction = create_impact(__type(tree),get_document(),get_pane_holder(0),100);
       SetPane(0, puserinteraction, false);
-//      __pointer(tree) ptree =  (puserinteraction);
+//      ::pointer<tree>ptree =  (puserinteraction);
 
 
 //      cc->m_usercreatecontext.m_pCurrentDoc = get_document();

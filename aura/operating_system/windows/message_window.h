@@ -16,7 +16,7 @@ namespace user
    public:
 
 
-      __pointer(message_window_listener)      m_plistener;
+      ::pointer<message_window_listener>     m_plistener;
 
 
       message_window();
@@ -46,7 +46,7 @@ namespace user
    };
 
 
-   typedef __pointer(message_window) message_window_pointer;
+   typedef ::pointer<message_window>message_window_pointer;
 
 
 } // namespace aura

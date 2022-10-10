@@ -30,18 +30,18 @@ namespace windowing
 
 
       bool                                      m_bSettingCursorMatter;
-      __pointer(::windowing::cursor_manager)    m_pcursormanager;
-      __composite(::windowing::keyboard)        m_pkeyboard;
+      ::pointer<::windowing::cursor_manager>   m_pcursormanager;
+      ::pointer<::windowing::keyboard>       m_pkeyboard;
 
 
 
-      __pointer(::windowing::cursor)            m_pcursor;
-      __pointer(::windowing::cursor)            m_pcursorCursor;
+      ::pointer<::windowing::cursor>           m_pcursor;
+      ::pointer<::windowing::cursor>           m_pcursorCursor;
       enum_cursor                               m_ecursorDefault;
       enum_cursor                               m_ecursor;
 
       bool                                      m_bDrawCursor;
-      __reference(::user::user)                 m_puser;
+      ::pointer<::user::user>                m_puser;
       
 
 
@@ -81,7 +81,7 @@ namespace windowing
       virtual text_editor_interface * get_text_editor_interface();
       
 
-      virtual __pointer(cursor) get_cursor(enum_cursor ecursor);
+      virtual ::pointer<cursor>get_cursor(enum_cursor ecursor);
       virtual void set_cursor_set_from_matter(::object * pobjectContext, const ::file::path & pathDir);
 
       
@@ -136,7 +136,7 @@ namespace windowing
 
 
 
-      virtual __pointer(::windowing::cursor) load_default_cursor(enum_cursor ecursor);
+      virtual ::pointer<::windowing::cursor>load_default_cursor(enum_cursor ecursor);
 
 
 

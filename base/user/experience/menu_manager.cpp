@@ -46,7 +46,7 @@ namespace experience
    void menu_manager::relay_event(::message::message * pmessage)
    {
 
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
 
       if (!pusermessage)
       {

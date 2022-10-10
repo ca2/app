@@ -16,7 +16,7 @@ namespace filemanager
 
 
       
-      __pointer(operation_thread)      m_poperationthread;
+      ::pointer<operation_thread>      m_poperationthread;
 
 
       operation_document();

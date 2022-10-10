@@ -14,9 +14,9 @@ namespace graphics
    public:
 
 
-      __pointer(file::memory_map)         m_pmemorymap;
+      ::pointer<file::memory_map>        m_pmemorymap;
       string                              m_strBitmapSource;
-      __pointer(::mutex)                  m_pmutexBitmapSource;
+      ::pointer<::mutex>                 m_pmutexBitmapSource;
 
 
       bitmap_source_buffer();

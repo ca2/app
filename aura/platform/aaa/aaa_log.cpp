@@ -87,7 +87,7 @@ pacmedirectory->system() / "trace.txt";
    void log::initialize_aura_log(enum_trace_level etracelevelMin, const ::atom & atom)
    {
 
-      auto estatus = __compose_new(m_ptrace);
+      auto estatus = __construct_new(m_ptrace);
 
       if (!estatus)
       {
@@ -234,7 +234,7 @@ pacmedirectory->system() / "log.txt"))
    }
 
 
-//   extern __pointer(::aura::application) g_papp;
+//   extern ::pointer<::aura::application>g_papp;
 
    CLASS_DECL_AURA i32 SimpleDebugReport(i32 iReportType, const ::string & pszFileName,i32 iLine, const ::string &, const ::string & pszFormat, va_list list)
    {

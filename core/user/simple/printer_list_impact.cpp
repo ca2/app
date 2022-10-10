@@ -30,7 +30,7 @@ void simple_printer_list_impact::install_message_routing(::channel * pchannel)
 
 void simple_printer_list_impact::on_message_create(::message::message * pmessage)
 {
-//   __pointer(::message::create) pcreate(pmessage);
+//   ::pointer<::message::create>pcreate(pmessage);
 
    pmessage->previous();
 
@@ -94,7 +94,7 @@ bool simple_printer_list_impact::on_click(::item * pitem)
 
    m_psimplemeshdata->_001GetSubItemText(psubitem);
 
-   __pointer(::user::print_task) pprinttask;
+   ::pointer<::user::print_task>pprinttask;
 
    pprinttask.create(this);
 

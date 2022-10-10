@@ -166,7 +166,7 @@ namespace html
 
       ::user::form_callback* m_pcallback;
       ::user::interaction* m_puserinteraction;
-      __pointer(::draw2d::graphics) m_pgraphics;
+      ::pointer<::draw2d::graphics>m_pgraphics;
       ::rectangle_f32                              m_box;
       string                           m_strTitle;
       layout_state1                    m_layoutstate1;
@@ -177,7 +177,7 @@ namespace html
 
       //string_map < image_pointer >     m_imagemap;
 
-      __pointer_array(font)                 m_fonta;
+      pointer_array < font >                 m_fonta;
 
       ::user::interaction_ptra         m_focusptra;
 
@@ -185,7 +185,7 @@ namespace html
       ::file::path                     m_strPathName;
       ::user::interaction_ptra         m_uiptra;
       tag *                            m_ptag;
-      __pointer(::html::element)       m_pelement;
+      ::pointer<::html::element>      m_pelement;
       bool                             m_bImplemented;
 
 
@@ -235,7 +235,7 @@ namespace html
 
 
       ::user::form* get_form() override;
-      __pointer(::user::interaction) get_frame() override;
+      ::pointer<::user::interaction>get_frame() override;
 
 
       //virtual bool is_locked();
@@ -265,9 +265,9 @@ namespace html
       void destroy() override;
       void delete_implementation();
 
-      virtual bool contains(__pointer(::user::interaction) pinteraction) override;
+      virtual bool contains(::pointer<::user::interaction>pinteraction) override;
 
-      virtual bool on_create_interaction(__pointer(::user::interaction) pinteraction) override;
+      virtual bool on_create_interaction(::pointer<::user::interaction>pinteraction) override;
 
 
       font* get_font(::html::element* pelemental);

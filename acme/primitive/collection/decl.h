@@ -310,7 +310,7 @@ inline void def_destruct(TYPE* pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS
 }
 
 template < typename TYPE >
-inline void def_destruct(__pointer(TYPE)* pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+inline void def_destruct(::pointer<TYPE> pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
 {
 
    pointer->release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

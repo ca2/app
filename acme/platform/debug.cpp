@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/id.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "acme/user/user/_user.h"
@@ -35,7 +35,7 @@ void debug_object_event_promisse_predicate()
    //o += { ok, id_text, [&](auto & result) { output_debug_string("o += ok, id_text ..."); return ::success; } };
 
 
-   //__pointer(::matter) pobject;
+   //::pointer<::matter>pobject;
 
    //__keep(pobject, nullptr);
    ////   // 4 arguments

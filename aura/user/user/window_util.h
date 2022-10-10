@@ -29,8 +29,8 @@ namespace user
       ::user::interaction * find_first(oswindow oswindow);
 
       
-      virtual bool get_child(__pointer(::user::interaction ) & pinteraction);
-      virtual bool rget_child(__pointer(::user::interaction) & pinteraction);
+      virtual bool get_child(::pointer<::user::interaction>& pinteraction);
+      virtual bool rget_child(::pointer<::user::interaction>& pinteraction);
 
 
    };
@@ -48,7 +48,7 @@ namespace user
 
       primitive_pointer_array();
       primitive_pointer_array(const address_array < ::user::primitive * > & a);
-      primitive_pointer_array(const __pointer_array(::user::primitive) & a)
+      primitive_pointer_array(const pointer_array < ::user::primitive > & a)
       {
 
          m_primitivea.copy(a);
@@ -66,8 +66,8 @@ namespace user
       ::user::primitive * find_first(oswindow oswindow);
 
 
-      virtual bool get_child(__pointer(::user::primitive) & pprimitive);
-      virtual bool rget_child(__pointer(::user::primitive) & pprimitive);
+      virtual bool get_child(::pointer<::user::primitive>& pprimitive);
+      virtual bool rget_child(::pointer<::user::primitive>& pprimitive);
 
 
    };
@@ -84,11 +84,11 @@ namespace user
 
       interaction_array();
       interaction_array(const address_array < ::user::interaction * > & a);
-      interaction_array(const __pointer_array(::user::interaction) & a) :
+      interaction_array(const pointer_array < ::user::interaction > & a) :
          m_interactiona(a) {}
 
       template < typename OTHER >
-      interaction_array(const __pointer_array(OTHER) & a) :
+      interaction_array(const pointer_array < OTHER > & a) :
          m_interactiona(a) {}
 
       interaction_array(const ::user::interaction_array & a)
@@ -110,9 +110,9 @@ namespace user
 #endif
 
 
-      //using __pointer_array(::user::interaction)::find_first;
-      __pointer(::user::interaction) find_first_typed(const ::std::type_info & info);
-      __pointer(::user::interaction) find_first(oswindow oswindow);
+      //using pointer_array < ::user::interaction >::find_first;
+      ::pointer<::user::interaction>find_first_typed(const ::std::type_info & info);
+      ::pointer<::user::interaction>find_first(oswindow oswindow);
 
       //::user::oswindow_array get_hwnda();
       void send_message(const ::atom & atom, wparam wparam = 0, lparam lparam = 0);
@@ -120,11 +120,11 @@ namespace user
       void send_message_to_descendants(const ::atom & atom, wparam wparam = 0, lparam lparam = 0, bool bRecursive = true);
 
 
-      interaction_array & operator = (const __pointer_array(::user::interaction) & a);
+      interaction_array & operator = (const pointer_array < ::user::interaction > & a);
       interaction_array & operator = (const interaction_array & a);
 
-      virtual bool get_child(__pointer(::user::interaction) & pinteraction);
-      virtual bool rget_child(__pointer(::user::interaction) & pinteraction);
+      virtual bool get_child(::pointer<::user::interaction>& pinteraction);
+      virtual bool rget_child(::pointer<::user::interaction>& pinteraction);
 
 
       template < typename TYPE >
@@ -230,10 +230,10 @@ namespace user
 
 
       template < typename CHILD >
-      __pointer(CHILD) get_typed_child()
+      ::pointer<CHILD>get_typed_child()
       {
 
-         __pointer(CHILD) pchild;
+         ::pointer<CHILD>pchild;
 
          if (!get_typed_child(pchild))
          {

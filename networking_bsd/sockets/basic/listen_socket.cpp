@@ -493,7 +493,7 @@ namespace sockets_bsd
    //}
 
 
-   //__pointer(::sockets::socket) listen_socket::create_listen_socket()
+   //::pointer<::sockets::socket>listen_socket::create_listen_socket()
    //{
 
    //   return nullptr;

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/primitive/property_set.h"
@@ -37,10 +37,10 @@
 
 
 template < typename TYPE, typename T >
-void assign(__pointer(TYPE) & ptr, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+void assign(::pointer<TYPE>& ptr, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 template < typename TYPE >
-void release(__pointer(TYPE) & ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+void release(::pointer<TYPE>& ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 template < typename TYPE >
 void release(TYPE *& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
@@ -76,7 +76,7 @@ void release(TYPE *& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 // public:
 
 
-//    __pointer_array(matter)            m_ptra;
+//    pointer_array < matter >            m_ptra;
 
 //    parents();
 //    ~parents();
@@ -91,7 +91,7 @@ void release(TYPE *& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 // public:
 
 
-//    __pointer_array(matter)            m_ptra;
+//    pointer_array < matter >            m_ptra;
 //    duration                      m_durationWait;
 
 
@@ -106,7 +106,7 @@ void release(TYPE *& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 //    virtual ::count _wait_quit(::matter * pobjectParent);
 
 
-//    virtual __pointer(::matter) running(const char * pszTag) const;
+//    virtual ::pointer<::matter>running(const char * pszTag) const;
 //    virtual bool running(::matter * pobject) const;
 
 

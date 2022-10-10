@@ -15,8 +15,8 @@ namespace app_shader
       bool                                m_bUpdateShader;
       string                              m_strProjection;
       string                              m_strFragment;
-      __pointer(::gpu::context)           m_pcontext;
-      __pointer(::gpu::program)           m_pprogram;
+      ::pointer<::gpu::context>          m_pcontext;
+      ::pointer<::gpu::program>          m_pprogram;
       rectangle_i32                       m_rectangle;
       string                              m_strFont1;
       string_map < ::image_pointer >      m_pimagemap;
@@ -30,7 +30,7 @@ namespace app_shader
       ::color::color                      m_colorLastLabelBackground;
       ::image_pointer                     m_pimageError;
       string                              m_strLastError;
-      __pointer(::user::interaction)      m_puserinteraction;
+      ::pointer<::user::interaction>     m_puserinteraction;
 
 
       render();

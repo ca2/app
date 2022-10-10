@@ -25,8 +25,8 @@ namespace xcb
       bool                                   m_bUnhook;
       void *                                 m_pX11Display;
       xcb_connection_t   *                   m_pconnection;
-      __pointer_array(event_listener)        m_eventlistenera;
-      __pointer_array(nano_window)           m_windowa;
+      pointer_array < event_listener >        m_eventlistenera;
+      pointer_array < nano_window >           m_windowa;
       xcb_window_t                           m_windowActive;
       //::procedure_array                        m_routineaPost;
       xcb_depth_t *                          m_pdepth;

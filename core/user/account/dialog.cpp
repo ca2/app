@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/platform/timer.h"
 #include "acme/constant/timer.h"
 #include "aura/graphics/image/context_image.h"
@@ -57,7 +57,7 @@ namespace account
 
       //estatus = 
       
-      __refer(m_pcredentials, pcredentials);
+      m_pcredentials = pcredentials;
 
       //if (!estatus)
       //{
@@ -68,7 +68,7 @@ namespace account
 
       //estatus = 
       
-      __compose_new(m_plogin);
+      __construct_new(m_plogin);
 
       //if (!estatus)
       //{
@@ -100,7 +100,7 @@ namespace account
    void dialog::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       if(pcreate->previous())
       {
@@ -184,7 +184,7 @@ namespace account
             else
             {
 
-               __pointer(::account::credentials) pcredentials;
+               ::pointer<::account::credentials>pcredentials;
 
                {
 
@@ -249,7 +249,7 @@ namespace account
 
       m_pcredentials->m_estatus = error_credentials;
 
-      __pointer(::core::session) psession = get_session();
+      ::pointer<::core::session>psession = get_session();
 
       ::user::interaction * puiParent = psession->cast < ::user::interaction > ("plugin_parent");
 
@@ -322,7 +322,7 @@ namespace account
       if((rectangleFontopus.width() < 300 || rectangleFontopus.height() < 300) && puiParent != nullptr)
       {
 
-         __pointer(::apex::application) papp = puiParent->get_app();
+         ::pointer<::apex::application>papp = puiParent->get_app();
 
          if(papp != nullptr)
          {
@@ -451,9 +451,9 @@ namespace account
 
       auto pcredentials = m_pcredentials;
 
-      __pointer(::core::session) psession = get_session();
+      ::pointer<::core::session>psession = get_session();
 
-      __pointer(::core::application) papp = get_app();
+      ::pointer<::core::application>papp = get_app();
 
       if(pcredentials->m_strTitle == "ca2")
       {
@@ -627,7 +627,7 @@ auto pwindowing = windowing();
    void dialog::on_message_show_window(::message::message * pmessage)
    {
 
-      __pointer(::message::show_window) pshowwindow(pmessage);
+      ::pointer<::message::show_window>pshowwindow(pmessage);
 
 auto pwindowing = windowing();
 

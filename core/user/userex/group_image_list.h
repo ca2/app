@@ -23,7 +23,7 @@ namespace userex
          ::atom                    m_atomGroup;
          string                  m_strIcon;
          string                  m_strTitle;
-         __pointer(image_list_impact)     m_plist;
+         ::pointer<image_list_impact>    m_plist;
 
       };
 
@@ -31,9 +31,9 @@ namespace userex
       size_f64                        m_size;
       ::image_pointer                 m_pimage;
       string_array                    m_straClass;
-      __pointer(::user::button)       m_pbuttonMenu;
-      __pointer_array(group)          m_groupa;
-      __pointer(::user::menu)         m_pmenu;
+      ::pointer<::user::button>      m_pbuttonMenu;
+      pointer_array < group >          m_groupa;
+      ::pointer<::user::menu>        m_pmenu;
       ::atom                          m_atomGroup;
 
 

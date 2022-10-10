@@ -264,7 +264,7 @@ namespace networking_bsd
    }
 
 
-   __pointer(::networking::address) networking_bsd::create_address(const ::string & strHostname)
+   ::pointer<::networking::address>networking_bsd::create_address(const ::string & strHostname)
    {
 
       return __new(address(strHostname));

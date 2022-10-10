@@ -117,7 +117,7 @@ namespace apex
       else if (has_property("run"))
       {
 
-         __compose(m_pservicehandler);
+         __construct(m_pservicehandler);
 
          service_handler()->defer_service();
 

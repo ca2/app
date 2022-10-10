@@ -63,9 +63,9 @@
 ////
 ////} // namespace papaya
 //
-//typedef CLASS_DECL_ACME __pointer(::matter) context_object_pointer;
+//typedef CLASS_DECL_ACME ::pointer<::matter>context_object_pointer;
 //
-//typedef CLASS_DECL_ACME __pointer_array(::matter) context_object_pointera;
+//typedef CLASS_DECL_ACME pointer_array < ::matter > context_object_pointera;
 //
 //enum e_notify
 //{
@@ -88,13 +88,13 @@
 ////   ::i64             m_iTrait;
 ////   void         m_estatus;
 ////   //::u64                                     m_uTrait;
-////   //__pointer(::matter)                    m_preference;
-////   //__pointer(::matter)               m_pobjectTaskTransport;
-////   //__pointer(::matter)               m_pobjectTask;
+////   //::pointer<::matter>                   m_preference;
+////   //::pointer<::matter>              m_pobjectTaskTransport;
+////   //::pointer<::matter>              m_pobjectTask;
 ////
 ////
 ////   //e_notify                                  m_enotify;
-////   //__pointer(::context_object_pointera)      m_pobjectTaskaNotify;
+////   //::pointer<::context_object_pointera>     m_pobjectTaskaNotify;
 ////   trait(::i64 iTrait = 0) : m_iTrait(iTrait){ m_estatus = error_not_ready; }
 ////   
 //////   trait()
@@ -132,7 +132,7 @@
 //////#endif
 //////
 //////   template < typename TYPE >
-//////   __pointer(TYPE) result()
+//////   ::pointer<TYPE>result()
 //////   {
 //////      
 //////      return m_preference.cast <TYPE>();

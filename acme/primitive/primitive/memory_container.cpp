@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 memory_container::memory_container(memsize size)
@@ -132,7 +132,7 @@ void memory_container ::allocate_internal(memsize dwNewLength)
 }
 
 
-__pointer(memory_base) memory_container::get_memory()
+::pointer<memory_base>memory_container::get_memory()
 {
 
    if(m_pmemory.is_null())
@@ -147,7 +147,7 @@ __pointer(memory_base) memory_container::get_memory()
 }
 
 
-void memory_container::set_memory(__pointer(memory_base) pmemory)
+void memory_container::set_memory(::pointer<memory_base>pmemory)
 {
 
    if (m_pmemory == pmemory)
@@ -164,7 +164,7 @@ void memory_container::set_memory(__pointer(memory_base) pmemory)
 }
 
 
-__pointer(memory_base) memory_container::create_memory(const void * p, memsize s)
+::pointer<memory_base>memory_container::create_memory(const void * p, memsize s)
 {
 
    return __new(class memory(this, p, s));
@@ -392,14 +392,14 @@ virtual_memory *  memory_container::get_virtual_memory()
 
 //   byte * memory_container::detach_primitive_storage()
 //   {
-//      __pointer(memory) pmemory = detach_primitive_memory();
+//      ::pointer<memory>pmemory = detach_primitive_memory();
 //      return pmemory->detach();
 //   }
 //
 //
 //   byte * memory_container::detach_virtual_storage()
 //   {
-//      __pointer(virtual_memory) pvirtualmemory = detach_virtual_memory();
+//      ::pointer<virtual_memory>pvirtualmemory = detach_virtual_memory();
 //      return pvirtualmemory->detach();
 //   }
 //
@@ -407,7 +407,7 @@ virtual_memory *  memory_container::get_virtual_memory()
 //#if !defined(_UWP)
 //   HGLOBAL memory_container::detach_shared_storage()
 //   {
-//      __pointer(shared_memory) psharedmemory = detach_shared_memory();
+//      ::pointer<shared_memory>psharedmemory = detach_shared_memory();
 //      return psharedmemory->detach_shared_memory();
 //   }
 //#endif

@@ -10,7 +10,7 @@ class CLASS_DECL_ACME nano_window_implementation :
 public:
 
 
-   __pointer(nano_window)        m_pinterface;
+   ::pointer<nano_window>       m_pinterface;
 
 
    nano_window_implementation();

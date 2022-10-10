@@ -15,7 +15,7 @@ namespace user
    {
    }
 
-   bool network_configuration::initialize(__pointer(::user::interaction) puiParent)
+   bool network_configuration::initialize(::pointer<::user::interaction>puiParent)
    {
       /*m_pdocument = papp->create_form(this, puiParent);
       if(m_pdocument != nullptr)
@@ -27,7 +27,7 @@ namespace user
       return false;
    }
 
-   bool network_configuration::initialize_child(__pointer(::user::interaction) puiParent)
+   bool network_configuration::initialize_child(::pointer<::user::interaction>puiParent)
    {
       /*
       m_pdocument = psession->user()->create_child_form(this, puiParent);
@@ -52,8 +52,8 @@ namespace user
       {
          string strProxy = node.attr("server");
          i32 iProxyPort = node.attr("port");
-         __pointer(::user::interaction) pinteraction = m_pimpact->get_child_by_name("server");
-         __pointer(::user::primitive) ptext =  (pinteraction);
+         ::pointer<::user::interaction>pinteraction = m_pimpact->get_child_by_name("server");
+         ::pointer<::user::primitive>ptext =  (pinteraction);
          ptext->_001SetText(strProxy, false);
          pinteraction = m_pimpact->get_child_by_name("port");
          ptext =  (pinteraction);

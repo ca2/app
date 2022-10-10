@@ -17,7 +17,7 @@ namespace regular_expression
 } // namespace regular_expression
 
 
-using regular_expression_pointer = __pointer(::regular_expression::regular_expression);
+using regular_expression_pointer = ::pointer<::regular_expression::regular_expression>;
 
 
 #include "context.h"

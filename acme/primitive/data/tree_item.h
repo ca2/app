@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 class image_list;
@@ -230,15 +230,15 @@ namespace data
 
       };
 
-      __pointer(tree_item)             m_phead; // first child
-      __pointer(tree_item)             m_ptail; // last child
-      __pointer(tree_item)             m_pprevious;
-      __pointer(tree_item)             m_pnext;
-      __pointer(tree_item)             m_pparent;
+      ::pointer<tree_item>            m_phead; // first child
+      ::pointer<tree_item>            m_ptail; // last child
+      ::pointer<tree_item>            m_pprevious;
+      ::pointer<tree_item>            m_pnext;
+      ::pointer<tree_item>            m_pparent;
       index                            m_iIndexHint;
       tree *                           m_ptree;
       index                            m_iLevel;
-      __pointer(::data::item)          m_pdataitem;
+      ::pointer<::data::item>         m_pdataitem;
       uptr                             m_dwUser;
       u32                              m_dwState;
       uptr                             m_dwMetaData;
@@ -365,7 +365,7 @@ namespace data
 
 
    class CLASS_DECL_ACME tree_item_ptr_array :
-      public __pointer_array(tree_item)
+      public pointer_array < tree_item >
    {
    public:
    };

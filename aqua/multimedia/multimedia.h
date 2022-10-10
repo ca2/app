@@ -16,7 +16,7 @@ namespace aqua
 
 
 //#ifdef WINDOWS
-//      __composite(::windows::media_foundation)           m_pmediafoundation;
+//      ::pointer<::windows::media_foundation>          m_pmediafoundation;
 //#endif
 
       
@@ -32,7 +32,7 @@ namespace aqua
 
       virtual void on_decoder_fill_title_info(::multimedia::decoder * pdecoder, string_array & straTitle, string2a & str2aTitle);
 
-      virtual __pointer(::user::controller) defer_create_impact(::object* pobject, const ::string & strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::atom& atom = nullptr);
+      virtual ::pointer<::user::controller>defer_create_impact(::object* pobject, const ::string & strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::atom& atom = nullptr);
 
       virtual void exit_application();
 

@@ -48,7 +48,7 @@ namespace html
             if(pelement == nullptr)
                return nullptr;
 
-            __pointer(table) ptable = pelement->m_pimpl;
+            ::pointer<table>ptable = pelement->m_pimpl;
 
             if(ptable != nullptr)
                return ptable;

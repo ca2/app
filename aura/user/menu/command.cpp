@@ -39,7 +39,7 @@ namespace user
    }
 
 
-   void menu_command::_001SetCheck(::enum_check echeck, const ::action_context & context)
+   void menu_command::_001SetCheck(const ::e_check & echeck, const ::action_context & context)
    {
 
       ASSERT(echeck == ::e_check_checked || echeck == ::e_check_unchecked || echeck == ::e_check_tristate); // 0=>off, 1=>on, 2=>indeterminate
@@ -49,7 +49,7 @@ namespace user
       if (m_puiOther != nullptr)
       {
 
-         __pointer(::user::check) pcheck = m_puiOther;
+         ::pointer<::user::check>pcheck = m_puiOther;
 
          if(pcheck.is_set())
          {
@@ -69,7 +69,7 @@ namespace user
       if (m_puiOther != nullptr)
       {
 
-         __pointer(::user::text) ptext = m_puiOther;
+         ::pointer<::user::text>ptext = m_puiOther;
 
          if(ptext.is_set())
          {

@@ -14,7 +14,7 @@ namespace user
 
       // Pointer to ::user::document_manager used to manage document templates
    // for this application instance.
-      __composite(::user::document_manager)           m_pdocmanager;
+      ::pointer<::user::document_manager>          m_pdocmanager;
 
 
       document_manager_container();

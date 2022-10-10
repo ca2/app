@@ -11,25 +11,25 @@
 
 
 
-namespace primitive
-{
-
-
-   template < typename TYPE >
-   template < typename OBJECT >
-   __pointer(OBJECT) member < TYPE >::cast() const
-   {
-
-      return ::is_null((TYPE*)m_p) ? nullptr : (TYPE*)m_p;
-
-   }
-
-
-} // namespace primitive
+//namespace primitive
+//{
+//
+//
+//   template < typename TYPE >
+//   template < typename OBJECT >
+//   ::pointer<OBJECT>member < TYPE >::cast() const
+//   {
+//
+//      return ::is_null((TYPE*)m_p) ? nullptr : (TYPE*)m_p;
+//
+//   }
+//
+//
+//} // namespace primitive
 
 template < class T >
 template < typename T2 >
-inline __pointer(T) & ___pointer < T >::defer_assign_to(T2 * & p)
+inline pointer < T > & pointer < T >::defer_assign_to(T2 * & p)
 {
 
    if (!is_null())
@@ -56,7 +56,7 @@ inline __pointer(T) & ___pointer < T >::defer_assign_to(T2 * & p)
 
 template < class T >
 template < typename OBJECT >
-inline __pointer(T) & ___pointer < T >::defer_create_new(OBJECT * pobject)
+inline pointer < T > & pointer < T >::defer_create_new(OBJECT * pobject)
 {
 
    if (is_null())
@@ -73,7 +73,7 @@ inline __pointer(T) & ___pointer < T >::defer_create_new(OBJECT * pobject)
 
 template < class T >
 template < typename OBJECT >
-inline __pointer(T) & ___pointer < T >::create_new(OBJECT * pobject)
+inline pointer < T > & pointer < T >::create_new(OBJECT * pobject)
 {
 
    auto p = __new(T);

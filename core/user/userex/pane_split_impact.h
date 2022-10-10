@@ -17,7 +17,7 @@ namespace userex
    public:
 
 
-      __pointer(pane_impact) m_ppaneimpact;
+      ::pointer<pane_impact> m_ppaneimpact;
 
 
       pane_split_impact();

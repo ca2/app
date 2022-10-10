@@ -11,10 +11,10 @@ namespace sphere
    public:
 
 
-      __pointer(::console::department)                    m_pconsole;
-      __pointer(::prompt::department)                     m_pprompt;
-      __pointer(::filehandler::department)                m_pfilehandler;
-      __pointer(::calculator::department)                 m_pcalculator;
+      ::pointer<::console::department>                   m_pconsole;
+      ::pointer<::prompt::department>                    m_pprompt;
+      ::pointer<::filehandler::department>               m_pfilehandler;
+      ::pointer<::calculator::department>                m_pcalculator;
 
 
       colorertake5::ParserFactory *                m_pparserfactory;
@@ -23,10 +23,10 @@ namespace sphere
 
       bool                                         m_bShowPlatform;
 
-      __pointer(::aura::application)                      m_pappCurrent;
+      ::pointer<::aura::application>                     m_pappCurrent;
       
-      __pointer(::user::single_document_template)         m_ptemplate_main;
-      __pointer(::user::single_document_template)         m_ptemplate_pane;
+      ::pointer<::user::single_document_template>        m_ptemplate_main;
+      ::pointer<::user::single_document_template>        m_ptemplate_pane;
 
       ::userstack::pane_impact *                     m_ppaneimpact;
 
@@ -36,7 +36,7 @@ namespace sphere
 
       bool                                         m_bDrawCursor;
 
-      string_map < __pointer(::experience::experience) >  m_mapExperience;
+      string_map < ::pointer<::experience::experience >> m_mapExperience;
 
 
       application(::object * pobject);
@@ -68,7 +68,7 @@ namespace sphere
       virtual ::filehandler::department * filehandler();
       virtual ::calculator::department * calculator();
 
-      __pointer(::aura::application) get_context_system();
+      ::pointer<::aura::application>get_context_system();
 
 //      virtual void init_instance() override;
       virtual bool init1() override;
@@ -123,9 +123,9 @@ namespace sphere
 
       //void on_request(::create * pcreate) override;
 
-      __pointer(::aura::application) application_get(const ::string & pszAppId, bool bCreate = true, bool bSynch = true, application_bias * pappbias = nullptr);
+      ::pointer<::aura::application>application_get(const ::string & pszAppId, bool bCreate = true, bool bSynch = true, application_bias * pappbias = nullptr);
 
-      __pointer(::aura::application) get_current_application();
+      ::pointer<::aura::application>get_current_application();
 
 //      virtual bool on_install() override;
 

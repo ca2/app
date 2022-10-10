@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 CLASS_DECL_ACME string demangle(const char * psz);
@@ -62,12 +62,10 @@ enum enum_data_structure_type
 
 
 
-class CLASS_DECL_ACME type
+class CLASS_DECL_ACME type :
+   public atom
 {
 public:
-
-
-   string   m_strName;
 
 
    type()
@@ -79,9 +77,9 @@ public:
    template < typename TYPE >
    type(enum_data_structure_type, TYPE) :
 #ifdef WINDOWS
-   m_strName(c_demangle(typeid(TYPE).name()))
+   atom(c_demangle(typeid(TYPE).name()))
 #else
-   m_strName(::move(demangle(typeid(TYPE).name())))
+   atom(demangle(typeid(TYPE).name()))
 #endif
    {
 
@@ -90,7 +88,7 @@ public:
 
 
    type(const char * pszTypeName) :
-      m_strName(pszTypeName)
+      atom(pszTypeName)
    {
       
    }
@@ -105,7 +103,7 @@ public:
 
 
    type(::type && type):
-      m_strName(::move(type.m_strName))
+      atom(::move(type))
    {
 
    }
@@ -121,17 +119,17 @@ public:
    type(const ::element * pelement);
 
    template < typename BASE >
-   type(const __pointer(BASE) & point);
+   type(const ::pointer<BASE>& point);
 
 
    type & operator = (const ::std::type_info & typeinfo)
    {
 
-      string strName = typeinfo.name();
+      ::string strName = typeinfo.name();
       
       strName = demangle(strName);
       
-      m_strName = strName;
+      ::atom::operator =(strName);
 
       return *this;
 
@@ -144,7 +142,7 @@ public:
       if (this != &type)
       {
 
-         m_strName = type.m_strName;
+         ::atom::operator =(type);
 
       }
 
@@ -153,17 +151,17 @@ public:
    }
 
 
-   string name() const { return m_strName; }
+   const ::atom & name() const { return *this; }
 
 
    bool operator == (const ::std::type_info & typeinfo) const
    {
 
-      string strName = ::type(typeinfo).name();
+      ::string strName = ::type(typeinfo).name();
 
       strName = demangle(strName);
 
-      return m_strName == strName;
+      return operator==(strName);
 
    }
 
@@ -171,14 +169,14 @@ public:
    bool operator == (const ::type & type) const
    {
 
-      return m_strName == type.m_strName;
+      return ::atom::operator == (type);
 
    }
 
    bool operator == (const ::string & strType) const
    {
 
-      return m_strName == strType;
+      return ::atom::operator == (strType);
 
    }
 
@@ -217,19 +215,14 @@ public:
 
    }
 
-   inline operator bool() const { return m_strName.has_char(); }
+   inline operator bool() const { return ::atom::has_char(); }
 
-   inline operator const char * () const { return m_strName; }
-
-   inline operator const string & () const { return m_strName; }
-
-   inline const string & to_string() const { return m_strName; }
-
+   inline operator const char * () const { return ::atom::operator const char *(); }
 
    bool name_contains(const char * psz) const
    {
 
-      return m_strName.contains(psz);
+      return ::strstr(m_psz, psz) == 0;
 
    }
 

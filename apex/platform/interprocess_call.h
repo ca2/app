@@ -7,7 +7,7 @@ class CLASS_DECL_APEX interprocess_call :
 public:
 
 
-   __pointer(interprocess_intercommunication)   m_pinterprocessintercommunication;
+   ::pointer<interprocess_intercommunication>  m_pinterprocessintercommunication;
    string                                       m_strApp;
    id_array                                     m_iaExclude;
    bool                                         m_bAutoLaunch;
@@ -32,7 +32,7 @@ public:
    //virtual void post(const ::atom& idPid);
    virtual void send(const ::atom& idPid);
 
-   __pointer(synchronization_array) synca();
+   ::pointer<synchronization_array>synca();
 
    ::e_status wait();
    bool _wait(const class ::wait & wait);

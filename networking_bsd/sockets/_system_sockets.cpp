@@ -14,9 +14,9 @@ namespace apex
       if (!m_psockets)
       {
 
-         //estatus = __compose_new(m_psockets);
+         //estatus = __construct_new(m_psockets);
 
-         __compose_new(m_psockets);
+         __construct_new(m_psockets);
 
          //if (!estatus)
          //{

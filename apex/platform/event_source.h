@@ -8,7 +8,7 @@ class CLASS_DECL_APEX event_source :
 public:
 
 
-   __pointer(__pointer_array(::event_handler))    m_peventhandlera;
+   pointer< pointer_array < ::event_handler > >    m_peventhandlera;
 
 
    inline bool has_event_handler() const

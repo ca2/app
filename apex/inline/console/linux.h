@@ -61,7 +61,7 @@
 //
 //         void m_estatus;
 //
-//         __pointer(::apex::system) m_psystem;
+//         ::pointer<::apex::system>m_psystem;
 //
 //         void create_system()
 //         {

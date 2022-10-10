@@ -58,7 +58,7 @@ namespace user
 
       CEnumAlign                 m_ealign;         // current alignment of the tool tip
       CEnumAlign                 m_ealignDefault;  // default alignment of the tool tip
-      __pointer(::user::interaction)    m_puserinteraction;           // window associate with this tool tip wnd
+      ::pointer<::user::interaction>   m_puserinteraction;           // window associate with this tool tip wnd
       string                     m_strTip;         // tip string
       i32                        m_iEventTool;     // item selected
       i32                        m_iTool;          // item where the tip will be showed

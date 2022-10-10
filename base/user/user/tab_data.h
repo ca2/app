@@ -42,7 +42,7 @@ namespace user
       ::rectangle_i32                     m_rectangleBorder;
       ::rectangle_i32                     m_rectangleMargin;
       ::rectangle_i32                     m_rectangleTextMargin;
-      __pointer(::image_list)             m_pimagelist;
+      ::pointer<::image_list>            m_pimagelist;
       tab_callback *                      m_pcallback;
       ::index                             m_iClickTab;
       bool                                m_bDrag;

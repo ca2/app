@@ -14,8 +14,8 @@ namespace user
    protected:
 
 
-      __reference(form_callback) m_pcallback;
-      __reference(form)  m_pformParent;
+      ::pointer<form_callback>m_pcallback;
+      ::pointer<form> m_pformParent;
 
 
    public:
@@ -54,7 +54,7 @@ namespace user
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::atom & atom);
 
 
-      //virtual __pointer(control_descriptor) new_form_control();
+      //virtual ::pointer<control_descriptor>new_form_control();
 
 
       virtual bool open_document(const ::payload& payloadFile);

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/operating_system.h"
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
@@ -734,7 +734,7 @@ namespace user
 
       }
 
-      __pointer(::user::interaction) puserinteractionHost = psession->m_puserprimitiveHost;
+      ::pointer<::user::interaction>puserinteractionHost = psession->m_puserprimitiveHost;
 
       if (puserinteractionHost)
       {
@@ -1107,7 +1107,7 @@ namespace user
 
    //   //}
 
-   //   __pointer(interaction) pinteraction = pdescriptor->alloc();
+   //   ::pointer<interaction>pinteraction = pdescriptor->alloc();
 
    //   if (!pinteraction)
    //   {
@@ -1362,7 +1362,7 @@ namespace user
 
       payload("place_child_title") = pszTitle;
 
-      //__pointer(::user::place_holder) pholder = get_parent();
+      //::pointer<::user::place_holder>pholder = get_parent();
 
       //if (pholder)
       //{
@@ -1481,7 +1481,7 @@ namespace user
    //
    //      }
    //
-   //      __pointer(::user::interaction) puserinteractionHost = psession->m_puserprimitiveHost;
+   //      ::pointer<::user::interaction>puserinteractionHost = psession->m_puserprimitiveHost;
    //
    //      if (::is_null(puserinteractionHost))
    //      {
@@ -1599,13 +1599,13 @@ namespace user
 
          }
 
-         __release(m_pthreadUserInteraction OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+         m_pthreadUserInteraction.release();
 
       }
 
       auto pprimitiveimplOld = m_pprimitiveimpl;
 
-      __pointer(interaction) pparentOld = get_parent();
+      ::pointer<interaction>pparentOld = get_parent();
 
       if (puserinteractionParent == nullptr)
       {
@@ -1654,7 +1654,7 @@ namespace user
 
          pprimitiveimplNew->m_puserinteraction = this;
 
-         __pointer(::aura::application) papp = get_app();
+         ::pointer<::aura::application>papp = get_app();
 
          //psession->erase_frame(this); // no more a top level frame if it were one
          papp->erase_user_interaction(this); // no more a top level frame if it were one
@@ -1934,7 +1934,7 @@ namespace user
    //
    //         }
    //
-   //         __pointer(::aura::application) papp = get_app();
+   //         ::pointer<::aura::application>papp = get_app();
    //
    //         if (papp)
    //         {
@@ -2540,9 +2540,9 @@ namespace user
    //      if (pmessage->m_wparam == 1)
    //      {
    //
-   //         __pointer(::message::object) pobjectmessage(pmessage);
+   //         ::pointer<::message::object>pobjectmessage(pmessage);
    //
-   //         __pointer(::message::message) pmessage(pobjectmessage->m_pmatter);
+   //         ::pointer<::message::message>pmessage(pobjectmessage->m_pmatter);
    //
    //         if (pmessage)
    //         {
@@ -3135,7 +3135,7 @@ namespace user
             try
             {
 
-               __pointer(::aura::application) papp = get_app();
+               ::pointer<::aura::application>papp = get_app();
 
                papp->erase_user_interaction(
                   this); // guess this may be a frame, it doesn't hurt to erase if this is not there
@@ -3152,7 +3152,7 @@ namespace user
                try
                {
 
-                  __pointer(::aura::application) papp = get_app();
+                  ::pointer<::aura::application>papp = get_app();
 
                   papp->erase_user_interaction(
                      this); // guess this may be a frame, it doesn't hurt to erase if this is not there
@@ -3241,7 +3241,7 @@ namespace user
    void interaction::on_message_size(::message::message * pmessage)
    {
 
-      __pointer(::message::size) psize(pmessage);
+      ::pointer<::message::size>psize(pmessage);
 
       pmessage->previous();
 
@@ -3703,7 +3703,7 @@ namespace user
                if (type.name_contains("font_list"))
                {
 
-                  output_debug_string(type.m_strName + "\n");
+                  output_debug_string(type + "\n");
 
                }
 
@@ -3729,7 +3729,7 @@ namespace user
       catch (...)
       {
 
-         INFORMATION("Exception: interaction::_001DrawThis %s" << __object_type(*this).m_strName);
+         INFORMATION("Exception: interaction::_001DrawThis %s" << __object_type(*this).string());
 
       }
 
@@ -4693,7 +4693,7 @@ namespace user
          catch (...)
          {
 
-            TRACE("Exception: interaction::_000OnDraw _001DrawThis %s" << __object_type(*this).m_strName);
+            TRACE("Exception: interaction::_000OnDraw _001DrawThis %s" << __object_type(*this).string());
 
          }
 
@@ -4718,7 +4718,7 @@ namespace user
             catch (...)
             {
 
-               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s" << __object_type(*this).m_strName);
+               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s" << __object_type(*this).string());
 
             }
 
@@ -4902,10 +4902,10 @@ namespace user
    }
 
 
-   __pointer(::message::message) interaction::get_message(const ::atom & atom, wparam wparam, lparam lparam)
+   ::pointer<::message::message>interaction::get_message(const ::atom & atom, wparam wparam, lparam lparam)
    {
 
-      __pointer(::message::message) pmessage;
+      ::pointer<::message::message>pmessage;
 
       auto eprototype = ::message::get_message_prototype((enum_message)atom.i64(), 0);
 
@@ -5084,7 +5084,7 @@ namespace user
    void interaction::_001OnTextComposition(::message::message * pmessage)
    {
 
-      __pointer(::message::key) ptext = pmessage;
+      ::pointer<::message::key>ptext = pmessage;
 
       on_text_composition(ptext->m_strText);
 
@@ -5191,7 +5191,7 @@ namespace user
    void interaction::on_message_subject(::message::message * pmessage)
    {
 
-      __pointer(::topic) ptopic(pmessage->m_lparam);
+      ::pointer<::topic>ptopic(pmessage->m_lparam);
 
       if (!ptopic)
       {
@@ -5405,7 +5405,7 @@ namespace user
          if (get_app() != nullptr)
          {
 
-            __pointer(::aura::application) papp = get_app();
+            ::pointer<::aura::application>papp = get_app();
 
             papp->add_user_interaction(this);
 
@@ -5423,7 +5423,7 @@ namespace user
       //      )
       //   {
 
-      //      //__pointer(place_holder) pholder = get_parent();
+      //      //::pointer<place_holder>pholder = get_parent();
 
       //      //if (pholder.is_set())
       //      //{
@@ -5524,7 +5524,7 @@ namespace user
       //      // these try catchs are needed for multi threading : multi threaded windows: the hell
       //      // Now I understand why Microsoft (TM) Windows (R) windows are single threaded.
       //
-      //      __pointer(::user::interaction) pinteraction = top_child();
+      //      ::pointer<::user::interaction>pinteraction = top_child();
       //
       //      //      i32 iSize;
       //
@@ -5738,7 +5738,7 @@ namespace user
 
    //   // these try catchs are needed for multi threading : multi threaded windows: the hell
    //   // Now I understand why many OSes windows are single threaded.
-   //   __pointer(::user::interaction) pinteraction;
+   //   ::pointer<::user::interaction>pinteraction;
 
    //   try
    //   {
@@ -5918,12 +5918,12 @@ namespace user
 
       }
 
-      __pointer(interaction) pinteraction = top_child();
+      ::pointer<interaction>pinteraction = top_child();
 
       while (pinteraction != nullptr)
       {
 
-         __pointer(interaction) puie = pinteraction->_001FromPoint(point, true);
+         ::pointer<interaction>puie = pinteraction->_001FromPoint(point, true);
 
          if (puie != nullptr)
          {
@@ -6368,7 +6368,7 @@ namespace user
    ::user::interaction * interaction::get_child_by_name(const ::string & strName, ::index iItem, i32 iLevel)
    {
 
-      __pointer(interaction) pinteraction = top_child();
+      ::pointer<interaction>pinteraction = top_child();
 
       while (pinteraction != nullptr)
       {
@@ -6389,7 +6389,7 @@ namespace user
 
       }
 
-      __pointer(interaction) pchild;
+      ::pointer<interaction>pchild;
 
       if (iLevel > 0 || iLevel == -1)
       {
@@ -6401,7 +6401,7 @@ namespace user
 
          }
 
-         __pointer(interaction) pinteraction = top_child();
+         ::pointer<interaction>pinteraction = top_child();
 
          while (pinteraction != nullptr)
          {
@@ -6892,7 +6892,7 @@ namespace user
 
    //   __UNREFERENCED_PARAMETER(pmessage);
 
-   //   //__pointer(::message::message) pmessage(pmessage);
+   //   //::pointer<::message::message>pmessage(pmessage);
 
    //   //if(pmessage->m_atom == e_message_key_down)
    //   //{
@@ -6913,7 +6913,7 @@ namespace user
    //   //      if(!route(&topic))
    //   //      {
 
-   //   //         __pointer(::user::interaction) pinteraction = psession->get_keyboard_focus();
+   //   //         ::pointer<::user::interaction>pinteraction = psession->get_keyboard_focus();
 
    //   //         pinteraction =  pinteraction->is_set() ? pinteraction->keyboard_get_next_focusable() : keyboard_get_next_focusable();
 
@@ -6946,7 +6946,7 @@ namespace user
    //
    //#if defined(_UWP)
    //
-   //      __pointer(::user::interaction) puserinteraction;
+   //      ::pointer<::user::interaction>puserinteraction;
    //
    //      try
    //      {
@@ -7030,7 +7030,7 @@ namespace user
    //
    //      erase_all_routes();
    //
-   //      __pointer(primitive_impl) pprimitiveimplOld = m_pprimitiveimpl;
+   //      ::pointer<primitive_impl>pprimitiveimplOld = m_pprimitiveimpl;
    //
    //      auto pprimitiveimplNew = __create < interaction_impl >();
    //
@@ -7162,7 +7162,7 @@ namespace user
 
       m_bUserElementOk = true;
 
-      __pointer(interaction_impl) pprimitiveimplNew;
+      ::pointer<interaction_impl>pprimitiveimplNew;
 
       auto rectangle(this->screen_rect());
 
@@ -8090,7 +8090,7 @@ namespace user
    //::user::interaction * interaction::EnsureTopLevel()
    //{
 
-   //   __pointer(interaction) pwindow = get_top_level();
+   //   ::pointer<interaction>pwindow = get_top_level();
 
    //   ENSURE_VALID(pwindow);
 
@@ -8203,12 +8203,12 @@ namespace user
    }
 
 
-   void interaction::destroy_composites()
+   void interaction::on_destroy()
    {
 
       //auto estatus = 
 
-      ::object::destroy_composites();
+      ::object::on_destroy();
 
       //return estatus;
 
@@ -8345,8 +8345,8 @@ namespace user
 
 
       // references
-      __release(m_pitemComposing);
-      __release(m_pthreadUserInteraction);
+      m_pitemComposing.release();
+      m_pthreadUserInteraction.release();
       m_puserinteractionParent.release();
       m_pupdowntarget.release();
       m_ptaskModal.release();
@@ -8411,7 +8411,7 @@ namespace user
 
          }
 
-         __release(m_pthreadUserInteraction OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+         m_pthreadUserInteraction.release();
 
       }
 
@@ -8547,7 +8547,7 @@ namespace user
 
       SIZEPARENTPARAMS sizeparentparams;
 
-      __pointer(::user::interaction) puiLeft;
+      ::pointer<::user::interaction>puiLeft;
 
       sizeparentparams.bStretch = bStretch;
 
@@ -8573,7 +8573,7 @@ namespace user
 
       }
 
-      __pointer(::user::interaction) pinteraction;
+      ::pointer<::user::interaction>pinteraction;
 
       while (m_puserinteraction->get_child(pinteraction))
       {
@@ -8705,8 +8705,7 @@ namespace user
       if (m_ewindowflag & e_window_flag_satellite_window)
       {
 
-         __refer(m_pthreadUserInteraction, m_puserinteractionOwner->m_pthreadUserInteraction
-            OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+         m_pthreadUserInteraction =  m_puserinteractionOwner->m_pthreadUserInteraction;
 
       }
 
@@ -8803,7 +8802,7 @@ namespace user
    ::user::interaction * interaction::get_parent_owner() const
    {
 
-      __pointer(::user::interaction) puserinteractionParent = get_parent();
+      ::pointer<::user::interaction>puserinteractionParent = get_parent();
 
       if (puserinteractionParent.is_null())
       {
@@ -8820,7 +8819,7 @@ namespace user
    ::user::interaction * interaction::get_parent_or_owner() const
    {
 
-      __pointer(::user::interaction) puserinteractionParent = get_parent();
+      ::pointer<::user::interaction>puserinteractionParent = get_parent();
 
       if (puserinteractionParent.is_set())
       {
@@ -8837,9 +8836,9 @@ namespace user
    ::user::interaction * interaction::get_top_level_owner() const
    {
 
-      __pointer(::user::interaction) puiOwner = get_owner();
+      ::pointer<::user::interaction>puiOwner = get_owner();
 
-      __pointer(::user::interaction) puiTopLevelOwner;
+      ::pointer<::user::interaction>puiTopLevelOwner;
 
       if (puiOwner.is_null())
       {
@@ -9657,7 +9656,7 @@ namespace user
             try
             {
 
-               __pointer(::aura::application) papp = get_app();
+               ::pointer<::aura::application>papp = get_app();
 
                if (pinteraction->m_bExtendOnParent ||
                   (pinteraction->m_bExtendOnParentIfClientOnly
@@ -10259,7 +10258,7 @@ namespace user
    }
 
 
-   __pointer_array(interaction) * interaction::children()
+   pointer_array < interaction > * interaction::children()
    {
 
       if (::is_null(m_puserinteractionpointeraChild))
@@ -10935,7 +10934,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    //
    //      }
    //
-   //      __pointer(::user::interaction) pinteractionBind = get_bind_ui();
+   //      ::pointer<::user::interaction>pinteractionBind = get_bind_ui();
    //
    //      if (pinteractionBind && pinteractionBind != pusercallback)
    //      {
@@ -11040,7 +11039,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
          {
 
             // discards object
-            __pointer(::element) spo(lparam);
+            ::pointer<::element>spo(lparam);
 
 
          }
@@ -11863,7 +11862,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
          if (bLayout)
          {
 
-            //__pointer(::user::interaction_impl) pprimitiveimpl = m_pprimitiveimpl;
+            //::pointer<::user::interaction_impl>pprimitiveimpl = m_pprimitiveimpl;
 
             //if (pprimitiveimpl)
             //{
@@ -12126,7 +12125,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       }
 
-      __pointer(::user::interaction) puiThis = this;
+      ::pointer<::user::interaction>puiThis = this;
 
       //synchronous_lock slChildren(::user::mutex_children());
 
@@ -12177,12 +12176,11 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
                   }
 
-                  __release(m_pthreadUserInteraction OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS);
+                  m_pthreadUserInteraction.release();
 
                }
 
-               __refer(m_pthreadUserInteraction, puserinteractionParent->get_wnd()->m_pthreadUserInteraction
-                  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+               m_pthreadUserInteraction = puserinteractionParent->get_wnd()->m_pthreadUserInteraction;
 
             }
 
@@ -12215,7 +12213,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       puserinteractionChild->m_pinteractionScaler = m_pinteractionScaler;
 
-      __pointer(::user::interaction_array) puserinteractionpointeraChildNew;
+      ::pointer<::user::interaction_array>puserinteractionpointeraChildNew;
 
       if (::is_set(m_puserinteractionpointeraChild))
       {
@@ -12490,7 +12488,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   __pointer(::windowing::cursor) interaction::get_mouse_cursor(enum_cursor ecursor)
+   ::pointer<::windowing::cursor>interaction::get_mouse_cursor(enum_cursor ecursor)
    {
 
       auto pwindowing = windowing();
@@ -12694,7 +12692,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    //   //if (pcursor)
    //   //{
 
-   //   //   __pointer(::message::set_cursor) psetcursor = pmessage;
+   //   //   ::pointer<::message::set_cursor>psetcursor = pmessage;
 
 
    //   //   if (psetcursor)
@@ -13425,7 +13423,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    //void interaction::_001OnCommand(::message::message * pmessage)
    //{
 
-   //   __pointer(::message::message) pmessage(pmessage);
+   //   ::pointer<::message::message>pmessage(pmessage);
 
    //   lresult lresult = 0;
 
@@ -13544,7 +13542,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
          }
 
-         __pointer(::user::interaction_impl) pprimitiveimpl = m_pprimitiveimpl;
+         ::pointer<::user::interaction_impl>pprimitiveimpl = m_pprimitiveimpl;
 
          bool bStart = pprimitiveimpl->m_bTransparentMouseEvents
             && puiTop->is_this_visible();
@@ -15212,7 +15210,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    point_i32 interaction::get_ascendant_context_offset() const
    {
 
-      __pointer(::user::interaction) puser = get_parent();
+      ::pointer<::user::interaction>puser = get_parent();
 
       point_i32 point;
 
@@ -15318,7 +15316,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    void interaction::on_message_show_window(::message::message * pmessage)
    {
 
-      __pointer(::message::show_window) pshowwindow(pmessage);
+      ::pointer<::message::show_window>pshowwindow(pmessage);
 
       if (!layout().design().is_screen_visible()
          || layout().design().m_edisplay == e_display_iconic)
@@ -15586,7 +15584,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
 
 
-   bool interaction::get_child(__pointer(::user::interaction) & pinteraction)
+   bool interaction::get_child(::pointer<::user::interaction>& pinteraction)
    {
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
@@ -15603,7 +15601,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::rget_child(__pointer(::user::interaction) & pinteraction)
+   bool interaction::rget_child(::pointer<::user::interaction>& pinteraction)
    {
 
       //synchronous_lock synchronouslock(mutex());
@@ -16219,7 +16217,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       synchronous_lock synchronouslock(puiTop->mutex());
 
-      __pointer(::user::interaction_impl) pprimitiveimpl = puiTop->m_pprimitiveimpl;
+      ::pointer<::user::interaction_impl>pprimitiveimpl = puiTop->m_pprimitiveimpl;
 
       if (pprimitiveimpl.is_null())
       {
@@ -16963,7 +16961,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    void interaction::send_procedure(const ::procedure & procedure)
    {
 
-      ::thread * pthread = get_wnd() == nullptr ? (::thread *) nullptr : get_wnd()->m_pthreadUserInteraction;
+      ::thread * pthread = get_wnd() == nullptr ? (::thread *) nullptr : get_wnd()->m_pthreadUserInteraction.m_p;
 
       ::task * ptaskCurrent = ::get_task();
 
@@ -17129,7 +17127,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    //      if (eevent == e_event_mouse_leave)
    //      {
    //
-   //         __pointer(interaction) pinteraction = top_child();
+   //         ::pointer<interaction>pinteraction = top_child();
    //
    //         while (pinteraction != nullptr)
    //         {
@@ -18092,7 +18090,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       }
 
-      __pointer(::message::mouse_wheel) pwheel = pmessage;
+      ::pointer<::message::mouse_wheel>pwheel = pmessage;
 
       double y = pwheel->GetDelta() / 120.0;
 
@@ -18597,7 +18595,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   //__pointer(::sequence < ::conversation >) interaction::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox)
+   //pointer< ::sequence < ::conversation > > interaction::message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox)
    //{
 
    //   auto pmessagebox = __create < ::user::message_box >();
@@ -18890,7 +18888,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
    //    bool bSet = false;
 
-   //    __pointer(::aura::application) papp = get_app();
+   //    ::pointer<::aura::application>papp = get_app();
 
    //    if (m_bExtendOnParent ||
    //       (m_bExtendOnParentIfClientOnly && papp->m_bExperienceMainFrame))
@@ -19035,7 +19033,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    //}
 
 
-   bool interaction::get_data(__pointer(::user::interaction)puserinteraction, ::payload & payload)
+   bool interaction::get_data(::pointer<::user::interaction>puserinteraction, ::payload & payload)
    {
 
       string str;
@@ -19043,7 +19041,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       if (m_econtroltype == e_control_type_edit)
       {
 
-         __pointer(::user::text) pedit = puserinteraction.m_p;
+         ::pointer<::user::text>pedit = puserinteraction.m_p;
 
          if (pedit == nullptr)
             return false;
@@ -19054,7 +19052,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       else
       {
 
-         __pointer(::user::text) ptext = this;
+         ::pointer<::user::text>ptext = this;
 
          if (!ptext)
          {
@@ -19242,15 +19240,15 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       m_bEnableChanged = true;
 
-      __pointer(::user::interaction) puserinteraction = m_puiOther;
+      ::pointer<::user::interaction>puserinteraction = m_puiOther;
 
       ASSERT(puserinteraction != nullptr);
 
       ASSERT_KINDOF(::user::interaction, puserinteraction);
 
-      __pointer(::user::interaction) pinteraction = puserinteraction->get_child_by_id(m_atomControl);
+      ::pointer<::user::interaction>pinteraction = puserinteraction->get_child_by_id(m_atomControl);
 
-      //      //__pointer(control) pcontrolex = (pinteraction.m_p);
+      //      //::pointer<control>pcontrolex = (pinteraction.m_p);
       //
       //      if (pinteraction)
       //      {
@@ -19318,7 +19316,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    void control_cmd_ui::SetCheck(i32 nCheck)
    {
       ASSERT(nCheck >= 0 && nCheck <= 2); // 0=>off, 1=>on, 2=>indeterminate
-      /*__pointer(::user::interaction) puserinteraction = (__pointer(::user::interaction))m_pOther;
+      /*::pointer<::user::interaction>puserinteraction = (::pointer<::user::interaction>_pOther;
       ASSERT(pToolBar != nullptr);
       ASSERT_KINDOF(simple_toolbar, pToolBar);
       ASSERT(m_nIndex < m_nIndexMax);
@@ -19547,7 +19545,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       }
 
-      __pointer(::user::interaction) puserinteractionParent = get_parent();
+      ::pointer<::user::interaction>puserinteractionParent = get_parent();
 
       if (puserinteractionParent)
       {
@@ -19558,7 +19556,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       else
       {
 
-         __pointer(::apex::context) pcontext = get_context();
+         ::pointer<::apex::context>pcontext = get_context();
 
          if (pcontext)
          {
@@ -19575,7 +19573,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    void interaction::_001OnEnable(::message::message * pmessage)
    {
 
-      __pointer(::message::enable) penable(pmessage);
+      ::pointer<::message::enable>penable(pmessage);
 
       if (m_puiLabel != nullptr)
       {
@@ -19590,7 +19588,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    void interaction::_001OnUpdateEditDelete(::message::message * pmessage)
    {
 
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
 
       auto estatus = is_edit_delete_enabled();
 

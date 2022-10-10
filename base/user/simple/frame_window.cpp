@@ -494,7 +494,7 @@ void simple_frame_window::dump(dump_context & dumpcontext) const
 }
 
 
-__pointer(::user::interaction) simple_frame_window::WindowDataGetWnd()
+::pointer<::user::interaction>simple_frame_window::WindowDataGetWnd()
 {
 
    return this;
@@ -571,7 +571,7 @@ void simple_frame_window::on_message_destroy(::message::message * pmessage)
    if(papp->m_puserinteractionMain != nullptr)
    {
 
-      __pointer(::simple_frame_window) pframe = papp->m_puserinteractionMain.get();
+      ::pointer<::simple_frame_window>pframe = papp->m_puserinteractionMain.get();
 
       if(pframe.is_set())
       {
@@ -640,7 +640,7 @@ void simple_frame_window::initialize_frame_window_experience()
 
    }
 
-   __pointer(::experience::frame) pexperienceframe;
+   ::pointer<::experience::frame>pexperienceframe;
 
    try
    {
@@ -715,14 +715,14 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    }
 
-   __pointer(::message::create) pcreate(pmessage);
+   ::pointer<::message::create>pcreate(pmessage);
 
    auto pcreateContext = (::create *) pcreate->get_create();
 
    if (::is_set(pcreateContext))
    {
 
-      __pointer(::user::system) pusersystem = pcreateContext->m_pmatterUserPayload;
+      ::pointer<::user::system>pusersystem = pcreateContext->m_pmatterUserPayload;
 
       if (pusersystem)
       {
@@ -751,12 +751,12 @@ void simple_frame_window::on_message_create(::message::message * pmessage)
 
    //}
 
-   //__pointer(::user::place_holder) pplaceholder = get_parent();
+   //::pointer<::user::place_holder>pplaceholder = get_parent();
 
    //if (pplaceholder != nullptr)
    //{
 
-   //   __pointer(::user::place_holder_container) pcontainer = pplaceholder->get_parent();
+   //   ::pointer<::user::place_holder_container>pcontainer = pplaceholder->get_parent();
 
    //   if (pcontainer != nullptr)
    //   {
@@ -1052,7 +1052,7 @@ void simple_frame_window::_on_show_window()
 void simple_frame_window::on_message_show_window(::message::message * pmessage)
 {
 
-   __pointer(::message::show_window) pshow(pmessage);
+   ::pointer<::message::show_window>pshow(pmessage);
 
    if(pshow->m_bShow)
    {
@@ -1090,7 +1090,7 @@ void simple_frame_window::on_message_show_window(::message::message * pmessage)
 void simple_frame_window::on_message_display_change(::message::message * pmessage)
 {
 
-   __pointer(::user::message) pusermessage(pmessage);
+   ::pointer<::user::message>pusermessage(pmessage);
 
    if (is_top_level())
    {
@@ -1190,9 +1190,9 @@ bool simple_frame_window::pre_create_window(::user::system * pusersystem)
    if(pcreateContext && would_display_notify_icon())
    {
 
-      __pointer(::user::system) pusersystem = pcreateContext->m_pmatterUserPayload;
+      ::pointer<::user::system>pusersystem = pcreateContext->m_pmatterUserPayload;
 
-      __pointer(::user::document) pdocument = pusersystem->m_pdocumentCurrent;
+      ::pointer<::user::document>pdocument = pusersystem->m_pdocumentCurrent;
 
       if (pdocument->get_document_template()->m_bHiddenOnNotifyIcon)
       {
@@ -1274,13 +1274,13 @@ void simple_frame_window::on_reposition()
 }
 
 
-void simple_frame_window::ImpactOnActivateFrame(__pointer(::user::impact) pimpact, ::u32 user, __pointer(::user::interaction) pframe)
+void simple_frame_window::ImpactOnActivateFrame(::pointer<::user::impact>pimpact, ::u32 user, ::pointer<::user::interaction>frame)
 {
    __UNREFERENCED_PARAMETER(pimpact);
    __UNREFERENCED_PARAMETER(user);
-   __UNREFERENCED_PARAMETER(pframe);
+   //__UNREFERENCED_PARAMETER(pframe);
    //   if(pimpact != nullptr)
-   //      pimpact->OnActivateFrame(WA_INACTIVE, (__pointer(::user::simple_frame_window)) pframe);
+   //      pimpact->OnActivateFrame(WA_INACTIVE, (::pointer<::user::simple_frame_window> pframe);
 }
 
 void simple_frame_window::_001OnGetMinMaxInfo(::message::message * pmessage)
@@ -1288,7 +1288,7 @@ void simple_frame_window::_001OnGetMinMaxInfo(::message::message * pmessage)
 
 #ifdef WINDOWS_DESKTOP
    
-   //__pointer(::user::message) pusermessage(pmessage);
+   //::pointer<::user::message>pusermessage(pmessage);
 
    //MINMAXINFO * pMMI = (MINMAXINFO *) pusermessage->m_lparam.m_lparam;
 
@@ -1442,7 +1442,7 @@ void simple_frame_window::on_message_mouse_move(::message::message * pmessage)
 void simple_frame_window::_001OnNcHitTest(::message::message * pmessage)
 {
 
-   __pointer(::message::nc_hit_test) pnchittest(pmessage);
+   ::pointer<::message::nc_hit_test>pnchittest(pmessage);
 
    pnchittest->set_hit_test(e_hit_test_client);
 
@@ -1454,7 +1454,7 @@ void simple_frame_window::_001OnNcHitTest(::message::message * pmessage)
 void simple_frame_window::_001OnMouseActivate(::message::message * pmessage)
 {
 
-   __pointer(::message::mouse_activate) pmouseactivate(pmessage);
+   ::pointer<::message::mouse_activate>pmouseactivate(pmessage);
 
    pmouseactivate->m_lresult = e_mouse_activate;
 
@@ -1466,7 +1466,7 @@ void simple_frame_window::_001OnMouseActivate(::message::message * pmessage)
 void simple_frame_window::_001OnUpdateImpactFullScreen(::message::message * pmessage)
 {
    
-   __pointer(::message::command) pcommand(pmessage);
+   ::pointer<::message::command>pcommand(pmessage);
    
    pcommand->enable();
    
@@ -1517,7 +1517,7 @@ void simple_frame_window::_001OnToggleCustomFrame(::message::message * pmessage)
 void simple_frame_window::_001OnUpdateToggleCustomFrame(::message::message * pmessage)
 {
    
-   __pointer(::message::command) pcommand(pmessage);
+   ::pointer<::message::command>pcommand(pmessage);
    
    pcommand->enable();
    
@@ -1554,7 +1554,7 @@ void simple_frame_window::_001OnToggleTransparentFrame(::message::message * pmes
 void simple_frame_window::_001OnUpdateToggleTransparentFrame(::message::message * pmessage)
 {
 
-   __pointer(::message::command) pcommand(pmessage);
+   ::pointer<::message::command>pcommand(pmessage);
 
    pcommand->enable();
 
@@ -1896,7 +1896,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
 void simple_frame_window::_001OnActivateApp(::message::message * pmessage)
 {
 
-   //__pointer(::user::message) pusermessage(pmessage);
+   //::pointer<::user::message>pusermessage(pmessage);
 
    //pusermessage->previous();
 
@@ -1944,7 +1944,7 @@ void simple_frame_window::_000OnMouseLeave(::message::message * pmessage)
 void simple_frame_window::_001OnActivate(::message::message * pmessage)
 {
 
-   //__pointer(::message::activate) pactivate(pmessage);
+   //::pointer<::message::activate>pactivate(pmessage);
 
    //pactivate->previous();
 
@@ -1990,7 +1990,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 
    ::rectangle_i32 rectangleFrame;
 
-   __pointer(::user::place_holder) pholder;
+   ::pointer<::user::place_holder>pholder;
 
    if(puiParent != nullptr && (pholder = puiParent).is_set())
    {
@@ -2043,9 +2043,9 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
             else if (m_eupdown == e_updown_down)
             {
 
-               __pointer(::user::document) pdocument = pusersystem->m_pdocumentCurrent;
+               ::pointer<::user::document>pdocument = pusersystem->m_pdocumentCurrent;
 
-               __pointer(::user::impact_host) pimpacthost;
+               ::pointer<::user::impact_host>pimpacthost;
 
                if (pimpacthost.is_set())
                {
@@ -2143,7 +2143,7 @@ bool simple_frame_window::LoadFrame(const ::string & pszMatter, u32 dwDefaultSty
 void simple_frame_window::_001OnDdeInitiate(::message::message * pmessage)
 {
 
-   //__pointer(::user::message) pusermessage(pmessage);
+   //::pointer<::user::message>pusermessage(pmessage);
 
    //pusermessage->set_lresult(default_window_procedure((u32)pusermessage->m_wparam, pusermessage->m_lparam, pusermessage->get_lresult()));
 
@@ -2644,7 +2644,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
             m_pimageBk->create(rectangleClient.size());
             m_pimageBk->fill(0,200,200,190);
             //HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
-            //::draw2d::fastblur *( *pfnNew )(__pointer(::aura::application)) = (::draw2d::fastblur *(*)(__pointer(::aura::application))) ::GetProcAddress(hmodule, "new_fastblur");
+            //::draw2d::fastblur *( *pfnNew )(::pointer<::aura::application> = (::draw2d::fastblur *(*)(::pointer<::aura::application> ::GetProcAddress(hmodule, "new_fastblur");
             //m_pimageBlur->create(this);
             //m_fastblur.initialize(rectangleClient.size(),2);
 
@@ -2713,7 +2713,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 }
 
 
-bool simple_frame_window::on_before_set_parent(__pointer(::user::interaction) pinteraction)
+bool simple_frame_window::on_before_set_parent(::pointer<::user::interaction>pinteraction)
 {
 
    WindowDataSaveWindowRect();
@@ -3152,7 +3152,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //   // trans   ASSERT(get_handle() != nullptr);
 //
 //   // get top level parent frame u first unless this is a child u
-//   __pointer(::user::frame_window) pParent = (GetStyle() & WS_CHILD) ? this : top_level_frame();
+//   ::pointer<::user::frame_window>pParent = (GetStyle() & WS_CHILD) ? this : top_level_frame();
 //   ASSERT(pParent != nullptr);
 //   //if (dwFlags & (FS_DEACTIVATE | FS_ACTIVATE))
 //   //{
@@ -3177,12 +3177,12 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 //   // then update the state of all floating windows owned by the parent
 //#ifdef WINDOWS_DESKTOP
 //
-//   __pointer(::user::interaction) oswindowDesktop = papp->get_desktop_window();
+//   ::pointer<::user::interaction>oswindowDesktop = papp->get_desktop_window();
 //
 //   if (oswindowDesktop.is_null())
 //      return;
 //
-//   __pointer(::user::interaction) oswindow = oswindowDesktop->get_wnd(GW_CHILD);
+//   ::pointer<::user::interaction>oswindow = oswindowDesktop->get_wnd(GW_CHILD);
 //
 //   while (oswindow != nullptr)
 //   {
@@ -3205,7 +3205,7 @@ void simple_frame_window::route_command(::message::command * pcommand, bool bRou
 void simple_frame_window::_001OnQueryEndSession(::message::message * pmessage)
 {
 
-   __pointer(::user::message) pusermessage(pmessage);
+   ::pointer<::user::message>pusermessage(pmessage);
 
    auto papp = get_app();
 
@@ -3306,16 +3306,16 @@ string simple_frame_window::get_window_default_matter()
 
 //void simple_frame_window::guserbaseOnInitialUpdate(::message::message * pmessage)
 //{
-//   __pointer(::user::message) pusermessage(pmessage);
+//   ::pointer<::user::message>pusermessage(pmessage);
 //   ::user::FrameInitialUpdate * pfiu = (::user::FrameInitialUpdate *)pusermessage->m_lparam.m_lparam;
 //   if (pfiu != nullptr)
 //   {
-//      __pointer(::user::frame_window) pframe = (this);
+//      ::pointer<::user::frame_window>pframe = (this);
 //      // if the frame does not have an active ::user::impact, set to first pane
-//      __pointer(::user::impact) pimpact;
+//      ::pointer<::user::impact>pimpact;
 //      if (pframe->get_active_impact() == nullptr)
 //      {
-//         __pointer(::user::interaction) pwindow = pframe->get_child_by_id(FIRST_PANE);
+//         ::pointer<::user::interaction>pwindow = pframe->get_child_by_id(FIRST_PANE);
 //         if (pwindow != nullptr && base_class < ::user::impact >::bases(pwindow))
 //         {
 //            pimpact = (pwindow.m_p);
@@ -3356,7 +3356,7 @@ string simple_frame_window::get_window_default_matter()
 //
 //      }
 //
-//      __pointer(::user::document) pdocument = pfiu->m_pdocument;
+//      ::pointer<::user::document>pdocument = pfiu->m_pdocument;
 //      // update frame counts and frame title (may already have been visible)
 //      if (pdocument != nullptr)
 //         pdocument->update_frame_counts();
@@ -3707,7 +3707,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //{
 //   if (bFullScreen)
 //   {
-//      __pointer(::user::interaction) puserinteractionParentFrame = get_parent_frame();
+//      ::pointer<::user::interaction>puserinteractionParentFrame = get_parent_frame();
 //      if (puserinteractionParentFrame == nullptr)
 //      {
 //         if (!layout().is_full_screen())
@@ -3754,7 +3754,7 @@ void simple_frame_window::draw_frame(::draw2d::graphics_pointer & pgraphics)
 //         display(e_display_restored);
 //         return true;
 //      }
-//      __pointer(::user::interaction) puserinteractionParentFrame = get_parent_frame();
+//      ::pointer<::user::interaction>puserinteractionParentFrame = get_parent_frame();
 //      if (puserinteractionParentFrame == nullptr)
 //      {
 //         return false;
@@ -3798,7 +3798,7 @@ void simple_frame_window::data_on_after_change(::message::message * pmessage)
 
    //box::data_on_after_change(pmessage);
 
-   __pointer(database::change_event) pupdate(pmessage);
+   ::pointer<database::change_event>pupdate(pmessage);
 
    if (pupdate->m_datakey == "ca2.savings")
    {
@@ -4183,7 +4183,7 @@ void simple_frame_window::on_select_user_style()
 
          auto pstyle = puser->get_user_style(strSchema, get_app());
 
-         __refer(m_puserstyle, pstyle);
+         m_puserstyle = pstyle;
 
       }
 
@@ -4210,7 +4210,7 @@ void simple_frame_window::call_notification_area_action(const ::string & pszId)
 void simple_frame_window::notification_area_action(const ::string & pszId)
 {
 
-   __pointer(::user::interaction) pinteraction = this;
+   ::pointer<::user::interaction>pinteraction = this;
 
    ::message::command command((::atom) pszId);
 

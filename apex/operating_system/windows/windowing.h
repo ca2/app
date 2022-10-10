@@ -21,7 +21,7 @@
 // CLASS_DECL_APEX void window_create_gray_caret(::windowing::window * pwindow, i32 nWidth, i32 nHeight);
 
 /// from top to bottom
-//CLASS_DECL_APEX __pointer(::user::oswindow_array) get_top_level_windows(bool bDesktop = true, bool bVisible = true);
+//CLASS_DECL_APEX ::pointer<::user::oswindow_array>get_top_level_windows(bool bDesktop = true, bool bVisible = true);
 
 
 

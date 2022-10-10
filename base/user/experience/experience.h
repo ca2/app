@@ -13,7 +13,7 @@ namespace experience
    public:
 
 
-      __pointer(::factory::factory)       m_pfactory;
+      ::pointer<::factory::factory>      m_pfactory;
       property_set                        m_set;
       string                              m_strExperience;
 

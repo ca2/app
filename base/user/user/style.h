@@ -14,7 +14,7 @@ namespace base
    public:
 
 
-      __pointer(::acme::library)     m_plibrary;
+      ::pointer<::acme::library>    m_plibrary;
 
 
       style();
@@ -33,7 +33,7 @@ namespace base
 
       //virtual void nextstyle(style_context * pcontext) override;
 
-      virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer& pstyle, ::user::menu_item* pitem);
+      virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer& pstyle, ::user::menu_item* pitem);
       virtual bool prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem);
       virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem);
 

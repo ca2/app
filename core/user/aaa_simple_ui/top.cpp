@@ -45,7 +45,7 @@ namespace simple_ui
    void top::_001OnActivate(::message::message * pmessage)
    {
 
-      //__pointer(::message::activate) pactivate(pmessage);
+      //::pointer<::message::activate>pactivate(pmessage);
 
       pmessage->previous();
 
@@ -57,7 +57,7 @@ namespace simple_ui
    void top::_001OnNcActivate(::message::message * pmessage)
    {
 
-      ///__pointer(::message::nc_activate) pncactivate(pmessage);
+      ///::pointer<::message::nc_activate>pncactivate(pmessage);
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -97,7 +97,7 @@ namespace simple_ui
    void top::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       if(pcreate->previous())
          return;

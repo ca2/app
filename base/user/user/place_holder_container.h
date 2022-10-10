@@ -14,7 +14,7 @@ namespace user
    public:
 
 
-      __pointer_array(place_holder)          m_placeholdera;
+      pointer_array < place_holder >          m_placeholdera;
 
 
       place_holder_container();
@@ -43,7 +43,7 @@ namespace user
 
 
    class CLASS_DECL_BASE place_holder_container_ptra :
-      virtual public __pointer_array(place_holder_container)
+      virtual public pointer_array < place_holder_container >
    {
    public:
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
 #endif
@@ -528,7 +528,7 @@ namespace user
       //
       //      //return true;
 
-      __pointer(::user::system) pusersystem;
+      ::pointer<::user::system>pusersystem;
 
       if (m_puserinteraction->m_pusersystem)
       {
@@ -554,7 +554,7 @@ namespace user
 
       }
 
-      __refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task());
+      m_puserinteraction->m_pthreadUserInteraction = ::get_task();
 
       //m_pthreadUserImpl = m_puserinteraction->m_pthreadUserInteraction;
 
@@ -684,7 +684,7 @@ namespace user
 //
 //      //return true;
 
-      __pointer(::user::system) pusersystem;
+      ::pointer<::user::system>pusersystem;
 
       if(m_puserinteraction->m_pusersystem)
       {
@@ -710,7 +710,7 @@ namespace user
 
       }
 
-      __refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task());
+      m_puserinteraction->m_pthreadUserInteraction = ::get_task();
 
       //m_pthreadUserImpl = m_puserinteraction->m_pthreadUserInteraction;
 
@@ -830,7 +830,7 @@ namespace user
 
             m_puserinteraction->m_pthreadUserInteraction = pthread;
             
-            __refer(m_puserthread, pthread.get());
+            m_puserthread = pthread.get();
 
          }
 
@@ -855,18 +855,18 @@ namespace user
 
       //auto psynca = __new(synchronization_array);
 
-      //__pointer(manual_reset_event) peventStartedUser;
+      //::pointer<manual_reset_event>peventStartedUser;
 
-      //__pointer(manual_reset_event) peventStartedProdevian;
+      //::pointer<manual_reset_event>peventStartedProdevian;
 
-      __pointer(::user::thread) puserthread;
+      ::pointer<::user::thread>puserthread;
 
       if (bNewOwnThread)
       {
 
          puserthread = __create_new<::user::thread>();
 
-         __refer(m_puserthread, puserthread);
+         m_puserthread = puserthread;
 
          auto papp = get_app();
 
@@ -879,7 +879,7 @@ namespace user
 
          m_puserthread->initialize_user_thread(this);
 
-         m_puserinteraction->__refer(m_puserinteraction->m_pthreadUserInteraction, m_puserthread OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE(__FUNCTION__));
+         m_puserinteraction->m_pthreadUserInteraction = m_puserthread;
 
          //peventStartedUser = __new(manual_reset_event());
 
@@ -889,20 +889,20 @@ namespace user
 
       m_puserthread->add_task(m_puserinteraction);
 
-      __pointer(::user::prodevian) pprodevian;
+      ::pointer<::user::prodevian>pprodevian;
 
       if (bProdevianThread && m_puserinteraction->is_graphical())
       {
 
          pprodevian = __create_new < ::user::prodevian >();
 
-         __refer(m_pprodevian, pprodevian);
+         m_pprodevian = pprodevian;
 
          m_pprodevian->initialize_prodevian(this);
 
          m_puserinteraction->add_task(m_pprodevian);
 
-         m_pprodevian->__refer(m_pprodevian->m_puserthread, m_puserthread);
+         m_pprodevian->m_puserthread =  m_puserthread;
 
       }
 
@@ -1185,7 +1185,7 @@ namespace user
 
          _on_mouse_move_step(pointInvalid);
 
-         //__pointer(::user::interaction) pinteraction;
+         //::pointer<::user::interaction>pinteraction;
 
          //::rectangle_i32 rectangleUi;
 
@@ -1699,7 +1699,7 @@ namespace user
 
       }
 
-      __release(m_pgraphics);
+      m_pgraphics.release();
 
       __UNREFERENCED_PARAMETER(pmessage);
 
@@ -2123,7 +2123,7 @@ namespace user
       //
       //         auto pwindowing = puser->windowing();
       //
-      //         __pointer(::message::key) pkey = pmessage;
+      //         ::pointer<::message::key>pkey = pmessage;
       //
       //         //pwindowing->set(pkey, get_oswindow(), m_pwindow, pkey->m_atom, pkey->m_wparam, pkey->m_lparam);
       //
@@ -2203,7 +2203,7 @@ namespace user
 
          }
 
-         __pointer(::message::mouse) pmouse = pmessage;
+         ::pointer<::message::mouse>pmouse = pmessage;
 
          auto psession = get_session();
 
@@ -2463,7 +2463,7 @@ namespace user
          if (::is_set(pkey))
          {
 
-            __pointer(::user::interaction) puiKeyboardFocus = m_puserinteractionKeyboardFocus;
+            ::pointer<::user::interaction>puiKeyboardFocus = m_puserinteractionKeyboardFocus;
 
             if (puiKeyboardFocus)
             {
@@ -4613,7 +4613,7 @@ namespace user
    void interaction_impl::on_message_show_window(::message::message * pmessage)
    {
 
-      __pointer(::message::show_window) pshowwindow(pmessage);
+      ::pointer<::message::show_window>pshowwindow(pmessage);
 
       if (pshowwindow->m_bShow)
       {
@@ -5221,7 +5221,7 @@ namespace user
       while (true)
       {
 
-         __pointer(::message::message) pmessage;
+         ::pointer<::message::message>pmessage;
 
          {
 
@@ -5308,7 +5308,7 @@ namespace user
 
          //auto estatus =
          
-         __raw_compose(m_pgraphics);
+         __raw_construct(m_pgraphics);
 
          //if (!estatus)
          //{
@@ -5385,7 +5385,7 @@ namespace user
 
    //   ASSERT(::is_set(pinteraction));
 
-   //   __pointer(::user::interaction) puiParent = pinteraction->get_parent();
+   //   ::pointer<::user::interaction>puiParent = pinteraction->get_parent();
 
    //   ASSERT(puiParent != nullptr);
 
@@ -5627,7 +5627,7 @@ namespace user
    void interaction_impl::on_prio_message_set_focus(::message::message * pmessage)
    {
 
-      __pointer(::message::set_keyboard_focus) psetkeyboardfocus(pmessage);
+      ::pointer<::message::set_keyboard_focus>psetkeyboardfocus(pmessage);
 
 //      on_final_set_keyboard_focus();
 //
@@ -5786,7 +5786,7 @@ namespace user
    void interaction_impl::on_message_kill_focus(::message::message * pmessage)
    {
 
-      __pointer(::message::kill_keyboard_focus) pkillkeyboardfocus(pmessage);
+      ::pointer<::message::kill_keyboard_focus>pkillkeyboardfocus(pmessage);
 
       if (!(m_puserinteraction->m_ewindowflag & e_window_flag_focus))
       {
@@ -6831,7 +6831,7 @@ namespace user
 //
 //      }
 
-      __pointer(::message::move) pmove(pmessage);
+      ::pointer<::message::move>pmove(pmessage);
 
 //      if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
 //      {
@@ -6933,7 +6933,7 @@ namespace user
 
       }
 
-      __pointer(::message::size) psize(pmessage);
+      ::pointer<::message::size>psize(pmessage);
 
 //      bool bLayered = m_puserinteraction->GetExStyle() & WS_EX_LAYERED;
 //
@@ -7474,7 +7474,7 @@ namespace user
    }
 
 
-   __pointer(::windowing::icon) interaction_impl::get_icon() const
+   ::pointer<::windowing::icon>interaction_impl::get_icon() const
    {
 
       return nullptr;

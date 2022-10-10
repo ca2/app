@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 class message_queue;
@@ -36,7 +36,7 @@ public:
 
 
    //bool                                               m_bBranchHandling : 1;
-   __composite(message_queue)                         m_pmessagequeue;
+   ::pointer<message_queue>                        m_pmessagequeue;
    bool                                               m_bClosedMessageQueue;
 
 
@@ -53,10 +53,10 @@ public:
    static bool                                        s_bAllocReady;
 
 
-   __pointer(manual_reset_event)                      m_peventStarted;
-   __pointer(manual_reset_event)                      m_peventSync;
-   __pointer(manual_reset_event)                      m_peventReady;
-   __pointer(manual_reset_event)                      m_peventFinished;
+   ::pointer<manual_reset_event>                     m_peventStarted;
+   ::pointer<manual_reset_event>                     m_peventSync;
+   ::pointer<manual_reset_event>                     m_peventReady;
+   ::pointer<manual_reset_event>                     m_peventFinished;
 
    enum_id                                            m_atomContextReference;
 
@@ -64,18 +64,18 @@ public:
    ::duration                                         m_durationHeartBeat;
    bool                                               m_bReady;
    //::e_status                                        m_estatus;
-   __pointer(::user::primitive)                       m_puserprimitiveMain;           // Main interaction_impl (usually same psystem->m_puiMain)
-   __pointer(::user::primitive)                       m_puserprimitiveActive;         // Active Main interaction_impl (may not be m_puiMain)
+   ::pointer<::user::primitive>                      m_puserprimitiveMain;           // Main interaction_impl (usually same psystem->m_puiMain)
+   ::pointer<::user::primitive>                      m_puserprimitiveActive;         // Active Main interaction_impl (may not be m_puiMain)
    bool                                               m_bSimpleMessageLoop;
    bool                                               m_bZipIsDir2;
 
-   __pointer(file_info)                               m_pfileinfo;
+   ::pointer<file_info>                              m_pfileinfo;
 
    bool                                               m_bDupHandle;
 
    string                                             m_strDebugType;
 
-   __pointer(::task_pool)                             m_ptaskpool;
+   ::pointer<::task_pool>                            m_ptaskpool;
 
    ::u32                                              m_nDisablePumpCount;
 
@@ -86,7 +86,7 @@ public:
    //::procedure_array                                    m_procedurea;
 
 
-   __pointer(manual_reset_event)                      m_pevent1;
+   ::pointer<manual_reset_event>                     m_pevent1;
    enum_priority                                         m_epriority;
 
 
@@ -95,7 +95,7 @@ public:
    int                                                m_iLine;
 
    bool                                               m_bTemporary;
-   __pointer(::object)                                m_pobjectScript;
+   ::pointer<::object>                               m_pobjectScript;
 
 
 //#ifdef MACOS
@@ -112,7 +112,7 @@ public:
 
 #endif
 
-   __pointer_array(event)                             m_eventaWait;
+   pointer_array < event >                             m_eventaWait;
 
 public:
 
@@ -134,7 +134,7 @@ public:
    void add_task(::object* pobjectTask) override;
 
 
-   inline message_queue* get_message_queue() { return m_pmessagequeue ? m_pmessagequeue : _get_message_queue(); }
+   inline message_queue* get_message_queue() { return m_pmessagequeue ? m_pmessagequeue.m_p : _get_message_queue(); }
    message_queue* _get_message_queue();
 
    bool peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
@@ -190,7 +190,7 @@ public:
    //virtual void set_os_int(itask_t iData);
 
 
-   //static __pointer(thread) start(
+   //static ::pointer<thread>start(
    //   ::matter* pmatter,
    //   ::enum_priority epriority = e_priority_normal,
    //   u32 nStackSize = 0,
@@ -392,12 +392,12 @@ public:
    void task_osterm() override;
 
 
-   __pointer(::task) branch(
+   ::pointer<::task>branch(
       ::enum_priority epriority = ::e_priority_normal,
       ::u32 nStackSize = 0,
       u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
 
-   __pointer(::task) branch_synchronously(
+   ::pointer<::task>branch_synchronously(
    ::enum_priority epriority = ::e_priority_normal,
    ::u32 nStackSize = 0,
    u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF) override;
@@ -450,7 +450,7 @@ protected:
 //
 //
 //   //template < typename THREAD >
-//   //void finish(__pointer(THREAD) & spthread)
+//   //void finish(::pointer<THREAD>& spthread)
 //   //{
 //
 //   //   if (spthread.is_set())
@@ -466,7 +466,7 @@ protected:
 //
 //
 //   //template < typename THREAD >
-//   //bool post_quit_and_wait(__pointer(THREAD) & spthread, const duration & duration)
+//   //bool post_quit_and_wait(::pointer<THREAD>& spthread, const duration & duration)
 //   //{
 //
 //   //   if (spthread.is_set())
@@ -494,7 +494,7 @@ protected:
 
 
 
-using id_thread_map = id_map < __pointer(thread) >;
+using id_thread_map = id_map < ::pointer<thread > >;
 
 
 //CLASS_DECL_APEX void sleep(const duration& duration);

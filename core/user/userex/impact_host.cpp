@@ -1,4 +1,4 @@
-﻿//
+//
 //  userex_impact_container.cpp
 //  app_veriwell_musical_player
 //
@@ -120,10 +120,10 @@ namespace userex
    }
 
 
-   __pointer(::simple_frame_window) impact_host::_001GetFrame(::atom idImpact)
+   ::pointer<::simple_frame_window>impact_host::_001GetFrame(::atom idImpact)
    {
 
-      __pointer(::user::impact) pimpact = _001GetImpact(idImpact);
+      ::pointer<::user::impact>pimpact = _001GetImpact(idImpact);
 
       if (pimpact.is_null())
       {
@@ -146,10 +146,10 @@ namespace userex
    }
 
 
-   __pointer(::user::impact) impact_host::_001GetImpact(::atom idImpact)
+   ::pointer<::user::impact>impact_host::_001GetImpact(::atom idImpact)
    {
 
-      __pointer(::user::document) pdocument = get_doc(idImpact);
+      ::pointer<::user::document>pdocument = get_doc(idImpact);
 
       if (pdocument.is_null())
       {
@@ -186,7 +186,7 @@ namespace userex
    }
 
 
-   __pointer(::userex::pane_tab_impact) impact_host::get_pane_tab_impact()
+   ::pointer<::userex::pane_tab_impact>impact_host::get_pane_tab_impact()
    {
 
       if (m_ptemplateTab == nullptr)
@@ -202,7 +202,7 @@ namespace userex
 
       }
 
-      __pointer(::user::document) pdocTab = m_ptemplateTab->get_document();
+      ::pointer<::user::document>pdocTab = m_ptemplateTab->get_document();
 
       if (pdocTab == nullptr)
       {
@@ -230,7 +230,7 @@ namespace userex
       post_procedure([pupdown, this]
       {
 
-         __pointer(::simple_frame_window) pframewindow = pupdown;
+         ::pointer<::simple_frame_window>pframewindow = pupdown;
 
          auto ptabimpact = get_pane_tab_impact();
 
@@ -346,7 +346,7 @@ namespace userex
       INFORMATION("");
       INFORMATION("impact_host::OnUpDownTargetDetach (1)");
 
-      __pointer(::simple_frame_window) pframewindow = pupdown;
+      ::pointer<::simple_frame_window>pframewindow = pupdown;
 
       if (pframewindow.is_set())
       {
@@ -367,17 +367,17 @@ namespace userex
          fork([pframewindow, this]()
          {
 
-            __pointer(simple_frame_window) pframewindowTab;
+            ::pointer<simple_frame_window>pframewindowTab;
 
             if (m_ptemplateTab != nullptr)
             {
 
-               __pointer(::user::document) pdocument = m_ptemplateTab->get_document(0);
+               ::pointer<::user::document>pdocument = m_ptemplateTab->get_document(0);
 
                if (pdocument.is_set())
                {
 
-                  __pointer(::userex::pane_tab_impact) ptabimpact = pdocument->get_typed_impact < ::userex::pane_tab_impact >();
+                  ::pointer<::userex::pane_tab_impact>ptabimpact = pdocument->get_typed_impact < ::userex::pane_tab_impact >();
 
                   pframewindowTab = ptabimpact->parent_frame();
 
@@ -401,12 +401,12 @@ namespace userex
 
                   string strId = pframewindow->m_atom;
 
-                  __pointer(::user::document) pdocument = m_ptemplateTab->get_document(0);
+                  ::pointer<::user::document>pdocument = m_ptemplateTab->get_document(0);
 
                   if (pdocument.is_set())
                   {
 
-                     __pointer(::userex::pane_tab_impact) ptabimpact = pdocument->get_typed_impact < ::userex::pane_tab_impact >();
+                     ::pointer<::userex::pane_tab_impact>ptabimpact = pdocument->get_typed_impact < ::userex::pane_tab_impact >();
 
                      ptabimpact->erase_tab_by_id(pframewindow->m_atom);
 
@@ -448,12 +448,12 @@ namespace userex
 
          ::rectangle_i32 rectangleTab;
 
-         __pointer(::user::document) pdocument = m_ptemplateTab->get_document();
+         ::pointer<::user::document>pdocument = m_ptemplateTab->get_document();
 
          if (pdocument != nullptr)
          {
 
-            __pointer(::userex::pane_tab_impact) ptabimpact = pdocument->get_typed_impact < ::userex::pane_tab_impact >();
+            ::pointer<::userex::pane_tab_impact>ptabimpact = pdocument->get_typed_impact < ::userex::pane_tab_impact >();
 
             if (ptabimpact != nullptr)
             {
@@ -514,7 +514,7 @@ namespace userex
    }
 
 
-   __pointer(::user::document) impact_host::get_doc(::atom idImpact)
+   ::pointer<::user::document>impact_host::get_doc(::atom idImpact)
    {
 
       return m_mapdoc[idImpact];
@@ -522,10 +522,10 @@ namespace userex
    }
 
 
-   __pointer(::user::impact) impact_host::get_impact(::atom idImpact)
+   ::pointer<::user::impact>impact_host::get_impact(::atom idImpact)
    {
 
-      __pointer(::user::document) pdocument = get_doc(idImpact);
+      ::pointer<::user::document>pdocument = get_doc(idImpact);
 
       if (pdocument.is_null())
       {
@@ -558,7 +558,7 @@ namespace userex
 
       }
 
-      __pointer(::userex::font_impact) pimpact = _001GetImpact(idImpact);
+      ::pointer<::userex::font_impact>pimpact = _001GetImpact(idImpact);
 
       if(pimpact.is_null())
       {
@@ -578,10 +578,10 @@ namespace userex
    }
 
 
-   __pointer(::user::impact) impact_host::_001DetachImpact(::atom idImpact)
+   ::pointer<::user::impact>impact_host::_001DetachImpact(::atom idImpact)
    {
 
-      __pointer(::user::impact) pimpact = _001GetImpact(idImpact);
+      ::pointer<::user::impact>pimpact = _001GetImpact(idImpact);
 
       if (m_mapframe[idImpact] == nullptr)
       {
@@ -602,7 +602,7 @@ namespace userex
    bool impact_host::defer_create_impact(::atom idImpact, ::create * pcreate)
    {
 
-      __pointer(::user::document) pdocument = get_doc(idImpact);
+      ::pointer<::user::document>pdocument = get_doc(idImpact);
 
       auto papp = get_app();
 
@@ -676,7 +676,7 @@ namespace userex
 
       //defer_create_impact(idImpact);
 
-      //__pointer(::simple_frame_window) pframewindow = _001GetFrame(idImpact);
+      //::pointer<::simple_frame_window>pframewindow = _001GetFrame(idImpact);
 
       //if (pframewindow.is_set())
       //{
@@ -713,7 +713,7 @@ namespace userex
       if (!defer_create_impact(idImpact))
       {
 
-         __pointer(::simple_frame_window) pframewindow = _001GetFrame(idImpact);
+         ::pointer<::simple_frame_window>pframewindow = _001GetFrame(idImpact);
 
          if (pframewindow.is_set())
          {
@@ -740,7 +740,7 @@ namespace userex
 
       papp->data_set("frame::" + idImpact + ".visible", bShow);
 
-      __pointer(::simple_frame_window) pframewindow = _001GetFrame(idImpact);
+      ::pointer<::simple_frame_window>pframewindow = _001GetFrame(idImpact);
 
       if(pframewindow.is_null())
       {

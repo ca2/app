@@ -148,7 +148,7 @@ namespace apex
    //CLASS_DECL_APEX void main_async_runnable(const ::procedure & procedure)
    //{
    //
-   //   //__pointer(::object) pobjectTask = pobjectTaskParam;
+   //   //::pointer<::object>pobjectTask = pobjectTaskParam;
    //
    //
    //   

@@ -20,10 +20,10 @@ namespace windowing
       void *                        _m_pX11Display;
 #endif
 
-      __pointer_array(monitor)      m_monitora;
+      pointer_array < monitor >      m_monitora;
 
 
-      __pointer(windowing)          m_pwindowing;
+      ::pointer<windowing>         m_pwindowing;
       bool                          m_bSystemSynchronizedScreen;
 
       index                         m_iMainMonitor;

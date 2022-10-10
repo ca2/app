@@ -26,7 +26,7 @@ namespace simpledb
    void service::serve()
    {
 
-      __pointer(::aura::application) pbaseapp = get_app();
+      ::pointer<::aura::application>pbaseapp = get_app();
 
       
       ::set_thread(&Sys(pbaseapp));

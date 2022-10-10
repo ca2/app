@@ -115,13 +115,13 @@ public:
 
 //template < typename OBJECT >
 //class transport :
-//   public status < __pointer (OBJECT) >
+//   public status < ::pointer<OBJECT> >
 //{
 //public:
 //
 //
-//   using status < __pointer(OBJECT) >::status;
-//   using status < __pointer(OBJECT) >::operator =;
+//   using status < ::pointer<OBJECT >>:status;
+//   using status < ::pointer<OBJECT >>:operator =;
 //
 //
 //};

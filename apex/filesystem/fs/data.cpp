@@ -242,14 +242,14 @@ namespace fs
    }
 
 
-   __pointer(data) data::node_path_data(const ::file::path & psz)
+   ::pointer<data>data::node_path_data(const ::file::path & psz)
    {
 
       return this;
 
    }
 
-   __pointer(data) data::path_data(const ::file::path & psz)
+   ::pointer<data>data::path_data(const ::file::path & psz)
    {
 
       return this;

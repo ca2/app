@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#include "aura/operating_system.h"
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
@@ -388,7 +388,7 @@ namespace user
          if (m_pimagelist[iSize].is_null())
          {
 
-            __refer(m_pimagelist[iSize], __create_new < ::image_list >());
+            m_pimagelist[iSize] = __create_new < ::image_list >();
             m_pimagelist[iSize]->create(iSize, iSize, 0, 10, 10);
 
          }
@@ -402,7 +402,8 @@ namespace user
          if (m_pimagelistHover[iSize].is_null())
          {
 
-            __refer(m_pimagelistHover[iSize], __create_new < ::image_list >());
+            m_pimagelistHover[iSize] = __create_new < ::image_list >();
+
             m_pimagelistHover[iSize]->create(iSize, iSize, 0, 10, 10);
 
          }
@@ -1883,7 +1884,7 @@ namespace user
          //}
 
 
-         __pointer(::image) pimage;
+         ::pointer<::image>pimage;
 
          int_array iaSizeFallback;
 

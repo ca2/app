@@ -112,20 +112,20 @@ namespace account
       //
       m_bSubmitted = false;
 
-      //if (!(estatus = __compose_new(m_pstillUser))) return false;
-      //if(!(estatus = __compose_new(m_peditUser))) return false;
-      //if (!(estatus = __compose_new(m_pstillPassword))) return false;
-      //if (!(estatus = __compose_new(m_peditPassword))) return false;
-      //if (!(estatus = __compose_new(m_pbutton))) return false;
-      //if (!(estatus = __compose_new(m_pbuttonClose))) return false;
+      //if (!(estatus = __construct_new(m_pstillUser))) return false;
+      //if(!(estatus = __construct_new(m_peditUser))) return false;
+      //if (!(estatus = __construct_new(m_pstillPassword))) return false;
+      //if (!(estatus = __construct_new(m_peditPassword))) return false;
+      //if (!(estatus = __construct_new(m_pbutton))) return false;
+      //if (!(estatus = __construct_new(m_pbuttonClose))) return false;
 
 
-      __compose_new(m_pstillUser);
-      __compose_new(m_peditUser);
-      __compose_new(m_pstillPassword);
-      __compose_new(m_peditPassword);
-      __compose_new(m_pbutton);
-      __compose_new(m_pbuttonClose);
+      __construct_new(m_pstillUser);
+      __construct_new(m_peditUser);
+      __construct_new(m_pstillPassword);
+      __construct_new(m_peditPassword);
+      __construct_new(m_pbutton);
+      __construct_new(m_pbuttonClose);
 
       //return estatus;
 
@@ -470,7 +470,7 @@ namespace account
    void login::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       if(pcreate->previous())
       {

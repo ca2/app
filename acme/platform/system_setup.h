@@ -68,14 +68,14 @@ public:
    static PFN_factory get_factory_function(const char* pszName = nullptr);
 
 
-   virtual __pointer(::acme::library) create_library();
-   virtual __pointer(::element) create_element();
-   virtual __pointer(::element) create_application_as_element();
+   virtual ::pointer<::acme::library>create_library();
+   virtual ::pointer<::element>create_element();
+   virtual ::pointer<::element>create_application_as_element();
 
 
-   virtual __pointer(::acme::library) _create_library();
-   virtual __pointer(::element) _create_element();
-   virtual __pointer(::element) _create_application_as_element();
+   virtual ::pointer<::acme::library>_create_library();
+   virtual ::pointer<::element>_create_element();
+   virtual ::pointer<::element>_create_application_as_element();
 
 
 };
@@ -88,7 +88,7 @@ class static_library_factory :
 public:
 
 
-   __pointer(::acme::library) _create_library() override { return __new(LIBRARY); }
+   ::pointer<::acme::library>_create_library() override { return __new(LIBRARY); }
 
 
    explicit static_library_factory(const char * pszName = "") :
@@ -109,7 +109,7 @@ class static_object_factory :
 public:
 
 
-   __pointer(::element) _create_element() override { return __new(OBJECT); }
+   ::pointer<::element>_create_element() override { return __new(OBJECT); }
 
 
    explicit static_object_factory(::system_setup::enum_flag eflag, const char* pszName = "") :
@@ -149,7 +149,7 @@ class static_application_factory :
 public:
 
 
-   virtual __pointer(::element) _create_application_as_element() override
+   virtual ::pointer<::element>_create_application_as_element() override
    {
 
       auto papp = __new(APPLICATION_TYPE);
@@ -183,7 +183,7 @@ public:
    app_factory(PFN_factory pfnFactory);
 
 
-   static __pointer(::acme::application) new_app();
+   static ::pointer<::acme::application>new_app();
     
 
 };

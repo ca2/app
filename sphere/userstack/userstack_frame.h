@@ -17,15 +17,15 @@ namespace userstack
 
 
       image_list  *              m_pimagelist;
-      __pointer(::user::document)                 m_pdocument;
+      ::pointer<::user::document>                m_pdocument;
       bool                       m_bHoverMouse;
       ::duration m_durationLastHover;
       bool                       m_bTimerOn;
 
       bool                       m_bMouseOver;
 
-      __pointer(impact)                     m_pimpact;
-      __pointer(pane_impact)                m_ppaneimpact;
+      ::pointer<impact>                    m_pimpact;
+      ::pointer<pane_impact>               m_ppaneimpact;
 
 
       frame(::object * pobject);

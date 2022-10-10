@@ -20,8 +20,8 @@ namespace user
 
       string                              m_strImpactTitle;
       atom                                m_atomCreator;
-      __pointer(::user::document)         m_pdocument;
-      __pointer(::user::interaction)      m_puserinteractionImpactNotify;
+      ::pointer<::user::document>        m_pdocument;
+      ::pointer<::user::interaction>     m_puserinteractionImpactNotify;
       bool                                m_bToolbar;
 
 
@@ -102,27 +102,27 @@ namespace user
 
       //virtual void OnPrepareDC(::draw2d::graphics_pointer & pgraphics, CPrintInfo* pInfo = nullptr);
 
-      virtual void OnActivateImpact(bool bActivate, __pointer(impact) pActivateImpact, __pointer(impact) pDeactiveImpact);
-      virtual void OnActivateFrame(enum_activate eactivate,  __pointer(::user::frame_window) pFrameWnd);
+      virtual void OnActivateImpact(bool bActivate, ::pointer<impact>pActivateImpact, ::pointer<impact>DeactiveImpact);
+      virtual void OnActivateFrame(enum_activate eactivate,  ::pointer<::user::frame_window>pFrameWnd);
 
 
       virtual void set_impact_title(const ::string & strImpactTitle);
       virtual string get_impact_title() const;
 
-      __pointer(::user::interaction) create_impact(const ::type & type, ::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::atom & atom = ::atom(), ::user::interaction * pviewLast = nullptr, ::user::impact_data * pdata = nullptr);
+      ::pointer<::user::interaction>create_impact(const ::type & type, ::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::atom & atom = ::atom(), ::user::interaction * pviewLast = nullptr, ::user::impact_data * pdata = nullptr);
 
       virtual void initialize_impact(::user::document * pdocument);
 
       template < class VIEW >
-      __pointer(VIEW) create_impact(::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::atom & atom = ::atom(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
+      ::pointer<VIEW>create_impact(::user::document * pdocument = nullptr, ::user::interaction * puserinteractionParent = nullptr, const ::atom & atom = ::atom(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
 
       template < class VIEW >
-      __pointer(VIEW) create_impact(::user::interaction * puserinteractionParent, const ::atom & atom = ::atom(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
+      ::pointer<VIEW>create_impact(::user::interaction * puserinteractionParent, const ::atom & atom = ::atom(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
 
       template < class VIEW >
-      __pointer(VIEW) create_impact(::user::impact_data * pimpactdata, ::user::interaction * pviewLast = nullptr);
+      ::pointer<VIEW>create_impact(::user::impact_data * pimpactdata, ::user::interaction * pviewLast = nullptr);
 
-      __pointer(::user::interaction) create_impact(::user::interaction * pimpactAlloc, ::user::impact_data * pimpactdata, ::user::interaction * pviewLast = nullptr);
+      ::pointer<::user::interaction>create_impact(::user::interaction * pimpactAlloc, ::user::impact_data * pimpactdata, ::user::interaction * pviewLast = nullptr);
 
 
 
@@ -175,7 +175,7 @@ namespace user
 
       virtual ::user::interaction::enum_type get_window_type() override;
 
-      //virtual void on_simple_impact_update_hint(__pointer(::user::impact) pviewSender, e_hint ehint, object * pupdate);
+      //virtual void on_simple_impact_update_hint(::pointer<::user::impact>pviewSender, e_hint ehint, object * pupdate);
 
       virtual void _001CallOnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -205,8 +205,8 @@ namespace user
 #endif
 
 
-      //virtual void OnActivateImpact(bool bActivate, __pointer(::user::impact) pActivateImpact, __pointer(::user::impact) pDeactiveImpact);
-      //virtual void OnActivateFrame(::u32 nState, __pointer(::user::frame_window) pFrameWnd);
+      //virtual void OnActivateImpact(bool bActivate, ::pointer<::user::impact>pActivateImpact, ::pointer<::user::impact>DeactiveImpact);
+      //virtual void OnActivateFrame(::u32 nState, ::pointer<::user::frame_window>pFrameWnd);
 
       //virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
@@ -224,7 +224,7 @@ namespace user
 
       virtual bool has_command_handler(::message::command * pcommand) override;
 
-      virtual void walk_pre_translate_tree(::message::message * pmessage,__pointer(::user::interaction) puiStop);
+      virtual void walk_pre_translate_tree(::message::message * pmessage,::pointer<::user::interaction>puiStop);
 
       virtual bool has_toolbar();
 
@@ -238,7 +238,7 @@ namespace user
 
 
    template < class VIEW >
-   inline __pointer(VIEW) impact::create_impact(::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
+   inline ::pointer<VIEW>impact::create_impact(::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
    {
 
       return create_impact(__type(VIEW), pdocument, puserinteractionParent, atom, pviewLast, pimpactdata);
@@ -247,7 +247,7 @@ namespace user
 
 
    template < class VIEW >
-   inline __pointer(VIEW) impact::create_impact(::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
+   inline ::pointer<VIEW>impact::create_impact(::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
    {
 
       return create_impact < VIEW >(get_document(), puserinteractionParent, atom, pviewLast, pimpactdata);
@@ -256,7 +256,7 @@ namespace user
 
 
    template < class VIEW >
-   inline __pointer(VIEW) impact::create_impact(::user::impact_data * pimpactdata, ::user::interaction * pviewLast)
+   inline ::pointer<VIEW>impact::create_impact(::user::impact_data * pimpactdata, ::user::interaction * pviewLast)
    {
 
       pimpactdata->m_puserinteraction.release();

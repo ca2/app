@@ -22,9 +22,9 @@ namespace user
       int                              m_iMin;
       int                              m_iMax;
       int                              m_iStep;
-      __composite(::user::still)       m_pstill;
-      __composite(::user::button)      m_pbuttonMinus;
-      __composite(::user::button)      m_pbuttonPlus;
+      ::pointer<::user::still>      m_pstill;
+      ::pointer<::user::button>     m_pbuttonMinus;
+      ::pointer<::user::button>     m_pbuttonPlus;
 
       string                           m_strMin;
       string                           m_strMax;

@@ -19,7 +19,7 @@ namespace helloworld
       string                                          m_strTopicTitle;
 
 
-      __pointer(::user::document)                            m_pdocMenu;
+      ::pointer<::user::document>                           m_pdocMenu;
       ::calculator::plain_edit_impact *                 m_prollfps;
       array < ::user::check_box * >                   m_checkptraBilbo;
 

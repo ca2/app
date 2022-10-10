@@ -35,7 +35,7 @@
 //public:
 //
 //
-//   static __thread_pointer < __pointer_array(::matter) > t_preferencea;
+//   static __thread_pointer < pointer_array < ::matter > > t_preferencea;
 //
 //   inline operator T *() { return (T *)get(); }
 //   inline T * operator ->() { return operator T *(); }
@@ -50,7 +50,7 @@
 //         if (t_preferencea.operator pointer_array<matter> * () == nullptr)
 //         {
 //
-//            t_preferencea = __new(__pointer_array(::matter));
+//            t_preferencea = __new(pointer_array < ::matter >);
 //
 //         }
 //

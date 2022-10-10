@@ -76,7 +76,7 @@ namespace console
    public:
 
 
-      __pointer(console)  m_pconsole;
+      ::pointer<console> m_pconsole;
 
 
       console_composite();

@@ -49,7 +49,7 @@ namespace userstack
       if(pmessage->previous())
          return;
 
-      __pointer(frame) pframe =  (get_parent_frame());
+      ::pointer<frame>pframe =  (get_parent_frame());
       pframe->m_ppaneimpact = this;
 
 
@@ -94,19 +94,19 @@ namespace userstack
    void pane_impact::on_change_cur_sel()
    {
       ::userex::pane_tab_impact::on_change_cur_sel();
-//      __pointer(frame) pframe =  (get_parent_frame());
+//      ::pointer<frame>pframe =  (get_parent_frame());
       string strId = get_impact_id();
       if(::str().begins_eat(strId, "app:"))
       {
 
-         __pointer(::aura::application) pappTab;
+         ::pointer<::aura::application>pappTab;
 
          if(psession->appptra().lookup("application:" + strId, pappTab))
          {
             psession->m_pappCurrent = pappTab;
             //psession->m_pappCurrent = pappTab;
          }
-         /*            __pointer(::simple_frame_window) pframeApp = dynamic_cast < __pointer(::simple_frame_window) > (m_pimpactdata->m_puserinteraction);
+         /*            ::pointer<::simple_frame_window>pframeApp = dynamic_cast < ::pointer<::simple_frame_window >>m_pimpactdata->m_puserinteraction);
                   if(pframeApp != nullptr)
                   {
                      pframeApp->display(e_display_full_screen);
@@ -115,12 +115,12 @@ namespace userstack
       //   else if(get_impact_id() == CONTEXT_MENU_IMPACT)
       //   {
       //      /*bergedge::menu_impact * pimpact = dynamic_cast < bergedge::menu_impact *  > (get_impact());
-      //      __pointer(::filemanager::document) pdocument = (pimpact->get_document());
+      //      ::pointer<::filemanager::document>pdocument = (pimpact->get_document());
       //      pdocument->FileManagerBrowse(pcontext->m_papexcontext->dir().appdata() / "bergedge\\menu"), ::e_source_system);*/
       //   }
       //   else if(get_impact_id() ==CONFIGURATION_IMPACT)
       //   {
-      ///*      __pointer(::user::interaction) pinteraction = m_pformOptions->ve_display_bandwidth");
+      ///*      ::pointer<::user::interaction>pinteraction = m_pformOptions->ve_display_bandwidth");
       //      matter * pcheck = dynamic_cast < matter * > (puie);
       //      if(psession->savings().save().has(::ca2::save_display_bandwidth))
       //      {
@@ -140,7 +140,7 @@ namespace userstack
       //      {
       //         check_desktop_dir(strDir);
       //      }
-      //      __pointer(::filemanager::document) pdocument =  (m_pimpactdata->m_pdocument);
+      //      ::pointer<::filemanager::document>pdocument =  (m_pimpactdata->m_pdocument);
       //      pdocument->FileManagerBrowse(strDir, ::e_source_system);
       //   }
       else
@@ -172,7 +172,7 @@ namespace userstack
       if(::str().begins_eat(strId, "app:"))
       {
 
-         __pointer(::aura::application) pappTab;
+         ::pointer<::aura::application>pappTab;
 
          if(!psession->appptra().lookup("application:" + strId, pappTab))
          {
@@ -180,7 +180,7 @@ namespace userstack
             application_bias * pappbias = memory_new application_bias;
             pappbias->m_puserinteractionParent = pimpactdata->m_pplaceholder;
 
-            __pointer(::create) pcreate(e_create);
+            ::pointer<::create>pcreate(e_create);
             pcreate->m_pappbias = pappbias;
             pcreate->_001ParseCommandFork(strId);
 
@@ -211,7 +211,7 @@ namespace userstack
 
          }
 
-         __pointer(::aura::application) pappCurrent = psession->m_pappCurrent;
+         ::pointer<::aura::application>pappCurrent = psession->m_pappCurrent;
 
          papp->appptra_add(pappCurrent);
 

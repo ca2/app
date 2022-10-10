@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace xml
@@ -11,10 +11,10 @@ namespace xml
    public:
 
 
-      __pointer(entities)           m_pentities;
-      __pointer(disp_option)        m_poptionDefault;
-      __pointer(parse_info)         m_pparseinfoDefault;
-      __pointer(string_to_string)   m_pentitiesHashDefault;
+      ::pointer<entities>          m_pentities;
+      ::pointer<disp_option>       m_poptionDefault;
+      ::pointer<parse_info>        m_pparseinfoDefault;
+      ::pointer<string_to_string>  m_pentitiesHashDefault;
       
 
 
@@ -25,7 +25,7 @@ namespace xml
 
       virtual void init();
 
-      //virtual __pointer(::xml::document) create_document(); 
+      //virtual ::pointer<::xml::document>create_document(); 
 
 
       string special_chars(const char * psz);

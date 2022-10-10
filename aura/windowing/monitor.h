@@ -15,7 +15,7 @@ namespace windowing
       ::index                                               m_iIndex;
       ::rectangle_i32                                       m_rectangle;
       ::rectangle_i32                                       m_rectangleWorkspace;
-      __pointer(::windowing::display)                       m_pdisplay;
+      ::pointer<::windowing::display>                      m_pdisplay;
 
 
       monitor();
@@ -35,7 +35,7 @@ namespace windowing
    };
 
 
-   //using monitor_map = iptr_map < __pointer(monitor) >;
+   //using monitor_map = iptr_map < ::pointer<monitor >>
 
 
 } // namespace windowing

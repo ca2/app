@@ -10,7 +10,7 @@ xcb_hook::xcb_hook()
 }
 
 
-__pointer_array(xcb_hook) g_xcbhooka;
+pointer_array < xcb_hook > g_xcbhooka;
 
 
 void xcb_hook::hook()

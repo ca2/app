@@ -53,11 +53,11 @@ inline uptr uptr_hash(const ::rectangle_i32& rectangle)
 
 
 // template < >
-// CLASS_DECL_ACME __pointer(___shape) __create_shape(const ::lines & lines);
+// CLASS_DECL_ACME ::pointer<___shape>__create_shape(const ::lines & lines);
 
 
 // template < >
-// CLASS_DECL_ACME __pointer(___shape) __create_shape(const ::polygon & polygon);
+// CLASS_DECL_ACME ::pointer<___shape>__create_shape(const ::polygon & polygon);
 
 
 #include "_collection_bounding_rect.h"

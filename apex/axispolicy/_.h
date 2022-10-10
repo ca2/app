@@ -64,7 +64,7 @@
 //
 //
 //
-//typedef __pointer(::user::interaction_impl) window_pointer;
+//typedef ::pointer<::user::interaction_impl>window_pointer;
 //
 //
 //#define SYSTEM_TYPE ::axis::system

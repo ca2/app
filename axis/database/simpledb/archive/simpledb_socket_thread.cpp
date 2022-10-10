@@ -91,7 +91,7 @@ namespace simpledb
 
    void socket_thread::OnApp(::message::message * pmessage)
    {
-      __pointer(::message::database) pusermessage(pmessage);
+      ::pointer<::message::database>pusermessage(pmessage);
       if(pusermessage->m_wparam == 0)
       {
 

@@ -20,12 +20,12 @@ namespace user
       //size_i32                                m_sizeTotal;
       ::e_align                                 m_ealignText;
       ::e_draw_text                             m_edrawtext;
-      __composite(::data::tree)                 m_ptree;
+      ::pointer<::data::tree>                m_ptree;
       __reference_array(::data::tree)           m_treeaBound;
-      __composite(::data::tree_item_ptr_array)  m_pitemptraSelected;
+      ::pointer<::data::tree_item_ptr_array> m_pitemptraSelected;
       ::data::tree_item *                       m_pitemHover;
 
-      __pointer(::draw2d::graphics_extension)   m_pdcextension;
+      ::pointer<::draw2d::graphics_extension>  m_pdcextension;
       index                                     m_dwFirstVisibleItem;
       index                                     m_iItemCount;
       ::u32                                     m_uiLButtonUpFlags;
@@ -38,7 +38,7 @@ namespace user
       //::color::color                               m_colorTextHighlight;
       //::color::color                               m_colorTextSelectedHighlight;
       u32_array                                 m_dwaItemState;
-      __pointer(::image_list)                   m_pimagelist;
+      ::pointer<::image_list>                  m_pimagelist;
       index                                     m_iImageCollapse;
       index                                     m_iImageExpand;
       ::draw2d::brush_pointer                   m_pbrushTextSelected;
@@ -78,8 +78,8 @@ namespace user
 
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual __pointer(::data::tree) find_tree(::data::tree_item * pitem) const;
-      virtual __pointer(::data::tree_item) find(::data::item * pitem, index * piIndex = nullptr);
+      virtual ::pointer<::data::tree>find_tree(::data::tree_item * pitem) const;
+      virtual ::pointer<::data::tree_item>find(::data::item * pitem, index * piIndex = nullptr);
       virtual bool contains(::data::item * pitem);
       virtual bool contains(::data::tree_item * pitem);
 
@@ -87,7 +87,7 @@ namespace user
       void on_change_impact_size(::draw2d::graphics_pointer & pgraphics) override;
 
       void _001OnTreeDataChange();
-      __pointer(::data::tree_item) CalcFirstVisibleItem(index & iProperIndex);
+      ::pointer<::data::tree_item>CalcFirstVisibleItem(index & iProperIndex);
       virtual void _001CalculateItemHeight(::draw2d::graphics_pointer & pgraphics);
       virtual i32 _001CalcCurrentImpactWidth();
       virtual i32 _001CalcTotalImpactWidth(::draw2d::graphics_pointer & pgraphics);
@@ -111,7 +111,7 @@ namespace user
       virtual index _001GetIndentation();
 
 
-      __pointer(::data::tree_item) _001HitTest(const ::point_i32 & point, ::user::enum_tree_element & eelement);
+      ::pointer<::data::tree_item>_001HitTest(const ::point_i32 & point, ::user::enum_tree_element & eelement);
 
       virtual bool on_click(::item * pitem) override;
 
@@ -125,7 +125,7 @@ namespace user
 
       virtual void on_change_context_offset(::draw2d::graphics_pointer & pgraphics) override;
 
-      __pointer(::image_list) get_image_list();
+      ::pointer<::image_list>get_image_list();
 
       // Overrides
       DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
@@ -174,8 +174,8 @@ namespace user
       virtual bool      can_merge(const ::data::tree * ptree) const;
       virtual bool      merge(::data::tree * ptree, bool bBind);
 
-      virtual __pointer(::data::tree_item) get_proper_item(index iIndex, index* piLevel = nullptr);
-      virtual __pointer(::data::tree_item) _get_proper_item(index iIndex, index * piLevel = nullptr, index * piCount = nullptr);
+      virtual ::pointer<::data::tree_item>get_proper_item(index iIndex, index* piLevel = nullptr);
+      virtual ::pointer<::data::tree_item>_get_proper_item(index iIndex, index * piLevel = nullptr, index * piCount = nullptr);
       virtual index     get_proper_item_index(::data::tree_item *pitemParam, index * piLevel);
       virtual index     get_proper_item_count();
 

@@ -13,10 +13,10 @@ concept indexed_array = requires(ARRAY array, ::index i)
 
 
 #define DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE) \
-__pointer(TYPE) & ITEM ## _at(::index i) { return CONTAINER[i]; } \
+::pointer<TYPE>& ITEM ## _at(::index i) { return CONTAINER[i]; } \
 const TYPE * ITEM ## _at(::index i) const { return CONTAINER[i]; } \
-__pointer(TYPE) * ITEM ## _data() { return CONTAINER.get_data(); } \
-__pointer(TYPE) const * ITEM ## _data() const { return CONTAINER.get_data(); } \
+::pointer<TYPE>* ITEM ## _data() { return CONTAINER.get_data(); } \
+::pointer<TYPE>const * ITEM ## _data() const { return CONTAINER.get_data(); } \
 TYPE * get_ ## ITEM(::index i) const { return CONTAINER.bounds(i) ? CONTAINER[i] : nullptr; } \
 ::count ITEM ## _count() const { return CONTAINER.get_count(); } \
 bool has_ ## ITEM() const { return CONTAINER.has_element(); } \
@@ -26,8 +26,8 @@ bool contains_ ## ITEM(const TYPE * p) const { return CONTAINER.contains(p); } \
 bool is_there_no_ ## ITEM() const { return CONTAINER.is_empty(); } \
 bool has_no_ ## ITEM() const { return is_there_no_ ## ITEM(); } \
 ::index find_first_ ## ITEM(const TYPE * p, ::index iStart = 0, ::count nCount = -1) const { return CONTAINER.find_first(p, iStart, nCount); } \
-__pointer(TYPE) & first_ ## ITEM() { return CONTAINER.first_pointer(); } \
-__pointer(TYPE) & last_ ## ITEM() { return CONTAINER.last_pointer(); } \
+::pointer<TYPE>& first_ ## ITEM() { return CONTAINER.first_pointer(); } \
+::pointer<TYPE>& last_ ## ITEM() { return CONTAINER.last_pointer(); } \
 TYPE * get_first_ ## ITEM() const { return CONTAINER.get_first_pointer(); } \
 TYPE * get_last_ ## ITEM() const { return CONTAINER.get_last_pointer(); } \
 ::index ITEM ## _first_index(::index i = 0) const { return CONTAINER.first_index(i); } \
@@ -35,7 +35,7 @@ TYPE * get_last_ ## ITEM() const { return CONTAINER.get_last_pointer(); } \
 CONTAINER_TYPE CONTAINER
 
 #define DECLARE_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE) \
-DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, __pointer_array(TYPE))
+DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, pointer_array < TYPE >)
 
 #define DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE) \
 ::index add_ ## ITEM(TYPE * p) { return CONTAINER.add_item(p); }      \
@@ -49,11 +49,11 @@ void ITEM ## a_slice(ARRAY & a, ::index iStart = 0, ::count nCount = -1){ CONTAI
 DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE)
 
 #define HAVE_ARRAY_OF(ITEM, CONTAINER, TYPE) \
-DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, __pointer_array(TYPE))
+DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, pointer_array < TYPE >)
 
 #define DECLARE_ARRAY_CONTAINER_OF(ARRAY, ITEM, CONTAINER, TYPE) \
-ARRAY(const ::std::initializer_list < __pointer(TYPE) > & list) : CONTAINER(list) { } \
-DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, __pointer_array(TYPE))
+ARRAY(const ::std::initializer_list < ::pointer<TYPE >>& list) : CONTAINER(list) { } \
+DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, pointer_array < TYPE >)
 
 #define DECLARE_ARRAY_OF(ARRAY, ITEM, TYPE) \
 DECLARE_ARRAY_CONTAINER_OF(ARRAY, ITEM, m_ ## ITEM ## a, TYPE)

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "edit.h"
 #include "edit_impl.h"
 #include "format_tool.h"
@@ -108,7 +108,7 @@ namespace user
       void edit::on_message_create(::message::message * pmessage)
       {
 
-         __pointer(::message::create) pcreate(pmessage);
+         ::pointer<::message::create>pcreate(pmessage);
 
          pcreate->previous();
 
@@ -144,7 +144,7 @@ namespace user
       {
 
          __UNREFERENCED_PARAMETER(pmessage);
-         //__pointer(::message::show_window) pshowwindow(pmessage);
+         //::pointer<::message::show_window>pshowwindow(pmessage);
 
       }
 
@@ -154,7 +154,7 @@ namespace user
          
          //__UNREFERENCED_PARAMETER(pmessage);
 
-         //__pointer(::message::set_focus) psetfocus(pmessage);
+         //::pointer<::message::set_focus>psetfocus(pmessage);
 
          if (!is_text_editable())
          {
@@ -173,7 +173,7 @@ namespace user
       void edit::on_kill_keyboard_focus()
       {
 
-         //__pointer(::message::kill_focus) pkillfocus(pmessage);
+         //::pointer<::message::kill_focus>pkillfocus(pmessage);
 
          auto pformattool = get_format_tool(false);
 
@@ -476,7 +476,7 @@ namespace user
       }
 
 
-      __pointer(format_tool) edit::get_format_tool(bool bCreate)
+      ::pointer<format_tool>edit::get_format_tool(bool bCreate)
       {
 
          auto pformattool = top_level_frame()->tool_window(e_tool_font, bCreate);

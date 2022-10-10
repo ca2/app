@@ -321,7 +321,7 @@ namespace userfs
 
             index iStrict = _001DisplayToStrict(iItem);
 
-            __pointer(::userfs::list_item) pitem = fs_list_item(iStrict);
+            ::pointer<::userfs::list_item>pitem = fs_list_item(iStrict);
 
             itema.add(pitem);
 
@@ -399,7 +399,7 @@ namespace userfs
    //}
 
 
-   void list::_017OpenItem(__pointer(::file::item) pitem, bool bOpenFile, const ::action_context & action_context)
+   void list::_017OpenItem(::pointer<::file::item>pitem, bool bOpenFile, const ::action_context & action_context)
    {
 
       if (pitem->IsFolder())
@@ -479,7 +479,7 @@ namespace userfs
 
             index iStrict = _001DisplayToStrict(iItem);
 
-            __pointer(::userfs::list_item) pitem = pdata->item(iStrict);
+            ::pointer<::userfs::list_item>pitem = pdata->item(iStrict);
 
             if (pitem->IsFolder())
             {
@@ -518,7 +518,7 @@ namespace userfs
    }
 
 
-   void list::_017OpenContextMenuFolder(__pointer(::file::item) item, const ::action_context & context)
+   void list::_017OpenContextMenuFolder(::pointer<::file::item>item, const ::action_context & context)
    {
 
       __UNREFERENCED_PARAMETER(item);
@@ -544,7 +544,7 @@ namespace userfs
    }
 
 
-   void list::_017OpenFolder(__pointer(::file::item) item, const ::action_context & context)
+   void list::_017OpenFolder(::pointer<::file::item>item, const ::action_context & context)
    {
 
       __UNREFERENCED_PARAMETER(item);
@@ -579,7 +579,7 @@ namespace userfs
       /*      filemanager::file_list_callback * pcallback =
       get_filemanager_template()->get_filemanager_template()->m_pfilelistcallback;
 
-      __pointer(::user::button) pbutton =  (pinteraction);
+      ::pointer<::user::button>pbutton =  (pinteraction);
       if(pcallback != nullptr && pbutton != nullptr)
       {
       pcallback->InitializeActionButton(((i32) pinteraction->m_atom) - 1000, pbutton);
@@ -651,7 +651,7 @@ namespace userfs
 
    void list::_001OnVScroll(::message::message * pmessage)
    {
-      //      __pointer(::message::scroll) pscroll(pmessage);
+      //      ::pointer<::message::scroll>pscroll(pmessage);
       //m_iCreateImageListStep = pscroll->m_nPos;
       //m_bRestartCreateImageList = true;
       pmessage->m_bRet = false;
@@ -742,7 +742,7 @@ namespace userfs
 
    void list::_001OnUpdateFileRename(::message::message * pmessage)
    {
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
       ::user::range range;
       _001GetSelection(range);
       pcommand->enable(
@@ -754,7 +754,7 @@ namespace userfs
    void list::on_message_show_window(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-      //      __pointer(::message::show_window) pshow(pmessage);
+      //      ::pointer<::message::show_window>pshow(pmessage);
 
       //db_server * pcentral = dynamic_cast < db_server * > (psystem->m_psimpledb->db());
       //if (pcentral == nullptr)
@@ -885,7 +885,7 @@ namespace userfs
    }
 
 
-   __pointer(::user::mesh_data) list::create_mesh_data()
+   ::pointer<::user::mesh_data>list::create_mesh_data()
    {
 
       return __create_new < list_data >();
@@ -909,7 +909,7 @@ namespace userfs
    //}
 
 
-   //__pointer(::userfs::document) list::get_document()
+   //::pointer<::userfs::document>list::get_document()
    //{
 
    //   return ::user::form_list_impact::get_document();
@@ -979,7 +979,7 @@ namespace userfs
 
             }
 
-            __pointer(::core::session) psession = get_session();
+            ::pointer<::core::session>psession = get_session();
 
             auto puser = psession->user();
 

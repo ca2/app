@@ -314,7 +314,7 @@ namespace user
 
       {
 
-         __pointer_array(synchronous_lock) slaImageList;
+         pointer_array < synchronous_lock > slaImageList;
 
          for (auto & pcolumn : *m_pcolumna)
          {
@@ -1328,7 +1328,7 @@ namespace user
    }
 
 
-   __pointer(mesh_item) & list::get_item(::index iItem)
+   ::pointer<mesh_item>& list::get_item(::index iItem)
    {
 
       auto & pitem = m_mapItem[iItem];
@@ -1361,7 +1361,7 @@ namespace user
    }
 
 
-   __pointer(mesh_subitem) & list::get_subitem(mesh_item * pitem, ::index iSubItem)
+   ::pointer<mesh_subitem>& list::get_subitem(mesh_item * pitem, ::index iSubItem)
    {
       
       auto & psubitem = pitem->m_mapSubItem[iSubItem];
@@ -1388,7 +1388,7 @@ namespace user
    }
 
 
-   __pointer(list_column) list::new_list_column()
+   ::pointer<list_column>list::new_list_column()
    {
 
       auto pcolumn = __new(list_column());
@@ -5404,7 +5404,7 @@ namespace user
    void list::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       pmessage->previous();
 
@@ -6903,7 +6903,7 @@ namespace user
 
    void list::_001OnHScroll(::message::message * pmessage)
    {
-      //      __pointer(::message::scroll) pscroll(pmessage);
+      //      ::pointer<::message::scroll>pscroll(pmessage);
 
       pmessage->previous();
 
@@ -7209,7 +7209,7 @@ namespace user
 
    void list::_001OnUpdateListImpactAutoArrange(::message::message * pmessage)
    {
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
       pcommand->_001SetCheck(get_auto_arrange());
       pcommand->enable();
    }
@@ -7418,7 +7418,7 @@ namespace user
    void list::defer_create_mesh_data()
    {
 
-      __pointer(::user::list_data) plistdata = create_mesh_data();
+      ::pointer<::user::list_data>plistdata = create_mesh_data();
 
       if (plistdata.is_null())
       {
@@ -7624,7 +7624,7 @@ namespace user
 
          auto pcontext = get_context();
 
-         string str = pcontext->m_papexcontext->file().as_string(strSort);
+         string str = pcontext->m_papexcontext->file().safe_get_string(strSort);
          string_array stra;
          stra.add_lines(str);
          for (index a = 0; a < stra.get_size(); a++)

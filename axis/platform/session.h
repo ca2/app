@@ -14,7 +14,7 @@ namespace axis
    public:
 
 
-      __composite(::account::department)                 m_paccount;
+      ::pointer<::account::department>                m_paccount;
 
 
       session();

@@ -91,7 +91,7 @@ namespace user
       int                           m_iImageSpacing;
       //::write_text::font_pointer                 m_pfont;
       string                        m_strBuffer;
-      __pointer(draw2d::graphics_extension)    m_pdcextension;
+      ::pointer<draw2d::graphics_extension>   m_pdcextension;
 
       bool                          m_bTrack;
       bool                          m_bHover;

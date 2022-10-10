@@ -8,7 +8,7 @@
 #include <time.h>
 
 
-//extern string_map < __pointer(::acme::library) >* g_pmapLibrary ;
+//extern string_map < ::pointer<::acme::library >> g_pmapLibrary ;
 //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 //extern ::mutex* ::aura::get_system()->m_mutexLibrary;
 
@@ -1786,7 +1786,7 @@ bool app_core::has_aura_application_factory() const
 #endif
 
 
-__pointer(::aura::application) app_core::get_new_application(::object* pobject)
+::pointer<::aura::application>app_core::get_new_application(::object* pobject)
 {
 
    if (!m_pfnNewAuraApplication)
@@ -1796,7 +1796,7 @@ __pointer(::aura::application) app_core::get_new_application(::object* pobject)
 
    }
 
-   __pointer(::aura::application) papp;
+   ::pointer<::aura::application>papp;
 
    papp = m_pfnNewAuraApplication();
 
@@ -1821,16 +1821,16 @@ __pointer(::aura::application) app_core::get_new_application(::object* pobject)
 }
 
 
-__pointer(::aura::application) app_core::get_new_application(::object* pobject, const ::string & pszAppId)
+::pointer<::aura::application>app_core::get_new_application(::object* pobject, const ::string & pszAppId)
 {
 
-   __pointer(::aura::application) papp;
+   ::pointer<::aura::application>papp;
 
    string strAppId = pszAppId;
 
    synchronous_lock synchronouslock(::aura::get_system()->m_mutexLibrary);
 
-   __pointer(::acme::library)& plibrary = ::aura::get_system()->m_mapLibrary[strAppId];
+   ::pointer<::acme::library> plibrary = ::aura::get_system()->m_mapLibrary[strAppId];
 
    if (papp)
    {

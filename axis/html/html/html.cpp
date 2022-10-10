@@ -41,8 +41,8 @@ namespace html
 
       //}
 
-      //__compose_new(this, m_pentitysolver = memory_new LiteHTMLEntityResolver(pobject);
-      __compose_new(m_pentitysolver);
+      //__construct_new(this, m_pentitysolver = memory_new LiteHTMLEntityResolver(pobject);
+      __construct_new(m_pentitysolver);
 
       m_clrInvalid = 0xffffffff;
       m_percentMax = USHRT_MAX;
@@ -712,7 +712,7 @@ namespace html
 
          strHtml.Empty();
 
-         pathHtml = payload.get_file_path();
+         pathHtml = payload.file_path();
 
          bHtml = pathHtml.ends_ci(".html") || pathHtml.ends_ci(".htm") || pathHtml.ends_ci(".xhtml");
 
@@ -837,7 +837,7 @@ namespace axis
       //auto estatus =
          
          
-         __compose_new(m_phtml);
+         __construct_new(m_phtml);
 
       //if (!estatus)
       //{

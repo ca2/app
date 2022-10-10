@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "form.h"
 #include "aura/graphics/image/context_image.h"
 #include "axis/platform/system.h"
@@ -121,7 +121,7 @@ void html_form::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 void html_form::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
 {
 
-   __pointer(::user::interaction) pinteraction = first_child();
+   ::pointer<::user::interaction>pinteraction = first_child();
 
    while(pinteraction != nullptr)
    {
@@ -260,7 +260,7 @@ void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 void html_form::on_message_create(::message::message * pmessage)
 {
 
-   __pointer(::message::create) pcreate(pmessage);
+   ::pointer<::message::create>pcreate(pmessage);
 
    auto psystem = m_psystem->m_paxissystem;
 
@@ -530,7 +530,7 @@ void html_form::set_need_load_form_data()
 bool html_form::open_document(const ::payload & payloadFile)
 {
 
-   auto path = payloadFile.get_file_path();
+   auto path = payloadFile.file_path();
 
    auto psystem = m_psystem->m_paurasystem;
 
@@ -642,7 +642,7 @@ void html_form::_001SetText(const ::string & str, const ::action_context & conte
    if(bFocus)
    {
 
-      __pointer(::user::primitive) pfocus = get_focusable_descendant();
+      ::pointer<::user::primitive>pfocus = get_focusable_descendant();
 
       if(pfocus != nullptr)
       {
@@ -699,7 +699,7 @@ void html_form::create_html_data()
       
    //estatus = 
    
-   m_phtmldata->__compose_new(m_phtmldata->m_pcompositeCoreData);
+   m_phtmldata->__construct_new(m_phtmldata->m_pcompositeCoreData);
 
    //if (!estatus)
    //{

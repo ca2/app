@@ -129,7 +129,7 @@ namespace userstack
 
       SetTimer(888888, 2000, nullptr);
 
-      __pointer(frame) pframe = get_typed_parent < frame > ();
+      ::pointer<frame>pframe = get_typed_parent < frame > ();
 
       pframe->m_pimpact = this;
       pframe->m_pdocument = get_document();
@@ -177,7 +177,7 @@ namespace userstack
 
    void impact::on_message_context_menu(::message::message * pmessage)
    {
-//      __pointer(::message::context_menu) pcontextmenu(pmessage);
+//      ::pointer<::message::context_menu>pcontextmenu(pmessage);
 //      ::point_i32 point = pcontextmenu->GetPoint();
 
    }

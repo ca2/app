@@ -43,7 +43,7 @@
 //
 //   extern ::mutex * g_pmutexChildren;
 //   //extern ::mutex * g_pmutexThreadWaitClose;
-//   //extern string_map < __pointer(::acme::library) >* g_pmapLibrary;
+//   //extern string_map < ::pointer<::acme::library >> g_pmapLibrary;
 //   //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 //
 //

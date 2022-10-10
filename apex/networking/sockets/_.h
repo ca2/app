@@ -1,4 +1,4 @@
-// Created by camilo on 2022-08-30 16:18 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-08-30 16:18 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -11,7 +11,7 @@ namespace sockets
 
    class base_socket;
 
-   using socket_pointer = __pointer(base_socket);
+   using socket_pointer = ::pointer<base_socket>;
 
    class httpd_socket;
    //namespace sockets

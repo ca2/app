@@ -12,7 +12,7 @@ namespace prompt
    public:
 
 
-      __pointer(::user::single_document_template)    m_ptemplateCommandMain;
+      ::pointer<::user::single_document_template>   m_ptemplateCommandMain;
 
 
       department(::object * pobject);

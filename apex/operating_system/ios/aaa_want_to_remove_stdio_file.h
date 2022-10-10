@@ -41,7 +41,7 @@ namespace ios
       virtual filesize get_length() const;
 
       // Unsupported APIs
-      virtual __pointer(::file::file) Duplicate() const;
+      virtual ::pointer<::file::file>Duplicate() const;
       virtual void LockRange(filesize dwPos, filesize dwCount);
       virtual void UnlockRange(filesize dwPos, filesize dwCount);
 

@@ -549,7 +549,7 @@ namespace file
       //      u32 dwUpperLimit = m_size;
       //      i32 iOffset =0;
 
-      __pointer(::data::tree_item) ptreeitem;
+      ::pointer<::data::tree_item>ptreeitem;
 
       //      edit_group_item * pitemgroup = nullptr;
 
@@ -685,7 +685,7 @@ namespace file
 
       }
 
-      __pointer(::data::tree_item) pitemNew;
+      ::pointer<::data::tree_item>pitemNew;
 
       if(m_ptreeitem != nullptr && m_ptreeitem->get_next() != nullptr)
       {
@@ -716,7 +716,7 @@ namespace file
 
 
 
-      __pointer(edit_item) pedit;
+      ::pointer<edit_item>pedit;
       pedit = __new(edit_item);
       pedit->m_position = m_position;
       pedit->m_memstorage.set_size(nCount);
@@ -771,7 +771,7 @@ namespace file
    delete_item * edit_file::Delete(memsize uiCount)
    {
 
-      __pointer(delete_item) pdelete;
+      ::pointer<delete_item>pdelete;
 
       uiCount = minimum(uiCount,(memsize) (get_length() - m_position));
 
@@ -1040,7 +1040,7 @@ namespace file
 
       }
       
-      __pointer(::data::tree_item) ptreeitem;
+      ::pointer<::data::tree_item>ptreeitem;
 
       if(m_iBranch < m_ptreeitem->get_expandable_children_count())
       {
@@ -1101,7 +1101,7 @@ namespace file
    bool edit_file::calc_root_direction()
    {
 
-      __pointer(::data::tree_item) ptreeitem;
+      ::pointer<::data::tree_item>ptreeitem;
       if(m_ptreeitem == m_ptreeitemFlush)
          return false;
       for(ptreeitem  = m_ptreeitem;

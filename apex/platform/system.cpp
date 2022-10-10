@@ -219,7 +219,7 @@ namespace apex
 
       m_pcontext = this;
 
-      __compose_new(m_pthreading);
+      __construct_new(m_pthreading);
 
       ::earth::time timeNow = ::earth::time::now();
 
@@ -254,7 +254,7 @@ namespace apex
 
       //estatus =
       
-      __compose_new(m_pbase64);
+      __construct_new(m_pbase64);
 
       //if (!estatus)
       //{
@@ -264,7 +264,7 @@ namespace apex
       //}
 
       //estatus =
-      __compose_new(m_pprocess);
+      __construct_new(m_pprocess);
       
       //if (!estatus)
       //{
@@ -289,7 +289,7 @@ namespace apex
 #ifdef __DEBUG
 
       //estatus = 
-      __compose_new(m_pdumpcontext);
+      __construct_new(m_pdumpcontext);
 
       //if (!estatus)
       //{
@@ -309,7 +309,7 @@ namespace apex
       m_nSafetyPoolSize = 512;        // default size_i32
 
       //estatus = 
-      __compose_new(m_pgeometry);
+      __construct_new(m_pgeometry);
 
       //if (!estatus)
       //{
@@ -382,7 +382,7 @@ namespace apex
       thread::s_bAllocReady = true;
 
       //estatus = 
-      __compose_new(m_purldepartment);
+      __construct_new(m_purldepartment);
 
       //if (!estatus)
       //{
@@ -534,7 +534,7 @@ namespace apex
    }
 
 
-   __pointer(::factory::factory) & system::node_factory()
+   ::pointer<::factory::factory>& system::node_factory()
    {
 
       auto & pfactory = factory("apex", OPERATING_SYSTEM_NAME);
@@ -593,7 +593,7 @@ namespace apex
 
       // }
 
-      //estatus = __compose(m_papexnode);
+      //estatus = __construct(m_papexnode);
 
       //if (!estatus)
       //{
@@ -809,7 +809,7 @@ namespace apex
 
       }
 
-      //estatus = __compose_new(m_pxml);
+      //estatus = __construct_new(m_pxml);
 
       //if (!estatus)
       //{
@@ -925,7 +925,7 @@ pacmedirectory->create("/ca2core");
 #ifndef APPLE_IOS
 
          //auto estatus =
-         __compose_new(m_pmachineeventcentral);
+         __construct_new(m_pmachineeventcentral);
 
          //if (!estatus)
          //{
@@ -954,7 +954,7 @@ pacmedirectory->create("/ca2core");
 
       //estatus = 
 
-      __compose(m_pfilesystem);
+      __construct(m_pfilesystem);
 
       //if(!estatus)
       //{
@@ -966,7 +966,7 @@ pacmedirectory->create("/ca2core");
       //}
 
       //estatus = 
-      __compose(m_pdirsystem);
+      __construct(m_pdirsystem);
 
       //if (!estatus)
       //{
@@ -1171,7 +1171,7 @@ pacmedirectory->create("/ca2core");
          pfactoryCrypto->merge_to_global_factory();
 
          //estatus = 
-         pfactoryCrypto->__compose(this, m_pcrypto);
+         pfactoryCrypto->__construct(this, m_pcrypto);
 
       }
       catch (...)
@@ -1322,7 +1322,7 @@ pacmedirectory->create("/ca2core");
 
       //throw ::exception(todo("filehandler"));
 
-      //estatus = __compose_new(m_pfilehandler);
+      //estatus = __construct_new(m_pfilehandler);
 
       //if (!estatus)
       //{
@@ -1416,7 +1416,7 @@ pacmedirectory->create("/ca2core");
       }
 
       //estatus = 
-      __compose_new(m_ptexttable);
+      __construct_new(m_ptexttable);
 
       //if (!m_ptexttable || !estatus)
       //{
@@ -1444,7 +1444,7 @@ pacmedirectory->create("/ca2core");
 
       // estatus =
       
-      __compose_new(m_phistory);
+      __construct_new(m_phistory);
 
       //if(!estatus)
       //{
@@ -1862,7 +1862,7 @@ pacmedirectory->create("/ca2core");
 
       m_psignalmap.release();
 
-      __release(m_phistory);
+      m_phistory.release();
 
    }
 
@@ -2369,7 +2369,7 @@ pacmedirectory->create("/ca2core");
    //}
 
 
-//__pointer_array(::apex::session) & system::basesessionptra()
+//pointer_array < ::apex::session > & system::basesessionptra()
 //{
 
 //   return m_basesessionptra;
@@ -2711,10 +2711,10 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   __pointer(::apex::session) system::on_create_session(index iEdge)
+   ::pointer<::apex::session>system::on_create_session(index iEdge)
    {
 
-      __pointer(::apex::session) psession;
+      ::pointer<::apex::session>psession;
 
       //auto estatus = 
       __construct(psession);
@@ -3136,7 +3136,7 @@ pacmedirectory->create("/ca2core");
    }
 
 
-   //__pointer(::account::user_set) system::userset()
+   //::pointer<::account::user_set>system::userset()
    //{
 
    //   return m_puserset;
@@ -3223,7 +3223,7 @@ pacmedirectory->create("/ca2core");
       if(papp != nullptr)
       {
 
-         __pointer(::create) pcreate(e_create_new, this);
+         ::pointer<::create>pcreate(e_create_new, this);
 
          //merge_accumulated_on_open_file(pcreate)
 ;
@@ -3357,7 +3357,7 @@ pacmedirectory->create("/ca2core");
 
       m_bPostedInitialRequest = true;
 
-      __pointer(::create) pcreate(e_create_new, this);
+      ::pointer<::create>pcreate(e_create_new, this);
       
       pcreate->m_payloadFile = pszFile;
       
@@ -4397,7 +4397,7 @@ void system::browser(string strUrl, string strBrowser, string strProfile, string
    //}
 
 
-   //__pointer(::topic) system::new_subject(const MESSAGE& message)
+   //::pointer<::topic>system::new_subject(const MESSAGE& message)
    //{
 
    //   auto atom = (::iptr)message.wParam;
@@ -4509,7 +4509,7 @@ namespace apex
    CLASS_DECL_APEX void black_body(float* r, float* g, float* b, ::u32 dwTemp);
 
 
-   void system::discard_to_factory(__pointer(object) pca)
+   void system::discard_to_factory(::pointer<object>pca)
    {
 
       __UNREFERENCED_PARAMETER(pca);
@@ -4517,7 +4517,7 @@ namespace apex
    }
 
 
-   __pointer(::data::node) system::load_xml(const ::string & pszXml)
+   ::pointer<::data::node>system::load_xml(const ::string & pszXml)
    {
 
       throw ::interface_only();
@@ -4596,7 +4596,7 @@ namespace apex
    {
 
       //auto estatus = 
-      __compose(m_phistory, phistory);
+      __construct(m_phistory, phistory);
 
    /*   if (!estatus)
       {
@@ -4613,7 +4613,7 @@ namespace apex
    //::acme::library * system::on_get_library(const ::string & pszLibrary)
    //{
 
-   //   __pointer(::acme::library) plibrary;
+   //   ::pointer<::acme::library>plibrary;
 
    //   bool bLibraryOk = false;
 
@@ -4967,7 +4967,7 @@ namespace apex
    }
 
 
-   //__pointer_array(::apex::session) & system::planesessionptra()
+   //pointer_array < ::apex::session > & system::planesessionptra()
    //{
 
    //   return m_planesessionptra;
@@ -5126,18 +5126,6 @@ namespace apex
 
       ::apex::context::destroy();
 
-      for (auto& plibrary : m_mapLibrary4.values())
-      {
-
-         if (plibrary)
-         {
-
-            plibrary->destroy();
-
-         }
-
-      }
-
       m_sessionmap.clear();
 
       //m_mapLibrary4.clear();
@@ -5230,7 +5218,7 @@ string get_bundle_app_library_name();
 
 
 
-//__pointer()::apex::session* platform_create_session()
+//pointer <  >::apex::session* platform_create_session()
 //{
 //
 //   auto pstaticsetup = ::system_setup::get_first(::system_setup::flag_system, "");
@@ -5270,7 +5258,7 @@ namespace apex
    }
 
 
-   //__pointer(::extended::future < ::conversation >) system::_message_box(::object * pobject, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
+   //pointer< ::extended::future < ::conversation > > system::_message_box(::object * pobject, const ::string & pszText, const ::string & pszTitle, const ::e_message_box & emessagebox)
    //{
 
    //   return ::system::_message_box(pobject, pszText, pszTitle, emessagebox);
@@ -5327,15 +5315,15 @@ namespace apex
          pfactoryNetworking->merge_to_global_factory();
 
          //estatus =
-         pfactoryNetworking->__compose(this, m_pnetworking);
+         pfactoryNetworking->__construct(this, m_pnetworking);
 
 
          if (!m_pnetworking)
          {
 
-            //estatus = __compose_new(m_psockets);
+            //estatus = __construct_new(m_psockets);
 
-            //__compose(m_pnetworking);
+            //__construct(m_pnetworking);
 
             //if (!estatus)
             //{

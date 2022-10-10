@@ -11,7 +11,7 @@ namespace crypto_openssl
    public:
 
 
-      __composite(::crypto::initializer)    m_pinitializer;
+      ::pointer<::crypto::initializer>   m_pinitializer;
 
 
       crypto();
@@ -21,7 +21,7 @@ namespace crypto_openssl
       void defer_initialize() override;
 
 
-      //virtual __pointer(hasher) create_hasher(enum_hash ehash);
+      //virtual ::pointer<hasher>create_hasher(enum_hash ehash);
 
 
       void encrypt(memory& storageEncrypt, const memory& storageDecrypt, const memory& storageKey) override;
@@ -93,13 +93,13 @@ namespace crypto_openssl
       //virtual string defer_get_cryptkey();
 
       
-      __pointer(::crypto::rsa) create_rsa_key(const ::string& strRsa) override;
+      ::pointer<::crypto::rsa>create_rsa_key(const ::string& strRsa) override;
 
-      __pointer(::crypto::rsa) generate_rsa_key() override;
+      ::pointer<::crypto::rsa>generate_rsa_key() override;
 
-      __pointer(::crypto::rsa) read_priv_pem(const ::string & strFile) override;
+      ::pointer<::crypto::rsa>read_priv_pem(const ::string & strFile) override;
 
-      __pointer(::crypto::rsa) read_pub_pem(const ::string & strFile) override;
+      ::pointer<::crypto::rsa>read_pub_pem(const ::string & strFile) override;
 
 
       void err_load_rsa_strings();
@@ -124,9 +124,9 @@ namespace crypto_openssl
    };
 
 
-   //typedef ___pointer < crypto > crypto_pointer;
+   //typedef ::pointer<crypto>crypto_pointer;
 
-   //typedef __pointer_array(rsa) rsaptra;
+   //typedef pointer_array < rsa > rsaptra;
 
 
 } //   namespace crypto_openssl

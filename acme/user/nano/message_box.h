@@ -12,7 +12,7 @@ public:
 
 
    string                              m_strLabelDetails;
-   __pointer(nano_still)               m_pstillDetails;
+   ::pointer<nano_still>              m_pstillDetails;
 
 
    nano_message_box();

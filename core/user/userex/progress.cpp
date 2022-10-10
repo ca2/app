@@ -138,14 +138,14 @@ namespace userex
       m_strTitle = pszTitle;
       m_iStep = 0;
 
-      __pointer(progress_control) pprogressCopy = this;
+      ::pointer<progress_control>pprogressCopy = this;
 
       pprogressCopy->create_progress();
 
 //      defer_fork("show_progress", [this, pprogressCopy, puiParent]()
 //      {
 //
-//         __pointer(progress_control) pprogress = pprogressCopy;
+//         ::pointer<progress_control>pprogress = pprogressCopy;
 //
 //
 //         try
@@ -243,7 +243,7 @@ namespace userex
    void progress_impact::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
       
       pmessage->previous();
 

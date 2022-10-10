@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace text_to_speech
@@ -11,7 +11,7 @@ namespace text_to_speech
    public:
 
 
-      __pointer(speaker)         m_pspeakerFallback;
+      ::pointer<speaker>        m_pspeakerFallback;
       ::string                   m_strTtsImplementation;
 
       speaker();

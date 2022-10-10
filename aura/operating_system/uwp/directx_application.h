@@ -28,7 +28,7 @@ namespace universal_windows
 
       ::mutex                                         m_mutex;
 
-      __pointer(directx_interaction)                  m_pdxi;
+      ::pointer<directx_interaction>                 m_pdxi;
 
       bool                                            m_bLeftButton;
 

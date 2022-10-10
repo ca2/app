@@ -1,9 +1,13 @@
-// Offloading apex(TBS)::app_core from deep stack stuff into acme(CSTBS) ::system 2022-02-22 by camilo at 07:19 <3ThomasBorregaardSørensen!!
+﻿// Offloading apex(TBS)::app_core from deep stack stuff into acme(CSTBS) ::system 2022-02-22 by camilo at 07:19 <3ThomasBorregaardSørensen!!
 // #pragma once
+
+
+#include "subsystem.h"
 
 
 namespace acme
 {
+
 
 
    class CLASS_DECL_ACME system :
@@ -15,33 +19,33 @@ namespace acme
    public:
 
 
-      //__pointer(main_hold_base)                                         m_pmainholdbase;
+      subsystem *                                                       m_psubsystem;
+
+
+      //::pointer<main_hold_base>                                         m_pmainholdbase;
       enum_windowing                                                    m_ewindowing;
-      //__pointer(system_impl) *                                        m_psystemimpl;
+      //::pointer<system_impl> *                                        m_psystemimpl;
 #if !defined(WINDOWS)
-      __pointer(::exception_translator)                                 m_pexceptiontranslator;
+      ::pointer<::exception_translator>                                 m_pexceptiontranslator;
 #endif
-      __pointer(::factory::factory)                                     m_pfactoryFolder;
+      ::pointer<::factory::factory>                                     m_pfactoryFolder;
 
       bool                                                              m_bPostedInitialRequest;
 
 
-      __composite(::apex::system)                                       m_psystemParent;
-
-      ::mutex                                                           m_mutexLibrary4;
-      ::acme::library_map                                               m_mapLibrary4;
+      ::pointer<::apex::system>                                       m_psystemParent;
 
 
       ::mutex                                                           m_mutexFactory;
-      //string_map < __pointer(::factory::factory) >                  m_mapFactory;
-      string_map < __pointer(::factory::factory) >                      m_mapFactory;
+      //string_map < ::pointer<::factory::factory >>                  m_mapFactory;
+      string_map < ::pointer<::factory::factory >>                      m_mapFactory;
 
 
       ::mutex                                                           m_mutexComponentFactory;
-      string_map < string_map < __pointer(::factory::factory) > >       m_mapComponentFactory;
+      string_map < string_map < ::pointer<::factory::factory >>>       m_mapComponentFactory;
 
 
-      __pointer(string_map < __pointer(::regular_expression::context) >)                        m_pmapRegularExpressionContext;
+      pointer< string_map < ::pointer<::regular_expression::context >>>                        m_pmapRegularExpressionContext;
 
 #ifdef __APPLE__
       void * m_pmmos;
@@ -54,7 +58,7 @@ namespace acme
       map < itask_t, itask_t >                                          m_mapTaskOn;
 
 
-      __composite(class ::datetime::department)                         m_pdatetime;
+      ::pointer<class ::datetime::department>                         m_pdatetime;
 
 
 
@@ -66,20 +70,20 @@ namespace acme
       //string_map < string_map < i64 > >                                 m_mapTextToEnum;
 
 
-      __composite(::url::department)                                    m_purldepartment;
+      ::pointer<::url::department>                                    m_purldepartment;
 
-      __composite(class ::base64)                                  m_pbase64;
+      ::pointer<class ::base64>                                  m_pbase64;
 
-      __composite(class ::xml::xml)                                     m_pxml;
+      ::pointer<class ::xml::xml>                                     m_pxml;
 
-      __pointer(class ::acme::node)                                     m_pnode;
-      __composite(class ::acme_directory)                               m_pacmedirectory;
-      __composite(class ::acme_file)                                    m_pacmefile;
-      __composite(class ::acme_path)                                    m_pacmepath;
-      __composite(geometry::geometry)                                   m_pgeometry;
+      ::pointer<class ::acme::node>                                     m_pnode;
+      ::pointer<class ::acme_directory>                               m_pacmedirectory;
+      ::pointer<class ::acme_file>                                    m_pacmefile;
+      ::pointer<class ::acme_path>                                    m_pacmepath;
+      ::pointer<geometry::geometry>                                   m_pgeometry;
 
 
-      __composite(::text::table)                                        m_ptexttable;
+      ::pointer<::text::table>                                        m_ptexttable;
 
 
       enum_trace_level                                                  m_etracelevel;
@@ -107,7 +111,7 @@ namespace acme
 #endif
 
 
-      inline __pointer(::acme::node) & node() { return m_pnode; }
+      inline ::pointer<::acme::node> & node() { return m_pnode; }
 
       inline class ::base64 * base64() { return m_pbase64; };
 
@@ -150,7 +154,7 @@ namespace acme
 
 
       template < typename BASE_TYPE >
-      __pointer(BASE_TYPE) create(const ::string & strComponent, const ::string & strImplementation)
+      ::pointer<BASE_TYPE> create(const ::string & strComponent, const ::string & strImplementation)
       {
 
          auto & pfactory = this->factory(strComponent, strImplementation);
@@ -184,7 +188,7 @@ namespace acme
       virtual ::acme::application * get_main_app();
 
 
-      virtual __pointer(::factory::factory) & folder_factory();
+      virtual ::pointer<::factory::factory> & folder_factory();
 
 
       using main::system_construct;
@@ -207,7 +211,7 @@ namespace acme
 #endif
 
 
-      virtual __pointer(::factory::factory) & node_factory();
+      virtual ::pointer<::factory::factory> & node_factory();
 
 
       virtual void inline_init();
@@ -238,7 +242,7 @@ namespace acme
       void main() override;
 
 
-      virtual __pointer(::acme::application) new_app(const char * pszAppId);
+      virtual ::pointer<::acme::application> new_app(const char * pszAppId);
 
 
       virtual void end();
@@ -258,24 +262,24 @@ namespace acme
 
       //virtual void set_factory_global(const ::string &pszComponent, const ::string &pszImplementation);
 
-      //virtual __pointer(::acme::library) open_component_library(const ::string &pszComponent, const ::string &pszImplementation);
+      //virtual ::pointer<::acme::library> open_component_library(const ::string &pszComponent, const ::string &pszImplementation);
 
-      virtual __pointer(::acme::library) create_library(const ::string & strLibrary);
+      virtual ::pointer<::acme::library> create_library(const ::string & strLibrary);
 
-      virtual __pointer(::acme::library) & library(const ::string & str);
+      virtual ::pointer<::acme::library> & library(const ::string & str);
 
-      //virtual __pointer(::acme::library)& library(const ::string& strComponent, const ::string& strImplementation);
-
-
-      virtual __pointer(::factory::factory) & factory(const ::string & strLibrary);
+      //virtual ::pointer<::acme::library>& library(const ::string& strComponent, const ::string& strImplementation);
 
 
-      //virtual __pointer(::acme::library) & library(const ::string &strComponent, const ::string &strImplementation);
+      virtual ::pointer<::factory::factory> & factory(const ::string & strLibrary);
 
 
-      virtual __pointer(::factory::factory) & factory(const ::string & strComponent, const ::string & strImplementation);
+      //virtual ::pointer<::acme::library> & library(const ::string &strComponent, const ::string &strImplementation);
 
-      virtual __pointer(::factory::factory) & impact_factory(const ::string & strComponent, const ::string & strImplementation);
+
+      virtual ::pointer<::factory::factory> & factory(const ::string & strComponent, const ::string & strImplementation);
+
+      virtual ::pointer<::factory::factory> & impact_factory(const ::string & strComponent, const ::string & strImplementation);
 
 
       virtual void open_profile_link(string strUrl, string strProfile, string strTarget);
@@ -310,7 +314,7 @@ namespace acme
 #endif
 
 
-   //__pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+   //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 
 
    //virtual void on_initialize_window_object();
@@ -409,11 +413,11 @@ namespace acme
       virtual void check_exit();
 
       virtual ::regular_expression_pointer create_regular_expression(const ::string & pszStyle, const string & str);
-      //virtual __pointer(::regular_expression::context) create_regular_expression_context(const ::string &pszStyle, int iCount);
-      virtual __pointer(::regular_expression::context) get_regular_expression_context(const ::string & pszStyle);
+      //virtual ::pointer<::regular_expression::context> create_regular_expression_context(const ::string &pszStyle, int iCount);
+      virtual ::pointer<::regular_expression::context> get_regular_expression_context(const ::string & pszStyle);
 
       virtual ::regular_expression_pointer compile_pcre(const string & str);
-      virtual __pointer(::regular_expression::context) get_pcre_context();
+      virtual ::pointer<::regular_expression::context> get_pcre_context();
       //virtual int system::pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount)
 
       virtual void get_public_internet_domain_extension_list(string_array & stra);
@@ -431,7 +435,7 @@ namespace acme
       virtual void on_open_file(const ::string & pszFile);
 
       //template < typename BASE_TYPE >
-      //__pointer(BASE_TYPE) create(const char * pszComponent, const char* pszImplementation)
+      //::pointer<BASE_TYPE> create(const char * pszComponent, const char* pszImplementation)
       //{
 
       //   auto plibrary = ([a-z0-9_]+)_factory(pszComponent, pszImplementation);
@@ -467,12 +471,12 @@ namespace acme
 
       virtual bool fast_is_decompressable_folder(const ::file::path & path);
 
-      __pointer(::sequencer < ::conversation >) create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
+      pointer< ::sequencer < ::conversation > > create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
 
       
-      //__pointer(::sequence < ::conversation >) message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
+      //pointer< ::sequence < ::conversation > > message_box(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
       
-      __pointer(::sequencer < ::conversation >) create_message_sequencer(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
+      pointer< ::sequencer < ::conversation > > create_message_sequencer(const ::string & strMessage, const ::string & strTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::string & strDetails = nullptr);
 
 
       virtual void windowing_send(const ::procedure & procedure);

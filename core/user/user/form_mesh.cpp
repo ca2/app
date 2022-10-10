@@ -540,8 +540,8 @@ namespace user
    //   //}
    //   //}*/
    //   //control_keep controlkeep(this,point_i32);
-   //   //__pointer(::user::interaction) pinteraction = top_child();
-   //   //__pointer(::user::interaction) puiBefore = nullptr;
+   //   //::pointer<::user::interaction>pinteraction = top_child();
+   //   //::pointer<::user::interaction>puiBefore = nullptr;
    //   //bool bError;
    //   //try
    //   //{
@@ -725,7 +725,7 @@ namespace user
       /*if(m_controldescriptorset.find_control(pinteraction,iItem,iSubItem))
       {
 
-         __pointer(::user::plain_edit) pedit = pinteraction;
+         ::pointer<::user::plain_edit>pedit = pinteraction;
 
          if(pedit.is_set())
          {

@@ -115,7 +115,7 @@ bool machine_event_central::is_close_application()
 }
 
 
-//void machine_event_central::command(__pointer(::xml::node) pnode)
+//void machine_event_central::command(::pointer<::xml::node>pnode)
 //{
 //
 //   synchronous_lock lockMachineEvent(&m_machineevent.m_mutex);

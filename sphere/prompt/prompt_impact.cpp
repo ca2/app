@@ -171,7 +171,7 @@ namespace prompt
 
    void impact::on_message_context_menu(::message::message * pmessage)
    {
-//      __pointer(::message::context_menu) pcontextmenu(pmessage);
+//      ::pointer<::message::context_menu>pcontextmenu(pmessage);
 //      ::point_i32 point = pcontextmenu->GetPoint();
 
 
@@ -231,7 +231,7 @@ namespace prompt
 
    void impact::_001OnOp(::message::message * pmessage)
    {
-      //__pointer(::user::message) pusermessage(pmessage);
+      //::pointer<::user::message>pusermessage(pmessage);
       __UNREFERENCED_PARAMETER(pmessage);
    }
 
@@ -288,7 +288,7 @@ namespace prompt
 
    void impact::on_message_show_window(::message::message * pmessage)
    {
-      //   __pointer(::message::show_window) pshowwindow(pmessage);
+      //   ::pointer<::message::show_window>pshowwindow(pmessage);
       __UNREFERENCED_PARAMETER(pmessage);
    }
 

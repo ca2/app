@@ -88,7 +88,7 @@ namespace browser
 
 
       image_array                      m_pimageaSlide;
-      __pointer(::object)                     m_pslideshow;
+      ::pointer<::object>                    m_pslideshow;
 
       ::duration m_durationLastOk;
 

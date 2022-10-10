@@ -1,4 +1,4 @@
-// Created by camilo on 2022-03-18 19:47 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-03-18 19:47 <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
@@ -13,7 +13,7 @@ namespace appearance
 
 
       bool                                   m_bUsePreferredSize;
-      __pointer(::user::interaction)         m_puserinteraction;
+      ::pointer<::user::interaction>        m_puserinteraction;
       ::point_i32                            m_pointMouseLast;
 
 

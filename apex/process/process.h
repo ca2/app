@@ -36,7 +36,7 @@ namespace operating_system
    };
 
 
-   typedef __pointer(process) process_pointer;
+   typedef ::pointer<process>process_pointer;
 
 
 } // namespace operating_system

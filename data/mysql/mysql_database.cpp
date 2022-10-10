@@ -485,7 +485,7 @@ namespace mysql
    }
 
 
-   __pointer(::database::result_set) database::query_result(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
+   ::pointer<::database::result_set>database::query_result(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
    {
 
       MYSQL_RES* pres = _mysql_query_result(pszQuery);
@@ -675,7 +675,7 @@ namespace mysql
    }
 
 
-   bool database::query_items(__pointer(payload_array) & pvara, const ::string & pszSql)
+   bool database::query_items(::pointer<payload_array>& pvara, const ::string & pszSql)
    {
 
       MYSQL_RES* pres = _mysql_query_result(pszSql);
@@ -729,7 +729,7 @@ namespace mysql
    }
 
 
-   bool database::query_row(__pointer(::database::row) & prow, const ::string & pszSql)
+   bool database::query_row(::pointer<::database::row>& prow, const ::string & pszSql)
    {
 
       MYSQL_RES* pres = _mysql_query_result(pszSql);
@@ -777,7 +777,7 @@ namespace mysql
    }
 
 
-   bool database::query_rows(__pointer(::database::row_array) & prowarray, const ::string & pszQuery)
+   bool database::query_rows(::pointer<::database::row_array>& prowarray, const ::string & pszQuery)
    {
 
       auto pset = query_result(pszQuery);

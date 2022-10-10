@@ -279,12 +279,12 @@ i32                 cy)
 //             crTransparent);
 //}
 
-/*__pointer(::image_list) imaging::CreateGrayVRCPImageList(
+/*::pointer<::image_list>imaging::CreateGrayVRCPImageList(
 ::draw2d::graphics * pgraphics,
-__pointer(::image_list) pilGray,
-__pointer(::image_list) pilParam)
+::pointer<::image_list>pilGray,
+::pointer<::image_list>pilParam)
 {
-__pointer(::image_list) pil = pilGray;
+::pointer<::image_list>pil = pilGray;
 
 pil->create(pilParam);
 
@@ -307,12 +307,12 @@ return pil;
 
 void imaging::CreateHueImageList(
 ::draw2d::graphics * pgraphics,
-__pointer(::image_list) pilGray,
-__pointer(::image_list) pilParam,
+::pointer<::image_list>pilGray,
+::pointer<::image_list>pilParam,
 ::color::color crHue,
 double dCompress)
 {
-__pointer(::image_list) pil = pilGray;
+::pointer<::image_list>pil = pilGray;
 
 if(!pil->create(pilParam))
 return false;
@@ -396,11 +396,11 @@ void imaging::change_hue(image_list * pilHue, image_list * pil, const ::color::c
 
 
 /*
-__pointer(::image_list) imaging::CreateGrayVRCPImageList(
+::pointer<::image_list>imaging::CreateGrayVRCPImageList(
 ::draw2d::graphics * pgraphics,
-__pointer(::image_list) pilParam)
+::pointer<::image_list>pilParam)
 {
-__pointer(::image_list) pil = memory_new ::image_list();
+::pointer<::image_list>pil = memory_new ::image_list();
 
 pil->create(pilParam);
 
@@ -6982,7 +6982,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top, const
 // }
 //
 //
-// void imaging::_load_image(::image * pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory)
+// void imaging::_load_image(::image * pimage, ::pointer<image_frame_array>& pframea, ::memory_pointer pmemory)
 // {
 //
 //    return ::error_failed;

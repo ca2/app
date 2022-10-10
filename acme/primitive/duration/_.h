@@ -1,4 +1,4 @@
-// Created by camilo on 2021-10-05 12:52 BRT <3ThomasBorregaardSørensen!![ THE ONE GOD ]
+﻿// Created by camilo on 2021-10-05 12:52 BRT <3ThomasBorregaardSørensen!![ THE ONE GOD ]
 #pragma once
 
 
@@ -65,22 +65,22 @@ FLOATING_DURATION_SETUP1(FLOATING_HOUR          , floating_hour         )
 FLOATING_DURATION_SETUP1(FLOATING_DAY           , floating_day          )
 
 
-__DURATION_SETUP__(integral_nanosecond    , m_i)
-__DURATION_SETUP__(integral_microsecond   , m_i)
-__DURATION_SETUP__(integral_millisecond   , m_i)
-__DURATION_SETUP__(integral_second        , m_i)
-__DURATION_SETUP__(integral_minute        , m_i)
-__DURATION_SETUP__(integral_hour          , m_i)
-__DURATION_SETUP__(integral_day           , m_i)
+//__DURATION_SETUP__(integral_nanosecond    , m_i)
+//__DURATION_SETUP__(integral_microsecond   , m_i)
+//__DURATION_SETUP__(integral_millisecond   , m_i)
+//__DURATION_SETUP__(integral_second        , m_i)
+//__DURATION_SETUP__(integral_minute        , m_i)
+//__DURATION_SETUP__(integral_hour          , m_i)
+//__DURATION_SETUP__(integral_day           , m_i)
+//
 
-
-__DURATION_SETUP__(floating_nanosecond    , m_d)
-__DURATION_SETUP__(floating_microsecond   , m_d)
-__DURATION_SETUP__(floating_millisecond   , m_d)
-__DURATION_SETUP__(floating_second        , m_d)
-__DURATION_SETUP__(floating_minute        , m_d)
-__DURATION_SETUP__(floating_hour          , m_d)
-__DURATION_SETUP__(floating_day           , m_d)
+//__DURATION_SETUP__(floating_nanosecond    , m_d)
+//__DURATION_SETUP__(floating_microsecond   , m_d)
+//__DURATION_SETUP__(floating_millisecond   , m_d)
+//__DURATION_SETUP__(floating_second        , m_d)
+//__DURATION_SETUP__(floating_minute        , m_d)
+//__DURATION_SETUP__(floating_hour          , m_d)
+//__DURATION_SETUP__(floating_day           , m_d)
 
 
 

@@ -27,7 +27,7 @@ namespace parallelization
 void on_term_thread();
 
 //extern ::mutex * g_pmutexThreadDeferredCreation;
-//extern ::array < __pointer(thread) >* g_pthreadaDeferredCreate;
+//extern ::array < ::pointer<thread >> g_pthreadaDeferredCreate;
 
 
 //#include <sqlite3.h>
@@ -434,7 +434,7 @@ namespace apex
 
       //g_pmutexThreadDeferredCreation = memory_new ::mutex;
 
-      //g_pthreadaDeferredCreate = memory_new ::array < __pointer(thread) >();
+      //g_pthreadaDeferredCreate = memory_new ::array < ::pointer<thread >>);
 
 
 //      void static_start::init()

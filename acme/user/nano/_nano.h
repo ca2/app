@@ -55,9 +55,9 @@ namespace nano
 {
 
 
-   CLASS_DECL_ACME __pointer(nano_brush) create_solid_brush(::object * pobject, color32_t color);
-   CLASS_DECL_ACME __pointer(nano_font) create_point_font(::object * pobject, int iPoint, enum_font efont, bool bBold = false);
-   CLASS_DECL_ACME __pointer(nano_pen) create_pen(::object * pobject, int iWidth, color32_t color);
+   CLASS_DECL_ACME ::pointer<nano_brush>create_solid_brush(::object * pobject, color32_t color);
+   CLASS_DECL_ACME ::pointer<nano_font>create_point_font(::object * pobject, int iPoint, enum_font efont, bool bBold = false);
+   CLASS_DECL_ACME ::pointer<nano_pen>create_pen(::object * pobject, int iWidth, color32_t color);
 
 
 } // namespace nano

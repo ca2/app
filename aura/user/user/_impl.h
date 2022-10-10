@@ -25,7 +25,7 @@ namespace user
    //}
 
    //template < typename CHILD >
-   //inline __pointer(CHILD) interaction::get_typed_child()
+   //inline ::pointer<CHILD>interaction::get_typed_child()
    //{
 
    //   auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
@@ -89,7 +89,7 @@ namespace user
 //
 //
 //   template < class VIEW >
-//   inline __pointer(VIEW) split_impact::create_pane_impact(index iPane, atom atom, ::user::interaction* pviewLast)
+//   inline ::pointer<VIEW>split_impact::create_pane_impact(index iPane, atom atom, ::user::interaction* pviewLast)
 //   {
 //
 //      return create_impact < VIEW >(get_pane_holder(iPane), atom, pviewLast);
@@ -111,7 +111,7 @@ namespace user
 //
 //
 //   template < class VIEW >
-//   inline __pointer(VIEW) impact::create_impact(::user::document* pdocument, ::user::interaction* puserinteractionParent, atom atom, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
+//   inline ::pointer<VIEW>impact::create_impact(::user::document* pdocument, ::user::interaction* puserinteractionParent, atom atom, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
 //   {
 //
 //      return create_impact(__type(VIEW), pdocument, puserinteractionParent, atom, pviewLast, pimpactdata);
@@ -120,7 +120,7 @@ namespace user
 //
 //
 //   template < class VIEW >
-//   inline __pointer(VIEW) impact::create_impact(::user::interaction* puserinteractionParent, atom atom, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
+//   inline ::pointer<VIEW>impact::create_impact(::user::interaction* puserinteractionParent, atom atom, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
 //   {
 //
 //      return create_impact < VIEW >(get_document(), puserinteractionParent, atom, pviewLast, pimpactdata);
@@ -129,7 +129,7 @@ namespace user
 //
 //
 //   template < class VIEW >
-//   inline __pointer(VIEW) impact::create_impact(::user::impact_data* pimpactdata, ::user::interaction* pviewLast)
+//   inline ::pointer<VIEW>impact::create_impact(::user::impact_data* pimpactdata, ::user::interaction* pviewLast)
 //   {
 //
 //      return create_impact < VIEW >(get_document(), pimpactdata->m_pplaceholder, pimpactdata->m_atom, pviewLast, pimpactdata);

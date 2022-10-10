@@ -11,8 +11,8 @@ namespace aqua
    public:
 
 
-      __composite(::aqua::game)                       m_paquagame;
-      __pointer(::networking_application)             m_pnetworkingapplication;
+      ::pointer<::aqua::game>                      m_paquagame;
+      ::pointer<::networking_application>            m_pnetworkingapplication;
      
 
       application();
@@ -25,7 +25,7 @@ namespace aqua
       inline ::aqua::system* get_system();
 
       virtual void initialize(::object * pobject) override;
-      //virtual __pointer(progress_control) show_progress(::user::interaction* puiParent, const char* pszTitle, ::count iProgressCount);
+      //virtual ::pointer<progress_control>show_progress(::user::interaction* puiParent, const char* pszTitle, ::count iProgressCount);
 
       void exit_application() override;
 

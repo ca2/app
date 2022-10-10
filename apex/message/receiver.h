@@ -11,7 +11,7 @@
 //   public:
 //
 //
-//      //__pointer_array(sender)       m_sendera;
+//      //pointer_array < sender >       m_sendera;
 //
 //
 //      receiver();

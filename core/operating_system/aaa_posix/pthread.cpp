@@ -7,7 +7,7 @@
 #endif
 
 
-__pointer(message_queue) get_message_queue(itask_t idthread, bool bCreate);
+::pointer<message_queue>get_message_queue(itask_t idthread, bool bCreate);
 
 
 CLASS_DECL_CORE void thread_get_os_priority(i32 * piOsPolicy, sched_param * pparam, ::enum_priority epriority);
@@ -31,7 +31,7 @@ CLASS_DECL_CORE::enum_priority process_get_scheduling_priority(int iOsPolicy, co
 
    }
 
-   __pointer(message_queue) pmq;
+   ::pointer<message_queue>pmq;
 
    if (dwWakeMask > 0)
    {

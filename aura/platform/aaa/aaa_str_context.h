@@ -127,21 +127,21 @@
 //   protected:
 //
 //      friend class str;
-//      __pointer(::text::international::locale_schema)     m_plocaleschema;
+//      ::pointer<::text::international::locale_schema>    m_plocaleschema;
 //
 //
-//      __pointer(str)                                     m_pstr;
+//      ::pointer<str>                                    m_pstr;
 //
-//      __pointer(str_locale)                              m_plocale;
+//      ::pointer<str_locale>                             m_plocale;
 //
-//      __pointer(str_schema)                              m_pschema;
-//      __pointer(str_schema)                              m_pschemaLocale;
-//      __pointer(str_schema)                              m_pschemaSchemaEn;
-//      __pointer(str_schema)                              m_pschemaSchemaStd;
+//      ::pointer<str_schema>                             m_pschema;
+//      ::pointer<str_schema>                             m_pschemaLocale;
+//      ::pointer<str_schema>                             m_pschemaSchemaEn;
+//      ::pointer<str_schema>                             m_pschemaSchemaStd;
 //
 //
 //
-//      __pointer_array(str_schema)                             m_schemaptra;
+//      pointer_array < str_schema >                             m_schemaptra;
 //
 //
 //   public:

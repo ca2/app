@@ -129,7 +129,7 @@ namespace apex
 
       //auto estatus =
 
-      __compose(m_phttp);
+      __construct(m_phttp);
 
       //if(!estatus)
       //{
@@ -138,7 +138,7 @@ namespace apex
 
       //}
 
-      /*estatus = */ __compose(m_pfile);
+      /*estatus = */ __construct(m_pfile);
 
       //if (!estatus)
       //{
@@ -148,7 +148,7 @@ namespace apex
       //}
 
       //estatus =
-      __compose(m_pdir);
+      __construct(m_pdir);
 
       //if (!estatus)
       //{
@@ -222,7 +222,7 @@ namespace apex
       //}
 
       //estatus = 
-      __compose(m_poscontext);
+      __construct(m_poscontext);
 
       /*    if (!estatus)
           {
@@ -1480,7 +1480,7 @@ namespace apex
       if (!m_pcreate)
       {
 
-         __refer(m_pcreate, pcreate);
+         m_pcreate = pcreate;
 
          m_pcreate->m_bNew = true;
 
@@ -1490,7 +1490,7 @@ namespace apex
       else
       {
 
-         __refer(m_createaPending.add_new(), pcreate);
+         m_createaPending.add(pcreate);
 
       }
 
@@ -1508,7 +1508,7 @@ namespace apex
          if (m_pcreate)
          {
 
-            __release(m_pcreate);
+            m_pcreate.release();
 
          }
 
@@ -1519,7 +1519,7 @@ namespace apex
 
          }
 
-         auto pcreate = m_createaPending[0];
+         auto pcreate = m_createaPending.pop_first();
 
          m_pcreate = pcreate;
 
@@ -1527,13 +1527,9 @@ namespace apex
 
          on_command_create(pcreate);
 
-         m_createaPending.erase_at(0);
-
       }
 
-      auto & pcreateNew = m_createaHistory.add_new();
-
-      __refer(pcreateNew, m_pcreate OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+      m_createaHistory.add(m_pcreate);
 
       m_pcreate->m_bNew = false;
 

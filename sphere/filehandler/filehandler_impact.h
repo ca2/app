@@ -33,12 +33,12 @@ namespace filehandler
 
          void parse(const ::string & pszApp);
 
-         void draw(__pointer(impact) pimpact, ::draw2d::graphics_pointer & pgraphics, list * plist);
+         void draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pgraphics, list * plist);
 
       };
 
       class CLASS_DECL_SPHERE list :
-         virtual public __pointer_array(item)
+         virtual public pointer_array < item >
       {
       public:
 
@@ -50,14 +50,14 @@ namespace filehandler
          void parse(::filehandler::handler * phandler, const ::string & pszTopic);
 
          void on_layout(const RECTANGLE_I32 * lpcrect);
-         void draw(__pointer(impact) pimpact, ::draw2d::graphics_pointer & pgraphics);
+         void draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pgraphics);
 
       };
 
 
       ::xml::document *         m_pxmldoc;
-      __pointer(list)                m_plistWorking;
-      __pointer(list)                m_plist;
+      ::pointer<list>               m_plistWorking;
+      ::pointer<list>               m_plist;
 
       ::write_text::font_pointer       m_pfont;
 

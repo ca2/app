@@ -19,7 +19,7 @@ public:
    bool                             m_bPeriodic;
    bool                             m_bHandling;
    bool                             m_bRet;
-   __pointer(::timer_callback)      m_ptimercallback;
+   ::pointer<::timer_callback>     m_ptimercallback;
    class ::wait                     m_wait;
    string                           m_strDebugNote;
 

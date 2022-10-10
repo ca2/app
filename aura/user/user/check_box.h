@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "interaction.h"
@@ -58,8 +58,8 @@ namespace user
       virtual void _001OnDrawToggleSwitch(::draw2d::graphics_pointer & pgraphics);
 //      virtual ::enum_check _001GetCheck() override;
       //using ::user::interaction::_001SetCheck;
-      using check::_001SetCheck;
-      void _001SetCheck(::enum_check check, const ::action_context & action_context) override;
+      //using check::_001SetCheck;
+      void _001SetCheck(const ::e_check & check, const ::action_context & action_context) override;
 
       void install_message_routing(::channel * pchannel) override;
 

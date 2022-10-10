@@ -49,7 +49,7 @@ namespace sip
       __UNREFERENCED_PARAMETER(sz);
       m_file.Truncate(0);
       /*if (!m_file.get())
-         m_file = pointer<IFile>(memory_new MemFile);
+         m_file = ::pointer<IFile>e>(memory_new MemFile);
       DEB(   else
          TRACE("Body data file already opened\n");*/
 
@@ -116,7 +116,7 @@ namespace sip
          attr("server_port") = 0;
          attr("https") = false;*/
 
-      //   m_file = pointer<IFile>(nullptr);
+      //   m_file = ::pointer<IFile>e>(nullptr);
       m_form.clear();
       m_cookies.erase_all();
       file().Truncate(0);

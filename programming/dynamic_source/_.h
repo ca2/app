@@ -44,9 +44,9 @@ namespace webserver
 {
 
    class simage_accepta;
-   typedef __pointer_array(simage_accepta) simage_accepta_ptr_array;
+   typedef pointer_array < simage_accepta > simage_accepta_ptr_array;
    class match_host;
-   typedef __pointer_array(match_host) match_host_array;
+   typedef pointer_array < match_host > match_host_array;
    class ui_redir;
    class account_database;
    class way_database;

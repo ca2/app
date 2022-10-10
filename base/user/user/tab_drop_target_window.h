@@ -15,7 +15,7 @@ namespace user
 
 
       array < enum_position >                m_positiona;
-      __pointer(::user::tab)                 m_ptab;
+      ::pointer<::user::tab>                m_ptab;
       index                                  m_iTab;
 
 

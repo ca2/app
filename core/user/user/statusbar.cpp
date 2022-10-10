@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "statusbar.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
@@ -535,7 +535,7 @@ namespace user
 
    void status_bar::_001OnNcHitTest(::message::message * pmessage)
    {
-      //__pointer(::message::nchittest) pnchittest(pmessage);
+      //::pointer<::message::nchittest>pnchittest(pmessage);
       //::u32 nResult = (::u32)default_window_procedure();
       //if (nResult == HTBOTTOMRIGHT)
       //{
@@ -556,7 +556,7 @@ namespace user
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      __pointer(::message::nc_calc_size) pnccalcsize(pmessage);
+//      ::pointer<::message::nc_calc_size>pnccalcsize(pmessage);
 //
 //      // calculate border space (will add to top/bottom, subtract from right/bottom)
 //
@@ -661,7 +661,7 @@ namespace user
    void status_bar::_001OnWindowPosChanging(::message::message * pmessage)
    {
 #ifdef WINDOWS_DESKTOP
-      __pointer(::message::window_pos) pwindowpos(pmessage);
+      ::pointer<::message::window_pos>pwindowpos(pmessage);
       // not necessary to invalidate the borders
       u32 uStyle = m_dwStyle;
       m_dwStyle &= ~(CBRS_BORDER_ANY);
@@ -777,7 +777,7 @@ namespace user
    void status_bar::_001OnSetMinHeight(::message::message * pmessage)
    {
 
-      //__pointer(::message::message) pmessage(pmessage);
+      //::pointer<::message::message>pmessage(pmessage);
 
       //LRESULT lResult = default_window_procedure();
 
@@ -802,10 +802,10 @@ namespace user
       status_command(::object * pobject);
 
       virtual void enable(bool bOn);
-      virtual void _001SetCheck(::enum_check echeck, const ::action_context & context) override;
-      virtual void _001SetText(const ::string & strText, const ::action_context & context) override;
+      void _001SetCheck(const ::e_check & echeck, const ::action_context & context) override;
+      void _001SetText(const ::string & strText, const ::action_context & context) override;
 
-      virtual void delete_this() override;
+      void delete_this() override;
 
 
    };
@@ -822,7 +822,7 @@ namespace user
    void status_command::enable(bool bOn)
    {
       m_bEnableChanged = true;
-      __pointer(status_bar) pStatusBar = m_puiOther;
+      ::pointer<status_bar>pStatusBar = m_puiOther;
       ASSERT(pStatusBar != nullptr);
       ASSERT_KINDOF(status_bar, pStatusBar);
       ASSERT(m_iIndex < m_iCount);
@@ -833,12 +833,13 @@ namespace user
       pStatusBar->SetPaneStyle((i32) m_iIndex, nNewStyle);
    }
 
-   void status_command::_001SetCheck(::enum_check echeck, const ::action_context & context) // "checking" will pop out the text
+
+   void status_command::_001SetCheck(const ::e_check & echeck, const ::action_context & context) // "checking" will pop out the text
    {
 
 #ifdef WINDOWS_DESKTOP
 
-      __pointer(status_bar) pStatusBar = m_puiOther;
+      ::pointer<status_bar>pStatusBar = m_puiOther;
 
       ASSERT(pStatusBar != nullptr);
 
@@ -869,7 +870,7 @@ namespace user
    void status_command::_001SetText(const ::string & strText, const ::action_context & context)
    {
 
-      __pointer(status_bar) pStatusBar = m_puiOther;
+      ::pointer<status_bar>pStatusBar = m_puiOther;
 
       ASSERT(pStatusBar != nullptr);
 

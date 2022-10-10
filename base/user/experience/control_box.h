@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/user/user/box.h"
@@ -22,7 +22,7 @@ namespace experience
          
          ::atom                    m_atom;
          bool                    m_bPresent;
-         __pointer(button)       m_pbutton;
+         ::pointer<button>      m_pbutton;
 
 
          item() 
@@ -36,7 +36,7 @@ namespace experience
       };
 
 
-      __declare_map(enum_button_item_map, enum_button_item, enum_button, m_ebutton, __pointer(item), m_pitem);
+      __declare_map(enum_button_item_map, enum_button_item, enum_button, m_ebutton, ::pointer<item>, m_pitem);
 
 
       ::experience::frame_window *           m_pframewindow;
@@ -127,8 +127,8 @@ namespace experience
       virtual atom get_control_box_button_id(enum_button ebutton) const;
       virtual string get_control_box_button_tag(enum_button ebutton) const;
       virtual enum_button get_control_box_button_type(atom atom) const;
-      __pointer(button) get_button(enum_button ebutton);
-      virtual __pointer(button) get_box_button(enum_button ebutton);
+      ::pointer<button>get_button(enum_button ebutton);
+      virtual ::pointer<button>get_box_button(enum_button ebutton);
 
       virtual ::count get_visible_control_box_button() const;
 

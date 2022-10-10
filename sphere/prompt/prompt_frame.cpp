@@ -220,7 +220,7 @@ namespace prompt
    void frame::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       pmessage->previous();
 
@@ -322,7 +322,7 @@ namespace prompt
 
    void frame::on_message_show_window(::message::message * pmessage)
    {
-      __pointer(::message::show_window) pshowwindow(pmessage);
+      ::pointer<::message::show_window>pshowwindow(pmessage);
 
       if(!pshowwindow->m_bShow)
       {
@@ -357,7 +357,7 @@ namespace prompt
 
    void frame::message_queue_message_handler(::message::message * pmessage)
    {
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
       if(pusermessage->m_atom == (WM_APP + 2000))
       {
          _001OnApp2000(pusermessage);
@@ -367,7 +367,7 @@ namespace prompt
 
    void frame::_001OnApp2000(::message::message * pmessage)
    {
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
 
 
       if(pusermessage->m_wparam == 0)

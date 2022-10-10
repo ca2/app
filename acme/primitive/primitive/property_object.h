@@ -17,7 +17,7 @@ class CLASS_DECL_ACME property_object :
 public:
 
 
-   __pointer(property_set)                         m_ppropertyset;
+   ::pointer<property_set>                        m_ppropertyset;
 
 
    property_object() { }
@@ -48,7 +48,7 @@ public:
    
 
    template < typename TYPE >
-   inline void __construct_new(__pointer(TYPE)& pusermessage);
+   inline void __construct_new(::pointer<TYPE> pusermessage);
 
 
    virtual void keep_alive();
@@ -161,13 +161,13 @@ public:
 
    //using material_object::cast;
 
-   template < typename TYPE > inline __pointer(TYPE) cast(const ::atom & atom) const;
+   template < typename TYPE > inline ::pointer<TYPE>cast(const ::atom & atom) const;
 
    inline void defer_propset();
 
-   inline bool is_true(const ::atom & atom) const;
+   inline bool is_true(const ::atom & atom, bool bDefault = false) const;
    inline bool is_false(const ::atom & atom) const;
-   inline bool is_true(const ::atom & atom, const ::payload & varDefault, bool bDefault) const;
+   //inline bool is_true(const ::atom & atom, const ::payload & varDefault, bool bDefault) const;
 
    virtual string get_text(const ::payload & payload, const ::atom & atom);
 
@@ -196,12 +196,18 @@ public:
 };
 
 
-using reference_pointer = __pointer(::property_object);
+using reference_pointer = ::pointer<::property_object>;
 
 
 #define __add_runnable(array, ID) add_predicate(array, [this]() { ID(); } )
 
 
 
-template < typename TYPE > inline __pointer(TYPE) __cast(::matter * p) { return dynamic_cast <TYPE *> (p); }
+//template < typename TYPE > 
+//inline ::pointer<TYPE> __cast(::element * p)
+//{ 
+//   
+//   return dynamic_cast <TYPE *> (p); 
+//
+//}
 

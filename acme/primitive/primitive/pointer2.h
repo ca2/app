@@ -1,9 +1,9 @@
-#pragma once
+﻿#pragma once
 
 //CLASS_DECL_ACME void throw_resource_exception(const char * psz);
 
 template < class T >
-inline ___pointer < T >::___pointer(lparam& lparam)
+inline pointer < T >::pointer(lparam& lparam)
 {
 
    m_pelement = (::element*)(::iptr)lparam.m_lparam;
@@ -22,7 +22,7 @@ inline ___pointer < T >::___pointer(lparam& lparam)
 //
 // Curitiba, inha-metro-win-ubuntu-mountain-lion-macos 4 de novembro de 2012
 template < class T >
-inline ___pointer < T > ::___pointer() :
+inline pointer < T > ::pointer() :
    m_p(nullptr),
    m_pelement(nullptr)
 {
@@ -31,7 +31,7 @@ inline ___pointer < T > ::___pointer() :
 
 
 template < class T >
-inline ___pointer < T > ::___pointer(std::nullptr_t) :
+inline pointer < T > ::pointer(std::nullptr_t):
    m_p(nullptr),
    m_pelement(nullptr)
 {
@@ -40,7 +40,7 @@ inline ___pointer < T > ::___pointer(std::nullptr_t) :
 
 template < class T >
 template < typename T2 >
-inline ___pointer < T > ::___pointer(enum_move_transfer, T2 * p)
+inline pointer < T > ::pointer(enum_move_transfer, T2 * p)
 {
 
    if(::is_set(p))
@@ -77,7 +77,7 @@ inline ___pointer < T > ::___pointer(enum_move_transfer, T2 * p)
 
 
 template < class T >
-inline ___pointer < T > ::___pointer(const ___pointer & t) :
+inline pointer < T > ::pointer(const pointer & t) :
    m_p(t.m_p),
    m_pelement(t.m_pelement)
 {
@@ -93,7 +93,7 @@ inline ___pointer < T > ::___pointer(const ___pointer & t) :
 
 
 template < class T >
-inline ___pointer < T > ::___pointer(___pointer && t) :
+inline pointer < T > ::pointer(pointer && t) :
 m_p(t.m_p),
 m_pelement(t.m_pelement)
 {
@@ -108,7 +108,7 @@ m_pelement(t.m_pelement)
 
 //template < class T >
 //template < typename T2 >
-//inline ___pointer < T > ::___pointer(const T2 * p) :
+//inline pointer < T > ::pointer(const T2 * p) :
 //   m_p((T *) p),
 //   m_pelement(m_p)
 //{
@@ -120,7 +120,7 @@ m_pelement(t.m_pelement)
 
 
 template < class T >
-inline ___pointer < T > ::~___pointer()
+inline pointer < T > ::~pointer()
 {
 
    release();
@@ -129,7 +129,7 @@ inline ___pointer < T > ::~___pointer()
 
 
 template < class T >
-inline T * ___pointer < T > ::operator ->()
+inline T * pointer < T > ::operator ->()
 {
 
    return m_p;
@@ -138,7 +138,7 @@ inline T * ___pointer < T > ::operator ->()
 
 
 template < class T >
-inline T * ___pointer < T > ::operator ->() const
+inline T * pointer < T > ::operator ->() const
 {
 
    return m_p;
@@ -147,7 +147,7 @@ inline T * ___pointer < T > ::operator ->() const
 
 
 template < class T >
-inline T & ___pointer < T > ::operator * ()
+inline T & pointer < T > ::operator * ()
 {
 
    return *m_p;
@@ -156,7 +156,7 @@ inline T & ___pointer < T > ::operator * ()
 
 
 template < class T >
-inline T & ___pointer < T > ::operator * () const
+inline T & pointer < T > ::operator * () const
 {
 
    return *m_p;
@@ -165,7 +165,7 @@ inline T & ___pointer < T > ::operator * () const
 
 
 template < class T >
-inline ___pointer < T > ::operator T * ()
+inline pointer < T > ::operator T * ()
 {
 
    return m_p;
@@ -174,7 +174,7 @@ inline ___pointer < T > ::operator T * ()
 
 
 template < class T >
-inline ___pointer < T > ::operator T * const () const
+inline pointer < T > ::operator T * const () const
 {
 
    return m_p;
@@ -183,7 +183,7 @@ inline ___pointer < T > ::operator T * const () const
 
 
 template < class T >
-inline T * ___pointer < T > ::get()
+inline T * pointer < T > ::get()
 {
 
    return m_p;
@@ -192,7 +192,7 @@ inline T * ___pointer < T > ::get()
 
 
 template < class T >
-inline const T * ___pointer < T > ::get() const
+inline const T * pointer < T > ::get() const
 {
 
    return m_p;
@@ -201,7 +201,7 @@ inline const T * ___pointer < T > ::get() const
 
 
 template < class T >
-inline bool ___pointer < T > ::is_null() const
+inline bool pointer < T > ::is_null() const
 {
 
    return ::is_null(m_p);
@@ -210,7 +210,7 @@ inline bool ___pointer < T > ::is_null() const
 
 
 template < class T >
-inline bool ___pointer < T > ::is_set() const
+inline bool pointer < T > ::is_set() const
 {
 
    return ::is_set(m_p);
@@ -256,7 +256,7 @@ T * __dynamic_cast(const T2 * p)
 
 template < class T >
 template < typename T2 >
-inline ___pointer < T > & ___pointer < T > ::reset (T2 * pNew OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+inline pointer < T > & pointer < T > ::reset (T2 * pNew OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    if (::is_null(pNew))
@@ -315,7 +315,7 @@ inline ___pointer < T > & ___pointer < T > ::reset (T2 * pNew OBJECT_REFERENCE_C
 
 
 template < class T >
-inline ___pointer < T > & ___pointer < T > ::operator = (const ___pointer  & t)
+inline pointer < T > & pointer < T > ::operator = (const pointer  & t)
 {
    if (this != &t)
    {
@@ -342,7 +342,7 @@ inline ___pointer < T > & ___pointer < T > ::operator = (const ___pointer  & t)
 
 
 template < class T >
-inline ___pointer < T > & ___pointer < T > ::operator = (___pointer && t)
+inline pointer < T > & pointer < T > ::operator = (pointer && t)
 {
 
    if(&t != this)
@@ -368,7 +368,7 @@ inline ___pointer < T > & ___pointer < T > ::operator = (___pointer && t)
 
 
 template < class T >
-inline T * ___pointer < T > ::detach()
+inline T * pointer < T > ::detach()
 {
 
    auto p = m_p;
@@ -385,7 +385,7 @@ inline T * ___pointer < T > ::detach()
 // cut and paste with very good capabilities of RealVNC for MacOS in OVH.fr/eu/pt cloud from Windows client.
 // slashes with ABNT 2 keyboard and even c cedilha working with RealVNC
 template < class T >
-inline i64 ___pointer <T>::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+inline i64 pointer <T>::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
    
    m_p = nullptr;
@@ -396,7 +396,7 @@ inline i64 ___pointer <T>::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 
 
 template < class T1, class T2 >
-inline bool operator ==(const T1  * t1, const ___pointer < T2 > & t2)
+inline bool operator ==(const T1  * t1, const ::pointer<T2>& t2)
 {
    auto p1 = dynamic_cast < T1 * > (t2.m_p);
    if(p1 != nullptr)
@@ -413,7 +413,7 @@ inline bool operator ==(const T1  * t1, const ___pointer < T2 > & t2)
 
 
 template < class T1, class T2 >
-inline bool operator ==(const ___pointer < T1 > & t1, const T2 * t2)
+inline bool operator ==(const ::pointer<T1>& t1, const T2 * t2)
 {
    auto p1 = dynamic_cast < T1 * > ((T2 *) t2);
    if(p1 != nullptr)
@@ -430,7 +430,7 @@ inline bool operator ==(const ___pointer < T1 > & t1, const T2 * t2)
 
 
 template < class T1, class T2 >
-inline bool operator ==(const ___pointer < T1 > & t1, const ___pointer < T2 > & t2)
+inline bool operator ==(const ::pointer<T1>& t1, const ::pointer<T2> t2)
 {
    auto p1 = dynamic_cast < T1 * > (t2.m_p);
    if(p1 != nullptr)
@@ -447,7 +447,7 @@ inline bool operator ==(const ___pointer < T1 > & t1, const ___pointer < T2 > & 
 
 
 template < class T1, class T2 >
-inline bool operator ==(T1 * t1, const ___pointer < T2 > & t2)
+inline bool operator ==(T1 * t1, const ::pointer<T2>& t2)
 {
 
    return operator == ((const T1 *) t1, t2);
@@ -456,7 +456,7 @@ inline bool operator ==(T1 * t1, const ___pointer < T2 > & t2)
 
 
 template < class T1, class T2 >
-inline bool operator ==(const ___pointer < T1 > & t1, T2 * t2)
+inline bool operator ==(const ::pointer<T1>& t1, T2 * t2)
 {
 
    return operator == (t1,  (const T2 *) t2);
@@ -465,7 +465,7 @@ inline bool operator ==(const ___pointer < T1 > & t1, T2 * t2)
 
 
 template < class T1, class T2 >
-inline bool operator !=(const T1 * t1, const ___pointer < T2 > & t2)
+inline bool operator !=(const T1 * t1, const ::pointer<T2>& t2)
 {
 
    return !operator == (t1, t2);
@@ -474,7 +474,7 @@ inline bool operator !=(const T1 * t1, const ___pointer < T2 > & t2)
 
 
 template < class T1, class T2 >
-inline bool operator !=(const ___pointer < T1 > & t1, const T2 * t2)
+inline bool operator !=(const ::pointer<T1>& t1, const T2 * t2)
 {
 
    return !operator == (t1, t2);
@@ -483,7 +483,7 @@ inline bool operator !=(const ___pointer < T1 > & t1, const T2 * t2)
 
 
 template < class T1, class T2 >
-inline bool operator !=(T1 * t1, const ___pointer < T2 > & t2)
+inline bool operator !=(T1 * t1, const ::pointer<T2>& t2)
 {
 
    return !operator == ((const T1 *) t1, t2);
@@ -492,14 +492,14 @@ inline bool operator !=(T1 * t1, const ___pointer < T2 > & t2)
 
 
 template < class T1, class T2 >
-inline bool operator !=(const ___pointer < T1 > & t1, T2 * t2)
+inline bool operator !=(const ::pointer<T1>& t1, T2 * t2)
 {
    return !operator == (t1, (const T2 *) t2);
 }
 
 
 template < class T1, class T2 >
-inline bool operator !=(const ___pointer < T1 > & t1, const ___pointer < T2 > & t2)
+inline bool operator !=(const ::pointer<T1>& t1, const ::pointer<T2> t2)
 {
 
    return !operator == (t1, t2);
@@ -509,26 +509,26 @@ inline bool operator !=(const ___pointer < T1 > & t1, const ___pointer < T2 > & 
 
 
 
+//template < typename TYPE >
+////inline bool is_set(const ::pointer<TYPE>& p)
+//{
+//
+//   return p.is_set();
+//
+//}
+
+
+//template<typename TYPE>
+//inline bool is_null(const ::pointer<TYPE>& p)
+//{
+//
+//   return ::is_null(p.m_p);
+//
+//}
+
+
 template < typename TYPE >
-inline bool is_set(const __pointer(TYPE) & p)
-{
-
-   return p.is_set();
-
-}
-
-
-template<typename TYPE>
-inline bool is_null(const __pointer(TYPE) & p)
-{
-
-   return ::is_null(p.m_p);
-
-}
-
-
-template < typename TYPE >
-inline __pointer(TYPE) clone(const __pointer(TYPE) & p)
+inline ::pointer<TYPE>clone(const ::pointer<TYPE> & p)
 {
 
    if (!p)
@@ -562,16 +562,16 @@ inline __pointer(TYPE) clone(const __pointer(TYPE) & p)
 
 
 template < typename TYPE >
-inline __pointer(TYPE) & clone(__pointer(TYPE) & p)
+inline ::pointer<TYPE>& clone(::pointer<TYPE> & p)
 {
 
-   return p = ::clone((const __pointer(TYPE) &) p);
+   return p = ::clone((const ::pointer<TYPE>&) p);
 
 }
 
 
 template < typename TYPE >
-inline __pointer(TYPE) & defer_clone(__pointer(TYPE) & p)
+inline ::pointer<TYPE>& defer_clone(::pointer<TYPE> & p)
 {
 
    if (!p || p->reference_count() <= 1)

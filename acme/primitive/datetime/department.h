@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #define INTERNATIONAL_DATE_HOUR_FORMAT_FOR_FILE "%Y-%m-%d %H"
@@ -97,8 +97,8 @@ namespace datetime
 
 
 
-      __pointer(::datetime::department::international)   m_pinternational;
-      //__pointer(::datetime::department::str)             m_pstr;
+      ::pointer<::datetime::department::international>  m_pinternational;
+      //::pointer<::datetime::department::str>            m_pstr;
 
 
 

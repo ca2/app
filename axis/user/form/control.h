@@ -23,7 +23,7 @@ namespace user
       ::file::path               m_pathDefaultDocument;
 
 
-      //__pointer(form_control)    m_pformChild;
+      //::pointer<form_control>   m_pformChild;
 
 
       form_control();
@@ -75,7 +75,7 @@ namespace user
       bool _001SetData(atom uId,bool bData);
       bool _001GetData(atom uId,bool & bData);
       bool _001AddControl(::user::interaction * pinteraction) override;
-      //__pointer(class control_descriptor) new_form_control() override;
+      //::pointer<class control_descriptor> new_form_control() override;
       void _001FillCombo(::user::interaction * pinteraction);
 
       virtual void WfiOnClose() override;

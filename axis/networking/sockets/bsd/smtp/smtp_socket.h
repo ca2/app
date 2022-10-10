@@ -42,7 +42,7 @@ namespace sockets
 
       enum_state m_estate;
 
-      __pointer(::networking::email)    m_pemail;
+      ::pointer<::networking::email>   m_pemail;
 
 
    //public:

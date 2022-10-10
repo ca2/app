@@ -96,7 +96,7 @@ namespace user
 
 
       virtual bool GetDocString(string & rString, enum DocStringIndex index) const; // get one of the info strings
-      //__pointer(::user::frame_window) CreateOleFrame(::user::interaction_impl * puiParent, ::user::document * pDoc,
+      //::pointer<::user::frame_window>CreateOleFrame(::user::interaction_impl * puiParent, ::user::document * pDoc,
       //   bool bCreateImpact);
 
       virtual void update_all_impacts(::user::impact * pimpact, const ::atom & atom);
@@ -106,8 +106,8 @@ namespace user
 
       virtual Confidence MatchDocType(const ::file::path & pszPathName,::user::document *& rpDocMatch);
 
-      virtual __pointer(::user::document) create_new_document(::create * pcreate);
-      virtual __pointer(::user::frame_window) create_new_frame(::user::document * pDoc, __pointer(::user::frame_window) pOther, ::create * pcreate);
+      virtual ::pointer<::user::document>create_new_document(::create * pcreate);
+      virtual ::pointer<::user::frame_window>create_new_frame(::user::document * pDoc, ::pointer<::user::frame_window>Other, ::create * pcreate);
       virtual void prepare_frame(::user::frame_window * pframe, ::user::document * pdocument, bool bMakeVisible = true);
       virtual bool save_all_modified();     // for all documents
       virtual void pre_close_all_documents();

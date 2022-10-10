@@ -23,7 +23,7 @@ namespace html
          i32 m_iFont;
          string m_strUnit;
          string m_strType;
-         __pointer(::user::plain_edit) m_pedit;
+         ::pointer<::user::plain_edit>m_pedit;
 
 
          input_text(const ::string & strType = "", const ::string & strUnit = "");

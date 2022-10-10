@@ -56,7 +56,7 @@ namespace account
    void product::_do_license(string strAppId, bool bInteractive)
    {
 
-      __pointer(::axis::application) papp = get_app();
+      ::pointer<::axis::application>papp = get_app();
 
       auto puser = papp->get_user("api.ca2.software", true, bInteractive);
 

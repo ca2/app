@@ -1542,7 +1542,7 @@ namespace networking
 //}
 
 
-   __pointer(::networking::address) networking::create_ip4_address(const ::string & strIp4, ::networking::port_t port)
+   ::pointer<::networking::address>networking::create_ip4_address(const ::string & strIp4, ::networking::port_t port)
    {
 
       return nullptr;
@@ -1550,7 +1550,7 @@ namespace networking
    }
 
 
-   __pointer(::networking::address) networking::create_ip6_address(const ::string & strIp6, ::networking::port_t port)
+   ::pointer<::networking::address>networking::create_ip6_address(const ::string & strIp6, ::networking::port_t port)
    {
 
       return nullptr;

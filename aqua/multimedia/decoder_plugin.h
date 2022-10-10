@@ -29,7 +29,7 @@ namespace multimedia
 
 
       virtual void Load(const ::string & strTitle);
-      virtual __pointer(::multimedia::decoder) NewDecoder();
+      virtual ::pointer<::multimedia::decoder>NewDecoder();
 
       virtual string GetPluginTitle();
 

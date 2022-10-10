@@ -7,7 +7,7 @@ class CLASS_DECL_APEX machine_event_central :
 public:
 
 
-   __pointer(machine_event)      m_pmachineevent;
+   ::pointer<machine_event>     m_pmachineevent;
    bool                          m_bInitialized;
 
 
@@ -23,7 +23,7 @@ public:
 
    bool is_close_application();
 
-   //void command(__pointer(::xml::node) pnodeCommand);
+   //void command(::pointer<::xml::node>pnodeCommand);
 
 };
 

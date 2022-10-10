@@ -101,7 +101,7 @@ namespace user
    void check_box::_001OnDrawNormal(::draw2d::graphics_pointer & pgraphics)
    {
 
-      __pointer(::axis::style) pstyle = get_style(pgraphics);
+      ::pointer<::axis::style>pstyle = get_style(pgraphics);
 
       if(pstyle)
       {
@@ -230,7 +230,7 @@ namespace user
    void check_box::_001OnDrawToggleSwitch(::draw2d::graphics_pointer & pgraphics)
    {
 
-      __pointer(::axis::style) pstyle = get_style(pgraphics);
+      ::pointer<::axis::style>pstyle = get_style(pgraphics);
 
       if(pstyle)
       {

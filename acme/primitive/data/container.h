@@ -11,7 +11,7 @@ namespace data
    public:
 
 
-      __pointer(data)       m_spdata;
+      ::pointer<data>      m_spdata;
 
 
       data_container();

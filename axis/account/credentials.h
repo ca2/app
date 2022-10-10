@@ -21,7 +21,7 @@ namespace account
    public:
 
 
-      __pointer(user)                           m_puser;
+      ::pointer<user>                          m_puser;
       interactive *                             m_pinteractive;
       bool                                      m_bInteractive;
       ::e_status                                m_estatusHttp;

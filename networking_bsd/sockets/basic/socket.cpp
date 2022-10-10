@@ -271,7 +271,7 @@ namespace sockets_bsd
    }
 
 
-   __pointer(::networking::address) socket::get_peer_address() // const
+   ::pointer<::networking::address>socket::get_peer_address() // const
    {
       //ASSERT(psa != nullptr);
       //ASSERT(m_hSocket != INVALID_SOCKET);
@@ -291,7 +291,7 @@ namespace sockets_bsd
    }
 
 
-   __pointer(::networking::address) socket::get_socket_address() // const
+   ::pointer<::networking::address>socket::get_socket_address() // const
    {
       //ASSERT(psa != nullptr);
       //ASSERT(m_hSocket != INVALID_SOCKET);

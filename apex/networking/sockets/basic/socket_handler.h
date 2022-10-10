@@ -19,8 +19,8 @@ namespace sockets
 
       
 
-      __pointer(socket_handler)      m_pcomposite;
-      __pointer(::apex::log)     m_splogger; ///< Registered log class, or nullptr
+      ::pointer<socket_handler>     m_pcomposite;
+      ::pointer<::apex::log>    m_splogger; ///< Registered log class, or nullptr
 
       //socket_map                 m_socketmap; ///< Active sockets map
       //socket_map                 m_socketmapAdd; ///< Sockets to be added to sockets map
@@ -125,7 +125,7 @@ namespace sockets
 
       // Connection pool
       /** find available open connection (used by connection pool). */
-      //__pointer(pool_socket) FindConnection(i32 type,const string & protocol, ::networking::address * address) override;
+      //::pointer<pool_socket>FindConnection(i32 type,const string & protocol, ::networking::address * address) override;
       /** enable connection pool (by default disabled). */
       void EnablePool(bool x = true) override;
       /** Check pool status.

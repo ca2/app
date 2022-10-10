@@ -187,7 +187,7 @@ namespace sockets
 //      if(socket_handler()->PoolEnabled())
 //      {
 //
-//         __pointer(base_socket_handler::pool_socket) ppoolsocket = socket_handler()->FindConnection(SOCK_STREAM,"tcp",ad);
+//         ::pointer<base_socket_handler::pool_socket>ppoolsocket = socket_handler()->FindConnection(SOCK_STREAM,"tcp",ad);
 //
 //         if(ppoolsocket)
 //         {
@@ -1798,7 +1798,7 @@ return true;
 
    //   ssl_client_context_map & clientcontextmap = psystem->sockets().m_clientcontextmap;
 
-   //   __pointer(ssl_client_context) psslclientcontext = clientcontextmap.get_context(context, pmethod);
+   //   ::pointer<ssl_client_context>psslclientcontext = clientcontextmap.get_context(context, pmethod);
 
    //   m_psslcontext = __new(ssl_context());
 

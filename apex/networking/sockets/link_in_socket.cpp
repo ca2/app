@@ -59,7 +59,7 @@ namespace sockets
    void link_in_socket::server_to_link_in(httpd_socket * psocket)
    {
       
-      //__pointer(::sockets::socket_handler) phandler = psocket->socket_handler();
+      //::pointer<::sockets::socket_handler>phandler = psocket->socket_handler();
 
       //auto p = phandler->m_socketmap.begin();
 
@@ -98,7 +98,7 @@ namespace sockets
    link_in_socket * link_in_socket::from_server(httpd_socket * psocket)
    {
 
-      __pointer(link_in_socket) pinsocket = __new(link_in_socket);
+      ::pointer<link_in_socket>pinsocket = __new(link_in_socket);
 
       pinsocket->initialize_socket(psocket->socket_handler());
 

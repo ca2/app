@@ -293,7 +293,7 @@ namespace mathematics
 
       }
 
-      estatus = __compose_new(m_posdata);
+      estatus = __construct_new(m_posdata);
 
       if (!estatus)
       {

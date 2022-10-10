@@ -1,4 +1,4 @@
-//Created by camilo on 2021-03-26 00:44 BRT <3ThomasBS_
+﻿//Created by camilo on 2021-03-26 00:44 BRT <3ThomasBS_
 #include "framework.h"
 #include "acme/primitive/text/_.h"
 
@@ -122,11 +122,9 @@ namespace acme
    file_pointer context::get_file(const ::payload& payloadFile, const ::file::e_open& eopen)
    {
 
-      ::file_pointer pfile;
+      auto pfile = __create < ::file::file >();
 
-      __construct(pfile);
-
-      auto path = payloadFile.get_file_path();
+      auto path = payloadFile.file_path();
       
       pfile->open(path, eopen);
 

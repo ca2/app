@@ -345,7 +345,7 @@ public:
    template < primitive_unsigned UNSIGNED >
    atom(UNSIGNED u);
    atom(const ::string & str);
-   atom(const type & type);
+   //atom(const type & type);
    atom(const ::payload & payload);
 #endif // !NO_TEMPLATE
    atom(const ::lparam & lparam);
@@ -354,9 +354,6 @@ public:
 
    void raw_set(const char * psz);
 
-#ifndef NO_TEMPLATE
-   operator ::string() const;
-#endif
 
    enum_type primitive_type() const
    {
@@ -547,7 +544,7 @@ public:
 
 
    inline void as(string & str) const;
-   inline string as_string() const;
+   inline string string() const;
    //inline string __string() const;
 
 #endif
@@ -581,8 +578,8 @@ public:
 
 
    //inline string operator +(const atom & atom) const;
-   inline string operator +(const char * psz) const;
-   inline string operator +(const ::string & str) const;
+   inline ::string operator +(const char * psz) const;
+   inline ::string operator +(const ::string & str) const;
 
 
 #endif
@@ -855,39 +852,28 @@ inline bool atom::operator >= (const ::string & str) const
 }
 
 
-
-inline string  atom::operator +(const char * psz) const
+inline ::string atom::operator +(const char * psz) const
 {
 
-   return as_string() + psz;
+   return this->string() + psz;
 
 }
 
 
-inline string  atom::operator +(const ::string & str) const
+inline ::string atom::operator +(const ::string & str) const
 {
 
-   return as_string() + str;
+   return this->string() + str;
 
 }
 
 
-inline void atom::as(string & strRet) const
+inline void atom::as(::string & str) const
 {
 
-   strRet = *this;
+   str = this->string();
 
 }
-
-
-inline string atom::as_string() const
-{
-
-   return *this;
-
-}
-
-
 
 
 #endif
@@ -1416,7 +1402,7 @@ inline bool EqualElements< atom >(atom element1, atom element2)
 #ifndef NO_TEMPLATE
 
 
-inline atom::operator string() const
+inline ::string atom::string() const
 {
 
    if (m_etype == e_type_null)
@@ -1446,7 +1432,7 @@ inline atom::operator string() const
    else
    {
 
-      return string("(atom : type:") + __string(m_iType) + ",body:" + __string(m_iBody) + ")";
+      return ::string("(atom : type:") + __string(m_iType) + ",body:" + __string(m_iBody) + ")";
 
    }
 

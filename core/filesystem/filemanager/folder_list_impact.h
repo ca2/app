@@ -17,7 +17,7 @@ namespace filemanager
 
       bool                             m_bRecursive;
       bool                             m_bRecursiveColumn;
-      __pointer(folder_list_data)      m_pfolderlistdata;
+      ::pointer<folder_list_data>     m_pfolderlistdata;
 
 
       folder_list_impact();

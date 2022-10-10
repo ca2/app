@@ -38,7 +38,7 @@ namespace universal_windows
 
       //::acme::application *                     m_pacmeapplication;
 
-      __pointer(directx_interaction)            m_pdxi;
+      ::pointer<directx_interaction>           m_pdxi;
 
       bool                                      m_bLeftButton;
 

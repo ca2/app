@@ -5,7 +5,7 @@ namespace factory
 {
 
 
-   inline __pointer(factory_item_interface) & get_factory_item(const ::atom & atom)
+   inline ::pointer<factory_item_interface>& get_factory_item(const ::atom & atom)
    {
 
       critical_section_lock cs(get_factory_critical_section());
@@ -15,7 +15,7 @@ namespace factory
    }
 
 
-   inline __pointer(factory_item_interface) & get_existing_factory_item(const ::atom & atom)
+   inline ::pointer<factory_item_interface>& get_existing_factory_item(const ::atom & atom)
    {
 
       auto & pfactoryitem = get_factory_item(atom);
@@ -23,7 +23,7 @@ namespace factory
       if (!pfactoryitem)
       {
 
-         throw ::exception(error_no_factory, "No factory for \"" + atom.as_string() + "\"");
+         throw ::exception(error_no_factory, "No factory for \"" + atom + "\"");
 
       }
 
@@ -32,7 +32,7 @@ namespace factory
    }
 
 
-   inline __pointer(factory_item_interface)& get_factory_item(const ::atom& atom, const ::atom& atomSource)
+   inline ::pointer<factory_item_interface> & get_factory_item(const ::atom& atom, const ::atom& atomSource)
    {
 
       critical_section_lock cs(get_factory_critical_section());
@@ -69,7 +69,7 @@ namespace factory
 
 
 
-   inline void set_factory(const ::atom & atom, const __pointer(factory_item_interface) & pfactory)
+   inline void set_factory(const ::atom & atom, const ::pointer<factory_item_interface>& pfactory)
    {
 
       critical_section_lock cs(get_factory_critical_section());
@@ -79,7 +79,7 @@ namespace factory
    }
 
 
-   inline void set_factory_from(const ::atom & atom, const ::atom & atomSource, const __pointer(factory_item_interface) & pfactory)
+   inline void set_factory_from(const ::atom & atom, const ::atom & atomSource, const ::pointer<factory_item_interface>& pfactory)
    {
 
       critical_section_lock cs(get_factory_critical_section());
@@ -99,7 +99,7 @@ namespace factory
 
 
    //template < typename TYPE >
-   //inline stream & load_object(stream & stream, __pointer(TYPE) & p)
+   //inline stream & load_object(stream & stream, ::pointer<TYPE>& p)
    //{
 
    //   string strText;
@@ -203,7 +203,7 @@ namespace factory
 
 //
 //template < typename BASE_TYPE >
-//inline __pointer(BASE_TYPE) __create()
+//inline ::pointer<BASE_TYPE>__create()
 //{
 //
 //   auto pfactory = ::factory::get_factory_item < BASE_TYPE >();
@@ -215,7 +215,7 @@ namespace factory
 //
 //   }
 //
-//   __pointer(::matter) ptypeNew = pfactory->call_new();
+//   ::pointer<::matter>ptypeNew = pfactory->call_new();
 //
 //   if (!ptypeNew)
 //   {
@@ -224,7 +224,7 @@ namespace factory
 //
 //   }
 //
-//   __pointer(BASE_TYPE) pusermessage = ptypeNew;
+//   ::pointer<BASE_TYPE>pusermessage = ptypeNew;
 //
 //   if (!pusermessage)
 //   {
@@ -239,7 +239,7 @@ namespace factory
 //
 //
 //template < typename BASE_TYPE >
-//inline __pointer(BASE_TYPE) __create(::object * pobject)
+//inline ::pointer<BASE_TYPE>__create(::object * pobject)
 //{
 //
 //   auto p = __create < BASE_TYPE >();
@@ -266,7 +266,7 @@ namespace factory
 //
 //
 //template < typename BASE_TYPE >
-//inline __pointer(BASE_TYPE) __id_create(const ::atom & atom)
+//inline ::pointer<BASE_TYPE>__id_create(const ::atom & atom)
 //{
 //
 //   auto pfactory = ::factory::get_factory_item(atom);
@@ -287,7 +287,7 @@ namespace factory
 //
 //   }
 //
-//   __pointer(BASE_TYPE) pusermessage = ptypeNew;
+//   ::pointer<BASE_TYPE>pusermessage = ptypeNew;
 //
 //   if (!pusermessage)
 //   {
@@ -304,7 +304,7 @@ namespace factory
 //
 //
 //template < typename TYPE >
-//inline __pointer(TYPE) __create_new()
+//inline ::pointer<TYPE>__create_new()
 //{
 //
 //   auto ptype = __new(TYPE);
@@ -322,7 +322,7 @@ namespace factory
 //
 //
 //template < typename TYPE >
-//inline __pointer(TYPE) __create_new(const TYPE & t)
+//inline ::pointer<TYPE>__create_new(const TYPE & t)
 //{
 //
 //   auto ptype = __new(TYPE(t));
@@ -340,7 +340,7 @@ namespace factory
 //
 //
 //template < typename TYPE >
-//inline __pointer(TYPE) __create_new(::object * pobject)
+//inline ::pointer<TYPE>__create_new(::object * pobject)
 //{
 //
 //   auto ptype = __create_new< TYPE > ();
@@ -366,11 +366,11 @@ namespace factory
 //}
 //
 
-// __compose __composite
+// __construct __composite
 
 
 // template < typename OBJECT, typename BASE_TYPE >
-// inline void __compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite)
+// inline void __construct(OBJECT && pobject, ::pointer<BASE_TYPE>& pcomposite)
 // {
 
 //    //if (((uptr)&pcomposite) < (uptr)pobject || ((uptr)&pcomposite) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
@@ -380,31 +380,31 @@ namespace factory
 
 //    //}
 
-//    return pobject->__compose(pcomposite);
+//    return pobject->__construct(pcomposite);
 
 // }
 
 
 // template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-// inline void __compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const __pointer(SOURCE) & psource)
+// inline void __construct(OBJECT && pobject, ::pointer<BASE_TYPE>& pcomposite, const ::pointer<SOURCE> psource)
 // {
 
-//    return __compose(pobject, pcomposite, psource.m_p);
+//    return __construct(pobject, pcomposite, psource.m_p);
 
 // }
 
 
 // template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-// inline void __compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::member < SOURCE > & psource)
+// inline void __construct(OBJECT && pobject, ::pointer<BASE_TYPE>& pcomposite, const ::member < SOURCE > & psource)
 // {
 
-//    return __compose(pobject, pcomposite, psource.operator SOURCE * ());
+//    return __construct(pobject, pcomposite, psource.operator SOURCE * ());
 
 // }
 
 
 // template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-// inline void __compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const SOURCE * psource)
+// inline void __construct(OBJECT && pobject, ::pointer<BASE_TYPE>& pcomposite, const SOURCE * psource)
 // {
 // //
 // //#ifdef _DEBUG
@@ -422,13 +422,13 @@ namespace factory
 // //
 // //   }
 
-//    return pobject->__compose(pcomposite, psource);
+//    return pobject->__construct(pcomposite, psource);
 
 // }
 
 
 // template < typename OBJECT, typename BASE_TYPE >
-// inline void __id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::atom & atom)
+// inline void __id_construct(OBJECT && pobject, ::pointer<BASE_TYPE>& pcomposite, const ::atom & atom)
 // {
 
 //    //if (((uptr)&pcomposite) < (uptr)pobject || ((uptr)&pcomposite) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
@@ -438,67 +438,67 @@ namespace factory
 
 //    //}
 
-//    return pobject->__id_compose(pcomposite, atom);
+//    return pobject->__id_construct(pcomposite, atom);
 
 // }
 
 
 // template < typename OBJECT, typename BASE_TYPE >
-// inline void __id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::type & type)
+// inline void __id_construct(OBJECT && pobject, ::pointer<BASE_TYPE>& pcomposite, const ::type & type)
 // {
 
-//    return pobject->__id_compose(pcomposite, (atom) type);
+//    return pobject->__id_construct(pcomposite, (atom) type);
 
 // }
 
 
 // template < typename OBJECT, typename TYPE >
-// inline void __raw_compose_new(OBJECT && pobject, __composite(TYPE) & pcomposite)
+// inline void __raw_construct_new(OBJECT && pobject, ::pointer<TYPE>& pcomposite)
 // {
 
-//    return pobject->__raw_compose_new(pcomposite);
+//    return pobject->__raw_construct_new(pcomposite);
 
 // }
 
 
 // template < typename OBJECT, typename TYPE >
-// inline void __compose_new(OBJECT && pobject, __composite(TYPE) & pcomposite)
+// inline void __construct_new(OBJECT && pobject, ::pointer<TYPE>& pcomposite)
 // {
 
-//    return pobject->__compose_new(pcomposite);
+//    return pobject->__construct_new(pcomposite);
 
 
 // }
 
 
 // template < typename OBJECT, typename BASE_TYPE >
-// inline void __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite) { return !pcomposite ? __compose(pobject, pcomposite) : ::success; }
+// inline void __defer_construct(OBJECT && pobject, ::pointer<BASE_TYPE>& pcomposite) { return !pcomposite ? __construct(pobject, pcomposite) : ::success; }
 
 // template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-// inline void __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const SOURCE * psource) { return !pcomposite ? __compose(pobject, pcomposite, psource) : ::success; }
+// inline void __defer_construct(OBJECT && pobject, ::pointer<BASE_TYPE>& pcomposite, const SOURCE * psource) { return !pcomposite ? __construct(pobject, pcomposite, psource) : ::success; }
 
 // template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-// inline void __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const __pointer(SOURCE) & psource) { return !pcomposite ? __compose(pobject, pcomposite, psource) : ::success; }
+// inline void __defer_construct(OBJECT && pobject, ::pointer<BASE_TYPE>& pcomposite, const ::pointer<SOURCE> psource) { return !pcomposite ? __construct(pobject, pcomposite, psource) : ::success; }
 
 // template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-// inline void __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::member < SOURCE > & psource) { return !pcomposite ? __compose(pobject, pcomposite, psource) : ::success; }
+// inline void __defer_construct(OBJECT && pobject, ::pointer<BASE_TYPE>& pcomposite, const ::member < SOURCE > & psource) { return !pcomposite ? __construct(pobject, pcomposite, psource) : ::success; }
 
 // template < typename OBJECT, typename BASE_TYPE >
-// inline void __defer_id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::atom & atom) { return !pcomposite ? __id_compose(pobject, pcomposite) : ::success; }
+// inline void __defer_id_compose(OBJECT && pobject, ::pointer<BASE_TYPE>& pcomposite, const ::atom & atom) { return !pcomposite ? __id_construct(pobject, pcomposite) : ::success; }
 
 // //template < typename OBJECT, typename BASE_TYPE >
-// //inline void __defer_id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::type & type)  { return !pcomposite ? __compose(pobject, pcomposite) : ::success; }
+// //inline void __defer_id_compose(OBJECT && pobject, ::pointer<BASE_TYPE>& pcomposite, const ::type & type)  { return !pcomposite ? __construct(pobject, pcomposite) : ::success; }
 
 // template < typename OBJECT, typename BASE_TYPE >
-// inline void __defer_compose_new(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite) { return !pcomposite ? __compose_new(pobject, pcomposite) : ::success; }
+// inline void __defer_construct_new(OBJECT && pobject, ::pointer<BASE_TYPE>& pcomposite) { return !pcomposite ? __construct_new(pobject, pcomposite) : ::success; }
 
 
-// __compose __reference
+// __construct __reference
 
 
 //
 //template < typename OBJECT, typename BASE_TYPE >
-//inline void __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference)
+//inline void __refer(OBJECT && pobject, ::pointer<BASE_TYPE>& preference)
 //{
 //
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
@@ -514,7 +514,7 @@ namespace factory
 
 //
 //template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//inline void __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource)
+//inline void __refer(OBJECT && pobject, ::pointer<BASE_TYPE>& preference, const ::pointer<SOURCE> psource)
 //{
 //
 //   return __refer(pobject, preference, psource.m_p);
@@ -523,7 +523,7 @@ namespace factory
 //
 //
 //template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//inline void __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const ::primitive::member < SOURCE > & psource)
+//inline void __refer(OBJECT && pobject, ::pointer<BASE_TYPE>& preference, const ::primitive::member < SOURCE > & psource)
 //{
 //
 //   return __refer(pobject, preference, psource.operator SOURCE * ());
@@ -532,7 +532,7 @@ namespace factory
 //
 //
 //template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//inline void __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const SOURCE * psource)
+//inline void __refer(OBJECT && pobject, ::pointer<BASE_TYPE>& preference, const SOURCE * psource)
 //{
 //
 ////#ifdef _DEBUG
@@ -556,18 +556,18 @@ namespace factory
 
 
 //template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//inline void __defer_refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const SOURCE * psource) {}
+//inline void __defer_refer(OBJECT && pobject, ::pointer<BASE_TYPE>& preference, const SOURCE * psource) {}
 //
 //template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//inline void __defer_refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource) {}
+//inline void __defer_refer(OBJECT && pobject, ::pointer<BASE_TYPE>& preference, const ::pointer<SOURCE> psource) {}
 //
 //template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//inline void __defer_refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const ::member < SOURCE > & psource) {}
+//inline void __defer_refer(OBJECT && pobject, ::pointer<BASE_TYPE>& preference, const ::member < SOURCE > & psource) {}
 
 
 //
 //template < typename OBJECT, typename BASE_TYPE >
-//inline void __id_refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const ::atom & atom)
+//inline void __id_refer(OBJECT && pobject, ::pointer<BASE_TYPE>& preference, const ::atom & atom)
 //{
 //
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
@@ -577,13 +577,13 @@ namespace factory
 //
 //   }
 //
-//   return pobject->__id_compose(preference, atom);
+//   return pobject->__id_construct(preference, atom);
 //
 //}
 
 
 //template < typename OBJECT, typename BASE_TYPE >
-//inline void __id_compose(OBJECT && pobject, __reference(BASE_TYPE) & preference, const ::type & type)
+//inline void __id_construct(OBJECT && pobject, ::pointer<BASE_TYPE>& preference, const ::type & type)
 //{
 //
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
@@ -593,13 +593,13 @@ namespace factory
 //
 //   }
 //
-//   return pobject->__id_compose(preference, (atom)type);
+//   return pobject->__id_construct(preference, (atom)type);
 //
 //}
 
 
 //template < typename OBJECT, typename BASE_TYPE >
-//inline void __compose_new(OBJECT && pobject, __reference(BASE_TYPE) & preference)
+//inline void __construct_new(OBJECT && pobject, ::pointer<BASE_TYPE>& preference)
 //{
 //
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
@@ -609,7 +609,7 @@ namespace factory
 //
 //   }
 //
-//   return pobject->__compose_new(preference);
+//   return pobject->__construct_new(preference);
 //
 //}
 
@@ -618,7 +618,7 @@ namespace factory
 //
 //
 //template < typename BASE_TYPE >
-//inline void __construct(__pointer(BASE_TYPE) & pusermessage)
+//inline void __construct(::pointer<BASE_TYPE>& pusermessage)
 //{
 //
 //   auto & pfactory = ::factory::get_factory_item < BASE_TYPE >();
@@ -661,7 +661,7 @@ namespace factory
 
 //
 //template < typename BASE_TYPE >
-//inline void __defer_construct(__pointer(BASE_TYPE) & pusermessage)
+//inline void __defer_construct(::pointer<BASE_TYPE>& pusermessage)
 //{
 //
 //   ::e_status estatus = ::success_none;
@@ -679,7 +679,7 @@ namespace factory
 
 
 //template < typename BASE_TYPE >
-//inline void __id_construct(__pointer(BASE_TYPE) & pusermessage, const ::atom & atom)
+//inline void __id_construct(::pointer<BASE_TYPE>& pusermessage, const ::atom & atom)
 //{
 //
 //   auto pfactory = ::factory::get_factory_item(atom);
@@ -719,11 +719,11 @@ namespace factory
 
 
 //template < typename BASE_TYPE >
-//inline void __defer_id_construct(__pointer(BASE_TYPE) & pusermessage, const ::atom & atom) { return !pusermessage ? __construct(pusermessage, atom) : ::success; }
+//inline void __defer_id_construct(::pointer<BASE_TYPE>& pusermessage, const ::atom & atom) { return !pusermessage ? __construct(pusermessage, atom) : ::success; }
 
 
 //template < typename TYPE >
-//inline void __construct_new(__pointer(TYPE) & ptype)
+//inline void __construct_new(::pointer<TYPE>& ptype)
 //{
 //
 //   ptype = __new(TYPE());
@@ -741,7 +741,7 @@ namespace factory
 //
 //
 //template < typename TYPE >
-//inline void __defer_construct_new(__pointer(TYPE) & ptype)
+//inline void __defer_construct_new(::pointer<TYPE>& ptype)
 //{
 //
 //   return !ptype ? __construct_new(ptype) : void(::success);
@@ -754,7 +754,7 @@ namespace factory
 {
 
 
-   inline __pointer(::factory::factory_item_interface) & factory::get_factory_item(const ::atom& atom)
+   inline ::pointer<::factory::factory_item_interface>& factory::get_factory_item(const ::atom& atom)
    {
 
       critical_section_lock cs(::factory::get_factory_critical_section());
@@ -765,7 +765,7 @@ namespace factory
    }
 
 
-//   inline __pointer(::factory::factory_item_interface) & factory::get_factory_item_from(const ::atom& atom, const ::atom& atomSource)
+//   inline ::pointer<::factory::factory_item_interface>& factory::get_factory_item_from(const ::atom& atom, const ::atom& atomSource)
 //   {
 //
 //      critical_section_lock cs(::factory::get_factory_critical_section());
@@ -825,7 +825,7 @@ namespace factory
 
 
    template < typename BASE_TYPE >
-   inline __pointer(::factory::factory_item_interface)& factory::get_factory_item()
+   inline ::pointer<::factory::factory_item_interface> & factory::get_factory_item()
    {
 
       string strTypename(typeid(BASE_TYPE).name());
@@ -838,7 +838,7 @@ namespace factory
 
 
 //   template < typename BASE_TYPE >
-//   inline __pointer(::factory::factory_item_interface) & factory::get_factory_item_from(const ::atom & atomSource)
+//   inline ::pointer<::factory::factory_item_interface>& factory::get_factory_item_from(const ::atom & atomSource)
 //   {
 //
 //      string strTypename(typeid(BASE_TYPE).name());
@@ -851,7 +851,7 @@ namespace factory
 //
 //
    template < typename BASE_TYPE >
-   inline __pointer(BASE_TYPE) factory::create()
+   inline ::pointer<BASE_TYPE>factory::create()
    {
 
       auto pfactoryinterface = get_factory_item < BASE_TYPE >();
@@ -869,7 +869,7 @@ namespace factory
 
 
    template < typename TYPE, typename BASE_TYPE>
-   inline __pointer(::factory::factory_item_base < BASE_TYPE >) factory::add_factory_item()
+   inline pointer< ::factory::factory_item_base < BASE_TYPE > > factory::add_factory_item()
    {
 
       critical_section_lock lock(::factory::get_factory_critical_section());
@@ -884,7 +884,7 @@ namespace factory
 
 
 //   template < typename TYPE, typename BASE_TYPE>
-//   inline __pointer(::factory::factory_item_base < BASE_TYPE >) factory::_add_factory_item_from(const ::atom & atomSource)
+//   inline pointer< ::factory::factory_item_base < BASE_TYPE > > factory::_add_factory_item_from(const ::atom & atomSource)
 //   {
 //
 //      critical_section_lock lock(::factory::get_factory_critical_section());
@@ -901,7 +901,7 @@ namespace factory
 
 
    template < typename BASE_TYPE >
-   inline void factory::__compose(::object* pobjectComposer, __composite(BASE_TYPE)& pcomposite)
+   inline void factory::__construct(::object* pobjectComposer, ::pointer<BASE_TYPE> & pcomposite)
    {
 
       if (!pcomposite)
@@ -926,7 +926,7 @@ namespace factory
          //}
 
          //auto estatus = 
-         pobjectComposer->__compose(pcomposite, pelement);
+         pobjectComposer->__construct(pcomposite, pelement);
 
          //if (!pcomposite)
          //{
@@ -942,22 +942,22 @@ namespace factory
    }
 
 
-   template < typename BASE_TYPE >
-   inline void factory::__raw_compose(::object* pobjectComposer, __composite(BASE_TYPE)& pcomposite)
-   {
+   //template < typename BASE_TYPE >
+   //inline void factory::__raw_construct(::object* pobjectComposer, ::pointer<BASE_TYPE> pcomposite)
+   //{
 
-      if (!pcomposite)
-      {
+   //   if (!pcomposite)
+   //   {
 
-         auto& pfactoryitem = get_factory_item < BASE_TYPE >();
+   //      auto& pfactoryitem = get_factory_item < BASE_TYPE >();
 
-         auto pelement = pfactoryitem->create_element();
+   //      auto pelement = pfactoryitem->create_element();
 
-         pobjectComposer->__raw_compose(pcomposite, pelement);
+   //      pobjectComposer->__raw_construct(pcomposite, pelement);
 
-      }
+   //   }
 
-   }
+   //}
 
 
 } // namespace factory

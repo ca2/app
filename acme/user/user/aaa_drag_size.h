@@ -32,7 +32,7 @@ namespace user
    public:
 
 
-      __pointer(drag_size)       m_pdragsize;
+      ::pointer<drag_size>      m_pdragsize;
 
 
       drag_size_client();

@@ -50,11 +50,11 @@ namespace userex
 
 
       ::size_i32                                    m_sizeTabbedFrame;
-      string_map < __pointer(::user::document) >       m_mapdoc;
+      string_map < ::pointer<::user::document >>      m_mapdoc;
       string_map < simple_frame_window * >      m_mapframe;
       id_array                                  m_idaHandledImpacts;
 
-      __pointer(::user::single_document_template)      m_ptemplateTab;
+      ::pointer<::user::single_document_template>     m_ptemplateTab;
 
       impact_host();
       virtual ~impact_host();
@@ -72,7 +72,7 @@ namespace userex
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-      virtual __pointer(::userex::pane_tab_impact) get_pane_tab_impact();
+      virtual ::pointer<::userex::pane_tab_impact>get_pane_tab_impact();
 
       virtual bool _001IsCompactMode();
 
@@ -81,17 +81,17 @@ namespace userex
       virtual void hide_impact(::atom idImpact);
       virtual void toggle_impact(::atom idImpact);
       virtual void defer_show_impact(::atom idImpact);
-      virtual __pointer(::user::impact) _001GetImpact(::atom idImpact);
-      virtual __pointer(::simple_frame_window) _001GetFrame(::atom idImpact);
-      virtual __pointer(::user::impact) _001DetachImpact(::atom idImpact);
+      virtual ::pointer<::user::impact>_001GetImpact(::atom idImpact);
+      virtual ::pointer<::simple_frame_window>_001GetFrame(::atom idImpact);
+      virtual ::pointer<::user::impact>_001DetachImpact(::atom idImpact);
       virtual bool _001AttachImpact(::atom idImpact);
       virtual void _001DefaultLayoutImpact(::atom idImpact);
-      virtual __pointer(::user::impact) get_impact(::atom idImpact);
-      virtual __pointer(::user::document) get_doc(::atom idImpact);
+      virtual ::pointer<::user::impact>get_impact(::atom idImpact);
+      virtual ::pointer<::user::document>get_doc(::atom idImpact);
       virtual bool defer_create_impact(::atom idImpact, ::create * pcreate = nullptr);
-      //virtual __pointer(::user::document) detach_doc(::atom idImpact);
-      //virtual bool attach(__pointer(::user::document) pdocument, ::atom idImpact);
-      //virtual bool toggle(__pointer(::user::document) pdocument, ::atom idImpact);
+      //virtual ::pointer<::user::document>detach_doc(::atom idImpact);
+      //virtual bool attach(::pointer<::user::document>pdocument, ::atom idImpact);
+      //virtual bool toggle(::pointer<::user::document>pdocument, ::atom idImpact);
 
       virtual bool OnUpDownTargetAttach(::user::interaction * pupdown) override;
       virtual bool OnUpDownTargetDetach(::user::interaction * pupdown) override;

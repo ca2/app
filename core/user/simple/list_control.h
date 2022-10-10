@@ -13,7 +13,7 @@ public:
    simple_list_control();
 
 
-   virtual __pointer(::user::interaction) OnDrawInterfaceGetWnd();
+   virtual ::pointer<::user::interaction>OnDrawInterfaceGetWnd();
 
    virtual bool pre_create_window(::user::system * pusersystem) override;
    virtual void pre_subclass_window() override;

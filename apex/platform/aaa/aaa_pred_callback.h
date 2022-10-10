@@ -10,7 +10,7 @@ public:
 
 
    PRED                             m_predicate;
-   __pointer(::matter)      m_pobjectHold;
+   ::pointer<::matter>     m_pobjectHold;
 
 
    __λcallback(PRED pred, ::matter* pobjectHold = nullptr) :

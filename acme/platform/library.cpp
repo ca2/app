@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/platform/acme.h"
 //#include "system_impl.h"
 #include "library.h"
@@ -137,7 +137,7 @@ namespace acme
 
       auto psystem = get_system();
 
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary4);
+      synchronous_lock synchronouslock(&psystem->m_psubsystem->m_mutexLibrary4);
 
       m_strMessage.Empty();
 
@@ -218,7 +218,7 @@ namespace acme
       if (m_strName.has_char())
       {
 
-         m_psystem->m_mapLibrary4[m_strName] = this;
+         m_psystem->m_psubsystem->m_mapLibrary4[m_strName] = this;
 
       }
 
@@ -460,9 +460,17 @@ namespace acme
    bool library::close()
    {
 
+      if (!m_plibrary)
+      {
+
+         return true;
+
+      }
+
+
       auto psystem = get_system();
 
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary4);
+      synchronous_lock synchronouslock(&psystem->m_psubsystem->m_mutexLibrary4);
 
       try
       {
@@ -643,7 +651,7 @@ namespace acme
 //   }
 
 
-   //__pointer(::object) library::new_application(const ::string & strAppId)
+   //::pointer<::object>library::new_application(const ::string & strAppId)
    //{
 
    //   auto psystem = get_system();
@@ -883,14 +891,14 @@ namespace acme
 
       auto psystem = get_system();
 
-      synchronous_lock synchronouslock(&psystem->m_mutexLibrary4);
+      synchronous_lock synchronouslock(&psystem->m_psubsystem->m_mutexLibrary4);
 
       return __node_library_raw_get(m_plibrary,pszEntryName);
 
    }
 
    
-   __pointer(::factory::factory) library::create_factory()
+   ::pointer<::factory::factory>library::create_factory()
    {
 
       string strName = m_strName;

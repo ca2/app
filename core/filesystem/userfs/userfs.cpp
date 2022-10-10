@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "userfs.h"
 #include "tree.h"
 #include "list.h"
@@ -72,7 +72,7 @@ namespace core
 {
 
 
-   //__pointer(::userfs::userfs) user::create_userfs()
+   //::pointer<::userfs::userfs>user::create_userfs()
    //{
 
    //  auto puserfs  = __new(::userfs::userfs(this));
@@ -91,7 +91,7 @@ namespace core
 
       //auto estatus = 
       
-      __compose(m_puserfs);
+      __construct(m_puserfs);
 
       //if (!estatus)
       //{

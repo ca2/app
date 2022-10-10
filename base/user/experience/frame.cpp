@@ -94,7 +94,7 @@ namespace experience
    }
 
 
-   void frame::OnMove(__pointer(::user::interaction) pframewindow)
+   void frame::OnMove(::pointer<::user::interaction>pframewindow)
    {
 
       __UNREFERENCED_PARAMETER(pframewindow);
@@ -394,7 +394,7 @@ namespace experience
             if (m_pframewindow->dock_manager()->window_is_docking())
             {
 
-               __pointer(::message::mouse) pmouseHold = pmouse;
+               ::pointer<::message::mouse>pmouseHold = pmouse;
 
                //m_pframewindow->prodevian_predicate([this, pmouseHold->()
                //{
@@ -426,7 +426,7 @@ namespace experience
             if (m_pframewindow->move_manager()->window_is_moving())
             {
 
-               __pointer(::message::mouse) pmouseHold = pmouse;
+               ::pointer<::message::mouse>pmouseHold = pmouse;
 
                //m_pframewindow->prodevian_predicate([this, pmouseHold->()
                //{
@@ -455,7 +455,7 @@ namespace experience
          if (m_pframewindow->size_manager()->window_is_sizing())
          {
 
-            __pointer(::message::mouse) pmouseHold = pmouse;
+            ::pointer<::message::mouse>pmouseHold = pmouse;
 
             //m_pframewindow->prodevian_predicate([this, pmouseHold->()
             //{
@@ -503,7 +503,7 @@ namespace experience
 //            if (m_pframewindow->dock_manager()->window_is_docking())
 //            {
 //
-//               __pointer(::message::set_cursor) psetcursorHold = psetcursor;
+//               ::pointer<::message::set_cursor>psetcursorHold = psetcursor;
 //
 //               //m_pframewindow->prodevian_predicate([this, pmouseHold->()
 //               //{
@@ -535,7 +535,7 @@ namespace experience
 //            if (m_pframewindow->move_manager()->window_is_moving())
 //            {
 //
-//               __pointer(::message::set_cursor) psetcursorHold = psetcursor;
+//               ::pointer<::message::set_cursor>psetcursorHold = psetcursor;
 //
 //               //m_pframewindow->prodevian_predicate([this, pmouseHold->()
 //               //{
@@ -564,7 +564,7 @@ namespace experience
 //         if (m_pframewindow->size_manager()->window_is_sizing())
 //         {
 //
-//            __pointer(::message::set_cursor) psetcursorHold = psetcursor;
+//            ::pointer<::message::set_cursor>psetcursorHold = psetcursor;
 //
 //            //m_pframewindow->prodevian_predicate([this, pmouseHold->()
 //            //{
@@ -912,7 +912,7 @@ namespace experience
          if (!m_pcontrolbox)
          {
 
-            __compose(m_pcontrolbox, m_pexperience->m_pfactory->create < ::experience::control_box >());
+            __construct(m_pcontrolbox, m_pexperience->m_pfactory->create < ::experience::control_box >());
 
             m_pcontrolbox->initialize(this);
 
@@ -936,7 +936,7 @@ namespace experience
 
 
 
-   __pointer(control_box) frame::get_control_box()
+   ::pointer<control_box>frame::get_control_box()
    {
 
       return m_pcontrolbox;

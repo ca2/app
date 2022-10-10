@@ -1,4 +1,5 @@
-﻿#include "framework.h"
+﻿// Created some path constructors by camilo on 2022-10-09 03:24 <3ThomasBorregaardSorensen!!
+#include "framework.h"
 
 CLASS_DECL_ACME string url_decode(const string & str);
 
@@ -10,7 +11,28 @@ namespace file
 {
 
 
+   path::path(const ::payload & payload) :
+      path(payload.file_path())
+   {
 
+
+   }
+
+
+   path::path(const ::property & property) :
+      path(property.file_path())
+   {
+
+
+   }
+
+
+   path::path(const ::atom & atom) :
+      path(atom.string())
+   {
+
+
+   }
 
    //   path::path(nullptr_t)
    //   {
@@ -44,43 +66,40 @@ namespace file
    }
 
 
-   void path::construct(const ::string & str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize)
+   path::path(const ::string & str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+      string(str)
    {
 
-      ::file::path path;
-
-      ((::string &)path) = str;
-
-      path.m_iSize = iSize;
+      m_iSize = iSize;
 
       if (epath == e_path_none)
       {
 
-         path.m_epath = file_path_get_type(str, epath);
+         m_epath = file_path_get_type(str, epath);
 
       }
       else
       {
 
-         path.m_epath = epath;
+         m_epath = epath;
 
       }
 
       if (bNormalizePath)
       {
 
-         bool bCertainlySyntathicallyDir = file_path_normalize_inline(path, path.m_epath);
+         bool bCertainlySyntathicallyDir = file_path_normalize_inline(*this, m_epath);
 
          if (bCertainlySyntathicallyDir)
          {
 
-            path.m_iDir = 1;
+            m_iDir = 1;
 
          }
          else
          {
 
-            path.m_iDir = iDir;
+            m_iDir = iDir;
 
          }
 
@@ -88,11 +107,9 @@ namespace file
       else
       {
 
-         path.m_iDir = iDir;
+         m_iDir = iDir;
 
       }
-
-      *this = path;
 
    }
 

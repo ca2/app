@@ -122,7 +122,7 @@ namespace colorertake5
          string_map < string_map < string_array >, const string_map < string_array > & > hrdLocations;
          string_to_string hrdDescriptions;
          HRCParser  *hrcParser;
-         __pointer(::xml::node)catalog;
+         ::pointer<::xml::node>atalog;
 
          ParserFactory(const ParserFactory&);
          void operator=(const ParserFactory&);

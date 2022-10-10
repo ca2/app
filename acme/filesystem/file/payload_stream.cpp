@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 //payload_stream::~payload_stream()
 //{
@@ -240,7 +240,7 @@
 ////}
 ////
 ////
-////__pointer(::matter) payload_stream::read_object(const ::atom & atom)
+////::pointer<::matter>payload_stream::read_object(const ::atom & atom)
 ////{
 ////
 ////   payload_stream stream(memory_new ::payload(&payload()[atom].propset()));

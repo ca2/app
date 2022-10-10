@@ -37,7 +37,7 @@ namespace user
       ::size_i32                    m_sizeFull;
       //string                        m_strText;
       ::duration                      m_durationShowComboList;
-      __pointer(list_box)           m_plistbox;
+      ::pointer<list_box>          m_plistbox;
 
       ::type                        m_typeListBox;
 

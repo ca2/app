@@ -26,7 +26,7 @@ namespace account
    
    
    class CLASS_DECL_AXIS http_execute_array:
-   public __pointer_array(http_execute)
+   public pointer_array < http_execute >
    {
       
    };

@@ -84,7 +84,7 @@ class text_stream;
 
 
 template < typename OBJECT >
-inline void __exchange(::binary_stream & s, __pointer(OBJECT) & pobject)
+inline void __exchange(::binary_stream & s, ::pointer<OBJECT>& pobject)
 {
    __exchange(s, __typed_defer_create(pobject));
 }
@@ -252,11 +252,11 @@ public:
 
 
 template < typename POINTER_TYPE >
-class raw_pointer < __pointer(POINTER_TYPE) >
+class raw_pointer < ::pointer<POINTER_TYPE >>
 {
 public:
 
-   using RAW_POINTER = typename __pointer(POINTER_TYPE)::RAW_POINTER;
+   using RAW_POINTER = typename ::pointer<POINTER_TYPE>::RAW_POINTER;
 
 };
 
@@ -301,7 +301,7 @@ public:
 //public:
 //
 //
-//   __pointer(binary_stream) m_pstream;
+//   ::pointer<binary_stream>m_pstream;
 //
 //
 //   stream_stack(binary_stream * pstream, const ::atom & atom);
@@ -354,7 +354,7 @@ public:
 //
 //   virtual void write_element(const ::atom & atom, ::element * pelement);
 //
-//   virtual __pointer(::element) read_element(const ::atom & atom);
+//   virtual ::pointer<::element>read_element(const ::atom & atom);
 //
 //
 //   virtual bool is_open() const;
@@ -601,8 +601,8 @@ public:
 //   //virtual void write_file(const ::file::path & path, const ::matter & matter);
 //   //virtual void read_file(const ::file::path & path, ::matter & matter);
 //
-//   //virtual void write_link(const ::string & strLink, __pointer(::matter) & matter);
-//   //virtual void read_link(const ::string & strLink, __pointer(::matter) & matter);
+//   //virtual void write_link(const ::string & strLink, ::pointer<::matter>& matter);
+//   //virtual void read_link(const ::string & strLink, ::pointer<::matter>& matter);
 //
 //   //virtual void write_link(const ::matter * preference, const ::string & strLink, bool bReadOnly, ::matter * pobjectSaveOptions = nullptr);
 //
@@ -663,9 +663,9 @@ public:
 //   inline binary_stream & save_object(const BASE_TYPE * pobject);
 //
 //   template < typename BASE_TYPE >
-//   inline __pointer(BASE_TYPE) load_object();
+//   inline ::pointer<BASE_TYPE>load_object();
 //
-//   virtual __pointer(::matter) create_object_from_text(string strText);
+//   virtual ::pointer<::matter>create_object_from_text(string strText);
 //
 //
 //
@@ -681,7 +681,7 @@ public:
 
 //
 //template < typename BASE_TYPE >
-//__pointer(BASE_TYPE) __load_object(binary_stream & binary_stream);
+//::pointer<BASE_TYPE>__load_object(binary_stream & binary_stream);
 //
 
 
@@ -781,7 +781,7 @@ public:
 //inline binary_stream & operator >>(binary_stream & s, map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR > & m);
 //
 //template <  typename TYPE >
-//inline binary_stream & operator >>(binary_stream & s, __pointer_array(TYPE) & a);
+//inline binary_stream & operator >>(binary_stream & s, pointer_array < TYPE > & a);
 //
 //inline binary_stream & operator >> (binary_stream & s, ::file::path & path);
 //
@@ -860,7 +860,7 @@ public:
 //inline binary_stream & operator <<(binary_stream & s, const map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR > & m);
 //
 //template < typename TYPE >
-//inline binary_stream & operator <<(binary_stream & s, const __pointer_array(TYPE) & a);
+//inline binary_stream & operator <<(binary_stream & s, const pointer_array < TYPE > & a);
 //
 //inline binary_stream & operator <<(binary_stream & s, const ::duration & duration);
 //inline binary_stream & operator >>(binary_stream & s, ::duration & duration);

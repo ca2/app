@@ -16,7 +16,7 @@ namespace console
 
       bool                       m_bAutoHideOnOutClick;
       i32                 m_iAnimateStep;
-      __pointer(image_list)          m_pimagelist;
+      ::pointer<image_list>         m_pimagelist;
       bool                    m_bTimerHide;
       bool                    m_bTimerOn;
       enum_position              m_eposition;

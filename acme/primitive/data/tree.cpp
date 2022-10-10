@@ -1,4 +1,4 @@
-﻿#include "framework.h" 
+#include "framework.h" 
 #include "_data.h"
 
 
@@ -63,7 +63,7 @@ namespace data
 
       }
 
-      __pointer(::data::tree_item) pitem = this;
+      ::pointer<::data::tree_item>pitem = this;
 
       for(; pitem != nullptr; pitem = pitem->get_item(e_tree_navigation_expanded_forward))
       {
@@ -196,7 +196,7 @@ namespace data
 
       }
 
-      __pointer(::data::tree_item) pitem = this;
+      ::pointer<::data::tree_item>pitem = this;
 
       while(pitem && iIndex >= 0)
       {
@@ -236,7 +236,7 @@ namespace data
 
       }
 
-      __pointer(::data::tree_item) pitem = this;
+      ::pointer<::data::tree_item>pitem = this;
 
       while (pitem && iIndex >= 0)
       {
@@ -273,7 +273,7 @@ namespace data
 
       }
 
-      __pointer(::data::tree_item) pitem = get_base_item();
+      ::pointer<::data::tree_item>pitem = get_base_item();
 
       while (pitem != nullptr)
       {
@@ -360,7 +360,7 @@ namespace data
 
       }
 
-      __pointer(::data::tree_item) pitemNew = __new(tree_item);
+      ::pointer<::data::tree_item>pitemNew = __new(tree_item);
 
       if(pitemNew == nullptr)
          return nullptr;
@@ -390,7 +390,7 @@ namespace data
    bool tree::insert_item(::data::tree_item *pitemNew, enum_relative erelativeNewItem, ::data::tree_item *pitemRelative, bool bVoidTreeDataChangeEvent)
    {
 
-      __pointer(tree) ptreeNew = pitemNew;
+      ::pointer<tree>ptreeNew = pitemNew;
 
       if (ptreeNew)
       {
@@ -547,11 +547,11 @@ namespace data
    }
 
 
-   //void tree::sort(index ( * pfnCompare )(const __pointer(tree_item) &, const __pointer(tree_item) &))
+   //void tree::sort(index ( * pfnCompare )(const ::pointer<tree_item>&, const ::pointer<tree_item>))
 
    //{
 
-   //   __pointer(tree_item) pitem = get_base_item();
+   //   ::pointer<tree_item>pitem = get_base_item();
 
    //   while(pitem != nullptr)
    //   {
@@ -570,7 +570,7 @@ namespace data
 
       index iLevel = -1;
 
-      __pointer(tree_item) pitem = get_base_item();
+      ::pointer<tree_item>pitem = get_base_item();
 
       while (pitem != nullptr)
       {

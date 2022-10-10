@@ -117,7 +117,7 @@ namespace sphere
    }
 
 
-   __pointer(::aura::application) application::get_context_system()
+   ::pointer<::aura::application>application::get_context_system()
    {
 
       return memory_new application(this);
@@ -516,7 +516,7 @@ namespace sphere
 
    //   //      string strId;
    //   //
-   //   //      __pointer(::acme::department) pcaapp;
+   //   //      ::pointer<::acme::department>pcaapp;
    //   //
    //   //      POSITION pos = m_mapApplication.get_start_position();
    //   //
@@ -529,7 +529,7 @@ namespace sphere
    //   //
    //   //         m_mapApplication.get_next_assoc(pos, strId, pcaapp);
    //   //
-   //   //         __pointer(::acme::department) papp = (pcaapp);
+   //   //         ::pointer<::acme::department>papp = (pcaapp);
    //   //
    //   //         papp->set_finish();
    //   //
@@ -723,10 +723,10 @@ namespace sphere
    }
 
 
-   __pointer(::aura::application) application::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, application_bias * pappbias)
+   ::pointer<::aura::application>application::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, application_bias * pappbias)
    {
 
-      __pointer(::aura::application) papp;
+      ::pointer<::aura::application>papp;
 
       if (appptra().lookup(pszAppId, papp))
       {
@@ -779,7 +779,7 @@ namespace sphere
 
    }
 
-   __pointer(::aura::application) application::get_current_application()
+   ::pointer<::aura::application>application::get_current_application()
    {
       return m_pappCurrent;
    }
@@ -813,12 +813,12 @@ namespace sphere
    void application::set_app_title(const ::string & pszType, const ::string & pszAppId, const ::string & pszTitle)
    {
 
-      __pointer(::aura::application) papp;
+      ::pointer<::aura::application>papp;
 
       if (appptra().lookup(string(pszType) + ":" + string(pszAppId), papp) && papp.is_set())
       {
 
-         //__pointer(pane_impact) ppaneimpact = m_ppaneimpact;
+         //::pointer<pane_impact>ppaneimpact = m_ppaneimpact;
 
          //if (ppaneimpact != nullptr)
          //{

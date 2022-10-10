@@ -393,7 +393,7 @@ namespace user
    //void still::on_message_mouse_leave(::message::message * pmessage)
    //{
 
-   //   //__pointer(::user::message) pusermessage(pmessage);
+   //   //::pointer<::user::message>pusermessage(pmessage);
    //   //index iOldHover = m_iHover;
    //   //m_iHover = -1;
    //   //if (iOldHover >= 0)

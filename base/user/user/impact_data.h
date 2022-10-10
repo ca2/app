@@ -16,9 +16,9 @@ namespace user
 
       ::i64                            m_iId;
       ::index                          m_iIndex;
-      __pointer(interaction)           m_puserinteraction;
-      __pointer(place_holder)          m_pplaceholder;
-      __pointer(document)              m_pdocument;
+      ::pointer<interaction>          m_puserinteraction;
+      ::pointer<place_holder>         m_pplaceholder;
+      ::pointer<document>             m_pdocument;
       atom                             m_atomSplit;
       bool                             m_bTabSplitSwap;
       i32                              m_iExtendOnParent;
@@ -40,7 +40,7 @@ namespace user
 
 
    class CLASS_DECL_BASE impact_data_map :
-      public id_map < __pointer(impact_data) >
+      public id_map < ::pointer<impact_data >>
    {
    public:
 

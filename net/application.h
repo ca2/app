@@ -12,7 +12,7 @@ namespace app_net
    public:
 
 
-      __composite(window)                             m_pwindow;
+      ::pointer<window>                            m_pwindow;
 
 
       application();

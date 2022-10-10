@@ -18,7 +18,7 @@ namespace html
 
          
          i32 m_iFont;
-         __composite(::user::button) m_pbutton;
+         ::pointer<::user::button>m_pbutton;
 
 
          input_button();

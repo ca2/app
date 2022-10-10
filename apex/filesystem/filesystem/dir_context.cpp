@@ -1516,7 +1516,7 @@ bool dir_context::name_is(const ::file::path& strPath)
 //
 //         is_dir * pdir = this;
 //
-//         __pointer(is_dir) pfind(__new(is_dir));
+//         ::pointer<is_dir>pfind(__new(is_dir));
 //
 //         index iFind0 = 0;
 //         index iFind3 = 0;

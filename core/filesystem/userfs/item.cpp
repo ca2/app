@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "_userfs.h"
 //#endif
@@ -31,7 +31,7 @@ namespace userfs
 
 
 
-   index item::CompareArrangeByName(const __pointer(::data::tree_item) & pitem1, const __pointer(::data::tree_item) & pitem2)
+   index item::CompareArrangeByName(const ::pointer<::data::tree_item>& pitem1, const ::pointer<::data::tree_item> pitem2)
    {
 
       if(pitem1->m_ptree == pitem2->m_ptree)

@@ -61,22 +61,24 @@ namespace user
    }
 
 
-   void check_box::_001SetCheck(::enum_check echeck, const ::action_context & context)
+   void check_box::_001SetCheck(const ::e_check & echeckInput, const ::action_context & context)
    {
 
-      if(echeck != ::e_check_unchecked && echeck != ::e_check_checked && echeck != ::e_check_tristate)
+      ::e_check echeckEffective = echeckInput;
+
+      if(echeckInput != ::e_check_unchecked && echeckInput != ::e_check_checked && echeckInput != ::e_check_tristate)
       {
 
          // default value when setting a value that does not match the ones above
 
-         echeck = ::e_check_checked;
+         echeckEffective = ::e_check_checked;
 
       }
 
-      if(this->echeck() != echeck)
+      if(this->echeck() != echeckEffective)
       {
 
-         check::_001SetCheck(echeck, context);
+         check::_001SetCheck(echeckEffective, context);
          
          if(has_handler())
          {
@@ -143,7 +145,7 @@ namespace user
    void check_box::_001OnDrawNormal(::draw2d::graphics_pointer & pgraphics)
    {
 
-      __pointer(::user::style) pstyle = get_style(pgraphics);
+      ::pointer<::user::style>pstyle = get_style(pgraphics);
 
       if(pstyle)
       {
@@ -289,7 +291,7 @@ namespace user
    void check_box::_001OnDrawToggleSwitch(::draw2d::graphics_pointer & pgraphics)
    {
 
-      __pointer(::user::style) pstyle = get_style(pgraphics);
+      ::pointer<::user::style>pstyle = get_style(pgraphics);
 
       if(pstyle)
       {
@@ -721,7 +723,7 @@ namespace user
 
       pmessage->previous();
 
-      m_propertyCheck = fetch_property(m_atom, true);
+      m_linkedpropertyCheck = fetch_property(m_atom, true);
 
    }
 

@@ -485,7 +485,7 @@ namespace colorertake5
 class memory;
 
 
-//CLASS_DECL_APEX __pointer(::apex::system) platform_create_system(const char * pszAppId);
+//CLASS_DECL_APEX ::pointer<::apex::system>platform_create_system(const char * pszAppId);
 //CLASS_DECL_APEX ::apex::session* platform_create_session();
 
 
@@ -600,7 +600,7 @@ class thread;
 
 
 using thread_pointer = ::task_pointer;
-using thread_array = __pointer_array(thread);
+using thread_array = pointer_array < thread >;
 
 
 namespace html
@@ -611,7 +611,7 @@ namespace html
 }
 
 
-//#define SCAST_PTR(TYPE, ptarget, psource) __pointer(TYPE) ptarget(psource);
+//#define SCAST_PTR(TYPE, ptarget, psource) ::pointer<TYPE>ptarget(psource);
 //#define SCAST_REF(TYPE, rtarget, psource) TYPE & rtarget = *(dynamic_cast < TYPE * > (psource))
 
 
@@ -780,15 +780,15 @@ class sticker;
 template < typename POINTER_TYPE >
 class ptr_array;
 
-using object_ptra = __pointer_array(::matter); // Please use just for keeping non-member-based references.
+using object_ptra = pointer_array < ::matter >; // Please use just for keeping non-member-based references.
 
 ///using object_addra = __address_array(::matter); // Please use just for keeping non-member-based references.
 
 class object_meta;
 
 
-#define __composite_array(TYPE) ::array < __composite(TYPE) >
-#define __reference_array(TYPE) ::array < __reference(TYPE) >
+#define __composite_array(TYPE) ::array < ::pointer<TYPE >>
+#define __reference_array(TYPE) ::array < ::pointer<TYPE >>
 
 namespace http
 {
@@ -814,14 +814,14 @@ namespace draw2d
    class graphics;
    class pen;
 
-   using graphics_pointer = __pointer(graphics);
-   using pen_pointer = __pointer(pen);
+   using graphics_pointer = ::pointer<graphics>;
+      using pen_pointer = ::pointer<pen>;
 
 
 } // namespace draw2d
 
 
-using generic_pointer = __pointer(::matter);
+using generic_pointer = ::pointer<::matter>;
 
 
 namespace core
@@ -975,7 +975,7 @@ namespace user
 
    class style;
 
-   using style_pointer = __pointer(style);
+   using style_pointer = ::pointer<style>;
 
 
 } // namespace user
@@ -1058,7 +1058,7 @@ class interprocess_task;
 
 class interprocess_intercommunication;
 
-using interprocess_task_map = id_map < __pointer(interprocess_task) >;
+using interprocess_task_map = id_map < ::pointer<interprocess_task >>;
 
 
 #include "apex/platform/interprocess_call.h"

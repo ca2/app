@@ -43,7 +43,7 @@ namespace dynamic_source
    }
 
 
-   __pointer(ds_script) script_cache::create_new_ds_script(const ::string & strName)
+   ::pointer<ds_script>script_cache::create_new_ds_script(const ::string & strName)
    {
 
       auto pscript = __create_new< ds_script >();
@@ -118,7 +118,7 @@ namespace dynamic_source
 
    }
 
-   __pointer(script_instance) script_cache::create_instance(const ::string & lpcszName, __pointer(script) & pscript)
+   ::pointer<script_instance>script_cache::create_instance(const ::string & lpcszName, ::pointer<script> pscript)
    {
 
       pscript = nullptr;
@@ -198,7 +198,7 @@ namespace dynamic_source
    {
       return;
 //   single_lock synchronouslock(mutex(), true);
-//   __pointer(script) pscript;
+//   ::pointer<script>pscript;
 //   string strName;
 //   POSITION pos = m_map.get_start_position();
 //   while(pos != nullptr)
@@ -232,7 +232,7 @@ namespace dynamic_source
       for (auto & pair : m_map)
       {
 
-         __pointer(ds_script) pdsscript = pair.element2();
+         ::pointer<ds_script>pdsscript = pair.element2();
 
          if (pdsscript != nullptr)
          {

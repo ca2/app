@@ -1,6 +1,6 @@
 #pragma once
 
 
-using element_array = __pointer_array(element);
+using element_array = pointer_array < element >;
 
 

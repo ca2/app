@@ -43,7 +43,7 @@ namespace user
    }
 
 
-   __pointer(::sequencer < ::conversation >) message_box::show(::user::interaction * puserinteraction, const string & strMessageParam, const string & strTitle, const ::e_message_box & emessagebox)
+   pointer< ::sequencer < ::conversation > > message_box::show(::user::interaction * puserinteraction, const string & strMessageParam, const string & strTitle, const ::e_message_box & emessagebox)
    {
 
       auto emessageboxType = emessagebox & e_message_box_type_mask;
@@ -97,7 +97,7 @@ namespace user
    }
 
 
-   __pointer(::sequencer < ::conversation >) default_message_box::show(::user::interaction * puserinteraction, const string& strMessageParam, const string& strTitle, const ::e_message_box& emessagebox)
+   pointer< ::sequencer < ::conversation > > default_message_box::show(::user::interaction * puserinteraction, const string& strMessageParam, const string& strTitle, const ::e_message_box& emessagebox)
    {
 
       auto psequencer = __new(::sequencer <::conversation >());
@@ -222,7 +222,7 @@ namespace user
    void default_message_box::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       m_pbuttonClose->create_child(this);
 
@@ -533,7 +533,7 @@ namespace aura
 {
 
 
-   //__pointer(::extended::future < ::conversation >) system::message_box(oswindow oswindow, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+   //pointer< ::extended::future < ::conversation > > system::message_box(oswindow oswindow, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
    //{
 
    //   auto pnode = m_pnode->m_pauranode;

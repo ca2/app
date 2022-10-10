@@ -11,8 +11,8 @@ namespace universal_windows
    internal:
 
 
-      __pointer(::user::interaction)                           m_puserinteraction;
-      __pointer(::universal_windows::interaction_impl)                       m_pimpl;
+      ::pointer<::user::interaction>                          m_puserinteraction;
+      ::pointer<::universal_windows::interaction_impl>                      m_pimpl;
 
       template < typename PRED >
       void synchronization_object(PRED pred)

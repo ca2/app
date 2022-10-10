@@ -187,36 +187,36 @@ CLASS_DECL_ACME::string __string(const double & d)
 
 
 
-CLASS_DECL_ACME::string __string(const ::string & strSrc)
-{
-
-   return strSrc;
-
-}
-
-
-CLASS_DECL_ACME ::string __string(const ::wd16string & wd16str)
-{
-
-   return wd16str;
-
-}
+//CLASS_DECL_ACME::string __string(const ::string & strSrc)
+//{
+//
+//   return strSrc;
+//
+//}
 
 
-CLASS_DECL_ACME::string __string(const ::wd32string & wd16str)
-{
+//CLASS_DECL_ACME ::string __string(const ::wd16string & wd16str)
+//{
+//
+//   return wd16str;
+//
+//}
 
-   return wd16str;
+//
+//CLASS_DECL_ACME::string __string(const ::wd32string & wd16str)
+//{
+//
+//   return wd16str;
+//
+//}
 
-}
 
-
-CLASS_DECL_ACME::string __string(const ::atom & atom)
-{
-
-   return atom.as_string();
-
-}
+//CLASS_DECL_ACME::string __string(const ::atom & atom)
+//{
+//
+//   return atom.as_string();
+//
+//}
 
 
 

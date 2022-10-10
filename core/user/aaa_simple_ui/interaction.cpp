@@ -57,7 +57,7 @@ namespace simple_ui
 //   {
 //
 //      __UNREFERENCED_PARAMETER(pmessage);
-//      //__pointer(::message::show_window) pshowwindow(pmessage);
+//      //::pointer<::message::show_window>pshowwindow(pmessage);
 //
 //
 //
@@ -67,7 +67,7 @@ namespace simple_ui
 //   bool interaction::simple_process_system_message(::message::message * pmessage, ::enum_topic etopic)
 //   {
 //
-//      __pointer(::user::message) pusermessage(pmessage);
+//      ::pointer<::user::message>pusermessage(pmessage);
 //
 //      if (eevent == ::id_button_down)
 //      {
@@ -349,7 +349,7 @@ namespace simple_ui
 //   void interaction::on_message_mouse_leave(::message::message * pmessage)
 //   {
 //
-//      __pointer(::user::message) pusermessage(pmessage);
+//      ::pointer<::user::message>pusermessage(pmessage);
 //
 //      auto pitemOldHover = m_pitemHover;
 //

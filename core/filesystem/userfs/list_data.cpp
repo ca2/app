@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "_userfs.h"
 //#endif
@@ -317,7 +317,7 @@ namespace userfs
 
                auto & pathFinal = m_pitema->get_item((::index)psubitem->m_pitem->m_iItem)->final_path();
 
-               __pointer(::core::session) psession = get_session();
+               ::pointer<::core::session>psession = get_session();
 
                auto puser = psession->user();
 

@@ -203,7 +203,7 @@ namespace database
 
 
 
-   bool composite::query_rows(__pointer(row_array) & prowaray, const ::string & pszQuery)
+   bool composite::query_rows(::pointer<row_array>& prowaray, const ::string & pszQuery)
    {
 
       return m_pdatabase->query_rows(prowaray, pszQuery);
@@ -211,7 +211,7 @@ namespace database
    }
 
 
-   bool composite::query_row(__pointer(row) & prow, const ::string & pszQuery)
+   bool composite::query_row(::pointer<row>& prow, const ::string & pszQuery)
    {
 
       return m_pdatabase->query_row(prow, pszQuery);
@@ -219,7 +219,7 @@ namespace database
    }
 
 
-   bool composite::query_items(__pointer(payload_array) & pvara, const ::string & pszQuery)
+   bool composite::query_items(::pointer<payload_array>& pvara, const ::string & pszQuery)
    {
 
       return m_pdatabase->query_items(pvara, pszQuery);
@@ -243,7 +243,7 @@ namespace database
    }
 
 
-   __pointer(::database::result_set) composite::query_result(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
+   ::pointer<::database::result_set>composite::query_result(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
    {
 
       return m_pdatabase->query_result(pszQuery, iRowCount, iColumnCount);
@@ -251,7 +251,7 @@ namespace database
    }
 
 
-   __pointer(result_set) composite::query(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
+   ::pointer<result_set>composite::query(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
    {
       
       return query_result(pszQuery, iRowCount, iColumnCount);

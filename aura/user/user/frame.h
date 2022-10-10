@@ -23,7 +23,7 @@ namespace user
 
       ::user::frame_window *                       m_puserframewindow;
 
-      __composite(::draw2d::icon)            m_pdrawicon;
+      ::pointer<::draw2d::icon>           m_pdrawicon;
 
       enum_style                                   m_estyle;
       string                                       m_strStyle;
@@ -32,15 +32,15 @@ namespace user
       string                                       m_strFrameTitle;
       ::size_i32                                   m_sizeMinimum;
       bool                                         m_bCloseApplicationIfLastVisibleFrame;
-      __reference(::user::style)                   m_puserstyle;
+      ::pointer<::user::style>                  m_puserstyle;
       bool                                         m_bShowControlBox;
       
       
-      __pointer(::windowing::menu) m_pmenu;
+      ::pointer<::windowing::menu>m_pmenu;
       string_array                                 m_straMenuParent;
       string_array                                 m_straMenuName;
       string_array                                 m_straMenuId;
-      __pointer(::task_pool)                       m_ptaskpool;
+      ::pointer<::task_pool>                      m_ptaskpool;
 
   
       frame();
@@ -101,7 +101,7 @@ namespace user
       void hide_control_bar(::user::control_bar * pcontrolbar) override;
 
 
-      //virtual __pointer(toolbar) create_toolbar(const ::atom & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar");
+      //virtual ::pointer<toolbar>create_toolbar(const ::atom & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar");
 
 
       virtual void on_create_bars();

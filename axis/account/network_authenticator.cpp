@@ -459,7 +459,7 @@ namespace account
 //
 //   purl->set_param(strGetFontopus,strGetFontopus,"styl",psession->get_schema());
 //
-//   __pointer(::sockets::http_session) psession;
+//   ::pointer<::sockets::http_session>psession;
 //
 //   string strNode;
 //

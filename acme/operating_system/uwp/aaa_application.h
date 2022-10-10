@@ -187,18 +187,18 @@
 //      //::draw2d::graphics * graphics_from_os_data(void * pdata);
 //
 //
-//      //__pointer(::user::interaction) window_from_os_data(void * pdata);
-//      //__pointer(::user::interaction) window_from_os_data_permanent(void * pdata);
+//      //::pointer<::user::interaction>window_from_os_data(void * pdata);
+//      //::pointer<::user::interaction>window_from_os_data_permanent(void * pdata);
 //
 //
-//      //virtual __pointer(::user::interaction) FindWindow(const char * lpszClassName, const char * lpszWindowName);
-//      //virtual __pointer(::user::interaction) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
+//      //virtual ::pointer<::user::interaction>FindWindow(const char * lpszClassName, const char * lpszWindowName);
+//      //virtual ::pointer<::user::interaction>FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 //
 //      virtual void get_time(struct timeval *p);
 //      virtual void set_env_var(const string & payload,const string & value);
 //      virtual u32 get_thread_id();
 //
-//      //__pointer(::user::printer) get_printer(const char * pszDeviceName);
+//      //::pointer<::user::printer>get_printer(const char * pszDeviceName);
 //
 //
 //      void show_wait_cursor(bool bShow);

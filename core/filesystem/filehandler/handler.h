@@ -20,7 +20,7 @@ namespace filehandler
       };
 
 
-      __composite(tree_interface)      m_ptree;
+      ::pointer<tree_interface>     m_ptree;
 
 
       id_type                     m_etopictype;
@@ -37,8 +37,8 @@ namespace filehandler
       virtual void initialize(::object * pobject) override;
 
 
-      string get_text(__pointer(::data::tree) ptree);
-      index get_image(__pointer(::data::tree) ptree);
+      string get_text(::pointer<::data::tree>ptree);
+      index get_image(::pointer<::data::tree>ptree);
 
 
       void defer_add_library(::acme::library * plibrary);
@@ -46,8 +46,8 @@ namespace filehandler
       void add_menu_library(menu_library * plibrary);
 
 
-      __pointer(::data::tree_item) get_extension_tree_item(const ::string & pszExtension, bool bCreate);
-      __pointer(::data::tree_item) get_mime_type_tree_item(const ::string & pszMimeType, bool bCreate);
+      ::pointer<::data::tree_item>get_extension_tree_item(const ::string & pszExtension, bool bCreate);
+      ::pointer<::data::tree_item>get_mime_type_tree_item(const ::string & pszMimeType, bool bCreate);
 
 
       virtual void get_extension_app(string_array & straAppId, const ::string & pszExtension);

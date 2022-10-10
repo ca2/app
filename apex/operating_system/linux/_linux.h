@@ -7,7 +7,7 @@
 
 string get_error_message(::u32 dwError);
 
-__pointer(::apex::application)     linux_instantiate_application(__pointer(::apex::application) pappSystem, const char * pszId);
+::pointer<::apex::application>    linux_instantiate_application(::pointer<::apex::application>appSystem, const char * pszId);
 
 
 
@@ -34,8 +34,8 @@ __pointer(::apex::application)     linux_instantiate_application(__pointer(::ape
 CLASS_DECL_APEX MESSAGE * __get_current_message();
 
 
-CLASS_DECL_APEX __pointer(::apex::application)  __get_app();
-CLASS_DECL_APEX __pointer(::user::primitive) __get_main_window();
+CLASS_DECL_APEX ::pointer<::apex::application> __get_app();
+CLASS_DECL_APEX ::pointer<::user::primitive>__get_main_window();
 //CLASS_DECL_APEX HINSTANCE CLASS_DECL_APEX ::apex::get_system()->m_hInstance;
 CLASS_DECL_APEX const char * __get_app_name();
 
@@ -69,9 +69,9 @@ CLASS_DECL_APEX void os_shell_initialize();
 
 CLASS_DECL_APEX MESSAGE * __get_current_message();
 
-CLASS_DECL_APEX __pointer(::apex::application)  __get_app();
+CLASS_DECL_APEX ::pointer<::apex::application> __get_app();
 
-CLASS_DECL_APEX __pointer(::user::primitive) __get_main_window();
+CLASS_DECL_APEX ::pointer<::user::primitive>__get_main_window();
 
 CLASS_DECL_APEX const char * __get_app_name();
 

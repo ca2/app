@@ -156,7 +156,7 @@ public:
 
    SHAPE                m_shape;
 
-   __pointer(HOLDEE)    m_pholdee;
+   ::pointer<HOLDEE>   m_pholdee;
 
 
    _shape():___shape< HOLDEE>(ESHAPE) {}
@@ -216,14 +216,14 @@ public:
 
 
 // template < typename GEOMETRY >
-// inline __pointer(___shape) __create_shape(const GEOMETRY& geometry);
+// inline ::pointer<___shape>__create_shape(const GEOMETRY& geometry);
 
 // template < typename HOLDE >
 // class shape_factory
 // {
 // public:
 // // template < typename GEOMETRY >
-// // inline __pointer(___shape) __create_shape(const GEOMETRY& geometry);
+// // inline ::pointer<___shape>__create_shape(const GEOMETRY& geometry);
 
 // };
 
@@ -231,7 +231,7 @@ public:
 
 
 template < typename GEOMETRY, typename HOLDEE >
-inline __pointer(___shape < HOLDEE >) __create_shape(const GEOMETRY& geometry, holdee < HOLDEE >)
+inline pointer< ___shape < HOLDEE > > __create_shape(const GEOMETRY& geometry, holdee < HOLDEE >)
 {
 
    throw interface_only();
@@ -241,7 +241,7 @@ inline __pointer(___shape < HOLDEE >) __create_shape(const GEOMETRY& geometry, h
 }
 
 template < typename HOLDEE >
-inline __pointer(___shape < HOLDEE >) __create_shape(const enum_shape& eshape);
+inline pointer< ___shape < HOLDEE > > __create_shape(const enum_shape& eshape);
 
 
 template < typename HOLDEE >

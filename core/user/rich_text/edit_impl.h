@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "edit.h"
@@ -20,9 +20,9 @@ namespace user
 
 
          bool                          m_bComposing;
-         __pointer(data)               m_pdata;
+         ::pointer<data>              m_pdata;
          bool                          m_bSelDrag;
-         __pointer(::message::key)     m_pkeymessageLast;
+         ::pointer<::message::key>    m_pkeymessageLast;
          bool                          m_bKeyPressed;
          bool                          m_bEditable2;
          /// If true, mouse events over empty
@@ -47,7 +47,7 @@ namespace user
 
          //virtual void do_layout() override;
 
-         __pointer(span) add_span(::e_align ealignNewLine = e_align_none);
+         ::pointer<span>add_span(::e_align ealignNewLine = e_align_none);
 
          virtual ::item_pointer on_hit_test(const ::point_i32 & point) override;
 
@@ -93,7 +93,7 @@ namespace user
 
          void draw_impl(::draw2d::graphics_pointer & pgraphics) override;
 
-         __pointer(format_tool) get_format_tool(bool bCreate);
+         ::pointer<format_tool>get_format_tool(bool bCreate);
 
          //::user::tool_window * tool_window(enum_tool etool, bool bCreate) override;
 

@@ -491,7 +491,7 @@ namespace user
    void combo_box::on_message_show_window(::message::message * pmessage)
    {
 
-      __pointer(::message::show_window) pshowwindow(pmessage);
+      ::pointer<::message::show_window>pshowwindow(pmessage);
 
       if (!pshowwindow->m_bShow)
       {
@@ -676,7 +676,7 @@ namespace user
    void combo_box::on_message_kill_focus(::message::message * pmessage)
    {
 
-      __pointer(::message::kill_focus) pkillfocus(pmessage);
+      ::pointer<::message::kill_focus>pkillfocus(pmessage);
 
       if (m_plist != nullptr)
       {

@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 19/01/2021. --<33ThomasBS!!
 //
 #include "framework.h"
@@ -139,7 +139,7 @@ namespace acme
    }
 
 
-   __pointer(::element) node::create_quit_element(__pointer(::acme::node) & pnode, __pointer(::acme::system) & psystem)
+   ::pointer<::element>node::create_quit_element(::pointer<::acme::node> &  pnode, ::pointer<::acme::system> & psystem)
    {
       
       return nullptr;
@@ -147,7 +147,7 @@ namespace acme
    }
 
 
-   void node::implement(__pointer(::acme::node) & pnode, __pointer(::acme::system) & psystem)
+   void node::implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> & psystem)
    {
       
       m_pelementQuit = create_quit_element(pnode, psystem);
@@ -319,7 +319,7 @@ namespace acme
    }
 
 
-//   void node::implement(__pointer(::acme::node) & pnode, __pointer(::acme::system) & psystem)
+//   void node::implement(::pointer<::acme::node>& pnode, ::pointer<::acme::system> psystem)
 //   {
 //
 //      //      auto psystem = m_psystem;
@@ -1722,7 +1722,7 @@ namespace acme
    }
 
 
-   __pointer(::conversation) node::create_new_message_box_conversation()
+   ::pointer<::conversation>node::create_new_message_box_conversation()
    {
 
       initialize_nano_window();
@@ -1732,7 +1732,7 @@ namespace acme
    }
 
 
-   __pointer(::sequencer < ::conversation >) node::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+   pointer< ::sequencer < ::conversation > > node::create_message_box_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
    {
 
       auto psequencer = __new(::sequencer < ::conversation >());
@@ -1750,7 +1750,7 @@ namespace acme
    }
 
 
-   __pointer(::sequencer < ::conversation >) node::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
+   pointer< ::sequencer < ::conversation > > node::create_message_sequencer(const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox, const ::string & strDetails)
    {
 
       auto psequencer = __new(::sequencer < ::conversation >());

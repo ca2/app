@@ -7,7 +7,7 @@ class pcre_util_impl :
 public:
 
 
-   __pointer(pcre_context_impl) m_pcre;
+   ::pointer<pcre_context_impl>m_pcre;
 
 
    pcre_util_impl(pcre_context_impl* m_pcreContext);
@@ -21,9 +21,9 @@ public:
 
    virtual ::count matches(const ::string & psz, strsize len, pcre_context*);
 
-   virtual __pointer(::strsize_range_array) matches_ranges(const string& str) override;
+   virtual ::pointer<::strsize_range_array>matches_ranges(const string& str) override;
 
-   virtual __pointer(::strsize_range_array) matches_ranges(const ::string & psz, strsize len) override;
+   virtual ::pointer<::strsize_range_array>matches_ranges(const ::string & psz, strsize len) override;
 
 
 };

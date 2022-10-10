@@ -75,7 +75,7 @@ namespace calculator
    }
 
 
-   __pointer(::user::interaction) impact::backimpact_GetWnd()
+   ::pointer<::user::interaction>impact::backimpact_GetWnd()
    {
 
       return this;
@@ -151,18 +151,18 @@ namespace calculator
    void impact::_001OnWavePlayerEvent(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-      //__pointer(::user::message) pusermessage(pmessage);
+      //::pointer<::user::message>pusermessage(pmessage);
    }
 
    void impact::_001OnUpdateImpactEncoding(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-      //__pointer(::message::command) pcommand(pmessage);
+      //::pointer<::message::command>pcommand(pmessage);
    }
    void impact::_001OnShowEncoding(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-      //__pointer(::message::command) pcommand(pmessage);
+      //::pointer<::message::command>pcommand(pmessage);
    }
 
 

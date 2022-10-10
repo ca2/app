@@ -88,7 +88,7 @@ class app_consumer :
 public:
 
 
-   __pointer(APP) m_papplicationForConsumer;
+   ::pointer<APP>m_papplicationForConsumer;
 
 
    app_consumer()
@@ -118,7 +118,7 @@ class application_interaction :
 public:
 
 
-   __pointer(APP) m_papplicationForConsumer;
+   ::pointer<APP>m_papplicationForConsumer;
 
 
    application_interaction()

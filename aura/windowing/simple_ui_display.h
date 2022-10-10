@@ -19,14 +19,14 @@ namespace windowing
       string m_strTitle;
       string m_strFontName;
 
-      __pointer(::windowing::window) m_pwindow;
+      ::pointer<::windowing::window>m_pwindow;
       ::point_i32 m_point;
       ::size_i32 m_size;
 
       int m_iLineHeight;
       int m_iTextAscent;
 
-      __pointer_array(::windowing::button) m_buttona;
+      pointer_array < ::windowing::button > m_buttona;
 
       int m_iButtonTop;
       int m_iButtonHeight;

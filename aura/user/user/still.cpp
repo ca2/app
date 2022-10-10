@@ -361,7 +361,7 @@ namespace user
    //void still::on_message_mouse_leave(::message::message * pmessage)
    //{
 
-   //   //__pointer(::user::message) pusermessage(pmessage);
+   //   //::pointer<::user::message>pusermessage(pmessage);
    //   //index iOldHover = m_iHover;
    //   //m_iHover = -1;
    //   //if (iOldHover >= 0)
@@ -487,7 +487,7 @@ namespace user
 
 
 
-   void still::_001SetCheck(::enum_check echeck, const ::action_context & context)
+   void still::_001SetCheck(const ::e_check & echeck, const ::action_context & context)
    {
 
       check::_001SetCheck(echeck, context);
@@ -571,7 +571,7 @@ namespace user
 
       m_ptextouta->text_outa().erase_all();
 
-      __pointer(::write_text::font) pfont;
+      ::pointer<::write_text::font>pfont;
       
       if (m_pfont)
       {

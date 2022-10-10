@@ -272,7 +272,7 @@ inline string __type_name(const TYPE * p)
 
 
 template < typename TYPE >
-inline string __type_name(const __pointer(TYPE) & pointer)
+inline string __type_name(const ::pointer<TYPE>& pointer)
 {
 
    return __type_name((const TYPE *) pointer.m_p);
@@ -303,8 +303,8 @@ inline string __type_name(const NON_POINTER & t)
 #include "acme/platform/options.h"
 
 
-typedef CLASS_DECL_ACME __pointer_array(u32_array) dword_2darray;
-typedef CLASS_DECL_ACME __pointer_array(index_array) index_2darray;
+typedef CLASS_DECL_ACME pointer_array < u32_array > dword_2darray;
+typedef CLASS_DECL_ACME pointer_array < index_array > index_2darray;
 
 
 #include "acme/primitive/geometry2d/point_array.h"

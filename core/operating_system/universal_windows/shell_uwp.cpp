@@ -438,7 +438,7 @@ namespace core
       if (!m_pshell)
       {
 
-         estatus = __compose(m_pshell, __new(::universal_windows::shell));
+         estatus = __construct(m_pshell, __new(::universal_windows::shell));
 
          if (!estatus)
          {

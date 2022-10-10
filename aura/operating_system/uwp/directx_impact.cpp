@@ -385,7 +385,7 @@ namespace universal_windows
          else
          {
 
-            ___pointer < ::user::message > spbase;
+            ::pointer<::user::message>spbase;
 
             auto pkey = __new(::message::key);
 

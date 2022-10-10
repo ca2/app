@@ -50,7 +50,7 @@ namespace os
       bool                       m_bNoDecorations;
 
 
-      simple_ui(__pointer(base_application) papp);
+      simple_ui(::pointer<base_application>papp);
 
       virtual ~simple_ui();
 

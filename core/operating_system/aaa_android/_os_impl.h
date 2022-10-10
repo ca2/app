@@ -46,9 +46,9 @@ extern const char * g_pszCommandLine;
 
 extern const char * g_pszCacheDir;
 
-extern __pointer(os_remote) g_posremote;
+extern ::pointer<os_remote>g_posremote;
 
-extern __pointer(os_local) g_poslocal;
+extern ::pointer<os_local>g_poslocal;
 
 CLASS_DECL_CORE string get_string(jstring jstring);
 

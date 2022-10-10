@@ -34,13 +34,13 @@ namespace colorertake5
 
       }
 
-      __pointer(::xml::node) catalog = document.get_root();
+      ::pointer<::xml::node>catalog = document.get_root();
       if(catalog == nullptr || catalog->get_name() != "catalog")
       {
          throw ::exception(ParserFactoryException(string("bad catalog structure")));
       }
 
-      __pointer(::xml::node) elem = catalog->first_child();
+      ::pointer<::xml::node>elem = catalog->first_child();
       while(elem != nullptr)
       {
          // hrc locations
@@ -57,7 +57,7 @@ namespace colorertake5
             {
                fileErrorHandler = memory_new DefaultErrorHandler();
             }
-            __pointer(::xml::node)loc = elem->first_child();
+            ::pointer<::xml::node>oc = elem->first_child();
             while(loc != nullptr)
             {
                if(loc->get_type() == xml::node_element && loc->get_name() == "location")
@@ -70,7 +70,7 @@ namespace colorertake5
          // hrd locations
          else if (elem->get_type() == xml::node_element && elem->get_name() == "hrd-sets")
          {
-            __pointer(::xml::node)hrd = elem->first_child();
+            ::pointer<::xml::node>rd = elem->first_child();
             while(hrd != nullptr)
             {
                if(hrd->get_type() == xml::node_element && hrd->get_name() == "hrd")
@@ -90,7 +90,7 @@ namespace colorertake5
                   hrdDescriptions.set_at(hrd_class + "-" + hrd_name, hrd_descr);
                   string_map<string_array> & hrdClass = hrdLocations[hrd_class];
                   string_array & hrdLocV =  hrdClass[hrd_name];
-                  __pointer(::xml::node)loc = hrd->first_child();
+                  ::pointer<::xml::node>oc = hrd->first_child();
                   while(loc != nullptr)
                   {
                      if(loc->get_type() == xml::node_element && loc->get_name() == "location")

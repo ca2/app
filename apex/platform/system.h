@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace apex
@@ -15,36 +15,36 @@ namespace apex
 #ifndef WINDOWS
 
 
-      __pointer(::exception_translator)                  m_pexceptiontranslator;
+      ::pointer<::exception_translator>                 m_pexceptiontranslator;
 
 
 #endif
 
-      __composite(::dump_context)                        m_pdumpcontext;
+      ::pointer<::dump_context>                       m_pdumpcontext;
 
-      __composite(::networking::networking)              m_pnetworking;
+      ::pointer<::networking::networking>             m_pnetworking;
 
-      __composite(::crypto::crypto)                      m_pcrypto;
+      ::pointer<::crypto::crypto>                     m_pcrypto;
 
       ::apex::session::map                               m_sessionmap;
 
-      __composite(class machine_event_central)           m_pmachineeventcentral;
+      ::pointer<class machine_event_central>           m_pmachineeventcentral;
 
-      __pointer(::mutex)                                 m_pmutexUserAppData;
-      __pointer(::mutex)                                 m_pmutexSystemAppData;
+      ::pointer<::mutex>                                m_pmutexUserAppData;
+      ::pointer<::mutex>                                m_pmutexSystemAppData;
 
-      __pointer(::mutex)                                 m_pmutexMatter;
+      ::pointer<::mutex>                                m_pmutexMatter;
 
-      __composite(::operating_system::department)        m_pprocess;
+      ::pointer<::operating_system::department>       m_pprocess;
 
-      __composite(::parallelization::threading)          m_pthreading;
+      ::pointer<::parallelization::threading>         m_pthreading;
       size_t                                             m_nSafetyPoolSize; // ideal size_i32
 
       bool                                               m_bFinalizeIfNoSessionSetting;
       bool                                               m_bFinalizeIfNoSession;
 
-      __composite(::dir_system)                          m_pdirsystem;
-      __composite(::file_system)                         m_pfilesystem;
+      ::pointer<::dir_system>                         m_pdirsystem;
+      ::pointer<::file_system>                        m_pfilesystem;
 
 
       string_array                                       m_straCommandLineAccumul;
@@ -57,7 +57,7 @@ namespace apex
 
       
 
-      __composite(class ::apex::history)                m_phistory;
+      ::pointer<class ::apex::history>                m_phistory;
 
 
       system();
@@ -138,7 +138,7 @@ namespace apex
       inline ::apex::node * node() { return m_pnode ? m_pnode->m_papexnode : nullptr; }
 
 
-      virtual __pointer(::factory::factory) & node_factory() override;
+      virtual ::pointer<::factory::factory>& node_factory() override;
 
       virtual void process_init() override;
 
@@ -151,7 +151,7 @@ namespace apex
       virtual void initialize_context() override;
 
 
-      virtual __pointer(::data::node) load_xml(const ::string & pszXml);
+      virtual ::pointer<::data::node>load_xml(const ::string & pszXml);
 
       virtual void verb() override; // ambigous inheritance from ::apex::system/::axis::application
 
@@ -298,7 +298,7 @@ namespace apex
 
       virtual void create_session(index iEdge = 0);
 
-      virtual __pointer(::apex::session) on_create_session(index iEdge);
+      virtual ::pointer<::apex::session>on_create_session(index iEdge);
 
       virtual ::apex::session * session(index iEdge = 0);
 
@@ -362,7 +362,7 @@ namespace apex
 
 
 
-      virtual void discard_to_factory(__pointer(object) pca);
+      virtual void discard_to_factory(::pointer<object>pca);
 
 
 

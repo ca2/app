@@ -12,7 +12,7 @@ namespace account
 
 
       bool                                      m_bOpening;
-      __pointer(::http::cookies)                       m_phttpcookies;
+      ::pointer<::http::cookies>                      m_phttpcookies;
       string                                    m_strSessId;
       string                                    m_strLogin;
       string                                    m_strUserId;
@@ -24,7 +24,7 @@ namespace account
       ::earth::time                          m_timeAuthentication;
 
       ::file::path                              m_pathFolder;
-      __pointer(contact_list)                          m_pcontactlist;
+      ::pointer<contact_list>                         m_pcontactlist;
       string                                    m_strLoginStats;
       string                                    m_strServerInfo;
       string                                    m_strAuthResponse;

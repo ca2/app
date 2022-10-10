@@ -67,7 +67,7 @@ namespace prompt
    void pane_impact::on_change_cur_sel()
    {
       ::userex::pane_tab_impact::on_change_cur_sel();
-      __pointer(frame) pframe = get_typed_parent < frame > ();
+      ::pointer<frame>pframe = get_typed_parent < frame > ();
 
       if(get_impact_id() == FILEMANAGER_IMPACT)
       {
@@ -80,7 +80,7 @@ namespace prompt
       }
       else if(get_impact_id() == CONTEXT_MENU_IMPACT)
       {
-         __pointer(::filemanager::document) pdocument =  (get_impact_uie());
+         ::pointer<::filemanager::document>pdocument =  (get_impact_uie());
          pdocument->browse(pcontext->m_papexcontext->dir().appdata()/ "command/menu", ::e_source_system);
       }
       else
@@ -133,11 +133,11 @@ namespace prompt
             ////pdocument->Initialize(true);
             ////pdocument->update_all_impacts(id_unknown); // 1234);
             ////pdocument->update_all_impacts(id_unknown); //123458);
-            __pointer(::user::impact) pimpact = pdata->m_pdocument->get_impact();
+            ::pointer<::user::impact>pimpact = pdata->m_pdocument->get_impact();
 
             if(pimpact != nullptr)
             {
-               __pointer(::user::frame_window) pframe =  (pimpact->get_parent_frame());
+               ::pointer<::user::frame_window>pframe =  (pimpact->get_parent_frame());
                if(pframe != nullptr)
                {
 #ifdef WINDOWS_DESKTOP
@@ -153,7 +153,7 @@ namespace prompt
       break;
       case impact_primary_command:
       {
-         __pointer(::user::impact) pimpact = create_impact < primary_impact > ();
+         ::pointer<::user::impact>pimpact = create_impact < primary_impact > ();
          if(pimpact != nullptr)
          {
             pimpactdata->m_pdocument = get_document();
@@ -164,17 +164,17 @@ namespace prompt
       break;
 //      case FILEMANAGER_IMPACT:
 //      {
-//         __pointer(::filemanager::document) pdocument = puser->filemanager()->open_child(false, true);
+//         ::pointer<::filemanager::document>pdocument = puser->filemanager()->open_child(false, true);
 //         if(pdocument != nullptr)
 //         {
 //            pdocument->filemanager_data()->m_datakey = "winactionarea_filemanager";
 //            pdocument->Initialize(true);
 //            pdocument->update_all_impacts(id_unknown); //1234);
 //            pdocument->update_all_impacts(id_unknown); //123458);
-//            __pointer(::user::impact) pimpact = pdocument->get_impact();
+//            ::pointer<::user::impact>pimpact = pdocument->get_impact();
 //            if(pimpact != nullptr)
 //            {
-//               __pointer(::user::frame_window) pframe =  (pimpact->get_parent_frame());
+//               ::pointer<::user::frame_window>pframe =  (pimpact->get_parent_frame());
 //               if(pframe != nullptr)
 //               {
 //#ifdef WINDOWS_DESKTOP
@@ -216,13 +216,13 @@ namespace prompt
             //pdocument->Initialize(true);
             //pdocument->update_all_impacts(id_unknown); // 1234);
             //pdocument->update_all_impacts(id_unknown); //123458);
-            __pointer(::user::impact) pimpact = pdata->m_pdocument->get_impact();
+            ::pointer<::user::impact>pimpact = pdata->m_pdocument->get_impact();
 
             //pdocument->FileManagerBrowse();
 
             if(pimpact != nullptr)
             {
-               __pointer(::user::frame_window) pframe =  (pimpact->get_parent_frame());
+               ::pointer<::user::frame_window>pframe =  (pimpact->get_parent_frame());
                if(pframe != nullptr)
                {
 #ifdef WINDOWS_DESKTOP
@@ -240,11 +240,11 @@ namespace prompt
       break;
       case impact_configuration:
       {
-         __pointer(::user::document) pdocument = papp->create_form(this, this);
+         ::pointer<::user::document>pdocument = papp->create_form(this, this);
          if(pdocument == nullptr)
             return;
          ::user::impact_data * pimpactdata = memory_new ::user::impact_data;
-         __pointer(::user::impact) pimpact = pdocument->get_typed_impact < ::user::impact > ();
+         ::pointer<::user::impact>pimpact = pdocument->get_typed_impact < ::user::impact > ();
          auto pupdate = new_update();
          pupdate->m_actioncontext = ::e_source_system;
          ptopic->m_atom = id_browse;
@@ -259,7 +259,7 @@ namespace prompt
 
 
          pimpactdata->m_puserinteraction = (pimpact->get_parent_frame());
-//         __pointer(form_child_frame) pframe = (pimpactdata->m_puserinteraction);
+//         ::pointer<form_child_frame>pframe = (pimpactdata->m_puserinteraction);
          //pframe->m_iTabId = iId;
          pimpactdata->m_pdocument = pdocument;
       }

@@ -11,8 +11,8 @@ namespace linux
    public:
 
 
-      __reference(file_system)      m_pfilesystem;
-      __reference(dir_system)       m_pdirsystem;
+      ::pointer<file_system>     m_pfilesystem;
+      ::pointer<dir_system>      m_pdirsystem;
 
 
       dir_context();

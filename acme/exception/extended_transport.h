@@ -7,7 +7,7 @@
 //
 //   template < typename T >
 //   class transport :
-//      public __pointer(T),
+//      public pointer < T >,
 //      public ::extended::status
 //   {
 //   public:
@@ -21,7 +21,7 @@
 //
 //      template < typename T2 >
 //      transport(T2 * p) :
-//         ___pointer<T>(p)
+//         pointer<T>(p)
 //      {
 //
 //         if (this->is_null())
@@ -35,8 +35,8 @@
 //
 //
 //      template < typename TYPE >
-//      transport(const __pointer(TYPE) & p) :
-//         ___pointer<T>(p),
+//      transport(const ::pointer<TYPE>& p) :
+//         pointer<T>(p),
 //         ::extended::status(::is_null(this->m_p) ? error_null_result : ::success)
 //      {
 //
@@ -44,8 +44,8 @@
 //
 //
 //      template < typename TYPE >
-//      transport(__pointer(TYPE)&& p) :
-//         ___pointer<T>(::move(p)),
+//      transport(::pointer<TYPE>& p) :
+//         pointer<T>(::move(p)),
 //         ::extended::status(::is_null(this->m_p) ? error_null_result : ::success)
 //      {
 //
@@ -54,7 +54,7 @@
 //
 //      template < typename TYPE >
 //      transport(transport < TYPE > && p) :
-//         ___pointer<T>(::move(p)),
+//         pointer<T>(::move(p)),
 //         ::extended::status(::move(p))
 //      {
 //
@@ -117,7 +117,7 @@
 //
 //
 //      transport(const transport & transport) :
-//         __pointer(T)(transport),
+//         pointer < T >(transport),
 //         status(transport)
 //      {
 //
@@ -125,7 +125,7 @@
 //
 //
 //      transport(transport && transport) :
-//         __pointer(T)(::move(transport)),
+//         pointer < T >(::move(transport)),
 //         status(::move(transport))
 //      {
 //
@@ -214,7 +214,7 @@
 //         if (this != &transport)
 //         {
 //
-//            __pointer(T)::operator =(transport);
+//            pointer < T >::operator =(transport);
 //
 //
 //            status::operator=(transport);
@@ -228,7 +228,7 @@
 //      transport & operator =(transport && transport)
 //      {
 //
-//         __pointer(T)::operator =(::move(transport));
+//         pointer < T >::operator =(::move(transport));
 //
 //         status::operator=(::move(transport));
 //
@@ -240,7 +240,7 @@
 //      transport & operator =(T2 * p)
 //      {
 //
-//         __pointer(T)::operator =(p);
+//         pointer < T >::operator =(p);
 //
 //         if (this->is_null())
 //         {
@@ -258,7 +258,7 @@
 //      transport & operator =(const TYPE * p)
 //      {
 //
-//         __pointer(T)::operator =(p);
+//         pointer < T >::operator =(p);
 //
 //         if (this->is_null())
 //         {
@@ -283,7 +283,7 @@
 //      }
 //
 //
-//      transport & operator =(const __pointer(T) & p)
+//      transport & operator =(const pointer < T > & p)
 //      {
 //
 //         return this->operator = (p.m_p);
@@ -292,7 +292,7 @@
 //
 //
 //      template < typename TYPE >
-//      transport & operator =(const __pointer(TYPE) & p)
+//      transport & operator =(const ::pointer<TYPE>& p)
 //      {
 //
 //         return this->operator = (p.m_p);
@@ -324,7 +324,7 @@
 //         //if (m_pexceptiona.is_null() || m_pexceptiona->is_empty())
 //         //{
 //
-//         //   if (__pointer(T)::is_null())
+//         //   if (pointer < T >::is_null())
 //         //   {
 //
 //         //      return error_null_result;
@@ -375,9 +375,9 @@
 //
 //      bool operator !() const { return failed(); }
 //
-//      auto operator ->() { return ___pointer<T>::operator ->(); }
+//      auto operator ->() { return pointer<T>::operator ->(); }
 //
-//      auto operator ->() const { return ___pointer<T>::operator ->(); }
+//      auto operator ->() const { return pointer<T>::operator ->(); }
 //
 //
 //   };

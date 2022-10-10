@@ -192,7 +192,7 @@ namespace user
       if(m_puiOther != nullptr)
       {
 
-         __pointer(::user::check) pcheck = m_puiOther;
+         ::pointer<::user::check>pcheck = m_puiOther;
 
          if(pcheck)
          {

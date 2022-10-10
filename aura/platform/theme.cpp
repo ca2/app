@@ -38,7 +38,7 @@ namespace aura
 
       //}
 
-      //estatus = __compose_new(m_prunnerChangeWeatherState);
+      //estatus = __construct_new(m_prunnerChangeWeatherState);
 
       //if (!estatus)
       //{
@@ -108,7 +108,7 @@ namespace aura
       if (strContextTheme != strTheme)
       {
 
-         __pointer(::aura::application) papp = get_app();
+         ::pointer<::aura::application>papp = get_app();
 
          papp->app_set("theme-" + get_current_weather(), strTheme);
 
@@ -284,7 +284,7 @@ namespace aura
 
       string strCurrentWeather = get_current_weather();
 
-      __pointer(::aura::application) papp = get_app();
+      ::pointer<::aura::application>papp = get_app();
 
       string strTheme = papp->app_get("theme-" + strCurrentWeather);
 
@@ -348,7 +348,7 @@ namespace aura
 
       m_strDayNightTheme = strDayNightTheme;
 
-      __pointer(::aura::application) papp = get_app();
+      ::pointer<::aura::application>papp = get_app();
 
       if (papp->m_bContextTheme)
       {

@@ -15,7 +15,7 @@ namespace multimedia
 
 
       ::file::path                  m_pathOrigin;
-      __pointer(decoder_plugin)     m_pplugin;
+      ::pointer<decoder_plugin>    m_pplugin;
       bool                          m_bDecoderDecode;
 
 

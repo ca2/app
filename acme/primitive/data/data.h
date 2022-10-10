@@ -1,15 +1,15 @@
 #pragma once
 
 
-typedef CLASS_DECL_ACME __pointer_array(::matter) object_array;
+typedef CLASS_DECL_ACME pointer_array < ::matter > object_array;
 
 
 namespace data
 {
 
 
-   typedef CLASS_DECL_ACME __pointer_array(listener) listener_array;
-   typedef CLASS_DECL_ACME id_map < __pointer(data) > data_map;
+   typedef CLASS_DECL_ACME pointer_array < listener > listener_array;
+   typedef CLASS_DECL_ACME id_map < ::pointer<data >>data_map;
 
 
    class CLASS_DECL_ACME data :
@@ -20,7 +20,7 @@ namespace data
 
       friend class ::data::data_container_base;
 
-      __pointer(::data::data_container_base)     m_pdatacontainerbase;
+      ::pointer<::data::data_container_base>    m_pdatacontainerbase;
 
 
    public:

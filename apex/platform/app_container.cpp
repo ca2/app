@@ -269,14 +269,14 @@ namespace apex
    //}
 
 
-   __pointer(::apex::application) application_container::instantiate_application(const char * pszAppId, ::create * pcreate)
+   ::pointer<::apex::application>application_container::instantiate_application(const char * pszAppId, ::create * pcreate)
    {
 
       INFORMATION("apex::application::instantiate_application");
 
       ::e_status estatus = ::success;
 
-      __pointer(::apex::application) papp;
+      ::pointer<::apex::application>papp;
 
       string strAppId(pszAppId);
 
@@ -373,10 +373,10 @@ namespace apex
    }
 
 
-   __pointer(::apex::application) application_container::create_application(const char * pszAppId, bool bSynch, ::create * pcreate)
+   ::pointer<::apex::application>application_container::create_application(const char * pszAppId, bool bSynch, ::create * pcreate)
    {
 
-      __pointer(::apex::application) papp = instantiate_application(pszAppId, pcreate);
+      ::pointer<::apex::application>papp = instantiate_application(pszAppId, pcreate);
 
       if (!papp)
       {
@@ -397,7 +397,7 @@ namespace apex
    }
 
 
-   __pointer(::apex::application) application_container::create_platform(::apex::session * psession)
+   ::pointer<::apex::application>application_container::create_platform(::apex::session * psession)
    {
 
       return nullptr;
@@ -415,10 +415,10 @@ namespace apex
    }
 
 
-   __pointer(::apex::application) application_container::assert_running(const char * pszAppId, const ::string & strLocale, const ::string & strSchema)
+   ::pointer<::apex::application>application_container::assert_running(const char * pszAppId, const ::string & strLocale, const ::string & strSchema)
    {
 
-      __pointer(::apex::application) papp;
+      ::pointer<::apex::application>papp;
 
       {
 
@@ -431,7 +431,7 @@ namespace apex
       if (papp.is_null())
       {
 
-         __pointer(::create) spcreate(e_create_new, this);
+         ::pointer<::create>spcreate(e_create_new, this);
 
          papp = start_application(pszAppId, spcreate, strLocale, strSchema);
 
@@ -442,7 +442,7 @@ namespace apex
    }
 
 
-   __pointer(::apex::application) application_container::start_application(const char * pszAppId, ::create * pcreate, const ::string & strLocale, const ::string & strSchema)
+   ::pointer<::apex::application>application_container::start_application(const char * pszAppId, ::create * pcreate, const ::string & strLocale, const ::string & strSchema)
    {
 
       string strApp(pszAppId);
@@ -552,7 +552,7 @@ namespace apex
    ::apex::application * application_container::application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
    {
 
-      __pointer(::apex::application) papp;
+      ::pointer<::apex::application>papp;
 
       if (m_applicationa.lookup(pszAppId, papp))
       {

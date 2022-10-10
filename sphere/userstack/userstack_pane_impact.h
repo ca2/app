@@ -15,7 +15,7 @@ namespace userstack
 
       
 
-      __pointer(::user::form)                          m_pformOptions;
+      ::pointer<::user::form>                         m_pformOptions;
       ::image_pointer                         m_pimageBk;
       i32                                m_iNewArea;
       i32                                m_iArea;

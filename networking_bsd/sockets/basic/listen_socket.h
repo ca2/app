@@ -46,7 +46,7 @@ namespace sockets_bsd
       void set_should_detach(bool bSet) override;
       bool should_detach() const override;
 
-      //virtual __pointer(::sockets::socket) create_listen_socket();
+      //virtual ::pointer<::sockets::socket>create_listen_socket();
 
       /** close file descriptor. */
       void close() override;

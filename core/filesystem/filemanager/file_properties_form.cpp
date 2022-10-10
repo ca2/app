@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "core/filesystem/filemanager/_filemanager.h"
 //#endif
@@ -53,7 +53,7 @@ namespace filemanager
    }
 
 
-   __pointer(::user::interaction) file_properties_form::open(__pointer(::user::interaction) puserinteractionParent, ::file::item_array & itema)
+   ::pointer<::user::interaction>file_properties_form::open(::pointer<::user::interaction>puserinteractionParent, ::file::item_array & itema)
    {
 
       m_itema = itema;
@@ -75,9 +75,9 @@ namespace filemanager
 
       m_ptemplatePane->do_request(pcreate);
 
-      __pointer(::user::document) pdocument = ::user::__document(pcreate);
+      ::pointer<::user::document>pdocument = ::user::__document(pcreate);
 
-      __pointer(::userex::pane_tab_impact) ptabimpact = pdocument->get_typed_impact < ::userex::pane_tab_impact > ();
+      ::pointer<::userex::pane_tab_impact>ptabimpact = pdocument->get_typed_impact < ::userex::pane_tab_impact > ();
 
       m_ptabimpact = ptabimpact;
 
@@ -132,7 +132,7 @@ namespace filemanager
    }
 
 
-   //__pointer(::user::impact_kit) file_properties_form::get_impact_kit()
+   //::pointer<::user::impact_kit>file_properties_form::get_impact_kit()
    //{
 
    //   auto pimpactkit = __create_new < ::user::impact_kit >();

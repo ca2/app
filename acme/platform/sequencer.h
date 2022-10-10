@@ -11,8 +11,8 @@ class sequencer :
 public:
 
 
-   __pointer(SEQUENCE)                             m_psequence;
-   __pointer(manual_reset_event)                   m_pevent;
+   ::pointer<SEQUENCE>                            m_psequence;
+   ::pointer<manual_reset_event>                  m_pevent;
    array < sequence_step < SEQUENCE > >            m_stepa;
 
    
@@ -93,7 +93,7 @@ CLASS_DECL_ACME void finalize_sequence_critical_section();
 //public:
 //
 //
-//   __pointer(TYPE)          m_p;
+//   ::pointer<TYPE>         m_p;
 //
 //
 //   //TYPE * ();

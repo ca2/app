@@ -64,7 +64,7 @@ namespace draw2d
    };
 
    //class CLASS_DECL_AURA brush_pointer :
-   //   public pointer < brush >
+   //   public ::pointer<brush>
    //{
    //public:
 
@@ -74,23 +74,23 @@ namespace draw2d
    //   }
 
    //   brush_pointer(brush * pbrush) :
-   //      pointer < brush > (pbrush)
+   //      ::pointer<brush>(pbrush)
    //   {
    //   }
 
-   //   brush_pointer(const pointer < brush > & br) :
-   //      pointer < brush > (br)
+   //   brush_pointer(const ::pointer<brush>& br) :
+   //      ::pointer<brush>(br)
    //   {
    //   }
 
    //   brush_pointer(const ::allocer & allocer) :
-   //      pointer < brush > (allocer)
+   //      ::pointer<brush>(allocer)
    //   {
    //   }
 
    //   // create_solid
    //   brush_pointer(const ::allocer & allocer, ::color::color crColor) :
-   //      pointer < brush > (allocer)
+   //      ::pointer<brush>(allocer)
    //   {
    //      m_p->create_solid(crColor);
    //   }
@@ -98,13 +98,13 @@ namespace draw2d
    //   /*
    //         // CreateHatchBrush
    //         brush_pointer(::object * pobject, i32 nIndex, ::color::color crColor) :
-   //            pointer < brush > (pobject)
+   //            ::pointer<brush>(pobject)
    //         {
    //            m_p->construct(nIndex, crColor);
    //         }
    //         // CreatePatternBrush
    //         brush_pointer(::object * pobject, bitmap * pbitmap) :
-   //            pointer < brush > (pobject)
+   //            ::pointer<brush>(pobject)
    //         {
    //            m_p->construct(pbitmap);
    //         }
@@ -114,7 +114,7 @@ namespace draw2d
    //   brush_pointer & operator = (::draw2d::brush * pbrush)
    //   {
 
-   //      pointer < brush >::operator = (pbrush);
+   //      ::pointer<brush>:operator = (pbrush);
 
    //      return *this;
 

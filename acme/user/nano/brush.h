@@ -24,7 +24,7 @@ public:
 //{
 //
 //
-//   __pointer(nano_brush) create_solid_brush(::object * pobject, color32_t color);
+//   ::pointer<nano_brush> create_solid_brush(::object * pobject, color32_t color);
 //
 //
 //} // namespace nano

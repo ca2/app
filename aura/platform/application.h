@@ -43,12 +43,12 @@ namespace aura
 
       //bool                                            m_bReadStringTable;
 
-      //__pointer(::application_menu)             m_pappmenu;
+      //::pointer<::application_menu>            m_pappmenu;
 
-      //__composite(::game::game)                       m_pgame;
-      __reference(::user::interaction)                m_puserinteractionMain;
+      //::pointer<::game::game>                      m_pgame;
+      ::pointer<::user::interaction>               m_puserinteractionMain;
 
-      __composite(shell_open)                         m_pshellopen;
+      ::pointer<shell_open>                        m_pshellopen;
 
 
       ::user::primitive *                             m_puiCurrent;
@@ -69,14 +69,14 @@ namespace aura
       reference_addressa                              m_objectptraEventHook;
 
       ::mutex                                           m_mutexFrame;
-      __composite(::user::interaction_array)            m_puserinteractiona;
-      __composite(::user::interaction_array)            m_puserinteractionaFrame;
+      ::pointer<::user::interaction_array>           m_puserinteractiona;
+      ::pointer<::user::interaction_array>           m_puserinteractionaFrame;
 
       //e_thread                                        m_ethreadClose;
 
       //EExclusiveInstance                              m_eexclusiveinstance;
 
-      //string_map < __pointer(::acme::exclusive) >     m_mapExclusive;
+      //string_map < ::pointer<::acme::exclusive >>    m_mapExclusive;
 
       //bool                                            m_bService;
 
@@ -91,9 +91,9 @@ namespace aura
       //string_table                                    m_stringtableStd;
       //map < atom, atom, string, string >                  m_stringmap;
 
-      //id_map < __pointer(::channel) >                 m_mapNotify;
+      //id_map < ::pointer<::channel >>                m_mapNotify;
 
-      //__composite(context_image)                        m_pcontextimage;
+      //::pointer<context_image>                       m_pcontextimage;
 
       //bool                                            m_bInitializeDataCentral;
 
@@ -101,7 +101,7 @@ namespace aura
 
       //i32                                             m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
 
-      //__pointer(::simpledb::server)                   m_psimpledb;
+      //::pointer<::simpledb::server>                  m_psimpledb;
 
       //::userex::pane_tab_impact *                       m_pmainpane;
 
@@ -135,8 +135,8 @@ namespace aura
 
 //      i32                                             m_iResourceId;
 
-      //__composite(::experience::department)           m_pexperience;
-      __composite(::aura::theme)                        m_ptheme;
+      //::pointer<::experience::department>          m_pexperience;
+      ::pointer<::aura::theme>                       m_ptheme;
 
 
       //string_array                                    m_straAppInterest;
@@ -252,8 +252,8 @@ namespace aura
       virtual void on_uninstall() override;
 
 
-      virtual void update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative) override;
-      virtual void update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const ::string & strLocale, const ::string & strStyle) override;
+      virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative) override;
+      virtual void update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative, const ::string & strLocale, const ::string & strStyle) override;
 
       //virtual void SetCurrentHandles() override;
 
@@ -261,7 +261,7 @@ namespace aura
       //virtual void process_exception(const ::exception & e) override;
 
 
-      //virtual __pointer(::aura::application) assert_running(const ::string & pszAppId) override;
+      //virtual ::pointer<::aura::application>assert_running(const ::string & pszAppId) override;
 
       virtual bool is_running() override;
 
@@ -430,7 +430,7 @@ namespace aura
       virtual string get_theme() override;
 
 
-      //virtual __pointer(::acme::exclusive) get_exclusive(string str, LPSECURITY_ATTRIBUTES psa) override;
+      //virtual ::pointer<::acme::exclusive>get_exclusive(string str, LPSECURITY_ATTRIBUTES psa) override;
       //virtual bool exclusive_fails(string str, LPSECURITY_ATTRIBUTES psa) override;
 
 
@@ -446,7 +446,7 @@ namespace aura
       //virtual void record(::create * pcommand);
 
       //virtual void on_event(::u64 u, ::object * pobject) override;
-      //virtual __pointer(::thread_toolset) create_thread_toolset(::enum_task_tool etool);
+      //virtual ::pointer<::thread_toolset>create_thread_toolset(::enum_task_tool etool);
 
 
       //// ca2verses
@@ -519,7 +519,7 @@ namespace aura
 
       //virtual string get_version() override;
 
-//      virtual __pointer(::interprocess_intercommunication) create_interprocess_intercommunication() override;
+//      virtual ::pointer<::interprocess_intercommunication>create_interprocess_intercommunication() override;
 
       //virtual void process_init();
       //virtual void process_term() override;
@@ -797,9 +797,9 @@ namespace aura
 
 
 
-      virtual __pointer(::user::message) get_user_message(MESSAGE * pmsg);
+      virtual ::pointer<::user::message>get_user_message(MESSAGE * pmsg);
 
-      virtual bool get_frame(__pointer(::user::interaction) & pinteraction);
+      virtual bool get_frame(::pointer<::user::interaction>& pinteraction);
       virtual void add_user_interaction(::user::interaction * puserinteraction);
       virtual void erase_user_interaction(::user::interaction * puserinteraction);
 
@@ -851,7 +851,7 @@ namespace aura
       virtual void close(::apex::enum_end eend) override;
 
 
-      //user virtual __pointer(::user::document) defer_create_impact(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom = nullptr);
+      //user virtual ::pointer<::user::document>defer_create_impact(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom = nullptr);
 
 
       virtual void HideApplication() override;
@@ -980,7 +980,7 @@ namespace aura
 
 
 
-      virtual i32 track_popup_menu(const ::string & pszMatter, const ::point_i32& point, __pointer(::user::interaction) puserelement);
+      virtual i32 track_popup_menu(const ::string & pszMatter, const ::point_i32& point, ::pointer<::user::interaction>puserelement);
 
       virtual bool get_fs_size(string& strSize, const ::string & pszPath, bool& bPending) override;
       virtual bool get_fs_size(i64& i64Size, const ::string & pszPath, bool& bPending) override;
@@ -988,7 +988,7 @@ namespace aura
       virtual void set_title(const ::string & pszTitle) override;
 
 
-      virtual bool _001CloseApplicationByUser(__pointer(::user::interaction) puserinteractionExcept);
+      virtual bool _001CloseApplicationByUser(::pointer<::user::interaction>puserinteractionExcept);
 
       void update_app_interest();
       void ensure_app_interest();
@@ -1002,7 +1002,7 @@ namespace aura
 
 
 
-//      virtual __pointer(::apex::application) create_platform(::apex::session* psession) override;
+//      virtual ::pointer<::apex::application>create_platform(::apex::session* psession) override;
 
 
 
@@ -1010,7 +1010,7 @@ namespace aura
       void data_on_after_change(::database::client* pclient, const ::database::key& atom, const ::payload & payload, ::topic * ptopic) override;
 
 
-      virtual i32 GetVisibleTopLevelFrameCountExcept(__pointer(::user::interaction) puserinteractionExcept);
+      virtual i32 GetVisibleTopLevelFrameCountExcept(::pointer<::user::interaction>puserinteractionExcept);
       virtual i32 GetVisibleFrameCount();
 
       virtual void prepare_form(atom atom, ::form_document* pformdocument);
@@ -1060,7 +1060,7 @@ namespace aura
 
 //CLASS_DECL_AURA ::u32 c_cdecl application_thread_procedure(LPVOID pvoid);
 
-//typedef __pointer(::aura::application) (*LPFN_instantiate_application)(__pointer(::aura::application) pappParent, const ::string & pszId);
+//typedef ::pointer<::aura::application>(*LPFN_instantiate_application)(::pointer<::aura::application>appParent, const ::string & pszId);
 
 //extern CLASS_DECL_AURA LPFN_instantiate_application g_lpfn_instantiate_application;
 

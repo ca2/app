@@ -25,10 +25,10 @@ namespace user
 
       bool                                               m_bCreated;
       string                                             m_strId;
-      __pointer(::user::interaction)               m_puserinteractionNotify;
-      //__pointer(notify_icon_listener)                 m_plistener;
-      __pointer_array(::user::interaction)         m_userinteractionaHidden;
-      __pointer(::windowing::icon)                 m_piconCurrent;
+      ::pointer<::user::interaction>              m_puserinteractionNotify;
+      //::pointer<notify_icon_listener>                m_plistener;
+      pointer_array < ::user::interaction >         m_userinteractionaHidden;
+      ::pointer<::windowing::icon>                m_piconCurrent;
 
 
       notify_icon();

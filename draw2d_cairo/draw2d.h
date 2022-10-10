@@ -24,7 +24,7 @@ namespace draw2d_cairo
 
       };
 
-      string_map < __pointer(private_font) > m_mapPrivateFont;
+      string_map < ::pointer<private_font >>m_mapPrivateFont;
 
       draw2d();
       ~draw2d() override;

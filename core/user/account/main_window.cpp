@@ -1,4 +1,4 @@
-// From simple_ui.cpp by camilo on 2022-08-28 11:46 <3ThomasBorregaardSorensen!!
+﻿// From simple_ui.cpp by camilo on 2022-08-28 11:46 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 #include "acme/constant/timer.h"
 #include "acme/platform/timer.h"
@@ -62,7 +62,7 @@ namespace account
 
       //estatus = 
 
-      __refer(m_pcredentials, pcredentials);
+      m_pcredentials = pcredentials;
 
       //if (!estatus)
       //{
@@ -73,7 +73,7 @@ namespace account
 
       //estatus = 
 
-      __compose_new(m_plogin);
+      __construct_new(m_plogin);
 
       //if (!estatus)
       //{
@@ -104,7 +104,7 @@ namespace account
    void main_window::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       if (pcreate->previous())
       {

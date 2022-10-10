@@ -307,7 +307,7 @@ text_stream & text_stream::operator <<(const char * psz)
 text_stream & text_stream::operator <<(const ::atom & atom)
 {
 
-   operator <<(atom.as_string());
+   operator <<(atom.string());
 
    return *this;
 

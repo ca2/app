@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 ////#include "base/user/simple/_component.h"
 #include "aura/windowing/window.h"
 #include "acme/platform/system_setup.h"
@@ -144,7 +144,7 @@ namespace base
 
       //auto estatus = 
       
-      __compose_new(m_pmenucentral);
+      __construct_new(m_pmenucentral);
 
       //if (!estatus)
       //{
@@ -256,11 +256,10 @@ namespace base
 
       }
 
-
       try
       {
 
-         __release(m_pmenucentral);
+         m_pmenucentral.release();
 
       }
       catch (...)
@@ -279,7 +278,7 @@ namespace base
       for (auto& style : m_mapUserStyle.values())
       {
 
-         __finalize(style);
+         style.release();
 
       }
 
@@ -336,11 +335,11 @@ namespace base
       for (auto& pappApex : psession->m_applicationa)
       {
 
-         __pointer(::base::application) pappItem = pappApex;
+         ::pointer<::base::application>pappItem = pappApex;
 
          synchronous_lock synchronouslock(&pappItem->m_mutexFrame);
 
-         __pointer(::user::interaction) pinteraction;
+         ::pointer<::user::interaction>pinteraction;
 
          while (pappItem->get_frame(pinteraction))
          {
@@ -422,7 +421,7 @@ namespace base
    }
 
 
-   __pointer(::user::menu_interaction) user::create_menu_button(::user::style* pstyle, ::user::menu_item* pmenuitem)
+   ::pointer<::user::menu_interaction>user::create_menu_button(::user::style* pstyle, ::user::menu_item* pmenuitem)
    {
 
       auto pmenubutton = __new(::user::menu_button);
@@ -434,11 +433,11 @@ namespace base
 
          pmenubutton->set_button_style(::user::button::e_style_image_and_text);
 
-         auto eimage = (enum_image)pmenuitem->m_pmenu->payload("image_transform").i32();
+         //auto eimage = (enum_image)pmenuitem->m_pmenu->payload("image_transform").i32();
 
-         ::image_pointer pimage = pmenuitem->m_pimage + eimage;
+         //::image_pointer pimage = *pmenuitem->m_pimage + eimage;
 
-         pmenubutton->LoadBitmaps(pimage);
+         //pmenubutton->LoadBitmaps(pimage);
 
       }
 
@@ -447,7 +446,7 @@ namespace base
    }
 
 
-//   __pointer(::user::impact) user::get_impact()
+//   ::pointer<::user::impact>user::get_impact()
 //   {
 //
 //      return nullptr;
@@ -466,10 +465,10 @@ namespace base
 #ifdef WINDOWS_DESKTOP
 
 
-   CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, atom atom, hinstance hInstance, void * pParam);
+   CLASS_DECL_BASE ::pointer<::user::interaction>create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, atom atom, hinstance hInstance, void * pParam);
 
 
-   CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
+   CLASS_DECL_BASE ::pointer<::user::interaction>create_virtual_window(::object * pobject, u32 dwExStyle, const ::string & pClassName, const ::string & pWindowName, u32 uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
    {
 
       __UNREFERENCED_PARAMETER(dwExStyle);
@@ -673,7 +672,7 @@ namespace base
    //   if (m_pfontlistSingleColumn.is_null())
    //   {
 
-   //      __compose(m_pfontlistSingleColumn, __create_new < ::write_text::font_list > ());
+   //      __construct(m_pfontlistSingleColumn, __create_new < ::write_text::font_list > ());
 
    //      m_pfontlistSingleColumn->m_etype = ::write_text::font_list::type_single_column;
 
@@ -698,12 +697,12 @@ namespace base
 //
 //      if (psession->m_bShowPlatform)
 //      {
-//         //__pointer(::simple_frame_window) pframeApp = get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_impact_uie();
+//         //::pointer<::simple_frame_window>pframeApp = get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_impact_uie();
 //         //if(pframeApp != nullptr)
 //         //{
 //         //   pframeApp->display(e_display_full_screen);
 //         //}
-//         //__pointer(::simple_frame_window) pframe = get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_parent_frame();
+//         //::pointer<::simple_frame_window>pframe = get_document()->get_typed_impact < ::bergedge::pane_impact >()->get_parent_frame();
 //         //if(pframe != nullptr)
 //         //{
 //         //   pframe->display(e_display_restored);
@@ -713,7 +712,7 @@ namespace base
 //      {
 //         //if(get_document() != nullptr && get_document()->get_typed_impact < ::bergedge::impact >() != nullptr)
 //         //{
-//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_impact < ::bergedge::impact >()->get_parent_frame();
+//         //   ::pointer<::simple_frame_window>pframe = get_document()->get_typed_impact < ::bergedge::impact >()->get_parent_frame();
 //         //   if(pframe != nullptr)
 //         //   {
 //         //      pframe->display(e_display_restored);
@@ -743,7 +742,7 @@ namespace base
 //   }
 
 
-   //__pointer(::user::document) session::get_document()
+   //::pointer<::user::document>session::get_document()
    //{
 
    //   //return m_pdocs->m_pbergedgedocument;
@@ -752,7 +751,7 @@ namespace base
    //}
 
 
-   //__pointer(::user::impact) session::get_impact()
+   //::pointer<::user::impact>session::get_impact()
    //{
 
    //   if (get_document() == nullptr)
@@ -767,13 +766,13 @@ namespace base
    //}
 
 
-   //__pointer(::user::document) session::get_platform()
+   //::pointer<::user::document>session::get_platform()
    //{
    //   //return m_pdocs->m_pplatformdocument;
    //   return nullptr;
    //}
 
-   //__pointer(::user::document) session::get_nature()
+   //::pointer<::user::document>session::get_nature()
    //{
    //   //return m_pdocs->m_pnaturedocument;
    //   return nullptr;
@@ -993,7 +992,7 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_menu_text(::user::interaction* pinteraction, string strXml, i32 iFlags, ::channel* pchannelNotify)
+   ::pointer<::user::menu>user::track_popup_xml_menu_text(::user::interaction* pinteraction, string strXml, i32 iFlags, ::channel* pchannelNotify)
    {
 
       auto pwindow = pinteraction->window();
@@ -1005,7 +1004,7 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const ::string & pszMatter, i32 iFlags, ::channel* pchannelNotify)
+   ::pointer<::user::menu>user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const ::string & pszMatter, i32 iFlags, ::channel* pchannelNotify)
    {
 
       auto pwindow = pinteraction->window();
@@ -1032,7 +1031,7 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_menu_text(::user::interaction* pinteraction, string strXml, i32 iFlags, ::message::message * pmessage, ::channel* pchannelNotify)
+   ::pointer<::user::menu>user::track_popup_xml_menu_text(::user::interaction* pinteraction, string strXml, i32 iFlags, ::message::message * pmessage, ::channel* pchannelNotify)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
@@ -1046,7 +1045,7 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const ::string & pszMatter, i32 iFlags, ::message::message * pmessage, ::channel* pchannelNotify)
+   ::pointer<::user::menu>user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const ::string & pszMatter, i32 iFlags, ::message::message * pmessage, ::channel* pchannelNotify)
    {
 
       auto pmouse = pmessage->m_union.m_pmouse;
@@ -1061,7 +1060,7 @@ namespace base
    bool user::track_popup_menu(::user::interaction* pinteraction, ::user::menu_item * pitem, i32 iFlags, const ::point_i32 & point, ::channel* pchannelNotify)
    {
 
-      __pointer(::user::menu) pmenu = __create <  ::user::menu  > ();
+      ::pointer<::user::menu>pmenu = __create <  ::user::menu  > ();
 
       pmenu->m_pmenuitem = pitem;
 
@@ -1079,10 +1078,10 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_menu(::user::interaction* pinteraction, const ::payload & varXml, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum, ::channel* pchannelNotify)
+   ::pointer<::user::menu>user::track_popup_xml_menu(::user::interaction* pinteraction, const ::payload & varXml, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum, ::channel* pchannelNotify)
    {
 
-      __pointer(::user::menu) pmenu = pinteraction->__create <  ::user::menu  > ();
+      ::pointer<::user::menu>pmenu = pinteraction->__create <  ::user::menu  > ();
 
       pmenu->m_sizeMinimum = sizeMinimum;
 
@@ -1111,7 +1110,7 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const ::string & pszMatter, i32 iFlags, const ::point_i32 & pointParam, ::channel * pchannelNotify)
+   ::pointer<::user::menu>user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const ::string & pszMatter, i32 iFlags, const ::point_i32 & pointParam, ::channel * pchannelNotify)
    {
 
       string strMatterSource(pszMatter);
@@ -1161,7 +1160,7 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_menu_file(::user::interaction * pinteraction, ::payload varXmlFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum, ::channel* pchannelNotify)
+   ::pointer<::user::menu>user::track_popup_xml_menu_file(::user::interaction * pinteraction, ::payload varXmlFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum, ::channel* pchannelNotify)
    {
 
       auto pcontext = get_context();
@@ -1170,7 +1169,7 @@ namespace base
 
       return track_popup_xml_menu(pinteraction, strXml, iFlags, point, sizeMinimum, pchannelNotify);
 
-      //__pointer(::user::menu) pmenu = alloc <  ::user::menu  > ();
+      //::pointer<::user::menu>pmenu = alloc <  ::user::menu  > ();
 
       //pmenu->m_sizeMinimum = sizeMinimum;
 

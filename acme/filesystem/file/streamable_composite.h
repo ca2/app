@@ -12,7 +12,7 @@ namespace file
    public:
 
 
-      __pointer(streamable)      m_pstreamable;
+      ::pointer<streamable>     m_pstreamable;
 
 
       streamable_composite();

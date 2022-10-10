@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/operating_system.h"
@@ -44,12 +44,12 @@ namespace user
 
 #endif
 
-      __pointer(interaction_impl)                  m_pimpl;
-      //__reference(prodevian)                 m_pprodevian;
+      ::pointer<interaction_impl>                 m_pimpl;
+      //::pointer<prodevian>                m_pprodevian;
       oswindow                                     m_oswindow;
 
       manual_reset_event                           m_evApplyVisual;
-      __pointer(::windowing::windowing)         m_pwindowing;
+      ::pointer<::windowing::windowing>        m_pwindowing;
 
 
       thread();
@@ -112,7 +112,7 @@ namespace user
       virtual void enumerate_composite(matter_array& a);
 
       //virtual void set_finish_composites(::property_object * pcontextobjectFinish) override;
-      void destroy_composites() override;
+      void on_destroy() override;
 
       void start_window_visual();
 

@@ -41,24 +41,24 @@ namespace draw2d
       static double g_dEmboss;
       void * m_pimpl;
 
-      i32_map < __pointer(memory) > m_alpha_spread__24CC_filterMap;
-      i32_map < __pointer(memory) > m_alpha_spread__32CC_filterMap;
+      i32_map < ::pointer<memory >>m_alpha_spread__24CC_filterMap;
+      i32_map < ::pointer<memory >>m_alpha_spread__32CC_filterMap;
 
 
-      __pointer(class ::draw2d::api)                           m_papi;
+      ::pointer<class ::draw2d::api>                           m_papi;
 
 
-      __pointer(::write_text::write_text)                      m_pwritetext;
+      ::pointer<::write_text::write_text>                     m_pwritetext;
 
 
       critical_section                                         m_criticalsectionObjectList;
-      __pointer_array(::draw2d::object)                        m_objecta;
+      pointer_array < ::draw2d::object >                        m_objecta;
 
       critical_section                                         m_criticalsectionImageList;
-      __pointer(image_array)                                   m_pimagea;
+      ::pointer<image_array>                                  m_pimagea;
 
       critical_section                                         m_criticalsectionGraphicsContextList;
-      __pointer_array(graphics)                                m_graphicsa;
+      pointer_array < graphics >                                m_graphicsa;
 
 
       draw2d();
@@ -104,7 +104,7 @@ namespace draw2d
       virtual void destroy() override;
 
 
-      __pointer(save_image) new_save_image(const ::payload & payloadFile, const ::payload & varOptions);
+      ::pointer<save_image>new_save_image(const ::payload & payloadFile, const ::payload & varOptions);
 
 
       virtual graphics_pointer create_graphics(::draw2d::host * pdraw2dhost);
@@ -125,7 +125,7 @@ namespace draw2d
       enum_format text_to_format(string str);
 
       virtual void initialize_write_text();
-      virtual __pointer(::factory::factory) & write_text_factory();
+      virtual ::pointer<::factory::factory>& write_text_factory();
 
 
       virtual void term_instance() override;

@@ -96,7 +96,7 @@ namespace aura
 
    ::mutex * g_pmutexChildren;
    ::mutex * g_pmutexThreadWaitClose;
-   //string_map < __pointer(::acme::library) >* g_pmapLibrary;
+   //string_map < ::pointer<::acme::library >> g_pmapLibrary;
    //string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
 
@@ -335,7 +335,7 @@ namespace aura
 //
 //      //::map < void *, void *,::aura::application *, ::aura::application * > * g_pmapAura;
 //
-//      //string_map < __pointer(::acme::library) > * g_pmapLibCall;
+//      //string_map < ::pointer<::acme::library >>* g_pmapLibCall;
 //
 //      //g_pheap = nullptr;
 //
@@ -574,7 +574,7 @@ namespace aura
 //
 //      //psystem->g_mutexLibrary = memory_new ::mutex;
 //
-//      //g_pmapLibrary = memory_new string_map < __pointer(::acme::library) >();
+//      //g_pmapLibrary = memory_new string_map < ::pointer<::acme::library >>);
 //
 //      //g_pmapNewAuraLibrary = memory_new string_map < PFN_NEW_AURA_LIBRARY >();
 //
@@ -599,7 +599,7 @@ namespace aura
 //
 //#endif
 //
-//      //g_pmapLibCall = memory_new string_map < __pointer(::acme::library) >();
+//      //g_pmapLibCall = memory_new string_map < ::pointer<::acme::library >>);
 //
 //#ifdef MEMORY_COUNTERS
 //

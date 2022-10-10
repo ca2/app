@@ -32,10 +32,10 @@ namespace user
 
       };
 
-      __pointer_array(::user::control_bar)      m_controlbara; // array of all control bars that have this interaction_impl as their dock site
+      pointer_array < ::user::control_bar >      m_controlbara; // array of all control bars that have this interaction_impl as their dock site
 
       //bool                                         m_bAutoWindowFrame;
-      tristate                                      m_bWindowFrame;
+      tristate                                  m_bWindowFrame;
       bool                                         m_bLayered;
       i32                                          m_iFrameData;
       ::atom                                         m_atomHelp;         // xxx mrs
@@ -63,7 +63,7 @@ namespace user
       ::u32                                        m_nIDLastMessage;      // last displayed message string IDS
       ::user::impact *                             m_pviewActive;       // current active ::user::impact
       ::u32                                        m_cModalStack;         // BeginModalState depth
-      __pointer(::user::interaction_ptra)                     m_puiptraDisable;       // windows disabled because of BeginModalState
+      ::pointer<::user::interaction_ptra>                    m_puiptraDisable;       // windows disabled because of BeginModalState
 //#ifdef WINDOWS_DESKTOP
 //      HMENU                                      m_hMenuAlt;           // menu to update to (nullptr means default)
 //#endif
@@ -73,7 +73,7 @@ namespace user
    ::u32                                           m_nIdleFlags;          // set of bit flags for idle processing
 
       ::user::impact *                                m_pviewMain;
-      id_map < __pointer(::user::toolbar) >      m_mapToolbar;
+      id_map < ::pointer<::user::toolbar >>     m_mapToolbar;
 
 
 
@@ -171,10 +171,10 @@ namespace user
       void hide_control_bar(::user::control_bar * pcontrolbar) override;
 
 
-      virtual __pointer(toolbar) get_toolbar(const ::atom & idToolBar, bool bCreate = true, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar");
+      virtual ::pointer<toolbar>get_toolbar(const ::atom & idToolBar, bool bCreate = true, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar");
 
 
-      virtual __pointer(toolbar) create_toolbar(const ::atom & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar") ;
+      virtual ::pointer<toolbar>create_toolbar(const ::atom & idToolbar, const ::string & strToolbar = nullptr, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP, const ::type & type = "user::toolbar") ;
 
       //   template < class TOOLBAR >
       // bool load_toolbar(atom idToolBar, const ::string & pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
@@ -200,7 +200,7 @@ namespace user
       // active ::user::impact or nullptr, bNotify == false if focus should not be set
 
       // Active frame (for frames within frames -- MDI)
-      virtual __pointer(::user::frame_window) GetActiveFrame();
+      virtual ::pointer<::user::frame_window>GetActiveFrame();
 
       // For customizing the default messages on the status bar
       virtual void GetMessageString(::u32 nID, string & rMessage) const;
@@ -230,7 +230,7 @@ namespace user
       void ShowOwnedWindows(bool bShow);
 
 
-      virtual __pointer(::user::interaction) GetMessageBar();
+      virtual ::pointer<::user::interaction>GetMessageBar();
 
       // border space negotiation
       enum BorderCmd { borderGet = 1, borderRequest = 2, borderSet = 3 };
@@ -293,11 +293,11 @@ namespace user
       //LRESULT OnSetMessageString(WPARAM wParam, LPARAM lParam);
       //LRESULT OnHelpPromptAddr(WPARAM wParam, LPARAM lParam);
       //void OnIdleUpdateCmdUI(::message::message * pmessage);
-      //void OnEnterIdle(::u32 nWhy, __pointer(::user::interaction) pWho);
-      void OnSetFocus(__pointer(::user::interaction) pOldWnd);
+      //void OnEnterIdle(::u32 nWhy, ::pointer<::user::interaction>pWho);
+      void OnSetFocus(::pointer<::user::interaction>pOldWnd);
       void OnSize(::u32 nType, i32 cx, i32 cy);
       bool OnEraseBkgnd(::image * pimage);
-      //void OnActivate(::u32 nState, __pointer(::user::interaction) pWndOther, bool bMinimized);
+      //void OnActivate(::u32 nState, ::pointer<::user::interaction>pWndOther, bool bMinimized);
       //bool OnNcActivate(bool bActive);
       //void OnSysCommand(::u32 nID, LPARAM lParam);
       bool OnQueryEndSession();
@@ -305,12 +305,12 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      virtual void OnDropFiles(HDROP hDropInfo);
 //#endif
-      bool OnSetCursor(__pointer(::user::interaction) pwindow, ::u32 nHitTest, const ::atom & atom);
+      bool OnSetCursor(::pointer<::user::interaction>pwindow, ::u32 nHitTest, const ::atom & atom);
       //LRESULT OnCommandHelp(WPARAM wParam, LPARAM lParam);
       //LRESULT OnHelpHitTest(WPARAM wParam, LPARAM lParam);
       //LRESULT OnActivateTopLevel(WPARAM wParam, LPARAM lParam);
       void OnEnable(bool bEnable);
-      void OnPaletteChanged(__pointer(::user::interaction) pFocusWnd);
+      void OnPaletteChanged(::pointer<::user::interaction>pFocusWnd);
       bool OnQueryNewPalette();
       //virtual LRESULT OnDDEInitiate(WPARAM wParam, LPARAM lParam);
       //virtual LRESULT OnDDEExecute(WPARAM wParam, LPARAM lParam);
@@ -324,7 +324,7 @@ namespace user
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
 
-      __pointer(::user::interaction) WindowDataGetWnd();
+      ::pointer<::user::interaction>WindowDataGetWnd();
 
 
 

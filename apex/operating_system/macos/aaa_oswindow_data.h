@@ -23,7 +23,7 @@ public:
 
    nswindow                      m_nswindow;
    ::user::interaction_impl *    m_pimpl;
-   __pointer(::message_queue)               m_pmq;
+   ::pointer<::message_queue>              m_pmq;
 
    iptr_to_iptr *          m_plongmap;
 

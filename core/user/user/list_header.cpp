@@ -655,7 +655,7 @@ namespace user
 
       auto pwindowing = windowing();
 
-      __pointer(::windowing::cursor) pcursor;
+      ::pointer<::windowing::cursor>pcursor;
 
       if(m_bHover && m_eelementHover == ElementDivider)
       {
@@ -950,7 +950,7 @@ namespace user
    ::point_i32 list_header::get_parent_context_offset() const
    {
 
-      __pointer(::user::interaction) puser = get_parent();
+      ::pointer<::user::interaction>puser = get_parent();
 
       if (puser.is_null())
       {

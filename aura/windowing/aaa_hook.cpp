@@ -14,7 +14,7 @@ namespace windowing
    }
 
 
-   __pointer_array(hook) g_x11hooka;
+   pointer_array < hook > g_x11hooka;
 
 
    void hook::do_hook()

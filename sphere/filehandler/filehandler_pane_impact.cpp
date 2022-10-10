@@ -106,14 +106,14 @@ namespace filehandler
    void pane_impact::on_create_impact(::user::impact_data * pimpactdata)
    {
 
-      //         __pointer(application) papp =  (( (get_parent_frame()))->get_app());
+      //         ::pointer<application>papp =  (( (get_parent_frame()))->get_app());
 
       string strFile = pimpactdata->m_atom;
 
       if(::str().begins_eat_ci(strFile, "default_file_handler://"))
       {
 
-         __pointer(::filehandler::impact) pimpact = create_impact < ::filehandler::impact > (pimpactdata);
+         ::pointer<::filehandler::impact>pimpact = create_impact < ::filehandler::impact > (pimpactdata);
 
          pimpactdata->m_puserinteraction = pimpact;
 
@@ -128,17 +128,17 @@ namespace filehandler
       {
       case impact_new:
       {
-         /*               __pointer(::create) pcreate(this);
+         /*               ::pointer<::create>pcreate(this);
          pcreate->m_bMakeVisible = true;
          pcreate->m_puserinteractionParent = this;
          rtprxsp(::document) pdocument = dynamic_cast < rtprxsp(::document) > (papp->m_ptemplateVideo->do_request(pcreate));
          if(pdocument != nullptr)
          {
-         __pointer(::user::impact) pimpact = pdocument->get_impact();
+         ::pointer<::user::impact>pimpact = pdocument->get_impact();
          pimpact->call_update(INITIAL_UPDATE);
          if(pimpact != nullptr)
          {
-         __pointer(::user::frame_window) pframe =  (pimpact->get_parent_frame());
+         ::pointer<::user::frame_window>pframe =  (pimpact->get_parent_frame());
          if(pframe != nullptr)
          {
          pimpactdata->m_pdocument = pdocument;
@@ -152,7 +152,7 @@ namespace filehandler
          cc.m_pCurrentDoc = get_document();
          cc.m_typeNewImpact =  __type(rtprx::impact);
 
-         __pointer(::user::impact) pimpact = (CreateImpact(&cc, 101, this));
+         ::pointer<::user::impact>pimpact = (CreateImpact(&cc, 101, this));
          if(pimpact != nullptr)
          {
          pimpactdata = memory_new ::user::impact_data();

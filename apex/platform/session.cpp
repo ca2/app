@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "apex/operating_system.h"
 #include "acme/id.h"
 //#include "apex/platform/app_core.h"
@@ -496,7 +496,7 @@ namespace apex
       //}
 
       //auto estatus =
-      __compose_new(m_ptextcontext);
+      __construct_new(m_ptextcontext);
 
       //if (!estatus)
       //{
@@ -609,7 +609,7 @@ namespace apex
    void session::on_message_erase_application(::message::message* pmessage)
    {
 
-      __pointer(::apex::application) papp(pmessage->m_lparam);
+      ::pointer<::apex::application>papp(pmessage->m_lparam);
 
       erase_application(papp);
 
@@ -669,7 +669,7 @@ namespace apex
 
       }
 
-      INFORMATION("::apex::session::on_request(__pointer(::create)) " << __type_name(this));
+      INFORMATION("::apex::session::on_request(::pointer<::create> " << __type_name(this));
 
       string strAppId = pcreate->m_strAppId;
 
@@ -740,7 +740,7 @@ namespace apex
             //create_bergedge(pcreate);
             //if(get_document() != nullptr && get_document()->get_typed_impact < ::bergedge::impact >() != nullptr)
             //{
-            //   __pointer(::simple_frame_window) pframe =  (get_document()->get_typed_impact < ::bergedge::impact >()->get_parent_frame());
+            //   ::pointer<::simple_frame_window>pframe =  (get_document()->get_typed_impact < ::bergedge::impact >()->get_parent_frame());
             //   if(pframe != nullptr)
             //   {
             //      pframe->display(e_display_restored);
@@ -877,7 +877,7 @@ namespace apex
    }
 
 
-   //__pointer(::user::menu_interaction) session::create_menu_button(::user::style_pointer & pstyle,::user::menu_item * pitem)
+   //::pointer<::user::menu_interaction>session::create_menu_button(::user::style_pointer & pstyle,::user::menu_item * pitem)
    //{
 
    //   throw ::interface_only();
@@ -1002,7 +1002,7 @@ namespace apex
    //::application * session::application_get(const ::string & pszAppId, bool bCreate, bool bSynch, ::create * pcreate)
    //{
 
-   //   __pointer(::apex::application) papp;
+   //   ::pointer<::apex::application>papp;
 
    //   if (m_applicationa.lookup(pszAppId, papp))
    //   {
@@ -1337,12 +1337,12 @@ ret:
       //}
 
       //estatus = 
-      __compose_new(m_pfs);
+      __construct_new(m_pfs);
 
       //if (!estatus)
       //{
 
-      //   output_debug_string("\nFailed to __compose_new(m_pfs)");
+      //   output_debug_string("\nFailed to __construct_new(m_pfs)");
 
       //   m_result.add(estatus);
 
@@ -1365,7 +1365,7 @@ ret:
 
       //}
 
-      //estatus = __compose_new(m_puserpresence);
+      //estatus = __construct_new(m_puserpresence);
 
       //if (!estatus)
       //{
@@ -1382,7 +1382,7 @@ ret:
       {
 
          //estatus = 
-         __compose(m_pifs, __new(ifs("")));
+         __construct(m_pifs, __new(ifs("")));
 
          //if (!estatus)
          //{
@@ -1399,7 +1399,7 @@ ret:
       {
 
          //estatus = 
-         __compose(m_premotefs, __new(::fs::remote_native("")));
+         __construct(m_premotefs, __new(::fs::remote_native("")));
 
          //if (!estatus)
          //{
@@ -1428,7 +1428,7 @@ ret:
 
       //   }
 
-      //   __compose(m_pftpfs, pftpfs);
+      //   __construct(m_pftpfs, pftpfs);
 
       //}
 
@@ -1446,7 +1446,7 @@ ret:
          pset->m_spafsdata.add(__create_new < ::fs::native>().m_p);
 
          //estatus = 
-         __compose(m_pfsdata, pset);
+         __construct(m_pfsdata, pset);
 
          //if (!estatus)
          //{
@@ -1491,7 +1491,7 @@ ret:
          //if (!m_paccount)
          //{
 
-         //   estatus = __compose_new(m_paccount);
+         //   estatus = __construct_new(m_paccount);
 
          //   if (!estatus)
          //   {
@@ -1539,7 +1539,7 @@ ret:
 
       ::e_status estatus = ::success;
 
-      __pointer(::fs::set) pfsset = m_pfsdata;
+      ::pointer<::fs::set>pfsset = m_pfsdata;
 
       if (m_bIfs)
       {
@@ -1547,7 +1547,7 @@ ret:
          if (m_pfsdata.is_null())
          {
 
-            __compose(m_pfsdata, __new(::fs::set));
+            __construct(m_pfsdata, __new(::fs::set));
 
          }
 
@@ -1748,7 +1748,7 @@ namespace apex
    //}
 
 
-   __pointer(::apex::application) session::get_current_application()
+   ::pointer<::apex::application>session::get_current_application()
    {
 
       auto psession = get_session();
@@ -1857,7 +1857,7 @@ namespace apex
    //}
 
 
-   //::user::place_holder_ptra session::get_place_holder(__pointer(::user::frame_window) pmainframe, ::create * pcreate)
+   //::user::place_holder_ptra session::get_place_holder(::pointer<::user::frame_window>pmainframe, ::create * pcreate)
    //{
 
    //   __UNREFERENCED_PARAMETER(pcreate);
@@ -1904,12 +1904,12 @@ namespace apex
    void session::set_app_title(const ::string & pszAppId, const ::string & pszTitle)
    {
 
-      __pointer(::apex::application) papp;
+      ::pointer<::apex::application>papp;
 
       if (m_applicationa.lookup(pszAppId, papp) && papp)
       {
 
-         //__pointer(::bergedge::pane_impact) ppaneimpact = get_document()->get_typed_impact < ::bergedge::pane_impact >();
+         //::pointer<::bergedge::pane_impact>ppaneimpact = get_document()->get_typed_impact < ::bergedge::pane_impact >();
 
          //if(ppaneimpact != nullptr)
          //{
@@ -1935,7 +1935,7 @@ namespace apex
 
 
 
-   __pointer(::apex::session) session::get_session()
+   ::pointer<::apex::session>session::get_session()
    {
 
       return this;
@@ -2290,7 +2290,7 @@ namespace apex
       //try
       //{
 
-      //   __pointer(::user::interaction) pinteraction;
+      //   ::pointer<::user::interaction>pinteraction;
 
       //   while (get_frame(pinteraction))
       //   {

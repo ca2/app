@@ -34,7 +34,7 @@ service* service_handler::get_service()
 
       }
 
-      __pointer(::apex::application) papp = get_app();
+      ::pointer<::apex::application>papp = get_app();
 
       auto pservice = papp->create_service();
 

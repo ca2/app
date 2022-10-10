@@ -10,7 +10,7 @@ class CLASS_DECL_BASE html_document :
 public:
 
 
-   //__composite(::html_data)         m_phtmldata;
+   //::pointer<::html_data>        m_phtmldata;
 
 
    html_document();
@@ -50,7 +50,7 @@ public:
 
    virtual void soft_reload() override;
 
-   virtual __pointer(::user::interaction) get_frame();
+   virtual ::pointer<::user::interaction>get_frame();
 
 
 };

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/drawing.h"
 #include "acme/platform/timer.h"
@@ -434,7 +434,7 @@ namespace filemanager
 
             string & wstrPath = pobjectTask->m_wstrFile;
             MediaLibraryDoc * pdocument = pobjectTask->m_pimpact->get_document();
-            __pointer(::sqlite::dataset) pds = pdocument->m_pdsAlbum;
+            ::pointer<::sqlite::dataset>pds = pdocument->m_pdsAlbum;
 
             i32 iFind;
             if((iFind = pdocument->m_fileinfo.m_wstraAdd.FindFirst(wstrPath)) >= 0)
@@ -496,7 +496,7 @@ namespace filemanager
             i32 iItem;
 
 
-            __pointer(::sqlite::dataset) pds = pdocument->m_pdsAlbum;
+            ::pointer<::sqlite::dataset>pds = pdocument->m_pdsAlbum;
 
             i32 iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
@@ -551,7 +551,7 @@ namespace filemanager
             {
             KillTimer(1124);
             MediaLibraryDoc * pdocument = get_document();
-            __pointer(::sqlite::dataset) pds = pdocument->m_pdsAlbum;
+            ::pointer<::sqlite::dataset>pds = pdocument->m_pdsAlbum;
 
             i32 iRemove = maximum(30, m_buildhelper.m_iDisplayItemCount);
 
@@ -632,7 +632,7 @@ namespace filemanager
          }
          }*/
 
-         /*list_impact::FillTask::FillTask(__pointer(list_impact) pimpact, LPWString pcsz)
+         /*list_impact::FillTask::FillTask(::pointer<list_impact>pimpact, LPWString pcsz)
 
          :
          m_pimpact(pimpact),m_wstrFile(pcsz)
@@ -642,7 +642,7 @@ namespace filemanager
 
          void list_impact::_001OnFillTaskResponse(::message::message * pmessage)
          {
-            __pointer(::user::message) pusermessage(pmessage);
+            ::pointer<::user::message>pusermessage(pmessage);
             m_bKickActive = true;
             if(pusermessage->m_wparam == 0)
             {
@@ -714,7 +714,7 @@ namespace filemanager
          void list_impact::on_message_context_menu(::message::message * pmessage)
          {
 
-            __pointer(::message::context_menu) pcontextmenu(pmessage);
+            ::pointer<::message::context_menu>pcontextmenu(pmessage);
 
             ::point_i32 point = pcontextmenu->GetPoint();
 
@@ -727,7 +727,7 @@ namespace filemanager
             {
             SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
             ASSERT(pPopup != nullptr);
-            __pointer(::user::frame_window) pframe = get_parent_frame()->get_parent_frame();
+            ::pointer<::user::frame_window>pframe = get_parent_frame()->get_parent_frame();
             pPopup->track_popup_menu(point.x, point.y,
             (::user::interaction_impl *) pframe);
             }
@@ -739,7 +739,7 @@ namespace filemanager
             {
             ::user::menu* pPopup = menu.GetSubMenu(0);
             ASSERT(pPopup != nullptr);
-            __pointer(::user::frame_window) pframe = get_parent_frame()->get_parent_frame();
+            ::pointer<::user::frame_window>pframe = get_parent_frame()->get_parent_frame();
             pPopup->track_popup_menu(
             point.x, point.y,
             (::user::interaction_impl *) pframe);
@@ -867,7 +867,7 @@ namespace filemanager
 
          // void list_impact::_001OnEraseBkgnd(::message::message * pmessage)
          // {
-         //    __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
+         //    ::pointer<::message::erase_bkgnd>perasebkgnd(pmessage);
          //    perasebkgnd->m_bRet = true;
          //    perasebkgnd->set_result(true);
          // }

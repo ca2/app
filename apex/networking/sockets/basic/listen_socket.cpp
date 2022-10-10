@@ -445,7 +445,7 @@ namespace sockets
    }
 
 
-   __pointer(socket) listen_socket_base::create_listen_socket()
+   ::pointer<socket>listen_socket_base::create_listen_socket()
    {
 
       return m_pcomposite->create_listen_socket();

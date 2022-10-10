@@ -1,9 +1,9 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "apex/message.h"
 #include "apex/message/command.h"
 
 
-__pointer(::mutex) channel::s_pmutexChannel;
+::pointer<::mutex>channel::s_pmutexChannel;
 
 
 channel::channel()
@@ -149,7 +149,7 @@ void channel::route_message(::message::message * pmessage)
 }
 
 
-__pointer(::message::message) channel::get_message(MESSAGE * pmessage)
+::pointer<::message::message>channel::get_message(MESSAGE * pmessage)
 {
 
    auto pmessagemessage = __new(::message::message);
@@ -166,8 +166,8 @@ __pointer(::message::message) channel::get_message(MESSAGE * pmessage)
 }
 
 
-//__pointer(::message::message) channel::get_message(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point)
-__pointer(::message::message) channel::get_message(const ::atom& atom, wparam wparam, lparam lparam)
+//::pointer<::message::message>channel::get_message(const ::atom & atom, wparam wparam, lparam lparam, const ::point_i32 & point)
+::pointer<::message::message>channel::get_message(const ::atom& atom, wparam wparam, lparam lparam)
 {
 
    auto pmessagemessage = __new(::message::message);
@@ -184,7 +184,7 @@ __pointer(::message::message) channel::get_message(const ::atom& atom, wparam wp
 }
 
 
-//__pointer(::user::message) channel::get_message_base(::windowing::window * pwindow, const ::atom & atom, wparam wparam, lparam lparam)
+//::pointer<::user::message>channel::get_message_base(::windowing::window * pwindow, const ::atom & atom, wparam wparam, lparam lparam)
 //{
 //
 //   if (atom.m_etype != ::atom::e_type_message)
@@ -210,7 +210,7 @@ __pointer(::message::message) channel::get_message(const ::atom& atom, wparam wp
 //#ifdef LINUX
 //
 //
-//__pointer(::user::message) channel::get_message_base(void * pevent,::user::interaction * puserinteraction)
+//::pointer<::user::message>channel::get_message_base(void * pevent,::user::interaction * puserinteraction)
 //{
 //
 //   throw ::exception(todo);

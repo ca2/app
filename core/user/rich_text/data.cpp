@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "data.h"
 #include "edit_impl.h"
 #include "format.h"
@@ -145,7 +145,7 @@ namespace user
       }
 
 
-      __pointer(format) data::add_format()
+      ::pointer<format>data::add_format()
       {
 
          auto pformat = __create_new < format >();
@@ -158,7 +158,7 @@ namespace user
 
       }
 
-      __pointer(span) data::create_span(::e_align ealignNewLine)
+      ::pointer<span>data::create_span(::e_align ealignNewLine)
       {
 
          return __new(span(this, ealignNewLine));
@@ -166,7 +166,7 @@ namespace user
       }
 
 
-      __pointer(span) data::add_span(const span & span)
+      ::pointer<span>data::add_span(const span & span)
       {
 
          synchronous_lock synchronouslock(mutex());
@@ -176,7 +176,7 @@ namespace user
       }
 
 
-      __pointer(span) data::add_span(::e_align ealignNewLine)
+      ::pointer<span>data::add_span(::e_align ealignNewLine)
       {
 
          synchronous_lock synchronouslock(mutex());
@@ -242,7 +242,7 @@ namespace user
          if (iSpanBeg >= 0 && iSpanEnd >= iSpanBeg)
          {
 
-            __pointer(span) pspanBeg = m_spana[iSpanBeg];
+            ::pointer<span>pspanBeg = m_spana[iSpanBeg];
 
             *pformat = *pspanBeg->m_pformat;
 
@@ -569,14 +569,14 @@ namespace user
          if (iSpanBeg >= 0 && iSpanEnd >= iSpanBeg)
          {
 
-            __pointer(span) pspanBeg = m_spana[iSpanBeg];
+            ::pointer<span>pspanBeg = m_spana[iSpanBeg];
 
-            __pointer(span) pspanEnd = m_spana[iSpanEnd];
+            ::pointer<span>pspanEnd = m_spana[iSpanEnd];
 
             if (iSpanBeg == iSpanEnd)
             {
 
-               __pointer(span) pspanNext;
+               ::pointer<span>pspanNext;
 
                if (iSpanEnd + 1 < m_spana.get_count())
                {
@@ -693,9 +693,9 @@ namespace user
 
          index iSpan = find_span(m_spana, iSelChar);
 
-         __pointer(format) pformat;
+         ::pointer<format>pformat;
 
-         __pointer(span) pspan;
+         ::pointer<span>pspan;
 
          ::e_align ealignNewLine;
 
@@ -1174,9 +1174,9 @@ namespace user
 
          bool bFirstParagraph = true;
 
-         auto plinea = __new(__pointer_array(line));
+         auto plinea = __new(pointer_array < line >);
 
-         __pointer(line) pline;
+         ::pointer<line>pline;
 
          //strsize iCharLayout = 0;
 
@@ -1213,7 +1213,7 @@ namespace user
 
          ::e_align ealign = e_align_center;
 
-         __pointer_array(span) spana;
+         pointer_array < span > spana;
 
          //strsize iSpanCharEnd = 0;
 
@@ -1228,18 +1228,18 @@ namespace user
 
          double dPosition;
 
-         __pointer(box) pbox;
+         ::pointer<box>pbox;
 
          //bool bMultiWordFormat = true;
 
-         //__pointer_array(span) spanaMultiWordFormat;
+         //pointer_array < span > spanaMultiWordFormat;
 
 //         int iHeight;
 
          while (iSpan < m_spana.get_count())
          {
 
-            __pointer(span) pspan = m_spana[iSpan];
+            ::pointer<span>pspan = m_spana[iSpan];
 
             pspan->m_str.find_replace("\n", "");
 
@@ -1836,7 +1836,7 @@ namespace user
             if (bCaretOn && m_pedit->is_text_editable())
             {
 
-               __pointer(box) pbox = find_box(*plinea, m_iSelEnd);
+               ::pointer<box>pbox = find_box(*plinea, m_iSelEnd);
 
                if (pbox)
                {
@@ -2114,7 +2114,7 @@ namespace user
       }
 
 
-      void data::__initialize(__pointer(::user::rich_text::format) & pformat)
+      void data::__initialize(::pointer<::user::rich_text::format>& pformat)
       {
 
          __defer_construct(pformat);

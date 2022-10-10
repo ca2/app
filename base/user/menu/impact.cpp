@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aqua/xml/document.h"
 #include "impact.h"
 #include "aura/graphics/write_text/font.h"
@@ -158,7 +158,7 @@ namespace user
       m_ppen->create_solid(1.0, argb(255, 210, 210, 210));
 
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       pcreate->previous();
 
@@ -167,7 +167,7 @@ namespace user
 
       //auto estatus = 
       
-      __compose_new(m_pxmldoc);
+      __construct_new(m_pxmldoc);
 
       //if (!estatus)
       //{

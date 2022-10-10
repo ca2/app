@@ -11,14 +11,14 @@ namespace axis
    public:
 
 
-      __pointer(::userpresence::department)                 m_puserpresence;
+      ::pointer<::userpresence::department>                m_puserpresence;
 
 
-      __composite(::ftpfs)                                  m_pftpfs;
-      __composite(::fs::remote_native)                      m_premotefs;
-      __composite(::fs::fs)                                 m_pfs;
-      __composite(::fs::data)                               m_pfsdata;
-      __composite(::ifs)                                    m_pifs;
+      ::pointer<::ftpfs>                                 m_pftpfs;
+      ::pointer<::fs::remote_native>                     m_premotefs;
+      ::pointer<::fs::fs>                                m_pfs;
+      ::pointer<::fs::data>                              m_pfsdata;
+      ::pointer<::ifs>                                   m_pifs;
       //ke
       bool                                                  m_bIfs;
 

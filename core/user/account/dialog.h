@@ -17,9 +17,9 @@ namespace account
       index                               m_iDelay;
       ::rectangle_i32                              m_rectangleFontopus;
 
-      __reference(::account::credentials) m_pcredentials;
+      ::pointer<::account::credentials>m_pcredentials;
 
-      __composite(login)                  m_plogin;
+      ::pointer<login>                 m_plogin;
       bool                                m_bLButtonDown;
       point_i32                               m_pointLButtonDown;
       point_i32                               m_pointLButtonDownPos;

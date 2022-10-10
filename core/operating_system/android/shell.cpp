@@ -1726,7 +1726,7 @@ namespace core
       if (!m_pshell)
       {
 
-         estatus = __compose(m_pshell, __new(::android::shell));
+         estatus = __construct(m_pshell, __new(::android::shell));
 
          if (!estatus)
          {

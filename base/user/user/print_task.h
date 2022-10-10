@@ -17,10 +17,10 @@ namespace user
       i32      m_iPageCount;
       i32      m_iPrintingPage;
 
-      __pointer(::user::interaction)   m_pinteraction;
+      ::pointer<::user::interaction>  m_pinteraction;
 
 
-      __pointer(::draw2d::printer)     m_pprinter;
+      ::pointer<::draw2d::printer>    m_pprinter;
 
 
       print_task();

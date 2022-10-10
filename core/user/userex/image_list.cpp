@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/array.h"
@@ -42,7 +42,7 @@ namespace userex
 
          straPattern.trim();
 
-         stra.add_unique(straPattern);
+         stra.append_unique(straPattern);
 
       }
 
@@ -321,7 +321,7 @@ namespace userex
    void image_list_impact::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       pcreate->previous();
 

@@ -417,7 +417,7 @@ namespace account
    void impact::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       if (pcreate->previous())
          return;
@@ -523,7 +523,7 @@ namespace account
 
       //int i = 5;
 
-      __pointer(::user::interaction) pinteraction;
+      ::pointer<::user::interaction>pinteraction;
 
       //while((pinteraction = get_child(pinteraction)).is_set() && i > 0)
       while (get_child(pinteraction))

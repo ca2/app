@@ -302,10 +302,10 @@ namespace str
    }
 
 
-   __pointer(::zip::in_file) zip_context::get_in_file(::file::file * pfile, const string_array & straPath, ::file::enum_type * petype)
+   ::pointer<::zip::in_file>zip_context::get_in_file(::file::file * pfile, const string_array & straPath, ::file::enum_type * petype)
    {
 
-      __pointer(::zip::in_file) pinfile;
+      ::pointer<::zip::in_file>pinfile;
 
       __construct_new(pinfile);
 

@@ -116,7 +116,7 @@ namespace user
    void impact::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pmessagecreate(pmessage);
+      ::pointer<::message::create>pmessagecreate(pmessage);
 
       if (!(m_ewindowflag & e_window_flag_window_created))
       {
@@ -128,7 +128,7 @@ namespace user
          if (pusersystem && pusersystem->m_pdocumentCurrent != nullptr)
          {
 
-            __pointer(::user::document) pdocument = pusersystem->m_pdocumentCurrent;
+            ::pointer<::user::document>pdocument = pusersystem->m_pdocumentCurrent;
 
             pdocument->add_impact(this);
 
@@ -316,7 +316,7 @@ namespace user
 
       }
 
-      __pointer(::user::interaction) puserinteractionParent = get_parent();
+      ::pointer<::user::interaction>puserinteractionParent = get_parent();
 
       if (puserinteractionParent)
       {
@@ -327,7 +327,7 @@ namespace user
       else
       {
 
-         __pointer(::apex::context) pcontext = get_context();
+         ::pointer<::apex::context>pcontext = get_context();
 
          if (pcontext)
          {
@@ -384,7 +384,7 @@ namespace user
 
    //}
 
-   //void impact::on_simple_impact_update_hint(__pointer(::user::impact) pviewSender, e_hint ehint, object * pupdate)
+   //void impact::on_simple_impact_update_hint(::pointer<::user::impact>pviewSender, e_hint ehint, object * pupdate)
    //{
 
    //   switch (ehint)
@@ -396,7 +396,7 @@ namespace user
 
    //}
 
-   //void impact::OnImpactUpdateHint(__pointer(::user::impact) pSender, LPARAM lHint, ::update * pHint)
+   //void impact::OnImpactUpdateHint(::pointer<::user::impact>pSender, LPARAM lHint, ::update * pHint)
    //{
    //   __UNREFERENCED_PARAMETER(pimpact);
    //   __UNREFERENCED_PARAMETER(eupdate);
@@ -456,7 +456,7 @@ namespace user
    }
 
 
-   void impact::OnActivateImpact(bool bActivate, __pointer(::user::impact) pActivateImpact, __pointer(::user::impact))
+   void impact::OnActivateImpact(bool bActivate, ::pointer<::user::impact>pActivateImpact, ::pointer<::user::impact>pDeactivateImpact)
    {
 
       auto pdocument = get_document();
@@ -541,7 +541,7 @@ namespace user
    }
 
 
-   void impact::OnActivateFrame(enum_activate eactivate, __pointer(::user::frame_window) /*pFrameWnd*/)
+   void impact::OnActivateFrame(enum_activate eactivate, ::pointer<::user::frame_window>/*pFrameWnd*/)
    {
 
    }
@@ -554,14 +554,14 @@ namespace user
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
    return nResult;   // frame does not want to activate
 
-   __pointer(::user::frame_window) pParentFrame = get_parent_frame();
+   ::pointer<::user::frame_window>pParentFrame = get_parent_frame();
    if (pParentFrame != nullptr)
    {
    // eat it if this will cause activation
    ASSERT(pParentFrame == pDesktopWnd || pDesktopWnd->IsChild(pParentFrame));
 
    // either re-activate the current ::user::impact, or set this ::user::impact to be active
-   __pointer(::user::impact) pimpact = pParentFrame->get_active_impact();
+   ::pointer<::user::impact>pimpact = pParentFrame->get_active_impact();
    oswindow oswindow_Focus = ::GetFocus();
    if (pimpact == this &&
    get_handle() != oswindow_Focus && !::IsChild(get_handle(), oswindow_Focus))
@@ -796,7 +796,7 @@ namespace user
    //void impact::handle(::topic * ptopic, ::context * pcontext)
    //{
 
-   //   __pointer(::user::message) pusermessage(pmessage);
+   //   ::pointer<::user::message>pusermessage(pmessage);
 
    //   //if (pusermessage->m_wparam == ::user::impact_message_update)
    //   //{
@@ -816,10 +816,10 @@ namespace user
    //}
 
 
-   __pointer(::user::interaction) impact::create_impact(::user::interaction * pimpactAlloc, ::user::impact_data * pimpactdata, ::user::interaction * pviewLast)
+   ::pointer<::user::interaction>impact::create_impact(::user::interaction * pimpactAlloc, ::user::impact_data * pimpactdata, ::user::interaction * pviewLast)
    {
 
-      __pointer(::create) pcreate(e_create, this);
+      ::pointer<::create>pcreate(e_create, this);
 
       auto pusersystem = __new(::user::system);
 
@@ -838,10 +838,10 @@ namespace user
    }
 
 
-   __pointer(::user::interaction) impact::create_impact(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
+   ::pointer<::user::interaction>impact::create_impact(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
    {
 
-      __pointer(::create) pcreate(e_create_new, this);
+      ::pointer<::create>pcreate(e_create_new, this);
 
       auto pusersystem = __create_new < ::user::system >();
 
@@ -894,10 +894,10 @@ namespace user
    }
 
 
-   __pointer(::user::interaction) create_impact(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast)
+   ::pointer<::user::interaction>create_impact(const ::type & type, ::user::document * pdocument, ::user::interaction * puserinteractionParent, const ::atom & atom, ::user::interaction * pviewLast)
    {
 
-      __pointer(::create) pcreate(e_create_new, pdocument);
+      ::pointer<::create>pcreate(e_create_new, pdocument);
 
       auto pusersystem= __new(::user::system);
 
@@ -999,7 +999,7 @@ namespace user
 
    //}
 
-   //void impact::on_draw_impact(::draw2d::graphics_pointer & pgraphics, __pointer_array(::data::data) spadata)
+   //void impact::on_draw_impact(::draw2d::graphics_pointer & pgraphics, pointer_array < ::data::data > spadata)
    //{
 
    //   __UNREFERENCED_PARAMETER(pgraphics);
@@ -1013,7 +1013,7 @@ namespace user
    //   if (get_document() == nullptr)
    //      return;
 
-   //   __pointer_array(::data::data) spadata = get_document()->m_dataa;
+   //   pointer_array < ::data::data > spadata = get_document()->m_dataa;
 
    //   //spadata.add(get_document()->m_spdata);
 
@@ -1103,7 +1103,7 @@ namespace user
 
    void impact::_001OnMouseActivate(::message::message * pmessage)
    {
-      __pointer(::message::mouse_activate) pmouseactivate(pmessage);
+      ::pointer<::message::mouse_activate>pmouseactivate(pmessage);
       pmessage->previous();
       //i32 nResult = pmouseactivate->get_lresult();
 
@@ -1127,7 +1127,7 @@ namespace user
                 || pmouseactivate->get_desktop_window()->is_child(pParentFrame));
 
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
-         __pointer(::user::impact) pimpact = pParentFrame->get_active_impact();
+         ::pointer<::user::impact>pimpact = pParentFrame->get_active_impact();
 
          auto psession = get_session();
 
@@ -1136,7 +1136,7 @@ namespace user
          if(puser)
          {
 
-            __pointer(::user::interaction) puserinteractionFocus = puser->get_keyboard_focus(m_pthreadUserInteraction);
+            ::pointer<::user::interaction>puserinteractionFocus = puser->get_keyboard_focus(m_pthreadUserInteraction);
 
             if (pimpact == this
             && this != puserinteractionFocus
@@ -1199,13 +1199,13 @@ namespace user
          || pmouseactivate->get_desktop_window()->IsChild(pParentFrame));*/
 
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
-         __pointer(::user::impact) pimpact = pParentFrame->get_active_impact();
+         ::pointer<::user::impact>pimpact = pParentFrame->get_active_impact();
 
          auto psession = get_session();
 
          auto puser = psession->user();
 
-         __pointer(::user::interaction) puserinteractionFocus = puser->get_keyboard_focus(m_pthreadUserInteraction);
+         ::pointer<::user::interaction>puserinteractionFocus = puser->get_keyboard_focus(m_pthreadUserInteraction);
 
          if (pimpact == this
          && this != puserinteractionFocus
@@ -1323,14 +1323,14 @@ namespace user
 
 
    /*
-   __pointer(::user::interaction) impact::CreateImpact(__pointer(::create) pContext, ::u32 nID)
+   ::pointer<::user::interaction>impact::CreateImpact(::pointer<::create>Context, ::u32 nID)
    {
    ASSERT(is_window());
    ASSERT(pContext != nullptr);
    ASSERT(pContext->m_typeNewImpact != nullptr);
 
    // Note: can be a ::user::interaction with post_non_client_destroy self cleanup
-   __pointer(::user::interaction) pimpact =  (psystem->alloc(pContext->m_typeNewImpact));
+   ::pointer<::user::interaction>pimpact =  (psystem->alloc(pContext->m_typeNewImpact));
    if (pimpact == nullptr)
    {
    TRACE1("Warning: Dynamic create of ::user::impact type %hs failed.\n",
@@ -1341,13 +1341,13 @@ namespace user
 
    // views are always created with a border!
    if (!pimpact->create(nullptr, nullptr, __WS_DEFAULT_VIEW,
-   rectangle_i32(0,0,0,0), this, nID, (__pointer(::create)) pContext))
+   rectangle_i32(0,0,0,0), this, nID, (::pointer<::create> pContext))
    {
    TRACE0("Warning: could not create ::user::impact for frame.\n");
    return nullptr;        // can't continue without a ::user::impact
    }
 
-   __pointer(::user::impact) pimpact =  (pimpact);
+   ::pointer<::user::impact>pimpact =  (pimpact);
    pimpact->handle(::topic * ptopic, ::context * pcontext);
    if (afxData.bWin4 && (pimpact->GetExStyle() & WS_EX_CLIENTEDGE))
    {
@@ -1360,7 +1360,7 @@ namespace user
    }*/
 
 
-   /*__pointer(::user::interaction) impact::CreateImpact(__pointer(::create) pContext, ::u32 nID, ::user::interaction  * puserinteractionParent)
+   /*::pointer<::user::interaction>impact::CreateImpact(::pointer<::create>Context, ::u32 nID, ::user::interaction  * puserinteractionParent)
    {
    ASSERT(puserinteractionParent->is_window());
    ASSERT(pContext != nullptr);
@@ -1378,7 +1378,7 @@ namespace user
 
    // views are always created with a border!
    if (!pimpact->create(nullptr, nullptr, __WS_DEFAULT_VIEW,
-   rectangle_i32(0,0,0,0), puserinteractionParent, nID, (__pointer(::create)) pContext))
+   rectangle_i32(0,0,0,0), puserinteractionParent, nID, (::pointer<::create> pContext))
    {
    TRACE0("Warning: could not create ::user::impact for frame.\n");
    return nullptr;        // can't continue without a ::user::impact
@@ -1453,7 +1453,7 @@ namespace user
    }
 
 
-   void impact::walk_pre_translate_tree(::message::message * pmessage,__pointer(::user::interaction) puiStop)
+   void impact::walk_pre_translate_tree(::message::message * pmessage,::pointer<::user::interaction>puiStop)
    {
 
 
@@ -1513,7 +1513,7 @@ namespace user
    ::user::document * get_document(::user::interaction * pinteraction)
    {
 
-      __pointer(::user::impact) pimpact = pinteraction;
+      ::pointer<::user::impact>pimpact = pinteraction;
 
       if (pimpact != nullptr)
       {

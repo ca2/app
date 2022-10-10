@@ -26,7 +26,7 @@ namespace data
    public:
 
 
-      typedef __pointer_array(node) array;
+      typedef pointer_array < node > array;
 
       ::xml::node *              m_pxmlnode;
       node *                     m_pnodeParent;

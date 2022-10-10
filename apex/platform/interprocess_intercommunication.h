@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -10,7 +10,7 @@ public:
 
 
 
-   using interprocess_map = id_map < __pointer(interprocess_task) >;
+   using interprocess_map = id_map < ::pointer<interprocess_task >>;
 
 
 
@@ -18,9 +18,9 @@ public:
    interlocked_count                                           m_iTaskSeed;
    string                                                      m_strApp;
    ::atom                                                      m_atomApp;
-   string_map < __pointer(::interprocess_communication::tx) >  m_txmap;
-   string_map < __pointer(::mutex) >                           m_mapAppMutex;
-   __pointer(::interprocess_communication::rx)                 m_prx;
+   string_map < ::pointer<::interprocess_communication::tx >> m_txmap;
+   string_map < ::pointer<::mutex >>                          m_mapAppMutex;
+   ::pointer<::interprocess_communication::rx>                m_prx;
    string_array                                                m_straModule;
 
    // strTask - Task
@@ -42,13 +42,13 @@ public:
 
    virtual void defer_add_module(const ::string& strModule, const ::atom& idPid);
 
-   virtual __pointer(interprocess_task) create_task(interprocess_call* pcall, const ::atom& idPid);
+   virtual ::pointer<interprocess_task>create_task(interprocess_call* pcall, const ::atom& idPid);
 
-   virtual __pointer(interprocess_task) get_task(i64 iTask);
+   virtual ::pointer<interprocess_task>get_task(i64 iTask);
 
-   virtual __pointer(interprocess_call) create_call(const ::string& strApp, const ::string& strObject, const ::string& strMember);
+   virtual ::pointer<interprocess_call>create_call(const ::string& strApp, const ::string& strObject, const ::string& strMember);
 
-   virtual __pointer(interprocess_call) create_call(const ::string& strObject, const ::string& strMember);
+   virtual ::pointer<interprocess_call>create_call(const ::string& strObject, const ::string& strMember);
 
    virtual ::interprocess_communication::tx& tx(const ::string& strApp, const ::atom& idPid);
 

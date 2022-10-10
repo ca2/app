@@ -6,14 +6,14 @@ namespace axis
 {
 
 
-   __pointer(regex) system::compile_pcre(const string& str)
+   ::pointer<regex>system::compile_pcre(const string& str)
    {
 
       return pcre_regex::compile(str);
 
    }
 
-   __pointer(regex_context) system::create_pcre_context(int iCount)
+   ::pointer<regex_context>system::create_pcre_context(int iCount)
    {
 
       return pcre_context::create_context(iCount);

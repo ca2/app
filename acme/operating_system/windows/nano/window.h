@@ -27,11 +27,11 @@ namespace windows
 //      rectangle_i32 m_rectangle;
 //      rectangle_i32 m_rectangleClient;
 //
-//      __pointer_array(nano_child) m_childa;
+//      pointer_array < nano_child > m_childa;
 //      ::atom m_atomLeftButtonDown;
 //      ::atom m_atomLeftButtonUp;
 //      //::atom                             m_atomResult;
-//      __pointer(nano_child) m_pchildFocus;
+//      ::pointer<nano_child>m_pchildFocus;
 
 
       nano_window();

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/constant/timer.h"
 #include "user.h"
 #include "axis/platform/session.h"
@@ -26,7 +26,7 @@ string chunk_split(const string & body,i32 chunklen,const string & end)
 }
 
 
-typedef string(*SALT)(__pointer(::aura::application), const ::string &, string_array &);
+//typedef string(*SALT)(::pointer<::aura::application> const ::string &, string_array &);
 
 
 namespace account
@@ -126,7 +126,7 @@ namespace account
 //
 //      }
 //      class validate authuser(get_app(), "system\\user\\authenticate.xhtml", true, bInteractive);
-//      __pointer(user) puser = authuser.get_user(pszText);
+//      ::pointer<user>puser = authuser.get_user(pszText);
 //      if(puser == nullptr)
 //         strSessId = "not_auth";
 //      else
@@ -254,7 +254,7 @@ namespace account
 
       }
 
-      __pointer(::axis::session) psession = get_session();
+      ::pointer<::axis::session>psession = get_session();
 
       psession->account()->on_user_logon(this);
 
@@ -270,9 +270,9 @@ namespace account
 
       m_bDeferRegistration = bInteractive;
 
-      __pointer(credentials) pcredentials = __new(credentials);
+      ::pointer<credentials>pcredentials = __new(credentials);
 
-      __pointer(::axis::session) psession = get_session();
+      ::pointer<::axis::session>psession = get_session();
 
       pcredentials->initialize_account_credentials(this, psession->account()->storage());
 
@@ -479,7 +479,7 @@ namespace account
 
             auto authenticationElapsed = minimum(authenticationRequestElapsed, authenticationDoneElapsed);
 
-            __pointer(::axis::session) psession = get_session();
+            ::pointer<::axis::session>psession = get_session();
 
             auto authenticationTimeout = psession->account()->get_session_timeout();
 

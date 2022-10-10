@@ -15,7 +15,7 @@ namespace factory
 
 
    template < typename TYPE, typename BASE_TYPE>
-   inline __pointer(::factory::factory_item_base < BASE_TYPE >) add_factory_item(const ::atom & atom)
+   inline pointer< ::factory::factory_item_base < BASE_TYPE > > add_factory_item(const ::atom & atom)
    {
 
       critical_section_lock lock(::factory::get_factory_critical_section());
@@ -33,7 +33,7 @@ namespace factory
 
 
    template < typename TYPE, typename BASE_TYPE>
-   inline __pointer(::factory::factory_item_base < BASE_TYPE >) _add_factory_item_from(const ::atom & atomSource)
+   inline pointer< ::factory::factory_item_base < BASE_TYPE > > _add_factory_item_from(const ::atom & atomSource)
    {
 
       critical_section_lock lock(::factory::get_factory_critical_section());
@@ -57,7 +57,7 @@ namespace factory
 
 
    template < typename TYPE, typename BASE_TYPE>
-   inline __pointer(::factory::factory_item_base < BASE_TYPE >) add_factory_item()
+   inline pointer< ::factory::factory_item_base < BASE_TYPE > > add_factory_item()
    {
 
       critical_section_lock lock(::factory::get_factory_critical_section());
@@ -72,7 +72,7 @@ namespace factory
 
 
    template < typename TYPE, typename BASE_TYPE>
-   inline __pointer(::factory::factory_item_base < BASE_TYPE >) create_reusable_factory()
+   inline pointer< ::factory::factory_item_base < BASE_TYPE > > create_reusable_factory()
    {
 
       critical_section_lock lock(::factory::get_factory_critical_section());
@@ -91,7 +91,7 @@ namespace factory
 
 
 template < typename TYPE1, typename TYPE2 >
-inline void __dynamic_cast(TYPE1*& ptype1, const __pointer(TYPE2)& ptype2)
+inline void __dynamic_cast(TYPE1*& ptype1, const ::pointer<TYPE2> ptype2)
 {
 
    ptype1 = ptype2.template cast < TYPE1 >().m_p;
@@ -261,7 +261,7 @@ namespace factory
 
 
    template < typename TYPE, typename BASE_TYPE >
-   inline __pointer(BASE_TYPE) reusable_factory_item < TYPE, BASE_TYPE >::_create()
+   inline ::pointer<BASE_TYPE>reusable_factory_item < TYPE, BASE_TYPE >::_create()
    {
 
       {

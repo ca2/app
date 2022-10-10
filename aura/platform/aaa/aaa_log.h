@@ -28,7 +28,7 @@ namespace aura
 
 
       bool                       m_bTrace;
-      __composite(::aura::trace::trace) m_ptrace;
+      ::pointer<::aura::trace::trace>m_ptrace;
       ::mutex                    m_mutexTrace;
       string_array                    m_straSeparator;
       FILE *                     m_pfile;

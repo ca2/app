@@ -11,7 +11,7 @@ namespace windows
 	public:
 
 
-	   print_task(__pointer(base_application) papp);
+	   print_task(::pointer<base_application> papp);
 	   virtual ~print_task();
 
 

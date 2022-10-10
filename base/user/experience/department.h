@@ -12,16 +12,16 @@ namespace experience
 
 
       
-      string_map < __composite(::experience::experience) >   m_mapExperience;
+      string_map < ::pointer<::experience::experience >>  m_mapExperience;
 
 
       department();
       ~department() override;
 
 
-      virtual __pointer(::experience::experience) create_experience(::object * pobject, const ::string & strExperience);
-      virtual __pointer(::experience::experience) experience(::object * pobject, const ::string & strExperience);
-      virtual __pointer(::experience::frame) frame_experience(::object * pobject, const ::string & strExperience, const ::string & strFrameSchema);
+      virtual ::pointer<::experience::experience>create_experience(::object * pobject, const ::string & strExperience);
+      virtual ::pointer<::experience::experience>experience(::object * pobject, const ::string & strExperience);
+      virtual ::pointer<::experience::frame>frame_experience(::object * pobject, const ::string & strExperience, const ::string & strFrameSchema);
 
 
    };

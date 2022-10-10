@@ -29,7 +29,7 @@
 // {
 // public:
 
-//    __pointer(::user::interaction)                      m_puserinteraction;
+//    ::pointer<::user::interaction>                     m_puserinteraction;
 
 // };
 
@@ -39,7 +39,7 @@
 // {
 // public:
 
-//    __pointer(::user::interaction)                      m_puserinteraction;
+//    ::pointer<::user::interaction>                     m_puserinteraction;
 
 //    oswindow                                     m_oswindow;
 

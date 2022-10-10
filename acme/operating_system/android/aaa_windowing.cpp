@@ -1145,7 +1145,7 @@ void _android_key(unsigned int message, int keyCode, int iUni)
    if (::acme::get_system()->get_session()->m_puserinteractionHost == nullptr)
       return;
 
-   __pointer(::message::key) pkey = __new(::message::key());
+   ::pointer<::message::key>pkey = __new(::message::key());
 
    pkey->m_atom = message;
 
@@ -1358,7 +1358,7 @@ namespace acme
       if (get_session() == nullptr || ::is_null(get_session()->m_puserinteractionHost))
          return;
 
-      __pointer(::message::key) pkey = __new(::message::key());
+      ::pointer<::message::key>pkey = __new(::message::key());
 
       pkey->m_atom = e_message_key_down;
 

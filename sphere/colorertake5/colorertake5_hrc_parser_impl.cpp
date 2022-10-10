@@ -206,7 +206,7 @@ namespace colorertake5
       };
       for (strsize i = 0; i < types.get_children_count(); i++)
       {
-         __pointer(::xml::node)elem = types.child_at(i);
+         ::pointer<::xml::node>lem = types.child_at(i);
          if (elem->get_name() == "prototype")
          {
             addPrototype(elem);
@@ -232,7 +232,7 @@ namespace colorertake5
    }
 
 
-   void HRCParserImpl::addPrototype(__pointer(::xml::node)elem)
+   void HRCParserImpl::addPrototype(::pointer<::xml::node>lem)
    {
 
       string typeName         = elem->attr("name");
@@ -282,7 +282,7 @@ namespace colorertake5
 
       for(strsize i = 0; i < elem->get_children_count(); i++)
       {
-         __pointer(::xml::node)content = elem->child_at(i);
+         ::pointer<::xml::node>ontent = elem->child_at(i);
          if (content->get_name() == "location")
          {
             string locationLink = (content)->attr("link");
@@ -333,7 +333,7 @@ namespace colorertake5
          {
             for(strsize i = 0; i < content->get_children_count(); i++)
             {
-               __pointer(::xml::node)param = content->child_at(i);
+               ::pointer<::xml::node>aram = content->child_at(i);
                if (param->get_name() == "param")
                {
                   string name    = (param)->attr("name");
@@ -366,7 +366,7 @@ namespace colorertake5
       }
    }
 
-   void HRCParserImpl::addType(__pointer(::xml::node)elem)
+   void HRCParserImpl::addType(::pointer<::xml::node>lem)
    {
       string typeName = elem->attr("name");
 
@@ -400,7 +400,7 @@ namespace colorertake5
 
       for(strsize i = 0; i < elem->get_children_count(); i++)
       {
-         __pointer(::xml::node)xmlpar = elem->child_at(i);
+         ::pointer<::xml::node>mlpar = elem->child_at(i);
          if(xmlpar->get_name() == "region")
          {
 
@@ -492,7 +492,7 @@ namespace colorertake5
       parseType = o_parseType;
    }
 
-   void HRCParserImpl::addScheme(__pointer(::xml::node)elem)
+   void HRCParserImpl::addScheme(::pointer<::xml::node>lem)
    {
       string schemeName = elem->attr("name");
       string qSchemeName = qualifyOwnName(schemeName);
@@ -525,10 +525,10 @@ namespace colorertake5
       addSchemeNodes(scheme, elem->child_at(0));
    }
 
-   void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, __pointer(::xml::node)elem)
+   void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, ::pointer<::xml::node>lem)
    {
-      pointer < SchemeNode > next;
-      for(__pointer(::xml::node)tmpel = elem; tmpel; tmpel = tmpel->get_next_sibling())
+      ::pointer<SchemeNode>next;
+      for(::pointer<::xml::node>mpel = elem; tmpel; tmpel = tmpel->get_next_sibling())
       {
          if (tmpel->get_name().is_empty()) continue;
 
@@ -576,7 +576,7 @@ namespace colorertake5
 
             if (tmpel->first_child() != nullptr)
             {
-               for(__pointer(::xml::node)vel = tmpel->first_child(); vel; vel = vel->get_next_sibling())
+               for(::pointer<::xml::node>el = tmpel->first_child(); vel; vel = vel->get_next_sibling())
                {
                   if (vel->get_name() != "virtual")
                   {
@@ -642,11 +642,11 @@ namespace colorertake5
             string sParam = tmpel->attr("start");
             string eParam = tmpel->attr("end");
 
-            __pointer(::xml::node) eStart, eEnd;
+            ::pointer<::xml::node>eStart, eEnd;
 
-            for(__pointer(::xml::node)blkn = tmpel->first_child(); blkn && !(eParam.has_char() && sParam.has_char()); blkn = blkn->get_next_sibling())
+            for(::pointer<::xml::node>lkn = tmpel->first_child(); blkn && !(eParam.has_char() && sParam.has_char()); blkn = blkn->get_next_sibling())
             {
-               __pointer(::xml::node)blkel;
+               ::pointer<::xml::node>lkel;
                if(blkn->get_type() == xml::node_element) blkel = blkn;
                else continue;
 
@@ -751,7 +751,7 @@ namespace colorertake5
             };
 
             next->kwList = memory_new KeywordList;
-            for(__pointer(::xml::node)keywrd_count = tmpel->first_child(); keywrd_count; keywrd_count = keywrd_count->get_next_sibling())
+            for(::pointer<::xml::node>eywrd_count = tmpel->first_child(); keywrd_count; keywrd_count = keywrd_count->get_next_sibling())
             {
                if (keywrd_count->get_name() == "u16" ||
                      keywrd_count->get_name() == "symb")
@@ -767,7 +767,7 @@ namespace colorertake5
             next->kwList->kwList = pIDs;
             next->type = SNT_KEYWORDS;
 
-            for(__pointer(::xml::node)keywrd = tmpel->first_child(); keywrd; keywrd = keywrd->get_next_sibling())
+            for(::pointer<::xml::node>eywrd = tmpel->first_child(); keywrd; keywrd = keywrd->get_next_sibling())
             {
                strsize type = 0;
                if (keywrd->get_name() == "u16") type = 1;
@@ -814,7 +814,7 @@ namespace colorertake5
    };
 
 
-   void HRCParserImpl::loadRegions(SchemeNode *node, __pointer(::xml::node)el, bool st)
+   void HRCParserImpl::loadRegions(SchemeNode *node, ::pointer<::xml::node>l, bool st)
    {
       static char rg_tmpl[0x10] = "region\0\0";
 
@@ -848,7 +848,7 @@ namespace colorertake5
    }
 
 
-   void HRCParserImpl::loadBlockRegions(SchemeNode *node, __pointer(::xml::node)el)
+   void HRCParserImpl::loadBlockRegions(SchemeNode *node, ::pointer<::xml::node>l)
    {
       strsize i;
       static char rg_tmpl[0x10] = "region";
@@ -1140,7 +1140,7 @@ namespace colorertake5
       return reg;
    };
 
-   class region* HRCParserImpl::getNCRegion(__pointer(::xml::node)el, const ::string & tag)
+   class region* HRCParserImpl::getNCRegion(::pointer<::xml::node>l, const ::string & tag)
    {
       string par = el->attr(tag);
       if (par.is_empty()) return nullptr;

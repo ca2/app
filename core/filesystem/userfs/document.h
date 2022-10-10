@@ -15,7 +15,7 @@ namespace userfs
 
 
       ::file::path                              m_pathFolder;
-      __composite(::fs::set)                    m_pfsset;
+      ::pointer<::fs::set>                   m_pfsset;
       ::file::listing                           m_listingRoot;
       ::file::listing                           m_listingUser2;
       ::file::listing                           m_listingFinal2;
@@ -39,7 +39,7 @@ namespace userfs
       void dump(dump_context & dumpcontext) const override;
 
 
-      virtual bool browse(__pointer(::file::item) pitem, const ::action_context & action_context);
+      virtual bool browse(::pointer<::file::item>pitem, const ::action_context & action_context);
 
 
       inline ::fs::set * fs_data() { return m_pfsset; }

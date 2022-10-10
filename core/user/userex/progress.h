@@ -50,9 +50,9 @@ namespace userex
 
       
       
-      __pointer(::progress::real)        m_pprogressreal;
+      ::pointer<::progress::real>       m_pprogressreal;
 
-      __pointer(::user::progress)   m_pprogress;
+      ::pointer<::user::progress>  m_pprogress;
 
       ::rectangle_i32                        m_rectangleStatus;
 

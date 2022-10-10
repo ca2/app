@@ -197,7 +197,7 @@ namespace write_text
 
    //   critical_section_lock synchronouslock(&m_csFont);
 
-   //   __pointer(::write_text::font_enumeration_item) pitem;
+   //   ::pointer<::write_text::font_enumeration_item>pitem;
 
    //   double dAndroid = 4.4;
 
@@ -209,7 +209,7 @@ namespace write_text
 
    //   auto pdoc = pxml->create_document();
 
-   //   __pointer(true_type_font_utilities) ptruetypefontutilities;
+   //   ::pointer<true_type_font_utilities>ptruetypefontutilities;
 
    //   __construct_new(ptruetypefontutilities);
 

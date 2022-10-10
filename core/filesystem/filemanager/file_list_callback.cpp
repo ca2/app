@@ -71,7 +71,7 @@ namespace filemanager
       return 0;
    }
 
-   void file_list_callback::InitializeActionButton(atom atom, __pointer(::user::button) pbutton)
+   void file_list_callback::InitializeActionButton(atom atom, ::pointer<::user::button>pbutton)
    {
       switch (atom)
       {
@@ -88,7 +88,7 @@ namespace filemanager
       }
    }
 
-   void file_list_callback::OnButtonAction(atom i, __pointer(::file::item)  item)
+   void file_list_callback::OnButtonAction(atom i, ::pointer<::file::item> item)
    {
       __UNREFERENCED_PARAMETER(i);
       __UNREFERENCED_PARAMETER(item);
@@ -119,7 +119,7 @@ namespace filemanager
    }
 
 
-   __pointer(::image_list) file_list_callback::GetActionButtonImageList(atom i)
+   ::pointer<::image_list>file_list_callback::GetActionButtonImageList(atom i)
    {
 
       __UNREFERENCED_PARAMETER(i);

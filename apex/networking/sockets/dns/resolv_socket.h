@@ -29,8 +29,8 @@ namespace sockets
       bool                                            m_cached;
 
 
-      __pointer(::apex::system)                       m_psystem;
-      __pointer(::networking::networking)      m_pnetworking;
+      ::pointer<::apex::system>                      m_psystem;
+      ::pointer<::networking::networking>     m_pnetworking;
 
 
       resolv_socket();

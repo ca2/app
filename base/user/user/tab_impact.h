@@ -23,12 +23,12 @@ namespace user
    public:
 
 
-      __pointer(tab_drop_target_window)         m_pdroptargetwindow;
+      ::pointer<tab_drop_target_window>        m_pdroptargetwindow;
       ::user::impact_data *                     m_pimpactdata;
       ::user::impact_data *                     m_pimpactdataOld;
       ::user::impact_creator *                  m_pviewcreator;
       bool                                      m_bCloseDocumentIfNoTabs;
-      //__pointer(::user::impact)                 m_pimpactTopic;
+      //::pointer<::user::impact>                m_pimpactTopic;
 
 
       tab_impact();
@@ -109,7 +109,7 @@ namespace user
 
       bool pre_create_window(::user::system * pusersystem) override;
 
-      void OnActivateImpact(bool bActivate, __pointer(impact) pActivateImpact, __pointer(impact) pDeactiveImpact) override;
+      void OnActivateImpact(bool bActivate, ::pointer<impact>pActivateImpact, ::pointer<impact>DeactiveImpact) override;
 
       void _001OnRemoveTab(class tab_pane * ptab) override;
 

@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "bred/platform/application.h"
@@ -14,7 +14,7 @@ namespace core
    public:
 
 
-      __pointer(::userex::pane_tab_impact)      m_ppaneimpactCore;
+      ::pointer<::userex::pane_tab_impact>     m_ppaneimpactCore;
 
 
       application();
@@ -30,7 +30,7 @@ namespace core
 
 
       virtual void initialize(::object * pobject) override;
-      __pointer(::progress::real) show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::count iProgressCount) override;
+      ::pointer<::progress::real>show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::count iProgressCount) override;
 
 
       //virtual void prepare_impact_menu(::user::menu * pmenu);

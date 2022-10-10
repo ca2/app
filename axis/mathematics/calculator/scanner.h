@@ -29,7 +29,7 @@ numbers:
 
       const char * input;
       const char * next_input;
-      __pointer(class token) m_ptoken;
+      ::pointer<class token> m_ptoken;
 
 
       scanner();

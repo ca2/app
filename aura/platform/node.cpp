@@ -153,7 +153,7 @@ namespace aura
 //   }
 
    
-   //__pointer(::extended::sequence < ::conversation >) node::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
+   //pointer< ::extended::sequence < ::conversation > > node::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox)
    //{
 
    //   auto pmessagebox = puserinteraction->__create < ::user::message_box >();
@@ -201,7 +201,7 @@ namespace aura
 #endif
 
 
-   //__pointer(::conversation) node::create_new_message_box_conversation()
+   //::pointer<::conversation>node::create_new_message_box_conversation()
    //{
 
    //   return __create_new < ::micro_message_box >();

@@ -223,7 +223,7 @@ namespace user
       void create_child(::user::interaction * puserinteractionParent) override;
       void create_control(::user::interaction * puserinteractionParent, const ::atom & atom) override;
 
-      //virtual bool create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::atom & atom);
+      //virtual bool create_window_ex(::pointer<::user::system>pcs, ::user::interaction * puiParent, const ::atom & atom);
       //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder);
 
 
@@ -473,7 +473,7 @@ namespace user
 
       bool is_selected(::data::item * pitem) override;
 
-      //virtual __pointer(place_holder) place_hold(::user::interaction * pinteraction);
+      //virtual ::pointer<place_holder>place_hold(::user::interaction * pinteraction);
 
       bool has_command_handler(::message::command * pcommand) override;
 
@@ -486,17 +486,17 @@ namespace user
 
 
       //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point_i32 & point = nullptr);
-      //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags, const ::point_i32 & point);
-      //virtual __pointer(::user::menu) track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point_i32 & pointScreen = nullptr, const ::size_i32& sizeMinimum = size_i32(0, 0));
-      //virtual __pointer(::user::menu) track_popup_xml_menu_file(::payload payloadFile, i32 iFlags, const ::point_i32 & point = nullptr, const ::size_i32 & sizeMinimum = size_i32(0, 0));
+      //virtual ::pointer<::user::menu>track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags, const ::point_i32 & point);
+      //virtual ::pointer<::user::menu>track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point_i32 & pointScreen = nullptr, const ::size_i32& sizeMinimum = size_i32(0, 0));
+      //virtual ::pointer<::user::menu>track_popup_xml_menu_file(::payload payloadFile, i32 iFlags, const ::point_i32 & point = nullptr, const ::size_i32 & sizeMinimum = size_i32(0, 0));
 
       //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags,::message::message * pmessage);
-      //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags,::message::message * pmessage);
-      //virtual __pointer(::user::menu) track_popup_xml_menu_text(string strXml, i32 iFlags, ::message::message * pmessage);
+      //virtual ::pointer<::user::menu>track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags,::message::message * pmessage);
+      //virtual ::pointer<::user::menu>track_popup_xml_menu_text(string strXml, i32 iFlags, ::message::message * pmessage);
 
       //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags);
-      //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const ::string & pszMatter, i32 iFlags);
-      //virtual __pointer(::user::menu) track_popup_xml_menu_text(string strXml,i32 iFlags);
+      //virtual ::pointer<::user::menu>track_popup_xml_matter_menu(const ::string & pszMatter, i32 iFlags);
+      //virtual ::pointer<::user::menu>track_popup_xml_menu_text(string strXml,i32 iFlags);
 
 
       //virtual void exit_iconify();
@@ -589,7 +589,7 @@ namespace user
 
 
       //template < class T >
-      //__pointer(T) get_typed_parent() const;
+      //pointer < T > get_typed_parent() const;
 
       
       ::user::interaction * get_parent_window() const override;

@@ -14,9 +14,9 @@ namespace html
    public:
 
 
-      __pointer(::html_data)              m_phtmldata;
-      __pointer(::message::message)       m_pmessage;
-      __pointer(::user::interaction)      m_puserinteraction;
+      ::pointer<::html_data>              m_phtmldata;
+      ::pointer<::message::message>       m_pmessage;
+      ::pointer<::user::interaction>      m_puserinteraction;
 
 
       message();

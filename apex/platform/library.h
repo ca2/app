@@ -21,7 +21,7 @@
 //      }
 //
 //      // impl
-//      virtual __pointer(::matter) new_application(const char* pszAppId) override;
+//      virtual ::pointer<::matter>new_application(const char* pszAppId) override;
 //
 //
 //      virtual void get_extension_list(string_array& stra) override;

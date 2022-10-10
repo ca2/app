@@ -95,9 +95,9 @@ bool db_server::initialize()
 
    m_pdb          = __new(::sqlite::database(this));
 
-   __pointer(::handler) phandler = psystem->handler();
+   ::pointer<::handler>phandler = psystem->handler();
 
-   __pointer(command_line) pcommandline = phandler->m_spcommandline;
+   ::pointer<command_line>pcommandline = phandler->m_spcommandline;
 
    string strAppName;
 
@@ -162,7 +162,7 @@ pacmedirectory->system() / "database.sqlite";
 
    i32 iBufferSize = 128 * 1024;
 
-   __pointer(::handler) commandthread = psystem->handler();
+   ::pointer<::handler>commandthread = psystem->handler();
 
    if(commandthread->has_property("filesizebuffer"))
    {
@@ -395,7 +395,7 @@ bool db_server::save(const ::database::key & key, memory & mem)
 }
 
 
-__pointer(::sqlite::database) db_server::get_database()
+::pointer<::sqlite::database>db_server::get_database()
 {
 
    return m_pdb;

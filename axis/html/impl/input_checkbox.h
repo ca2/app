@@ -18,7 +18,7 @@ namespace html
       public:
 
 
-         __pointer(::user::check_box) m_pcheckbox;
+         ::pointer<::user::check_box>m_pcheckbox;
 
 
          input_checkbox();

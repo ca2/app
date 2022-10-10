@@ -9,9 +9,9 @@ public:
 
    ::atom                                 m_atomPid;
    ::i64                                  m_iTask;
-   __pointer(interprocess_call)           m_pcall;
+   ::pointer<interprocess_call>          m_pcall;
    ::payload                              m_payload;
-   __pointer(manual_reset_event)          m_pevReady;
+   ::pointer<manual_reset_event>         m_pevReady;
    tristate                               m_tristateContinue;
    tristate                               m_tristateHandled;
 

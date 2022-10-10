@@ -301,7 +301,7 @@ namespace app_shader
 
             {
 
-               //__pointer(::aura::session) psession = get_session();
+               //::pointer<::aura::session>psession = get_session();
 
                //auto puser = psession->user();
 

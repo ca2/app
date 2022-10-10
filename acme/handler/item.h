@@ -77,7 +77,7 @@ struct ITEM_DATA_ADDITIONS
    ::point_i32                   m_pointHitTest;
    ::rectangle_i32               m_rectangle;
    u64                           m_uFlags;
-   __pointer(::element)          m_pelement;
+   ::pointer<::element>         m_pelement;
    ::enum_item                   m_eitem;
    union // small 1 bedroom ap
    {
@@ -291,9 +291,9 @@ public:
    
    // a user item is a "pointer"/address to a user interface matter
 
-   __pointer(::draw2d::graphics)    m_pgraphics;
-   __pointer(::draw2d::path)        m_ppath;
-   __pointer(::user::mouse)         m_pmouse;
+   ::pointer<::draw2d::graphics>   m_pgraphics;
+   ::pointer<::draw2d::path>       m_ppath;
+   ::pointer<::user::mouse>        m_pmouse;
    bool                             m_bAnyHoverChange;
 
    //item(enum_element eelement, ::index iItem = -1, ::index iSubItem = -1, ::index iListItem = -1, const ::u64 uFlags = e_flag_none) :
@@ -506,7 +506,7 @@ public:
 };
 
 
-using item_pointer = __pointer(::item);
+using item_pointer = ::pointer<::item>;
 
 
 //} // namespace item
@@ -567,7 +567,7 @@ inline bool in_element_range(const ::item * pitem, enum_element eelement, int iC
 }
 
 
-inline __pointer(::item) new_item_with_index(::index iIndex)
+inline ::pointer<::item>new_item_with_index(::index iIndex)
 {
 
    return __new(::item(::e_element_item, iIndex));

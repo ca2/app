@@ -38,7 +38,7 @@
 //   class style;
 //   class scroll_info;
 //   class window_map;
-//   using style_pointer = __pointer(style);
+//   using style_pointer = ::pointer<style>
 //   class system_interaction_impl;
 //   class menu_central;
 //
@@ -496,9 +496,9 @@
 ////      ::user::single_document_template *                 m_ptemplate_platform;
 ////      ::user::single_document_template *                 m_ptemplate_nature;
 ////      ::user::single_document_template *                 m_ptemplate_html;
-////      __pointer(::user::document)                               m_pbergedgedocument;
-////      __pointer(::user::document)                               m_pplatformdocument;
-////      __pointer(::user::document)                               m_pnaturedocument;
+////      ::pointer<::user::document>                              m_pbergedgedocument;
+////      ::pointer<::user::document>                              m_pplatformdocument;
+////      ::pointer<::user::document>                              m_pnaturedocument;
 ////
 ////
 ////      session_docs();

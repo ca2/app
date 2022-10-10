@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/data/tree_item.h"
@@ -15,8 +15,8 @@ namespace data
    public:
 
 
-      __pointer_array(tree)                    m_treea;
-      //__pointer(tree_item)                m_proot;
+      pointer_array < tree >                    m_treea;
+      //::pointer<tree_item>               m_proot;
       bool                                m_bFill;
       index_array                         m_iaLevelNext;
 

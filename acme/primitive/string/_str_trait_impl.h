@@ -707,7 +707,7 @@
    inline ansistring & str::assign(ansistring & ansistrDst, const atom & atom)
    {
 
-      ansistrDst.assign(atom.as_string());
+      ansistrDst.assign(atom);
 
       return ansistrDst;
 
@@ -717,7 +717,7 @@
    inline wd16string & str::assign(wd16string & widestrDst, const atom & atom)
    {
 
-      widestrDst.assign(atom.as_string());
+      widestrDst.assign(atom);
 
       return widestrDst;
 
@@ -727,7 +727,7 @@
    inline wd32string & str::assign(wd32string& widestrDst, const atom& atom)
    {
 
-      widestrDst.assign(atom.as_string());
+      widestrDst.assign(atom);
 
       return widestrDst;
 
@@ -1012,7 +1012,7 @@
    inline ansistring & str::assign(ansistring & ansistrDst, const type & type)
    {
 
-      ansistrDst.assign(type.m_strName);
+      ansistrDst.assign(type);
 
       return ansistrDst;
 
@@ -1022,7 +1022,7 @@
    inline wd16string & str::assign(wd16string & widestrDst, const type & type)
    {
 
-      widestrDst.assign(type.m_strName);
+      widestrDst.assign(type);
 
       return widestrDst;
 
@@ -1032,7 +1032,7 @@
    inline wd32string & str::assign(wd32string& widestrDst, const type& type)
    {
 
-      widestrDst.assign(type.m_strName);
+      widestrDst.assign(type);
 
       return widestrDst;
 

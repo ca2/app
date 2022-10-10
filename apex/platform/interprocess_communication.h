@@ -83,7 +83,7 @@ namespace interprocess_communication
       public:
 
 
-         virtual void on_interprocess_receive(rx * prx, __pointer(dispatch_item) && pdispatchitem);
+         virtual void on_interprocess_receive(rx * prx, ::pointer<dispatch_item>&& pdispatchitem);
          virtual void on_interprocess_receive(rx * prx, ::string && strMessage);
          virtual void on_interprocess_receive(rx * prx, int message, ::memory && memory);
          virtual void on_interprocess_post(rx * prx, i64 a, i64 b);
@@ -92,9 +92,9 @@ namespace interprocess_communication
       };
 
 
-      __pointer(receiver)                 m_preceiver;
+      ::pointer<receiver>                m_preceiver;
       rx_private *                        m_pp;
-      __pointer_array(dispatch_item)      m_dispatchitema;
+      pointer_array < dispatch_item >      m_dispatchitema;
       manual_reset_event                  m_evDispatchItemNew;
       ::mutex                             m_mutexDispatch;
 
@@ -103,7 +103,7 @@ namespace interprocess_communication
 
       bool                    m_bRunning;
       bool                    m_bRun;
-      __pointer(::task)       m_pthread;
+      ::pointer<::task>      m_pthread;
 
 #endif
 
@@ -134,7 +134,7 @@ namespace interprocess_communication
       void dispatch_message(::u64 uData, ::memory && memory);
 
 
-      void dispatch_item(__pointer(dispatch_item) && pdispatchitem);
+      void dispatch_item(::pointer<dispatch_item>&& pdispatchitem);
 
 
       void task_dispatch();
@@ -151,8 +151,8 @@ namespace interprocess_communication
    public:
 
 
-      __pointer(tx)           m_ptx;
-      __pointer(rx)           m_prx;
+      ::pointer<tx>          m_ptx;
+      ::pointer<rx>          m_prx;
       string                  m_strChannel;
       unsigned int            m_durationTimeout;
 

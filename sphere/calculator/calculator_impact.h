@@ -19,7 +19,7 @@ namespace calculator
       void dump(dump_context & dumpcontext) const override;
 
 
-      virtual __pointer(::user::interaction) backimpact_GetWnd();
+      virtual ::pointer<::user::interaction>backimpact_GetWnd();
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

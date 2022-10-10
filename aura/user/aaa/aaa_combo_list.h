@@ -15,7 +15,7 @@ namespace user
       bool                                m_bPendingKillFocusHiding;
       bool                                m_bMovingComboBox;
       bool                                m_bComboList;
-      __pointer(combo_box)                m_pcombo;
+      ::pointer<combo_box>               m_pcombo;
       int                                 m_iBorder;
       int                                 m_iPadding;
       int                                 m_iMinListItemCount;

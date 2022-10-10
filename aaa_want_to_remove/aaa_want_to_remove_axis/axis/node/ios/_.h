@@ -11,7 +11,7 @@
 
 string get_error_message(::u32 dwError);
 
-__pointer(::aura::application)     ios_instantiate_application(__pointer(::aura::application) pappSystem, const ::string & pszId);
+::pointer<::aura::application>    ios_instantiate_application(::pointer<::aura::application>appSystem, const ::string & pszId);
 
 
 #include "ios_implementation.h"
@@ -45,7 +45,7 @@ int_bool GetMessage(
 i32 CLASS_DECL_AXIS __ios_main(i32 argc, char * argv[]);
 
 
-CLASS_DECL_AXIS void vfxThrowFileException(__pointer(::aura::application) papp, i32 cause, ::i32 lOsError, const ::string & lpszFileName = nullptr);
+CLASS_DECL_AXIS void vfxThrowFileException(::pointer<::aura::application>papp, i32 cause, ::i32 lOsError, const ::string & lpszFileName = nullptr);
 
 
 

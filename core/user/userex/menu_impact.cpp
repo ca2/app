@@ -150,7 +150,7 @@ void menu_impact::_001OnTimer(::timer * ptimer)
 
 //void menu_impact::_001OnUser123(::message::message * pmessage)
 //{
-//   __pointer(::user::message) pusermessage(pmessage);
+//   ::pointer<::user::message>pusermessage(pmessage);
 //   if(pusermessage->m_wparam == 0x80000001)
 //   {
 //      get_top_level()->EndModalLoop(e_dialog_result_ok);

@@ -21,7 +21,7 @@ namespace user
       bool                       m_bLButtonDown;
       ::point_i32                m_pointLButtonDown;
       ::size_i32                 m_sizeLButtonDownOffset;
-      __pointer(::user::mouse)   m_pmouse;
+      ::pointer<::user::mouse>  m_pmouse;
       enum_cursor                m_ecursor;
 
       bool                       m_bDrag;
@@ -47,8 +47,8 @@ namespace user
    public:
 
 
-      map < e_element, __pointer(::user::drag) >      m_mapDrag;
-      __pointer(::user::drag)                         m_pdragCurrent;
+      map < e_element, ::pointer<::user::drag >>     m_mapDrag;
+      ::pointer<::user::drag>                        m_pdragCurrent;
 
 
       drag_client();

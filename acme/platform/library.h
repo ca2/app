@@ -81,7 +81,7 @@ namespace acme
       //virtual string get_root();
 
 
-      //virtual __pointer(::object) new_application(const ::string & strAppId);
+      //virtual ::pointer<::object>new_application(const ::string & strAppId);
       //virtual void get_app_list(string_array & stra);
 
       
@@ -99,7 +99,7 @@ namespace acme
       // virtual ::matter * factory_new(::object * pobject, const char * lpszClass);
 
 
-      //virtual __pointer(::matter) factory_create(const char * lpszClass);
+      //virtual ::pointer<::matter>factory_create(const char * lpszClass);
       //virtual bool factory_has_object_class(const char * lpszClass);
 
       //library_object_allocator_base * find_allocator(const char * lpszClass);
@@ -109,16 +109,16 @@ namespace acme
 
       //virtual bool add_factory_item();
 
-      //virtual __pointer(::factory::factory) & factory(const ::string & strComponent, const ::string & strImplementation);
+      //virtual ::pointer<::factory::factory>& factory(const ::string & strComponent, const ::string & strImplementation);
 
-      //virtual __pointer(::factory::factory) & factory(const ::string & strLibrary);
+      //virtual ::pointer<::factory::factory>& factory(const ::string & strLibrary);
 
-      //virtual void _load_factory(__pointer(::factory::factory) & pfactory, const ::string& strComponent);
+      //virtual void _load_factory(::pointer<::factory::factory>& pfactory, const ::string& strComponent);
 
       //virtual void factory_exchange(const ::string & strName = nullptr, ::factory::factory * pfactory = nullptr);
-      //virtual __pointer(::factory::factory) create_factory(const ::string& strLibrary);
+      //virtual ::pointer<::factory::factory>create_factory(const ::string& strLibrary);
 
-      virtual __pointer(::factory::factory) create_factory();
+      virtual ::pointer<::factory::factory>create_factory();
 
 
    };
@@ -222,7 +222,7 @@ CLASS_DECL_EXPORT ::acme::library * libname ## _ ## get_new_library(::object * p
 //
 //
 //   template < typename TYPE, typename BASE_TYPE>
-//   inline __pointer(::factory::factory_item_base < BASE_TYPE >) _add_factory_item_from(const ::atom & atomSource)
+//   inline pointer< ::factory::factory_item_base < BASE_TYPE > > _add_factory_item_from(const ::atom & atomSource)
 //   {
 //
 //      critical_section_lock lock(::factory::get_factory_critical_section());

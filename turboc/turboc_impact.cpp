@@ -99,7 +99,7 @@ namespace turboc
    void impact::on_message_create(signal_details * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       pcreate->previous();
 
@@ -707,7 +707,7 @@ namespace turboc
 
       {
 
-         __pointer(impact) pimpact = pviewParam;
+         ::pointer<impact>pimpact = pviewParam;
 
          while(::task_get_run() && pimpact->IsWindow())
          {

@@ -26,7 +26,7 @@ namespace filemanager
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      __pointer(operation_document) get_document();
+      ::pointer<operation_document>get_document();
 
       void OnFileOperationStep(i32 iOperation,bool bFinal);
 

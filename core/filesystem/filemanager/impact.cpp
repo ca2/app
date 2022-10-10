@@ -135,7 +135,7 @@ namespace filemanager
 
          //   str.format("(%s)", filemanager_data()->m_atom.str().c_str());
 
-         //   __pointer(::database::client) pframe = get_parent_frame();
+         //   ::pointer<::database::client>pframe = get_parent_frame();
 
          //   if (pframe != nullptr)
          //   {

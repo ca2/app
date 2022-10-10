@@ -26,12 +26,12 @@ namespace acme
 //
 //   void application::_001OnFileNew()
 //   {
-//      //      ::ca2::pointer < ::application_base > ::m_p->_001OnFileNew(nullptr);
+//      //      ::ca2pointer< ::application_base > ::m_p->_001OnFileNew(nullptr);
 //   }
 //
 //   ::user::document * application::_001OpenDocumentFile(::payload payloadFile)
 //   {
-//      //    return ::ca2::pointer < ::application_base > ::m_p->_001OpenDocumentFile(payloadFile);
+//      //    return ::ca2pointer< ::application_base > ::m_p->_001OpenDocumentFile(payloadFile);
 //      return nullptr;
 //   }
 
@@ -198,12 +198,12 @@ namespace acme
    return ::win::graphics::from_handle((HDC) pdata);
    }*/
 
-//   __pointer(::user::interaction) application::window_from_os_data(void * pdata)
+//   ::pointer<::user::interaction>application::window_from_os_data(void * pdata)
 //   {
 //      return ::ios::window::from_handle((oswindow) pdata);
 //   }
 //
-//   __pointer(::user::interaction) application::window_from_os_data_permanent(void * pdata)
+//   ::pointer<::user::interaction>application::window_from_os_data_permanent(void * pdata)
 //   {
 //      ::window * puserinteraction = ::ios::window::FromHandlePermanent((oswindow) pdata);
 //      if(puserinteraction != nullptr)
@@ -363,10 +363,10 @@ namespace acme
 
 
 
-//   __pointer(::user::printer) application::get_printer(const char * pszDeviceName)
+//   ::pointer<::user::printer>application::get_printer(const char * pszDeviceName)
 //   {
 //
-//      __pointer(::ios2::printer) pprinter = create_object <  ::user::printer  > ();
+//      ::pointer<::ios2::printer>pprinter = create_object <  ::user::printer  > ();
 //
 //      if(!pprinter->open(pszDeviceName))
 //      {

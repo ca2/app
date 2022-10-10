@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 ////#include "base/user/simple/_component.h"
 #include "main_frame.h"
 #include "aura/message/user.h"
@@ -60,14 +60,14 @@ void simple_main_frame::on_message_create(::message::message * pmessage)
 
    }
 
-   __pointer(::message::create) pcreate(pmessage);
+   ::pointer<::message::create>pcreate(pmessage);
 
    auto papp = get_app();
 
    if (papp->m_puserinteractionMain.is_null())
    {
 
-      papp->__refer(papp->m_puserinteractionMain, this);
+      papp->m_puserinteractionMain = this;
 
    }
 

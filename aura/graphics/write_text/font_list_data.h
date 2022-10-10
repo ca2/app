@@ -10,7 +10,7 @@ namespace write_text
 
 
    class CLASS_DECL_AURA font_list_data :
-      virtual public __pointer_array(font_list_item)
+      virtual public pointer_array < font_list_item >
    {
    public:
 

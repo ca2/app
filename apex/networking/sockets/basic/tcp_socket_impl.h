@@ -117,7 +117,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //            return _q;
 //         }
 //      };
-//      typedef list<__pointer(output)> output_list;
+//      typedef list<::pointer<output >> output_list;
 //
 //      ::file::circular_file ibuf; ///< Circular input buffer
 //      string m_strUrl;
@@ -128,7 +128,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 //      //u64 m_bytes_received;
 //      //memory         m_memRead;
 //      //output_list m_obuf; ///< output buffer
-//      //__pointer(output) m_obuf_top; ///< output buffer on top
+//      //::pointer<output>m_obuf_top; ///< output buffer on top
 //      //memsize m_transfer_limit;
 //      //memsize m_output_length;
 //

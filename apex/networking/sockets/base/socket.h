@@ -1,4 +1,4 @@
-﻿// Moved by camilo on 2021-07-26 02:20 BRT <3ThomasBorregaardSørensen!!
+// Moved by camilo on 2021-07-26 02:20 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -44,12 +44,12 @@ namespace sockets
 //      };
 //
 ////#ifdef BSD_STYLE_SOCKETS
-////      __pointer(ssl_context)  m_psslcontext;
+////      ::pointer<ssl_context> m_psslcontext;
 ////#endif
      //string                  m_password; ///< ssl password
 
 //
-      //__pointer(base_socket_handler)   m_psockethandler; /// |-xxx-Reference-xxx-> 2021-03-08pointer of base_socket_handler in control of this socket
+      //::pointer<base_socket_handler>  m_psockethandler; /// |-xxx-Reference-xxx-> 2021-03-08pointer of base_socket_handler in control of this socket
       //socket_id                  m_socket; ///< File descriptor
 //
 //      static ::mutex *        s_pmutex;
@@ -61,7 +61,7 @@ namespace sockets
 //      bool                    m_b_chunked;
 //
 //
-//__pointer(::memory_file) m_pmemfileInput;
+//::pointer<::memory_file>m_pmemfileInput;
   //    bool                    m_bEnd; // should finish by not sending no more writes
 //      string                  m_strCat;
 //      string                  m_strCipherList;
@@ -75,7 +75,7 @@ namespace sockets
 //      int                     m_iBindPort;
 //      bool                    m_bDelete; ///< Delete by handler flag
       //bool                    m_bCloseAndDelete; ///< close and delete flag
-      //__pointer(base_socket)           m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
+      //::pointer<base_socket>          m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
       //::duration              m_durationConnectionStart; ///< Set by SetTimeout
       //::duration              m_durationConnectionLastActivity; ///< Set by SetTimeout
       //::duration              m_durationConnectionMaximum; ///< Defined by SetTimeout
@@ -107,8 +107,8 @@ namespace sockets
 //
 //      bool                             m_bDetach; ///< base_socket ordered to detach flag
 //      bool                             m_bDetached; ///< base_socket has been detached
-//      __pointer(::sockets::socket_thread)         m_psocketthread; ///< detach base_socket thread class pointer
-//__pointer(base_socket_handler)   m_phandlerSlave; ///< Actual sockethandler while detached
+//      ::pointer<::sockets::socket_thread>        m_psocketthread; ///< detach base_socket thread class pointer
+//::pointer<base_socket_handler>  m_phandlerSlave; ///< Actual sockethandler while detached
 //
 //
 //      // LineProtocol

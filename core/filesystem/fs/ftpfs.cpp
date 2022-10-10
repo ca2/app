@@ -52,7 +52,7 @@ void ftpfs::initialize_ftpfs(::object * pobject, const ::string & pszRoot)
 //void ftpfs::initialize(::object * pobject)
 //{
 //
-//   auto estatus = __compose_new(this, m_pftpnet);
+//   auto estatus = __construct_new(this, m_pftpnet);
 //
 //   return estatus;
 //
@@ -530,7 +530,7 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
    plogon->m_strToken = purl->os_fspath(strUrl);
 
-   __pointer(::ftp::client_socket) & pclient = m_pftpnet->m_mapClient[plogon->m_strToken];
+   ::pointer<::ftp::client_socket>& pclient = m_pftpnet->m_mapClient[plogon->m_strToken];
 
    int iTry = 0;
 
@@ -543,7 +543,7 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
       pclient->initialize_socket(m_pftpnet->m_psockethandler);
 
-      __pointer(::ftp::output) & poutput = m_pftpnet->m_mapOutput[plogon->m_strToken];
+      ::pointer<::ftp::output>& poutput = m_pftpnet->m_mapOutput[plogon->m_strToken];
 
       poutput = __new(::ftp::output());
 

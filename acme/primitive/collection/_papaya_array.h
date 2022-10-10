@@ -14,7 +14,7 @@ namespace papaya
 
 
    template < class TDST, class TSRC >
-   ::count copy(__pointer_array(TDST) & dsta, const __pointer_array(TSRC) & srca);
+   ::count copy(pointer_array < TDST > & dsta, const pointer_array < TSRC > & srca);
 
 
    template < class A, class T >
@@ -331,7 +331,7 @@ namespace papaya
 
 
       template < typename T >
-      inline bool are_all_elements_equal(const __pointer_array(T) & a1, const __pointer_array(T) & a2)
+      inline bool are_all_elements_equal(const pointer_array < T > & a1, const pointer_array < T > & a2)
       {
 
          if (a1.get_count() != a2.get_count())
@@ -471,13 +471,13 @@ namespace papaya
 
 
       //template < typename TYPE >
-      //::stream & write_container_as_parent(::stream & stream, const __pointer_array(TYPE) & a);
+      //::stream & write_container_as_parent(::stream & stream, const pointer_array < TYPE > & a);
 
       //template < typename TYPE >
-      //::stream & read_container_as_parent(::stream & stream, __pointer_array(TYPE) & a);
+      //::stream & read_container_as_parent(::stream & stream, pointer_array < TYPE > & a);
 
       //template < typename TYPE, typename INITIALIZER >
-      //::stream & exchange_container(::stream & stream, INITIALIZER * pinitializer, const __pointer_array(TYPE) & a);
+      //::stream & exchange_container(::stream & stream, INITIALIZER * pinitializer, const pointer_array < TYPE > & a);
 
       template < typename Type, typename RawType, enum_type t_etypePayload >
       ::index add(string_array_base < Type, RawType, t_etypePayload > & array, const Type & psz)
@@ -608,7 +608,7 @@ namespace papaya
       inline ::index add(::file::path_array & patha, const ::file::listing & listing);
 
       template < typename T >
-      inline bool are_all_elements_equal(const __pointer_array(T) & a1, const __pointer_array(T) & a2);
+      inline bool are_all_elements_equal(const pointer_array < T > & a1, const pointer_array < T > & a2);
 
       // t1 candidate bigger
       template < typename T1, typename  T2>

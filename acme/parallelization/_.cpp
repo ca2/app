@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/operating_system.h"
 #include "acme/id.h"
 
@@ -15,7 +15,7 @@ namespace parallelization
 
 
    //CLASS_DECL_ACME comparable_eq_array<itask_t> * s_piaThread2 = nullptr;
-   //CLASS_DECL_ACME __pointer_array(thread) * s_pthreadptra2 = nullptr;
+   //CLASS_DECL_ACME pointer_array < thread > * s_pthreadptra2 = nullptr;
    //CLASS_DECL_ACMEcritical_section * s_pcs2 = nullptr;
 
 
@@ -26,7 +26,7 @@ namespace parallelization
 
    //   //s_piaThread2 = memory_new comparable_eq_array<itask_t>;
 
-   //   //s_pthreadptra2 = memory_new __pointer_array(thread);
+   //   //s_pthreadptra2 = memory_new pointer_array < thread >;
 
    //   __node_init_multitasking();
 
@@ -664,7 +664,7 @@ void run_runnable(::matter * pmatter)
 //}
 
 
-thread_local __pointer(task) t_ptask;
+thread_local ::pointer<task>t_ptask;
 
 
 CLASS_DECL_ACME ::task * get_task()

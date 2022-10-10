@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "database.h"
 #include "transaction.h"
 
@@ -114,7 +114,7 @@ namespace database
 
    //}
 
-   __pointer(result_set) database::query(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
+   ::pointer<result_set>database::query(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
    {
 
       return query_result(pszQuery, iRowCount, iColumnCount);
@@ -136,7 +136,7 @@ namespace database
    //}
 
 
-   //__pointer(row_array) database::query_rows(const ::string & pszQuery)
+   //::pointer<row_array>database::query_rows(const ::string & pszQuery)
    //{
 
    //   auto pset = query_result(pszQuery);
@@ -153,7 +153,7 @@ namespace database
    //}
 
 
-   //__pointer(row) database::query_row(const ::string & pszQuery)
+   //::pointer<row>database::query_row(const ::string & pszQuery)
    //{
 
    //   auto pset = query_result(pszQuery, 1);
@@ -170,7 +170,7 @@ namespace database
    //}
 
 
-   //__pointer(payload_array) database::query_items(const ::string & pszQuery)
+   //::pointer<payload_array>database::query_items(const ::string & pszQuery)
    //{
 
    //   auto pset = query_result(pszQuery, -1, 1);
@@ -230,7 +230,7 @@ namespace database
    //}
 
 /*
-   bool database::query_rows(__pointer(row_array) & rows, const ::string & pszQuery)
+   bool database::query_rows(::pointer<row_array>& rows, const ::string & pszQuery)
    {
 
       auto pset = query_result(pszQuery);
@@ -249,7 +249,7 @@ namespace database
    }
 
 
-   bool database::query_row(__pointer(row) & row, const ::string & pszQuery)
+   bool database::query_row(::pointer<row>& row, const ::string & pszQuery)
    {
 
       auto pset = query_result(pszQuery);
@@ -267,7 +267,7 @@ namespace database
 
    }*/
 
-   __pointer(::database::result_set) database::query_result(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
+   ::pointer<::database::result_set>database::query_result(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount)
    {
 
       return nullptr;
@@ -275,7 +275,7 @@ namespace database
    }
 
 
-   //bool database::query_items(__pointer(payload_array) & pitems, const ::string & pszQuery)
+   //bool database::query_items(::pointer<payload_array>& pitems, const ::string & pszQuery)
    //{
 
    //   auto pset = query_result(pszQuery);
@@ -340,10 +340,10 @@ namespace database
 
 
 
-   __pointer(row_array) database::query_rows(const ::string & pszQuery)
+   ::pointer<row_array>database::query_rows(const ::string & pszQuery)
    {
 
-      __pointer(row_array) prowarray;
+      ::pointer<row_array>prowarray;
 
       if (!query_rows(prowarray, pszQuery))
       {
@@ -356,10 +356,10 @@ namespace database
    }
 
 
-   __pointer(row) database::query_row(const ::string & pszQuery)
+   ::pointer<row>database::query_row(const ::string & pszQuery)
    {
 
-      __pointer(row) prow;
+      ::pointer<row>prow;
 
       if (!query_row(prow, pszQuery))
       {
@@ -372,10 +372,10 @@ namespace database
    }
 
 
-   __pointer(payload_array) database::query_items(const ::string & pszQuery)
+   ::pointer<payload_array>database::query_items(const ::string & pszQuery)
    {
 
-      __pointer(payload_array) pvara;
+      ::pointer<payload_array>pvara;
 
 
       if (!query_items(pvara, pszQuery))
@@ -430,7 +430,7 @@ namespace database
    }
 
 
-   bool database::query_rows(__pointer(row_array)& rows, const ::string & pszQuery)
+   bool database::query_rows(::pointer<row_array> & rows, const ::string & pszQuery)
    {
 
 
@@ -438,7 +438,7 @@ namespace database
    }
 
 
-   bool database::query_row(__pointer(row)& rows, const ::string & pszQuery)
+   bool database::query_row(::pointer<row> & rows, const ::string & pszQuery)
    {
 
       return false;
@@ -446,7 +446,7 @@ namespace database
    }
 
 
-   bool database::query_items(__pointer(payload_array)& items, const ::string & pszQuery)
+   bool database::query_items(::pointer<payload_array> & items, const ::string & pszQuery)
    {
 
       return false;
@@ -465,9 +465,9 @@ namespace database
 
 
 
-   //bool database::database(__pointer(row_array)& rows, const ::string & pszQuery);
-   //bool database::query_row(__pointer(row)& rows, const ::string & pszQuery);
-   //bool database::query_items(__pointer(payload_array)& items, const ::string & pszQuery);
+   //bool database::database(::pointer<row_array> rows, const ::string & pszQuery);
+   //bool database::query_row(::pointer<row> rows, const ::string & pszQuery);
+   //bool database::query_items(::pointer<payload_array> items, const ::string & pszQuery);
    //bool database::uery_item(::payload& item, const ::string & pszQuery);
 
 
@@ -497,7 +497,7 @@ namespace database
 
    }
 
-   __pointer(transaction) database::transaction()
+   ::pointer<transaction>database::transaction()
    {
 
       return __new(class transaction(this));

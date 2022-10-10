@@ -40,7 +40,7 @@ namespace filemanager
          };
 
          class ItemArray :
-            public __pointer_array(Item)
+            public pointer_array < Item >
          {
          public:
             //i32 FindAbsolute(const ::string & pszId);
@@ -104,12 +104,12 @@ namespace filemanager
             };
 
 
-            __pointer(::user::list_cache)                   m_puserlistcache;
+            ::pointer<::user::list_cache>                  m_puserlistcache;
             bool                                            m_bKickActive;
 
-            __pointer(::image_list)                           m_pimagelist;
+            ::pointer<::image_list>                          m_pimagelist;
             index                                   m_iParentFolder;
-            __pointer(::filemanager::fs::simple::impact)      m_pserver;
+            ::pointer<::filemanager::fs::simple::impact>     m_pserver;
 
 
             i32                                             m_iIconFolder;

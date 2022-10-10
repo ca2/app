@@ -50,7 +50,7 @@ namespace sockets
       
       //socket_handler * h = dynamic_cast < socket_handler * > (psocket->socket_handler());
 
-      //__pointer(::sockets::socket_handler) phandler = psocket->socket_handler();
+      //::pointer<::sockets::socket_handler>phandler = psocket->socket_handler();
       //
       //auto p = phandler->m_socketmap.begin();
 

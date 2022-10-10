@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "handler_manager.h"
 
 //handler_manager::handler_manager(const string& strThreadName, bool bSingleThread, int iAliveCount) :
@@ -95,10 +95,10 @@ void handler_manager::handle_synchronously(const ::procedure & procedure)
 }
 
 
-void handler_manager::destroy_composites()
+void handler_manager::on_destroy()
 {
 
-   ::object::destroy_composites();
+   ::object::on_destroy();
 
 }
 

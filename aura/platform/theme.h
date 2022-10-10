@@ -39,16 +39,16 @@ namespace aura
       };
 
 
-      //__composite(runner)        m_prunnerChangeWeatherState;
+      //::pointer<runner>       m_prunnerChangeWeatherState;
       ::file::watch_id           m_watchidWeather;
 
 
       string_array                    m_straTheme;
       string                     m_strTheme;
       ::file::path               m_pathTheme;
-      string_map < __pointer(colors) >  m_mapColors;
-      __pointer(colors)                 m_pcolors;
-      __pointer_array(theme_listener)        m_listenera;
+      string_map < ::pointer<colors >> m_mapColors;
+      ::pointer<colors>                m_pcolors;
+      pointer_array < theme_listener >        m_listenera;
 
 
       string                     m_strWeatherState;

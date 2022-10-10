@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/user/user/interaction.h"
@@ -18,10 +18,10 @@ namespace user
 
 
       ::size_i32                             m_sizeMinimum;
-      __pointer(menu)                        m_pmenuParent;
-      __pointer(menu_item)                   m_pmenuitem;
-      __pointer(::user::interaction)         m_puserinteractionParent;
-      __pointer(::channel)                   m_pchannelNotify;
+      ::pointer<menu>                       m_pmenuParent;
+      ::pointer<menu_item>                  m_pmenuitem;
+      ::pointer<::user::interaction>        m_puserinteractionParent;
+      ::pointer<::channel>                  m_pchannelNotify;
 //#ifdef WINDOWS_DESKTOP
 //      HMENU                                  m_hmenu;
 //#endif
@@ -30,11 +30,11 @@ namespace user
       double                                 m_dCheckBoxSize;
       bool                                   m_bAutoDelete;
       double                                 m_dHeaderHeight;
-      __pointer(::user::menu_item)           m_pitemClose;
+      ::pointer<::user::menu_item>          m_pitemClose;
       atom                                     m_atomSubMenu;
       i32                                    m_iHoverSubMenu;
       u32                                    m_dwOut;
-      __pointer(menu)                        m_psubmenu;
+      ::pointer<menu>                       m_psubmenu;
       atom                                     m_atomTimerMenu;
       point_i32                              m_pointTrack;
       point_i32                              m_pointPositionHint;
@@ -42,7 +42,7 @@ namespace user
       bool                                   m_bPositionHint;
       bool                                   m_bInline;
       bool                                   m_bMenuOk;
-      __pointer(menu_item)                   m_pmenuitemSub;
+      ::pointer<menu_item>                  m_pmenuitemSub;
       int_array                              m_iaColumnWidth;
       int_array                              m_iaColumnHeight;
       bool                                   m_bCloseButton;
@@ -109,9 +109,9 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      __pointer(::user::menu_item) get_menu_item();
+      ::pointer<::user::menu_item>get_menu_item();
 
-      //__pointer(::user::menu_item) get_menu_item(::user::interaction * pinteraction);
+      //::pointer<::user::menu_item>get_menu_item(::user::interaction * pinteraction);
 
       virtual bool has_pending_graphical_update() override;
 
@@ -121,7 +121,7 @@ namespace user
 
       virtual bool add_menu(::xml::node * pnode);
 
-      virtual bool load_xml_menu(const ::payload & varXml);
+      virtual bool load_xml_menu(const ::payload & payload);
 
       //virtual bool add_xml_menu(const ::payload & varXml);
 
@@ -134,7 +134,7 @@ namespace user
 
       virtual void defer_close();
 
-      virtual __pointer(::user::menu_interaction) create_menu_button(::draw2d::graphics_pointer & pgraphics, ::user::menu_item * pitem);
+      virtual ::pointer<::user::menu_interaction>create_menu_button(::draw2d::graphics_pointer & pgraphics, ::user::menu_item * pitem);
 
       void route_command(::message::command* pcommand, bool bRouteToKeyDescendant) override;
 

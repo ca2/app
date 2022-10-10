@@ -12,7 +12,7 @@ namespace calculator
 
 
       scanner                          m_scanner;
-      __pointer_array(::calculator::matter)       m_elementa;
+      pointer_array < ::calculator::matter >       m_elementa;
 
 
       parser(::object * pobject);

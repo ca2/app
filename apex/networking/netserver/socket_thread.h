@@ -26,8 +26,8 @@ namespace netserver
       string                                       m_strCat;
       string                                       m_strCipherList;
 
-      __pointer(::netserver::socket_handler)       m_psockethandler;
-      __pointer(::sockets::listen_socket_base)     m_plistensocket;
+      ::pointer<::netserver::socket_handler>      m_psockethandler;
+      ::pointer<::sockets::listen_socket_base>    m_plistensocket;
 
 
       socket_thread_base();

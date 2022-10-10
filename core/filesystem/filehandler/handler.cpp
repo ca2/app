@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "handler.h"
 #include "menu_library.h"
 #include "item.h"
@@ -37,7 +37,7 @@ namespace filehandler
 
       //estatus =
       
-      __compose_new(m_ptree);
+      __construct_new(m_ptree);
 
       //if (!estatus)
       //{
@@ -214,7 +214,7 @@ namespace filehandler
    }
 
 
-   __pointer(::data::tree_item) handler::get_extension_tree_item(const ::string & pszExtension, bool bCreate)
+   ::pointer<::data::tree_item>handler::get_extension_tree_item(const ::string & pszExtension, bool bCreate)
    {
 
       auto ptreeitem = m_ptree->get_base_item()->get_next();
@@ -292,7 +292,7 @@ namespace filehandler
    }
 
 
-   __pointer(::data::tree_item) handler::get_mime_type_tree_item(const ::string & pszMimeType, bool bCreate)
+   ::pointer<::data::tree_item>handler::get_mime_type_tree_item(const ::string & pszMimeType, bool bCreate)
    {
 
       auto ptreeitem = m_ptree->get_base_item()->get_child_next_or_parent();

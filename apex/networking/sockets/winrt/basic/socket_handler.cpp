@@ -320,7 +320,7 @@ namespace sockets
                break;
             }
             psocket->run();
-            __pointer(stream_socket) pstreamsocket = psocket;
+            ::pointer<stream_socket>pstreamsocket = psocket;
             if(pstreamsocket != nullptr)
             {
                if(pstreamsocket->m_writer != nullptr)
@@ -569,12 +569,12 @@ namespace sockets
       return m_resolver_port;
    }
 
-   __pointer(base_socket_handler::pool_socket) socket_handler::FindConnection(int type,const string & protocol, ::networking::address * ad)
+   ::pointer<base_socket_handler::pool_socket>socket_handler::FindConnection(int type,const string & protocol, ::networking::address * ad)
    {
       auto ppair = m_sockets.get_start();
       while(ppair != nullptr)
       {
-         __pointer(pool_socket) pools = ppair->element2();
+         ::pointer<pool_socket>pools = ppair->element2();
          if (pools)
          {
             if (pools -> GetSocketType() == type &&

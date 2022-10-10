@@ -35,7 +35,7 @@ namespace userstack
    void frame::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       m_bWindowFrame = true;
 
@@ -203,7 +203,7 @@ namespace userstack
 
    void frame::pre_translate_message(::message::message * pmessage)
    {
-//      __pointer(::user::message) pusermessage(pmessage);
+//      ::pointer<::user::message>pusermessage(pmessage);
       simple_frame_window::pre_translate_message(pmessage);
    }
 
@@ -231,7 +231,7 @@ namespace userstack
 
    void frame::message_queue_message_handler(::message::message * pmessage)
    {
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
       if(pusermessage->m_atom == (WM_APP + 2000))
       {
          _001OnApp2000(pusermessage);
@@ -259,7 +259,7 @@ namespace userstack
 
    void frame::_001OnApp2000(::message::message * pmessage)
    {
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
 
 
       if(pusermessage->m_wparam == 0)
@@ -382,7 +382,7 @@ namespace userstack
 
 #ifdef WINDOWS_DESKTOP
 
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
 
       MESSAGE * pmsg = (MESSAGE *) pusermessage->m_lparam.m_lparam;
 
@@ -394,7 +394,7 @@ namespace userstack
          if(pmsg->message != WM_KICKIDLE)
          {
 
-            ::pointer < ::user::message > spbase;
+            ::pointer<::user::message> spbase;
 
             spbase = papp->get_message_base(pmsg);
 

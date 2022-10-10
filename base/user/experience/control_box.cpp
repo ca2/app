@@ -177,7 +177,7 @@ namespace experience
    void control_box::on_message_show_window(::message::message * pmessage)
    {
 
-      __pointer(::message::show_window) pshow(pmessage);
+      ::pointer<::message::show_window>pshow(pmessage);
 
       m_bDrag = false;
 
@@ -1045,7 +1045,7 @@ if(rectangle.left > 400)
    }
 
 
-   __pointer(button) control_box::get_button(enum_button ebutton)
+   ::pointer<button>control_box::get_button(enum_button ebutton)
    {
 
       auto pitem = get_item(ebutton);
@@ -1062,7 +1062,7 @@ if(rectangle.left > 400)
    }
 
 
-   __pointer(::experience::button) control_box::get_box_button(enum_button ebutton)
+   ::pointer<::experience::button>control_box::get_box_button(enum_button ebutton)
    {
 
       return get_button(ebutton);

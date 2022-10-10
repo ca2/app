@@ -42,7 +42,7 @@ namespace openssl
    }
 
 
-   __pointer(::crypto::hasher) hasher_algorithm::create_hasher()
+   ::pointer<::crypto::hasher>hasher_algorithm::create_hasher()
    {
 
       return __new(::openssl::hasher(this));

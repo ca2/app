@@ -89,8 +89,8 @@ namespace user
 
    protected:
 
-      ::i32_map < __reference(::image_list) >                                m_pimagelist; // int is the size_i32
-      ::i32_map < __reference(::image_list) >                                m_pimagelistHover; // int is the size;
+      ::i32_map < ::pointer<::image_list >>                               m_pimagelist; // int is the size_i32
+      ::i32_map < ::pointer<::image_list >>                               m_pimagelistHover; // int is the size;
       map < ::user::interaction *, ::string_array >                             m_mapInterest;
 
 
@@ -103,7 +103,7 @@ namespace user
       //public:
 
 
-      //   __reference(shell)         m_pshell;
+      //   ::pointer<shell>        m_pshell;
 
       //   image_key                  m_imagekey;
 
@@ -138,13 +138,13 @@ namespace user
 
       string                                             m_strShellThemePrefix;
       string_array                                       m_straThemeableIconName;
-      __pointer(manual_reset_event)                      m_pevNewImageKey;
+      ::pointer<manual_reset_event>                     m_pevNewImageKey;
 
       index                                              m_iMaxThreadCount;
       index                                              m_iActiveThreadCount;
       index                                              m_iThread;
       ::mutex                                            m_mutexImage;
-      //__pointer_array(thread)                            m_threadptra;
+      //pointer_array < thread >                            m_threadptra;
       ::duration                                               m_durationLastMax;
       ::u32                                              m_bMax;
       bool                                               m_bInitialized;

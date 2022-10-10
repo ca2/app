@@ -655,7 +655,7 @@ namespace user
    }
 
 
-   //__pointer(::user::menu_interaction) style::create_menu_button(::user::style_pointer & pstyle, menu_item * pitem)
+   //::pointer<::user::menu_interaction>style::create_menu_button(::user::style_pointer & pstyle, menu_item * pitem)
    //{
 
    //   return psession->create_menu_button(pstyle, pitem);

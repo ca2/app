@@ -56,7 +56,7 @@ namespace experience_nanogui
 
       //virtual ::color::color get_style_moveable_border_color(::user::enum_style estyle);
 
-      void OnMove(__pointer(::user::interaction) pframewindow) override;
+      void OnMove(::pointer<::user::interaction>pframewindow) override;
 
       //virtual void set_style(::user::enum_style estyle);
 

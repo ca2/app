@@ -15,9 +15,9 @@ namespace user
 
 
       ::index                                    m_iUpdate;
-      __pointer(::factory::factory)              m_pfactory;
-      map < ::user::enum_control_type, __pointer(control_style) > m_controlstyle;
-      //__pointer(::user::plain_edit_style)    m_pplaineditstyel;
+      ::pointer<::factory::factory>             m_pfactory;
+      map < ::user::enum_control_type, ::pointer<control_style >>m_controlstyle;
+      //::pointer<::user::plain_edit_style>   m_pplaineditstyel;
 
       ::write_text::font_pointer                 m_pfont;
       ::write_text::font_pointer                 m_pfontMenu;
@@ -31,17 +31,17 @@ namespace user
       enum_translucency                         m_etranslucencyButton;
       //::color::color                                m_colorBackground;
       //::color::color                                m_colorText;
-      //__pointer(color_map)                 m_mapColor;
-      //__pointer(font_map)                  m_mapFont;
-      //__pointer(translucency_map)          m_mapTranslucency;
-      //__pointer(flag_map)                  m_mapFlag;
-      //__pointer(rect_map)                  m_mapRect;
-      //__pointer(::user::i32_map)           m_mapInt;
-      //__pointer(::user::double_map)        m_mapDouble;
+      //::pointer<color_map>                m_mapColor;
+      //::pointer<font_map>                 m_mapFont;
+      //::pointer<translucency_map>         m_mapTranslucency;
+      //::pointer<flag_map>                 m_mapFlag;
+      //::pointer<rect_map>                 m_mapRect;
+      //::pointer<::user::i32_map>          m_mapInt;
+      //::pointer<::user::double_map>       m_mapDouble;
 
-      __pointer(::user::style)               m_puserstyle;
+      ::pointer<::user::style>              m_puserstyle;
 
-      //__pointer(::aura::node)                m_pnode;
+      //::pointer<::aura::node>               m_pnode;
 
       ::draw2d::graphics *                   m_pgraphics;
 
@@ -72,7 +72,7 @@ namespace user
 
       void default_style_construct();
 
-      //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle, menu_item * pitem) override;
+      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, menu_item * pitem) override;
       //virtual bool prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) override;
       //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) override;
 
@@ -87,7 +87,7 @@ namespace user
       virtual ::color::color get_style_moveable_border_color(enum_style estyle);
 
       template < typename CONTROL_STYLE >
-      void get(__pointer(CONTROL_STYLE) & pcontrolstyleImpl, ::draw2d::graphics_pointer & pgraphics, ::user::interaction * pinteraction);
+      void get(::pointer<CONTROL_STYLE>& pcontrolstyleImpl, ::draw2d::graphics_pointer & pgraphics, ::user::interaction * pinteraction);
 
       virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame * pframe) override;
 

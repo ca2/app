@@ -10,7 +10,7 @@ public:
 
    ::payload                        m_payload;
    ::image_pointer                  m_pimage;
-   __pointer(context_image)         m_pcontextimage;
+   ::pointer<context_image>         m_pcontextimage;
 
 
    load_image(context_image * pcontextimage);

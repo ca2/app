@@ -236,7 +236,7 @@ namespace draw2d_cairo
 
       synchronous_lock ml(cairo_mutex());
 
-      __pointer(rectangle_item) pitem = m_pitem;
+      ::pointer<rectangle_item>pitem = m_pitem;
 
       cairo_rectangle(
          pgraphics, 
@@ -255,7 +255,7 @@ namespace draw2d_cairo
 
       synchronous_lock ml(cairo_mutex());
 
-      __pointer(ellipse_item) pitem = m_pitem;
+      ::pointer<ellipse_item>pitem = m_pitem;
 
       auto center = pitem->m_rectangle.center();
 
@@ -294,7 +294,7 @@ namespace draw2d_cairo
 
       synchronous_lock ml(cairo_mutex());
 
-      __pointer(polygon_item) pitem = m_pitem;
+      ::pointer<polygon_item>pitem = m_pitem;
 
       if(pitem->m_polygon.is_empty())
       {
@@ -322,7 +322,7 @@ namespace draw2d_cairo
 
       synchronous_lock ml(cairo_mutex());
 
-      __pointer(poly_polygon_item) pitem = m_pitem;
+      ::pointer<poly_polygon_item>pitem = m_pitem;
 
       if (pitem->m_polygona.is_empty())
       {
@@ -372,7 +372,7 @@ namespace draw2d_cairo
 
       cairo_push_group(pgraphics);
 
-      __pointer(combine_item) pitem = m_pitem;
+      ::pointer<combine_item>pitem = m_pitem;
 
       pitem->m_pregion1.cast < ::draw2d_cairo::region >()->_mask(pgraphics);
 

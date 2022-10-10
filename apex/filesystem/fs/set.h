@@ -12,20 +12,20 @@ namespace fs
    public:
 
 
-      __pointer_array(data)               m_spafsdata;
-      string_map < __pointer(data) >      m_fsdatamap;
+      pointer_array < data >               m_spafsdata;
+      string_map < ::pointer<data >>     m_fsdatamap;
 
 
       set();
       ~set() override;
 
 
-      string_map < __pointer(data) > & fsmap();
-      __pointer_array(data) & fsa();
+      string_map < ::pointer<data >>& fsmap();
+      pointer_array < data > & fsa();
 
 
-      virtual __pointer(data) path_data(const ::file::path & psz)override;
-      virtual __pointer(data) node_path_data(const ::file::path & psz)override;
+      virtual ::pointer<data>path_data(const ::file::path & psz)override;
+      virtual ::pointer<data>node_path_data(const ::file::path & psz)override;
       virtual ::file::listing & root_ones(::file::listing & listing)override;
       //virtual bool _enumerates(::file::listing & listing)override;
       virtual bool enumerate(::file::listing & listing)override;

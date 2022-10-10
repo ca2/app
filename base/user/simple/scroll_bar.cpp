@@ -635,7 +635,7 @@ i32 simple_scroll_bar::SetTrackingPos(const ::point_i32 & point, ::draw2d::graph
 
 void simple_scroll_bar::_001OnHScroll(::message::message * pmessage)
 {
-   __pointer(::message::scroll) pscroll(pmessage);
+   ::pointer<::message::scroll>pscroll(pmessage);
    pscroll->m_bRet = false;
 }
 
@@ -989,7 +989,7 @@ bool simple_scroll_bar::scrollbar_pageB(const ::point_i32 & point, ::draw2d::gra
 return;
 }
 
-__pointer(::user::interaction) puiParent = get_parent();
+::pointer<::user::interaction>puiParent = get_parent();
 i32 nPos = m_scrollinfo.nPos;
 nPos+=m_scrollinfo.nPage;
 if(nPos > m_scrollinfo.nMax - m_scrollinfo.nPage)
@@ -1018,7 +1018,7 @@ void simple_scroll_bar::on_message_create(::message::message * pmessage)
 
 
 
-   __pointer(::message::create) pcreate(pmessage);
+   ::pointer<::message::create>pcreate(pmessage);
 
 
    //if (m_puserstyle == nullptr)
@@ -1047,7 +1047,7 @@ void simple_scroll_bar::on_message_create(::message::message * pmessage)
 void simple_scroll_bar::pre_translate_message(::message::message * pmessage)
 {
 
-   __pointer(::user::message) pusermessage(pmessage);
+   ::pointer<::user::message>pusermessage(pmessage);
 
    return ::user::interaction::pre_translate_message(pusermessage);
 
@@ -1623,7 +1623,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
 void simple_scroll_bar::on_message_show_window(::message::message * pmessage)
 {
-   __pointer(::message::show_window) pshowwindow(pmessage);
+   ::pointer<::message::show_window>pshowwindow(pmessage);
    pshowwindow->m_bRet = false;
 
    // xxx   TwiOnShowWindow(bShow, nStatus);

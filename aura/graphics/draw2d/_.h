@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace draw2d
@@ -39,14 +39,14 @@ namespace draw2d
    class graphics_call_base;
 
 
-   using graphics_call_array = __pointer_array(graphics_call_base);
+   using graphics_call_array = pointer_array < graphics_call_base >;
 
-   using icon_pointer = __pointer(icon);
-   using brush_pointer = __pointer(brush);
-   using pen_pointer = __pointer(pen);
-   using bitmap_pointer = __pointer(bitmap);
-   using path_pointer = __pointer(path);
-   using region_pointer =  __pointer(region);
+   using icon_pointer = ::pointer<icon>;
+   using brush_pointer = ::pointer<brush>;
+   using pen_pointer = ::pointer<pen>;
+   using bitmap_pointer = ::pointer<bitmap>;
+   using path_pointer = ::pointer<path>;
+   using region_pointer = ::pointer<region>;
 
 
    class icon;

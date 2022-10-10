@@ -15,7 +15,7 @@ namespace user
    public:
 
 
-      __pointer_array(::user::document) m_docptra;          // open documents of this type
+      pointer_array < ::user::document > m_docptra;          // open documents of this type
       ::u32 m_nUntitledCount;   // start at 0, for "Document1" title
 
 

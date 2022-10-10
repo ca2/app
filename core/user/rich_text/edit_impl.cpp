@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "edit_impl.h"
 #include "format_tool.h"
 #include "document.h"
@@ -155,7 +155,7 @@ namespace user
       void edit_impl::on_message_create(::message::message * pmessage)
       {
 
-         __pointer(::message::create) pcreate(pmessage);
+         ::pointer<::message::create>pcreate(pmessage);
 
          pcreate->previous();
 
@@ -211,7 +211,7 @@ namespace user
       void edit_impl::on_message_show_window(::message::message * pmessage)
       {
 
-         __pointer(::message::show_window) pshowwindow(pmessage);
+         ::pointer<::message::show_window>pshowwindow(pmessage);
 
          if (pshowwindow->m_bShow)
          {
@@ -247,7 +247,7 @@ namespace user
 
          //__UNREFERENCED_PARAMETER(pmessage);
 
-         //__pointer(::message::set_focus) psetfocus(pmessage);
+         //::pointer<::message::set_focus>psetfocus(pmessage);
 
          if (!is_text_editable())
          {
@@ -611,7 +611,7 @@ namespace user
       }
 
 
-      __pointer(span) edit_impl::add_span(::e_align ealignNewLine)
+      ::pointer<span>edit_impl::add_span(::e_align ealignNewLine)
       {
 
          return m_pdata->add_span(ealignNewLine);
@@ -969,7 +969,7 @@ namespace user
       }
 
 
-      __pointer(format_tool) edit_impl::get_format_tool(bool bCreate)
+      ::pointer<format_tool>edit_impl::get_format_tool(bool bCreate)
       {
 
          auto pframe = top_level_frame();

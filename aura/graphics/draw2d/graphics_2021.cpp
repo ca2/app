@@ -4716,7 +4716,7 @@ namespace draw2d
 //         m_ppen->m_dWidth *= 2.0;
 //         m_ppen->set_modified();
 
-         __pointer(::draw2d::path) ppath;
+         ::pointer<::draw2d::path>ppath;
 
          __construct(ppath);
 
@@ -5809,7 +5809,7 @@ namespace draw2d
 
       rectangle.inflate(iWidth + 1, iWidth + 1);
 
-      __pointer(pen) point = m_ppen;
+      ::pointer<pen>point = m_ppen;
 
       pen_pointer point1(e_create, this);
 

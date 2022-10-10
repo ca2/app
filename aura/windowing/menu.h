@@ -22,7 +22,7 @@ namespace windowing
 
       string                             m_strParent;
       string                             m_strMenu;
-      __pointer_array(menu_item)         m_itema;
+      pointer_array < menu_item >         m_itema;
 
 
       menu();

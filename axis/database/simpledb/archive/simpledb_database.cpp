@@ -64,7 +64,7 @@ namespace simpledb
    }
 
 
-   __pointer(result) database::query(const ::string & pszSql)
+   ::pointer<result>database::query(const ::string & pszSql)
    {
 
       return nullptr;

@@ -28,7 +28,7 @@ namespace windowing
    };
 
 
-   using hook_map = map < hook *, __pointer(hook) >;
+   using hook_map = map < hook *, ::pointer<hook >>
 
 
 } // namespace windowing

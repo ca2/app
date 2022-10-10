@@ -237,7 +237,7 @@ namespace introjection
 //
 //         }
 //
-//         __pointer(application) papp = get_app();
+//         ::pointer<application>papp = get_app();
 //
 //         m_strVCVersion = papp->get_visual_studio_build();
 //
@@ -265,7 +265,7 @@ namespace introjection
 //
 //         }
 //
-//         __pointer(application) papp = get_app();
+//         ::pointer<application>papp = get_app();
 //
 //         m_strVCVersion = papp->get_visual_studio_build();
 //
@@ -440,7 +440,7 @@ namespace introjection
 //#ifdef WINDOWS
 //      //sleep(15000_ms);
 //
-//      __pointer(application) papp = get_app();
+//      ::pointer<application>papp = get_app();
 //
 //      string strBuildCmd = m_strEnv;
 //

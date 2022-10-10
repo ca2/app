@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "GLOBAL_ID.h"
@@ -414,6 +414,7 @@ enum enum_boolean
 
    // positive state... good/success states
 
+   e_boolean_some_yes_some_no = 256,
 
 };
 

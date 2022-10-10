@@ -25,7 +25,7 @@ namespace sockets_bsd
 
       int                              m_iSslCtxRetry;
 
-      __pointer(ssl_client_context)    m_pclientcontext;
+      ::pointer<ssl_client_context>   m_pclientcontext;
       SSL *                            m_ssl; ///< ssl 'socket'
       BIO *                            m_sbio; ///< ssl bio
 

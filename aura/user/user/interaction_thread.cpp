@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
 #endif
@@ -244,7 +244,7 @@ namespace user
 
       }
 
-      //__compose(m_pimpl->m_puserinteraction, m_pimpl->m_puserinteraction->m_pthreadUserInteraction);
+      //__construct(m_pimpl->m_puserinteraction, m_pimpl->m_puserinteraction->m_pthreadUserInteraction);
 
       __keep_flag_on(m_pimpl->m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_creating);
 
@@ -260,7 +260,7 @@ namespace user
       //if (m_bCreateNativeWindowOnInteractionThread)
       //{
 
-      __pointer(::aura::session) psession = get_session();
+      ::pointer<::aura::session>psession = get_session();
 
       auto puser = psession->user();
 
@@ -703,7 +703,7 @@ namespace user
    bool thread::process_user_message(::message::message * pmessage)
    {
 
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
 
       if(::is_set(pusermessage))
       {
@@ -782,12 +782,12 @@ namespace user
    }
 
 
-   void thread::destroy_composites()
+   void thread::on_destroy()
    {
 
       //auto estatus = 
       
-      ::channel::destroy_composites();
+      ::channel::on_destroy();
 
       //return estatus;
 

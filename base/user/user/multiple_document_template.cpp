@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "aura/message.h"
 #include "multiple_document_template.h"
 #include "document.h"
@@ -96,7 +96,7 @@ namespace user
 
       bool bMakeVisible = pcreate->m_bMakeVisible;
 
-      __pointer(::user::document) pdocument = create_new_document(pcreate);
+      ::pointer<::user::document>pdocument = create_new_document(pcreate);
 
       if (pdocument == nullptr)
       {
@@ -114,7 +114,7 @@ namespace user
 
       pdocument->m_bAutoDelete = false;   // don't destroy if something goes wrong
 
-      __pointer(::user::frame_window) pFrame = create_new_frame(pdocument, nullptr, pcreate);
+      ::pointer<::user::frame_window>pFrame = create_new_frame(pdocument, nullptr, pcreate);
 
       pdocument->m_bAutoDelete = bAutoDelete;
 
@@ -256,7 +256,7 @@ namespace user
       //::count count = get_document_count();
       //for(index index = 0; index < count; index++)
       //{
-      //   __pointer(::user::document) pdocument = get_document(index);
+      //   ::pointer<::user::document>pdocument = get_document(index);
       //   dumpcontext << "\nwith ::user::document " << (void *)pdocument;
       //}
 
@@ -270,7 +270,7 @@ namespace user
       ::count count = get_document_count();
       for(index index = 0; index < count; index++)
       {
-         __pointer(::user::document) pdocument = get_document(index);
+         ::pointer<::user::document>pdocument = get_document(index);
          pdocument->assert_ok();
       }
 

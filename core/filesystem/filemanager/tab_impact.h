@@ -32,7 +32,7 @@ namespace filemanager
 
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
-      __pointer(document) get_document();
+      ::pointer<document>get_document();
 
    };
 

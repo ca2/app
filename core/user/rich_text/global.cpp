@@ -74,7 +74,7 @@ namespace user
       }
 
 
-      index sel_line(const __pointer_array(line) & linea, index iSel)
+      index sel_line(const pointer_array < line > & linea, index iSel)
       {
 
          if (iSel < 0)
@@ -114,7 +114,7 @@ namespace user
       }
 
 
-      index sel_line_x666(__pointer_array(line) & linea, index iSel, double & x)
+      index sel_line_x666(pointer_array < line > & linea, index iSel, double & x)
       {
 
          if (iSel < 0)
@@ -199,7 +199,7 @@ namespace user
       }
 
 
-      index line_caret_x(__pointer_array(line)& linea, index iSel, double& x)
+      index line_caret_x(pointer_array < line >& linea, index iSel, double& x)
       {
 
          if (iSel < 0)
@@ -265,7 +265,7 @@ namespace user
       }
 
 
-      index sel_char(__pointer_array(line) & linea, index iSel)
+      index sel_char(pointer_array < line > & linea, index iSel)
       {
 
          if (iSel < 0 || linea.is_empty() || linea.first()->is_empty())
@@ -316,7 +316,7 @@ namespace user
       }
 
 
-      string text(const __pointer_array(span) & spana)
+      string text(const pointer_array < span > & spana)
       {
 
          string str;
@@ -349,17 +349,17 @@ namespace user
       }
 
 
-      void update_span_cache(__pointer_array(span) & spana)
+      void update_span_cache(pointer_array < span > & spana)
       {
 
          int iPos = 0;
 
-         __pointer(span) pspanNext;
+         ::pointer<span>pspanNext;
 
          for (index i = 0; i < spana.get_count(); i++)
          {
 
-            __pointer(span) & pspan = spana[i];
+            ::pointer<span>& pspan = spana[i];
 
             if (i > 0)
             {
@@ -384,7 +384,7 @@ namespace user
       }
 
 
-      void update_span_cache(__pointer_array(span) & spana, __pointer_array(line) & linea)
+      void update_span_cache(pointer_array < span > & spana, pointer_array < line > & linea)
       {
 
          update_span_cache(spana);
@@ -392,7 +392,7 @@ namespace user
       }
 
 
-      ::e_align box_align(__pointer_array(span) & spana, index iBox)
+      ::e_align box_align(pointer_array < span > & spana, index iBox)
       {
 
          while (true)
@@ -427,7 +427,7 @@ namespace user
       }
 
 
-      bool box_align(__pointer_array(span) & spana, index iBox, ::e_align ealign)
+      bool box_align(pointer_array < span > & spana, index iBox, ::e_align ealign)
       {
 
          if (iBox > spana.get_count())
@@ -463,7 +463,7 @@ namespace user
       }
 
 
-      index find_span(__pointer_array(span) & spana, index iSel)
+      index find_span(pointer_array < span > & spana, index iSel)
       {
 
          string str;
@@ -471,7 +471,7 @@ namespace user
          for (index i = 0; i < spana.get_count(); i++)
          {
 
-            __pointer(span) & pspan = spana[i];
+            ::pointer<span>& pspan = spana[i];
 
             if (iSel <= pspan->m_iPosEnd)
             {
@@ -487,7 +487,7 @@ namespace user
       }
 
 
-      index find_char_span(__pointer_array(span) & spana, strsize iChar)
+      index find_char_span(pointer_array < span > & spana, strsize iChar)
       {
 
          if (iChar < 0)
@@ -502,7 +502,7 @@ namespace user
          for (index i = 0; i < spana.get_count(); i++)
          {
 
-            __pointer(span) & pspan = spana[i];
+            ::pointer<span>& pspan = spana[i];
 
             if (iChar >= pspan->m_iPosBeg && iChar <= pspan->m_iPosEnd)
             {
@@ -581,7 +581,7 @@ namespace user
       }
 
 
-      box * find_box(__pointer_array(line) & linea, index iSel)
+      box * find_box(pointer_array < line > & linea, index iSel)
       {
 
          if (iSel < 0 || linea.is_empty() || linea.first()->is_empty())
@@ -617,14 +617,14 @@ namespace user
       }
 
 
-      string layout_text(const __pointer_array(line) & linea)
+      string layout_text(const pointer_array < line > & linea)
       {
 
          string str;
 
          index iLine = 0;
 
-         __pointer(line) plineLast = nullptr;
+         ::pointer<line>plineLast = nullptr;
 
          for (; iLine < linea.get_count(); iLine++)
          {
@@ -653,7 +653,7 @@ namespace user
 
 
 
-      //__pointer(format) find_existing_format(__pointer_array(format) & formata, format * pformat)
+      //::pointer<format>find_existing_format(pointer_array < format > & formata, format * pformat)
       //{
 
       //   index iFind = spana.predicate_find_first([&](auto & pitem)
@@ -675,7 +675,7 @@ namespace user
       //}
 
 
-      //__pointer(format) get_format(__pointer_array(format) & formata, format * pformat)
+      //::pointer<format>get_format(pointer_array < format > & formata, format * pformat)
       //{
 
       //   auto pformatExisting = formata.find_existing(pformat);

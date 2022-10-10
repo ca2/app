@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -14,5 +14,10 @@ enum enum_check : ::i32
 
 
 inline bool __bool(::enum_check echeck) { return echeck == ::e_check_checked; }
+
+
+
+
+
 
 

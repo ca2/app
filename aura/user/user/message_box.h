@@ -17,7 +17,7 @@ namespace user
    public:
 
 
-      virtual __pointer(::sequencer < ::conversation >) show(::user::interaction * puserinteraction, const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox);
+      virtual pointer< ::sequencer < ::conversation > > show(::user::interaction * puserinteraction, const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox);
       virtual void add_button(const ::string & strTitle, enum_dialog_result edialogresult) = 0;
 
 
@@ -34,7 +34,7 @@ namespace user
       bool                                            m_bFirstLayoutDone;
 
 
-      //__pointer(::future < enum_dialog_result >)    m_pprocess;
+      //pointer< ::future < enum_dialog_result > >    m_pprocess;
       bool                                            m_bOsUserThemeColorModified;
       bool                                            m_bInvalidated;
       string_array                                    m_stra;
@@ -48,14 +48,14 @@ namespace user
       int                                             m_iLineHeight;
       int                                             m_iTextAscent;
 
-      __pointer(button)                               m_pbuttonClose;
-      __pointer_array(button)                         m_buttona;
+      ::pointer<button>                              m_pbuttonClose;
+      pointer_array < button >                         m_buttona;
 
       int                                             m_iButtonTop;
       int                                             m_iButtonHeight;
       int                                             m_iButtonWidth;
 
-      __pointer(still)                                m_pstill;
+      ::pointer<still>                               m_pstill;
 
       //XftFont *                                     m_pfont;
       //XftDraw *                                     m_pdraw;
@@ -103,7 +103,7 @@ namespace user
 
 
       // message_box_interface
-      __pointer(::sequencer < ::conversation >) show(::user::interaction * puserinteraction, const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox) override;
+      pointer< ::sequencer < ::conversation > > show(::user::interaction * puserinteraction, const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox) override;
       void add_button(const ::string & strTitle, enum_dialog_result edialogresult) override;
 
 

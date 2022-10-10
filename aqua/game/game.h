@@ -14,7 +14,7 @@ namespace aqua
 
       //void*                               m_thisaGame[16];
       ::aura::game *                      m_pauragame;
-      __reference(::user::controller)     m_pcontroller;
+      ::pointer<::user::controller>    m_pcontroller;
 
 
       game();

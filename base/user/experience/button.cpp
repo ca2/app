@@ -48,7 +48,7 @@ namespace experience
    void button::on_message_show_window(::message::message * pmessage)
    {
 
-      __pointer(::message::show_window) pshow(pmessage);
+      ::pointer<::message::show_window>pshow(pmessage);
 
       //m_bDrag = false;
 

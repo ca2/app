@@ -26,7 +26,7 @@ namespace simpledb
 
 
       bool                 m_bInitialized;
-      __pointer(db_server)        m_pserver;
+      ::pointer<db_server>       m_pserver;
 
 
       simpledb(::object * pobject);

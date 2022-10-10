@@ -1,4 +1,4 @@
-// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSørensen
+﻿// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSørensen
 #pragma once
 
 
@@ -147,7 +147,7 @@ inline atom::atom(const char* psz)
 }
 
 
-inline atom::atom(const string& str)
+inline atom::atom(const ::string& str)
 {
 
    m_all = {};
@@ -157,11 +157,11 @@ inline atom::atom(const string& str)
 }
 
 
-inline atom::atom(const type& type) :
-   atom((const string&)type.to_string())
-{
-
-}
+//inline atom::atom(const type& type) :
+//   atom(type)
+//{
+//
+//}
 
 
 //template < primitive_integer INTEGER >

@@ -17,7 +17,7 @@ namespace userpresence
 
       bool                       m_bUserPresenceFeatureRequired;
       bool                       m_bInit;
-      __pointer(presence)        m_ppresence;
+      ::pointer<presence>       m_ppresence;
 
 
       department();

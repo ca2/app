@@ -14,20 +14,20 @@ namespace axis
    public:
 
 
-      __composite(class ::account::user_set)            m_puserset;
+      ::pointer<class ::account::user_set>            m_puserset;
 
-      //__composite(class ::xml::department)              m_pxml;
-
-
-      __composite(class ::geo::department)              m_pgeo;
+      //::pointer<class ::xml::department>              m_pxml;
 
 
-      __composite(::networking::email_department)       m_pemaildepartment;
+      ::pointer<class ::geo::department>              m_pgeo;
 
 
-      __composite(::html::html)                         m_phtml;
+      ::pointer<::networking::email_department>      m_pemaildepartment;
 
-      __pointer(::factory::factory)                           m_pfactoryRegularExpressionPcre;
+
+      ::pointer<::html::html>                        m_phtml;
+
+      ::pointer<::factory::factory>                          m_pfactoryRegularExpressionPcre;
 
 
       system();
@@ -75,11 +75,11 @@ namespace axis
 
       ::geo::department &                          geo();
 
-      __pointer(::account::user_set)               userset();
+      ::pointer<::account::user_set>              userset();
 
 
-      //virtual __pointer(regex) create_regular_expression(const ::string & pszStyle, const string& str) override;
-      //virtual __pointer(regex_context) create_regular_expression_context(const ::string & pszStyle, int iCount) override;
+      //virtual ::pointer<regex>create_regular_expression(const ::string & pszStyle, const string& str) override;
+      //virtual ::pointer<regex_context>create_regular_expression_context(const ::string & pszStyle, int iCount) override;
 
 
       //virtual void thread_loop() override;

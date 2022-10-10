@@ -3,7 +3,7 @@
 
 //CLASS_DECL_ACME int os_get_system_update_poll_time(::i64 iUpdate);
 
-using update_map = map < __pointer(matter), __pointer(::update_item) > ;
+using update_map = map < ::pointer<matter> ::pointer<::update_item>>
 
 class CLASS_DECL_ACME update :
    virtual public ::object
@@ -13,7 +13,7 @@ protected:
    friend class matter;
    friend class ::acme::acme;
 
-   static __pointer(update)& get(const ::atom & atom);
+   static ::pointer<update> get(const ::atom & atom);
 
    virtual void add(::matter* pmatter);
    virtual void erase(::matter* pmatter);
@@ -25,7 +25,7 @@ protected:
    static void _erase(::matter* pmatter);
 
    static ::critical_section* g_pcs;
-   static ::id_map < __pointer(update) >* g_pmap;
+   static ::id_map < ::pointer<update >> g_pmap;
    static bool g_bDestroyAll;
 
 
@@ -35,14 +35,14 @@ public:
 
    ::atom                                            m_atom;
    bool                                            m_bRet;
-   __pointer(::layered)                            m_psender;
-   __pointer(::layered)                            m_pobjectTopic;
+   ::pointer<::layered>                           m_psender;
+   ::pointer<::layered>                           m_pobjectTopic;
    ::action_context                                m_actioncontext;
    ::update_map                                    m_map;
-   __pointer(::layered)                            m_puserinteraction; // user::interaction
-   __pointer(::layered)                            m_pcontrolevent; // user::control_event
-   __pointer(::file::item)                         m_pfileitem;
-   //__pointer(::u)                        m_pupdatetask;
+   ::pointer<::layered>                           m_puserinteraction; // user::interaction
+   ::pointer<::layered>                           m_pcontrolevent; // user::control_event
+   ::pointer<::file::item>                        m_pfileitem;
+   //::pointer<::u>                       m_pupdatetask;
    ::i64                                           m_iUpdateSerial;
    ::user::enum_key                                   m_ekey;
    ::payload                                           m_var;
@@ -94,7 +94,7 @@ public:
 };
 
 
-using manager_pointer = __pointer(::update);
+using manager_pointer = ::pointer<::update>
 
 
 inline auto new_update(const ::atom & atom) { return __new(::update(atom)); }

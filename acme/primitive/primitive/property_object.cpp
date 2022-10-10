@@ -80,8 +80,8 @@ public:
 
 
    debug_test_reference() :
-      m_bTest1(topic("bTest1")),
-      m_strText1(topic("strTest1"))
+      m_bTest1(reference("bTest1")),
+      m_strText1(reference("strTest1"))
    {
 
    }
@@ -420,7 +420,7 @@ linked_property property_object::parent_lookup_property(const atom & atom) const
 
    //auto ppropertyArray = find_property("property_set_array");
 
-   //__pointer(__pointer_array(property_set)) parray;
+   //pointer< pointer_array < property_set > > parray;
 
    //if (ppropertyArray)
    //{
@@ -474,12 +474,12 @@ atom property_object::translate_property_id(const ::atom & atom)
 //
 //   auto * pproperty = find_property("property_set_array");
 //
-//   auto parray = pproperty->cast < __pointer_array(property_set) >();
+//   auto parray = pproperty->cast < pointer_array < property_set > >();
 //
 //   if (!parray)
 //   {
 //
-//      parray = __new(__pointer_array(property_set)());
+//      parray = __new(pointer_array < property_set >());
 //
 //      *pproperty = parray;
 //

@@ -10,10 +10,10 @@ class CLASS_DECL_AXIS html_form :
 public:
 
 
-   __pointer(::html::element)                m_pelementLButtonDown;
-   __pointer(::html::element)                m_pelementHover;
-   __pointer_array(::html::element)          m_elementaMouseMove;
-   __pointer(::html_data)                    m_phtmldata;
+   ::pointer<::html::element>               m_pelementLButtonDown;
+   ::pointer<::html::element>               m_pelementHover;
+   pointer_array < ::html::element >          m_elementaMouseMove;
+   ::pointer<::html_data>                   m_phtmldata;
 
 
    html_form();

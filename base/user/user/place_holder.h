@@ -21,7 +21,7 @@ namespace user
       ~place_holder() override;
 
 
-      __pointer(place_holder) create_shadow_clone();
+      ::pointer<place_holder>create_shadow_clone();
 
 
       //virtual bool create_child(::user::place_holder_container * pcontainer);
@@ -36,7 +36,7 @@ namespace user
 
       virtual bool can_merge(::user::interaction * pinteraction) override;
       virtual bool merge(::user::interaction * pinteraction) override;
-      virtual __pointer(place_holder) place_hold(::user::interaction* pinteraction);
+      virtual ::pointer<place_holder>place_hold(::user::interaction* pinteraction);
       virtual bool unplace(::user::interaction * pinteraction);
       virtual bool is_place_holding(::user::interaction * pinteraction);
 
@@ -67,7 +67,7 @@ namespace user
 
 
    class CLASS_DECL_BASE place_holder_ptra :
-      virtual public __pointer_array(place_holder)
+      virtual public pointer_array < place_holder >
    {
    public:
 

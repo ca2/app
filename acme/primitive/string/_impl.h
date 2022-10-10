@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "_impl_prio.h"
@@ -66,5 +66,34 @@ string_iterator < CHAR_TYPE > string_iterator < CHAR_TYPE > ::operator ++(int)
 #include "_str_ch_wd16_impl.h"
 #include "_str_ch_wd32_impl.h"
 
+
+
+
+
+template < typename TYPE_CHAR >
+inline string_base < TYPE_CHAR >::string_base(const ::payload & payload) :
+   string_base(payload.string())
+{
+
+
+}
+
+
+template < typename TYPE_CHAR >
+inline string_base < TYPE_CHAR >::string_base(const ::property & property) :
+   string_base(property.string())
+{
+
+
+}
+
+
+template < typename TYPE_CHAR >
+inline string_base < TYPE_CHAR >::string_base(const ::atom & atom) :
+   string_base(atom.string())
+{
+
+
+}
 
 

@@ -1087,7 +1087,7 @@ namespace html
       void text::OnLButtonDown(::message::message * pmessage)
       {
 
-         __pointer(::html::message) phtml(pmessage);
+         ::pointer<::html::message>phtml(pmessage);
 
          if(m_pelemental->m_pdata->m_pcoredata->m_bEdit)
          {
@@ -1119,7 +1119,7 @@ namespace html
       void text::OnLButtonUp(::message::message * pmessage)
       {
 
-         __pointer(::html::message) phtml(pmessage);
+         ::pointer<::html::message>phtml(pmessage);
 
          if(m_pelemental->m_pdata->m_pcoredata->m_bEdit)
          {
@@ -1156,7 +1156,7 @@ namespace html
          if (m_pelemental->m_pdata->m_pcoredata->m_bEdit)
          {
 
-            __pointer(::html::message) phtml(pmessage);
+            ::pointer<::html::message>phtml(pmessage);
 
             m_pedit->route_message(phtml->m_pmessage);
 

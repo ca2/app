@@ -12,7 +12,7 @@ namespace introjection
    public:
 
 
-      __pointer(::acme::library)                m_plibrary;
+      ::pointer<::acme::library>               m_plibrary;
       ::file::path                              m_pathScript;
       ::string_stream                           m_memfileError;
       string                                    m_strError;

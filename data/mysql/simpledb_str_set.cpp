@@ -227,7 +227,7 @@ void db_str_sync_queue::queue(const ::string & pszKey, const ::string & psz)
 
    single_lock synchronouslock(&m_mutex, true);
 
-   __pointer(db_str_set_queue_item) item(memory_new db_str_set_queue_item);
+   ::pointer<db_str_set_queue_item>item(memory_new db_str_set_queue_item);
 
    item->m_strKey = pszKey;
    item->m_str = psz;
@@ -396,7 +396,7 @@ bool db_str_set::save(const ::string & lpKey, const ::string & lpcsz)
       string strValue(lpcsz);
       strValue.replace("'", "''");
 
-      __pointer(::sqlite::database) pdb   = m_pcore->db()->get_database();
+      ::pointer<::sqlite::database>pdb   = m_pcore->db()->get_database();
       string strSql;
       string str;
       slDatabase.lock();

@@ -111,7 +111,7 @@ inline void CopyElements(TYPE* pDest, const TYPE* pSrc, ::count nCount)
 //
 //
 //   template < class APP >
-//   __pointer(::acme::application) single_application_library < APP > ::get_new_application(::matter * pobject, const char * pszAppId)
+//   ::pointer<::acme::application>single_application_library < APP > ::get_new_application(::matter * pobject, const char * pszAppId)
 //   {
 //
 //      if(!contains_app(pszAppId))
@@ -130,7 +130,7 @@ inline void CopyElements(TYPE* pDest, const TYPE* pSrc, ::count nCount)
 //
 //      }
 //
-//      __pointer(::acme::application) papp;
+//      ::pointer<::acme::application>papp;
 //
 //      papp = pappNew;
 //
@@ -271,7 +271,7 @@ namespace acme
 
 
 template < typename BASE >
-inline __pointer(BASE) alloc_object(::matter * pobject)
+inline ::pointer<BASE>alloc_object(::matter * pobject)
 {
 
    return BASE::g_pallocfactory->alloc_object(pobject);
@@ -280,7 +280,7 @@ inline __pointer(BASE) alloc_object(::matter * pobject)
 
 
 template < typename BASE >
-inline __pointer(BASE) & alloc_object(__pointer(BASE) & p, ::matter * pobject)
+inline ::pointer<BASE>& alloc_object(::pointer<BASE> p, ::matter * pobject)
 {
 
    return p = ::alloc_object < BASE > (pobject);
@@ -297,7 +297,7 @@ inline __pointer(BASE) & alloc_object(__pointer(BASE) & p, ::matter * pobject)
 
 
 template < typename TDST, typename TSRC >
-inline __pointer(TDST) & clone(__pointer(TDST) & dst, const __pointer(TSRC) & src)
+inline ::pointer<TDST>& clone(::pointer<TDST> dst, const ::pointer<TSRC>src)
 {
 
    if (src.is_null())
@@ -315,7 +315,7 @@ inline __pointer(TDST) & clone(__pointer(TDST) & dst, const __pointer(TSRC) & sr
 
 
 //template < typename T >
-//inline __pointer(T) clone(const __pointer(T) & t)
+//inline pointer < T > clone(const pointer < T > & t)
 //{
 //
 //   if (t.is_null())
@@ -334,7 +334,7 @@ inline __pointer(TDST) & clone(__pointer(TDST) & dst, const __pointer(TSRC) & sr
 
 template < typename T >
 template < typename T2 >
-inline __pointer(T) & ___pointer < T >::clone(T2 * p)
+inline pointer < T > & pointer < T >::clone(T2 * p)
 {
 
    if (::is_null(p))
@@ -470,7 +470,7 @@ inline string __string(const ::e_display & edisplay) { return __string((::enum_d
 
 
 //template < typename TYPE >
-//::stream & read_container_as_parent(::stream & stream, __pointer_array(TYPE) & a)
+//::stream & read_container_as_parent(::stream & stream, pointer_array < TYPE > & a)
 //{
 //
 //   ::count c = 0;
@@ -510,7 +510,7 @@ inline string __string(const ::e_display & edisplay) { return __string((::enum_d
 //
 //
 //template < typename TYPE >
-//::stream & write_container_as_parent(::stream & stream, const __pointer_array(TYPE) & a)
+//::stream & write_container_as_parent(::stream & stream, const pointer_array < TYPE > & a)
 //{
 //
 //   ::count c = a.get_count();
@@ -578,7 +578,7 @@ inline i64 increment_reference_count(c_derived * & pca, const SOURCE * psource)
 
 
 template < class c_derived, typename SOURCE >
-inline i64 increment_reference_count(c_derived *& pderived, const __pointer(SOURCE) & psource)
+inline i64 increment_reference_count(c_derived *& pderived, const ::pointer<SOURCE>& psource)
 {
 
    return increment_reference_count(pderived, psource.m_p);
@@ -651,17 +651,17 @@ inline i64 release(c_derived *& pca OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DE
 }
 
 
-template < class COMPOSITE >
-inline i64 release(__composite(COMPOSITE) & pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   return release(pcomposite.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-
-}
+//template < class COMPOSITE >
+//inline i64 release(::pointer<COMPOSITE>& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   return release(pcomposite.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//}
 
 
 template < typename TYPE >
-inline i64 release(__pointer(TYPE) & pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+inline i64 release(::pointer<TYPE>& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
 
    return release(pointer.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
@@ -670,7 +670,7 @@ inline i64 release(__pointer(TYPE) & pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_
 
 
 template < typename TYPE >
-inline i64 __finalize(__pointer(TYPE)& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+inline i64 __finalize(::pointer<TYPE> pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
    
    if (!pointer) return -1;
@@ -681,14 +681,14 @@ inline i64 __finalize(__pointer(TYPE)& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMM
 
 }
 
-
-template < class REFERENCE >
-inline i64 release(__reference(REFERENCE) & preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   return release(preference.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-
-}
+//
+//template < class REFERENCE >
+//inline i64 release(::pointer<REFERENCE>& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   return release(preference.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//}
 
 
 template < class c_derived >
@@ -1010,7 +1010,7 @@ sequence < SEQUENCE > * sequencer < SEQUENCE > ::then(const ::duration& duration
 
 
 //template < typename TYPE >
-//inline __pointer(TYPE) property_object::__create_new()
+//inline ::pointer<TYPE>property_object::__create_new()
 //{
 //
 //   auto p = __new(TYPE);

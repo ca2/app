@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "check.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "apex/user/_user.h"
@@ -21,18 +21,18 @@ namespace user
    }
 
 
-   void check::_001SetCheck(bool bChecked, const ::action_context & context)
+ /*  void check::_001SetCheck(bool bChecked, const ::action_context & context)
    {
 
       _001SetCheck((::enum_check) (bChecked ? ::e_check_checked : ::e_check_unchecked),context);
 
-   }
+   }*/
 
 
-   void check::_001SetCheck(::enum_check echeck, const ::action_context & context)
+   void check::_001SetCheck(const ::e_check & echeck, const ::action_context & context)
    {
 
-      if (!m_propertyCheck)
+      if (!m_linkedpropertyCheck)
       {
 
          return;
@@ -42,11 +42,9 @@ namespace user
       if(echeck != this->get_echeck())
       {
 
-         auto pcheck = &m_propertyCheck->as_echeck();
+         *m_linkedpropertyCheck = echeck;
 
-         m_propertyCheck->as_echeck() = echeck;
-
-         m_propertyCheck.notify_property_changed(context);
+         m_linkedpropertyCheck.notify_property_changed(context);
 
       }
 

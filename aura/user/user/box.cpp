@@ -362,7 +362,7 @@ namespace user
 
       window_rectangle windowrectangle;
 
-      __pointer(::aura::application) papp = get_app();
+      ::pointer<::aura::application>papp = get_app();
 
       if (!papp->data_get(key, windowrectangle))
       {
@@ -479,7 +479,7 @@ namespace user
 
       window_rectangle windowrectangle;
 
-      __pointer(::aura::application) papp = get_app();
+      ::pointer<::aura::application>papp = get_app();
 
       if (!papp->data_get(key, windowrectangle))
       {
@@ -659,7 +659,7 @@ namespace user
 
       }
 
-      __pointer(::aura::application) papp = get_app();
+      ::pointer<::aura::application>papp = get_app();
 
       papp->data_set(key, windowrect);
       //{
@@ -837,7 +837,7 @@ namespace user
 
       ::user::interaction * puiParent = get_parent();
 
-      __pointer(::database::client) pclient = puiParent;
+      ::pointer<::database::client>pclient = puiParent;
 
       if(pclient.is_set())
       {

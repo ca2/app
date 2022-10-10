@@ -85,7 +85,7 @@ namespace universal_windows
    }
 
 
-   bool interaction_impl::_native_create_window_ex(__pointer(::user::system) pusersystem)
+   bool interaction_impl::_native_create_window_ex(::pointer<::user::system>pusersystem)
    {
 
       if (!m_window.Get())
@@ -294,7 +294,7 @@ namespace universal_windows
    //   //         if (m_messageaQueue.has_elements())
    //   //         {
 
-   //   //            __pointer(::user::message) pmessage = m_messageaQueue[0];
+   //   //            ::pointer<::user::message>pmessage = m_messageaQueue[0];
 
    //   //            m_messageaQueue.erase_at(0);
 
@@ -398,7 +398,7 @@ namespace universal_windows
    void interaction_impl::on_message_set_focus(::message::message* pmessage)
    {
 
-      __pointer(::message::set_focus) psetfocus(pmessage);
+      ::pointer<::message::set_focus>psetfocus(pmessage);
 
       //if (psession->get_focus_ui())
       //{
@@ -413,7 +413,7 @@ namespace universal_windows
    void interaction_impl::on_message_kill_focus(::message::message* pmessage)
    {
 
-      __pointer(::message::kill_focus) pkillfocus(pmessage);
+      ::pointer<::message::kill_focus>pkillfocus(pmessage);
 
       m_pframeworkview->RemoveInternalFocus();
 
@@ -972,7 +972,7 @@ namespace universal_windows
             pusermessage->m_atom == e_message_sys_char)
       {
 
-         __pointer(::message::key) pkey(pusermessage);
+         ::pointer<::message::key>pkey(pusermessage);
 
          //psession->keyboard().translate_os_key_message(pkey);
 
@@ -1065,7 +1065,7 @@ namespace universal_windows
          //   Sess(m_puserinteraction->get_app()->m_pcoreapp->m_psession).m_pointCursor = pmouse->m_point;
          //}
 
-         //__pointer(base_session) psession;
+         //::pointer<base_session>psession;
          //if(get_app()->m_pcoreapp->is_system())
          //{
          //   psession = ::aura::get_system()->query_session(0);
@@ -2005,7 +2005,7 @@ return true;
       ASSERT(puiStop == nullptr || puiStop->is_window());
       ASSERT(pmessage != nullptr);
 
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
       // walk from the target interaction_impl up to the hWndStop interaction_impl checking
       //  if any interaction_impl wants to translate this message
 
@@ -2418,7 +2418,7 @@ return true;
    {
       throw ::exception(todo);
 
-      //__pointer(::user::message) pusermessage(pmessage);
+      //::pointer<::user::message>pusermessage(pmessage);
 
       //if(pusermessage->m_wparam == nullptr)
       //   return;
@@ -3515,7 +3515,7 @@ return true;
    LRESULT interaction_impl::send_message(const ::atom & atom,wparam wparam,lparam lparam)
    {
 
-      ___pointer < ::user::message > spbase;
+      ::pointer<::user::message>spbase;
 
       spbase = m_puserinteraction->get_message_base(m_oswindow, atom,wparam,lparam);
 
@@ -4374,7 +4374,7 @@ return true;
    //}
 
    
-   __pointer(::user::interaction_impl) interaction_impl::WindowFromPoint(POINT_I32 point_i32)
+   ::pointer<::user::interaction_impl>interaction_impl::WindowFromPoint(POINT_I32 point_i32)
    {
 
       throw ::exception(todo);
@@ -4503,7 +4503,7 @@ return true;
    }
 
 
-   __pointer(::user::interaction_impl) interaction_impl::GetForegroundWindow()
+   ::pointer<::user::interaction_impl>interaction_impl::GetForegroundWindow()
    {
 
       throw ::exception(todo);
@@ -4709,7 +4709,7 @@ return true;
 
    //    throw ::exception(todo);
 
-   //    //__pointer(::user::message) pusermessage(pmessage);
+   //    //::pointer<::user::message>pusermessage(pmessage);
    //    //if(::aura::get_system()->get_cursor() != nullptr
    //    //   && ::aura::get_system()->get_cursor()->m_ecursor != cursor_system)
    //    //{
@@ -5209,7 +5209,7 @@ return true;
 
       // Catch exceptions thrown outside the scope of a callback
       // in debug builds and warn the ::account::user.
-      pointer < ::user::message > spbase;
+      ::pointer<::user::message>spbase;
 
       spbase(pinteraction->get_base(pinteraction, nMsg, wParam, lParam));
 
@@ -5424,7 +5424,7 @@ lCallNextHook:
 
    //void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
    //{
-   //   __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
+   //   ::pointer<::message::erase_bkgnd>perasebkgnd(pmessage);
    //   perasebkgnd->m_bRet = true;
    //   perasebkgnd->set_result(true);
    //}
@@ -6123,7 +6123,7 @@ namespace universal_windows
       //else
       //{
 
-         //__pointer(::message::mouse) pmouse = pbaseParam;
+         //::pointer<::message::mouse>pmouse = pbaseParam;
 
          //if (pmouse)
          //{
@@ -6175,7 +6175,7 @@ namespace universal_windows
          //void primitive_impl::queue_message_handler(::user::message * pbaseParam)
          //{
 
-         __pointer(::user::message) pusermessage = pbaseParam;
+         ::pointer<::user::message>pusermessage = pbaseParam;
 
          post(pusermessage);
 

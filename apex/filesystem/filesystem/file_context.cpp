@@ -545,7 +545,7 @@ bool file_context::try_create_file(const ::file::path &path, bool bTryDelete)
 
    }
 
-   __pointer(::file::file) pfile;
+   ::pointer<::file::file>pfile;
 
    __construct(pfile);
 
@@ -974,7 +974,20 @@ void file_context::get_lines(string_array &stra, const ::payload &payloadFile, b
    try
    {
 
-      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary);
+      pfile = get_file(payloadFile, ::file::e_open_share_deny_none | ::file::e_open_read | ::file::e_open_binary
+      |(bNoExceptionIfFailToOpen ? ::file::e_open_no_exception_on_open : 0));
+
+      if (bNoExceptionIfFailToOpen)
+      {
+
+         if (::nok(pfile))
+         {
+
+            return;
+
+         }
+
+      }
 
    }
    catch (const ::exception& exception)
@@ -1420,8 +1433,8 @@ void file_context::calculate_main_resource_memory()
 void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfExists, e_extract eextract)
 {
 
-   if (m_pcontext->m_papexcontext->dir().is(varSource.get_file_path()) &&
-       (eextract == extract_first || eextract == extract_all || !(::str().ends_ci(varSource.get_file_path(), ".zip"))))
+   if (m_pcontext->m_papexcontext->dir().is(varSource.file_path()) &&
+       (eextract == extract_first || eextract == extract_all || !(::str().ends_ci(varSource.file_path(), ".zip"))))
    {
 
       ::file::listing listing;
@@ -1432,8 +1445,8 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
       ::file::path strDst;
       ::file::path strSrc;
-      ::file::path strDirSrc(varSource.get_file_path());
-      ::file::path strDirDst(varTarget.get_file_path());
+      ::file::path strDirSrc(varSource.file_path());
+      ::file::path strDirDst(varTarget.file_path());
 
       if (::task_flag().is_set(e_task_flag_compress_is_dir) && (::str().ends(strDirSrc, ".zip")))
       {
@@ -1457,7 +1470,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
          {
 
             if ((eextract == extract_first || eextract == extract_none) &&
-                (::str().ends_ci(varSource.get_file_path(), ".zip")))
+                (::str().ends_ci(varSource.file_path(), ".zip")))
             {
             }
             else
@@ -1480,13 +1493,13 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
    else
    {
 
-      if (varTarget.get_file_path().has_char() && varSource.get_file_path().has_char())
+      if (varTarget.file_path().has_char() && varSource.file_path().has_char())
       {
 
-         if (!m_pcontext->m_papexcontext->dir().is(varTarget.get_file_path().folder()))
+         if (!m_pcontext->m_papexcontext->dir().is(varTarget.file_path().folder()))
          {
 
-            m_pcontext->m_papexcontext->dir().create(varTarget.get_file_path().folder());
+            m_pcontext->m_papexcontext->dir().create(varTarget.file_path().folder());
 
          }
 
@@ -1494,9 +1507,9 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
          auto pacmefile = psystem->m_pacmefile;
 
-         auto pathTarget = psystem->defer_process_path(varTarget.get_file_path());
+         auto pathTarget = psystem->defer_process_path(varTarget.file_path());
 
-         auto pathSource = psystem->defer_process_path(varSource.get_file_path());
+         auto pathSource = psystem->defer_process_path(varSource.file_path());
 
          if (exists(pathSource))
          {
@@ -1523,10 +1536,10 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
       ::payload varNew;
 
-      if (m_pcontext->m_papexcontext->dir().is(varTarget) && varSource.get_file_path().name().has_char())
+      if (m_pcontext->m_papexcontext->dir().is(varTarget) && varSource.file_path().name().has_char())
       {
 
-         varNew = ::file::path(varTarget) / varSource.get_file_path().name();
+         varNew = ::file::path(varTarget) / varSource.file_path().name();
 
       }
       else
@@ -1546,7 +1559,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
       {
          string strError;
          strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file",
-                         varSource.get_file_path().c_str(), varNew.get_file_path().c_str(), bFailIfExists);
+                         varSource.file_path().c_str(), varNew.file_path().c_str(), bFailIfExists);
          throw ::exception(::error_io, strError);
       }
 
@@ -1563,7 +1576,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
          {
             string strError;
             strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open input file",
-                            varSource.get_file_path().c_str(), varNew.get_file_path().c_str(), bFailIfExists);
+                            varSource.file_path().c_str(), varNew.file_path().c_str(), bFailIfExists);
             throw ::exception(::error_io, strError);
          }
 
@@ -1589,7 +1602,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
             bStatusFail = true;
 
             INFORMATION("During copy, failed to get status from input file \"" <<
-                  varSource.get_file_path() << "\" bFailIfExists = " <<  (bFailIfExists ? "true" : "false"));
+                  varSource.file_path() << "\" bFailIfExists = " <<  (bFailIfExists ? "true" : "false"));
 
          }
 
@@ -1607,7 +1620,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
                bStatusFail = true;
 
                INFORMATION("During copy, failed to set status to output file \""
-                  << varTarget.get_file_path() << "\" bFailIfExists=" << (bFailIfExists ? "true" : "false"));
+                  << varTarget.file_path() << "\" bFailIfExists=" << (bFailIfExists ? "true" : "false"));
 
             }
 
@@ -1645,14 +1658,14 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
             string strError;
             strError.format(
                "During copy, failed to close both input file \"%s\" and output file \"%s\" bFailIfExists=%d",
-               varSource.get_file_path().c_str(), varTarget.get_file_path().c_str(), bFailIfExists);
+               varSource.file_path().c_str(), varTarget.file_path().c_str(), bFailIfExists);
             throw ::exception(::error_io, strError);
          }
          else
          {
             string strError;
             strError.format("During copy, failed to close input file \"%s\" bFailIfExists=%d",
-                            varSource.get_file_path().c_str(), bFailIfExists);
+                            varSource.file_path().c_str(), bFailIfExists);
             throw ::exception(::error_io, strError);
          }
       }
@@ -1660,7 +1673,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
       {
          string strError;
          strError.format("During copy, failed to close output file \"%s\" bFailIfExists=%d",
-                         varTarget.get_file_path().c_str(), bFailIfExists);
+                         varTarget.file_path().c_str(), bFailIfExists);
          throw ::exception(::error_io, strError);
       }
 
@@ -1964,7 +1977,7 @@ void file_context::trash_that_is_not_trash(::file::path_array& stra)
 }
 
 
-__pointer(::handle::ini) file_context::get_ini(const ::payload& payloadFile)
+::pointer<::handle::ini>file_context::get_ini(const ::payload& payloadFile)
 {
 
    auto preader = m_pcontext->m_papexcontext->file().get_reader(payloadFile, ::file::e_open_share_deny_none);
@@ -2336,7 +2349,7 @@ void file_context::rename(const ::file::path &pszNew, const ::file::path &psz)
 //
 //   write_gen_string(pfile, nullptr, strVersion);
 //
-//   __pointer(::file::file) pfile2;
+//   ::pointer<::file::file>pfile2;
 //
 //   __construct(pfile2);
 //
@@ -2853,7 +2866,7 @@ file_pointer file_context::data_get_file(string strData, const ::file::e_open &e
          if (strEncoding.compare_ci("base64") == 0)
          {
 
-            __pointer(memory_file) pmemoryfile = __new(memory_file());
+            ::pointer<memory_file>pmemoryfile = __new(memory_file());
 
             auto psystem = m_psystem;
 
@@ -2950,7 +2963,7 @@ file_pointer file_context::http_get_file(const ::payload &payloadFile, const ::f
 
    }
 
-   ::file::path path = payloadFile.get_file_path();
+   ::file::path path = payloadFile.file_path();
 
    ::url_domain domain;
 
@@ -3195,7 +3208,7 @@ file_pointer file_context::get_file(const ::payload &payloadFile, const ::file::
 
    }
 
-   ::file::path path = payloadFile.get_file_path();
+   ::file::path path = payloadFile.file_path();
 
    if (path.begins_ci("data:"))
    {
@@ -3942,7 +3955,7 @@ void set_bypass_cache_if_empty(::payload & payloadFile)
       if(etype != e_type_property_set)
       {
 
-         ::file::path path = payloadFile.get_file_path();
+         auto path = payloadFile.file_path();
 
          payloadFile["url"] = path;
 

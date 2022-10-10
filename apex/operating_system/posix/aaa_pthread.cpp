@@ -55,7 +55,7 @@
 ////
 ////   }
 ////
-////   __pointer(message_queue) pmq;
+////   ::pointer<message_queue>pmq;
 ////
 ////   if (dwWakeMask > 0)
 ////   {

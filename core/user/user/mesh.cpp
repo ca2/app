@@ -764,7 +764,7 @@ namespace user
    }
 
 
-   __pointer(mesh_item) & mesh::get_item(::index iItem)
+   ::pointer<mesh_item>& mesh::get_item(::index iItem)
    {
 
       auto & pitem = m_mapItem[iItem];
@@ -797,7 +797,7 @@ namespace user
    }
 
 
-   __pointer(mesh_subitem) & mesh::get_subitem(mesh_item * pitem, ::index iSubItem)
+   ::pointer<mesh_subitem>& mesh::get_subitem(mesh_item * pitem, ::index iSubItem)
    {
 
       auto & psubitem = pitem->m_mapSubItem[iSubItem];
@@ -820,7 +820,7 @@ namespace user
    }
 
 
-   __pointer(mesh_subitem) & mesh::get_subitem(::index iItem, ::index iSubItem)
+   ::pointer<mesh_subitem>& mesh::get_subitem(::index iItem, ::index iSubItem)
    {
 
       auto & pitem = get_item(iItem);
@@ -928,7 +928,7 @@ namespace user
    void mesh::on_message_size(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-      //__pointer(::message::size) psize(pmessage);
+      //::pointer<::message::size>psize(pmessage);
       //set_need_layout();
       //psize->m_bRet = false;
    }
@@ -3499,7 +3499,7 @@ namespace user
       m_ppenFocused.create(this);
       m_ppenHighlight.create(this);
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       pmessage->previous();
 
@@ -3613,7 +3613,7 @@ namespace user
    //   {
    //      pcolumn->m_pimagelist = memory_new ::image_list(this);
    //   }
-   //   //      __pointer(::image_list) pil = pcolumn->m_pimagelist;
+   //   //      ::pointer<::image_list>pil = pcolumn->m_pimagelist;
    //   //   if(pil != nullptr)
    //   //      pil->DeleteImageMesh();
    //   throw ::interface_only();
@@ -4186,7 +4186,7 @@ namespace user
 
       m_pmeshdata = pinterface;
 
-      __defer_refer(m_psimplemeshdata, m_pmeshdata);
+      m_psimplemeshdata = m_pmeshdata;
 
    }
 
@@ -5429,7 +5429,7 @@ namespace user
    void mesh::_001OnVScroll(::message::message * pmessage)
    {
 
-      __pointer(::message::scroll) pscroll(pmessage);
+      ::pointer<::message::scroll>pscroll(pmessage);
 
       pmessage->previous();
 
@@ -5471,7 +5471,7 @@ namespace user
    void mesh::_001OnHScroll(::message::message * pmessage)
    {
 
-      __pointer(::message::scroll) pscroll(pmessage);
+      ::pointer<::message::scroll>pscroll(pmessage);
 
       pmessage->previous();
 
@@ -5736,7 +5736,7 @@ namespace user
 
    void mesh::_001OnUpdateMeshImpactAutoArrange(::message::message * pmessage)
    {
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
       pcommand->_001SetCheck(get_auto_arrange());
       pcommand->enable();
    }
@@ -6148,7 +6148,7 @@ namespace user
    }
 
 
-   //__pointer(::user::mesh_data) list::create_mesh_data()
+   //::pointer<::user::mesh_data>list::create_mesh_data()
    //{
 
    //   return __new(mesh_data);
@@ -6160,7 +6160,7 @@ namespace user
    void mesh::defer_create_mesh_data()
    {
 
-      __pointer(::user::list_data) pmeshdata = create_mesh_data();
+      ::pointer<::user::list_data>pmeshdata = create_mesh_data();
 
       if(pmeshdata.is_null())
          return;

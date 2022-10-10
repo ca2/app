@@ -6435,7 +6435,7 @@ namespace draw2d_cairo
 //
 //    printf("Total fonts: %d", n_families);
 //
-//    __pointer(::write_text::font_enumeration_item) item;
+//    ::pointer<::write_text::font_enumeration_item>item;
 //
 //    for (int i = 0; i < n_families; i++)
 //    {
@@ -6466,7 +6466,7 @@ namespace draw2d_cairo
 ////void graphics::enum_fonts(::write_text::font_enumeration_item_array & itema)
 ////{
 ////
-////   __pointer(::write_text::font_enumeration_item) pitem;
+////   ::pointer<::write_text::font_enumeration_item>pitem;
 ////
 ////#if DEBUG_WINDOWS_C_ANDROID_FONTS
 ////
@@ -6474,7 +6474,7 @@ namespace draw2d_cairo
 ////
 ////   listing.ls_pattern_file("C:/android_fonts", {"*.ttf"});
 ////
-////   __pointer(ttf_util) putil;
+////   ::pointer<ttf_util>putil;
 ////
 ////   ::e_status estatus = __construct_new(putil);
 ////

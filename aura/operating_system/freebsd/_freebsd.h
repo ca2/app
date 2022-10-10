@@ -9,7 +9,7 @@
 
 string get_error_message(::u32 dwError);
 
-__pointer(::aura::application)     linux_instantiate_application(__pointer(::aura::application) pappSystem, const ::string & pszId);
+::pointer<::aura::application>    linux_instantiate_application(::pointer<::aura::application>appSystem, const ::string & pszId);
 
 //
 //
@@ -33,8 +33,8 @@ __pointer(::aura::application)     linux_instantiate_application(__pointer(::aur
 CLASS_DECL_AURA MESSAGE * __get_current_message();
 
 
-//CLASS_DECL_AURA __pointer(::aura::application)  __get_app();
-//CLASS_DECL_AURA __pointer(::user::primitive) __get_main_window();
+//CLASS_DECL_AURA ::pointer<::aura::application> __get_app();
+//CLASS_DECL_AURA ::pointer<::user::primitive>__get_main_window();
 ////CLASS_DECL_AURA HINSTANCE CLASS_DECL_AURA ::aura::get_system()->m_hInstance;
 //CLASS_DECL_AURA const char * __get_app_name();
 
@@ -63,9 +63,9 @@ CLASS_DECL_AURA void os_shell_initialize();
 
 CLASS_DECL_AURA MESSAGE * __get_current_message();
 
-//CLASS_DECL_AURA __pointer(::aura::application)  __get_app();
+//CLASS_DECL_AURA ::pointer<::aura::application> __get_app();
 
-CLASS_DECL_AURA __pointer(::user::primitive) __get_main_window();
+CLASS_DECL_AURA ::pointer<::user::primitive>__get_main_window();
 
 CLASS_DECL_AURA const char * __get_app_name();
 

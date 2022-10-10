@@ -12,20 +12,20 @@ namespace user
 
 
       atom                               m_atom;
-      __pointer(menu_item_ptra)        m_pmenuitema;
-      __pointer(menu_item)             m_pmenuitemParent;
+      ::pointer<menu_item_ptra>       m_pmenuitema;
+      ::pointer<menu_item>            m_pmenuitemParent;
       i32                              m_iFullHeightItemCount;
       i32                              m_iSeparatorCount;
-      __pointer(::user::interaction)   m_puserinteraction;
-      __pointer(::user::interaction)   m_puserinteractionHost;
+      ::pointer<::user::interaction>  m_puserinteraction;
+      ::pointer<::user::interaction>  m_puserinteractionHost;
       bool                             m_bPopup;
       bool                             m_bBreak;
       i32                              m_iLevel;
-      __pointer(::user::menu)          m_pmenu;
+      ::pointer<::user::menu>         m_pmenu;
       string                           m_strTitle;
       ::rectangle_i32                           m_rectangleUi;
       int                              m_iColumn;
-      __composite(::image)             m_pimage;
+      ::pointer<::image>            m_pimage;
 
 
       menu_item();

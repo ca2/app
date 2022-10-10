@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/operating_system.h"
 
 
@@ -486,7 +486,7 @@ void* task::s_os_task(void* p)
 
       ptask->destroy();
 
-      ptask->release();
+      ///ptask->release();
 
 
 #if OBJECT_REFERENCE_COUNT_DEBUG
@@ -503,7 +503,7 @@ void* task::s_os_task(void* p)
       try
       {
 
-         __pointer(::object) pparentTask = ptask->m_pobjectParentTask;
+         ::pointer<::object>pparentTask = ptask->m_pobjectParentTask;
 
          if (::is_set(pparentTask))
          {
@@ -881,7 +881,7 @@ bool task::has_message() const
 //}
 
 
-__pointer(::task) task::branch(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
+::pointer<::task>task::branch(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
 {
 
    if (m_atom.is_empty())
@@ -1095,7 +1095,7 @@ __pointer(::task) task::branch(::enum_priority epriority, u32 nStackSize, u32 uC
 }
 
 
-__pointer(::task) task::branch_synchronously(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
+::pointer<::task>task::branch_synchronously(::enum_priority epriority, u32 nStackSize, u32 uCreateFlags ARG_SEC_ATTRS)
 {
 
    unset_finishing();
@@ -1556,7 +1556,7 @@ CLASS_DECL_ACME bool __task_sleep(task* ptask, const class ::wait & wait)
    try
    {
 
-      __pointer(manual_reset_event) spev;
+      ::pointer<manual_reset_event>spev;
 
       {
 

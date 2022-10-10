@@ -133,11 +133,11 @@ namespace filemanager
       if(m_ppropform == nullptr)
       {
 
-         __compose(m_ppropform, __new(file_properties_form));
+         __construct(m_ppropform, __new(file_properties_form));
 
       }
 
-      __pointer(::user::interaction) puie = m_ppropform->open(this,itema);
+      ::pointer<::user::interaction>puie = m_ppropform->open(this,itema);
 
       if(puie == nullptr)
          return;

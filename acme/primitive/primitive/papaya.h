@@ -18,7 +18,7 @@ namespace papaya
 
 
    template < typename TYPE >
-   __pointer(TYPE) clone(const TYPE & t) { return __new(TYPE(t)); }
+   ::pointer<TYPE>clone(const TYPE & t) { return __new(TYPE(t)); }
 
 
 } // namespace papaya

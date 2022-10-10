@@ -104,14 +104,14 @@ namespace axis
       if (!m_pifs)
       {
 
-         __compose(m_pifs, __new(ifs("")));
+         __construct(m_pifs, __new(ifs("")));
 
       }
 
       if (!m_premotefs)
       {
 
-         __compose(m_premotefs, __new(::fs::remote_native("")));
+         __construct(m_premotefs, __new(::fs::remote_native("")));
 
       }
 
@@ -129,7 +129,7 @@ namespace axis
             
          }
          
-         __compose(m_pftpfs, pftpfs);
+         __construct(m_pftpfs, pftpfs);
 
       }
 
@@ -146,7 +146,7 @@ namespace axis
 
          pset->m_spafsdata.add(__create_new < ::fs::native>());
 
-         __compose(m_pfsdata, pset);
+         __construct(m_pfsdata, pset);
 
       }
 
@@ -173,7 +173,7 @@ namespace axis
    void session::init1()
    {
 
-      auto estatus = __compose_new(m_pfs);
+      auto estatus = __construct_new(m_pfs);
 
       if(!estatus)
       {
@@ -339,7 +339,7 @@ namespace axis
 
       //}
 
-      __pointer(::fs::set) pfsset = m_pfsdata;
+      ::pointer<::fs::set>pfsset = m_pfsdata;
 
       if(m_bIfs)
       {
@@ -347,7 +347,7 @@ namespace axis
          if (m_pfsdata.is_null())
          {
 
-            __compose(m_pfsdata, __new(::fs::set));
+            __construct(m_pfsdata, __new(::fs::set));
 
          }
 

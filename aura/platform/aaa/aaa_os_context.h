@@ -141,7 +141,7 @@
 
    };
 
-   //typedef pointer < os > os_pointer;
+   //typedef ::pointer<os>os_pointer;
 
 
 //} // namespace aura

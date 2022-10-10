@@ -108,7 +108,7 @@ namespace xml
 //
 //   template < i32 m_iNodeNameIndex,class TYPE >
 //   class pointer_array:
-//      public ::__pointer_array(TYPE),
+//      public ::pointer_array < TYPE >,
 //      public exportable,
 //      public importable
 //   {

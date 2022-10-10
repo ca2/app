@@ -14,7 +14,7 @@
 //      try
 //      {
 //
-//         __pointer(timer) ptimer = this;
+//         ::pointer<timer>ptimer = this;
 //
 //         ptimer->call_on_timer();
 //
@@ -98,7 +98,7 @@
 //
 //   span.Duration = m_dwMillis * 1000 * 10;
 //
-//   __pointer(timer) pthis = this;
+//   ::pointer<timer>pthis = this;
 //
 //   auto pred = [pthis](ThreadPoolTimer ^)
 //   {

@@ -1566,7 +1566,7 @@ void mutex::unlock()
 
 
 
-__pointer(mutex) open_mutex(::matter * pmatter, const char * lpszName)
+::pointer<mutex>open_mutex(::matter * pmatter, const char * lpszName)
 {
 
 #ifdef WINDOWS
@@ -1718,7 +1718,7 @@ __pointer(mutex) open_mutex(::matter * pmatter, const char * lpszName)
 void wait_until_mutex_does_not_exist(::object * pobject,  const char * lpszName)
 {
 
-   __pointer(mutex) pmutex = __new(mutex(pobject, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
+   ::pointer<mutex>pmutex = __new(mutex(pobject, false, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
 
    if(::get_last_status() == ::error_already_exists)
    {

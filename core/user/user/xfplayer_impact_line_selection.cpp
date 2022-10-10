@@ -25,7 +25,7 @@ xfplayer_impact_line_selection::~xfplayer_impact_line_selection()
 
 void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline, ::message::message * pmessage)
 {
-   __pointer(::user::message) pusermessage(pmessage);
+   ::pointer<::user::message>pusermessage(pmessage);
 
    ::u32 message;
 
@@ -186,7 +186,7 @@ void xfplayer_impact_line_selection::relay_event(xfplayer_impact_line & viewline
 
          if(!viewline.is_hover())
          {
-            __pointer(::user::interaction) puserinteraction = viewline.get_interaction();
+            ::pointer<::user::interaction>puserinteraction = viewline.get_interaction();
             puserinteraction->KillTimer(::e_timer_hover);
          }
       }

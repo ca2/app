@@ -68,7 +68,7 @@ namespace axis
 
       virtual void create_html();
 
-      //virtual __pointer(::aura::session) on_create_session() override;
+      //virtual ::pointer<::aura::session>on_create_session() override;
 
       virtual void on_request(::create * pcreate) override;
 

@@ -256,9 +256,9 @@ namespace draw2d
    bool region::combine(const ::draw2d::region * prgn1, const ::draw2d::region * prgn2, enum_combine ecombine, ::draw2d::graphics * pgraphics)
    {
 
-      __pointer(::draw2d::region) pregion1 = (::draw2d::region *) prgn1;
+      ::pointer<::draw2d::region>pregion1 = (::draw2d::region *) prgn1;
 
-      __pointer(::draw2d::region) pregion2 = (::draw2d::region *) prgn2;
+      ::pointer<::draw2d::region>pregion2 = (::draw2d::region *) prgn2;
 
       if(m_eregion != e_region_none)
       {

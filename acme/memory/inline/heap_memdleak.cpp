@@ -543,7 +543,7 @@ public:
 };
 
 
-typedef __pointer_array(memblock) memblocka;
+typedef pointer_array < memblock > memblocka;
 
 
 string get_mem_info_report1()

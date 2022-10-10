@@ -19,7 +19,7 @@ namespace multimedia
    }
 
 
-   __pointer(decoder) decoder_plugin::NewDecoder()
+   ::pointer<decoder>decoder_plugin::NewDecoder()
    {
 
       auto pdecoder = m_pfactory->create < ::multimedia::decoder >();

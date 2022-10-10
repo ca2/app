@@ -42,7 +42,7 @@ void networking_application::create_networking_application()
 
    //auto estatus = 
    
-   __compose(m_psocketthread, __new(::netserver::socket_thread < networking_application_socket >()));
+   __construct(m_psocketthread, __new(::netserver::socket_thread < networking_application_socket >()));
 
    //if (!estatus)
    //{

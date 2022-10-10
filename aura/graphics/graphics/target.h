@@ -13,7 +13,7 @@ namespace graphics
    public:
 
 
-      //__pointer(::mutex)      m_pmutex;
+      //::pointer<::mutex>     m_pmutex;
       //::image_pointer         m_pimage;
       //int                     m_cx;
       //int                     m_cy;

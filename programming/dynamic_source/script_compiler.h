@@ -28,7 +28,7 @@ namespace dynamic_source
       };
 
 
-      string_map < __pointer(library) > m_mapLib;
+      string_map < ::pointer<library >>m_mapLib;
 
 //#ifdef WINDOWS
 //      string                                    m_strVs;
@@ -48,7 +48,7 @@ namespace dynamic_source
 //      map_string_to_ptr                         m_mapLib;
       string                                    m_strLibsLibs;
       //string                                    m_strEnv;
-      __pointer(script_manager)                        m_pmanager;
+      ::pointer<script_manager>                       m_pmanager;
       //string                                    m_strSdk1;
       //string                                    m_strPlatform;
       //string                                    m_strStagePlatform;

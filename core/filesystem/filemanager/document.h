@@ -18,8 +18,8 @@ namespace filemanager
    public:
 
             ::file::watch_id                    m_filewatchid;
-      __pointer(::filemanager::data)             m_pfilemanagerdata;
-      __pointer(::file::item)                      m_pitem;
+      ::pointer<::filemanager::data>            m_pfilemanagerdata;
+      ::pointer<::file::item>                     m_pitem;
       ::file::path                        m_strTopic;
       bool                                m_bFullBrowse;
       string                              m_strManagerId;
@@ -73,7 +73,7 @@ namespace filemanager
 
       virtual bool do_prompt_file_name(::payload & payloadFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 
-      __pointer(::filemanager::data) create_file_manager_data(::create * pcreate = nullptr);
+      ::pointer<::filemanager::data>create_file_manager_data(::create * pcreate = nullptr);
 
       //virtual void Initialize(i32 iTemplate, const ::string & pszMatter);
 
@@ -89,13 +89,13 @@ namespace filemanager
 
       virtual void browse(const ::string & pcsz, const ::action_context & action_context);
 
-      virtual bool browse(__pointer(::file::item) item, const ::action_context & action_context) override;
+      virtual bool browse(::pointer<::file::item>item, const ::action_context & action_context) override;
 
-      virtual void on_file_manager_open_context_menu_folder(__pointer(::file::item)  item, string_array & straCommand, string_array & straCommandTitle, const ::action_context & action_context);
+      virtual void on_file_manager_open_context_menu_folder(::pointer<::file::item> item, string_array & straCommand, string_array & straCommandTitle, const ::action_context & action_context);
       virtual void on_file_manager_open_context_menu_file(const ::file::item_array & itema, const ::action_context & action_context);
       virtual void on_file_manager_open_context_menu(const ::action_context & action_context);
       virtual void on_file_manager_open(const ::file::item_array & itema, const ::action_context & action_context);
-      virtual void on_file_manager_open_folder(__pointer(::file::item)  str, const ::action_context & action_context);
+      virtual void on_file_manager_open_folder(::pointer<::file::item> str, const ::action_context & action_context);
 
       virtual void on_file_manager_item_update(::message::command * pcommand, const ::file::item_array & itema);
       virtual void on_file_manager_item_command(const ::string & pszId, const ::file::item_array & itema);
@@ -152,8 +152,8 @@ namespace filemanager
       
       //virtual ::user::toolbar * get_toolbar(::user::frame * pframe, bool bCreate) override;
 
-      virtual void start_full_browse(__pointer(::file::item) pitem, const ::action_context & action_context);
-      virtual void full_browse(__pointer(::file::item) pitem, const ::action_context & action_context);
+      virtual void start_full_browse(::pointer<::file::item>pitem, const ::action_context & action_context);
+      virtual void full_browse(::pointer<::file::item>pitem, const ::action_context & action_context);
 
 
    };

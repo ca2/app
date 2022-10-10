@@ -1,4 +1,4 @@
-// Created by camilo on 2021-10-08 11:10 BRT <3ThomasBorregaardS�rensen!!
+﻿// Created by camilo on 2021-10-08 11:10 BRT <3ThomasBorregaardS�rensen!!
 #pragma once
 
 
@@ -150,6 +150,28 @@ enum enum_unit_size
 
 
 };
+
+
+
+
+enum enum_command
+{
+
+   e_command_file_nothing = -1,
+   e_command_none = 0,
+   e_command_default,
+   e_command_application_start,
+   e_command_file_new,
+   e_command_file_open,
+   e_command_file_print,
+   e_command_file_print_to,
+   e_command_file_dde,
+   e_command_app_unregister,
+   e_command_request_exit,
+   e_command_protocol
+
+};
+
 
 
 

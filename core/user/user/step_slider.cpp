@@ -43,7 +43,7 @@ namespace user
    void step_slider::on_message_create(::message::message * pmessage)
    {
       __UNREFERENCED_PARAMETER(pmessage);
-//      __pointer(::message::create) pcreate(pmessage);
+//      ::pointer<::message::create>pcreate(pmessage);
 
    }
 

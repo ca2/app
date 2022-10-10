@@ -109,7 +109,7 @@ namespace dynamic_source
 //
 //#endif
 //
-//      __pointer(::aura::application) papp = get_app();
+//      ::pointer<::aura::application>papp = get_app();
 //
 //#ifdef WINDOWS_DESKTOP
 //
@@ -2611,7 +2611,7 @@ ch_else:
       
       ::str().ends_eat_ci(strInclude, ".ds");
       
-      __pointer(script_instance) pinstance = m_pmanager->get(strInclude);
+      ::pointer<script_instance>pinstance = m_pmanager->get(strInclude);
 
       if(pinstance)
       {

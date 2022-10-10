@@ -25,7 +25,7 @@ namespace dynamic_source
 
       ::duration                                    m_durationLastLibraryVersionCheck;
       bool                                      m_bLastLibraryVersionCheck;
-      __pointer(::acme::library)                m_plibraryLib;
+      ::pointer<::acme::library>               m_plibraryLib;
 
 
       raw_array < __time_t >                    m_ftaLibCreation;

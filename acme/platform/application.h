@@ -1,4 +1,4 @@
-﻿//
+//
 // Created by camilo on 22/02/2022. 01:19 <3ThomasBorregaardSorensen!!
 //
 // app to application and back to acme namespace by camilo on 2022-09-17 18:51 <3ThomasBorregaardSorensen!!
@@ -37,7 +37,7 @@ namespace acme
 
 
 
-      __pointer(main_hold_base)                       m_pmainholdbase;
+      ::pointer<main_hold_base>                      m_pmainholdbase;
 
 
       string                                          m_strAppName;

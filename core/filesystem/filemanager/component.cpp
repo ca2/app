@@ -179,7 +179,7 @@ namespace filemanager
 
          strManagerId = string(psz, get_manager_id_len());
 
-         return psz + get_manager_id_len() + 1;
+         return psz.c_str() + get_manager_id_len() + 1;
 
       }
       else
@@ -243,7 +243,7 @@ namespace filemanager
       ::factory::add_factory_item <fs::simple::list_impact >();
       ::factory::add_factory_item <fs::simple::tree >();
 
-      //__compose_new(this, m_pmap);
+      //__construct_new(this, m_pmap);
 
       //auto& user = User;
 
@@ -264,7 +264,7 @@ namespace filemanager
                          __type(form_child_frame),
                          __type(form)));
 
-      __compose(m_pdocumenttemplateForm, pmulti);
+      __construct(m_pdocumenttemplateForm, pmulti);
 
       auto psession = get_session();
 
@@ -276,7 +276,7 @@ namespace filemanager
                           __type(operation_child_frame),
                           __type(operation_impact)));
 
-      __compose(m_pdocumenttemplateOperation, psingle);
+      __construct(m_pdocumenttemplateOperation, psingle);
 
       psession->add_document_template(psingle);
 
@@ -306,7 +306,7 @@ namespace filemanager
    }
 
 
-   __pointer(data) component::filemanager_create_data(atom atom)
+   ::pointer<data>component::filemanager_create_data(atom atom)
    {
 
       if (!is_filemanager(atom))
@@ -324,7 +324,7 @@ namespace filemanager
 
       filemanager_set_data(atom, pdata);
 
-      __pointer(::user::multiple_document_template) pdoctemplate;
+      ::pointer<::user::multiple_document_template>pdoctemplate;
 
       string strTemplateId = atom;
 
@@ -385,7 +385,7 @@ namespace filemanager
 
       add_reference(pdata);
 
-      __compose(datamap()[atom], pdata);
+      __construct(datamap()[atom], pdata);
 
    }
 
@@ -629,7 +629,7 @@ namespace filemanager
    document * component::find_filemanager(::payload payloadFile)
    {
 
-      __pointer(document) pdocument;
+      ::pointer<document>pdocument;
 
       //for (index i = 0; i < m_pdocumenttemplateProject->get_document_count(); i++)
       //{
@@ -725,7 +725,7 @@ namespace filemanager
    document * component::restore_filemanager(::payload payloadFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
    {
 
-      filemanager()->m_filepath = payloadFile.get_file_path();
+      filemanager()->m_filepath = payloadFile.file_path();
 
       filemanager()->m_pcreate = pcreate;
 
@@ -822,7 +822,7 @@ namespace filemanager
 
 
 
-//document * component::open_main(::aura::application * pappOnBehalfOf, ::atom atom, ::create * pcreate, ::fs::data * pfsdata, ::filemanager::__pointer(data) pdata, callback * pcallback)
+//document * component::open_main(::aura::application * pappOnBehalfOf, ::atom atom, ::create * pcreate, ::fs::data * pfsdata, ::filemanagerpointer< data > pdata, callback * pcallback)
 //{
 
 //   ::file::path pathFolder;
@@ -921,7 +921,7 @@ namespace filemanager
 //            else
 //            {
 
-//               __pointer(::user::frame_window) pframe = ptabimpact->get_pane(0)->m_pholder->get_hold();
+//               ::pointer<::user::frame_window>pframe = ptabimpact->get_pane(0)->m_pholder->get_hold();
 
 //               document * pdocument = pframe->get_active_document();
 
@@ -951,12 +951,12 @@ namespace filemanager
 //}
 
 
-//document * component::open(::aura::application * pappOnBehalfOf, atom atom, ::create * pcreateParam, ::fs::data * pfsdata, ::filemanager::__pointer(data) pdata, callback * pcallback)
+//document * component::open(::aura::application * pappOnBehalfOf, atom atom, ::create * pcreateParam, ::fs::data * pfsdata, ::filemanagerpointer< data > pdata, callback * pcallback)
 //{
 
 //   ::file::path pathFolder;
 
-//   __pointer(::create) pcreate(pcreateParam);
+//   ::pointer<::create>pcreate(pcreateParam);
 
 //   if (pcreate.is_null())
 //   {
@@ -1070,13 +1070,13 @@ namespace filemanager
 //}
 
 
-//__pointer(data) component::create_data()
+//::pointer<data>component::create_data()
 //{
 
 //}
 
 
-//document * component::open_child(bool bMakeVisible, bool bTransparentBackground, __pointer(::user::interaction) puserinteractionParent, ::filemanager::__pointer(data) pdata, callback * pcallback)
+//document * component::open_child(bool bMakeVisible, bool bTransparentBackground, ::pointer<::user::interaction>puserinteractionParent, ::filemanagerpointer< data > pdata, callback * pcallback)
 //{
 
 //   if (pfilemanagerdata == nullptr)
@@ -1086,7 +1086,7 @@ namespace filemanager
 
 //   }
 
-//   __pointer(::create) pcreate(e_create_new, pfilemanagerdata);
+//   ::pointer<::create>pcreate(e_create_new, pfilemanagerdata);
 
 //   pcreate->m_bMakeVisible = false;
 //   pcreate->m_puserinteractionParent = puserinteractionParent;
@@ -1122,12 +1122,12 @@ namespace filemanager
 //}
 
 
-//document * component::open_child_list(bool bMakeVisible, bool bTransparentBackground, __pointer(::user::interaction) puserinteractionParent, ::filemanager::__pointer(data) pdata, callback * pcallback)
+//document * component::open_child_list(bool bMakeVisible, bool bTransparentBackground, ::pointer<::user::interaction>puserinteractionParent, ::filemanagerpointer< data > pdata, callback * pcallback)
 //{
 
 //   __UNREFERENCED_PARAMETER(bMakeVisible);
 
-//   __pointer(::create) pcreate(e_create);
+//   ::pointer<::create>pcreate(e_create);
 
 //   pcreate->m_bMakeVisible = false;
 
@@ -1180,12 +1180,12 @@ namespace filemanager
 //}
 
 
-//document * component::open_folder_selection_list(bool bMakeVisible, bool bTransparentBackground, __pointer(::user::interaction) puserinteractionParent, ::filemanager::__pointer(data) pdata, callback * pcallback)
+//document * component::open_folder_selection_list(bool bMakeVisible, bool bTransparentBackground, ::pointer<::user::interaction>puserinteractionParent, ::filemanagerpointer< data > pdata, callback * pcallback)
 //{
 
 //   __UNREFERENCED_PARAMETER(bMakeVisible);
 
-//   __pointer(::create) pcreate(e_create);
+//   ::pointer<::create>pcreate(e_create);
 
 //   pcreate->m_bMakeVisible = false;
 

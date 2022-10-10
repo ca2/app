@@ -9,7 +9,7 @@
 //
 //#endif
 //
-////extern string_map < __pointer(::acme::library) >* g_pmapLibrary;
+////extern string_map < ::pointer<::acme::library >> g_pmapLibrary;
 //
 ////extern ::mutex * psystem->m_mutexLibrary;
 //

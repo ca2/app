@@ -55,8 +55,8 @@ public:
    virtual void defer_update_image();
 
 
-   virtual __pointer(::image) get_image(const ::size_i32 & size);
-   virtual __pointer(::image) get_image(::i32 cx, ::i32 cy);
+   virtual ::pointer<::image>get_image(const ::size_i32 & size);
+   virtual ::pointer<::image>get_image(::i32 cx, ::i32 cy);
 
 
    inline bool is_ok() const { return ::is_set(this) && (::pixmap::is_ok() && ::object::is_ok()); }
@@ -835,10 +835,10 @@ public:
 ////
 //// Compose, Construct, Create and Add_Reference Porngraphs
 ////
-//// __create      // return __pointer(BASE_TYPE) // _id atom // _new TYPE
-//// __compose     // __composite(BASE_TYPE) &    // _id atom // _new TYPE // SOURCE psource
-//// __construct   // __pointer(BASE_TYPE) &      // _id atom // _new TYPE // SOURCE psource
-//// add_reference // __reference(BASE_TYPE) & SOURCE psource
+//// __create      // return ::pointer<BASE_TYPE>// _id atom // _new TYPE
+//// __construct     // ::pointer<BASE_TYPE>&    // _id atom // _new TYPE // SOURCE psource
+//// __construct   // ::pointer<BASE_TYPE>&      // _id atom // _new TYPE // SOURCE psource
+//// add_reference // ::pointer<BASE_TYPE>& SOURCE psource
 ////
 //// >>
 ////
@@ -853,18 +853,18 @@ public:
 //}
 //
 //// template < typename COMPOSER >
-//// void __compose(COMPOSER && pcomposer, __ & pimage);
+//// void __construct(COMPOSER && pcomposer, __ & pimage);
 // //
 // template < typename COMPOSER >
-// inline void __compose(COMPOSER && pcomposer, __composite(::image) & pimage, ::image * pimageSource);
-// //
-// //
-// template < typename COMPOSER >
-// inline void __compose(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size_i32 & size, ::enum_flag eflagCreate = OK, int iGoodStride = -1, void bPreserve = false);
+// inline void __construct(COMPOSER && pcomposer, ::pointer<::image>& pimage, ::image * pimageSource);
 // //
 // //
 // template < typename COMPOSER >
-// inline void __preserve(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size_i32 & size, ::enum_flag eflagCreate = OK, int iGoodStride = -1);
+// inline void __construct(COMPOSER && pcomposer, ::pointer<::image>& pimage, const ::size_i32 & size, ::enum_flag eflagCreate = OK, int iGoodStride = -1, void bPreserve = false);
+// //
+// //
+// template < typename COMPOSER >
+// inline void __preserve(COMPOSER && pcomposer, ::pointer<::image>& pimage, const ::size_i32 & size, ::enum_flag eflagCreate = OK, int iGoodStride = -1);
 // //
 //
 //void __construct(::image_pointer & pimage);
@@ -879,6 +879,8 @@ inline void __preserve(::image_pointer & pimage, const ::size_i32 & size, ::enum
 //
 //
 //
+
+
 template < >
 inline bool is_ok(const ::image * pimage)
 {
@@ -894,8 +896,11 @@ inline bool is_ok(const ::image * pimage)
 
 }
 
+
 template < typename TYPE >
-inline  bool not_ok(const TYPE * p) { return is_null(p); }
+inline bool not_ok(const TYPE * p) { return is_null(p); }
+
+
 inline bool not_ok(const ::image * pimage)
 {
 

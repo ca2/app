@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "core/filesystem/filemanager/_filemanager.h"
@@ -92,9 +92,9 @@ namespace userex
 
          i32 i = m_pimpactdata->m_iExtendOnParent;
 
-         __pointer(::user::interaction) pinteraction = m_pimpactdata->m_puserinteraction;
+         ::pointer<::user::interaction>pinteraction = m_pimpactdata->m_puserinteraction;
 
-         __pointer(::user::interaction) puiNext = m_pimpactdata->m_puserinteraction;
+         ::pointer<::user::interaction>puiNext = m_pimpactdata->m_puserinteraction;
 
          for(; i > 0; i--)
          {
@@ -122,9 +122,9 @@ namespace userex
       else if(m_pimpactdata->m_iExtendOnParent < 0)
       {
 
-         __pointer(::user::interaction) pinteraction = m_pimpactdata->m_puserinteraction;
+         ::pointer<::user::interaction>pinteraction = m_pimpactdata->m_puserinteraction;
 
-         __pointer(::user::interaction) puiNext = m_pimpactdata->m_puserinteraction;
+         ::pointer<::user::interaction>puiNext = m_pimpactdata->m_puserinteraction;
 
          ::user::interaction_array uia;
 
@@ -235,7 +235,7 @@ namespace userex
    void pane_tab_impact::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       if (!get_app()->m_ppaneimpactCore)
       {
@@ -270,7 +270,7 @@ namespace userex
       }
 
 
-      //__pointer(simple_frame_window) pframe = get_parent();
+      //::pointer<simple_frame_window>pframe = get_parent();
 
       //if (pframe.is_set())
       //{
@@ -315,7 +315,7 @@ namespace userex
    void pane_tab_impact::_001OnUpdateFileSaveAs(::message::message * pmessage)
    {
 
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
 
       auto pdocument = m_pimpactdata->m_pdocument;
 
@@ -556,7 +556,7 @@ namespace userex
          if (pimpactdata->m_atom == "account")
       {
 
-         __pointer(::account::impact) pimpact = create_impact < ::account::impact >();
+         ::pointer<::account::impact>pimpact = create_impact < ::account::impact >();
 
          if (pimpact.is_set())
          {
@@ -631,7 +631,7 @@ namespace userex
          
          m_pfontimpact->m_pimpact->add_handler(this);
 
-         __pointer(::user::interaction) pimpact = psession->get_bound_ui(FONTSEL_IMPACT);
+         ::pointer<::user::interaction>pimpact = psession->get_bound_ui(FONTSEL_IMPACT);
 
          if(pimpact)
          {
@@ -666,7 +666,7 @@ namespace userex
          
          m_pcolorimpact->add_handler(this);
 
-         __pointer(::user::interaction) pimpact = psession->get_bound_ui(COLORSEL_IMPACT);
+         ::pointer<::user::interaction>pimpact = psession->get_bound_ui(COLORSEL_IMPACT);
 
          if(pimpact)
          {
@@ -755,19 +755,19 @@ namespace userex
 
          pfilemanagerdata->open();
 
-         __pointer(::filemanager::document) pdocument = pfilemanagerdata->m_pdocument;
+         ::pointer<::filemanager::document>pdocument = pfilemanagerdata->m_pdocument;
 
          if(pdocument != nullptr)
          {
 
             m_mapFileManager[pimpactdata->m_atom] = pdocument;
 
-            __pointer(::user::impact) pimpact = pdocument->get_impact();
+            ::pointer<::user::impact>pimpact = pdocument->get_impact();
 
             if(pimpact != nullptr)
             {
 
-               __pointer(::user::frame_window) pframe = pimpact->parent_frame();
+               ::pointer<::user::frame_window>pframe = pimpact->parent_frame();
 
                if(pframe != nullptr)
                {
@@ -784,24 +784,24 @@ namespace userex
       //else if(pimpactdata->m_atom == "tabbed_file_manager")
       //{
 
-      //   __pointer(::create) cc(e_create);
+      //   ::pointer<::create>cc(e_create);
       //   cc->m_bTransparentBackground     = true;
       //   cc->m_bMakeVisible               = true;
       //   cc->m_puserinteractionParent                  = pimpactdata->m_pplaceholder;
 
-      //   __pointer(::filemanager::document) pmanager = puser->filemanager()->open(get_app(), -1, cc);
+      //   ::pointer<::filemanager::document>pmanager = puser->filemanager()->open(get_app(), -1, cc);
 
       //   if(pmanager != nullptr)
       //   {
 
       //      m_pfilemanagerTabbed = pmanager;
 
-      //      __pointer(::user::impact) pimpact = pmanager->get_impact();
+      //      ::pointer<::user::impact>pimpact = pmanager->get_impact();
 
       //      if(pimpact != nullptr)
       //      {
 
-      //         __pointer(::user::frame_window) pframe = (__pointer(::user::frame_window)) pimpact->get_parent_frame();
+      //         ::pointer<::user::frame_window>pframe = (::pointer<::user::frame_window>pimpact->get_parent_frame();
 
       //         if(pframe != nullptr)
       //         {
@@ -835,7 +835,7 @@ namespace userex
             
             auto puser = psession->m_puser->m_pcoreuser;
 
-            __pointer(form_document) pdocument = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
+            ::pointer<form_document>pdocument = puser->create_child_form(this, this, pimpactdata->m_pplaceholder);
 
             if (pdocument.is_set())
             {
@@ -922,7 +922,7 @@ namespace userex
 
       set_current_tab_by_id("account");
 
-      __pointer(::account::impact) pimpact = get_impact();
+      ::pointer<::account::impact>pimpact = get_impact();
 
       if (pimpact.is_null())
       {
@@ -1016,7 +1016,7 @@ namespace userex
 
    //   string strAppOptions = "matter://options.html";
 
-   //   __pointer(simple_frame_window) pframe = get_parent();
+   //   ::pointer<simple_frame_window>pframe = get_parent();
 
    //   if (pframe.is_set())
    //   {

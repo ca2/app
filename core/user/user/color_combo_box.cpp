@@ -52,7 +52,7 @@ namespace user
    void color_combo_box::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       pcreate->previous();
 
@@ -232,7 +232,7 @@ namespace user
    void color_combo_box::on_message_show_window(::message::message * pmessage)
    {
 
-      __pointer(::message::show_window) pshowwindow(pmessage);
+      ::pointer<::message::show_window>pshowwindow(pmessage);
 
       if(!pshowwindow->m_bShow)
       {

@@ -53,7 +53,7 @@ namespace sockets
    /*   array < ssl_ticket_key >   m_ticketkeya;
 */
 
-      __pointer(tcp_socket)         m_ptcpsocketComposite;
+      ::pointer<tcp_socket>        m_ptcpsocketComposite;
       bool                          m_bImpl;
       //static bool s_bReuseSession; // Default psystem Wide Setting
 
@@ -120,7 +120,7 @@ namespace sockets
             return _q;
          }
       };
-      typedef list<__pointer(output)> output_list;
+      typedef list<::pointer<output >> output_list;
 
       //::file::circular_file ibuf; ///< Circular input buffer
       //string m_strUrl;
@@ -131,7 +131,7 @@ namespace sockets
       //u64 m_bytes_received;
       //memory         m_memRead;
       //output_list m_obuf; ///< output buffer
-      //__pointer(output) m_obuf_top; ///< output buffer on top
+      //::pointer<output>m_obuf_top; ///< output buffer on top
       //memsize m_transfer_limit;
       //memsize m_output_length;
 
@@ -156,7 +156,7 @@ namespace sockets
 
       //bool                       m_bClientSessionSet;
       //string                     m_strInitSSLClientContext;
-      //__pointer(tcp_socket_impl)    m_pimpl;
+      //::pointer<tcp_socket_impl>   m_pimpl;
 
       /** Constructor with standard values on input/output buffers. */
       tcp_socket();

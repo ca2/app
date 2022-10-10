@@ -19,9 +19,9 @@ namespace dynamic_source
 
       string                              m_strNote;
 
-      __pointer(script_main)              m_pmain;
-      __pointer(script_interface)         m_pinstanceParent2;
-      __pointer(script)                   m_pscript2;
+      ::pointer<script_main>             m_pmain;
+      ::pointer<script_interface>        m_pinstanceParent2;
+      ::pointer<script>                  m_pscript2;
 
 
       i32                                 m_iDebug;

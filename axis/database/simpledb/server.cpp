@@ -113,7 +113,7 @@ namespace simpledb
 
       //estatus =
       
-      __compose_new(m_psimpledb);
+      __construct_new(m_psimpledb);
 
       //if (!estatus)
       //{
@@ -143,7 +143,7 @@ namespace simpledb
 
       //estatus = 
       
-      __compose_new(m_pstorage);
+      __construct_new(m_pstorage);
 
       //if (!estatus)
       //{
@@ -192,7 +192,7 @@ namespace simpledb
 
       //auto estatus = 
       
-      __compose_new(m_psimpledb);
+      __construct_new(m_psimpledb);
 
       //if (!estatus)
       //{
@@ -277,7 +277,7 @@ namespace simpledb
    }
 
 
-   __pointer(::database::database) server::get_local_database()
+   ::pointer<::database::database>server::get_local_database()
    {
 
       return m_pdatabaseLocal;

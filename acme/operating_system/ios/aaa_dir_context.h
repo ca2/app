@@ -11,8 +11,8 @@ namespace ios
    public:
       
       
-      __pointer(dir_system)      m_pdirsystem;
-      __pointer(file_system)     m_pfilesystem;
+      ::pointer<dir_system>     m_pdirsystem;
+      ::pointer<file_system>    m_pfilesystem;
 
       
       dir_context();

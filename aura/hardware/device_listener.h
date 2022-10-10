@@ -1,4 +1,4 @@
-// Created by camilo on 2022-02-20 12:05 <3ThomasBorregaardSørensen!! (Thomas Likes number 5)!
+// Created by camilo on 2022-02-20 12:05 <3ThomasBorregaardSï¿½rensen!! (Thomas Likes number 5)!
 // From windows::device_listener by camilo on 2022-05-15 16:29 <3ThomasBorregaardSorenesen!! and Mummi!!
 #pragma once
 
@@ -31,7 +31,7 @@ namespace hardware
    };
 
 
-   using device_listener_array = __pointer_array(device_listener);
+   using device_listener_array = pointer_array < device_listener >;
 
 
 } //namespace windows

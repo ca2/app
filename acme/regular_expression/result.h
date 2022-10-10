@@ -49,11 +49,11 @@ namespace regular_expression
 
       //virtual ::count match_count(const char * psz, strsize len) = 0;
 
-      //virtual __pointer(::strsize_range_array)
+      //virtual ::pointer<::strsize_range_array>
 
       //matches_ranges(const ::string & str) = 0;
 
-      //virtual __pointer(::strsize_range_array)
+      //virtual ::pointer<::strsize_range_array>
 
       //matches_ranges(const char * psz, strsize len) = 0;
 

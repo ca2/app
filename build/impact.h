@@ -13,7 +13,7 @@ namespace app_core_build
 
       string_array      m_straLine;
 
-      __pointer(build)        m_pbuild;
+      ::pointer<build>       m_pbuild;
 
 
       impact();

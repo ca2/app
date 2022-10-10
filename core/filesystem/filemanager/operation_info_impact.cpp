@@ -116,7 +116,7 @@ namespace filemanager
       __UNREFERENCED_PARAMETER(bFinal);
    }
 
-   __pointer(operation_document) operation_info_impact::get_document()
+   ::pointer<operation_document>operation_info_impact::get_document()
    {
       return  (::user::impact::get_document());
    }

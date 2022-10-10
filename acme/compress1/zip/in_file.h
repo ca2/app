@@ -39,8 +39,8 @@ namespace zip
       string                        m_strFileName;
       u64                           m_iPosition;
       string_array                       m_straPath;
-      __pointer_array(::zip::file)       m_filea;
-      __pointer_array(::zip::in_file)    m_infilea;
+      pointer_array < ::zip::file >       m_filea;
+      pointer_array < ::zip::in_file >    m_infilea;
       string_array                       m_straPrefix;
       e_mode                        m_emode;
       string                        m_strZipFile;

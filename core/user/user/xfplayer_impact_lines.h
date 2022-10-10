@@ -7,7 +7,7 @@ class CLASS_DECL_CORE xfplayer_impact_linea :
 public:
 
 
-   __pointer(xfplayer_impact_line_selection)    m_pselection;
+   ::pointer<xfplayer_impact_line_selection>   m_pselection;
    ::user::interaction *                        m_puserinteraction;
    index                                        m_iFirstVisible;
    index                                        m_iLastVisible;
@@ -23,7 +23,7 @@ public:
    index FindLine(xfplayer_impact_line * pline);
    //void SetRenderWindow(::user::interaction_impl * pwindow);
    void SetEffect(i32 iEffect);
-   //void set_user_interaction(__pointer(::user::interaction) pinteraction);
+   //void set_user_interaction(::pointer<::user::interaction>pinteraction);
    void Prepare(xfplayer_impact_line * pImpactLine);
 
    void Prepare();

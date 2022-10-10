@@ -50,7 +50,7 @@ namespace factory
 
 
 
-   __pointer(::element) factory::create(const ::string & strType)
+   ::pointer<::element>factory::create(const ::string & strType)
    {
 
       //auto psystem = get_system();

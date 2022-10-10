@@ -50,7 +50,7 @@ namespace dynamic_source
 
       //}
 
-      __pointer(script_interface) pinterface = pobject;
+      ::pointer<script_interface>pinterface = pobject;
 
       if (pinterface)
       {

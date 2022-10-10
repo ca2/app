@@ -29,10 +29,10 @@ public:
    bool                                                        m_bExperienceMainFrame;
    bool                                                        m_bOuterPopupAlertLike;
    bool                                                        m_bHold;
-   __pointer(::user::primitive)                                m_puserprimitiveParent;
-   __pointer(::user::primitive)                                m_puserprimitiveAlloc;
-   //__pointer(command_line)                                     m_pcommandline;
-   __pointer(::matter)                                         m_pmatterUserPayload;
+   ::pointer<::user::primitive>                               m_puserprimitiveParent;
+   ::pointer<::user::primitive>                               m_puserprimitiveAlloc;
+   //::pointer<command_line>                                    m_pcommandline;
+   ::pointer<::matter>                                        m_pmatterUserPayload;
    ewindowflag                                                 m_ewindowflag;
    ::atom                                                        m_atom;
    //enum_command                     m_ecommand;
@@ -51,7 +51,7 @@ public:
 
    ::file::item_array* m_pitema;
 
-   __pointer(::acme::context)       m_pcontextFork;
+   ::pointer<::acme::context>      m_pcontextFork;
    string                           m_strExe;
    string                           m_strApp;
    string                           m_strAppType;

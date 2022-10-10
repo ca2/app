@@ -69,17 +69,17 @@ namespace draw2d
       bool                                   m_bOutline;
       void *                                 m_pthis;
       ::user::interaction *                  m_puserinteraction;
-      __pointer(::draw2d::host)              m_pdraw2dhost;
+      ::pointer<::draw2d::host>             m_pdraw2dhost;
 
       bool                                   m_bPat;
 
       //bool                                   m_bAlphaBlend;
 
-      __reference(::text::context)           m_ptextcontext;
+      ::pointer<::text::context>          m_ptextcontext;
       ::aura::draw_context *                 m_pdrawcontext;
       ::image_pointer                        m_pimageAlphaBlend;
       ::point_f64                            m_pointAlphaBlend;
-      __pointer(::task)                      m_ptask;
+      ::pointer<::task>                     m_ptask;
 
 
       image *                                m_pimage;

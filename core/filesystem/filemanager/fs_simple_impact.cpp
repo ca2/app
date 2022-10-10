@@ -58,7 +58,7 @@ namespace filemanager
          void impact::on_message_destroy(::message::message * pmessage)
          {
 
-            __release(m_ptree);
+            m_ptree.release();
 
             m_plist.release();
 
@@ -76,7 +76,7 @@ namespace filemanager
 
             initialize_split_layout();
 
-            __compose_new(m_ptree);
+            __construct_new(m_ptree);
 
             m_ptree->m_pserver = this;
 
@@ -124,7 +124,7 @@ namespace filemanager
          void impact::on_request_response(::message::message * pmessage)
          {
 
-            __pointer(::http::message) psignal(pmessage);
+            ::pointer<::http::message>psignal(pmessage);
 
             string strResponse;
 

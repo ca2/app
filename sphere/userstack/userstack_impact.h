@@ -14,7 +14,7 @@ namespace userstack
       
       typedef ::user::show < ::user::interaction > BASE;
 
-      __pointer(pane_impact)    m_ppaneimpact;
+      ::pointer<pane_impact>   m_ppaneimpact;
 
       i32 m_iV;
       i32 m_iVH;

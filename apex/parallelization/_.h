@@ -20,7 +20,7 @@
 // int_bool thread_data_free(thread_data_index dataindex);
 
 
-//extern thread_local __pointer(property_set) t_ppropertyset;
+//extern thread_local ::pointer<property_set>t_ppropertyset;
 
 
 //CLASS_DECL_APEX void main_branch(::element * pelementTask, enum_priority epriority);
@@ -82,13 +82,13 @@ namespace parallelization
    {
 
       template < typename ARRAY >
-      __pointer(::object) is_running(ARRAY & array, const char * pszTag)
+      ::pointer<::object>is_running(ARRAY & array, const char * pszTag)
       {
 
          for (::index i = 0; i < array.get_size(); i++)
          {
 
-            __pointer(::object) pobject;
+            ::pointer<::object>pobject;
 
             pobject = &__typed(array[i]);
 
@@ -189,14 +189,14 @@ class synchronous_lock;
 
 
 class CLASS_DECL_APEX thread_ptra :
-   virtual public __pointer_array(thread)
+   virtual public pointer_array < thread >
 {
 public:
 
 
    thread_ptra();
-   thread_ptra(const thread_ptra & ptra):__pointer_array(thread)(ptra) {}
-   thread_ptra(thread_ptra && ptra) :__pointer_array(thread)(::move(ptra)) {}
+   thread_ptra(const thread_ptra & ptra):pointer_array < thread >(ptra) {}
+   thread_ptra(thread_ptra && ptra) :pointer_array < thread >(::move(ptra)) {}
    virtual ~thread_ptra();
 
    virtual ::count get_count_except_current_thread();
@@ -204,8 +204,8 @@ public:
    virtual void destroy() override;
    virtual void wait(const class ::wait & wait, ::synchronous_lock & synchronouslock);
 
-   thread_ptra & operator = (const thread_ptra & ptra) { __pointer_array(thread)::operator =(ptra); return *this; }
-   thread_ptra & operator = (thread_ptra && ptra) { __pointer_array(thread)::operator =(::move(ptra)); return *this; }
+   thread_ptra & operator = (const thread_ptra & ptra) { pointer_array < thread >::operator =(ptra); return *this; }
+   thread_ptra & operator = (thread_ptra && ptra) { pointer_array < thread >::operator =(::move(ptra)); return *this; }
 
 };
 

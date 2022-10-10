@@ -26,7 +26,7 @@ namespace windows
       comptr < IImageList >                           m_pimagelistLarge;
       comptr < IImageList >                           m_pimagelistExtraLarge;
       comptr < IImageList >                           m_pimagelistJumbo;
-      //__composite(::user::message_queue)              m_pmessagequeue;
+      //::pointer<::user::message_queue>             m_pmessagequeue;
 
 
 

@@ -1024,7 +1024,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 //   class item;
 //   class path;
 //
-//   using path_pointer = __pointer(path);
+//   using path_pointer = ::pointer<path>
 //
 //} // namespace draw2d
 //
@@ -1050,7 +1050,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////   class cursor;
 ////   class region;
 ////   class brush;
-////   using brush_pointer = __pointer(brush);
+////   using brush_pointer = ::pointer<brush>
 ////
 ////
 ////} // namespace draw2d
@@ -1061,7 +1061,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 //
 //
 //   class font;
-//   using font_pointer = __pointer(font);
+//   using font_pointer = ::pointer<font>
 //
 //
 //} // namespace write_text
@@ -1181,7 +1181,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 //   class box;
 //   class interaction_array;
 //
-//   using style_pointer = __pointer(style);
+//   using style_pointer = ::pointer<style>
 //
 //   using e_flag = enumeration < enum_flag >;
 //
@@ -1455,14 +1455,14 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////
 ////
 ////#define __member(TYPE) ::primitive::member < TYPE >
-////#define __composite(TYPE) ::primitive::composite < TYPE >
-////#define __reference(TYPE) ::primitive::reference < TYPE >
+////#define ::pointer<TYPE>::primitive::composite < TYPE >
+////#define ::pointer<TYPE>::primitive::reference < TYPE >
 ////
 ////
 ////
 ////
 ////template < typename TYPE >
-////inline bool is_null(const __pointer(TYPE) & p)
+////inline bool is_null(const ::pointer<TYPE>& p)
 ////{
 ////
 ////   return ::is_null(p.m_p);
@@ -1470,7 +1470,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////}
 ////
 ////template < typename TYPE >
-////inline bool is_null(const __composite(TYPE) & p)
+////inline bool is_null(const ::pointer<TYPE>& p)
 ////{
 ////
 ////   return p.is_null();
@@ -1478,7 +1478,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////}
 ////
 ////template < typename TYPE >
-////inline bool is_null(const __reference(TYPE) & p)
+////inline bool is_null(const ::pointer<TYPE>& p)
 ////{
 ////
 ////   return p.is_null();
@@ -1487,7 +1487,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////
 ////
 ////template < typename TYPE >
-////inline bool is_set(const __pointer(TYPE) & p)
+////inline bool is_set(const ::pointer<TYPE>& p)
 ////{
 ////
 ////   return p.is_set();
@@ -1495,7 +1495,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////}
 ////
 ////template < typename TYPE >
-////inline bool is_set(const __composite(TYPE) & p)
+////inline bool is_set(const ::pointer<TYPE>& p)
 ////{
 ////
 ////   return p.is_set();
@@ -1503,7 +1503,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////}
 ////
 ////template < typename TYPE >
-////inline bool is_set(const __reference(TYPE) & p)
+////inline bool is_set(const ::pointer<TYPE>& p)
 ////{
 ////
 ////   return p.is_set();
@@ -1533,16 +1533,16 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////
 ////
 ////template < class POINTER_TYPE >
-////inline auto & __typed(__pointer(POINTER_TYPE) & p) { return *p; }
+////inline auto & __typed(::pointer<POINTER_TYPE>& p) { return *p; }
 ////
 ////
 ////#include "aura/parallelization/thread_parameter.h"
 ////
 ////#include "aura/platform/keep_true.h"
 ////
-////using file_pointer = __pointer(::file::file);
+////using file_pointer = ::pointer<::file::file>
 ////
-////using file_pointer = __pointer(::file::file);
+////using file_pointer = ::pointer<::file::file>
 ////
 ////class stream;
 ////class binary_stream;
@@ -1551,7 +1551,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////inline stream & __save_object(stream & stream, BASE_TYPE * p);
 ////
 ////template < typename BASE_TYPE >
-////inline stream & __save_object(stream & stream, const __pointer(BASE_TYPE) & p)
+////inline stream & __save_object(stream & stream, const ::pointer<BASE_TYPE>& p)
 ////{
 ////   return __save_object(stream, (BASE_TYPE *) p.m_p);
 ////}
@@ -1626,7 +1626,7 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////{
 ////
 ////   class exception;
-////   using exception_pointer = __pointer(exception);
+////   using exception_pointer = ::pointer<exception>
 ////
 ////} // namespace exception
 ////
@@ -1797,21 +1797,21 @@ namespace IDENTIFIER_SUFFIX_OPERATING_SYSTEM(aura_)
 ////template < typename POINTER_TYPE >
 ////class ptr_array;
 ////
-//////using composite_ptra = __pointer_array(::matter); // Please use just for composition (ownership).
+//////using composite_ptra = pointer_array < ::matter >; // Please use just for composition (ownership).
 ////
-//////using reference_ptra = __pointer_array(::matter); // Please use just for reference (member-based).
+//////using reference_ptra = pointer_array < ::matter >; // Please use just for reference (member-based).
 ////
-//////using object_ptra = __pointer_array(::object); // Please use just for keeping non-member-based references.
+//////using object_ptra = pointer_array < ::object >; // Please use just for keeping non-member-based references.
 ////
-////using object_ptra = __pointer_array(::matter); // Please use just for keeping non-member-based references.
+////using object_ptra = pointer_array < ::matter >; // Please use just for keeping non-member-based references.
 ////
 ////using object_addra = __address_array(::matter); // Please use just for keeping non-member-based references.
 ////
 ////class object_meta;
 ////
 ////
-////#define __composite_array(TYPE) ::array < __composite(TYPE) >
-////#define __reference_array(TYPE) ::array < __reference(TYPE) >
+////#define __composite_array(TYPE) ::array < ::pointer<TYPE >>
+////#define __reference_array(TYPE) ::array < ::pointer<TYPE >>
 ////
 ////namespace http
 ////{

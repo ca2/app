@@ -11,11 +11,11 @@ namespace aqua
    public:
 
 
-      __composite(::aqua::audio)                         m_paudio;
+      ::pointer<::aqua::audio>                        m_paudio;
 
-      __composite(::aqua::multimedia)                    m_pmultimedia;
+      ::pointer<::aqua::multimedia>                   m_pmultimedia;
 
-      __composite(::aqua::estamira)                      m_pestamira;
+      ::pointer<::aqua::estamira>                     m_pestamira;
 
 
       system();

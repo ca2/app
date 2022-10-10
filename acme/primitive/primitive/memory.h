@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 inline strsize safe_strlen(void * p, strsize n)
@@ -116,7 +116,9 @@ public:
    memory(const memory * pmemory, manager * pmanager);
    memory(const u8 * pchSrc, strsize nLength, manager * pmanager);
    memory(memory && memory);
-   virtual ~memory();
+   memory(const ::string & str);
+   memory(const ::payload & payload);
+   ~memory() override;
 
 
    virtual byte * impl_alloc(memsize dwAllocation) override;
@@ -127,7 +129,7 @@ public:
 
 };
 
-using memory_pointer = __pointer(memory);
+using memory_pointer = ::pointer<memory>;
 
 inline memory_pointer create_memory() { return __new(::memory); }
 

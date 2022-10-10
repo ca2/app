@@ -60,7 +60,7 @@
 // } // namespace parallelization
 
 
-thread_local __pointer(property_set) t_ppropertyset;
+thread_local ::pointer<property_set>t_ppropertyset;
 
 
 property_set& _thread_property_set()

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "apex/user/primitive.h"
 
 #include "acme/filesystem/filesystem/acme_directory.h"
@@ -128,7 +128,7 @@ void create::create_common_construct(const ::payload & varOptions, ::user::primi
    m_bExperienceMainFrame              = false;
    m_bOuterPopupAlertLike              = false;
    m_bHold                             = true;
-   m_bMakeVisible                      = m_payloadOptions.is_true("visible", true);
+   m_bMakeVisible                      = m_payloadOptions.is_property_true("visible", true);
 
 }
 
@@ -781,7 +781,7 @@ void create::_001ParseCommandForkUri(const ::string& strCommandFork)
 //
 //
 //command_line_pointer::command_line_pointer(const ::apex::allocatorsp & allocer) :
-//   pointer < create > (allocer)
+//   ::pointer<create>(allocer)
 //{
 //
 //}

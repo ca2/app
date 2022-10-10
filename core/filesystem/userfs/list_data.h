@@ -20,7 +20,7 @@ namespace userfs
       index                      m_iSizeSubItem;
       ::duration                 m_durationLastFileSizeGet;
 
-      __pointer(list_item_array) m_pitema;
+      ::pointer<list_item_array>m_pitema;
 
 
 

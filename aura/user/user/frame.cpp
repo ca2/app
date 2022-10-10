@@ -70,7 +70,7 @@ namespace user
    void frame::on_message_application_exit(::message::message* pmessage)
    {
 
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
 
       if (get_parent() != nullptr)
       {
@@ -81,7 +81,7 @@ namespace user
 
       }
 
-      __pointer(::aura::application) papp = get_app();
+      ::pointer<::aura::application>papp = get_app();
 
       papp->_001TryCloseApplication();
 
@@ -98,7 +98,7 @@ namespace user
    void frame::on_message_key_down(::message::message* pmessage)
    {
 
-      __pointer(::user::key) pkey(pmessage);
+      ::pointer<::user::key>pkey(pmessage);
       
       if (get_parent() == nullptr)
       {
@@ -116,7 +116,7 @@ namespace user
 
       }
 
-//      __pointer(::aura::application) papp = get_app();
+//      ::pointer<::aura::application>papp = get_app();
 //
 //      papp->_001TryCloseApplication();
 //
@@ -232,7 +232,7 @@ namespace user
    }
 
 
-//   __pointer(::utoolbar) frame::load_toolbar(const ::atom & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
+//   ::pointer<::utoolbar>frame::load_toolbar(const ::atom & idToolbar, const ::string & strToolbar, u32 dwCtrlStyle, u32 uStyle, const ::type & type)
 //   {
 //
 //      return false;
@@ -317,7 +317,7 @@ namespace user
 
       ///auto estatus = 
       
-      __compose(m_pdrawicon);
+      __construct(m_pdrawicon);
 
       //if (!estatus)
       //{

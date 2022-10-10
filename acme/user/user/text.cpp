@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "text.h"
 
 
@@ -21,7 +21,7 @@ namespace user
    void text::_001GetText(string & str) const
    {
 
-      if (m_propertyText)
+      if (m_linkedpropertyText)
       {
 
          str = strtext();

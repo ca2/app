@@ -321,7 +321,7 @@ namespace account
    }
 
 
-   __pointer(authenticator) department::authenticator()
+   ::pointer<authenticator>department::authenticator()
    {
 
       return m_pauthenticator;
@@ -368,7 +368,7 @@ namespace account
 
       m_ptaskpool->set_timer(e_timer_slow, minute());
 
-      __pointer(::axis::session) psession = get_session();
+      ::pointer<::axis::session>psession = get_session();
 
       psession->on_user_logon(puser);
 

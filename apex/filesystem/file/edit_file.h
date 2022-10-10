@@ -111,7 +111,7 @@ namespace file
    };
 
    class edit_item_array :
-      public __pointer_array(edit_item_base)
+      public pointer_array < edit_item_base >
    {
    public:
    };
@@ -123,7 +123,7 @@ namespace file
    public:
 
 
-      __pointer(edit_group_item)      m_pgroupitem;
+      ::pointer<edit_group_item>     m_pgroupitem;
       edit_item_array            m_itema;
 
 
@@ -161,12 +161,12 @@ namespace file
       filesize                               m_iStartOffset;
 
 
-      __pointer(::data::tree_item)           m_ptreeitem;
-      __pointer(::data::tree_item)           m_ptreeitemFlush;
-      __pointer(::data::tree_item)           m_ptreeitemBeg;
-      __pointer(::data::tree_item)           m_ptreeitemEnd;
+      ::pointer<::data::tree_item>          m_ptreeitem;
+      ::pointer<::data::tree_item>          m_ptreeitemFlush;
+      ::pointer<::data::tree_item>          m_ptreeitemBeg;
+      ::pointer<::data::tree_item>          m_ptreeitemEnd;
       memsize                                m_iBranch;
-      __pointer(edit_group_item)                   m_pgroupitem;
+      ::pointer<edit_group_item>                  m_pgroupitem;
       bool                                   m_bRootDirection;
 
 

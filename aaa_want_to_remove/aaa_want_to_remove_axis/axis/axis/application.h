@@ -34,7 +34,7 @@ namespace axis
       i32                                             m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
 
 
-      __pointer(::simpledb::server)                          m_psimpledb;
+      ::pointer<::simpledb::server>                         m_psimpledb;
 
 
       ::user::interaction *                           m_puserinteractionMain;
@@ -134,8 +134,8 @@ namespace axis
 
 
 
-      virtual bool update_appmatter(::sockets::socket_handler * handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative);
-      virtual bool update_appmatter(::sockets::socket_handler * handler, __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const ::string & strLocale, const ::string & strStyle);
+      virtual bool update_appmatter(::sockets::socket_handler * handler, ::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative);
+      virtual bool update_appmatter(::sockets::socket_handler * handler, ::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative, const ::string & strLocale, const ::string & strStyle);
 
 
       virtual void SetCurrentHandles() override;
@@ -144,7 +144,7 @@ namespace axis
       virtual bool process_exception(::exception_pointer e) override;
 
 
-      //virtual __pointer(::aura::application) assert_running(const ::string & pszAppId) override;
+      //virtual ::pointer<::aura::application>assert_running(const ::string & pszAppId) override;
 
       virtual bool is_running() override;
 

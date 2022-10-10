@@ -70,15 +70,15 @@ public:
 //
 //   TYPE *            m_keepValue;
 //   TYPE *            m_keepAwayValue;
-//   __pointer(TYPE) * m_pKept;
+//   ::pointer<TYPE>* m_pKept;
 //   bool              m_bKept;
 //
 //
 //   template < typename TYPE_KEEP, typename TYPE_KEEP_AWAY >
-//   ___keep_pointer(__pointer(TYPE)* pKept, TYPE_KEEP * keepValue, TYPE_KEEP_AWAY * keepAwayValue, bool bStartKept = true);
+//   ___keep_pointer(::pointer<TYPE> pKept, TYPE_KEEP * keepValue, TYPE_KEEP_AWAY * keepAwayValue, bool bStartKept = true);
 //
 //   template < typename TYPE_KEEP >
-//   ___keep_pointer(__pointer(TYPE)* pKept, TYPE_KEEP * keepValue = ::default_keep_value < TYPE * >());
+//   ___keep_pointer(::pointer<TYPE> pKept, TYPE_KEEP * keepValue = ::default_keep_value < TYPE * >());
 //
 //   ___keep_pointer(___keep_pointer&& keep);
 //
@@ -166,7 +166,7 @@ void ___keep<TYPE>::KeepAway()
 
 //template < typename TYPE >
 //template < typename TYPE_KEEP, typename TYPE_KEEP_AWAY >
-//___keep_pointer < TYPE > ::___keep_pointer(__pointer(TYPE)* pKept, TYPE_KEEP * keepValue, TYPE_KEEP_AWAY * keepAwayValue, bool bStartKept) :
+//___keep_pointer < TYPE > ::___keep_pointer(::pointer<TYPE> pKept, TYPE_KEEP * keepValue, TYPE_KEEP_AWAY * keepAwayValue, bool bStartKept) :
 //   m_keepValue(keepValue),
 //   m_keepAwayValue(keepAwayValue),
 //   m_pKept(pKept)
@@ -186,7 +186,7 @@ void ___keep<TYPE>::KeepAway()
 //
 //template < typename TYPE >
 //template < typename TYPE_KEEP >
-//___keep_pointer < TYPE > ::___keep_pointer(__pointer(TYPE)* pKept, TYPE_KEEP * keepValue) :
+//___keep_pointer < TYPE > ::___keep_pointer(::pointer<TYPE> pKept, TYPE_KEEP * keepValue) :
 //   m_keepValue(keepValue),
 //   m_keepAwayValue(*pKept),
 //   m_pKept(pKept)
@@ -273,7 +273,7 @@ ___keep < TYPE > keep(TYPE & kept)
 }
 
 //template < typename TYPE, typename TYPE_KEEP >
-//___keep_pointer < TYPE > keep(__pointer(TYPE)* pKept, TYPE_KEEP * keepValue)
+//___keep_pointer < TYPE > keep(::pointer<TYPE> pKept, TYPE_KEEP * keepValue)
 //{
 //
 //   return ___keep_pointer < TYPE >(pKept, keepValue);
@@ -282,7 +282,7 @@ ___keep < TYPE > keep(TYPE & kept)
 
 
 //template < typename TYPE >
-//___keep_pointer < TYPE > keep(__pointer(TYPE)& kept)
+//___keep_pointer < TYPE > keep(::pointer<TYPE> kept)
 //{
 //
 //   return ___keep_pointer < TYPE >(&kept, ::default_keep_value < TYPE >());

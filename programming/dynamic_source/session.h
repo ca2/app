@@ -14,7 +14,7 @@ namespace dynamic_source
       string                                             m_strSessid;
       property_set                                       m_set;
       ::earth::time                                   m_timeExpiry;
-      __reference(::dynamic_source::script_manager)      m_pmanager;
+      ::pointer<::dynamic_source::script_manager>     m_pmanager;
 
 
       session();
@@ -37,7 +37,7 @@ namespace dynamic_source
 
 
    class CLASS_DECL_APP_PROGRAMMING session_map :
-      virtual public string_map < __pointer(session) >
+      virtual public string_map < ::pointer<session >>
    {
    public:
 

@@ -8,7 +8,7 @@
 //{
 //
 //
-//   using style_pointer = __pointer(style);
+//   using style_pointer = ::pointer<style>
 //
 //
 //} // namespace user

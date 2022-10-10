@@ -28,7 +28,7 @@ public:
 
 
    class ::main *                m_pmain;
-   __pointer(APPLICATION)        m_pacmeapplication;
+   ::pointer<APPLICATION>       m_pacmeapplication;
 
 
    app_runner(int argc, char * argv[], char * envp[], char * res_start, char * res_end)

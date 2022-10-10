@@ -71,7 +71,7 @@ namespace user
    public:
 
 
-      index_map < __pointer(draw_list_subitem) >      m_mapSubItem;
+      index_map < ::pointer<draw_list_subitem >>     m_mapSubItem;
 
 
       draw_list_item();
@@ -109,7 +109,7 @@ namespace user
    public:
 
 
-      //index_map < __pointer(draw_list_subitem) >      m_mapSubItem;
+      //index_map < ::pointer<draw_list_subitem >>     m_mapSubItem;
 
 
       draw_list_group();
@@ -118,7 +118,7 @@ namespace user
       void initialize_draw_list_group(list * plist);
 
 
-      //__pointer(::image_list) get_image_list();
+      //::pointer<::image_list>get_image_list();
       //void draw_image();
       void draw_group_image(::draw2d::graphics_pointer & pgraphics);
       void update_item_color(::draw2d::graphics_pointer & pgraphics);

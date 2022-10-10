@@ -27,7 +27,7 @@ namespace crypto
    void crypto::defer_initialize()
    {
 
-      /*auto estatus = */ __defer_compose(m_pinitializer);
+      /*auto estatus = */ __defer_construct(m_pinitializer);
 
       //if (!estatus)
       //{
@@ -41,7 +41,7 @@ namespace crypto
    }
 
 
-   __pointer(hasher_algorithm) crypto::create_hasher_algorithm(enum_hash ehash)
+   ::pointer<hasher_algorithm>crypto::create_hasher_algorithm(enum_hash ehash)
    {
 
       /*auto estatus = */ defer_initialize();
@@ -76,7 +76,7 @@ namespace crypto
    }
 
 
-   __pointer(hasher) crypto::create_hasher(enum_hash ehash)
+   ::pointer<hasher>crypto::create_hasher(enum_hash ehash)
    {
 
       auto palgorithm = create_hasher_algorithm(ehash);
@@ -287,73 +287,72 @@ namespace crypto
       //}
 
 
-      string crypto::md5(const char* psz)
-      {
+      //string crypto::md5(const block & block)
+      //{
 
-         memory mem;
+      //   memory mem;
 
-         mem.assign(psz, strlen(psz));
+      //   mem.assign(psz, strlen(psz));
 
-         return md5(mem);
+      //   return md5(mem);
 
-      }
-
-
-      string crypto::sha1(const char* psz)
-      {
-
-         memory mem;
-
-         mem.assign(psz, strlen(psz));
-
-         return sha1(mem);
-
-      }
+      //}
 
 
-      string crypto::nessie(const char* psz)
-      {
+      //string crypto::sha1(const char* psz)
+      //{
 
-         memory mem;
+      //   memory mem;
 
-         mem.assign(psz, strlen(psz));
+      //   mem.assign(psz, strlen(psz));
 
-         return nessie(mem);
+      //   return sha1(mem);
 
-      }
+      //}
 
 
-      string crypto::md5(const memory& mem)
+      //string crypto::nessie(const char* psz)
+      //{
+
+      //   memory mem;
+
+      //   mem.assign(psz, strlen(psz));
+
+      //   return nessie(mem);
+
+      //}
+
+
+      string crypto::md5(const block & block)
       {
 
          memory memMd5;
 
-         md5(memMd5, mem);
+         md5(memMd5, block);
 
          return memMd5.to_hex();
-
 
       }
 
 
-
-      string crypto::sha1(const memory& mem)
+      string crypto::sha1(const block & block)
       {
 
          memory memSha1;
 
-         sha1(memSha1, mem);
+         sha1(memSha1, block);
 
          return memSha1.to_hex();
 
       }
 
-      string crypto::nessie(const memory& mem)
+
+      string crypto::nessie(const block & block)
       {
 
          memory memNessie;
 
-         nessie(memNessie, mem);
+         nessie(memNessie, block);
 
          return memNessie.to_hex();
 
@@ -740,7 +739,7 @@ namespace crypto
       }
 
 
-      __pointer(rsa) crypto::create_rsa_key(const ::string& strRsa)
+      ::pointer<rsa>crypto::create_rsa_key(const ::string& strRsa)
       {
 
          throw todo;
@@ -750,7 +749,7 @@ namespace crypto
       }
 
       
-      __pointer(rsa) crypto::generate_rsa_key()
+      ::pointer<rsa>crypto::generate_rsa_key()
       {
 
          throw todo;
@@ -760,7 +759,7 @@ namespace crypto
       }
 
       
-      __pointer(rsa) crypto::read_priv_pem(const ::string& strFile)
+      ::pointer<rsa>crypto::read_priv_pem(const ::string& strFile)
       {
 
          throw todo;
@@ -770,7 +769,7 @@ namespace crypto
       }
 
 
-      __pointer(rsa) crypto::read_pub_pem(const ::string& strFile)
+      ::pointer<rsa>crypto::read_pub_pem(const ::string& strFile)
       {
 
          throw todo;

@@ -71,7 +71,7 @@ namespace sockets
 
 
       string                                 m_boundary;
-      __pointer(multipart)                   m_pmultipart;
+      ::pointer<multipart>                  m_pmultipart;
 
 
       http_post_socket();

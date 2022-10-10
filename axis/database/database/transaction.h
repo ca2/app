@@ -12,7 +12,7 @@ namespace database
 
 
       bool                    m_bProcessed;
-      __pointer(database)     m_pdatabase;
+      ::pointer<database>     m_pdatabase;
 
 
       transaction(database* pdatabase);

@@ -11,11 +11,11 @@ namespace user
    public:
 
 
-      __pointer(::channel)                         m_pcommandtargetSource;
+      ::pointer<::channel>                        m_pcommandtargetSource;
       atom                                           m_atomControl;     // menu item or other index
       index                                        m_iIndex;
       ::count                                      m_iCount;        // last + 1 for iterating m_iIndex
-      __pointer_array(::channel)                        m_commandtargetptraHandle;
+      pointer_array < ::channel >                        m_commandtargetptraHandle;
 
       bool                                         m_bEnable;
       enum_check                                   m_echeck; // m_bCheckChanged is similar to m_echeck != undefined
@@ -24,13 +24,13 @@ namespace user
       bool                                         m_bRadioChanged;
 
       // if a menu item
-      __pointer(::user::interaction)               m_pmenu;         // nullptr if not a menu
-      __pointer(::user::interaction)               m_pmenuChild;      // sub containing menu item
-      __pointer(::user::interaction)               m_pmenuParent;   // nullptr if parent menu not easily determined
+      ::pointer<::user::interaction>              m_pmenu;         // nullptr if not a menu
+      ::pointer<::user::interaction>              m_pmenuChild;      // sub containing menu item
+      ::pointer<::user::interaction>              m_pmenuParent;   // nullptr if parent menu not easily determined
       // if a popup sub menu - ID is for first in popup
 
       // if from some other interaction_impl
-      __pointer(::user::primitive)                 m_puiOther;         // nullptr if a menu or not a interaction_impl
+      ::pointer<::user::primitive>                m_puiOther;         // nullptr if a menu or not a interaction_impl
 
       bool                                         m_bEnableChanged;
       bool                                         m_bHasCommandHandler;

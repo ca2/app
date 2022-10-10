@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "acme/primitive/primitive/memory_container.h"
@@ -7,7 +7,7 @@
 class memory_file;
 
 
-typedef __pointer(memory_file) memory_file_pointer;
+typedef ::pointer<memory_file>memory_file_pointer;
 
 
 class CLASS_DECL_ACME memory_file :
@@ -34,7 +34,7 @@ public:
    memory_file(memory_base & memory, const ::file::e_open & eopen = e_null);
    memory_file(memory_base * pmemory, const ::file::e_open & eopen = e_null);
    template < typename MEMORY>
-   memory_file(const __pointer(MEMORY) & pmemory, const ::file::e_open & eopen = e_null) : memory_file((MEMORY *) pmemory.get(), eopen) {}
+   memory_file(const ::pointer<MEMORY>& pmemory, const ::file::e_open & eopen = e_null) : memory_file((MEMORY *) pmemory.get(), eopen) {}
    virtual ~memory_file();
 
 

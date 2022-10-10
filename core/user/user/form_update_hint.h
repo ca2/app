@@ -19,7 +19,7 @@ namespace user
       };
 
 
-      __pointer(::user::form)           m_pform;
+      ::pointer<::user::form>          m_pform;
       enum_type                     m_etype;
       string                     m_strForm;
       ::action::action_context          m_actioncontext;

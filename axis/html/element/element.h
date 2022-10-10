@@ -32,13 +32,13 @@ namespace html
 
       // always present property?! "text"
       property_set               m_propertyset;
-      __pointer(impl::element)   m_pimpl;
+      ::pointer<impl::element>  m_pimpl;
       element *                  m_pparent;
       base *                     m_pbase;
       html_data *                m_pdata;
 
-      __pointer(::html::style)   m_pstyle;
-      __pointer_array(element)   m_elementalptra;
+      ::pointer<::html::style>  m_pstyle;
+      pointer_array < element >   m_elementalptra;
 
       e_tag                      m_etag;
       string                     m_strBody;

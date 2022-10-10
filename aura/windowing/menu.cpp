@@ -36,7 +36,7 @@ namespace windowing
    }
 
 
-   // __pointer(menu_shared) create_menu_shared(::object * pobject, const string_array & straParent, const string_array & straMenu, const string_array & straId)
+   // ::pointer<menu_shared>create_menu_shared(::object * pobject, const string_array & straParent, const string_array & straMenu, const string_array & straId)
    // {
 
    //    int iCount = (int)straParent.get_count();

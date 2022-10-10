@@ -1,4 +1,4 @@
-﻿// Added get_time_zone memberby camilo on 2021-12-02 14:23 BRT <3ThomasBorregaardSørensen!!
+// Added get_time_zone memberby camilo on 2021-12-02 14:23 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -97,7 +97,7 @@ namespace geo
       double_array                                       m_daLon;
       double_array                                       m_daLat;
 
-      string_map < __pointer(openweather_city) >         m_mapCity;
+      string_map < ::pointer<openweather_city >>        m_mapCity;
 
 
       department();

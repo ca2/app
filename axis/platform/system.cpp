@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/id.h"
 #include "acme/platform/profiler.h"
 #include "acme/platform/system_setup.h"
@@ -46,7 +46,7 @@ CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::object * po
 #include <sys/time.h>
 #endif
 
-extern string_map < __pointer(::acme::library) > * g_pmapLibrary;
+extern string_map < ::pointer<::acme::library >>* g_pmapLibrary;
 
 
 CLASS_DECL_AXIS void __simple_tracea(::matter * pobject, enum_trace_level elevel, const ::string & pszFunction, const ::string & pszFile, i32 iLine, const ::string & psz);
@@ -149,7 +149,7 @@ namespace axis
 
       //estatus = 
       
-      __compose_new(m_pemaildepartment);
+      __construct_new(m_pemaildepartment);
 
       //if (!estatus)
       //{
@@ -422,7 +422,7 @@ namespace axis
       if (!m_pgeo)
       {
 
-         __compose(m_pgeo);
+         __construct(m_pgeo);
 
       }
 
@@ -483,7 +483,7 @@ namespace axis
 //#endif
 //
 
-   __pointer(::account::user_set) system::userset()
+   ::pointer<::account::user_set>system::userset()
    {
 
       return m_puserset;
@@ -491,7 +491,7 @@ namespace axis
    }
 
 
-//   __pointer(regex) system::create_regular_expression(const ::string & pszStyle, const string& str)
+//   ::pointer<regex>system::create_regular_expression(const ::string & pszStyle, const string& str)
 //   {
 //
 //      string strStyle(pszStyle);
@@ -508,7 +508,7 @@ namespace axis
 //   }
 //
 //
-//   __pointer(regex_context) system::create_regular_expression_context(const ::string & pszStyle, int iCount)
+//   ::pointer<regex_context>system::create_regular_expression_context(const ::string & pszStyle, int iCount)
 //   {
 //
 //      string strStyle(pszStyle);

@@ -343,7 +343,7 @@ namespace universal_windows
       if (m_psystem->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
          return;
 
-      pointer < ::user::message > spbase;
+      ::pointer<::user::message>spbase;
 
       auto pkey  = __new(::message::key);
 
@@ -374,7 +374,7 @@ namespace universal_windows
       if (m_psystem->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
          return;
 
-      pointer < ::user::message > spbase;
+      ::pointer<::user::message>spbase;
 
       auto pkey  = __new(::message::key);
 
@@ -423,7 +423,7 @@ namespace universal_windows
       if (m_psystem->get_session()->m_puserinteractionHost->m_pimpl == nullptr)
          return;
 
-      pointer < ::user::message > spbase;
+      ::pointer<::user::message>spbase;
 
       ::message::key * pkey = memory_new  ::message::key;
 
@@ -532,7 +532,7 @@ namespace universal_windows
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      pointer < ::user::message > spbase;
+      ::pointer<::user::message>spbase;
 
       ::message::mouse * pmouse = memory_new ::message::mouse;
 
@@ -568,7 +568,7 @@ namespace universal_windows
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      pointer < ::user::message > spbase;
+      ::pointer<::user::message>spbase;
 
       ::message::mouse * pmouse = memory_new  ::message::mouse;
 
@@ -632,7 +632,7 @@ namespace universal_windows
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      pointer < ::user::message > spbase;
+      ::pointer<::user::message>spbase;
 
       ::message::mouse * pmouse = memory_new  ::message::mouse;
 

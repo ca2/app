@@ -31,7 +31,7 @@ namespace aura
    public:
 
 
-      __pointer(::windowing::windowing)         m_pwindowing;
+      ::pointer<::windowing::windowing>        m_pwindowing;
       bool                                      m_bUnhookX;
 
 
@@ -75,7 +75,7 @@ namespace aura
       virtual ::windowing::windowing * windowing();
 
 
-      //__pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox) override;
+      //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box & emessagebox) override;
 
 
       void BeginWaitCursor();
@@ -90,12 +90,12 @@ namespace aura
 #endif
 
 
-      //__pointer(::conversation) create_new_message_box_conversation() override;
+      //::pointer<::conversation>create_new_message_box_conversation() override;
 
 
-      //__pointer(::sequence < ::conversation >) get_new_conversation_sequence() override;
+      //pointer< ::sequence < ::conversation > > get_new_conversation_sequence() override;
 
-      //__pointer(::sequence < ::conversation >) message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox) override;
+      //pointer< ::sequence < ::conversation > > message_box(const ::string& strMessage, const ::string& strTitle, const ::e_message_box& emessagebox) override;
 
 
    };

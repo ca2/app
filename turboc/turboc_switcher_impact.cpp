@@ -98,7 +98,7 @@ namespace turboc
          if(ptopic->user_element_id() == "switcher_toggle")
          {
 
-            __pointer(impact) pimpact = m_pimpact;
+            ::pointer<impact>pimpact = m_pimpact;
 
             if(base_class < lite_impact >::bases(pimpact))
             {

@@ -1,4 +1,4 @@
-// Created by camilo on 2022-03-19 04:51 <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-03-19 04:51 <3ThomasBorregaardSï¿½rensen!!
 #pragma once
 
 
@@ -15,7 +15,7 @@ namespace appearance
    public:
 
 
-      __pointer(::user::button)      m_pbutton;
+      ::pointer<::user::button>      m_pbutton;
 
 
       button();

@@ -15,7 +15,7 @@ namespace user
       public:
 
 
-         __pointer_array(format) *           m_pcontainer;
+         pointer_array < format > *           m_pcontainer;
          index                               m_iIndex;
 
          bool                                m_bBold;
@@ -36,12 +36,12 @@ namespace user
 
 
          format();
-         //format(__pointer_array(format)* pcontainer);
+         //format(pointer_array < format >* pcontainer);
          //format(const format & format);
          ~format() override;
 
 
-         virtual void initialize_user_rich_text_format(__pointer_array(format)* pcontainer);
+         virtual void initialize_user_rich_text_format(pointer_array < format >* pcontainer);
 
          void write(::binary_stream & stream) const override;
          void read(::binary_stream & stream) override;

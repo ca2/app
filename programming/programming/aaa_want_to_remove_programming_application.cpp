@@ -21,7 +21,7 @@ namespace programming
    void application::on_application_signal(::message::message * pmessage)
    {
 
-      __pointer(::aura::application_message) psignal(pmessage);
+      ::pointer<::aura::application_message>psignal(pmessage);
 
       if (psignal->m_esignal == ::aura::application_message_process_init)
       {
@@ -50,7 +50,7 @@ namespace programming
 
          bool bNew = true;
 
-         __pointer(::acme::library) lib = pcompiler->compile(         auto psystem = m_psystem;
+         ::pointer<::acme::library>lib = pcompiler->compile(         auto psystem = m_psystem;
 
          auto pacmedirectory = psystem->m_pacmedirectory;
 
@@ -64,7 +64,7 @@ pacmedirectory->system() / "config\\xmpp_resident\\room\\ca2@livecoding.tv\\xmpp
 
          }
 
-         __pointer(object) p = lib->alloc(get_app(), "plugin", this);
+         ::pointer<object>p = lib->alloc(get_app(), "plugin", this);
 
          if (p.is_null())
             return;

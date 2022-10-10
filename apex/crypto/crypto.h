@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace crypto
@@ -19,7 +19,7 @@ namespace crypto
 
       // salt here may be dangerous for the universe
 
-      __composite(::crypto::initializer)    m_pinitializer;
+      ::pointer<::crypto::initializer>   m_pinitializer;
 
 
       crypto();
@@ -29,8 +29,8 @@ namespace crypto
       virtual void defer_initialize();
 
 
-      virtual __pointer(hasher_algorithm) create_hasher_algorithm(enum_hash ehash);
-      virtual __pointer(hasher) create_hasher(enum_hash ehash);
+      virtual ::pointer<hasher_algorithm>create_hasher_algorithm(enum_hash ehash);
+      virtual ::pointer<hasher>create_hasher(enum_hash ehash);
 
 
       virtual void encrypt(memory& storageEncrypt, const memory& storageDecrypt, const memory& storageKey) = 0;
@@ -57,13 +57,13 @@ namespace crypto
 
 
       //virtual u32 crc32(u32 dwPrevious, const char * psz) = 0;
-      virtual string md5(const char * psz);
-      virtual string sha1(const char * psz);
-      virtual string nessie(const char * psz);
+      //virtual string md5(const char * psz);
+      //virtual string sha1(const char * psz);
+      //virtual string nessie(const char * psz);
 
-      virtual string md5(const memory & mem);
-      virtual string sha1(const memory & mem);
-      virtual string nessie(const memory & mem);
+      virtual string md5(const block & block);
+      virtual string sha1(const block & block);
+      virtual string nessie(const block & block);
 
       virtual int get_hash_digest_length(enum_hash) const = 0;
 
@@ -101,13 +101,13 @@ namespace crypto
       virtual string defer_get_cryptkey();
 
       
-      virtual __pointer(rsa) create_rsa_key(const ::string & strRsa);
+      virtual ::pointer<rsa>create_rsa_key(const ::string & strRsa);
 
-      virtual __pointer(rsa) generate_rsa_key();
+      virtual ::pointer<rsa>generate_rsa_key();
 
-      virtual __pointer(rsa) read_priv_pem(const ::string & strFile);
+      virtual ::pointer<rsa>read_priv_pem(const ::string & strFile);
 
-      virtual __pointer(rsa) read_pub_pem(const ::string & strFile);
+      virtual ::pointer<rsa>read_pub_pem(const ::string & strFile);
 
 
       //void err_load_rsa_strings();
@@ -132,9 +132,9 @@ namespace crypto
    };
 
 
-   typedef ___pointer < crypto > crypto_pointer;
+   typedef ::pointer<crypto>crypto_pointer;
 
-   typedef __pointer_array(rsa) rsaptra;
+   typedef pointer_array < rsa > rsaptra;
 
 
 } //   namespace crypto

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/user/user/tool_item.h"
 #include "aura/operating_system.h"
 #include "aqua/xml/document.h"
@@ -19,7 +19,7 @@ public: // re-implementations only
    user_toolbar_command(::object * pobject);
    void enable(bool bOn = true, const ::action_context & context = ::e_source_system) override;
    //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
-   void _001SetCheck(enum_check echeck, const ::action_context & context = ::e_source_system) override;   // 0, 1 or 2 (indeterminate)
+   void _001SetCheck(const e_check & echeck, const ::action_context & context = ::e_source_system) override;   // 0, 1 or 2 (indeterminate)
    //   virtual void SetRadio(bool bOn = true, const ::action_context & context = ::e_source_system);
       //void _001SetText(const ::string & pszText, const ::action_context & context = ::e_source_system) override;
 
@@ -1128,7 +1128,7 @@ namespace user
       //               for (index i = 0; i < nControlCount; i++)
       //               {
       //
-      //                  __pointer(::user::interaction) pwindow = get_child_by_id(pControl[i].nID);
+      //                  ::pointer<::user::interaction>pwindow = get_child_by_id(pControl[i].nID);
       //
       //                  if (pwindow != nullptr)
       //                  {
@@ -1387,7 +1387,7 @@ namespace user
    void toolbar::_001OnNcHitTest(::message::message * pmessage)
    {
 
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
 
       //pusermessage->m_lresult = HTCLIENT;
 
@@ -1401,7 +1401,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-      __pointer(::message::nc_calc_size) pnccalcsize(pmessage);
+      ::pointer<::message::nc_calc_size>pnccalcsize(pmessage);
 
       // calculate border space (will add to top/bottom, subtract from right/bottom)
 
@@ -1462,7 +1462,7 @@ namespace user
    void toolbar::_001OnWindowPosChanging(::message::message * pmessage)
    {
 #ifdef WINDOWS_DESKTOP
-      __pointer(::message::window_pos) pwindowpos(pmessage);
+      ::pointer<::message::window_pos>pwindowpos(pmessage);
       // not necessary to invalidate the borders
       u32 uStyle = m_dwStyle;
       m_dwStyle &= ~(CBRS_BORDER_ANY);
@@ -1544,7 +1544,7 @@ namespace user
    void toolbar::_001OnSetButtonSize(::message::message * pmessage)
    {
 
-      //__pointer(::user::message) pusermessage(pmessage);
+      //::pointer<::user::message>pusermessage(pmessage);
 
       //pusermessage->m_lresult = OnSetSizeHelper(m_sizeButton, pusermessage.m_lparam);
 
@@ -1554,7 +1554,7 @@ namespace user
    void toolbar::_001OnSetBitmapSize(::message::message * pmessage)
    {
 
-      //__pointer(::user::message) pusermessage(pmessage);
+      //::pointer<::user::message>pusermessage(pmessage);
 
       //pusermessage->m_lresult = OnSetSizeHelper(m_sizeImage, pusermessage.m_lparam);
 
@@ -1598,7 +1598,7 @@ namespace user
       //
       //      LRESULT lResult = 0;
       //
-      //      __pointer(::user::message) pusermessage(pmessage);
+      //      ::pointer<::user::message>pusermessage(pmessage);
       //
       //#ifdef LRESULT
       //
@@ -1635,7 +1635,7 @@ namespace user
    }
 
    /*
-   void toolbar::OnUpdateCmdUI(__pointer(::user::frame_window) pTarget, bool bDisableIfNoHndler)
+   void toolbar::OnUpdateCmdUI(::pointer<::user::frame_window>pTarget, bool bDisableIfNoHndler)
    {
       tool_command state;
       state.m_pOther = this;
@@ -1925,7 +1925,7 @@ namespace user
 
       auto & children = pxmldocument->root()->children();
 
-      __pointer(::user::tool_item) ptoolitem;
+      ::pointer<::user::tool_item>ptoolitem;
 
       //auto papp = get_app();
 
@@ -2076,7 +2076,7 @@ void user_toolbar_command::enable(bool bEnable, const ::action_context & context
 
    m_bEnableChanged = true;
 
-   __pointer(::user::toolbar) pToolBar = m_puiOther;
+   ::pointer<::user::toolbar>pToolBar = m_puiOther;
 
    auto estateNew = pToolBar->tool_item_state(m_iIndex) - e_tool_item_state_enabled;
 
@@ -2102,14 +2102,14 @@ void user_toolbar_command::enable(bool bEnable, const ::action_context & context
 }
 
 
-void user_toolbar_command::_001SetCheck(enum_check echeck, const ::action_context & context)
+void user_toolbar_command::_001SetCheck(const e_check & echeck, const ::action_context & context)
 {
 
    // 0=>off, 1=>on, 2=>indeterminate
 
    ASSERT(echeck == e_check_checked || echeck == e_check_unchecked || echeck == e_check_tristate);
 
-   __pointer(::user::toolbar) pToolBar = m_puiOther;
+   ::pointer<::user::toolbar>pToolBar = m_puiOther;
 
    ASSERT(pToolBar != nullptr);
 

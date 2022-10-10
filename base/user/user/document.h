@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aqua/user/controller.h"
@@ -19,15 +19,15 @@ namespace user
       bool                                m_bAutoDelete;     // true => delete document when no more views
       bool                                m_bEmbedded;       // true => document is being created by OLE
 
-      __pointer(::create)                 m_pcreate;
+      ::pointer<::create>                m_pcreate;
       string                              m_strTitle;
       ::file::path                        m_path;
       bool                                m_bModified;
       bool                                m_bNew;
       bool                                m_bCustomOpen;
 
-      __pointer(::user::impact_system)       m_pimpactsystem;
-      __pointer_array(::user::impact)        m_impacta;
+      ::pointer<::user::impact_system>      m_pimpactsystem;
+      pointer_array < ::user::impact >        m_impacta;
       ::user::impact *                          m_pviewTopic;
 
       bool                                m_bAutoSaveModified;
@@ -57,7 +57,7 @@ namespace user
 
       ::user::interaction_array get_top_level_windows();
 
-      void destroy_composites() override;
+      void on_destroy() override;
 
       virtual bool contains(::user::interaction* pinteraction) const;
 
@@ -90,7 +90,7 @@ namespace user
       void add_impact(::user::impact * pimpact);
       void erase_impact(::user::impact * pimpact);
       virtual ::count get_impact_count() const;
-      virtual __pointer(::user::impact) get_impact(index index = 0) const;
+      virtual ::pointer<::user::impact>get_impact(index index = 0) const;
 
 
 
@@ -105,7 +105,7 @@ namespace user
             {
                continue;
             }
-            __pointer(T) point = m_impacta[index].cast < T > ();
+            pointer < T > point = m_impacta[index].cast < T > ();
             if (point.is_set())
                count++;
          }
@@ -113,7 +113,7 @@ namespace user
       }
 
       template < class T >
-      __pointer(T) get_typed_impact(index indexFind = 0) const
+      pointer < T > get_typed_impact(index indexFind = 0) const
       {
 
          synchronous_lock synchronouslock(((document *)this)->mutex());
@@ -137,7 +137,7 @@ namespace user
 
             }
 
-            __pointer(T) point = m_impacta[index].cast < T > ();
+            pointer < T > point = m_impacta[index].cast < T > ();
 
             if (point.is_set())
             {
@@ -165,7 +165,7 @@ namespace user
 
 
       template < class T >
-      __pointer(T) get_typed_impact_with_id(atom atom) const
+      pointer < T > get_typed_impact_with_id(atom atom) const
       {
 
          synchronous_lock synchronouslock(((document *)this)->mutex());
@@ -180,7 +180,7 @@ namespace user
                continue;
             }
 
-            __pointer(T) point = m_impacta[index].cast < T >();
+            pointer < T > point = m_impacta[index].cast < T >();
 
             if(point.is_set())
             {
@@ -210,7 +210,7 @@ namespace user
       //virtual ::stream & read(::stream & stream) override;
 
       template < typename DATA >
-      __pointer(DATA) __create_data()
+      ::pointer<DATA>__create_data()
       {
 
          auto pdata = __create_new<DATA>();
@@ -240,9 +240,9 @@ namespace user
 
 
 
-      virtual __pointer(::user::impact) get_typed_impact(::type info, index indexFind = 0);
+      virtual ::pointer<::user::impact>get_typed_impact(::type info, index indexFind = 0);
 
-      virtual __pointer(::user::impact) get_typed_impact_with_id(::type info,atom atom);
+      virtual ::pointer<::user::impact>get_typed_impact_with_id(::type info,atom atom);
 
       virtual void show_all_frames(const ::edisplay & edisplay = e_display_restored);
 
@@ -250,7 +250,7 @@ namespace user
       //class update
       //{
       //public:
-      //   __pointer(::user::impact)         m_pSender;
+      //   ::pointer<::user::impact>        m_pSender;
       //   LPARAM         m_lHint;
       //   ::object *  m_pHint;
       //};
@@ -263,7 +263,7 @@ namespace user
 
       virtual void handle(::topic * ptopic, ::context * pcontext) override;
 
-      //void send_update(__pointer(::user::impact) pSender, LPARAM lHint = 0L,
+      //void send_update(::pointer<::user::impact>pSender, LPARAM lHint = 0L,
       //                 ::object* pHint = nullptr);
 
       // Overridables
@@ -338,7 +338,7 @@ namespace user
       }
 
       template < class DATA >
-      __pointer(DATA) get_typed_data()
+      ::pointer<DATA>get_typed_data()
       {
 
          for (auto & pair : m_datamap)
@@ -398,7 +398,7 @@ namespace user
    };
 
 
-   CLASS_DECL_BASE __pointer(::user::document) __document(::create * pcreate);
+   CLASS_DECL_BASE ::pointer<::user::document>__document(::create * pcreate);
 
 
 } // namespace user

@@ -14,7 +14,7 @@ namespace app_message_box
    public:
 
 
-      __composite(::app_message_box::main_window)        m_pmainwindow;
+      ::pointer<::app_message_box::main_window>       m_pmainwindow;
 
 
       application();

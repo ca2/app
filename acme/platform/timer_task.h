@@ -12,7 +12,7 @@ class CLASS_DECL_ACME timer_task :
 public:
 
 
-   __pointer(::acme::timer_array)      m_ptimera;
+   ::pointer<::acme::timer_array>     m_ptimera;
    PFN_TIMER                           m_pfnTimer;
    void *                              m_pvoidData;
    bool                                m_bRunning;

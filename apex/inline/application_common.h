@@ -2,7 +2,7 @@
 #include "apex/_.h"
 //#include "apex/platform/app_core.h"
 #include "acme/platform/system_setup.h"
-#include "apex/_defer.h"
+//#include "apex/_defer.h"
 #include "acme/inline/implement.h"
 
 

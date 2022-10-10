@@ -38,7 +38,7 @@ namespace universal_windows
       iptr_to_iptr                                                m_mapLong;
       ::mutex                                                           m_mutexQueue;
       manual_reset_event                                                m_evQueue;
-      __pointer_array(::user::message)                                  m_messageaQueue;
+      pointer_array < ::user::message >                                  m_messageaQueue;
 
 
       interaction_impl();
@@ -144,7 +144,7 @@ namespace universal_windows
       // for child windows, views, panes etc
       //virtual bool create_window(::user::interaction * pinteraction, const ::string & lpszClassName, const ::string & lpszWindowName,u32 dwStyle,const RECTANGLE_I32 & rectangle,::user::interaction * pParentWnd,atom atom, ::create * pcreate = nullptr) override;
 
-      virtual bool _native_create_window_ex(__pointer(::user::system) pcs);
+      virtual bool _native_create_window_ex(::pointer<::user::system>pcs);
 
 
       virtual ::point_i32 get_cursor_position() const;
@@ -298,7 +298,7 @@ namespace universal_windows
 
       // the foreground ::user::interaction_impl applies only to top-level windows (frame windows)
       virtual bool SetForegroundWindow();
-      static __pointer(::user::interaction_impl) GetForegroundWindow();
+      static ::pointer<::user::interaction_impl>GetForegroundWindow();
 
       virtual atom SetDlgCtrlId(atom atom);
       virtual atom GetDlgCtrlId();
@@ -368,8 +368,8 @@ namespace universal_windows
       // Window Access Functions
       virtual ::user::interaction *  ChildWindowFromPoint(POINT_I32 point_i32);
       virtual ::user::interaction *  ChildWindowFromPoint(POINT_I32 point, ::u32 nFlags);
-      static __pointer(::user::interaction_impl) FindWindow(const ::string & lpszClassName, const ::string & lpszWindowName);
-      static __pointer(::user::interaction_impl) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const ::string & lpszClass, const ::string & lpszWindow);
+      static ::pointer<::user::interaction_impl>FindWindow(const ::string & lpszClassName, const ::string & lpszWindowName);
+      static ::pointer<::user::interaction_impl>FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const ::string & lpszClass, const ::string & lpszWindow);
 
       //      virtual ::user::interaction * GetNextWindow(::u32 nFlag = GW_HWNDNEXT);
       virtual ::user::interaction *  GetTopWindow();
@@ -381,7 +381,7 @@ namespace universal_windows
       virtual ::user::interaction *  get_parent() const override;
       using ::user::interaction_impl::set_parent;
 //      ::user::interaction *  SetParent(::user::interaction *  pWndNewParent);
-      static __pointer(::user::interaction_impl) WindowFromPoint(POINT_I32 point_i32);
+      static ::pointer<::user::interaction_impl>WindowFromPoint(POINT_I32 point_i32);
 
       // Alert Functions
 

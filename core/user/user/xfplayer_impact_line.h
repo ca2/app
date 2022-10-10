@@ -29,9 +29,9 @@ public:
    bool                                            m_bColonPrefix;
 
 
-   __pointer(xfplayer_impact_line_selection)       m_pselection;
+   ::pointer<xfplayer_impact_line_selection>      m_pselection;
    byte *                                          m_lpBitmapData;
-   __pointer(::draw2d::graphics_extension)         m_pdcextension;
+   ::pointer<::draw2d::graphics_extension>        m_pdcextension;
 
    index                                           m_iLinkHoverIndex;
    index                                           m_iIndex;

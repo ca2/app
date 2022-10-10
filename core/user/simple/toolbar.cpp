@@ -231,7 +231,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
 
-   __pointer(::user::tab) ptab = get_typed_parent < ::user::tab >();
+   ::pointer<::user::tab>ptab = get_typed_parent < ::user::tab >();
 
    if (ptab.is_set())
    {
@@ -721,11 +721,11 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
    auto estyle = tool_item_style(iItem);
 
-   __pointer(::core::session) psession = get_session();
+   ::pointer<::core::session>psession = get_session();
 
    auto puser = psession->user();
 
-   __pointer(::user::menu_central) pmenucentral = puser->menu();
+   ::pointer<::user::menu_central>pmenucentral = puser->menu();
 
    ::u32 uImage = pmenucentral->command_image(ptoolitem->m_atom);
    
@@ -1445,7 +1445,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //
 //      }
 //
-//      __pointer(::user::frame_window) pTarget = get_owner();
+//      ::pointer<::user::frame_window>pTarget = get_owner();
 //
 //      if (pTarget == nullptr)
 //      {
@@ -1602,7 +1602,7 @@ void simple_toolbar::_001OnTimer(::timer * ptimer)
 bool simple_toolbar::on_click(::item * ptoolitem)
 {
 
-   __pointer(::user::interaction) puserinteraction = get_owner();
+   ::pointer<::user::interaction>puserinteraction = get_owner();
 
    if (!::is_set(ptoolitem))
    {
@@ -1649,7 +1649,7 @@ void simple_toolbar::_001DiscardImageList()
 }
 
 
-void simple_toolbar::_001SetImageList(__pointer(::image_list) imagelist)
+void simple_toolbar::_001SetImageList(::pointer<::image_list>imagelist)
 {
 
    __UNREFERENCED_PARAMETER(imagelist);
@@ -1746,7 +1746,7 @@ void simple_toolbar::_001OnImageListAttrib()
 //enumeration < ::enum_tool_item_style > simple_toolbar::GetButtonStyle(index nIndex)
 //{
 //
-//   __pointer(::user::tool_item) ptoolitem = m_useritema[nIndex];
+//   ::pointer<::user::tool_item>ptoolitem = m_useritema[nIndex];
 //
 //   if (!ptoolitem)
 //   {
@@ -1763,7 +1763,7 @@ void simple_toolbar::_001OnImageListAttrib()
 //void simple_toolbar::SetButtonStyle(index nIndex, ::u32 nStyle)
 //{
 //
-//   __pointer(::user::tool_item) ptoolitem = m_useritema[nIndex];
+//   ::pointer<::user::tool_item>ptoolitem = m_useritema[nIndex];
 //
 //   if (!ptoolitem)
 //   {
@@ -1791,7 +1791,7 @@ void simple_toolbar::on_message_non_client_calculate_size(::message::message * p
 
 #if defined(WINDOWS_DESKTOP) //|| defined(LINUX)
 
-   __pointer(::message::nc_calc_size) pnccalcsize(pmessage);
+   ::pointer<::message::nc_calc_size>pnccalcsize(pmessage);
 
    // calculate border space (will add to top/bottom, subtract from right/bottom)
    ::rectangle_i32 rectangle;
@@ -1831,7 +1831,7 @@ void simple_toolbar::on_message_non_client_calculate_size(::message::message * p
 //void simple_toolbar::_001OnNcHitTest(::message::message * pmessage)
 //{
 //
-//   __pointer(::message::nchittest) pnchittest(pmessage);
+//   ::pointer<::message::nchittest>pnchittest(pmessage);
 //
 //   pnchittest->set_lresult(HTCLIENT);
 //
@@ -2187,7 +2187,7 @@ struct ___CONTROLPOS
 size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 dwMode, index nLength)
 {
 
-   //__pointer(::user::tab) ptab = get_typed_parent < ::user::tab >();
+   //::pointer<::user::tab>ptab = get_typed_parent < ::user::tab >();
 
    //if (ptab.is_set())
    //{
@@ -2431,7 +2431,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
 
                /* xxx
 
-               __pointer(::user::interaction) pwindow = get_child_by_id(pControl[i]->strId);
+               ::pointer<::user::interaction>pwindow = get_child_by_id(pControl[i]->strId);
 
                if (pwindow != nullptr)
                {
@@ -2551,7 +2551,7 @@ size_i32 simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics
 //void simple_toolbar::on_message_mouse_leave(::message::message * pmessage)
 //{
 //
-//   __pointer(::user::message) pusermessage(pmessage);
+//   ::pointer<::user::message>pusermessage(pmessage);
 //
 //   m_ptoolitemHover = ::e_element_none;
 //

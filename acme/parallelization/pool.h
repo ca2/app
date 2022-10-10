@@ -7,20 +7,20 @@ class CLASS_DECL_ACME task_pool :
 protected:
 
 
-   __composite(::task) & task(const ::atom & atom) { return m_map[atom]; }
+   ::pointer<::task>& task(const ::atom & atom) { return m_map[atom]; }
 
 
 public:
 
 
-   id_map < __composite(::task) >   m_map;
+   id_map < ::pointer<::task >>  m_map;
 
 
    task_pool();
    virtual ~task_pool();
 
 
-   virtual __composite(::task) defer_branch(const ::atom& atom, const ::procedure & procedure);
+   virtual ::pointer<::task>defer_branch(const ::atom& atom, const ::procedure & procedure);
 
 
    virtual void set_timer(enum_timer etimer, const duration & duration);

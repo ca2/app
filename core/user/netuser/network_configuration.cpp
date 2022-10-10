@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "core/user/netuser/_netuser.h"
 #include "aqua/xml/document.h"
 #include "core/user/user/user.h"
@@ -26,7 +26,7 @@ namespace usernet
    }
 
 
-   bool network_configuration::initialize(__pointer(::user::interaction) puiParent)
+   bool network_configuration::initialize(::pointer<::user::interaction>puiParent)
    {
 
       auto pcontext = m_pcontext;
@@ -53,7 +53,7 @@ namespace usernet
    }
 
 
-   bool network_configuration::initialize_child(__pointer(::user::interaction) puiParent)
+   bool network_configuration::initialize_child(::pointer<::user::interaction>puiParent)
    {
 
       auto pcontext = m_pcontext;

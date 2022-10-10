@@ -21,6 +21,25 @@ inline bool operator >= (const ::duration & duration) const; \
 inline bool operator != (const ::duration & duration)  const;
 
 
+#define DEFINE_COMPARISON_WITH_DURATION(TYPE) \
+inline bool TYPE::operator == (const ::duration & duration) const { return ::duration(*this) == duration; } \
+inline bool TYPE::operator < (const ::duration & duration) const { return ::duration(*this) < duration; } \
+inline bool TYPE::operator <= (const ::duration & duration) const { return ::duration(*this) <= duration; } \
+inline bool TYPE::operator > (const ::duration & duration) const { return ::duration(*this) > duration; } \
+inline bool TYPE::operator >= (const ::duration & duration) const { return ::duration(*this) >= duration; } \
+inline bool TYPE::operator != (const ::duration & duration) const { return ::duration(*this) != duration; } 
+
+
+#define INLINE_COMPARISON_WITH_DURATION \
+inline bool operator == (const ::duration & duration) const { return ::duration(*this) == duration; } \
+inline bool operator < (const ::duration & duration) const { return ::duration(*this) < duration; } \
+inline bool operator <= (const ::duration & duration) const { return ::duration(*this) <= duration; } \
+inline bool operator > (const ::duration & duration) const { return ::duration(*this) > duration; } \
+inline bool operator >= (const ::duration & duration) const { return ::duration(*this) >= duration; } \
+inline bool operator != (const ::duration & duration) const { return ::duration(*this) != duration; } 
+
+
+
 #define DURATION_UNIT(unit, type, member)             \
 struct unit                                           \
 {                                                     \
@@ -56,17 +75,17 @@ DURATION_UNIT(FLOATING_DAY          , ::f64, m_d);
 
 
 #define DEFAULT_MEMBER_COMPARISON(TYPE, MEMBER) \
-inline bool operator == (const TYPE & t1, const TYPE & t2) { return t1.MEMBER == t2.MEMBER; } \
-inline bool operator < (const TYPE & t1, const TYPE & t2) { return t1.MEMBER < t2.MEMBER; } \
-inline bool operator <= (const TYPE & t1, const TYPE & t2) { return t1.MEMBER <= t2.MEMBER; } \
-inline bool operator > (const TYPE & t1, const TYPE & t2) { return t1.MEMBER > t2.MEMBER; } \
-inline bool operator >= (const TYPE & t1, const TYPE & t2) { return t1.MEMBER >= t2.MEMBER; } \
-inline bool operator != (const TYPE & t1, const TYPE & t2) { return t1.MEMBER != t2.MEMBER; }
+inline bool operator == (const TYPE & t2) const { return this->MEMBER == t2.MEMBER; } \
+inline bool operator <  (const TYPE & t2) const { return this->MEMBER < t2.MEMBER; } \
+inline bool operator <= (const TYPE & t2) const { return this->MEMBER <= t2.MEMBER; } \
+inline bool operator >  (const TYPE & t2) const { return this->MEMBER > t2.MEMBER; } \
+inline bool operator >= (const TYPE & t2) const { return this->MEMBER >= t2.MEMBER; } \
+inline bool operator != (const TYPE & t2) const { return this->MEMBER != t2.MEMBER; }
 
 
 #define __DURATION_SETUP__(TYPE, MEMBER) \
 DEFAULT_MEMBER_COMPARISON(TYPE, MEMBER)  \
-inline bool operator ! (const TYPE & t1) { return t1.MEMBER <= 0; }
+inline bool operator ! () { return this->MEMBER <= 0; }
 
 
 //__DURATION_SETUP__(INTEGRAL_NANOSECOND    , m_i)

@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 21/02/2021. 11:54 BRT <3TBS_!!
 //
 #include "framework.h"
@@ -17,7 +17,7 @@ bool apex_defer_process_x_message(htask_t htask,MESSAGE * pMsg,oswindow oswindow
 mutex * g_pmutexMq;
 
 
-map < itask_t, __pointer(message_queue) > * g_pmapMq;
+map < itask_t, ::pointer<message_queue >>* g_pmapMq;
 
 
 message_queue * get_message_queue(itask_t itask, bool bCreate)
@@ -241,7 +241,7 @@ void initialize_global_message_queue()
 
    g_pmutexMq = memory_new mutex();
 
-   g_pmapMq = memory_new map < itask_t, __pointer(message_queue) >();
+   g_pmapMq = memory_new map < itask_t, ::pointer < message_queue > >();
 
 }
 

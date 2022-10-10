@@ -336,7 +336,7 @@ namespace axis
    }
 
 
-   //__pointer(::aura::session) system::on_create_session()
+   //::pointer<::aura::session>system::on_create_session()
    //{
 
    //   return __new(::axis::session);

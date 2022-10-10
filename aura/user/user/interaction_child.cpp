@@ -295,7 +295,7 @@ namespace user
    void interaction_child::on_message_show_window(::message::message * pmessage)
    {
 
-      __pointer(::message::show_window) pshowwindow(pmessage);
+      ::pointer<::message::show_window>pshowwindow(pmessage);
 
    }
 
@@ -477,7 +477,7 @@ namespace user
       if (bKeyMessage)
       {
 
-         //__pointer(::user::interaction) puiFocus;
+         //::pointer<::user::interaction>puiFocus;
 
          //puiFocus = m_puserinteractionFocus1;
 

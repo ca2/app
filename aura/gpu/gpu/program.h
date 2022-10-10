@@ -14,7 +14,7 @@ namespace gpu
       string                  m_strProjection;
       string                  m_strFragment;
       string                  m_strGeometry;
-      __pointer(shader)       m_pshader;
+      ::pointer<shader>      m_pshader;
       
       program();
       ~program() override;

@@ -17,7 +17,7 @@ namespace experience
       bool                                         m_bHoverModeOn;
       bool                                         m_bHoverActive;
       bool                                         m_bEnableMouse;
-      __composite(::experience::frame)             m_pframe;
+      ::pointer<::experience::frame>            m_pframe;
       ::rectangle_i32                                       m_rectanglePending;
       bool                                         m_bEnableFrameExperience;
 
@@ -31,10 +31,10 @@ namespace experience
       
       ::u32                                        m_uiSWPFlags;
 
-      __composite(class move_manager)              m_pmovemanager;
-      __composite(class size_manager)              m_psizemanager;
-      __composite(class dock_manager)              m_pdockmanager;
-      __composite(class menu_manager)              m_pmenumanager;
+      ::pointer<class move_manager>              m_pmovemanager;
+      ::pointer<class size_manager>              m_psizemanager;
+      ::pointer<class dock_manager>              m_pdockmanager;
+      ::pointer<class menu_manager>              m_pmenumanager;
 
       bool                                         m_bDockEnable;
       bool                                         m_bMoveEnable;
@@ -56,9 +56,9 @@ namespace experience
       ~frame_window() override;
 
 
-      virtual __pointer(::experience::experience) create_experience(const ::string & strExperience);
-      virtual __pointer(::experience::experience) experience(const ::string & strExperience);
-      virtual __pointer(::experience::frame) frame_experience(const ::string & strExperience, const ::string & strFrame, const ::string & strStyle = nullptr);
+      virtual ::pointer<::experience::experience>create_experience(const ::string & strExperience);
+      virtual ::pointer<::experience::experience>experience(const ::string & strExperience);
+      virtual ::pointer<::experience::frame>frame_experience(const ::string & strExperience, const ::string & strFrame, const ::string & strStyle = nullptr);
 
 
 

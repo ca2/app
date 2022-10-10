@@ -16,8 +16,8 @@ namespace user
       ::rectangle_i32                              m_rectangleClient;
       ::size_i32                              m_sizeFixed;
       bool                                m_bFixedSize;
-      __pointer(::user::place_holder)     m_pplaceholder;
-      __pointer(::user::impact_data)      m_pimpactdata;
+      ::pointer<::user::place_holder>    m_pplaceholder;
+      ::pointer<::user::impact_data>     m_pimpactdata;
 
 
       split_pane();

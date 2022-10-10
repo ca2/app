@@ -137,7 +137,7 @@ inline auto new_predicateicate_task(::object * pobject, PRED pred)
 
 
 //template < typename PRED >
-//CLASS_DECL_ACME __pointer(::task) & branch(__pointer(::task) & ptask, ::object * pobject, const ::procedure & procedure);
+//CLASS_DECL_ACME ::pointer<::task>& branch(::pointer<::task> ptask, ::object * pobject, const ::procedure & procedure);
 
 
 
@@ -153,7 +153,7 @@ inline auto new_predicateicate_task(::object * pobject, PRED pred)
 
 
 //template < typename PRED >
-//__pointer(task) fork(PRED pred);
+//::pointer<task>fork(PRED pred);
 
 
 //template < typename PRED >
@@ -196,7 +196,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 
 //
 //template < typename PRED >
-//__pointer(task) fork(::object * pobject, PRED pred)
+//::pointer<task>fork(::object * pobject, PRED pred)
 //{
 //
 //   ptask = memory_new predicate_task < PRED >(pobject, pred);
@@ -265,7 +265,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 
 
 //template < typename PRED >
-//inline __pointer(::task) object::fork(PRED pred)
+//inline ::pointer<::task>object::fork(PRED pred)
 //{
 //
 //   iCallStackAddUp++;
@@ -301,7 +301,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 //inline ::task_pointer object::defer_fork(const char * pszTag, PRED pred)
 //{
 //
-//   __pointer(task) ptask = running(pszTag);
+//   ::pointer<task>ptask = running(pszTag);
 //
 //   if (ptask)
 //   {
@@ -326,7 +326,7 @@ CLASS_DECL_ACME ::task * predicate_run(::object * pobjectParent, bool bSync, con
 
 
 //template < typename T >
-//inline void fork_release(::object * pobjectParent, __pointer(T) & t)
+//inline void fork_release(::object * pobjectParent, pointer < T > & t)
 //{
 //
 //   try
@@ -430,12 +430,12 @@ public:
    ::count     m_iScan;
    ::count     m_iCount;
 
-   __pointer(object)  m_pobjectTaskEnd;
+   ::pointer<object> m_pobjectTaskEnd;
 
-   __pointer(object)  m_pholdref;
+   ::pointer<object> m_pholdref;
 
 
-   forking_count_task(::object * pobject, __pointer(object) pholdref, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred, ::object * pobjectTaskEnd = nullptr) :
+   forking_count_task(::object * pobject, ::pointer<object>pholdref, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred, ::object * pobjectTaskEnd = nullptr) :
    m_pholdref(pholdref),
    m_predicate(pred),
    m_iOrder(iOrder),
@@ -606,7 +606,7 @@ void fork_count(::object * pobjectParent, ::count iCount, PRED pred, const ::pro
 //   ::count  m_iScan;
 //   ::count  m_iCount;
 //
-//   __pointer(::object)  m_pobjectTaskEnd;
+//   ::pointer<::object> m_pobjectTaskEnd;
 //
 //   forking_for_task(::object * pobject, index iOrder, index iIndex, ::count iScan, ::count iCount, PRED pred) :
 //   ::object(pobject),
@@ -738,10 +738,10 @@ CLASS_DECL_ACME u32 processor_index_generator();
 
 
 //template < typename PRED >
-//__pointer_array(::task) fork_proc(::object * pobjectParent, PRED pred, index iCount = -1)
+//pointer_array < ::task > fork_proc(::object * pobjectParent, PRED pred, index iCount = -1)
 //{
 //
-//   __pointer_array(::task) taskptra;
+//   pointer_array < ::task > taskptra;
 //
 //   int iProcCount = get_current_process_affinity_order();
 //
@@ -840,7 +840,7 @@ template < typename PRED >
 //
 //
 //template < typename TYPE >
-//inline __pointer(TYPE) & object::defer_fork(__pointer(TYPE) & ptype)
+//inline ::pointer<TYPE>& object::defer_fork(::pointer<TYPE> ptype)
 //{
 //
 //   if (ptype && ptype->is_running())
@@ -878,7 +878,7 @@ template < typename PRED >
 //
 //
 //template < typename TYPE >
-//inline __pointer(TYPE)& object::fork(__pointer(TYPE)& ptype)
+//inline ::pointer<TYPE> object::fork(::pointer<TYPE>ptype)
 //{
 //
 //   ::task::start(ptype);

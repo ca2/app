@@ -10,7 +10,7 @@ namespace file
    public:
 
       
-      __pointer(stream)     _stream;
+      ::pointer<stream>    _stream;
       critical_section     _criticalSection;
 
 

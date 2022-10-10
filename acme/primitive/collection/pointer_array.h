@@ -1,13 +1,13 @@
-#pragma once
+﻿#pragma once
 
 
 template < class T >
 class pointer_array :
-   public pointer_array_process < comparable_array < ___pointer < T > >, T >
+   public pointer_array_process < comparable_array < ::pointer < T > >, T >
 {
 public:
 
-   using BASE_ARRAY = pointer_array_process < comparable_array < ___pointer < T > >, T >;
+   using BASE_ARRAY = pointer_array_process < comparable_array < ::pointer < T > >, T >;
 
    using ARRAY_BASE = typename BASE_ARRAY::ARRAY_BASE;
 
@@ -15,12 +15,12 @@ public:
    //using ref_iterator = typename ARRAY_BASE::ref_iterator;
    ///using ref_iterator_range = typename ARRAY_BASE::ref_iterator_range;
 
-   using comparable_array < ___pointer < T > >::operator &=;
-   using comparable_array < ___pointer < T > >::operator -=;
-   using comparable_array < ___pointer < T > >::operator |=;
-   using comparable_array < ___pointer < T > >::operator -;
-//   using comparable_array < ___pointer < T > >::operator ==;
-//   using comparable_array < ___pointer < T > >::operator !=;
+   using comparable_array < ::pointer < T > >::operator &=;
+   using comparable_array < ::pointer < T > >::operator -=;
+   using comparable_array < ::pointer < T > >::operator |=;
+   using comparable_array < ::pointer < T > >::operator -;
+//   using comparable_array < ::pointer<T > > ::operator ==;
+//   using comparable_array < ::pointer<T > > ::operator !=;
 
    pointer_array()
    {
@@ -54,7 +54,7 @@ public:
       for(auto & p : a)
       {
 
-         __pointer(T) pNew = p;
+         pointer < T > pNew = p;
 
          if(pNew)
          {
@@ -68,7 +68,7 @@ public:
    }
 
 
-   pointer_array(const std::initializer_list < __pointer(T) > & list)
+   pointer_array(const std::initializer_list < ::pointer<T >>& list)
    {
 
       for(auto & p : list)
@@ -82,10 +82,10 @@ public:
 
 
    template < typename OBJECT >
-   __pointer(T) & add_new(OBJECT * pobject)
+   pointer < T > & add_new(OBJECT * pobject)
    {
 
-      __pointer(T) & p = comparable_array < ___pointer < T > >::add_new();
+      pointer < T > & p = comparable_array < ::pointer<T > >::add_new();
 
       pobject->__construct(p);
 
@@ -97,7 +97,7 @@ public:
    ::count set_size(::count nNewSize, ::count nGrowBy = -1)
    {
 
-      return comparable_array < ___pointer < T > > :: set_size(nNewSize);
+      return comparable_array < ::pointer<T > > :: set_size(nNewSize);
 
    }
 
@@ -106,10 +106,10 @@ public:
 
 
    template < class DERIVED >
-   __pointer(DERIVED) get(::index iStart = 0)
+   ::pointer<DERIVED>get(::index iStart = 0)
    {
 
-      __pointer(DERIVED) pderived;
+      ::pointer<DERIVED>pderived;
 
       for(::index i = iStart; i < this->get_count(); i++)
       {
@@ -140,7 +140,7 @@ public:
 
 
    template < class DERIVED >
-   __pointer(DERIVED) typed_ptr_at(::index iIndex)
+   ::pointer<DERIVED>typed_ptr_at(::index iIndex)
    {
 
       return this->element_at(iIndex);
@@ -148,7 +148,7 @@ public:
    }
 
 
-   inline ::index add_item(const __pointer(T) & p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+   inline ::index add_item(const pointer < T > & p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
    {
 
       ::index nIndex = this->m_nSize;
@@ -161,7 +161,7 @@ public:
 
    }
 
-   inline ::index add_item(__pointer(T) && p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+   inline ::index add_item(pointer < T > && p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
    {
 
       ::index nIndex = this->m_nSize;
@@ -190,7 +190,7 @@ public:
 
    //}
 
-   ::index add(const __pointer(T) & p)
+   ::index add(const pointer < T > & p)
    {
 
       return this->add_item(p);
@@ -198,7 +198,7 @@ public:
    }
 
 
-   ::index add(__pointer(T) && p)
+   ::index add(pointer < T > && p)
    {
 
       return this->add_item(::move(p));
@@ -241,13 +241,13 @@ public:
    }
 
    template < typename TYPE >
-   __pointer(TYPE) find_first() const
+   ::pointer<TYPE>find_first() const
    {
 
       for (auto & pointer : this->ptra())
       {
 
-         __pointer(TYPE) ptype = pointer;
+         ::pointer<TYPE> ptype = pointer;
 
          if(ptype)
          {
@@ -454,7 +454,7 @@ public:
 
 
    template < typename PRED >
-   __pointer(T) predicate_erase_first(PRED pred, ::index iStart = 0)
+   pointer < T > predicate_erase_first(PRED pred, ::index iStart = 0)
    {
 
       for (::index i = iStart; i < this->get_count(); i++)
@@ -463,7 +463,7 @@ public:
          if (pred(this->m_pData[i]))
          {
 
-            __pointer(T) sp = this->m_pData[i];
+            pointer < T > sp = this->m_pData[i];
 
             this->erase_at(i);
 
@@ -479,10 +479,10 @@ public:
 
 
    template < typename PRED >
-   __pointer(T) predicate_erase_all_get_first(PRED pred, ::index iStart = 0, ::index iEnd = -1)
+   pointer < T > predicate_erase_all_get_first(PRED pred, ::index iStart = 0, ::index iEnd = -1)
    {
 
-      __pointer(T) sp;
+      pointer < T > sp;
 
       if (iEnd < 0)
       {
@@ -530,18 +530,18 @@ public:
 
 
 
-   const ___pointer < T > & sp_at(::index nIndex) const
+   const pointer < T > & sp_at(::index nIndex) const
    {
 
-      return this->comparable_array < ___pointer < T > >::element_at(nIndex);
+      return this->comparable_array < ::pointer<T > > ::element_at(nIndex);
 
    }
 
 
-   ___pointer < T > & sp_at(::index nIndex)
+   pointer < T > & sp_at(::index nIndex)
    {
 
-      return this->comparable_array < ___pointer < T > >::element_at(nIndex);
+      return this->comparable_array < ::pointer<T > > ::element_at(nIndex);
 
    }
 
@@ -580,27 +580,27 @@ public:
    T * get_first_pointer(::index n = 0) const
    {
 
-      return this->is_empty() ? nullptr : this->comparable_array < ___pointer < T > >::first(n);
+      return this->is_empty() ? nullptr : this->comparable_array < ::pointer<T > > ::first(n);
 
    }
 
    
-   __pointer(T) pop_first(::index n = 0)
+   pointer < T > pop_first(::index n = 0)
    {
 
-      auto p = ::move(this->comparable_array < ___pointer < T > >::first(n));
+      auto p = ::move(this->comparable_array < ::pointer<T > > ::first(n));
       
-      this->comparable_array < ___pointer < T > >::erase_at(n);
+      this->comparable_array < ::pointer<T > > ::erase_at(n);
       
       return p;
 
    }
 
 
-   ___pointer < T > & first_pointer(::index n = 0)
+   pointer < T > & first_pointer(::index n = 0)
    {
 
-      return this->comparable_array < ___pointer < T > >::first(n);
+      return this->comparable_array < ::pointer<T > > ::first(n);
 
    }
 
@@ -631,15 +631,15 @@ public:
    T * get_last_pointer(::index n = -1) const
    {
 
-      return this->is_empty() ? nullptr : this->comparable_array < ___pointer < T > >::last(n);
+      return this->is_empty() ? nullptr : this->comparable_array < ::pointer<T > > ::last(n);
 
    }
 
 
-   ___pointer < T > & last_pointer(::index n = -1)
+   pointer < T > & last_pointer(::index n = -1)
    {
 
-      return this->comparable_array < ___pointer < T > >::last(n);
+      return this->comparable_array < ::pointer<T > > ::last(n);
 
    }
 
@@ -708,7 +708,7 @@ public:
    }
 
    template < class ARRAY >
-   pointer_array & append(const __pointer(ARRAY) & pa)
+   pointer_array & append(const ::pointer<ARRAY>& pa)
    {
 
       ::count c = pa->get_count(); // allow to append to itself one time
@@ -786,7 +786,7 @@ public:
    }
 
    template < class ARRAY >
-   pointer_array & copy(const __pointer(ARRAY) & pa)
+   pointer_array & copy(const ::pointer<ARRAY>& pa)
    {
 
       if(pa == dynamic_cast < ARRAY * > (this))
@@ -827,7 +827,7 @@ public:
 
       }
 
-      return comparable_array < ___pointer < T > >::erase_all();
+      return comparable_array < ::pointer<T > > ::erase_all();
 
    }
 
@@ -894,7 +894,7 @@ public:
    inline pointer_array & operator = (pointer_array && a)
    {
 
-      comparable_array < ___pointer < T > >::operator = (::move(a));
+      comparable_array < ::pointer<T > > ::operator = (::move(a));
 
       return *this;
 
@@ -954,7 +954,7 @@ public:
 //
 //template < class T >
 //class smart_pointer_array2:
-//   public comparable_array < pointer < T > >
+//   public comparable_array < ::pointer<T >>
 //{
 //public:
 //
@@ -1113,14 +1113,14 @@ public:
 //   smart_pointer_array2(smart_pointer_array2 && a)
 //   {
 //
-//      comparable_array < pointer < T > >::operator = (a);
+//      comparable_array < ::pointer<T > > ::operator = (a);
 //
 //   }
 //
 //   inline smart_pointer_array2 & operator = (smart_pointer_array2 && a)
 //   {
 //
-//      comparable_array < pointer < T > >::operator = (a);
+//      comparable_array < ::pointer<T > > ::operator = (a);
 //
 //      return *this;
 //
@@ -1129,10 +1129,10 @@ public:
 //#endif
 //
 //   smart_pointer_array2(const smart_pointer_array2 & a):
-//      comparable_array < pointer < T > >(a)
+//      comparable_array < ::pointer<T >>a)
 //   {
 //
-//      comparable_array < pointer < T > >::operator = (a);
+//      comparable_array < ::pointer<T > > ::operator = (a);
 //
 //   }
 //
@@ -1148,14 +1148,14 @@ public:
 //
 //   smart_pointer_array2(::matter * pobject):
 //      ::matter(pobject),
-//      comparable_array < pointer < T > >(pobject)
+//      comparable_array < ::pointer<T >>pobject)
 //   {
 //   }
 //
-//   __pointer(T) & add_new()
+//   pointer < T > & add_new()
 //   {
 //
-//      __pointer(T) & sp = comparable_array < pointer < T > >::add_new();
+//      pointer < T > & sp = comparable_array < ::pointer<T > > ::add_new();
 //
 //      sp.alloc(this->create_new, this);
 //
@@ -1167,14 +1167,14 @@ public:
 //   ::count set_size(::count nNewSize,::count nGrowBy = -1)
 //   {
 //
-//      return comparable_array < pointer < T > > :: set_size(nNewSize);
+//      return comparable_array < ::pointer<T > > ::: set_size(nNewSize);
 //
 //   }
 //
 //   ::count set_size_create(::count nNewSize,::count nGrowBy = -1)
 //   {
 //      ::index i = this->get_size();
-//      comparable_array < pointer < T > > :: set_size(nNewSize);
+//      comparable_array < ::pointer<T > > ::: set_size(nNewSize);
 //      ::count ca = this->get_size();
 //      for(; i < ca; i++)
 //      {
@@ -1224,7 +1224,7 @@ public:
 //   pointer < T > & add(T * p)
 //   {
 //
-//      return comparable_array < pointer < T > >::add_new() = p;
+//      return comparable_array < ::pointer<T > > ::add_new() = p;
 //
 //   }
 //
@@ -1381,21 +1381,21 @@ public:
 //   T  & operator[](::index nIndex) const
 //   {
 //
-//      return *this->comparable_array < pointer < T > >::operator[](nIndex).m_p;
+//      return *this->comparable_array < ::pointer<T > > ::operator[](nIndex).m_p;
 //
 //   }
 //
 //   T  & operator[](::index nIndex)
 //   {
 //
-//      return *this->comparable_array < pointer < T > >::operator[](nIndex).m_p;
+//      return *this->comparable_array < ::pointer<T > > ::operator[](nIndex).m_p;
 //
 //   }
 //
 //   const pointer < T > & sp_at(::index nIndex) const
 //   {
 //
-//      return this->comparable_array < pointer < T > >::element_at(nIndex);
+//      return this->comparable_array < ::pointer<T > > ::element_at(nIndex);
 //
 //   }
 //
@@ -1403,7 +1403,7 @@ public:
 //   pointer < T > & sp_at(::index nIndex)
 //   {
 //
-//      return this->comparable_array < pointer < T > >::element_at(nIndex);
+//      return this->comparable_array < ::pointer<T > > ::element_at(nIndex);
 //
 //   }
 //
@@ -1442,7 +1442,7 @@ public:
 //   const pointer < T > & first_pointer(::index n = 0) const
 //   {
 //
-//      return this->comparable_array < pointer < T > >::first(n);
+//      return this->comparable_array < ::pointer<T > > ::first(n);
 //
 //   }
 //
@@ -1450,7 +1450,7 @@ public:
 //   pointer < T > & first_pointer(::index n = 0)
 //   {
 //
-//      return this->comparable_array < pointer < T > >::first(n);
+//      return this->comparable_array < ::pointer<T > > ::first(n);
 //
 //   }
 //
@@ -1490,7 +1490,7 @@ public:
 //   T * last_pointer(::index n = -1) const
 //   {
 //
-//      return this->comparable_array < pointer < T > >::last(n);
+//      return this->comparable_array < ::pointer<T > > ::last(n);
 //
 //   }
 //
@@ -1498,7 +1498,7 @@ public:
 //   pointer < T > & last_pointer(::index n = -1)
 //   {
 //
-//      return this->comparable_array < pointer < T > >::last(n);
+//      return this->comparable_array < ::pointer<T > > ::last(n);
 //
 //   }
 //
@@ -1567,7 +1567,7 @@ public:
 //   }
 //
 //   template < class ARRAY >
-//   smart_pointer_array2 & append(const __pointer(ARRAY) & pa)
+//   smart_pointer_array2 & append(const ::pointer<ARRAY>& pa)
 //   {
 //
 //      ::count c = pa->get_count(); // allow to append to itself one time
@@ -1645,7 +1645,7 @@ public:
 //   }
 //
 //   template < class ARRAY >
-//   smart_pointer_array2 & copy(const __pointer(ARRAY) & pa)
+//   smart_pointer_array2 & copy(const ::pointer<ARRAY>& pa)
 //   {
 //
 //      if(pa == dynamic_cast < ARRAY * > (this))
@@ -1710,13 +1710,13 @@ public:
 //
 //};
 
-//#define sspa(TYPE) array_base < __pointer(TYPE) >
+//#define sspa(TYPE) array_base < ::pointer<TYPE >>
 //#define spa2(TYPE) ::smart_pointer_array2 < TYPE >
 ///#define __xmlspa(TYPE) ::pointer_array < TYPE >
 
-typedef __pointer_array(matter) object_pointera;
+typedef pointer_array < matter > object_pointera;
 
-typedef __pointer_array(matter) simple_object_pointera;
+typedef pointer_array < matter > simple_object_pointera;
 
 
 

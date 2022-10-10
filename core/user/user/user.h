@@ -31,7 +31,7 @@ namespace core
       id_map < ::user::impact_system * >           m_mapimpactsystem;
 
 
-      //__composite(::userex::userex)              m_puserex;
+      //::pointer<::userex::userex>             m_puserex;
       bool                                         m_bFontSelInitialized;
 
 
@@ -44,11 +44,11 @@ namespace core
       ::type                                       m_typeDefaultListHeader;
       ::type                                       m_typeDefaultListData;
 
-      __composite(::userfs::userfs)                m_puserfs;
+      ::pointer<::userfs::userfs>               m_puserfs;
 
       ::e_status                                   m_estatus;
 
-      //__composite(::user::keyboard)              m_pkeyboard;
+      //::pointer<::user::keyboard>             m_pkeyboard;
 
       //index                                      m_iEdge;
       //::map < ::user::enum_key, ::user::enum_key, bool, bool > *  m_pmapKeyPressed;
@@ -58,7 +58,7 @@ namespace core
       //bool                                       m_bSystemSynchronizedCursor;
       //point_i32                                      m_pointCursor;
 
-      //__pointer_array(::user::interaction)         m_uiptraToolWindow;
+      //pointer_array < ::user::interaction >         m_uiptraToolWindow;
 
       //::user::interaction_impl *                            m_pimplPendingFocus2;
       //::user::interaction *                                 m_puiLastUserInputPopup;
@@ -67,14 +67,14 @@ namespace core
       //e_cursor                                              m_ecursorDefault;
       //e_cursor                                              m_ecursor;
 
-      //__composite(::user::theme)                            m_ptheme;
-      //string_map < __composite(::user::theme) >             m_mapTheme;
+      //::pointer<::user::theme>                           m_ptheme;
+      //string_map < ::pointer<::user::theme >>            m_mapTheme;
 
       //::user::interaction *                                 m_puiCapture;
       //bool                                                  m_bDrawCursor;
 
 
-      //__composite(::user::copydesk)                         m_pcopydesk;
+      //::pointer<::user::copydesk>                        m_pcopydesk;
 
       //::user::interaction *                                 m_puiMouseMoveCapture;
       //::user::interaction *                                 m_puiLastLButtonDown;
@@ -84,15 +84,15 @@ namespace core
 
       ////index                                               m_iEdge;
 
-      //__composite(::account::department)                    m_paccount;
-      ////__pointer(::account::licensing)                     m_plicensing;
-      ////__composite(::user::interaction)                      m_puserinteractionSystem;
+      //::pointer<::account::department>                   m_paccount;
+      ////::pointer<::account::licensing>                    m_plicensing;
+      ////::pointer<::user::interaction>                     m_puserinteractionSystem;
 
       //::payload                                                   m_varTopicFile;
       //::payload                                                   m_varCurrentImpactFile;
       //bool                                                  m_bShowPlatform;
 
-      //__composite(::text::context)                      m_ptextcontext;
+      //::pointer<::text::context>                     m_ptextcontext;
 
 
       //bool                                                  m_bSystemSynchronizedScreen;
@@ -107,14 +107,14 @@ namespace core
 
 
 
-      //__composite(::userpresence::department)               m_puserpresence;
+      //::pointer<::userpresence::department>              m_puserpresence;
 
 
-      ////__composite(::ftpfs)                                  m_pftpfs;
-      ////__composite(::fs::remote_native)                      m_premotefs;
-      ////__composite(::fs::fs)                                 m_pfs;
-      ////__composite(::fs::data)                               m_pfsdata;
-      ////__composite(::ifs)                                    m_pifs;
+      ////::pointer<::ftpfs>                                 m_pftpfs;
+      ////::pointer<::fs::remote_native>                     m_premotefs;
+      ////::pointer<::fs::fs>                                m_pfs;
+      ////::pointer<::fs::data>                              m_pfsdata;
+      ////::pointer<::ifs>                                   m_pifs;
       //////ke
       ////bool                                                  m_bIfs;
 
@@ -123,10 +123,10 @@ namespace core
       //::u32                                                 m_dwLongPhRESSingTime;
 
 
-      //__composite(::userex::userex)                         m_puserex;
+      //::pointer<::userex::userex>                        m_puserex;
       //bool                                                  m_bFontSelInitialized;
-      //__composite(::write_text::font_list)                      m_pfontlistSingleColumn;
-      //__composite(::user::user)                             m_puser;
+      //::pointer<::write_text::font_list>                     m_pfontlistSingleColumn;
+      //::pointer<::user::user>                            m_puser;
       
 
 
@@ -143,7 +143,7 @@ namespace core
       virtual void destroy() override;
 
 
-      //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style* pstyle, ::user::menu_item* pitem) override;
+      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style* pstyle, ::user::menu_item* pitem) override;
 
 
       // ::user::shell* shell();
@@ -154,16 +154,16 @@ namespace core
       virtual void init() override;
 
 
-      virtual __pointer(::sequence < ::conversation >) dialog_box(::object * pobject, const ::string & pszMatter, property_set & propertyset);
+      virtual pointer< ::sequence < ::conversation > > dialog_box(::object * pobject, const ::string & pszMatter, property_set & propertyset);
 
 
-      virtual __pointer(::sequence < ::conversation >) ui_message_box(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
-      virtual __pointer(::sequence < ::conversation >) ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok);
+      virtual pointer< ::sequence < ::conversation > > ui_message_box(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok);
+      virtual pointer< ::sequence < ::conversation > > ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok);
       //virtual void ui_message_box_timeout(::object* pobject, ::user::primitive* puiOwner, ::payload payload, ::duration durationTimeout, ::u32 fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
 
       virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
 
-      virtual i32 track_popup_menu(const ::string & pszMatter, const ::point_i32 & point, __pointer(::user::interaction) puie);
+      virtual i32 track_popup_menu(const ::string & pszMatter, const ::point_i32 & point, ::pointer<::user::interaction>puie);
 
 
       virtual bool get_fs_size(string & strSize, const ::string & pszPath, bool & bPending);
@@ -184,9 +184,9 @@ namespace core
       virtual void _001OnFileNew();
 
 
-      __pointer(::user::list_header) default_create_list_header(::object * pobject);
-      __pointer(::user::mesh_data) default_create_mesh_data(::object * pobject);
-      __pointer(::user::list_data) default_create_list_data(::object * pobject);
+      ::pointer<::user::list_header>default_create_list_header(::object * pobject);
+      ::pointer<::user::mesh_data>default_create_mesh_data(::object * pobject);
+      ::pointer<::user::list_data>default_create_list_data(::object * pobject);
 
 
       ::type default_type_mesh_data();
@@ -203,18 +203,18 @@ namespace core
       void LoadStdProfileSettings(::u32 nMaxMRU = 10);
 
       ::count get_template_count() const;
-      __pointer(::user::impact_system) get_template(index index) const;
+      ::pointer<::user::impact_system>get_template(index index) const;
 
 
-      __pointer(::form_document)   create_form(::object * pobject, ::type point, __pointer(::user::interaction) puserinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      __pointer(::form_document)   create_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      __pointer(::form_document)   create_form(::object * pobject, __pointer(::user::form) pimpact, ::user::form_callback * pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      __pointer(::form_document)   create_child_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      __pointer(::form_document)   create_child_form(::object * pobject, ::type point, __pointer(::user::interaction) puserinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      __pointer(::form_document)   create_child_form(::object * pobject, __pointer(::user::form) pimpact, ::user::form_callback * pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_form(::object * pobject, ::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_form(::object * pobject, ::user::form_callback * pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_form(::object * pobject, ::pointer<::user::form>impact, ::user::form_callback * pcallback, ::pointer<::user::interaction>serinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_child_form(::object * pobject, ::user::form_callback * pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_child_form(::object * pobject, ::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      ::pointer<::form_document>  create_child_form(::object * pobject, ::pointer<::user::form>impact, ::user::form_callback * pcallback, ::pointer<::user::interaction>serinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
 
       template < typename FORM >
-      __pointer(::form_document)   create_child_form(::object * pobject, ::user::impact_data * pimpactdata, ::payload payload = ::payload(::e_type_empty_argument))
+      ::pointer<::form_document>  create_child_form(::object * pobject, ::user::impact_data * pimpactdata, ::payload payload = ::payload(::e_type_empty_argument))
       {
 
          return create_child_form(pobject, __type(FORM), pimpactdata->m_pplaceholder, payload);
@@ -222,7 +222,7 @@ namespace core
       }
 
 
-      ::user::document * hold(__pointer(::user::interaction) pinteraction);
+      ::user::document * hold(::pointer<::user::interaction>pinteraction);
 
 
       virtual void     initialize(::object * pobject) override;
@@ -239,8 +239,8 @@ namespace core
 
       //virtual void create_html();
 
-      //virtual __pointer(::userex::userex) create_userex();
-      //virtual __pointer(::userfs::userfs) create_userfs();
+      //virtual ::pointer<::userex::userex>create_userex();
+      //virtual ::pointer<::userfs::userfs>create_userfs();
 
 
       virtual ::type get_pane_tab_impact_type_info();
@@ -362,9 +362,9 @@ namespace core
 
       //virtual bool open_by_file_extension(::create * pcc);
 
-      ////__pointer(::aura::application) get_new_application(::object * pobject, const ::string & pszAppId);
+      ////::pointer<::aura::application>get_new_application(::object * pobject, const ::string & pszAppId);
 
-      //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle, ::user::menu_item * pitem) override;
+      //virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::user::menu_item * pitem) override;
 
       //virtual ::color::color get_default_color(u64 u);
 
@@ -425,7 +425,7 @@ namespace core
       //virtual ::user::primitive * GetFocus();
 
       //virtual bool ReleaseCapture();
-      //virtual __pointer(::user::interaction) GetCapture();
+      //virtual ::pointer<::user::interaction>GetCapture();
 
       ////virtual void translate_os_key_message(::user::key * pkey);
       ////virtual bool on_create_frame_window();
@@ -510,18 +510,18 @@ namespace core
       ////virtual bool finalize_filemanager();
 
       //template < typename VIEW >
-      //__pointer(::user::document)   create_form(__pointer(::user::interaction) puserinteractionParent = nullptr, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(::type point, __pointer(::user::interaction) puserinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(::user::form_callback* pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(__pointer(::user::form) pimpact, ::user::form_callback* pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::user::form_callback* pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_form(::pointer<::user::interaction>userinteractionParent = nullptr, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_form(::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_form(::user::form_callback* pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_form(::pointer<::user::form>impact, ::user::form_callback* pcallback, ::pointer<::user::interaction>serinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_child_form(::user::form_callback* pcallback, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
       //template < typename VIEW >
-      //__pointer(::user::document)   create_child_form(__pointer(::user::interaction) puserinteractionParent, ::payload payload = ::payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) puserinteractionParent, ::payload payload = ::payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(__pointer(::user::form) pimpact, ::user::form_callback* pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload = ::payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_child_form(::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_child_form(::type point, ::pointer<::user::interaction>userinteractionParent, ::payload payload = ::payload(::e_type_empty_argument));
+      //::pointer<::user::document>  create_child_form(::pointer<::user::form>impact, ::user::form_callback* pcallback, ::pointer<::user::interaction>serinteractionParent, ::payload payload = ::payload(::e_type_empty_argument));
 
 
-      ////virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle, ::user::menu_item* pitem) override;
+      ////virtual ::pointer<::user::menu_interaction>create_menu_button(::user::style_pointer & pstyle, ::user::menu_item* pitem) override;
 
 
 
@@ -573,10 +573,10 @@ namespace core
 
 
 
-      //__pointer(::user::document)                   get_document();
-      //__pointer(::user::impact)                     get_impact();
-      //__pointer(::user::document)                   get_platform();
-      //__pointer(::user::document)                   get_nature();
+      //::pointer<::user::document>                  get_document();
+      //::pointer<::user::impact>                    get_impact();
+      //::pointer<::user::document>                  get_platform();
+      //::pointer<::user::document>                  get_nature();
 
 
       //inline ::userex::userex* userex() { return m_puserex; }
@@ -598,13 +598,13 @@ namespace core
 
       ////void on_request(::create* pcreate) override;
 
-      //__pointer(::aura::application) get_current_application();
+      //::pointer<::aura::application>get_current_application();
 
 
 
       //virtual void set_app_title(const ::string & pszAppId, const ::string & pszTitle);
 
-      //virtual __pointer(::aura::session) get_session();
+      //virtual ::pointer<::aura::session>get_session();
 
       ////virtual void term() override;
 
@@ -643,7 +643,7 @@ namespace core
 
       //inline ::user::user* user() { return m_puser; }
 
-      ////virtual __pointer(::user::impact)                      get_impact();
+      ////virtual ::pointer<::user::impact>                     get_impact();
 
 
       ////virtual void     initialize(::object * pobject) override;
@@ -706,7 +706,7 @@ namespace core
 
       virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 
-      __pointer(::user::plain_edit) create_calculator_plain_edit() override;
+      ::pointer<::user::plain_edit>create_calculator_plain_edit() override;
 
 
    };

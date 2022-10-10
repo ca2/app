@@ -5,8 +5,8 @@ veiev_post::veiev_post(db_server * pserver) :
    db_set(pserver, "veiev_post")
 {
 
-   __pointer(::sqlite::database) pdb = db()->get_database();
-   __pointer(::sqlite::dataset)  pds = (__pointer(::sqlite::dataset)) pdb->create_dataset();
+   ::pointer<::sqlite::database>pdb = db()->get_database();
+   ::pointer<::sqlite::dataset> pds = (::pointer<::sqlite::dataset>pdb->create_dataset();
 
    //create string Table if necessary
    pdb->start_transaction();
@@ -35,7 +35,7 @@ veiev_post::~veiev_post()
 bool veiev_post::write(::payload rec)
 {
 
-   __pointer(::sqlite::database) pdb = db()->get_database();
+   ::pointer<::sqlite::database>pdb = db()->get_database();
 
    single_lock slDatabase(pdb->mutex());
 
@@ -82,7 +82,7 @@ bool veiev_post::write(::payload rec)
    if(m_pdataserver == nullptr)
       return false;
 
-   __pointer(::sqlite::database) pdb = db()->get_database();
+   ::pointer<::sqlite::database>pdb = db()->get_database();
 
    single_lock slDatabase(pdb->mutex());
 
@@ -139,7 +139,7 @@ bool veiev_post::write(::payload rec)
    if(m_pdataserver == nullptr)
       return false;
 
-   __pointer(::sqlite::database) pdb = db()->get_database();
+   ::pointer<::sqlite::database>pdb = db()->get_database();
 
    single_lock slDatabase(pdb->mutex());
 
@@ -192,7 +192,7 @@ i64 veiev_post::get_count()
    if(m_pdataserver == nullptr)
       return 0;
 
-   __pointer(::sqlite::database) pdb = db()->get_database();
+   ::pointer<::sqlite::database>pdb = db()->get_database();
 
    single_lock slDatabase(pdb->mutex());
 

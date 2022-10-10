@@ -61,7 +61,7 @@ namespace write_text
       else if (ptopic->m_atom == id_operating_system_font_list_change)
       {
 
-         __pointer(::aura::system) psystem = m_psystem;
+         ::pointer<::aura::system>psystem = m_psystem;
 
          psystem->signal(id_operating_system_font_list_change);
 
@@ -96,12 +96,12 @@ namespace write_text
    }
 
 
-   __pointer(::write_text::font_enumeration_item) font_enumeration::similar_font(const ::string & psz)
+   ::pointer<::write_text::font_enumeration_item>font_enumeration::similar_font(const ::string & psz)
    {
 
       synchronous_lock synchronouslock(mutex());
 
-      __pointer(::write_text::font_enumeration_item) pitemFound;
+      ::pointer<::write_text::font_enumeration_item>pitemFound;
 
       double dMaxSimilarity = 0.2;
 
@@ -186,7 +186,7 @@ namespace write_text
 
       //auto pgraphics = ::draw2d::create_memory_graphics();
 
-      __pointer(::write_text::font_enumeration_item_array) pitema;
+      ::pointer<::write_text::font_enumeration_item_array>pitema;
 
       pitema = __new(::write_text::font_enumeration_item_array);
 
@@ -229,7 +229,7 @@ namespace write_text
 
       //auto g = create_memory_graphics();
 
-      __pointer(::write_text::font_enumeration_item_array) pitema;
+      ::pointer<::write_text::font_enumeration_item_array>pitema;
 
       pitema = __new(::write_text::font_enumeration_item_array);
 

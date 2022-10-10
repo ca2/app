@@ -111,7 +111,7 @@ namespace filehandler
 
    }
 
-   void impact::item::draw(__pointer(impact) pimpact, ::draw2d::graphics_pointer & pgraphics, list * plist)
+   void impact::item::draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pgraphics, list * plist)
    {
 
       __UNREFERENCED_PARAMETER(plist);
@@ -119,7 +119,7 @@ namespace filehandler
 
 
       color32_t color32;
-      __pointer(::aura::application) papp = pimpact->get_app();
+      ::pointer<::aura::application>papp = pimpact->get_app();
       
       bool bHover = pimpact->m_pitemHover == m_iIndex;
 
@@ -187,7 +187,7 @@ namespace filehandler
       }
    }
 
-   void impact::list::draw(__pointer(impact) pimpact, ::draw2d::graphics_pointer & pgraphics)
+   void impact::list::draw(::pointer<impact>pimpact, ::draw2d::graphics_pointer & pgraphics)
    {
       for(i32 i = 0; i < get_count(); i++)
       {
@@ -254,7 +254,7 @@ namespace filehandler
          psession->request(varRequest);
          */
 
-         __pointer(::create) pcreate(e_create);
+         ::pointer<::create>pcreate(e_create);
 
          pcreate->m_strApp = m_plist->operator [](item)->m_strApp;
 

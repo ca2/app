@@ -2,8 +2,8 @@
 #include "_os_impl.h"
 
 
-__pointer(os_local) g_poslocal;
-__pointer(os_remote) g_posremote;
+::pointer<os_local>g_poslocal;
+::pointer<os_remote>g_posremote;
 
 
 void android_edit_on_set_focus(int l, int t, int r, int b, const char* pszText, int iBeg, int iEnd);

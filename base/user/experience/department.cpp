@@ -25,7 +25,7 @@ namespace experience
    }
 
 
-   __pointer(::experience::experience) department::create_experience(::object * pobject, const ::string & strExperienceRequest)
+   ::pointer<::experience::experience>department::create_experience(::object * pobject, const ::string & strExperienceRequest)
    {
 
       string strExperience = experience_name(strExperienceRequest);
@@ -59,7 +59,7 @@ namespace experience
    }
 
 
-   __pointer(::experience::experience) department::experience(::object * pobject, const ::string & strExperienceRequest)
+   ::pointer<::experience::experience>department::experience(::object * pobject, const ::string & strExperienceRequest)
    {
 
       auto & pexperience = m_mapExperience[experience_name(strExperienceRequest)];
@@ -167,7 +167,7 @@ namespace experience
 
          straExperience.erase_duplicates_ci();
 
-         __pointer(::experience::experience) pexperienceSelected;
+         ::pointer<::experience::experience>pexperienceSelected;
 
          for (auto& str : straExperience)
          {
@@ -192,7 +192,7 @@ namespace experience
 
          }
 
-         __compose(pexperience, pexperienceSelected);
+         __construct(pexperience, pexperienceSelected);
 
       }
 
@@ -201,7 +201,7 @@ namespace experience
    }
 
 
-   __pointer(::experience::frame) department::frame_experience(::object * pobject, const ::string & strExperienceRequest, const ::string & strFrameSchema)
+   ::pointer<::experience::frame>department::frame_experience(::object * pobject, const ::string & strExperienceRequest, const ::string & strFrameSchema)
    {
 
       auto strExperience = experience_name(strExperienceRequest);
@@ -269,7 +269,7 @@ namespace base
 
       //auto estatus = 
       
-      __compose_new(m_pexperience);
+      __construct_new(m_pexperience);
 
       //if (!estatus)
       //{

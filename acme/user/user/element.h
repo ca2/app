@@ -85,14 +85,14 @@ namespace user
       bool                                   m_bUserElementOk;
       ::user::primitive *                    m_puserprimitive;
       ::user::interaction *                  m_puserinteraction;
-      __pointer(__pointer_array(::item))     m_pitema;
+      pointer< pointer_array < ::item > >     m_pitema;
 
       
-      __pointer(::item)                      m_pitemLButtonDown;
-      __pointer(::item)                      m_pitemCurrent;
-      __pointer(::item)                      m_pitemHover;
-      __pointer(::item)                      m_pitemHoverMouse;
-      __pointer(::item)                      m_pitemPressed;
+      ::pointer<::item>                     m_pitemLButtonDown;
+      ::pointer<::item>                     m_pitemCurrent;
+      ::pointer<::item>                     m_pitemHover;
+      ::pointer<::item>                     m_pitemHoverMouse;
+      ::pointer<::item>                     m_pitemPressed;
 
 
       element();
@@ -110,7 +110,7 @@ namespace user
       //virtual double get_output_fps();
 
 
-      //__pointer(::message::message) get_message(const ::atom & atom, wparam wparam, lparam lparam) override;
+      //::pointer<::message::message>get_message(const ::atom & atom, wparam wparam, lparam lparam) override;
 
 
       ::user::interaction * get_host_window() const;
@@ -292,7 +292,7 @@ namespace user
       virtual void create_child(::user::interaction * puserinteractionParent);
       virtual void create_control(::user::interaction * puserinteractionParent, const ::atom & atom);
 
-      //virtual void create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::atom & atom);
+      //virtual void create_window_ex(::pointer<::user::system>pcs, ::user::interaction * puiParent, const ::atom & atom);
       //virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder);
 
 
@@ -540,17 +540,17 @@ namespace user
 
 
       //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point_i32 & point = nullptr);
-      //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags, const ::point_i32 & point);
-      //virtual __pointer(::user::menu) track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point_i32 & pointScreen = nullptr, const ::size_i32& sizeMinimum = size_i32(0, 0));
-      //virtual __pointer(::user::menu) track_popup_xml_menu_file(::payload payloadFile, i32 iFlags, const ::point_i32 & point = nullptr, const ::size_i32 & sizeMinimum = size_i32(0, 0));
+      //virtual ::pointer<::user::menu>track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags, const ::point_i32 & point);
+      //virtual ::pointer<::user::menu>track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point_i32 & pointScreen = nullptr, const ::size_i32& sizeMinimum = size_i32(0, 0));
+      //virtual ::pointer<::user::menu>track_popup_xml_menu_file(::payload payloadFile, i32 iFlags, const ::point_i32 & point = nullptr, const ::size_i32 & sizeMinimum = size_i32(0, 0));
 
       //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags,::message::message * pmessage);
-      //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags,::message::message * pmessage);
-      //virtual __pointer(::user::menu) track_popup_xml_menu_text(string strXml, i32 iFlags, ::message::message * pmessage);
+      //virtual ::pointer<::user::menu>track_popup_xml_matter_menu(const ::string & pszMatter,i32 iFlags,::message::message * pmessage);
+      //virtual ::pointer<::user::menu>track_popup_xml_menu_text(string strXml, i32 iFlags, ::message::message * pmessage);
 
       //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags);
-      //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const ::string & pszMatter, i32 iFlags);
-      //virtual __pointer(::user::menu) track_popup_xml_menu_text(string strXml,i32 iFlags);
+      //virtual ::pointer<::user::menu>track_popup_xml_matter_menu(const ::string & pszMatter, i32 iFlags);
+      //virtual ::pointer<::user::menu>track_popup_xml_menu_text(string strXml,i32 iFlags);
 
 
       //virtual void exit_iconify();
@@ -643,12 +643,12 @@ namespace user
 
 
       template < class T >
-      __pointer(T) get_typed_parent() const
+      pointer < T > get_typed_parent() const
       {
 
          ASSERT_VALID(this);
 
-         __pointer(T) p;
+         pointer < T > p;
 
          auto puiParent = get_parent_primitive();  // start with one parent up
 

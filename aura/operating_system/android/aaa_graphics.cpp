@@ -67,7 +67,7 @@
 //
 //      critical_section_lock synchronouslock(::aura::g_pcsFont);
 //
-//      __pointer(::write_text::font_enumeration_item) pitem;
+//      ::pointer<::write_text::font_enumeration_item>pitem;
 //
 //      double dAndroid = 4.4;
 //
@@ -82,7 +82,7 @@
 //
 //      auto pdoc = create_xml_document();
 //
-//      __pointer(ttf_util) putil;
+//      ::pointer<ttf_util>putil;
 //
 //      ::e_status estatus = __construct_new(putil);
 //

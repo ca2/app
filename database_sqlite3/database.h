@@ -37,7 +37,7 @@ namespace sqlite
    public:
 
 
-      //virtual __pointer(::database::dataset) dataset() override;
+      //virtual ::pointer<::database::dataset>dataset() override;
       ::database::enum_connection connection_status() override;
 
       void set_error_code(i32 iErrorCode) override;
@@ -53,7 +53,7 @@ namespace sqlite
 
       string escape(const ::string & psz) override;
 
-      //virtual __pointer(class dataset) dataset() = 0;
+      //virtual ::pointer<class dataset> dataset() = 0;
 
       bool isActive() override;
 
@@ -82,24 +82,24 @@ namespace sqlite
 
       bool exec(const ::string & pszQuery) override;
 
-      __pointer(::database::result_set) query_result(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount) override;
+      ::pointer<::database::result_set>query_result(const ::string & pszQuery, ::count iRowCount, ::count iColumnCount) override;
 
-      __pointer(::database::result_set) query(const ::string & pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) override;
+      ::pointer<::database::result_set>query(const ::string & pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) override;
 
 
       //virtual ::payload query(const ::string & pszQuery, ::count iMaxRowCount = -1, ::count iMaxColumnCount = -1);
-      __pointer(::database::row_array) query_rows(const ::string & pszQuery) override;
+      ::pointer<::database::row_array>query_rows(const ::string & pszQuery) override;
       
-      __pointer(::database::row) query_row(const ::string & pszQuery) override;
+      ::pointer<::database::row>query_row(const ::string & pszQuery) override;
       
-      __pointer(::payload_array) query_items(const ::string & pszQuery) override;
+      ::pointer<::payload_array>query_items(const ::string & pszQuery) override;
       
       virtual ::payload query_item(const ::string & pszQuery);
       virtual bool memory_query_item(get_memory getmemory, const ::string & pszQuery);
 
-      //virtual bool query_rows(__pointer(row_array) & rows, const ::string & pszQuery);
-      //virtual bool query_row(__pointer(row) & rows, const ::string & pszQuery);
-      //virtual bool query_items(__pointer(payload_array) & items, const ::string & pszQuery);
+      //virtual bool query_rows(::pointer<row_array>& rows, const ::string & pszQuery);
+      //virtual bool query_row(::pointer<row>& rows, const ::string & pszQuery);
+      //virtual bool query_items(::pointer<payload_array>& items, const ::string & pszQuery);
       //virtual bool query_item(::payload & item, const ::string & pszQuery);
 
 

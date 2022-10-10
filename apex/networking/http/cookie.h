@@ -73,11 +73,11 @@ namespace http
 
 
    class CLASS_DECL_APEX cookies :
-      public __pointer_array(cookie)
+      public pointer_array < cookie >
    {
    public:
 
-      using ARRAY_BASE = __pointer_array(::http::cookie);
+      using ARRAY_BASE = pointer_array < ::http::cookie >;
 
       cookies();
       virtual ~cookies();
@@ -87,7 +87,7 @@ namespace http
       index lowfind_cookie(const char * name);
       ::http::cookie & cookie(const char * name);
       ::http::cookie & lowcookie(const char * name);
-      using  __pointer_array(http::cookie)::add;
+      using  pointer_array < http::cookie >::add;
       void add(const char * psz);
       void parse_header(const char * psz);
       string get_cookie_header();

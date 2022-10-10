@@ -19,20 +19,20 @@ public:
    bool                                            m_bTransparentFrameEnable : 1;
    bool                                            m_bCustomFrameBefore : 1;
    bool                                            m_bToolbar : 1;
-   __pointer(::user::tool_window)                  m_ptoolwindowFont;
+   ::pointer<::user::tool_window>                 m_ptoolwindowFont;
    ::duration                                      m_durationLastSaveWindowRect;
    ::duration                                      m_durationLastSaveWindowRectRequest;
    ::image_pointer                                 m_pimageBk;
    ::rectangle_i32                                 m_FullScreenWindowRect;
-   __pointer(::draw2d::fastblur)                   m_pfastblur;
+   ::pointer<::draw2d::fastblur>                  m_pfastblur;
    ::image_pointer                                 m_pimageBlur;
    ::user::enum_translucency                       m_etranslucencyFrame;
    ::image_pointer                                 m_pimageAlpha;
    ::database::key                                 m_datakeyFrame;
-   __pointer(::windowing::icon)                    m_piconNotify;
-   __pointer(::user::notify_icon)                  m_pnotifyicon;
+   ::pointer<::windowing::icon>                   m_piconNotify;
+   ::pointer<::user::notify_icon>                 m_pnotifyicon;
    ::payload                                       m_varFrame;
-   __composite(::task)                             m_ptask_save_window_placement;
+   ::pointer<::task>                            m_ptask_save_window_placement;
 
 
    simple_frame_window();
@@ -66,7 +66,7 @@ public:
 
    void install_message_routing(::channel * pchannel) override;
 
-   virtual bool on_before_set_parent(__pointer(::user::interaction) pframewindow);
+   virtual bool on_before_set_parent(::pointer<::user::interaction>pframewindow);
    bool on_set_parent(::user::primitive * puiParent) override;
    void on_after_set_parent() override;
 
@@ -83,7 +83,7 @@ public:
 
    virtual ::color::color get_border_main_body_color() override;
 
-   void ImpactOnActivateFrame(__pointer(::user::impact) pimpact, ::u32 user, __pointer(::user::interaction) pframe);
+   void ImpactOnActivateFrame(::pointer<::user::impact>pimpact, ::u32 user, ::pointer<::user::interaction>frame);
 
    virtual void ToggleFullScreen();
    virtual void WfiOnFullScreen() override;
@@ -121,7 +121,7 @@ public:
    //bool _001FancyInitialFramePlacement(bool bForceRestore = false) override;
    virtual void on_frame_position();
 
-   __pointer(::user::interaction) WindowDataGetWnd();
+   ::pointer<::user::interaction>WindowDataGetWnd();
    void on_layout(::draw2d::graphics_pointer & pgraphics) override;
    void on_reposition() override;
    void ActivateFrame(::e_display edisplay = e_display_undefined) override;

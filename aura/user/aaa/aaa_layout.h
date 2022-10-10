@@ -51,7 +51,7 @@ namespace user
       ::size                                    m_sizeSpan;
       ::size_f64                                   m_sizeWeight;
 
-      __pointer(control_descriptor)             m_pdescriptor;
+      ::pointer<control_descriptor>            m_pdescriptor;
 
       ::duration                                      m_durationLastDisplayChange;
       enum_layout_experience                       m_elayoutexperience;

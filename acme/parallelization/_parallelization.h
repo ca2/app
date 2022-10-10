@@ -99,13 +99,13 @@ CLASS_DECL_ACME void main_asynchronous(const ::procedure & procedure);
 //   {
 //
 //      template < typename ARRAY >
-//      __pointer(::matter) is_running(ARRAY & array, const char * pszTag)
+//      ::pointer<::matter>is_running(ARRAY & array, const char * pszTag)
 //      {
 //
 //         for (::index i = 0; i < array.get_size(); i++)
 //         {
 //
-//            __pointer(::matter) pobject;
+//            ::pointer<::matter>pobject;
 //
 //            pobject = &__typed(array[i]);
 //
@@ -202,22 +202,22 @@ class _synchronous_lock;
 
 
 //class CLASS_DECL_ACME thread_ptra :
-//   virtual public __pointer_array(thread)
+//   virtual public pointer_array < thread >
 //{
 //public:
 //
 //
 //   thread_ptra();
-//   thread_ptra(const thread_ptra & ptra):__pointer_array(thread)(ptra) {}
-//   thread_ptra(thread_ptra && ptra) :__pointer_array(thread)(::move(ptra)) {}
+//   thread_ptra(const thread_ptra & ptra):pointer_array < thread >(ptra) {}
+//   thread_ptra(thread_ptra && ptra) :pointer_array < thread >(::move(ptra)) {}
 //   virtual ~thread_ptra();
 //
 //   virtual ::count get_count_except_current_thread();
 //   virtual void finish();
 //   virtual void wait(const duration & duration, ::synchronous_lock & synchronouslock);
 //
-//   thread_ptra & operator = (const thread_ptra & ptra) { __pointer_array(thread)::operator =(ptra); return *this; }
-//   thread_ptra & operator = (thread_ptra && ptra) { __pointer_array(thread)::operator =(::move(ptra)); return *this; }
+//   thread_ptra & operator = (const thread_ptra & ptra) { pointer_array < thread >::operator =(ptra); return *this; }
+//   thread_ptra & operator = (thread_ptra && ptra) { pointer_array < thread >::operator =(::move(ptra)); return *this; }
 //
 //};
 
@@ -246,7 +246,7 @@ class _synchronous_lock;
 //#include "synch_index_iterator.h"
 
 
-CLASS_DECL_ACME __pointer(mutex) open_mutex(::matter * pmatter, const char * lpszName);
+CLASS_DECL_ACME ::pointer<mutex>open_mutex(::matter * pmatter, const char * lpszName);
 
 
 #ifdef ___ENABLE_INLINES

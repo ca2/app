@@ -15,7 +15,7 @@ simple_list_control::~simple_list_control()
 }
 
 
-__pointer(::user::interaction) simple_list_control::OnDrawInterfaceGetWnd()
+::pointer<::user::interaction>simple_list_control::OnDrawInterfaceGetWnd()
 {
 
    return this;

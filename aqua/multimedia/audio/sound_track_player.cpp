@@ -44,7 +44,7 @@ namespace aqua
    }
 
 
-   __pointer(::object) sound_track_player::sound_plugin(const ::string & psz, bool bForceCreate, bool bLoop)
+   ::pointer<::object>sound_track_player::sound_plugin(const ::string & psz, bool bForceCreate, bool bLoop)
    {
 
       return nullptr;
@@ -59,7 +59,7 @@ namespace aqua
    }
 
 
-   void sound_track_player::mix(const ::string & psz)
+   void sound_track_player::mix_sound_file(const ::string & psz)
    {
 
 

@@ -21,7 +21,7 @@ namespace windowing
    public: // re-implementations only
 
 
-      __pointer(menu_item)       m_pitem;
+      ::pointer<menu_item>      m_pitem;
 
 
       menu_command(menu_item * pitem);

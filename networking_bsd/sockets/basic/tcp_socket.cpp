@@ -388,7 +388,7 @@ namespace sockets_bsd
 //      if(__Handler(m_psockethandler)->PoolEnabled())
 //      {
 //
-//         __pointer(base_socket_handler::pool_socket) ppoolsocket = __Handler(m_psockethandler)->FindConnection(SOCK_STREAM,"tcp",ad);
+//         ::pointer<base_socket_handler::pool_socket>ppoolsocket = __Handler(m_psockethandler)->FindConnection(SOCK_STREAM,"tcp",ad);
 //
 //         if(ppoolsocket)
 //         {
@@ -2211,7 +2211,7 @@ namespace sockets_bsd
 
       ssl_client_context_map & clientcontextmap = pnetworking2->m_clientcontextmap;
 
-      __pointer(ssl_client_context) psslclientcontext = clientcontextmap.get_context(context, pmethod);
+      ::pointer<ssl_client_context>psslclientcontext = clientcontextmap.get_context(context, pmethod);
 
       m_psslcontext = __new(ssl_context());
 

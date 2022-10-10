@@ -126,7 +126,7 @@ namespace sandbox_windowing
 
       }
 
-      __pointer(::user::interaction) pinteraction;
+      ::pointer<::user::interaction>pinteraction;
       
       get_child(pinteraction);
 

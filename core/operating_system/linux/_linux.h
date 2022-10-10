@@ -10,7 +10,7 @@
 //
 //string get_error_message(::u32 dwError);
 //
-//__pointer(::aura::application)     linux_instantiate_application(__pointer(::aura::application) pappSystem, const ::string & pszId);
+//::pointer<::aura::application>    linux_instantiate_application(::pointer<::aura::application>appSystem, const ::string & pszId);
 //
 //
 //
@@ -19,8 +19,8 @@
 //CLASS_DECL_CORE MESSAGE * __get_current_message();
 //
 //
-//CLASS_DECL_CORE __pointer(::aura::application)  __get_app();
-//CLASS_DECL_CORE __pointer(::user::primitive) __get_main_window();
+//CLASS_DECL_CORE ::pointer<::aura::application> __get_app();
+//CLASS_DECL_CORE ::pointer<::user::primitive>__get_main_window();
 ////CLASS_DECL_CORE HINSTANCE CLASS_DECL_CORE psystem->m_hInstance;
 //CLASS_DECL_CORE const char * __get_app_name();
 //
@@ -59,9 +59,9 @@
 //
 //CLASS_DECL_CORE MESSAGE * __get_current_message();
 //
-//CLASS_DECL_CORE __pointer(::aura::application)  __get_app();
+//CLASS_DECL_CORE ::pointer<::aura::application> __get_app();
 //
-//CLASS_DECL_CORE __pointer(::user::primitive) __get_main_window();
+//CLASS_DECL_CORE ::pointer<::user::primitive>__get_main_window();
 //
 //CLASS_DECL_CORE const char * __get_app_name();
 //

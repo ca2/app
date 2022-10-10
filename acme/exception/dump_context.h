@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 class CLASS_DECL_ACME dump_context :
@@ -7,7 +7,7 @@ class CLASS_DECL_ACME dump_context :
 public:
 
 
-   __pointer(text_stream)     m_pstream;
+   ::pointer<text_stream>    m_pstream;
 
    
    dump_context(::file::file * pfile = nullptr);

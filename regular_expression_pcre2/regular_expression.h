@@ -22,7 +22,7 @@ namespace regular_expression_pcre2
       void compile(const string& str) override;
 
 
-      __pointer(::regular_expression::result) run(const ::string & str) override;
+      ::pointer<::regular_expression::result>run(const ::string & str) override;
 
 
       bool replace(string& str, const string& strPrefix, string& strRet) override;

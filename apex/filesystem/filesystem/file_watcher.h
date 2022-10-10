@@ -1,4 +1,4 @@
-//
+﻿//
 //
 //	   Main header for the file_watcher class. Declares all implementation
 //	   classes to reduce compilation overhead.
@@ -74,10 +74,10 @@ namespace file
       watch_id                            m_watchid;
       ::file::path                        m_pathFolder;
       comparable_eq_array < listener >    m_listenera;
-      __pointer(thread)                   m_pthread;
+      ::pointer<thread>                  m_pthread;
       bool                                m_bRecursive;
       watcher *                           m_pwatcher;
-      __pointer(watch)                    m_pwatchRelease;
+      ::pointer<watch>                   m_pwatchRelease;
       bool                                m_bStop;
       void *                              m_pthis;
       ::function < void () >              m_functionDestroy;
@@ -118,7 +118,7 @@ namespace file
       
       void *               m_pThis;
 
-      typedef ::map < watch_id, __pointer(watch) > watch_map;
+      typedef ::map < watch_id, ::pointer<watch >>watch_map;
 
       watch_map            m_watchmap;
 
@@ -135,7 +135,7 @@ namespace file
 
       virtual void erase_watch(const ::file::path & pathFolder);
 
-      virtual void erase_watch(watch_id watch_id, ::function < void () > functionErased);
+      virtual void erase_watch(watch_id watch_id, ::function < void () > functionErased = nullptr);
 
       virtual void run() override;
 

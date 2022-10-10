@@ -198,7 +198,7 @@ namespace file
 
       synchronous_lock synchronouslock(mutex());
 
-      __pointer(watch) pwatch;
+      ::pointer<watch>pwatch;
 
       __construct(pwatch);
 

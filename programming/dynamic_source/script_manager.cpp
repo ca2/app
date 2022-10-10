@@ -131,7 +131,7 @@ namespace dynamic_source
 
       //}
       
-      //estatus = __compose_new(m_pmessagequeue);
+      //estatus = __construct_new(m_pmessagequeue);
       //
       //if(!estatus)
       //{
@@ -277,17 +277,17 @@ namespace dynamic_source
    }
 
 
-   __pointer(script_instance) script_manager::get(const ::string & strName)
+   ::pointer<script_instance>script_manager::get(const ::string & strName)
    {
 
-      __pointer(script) pscript;
+      ::pointer<script>pscript;
 
       return get(strName, pscript);
 
    }
 
 
-   __pointer(script_instance) script_manager::get(const ::string & strName, __pointer(script) & pscript)
+   ::pointer<script_instance>script_manager::get(const ::string & strName, ::pointer<script> pscript)
    {
 
       return m_pcache->create_instance(strName, pscript);
@@ -300,7 +300,7 @@ namespace dynamic_source
       
       string strHead;
       
-      __pointer(script_instance) pinstance = get(m_strSeed);
+      ::pointer<script_instance>pinstance = get(m_strSeed);
 
       if (!pinstance)
       {
@@ -593,11 +593,11 @@ namespace dynamic_source
 
       ::payload payload;
 
-      __pointer(script_interface) pimpl;
+      ::pointer<script_interface>pimpl;
 
-      __pointer(::dynamic_source::script_instance) pinstance;
+      ::pointer<::dynamic_source::script_instance>pinstance;
 
-      __pointer(script) pscript;
+      ::pointer<script>pscript;
 
       {
 
@@ -639,7 +639,7 @@ namespace dynamic_source
 
                pinstanceParent->m_strDebugThisScript = strName;
 
-               __pointer(::dynamic_source::ds_script) pdsscript = pscript;
+               ::pointer<::dynamic_source::ds_script>pdsscript = pscript;
 
                if (pdsscript != nullptr)
                {
@@ -1160,7 +1160,7 @@ namespace dynamic_source
    }
 
 
-   __pointer(::dynamic_source::session) script_manager::get_session(const ::string & pszId)
+   ::pointer<::dynamic_source::session>script_manager::get_session(const ::string & pszId)
    {
 
       single_lock synchronouslock(&m_mutexSession, true);
@@ -1254,7 +1254,7 @@ namespace dynamic_source
 //      return 0;
 //   }
 
-   __pointer(::crypto::rsa) script_manager::get_rsa_key()
+   ::pointer<::crypto::rsa>script_manager::get_rsa_key()
    {
 
       /*if(m_durationLastRsa.elapsed() > (5000))
@@ -1282,7 +1282,7 @@ namespace dynamic_source
 
       pscriptinterface->session_id(); // trigger session creation;
 
-      __pointer(::crypto::rsa) prsa = get_rsa_key();
+      ::pointer<::crypto::rsa>prsa = get_rsa_key();
 
       pscriptinterface->set_session_payload("rsa", prsa);
 

@@ -19,7 +19,7 @@ namespace http
       property_set                     m_setPost;
       property_set                     m_setHeaders;
 
-      __pointer(::http::cookies)       m_pcookies;
+      ::pointer<::http::cookies>      m_pcookies;
 
 
       string                           m_strVersion;

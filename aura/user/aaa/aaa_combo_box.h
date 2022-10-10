@@ -37,7 +37,7 @@ namespace user
       string                     m_strText;
       bool                       m_bCaseSensitiveMatch;
 
-      __pointer(list_box)             m_plist;
+      ::pointer<list_box>            m_plist;
 
       ::type                   m_typeComboList;
 

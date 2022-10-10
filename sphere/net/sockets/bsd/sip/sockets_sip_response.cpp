@@ -45,7 +45,7 @@ namespace sip
    // --------------------------------------------------------------------------------------
    /*void response::SetFile( const string & path )
    {
-      m_file = pointer<IFile>(memory_new File);
+      m_file = ::pointer<IFile>e>(memory_new File);
       m_file -> fopen( path, "rb" );
    }*/
 
@@ -54,7 +54,7 @@ namespace sip
    {
       transaction::clear();
       file().Truncate(0);
-   //   m_file = pointer<IFile>(memory_new MemFile);
+   //   m_file = ::pointer<IFile>e>(memory_new MemFile);
    }
 
 } // namespace sip

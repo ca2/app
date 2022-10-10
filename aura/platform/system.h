@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "context.h"
@@ -19,25 +19,25 @@ namespace aura
 
       ::type                                             m_typePaneTabImpact;
       
-      __pointer(::windowing::window)                     m_pwindowMain;
+      ::pointer<::windowing::window>                    m_pwindowMain;
 
 
       ::factory_pointer                                m_pfactoryDraw2d;
-      __pointer(::draw2d::draw2d)                        m_pdraw2d;
+      ::pointer<::draw2d::draw2d>                       m_pdraw2d;
 
       double                                             m_dDpi;
 
       ::mutex                                            m_mutexUserChildren;
-      __composite(class ::imaging)                       m_pimaging;
+      ::pointer<class ::imaging>                       m_pimaging;
 
-      __composite(::gpu::approach)                       m_pgpu;
+      ::pointer<::gpu::approach>                      m_pgpu;
 
       bool                                               m_bProdevianMouse;
 
 
-      string_map < __reference(image) >                  m_mapImage;
+      string_map < ::pointer<image >>                 m_mapImage;
 
-      __pointer(::hardware::devices)                     m_phardwaredevices;
+      ::pointer<::hardware::devices>                    m_phardwaredevices;
 
 
 
@@ -124,7 +124,7 @@ namespace aura
       //virtual i32 install_start(const ::string & pszCommandLine, const ::string & pszBuild) override;
       //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 
-      virtual __pointer(::factory::factory) & node_factory() override;
+      virtual ::pointer<::factory::factory>& node_factory() override;
 
       virtual void process_init() override;
 
@@ -143,7 +143,7 @@ namespace aura
       //void windowing_post_quit() override;
       
 
-      virtual __pointer(::data::node) load_xml(const ::string & pszXml) override;
+      virtual ::pointer<::data::node>load_xml(const ::string & pszXml) override;
 
       virtual void verb() override; // ambigous inheritance from ::aura::system/::axis::application
 
@@ -154,13 +154,13 @@ namespace aura
       virtual string crypto_md5_text(const ::string & str) override;
 
 
-      //virtual __pointer(::extended::future < ::conversation >) _message_box(oswindow oswindow, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+      //virtual pointer< ::extended::future < ::conversation > > _message_box(oswindow oswindow, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
       //virtual ::enum_dialog_result message_box_timeout(const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::future & future = ::future()) override;
 
 
       //virtual void create_html();
 
-      //virtual __pointer(::aura::session) on_create_session() override;
+      //virtual ::pointer<::aura::session>on_create_session() override;
 
       //virtual void on_request(::create * pcreate) override;
 
@@ -220,14 +220,14 @@ namespace aura
       //virtual void     initialize_system(::object * pobject, app_core * pappcore);
 
 
-      //__pointer(::thread_tools) create_thread_tools(::enum_task_tool etool);
+      //::pointer<::thread_tools>create_thread_tools(::enum_task_tool etool);
       //thread_tools * tools(::enum_priority epriority);
       //thread_toolset * toolset(e_tool etool);
 
       //class ::user::window_map                     &  window_map();
 
 
-      //__pointer(::acme::library) open_component_library(const ::string & pszComponent, const ::string & pszImplementation);
+      //::pointer<::acme::library>open_component_library(const ::string & pszComponent, const ::string & pszImplementation);
 
       //void ([a-z0-9_]+)_factory(const ::string & pszComponent, const ::string & pszImplementation);
 
@@ -293,7 +293,7 @@ namespace aura
 
       //::net::email_department                & email();
 
-      //__pointer(::account::user_set)                userset();
+      //::pointer<::account::user_set>               userset();
 
       //::datetime::department                 & datetime();
 
@@ -381,10 +381,10 @@ namespace aura
 
       virtual void initialize_draw2d();
       //virtual void initialize_write_text();
-      virtual __pointer(::factory::factory) & draw2d_factory();
+      virtual ::pointer<::factory::factory>& draw2d_factory();
       virtual string draw2d_get_default_library_name();
 
-      virtual __pointer(::factory::factory)& imaging_factory();
+      virtual ::pointer<::factory::factory>& imaging_factory();
       virtual string imaging_get_default_library_name();
 
       virtual void init_task() override;
@@ -450,7 +450,7 @@ namespace aura
       //virtual bool assert_running_global(const ::string & pszAppName, const ::string & pszId = nullptr) override;
       //virtual bool assert_running_local(const ::string & pszAppName, const ::string & pszId = nullptr) override;
 
-      //__pointer(application) assert_running(const ::string & pszAppId);
+      //::pointer<application>assert_running(const ::string & pszAppId);
 
   /*    virtual ::count get_application_count() override;
 */
@@ -481,14 +481,14 @@ namespace aura
 
       //virtual void create_session(index iEdge = 0) override;
 
-      /*virtual __pointer(::apex::session) on_create_session(index iEdge) override;
+      /*virtual ::pointer<::apex::session>on_create_session(index iEdge) override;
 
       virtual ::apex::session * session(index iEdge = 0) override;*/
 
       //virtual void on_request(::create * pcreate) override;
 
-      //__pointer(regex) create_regular_expression(const ::string & pszStyle, const string& str);
-      //__pointer(regex_context) create_regular_expression_context(const ::string & pszStyle, int iCount);
+      //::pointer<regex>create_regular_expression(const ::string & pszStyle, const string& str);
+      //::pointer<regex_context>create_regular_expression_context(const ::string & pszStyle, int iCount);
       //virtual int pcre_add_tokens(string_array& stra, const string& strTopic, const string& strRegexp, int nCount);
 
 
@@ -584,7 +584,7 @@ namespace aura
 
       //virtual void  initialize_system(::object* pobject, app_core* pappcore) override;
 
- /*     virtual void discard_to_factory(__pointer(object) pca) override;*/
+ /*     virtual void discard_to_factory(::pointer<object>pca) override;*/
 
       //virtual bool is_system() const override;
 
@@ -614,7 +614,7 @@ namespace aura
 
       //virtual index get_new_bergedge(application_bias * pbiasCreation = nullptr);
 
-      //__pointer_array(::aura::session) &    planesessionptra();
+      //pointer_array < ::aura::session > &    planesessionptra();
 
 
       //virtual bool base_support() override;
@@ -626,7 +626,7 @@ namespace aura
       //void set_history(::apex::history* phistory);
 
 
-      //__pointer(::acme::library) on_get_library(const ::string & pszLibrary) override;
+      //::pointer<::acme::library>on_get_library(const ::string & pszLibrary) override;
 
 
       //virtual ::aura::session *  get_platform(index iEdge,application_bias * pbiasCreation = nullptr);
@@ -634,7 +634,7 @@ namespace aura
 
       //virtual void on_request(::create* pcreate) override;
 
-      //      virtual __pointer(::handler) handler();
+      //      virtual ::pointer<::handler>handler();
 
 
 
@@ -644,7 +644,7 @@ namespace aura
 
       //virtual void on_allocation_error(const ::string& str, ::object* pobjectSometimes) override;
 
-      //virtual __pointer(::aura::session) on_create_session() override;
+      //virtual ::pointer<::aura::session>on_create_session() override;
 
 
 //      ::aura::stra                           & stra();
@@ -749,7 +749,7 @@ namespace aura
       //virtual void process_init() override;
       //virtual void term_system() override;
 
-      //virtual __pointer(::aura::session) on_create_session() override;
+      //virtual ::pointer<::aura::session>on_create_session() override;
 
 
 
@@ -780,7 +780,7 @@ namespace aura
 
       virtual void _001AddPacks(string_to_string& base64map, string& str);
 
-      //__pointer(::extended::sequence < ::conversation >) message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
+      //pointer< ::extended::sequence < ::conversation > > message_box(::user::interaction * puserinteraction, const ::string & pszMessage, const ::string & pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok) override;
 
       void windowing_send(const ::procedure & procedure) override;
       void windowing_post(const ::procedure & procedure) override;

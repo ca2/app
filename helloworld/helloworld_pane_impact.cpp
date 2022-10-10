@@ -213,7 +213,7 @@ namespace helloworld
       else if (get_impact_id() == FONTSEL_IMPACT)
       {
 
-         __pointer(::user::font_list_impact) pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_impact");
+         ::pointer<::user::font_list_impact>pfontview = ptabpaneFontSel->m_pholder->get_child_by_id("font_list_impact");
 
          if (m_pimpactLast != nullptr && pfontview.is_set())
          {

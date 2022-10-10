@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include "node.h"
@@ -18,14 +18,14 @@ namespace xml
    public:
 
 
-      __pointer(string_to_string)   m_pentitiesHash;
-      __pointer(string_to_string)   m_pentitiesExtHash;
-      __pointer(parse_info)         m_pparseinfo;
+      ::pointer<string_to_string>  m_pentitiesHash;
+      ::pointer<string_to_string>  m_pentitiesExtHash;
+      ::pointer<parse_info>        m_pparseinfo;
       ::file::path                  m_pathLocation;
       string                        m_strData1;
-      __pointer(::xml::edit)        m_pedit;
+      ::pointer<::xml::edit>       m_pedit;
       memory                        m_memoryData;
-      //__pointer(node)               m_pnodeRoot;
+      //::pointer<node>              m_pnodeRoot;
 
 
       document(parse_info * pparseinfo = nullptr, string_to_string * pentitiesHash = nullptr);

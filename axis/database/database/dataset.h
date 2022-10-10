@@ -110,7 +110,7 @@ namespace database
       //virtual bool findNext();
 
       virtual ::count field_count();
-      virtual __pointer(class field) field_at(index n);
+      virtual ::pointer<class field> field_at(index n);
 
       virtual ::database::row * proper_row();
 
@@ -127,7 +127,7 @@ namespace database
       virtual void set_autocommit(bool bAutoCommit) { m_bAutoCommit = bAutoCommit; }
       virtual bool get_autocommit() { return m_bAutoCommit; }
 
-      __pointer(field_array) & fields() { return m_result.m_pfielda; }
+      ::pointer<field_array>& fields() { return m_result.m_pfielda; }
       ::database::row & row() { return m_row; }
       ::database::row & edit_row() { return m_rowEdit; }
 
@@ -141,12 +141,12 @@ namespace database
 
       virtual string get_sql(enum_sql esql);
 
-      virtual __pointer(row_array) query_rows(const ::string &query);
-      virtual __pointer(payload_array) query_items(const ::string &query);
+      virtual ::pointer<row_array>query_rows(const ::string &query);
+      virtual ::pointer<payload_array>query_items(const ::string &query);
       virtual ::payload query_item(const ::string &query);
 
-      virtual bool query_rows(__pointer(row_array) & rows, const ::string &query);
-      virtual bool query_items(__pointer(payload_array) & items, const ::string &query);
+      virtual bool query_rows(::pointer<row_array>& rows, const ::string &query);
+      virtual bool query_items(::pointer<payload_array>& items, const ::string &query);
       virtual bool query_item(::payload & item, const ::string &query);
 
    };

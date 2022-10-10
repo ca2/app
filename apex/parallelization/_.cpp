@@ -11,7 +11,7 @@ namespace parallelization
 
 
    //CLASS_DECL_APEX comparable_eq_array<itask_t> * s_piaThread2 = nullptr;
-   //CLASS_DECL_APEX __pointer_array(thread) * s_pthreadptra2 = nullptr;
+   //CLASS_DECL_APEX pointer_array < thread > * s_pthreadptra2 = nullptr;
    //CLASS_DECL_APEXcritical_section * s_pcs2 = nullptr;
 
 
@@ -22,7 +22,7 @@ namespace parallelization
 
       //s_piaThread2 = memory_new comparable_eq_array<itask_t>;
 
-      //s_pthreadptra2 = memory_new __pointer_array(thread);
+      //s_pthreadptra2 = memory_new pointer_array < thread >;
 
       __node_init_multitasking();
 
@@ -170,7 +170,7 @@ namespace parallelization
          try
          {
 
-            __pointer(::thread) pthread = pair.element1();
+            ::pointer<::thread>pthread = pair.element1();
 
             pthread->post_message(atom, wparam, lparam);
 
@@ -850,7 +850,7 @@ namespace apex
    //   try
    //   {
    //
-   //      __pointer(matter) pobject(e_move_transfer, pobjectTask);
+   //      ::pointer<matter>pobject(e_move_transfer, pobjectTask);
    //
    //      try
    //      {
@@ -950,7 +950,7 @@ void thread_ptra::destroy()
 
    ::count c = 0;
 
-   for (index i = 0; i < __pointer_array(thread)::get_count(); i++)
+   for (index i = 0; i < pointer_array < thread >::get_count(); i++)
    {
 
       ::thread* pthreadItem = element_at(i);

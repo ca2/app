@@ -72,7 +72,7 @@ namespace sockets
 
 
       int                           m_iSelectErrno;
-      __pointer(::apex::log)        m_plogger; ///< Registered log class, or nullptr
+      ::pointer<::apex::log>       m_plogger; ///< Registered log class, or nullptr
 
 
       //base_socket_handler(::apex::log * plogger = nullptr);
@@ -136,7 +136,7 @@ namespace sockets
       // Connection pool
       // -------------------------------------------------------------------------
       /** find available open connection (used by connection pool). */
-      //virtual __pointer(pool_socket) FindConnection(int type,const string & protocol, ::networking::address * address) = 0;
+      //virtual ::pointer<pool_socket>FindConnection(int type,const string & protocol, ::networking::address * address) = 0;
 
       /** enable connection pool (by default disabled). */
       virtual void EnablePool(bool = true) = 0;

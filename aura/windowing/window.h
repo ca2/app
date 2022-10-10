@@ -20,17 +20,17 @@ namespace windowing
       ::sandbox_windowing::window *             m_psandboxwindowingwindow;
       void *                                    m_pWindow4;
 
-      __pointer(::windowing::display)           m_pdisplay;
-      __pointer(::user::interaction_impl)       m_puserinteractionimpl;
+      ::pointer<::windowing::display>          m_pdisplay;
+      ::pointer<::user::interaction_impl>      m_puserinteractionimpl;
       string                                    m_strDebug;
-      __pointer(::message_queue)                m_pmessagequeue;
+      ::pointer<::message_queue>               m_pmessagequeue;
       ::duration                                m_durationLastMouseMove;
-      __pointer(::windowing::window)            m_pwindowParent;
+      ::pointer<::windowing::window>           m_pwindowParent;
       ::point_i32                               m_point;
       ::size_i32                                m_size;
-      __pointer(::windowing::icon)              m_picon;
-      __pointer(::windowing::windowing)         m_pwindowing;
-      __composite(::user::copydesk)             m_pcopydesk;
+      ::pointer<::windowing::icon>             m_picon;
+      ::pointer<::windowing::windowing>        m_pwindowing;
+      ::pointer<::user::copydesk>            m_pcopydesk;
       ::point_i32                               m_pointCursor;
       ::oswindow                                m_oswindow;
 
@@ -244,11 +244,11 @@ namespace windowing
       virtual void DragAcceptFiles(bool bAccept = true);
 
 
-      virtual __pointer(::windowing::icon) load_icon(const ::payload& payloadFile);
+      virtual ::pointer<::windowing::icon>load_icon(const ::payload& payloadFile);
 
 
       virtual void set_icon(::windowing::icon * picon);
-      virtual __pointer(::windowing::icon) get_icon() const;
+      virtual ::pointer<::windowing::icon>get_icon() const;
 
 
       virtual void set_mouse_cursor(::windowing::cursor * pcursor);
@@ -325,26 +325,25 @@ namespace windowing
       virtual void on_text(const wd32char * pwd32sz, strsize length);
 
 
+      inline bool operator == (const ::windowing::window & window) const
+      {
+
+         return oswindow() == window.oswindow();
+
+      }
+
+
+      inline bool operator != (const ::windowing::window & window) const
+      {
+
+         return !operator == (window);
+
+      }
+
+
    };
 
 
 } // namespace windowing
-
-
-inline bool operator == (const ::windowing::window & window1, const ::windowing::window & window2)
-{
-
-   return window1.oswindow() == window2.oswindow();
-
-}
-
-
-inline bool operator != (const ::windowing::window & window1, const ::windowing::window & window2)
-{
-
-   return !operator==(window1, window2);
-
-}
-
 
 

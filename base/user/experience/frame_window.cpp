@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "frame_window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"
@@ -345,7 +345,7 @@ namespace experience
    }
 
 
-   __pointer(::experience::experience) frame_window::create_experience(const ::string & strExperience)
+   ::pointer<::experience::experience>frame_window::create_experience(const ::string & strExperience)
    {
 
       auto psession = get_session();
@@ -357,7 +357,7 @@ namespace experience
    }
 
 
-   __pointer(::experience::experience) frame_window::experience(const ::string & strExperience)
+   ::pointer<::experience::experience>frame_window::experience(const ::string & strExperience)
    {
 
       auto psession = get_session();
@@ -369,7 +369,7 @@ namespace experience
    }
 
 
-   __pointer(::experience::frame) frame_window::frame_experience(const ::string & strExperience, const ::string & strFrame, const ::string & strStyle)
+   ::pointer<::experience::frame>frame_window::frame_experience(const ::string & strExperience, const ::string & strFrame, const ::string & strStyle)
    {
 
       auto psession = get_session();
@@ -656,7 +656,7 @@ namespace experience
       if (m_pdockmanager == nullptr)
       {
 
-         __compose(m_pdockmanager, __new(class dock_manager));
+         __construct(m_pdockmanager, __new(class dock_manager));
 
          try
          {
@@ -676,7 +676,7 @@ namespace experience
       if (m_pmovemanager == nullptr)
       {
 
-         __compose(m_pmovemanager,__new(class move_manager));
+         __construct(m_pmovemanager,__new(class move_manager));
 
          try
          {
@@ -696,7 +696,7 @@ namespace experience
       if (m_psizemanager == nullptr)
       {
 
-         __compose(m_psizemanager, __new(class size_manager));
+         __construct(m_psizemanager, __new(class size_manager));
 
          try
          {
@@ -717,7 +717,7 @@ namespace experience
       if (m_pmenumanager == nullptr)
       {
 
-         __compose(m_pmenumanager, __new(class menu_manager));
+         __construct(m_pmenumanager, __new(class menu_manager));
 
          try
          {
@@ -1117,7 +1117,7 @@ namespace experience
    void frame_window::_001OnSysCommand(::message::message * pmessage)
    {
 
-      __pointer(::message::message) pusermessage(pmessage);
+      ::pointer<::message::message>pusermessage(pmessage);
 
    }
 
@@ -1135,7 +1135,7 @@ namespace experience
    //void frame_window::_001OnCommand(::message::message * pmessage)
    //{
 
-   //   __pointer(::message::message) pusermessage(pmessage);
+   //   ::pointer<::message::message>pusermessage(pmessage);
 
    //   if (m_pframe == nullptr)
    //   {
@@ -1270,7 +1270,7 @@ namespace experience
       if(m_psizemanager == nullptr)
       {
 
-         __compose(m_psizemanager, __new(class size_manager));
+         __construct(m_psizemanager, __new(class size_manager));
 
          //auto estatus = 
          
@@ -1335,9 +1335,9 @@ namespace experience
    void frame_window::_001OnActivate(::message::message * pmessage)
    {
 
-      __pointer(::message::activate) pactivate(pmessage);
+      ::pointer<::message::activate>pactivate(pmessage);
 
-      __pointer(::user::interaction) pActive = (pactivate->m_eactivate == e_activate_inactive ? pactivate->m_pWndOther : this);
+      ::pointer<::user::interaction>pActive = (pactivate->m_eactivate == e_activate_inactive ? pactivate->m_pWndOther : this);
 
       if(pActive == nullptr)
       {
@@ -1576,7 +1576,7 @@ namespace experience
    //void frame_window::on_message_set_cursor(::message::message* pmessage)
    //{
 
-   //   __pointer(::message::set_cursor) psetcursor(pmessage);
+   //   ::pointer<::message::set_cursor>psetcursor(pmessage);
 
    //   if (!is_frame_experience_enabled())
    //   {
@@ -1699,7 +1699,7 @@ namespace experience
    void frame_window::_001OnNcHitTest(::message::message * pmessage)
    {
 
-      __pointer(::message::nc_hit_test) pnchittest(pmessage);
+      ::pointer<::message::nc_hit_test>pnchittest(pmessage);
 
       if(!is_frame_experience_enabled())
       {
@@ -1793,7 +1793,7 @@ namespace experience
 
       }
 
-      __compose(m_pframe, pframe);
+      __construct(m_pframe, pframe);
 
       pframe->m_pframewindow = this;
 

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "application.h"
 #include "system.h"
 #include "acme/platform/system_setup.h"
@@ -63,7 +63,7 @@ namespace core
    }
 
 
-   __pointer(progress::real) application::show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::count iProgressCount)
+   ::pointer<progress::real>application::show_progress(::user::interaction* puiParent, const ::string & pszTitle, ::count iProgressCount)
    {
 
       auto pprogresscontrol = __create_new <  ::userex::progress_control >();

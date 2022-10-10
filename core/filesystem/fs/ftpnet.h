@@ -7,9 +7,9 @@ class ftpnet :
 public:
 
 
-   string_map < __pointer(::ftp::output) >            m_mapOutput;
-   string_map < __pointer(::ftp::client_socket) >     m_mapClient;
-   __pointer(::sockets::socket_handler)               m_psockethandler;
+   string_map < ::pointer<::ftp::output >>            m_mapOutput;
+   string_map < ::pointer<::ftp::client_socket >>     m_mapClient;
+   ::pointer<::sockets::socket_handler>               m_psockethandler;
 
 
    ftpnet();

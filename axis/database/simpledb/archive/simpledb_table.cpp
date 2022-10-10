@@ -30,11 +30,11 @@ namespace simpledb
       if(!m_xmldocumentMeta.load(is))
          throw ::exception(::exception("integer_exception 1"));
 
-      __pointer(::xml::node) pfields = m_xmldocumentMeta.get_root()->get_child("fields");
+      ::pointer<::xml::node>pfields = m_xmldocumentMeta.get_root()->get_child("fields");
 
       for(i32 i = 0; i < pfields->get_children_count(); i++)
       {
-         __pointer(::xml::node) pfield = pfields->child_at(i);
+         ::pointer<::xml::node>pfield = pfields->child_at(i);
          if(pfield->get_name() != "field")
             continue;
          ::database::field_definition_item item;

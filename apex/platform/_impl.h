@@ -6,7 +6,7 @@
 //
 //
 //   template < class APP >
-//   __pointer(::matter) single_application_library < APP > ::new_application(const char * pszAppId)
+//   ::pointer<::matter>single_application_library < APP > ::new_application(const char * pszAppId)
 //   {
 //
 //      if(!contains_app(pszAppId))
@@ -25,7 +25,7 @@
 //
 //      }
 //
-//      __pointer(::apex::application) papp;
+//      ::pointer<::apex::application>papp;
 //
 //      papp = pappNew;
 //
@@ -124,7 +124,7 @@
 //
 //  auto & proutea = m_idroute[atom];
 //
-//  __pointer(::message::route) proute;
+//  ::pointer<::message::route>proute;
 //
 //  if (proutea.is_set())
 //  {
@@ -212,9 +212,9 @@
 //
 //  }
 //
-//  __pointer(::message::route_array) & proutea = m_idroute[atom];
+//  ::pointer<::message::route_array>& proutea = m_idroute[atom];
 //
-//  __pointer(::message::typed_route < MESSAGE >) proute;
+//  pointer< ::message::typed_route < MESSAGE > > proute;
 //
 //  if (proutea.is_set())
 //  {
@@ -309,7 +309,7 @@
 //}
 //
 //template < typename TYPE >
-//::stream & read_container_as_parent(::stream & stream, __pointer_array(TYPE) & a)
+//::stream & read_container_as_parent(::stream & stream, pointer_array < TYPE > & a)
 //{
 //
 //   ::count c = 0;
@@ -349,7 +349,7 @@
 //
 //
 //template < typename TYPE >
-//::stream & write_container_as_parent(::stream & stream, const __pointer_array(TYPE) & a)
+//::stream & write_container_as_parent(::stream & stream, const pointer_array < TYPE > & a)
 //{
 //
 //   ::count c = a.get_count();
@@ -414,7 +414,7 @@
 //
 //
 //template < class c_derived, typename SOURCE >
-//inline i64 increment_reference_count(c_derived *& pderived, const __pointer(SOURCE) & psource)
+//inline i64 increment_reference_count(c_derived *& pderived, const ::pointer<SOURCE>& psource)
 //{
 //
 //   return increment_reference_count(pderived, psource.m_p);
@@ -506,7 +506,7 @@
 //
 //
 //template < class COMPOSITE >
-//inline i64 release(__composite(COMPOSITE) & pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+//inline i64 release(::pointer<COMPOSITE>& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
 //{
 //
 //   return release(pcomposite.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
@@ -515,7 +515,7 @@
 //
 //
 //template < typename TYPE >
-//inline i64 release(__pointer(TYPE) & pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+//inline i64 release(::pointer<TYPE>& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
 //{
 //
 //   return release(pointer.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
@@ -524,7 +524,7 @@
 //
 //
 //template < class REFERENCE >
-//inline i64 release(__reference(REFERENCE) & preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
+//inline i64 release(::pointer<REFERENCE>& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
 //{
 //
 //   return release(preference.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
@@ -554,7 +554,7 @@
 //
 //
 //   //template < typename VIEW >
-//   //__pointer(::user::document) session::create_form(__pointer(::user::interaction) puserinteractionParent, ::payload payload, ::payload varArgs)
+//   //::pointer<::user::document>session::create_form(::pointer<::user::interaction>userinteractionParent, ::payload payload, ::payload varArgs)
 //   //{
 //
 //   //   return create_form(__type(VIEW), puserinteractionParent, payload);
@@ -563,7 +563,7 @@
 //
 //
 //   //template < typename VIEW >
-//   //__pointer(::user::document) session::create_child_form(__pointer(::user::interaction) puserinteractionParent, ::payload payload)
+//   //::pointer<::user::document>session::create_child_form(::pointer<::user::interaction>userinteractionParent, ::payload payload)
 //   //{
 //
 //   //   return create_child_form(__type(VIEW), puserinteractionParent, payload);

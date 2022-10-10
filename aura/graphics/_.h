@@ -7,7 +7,7 @@ class context_image;
 class image;
 
 
-using image_pointer = __pointer(::image);
+using image_pointer = ::pointer<::image>;
 
 
 class image_array;

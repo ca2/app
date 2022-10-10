@@ -45,7 +45,7 @@ namespace sockets
 
       bool                 m_bOnlyHeaders;
       bool                 m_bNoClose;
-      __pointer(http::listener)     m_plistener;
+      ::pointer<http::listener>    m_plistener;
 
 
 

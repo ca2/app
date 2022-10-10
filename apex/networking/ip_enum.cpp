@@ -18,7 +18,7 @@ namespace networking
    }
 
 
-   ::count ip_enum::enumerate(__pointer_array(::networking::address) & ipa)
+   ::count ip_enum::enumerate(pointer_array < ::networking::address > & ipa)
    {
 
       __UNREFERENCED_PARAMETER(ipa);

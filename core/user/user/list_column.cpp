@@ -87,7 +87,7 @@ namespace user
    }
 
 
-   int list_column::CompareOrderSectEndNonVisible(const __pointer(list_column) & pcolumna, const __pointer(list_column) & pcolumnb)
+   int list_column::CompareOrderSectEndNonVisible(const ::pointer<list_column>& pcolumna, const ::pointer<list_column> pcolumnb)
    {
 
       if (pcolumna->m_bVisible && pcolumnb->m_bVisible)
@@ -118,7 +118,7 @@ namespace user
    }
 
 
-   int list_column::CompareOrder(const __pointer(list_column) & pcolumna, const __pointer(list_column) & pcolumnb)
+   int list_column::CompareOrder(const ::pointer<list_column>& pcolumna, const ::pointer<list_column> pcolumnb)
    {
 
       return (int)(pcolumna->m_iOrder - pcolumnb->m_iOrder);

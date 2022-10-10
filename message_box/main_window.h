@@ -14,7 +14,7 @@ namespace app_message_box
    public:
 
 
-      __pointer(::user::button)     m_pbuttonShowMessageBox;
+      ::pointer<::user::button>    m_pbuttonShowMessageBox;
 
 
       main_window();

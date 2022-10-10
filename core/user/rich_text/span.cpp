@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "span.h"
 #include "data.h"
 #include "format.h"
@@ -127,7 +127,7 @@ namespace user
       }
       
       
-      __pointer(span) span::fork()
+      ::pointer<span>span::fork()
       { 
          
          auto pspan = __new(class span(m_pdata));
@@ -139,7 +139,7 @@ namespace user
       }
 
 
-      __pointer(span) span::fork(const class format* pformat, const e_attribute& eattribute)
+      ::pointer<span>span::fork(const class format* pformat, const e_attribute& eattribute)
       {
 
          auto pspan = fork();
@@ -190,7 +190,7 @@ namespace user
       }
 
 
-      __pointer(format) span::fork_format()
+      ::pointer<format>span::fork_format()
       {
 
          return __new(class format(*m_pformat));

@@ -75,7 +75,7 @@ void interprocess_call::exclude_pid(::i32 iPid)
 void interprocess_call::send(const ::atom& idPid)
 {
 
-   __pointer(interprocess_call) pcall = this;
+   ::pointer<interprocess_call>pcall = this;
 
    auto& pobjectTask = pcall->m_mapTask[idPid];
 
@@ -94,7 +94,7 @@ void interprocess_call::send(const ::atom& idPid)
 //void interprocess_call::post(const ::atom& idPid)
 //{
 //
-//   __pointer(interprocess_call) pcall = this;
+//   ::pointer<interprocess_call>pcall = this;
 //
 //   fork([pcall, idPid]()
 //      {
@@ -106,7 +106,7 @@ void interprocess_call::send(const ::atom& idPid)
 //}
 
 
-__pointer(synchronization_array) interprocess_call::synca()
+::pointer<synchronization_array>interprocess_call::synca()
 {
 
    auto psynca = __new(synchronization_array);

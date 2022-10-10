@@ -11,10 +11,10 @@ namespace aura
    public:
 
 
-      typedef uptr_map < __pointer(::timer) > MAP;
+      typedef uptr_map < ::pointer<::timer >>MAP;
 
       MAP                                       m_map;
-      __pointer(::timer_callback)               m_pcallback;
+      ::pointer<::timer_callback>              m_pcallback;
       bool                                      m_bOk;
 
 

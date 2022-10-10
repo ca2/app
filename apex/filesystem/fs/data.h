@@ -48,8 +48,8 @@ namespace fs
 
       virtual bool fast_has_subdir(const ::file::path & pszPath);
 
-      virtual __pointer(data) path_data(const ::file::path & psz);
-      virtual __pointer(data) node_path_data(const ::file::path & psz);
+      virtual ::pointer<data>path_data(const ::file::path & psz);
+      virtual ::pointer<data>node_path_data(const ::file::path & psz);
 
 
       virtual bool is_link(const ::file::path & psz);

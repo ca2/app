@@ -319,7 +319,7 @@ namespace core
 
       //estatus = 
       
-      __compose(m_phtml);
+      __construct(m_phtml);
 
       //if(!estatus)
       //{
@@ -471,7 +471,7 @@ namespace core
       try
       {
 
-         __release(m_pshell);
+         m_pshell.release();
 
       }
       catch (...)
@@ -514,7 +514,7 @@ namespace core
 
 
 
-   __pointer(::form_document) user::create_form(::object * pobject, ::type type, __pointer(::user::interaction) puserinteractionParent, ::payload payload, ::payload varArgs)
+   ::pointer<::form_document>user::create_form(::object * pobject, ::type type, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
       if (!type)
@@ -524,7 +524,7 @@ namespace core
 
       }
 
-      __pointer(::user::impact_system) psystem = m_mapTemplate[type];
+      ::pointer<::user::impact_system>psystem = m_mapTemplate[type];
 
       if (psystem.is_null())
       {
@@ -559,7 +559,7 @@ namespace core
 
       }
 
-      __pointer(::create) pcreate(e_create, this);
+      ::pointer<::create>pcreate(e_create, this);
 
       pcreate->m_bMakeVisible = true;
 
@@ -567,16 +567,16 @@ namespace core
 
       pcreate->m_payloadArgs = varArgs;
 
-      if (payload.get_file_path().has_char())
+      if (payload.file_path().has_char())
       {
 
-         pcreate->m_payloadFile = payload.get_file_path();
+         pcreate->m_payloadFile = payload.file_path();
 
       }
 
       psystem->do_request(pcreate);
 
-      __pointer(::form_document) pformdocument = ::user::__document(pcreate);
+      ::pointer<::form_document>pformdocument = ::user::__document(pcreate);
 
       if (pformdocument.is_null())
       {
@@ -585,14 +585,14 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pformdocument->get_typed_impact < ::user::form_window >();
+      ::pointer<::user::form_window>pform = pformdocument->get_typed_impact < ::user::form_window >();
 
       return pformdocument;
 
    }
 
 
-   __pointer(::sequence < ::conversation >) user::dialog_box(::object * pobject, const ::string & pszMatter, property_set & propertyset)
+   pointer< ::sequence < ::conversation > > user::dialog_box(::object * pobject, const ::string & pszMatter, property_set & propertyset)
    {
 
       return nullptr;
@@ -623,7 +623,7 @@ namespace core
    }
 
 
-   __pointer(::sequence < ::conversation >) user::ui_message_box(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
+   pointer< ::sequence < ::conversation > > user::ui_message_box(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box & emessagebox)
    {
 
       return nullptr;
@@ -758,7 +758,7 @@ namespace core
    }
 
 
-   __pointer(::sequence < ::conversation >) user::ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox)
+   pointer< ::sequence < ::conversation > > user::ui_message_box_timeout(::object * pobject, ::user::primitive * puiOwner, const ::string & pszMessage, const ::string & pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox)
    {
 
       //__UNREFERENCED_PARAMETER(puiOwner);
@@ -812,7 +812,7 @@ namespace core
    }
 
 
-   i32 user::track_popup_menu(const ::string & pszMatter, const ::point_i32 & point, __pointer(::user::interaction) puie)
+   i32 user::track_popup_menu(const ::string & pszMatter, const ::point_i32 & point, ::pointer<::user::interaction>puie)
    {
 
       __UNREFERENCED_PARAMETER(pszMatter);
@@ -909,7 +909,7 @@ namespace core
    void user::data_on_after_change(::message::message * pmessage)
    {
 
-      __pointer(::database::change_event) pchange(pmessage);
+      ::pointer<::database::change_event>pchange(pmessage);
 
       if (pchange->m_datakey == "ca2.savings")
       {
@@ -966,9 +966,9 @@ namespace core
 
       auto pdocument = m_mapimpactsystem[COLORSEL_IMPACT]->open_document_file(puiOwner->get_app(), ::e_type_null, __visible(true));
 
-      __pointer(::userex::color_impact) pimpact = pdocument->get_typed_impact < ::userex::color_impact >();
+      ::pointer<::userex::color_impact>pimpact = pdocument->get_typed_impact < ::userex::color_impact >();
 
-      __pointer(::user::frame_window) pframe = pimpact->top_level_frame();
+      ::pointer<::user::frame_window>pframe = pimpact->top_level_frame();
 
       pframe->set_owner(puiOwner);
 
@@ -1021,7 +1021,7 @@ namespace core
    }
 
 
-   __pointer(::form_document) user::create_form(::object * pobject, __pointer(::user::form) pimpact, ::user::form_callback * pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload, ::payload varArgs)
+   ::pointer<::form_document>user::create_form(::object * pobject, ::pointer<::user::form>pimpact, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
       if (m_ptemplateForm == nullptr)
@@ -1031,7 +1031,7 @@ namespace core
 
       }
 
-      __pointer(::create) pcreate(e_create, this);
+      ::pointer<::create>pcreate(e_create, this);
 
       pcreate->m_bMakeVisible = false;
 
@@ -1043,10 +1043,10 @@ namespace core
 
       pcreate->m_payloadArgs["form_callback"] = pcallback;
 
-      if (payload.get_file_path().has_char())
+      if (payload.file_path().has_char())
       {
 
-         pcreate->m_payloadFile = payload.get_file_path();
+         pcreate->m_payloadFile = payload.file_path();
 
       }
 
@@ -1059,7 +1059,7 @@ namespace core
 
       m_ptemplateForm->do_request(pcreate);
 
-      __pointer(::form_document) pformdocument = ::user::__document(pcreate);
+      ::pointer<::form_document>pformdocument = ::user::__document(pcreate);
 
       if (pformdocument.is_null())
       {
@@ -1068,7 +1068,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pformdocument->get_typed_impact < ::user::form_window >();
+      ::pointer<::user::form_window>pform = pformdocument->get_typed_impact < ::user::form_window >();
 
       if (pform.is_set())
       {
@@ -1082,7 +1082,7 @@ namespace core
    }
 
 
-   __pointer(::form_document) user::create_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload, ::payload varArgs)
+   ::pointer<::form_document>user::create_form(::object * pobject, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
       auto ptemplateForm = m_ptemplateForm;
@@ -1123,12 +1123,12 @@ namespace core
 
       pcreate->m_payloadArgs["form_callback"] = pcallback;
 
-      if (payload.get_file_path().has_char())
+      if (payload.file_path().has_char())
       {
 
-         pcreate->m_payloadFile = payload.get_file_path();
+         pcreate->m_payloadFile = payload.file_path();
 
-         string strPath = payload.get_file_path();
+         string strPath = payload.file_path();
 
       }
 
@@ -1141,7 +1141,7 @@ namespace core
 
       ptemplateForm->do_request(pcreate);
 
-      __pointer(::form_document) pformdocument = ::user::__document(pcreate);
+      ::pointer<::form_document>pformdocument = ::user::__document(pcreate);
 
       if (pformdocument.is_null())
       {
@@ -1150,7 +1150,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pformdocument->get_typed_impact < ::user::form_window >();
+      ::pointer<::user::form_window>pform = pformdocument->get_typed_impact < ::user::form_window >();
 
       if (pform.is_set() && ::is_null(pform->get_form_callback()))
       {
@@ -1164,7 +1164,7 @@ namespace core
    }
 
 
-   __pointer(::form_document) user::create_child_form(::object * pobject, __pointer(::user::form) pimpact, ::user::form_callback * pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload, ::payload varArgs)
+   ::pointer<::form_document>user::create_child_form(::object * pobject, ::pointer<::user::form>pimpact, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
       if (m_ptemplateChildForm == nullptr)
@@ -1212,10 +1212,10 @@ namespace core
 
       pcreate->m_payloadArgs["form_callback"] = pcallback;
 
-      if (payload.get_file_path().has_char())
+      if (payload.file_path().has_char())
       {
 
-         pcreate->m_payloadFile = payload.get_file_path();
+         pcreate->m_payloadFile = payload.file_path();
 
       }
 
@@ -1230,7 +1230,7 @@ namespace core
 
       m_ptemplateChildForm->do_request(pcreate);
 
-      __pointer(::form_document) pformdocument = ::user::__document(pcreate);
+      ::pointer<::form_document>pformdocument = ::user::__document(pcreate);
 
       if (pformdocument.is_null())
       {
@@ -1239,7 +1239,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pformdocument->get_typed_impact < ::user::form_window >();
+      ::pointer<::user::form_window>pform = pformdocument->get_typed_impact < ::user::form_window >();
 
       if (pform.is_set())
       {
@@ -1253,7 +1253,7 @@ namespace core
    }
 
 
-   __pointer(::form_document) user::create_child_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) puserinteractionParent, ::payload payload, ::payload varArgs)
+   ::pointer<::form_document>user::create_child_form(::object * pobject, ::user::form_callback * pcallback, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
       auto papp = pobject->get_app();
@@ -1292,10 +1292,10 @@ namespace core
 
       pcreate->m_payloadArgs["form_callback"] = pcallback;
 
-      if (payload.get_file_path().has_char())
+      if (payload.file_path().has_char())
       {
 
-         ::file::path path = payload.get_file_path();
+         ::file::path path = payload.file_path();
 
          pcreate->m_payloadFile = path;
 
@@ -1305,7 +1305,7 @@ namespace core
 
       m_ptemplateChildForm->do_request(pcreate);
 
-      __pointer(::form_document) pformdocument = ::user::__document(pcreate);
+      ::pointer<::form_document>pformdocument = ::user::__document(pcreate);
 
       if (pformdocument.is_null())
       {
@@ -1314,7 +1314,7 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pformdocument->get_typed_impact < ::user::form_window >();
+      ::pointer<::user::form_window>pform = pformdocument->get_typed_impact < ::user::form_window >();
 
       if (pform.is_set() && ::is_set(pcallback))
       {
@@ -1336,7 +1336,7 @@ namespace core
    }
 
 
-   __pointer(::form_document) user::create_child_form(::object * pobject, ::type type, __pointer(::user::interaction) puserinteractionParent, ::payload payload, ::payload varArgs)
+   ::pointer<::form_document>user::create_child_form(::object * pobject, ::type type, ::pointer<::user::interaction>puserinteractionParent, ::payload payload, ::payload varArgs)
    {
 
       if (!type)
@@ -1353,7 +1353,7 @@ namespace core
 
          ::type typeDocument = m_ptemplateChildForm->m_typeDocument;
 
-         if (is_html_file(payload.get_file_path()))
+         if (is_html_file(payload.file_path()))
          {
 
             typeDocument = get_html_document_type();
@@ -1402,16 +1402,16 @@ namespace core
 
       pcreate->m_payloadArgs = varArgs;
 
-      if (payload.get_file_path().has_char())
+      if (payload.file_path().has_char())
       {
 
-         pcreate->m_payloadFile = payload.get_file_path();
+         pcreate->m_payloadFile = payload.file_path();
 
       }
 
       psystem->do_request(pcreate);
 
-      __pointer(::form_document) pformdocument = ::user::__document(pcreate);
+      ::pointer<::form_document>pformdocument = ::user::__document(pcreate);
 
       if (pformdocument.is_null())
       {
@@ -1420,17 +1420,17 @@ namespace core
 
       }
 
-      __pointer(::user::form_window) pform = pformdocument->get_typed_impact < ::user::form_window >();
+      ::pointer<::user::form_window>pform = pformdocument->get_typed_impact < ::user::form_window >();
 
       return pformdocument;
 
    }
 
 
-   ::user::document * user::hold(__pointer(::user::interaction) pinteraction)
+   ::user::document * user::hold(::pointer<::user::interaction>pinteraction)
    {
 
-      __pointer(::create) pcreate(e_create_new, pinteraction.m_p);
+      ::pointer<::create>pcreate(e_create_new, pinteraction.m_p);
 
       pcreate->m_bMakeVisible = false;
 
@@ -1438,9 +1438,9 @@ namespace core
 
       m_ptemplatePlaceHolder->do_request(pcreate);
 
-      __pointer(::form_document) pformdocument = ::user::__document(pcreate);
+      ::pointer<::form_document>pformdocument = ::user::__document(pcreate);
 
-      __pointer(::user::place_holder) pholder = pformdocument->get_typed_impact < ::user::place_holder  >();
+      ::pointer<::user::place_holder>pholder = pformdocument->get_typed_impact < ::user::place_holder  >();
 
       pholder->place_hold(pinteraction);
 
@@ -1457,7 +1457,7 @@ namespace core
    }
 
 
-   __pointer(::user::list_header) user::default_create_list_header(::object * pobject)
+   ::pointer<::user::list_header>user::default_create_list_header(::object * pobject)
    {
 
       return pobject->__id_create < ::user::list_header > (default_type_list_header());
@@ -1465,7 +1465,7 @@ namespace core
    }
 
 
-   __pointer(::user::mesh_data) user::default_create_mesh_data(::object * pobject)
+   ::pointer<::user::mesh_data>user::default_create_mesh_data(::object * pobject)
    {
 
       return pobject->__id_create < ::user::mesh_data > (default_type_list_data());
@@ -1473,7 +1473,7 @@ namespace core
    }
 
 
-   __pointer(::user::list_data) user::default_create_list_data(::object * pobject)
+   ::pointer<::user::list_data>user::default_create_list_data(::object * pobject)
    {
 
       return pobject->__id_create <::user::list_data >(default_type_list_data());
@@ -1852,7 +1852,7 @@ namespace core
    }
 
 
-   //__pointer(::user::user) application::create_userex()
+   //::pointer<::user::user>application::create_userex()
    //{
 
    //   return __new(::user::user);
@@ -1904,7 +1904,7 @@ namespace core
 
 
 
-   //::user::document * application::hold(__pointer(::user::interaction) pinteraction)
+   //::user::document * application::hold(::pointer<::user::interaction>pinteraction)
    //{
 
    //   return Sess(this).user()->hold(pinteraction);
@@ -1971,7 +1971,7 @@ namespace core
       for (auto & path : patha)
       {
 
-         __pointer(::create) pcreate(e_create, this);
+         ::pointer<::create>pcreate(e_create, this);
 
          pcreate->m_payloadFile = path;
 
@@ -2108,7 +2108,7 @@ namespace core
 
    __namespace_object_factory(user, ::system_setup::flag_object_user);
 
-   __pointer(::user::plain_edit) user::create_calculator_plain_edit()
+   ::pointer<::user::plain_edit>user::create_calculator_plain_edit()
    {
 
       return memory_new ::calculator::plain_edit_impact();
@@ -2123,7 +2123,7 @@ namespace user
 {
 
 
-   __pointer(::user::mesh_data) mesh::create_mesh_data()
+   ::pointer<::user::mesh_data>mesh::create_mesh_data()
    {
 
       auto pcontext = m_pcontext;
@@ -2137,7 +2137,7 @@ namespace user
    }
 
 
-   __pointer(::user::list_header) list::create_list_header()
+   ::pointer<::user::list_header>list::create_list_header()
    {
 
       auto pcontext = m_pcontext;
@@ -2151,7 +2151,7 @@ namespace user
    }
 
 
-   __pointer(::user::mesh_data) list::create_mesh_data()
+   ::pointer<::user::mesh_data>list::create_mesh_data()
    {
 
       auto pcontext = m_pcontext;

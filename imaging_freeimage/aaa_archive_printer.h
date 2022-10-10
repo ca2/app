@@ -33,7 +33,7 @@ namespace draw2d_gdiplus
 
 
       HANDLE                              m_hPrinter;
-      __pointer(document_properties)      m_pdocumentproperties;
+      ::pointer<document_properties>     m_pdocumentproperties;
 
 
       printer();

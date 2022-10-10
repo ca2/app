@@ -1,4 +1,4 @@
-
+﻿
 
 #include "_main_hold.h"
 #include "acme/_api.h"
@@ -15,7 +15,7 @@ void acme_system_term();
 #include "acme/operating_system/console.inl"
 
 #endif
-
+#include "acme/platform/subsystem.h"
 
 #ifdef WINDOWS
 CLASS_DECL_ACME void set_argc_argv_envp(int argc, wchar_t ** argv, wchar_t ** envp);
@@ -44,11 +44,13 @@ int main(int argc, platform_char ** argv, platform_char ** envp)
 #endif
 {
 
+   subsystem subsystem;
+
    main_hold mainhold;
 
    set_argc_argv_envp(argc, argv, envp);
 
-   __pointer(APPLICATION_CLASS) papp(__new(APPLICATION_CLASS));
+   ::pointer<APPLICATION_CLASS>papp(__new(APPLICATION_CLASS));
 
 #ifdef NO_NETWORKING
 

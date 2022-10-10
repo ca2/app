@@ -96,7 +96,7 @@ void xfplayer_impact_linea::Prepare(xfplayer_impact_line *pImpactLine)
 
 }
 
-//void xfplayer_impact_linea::set_user_interaction(__pointer(::user::interaction) pinteraction)
+//void xfplayer_impact_linea::set_user_interaction(::pointer<::user::interaction>pinteraction)
 //{
 //   
 //   m_pinteraction = pinteraction;

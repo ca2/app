@@ -13,8 +13,8 @@ namespace user
    public:
 
 
-      __pointer(::image_list) m_pimagelist;
-      __pointer(::image_list) m_pimagelistDisable;
+      ::pointer<::image_list>m_pimagelist;
+      ::pointer<::image_list>m_pimagelistDisable;
       ///CBaseNumericDiscreteRelation < ::u32, ::u32, ::u32, ::u32 > m_rel;
       id_map < int > m_rel;
 

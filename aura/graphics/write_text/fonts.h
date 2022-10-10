@@ -14,7 +14,7 @@ namespace write_text
    public:
 
 
-      __pointer(font_enumeration)                  m_pfontenumeration;
+      ::pointer<font_enumeration>                 m_pfontenumeration;
       ::write_text::font_enumeration_item_array    m_fontenumerationitema;
 
 

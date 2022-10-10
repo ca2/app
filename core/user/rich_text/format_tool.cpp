@@ -106,7 +106,7 @@ namespace user
    void format_tool::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
       pcreate->previous();
 
@@ -117,31 +117,31 @@ namespace user
 
       }
       int iControl = 0;
-      __compose(m_pbuttonBold);
+      __construct(m_pbuttonBold);
       iControl++;
-      __compose(m_pbuttonItalic);
+      __construct(m_pbuttonItalic);
       iControl++;
-      __compose(m_pbuttonUnderline);
+      __construct(m_pbuttonUnderline);
       iControl++;
-      __compose(m_pcomboFamily);
+      __construct(m_pcomboFamily);
       iControl++;
-      __compose(m_pcomboSize);
+      __construct(m_pcomboSize);
       iControl++;
-      __compose(m_pbuttonForeground);
+      __construct(m_pbuttonForeground);
       iControl++;
-      __compose(m_pbuttonBackground);
+      __construct(m_pbuttonBackground);
       iControl++;
-      __compose(m_pbuttonSubscript);
+      __construct(m_pbuttonSubscript);
       iControl++;
-      __compose(m_pbuttonSuperscript);
+      __construct(m_pbuttonSuperscript);
       iControl++;
-      __compose(m_pbuttonLineHeight);
+      __construct(m_pbuttonLineHeight);
       iControl++;
-      __compose(m_pbuttonAlignLeft);
+      __construct(m_pbuttonAlignLeft);
       iControl++;
-      __compose(m_pbuttonAlignCenter);
+      __construct(m_pbuttonAlignCenter);
       iControl++;
-      __compose(m_pbuttonAlignRight);
+      __construct(m_pbuttonAlignRight);
       iControl++;
 
       m_pbuttonBold->create_control(this, "font_bold");
@@ -633,7 +633,7 @@ namespace user
 
             auto itemCurrent = m_pcomboFamily->m_pitemCurrent;
 
-            __pointer(::user::font_list) pfontlist = pcombolistbox;
+            ::pointer<::user::font_list>pfontlist = pcombolistbox;
 
             auto pfontenumerationitema = pfontlist->m_pfontlist->m_pfontenumerationitema;
 
@@ -705,7 +705,7 @@ namespace user
 
          auto pcombolistbox = m_pcomboFamily->m_plistbox;
 
-         __pointer(::user::font_list) pfontlist = pcombolistbox;
+         ::pointer<::user::font_list>pfontlist = pcombolistbox;
 
          index iIndex = pfontlist->m_pfontlist->find_name(m_pformata->first()->m_strFontFamily);
 

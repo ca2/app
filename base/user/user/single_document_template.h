@@ -14,7 +14,7 @@ namespace user
    public:
 
 
-      __pointer(::user::document) m_pdocument;
+      ::pointer<::user::document>m_pdocument;
 
 
       single_document_template(const ::string & pszMatter, ::type pDocClass, ::type pFrameClass, ::type pImpactClass);

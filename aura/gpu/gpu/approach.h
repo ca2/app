@@ -27,8 +27,8 @@ namespace gpu
 //      //HDC                           m_hdcGraphics;
 //      //float                         m_z;
 //      //point_i32                         m_pointTranslate;
-//      //__pointer(::opengl::buffer)   m_pbuffer;
-//      //__pointer(::opengl::program)  m_pprogram;
+//      //::pointer<::opengl::buffer>  m_pbuffer;
+//      //::pointer<::opengl::program> m_pprogram;
 //      //unsigned int                  VAO;
 //      //unsigned int                  VBO;
 

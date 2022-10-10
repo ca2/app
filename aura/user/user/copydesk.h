@@ -74,7 +74,7 @@ namespace user
    };
 
 
-   typedef ___pointer < copydesk > copydesk_pointer;
+   typedef ::pointer<copydesk>copydesk_pointer;
 
 
 } // namespace user

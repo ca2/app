@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#include "core/user/databaseuser/_databaseuser.h"
 #include "core/user/user/list.h"
 #include "key_mesh_data.h"
@@ -87,7 +87,7 @@ namespace databaseuser
    {
       string_array straData;
       data_get(::atom(), straData);
-      straData.add_unique(stra);
+      straData.append_unique(stra);
       data_set(::atom(), straData);
       //if(!data_set(::atom(), straData))
          //return false;

@@ -86,7 +86,7 @@ bool image_list::create(i32 cx, i32 cy, ::u32 nFlags, i32 nInitial, i32 nGrow)
    m_size.cx = cx;
    m_size.cy = cy;
 
-   __defer_compose(m_pimage);
+   __defer_construct(m_pimage);
 
    if (m_iSize > 0)
    {
@@ -672,7 +672,7 @@ bool image_list::_grow(int iAddUpHint)
 void image_list::copy_from(const ::image_list * plist)
 {
 
-   __compose(m_pimage, ::move_transfer(plist->m_pimage->clone()));
+   __construct(m_pimage, ::move_transfer(plist->m_pimage->clone()));
    m_size = plist->m_size;
    m_iSize = plist->m_iSize;
    m_iGrow = plist->m_iGrow;

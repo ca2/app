@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 
@@ -10,7 +10,7 @@
    class string_buffer;
 
 
-   typedef __pointer(string_buffer) string_file_pointer;
+   typedef ::pointer<string_buffer>string_file_pointer;
 
 
    class CLASS_DECL_ACME string_buffer :

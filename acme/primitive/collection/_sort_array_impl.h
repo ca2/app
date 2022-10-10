@@ -6,7 +6,7 @@
 //defer_update(const ::atom & atom)
 //{
 //
-//   __pointer(sort_index) & sortindex = m_indexmap[fCompare];
+//   ::pointer<sort_index>& sortindex = m_indexmap[fCompare];
 //
 //   if(sortindex.is_null())
 //      sortindex = __new(sort_index);

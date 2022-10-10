@@ -93,7 +93,7 @@ namespace universal_windows
       //void display_temporary_file_with_text(const ::string & str);
 
 
-      //__pointer(nano_device) create_device();
+      //::pointer<nano_device>create_device();
 
 
    };

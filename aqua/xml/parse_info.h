@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace xml
@@ -16,7 +16,7 @@ namespace xml
       
       bool                 m_bTrimValue;        // [set] do trim when parse?
       bool                 m_bEntityValue;      // [set] do convert from object to entity? ( &lt; -> < )
-      __pointer(entities)  m_pentities;         // [set] entity table for entity decode
+      ::pointer<entities> m_pentities;         // [set] entity table for entity decode
       char                 m_chEscapeValue;     // [set] escape value (default '\\')
       bool                 m_bForceParse;       // [set] force parse even if xml is not welformed
 
@@ -26,7 +26,7 @@ namespace xml
       enum_parse_error     m_eparseerror;       // [get] error code
       string               m_strError;          // [get] error string
 
-      __pointer(::xml::document)        m_pdocument;
+      ::pointer<::xml::document>       m_pdocument;
 
       
       parse_info(entities * pentities);

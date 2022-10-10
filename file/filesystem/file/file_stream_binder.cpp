@@ -79,7 +79,7 @@ namespace file
    }
 
 
-   void stream_binder::CreateStreams(__pointer(::file::file) & inStream, __pointer(::file::file) & outStream)
+   void stream_binder::CreateStreams(::pointer<::file::file>& inStream, ::pointer<::file::file> outStream)
    {
       
       reader_for_binder * inStreamSpec = memory_new reader_for_binder;

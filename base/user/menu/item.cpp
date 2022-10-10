@@ -16,7 +16,7 @@ public: // re-implementations only
    menu_item_command(::object * pobject);
    void enable(bool bOn = true, const ::action_context & context = ::e_source_system) override;
    //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
-   void _001SetCheck(enum_check echeck, const ::action_context & context = ::e_source_system) override;   // 0, 1 or 2 (indeterminate)
+   void _001SetCheck(const e_check & echeck, const ::action_context & context = ::e_source_system) override;   // 0, 1 or 2 (indeterminate)
 //   virtual void SetRadio(bool bOn = true, const ::action_context & context = ::e_source_system);
    //void _001SetText(const ::string & pszText, const ::action_context & context = ::e_source_system) override;
 
@@ -121,7 +121,7 @@ namespace user
 
       ::count iItemCount = pnode->get_children_count();
 
-      __pointer(::base::application) papp = get_app();
+      ::pointer<::base::application>papp = get_app();
 
       m_bPopup = pnode->get_children_count() > 0 && pnode->get_name() == "menubar";
 
@@ -186,7 +186,7 @@ namespace user
 
             auto pcontextimage = pcontext->context_image();
 
-            __compose(m_pimage, pcontextimage->matter_image(strImage));
+            __construct(m_pimage, pcontextimage->matter_image(strImage));
 
          }
 
@@ -277,9 +277,9 @@ namespace user
       for (i32 iItem = 0; iItem < m_pmenuitema->get_size(); iItem++)
       {
 
-         __pointer(menu_item) pitem = m_pmenuitema->element_at(iItem);
+         ::pointer<menu_item>pitem = m_pmenuitema->element_at(iItem);
 
-         __pointer(::user::interaction) pinteraction = pitem->m_puserinteraction;
+         ::pointer<::user::interaction>pinteraction = pitem->m_puserinteraction;
 
          if (pinteraction.is_null())
          {

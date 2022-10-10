@@ -46,7 +46,7 @@ namespace colorertake5
          throw ::exception(exception("Error loading HRD file"));
       }
 
-      for(__pointer(::xml::node)curel = hbase.first_child(); curel; curel = curel->get_next_sibling())
+      for(::pointer<::xml::node>urel = hbase.first_child(); curel; curel = curel->get_next_sibling())
       {
          if (curel->get_type() == xml::node_element && curel->get_name() == "assign")
          {

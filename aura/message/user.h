@@ -23,7 +23,7 @@ namespace message
    public:
 
 
-      __pointer(::user::system)       m_pusersystem;
+      ::pointer<::user::system>      m_pusersystem;
 
 
       create() { }
@@ -376,7 +376,7 @@ namespace message
    public:
 
 
-      __pointer(::element)       m_pelement;
+      ::pointer<::element>      m_pelement;
 
 
       object();

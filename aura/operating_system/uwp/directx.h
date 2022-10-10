@@ -52,7 +52,7 @@ namespace universal_windows
 
       enum_phase                                      m_ephase;
 
-      ///__pointer(::draw2d_direct2d::plugin)            m_pplugin;
+      ///::pointer<::draw2d_direct2d::plugin>           m_pplugin;
       
       ::boolean                                    m_bCoreWindowVisible;
 

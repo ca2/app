@@ -310,7 +310,7 @@ namespace sockets
 
       //}
 
-      //__pointer(socket) tmp = create_listen_socket();
+      //::pointer<socket>tmp = create_listen_socket();
 
       ////auto lId = ::apex::get_system()->sockets().m_lListenSocket++;
 
@@ -385,7 +385,7 @@ namespace sockets
    }
 
 
-   __pointer(socket) listen_socket_base::create_listen_socket()
+   ::pointer<socket>listen_socket_base::create_listen_socket()
    {
 
       return nullptr;

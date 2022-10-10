@@ -17,7 +17,7 @@ namespace dynamic_source
       public:
 
 
-         __pointer(script_manager)   m_pmanager;
+         ::pointer<script_manager>  m_pmanager;
 
          clear_include_matches_file_watcher(::object * pobject);
 
@@ -61,7 +61,7 @@ namespace dynamic_source
       ::netnode::script_manager *                           m_pnetnodescriptmanager;
 
 
-      __pointer_array(plugin_map_item)                      m_pluginmapitema;
+      pointer_array < plugin_map_item >                      m_pluginmapitema;
 
 
       ::mutex                                               m_mutexIncludeMatches;
@@ -73,13 +73,13 @@ namespace dynamic_source
       string_map < bool >                                   m_mapShouldBuild;
       ::mutex                                               m_mutexIncludeExpandMd5;
       string_to_string                                      m_mapIncludeExpandMd5;
-      //__composite(::user::message_window)                   m_pmessagequeue;
+      //::pointer<::user::message_window>                  m_pmessagequeue;
 
       i32                                                   m_iTunnelPluginCount;
       ::mutex                                               m_mutexOutLink;
-      string_map < __pointer(::sockets::link_out_socket) >  m_mapOutLink;
+      string_map < ::pointer<::sockets::link_out_socket >> m_mapOutLink;
       ::mutex                                               m_mutexInLink;
-      __pointer(::sockets::in_link_map)                     m_pmapInLink;
+      ::pointer<::sockets::in_link_map>                    m_pmapInLink;
       ::mutex                                               m_mutexTunnel;
       strmap(tunnel_map_item)                               m_mapTunnel;
 
@@ -109,11 +109,11 @@ namespace dynamic_source
       i64                                                   m_iDatabaseWaitTimeOut;
 
       ::mutex                                               m_mutexSession;
-      string_map < __pointer(::dynamic_source::session) >   m_mapSession;
+      string_map < ::pointer<::dynamic_source::session >>  m_mapSession;
       ::mutex                                               m_mutexMusicDbPool;
       ::mutex                                               m_mutexWayDbPool;
-      __pointer(script_cache)                               m_pcache;
-      __pointer(script_compiler)                            m_pcompiler;
+      ::pointer<script_cache>                              m_pcache;
+      ::pointer<script_compiler>                           m_pcompiler;
       i32                                                   m_iBuildTimeWindow;
       i32                                                   m_iBuildTimeRandomWindow;
 
@@ -154,10 +154,10 @@ namespace dynamic_source
       string include_expand_md5(const ::string & strPath);
       void set_include_expand_md5(const ::string & strPath, const ::string & strMd5);
 
-      __pointer(::dynamic_source::session) get_session(const ::string & pszId);
+      ::pointer<::dynamic_source::session>get_session(const ::string & pszId);
 
-      __pointer(script_instance) get(const ::string & strNafme);
-      __pointer(script_instance) get(const ::string & strName, __pointer(script) & pscript);
+      ::pointer<script_instance>get(const ::string & strNafme);
+      ::pointer<script_instance>get(const ::string & strName, ::pointer<script> pscript);
       virtual void handle(::dynamic_source::httpd_socket * psocket);
       ::payload get_output_internal(::dynamic_source::script_interface * pinstanceParent, const ::string & strName);
       void run(const ::string & lpcszName);
@@ -175,7 +175,7 @@ namespace dynamic_source
       virtual ::file::path real_path(const ::file::path & strBase,const ::file::path & str);
 
 
-      __pointer(::crypto::rsa) get_rsa_key();
+      ::pointer<::crypto::rsa>get_rsa_key();
 
       string get_rsa_key(script_interface * pscriptinterface);
 

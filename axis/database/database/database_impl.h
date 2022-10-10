@@ -49,7 +49,7 @@ namespace database
       void rollback_transaction() override {};
 
    public:
-      //virtual __pointer(class dataset) dataset() = 0;
+      //virtual ::pointer<class dataset> dataset() = 0;
 
       bool isActive() override { return m_bActive; }
 
@@ -78,7 +78,7 @@ namespace database
 
       //virtual string escape(const ::string & psz);
 
-      //inline __pointer(class transaction) transaction();
+      //inline ::pointer<class transaction> transaction();
 
 
       ::count get_affected_rows_count() override;
@@ -91,20 +91,20 @@ namespace database
 
       ::payload get_agent(const ::string & pszTable, const ::string & psz, const ::string & pszUser) override;
 
-      __pointer(result_set) query_result(const ::string & pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) override;
+      ::pointer<result_set>query_result(const ::string & pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) override;
       //inline auto query(const ::string & pszQuery, ::count iRowCount = -1, ::count iColumnCount = -1) { return query_result(pszQuery, iRowCount, iColumnCount); }
 
 
       //virtual ::payload query(const ::string & pszQuery, ::count iMaxRowCount = -1, ::count iMaxColumnCount = -1);
-      __pointer(row_array) query_rows(const ::string & pszQuery) override;
-      __pointer(row) query_row(const ::string & pszQuery) override;
-      __pointer(payload_array) query_items(const ::string & pszQuery) override;
+      ::pointer<row_array>query_rows(const ::string & pszQuery) override;
+      ::pointer<row>query_row(const ::string & pszQuery) override;
+      ::pointer<payload_array>query_items(const ::string & pszQuery) override;
       ::payload query_item(const ::string & pszQuery, const ::payload & payloadDefault = ::payload()) override;
       bool query_blob(get_memory getmemory, const ::string & pszQuery) override;
 
-      //virtual bool query_rows(__pointer(row_array) & rows, const ::string & pszQuery);
-      //virtual bool query_row(__pointer(row) & rows, const ::string & pszQuery);
-      //virtual bool query_items(__pointer(payload_array) & items, const ::string & pszQuery);
+      //virtual bool query_rows(::pointer<row_array>& rows, const ::string & pszQuery);
+      //virtual bool query_row(::pointer<row>& rows, const ::string & pszQuery);
+      //virtual bool query_items(::pointer<payload_array>& items, const ::string & pszQuery);
       //virtual bool query_item(::payload & item, const ::string & pszQuery);
 
 
@@ -124,7 +124,7 @@ namespace database
    //public:
 
    //   bool m_bProcessed;
-   //   __pointer(database) m_pdatabase;
+   //   ::pointer<database>m_pdatabase;
 
    //   transaction(database* pdatabase);
    //   ~transaction();
@@ -135,7 +135,7 @@ namespace database
 
    //};
 
-   //inline __pointer(transaction) database::transaction()
+   //inline ::pointer<transaction>database::transaction()
    //{
    //   return __new(class transaction(this));
    //}

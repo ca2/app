@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "core/filesystem/filemanager/_filemanager.h"
 //#endif
@@ -73,7 +73,7 @@ void filemanager_impact_base::install_message_routing(::channel * pchannel)
 }
 
 
-//__pointer(::fs::data) filemanager_impact_base::fs_data()
+//::pointer<::fs::data>filemanager_impact_base::fs_data()
 //{
 //
 //   return filemanager_document()->fs_data();
@@ -133,7 +133,7 @@ void filemanager_impact_base::knowledge(const ::file::path & pathUser, const ::a
 void filemanager_impact_base::_001OnUpdateEditPaste(::message::message * pmessage)
 {
 
-   __pointer(::message::command) pcommand(pmessage);
+   ::pointer<::message::command>pcommand(pmessage);
 
    auto pcopydesk = copydesk();
    
@@ -204,7 +204,7 @@ void filemanager_impact_base::_001OnEditPaste(::message::message * pmessage)
 void filemanager_impact_base::_001OnOperationDocMessage(::message::message * pmessage)
 {
 
-   __pointer(::user::message) pusermessage(pmessage);
+   ::pointer<::user::message>pusermessage(pmessage);
 
    if(pusermessage->m_wparam == 4096)
    {
@@ -233,7 +233,7 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
       if (filemanager_document() == ptopic->cast < ::user::document >(DOCUMENT_ID))
       {
 
-         __pointer(::database::client) pclient = parent_frame();
+         ::pointer<::database::client>pclient = parent_frame();
 
          if (pclient != nullptr && !::string(pclient->m_atom).contains("::frame"))
          {
@@ -252,7 +252,7 @@ void filemanager_impact_base::handle(::topic * ptopic, ::context * pcontext)
    else if (ptopic->m_atom == id_synchronize_path)
    {
 
-      __pointer(::core::application) papp = get_app();
+      ::pointer<::core::application>papp = get_app();
 
       auto pfileitem = ptopic->_extended_topic()->m_pfileitem;
 

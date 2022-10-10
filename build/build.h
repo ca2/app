@@ -16,7 +16,7 @@ namespace app_core_build
 
 
       bool     m_bStdout;
-      //__pointer(::user::interaction)      m_puserinteraction;
+      //::pointer<::user::interaction>     m_puserinteraction;
 
 
       build();

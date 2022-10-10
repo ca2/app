@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 // #if !BROAD_PRECOMPILED_HEADER
 // #include "_graphics.h"
 // #endif 
@@ -163,7 +163,7 @@ namespace html
       if(pstyle != nullptr)
          i = pstyle->m_propertyset.find_index(idName);
 
-      __pointer(::axis::session) psession = get_session();
+      ::pointer<::axis::session>psession = get_session();
 
       auto puser = psession->user();
 
@@ -338,7 +338,7 @@ namespace html
       if(pstyle != nullptr)
          i = pstyle->m_propertyset.find_index(idName);
 
-      __pointer(::axis::session) psession = get_session();
+      ::pointer<::axis::session>psession = get_session();
 
       auto puser = psession->user();
 
@@ -510,7 +510,7 @@ namespace html
       if(pstyle != nullptr)
          i = pstyle->m_propertyset.find_index(idName);
 
-      __pointer(::axis::session) psession = get_session();
+      ::pointer<::axis::session>psession = get_session();
 
       auto puser = psession->user();
 
@@ -1298,7 +1298,7 @@ namespace html
    void style::initialize_style(e_tag etag)
    {
 
-      __pointer(::axis::session) psession = get_session();
+      ::pointer<::axis::session>psession = get_session();
 
       auto puser = psession->user();
 

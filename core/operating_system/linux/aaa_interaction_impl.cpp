@@ -245,7 +245,7 @@ namespace linux
    }
 
 
-   bool interaction_impl::_native_create_window_ex(__pointer(::user::system) pusersystem)
+   bool interaction_impl::_native_create_window_ex(::pointer<::user::system>pusersystem)
    {
 
       ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
@@ -810,7 +810,7 @@ namespace linux
    void interaction_impl::on_message_move(::message::message * pmessage)
    {
 
-      __pointer(::message::size) psize(pmessage);
+      ::pointer<::message::size>psize(pmessage);
 
       if (m_bDestroyImplOnly)
       {
@@ -828,7 +828,7 @@ namespace linux
 
       }
 
-      __pointer(::message::move) pmove(pmessage);
+      ::pointer<::message::move>pmove(pmessage);
 
 //      m_puserinteraction->window_state3().m_point = pmove->m_point;
 //
@@ -865,7 +865,7 @@ namespace linux
 
       }
 
-      __pointer(::message::size) psize(pmessage);
+      ::pointer<::message::size>psize(pmessage);
 
 //      m_puserinteraction->window_state3().m_size = psize->m_size;
 //
@@ -886,7 +886,7 @@ namespace linux
    void interaction_impl::on_message_show_window(::message::message * pmessage)
    {
 
-      __pointer(::message::show_window) pshowwindow(pmessage);
+      ::pointer<::message::show_window>pshowwindow(pmessage);
 
       if(!m_puserinteraction)
       {
@@ -1091,7 +1091,7 @@ namespace linux
 
       */
 
-      __pointer(::user::interaction_impl) pWnd = (::user::interaction_impl *) this;
+      ::pointer<::user::interaction_impl>pWnd = (::user::interaction_impl *) this;
       if (pWnd.m_p != this)
          dumpcontext << " (Detached or temporary interaction_impl)";
       else
@@ -1102,7 +1102,7 @@ namespace linux
       ::rectangle rectangle;
       ((::user::interaction_impl *) this)->m_puserinteraction->get_window_rect(&rectangle);
       dumpcontext << "\nrect = " << rectangle;
-      dumpcontext << "\nparent __pointer(::interaction_impl) = " << (void *)((::user::interaction_impl *) this)->get_parent();
+      dumpcontext << "\nparent ::pointer<::interaction_impl>= " << (void *)((::user::interaction_impl *) this)->get_parent();
 
 //      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
       //    if (::GetWindowLong(get_handle(), GWL_STYLE) & WS_CHILD)
@@ -1587,7 +1587,7 @@ namespace linux
 
          ::message::key * pkey = (::message::key *) pusermessage;
 
-         __pointer(::user::interaction) puiFocus =  get_keyboard_focus();
+         ::pointer<::user::interaction>puiFocus =  get_keyboard_focus();
 
          if(puiFocus != nullptr
                && puiFocus->is_window()
@@ -1776,7 +1776,7 @@ namespace linux
 //      ASSERT(get_handle() != nullptr);
 //      ASSERT_VALID(this);
 //
-//      __pointer(::user::interaction)pWndTopLevel=EnsureTopLevel();
+//      ::pointer<::user::interaction>WndTopLevel=EnsureTopLevel();
 //
 //      return interaction_impl::GetForegroundWindow() == pWndTopLevel->GetLastActivePopup();
 //   }
@@ -1784,7 +1784,7 @@ namespace linux
 //   void interaction_impl::ActivateTopParent()
 //   {
 //      // special activate logic for floating toolbars and palettes
-//      __pointer(::user::interaction) pActiveWnd = GetForegroundWindow();
+//      ::pointer<::user::interaction>pActiveWnd = GetForegroundWindow();
 ////      if (pActiveWnd == nullptr || !(LNX_WINDOW(pActiveWnd)->get_handle() == get_handle() || ::IsChild(LNX_WINDOW(pActiveWnd)->get_handle(), get_handle())))
 //      {
 //         // clicking on floating frame when it does not have
@@ -1794,14 +1794,14 @@ namespace linux
 //   }
 
    /*
-      __pointer(::user::frame_window) interaction_impl::top_level_frame()
+      ::pointer<::user::frame_window>interaction_impl::top_level_frame()
       {
          if (get_handle() == nullptr) // no oswindow attached
             return nullptr;
 
          ASSERT_VALID(this);
 
-         __pointer(::user::frame_window) pFrameWnd = nullptr;
+         ::pointer<::user::frame_window>pFrameWnd = nullptr;
          if(m_puserinteraction != this)
             pFrameWnd =  (m_puserinteraction);
          else
@@ -1811,14 +1811,14 @@ namespace linux
 
          if (pFrameWnd != nullptr)
          {
-            __pointer(::user::frame_window) pTemp;
+            ::pointer<::user::frame_window>pTemp;
             while ((pTemp = pFrameWnd->get_parent_frame()) != nullptr)
                pFrameWnd = pTemp;
          }
          return pFrameWnd;
       }*/
 
-   /*   __pointer(::interaction_impl) interaction_impl::GetSafeOwner(::interaction_impl * pParent, oswindow* pWndTop)
+   /*   ::pointer<::interaction_impl>interaction_impl::GetSafeOwner(::interaction_impl * pParent, oswindow* pWndTop)
       {
          oswindow hWnd = GetSafeOwner_((oswindow) pParent->get_handle(), pWndTop);
          return ::linux::interaction_impl::from_handle(hWnd);
@@ -1983,7 +1983,7 @@ namespace linux
 //   bool interaction_impl::HandleFloatingSysCommand(::u32 nID, LPARAM lparam)
 //
 //   {
-//      /*      __pointer(::user::interaction) pParent = GetTopLevelParent();
+//      /*      ::pointer<::user::interaction>pParent = GetTopLevelParent();
 //            switch (nID & 0xfff0)
 //            {
 //            case SC_PREVWINDOW:
@@ -2037,11 +2037,11 @@ namespace linux
 //      ASSERT(puiStop == nullptr || puiStop->is_window());
 //      ASSERT(pmessage != nullptr);
 //
-//      __pointer(::user::message) pusermessage(pmessage);
+//      ::pointer<::user::message>pusermessage(pmessage);
 //      // walk from the target interaction_impl up to the hWndStop interaction_impl checking
 //      //  if any interaction_impl wants to translate this message
 //
-//      for (__pointer(::user::interaction) pinteraction = pusermessage->m_puserinteraction; pinteraction != nullptr; pinteraction->get_parent())
+//      for (::pointer<::user::interaction>pinteraction = pusermessage->m_puserinteraction; pinteraction != nullptr; pinteraction->get_parent())
 //      {
 //
 //         pinteraction->pre_translate_message(pmessage);
@@ -2075,10 +2075,10 @@ namespace linux
 //               return false;
 //
 //            // check if in permanent ::collection::map, if it is reflect it (could be OLE control)
-//            __pointer(::interaction_impl) pWnd =  (pMap->lookup_permanent(hWndChild)); */
+//            ::pointer<::interaction_impl>pWnd =  (pMap->lookup_permanent(hWndChild)); */
 //
 //      __s_throw(todo());
-////      __pointer(::user::interaction) pWnd =  (FromHandlePermanent(hWndChild));
+////      ::pointer<::user::interaction>pWnd =  (FromHandlePermanent(hWndChild));
 ////      ASSERT(pWnd == nullptr || pWnd->get_handle() == hWndChild);
 ////      if (pWnd == nullptr)
 ////      {
@@ -3280,10 +3280,10 @@ namespace linux
 //   }
 //
 //   /*
-//      __pointer(::user::frame_window) interaction_impl::EnsureParentFrame()
+//      ::pointer<::user::frame_window>interaction_impl::EnsureParentFrame()
 //      {
 //
-//         __pointer(::user::frame_window) pFrameWnd=get_parent_frame();
+//         ::pointer<::user::frame_window>pFrameWnd=get_parent_frame();
 //
 //         ENSURE_VALID(pFrameWnd);
 //
@@ -3295,7 +3295,7 @@ namespace linux
 //      ::user::interaction * interaction_impl::EnsureTopLevelParent()
 //      {
 //
-//         __pointer(::user::interaction)pWnd=GetTopLevelParent();
+//         ::pointer<::user::interaction>Wnd=GetTopLevelParent();
 //
 //         ENSURE_VALID(pWnd);
 //
@@ -4378,7 +4378,7 @@ namespace linux
 //
 //    void interaction_impl::on_message_set_cursor(::message::message * pmessage)
 //    {
-//       __pointer(::user::message) pusermessage(pmessage);
+//       ::pointer<::user::message>pusermessage(pmessage);
 //       if(psession->get_cursor() != nullptr
 //             && psession->get_cursor()->m_ecursor != cursor_system)
 //       {
@@ -4669,7 +4669,7 @@ namespace linux
 //      oswindow hWnd = hParent;
 //      if (hWnd == nullptr)
 //      {
-//         /* trans      __pointer(frame_window) pFrame = channel::GetRoutingFrame_();
+//         /* trans      ::pointer<frame_window>pFrame = channel::GetRoutingFrame_();
 //         if (pFrame != nullptr)
 //         hWnd = pFrame->get_handle();
 //         else
@@ -4721,7 +4721,7 @@ namespace linux
 //
 ////   void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
 ////   {
-////      __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
+////      ::pointer<::message::erase_bkgnd>perasebkgnd(pmessage);
 ////      perasebkgnd->m_bRet = true;
 ////      perasebkgnd->set_result(true);
 ////   }

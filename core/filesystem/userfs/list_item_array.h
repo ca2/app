@@ -11,7 +11,7 @@ namespace userfs
    public:
 
 
-      //__pointer(::less_predicateicate_base < const __pointer(list_item) & >)   m_pless;
+      //__pointer(::less_predicateicate_base < const ::pointer<list_item>& >)   m_pless;
 
 
       list_item_array();
@@ -20,7 +20,7 @@ namespace userfs
 
       void add_fs_item(list_item & item);
 
-      //__pointer(list_item) get_item(index i, const ::atom & atom);
+      //::pointer<list_item>get_item(index i, const ::atom & atom);
 
       inline list_item * get_item(index iItem)  
       {

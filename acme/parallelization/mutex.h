@@ -83,7 +83,7 @@ public:
    bool already_exists();
 
 
-   ///static __pointer(::mutex) open_mutex(::matter * pmatter, const char * lpszName) {return ::open_mutex(pmatter, lpszName);}
+   ///static ::pointer<::mutex>open_mutex(::matter * pmatter, const char * lpszName) {return ::open_mutex(pmatter, lpszName);}
 
 
 };

@@ -14,12 +14,12 @@ namespace account
    public:
 
 
-      __composite(::user::still)             m_pstillUser;
-      __composite(::user::plain_edit)        m_peditUser;
-      __composite(::user::still)             m_pstillPassword;
-      __composite(::user::plain_edit)        m_peditPassword;
-      __composite(::user::button)            m_pbutton;
-      __composite(::user::button)            m_pbuttonClose;
+      ::pointer<::user::still>            m_pstillUser;
+      ::pointer<::user::plain_edit>       m_peditUser;
+      ::pointer<::user::still>            m_pstillPassword;
+      ::pointer<::user::plain_edit>       m_peditPassword;
+      ::pointer<::user::button>           m_pbutton;
+      ::pointer<::user::button>           m_pbuttonClose;
 
 
       string                        m_strUsername;

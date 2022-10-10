@@ -16,7 +16,7 @@ namespace html
 
       string                              m_strOptions;
       string                              m_strStyle;
-      __pointer(::text::context)      m_ptextcontext;
+      ::pointer<::text::context>     m_ptextcontext;
 
 
       file();

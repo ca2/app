@@ -121,7 +121,7 @@ public:
       enum_timer              m_etimer;
    };
 
-   __reference(::aura::timer_array)    m_ptimera;
+   ::pointer<::aura::timer_array>   m_ptimera;
    PFN_TIMER                           m_pfnTimer;
    timer_callback *                    m_pcallback;
    bool                                m_bPeriodic;

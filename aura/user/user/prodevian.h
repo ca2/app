@@ -7,7 +7,7 @@ class CLASS_DECL_AURA prodevian :
 public:
 
 
-   __pointer(::user::interaction)   m_pinteraction;
+   ::pointer<::user::interaction>   m_pinteraction;
 
 
    prodevian(::user::interaction* pinteraction);

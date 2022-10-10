@@ -11,7 +11,7 @@
 
 
 template < typename HOLDEE >
-inline __pointer(___shape<HOLDEE >) __create_shape(const enum_shape & eshape)
+inline ::pointer<___shape<HOLDEE >> __create_shape(const enum_shape & eshape)
 {
 
    switch (eshape)

@@ -7,14 +7,6 @@
 
 
 
-#define DEFINE_COMPARISON_WITH_DURATION(TYPE) \
-inline bool TYPE::operator == (const ::duration & duration) const { return ::duration(*this) == duration; } \
-inline bool TYPE::operator < (const ::duration & duration) const { return ::duration(*this) < duration; } \
-inline bool TYPE::operator <= (const ::duration & duration) const { return ::duration(*this) <= duration; } \
-inline bool TYPE::operator > (const ::duration & duration) const { return ::duration(*this) > duration; } \
-inline bool TYPE::operator >= (const ::duration & duration) const { return ::duration(*this) >= duration; } \
-inline bool TYPE::operator != (const ::duration & duration) const { return ::duration(*this) != duration; } 
-
 
 
 //#define COMPARISON_WITH_DURATION(TYPE) \

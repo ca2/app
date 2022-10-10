@@ -473,10 +473,10 @@ public:
 
 
    template < typename TYPE >
-   __pointer(TYPE) get_typed_ptr(index i = 0)
+   ::pointer<TYPE>get_typed_ptr(index i = 0)
    {
 
-      __pointer(TYPE) p;
+      ::pointer<TYPE>p;
 
      for(auto & pvalue : values())
      {

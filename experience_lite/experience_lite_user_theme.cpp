@@ -861,7 +861,7 @@ namespace lite
 
       bool bHover = iItem == ptoolbar->_001GetHoverItem();
 
-      __pointer(::user::menu_central) pmenucentral = psession->userex()->menu();
+      ::pointer<::user::menu_central>pmenucentral = psession->userex()->menu();
 
       ::u32 uImage = pmenucentral->command_image(item.m_atom);
 
@@ -1165,7 +1165,7 @@ namespace lite
 
       bool bHover = iItem == ptoolbar->_001GetHoverItem();
 
-      __pointer(::user::menu_central) pmenucentral = psession->userex()->menu();
+      ::pointer<::user::menu_central>pmenucentral = psession->userex()->menu();
 
 /*      ::u32 uImage = pmenucentral->command_image(item.m_atom);
 

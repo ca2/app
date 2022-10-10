@@ -24,7 +24,7 @@ namespace draw2d
       ::size_i32                          m_szHotspotOffset;
 
 
-      __pointer(::windowing::cursor)      m_pcursor;
+      ::pointer<::windowing::cursor>     m_pcursor;
 
 
       cursor();
@@ -61,7 +61,7 @@ namespace draw2d
    };
 
 
-   typedef __pointer(cursor) cursor_pointer;
+   typedef ::pointer<cursor>cursor_pointer;
 
 
    CLASS_DECL_AURA void cursor_alloc(::object * pobject, cursor_pointer & image,int xHotspot,int yHotspot);

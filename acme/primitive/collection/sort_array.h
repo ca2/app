@@ -22,8 +22,8 @@
 //
 //
 //   bool                                            m_bSorted;
-//   __pointer(index_array)                          m_pindexa;
-//   __pointer(less_predicateicate_base < ARG_TYPE >)          m_pless;
+//   ::pointer<index_array>                         m_pindexa;
+//   pointer< less_predicateicate_base < ARG_TYPE > >          m_pless;
 //
 //   sort_data()
 //   {
@@ -41,7 +41,7 @@
 //
 //template < typename ARG_TYPE >
 //class sort_map :
-//   virtual public id_map < __pointer(sort_data < ARG_TYPE >) >
+//   virtual public id_map < pointer< sort_data < ARG_TYPE > > >
 //{
 //public:
 //
@@ -66,8 +66,8 @@
 //
 //
 //   sort_map                      m_map;
-//   __pointer(BASE_ARRAY_TYPE)    m_parray;
-//   __pointer(sort_data)          m_psortdata; // from last get_sort call
+//   ::pointer<BASE_ARRAY_TYPE>   m_parray;
+//   ::pointer<sort_data>         m_psortdata; // from last get_sort call
 //
 //
 //   sort_array() { m_parray = __new(BASE_ARRAY_TYPE); }
@@ -371,7 +371,7 @@
 //
 //
 //// smart_pointer_sort_array
-//#define spsa(T) sort_array < __pointer(T), const __pointer(T) &, __pointer_array(T) >
+//#define spsa(T) sort_array < pointer < T >, const pointer < T > &, pointer_array < T > >
 //
 //
 //using sort_int_ptr_array = sort_array < ::index  > ;
@@ -380,4 +380,4 @@
 //
 //
 //template < typename TYPE >
-//using sort_pointer_array = sort_array < __pointer(TYPE), const __pointer(TYPE) &, __pointer_array(TYPE) >;
+//using sort_pointer_array = sort_array < ::pointer<TYPE> const ::pointer<TYPE>, pointer_array < TYPE > >;

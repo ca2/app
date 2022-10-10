@@ -7,8 +7,8 @@ class CLASS_DECL_APEX channel :
 public:
 
 
-   static __pointer(::mutex)                       s_pmutexChannel;
-   __pointer(::channel)                            m_pchannel;
+   static ::pointer<::mutex>                      s_pmutexChannel;
+   ::pointer<::channel>                           m_pchannel;
    id_array                                        m_idaHandledCommands;
    ::message::dispatcher_map                       m_dispatchermap;
    //::procedure_map                                 m_proceduremap;
@@ -51,9 +51,9 @@ public:
 
    virtual void route_message(::message::message * pmessage);
 
-   virtual __pointer(::message::message) get_message(MESSAGE * pmessage);
+   virtual ::pointer<::message::message>get_message(MESSAGE * pmessage);
 
-   virtual __pointer(::message::message) get_message(const ::atom& atom, wparam wparam, lparam lparam);
+   virtual ::pointer<::message::message>get_message(const ::atom& atom, wparam wparam, lparam lparam);
 
 
    //void id_notify(const ::atom & atom, const ::matter * pmatter);

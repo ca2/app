@@ -55,7 +55,7 @@ namespace user
       //   else if (m_puserinteractionpointeraChild->interaction_count() == 1)
       //   {
 
-      //      __pointer(::user::interaction) puserinteractionOld = m_puserinteractionpointeraChild->first_interaction();
+      //      ::pointer<::user::interaction>puserinteractionOld = m_puserinteractionpointeraChild->first_interaction();
 
       //      puserinteractionChild->m_pinteractionScaler = m_pinteractionScaler;
 
@@ -66,7 +66,7 @@ namespace user
 
       //         puserinteractionOld->m_puserinteraction->m_puserinteractionParent.release();
 
-      //         __pointer(::user::interaction) puserinteractionParent = this;
+      //         ::pointer<::user::interaction>puserinteractionParent = this;
 
       //         auto pimpact = puserinteractionChild->cast < ::user::impact>();
 
@@ -76,7 +76,7 @@ namespace user
       //            while (puserinteractionParent)
       //            {
 
-      //               __pointer(::user::frame) pframe = puserinteractionParent;
+      //               ::pointer<::user::frame>pframe = puserinteractionParent;
 
       //               if (pframe)
       //               {
@@ -252,7 +252,7 @@ namespace user
    }
 
 
-   __pointer(place_holder) place_holder::place_hold(::user::interaction * puiChild)
+   ::pointer<place_holder>place_holder::place_hold(::user::interaction * puiChild)
    {
 
       if (::is_null(puiChild))
@@ -262,7 +262,7 @@ namespace user
 
       }
 
-      /*__pointer(::base::application) papp = get_app();
+      /*::pointer<::base::application>papp = get_app();
 
       auto puserinteractionpointeraChild = m_puserinteractionpointeraChild;
 
@@ -308,7 +308,7 @@ namespace user
 
       return true;
 
-      //__pointer(::base::application) papp = get_app();
+      //::pointer<::base::application>papp = get_app();
 
       //return papp->place_hold(pinteraction) != nullptr;
 
@@ -372,10 +372,10 @@ namespace user
    //}
 
 
-   __pointer(place_holder) place_holder::create_shadow_clone()
+   ::pointer<place_holder>place_holder::create_shadow_clone()
    {
 
-      __pointer(place_holder) pholder = __new(place_holder);
+      ::pointer<place_holder>pholder = __new(place_holder);
 
       if(pholder.is_null())
       {
@@ -561,7 +561,7 @@ namespace user
          return;
 
       // then pump through parent
-      __pointer(::user::interaction) puiParent = get_parent();
+      ::pointer<::user::interaction>puiParent = get_parent();
 
       if (puiParent != nullptr)
       {

@@ -18,7 +18,7 @@ namespace user
       public:
 
 
-         __pointer(span)   m_pspan;
+         ::pointer<span>  m_pspan;
 
          rectangle_f64             m_rectangleBox;
          rectangle_f64             m_rectangleDevice;

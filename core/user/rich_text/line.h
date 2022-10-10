@@ -10,7 +10,7 @@ namespace user
 
 
       class CLASS_DECL_CORE line :
-         virtual public __pointer_array(box)
+         virtual public pointer_array < box >
       {
       public:
 

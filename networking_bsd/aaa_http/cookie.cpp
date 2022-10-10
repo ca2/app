@@ -184,7 +184,7 @@ namespace http
 
    void cookies::add(const char * psz)
    {
-      __pointer(class cookie) cookie(__new(class cookie));
+      ::pointer<class cookie> cookie(__new(class cookie));
       cookie->m_bSecure = false;
       //string_array stra;
       //stra.add_tokens(psz, ";", true);

@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/platform/timer.h"
 #include "aura/graphics/image/list.h"
 //#if !BROAD_PRECOMPILED_HEADER
@@ -174,7 +174,7 @@ namespace filemanager
    void file_list::on_message_context_menu(::message::message * pmessage)
    {
 
-      __pointer(::message::mouse) pcontextmenu(pmessage);
+      ::pointer<::message::mouse>pcontextmenu(pmessage);
 
       synchronous_lock synchronouslock(fs_list()->mutex());
 
@@ -385,14 +385,14 @@ namespace filemanager
 
    void file_list::_001OnShellCommand(::message::message * pmessage)
    {
-      __pointer(::user::message) pcommand(pmessage);
+      ::pointer<::user::message>pcommand(pmessage);
       m_pcontextmenu->OnCommand(pcommand->GetId());
    }
 
    void file_list::_001OnFileManagerItemCommand(::message::message * pmessage)
    {
 
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
 
       ::file::item_array itema;
 
@@ -426,7 +426,7 @@ namespace filemanager
    void file_list::_001OnFileManagerItemUpdate(::message::message * pmessage)
    {
 
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
 
       synchronous_lock synchronouslock(fs_list()->mutex());
 
@@ -459,7 +459,7 @@ namespace filemanager
    }
 
 
-   void file_list::_017OpenContextMenuFolder(__pointer(::file::item)  item, const ::action_context & context)
+   void file_list::_017OpenContextMenuFolder(::pointer<::file::item> item, const ::action_context & context)
    {
 
       string_array straCommand;
@@ -500,7 +500,7 @@ namespace filemanager
    }
 
 
-   void file_list::_017OpenFolder(__pointer(::file::item) pitem, const ::action_context & context)
+   void file_list::_017OpenFolder(::pointer<::file::item>pitem, const ::action_context & context)
    {
 
       filemanager_document()->browse(pitem, context);
@@ -551,11 +551,11 @@ namespace filemanager
 
    void file_list::_001OnUpdateFileRename(::message::message * pmessage)
    {
-      //      __pointer(::message::command) pcommand(pmessage);
+      //      ::pointer<::message::command>pcommand(pmessage);
       //    pcommand->enable(_001GetSelectedItemCount() == 1);
       //  pmessage->m_bRet = true;
 
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
       ::user::range range;
       _001GetSelection(range);
       pcommand->enable(
@@ -569,7 +569,7 @@ namespace filemanager
    void file_list::_001OnUpdateEditCopy(::message::message * pmessage)
    {
 
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
 
       ::user::range range;
 
@@ -601,7 +601,7 @@ namespace filemanager
    void file_list::_001OnUpdateTrashThatIsNotTrash(::message::message * pmessage)
    {
 
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
 
       ::user::range range;
 
@@ -635,9 +635,9 @@ namespace filemanager
    void file_list::_001OnUpdateOpenWith(::message::message * pmessage)
    {
 
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
 
-      __pointer(::user::menu_command) pmenucommandui(pcommand);
+      ::pointer<::user::menu_command>pmenucommandui(pcommand);
 
       if (pmenucommandui)
       {
@@ -804,7 +804,7 @@ namespace filemanager
 
    //void file_list::_001OnUpdateSpafy(::message::message * pmessage)
    //{
-   //   __pointer(::message::command) pcommand(pmessage);
+   //   ::pointer<::message::command>pcommand(pmessage);
    //   ::user::range range;
    //   _001GetSelection(range);
    //   pcommand->enable(range.get_item_count() > 0);
@@ -877,7 +877,7 @@ namespace filemanager
 
    //void file_list::_001OnUpdateSpafy2(::message::message * pmessage)
    //{
-   //   __pointer(::message::command) pcommand(pmessage);
+   //   ::pointer<::message::command>pcommand(pmessage);
    //   pcommand->enable(true);
    //   pmessage->m_bRet = true;
    //}
@@ -888,7 +888,7 @@ namespace filemanager
 
    //   synchronous_lock synchronouslock(fs_list()->mutex());
 
-   //   __pointer(::userfs::list_data) pdata = fs_list();
+   //   ::pointer<::userfs::list_data>pdata = fs_list();
    //
    //   __UNREFERENCED_PARAMETER(pmessage);
    //
@@ -980,7 +980,7 @@ namespace filemanager
    }
 
 
-   //__pointer(::fs::data) file_list::fs_data()
+   //::pointer<::fs::data>file_list::fs_data()
    //{
 
    //   return ::userfs::list::fs_data();
@@ -1006,7 +1006,7 @@ namespace filemanager
    void file_list::on_message_show_window(::message::message * pmessage)
    {
 
-      //__pointer(::message::show_window) pshowwindow(pmessage);
+      //::pointer<::message::show_window>pshowwindow(pmessage);
 
       __UNREFERENCED_PARAMETER(pmessage);
 
@@ -1090,7 +1090,7 @@ namespace filemanager
 
       index_biunique iaDisplayToStrict;
 
-      __pointer(icon_layout) piconlayout;
+      ::pointer<icon_layout>piconlayout;
 
       __construct_new(piconlayout);
 
@@ -1477,7 +1477,7 @@ namespace filemanager
    //void file_list::_001OnMainPostMessage(::message::message * pmessage)
    //{
 
-   //   __pointer(::user::message) pusermessage(pmessage);
+   //   ::pointer<::user::message>pusermessage(pmessage);
 
    //   switch (pusermessage->m_wparam)
    //   {
@@ -1567,7 +1567,7 @@ namespace filemanager
 
    //         }
 
-   //         __pointer(::userfs::list_item) pitem = fs_list_item(iStrict);
+   //         ::pointer<::userfs::list_item>pitem = fs_list_item(iStrict);
 
    //         if (pitem->IsFolder())
    //         {
@@ -1682,7 +1682,7 @@ namespace filemanager
 
       file_list_callback * pcallback = filemanager_data()->m_pfilelistcallback;
 
-      __pointer(::user::button) pbutton = pinteraction;
+      ::pointer<::user::button>pbutton = pinteraction;
 
       if (pcallback != nullptr && pbutton != nullptr)
       {
@@ -1757,7 +1757,7 @@ namespace filemanager
    void file_list::_001OnVScroll(::message::message * pmessage)
    {
 
-      //__pointer(::message::scroll) pscroll(pmessage);
+      //::pointer<::message::scroll>pscroll(pmessage);
 
       //m_iCreateImageListStep = pscroll->m_nPos;
 
@@ -2160,7 +2160,7 @@ namespace filemanager
 
             //html::impl::input_text * pinput = dynamic_cast < html::impl::input_text * > (pelemental->m_pimpl);
 
-            __pointer(::user::interaction) puserinteractionParent = ptopic->m_puserelement;
+            ::pointer<::user::interaction>puserinteractionParent = ptopic->m_puserelement;
 
             auto pinteraction = puserinteractionParent->get_child_by_id("encontrar");
 

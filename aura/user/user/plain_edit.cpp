@@ -908,7 +908,7 @@ namespace user
    void plain_edit::on_message_create(::message::message * pmessage)
    {
 
-      __pointer(::message::create) pcreate(pmessage);
+      ::pointer<::message::create>pcreate(pmessage);
 
 #if !defined(_UWP)
 
@@ -937,7 +937,7 @@ namespace user
 
 #if !defined(APPLE_IOS) && !defined(ANDROID)
 
-      __pointer(::aura::application) papp = get_app();
+      ::pointer<::aura::application>papp = get_app();
 
       //psession->keyboard(); // trigger keyboard creationg
       papp->defer_create_keyboard();
@@ -970,12 +970,12 @@ namespace user
 
       }
 
-      m_propertyText = fetch_property(m_atom, true);
+      m_linkedpropertyText = fetch_property(m_atom, true);
 
-      if (m_propertyText && !m_propertyText->is_empty())
+      if (m_linkedpropertyText && !m_linkedpropertyText->is_empty())
       {
 
-         _001SetText(m_propertyText->string(), ::e_source_initialize);
+         _001SetText(m_linkedpropertyText->string(), ::e_source_initialize);
 
       }
 
@@ -4658,7 +4658,7 @@ namespace user
    void plain_edit::_001OnUniChar(::message::message * pmessage)
    {
 
-      //      __pointer(::user::message) pusermessage(pmessage);
+      //      ::pointer<::user::message>pusermessage(pmessage);
       //
       //      if (::str::ch().is_legal_uni_index(pusermessage->m_wparam))
       //      {
@@ -6476,7 +6476,7 @@ namespace user
 
          ::output_debug_string("Current Text: " + strText + "\n");
 
-         __release(m_pitemComposing);
+         m_pitemComposing.release();
 
       }
 
@@ -6492,7 +6492,7 @@ namespace user
       //
       //#endif
 
-      __release(m_pitemComposing);
+      m_pitemComposing.release();
 
       set_need_redraw();
 
@@ -6504,7 +6504,7 @@ namespace user
    void plain_edit::clear_ime_composition()
    {
 
-      __release(m_pitemComposing);
+      m_pitemComposing.release();
 
       text_composition_composite::clear_ime_composition();
 
@@ -6614,7 +6614,7 @@ namespace user
                if (!m_pitemComposing)
                {
 
-                  __refer(m_pitemComposing, m_pinsert);
+                  m_pitemComposing = m_pinsert;
 
                }
 
@@ -6775,7 +6775,7 @@ namespace user
 
             m_ptree->m_peditfile->MacroBegin();
 
-            __release(m_pitemComposing);
+            m_pitemComposing.release();
 
             string strText;
 
@@ -6805,7 +6805,7 @@ namespace user
 
             IndexRegisterInsert(iStart, strComposition);
 
-            __refer(m_pitemComposing, m_pinsert);
+            m_pitemComposing = m_pinsert;
 
             m_ptree->m_peditfile->MacroEnd();
 
@@ -6864,7 +6864,7 @@ namespace user
       queue_graphics_call([this](::draw2d::graphics_pointer& pgraphics)
          {
 
-            __release(m_pitemComposing);
+            m_pitemComposing.release();
 
             if (m_ptextcompositionclient)
             {
@@ -7314,7 +7314,7 @@ namespace user
 
    void plain_edit::MacroBegin()
    {
-      __pointer(::user::plain_text_group_command) pgroupcommand = __new(plain_text_group_command);
+      ::pointer<::user::plain_text_group_command>pgroupcommand = __new(plain_text_group_command);
       pgroupcommand->m_pparent = m_ptree->m_pgroupcommand;
       m_ptree->m_pgroupcommand = pgroupcommand;
    }
@@ -7335,7 +7335,7 @@ namespace user
    }
 
 
-   void plain_edit::MacroRecord(__pointer(plain_text_command) pcommand)
+   void plain_edit::MacroRecord(::pointer<plain_text_command>pcommand)
    {
       synchronous_lock synchronouslock(mutex());
       if (m_ptree->m_pgroupcommand != nullptr && m_ptree->m_pgroupcommand != pcommand)
@@ -7360,7 +7360,7 @@ namespace user
             if (!CanUndo())
                return false;
 
-            __pointer(plain_text_command) pcommand = m_ptreeitem->m_pdataitem;
+            ::pointer<plain_text_command>pcommand = m_ptreeitem->m_pdataitem;
 
 
             pcommand->Undo(m_ptree);
@@ -7422,7 +7422,7 @@ namespace user
             return false;
          }
 
-         __pointer(::data::tree_item) ptreeitem;
+         ::pointer<::data::tree_item>ptreeitem;
 
          if (m_ptree->m_iBranch < m_ptreeitem->get_expandable_children_count())
          {
@@ -7446,7 +7446,7 @@ namespace user
 
          m_ptreeitem = ptreeitem;
 
-         __pointer(plain_text_command) pcommand = ptreeitem->m_pdataitem;
+         ::pointer<plain_text_command>pcommand = ptreeitem->m_pdataitem;
 
          pcommand->Redo(m_ptree);
 
@@ -7589,14 +7589,14 @@ namespace user
       if (actioncontext.is_user_source())
       {
 
-         if (::is_set(m_propertyText))
+         if (::is_set(m_linkedpropertyText))
          {
 
-            plain_edit_get_text(*m_propertyText.m_pproperty);
+            plain_edit_get_text(m_linkedpropertyText.m_pproperty->string_reference());
 
             auto papp = get_app();
 
-            papp->on_property_changed(m_propertyText.m_pproperty, actioncontext);
+            papp->on_property_changed(m_linkedpropertyText.m_pproperty, actioncontext);
 
          }
 
@@ -7907,7 +7907,7 @@ namespace user
    }
 
 
-   __pointer(::data::item) plain_edit::on_allocate_item()
+   ::pointer<::data::item>plain_edit::on_allocate_item()
    {
 
       return __new(plain_text_command);
@@ -7923,11 +7923,11 @@ namespace user
       if (m_ptree != nullptr && m_bOwnData)
       {
 
-         __release(m_ptree);
+         m_ptree.release();
 
       }
 
-      __compose(m_ptree, pdata);
+      __construct(m_ptree, pdata);
 
       m_ptreeitem = m_ptree->get_base_item();
 
@@ -7946,7 +7946,7 @@ namespace user
    void plain_edit::_001OnUpdateEditCut(::message::message * pmessage)
    {
 
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
 
       string str;
 
@@ -7981,7 +7981,7 @@ namespace user
    void plain_edit::_001OnUpdateEditCopy(::message::message * pmessage)
    {
 
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
 
       string str;
 
@@ -8006,7 +8006,7 @@ namespace user
    void plain_edit::_001OnUpdateEditPaste(::message::message * pmessage)
    {
 
-      __pointer(::message::command) pcommand(pmessage);
+      ::pointer<::message::command>pcommand(pmessage);
 
       auto pwindow = window();
 
@@ -8219,7 +8219,7 @@ namespace user
             if (is_text_composition_active() && !m_pitemComposing)
             {
 
-               __refer(m_pitemComposing, m_pinsert);
+               m_pitemComposing = m_pinsert;
 
             }
 

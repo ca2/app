@@ -18,10 +18,10 @@ namespace apex
       string                              m_strStoreServerBaseUrl;
 
       string_to_string                    m_mapCachedLatestBuild;
-      __composite(::http::context)        m_phttp;
-      __composite(::dir_context)          m_pdir;
-      __composite(::file_context)         m_pfile;
-      __composite(::os_context)           m_poscontext;
+      ::pointer<::http::context>       m_phttp;
+      ::pointer<::dir_context>         m_pdir;
+      ::pointer<::file_context>        m_pfile;
+      ::pointer<::os_context>          m_poscontext;
 
 
       string                              m_strLocale;
@@ -34,7 +34,7 @@ namespace apex
       ::payload                           m_payloadFile;
       __reference_array(::create)         m_createaPending;
       __reference_array(::create)         m_createaHistory;
-      __reference(::create)               m_pcreate;
+      ::pointer<::create>              m_pcreate;
 
 
       context();

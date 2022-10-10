@@ -236,7 +236,7 @@ namespace aura
 
       //estatus =
       
-      __compose_new(m_puserinteractiona);
+      __construct_new(m_puserinteractiona);
 
       //if (!estatus)
       //{
@@ -247,7 +247,7 @@ namespace aura
 
       //estatus = 
       
-      __compose_new(m_puserinteractionaFrame);
+      __construct_new(m_puserinteractionaFrame);
 
       //if (!estatus)
       //{
@@ -466,7 +466,7 @@ namespace aura
          if (!m_pinterprocessintercommunication)
          {
 
-            __pointer(::user::interaction) pinteraction;
+            ::pointer<::user::interaction>pinteraction;
 
             get_frame(pinteraction);
 
@@ -626,7 +626,7 @@ namespace aura
 
          }
 
-         //__pointer(::aura::session) pbergedge = pcreate->payload("bergedge_callback").cast < ::aura::session >();
+         //::pointer<::aura::session>pbergedge = pcreate->payload("bergedge_callback").cast < ::aura::session >();
          // todobergedge
          /*if(pbergedge != nullptr)
          {
@@ -714,7 +714,7 @@ namespace aura
    //void application::message_box(const ::payload & payload)
    //{
 
-   //   __pointer(::user::primitive) puiOwner;
+   //   ::pointer<::user::primitive>puiOwner;
 
    //   string strMessage;
 
@@ -857,7 +857,7 @@ namespace aura
 
    //   string strString;
 
-   //   __pointer(string_to_string) pmap;
+   //   ::pointer<string_to_string>pmap;
 
    //   index iFind = 0;
 
@@ -1672,7 +1672,7 @@ namespace aura
 
 #ifdef WINDOWS_DESKTOP
       
-      __compose(m_pshellopen);
+      __construct(m_pshellopen);
 
       //if (!estatus)
       //{
@@ -2070,7 +2070,7 @@ retry_license:
 //   }
 
 
-   //__pointer(::interprocess_intercommunication) application::create_interprocess_intercommunication()
+   //::pointer<::interprocess_intercommunication>application::create_interprocess_intercommunication()
    //{
 
    //   try
@@ -2109,7 +2109,7 @@ retry_license:
       //{
 
       //   //estatus = 
-      //   __compose(m_pcontextimage);
+      //   __construct(m_pcontextimage);
 
       //   //if (!estatus)
       //   //{
@@ -2133,7 +2133,7 @@ retry_license:
 
       //    //estatus = 
          
-      //    __compose_new(m_pcontextimage);
+      //    __construct_new(m_pcontextimage);
 
       //    //if (!estatus)
       //    //{
@@ -3324,7 +3324,7 @@ retry_license:
    }
 
 
-   bool application::get_frame(__pointer(::user::interaction) & pinteraction)
+   bool application::get_frame(::pointer<::user::interaction>& pinteraction)
    {
 
 #ifdef ANDROID
@@ -3337,7 +3337,7 @@ retry_license:
          if (psession->get_user_interaction_host() != nullptr)
          {
 
-            __pointer(::user::interaction) puserinteraction = psession->get_user_interaction_host();
+            ::pointer<::user::interaction>puserinteraction = psession->get_user_interaction_host();
 
             if (puserinteraction)
             {
@@ -3373,7 +3373,7 @@ retry_license:
    void application::add_user_interaction(::user::interaction * puserinteraction)
    {
 
-      __pointer(::aura::session) psession = get_session();
+      ::pointer<::aura::session>psession = get_session();
 
       if (puserinteraction == psession->m_puserprimitiveHost)
       {
@@ -3420,14 +3420,14 @@ retry_license:
          if (m_puserinteractionMain == nullptr)
          {
 
-            __refer(m_puserinteractionMain, puserinteraction);
+            m_puserinteractionMain = puserinteraction;
 
          }
 
          if (psession->m_puserprimitiveHost)
          {
 
-            __pointer(::user::interaction) puserinteractionHost = psession->m_puserprimitiveHost;
+            ::pointer<::user::interaction>puserinteractionHost = psession->m_puserprimitiveHost;
 
             auto puserinteractionpointeraChild = __new(::user::interaction_array(*puserinteractionHost->m_puserinteractionpointeraChild));
 
@@ -3456,7 +3456,7 @@ retry_license:
       if (m_puserinteractionMain == puserinteraction)
       {
 
-         __release(m_puserinteractionMain);
+         m_puserinteractionMain.release();
 
       }
 
@@ -3506,7 +3506,7 @@ retry_license:
    bool application::send_message_to_windows(const ::atom & atom, wparam wparam, lparam lparam) // with tbs in <3
    {
 
-      __pointer(::user::interaction) puserinteraction;
+      ::pointer<::user::interaction>puserinteraction;
 
       try
       {
@@ -3567,7 +3567,7 @@ retry_license:
    bool application::route_message_to_windows(::message::message * pmessage) // with tbs in <3
    {
 
-      __pointer(::user::interaction) puserinteraction;
+      ::pointer<::user::interaction>puserinteraction;
 
       try
       {
@@ -3686,7 +3686,7 @@ retry_license:
    }
 
 
-   __pointer(::user::message) application::get_user_message(MESSAGE * pmsg)
+   ::pointer<::user::message>application::get_user_message(MESSAGE * pmsg)
    {
 
       ::user::primitive * pinteraction = nullptr;
@@ -3805,13 +3805,13 @@ retry_license:
    //   if (bBigIcon)
    //   {
 
-   //      pobject->payload("big_icon") = (__pointer(object)) picon;
+   //      pobject->payload("big_icon") = (::pointer<object> picon;
 
    //   }
    //   else
    //   {
 
-   //      pobject->payload("small_icon") = (__pointer(object)) picon;
+   //      pobject->payload("small_icon") = (::pointer<object> picon;
 
    //   }
 
@@ -3948,7 +3948,7 @@ retry_license:
    }
 
 
-   //__pointer(::user::document) application::defer_create_impact(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom)
+   //::pointer<::user::document>application::defer_create_impact(string strImpact, ::user::interaction * puiParent, ewindowflag ewindowflag, const ::atom & atom)
    //{
 
    //   //auto pcontroller = pmultimedia->defer_create_impact(strImpact, puiParent, ewindowflag, atom);
@@ -4291,7 +4291,7 @@ retry_license:
 
    //   synchronous_lock synchronouslock(&m_mutexStr);
 
-   //   __pointer(string_to_string) pmap;
+   //   ::pointer<string_to_string>pmap;
 
    //   if (m_stringtableStd.lookup(strTable, pmap))
    //   {
@@ -4650,17 +4650,17 @@ retry_license:
    //}
 
 
-   //__pointer(::aura::application) application::assert_running(const ::string & pszAppId)
+   //::pointer<::aura::application>application::assert_running(const ::string & pszAppId)
    //{
 
-   //   __pointer(::aura::application) papp;
+   //   ::pointer<::aura::application>papp;
 
    //   papp = psession->m_applicationa.find_running_defer_try_quit_damaged(pszAppId);
 
    //   if(papp.is_null())
    //   {
 
-   //      __pointer(::create) spcreate(e_create);
+   //      ::pointer<::create>spcreate(e_create);
 
    //      papp = psession->start_application(pszAppId,spcreate);
 
@@ -4722,7 +4722,7 @@ retry_license:
    //}
 
 
-   void application::update_appmatter( __pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative)
+   void application::update_appmatter( ::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative)
    {
 
       auto plocaleschema = __create_new < ::text::international::locale_schema >();
@@ -4763,7 +4763,7 @@ retry_license:
    }
 
 
-   void application::update_appmatter(__pointer(::sockets::http_session) & psession, const ::file::path & pszRoot, const string & pszRelative, const string & pszLocale, const string & pszStyle)
+   void application::update_appmatter(::pointer<::sockets::http_session>& psession, const ::file::path & pszRoot, const string & pszRelative, const string & pszLocale, const string & pszStyle)
    {
 
       string strLocale;
@@ -4956,7 +4956,7 @@ retry_license:
    //void application::process_message_filter(i32 code, ::message::message * pmessage)
    //{
 
-   //   //__pointer(::user::message) pusermessage(pmessage);
+   //   //::pointer<::user::message>pusermessage(pmessage);
 
    //   __UNREFERENCED_PARAMETER(code);
 
@@ -5212,7 +5212,7 @@ retry_license:
 //
 //      {
 //
-//         ::install__pointer(class ::mutex) ::mutex(process_platform_dir_name2());
+//         ::installpointer< class ::mutex > ::mutex(process_platform_dir_name2());
 //
 //         if (::mutex.already_exists())
 //         {
@@ -5534,7 +5534,7 @@ namespace aura
 
          ::atom idCommand(pszCommand);
 
-         __pointer(::user::interaction) pinteraction = m_puserinteractionMain.get();
+         ::pointer<::user::interaction>pinteraction = m_puserinteractionMain.get();
 
          if(pinteraction)
          {
@@ -5744,7 +5744,7 @@ namespace aura
 
       ENSURE_ARG(pmessage != nullptr);
 
-      __pointer(::user::message) pusermessage(pmessage);
+      ::pointer<::user::message>pusermessage(pmessage);
 
       // handle certain messages in thread
 
@@ -6384,7 +6384,7 @@ namespace aura
    //   {
    //      __UNREFERENCED_PARAMETER(dwData);
    //      __UNREFERENCED_PARAMETER(nCmd);
-   //      //   __pointer(::user::interaction) pMainWnd = psystem->m_puiMain;
+   //      //   ::pointer<::user::interaction>pMainWnd = psystem->m_puiMain;
    //      //   ENSURE_VALID(pMainWnd);
    //
    //      // return global cast help mode state to false (backward compatibility)
@@ -6593,7 +6593,7 @@ namespace aura
    //{
    //   // just use frame_window::OnContextHelp implementation
    //   /* trans   m_bHelpMode = HELP_ACTIVE;
-   //   __pointer(::user::frame_window) pMainWnd = (psystem->m_puiMain);
+   //   ::pointer<::user::frame_window>pMainWnd = (psystem->m_puiMain);
    //   ENSURE_VALID(pMainWnd);
    //   ENSURE(pMainWnd->is_frame_window());
    //   pMainWnd->OnContextHelp();
@@ -6774,7 +6774,7 @@ namespace aura
 //#endif
 //
 //      // no-op if main window is nullptr or not a frame_window
-//      /*   __pointer(::user::interaction) pMainWnd = psystem->m_puiMain;
+//      /*   ::pointer<::user::interaction>pMainWnd = psystem->m_puiMain;
 //      if (pMainWnd == nullptr || !pMainWnd->is_frame_window())
 //      return;*/
 //
@@ -6782,7 +6782,7 @@ namespace aura
 //      // check if notify hook installed
 //      /*xxx
 //      ASSERT_KINDOF(frame_window, pMainWnd);
-//      __pointer(::user::frame_window) pFrameWnd = (__pointer(::user::frame_window))pMainWnd;
+//      ::pointer<::user::frame_window>pFrameWnd = (::pointer<::user::frame_window>MainWnd;
 //      if (pFrameWnd->m_pNotifyHook != nullptr)
 //      pFrameWnd->m_pNotifyHook->OnEnableModeless(bEnable);
 //      */
@@ -7330,7 +7330,7 @@ namespace aura
    ::user::interaction* application::get_request_parent_ui(::user::interaction* pinteraction, ::user::system* pusersystem)
    {
 
-      __pointer(::user::interaction) puserinteractionParent;
+      ::pointer<::user::interaction>puserinteractionParent;
 
       if (puserinteractionParent && pusersystem->m_pcreate)
       {
@@ -7573,7 +7573,7 @@ namespace aura
    void application::pre_translate_message(::message::message* pmessage)
    {
 
-      //__pointer(::user::message) pusermessage(pmessage);
+      //::pointer<::user::message>pusermessage(pmessage);
 
 //      if (pmessage->m_atom == WM_USER + 124 && pmessage->userinteraction() == nullptr)
 //      {
@@ -7764,7 +7764,7 @@ namespace aura
    //}
 
 
-   i32 application::track_popup_menu(const ::string & pszMatter, const ::point_i32& point, __pointer(::user::interaction) puie)
+   i32 application::track_popup_menu(const ::string & pszMatter, const ::point_i32& point, ::pointer<::user::interaction>puie)
    {
 
       __UNREFERENCED_PARAMETER(pszMatter);
@@ -7866,7 +7866,7 @@ namespace aura
    }
 
 
-   bool application::_001CloseApplicationByUser(__pointer(::user::interaction) puserinteractionExcept)
+   bool application::_001CloseApplicationByUser(::pointer<::user::interaction>puserinteractionExcept)
    {
 
       // Closing just this application.
@@ -7991,7 +7991,7 @@ namespace aura
    }
 
 
-   i32 application::GetVisibleTopLevelFrameCountExcept(__pointer(::user::interaction) puserinteractionExcept)
+   i32 application::GetVisibleTopLevelFrameCountExcept(::pointer<::user::interaction>puserinteractionExcept)
    {
 
       int iCount = 0;
@@ -8011,7 +8011,7 @@ namespace aura
       for (i32 i = 0; i < uia.interaction_count(); i++)
       {
 
-         __pointer(::user::interaction) puserinteraction = uia.interaction_at(i);
+         ::pointer<::user::interaction>puserinteraction = uia.interaction_at(i);
 
          if (puserinteraction != nullptr
             && puserinteraction->is_window()
@@ -8063,7 +8063,7 @@ namespace aura
    //}
 
 
-//   __pointer(::apex::application) application::create_platform(::apex::session* psession)
+//   ::pointer<::apex::application>application::create_platform(::apex::session* psession)
 //   {
 //
 //      return __new(::aura::session);
@@ -8209,7 +8209,7 @@ namespace aura
 
       //auto estatus =
       
-      __compose_new(m_ptheme);
+      __construct_new(m_ptheme);
 
       //if (!estatus)
       //{
@@ -8355,7 +8355,7 @@ namespace aura
 
                try
                {
-                  __pointer(::user::check) pcheck = puserinteraction;
+                  ::pointer<::user::check>pcheck = puserinteraction;
 
                   if (pcheck.is_set())
                   {
@@ -8397,7 +8397,7 @@ namespace aura
                try
                {
 
-                  __pointer(::user::check) pcheck = puserinteraction;
+                  ::pointer<::user::check>pcheck = puserinteraction;
 
                   if (pcheck.is_set())
                   {
@@ -8481,9 +8481,9 @@ namespace aura
       //if (pmessage == nullptr)
       //   return;   // not handled
 
-      //__pointer(::user::message) pusermessage(pmessage);
+      //::pointer<::user::message>pusermessage(pmessage);
 
-      //__pointer(::user::frame_window) pTopFrameWnd;
+      //::pointer<::user::frame_window>pTopFrameWnd;
       ////::user::interaction * pMainWnd;
       //::user::interaction* pMsgWnd;
       //switch (code)
@@ -8559,7 +8559,7 @@ namespace aura
       if(!bInteractive)
          return "failed";
 
-      __pointer(::account::simple_ui) pinteraction;
+      ::pointer<::account::simple_ui>pinteraction;
 
       string strRequestUrl(strRequestUrlParam);
 
@@ -8602,7 +8602,7 @@ namespace aura
    }*/
 
 
-   //__pointer(::user::user) application::create_user()
+   //::pointer<::user::user>application::create_user()
    //{
 
    //   return __new(::user::user);
@@ -8616,7 +8616,7 @@ namespace aura
      if (lCount <= 0)
      {
 
-        __pointer(::user::interaction) pinteraction;
+        ::pointer<::user::interaction>pinteraction;
 
         while (get_frame(pinteraction))
         {
@@ -8731,13 +8731,13 @@ namespace aura
       if (bBigIcon)
       {
 
-         pobject->payload("big_icon") = (__pointer(object)) picon;
+         pobject->payload("big_icon") = picon;
 
       }
       else
       {
 
-         pobject->payload("small_icon") = (__pointer(object)) picon;
+         pobject->payload("small_icon") = picon;
 
       }
 
@@ -8773,7 +8773,7 @@ namespace aura
    }
 
 
-   //__pointer(::user::document) application::defer_create_impact(string strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::atom& atom)
+   //::pointer<::user::document>application::defer_create_impact(string strImpact, ::user::interaction* puiParent, ewindowflag ewindowflag, const ::atom& atom)
    //{
 
    //   auto pcontroller = ::aura::application::defer_create_impact(strImpact, puiParent, ewindowflag, atom);

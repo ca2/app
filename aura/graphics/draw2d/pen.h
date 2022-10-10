@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "object.h"
@@ -21,11 +21,11 @@ namespace draw2d
       enum_pen_align          m_epenalign;
       double                  m_dWidth;
       ::color::color                 m_color;
-      __pointer(brush)        m_pbrush;
+      ::pointer<brush>       m_pbrush;
 
 
       pen();
-      virtual ~pen();
+      ~pen() override;
 
 
       void dump(dump_context & dumpcontext) const override;
@@ -50,9 +50,11 @@ namespace draw2d
    };
 
 
-   using pen_pointer = __pointer(pen);
+   using pen_pointer = ::pointer<pen>;
+
+
    //class CLASS_DECL_AURA pen_pointer :
-   //   public pointer < pen >
+   //   public ::pointer<pen>
    //{
    //public:
 
@@ -61,17 +63,17 @@ namespace draw2d
    //   }
 
    //   pen_pointer(pen * ppen) :
-   //      pointer < pen > (ppen)
+   //      ::pointer<pen>(ppen)
    //   {
    //   }
 
-   //   pen_pointer(const pointer < pen > & point) :
-   //      pointer < pen > (point)
+   //   pen_pointer(const ::pointer<pen>& point) :
+   //      ::pointer<pen>(point)
    //   {
    //   }
 
    //   pen_pointer(const ::allocer & allocer) :
-   //      pointer < pen > (allocer)
+   //      ::pointer<pen>(allocer)
    //   {
    //   }
 
@@ -80,7 +82,7 @@ namespace draw2d
    //         pen_pointer(::object * pobject, i32 nPenStyle, i32 nWidth, const LOGBRUSH* pLogBrush,
    //            i32 nStyleCount = 0, const u32* pStyle = nullptr) :
 
-   //            pointer < pen > (pobject)
+   //            ::pointer<pen>(pobject)
    //         {
    //            m_p->construct(nPenStyle, nWidth, pLogBrush, nStyleCount, pStyle);
 
@@ -91,7 +93,7 @@ namespace draw2d
    //   pen_pointer & operator = (::draw2d::pen * ppen)
    //   {
 
-   //      pointer < pen >::operator = (ppen);
+   //      ::pointer<pen>:operator = (ppen);
 
    //      return *this;
 

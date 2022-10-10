@@ -30,7 +30,7 @@ namespace windowing
       char * const * m_ppszParent;
       char * const * m_ppszMenu;
       char * const * m_ppszId;
-      __pointer_array(menu_shared_item)         m_shareditema;
+      pointer_array < menu_shared_item >         m_shareditema;
       int * m_statusa;
       int                                       m_iCount;
 

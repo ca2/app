@@ -254,7 +254,7 @@ _AFXMT_INLINE int_bool critical_section::Unlock()
 //
 //
 //   template < typename THREAD >
-//   void wait(__pointer(THREAD) & pthread, const duration & duration = ::duration::infinite())
+//   void wait(::pointer<THREAD>& pthread, const duration & duration = ::duration::infinite())
 //   {
 //
 //      ::duration tickStart = ::duration::now();
@@ -416,7 +416,7 @@ auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), 
 //{
 //public:
 //
-//   __pointer(::layered)    m_pobject;
+//   ::pointer<::layered>   m_pobject;
 //   T                       m_t;
 //   bool                    m_bInitialized = false;
 //   manual_reset_event      m_evReady;

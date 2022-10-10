@@ -17,8 +17,8 @@ namespace filemanager
       
       file_list *                               m_pfilelist;
       thumbnail *                               m_pthumbnail;
-      __composite(file_properties_form)         m_ppropform;
-      __pointer(::file::item_array)             m_pitema;
+      ::pointer<file_properties_form>        m_ppropform;
+      ::pointer<::file::item_array>            m_pitema;
 
 
       main_impact();

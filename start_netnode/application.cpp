@@ -68,7 +68,7 @@ namespace app_app
 
       throw "not designed to show a graphical user interface";
 
-      __compose_new(m_pmainwindow);
+      __construct_new(m_pmainwindow);
 
       m_pmainwindow->display(e_display_restored);
 

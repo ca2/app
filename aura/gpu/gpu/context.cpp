@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "context.h"
 #include "buffer.h"
 //#include "_.h"
@@ -166,7 +166,7 @@ namespace gpu
    void context::create_window_buffer(void * pHwnd)
    {
 
-      __pointer(::aura::system) psystem = m_psystem;
+      ::pointer<::aura::system>psystem = m_psystem;
 
       auto pgpu = psystem->get_gpu();
 
@@ -213,7 +213,7 @@ namespace gpu
    void context::create_offscreen_buffer(const ::size_i32& size)
    {
 
-      __pointer(::aura::system) psystem = m_psystem;
+      ::pointer<::aura::system>psystem = m_psystem;
 
       auto pgpu = psystem->get_gpu();
 

@@ -24,12 +24,12 @@ public:
    size_i32                         m_size;
    i32                              m_iSize;
    i32                              m_iGrow;
-   __composite(::image)             m_pimage;
+   ::pointer<::image>            m_pimage;
 
 
-   __composite(::image)             m_pimageWork;
-   __composite(::image)             m_pimageWork2;
-   __composite(::image)             m_pimageWork3;
+   ::pointer<::image>            m_pimageWork;
+   ::pointer<::image>            m_pimageWork2;
+   ::pointer<::image>            m_pimageWork3;
 
 
    image_list();

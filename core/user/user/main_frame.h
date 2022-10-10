@@ -15,7 +15,7 @@ namespace user
 
 
       bool                                         m_bPlacing;
-      __pointer(::user::rich_text::format_tool)    m_prichtextformattool;
+      ::pointer<::user::rich_text::format_tool>   m_prichtextformattool;
       
       
       main_frame();

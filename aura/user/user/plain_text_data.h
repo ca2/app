@@ -59,7 +59,7 @@ namespace user
    public:
 
       plain_text_command *                m_pparent;
-      __pointer_array(plain_text_command)      m_commanda;
+      pointer_array < plain_text_command >      m_commanda;
 
       plain_text_group_command();
       virtual ~plain_text_group_command();

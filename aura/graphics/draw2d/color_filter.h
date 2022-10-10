@@ -71,7 +71,7 @@ public:
 };
 
 //
-//using color_filter_pointer = __pointer(color_filter);
+//using color_filter_pointer = ::pointer<color_filter>
 //
 //
 //inline class ::opacity get_opacity(const color_filter * pfilter)

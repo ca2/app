@@ -108,9 +108,9 @@ namespace user
 
       psystem->defer_create_html();
 
-      __pointer(::user::form) pformOld;
+      ::pointer<::user::form>pformOld;
 
-      __pointer(::user::form) pformNew;
+      ::pointer<::user::form>pformNew;
 
       if (m_pform != this)
       {
@@ -233,7 +233,7 @@ namespace user
 
       bool bOk = true;
 
-      //__pointer(::user::form_impact) pformChild = create_impact(psession->userex()->get_html_impact_type());
+      //::pointer<::user::form_impact>pformChild = create_impact(psession->userex()->get_html_impact_type());
       //
       //if(pformChild)
       //{

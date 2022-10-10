@@ -43,9 +43,9 @@ namespace user
       {
       public:
 
-         __pointer(::image_list)          m_pimagelistNormal;
-         __pointer(::image_list)          m_pimagelistItemHover;
-         __pointer(::image_list)          m_pimagelistSubItemHover;
+         ::pointer<::image_list>         m_pimagelistNormal;
+         ::pointer<::image_list>         m_pimagelistItemHover;
+         ::pointer<::image_list>         m_pimagelistSubItemHover;
          i32                              m_iImageNormal;
          i32                              m_iImageItemHover;
          i32                              m_iImageSubItemHover;
@@ -108,8 +108,8 @@ namespace user
 
       virtual bool is_custom_draw() override;
 
-      using ::user::check::_001SetCheck;
-      virtual void _001SetCheck(::enum_check check, const ::action_context & action_context) override;
+      //using ::user::check::_001SetCheck;
+      virtual void _001SetCheck(const ::e_check & check, const ::action_context & action_context) override;
       //virtual ::enum_check _001GetCheck() override;
 
       //virtual bool is_pressed();

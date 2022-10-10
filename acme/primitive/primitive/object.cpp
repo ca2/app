@@ -94,57 +94,57 @@ string object::as_string() const
 }
 
 
-void object::add_composite(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   _synchronous_lock synchronouslock(mutex());
-
-   __defer_construct_new(m_pcompositea);
-
-   if (!m_pcompositea->add_unique(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS))
-   {
-
-      throw ::exception(success_none);
-
-//#ifdef _DEBUG
+//void object::add_composite(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
 //
-//      object_on_add_composite(pelement);
+//   _synchronous_lock synchronouslock(mutex());
 //
-//#endif
-
-   }
-
-   //return ::success;
-
-}
-
-
-void object::add_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   _synchronous_lock synchronouslock(mutex());
-
-   __defer_construct_new(m_preferencea);
-
-   m_preferencea->add_unique(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-
-   if (m_preferencea->get_upper_bound() == 8)
-   {
-
-      if (__type_name(this).contains("application"))
-      {
-
-         string strMessage = "what is this? : " + __type_name(m_preferencea->last());
-
-         output_debug_string(strMessage);
-
-      }
-
-   }
-
-   //return ::success;
-
-}
+//   __defer_construct_new(m_pcompositea);
+//
+//   if (!m_pcompositea->add_unique(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS))
+//   {
+//
+//      throw ::exception(success_none);
+//
+////#ifdef _DEBUG
+////
+////      object_on_add_composite(pelement);
+////
+////#endif
+//
+//   }
+//
+//   //return ::success;
+//
+//}
+//
+//
+//void object::add_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   _synchronous_lock synchronouslock(mutex());
+//
+//   __defer_construct_new(m_preferencea);
+//
+//   m_preferencea->add_unique(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//   if (m_preferencea->get_upper_bound() == 8)
+//   {
+//
+//      if (__type_name(this).contains("application"))
+//      {
+//
+//         string strMessage = "what is this? : " + __type_name(m_preferencea->last());
+//
+//         output_debug_string(strMessage);
+//
+//      }
+//
+//   }
+//
+//   //return ::success;
+//
+//}
 
 
 //void object::release_composite2(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
@@ -731,7 +731,7 @@ void object::defer_update_object_id()
 //void object::request(arguments arguments)
 //{
 //
-//   __pointer(::create) pcreate;
+//   ::pointer<::create>pcreate;
 //
 //   auto estatus = __construct_new(pcreate);
 //
@@ -769,7 +769,7 @@ void object::do_request(::create* pcreate)
 //void object::message_box(const ::payload & payload)
 //{
 //
-//   __pointer(::user::primitive) pinteraction = this;
+//   ::pointer<::user::primitive>pinteraction = this;
 //
 //   if (pinteraction)
 //   {
@@ -820,7 +820,7 @@ void object::request(::create* pcreate)
 void object::on_request(::create * pcreate)
 {
 
-   //__pointer(::create) pcreate(pcreateParam);
+   //::pointer<::create>pcreate(pcreateParam);
 
    //if (!pcreate)
    //{
@@ -923,7 +923,7 @@ void     object::run()
 //// So actually, I cannot make assumption that something is alive
 //// running a member of such an object, that doesn't hold proper
 //// reference for the duration of execution of a function.
-//// __pointer(::object) pobjectHold = this;
+//// ::pointer<::object>pobjectHold = this;
 //
 //   set_finish_bit();
 //
@@ -1185,7 +1185,7 @@ void object::transfer_tasks_from(::object* ptask)
 
    __defer_construct_new(m_pobjectaChildrenTask);
 
-   __pointer_array(::object) objectaChildrenTask;
+   pointer_array < ::object > objectaChildrenTask;
 
    objectaChildrenTask = *ptask->m_pobjectaChildrenTask;
 
@@ -1420,9 +1420,9 @@ void object::destroy()
 
    /*estatus = */ on_destroy();
 
-   /*estatus = */ destroy_composites();
+   ///*estatus = */ destroy_composites();
 
-   /*estatus = */ release_references();
+   ///*estatus = */ release_references();
 
    /*estatus = */ property_object::destroy();
 
@@ -1462,121 +1462,121 @@ void object::delete_this()
 }
 
 
-void object::destroy_composites()
-{
-
-   ::e_status estatus = ::success;
-
-   string strTypeName = __type_name(this);
-
-   _synchronous_lock synchronouslock(mutex());
-
-   if (m_pcompositea)
-   {
-
-      for (auto& pelement : *m_pcompositea)
-      {
-
-         synchronouslock.unlock();
-
-         pelement->destroy();
-
-         synchronouslock.lock();
-
-      }
-
-      m_pcompositea.release();
-
-   }
-
-   //return estatus;
-
-}
-
-
-void object::release_references()
-{
-
-   ::e_status estatus = ::success;
-
-   string strTypeName = __type_name(this);
-
-   _synchronous_lock synchronouslock(mutex());
-
-   if (m_preferencea)
-   {
-
-      m_preferencea.release();
-
-   }
-
-   //return estatus;
-
-}
-
+//void object::destroy_composites()
+//{
+//
+//   ::e_status estatus = ::success;
+//
+//   string strTypeName = __type_name(this);
+//
+//   _synchronous_lock synchronouslock(mutex());
+//
+//   if (m_pcompositea)
+//   {
+//
+//      for (auto& pelement : *m_pcompositea)
+//      {
+//
+//         synchronouslock.unlock();
+//
+//         pelement->destroy();
+//
+//         synchronouslock.lock();
+//
+//      }
+//
+//      m_pcompositea.release();
+//
+//   }
+//
+//   //return estatus;
+//
+//}
+//
+//
+//void object::release_references()
+//{
+//
+//   ::e_status estatus = ::success;
+//
+//   string strTypeName = __type_name(this);
+//
+//   _synchronous_lock synchronouslock(mutex());
+//
+//   if (m_preferencea)
+//   {
+//
+//      m_preferencea.release();
+//
+//   }
+//
+//   //return estatus;
+//
+//}
+//
 
 CLASS_DECL_ACME::mutex* get_children_mutex();
 
 
-/// tells if pobject is dependant of this object or of any dependant objects
-bool object::___is_reference(::element* pelement) const
-{
-
-   if (::is_null(pelement))
-   {
-
-      return false;
-
-   }
-
-   _synchronous_lock synchronouslock(get_children_mutex());
-
-   if (!m_preferencea)
-   {
-
-      return false;
-
-   }
-
-   if (m_preferencea->contains(pelement))
-   {
-
-      return true;
-
-   }
-
-   return true;
-
-}
-
-
-bool object::__is_composite(::element* pelement) const
-{
-
-   if (::is_null(pelement))
-   {
-
-      return false;
-
-   }
-
-   if (!m_pcompositea)
-   {
-
-      return false;
-
-   }
-
-   if (!m_pcompositea->contains(pelement))
-   {
-
-      return true;
-
-   }
-
-   return false;
-
-}
+///// tells if pobject is dependant of this object or of any dependant objects
+//bool object::___is_reference(::element* pelement) const
+//{
+//
+//   if (::is_null(pelement))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   _synchronous_lock synchronouslock(get_children_mutex());
+//
+//   if (!m_preferencea)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   if (m_preferencea->contains(pelement))
+//   {
+//
+//      return true;
+//
+//   }
+//
+//   return true;
+//
+//}
+//
+//
+//bool object::__is_composite(::element* pelement) const
+//{
+//
+//   if (::is_null(pelement))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   if (!m_pcompositea)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   if (!m_pcompositea->contains(pelement))
+//   {
+//
+//      return true;
+//
+//   }
+//
+//   return false;
+//
+//}
 
 
 bool object::__is_child_task(::object * pobjectTask) const
@@ -1773,7 +1773,7 @@ void object::branch_each(const ::procedure_array& routinea)
 }
 
 
-__pointer(task) object::branch_procedure(const ::procedure & procedure, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+::pointer<task>object::branch_procedure(const ::procedure & procedure, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
    if (::is_null(procedure))
@@ -1803,7 +1803,7 @@ __pointer(task) object::branch_procedure(const ::procedure & procedure, ::enum_p
 }
 
 
-__pointer(::task) object::branch_procedure_synchronously(
+::pointer<::task>object::branch_procedure_synchronously(
    const ::procedure & procedure, 
    ::enum_priority epriority, 
    ::u32 nStackSize,
@@ -1837,7 +1837,7 @@ __pointer(::task) object::branch_procedure_synchronously(
 }
 
 
-__pointer(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+::pointer<task>object::branch(::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
    auto ptask = branch_procedure(this, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
@@ -1847,7 +1847,7 @@ __pointer(task) object::branch(::enum_priority epriority, ::u32 nStackSize, ::u3
 }
 
 
-__pointer(task) object::branch_synchronously(::enum_priority epriority, ::u32 nStackSize, u32 dwCreateFlags ARG_SEC_ATTRS)
+::pointer<task>object::branch_synchronously(::enum_priority epriority, ::u32 nStackSize, u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
    auto ptask = branch_procedure_synchronously(this, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
@@ -2074,7 +2074,7 @@ void object::sleep(const ::duration& duration)
    {
 
 
-      __pointer(manual_reset_event) pevent;
+      ::pointer<manual_reset_event>pevent;
 
       {
 
@@ -2254,7 +2254,7 @@ void object::sleep(const ::duration& duration)
 //}
 
 
-//__pointer(thread) object::start(
+//::pointer<thread>object::start(
 //   ::element* pelement,
 //   ::enum_priority epriority = e_priority_normal,
 //   u32 nStackSize = 0,
@@ -2299,7 +2299,7 @@ void object::install_message_routing(::channel* pchannel)
 }
 
 
-//__pointer(::element) object::running(const ::string & pszTag) const
+//::pointer<::element>object::running(const ::string & pszTag) const
 //{
 //
 //   //if (m_pcompositea)
@@ -2400,7 +2400,7 @@ void object::install_message_routing(::channel* pchannel)
 
 }
 
-//__pointer(::handle::ini) object::appini()
+//::pointer<::handle::ini>object::appini()
 //{
 //
 //   return __new(::handle::ini(         auto psystem = m_psystem;
@@ -2576,7 +2576,7 @@ string object::get_text(const ::payload& payload, const ::atom& atom)
 }
 
 
-//__pointer(::extended::sequence < ::conversation >) object::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box& emessagebox)
+//pointer< ::extended::sequence < ::conversation > > object::message_box(::user::interaction * puserinteraction, const ::string & strMessage, const ::string & strTitle, const ::e_message_box& emessagebox)
 //{
 //
 //   auto psystem = m_psystem;
@@ -2764,7 +2764,7 @@ element* object::get_taskpool_container()
 
 
 //template < typename BASE_TYPE >
-//__pointer(BASE_TYPE) file_as(const ::payload& payloadFile);
+//::pointer<BASE_TYPE>file_as(const ::payload& payloadFile);
 
 //
 //void object::add_procedure(const ::atom& idRoutine, const ::procedure & procedure)
@@ -3086,84 +3086,84 @@ void object::call_run()
 //::image_pointer matter_image(const ::string & strMatter, bool bCache = true, bool bSync = true);
 
 //template < typename BASE_TYPE >
-//inline __pointer(BASE_TYPE) __create();
+//inline ::pointer<BASE_TYPE>__create();
 
 //template < typename BASE_TYPE >
-//inline __pointer(BASE_TYPE) __id_create(const ::atom& atom);
+//inline ::pointer<BASE_TYPE>__id_create(const ::atom& atom);
 
 //template < typename TYPE >
-//inline __pointer(TYPE) __create_new();
+//inline ::pointer<TYPE>__create_new();
 
-//inline void __compose(__composite(::image) & pimage);
+//inline void __construct(::pointer<::image>& pimage);
 
-//inline void __compose(__composite(::image) & pimage, ::image * pimageSource);
+//inline void __construct(::pointer<::image>& pimage, ::image * pimageSource);
 
-//inline void __defer_compose(__composite(::image) & pimage) { return !pimage ? __compose(pimage) : void(::success); }
+//inline void __defer_construct(::pointer<::image>& pimage) { return !pimage ? __construct(pimage) : void(::success); }
 
 // for composition (ownership)
 
 //template < typename BASE_TYPE >
-//inline void __compose(__composite(BASE_TYPE)& pusermessage);
+//inline void __construct(::pointer<BASE_TYPE> pusermessage);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __compose(__composite(BASE_TYPE)& pusermessage, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __construct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __construct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //template < typename BASE_TYPE >
-//inline void __id_compose(__composite(BASE_TYPE)& pusermessage, const ::atom& atom);
+//inline void __id_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
 
 //template < typename BASE_TYPE >
-//inline void __raw_compose(__composite(BASE_TYPE)& pusermessage);
+//inline void __raw_construct(::pointer<BASE_TYPE> pusermessage);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __raw_compose(__composite(BASE_TYPE)& pusermessage, const SOURCE* psource);
+//inline void __raw_construct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __raw_compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource);
+//inline void __raw_construct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource);
 
 //template < typename TYPE >
-//inline void __raw_compose_new(__composite(TYPE)& ptype);
+//inline void __raw_construct_new(::pointer<TYPE> ptype);
 
 //template < typename TYPE >
-//inline void __compose_new(__composite(TYPE)& ptype);
+//inline void __construct_new(::pointer<TYPE> ptype);
 
 
 
 
 //template < typename BASE_TYPE >
-//inline void __defer_compose(__composite(BASE_TYPE)& pusermessage) { return !pusermessage ? __compose(pusermessage) : void(::success); }
+//inline void __defer_construct(::pointer<BASE_TYPE> pusermessage) { return !pusermessage ? __construct(pusermessage) : void(::success); }
 
 //template < typename BASE_TYPE >
-//inline void __defer_id_compose(__composite(BASE_TYPE)& pusermessage, const ::atom& atom) { return !pusermessage ? __id_compose(pusermessage) : void(::success); }
+//inline void __defer_id_compose(::pointer<BASE_TYPE> pusermessage, const ::atom& atom) { return !pusermessage ? __id_construct(pusermessage) : void(::success); }
 
 //template < typename TYPE >
-//inline void __defer_raw_compose_new(__composite(TYPE)& ptype) { return !ptype ? __raw_compose_new(ptype) : void(::success); }
+//inline void __defer_raw_compose_new(::pointer<TYPE> ptype) { return !ptype ? __raw_construct_new(ptype) : void(::success); }
 
 //template < typename TYPE >
-//inline void __defer_compose_new(__composite(TYPE)& ptype) { return !ptype ? __compose_new(ptype) : void(::success); }
+//inline void __defer_construct_new(::pointer<TYPE> ptype) { return !ptype ? __construct_new(ptype) : void(::success); }
 
 
 
 
 //template < typename BASE_TYPE >
-//inline void __construct(__pointer(BASE_TYPE)& pusermessage);
+//inline void __construct(::pointer<BASE_TYPE> pusermessage);
 
 //template < typename BASE_TYPE >
-//inline void __id_construct(__pointer(BASE_TYPE)& pusermessage, const ::atom& atom);
+//inline void __id_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom);
 
 //template < typename TYPE >
-//inline void __construct_new(__pointer(TYPE)& pusermessage);
+//inline void __construct_new(::pointer<TYPE> pusermessage);
 
 //template < typename BASE_TYPE >
-//inline void __release(__composite(BASE_TYPE)& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __release(::pointer<BASE_TYPE> pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //template < typename BASE_TYPE >
-//inline void __release(__reference(BASE_TYPE)& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __release(::pointer<BASE_TYPE> preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //template < typename SOURCE >
-//inline void release_reference(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void release_reference(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
 // void add_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS)
@@ -3176,25 +3176,25 @@ void object::call_run()
 
 
 //template < typename BASE_TYPE >
-//inline void add_composite(__composite(BASE_TYPE)& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void add_composite(::pointer<BASE_TYPE> pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __refer(__reference(BASE_TYPE)& preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __refer(::pointer<BASE_TYPE> preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __refer(__reference(BASE_TYPE)& preference, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void __refer(__reference(BASE_TYPE)& preference, const ::primitive::member < SOURCE >& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void __refer(::pointer<BASE_TYPE> preference, const ::primitive::member < SOURCE >& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //template < typename SOURCE >
 //inline void add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //template < typename SOURCE >
-//inline void add_reference(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void add_reference(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //template < typename SOURCE >
-//inline void add_reference(__reference(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//inline void add_reference(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 //void object::delete_this()
 //{
@@ -3419,7 +3419,7 @@ void object::call_run()
 //}
 
 
-//__pointer(::extended::future < ::conversation >)  object::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box& emessagebox)
+//pointer< ::extended::future < ::conversation > >  object::message_box(const ::string & pszMessage, const ::string & pszTitle, const ::e_message_box& emessagebox)
 //{
 //
 //   return nullptr;
@@ -3447,7 +3447,7 @@ void object::call_run()
 //
 //}
 
-//__pointer(::element) object::running(const ::string & pszTag) const
+//::pointer<::element>object::running(const ::string & pszTag) const
 //{
 //
 //   return nullptr;
@@ -3570,7 +3570,7 @@ bool object::IsSerializable() const
 //   using property_object::defer_fork;
 
   /* template < typename THREAD >
-   inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread, const ::procedure & procedure)
+   inline ::pointer<THREAD> defer_fork(::pointer<THREAD>pthread, const ::procedure & procedure)
    {
 
       if (pthread && pthread->is_running())
@@ -3588,7 +3588,7 @@ bool object::IsSerializable() const
 
 
    template < typename THREAD >
-   inline __pointer(THREAD)& defer_fork(__pointer(THREAD)& pthread)
+   inline ::pointer<THREAD> defer_fork(::pointer<THREAD>pthread)
    {
 
       if (pthread && pthread->is_running())
@@ -3609,7 +3609,7 @@ bool object::IsSerializable() const
 
 
    //template < typename THREAD >
-   //inline __pointer(THREAD)& start(__pointer(THREAD) & pthread)
+   //inline ::pointer<THREAD> start(::pointer<THREAD> pthread)
    //{
 
    //   pthread->_start(pthread);

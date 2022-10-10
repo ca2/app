@@ -15,7 +15,7 @@ namespace promise
 
 
       manual_reset_event               m_evReady;
-      __pointer(::element)        m_pelementHold;
+      ::pointer<::element>       m_pelementHold;
 
 
    //synchronization(PRED pred) : m_predicate(pred) {}

@@ -14,10 +14,10 @@ namespace apex
    public:
 
 
-      string_map < __pointer(::acme::exclusive) >   m_mapExclusive;
+      string_map < ::pointer<::acme::exclusive >>   m_mapExclusive;
 
 
-      virtual __pointer(::acme::exclusive) get_exclusive(string str ARG_SEC_ATTRS_DEF);
+      virtual ::pointer<::acme::exclusive> get_exclusive(string str ARG_SEC_ATTRS_DEF);
 
       virtual bool erase_exclusive(string str ARG_SEC_ATTRS_DEF);
 

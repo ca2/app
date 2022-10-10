@@ -42,7 +42,7 @@ void android_fill_plasma(AndroidBitmapInfo * info, color32_t * pixels, double  t
 
    }
 
-   __pointer(::user::interaction) puserinteraction = psession->get_user_interaction_host();
+   ::pointer<::user::interaction>puserinteraction = psession->get_user_interaction_host();
 
    if (puserinteraction == nullptr)
    {

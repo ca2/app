@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "left_impact.h"
 #include "document.h"
 #include "tree.h"
@@ -73,7 +73,7 @@ namespace filemanager
 
       m_ptree->m_usertreea.add(m_pusertree);
 
-      __compose(m_pusertree->m_ptree, ptree);
+      __construct(m_pusertree->m_ptree, ptree);
 
       ptree->initialize_filemanager_tree(pfilemanagerdocument);
 
@@ -100,7 +100,7 @@ namespace filemanager
 //
 //            //   str.format("frame(%s)", filemanager_data()->m_atom.str().c_str());
 //
-//            //   __pointer(::user::frame_window) pframe = get_parent_frame();
+//            //   ::pointer<::user::frame_window>pframe = get_parent_frame();
 //
 //            //   if (pframe != nullptr)
 //            //   {

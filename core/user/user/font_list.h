@@ -26,7 +26,7 @@ namespace user
       };
 
 
-      __pointer(::write_text::font_list)   m_pfontlist;
+      ::pointer<::write_text::font_list>  m_pfontlist;
       ::rectangle_i32                           m_rectangleMargin;
       bool                             m_bEnsureVisible;
       bool                             m_bFirstShown;

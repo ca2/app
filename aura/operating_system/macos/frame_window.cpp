@@ -57,7 +57,7 @@
 //
 //         //hicon = load_icon(get_app(), straMatter, "icon.ico", 24, 24);
 //
-//         __compose(m_picon, pcontext->m_papexcontext->load_icon("matter://icon.ico"));
+//         __construct(m_picon, pcontext->m_papexcontext->load_icon("matter://icon.ico"));
 //
 //      }
 //

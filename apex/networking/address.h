@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 //
 //#if defined(LINUX) || defined(FREEBSD)
@@ -90,6 +90,8 @@ namespace networking
 
       virtual void sync_os_address();
       virtual void sync_os_service();
+
+
 
    };
 

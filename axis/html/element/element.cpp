@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "axis/id.h"
 // #if !BROAD_PRECOMPILED_HEADER
 // #include "_element.h"
@@ -136,7 +136,7 @@ namespace html
 
       }
 
-      __pointer(::axis::session) psession = phtmldata->get_session();
+      ::pointer<::axis::session>psession = phtmldata->get_session();
 
       auto puser = psession->user();
 
@@ -715,7 +715,7 @@ namespace html
 
       }
 
-      __pointer(::html::impl::cell) pcell = m_pimpl;
+      ::pointer<::html::impl::cell>pcell = m_pimpl;
 
       if (m_elementalptra.has_elements() && m_etag != tag_select)
       {
@@ -797,7 +797,7 @@ namespace html
             if (m_pstyle->m_edisplay == display_table_row)
             {
 
-               __pointer(::html::impl::table_row) prow = m_pimpl;
+               ::pointer<::html::impl::table_row>prow = m_pimpl;
 
                if (prow->m_iRow == prow->get_table()->m_rowptra.get_upper_bound())
                {
@@ -965,7 +965,7 @@ namespace html
          if (m_atomTagName == __id(html_link) && get_tag()->get_attr_value("rel").compare_ci("stylesheet") == 0)
          {
 
-            __pointer(style_sheet) pstylesheet(__create_new < style_sheet > ());
+            ::pointer<style_sheet>pstylesheet(__create_new < style_sheet > ());
 
             string strUrl(get_tag()->get_attr_value("href"));
 
@@ -1022,7 +1022,7 @@ namespace html
          m_strBody = pvalue->get_value();
          if (m_atomTagName == __id(html_style))
          {
-            __pointer(style_sheet) pstylesheet(__create_new < style_sheet >());
+            ::pointer<style_sheet>pstylesheet(__create_new < style_sheet >());
             pstylesheet->parse(phtmldata, pvalue->get_value());
             phtmldata->m_pcoredata->m_stylesheeta.add(pstylesheet);
          }
@@ -1030,7 +1030,7 @@ namespace html
                   && m_pparent->get_tag()->get_attr_value("rel").compare_ci("stylesheet") == 0)
          {
             
-            __pointer(style_sheet) pstylesheet(__create_new < style_sheet > ());
+            ::pointer<style_sheet>pstylesheet(__create_new < style_sheet > ());
 
             auto pcontext = get_context();
 
@@ -1117,7 +1117,7 @@ namespace html
       while (true)
       {
 
-         __pointer(element) pelemental = __new(element);
+         ::pointer<element>pelemental = __new(element);
 
          pelemental->initialize_html_elemental(phtmldata, this);
 
@@ -1657,7 +1657,7 @@ namespace html
       if (m_pbase->get_type() == base::type_value)
       {
 
-         __pointer(::axis::session) psession = phtmldata->m_pcoredata->get_session();
+         ::pointer<::axis::session>psession = phtmldata->m_pcoredata->get_session();
 
          auto puser = psession->user();
 
@@ -1693,7 +1693,7 @@ namespace html
          if (m_elementalptra.get_size() <= 0)
          {
 
-            __pointer(::axis::session) psession = phtmldata->m_pcoredata->get_session();
+            ::pointer<::axis::session>psession = phtmldata->m_pcoredata->get_session();
 
             auto puser = psession->user();
 

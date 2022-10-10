@@ -26,13 +26,13 @@ namespace networking_bsd
       ~ip_enum() override;
 
 
-      ::count enumerate(__pointer_array(::networking::address) & ipa) override;
+      ::count enumerate(pointer_array < ::networking::address > & ipa) override;
 
 
    };
 
 
-   typedef ___pointer < ip_enum > ip_enum_pointer;
+   typedef ::pointer<ip_enum>ip_enum_pointer;
 
 
 } // namespace net

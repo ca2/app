@@ -152,7 +152,7 @@ namespace user
    void vertical_scroll_base::on_message_vertical_scroll(::message::message * pmessage)
    {
 
-      __pointer(::message::scroll) pscroll(pmessage);
+      ::pointer<::message::scroll>pscroll(pmessage);
 
       queue_graphics_call([this, pscroll](::draw2d::graphics_pointer & pgraphics)
          {
@@ -239,7 +239,7 @@ namespace user
 
       }
 
-      __pointer(::message::mouse_wheel) pmousewheel(pmessage);
+      ::pointer<::message::mouse_wheel>pmousewheel(pmessage);
 
       int iDelta = pmousewheel->GetDelta();
 
@@ -283,7 +283,7 @@ namespace user
 
       }
 
-      __pointer(::message::key) pkey(pmessage);
+      ::pointer<::message::key>pkey(pmessage);
 
       //      if (pmousewheel->GetDelta() > 0)
       //      {

@@ -8,7 +8,7 @@ class CLASS_DECL_ACME main_hold_base :
 public:
 
 
-   __pointer(::acme::application)        m_pacmeapplication;
+   ::pointer<::acme::application>        m_pacmeapplication;
 
 
    static tristate is_audio_enabled();

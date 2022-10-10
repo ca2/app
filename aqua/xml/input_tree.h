@@ -19,8 +19,8 @@ namespace xml
    public:
 
 
-      __pointer(::xml::document)     m_pdocument;
-      __pointer(::xml::node)         m_pnode;
+      ::pointer<::xml::document>    m_pdocument;
+      ::pointer<::xml::node>        m_pnode;
 
 
       input_tree();

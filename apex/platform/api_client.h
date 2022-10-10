@@ -8,7 +8,7 @@ class CLASS_DECL_APEX api_client :
 public:
 
 
-   __pointer(::api)     m_papi;
+   ::pointer<::api>    m_papi;
    string               m_strImplementation;
    string               m_strProfileStore;
    string               m_strApiClientConfig;

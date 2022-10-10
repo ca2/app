@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 
@@ -88,7 +88,7 @@ public:
    //void exchange(const ::atom &, TYPE & t)
    //{
 
-   //   __pointer(::stream) pstream = branch(this, atom);
+   //   ::pointer<::stream>pstream = branch(this, atom);
 
    //   t.exchange(*pstream);
 
@@ -394,8 +394,8 @@ public:
    //virtual void write_file(const ::file::path & path, const ::matter & matter);
    //virtual void read_file(const ::file::path & path, ::matter & matter);
 
-   //virtual void write_link(const ::string & strLink, __pointer(::matter) & matter);
-   //virtual void read_link(const ::string & strLink, __pointer(::matter) & matter);
+   //virtual void write_link(const ::string & strLink, ::pointer<::matter>& matter);
+   //virtual void read_link(const ::string & strLink, ::pointer<::matter>& matter);
 
    //virtual void write_link(const ::matter * preference, const ::string & strLink, bool bReadOnly, ::matter * pobjectSaveOptions = nullptr);
 
@@ -441,9 +441,9 @@ public:
    //inline stream & save_object(const BASE_TYPE * pobject);
 
    template < typename BASE_TYPE >
-   inline __pointer(BASE_TYPE) load_object();
+   inline ::pointer<BASE_TYPE>load_object();
 
-   virtual __pointer(::matter) create_object_from_text(string strText);
+   virtual ::pointer<::matter>create_object_from_text(string strText);
 
 
    template < typename BLOCK >
@@ -460,10 +460,10 @@ public:
    inline binary_stream & operator >>(TYPE * p) { *this >> *p; return *this; }
 
    template < typename TYPE >
-   inline binary_stream & operator <<(const __pointer(TYPE) & p) { *this << *p;  return *this; }
+   inline binary_stream & operator <<(const ::pointer<TYPE>& p) { *this << *p;  return *this; }
 
    template < typename TYPE >
-   inline binary_stream & operator >>(__pointer(TYPE) & p) { *this >> *p; return *this; }
+   inline binary_stream & operator >>(::pointer<TYPE>& p) { *this >> *p; return *this; }
 
 
    template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, enum_type t_etypePayload >

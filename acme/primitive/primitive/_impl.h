@@ -15,7 +15,7 @@ inline bool __enum_is_failed(const ::e_status & e)
 
 template < class T >
 template < typename T2 >
-inline ___pointer < T > ::___pointer(const ptr < T2 > & t) :
+inline pointer < T > ::pointer(const ptr < T2 > & t) :
    m_p(t.m_p),
    m_pelement(t.m_p)
 {
@@ -32,7 +32,7 @@ inline ___pointer < T > ::___pointer(const ptr < T2 > & t) :
 
 template < class T >
 template < typename T2 >
-inline ___pointer < T > ::___pointer(ptr < T2 > && t) :
+inline pointer < T > ::pointer(ptr < T2 > && t) :
    m_p(t.m_p),
    m_pelement(t.m_p)
 {
@@ -49,7 +49,7 @@ inline ___pointer < T > ::___pointer(ptr < T2 > && t) :
 
 template < class T >
 template < typename T2 >
-inline ___pointer < T > & ___pointer < T > ::operator = (const ptr < T2 >  & t)
+inline pointer < T > & pointer < T > ::operator = (const ptr < T2 >  & t)
 {
 
    auto pold = m_pelement;
@@ -74,7 +74,7 @@ inline ___pointer < T > & ___pointer < T > ::operator = (const ptr < T2 >  & t)
 
 template < class T >
 template < typename T2 >
-inline ___pointer < T > & ___pointer < T > ::operator = (ptr < T2 > && t)
+inline pointer < T > & pointer < T > ::operator = (ptr < T2 > && t)
 {
 
    auto pOld         = m_pelement;
@@ -95,20 +95,20 @@ inline ___pointer < T > & ___pointer < T > ::operator = (ptr < T2 > && t)
 inline type::type(const ::element * pelement)
 {
 
-   m_strName = typeid(*(element *)pelement).name();
+   auto name = typeid(*(element *)pelement).name();
 
-   m_strName = demangle(m_strName);
+   ::atom::operator = (demangle(name));
 
 }
 
 
 template < typename BASE >
-inline type::type(const __pointer(BASE) & point)
+inline type::type(const ::pointer<BASE>& point)
 {
 
-   m_strName = typeid(*((BASE *)point.m_p)).name();
+   auto name = typeid(*((BASE *)point.m_p)).name();
 
-   m_strName = demangle(m_strName);
+   ::atom::operator = (demangle(name));
 
 }
 
@@ -117,7 +117,7 @@ template < >
 inline uptr uptr_hash < const type & >(const ::type & type)
 {
 
-   return uptr_hash < const string & > (type.m_strName);
+   return uptr_hash < const ::atom & > (type);
 
 }
 
@@ -524,7 +524,7 @@ inline property_set ca_property_set()
 /// END property_set
 
 
-inline __pointer(::handle::ini) operator ""_pini(const char * psz, size_t s)
+inline ::pointer<::handle::ini>operator ""_pini(const char * psz, size_t s)
 {
 
    return __new(::handle::ini(string(psz, s)));
@@ -549,7 +549,7 @@ inline __pointer(::handle::ini) operator ""_pini(const char * psz, size_t s)
 
 template < class T >
 template < typename VAR >
-inline ___pointer < T >  & ___pointer < T >::operator = (const payload_type < VAR > & payload)
+inline pointer < T >  & pointer < T >::operator = (const payload_type < VAR > & payload)
 {
 
    if (payload.this_var()->m_etype == e_type_element)
@@ -634,7 +634,7 @@ inline ___pointer < T >  & ___pointer < T >::operator = (const payload_type < VA
                   ::output_debug_string("POINTER: stream::alloc_object_from_text failed (2.1)");
 
                }
-               else if(__type_name(p) != atom.as_string())
+               else if(__type_name(p) != atom)
                {
 
                   ::output_debug_string("POINTER: allocated matter type is different from streamed matter type (2.2)");
@@ -714,7 +714,7 @@ inline bool succeeded(const ::property & property)
 
 //
 //template < typename BASE_TYPE >
-//inline __pointer(BASE_TYPE) matter::__create()
+//inline ::pointer<BASE_TYPE>matter::__create()
 //{
 //
 //   auto p = ::__create<BASE_TYPE>();
@@ -739,7 +739,7 @@ inline bool succeeded(const ::property & property)
 //
 //
 //template < typename BASE_TYPE >
-//inline __pointer(BASE_TYPE) matter::__id_create(const ::atom & atom)
+//inline ::pointer<BASE_TYPE>matter::__id_create(const ::atom & atom)
 //{
 //
 //   auto p = ::__id_create<BASE_TYPE>(atom);
@@ -764,7 +764,7 @@ inline bool succeeded(const ::property & property)
 //
 //
 //template < typename TYPE >
-//inline __pointer(TYPE) matter::__create_new()
+//inline ::pointer<TYPE>matter::__create_new()
 //{
 //
 //   ASSERT(::is_set(this));
@@ -785,7 +785,7 @@ inline bool succeeded(const ::property & property)
 //
 //template < class T >
 //template < typename TEMPLATER >
-//inline __pointer(T) & ___pointer < T >::create(TEMPLATER)
+//inline pointer < T > & pointer < T >::create(TEMPLATER)
 //{
 //
 //   __construct(*this);
@@ -797,7 +797,7 @@ inline bool succeeded(const ::property & property)
 
 template < class T >
 template < typename OBJECT >
-inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject)
+inline pointer < T > & pointer < T >::create(OBJECT * pobject)
 {
 
   auto p = pobject->template __create < T >();
@@ -809,7 +809,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject)
 
 template < class T >
 template < typename OBJECT >
-inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
+inline pointer < T > & pointer < T >::create(OBJECT * pobject, bool bCreate)
 {
 
   if (bCreate)
@@ -831,7 +831,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 
 
 //template < typename BASE_TYPE >
-//inline void matter::__compose(__composite(BASE_TYPE) & pusermessage)
+//inline void matter::__construct(::pointer<BASE_TYPE>& pusermessage)
 //{
 //
 //   if (!pusermessage)
@@ -890,7 +890,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //
 //template < typename BASE_TYPE >
-//inline void matter::__raw_compose(__composite(BASE_TYPE) & pusermessage)
+//inline void matter::__raw_construct(::pointer<BASE_TYPE>& pusermessage)
 //{
 //
 //   if (!pusermessage)
@@ -940,7 +940,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__compose(__composite(BASE_TYPE) & pusermessage, const SOURCE * psource)
+//inline void matter::__construct(::pointer<BASE_TYPE>& pusermessage, const SOURCE * psource)
 //{
 //
 //   pusermessage = psource;
@@ -968,7 +968,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //}
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__raw_compose(__composite(BASE_TYPE) & pusermessage, const SOURCE * psource)
+//inline void matter::__raw_construct(::pointer<BASE_TYPE>& pusermessage, const SOURCE * psource)
 //{
 //
 //   pusermessage = psource;
@@ -987,26 +987,26 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //}
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__compose(__composite(BASE_TYPE) & pusermessage, const __pointer(SOURCE) & psource)
+//inline void matter::__construct(::pointer<BASE_TYPE>& pusermessage, const ::pointer<SOURCE> psource)
 //{
 //
-//   return __compose(pusermessage, psource.get());
+//   return __construct(pusermessage, psource.get());
 //
 //}
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__raw_compose(__composite(BASE_TYPE) & pusermessage, const __pointer(SOURCE) & psource)
+//inline void matter::__raw_construct(::pointer<BASE_TYPE>& pusermessage, const ::pointer<SOURCE> psource)
 //{
 //
-//   return __raw_compose(pusermessage, psource.get());
+//   return __raw_construct(pusermessage, psource.get());
 //
 //}
 //
 //
 //
 //template < typename BASE_TYPE >
-//inline void matter::__id_compose(__composite(BASE_TYPE) & pusermessage, const ::atom & atom)
+//inline void matter::__id_construct(::pointer<BASE_TYPE>& pusermessage, const ::atom & atom)
 //{
 //
 //   auto & pfactory = ::factory::get_factory_item(atom);
@@ -1060,7 +1060,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //
 //template < typename TYPE >
-//inline void matter::__raw_compose_new(__composite(TYPE) & p)
+//inline void matter::__raw_construct_new(::pointer<TYPE>& p)
 //{
 //
 //   auto ptypeNew = __new(TYPE);
@@ -1091,7 +1091,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //
 //template < typename TYPE >
-//inline void matter::__compose_new(__composite(TYPE) & p)
+//inline void matter::__construct_new(::pointer<TYPE>& p)
 //{
 //
 //   auto ptypeNew = __new(TYPE);
@@ -1131,7 +1131,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //
 //template < typename TYPE >
-//inline void matter::__construct(__pointer(TYPE) & p)
+//inline void matter::__construct(::pointer<TYPE>& p)
 //{
 //
 //   auto estatus = ::__construct(p);
@@ -1149,7 +1149,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //
 //template < typename TYPE >
-//inline void matter::__id_construct(__pointer(TYPE) & p, const ::atom & atom)
+//inline void matter::__id_construct(::pointer<TYPE>& p, const ::atom & atom)
 //{
 //
 //   auto estatus = ::__id_construct(p, atom);
@@ -1167,7 +1167,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //
 //template < typename TYPE >
-//inline void matter::__construct_new(__pointer(TYPE) & p)
+//inline void matter::__construct_new(::pointer<TYPE>& p)
 //{
 //
 //   auto estatus = ::__construct_new(p);
@@ -1185,7 +1185,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //
 //template < typename BASE_TYPE >
-//inline void matter::__release(__composite(BASE_TYPE) & pcomposite)
+//inline void matter::__release(::pointer<BASE_TYPE>& pcomposite)
 //{
 //
 //   if (pcomposite)
@@ -1215,7 +1215,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //
 //template < typename BASE_TYPE >
-//inline void matter::__release(__reference(BASE_TYPE) & preference)
+//inline void matter::__release(::pointer<BASE_TYPE>& preference)
 //{
 //
 //   if (preference)
@@ -1251,7 +1251,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //
 //template < typename SOURCE >
-//inline void matter::release_reference(__pointer(SOURCE) & psource)
+//inline void matter::release_reference(::pointer<SOURCE>& psource)
 //{
 //
 //   return release_reference(psource.m_p);
@@ -1263,7 +1263,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //
 //template < typename BASE_TYPE >
-//inline void matter::add_composite(__composite(BASE_TYPE) & pcomposite)
+//inline void matter::add_composite(::pointer<BASE_TYPE>& pcomposite)
 //{
 //
 //   return add_composite(pcomposite.get());
@@ -1272,7 +1272,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__refer(__reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource, const char* pszObjRefDbg)
+//inline void matter::__refer(::pointer<BASE_TYPE>& preference, const ::pointer<SOURCE> psource, const char* pszObjRefDbg)
 //{
 //
 //   return __refer(preference, psource.get(), pszObjRefDbg);
@@ -1281,7 +1281,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__refer(__reference(BASE_TYPE) & preference, const ::primitive::member < SOURCE > & pmember, const char* pszObjRefDbg)
+//inline void matter::__refer(::pointer<BASE_TYPE>& preference, const ::primitive::member < SOURCE > & pmember, const char* pszObjRefDbg)
 //{
 //
 //   return __refer(preference, pmember.get(), pszObjRefDbg);
@@ -1290,7 +1290,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //
 //template < typename BASE_TYPE, typename SOURCE >
-//inline void matter::__refer(__reference(BASE_TYPE) & preference, const SOURCE * psource, const char* pszObjRefDbg)
+//inline void matter::__refer(::pointer<BASE_TYPE>& preference, const SOURCE * psource, const char* pszObjRefDbg)
 //{
 //
 //   preference = psource;
@@ -1308,7 +1308,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //
 //template < typename SOURCE >
-//inline void matter::add_reference(__pointer(SOURCE) & psource)
+//inline void matter::add_reference(::pointer<SOURCE>& psource)
 //{
 //
 //   return add_reference(psource.get());
@@ -1317,7 +1317,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //
 //template < typename SOURCE >
-//inline void matter::add_reference(__reference(SOURCE) & preference)
+//inline void matter::add_reference(::pointer<SOURCE>& preference)
 //{
 //
 //   return add_reference(preference.get());
@@ -1329,7 +1329,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //inline void matter::add_reference(SOURCE * psource)
 //{
 //
-//   __pointer(::matter) pobject;
+//   ::pointer<::matter>pobject;
 //
 //   pobject = (SOURCE *) psource;
 //
@@ -1346,7 +1346,7 @@ inline __pointer(T) & ___pointer < T >::create(OBJECT * pobject, bool bCreate)
 //
 //
 template < typename T >
-inline ptr < T > move_transfer(T* p) { return { e_move_transfer, p }; }
+inline ::pointer < T > move_transfer(T* p) { return { e_move_transfer, p }; }
 
 
 template < typename TYPE >
@@ -1384,7 +1384,7 @@ TYPE & operator -=(TYPE & o, enum_object eobject)
 
 //template < typename T >
 //template < typename TEMPLATER >
-//inline __pointer(T) & ___pointer<T> ::defer_create(TEMPLATER)
+//inline pointer < T > & pointer<T> ::defer_create(TEMPLATER)
 //{
 //
 //   if (is_null())
@@ -1401,7 +1401,7 @@ TYPE & operator -=(TYPE & o, enum_object eobject)
 
 template < typename T >
 template < typename OBJECT >
-inline __pointer(T) & ___pointer<T> ::defer_create(OBJECT * pobject)
+inline pointer < T > & pointer<T> ::defer_create(OBJECT * pobject)
 {
 
    if (is_null())
@@ -1417,7 +1417,7 @@ inline __pointer(T) & ___pointer<T> ::defer_create(OBJECT * pobject)
 
 
 //template < class T >
-//inline stream & operator << (stream & os, const ___pointer < T > & sp)
+//inline stream & operator << (stream & os, const pointer < T > & sp)
 //{
 //
 //   os << *sp.m_p;
@@ -1428,7 +1428,7 @@ inline __pointer(T) & ___pointer<T> ::defer_create(OBJECT * pobject)
 //
 //
 //template < class T >
-//inline stream & operator >> (stream & is, ___pointer < T > & sp)
+//inline stream & operator >> (stream & is, pointer < T > & sp)
 //{
 //
 //   is >> *sp.m_p;
@@ -1651,12 +1651,12 @@ inline __pointer(T) & ___pointer<T> ::defer_create(OBJECT * pobject)
 //}
 //
 
-inline payload::operator ::memory() const
-{
-
-   return this->memory();
-
-}
+//inline payload::memory() const
+//{
+//
+//   return this->memory();
+//
+//}
 
 
 //inline void & payload::as_estatus()
@@ -1695,7 +1695,7 @@ inline payload::operator ::memory() const
 inline bool type::operator == (const ::atom& atom) const
 {
 
-   return m_strName == atom.as_string();
+   return ::atom::operator ==(atom);
 
 }
 
@@ -1756,7 +1756,7 @@ inline bool type::operator == (const ::atom& atom) const
 
 
    template < class T >
-   inline __pointer(T) payload::cast(T * pDefault)
+   inline pointer < T > payload::cast(T * pDefault)
    {
 
       if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
@@ -1829,7 +1829,7 @@ inline bool type::operator == (const ::atom& atom) const
 
 
    template < class T >
-   inline __pointer(T) payload::cast()
+   inline pointer < T > payload::cast()
    {
 
       if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
@@ -1895,7 +1895,7 @@ inline bool type::operator == (const ::atom& atom) const
 //
 
 //template < typename TYPE >
-//inline __pointer(TYPE) element::cast(const ::atom & atom)
+//inline ::pointer<TYPE>element::cast(const ::atom & atom)
 //{
 //
 //   return value(atom).cast < TYPE>();
@@ -1910,7 +1910,7 @@ inline bool type::operator == (const ::atom& atom) const
 
 
 template < typename T >
-inline __pointer(T) payload::pointer() const
+inline pointer < T > payload::pointer() const
 {
 
    auto pproperty = find_pointer < T >();
@@ -1983,7 +1983,7 @@ inline ::payload __visible(::payload varOptions, bool bVisible)
 //   for (index iOrder = 0; iOrder < iScan; iOrder++)
 //   {
 //
-//      __pointer(predicate_holder_base) pusermessage = __new(forking_count_predicate < PRED > (iOrder, iOrder + iStart, iScan, iCount, pred));
+//      ::pointer<predicate_holder_base>pusermessage = __new(forking_count_predicate < PRED > (iOrder, iOrder + iStart, iScan, iCount, pred));
 //
 //      if (!pgroup->add_predicate(pusermessage))
 //      {
@@ -2083,7 +2083,7 @@ inline ::payload operator + (::payload payload, const ::procedure & procedure)
 
 
 template < typename TYPE, typename T >
-void object_reference_count_debug_assign(__pointer(TYPE) & ptr, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void object_reference_count_debug_assign(::pointer<TYPE>& ptr, T * p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
    
    auto pold = ptr.m_p;
@@ -2098,7 +2098,7 @@ void object_reference_count_debug_assign(__pointer(TYPE) & ptr, T * p OBJECT_REF
 
 
 template < typename TYPE >
-void object_reference_count_debug_release(__pointer(TYPE) & ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+void object_reference_count_debug_release(::pointer<TYPE>& ptr OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
 {
    
    object_reference_count_debug_release(ptr.m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
@@ -2172,7 +2172,7 @@ inline uptr uptr_hash < block >(block b)
 
 
 template < typename TYPE >
-inline __pointer(TYPE) object::__create()
+inline ::pointer<TYPE>object::__create()
 {
 
    auto & pfactory = ::factory::get_factory_item < TYPE >();
@@ -2214,7 +2214,7 @@ inline __pointer(TYPE) object::__create()
 
 
 template < typename TYPE >
-inline __pointer(TYPE) object::__id_create(const ::atom& atom)
+inline ::pointer<TYPE>object::__id_create(const ::atom& atom)
 {
 
    auto pfactory = ::factory::get_factory_item(atom);
@@ -2235,7 +2235,7 @@ inline __pointer(TYPE) object::__id_create(const ::atom& atom)
    
    }
    
-   __pointer(TYPE) p;
+   ::pointer<TYPE>p;
    
    p = ptypeNew;
    
@@ -2265,7 +2265,7 @@ inline __pointer(TYPE) object::__id_create(const ::atom& atom)
 
 
 template < typename TYPE >
-inline __pointer(TYPE) object::__create_new()
+inline ::pointer<TYPE>object::__create_new()
 {
 
    ASSERT(::is_set(this));
@@ -2284,318 +2284,320 @@ inline __pointer(TYPE) object::__create_new()
 }
 
 
-template < typename BASE_TYPE >
-inline void object::__compose(__composite(BASE_TYPE)& pcomposite)
-{
-
-   if (!pcomposite)
-   {
-
-      auto& pfactory = ::factory::get_factory_item < BASE_TYPE >();
-
-      if (!pfactory)
-      {
-
-         throw ::exception(error_no_factory);
-
-      }
-
-      auto pelement = ::move(pfactory->create_element());
-
-      if (!pelement)
-      {
-
-         throw ::exception(error_no_memory);
-
-      }
-
-      pcomposite = pelement;
-
-      if (!pcomposite)
-      {
-
-         throw ::exception(error_wrong_type);
-
-      }
-
-      /*auto estatus = */ pcomposite->initialize(this);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      /*estatus = */ add_composite(pcomposite);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-   }
-
-   //return ::success;
-
-}
-
-
-template < typename BASE_TYPE >
-inline void object::__raw_compose(__composite(BASE_TYPE)& pusermessage)
-{
-
-   if (!pusermessage)
-   {
-
-      auto& pfactory = ::factory::get_factory_item < BASE_TYPE >();
-
-      if (!pfactory)
-      {
-
-         throw ::exception(::error_no_factory);
-
-      }
-
-      auto pelement = pfactory->create_element();
-
-      if (!pelement)
-      {
-
-         throw ::exception(::error_no_memory);
-
-      }
-
-      pusermessage = pelement;
-
-      if (!pusermessage)
-      {
-
-         throw ::exception(error_wrong_type);
-
-      }
-
-      /*auto estatus = */ add_composite(pusermessage);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-   }
-
-   //return ::success;
-
-}
-
-
-template < typename BASE_TYPE, typename SOURCE >
-inline void object::__compose(__composite(BASE_TYPE)& pcomposite, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   pcomposite = psource;
-
-   if (!pcomposite)
-   {
-
-      throw ::exception(error_wrong_type);
-
-   }
-
-   //auto estatus = pcomposite->initialize(this);
-    pcomposite->initialize(this);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-    add_composite(pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-
-   //return m_estatus;
-
-}
-
-template < typename BASE_TYPE, typename SOURCE >
-inline void object::__raw_compose(__composite(BASE_TYPE)& pusermessage, const SOURCE* psource)
-{
-
-   pusermessage = psource;
-
-   if (!pusermessage)
-   {
-
-      throw ::exception(error_wrong_type);
-
-   }
-
-   /*m_estatus = */ add_composite(pusermessage);
-
-   //return m_estatus;
-
-}
-
-
-template < typename BASE_TYPE, typename SOURCE >
-inline void object::__compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   /* return */ __compose(pusermessage, psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-
-}
-
-
-template < typename BASE_TYPE, typename SOURCE >
-inline void object::__compose(__composite(BASE_TYPE)& pusermessage, const ptr < SOURCE > & psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   /* return */ __compose(pusermessage, psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-
-}
-
-
-template < typename BASE_TYPE, typename SOURCE >
-inline void object::__raw_compose(__composite(BASE_TYPE)& pusermessage, const __pointer(SOURCE)& psource)
-{
-
-   /*return*/ __raw_compose(pusermessage, psource.get());
-
-}
-
-
-template < typename BASE_TYPE >
-inline void object::__id_compose(__composite(BASE_TYPE)& pusermessage, const ::atom& atom)
-{
-
-   auto& pfactory = ::factory::get_factory_item(atom);
-
-   if (!pfactory)
-   {
-
-      throw ::exception(::error_no_factory);
-
-   }
-
-   auto ptypeNew = pfactory->create_element();
-
-   if (!ptypeNew)
-   {
-
-      throw ::exception(::error_no_memory);
-
-   }
-
-   pusermessage = ptypeNew;
-
-   if (!pusermessage)
-   {
-
-      throw ::exception(::error_wrong_type);
-
-   }
-
-   /*auto estatus =*/ pusermessage->initialize(this);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   /* estatus = */ add_composite(pusermessage);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   //return estatus;
-
-}
-
-
-template < typename TYPE >
-inline void object::__raw_compose_new(__composite(TYPE)& p)
-{
-
-   auto ptypeNew = __new(TYPE);
-
-   if (!ptypeNew)
-   {
-
-      throw ::exception(::error_no_memory);
-
-   }
-
-   p = ptypeNew;
-
-   /*auto estatus = */ add_composite(p);
-
-   //if (!estatus)
-   //{
-
-   //   p.clear_member();
-
-   //   return estatus;
-
-   //}
-
-   //return estatus;
-
-}
-
-
-template < typename TYPE >
-inline void object::__compose_new(__composite(TYPE)& p)
-{
-
-   auto ptypeNew = __new(TYPE);
-
-   if (!ptypeNew)
-   {
-
-      throw ::exception(::error_no_memory);
-
-   }
-
-   /*auto estatus = */ ptypeNew->initialize(this);
-
-   //if (!estatus)
-   //{
-
-   //   return estatus;
-
-   //}
-
-   p = ptypeNew;
-
-   /*estatus = */ add_composite(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(this));
-
-   //if (!estatus)
-   //{
-
-      //p.clear_member();
-
-//      return estatus;
-
+//template < typename BASE_TYPE >
+//inline void object::__construct(::pointer<BASE_TYPE> pcomposite)
+//{
+//
+//   if (!pcomposite)
+//   {
+//
+//      auto& pfactory = ::factory::get_factory_item < BASE_TYPE >();
+//
+//      if (!pfactory)
+//      {
+//
+//         throw ::exception(error_no_factory);
+//
+//      }
+//
+//      auto pelement = ::move(pfactory->create_element());
+//
+//      if (!pelement)
+//      {
+//
+//         throw ::exception(error_no_memory);
+//
+//      }
+//
+//      pcomposite = pelement;
+//
+//      if (!pcomposite)
+//      {
+//
+//         throw ::exception(error_wrong_type);
+//
+//      }
+//
+//      /*auto estatus = */ pcomposite->initialize(this);
+//
+//      //if (!estatus)
+//      //{
+//
+//      //   return estatus;
+//
+//      //}
+//
+//      /*estatus = */ add_composite(pcomposite);
+//
+//      //if (!estatus)
+//      //{
+//
+//      //   return estatus;
+//
+//      //}
+//
 //   }
+//
+//   //return ::success;
+//
+//}
+//
 
-//   return estatus;
+template < typename BASE_TYPE >
+inline void object::__raw_construct(::pointer<BASE_TYPE> & p)
+{
+
+  //if (!p)
+  //{
+
+     auto& pfactory = ::factory::get_factory_item < BASE_TYPE >();
+
+     if (!pfactory)
+     {
+
+        throw ::exception(::error_no_factory);
+
+     }
+
+     auto pelement = pfactory->create_element();
+
+     if (!pelement)
+     {
+
+        throw ::exception(::error_no_memory);
+
+     }
+
+     p = pelement;
+
+     if (!p)
+     {
+
+        throw ::exception(error_wrong_type);
+
+     }
+
+     ///*auto estatus = */ add_composite(pusermessage);
+
+     //if (!estatus)
+     //{
+
+     //   return estatus;
+
+     //}
+
+  //}
+
+  //return ::success;
 
 }
 
+//
+//template < typename BASE_TYPE, typename SOURCE >
+//inline void object::__construct(::pointer<BASE_TYPE> pcomposite, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   pcomposite = psource;
+//
+//   if (!pcomposite)
+//   {
+//
+//      throw ::exception(error_wrong_type);
+//
+//   }
+//
+//   //auto estatus = pcomposite->initialize(this);
+//    pcomposite->initialize(this);
+//
+//   //if (!estatus)
+//   //{
+//
+//   //   return estatus;
+//
+//   //}
+//
+//    add_composite(pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//   //return m_estatus;
+//
+//}
+//
+//template < typename BASE_TYPE, typename SOURCE >
+//inline void object::__raw_construct(::pointer<BASE_TYPE> pusermessage, const SOURCE* psource)
+//{
+//
+//   pusermessage = psource;
+//
+//   if (!pusermessage)
+//   {
+//
+//      throw ::exception(error_wrong_type);
+//
+//   }
+//
+//   /*m_estatus = */ add_composite(pusermessage);
+//
+//   //return m_estatus;
+//
+//}
+//
+//
+//template < typename BASE_TYPE, typename SOURCE >
+//inline void object::__construct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   /* return */ __construct(pusermessage, psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//}
+//
+//
+//template < typename BASE_TYPE, typename SOURCE >
+//inline void object::__construct(::pointer<BASE_TYPE> pusermessage, const ptr < SOURCE > & psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   /* return */ __construct(pusermessage, psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//}
+//
+//
+//template < typename BASE_TYPE, typename SOURCE >
+//inline void object::__raw_construct(::pointer<BASE_TYPE> pusermessage, const ::pointer<SOURCE>psource)
+//{
+//
+//   /*return*/ __raw_construct(pusermessage, psource.get());
+//
+//}
+//
+//
+//template < typename BASE_TYPE >
+//inline void object::__id_construct(::pointer<BASE_TYPE> pusermessage, const ::atom& atom)
+//{
+//
+//   auto& pfactory = ::factory::get_factory_item(atom);
+//
+//   if (!pfactory)
+//   {
+//
+//      throw ::exception(::error_no_factory);
+//
+//   }
+//
+//   auto ptypeNew = pfactory->create_element();
+//
+//   if (!ptypeNew)
+//   {
+//
+//      throw ::exception(::error_no_memory);
+//
+//   }
+//
+//   pusermessage = ptypeNew;
+//
+//   if (!pusermessage)
+//   {
+//
+//      throw ::exception(::error_wrong_type);
+//
+//   }
+//
+//   /*auto estatus =*/ pusermessage->initialize(this);
+//
+//   //if (!estatus)
+//   //{
+//
+//   //   return estatus;
+//
+//   //}
+//
+//   /* estatus = */ add_composite(pusermessage);
+//
+//   //if (!estatus)
+//   //{
+//
+//   //   return estatus;
+//
+//   //}
+//
+//   //return estatus;
+//
+//}
+//
+//
+//template < typename TYPE >
+//inline void object::__raw_construct_new(::pointer<TYPE> p)
+//{
+//
+//   auto ptypeNew = __new(TYPE);
+//
+//   if (!ptypeNew)
+//   {
+//
+//      throw ::exception(::error_no_memory);
+//
+//   }
+//
+//   p = ptypeNew;
+//
+//   /*auto estatus = */ add_composite(p);
+//
+//   //if (!estatus)
+//   //{
+//
+//   //   p.clear_member();
+//
+//   //   return estatus;
+//
+//   //}
+//
+//   //return estatus;
+//
+//}
+//
+//
+//template < typename TYPE >
+//inline void object::__construct_new(::pointer<TYPE> p)
+//{
+//
+//   auto ptypeNew = __new(TYPE);
+//
+//   if (!ptypeNew)
+//   {
+//
+//      throw ::exception(::error_no_memory);
+//
+//   }
+//
+//   /*auto estatus = */ ptypeNew->initialize(this);
+//
+//   //if (!estatus)
+//   //{
+//
+//   //   return estatus;
+//
+//   //}
+//
+//   p = ptypeNew;
+//
+//   /*estatus = */ add_composite(p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(this));
+//
+//   //if (!estatus)
+//   //{
+//
+//      //p.clear_member();
+//
+////      return estatus;
+//
+////   }
+//
+////   return estatus;
+//
+//}
+//
+//
+
 
 template < typename TYPE >
-inline void object::__defer_construct(__pointer(TYPE)& p)
+inline void object::__defer_construct(::pointer<TYPE> & p)
 {
 
    if (::is_null(p))
@@ -2609,7 +2611,7 @@ inline void object::__defer_construct(__pointer(TYPE)& p)
 
 
 template < typename TYPE >
-inline void object::__defer_construct_new(__pointer(TYPE)& p)
+inline void object::__defer_construct_new(::pointer<TYPE> & p)
 {
 
    if(::is_null(p))
@@ -2623,7 +2625,7 @@ inline void object::__defer_construct_new(__pointer(TYPE)& p)
 
 
 template < typename TYPE >
-inline void object::__construct(__pointer(TYPE) & p)
+inline void object::__construct(::pointer<TYPE>& p)
 {
 
    auto & pfactory = ::factory::get_factory_item < TYPE >();
@@ -2666,8 +2668,39 @@ inline void object::__construct(__pointer(TYPE) & p)
 }
 
 
+template < typename BASE_TYPE, typename TYPE >
+inline void object::__construct(::pointer<BASE_TYPE> & ptype, const ::pointer < TYPE > & p)
+{
+
+   __construct(ptype, p.m_p);
+
+}
+
+
+template < typename BASE_TYPE, typename TYPE >
+inline void object::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p)
+{
+
+   if (::is_null(p))
+   {
+
+      ERROR("object::__assign_and_initialize p is null (is assignee type derived from BASE_TYPE?");
+
+      throw ::exception(::error_null_pointer);
+
+   }
+
+   ptype.release();
+
+   ptype = p;
+
+   ptype->initialize(this);
+
+}
+
+
 template < typename TYPE >
-inline void object::__id_construct(__pointer(TYPE)& p, const ::atom& atom)
+inline void object::__id_construct(::pointer<TYPE> & p, const ::atom& atom)
 {
 
    auto & pfactory = ::factory::get_existing_factory_item(atom);
@@ -2709,7 +2742,7 @@ inline void object::__id_construct(__pointer(TYPE)& p, const ::atom& atom)
 
 
 template < typename TYPE >
-inline void object::__construct_new(__pointer(TYPE)& p)
+inline void object::__construct_new(::pointer<TYPE> & p)
 {
 
    p = __new(TYPE);
@@ -2727,184 +2760,184 @@ inline void object::__construct_new(__pointer(TYPE)& p)
 }
 
 
-template < typename BASE_TYPE >
-inline void object::__release(__composite(BASE_TYPE)& pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   if (::is_set(pcomposite))
-   {
-
-      //synchronous_lock synchronouslock(mutex());
-
-      //if (m_pcompositea)
-      //{
-
-      //   if (m_pcompositea->erase(pcomposite.get()) >= 0)
-      //   {
-
-            pcomposite.clear_member();
-
-      //   }
-
-      //}
-
-   }
-
-   //return ::success;
-
-}
-
-
-template < typename BASE_TYPE >
-inline void object::__release(__reference(BASE_TYPE)& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   if (::is_set(preference))
-   {
-
-      //synchronous_lock synchronouslock(mutex());
-
-      //if (m_preferencea)
-      //{
-
-      //   if (m_preferencea->erase(preference.get()) >= 0)
-      //   {
-
-            //preference->release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-            preference.clear_member();
-
-   //      }
-   //      else
-   //      {
-
-   //         return ::error_failed;
-
-   //      }
-
-   //   }
-
-   }
-
-   //return ::success;
-
-}
-
-
-template < typename SOURCE >
-inline void object::__release(__pointer(SOURCE)& psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   release_reference(psource.m_p);
-
-}
-
-
-CLASS_DECL_ACME void object_on_add_composite(const element* pusermessage);
-
-
-template < typename BASE_TYPE, typename SOURCE >
-inline void object::__refer(__reference(BASE_TYPE)& preference, const __pointer(SOURCE)& psource  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   __refer(preference, psource.get()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-
-}
-
-
-template < typename BASE_TYPE, typename SOURCE >
-inline void object::__refer(__reference(BASE_TYPE)& preference, const ::primitive::member < SOURCE >& pmember OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   __refer(preference, pmember.get()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-
-}
-
-
-template < typename BASE_TYPE, typename SOURCE >
-inline void object::__refer(__reference(BASE_TYPE)& preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   preference = psource;
-
-   if (!preference)
-   {
-
-      throw ::exception(error_wrong_type);
-
-   }
-
-   add_reference(preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-
-}
-
-
-template < typename BASE_TYPE, typename SOURCE >
-inline void object::__defer_refer(__reference(BASE_TYPE)& preference, const __pointer(SOURCE)& psource  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   __defer_refer(preference, psource.get()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-
-}
-
-
-template < typename BASE_TYPE, typename SOURCE >
-inline void object::__defer_refer(__reference(BASE_TYPE)& preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   if (preference.get() != psource)
-   {
-
-      __release(preference);
-
-      preference = psource;
-
-      if (preference)
-      {
-
-         add_reference(preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-
-      }
-
-   }
-
-}
-
-
-template < typename SOURCE >
-inline void object::add_reference(__pointer(SOURCE)& psource  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   add_reference(psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-
-}
-
-
-template < typename SOURCE >
-inline void object::add_reference(__reference(SOURCE)& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   add_reference(preference.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-
-}
-
-
-template < typename SOURCE >
-inline void object::add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   ::element* pelement = psource;
-
-   if (::is_null(pelement))
-   {
-
-      throw ::exception(error_wrong_type);
-
-   }
-
-   add_reference(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
-
-}
+//template < typename BASE_TYPE >
+//inline void object::__release(::pointer<BASE_TYPE> pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   if (::is_set(pcomposite))
+//   {
+//
+//      //synchronous_lock synchronouslock(mutex());
+//
+//      //if (m_pcompositea)
+//      //{
+//
+//      //   if (m_pcompositea->erase(pcomposite.get()) >= 0)
+//      //   {
+//
+//            pcomposite.clear_member();
+//
+//      //   }
+//
+//      //}
+//
+//   }
+//
+//   //return ::success;
+//
+//}
+//
+//
+//template < typename BASE_TYPE >
+//inline void object::__release(::pointer<BASE_TYPE> preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   if (::is_set(preference))
+//   {
+//
+//      //synchronous_lock synchronouslock(mutex());
+//
+//      //if (m_preferencea)
+//      //{
+//
+//      //   if (m_preferencea->erase(preference.get()) >= 0)
+//      //   {
+//
+//            //preference->release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//
+//            preference.clear_member();
+//
+//   //      }
+//   //      else
+//   //      {
+//
+//   //         return ::error_failed;
+//
+//   //      }
+//
+//   //   }
+//
+//   }
+//
+//   //return ::success;
+//
+//}
+//
+//
+//template < typename SOURCE >
+//inline void object::__release(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   release_reference(psource.m_p);
+//
+//}
+
+
+//CLASS_DECL_ACME void object_on_add_composite(const element* pusermessage);
+
+
+//template < typename BASE_TYPE, typename SOURCE >
+//inline void object::__refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   __refer(preference, psource.get()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//}
+//
+//
+//template < typename BASE_TYPE, typename SOURCE >
+//inline void object::__refer(::pointer<BASE_TYPE> preference, const ::primitive::member < SOURCE >& pmember OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   __refer(preference, pmember.get()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//}
+//
+//
+//template < typename BASE_TYPE, typename SOURCE >
+//inline void object::__refer(::pointer<BASE_TYPE> preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   preference = psource;
+//
+//   if (!preference)
+//   {
+//
+//      throw ::exception(error_wrong_type);
+//
+//   }
+//
+//   add_reference(preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//}
+//
+//
+//template < typename BASE_TYPE, typename SOURCE >
+//inline void object::__defer_refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   __defer_refer(preference, psource.get()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//}
+//
+//
+//template < typename BASE_TYPE, typename SOURCE >
+//inline void object::__defer_refer(::pointer<BASE_TYPE> preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   if (preference.get() != psource)
+//   {
+//
+//      __release(preference);
+//
+//      preference = psource;
+//
+//      if (preference)
+//      {
+//
+//         add_reference(preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//      }
+//
+//   }
+//
+//}
+//
+//
+//template < typename SOURCE >
+//inline void object::add_reference(::pointer<SOURCE> psource  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   add_reference(psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//}
+//
+//
+//template < typename SOURCE >
+//inline void object::add_reference(::pointer<SOURCE> preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   add_reference(preference.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//}
+//
+//
+//template < typename SOURCE >
+//inline void object::add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   ::element* pelement = psource;
+//
+//   if (::is_null(pelement))
+//   {
+//
+//      throw ::exception(error_wrong_type);
+//
+//   }
+//
+//   add_reference(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//}
 
 
 inline ::file_pointer object::get_reader(const ::payload& payloadFile, const ::file::e_open& eopen)
@@ -2963,42 +2996,42 @@ inline ::file_pointer object::get_writer(const ::payload& payloadFile, const ::f
   }
 
 
-template < typename TYPE >
-inline void object::__construct(::task_pointer& p, void (TYPE::* pfn)(), enum_priority epriority)
-{
-
-   p = fork(pfn, epriority);
-
-   if (!p)
-   {
-
-      throw ::exception(error_failed);
-
-   }
-
-}
-
-
-template < typename TYPE >
-inline void object::__construct_below_normal(::task_pointer& p, void (TYPE::* pfn)())
-{
-
-   return __construct(p, pfn, e_priority_below_normal);
-
-}
+//template < typename TYPE >
+//inline void object::__construct(::task_pointer& p, void (TYPE::* pfn)(), enum_priority epriority)
+//{
+//
+//   p = fork(pfn, epriority);
+//
+//   if (!p)
+//   {
+//
+//      throw ::exception(error_failed);
+//
+//   }
+//
+//}
 
 
-template < typename TYPE >
-inline ::task_pointer object::defer_branch(const ::atom& atom, void(TYPE::* pfn)(), enum_priority epriority)
-{
+//template < typename TYPE >
+//inline void object::__construct_below_normal(::task_pointer& p, void (TYPE::* pfn)())
+//{
+//
+//   return __construct(p, pfn, e_priority_below_normal);
+//
+//}
+//
 
-   auto pfork = fork(pfn, epriority);
-
-   get_property_set()[__id(thread)][atom] = pfork;
-
-   return pfork;
-
-}
+//template < typename TYPE >
+//inline ::task_pointer object::defer_branch(const ::atom& atom, void(TYPE::* pfn)(), enum_priority epriority)
+//{
+//
+//   auto pfork = fork(pfn, epriority);
+//
+//   get_property_set()[__id(thread)][atom] = pfork;
+//
+//   return pfork;
+//
+//}
 
 
 template < typename PRED >
@@ -3022,7 +3055,7 @@ inline void object::defer_branch(::task_pointer& ptask, const ::procedure & proc
 }
 
 
-inline __pointer(task) object::fork(const ::procedure & procedure, const ::element_array & elementaHold, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+inline ::pointer<task>object::fork(const ::procedure & procedure, const ::element_array & elementaHold, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
    auto ptask = this->branch_procedure(procedure, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
@@ -3250,10 +3283,10 @@ inline atom::atom(const ::lparam & lparam)
 
 
 //template < class T >
-//inline ___pointer < T > & __move(___pointer < T > & p, lparam & lparam)
+//inline pointer < T > & __move(pointer < T > & p, lparam & lparam)
 //{
 //
-//   ___pointer < T > pelement(lparam);
+//   pointer < T > pelement(lparam);
 //
 //   if (::is_null(pelement))
 //   {
@@ -3269,7 +3302,7 @@ inline atom::atom(const ::lparam & lparam)
 
 //template < class T >
 //template < typename OBJECT >
-//inline ___pointer < T > ::___pointer(enum_create, OBJECT * p) :
+//inline pointer < T > ::pointer(enum_create, OBJECT * p) :
 //   m_p(nullptr),
 //   m_pelement(nullptr)
 //{
@@ -3286,7 +3319,7 @@ template < typename OBJECT >
 
    ::index i = this->get_size();
 
-   comparable_array < ___pointer < T > > ::set_size(nNewSize);
+   comparable_array < ::pointer<T >>::set_size(nNewSize);
 
    ::count c = this->get_size();
 
@@ -3315,6 +3348,35 @@ inline ::topic_pointer matter::create_topic(const ::atom & atom)
 }
 
 
+inline e_check::e_check(const ::tristate & triestate)
+{
+
+   if (triestate == e_boolean_undefined)
+   {
+
+      m_echeck = e_check_undefined;
+
+   }
+   else if (triestate == e_boolean_yes)
+   {
+
+      m_echeck = e_check_checked;
+
+   }
+   else if (triestate == e_boolean_no)
+   {
+
+      m_echeck = e_check_unchecked;
+
+   }
+   else
+   {
+
+      m_echeck = e_check_tristate;
+
+   }
+
+}
 
 
 

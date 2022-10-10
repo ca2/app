@@ -14,7 +14,7 @@ namespace user
    ::user::document * get_document(::user::interaction* pinteraction)
    {
 
-      __pointer(::user::frame_window) pframewindow = pinteraction;
+      ::pointer<::user::frame_window>pframewindow = pinteraction;
 
       if (pframewindow)
       {
@@ -25,7 +25,7 @@ namespace user
       else
       {
 
-         __pointer(::user::impact) pimpact = pinteraction;
+         ::pointer<::user::impact>pimpact = pinteraction;
 
          return pimpact->get_document();
 
@@ -80,7 +80,7 @@ namespace user
    }
 
 
-   __pointer(::user::impact) impact_host::get_impact()
+   ::pointer<::user::impact>impact_host::get_impact()
    {
 
       return nullptr;
@@ -604,7 +604,7 @@ namespace user
    void impact_host::on_erase_child(::user::interaction* pinteraction)
    {
 
-      //__pointer(::user::interaction) pupdown = pinteraction;
+      //::pointer<::user::interaction>pupdown = pinteraction;
 
       //if (pupdown.is_set()
       //   && pupdown->m_eupdown != e_updown_normal_frame
@@ -636,7 +636,7 @@ namespace user
    void impact_host::on_erase_place_holder_child(::user::interaction* pinteraction)
    {
 
-      //__pointer(::user::interaction) pupdown = pinteraction;
+      //::pointer<::user::interaction>pupdown = pinteraction;
 
       //if (pupdown.is_set()
       //   && pupdown->m_eupdown != e_updown_normal_frame
@@ -666,7 +666,7 @@ namespace user
    void impact_host::on_hide_child(::user::interaction* pinteraction)
    {
 
-      //__pointer(::user::interaction) pupdown = pinteraction;
+      //::pointer<::user::interaction>pupdown = pinteraction;
 
       //if (pupdown.is_set()
       //   && pupdown->m_eupdown != e_updown_normal_frame
@@ -696,7 +696,7 @@ namespace user
    void impact_host::on_hide_place_holder_child(::user::interaction* pinteraction)
    {
 
-      /*__pointer(::user::interaction) pupdown = pinteraction;
+      /*::pointer<::user::interaction>pupdown = pinteraction;
 
       if (pupdown.is_set()
          && pupdown->m_eupdown != e_updown_normal_frame

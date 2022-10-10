@@ -52,7 +52,7 @@ namespace user
       u32 get_button_size();
       bool SetButtonSize(const ::size_i32 & size);
       bool SetBitmapSize(const ::size_i32 & size);
-      __pointer(::user::interaction)  set_owner(__pointer(::user::interaction) pwindow);
+      ::pointer<::user::interaction> set_owner(::pointer<::user::interaction>window);
       void SetRows(i32 nRows, bool bLarger, RECTANGLE_I32 * prectangle);
 
       i32 GetRows();

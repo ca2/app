@@ -275,7 +275,7 @@ list(APPEND library_source
    #platform/app_core.cpp
    #platform/app_core.h
    platform/assert.cpp
-   platform/aura_str_pool.cpp
+   #platform/aura_str_pool.cpp
    platform/build_debug.cpp
    platform/checked.cpp
    platform/context.cpp
@@ -829,7 +829,7 @@ list(APPEND library_source
    _defer.h
    _start.h
    #application.h
-   astr.h
+   #astr.h
    axispolicy/_.h
    axispolicy/_c.h
    axispolicy/policy_objc.h
@@ -1199,7 +1199,7 @@ list(APPEND library_source
    platform/_global.h
    platform/_impl.h
    platform/_platform.h
-   platform/acme_str_pool.h
+   #platform/acme_str_pool.h
    #platform/all.h
    #platform/acme.h
    #platform/aura_regex.h

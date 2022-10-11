@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-#include "acme/id.h"
+#include "acme/constant/id.h"
 //#include "acme/primitive/primitive/layered.h"
 
 
@@ -1028,5 +1028,57 @@ pointer< ::sequencer < ::conversation > > matter::exception_message_sequencer(co
 //   return psequencer;
 //
 //}
+
+
+
+
+
+bool matter::_handle_uri(const ::block & blockUri)
+{
+
+   return handle_uri(blockUri);
+
+}
+
+
+bool matter::_handle_call(::payload & payload, const ::block & blockObject, const ::block & blockMember, ::property_set & propertyset)
+{
+
+   return handle_call(payload, blockObject, blockMember, propertyset);
+
+}
+
+
+//bool matter::_handle_call(::payload & payload, const ::block & blockMember, ::property_set & propertyset)
+//{
+//
+//   return handle_call(payload, blockMember, propertyset);
+//
+//}
+
+
+bool matter::handle_uri(const ::string & stringUri)
+{
+
+   return false;
+
+}
+
+
+bool matter::handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
+{
+
+   return false;
+
+}
+
+//
+//bool matter::handle_call(::payload & payload, const ::string & strMember, ::property_set & propertyset)
+//{
+//
+//   return false;
+//
+//}
+
 
 

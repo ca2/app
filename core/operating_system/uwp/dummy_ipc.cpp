@@ -58,7 +58,7 @@
 //      bool tx::open(const ::string & pszKey,launcher * plauncher)
 //      {
 //
-//         m_strBaseChannel = "aura\\appdata\\interprocess_communication\\" + string(pszKey);
+//         m_strBaseChannel = "aura\\appdata\\inteprocess_channel\\" + string(pszKey);
 //
 //         if(m_strBaseChannel.is_empty())
 //         {
@@ -171,7 +171,7 @@
 //            g_pfnChangeWindowMessageFilter(WM_COPYDATA,MSGFLT_ADD);
 //         }
 //
-//         m_strBaseChannel = "aura\\appdata\\interprocess_communication\\" + string(pszKey);
+//         m_strBaseChannel = "aura\\appdata\\inteprocess_channel\\" + string(pszKey);
 //
 //         if(m_strBaseChannel.is_empty())
 //         {

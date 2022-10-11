@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "core/filesystem/filemanager/_filemanager.h"
@@ -218,7 +218,7 @@ namespace userex
    }
 
 
-   void pane_tab_impact::add_pane_tab_impact_handler(const ::string & strLibrary)
+   void pane_tab_impact::add_pane_tab_impact_handler_library(const ::string & strLibrary)
    {
 
       auto & pfactory = m_psystem->factory(strLibrary);

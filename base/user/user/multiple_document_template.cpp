@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/message.h"
+//#include "aura/message.h"
 #include "multiple_document_template.h"
 #include "document.h"
 #include "frame_window.h"

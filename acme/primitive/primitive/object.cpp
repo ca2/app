@@ -980,10 +980,10 @@ void     object::run()
 //
 //   }
 //
-//   if (string(m_atom).contains("::interprocess_intercommunication"))
+//   if (string(m_atom).contains("::interprocess::communication"))
 //   {
 //
-//      output_debug_string("::interprocess_intercommunication destroy");
+//      output_debug_string("::interprocess::communication destroy");
 //
 //   }
 //

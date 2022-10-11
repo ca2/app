@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "style.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -453,7 +453,8 @@ namespace experience_nanogui
 
       ::rectangle_i32 rectangleScroll;
 
-      bool bScroll = ptab->_001HasTabScrolling();
+      bool bScroll = ptab->_001HasHorizontalDragScrolling()
+         || ptab->_001HasVerticalDragScrolling();
 
       if(bScroll)
       {
@@ -865,7 +866,7 @@ namespace experience_nanogui
 
          ptab->m_iTabSize = (int) (ptab->get_data()->m_tabpanecompositea.get_count() * ptab->get_data()->m_iTabHeight);
 
-         ptab->m_iTabScrollMax = ptab->m_iTabSize - rcClient.height();
+         //ptab->m_iTabScrollMax = ptab->m_iTabSize - rcClient.height();
 
       }
       else
@@ -874,7 +875,7 @@ namespace experience_nanogui
          ptab->m_iTabSize = ptab->get_data()->m_tabpanecompositea.last()->m_point.x +
          ptab->get_data()->m_tabpanecompositea.last()->m_size.cx;
 
-         ptab->m_iTabScrollMax = ptab->m_iTabSize - rcClient.width();
+         //ptab->m_iTabScrollMax = ptab->m_iTabSize - rcClient.width();
 
       }
 

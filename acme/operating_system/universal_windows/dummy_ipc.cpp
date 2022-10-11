@@ -59,7 +59,7 @@
 //      bool tx::open(const char * pszKey,launcher * plauncher)
 //      {
 //
-//         m_strBaseChannel = "acme\\appdata\\interprocess_communication\\" + string(pszKey);
+//         m_strBaseChannel = "acme\\appdata\\inteprocess_channel\\" + string(pszKey);
 //
 //         if(m_strBaseChannel.is_empty())
 //         {
@@ -172,7 +172,7 @@
 //            g_pfnChangeWindowMessageFilter(WM_COPYDATA,MSGFLT_ADD);
 //         }
 //
-//         m_strBaseChannel = "acme\\appdata\\interprocess_communication\\" + string(pszKey);
+//         m_strBaseChannel = "acme\\appdata\\inteprocess_channel\\" + string(pszKey);
 //
 //         if(m_strBaseChannel.is_empty())
 //         {

@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 
 
-interprocess_task::interprocess_task(interprocess_call* pcall, const ::atom& idPid, i64 iTask) :
+::interprocess::task::::interprocess::task(::interprocess::call* pcall, const ::atom& idPid, i64 iTask) :
    //::object(pcall),
    m_pcall(pcall),
    m_atomPid(idPid),
@@ -12,29 +12,29 @@ interprocess_task::interprocess_task(interprocess_call* pcall, const ::atom& idP
 }
 
 
-interprocess_task::~interprocess_task()
+::interprocess::task::~::interprocess::task()
 {
 
 }
 
 
-void interprocess_task::do_task(const string& strObject, const string& strMember, const ::property_set & propertyset)
+void ::interprocess::task::do_task(const string& strObject, const string& strMember, const ::property_set & propertyset)
 {
 
    try
    {
 
-      ::interprocess_communication::tx& txc = m_pcall->m_pinterprocessintercommunication->tx(m_pcall->m_strApp, m_atomPid);
+      ::inteprocess::caller& txc = m_pcall->m_pinterprocesscommunication->tx(m_pcall->m_strApp, m_atomPid);
 
       string strNetworkArguments = propertyset.get_network_arguments();
 
-      m_iTask = m_pcall->m_pinterprocessintercommunication->m_iTaskSeed++;
+      m_iTask = m_pcall->m_pinterprocesscommunication->m_iTaskSeed++;
 
       string strSource;
 
-      string strPid = __string(m_pcall->m_pinterprocessintercommunication->m_atomApp);
+      string strPid = __string(m_pcall->m_pinterprocesscommunication->m_atomApp);
 
-      strSource.format("protocol.origin=%s&protocol.origin_pid=%s", m_pcall->m_pinterprocessintercommunication->m_strApp.c_str(), strPid.c_str());
+      strSource.format("protocol.origin=%s&protocol.origin_pid=%s", m_pcall->m_pinterprocesscommunication->m_strApp.c_str(), strPid.c_str());
       
       string strApp = m_pcall->m_strApp;
       

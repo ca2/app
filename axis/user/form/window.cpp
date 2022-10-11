@@ -1,10 +1,10 @@
-#include "framework.h"
+﻿#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 //#include "axis/user/user/_component.h"
 #endif
 #include "window.h"
 #include "axis/user/user/validate.h"
-#include "aura/message.h"
+////#include "aura/message.h"
 #include "acme/include/_c_swap.h"
 #include "aura/message/user.h"
 #include "axis/platform/application.h"

@@ -54,7 +54,7 @@ namespace app_app
 
       auto papp = get_app();
 
-      papp->m_bInterprocessIntercommunication = false;
+      papp->m_bInterprocessCommunication = false;
 
    }
 

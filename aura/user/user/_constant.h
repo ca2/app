@@ -1,4 +1,4 @@
-// First insertion 2022-08-25 04:50 <3ThomasBorregaardSorensen!!
+﻿// First insertion 2022-08-25 04:50 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -197,7 +197,7 @@ enum
 #endif
 
 
-#ifndef WINDOWS
+#ifndef WINDOWS_DESKTOP
 
 
 /*

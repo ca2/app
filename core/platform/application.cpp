@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "application.h"
 #include "system.h"
 #include "acme/platform/system_setup.h"
@@ -163,20 +163,26 @@ namespace core
    }
 
    
-   void application::text_command(const char * psz)
+   bool application::handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, property_set & propertyset)
    {
 
-      ::string strCommand(psz);
-
-      if (strCommand.begins_eat_ci("::userex::pane_tab_impact add_pane_tab_impact_handler "))
+      if (strObject == "pane_tab_impact")
       {
 
-         string strLibrary = strCommand;
+         if (strMember == "add_pane_tab_impact_handler_library")
+         {
 
-         m_ppaneimpactCore->add_pane_tab_impact_handler(strLibrary);
+            string strLibrary = propertyset["handler_library"];
+
+            m_ppaneimpactCore->add_pane_tab_impact_handler_library(strLibrary);
+
+            return true;
+
+         }
 
       }
 
+      return ::bred::application::handle_call(payload, strObject, strMember, propertyset);
 
    }
 

@@ -1,14 +1,15 @@
 ﻿#include "framework.h"
-#include "aura/message.h"
-#include "aura/user/user/wait_cursor.h"
 #include "document.h"
+#include "frame_window.h"
 #include "impact.h"
 #include "impact_system.h"
+//#include "aura/message.h"
+#include "acme/constant/simple_command.h"
+#include "aura/user/user/wait_cursor.h"
+#include "aura/user/user/window_util.h"
 #include "base/platform/application.h"
 #include "base/platform/session.h"
 #include "base/platform/system.h"
-#include "frame_window.h"
-#include "aura/user/user/window_util.h"
 
 
 namespace user

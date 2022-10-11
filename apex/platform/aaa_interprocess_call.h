@@ -1,13 +1,13 @@
 #pragma once
 
 
-class CLASS_DECL_APEX interprocess_call :
+class CLASS_DECL_APEX ::interprocess::call :
    virtual public ::property_set
 {
 public:
 
 
-   ::pointer<interprocess_intercommunication>  m_pinterprocessintercommunication;
+   ::pointer<interprocess_intercommunication>  m_pinterprocesscommunication;
    string                                       m_strApp;
    id_array                                     m_iaExclude;
    bool                                         m_bAutoLaunch;
@@ -20,8 +20,8 @@ public:
    string                                       m_strMember;
 
 
-   interprocess_call(interprocess_intercommunication* pipi, const string& strApp, const string& strObject, const string& strMember);
-   ~interprocess_call() override;
+   ::interprocess::call(interprocess_intercommunication* pipi, const string& strApp, const string& strObject, const string& strMember);
+   ~::interprocess::call() override;
 
    void set_auto_launch(bool bSet = true);
 

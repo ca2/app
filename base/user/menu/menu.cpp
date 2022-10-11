@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 #include "menu.h"
 #include "item.h"
-#include "aura/id.h"
+//#include "acme/constant/id.h"
 #include "aqua/xml/document.h"
 #include "aqua/xml/xml.h"
 #include "acme/constant/timer.h"

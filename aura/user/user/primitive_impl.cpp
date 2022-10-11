@@ -1,8 +1,8 @@
-#include "framework.h"
+﻿#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
 #endif
-#include "aura/id.h"
+//#include "acme/constant/id.h"
 #include "interaction_thread.h"
 #include "call_message_handler_task.h"
 //#include "acme/operating_system/_user.h"

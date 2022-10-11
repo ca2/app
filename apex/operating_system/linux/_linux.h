@@ -80,7 +80,7 @@ CLASS_DECL_APEX const char * __get_app_name();
 //#include "dir_context.h"
 //#include "file_system.h"
 //#include "file_context.h"
-//#include "interprocess_communication.h"
+//#include "inteprocess_channel.h"
 
 #include "factory_exchange.h"
 

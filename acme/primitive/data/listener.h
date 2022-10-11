@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace data
@@ -19,7 +19,7 @@ namespace data
 
 
       listener();
-      virtual ~listener();
+      ~listener() override;
 
 
       bool listen(data * pdata, bool bListen = true);

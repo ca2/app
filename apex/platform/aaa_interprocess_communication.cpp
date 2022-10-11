@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "apex/constant/method.h"
 #include "apex/platform/launcher.h"
 #include "apex/platform/app_launcher.h"
@@ -6,10 +6,10 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 
 
-interprocess_intercommunication::interprocess_intercommunication() 
+interprocess_intercommunication::interprocess::communication() 
 {
 
-   m_atom = "::interprocess_intercommunication";
+   m_atom = "::interprocess::communication";
 
    defer_create_mutex();
 
@@ -201,7 +201,7 @@ started:
    if(m_txmap[strKey].is_null())
    {
 
-      m_txmap[strKey] = __create < ::interprocess_communication::tx>();
+      m_txmap[strKey] = __create < ::inteprocess::caller>();
 
    }
 
@@ -218,7 +218,7 @@ void interprocess_intercommunication::connect(const ::string & strApp, const ::a
    if(m_txmap[strKey].is_null())
    {
 
-      m_txmap[strKey] = __create<::interprocess_communication::tx>();
+      m_txmap[strKey] = __create<::inteprocess::caller>();
 
    }
 
@@ -234,7 +234,7 @@ void interprocess_intercommunication::connect(const ::string & strApp, const ::a
 }
 
 
-::interprocess_communication::tx & interprocess_intercommunication::tx(const ::string & strApp, const ::atom & iPid)
+::inteprocess::caller & interprocess_intercommunication::tx(const ::string & strApp, const ::atom & iPid)
 {
 
    string strKey = strApp + ":" + __string(iPid);
@@ -242,7 +242,7 @@ void interprocess_intercommunication::connect(const ::string & strApp, const ::a
    if(m_txmap[strKey].is_null())
    {
 
-      m_txmap[strKey] = __create < ::interprocess_communication::tx>();
+      m_txmap[strKey] = __create < ::inteprocess::caller>();
 
    }
 
@@ -339,10 +339,11 @@ string interprocess_intercommunication::str_from_va(const payload_array & payloa
 }
 
 
-void interprocess_intercommunication::on_interprocess_receive(::interprocess_communication::rx * prx, ::string && strMessage)
+bool interprocess_intercommunication::on_interprocess_receive(::inteprocess::handler * prx, const ::string & strMessage)
 {
 
-   INFORMATION("::interprocess_intercommunication::on_receive " << strMessage);
+
+   INFORMATION("::interprocess::communication::on_receive " << strMessage);
    
    string strUrl = strMessage;
 
@@ -478,41 +479,48 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 
    ::payload payloadReply;
 
-   on_interprocess_call(payloadReply, strObject, strMember, propertyset);
+   bool bShouldContinueTryingToHandle = on_interprocess_call(payloadReply, strObject, strMember, propertyset);
 
-   if(!strMember.begins_ci("reply."))
+   if (bShouldContinueTryingToHandle)
    {
-      
-      string strOrigin = propertyset["protocol.origin"].get_string();
-      
-      string strOriginObject = propertyset["protocol.origin_object"].get_string();
-      
-      ::index iCallId = propertyset["protocol.call_id"].i64();
 
-      auto pcall = create_call(strOrigin, strOriginObject, "reply." + strMember);
-
-      (*pcall)["protocol.call_id"] = iCallId;
-
-      (*pcall)["protocol:reply"] = payloadReply;
-
-      //pcall->set_timeout(1_minute);
-
-      fork([pcall, strOriginObject]()
+      if (!strMember.begins_ci("reply."))
       {
 
-         pcall->send(strOriginObject);
+         string strOrigin = propertyset["protocol"]["origin"].get_string();
 
-      });
+         string strOriginObject = propertyset["protocol"]["origin_object"].get_string();
+
+         ::index iCallId = propertyset["protocol"]["call_id"].i64();
+
+         auto pcall = create_call(strOrigin, strOriginObject, "reply." + strMember);
+
+         (*pcall)["protocol"]["call_id"] = iCallId;
+
+         (*pcall)["protocol"]["reply"] = payloadReply;
+
+         //pcall->set_timeout(1_minute);
+
+         fork([pcall, strOriginObject]()
+            {
+
+               pcall->send(strOriginObject);
+
+            });
+
+      }
 
    }
+
+   return bShouldContinueTryingToHandle;
 
 }
 
 
-::pointer<interprocess_task>interprocess_intercommunication::create_task(interprocess_call * pcall, const ::atom & idPid)
+::pointer<::interprocess::task>interprocess_intercommunication::create_task(::interprocess::call * pcall, const ::atom & idPid)
 {
 
-   auto pobjectTask = __new(interprocess_task(pcall, idPid, m_iTaskSeed++));
+   auto pobjectTask = __new(::interprocess::task(pcall, idPid, m_iTaskSeed++));
 
    synchronous_lock synchronouslock(mutex());
 
@@ -525,7 +533,7 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 }
 
 
-::pointer<interprocess_task>interprocess_intercommunication::get_task(i64 iTask)
+::pointer<::interprocess::task>interprocess_intercommunication::get_task(i64 iTask)
 {
 
    synchronous_lock synchronouslock(mutex());
@@ -535,15 +543,15 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 }
 
 
-::pointer<interprocess_call>interprocess_intercommunication::create_call(const ::string & strApp, const ::string & strObject, const ::string & strMember)
+::pointer<::interprocess::call>interprocess_intercommunication::create_call(const ::string & strApp, const ::string & strObject, const ::string & strMember)
 {
 
-   return __new(interprocess_call(this, strApp, strObject, strMember));
+   return __new(::interprocess::call(this, strApp, strObject, strMember));
 
 }
 
 
-::pointer<interprocess_call>interprocess_intercommunication::create_call(const ::string & strObject, const ::string & strMember)
+::pointer<::interprocess::call>interprocess_intercommunication::create_call(const ::string & strObject, const ::string & strMember)
 {
 
    return create_call(m_strApp, strObject, strMember);
@@ -551,7 +559,7 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 }
 
 
-void interprocess_intercommunication::on_interprocess_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
+bool interprocess_intercommunication::on_interprocess_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
 {
 
    if(strObject == "application")
@@ -567,6 +575,8 @@ void interprocess_intercommunication::on_interprocess_call(::payload & payload, 
          pinterprocesstask->m_payload = propertyset["protocol:reply"];
 
          pinterprocesstask->m_pevReady->set_event();
+
+         return true;
 
       }
       else if(strMember == "on_additional_local_instance")
@@ -589,6 +599,8 @@ void interprocess_intercommunication::on_interprocess_call(::payload & payload, 
             strCommandLine);
 
          propertyset["continue"] = true;
+
+         return false;
 
       }
       else if (strMember == "on_new_instance")

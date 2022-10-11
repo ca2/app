@@ -96,7 +96,17 @@ namespace apex
       if (m_psystem->m_bAudio)
       {
 
-         m_psystem->m_pacmeapplicationMain->text_command("::userex::pane_tab_impact add_pane_tab_impact_handler user_text_to_speech");
+         ::payload payload;
+
+         ::property_set propertyset;
+
+         propertyset["handler_library"] = "user_text_to_speech";
+
+         ::string strObject = "pane_tab_impact";
+
+         ::string strMember = "add_pane_tab_impact_handler_library";
+
+         m_psystem->m_pacmeapplicationMain->_handle_call(payload, strObject, strMember, propertyset);
 
          strFooter__ += "<br/>";
          strFooter__ += "<br/>";

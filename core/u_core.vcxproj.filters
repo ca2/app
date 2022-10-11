@@ -148,9 +148,6 @@
     <Filter Include="Header Files\networking\ftp">
       <UniqueIdentifier>{94de05d4-e1e2-4583-b333-2e1d0f319dff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\constant">
-      <UniqueIdentifier>{59853e0c-8e47-4228-bc11-13eb744c3a29}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\html\hi5">
       <UniqueIdentifier>{92ff42a2-a2dc-44cc-bbe1-92da4ff683bf}</UniqueIdentifier>
     </Filter>
@@ -1638,9 +1635,6 @@
     </ClCompile>
     <ClCompile Include="user\user\list_item.cpp">
       <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="constant\idpool.cpp">
-      <Filter>Source Files\constant</Filter>
     </ClCompile>
     <ClCompile Include="html\hi5\hi5_twitter_authorization.cpp">
       <Filter>Source Files\html\hi5</Filter>

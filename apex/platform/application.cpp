@@ -5,12 +5,14 @@
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
-//#include "apex/platform/app_core.h"
 #include "acme/platform/profiler.h"
-//#include "apex/compress/zip/_.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "apex/platform/node.h"
+#include "apex/interprocess/call.h"
+#include "apex/interprocess/communication.h"
+#include "apex/interprocess/target.h"
+#include "apex/interprocess/task.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/platform/node.h"
 #include "acme/parallelization/install_mutex.h"
@@ -186,7 +188,7 @@ namespace apex
 
       m_bLicense = false;
 
-      m_bInterprocessIntercommunication = true;
+      m_bInterprocessCommunication = true;
 
       //m_pimaging = nullptr;
 
@@ -695,7 +697,7 @@ namespace apex
       //      // apex commented
       //      //throw ::exception(todo("interaction"));
 
-      //   /*if (!m_pinterprocessintercommunication)
+      //   /*if (!m_pinterprocesscommunication)
       //   {
 
       //      ::pointer<::user::interaction>pinteraction;
@@ -718,7 +720,7 @@ namespace apex
 
       //      }
 
-      //      if (papp->m_pinterprocessintercommunication == nullptr)
+      //      if (papp->m_pinterprocesscommunication == nullptr)
       //      {
 
       //         return error_failed;
@@ -727,7 +729,7 @@ namespace apex
 
       //   }*/
 
-      //   if (::str().begins_eat_ci(str, m_pinterprocessintercommunication->m_prx->m_strBaseChannel))
+      //   if (::str().begins_eat_ci(str, m_pinterprocesscommunication->m_prx->m_strBaseChannel))
       //   {
 
       //      if (::str().begins_eat_ci(str, ":///"))
@@ -736,7 +738,7 @@ namespace apex
       //         if (::str().begins_eat_ci(str, "send?message="))
       //         {
 
-      //            m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, purl->url_decode(str));
+      //            m_pinterprocesscommunication->on_interprocess_receive(m_pinterprocesscommunication->m_prx, purl->url_decode(str));
 
       //         }
       //         else if (::str().begins_eat_ci(str, "send?messagebin="))
@@ -753,7 +755,7 @@ namespace apex
 
       //               pbase64->decode(m, purl->url_decode(str.Mid(iFind + 1)));
 
-      //               m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, message, m.get_data(), m.get_size());
+      //               m_pinterprocesscommunication->on_interprocess_receive(m_pinterprocesscommunication->m_prx, message, m.get_data(), m.get_size());
 
       //            }
 
@@ -1715,12 +1717,14 @@ namespace apex
 
       ::acme::application::init_instance();
 
-      if (m_bInterprocessIntercommunication)
+      if (m_bInterprocessCommunication)
       {
 
-         m_pinterprocessintercommunication = create_interprocess_intercommunication(OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init_instance"));
+         __raw_construct_new(m_pinterprocesscommunication);
+         
+         //m_pinterprocesscommunication->m_p= create_interprocess_communication(OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_NOTE("::application::init_instance"));
 
-         m_pinterprocessintercommunication->initialize_interprocess_communication(this, m_strAppId);
+         m_pinterprocesscommunication->initialize_interprocess_communication(this, m_strAppId);
 
       }
 
@@ -1774,14 +1778,14 @@ namespace apex
 
       INFORMATION("apex::application::init_application .2");
 
-      if (m_pinterprocessintercommunication)
+      if (m_pinterprocesscommunication)
       {
 
          auto pathModule = m_pcontext->m_papexcontext->file().module();
 
          auto processId = m_pcontext->m_papexcontext->os_context()->get_pid();
 
-         m_pinterprocessintercommunication->on_new_instance(pathModule, processId);
+         m_pinterprocesscommunication->on_new_instance(pathModule, processId);
 
       }
 
@@ -3244,23 +3248,23 @@ namespace apex
    }
 
 
-   ::pointer<::interprocess_intercommunication>application::create_interprocess_intercommunication()
-   {
+   //::pointer<::interprocess::channel> application::create_interprocess_channel()
+   //{
 
-      try
-      {
+   //   try
+   //   {
 
-         return __new(::interprocess_intercommunication());
+   //      return __new(::interprocess::channel());
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-   }
+   //}
 
 
    void application::init1()
@@ -3571,7 +3575,7 @@ namespace apex
          try
          {
 
-            m_pinterprocessintercommunication.release();
+            m_pinterprocesscommunication.release();
 
          }
          catch (...)
@@ -4047,10 +4051,10 @@ namespace apex
 
          auto psystem = get_system()->m_papexsystem;
 
-         if (m_pinterprocessintercommunication)
+         if (m_pinterprocesscommunication)
          {
 
-            auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
+            auto pcall = m_pinterprocesscommunication->create_call("application", "on_additional_local_instance");
 
             (*pcall)["module"] = m_pcontext->m_papexcontext->file().module();
 
@@ -4106,10 +4110,10 @@ namespace apex
       try
       {
 
-         if (m_pinterprocessintercommunication)
+         if (m_pinterprocesscommunication)
          {
 
-            auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
+            auto pcall = m_pinterprocesscommunication->create_call("application", "on_additional_local_instance");
 
             (*pcall)["module"] = m_pcontext->m_papexcontext->file().module();
 
@@ -6513,18 +6517,9 @@ namespace apex
 
       }
 
-      auto pinterprocesscommunication = m_pinterprocessintercommunication;
+      auto pinterprocesscommunication = m_pinterprocesscommunication;
 
       if (::is_null(pinterprocesscommunication))
-      {
-
-         return false;
-
-      }
-
-      auto prx = pinterprocesscommunication->m_prx;
-
-      if (::is_null(prx))
       {
 
          return false;
@@ -6534,11 +6529,11 @@ namespace apex
       do
       {
 
-         auto strMessage = m_straActivationMessage.pick_first();
+         auto strUri = m_straActivationMessage.pick_first();
 
          synchronouslock.unlock();
 
-         prx->on_interprocess_receive(::move(strMessage));
+         pinterprocesscommunication->_handle_uri(strUri);
 
          synchronouslock.lock();
 
@@ -10183,37 +10178,44 @@ namespace apex
    ::e_status application::on_html_response(string & strHtml, const ::string & strUrl, const ::property_set & setPost)
    {
 
-      auto estatus = networking_application()->on_html_response(strHtml, strUrl, setPost);
+      ::e_status estatus = ::success_none;
+
+      if (m_pnetworkingapplication)
+      {
+
+         estatus = networking_application()->on_html_response(strHtml, strUrl, setPost);
+
+      }
 
       return estatus;
 
    }
 
 
-   void application::handle_url(const ::string & strUrl)
+   bool application::_handle_uri(const ::block & blockUri)
    {
       
       string strHtml;
       
       property_set setPost;
-      
-      auto estatus = on_html_response(strHtml, strUrl, setPost);
 
-      if(::succeeded(estatus))
+      auto estatus = on_html_response(strHtml, blockUri, setPost);
+
+      if(estatus != success_none && ::succeeded(estatus))
       {
          
-         return;
+         return true;
          
       }
 
-      if (m_pinterprocessintercommunication)
+      if (m_pinterprocesscommunication)
       {
 
-         string strMessage = strUrl;
-
-         m_pinterprocessintercommunication->m_prx->on_interprocess_receive(::move(strMessage));
+         m_pinterprocesscommunication->m_ptarget->_handle_uri(blockUri);
 
       }
+
+      return false;
 
    }
 

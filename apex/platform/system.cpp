@@ -4,7 +4,7 @@
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
 #include "apex/networking/networking.h"
-#include "acme/id.h"
+#include "acme/constant/id.h"
 #include "acme/platform/profiler.h"
 #include "acme/platform/system_setup.h"
 #include "apex/id.h"
@@ -5115,6 +5115,33 @@ namespace apex
          
       }
 
+
+   }
+
+
+   bool system::_handle_uri(const ::block & block)
+   {
+
+      if (m_pacmeapplicationMain && m_pacmeapplicationMain->_handle_uri(block))
+      {
+
+         return true;
+
+      }
+
+      if (!m_pacmeapplicationMain || m_pacmeapplicationMain != m_pacmeapplicationStartup)
+      {
+
+         if (m_pacmeapplicationStartup && m_pacmeapplicationStartup->_handle_uri(block))
+         {
+
+            return true;
+
+         }
+
+      }
+
+      return false;
 
    }
 

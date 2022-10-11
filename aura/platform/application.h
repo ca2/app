@@ -519,7 +519,7 @@ namespace aura
 
       //virtual string get_version() override;
 
-//      virtual ::pointer<::interprocess_intercommunication>create_interprocess_intercommunication() override;
+//      virtual ::pointer<::interprocess::communication>create_interprocess_communication() override;
 
       //virtual void process_init();
       //virtual void process_term() override;

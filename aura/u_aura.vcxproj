@@ -68,6 +68,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="aaa_library.h" />
     <ClInclude Include="application.h" />
     <ClInclude Include="constant\idpool.h" />
     <ClInclude Include="filesystem\filemanager\callback.h" />
@@ -564,6 +565,7 @@
     <ClCompile Include="user\user\notify_icon_listener.cpp" />
     <ClCompile Include="user\user\plain_edit.cpp" />
     <ClCompile Include="user\user\plain_text_data.cpp" />
+    <ClCompile Include="user\user\plain_text_tree.cpp" />
     <ClCompile Include="user\user\primitive_impl.cpp" />
     <ClCompile Include="user\user\prodevian.cpp" />
     <ClCompile Include="user\user\progress.cpp" />

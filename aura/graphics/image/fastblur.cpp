@@ -1,4 +1,4 @@
-// Super Fast Blur v1.1
+﻿// Super Fast Blur v1.1
 // by Mario Klingemann <http://incubator.quasimondo.com>
 //
 // Tip: Multiple invovations of this filter with a small
@@ -212,11 +212,11 @@ namespace draw2d
 
       const int wh = (wj)*(cy);
 
-      timage = memory_new vector4[wh];
+      timage = new vector4[wh];
       // temporary output space for first pass.
-      tsurface = memory_new vector4[wh];
+      tsurface = new vector4[wh];
 
-      m_stack = memory_new vector4[div2];
+      m_stack = new vector4[div2];
 
 //#define memory_new ACME_NEW
 

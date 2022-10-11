@@ -3,7 +3,7 @@
 //   Date : 09-04-98
 //////////////////////////////////////////////////////////////////////
 #include "framework.h"
-#include "aura/operating_system.h"
+#include "acme/operating_system.h"
 //#include "_image.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "acme/primitive/mathematics/mathematics.h"

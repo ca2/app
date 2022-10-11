@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "bred/platform/application.h"
@@ -41,7 +41,7 @@ namespace core
       virtual string prepare_impact_options_main_body();
       virtual string prepare_impact_options_footer();
 
-      void text_command(const char * psz) override;
+      bool handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, property_set & propertyset) override;
 
 
    };

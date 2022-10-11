@@ -1,7 +1,7 @@
-#pragma once
+﻿#pragma once
 
 
-#include "message.h"
+//#include "message.h"
 #include "aura/user/user/message.h"
 
 

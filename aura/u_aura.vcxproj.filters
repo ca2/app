@@ -1033,6 +1033,9 @@
     <ClInclude Include="windowing\sandbox\window.h">
       <Filter>Header Files\windowing\sandbox</Filter>
     </ClInclude>
+    <ClInclude Include="aaa_library.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\draw2d\draw2d.inl">
@@ -1571,6 +1574,9 @@
     </ClCompile>
     <ClCompile Include="graphics\draw2d\item.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\plain_text_tree.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -2,7 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
 #endif
-#include "aura/message.h"
+////#include "aura/message.h"
 #include "interaction_thread.h"
 #include "interaction_prodevian.h"
 #include "aura/windowing/window.h"

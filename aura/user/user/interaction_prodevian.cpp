@@ -2,7 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
 #endif
-#include "aura/message.h"
+////#include "aura/message.h"
 #include "interaction_prodevian.h"
 #include "interaction_thread.h"
 #include "acme/parallelization/message_queue.h"
@@ -12,7 +12,11 @@
 #include "interaction_impl.h"
 #include "interaction.h"
 
+#if !defined(WINDOWS_DESKTOP)
+#define PM_NOREMOVE 0
+#define PM_REMOVE 1
 
+#endif
 #define TIME_REPORTING 0
 
 

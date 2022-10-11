@@ -678,7 +678,7 @@ void property_set::_008Add(const char * pszKey, const char * pszValue)
    while(i  < straKey.get_upper_bound())
    {
 
-      pset = &(property_set &)(*pset)[straKey[i]];
+      pset = &(*pset)[straKey[i]].property_set_reference();
 
       i++;
 

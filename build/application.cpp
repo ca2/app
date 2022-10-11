@@ -11,7 +11,7 @@ namespace app_core_build
    application::application()
    {
 
-      m_bInterprocessIntercommunication = true;
+      m_bInterprocessCommunication = true;
 
       m_ptemplateHelloMultiverseMain = nullptr;
       m_ptemplateHelloMultiverseImpact = nullptr;

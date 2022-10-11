@@ -316,6 +316,15 @@ public:
    inline ::topic_pointer create_topic(const ::atom & atom);
 
 
+   virtual bool _handle_uri(const ::block & blockUri);
+   virtual bool _handle_call(::payload & payload, const ::block & blockObject, const ::block & blockMember, ::property_set & propertyset);
+
+
+   virtual bool handle_uri(const ::string & stringUri);
+   virtual bool handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset);
+
+
+
 };
 
 

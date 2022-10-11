@@ -106,6 +106,9 @@
     <None Include="..\..\..\..\..\operating-system\storage-universal_windows\Win32\basis\third\binary\zlib.dll">
       <Filter>Libraries\x86\basis</Filter>
     </None>
+    <None Include="..\_matter.zip">
+      <Filter>Common</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="__implement.cpp">

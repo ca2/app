@@ -32,7 +32,8 @@ namespace message { class message; }
 class payload;
 class binary_stream;
 class text_stream;
-
+struct block;
+class property_set;
 
 //namespace topic
 //{
@@ -152,6 +153,16 @@ namespace write_text
 
 
 } // namespace write_text
+
+
+namespace interprocess
+{
+
+   
+   class target;
+
+
+} // namespace interprocess
 
 
 

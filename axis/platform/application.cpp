@@ -1,15 +1,16 @@
-#include "framework.h"
-#include "aura/id.h"
+﻿#include "framework.h"
+#include "application.h"
+#include "session.h"
+#include "system.h"
+//#include "acme/constant/id.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
-#include "axis/platform/application.h"
-#include "axis/platform/session.h"
 #include "axis/user/user/combo_box.h"
 #include "aura/user/user/button.h"
 #include "aura/user/user/still.h"
 #include "aura/user/user/check_box.h"
 #include "axis/database/simpledb/server.h"
-#include "system.h"
+
 
 
 namespace axis

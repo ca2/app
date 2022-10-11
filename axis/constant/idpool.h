@@ -1,7 +1,7 @@
-#pragma once
+﻿#pragma once
 
 
-#include "aura/id.h"
+#include "aura/constant/idpool.h"
 
 
 namespace axis

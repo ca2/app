@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-#include "acme/id.h"
+#include "acme/constant/id.h"
 #include "node.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
@@ -2330,58 +2330,46 @@ namespace acme
    }
 
 
-   void system::_main_application_handle_url(const char * pszUrl, const ::function < void(bool) > & functionSucceeded)
+   bool system::_handle_call(::payload & payload, const ::block & blockObject, const ::block & blockMember, ::property_set & propertyset)
    {
       
-      string strUrl(pszUrl);
-      
-      fork([this, strUrl, functionSucceeded]()
-           {
-         
-         
-         try
-         {
-            
-            if (m_pacmeapplicationMain)
-            {
-               
-               m_pacmeapplicationMain->handle_url(strUrl);
-               
-            }
-            else if (m_pacmeapplicationStartup)
-            {
-               
-               m_pacmeapplicationStartup->handle_url(strUrl);
-               
-            }
-            
-            if (functionSucceeded)
-            {
-               
-               functionSucceeded(true);
-               
-            }
-            
-            return;
-            
-         }
-         catch (...)
-         {
-            
-         }
-         
-         if (functionSucceeded)
-         {
-            
-            functionSucceeded(false);
-            
-         }
-         
-         
-      });
+      try
+      {
 
+         bool bOk = false;
+
+         if (m_pacmeapplicationMain)
+         {
+
+            if (m_pacmeapplicationMain->_handle_call(payload, blockObject, blockMember, propertyset))
+            {
+
+               return true;
+
+            }
+
+         }
+         else if (m_pacmeapplicationStartup)
+         {
+
+            if (m_pacmeapplicationStartup->_handle_call(payload, blockObject, blockMember, propertyset))
+            {
+
+               return true;
+
+            }
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+      return false;
+            
    }
-
 
 
    string system::get_latest_deployment_number(const ::string & strBranch)
@@ -2416,7 +2404,7 @@ namespace acme
    void system::destroy()
    {
 
-#if !defined(WINDOWS_DESKTOP)
+#if !defined(WINDOWS)
 
       m_pexceptiontranslator->detach();
 

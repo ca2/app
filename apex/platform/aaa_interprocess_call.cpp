@@ -1,9 +1,9 @@
 #include "framework.h"
 
 
-interprocess_call::interprocess_call(interprocess_intercommunication* pipi, const string& strApp, const string& strObject, const string& strMember) :
+::interprocess::call::::interprocess::call(interprocess_intercommunication* pipi, const string& strApp, const string& strObject, const string& strMember) :
    //::object(pipi),
-   m_pinterprocessintercommunication(pipi),
+   m_pinterprocesscommunication(pipi),
    m_strApp(strApp),
    m_strObject(strObject),
    m_strMember(strMember),
@@ -17,13 +17,13 @@ interprocess_call::interprocess_call(interprocess_intercommunication* pipi, cons
 }
 
 
-interprocess_call::~interprocess_call()
+::interprocess::call::~::interprocess::call()
 {
 
 }
 
 
-//void interprocess_call::add_property(const ::property & property)
+//void ::interprocess::call::add_property(const ::property & property)
 //{
 //
 //   m_propertyset.merge(property);
@@ -31,7 +31,7 @@ interprocess_call::~interprocess_call()
 //}
 //
 //
-//void interprocess_call::add_property_set(const ::property_set & propertyset)
+//void ::interprocess::call::add_property_set(const ::property_set & propertyset)
 //{
 //
 //   m_propertyset.merge(propertyset);
@@ -39,7 +39,7 @@ interprocess_call::~interprocess_call()
 //}
 
 
-//void interprocess_call::set_timeout(const duration& duration)
+//void ::interprocess::call::set_timeout(const duration& duration)
 //{
 //
 //   m_duration = duration;
@@ -47,7 +47,7 @@ interprocess_call::~interprocess_call()
 //}
 
 
-void interprocess_call::set_auto_launch(bool bSet)
+void ::interprocess::call::set_auto_launch(bool bSet)
 {
 
    m_bAutoLaunch = bSet;
@@ -55,7 +55,7 @@ void interprocess_call::set_auto_launch(bool bSet)
 }
 
 
-bool interprocess_call::is_auto_launch() const
+bool ::interprocess::call::is_auto_launch() const
 {
 
    return m_bAutoLaunch;
@@ -64,7 +64,7 @@ bool interprocess_call::is_auto_launch() const
 
 //m_pcontext->m_papexcontext->os_context()->get_pid()
 
-void interprocess_call::exclude_pid(::i32 iPid)
+void ::interprocess::call::exclude_pid(::i32 iPid)
 {
 
    m_iaExclude.add(iPid);
@@ -72,17 +72,17 @@ void interprocess_call::exclude_pid(::i32 iPid)
 }
 
 
-void interprocess_call::send(const ::atom& idPid)
+void ::interprocess::call::send(const ::atom& idPid)
 {
 
-   ::pointer<interprocess_call>pcall = this;
+   ::pointer<::interprocess::call>pcall = this;
 
    auto& pobjectTask = pcall->m_mapTask[idPid];
 
    if (!pobjectTask)
    {
 
-      pobjectTask = pcall->m_pinterprocessintercommunication->create_task(pcall, idPid);
+      pobjectTask = pcall->m_pinterprocesscommunication->create_task(pcall, idPid);
 
    }
 
@@ -91,10 +91,10 @@ void interprocess_call::send(const ::atom& idPid)
 }
 
 
-//void interprocess_call::post(const ::atom& idPid)
+//void ::interprocess::call::post(const ::atom& idPid)
 //{
 //
-//   ::pointer<interprocess_call>pcall = this;
+//   ::pointer<::interprocess::call>pcall = this;
 //
 //   fork([pcall, idPid]()
 //      {
@@ -106,7 +106,7 @@ void interprocess_call::send(const ::atom& idPid)
 //}
 
 
-::pointer<synchronization_array>interprocess_call::synca()
+::pointer<synchronization_array>::interprocess::call::synca()
 {
 
    auto psynca = __new(synchronization_array);
@@ -123,7 +123,7 @@ void interprocess_call::send(const ::atom& idPid)
 }
 
 
-::e_status interprocess_call::wait()
+::e_status ::interprocess::call::wait()
 {
 
    if (!this->m_mapTask.is_empty())
@@ -143,7 +143,7 @@ void interprocess_call::send(const ::atom& idPid)
 }
 
 
-bool interprocess_call::_wait(const class ::wait & wait)
+bool ::interprocess::call::_wait(const class ::wait & wait)
 {
 
    auto psynca = synca();
@@ -155,12 +155,12 @@ bool interprocess_call::_wait(const class ::wait & wait)
 }
 
 
-id_array interprocess_call::prepare_call()
+id_array ::interprocess::call::prepare_call()
 {
 
    ///exclude_this_app();
 
-   auto iaPid = m_pinterprocessintercommunication->get_pid(m_strApp);
+   auto iaPid = m_pinterprocesscommunication->get_pid(m_strApp);
 
    if (iaPid.is_empty())
    {
@@ -172,9 +172,9 @@ id_array interprocess_call::prepare_call()
 
       }
 
-      m_pinterprocessintercommunication->start(m_strApp);
+      m_pinterprocesscommunication->start(m_strApp);
 
-      iaPid = m_pinterprocessintercommunication->get_pid(m_strApp);
+      iaPid = m_pinterprocesscommunication->get_pid(m_strApp);
 
    }
 
@@ -185,7 +185,7 @@ id_array interprocess_call::prepare_call()
 }
 
 
-void interprocess_call::send_call()
+void ::interprocess::call::send_call()
 {
 
 #ifdef SANDBOXED_PLATFORM
@@ -208,7 +208,7 @@ void interprocess_call::send_call()
 }
 
 
-//void interprocess_call::post_call()
+//void ::interprocess::call::post_call()
 //{
 //
 //#ifdef SANDBOXED_PLATFORM

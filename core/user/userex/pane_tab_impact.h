@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "base/user/user/tab_impact.h"
@@ -52,7 +52,7 @@ namespace userex
       virtual ::user::interaction * get_font_interaction();
       virtual ::user::interaction * get_color_interaction();
 
-      void add_pane_tab_impact_handler(const ::string & strLibrary);
+      void add_pane_tab_impact_handler_library(const ::string & strLibrary);
 
 
       inline ::core::application* get_app() const { return m_pcontext ? m_pcontext->m_pcoreapplication : nullptr; }

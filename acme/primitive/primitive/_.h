@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/primitive/primitive/property_set.h"
@@ -9,7 +9,7 @@
 #include "acme/primitive/primitive/atom.h"
 #include "acme/primitive/primitive/atom_space.h"
 #include "acme/primitive/primitive/interlocked.h"
-#include "acme/primitive/primitive/interlocked_long_pulse.h"
+//#include "acme/primitive/primitive/interlocked_long_pulse.h"
 //#include "acme/primitive/primitive/job.h"
 #include "acme/primitive/primitive/memory_container.h"
 //#include "acme/primitive/primitive/relation_set.h"

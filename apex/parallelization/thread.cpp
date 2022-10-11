@@ -403,7 +403,7 @@ void thread::task_osterm()
 
 #ifndef WINDOWS_DESKTOP
 
-   __release(m_pmessagequeue);
+   m_pmessagequeue.release();
 
 #endif
 

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "aura/procedure.h"
+//#include "aura/procedure.h"
 #include "font_list.h"
 #include "aura/user/user/scroll_data.h"
 #include "aura/graphics/draw2d/graphics.h"

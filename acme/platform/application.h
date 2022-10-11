@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 22/02/2022. 01:19 <3ThomasBorregaardSorensen!!
 //
 // app to application and back to acme namespace by camilo on 2022-09-17 18:51 <3ThomasBorregaardSorensen!!
@@ -93,7 +93,8 @@ namespace acme
       virtual void add_capability(enum_application_capability ecapability);
 
 
-      virtual void handle_url(const ::string & strUrl);
+      bool handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset) override;
+      virtual bool handle_application_call(::payload & payload, const ::string & strMember, ::property_set & propertyset);
 
 
    };

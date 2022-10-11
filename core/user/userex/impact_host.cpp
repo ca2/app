@@ -1,4 +1,4 @@
-//
+﻿//
 //  userex_impact_container.cpp
 //  app_veriwell_musical_player
 //
@@ -6,15 +6,16 @@
 //  Copyright © 2018 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
 //
 #include "framework.h"
-#include "aura/message.h"
+#include "impact_host.h"
+#include "pane_tab_impact.h"
+#include "font_impact.h"
+//#include "aura/message.h"
+#include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "base/user/user/tab_pane.h"
 #include "base/user/user/document.h"
 #include "base/user/user/single_document_template.h"
-#include "impact_host.h"
 #include "base/user/simple/child_frame.h"
-#include "pane_tab_impact.h"
-#include "font_impact.h"
 #include "core/user/user/user.h"
 #include "core/platform/application.h"
 #include "core/platform/session.h"

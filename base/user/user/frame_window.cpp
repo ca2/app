@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-#include "aura/message.h"
+//#include "aura/message.h"
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "acme/filesystem/filesystem/acme_directory.h"

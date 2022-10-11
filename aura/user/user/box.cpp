@@ -1,8 +1,8 @@
-#include "framework.h"
+﻿#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
 #endif
-#include "aura/message.h"
+////#include "aura/message.h"
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "aura/windowing/windowing.h"

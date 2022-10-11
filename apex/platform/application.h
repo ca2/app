@@ -1,4 +1,4 @@
-// application back to apex namespace by camilo on 2022-09-17 18:51 <3ThomasBorregaardSorensen!!
+﻿// application back to apex namespace by camilo on 2022-09-17 18:51 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -71,9 +71,10 @@ namespace apex
       //bool                                            m_bFranceExit;
 
       bool                                            m_bEnableAutoStartOption;
-      bool                                            m_bInterprocessIntercommunication;
-      ::pointer<interprocess_intercommunication>   m_pinterprocessintercommunication;
-      //::pointer<service>                           m_pservice;
+      bool                                            m_bInterprocessCommunication;
+      ::pointer<::interprocess::communication>        m_pinterprocesscommunication;
+      ::pointer<::interprocess::handler>              m_pinterprocesshandler;
+      //::pointer<service>                            m_pservice;
 
       // apex commented
       //::mutex                                         m_mutexFrame;
@@ -493,7 +494,7 @@ namespace apex
 
       virtual string get_version();
 
-      virtual ::pointer<::interprocess_intercommunication>create_interprocess_intercommunication();
+      //virtual ::pointer < ::interprocess::handler > create_interprocess_handler();
 
       //virtual void process_init();
       virtual void process_term();
@@ -1091,7 +1092,8 @@ namespace apex
       ::e_status on_html_response(::string & strHtml, const ::string & strUrl, const ::property_set & setPost) override;
 
 
-      void handle_url(const ::string & strUrl) override;
+      bool _handle_uri(const block & blockUri) override;
+      //bool on_interprocess_handle(const char * pszUri) override;
 
 
    };

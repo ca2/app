@@ -26,7 +26,10 @@ public:
    // ThomasBorregaardSørensen!! Like handlers
    virtual void handle(::topic * ptopic, ::context * pcontext);
    virtual void handle(::message::message * pmessage);
-   virtual void text_command(const char *);
+
+
+   virtual bool _handle_uri(const ::block & blockUri);
+   virtual bool _handle_call(::payload & payload, const ::block & blockObject, const ::block & blockMember, ::property_set & propertyset);
 
 
 };

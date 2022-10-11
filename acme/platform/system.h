@@ -9,7 +9,6 @@ namespace acme
 {
 
 
-
    class CLASS_DECL_ACME system :
       virtual public ::main,
       virtual public ::acme::context,
@@ -482,7 +481,9 @@ namespace acme
       virtual void windowing_send(const ::procedure & procedure);
       virtual void windowing_post(const ::procedure & procedure);
 
-      void _main_application_handle_url(const char * pszUrl, const ::function < void(bool) > & functionSucceeded) override;
+      
+      bool _handle_call(::payload & payload, const ::block & blockObject, const ::block & blockMember, ::property_set & propertyset) override;
+
 
       //virtual void windowing_post_quit();
 

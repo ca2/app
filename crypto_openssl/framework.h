@@ -7,6 +7,7 @@
 #include "_.h"
 
 
+#define HAVE_OPENSSL 1
 
 
 

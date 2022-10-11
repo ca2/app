@@ -335,6 +335,9 @@ namespace core
 #include "apex/filesystem/_.h"
 
 
+#include "apex/interprocess/_.h"
+
+
 //#include "apex/platform/apex_main_struct.h"
 
 
@@ -990,7 +993,7 @@ namespace user
 class launcher;
 //#include "apex/platform/launcher.h"
 
-#include "apex/platform/interprocess_communication.h"
+//#include "apex/interprocess/channel.h"
 
 //#include "apex/platform/app_launcher.h"
 
@@ -1054,20 +1057,20 @@ namespace zip
 #include "apex/platform/app_container.h"
 
 
-class interprocess_task;
+//class ::interprocess::task;
 
-class interprocess_intercommunication;
+//class interprocess_intercommunication;
 
-using interprocess_task_map = id_map < ::pointer<interprocess_task >>;
+//using interprocess_task_map = id_map < ::pointer<::interprocess::task >>;
 
 
-#include "apex/platform/interprocess_call.h"
+//#include "apex/platform/::interprocess::call.h"
 
-#include "apex/platform/interprocess_task.h"
+//#include "apex/platform/::interprocess::task.h"
 
-#include "apex/platform/interprocess_communication.h"
+//#include "apex/platform/inteprocess_channel.h"
 
-#include "apex/platform/interprocess_intercommunication.h"
+//#include "apex/platform/interprocess_intercommunication.h"
 
 //#include "apex/platform/hyperlink.h"
 

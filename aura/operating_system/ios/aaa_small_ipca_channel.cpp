@@ -10,7 +10,7 @@
 //{
 
 
-   namespace interprocess_communication
+   namespace inteprocess_channel
    {
 
 
@@ -386,7 +386,7 @@
       }
 
 
-      interprocess_communication::interprocess_communication()
+      inteprocess_channel::inteprocess_channel()
       {
 
          m_durationTimeout = (5000) * 11;
@@ -394,14 +394,14 @@
       }
 
 
-      interprocess_communication::~interprocess_communication()
+      inteprocess_channel::~inteprocess_channel()
       {
 
 
       }
 
 
-      bool interprocess_communication::open_ab(const ::string & pszChannel, launcher * plauncher)
+      bool inteprocess_channel::open_ab(const ::string & pszChannel, launcher * plauncher)
       {
 
          m_strChannel = pszChannel;
@@ -431,7 +431,7 @@
       }
    
 
-      bool interprocess_communication::open_ba(const ::string & pszChannel, launcher * plauncher)
+      bool inteprocess_channel::open_ba(const ::string & pszChannel, launcher * plauncher)
       {
 
          m_strChannel = pszChannel;
@@ -461,7 +461,7 @@
       }
 
 
-      bool interprocess_communication::is_rx_tx_ok()
+      bool inteprocess_channel::is_rx_tx_ok()
       {
 
          return m_rx.is_rx_ok() && is_tx_ok();
@@ -469,7 +469,7 @@
       }
 
 
-   } // namespace interprocess_communication
+   } // namespace inteprocess_channel
 
 
 //} // namespace aura

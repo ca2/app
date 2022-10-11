@@ -4,7 +4,7 @@
 #endif
 //#include "acme/operating_system/cross.h"
 #include "aura/platform/message_queue.h"
-#include "aura/message.h"
+#include "aura/user/user/_constant.h"
 #include "interaction_thread.h"
 #include "interaction_prodevian.h"
 #include "aura/operating_system/_node.h"

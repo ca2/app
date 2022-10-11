@@ -241,10 +241,26 @@ namespace acme
    //__main(main);
 
 
-   void application::handle_url(const ::string & strUrl)
+   bool application::handle_call(::payload & payload, const ::string & strObject, const ::string & strMember, ::property_set & propertyset)
    {
 
+      if (strObject == "application")
+      {
+
+         return handle_application_call(payload, strMember, propertyset);
+
+      }
+
+      return false;
       
+   }
+
+
+   bool application::handle_application_call(::payload & payload, const ::string & strMember, ::property_set & propertyset)
+   {
+
+      return false;
+
    }
 
 

@@ -841,6 +841,7 @@
     <ClCompile Include="xml\document.cpp" />
     <ClCompile Include="xml\edit.cpp" />
     <ClCompile Include="xml\entity.cpp" />
+    <ClCompile Include="xml\exception.cpp" />
     <ClCompile Include="xml\exportable.cpp" />
     <ClCompile Include="xml\importable.cpp" />
     <ClCompile Include="xml\input_tree.cpp" />

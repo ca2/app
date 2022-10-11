@@ -11,7 +11,7 @@
 //{
 
 
-   namespace interprocess_communication
+   namespace inteprocess_channel
    {
 
 
@@ -411,7 +411,7 @@
       }
 
 
-   } // namespace interprocess_communication
+   } // namespace inteprocess_channel
 
 
 //} // namespace acme

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace apex
@@ -429,6 +429,7 @@ namespace apex
 
       void handle(::topic * ptopic, ::context * pcontext) override;
 
+      bool _handle_uri(const ::block & block) override;
 
       virtual void application_main(int argc, char *argv[], const ::string & pszCommandLine);
 

@@ -1,4 +1,4 @@
-// Created by camilo on 2021-01-29 14:13 <3ThomasBS_!!
+﻿// Created by camilo on 2021-01-29 14:13 <3ThomasBS_!!
 // From animated_wallpaper to graphics::target by camilo on 2022-05-12 17:40 <3ThomasBorregaardSorensen!! (ThomasLikesNumber5!!)
 #pragma once
 
@@ -15,10 +15,10 @@ namespace graphics
 
       //::pointer<::mutex>     m_pmutex;
       //::image_pointer         m_pimage;
-      //int                     m_cx;
+      //int                   o  m_cx;
       //int                     m_cy;
-      ::function < void() >               m_functionFallback;
-      ::function < void(target *) >       m_functionInitializationComplete;
+      ::function < void() >                           m_functionFallback;
+      ::function < void(target *) >                   m_functionInitializationComplete;
 
 
       target();

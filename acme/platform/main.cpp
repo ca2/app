@@ -639,7 +639,7 @@ void main::on_system_construct()
 #elif defined(_UWP)
 
 
-void apex_main_data::system_construct(const ::string_array & straParam)
+void main::system_construct(const ::string_array & straParam)
 {
 
    //m_poslocal = nullptr;

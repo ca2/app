@@ -4,6 +4,7 @@
 //
 // a recreation(from control_event_listener) by camilo on 28/06/2021 22:23 BRT <3ThomasBS_!!
 //
+// From interprocess*.h/*.cpp by camilo on 2022-10-11 00:18 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 
 
@@ -100,11 +101,35 @@ void handler::handle(::message::message * pmessage)
 }
 
 
-void handler::text_command(const char *)
+bool handler::_handle_uri(const block & blockUri)
 {
 
+   return false;
 
 }
+
+
+bool handler::_handle_call(::payload & payload, const ::block & blockObject, const ::block & blockMember, ::property_set & propertyset)
+{
+
+   return false;
+
+}
+
+
+//bool handler::_handle_call(::payload & payload, const ::block & blockMember, ::property_set & propertyset)
+//{
+//
+//   return false;
+//
+//}
+
+//bool handler::handle_text_command(const ::block & blockTextCommand)
+//{
+//
+//   return false;
+//
+//}
 
 
 //
@@ -112,6 +137,14 @@ void handler::text_command(const char *)
 //{
 //
 //   return __call(this, eid, iData, pmatter);
+//
+//}
+
+
+//bool handler::on_interprocess_handle(::interprocess::target * ptarget, const ::block & blockUri)
+//{
+//
+//   return handle_uri(blockUri);
 //
 //}
 

@@ -3,13 +3,16 @@
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
 #endif
-#include "aura/id.h"
+//#include "acme/constant/id.h"
+#include "aura/constant/idpool.h"
 #include "acme/platform/version.h"
 #include "acme/platform/profiler.h"
 #include "acme/primitive/text/context.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/platform/node.h"
+#include "apex/interprocess/communication.h"
+#include "apex/interprocess/target.h"
 #include "aura/graphics/image/icon.h"
 #include "acme/primitive/string/base64.h"
 #include "aura/windowing/window.h"
@@ -170,7 +173,7 @@ namespace aura
 
       //m_bLicense = false;
 
-      //m_bInterprocessIntercommunication = false;
+      //m_bInterprocessCommunication = false;
 
       //m_pimaging = nullptr;
 
@@ -463,7 +466,7 @@ namespace aura
          
          str = pcreate->m_payloadFile;
 
-         if (!m_pinterprocessintercommunication)
+         if (!m_pinterprocesscommunication)
          {
 
             ::pointer<::user::interaction>pinteraction;
@@ -486,7 +489,7 @@ namespace aura
 
             }
 
-            if (papp->m_pinterprocessintercommunication == nullptr)
+            if (papp->m_pinterprocesscommunication == nullptr)
             {
 
                return;
@@ -495,43 +498,42 @@ namespace aura
 
          }
 
-         if (::str().begins_eat_ci(str, m_pinterprocessintercommunication->m_prx->m_strBaseChannel))
+         if (::str().begins_ci(str, m_pinterprocesscommunication->m_ptarget->m_strBaseChannel + "://"))
          {
 
-            if (::str().begins_eat_ci(str, ":///"))
-            {
+            m_pinterprocesscommunication->_handle_uri(str);
 
-               if (::str().begins_eat_ci(str, "send?message="))
-               {
+            //   if (::str().begins_eat_ci(str, "send?message="))
+            //   {
 
-                  m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, purl->url_decode(str));
+            //      m_pinterprocesscommunication->_handle_call(m_pinterprocesscommunication->m_prx, purl->url_decode(str));
 
-               }
-               else if (::str().begins_eat_ci(str, "send?messagebin="))
-               {
+            //   }
+            //   else if (::str().begins_eat_ci(str, "send?messagebin="))
+            //   {
 
-                  strsize iFind = str.find(',');
+            //      strsize iFind = str.find(',');
 
-                  if (iFind >= 0)
-                  {
+            //      if (iFind >= 0)
+            //      {
 
-                     int message = atoi(str.Left(iFind));
+            //         int message = atoi(str.Left(iFind));
 
-                     memory m;
+            //         memory m;
 
-                     auto psystem = m_psystem;
+            //         auto psystem = m_psystem;
 
-                     auto pbase64 = psystem->base64();
+            //         auto pbase64 = psystem->base64();
 
-                     pbase64->decode(m, purl->url_decode(str.Mid(iFind + 1)));
+            //         pbase64->decode(m, purl->url_decode(str.Mid(iFind + 1)));
 
-                     m_pinterprocessintercommunication->on_interprocess_receive(m_pinterprocessintercommunication->m_prx, message, ::move(m));
+            //         m_pinterprocesscommunication->on_interprocess_receive(m_pinterprocesscommunication->m_prx, message, ::move(m));
 
-                  }
+            //      }
 
-               }
+            //   }
 
-            }
+            //}
 
          }
 
@@ -2070,13 +2072,13 @@ retry_license:
 //   }
 
 
-   //::pointer<::interprocess_intercommunication>application::create_interprocess_intercommunication()
+   //::pointer<::interprocess::communication>application::create_interprocess_communication()
    //{
 
    //   try
    //   {
 
-   //      return __new(::interprocess_intercommunication(m_strAppName));
+   //      return __new(::interprocess::communication(m_strAppName));
 
    //   }
    //   catch (...)

@@ -2,7 +2,7 @@
 #include "tree.h"
 #include "tree_data.h"
 #include "acme/constant/timer.h"
-#include "aura/message.h"
+//#include "aura/message.h"
 #include "aura/message/user.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/list.h"

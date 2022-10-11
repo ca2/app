@@ -32,9 +32,9 @@ void __node_apex_factory(::factory::factory * pfactory)
 
    //add_factory_item < ::linux::shell              , ::user::shell            >();
 
-   //add_factory_item< ::linux::interprocess_communication_base, ::interprocess_communication::base >();
-   //add_factory_item< ::linux::interprocess_communication_tx, ::interprocess_communication::tx >();
-   //add_factory_item< ::linux::interprocess_communication_rx, ::interprocess_communication::rx >();
+   //add_factory_item< ::linux::interprocess_communication_base, ::inteprocess_channel::base >();
+   //add_factory_item< ::linux::interprocess_caller, ::inteprocess::caller >();
+   //add_factory_item< ::linux::interprocess_handler, ::inteprocess::handler >();
 
 }
 

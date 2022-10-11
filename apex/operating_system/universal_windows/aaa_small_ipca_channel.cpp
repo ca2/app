@@ -10,7 +10,7 @@
 //{
 
 
-   namespace interprocess_communication
+   namespace inteprocess_channel
    {
 
 
@@ -266,14 +266,14 @@
       }
 
 
-      interprocess_communication::interprocess_communication()
+      inteprocess_channel::inteprocess_channel()
       {
 
 
       }
 
 
-      interprocess_communication::~interprocess_communication()
+      inteprocess_channel::~inteprocess_channel()
       {
 
 
@@ -340,7 +340,7 @@
       //}
 
 
-      bool interprocess_communication::open_ab(const char * pszChannel, const char * pszModule)
+      bool inteprocess_channel::open_ab(const char * pszChannel, const char * pszModule)
       {
 
          m_strChannel = pszChannel;
@@ -370,7 +370,7 @@
       }
 
 
-      bool interprocess_communication::open_ba(const char * pszChannel, const char * pszModule)
+      bool inteprocess_channel::open_ba(const char * pszChannel, const char * pszModule)
       {
 
          m_strChannel = pszChannel;
@@ -402,7 +402,7 @@
 
 
 
-      bool interprocess_communication::is_rx_tx_ok()
+      bool inteprocess_channel::is_rx_tx_ok()
       {
 
          return m_rx.is_rx_ok() && is_tx_ok();

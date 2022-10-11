@@ -2122,7 +2122,7 @@ typedef FN_TIMER *PFN_TIMER;
 #include "acme/primitive/primitive/tuple.h"
 
 
-#include "acme/primitive/primitive/_memory.h"
+//#include "acme/primitive/primitive/_memory.h"
 
 
 inline bool is_impact_group(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 1000; }
@@ -2868,7 +2868,7 @@ class thread_parameter;
 
 
 #include "acme/primitive/primitive/interlocked.h"
-#include "acme/primitive/primitive/interlocked_long_pulse.h"
+//#include "acme/primitive/primitive/interlocked_long_pulse.h"
 #include "acme/primitive/primitive/type.h"
 #include "acme/primitive/primitive/atom.h"
 #include "acme/primitive/primitive/uid.h"
@@ -3402,14 +3402,14 @@ inline bool failed(const ::property &set) { return !::succeeded(set); }
 //#include "acme/primitive/primitive/member.h"
 
 
-#include "acme/primitive/primitive/trait.h"
+//#include "acme/primitive/primitive/trait.h"
 
 
 #include "acme/primitive/primitive/_papaya.h"
 
 
 
-#include "acme/primitive/primitive/_factory_prefix.h"
+//#include "acme/primitive/primitive/_factory_prefix.h"
 
 
 #include "acme/primitive/collection/decl.h"
@@ -3800,7 +3800,7 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
 
 #include "acme/primitive/comparison/_.h"
 
-#include "acme/primitive/primitive/traits.h"
+//#include "acme/primitive/primitive/traits.h"
 
 //#include "acme/system_setup.h"
 

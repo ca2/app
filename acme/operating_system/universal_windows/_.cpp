@@ -1,6 +1,6 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/operating_system.h"
-#include "acme/id.h"
+#include "acme/constant/id.h"
 
 
 void __node_acme_pre_init()
@@ -176,6 +176,14 @@ void __node_acme_pos_term()
 
 // }
 
+
+
+CLASS_DECL_ACME string get_command_line()
+{
+
+   return GetCommandLineW();
+
+}
 
 
 

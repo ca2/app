@@ -1030,7 +1030,7 @@ void context_image::_task_load_image(::image * pimage, ::payload payload, bool b
 
    auto t1 = ::duration::now();
 
-   m_pcontext->m_papexcontext->file().as_memory(payload, memory);
+   m_pcontext->m_papexcontext->file().safe_get_memory(payload, memory);
 
    auto t2 = ::duration::now();
 

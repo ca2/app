@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 class CLASS_DECL_ACME lparam
@@ -20,24 +20,24 @@ public:
    lparam(::i32 x, ::i32 y) { m_lparam = __MAKE_LPARAM(x, y); }
 
 
-   /// catching/receiving element
+   /// catching/receiving particle
    inline lparam(void * p) { m_lparam = (iptr)p;  }
 
 
-   /// posting/sending element
-   lparam(const ::element * pelement);
+   /// posting/sending particle
+   lparam(const ::particle * pelement);
 
 
-   /// posting/sending element
+   /// posting/sending particle
    template < typename T >
-   inline lparam(const pointer < T > & p) : lparam((const ::element *) p.m_p) { }
+   inline lparam(const pointer < T > & p) : lparam((const ::particle *) p.m_p) { }
    template < typename T >
-   inline lparam(const ptr < T > & p) : lparam((const ::element *) p.m_p) { }
+   inline lparam(const ptr < T > & p) : lparam((const ::particle *) p.m_p) { }
 
    template < typename T >
-   inline lparam(pointer < T > && p) : m_lparam((iptr)(::element *) p.m_p) { p.m_p = nullptr; p.m_pelement = nullptr; }
+   inline lparam(pointer < T > && p) : m_lparam((iptr)(::particle *) p.m_p) { p.m_p = nullptr; p.m_pparticle = nullptr; }
    template < typename T >
-   inline lparam(ptr < T > && p) : m_lparam((iptr)(::element *) p.m_p) { p.m_p = nullptr; }
+   inline lparam(ptr < T > && p) : m_lparam((iptr)(::particle *) p.m_p) { p.m_p = nullptr; }
 
 
    lparam(const lparam & lparam)
@@ -88,10 +88,10 @@ public:
    }
 
 
-   ::pointer<::element>detach_element()
+   ::pointer<::particle>detach_element()
    {
 
-      auto p = ::move_transfer((element *)m_lparam);
+      auto p = ::move_transfer((particle *)m_lparam);
 
       m_lparam = 0;
 
@@ -150,11 +150,11 @@ public:
 
 
 template < class T >
-   inline bool operator ==(lparam l, const pointer < T > & pointer) { return ((::element *) l.m_lparam) == pointer.m_pelement; }
+   inline bool operator ==(lparam l, const pointer < T > & pointer) { return ((::particle *) l.m_lparam) == pointer.m_pparticle; }
 
 
 template < class T >
-   inline bool operator !=(lparam l, const pointer < T > & pointer) { return ((::element *) l.m_lparam) != pointer.m_pelement; }
+   inline bool operator !=(lparam l, const pointer < T > & pointer) { return ((::particle *) l.m_lparam) != pointer.m_pparticle; }
 
 
 

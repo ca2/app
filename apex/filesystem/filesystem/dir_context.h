@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 //namespace file
@@ -14,6 +14,7 @@
 
       bool                          m_bDropboxCalculated;
       ::file::path                  m_pathDropbox;
+      ::file::path                  m_pathLocalFolder;
 
 
       dir_context();
@@ -131,6 +132,8 @@
       virtual ::file::path commonappdata_root();
       virtual ::file::path commonappdata();
       virtual ::file::path element_commonappdata(const ::string & strElement);
+
+      virtual ::file::path localfolder();
 
       virtual ::file::path userquicklaunch();
       virtual ::file::path userprograms();

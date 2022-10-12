@@ -6,7 +6,7 @@ template < class T >
 inline pointer < T >::pointer(lparam& lparam)
 {
 
-   m_pparticle = (::element*)(::iptr)lparam.m_lparam;
+   m_pparticle = (::particle*)(::iptr)lparam.m_lparam;
    m_p = dynamic_cast <T*>(m_pparticle);
    lparam.m_lparam = 0;
 

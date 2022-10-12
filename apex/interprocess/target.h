@@ -39,7 +39,7 @@ namespace interprocess
 
 
 
-      ::pointer<::element>                   m_phandler;
+      ::pointer_array<::handler>             m_handlera;
       //rx_private *                         m_pp;
       //pointer_array < dispatch_item >      m_dispatchitema;
       //manual_reset_event                   m_evDispatchItemNew;
@@ -72,7 +72,7 @@ namespace interprocess
 
 
 
-      //virtual void add_handler(::interprocess::handler * phandler);
+      virtual void add_handler(::handler * phandler);
 
       virtual bool on_idle();
 

@@ -1388,7 +1388,7 @@ namespace file
       else
       {
 
-         ((::file::path & )payload) |= ::file::e_flag_bypass_cache;
+         payload.file_path_reference() |= ::file::e_flag_bypass_cache;
 
       }
 

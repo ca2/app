@@ -158,6 +158,22 @@ void networking_application::add_handler(const ::string& strPrefix, networking_a
 
    string strRequestScript = m_psystem->url()->get_script(strUrl);
 
+   string strServer = m_psystem->url()->get_server(strUrl);
+
+   if (strServer.is_empty())
+   {
+
+      auto iFind = strUrl.find(":/");
+
+      if (iFind > 0)
+      {
+
+         strRequestScript = strUrl.Mid(iFind + 1);
+
+      }
+
+   }
+
    for (auto& assoc : m_maphandler)
    {
 
@@ -170,7 +186,9 @@ void networking_application::add_handler(const ::string& strPrefix, networking_a
 
          string strScript = "/" + strFolder;
 
-         if (strRequestScript == strScript || strRequestScript.begins_ci(strScript + "/"))
+         if (strRequestScript == strScript 
+            || strRequestScript.begins_ci(strScript + "/")
+            || strRequestScript.begins_ci(strScript + "?"))
          {
 
             auto estatus = phandler->on_html_response(strHtml, strUrl, setPost);

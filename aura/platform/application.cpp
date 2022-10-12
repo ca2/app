@@ -3656,6 +3656,12 @@ retry_license:
    bool application::is_sandboxed()
    {
 
+#ifdef _UWP
+
+      return 666;
+
+#endif
+
       auto psession = get_session();
 
       if (::is_null(psession))

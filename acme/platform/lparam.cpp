@@ -1,7 +1,7 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
-lparam::lparam(const ::element * pelement)
+lparam::lparam(const ::particle * pelement)
 {
 
    if (is_null(pelement))
@@ -13,7 +13,7 @@ lparam::lparam(const ::element * pelement)
 
    }
 
-   ((element*)pelement)->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PTR(&lparam_debug()));
+   ((particle*)pelement)->increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PTR(&lparam_debug()));
 
    m_lparam = (iptr)(void *)pelement;
 

@@ -494,7 +494,6 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    operator ::color::hls() const { return this->hls(); }
    operator ::block() const { return this->block(); }
 
-
    ::string & string_reference(const char * pszOnNull = nullptr);
 
    ::memory & memory_reference();

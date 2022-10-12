@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 /*
 e_type_element = 8000,
@@ -116,6 +116,8 @@ void payload::_set_element(::particle * pelement)
 
       m_str.::string::~string();
 
+      m_etype = e_type_new;
+
       return 0;
 
    }
@@ -123,6 +125,8 @@ void payload::_set_element(::particle * pelement)
    {
 
       m_atom.::atom::~atom();
+
+      m_etype = e_type_new;
 
       return 0;
 

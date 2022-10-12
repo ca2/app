@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#include "apex/platform/app_core.h"
 //#include "apex/compress/zip/_.h"
 #include "acme/constant/id.h"
@@ -2677,6 +2677,14 @@ ret:
    }
 
    return commonappdata_root() / strRelative;
+
+}
+
+
+::file::path dir_context::localfolder()
+{
+
+   return m_pathLocalFolder;
 
 }
 

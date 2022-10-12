@@ -60,9 +60,33 @@ namespace interprocess
    bool target::_handle_uri(const ::block & blockUri)
    {
 
-      return m_phandler->_handle_uri(blockUri);
+      for (auto & phandler : m_handlera)
+      {
+
+         try
+         {
+
+            if (phandler->_handle_uri(blockUri))
+            {
+
+               return true;
+
+            }
+
+         }
+         catch (...)
+         {
+
+         }
+
+      }
+
+      //return m_phandler->_handle_uri(blockUri);
+
+      return false;
 
    }
+
 
    //bool target::on_interprocess_handle(const ::block & blockUri)
    //{
@@ -429,12 +453,12 @@ namespace interprocess
    //}
 
 
-   //void target::add_handler(::interprocess::target * phandler)
-   //{
+   void target::add_handler(::handler * phandler)
+   {
 
-   //   m_handlera.add_unique(phandler);
+      m_handlera.add_unique(phandler);
 
-   //}
+   }
 
 
 

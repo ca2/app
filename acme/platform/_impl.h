@@ -689,7 +689,7 @@ inline i64 ref_count(c_derived * pca)
 }
 
 
-#ifndef __cplusplus_winrt
+//#ifndef __cplusplus_winrt
 
 
 template < typename SEQUENCE >
@@ -1004,7 +1004,7 @@ sequence < SEQUENCE > * sequencer < SEQUENCE > ::then(const ::duration& duration
 //}
 
 
-#endif // __cplusplus_winrt
+//#endif // __cplusplus_winrt
 
 
 inline tracer trace_log_information() { return ::get_task()->trace_log_information(); }

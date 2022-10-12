@@ -1059,6 +1059,7 @@
     <ClInclude Include="platform\timeout.h" />
     <ClInclude Include="platform\title.h" />
     <ClInclude Include="platform\trace.h" />
+    <ClInclude Include="platform\tracer.h" />
     <ClInclude Include="platform\user_parent.h" />
     <ClInclude Include="platform\_main_hold_base.h" />
     <ClInclude Include="primitive\datetime\file_time.h" />
@@ -1984,6 +1985,7 @@
     <ClCompile Include="platform\timer_event.cpp" />
     <ClCompile Include="platform\timer_task.cpp" />
     <ClCompile Include="platform\trace.cpp" />
+    <ClCompile Include="platform\tracer.cpp" />
     <ClCompile Include="platform\trace_category.cpp" />
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />

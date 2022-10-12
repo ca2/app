@@ -249,7 +249,7 @@ template < typename T >
 concept a_enum = std::is_enum < T >::value;
 
 template < typename T >
-concept primitive_integral = std::is_integral < T >::value || std::is_enum < T >::value || std::same_as < T, ::e_status >;
+concept primitive_integral = std::is_integral < T >::value || std::is_enum < T >::value || std::is_same < T, ::e_status >::value;
 
 template < typename T >
 concept primitive_integer = std::is_integral < T >::value;
@@ -272,9 +272,9 @@ concept primitive_number = std::is_integral < T >::value || std::is_enum < T >::
 
 template < typename T >
 concept primitive_character =
-std::same_as < T, ::ansichar > ||
-std::same_as < T, ::wd16char > ||
-std::same_as < T, ::wd32char >;
+std::is_same < T, ::ansichar >::value ||
+std::is_same < T, ::wd16char >::value ||
+std::is_same < T, ::wd32char >::value;
 
 
 template < typename T >

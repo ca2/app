@@ -12,17 +12,10 @@ public:
    using BASE_TYPE = typename DURATION::BASE_TYPE;
 
 
-   using DURATION::DURATION;
+   //using DURATION::DURATION;
 
 
-   constexpr integral_duration(DURATION duration) : DURATION(duration) {}
-
-   integral_duration(const integral_duration & type)
-   {
-
-      this->m_i = type.m_i;
-
-   }
+   constexpr integral_duration(BASE_TYPE iduration = {}) : DURATION(iduration) {}
 
 
    integral_duration(enum_now)

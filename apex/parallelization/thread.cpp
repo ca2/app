@@ -4334,7 +4334,7 @@ bool thread::do_events()
 
    bool bProcessed = false;
 
-   while(peek_message(&msg,nullptr,0,0,PM_NOREMOVE) != false)
+   while(peek_message(&msg,nullptr,0,0) != false)
    {
 
       if (msg.m_atom == e_message_quit) // do not pump, otherwise main loop will not process the message

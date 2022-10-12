@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/platform/timer.h"
 #include "aura/graphics/image/list.h"
 //#if !BROAD_PRECOMPILED_HEADER
@@ -721,7 +721,7 @@ namespace filemanager
 
          string strId = "open with" + m_straOpenWith[i];
 
-         if (pcommand->m_atom.m_psz == strId)
+         if (pcommand->m_atom == strId)
          {
 
             iPos = i;
@@ -769,7 +769,7 @@ namespace filemanager
 
          string strId = "open with" + m_straOpenWith[i];
 
-         if (pcommand->m_atom.m_psz == strId)
+         if (pcommand->m_atom == strId)
          {
 
             iPos = i;

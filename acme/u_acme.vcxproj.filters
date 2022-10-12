@@ -1255,6 +1255,9 @@
     <ClCompile Include="user\user\tool_item.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
+    <ClCompile Include="platform\tracer.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="astr.h">
@@ -3365,6 +3368,9 @@
     </ClInclude>
     <ClInclude Include="_forward_declaration.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\tracer.h">
+      <Filter>Header Files\platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

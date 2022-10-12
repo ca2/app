@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/constant/simple_command.h"
 #include "check.h"
 #include "text.h"
@@ -2869,7 +2869,7 @@ namespace user
    ::index element::item_index(const ::atom & atom) const
    {
 
-      auto iIndex = atom.m_i;
+      auto iIndex = atom.index();
 
       if(!m_pitema->is_index_ok(iIndex))
       {

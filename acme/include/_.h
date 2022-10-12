@@ -3070,7 +3070,7 @@ class sequencer;
 #include "acme/primitive/primitive/element.h"
 #include "acme/primitive/primitive/function.h"
 #include "acme/platform/procedure.h"
-#include "acme/primitive/primitive/tracer.h"
+#include "acme/platform/tracer.h"
 #include "acme/primitive/primitive/matter.h"
 //#include "acme/primitive/primitive/linked_property.h"
 

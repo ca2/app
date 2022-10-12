@@ -41,6 +41,7 @@ enum enum_flag : u64
    e_flag_data_struct = 1 << 19,
    e_flag_exited = 1 << 20,
    e_flag_storing = 1 << 21,
+   e_flag_alertable_wait = 1 << 22,
 
 
 };

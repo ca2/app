@@ -97,7 +97,7 @@ namespace xml
 
       //auto estatus = 
       
-      ::object::initialize(pobject);
+      //::object::initialize(pobject);
 
       //if (!estatus)
       //{
@@ -108,7 +108,7 @@ namespace xml
 
       //estatus = 
       
-      node::initialize_matter(pobject);
+      //node::initialize_matter(pobject);
 
       //if (!estatus)
       //{
@@ -117,12 +117,12 @@ namespace xml
 
       //}
 
-      if (root())
-      {
+      //if (root())
+      //{
 
-         root()->initialize_matter(this);
+      //   root()->initialize_matter(this);
 
-      }
+      //}
 
       //return estatus;
 
@@ -215,7 +215,7 @@ namespace xml
 
       m_iFirstXmlNode = m_nodea.get_upper_bound();
 
-      root()->initialize_matter(this);
+      //root()->initialize_matter(this);
 
 
    }
@@ -334,7 +334,7 @@ namespace xml
    //}
 
 
-   string document::consume_entity_ref(const char * & pszXmlParam, string & strName, bool useExtEnt, bool & bExt)
+   string document::consume_entity_ref(const char * & pszXmlParam, string & strName, bool useExtEnt, bool & bExt, ::acme::context * pacmecontext)
    {
 
       const char * pszXml = pszXmlParam;
@@ -412,7 +412,7 @@ namespace xml
 
          pszXmlParam = pszXml;
 
-         return m_pcontext->m_papexcontext->file().as_string(m_pathLocation.sibling(extEnt));
+         return pacmecontext->m_papexcontext->file().as_string(m_pathLocation.sibling(extEnt));
 
       }
 
@@ -441,7 +441,7 @@ namespace xml
 
    // the additional parameter must end with , nullptr
    // the parameters are pointers based on m_strData that should be offset because m_strData will be edited by entity ref patch
-   char * document::patch_entity_ref(const char * & pszXml, int bUseExtEnt)
+   char * document::patch_entity_ref(const char * & pszXml, int bUseExtEnt, ::acme::context * pacmecontext)
    {
 
       // pszXml must be a valid portion of and point_i32 to an entity ref in:
@@ -462,7 +462,7 @@ namespace xml
       try
       {
 
-         strValue = consume_entity_ref(pszXml, strName, bUseExtEnt, bExt);
+         strValue = consume_entity_ref(pszXml, strName, bUseExtEnt, bExt, pacmecontext);
 
       }
       catch(...)

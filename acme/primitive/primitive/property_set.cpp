@@ -1390,30 +1390,30 @@ property_set& property_set::operator = (const ::payload & payload)
    if (payload.m_etype == e_type_property_set)
    {
 
-      if (::element::has(e_flag_data_struct))
-      {
+      //if (::element::has(e_flag_data_struct))
+      //{
 
-         for (auto & pproperty : *this)
-         {
+      //   for (auto & pproperty : *this)
+      //   {
 
-            auto ppropertySource = payload.m_ppropertyset->find(pproperty->m_atom);
+      //      auto ppropertySource = payload.m_ppropertyset->find(pproperty->m_atom);
 
-            if (::is_set(ppropertySource))
-            {
+      //      if (::is_set(ppropertySource))
+      //      {
 
-               ((::payload &)*pproperty) = ((const ::payload &)*ppropertySource);
+      //         ((::payload &)*pproperty) = ((const ::payload &)*ppropertySource);
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
-      else
-      {
+      //}
+      //else
+      //{
 
-         ::papaya::copy((property_ptra &)*this, (const property_ptra &)payload.m_ppropertyset);
+         ::papaya::copy((property_ptra &)*this, (const property_ptra &)*payload.m_ppropertyset);
 
-      }
+//      }
 
    }
    else if (payload.m_etype == e_type_property)

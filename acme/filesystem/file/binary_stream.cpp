@@ -244,7 +244,7 @@ binary_stream & binary_stream::operator <<(const atom & atom)
    if(atom.m_etype == ::atom::e_type_text)
    {
 
-      operator <<(atom.m_psz);
+      operator <<(atom.m_str);
 
    }
    else if(atom.m_etype == ::atom::e_type_integer)

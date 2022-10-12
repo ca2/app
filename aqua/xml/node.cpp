@@ -37,7 +37,7 @@ namespace xml
    node::node(::xml::node * pnodeParent)
    {
 
-      initialize_matter(pnodeParent);
+      //initialize_matter(pnodeParent);
 
       m_iFirstXmlNode = -1;
       m_pxmlnode = this;
@@ -2188,7 +2188,7 @@ namespace xml
       
       auto pnode = __new(node((node *) this));
 
-      pnode->initialize_matter(this);
+      //pnode->initialize_matter(this);
       
       pnode->m_strName = lpszName;
 
@@ -2206,7 +2206,7 @@ namespace xml
 
       auto pnode = __new(node((node *) this));
 
-      pnode->initialize_matter(this);
+      //pnode->initialize_matter(this);
 
       pnode->m_strName = lpszName;
 

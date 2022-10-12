@@ -19,6 +19,15 @@ namespace crypto
    
    class hasher;
    class hasher_algorithm;
+   class crypto;
+
+   class rsa;
+
+   using crypto_pointer = ::pointer<crypto>;
+
+   using rsaptra = pointer_array < rsa >;
+
+
 
 
 } // namespace crypto
@@ -41,10 +50,10 @@ inline constexpr int hash_digest_size(enum_hash ehash)
 
 }
 
-
-#include "hasher_algorithm.h"
-#include "hasher.h"
-#include "rsa.h"
-
-
+//
+//#include "hasher_algorithm.h"
+//#include "hasher.h"
+//#include "rsa.h"
+//
+//
 

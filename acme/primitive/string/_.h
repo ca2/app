@@ -70,18 +70,6 @@ inline const wd16string __string_base(const wd16char * psz);
 inline const wd32string __string_base(const wd32char * psz);
 
 
-template < typename STRING >
-class string_type
-{
-public:
-
-   using STRING_TYPE = STRING;
-
-   STRING * this_string() { return (STRING_TYPE *)this; }
-   const STRING * this_string() const { return (const STRING_TYPE *)this; }
-
-};
-
 
 #include "_unicode.h"
 

@@ -23,6 +23,17 @@ namespace xml
    }
 
 
+   void data::initialize(::object * pobject)
+   {
+
+      ::data::data::initialize(pobject);
+
+      ::xml::document::initialize(pobject);
+
+
+   }
+
+
    void data::edit(::xml::edit * pedit)
    {
 

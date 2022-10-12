@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/_c.h"
+
+
 // return UTF8 offset
 inline i32 utf8_o(char cExtraBytes)
 {

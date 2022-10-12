@@ -118,7 +118,7 @@ namespace dynamic_source
 
    }
 
-   ::pointer<script_instance>script_cache::create_instance(const ::string & lpcszName, ::pointer<script> pscript)
+   ::pointer<script_instance>script_cache::create_instance(const ::string & lpcszName, ::pointer<script> & pscript)
    {
 
       pscript = nullptr;

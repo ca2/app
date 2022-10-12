@@ -9,7 +9,7 @@ using hsync = void *;
 
 
 class CLASS_DECL_ACME synchronization_object :
-   virtual public matter
+   virtual public particle
 {
 public:
 

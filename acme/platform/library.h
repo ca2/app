@@ -6,7 +6,7 @@ namespace acme
 
 
    class CLASS_DECL_ACME library:
-      virtual public ::matter
+      virtual public ::particle
    {
    public:
 
@@ -25,10 +25,10 @@ namespace acme
       library();
       ~library() override;
 
-      void assert_ok() const override;
-      void dump(dump_context &) const override;
+      //void assert_ok() const override;
+      //void dump(dump_context &) const override;
 
-      void     initialize_matter(::matter * pmatter) override;
+      //void     initialize_matter(::matter * pmatter) override;
       //virtual void     initialize_library(::matter* pmatter, int iDesmabi, const char * pszRoot = nullptr, const char * pszName = nullptr, const char * pszFolder = nullptr);
       //virtual void initialize_library(::matter* pmatter, const char* pszName = nullptr, const char* pszFolder = nullptr);
 

@@ -19,14 +19,14 @@ namespace acme
    void initialize_system();
    void finalize_system();
 
-//   class CLASS_DECL_ACME acme
-//   {
-//   public:
-//
-//      acme() {::acme::initialize();}
-//      ~acme() {::acme::finalize();}
-//
-//   };
+   //   class CLASS_DECL_ACME acme
+   //   {
+   //   public:
+   //
+   //      acme() {::acme::initialize();}
+   //      ~acme() {::acme::finalize();}
+   //
+   //   };
 
    CLASS_DECL_ACME critical_section * get_global_critical_section();
    CLASS_DECL_ACME bool should_output_debug_string();
@@ -46,50 +46,50 @@ namespace acme
 
 #if OBJECT_TYPE_COUNTER
 
-      extern map < const char*, const char*, ::i64, ::i64 >* g_pmapObjTypCtr;
+   extern map < const char *, const char *, ::i64, ::i64 > * g_pmapObjTypCtr;
 
 #endif
 
 
-      extern CLASS_DECL_ACME critical_section
+   extern CLASS_DECL_ACME critical_section
       *
       g_pcsGlobal;
 
 #if OBJECT_TYPE_COUNTER
 
-      extern int g_iObjTypCtrInit;
+   extern int g_iObjTypCtrInit;
 
 #endif
 
-      extern ::mutex * g_pmutexChildren;
+   extern ::mutex * g_pmutexChildren;
 
 #ifdef WINDOWS
 
 
 #else
 
-//extern DWORD_PTR g_tlsindexLastError;
-      extern char * g_pszDemangle;
-      extern critical_section * g_pcsDemangle;
+   //extern DWORD_PTR g_tlsindexLastError;
+   extern char * g_pszDemangle;
+   extern critical_section * g_pcsDemangle;
 
 #endif
 
 
-//extern ::mutex * get_system()->g_mutexLibrary;
+   //extern ::mutex * get_system()->g_mutexLibrary;
 
-//extern __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
+   //extern __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
-//extern critical_section* g_pcsGlobal;
+   //extern critical_section* g_pcsGlobal;
 
-      extern bool g_bOutputDebugString;
+   extern bool g_bOutputDebugString;
 
-// acme commented
-//extern critical_section* g_pcsTrace;
+   // acme commented
+   //extern critical_section* g_pcsTrace;
 
-//extern ::matter* g_ptrace;
+   //extern ::matter* g_ptrace;
 
-//// acme commented
-//extern simple_trace* g_psimpletrace;
+   //// acme commented
+   //extern simple_trace* g_psimpletrace;
 
 #ifdef __APPLE__
 
@@ -101,64 +101,64 @@ namespace acme
 #include <mach/mach_time.h>
 
    //clock_serv_t   g_cclock;
-      extern double g_machtime_conversion_factor;
-      //   clock_get_time(cclock, &mts);
+   extern double g_machtime_conversion_factor;
+   //   clock_get_time(cclock, &mts);
 
 #endif
 
 
-      extern ::mutex * g_pmutexCred;
+   extern ::mutex * g_pmutexCred;
 
 
-      //extern class ::exception_engine * g_pengine;
+   //extern class ::exception_engine * g_pengine;
 
 
-      extern ::mutex * g_pmutexMessageDispatch;
+   extern ::mutex * g_pmutexMessageDispatch;
 
 
-      extern CLASS_DECL_ACME array<matter *>
+   extern CLASS_DECL_ACME array<matter *>
       *
       g_paAura;
 
 
-      extern id_to_id * g_pmapRTL;
+   extern id_to_id * g_pmapRTL;
 
 
 #if defined(WINDOWS)
 
-      extern _locale_t g_localeC;
+   extern _locale_t g_localeC;
 
 #else
 
-      extern locale_t g_localeC;
+   extern locale_t g_localeC;
 
 #endif
 
-//extern map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
+   //extern map < itask_t, itask_t, itask_t, itask_t > * g_pmapThreadOn;
 
 
-      extern ::nanosecond g_nanosecondFirst;
+   extern ::nanosecond g_nanosecondFirst;
 
-//plex_heap_alloc_array * g_pplexheapallocarray;
+   //plex_heap_alloc_array * g_pplexheapallocarray;
 
-      extern int g_iMemoryCountersStartable;
-//extern ::mutex * g_pmutexTrait;
-//extern ::mutex * g_pmutexFactory;
+   extern int g_iMemoryCountersStartable;
+   //extern ::mutex * g_pmutexTrait;
+   //extern ::mutex * g_pmutexFactory;
 
-      extern ::mutex * g_pmutexUiDestroyed;
+   extern ::mutex * g_pmutexUiDestroyed;
 
 #ifdef ANDROID
 
-      extern ::mutex * g_pmutexOutputDebugStringA;
+   extern ::mutex * g_pmutexOutputDebugStringA;
 
 #endif
 
 
-// #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
+   // #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
-// extern ::mutex * g_pmutexMq;
+   // extern ::mutex * g_pmutexMq;
 
-// #endif
+   // #endif
 
 #if defined(LINUX) || defined(__APPLE__) || defined(_UWP) || defined(ANDROID)
 
@@ -180,9 +180,9 @@ namespace acme
 #if defined(LINUX) || defined(__APPLE__)
 
 
-      extern ::mutex * g_pmutexTz;
+   extern ::mutex * g_pmutexTz;
 
-      extern ::mutex * g_pmutexThreadHandleLock;
+   extern ::mutex * g_pmutexThreadHandleLock;
 
 
 #endif // defined(LINUX) || defined(__APPLE__)
@@ -191,59 +191,59 @@ namespace acme
 #ifdef __APPLE__
 
 
-      extern ::mutex * g_pmutexCvt;
+   extern ::mutex * g_pmutexCvt;
 
 
 #endif
 
 
-      extern critical_section g_csRefDbg;
+   extern critical_section g_csRefDbg;
 
-      CLASS_DECL_ACME void ref();
+   CLASS_DECL_ACME void ref();
 
-      class acme
-      {
-      public:
-
-
-         bool m_bRef;
+   class acme
+   {
+   public:
 
 
-         critical_section *                           m_pcriticalsectionFactory;
-         ::pointer<::factory::factory>               m_pfactory;
-         id_map < ::pointer<::factory::factory >>    m_mapFactory;
+      bool m_bRef;
 
 
-         static acme *                                g_p;
+      critical_section *                                    m_pcriticalsectionFactory;
+      ::pointer<::factory::factory>                         m_pfactory;
+      ::pointer<id_map < ::pointer<::factory::factory > > > m_pmapFactory;
 
 
-         acme();
-         ~acme();
+      static acme * g_p;
 
 
-         //static static_start g_staticstart;
-
-         void this_ref();
-
-
-         void construct();
+      acme();
+      ~acme();
 
 
-         void init();
+      //static static_start g_staticstart;
 
-         void term();
-
-
-         //void init_windowing();
-         //void term_windowing();
-
-         void factory_init();
-         void factory_close();
-         void factory_term();
+      void this_ref();
 
 
+      void construct();
 
-      };
+
+      void init();
+
+      void term();
+
+
+      //void init_windowing();
+      //void term_windowing();
+
+      void factory_init();
+      void factory_close();
+      void factory_term();
+
+
+
+   };
 
 
 

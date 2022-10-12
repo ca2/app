@@ -195,6 +195,12 @@
     <Filter Include="Header Files\networking\netserver">
       <UniqueIdentifier>{cf4955de-5e95-45fe-a0c0-fe9ab11c19e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\interprocess">
+      <UniqueIdentifier>{98f51436-08de-4169-b133-f08c1127b1bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\interprocess">
+      <UniqueIdentifier>{f3d33445-10ef-44b9-8fe5-4c9813d38d4f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -683,18 +689,6 @@
     <ClInclude Include="const\charset.h">
       <Filter>Header Files\constant</Filter>
     </ClInclude>
-    <ClInclude Include="platform\interprocess_communication.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\interprocess_intercommunication.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\interprocess_task.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
-    <ClInclude Include="platform\interprocess_call.h">
-      <Filter>Header Files\platform</Filter>
-    </ClInclude>
     <ClInclude Include="future.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1172,6 +1166,30 @@
     <ClInclude Include="networking\netserver\_.h">
       <Filter>Header Files\networking\netserver</Filter>
     </ClInclude>
+    <ClInclude Include="interprocess\task.h">
+      <Filter>Header Files\interprocess</Filter>
+    </ClInclude>
+    <ClInclude Include="interprocess\target.h">
+      <Filter>Header Files\interprocess</Filter>
+    </ClInclude>
+    <ClInclude Include="interprocess\communication.h">
+      <Filter>Header Files\interprocess</Filter>
+    </ClInclude>
+    <ClInclude Include="interprocess\channel.h">
+      <Filter>Header Files\interprocess</Filter>
+    </ClInclude>
+    <ClInclude Include="interprocess\caller.h">
+      <Filter>Header Files\interprocess</Filter>
+    </ClInclude>
+    <ClInclude Include="interprocess\call.h">
+      <Filter>Header Files\interprocess</Filter>
+    </ClInclude>
+    <ClInclude Include="interprocess\base.h">
+      <Filter>Header Files\interprocess</Filter>
+    </ClInclude>
+    <ClInclude Include="interprocess\_.h">
+      <Filter>Header Files\interprocess</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">
@@ -1333,15 +1351,6 @@
     <ClCompile Include="filesystem\file\edit_file.cpp">
       <Filter>Source Files\filesystem\file</Filter>
     </ClCompile>
-    <ClCompile Include="platform\interprocess_task.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\interprocess_call.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\interprocess_communication.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="process\process.cpp">
       <Filter>Source Files\process</Filter>
     </ClCompile>
@@ -1487,9 +1496,6 @@
       <Filter>Source Files\networking\http</Filter>
     </ClCompile>
     <ClCompile Include="platform\_application_service.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\interprocess_intercommunication.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="message\dispatcher.cpp">
@@ -1653,6 +1659,27 @@
     </ClCompile>
     <ClCompile Include="networking\sockets\base\socket_handler.cpp">
       <Filter>Source Files\networking\sockets\base</Filter>
+    </ClCompile>
+    <ClCompile Include="interprocess\base.cpp">
+      <Filter>Source Files\interprocess</Filter>
+    </ClCompile>
+    <ClCompile Include="interprocess\call.cpp">
+      <Filter>Source Files\interprocess</Filter>
+    </ClCompile>
+    <ClCompile Include="interprocess\caller.cpp">
+      <Filter>Source Files\interprocess</Filter>
+    </ClCompile>
+    <ClCompile Include="interprocess\channel.cpp">
+      <Filter>Source Files\interprocess</Filter>
+    </ClCompile>
+    <ClCompile Include="interprocess\communication.cpp">
+      <Filter>Source Files\interprocess</Filter>
+    </ClCompile>
+    <ClCompile Include="interprocess\target.cpp">
+      <Filter>Source Files\interprocess</Filter>
+    </ClCompile>
+    <ClCompile Include="interprocess\task.cpp">
+      <Filter>Source Files\interprocess</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

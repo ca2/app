@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "websocket_client.h"
+#include "apex/crypto/crypto.h"
 #include "apex/id.h"
 #include "apex/networking/sockets/_sockets.h"
 #include "acme/primitive/string/base64.h"

@@ -329,7 +329,7 @@ namespace interprocess
    }
 
 
-   bool target::is_handler_ok()
+   bool target::is_target_ok()
    {
 
       return false;

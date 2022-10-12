@@ -2,7 +2,9 @@
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
 #endif
-//#include "acme/operating_system/cross.h"
+#ifdef WINDOWS_DESKTOP
+#include "apex/operating_system.h"
+#endif
 #include "aura/platform/message_queue.h"
 #include "aura/user/user/_constant.h"
 #include "interaction_thread.h"

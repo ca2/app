@@ -12,8 +12,8 @@ namespace xml
 
 
    class CLASS_DECL_AQUA document :
-      virtual public node,
-      virtual public ::object
+      virtual public node //,
+      //virtual public ::object
    {
    public:
 
@@ -40,8 +40,8 @@ namespace xml
       void create_root(const ::string & strName);
 
    
-      string consume_entity_ref(const char * & pszXml, string & strName, bool useExtEnt, bool & bExt);
-      char * patch_entity_ref(const char * & pszXml, int bUseExtEnt);
+      string consume_entity_ref(const char * & pszXml, string & strName, bool useExtEnt, bool & bExt, ::acme::context * pacmecontext);
+      char * patch_entity_ref(const char * & pszXml, int bUseExtEnt, ::acme::context * pacmecontext);
 
       node* root() { return first_xml_node(); }
       const node * root() const { return first_xml_node(); }

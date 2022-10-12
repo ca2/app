@@ -3,16 +3,10 @@
 
 
 signal::signal(const ::atom & atom, ::manager * pmanager) :
-   ::PARTICLE(atom),
-   ::particle(atom),
+   m_pmanager(pmanager),
    ::topic(atom),
-   ::material_object(atom),
-   ::property_object(atom),
-   ::object(atom),
-   ::extended_topic(atom),
-   m_pmanager(pmanager)
+   ::extended_topic(atom)
 {
-
 
 }
 

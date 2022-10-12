@@ -64,10 +64,10 @@ HANDLE duplicate_handle(HANDLE h)
 #elif defined(WINDOWS)
 
 
-   wstring wstrModuleFolder(get_buffer, MAX_PATH * 8);
+   wstring wstrModuleFolder(e_get_buffer, MAX_PATH * 8);
 
 
-   wstring wstrModuleFilePath(get_buffer, MAX_PATH * 8);
+   wstring wstrModuleFilePath(e_get_buffer, MAX_PATH * 8);
 
 
    HMODULE hmodule = ::GetModuleHandleA("acme.dll");
@@ -253,9 +253,9 @@ found:
 
 #elif defined(WINDOWS)
 
-   wstring wstrModuleFolder(get_buffer, MAX_PATH * 8);
+   wstring wstrModuleFolder(e_get_buffer, MAX_PATH * 8);
 
-   wstring wstrModuleFilePath(get_buffer, MAX_PATH * 8);
+   wstring wstrModuleFilePath(e_get_buffer, MAX_PATH * 8);
 
    HMODULE hmodule = ::GetModuleHandleA("acme.dll");
 

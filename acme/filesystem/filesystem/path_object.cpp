@@ -69,7 +69,7 @@ namespace file
    strsize path_object::sz_len() const
    {
 
-      return get_length();
+      return get_length() + 1;
 
    }
 

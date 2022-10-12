@@ -3,6 +3,7 @@
 
 
 #include "string_memory_allocate.h"
+#include "acme/primitive/primitive/_c_memory.h"
 
 
 class CLASS_DECL_ACME string_memory_allocator

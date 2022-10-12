@@ -34,7 +34,7 @@
 
       m_memory.m_pdata = nullptr;
 
-      memory_base::operator = (s);
+      operator = (s);
 
    }
 

@@ -12,7 +12,7 @@ enum e_zero_init
 
 
 
-
+#include "acme/constant/_enumeration.h"
 
 
 template < typename NATURAL_DATA >
@@ -146,7 +146,7 @@ public:
    ~natural_pointer()
    {
 
-      if (::is_set(this->m_pdata))
+      if (::c_is_set(this->m_pdata))
       {
 
          this->_natural_release(NATURAL_META_DATA::from_data(this->m_pdata));

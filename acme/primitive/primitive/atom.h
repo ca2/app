@@ -6,12 +6,15 @@
 #include "acme/primitive/comparison/equals.h"
 #include "acme/primitive/comparison/hash.h"
 #include "acme/constant/thread.h"
+#include "acme/primitive/string/string_base.h"
+#include "acme/primitive/primitive/move.h"
+#include "acme/_api.h"
 
 
 enum enum_id : ::u64;
 
 
-class atom_space;
+//class atom_space;
 
 
 class lparam;
@@ -277,7 +280,6 @@ public:
    {
 
       ::i64             m_iId;
-      const char *      m_pszId;
 
       struct
       {
@@ -287,7 +289,6 @@ public:
 
             ::u64                m_u;
             ::i64                m_i;
-            const char *         m_psz;
             enum_id              m_eid;
             enum_property        m_eproperty;
             enum_factory         m_efactory;
@@ -315,11 +316,13 @@ public:
 
    };
 
-protected:
+   ::string m_str;
 
-
-   friend atom_space;
-   inline atom(const char * psz, atom_space *);
+//protected:
+//
+//
+//   friend atom_space;
+//   inline atom(const char * psz, atom_space *);
 
 
 public:
@@ -349,10 +352,7 @@ public:
    atom(const ::payload & payload);
 #endif // !NO_TEMPLATE
    atom(const ::lparam & lparam);
-   atom(::atom && atom) { m_all = atom.m_all; atom.m_all = {}; }
-
-
-   void raw_set(const char * psz);
+   atom(::atom && atom) :m_str(::move(atom.m_str)) { m_all = atom.m_all; atom.m_all = {}; }
 
 
    enum_type primitive_type() const
@@ -680,7 +680,8 @@ inline atom::atom(enum_type etype, ::i64 i) :
 }
 
 
-inline atom::atom(const atom & atom)
+inline atom::atom(const atom & atom) :
+   m_str(atom.m_str)
 {
 
    m_all = atom.m_all;
@@ -688,14 +689,14 @@ inline atom::atom(const atom & atom)
 }
 
 
-inline atom::atom(const char * psz, atom_space *)
-{
-
-   m_etype = e_type_text;
-
-   m_i = (::i64) (::iptr) psz;
-
-}
+//inline atom::atom(const char * psz, atom_space *)
+//{
+//
+//   m_etype = e_type_text;
+//
+//   m_i = (::i64) (::iptr) psz;
+//
+//}
 
 #ifndef NO_TEMPLATE
 
@@ -728,7 +729,7 @@ inline int atom::compare(const atom & atom) const
 
    auto compare = m_iType - atom.m_iType;
 
-   return __atom_compare_square(compare, m_iBody - atom.m_iBody);
+   return __atom_compare_square(compare, is_text() ? m_str.compare(atom.m_str) : (m_iBody - atom.m_iBody));
 
 }
 
@@ -784,7 +785,9 @@ inline bool atom::operator >= (const atom & atom) const
 inline atom & atom::operator = (const atom & atom)
 {
 
-   m_all         = atom.m_all;
+   m_all          = atom.m_all;
+
+   m_str          = atom.m_str;
 
    return *this;
 
@@ -799,7 +802,7 @@ inline int atom::compare(const ::string & str) const
 
    auto iCompare = primitive_type() - e_type_text;
 
-   return __atom_compare_square(iCompare, ansi_compare(m_psz, str.c_str()));
+   return __atom_compare_square(iCompare, m_str.compare(str));
 
 }
 
@@ -882,7 +885,7 @@ inline void atom::as(::string & str) const
 inline atom::operator const char *() const
 {
 
-   return primitive_type() == e_type_text ? m_psz : nullptr;
+   return primitive_type() == e_type_text ? m_str.c_str() : nullptr;
 
 }
 
@@ -899,7 +902,7 @@ inline atom::operator const char *() const
 inline bool atom::is_empty() const
 {
 
-   return is_null() || m_etype == e_type_empty || (primitive_type() == e_type_text && *m_psz == '\0');
+   return is_null() || m_etype == e_type_empty || (primitive_type() == e_type_text && m_str.is_empty());
 
 }
 
@@ -907,18 +910,10 @@ inline bool atom::is_empty() const
 inline CLASS_DECL_ACME iptr id_strcmp(const atom * pid1,const atom * pid2)
 {
 
-   return strcmp(pid1->m_psz,pid2->m_psz);
+   return pid1->m_str.compare(pid2->m_str);
 
 }
 
-
-inline void atom::raw_set(const char * psz)
-{
-
-   m_etype     = e_type_text;
-   m_i         = (::i64) (::iptr) psz;
-
-}
 
 
 
@@ -928,7 +923,7 @@ inline int atom::compare(const char * psz) const
 
    auto iCompare = primitive_type() - e_type_text;
 
-   return __atom_compare_square(iCompare, __atom_safe_strcmp(m_psz, psz));
+   return __atom_compare_square(iCompare, __atom_safe_strcmp(m_str.c_str(), psz));
 
 }
 
@@ -1320,7 +1315,7 @@ inline ::i64 atom::i64() const
 inline bool atom::is_null() const
 {
 
-   return m_etype == e_type_null || (primitive_type() == e_type_text && m_psz == nullptr);
+   return m_etype == e_type_null || (primitive_type() == e_type_text && m_str.is_empty());
 
 }
 
@@ -1328,7 +1323,7 @@ inline bool atom::is_null() const
 inline bool atom::has_char() const
 {
 
-   return primitive_type() == e_type_text && m_psz != nullptr && *m_psz != '\0';
+   return primitive_type() == e_type_text && m_str.has_char();
 
 }
 
@@ -1357,10 +1352,10 @@ inline void atom::clear()
 inline iptr atom::compare_ci(const char * psz) const
 {
 
-   if(m_psz == nullptr)
+   if(m_str.is_empty())
    {
 
-      if (psz == nullptr)
+      if (::is_empty(psz))
       {
 
          return 0;
@@ -1374,7 +1369,7 @@ inline iptr atom::compare_ci(const char * psz) const
       }
 
    }
-   else if(psz == nullptr)
+   else if(::is_empty(psz))
    {
 
       return 1;
@@ -1383,7 +1378,7 @@ inline iptr atom::compare_ci(const char * psz) const
    else
    {
 
-      return __atom_safe_stricmp(m_psz,psz);
+      return __atom_safe_stricmp(m_str.c_str(), psz);
 
    }
 
@@ -1399,65 +1394,6 @@ inline bool EqualElements< atom >(atom element1, atom element2)
 }
 
 
-#ifndef NO_TEMPLATE
-
-
-inline ::string atom::string() const
-{
-
-   if (m_etype == e_type_null)
-   {
-
-      return "(null)";
-
-   }
-   else if (m_etype == e_type_empty)
-   {
-
-      return "(empty)";
-
-   }
-   else if (is_text())
-   {
-
-      return m_psz;
-
-   }
-   else if (is_integer())
-   {
-
-      return __string(m_i);
-
-   }
-   else
-   {
-
-      return ::string("(atom : type:") + __string(m_iType) + ",body:" + __string(m_iBody) + ")";
-
-   }
-
-}
-
-
-template < >
-inline uptr uptr_hash< const atom & >(const atom & key)
-{
-
-   return ((((::u32)(uptr)key.m_iType) << 24) & 0xffffffffu) | ((((::u32)(uptr)key.m_iBody) >> 8) & 0xffffffffu);
-
-}
-
-
-template < >
-inline uptr uptr_hash< atom>(atom key)
-{
-
-   return uptr_hash<const atom & > ((const atom &)key);
-
-}
-
-
-#endif
 
 //inline string CLASS_DECL_ACME operator + (const char * psz, const ::atom & atom);
 
@@ -1504,7 +1440,7 @@ inline bool atom::begins(const char * pszCandidatePrefix) const
    else if (is_text())
    {
 
-      return __atom_str_begins(m_psz, pszCandidatePrefix);
+      return __atom_str_begins(m_str.c_str(), pszCandidatePrefix);
 
    }
    else
@@ -1538,7 +1474,7 @@ inline bool atom::begins_ci(const char * pszCandidatePrefix) const
    else if (is_text())
    {
 
-      return strncmp(m_psz, pszCandidatePrefix, strlen(pszCandidatePrefix)) == 0;
+      return m_str.begins_ci(pszCandidatePrefix);
 
    }
    else

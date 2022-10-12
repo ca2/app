@@ -135,7 +135,7 @@ namespace user
 
       m_pevNewImageKey = __new(manual_reset_event);
 
-      m_pevNewImageKey->m_eobject += e_object_alertable_wait;
+      m_pevNewImageKey->m_eflagElement += e_flag_alertable_wait;
 
       m_iaSize.add(16);
       m_iaSize.add(24);

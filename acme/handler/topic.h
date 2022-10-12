@@ -24,11 +24,10 @@ public:
    ::pointer<::matter>                   m_pmatter;
 
 
-   topic(const ::atom & atom) : 
-      ::PARTICLE(atom),
-      ::particle(atom)
+   topic(const ::atom & atom) 
    { 
    
+      m_atom = atom;
       m_bOk = true;
       m_bRet = false;
 

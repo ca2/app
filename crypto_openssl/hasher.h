@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/crypto/hasher.h"
+
+
 namespace crypto_openssl
 {
 

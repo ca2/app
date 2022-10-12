@@ -100,30 +100,30 @@ void MEMORY_DECL operator delete(void* p, void* palloc) del_throw_spec
 //
 //#endif // _UNIVERSAL_WINDOWS
 
-
-
-void* MEMORY_DECL operator new (size_t size, const c_class&)
-{
-
-   return memory_allocate(size);
-
-}
-
-
-void* MEMORY_DECL operator new[](size_t size, const c_class&)
-{
-
-   return memory_allocate(size);
-
-}
-
-#ifdef CPP17
-void* MEMORY_DECL operator new(size_t size, std::align_val_t alignment);
-void operator delete(void* ptr, std::align_val_t) noexcept;
-#endif
-
-
-#define C_NEW memory_new(c_class::s_cclass)
+//
+//
+//void* MEMORY_DECL operator new (size_t size, const c_class&)
+//{
+//
+//   return memory_allocate(size);
+//
+//}
+//
+//
+//void* MEMORY_DECL operator new[](size_t size, const c_class&)
+//{
+//
+//   return memory_allocate(size);
+//
+//}
+//
+//#ifdef CPP17
+//void* MEMORY_DECL operator new(size_t size, std::align_val_t alignment);
+//void operator delete(void* ptr, std::align_val_t) noexcept;
+//#endif
+//
+//
+//#define C_NEW memory_new(c_class::s_cclass)
 
 
 #if !defined(NO_ACME_MEMORY_MANAGEMENT)

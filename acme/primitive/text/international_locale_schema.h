@@ -62,14 +62,14 @@ namespace text
       inline bool locale_schema::_add_locale_variant(atom idLocale, atom idStyle)
       {
 
-         if (::is_null(idLocale.m_psz))
+         if (::is_empty(idLocale.m_str))
          {
 
             return false;
 
          }
 
-         return _add_locale_variant(idLocale.m_psz, strlen(idLocale.m_psz), idStyle);
+         return _add_locale_variant(idLocale.m_str, idLocale.m_str.length(), idStyle);
 
       }
 

@@ -208,7 +208,7 @@ namespace acme
       }
 
 
-#if defined(WINDOWS)
+#if !defined(WINDOWS)
       
 
       __construct(m_pexceptiontranslator);
@@ -233,7 +233,7 @@ namespace acme
       //}
 
       //estatus = m_pnode->initialize_matter(this);
-      m_pnode->initialize_matter(this);
+      //m_pnode->initialize_matter(this);
 
       //if(!estatus)
       //{
@@ -926,7 +926,7 @@ namespace acme
 
       auto plibrary = __new(::acme::library);
 
-      plibrary->initialize_matter(this);
+      //plibrary->initialize_matter(this);
 
       //auto estatus = plibrary->open(strLibrary);
 

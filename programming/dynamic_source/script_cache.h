@@ -21,7 +21,7 @@ namespace dynamic_source
 
       virtual void initialize_script_cache(script_manager * pscriptmanager);
 
-      ::pointer<script_instance>create_instance(const ::string & lpcszName, ::pointer<script> pscript);
+      ::pointer<script_instance>create_instance(const ::string & lpcszName, ::pointer<script> & pscript);
 
       void set_all_out_of_date();
 

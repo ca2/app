@@ -1156,7 +1156,7 @@ namespace html
       while (*psz != '\0' && !isspace(*psz) && *psz != '>')
          psz++;
 
-      if (pszCloseTag[0] == '/' && ansi_count_compare_ci(m_atomTagName.m_psz, pszCloseTag + 1, psz - pszCloseTag - 1) == 0)
+      if (pszCloseTag[0] == '/' && ansi_count_compare_ci(m_atomTagName.m_str, pszCloseTag + 1, psz - pszCloseTag - 1) == 0)
       {
          psz++;
          pszParam = psz;

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/crypto/crypto.h"
+
+
 namespace crypto_openssl
 {
 
@@ -24,8 +27,8 @@ namespace crypto_openssl
       //virtual ::pointer<hasher>create_hasher(enum_hash ehash);
 
 
-      void encrypt(memory& storageEncrypt, const memory& storageDecrypt, const memory& storageKey) override;
-      void decrypt(memory& storageDecrypt, const memory& storageEncrypt, const memory& storageKey) override;
+      void encrypt(memory& storageEncrypt, const block& blockDecrypt, const block & blockKey) override;
+      void decrypt(memory& storageDecrypt, const block& blockEncrypt, const block & blockKey) override;
 
 
       //virtual bool encrypt(memory & storageEncrypt, const memory & storageDecrypt, const char * pszSalt);

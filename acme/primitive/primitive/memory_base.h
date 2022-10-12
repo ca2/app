@@ -102,7 +102,6 @@ public:
 
    memory_base() { }
    memory_base(const memory_base & base) : m_memory(base.m_memory) {}
-   memory_base(memory_base && base) : m_memory(base.m_memory) { __zero(base.m_memory); }
    ~memory_base() override;
 
 
@@ -199,7 +198,11 @@ public:
    char * get_psz(strsize & len);
 
    memory_base & operator = (const memory_base & s);
+   inline memory_base & operator = (const block & block);
+
+
    memory_base & operator += (const memory_base & s);
+   inline memory_base & operator += (const block & block);
 
 
    void from_string(const widechar * pwsz);
@@ -224,12 +227,17 @@ public:
    void set(byte b,memsize iStart = 0,memsize uiSize = -1);
    void zero(memsize iStart = 0, memsize uiSize = -1);
 
-   void append(const memory_base & memory, memsize iStart = 0, memsize iCount = -1);
-   void append(const void * pdata, memsize iCount);
+   
+   inline void assign(const block & block);
    void assign(const void * pdata, memsize iCount);
    void assign(const void * pdata, memsize iStart, memsize iCount);
-   void append(memsize iCount, uchar uch);
    void assign(memsize iCount, uchar uch);
+
+
+   inline void append(const block & block);
+   void append(const void * pdata, memsize iCount);
+   void append(memsize iCount, uchar uch);
+   void append(const memory_base & memory, memsize iStart = 0, memsize iCount = -1);
    void append(byte b);
 
    void clear();
@@ -240,11 +248,8 @@ public:
    void move_and_grow(memsize offset);
    void move(memsize offset, bool bGrow = false);
 
-   void assign(const char * psz);
-   void append(const char * psz);
-
-
-
+   //void assign(const char * psz);
+   //void append(const char * psz);
 
    void to_hex(string & str, memsize iStart = 0, memsize size = -1);
    string to_hex(memsize iStart = 0, memsize size = -1);
@@ -421,19 +426,54 @@ inline void memory_base::set_char_at_grow(strsize iChar, char ch)
 }
 
 
+inline block::block(const memory_base & memory) :
+   block(memory.get_data(), memory.get_size())
+{
+
+}
 
 
+inline block::block(const memory_base * pmemory) :
+   block(pmemory->get_data(), pmemory->get_size())
+{
+
+}
 
 
+inline memory_base & memory_base::operator = (const block & block)
+{
+
+   assign(block);
+
+   return *this;
+
+}
 
 
+inline memory_base & memory_base::operator += (const block & block)
+{
+
+   append(block);
+
+   return *this;
+
+}
 
 
+inline void memory_base::assign(const ::block & block)
+{
+
+   assign(block.get_data(), block.get_size());
+
+}
 
 
+inline void memory_base::append(const ::block & block)
+{
 
+   append(block.get_data(), block.get_size());
 
-
+}
 
 
 

@@ -7,6 +7,8 @@
 #include "ds_script.h"
 #include "session.h"
 #include "httpd_socket.h"
+#include "apex/crypto/crypto.h"
+#include "apex/crypto/rsa.h"
 #include "apex/networking/sockets/link_in_socket.h"
 #include "apex/networking/sockets/link_out_socket.h"
 #include "apex/filesystem/filesystem/file_watcher.h"
@@ -287,7 +289,7 @@ namespace dynamic_source
    }
 
 
-   ::pointer<script_instance>script_manager::get(const ::string & strName, ::pointer<script> pscript)
+   ::pointer<script_instance>script_manager::get(const ::string & strName, ::pointer<script> & pscript)
    {
 
       return m_pcache->create_instance(strName, pscript);
@@ -1021,7 +1023,7 @@ namespace dynamic_source
 
          // roughly detect this way: by finding the <?
 
-         bool bHasScript = pcontext->m_papexcontext->file().as_string(strPath).find("<?") >= 0;
+         bool bHasScript = pcontext->m_papexcontext->file().safe_get_string(strPath).find("<?") >= 0;
 
          m_mapIncludeHasScript.set_at(strPath, bHasScript);
 

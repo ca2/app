@@ -66,4 +66,7 @@ CLASS_DECL_ACME ::string __string(const long int & i);
 CLASS_DECL_ACME ::string __string(const ::e_status & estatus);
 
 
+inline ::string __string(const ::particle & particle);
+
+
 

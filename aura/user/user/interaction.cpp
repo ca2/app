@@ -3,7 +3,9 @@
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
 #endif
-////#include "aura/message.h"
+#ifdef WINDOWS_DESKTOP
+#include "apex/operating_system.h"
+#endif
 #include "aura/message/timer.h"
 #include "acme/constant/timer.h"
 #include "acme/constant/simple_command.h"

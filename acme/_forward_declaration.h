@@ -11,6 +11,10 @@
 // Created by camilo on 2021-08-31 16:00 BRT <3ThomasBS_!!
 #pragma once
 
+
+#include "acme/constant/_constant.h"
+
+
 constexpr ::u64 operator "" _uintmax(unsigned long long int u) { return u << 32LL; }
 
 
@@ -34,6 +38,7 @@ class binary_stream;
 class text_stream;
 struct block;
 class property_set;
+class particle;
 
 //namespace topic
 //{
@@ -164,5 +169,180 @@ namespace interprocess
 
 } // namespace interprocess
 
+
+
+template<typename Type, typename RawType = Type, enum_type t_etypePayload = e_type_element >
+class string_array_base;
+
+
+template<typename CHAR_TYPE>
+class string_base;
+
+
+struct pixmap;
+
+
+#define CONSIDER_AS(as, use) using use = as
+
+
+using ansistring = string_base<ansichar>;
+using wd16string = string_base<wd16char>;
+using wd32string = string_base<wd32char>;
+using widestring = string_base<widechar>;
+
+
+using string = string_base < ansichar >;
+using wstring = string_base < widechar >;
+
+
+typedef string_array_base < string, string, e_type_string_array > string_array;
+
+template < typename TYPE_CHAR >
+class string_natural_pointer;
+
+using natural_ansistring = string_natural_pointer < ansichar >;
+using natural_wd16string = string_natural_pointer < wd16char >;
+using natural_wd32string = string_natural_pointer < wd32char >;
+using natural_widestring = string_natural_pointer < widechar >;
+
+typedef natural_ansistring natural_string;
+typedef natural_widestring natural_wstring;
+
+class property;
+class payload;
+class atom;
+
+
+template < typename FROM, typename TO_POINTER >
+concept raw_pointer_castable =
+::std::is_convertible < FROM, TO_POINTER * >::value ||
+::std::is_convertible < FROM, const TO_POINTER * >::value;
+
+
+template < typename T >
+concept non_const_c_string =
+std::is_convertible < T, ::ansichar * >::value ||
+std::is_convertible < T, ::wd16char * >::value ||
+std::is_convertible < T, ::wd32char * >::value;
+
+template < typename T >
+concept c_string =
+const_c_string < T > ||
+non_const_c_string < T >;
+
+template < typename DERIVED, typename BASE >
+concept is_derived_from =
+::std::is_base_of < BASE, DERIVED >::value;
+
+
+
+
+
+
+template < typename T >
+concept a_pointer = std::is_pointer < T >::value;
+
+template < typename T >
+concept non_pointer = !std::is_pointer < T >::value;
+
+template < typename T >
+concept a_enum = std::is_enum < T >::value;
+
+template < typename T >
+concept primitive_integral = std::is_integral < T >::value || std::is_enum < T >::value || std::same_as < T, ::e_status >;
+
+template < typename T >
+concept primitive_integer = std::is_integral < T >::value;
+
+template < typename T >
+concept primitive_natural = std::is_integral < T >::value && !std::is_signed < T >::value;
+
+template < typename T >
+concept primitive_signed = (std::is_integral < T >::value || std::is_enum < T >::value) && std::is_signed < T >::value;
+
+template < typename T >
+concept primitive_unsigned = (std::is_integral < T >::value || std::is_enum < T >::value) && !std::is_signed < T >::value;
+
+
+template < typename T >
+concept primitive_floating = std::is_floating_point < T >::value;
+
+template < typename T >
+concept primitive_number = std::is_integral < T >::value || std::is_enum < T >::value || std::is_floating_point < T >::value;
+
+template < typename T >
+concept primitive_character =
+std::same_as < T, ::ansichar > ||
+std::same_as < T, ::wd16char > ||
+std::same_as < T, ::wd32char >;
+
+
+template < typename T >
+concept const_c_string =
+std::is_convertible < T, const ::ansichar * >::value ||
+std::is_convertible < T, const ::wd16char * >::value ||
+std::is_convertible < T, const ::wd32char * >::value;
+
+
+
+
+template < bool B, class TRUE_TYPE = void, class ELSE_TYPE = void >
+struct if_else {};
+
+template < class TRUE_TYPE, class ELSE_TYPE >
+struct if_else < true, TRUE_TYPE, ELSE_TYPE > { using type = TRUE_TYPE; };
+
+template < class TRUE_TYPE, class ELSE_TYPE >
+struct if_else < false, TRUE_TYPE, ELSE_TYPE > { using type = ELSE_TYPE; };
+
+template < typename T >
+struct base_const_c_string
+{
+
+   using type =
+      typename if_else <
+      std::is_convertible < T, const ansichar * >::value,
+      const ansichar *,
+      typename if_else <
+      std::is_convertible < T, const wd16char * >::value,
+      const wd16char *,
+      typename if_else <
+      std::is_convertible < T, const wd32char * >::value,
+      const wd32char *,
+      void *
+      >::type
+      >::type
+      >::type;
+
+};
+
+template < bool, typename T1, typename T2 >
+struct boolean_type_selection { using type = T1; };
+
+template < typename T1, typename T2 >
+struct boolean_type_selection<false, T1, T2> { using type = T2; };
+
+
+template < typename T1, typename T2 >
+struct largest_type {
+   using type = typename ::boolean_type_selection< (sizeof(T1) > sizeof(T2)), T1, T2>::type;
+};
+
+
+template < typename T1, typename T2 >
+struct smaller_type {
+   using type = typename ::boolean_type_selection< (sizeof(T1) < sizeof(T2)), T1, T2>::type;
+};
+
+
+template < typename T1, typename T2, typename T3 >
+struct largest_type_of_3 {
+   using largest_type_of_1_and_2 = typename largest_type < T1, T2 >::type;
+   using type = typename ::boolean_type_selection < (sizeof(largest_type_of_1_and_2) > sizeof(T3)), largest_type_of_1_and_2, T3>::type;
+};
+
+
+template < typename TYPE, std::size_t SIZE >
+using array_reference = TYPE(&)[SIZE];
 
 

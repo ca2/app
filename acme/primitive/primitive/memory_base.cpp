@@ -1780,20 +1780,20 @@ void memory_base::assign(memsize iCount, uchar uch)
 
 
 
-void memory_base::assign(const char * psz)
-{
-
-   return from_string(psz);
-
-}
-
-
-void memory_base::append(const char * psz)
-{
-
-   return append_from_string(psz);
-
-}
+//void memory_base::assign(const char * psz)
+//{
+//
+//   return from_string(psz);
+//
+//}
+//
+//
+//void memory_base::append(const char * psz)
+//{
+//
+//   return append_from_string(psz);
+//
+//}
 
 
 #if defined(_UWP) && defined(__cplusplus_winrt)

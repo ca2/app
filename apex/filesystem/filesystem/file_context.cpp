@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "apex/operating_system.h"
-//#include "acme/platform/acme_str_pool.h"
+#include "apex/crypto/crypto.h"
+#include "apex/crypto/hasher.h"
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
 #include "acme/filesystem/filesystem/acme_directory.h"

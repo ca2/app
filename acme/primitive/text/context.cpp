@@ -100,7 +100,7 @@ namespace text
 
          }
 
-         strid_array stridaFailedLocale(false);
+         string_array straFailedLocale;
 
          for(i32 i = 0; i < m_plocaleschema->m_idaLocale.get_count(); i++)
          {
@@ -108,14 +108,14 @@ namespace text
             ::atom & idLocale = m_plocaleschema->m_idaLocale[i];
 
 
-            if(stridaFailedLocale.contains(idLocale))
+            if(straFailedLocale.contains(idLocale))
                continue;
 
             const locale * plocale = m_ptable->get_locale(idLocale);
 
             if(plocale == nullptr)
             {
-               stridaFailedLocale.add(idLocale);
+               straFailedLocale.add(idLocale);
                continue;
             }
 
@@ -171,8 +171,6 @@ namespace text
 
       m_map.InitHashTable(97);
 
-      m_pschemaEn    = &operator[]("en")["en"];
-      m_pschemaStd   = &operator[]("_std")["_std"];
 
       //defer_create_mutex();
 
@@ -190,6 +188,10 @@ namespace text
    {
 
       /*auto estatus =*/ ::object::initialize(pobject);
+
+      m_pschemaEn = &operator[]("en")["en"];
+      m_pschemaStd = &operator[]("_std")["_std"];
+
 
       //if (!estatus)
       //{
@@ -396,7 +398,7 @@ namespace text
 
          stra2.erase_all();
 
-         id2 = string(atom.m_psz) + "[" + __string(i) + "]";
+         id2 = atom.m_str + "[" + __string(i) + "]";
 
          _get(stra2, pcontext, id2);
 

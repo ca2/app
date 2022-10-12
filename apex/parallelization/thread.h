@@ -137,7 +137,7 @@ public:
    inline message_queue* get_message_queue() { return m_pmessagequeue ? m_pmessagequeue.m_p : _get_message_queue(); }
    message_queue* _get_message_queue();
 
-   bool peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
+   bool peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, bool bRemoveMessage = false);
    void get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
    void post_message(oswindow oswindow, const ::atom & atom, wparam wParam, lparam lParam);
 

@@ -1,9 +1,6 @@
 #include "framework.h"
 
 
-natural_meta_data < string_meta_data < wd16char > > * g_pwd16stringNil = nullptr;
-
-natural_meta_data < string_meta_data < wd32char > > * g_pwd32stringNil = nullptr;
 
 
 
@@ -13,7 +10,9 @@ template < >
 CLASS_DECL_ACME natural_meta_data < string_meta_data < wd16char > > * __nil < natural_meta_data < string_meta_data < wd16char > > >()
 {
 
-    return g_pwd16stringNil;
+   static natural_meta_data < string_meta_data < wd16char > > s_wd16stringNil;
+
+   return &s_wd16stringNil;
 
 }
 
@@ -21,7 +20,9 @@ template < >
 CLASS_DECL_ACME natural_meta_data < string_meta_data < wd32char > > * __nil < natural_meta_data < string_meta_data < wd32char > > >()
 {
 
-    return g_pwd32stringNil;
+   static natural_meta_data < string_meta_data < wd32char > > s_wd32stringNil;
+
+   return &s_wd32stringNil;
 
 }
 

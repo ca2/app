@@ -686,7 +686,7 @@ namespace html
 
       atom idConcatFallback = (atom)(::string(id1) + id2);
 
-      INFORMATION("atom not pre setup concat html " << idConcatFallback.m_psz);
+      INFORMATION("atom not pre setup concat html " << idConcatFallback.m_str);
 
       return idConcatFallback;
 

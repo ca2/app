@@ -7,7 +7,6 @@ class CLASS_DECL_ACME mutex :
 public:
 
 #ifdef _DEBUG
-
    string                  m_strThread;
    itask_t                 m_itask;
 #endif

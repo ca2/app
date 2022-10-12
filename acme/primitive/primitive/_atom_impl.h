@@ -25,15 +25,15 @@ namespace acme
    inline ::atom atom(const ::std::type_info& info)
    {
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
+//
+//      return get_id_space()(info.name());
+//
+//#else
+//
+      return info.name();
 
-      return get_id_space()(info.name());
-
-#else
-
-      return get_id_space()(info.name());
-
-#endif
+//#endif
 
    }
 
@@ -41,7 +41,7 @@ namespace acme
    inline ::atom atom(const char* psz)
    {
 
-      return get_id_space()(psz);
+      return psz;
 
    }
 
@@ -49,7 +49,7 @@ namespace acme
    inline ::atom atom(const string& str)
    {
 
-      return get_id_space()(str);
+      return str;
 
    }
 
@@ -57,17 +57,17 @@ namespace acme
    inline ::atom atom(i64 i)
    {
 
-      return get_id_space()(i);
+      return i;
 
    }
 
 
-   inline atom_space& atom()
-   {
+   //inline atom_space& atom()
+   //{
 
-      return get_id_space();
+   //   return get_id_space();
 
-   }
+   //}
 
 
 } //namespace acme
@@ -137,12 +137,9 @@ inline atom::atom(const char* psz)
 
    m_all = {};
 
-   if (psz != nullptr)
-   {
+   m_etype = e_type_text;
 
-      operator = (::acme::atom(psz));
-
-   }
+   m_str = psz;
 
 }
 
@@ -152,7 +149,9 @@ inline atom::atom(const ::string& str)
 
    m_all = {};
 
-   operator = (::acme::atom(str.c_str()));
+   m_etype = e_type_text;
+
+   m_str = str;
 
 }
 

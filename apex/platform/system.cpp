@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "apex/crypto/crypto.h"
 #include "apex/operating_system.h"
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"

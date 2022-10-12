@@ -20,6 +20,9 @@ namespace xml
       ~data() override;
 
 
+      void initialize(::object * pobject) override;
+
+
       virtual void edit(edit * pedit);
 
 

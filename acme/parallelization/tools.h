@@ -93,7 +93,7 @@ public:
 
 
 class CLASS_DECL_ACME task_group :
-   virtual public ::synchronization_object
+   virtual public ::matter
 {
 public:
 
@@ -124,7 +124,7 @@ public:
 
    void prepare(::enum_task_op eop, ::count cIteration = 0);
    virtual void set_ready_to_start();
-   ::e_status wait() override;
+   virtual ::e_status wait();
    virtual void process();
 
    bool add_predicate(::predicate_holder_base * ppred);
@@ -145,7 +145,7 @@ public:
 
       //auto psystem = ::apex::get_system();
 
-      synchronous_lock slGroup(m_psystem->mutex());
+      synchronous_lock slGroup(::get_system()->mutex());
 
       ///   auto ptool = ::apex::get_system()->task_tool(op_fork_count);
 

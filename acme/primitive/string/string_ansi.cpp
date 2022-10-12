@@ -3,7 +3,7 @@
 
 
 
-natural_meta_data < string_meta_data < ansichar > > * g_pansistringNil = nullptr;
+
 
 
 
@@ -11,7 +11,9 @@ template < >
 CLASS_DECL_ACME natural_meta_data < string_meta_data < ansichar > > * __nil < natural_meta_data < string_meta_data < ansichar > > >()
 {
 
-    return g_pansistringNil;
+   static natural_meta_data < string_meta_data < ansichar > > s_ansistringNil;
+
+   return &s_ansistringNil;
 
 }
 

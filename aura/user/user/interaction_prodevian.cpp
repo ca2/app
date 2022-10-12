@@ -2,7 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
 #endif
-////#include "aura/message.h"
+//#include "acme/message.h"
 #include "interaction_prodevian.h"
 #include "interaction_thread.h"
 #include "acme/parallelization/message_queue.h"
@@ -464,7 +464,7 @@ namespace user
 
             int iSkipped = 0;
 
-            while (peek_message(&m_message, NULL, 0, 0, PM_NOREMOVE))
+            while (peek_message(&m_message, NULL, 0, 0))
             {
 
                if (m_message.m_atom == e_message_redraw || m_message.m_atom == WM_KICKIDLE)
@@ -472,7 +472,7 @@ namespace user
 
                   iSkipped++;
 
-                  peek_message(&m_message, NULL, 0, 0, PM_REMOVE);
+                  peek_message(&m_message, NULL, 0, 0, true);
 
                }
                else
@@ -515,7 +515,7 @@ namespace user
          else if(!bHasProdevian)
          {
 
-            while (peek_message(&m_message, NULL, 0, 0, PM_REMOVE))
+            while (peek_message(&m_message, NULL, 0, 0, true))
             {
 
                if (m_message.m_atom == e_message_null)

@@ -38,12 +38,12 @@ public:
    union
    {
 
-      void * m_pvoid;
+      void *                     m_pvoid;
       para_return                m_parareturn;
       atom                       m_atom;
       type                       m_type;
       bool                       m_b;
-      bool * m_pb;
+      bool *                     m_pb;
       ::i8                       m_i8;
       ::u8                       m_u8;
       ::i16                      m_i16;
@@ -52,54 +52,54 @@ public:
       ::u32                      m_u32;
       ::i64                      m_i64;
       ::u64                      m_u64;
-      ::i8 * m_pi8;
-      ::u8 * m_pu8;
-      ::i16 * m_pi16;
-      ::u16 * m_pu16;
-      ::i32 * m_pi32;
-      ::u32 * m_pu32;
-      ::i64 * m_pi64;
-      ::u64 * m_pu64;
-      ::string * m_pstr;
+      ::i8 *                     m_pi8;
+      ::u8 *                     m_pu8;
+      ::i16 *                    m_pi16;
+      ::u16 *                    m_pu16;
+      ::i32 *                    m_pi32;
+      ::u32 *                    m_pu32;
+      ::i64 *                    m_pi64;
+      ::u64 *                    m_pu64;
+      ::string *                 m_pstr;
       ::f32                      m_f32;
-      ::f32 * m_pf32;
-      ::f64                     m_f64;
-      ::f64 * m_pf64;
-      payload * m_ppayload;
-      ::earth::time           m_time;
-      file_time_t                 m_filetime;
-      atom * m_pid;
-      ::property * m_pproperty;
+      ::f32 *                    m_pf32;
+      ::f64                      m_f64;
+      ::f64 *                    m_pf64;
+      payload *                  m_ppayload;
+      ::earth::time              m_time;
+      file_time_t                m_filetime;
+      atom *                     m_patom;
+      ::property *               m_pproperty;
       integral_nanosecond        m_integralnanosecond;
-      integral_nanosecond * m_pintegralnanosecond;
+      integral_nanosecond *      m_pintegralnanosecond;
       integral_microsecond       m_integralmicrosecond;
-      integral_microsecond * m_pintegralmicrosecond;
+      integral_microsecond *     m_pintegralmicrosecond;
       integral_millisecond       m_integralmillisecond;
-      integral_millisecond * m_pintegralmillisecond;
+      integral_millisecond *     m_pintegralmillisecond;
       integral_second            m_integralsecond;
-      integral_second * m_pintegralsecond;
+      integral_second *          m_pintegralsecond;
       integral_minute            m_integralminute;
-      integral_minute * m_pintegralminute;
+      integral_minute *          m_pintegralminute;
       integral_hour              m_integralhour;
-      integral_hour * m_pintegralhour;
+      integral_hour *            m_pintegralhour;
       integral_day               m_integralday;
-      integral_day * m_pintegralday;
+      integral_day *             m_pintegralday;
       floating_nanosecond        m_floatingnanosecond;
-      floating_nanosecond * m_pfloatingnanosecond;
+      floating_nanosecond *      m_pfloatingnanosecond;
       floating_microsecond       m_floatingmicrosecond;
-      floating_microsecond * m_pfloatingmicrosecond;
+      floating_microsecond *     m_pfloatingmicrosecond;
       floating_millisecond       m_floatingmillisecond;
-      floating_millisecond * m_pfloatingmillisecond;
+      floating_millisecond *     m_pfloatingmillisecond;
       floating_second            m_floatingsecond;
-      floating_second * m_pfloatingsecond;
+      floating_second *          m_pfloatingsecond;
       floating_minute            m_floatingminute;
-      floating_minute * m_pfloatingminute;
+      floating_minute *          m_pfloatingminute;
       floating_hour              m_floatinghour;
-      floating_hour * m_pfloatinghour;
+      floating_hour *            m_pfloatinghour;
       floating_day               m_floatingday;
-      floating_day * m_pfloatingday;
+      floating_day *             m_pfloatingday;
       class duration             m_duration;
-      class duration * m_pduration;
+      class duration *           m_pduration;
       ::e_status                 m_estatus;
       ::e_command                m_ecommand;
       ::e_check                  m_echeck;
@@ -108,16 +108,16 @@ public:
       ::color::hls               m_hls;
 
 
-      ::element * m_p;
-      ::string_array * m_pstra;
-      ::int_array * m_pia;
-      ::payload_array * m_ppayloada;
-      ::property_set * m_ppropertyset;
-      ::i64_array * m_pi64a;
-      ::memory * m_pmemory;
-      ::file::path_object * m_ppath;
+      ::particle *               m_p;
+      ::string_array *           m_pstra;
+      ::int_array *              m_pia;
+      ::payload_array *          m_ppayloada;
+      ::property_set *           m_ppropertyset;
+      ::i64_array *              m_pi64a;
+      ::memory *                 m_pmemory;
+      ::file::path_object *      m_ppath;
       ::i64                      m_all[3];
-      ::string                     m_str;
+      ::string                   m_str;
 
    };
 
@@ -145,7 +145,7 @@ public:
    payload(::string * pstr);
    payload(::payload * ppayload);
    payload(::property * pproperty);
-   payload(::element * pobject);
+   payload(::particle * pobject);
    payload(::duration * pduration);
    payload(const char * psz);
    payload(const ::string & str);
@@ -154,7 +154,7 @@ public:
    payload(const ::earth::time & time);
    payload(const ::color::color & color);
    payload(const ::color::hls & hls);
-   payload(const ::element & element);
+   payload(const ::particle & particle);
    payload(const ::file::path & path);
    payload(const ::string_array & payload);
    payload(const ::int_array & payload);
@@ -272,7 +272,7 @@ public:
 
    ::i64 release();
 
-   void _set_element(::element * pelement);
+   void _set_element(::particle * pelement);
 
    bool is_element() const { return m_etype >= e_type_element && m_etype < e_type_last_element; }
 
@@ -468,6 +468,8 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    bool b() const;
 
+   operator bool() const { return this->b(); }
+
    operator ::i8() const { return this->i8(); }
    operator ::u8() const { return this->u8(); }
    operator ::i16() const { return this->i16(); }
@@ -543,7 +545,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    inline payload & operator = (const ::pointer<TYPE> & pointer)
    {
 
-      _set_element(pointer.m_pelement);
+      _set_element(pointer.m_pparticle);
 
       return *this;
 
@@ -560,7 +562,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
    inline payload & operator = (nullptr_t) { set_type(e_type_null, false); return *this; }
 
-   inline payload & operator = (::element * pelement)
+   inline payload & operator = (::particle * pelement)
    {
 
       _set_element(pelement);
@@ -604,7 +606,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
 
 
 
-   payload & operator = (const ::element & o);
+   payload & operator = (const ::particle & o);
 
    inline payload & operator = (const ::file::path & path)
    {
@@ -796,13 +798,13 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    template < class T >
    ::pointer< T > cast();
 
-   ::element * element()
+   ::particle * particle()
    {
       if (m_etype == e_type_element) { return m_p; }
-      return cast < ::element >();
+      return cast < ::particle >();
    }
 
-   ::element * element() const { return ((payload *)this)->element(); }
+   ::particle * particle() const { return ((payload *)this)->particle(); }
 
    template < class T >
    T * cast() const
@@ -1389,7 +1391,7 @@ inline void payload::set_string(const ::string & str)
 
 
 class CLASS_DECL_ACME payload_object :
-   virtual public element
+   virtual public particle
 {
 public:
 

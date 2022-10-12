@@ -213,7 +213,7 @@ namespace interprocess
    bool channel::is_channel_ok()
    {
 
-      return m_ptarget->is_handler_ok() && m_pcaller->is_caller_ok();
+      return m_ptarget->is_target_ok() && m_pcaller->is_caller_ok();
 
    }
 

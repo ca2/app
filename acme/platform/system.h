@@ -405,7 +405,7 @@ namespace acme
       static inline ::atom atom(const char * psz);
       static inline ::atom atom(const string & str);
       static inline ::atom atom(i64 i);
-      static inline ::atom_space & atom();
+      //static inline ::atom_space & atom();
       inline ::atom atom(const ::payload & payload);
       inline ::atom atom(const property & prop);
 

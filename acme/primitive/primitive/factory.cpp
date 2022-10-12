@@ -52,7 +52,7 @@ namespace factory
    CLASS_DECL_ACME factory * get_factory(const ::atom & atomSource)
    {
 
-      auto & pfactory = ::acme::acme::g_p->m_mapFactory[atomSource];
+      auto & pfactory = (*::acme::acme::g_p->m_pmapFactory)[atomSource];
 
       if (!pfactory)
       {

@@ -21,15 +21,7 @@ public:
 
 
    property_object() { }
-   property_object(const ::atom& atom) : PARTICLE(atom), ::particle(atom) {}
    property_object(const property_object & propertyobject);
-   property_object(property_object && propertyobject) :
-      ::PARTICLE(::move(propertyobject)),
-      ::particle(::move(propertyobject)),
-      ::element(::move(propertyobject)),
-      ::matter(::move(propertyobject)),
-      m_ppropertyset(::move(propertyobject.m_ppropertyset))
-      {  }
    ~property_object() override;
 
 

@@ -50,7 +50,7 @@ CLASS_DECL_ACME ::file::path get_module_path(HMODULE hmodule)
 
 #else
 
-   wstring wstr(get_buffer, MAX_PATH * 8);
+   wstring wstr(e_get_buffer, MAX_PATH * 8);
 
    ::GetModuleFileNameW(hmodule, wstr, (::u32)wstr.length());
 

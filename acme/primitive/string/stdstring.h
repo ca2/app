@@ -1,7 +1,5 @@
 #pragma once
 
-//class string;
-struct for_moving { };
 
 
 template < class T, typename C >

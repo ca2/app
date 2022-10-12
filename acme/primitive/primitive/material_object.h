@@ -12,17 +12,17 @@ public:
 
 
    material_object() { }
-   material_object(const ::atom & atom) : PARTICLE(atom), ::particle(atom), ::property_object(atom) {}
+   //material_object(const ::atom & atom) : PARTICLE(atom), ::particle(atom), ::property_object(atom) {}
    material_object(const material_object & object);
-   material_object(material_object && materialobject) :
-      ::PARTICLE(::move(materialobject)),
-      ::particle(::move(materialobject)),
-      ::element(::move(materialobject)),
-      ::matter(::move(materialobject)),
-      ::property_object(::move(materialobject)),
-      m_pmapPropertyProcedure(::move(materialobject.m_pmapPropertyProcedure)),
-      m_pia(::move(materialobject.m_pia))
-   {  }
+   //material_object(material_object && materialobject) :
+   //   ::PARTICLE(::move(materialobject)),
+   //   ::particle(::move(materialobject)),
+   //   ::element(::move(materialobject)),
+   //   ::matter(::move(materialobject)),
+   //   ::property_object(::move(materialobject)),
+   //   m_pmapPropertyProcedure(::move(materialobject.m_pmapPropertyProcedure)),
+   //   m_pia(::move(materialobject.m_pia))
+   //{  }
    ~material_object() override;
 
 

@@ -7,6 +7,7 @@
 #include "acme/platform/system_setup.h"
 #include "acme/primitive/text/context.h"
 #include "apex/platform/history.h"
+#include "apex/crypto/crypto.h"
 #include "aura/gpu/gpu/_.h"
 #include "aura/constant/idpool.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
@@ -4867,16 +4868,12 @@ namespace aura
    //}
 
 
-
-
    string system::crypto_md5_text(const ::string & str)
    {
 
       return crypto()->md5(str);
 
    }
-
-
 
 
    //::pointer<::aura::session>system::on_create_session()

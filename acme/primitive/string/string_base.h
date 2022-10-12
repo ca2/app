@@ -1,6 +1,14 @@
 ﻿#pragma once
 
 
+#include "acme/memory/string_memory_allocator.h"
+#include "string_meta_data.h"
+#include "string_type.h"
+#include "_c_unicode.h"
+#include "character.h"
+#include "string_iterator.h"
+
+
 template < typename TYPE_CHAR >
 class string_base :
    public natural_pointer < string_meta_data < TYPE_CHAR > , string_memory_allocator >,
@@ -17,8 +25,8 @@ public:
    string_base() { }
    string_base(enum_no_initialize) : POINTER(e_no_initialize) { }
    string_base(nullptr_t) { }
-   string_base(for_moving) { }
-   string_base(e_get_buffer, strsize len) { get_string_buffer(len); }
+   string_base(enum_for_moving) { }
+   string_base(enum_get_buffer, strsize len) { get_string_buffer(len); }
    string_base(string_base && s) noexcept : POINTER(e_no_initialize) { this->m_pdata = s.m_pdata; s.m_pdata = nullptr; }
    string_base(const ansichar * pansichar);
    string_base(const ansichar * pansichar, strsize len);
@@ -30,9 +38,9 @@ public:
    string_base(const wd32char * pwd32char);
    string_base(const wd32char * pwd32char, strsize len);
    string_base(const wd32char * pwd32char, strsize len, strsize pos) : string_base(pwd32char + pos, len) { }
-#ifdef WINDOWS
-   explicit string_base(const USHORT * pszSrc) : string_base((const wd16char * )pszSrc) {}
-#endif
+//#ifdef WINDOWS
+//   explicit string_base(const USHORT * pszSrc) : string_base((const wd16char * )pszSrc) {}
+//#endif
    string_base(const ansistring & wd32str);
    string_base(const wd16string & wd16str);
    string_base(const wd32string & wd32str);

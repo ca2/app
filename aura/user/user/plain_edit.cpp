@@ -2,12 +2,12 @@
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
 #endif
-//#include "acme/operating_system.h"
 #include "aura/platform/application.h"
 #include "apex/filesystem/file/edit_file.h"
 #include "plain_text_tree.h"
 ////#include "aura/message.h"
 #ifdef WINDOWS_DESKTOP
+#include "apex/operating_system.h"
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
 #include "aura/user/windows_tsf/edit_window.h"
 #endif

@@ -45,22 +45,35 @@ void matter::dump(dump_context & dumpcontext) const
 }
 
 
-void matter::initialize_matter(::matter* pmatter)
+//void matter::initialize_matter(::matter* pmatter)
+//{
+//
+//   m_psystem = pmatter->m_psystem;
+//
+//   //return ::success;
+//
+//}
+
+
+void matter::initialize(::object * pobject)
 {
 
-   m_psystem = pmatter->m_psystem;
+   if (!m_psystem)
+   {
 
-   //return ::success;
+      m_psystem = pobject->m_psystem;
+
+   }
 
 }
 
 
-void matter::on_initialize_object()
-{
-
-   //return ::success;
-
-}
+//void matter::on_initialize_object()
+//{
+//
+//   //return ::success;
+//
+//}
 
 
 ::acme::application * matter::get_context_application()

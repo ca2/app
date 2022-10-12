@@ -1,5 +1,9 @@
 #pragma once
 
+
+#include "acme/_api.h"
+
+
 template < >
 inline uptr uptr_hash < const char * >(const char * psz)
 {

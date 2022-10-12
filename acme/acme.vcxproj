@@ -1709,6 +1709,7 @@
     <ClInclude Include="primitive\string\string_base.h" />
     <ClInclude Include="primitive\string\string_block.h" />
     <ClInclude Include="primitive\string\character.h" />
+    <ClInclude Include="primitive\string\string_type.h" />
     <ClInclude Include="primitive\string\_ch_impl.h" />
     <ClInclude Include="primitive\string\_conv.h" />
     <ClInclude Include="primitive\string\_conv_ansi_impl.h" />

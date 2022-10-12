@@ -77,7 +77,7 @@ namespace interprocess
       virtual bool on_idle();
 
 
-      virtual bool is_handler_ok();
+      virtual bool is_target_ok();
 
 
       //bool dispatch_message(::string && strMessage);

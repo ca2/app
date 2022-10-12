@@ -74,8 +74,8 @@ public:
    //object() : m_pmeta(nullptr) { }
    object() { m_pobjectParentTask = nullptr; m_pcontext = nullptr; }
    //object(::object * pobject);
-   object(const ::atom & atom):property_object(atom){ m_pobjectParentTask = nullptr; m_pcontext = nullptr; }
-   object(enum_default_initialization) : ::object() { m_pobjectParentTask = nullptr; m_pcontext = nullptr; };
+   //object(const ::atom & atom):property_object(atom){ m_pobjectParentTask = nullptr; m_pcontext = nullptr; }
+   object(enum_default_initialization) : ::object() {  };
    ~object() override;
 
 

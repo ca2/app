@@ -1,6 +1,10 @@
 ﻿#include "framework.h"
-#include "acme/primitive/string/base64.h"
+#include "crypto.h"
+#include "hasher.h"
+#include "hasher_algorithm.h"
 #include "initializer.h"
+#include "rsa.h"
+#include "acme/primitive/string/base64.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/primitive/mathematics/mathematics.h"
 #include "acme/primitive/string/base64.h"
@@ -119,52 +123,48 @@ namespace crypto
 
 
 
-      void crypto::decrypt(memory& storageDecrypt, const memory& storageEncrypt, const char* pszSalt)
+      void crypto::decrypt(memory& storageDecrypt, const block& blockEncrypt, const block & blockSalt)
       {
 
          // default implementation - OS may implement its own HOME/UserDir encryption
 
-         string str = defer_get_cryptkey();
+         auto key = defer_get_cryptkey();
 
-         if (str.is_empty())
+         if (key.is_empty())
          {
           
             throw ::exception(error_failed);
 
          }
 
-         str += pszSalt;
+         key += blockSalt;
 
-         memory key;
-
-         key.from_string(str);
-
-         decrypt(storageDecrypt, storageEncrypt, key);
+         decrypt(storageDecrypt, blockEncrypt, key);
 
       }
 
       
-      void crypto::encrypt(memory& storageEncrypt, const memory& storageDecrypt, const char* pszSalt)
+      void crypto::encrypt(memory& storageEncrypt, const block & blockDecrypt, const block & blockSalt)
       {
 
          // default implementation - OS may implement its own HOME/UserDir encryption
 
-         string str = defer_get_cryptkey();
+         auto key = defer_get_cryptkey();
 
-         if (str.is_empty())
+         if (key.is_empty())
          {
 
             throw ::exception(error_failed);
 
          }
 
-         str += pszSalt;
+         key += blockSalt;
 
-         memory key;
+         //memory key;
 
-         key.from_string(str);
+         //key.from_string(str);
 
-         /*auto estatus = */ encrypt(storageEncrypt, storageDecrypt, key);
+         /*auto estatus = */ encrypt(storageEncrypt, blockDecrypt, key);
 
          //if (!estatus)
          //{
@@ -214,65 +214,65 @@ namespace crypto
       }
 
 
-      void crypto::encrypt(string& strEncrypt, const char* pszDecrypt, const char* pszKey)
-      {
-         
-         memory storageDecrypt;
+      //void crypto::encrypt(string& strEncrypt, const char* pszDecrypt, const char* pszKey)
+      //{
+      //   
+      //   memory storageDecrypt;
 
-         memory storageEncrypt;
+      //   memory storageEncrypt;
 
-         memory storageKey;
+      //   memory storageKey;
 
-         if (pszDecrypt == nullptr || strlen(pszDecrypt) == 0)
-         {
+      //   if (pszDecrypt == nullptr || strlen(pszDecrypt) == 0)
+      //   {
 
-            strEncrypt = "";
+      //      strEncrypt = "";
 
-            return;
+      //      return;
 
-         }
+      //   }
 
-         storageDecrypt.from_string(pszDecrypt);
+      //   storageDecrypt.from_string(pszDecrypt);
 
-         auto psystem = m_psystem;
+      //   auto psystem = m_psystem;
 
-         auto pbase64 = psystem->base64();
+      //   auto pbase64 = psystem->base64();
 
-         pbase64->decode(storageKey, pszKey);
+      //   pbase64->decode(storageKey, pszKey);
 
-         /* i32 cipherlen = */ encrypt(storageEncrypt, storageDecrypt, storageKey);
+      //   /* i32 cipherlen = */ encrypt(storageEncrypt, storageDecrypt, storageKey);
 
-         strEncrypt = pbase64->encode(storageEncrypt);
+      //   strEncrypt = pbase64->encode(storageEncrypt);
 
-         //return cipherlen;
+      //   //return cipherlen;
 
-      }
+      //}
 
 
-      void crypto::decrypt(string& strDecrypt, const char* pszEncrypt, const char* pszKey)
-      {
+      //void crypto::decrypt(string& strDecrypt, const char* pszEncrypt, const char* pszKey)
+      //{
 
-         memory storageEncrypt;
+      //   memory storageEncrypt;
 
-         memory storageDecrypt;
+      //   memory storageDecrypt;
 
-         memory storageKey;
+      //   memory storageKey;
 
-         auto psystem = m_psystem;
+      //   auto psystem = m_psystem;
 
-         auto pbase64 = psystem->base64();
+      //   auto pbase64 = psystem->base64();
 
-         pbase64->decode(storageEncrypt, pszEncrypt);
+      //   pbase64->decode(storageEncrypt, pszEncrypt);
 
-         pbase64->decode(storageKey, pszKey);
+      //   pbase64->decode(storageKey, pszKey);
 
-         /*i32 plainlen =*/ decrypt(storageDecrypt, storageEncrypt, storageKey);
+      //   /*i32 plainlen =*/ decrypt(storageDecrypt, storageEncrypt, storageKey);
 
-         strDecrypt = storageDecrypt.as_string();
+      //   strDecrypt = storageDecrypt.as_string();
 
-         //return plainlen;
+      //   //return plainlen;
 
-      }
+      //}
 
 
       //u32 crypto::crc32(u32 dwPrevious, const char* psz)
@@ -570,26 +570,26 @@ namespace crypto
       }
 
 
-      void crypto::encrypt(memory& storageEncrypt, const char* pszDecrypt, const char* pszSalt)
+      void crypto::encrypt(string & strEncrypt, const block & blockDecrypt, const block & blockSalt)
       {
 
-         memory memoryDecrypt;
+         memory memoryEncrypt;
 
-         memoryDecrypt.from_asc(pszDecrypt);
+         encrypt(memoryEncrypt, blockDecrypt, blockSalt);
 
-         encrypt(storageEncrypt, memoryDecrypt, pszSalt);
+         strEncrypt = memoryEncrypt.to_hex();
 
       }
 
 
-      void crypto::decrypt(string& strDecrypt, const memory& storageEncrypt, const char* pszSalt)
+      void crypto::decrypt(string& strDecrypt, const block& blockEncrypt, const block & blockSalt)
       {
 
          memory memoryDecrypt;
 
-         decrypt(memoryDecrypt, storageEncrypt, pszSalt);
+         decrypt(memoryDecrypt, blockEncrypt, blockSalt);
 
-         memoryDecrypt.to_asc(strDecrypt);
+         strDecrypt = memoryDecrypt.as_string();
 
       }
 
@@ -714,7 +714,7 @@ namespace crypto
       }
 
 
-      string crypto::defer_get_cryptkey()
+      ::memory crypto::defer_get_cryptkey()
       {
 
          string strPath = get_crypt_key_file_path();

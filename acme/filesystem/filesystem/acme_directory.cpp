@@ -377,9 +377,9 @@ string acme_directory::system_short_name()
 ::file::path acme_directory::program_files_x86()
 {
 
-   wstring wstrModuleFolder(get_buffer, sizeof(unichar) * 8);
+   wstring wstrModuleFolder(e_get_buffer, sizeof(unichar) * 8);
 
-   wstring wstrModuleFilePath(get_buffer, sizeof(unichar) * 8);
+   wstring wstrModuleFilePath(e_get_buffer, sizeof(unichar) * 8);
 
    wcscpy(wstrModuleFilePath, _wgetenv(L"PROGRAMFILES(X86)"));
 
@@ -402,9 +402,9 @@ string acme_directory::system_short_name()
 ::file::path acme_directory::program_files()
 {
 
-   wstring wstrModuleFolder(get_buffer, sizeof(unichar) * 8);
+   wstring wstrModuleFolder(e_get_buffer, sizeof(unichar) * 8);
 
-   wstring wstrModuleFilePath(get_buffer, sizeof(unichar) * 8);
+   wstring wstrModuleFilePath(e_get_buffer, sizeof(unichar) * 8);
 
    wcscpy(wstrModuleFilePath, _wgetenv(L"PROGRAMW6432"));
 

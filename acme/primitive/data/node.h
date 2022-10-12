@@ -20,7 +20,7 @@ namespace data
 
 
    class CLASS_DECL_ACME node :
-      virtual public ::matter
+      virtual public ::particle
    {
 
    public:

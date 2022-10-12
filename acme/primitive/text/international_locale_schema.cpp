@@ -117,7 +117,7 @@ namespace text
                iStart++;
             }
             iLen = iEnd - iStart;
-            ::atom atom = localeid(&idLocale2.m_psz[iStart], iLen);
+            ::atom atom = localeid(&idLocale2.m_str[iStart], iLen);
             if(defer_add_locale(atom, idSchema2))
             {
                _add_locale_variant(atom, idSchema2);

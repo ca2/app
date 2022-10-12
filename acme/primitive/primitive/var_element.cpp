@@ -34,7 +34,7 @@ payload.P = dynamic_cast < TYPE * >(pobject); \
 if(::is_set(payload.m_pstra)) return ENUM_TYPE;
 
 
-enum_type set_element(::payload & payload, ::element * pelement)
+enum_type set_element(::payload & payload, ::particle * pelement)
 {
 
    if (::is_null(pelement))
@@ -96,7 +96,7 @@ enum_type set_element(::payload & payload, ::element * pelement)
 //}
 
 
-void payload::_set_element(::element * pelement)
+void payload::_set_element(::particle * pelement)
 {
 
    ::increment_reference_count(pelement);
@@ -115,6 +115,14 @@ void payload::_set_element(::element * pelement)
    {
 
       m_str.::string::~string();
+
+      return 0;
+
+   }
+   else if (m_etype == e_type_id)
+   {
+
+      m_atom.::atom::~atom();
 
       return 0;
 

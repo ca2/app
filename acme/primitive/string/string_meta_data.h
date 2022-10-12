@@ -2,12 +2,7 @@
 
 
 
-enum e_get_buffer
-{
 
-   get_buffer,
-
-};
 
 
 template < typename STRING >
@@ -15,7 +10,7 @@ inline STRING & string_concatenate(STRING & strResult, const typename STRING::CH
 
 //template < typename CHAR_TYPE >
 //class string_buffer;
-
+#include "acme/primitive/primitive/natural.h"
 
 
 template < typename TYPE_CHAR >

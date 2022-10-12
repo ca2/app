@@ -7,7 +7,8 @@
 memory::memory(memory && memory) :
    memory_base(::move(memory))
 {
-
+   
+   __zero(memory.m_memory);
 
 }
 
@@ -28,7 +29,7 @@ memory::memory(const memory & s, manager * pmanager)
    __UNREFERENCED_PARAMETER(pmanager);
    m_memory.m_pprimitivememory      = this;
    m_bAligned              = false;
-   memory_base::operator   = (s);
+   operator = (s);
 
 }
 
@@ -39,7 +40,7 @@ memory::memory(const memory * ps, manager * pmanager)
    __UNREFERENCED_PARAMETER(pmanager);
    m_memory.m_pprimitivememory      = this;
    m_bAligned              = false;
-   memory_base::operator   = (*ps);
+   operator   = (*ps);
 
 }
 
@@ -120,7 +121,7 @@ memory::memory(const memory_base & s)
 
    m_memory.m_pprimitivememory      = this;
    m_bAligned              = false;
-   memory_base::operator   = (s);
+   operator   = (s);
 
 }
 
@@ -365,21 +366,6 @@ void memory::impl_free(byte * pdata)
 }
 
 
-memory & memory::operator = (const memory & memory)
-{
-
-   memory_base::operator =((memory_base &) memory);
-
-   return *this;
-
-}
-
-
-
-
-
-
-
 bool get_memory::get_base64(const ::string & str)
 {
 
@@ -402,4 +388,45 @@ bool get_memory::get_base64(const ::string & str)
 
 }
 
+
+strsize memory::sz_len() const
+{
+
+   return size() + 1;
+
+}
+
+
+void memory::to_sz(char * sz, strsize len) const
+{
+
+   if (len <= 0)
+   {
+
+      return;
+
+   }
+
+   if (::is_null(sz))
+   {
+
+      throw ::exception(error_null_pointer, "memory::to_sz sz is null");
+
+   }
+
+   if (::is_null(get_data()))
+   {
+
+      throw ::exception(error_null_pointer, "memory::to_sz get_data() is null");
+
+   }
+
+
+   len = minimum(len - 1, size() - 1);
+
+   strncpy(sz, (const char *) get_data(), len);
+
+   sz[len] = '\0';
+
+}
 

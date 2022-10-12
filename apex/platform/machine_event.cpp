@@ -24,7 +24,7 @@ machine_event::~machine_event()
 void machine_event::initialize(::object * pobject)
 {
 //   auto estatus = 
-   ::matter::initialize_matter(pobject);
+   ::matter::initialize(pobject);
 
    //if (!estatus)
    //{

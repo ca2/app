@@ -7,9 +7,10 @@
 #include "framework.h"
 #include "credentials.h"
 #include "interactive.h"
+#include "user.h"
+#include "apex/crypto/crypto.h"
 #include "axis/platform/application.h"
 #include "axis/platform/system.h"
-#include "user.h"
 
 
 namespace account

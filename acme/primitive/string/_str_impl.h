@@ -649,16 +649,16 @@ inline void from_string(::atom & atom, const ansichar * psz)
 //#endif
 
 
-inline ::string __string(const element & o)
+inline ::string __string(const particle & particle)
 {
 
    ::string str;
 
-   auto len = o.sz_len();
+   auto len = particle.sz_len();
 
    auto psz = str.get_string_buffer(len);
 
-   o.to_sz(psz, len);
+   particle.to_sz(psz, len);
 
    str.release_string_buffer();
 

@@ -32,7 +32,7 @@ synchronization_array::synchronization_array()
 
 
 synchronization_array::synchronization_array(const ::synchronization_array & array) :
-   matter(array),
+   //matter(array),
 #ifdef WINDOWS
    m_hsyncaCache(array.m_hsyncaCache),
 #endif

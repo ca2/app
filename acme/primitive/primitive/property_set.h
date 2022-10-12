@@ -163,72 +163,72 @@ public:
    ::string payload_string(const atom & atom, const ::string & strDefault = nullptr) const;
    ::file::path payload_file_path(const atom & atom, const ::file::path & pathDefault ={}) const;
 
-   template < typename TYPE >
-   inline void exchange(const ::atom & atom, TYPE & t)
-   {
+   //template < typename TYPE >
+   //inline void exchange(const ::atom & atom, TYPE & t)
+   //{
 
-      if (is_storing())
-      {
+   //   if (is_storing())
+   //   {
 
-         operator[](atom) = t;
+   //      operator[](atom) = t;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         t = operator[](atom);
+   //      t = operator[](atom);
 
-      }
+   //   }
 
-   }
+   //}
 
-   template < typename TYPE >
-   inline void exchange(const ::atom & atom, const TYPE & t)
-   {
+   //template < typename TYPE >
+   //inline void exchange(const ::atom & atom, const TYPE & t)
+   //{
 
-      if (is_storing())
-      {
+   //   if (is_storing())
+   //   {
 
-         operator[](atom) = t;
+   //      operator[](atom) = t;
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         throw ::exception(error_bad_argument);
+   //      throw ::exception(error_bad_argument);
 
-      }
+   //   }
 
-   }
+   //}
 
-   inline void exchange( const ::atom & atom, bool & b)
-   {
+   //inline void exchange( const ::atom & atom, bool & b)
+   //{
 
-      if (is_storing())
-      {
+   //   if (is_storing())
+   //   {
 
-         if (b)
-         {
+   //      if (b)
+   //      {
 
-            operator[](atom) = true;
+   //         operator[](atom) = true;
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            erase_by_name(atom);
+   //         erase_by_name(atom);
 
-         }
+   //      }
 
-      }
-      else
-      {
+   //   }
+   //   else
+   //   {
 
-         b = is_true(atom);
+   //      b = is_true(atom);
 
-      }
+   //   }
 
-   }
+   //}
 
    ::count unset(const atom & idName);
 

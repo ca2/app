@@ -175,3 +175,22 @@ enum enum_command
 
 
 
+
+enum enum_get_buffer
+{
+
+   e_get_buffer,
+
+};
+
+
+//class string;
+enum enum_for_moving
+{
+
+   e_for_moving,
+
+};
+
+
+

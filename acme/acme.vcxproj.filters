@@ -2861,6 +2861,9 @@
     <ClInclude Include="platform\subsystem.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\string\string_type.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

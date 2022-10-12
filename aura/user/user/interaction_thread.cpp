@@ -3,6 +3,7 @@
 ////#include "aura/user/user/_component.h"
 #endif
 ////#include "aura/message.h"
+#include "acme/operating_system.h"
 #include "interaction_thread.h"
 #include "interaction_prodevian.h"
 #include "aura/windowing/window.h"

@@ -157,7 +157,7 @@ namespace dynamic_source
       ::pointer<::dynamic_source::session>get_session(const ::string & pszId);
 
       ::pointer<script_instance>get(const ::string & strNafme);
-      ::pointer<script_instance>get(const ::string & strName, ::pointer<script> pscript);
+      ::pointer<script_instance>get(const ::string & strName, ::pointer<script> & pscript);
       virtual void handle(::dynamic_source::httpd_socket * psocket);
       ::payload get_output_internal(::dynamic_source::script_interface * pinstanceParent, const ::string & strName);
       void run(const ::string & lpcszName);

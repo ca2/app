@@ -17,13 +17,13 @@ template < class T >
 template < typename T2 >
 inline pointer < T > ::pointer(const ptr < T2 > & t) :
    m_p(t.m_p),
-   m_pelement(t.m_p)
+   m_pparticle(t.m_p)
 {
 
    if (::is_set(m_p))
    {
 
-      m_pelement->increment_reference_count();
+      m_pparticle->increment_reference_count();
 
    }
 
@@ -34,13 +34,13 @@ template < class T >
 template < typename T2 >
 inline pointer < T > ::pointer(ptr < T2 > && t) :
    m_p(t.m_p),
-   m_pelement(t.m_p)
+   m_pparticle(t.m_p)
 {
 
    if (::is_set(m_p))
    {
 
-      m_pelement->increment_reference_count();
+      m_pparticle->increment_reference_count();
 
    }
 
@@ -52,16 +52,16 @@ template < typename T2 >
 inline pointer < T > & pointer < T > ::operator = (const ptr < T2 >  & t)
 {
 
-   auto pold = m_pelement;
+   auto pold = m_pparticle;
 
-   m_p = t.m_p;
+   m_p = dynamic_cast < T * >(t.m_p);
 
-   m_pelement = t.m_p;
+   m_pparticle = t.m_p;
 
    if (::is_set(m_p))
    {
 
-      m_pelement->increment_reference_count();
+      m_pparticle->increment_reference_count();
 
    }
 
@@ -77,11 +77,11 @@ template < typename T2 >
 inline pointer < T > & pointer < T > ::operator = (ptr < T2 > && t)
 {
 
-   auto pOld         = m_pelement;
+   auto pOld         = m_pparticle;
 
    m_p           = t.m_p;
 
-   m_pelement        = t.m_p;
+   m_pparticle        = t.m_p;
 
    t.m_p         = nullptr;
 
@@ -1878,7 +1878,7 @@ inline bool type::operator == (const ::atom& atom) const
 //void method::pred(PRED pred)
 //{
 //
-//   m_pelement = method(pred);
+//   m_pparticle = method(pred);
 //
 //}
 //
@@ -1887,7 +1887,7 @@ inline bool type::operator == (const ::atom& atom) const
 //inline void future::pred(PRED pred)
 //{
 //
-//   m_pelement = __new(predicate_future < PRED > (pred));
+//   m_pparticle = __new(predicate_future < PRED > (pred));
 //
 //}
 //
@@ -2009,14 +2009,14 @@ inline ::payload __visible(::payload varOptions, bool bVisible)
 //inline void future::operator()(const ::payload & payload) const
 //{
 //
-//   if (!m_pelement)
+//   if (!m_pparticle)
 //   {
 //
 //      return;
 //
 //   }
 //
-//   return m_pelement->receive_response(payload);
+//   return m_pparticle->receive_response(payload);
 //
 //}
 //
@@ -2056,7 +2056,7 @@ inline bool property_set::get_string(string& strResult, const atom& idKey) const
 //inline void method::operator()() const
 //{ 
 //   
-//   return ::is_set(m_pelement) ? m_pelement->call() : (void) ::success_none;
+//   return ::is_set(m_pparticle) ? m_pparticle->call() : (void) ::success_none;
 //
 //}
 
@@ -3304,7 +3304,7 @@ inline atom::atom(const ::lparam & lparam)
 //template < typename OBJECT >
 //inline pointer < T > ::pointer(enum_create, OBJECT * p) :
 //   m_p(nullptr),
-//   m_pelement(nullptr)
+//   m_pparticle(nullptr)
 //{
 //
 //   operator=(p->__create < T >());
@@ -3375,6 +3375,13 @@ inline e_check::e_check(const ::tristate & triestate)
       m_echeck = e_check_tristate;
 
    }
+
+}
+
+
+inline memory::memory(const ::string & str):
+   memory(str.c_str(), str.length())
+{
 
 }
 

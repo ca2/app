@@ -150,22 +150,6 @@ namespace acme
 {
 
 
-   CLASS_DECL_ACME void increment_reference_count();
-   CLASS_DECL_ACME void decrement_reference_count();
-
-
-   class reference
-   {
-   public:
-
-
-      reference() { increment_reference_count(); }
-      ~reference() { decrement_reference_count(); }
-
-
-   };
-
-
    class node;
    class library;
 
@@ -566,145 +550,6 @@ class element;
 //class stream;
 //class payload_stream;
 
-
-
-template < typename T >
-concept a_pointer = std::is_pointer < T >::value;
-
-template < typename T >
-concept non_pointer = !std::is_pointer < T >::value;
-
-template < typename T >
-concept a_enum = std::is_enum < T >::value;
-
-template < typename T >
-concept primitive_integral = std::is_integral < T >::value || std::is_enum < T >::value || std::same_as < T, ::e_status >;
-
-template < typename T >
-concept primitive_integer = std::is_integral < T >::value;
-
-template < typename T >
-concept primitive_natural = std::is_integral < T >::value && !std::is_signed < T >::value;
-
-template < typename T >
-concept primitive_signed = (std::is_integral < T >::value || std::is_enum < T >::value) && std::is_signed < T >::value;
-
-template < typename T >
-concept primitive_unsigned = (std::is_integral < T >::value || std::is_enum < T >::value) && !std::is_signed < T >::value;
-
-
-template < typename T >
-concept primitive_floating = std::is_floating_point < T >::value;
-
-template < typename T >
-concept primitive_number = std::is_integral < T >::value || std::is_enum < T >::value || std::is_floating_point < T >::value;
-
-template < typename T >
-concept primitive_character = 
-   std::same_as < T, ::ansichar > || 
-   std::same_as < T, ::wd16char > ||
-   std::same_as < T, ::wd32char >;
-
-
-template < typename T >
-concept const_c_string =
-std::is_convertible < T, const ::ansichar * >::value ||
-std::is_convertible < T, const ::wd16char * >::value ||
-std::is_convertible < T, const ::wd32char * >::value;
-
-
-
-
-template < bool B, class TRUE_TYPE = void, class ELSE_TYPE = void >
-struct if_else {};
-
-template < class TRUE_TYPE, class ELSE_TYPE >
-struct if_else < true, TRUE_TYPE, ELSE_TYPE > { using type = TRUE_TYPE; };
-
-template < class TRUE_TYPE, class ELSE_TYPE >
-struct if_else < false, TRUE_TYPE, ELSE_TYPE > { using type = ELSE_TYPE; };
-
-template < typename T >
-struct base_const_c_string
-{
-
-   using type =
-      typename if_else <
-      std::is_convertible < T, const ansichar * >::value,
-      const ansichar *,
-      typename if_else <
-      std::is_convertible < T, const wd16char * >::value,
-      const wd16char *,
-      typename if_else <
-      std::is_convertible < T, const wd32char * >::value,
-      const wd32char *,
-      void *
-      >::type
-      >::type
-      >::type;
-
-};
-
-template < typename FROM, typename TO_POINTER >
-concept raw_pointer_castable =
-   ::std::is_convertible < FROM, TO_POINTER * >::value ||
-   ::std::is_convertible < FROM, const TO_POINTER * >::value;
-
-
-template < typename T >
-concept non_const_c_string =
-std::is_convertible < T, ::ansichar * >::value ||
-std::is_convertible < T, ::wd16char * >::value ||
-std::is_convertible < T, ::wd32char * >::value;
-
-template < typename T >
-concept c_string =
-const_c_string < T > ||
-non_const_c_string < T >;
-
-template < typename DERIVED, typename BASE >
-concept is_derived_from =
-::std::is_base_of < BASE, DERIVED >::value;
-
-template < bool, typename T1, typename T2 >
-struct boolean_type_selection { using type = T1; };
-
-template < typename T1, typename T2 >
-struct boolean_type_selection<false, T1, T2> { using type = T2; };
-
-
-template < typename T1, typename T2 >
-struct largest_type {
-   using type = typename ::boolean_type_selection< (sizeof(T1) > sizeof(T2)), T1, T2>::type;
-};
-
-
-template < typename T1, typename T2 >
-struct smaller_type {
-   using type = typename ::boolean_type_selection< (sizeof(T1) < sizeof(T2)), T1, T2>::type;
-};
-
-
-template < typename T1, typename T2, typename T3 >
-struct largest_type_of_3 {
-   using largest_type_of_1_and_2 = typename largest_type < T1, T2 >::type;
-   using type = typename ::boolean_type_selection < (sizeof(largest_type_of_1_and_2) > sizeof(T3)), largest_type_of_1_and_2, T3>::type;
-};
-
-
-template < typename TYPE, std::size_t SIZE >
-using array_reference = TYPE ( & ) [ SIZE ];
-
-
-
-
-
-template < typename TYPE, std::size_t SIZE >
-inline std::size_t item_count(array_reference < TYPE, SIZE > &) { return SIZE; }
-
-
-template < typename T >
-inline byte byte_clip(const T & t) { return ((byte)(((t) < (byte)0) ? (byte)0 : (((t) > (byte)255) ? (byte)255 : (byte)t))); }
 
 
 
@@ -1670,24 +1515,6 @@ inline bool returns_false(PRED pred, bool bOnVoid, Args... args)
 struct block;
 
 
-template<typename CHAR_TYPE>
-class string_base;
-
-
-struct pixmap;
-
-
-#define CONSIDER_AS(as, use) using use = as
-
-
-using ansistring = string_base<ansichar>;
-using wd16string = string_base<wd16char>;
-using wd32string = string_base<wd32char>;
-using widestring = string_base<widechar>;
-
-
-using string = string_base < ansichar >;
-using wstring = string_base < widechar >;
 
 
 
@@ -1989,98 +1816,6 @@ inline INTEGRAL_RESULT __random(INTEGRAL1 i1, INTEGRAL2 i2);
 //inline i32 __random(i32 i1, i32 i2);
 
 
-namespace sort
-{
-
-
-   template<typename TYPE>
-   inline void swap(TYPE & a, TYPE & b)
-   {
-      auto t = a;
-      a = b;
-      b = t;
-
-   }
-
-
-} // namespace sort
-
-
-inline bool is_null(const void * p, size_t s)
-{
-
-   return ((size_t) p <= s);
-
-}
-
-
-template < a_pointer POINTER >
-inline bool is_null(POINTER p)
-{
-
-   return ((size_t) p <= 65536);
-
-}
-
-
-template < typename CHAR_STRING >
-inline bool is_string_empty(CHAR_STRING p) { return ::is_null(p) || *p == '\0'; }
-
-inline bool is_empty(const ansichar * p) { return is_string_empty(p); }
-inline bool is_empty(const wd16char * p) { return is_string_empty(p); }
-inline bool is_empty(const wd32char * p) { return is_string_empty(p); }
-
-
-inline bool has_char(const ansichar * p) { return !is_empty(p); }
-inline bool has_char(const wd16char * p) { return !is_empty(p); }
-inline bool has_char(const wd32char * p) { return !is_empty(p); }
-
-
-template < a_pointer POINTER >
-inline bool is_set(POINTER p)
-{
-
-   return !is_null(p);
-
-}
-
-
-
-template<typename TYPE>
-inline bool is_ref_set(const TYPE &t)
-{
-
-   return is_set(&t);
-
-}
-
-
-template<typename TYPE>
-inline bool is_ok(const TYPE *p)
-{
-
-   return ::is_set(p) && p->is_ok();
-
-}
-
-
-template<typename TYPE>
-inline bool is_ok(const ::pointer<TYPE>&p)
-{
-
-   return ::is_ok(p.m_p);
-
-}
-
-
-template<typename TYPE>
-inline bool nok(TYPE & t)
-{
-
-   return !::is_ok(t);
-
-}
-
 
 class istring;
 
@@ -2263,7 +1998,7 @@ class channel;
 class dump_context;
 
 
-class atom_space;
+//class atom_space;
 
 
 class ptra;
@@ -2323,11 +2058,6 @@ namespace datetime
 } // namespace datetime
 
 
-template<typename Type, typename RawType = Type, enum_type t_etypePayload = e_type_element >
-class string_array_base;
-
-
-typedef string_array_base < string, string, e_type_string_array > string_array;
 
 
 namespace file
@@ -3841,7 +3571,7 @@ inline bool is_filemanager(const ::atom & atom)
    if(atom.is_text())
    {
 
-      return ::str().begins(atom.m_psz, "file_manager_");
+      return ::str().begins(atom.m_str, "file_manager_");
 
    }
 
@@ -3873,7 +3603,7 @@ inline bool is_filemanager_group(const ::atom & atom, const char * pszGroup)
 
    strFileManagerGroup += "_";
 
-   if(::str().begins(atom.m_psz, strFileManagerGroup))
+   if(::str().begins(atom.m_str, strFileManagerGroup))
    {
 
 
@@ -3928,7 +3658,7 @@ namespace acme
 
    inline ::atom atom(i64 i);
 
-   inline atom_space &atom();
+   //inline atom_space &atom();
 
 
 } //namespace acme

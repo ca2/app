@@ -4,7 +4,7 @@
 #define TEMPLATE_TYPE typename __TEMPLATE_TYPE__ = nullptr_t
 #define TEMPLATE_ARG __TEMPLATE_TYPE__ t = nullptr
 
-
+class particle;
 
 // ::ca::null_class back link to operational system oswindow.h
 //
@@ -24,8 +24,8 @@ public:
    using RAW_POINTER = TYPE *;
 
    T *            m_p;
-   ::element *    m_pelement;
-   ::e_status    m_estatus;
+   ::particle *   m_pparticle;
+   ::e_status     m_estatus;
 
 
    inline pointer();
@@ -50,7 +50,7 @@ public:
    template < typename OBJECT >
    inline pointer(enum_create_new, OBJECT * pobject) :
       m_p(memory_new T),
-      m_pelement(m_p)
+      m_pparticle(m_p)
    {
 
       m_p->initialize(pobject);
@@ -61,7 +61,7 @@ public:
    template < typename OBJECT >
    inline pointer(enum_create, OBJECT * pobject) :
       m_p(nullptr),
-      m_pelement(nullptr)
+      m_pparticle(nullptr)
    {
 
       create(pobject);
@@ -81,7 +81,7 @@ public:
 
          m_p = nullptr;
 
-         m_pelement = nullptr;
+         m_pparticle = nullptr;
 
          return;
 
@@ -94,13 +94,13 @@ public:
 
          ::increment_reference_count(m_p);
 
-         m_pelement = m_p;
+         m_pparticle = m_p;
 
       }
       else
       {
 
-         m_pelement = nullptr;
+         m_pparticle = nullptr;
 
       }
 
@@ -141,7 +141,7 @@ public:
 
    //   m_p = dynamic_cast <T*>(t2.m_p);
 
-   //   m_pelement = m_p;
+   //   m_pparticle = m_p;
 
    //   if (::is_set(m_p))
    //   {
@@ -162,14 +162,14 @@ public:
 
          __dynamic_cast(m_p, t.m_p);
 
-         m_pelement = t.m_pelement;
+         m_pparticle = t.m_pparticle;
 
          if (::is_set(m_p))
          {
 
             t.m_p = nullptr;
 
-            t.m_pelement = nullptr;
+            t.m_pparticle = nullptr;
 
          }
 
@@ -179,7 +179,7 @@ public:
 
          m_p = nullptr;
 
-         m_pelement = nullptr;
+         m_pparticle = nullptr;
 
       }
 
@@ -283,14 +283,14 @@ public:
 
          m_p = dynamic_cast <T *>(t.m_p);
 
-         m_pelement = t.m_pelement;
+         m_pparticle = t.m_pparticle;
 
          if (::is_set(m_p))
          {
 
             t.m_p = nullptr;
 
-            t.m_pelement = nullptr;
+            t.m_pparticle = nullptr;
 
          }
 
@@ -300,7 +300,7 @@ public:
 
          m_p = nullptr;
 
-         m_pelement = nullptr;
+         m_pparticle = nullptr;
 
       }
 
@@ -389,7 +389,7 @@ public:
 
       m_p = memory_new TYPE(*pobject);
 
-      m_pelement = m_p;
+      m_pparticle = m_p;
 
       pcontainer->erase(pOld);
 

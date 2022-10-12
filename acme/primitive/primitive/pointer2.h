@@ -6,8 +6,8 @@ template < class T >
 inline pointer < T >::pointer(lparam& lparam)
 {
 
-   m_pelement = (::element*)(::iptr)lparam.m_lparam;
-   m_p = dynamic_cast <T*>(m_pelement);
+   m_pparticle = (::element*)(::iptr)lparam.m_lparam;
+   m_p = dynamic_cast <T*>(m_pparticle);
    lparam.m_lparam = 0;
 
 }
@@ -24,7 +24,7 @@ inline pointer < T >::pointer(lparam& lparam)
 template < class T >
 inline pointer < T > ::pointer() :
    m_p(nullptr),
-   m_pelement(nullptr)
+   m_pparticle(nullptr)
 {
 
 }
@@ -33,7 +33,7 @@ inline pointer < T > ::pointer() :
 template < class T >
 inline pointer < T > ::pointer(std::nullptr_t):
    m_p(nullptr),
-   m_pelement(nullptr)
+   m_pparticle(nullptr)
 {
 
 }
@@ -48,7 +48,7 @@ inline pointer < T > ::pointer(enum_move_transfer, T2 * p)
 
       m_p = dynamic_cast < T * > (p);
 
-      m_pelement = m_p;
+      m_pparticle = m_p;
 
       if(::is_null(m_p))
       {
@@ -57,7 +57,7 @@ inline pointer < T > ::pointer(enum_move_transfer, T2 * p)
 
          m_p = nullptr;
 
-         m_pelement = nullptr;
+         m_pparticle = nullptr;
 
          throw ::resource_exception("OBJECT * p is not of type T (pointer < T >).");
 
@@ -69,7 +69,7 @@ inline pointer < T > ::pointer(enum_move_transfer, T2 * p)
 
       m_p = nullptr;
 
-      m_pelement = nullptr;
+      m_pparticle = nullptr;
 
    }
 
@@ -79,13 +79,13 @@ inline pointer < T > ::pointer(enum_move_transfer, T2 * p)
 template < class T >
 inline pointer < T > ::pointer(const pointer & t) :
    m_p(t.m_p),
-   m_pelement(t.m_pelement)
+   m_pparticle(t.m_pparticle)
 {
 
    if (::is_set(m_p))
    {
 
-      m_pelement->increment_reference_count();
+      m_pparticle->increment_reference_count();
 
    }
 
@@ -95,12 +95,12 @@ inline pointer < T > ::pointer(const pointer & t) :
 template < class T >
 inline pointer < T > ::pointer(pointer && t) :
 m_p(t.m_p),
-m_pelement(t.m_pelement)
+m_pparticle(t.m_pparticle)
 {
 
    t.m_p = nullptr;
 
-   t.m_pelement = nullptr;
+   t.m_pparticle = nullptr;
 
 }
 
@@ -110,7 +110,7 @@ m_pelement(t.m_pelement)
 //template < typename T2 >
 //inline pointer < T > ::pointer(const T2 * p) :
 //   m_p((T *) p),
-//   m_pelement(m_p)
+//   m_pparticle(m_p)
 //{
 //
 //   ::increment_reference_count(m_p);
@@ -262,7 +262,7 @@ inline pointer < T > & pointer < T > ::reset (T2 * pNew OBJECT_REFERENCE_COUNT_D
    if (::is_null(pNew))
    {
 
-      m_pelement = nullptr;
+      m_pparticle = nullptr;
 
       ::release(m_p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
@@ -286,7 +286,7 @@ inline pointer < T > & pointer < T > ::reset (T2 * pNew OBJECT_REFERENCE_COUNT_D
 
             m_p = p;
 
-            m_pelement = p;
+            m_pparticle = p;
 
          }
          else
@@ -294,7 +294,7 @@ inline pointer < T > & pointer < T > ::reset (T2 * pNew OBJECT_REFERENCE_COUNT_D
 
             m_p = nullptr;
 
-            m_pelement = nullptr;
+            m_pparticle = nullptr;
 
          }
 
@@ -320,16 +320,16 @@ inline pointer < T > & pointer < T > ::operator = (const pointer  & t)
    if (this != &t)
    {
 
-      auto pold = m_pelement;
+      auto pold = m_pparticle;
 
       m_p = t.m_p;
 
-      m_pelement = t.m_pelement;
+      m_pparticle = t.m_pparticle;
 
       if (::is_set(m_p))
       {
 
-         m_pelement->increment_reference_count();
+         m_pparticle->increment_reference_count();
 
       }
 
@@ -348,15 +348,15 @@ inline pointer < T > & pointer < T > ::operator = (pointer && t)
    if(&t != this)
    {
 
-      auto pOld         = m_pelement;
+      auto pOld         = m_pparticle;
 
       m_p           = t.m_p;
 
-      m_pelement        = t.m_pelement;
+      m_pparticle        = t.m_pparticle;
 
       t.m_p         = nullptr;
 
-      t.m_pelement      = nullptr;
+      t.m_pparticle      = nullptr;
 
       ::release(pOld REF_DBG_COMMA_POINTER);
 
@@ -375,7 +375,7 @@ inline T * pointer < T > ::detach()
 
    m_p = nullptr;
 
-   m_pelement = nullptr;
+   m_pparticle = nullptr;
 
    return p;
 
@@ -390,7 +390,7 @@ inline i64 pointer <T>::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
    
    m_p = nullptr;
 
-   return ::release(m_pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+   return ::release(m_pparticle OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
 
 }
 

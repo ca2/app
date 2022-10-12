@@ -23,22 +23,23 @@ namespace acme
    {
 
       m_pfnFactory = nullptr;
-
-   }
-
-
-   void library::initialize_matter(::matter * pmatter)
-   {
-
-      ::matter::initialize_matter(pmatter);
-
       m_plibrary = nullptr;
 
-      //m_bAutoUnload = false;
-
-      //return estatus;
-
    }
+
+
+   //void library::initialize_matter(::matter * pmatter)
+   //{
+
+   //   ::matter::initialize_matter(pmatter);
+
+   //   m_plibrary = nullptr;
+
+   //   //m_bAutoUnload = false;
+
+   //   //return estatus;
+
+   //}
 
 
    //void library::initialize_library(::matter * pmatter,int iDesambig,const char * pszRoot, const char * pszName, const char * pszFolder)
@@ -118,17 +119,17 @@ namespace acme
    }
 
 
-   void library::assert_ok() const
-   {
+   //void library::assert_ok() const
+   //{
 
-   }
-   
+   //}
+   //
 
-   void library::dump(dump_context & dumpcontext) const
-   {
+   //void library::dump(dump_context & dumpcontext) const
+   //{
 
 
-   }
+   //}
 
 
    //void library::open(const char * pszPath,bool bAutoClose,bool bCa2Path)
@@ -218,7 +219,7 @@ namespace acme
       if (m_strName.has_char())
       {
 
-         m_psystem->m_psubsystem->m_mapLibrary4[m_strName] = this;
+         ::subsystem::get()->m_mapLibrary4[m_strName] = this;
 
       }
 
@@ -491,7 +492,7 @@ namespace acme
                   if(is_verbose_log())
                   {
 
-                     if (m_psystem->m_etracelevel <= e_trace_level_information)
+                     if (::get_system()->m_etracelevel <= e_trace_level_information)
                      {
 
                         output_debug_string("Closing library : " + m_strName + "\n");

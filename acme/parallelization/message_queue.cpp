@@ -188,7 +188,7 @@ void message_queue::get_message(MESSAGE * pmessage, oswindow oswindow, ::u32 wMs
 }
 
 
-bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFilterMin,::u32 wMsgFilterMax,::u32 wRemoveMsg)
+bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFilterMin,::u32 wMsgFilterMax, bool bRemoveMessage)
 {
 
    if(wMsgFilterMax == 0)
@@ -212,7 +212,7 @@ bool message_queue::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFil
 
          *pMsg = msg;
 
-         if(wRemoveMsg & PM_REMOVE)
+         if(bRemoveMessage)
          {
 
             m_messagea.erase_at(i);

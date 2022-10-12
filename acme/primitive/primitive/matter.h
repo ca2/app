@@ -27,7 +27,9 @@ public:
 
    };
 
-   
+
+
+   class ::atom                        m_atom;
    ::eobject                           m_eobject;
    ::acme::system *                    m_psystem;
    ::e_status                          m_estatus;
@@ -78,10 +80,10 @@ public:
 #endif
 
 
-   void initialize_matter(::matter* pmatter) override;
+   void initialize(::object * pobject) override;
 
 
-   void on_initialize_object() override;
+   //void on_initialize_object() override;
 
 
    virtual ::acme::application * get_context_application();

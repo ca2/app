@@ -8,24 +8,6 @@ namespace std { enum class align_val_t : std::size_t {}; }
 #endif
 
 
-#ifndef __cplusplus_winrt
-
-
-inline block::block(const memory_base & memory) :
-   block(memory.get_data(), memory.get_size())
-{
-
-}
-
-
-inline block::block(const memory_base * pmemory) :
-   block(pmemory->get_data(), pmemory->get_size())
-{
-
-}
-
-
-#endif // __cplusplus_winrt
 
 
 //inline fork_block::fork_block(const memory_base & memory) :
@@ -59,14 +41,14 @@ inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block &
 #endif // __cplusplus_winrt
 
 
-struct lparam_debug :
-   virtual matter
-{
-
-};
-
-CLASS_DECL_ACME lparam_debug & lparam_debug();
-
+//struct lparam_debug :
+//   virtual matter
+//{
+//
+//};
+//
+//CLASS_DECL_ACME lparam_debug & lparam_debug();
+//
 
 template<class TYPE>
 inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::count nCount)
@@ -757,7 +739,7 @@ template < typename SEQUENCE >
 void sequencer < SEQUENCE > ::fork()
 {
 
-   m_psystem->fork(__routine([this]()
+   ::get_system()->fork(__routine([this]()
    {
 
       on_sequence();
@@ -1029,6 +1011,8 @@ inline tracer trace_log_information() { return ::get_task()->trace_log_informati
 inline tracer trace_log_warning() { return ::get_task()->trace_log_warning(); }
 inline tracer trace_log_error() { return ::get_task()->trace_log_error(); }
 inline tracer trace_log_fatal() { return ::get_task()->trace_log_fatal(); }
+
+
 
 
 

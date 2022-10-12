@@ -3,6 +3,7 @@
 #include "networking_bsd/address.h"
 #include "networking_bsd/networking.h"
 #include "socket_handler.h"
+#include "apex/crypto/crypto.h"
 #include "networking_bsd/sockets/ssl/context.h"
 #include "networking_bsd/sockets/ssl/client_context.h"
 #include "networking_bsd/sockets/ssl/client_context_map.h"

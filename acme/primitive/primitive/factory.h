@@ -19,9 +19,9 @@ namespace factory
 
       virtual string __type_name() const = 0;
 
-      virtual ::pointer<::element>create_element() = 0;
+      virtual ::pointer<::particle>create_element() = 0;
 
-      virtual void return_back(::element * pelement) = 0;
+      virtual void return_back(::particle * pelement) = 0;
 
 
    };
@@ -38,14 +38,14 @@ namespace factory
 
       virtual ::pointer<BASE_TYPE>_create() = 0;
 
-      virtual ::pointer<::element>create_element() override
+      virtual ::pointer<::particle>create_element() override
       {
 
          return _create();
 
       }
 
-      virtual void return_back(::element * pelement) override
+      virtual void return_back(::particle * pelement) override
       {
 
          delete pelement;
@@ -231,7 +231,7 @@ namespace factory
       //inline void __raw_construct(::object* pobjectComposer, ::pointer<BASE_TYPE> pusermessage);
 
 
-      virtual ::pointer<::element>create(const ::string & strType);
+      virtual ::pointer<::particle>create(const ::string & strType);
 
 
       virtual bool has_type(const ::string & strType) const;

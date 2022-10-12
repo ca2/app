@@ -140,7 +140,7 @@ struct ITEM_DATA :
 
 
 class CLASS_DECL_ACME item_base :
-   virtual public ::particle,
+   virtual public ::matter,
    virtual public ITEM_BASE_ADDITIONS
 {
 public:
@@ -178,11 +178,11 @@ public:
    inline ::index list_item_index() const { return (::index) m_iListItem; }
 
    
-   item_base & operator = (const ::particle & particle) { m_atom = particle.m_atom; return *this; }
+   item_base & operator = (const ::matter & particle) { m_atom = particle.m_atom; return *this; }
 
 
-   bool operator == (const ::particle & particle) const { return m_atom == particle.m_atom; }
-   bool operator != (const ::particle & particle) const { return !operator == (particle); }
+   bool operator == (const ::matter & particle) const { return m_atom == particle.m_atom; }
+   bool operator != (const ::matter & particle) const { return !operator == (particle); }
 
    
    item_base & operator = (const item_base & itembase) { m_atom = itembase.m_atom; ((ITEM_BASE_ADDITIONS &)*this) = ((ITEM_BASE_ADDITIONS &)itembase); return *this; }
@@ -192,18 +192,18 @@ public:
    bool operator != (const ::item_base & itembase) const { return !operator == (itembase); }
    
 
-   item_base & operator = (const ::PARTICLE & particle) { m_atom = particle.m_atom; return *this; }
+   //item_base & operator = (const ::PARTICLE & particle) { m_atom = particle.m_atom; return *this; }
 
 
-   bool operator == (const ::PARTICLE & particle) const { return m_atom == particle.m_atom; }
-   bool operator != (const ::PARTICLE & particle) const { return !operator == (particle); }
+   //bool operator == (const ::PARTICLE & particle) const { return m_atom == particle.m_atom; }
+   //bool operator != (const ::PARTICLE & particle) const { return !operator == (particle); }
 
    
-   item_base & operator = (const ITEM_BASE & itembase) { m_atom = itembase.m_atom; ((ITEM_BASE_ADDITIONS &)*this) = ((ITEM_BASE_ADDITIONS &)itembase); return *this; }
+   //item_base & operator = (const ITEM_BASE & itembase) { m_atom = itembase.m_atom; ((ITEM_BASE_ADDITIONS &)*this) = ((ITEM_BASE_ADDITIONS &)itembase); return *this; }
 
 
-   bool operator == (const ::ITEM_BASE & itembase) const { return m_atom == itembase.m_atom && ITEM_BASE_ADDITIONS::operator == (itembase); }
-   bool operator != (const ::ITEM_BASE & itembase) const { return !operator == (itembase); }
+   //bool operator == (const ::ITEM_BASE & itembase) const { return m_atom == itembase.m_atom && ITEM_BASE_ADDITIONS::operator == (itembase); }
+   //bool operator != (const ::ITEM_BASE & itembase) const { return !operator == (itembase); }
 
 
 };
@@ -244,7 +244,7 @@ public:
    }
    
    
-   item_data & operator = (const ::particle & particle) { m_atom = particle.m_atom; return *this; }
+   item_data & operator = (const ::matter & particle) { m_atom = particle.m_atom; return *this; }
 
    
    item_data & operator = (const item_base & itembase) { item_base::operator=(itembase); return *this; }
@@ -262,30 +262,31 @@ public:
    }
 
 
-   item_data & operator = (const ::PARTICLE & particle) { m_atom = particle.m_atom; return *this; }
+   //item_data & operator = (const ::matter & particle) { m_atom = particle.m_atom; return *this; }
    
    
-   item_data & operator = (const ITEM_BASE & itembase) { item_base::operator=(itembase); return *this; }
+   //item_data & operator = (const item_base & itembase) { item_base::operator=(itembase); return *this; }
    
 
-   item_data & operator = (const ITEM_DATA & itemdata)
-   {
+   //item_data & operator = (const ITEM_DATA & itemdata)
+   //{
 
-      item_base::operator=(itemdata);
+   //   item_base::operator=(itemdata);
 
-      ITEM_DATA_ADDITIONS::operator=(itemdata);
+   //   ITEM_DATA_ADDITIONS::operator=(itemdata);
 
-      return *this;
+   //   return *this;
 
-   }
+   //}
 
 
 };
 
 
 class CLASS_DECL_ACME item :
-   virtual public item_data,
-   virtual public ::matter
+   virtual public item_data
+//   ,
+  // virtual public ::matter
 {
 public:
    

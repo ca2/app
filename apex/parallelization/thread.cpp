@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-#include "apex/operating_system.h"
+//#include "apex/operating_system.h"
 #include "apex/message.h"
 #include "acme/update.h"
 #include "acme/parallelization/message_queue.h"
@@ -8,6 +8,9 @@
 #include "acme/parallelization/tools.h"
 #include "acme/parallelization/pool.h"
 
+#ifdef WINDOWS_DESKTOP
+#include "apex/operating_system.h"
+#endif
 
 //HANDLE duplicate_handle(HANDLE h);
 CLASS_DECL_ACME void TRACELASTERROR();
@@ -529,7 +532,7 @@ bool thread::has_message() const
 
    MESSAGE msg;
 
-   return ((thread*)this)->peek_message(&msg, nullptr, 0, 0, PM_NOREMOVE) != false;
+   return ((thread*)this)->peek_message(&msg, nullptr, 0, 0) != false;
 
 }
 
@@ -1116,7 +1119,7 @@ bool thread::process_thread_message(::message::message * pmessage)
 bool thread::defer_pump_message()
 {
 
-   if (peek_message(&m_message, nullptr, 0, 0, PM_REMOVE))
+   if(peek_message(&m_message, nullptr, 0, 0, true))
    {
 
       if(m_message.m_atom == e_message_quit)
@@ -3341,13 +3344,13 @@ message_queue* thread::_get_message_queue()
 }
 
 
-bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
+bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, bool bRemoveMessage)
 {
 
    if (m_pmessagequeue)
    {
 
-      if (m_pmessagequeue->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
+      if (m_pmessagequeue->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, bRemoveMessage))
       {
 
          return true;
@@ -3363,7 +3366,7 @@ bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin
       
       MSG msg;
 
-      if (::PeekMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
+      if (::PeekMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax, bRemoveMessage ? PM_REMOVE : PM_NOREMOVE))
       {
 
          return true;

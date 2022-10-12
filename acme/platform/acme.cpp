@@ -88,11 +88,11 @@ namespace mathematics
 
 ::array < ::procedure > * g_proutineaOsTerm;
 
-extern natural_meta_data < string_meta_data < ansichar > > * g_pansistringNil;
-
-extern natural_meta_data < string_meta_data < wd16char > > * g_pwd16stringNil;
-
-extern natural_meta_data < string_meta_data < wd32char > > * g_pwd32stringNil;
+//extern natural_meta_data < string_meta_data < ansichar > > * g_pansistringNil;
+//
+//extern natural_meta_data < string_meta_data < wd16char > > * g_pwd16stringNil;
+//
+//extern natural_meta_data < string_meta_data < wd32char > > * g_pwd32stringNil;
 
 
 static void delete_all_release_on_end();
@@ -164,7 +164,7 @@ namespace acme
 {
 
 
-   static pointer_array < ::matter > g_elementaddraReleaseOnEnd;
+   static pointer_array < ::matter > * g_pelementaddraReleaseOnEnd;
 
 
 #if OBJECT_TYPE_COUNTER
@@ -509,17 +509,17 @@ namespace acme
 
       initialize_memory_management();
 
-      static natural_meta_data < string_meta_data < ansichar > > s_ansistringNil;
+      //static natural_meta_data < string_meta_data < ansichar > > s_ansistringNil;
 
-      static natural_meta_data < string_meta_data < wd16char > > s_wd16stringNil;
+      //static natural_meta_data < string_meta_data < wd16char > > s_wd16stringNil;
 
-      static natural_meta_data < string_meta_data < wd32char > > s_wd32stringNil;
+      //static natural_meta_data < string_meta_data < wd32char > > s_wd32stringNil;
 
-      ::g_pansistringNil = &s_ansistringNil;
+      //::g_pansistringNil = &s_ansistringNil;
 
-      ::g_pwd16stringNil = &s_wd16stringNil;
+      //::g_pwd16stringNil = &s_wd16stringNil;
 
-      ::g_pwd32stringNil = &s_wd32stringNil;
+      //::g_pwd32stringNil = &s_wd32stringNil;
 
       m_bRef = false;
 
@@ -576,7 +576,9 @@ namespace acme
 
 #endif
 
-      
+      __defer_new(::acme::g_pelementaddraReleaseOnEnd);
+
+      __raw_construct_new(m_pmapFactory);
 
       //xxdebug_box("acme.dll base_static_start (0)", "box", e_message_box_ok);
 
@@ -604,7 +606,7 @@ namespace acme
 
       ::mathematics::initialize_mathematics();
 
-      ::atom_space::s_pidspace = memory_new atom_space();
+      //::atom_space::s_pidspace = memory_new atom_space();
 
 //      ::acme::idpool::init();
 
@@ -983,7 +985,7 @@ namespace acme
 
       finalize_global_message_queue();
 
-      ::acme::del(::atom_space::s_pidspace);
+      //::acme::del(::atom_space::s_pidspace);
 
       ::mathematics::finalize_mathematics();
 
@@ -1250,7 +1252,9 @@ namespace acme
 
       m_pfactory->erase_all();
 
-      m_mapFactory.erase_all();
+      m_pmapFactory->erase_all();
+
+      m_pmapFactory.release();
 
    }
 
@@ -1514,9 +1518,7 @@ CLASS_DECL_ACME void release_on_end(::matter* pmatter)
 
    critical_section_lock l(::acme::g_pcsGlobal);
 
-   //__defer_new(::acme::g_pelementaddraReleaseOnEnd);
-
-   ::acme::g_elementaddraReleaseOnEnd.add(pmatter);
+   ::acme::g_pelementaddraReleaseOnEnd->add(pmatter);
 
 }
 
@@ -1526,7 +1528,9 @@ void delete_all_release_on_end()
 
    critical_section_lock l(::acme::g_pcsGlobal);
 
-   ::acme::g_elementaddraReleaseOnEnd.erase_all();
+   ::acme::g_pelementaddraReleaseOnEnd->erase_all();
+
+   ::acme::del(::acme::g_pelementaddraReleaseOnEnd);
 
    //if (is_set(::acme::g_pelementaddraReleaseOnEnd))
 //   {
@@ -1557,7 +1561,7 @@ void add_release_on_end(::matter * pmatter)
 //
 //   }
 
-   ::acme::g_elementaddraReleaseOnEnd.add(pmatter);
+   ::acme::g_pelementaddraReleaseOnEnd->add(pmatter);
 
 }
 
@@ -1612,8 +1616,19 @@ namespace acme
    }
 
 
-   reference g_reference;
+   class reference
+   {
+   public:
 
+
+      reference() { increment_reference_count(); }
+      ~reference() { decrement_reference_count(); }
+
+
+   };
+
+
+   reference g_reference;
 
    void initialize()
    {

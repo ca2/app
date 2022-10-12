@@ -44,12 +44,12 @@ namespace crypto_openssl
    **/
    //http://stackoverflow.com/questions/10366950/openssl-using-evp-vs-algorithm-api-for-symmetric-crypto
 
-   void crypto::encrypt(memory& storageEncrypt, const memory& storageDecrypt, const memory& memKeyData)
+   void crypto::encrypt(memory& storageEncrypt, const block & blockDecrypt, const block & blockKey)
    {
 
       memory memSha1(this);
 
-      nessie(memSha1, memKeyData);
+      nessie(memSha1, blockKey);
 
       memory iv;
 
@@ -60,7 +60,7 @@ namespace crypto_openssl
       #ifdef HAVE_OPENSSL
 
 
-      i32 plainlen = (i32)storageDecrypt.get_size();
+      i32 plainlen = (i32)blockDecrypt.get_size();
 
       i32 cipherlen, tmplen;
 
@@ -68,13 +68,13 @@ namespace crypto_openssl
 
       EVP_EncryptInit(pctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
 
-      cipherlen = (i32)(storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(pctx));
+      cipherlen = (i32)(blockDecrypt.get_size() + EVP_CIPHER_CTX_block_size(pctx));
 
       storageEncrypt.set_size(cipherlen);
 
       storageEncrypt.set(0);
 
-      if (!EVP_EncryptUpdate(pctx, storageEncrypt.get_data(), &cipherlen, storageDecrypt.get_data(), plainlen))
+      if (!EVP_EncryptUpdate(pctx, storageEncrypt.get_data(), &cipherlen, (const unsigned char *) blockDecrypt.get_data(), plainlen))
       {
 
          storageEncrypt.set(0);
@@ -304,12 +304,12 @@ namespace crypto_openssl
    }
 
 
-   void crypto::decrypt(memory& storageDecrypt, const memory& storageEncrypt, const memory& memKeyData)
+   void crypto::decrypt(memory& storageDecrypt, const block & blockEncrypt, const block & blockKey)
    {
 
       memory memSha1;
 
-      nessie(memSha1, memKeyData);
+      nessie(memSha1, blockKey);
 
       memory iv;
 
@@ -484,7 +484,7 @@ namespace crypto_openssl
 
 #else
 
-      i32 cipherlen = (i32)storageEncrypt.get_size();
+      i32 cipherlen = (i32)blockEncrypt.get_size();
 
       i32 plainlen, tmplen;
 
@@ -504,11 +504,11 @@ namespace crypto_openssl
 
       EVP_DecryptInit(pctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
 
-      plainlen = (i32)storageEncrypt.get_size() + EVP_CIPHER_CTX_block_size(pctx);
+      plainlen = (i32)blockEncrypt.get_size() + EVP_CIPHER_CTX_block_size(pctx);
 
       storageDecrypt.set_size(plainlen);
 
-      if (!EVP_DecryptUpdate(pctx, storageDecrypt.get_data(), &plainlen, storageEncrypt.get_data(), cipherlen))
+      if (!EVP_DecryptUpdate(pctx, storageDecrypt.get_data(), &plainlen, (const unsigned char *) blockEncrypt.get_data(), cipherlen))
       {
 
          storageDecrypt.set(0);

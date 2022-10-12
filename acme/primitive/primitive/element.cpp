@@ -9,73 +9,6 @@ element::~element()
 }
 
 
-void element::delete_this()
-{
-   
-   delete this; 
-
-}
-
-
-#ifdef _DEBUG
-
-
-i64 element::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
-{
-
-   auto c = ++m_countReference;
-
-#if OBJECT_REFERENCE_COUNT_DEBUG
-
-   add_ref_history(pReferer, pszObjRefDbg);
-
-#endif
-
-   return c;
-
-}
-
-
-i64 element::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
-{
-
-   auto c = --m_countReference;
-
-#if OBJECT_REFERENCE_COUNT_DEBUG
-
-   if (c > 0)
-   {
-
-      dec_ref_history(pReferer, pszObjRefDbg);
-
-   }
-
-#endif
-
-   return c;
-
-}
-
-
-i64 element::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
-{
-
-   i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
-
-   if (i == 0)
-   {
-
-      delete_this();
-
-   }
-
-   return i;
-
-}
-
-
-#endif
-
 
 void element::call_member(::i64 iId)
 {
@@ -124,43 +57,6 @@ void element::set_timeout(const ::duration & durationTimeout)
 }
 
 
-void element::init_task()
-{
-
-   
-}
-
-
-void element::run()
-{
-
-   while(true)
-   {
-
-      /*auto estatus =*/ step();
-
-      //if(!estatus)
-      //{
-
-      //   break;
-
-      //}
-
-   }
-
-   //return ::success;
-
-}
-
-
-bool element::step()
-{
-
-   //return ::error_failed;
-   return false;
-
-}
-
 
 ::payload element::realize()
 {
@@ -171,27 +67,27 @@ bool element::step()
 }
 
 
-void element::call_run()
-{
-
-   //::e_status estatus;
-
-   //try
-   //{
-
-   /*estatus =*/ run();
-
-   //}
-   //catch (...)
-   //{
-
-   //   estatus = ::error_exception;
-
-   //}
-
-   //return estatus;
-
-}
+//void element::call_run()
+//{
+//
+//   //::e_status estatus;
+//
+//   //try
+//   //{
+//
+//   /*estatus =*/ run();
+//
+//   //}
+//   //catch (...)
+//   //{
+//
+//   //   estatus = ::error_exception;
+//
+//   //}
+//
+//   //return estatus;
+//
+//}
 
 
 ::element * element::clone() const
@@ -323,46 +219,10 @@ void element::release_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG
 }
 
 
-void element::initialize(::object* pobject)
-{
-
-   initialize_matter(pobject);
-
-   on_initialize_object();
-
-}
-
-
-void element::on_initialize_object()
-{
-
-
-}
-
-
-void element::initialize_matter(::matter* pmatter)
-{
-
-   //return ::success;
-
-}
 
 
 
-strsize element::sz_len() const
-{
 
-   return strlen(__type_name(this));
-
-}
-
-
-void element::to_sz(char * sz, strsize len) const
-{
-
-   strncpy(sz, __type_name(this), len);
-
-}
 
 
 bool element::should_run_async() const
@@ -457,11 +317,7 @@ void element::destroy_os_data()
 
 
 
-void element::on_sequence()
-{
 
-
-}
 
 
 void element::write(::binary_stream & stream) const

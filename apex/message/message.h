@@ -56,7 +56,7 @@ namespace message
       ::point_i32                   m_pointMessage;
 
 
-      message(const ::atom& atom = ::atom()) : material_object(atom) { common_construct(); }
+      message(const ::atom & atom = ::atom()) { m_atom = atom; common_construct(); }
       virtual ~message();
 
 

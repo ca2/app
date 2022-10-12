@@ -187,3 +187,64 @@ inline ::wstring operator+(const widechar* pszLeft, const ::wstring & wstringabl
 
 #include "___ch_impl.h"
 #include "__c_wd16_impl.h"
+
+
+#ifndef NO_TEMPLATE
+
+
+inline ::string atom::string() const
+{
+
+   if (m_etype == e_type_null)
+   {
+
+      return "(null)";
+
+   }
+   else if (m_etype == e_type_empty)
+   {
+
+      return "(empty)";
+
+   }
+   else if (is_text())
+   {
+
+      return m_str;
+
+   }
+   else if (is_integer())
+   {
+
+      return __string(m_i);
+
+   }
+   else
+   {
+
+      return ::string("(atom : type:") + __string(m_iType) + ",body:" + __string(m_iBody) + ")";
+
+   }
+
+}
+
+
+template < >
+inline uptr uptr_hash< const atom & >(const atom & key)
+{
+
+   return (((uptr)key.m_iType) << 24) ^ (key.is_text() ? uptr_hash(key.m_str.c_str()) : ((((::u32)(uptr)key.m_iBody) >> 8) & 0xffffffffu));
+
+}
+
+
+template < >
+inline uptr uptr_hash< atom>(atom key)
+{
+
+   return uptr_hash<const atom & >((const atom &)key);
+
+}
+
+
+#endif

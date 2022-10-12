@@ -76,7 +76,7 @@ class function :
 
 template < >
 class function < void() > :
-   public ptr < ::element >,
+   public ptr < ::particle >,
    public function_common
 {
 public:
@@ -84,7 +84,7 @@ public:
 
    template < typename ELEMENT >
    class predicate :
-      virtual public element
+      virtual public particle
    {
    public:
 
@@ -124,15 +124,15 @@ public:
    }
 
 
-   function(const ptr < ::element > & p) :
-      ptr < ::element >(p)
+   function(const ptr < ::particle > & p) :
+      ptr < ::particle >(p)
    {
 
    }
 
 
-   function(ptr < ::element > && p) :
-      ptr < ::element >(::move(p))
+   function(ptr < ::particle > && p) :
+      ptr < ::particle >(::move(p))
    {
 
    }
@@ -141,7 +141,7 @@ public:
    function(enum_as_lparam, iptr iptr)
    {
 
-      m_p = (::element *) iptr;
+      m_p = (::particle *) iptr;
 
    }
 
@@ -177,14 +177,14 @@ public:
 
 
    function(const function & function) :
-      ptr < ::element > (function)
+      ptr < ::particle > (function)
    {
 
    }
 
 
    function(function && function) :
-      ptr < ::element >(::move(function))
+      ptr < ::particle >(::move(function))
    {
 
    }
@@ -207,7 +207,7 @@ public:
    function & operator = (const function & function)
    {
 
-      ptr < ::element >::operator=(function.m_p);
+      ptr < ::particle >::operator=(function.m_p);
 
       return *this;
 
@@ -227,11 +227,11 @@ public:
 
    bool operator !() const { return __pointer_is_null(m_p); }
 
-   operator ::element *() const { return m_p; }
+   operator ::particle *() const { return m_p; }
 
-   const ::element * operator -> () const { return m_p; }
+   const ::particle * operator -> () const { return m_p; }
 
-   ::element * operator -> () { return m_p; }
+   ::particle * operator -> () { return m_p; }
    
 
 };

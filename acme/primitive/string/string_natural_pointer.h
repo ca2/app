@@ -47,13 +47,5 @@ public:
 
 
 
-using natural_ansistring = string_natural_pointer < ansichar >;
-using natural_wd16string = string_natural_pointer < wd16char >;
-using natural_wd32string = string_natural_pointer < wd32char >;
-using natural_widestring = string_natural_pointer < widechar >;
-
-typedef natural_ansistring natural_string;
-typedef natural_widestring natural_wstring;
-
 
 

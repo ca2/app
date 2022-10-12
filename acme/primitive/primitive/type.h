@@ -222,7 +222,7 @@ public:
    bool name_contains(const char * psz) const
    {
 
-      return ::strstr(m_psz, psz) == 0;
+      return m_str.contains(psz) == 0;
 
    }
 

@@ -222,15 +222,15 @@ void matter::check_pending_releases()
 #endif
 
 
-struct lparam_debug g_lparamdbg;
-
-
-CLASS_DECL_ACME struct lparam_debug & lparam_debug()
-{
-
-    return g_lparamdbg;
-
-}
+//struct lparam_debug g_lparamdbg;
+//
+//
+//CLASS_DECL_ACME struct lparam_debug & lparam_debug()
+//{
+//
+//    return g_lparamdbg;
+//
+//}
 
 
 

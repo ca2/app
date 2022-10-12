@@ -307,7 +307,7 @@ enum enum_object : i64
    e_object_log_disable = 1 << 13,
    e_object_property_set_modified = 1 << 14,
    e_object_default_io_exchange = 1 << 15,
-   e_object_alertable_wait = 1 << 16,
+   //e_object_alertable_wait = 1 << 16,
    e_object_any_hook = 1 << 17,
    //e_object_any_hook = 1 << 17,
    //e_object_any_update = (1 << 18) | e_object_any_hook,

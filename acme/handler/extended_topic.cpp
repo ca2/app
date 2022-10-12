@@ -5,12 +5,7 @@
 
 
 extended_topic::extended_topic(const ::atom & atom) :
-   ::PARTICLE(atom),
-   ::particle(atom),
-   ::topic(atom),
-   ::material_object(atom),
-   ::property_object(atom),
-   ::object(atom)
+   ::topic(atom)
 {
 
    m_ptab = nullptr;

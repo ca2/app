@@ -23,22 +23,22 @@ payload::payload(const char * psz)
 }
 
 
-payload::payload(::element * pelement)
+payload::payload(::particle * pelement)
 {
 
    m_etype = e_type_new;
 
-   operator = ((::element *) pelement);
+   operator = ((::particle *) pelement);
 
 }
 
 
-payload::payload(const ::element & element)
+payload::payload(const ::particle & particle)
 {
 
    m_etype = e_type_new;
 
-   operator = (element);
+   operator = (particle);
 
 }
 
@@ -614,6 +614,12 @@ void payload::set_type(enum_type etype, bool bConvert)
          ::new(&m_str) ::string();
 
       }
+      else if (etype == e_type_id)
+      {
+
+         ::new(&m_atom) ::atom();
+
+      }
 
       m_etype = etype;
 
@@ -691,7 +697,7 @@ void payload::set_id(const ::atom & atom)
    if(get_type() == e_type_pid)
    {
 
-      *m_pid = atom;
+      *m_patom = atom;
 
    }
    else if(get_type() == e_type_payload_pointer)
@@ -709,7 +715,12 @@ void payload::set_id(const ::atom & atom)
    else
    {
 
-      set_type(e_type_id, false);
+      if (get_type() != e_type_id)
+      {
+
+         set_type(e_type_id, false);
+
+      }
 
       m_atom = atom;
 
@@ -1044,7 +1055,7 @@ class ::payload & payload::operator = (::atom * pid)
 
    set_type(e_type_pid, false);
 
-   m_pid = pid;
+   m_patom = pid;
 
    return *this;
 
@@ -1510,10 +1521,10 @@ bool payload::is_empty() const
    case e_type_id:
       return m_atom.is_empty();
    case e_type_pid:
-      return m_pid->is_empty();
+      return m_patom->is_empty();
 
 
-      // element classes
+      // particle classes
    case e_type_element:
       return is_element_null();
    case e_type_string_array:
@@ -2087,7 +2098,7 @@ string payload::string(const char * pszOnNull) const
       }
       else if(m_etype == ::e_type_pid)
       {
-         str = *m_pid;
+         str = *m_patom;
       }
       else if(m_etype == ::e_type_string_array)
       {
@@ -2097,10 +2108,28 @@ string payload::string(const char * pszOnNull) const
       {
          str = __string((int)m_b);
       }
+      else if (m_etype == ::e_type_payload_pointer)
+      {
+
+         str = m_ppayload->get_network_payload();
+
+      }
+      else if (m_etype == ::e_type_property_set)
+      {
+
+         str = m_ppropertyset->get_network_payload();
+
+      }
+      else if (m_etype == ::e_type_property)
+      {
+
+         str = m_ppropertyset->get_network_payload();
+
+      }
       else if (is_element_set())
       {
          
-         str = __string(*element());
+         str = __string(*particle());
 
       }
 
@@ -2184,7 +2213,7 @@ string & payload::string_reference(const char * pszOnNull)
    else if(m_etype == e_type_pid)
    {
 
-      return *m_pid;
+      return *m_patom;
 
    }
    else if(m_etype != e_type_id)
@@ -2310,7 +2339,7 @@ string & payload::string_reference(const char * pszOnNull)
    else if(m_etype == e_type_pid)
    {
 
-      return *m_pid;
+      return *m_patom;
 
    }
    else
@@ -2391,9 +2420,9 @@ string & payload::string_reference(const char * pszOnNull)
    }
    case e_type_pid:
    {
-      if(!fits_i32(m_pid->i64()))
+      if(!fits_i32(m_patom->i64()))
          throw ::exception(error_overflow, "::payload contains atom that does not fit 32 bit integer");
-      return (::i32) (::i64) *m_pid;
+      return (::i32) (::i64) *m_patom;
    }
    default:
       return iDefault;
@@ -2772,6 +2801,13 @@ bool & payload::bool_reference()
 
 }
 
+
+bool payload::b() const
+{
+
+   return get_bool();
+
+}
 
 
 ::i8 payload::i8(::i8 iDefault) const
@@ -5476,7 +5512,7 @@ bool payload::is_natural() const
 //   else if (m_etype == e_type_pid)
 //   {
 //
-//      return m_pid != nullptr && ((m_pid->is_text() && ::papaya::is_true(m_pid->m_psz)) || (m_pid->is_integer() && m_pid->m_i != 0));
+//      return m_patom != nullptr && ((m_patom->is_text() && ::papaya::is_true(m_patom->m_psz)) || (m_patom->is_integer() && m_patom->m_i != 0));
 //
 //   }
 //   else if (m_etype == e_type_i32_array)
@@ -6442,7 +6478,7 @@ bool payload::is_numeric() const
       return false; // m_atom.is_number(); // may be improved MBI
 
    case e_type_pid:
-      return false; // m_pid->is_number(); // may be improved MBI
+      return false; // m_patom->is_number(); // may be improved MBI
 
    case e_type_i64_array:
       return false;
@@ -6817,7 +6853,7 @@ bool payload::is_false() const
    case e_type_id:
       return m_atom.is_empty() || !m_atom.compare_ci("false") || !m_atom.compare_ci("no");
    case e_type_pid:
-      return !m_pid || m_pid->is_empty() || !m_pid->compare_ci("false") || !m_pid->compare_ci("no");
+      return !m_patom || m_patom->is_empty() || !m_patom->compare_ci("false") || !m_patom->compare_ci("no");
    case e_type_time:
       return !m_time.m_i;
    case e_type_file_time:
@@ -6831,7 +6867,7 @@ bool payload::is_false() const
    //case e_type_process:
      //    return !m_process;
 
-   // element classes
+   // particle classes
    case e_type_element:
       return is_element_null();
    case e_type_string_array:
@@ -7003,7 +7039,7 @@ bool payload::is_set_false() const
    case e_type_id:
       return m_atom.is_empty() || !m_atom.compare_ci("false") || !m_atom.compare_ci("no");
    case e_type_pid:
-      return !m_pid || m_pid->is_empty() || !m_pid->compare_ci("false") || !m_pid->compare_ci("no");
+      return !m_patom || m_patom->is_empty() || !m_patom->compare_ci("false") || !m_patom->compare_ci("no");
    case e_type_time:
       return !m_time.m_i;
    case e_type_file_time:
@@ -7017,7 +7053,7 @@ bool payload::is_set_false() const
    //case type_process:
    //   return !m_process;
 
-      // element classes
+      // particle classes
    case e_type_element:
       return is_element_null();
    case e_type_string_array:
@@ -7176,10 +7212,10 @@ void payload::_001Add(const string_array & straParam)
 }
 
 
-::payload & payload::operator = (const ::element & o)
+::payload & payload::operator = (const ::particle & o)
 {
 
-   _set_element((::element *) &o);
+   _set_element((::particle *) &o);
 
    return *this;
 

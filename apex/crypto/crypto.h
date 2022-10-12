@@ -33,21 +33,21 @@ namespace crypto
       virtual ::pointer<hasher>create_hasher(enum_hash ehash);
 
 
-      virtual void encrypt(memory& storageEncrypt, const memory& storageDecrypt, const memory& storageKey) = 0;
-      virtual void decrypt(memory& storageDecrypt, const memory& storageEncrypt, const memory& storageKey) = 0;
+      virtual void encrypt(memory& storageEncrypt, const block & blockDecrypt, const block & blockKey) = 0;
+      virtual void decrypt(memory& storageDecrypt, const block & blockEncrypt, const block & blockKey) = 0;
 
  
-      virtual void encrypt(memory & storageEncrypt, const memory & storageDecrypt, const char * pszSalt);
-      virtual void decrypt(memory & storageDecrypt, const memory & storageEncrypt, const char * pszSalt);
-      virtual void encrypt(memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt);
-      virtual void decrypt(string & strDecrypt, const memory & storageEncrypt, const char * pszSalt);
+      //virtual void encrypt(memory & blockEncrypt, const block & blockDecrypt, const char * pszSalt);
+      //virtual void decrypt(memory & blockDecrypt, const block & blockEncrypt, const char * pszSalt);
+      //virtual void encrypt(memory & storageEncrypt, const char * pszDecrypt, const char * pszSalt);
+      //virtual void decrypt(string & strDecrypt, const memory & storageEncrypt, const char * pszSalt);
 
 
       virtual i32 key(memory & storage);
 
       virtual string strkey();
-      virtual void encrypt(string & str,const char * psz,const char * pszKey);
-      virtual void decrypt(string & str,const char * psz,const char * pszKey);
+      virtual void encrypt(string & str, const block & blockDecrypt, const block & blockKey);
+      virtual void decrypt(string & str, const block & blockEncrypt, const block & blockKey);
 
 
       virtual int get_md5_digest_length() const;
@@ -98,7 +98,7 @@ namespace crypto
       virtual string v5_get_password_hash(const char * pszPassword,i32 iOrder = 0);
 
       virtual ::file::path get_crypt_key_file_path();
-      virtual string defer_get_cryptkey();
+      virtual ::memory defer_get_cryptkey();
 
       
       virtual ::pointer<rsa>create_rsa_key(const ::string & strRsa);
@@ -130,11 +130,6 @@ namespace crypto
 
 
    };
-
-
-   typedef ::pointer<crypto>crypto_pointer;
-
-   typedef pointer_array < rsa > rsaptra;
 
 
 } //   namespace crypto

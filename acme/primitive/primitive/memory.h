@@ -117,7 +117,6 @@ public:
    memory(const u8 * pchSrc, strsize nLength, manager * pmanager);
    memory(memory && memory);
    memory(const ::string & str);
-   memory(const ::payload & payload);
    ~memory() override;
 
 
@@ -125,7 +124,17 @@ public:
    virtual byte * impl_realloc(void * pdata, memsize dwAllocation) override;
    virtual void impl_free(byte * pdata) override;
 
-   memory & operator = (const memory & memory);
+   using memory_base::operator =;
+   using memory_base::operator +=;
+   
+   
+   inline memory & operator = (const ::memory & memory) { assign(memory); return *this; }
+   inline memory & operator += (const ::memory & memory) { append(memory); return *this; };
+
+   
+   strsize sz_len() const override;
+   void to_sz(char * sz, strsize len) const override;
+
 
 };
 

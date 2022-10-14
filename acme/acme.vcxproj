@@ -1116,6 +1116,7 @@
     <ClCompile Include="platform\timer_event.cpp" />
     <ClCompile Include="platform\timer_task.cpp" />
     <ClCompile Include="platform\trace.cpp" />
+    <ClCompile Include="platform\tracer.cpp" />
     <ClCompile Include="platform\trace_category.cpp" />
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
@@ -1167,7 +1168,6 @@
     <ClCompile Include="primitive\primitive\match.cpp" />
     <ClCompile Include="primitive\primitive\payload.cpp" />
     <ClCompile Include="primitive\primitive\element.cpp" />
-    <ClCompile Include="primitive\primitive\tracer.cpp" />
     <ClCompile Include="primitive\primitive\work.cpp" />
     <ClCompile Include="primitive\promise\signalization.cpp" />
     <ClCompile Include="primitive\string\command_line.cpp" />

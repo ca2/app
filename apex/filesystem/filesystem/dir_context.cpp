@@ -1794,7 +1794,7 @@ void dir_context::get_matter_locator(string_array& straMatterLocator, bool bIncl
 
    straMatterLocator.erase_all();
 
-   straMatterLocator.add(m_pcontext->m_papexcontext->m_straMatterLocatorPriority);
+   straMatterLocator.append(m_pcontext->m_papexcontext->m_straMatterLocatorPriority);
 
    if (bIncludeMain)
    {

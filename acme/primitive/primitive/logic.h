@@ -1,4 +1,8 @@
-#pragma once
+﻿#pragma once
+
+
+#define CONDITIONAL(p,q) \
+(!(p) || q)
 
 inline bool _xor(bool b1, bool b2)
 {

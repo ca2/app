@@ -1,4 +1,4 @@
-////TBS__<3tbs
+﻿////TBS__<3tbs
 //  _start.h
 //  acme
 //
@@ -71,9 +71,9 @@ template < typename TYPE > \
 type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return copy; }
 
 
-#define TOKENPASTE(x, y) x ## y
-#define TOKENPASTE2(x, y) TOKENPASTE(x, y)
-#define TOKEN_AT_LINE(token) TOKENPASTE2(TOKENPASTE2(token, _atLine_), __LINE__)
+#define TOKENPASTE_PROCESS(x, y) x ## y
+#define TOKENPASTE(x, y) TOKENPASTE_PROCESS(x, y)
+#define TOKEN_AT_LINE(token) TOKENPASTE(TOKENPASTE(token, _atLine_), __LINE__)
 
 
 #define __DEBUG_POWER

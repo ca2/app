@@ -76,6 +76,9 @@ public:
    inline void defer_set_loading() { if (!is_loading()) set_loading(); }
 
 
+   inline void set_statically_allocated() { set(e_flag_statically_allocated); }
+   inline void set_verbose(bool bVerbose = true) { set(e_flag_verbose, bVerbose); }
+   [[nodiscard]] inline bool is_verbose() const { return has(e_flag_verbose); }
    //PARTICLE(const class ::atom & atom) :
    //   m_atom(atom)
    //{

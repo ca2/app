@@ -1,9 +1,9 @@
-#pragma once
+﻿#pragma once
 
 
 template < typename POINTER_ARRAY_PROCESS, typename TYPE >
 class pointer_array_process :
-   public POINTER_ARRAY_PROCESS
+   virtual public POINTER_ARRAY_PROCESS
 {
 public:
 

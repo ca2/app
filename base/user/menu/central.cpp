@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "central.h"
 #include "base/platform/system.h"
 #include "aura/platform/node.h"
@@ -46,11 +46,11 @@ namespace user
 
          string strId;
 
-         pchild->find_attribute("id", strId);
+         strId = pchild->attribute("id");
 
          string strImage;
 
-         pchild->find_attribute("img", strImage);
+         strImage = pchild->attribute("img");
 
          auto pcontextimage = m_pcontext->context_image();
 

@@ -168,8 +168,8 @@ namespace xml
       
       ::property *            find_attribute(const ::atom & atom) { return m_set.find_property(atom); }
 
-      template < typename TYPE >
-      bool find_attribute(const ::atom & atom, TYPE & t) { return m_set.find(atom, t); }
+      //template < typename TYPE >
+      //bool find_attribute(const ::atom & atom, TYPE & t) { return m_set.find(atom, t); }
 
       ::property              attribute(const ::atom & atom) { return m_set[atom]; }
       ::property *            attribute_at(index i) { return m_set.element_at(i); }

@@ -279,7 +279,7 @@ public:
    union
    {
 
-      ::i64             m_iId;
+      ::i64                      m_iId;
 
       struct
       {
@@ -295,11 +295,12 @@ public:
             enum_task_tool       m_etasktool;
             enum_timer           m_etimer;
             enum_message         m_emessage;
-            //enum_topic         m_etopic;
             enum_dialog_result   m_edialogresult;
+            ::string             m_str;
+
          };
 
-         enum_type                  m_etype;
+         enum_type               m_etype;
 
 
       };
@@ -307,16 +308,16 @@ public:
       struct
       {
 
-         ::i64             m_iBody;
-         ::i64             m_iType;
+         ::i64                   m_iBody;
+         ::i64                   m_iType;
 
       };
 
-      id_all                  m_all;
+      id_all                     m_all;
 
    };
 
-   ::string m_str;
+   
 
 //protected:
 //
@@ -338,7 +339,7 @@ public:
    inline atom(enum_message emessage);
    //inline atom(enum_topic etopic);
    inline atom(enum_dialog_result edialogresult);
-   inline atom(enum_type etype, ::i64 i);
+   inline atom(enum_type etype, const atom & atom);
    inline atom(const atom & atom);
    atom(const char * psz);
 
@@ -352,7 +353,8 @@ public:
    atom(const ::payload & payload);
 #endif // !NO_TEMPLATE
    atom(const ::lparam & lparam);
-   atom(::atom && atom) :m_str(::move(atom.m_str)) { m_all = atom.m_all; atom.m_all = {}; }
+   atom(::atom && atom) { m_all = atom.m_all; atom.m_all = {}; }
+   ~atom() { if(is_text()) m_str.::string::~string(); }
 
 
    enum_type primitive_type() const
@@ -391,7 +393,7 @@ public:
    ::atom compounded(enum_type etype) const
    {
 
-      return {compounded_type(etype), m_i};
+      return {compounded_type(etype), *this};
 
    }
 
@@ -672,19 +674,79 @@ inline atom::atom(enum_dialog_result edialogresult) :
 }
 
 
-inline atom::atom(enum_type etype, ::i64 i) :
-   m_etype(etype),
-   m_i(i) // used m_i to reset 64-bit field
+inline atom::atom(enum_type etype, const ::atom & atom)
 {
+
+   if (atom.is_text())
+   {
+
+      m_etype = etype;
+
+      if (etype & e_type_text)
+      {
+
+         ::new(&m_str) ::string(atom.m_str);
+
+      }
+      else
+      {
+
+         m_iId = atom.i64();
+
+      }
+
+   } 
+   else if (atom.is_integer())
+   {
+
+
+      m_etype = etype;
+
+      if (etype & e_type_text)
+      {
+
+         ::new(&m_str) ::string();
+
+         m_str.format("%lld", atom.m_iId);
+
+      }
+      else
+      {
+
+         m_iId = atom.i64();
+
+      }
+
+   }
+   else
+   {
+
+      m_all = {};
+
+   }
 
 }
 
 
-inline atom::atom(const atom & atom) :
-   m_str(atom.m_str)
+
+
+inline atom::atom(const atom & atom)
 {
 
-   m_all = atom.m_all;
+   if (atom.is_text())
+   {
+
+      m_iType = atom.m_iType;
+
+      new(&m_str) ::string(atom.m_str);
+
+   }
+   else
+   {
+
+      m_all = atom.m_all;
+
+   }
 
 }
 
@@ -785,9 +847,38 @@ inline bool atom::operator >= (const atom & atom) const
 inline atom & atom::operator = (const atom & atom)
 {
 
-   m_all          = atom.m_all;
+   if (atom.is_text())
+   {
 
-   m_str          = atom.m_str;
+      if (is_text())
+      {
+
+         m_str = atom.m_str;
+
+      }
+      else
+      {
+
+         ::new(&m_str) ::string(atom.m_str);
+
+      }
+
+      m_iType = atom.m_iType;
+
+   }
+   else
+   {
+
+      if (is_text())
+      {
+
+         m_str.::string::to_string();
+
+      }
+
+      m_all = atom.m_all;
+
+   }
 
    return *this;
 
@@ -800,9 +891,7 @@ inline atom & atom::operator = (const atom & atom)
 inline int atom::compare(const ::string & str) const
 {
 
-   auto iCompare = primitive_type() - e_type_text;
-
-   return __atom_compare_square(iCompare, m_str.compare(str));
+   return is_text() ? m_str.compare(str) : -1;
 
 }
 
@@ -885,7 +974,7 @@ inline void atom::as(::string & str) const
 inline atom::operator const char *() const
 {
 
-   return primitive_type() == e_type_text ? m_str.c_str() : nullptr;
+   return is_text() ? m_str.c_str() : nullptr;
 
 }
 
@@ -902,7 +991,7 @@ inline atom::operator const char *() const
 inline bool atom::is_empty() const
 {
 
-   return is_null() || m_etype == e_type_empty || (primitive_type() == e_type_text && m_str.is_empty());
+   return is_null() || m_etype == e_type_empty || (is_text() && m_str.is_empty());
 
 }
 
@@ -915,15 +1004,10 @@ inline CLASS_DECL_ACME iptr id_strcmp(const atom * pid1,const atom * pid2)
 }
 
 
-
-
-
 inline int atom::compare(const char * psz) const
 {
 
-   auto iCompare = primitive_type() - e_type_text;
-
-   return __atom_compare_square(iCompare, __atom_safe_strcmp(m_str.c_str(), psz));
+   return is_text() ? m_str.compare(psz) : -1;
 
 }
 
@@ -1315,7 +1399,7 @@ inline ::i64 atom::i64() const
 inline bool atom::is_null() const
 {
 
-   return m_etype == e_type_null || (primitive_type() == e_type_text && m_str.is_empty());
+   return m_etype == e_type_null || (is_text() && m_str.is_empty());
 
 }
 
@@ -1323,7 +1407,7 @@ inline bool atom::is_null() const
 inline bool atom::has_char() const
 {
 
-   return primitive_type() == e_type_text && m_str.has_char();
+   return is_text() && m_str.has_char();
 
 }
 

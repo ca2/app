@@ -2598,11 +2598,18 @@ namespace xml
          }
          if(m_nodea[i]->m_strName == lpszName)
          {
-            if(m_nodea[i]->get_xml_node()->find_attribute(pszAttrName, strValue))
+
+            strValue = m_nodea[i]->get_xml_node()->attribute(pszAttrName);
+            
+            if(strValue.has_char())
             {
+               
                count++;
+               
                stra.add(strValue);
+
             }
+
          }
          if(iDepth > 0)
             count += m_nodea[i]->get_xml_node()->get_child_attr_value(stra, lpszName, pszAttrName, iDepth - 1);
@@ -2631,7 +2638,10 @@ namespace xml
       {
          if(m_nodea[i]->m_strName == lpszName)
          {
-            if(m_nodea[i]->get_xml_node()->find_attribute(pszAttrName, strValue))
+
+            strValue = m_nodea[i]->get_xml_node()->attribute(pszAttrName);
+
+            if(strValue.has_char())
             {
                if(iIndex <= 0)
                {
@@ -2679,11 +2689,16 @@ namespace xml
       {
          if(m_nodea[i]->get_xml_node()->m_strName == lpszName)
          {
-            if(m_nodea[i]->get_xml_node()->find_attribute(pszAttrName, strValue)
-                  && ansi_compare_ci(strValue, pszAttrValue) == 0)
+            
+            strValue = m_nodea[i]->get_xml_node()->attribute(pszAttrName);
+
+            if(strValue.has_char() && ansi_compare_ci(strValue, pszAttrValue) == 0)
             {
+
                return m_nodea[i]->get_xml_node();
+
             }
+
          }
       }
       return nullptr;
@@ -2703,7 +2718,9 @@ namespace xml
             for(i32 j = 0; j < straAttrName.get_size(); j++)
             {
 
-               if(m_nodea[i]->get_xml_node()->find_attribute(straAttrName[j], strValue) && ansi_compare_ci(strValue, straAttrValue[j]) == 0)
+               ::string strValue = m_nodea[i]->get_xml_node()->attribute(straAttrName[j]);
+
+               if(strValue.has_char() && ansi_compare_ci(strValue.c_str(), straAttrValue[j]) == 0)
                {
 
                   return m_nodea[i]->get_xml_node();
@@ -2737,7 +2754,9 @@ namespace xml
             for(i32 j = 0; j < straAttrName.get_size(); j++)
             {
 
-               if(!m_nodea[i]->get_xml_node()->find_attribute(straAttrName[j], strValue) || ansi_compare_ci(strValue, straAttrValue[j]) != 0)
+               ::string strValue = m_nodea[i]->get_xml_node()->attribute(straAttrName[j]);
+
+               if(strValue.is_empty()  || ansi_compare_ci(strValue, straAttrValue[j]) != 0)
                {
 
                   bAll = false;

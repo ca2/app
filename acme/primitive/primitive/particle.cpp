@@ -89,7 +89,12 @@ void particle::destroy()
 void particle::delete_this()
 {
 
-   delete this;
+   if (!m_eflagElement & e_flag_statically_allocated)
+   {
+
+      delete this;
+
+   }
 
 }
 

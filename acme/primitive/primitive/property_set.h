@@ -254,24 +254,24 @@ public:
    inline property & get_property(const ::atom & atom) { return get(atom); }
 
 
-   template < typename TYPE >
-   bool find(const ::atom & atom, TYPE & t)
-   {
+   //template < typename TYPE >
+   //bool find(const ::atom & atom, TYPE & t)
+   //{
 
-      auto pproperty = find(atom);
+   //   auto pproperty = find(atom);
 
-      if (!pproperty)
-      {
+   //   if (!pproperty)
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      t = (TYPE &) *pproperty;
+   //   t = (TYPE &) *pproperty;
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    void _008ParseCommandLine(const char * pszCmdLine, ::payload & payloadFile);

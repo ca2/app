@@ -1,9 +1,10 @@
-// From string/_.h by camilo on 2022-10-11 12:21 <3ThomasBorregaardSorensen!!
+﻿// From string/_.h by camilo on 2022-10-11 12:21 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
 template < typename STRING >
-class string_type
+class string_type :
+   public STRING
 {
 public:
 

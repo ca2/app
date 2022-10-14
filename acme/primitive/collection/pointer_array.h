@@ -3,7 +3,7 @@
 
 template < class T >
 class pointer_array :
-   virtual public pointer_array_process < comparable_array < ::pointer < T > >, T >
+   public pointer_array_process < comparable_array < ::pointer < T > >, T >
 {
 public:
 

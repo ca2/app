@@ -3,7 +3,7 @@
 
 template < typename POINTER_ARRAY_PROCESS, typename TYPE >
 class pointer_array_process :
-   virtual public POINTER_ARRAY_PROCESS
+   public POINTER_ARRAY_PROCESS
 {
 public:
 

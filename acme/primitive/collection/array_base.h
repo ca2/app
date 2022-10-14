@@ -20,7 +20,7 @@ const TYPE * ITEM ## _at(::index i) const { return CONTAINER[i]; } \
 TYPE * get_ ## ITEM(::index i) const { return CONTAINER.bounds(i) ? CONTAINER[i] : nullptr; } \
 ::count ITEM ## _count() const { return CONTAINER.get_count(); } \
 bool has_ ## ITEM() const { return CONTAINER.has_element(); } \
-CONTAINER_TYPE ITEM ## a() const { return CONTAINER; } \
+const CONTAINER_TYPE & ITEM ## a() const { return CONTAINER; } \
 CONTAINER_TYPE & ITEM ## a() { return CONTAINER; } \
 bool contains_ ## ITEM(const TYPE * p) const { return CONTAINER.contains(p); } \
 bool is_there_no_ ## ITEM() const { return CONTAINER.is_empty(); } \

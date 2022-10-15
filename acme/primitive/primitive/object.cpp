@@ -3815,5 +3815,39 @@ bool object::IsSerializable() const
 }
 
 
+void object::defer_branch(::task_pointer & ptask, const ::procedure & procedure)
+{
+
+   __defer_construct(ptask);
+
+   ptask->m_procedure = procedure;
+
+   ptask->branch();
+
+}
+
+
+::pointer<task>object::fork(const ::procedure & procedure, const ::element_array & elementaHold, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+{
+
+   auto ptask = this->branch_procedure(procedure, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+
+   if (!ptask)
+   {
+
+      return ptask;
+
+   }
+
+   if (elementaHold.has_element())
+   {
+
+      ptask->m_elementaHold.append(elementaHold);
+
+   }
+
+   return ptask;
+
+}
 
 

@@ -3034,109 +3034,74 @@ inline ::file_pointer object::get_writer(const ::payload& payloadFile, const ::f
 //}
 
 
-template < typename PRED >
-inline void add_procedure(::procedure_array& routinea, PRED pred)
-{
-
-   routinea.add(__routine(pred));
-
-}
-
-
-inline void object::defer_branch(::task_pointer& ptask, const ::procedure & procedure)
-{
-
-   __defer_construct(ptask);
-
-   ptask->m_procedure = procedure;
-
-   ptask->branch();
-
-}
+//template < typename PRED >
+//inline void add_procedure(::procedure_array& routinea, PRED pred)
+//{
+//
+//   routinea.add(__routine(pred));
+//
+//}
 
 
-inline ::pointer<task>object::fork(const ::procedure & procedure, const ::element_array & elementaHold, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
-{
 
-   auto ptask = this->branch_procedure(procedure, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
-
-   if (!ptask)
-   {
-
-      return ptask;
-
-   }
-
-   if (elementaHold.has_element())
-   {
-
-      ptask->m_elementaHold.add(elementaHold);
-
-   }
-
-   return ptask;
-
-}
-
-
-template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD >
-bool material_object::__get_posted_payload_synchronously(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER preturning, OBJECT_METHOD returning_method, ::payload & payload, const class ::wait & wait)
-{
-
-   if(pposting->is_branch_current())
-   {
-
-      payload = (preturning->*returning_method)();
-
-      return true;
-
-   }
-
-   auto posting = [pposting, posting_method](const ::procedure & procedure)
-   {
-
-      (pposting->*posting_method)(procedure);
-
-   };
-
-   ::function < void(const ::procedure &) > functionPost(posting);
-
-   ::function < ::payload() > functionReturn([preturning, returning_method]()
-   {
-
-      return (preturning->*returning_method)();
-
-   });
-
-   functionReturn.m_waitTimeout = wait;
-
-   return __get_posted_payload_synchronously(functionPost, functionReturn, payload);
-
-}
-
-
-template < typename POSTING_OBJECT, typename POSTING_METHOD >
-void material_object::__send_procedure(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::procedure & procedure)
-{
-
-   if(pposting->is_branch_current())
-   {
-
-      return procedure();
-
-   }
-
-   auto posting = [pposting, posting_method](const ::procedure & procedure)
-   {
-
-      (pposting->*posting_method)(procedure);
-
-   };
-
-   __send_procedure(posting, procedure);
-
-}
-
+//template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD >
+//bool material_object::__get_posted_payload_synchronously(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER preturning, OBJECT_METHOD returning_method, ::payload & payload, const class ::wait & wait)
+//{
+//
+//   if(pposting->is_branch_current())
+//   {
+//
+//      payload = (preturning->*returning_method)();
+//
+//      return true;
+//
+//   }
+//
+//   auto posting = [pposting, posting_method](const ::procedure & procedure)
+//   {
+//
+//      (pposting->*posting_method)(procedure);
+//
+//   };
+//
+//   ::function < void(const ::procedure &) > functionPost(posting);
+//
+//   ::function < ::payload() > functionReturn([preturning, returning_method]()
+//   {
+//
+//      return (preturning->*returning_method)();
+//
+//   });
+//
+//   functionReturn.m_waitTimeout = wait;
+//
+//   return __get_posted_payload_synchronously(functionPost, functionReturn, payload);
+//
+//}
+//
+//
+//template < typename POSTING_OBJECT, typename POSTING_METHOD >
+//void material_object::__send_procedure(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::procedure & procedure)
+//{
+//
+//   if(pposting->is_branch_current())
+//   {
+//
+//      return procedure();
+//
+//   }
+//
+//   auto posting = [pposting, posting_method](const ::procedure & procedure)
+//   {
+//
+//      (pposting->*posting_method)(procedure);
+//
+//   };
+//
+//   __send_procedure(posting, procedure);
+//
+//}
+//
 
 inline void assign(bool & b, const payload & payload)
 { 

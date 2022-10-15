@@ -12,6 +12,10 @@ private:
 
 public:
 
+
+   typedef void POSTING_PROCEDURE(const ::procedure & procedure);
+   typedef ::payload RETURNING_PROCEDURE();
+
    
    union
    {

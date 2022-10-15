@@ -345,4 +345,68 @@ struct largest_type_of_3 {
 template < typename TYPE, std::size_t SIZE >
 using array_reference = TYPE(&)[SIZE];
 
+namespace allocator
+{
+
+
+   template < typename TYPE >
+   class def;
+
+
+} // namespace allocator
+
+template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = ::allocator::def < TYPE >, enum_type t_etypePayload = e_type_element >
+class array;
+
+template < typename FUNCTION >
+class function;
+
+template < class TYPE, class ARG_TYPE = const TYPE & >
+class list;
+
+template < typename ARGUMENT >
+class argument_of
+{
+public:
+
+   using type = typename smaller_type < ARGUMENT, const ARGUMENT & >::type;
+
+};
+
+
+template < >
+class argument_of < ::string >
+{
+public:
+
+   using type = ::block;
+
+};
+
+
+template < typename T, typename ARG_T = typename argument_of < T >::type >
+class single;
+
+
+template < class KEY, class ARG_KEY = typename argument_of < KEY >::type, class PAYLOAD = single < KEY, ARG_KEY > >
+class set;
+
+
+template < typename T1, typename T2, typename ARG_T1 = typename argument_of < T1 >::type, typename ARG_T2 = typename argument_of < T2 >::type >
+class pair;
+
+
+template < class KEY, class VALUE, class ARG_KEY = typename argument_of < KEY >::type, class ARG_VALUE = typename argument_of < VALUE >::type, class PAIR = pair < KEY, VALUE, ARG_KEY, ARG_VALUE > >
+class map;
+
+
+template<class ENUM>
+class flags;
+
+
+template<class EENUM, EENUM edefault = (EENUM)0>
+class base_enum;
+
+
+
 

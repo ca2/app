@@ -1356,6 +1356,7 @@
     <ClInclude Include="operating_system\_impl.h" />
     <ClInclude Include="operating_system\_operating_system.h" />
     <ClInclude Include="operating_system\_user.h" />
+    <ClInclude Include="parallelization\asynchronous.h" />
     <ClInclude Include="parallelization\common.h" />
     <ClInclude Include="parallelization\condition.h" />
     <ClInclude Include="parallelization\condition_variable.h" />

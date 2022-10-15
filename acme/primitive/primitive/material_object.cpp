@@ -1,4 +1,5 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "acme/parallelization/asynchronous.h"
 
 
 material_object::~material_object()
@@ -76,7 +77,7 @@ void material_object::post_procedure(const ::procedure & procedure)
 void material_object::send_procedure(const ::procedure & procedure)
 {
 
-   return __send_procedure(this, &material_object::post_procedure, procedure);
+   __material_send_procedure(this, this, &material_object::post_procedure, procedure);
 
 }
 

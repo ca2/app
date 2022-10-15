@@ -45,6 +45,7 @@
 #include "aura/graphics/user/control_box_button.h"
 #include "aura/platform/session.h"
 #include "aura/platform/application.h"
+#include "acme/parallelization/asynchronous.h"
 
 
 #define INFO_LAYOUT_DISPLAY
@@ -5313,7 +5314,7 @@ namespace user
    void interaction::interaction_send(const ::procedure & procedure)
    {
 
-      __send_procedure(this, &interaction::interaction_post, procedure);
+      __material_send_procedure(this, this, &interaction::interaction_post, procedure);
 
    }
 

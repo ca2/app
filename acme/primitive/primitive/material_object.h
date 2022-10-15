@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 class CLASS_DECL_ACME material_object :
@@ -7,7 +7,7 @@ class CLASS_DECL_ACME material_object :
 public:
 
 
-   pointer< ::id_map < ::procedure_array > >     m_pmapPropertyProcedure;
+   pointer< ::id_map < ::procedure_array > >       m_pmapPropertyProcedure;
    ::pointer<::i64_array>                          m_pia;
 
 
@@ -63,15 +63,13 @@ public:
 
    virtual void send_procedure(const ::procedure & procedure);
 
-   template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD >
-   bool __get_posted_payload_synchronously(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER preturning, OBJECT_METHOD returning_method, ::payload & payload, const class ::wait & wait);
+   //virtual bool __get_posted_payload_synchronously(::matter * pposting, POSTING_PROCEDURE * posting_method, ::matter * preturning, RETURNING_PROCEDURE * returning_method, ::payload & payload, const class ::wait & wait);
 
-   template < typename POSTING_OBJECT, typename POSTING_METHOD >
-   void __send_procedure(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::procedure & procedure);
+   //virtual void __send_procedure(::matter * pposting, POSTING_PROCEDURE * posting_method, const ::procedure & procedure);
 
-   bool __get_posted_payload_synchronously(const ::function < void(const ::procedure &) > & functionPost, const ::function < ::payload(void) > & functionReturn, ::payload & payload);
+   virtual bool __get_posted_payload_synchronously(const ::function < void(const ::procedure &) > & functionPost, const ::function < ::payload(void) > & functionReturn, ::payload & payload);
 
-   void __send_procedure(const ::function < void(const ::procedure &) > & functionPost, const ::procedure & procedure);
+   virtual void __send_procedure(const ::function < void(const ::procedure &) > & functionPost, const ::procedure & procedure);
 
 
 

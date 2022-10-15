@@ -397,6 +397,7 @@ namespace user
       ::aura::application * get_app() const;
       ::aura::session * get_session() const;
       ::aura::system * get_system() const;
+      inline ::aura::context * context() const { return m_pcontext ? m_pcontext->m_pauracontext:nullptr; }
 
       bool _001CanEnterScreenSaver() override;
 

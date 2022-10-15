@@ -6,7 +6,7 @@ namespace file
 
 
    class CLASS_DECL_ACME path_object :
-      virtual public material_object,
+      virtual public property_object,
       virtual public path
    {
    public:

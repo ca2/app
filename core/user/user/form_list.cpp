@@ -702,7 +702,7 @@ namespace user
          //   }
          //   if (ptext == nullptr)
          //      return;
-         //   if (data_get(pinteraction->m_dataid.m_atom + "." + pitem->m_atom.m_atom, payload))
+         //   if (datastream()->get(pinteraction->m_dataid.m_atom + "." + pitem->m_atom.m_atom, payload))
          //   {
          //      switch (payload.get_type())
          //      {

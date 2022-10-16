@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "base64.h"
+#include "acme/filesystem/file/memory_file.h"
 
 
 #define N1_A 0
@@ -644,7 +645,7 @@ CLASS_DECL_ACME void _crypto_base64_decode(const char* enc_data, int length, byt
 
    //   memory_file memoryfile;
 
-   //   ::binary_stream streamObject;
+   //   ::binary_stream < FILE > streamObject;
 
    //   streamObject.set_storing();
 

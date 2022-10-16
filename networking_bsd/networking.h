@@ -1,4 +1,4 @@
-// Created by camilo on 2021-03-10 06:22 BRT ThomasBS_!!
+﻿// Created by camilo on 2021-03-10 06:22 BRT ThomasBS_!!
 #pragma once
 
 
@@ -42,12 +42,14 @@ namespace networking_bsd
          dns_cache_item(const dns_cache_item& item);
 
 
-         void write(::binary_stream & stream) const override;
-         void read(::binary_stream& stream) override;
+         //void write(::binary_stream < FILE > & stream) const override;
+         //void read(::binary_stream < FILE >& stream) override;
 
          dns_cache_item& operator = (const dns_cache_item& item);
 
+
       };
+
 
       class CLASS_DECL_NETWORKING_BSD reverse_cache_item :
          virtual public ::matter
@@ -67,8 +69,8 @@ namespace networking_bsd
          reverse_cache_item();
          reverse_cache_item(const reverse_cache_item& item);
 
-         void write(::binary_stream & stream) const override;
-         void read(::binary_stream& stream);
+         //void write(::binary_stream < FILE > & stream) const override;
+         //void read(::binary_stream < FILE >& stream);
 
          reverse_cache_item& operator = (const reverse_cache_item& item);
 

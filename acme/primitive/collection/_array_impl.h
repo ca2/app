@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 //
 // see collection_array_decl.h for declaration
@@ -822,23 +822,23 @@ void  array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::set_all(const TY
 }
 
 
-template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-template < typename VAR >
-inline array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::operator = (const payload_type < VAR > & a)
-{
-
-   ::count c = a.this_var()->array_get_count();
-
-   for(::index i = 0; i < c; i++)
-   {
-
-      add((ARG_TYPE)(payload_cast)a.this_var()->at(i));
-
-   }
-
-   return *this;
-
-}
+//template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
+//template < typename VAR >
+//inline array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::operator = (const payload_type < VAR > & a)
+//{
+//
+//   ::count c = a.this_var()->array_get_count();
+//
+//   for(::index i = 0; i < c; i++)
+//   {
+//
+//      add((ARG_TYPE)(payload_cast)a.this_var()->at(i));
+//
+//   }
+//
+//   return *this;
+//
+//}
 
 
 

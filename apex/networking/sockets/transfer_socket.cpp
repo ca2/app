@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////
+﻿////////////////////////////////////////////////////////////////////////////////
 //
 // From David J. Kruglinski (Inside Visual C++).
 // Modifications by Thomas Oswald (make compatible to BSD sockets) //+#
@@ -9,6 +9,8 @@
 
 #include "framework.h"
 #include "transfer_socket.h"
+#include "acme/filesystem/file/memory_file.h"
+
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID) || defined(FREEBSD)
 
@@ -297,9 +299,9 @@ namespace sockets
 
       u8 * pbuf = (u8 *) pdata;
 
-      m_file.seek_to_end();
+      m_pmemoryfile->seek_to_end();
 
-      m_file.write(pbuf, n);
+      m_pmemoryfile->write(pbuf, n);
 
    }
 
@@ -329,7 +331,7 @@ namespace sockets
 
    //         synchronous_lock synchronouslock(mutex());
 
-   //         iRead = m_file.erase_begin(&point[nBytesReceived], nSize - nBytesReceived);
+   //         iRead = m_pmemoryfile->erase_begin(&point[nBytesReceived], nSize - nBytesReceived);
 
    //      }
 
@@ -403,7 +405,7 @@ namespace sockets
 
       synchronous_lock synchronouslock(mutex());
 
-      write(m_file.get_data(), (memsize)m_file.get_size());
+      write(m_pmemoryfile->get_data(), (memsize)m_pmemoryfile->get_size());
 
    }
 

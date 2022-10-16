@@ -1,10 +1,9 @@
 ﻿#include "framework.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
 #include "form.h"
 #include "document.h"
 #include "data.h"
+#include "acme/primitive/collection/_array_binary_stream.h"
+#include "apex/database/_binary_stream.h"
 #include "core/platform/application.h"
 
 
@@ -58,7 +57,7 @@ namespace filemanager
 
                auto papp = get_app();
 
-               papp->data_get(filemanager_data()->m_dataidStatic,stra);
+               papp->datastream()->get(filemanager_data()->m_dataidStatic,stra);
 
                auto pinteraction = get_child_by_name("lfs");
 
@@ -67,7 +66,7 @@ namespace filemanager
                pinteraction->_001GetText(str);
 
                stra.add_unique(str);
-               papp->data_set(filemanager_data()->m_dataidStatic,stra);
+               papp->datastream()->set(filemanager_data()->m_dataidStatic,stra);
 
             }
             else if(m_strPath == "filemanager_add_location_ftp.xhtml")

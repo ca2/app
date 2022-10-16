@@ -4,6 +4,7 @@
 ////#include "aura/user/user/_component.h"
 #endif
 //#include "acme/constant/id.h"
+#include "acme/filesystem/file/memory_file.h"
 #include "aura/constant/idpool.h"
 #include "acme/platform/version.h"
 #include "acme/platform/profiler.h"
@@ -5394,7 +5395,7 @@ retry_license:
       //bool application::app_data_get(::const ::atom & atom, stream & stream)
       //{
 
-      //   return data_get(atom, stream);
+      //   return datastream()->get(atom, stream);
 
       //}
 
@@ -5402,7 +5403,7 @@ retry_license:
       //bool application::app_data_set(::const ::atom & atom, ::object & obj)
       //{
 
-      //   return data_set(atom, obj);
+      //   return datastream()->set(atom, obj);
 
       //}
 
@@ -5410,7 +5411,7 @@ retry_license:
       //bool application::app_data_get(::const ::atom & atom, ::object & obj)
       //{
 
-      //   return data_get(atom, obj);
+      //   return datastream()->get(atom, obj);
 
       //}
 
@@ -8038,7 +8039,7 @@ namespace aura
    //   string str;
 
    //   // keyboard on_layout
-   //   //if(data_get("keyboard_layout",str) && str.has_char())
+   //   //if(datastream()->get("keyboard_layout",str) && str.has_char())
    //   {
    //      // psession->set_keyboard_layout(str,::e_source_database);
    //   }

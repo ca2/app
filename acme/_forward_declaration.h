@@ -34,6 +34,7 @@ class __id;
 class string_exchange;
 namespace message { class message; }
 class payload;
+template < typename FILE >
 class binary_stream;
 class text_stream;
 struct block;

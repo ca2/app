@@ -927,6 +927,7 @@
     <ClInclude Include="user\user\tab_data.h" />
     <ClInclude Include="user\user\tab_drop_target_window.h" />
     <ClInclude Include="user\user\toolbar.h" />
+    <ClInclude Include="user\user\_binary_stream.h" />
     <ClInclude Include="user\user\_constant.h" />
     <ClInclude Include="user\_.h" />
     <ClCompile Include="user\user\place_holder.cpp" />

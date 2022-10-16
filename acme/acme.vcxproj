@@ -483,9 +483,10 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <OmitFramePointers>false</OmitFramePointers>
       <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <EnableModules>false</EnableModules>
       <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -1523,10 +1524,12 @@
     <ClInclude Include="primitive\collection\_array_base_impl.h" />
     <ClInclude Include="primitive\collection\_array_impl.h" />
     <ClInclude Include="primitive\collection\_array_impl2.h" />
+    <ClInclude Include="primitive\collection\_array_binary_stream.h" />
     <ClInclude Include="primitive\collection\_collection_impl1.h" />
     <ClInclude Include="primitive\collection\_collection_impl2.h" />
     <ClInclude Include="primitive\collection\_fifo_map_impl.h" />
     <ClInclude Include="primitive\collection\_list_impl.h" />
+    <ClInclude Include="primitive\collection\_map_binary_stream.h" />
     <ClInclude Include="primitive\collection\_map_impl.h" />
     <ClInclude Include="primitive\collection\_papaya.h" />
     <ClInclude Include="primitive\collection\_papaya_array.h" />

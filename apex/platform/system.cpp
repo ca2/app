@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/filesystem/file/memory_file.h"
 #include "apex/crypto/crypto.h"
 #include "apex/operating_system.h"
 #include "apex/platform/machine_event_data.h"
@@ -2866,7 +2867,7 @@ pacmedirectory->create("/ca2core");
 ////      if(!pfile)
 ////         return false;
 ////
-////      ::binary_stream is(pfile);
+////      ::binary_stream < FILE > is(pfile);
 ////
 ////      is >> m_mapAppLibrary;
 ////

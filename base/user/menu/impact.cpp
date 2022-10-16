@@ -1,6 +1,7 @@
-#include "framework.h"
-#include "aqua/xml/document.h"
+﻿#include "framework.h"
 #include "impact.h"
+#include "apex/database/_binary_stream.h"
+#include "aqua/xml/document.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -186,7 +187,7 @@ namespace user
 
       auto papp = get_app();
 
-      papp->data_get(m_atom + ".cur_text", strText);
+      papp->datastream()->get(m_atom + ".cur_text", strText);
 
       auto pcontext = m_pcontext->m_pauracontext;
 

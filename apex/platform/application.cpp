@@ -18,7 +18,7 @@
 #include "acme/parallelization/install_mutex.h"
 #include "acme/primitive/text/context.h"
 #include "apex/networking/networking_application.h"
-
+#include "apex/database/_binary_stream.h"
 
 
 //void shell_restart();
@@ -1859,7 +1859,7 @@ namespace apex
             string str;
             // if system locale has changed (compared to last recorded one by apex)
             // use the system locale
-            if (data_get({ "system_locale", true }, str))
+            if (datastream()->get({ "system_locale", true }, str))
             {
 
                if (str.has_char())
@@ -1871,9 +1871,9 @@ namespace apex
                      try
                      {
 
-                        data_set({ "system_locale", true }, get_locale());
+                        datastream()->set({ "system_locale", true }, get_locale());
 
-                        data_set({ "locale", true }, get_locale());
+                        datastream()->set({ "locale", true }, get_locale());
 
                      }
                      catch (...)
@@ -1889,7 +1889,7 @@ namespace apex
             else
             {
 
-               data_set({ "system_locale", true }, get_locale());
+               datastream()->set({ "system_locale", true }, get_locale());
 
             }
 
@@ -1898,9 +1898,9 @@ namespace apex
 
                str = payload("locale").stra()[0];
 
-               data_set({ "system_locale", true }, str);
+               datastream()->set({ "system_locale", true }, str);
 
-               data_set({ "locale", true }, str);
+               datastream()->set({ "locale", true }, str);
 
                set_locale(str, ::e_source_database);
 
@@ -1910,14 +1910,14 @@ namespace apex
 
                str = payload("lang").stra()[0];
 
-               data_set({ "system_locale", true }, str);
+               datastream()->set({ "system_locale", true }, str);
 
-               data_set({ "locale", true }, str);
+               datastream()->set({ "locale", true }, str);
 
                set_locale(str, ::e_source_database);
 
             }
-            else if (data_get({ "locale", true }, str))
+            else if (datastream()->get({ "locale", true }, str))
             {
 
                if (str.has_char())
@@ -1930,7 +1930,7 @@ namespace apex
             }
             // if system schema has changed (compared to last recorded one by apex)
             // use the system schema
-            if (data_get({ "system_schema", true }, str))
+            if (datastream()->get({ "system_schema", true }, str))
             {
 
                if (str.has_char())
@@ -1942,9 +1942,9 @@ namespace apex
                      try
                      {
 
-                        data_set({ "system_schema", true }, get_schema());
+                        datastream()->set({ "system_schema", true }, get_schema());
 
-                        data_set({ "schema", true }, get_schema());
+                        datastream()->set({ "schema", true }, get_schema());
 
                      }
                      catch (...)
@@ -1960,7 +1960,7 @@ namespace apex
             else
             {
 
-               data_set({ "system_schema", true }, get_schema());
+               datastream()->set({ "system_schema", true }, get_schema());
 
             }
 
@@ -1969,14 +1969,14 @@ namespace apex
 
                str = payload("schema").stra()[0];
 
-               data_set({ "system_schema", true }, str);
+               datastream()->set({ "system_schema", true }, str);
 
-               data_set({ "schema", true }, str);
+               datastream()->set({ "schema", true }, str);
 
                set_schema(str, ::e_source_database);
 
             }
-            else if (data_get({ "schema", true }, str))
+            else if (datastream()->get({ "schema", true }, str))
             {
 
                if (str.has_char())
@@ -1987,6 +1987,7 @@ namespace apex
                }
 
             }
+
          }
 
          //data_pulse_change({ "ca2.savings", true }, nullptr);
@@ -2004,7 +2005,7 @@ namespace apex
             string str;
             // if system locale has changed (compared to last recorded one by apex)
             // use the system locale
-            if (data_get({ "system_locale", true }, str))
+            if (datastream()->get({ "system_locale", true }, str))
             {
 
                if (str.has_char())
@@ -2016,9 +2017,9 @@ namespace apex
                      try
                      {
 
-                        data_set({ "system_locale", true }, get_locale());
+                        datastream()->set({ "system_locale", true }, get_locale());
 
-                        data_set({ "locale", true }, get_locale());
+                        datastream()->set({ "locale", true }, get_locale());
 
                      }
                      catch (...)
@@ -2034,7 +2035,7 @@ namespace apex
             else
             {
 
-               data_set({ "system_locale", true }, get_locale());
+               datastream()->set({ "system_locale", true }, get_locale());
 
             }
 
@@ -2043,9 +2044,9 @@ namespace apex
 
                str = payload("locale").stra()[0];
 
-               data_set({ "system_locale", true }, str);
+               datastream()->set({ "system_locale", true }, str);
 
-               data_set({ "locale", true }, str);
+               datastream()->set({ "locale", true }, str);
 
                set_locale(str, ::e_source_database);
 
@@ -2055,14 +2056,14 @@ namespace apex
 
                str = payload("lang").stra()[0];
 
-               data_set({ "system_locale", true }, str);
+               datastream()->set({ "system_locale", true }, str);
 
-               data_set({ "locale", true }, str);
+               datastream()->set({ "locale", true }, str);
 
                set_locale(str, ::e_source_database);
 
             }
-            else if (data_get({ "locale", true }, str))
+            else if (datastream()->get({ "locale", true }, str))
             {
 
                if (str.has_char())
@@ -2075,7 +2076,7 @@ namespace apex
             }
             // if system schema has changed (compared to last recorded one by apex)
             // use the system schema
-            if (data_get({ "system_schema", true }, str))
+            if (datastream()->get({ "system_schema", true }, str))
             {
 
                if (str.has_char())
@@ -2087,9 +2088,9 @@ namespace apex
                      try
                      {
 
-                        data_set({ "system_schema", true }, get_schema());
+                        datastream()->set({ "system_schema", true }, get_schema());
 
-                        data_set({ "schema", true }, get_schema());
+                        datastream()->set({ "schema", true }, get_schema());
 
                      }
                      catch (...)
@@ -2105,7 +2106,7 @@ namespace apex
             else
             {
 
-               data_set({ "system_schema", true }, get_schema());
+               datastream()->set({ "system_schema", true }, get_schema());
 
             }
 
@@ -2114,14 +2115,14 @@ namespace apex
 
                str = payload("schema").stra()[0];
 
-               data_set({ "system_schema", true }, str);
+               datastream()->set({ "system_schema", true }, str);
 
-               data_set({ "schema", true }, str);
+               datastream()->set({ "schema", true }, str);
 
                set_schema(str, ::e_source_database);
 
             }
-            else if (data_get({ "schema", true }, str))
+            else if (datastream()->get({ "schema", true }, str))
             {
 
                if (str.has_char())
@@ -2805,56 +2806,12 @@ namespace apex
    }
 
 
-   void     application::run()
+   void application::run()
    {
-
-      //if (is_system())
-      //{
-
-
-
-      //}
 
       return ::thread::run();
 
    }
-
-
-   //bool application::safe_is_running()
-   //{
-   //
-   //bool bRunning = false;
-   //
-   //try
-   //{
-   //
-   //if (is_running())
-   //{
-   //
-   //bRunning = true;
-   //
-   //}
-   //
-   //}
-   //catch (...)
-   //{
-   //
-   //bRunning = false;
-   //
-   //}
-   //
-   //
-   //return bRunning;
-   //
-   //}
-
-
-   //service * application::get_service()
-   //{
-
-   //   return m_pservicehanlder->m_pservice;
-
-   //}
 
 
    ::pointer<::service>application::create_service()
@@ -2865,56 +2822,8 @@ namespace apex
    }
 
 
-
-   //void application::os_create_service()
-   //{
-
-   //   return m_pcontext->m_papexcontext->os().create_service();
-
-   //}
-
-
-   //void application::os_erase_service()
-   //{
-
-   //   return m_pcontext->m_papexcontext->os().erase_service();
-
-   //}
-
-
-   //void application::os_start_service()
-   //{
-
-   //   return m_pcontext->m_papexcontext->os().start_service();
-
-   //}
-
-
-   //void application::os_stop_service()
-   //{
-
-   //   return m_pcontext->m_papexcontext->os().stop_service();
-
-   //}
-
-
-   //void application::on_update_matter_locator()
-   //{
-
-
-
-   //}
-
    void application::process_init()
    {
-
-
-      //if(::get_global_application() == nullptr)
-      //{
-
-      //   set_global_application(this);
-
-      //}
 
       string_array stra;
 
@@ -2925,19 +2834,6 @@ namespace apex
       m_strDomain = stra.slice(1).implode("/");
 
       add_matter_locator(this);
-
-
-      //if (is_system() || is_session())
-      //{
-
-      //   on_update_matter_locator();
-
-      //}
-      //else
-      //{
-
-
-      //}
 
       auto psystem = get_system()->m_papexsystem;
 
@@ -7232,7 +7128,7 @@ namespace apex
    //bool application::app_data_get(::const ::atom & atom, stream & stream)
    //{
 
-   //   return data_get(atom, stream);
+   //   return datastream()->get(atom, stream);
 
    //}
 
@@ -7240,7 +7136,7 @@ namespace apex
    //bool application::app_data_set(::const ::atom & atom, ::object & obj)
    //{
 
-   //   return data_set(atom, obj);
+   //   return datastream()->set(atom, obj);
 
    //}
 
@@ -7248,7 +7144,7 @@ namespace apex
    //bool application::app_data_get(::const ::atom & atom, ::object & obj)
    //{
 
-   //   return data_get(atom, obj);
+   //   return datastream()->get(atom, obj);
 
    //}
 

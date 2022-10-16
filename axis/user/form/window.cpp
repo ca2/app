@@ -481,7 +481,7 @@ namespace user
 
             iptr_array ia;
 
-            //pinteraction->data_get(pdescriptor->m_datakey, ia);
+            //pinteraction->datastream()->get(pdescriptor->m_datakey, ia);
 
             ::pointer<check>pcheck = ptopic->user_interaction();
 
@@ -498,7 +498,7 @@ namespace user
 
             }
 
-            //pinteraction->data_get(pdescriptor->m_datakey, ia);
+            //pinteraction->datastream()->get(pdescriptor->m_datakey, ia);
 
          }
 
@@ -567,7 +567,7 @@ namespace user
       iptr_array ia;
       //try
       //{
-      //   pinteraction->data_get(pinteraction->m_datakey, ia);
+      //   pinteraction->datastream()->get(pinteraction->m_datakey, ia);
 
       //}
       //catch(...)
@@ -599,7 +599,7 @@ namespace user
          return;
       ASSERT(pinteraction->get_control_type() == e_control_type_check_box);
       //i32 i;
-      //if(data_get(pinteraction->m_datakey, i))
+      //if(datastream()->get(pinteraction->m_datakey, i))
       //{
       //   /* linux      ::user::button * pbutton = (::user::button *) get_child_by_id(pinteraction->m_atom);
       //         pbutton->SetCheck((i != 0) ? 1 : 0); */
@@ -651,7 +651,7 @@ namespace user
 
             }
 
-            //if(data_get(pinteraction->m_datakey + item.m_datakey, payload))
+            //if(datastream()->get(pinteraction->m_datakey + item.m_datakey, payload))
             //{
 
             //   switch(payload.get_type())
@@ -693,7 +693,7 @@ namespace user
             {
                ::user::simple_mesh_data * pdata = dynamic_cast < ::user::simple_mesh_data * > (plist->GetDataInterface());
                string_array stra;
-               data_get(pinteraction->m_dataid, stra);
+               datastream()->get(pinteraction->m_dataid, stra);
                ASSERT(plist != nullptr);
                pdata->set_data(plist, stra);
             }*/
@@ -741,7 +741,7 @@ namespace user
 
       //i32 i;
 
-      //if(!data_get(pinteraction->m_datakey, i))
+      //if(!datastream()->get(pinteraction->m_datakey, i))
       //   return false;
 
 //      bData = (i != 0) ? 1 : 0;
@@ -764,7 +764,7 @@ namespace user
       }
 
       //i32 i = bData ? 1 : 0;
-      //data_set(pinteraction->m_datakey, i);
+      //datastream()->set(pinteraction->m_datakey, i);
       return true;
 
    }
@@ -1285,7 +1285,7 @@ namespace user
 
    //         iptr_array ia;
 
-   //         //pinteraction->data_get(pdescriptor->m_datakey, ia);
+   //         //pinteraction->datastream()->get(pdescriptor->m_datakey, ia);
 
    //         ::pointer<check>pcheck = ptopic->user_interaction();
 
@@ -1302,7 +1302,7 @@ namespace user
 
    //         }
 
-   //         //pinteraction->data_get(pdescriptor->m_datakey, ia);
+   //         //pinteraction->datastream()->get(pdescriptor->m_datakey, ia);
 
    //      }
 

@@ -140,50 +140,50 @@ void element::set_library_name(const char* pszLibraryName)
 //}
 
 
-void element::add_composite(::element * pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   //throw ::not_implemented();
-
-   pelement->increment_reference_count();
-
-   //return ::success;
-
-   //return ::error_not_implemented;
-
-}
-
-
-void element::add_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   //return ::success_none;
-
-}
-
-
-void element::release_composite2(::element * pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   //return ::success_none;
-
-}
-
-
-void element::finalize_composite(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   //return ::success_none;
-
-}
-
-
-void element::release_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
-{
-
-   //return ::success_none;
-
-}
+//void element::add_composite(::element * pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   //throw ::not_implemented();
+//
+//   pelement->increment_reference_count();
+//
+//   //return ::success;
+//
+//   //return ::error_not_implemented;
+//
+//}
+//
+//
+//void element::add_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   //return ::success_none;
+//
+//}
+//
+//
+//void element::release_composite2(::element * pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   //return ::success_none;
+//
+//}
+//
+//
+//void element::finalize_composite(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   //return ::success_none;
+//
+//}
+//
+//
+//void element::release_reference(::element* pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   //return ::success_none;
+//
+//}
 
 
 ::element* element::get_taskpool_container()
@@ -320,20 +320,20 @@ void element::destroy_os_data()
 
 
 
-void element::write(::binary_stream & stream) const
-{
-
-   throw interface_only();
-
-}
-
-
-void element::read(::binary_stream & stream)
-{
-
-   throw interface_only();
-
-}
+//void element::write(::binary_stream < FILE > & stream) const
+//{
+//
+//   throw interface_only();
+//
+//}
+//
+//
+//void element::read(::binary_stream < FILE > & stream)
+//{
+//
+//   throw interface_only();
+//
+//}
 
 
 

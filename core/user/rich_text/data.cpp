@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "data.h"
 #include "edit_impl.h"
 #include "format.h"
@@ -9,6 +9,7 @@
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/draw2d/brush.h"
+#include "acme/primitive/collection/_array_binary_stream.h"
 
 
 namespace user
@@ -2135,34 +2136,34 @@ namespace user
       }
 
 
-      void data::write(::binary_stream & stream) const
-      {
+      //void data::write(::binary_stream < FILE > & stream) const
+      //{
 
-         synchronous_lock synchronouslock(mutex());
+      //   synchronous_lock synchronouslock(mutex());
 
-         stream << m_pformata;
+      //   stream << m_pformata;
 
-         stream << m_spana;
+      //   stream << m_spana;
 
-      }
+      //}
 
 
-      void data::read(::binary_stream & stream)
-      {
+      //void data::read(::binary_stream < FILE > & stream)
+      //{
 
-         synchronous_lock synchronouslock(mutex());
+      //   synchronous_lock synchronouslock(mutex());
 
-         m_plinea->erase_all();
+      //   m_plinea->erase_all();
 
-         m_pformata->erase_all();
+      //   m_pformata->erase_all();
 
-         m_spana.erase_all();
+      //   m_spana.erase_all();
 
-         stream >> m_pformata;
+      //   stream >> m_pformata;
 
-         stream >> m_spana;
+      //   stream >> m_spana;
 
-      }
+      //}
 
 
       void data::draw_text(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectangleBox)

@@ -451,6 +451,12 @@ namespace user
    }
 
 
+   void interaction::set_restored_rectangle(const ::rectangle_i32 & rectangleRestored)
+   {
+
+   }
+
+
    void interaction::set_position(const ::point_i32 & point, enum_layout elayout)
    {
 
@@ -14839,6 +14845,8 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
             {
 
                place(rectangleNew);
+
+               set_restored_rectangle(rectangleNew);
 
             }
             else

@@ -624,7 +624,7 @@ namespace user
 
       //      ::str().begins_eat_ci(strImpact, "frame::");
 
-      //      pdataclient->data_set("frame::" + strImpact + ".visible", bShow);
+      //      pdataclient->datastream()->set("frame::" + strImpact + ".visible", bShow);
 
       //   }
 
@@ -654,7 +654,7 @@ namespace user
 
       //      ::str().begins_eat_ci(strImpact, "frame::");
 
-      //      pdataclient->data_set("frame::" + strImpact + ".visible", bShow);
+      //      pdataclient->datastream()->set("frame::" + strImpact + ".visible", bShow);
 
       //   }
 
@@ -684,7 +684,7 @@ namespace user
 
       //      ::str().begins_eat_ci(strImpact, "frame::");
 
-      //      pdataclient->data_set("frame::" + strImpact + ".visible", bShow);
+      //      pdataclient->datastream()->set("frame::" + strImpact + ".visible", bShow);
       //
       //   }
 
@@ -714,7 +714,7 @@ namespace user
 
             ::str().begins_eat_ci(strImpact, "frame::");
 
-            pdataclient->data_set("frame::" + strImpact + ".visible", bShow);
+            pdataclient->datastream()->set("frame::" + strImpact + ".visible", bShow);
 
          }
 

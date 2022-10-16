@@ -777,8 +777,8 @@ public:
 
    }
 
-   template < typename VAR >
-   inline array_base & operator = (const class ::payload_type < VAR > & a);
+   //template < typename VAR >
+   //inline array_base & operator = (const class ::payload_type < VAR > & a);
 
 
    template < typename PRED >
@@ -924,6 +924,24 @@ public:
       return this->operator[](nIndex% this->get_size());
 
    }
+
+
+   bool is_version(index i)
+   {
+
+      return true;
+
+      //if (!m_pvarOptions)
+      //{
+
+      //   return i <= 0;
+
+      //}
+
+      //return i <= options()["version"].i32();
+
+   }
+
 
 };
 

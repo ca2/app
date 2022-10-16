@@ -1,6 +1,8 @@
 ﻿#include "framework.h" 
 #include "socket.h"
+#include "acme/filesystem/file/memory_file.h"
 #define HEAVY_HTTP_LOG 0
+
 
 namespace sockets
 {

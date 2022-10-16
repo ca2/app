@@ -1,31 +1,30 @@
 ﻿#include "framework.h"
-#include "acme/platform/timer.h"
-#include "aura/graphics/image/list.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
-#include "aura/user/menu/command.h"
+#include "context_menu.h"
+#include "data.h"
+#include "document.h"
 #include "file_list.h"
+#include "acme/platform/timer.h"
+#include "acme/primitive/collection/_array_binary_stream.h"
+#include "apex/database/_binary_stream.h"
+#include "aura/graphics/image/list.h"
+#include "aura/message/user.h"
+#include "aura/user/user/frame.h"
+#include "aura/user/user/copydesk.h"
+#include "aura/user/user/button.h"
+#include "aura/user/user/plain_edit.h"
+#include "aura/user/user/window_util.h"
+#include "aura/user/menu/command.h"
+#include "aura/user/user/shell.h"
+#include "base/user/menu/menu.h"
+#include "base/user/menu/item.h"
+#include "base/user/menu/item_ptra.h"
 #include "core/filesystem/userfs/list_data.h"
 #include "core/filesystem/userfs/list_item.h"
 #include "core/filesystem/userfs/list_item_array.h"
 #include "core/user/user/user.h"
-#include "data.h"
-#include "document.h"
-#include "context_menu.h"
 #include "core/user/user/list_column.h"
-#include "aura/user/user/shell.h"
-#include "aura/message/user.h"
 #include "core/platform/application.h"
 #include "core/platform/session.h"
-#include "base/user/menu/menu.h"
-#include "aura/user/user/frame.h"
-#include "aura/user/user/copydesk.h"
-#include "base/user/menu/item.h"
-#include "base/user/menu/item_ptra.h"
-#include "aura/user/user/button.h"
-#include "aura/user/user/plain_edit.h"
-#include "aura/user/user/window_util.h"
 
 
 namespace filemanager
@@ -1035,7 +1034,7 @@ namespace filemanager
 
          auto pcontext = get_context();
 
-         papp->data_get(filemanager_data()->m_dataidStatic, stra);
+         papp->datastream()->get(filemanager_data()->m_dataidStatic, stra);
 
          synchronous_lock lock(fs_list()->mutex());
 
@@ -1086,7 +1085,7 @@ namespace filemanager
 
       string_array straStrictOrder;
 
-//      papp->data_get(data_get_current_sort_id() + "." +  data_get_current_list_layout_id() + ".straStrictOrder", straStrictOrder);
+//      papp->datastream()->get(data_get_current_sort_id() + "." +  data_get_current_list_layout_id() + ".straStrictOrder", straStrictOrder);
 
       index_biunique iaDisplayToStrict;
 
@@ -1094,7 +1093,7 @@ namespace filemanager
 
       __construct_new(piconlayout);
 
-//      papp->data_get(data_get_current_sort_id() + "." + data_get_current_list_layout_id(), piconlayout);
+//      papp->datastream()->get(data_get_current_sort_id() + "." + data_get_current_list_layout_id(), piconlayout);
 
       iaDisplayToStrict = piconlayout->m_iaDisplayToStrict;
 
@@ -1244,7 +1243,7 @@ namespace filemanager
       }*/
       //if (m_eview == impact_icon)
       //{
-         //papp->data_set(data_get_current_sort_id() + "." + data_get_current_list_layout_id() + ".straStrictOrder", m_pathaStrictOrder);
+         //papp->datastream()->set(data_get_current_sort_id() + "." + data_get_current_list_layout_id() + ".straStrictOrder", m_pathaStrictOrder);
          //m_piconlayout->m_iaDisplayToStrict = iaDisplayToStrictNew;
          //data_set_DisplayToStrict();
       //}
@@ -2021,7 +2020,9 @@ namespace filemanager
 
          ::file::path_array filepatha;
 
-         filepatha.add(papp->data_get(filemanager_data()->m_dataidStatic).stra());
+         papp->datastream()->get(filemanager_data()->m_dataidStatic, filepatha);
+
+         //filepatha.add().stra());
 
          ::file::path filepath = filemanager_item()->user_path();
 
@@ -2037,7 +2038,7 @@ namespace filemanager
 
                ::papaya::array::copy(stra, filepatha);
 
-               papp->data_set(filemanager_data()->m_dataidStatic, stra);
+               papp->datastream()->set(filemanager_data()->m_dataidStatic, stra);
 
                add_fs_item(filemanager_item()->user_path(),
                   filemanager_item()->final_path(), filemanager_item()->user_path().name());

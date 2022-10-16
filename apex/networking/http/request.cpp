@@ -1,6 +1,7 @@
-#include "framework.h" 
+﻿#include "framework.h" 
 #include "apex/id.h"
 #include "apex/networking/sockets/_.h"
+#include "acme/filesystem/file/memory_file.h"
 
 
 namespace http
@@ -8,7 +9,7 @@ namespace http
 
 
    request::request() :
-      m_ostream(&m_memfileBody)
+      m_ostream(m_pmemfileBody=__new(memory_file))
    {
 
    }
@@ -17,10 +18,8 @@ namespace http
    request::request(const request& src) :
       transaction(src),
       m_null(src.m_null),
-      m_ostream(&m_memfileBody)
+      m_ostream(m_pmemfileBody=src.m_pmemfileBody)
    {
-
-      m_memfileBody = src.m_memfileBody;
 
    }
 
@@ -46,7 +45,7 @@ namespace http
    void request::InitBody( memsize sz )
    {
       __UNREFERENCED_PARAMETER(sz);
-      m_memfileBody.set_size(0);
+      m_pmemfileBody->set_size(0);
       /*if (!m_file.get())
          m_file = ::pointer<IFile>e>(memory_new MemFile);
       DEBUG_ONLY(   else
@@ -57,7 +56,7 @@ namespace http
    // --------------------------------------------------------------------------------------
    void request::write( const char *buf, memsize sz )
    {
-      m_memfileBody.write(buf, sz);
+      m_pmemfileBody->write(buf, sz);
    }
 
 
@@ -89,9 +88,9 @@ namespace http
          // skip following POST processing below
          return;
       }
-      if(m_memfileBody.get_size() > 0)
+      if(m_pmemfileBody->get_size() > 0)
       {
-         m_form.parse_body(&m_memfileBody, ContentType(), ContentLength());
+         m_form.parse_body(m_pmemfileBody, ContentType(), ContentLength());
       }
       m_form.request().merge(m_form.post());
    }
@@ -115,7 +114,7 @@ namespace http
       //   m_file = ::pointer<IFile>e>(nullptr);
       m_form.clear();
       m_cookies.erase_all();
-      file().set_size(0);
+      file()->set_size(0);
    }
 
 

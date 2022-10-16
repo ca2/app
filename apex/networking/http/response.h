@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace http
@@ -21,11 +21,11 @@ namespace http
 
       response& operator=(const response& src);
 
-      ::file::file * file() { return m_pmemfileBody; }
+      ::memory_file * file() { return m_pmemfileBody; }
       
-      void print(const ::string & str) { m_pmemfileBody->print(str); }
-      void println(const::string & str) { m_pmemfileBody->println(str); }
-      void printf(const char * psz, ...);
+      //void print(const ::string & str) { m_pmemfileBody->print(str); }
+      //void println(const::string & str) { m_pmemfileBody->println(str); }
+      //void printf(const char * psz, ...);
 
       void clear();
       

@@ -281,10 +281,11 @@
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <EnableModules>false</EnableModules>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <AdditionalOptions>/bigobj</AdditionalOptions>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -541,6 +542,7 @@
     <ClInclude Include="platform\openweather_city.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\system.h" />
+    <ClInclude Include="platform\_binary_stream.h" />
     <ClInclude Include="user\form\control.h" />
     <ClInclude Include="user\form\data.h" />
     <ClInclude Include="user\form\window.h" />

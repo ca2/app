@@ -1,5 +1,6 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "client_socket.h"
+#include "acme/filesystem/file/memory_file.h"
 
 
 #define HEAVY_HTTP_LOG 0
@@ -297,11 +298,11 @@ namespace sockets
 
       http_tunnel::OnHeaderComplete();
 
-      m_memoryfile.set_size(0);
+      m_pmemoryfile->set_size(0);
 
       if(m_content_length != ((memsize) (-1)))
       {
-         m_memoryfile.allocate_internal(m_content_length);
+         m_pmemoryfile->allocate_internal(m_content_length);
 
          if(outheader(__id(content_encoding)).compare_ci("gzip") != 0
                && (m_response.attr(__id(http_status_code)) < 300 || m_response.attr(__id(http_status_code)) >= 400))
@@ -313,7 +314,7 @@ namespace sockets
 
       }
 
-      m_memoryfile.seek_to_begin();
+      m_pmemoryfile->seek_to_begin();
 
 #ifdef WINRT_SOCKETS
 
@@ -351,13 +352,13 @@ namespace sockets
       if (strContentEncoding.compare_ci("gzip") == 0)
       {
 
-         memory_file memoryfile;
+         auto pmemoryfile = create_memory_file();
 
-         m_memoryfile.seek_to_begin();
+         m_pmemoryfile->seek_to_begin();
 
-         m_psystem->uncompress(&memoryfile, &m_memoryfile, "zlib");
+         m_psystem->uncompress(pmemoryfile, m_pmemoryfile, "zlib");
 
-         m_memoryfile = memoryfile;
+         m_pmemoryfile = pmemoryfile;
 
       }
 
@@ -366,7 +367,7 @@ namespace sockets
       if(m_pfile != nullptr && (iStatusCode < 300 || iStatusCode >= 400))
       {
 
-         m_pfile->write(m_memoryfile.get_data(), (memsize) m_memoryfile.get_size());
+         m_pfile->write(m_pmemoryfile->get_data(), (memsize) m_pmemoryfile->get_size());
 
 #if HEAVY_HTTP_LOG
          
@@ -428,7 +429,7 @@ namespace sockets
          else
          {
 
-            m_memoryfile.write(buf,len);
+            m_pmemoryfile->write(buf,len);
 
          }
 
@@ -436,7 +437,7 @@ namespace sockets
       else
       {
 
-         m_memoryfile.write(buf,len);
+         m_pmemoryfile->write(buf,len);
 
       }
 
@@ -494,13 +495,13 @@ namespace sockets
       if(m_content_length == ((memsize)-1))
       {
 
-         return (memsize)m_memoryfile.get_size();
+         return (memsize)m_pmemoryfile->get_size();
 
       }
       else
       {
 
-         return (memsize)m_memoryfile.get_size();
+         return (memsize)m_pmemoryfile->get_size();
 
       }
 
@@ -529,7 +530,7 @@ namespace sockets
    const unsigned char *http_client_socket::GetDataPtr() const
    {
 
-      return m_memoryfile.get_data();
+      return m_pmemoryfile->get_data();
 
    }
 
@@ -537,7 +538,7 @@ namespace sockets
    memsize http_client_socket::GetDataLength() const
    {
 
-      return (memsize)m_memoryfile.get_size();
+      return (memsize)m_pmemoryfile->get_size();
 
    }
 

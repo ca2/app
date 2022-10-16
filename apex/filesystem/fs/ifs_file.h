@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "apex/networking/sockets/http_batch_buffer.h"
@@ -11,13 +11,13 @@ class CLASS_DECL_APEX ifs_file :
 public:
 
 
-   ::memory_file                        m_httpfile;
-   ::memory_file                        m_memfile;
-   ::payload                                          m_payloadFile;
+   ::memory_file_pointer            m_phttpfile;
+   ::memory_file_pointer            m_pmemfile;
+   ::payload                        m_payloadFile;
 
 
    ifs_file(::payload payloadFile);
-   virtual ~ifs_file();
+   ~ifs_file() override;
 
    using ::sockets::http_batch_buffer::read;
    virtual memsize read(void *pdata, memsize nCount) override;

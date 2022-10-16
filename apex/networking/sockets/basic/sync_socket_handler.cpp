@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "sync_socket_handler.h"
+#include "acme/filesystem/file/memory_file.h"
 
 
 namespace sockets
@@ -50,11 +51,12 @@ namespace sockets
       if(m_psocket == psocket)
       {
 
-         m_file.write(pdata, len);
+         m_pmemoryfile->write(pdata, len);
 
       }
 
    }
+
 
    void sync_socket_handler::write(string &str)
    {
@@ -77,14 +79,14 @@ namespace sockets
 
       return -1;
 
-      //while(less_than(m_file.get_size(), len) && m_phandler->get_count() > 0)
+      //while(less_than(m_pmemoryfile->get_size(), len) && m_phandler->get_count() > 0)
       //{
 
       //   m_phandler->select(8, 0);
 
       //}
 
-      //return (i32) m_file.erase_begin(pdata, len);
+      //return (i32) m_pmemoryfile->erase_begin(pdata, len);
 
    }
 
@@ -92,7 +94,7 @@ namespace sockets
    void sync_socket_handler::read_full_string(string & str)
    {
 
-      str = ((::file::file &)m_file).as_string();
+      str = m_pmemoryfile->as_string();
 
    }
 
@@ -101,7 +103,7 @@ namespace sockets
    {
       string str;
       char ch;
-      while(m_file.read(&ch, 1) > 0)
+      while(m_pmemoryfile->read(&ch, 1) > 0)
       {
          if(ch == '\0')
          {
@@ -110,7 +112,7 @@ namespace sockets
          str += ch;
          if(ch == '\r' || ch == '\n')
          {
-            if(m_file.read(&ch, 1) <= 0)
+            if(m_pmemoryfile->read(&ch, 1) <= 0)
                break;
             if(ch == '\r' || ch == '\n')
             {
@@ -119,7 +121,7 @@ namespace sockets
             }
             else
             {
-               --m_file.position();
+               --m_pmemoryfile->position();
                return str;
             }
          }

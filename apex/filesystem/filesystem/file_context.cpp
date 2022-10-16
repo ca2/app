@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/filesystem/file/memory_file.h"
 #include "apex/operating_system.h"
 #include "apex/crypto/crypto.h"
 #include "apex/crypto/hasher.h"
@@ -1005,6 +1006,8 @@ void file_context::get_lines(string_array &stra, const ::payload &payloadFile, b
 
    }
 
+   pfile = create_memory_file_by_reading(pfile);
+
    string strLine;
 
    while (pfile->read_string(strLine))
@@ -1550,13 +1553,13 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
       }
 
-      file_pointer ofile;
+      file_pointer pfileOutput;
 
-      ofile = get_file(varNew,
+      pfileOutput = get_file(varNew,
                        ::file::e_open_write | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_defer_create_directory |
                        ::file::e_open_share_deny_write);
 
-      if (!::is_ok(ofile))
+      if (::nok(pfileOutput))
       {
          string strError;
          strError.format("Failed to copy file \"%s\" to \"%s\" bFailIfExists=%d error=could not open output file",
@@ -1581,11 +1584,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
             throw ::exception(::error_io, strError);
          }
 
-         binary_stream ostream(ofile);
-
-         //stream istream(ifile, FIRST_VERSION);
-
-         m_pcontext->m_papexcontext->file().transfer(ostream.m_p, pfileInput);
+         m_pcontext->m_papexcontext->file().transfer(pfileOutput, pfileInput);
 
          bool bStatusFail = false;
 
@@ -1629,7 +1628,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
          try
          {
-            ofile->flush();
+            pfileOutput->flush();
          }
          catch (...)
          {
@@ -1637,7 +1636,7 @@ void file_context::copy(::payload varTarget, ::payload varSource, bool bFailIfEx
 
          try
          {
-            ofile->close();
+            pfileOutput->close();
          }
          catch (...)
          {

@@ -43,8 +43,8 @@ namespace user
 
          virtual void initialize_user_rich_text_format(pointer_array < format >* pcontainer);
 
-         void write(::binary_stream & stream) const override;
-         void read(::binary_stream & stream) override;
+         //void write(::binary_stream < FILE > & stream) const override;
+         //void read(::binary_stream < FILE > & stream) override;
 
 
          void apply(const format * pformat, const e_attribute & eattribute);

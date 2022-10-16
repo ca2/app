@@ -2713,7 +2713,8 @@ using memory_file_pointer = ::pointer<::memory_file>;
 
 using folder_pointer = ::pointer<::folder>;
 
-class binary_stream;
+
+
 
 
 //template<typename BASE_TYPE>
@@ -3663,10 +3664,10 @@ inline auto &__typed(::pointer<POINTER_TYPE>*pp) { return *pp->operator POINTER_
 #include "acme/filesystem/file/streamable_composite.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/file/stream.h"
-#include "acme/filesystem/file/binary_stream.h"
+//#include "acme/filesystem/file/binary_stream.h"
 #include "acme/filesystem/file/payload_stream.h"
 #include "acme/filesystem/file/string_buffer.h"
-#include "acme/filesystem/file/text_stream.h"
+//#include "acme/filesystem/file/text_stream.h"
 
 
 //#include "acme/filesystem/filesystem/acme_directory.h"
@@ -3825,7 +3826,7 @@ namespace acme
 #include "acme/primitive/primitive/memory_container.h"
 
 
-#include "acme/filesystem/file/memory_file.h"
+//#include "acme/filesystem/file/memory_file.h"
 //#include "acme/filesystem/file/circular_file.h"
 
 

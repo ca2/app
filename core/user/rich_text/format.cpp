@@ -322,7 +322,7 @@ namespace user
       
 
 
-      //void format::write(::binary_stream & stream) const
+      //void format::write(::binary_stream < FILE > & stream) const
       //{
 
       //   stream.exchange("italic", m_bItalic);
@@ -338,34 +338,6 @@ namespace user
 
 
 
-      void format::write(::binary_stream & stream) const
-      {
-
-         stream << m_bItalic;
-         stream << m_bUnderline;
-         stream << m_strFontFamily;
-         stream << m_dFontSize;
-         stream << (u32) m_colorForeground;
-         stream << (u32)m_colorBackground;
-         stream << (i32)m_escript;
-         stream << (i32)m_elineheight;
-
-      }
-
-
-      void format::read(::binary_stream & stream)
-      {
-
-         stream>>  m_bItalic;
-         stream>> m_bUnderline;
-         stream>> m_strFontFamily;
-         stream>> m_dFontSize;
-         stream>> (u32 &)m_colorForeground;
-         stream>> (u32 &)m_colorBackground;
-         stream>> (i32 &)m_escript;
-         stream>> (i32 &)m_elineheight;
-
-      }
 
       //stream & format::write(::stream & stream) const
       //{

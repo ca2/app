@@ -2644,7 +2644,7 @@ namespace user
 
          ::payload payload;
 
-         //if(data_get("restore_tab",::payload))
+         //if(datastream()->get("restore_tab",::payload))
          //{
 
          //   c = open_tabs(payload.payloada());
@@ -3892,7 +3892,7 @@ namespace user
          //   {
 
 
-         //data_set("restore_tab", payloada);
+         //datastream()->set("restore_tab", payloada);
          //   }
          //}
          //else

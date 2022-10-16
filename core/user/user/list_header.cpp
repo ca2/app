@@ -1,12 +1,14 @@
-#include "framework.h"
-#include "aura/graphics/draw2d/pen.h"
-#include "aura/graphics/draw2d/item.h"
-#include "aura/graphics/image/drawing.h"
-#include "aura/message/user.h"
+﻿#include "framework.h"
 #include "list.h"
 #include "list_header.h"
 #include "list_column.h"
 #include "list_column_array.h"
+#include "acme/primitive/collection/_array_binary_stream.h"
+#include "apex/database/_binary_stream.h"
+#include "aura/graphics/draw2d/pen.h"
+#include "aura/graphics/draw2d/item.h"
+#include "aura/graphics/image/drawing.h"
+#include "aura/message/user.h"
 #include "aura/platform/application.h"
 
 
@@ -455,9 +457,9 @@ namespace user
 
          auto papp = get_app();
 
-         papp->data_set(datakey, iaWidth);
+         papp->datastream()->set(datakey, iaWidth);
 
-         //if (!papp->data_set(datakey, iaWidth))
+         //if (!papp->datastream()->set(datakey, iaWidth))
          //{
 
          //   return false;
@@ -470,7 +472,7 @@ namespace user
 
          auto papp = get_app();
 
-         if (papp->data_get(datakey, iaWidth))
+         if (papp->datastream()->get(datakey, iaWidth))
          {
 
             ::count c = minimum(iaWidth.get_count(), m_plist->_001GetColumnCount());

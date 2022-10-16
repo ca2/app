@@ -2923,7 +2923,7 @@ namespace aura
 ////      if(!pfile)
 ////         return false;
 ////
-////      ::binary_stream is(pfile);
+////      ::binary_stream < FILE > is(pfile);
 ////
 ////      is >> m_mapAppLibrary;
 ////

@@ -1,9 +1,9 @@
-#include "framework.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
+﻿#include "framework.h"
 #include "folder_list_data.h"
+#include "acme/primitive/collection/_array_binary_stream.h"
+#include "apex/database/_binary_stream.h"
 #include "core/user/user/list.h"
+
 
 
 namespace filemanager
@@ -82,7 +82,7 @@ namespace filemanager
 
          string_array stra;
 
-         if(!data_get(::atom(), stra))
+         if(!datastream()->get(::atom(), stra))
          {
 
             psubitem->m_bOk = false;
@@ -113,7 +113,7 @@ namespace filemanager
 
       string_array wstraTotal;
 
-      if (!data_get(::atom(), wstraTotal))
+      if (!datastream()->get(::atom(), wstraTotal))
       {
 
          return;
@@ -153,7 +153,7 @@ namespace filemanager
 
       string_array straTotal;
 
-      if (!data_get(::atom(), straTotal))
+      if (!datastream()->get(::atom(), straTotal))
       {
 
          return 0;
@@ -172,7 +172,7 @@ namespace filemanager
 
       string_array straFolderPath;
 
-      data_get(::atom(), straFolderPath);
+      datastream()->get(::atom(), straFolderPath);
 
       for (i32 i = 0; i < stra.get_count(); i++)
       {
@@ -186,9 +186,9 @@ namespace filemanager
 
       }
 
-      data_set(::atom(), straFolderPath);
+      datastream()->set(::atom(), straFolderPath);
 
-      //if (!data_set(::atom(), straFolderPath))
+      //if (!datastream()->set(::atom(), straFolderPath))
       //{
 
       //   return false;
@@ -207,11 +207,11 @@ namespace filemanager
 
       string_array straFolderPath;
 
-      data_get(::atom(), straFolderPath);
+      datastream()->get(::atom(), straFolderPath);
 
       i32_array iaRecursive;
 
-      data_get("recursive", iaRecursive);
+      datastream()->get("recursive", iaRecursive);
 
       for(i32 i = 0; i < stra.get_count(); i++)
       {
@@ -236,9 +236,9 @@ namespace filemanager
 
       }
 
-      data_set(::atom(), straFolderPath);
+      datastream()->set(::atom(), straFolderPath);
 
-      //if (!data_set(::atom(), straFolderPath))
+      //if (!datastream()->set(::atom(), straFolderPath))
       //{
 
       //   return false;
@@ -248,7 +248,7 @@ namespace filemanager
       try
       {
 
-         data_set("recursive", iaRecursive);
+         datastream()->set("recursive", iaRecursive);
 
       }
       catch(...)
@@ -270,7 +270,7 @@ namespace filemanager
 
       string_array straFolderPath;
 
-      if (!data_get(::atom(), straFolderPath))
+      if (!datastream()->get(::atom(), straFolderPath))
       {
 
          return true;
@@ -279,7 +279,7 @@ namespace filemanager
 
       i32_array iaRecursive;
 
-      data_get("recursive", iaRecursive);
+      datastream()->get("recursive", iaRecursive);
 
       index iFind;
 
@@ -316,9 +316,9 @@ namespace filemanager
 
       }
 
-      data_set(::atom(), straFolderPath);
+      datastream()->set(::atom(), straFolderPath);
 
-      //if (!data_set(::atom(), straFolderPath))
+      //if (!datastream()->set(::atom(), straFolderPath))
       //{
 
       //   return false;
@@ -328,7 +328,7 @@ namespace filemanager
       try
       {
 
-         data_set("recursive", iaRecursive);
+         datastream()->set("recursive", iaRecursive);
 
       }
       catch(...)
@@ -351,7 +351,7 @@ namespace filemanager
       try
       {
 
-         data_get("recursive", iaRecursive);
+         datastream()->get("recursive", iaRecursive);
 
       }
       catch (...)
@@ -364,7 +364,7 @@ namespace filemanager
       try
       {
 
-         data_set("recursive", iaRecursive);
+         datastream()->set("recursive", iaRecursive);
 
       }
       catch (...)
@@ -389,7 +389,7 @@ namespace filemanager
       try
       {
 
-         data_get("recursive", iaRecursive);
+         datastream()->get("recursive", iaRecursive);
 
       }
       catch (...)

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "acme/operating_system/error_code.h"
@@ -52,6 +52,8 @@ public:
 
 
    virtual string get_message() const;
+
+   virtual string get_title() const;
    
    virtual string get_consolidated_details() const;
       

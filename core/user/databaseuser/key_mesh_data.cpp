@@ -1,7 +1,8 @@
 ﻿#include "framework.h"
-//#include "core/user/databaseuser/_databaseuser.h"
-#include "core/user/user/list.h"
 #include "key_mesh_data.h"
+#include "acme/primitive/collection/_array_binary_stream.h"
+#include "apex/database/_binary_stream.h"
+#include "core/user/user/list.h"
 
 
 namespace databaseuser
@@ -34,7 +35,7 @@ namespace databaseuser
 
       string_array stra;
 
-      if (!data_get(::atom(), stra))
+      if (!datastream()->get(::atom(), stra))
       {
 
          return_(psubitem->m_bOk, false)
@@ -53,7 +54,7 @@ namespace databaseuser
       
       string_array wstraTotal;
 
-      if (!data_get(::atom(), wstraTotal))
+      if (!datastream()->get(::atom(), wstraTotal))
       {
 
          return;
@@ -77,7 +78,7 @@ namespace databaseuser
    ::count data_key_mesh_data::_001GetItemCount()
    {
       string_array straTotal;
-      if(!data_get(::atom(), straTotal))
+      if(!datastream()->get(::atom(), straTotal))
          return -1;
       return straTotal.get_size();
    }
@@ -86,10 +87,10 @@ namespace databaseuser
    bool data_key_mesh_data::add_unique(const string_array & stra)
    {
       string_array straData;
-      data_get(::atom(), straData);
+      datastream()->get(::atom(), straData);
       straData.append_unique(stra);
-      data_set(::atom(), straData);
-      //if(!data_set(::atom(), straData))
+      datastream()->set(::atom(), straData);
+      //if(!datastream()->set(::atom(), straData))
          //return false;
       return true;
    }
@@ -97,10 +98,10 @@ namespace databaseuser
    bool data_key_mesh_data::erase(const string_array & stra)
    {
       string_array straData;
-      if(!data_get(::atom(), straData))
+      if(!datastream()->get(::atom(), straData))
          return true;
       straData.erase(stra);
-      data_set(::atom(), straData);
+      datastream()->set(::atom(), straData);
          //return false;
       return true;
    }

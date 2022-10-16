@@ -1,9 +1,10 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "base_socket.h"
 #include "apex/networking/sockets/_sockets.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/primitive/string/base64.h"
+#include "acme/filesystem/file/memory_file.h"
 
 
 namespace sockets
@@ -521,7 +522,7 @@ namespace sockets
             if (bMd5Request)
             {
 
-               response().print(m_pcontext->m_papexcontext->file().md5(pcsz));
+               response().file()->print(m_pcontext->m_papexcontext->file().md5(pcsz));
 
                return true;
 
@@ -619,11 +620,11 @@ namespace sockets
 
                }
                
-               response().println("--THIS_STRING_SEPARATES\r\n");
+               response().file()->println("--THIS_STRING_SEPARATES\r\n");
                
-               response().println("Content-range: bytes " + __string(iStart) + "-" + __string(iEnd) + "/" + __string(iLen));
+               response().file()->println("Content-range: bytes " + __string(iStart) + "-" + __string(iEnd) + "/" + __string(iLen));
                
-               response().println("Content-Transfer-Encoding: base64");
+               response().file()->println("Content-Transfer-Encoding: base64");
 
                while (true)
                {
@@ -650,11 +651,11 @@ namespace sockets
 
                auto pbase64 = psystem->base64();
                
-               response().println(pbase64->encode(*pfile->get_memory()));
+               response().file()->println(pbase64->encode(*pfile->get_memory()));
 
             }
             
-            response().println("--THIS_STRING_SEPARATES--\r\n");
+            response().file()->println("--THIS_STRING_SEPARATES--\r\n");
             
             outheader(__id(content_type)) = "multipart/x-byteranges; boundary=THIS_STRING_SEPARATES";
 

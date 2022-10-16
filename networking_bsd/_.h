@@ -85,7 +85,7 @@ namespace networking_bsd
 CLASS_DECL_NETWORKING_BSD ::i32 networking_last_error();
 
 
-//inline void __exchange(::binary_stream & s, ::networking::address & address);
+//inline void __exchange(::binary_stream < FILE > & s, ::networking::address & address);
 
 
 //CLASS_DECL_NETWORKING_BSD u32 c_inet_addr(const char * src);

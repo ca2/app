@@ -1,4 +1,4 @@
-
+﻿
 #include "framework.h"
 #include <stdio.h>
 //#include "acme/xml/_.h"
@@ -30,7 +30,7 @@
 //}
 //
 //
-//void binary_stream::write_element(const ::atom & atom, ::element * pelement)
+//void binary_stream < FILE >::write_element(const ::atom & atom, ::element * pelement)
 //{
 //
 //   auto strId = factory_id_to_text(__type_name(pelement));
@@ -42,7 +42,7 @@
 //}
 //
 //
-//::pointer<::element>binary_stream::read_element(const ::atom & atom)
+//::pointer<::element>binary_stream < FILE >::read_element(const ::atom & atom)
 //{
 //
 //   string strId;
@@ -351,21 +351,6 @@
 //
 
 
-bool binary_stream::is_version(index i)
-{
-
-   return true;
-
-   //if (!m_pvarOptions)
-   //{
-
-   //   return i <= 0;
-
-   //}
-
-   //return i <= options()["version"].i32();
-
-}
 
 //void stream::write(const atom & atom)
 //{

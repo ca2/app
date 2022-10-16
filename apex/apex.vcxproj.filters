@@ -1190,6 +1190,12 @@
     <ClInclude Include="interprocess\_.h">
       <Filter>Header Files\interprocess</Filter>
     </ClInclude>
+    <ClInclude Include="database\_binary_stream.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="database\stream.h">
+      <Filter>Header Files\database</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filesystem\file\set.cpp">

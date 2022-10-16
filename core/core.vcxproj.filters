@@ -923,6 +923,18 @@
     <ClInclude Include="user\user\text_format_object.h">
       <Filter>Header Files\user\user</Filter>
     </ClInclude>
+    <ClInclude Include="filesystem\filehandler\_binary_stream.h">
+      <Filter>Header Files\filesystem\filehandler</Filter>
+    </ClInclude>
+    <ClInclude Include="filesystem\userfs\_binary_stream.h">
+      <Filter>Header Files\filesystem\userfs</Filter>
+    </ClInclude>
+    <ClInclude Include="user\rich_text\_binary_stream.h">
+      <Filter>Header Files\user\rich_text</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\_binary_stream.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="user\user\tooltip.cpp">

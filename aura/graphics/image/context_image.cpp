@@ -1,10 +1,12 @@
 ﻿#include "framework.h"
 #include "context_image.h"
-#include "aura/graphics/draw2d/draw2d.h"
 #include "icon.h"
 #include "frame_array.h"
 #include "save_image.h"
 #include "image.h"
+#include "acme/filesystem/file/binary_stream.h"
+#include "acme/filesystem/file/memory_file.h"
+#include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/windowing/icon.h"
 
@@ -726,7 +728,7 @@ void context_image::_load_dib(image * pimage, const ::file::path & pathDib)
 
       //}
 
-      ::binary_stream reader(pfile);
+      auto reader = __binary_stream(pfile);
 
       //read(reader);
 
@@ -809,7 +811,7 @@ void context_image::save_dib(const ::file::path & pathDib, const image * pimage)
       if (pfile)
       {
 
-         ::binary_stream writer(pfile);
+         //::binary_stream < FILE > writer(pfile);
 
          //write(writer);
 

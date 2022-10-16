@@ -5331,13 +5331,13 @@ namespace user
       if(m_eview == impact_icon)
       {
 
-         //data_get(data_get_current_sort_id() + "." + data_get_current_mesh_layout_id(),m_piconlayout);
+         //datastream()->get(data_get_current_sort_id() + "." + data_get_current_mesh_layout_id(),m_piconlayout);
 
       }
       else
       {
 
-         //data_get(data_get_current_sort_id() + "." + data_get_current_mesh_layout_id(),m_pmeshlayout);
+         //datastream()->get(data_get_current_sort_id() + "." + data_get_current_mesh_layout_id(),m_pmeshlayout);
 
       }
 
@@ -5348,11 +5348,11 @@ namespace user
    {
       if(m_eview == impact_icon)
       {
-         //data_set(data_get_current_sort_id() + "." + data_get_current_mesh_layout_id(),m_piconlayout);
+         //datastream()->set(data_get_current_sort_id() + "." + data_get_current_mesh_layout_id(),m_piconlayout);
       }
       else
       {
-         //data_set(data_get_current_sort_id() + "." + data_get_current_mesh_layout_id(),m_pmeshlayout);
+         //datastream()->set(data_get_current_sort_id() + "." + data_get_current_mesh_layout_id(),m_pmeshlayout);
       }
    }
 
@@ -6334,23 +6334,5 @@ namespace user
 
 
 } // namespace user
-
-
-binary_stream operator <<(binary_stream & s, const ::user::mesh::icon_layout & layout)
-{
-
-   return s << layout.m_iaDisplayToStrict;
-
-}
-
-
-binary_stream operator >>(binary_stream & s, ::user::mesh::icon_layout & layout)
-{
-
-   return s >> layout.m_iaDisplayToStrict;
-
-}
-
-
 
 

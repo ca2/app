@@ -1,5 +1,6 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "mesh_data.h"
+#include "apex/database/_binary_stream.h"
 
 
 namespace databaseuser
@@ -43,7 +44,7 @@ namespace databaseuser
       if (Map(psubitem->m_pitem->m_pmesh, key1, key2, psubitem->m_pitem->m_iItem, psubitem->m_iSubItem, -1))
       {
 
-         if(data_get(key1 + key2, psubitem->m_strText))
+         if(datastream()->get(key1 + key2, psubitem->m_strText))
          {
 
             return_(psubitem->m_bOk, true);

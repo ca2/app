@@ -44,7 +44,7 @@ namespace simpledb
 
       //}
 
-      set_data_server(pserver);
+      initialize_data_client(pserver);
 
 //      return estatus;
 

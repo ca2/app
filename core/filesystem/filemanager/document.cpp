@@ -1116,7 +1116,7 @@ namespace filemanager
 
          browse(path, ::e_source_initialize);
 
-//         if (get_file.data_get({true, "last_browse_folder"}, str))
+//         if (get_file.datastream()->get({true, "last_browse_folder"}, str))
 //         {
 //
 //            if (str == "machinefs://")
@@ -1136,7 +1136,7 @@ namespace filemanager
 //               idMachine = "iOS";
 //#endif
 //
-//               if (papp->data_get({true, "last_browse_folder." + __string(idMachine)}, str))
+//               if (papp->datastream()->get({true, "last_browse_folder." + __string(idMachine)}, str))
 //               {
 //
 //                  browse(str, ::e_source_database);

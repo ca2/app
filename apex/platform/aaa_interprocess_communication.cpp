@@ -326,7 +326,7 @@ string interprocess_intercommunication::str_from_va(const payload_array & payloa
 
    //memory_file memoryfile;
 
-   //binary_stream stream(&memoryfile);
+   //binary_stream < FILE > stream(&memoryfile);
 
    //stream << payloada;
 

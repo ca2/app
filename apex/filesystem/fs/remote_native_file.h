@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "apex/networking/sockets/http_batch_buffer.h"
@@ -14,13 +14,13 @@ namespace fs
    public:
 
 
-      ::memory_file            m_httpfile;
-      ::memory_file            m_memfile;
-      ::payload                              m_payloadFile;
+      ::memory_file_pointer      m_phttpfile;
+      ::memory_file_pointer      m_pmemfile;
+      ::payload                  m_payloadFile;
 
 
       remote_native_file(::payload payloadFile);
-      virtual ~remote_native_file();
+      ~remote_native_file() override;
 
       using ::sockets::http_batch_buffer::read;
       virtual memsize read(void *pdata, memsize nCount);

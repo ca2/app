@@ -1,4 +1,5 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "acme/filesystem/file/memory_file.h"
 #include "apex/networking/sockets/_sockets.h"
 #include "apex/filesystem/fs/_fs.h"
 #include "remote_native_file.h"
@@ -24,7 +25,7 @@ namespace fs
 
    {
 
-      return m_httpfile.read(pdata, nCount);
+      return m_phttpfile->read(pdata, nCount);
 
 
    }
@@ -34,7 +35,7 @@ namespace fs
 
    {
 
-      m_memfile.write(pdata, nCount);
+      m_pmemfile->write(pdata, nCount);
 
 
    }
@@ -44,11 +45,11 @@ namespace fs
    {
       if((m_nOpenFlags & ::file::e_open_read) != 0)
       {
-         return m_httpfile.get_size();
+         return m_phttpfile->get_size();
       }
       else
       {
-         return m_memfile.get_size();
+         return m_pmemfile->get_size();
       }
    }
 
@@ -58,13 +59,13 @@ namespace fs
       if((m_nOpenFlags & ::file::e_open_read) != 0)
       {
 
-         return m_httpfile.translate(lOff, eseek);
+         return m_phttpfile->translate(lOff, eseek);
 
       }
       else
       {
 
-         return m_memfile.translate(lOff, eseek);
+         return m_pmemfile->translate(lOff, eseek);
 
       }
 
@@ -97,7 +98,7 @@ namespace fs
 
       }
 
-      m_httpfile.open(strUrl, ::file::e_open_binary | ::file::e_open_read | eopenAdd);
+      m_phttpfile->open(strUrl, ::file::e_open_binary | ::file::e_open_read | eopenAdd);
 
    }
 
@@ -156,7 +157,7 @@ namespace fs
 
       property_set set;
 
-      m_pcontext->m_papexcontext->http().put(strUrl, &m_memfile, set);
+      m_pcontext->m_papexcontext->http().put(strUrl, m_pmemfile, set);
 
 
    }

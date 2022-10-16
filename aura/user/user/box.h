@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "app/aura/user/user/interaction.h"
@@ -84,6 +84,9 @@ namespace user
 
 
       virtual bool parent_is_local_data();
+
+
+      void set_restored_rectangle(const ::rectangle_i32 & rectangleRestored) override;
 
 
    };

@@ -2867,6 +2867,12 @@
     <ClInclude Include="parallelization\asynchronous.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\collection\_array_binary_stream.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\_map_binary_stream.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

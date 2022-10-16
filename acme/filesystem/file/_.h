@@ -166,7 +166,7 @@ CLASS_DECL_ACME ::file::path dir_base_module();
 
 #include "text_file.h"
 
-#include "memory_file.h"
+//#include "memory_file.h"
 
 #include "string_buffer.h"
 
@@ -210,7 +210,7 @@ namespace file
 }
 
 
-#include "memory_file.h"
+//#include "memory_file.h"
 
 
 #include "byte_stream_memory_file.h"

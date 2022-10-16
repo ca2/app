@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////
+﻿////////////////////////////////////////////////////////////////////////////////
 //
 // The official specification of the File Transfer Protocol (FTP) is the RFC 959.
 // Most of the documentation are taken from this RFC.
@@ -50,10 +50,10 @@
 #include "client_socket.h"
 #include "output_stream.h"
 #include "file.h"
+#include "acme/filesystem/file/memory_file.h"
 #include "apex/networking/sockets/basic/listen_socket.h"
 #include "apex/networking/sockets/transfer_socket.h"
 #include "apex/networking/sockets/base/socket_handler.h"
-//xxx #undef ___scoped_restore
 #include <openssl/x509.h>
 
 
@@ -1270,7 +1270,7 @@ auto tickStart = ::duration::now();
 
                synchronous_lock synchronouslock(mutex());
 
-               iNumRead = sckDataConnection.m_file.erase_begin(m_vBuffer.get_data(), static_cast<int>(m_vBuffer.size()));
+               iNumRead = sckDataConnection.m_pmemoryfile->erase_begin(m_vBuffer.get_data(), static_cast<int>(m_vBuffer.size()));
 
                if (!sckDataConnection.is_valid() && iNumRead <= 0)
                {

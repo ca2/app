@@ -1,20 +1,19 @@
 ﻿#include "framework.h"
 #include "frame_window.h"
-////#include "base/user/simple/_component.h"
-////#include "aura/message.h"
-#include "aqua/xml/document.h"
 #include "acme/constant/simple_command.h"
 #include "acme/constant/id.h"
-#include "aura/user/user/window_util.h"
 #include "acme/parallelization/pool.h"
+#include "apex/database/_binary_stream.h"
+#include "aqua/xml/document.h"
+#include "aura/user/user/window_util.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/fastblur.h"
-#include "aura/windowing/icon.h"
 #include "aura/user/user/alpha_source.h"
-#include "base/user/user/user.h"
 #include "aura/user/user/primitive_impl.h"
+#include "aura/windowing/icon.h"
+#include "base/user/user/user.h"
 #include "base/platform/application.h"
 #include "aura/user/user/notify_icon.h"
 #include "base/platform/session.h"
@@ -367,7 +366,7 @@ bool simple_frame_window::WindowDataLoadWindowRect()
 
          auto papp = get_app();
 
-         papp->data_get("wfi_down", bWfiDown);
+         papp->datastream()->get("wfi_down", bWfiDown);
 
          if (bWfiDown)
          {
@@ -431,7 +430,7 @@ void simple_frame_window::WindowDataSaveWindowRect()
 
       auto papp = get_app();
 
-      papp->data_set("wfi_down", bDown);
+      papp->datastream()->set("wfi_down", bDown);
 
    }
 
@@ -1680,7 +1679,7 @@ void simple_frame_window::on_message_close(::message::message * pmessage)
       if (::str().ends_eat_ci(strImpact, "::frame"))
       {
 
-         papp->data_set("frame::" + strImpact + ".visible", bShow);
+         papp->datastream()->set("frame::" + strImpact + ".visible", bShow);
 
       }
 
@@ -3343,7 +3342,7 @@ string simple_frame_window::get_window_default_matter()
 //            psystem->m_edisplay = e_display_undefined; // set to default after first time
 //         }
 //         bool bFullScreen;
-//         data_get("FullScreen", bFullScreen);
+//         datastream()->get("FullScreen", bFullScreen);
 //         if (bFullScreen)
 //         {
 //            display(e_display_full_screen);

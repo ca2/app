@@ -79,7 +79,7 @@ namespace simpledb
       if(context.is_user_source())
       {
 
-         data_set({ "locale", true }, lpcsz);
+         datastream()->set({ "locale", true }, lpcsz);
 
       }
 
@@ -94,7 +94,7 @@ namespace simpledb
       if(context.is_user_source())
       {
 
-         data_set({ "schema", true }, lpcsz);
+         datastream()->set({ "schema", true }, lpcsz);
 
       }
 
@@ -244,7 +244,7 @@ namespace simpledb
          if(psession->get_user() != nullptr)
          {
 
-            data_set("keyboard_layout", pszPath);
+            datastream()->set("keyboard_layout", pszPath);
 
          }
 

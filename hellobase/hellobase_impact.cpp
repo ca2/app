@@ -97,9 +97,9 @@ namespace hellobase
 
       string strText;
 
-      data_get("cur_font",m_strNewFont);
+      datastream()->get("cur_font",m_strNewFont);
 
-      data_get("cur_text",strText);
+      datastream()->get("cur_text",strText);
 
 
 
@@ -221,7 +221,7 @@ namespace hellobase
 
          m_strFont = m_strNewFont;
 
-         data_set("cur_font",m_strFont);
+         datastream()->set("cur_font",m_strFont);
 
       }
 

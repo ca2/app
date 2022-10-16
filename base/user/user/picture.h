@@ -151,8 +151,8 @@ namespace user
       virtual void move_to(point_f64 point, ::size_f64 sizePage, ::size_f64 sizeClient, const ::rectangle_f64 & rectangleMargin);
 
 
-      void read(::binary_stream & stream);
-      void write(::binary_stream & stream) const;
+      void read(::binary_stream < FILE > & stream);
+      void write(::binary_stream < FILE > & stream) const;
 
 
    };
@@ -161,7 +161,15 @@ namespace user
 } // namespace user
 
 
-CLASS_DECL_BASE binary_stream & operator << (binary_stream & stream, const ::user::picture::picture_impl & t);
-CLASS_DECL_BASE binary_stream & operator >> (binary_stream & stream, ::user::picture::picture_impl & t);
-CLASS_DECL_BASE binary_stream & operator << (binary_stream & stream, const ::user::picture::picture_impl & t);
-CLASS_DECL_BASE binary_stream & operator >> (binary_stream & stream, ::user::picture::picture_impl & t);
+
+template < typename FILE >
+binary_stream < FILE > & operator << (binary_stream < FILE > & stream, const ::user::picture::picture_impl & t);
+
+template < typename FILE >
+binary_stream < FILE > & operator >> (binary_stream < FILE > & stream, ::user::picture::picture_impl & t);
+
+template < typename FILE >
+binary_stream < FILE > & operator << (binary_stream < FILE > & stream, const ::user::picture::picture_impl & t);
+
+template < typename FILE >
+binary_stream < FILE > & operator >> (binary_stream < FILE > & stream, ::user::picture::picture_impl & t);

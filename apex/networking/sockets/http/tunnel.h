@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "socket.h"
@@ -31,7 +31,7 @@ namespace sockets
       string      m_strRequest;
       //memory      m_memoryBody;
       //memory      m_memoryBuf;
-      ::memory_file m_fileBody;
+      ::memory_file_pointer m_pfileBody;
       i32         m_iContentLength;
       bool        m_bHeaders;
       bool        m_bDirect;

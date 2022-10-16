@@ -1,6 +1,7 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "data.h"
 #include "document.h"
+#include "apex/database/_binary_stream.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/user/user/interaction.h"
@@ -277,7 +278,7 @@ namespace filemanager
 
       auto pcontext = m_pcontext;
 
-      if (papp->data_get({m_datakey.m_bLocalData, m_datakey.m_strDataKey+".last_browse_folder"}, strPath))
+      if (papp->datastream()->get({m_datakey.m_bLocalData, m_datakey.m_strDataKey+".last_browse_folder"}, strPath))
       {
 
          if (strPath == "machinefs://")
@@ -289,7 +290,7 @@ namespace filemanager
 
             strId = m_datakey.m_strDataKey +".last_browse_folder." + __string(idMachine);
 
-            if (!papp->data_get({ m_datakey.m_bLocalData, strId }, strPath))
+            if (!papp->datastream()->get({ m_datakey.m_bLocalData, strId }, strPath))
             {
 
                strPath.empty();
@@ -360,13 +361,13 @@ namespace filemanager
          || ::str().begins(path, "fs://"))
       {
 
-         papp->data_set({ m_datakey.m_bLocalData, m_datakey.m_strDataKey +".last_browse_folder" }, strPath);
+         papp->datastream()->set({ m_datakey.m_bLocalData, m_datakey.m_strDataKey +".last_browse_folder" }, strPath);
 
       }
       else
       {
 
-         papp->data_set({ m_datakey.m_bLocalData, m_datakey.m_strDataKey + ".last_browse_folder" }, "machinefs://");
+         papp->datastream()->set({ m_datakey.m_bLocalData, m_datakey.m_strDataKey + ".last_browse_folder" }, "machinefs://");
 
          auto idMachine = get_local_machine_id();
 
@@ -374,7 +375,7 @@ namespace filemanager
 
          strId = m_datakey.m_strDataKey+".last_browse_folder." + __string(idMachine);
 
-         papp->data_set({ m_datakey.m_bLocalData, strId }, strPath);
+         papp->datastream()->set({ m_datakey.m_bLocalData, strId }, strPath);
 
       }
 

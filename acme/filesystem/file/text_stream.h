@@ -70,6 +70,11 @@ public:
 
    string as_string() const ;
 
+
+   ::file::file * get_file() override { return m_p; }
+
+
+
    template < typename TYPE >
    void number_read(TYPE & t)
    {

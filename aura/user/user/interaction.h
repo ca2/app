@@ -409,6 +409,8 @@ namespace user
 
       //void enable_drag_move();
 
+      virtual void set_restored_rectangle(const ::rectangle_i32 & rectangleRestored);
+
       
       virtual void set_position(const ::point_i32 & point, enum_layout elayout = e_layout_sketch);
       virtual void set_size(const ::size_i32 & size, enum_layout elayout = e_layout_sketch);

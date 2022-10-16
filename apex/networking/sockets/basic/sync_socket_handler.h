@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "socket.h"
@@ -16,8 +16,8 @@ namespace sockets
 
 
          socket *                         m_psocket;
-         ::memory_file                    m_file;
-         ::pointer<socket_handler>       m_phandler;
+         ::memory_file_pointer            m_pmemoryfile;
+         ::pointer<socket_handler>        m_phandler;
          i32                              m_iDefaultTimeout;
 
 

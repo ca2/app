@@ -1,8 +1,9 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "span.h"
 #include "data.h"
 #include "format.h"
 #include "aura/graphics/draw2d/graphics.h"
+#include "acme/primitive/collection/_array_binary_stream.h"
 
 
 namespace user
@@ -147,45 +148,6 @@ namespace user
          pspan->m_pformat.merge(m_pdata->m_pformata, pformat, eattribute);
 
          return pspan;
-
-      }
-
-
-      void span::write(::binary_stream & stream) const
-      {
-
-         property_set set;
-
-         set["align"] = (i32) m_ealignNewLine;
-         set["text"] = m_str;
-         index iFormatIndex = m_pdata->m_pformata->find_first(m_pformat);
-         set["format_index"] = iFormatIndex;
-
-         stream << set;
-
-      }
-
-
-      void span::read(::binary_stream & stream)
-      {
-
-         property_set set;
-
-         stream >> set;
-
-         m_ealignNewLine = set["align"].e< ::enum_align>();
-         m_str = set["text"];
-         ::index iFormatIndex;
-
-         iFormatIndex = set["format_index"];
-         if (iFormatIndex >= 0 && iFormatIndex < m_pdata->m_pformata->get_count())
-         {
-            m_pformat = m_pdata->m_pformata->element_at(iFormatIndex);
-         }
-         else
-         {
-            output_debug_string("corruption... non fatal... partially recoverable...");
-         }
 
       }
 

@@ -2,7 +2,8 @@
 #pragma once
 
 
-inline binary_stream & operator << (binary_stream & s, const ::color::HLS & hls)
+template < typename FILE >
+inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::color::HLS & hls)
 {
 
    s << hls.m_dH;
@@ -14,7 +15,8 @@ inline binary_stream & operator << (binary_stream & s, const ::color::HLS & hls)
 }
 
 
-inline binary_stream & operator >> (binary_stream & s, ::color::HLS & hls)
+template < typename FILE >
+inline binary_stream < FILE > & operator >> (binary_stream < FILE > & s, ::color::HLS & hls)
 {
 
    s >> hls.m_dH;

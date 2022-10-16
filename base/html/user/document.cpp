@@ -249,9 +249,9 @@ bool html_document::on_open_document(const ::payload & payloadFile)
 
    phtmldocument->update_all_impacts(ptopic);
 
-   //data_set({ "LastOpenedFile", true }, get_file_path());
+   //datastream()->set({ "LastOpenedFile", true }, get_file_path());
 
-   //papp->data_set({"LastOpenedFile", true}, get_file_path());
+   //papp->datastream()->set({"LastOpenedFile", true}, get_file_path());
 
    return true;
 

@@ -3,6 +3,7 @@
 #include "script_main.h"
 #include "httpd_socket.h"
 #include "exit_exception.h"
+#include "acme/filesystem/file/memory_file.h"
 #include "axis/id.h"
 
 

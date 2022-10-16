@@ -47,10 +47,21 @@ inline binary_stream < FILE > & operator >>(binary_stream < FILE > & stream, ::a
 
    ::index i = 0;
 
-   for (; i < c && stream.is_ok(); i++)
+   try
    {
 
-      stream >> a[i];
+      for (; i < c && stream.is_ok(); i++)
+      {
+
+         stream >> a[i];
+
+      }
+
+   }
+   catch (...)
+   {
+
+      stream.set_nok();
 
    }
 

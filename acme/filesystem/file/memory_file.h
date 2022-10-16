@@ -309,5 +309,5 @@ public:
 inline memory_file_pointer create_memory_file() { return __new(::memory_file); }
 inline memory_file_pointer create_memory_file(::memory_base & memory) { return __new(::memory_file(memory)); }
 inline memory_file_pointer create_memory_file(const ::block & block) { return __new(::memory_file(block)); }
-inline memory_file_pointer create_memory_file_as_scopy(const memory & memory) { return __new(::memory_file(__new(::memory(memory)))); }
+inline memory_file_pointer create_memory_file_as_copy(const memory & memory) { return __new(::memory_file(__new(::memory(memory)))); }
 CLASS_DECL_ACME memory_file_pointer create_memory_file_by_reading(::file::file * pfile);

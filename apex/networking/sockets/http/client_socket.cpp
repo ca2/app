@@ -298,6 +298,8 @@ namespace sockets
 
       http_tunnel::OnHeaderComplete();
 
+      __defer_construct_new(m_pmemoryfile);
+
       m_pmemoryfile->set_size(0);
 
       if(m_content_length != ((memsize) (-1)))

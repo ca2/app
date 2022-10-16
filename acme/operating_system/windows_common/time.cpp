@@ -106,11 +106,11 @@ int gettimeofday(struct timeval * tp, void * tz)
 void system_time_to_time(time_t* ptime, const system_time_t* psystemtime, i32 nDST)
 {
 
-  struct tm tm;
+   struct tm tm;
 
-  __copy(tm, psystemtime);
+   copy(&tm, psystemtime);
 
-  *ptime = make_utc_time(&tm);
+   *ptime = make_utc_time(&tm);
 
   //return ::success;
 

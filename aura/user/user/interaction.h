@@ -397,6 +397,7 @@ namespace user
       ::aura::application * get_app() const;
       ::aura::session * get_session() const;
       ::aura::system * get_system() const;
+      inline ::aura::context * context() const { return m_pcontext ? m_pcontext->m_pauracontext:nullptr; }
 
       bool _001CanEnterScreenSaver() override;
 
@@ -407,6 +408,8 @@ namespace user
       virtual void _001Minimize();
 
       //void enable_drag_move();
+
+      virtual void set_restored_rectangle(const ::rectangle_i32 & rectangleRestored);
 
       
       virtual void set_position(const ::point_i32 & point, enum_layout elayout = e_layout_sketch);

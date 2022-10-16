@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "acme/constant/id.h"
-//#include "apex/platform/app_core.h"
+#include "acme/filesystem/file/binary_stream.h"
+#include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
@@ -1318,7 +1319,7 @@ namespace apex
    void context::_load_from_file(::matter * pobject, const ::payload & payloadFile, const ::payload & varOptions)
    {
 
-      binary_stream reader(m_pcontext->m_papexcontext->file().get_reader(payloadFile));
+      auto reader = __binary_stream(m_pcontext->m_papexcontext->file().get_reader(payloadFile));
 
       //read(reader);
 
@@ -1330,7 +1331,7 @@ namespace apex
    void context::_save_to_file(const ::payload & payloadFile, const ::payload & varOptions, const ::matter * pobject)
    {
 
-      binary_stream writer(m_pcontext->m_papexcontext->file().get_writer(payloadFile));
+      auto writer = __binary_stream(m_pcontext->m_papexcontext->file().get_writer(payloadFile));
 
       //write(writer);
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "edit.h"
@@ -143,8 +143,8 @@ namespace user
 
          strsize _001GetTextLength() const override;
 
-         void write(::binary_stream & stream) const override;
-         void read(::binary_stream & stream) override;
+         //void write(::binary_stream < FILE > & stream) const override;
+         //void read(::binary_stream < FILE > & stream) override;
 
          void _001GetSel(strsize & iBeg, strsize & iEnd) const override;
          void _001GetSelLineText(string & str) const override;

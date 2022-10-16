@@ -44,7 +44,7 @@ namespace user
 
       //auto estatus =
       
-      ::matter::initialize_matter(ptab);
+      ::property_object::initialize(ptab);
 
       //if(!estatus)
       //{

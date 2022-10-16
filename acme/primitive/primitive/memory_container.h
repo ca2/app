@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "memory_base.h"
@@ -18,6 +18,10 @@ protected:
 
 
 public:
+
+   
+   byte *                                       m_pbyte;
+   memsize                                      m_memsize;
 
 
    memory_container(memsize size = 0);

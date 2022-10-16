@@ -135,11 +135,9 @@ namespace acme
 inline atom::atom(const char* psz)
 {
 
-   m_all = {};
-
    m_etype = e_type_text;
 
-   m_str = psz;
+   ::new(&m_str) ::string(psz);
 
 }
 
@@ -147,11 +145,9 @@ inline atom::atom(const char* psz)
 inline atom::atom(const ::string& str)
 {
 
-   m_all = {};
-
    m_etype = e_type_text;
 
-   m_str = str;
+   ::new(&m_str) ::string(str);
 
 }
 

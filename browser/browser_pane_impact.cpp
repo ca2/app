@@ -218,7 +218,7 @@ namespace browser
 
          m_prollfps = dynamic_cast <::user::plain_edit_impact *> (pimpact->get_child_by_id("roll_fps"));
 
-         m_pimpactLast->data_get("cur_fps_text", str);
+         m_pimpactLast->datastream()->get("cur_fps_text", str);
 
          if (m_prollfps != nullptr)
          {
@@ -366,7 +366,7 @@ namespace browser
 
                         m_prollfps->_001GetText(str);
 
-                        m_pimpactLast->data_set("cur_fps_text",str);
+                        m_pimpactLast->datastream()->set("cur_fps_text",str);
 
                      }
 
@@ -376,7 +376,7 @@ namespace browser
 
                         v = d;
 
-                        m_pimpactLast->data_set("cur_fps",v);
+                        m_pimpactLast->datastream()->set("cur_fps",v);
 
                      }
                      m_pimpactLast->m_dFps = d;
@@ -451,7 +451,7 @@ namespace browser
 
                      pslide->enable(pcheck->echeck() == ::e_check_checked);
 
-                     m_pimpactLastBilbo->data_set("slide." + pslide->m_strPath, pslide->m_bDatabase);
+                     m_pimpactLastBilbo->datastream()->set("slide." + pslide->m_strPath, pslide->m_bDatabase);
 
                      //m_pimpactLastBilbo->m_prender->defer_update_slide_show();
 
@@ -485,7 +485,7 @@ namespace browser
 
                   m_pimpactLastBilbo->m_prender->m_strFontSel = strFont;
 
-                  m_pimpactLastBilbo->data_set("cur_font", strFont);
+                  m_pimpactLastBilbo->datastream()->set("cur_font", strFont);
 
                   m_pimpactLastBilbo->set_need_layout();
 
@@ -522,7 +522,7 @@ namespace browser
                if (ptopic->m_atom == ::id_after_change_cur_sel)
                {
 
-                  m_pimpactLastBilbo->data_set("cur_color", m_pimpactLastBilbo->m_prender->m_hlsForeground);
+                  m_pimpactLastBilbo->datastream()->set("cur_color", m_pimpactLastBilbo->m_prender->m_hlsForeground);
 
                }
 

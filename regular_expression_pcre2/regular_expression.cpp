@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "regular_expression.h"
 #include "context.h"
 #include "result.h"
@@ -88,14 +88,14 @@ namespace regular_expression_pcre2
 
       presult->m_pmatchdata = pcre2_match_data_create(m_iRangeCount + 1, m_pgeneralcontext);
 
-      auto iMatchResult = pcre2_match(m_pcode, (PCRE2_SPTR)m_str.c_str(), m_str.get_length(), 0, 0, presult->m_pmatchdata, nullptr);
+      auto iMatchResult = pcre2_match(m_pcode, (PCRE2_SPTR)str.c_str(), str.get_length(), 0, 0, presult->m_pmatchdata, nullptr);
 
       if (iMatchResult < 0)
       {
 
          presult->m_cMatchCount = -1;
 
-         set_fail();
+         presult->set_fail();
 
          return nullptr;
 
@@ -103,7 +103,7 @@ namespace regular_expression_pcre2
 
       presult->m_cMatchCount = pcre2_get_ovector_count(presult->m_pmatchdata);
 
-      set_ok();
+      presult->set_ok();
 
       return presult;
 

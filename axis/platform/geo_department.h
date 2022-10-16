@@ -1,4 +1,4 @@
-// Added get_time_zone memberby camilo on 2021-12-02 14:23 BRT <3ThomasBorregaardSørensen!!
+﻿// Added get_time_zone memberby camilo on 2021-12-02 14:23 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -25,27 +25,6 @@ public:
 
 };
 
-
-inline binary_stream & operator <<(binary_stream& stream, const class ::string_timeout& t)
-{
-
-   stream << t.m_str;
-   stream << t.m_duration;
-
-   return stream;
-
-}
-
-
-inline binary_stream & operator >>(binary_stream & stream, class ::string_timeout & t)
-{
-
-   stream >> t.m_str;
-   stream >> t.m_duration;
-
-   return stream;
-
-}
 
 namespace geo
 {

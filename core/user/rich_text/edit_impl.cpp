@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "edit_impl.h"
 #include "format_tool.h"
 #include "document.h"
@@ -2044,51 +2044,51 @@ namespace user
       }
 
 
-      void edit_impl::write(::binary_stream & stream) const
-      {
+      //void edit_impl::write(::binary_stream < FILE > & stream) const
+      //{
 
-         ::user::picture::write(stream);
+      //   ::user::picture::write(stream);
 
-         m_pdata->write(stream);
+      //   m_pdata->write(stream);
 
-         ::rectangle_i32 rectangleWindow;
+      //   ::rectangle_i32 rectangleWindow;
 
-         ((edit_impl *)this)->get_window_rect(rectangleWindow);
+      //   ((edit_impl *)this)->get_window_rect(rectangleWindow);
 
-         if (get_parent() != nullptr)
-         {
+      //   if (get_parent() != nullptr)
+      //   {
 
-            get_parent()->screen_to_client()(rectangleWindow);
+      //      get_parent()->screen_to_client()(rectangleWindow);
 
-         }
+      //   }
 
-         stream << rectangleWindow;
+      //   stream << rectangleWindow;
 
-         //return stream;
+      //   //return stream;
 
-      }
+      //}
 
 
-      void edit_impl::read(::binary_stream & stream)
-      {
+      //void edit_impl::read(::binary_stream < FILE > & stream)
+      //{
 
-         ::user::picture::read(stream);
+      //   ::user::picture::read(stream);
 
-         m_pdata->read(stream);
+      //   m_pdata->read(stream);
 
-         ::rectangle_i32 rectangleWindow;
+      //   ::rectangle_i32 rectangleWindow;
 
-         stream >> rectangleWindow;
+      //   stream >> rectangleWindow;
 
-         place(rectangleWindow);
+      //   place(rectangleWindow);
 
-         display(e_display_restored);
+      //   display(e_display_restored);
 
-         set_need_layout();
+      //   set_need_layout();
 
-         //return stream;
+      //   //return stream;
 
-      }
+      //}
 
 
       void edit_impl::get_text_composition_area(::rectangle_i32 & r)

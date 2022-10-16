@@ -9,8 +9,8 @@
 #include "impact_host.h"
 #include "pane_tab_impact.h"
 #include "font_impact.h"
-//#include "aura/message.h"
 #include "acme/constant/simple_command.h"
+#include "apex/database/_binary_stream.h"
 #include "apex/message/simple_command.h"
 #include "base/user/user/tab_pane.h"
 #include "base/user/user/document.h"
@@ -701,7 +701,7 @@ namespace userex
 
       auto papp = get_app();
 
-      papp->data_set("frame::" + idImpact + ".visible", bShow);
+      papp->datastream()->set("frame::" + idImpact + ".visible", bShow);
 
       auto pcontext = m_pcontext;
       
@@ -739,7 +739,7 @@ namespace userex
 
       auto papp = get_app();
 
-      papp->data_set("frame::" + idImpact + ".visible", bShow);
+      papp->datastream()->set("frame::" + idImpact + ".visible", bShow);
 
       ::pointer<::simple_frame_window>pframewindow = _001GetFrame(idImpact);
 
@@ -769,7 +769,7 @@ namespace userex
 
             auto papp = get_app();
 
-            papp->data_get("frame::" + idImpact + ".visible", bShow);
+            papp->datastream()->get("frame::" + idImpact + ".visible", bShow);
 
             bShow = !bShow;
 
@@ -799,7 +799,7 @@ namespace userex
 
       auto papp = get_app();
 
-      papp->data_get("frame::" + idImpact + ".visible", bShow);
+      papp->datastream()->get("frame::" + idImpact + ".visible", bShow);
 
       if (!bShow)
       {

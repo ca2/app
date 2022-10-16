@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////
+﻿////////////////////////////////////////////////////////////////////////////////
 //
 // From David J. Kruglinski (Inside Visual C++).
 //
@@ -62,11 +62,11 @@ namespace sockets
    public:
 
 
-      memory_file                   m_file;
+      memory_file_pointer    m_pmemoryfile;
 
 
       transfer_socket();
-      virtual ~transfer_socket();
+      ~transfer_socket() override;
 
       //int  send_datagram(const char* pch, int nSize, const SOCKADDR * psa, int nSecs);
       //int  receive_datagram(char* pch, int nSize, SOCKADDR * psa, int nSecs);

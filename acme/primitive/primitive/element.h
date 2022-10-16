@@ -84,17 +84,17 @@ public:
    //virtual void exchange(::stream& s);
    //virtual void exchange(::payload_stream& s);
 
-   virtual void write(::binary_stream& stream) const;
-   virtual void read(::binary_stream& stream);
+   //virtual void write(::binary_stream < FILE >& stream) const;
+   //virtual void read(::binary_stream < FILE >& stream);
 
 
-   virtual void add_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   virtual void add_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //virtual void add_composite(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //virtual void add_reference(::element* pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-   virtual void release_composite2(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   virtual void finalize_composite(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
-   virtual void release_reference(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //virtual void release_composite2(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //virtual void finalize_composite(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+   //virtual void release_reference(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
    virtual void destroy();
@@ -114,7 +114,7 @@ public:
 
 #ifndef _DEBUG
 
-inline i64 element::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+inline i64 particle::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
    auto c = ++m_countReference;
@@ -130,7 +130,7 @@ inline i64 element::increment_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAM
 }
 
 
-inline i64 element::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+inline i64 particle::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
    auto c = --m_countReference;
@@ -151,7 +151,7 @@ inline i64 element::decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_PARAM
 }
 
 
-inline i64 element::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
+inline i64 particle::release(OBJECT_REFERENCE_COUNT_DEBUG_PARAMETERS_DEF)
 {
 
    i64 i = decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);

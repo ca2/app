@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 template < typename POINTER_ARRAY_PROCESS, typename TYPE >

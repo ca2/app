@@ -9,6 +9,7 @@
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/parallelization/install_mutex.h"
 #include "acme/user/nano/_nano.h"
+#include "acme/parallelization/asynchronous.h"
 
 
 CLASS_DECL_ACME void exception_message_box(::object* pobject, ::exception& exception, const ::string& strMoreDetails);
@@ -871,7 +872,7 @@ namespace acme
    void node::node_send(const ::procedure & procedure)
    {
 
-      __send_procedure(this, &node::node_post, procedure);
+      __material_send_procedure(this, this, &node::node_post, procedure);
 
    }
 

@@ -284,9 +284,8 @@ void __main(::acme::application * pacmeapplication)
 
    ::pointer<::acme::system>psystem = pfactoryitem->create_element();
 
-#ifdef WINDOWS_DESKTOP
    ::set_task(psystem);
-#endif
+
    //psystem->m_pacmeapplicationStartup = pacmeapplication;
 
    //psystem->m_psubsystem = psubsystem;

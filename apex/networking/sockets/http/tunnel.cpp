@@ -1,5 +1,6 @@
-#include "framework.h" 
+﻿#include "framework.h" 
 #include "tunnel.h"
+#include "acme/filesystem/file/memory_file.h"
 
 
 namespace sockets
@@ -209,20 +210,28 @@ namespace sockets
    {
       inheader(key) = strValue;
    }
+
+
    void http_tunnel::OnHeaderComplete()
    {
+
       http_socket::OnHeaderComplete();
 
       m_bHeaders = true;
-      m_fileBody.set_size(0);
-      m_fileBody.seek_to_begin();
+
+      __defer_construct_new(m_pfileBody);
+
+      m_pfileBody->set_size(0);
+
+      m_pfileBody->seek_to_begin();
+
    }
 
 
    void http_tunnel::OnData(const char * psz, memsize size)
    {
 
-      m_fileBody.write(psz, size);
+      m_pfileBody->write(psz, size);
 
    }
 

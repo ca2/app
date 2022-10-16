@@ -1,7 +1,6 @@
 ﻿#include "framework.h"
-
-
-
+#include "stream.h"
+#include "acme/filesystem/file/binary_stream.h"
 
 
 namespace database
@@ -25,7 +24,7 @@ namespace database
 
       ::payload payload;
 
-      if(data_get(atom, payload))
+      if(data_get_payload(atom, payload))
       {
 
          linkedproperty->convert(payload);
@@ -43,7 +42,7 @@ namespace database
       //connect(atom, [atom, linkedproperty](::message::message* pmessage)
          {
 
-            data_set(atom, (const ::payload&)*linkedproperty.m_pproperty);
+            data_set_payload(atom, *linkedproperty.m_pproperty);
 
          }));
 
@@ -52,9 +51,99 @@ namespace database
 
       //      auto pproperty = fetch_property(atom);
 
-      //      data_set(atom, (const ::payload &) *pproperty);
+      //      datastream()->set(atom, (const ::payload &) *pproperty);
 
       //   });
+
+   }
+
+
+   void client::data_set_memory(const key & key, const ::block & block)
+   {
+
+      if (!m_pdataserver)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      m_pdataserver->_data_server_save(this, key, block);
+
+   }
+
+   
+   bool client::data_get_memory(const key & key, ::memory_base & memory)
+   {
+
+      if (!m_pdataserver)
+      {
+
+         return false;
+
+      }
+
+      if (!m_pdataserver->_data_server_load(this, key, memory))
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+   void client::data_set_block(const key & key, const ::block & block)
+   {
+
+      if (!m_pdataserver)
+      {
+
+         throw ::exception(error_wrong_state);
+
+      }
+
+      m_pdataserver->_data_server_save(this, key, block);
+
+   }
+
+
+   bool client::data_get_block(const key & key, ::block & block)
+   {
+
+      if (!m_pdataserver)
+      {
+
+         return false;
+
+      }
+
+      if (!m_pdataserver->_data_server_load(this, key, block))
+      {
+
+         return false;
+
+      }
+
+      return true;
+
+   }
+
+
+   void client::data_set_payload(const key & key, const ::payload & payload)
+   {
+
+      _data_set(key, payload);
+
+   }
+   
+   
+   bool client::data_get_payload(const key & key, ::payload & payload)
+   {
+
+      return _data_get(key, payload);
 
    }
 
@@ -62,18 +151,16 @@ namespace database
    void client::initialize_data_client(server * pserver)
    {
 
-      set_data_server(pserver);
+      __defer_construct_new(m_pstream);
 
-   }
+      m_pstream->m_pclient = this;
 
-
-   bool client::set_data_server(server * pserver)
-   {
+      //set_data_server(pserver);
 
       if (m_pdataserver == pserver)
       {
 
-         return true;
+         return;
 
       }
 
@@ -86,7 +173,7 @@ namespace database
 
       }
 
-      if(pserver != nullptr)
+      if (pserver != nullptr)
       {
 
          synchronous_lock synchronouslock(pserver->mutex());
@@ -97,9 +184,46 @@ namespace database
 
       m_pdataserver = pserver;
 
-      return true;
+      //return true;
 
    }
+
+
+   //bool client::set_data_server(server * pserver)
+   //{
+
+   //   if (m_pdataserver == pserver)
+   //   {
+
+   //      return true;
+
+   //   }
+
+   //   if (m_pdataserver != nullptr)
+   //   {
+
+   //      synchronous_lock synchronouslock(m_pdataserver->mutex());
+
+   //      m_pdataserver->m_clienta.erase_client(this);
+
+   //   }
+
+   //   if(pserver != nullptr)
+   //   {
+
+   //      synchronous_lock synchronouslock(pserver->mutex());
+
+   //      pserver->m_clienta.add_client(this);
+
+   //   }
+
+
+
+   //   m_pdataserver = pserver;
+
+   //   return true;
+
+   //}
 
 
    client::~client()
@@ -151,13 +275,13 @@ namespace database
 
       }
 
-      memory_file memoryfile;
+      auto pmemoryfile = create_memory_file();
 
-      ::binary_stream os(&memoryfile);
+      auto stream = __binary_stream(pmemoryfile);
 
-      os << payload;
+      stream << payload;
 
-      m_pdataserver->_data_server_save(this, key, memoryfile.memory(), ptopic);
+      m_pdataserver->_data_server_save(this, key, pmemoryfile->memory(), ptopic);
 
    }
 
@@ -172,11 +296,11 @@ namespace database
 
       }
 
-      memory_file memoryfile;
+      auto pmemoryfile = create_memory_file();
 
-      ::binary_stream os(&memoryfile);
+      auto stream = __binary_stream(pmemoryfile);
 
-      os << payload;
+      stream << payload;
 
       ::count iCount = selection.get_item_count();
 
@@ -187,7 +311,7 @@ namespace database
 
          auto & item = selection.get_item(iItem);
 
-         m_pdataserver->_data_server_save(this, item.m_datakey, memoryfile.memory(), ptopic);
+         m_pdataserver->_data_server_save(this, item.m_datakey, pmemoryfile->memory(), ptopic);
          //{
 
          //   bOk = false;
@@ -201,64 +325,64 @@ namespace database
    }
 
 
-   bool client::_data_get(const key & key, ::payload & payload)
+   bool client::_data_get(const key & key, ::payload payload)
    {
 
-      if (m_pdataserver != nullptr)
+      if (m_pdataserver == nullptr)
       {
 
-         if (payload.get_type() == ::e_type_memory)
-         {
-
-            if (!m_pdataserver->_data_server_load(this, key, *payload.m_pmemory))
-            {
-
-               return false;
-
-            }
-
-         }
-         else
-         {
-
-            ::memory_file memoryfile;
-
-            if (!m_pdataserver->_data_server_load(this, key, memoryfile.memory()))
-            {
-
-               return false;
-
-            }
-
-            binary_stream is(&memoryfile);
-
-            try
-            {
-
-               is >> payload;
-
-            }
-            catch (::exception&)
-            {
-
-               return false;
-
-            }
-
-            //if (is.fail())
-            //{
-
-            //   return false;
-
-            //}
-
-         }
-
-         return true;
+         throw ::exception(error_wrong_state);
 
       }
 
-      return false;
+      if (payload.get_type() == ::e_type_memory)
+      {
+
+         if (!m_pdataserver->_data_server_load(this, key, *payload.m_pmemory))
+         {
+
+            return false;
+
+         }
+
+      }
+      else
+      {
+
+         ::memory_file memoryfile;
+
+         if (!m_pdataserver->_data_server_load(this, key, memoryfile.memory()))
+         {
+
+            return false;
+
+         }
+
+         auto stream = __binary_stream(&memoryfile);
+
+         try
+         {
+
+            stream >> payload;
+
+         }
+         catch (::exception&)
+         {
+
+            return false;
+
+         }
+
+         //if (is.fail())
+         //{
+
+         //   return false;
+
+         //}
+
+      }
+
+      return true;
 
    }
 

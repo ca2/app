@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/operating_system.h"
 #include <stdio.h>
 #include "acme/filesystem/filesystem/acme_directory.h"
@@ -291,7 +291,7 @@ memsize stdio_file::read(void * pdata, memsize nCount)
 }
 
 
-byte stdio_file::get_byte()
+int stdio_file::get_u8()
 {
 
    int iChar = fgetc(m_pfile);
@@ -310,8 +310,7 @@ byte stdio_file::get_byte()
 }
 
 
-
-::byte stdio_file::peek_byte()
+int stdio_file::peek_byte()
 {
 
    int iChar = fgetc(m_pfile);

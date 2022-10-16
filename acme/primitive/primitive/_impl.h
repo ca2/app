@@ -547,134 +547,134 @@ inline ::pointer<::handle::ini>operator ""_pini(const char * psz, size_t s)
 
 
 
-template < class T >
-template < typename VAR >
-inline pointer < T >  & pointer < T >::operator = (const payload_type < VAR > & payload)
-{
-
-   if (payload.this_var()->m_etype == e_type_element)
-   {
-
-      return operator = (payload.this_var()->m_p);
-
-   }
-   else if (payload.this_var()->m_etype == e_type_memory)
-   {
-
-      auto pfile = create_memory_file();
-
-      ::binary_stream stream(pfile);
-
-      stream << payload.this_var()->memory();
-
-      string strText;
-
-      stream >> strText;
-
-      //if (!stream.fail())
-      {
-
-         if (strText.is_empty() || strText.begins_eat_ci("factoryless://"))
-         {
-
-            if(is_set() && __type_name(m_p) == strText)
-            {
-
-               ::output_debug_string("POINTER: loading into existing matter of same class type (1)");
-
-            }
-            else
-            {
-
-               this->defer_create_new();
-
-               if(is_null())
-               {
-
-                  ::output_debug_string("POINTER: defer_new failed (1.1)");
-
-                  //stream.set_fail_bit();
-
-                  throw ::exception(error_io);
-
-               }
-               else if(__type_name(m_p) != strText)
-               {
-
-                  ::output_debug_string("POINTER: allocated matter type is different from streamed matter type (1.2)");
-
-                  //stream.set_fail_bit();
-
-                  throw ::exception(error_io);
-
-               }
-
-            }
-
-         }
-         else
-         {
-
-            ::atom atom = stream.text_to_factory_id(strText);
-
-            if(is_set() && __type_name(m_p) == atom)
-            {
-
-               ::output_debug_string("POINTER: loading into existing matter of same class type (2)");
-
-            }
-            else
-            {
-
-               auto p = stream.create_object_from_text(strText);
-
-               if(!p)
-               {
-
-                  ::output_debug_string("POINTER: stream::alloc_object_from_text failed (2.1)");
-
-               }
-               else if(__type_name(p) != atom)
-               {
-
-                  ::output_debug_string("POINTER: allocated matter type is different from streamed matter type (2.2)");
-
-                  //stream.set_fail_bit();
-
-                  throw ::exception(error_io);
-
-               }
-               else
-               {
-
-                  operator =(p);
-
-               }
-
-            }
-
-         }
-
-         //if (!stream.fail())
-         {
-
-            m_p->read(stream);
-
-         }
-
-      }
-
-      return *this;
-
-   }
-   else
-   {
-
-      return operator =(nullptr);
-
-   }
-
-}
+//template < class T >
+//template < typename VAR >
+//inline pointer < T >  & pointer < T >::operator = (const payload_type < VAR > & payload)
+//{
+//
+//   if (payload.this_var()->m_etype == e_type_element)
+//   {
+//
+//      return operator = (payload.this_var()->m_p);
+//
+//   }
+//   else if (payload.this_var()->m_etype == e_type_memory)
+//   {
+//
+//      auto pfile = create_memory_file();
+//
+//      ::binary_stream stream(pfile);
+//
+//      stream << payload.this_var()->memory();
+//
+//      string strText;
+//
+//      stream >> strText;
+//
+//      //if (!stream.fail())
+//      {
+//
+//         if (strText.is_empty() || strText.begins_eat_ci("factoryless://"))
+//         {
+//
+//            if(is_set() && __type_name(m_p) == strText)
+//            {
+//
+//               ::output_debug_string("POINTER: loading into existing matter of same class type (1)");
+//
+//            }
+//            else
+//            {
+//
+//               this->defer_create_new();
+//
+//               if(is_null())
+//               {
+//
+//                  ::output_debug_string("POINTER: defer_new failed (1.1)");
+//
+//                  //stream.set_fail_bit();
+//
+//                  throw ::exception(error_io);
+//
+//               }
+//               else if(__type_name(m_p) != strText)
+//               {
+//
+//                  ::output_debug_string("POINTER: allocated matter type is different from streamed matter type (1.2)");
+//
+//                  //stream.set_fail_bit();
+//
+//                  throw ::exception(error_io);
+//
+//               }
+//
+//            }
+//
+//         }
+//         else
+//         {
+//
+//            ::atom atom = stream.text_to_factory_id(strText);
+//
+//            if(is_set() && __type_name(m_p) == atom)
+//            {
+//
+//               ::output_debug_string("POINTER: loading into existing matter of same class type (2)");
+//
+//            }
+//            else
+//            {
+//
+//               auto p = stream.create_object_from_text(strText);
+//
+//               if(!p)
+//               {
+//
+//                  ::output_debug_string("POINTER: stream::alloc_object_from_text failed (2.1)");
+//
+//               }
+//               else if(__type_name(p) != atom)
+//               {
+//
+//                  ::output_debug_string("POINTER: allocated matter type is different from streamed matter type (2.2)");
+//
+//                  //stream.set_fail_bit();
+//
+//                  throw ::exception(error_io);
+//
+//               }
+//               else
+//               {
+//
+//                  operator =(p);
+//
+//               }
+//
+//            }
+//
+//         }
+//
+//         //if (!stream.fail())
+//         {
+//
+//            m_p->read(stream);
+//
+//         }
+//
+//      }
+//
+//      return *this;
+//
+//   }
+//   else
+//   {
+//
+//      return operator =(nullptr);
+//
+//   }
+//
+//}
 
 
 inline bool succeeded(const ::payload & payload)
@@ -3034,109 +3034,74 @@ inline ::file_pointer object::get_writer(const ::payload& payloadFile, const ::f
 //}
 
 
-template < typename PRED >
-inline void add_procedure(::procedure_array& routinea, PRED pred)
-{
-
-   routinea.add(__routine(pred));
-
-}
-
-
-inline void object::defer_branch(::task_pointer& ptask, const ::procedure & procedure)
-{
-
-   __defer_construct(ptask);
-
-   ptask->m_procedure = procedure;
-
-   ptask->branch();
-
-}
+//template < typename PRED >
+//inline void add_procedure(::procedure_array& routinea, PRED pred)
+//{
+//
+//   routinea.add(__routine(pred));
+//
+//}
 
 
-inline ::pointer<task>object::fork(const ::procedure & procedure, const ::element_array & elementaHold, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
-{
 
-   auto ptask = this->branch_procedure(procedure, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
-
-   if (!ptask)
-   {
-
-      return ptask;
-
-   }
-
-   if (elementaHold.has_element())
-   {
-
-      ptask->m_elementaHold.add(elementaHold);
-
-   }
-
-   return ptask;
-
-}
-
-
-template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD >
-bool material_object::__get_posted_payload_synchronously(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER preturning, OBJECT_METHOD returning_method, ::payload & payload, const class ::wait & wait)
-{
-
-   if(pposting->is_branch_current())
-   {
-
-      payload = (preturning->*returning_method)();
-
-      return true;
-
-   }
-
-   auto posting = [pposting, posting_method](const ::procedure & procedure)
-   {
-
-      (pposting->*posting_method)(procedure);
-
-   };
-
-   ::function < void(const ::procedure &) > functionPost(posting);
-
-   ::function < ::payload() > functionReturn([preturning, returning_method]()
-   {
-
-      return (preturning->*returning_method)();
-
-   });
-
-   functionReturn.m_waitTimeout = wait;
-
-   return __get_posted_payload_synchronously(functionPost, functionReturn, payload);
-
-}
-
-
-template < typename POSTING_OBJECT, typename POSTING_METHOD >
-void material_object::__send_procedure(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::procedure & procedure)
-{
-
-   if(pposting->is_branch_current())
-   {
-
-      return procedure();
-
-   }
-
-   auto posting = [pposting, posting_method](const ::procedure & procedure)
-   {
-
-      (pposting->*posting_method)(procedure);
-
-   };
-
-   __send_procedure(posting, procedure);
-
-}
-
+//template < typename POSTING_OBJECT, typename POSTING_METHOD, typename OBJECT_POINTER, typename OBJECT_METHOD >
+//bool material_object::__get_posted_payload_synchronously(POSTING_OBJECT pposting, POSTING_METHOD posting_method, OBJECT_POINTER preturning, OBJECT_METHOD returning_method, ::payload & payload, const class ::wait & wait)
+//{
+//
+//   if(pposting->is_branch_current())
+//   {
+//
+//      payload = (preturning->*returning_method)();
+//
+//      return true;
+//
+//   }
+//
+//   auto posting = [pposting, posting_method](const ::procedure & procedure)
+//   {
+//
+//      (pposting->*posting_method)(procedure);
+//
+//   };
+//
+//   ::function < void(const ::procedure &) > functionPost(posting);
+//
+//   ::function < ::payload() > functionReturn([preturning, returning_method]()
+//   {
+//
+//      return (preturning->*returning_method)();
+//
+//   });
+//
+//   functionReturn.m_waitTimeout = wait;
+//
+//   return __get_posted_payload_synchronously(functionPost, functionReturn, payload);
+//
+//}
+//
+//
+//template < typename POSTING_OBJECT, typename POSTING_METHOD >
+//void material_object::__send_procedure(POSTING_OBJECT pposting, POSTING_METHOD posting_method, const ::procedure & procedure)
+//{
+//
+//   if(pposting->is_branch_current())
+//   {
+//
+//      return procedure();
+//
+//   }
+//
+//   auto posting = [pposting, posting_method](const ::procedure & procedure)
+//   {
+//
+//      (pposting->*posting_method)(procedure);
+//
+//   };
+//
+//   __send_procedure(posting, procedure);
+//
+//}
+//
 
 inline void assign(bool & b, const payload & payload)
 { 

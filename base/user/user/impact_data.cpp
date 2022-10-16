@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "impact_data.h"
 #include "aura/user/user/system.h"
 #include "aura/message/user.h"
@@ -16,9 +16,11 @@ namespace user
    }
 
 
-   impact_data::impact_data(const ::atom& atom) :
-      ::PARTICLE(atom)
+   impact_data::impact_data(const ::atom& atom) //:
+      //::PARTICLE(atom)
    {
+
+      m_atom = atom;
 
       impact_data_common_construct();
 

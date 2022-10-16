@@ -118,11 +118,11 @@ namespace browser
 
       //string strText;
 
-      data_get("cur_color", m_prender->m_hlsForeground);
+      datastream()->get("cur_color", m_prender->m_hlsForeground);
 
-      data_get("cur_font", m_prender->m_strFontSel);
+      datastream()->get("cur_font", m_prender->m_strFontSel);
 
-      data_get("cur_text", m_strNewHelloBrowser);
+      datastream()->get("cur_text", m_strNewHelloBrowser);
 
       if(get_typed_parent<::user::split_impact>() != nullptr)
       {
@@ -759,7 +759,7 @@ namespace browser
 
       }
 
-      data_set("cur_text", strFork);
+      datastream()->set("cur_text", strFork);
 
    }
 

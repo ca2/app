@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#include "apex/platform/app_core.h"
 #include "apex/platform/node.h"
 #include "acme/filesystem/filesystem/acme_path.h"
@@ -44,7 +44,7 @@ namespace apex
 
       m_applicationa.add(papp);
 
-      add_composite(papp);
+      //add_composite(papp);
 
    }
 

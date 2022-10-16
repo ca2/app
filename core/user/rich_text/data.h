@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "span.h"
@@ -102,8 +102,8 @@ namespace user
          virtual strsize _001GetTextLength() const;
          virtual strsize _001GetLayoutTextLength() const;
 
-         void write(::binary_stream & stream) const override;
-         void read(::binary_stream & stream) override;
+         //void write(::binary_stream < FILE > & stream) const override;
+         //void read(::binary_stream < FILE > & stream) override;
 
 
       };

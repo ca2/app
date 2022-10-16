@@ -1,14 +1,11 @@
 ﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
-////#include "aura/message.h"
+#include "box.h"
 #include "acme/constant/simple_command.h"
+#include "apex/database/_binary_stream.h"
 #include "apex/message/simple_command.h"
+#include "aura/platform/application.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
-#include "box.h"
-#include "aura/platform/application.h"
 
 
 namespace user
@@ -24,8 +21,6 @@ namespace user
 
       m_windowrectangleStore.m_edisplay = ::e_display_undefined;
 
-
-
    }
 
 
@@ -38,16 +33,7 @@ namespace user
    void box::initialize(::object * pobject)
    {
 
-      //auto estatus = 
-      
       interaction::initialize(pobject);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
 
       if (m_atom.is_empty())
       {
@@ -58,18 +44,13 @@ namespace user
 
       m_databasekey.m_strDataKey = m_atom;
 
-      //return estatus;
-
    }
-
-
 
 
    void box::install_message_routing(::channel * pchannel)
    {
 
       ::user::interaction::install_message_routing(pchannel);
-      //scroll::install_message_routing(pchannel);
 
       MESSAGE_LINK(e_message_create, pchannel, this, &box::on_message_create);
       MESSAGE_LINK(e_message_size, pchannel, this, &box::on_message_size);
@@ -131,7 +112,6 @@ namespace user
    {
 
       ::user::interaction::on_visual_applied();
-
 
 #if !defined(_UWP)
 
@@ -284,7 +264,7 @@ namespace user
 
          bool bRestore = iDisplay >= 0;
 
-         if (!bRestore)
+         if (bRestore)
          {
 
             set_need_layout();
@@ -364,7 +344,7 @@ namespace user
 
       ::pointer<::aura::application>papp = get_app();
 
-      if (!papp->data_get(key, windowrectangle))
+      if (!papp->datastream()->get(key, windowrectangle))
       {
 
          return false;
@@ -422,21 +402,34 @@ namespace user
 
          display(edisplay);
 
+         return true;
+
       }
-      else if (is_docking_appearance(edisplay))
+      else if (is_docking_appearance(edisplay)
+         && windowing()->display()->would_be_docked(windowrectangle.m_rectangleSnapped))
       {
 
          place(windowrectangle.m_rectangleSnapped);
 
          display(edisplay);
 
+         return true;
+
       }
-      else
+      else if (windowing()->display()->would_be_restored(windowrectangle.m_rectangleRestored))
       {
 
          place(windowrectangle.m_rectangleRestored);
 
          display(edisplay);
+
+         return true;
+
+      }
+      else
+      {
+
+         return false;
 
 ///*         auto functionGoodRestore = [this, windowrectangle]()
 //         {
@@ -460,7 +453,7 @@ namespace user
 
       }
 
-      return true;
+      return false;
 
    }
 
@@ -481,7 +474,7 @@ namespace user
 
       ::pointer<::aura::application>papp = get_app();
 
-      if (!papp->data_get(key, windowrectangle))
+      if (!papp->datastream()->get(key, windowrectangle))
       {
 
          return false;
@@ -597,7 +590,7 @@ namespace user
 
          auto papp = get_app();
 
-         papp->data_get(key, m_windowrectangleStore);
+         papp->datastream()->get(key, m_windowrectangleStore);
 
       }
 
@@ -661,7 +654,7 @@ namespace user
 
       ::pointer<::aura::application>papp = get_app();
 
-      papp->data_set(key, windowrect);
+      papp->datastream()->set(key, windowrect);
       //{
 
       //   return false;
@@ -920,6 +913,14 @@ namespace user
    {
 
       return m_strDisplay;
+
+   }
+
+
+   void box::set_restored_rectangle(const ::rectangle_i32 & rectangleRestored)
+   {
+
+      m_windowrectangle.m_rectangleRestored = rectangleRestored;
 
    }
 

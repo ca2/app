@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "image.h"
 #include "bitmap.h"
 #include "graphics.h"
@@ -36,33 +36,33 @@ namespace draw2d_cairo
    }
 
 
-   void image::read(::binary_stream & stream)
-   {
+   //void image::read(::binary_stream < FILE > & stream)
+   //{
 
-      synchronous_lock ml(cairo_mutex());
+   //   synchronous_lock ml(cairo_mutex());
 
-      ::image::read(stream);
+   //   ::image::read(stream);
 
-      cairo_surface_t * surface = dynamic_cast <::draw2d_cairo::bitmap *> (m_pbitmap.m_p)->m_psurface;
+   //   cairo_surface_t * surface = dynamic_cast <::draw2d_cairo::bitmap *> (m_pbitmap.m_p)->m_psurface;
 
-      if (surface != nullptr)
-      {
+   //   if (surface != nullptr)
+   //   {
 
-         cairo_surface_mark_dirty(surface);
+   //      cairo_surface_mark_dirty(surface);
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   void image::write(::binary_stream & stream) const
-   {
+   //void image::write(::binary_stream < FILE > & stream) const
+   //{
 
-      synchronous_lock ml(cairo_mutex());
+   //   synchronous_lock ml(cairo_mutex());
 
-      ::image::write(stream);
+   //   ::image::write(stream);
 
-   }
+   //}
 
 
 //   void    image::construct (i32 cx,  i32 cy)

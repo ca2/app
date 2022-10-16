@@ -1,4 +1,4 @@
-// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
+﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
@@ -1512,9 +1512,281 @@ namespace windowing
 
    }
 
+   
+   bool display::would_be_docked(const ::rectangle_i32 & rectangleWouldBeSnapped)
+   {
+
+      if (rectangleWouldBeSnapped.is_empty())
+      {
+
+         return false;
+
+      }
+
+      ::count iMonitorCount = get_monitor_count();
+
+      ::rectangle_i32 rectangleMonitor;
+
+      ::rectangle_i32 rectangleWorkspace;
+
+      for (index iScreen = 0; iScreen < iMonitorCount; iScreen++)
+      {
+
+         if (get_monitor_rectangle(iScreen, rectangleMonitor) && get_workspace_rectangle(iScreen, rectangleWorkspace))
+         {
+
+            if (would_be_docked_in_monitor(rectangleWouldBeSnapped, rectangleMonitor) ||
+               would_be_docked_in_monitor(rectangleWouldBeSnapped, rectangleWorkspace))
+            {
+
+               return true;
+
+            }
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
+   bool display::would_be_docked_in_monitor(const ::rectangle_i32 & rectangleWouldBeSnapped, const ::rectangle_i32 & rectangleMonitor)
+   {
+
+      if (rectangleWouldBeSnapped.left < rectangleMonitor.left
+         || rectangleWouldBeSnapped.left > rectangleMonitor.right)
+      {
+
+         return false;
+
+      }
+
+      if (rectangleWouldBeSnapped.right < rectangleMonitor.left
+         || rectangleWouldBeSnapped.right > rectangleMonitor.right)
+      {
+
+         return false;
+
+      }
+
+      if (rectangleWouldBeSnapped.top < rectangleMonitor.top
+         || rectangleWouldBeSnapped.top > rectangleMonitor.bottom)
+      {
+
+         return false;
+
+      }
+
+      if (rectangleWouldBeSnapped.bottom < rectangleMonitor.top
+         || rectangleWouldBeSnapped.bottom > rectangleMonitor.top)
+      {
+
+         return false;
+
+      }
+
+      auto sizeMinimum = m_pwindowing->get_window_minimum_size();
+
+      if (rectangleWouldBeSnapped.width() < sizeMinimum.cx || rectangleWouldBeSnapped.height() < sizeMinimum.cy)
+      {
+
+         return false;
+
+      }
+
+      if (rectangleWouldBeSnapped.left == rectangleMonitor.left)
+      {
+
+         if (rectangleWouldBeSnapped.top == rectangleMonitor.top)
+         {
+
+            if (rectangleWouldBeSnapped.bottom == rectangleMonitor.bottom)
+            {
+
+               // left snapping
+
+               return rectangleWouldBeSnapped.right < rectangleMonitor.right - sizeMinimum.cx;
+
+            }
+            else if (rectangleWouldBeSnapped.right == rectangleMonitor.right
+               || rectangleWouldBeSnapped.right < rectangleMonitor.right - sizeMinimum.cx)
+            {
+
+               // top snapping, or;
+               // top left snapping
+
+               return rectangleWouldBeSnapped.bottom < rectangleMonitor.bottom - sizeMinimum.cy;
+
+            }
+
+         }
+         else if (rectangleWouldBeSnapped.top > rectangleMonitor.top + sizeMinimum.cy)
+         {
+
+            if (rectangleWouldBeSnapped.right == rectangleMonitor.right
+               || rectangleWouldBeSnapped.right < rectangleMonitor.right - sizeMinimum.cx)
+            {
+
+               // bottom snapping, or;
+               // bottom left snapping
+
+               return true;
+
+            }
+
+         }
+
+      }
+      else if (rectangleWouldBeSnapped.right == rectangleMonitor.right)
+      {
+
+         if (rectangleWouldBeSnapped.top == rectangleMonitor.top)
+         {
+
+            if (rectangleWouldBeSnapped.bottom == rectangleMonitor.bottom)
+            {
+
+               // right snapping
+
+               return rectangleWouldBeSnapped.left > rectangleMonitor.left + sizeMinimum.cx;
+
+            }
+            else if (rectangleWouldBeSnapped.left > rectangleMonitor.left + sizeMinimum.cx)
+            {
+
+               // top right snapping
+
+               return rectangleWouldBeSnapped.bottom < rectangleMonitor.bottom - sizeMinimum.cy;
+
+            }
+
+         }
+         else if (rectangleWouldBeSnapped.top > rectangleMonitor.top + sizeMinimum.cy)
+         {
+
+            if (rectangleWouldBeSnapped.left > rectangleMonitor.left + sizeMinimum.cx)
+            {
+
+               // bottom right snapping
+
+               return true;
+
+            }
+
+         }
+
+
+      }
+
+      return false;
+
+   }
+
+
+   bool display::would_be_restored(const ::rectangle_i32 & rectangleWouldBeRestored)
+   {
+
+      if (rectangleWouldBeRestored.is_empty())
+      {
+
+         return false;
+
+      }
+
+      ::count iMonitorCount = get_monitor_count();
+
+      ::rectangle_i32 rectangleMonitor;
+
+      ::rectangle_i32 rectangleWorkspace;
+
+      for (index iScreen = 0; iScreen < iMonitorCount; iScreen++)
+      {
+
+         if (get_monitor_rectangle(iScreen, rectangleMonitor) && get_workspace_rectangle(iScreen, rectangleWorkspace))
+         {
+
+            if (would_be_docked_in_monitor(rectangleWouldBeRestored, rectangleMonitor) ||
+               would_be_docked_in_monitor(rectangleWouldBeRestored, rectangleWorkspace))
+            {
+
+               return true;
+
+            }
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
+   bool display::would_be_restored_in_monitor(const ::rectangle_i32 & rectangleWouldBeRestored, const ::rectangle_i32 & rectangleMonitor)
+   {
+
+      if (rectangleWouldBeRestored.left < rectangleMonitor.left
+         || rectangleWouldBeRestored.left > rectangleMonitor.right)
+      {
+
+         return false;
+
+      }
+
+      if (rectangleWouldBeRestored.right < rectangleMonitor.left
+         || rectangleWouldBeRestored.right > rectangleMonitor.right)
+      {
+
+         return false;
+
+      }
+
+      if (rectangleWouldBeRestored.top < rectangleMonitor.top
+         || rectangleWouldBeRestored.top > rectangleMonitor.bottom)
+      {
+
+         return false;
+
+      }
+
+      if (rectangleWouldBeRestored.bottom < rectangleMonitor.top
+         || rectangleWouldBeRestored.bottom > rectangleMonitor.top)
+      {
+
+         return false;
+
+      }
+
+      auto sizeMinimum = m_pwindowing->get_window_minimum_size();
+
+      if (rectangleWouldBeRestored.width() < sizeMinimum.cx || rectangleWouldBeRestored.height() < sizeMinimum.cy)
+      {
+
+         return false;
+
+      }
+
+      auto sizeMargin = sizeMinimum / 8;
+
+      auto rectangleWithMargin = rectangleMonitor;
+
+      rectangleWithMargin.deflate(sizeMargin);
+
+      if (rectangleWithMargin.contains(rectangleWouldBeRestored))
+      {
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
 
 } // namespace windowing
-
 
 
 

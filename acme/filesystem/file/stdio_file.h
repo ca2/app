@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "text_file.h"
@@ -59,8 +59,8 @@ public:
 
    memsize read(void *pdata,memsize nCount) override;
 
-   byte get_byte() override;
-   byte peek_byte() override;
+   int get_u8() override;
+   int peek_byte() override;
    void put_byte_back(::byte b) override;
 
    using ::file::file::write;

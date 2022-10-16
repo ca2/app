@@ -1,5 +1,6 @@
-#include "framework.h" 
+﻿#include "framework.h" 
 #include "apex/networking/sockets/_.h"
+#include "acme/filesystem/file/memory_file.h"
 
 
 namespace http
@@ -44,20 +45,20 @@ namespace http
    }
 
 
-   void response::printf(const char * pszFormat, ...)
-   {
-      
-      va_list args;
-      
-      va_start(args, pszFormat);
-      
-      string str;
-      
-      str.format_arguments(pszFormat, args);
-      
-      va_end(args);
-        
-   }
+   //void response::printf(const char * pszFormat, ...)
+   //{
+   //   
+   //   va_list args;
+   //   
+   //   va_start(args, pszFormat);
+   //   
+   //   string str;
+   //   
+   //   str.format_arguments(pszFormat, args);
+   //   
+   //   va_end(args);
+   //     
+   //}
 
 
    void response::clear()

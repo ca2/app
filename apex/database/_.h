@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace database
@@ -8,6 +8,7 @@ namespace database
    class client;
    class server;
    class client_array;
+   class stream;
 
    
 } // namespace database

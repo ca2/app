@@ -1,7 +1,8 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "apex/networking/sockets/_sockets.h"
 #include "apex/filesystem/fs/_fs.h"
 #include "ifs_file.h"
+#include "acme/filesystem/file/memory_file.h"
 
 
 ifs_file::ifs_file(::payload payloadFile) :
@@ -20,7 +21,7 @@ ifs_file::~ifs_file()
 memsize ifs_file::read(void *pdata, memsize nCount)
 {
 
-   return m_httpfile.read(pdata, nCount);
+   return m_phttpfile->read(pdata, nCount);
 
 }
 
@@ -28,8 +29,7 @@ memsize ifs_file::read(void *pdata, memsize nCount)
 void ifs_file::write(const void * pdata, memsize nCount)
 {
 
-   m_memfile.write(pdata, nCount);
-
+   m_pmemfile->write(pdata, nCount);
 
 }
 
@@ -40,13 +40,13 @@ filesize ifs_file::get_size() const
    if((m_nOpenFlags & ::file::e_open_read) != 0)
    {
 
-      return m_httpfile.get_size();
+      return m_phttpfile->get_size();
 
    }
    else
    {
 
-      return m_memfile.get_size();
+      return m_pmemfile->get_size();
 
    }
 
@@ -59,13 +59,13 @@ filesize ifs_file::translate(filesize offset, ::enum_seek eseek)
    if((m_nOpenFlags & ::file::e_open_read) != 0)
    {
 
-      return m_httpfile.translate(offset, eseek);
+      return m_phttpfile->translate(offset, eseek);
 
    }
    else
    {
 
-      return m_memfile.translate(offset, eseek);
+      return m_pmemfile->translate(offset, eseek);
 
    }
 
@@ -92,7 +92,7 @@ void ifs_file::get_file_data()
 
    }
 
-   m_httpfile.open(strUrl, ::file::e_open_binary | ::file::e_open_read | eopenAdd);
+   m_phttpfile->open(strUrl, ::file::e_open_binary | ::file::e_open_read | eopenAdd);
 
 }
 
@@ -152,7 +152,7 @@ void ifs_file::set_file_data()
 
    property_set setPut;
 
-   m_pcontext->m_papexcontext->http().put(strUrl, &m_memfile, setPut);
+   m_pcontext->m_papexcontext->http().put(strUrl, m_pmemfile, setPut);
 
 }
 

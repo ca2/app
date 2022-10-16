@@ -1,4 +1,4 @@
-// Created by camilo on 2021-03-10 06:22 BRT ThomasBS_!!
+﻿// Created by camilo on 2021-03-10 06:22 BRT ThomasBS_!!
 #include "framework.h"
 #include "networking.h"
 #include "sockets/ssl/initializer.h"
@@ -1438,38 +1438,6 @@ namespace networking_bsd
    }
 
 
-   void networking::dns_cache_item::write(binary_stream& stream) const
-   {
-
-      string strAddress;
-
-      strAddress = __string(m_ipaddr);
-
-      stream << strAddress;
-      stream << m_durationLastChecked;
-      stream << m_bOk;
-      stream << m_bTimeout;
-
-   }
-
-
-   void networking::dns_cache_item::read(binary_stream& stream)
-   {
-
-      string strAddress;
-
-      stream >> strAddress;
-
-      ::from_string(m_ipaddr, strAddress);
-
-      stream >> m_durationLastChecked;
-      stream >> m_bOk;
-      stream >> m_bTimeout;
-
-      //return stream;
-
-   }
-
 
    networking::dns_cache_item& networking::dns_cache_item::operator = (const dns_cache_item& item)
    {
@@ -1505,35 +1473,6 @@ namespace networking_bsd
 
    }
 
-
-   void networking::reverse_cache_item::write(binary_stream& stream) const
-   {
-
-      stream << m_strIpAddress;
-      stream << m_strReverse;
-      stream << m_durationLastChecked;
-      stream << m_bOk;
-      stream << m_bTimeout;
-      stream << m_bProcessing;
-
-      //return stream;
-
-   }
-
-
-   void networking::reverse_cache_item::read(binary_stream& stream)
-   {
-
-      stream >> m_strIpAddress;
-      stream >> m_strReverse;
-      stream >> m_durationLastChecked;
-      stream >> m_bOk;
-      stream >> m_bTimeout;
-      stream >> m_bProcessing;
-
-      //return stream;
-
-   }
 
 
    networking::reverse_cache_item& networking::reverse_cache_item::operator = (const reverse_cache_item& item)

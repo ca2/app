@@ -347,7 +347,7 @@ namespace axis
          //string str;
          //// if system locale has changed (compared to last recorded one by aura)
          //// use the system locale
-         //if (data_get({ "system_locale", true }, str))
+         //if (datastream()->get({ "system_locale", true }, str))
          //{
 
          //   if (str.has_char())
@@ -359,9 +359,9 @@ namespace axis
          //         try
          //         {
 
-         //            data_set({ "system_locale", true }, get_locale());
+         //            datastream()->set({ "system_locale", true }, get_locale());
 
-         //            data_set({ "locale", true }, get_locale());
+         //            datastream()->set({ "locale", true }, get_locale());
 
          //         }
          //         catch (...)
@@ -377,7 +377,7 @@ namespace axis
          //else
          //{
 
-         //   data_set({ "system_locale", true }, get_locale());
+         //   datastream()->set({ "system_locale", true }, get_locale());
 
          //}
 
@@ -386,9 +386,9 @@ namespace axis
 
          //   str = payload("locale").stra()[0];
 
-         //   data_set({ "system_locale", true }, str);
+         //   datastream()->set({ "system_locale", true }, str);
 
-         //   data_set({ "locale", true }, str);
+         //   datastream()->set({ "locale", true }, str);
 
          //   set_locale(str, ::e_source_database);
 
@@ -398,14 +398,14 @@ namespace axis
 
          //   str = payload("lang").stra()[0];
 
-         //   data_set({ "system_locale", true }, str);
+         //   datastream()->set({ "system_locale", true }, str);
 
-         //   data_set({ "locale", true }, str);
+         //   datastream()->set({ "locale", true }, str);
 
          //   set_locale(str, ::e_source_database);
 
          //}
-         //else if (data_get({ "locale", true }, str))
+         //else if (datastream()->get({ "locale", true }, str))
          //{
 
          //   if (str.has_char())
@@ -418,7 +418,7 @@ namespace axis
          //}
          //// if system schema has changed (compared to last recorded one by aura)
          //// use the system schema
-         //if (data_get({ "system_schema", true }, str))
+         //if (datastream()->get({ "system_schema", true }, str))
          //{
 
          //   if (str.has_char())
@@ -430,9 +430,9 @@ namespace axis
          //         try
          //         {
 
-         //            data_set({ "system_schema", true }, get_schema());
+         //            datastream()->set({ "system_schema", true }, get_schema());
 
-         //            data_set({ "schema", true }, get_schema());
+         //            datastream()->set({ "schema", true }, get_schema());
 
          //         }
          //         catch (...)
@@ -448,7 +448,7 @@ namespace axis
          //else
          //{
 
-         //   data_set({ "system_schema", true }, get_schema());
+         //   datastream()->set({ "system_schema", true }, get_schema());
 
          //}
 
@@ -457,14 +457,14 @@ namespace axis
 
          //   str = payload("schema").stra()[0];
 
-         //   data_set({ "system_schema", true }, str);
+         //   datastream()->set({ "system_schema", true }, str);
 
-         //   data_set({ "schema", true }, str);
+         //   datastream()->set({ "schema", true }, str);
 
          //   set_schema(str, ::e_source_database);
 
          //}
-         //else if (data_get({ "schema", true }, str))
+         //else if (datastream()->get({ "schema", true }, str))
          //{
 
          //   if (str.has_char())
@@ -484,7 +484,7 @@ namespace axis
 
          ////// if system locale has changed (compared to last recorded one by aura)
          ////// use the system locale
-         ////if (data_get({ "system_locale", true }, str))
+         ////if (datastream()->get({ "system_locale", true }, str))
          ////{
 
          ////   if (str.has_char())
@@ -496,9 +496,9 @@ namespace axis
          ////         try
          ////         {
 
-         ////            data_set({ "system_locale", true }, get_locale());
+         ////            datastream()->set({ "system_locale", true }, get_locale());
 
-         ////            data_set({ "locale", true }, get_locale());
+         ////            datastream()->set({ "locale", true }, get_locale());
 
          ////         }
          ////         catch (...)
@@ -514,7 +514,7 @@ namespace axis
          ////else
          ////{
 
-         ////   data_set({ "system_locale", true }, get_locale());
+         ////   datastream()->set({ "system_locale", true }, get_locale());
 
          ////}
 
@@ -523,9 +523,9 @@ namespace axis
 
          ////   str = payload("locale").stra()[0];
 
-         ////   data_set({ "system_locale", true }, str);
+         ////   datastream()->set({ "system_locale", true }, str);
 
-         ////   data_set({ "locale", true }, str);
+         ////   datastream()->set({ "locale", true }, str);
 
          ////   set_locale(str, ::e_source_database);
 
@@ -535,14 +535,14 @@ namespace axis
 
          ////   str = payload("lang").stra()[0];
 
-         ////   data_set({ "system_locale", true }, str);
+         ////   datastream()->set({ "system_locale", true }, str);
 
-         ////   data_set({ "locale", true }, str);
+         ////   datastream()->set({ "locale", true }, str);
 
          ////   set_locale(str, ::e_source_database);
 
          ////}
-         ////else if (data_get({ "locale", true }, str))
+         ////else if (datastream()->get({ "locale", true }, str))
          ////{
 
          ////   if (str.has_char())
@@ -555,7 +555,7 @@ namespace axis
          ////}
          ////// if system schema has changed (compared to last recorded one by aura)
          ////// use the system schema
-         ////if (data_get({ "system_schema", true }, str))
+         ////if (datastream()->get({ "system_schema", true }, str))
          ////{
 
          ////   if (str.has_char())
@@ -567,9 +567,9 @@ namespace axis
          ////         try
          ////         {
 
-         ////            data_set({ "system_schema", true }, get_schema());
+         ////            datastream()->set({ "system_schema", true }, get_schema());
 
-         ////            data_set({ "schema", true }, get_schema());
+         ////            datastream()->set({ "schema", true }, get_schema());
 
          ////         }
          ////         catch (...)
@@ -585,7 +585,7 @@ namespace axis
          ////else
          ////{
 
-         ////   data_set({ "system_schema", true }, get_schema());
+         ////   datastream()->set({ "system_schema", true }, get_schema());
 
          ////}
 
@@ -594,14 +594,14 @@ namespace axis
 
          ////   str = payload("schema").stra()[0];
 
-         ////   data_set({ "system_schema", true }, str);
+         ////   datastream()->set({ "system_schema", true }, str);
 
-         ////   data_set({ "schema", true }, str);
+         ////   datastream()->set({ "schema", true }, str);
 
          ////   set_schema(str, ::e_source_database);
 
          ////}
-         ////else if (data_get({ "schema", true }, str))
+         ////else if (datastream()->get({ "schema", true }, str))
          ////{
 
          ////   if (str.has_char())
@@ -1240,7 +1240,7 @@ namespace axis
             //else
             //{
 
-            set_data_server(m_psimpledb);
+            initialize_data_client(m_psimpledb);
 
             //}
 
@@ -1720,12 +1720,12 @@ namespace axis
 
          //}
 
-         if (::is_set(m_pappParent))
-         {
+         //if (::is_set(m_pappParent))
+         //{
 
-            m_pappParent->add_reference(this);
+         //   m_pappParent->add_reference(this);
 
-         }
+         //}
 
       //resume_on_exception:
 

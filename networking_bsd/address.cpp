@@ -761,24 +761,6 @@ namespace networking_bsd
    }
 
 
-   void address::write(::binary_stream & stream) const
-   {
-
-      stream.write(&u.m_sa, sizeof(u.m_sa));
-      stream<< m_iLen;
-
-   }
-
-
-   void address::read(::binary_stream & stream)
-   {
-
-      stream.read(&u.m_sa, sizeof(u.m_sa));
-      stream >> m_iLen;
-
-   }
-
-
 
 } // namespace net
 

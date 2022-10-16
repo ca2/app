@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "tunnel.h"
@@ -40,7 +40,7 @@ namespace sockets
 #endif
 
       ::mutex                          m_mutexData;
-      ::memory_file                    m_memoryfile;
+      ::memory_file_pointer            m_pmemoryfile;
       ::file::file *                   m_pfile;
       i64                              m_iFinalSize;
       ::progress::integer              m_progressinteger;

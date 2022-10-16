@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -540,12 +540,12 @@ void fork_count(::object * pobjectParent, ::count iCount, PRED pred, const ::pro
 
       auto ppredtask = __new(forking_count_task < PRED >(pobjectParent, iOrder, iOrder + iStart, cScan, iCount, pred));
 
-      if (::is_set(ptask))
-      {
+      //if (::is_set(ptask))
+      //{
 
-         ptask->add_reference(ppredtask);
+      //   ptask->add_reference(ppredtask);
 
-      }
+      //}
 
       ppredtask->m_pcounter = pcounter;
 

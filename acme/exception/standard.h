@@ -1,4 +1,4 @@
-/*
+﻿/*
  Copyright (ca) 2001
  Author: Konstantin Boukreev
  E-mail: konstantin@mail.primorye.ru
@@ -101,7 +101,7 @@ public:
    const char *         name() const;
    const char *         description() const;
 #ifndef ANDROID
-   const ucontext_t *   context() const;
+   const ucontext_t *   ucontext_t() const;
 #endif
 #endif
 

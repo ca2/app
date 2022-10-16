@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "timer_task.h"
 
 
@@ -46,7 +46,7 @@ namespace acme
 
       ptimer->m_ptimercallback = this;
 
-      m_pcallback->add_composite(ptimer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+      //m_pcallback->add_composite(ptimer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
       bool bOk = true;
 

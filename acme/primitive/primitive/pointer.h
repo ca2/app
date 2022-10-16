@@ -217,8 +217,8 @@ public:
    template < typename T2 >
    pointer & operator = (ptr < T2 > && p);
 
-   template < typename VAR >
-   inline pointer & operator = (const payload_type < VAR > & payload);
+   //template < typename VAR >
+   //inline pointer & operator = (const payload_type < VAR > & payload);
 
 
    //inline pointer& operator = (T * p)

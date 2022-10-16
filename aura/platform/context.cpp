@@ -975,7 +975,7 @@ namespace aura
 //   void context::_load_from_file(::matter* pobject, const ::payload& payloadFile, const ::payload& varOptions)
 //   {
 //
-//      binary_stream reader(m_pcontext->m_papexcontext->file().get_reader(payloadFile));
+//      binary_stream < FILE > reader(m_pcontext->m_papexcontext->file().get_reader(payloadFile));
 //
 //      read(reader);
 //
@@ -987,7 +987,7 @@ namespace aura
 //   void context::_save_to_file(const ::payload& payloadFile, const ::payload& varOptions, const ::matter* pobject)
 //   {
 //
-//      binary_stream writer(m_pcontext->m_papexcontext->file().get_writer(payloadFile));
+//      binary_stream < FILE > writer(m_pcontext->m_papexcontext->file().get_writer(payloadFile));
 //
 //      write(writer);
 //

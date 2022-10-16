@@ -4974,7 +4974,7 @@ namespace user
          if(m_puserinteraction)
          {
 
-            auto r = m_puserinteraction->screen_rect();
+            //auto r = m_puserinteraction->screen_rect();
 
             if (m_puserinteraction->is_finishing())
             {
@@ -4989,7 +4989,7 @@ namespace user
 
             }
 
-            m_rectangleUpdateBuffer = r;
+            //m_rectangleUpdateBuffer = r;
 
             //FORMATTED_TRACE("PrintBuffer (%d, %d)",  r.right, r.bottom);
 
@@ -5007,7 +5007,7 @@ namespace user
          if (pgraphics->m_pimage)
          {
 
-            pgraphics->m_pimage->m_rectangleTag = m_rectangleUpdateBuffer;
+            //pgraphics->m_pimage->m_rectangleTag = m_rectangleUpdateBuffer;
 
             m_sizeDrawn = sizeDrawn;
 

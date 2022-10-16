@@ -1,5 +1,7 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "file_set.h"
+#include "acme/primitive/collection/_array_binary_stream.h"
+#include "apex/database/_binary_stream.h"
 
 
 namespace simpledb
@@ -49,14 +51,14 @@ namespace simpledb
 
       __construct_new(pbaRecursive);
 
-      if (!data_get(::atom(), ppatha))
+      if (!datastream()->get(::atom(), ppatha))
       {
 
          return;
 
       }
 
-      data_get("recursive", pbaRecursive);
+      datastream()->get("recursive", pbaRecursive);
 
       for (index i = pbaRecursive->get_size(); i < ppatha->get_size(); i++)
       {
@@ -76,9 +78,9 @@ namespace simpledb
    void file_set::add_search(const ::file::path & pathSearchFolder, bool bRecursive)
    {
 
-      data_get(::atom(), m_ppathaSearch);
+      datastream()->get(::atom(), m_ppathaSearch);
 
-      data_get("recursive", m_pbaRecursive);
+      datastream()->get("recursive", m_pbaRecursive);
 
       index i = -1;
 
@@ -93,9 +95,9 @@ namespace simpledb
 
          m_pbaRecursive->add(bRecursive);
 
-         data_set(::atom(), m_ppathaSearch);
+         datastream()->set(::atom(), m_ppathaSearch);
 
-         data_set("recursive", m_pbaRecursive);
+         datastream()->set("recursive", m_pbaRecursive);
 
       }
       else
@@ -103,7 +105,7 @@ namespace simpledb
 
          m_pbaRecursive->set_at_grow(i,bRecursive);
 
-         data_set("recursive", m_pbaRecursive);
+         datastream()->set("recursive", m_pbaRecursive);
 
       }
 
@@ -115,9 +117,9 @@ namespace simpledb
 
       ::file::set::clear_search();
 
-      data_set(::atom(), ::payload(e_type_new));
+      datastream()->set(::atom(), ::payload(e_type_new));
 
-      data_set("recursive", ::payload(e_type_new));
+      datastream()->set("recursive", ::payload(e_type_new));
 
    }
 

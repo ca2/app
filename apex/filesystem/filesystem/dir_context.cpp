@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#include "apex/platform/app_core.h"
 //#include "apex/compress/zip/_.h"
 #include "acme/constant/id.h"
@@ -1794,7 +1794,7 @@ void dir_context::get_matter_locator(string_array& straMatterLocator, bool bIncl
 
    straMatterLocator.erase_all();
 
-   straMatterLocator.add(m_pcontext->m_papexcontext->m_straMatterLocatorPriority);
+   straMatterLocator.append(m_pcontext->m_papexcontext->m_straMatterLocatorPriority);
 
    if (bIncludeMain)
    {
@@ -2677,6 +2677,14 @@ ret:
    }
 
    return commonappdata_root() / strRelative;
+
+}
+
+
+::file::path dir_context::localfolder()
+{
+
+   return m_pathLocalFolder;
 
 }
 

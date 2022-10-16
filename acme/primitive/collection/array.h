@@ -1,8 +1,7 @@
-#pragma once
+﻿#pragma once
 
 
-
-template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = ::allocator::def < TYPE >, enum_type t_etypePayload = e_type_element >
+template < class TYPE, class ARG_TYPE, class ALLOCATOR, enum_type t_etypePayload >
 class array :
    public ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >
 {

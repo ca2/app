@@ -51,8 +51,8 @@ namespace user
       m_uchHoverAlphaInit = 0;
       m_ealignText = e_align_left_center;
       m_edrawtext = e_draw_text_none;
-      m_evOpen.m_eobject += e_object_alertable_wait;
-      m_evExpand.m_eobject += e_object_alertable_wait;
+      m_evOpen.m_eflagElement += e_flag_alertable_wait;
+      m_evExpand.m_eflagElement += e_flag_alertable_wait;
 
       m_sizeItemMaximum.cx = 16;
       m_sizeItemMaximum.cy = 16;

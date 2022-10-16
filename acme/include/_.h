@@ -1884,49 +1884,6 @@ namespace message
 
 
 
-template < typename ARGUMENT >
-class argument_of
-{
-public:
-
-   using type = typename smaller_type < ARGUMENT, const ARGUMENT & >::type;
-
-};
-
-
-template < >
-class argument_of < ::string >
-{
-public:
-
-   using type = ::block;
-
-};
-
-
-template < typename T, typename ARG_T = typename argument_of < T >::type >
-class single;
-
-
-template < class KEY, class ARG_KEY = typename argument_of < KEY >::type, class PAYLOAD = single < KEY, ARG_KEY > >
-class set;
-
-
-template < typename T1, typename T2, typename ARG_T1 = typename argument_of < T1 >::type, typename ARG_T2 = typename argument_of < T2 >::type >
-class pair;
-
-
-template < class KEY, class VALUE, class ARG_KEY = typename argument_of < KEY >::type, class ARG_VALUE = typename argument_of < VALUE >::type, class PAIR = pair < KEY, VALUE, ARG_KEY, ARG_VALUE > >
-class map;
-
-
-template<class ENUM>
-class flags;
-
-
-template<class EENUM, EENUM edefault = (EENUM) 0>
-class base_enum;
-
 
 class form_property_set;
 
@@ -2604,6 +2561,8 @@ class thread_parameter;
 #include "acme/primitive/primitive/uid.h"
 
 
+
+
 //namespace primitive
 //{
 //
@@ -2754,7 +2713,8 @@ using memory_file_pointer = ::pointer<::memory_file>;
 
 using folder_pointer = ::pointer<::folder>;
 
-class binary_stream;
+
+
 
 
 //template<typename BASE_TYPE>
@@ -3070,9 +3030,15 @@ class sequencer;
 #include "acme/primitive/primitive/element.h"
 #include "acme/primitive/primitive/function.h"
 #include "acme/platform/procedure.h"
-#include "acme/primitive/primitive/tracer.h"
+#include "acme/platform/tracer.h"
+
+
+using procedure = ::function < void() >;
+
 #include "acme/primitive/primitive/matter.h"
 //#include "acme/primitive/primitive/linked_property.h"
+
+
 
 
 
@@ -3239,6 +3205,24 @@ struct MESSAGE
    POINT_I32               pt;
    ::u64                   time;
 
+
+   MESSAGE() {}
+   MESSAGE(const MESSAGE & message)
+   {
+      operator=(message);
+   }
+
+   MESSAGE & operator = (const MESSAGE & message)
+   {
+      oswindow = message.oswindow;
+      m_atom = message.m_atom;
+      wParam = message.wParam;
+      lParam = message.lParam;
+      pt = message.pt;
+      time = message.time;
+      return *this;
+   }
+
 };
 
 
@@ -3257,12 +3241,6 @@ namespace core
 
 class task;
 
-template < class TYPE, class ARG_TYPE = const TYPE & >
-class list;
-
-
-template < typename TYPE, typename ARG_TYPE = typename argument_of < TYPE >::type, typename PAIR = pair < ::atom, TYPE, typename argument_of < ::atom >::type, ARG_TYPE > >
-using id_map = ::map < atom, TYPE, typename argument_of < ::atom >::type, ARG_TYPE, PAIR >;
 
 
 //using procedure_function = ::function < void() >;
@@ -3283,17 +3261,12 @@ using id_map = ::map < atom, TYPE, typename argument_of < ::atom >::type, ARG_TY
 //};
 
 
-using procedure = ::function < void() >;
-
-using procedure_array = ::array < ::procedure >;
-using procedure_list = ::list < ::procedure >;
-using procedure_map = ::id_map < ::procedure_array >;
 
 
 //using process_array = ::array < process >;
 
-template<typename PRED>
-void add_procedure(::procedure_array& array, PRED pred);
+//template<typename PRED>
+//void add_procedure(::procedure_array& array, void(void) pred);
 
 
 //template<typename PRED>
@@ -3305,6 +3278,7 @@ void add_procedure(::procedure_array& array, PRED pred);
 
 using exception_array = ::array < ::exception >;
 
+using procedure_array = ::array < ::procedure >;
 
 #include "acme/primitive/primitive/linked_property.h"
 
@@ -3314,9 +3288,6 @@ using exception_array = ::array < ::exception >;
 
 #include "acme/exception/extended_status.h"
 
-
-
-#include "acme/primitive/primitive/material_object.h"
 
 
 #include "acme/primitive/primitive/enum_bitset.h"
@@ -3366,6 +3337,16 @@ namespace file
 
 
 #include "acme/primitive/collection/_collection.h"
+
+using procedure_list = ::list < ::procedure >;
+
+
+
+
+#include "acme/primitive/primitive/material_object.h"
+
+
+
 
 
 #include "acme/primitive/geometry2d/polygon.h"
@@ -3683,10 +3664,10 @@ inline auto &__typed(::pointer<POINTER_TYPE>*pp) { return *pp->operator POINTER_
 #include "acme/filesystem/file/streamable_composite.h"
 #include "acme/filesystem/file/file.h"
 #include "acme/filesystem/file/stream.h"
-#include "acme/filesystem/file/binary_stream.h"
+//#include "acme/filesystem/file/binary_stream.h"
 #include "acme/filesystem/file/payload_stream.h"
 #include "acme/filesystem/file/string_buffer.h"
-#include "acme/filesystem/file/text_stream.h"
+//#include "acme/filesystem/file/text_stream.h"
 
 
 //#include "acme/filesystem/filesystem/acme_directory.h"
@@ -3845,7 +3826,7 @@ namespace acme
 #include "acme/primitive/primitive/memory_container.h"
 
 
-#include "acme/filesystem/file/memory_file.h"
+//#include "acme/filesystem/file/memory_file.h"
 //#include "acme/filesystem/file/circular_file.h"
 
 

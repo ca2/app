@@ -45,6 +45,7 @@
 #include "aura/graphics/user/control_box_button.h"
 #include "aura/platform/session.h"
 #include "aura/platform/application.h"
+#include "acme/parallelization/asynchronous.h"
 
 
 #define INFO_LAYOUT_DISPLAY
@@ -446,6 +447,12 @@ namespace user
       post_redraw();
 
       //return true;
+
+   }
+
+
+   void interaction::set_restored_rectangle(const ::rectangle_i32 & rectangleRestored)
+   {
 
    }
 
@@ -5313,7 +5320,7 @@ namespace user
    void interaction::interaction_send(const ::procedure & procedure)
    {
 
-      __send_procedure(this, &interaction::interaction_post, procedure);
+      __material_send_procedure(this, this, &interaction::interaction_post, procedure);
 
    }
 
@@ -14838,6 +14845,8 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
             {
 
                place(rectangleNew);
+
+               set_restored_rectangle(rectangleNew);
 
             }
             else

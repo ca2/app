@@ -111,7 +111,7 @@ namespace helloworld
 
          string strText;
 
-         m_pimpact->data_get("cur_text",strText);
+         m_pimpact->datastream()->get("cur_text",strText);
 
          peditview->_001SetText(strText, ::e_source_initialize);
 

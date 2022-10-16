@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace papaya
@@ -38,6 +38,11 @@ namespace papaya
 } // namespace papaya
 
 
+template < typename TYPE, typename ARG_TYPE = typename argument_of < TYPE >::type, typename PAIR = pair < ::atom, TYPE, typename argument_of < ::atom >::type, ARG_TYPE > >
+using id_map = ::map < atom, TYPE, typename argument_of < ::atom >::type, ARG_TYPE, PAIR >;
+
+
+using procedure_map = ::id_map < ::procedure_array >;
 
 
 using id_to_id = id_map < atom >;

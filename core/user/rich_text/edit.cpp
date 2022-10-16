@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "edit.h"
 #include "edit_impl.h"
 #include "format_tool.h"
@@ -850,20 +850,20 @@ namespace user
       }
 
 
-      void edit::write(::binary_stream & stream) const
-      {
+      //void edit::write(::binary_stream < FILE > & stream) const
+      //{
 
-         return ::user::picture::write(stream);
+      //   return ::user::picture::write(stream);
 
-      }
+      //}
 
 
-      void edit::read(::binary_stream & stream)
-      {
+      //void edit::read(::binary_stream < FILE > & stream)
+      //{
 
-         return ::user::picture::read(stream);
+      //   return ::user::picture::read(stream);
 
-      }
+      //}
 
 
       void edit::get_text_composition_area(::rectangle_i32 & r)

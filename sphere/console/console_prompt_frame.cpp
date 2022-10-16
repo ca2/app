@@ -227,7 +227,7 @@ namespace console
       if(pmessage->m_bRet)
          return;
 
-      if(!data_get("&data_source=local&DockPosition", (i32 &) m_eposition))
+      if(!datastream()->get("&data_source=local&DockPosition", (i32 &) m_eposition))
       {
 
          m_eposition = e_position_left;
@@ -316,7 +316,7 @@ namespace console
                m_eposition = e_position_right;
             }
          }
-         data_set("DockPosition", (i32) m_eposition);
+         datastream()->set("DockPosition", (i32) m_eposition);
       }*/
    }
 

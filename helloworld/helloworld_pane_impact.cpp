@@ -182,7 +182,7 @@ namespace helloworld
 
          m_prollfps = dynamic_cast <::calculator::plain_edit_impact *> (pimpact->get_child_by_id("roll_fps"));
 
-         m_pimpactLast->data_get("cur_fps_text", str);
+         m_pimpactLast->datastream()->get("cur_fps_text", str);
 
          if (m_prollfps != nullptr)
          {
@@ -326,7 +326,7 @@ namespace helloworld
 
                         m_prollfps->_001GetText(str);
 
-                        m_pimpactLast->data_set("cur_fps_text",str);
+                        m_pimpactLast->datastream()->set("cur_fps_text",str);
 
                      }
 
@@ -336,7 +336,7 @@ namespace helloworld
 
                         v = d;
 
-                        m_pimpactLast->data_set("cur_fps",v);
+                        m_pimpactLast->datastream()->set("cur_fps",v);
 
                      }
                      m_pimpactLast->m_dFps = d;

@@ -26,8 +26,7 @@ template < typename PAYLOAD_TYPE >
 concept payload_class = (is_derived_from < PAYLOAD_TYPE, ::payload > || ::std::same_as < PAYLOAD_TYPE, ::payload >);
 
 
-class CLASS_DECL_ACME payload :
-   public payload_type < payload >
+class CLASS_DECL_ACME payload // : public payload_type < payload >
 {
 public:
 
@@ -493,7 +492,6 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    operator ::color::color() const { return this->color(); }
    operator ::color::hls() const { return this->hls(); }
    operator ::block() const { return this->block(); }
-
 
    ::string & string_reference(const char * pszOnNull = nullptr);
 

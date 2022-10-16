@@ -1607,7 +1607,7 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
    //bool application::app_data_get(::const ::atom & atom, stream & stream)
    //{
 
-   //   return data_get(atom, stream);
+   //   return datastream()->get(atom, stream);
 
    //}
 
@@ -1615,7 +1615,7 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
    //bool application::app_data_set(::const ::atom & atom, ::object & obj)
    //{
 
-   //   return data_set(atom, obj);
+   //   return datastream()->set(atom, obj);
 
    //}
 
@@ -1623,7 +1623,7 @@ pacmedirectory->system() / "config\\system\\ignition_server.txt") + "/api/spaign
    //bool application::app_data_get(::const ::atom & atom, ::object & obj)
    //{
 
-   //   return data_get(atom, obj);
+   //   return datastream()->get(atom, obj);
 
    //}
 

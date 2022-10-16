@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "form.h"
@@ -20,8 +20,8 @@ namespace http
       string                           m_strRequestUri;
       string                           m_strQueryString;
       string                           m_strHttpHost;
-      atom                               m_atomHttpMethod;
-      memory_file                      m_memfileBody;
+      atom                             m_atomHttpMethod;
+      memory_file_pointer              m_pmemfileBody;
       ::text_stream                    m_ostream;
       string                           m_null;
       http::form                       m_form;
@@ -49,7 +49,7 @@ namespace http
       http::form & form();
 
       ::text_stream & ostream()  { return m_ostream; }
-      ::file::file & file()      { return m_memfileBody; }
+      ::memory_file * file()      { return m_pmemfileBody; }
 
       virtual void clear();
 

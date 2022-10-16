@@ -85,7 +85,7 @@ namespace interprocess
    //
    //      defer_add_module(path, iPid);
 
-      m_ptarget->m_phandler = this;
+      m_ptarget->add_handler(this);
 
       string strKey = key(m_strApp, iPid);
 
@@ -514,7 +514,7 @@ namespace interprocess
 
       //memory_file memoryfile;
 
-      //binary_stream stream(&memoryfile);
+      //binary_stream < FILE > stream(&memoryfile);
 
       //stream << payloada;
 

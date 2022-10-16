@@ -1,9 +1,10 @@
 ﻿#include "framework.h"
+#include "image_list.h"
+#include "top_edit_impact.h"
+#include "apex/database/_binary_stream.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/array.h"
-#include "image_list.h"
-#include "top_edit_impact.h"
 #include "aura/message/user.h"
 #include "base/user/user/document.h"
 #include "base/user/user/impact.h"
@@ -338,7 +339,7 @@ namespace userex
 
       auto papp = get_app();
 
-      papp->data_get(m_atom + ".cur_text", strText);
+      papp->datastream()->get(m_atom + ".cur_text", strText);
 
    }
 

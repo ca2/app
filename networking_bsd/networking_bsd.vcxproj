@@ -543,7 +543,7 @@
       <UseFullPaths>true</UseFullPaths>
       <OmitFramePointers>false</OmitFramePointers>
       <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <EnableModules>false</EnableModules>
     </ClCompile>
@@ -827,6 +827,7 @@
     <ClInclude Include="sockets\ssl\ticket_key.h" />
     <ClInclude Include="sockets\ssl\_.h" />
     <ClInclude Include="winsock2\_.h" />
+    <ClInclude Include="_binary_stream.h" />
     <ClInclude Include="_byte_order.h" />
     <ClInclude Include="aaa_initializer.h" />
     <ClInclude Include="ip_enum.h" />

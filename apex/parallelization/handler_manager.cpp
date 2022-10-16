@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
 #include "handler_manager.h"
+#include "acme/parallelization/asynchronous.h"
+
 
 //handler_manager::handler_manager(const string& strThreadName, bool bSingleThread, int iAliveCount) :
 //   m_strThreadName(strThreadName),
@@ -82,7 +84,7 @@ void handler_manager::handle_synchronously(const ::procedure & procedure)
    if (m_bUseDedicatedThread)
    {
 
-      __send_procedure(this, &handler_manager::handle_asynchronously, procedure);
+      __material_send_procedure(this, this, &handler_manager::handle_asynchronously, procedure);
 
    }
    else

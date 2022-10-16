@@ -281,14 +281,14 @@ void thread::term_task()
    case id_application:
    {
 
-      auto papp = get_app();
+      //auto papp = get_app();
 
-      if (papp)
-      {
+      //if (papp)
+      //{
 
-         papp->release_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(papp));
+      //   papp->release_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(papp));
 
-      }
+      //}
 
    }
       break;
@@ -296,42 +296,42 @@ void thread::term_task()
    case id_session:
    {
 
-      auto pcontextsession = get_session();
+      //auto pcontextsession = get_session();
 
-      if (pcontextsession)
-      {
+      //if (pcontextsession)
+      //{
 
-         pcontextsession->release_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(pcontextsession));
+      //   pcontextsession->release_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(pcontextsession));
 
-      }
+      //}
 
    }
    break;
    case id_system:
    {
 
-      auto psystem = get_system()->m_papexsystem;
+      //auto psystem = get_system()->m_papexsystem;
 
-      if (psystem)
-      {
+      //if (psystem)
+      //{
 
-         psystem->release_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(pcontextsystem));
+      //   psystem->release_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(pcontextsystem));
 
-      }
+      //}
 
    }
    break;
    case id_thread:
    {
 
-      auto pthread = get_task();
-      
-      if (pthread)
-      {
+      //auto pthread = get_task();
+      //
+      //if (pthread)
+      //{
 
-         pthread->release_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(pcontextthread));
+      //   pthread->release_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(pcontextthread));
 
-      }
+      //}
 
    }
       break;
@@ -1569,23 +1569,23 @@ void thread::destroy()
 
    ::channel::destroy();
 
-   auto pobject = this;
+   //auto pobject = this;
 
-   if(pobject)
-   {
+   //if(pobject)
+   //{
 
-      //auto estatus = pobject->release_composite2(this);
+   //   //auto estatus = pobject->release_composite2(this);
 
-      pobject->release_composite2(this);
+   //   pobject->release_composite2(this);
 
-      //if(!estatus)
-      //{
+   //   //if(!estatus)
+   //   //{
 
-      //   output_debug_string("release_composite2 failed");
+   //   //   output_debug_string("release_composite2 failed");
 
-      //}
+   //   //}
 
-   }
+   //}
 
    //return ::success;
 
@@ -1886,79 +1886,79 @@ void thread::main()
 void thread::init_task()
 {
 
-   if (get_app() && get_app()->m_papexapplication != this)
-   {
+   //if (get_app() && get_app()->m_papexapplication != this)
+   //{
 
-      try
-      {
+   //   try
+   //   {
 
-         get_app()->add_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(get_app()));
+   //      get_app()->add_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(get_app()));
 
-         m_atomContextReference = id_application;
+   //      m_atomContextReference = id_application;
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-      }
+   //   }
 
-   }
+   //}
 
-   if(m_atomContextReference == id_none && get_session() && get_session() != this)
-   {
+   //if(m_atomContextReference == id_none && get_session() && get_session() != this)
+   //{
 
-      try
-      {
+   //   try
+   //   {
 
-         get_session()->add_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(get_session()));
+   //      get_session()->add_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(get_session()));
 
-         m_atomContextReference = id_session;
+   //      m_atomContextReference = id_session;
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-      }
+   //   }
 
-   }
+   //}
 
-   auto psystem = get_system()->m_papexsystem;
+   //auto psystem = get_system()->m_papexsystem;
 
-   if (m_atomContextReference == id_none && psystem && psystem != this)
-   {
+   //if (m_atomContextReference == id_none && psystem && psystem != this)
+   //{
 
-      try
-      {
+   //   try
+   //   {
 
-         psystem->add_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(psystem));
+   //      psystem->add_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(psystem));
 
-         m_atomContextReference = id_system;
+   //      m_atomContextReference = id_system;
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-      }
+   //   }
 
-   }
+   //}
 
-   if (m_atomContextReference == id_none && get_task() && get_task() != this)
-   {
+   //if (m_atomContextReference == id_none && get_task() && get_task() != this)
+   //{
 
-      try
-      {
+   //   try
+   //   {
 
-         get_task()->add_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(get_context_thread()));
+   //      get_task()->add_reference(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_P_FUNCTION_LINE(get_context_thread()));
 
-         m_atomContextReference = id_thread;
+   //      m_atomContextReference = id_thread;
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-      }
+   //   }
 
-   }
+   //}
 
    //return true;
 
@@ -2303,14 +2303,14 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //
 //#endif
 //
-   auto pobject = this;
+   //auto pobject = this;
 
-   if (::is_set(pobject) && pobject != this)
-   {
+   //if (::is_set(pobject) && pobject != this)
+   //{
 
-      pobject->add_composite(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+   //   pobject->add_composite(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
-   }
+   //}
 
    auto ptask = ::task::branch(epriority, nStackSize, uiCreateFlags);
 
@@ -4334,7 +4334,7 @@ bool thread::do_events()
 
    bool bProcessed = false;
 
-   while(peek_message(&msg,nullptr,0,0,PM_NOREMOVE) != false)
+   while(peek_message(&msg,nullptr,0,0) != false)
    {
 
       if (msg.m_atom == e_message_quit) // do not pump, otherwise main loop will not process the message

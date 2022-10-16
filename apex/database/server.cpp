@@ -1,4 +1,6 @@
 ﻿#include "framework.h"
+#include "acme/filesystem/file/binary_stream.h"
+#include "acme/filesystem/file/memory_file.h"
 
 
 namespace database
@@ -141,24 +143,20 @@ namespace database
    ::payload server::data_load(client * pclient, const key & atom, ::topic * ptopic)
    {
 
-      memory_file memoryfile;
+      auto pmemoryfile = create_memory_file();
 
-      ::binary_stream is(&memoryfile);
-
+      if (!_data_server_load(pclient, atom, pmemoryfile->memory(), ptopic))
       {
 
-         if (!_data_server_load(pclient, atom, memoryfile.memory(), ptopic))
-         {
-
-            return ::e_type_null;
-
-         }
+         return ::e_type_null;
 
       }
 
+      auto stream = __binary_stream(pmemoryfile);
+
       ::payload payload;
 
-      is >> payload;
+      stream >> payload;
 
       return payload;
 
@@ -168,13 +166,13 @@ namespace database
    void server::data_save(client * pclient, const key & atom, ::payload & payload, ::topic * ptopic)
    {
 
-      ::memory_file memoryfile;
+      auto pmemoryfile = create_memory_file();
 
-      ::binary_stream writer(&memoryfile);
+      auto stream = __binary_stream(pmemoryfile);
 
-      writer << payload;
+      stream << payload;
 
-      _data_server_save(pclient, atom, memoryfile.memory(), ptopic);
+      _data_server_save(pclient, atom, pmemoryfile->memory(), ptopic);
 
    }
 

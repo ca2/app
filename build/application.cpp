@@ -158,7 +158,7 @@ namespace app_core_build
 
             ::file::path path;
 
-            data_get("last_opened_file", path);
+            datastream()->get("last_opened_file", path);
 
             if (!file().exists(path))
             {

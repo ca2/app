@@ -383,7 +383,7 @@ namespace filemanager
    void component::filemanager_set_data(atom atom, data * pdata)
    {
 
-      add_reference(pdata);
+      //add_reference(pdata);
 
       __construct(datamap()[atom], pdata);
 

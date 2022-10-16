@@ -96,9 +96,9 @@ namespace helloworld
 
       string strText;
 
-      data_get("cur_font",m_strNewFont);
+      datastream()->get("cur_font",m_strNewFont);
 
-      data_get("cur_text",strText);
+      datastream()->get("cur_text",strText);
 
       if(get_typed_parent<::user::split_impact>() != nullptr)
       {
@@ -207,7 +207,7 @@ namespace helloworld
 
                m_strNewHelloWorld = strText;
 
-               data_set("cur_text", strText);
+               datastream()->set("cur_text", strText);
 
             }
 
@@ -273,7 +273,7 @@ namespace helloworld
 
          m_strFont = m_strNewFont;
 
-         data_set("cur_font",m_strFont);
+         datastream()->set("cur_font",m_strFont);
 
       }
 

@@ -483,9 +483,10 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <OmitFramePointers>false</OmitFramePointers>
       <Optimization>Disabled</Optimization>
-      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <EnableModules>false</EnableModules>
       <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>zlib.lib;dbghelp.lib;imagehlp.lib;dwmapi.lib;Setupapi.lib;Windowscodecs.lib;Winmm.lib;ws2_32.lib;Crypt32.lib;Normaliz.lib;version.lib;Secur32.lib;gdiplus.lib;Shlwapi.lib;Imm32.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -1116,6 +1117,7 @@
     <ClCompile Include="platform\timer_event.cpp" />
     <ClCompile Include="platform\timer_task.cpp" />
     <ClCompile Include="platform\trace.cpp" />
+    <ClCompile Include="platform\tracer.cpp" />
     <ClCompile Include="platform\trace_category.cpp" />
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
@@ -1167,7 +1169,6 @@
     <ClCompile Include="primitive\primitive\match.cpp" />
     <ClCompile Include="primitive\primitive\payload.cpp" />
     <ClCompile Include="primitive\primitive\element.cpp" />
-    <ClCompile Include="primitive\primitive\tracer.cpp" />
     <ClCompile Include="primitive\primitive\work.cpp" />
     <ClCompile Include="primitive\promise\signalization.cpp" />
     <ClCompile Include="primitive\string\command_line.cpp" />
@@ -1356,6 +1357,7 @@
     <ClInclude Include="operating_system\_impl.h" />
     <ClInclude Include="operating_system\_operating_system.h" />
     <ClInclude Include="operating_system\_user.h" />
+    <ClInclude Include="parallelization\asynchronous.h" />
     <ClInclude Include="parallelization\common.h" />
     <ClInclude Include="parallelization\condition.h" />
     <ClInclude Include="parallelization\condition_variable.h" />
@@ -1522,10 +1524,12 @@
     <ClInclude Include="primitive\collection\_array_base_impl.h" />
     <ClInclude Include="primitive\collection\_array_impl.h" />
     <ClInclude Include="primitive\collection\_array_impl2.h" />
+    <ClInclude Include="primitive\collection\_array_binary_stream.h" />
     <ClInclude Include="primitive\collection\_collection_impl1.h" />
     <ClInclude Include="primitive\collection\_collection_impl2.h" />
     <ClInclude Include="primitive\collection\_fifo_map_impl.h" />
     <ClInclude Include="primitive\collection\_list_impl.h" />
+    <ClInclude Include="primitive\collection\_map_binary_stream.h" />
     <ClInclude Include="primitive\collection\_map_impl.h" />
     <ClInclude Include="primitive\collection\_papaya.h" />
     <ClInclude Include="primitive\collection\_papaya_array.h" />

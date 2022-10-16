@@ -44,8 +44,10 @@ namespace file
       void dump(dump_context & dumpcontext) const override;
 
 
-      inline bool is_end_of_file() const { return m_estate & ::file::e_state_end_of_file; }
-      inline void set_end_of_file() { m_estate |= ::file::e_state_end_of_file; }
+      virtual bool is_end_of_file() const;
+      virtual void set_end_of_file();
+
+      inline bool _is_end_of_file() const { return is_end_of_file(); }
 
       virtual bool is_in_memory_file() const;
       virtual void* get_internal_data();
@@ -113,9 +115,21 @@ namespace file
       //virtual int sgetc();
       //virtual int sbumpc();
 
-      virtual ::byte peek_byte();
-      virtual ::byte get_byte();
+      virtual int peek_byte(); // 0-255 - -1 if eof otherwise exception?
       virtual void put_byte_back(::byte b);
+
+      virtual int get_u8(); // 0-255 - -1 if eof otherwise exception?
+      inline u8 get_u8_unbounded() { return get_u8(); }
+
+      virtual int get_u16(); // 0-255 - -1 if eof otherwise exception?
+      inline u16 get_u16_unbounded() { return get_u16(); }
+
+      virtual bool get_u64(u64 & u64); // 0-255 - -1 if eof otherwise exception?
+      inline u64 get_u64_unbounded() { ::u64 u64; get_u64(u64); return u64; }
+
+
+      inline filesize _get_left() { return get_left(); }
+
 
       virtual bool read_string(string & str);
       virtual bool read_string(memory_base & mem);

@@ -1,8 +1,8 @@
-#pragma once
+﻿#pragma once
 
 
 //template < typename TYPE >
-//inline void __string_exchange(::binary_stream & s, TYPE & t)
+//inline void __string_exchange(::binary_stream < FILE > & s, TYPE & t)
 //{
 //
 //   // __string_exchange and __exchange may mutually call each other, causing infinite recursion
@@ -33,11 +33,11 @@
 //}
 
 
-//inline void __string_exchange(binary_stream & s, ::payload & payload) { s.default_exchange(payload.string_reference()); }
+//inline void __string_exchange(binary_stream < FILE > & s, ::payload & payload) { s.default_exchange(payload.string_reference()); }
 
 
 //template < typename BLOCK_TYPE >
-//inline void __exchange(binary_stream & s, memory_template < BLOCK_TYPE > & memorytemplate)
+//inline void __exchange(binary_stream < FILE > & s, memory_template < BLOCK_TYPE > & memorytemplate)
 //{
 //
 //   auto block = memorytemplate.block();
@@ -57,7 +57,7 @@
 //
 //}
 //
-//inline void __exchange(binary_stream & s, memory_base & memory)
+//inline void __exchange(binary_stream < FILE > & s, memory_base & memory)
 //{
 //   s.is_loading() ? s.read(memory) : s.write(memory);
 //}
@@ -74,7 +74,7 @@
 //
 //
 //
-////inline binary_stream & operator >>(binary_stream & s, ::duration & ::duration)
+////inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::duration & ::duration)
 ////{
 ////
 ////   s >> ::duration.m_i;
@@ -84,12 +84,12 @@
 ////}
 //
 //
-////inline binary_stream & binary_stream::operator << (e_set_storing) { set_storing(); return *this; }
-////inline binary_stream & binary_stream::operator >> (e_set_loading) { set_loading(); return *this; }
+////inline binary_stream < FILE > & binary_stream < FILE >::operator << (e_set_storing) { set_storing(); return *this; }
+////inline binary_stream < FILE > & binary_stream < FILE >::operator >> (e_set_loading) { set_loading(); return *this; }
 //
 //
 ////template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-////binary_stream & binary_stream::operator << (const array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
+////binary_stream < FILE > & binary_stream < FILE >::operator << (const array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
 ////{
 //
 ////   ::count c = a.get_count();
@@ -104,7 +104,7 @@
 //
 //
 ////template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-////binary_stream & binary_stream::operator >> (array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
+////binary_stream < FILE > & binary_stream < FILE >::operator >> (array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a)
 ////{
 //
 ////   ::count c = 0;
@@ -132,7 +132,7 @@
 //
 //
 ////template < typename SET >
-////binary_stream & binary_stream::write_set(const SET & s)
+////binary_stream < FILE > & binary_stream < FILE >::write_set(const SET & s)
 ////{
 ////   ::count c = s.get_count();
 ////   operator()(c);
@@ -147,7 +147,7 @@
 //
 //
 ////template < typename SET >
-////binary_stream & binary_stream::wread_set(SET & s)
+////binary_stream < FILE > & binary_stream < FILE >::wread_set(SET & s)
 ////{
 ////
 ////   ::count c = 0;
@@ -223,7 +223,7 @@
 //
 //
 //template < typename TYPE >
-//inline binary_stream & operator <<(binary_stream & s, const pointer_array < TYPE > & a)
+//inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const pointer_array < TYPE > & a)
 //{
 //
 //   ::count c = a.get_count();
@@ -259,7 +259,7 @@
 //
 //
 //template < typename TYPE >
-//inline binary_stream & operator >>(binary_stream & s, pointer_array < TYPE > & a)
+//inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, pointer_array < TYPE > & a)
 //{
 //
 //   ::count c = 0;
@@ -299,7 +299,7 @@
 //
 //
 ////template < typename TYPE >
-////void binary_stream::write_array_2d(const pointer_array < TYPE > & a)
+////void binary_stream < FILE >::write_array_2d(const pointer_array < TYPE > & a)
 ////{
 ////
 ////   if (is_storing())
@@ -377,7 +377,7 @@
 ////}
 ////
 ////
-////inline void binary_stream::prop_read_start(::property_set & set)
+////inline void binary_stream < FILE >::prop_read_start(::property_set & set)
 ////{
 ////
 ////   m_ppropertyset = &set;
@@ -387,7 +387,7 @@
 ////}
 ////
 ////
-////inline void binary_stream::prop_write_end()
+////inline void binary_stream < FILE >::prop_write_end()
 ////{
 ////
 ////   m_ppropertyset->write(*this);
@@ -398,8 +398,8 @@
 
 
 
-
-inline binary_stream & operator <<(binary_stream & s, const ::earth::time & time)
+template < typename FILE >
+inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::earth::time & time)
 {
 
    s << time.m_i;
@@ -409,8 +409,8 @@ inline binary_stream & operator <<(binary_stream & s, const ::earth::time & time
 }
 
 
-
-inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
+template < typename FILE >
+inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::earth::time & time)
 {
 
    s >> time.m_i;
@@ -421,7 +421,7 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 
 //
 //
-//inline binary_stream & operator <<(binary_stream & s, const ::memory_base & memory)
+//inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::memory_base & memory)
 //{
 //
 //   s.write(memory);
@@ -432,7 +432,7 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //
 //
 //
-//inline binary_stream & operator >>(binary_stream & s, ::memory_base & memory)
+//inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::memory_base & memory)
 //{
 //
 //   s.read(memory);
@@ -444,7 +444,7 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //
 
 //
-//inline binary_stream & operator << (binary_stream & s, ::file::file * pfile)
+//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, ::file::file * pfile)
 //{
 //
 //   memory m;
@@ -466,17 +466,17 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //
 //
 //template < typename BASE_TYPE >
-//::pointer<BASE_TYPE>__load_object(binary_stream & binary_stream)
+//::pointer<BASE_TYPE>__load_object(binary_stream < FILE > & binary_stream < FILE >)
 //{
 //
 //   string strText;
 //
-//   binary_stream >> strText;
+//   binary_stream < FILE > >> strText;
 //
 //   if (strText.is_empty())
 //   {
 //
-//      //binary_stream.setstate(::file::failbit);
+//      //binary_stream < FILE >.setstate(::file::failbit);
 //
 //      throw ::exception(error_io);
 //
@@ -484,16 +484,16 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //
 //   }
 //
-//   //auto atom = binary_stream.text_to_factory_id(strText);
+//   //auto atom = binary_stream < FILE >.text_to_factory_id(strText);
 //
 //   if (!strText.begins_eat_ci("factoryless://"))
 //   {
 //
-//      strText = __string(binary_stream.text_to_factory_id(strText));
+//      strText = __string(binary_stream < FILE >.text_to_factory_id(strText));
 //
 //   }
 //
-//   ::pointer<matter>p = binary_stream.create_object_from_text(strText);
+//   ::pointer<matter>p = binary_stream < FILE >.create_object_from_text(strText);
 //
 //   if (!p)
 //   {
@@ -504,7 +504,7 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //
 //   }
 //
-//   p->exchange(binary_stream);
+//   p->exchange(binary_stream < FILE >);
 //
 //   return p;
 //
@@ -513,7 +513,7 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //
 //
 //template < typename BASE_TYPE >
-//inline binary_stream & __save_object(binary_stream & binary_stream, BASE_TYPE * p)
+//inline binary_stream < FILE > & __save_object(binary_stream < FILE > & binary_stream < FILE >, BASE_TYPE * p)
 //{
 //
 //   string strText;
@@ -523,7 +523,7 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //   if (p->has(e_flag_factory))
 //   {
 //
-//      strText = binary_stream.factory_id_to_text(type);
+//      strText = binary_stream < FILE >.factory_id_to_text(type);
 //
 //   }
 //   else
@@ -533,11 +533,11 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //
 //   }
 //
-//   binary_stream << strText;
+//   binary_stream < FILE > << strText;
 //
-//   p->exchange(binary_stream);
+//   p->exchange(binary_stream < FILE >);
 //
-//   return binary_stream;
+//   return binary_stream < FILE >;
 //
 //}
 //
@@ -553,52 +553,52 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 ////}
 //
 ////
-////inline void __io(::binary_stream & s, ::payload & payload) { s.io(payload); }
+////inline void __io(::binary_stream < FILE > & s, ::payload & payload) { s.io(payload); }
 ////
 ////
-////inline void __io(::binary_stream & s, const enum_type & etype) { s.io(etype); }
+////inline void __io(::binary_stream < FILE > & s, const enum_type & etype) { s.io(etype); }
 ////
 ////
-////inline void __io(::binary_stream & s, const char * psz) { s.io(psz); }
+////inline void __io(::binary_stream < FILE > & s, const char * psz) { s.io(psz); }
 ////
 ////
-////inline void __io(::binary_stream & s, ::ansistring & str) { s.io(str); }
+////inline void __io(::binary_stream < FILE > & s, ::ansistring & str) { s.io(str); }
 ////
 ////
-////inline void __io(::binary_stream & s, ::wd16string & str) { s.io(str); }
+////inline void __io(::binary_stream < FILE > & s, ::wd16string & str) { s.io(str); }
 ////
 ////
-////inline void __io(::binary_stream & s, ::wd32string & str) { s.io(str); }
+////inline void __io(::binary_stream < FILE > & s, ::wd32string & str) { s.io(str); }
 ////
 ////
-////inline void __io(::binary_stream & s, ::file::path & path) { s.io(path); }
+////inline void __io(::binary_stream < FILE > & s, ::file::path & path) { s.io(path); }
 ////
 ////
-////inline void __io(::binary_stream & s, bool & b) { s.io(b); }
+////inline void __io(::binary_stream < FILE > & s, bool & b) { s.io(b); }
 ////
 ////
-////inline void __io(::binary_stream & s, ::i8 & i) { s.io(i); }
+////inline void __io(::binary_stream < FILE > & s, ::i8 & i) { s.io(i); }
 ////
 ////
-////inline void __io(::binary_stream & s, ::i16 & i) { s.io(i); }
+////inline void __io(::binary_stream < FILE > & s, ::i16 & i) { s.io(i); }
 ////
 ////
-////inline void __io(::binary_stream & s, ::i32 & i) { s.io(i); }
+////inline void __io(::binary_stream < FILE > & s, ::i32 & i) { s.io(i); }
 ////
 ////
-////inline void __io(::binary_stream & s, ::i64 & i) { s.io(i); }
+////inline void __io(::binary_stream < FILE > & s, ::i64 & i) { s.io(i); }
 ////
 ////
-////inline void __io(::binary_stream & s, ::u8 & u) { s.io(u); }
+////inline void __io(::binary_stream < FILE > & s, ::u8 & u) { s.io(u); }
 ////
 ////
-////inline void __io(::binary_stream & s, ::u16 & u) { s.io(u); }
+////inline void __io(::binary_stream < FILE > & s, ::u16 & u) { s.io(u); }
 ////
 ////
-////inline void __io(::binary_stream & s, ::u32 & u) { s.io(u); }
+////inline void __io(::binary_stream < FILE > & s, ::u32 & u) { s.io(u); }
 ////
 ////
-////inline void __io(::binary_stream & s, ::u64 & u) { s.io(u); }
+////inline void __io(::binary_stream < FILE > & s, ::u64 & u) { s.io(u); }
 ////
 ////inline void __io(property & property, ::matter & matter)
 ////{
@@ -625,14 +625,14 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 ////}
 //
 //template < typename ARRAY >
-//inline void __exchange_save_array(::binary_stream & binary_stream, ARRAY & array)
+//inline void __exchange_save_array(::binary_stream < FILE > & binary_stream < FILE >, ARRAY & array)
 //{
 //
 //   auto c = array.get_count();
 //
-//   binary_stream.exchange(e_property_count, c);
+//   binary_stream < FILE >.exchange(e_property_count, c);
 //
-//   //if (binary_stream.fail())
+//   //if (binary_stream < FILE >.fail())
 //   //{
 //
 //   //   return;
@@ -642,9 +642,9 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //   for (index i = 0; i < c; i++)
 //   {
 //
-//      binary_stream.stream_exchange(i, __typed(array.element_at(i)));
+//      binary_stream < FILE >.stream_exchange(i, __typed(array.element_at(i)));
 //
-//      //if (binary_stream.fail())
+//      //if (binary_stream < FILE >.fail())
 //      //{
 //
 //      //   return;
@@ -657,14 +657,14 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //
 //
 //template < typename ARRAY >
-//inline void __exchange_load_array(::binary_stream & binary_stream, ARRAY & array)
+//inline void __exchange_load_array(::binary_stream < FILE > & binary_stream < FILE >, ARRAY & array)
 //{
 //
 //   auto c = array.get_count();
 //
-//   binary_stream.exchange(e_property_count, c);
+//   binary_stream < FILE >.exchange(e_property_count, c);
 //
-//   //if (binary_stream.fail())
+//   //if (binary_stream < FILE >.fail())
 //   //{
 //
 //   //   return;
@@ -678,9 +678,9 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //
 //      auto& t = __typed_defer_new(array.element_at(i));
 //
-//      binary_stream.stream_exchange(i, t);
+//      binary_stream < FILE >.stream_exchange(i, t);
 //
-//      //if (binary_stream.fail())
+//      //if (binary_stream < FILE >.fail())
 //      //{
 //
 //      //   array.set_size(i);
@@ -695,47 +695,47 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-//inline void __exchange(::binary_stream & binary_stream, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array)
+//inline void __exchange(::binary_stream < FILE > & binary_stream < FILE >, ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array)
 //{
-//   __exchange_array(binary_stream, array);
+//   __exchange_array(binary_stream < FILE >, array);
 //}
 //
 //
 //template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-//inline void __exchange(::binary_stream & binary_stream, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array)
+//inline void __exchange(::binary_stream < FILE > & binary_stream < FILE >, ::raw_array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & array)
 //{
-//   __exchange_array(binary_stream, array);
+//   __exchange_array(binary_stream < FILE >, array);
 //}
 //
 //
 //template < typename TYPE, enum_type t_etypePayload >
-//inline void __exchange(::binary_stream & binary_stream, ::numeric_array < TYPE, t_etypePayload > & array)
+//inline void __exchange(::binary_stream < FILE > & binary_stream < FILE >, ::numeric_array < TYPE, t_etypePayload > & array)
 //{
-//   __exchange_array(binary_stream, array);
+//   __exchange_array(binary_stream < FILE >, array);
 //}
 //
 //
 //template < typename Type, typename RawType, enum_type t_etypePayload >
-//inline void __exchange(::binary_stream & binary_stream, ::string_array_base < Type, RawType, t_etypePayload > & array)
+//inline void __exchange(::binary_stream < FILE > & binary_stream < FILE >, ::string_array_base < Type, RawType, t_etypePayload > & array)
 //{
-//   __exchange_array(binary_stream, array);
+//   __exchange_array(binary_stream < FILE >, array);
 //}
 //
 //
 //template < class ARRAY >
-//inline void __exchange_array(::binary_stream & binary_stream, ARRAY & array)
+//inline void __exchange_array(::binary_stream < FILE > & binary_stream < FILE >, ARRAY & array)
 //{
 //
-//   if (binary_stream.is_storing())
+//   if (binary_stream < FILE >.is_storing())
 //   {
 //
-//      __exchange_save_array(binary_stream, array);
+//      __exchange_save_array(binary_stream < FILE >, array);
 //
 //   }
 //   else
 //   {
 //
-//      __exchange_load_array(binary_stream, array);
+//      __exchange_load_array(binary_stream < FILE >, array);
 //   }
 //
 //}
@@ -749,24 +749,24 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //
 ////void payload_stream::write_object(const ::atom & atom, ::atom & idFactory, ::matter * pobject)
 ////{
-////   payload_stream binary_stream(memory_new ::payload(&payload()[atom].propset()));
-////   binary_stream.exchange("", idFactory);
-////   pobject->exchange(binary_stream);
+////   payload_stream binary_stream < FILE >(memory_new ::payload(&payload()[atom].propset()));
+////   binary_stream < FILE >.exchange("", idFactory);
+////   pobject->exchange(binary_stream < FILE >);
 ////}
 //
 ////
 ////::pointer<::matter>payload_stream::read_object(const ::atom & atom)
 ////{
-////   payload_stream binary_stream(memory_new ::payload(&payload()[atom].propset()));
+////   payload_stream binary_stream < FILE >(memory_new ::payload(&payload()[atom].propset()));
 ////   ::atom idFactory;
-////   binary_stream.exchange("", idFactory);
+////   binary_stream < FILE >.exchange("", idFactory);
 ////   auto pobject = __id_create<::matter>(idFactory);
-////   pobject->exchange(binary_stream);
+////   pobject->exchange(binary_stream < FILE >);
 ////   return pobject;
 ////}
 //
 //
-//inline void binary_stream::exchange(const ::atom & atom, void * pdata, memsize s)
+//inline void binary_stream < FILE >::exchange(const ::atom & atom, void * pdata, memsize s)
 //{
 //   if (is_storing())
 //   {
@@ -781,51 +781,51 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //   }
 //}
 //
-//inline void __exchange(::binary_stream & s, char & ch) { s.default_exchange(ch); }
+//inline void __exchange(::binary_stream < FILE > & s, char & ch) { s.default_exchange(ch); }
 //
 //#ifdef WINDOWS
-//inline void __exchange(::binary_stream& s, unichar& wch) { s.default_exchange(wch); }
+//inline void __exchange(::binary_stream < FILE >& s, unichar& wch) { s.default_exchange(wch); }
 //#endif
 //
 //
-//inline void __exchange(::binary_stream & s, bool & b) { s.default_exchange(b); }
+//inline void __exchange(::binary_stream < FILE > & s, bool & b) { s.default_exchange(b); }
 //
 //
 //
-//inline void __exchange(::binary_stream & s, i8 & i) { s.default_exchange(i); }
-//inline void __exchange(::binary_stream & s, i16 & i) { s.default_exchange(i); }
-//inline void __exchange(::binary_stream & s, i32 & i) { s.default_exchange(i); }
-//inline void __exchange(::binary_stream & s, i64 & i) { s.default_exchange(i); }
+//inline void __exchange(::binary_stream < FILE > & s, i8 & i) { s.default_exchange(i); }
+//inline void __exchange(::binary_stream < FILE > & s, i16 & i) { s.default_exchange(i); }
+//inline void __exchange(::binary_stream < FILE > & s, i32 & i) { s.default_exchange(i); }
+//inline void __exchange(::binary_stream < FILE > & s, i64 & i) { s.default_exchange(i); }
 //
 //#if defined(__APPLE__)  || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
-//inline void __exchange(::binary_stream & s, long & l) { s.default_exchange(l); }
+//inline void __exchange(::binary_stream < FILE > & s, long & l) { s.default_exchange(l); }
 //#endif
 //
 //#if defined(__APPLE__) || defined(ANDROID) || defined(WINDOWS) || defined(RASPBIAN)
-//inline void __exchange(::binary_stream& s, unsigned long& ul) { s.default_exchange(ul); }
-////inline void __exchange(::binary_stream& s, long& l) { s.default_exchange(l); }
-////inline void __exchange(::binary_stream & s, long long & ll);
+//inline void __exchange(::binary_stream < FILE >& s, unsigned long& ul) { s.default_exchange(ul); }
+////inline void __exchange(::binary_stream < FILE >& s, long& l) { s.default_exchange(l); }
+////inline void __exchange(::binary_stream < FILE > & s, long long & ll);
 //#endif
 //
 //
-//inline void __exchange(::binary_stream & s, u8 & u) { s.default_exchange(u); }
-//inline void __exchange(::binary_stream & s, u16 & u) { s.default_exchange(u); }
-//inline void __exchange(::binary_stream & s, u32 & u) { s.default_exchange(u); }
-//inline void __exchange(::binary_stream & s, u64 & u) { s.default_exchange(u); }
-//inline void __exchange(::binary_stream & s, float & f) { s.default_exchange(f); }
-//inline void __exchange(::binary_stream & s, double & d) { s.default_exchange(d); }
-//inline void __exchange(::binary_stream & s, ::earth::time & time) { s.default_exchange(time.m_i); }
-//inline void __exchange(::binary_stream & s, ::duration & duration) { s.default_exchange(duration.m_iSecond); s.default_exchange(duration.m_iNanosecond); }
-//inline void __exchange(::binary_stream & s, const char * psz) { s.write_only(psz); }
-//inline void __exchange(::binary_stream & s, string & str) { s.default_exchange(str); }
-//inline void __exchange(::binary_stream & s, ::file::path & path) { s.default_exchange(path); }
-//inline void __exchange(::binary_stream & s, ::atom & atom) { s.default_exchange(atom); }
-//inline void __exchange(::binary_stream & s, ::payload & payload) { s.default_exchange(payload); }
-//inline void __exchange(::binary_stream & s, ::property & property) { s.default_exchange(property); }
-//inline void __exchange(::binary_stream & s, ::property_set & set) { s.default_exchange(set); }
+//inline void __exchange(::binary_stream < FILE > & s, u8 & u) { s.default_exchange(u); }
+//inline void __exchange(::binary_stream < FILE > & s, u16 & u) { s.default_exchange(u); }
+//inline void __exchange(::binary_stream < FILE > & s, u32 & u) { s.default_exchange(u); }
+//inline void __exchange(::binary_stream < FILE > & s, u64 & u) { s.default_exchange(u); }
+//inline void __exchange(::binary_stream < FILE > & s, float & f) { s.default_exchange(f); }
+//inline void __exchange(::binary_stream < FILE > & s, double & d) { s.default_exchange(d); }
+//inline void __exchange(::binary_stream < FILE > & s, ::earth::time & time) { s.default_exchange(time.m_i); }
+//inline void __exchange(::binary_stream < FILE > & s, ::duration & duration) { s.default_exchange(duration.m_iSecond); s.default_exchange(duration.m_iNanosecond); }
+//inline void __exchange(::binary_stream < FILE > & s, const char * psz) { s.write_only(psz); }
+//inline void __exchange(::binary_stream < FILE > & s, string & str) { s.default_exchange(str); }
+//inline void __exchange(::binary_stream < FILE > & s, ::file::path & path) { s.default_exchange(path); }
+//inline void __exchange(::binary_stream < FILE > & s, ::atom & atom) { s.default_exchange(atom); }
+//inline void __exchange(::binary_stream < FILE > & s, ::payload & payload) { s.default_exchange(payload); }
+//inline void __exchange(::binary_stream < FILE > & s, ::property & property) { s.default_exchange(property); }
+//inline void __exchange(::binary_stream < FILE > & s, ::property_set & set) { s.default_exchange(set); }
 //
 //
-//inline void __exchange(::binary_stream & s, ::block & block)
+//inline void __exchange(::binary_stream < FILE > & s, ::block & block)
 //{
 //
 //   s.default_exchange(block);
@@ -833,7 +833,7 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //}
 //
 //
-//inline void __exchange(::binary_stream & s, ::matter & matter)
+//inline void __exchange(::binary_stream < FILE > & s, ::matter & matter)
 //{
 //
 //   matter.exchange(s);
@@ -842,84 +842,84 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //
 //
 //template < typename TYPE >
-//inline payload_stream & operator >> (payload_stream & binary_stream, TYPE & t)
+//inline payload_stream & operator >> (payload_stream & binary_stream < FILE >, TYPE & t)
 //{
 //
-//   binary_stream.defer_set_loading(); binary_stream.exchange(::atom::e_type_null, t);
+//   binary_stream < FILE >.defer_set_loading(); binary_stream < FILE >.exchange(::atom::e_type_null, t);
 //
-//   return binary_stream;
+//   return binary_stream < FILE >;
 //
 //}
 //
 //
 //template < typename TYPE >
-//inline payload_stream & operator << (payload_stream & binary_stream, const TYPE & t)
+//inline payload_stream & operator << (payload_stream & binary_stream < FILE >, const TYPE & t)
 //{
 //
-//   binary_stream.defer_set_storing(); binary_stream.exchange(::atom::e_type_null, (TYPE &)t);
+//   binary_stream < FILE >.defer_set_storing(); binary_stream < FILE >.exchange(::atom::e_type_null, (TYPE &)t);
 //
-//   return binary_stream;
+//   return binary_stream < FILE >;
 //
 //
 //}
 //
 //
 //template < typename TYPE >
-//inline text_stream & operator >> (text_stream & binary_stream, TYPE & t)
+//inline text_stream & operator >> (text_stream & binary_stream < FILE >, TYPE & t)
 //{
 //
-//   binary_stream.defer_set_loading(); binary_stream.exchange(::atom::e_type_null, t);
+//   binary_stream < FILE >.defer_set_loading(); binary_stream < FILE >.exchange(::atom::e_type_null, t);
 //
-//   return binary_stream;
+//   return binary_stream < FILE >;
 //
 //}
 //
 //
 //template < typename TYPE >
-//inline text_stream & operator << (text_stream & binary_stream, const TYPE & t)
+//inline text_stream & operator << (text_stream & binary_stream < FILE >, const TYPE & t)
 //{
 //
-//   binary_stream.defer_set_storing(); binary_stream.exchange(::atom::e_type_null, (TYPE &)t); return binary_stream;
+//   binary_stream < FILE >.defer_set_storing(); binary_stream < FILE >.exchange(::atom::e_type_null, (TYPE &)t); return binary_stream < FILE >;
 //
 //}
 //
 //
-//inline text_stream & operator << (text_stream & binary_stream, const file_pointer & pfile)
+//inline text_stream & operator << (text_stream & binary_stream < FILE >, const file_pointer & pfile)
 //{
 //
-//   binary_stream.defer_set_storing();
+//   binary_stream < FILE >.defer_set_storing();
 //
-//   binary_stream.m_p->from(pfile);
+//   binary_stream < FILE >.m_p->from(pfile);
 //
-//   return binary_stream;
+//   return binary_stream < FILE >;
 //
 //}
 //
 //
-//inline void __exchange(::binary_stream & s, RECTANGLE_I32 & rectangle)
-//{
-//
-//   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
-//
-//}
-//
-//inline void __exchange(::binary_stream & s, RECTANGLE_I64 & rectangle)
+//inline void __exchange(::binary_stream < FILE > & s, RECTANGLE_I32 & rectangle)
 //{
 //
 //   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
 //
 //}
 //
+//inline void __exchange(::binary_stream < FILE > & s, RECTANGLE_I64 & rectangle)
+//{
+//
+//   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
+//
+//}
 //
 //
-//inline void __exchange(::binary_stream & s, RECTANGLE_F32 & rectangle)
+//
+//inline void __exchange(::binary_stream < FILE > & s, RECTANGLE_F32 & rectangle)
 //{
 //   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
 //}
 //
 //
 //
-//inline void __exchange(::binary_stream & s, RECTANGLE_F64 & rectangle)
+//inline void __exchange(::binary_stream < FILE > & s, RECTANGLE_F64 & rectangle)
 //{
 //   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
 //}
@@ -928,14 +928,14 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //
 //
 //
-//inline void __exchange(::binary_stream & s, SIZE_I32 & size)
+//inline void __exchange(::binary_stream < FILE > & s, SIZE_I32 & size)
 //{
 //   s.exchange("cx", size.cx); s.exchange("cy", size.cy);
 //}
 //
 //
 ////
-////inline void __exchange(::binary_stream & s, SIZEL & size)
+////inline void __exchange(::binary_stream < FILE > & s, SIZEL & size)
 ////{
 ////   s.exchange("cx", size.cx); s.exchange("cy", size.cy);
 ////}
@@ -944,7 +944,7 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //
 //
 //
-//inline void __exchange(::binary_stream & s, SIZE_F32 & size)
+//inline void __exchange(::binary_stream < FILE > & s, SIZE_F32 & size)
 //{
 //
 //   s.exchange("cx", size.cx); s.exchange("cy", size.cy);
@@ -953,7 +953,7 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //
 //
 //
-//inline void __exchange(::binary_stream & s, SIZE_F64 & size)
+//inline void __exchange(::binary_stream < FILE > & s, SIZE_F64 & size)
 //{
 //   s.exchange("cx", size.cx); s.exchange("cy", size.cy);
 //}
@@ -962,60 +962,60 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //
 //
 //
-//inline void __exchange(::binary_stream & s, POINT_I32 & point)
+//inline void __exchange(::binary_stream < FILE > & s, POINT_I32 & point)
 //{
 //   s.exchange("x", point.x); s.exchange("y", point.y);
 //}
 //
 //
 //
-//inline void __exchange(::binary_stream & s, POINT_I64 & point)
+//inline void __exchange(::binary_stream < FILE > & s, POINT_I64 & point)
 //{
 //   s.exchange("x", point.x); s.exchange("y", point.y);
 //}
 //
 //
 //
-//inline void __exchange(::binary_stream & s, POINT_F32 & point)
+//inline void __exchange(::binary_stream < FILE > & s, POINT_F32 & point)
 //{
 //   s.exchange("x", point.x); s.exchange("y", point.y);
 //}
 //
 //
 //
-//inline void __exchange(::binary_stream & s, POINT_F64 & point)
+//inline void __exchange(::binary_stream < FILE > & s, POINT_F64 & point)
 //{
 //   s.exchange("x", point.x); s.exchange("y", point.y);
 //}
 //
 //template < typename TYPE >
-//inline binary_stream & operator >> (binary_stream & binary_stream, TYPE & t);
+//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & binary_stream < FILE >, TYPE & t);
 //
 //template < typename TYPE >
-//inline binary_stream & operator << (binary_stream & binary_stream, const TYPE & t);
+//inline binary_stream < FILE > & operator << (binary_stream < FILE > & binary_stream < FILE >, const TYPE & t);
 //
 //template < typename TYPE >
-//inline binary_stream & operator >> (binary_stream & binary_stream, TYPE & t)
+//inline binary_stream < FILE > & operator >> (binary_stream < FILE > & binary_stream < FILE >, TYPE & t)
 //{
 //
-//   binary_stream.defer_set_loading();
+//   binary_stream < FILE >.defer_set_loading();
 //
-//   binary_stream.stream_exchange(::atom::e_type_null, t);
+//   binary_stream < FILE >.stream_exchange(::atom::e_type_null, t);
 //
-//   return binary_stream;
+//   return binary_stream < FILE >;
 //
 //}
 //
 //
 //template < typename TYPE >
-//inline binary_stream & operator << (binary_stream & binary_stream, const TYPE & t)
+//inline binary_stream < FILE > & operator << (binary_stream < FILE > & binary_stream < FILE >, const TYPE & t)
 //{
 //
-//   binary_stream.defer_set_storing();
+//   binary_stream < FILE >.defer_set_storing();
 //
-//   binary_stream.stream_exchange(::atom::e_type_null, (TYPE &)t);
+//   binary_stream < FILE >.stream_exchange(::atom::e_type_null, (TYPE &)t);
 //
-//   return binary_stream;
+//   return binary_stream < FILE >;
 //
 //}
 //
@@ -1030,9 +1030,9 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //
 //   }
 //
-//   binary_stream binary_stream(&file);
+//   binary_stream < FILE > binary_stream < FILE >(&file);
 //
-//   binary_stream >> t;
+//   binary_stream < FILE > >> t;
 //
 //   return file;
 //
@@ -1043,9 +1043,9 @@ inline binary_stream & operator >>(binary_stream & s, ::earth::time & time)
 //inline ::file::file & operator << (::file::file & file, const TYPE & t)
 //{
 //
-//   binary_stream binary_stream(&file);
+//   binary_stream < FILE > binary_stream < FILE >(&file);
 //
-//   binary_stream << t;
+//   binary_stream < FILE > << t;
 //
 //   return file;
 //

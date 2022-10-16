@@ -59,23 +59,30 @@ namespace url
 
    string department::get_root(const ::string & strParam)
    {
-      
+
       string str(strParam);
 
       index iPos = str.find(":");
-      if(iPos == -1)
+      if (iPos == -1)
          return strParam;
       iPos++;
-      while(iPos < str.get_length() && str[iPos] == '/')
+      while (iPos < str.get_length() && str[iPos] == '/')
       {
          iPos++;
       }
       index iStart = iPos;
       index iEnd = str.find("/", iStart);
-      if(iEnd < 0)
-         return str.Mid(iStart);
-      else
-         return str.Mid(iStart, iEnd - iStart);
+      index iArgumentsStart = str.find("?", iStart);
+
+      if (iEnd < 0 || (iArgumentsStart > 0 && iEnd > iArgumentsStart))
+      {
+
+         return {};
+
+      }
+
+      return str.Mid(iStart, iEnd - iStart);
+
    }
 
 

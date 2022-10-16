@@ -1,10 +1,6 @@
 ﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
-//#include "acme/operating_system/_user.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/icon.h"
@@ -14,6 +10,7 @@
 #include "aura/user/user/copydesk.h"
 #include "aura/user/user/interaction.h"
 #include "aura/platform/session.h"
+#include "acme/parallelization/asynchronous.h"
 
 
 namespace windowing
@@ -1182,7 +1179,7 @@ namespace windowing
    void window::window_send(const ::procedure & procedure)
    {
 
-      __send_procedure(this, &window::window_post, procedure);
+      __material_send_procedure(this, this, &window::window_post, procedure);
 
    }
 

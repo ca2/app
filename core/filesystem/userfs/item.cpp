@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 //#if !BROAD_PRECOMPILED_HEADER
 //#include "_userfs.h"
 //#endif
@@ -59,23 +59,6 @@ namespace userfs
       return m_flags.has(::file::e_flag_folder);
    }
 
-
-   void item::write(binary_stream& s) const
-   {
-
-      ::data::item::write(s);
-      ::file::item::write(s);
-
-   }
-
-
-   void item::read(binary_stream& s)
-   {
-
-      ::data::item::read(s);
-      ::file::item::read(s);
-
-   }
 
 
    string item::data_item_get_text(object * pobject) const

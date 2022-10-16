@@ -13,7 +13,7 @@ public:
    using BASE_TYPE = typename BASE_DURATION::BASE_TYPE;
 
 
-   using DURATION::DURATION;
+   constexpr floating_duration(BASE_TYPE t = {}) : DURATION(t) {}
 
 
 //   floating_duration(const floating_duration & type) :

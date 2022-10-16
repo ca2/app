@@ -1,8 +1,9 @@
-//
+﻿//
 // Created by camilo on 12/04-April/2022. 22:11 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
 #include "display.h"
+#include "acme/parallelization/asynchronous.h"
 
 
 namespace nano
@@ -59,7 +60,7 @@ namespace nano
 
       auto bIsCurrentBranch = is_branch_current();
 
-      __send_procedure(this, &display::display_post, procedure);
+      __material_send_procedure(this, this, &display::display_post, procedure);
 
    }
 

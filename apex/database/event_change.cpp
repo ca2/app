@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 
 
 namespace database
@@ -26,7 +26,7 @@ namespace database
       if(m_pserver != nullptr)
       {
 
-         return m_pclient->data_get(m_datakey, payload);
+         return m_pclient->data_get_payload(m_datakey, payload);
 
       }
 

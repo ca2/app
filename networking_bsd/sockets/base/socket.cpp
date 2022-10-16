@@ -1,4 +1,4 @@
-/** \file socket_thread.cpp
+﻿/** \file socket_thread.cpp
 **   \date  2021-07-26
 **   \author grymse@alhem.net
 **/  
@@ -30,6 +30,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "framework.h"
 #include "socket.h"
 #include "socket_thread.h"
+#include "acme/filesystem/file/memory_file.h"
 #include "networking_bsd/sockets/basic/socket_handler.h"
 #include "apex/networking/networking.h"
 #include "networking_bsd/sockets/ssl/context.h"

@@ -683,129 +683,19 @@ void object::defer_update_object_id()
 }
 
 
-
-//void object::enable_application_events(bool bEnable)
-//{
-//
-//   if (::is_null(get_app()))
-//   {
-//
-//      return false;
-//
-//   }
-//
-//   if (!get_app()->enable_application_events(this, bEnable))
-//   {
-//
-//      return false;
-//
-//   }
-//
-//   return true;
-//
-//}
-
-
-//void     object::request_file(const ::payload& payloadFile)
-//{
-//
-//   return request_file(payloadFile, e_type_new);
-//
-//}
-
-
-//void object::request_file(const ::payload& payloadFile, ::payload varQuery)
-//{
-//
-//   auto pcommandline = __create_new< command_line >();
-//
-//   pcommandline->m_payloadFile = payloadFile;
-//
-//   pcommandline->m_varQuery = varQuery;
-//
-//   return request({ pcommandline });
-//
-//}
-
-
-//void object::request(arguments arguments)
-//{
-//
-//   ::pointer<::create>pcreate;
-//
-//   auto estatus = __construct_new(pcreate);
-//
-//   if (!estatus)
-//   {
-//
-//      return estatus;
-//
-//   }
-//
-//   estatus = pcreate->initialize_create(arguments);
-//
-//   if (!estatus)
-//   {
-//
-//      return estatus;
-//
-//   }
-//
-//   return do_request(pcreate);
-//
-//}
-
-
 void object::do_request(::create* pcreate)
 {
 
    on_request(pcreate);
 
-//   return pcreate->m_estatus;
-
 }
-
-
-//void object::message_box(const ::payload & payload)
-//{
-//
-//   ::pointer<::user::primitive>pinteraction = this;
-//
-//   if (pinteraction)
-//   {
-//
-//      return pinteraction->message_box(payload);
-//
-//   }
-//
-//   if (get_app())
-//   {
-//
-//      return get_app()->message_box(payload);
-//
-//   }
-//
-//   return ::message_box_synchronous(payload);
-//
-//}
-
 
 void object::call_request(::create* pcreate)
 {
 
    on_request(pcreate);
 
-//   return ::success;
-
 }
-
-
-//::user::document* object::open_new_document(::apex::application* pappOnBehalfOf)
-//{
-//
-//   return open_document_file(pappOnBehalfOf, __visible(true));
-//
-//}
 
 
 void object::request(::create* pcreate)
@@ -816,44 +706,14 @@ void object::request(::create* pcreate)
 }
 
 
-//void object::on_request(::create* pcreateParam)
 void object::on_request(::create * pcreate)
 {
-
-   //::pointer<::create>pcreate(pcreateParam);
-
-   //if (!pcreate)
-   //{
-
-   //   auto estatus = __construct(pcreate);
-
-   //   if (!estatus)
-   //   {
-
-   //      throw ::exception(estatus);
-
-   //   }
-
-   //   estatus = pcreate->initialize_create(get_app()->m_XstrAppId, ::e_type_empty, true);
-
-   //   if (!estatus)
-   //   {
-
-   //      throw ::exception(estatus);
-
-   //   }
-
-   //}
-
-   //do_request(pcreate);
 
 }
 
 
 void object::destruct()
 {
-
-
 
 }
 
@@ -866,20 +726,12 @@ void object::system(const ::string & strProjectName)
 }
 
 
-void     object::run()
+void object::run()
 {
-
-   //return ::success;
 
 }
 
 
-//void object::operator()()
-//{
-//
-//   return ::object::operator()();
-//
-//}
 
 
 //void object::on_finish()
@@ -3815,5 +3667,39 @@ bool object::IsSerializable() const
 }
 
 
+void object::defer_branch(::task_pointer & ptask, const ::procedure & procedure)
+{
+
+   __defer_construct(ptask);
+
+   ptask->m_procedure = procedure;
+
+   ptask->branch();
+
+}
+
+
+::pointer<task>object::fork(const ::procedure & procedure, const ::element_array & elementaHold, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
+{
+
+   auto ptask = this->branch_procedure(procedure, epriority, nStackSize, dwCreateFlags ADD_PASS_SEC_ATTRS);
+
+   if (!ptask)
+   {
+
+      return ptask;
+
+   }
+
+   if (elementaHold.has_element())
+   {
+
+      ptask->m_elementaHold.append(elementaHold);
+
+   }
+
+   return ptask;
+
+}
 
 

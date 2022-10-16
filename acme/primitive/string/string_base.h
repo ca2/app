@@ -11,8 +11,7 @@
 
 template < typename TYPE_CHAR >
 class string_base :
-   public natural_pointer < string_meta_data < TYPE_CHAR > , string_memory_allocator >,
-   public string_type < string_base < TYPE_CHAR > >
+   public natural_pointer < string_meta_data < TYPE_CHAR > , string_memory_allocator >
 {
 public:
 
@@ -76,6 +75,8 @@ public:
    inline const CHAR_TYPE * data() const { return this->m_pdata; }
 
    inline const CHAR_TYPE * c_str() const { return this->m_pdata; }
+
+   inline const CHAR_TYPE * c_str_for_printf() const { return this->m_pdata; }
 
    inline operator const CHAR_TYPE * () const { return this->m_pdata; }
 

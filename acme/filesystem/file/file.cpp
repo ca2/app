@@ -253,7 +253,7 @@ namespace file
       while (n > 0)
       {
 
-         c = (char) get_byte();
+         c = (char) get_u8();
 
          if (is_end_of_file())
          {
@@ -264,7 +264,7 @@ namespace file
          else if (c == '\n')
          {
 
-            c = (char) get_byte();
+            c = (char) get_u8();
 
             if (c != '\r' && !is_end_of_file())
             {
@@ -279,7 +279,7 @@ namespace file
          else if (c == '\r')
          {
 
-            c = get_byte();
+            c = get_u8();
 
             if (c != '\n' && !is_end_of_file())
             {
@@ -511,26 +511,68 @@ namespace file
    }
 
 
-   ::byte file::peek_byte()
+   int file::peek_byte()
    {
 
       ::byte b = 0;
 
-      peek(&b);
+      if (peek(&b) != 1)
+      {
+
+         return -1;
+
+      }
 
       return b;
 
    }
 
 
-   ::byte file::get_byte()
+   int file::get_u8()
    {
 
       byte byte = 0;
 
-      read(&byte);
+      if (read(&byte) != 1)
+      {
+
+         return -1;
+
+      }
 
       return byte;
+
+   }
+
+   
+   int file::get_u16()
+   {
+
+      u16 u = 0;
+
+      if (read(&u, 2) != 2)
+      {
+
+         return -1;
+
+      }
+
+      return u;
+
+   }
+
+
+   bool file::get_u64(::u64 & u)
+   {
+
+      if (read(&u, 8) != 8)
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
@@ -574,7 +616,7 @@ namespace file
       while (true)
       {
 
-         b = get_byte();
+         b = get_u8();
 
          if (is_end_of_file())
          {
@@ -597,7 +639,7 @@ namespace file
          if (b == '\r')
          {
 
-            b = get_byte();
+            b = get_u8();
 
             if (b != '\n' && !is_end_of_file())
             {
@@ -749,6 +791,22 @@ namespace file
 
       write(str,  str.get_length());
 
+   }
+
+
+   bool file::is_end_of_file() const 
+   {
+      
+      return m_estate & ::file::e_state_end_of_file; 
+   
+   }
+   
+   
+   void file::set_end_of_file() 
+   {
+      
+      m_estate |= ::file::e_state_end_of_file; 
+   
    }
 
 
@@ -1388,7 +1446,7 @@ namespace file
       else
       {
 
-         ((::file::path & )payload) |= ::file::e_flag_bypass_cache;
+         payload.file_path_reference() |= ::file::e_flag_bypass_cache;
 
       }
 

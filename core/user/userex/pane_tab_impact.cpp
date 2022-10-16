@@ -826,7 +826,7 @@ namespace userex
       else if (pimpactdata->m_atom.is_text())
       {
 
-         if (::str().begins_ci(pimpactdata->m_atom.m_psz, "form_"))
+         if (::str().begins_ci(pimpactdata->m_atom.m_str, "form_"))
          {
 
             auto pcontext = m_pcontext;

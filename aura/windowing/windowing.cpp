@@ -7,17 +7,11 @@
 #include "aura/user/user/interaction.h"
 #include "aura/user/user/user.h"
 #include "aura/platform/system.h"
-
-#if !BROAD_PRECOMPILED_HEADER
-
-////#include "aura/user/user/_component.h"
-
-#endif
-
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/cursor_manager.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/keyboard.h"
+#include "acme/parallelization/asynchronous.h"
 
 
 namespace windowing
@@ -737,7 +731,7 @@ namespace windowing
    void windowing::windowing_send(const ::procedure & procedure)
    {
 
-      __send_procedure(this, &windowing::windowing_post, procedure);
+      __material_send_procedure(this, this, &windowing::windowing_post, procedure);
 
    }
 

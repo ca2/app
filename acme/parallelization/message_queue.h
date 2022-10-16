@@ -1,8 +1,8 @@
-#pragma once
+﻿#pragma once
 
 
 class CLASS_DECL_ACME message_array :
-   public raw_array < MESSAGE >
+   public array < MESSAGE >
 {
 
 

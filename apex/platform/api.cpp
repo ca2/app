@@ -1,4 +1,4 @@
-// Created by camilo on 2021-11-05 16:12 PM <3ThomasBorregaardSørensen!!
+﻿// Created by camilo on 2021-11-05 16:12 PM <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "api.h"
 #include "apex/crypto/crypto.h"
@@ -80,8 +80,13 @@ void api::on_login_response()
 {
 
    m_bWaitingResponseFromUser = false;
-   
-   save_profile();
+
+   fork([this]()
+      {
+
+         save_profile();
+
+      });
 
 
    m_eventResponse.SetEvent();

@@ -1,4 +1,4 @@
-// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
+﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #pragma once
 
@@ -136,7 +136,13 @@ namespace windowing
 
       virtual void enable_wallpaper_change_notification();
 
+      virtual bool would_be_docked(const ::rectangle_i32 & rectangleWouldBeSnapped);
 
+      virtual bool would_be_docked_in_monitor(const ::rectangle_i32 & rectangleWouldBeSnapped, const ::rectangle_i32 & rectangleMonitor);
+
+      virtual bool would_be_restored(const ::rectangle_i32 & rectangleWouldBeRestored);
+
+      virtual bool would_be_restored_in_monitor(const ::rectangle_i32 & rectangleWouldBeRestored, const ::rectangle_i32 & rectangleMonitor);
 
    };
 

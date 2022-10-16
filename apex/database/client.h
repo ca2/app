@@ -17,7 +17,7 @@ namespace database
 
 
    public:
-
+      ::pointer < ::database::stream > m_pstream;
 
       friend class client_array;
       friend class server;
@@ -30,7 +30,7 @@ namespace database
       ~client() override;
 
 
-      virtual bool set_data_server(server * pserver);
+      //virtual bool set_data_server(server * pserver);
 
 
       void initialize_data_client(server * pserver);
@@ -47,111 +47,101 @@ namespace database
       virtual void _data_set(const selection & selection, const ::payload & payload, ::topic * ptopic = nullptr);
 
 
-      template < typename TYPE >
-      inline void binary_set(const key & key, const TYPE & t);
+      inline stream * datastream() { return m_pstream; }
+      //template < typename TYPE >
+      //inline void binary_set(const key & key, const TYPE & t);
 
 
-      template < typename TYPE >
-      inline void binary_set(const key & key, const ::pointer<TYPE>& p)
-      {
+      //template < typename TYPE >
+      //inline void binary_set(const key & key, const ::pointer<TYPE>& p)
+      //{
 
-         binary_set(key, *p);
+      //   binary_set(key, *p);
 
-      }
-
-
-      template < typename TYPE >
-      inline void data_set(const key & key, const TYPE & t)
-      {
-
-         memory_file memoryfile;
-
-         binary_stream stream(&memoryfile);
-
-         stream.set_storing();
-
-         stream << t;
-
-         //if (stream.fail())
-         //{
-
-         //   return false;
-
-         //}
-         binary_set(key, memoryfile.memory());
-         //if (!)
-         //{
-
-         //   return false;
-
-         //}
-
-         //return true;
-
-      }
-
-      virtual bool _data_get(const key& key, ::payload & payload);
-
-      template < typename TYPE >
-      inline bool binary_get(const key & key, TYPE & t);
-
-      template < typename TYPE >
-      inline bool binary_get(const key & key, ::pointer<TYPE>& p)
-      {
-
-         return binary_get(key, *p);
-
-      }
+      //}
 
 
-      virtual ::payload data_get(const key & key)
-      {
+      //template < typename TYPE >
+      //inline void datastream()->set(const key & key, const TYPE & t)
+      //{
 
-         ::payload payload;
+      //   memory_file memoryfile;
 
-         _data_get(key, payload);
+      //   binary_stream < FILE > stream(&memoryfile);
 
-         //if (!)
-         //{
+      //   stream.set_storing();
 
-         //   return ::error_not_found;
+      //   stream << t;
 
-         //}
+      //   //if (stream.fail())
+      //   //{
 
-         return payload;
+      //   //   return false;
 
-      }
+      //   //}
+      //   binary_set(key, memoryfile.memory());
+      //   //if (!)
+      //   //{
+
+      //   //   return false;
+
+      //   //}
+
+      //   //return true;
+
+      //}
+
+      virtual bool _data_get(const key& key, ::payload payload);
 
 
-      template < typename TYPE >
-      inline bool data_get(const key & key, TYPE & t)
-      {
+      //template < typename TYPE >
+      //inline bool binary_get(const key & key, ::pointer<TYPE>& p)
+      //{
 
-         memory_file memoryfile;
+      //   return binary_get(key, *p);
 
-         if (!binary_get(key, memoryfile.memory()))
-         {
+      //}
 
-            return false;
 
-         }
+      virtual bool data_get_block(const key & key, ::block & block);
+      virtual void data_set_block(const key & key, const ::block & block);
 
-         binary_stream stream(&memoryfile);
+      virtual bool data_get_payload(const key & key, ::payload & payload);
+      virtual void data_set_payload(const key & key, const ::payload & payload);
 
-         stream.set_loading();
+      virtual bool data_get_memory(const key & key, ::memory_base & memory);
+      virtual void data_set_memory(const key & key, const block & block);
 
-         stream >> t;
 
-         if (stream.nok())
-         {
+      //template < typename TYPE >
+      //inline bool datastream()->get(const key & key, TYPE & t)
+      //{
 
-            return false;
+      //   memory_file memoryfile;
 
-         }
+      //   if (!binary_get(key, memoryfile.memory()))
+      //   {
 
-         return true;
+      //      return false;
 
-      }
+      //   }
+
+      //   auto stream = __binary_stream(memoryfile);
+
+      //   stream.set_loading();
+
+      //   stream >> t;
+
+      //   if (stream.nok())
+      //   {
+
+      //      return false;
+
+      //   }
+
+      //   return true;
+
+      //}
 
       virtual void default_data_save_handling(const ::atom & atom);
 
@@ -199,4 +189,4 @@ namespace database
 } // namespace database
 
 
-#define CHANGE_EVENT_DATA_GET(pchange, key) pchange->m_pclient->data_get(pchange->m_datakey, key)
+#define CHANGE_EVENT_DATA_GET(pchange, key) pchange->m_pclient->datastream()->get(pchange->m_datakey, key)

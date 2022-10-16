@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "script_manager.h"
 #include "script_cache.h"
 #include "script_compiler.h"
@@ -7,6 +7,7 @@
 #include "ds_script.h"
 #include "session.h"
 #include "httpd_socket.h"
+#include "acme/filesystem/file/memory_file.h"
 #include "apex/crypto/crypto.h"
 #include "apex/crypto/rsa.h"
 #include "apex/networking/sockets/link_in_socket.h"
@@ -581,7 +582,7 @@ namespace dynamic_source
                if(pinstanceParent->m_pscript2->m_streamError.m_p->get_size() > 0)
                {
 
-                  pinstanceParent->m_pmain->netnodesocket()->response().print("script_manager::get_output_internal is_empty script parent" + pinstanceParent->m_pscript2->m_strName);
+                  pinstanceParent->m_pmain->netnodesocket()->response().m_pmemfileBody->print("script_manager::get_output_internal is_empty script parent" + pinstanceParent->m_pscript2->m_strName);
 
                }
 

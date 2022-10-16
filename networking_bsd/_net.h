@@ -78,8 +78,8 @@ CLASS_DECL_NETWORKING_BSD ::string __string(const sockaddr & addr);
 
 // } // namespace str
 
-
-inline binary_stream & operator <<(binary_stream & s, const ::in6_addr & addr)
+template < typename FILE >
+inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::in6_addr & addr)
 {
 
    s.write(&addr, sizeof(addr));
@@ -89,7 +89,8 @@ inline binary_stream & operator <<(binary_stream & s, const ::in6_addr & addr)
 }
 
 
-inline binary_stream & operator >>(binary_stream & s, ::in6_addr & addr)
+template < typename FILE >
+inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::in6_addr & addr)
 {
 
    s.read(&addr, sizeof(addr));
@@ -99,7 +100,8 @@ inline binary_stream & operator >>(binary_stream & s, ::in6_addr & addr)
 }
 
 
-inline binary_stream & operator <<(binary_stream & s, const ::in_addr & addr)
+template < typename FILE >
+inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::in_addr & addr)
 {
 
    s.write(&addr, sizeof(addr));
@@ -109,8 +111,8 @@ inline binary_stream & operator <<(binary_stream & s, const ::in_addr & addr)
 }
 
 
-
-inline binary_stream & operator >>(binary_stream & s, ::in_addr & addr)
+template < typename FILE >
+inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::in_addr & addr)
 {
 
    s.read(&addr, sizeof(addr));

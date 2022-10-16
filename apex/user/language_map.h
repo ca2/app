@@ -37,9 +37,9 @@ namespace user
       //virtual bool set_language_sel(index iSel);
 
 
-      ///// get_current_language() -> data_get_current_language() -> data_get("language")
+      ///// get_current_language() -> data_get_current_language() -> datastream()->get("language")
       //virtual string get_current_language();
-      ///// set_current_language() -> data_set_current_language() -> data_set("language")
+      ///// set_current_language() -> data_set_current_language() -> datastream()->set("language")
       //virtual bool set_current_language(string strLang);
       //virtual bool set_current_language(index iSel);
 

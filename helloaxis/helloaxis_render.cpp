@@ -120,7 +120,7 @@ namespace helloaxis
       //for (auto & bilbo : m_bilboa)
       //{
 
-      //   //m_pimpact->data_get("bilbo." + bilbo.m_strPath, bilbo.m_bNew);
+      //   //m_pimpact->datastream()->get("bilbo." + bilbo.m_strPath, bilbo.m_bNew);
 
       //   i++;
 
@@ -1168,7 +1168,7 @@ namespace helloaxis
 //
 //            bilbo.m_b = true;
 //
-////            m_pimpact->data_set("bilbo." + bilbo.m_strPath, bilbo.m_b);
+////            m_pimpact->datastream()->set("bilbo." + bilbo.m_strPath, bilbo.m_b);
 //
 //         }
 //         else if (!bilbo.m_bNew && bilbo.m_b)
@@ -1178,7 +1178,7 @@ namespace helloaxis
 //
 //            bilbo.m_b = false;
 //
-////            m_pimpact->data_set("bilbo." + bilbo.m_strPath, bilbo.m_b);
+////            m_pimpact->datastream()->set("bilbo." + bilbo.m_strPath, bilbo.m_b);
 //
 //         }
 //

@@ -1577,6 +1577,27 @@ property_set & property_set::merge(const property_set & set)
 }
 
 
+property_set & property_set::merge(const property & property) 
+{ 
+
+   if (property.get_type() == e_type_property_set)
+   {
+
+      merge(*property.m_ppropertyset);
+
+   }
+   else
+   {
+
+      set_at(property.m_atom, property);
+
+   }
+
+   return *this;
+
+}
+
+
 property_set & property_set::operator += (const property_set & set)
 {
 

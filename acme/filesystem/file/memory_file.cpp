@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "memory_file.h"
 
 
 memory_file::memory_file() :
@@ -18,6 +19,7 @@ memory_file::memory_file(const ::file::e_open & eopen) :
 
    m_eopen = eopen;
    m_position = 0;
+   m_pbyte = nullptr;
    m_estatus = ::success;
    set_ok();
 
@@ -29,6 +31,7 @@ memory_file::memory_file(memsize size) :
 {
 
    m_position = 0;
+   m_pbyte = nullptr;
    m_estatus = ::success;
    set_ok();
 
@@ -274,6 +277,184 @@ void memory_file::write_from_hex(const void * pdata, memsize nCount)
 //}
 
 
+int memory_file::get_u8()
+{
+
+   return _get_u8();
+
+}
+
+
+int memory_file::get_u16()
+{
+
+   return _get_u16();
+
+}
+
+
+bool memory_file::get_u64(::u64 & u64)
+{
+
+   return _get_u64(u64);
+
+}
+
+
+bool memory_file::is_end_of_file() const
+{
+
+   return _is_end_of_file();
+
+}
+
+
+bool memory_file::read_string(memory_base & memory)
+{
+
+   auto position = get_position();
+
+   auto start = m_position;
+
+   const int iLookAhead = 1024;
+
+   while (true)
+   {
+
+      int iLeft = _get_left();
+
+      int iCount = minimum(iLookAhead, _get_left());
+
+      if (iCount <= (iLookAhead -1))
+      {
+         
+         if (iCount <= 0)
+         {
+
+            memory.assign(m_pbyte + start, m_position - start);
+
+            break;
+
+         }
+         else
+         {
+
+            int i = 0;
+
+            for (; i < iCount; i++, m_position++)
+            {
+
+               auto b = m_pbyte[m_position];
+
+               if (b == '\r')
+               {
+
+                  memory.assign(m_pbyte + start, m_position - start);
+
+                  m_position++;
+
+                  b = m_pbyte[m_position];
+
+                  if (b == '\n')
+                  {
+
+                     m_position++;
+
+                  }
+
+                  return true;
+
+               }
+               else if (b == '\n')
+               {
+
+                  memory.assign(m_pbyte + start, m_position - start);
+
+                  m_position++;
+
+                  return true;
+
+               }
+
+            }
+
+            memory.assign(m_pbyte + start, m_position - start);
+
+            return true;
+
+         }
+
+      }
+
+      // there are 258 bytes left;
+
+      auto b = (m_pbyte + m_position)[(iLookAhead -2)]; // stop searching at byte 257
+
+      (m_pbyte + m_position)[(iLookAhead - 2)] = '\0';
+
+      const byte * p = (const byte *) strpbrk((const char*)(m_pbyte + m_position), "\r\n");
+
+      (m_pbyte + m_position)[(iLookAhead - 2)] = b;
+
+      if ((p == nullptr && b == '\r' || b == '\n') || p)
+      {
+
+         if (p)
+         {
+
+            m_position = p - m_pbyte;
+
+            b = *p;
+
+         }
+         else
+         {
+
+            m_position += (iLookAhead - 2);
+
+         }
+
+         if (b == '\r')
+         {
+
+            memory.assign(m_pbyte + start, m_position - start);
+
+            m_position++;
+
+            b = m_pbyte[m_position];
+
+            if (b == '\n')
+            {
+
+               m_position++;
+
+            }
+
+            return true;
+
+         }
+         else if (b == '\n')
+         {
+
+            memory.assign(m_pbyte + start, m_position - start);
+
+            m_position++;
+
+            return true;
+
+         }
+
+      }
+
+      m_position += (iLookAhead - 2);
+
+   }
+
+   return ::file::file::read_string(memory);
+
+}
+
+
 
 void memory_file::clear()
 {
@@ -330,6 +511,10 @@ filesize memory_file::translate(filesize offset, ::enum_seek eseek)
 
    ASSERT(eseek == ::e_seek_set || eseek == ::e_seek_from_end || eseek == ::e_seek_current);
    //ASSERT(::e_seek_set == FILE_BEGIN && ::e_seek_end == FILE_END && ::e_seek_current == FILE_CURRENT);
+
+   m_memsize = m_pmemory->m_memory.m_cbStorage;
+
+   m_pbyte = (::byte *)m_pmemory->m_memory.m_pbStorage;
 
    memsize dwNew = (memsize)m_position;
 
@@ -670,3 +855,31 @@ memory_file & memory_file::operator = (const memory_file & file)
    return *this;
 
 }
+
+
+CLASS_DECL_ACME memory_file_pointer create_memory_file_by_reading(::file::file * pfile)
+{
+
+   auto pmemoryfile = create_memory_file();
+
+   pmemoryfile->memory().set_size(pfile->get_left());
+
+   auto iRead = pfile->read(pmemoryfile->get_data(), pmemoryfile->get_size());
+
+   if (iRead != pmemoryfile->get_size())
+   {
+
+      throw ::file::exception(error_failed, { e_error_code_type_unknown, -1 }, pfile->m_path, "Read bytes less than recorded left bytes");
+
+   }
+
+   pmemoryfile->m_pbyte = pmemoryfile->get_data();
+
+   pmemoryfile->m_memsize = pmemoryfile->get_size();
+
+   return pmemoryfile;
+
+}
+
+
+

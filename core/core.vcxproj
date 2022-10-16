@@ -921,10 +921,12 @@
     <ClCompile Include="user\user\xfplayer_impact_line_selection.cpp" />
     <ClCompile Include="_.cpp" />
     <ClInclude Include="filesystem\filehandler\aaa_data.h" />
+    <ClInclude Include="filesystem\filehandler\_binary_stream.h" />
     <ClInclude Include="filesystem\filemanager\component.h" />
     <ClInclude Include="filesystem\filemanager\impact.h" />
     <ClInclude Include="filesystem\filemanager\_impl.h" />
     <ClInclude Include="filesystem\filemanager\_tree.h" />
+    <ClInclude Include="filesystem\userfs\_binary_stream.h" />
     <ClInclude Include="filesystem\userfs\_data.h" />
     <ClInclude Include="filesystem\userfs\_tree.h" />
     <ClInclude Include="filesystem\_.h" />
@@ -989,6 +991,7 @@
     <ClInclude Include="user\rich_text\span.h" />
     <ClInclude Include="user\rich_text\text_format.h" />
     <ClInclude Include="user\rich_text\_.h" />
+    <ClInclude Include="user\rich_text\_binary_stream.h" />
     <ClInclude Include="user\rich_text\_constant.h" />
     <ClInclude Include="user\rich_text\_component.h" />
     <ClInclude Include="user\userex\calculator_edit_impact.h" />
@@ -999,6 +1002,7 @@
     <ClInclude Include="user\user\impact.h" />
     <ClInclude Include="user\user\text_format_object.h" />
     <ClInclude Include="user\user\user.h" />
+    <ClInclude Include="user\user\_binary_stream.h" />
     <ClInclude Include="user\_.h" />
     <ClInclude Include="version\version.h" />
     <ClInclude Include="filesystem\filehandler\_.h" />

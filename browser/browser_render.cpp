@@ -171,7 +171,7 @@ namespace browser
       for (auto & pslide : slideshow())
       {
 
-         m_pimpact->data_get("slide." + pslide->m_strPath, pslide->m_bDatabase);
+         m_pimpact->datastream()->get("slide." + pslide->m_strPath, pslide->m_bDatabase);
 
          i++;
 
@@ -1287,7 +1287,7 @@ namespace browser
 
       //      m_pimageaSlide->add_erase(slide->m_bActive, get_image(slide->m_strPath));
 
-      //m_pimpact->data_set("slide." + slide.m_strPath, slide.m_bActive);
+      //m_pimpact->datastream()->set("slide." + slide.m_strPath, slide.m_bActive);
 
       //   }
 

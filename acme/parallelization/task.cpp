@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/operating_system.h"
 
 
@@ -1161,14 +1161,14 @@ bool task::has_message() const
 //
 //#endif
 //
-   auto pobject = this;
+   //auto pobject = this;
 
-   if (::is_set(pobject) && pobject != this)
-   {
+   //if (::is_set(pobject) && pobject != this)
+   //{
 
-      pobject->add_composite(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
+   //   pobject->add_composite(this OBJECT_REFERENCE_COUNT_DEBUG_COMMA_THIS_FUNCTION_LINE);
 
-   }
+   //}
 
    //if (bSynchInitialization)
    {
@@ -1184,12 +1184,12 @@ bool task::has_message() const
    if (m_htask == 0)
    {
 
-      if (::is_set(this))
-      {
+      //if (::is_set(this))
+      //{
 
-         this->release_reference(this);
+      //   this->release_reference(this);
 
-      }
+      //}
 
       decrement_reference_count(OBJECT_REFERENCE_COUNT_DEBUG_THIS);
 

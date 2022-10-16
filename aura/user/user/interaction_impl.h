@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "primitive_impl.h"
@@ -114,7 +114,7 @@ namespace user
       ::size_i32                                m_sizeDrawn;
       reference_addressa                        m_ptraRedraw;
 
-      ::rectangle_i32                           m_rectangleUpdateBuffer;
+      //::rectangle_i32                           m_rectangleUpdateBuffer;
       ::thread_pointer                          m_pthreadMouseLeave;
 
       ::list < ::pointer<::message::message >> m_messagelist;
@@ -155,6 +155,10 @@ namespace user
       ::nanosecond                              m_nanosDeviceDrawBeg;
       ::nanosecond                              m_nanosDeviceDrawEnd;
       ::duration                                m_durationLastDeviceDraw;
+
+      ::size_i32                                m_sizeDrawnBuffer;
+
+
 
 
 

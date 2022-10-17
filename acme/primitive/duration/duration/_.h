@@ -5,7 +5,23 @@
 #include "duration.h"
 
 
+template < typename DURATION >
+inline bool integral_duration<DURATION>::operator == (const ::duration & duration) const { return ::duration(*this) == duration; } 
 
+template < typename DURATION >
+inline bool integral_duration<DURATION>::operator < (const ::duration & duration) const { return ::duration(*this) < duration; } 
+
+template < typename DURATION >
+inline bool integral_duration<DURATION>::operator <= (const ::duration & duration) const { return ::duration(*this) <= duration; } 
+
+template < typename DURATION >
+inline bool integral_duration<DURATION>::operator > (const ::duration & duration) const { return ::duration(*this) > duration; } 
+
+template < typename DURATION >
+inline bool integral_duration<DURATION>::operator >= (const ::duration & duration) const { return ::duration(*this) >= duration; } 
+
+template < typename DURATION >
+inline bool integral_duration<DURATION>::operator != (const ::duration & duration) const { return ::duration(*this) != duration; }
 
 
 
@@ -25,6 +41,30 @@ DEFINE_COMPARISON_WITH_DURATION(INTEGRAL_SECOND)
 DEFINE_COMPARISON_WITH_DURATION(INTEGRAL_MINUTE)
 DEFINE_COMPARISON_WITH_DURATION(INTEGRAL_HOUR)
 DEFINE_COMPARISON_WITH_DURATION(INTEGRAL_DAY)
+
+
+
+template < typename DURATION >
+inline bool floating_duration<DURATION>::operator == (const ::duration & duration) const { return ::duration(*this) == duration; } 
+
+template < typename DURATION >
+inline bool floating_duration<DURATION>::operator < (const ::duration & duration) const { return ::duration(*this) < duration; } 
+
+template < typename DURATION >
+inline bool floating_duration<DURATION>::operator <= (const ::duration & duration) const { return ::duration(*this) <= duration; }
+
+template < typename DURATION >
+inline bool floating_duration<DURATION>::operator > (const ::duration & duration) const { return ::duration(*this) > duration; }
+
+template < typename DURATION >
+inline bool floating_duration<DURATION>::operator >= (const ::duration & duration) const { return ::duration(*this) >= duration; }
+
+template < typename DURATION >
+inline bool floating_duration<DURATION>::operator != (const ::duration & duration) const { return ::duration(*this) != duration; }
+
+
+
+
 
 DEFINE_COMPARISON_WITH_DURATION(FLOATING_NANOSECOND)
 DEFINE_COMPARISON_WITH_DURATION(FLOATING_MICROSECOND)

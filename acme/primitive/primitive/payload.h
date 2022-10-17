@@ -1259,14 +1259,14 @@ inline payload::operator unsigned long() const
 }
 
 
-#elif defined(ANDROID)
-
-inline payload::operator long() const
-{
-
-   return i32();
-
-}
+//#elif defined(ANDROID)
+//
+//inline payload::operator long() const
+//{
+//
+//   return i32();
+//
+//}
 
 #endif
 

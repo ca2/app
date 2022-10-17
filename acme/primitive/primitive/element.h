@@ -78,7 +78,7 @@ public:
    //virtual void to_string(string_exchange & str) const;
 
 
-   [[nodiscard]] virtual ::enum_type get_payload_type() const;
+   [[nodiscard]] ::enum_type get_payload_type() const override;
 
 
    //virtual void exchange(::stream& s);
@@ -97,14 +97,9 @@ public:
    //virtual void release_reference(::element * pobject OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-   virtual void destroy();
+   void destroy() override;
    virtual void destroy_impl_data();
    virtual void destroy_os_data();
-
-
-
-
-
 
 
 };

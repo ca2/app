@@ -699,7 +699,7 @@ namespace allocator
             c--;
          }*/
 
-         throw ::exception(error_not_supported);
+         throw_exception(error_not_supported);
 
       }
 

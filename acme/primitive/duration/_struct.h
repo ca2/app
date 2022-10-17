@@ -30,6 +30,15 @@ inline bool TYPE::operator >= (const ::duration & duration) const { return ::dur
 inline bool TYPE::operator != (const ::duration & duration) const { return ::duration(*this) != duration; } 
 
 
+//#define DECLARE_COMPARISON_WITH_DURATION \
+//inline bool operator == (const ::duration & duration); \
+//inline bool operator < (const ::duration & duration);  \
+//inline bool operator <= (const ::duration & duration); \
+//inline bool operator > (const ::duration & duration);  \
+//inline bool operator >= (const ::duration & duration); \
+//inline bool operator != (const ::duration & duration); 
+
+
 #define INLINE_COMPARISON_WITH_DURATION \
 inline bool operator == (const ::duration & duration) const { return ::duration(*this) == duration; } \
 inline bool operator < (const ::duration & duration) const { return ::duration(*this) < duration; } \

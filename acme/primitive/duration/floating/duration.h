@@ -139,7 +139,7 @@ public:
    //__DURATION_SETUP__(floating_duration, m_d);
 
 
-   INLINE_COMPARISON_WITH_DURATION
+   DECLARE_COMPARISON_WITH_DURATION
 
 
 

@@ -1,4 +1,4 @@
-// Created by Camilo on 2021-01-12 ~10:00 <3TBS
+﻿// Created by Camilo on 2021-01-12 ~10:00 <3TBS
 #pragma once
 
 
@@ -10,7 +10,11 @@ template < typename POINTER >
 inline ::string __string(const ::acme::memory_allocate < POINTER > & memoryallocpointer)
 {
 
-   to_string(str, memoryallocpointer.m_p);
+   string str;
+
+   str.assign(memoryallocpointer.m_p, memoryallocpointer.m_iSize);
+
+   return str;
 
 }
 

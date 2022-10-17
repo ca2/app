@@ -331,32 +331,32 @@ namespace hex
 
 
 
-template < typename TYPE_CHAR >
-template < typename TYPE >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const TYPE & t)
-{
-
-   string_base < TYPE_CHAR > str(t);
-
-   return append(str);
-
-}
-
-
-template < typename TYPE_CHAR >
-template < typename TYPE >
-inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const TYPE & t) const
-{
-
-   string_base < TYPE_CHAR > strConcatenation(*this);
-
-   string_base < TYPE_CHAR > str(t);
-
-   strConcatenation += str;
-
-   return strConcatenation;
-
-}
+//template < typename TYPE_CHAR >
+//template < typename TYPE >
+//inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator+=(const TYPE & t)
+//{
+//
+//   string_base < TYPE_CHAR > str(t);
+//
+//   return append(str);
+//
+//}
+//
+//
+//template < typename TYPE_CHAR >
+//template < typename TYPE >
+//inline string_base < TYPE_CHAR > string_base < TYPE_CHAR >::operator +(const TYPE & t) const
+//{
+//
+//   string_base < TYPE_CHAR > strConcatenation(*this);
+//
+//   string_base < TYPE_CHAR > str(t);
+//
+//   strConcatenation += str;
+//
+//   return strConcatenation;
+//
+//}
 
 
 

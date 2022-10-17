@@ -11,7 +11,7 @@
 
 void * MEMORY_DECL operator new(size_t nSize, void * p) inplace_new_throw_spec;
 
-void * MEMORY_DECL operator new(size_t nSize, std::align_val_t, void * p) inplace_new_throw_spec;
+//void * MEMORY_DECL operator new(size_t nSize, std::align_val_t, void * p) inplace_new_throw_spec;
 
 void MEMORY_DECL operator delete(void * p, void * palloc) del_throw_spec;
 

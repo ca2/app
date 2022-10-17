@@ -321,9 +321,9 @@ bool memory_file::read_string(memory_base & memory)
    while (true)
    {
 
-      int iLeft = _get_left();
+      auto iLeft = _get_left();
 
-      int iCount = minimum(iLookAhead, _get_left());
+      int iCount = (int) minimum(iLookAhead, _get_left());
 
       if (iCount <= (iLookAhead -1))
       {

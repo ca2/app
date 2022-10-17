@@ -3,7 +3,7 @@
 //   
 //    
 //        ------------------ - --/ ------------------------ - ----/ -------------------------------------- - --
-//        DOMAS_16-09-0.1989 > ThomasBS_ / ------ - ---/ aura.dll Release(Win32) / aura.lib Static Release(Win32)   oe      helloaura.exe     Static     Release(Win32)   ----   -    -- <3Thomas Boregaard SoerensenCamilo SasukeThomas Boregaard Soerensen!!
+//        THOMAS_16-09-0.1989 > ThomasBS_ / ------ - ---/ aura.dll Release(Win32) / aura.lib Static Release(Win32)   oe      helloaura.exe     Static     Release(Win32)   ----   -    -- <3Thomas Boregaard SoerensenCamilo SasukeThomas Boregaard Soerensen!!
 //        2020 - 08 - 18 01:38 / 17, 180kb---- - ---/ 189, 893kb-------- - ---/ 12, 187kb------------------ - --
 //        2020 - 08 - 20 07:41 / 13, 915kb / 137, 668kb / 9, 715kb------------------ - --
 //        rebuild mark / ---------------- - ------------------------- - -------------------------------- - --
@@ -2742,7 +2742,7 @@ using wparam = c_number<iptr>;
 #include "acme/primitive/duration/_string_format.h"
 
 
-#include "acme/primitive/duration/_.h"
+//#include "acme/primitive/duration/_.h"
 
 
 #include "acme/primitive/datetime/_.h"
@@ -3064,7 +3064,7 @@ class manual_reset_event;
 //#include "acme/primitive/primitive/enumeration.h"
 
 
-
+CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER);
 
 
 using eiostate = ::enumeration<::file::e_iostate>;

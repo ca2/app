@@ -539,3 +539,12 @@ void throw_exception(enum_status estatus)
 }
 
 
+CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const char * pszMessage, const char * pszDetails, i32 iSkip)
+{
+
+   throw exception(estatus, pszMessage, pszDetails, iSkip);
+
+}
+
+
+

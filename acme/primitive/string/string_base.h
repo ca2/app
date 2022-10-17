@@ -131,22 +131,31 @@ public:
    //template < typename TYPE >
    //inline string_base & operator=(const TYPE & t);
 
-   template < typename TYPE >
-   string_base& operator += (const TYPE & t);
+   // maybe it doesn't because of ambiguity with global
+   // += operators... (in all compilers MSVC++, LLVM, GCC...)
+   //template < typename TYPE >
+   //string_base& operator += (const TYPE & t);
 
-
+   // maybe it doesn't because of ambiguity with global
+   // += operators... (in all compilers MSVC++, LLVM, GCC...)
    //string_base & operator += (const ::string_base < TYPE_CHAR > & str);
 
 
-   //string_base & operator += (const ansichar * pszsrc);
-   //string_base & operator += (const wd16char * pszsrc);
-   //string_base & operator += (const wd32char * pszsrc);
-   //string_base & operator += (const ansistring & ansistr);
-   //string_base & operator += (const wd16string & wd16str);
-   //string_base & operator += (const wd32string & wd32str);
-   //string_base & operator += (ansichar ansich);
-   //string_base & operator += (wd16char wd16ch);
-   //string_base & operator += (wd32char wd32ch);
+   // so exhaustively implementing them at least
+   // for most relevant and proper acme types
+   string_base & operator += (const ansichar * pszsrc);
+   string_base & operator += (const wd16char * pszsrc);
+   string_base & operator += (const wd32char * pszsrc);
+   string_base & operator += (const ansistring & ansistr);
+   string_base & operator += (const wd16string & wd16str);
+   string_base & operator += (const wd32string & wd32str);
+   string_base & operator += (ansichar ansich);
+   string_base & operator += (wd16char wd16ch);
+   string_base & operator += (wd32char wd32ch);
+   string_base & operator += (const ::payload & payload);
+   string_base & operator += (const ::property & property);
+   string_base & operator += (const ::atom & atom);
+
 
 //   template < int t_nSize >
 //   inline string_base & operator +=(const static_string<CHAR_TYPE, t_nSize > & ansistrSrc);
@@ -155,19 +164,29 @@ public:
 //   inline string_base & operator +=(const TYPE & t);
 //
 
-   template < typename TYPE >
-   inline string_base operator +(const TYPE & t) const;
+   // maybe it doesn't because of ambiguity with global
+   // + operators... (in all compilers MSVC++, LLVM, GCC...)
+   //template < typename TYPE >
+   //inline string_base operator +(const TYPE & t) const;
+
+   // maybe it doesn't because of ambiguity with global
+   // + operators... (in all compilers MSVC++, LLVM, GCC...)
    //inline string_base operator +(const ::string_base < TYPE_CHAR > & str) const;
 
-   //string_base operator + (const ansichar * pszSrc) const;
-   //string_base operator + (const wd16char * pszSrc) const;
-   //string_base operator + (const wd32char * pszSrc) const;
-   //string_base operator + (const ansistring & ansistr) const;
-   //string_base operator + (const wd16string & wd16str)  const;
-   //string_base operator + (const wd32string & wd32str)  const;
-   //string_base operator + (character character)  const;
-   //string_base operator + (wd16char wd16ch)  const;
-   //string_base operator + (wd32char wd32ch)  const;
+   // so exhaustively implementing them at least
+   // for most relevant and proper acme types
+   string_base operator + (const ansichar * pszSrc) const;
+   string_base operator + (const wd16char * pszSrc) const;
+   string_base operator + (const wd32char * pszSrc) const;
+   string_base operator + (const ansistring & ansistr) const;
+   string_base operator + (const wd16string & wd16str)  const;
+   string_base operator + (const wd32string & wd32str)  const;
+   string_base operator + (ansichar character)  const;
+   string_base operator + (wd16char wd16ch)  const;
+   string_base operator + (wd32char wd32ch)  const;
+   string_base operator + (const ::payload & payload) const;
+   string_base operator + (const ::property & property) const;
+   string_base operator + (const ::atom & atom) const;
 
    template < typename TYPE >
    inline string_base & operator /=(const TYPE & t)

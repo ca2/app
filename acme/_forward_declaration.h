@@ -13,6 +13,7 @@
 
 
 #include "acme/constant/_constant.h"
+#include "acme/primitive/primitive/estatus.h"
 
 
 constexpr ::u64 operator "" _uintmax(unsigned long long int u) { return u << 32LL; }
@@ -214,10 +215,47 @@ class payload;
 class atom;
 
 
+
+
+
+
+
+template < bool B, class TRUE_TYPE = void, class ELSE_TYPE = void >
+struct if_else {};
+
+template < class TRUE_TYPE, class ELSE_TYPE >
+struct if_else < true, TRUE_TYPE, ELSE_TYPE > { using type = TRUE_TYPE; };
+
+template < class TRUE_TYPE, class ELSE_TYPE >
+struct if_else < false, TRUE_TYPE, ELSE_TYPE > { using type = ELSE_TYPE; };
+
+
+
+
+
+
+
+
+
+
 template < typename FROM, typename TO_POINTER >
 concept raw_pointer_castable =
 ::std::is_convertible < FROM, TO_POINTER * >::value ||
 ::std::is_convertible < FROM, const TO_POINTER * >::value;
+
+
+template < typename T >
+concept primitive_character =
+std::is_same < T, ::ansichar >::value ||
+std::is_same < T, ::wd16char >::value ||
+std::is_same < T, ::wd32char >::value;
+
+
+template < typename T >
+concept const_c_string =
+std::is_convertible < T, const ::ansichar * >::value ||
+std::is_convertible < T, const ::wd16char * >::value ||
+std::is_convertible < T, const ::wd32char * >::value;
 
 
 template < typename T >
@@ -231,11 +269,33 @@ concept c_string =
 const_c_string < T > ||
 non_const_c_string < T >;
 
+template < typename T >
+struct base_const_c_string
+{
+
+   using type =
+      typename if_else <
+      std::is_convertible < T, const ansichar * >::value,
+      const ansichar *,
+      typename if_else <
+      std::is_convertible < T, const wd16char * >::value,
+      const wd16char *,
+      typename if_else <
+      std::is_convertible < T, const wd32char * >::value,
+      const wd32char *,
+      void *
+      >::type
+      >::type
+      >::type;
+
+};
+
+
+
+
 template < typename DERIVED, typename BASE >
 concept is_derived_from =
 ::std::is_base_of < BASE, DERIVED >::value;
-
-
 
 
 
@@ -271,51 +331,11 @@ concept primitive_floating = std::is_floating_point < T >::value;
 template < typename T >
 concept primitive_number = std::is_integral < T >::value || std::is_enum < T >::value || std::is_floating_point < T >::value;
 
-template < typename T >
-concept primitive_character =
-std::is_same < T, ::ansichar >::value ||
-std::is_same < T, ::wd16char >::value ||
-std::is_same < T, ::wd32char >::value;
-
-
-template < typename T >
-concept const_c_string =
-std::is_convertible < T, const ::ansichar * >::value ||
-std::is_convertible < T, const ::wd16char * >::value ||
-std::is_convertible < T, const ::wd32char * >::value;
 
 
 
 
-template < bool B, class TRUE_TYPE = void, class ELSE_TYPE = void >
-struct if_else {};
 
-template < class TRUE_TYPE, class ELSE_TYPE >
-struct if_else < true, TRUE_TYPE, ELSE_TYPE > { using type = TRUE_TYPE; };
-
-template < class TRUE_TYPE, class ELSE_TYPE >
-struct if_else < false, TRUE_TYPE, ELSE_TYPE > { using type = ELSE_TYPE; };
-
-template < typename T >
-struct base_const_c_string
-{
-
-   using type =
-      typename if_else <
-      std::is_convertible < T, const ansichar * >::value,
-      const ansichar *,
-      typename if_else <
-      std::is_convertible < T, const wd16char * >::value,
-      const wd16char *,
-      typename if_else <
-      std::is_convertible < T, const wd32char * >::value,
-      const wd32char *,
-      void *
-      >::type
-      >::type
-      >::type;
-
-};
 
 template < bool, typename T1, typename T2 >
 struct boolean_type_selection { using type = T1; };

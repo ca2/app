@@ -748,11 +748,7 @@ template < typename T >
 inline string string_from_int(const T& t)
 {
 
-   string str;
-
-   to_string(str, (i64)t);
-
-   return str;
+   return __string((::i64)t);
 
 }
 
@@ -761,11 +757,7 @@ template < typename T >
 inline string string_from_u(const T& t)
 {
 
-   string str;
-
-   to_string(str, (u64)t);
-
-   return str;
+   return __string((::u64)t);
 
 }
 

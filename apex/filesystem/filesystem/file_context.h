@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 class CLASS_DECL_APEX file_context :
@@ -106,38 +106,38 @@ public:
    //}
 
 
-   template < typename TYPE >
-   inline void binary_get(const ::payload & payloadFile, TYPE & t)
-   {
+   //template < typename TYPE >
+   //inline void binary_get(const ::payload & payloadFile, TYPE & t)
+   //{
 
-      auto preader = get_reader(payloadFile);
+   //   auto preader = get_reader(payloadFile);
 
-      binary_stream < FILE > stream(preader);
+   //   binary_stream < FILE > stream(preader);
 
-      stream.defer_set_loading();
+   //   stream.defer_set_loading();
 
-      stream >> t;
+   //   stream >> t;
 
-      //return stream.fail() ? ::error_failed : ::success;
+   //   //return stream.fail() ? ::error_failed : ::success;
 
-   }
+   //}
 
 
-   template < typename TYPE >
-   inline void binary_set(const ::payload & payloadFile, const TYPE & t)
-   {
+   //template < typename TYPE >
+   //inline void binary_set(const ::payload & payloadFile, const TYPE & t)
+   //{
 
-      auto pwriter = get_writer(payloadFile);
+   //   auto pwriter = get_writer(payloadFile);
 
-      binary_stream < FILE > stream(pwriter);
+   //   binary_stream < FILE > stream(pwriter);
 
-      stream.defer_set_storing();
+   //   stream.defer_set_storing();
 
-      stream << t;
+   //   stream << t;
 
-      //return stream.fail() ? ::error_failed : ::success;
+   //   //return stream.fail() ? ::error_failed : ::success;
 
-   }
+   //}
 
 
    virtual i32 filterex_time_square(const char * pszPrefix, ::file::path_array & stra);
@@ -324,19 +324,19 @@ public:
    }
 
 
-   template < class ARRAY >
-   void to_array(ARRAY & a, const ::payload & payloadFile)
-   {
+   //template < class ARRAY >
+   //void to_array(ARRAY & a, const ::payload & payloadFile)
+   //{
 
-      auto pfile = get_reader(payloadFile);
+   //   auto pfile = get_reader(payloadFile);
 
-      ::binary_stream < FILE > s(pfile);
+   //   ::binary_stream < FILE > s(pfile);
 
-      __exchange_array(a, s);
+   //   __exchange_array(a, s);
 
-      //return !s.fail();
+   //   //return !s.fail();
 
-   }
+   //}
 
 
    //virtual void lines(string_array & stra, const ::payload & payloadFile);

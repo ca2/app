@@ -11,7 +11,7 @@
 #include "acme/_api.h"
 
 
-enum enum_id : ::u64;
+enum enum_id : ::uptr;
 
 
 //class atom_space;
@@ -228,8 +228,8 @@ inline bool __atom_str_begins_ci(const char * a, const char * b)
 struct id_all
 {
 
-   ::i64             m_iBody;
-   ::i64             m_iType;
+   ::iptr            m_iBody;
+   ::iptr            m_iType;
 
 };
 
@@ -239,7 +239,7 @@ class CLASS_DECL_ACME atom
 public:
 
 
-   enum enum_type : ::i64
+   enum enum_type : ::iptr
    {
 
       e_type_empty = -2,
@@ -260,7 +260,7 @@ public:
       e_type_update,
       e_type_dialog_result,
 
-      e_type_text = 1ull << 32,
+      e_type_text = 1ull << 16,
       e_type_id_text = e_type_id | e_type_text,
       e_type_factory_text = e_type_factory | e_type_text,
       e_type_task_tool_text = e_type_task_tool | e_type_text,
@@ -279,7 +279,7 @@ public:
    union
    {
 
-      ::i64                      m_iId;
+      ::iptr                     m_iId;
 
       struct
       {
@@ -287,8 +287,8 @@ public:
          union
          {
 
-            ::u64                m_u;
-            ::i64                m_i;
+            ::uptr               m_u;
+            ::iptr               m_i;
             enum_id              m_eid;
             enum_property        m_eproperty;
             enum_factory         m_efactory;
@@ -308,8 +308,8 @@ public:
       struct
       {
 
-         ::i64                   m_iBody;
-         ::i64                   m_iType;
+         ::iptr                  m_iBody;
+         ::iptr                  m_iType;
 
       };
 
@@ -339,7 +339,7 @@ public:
    inline atom(enum_message emessage);
    //inline atom(enum_topic etopic);
    inline atom(enum_dialog_result edialogresult);
-   inline atom(enum_type etype, const atom & atom);
+   inline atom(enum_type etypeAdd, const atom & atom);
    inline atom(const atom & atom);
    atom(const char * psz);
 
@@ -360,13 +360,13 @@ public:
    enum_type primitive_type() const
    {
 
-      if(m_etype < 0)
+      if(m_iType < 0)
       {
 
          return m_etype;
 
       }
-      else if(m_etype < e_type_text)
+      else if(m_iType < e_type_text)
       {
 
          return e_type_integer;
@@ -382,10 +382,14 @@ public:
    }
 
 
-   enum_type compounded_type(enum_type etype) const
+   // returned compounded_type should have same primitive type as the atom
+   enum_type compounded_type(enum_type etypeAdd) const
    {
 
-      return m_iType < 0 ? m_etype : (enum_type)((m_iType & ~0xffffffffll) | (int) etype);
+      return (enum_type) (
+         (((::iptr) m_etype) & (~(::iptr)0xffff)) |
+         ((::iptr)etypeAdd & (::iptr)0xffff)
+         );
 
    }
 
@@ -405,11 +409,11 @@ public:
 
    }
 
-   bool _is_compounded(enum_type etype) const { return (m_etype & 0xffffffff) == etype;}
+   bool _is_compounded(enum_type etype) const { return (m_etype & 0xffff) == etype;}
 
 
 
-   bool is_message() const { return m_etype == e_type_message; }
+   bool is_message() const { return m_iType == e_type_message; }
 
 
    bool is_command() const { return _is_compounded(e_type_command); }
@@ -531,8 +535,9 @@ public:
 //   atom & operator = (const enum_dialog_result & edialogresult);
 
 
-   inline operator ::i64() const;
+   inline operator ::iptr() const;
    inline ::i64 i64() const;
+   inline ::iptr iptr() const;
    inline ::i32 i32() const { return (::i32) i64(); }
    inline ::u32 u32() const { return (::u32) i64(); }
    inline ::index index() const { return (::index)i64(); }
@@ -561,15 +566,15 @@ public:
    inline void clear();
    
 
-   inline iptr CompareNoCase(const char * psz) const { return compare_ci(psz); }
-   inline iptr compare_ci(const char * psz) const;
+   inline int CompareNoCase(const char * psz) const { return compare_ci(psz); }
+   inline int compare_ci(const char * psz) const;
 
 
    inline bool begins(const char * pszPrefix) const;
    inline bool begins_ci(const char * pszPrefix) const;
 
-   inline bool is_text() const { return m_etype >= e_type_text; }
-   inline bool is_integer() const { return m_etype >= 0 && m_etype < e_type_text; }
+   inline bool is_text() const { return m_iType >= e_type_text; }
+   inline bool is_integer() const { return m_iType >= 0 && m_iType < e_type_text; }
 
 
    //inline atom & operator +=(const char * psz);
@@ -611,7 +616,7 @@ inline atom::atom(enum_type etype)
 
 inline atom::atom(enum_id eid) :
    m_etype(e_type_id),
-   m_i((::i64) eid) // used m_i to reset 64-bit field
+   m_i((::iptr) eid) // used m_i to reset 64-bit field
 {
 
 }
@@ -619,7 +624,7 @@ inline atom::atom(enum_id eid) :
 
 inline atom::atom(enum_property eproperty) :
    m_etype(e_type_property),
-   m_i((::i64)eproperty) // used m_i to reset 64-bit field
+   m_i((::iptr)eproperty) // used m_i to reset 64-bit field
 {
 
 }
@@ -635,7 +640,7 @@ inline atom::atom(enum_factory efactory) :
 
 inline atom::atom(enum_task_tool etasktool) :
    m_etype(e_type_task_tool),
-   m_i((::i64)etasktool) // used m_i to reset 64-bit field
+   m_i((::iptr)etasktool) // used m_i to reset 64-bit field
 {
 
 }
@@ -643,7 +648,7 @@ inline atom::atom(enum_task_tool etasktool) :
 
 inline atom::atom(enum_timer etimer) :
    m_etype(e_type_timer),
-   m_i((::i64)etimer) // used m_i to reset 64-bit field
+   m_i((::iptr)etimer) // used m_i to reset 64-bit field
 {
 
 }
@@ -652,7 +657,7 @@ inline atom::atom(enum_timer etimer) :
 
 inline atom::atom(enum_message emessage) :
    m_etype(e_type_message),
-   m_i((::i64)emessage) // used m_i to reset 64-bit field
+   m_i((::iptr)emessage) // used m_i to reset 64-bit field
 {
 
 }
@@ -668,60 +673,39 @@ inline atom::atom(enum_message emessage) :
 
 inline atom::atom(enum_dialog_result edialogresult) :
    m_etype(e_type_dialog_result),
-   m_i((::i64)edialogresult) // used m_i to reset 64-bit field
+   m_i((::iptr)edialogresult) // used m_i to reset 64-bit field
 {
 
 }
 
 
-inline atom::atom(enum_type etype, const ::atom & atom)
+// This constructor shouldn't change the primitive type of
+// the atom argument.
+inline atom::atom(enum_type etypeAdd, const ::atom & atom)
 {
 
    if (atom.is_text())
    {
 
-      m_etype = etype;
+      m_etype = (enum_type) (etypeAdd | e_type_text);
 
-      if (etype & e_type_text)
-      {
-
-         ::new(&m_str) ::string(atom.m_str);
-
-      }
-      else
-      {
-
-         m_iId = atom.i64();
-
-      }
+      ::new(&m_str) ::string(atom.m_str);
 
    } 
    else if (atom.is_integer())
    {
 
+      m_etype = etypeAdd;
 
-      m_etype = etype;
-
-      if (etype & e_type_text)
-      {
-
-         ::new(&m_str) ::string();
-
-         m_str.format("%lld", atom.m_iId);
-
-      }
-      else
-      {
-
-         m_iId = atom.i64();
-
-      }
+      m_iBody = atom.m_iBody;
 
    }
    else
    {
 
-      m_all = {};
+      m_etype = etypeAdd;
+
+      m_iBody = 0;
 
    }
 
@@ -768,7 +752,7 @@ inline atom::atom(SIGNED i)
 
    m_etype = e_type_integer;
 
-   m_i = i;
+   m_i = (::iptr) i;
 
 }
 
@@ -1364,10 +1348,10 @@ inline bool atom::operator >= (::enum_dialog_result edialogresult) const
 }
 
 
-inline atom::operator ::i64 () const
+inline atom::operator ::iptr () const
 {
 
-   return i64();
+   return iptr();
 
 }
 
@@ -1376,6 +1360,14 @@ inline ::i64 atom::i64() const
 {
 
    return primitive_type() == e_type_integer ? m_i : 0x8000000000000000ll;
+
+}
+
+
+inline ::iptr atom::iptr() const
+{
+
+   return primitive_type() == e_type_integer ? m_i : INTPTR_MIN;
 
 }
 
@@ -1433,7 +1425,7 @@ inline void atom::clear()
 //inline CLASS_DECL_ACME atom & atom::operator += (const char * psz) { return operator = (string(*this) + string(psz)); }
 
 
-inline iptr atom::compare_ci(const char * psz) const
+inline int atom::compare_ci(const char * psz) const
 {
 
    if(m_str.is_empty())

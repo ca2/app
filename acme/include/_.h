@@ -1331,10 +1331,10 @@ namespace core
 class eimpact;
 
 
-enum enum_simple_command : ::i64;
-enum enum_message : ::i64;
-enum enum_impact : ::i64;
-enum enum_id : ::u64;
+enum enum_simple_command : ::iptr;
+enum enum_message : ::iptr;
+enum enum_impact : ::iptr;
+enum enum_id : ::uptr;
 enum enum_check : ::i32;
 
 template<typename TYPE>
@@ -2530,7 +2530,6 @@ namespace text
 
 #include "acme/platform/definition.h"
 
-#include "acme/memory/new.h"
 
 
 //#include "acme/platform/muldiv64.h"

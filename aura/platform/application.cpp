@@ -3659,7 +3659,7 @@ retry_license:
 
 #ifdef _UWP
 
-      return 666;
+      return true;
 
 #endif
 

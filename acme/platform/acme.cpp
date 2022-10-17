@@ -1635,8 +1635,6 @@ namespace acme
 
       increment_reference_count();
 
-      ::factory::add_factory_item< ::acme::system >();
-
    }
 
 

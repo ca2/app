@@ -1,11 +1,7 @@
-#pragma once
+﻿#pragma once
 
 
-
-
-
-
-enum enum_simple_command : ::i64
+enum enum_simple_command : ::iptr
 {
 
    e_simple_command_none,

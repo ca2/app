@@ -862,9 +862,20 @@ CLASS_DECL_ACME memory_file_pointer create_memory_file_by_reading(::file::file *
 
    auto pmemoryfile = create_memory_file();
 
-   pmemoryfile->memory().set_size(pfile->get_left());
+   auto left = pfile->get_left();
 
-   auto iRead = pfile->read(pmemoryfile->get_data(), pmemoryfile->get_size());
+   if (left > UINTPTR_MAX)
+   {
+
+      throw ::exception(error_no_memory);
+
+   }
+
+   memsize memsizeLeft = (memsize)left;
+
+   pmemoryfile->memory().set_size(memsizeLeft);
+
+   auto iRead = pfile->read(pmemoryfile->get_data(), (memsize) pmemoryfile->get_size());
 
    if (iRead != pmemoryfile->get_size())
    {
@@ -875,7 +886,7 @@ CLASS_DECL_ACME memory_file_pointer create_memory_file_by_reading(::file::file *
 
    pmemoryfile->m_pbyte = pmemoryfile->get_data();
 
-   pmemoryfile->m_memsize = pmemoryfile->get_size();
+   pmemoryfile->m_memsize = (memsize) pmemoryfile->get_size();
 
    return pmemoryfile;
 

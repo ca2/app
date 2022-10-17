@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 //
 //enum e_task_flag :
@@ -27,7 +27,7 @@ enum enum_task_op :i64
 };
 
 
-enum enum_task_tool : ::i64
+enum enum_task_tool : ::iptr
 {
 
    e_task_tool_draw2d,

@@ -1,8 +1,4 @@
 ﻿#include "framework.h"
-//#include "acme/operating_system.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
 #ifdef WINDOWS_DESKTOP
 #include "apex/operating_system.h"
 #endif
@@ -11,7 +7,6 @@
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
 #include "interaction_thread.h"
-//#include "acme/operating_system/_user.h"
 #include "acme/platform/hyperlink.h"
 #include "acme/platform/timer.h"
 #include "acme/platform/timer_array.h"
@@ -17720,7 +17715,6 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       }
 
    }
-
 
 
    void interaction::on_message_right_button_down(::message::message * pmessage)

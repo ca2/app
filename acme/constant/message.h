@@ -1,7 +1,7 @@
-#pragma once
+﻿#pragma once
 
 
-enum enum_message : ::i64
+enum enum_message : ::iptr
 {
 
    e_message_undefined = -1,

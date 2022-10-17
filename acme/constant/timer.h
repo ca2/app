@@ -1,7 +1,7 @@
-#pragma once
+﻿#pragma once
 
 
-enum enum_timer : ::i64
+enum enum_timer : ::iptr
 {
 
    e_timer_none,

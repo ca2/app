@@ -1,4 +1,4 @@
-/*
+﻿/*
     src/screen.cpp -- Top-level widget and interface between NanoGUI and GLFW
 
     A significant redesign of this code was contributed by Christian Schueller.
@@ -749,7 +749,7 @@ void Screen::draw_widgets(NVGcontext * ctx) {
          }
 
          nvgGlobalAlpha(ctx,
-            minimum(1.f, (elapsed - 0.5_s).floating_second().m_d*2.0 * 0.8));
+            minimum(1.f, (float) ((elapsed - 0.5_s).floating_second().m_d*2.0 * 0.8)));
 
          nvgBeginPath(ctx);
          nvgFillColor(ctx, Color(0, 255));

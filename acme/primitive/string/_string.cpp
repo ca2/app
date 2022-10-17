@@ -1,4 +1,4 @@
-// Created by camilo on 2022-06-07 06:23 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-06-07 06:23 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 
 
@@ -20,13 +20,7 @@ void replace_tab(strsize iOffset, string & strParam, int iWidth, strsize_array *
 
       pszNext = ::str().next(psz);
 
-      if (::is_empty(pszNext))
-      {
-
-         break;
-
-      }
-      else if (*psz == '\t')
+      if (*psz == '\t')
       {
 
          auto lenTab = iWidth - (iOffset % iWidth);
@@ -61,6 +55,13 @@ void replace_tab(strsize iOffset, string & strParam, int iWidth, strsize_array *
       }
       else
       {
+
+         if (::is_empty(pszNext))
+         {
+
+            break;
+
+         }
 
          //str.append(psz, pszNext - psz);
 

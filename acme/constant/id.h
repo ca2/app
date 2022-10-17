@@ -1,7 +1,7 @@
-#pragma once
+﻿#pragma once
 
 
-enum enum_id : u64
+enum enum_id : uptr
 {
 
 

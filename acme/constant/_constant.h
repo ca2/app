@@ -4,7 +4,7 @@
 #include "GLOBAL_ID.h"
 
 
-enum enum_property : ::i64
+enum enum_property : ::iptr
 {
 
    e_property_default = 0,
@@ -14,7 +14,7 @@ enum enum_property : ::i64
 };
 
 
-enum enum_factory : ::i64
+enum enum_factory : ::iptr
 {
 
    e_factory_draw2d_bitmap,
@@ -39,7 +39,7 @@ enum enum_factory : ::i64
 
 
 #define NONE_ID 0
-#define INVALID_ID ((::u64) -1)
+#define INVALID_ID ((::uptr) -1)
 
 
 //#define e_flag_success (1 << 0)
@@ -102,7 +102,7 @@ enum enum_library_main
 //#include "topic.h"
 
 
-enum enum_dialog_result
+enum enum_dialog_result : ::iptr
 {
 
 
@@ -393,7 +393,7 @@ enum enum_thread_context
 };
 
 
-enum enum_timer : i64;
+enum enum_timer : iptr;
 
 
 enum enum_boolean

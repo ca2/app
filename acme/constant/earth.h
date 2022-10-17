@@ -1,10 +1,11 @@
-//
+﻿//
 // Created by camilo on 27/02/2022 <3ThomasBorregaardSørensen!!
 //
 
 #pragma once
 
 
+#define COUNTRY_CODE_STRING_DE "de"
 #define COUNTRY_CODE_STRING_CA "ca"
 #define COUNTRY_CODE_STRING_BR "br"
 #define COUNTRY_CODE_STRING_DK "dk"

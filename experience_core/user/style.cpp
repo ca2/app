@@ -453,6 +453,8 @@ namespace experience_core
 
                   __construct(ppath);
 
+                  ppath->m_pointUserOffset = ptab->m_pointBarDragScroll;
+
                   ppath->add_line(rectangleBorder.left, rectangleClient.bottom, rectangleBorder.left, rectangleBorder.top);
 
                   ppath->add_line(rectangleClient.right, rectangleBorder.top);
@@ -478,7 +480,11 @@ namespace experience_core
 
                   pgraphics->set(pbrush);
 
+                  pgraphics->offset_origin(- (ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x), 0);
+
                   pgraphics->fill(ppath);
+
+                  pgraphics->offset_origin(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x, 0);
 
                }
 
@@ -497,7 +503,11 @@ namespace experience_core
 
                   pgraphics->set(ppen);
 
+                  pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x), 0);
+
                   pgraphics->draw(ppath);
+
+                  pgraphics->offset_origin(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x, 0);
 
                }
 
@@ -567,6 +577,8 @@ namespace experience_core
 
                   __construct(ppath);
 
+                  ppath->m_pointUserOffset = ptab->m_pointBarDragScroll;
+
                   ppath->add_line(rectangleBorder.left, rectangleClient.bottom, rectangleBorder.left, rectangleBorder.top);
 
                   ppath->add_line(rectangleClient.right, rectangleBorder.top);
@@ -599,7 +611,11 @@ namespace experience_core
 
                      pgraphics->set(pbrush);
 
+                     pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x), 0);
+
                      pgraphics->fill(ppath);
+
+                     pgraphics->offset_origin(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x, 0);
 
                   }
 
@@ -618,7 +634,11 @@ namespace experience_core
 
                      pgraphics->set(ppen);
 
+                     pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x), 0);
+
                      pgraphics->draw(ppath);
+
+                     pgraphics->offset_origin(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x, 0);
 
                      {
 
@@ -681,7 +701,11 @@ namespace experience_core
 
                      pgraphics->set(pbrush);
 
+                     pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x), 0);
+
                      pgraphics->fill(ppath);
+
+                     pgraphics->offset_origin(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x, 0);
 
                   }
 
@@ -700,7 +724,11 @@ namespace experience_core
 
                      pgraphics->set(ppen);
 
+                     pgraphics->offset_origin(-(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x), 0);
+
                      pgraphics->draw(ppath);
+
+                     pgraphics->offset_origin(ptab->m_pointBarDragScroll.x - ppath->m_pointUserOffset.x, 0);
 
                   }
 
@@ -780,7 +808,7 @@ namespace experience_core
 
       ::rectangle_i32 rectangleScroll;
 
-      bool bScroll = ptab->_001HasHorizontalDragScrolling();
+      bool bScroll = ptab->_001HasHorizontalBarDragScrolling();
 
       if (bScroll)
       {
@@ -1194,9 +1222,7 @@ namespace experience_core
 
 //         ptab->m_pointDragScrollMax.y = ptab->m_sizeDragScroll.cy - rcClient.height();
 
-         ptab->m_sizeDragScroll.cy = (int)ptab->m_pdata->m_tabpanecompositea.get_count() * ptab->m_pdata->m_iTabHeight;
-
-
+         ptab->m_sizeBarDragScroll.cy = (int)ptab->m_pdata->m_tabpanecompositea.get_count() * ptab->m_pdata->m_iTabHeight;
 
       }
       else
@@ -1207,7 +1233,7 @@ namespace experience_core
 
          //ptab->m_pointDragScrollMax.x = ptab->m_sizeDragScroll.cx - rcClient.width();
 
-         ptab->m_sizeDragScroll.cx = ptab->m_pdata->m_tabpanecompositea.last()->m_point.x +
+         ptab->m_sizeBarDragScroll.cx = ptab->m_pdata->m_tabpanecompositea.last()->m_point.x +
             ptab->m_pdata->m_tabpanecompositea.last()->m_size.cx;
 
          //if (m_pdata->m_bVertical)

@@ -39,31 +39,33 @@ inline bool TYPE::operator != (const ::duration & duration) const { return ::dur
 //inline bool operator != (const ::duration & duration); 
 
 
-#define INLINE_COMPARISON_WITH_DURATION \
-inline bool operator == (const ::duration & duration) const { return ::duration(*this) == duration; } \
-inline bool operator < (const ::duration & duration) const { return ::duration(*this) < duration; } \
-inline bool operator <= (const ::duration & duration) const { return ::duration(*this) <= duration; } \
-inline bool operator > (const ::duration & duration) const { return ::duration(*this) > duration; } \
-inline bool operator >= (const ::duration & duration) const { return ::duration(*this) >= duration; } \
-inline bool operator != (const ::duration & duration) const { return ::duration(*this) != duration; } 
+//#define INLINE_COMPARISON_WITH_DURATION \
+//inline bool operator == (const ::duration & duration) const { return ::duration(*this) == duration; } \
+//inline bool operator < (const ::duration & duration) const { return ::duration(*this) < duration; } \
+//inline bool operator <= (const ::duration & duration) const { return ::duration(*this) <= duration; } \
+//inline bool operator > (const ::duration & duration) const { return ::duration(*this) > duration; } \
+//inline bool operator >= (const ::duration & duration) const { return ::duration(*this) >= duration; } \
+//inline bool operator != (const ::duration & duration) const { return ::duration(*this) != duration; } 
 
 
 
-#define DURATION_UNIT(unit, type, member)             \
-struct unit                                           \
-{                                                     \
-                                                      \
-   using BASE_TYPE = type;                            \
-   type member;                                       \
-                                                      \
-   constexpr unit():member{} {}                       \
-   constexpr unit(enum_zero):member{} {}              \
-   constexpr unit(type t):member(t){}                 \
-                                                      \
-                                                      \
+#define DURATION_UNIT(unit, type, member)                                     \
+struct unit                                                                   \
+{                                                                             \
+                                                                              \
+   using BASE_TYPE = type;                                                    \
+   type member;                                                               \
+                                                                              \
+   constexpr unit():member{} {}                                               \
+   constexpr unit(enum_zero):member{} {}                                      \
+   constexpr unit(type t):member(t){}                                         \
+                                                                              \
+   bool operator == (const unit & u) const { return member == u.member; }     \
+   DECLARE_COMPARISON_WITH_DURATION                                           \
+                                                                              \
 };
 
-//DECLARE_COMPARISON_WITH_DURATION                   \
+
 
 
 

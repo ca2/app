@@ -1,4 +1,4 @@
-//
+﻿//
 //  account_network_credentials.cpp
 //  aura
 //
@@ -261,7 +261,7 @@ namespace account
 
       pcredentials->m_estatusHttp = set["get_status"].estatus();
 
-      INFORMATION("login_task::NetLogin Total time pcontext->m_papexcontext->http().get(\""<<strAuthUrl<<"\") : " << integral_millisecond(tickTimeProfile1.elapsed()));
+      INFORMATION("login_task::NetLogin Total time pcontext->m_papexcontext->http().get(\""<<strAuthUrl<<"\") : " << tickTimeProfile1.elapsed().integral_millisecond());
 
       INFORMATION("NetLogin: Authentication Millis = " << tickAuthBeg.elapsed().integral_millisecond());
 

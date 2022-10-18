@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "object.h"
 #include "lock.h"
 #include "device_lock.h"

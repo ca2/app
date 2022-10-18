@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "object.h"
@@ -26,7 +26,7 @@ namespace draw2d
       point_f64                           m_pointEnd;
       ::draw2d::enum_fill_mode            m_efillmode;
       point_f64                           m_pointOffset;
-      ::pointer<path_optimization>       m_ppathoptimization;
+      ::pointer<path_optimization>        m_ppathoptimization;
       bool                                m_bUseGeometryRealization;
 
 

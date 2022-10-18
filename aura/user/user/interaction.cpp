@@ -138,14 +138,14 @@ namespace user
    {
       
       
-      m_bDragScrollLeftButtonDown = false;
+      m_bBarDragScrollLeftButtonDown = false;
       
-      m_bHorizontalDragScroll = false;
-      m_bHorizontalDragScrollingActive = false;
-      m_bVerticalDragScroll = false;
-      m_bVerticalDragScrollingActive = false;
-      m_pointDragScroll = {};
-      m_pointDragScrollMax = {};
+      m_bEnableHorizontalBarDragScroll = false;
+      m_bHorizontalBarDragScrollingActive = false;
+      m_bEnableVerticalBarDragScroll = false;
+      m_bVerticalBarDragScrollingActive = false;
+      m_pointBarDragScroll = {};
+      m_pointBarDragScrollMax = {};
       
 #ifdef REPORT_OFFSETS
 
@@ -3473,7 +3473,7 @@ namespace user
          {
 
             pointScroll.x += pChild->get_parent()->m_pointScroll.x;
-            pointScroll.x += pChild->get_parent()->m_pointDragScroll.x;
+            //pointScroll.x += pChild->get_parent()->m_pointDragScroll.x;
 
          }
 
@@ -3481,7 +3481,7 @@ namespace user
          {
 
             pointScroll.y += pChild->get_parent()->m_pointScroll.y;
-            pointScroll.y += pChild->get_parent()->m_pointDragScroll.y;
+            //pointScroll.y += pChild->get_parent()->m_pointDragScroll.y;
 
          }
 
@@ -3597,7 +3597,7 @@ namespace user
 
          pgraphics->reset_clip();
 
-         pgraphics->m_pointAddShapeTranslate = m_pointScroll + m_pointDragScroll;
+         pgraphics->m_pointAddShapeTranslate = m_pointScroll;
 
          pgraphics->intersect_clip(m_rectangleClip);
 
@@ -3799,14 +3799,14 @@ namespace user
 
       }
 
-      point_i32 pointDragScroll = m_pointDragScroll;
+      //point_i32 pointDragScroll = m_pointDragScroll;
 
-      if (!pointDragScroll.is_null())
-      {
+      //if (!pointDragScroll.is_null())
+      //{
 
-         pgraphics->offset_origin(-pointDragScroll.x, -pointDragScroll.y);
+      //   pgraphics->offset_origin(-pointDragScroll.x, -pointDragScroll.y);
 
-      }
+      //}
 
       //on_context_offset(pgraphics);
 
@@ -3998,7 +3998,7 @@ namespace user
 
       point_i32 pointScroll = m_pointScroll;
 
-      point_i32 pointDragScroll = m_pointDragScroll;
+      //point_i32 pointDragScroll = m_pointDragScroll;
 
       bool bParentScrollX = false;
 
@@ -4052,7 +4052,7 @@ namespace user
                         {
 
                            pgraphics->offset_origin(-pointScroll.x, 0);
-                           pgraphics->offset_origin(-pointDragScroll.x, 0);
+                           //pgraphics->offset_origin(-pointDragScroll.x, 0);
 
                            bParentScrollX = true;
 
@@ -4061,7 +4061,7 @@ namespace user
                         {
 
                            pgraphics->offset_origin(pointScroll.x, 0);
-                           pgraphics->offset_origin(pointDragScroll.x, 0);
+                           //pgraphics->offset_origin(pointDragScroll.x, 0);
 
 
                            bParentScrollX = false;
@@ -4072,7 +4072,7 @@ namespace user
                         {
 
                            pgraphics->offset_origin(0, -pointScroll.y);
-                           pgraphics->offset_origin(0, -pointDragScroll.y);
+                           //pgraphics->offset_origin(0, -pointDragScroll.y);
 
                            bParentScrollY = true;
 
@@ -4081,7 +4081,7 @@ namespace user
                         {
 
                            pgraphics->offset_origin(0, pointScroll.y);
-                           pgraphics->offset_origin(0, pointDragScroll.y);
+                           //pgraphics->offset_origin(0, pointDragScroll.y);
 
                            bParentScrollY = false;
 
@@ -5347,6 +5347,21 @@ namespace user
          enable_drag(e_element_resize);
 
       }
+
+      //if (m_bEnableHorizontalBarDragScroll)
+      //{
+
+      //   enable_drag(e_element_bar_drag_scroll_horizontal);
+
+      //}
+
+
+      //if (m_bEnableVerticalBarDragScroll)
+      //{
+
+      //   enable_drag(e_element_bar_drag_scroll_vertical);
+
+      //}
 
       auto psystem = m_psystem->m_paurasystem;
 
@@ -10515,7 +10530,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    //if(m_bVerticalDragScroll)
    //{
       auto rectangleClient = get_client_rect();
-      m_pointDragScrollMax = m_sizeDragScroll - rectangleClient.size();
+      m_pointBarDragScrollMax = m_sizeBarDragScroll - rectangleClient.size();
    //}
    //if(m_bHorizontalDragScroll)
 //   {
@@ -15096,7 +15111,8 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       ::point_i32 pointOffset(x, y);
 
-      if (pointOffset == (m_pointScroll + m_pointDragScroll))
+      //if (pointOffset == (m_pointScroll + m_pointDragScroll))
+      if (pointOffset == m_pointScroll)
       {
 
          return;
@@ -15161,7 +15177,8 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    point_i32 interaction::get_context_offset()
    {
 
-      ::point_i32 point = m_pointScroll + m_pointDragScroll;
+      //::point_i32 point = m_pointScroll + m_pointDragScroll;
+      ::point_i32 point = m_pointScroll;
 
       return point;
 
@@ -17289,14 +17306,14 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       }
       
-      if(m_bHorizontalDragScroll || m_bVerticalDragScroll)
+      if(m_bEnableHorizontalBarDragScroll || m_bEnableVerticalBarDragScroll)
       {
          
-         m_pointDragScrollLeftButtonDown = pmouse->m_point;
+         m_pointBarDragScrollLeftButtonDown = pmouse->m_point;
          
-         m_bDragScrollLeftButtonDown = true;
+         m_bBarDragScrollLeftButtonDown = true;
 
-         m_pointDragScrollStart = m_pointDragScroll;
+         m_pointBarDragScrollStart = m_pointBarDragScroll;
 
          set_mouse_capture();
          
@@ -17484,29 +17501,29 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       }
       
-      if(m_bHorizontalDragScroll || m_bVerticalDragScroll)
-      {
-         
-//         m_pointDragScrollLeftButtonDown = pmouse->m_point;
-         
-         m_bDragScrollLeftButtonDown = false;
-         
-         release_mouse_capture();
-         
-      }
+//      if(m_bHorizontalDragScroll || m_bVerticalDragScroll)
+//      {
+//         
+////         m_pointDragScrollLeftButtonDown = pmouse->m_point;
+//         
+//         m_bDragScrollLeftButtonDown = false;
+//         
+//         release_mouse_capture();
+//         
+//      }
 
-      if (m_bHorizontalDragScrollingActive)
-      {
+      //if (m_bHorizontalDragScrollingActive)
+      //{
 
-         pmouse->m_bRet = true;
+      //   pmouse->m_bRet = true;
 
-         pmouse->m_lresult = 1;
+      //   pmouse->m_lresult = 1;
 
-         m_bHorizontalDragScrollingActive = false;
+      //   m_bHorizontalDragScrollingActive = false;
 
-         return;
+      //   return;
 
-      }
+      //}
 
       if (drag_on_button_up(pmouse))
       {
@@ -17920,22 +17937,22 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       }
       
-      if(m_bDragScrollLeftButtonDown)
+      if(m_bBarDragScrollLeftButtonDown)
       {
          
-         if (m_bHorizontalDragScroll)
+         if (m_bEnableHorizontalBarDragScroll)
          {
             
-            m_bHorizontalDragScrollingActive = true;
+            m_bHorizontalBarDragScrollingActive = true;
             
-            int iOffset = m_pointDragScrollLeftButtonDown.x - pmouse->m_point.x;
+            int iOffset = m_pointBarDragScrollLeftButtonDown.x - pmouse->m_point.x;
             
-            auto iHorizontalDragScroll = minimum_maximum(m_pointDragScrollStart.x + iOffset, 0, m_pointDragScrollMax.x);
+            auto iHorizontalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.x + iOffset, 0, m_pointBarDragScrollMax.x);
             
-            if (iHorizontalDragScroll != m_pointDragScroll.x)
+            if (iHorizontalBarDragScroll != m_pointBarDragScroll.x)
             {
                
-               m_pointDragScroll.x = iHorizontalDragScroll;
+               m_pointBarDragScroll.x = iHorizontalBarDragScroll;
                
                set_need_redraw();
                
@@ -17949,19 +17966,19 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
             
          }
 
-         if (m_bVerticalDragScroll)
+         if (m_bEnableVerticalBarDragScroll)
          {
             
-            m_bVerticalDragScrollingActive = true;
+            m_bVerticalBarDragScrollingActive = true;
             
-            int iOffset = m_pointDragScrollLeftButtonDown.y - pmouse->m_point.y;
+            int iOffset = m_pointBarDragScrollLeftButtonDown.y - pmouse->m_point.y;
             
-            auto iVerticalDragScroll = minimum_maximum(m_pointDragScrollStart.y + iOffset, 0, m_pointDragScrollMax.y);
+            auto iVerticalBarDragScroll = minimum_maximum(m_pointBarDragScrollStart.y + iOffset, 0, m_pointBarDragScrollMax.y);
             
-            if (iVerticalDragScroll != m_pointDragScroll.y)
+            if (iVerticalBarDragScroll != m_pointBarDragScroll.y)
             {
                
-               m_pointDragScroll.y = iVerticalDragScroll;
+               m_pointBarDragScroll.y = iVerticalBarDragScroll;
                
                set_need_redraw();
                
@@ -18293,7 +18310,9 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       synchronous_lock synchronouslock(mutex());
 
-      auto pointScroll = point + m_pointScroll + m_pointDragScroll;
+      auto pointScroll = point + m_pointScroll + m_pointBarDragScroll;
+
+      //auto pointScroll = point + m_pointScroll;
       
       for (auto & pitem : *m_pitema)
       {
@@ -19785,7 +19804,6 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
          return true;
 
       }
-
 
       return false;
 

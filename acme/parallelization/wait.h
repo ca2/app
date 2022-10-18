@@ -17,7 +17,7 @@ public:
    wait(double dWait): time(dWait) {}
    wait(const class time& timeWait) : time(timeWait.m_d) {}
    wait(const class wait& waitTime) : time(waitTime.m_d) {}
-
+   using time::time;
 
    static inline double __infinite() { return 0xffffffffu; }
 
@@ -30,7 +30,7 @@ public:
    inline bool is_null() const { return m_d <= 0; }
 
 
-   DECLARE_COMPARISON_WITH_DURATION
+   //DECLARE_COMPARISON_WITH_DURATION
 
 
 

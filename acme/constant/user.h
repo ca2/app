@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 enum enum_element : ::i64
 {
@@ -71,6 +71,8 @@ enum enum_element : ::i64
    e_element_minimize_button,
    e_element_minimize_icon,
    e_element_resize,
+   //e_element_bar_drag_scroll_horizontal,
+   //e_element_bar_drag_scroll_vertical,
 
 
    e_element_split = 10000,

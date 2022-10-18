@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/user/user/tool_item.h"
 #include "acme/operating_system.h"
 #include "aqua/xml/document.h"
@@ -1521,7 +1521,7 @@ namespace user
    void toolbar::on_message_create(::message::message * pmessage)
    {
 
-      m_bHorizontalDragScroll = is_sandboxed();
+      m_bEnableHorizontalBarDragScroll = is_sandboxed();
       
       set_timer(e_timer_command_probe, 333_ms);
 

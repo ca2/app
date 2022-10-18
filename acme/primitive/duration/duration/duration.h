@@ -1,4 +1,4 @@
-// Refactoring by camilo on 2021-10-05 12:46 BRT <3ThomasBorregaardSørensen!!
+﻿// Refactoring by camilo on 2021-10-05 12:46 BRT <3ThomasBorregaardSørensen!!
 #pragma once
 
 
@@ -278,30 +278,24 @@ public:
    inline ::duration remaining(const duration & duration, const ::duration & durationNow = e_now);
 
 
-
-
-   operator class ::wait() const;
-
-
-
+   class ::time time() const;
 
    
-   
-   operator INTEGRAL_DAY () const { return integral_day(); }
-   operator INTEGRAL_HOUR () const { return integral_hour(); }
-   operator INTEGRAL_MINUTE () const { return integral_minute(); }
-   operator INTEGRAL_SECOND () const { return integral_second(); }
-   operator INTEGRAL_MILLISECOND () const { return integral_millisecond(); }
-   operator INTEGRAL_MICROSECOND () const { return integral_microsecond(); }
-   operator INTEGRAL_NANOSECOND () const { return integral_nanosecond(); }
+   // operator INTEGRAL_DAY () const { return integral_day(); }
+   // operator INTEGRAL_HOUR () const { return integral_hour(); }
+   // operator INTEGRAL_MINUTE () const { return integral_minute(); }
+   // operator INTEGRAL_SECOND () const { return integral_second(); }
+   // operator INTEGRAL_MILLISECOND () const { return integral_millisecond(); }
+   // operator INTEGRAL_MICROSECOND () const { return integral_microsecond(); }
+   // operator INTEGRAL_NANOSECOND () const { return integral_nanosecond(); }
 
-   operator FLOATING_DAY () const { return floating_day(); }
-   operator FLOATING_HOUR () const { return floating_hour(); }
-   operator FLOATING_MINUTE () const { return floating_minute(); }
-   operator FLOATING_SECOND () const { return floating_second(); }
-   operator FLOATING_MILLISECOND () const { return floating_millisecond(); }
-   operator FLOATING_MICROSECOND () const { return floating_microsecond(); }
-   operator FLOATING_NANOSECOND () const { return floating_nanosecond(); }
+   // operator FLOATING_DAY () const { return floating_day(); }
+   // operator FLOATING_HOUR () const { return floating_hour(); }
+   // operator FLOATING_MINUTE () const { return floating_minute(); }
+   // operator FLOATING_SECOND () const { return floating_second(); }
+   // operator FLOATING_MILLISECOND () const { return floating_millisecond(); }
+   // operator FLOATING_MICROSECOND () const { return floating_microsecond(); }
+   // operator FLOATING_NANOSECOND () const { return floating_nanosecond(); }
 
 
 
@@ -365,118 +359,118 @@ public:
 
 
 
-   inline bool operator == (const ::INTEGRAL_NANOSECOND & integralnanosecond) const { return operator == (::duration(integralnanosecond)); }
-   inline bool operator != (const ::INTEGRAL_NANOSECOND & integralnanosecond) const { return operator != (::duration(integralnanosecond)); }
-   inline bool operator < (const ::INTEGRAL_NANOSECOND & integralnanosecond) const { return operator < (::duration(integralnanosecond)); }
-   inline bool operator <= (const ::INTEGRAL_NANOSECOND & integralnanosecond) const { return operator <= (::duration(integralnanosecond)); }
-   inline bool operator > (const ::INTEGRAL_NANOSECOND & integralnanosecond) const { return operator > (::duration(integralnanosecond)); }
-   inline bool operator >= (const ::INTEGRAL_NANOSECOND & integralnanosecond) const { return operator >= (::duration(integralnanosecond)); }
+   //inline bool operator == (const ::INTEGRAL_NANOSECOND & integralnanosecond) const { return operator == (::duration(integralnanosecond)); }
+   //inline bool operator != (const ::INTEGRAL_NANOSECOND & integralnanosecond) const { return operator != (::duration(integralnanosecond)); }
+   //inline bool operator < (const ::INTEGRAL_NANOSECOND & integralnanosecond) const { return operator < (::duration(integralnanosecond)); }
+   //inline bool operator <= (const ::INTEGRAL_NANOSECOND & integralnanosecond) const { return operator <= (::duration(integralnanosecond)); }
+   //inline bool operator > (const ::INTEGRAL_NANOSECOND & integralnanosecond) const { return operator > (::duration(integralnanosecond)); }
+   //inline bool operator >= (const ::INTEGRAL_NANOSECOND & integralnanosecond) const { return operator >= (::duration(integralnanosecond)); }
 
-   inline bool operator == (const ::INTEGRAL_MICROSECOND & integralmicrosecond) const { return operator == (::duration(integralmicrosecond)); }
-   inline bool operator != (const ::INTEGRAL_MICROSECOND & integralmicrosecond) const { return operator != (::duration(integralmicrosecond)); }
-   inline bool operator < (const ::INTEGRAL_MICROSECOND & integralmicrosecond) const { return operator < (::duration(integralmicrosecond)); }
-   inline bool operator <= (const ::INTEGRAL_MICROSECOND & integralmicrosecond) const { return operator <= (::duration(integralmicrosecond)); }
-   inline bool operator > (const ::INTEGRAL_MICROSECOND & integralmicrosecond) const { return operator > (::duration(integralmicrosecond)); }
-   inline bool operator >= (const ::INTEGRAL_MICROSECOND & integralmicrosecond) const { return operator >= (::duration(integralmicrosecond)); }
+   //inline bool operator == (const ::INTEGRAL_MICROSECOND & integralmicrosecond) const { return operator == (::duration(integralmicrosecond)); }
+   //inline bool operator != (const ::INTEGRAL_MICROSECOND & integralmicrosecond) const { return operator != (::duration(integralmicrosecond)); }
+   //inline bool operator < (const ::INTEGRAL_MICROSECOND & integralmicrosecond) const { return operator < (::duration(integralmicrosecond)); }
+   //inline bool operator <= (const ::INTEGRAL_MICROSECOND & integralmicrosecond) const { return operator <= (::duration(integralmicrosecond)); }
+   //inline bool operator > (const ::INTEGRAL_MICROSECOND & integralmicrosecond) const { return operator > (::duration(integralmicrosecond)); }
+   //inline bool operator >= (const ::INTEGRAL_MICROSECOND & integralmicrosecond) const { return operator >= (::duration(integralmicrosecond)); }
 
-   inline bool operator == (const ::INTEGRAL_MILLISECOND & integralmillisecond) const { return operator == (::duration(integralmillisecond)); }
-   inline bool operator != (const ::INTEGRAL_MILLISECOND & integralmillisecond) const { return operator != (::duration(integralmillisecond)); }
-   inline bool operator < (const ::INTEGRAL_MILLISECOND & integralmillisecond) const { return operator < (::duration(integralmillisecond)); }
-   inline bool operator <= (const ::INTEGRAL_MILLISECOND & integralmillisecond) const { return operator <= (::duration(integralmillisecond)); }
-   inline bool operator > (const ::INTEGRAL_MILLISECOND & integralmillisecond) const { return operator > (::duration(integralmillisecond)); }
-   inline bool operator >= (const ::INTEGRAL_MILLISECOND & integralmillisecond) const { return operator >= (::duration(integralmillisecond)); }
+   //inline bool operator == (const ::INTEGRAL_MILLISECOND & integralmillisecond) const { return operator == (::duration(integralmillisecond)); }
+   //inline bool operator != (const ::INTEGRAL_MILLISECOND & integralmillisecond) const { return operator != (::duration(integralmillisecond)); }
+   //inline bool operator < (const ::INTEGRAL_MILLISECOND & integralmillisecond) const { return operator < (::duration(integralmillisecond)); }
+   //inline bool operator <= (const ::INTEGRAL_MILLISECOND & integralmillisecond) const { return operator <= (::duration(integralmillisecond)); }
+   //inline bool operator > (const ::INTEGRAL_MILLISECOND & integralmillisecond) const { return operator > (::duration(integralmillisecond)); }
+   //inline bool operator >= (const ::INTEGRAL_MILLISECOND & integralmillisecond) const { return operator >= (::duration(integralmillisecond)); }
 
-   inline bool operator == (const ::INTEGRAL_SECOND & integralsecond) const { return operator == (::duration(integralsecond)); }
-   inline bool operator != (const ::INTEGRAL_SECOND & integralsecond) const { return operator != (::duration(integralsecond)); }
-   inline bool operator < (const ::INTEGRAL_SECOND & integralsecond) const { return operator < (::duration(integralsecond)); }
-   inline bool operator <= (const ::INTEGRAL_SECOND & integralsecond) const { return operator <= (::duration(integralsecond)); }
-   inline bool operator > (const ::INTEGRAL_SECOND & integralsecond) const { return operator > (::duration(integralsecond)); }
-   inline bool operator >= (const ::INTEGRAL_SECOND & integralsecond) const { return operator >= (::duration(integralsecond)); }
+   //inline bool operator == (const ::INTEGRAL_SECOND & integralsecond) const { return operator == (::duration(integralsecond)); }
+   //inline bool operator != (const ::INTEGRAL_SECOND & integralsecond) const { return operator != (::duration(integralsecond)); }
+   //inline bool operator < (const ::INTEGRAL_SECOND & integralsecond) const { return operator < (::duration(integralsecond)); }
+   //inline bool operator <= (const ::INTEGRAL_SECOND & integralsecond) const { return operator <= (::duration(integralsecond)); }
+   //inline bool operator > (const ::INTEGRAL_SECOND & integralsecond) const { return operator > (::duration(integralsecond)); }
+   //inline bool operator >= (const ::INTEGRAL_SECOND & integralsecond) const { return operator >= (::duration(integralsecond)); }
 
-   inline bool operator == (const ::INTEGRAL_MINUTE & minute) const { return operator == (::duration(minute)); }
-   inline bool operator != (const ::INTEGRAL_MINUTE & minute) const { return operator != (::duration(minute)); }
-   inline bool operator < (const ::INTEGRAL_MINUTE & minute) const { return operator < (::duration(minute)); }
-   inline bool operator <= (const ::INTEGRAL_MINUTE & minute) const { return operator <= (::duration(minute)); }
-   inline bool operator > (const ::INTEGRAL_MINUTE & minute) const { return operator > (::duration(minute)); }
-   inline bool operator >= (const ::INTEGRAL_MINUTE & minute) const { return operator >= (::duration(minute)); }
+   //inline bool operator == (const ::INTEGRAL_MINUTE & minute) const { return operator == (::duration(minute)); }
+   //inline bool operator != (const ::INTEGRAL_MINUTE & minute) const { return operator != (::duration(minute)); }
+   //inline bool operator < (const ::INTEGRAL_MINUTE & minute) const { return operator < (::duration(minute)); }
+   //inline bool operator <= (const ::INTEGRAL_MINUTE & minute) const { return operator <= (::duration(minute)); }
+   //inline bool operator > (const ::INTEGRAL_MINUTE & minute) const { return operator > (::duration(minute)); }
+   //inline bool operator >= (const ::INTEGRAL_MINUTE & minute) const { return operator >= (::duration(minute)); }
 
-   inline bool operator == (const ::INTEGRAL_HOUR & day) const { return operator == (::duration(day)); }
-   inline bool operator != (const ::INTEGRAL_HOUR & day) const { return operator != (::duration(day)); }
-   inline bool operator < (const ::INTEGRAL_HOUR & day) const { return operator < (::duration(day)); }
-   inline bool operator <= (const ::INTEGRAL_HOUR & day) const { return operator <= (::duration(day)); }
-   inline bool operator > (const ::INTEGRAL_HOUR & day) const { return operator > (::duration(day)); }
-   inline bool operator >= (const ::INTEGRAL_HOUR & day) const { return operator >= (::duration(day)); }
+   //inline bool operator == (const ::INTEGRAL_HOUR & day) const { return operator == (::duration(day)); }
+   //inline bool operator != (const ::INTEGRAL_HOUR & day) const { return operator != (::duration(day)); }
+   //inline bool operator < (const ::INTEGRAL_HOUR & day) const { return operator < (::duration(day)); }
+   //inline bool operator <= (const ::INTEGRAL_HOUR & day) const { return operator <= (::duration(day)); }
+   //inline bool operator > (const ::INTEGRAL_HOUR & day) const { return operator > (::duration(day)); }
+   //inline bool operator >= (const ::INTEGRAL_HOUR & day) const { return operator >= (::duration(day)); }
 
-   inline bool operator == (const ::INTEGRAL_DAY & day) const { return operator == (::duration(day)); }
-   inline bool operator != (const ::INTEGRAL_DAY & day) const { return operator != (::duration(day)); }
-   inline bool operator < (const ::INTEGRAL_DAY & day) const { return operator < (::duration(day)); }
-   inline bool operator <= (const ::INTEGRAL_DAY & day) const { return operator <= (::duration(day)); }
-   inline bool operator > (const ::INTEGRAL_DAY & day) const { return operator > (::duration(day)); }
-   inline bool operator >= (const ::INTEGRAL_DAY & day) const { return operator >= (::duration(day)); }
-
-
+   //inline bool operator == (const ::INTEGRAL_DAY & day) const { return operator == (::duration(day)); }
+   //inline bool operator != (const ::INTEGRAL_DAY & day) const { return operator != (::duration(day)); }
+   //inline bool operator < (const ::INTEGRAL_DAY & day) const { return operator < (::duration(day)); }
+   //inline bool operator <= (const ::INTEGRAL_DAY & day) const { return operator <= (::duration(day)); }
+   //inline bool operator > (const ::INTEGRAL_DAY & day) const { return operator > (::duration(day)); }
+   //inline bool operator >= (const ::INTEGRAL_DAY & day) const { return operator >= (::duration(day)); }
 
 
 
 
 
 
-   inline bool operator == (const ::FLOATING_NANOSECOND & floatingnanosecond) const { return operator == (::duration(floatingnanosecond)); }
-   inline bool operator != (const ::FLOATING_NANOSECOND & floatingnanosecond) const { return operator != (::duration(floatingnanosecond)); }
-   inline bool operator < (const ::FLOATING_NANOSECOND & floatingnanosecond) const { return operator < (::duration(floatingnanosecond)); }
-   inline bool operator <= (const ::FLOATING_NANOSECOND & floatingnanosecond) const { return operator <= (::duration(floatingnanosecond)); }
-   inline bool operator > (const ::FLOATING_NANOSECOND & floatingnanosecond) const { return operator > (::duration(floatingnanosecond)); }
-   inline bool operator >= (const ::FLOATING_NANOSECOND & floatingnanosecond) const { return operator >= (::duration(floatingnanosecond)); }
-
-   inline bool operator == (const ::FLOATING_MICROSECOND & floatingmicrosecond) const { return operator == (::duration(floatingmicrosecond)); }
-   inline bool operator != (const ::FLOATING_MICROSECOND & floatingmicrosecond) const { return operator != (::duration(floatingmicrosecond)); }
-   inline bool operator < (const ::FLOATING_MICROSECOND & floatingmicrosecond) const { return operator < (::duration(floatingmicrosecond)); }
-   inline bool operator <= (const ::FLOATING_MICROSECOND & floatingmicrosecond) const { return operator <= (::duration(floatingmicrosecond)); }
-   inline bool operator > (const ::FLOATING_MICROSECOND & floatingmicrosecond) const { return operator > (::duration(floatingmicrosecond)); }
-   inline bool operator >= (const ::FLOATING_MICROSECOND & floatingmicrosecond) const { return operator >= (::duration(floatingmicrosecond)); }
-
-   inline bool operator == (const ::FLOATING_MILLISECOND & floatingmillisecond) const { return operator == (::duration(floatingmillisecond)); }
-   inline bool operator != (const ::FLOATING_MILLISECOND & floatingmillisecond) const { return operator != (::duration(floatingmillisecond)); }
-   inline bool operator < (const ::FLOATING_MILLISECOND & floatingmillisecond) const { return operator < (::duration(floatingmillisecond)); }
-   inline bool operator <= (const ::FLOATING_MILLISECOND & floatingmillisecond) const { return operator <= (::duration(floatingmillisecond)); }
-   inline bool operator > (const ::FLOATING_MILLISECOND & floatingmillisecond) const { return operator > (::duration(floatingmillisecond)); }
-   inline bool operator >= (const ::FLOATING_MILLISECOND & floatingmillisecond) const { return operator >= (::duration(floatingmillisecond)); }
-
-   inline bool operator == (const ::FLOATING_SECOND & floatingsecond) const { return operator == (::duration(floatingsecond)); }
-   inline bool operator != (const ::FLOATING_SECOND & floatingsecond) const { return operator != (::duration(floatingsecond)); }
-   inline bool operator < (const ::FLOATING_SECOND & floatingsecond) const { return operator < (::duration(floatingsecond)); }
-   inline bool operator <= (const ::FLOATING_SECOND & floatingsecond) const { return operator <= (::duration(floatingsecond)); }
-   inline bool operator > (const ::FLOATING_SECOND & floatingsecond) const { return operator > (::duration(floatingsecond)); }
-   inline bool operator >= (const ::FLOATING_SECOND & floatingsecond) const { return operator >= (::duration(floatingsecond)); }
-
-   inline bool operator == (const ::FLOATING_MINUTE & minute) const { return operator == (::duration(minute)); }
-   inline bool operator != (const ::FLOATING_MINUTE & minute) const { return operator != (::duration(minute)); }
-   inline bool operator < (const ::FLOATING_MINUTE & minute) const { return operator < (::duration(minute)); }
-   inline bool operator <= (const ::FLOATING_MINUTE & minute) const { return operator <= (::duration(minute)); }
-   inline bool operator > (const ::FLOATING_MINUTE & minute) const { return operator > (::duration(minute)); }
-   inline bool operator >= (const ::FLOATING_MINUTE & minute) const { return operator >= (::duration(minute)); }
-
-   inline bool operator == (const ::FLOATING_HOUR & day) const { return operator == (::duration(day)); }
-   inline bool operator != (const ::FLOATING_HOUR & day) const { return operator != (::duration(day)); }
-   inline bool operator < (const ::FLOATING_HOUR & day) const { return operator < (::duration(day)); }
-   inline bool operator <= (const ::FLOATING_HOUR & day) const { return operator <= (::duration(day)); }
-   inline bool operator > (const ::FLOATING_HOUR & day) const { return operator > (::duration(day)); }
-   inline bool operator >= (const ::FLOATING_HOUR & day) const { return operator >= (::duration(day)); }
-
-   inline bool operator == (const ::FLOATING_DAY & day) const { return operator == (::duration(day)); }
-   inline bool operator != (const ::FLOATING_DAY & day) const { return operator != (::duration(day)); }
-   inline bool operator < (const ::FLOATING_DAY & day) const { return operator < (::duration(day)); }
-   inline bool operator <= (const ::FLOATING_DAY & day) const { return operator <= (::duration(day)); }
-   inline bool operator > (const ::FLOATING_DAY & day) const { return operator > (::duration(day)); }
-   inline bool operator >= (const ::FLOATING_DAY & day) const { return operator >= (::duration(day)); }
 
 
-   inline bool operator == (const class time & time) const { return operator == (::duration(FLOATING_SECOND(time.m_d))); }
-   inline bool operator != (const class time & time) const { return operator != (::duration(FLOATING_SECOND(time.m_d))); }
-   inline bool operator < (const class time & time) const { return operator < (::duration(FLOATING_SECOND(time.m_d))); }
-   inline bool operator <= (const class time & time) const { return operator <= (::duration(FLOATING_SECOND(time.m_d))); }
-   inline bool operator > (const class time & time) const { return operator > (::duration(FLOATING_SECOND(time.m_d))); }
-   inline bool operator >= (const class time & time) const { return operator >= (::duration(FLOATING_SECOND(time.m_d))); }
+   //inline bool operator == (const ::FLOATING_NANOSECOND & floatingnanosecond) const { return operator == (::duration(floatingnanosecond)); }
+   //inline bool operator != (const ::FLOATING_NANOSECOND & floatingnanosecond) const { return operator != (::duration(floatingnanosecond)); }
+   //inline bool operator < (const ::FLOATING_NANOSECOND & floatingnanosecond) const { return operator < (::duration(floatingnanosecond)); }
+   //inline bool operator <= (const ::FLOATING_NANOSECOND & floatingnanosecond) const { return operator <= (::duration(floatingnanosecond)); }
+   //inline bool operator > (const ::FLOATING_NANOSECOND & floatingnanosecond) const { return operator > (::duration(floatingnanosecond)); }
+   //inline bool operator >= (const ::FLOATING_NANOSECOND & floatingnanosecond) const { return operator >= (::duration(floatingnanosecond)); }
+
+   //inline bool operator == (const ::FLOATING_MICROSECOND & floatingmicrosecond) const { return operator == (::duration(floatingmicrosecond)); }
+   //inline bool operator != (const ::FLOATING_MICROSECOND & floatingmicrosecond) const { return operator != (::duration(floatingmicrosecond)); }
+   //inline bool operator < (const ::FLOATING_MICROSECOND & floatingmicrosecond) const { return operator < (::duration(floatingmicrosecond)); }
+   //inline bool operator <= (const ::FLOATING_MICROSECOND & floatingmicrosecond) const { return operator <= (::duration(floatingmicrosecond)); }
+   //inline bool operator > (const ::FLOATING_MICROSECOND & floatingmicrosecond) const { return operator > (::duration(floatingmicrosecond)); }
+   //inline bool operator >= (const ::FLOATING_MICROSECOND & floatingmicrosecond) const { return operator >= (::duration(floatingmicrosecond)); }
+
+   //inline bool operator == (const ::FLOATING_MILLISECOND & floatingmillisecond) const { return operator == (::duration(floatingmillisecond)); }
+   //inline bool operator != (const ::FLOATING_MILLISECOND & floatingmillisecond) const { return operator != (::duration(floatingmillisecond)); }
+   //inline bool operator < (const ::FLOATING_MILLISECOND & floatingmillisecond) const { return operator < (::duration(floatingmillisecond)); }
+   //inline bool operator <= (const ::FLOATING_MILLISECOND & floatingmillisecond) const { return operator <= (::duration(floatingmillisecond)); }
+   //inline bool operator > (const ::FLOATING_MILLISECOND & floatingmillisecond) const { return operator > (::duration(floatingmillisecond)); }
+   //inline bool operator >= (const ::FLOATING_MILLISECOND & floatingmillisecond) const { return operator >= (::duration(floatingmillisecond)); }
+
+   //inline bool operator == (const ::FLOATING_SECOND & floatingsecond) const { return operator == (::duration(floatingsecond)); }
+   //inline bool operator != (const ::FLOATING_SECOND & floatingsecond) const { return operator != (::duration(floatingsecond)); }
+   //inline bool operator < (const ::FLOATING_SECOND & floatingsecond) const { return operator < (::duration(floatingsecond)); }
+   //inline bool operator <= (const ::FLOATING_SECOND & floatingsecond) const { return operator <= (::duration(floatingsecond)); }
+   //inline bool operator > (const ::FLOATING_SECOND & floatingsecond) const { return operator > (::duration(floatingsecond)); }
+   //inline bool operator >= (const ::FLOATING_SECOND & floatingsecond) const { return operator >= (::duration(floatingsecond)); }
+
+   //inline bool operator == (const ::FLOATING_MINUTE & minute) const { return operator == (::duration(minute)); }
+   //inline bool operator != (const ::FLOATING_MINUTE & minute) const { return operator != (::duration(minute)); }
+   //inline bool operator < (const ::FLOATING_MINUTE & minute) const { return operator < (::duration(minute)); }
+   //inline bool operator <= (const ::FLOATING_MINUTE & minute) const { return operator <= (::duration(minute)); }
+   //inline bool operator > (const ::FLOATING_MINUTE & minute) const { return operator > (::duration(minute)); }
+   //inline bool operator >= (const ::FLOATING_MINUTE & minute) const { return operator >= (::duration(minute)); }
+
+   //inline bool operator == (const ::FLOATING_HOUR & day) const { return operator == (::duration(day)); }
+   //inline bool operator != (const ::FLOATING_HOUR & day) const { return operator != (::duration(day)); }
+   //inline bool operator < (const ::FLOATING_HOUR & day) const { return operator < (::duration(day)); }
+   //inline bool operator <= (const ::FLOATING_HOUR & day) const { return operator <= (::duration(day)); }
+   //inline bool operator > (const ::FLOATING_HOUR & day) const { return operator > (::duration(day)); }
+   //inline bool operator >= (const ::FLOATING_HOUR & day) const { return operator >= (::duration(day)); }
+
+   //inline bool operator == (const ::FLOATING_DAY & day) const { return operator == (::duration(day)); }
+   //inline bool operator != (const ::FLOATING_DAY & day) const { return operator != (::duration(day)); }
+   //inline bool operator < (const ::FLOATING_DAY & day) const { return operator < (::duration(day)); }
+   //inline bool operator <= (const ::FLOATING_DAY & day) const { return operator <= (::duration(day)); }
+   //inline bool operator > (const ::FLOATING_DAY & day) const { return operator > (::duration(day)); }
+   //inline bool operator >= (const ::FLOATING_DAY & day) const { return operator >= (::duration(day)); }
+
+
+   //inline bool operator == (const class time & time) const { return operator == (::duration(FLOATING_SECOND(time.m_d))); }
+   //inline bool operator != (const class time & time) const { return operator != (::duration(FLOATING_SECOND(time.m_d))); }
+   //inline bool operator < (const class time & time) const { return operator < (::duration(FLOATING_SECOND(time.m_d))); }
+   //inline bool operator <= (const class time & time) const { return operator <= (::duration(FLOATING_SECOND(time.m_d))); }
+   //inline bool operator > (const class time & time) const { return operator > (::duration(FLOATING_SECOND(time.m_d))); }
+   //inline bool operator >= (const class time & time) const { return operator >= (::duration(FLOATING_SECOND(time.m_d))); }
 
 
 
@@ -591,110 +585,110 @@ public:
 
 
 
-   inline bool operator == (const ::integral_nanosecond& integralnanosecond) const { return operator == (::duration(integralnanosecond)); }
-   inline bool operator != (const ::integral_nanosecond& integralnanosecond) const { return operator != (::duration(integralnanosecond)); }
-   inline bool operator < (const ::integral_nanosecond& integralnanosecond) const { return operator < (::duration(integralnanosecond)); }
-   inline bool operator <= (const ::integral_nanosecond& integralnanosecond) const { return operator <= (::duration(integralnanosecond)); }
-   inline bool operator > (const ::integral_nanosecond& integralnanosecond) const { return operator > (::duration(integralnanosecond)); }
-   inline bool operator >= (const ::integral_nanosecond& integralnanosecond) const { return operator >= (::duration(integralnanosecond)); }
+   //inline bool operator == (const ::integral_nanosecond& integralnanosecond) const { return operator == (::duration(integralnanosecond)); }
+   //inline bool operator != (const ::integral_nanosecond& integralnanosecond) const { return operator != (::duration(integralnanosecond)); }
+   //inline bool operator < (const ::integral_nanosecond& integralnanosecond) const { return operator < (::duration(integralnanosecond)); }
+   //inline bool operator <= (const ::integral_nanosecond& integralnanosecond) const { return operator <= (::duration(integralnanosecond)); }
+   //inline bool operator > (const ::integral_nanosecond& integralnanosecond) const { return operator > (::duration(integralnanosecond)); }
+   //inline bool operator >= (const ::integral_nanosecond& integralnanosecond) const { return operator >= (::duration(integralnanosecond)); }
 
-   inline bool operator == (const ::integral_microsecond& integralmicrosecond) const { return operator == (::duration(integralmicrosecond)); }
-   inline bool operator != (const ::integral_microsecond& integralmicrosecond) const { return operator != (::duration(integralmicrosecond)); }
-   inline bool operator < (const ::integral_microsecond& integralmicrosecond) const { return operator < (::duration(integralmicrosecond)); }
-   inline bool operator <= (const ::integral_microsecond& integralmicrosecond) const { return operator <= (::duration(integralmicrosecond)); }
-   inline bool operator > (const ::integral_microsecond& integralmicrosecond) const { return operator > (::duration(integralmicrosecond)); }
-   inline bool operator >= (const ::integral_microsecond& integralmicrosecond) const { return operator >= (::duration(integralmicrosecond)); }
+   //inline bool operator == (const ::integral_microsecond& integralmicrosecond) const { return operator == (::duration(integralmicrosecond)); }
+   //inline bool operator != (const ::integral_microsecond& integralmicrosecond) const { return operator != (::duration(integralmicrosecond)); }
+   //inline bool operator < (const ::integral_microsecond& integralmicrosecond) const { return operator < (::duration(integralmicrosecond)); }
+   //inline bool operator <= (const ::integral_microsecond& integralmicrosecond) const { return operator <= (::duration(integralmicrosecond)); }
+   //inline bool operator > (const ::integral_microsecond& integralmicrosecond) const { return operator > (::duration(integralmicrosecond)); }
+   //inline bool operator >= (const ::integral_microsecond& integralmicrosecond) const { return operator >= (::duration(integralmicrosecond)); }
 
-   inline bool operator == (const ::integral_millisecond& integralmillisecond) const { return operator == (::duration(integralmillisecond)); }
-   inline bool operator != (const ::integral_millisecond& integralmillisecond) const { return operator != (::duration(integralmillisecond)); }
-   inline bool operator < (const ::integral_millisecond& integralmillisecond) const { return operator < (::duration(integralmillisecond)); }
-   inline bool operator <= (const ::integral_millisecond& integralmillisecond) const { return operator <= (::duration(integralmillisecond)); }
-   inline bool operator > (const ::integral_millisecond& integralmillisecond) const { return operator > (::duration(integralmillisecond)); }
-   inline bool operator >= (const ::integral_millisecond& integralmillisecond) const { return operator >= (::duration(integralmillisecond)); }
+   //inline bool operator == (const ::integral_millisecond& integralmillisecond) const { return operator == (::duration(integralmillisecond)); }
+   //inline bool operator != (const ::integral_millisecond& integralmillisecond) const { return operator != (::duration(integralmillisecond)); }
+   //inline bool operator < (const ::integral_millisecond& integralmillisecond) const { return operator < (::duration(integralmillisecond)); }
+   //inline bool operator <= (const ::integral_millisecond& integralmillisecond) const { return operator <= (::duration(integralmillisecond)); }
+   //inline bool operator > (const ::integral_millisecond& integralmillisecond) const { return operator > (::duration(integralmillisecond)); }
+   //inline bool operator >= (const ::integral_millisecond& integralmillisecond) const { return operator >= (::duration(integralmillisecond)); }
 
-   inline bool operator == (const ::integral_second& integralsecond) const { return operator == (::duration(integralsecond)); }
-   inline bool operator != (const ::integral_second& integralsecond) const { return operator != (::duration(integralsecond)); }
-   inline bool operator < (const ::integral_second& integralsecond) const { return operator < (::duration(integralsecond)); }
-   inline bool operator <= (const ::integral_second& integralsecond) const { return operator <= (::duration(integralsecond)); }
-   inline bool operator > (const ::integral_second& integralsecond) const { return operator > (::duration(integralsecond)); }
-   inline bool operator >= (const ::integral_second& integralsecond) const { return operator >= (::duration(integralsecond)); }
+   //inline bool operator == (const ::integral_second& integralsecond) const { return operator == (::duration(integralsecond)); }
+   //inline bool operator != (const ::integral_second& integralsecond) const { return operator != (::duration(integralsecond)); }
+   //inline bool operator < (const ::integral_second& integralsecond) const { return operator < (::duration(integralsecond)); }
+   //inline bool operator <= (const ::integral_second& integralsecond) const { return operator <= (::duration(integralsecond)); }
+   //inline bool operator > (const ::integral_second& integralsecond) const { return operator > (::duration(integralsecond)); }
+   //inline bool operator >= (const ::integral_second& integralsecond) const { return operator >= (::duration(integralsecond)); }
 
-   inline bool operator == (const ::integral_minute& minute) const { return operator == (::duration(minute)); }
-   inline bool operator != (const ::integral_minute& minute) const { return operator != (::duration(minute)); }
-   inline bool operator < (const ::integral_minute& minute) const { return operator < (::duration(minute)); }
-   inline bool operator <= (const ::integral_minute& minute) const { return operator <= (::duration(minute)); }
-   inline bool operator > (const ::integral_minute& minute) const { return operator > (::duration(minute)); }
-   inline bool operator >= (const ::integral_minute& minute) const { return operator >= (::duration(minute)); }
+   //inline bool operator == (const ::integral_minute& minute) const { return operator == (::duration(minute)); }
+   //inline bool operator != (const ::integral_minute& minute) const { return operator != (::duration(minute)); }
+   //inline bool operator < (const ::integral_minute& minute) const { return operator < (::duration(minute)); }
+   //inline bool operator <= (const ::integral_minute& minute) const { return operator <= (::duration(minute)); }
+   //inline bool operator > (const ::integral_minute& minute) const { return operator > (::duration(minute)); }
+   //inline bool operator >= (const ::integral_minute& minute) const { return operator >= (::duration(minute)); }
 
-   inline bool operator == (const ::integral_hour& day) const { return operator == (::duration(day)); }
-   inline bool operator != (const ::integral_hour& day) const { return operator != (::duration(day)); }
-   inline bool operator < (const ::integral_hour& day) const { return operator < (::duration(day)); }
-   inline bool operator <= (const ::integral_hour& day) const { return operator <= (::duration(day)); }
-   inline bool operator > (const ::integral_hour& day) const { return operator > (::duration(day)); }
-   inline bool operator >= (const ::integral_hour& day) const { return operator >= (::duration(day)); }
+   //inline bool operator == (const ::integral_hour& day) const { return operator == (::duration(day)); }
+   //inline bool operator != (const ::integral_hour& day) const { return operator != (::duration(day)); }
+   //inline bool operator < (const ::integral_hour& day) const { return operator < (::duration(day)); }
+   //inline bool operator <= (const ::integral_hour& day) const { return operator <= (::duration(day)); }
+   //inline bool operator > (const ::integral_hour& day) const { return operator > (::duration(day)); }
+   //inline bool operator >= (const ::integral_hour& day) const { return operator >= (::duration(day)); }
 
-   inline bool operator == (const ::integral_day& day) const { return operator == (::duration(day)); }
-   inline bool operator != (const ::integral_day& day) const { return operator != (::duration(day)); }
-   inline bool operator < (const ::integral_day& day) const { return operator < (::duration(day)); }
-   inline bool operator <= (const ::integral_day& day) const { return operator <= (::duration(day)); }
-   inline bool operator > (const ::integral_day& day) const { return operator > (::duration(day)); }
-   inline bool operator >= (const ::integral_day& day) const { return operator >= (::duration(day)); }
-
-
+   //inline bool operator == (const ::integral_day& day) const { return operator == (::duration(day)); }
+   //inline bool operator != (const ::integral_day& day) const { return operator != (::duration(day)); }
+   //inline bool operator < (const ::integral_day& day) const { return operator < (::duration(day)); }
+   //inline bool operator <= (const ::integral_day& day) const { return operator <= (::duration(day)); }
+   //inline bool operator > (const ::integral_day& day) const { return operator > (::duration(day)); }
+   //inline bool operator >= (const ::integral_day& day) const { return operator >= (::duration(day)); }
 
 
 
 
 
 
-   inline bool operator == (const ::floating_nanosecond& floatingnanosecond) const { return operator == (::duration(floatingnanosecond)); }
-   inline bool operator != (const ::floating_nanosecond& floatingnanosecond) const { return operator != (::duration(floatingnanosecond)); }
-   inline bool operator < (const ::floating_nanosecond& floatingnanosecond) const { return operator < (::duration(floatingnanosecond)); }
-   inline bool operator <= (const ::floating_nanosecond& floatingnanosecond) const { return operator <= (::duration(floatingnanosecond)); }
-   inline bool operator > (const ::floating_nanosecond& floatingnanosecond) const { return operator > (::duration(floatingnanosecond)); }
-   inline bool operator >= (const ::floating_nanosecond& floatingnanosecond) const { return operator >= (::duration(floatingnanosecond)); }
 
-   inline bool operator == (const ::floating_microsecond& floatingmicrosecond) const { return operator == (::duration(floatingmicrosecond)); }
-   inline bool operator != (const ::floating_microsecond& floatingmicrosecond) const { return operator != (::duration(floatingmicrosecond)); }
-   inline bool operator < (const ::floating_microsecond& floatingmicrosecond) const { return operator < (::duration(floatingmicrosecond)); }
-   inline bool operator <= (const ::floating_microsecond& floatingmicrosecond) const { return operator <= (::duration(floatingmicrosecond)); }
-   inline bool operator > (const ::floating_microsecond& floatingmicrosecond) const { return operator > (::duration(floatingmicrosecond)); }
-   inline bool operator >= (const ::floating_microsecond& floatingmicrosecond) const { return operator >= (::duration(floatingmicrosecond)); }
 
-   inline bool operator == (const ::floating_millisecond& floatingmillisecond) const { return operator == (::duration(floatingmillisecond)); }
-   inline bool operator != (const ::floating_millisecond& floatingmillisecond) const { return operator != (::duration(floatingmillisecond)); }
-   inline bool operator < (const ::floating_millisecond& floatingmillisecond) const { return operator < (::duration(floatingmillisecond)); }
-   inline bool operator <= (const ::floating_millisecond& floatingmillisecond) const { return operator <= (::duration(floatingmillisecond)); }
-   inline bool operator > (const ::floating_millisecond& floatingmillisecond) const { return operator > (::duration(floatingmillisecond)); }
-   inline bool operator >= (const ::floating_millisecond& floatingmillisecond) const { return operator >= (::duration(floatingmillisecond)); }
+   //inline bool operator == (const ::floating_nanosecond& floatingnanosecond) const { return operator == (::duration(floatingnanosecond)); }
+   //inline bool operator != (const ::floating_nanosecond& floatingnanosecond) const { return operator != (::duration(floatingnanosecond)); }
+   //inline bool operator < (const ::floating_nanosecond& floatingnanosecond) const { return operator < (::duration(floatingnanosecond)); }
+   //inline bool operator <= (const ::floating_nanosecond& floatingnanosecond) const { return operator <= (::duration(floatingnanosecond)); }
+   //inline bool operator > (const ::floating_nanosecond& floatingnanosecond) const { return operator > (::duration(floatingnanosecond)); }
+   //inline bool operator >= (const ::floating_nanosecond& floatingnanosecond) const { return operator >= (::duration(floatingnanosecond)); }
 
-   inline bool operator == (const ::floating_second& floatingsecond) const { return operator == (::duration(floatingsecond)); }
-   inline bool operator != (const ::floating_second& floatingsecond) const { return operator != (::duration(floatingsecond)); }
-   inline bool operator < (const ::floating_second& floatingsecond) const { return operator < (::duration(floatingsecond)); }
-   inline bool operator <= (const ::floating_second& floatingsecond) const { return operator <= (::duration(floatingsecond)); }
-   inline bool operator > (const ::floating_second& floatingsecond) const { return operator > (::duration(floatingsecond)); }
-   inline bool operator >= (const ::floating_second& floatingsecond) const { return operator >= (::duration(floatingsecond)); }
+   //inline bool operator == (const ::floating_microsecond& floatingmicrosecond) const { return operator == (::duration(floatingmicrosecond)); }
+   //inline bool operator != (const ::floating_microsecond& floatingmicrosecond) const { return operator != (::duration(floatingmicrosecond)); }
+   //inline bool operator < (const ::floating_microsecond& floatingmicrosecond) const { return operator < (::duration(floatingmicrosecond)); }
+   //inline bool operator <= (const ::floating_microsecond& floatingmicrosecond) const { return operator <= (::duration(floatingmicrosecond)); }
+   //inline bool operator > (const ::floating_microsecond& floatingmicrosecond) const { return operator > (::duration(floatingmicrosecond)); }
+   //inline bool operator >= (const ::floating_microsecond& floatingmicrosecond) const { return operator >= (::duration(floatingmicrosecond)); }
 
-   inline bool operator == (const ::floating_minute& minute) const { return operator == (::duration(minute)); }
-   inline bool operator != (const ::floating_minute& minute) const { return operator != (::duration(minute)); }
-   inline bool operator < (const ::floating_minute& minute) const { return operator < (::duration(minute)); }
-   inline bool operator <= (const ::floating_minute& minute) const { return operator <= (::duration(minute)); }
-   inline bool operator > (const ::floating_minute& minute) const { return operator > (::duration(minute)); }
-   inline bool operator >= (const ::floating_minute& minute) const { return operator >= (::duration(minute)); }
+   //inline bool operator == (const ::floating_millisecond& floatingmillisecond) const { return operator == (::duration(floatingmillisecond)); }
+   //inline bool operator != (const ::floating_millisecond& floatingmillisecond) const { return operator != (::duration(floatingmillisecond)); }
+   //inline bool operator < (const ::floating_millisecond& floatingmillisecond) const { return operator < (::duration(floatingmillisecond)); }
+   //inline bool operator <= (const ::floating_millisecond& floatingmillisecond) const { return operator <= (::duration(floatingmillisecond)); }
+   //inline bool operator > (const ::floating_millisecond& floatingmillisecond) const { return operator > (::duration(floatingmillisecond)); }
+   //inline bool operator >= (const ::floating_millisecond& floatingmillisecond) const { return operator >= (::duration(floatingmillisecond)); }
 
-   inline bool operator == (const ::floating_hour& day) const { return operator == (::duration(day)); }
-   inline bool operator != (const ::floating_hour& day) const { return operator != (::duration(day)); }
-   inline bool operator < (const ::floating_hour& day) const { return operator < (::duration(day)); }
-   inline bool operator <= (const ::floating_hour& day) const { return operator <= (::duration(day)); }
-   inline bool operator > (const ::floating_hour& day) const { return operator > (::duration(day)); }
-   inline bool operator >= (const ::floating_hour& day) const { return operator >= (::duration(day)); }
+   //inline bool operator == (const ::floating_second& floatingsecond) const { return operator == (::duration(floatingsecond)); }
+   //inline bool operator != (const ::floating_second& floatingsecond) const { return operator != (::duration(floatingsecond)); }
+   //inline bool operator < (const ::floating_second& floatingsecond) const { return operator < (::duration(floatingsecond)); }
+   //inline bool operator <= (const ::floating_second& floatingsecond) const { return operator <= (::duration(floatingsecond)); }
+   //inline bool operator > (const ::floating_second& floatingsecond) const { return operator > (::duration(floatingsecond)); }
+   //inline bool operator >= (const ::floating_second& floatingsecond) const { return operator >= (::duration(floatingsecond)); }
 
-   inline bool operator == (const ::floating_day& day) const { return operator == (::duration(day)); }
-   inline bool operator != (const ::floating_day& day) const { return operator != (::duration(day)); }
-   inline bool operator < (const ::floating_day& day) const { return operator < (::duration(day)); }
-   inline bool operator <= (const ::floating_day& day) const { return operator <= (::duration(day)); }
-   inline bool operator > (const ::floating_day& day) const { return operator > (::duration(day)); }
-   inline bool operator >= (const ::floating_day& day) const { return operator >= (::duration(day)); }
+   //inline bool operator == (const ::floating_minute& minute) const { return operator == (::duration(minute)); }
+   //inline bool operator != (const ::floating_minute& minute) const { return operator != (::duration(minute)); }
+   //inline bool operator < (const ::floating_minute& minute) const { return operator < (::duration(minute)); }
+   //inline bool operator <= (const ::floating_minute& minute) const { return operator <= (::duration(minute)); }
+   //inline bool operator > (const ::floating_minute& minute) const { return operator > (::duration(minute)); }
+   //inline bool operator >= (const ::floating_minute& minute) const { return operator >= (::duration(minute)); }
+
+   //inline bool operator == (const ::floating_hour& day) const { return operator == (::duration(day)); }
+   //inline bool operator != (const ::floating_hour& day) const { return operator != (::duration(day)); }
+   //inline bool operator < (const ::floating_hour& day) const { return operator < (::duration(day)); }
+   //inline bool operator <= (const ::floating_hour& day) const { return operator <= (::duration(day)); }
+   //inline bool operator > (const ::floating_hour& day) const { return operator > (::duration(day)); }
+   //inline bool operator >= (const ::floating_hour& day) const { return operator >= (::duration(day)); }
+
+   //inline bool operator == (const ::floating_day& day) const { return operator == (::duration(day)); }
+   //inline bool operator != (const ::floating_day& day) const { return operator != (::duration(day)); }
+   //inline bool operator < (const ::floating_day& day) const { return operator < (::duration(day)); }
+   //inline bool operator <= (const ::floating_day& day) const { return operator <= (::duration(day)); }
+   //inline bool operator > (const ::floating_day& day) const { return operator > (::duration(day)); }
+   //inline bool operator >= (const ::floating_day& day) const { return operator >= (::duration(day)); }
 
 
 
@@ -1052,7 +1046,7 @@ inline duration::operator bool() const
 CLASS_DECL_ACME class ::duration __random(const class ::duration & d1, const class ::duration & d2);
 
 
-inline duration::operator class ::wait() const
+inline class ::time duration::time() const
 {
 
    return is_infinite() ? ::wait::__infinite() : floating_second().m_d;

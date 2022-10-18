@@ -4,7 +4,6 @@
 #include "apex/message/command.h"
 #include "apex/user/primitive.h"
 #include "interaction_layout.h"
-//#include "window_util.h"
 #include "prodevian.h"
 #include "drawable.h"
 
@@ -197,19 +196,19 @@ namespace user
       bool                                         m_bPadding001;
       bool                                         m_bPadding002;
       
-      bool                                         m_bDragScrollLeftButtonDown;
-      
-      ::point_i32                                  m_pointDragScrollLeftButtonDown;
-      ::point_i32                                  m_pointDragScroll;
-      ::point_i32                                  m_pointDragScrollStart;
-      ::point_i32                                  m_pointDragScrollMax;
-      ::size_i32                                   m_sizeDragScroll;
-                  
-      bool                                         m_bHorizontalDragScroll;
-      bool                                         m_bHorizontalDragScrollingActive;
-            
-      bool                                         m_bVerticalDragScroll;
-      bool                                         m_bVerticalDragScrollingActive;
+      bool                                         m_bBarDragScrollLeftButtonDown;
+
+      bool                                         m_bEnableHorizontalBarDragScroll;
+      bool                                         m_bHorizontalBarDragScrollingActive;
+
+      bool                                         m_bEnableVerticalBarDragScroll;
+      bool                                         m_bVerticalBarDragScrollingActive;
+
+      ::point_i32                                  m_pointBarDragScrollLeftButtonDown;
+      ::point_i32                                  m_pointBarDragScroll;
+      ::point_i32                                  m_pointBarDragScrollStart;
+      ::point_i32                                  m_pointBarDragScrollMax;
+      ::size_i32                                   m_sizeBarDragScroll;
 
       ::oswindow                                   m_oswindow;
 
@@ -2295,8 +2294,8 @@ namespace user
       //template < typename GEOMETRY >
       //inline GEOMETRY _001ClientToHostNoScroll(const GEOMETRY& s, enum_layout elayout = e_layout_design) const { GEOMETRY g; _client_to_host_no_scroll(g, s); return g; }
 
-      inline bool _001HasHorizontalDragScrolling() const { return m_pointDragScrollMax.x > 0; }
-      inline bool _001HasVerticalDragScrolling() const { return m_pointDragScrollMax.y > 0; }
+      inline bool _001HasHorizontalBarDragScrolling() const { return m_pointBarDragScrollMax.x > 0; }
+      inline bool _001HasVerticalBarDragScrolling() const { return m_pointBarDragScrollMax.y > 0; }
 
    };
 

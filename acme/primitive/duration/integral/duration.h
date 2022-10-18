@@ -12,9 +12,6 @@ public:
    using BASE_TYPE = typename DURATION::BASE_TYPE;
 
 
-   //using DURATION::DURATION;
-
-
    constexpr integral_duration(BASE_TYPE iduration = {}) : DURATION(iduration) {}
 
 
@@ -66,14 +63,6 @@ public:
    }
 
 
-   //inline class integral_duration & Now()
-   //{
-
-   //   return operator=(::now <integral_duration>());
-
-   //}
-
-
    inline double period_rate(const integral_duration & period)
    {
 
@@ -98,7 +87,7 @@ public:
    }
 
 
-   inline operator class ::wait ()const;
+   inline class ::wait wait() const;
 
 
 

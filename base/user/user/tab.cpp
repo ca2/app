@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "tab.h"
 #include "tab_pane_array.h"
 #include "acme/constant/timer.h"
@@ -1052,8 +1052,6 @@ namespace user
 
          }
 
-
-
          if(!get_element_rect(iVisiblePane, rectangle, e_element_tab))
             continue;
 
@@ -1624,14 +1622,14 @@ namespace user
       if(m_pdata->m_bVertical)
       {
 
-         m_sizeDragScroll.cy = (int) m_pdata->m_tabpanecompositea.get_count() * m_pdata->m_iTabHeight;
+         m_sizeBarDragScroll.cy = (int) m_pdata->m_tabpanecompositea.get_count() * m_pdata->m_iTabHeight;
 
 
       }
       else
       {
 
-         m_sizeDragScroll.cx = m_pdata->m_tabpanecompositea.last()->m_point.x +
+         m_sizeBarDragScroll.cx = m_pdata->m_tabpanecompositea.last()->m_point.x +
          m_pdata->m_tabpanecompositea.last()->m_size.cx;
 
       }
@@ -1738,10 +1736,10 @@ namespace user
       if(::is_element(m_pitemClick, e_element_tab_near_scroll))
       {
 
-         if(m_pointDragScroll.x > 0)
+         if(m_pointBarDragScroll.x > 0)
          {
 
-            m_pointDragScroll.x--;
+            m_pointBarDragScroll.x--;
 
             set_need_redraw();
 
@@ -1759,10 +1757,10 @@ namespace user
       else if(::is_element(m_pitemClick, e_element_tab_far_scroll))
       {
 
-         if(m_pointDragScroll.x < m_pointDragScrollMax.x)
+         if(m_pointBarDragScroll.x < m_pointBarDragScrollMax.x)
          {
 
-            m_pointDragScroll.x++;
+            m_pointBarDragScroll.x++;
 
             set_need_redraw();
 
@@ -1914,53 +1912,53 @@ namespace user
          
       }
 
-      if(m_bDragScrollLeftButtonDown)
-      {
+      //if(m_bDragScrollLeftButtonDown)
+      //{
 
-         {
-            
-            if (::is_element(m_pitemClick, e_element_tab_far_scroll))
-            {
+      //   {
+      //      
+      //      if (::is_element(m_pitemClick, e_element_tab_far_scroll))
+      //      {
 
-               if (m_pointDragScroll.x < m_pointDragScrollMax.x)
-               {
+      //         if (m_pointDragScroll.x < m_pointDragScrollMax.x)
+      //         {
 
-                  m_pointDragScroll.x++;
+      //            m_pointDragScroll.x++;
 
-                  set_need_redraw();
+      //            set_need_redraw();
 
-                  post_redraw();
+      //            post_redraw();
 
-                  pmouse->m_bRet = true;
+      //            pmouse->m_bRet = true;
 
-                  return;
+      //            return;
 
-               }
+      //         }
 
-            }
-            else if (::is_element(m_pitemClick, e_element_tab_near_scroll))
-            {
+      //      }
+      //      else if (::is_element(m_pitemClick, e_element_tab_near_scroll))
+      //      {
 
-               if (m_pointDragScroll.x > 0)
-               {
+      //         if (m_pointDragScroll.x > 0)
+      //         {
 
-                  m_pointDragScroll.x--;
+      //            m_pointDragScroll.x--;
 
-                  set_need_redraw();
+      //            set_need_redraw();
 
-                  post_redraw();
+      //            post_redraw();
 
-                  pmouse->m_bRet = true;
+      //            pmouse->m_bRet = true;
 
-                  return;
+      //            return;
 
-               }
+      //         }
 
-            }
+      //      }
 
-         }
+      //   }
 
-      }
+      //}
 
       if(get_data()->m_iClickTab >= 0)
       {
@@ -2001,7 +1999,7 @@ namespace user
 
       auto ptabdata = get_data();
 
-      if(_001HasHorizontalDragScrolling())
+      if(_001HasHorizontalBarDragScrolling())
       {
 
          float fDensity = 1.0f;
@@ -2095,7 +2093,7 @@ namespace user
 
             ptOffset.y += 4;
 
-            //ptOffset.y -= m_iTabScroll;
+            ptOffset.y -= m_pointBarDragScroll.y;
 
          }
          else
@@ -2103,7 +2101,7 @@ namespace user
 
             ptOffset.x += 4;
 
-            //ptOffset.x -= m_iTabScroll;
+            ptOffset.x -= m_pointBarDragScroll.x;
 
          }
 
@@ -2122,7 +2120,6 @@ namespace user
       {
 
          if (!get_element_rect(iIndex, prectangle, e_element_tab))
-
          {
 
             return false;
@@ -2273,9 +2270,9 @@ namespace user
 
          rectangle.bottom = rectangle.top;
 
-         prectangle->left   = rectangle.left;
+         prectangle->left = rectangle.left;
 
-         prectangle->top    = (::i32) (rectangle.top +  iIndex * get_data()->m_iTabHeight);
+         prectangle->top = (::i32) (rectangle.top +  iIndex * get_data()->m_iTabHeight);
 
          prectangle->right  = rectangle.right;
 
@@ -2291,9 +2288,9 @@ namespace user
 
          prectangle->top = ppane->m_point.y;
 
-         prectangle->right = ppane->m_point.x + ppane->m_size.cx;
+         prectangle->right = prectangle->left + ppane->m_size.cx;
 
-         prectangle->bottom = ppane->m_point.y + ppane->m_size.cy;
+         prectangle->bottom = prectangle->top + ppane->m_size.cy;
 
       }
 
@@ -2411,7 +2408,7 @@ namespace user
 
       ::rectangle_i32 rectangleScroll;
 
-      bool bScroll = _001HasHorizontalDragScrolling();
+      bool bScroll = _001HasHorizontalBarDragScrolling();
 
       if(bScroll)
       {
@@ -2451,7 +2448,7 @@ namespace user
 
       }
       
-      point += m_pointDragScroll;
+      //point += m_pointDragScroll;
 
       ::rectangle_i32 rectangle;
 
@@ -2567,8 +2564,24 @@ namespace user
 
    void tab::on_message_create(::message::message * pmessage)
    {
-      
-      m_bHorizontalDragScroll = is_sandboxed();
+
+      if (is_sandboxed())
+      {
+
+         if (get_data()->m_bVertical)
+         {
+
+            m_bEnableVerticalBarDragScroll = true;
+
+         }
+         else
+         {
+
+            m_bEnableHorizontalBarDragScroll = true;
+
+         }
+
+      }
 
       auto psystem = m_psystem->m_pbasesystem;
       

@@ -4780,7 +4780,7 @@ namespace user
 
       TRACE("mesh::Filter1Step");
 
-      INFORMATION("tickIn = " << integral_millisecond(tickIn));
+      INFORMATION("tickIn = " << tickIn.integral_millisecond());
 
       if(!m_bFilter1)
       {
@@ -4865,8 +4865,8 @@ namespace user
 
       auto tickOut = ::duration::now();
 
-      INFORMATION("tickOut = " << integral_millisecond(tickOut));
-      INFORMATION("(delta) = " << integral_millisecond(tickOut - tickIn));
+      INFORMATION("tickOut = " << tickOut.integral_millisecond());
+      INFORMATION("(delta) = " << (tickOut - tickIn).integral_millisecond());
 
       return m_nItemCount != iItemCount;
    }

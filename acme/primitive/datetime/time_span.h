@@ -41,7 +41,7 @@ namespace earth
       }
 
       
-      INLINE_COMPARISON_WITH_DURATION
+      //INLINE_COMPARISON_WITH_DURATION
 
 
    };

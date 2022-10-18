@@ -833,7 +833,7 @@ bool mutex::_wait(const class ::wait & wait)
 
             }
 
-            preempt((::duration)minimum_maximum((wait - tickElapsed) / 50, 1, 1000));
+            preempt(minimum_maximum((wait - tickElapsed) / 50, 1, 1000));
 
             rc = pthread_mutex_lock(&m_mutex);
 

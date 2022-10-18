@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace draw2d
@@ -16,6 +16,8 @@ namespace draw2d
       void *         m_powner = nullptr; // in a normal usage/flow I can machine the object only if I am the owner, otherwise create another object
       void *         m_osdata[8] = {};
       bool           m_baCalculated[8] = {};
+      point_f64      m_pointUserOffset;
+
       //::e_status     m_estatus;
       //::e_status     m_estatusLast;
 

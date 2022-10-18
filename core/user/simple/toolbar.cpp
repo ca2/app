@@ -1344,9 +1344,9 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
       
    }
    
-   m_sizeDragScroll.cx = rectangleSize.right + m_rectangleBorder.right;
+   m_sizeBarDragScroll.cx = rectangleSize.right + m_rectangleBorder.right;
    
-   m_sizeDragScroll.cy = rectangleSize.bottom + m_rectangleBorder.bottom;
+   m_sizeBarDragScroll.cy = rectangleSize.bottom + m_rectangleBorder.bottom;
       
 }
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics_extension.h"
 #include "aura/graphics/draw2d/draw2d.h"
@@ -651,7 +651,7 @@ namespace user
             if (tickElapsed > 100_ms)
             {
 
-               INFORMATION("drawing took " << integral_millisecond(tickElapsed) << "!!");
+               INFORMATION("drawing took " << tickElapsed.integral_millisecond() << "!!");
                INFORMATION("drawing took more than 100ms to complete!!");
                INFORMATION("");
 
@@ -6291,7 +6291,7 @@ namespace user
 
       TRACE("list::Filter1Step");
 
-      INFORMATION("tickIn = " << integral_millisecond(tickIn));
+      INFORMATION("tickIn = " << tickIn.integral_millisecond());
 
       if (!m_bFilter1)
       {

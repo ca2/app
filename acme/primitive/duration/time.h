@@ -19,6 +19,21 @@ public:
    constexpr time(enum_zero) : m_d(0.) {}
    constexpr time(double d) : m_d(d) {}
    time(const class ::time& time) : m_d(time.m_d) {}
+   inline time(const class duration & duration);
+   inline time(const ::INTEGRAL_NANOSECOND & integral);
+   inline time(const ::FLOATING_NANOSECOND & floating);
+   inline time(const ::INTEGRAL_MICROSECOND & integral);
+   inline time(const ::FLOATING_MICROSECOND & floating);
+   inline time(const ::INTEGRAL_MILLISECOND & integral);
+   inline time(const ::FLOATING_MILLISECOND & floating);
+   inline time(const ::INTEGRAL_SECOND & integral);
+   inline time(const ::FLOATING_SECOND & floating);
+   inline time(const ::INTEGRAL_MINUTE & integral);
+   inline time(const ::FLOATING_MINUTE & floating);
+   inline time(const ::INTEGRAL_HOUR & integral);
+   inline time(const ::FLOATING_HOUR & floating);
+   inline time(const ::INTEGRAL_DAY & integral);
+   inline time(const ::FLOATING_DAY & floating);
 
 
    static class ::time now();

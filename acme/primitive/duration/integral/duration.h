@@ -127,12 +127,20 @@ public:
 
    integral_duration operator -() const { return BASE_TYPE(-this->m_i); }
 
-   bool operator == (const BASE_TYPE & duration) const { return this->m_i == duration.m_i; }
-   bool operator >  (const BASE_TYPE & duration) const { return this->m_i >  duration.m_i; }
-   bool operator >= (const BASE_TYPE & duration) const { return this->m_i >= duration.m_i; }
-   bool operator <  (const BASE_TYPE & duration) const { return this->m_i <  duration.m_i; }
-   bool operator <= (const BASE_TYPE & duration) const { return this->m_i <= duration.m_i; }
-   bool operator != (const BASE_TYPE & duration) const { return this->m_i != duration.m_i; }
+   //bool operator == (const BASE_TYPE & duration) const { return this->m_i == duration.m_i; }
+   //bool operator >  (const BASE_TYPE & duration) const { return this->m_i >  duration.m_i; }
+   //bool operator >= (const BASE_TYPE & duration) const { return this->m_i >= duration.m_i; }
+   //bool operator <  (const BASE_TYPE & duration) const { return this->m_i <  duration.m_i; }
+   //bool operator <= (const BASE_TYPE & duration) const { return this->m_i <= duration.m_i; }
+   //bool operator != (const BASE_TYPE & duration) const { return this->m_i != duration.m_i; }
+
+
+   //bool operator == (const integral_duration & duration) const { return this->m_i == duration.m_i; }
+   //bool operator >  (const integral_duration & duration) const { return this->m_i > duration.m_i; }
+   //bool operator >= (const integral_duration & duration) const { return this->m_i >= duration.m_i; }
+   //bool operator <  (const integral_duration & duration) const { return this->m_i < duration.m_i; }
+   //bool operator <= (const integral_duration & duration) const { return this->m_i <= duration.m_i; }
+   //bool operator != (const integral_duration & duration) const { return this->m_i != duration.m_i; }
 
 //
 //   string get_string() const
@@ -149,7 +157,7 @@ public:
    //__DURATION_SETUP__(integral_duration, m_i);
 
    //DECLARE_COMPARISON_WITH_DURATION
-   DECLARE_COMPARISON_WITH_DURATION
+   //DECLARE_COMPARISON_WITH_DURATION
 
 
 };

@@ -127,19 +127,19 @@ public:
    floating_duration operator -() const { return typename DURATION::BASE_TYPE(-this->m_d); }
 
 
-   bool operator ==(const BASE_TYPE & duration) const { return this->m_d == duration.m_d; }
-   bool operator >(const BASE_TYPE & duration) const { return this->m_d > duration.m_d; }
-   bool operator >=(const BASE_TYPE & duration) const { return this->m_d >= duration.m_d; }
-   bool operator <(const BASE_TYPE & duration) const { return this->m_d < duration.m_d; }
-   bool operator <=(const BASE_TYPE & duration) const { return this->m_d <= duration.m_d; }
-   bool operator !=(const BASE_TYPE & duration) const { return this->m_d != duration.m_d; }
+   //bool operator ==(const BASE_TYPE & duration) const { return this->m_d == duration.m_d; }
+   //bool operator >(const BASE_TYPE & duration) const { return this->m_d > duration.m_d; }
+   //bool operator >=(const BASE_TYPE & duration) const { return this->m_d >= duration.m_d; }
+   //bool operator <(const BASE_TYPE & duration) const { return this->m_d < duration.m_d; }
+   //bool operator <=(const BASE_TYPE & duration) const { return this->m_d <= duration.m_d; }
+   //bool operator !=(const BASE_TYPE & duration) const { return this->m_d != duration.m_d; }
 
 
 
    //__DURATION_SETUP__(floating_duration, m_d);
 
 
-   DECLARE_COMPARISON_WITH_DURATION
+   //DECLARE_COMPARISON_WITH_DURATION
 
 
 

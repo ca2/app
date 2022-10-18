@@ -60,10 +60,10 @@ struct unit                                           \
    constexpr unit(enum_zero):member{} {}              \
    constexpr unit(type t):member(t){}                 \
                                                       \
-   DECLARE_COMPARISON_WITH_DURATION                   \
                                                       \
 };
 
+//DECLARE_COMPARISON_WITH_DURATION                   \
 
 
 

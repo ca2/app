@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 13/02/2021. <3TBS_!!
 //
 #pragma once
@@ -16,7 +16,7 @@
 class synchronization_object;
 
 
-using HSYNC = ::pointer<synchronization_object>
+using HSYNC = ::pointer<synchronization_object>;
 
 
 #define PM_NOREMOVE 0
@@ -42,6 +42,7 @@ using HSYNC = ::pointer<synchronization_object>
 
 //#include "acme/operating_system/cross/windows/parallelization2.h"
 
+//#include <sched.h>
 
 void get_os_priority(i32 * piPolicy, sched_param * pparam, ::enum_priority epriority);
 

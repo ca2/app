@@ -227,6 +227,9 @@
     <ProjectReference Include="..\..\apex\nord_apex.vcxproj">
       <Project>{9d102bb4-2054-4d90-a3e7-dd63bdf83982}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\app\nord_app_app.vcxproj">
+      <Project>{85dd443e-1930-4c2d-a917-200e09d871e8}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\aqua\nord_aqua.vcxproj">
       <Project>{576b7916-147f-49f2-84b8-360d703894b5}</Project>
     </ProjectReference>

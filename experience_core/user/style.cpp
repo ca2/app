@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "base/user/simple/scroll_bar.h"
 #include "base/user/user/tab_pane.h"
 #include "aura/graphics/draw2d/pen.h"
@@ -1192,7 +1192,11 @@ namespace experience_core
 
          ptab->m_iTabSize = (int)(ptab->get_data()->m_tabpanecompositea.get_count() * ptab->get_data()->m_iTabHeight);
 
-         ptab->m_pointDragScrollMax.y = ptab->m_sizeDragScroll.cy - rcClient.height();
+//         ptab->m_pointDragScrollMax.y = ptab->m_sizeDragScroll.cy - rcClient.height();
+
+         ptab->m_sizeDragScroll.cy = (int)ptab->m_pdata->m_tabpanecompositea.get_count() * ptab->m_pdata->m_iTabHeight;
+
+
 
       }
       else
@@ -1201,8 +1205,21 @@ namespace experience_core
          ptab->m_iTabSize = ptab->get_data()->m_tabpanecompositea.last()->m_point.x +
             ptab->get_data()->m_tabpanecompositea.last()->m_size.cx;
 
-         ptab->m_pointDragScrollMax.x = ptab->m_sizeDragScroll.cx - rcClient.width();
+         //ptab->m_pointDragScrollMax.x = ptab->m_sizeDragScroll.cx - rcClient.width();
 
+         ptab->m_sizeDragScroll.cx = ptab->m_pdata->m_tabpanecompositea.last()->m_point.x +
+            ptab->m_pdata->m_tabpanecompositea.last()->m_size.cx;
+
+         //if (m_pdata->m_bVertical)
+         //{
+
+
+         //}
+         //else
+         //{
+
+
+         //}
       }
 
       return true;

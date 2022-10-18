@@ -96,7 +96,7 @@ namespace geo
             for (int i = 0; i < 20; i++)
             {
 
-               FORMATTED_INFORMATION("dump: %s, %s, %d, %f, %f\n", m_straCity[i], m_straCityLo[i], m_iaIds[i], m_daLon[i], m_daLat[i]);
+               FORMATTED_INFORMATION("dump: %s, %s, %d, %f, %f\n", m_straCity[i].c_str(), m_straCityLo[i].c_str(), m_iaIds[i], m_daLon[i], m_daLat[i]);
 
             }
 
@@ -132,7 +132,6 @@ namespace geo
                && m_iaIds.get_size() == m_daLon.get_size()
                && m_daLon.get_size() == m_daLat.get_size()
                && m_straCity.get_size() > 1;
-
 
          }
          catch (...)

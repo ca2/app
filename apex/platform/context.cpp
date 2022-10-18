@@ -608,7 +608,8 @@ namespace apex
       if (path.begins_ci("appmatter://"))
       {
 
-         path = dir().appmatter(path, false);
+         //path = dir().appmatter(path, false);
+         path = dir().appmatter(path);
 
       }
 

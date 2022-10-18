@@ -23,19 +23,19 @@ namespace fs
       ~remote_native_file() override;
 
       using ::sockets::http_batch_buffer::read;
-      virtual memsize read(void *pdata, memsize nCount);
+      memsize read(void *pdata, memsize nCount) override;
 
       
       using ::sockets::http_batch_buffer::write;
-      virtual void write(const void * pdata, memsize nCount);
+      void write(const void * pdata, memsize nCount) override;
 
 
       filesize seek(filesize lOff, ::enum_seek eseek);
 
-      virtual filesize get_size() const;
+      filesize get_size() const override;
 
-      virtual void get_file_data();
-      virtual void set_file_data();
+      void get_file_data() override;
+      void set_file_data() override;
 
 
    };

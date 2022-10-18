@@ -31,7 +31,7 @@ public:
    binary_stream(const stream_base & stream) 
    { 
       
-      m_pfile = dynamic_cast < FILE * >(stream.get_file());
+      m_pfile = dynamic_cast < FILE * >(((stream_base &) stream).get_file());
 
       if (!m_pfile)
       {

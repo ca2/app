@@ -33,7 +33,7 @@ bool __material_get_posted_payload_synchronously(material_object * phandler, POS
 
    functionReturn.m_waitTimeout = wait;
 
-   return __get_posted_payload_synchronously(functionPost, functionReturn, payload);
+   return phandler->__get_posted_payload_synchronously(functionPost, functionReturn, payload);
 
 }
 

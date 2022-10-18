@@ -176,10 +176,10 @@ public:
    }
 
 
-   virtual int get_u8();
-   virtual int get_u16();
-   virtual bool get_u64(::u64 & u64);
-   virtual bool is_end_of_file() const;
+   int get_u8() override;
+   int get_u16() override;
+   bool get_u64(::u64 & u64) override;
+   bool is_end_of_file() const override;
 
 
    bool read_string(memory_base & memory) override;

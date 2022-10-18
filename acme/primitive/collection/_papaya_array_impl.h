@@ -316,8 +316,8 @@ namespace papaya
       }
 
 
-      template < class TDST, class TSRC >
-      ::count __copy(TDST & dsta, const TSRC & srca);
+      //template < class TDST, class TSRC >
+      //::count __copy(TDST & dsta, const TSRC & srca);
 
 
       template < typename CONTAINER, class TYPE >

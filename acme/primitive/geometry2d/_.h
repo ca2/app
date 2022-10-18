@@ -1453,7 +1453,7 @@ inline void expand_rect(RECT1* prectangle, const RECT2& r)
    if (::is_rect_null(prectangle))
    {
 
-      __copy(prectangle, r);
+      copy(prectangle, &r);
 
    }
    else
@@ -1476,7 +1476,7 @@ inline void collapse_rect(RECT1 * prectangle, const RECT2 & r)
    if (::is_rect_null(prectangle))
    {
 
-      __copy(prectangle, r);
+      copy(prectangle, &r);
 
    }
    else

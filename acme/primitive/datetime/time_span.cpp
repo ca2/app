@@ -139,7 +139,7 @@ namespace earth
 } // namespace earth
 
 
-DEFINE_COMPARISON_WITH_DURATION(::earth::time_span)
+//DEFINE_COMPARISON_WITH_DURATION(::earth::time_span)
 
 
 

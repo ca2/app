@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "path.h"
 #include "aura/graphics/write_text/_.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -118,7 +118,7 @@ namespace draw2d
 
       }
 
-      __copy(prectangle, r);
+      copy(prectangle, &r);
 
       return true;
 

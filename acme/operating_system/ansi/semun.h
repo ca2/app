@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 13/02/2021 <3TBS_!!
 // as copy of source excerpt at https://man7.org/tlpi/code/online/dist/svsem/semun.h.html
 //
@@ -7,6 +7,8 @@
    Definition of the semun union used by the ::acme::get_system() V semaphore semop()
    system call.
 */
+
+
 #if !defined(ANDROID)
 #ifndef SEMUN_H
 #define SEMUN_H                 /* Prevent accidental double inclusion */
@@ -34,3 +36,5 @@ union semun {                   /* Used in calls to semctl() */
 
 #endif // !defined(SEMUN_H)
 #endif // !defined(ANDROID)
+
+

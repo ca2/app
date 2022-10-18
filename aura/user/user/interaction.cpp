@@ -17295,7 +17295,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
          m_pointDragScrollLeftButtonDown = pmouse->m_point;
          
          m_bDragScrollLeftButtonDown = true;
-         
+
          m_pointDragScrollStart = m_pointDragScroll;
 
          set_mouse_capture();

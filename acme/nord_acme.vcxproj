@@ -195,7 +195,6 @@
     <ClCompile Include="exception\exit.cpp" />
     <ClCompile Include="exception\extended_status.cpp" />
     <ClCompile Include="exception\file.cpp" />
-    <ClCompile Include="exception\file_open.cpp" />
     <ClCompile Include="exception\interface_only.cpp" />
     <ClCompile Include="exception\io.cpp" />
     <ClCompile Include="exception\library_not_loaded.cpp" />
@@ -367,6 +366,7 @@
     <ClCompile Include="operating_system\chronometer.cpp" />
     <ClCompile Include="operating_system\console.cpp" />
     <ClCompile Include="operating_system\debug.cpp" />
+    <ClCompile Include="operating_system\error_code.cpp" />
     <ClCompile Include="operating_system\file.cpp" />
     <ClCompile Include="operating_system\parallelization.cpp" />
     <ClCompile Include="operating_system\posix\base_file.cpp" />
@@ -381,6 +381,7 @@
     <ClCompile Include="operating_system\winpr_keycode.cpp" />
     <ClCompile Include="operating_system\winpr_scancode.cpp" />
     <ClCompile Include="operating_system\_.cpp" />
+    <ClCompile Include="operating_system\_api.cpp" />
     <ClCompile Include="parallelization\condition.cpp" />
     <ClCompile Include="parallelization\condition_variable.cpp" />
     <ClCompile Include="parallelization\critical_section.cpp" />
@@ -401,15 +402,12 @@
     <ClCompile Include="parallelization\tools.cpp" />
     <ClCompile Include="parallelization\_.cpp" />
     <ClCompile Include="platform\acme.cpp" />
-    <ClCompile Include="platform\apex_main_data.cpp" />
-    <ClCompile Include="platform\apex_main_struct.cpp" />
     <ClCompile Include="platform\application.cpp" />
-    <ClCompile Include="platform\app_core.cpp" />
     <ClCompile Include="platform\assert.cpp" />
-    <ClCompile Include="platform\aura_str_pool.cpp" />
     <ClCompile Include="platform\build_debug.cpp" />
     <ClCompile Include="platform\checked.cpp" />
     <ClCompile Include="platform\context.cpp" />
+    <ClCompile Include="platform\conversation_message.cpp" />
     <ClCompile Include="platform\c_class.cpp" />
     <ClCompile Include="platform\debug.cpp" />
     <ClCompile Include="platform\department.cpp" />
@@ -436,6 +434,7 @@
     <ClCompile Include="platform\sequence.cpp" />
     <ClCompile Include="platform\serial.cpp" />
     <ClCompile Include="platform\simple_log.cpp" />
+    <ClCompile Include="platform\subsystem.cpp" />
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="platform\system_setup.cpp" />
     <ClCompile Include="platform\text.cpp" />
@@ -445,6 +444,7 @@
     <ClCompile Include="platform\timer_event.cpp" />
     <ClCompile Include="platform\timer_task.cpp" />
     <ClCompile Include="platform\trace.cpp" />
+    <ClCompile Include="platform\tracer.cpp" />
     <ClCompile Include="platform\trace_category.cpp" />
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
@@ -519,11 +519,11 @@
     <ClCompile Include="primitive\primitive\memory_c.cpp" />
     <ClCompile Include="primitive\primitive\memory_container.cpp" />
     <ClCompile Include="primitive\primitive\object.cpp" />
+    <ClCompile Include="primitive\primitive\particle.cpp" />
     <ClCompile Include="primitive\primitive\payload.cpp" />
     <ClCompile Include="primitive\primitive\property.cpp" />
     <ClCompile Include="primitive\primitive\property_object.cpp" />
     <ClCompile Include="primitive\primitive\property_set.cpp" />
-    <ClCompile Include="primitive\primitive\tracer.cpp" />
     <ClCompile Include="primitive\primitive\type.cpp" />
     <ClCompile Include="primitive\primitive\var_element.cpp" />
     <ClCompile Include="primitive\primitive\virtual_memory.cpp" />
@@ -532,6 +532,7 @@
     <ClCompile Include="primitive\promise\signalization.cpp" />
     <ClCompile Include="primitive\string\base64.cpp" />
     <ClCompile Include="primitive\string\ch.cpp" />
+    <ClCompile Include="primitive\string\character.cpp" />
     <ClCompile Include="primitive\string\ch_class.cpp" />
     <ClCompile Include="primitive\string\command_line.cpp" />
     <ClCompile Include="primitive\string\from_integer.cpp" />
@@ -548,17 +549,16 @@
     <ClCompile Include="primitive\string\sz.cpp" />
     <ClCompile Include="primitive\string\tokenizer.cpp" />
     <ClCompile Include="primitive\string\to_integer.cpp" />
-    <ClCompile Include="primitive\string\to_string.cpp" />
     <ClCompile Include="primitive\string\unicode.cpp" />
     <ClCompile Include="primitive\string\unicode16.cpp" />
     <ClCompile Include="primitive\string\unicode16_32.cpp" />
     <ClCompile Include="primitive\string\unicode32.cpp" />
-    <ClCompile Include="primitive\string\utf8_char.cpp" />
     <ClCompile Include="primitive\string\wildcard.cpp" />
     <ClCompile Include="primitive\string\_.cpp" />
     <ClCompile Include="primitive\string\_c_trait_ansi.cpp" />
     <ClCompile Include="primitive\string\_c_trait_wide.cpp" />
     <ClCompile Include="primitive\string\_string.cpp" />
+    <ClCompile Include="primitive\string\__string.cpp" />
     <ClCompile Include="primitive\text\context.cpp" />
     <ClCompile Include="primitive\text\data.cpp" />
     <ClCompile Include="primitive\text\international.cpp" />
@@ -595,6 +595,7 @@
     <ClCompile Include="user\user\os_colors.cpp" />
     <ClCompile Include="user\user\os_theme_colors.cpp" />
     <ClCompile Include="user\user\text.cpp" />
+    <ClCompile Include="user\user\tool_item.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="compress\compress.h" />
@@ -807,6 +808,7 @@
     <ClInclude Include="operating_system\android\_c.h" />
     <ClInclude Include="operating_system\android\_os_impl.h" />
     <ClInclude Include="operating_system\android\_user.h" />
+    <ClInclude Include="operating_system\error_code.h" />
     <ClInclude Include="os\chronometer.h" />
     <ClInclude Include="os\console.h" />
     <ClInclude Include="os\cross.h" />
@@ -883,6 +885,7 @@
     <ClInclude Include="platform\const.h" />
     <ClInclude Include="platform\constraint.h" />
     <ClInclude Include="platform\context.h" />
+    <ClInclude Include="platform\conversation_message.h" />
     <ClInclude Include="platform\c_class.h" />
     <ClInclude Include="platform\debug.h" />
     <ClInclude Include="platform\definition.h" />
@@ -934,6 +937,7 @@
     <ClInclude Include="platform\simple_log.h" />
     <ClInclude Include="platform\status.h" />
     <ClInclude Include="platform\string_exchange.h" />
+    <ClInclude Include="platform\subsystem.h" />
     <ClInclude Include="platform\synchronized_predicate_routine.h" />
     <ClInclude Include="platform\system.h" />
     <ClInclude Include="platform\system_setup.h" />
@@ -1245,6 +1249,7 @@
     <ClInclude Include="primitive\primitive\memory_container.h" />
     <ClInclude Include="primitive\primitive\natural.h" />
     <ClInclude Include="primitive\primitive\number.h" />
+    <ClInclude Include="primitive\primitive\object.h" />
     <ClInclude Include="primitive\primitive\object_meta.h" />
     <ClInclude Include="primitive\primitive\papaya.h" />
     <ClInclude Include="primitive\primitive\pointer.h" />

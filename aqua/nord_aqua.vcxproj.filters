@@ -109,6 +109,9 @@
     <ClCompile Include="multimedia\audio\audio.cpp">
       <Filter>Source Files\multimedia\audio</Filter>
     </ClCompile>
+    <ClCompile Include="xml\exception.cpp">
+      <Filter>Source Files\xml</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">

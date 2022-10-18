@@ -66,9 +66,9 @@ public:
 
    //virtual void destroy() ;
 
-   void destroy() ;
+   void destroy() override;
 
-   string as_string() const ;
+   string as_string() const override;
 
 
    ::file::file * get_file() override { return m_p; }

@@ -573,7 +573,7 @@ public:
    }
 
 
-   inline void defer_branch(::task_pointer& ptask, const ::procedure & procedure);
+   void defer_branch(::task_pointer& ptask, const ::procedure & procedure);
 
 
    //template < typename THREAD >

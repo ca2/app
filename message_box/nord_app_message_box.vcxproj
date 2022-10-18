@@ -187,7 +187,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\app-core\store\_.cpp" />
-    <ClCompile Include="..\app\main_window.cpp" />
     <ClCompile Include="application.cpp" />
     <ClCompile Include="framework.cpp" />
     <ClCompile Include="main_window.cpp" />

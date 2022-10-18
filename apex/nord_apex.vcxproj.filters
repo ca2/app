@@ -277,18 +277,6 @@
     <ClCompile Include="platform\history.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\interprocess_call.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\interprocess_communication.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\interprocess_intercommunication.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\interprocess_task.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\launcher.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -480,6 +468,27 @@
     </ClCompile>
     <ClCompile Include="networking\sockets\webserver\httpd_socket.cpp">
       <Filter>Source Files\networking\sockets\webserver</Filter>
+    </ClCompile>
+    <ClCompile Include="interprocess\base.cpp">
+      <Filter>Source Files\interprocess</Filter>
+    </ClCompile>
+    <ClCompile Include="interprocess\call.cpp">
+      <Filter>Source Files\interprocess</Filter>
+    </ClCompile>
+    <ClCompile Include="interprocess\caller.cpp">
+      <Filter>Source Files\interprocess</Filter>
+    </ClCompile>
+    <ClCompile Include="interprocess\channel.cpp">
+      <Filter>Source Files\interprocess</Filter>
+    </ClCompile>
+    <ClCompile Include="interprocess\communication.cpp">
+      <Filter>Source Files\interprocess</Filter>
+    </ClCompile>
+    <ClCompile Include="interprocess\target.cpp">
+      <Filter>Source Files\interprocess</Filter>
+    </ClCompile>
+    <ClCompile Include="interprocess\task.cpp">
+      <Filter>Source Files\interprocess</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1293,6 +1302,30 @@
     <ClInclude Include="handler\source.h">
       <Filter>Header Files\handler</Filter>
     </ClInclude>
+    <ClInclude Include="interprocess\task.h">
+      <Filter>Header Files\interprocess</Filter>
+    </ClInclude>
+    <ClInclude Include="interprocess\target.h">
+      <Filter>Header Files\interprocess</Filter>
+    </ClInclude>
+    <ClInclude Include="interprocess\communication.h">
+      <Filter>Header Files\interprocess</Filter>
+    </ClInclude>
+    <ClInclude Include="interprocess\channel.h">
+      <Filter>Header Files\interprocess</Filter>
+    </ClInclude>
+    <ClInclude Include="interprocess\caller.h">
+      <Filter>Header Files\interprocess</Filter>
+    </ClInclude>
+    <ClInclude Include="interprocess\call.h">
+      <Filter>Header Files\interprocess</Filter>
+    </ClInclude>
+    <ClInclude Include="interprocess\base.h">
+      <Filter>Header Files\interprocess</Filter>
+    </ClInclude>
+    <ClInclude Include="interprocess\_.h">
+      <Filter>Header Files\interprocess</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -1450,6 +1483,12 @@
     </Filter>
     <Filter Include="Source Files\networking\sockets\webserver">
       <UniqueIdentifier>{814d94d1-ddbe-430a-bc57-57a0a8209b48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\interprocess">
+      <UniqueIdentifier>{ed6f31b7-7b03-4e0a-b562-8b0142db964a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\interprocess">
+      <UniqueIdentifier>{8f3428e2-a51b-4603-96d6-2290bca19328}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

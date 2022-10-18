@@ -154,7 +154,7 @@ bool stdin_has_char()
       return (FD_ISSET(0, &fds));
 }
 
-void stdin_wait_char(void)
+bool stdin_wait_char(void)
 {
    struct timeval tv;
    fd_set fds;

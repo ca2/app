@@ -5205,7 +5205,9 @@ namespace draw2d
    ::file::path graphics::get_font_path(const ::string & strName, int iWeight, bool bItalic)
    {
 
-      m_psystem->m_paurasystem->draw2d()->write_text()->fonts()->enumeration()->m_eventReady.wait(30_s);
+      auto penumeration = m_psystem->m_paurasystem->draw2d()->write_text()->fonts()->enumeration();
+
+      penumeration->m_eventReady.wait(30_s);
 
       critical_section_lock synchronouslock(&m_psystem->m_paurasystem->draw2d()->write_text()->m_csFont);
 

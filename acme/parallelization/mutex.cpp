@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/operating_system.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 
@@ -273,7 +273,7 @@ pacmedirectory->create(::file::path(strName).folder());
 
 #ifdef ANDROID
 
-         path = m_psystem->m_pacmedirectory->system() / "::payload/tmp/ca2/lock/mutex" / string(pstrName);
+         path = ::get_system()->m_pacmedirectory->system() / "tmp/ca2/lock/mutex" / string(pstrName);
 
 #else
 
@@ -287,7 +287,7 @@ pacmedirectory->create(::file::path(strName).folder());
 
 #ifdef ANDROID
 
-         path =  m_psystem->m_pacmedirectory->system() / "home/user/ca2/lock/mutex" / string(pstrName);
+         path =  ::get_system()->m_pacmedirectory->system() / "home/user/ca2/lock/mutex" / string(pstrName);
 
 #elif defined __APPLE__
 
@@ -308,7 +308,7 @@ pacmedirectory->create(::file::path(strName).folder());
 
       path /= pstrName;
 
-      m_psystem->m_pacmedirectory->create(path.folder());
+      ::get_system()->m_pacmedirectory->create(path.folder());
 
       m_iFd = open(path, O_RDWR | O_CREAT, S_IRWXU);
 

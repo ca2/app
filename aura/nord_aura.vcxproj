@@ -639,6 +639,7 @@
     <ClCompile Include="user\user\notify_icon_listener.cpp" />
     <ClCompile Include="user\user\plain_edit.cpp" />
     <ClCompile Include="user\user\plain_text_data.cpp" />
+    <ClCompile Include="user\user\plain_text_tree.cpp" />
     <ClCompile Include="user\user\primitive_impl.cpp" />
     <ClCompile Include="user\user\prodevian.cpp" />
     <ClCompile Include="user\user\progress.cpp" />
@@ -680,7 +681,6 @@
     <ClCompile Include="windowing\window.cpp" />
     <ClCompile Include="windowing\windowing.cpp" />
     <ClCompile Include="_.cpp" />
-    <ClCompile Include="__matter_ca2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

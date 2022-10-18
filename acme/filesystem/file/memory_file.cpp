@@ -396,7 +396,7 @@ bool memory_file::read_string(memory_base & memory)
 
       (m_pbyte + m_position)[(iLookAhead - 2)] = b;
 
-      if ((p == nullptr && b == '\r' || b == '\n') || p)
+      if ((p == nullptr && (b == '\r' || b == '\n')) || p)
       {
 
          if (p)

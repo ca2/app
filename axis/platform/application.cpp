@@ -2,7 +2,6 @@
 #include "application.h"
 #include "session.h"
 #include "system.h"
-//#include "acme/constant/id.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "axis/user/user/combo_box.h"
@@ -48,18 +47,7 @@ namespace axis
    void application::initialize(::object * pobject)
    {
 
-      //auto estatus = 
-      
       ::aura::application::initialize(pobject);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
 
    }
 
@@ -690,81 +678,7 @@ namespace axis
    void application::process_init()
    {
 
-      //auto estatus = 
-      
       ::aura::application::process_init();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //string_array stra;
-
-      //stra.explode("/", m_XstrAppId);
-
-      //m_strRoot = stra[0];
-
-      //m_strDomain = stra.slice(1).implode("/");
-
-      //add_matter_locator(this);
-
-
-      //if (is_system() || is_session())
-      //{
-
-      //   on_update_matter_locator();
-
-      //}
-      //else
-      //{
-
-
-      //}
-
-//      if (!m_bAppHasInstallerChangedProtected)
-//      {
-//
-//#ifdef _UWP
-//
-//         set_has_installer(false);
-//
-//#else
-//
-//         //if (psystem->m_pappcore == nullptr)
-//         //{
-//
-//         //   set_has_installer(false);
-//
-//         //}
-//         //else
-//         {
-//
-//            set_has_installer(!psystem->has_apex_application_factory());
-//
-//         }
-//
-//#endif
-//
-//      }
-
-      //auto estatus = initialize_context();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      ////if (m_bAuraProcessInitialize)
-      ////{
-
-      ////   return m_bAuraProcessInitializeResult;
-
-      ////}
 
       INFORMATION("axis::application::process_init");
 
@@ -772,18 +686,7 @@ namespace axis
       ::factory::add_factory_item < ::database::row >();
       ::factory::add_factory_item < ::database::row_array >();
 
-      //if (m_bAxisProcessInitialize)
-      //{
-
-      //   return m_bAxisProcessInitializeResult;
-
-      //}
-
       INFORMATION("axis::application::process_init");
-
-      //m_bAxisProcessInitialize = true;
-
-      //m_bAxisProcessInitializeResult = false;
 
       if (m_psimpledb.is_null())
       {
@@ -792,36 +695,7 @@ namespace axis
 
       }
 
-      //if (!::aura::application::process_init())
-      //{
-
-      //   FATAL("axis::application::process_init .1");
-
-      //   return false;
-
-      //}
-
-
-      //m_bAxisProcessInitializeResult = true;
-
-      //INFORMATION("axis::application::process_init success");
-
-      //return true;
-
-     /* estatus = userfs_process_init();
-
-      if(!estatus && estatus != error_not_implemented)
-      {
-
-         ERROR(".2");
-
-         return false;
-
-      }*/
-
       INFORMATION("success");
-
-      //return true;
 
    }
 
@@ -830,28 +704,6 @@ namespace axis
    {
 
       ::aura::application::process_term();
-
-      //try
-      //{
-
-      //   impl_process_term();
-
-      //}
-      //catch(...)
-      //{
-
-      //}
-
-      //try
-      //{
-
-      //   ca_process_term();
-
-      //}
-      //catch(...)
-      //{
-
-      //}
 
       try
       {
@@ -863,41 +715,6 @@ namespace axis
       {
 
       }
-
-      //try
-      //{
-
-      //   m_phttp->message_receiver_destruct();
-
-      //}
-      //catch (...)
-      //{
-
-      //}
-
-      //try
-      //{
-
-      //   m_phttp.release();
-
-      //}
-      //catch (...)
-      //{
-
-      //}
-
-      //m_phandler.release();
-
-//      try
-//      {
-//
-//         route_message(&message);
-//
-//      }
-//      catch (...)
-//      {
-//
-//      }
 
       try
       {
@@ -934,13 +751,6 @@ namespace axis
       {
 
       }
-
-      //m_spfile.release();
-
-      //m_spdir.release();
-
-      //::acme::del(m_pimaging);
-
 
       /// commented out the code below
       /// reasoning: better leave to the session the responsability
@@ -1079,106 +889,7 @@ namespace axis
    void application::init1()
    {
 
-      //::e_status estatus = 
-      
       ::aura::application::init1();
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-
-
-      //if (psystem->payload("locale").get_count() > 0)
-      //{
-
-      //   strLocale = psystem->payload("locale").stra()[0];
-
-      //}
-
-      //if (psystem->payload("schema").get_count() > 0)
-      //{
-
-      //   strSchema = psystem->payload("schema").stra()[0];
-
-      //}
-
-      //if (papp->payload("locale").get_count() > 0)
-      //{
-
-      //   strLocale = papp->payload("locale").stra()[0];
-
-      //}
-
-      //if (papp->payload("schema").get_count() > 0)
-      //{
-
-      //   strSchema = papp->payload("schema").stra()[0];
-
-      //}
-
-      //set_locale(strLocale, ::e_source_database);
-
-      //set_schema(strSchema, ::e_source_database);
-
-      //if (!initialize_contextualized_theme())
-      //{
-
-      //   FATAL("Failed to initialize_contextualized_theme");
-
-      //   return false;
-
-      //}
-
-      //INFORMATION("start");
-
-      ////if (!::aura::application::init1())
-      ////{
-
-      ////   ERROR(".1");
-
-      ////   return false;
-
-      ////}
-
-      ////if (!initialize1_experience())
-      ////{
-
-      ////   ERROR(".2");
-
-      ////   return false;
-
-      ////}
-
-      //m_durationHeartBeat.Now();
-
-      ////estatus = __construct(m_puserfs);
-
-      ////if (!estatus)
-      ////{
-
-      ////   return estatus;
-
-      ////}
-
-      ////if (!userfs_init1())
-      ////{
-
-      ////   ERROR(".3");
-
-      ////   return false;
-
-      ////}
-
-
-
-      ///*if(!m_spuser->init1())
-      //return false;
-      //if(!m_spuser->init2())
-      //return false;*/
 
       try
       {
@@ -1218,31 +929,9 @@ namespace axis
 
             }
 
-            //throw ::exception(todo("database"));
-
-            //auto estatus = 
-
             m_psimpledb->initialize_simpledb_server(this, pathDatabase);
 
-            //if (!estatus)
-            //{
-
-            //   m_result.add(estatus);
-
-            //   if(m_bDataCentralRequired)
-            //   {
-
-            //      return estatus;
-
-            //   }
-
-            //}
-            //else
-            //{
-
             initialize_data_client(m_psimpledb);
-
-            //}
 
          }
 
@@ -1251,8 +940,6 @@ namespace axis
       {
 
       }
-
-      //return ::success;
 
    }
 

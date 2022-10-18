@@ -4,46 +4,46 @@
 #include <stdio.h>
 
 
-const char * strcatdup(const char * psz1, const char * psz2)
-{
-   
-   if(::is_null(psz1))
-   {
-      
-      if(::is_null(psz2))
-      {
-         
-         return nullptr;
-         
-      }
-      else
-      {
-         
-         return strdup(psz2);
-      
-      }
-      
-   }
-   else if(::is_null(psz2))
-   {
-      
-      return strdup(psz1);
-      
-   }
-   else
-   {
-
-      char * pszNew = (char *) malloc(strlen(psz1) + strlen(psz2) + 1);
-
-      strcpy(pszNew, psz1);
-   
-      strcat(pszNew, psz2);
-   
-      return pszNew;
-
-   }
-   
-}
+//const char * strcatdup(const char * psz1, const char * psz2)
+//{
+//   
+//   if(::is_null(psz1))
+//   {
+//      
+//      if(::is_null(psz2))
+//      {
+//         
+//         return nullptr;
+//         
+//      }
+//      else
+//      {
+//         
+//         return strdup(psz2);
+//      
+//      }
+//      
+//   }
+//   else if(::is_null(psz2))
+//   {
+//      
+//      return strdup(psz1);
+//      
+//   }
+//   else
+//   {
+//
+//      char * pszNew = (char *) malloc(strlen(psz1) + strlen(psz2) + 1);
+//
+//      strcpy(pszNew, psz1);
+//   
+//      strcat(pszNew, psz2);
+//   
+//      return pszNew;
+//
+//   }
+//   
+//}
 
 
 //#if defined(APPLE_IOS)

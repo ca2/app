@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "application.h"
 #include "session.h"
 #include "system.h"
@@ -31,29 +31,9 @@ namespace base
    void application::initialize(::object * pobject)
    {
 
-      //auto estatus = 
-      
       ::axis::application::initialize(pobject);
 
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //estatus =
-      
       ::user::document_manager_container::initialize(pobject);
-
-      //if (!estatus)
-      //{
-
-      //   return estatus;
-
-      //}
-
-      //return estatus;
 
    }
 

@@ -187,7 +187,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="constant\idpool.cpp" />
     <ClCompile Include="filesystem\filehandler\handler.cpp" />
     <ClCompile Include="filesystem\filehandler\item.cpp" />
     <ClCompile Include="filesystem\filehandler\library.cpp" />

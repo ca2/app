@@ -65,6 +65,8 @@ struct unit                                           \
 };
 
 
+
+
 DURATION_UNIT(INTEGRAL_NANOSECOND   , ::i64, m_i);
 DURATION_UNIT(INTEGRAL_MICROSECOND  , ::i64, m_i);
 DURATION_UNIT(INTEGRAL_MILLISECOND  , ::i64, m_i);

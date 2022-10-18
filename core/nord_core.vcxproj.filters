@@ -449,9 +449,6 @@
     <ClCompile Include="user\user\list_item.cpp">
       <Filter>Source Files\user\user</Filter>
     </ClCompile>
-    <ClCompile Include="constant\idpool.cpp">
-      <Filter>Source Files\constant</Filter>
-    </ClCompile>
     <ClCompile Include="html\hi5\hi5_twitter_authorization.cpp">
       <Filter>Source Files\html\hi5</Filter>
     </ClCompile>
@@ -1512,9 +1509,6 @@
     </Filter>
     <Filter Include="Source Files\operating_system\windows">
       <UniqueIdentifier>{5da3aa3c-f94f-437a-a921-f44c38a6d54a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\constant">
-      <UniqueIdentifier>{83efbd7b-ac2d-4f30-8c6f-6dab94dcc8da}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\html\hi5">
       <UniqueIdentifier>{1ead309b-79a9-46b6-923e-e1e460574bb8}</UniqueIdentifier>

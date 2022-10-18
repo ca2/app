@@ -63,9 +63,6 @@ template < typename DURATION >
 inline bool floating_duration<DURATION>::operator != (const ::duration & duration) const { return ::duration(*this) != duration; }
 
 
-
-
-
 DEFINE_COMPARISON_WITH_DURATION(FLOATING_NANOSECOND)
 DEFINE_COMPARISON_WITH_DURATION(FLOATING_MICROSECOND)
 DEFINE_COMPARISON_WITH_DURATION(FLOATING_MILLISECOND)

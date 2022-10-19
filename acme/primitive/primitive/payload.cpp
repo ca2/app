@@ -450,7 +450,7 @@ void payload::as(::string & str) const
 void payload::as(::memory_base & memory) const
 {
 
-   copy(&memory, this);
+   memory = this->memory();
 
 }
 

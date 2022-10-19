@@ -16,7 +16,7 @@ namespace draw2d
 
 
    }
-   void region::item::max_bounding_box(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics)
+   void region::item::max_bounding_box(RECTANGLE_F64 & rectangle, ::draw2d::graphics * pgraphics)
    {
 
 
@@ -38,10 +38,10 @@ namespace draw2d
 
    }
 
-   void region::rectangle_item::max_bounding_box(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics)
+   void region::rectangle_item::max_bounding_box(RECTANGLE_F64 & rectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::max_bounding_box(prectangle, (POINT_F64 *)&m_rectangle, 2);
+      ::max_bounding_box(rectangle, (POINT_F64 *)&m_rectangle, 2);
 
    }
 
@@ -62,10 +62,10 @@ namespace draw2d
 
 
 
-   void region::ellipse_item::max_bounding_box(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics)
+   void region::ellipse_item::max_bounding_box(RECTANGLE_F64 & rectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::max_bounding_box(prectangle, (POINT_F64 *)&m_rectangle, 2);
+      ::max_bounding_box(rectangle, (POINT_F64 *)&m_rectangle, 2);
 
    }
 
@@ -127,12 +127,14 @@ namespace draw2d
 
    }
 
-   void region::polygon_item::max_bounding_box(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics)
+
+   void region::polygon_item::max_bounding_box(RECTANGLE_F64 & rectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::max_bounding_box(prectangle, m_polygon.get_data(), m_polygon.get_size());
+      ::max_bounding_box(rectangle, m_polygon.get_data(), m_polygon.get_size());
 
    }
+
 
    bool region::polygon_item::internal_contains(const POINT_F64 & p)
    {
@@ -160,7 +162,7 @@ namespace draw2d
    }
 
 
-   void region::poly_polygon_item::max_bounding_box(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics)
+   void region::poly_polygon_item::max_bounding_box(RECTANGLE_F64 & rectangle, ::draw2d::graphics * pgraphics)
    {
 
       for (auto & ppolygon : m_polygona)
@@ -169,7 +171,7 @@ namespace draw2d
          for (auto & pointVertex : *ppolygon)
          {
 
-            ::max_bounding_box(prectangle, pointVertex);
+            ::max_bounding_box(rectangle, pointVertex);
 
          }
 
@@ -206,14 +208,17 @@ namespace draw2d
 
    }
 
-   void region::combine_item::max_bounding_box(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics)
+
+   void region::combine_item::max_bounding_box(RECTANGLE_F64 & rectangle, ::draw2d::graphics * pgraphics)
    {
       // "fake" implementation
 
-      m_pregion1->max_bounding_box(prectangle, pgraphics);
-      m_pregion2->max_bounding_box(prectangle, pgraphics);
+      m_pregion1->max_bounding_box(rectangle, pgraphics);
+      m_pregion2->max_bounding_box(rectangle, pgraphics);
 
    }
+
+
    bool region::combine_item::internal_contains(const POINT_F64 & point)
    {
 
@@ -327,10 +332,10 @@ namespace draw2d
 
    }
 
-   void region::round_rectangle_item::max_bounding_box(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics)
+   void region::round_rectangle_item::max_bounding_box(RECTANGLE_F64 & rectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::max_bounding_box(prectangle, (POINT_F64 *)&m_rectangle, 2);
+      ::max_bounding_box(rectangle, (POINT_F64 *)&m_rectangle, 2);
 
    }
 
@@ -343,7 +348,6 @@ namespace draw2d
       return m_rectangle.contains(point);
 
    }
-
 
 
 } // namespace draw2d

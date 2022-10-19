@@ -446,46 +446,46 @@ namespace user
    }
 
 
-   void primitive_impl::viewport_client_to_screen(POINT_I32 * ppt)
+   void primitive_impl::viewport_client_to_screen(POINT_I32 & point)
    {
 
       if (m_puserinteraction)
       {
 
-         ::point_add(*ppt, m_puserinteraction->const_layout().design().origin());
+         ::point_add(point, m_puserinteraction->const_layout().design().origin());
 
       }
 
    }
 
 
-   void primitive_impl::viewport_screen_to_client(POINT_I32 * ppt)
+   void primitive_impl::viewport_screen_to_client(POINT_I32 & point)
    {
 
       if (m_puserinteraction)
       {
 
-         ::point_sub(*ppt, m_puserinteraction->const_layout().design().origin());
+         ::point_sub(point, m_puserinteraction->const_layout().design().origin());
 
       }
 
    }
 
 
-   void primitive_impl::viewport_client_to_screen(RECTANGLE_I32 * prectangle)
+   void primitive_impl::viewport_client_to_screen(RECTANGLE_I32 & rectangle)
    {
 
-      viewport_client_to_screen((POINT_I32 *)& prectangle->left);
-      viewport_client_to_screen((POINT_I32 *)& prectangle->right);
+      viewport_client_to_screen((POINT_I32 &)rectangle.left);
+      viewport_client_to_screen((POINT_I32 &)rectangle.right);
 
    }
 
 
-   void primitive_impl::viewport_screen_to_client(RECTANGLE_I32 * prectangle)
+   void primitive_impl::viewport_screen_to_client(RECTANGLE_I32 & rectangle)
    {
 
-      viewport_screen_to_client((POINT_I32 *)& prectangle->left);
-      viewport_screen_to_client((POINT_I32 *)& prectangle->right);
+      viewport_screen_to_client((POINT_I32 &)rectangle.left);
+      viewport_screen_to_client((POINT_I32 &)rectangle.right);
 
    }
 

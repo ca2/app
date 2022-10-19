@@ -373,8 +373,6 @@ inline pointer < T > & pointer < T >::clone(T2 * p)
 //#endif // __cplusplus_winrt
 //
 
-inline void copy(void *, const void *) /* = 0 */ { throw ::interface_only(); }
-
 
 namespace papaya
 {

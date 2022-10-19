@@ -115,33 +115,33 @@ CLASS_DECL_ACME void preempt(const duration & duration)
 // leap seconds in certain systems.
 
 
-void copy(system_time_t* psystemtimeUTC, const struct tm* ptmUTC)
+void copy(system_time_t & systemtimeUTC, const struct tm & tmUTC)
 {
 
-   psystemtimeUTC->wYear = ptmUTC->tm_year + 1900; 
-   psystemtimeUTC->wMonth = ptmUTC->tm_mon + 1;
-   psystemtimeUTC->wDay = ptmUTC->tm_mday;
-   psystemtimeUTC->wDayOfWeek = ptmUTC->tm_wday;
-   psystemtimeUTC->wHour = ptmUTC->tm_hour;
-   psystemtimeUTC->wMinute = ptmUTC->tm_min;
-   psystemtimeUTC->wSecond = ptmUTC->tm_sec;
-   psystemtimeUTC->wMilliseconds = 0;
+   systemtimeUTC.wYear = tmUTC.tm_year + 1900; 
+   systemtimeUTC.wMonth = tmUTC.tm_mon + 1;
+   systemtimeUTC.wDay = tmUTC.tm_mday;
+   systemtimeUTC.wDayOfWeek = tmUTC.tm_wday;
+   systemtimeUTC.wHour = tmUTC.tm_hour;
+   systemtimeUTC.wMinute = tmUTC.tm_min;
+   systemtimeUTC.wSecond = tmUTC.tm_sec;
+   systemtimeUTC.wMilliseconds = 0;
 
 }
 
 
-void copy(struct tm* ptmUTC, const system_time_t* psystemtimeUTC)
+void copy(struct tm & tmUTC, const system_time_t & systemtimeUTC)
 {
 
-   ptmUTC->tm_year = psystemtimeUTC->wYear - 1900;
-   ptmUTC->tm_mon = psystemtimeUTC->wMonth - 1;
-   ptmUTC->tm_mday = psystemtimeUTC->wDay;
-   ptmUTC->tm_wday = psystemtimeUTC->wDayOfWeek;
-   ptmUTC->tm_yday = -1; // todo
-   ptmUTC->tm_hour = psystemtimeUTC->wHour;
-   ptmUTC->tm_min = psystemtimeUTC->wMinute;
-   ptmUTC->tm_sec = psystemtimeUTC->wSecond + (psystemtimeUTC->wMilliseconds >= 500 ? (psystemtimeUTC->wMilliseconds >= 1500 ? 2 : 1) : 0);
-   ptmUTC->tm_isdst = ISDST_NO_DAYLIGHT_SAVINGS; // UTC doesn't observe daylight savings (this is what camilox guess...)
+   tmUTC.tm_year = systemtimeUTC.wYear - 1900;
+   tmUTC.tm_mon = systemtimeUTC.wMonth - 1;
+   tmUTC.tm_mday = systemtimeUTC.wDay;
+   tmUTC.tm_wday = systemtimeUTC.wDayOfWeek;
+   tmUTC.tm_yday = -1; // todo
+   tmUTC.tm_hour = systemtimeUTC.wHour;
+   tmUTC.tm_min = systemtimeUTC.wMinute;
+   tmUTC.tm_sec = systemtimeUTC.wSecond + (systemtimeUTC.wMilliseconds >= 500 ? (systemtimeUTC.wMilliseconds >= 1500 ? 2 : 1) : 0);
+   tmUTC.tm_isdst = ISDST_NO_DAYLIGHT_SAVINGS; // UTC doesn't observe daylight savings (this is what camilox guess...)
 
 }
 

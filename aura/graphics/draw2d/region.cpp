@@ -329,7 +329,7 @@ namespace draw2d
    }
 
 
-   bool region::get_bounding_box(RECTANGLE_I32 * prectangle, ::draw2d::graphics * pgraphics)
+   bool region::get_bounding_box(RECTANGLE_I32 & rectangle, ::draw2d::graphics * pgraphics)
    {
 
       throw ::interface_only();
@@ -372,14 +372,14 @@ namespace draw2d
    }
 
 
-   void region::max_bounding_box(RECTANGLE_I32 * prectangle, ::draw2d::graphics * pgraphics)
+   void region::max_bounding_box(RECTANGLE_I32 & rectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::rectangle_f64 rectangle;
+      ::rectangle_f64 rectangleMaxBounding;
 
-      max_bounding_box(rectangle);
+      max_bounding_box(rectangleMaxBounding);
 
-      __copy(prectangle, rectangle);
+      copy(rectangle, rectangleMaxBounding);
 
    }
 
@@ -445,13 +445,13 @@ namespace draw2d
    //}
 
 
-   void region::max_bounding_box(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics)
+   void region::max_bounding_box(RECTANGLE_F64 & rectangle, ::draw2d::graphics * pgraphics)
    {
 
       if (m_pitem)
       {
 
-         m_pitem->max_bounding_box(prectangle, pgraphics);
+         m_pitem->max_bounding_box(rectangle, pgraphics);
 
       }
 

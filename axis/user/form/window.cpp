@@ -1337,7 +1337,7 @@ namespace user
    }
 
 
-   bool form_window::_001IsPointInside(::user::interaction * pinteraction, point_i64 point)
+   bool form_window::_001IsPointInside(::user::interaction * pinteraction, const point_i64 & point)
    {
 
       if(pinteraction == nullptr)
@@ -1420,12 +1420,10 @@ namespace user
    //}
 
 
-   void form_window::control_get_window_rect(::user::interaction * pinteraction, RECTANGLE_I32 * prectangle)
-
+   void form_window::control_get_window_rect(::user::interaction * pinteraction, RECTANGLE_I32 & rectangle)
    {
 
-      pinteraction->get_window_rect(prectangle);
-
+      pinteraction->get_window_rect(rectangle);
 
    }
 

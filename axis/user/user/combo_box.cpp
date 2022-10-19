@@ -474,7 +474,7 @@ namespace user
    }
 
 
-   bool combo_box::get_element_rect(RECTANGLE_I32 * prectangle, enum_element eelement)
+   bool combo_box::get_element_rect(RECTANGLE_I32 & rectangle, enum_element eelement)
 
    {
 
@@ -485,8 +485,7 @@ namespace user
 
       }
 
-      return interaction::get_element_rect(prectangle, eelement);
-
+      return interaction::get_element_rect(rectangle, eelement);
 
    }
 

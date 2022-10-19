@@ -17501,16 +17501,16 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       }
       
-//      if(m_bHorizontalDragScroll || m_bVerticalDragScroll)
-//      {
-//         
-////         m_pointDragScrollLeftButtonDown = pmouse->m_point;
-//         
-//         m_bDragScrollLeftButtonDown = false;
-//         
-//         release_mouse_capture();
-//         
-//      }
+      if(m_bEnableHorizontalBarDragScroll || m_bEnableVerticalBarDragScroll)
+      {
+         
+//         m_pointDragScrollLeftButtonDown = pmouse->m_point;
+         
+         m_bBarDragScrollLeftButtonDown = false;
+         
+         release_mouse_capture();
+         
+      }
 
       //if (m_bHorizontalDragScrollingActive)
       //{

@@ -1,39 +1,39 @@
-// From _defer.h by camilo on 2022-06-28 21:20 <3ThomasBorregaardSorensen!! (Mummi and bilbo in ca2HQ)
+﻿// From _defer.h by camilo on 2022-06-28 21:20 <3ThomasBorregaardSorensen!! (Mummi and bilbo in ca2HQ)
 #pragma once
 
 
 template < typename SHAPE, enum_shape ESHAPE, typename HOLDEE >
-inline bool _shape < SHAPE, ESHAPE, HOLDEE >::get_bounding_rectangle(RECTANGLE_I32 * prectangle) const
+inline bool _shape < SHAPE, ESHAPE, HOLDEE >::get_bounding_rectangle(RECTANGLE_I32 & rectangle) const
 {
 
-   return ::get_bounding_rectangle(prectangle, &m_shape);
+   return ::get_bounding_rectangle(rectangle, m_shape);
 
 }
 
 
 template < typename SHAPE, enum_shape ESHAPE, typename HOLDEE >
-inline bool _shape < SHAPE, ESHAPE, HOLDEE >::get_bounding_rectangle(RECTANGLE_F64 * prectangle) const
+inline bool _shape < SHAPE, ESHAPE, HOLDEE >::get_bounding_rectangle(RECTANGLE_F64 & rectangle) const
 {
 
-   return ::get_bounding_rectangle(prectangle, &m_shape);
+   return ::get_bounding_rectangle(rectangle, m_shape);
 
 }
 
 
 template < typename SHAPE, enum_shape ESHAPE, typename HOLDEE >
-bool _shape < SHAPE, ESHAPE, HOLDEE >::expand_bounding_rect(RECTANGLE_F64 * prectangle) const
+bool _shape < SHAPE, ESHAPE, HOLDEE >::expand_bounding_rect(RECTANGLE_F64 & rectangle) const
 {
 
    ::RECTANGLE_F64 r;
 
-   if (!this->get_bounding_rectangle(&r))
+   if (!this->get_bounding_rectangle(r))
    {
 
       return false;
 
    }
 
-   ::union_rect(prectangle, prectangle, &r);
+   ::union_rect(rectangle, rectangle, r);
 
    return true;
 
@@ -41,19 +41,19 @@ bool _shape < SHAPE, ESHAPE, HOLDEE >::expand_bounding_rect(RECTANGLE_F64 * prec
 
 
 template < typename SHAPE, enum_shape ESHAPE, typename HOLDEE >
-bool _shape < SHAPE, ESHAPE, HOLDEE >::expand_bounding_rect(RECTANGLE_I32 * prectangle) const
+bool _shape < SHAPE, ESHAPE, HOLDEE >::expand_bounding_rect(RECTANGLE_I32 & rectangle) const
 {
 
    ::RECTANGLE_I32 r;
 
-   if (!this->get_bounding_rectangle(&r))
+   if (!this->get_bounding_rectangle(r))
    {
 
       return false;
 
    }
 
-   ::union_rect(prectangle, prectangle, &r);
+   ::union_rect(rectangle, rectangle, &r);
 
    return true;
 

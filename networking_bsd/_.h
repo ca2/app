@@ -1,4 +1,4 @@
-// https://avatars.githubusercontent.com/u/5128963?v=4
+﻿// https://avatars.githubusercontent.com/u/5128963?v=4
 #pragma once
 
 
@@ -32,6 +32,7 @@ CLASS_DECL_NETWORKING_BSD const char * bsd_socket_error(int x);
 
 
 #endif
+
 
 #ifdef HAVE_OPENSSL
 #include <openssl/ssl.h>

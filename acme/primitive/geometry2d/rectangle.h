@@ -141,7 +141,7 @@ public:
 
    POINT_TYPE & top_left() noexcept { return *((POINT_TYPE *)this); }
    POINT_TYPE & bottom_right() noexcept { return *((POINT_TYPE *)this + 1); }
-   void swap_left_right() noexcept { ::swap_left_right(this); }
+   void swap_left_right() noexcept { ::swap_left_right(*this); }
 
    operator RECTANGLE_BASE_TYPE * () noexcept { return this; }
    operator const RECTANGLE_BASE_TYPE * () const noexcept { return (const RECTANGLE_BASE_TYPE *)this; }
@@ -169,7 +169,7 @@ public:
    template < primitive_rectangle RECTANGLE >
    rectangle_type & copy(const RECTANGLE * prectangle) noexcept { ::copy(*this, prectangle); return *this; }
 
-   bool is_equal(const rectangle_type & rectangle) const noexcept { return ::rect_equals(*this, &rectangle); }
+   bool is_equal(const rectangle_type & rectangle) const noexcept { return ::rect_equals(*this, rectangle); }
 
    rectangle_type & inflate(UNIT_TYPE x, UNIT_TYPE y) noexcept { return ::rect_inflate_point(*this, x, y); }
    rectangle_type & inflate(const SIZE_TYPE & size) noexcept { return ::rect_inflate_point(*this, size.cx, size.cy); }

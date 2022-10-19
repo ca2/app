@@ -192,7 +192,7 @@ public:
 
    bool x_intersects(const rectangle_type & rectangle) const noexcept { return ::x_intersects(*this, rectangle); }
    bool y_intersects(const rectangle_type & rectangle) const noexcept { return ::y_intersects(*this, rectangle); }
-   bool intersects(const rectangle_type & rectangle) const noexcept { return ::intersects(nullptr, *this, rectangle); }
+   bool intersects(const rectangle_type & rectangle) const noexcept { return ::intersects(*this, rectangle); }
 
    bool intersect_x(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::x_intersect_rect(*this, rect1, rect2); }
    bool intersect_y(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::y_intersect_rect(*this, rect1, rect2); }

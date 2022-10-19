@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "graphics.h"
 #include "aura/windowing/window.h"
 #include "aura/user/user/interaction_impl.h"
@@ -245,16 +245,17 @@ namespace graphics
    }
 
 
-   i64 graphics::_001GetTopLeftWeightedOpaqueArea(const RECTANGLE_I32 * lpcrect)
+   i64 graphics::_001GetTopLeftWeightedOpaqueArea(const RECTANGLE_I32 & rect)
    {
 
       synchronous_lock synchronouslock(get_screen_sync());
 
       ::color::color colorTransparent(0);
 
-      return get_screen_image()->_001GetTopLeftWeightedOpaqueArea(colorTransparent, lpcrect);
+      return get_screen_image()->_001GetTopLeftWeightedOpaqueArea(colorTransparent, rect);
 
    }
+
 
 } // namespace graphics
 

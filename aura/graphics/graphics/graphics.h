@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 
@@ -47,7 +47,7 @@ namespace graphics
 
       virtual ::size_i32 window_size();
 
-      virtual i64 _001GetTopLeftWeightedOpaqueArea(const RECTANGLE_I32 * lpcrect);
+      virtual i64 _001GetTopLeftWeightedOpaqueArea(const RECTANGLE_I32 & rect);
 
       virtual synchronization_object * get_draw_lock();
       virtual ::draw2d::graphics * on_begin_draw();

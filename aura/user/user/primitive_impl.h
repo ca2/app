@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "apex/user/primitive.h"
@@ -25,15 +25,15 @@ namespace user
       bool                                      m_bUserImplCreated;
       bool                                      m_bDrawFlagsReady;
       bool                                      m_bDestroyImplOnly;
-      //bool                                      m_bDestroying;
+      //bool                                    m_bDestroying;
       int                                       m_iPendingRectMatch;
-      ::pointer<::user::interaction>           m_puserinteraction;
-      ::pointer<::user::box>                   m_puserbox;
+      ::pointer<::user::interaction>            m_puserinteraction;
+      ::pointer<::user::box>                    m_puserbox;
       bool                                      m_bIgnoreSizeEvent;
       bool                                      m_bIgnoreMoveEvent;
-      ap(critical_section)                      m_pcsDisplay;
+      ::auto_pointer < critical_section >       m_pcsDisplay;
 
-      ::pointer<::acme::timer_array>         m_ptimerarray;
+      ::pointer<::acme::timer_array>            m_ptimerarray;
 
       const char *                              m_pszInteractionImplBaseDebug;
 

@@ -1,4 +1,4 @@
-#ifndef _2_PASS_SCALE_H_
+﻿#ifndef _2_PASS_SCALE_H_
 #define _2_PASS_SCALE_H_
 
 #include <math.h>
@@ -143,7 +143,7 @@ C2PassScale<FilterClass>::
 CalcContributions (::u32 uLineSize, ::u32 uSrcSize, double dScale)
 {
 
-   ap(FilterClass) pCurFilter;
+   ::auto_pointer < FilterClass > pCurFilter;
 
    if (m_dFilterWidth < 0.0)
    {

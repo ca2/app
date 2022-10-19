@@ -431,7 +431,7 @@ namespace draw2d
       virtual void paint_region(::draw2d::region* pregion);
 
       // Clipping Functions
-      virtual i32 get_clip_box(::rectangle_f64 * prectangle);
+      virtual i32 get_clip_box(::rectangle_f64 & rectangle);
 
       //virtual i32 get_clip_box(::rectangle_f64 * prectangle);
 

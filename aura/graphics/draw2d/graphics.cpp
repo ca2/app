@@ -2849,7 +2849,7 @@ namespace draw2d
    //}
 
 
-   i32 graphics::get_clip_box(::rectangle_f64 * prectangle)
+   i32 graphics::get_clip_box(::rectangle_f64 & rectangle)
    {
 
       //::rectangle_f64 rectangle;

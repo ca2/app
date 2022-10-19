@@ -1255,6 +1255,10 @@ namespace windowing
 
       ::lparam lparam(x, y);
 
+      m_pointCursor.x = x;
+
+      m_pointCursor.y = y;
+
       m_puserinteractionimpl->m_puserinteraction->post_message(e_message_left_button_down, 0, lparam);
 
    }
@@ -1265,6 +1269,10 @@ namespace windowing
 
       ::lparam lparam(x, y);
 
+      m_pointCursor.x = x;
+
+      m_pointCursor.y = y;
+
       m_puserinteractionimpl->m_puserinteraction->post_message(e_message_mouse_move, 0, lparam);
 
    }
@@ -1274,6 +1282,10 @@ namespace windowing
    {
 
       ::lparam lparam(x, y);
+
+      m_pointCursor.x = x;
+
+      m_pointCursor.y = y;
 
       m_puserinteractionimpl->m_puserinteraction->post_message(e_message_left_button_up, 0, lparam);
 

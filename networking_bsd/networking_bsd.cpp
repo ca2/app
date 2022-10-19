@@ -641,7 +641,7 @@ CLASS_DECL_NETWORKING_BSD void from_string(in_addr & addr, const char * src)
 }
 
 
-CLASS_DECL_NETWORKING_BSD void from_string(in_addr6 & addr, const char * src)
+CLASS_DECL_NETWORKING_BSD void from_string(in6_addr & addr, const char * src)
 {
 
    int iRet = inet_pton(AF_INET6, src, &addr);

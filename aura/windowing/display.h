@@ -14,10 +14,10 @@ namespace windowing
    public:
 
 
-      void *                        m_pDisplay;
-      void *                        m_pDisplay2;
+      void * m_pDisplay;
+      void * m_pDisplay2;
 #if defined(LINUX) || defined(FREEBSD)
-      void *                        _m_pX11Display;
+      void * _m_pX11Display;
 #endif
 
       pointer_array < monitor >      m_monitora;
@@ -46,69 +46,70 @@ namespace windowing
 
       virtual void open();
 
-      virtual bool set_main_monitor(index iMonitor) ;
+      virtual bool set_main_monitor(index iMonitor);
       //virtual ::count get_monitor_count() //;
       //virtual bool  get_monitor_rectangle(index iMonitor, RECTANGLE_I32 * prectangle) //;
 
 //      virtual index get_main_workspace(RECTANGLE_I32 * prectangle = nullptr) ;
 
-      virtual bool set_main_workspace(index iWorkspace) ;
+      virtual bool set_main_workspace(index iWorkspace);
       //virtual ::count get_workspace_count() ;
       //virtual bool  get_workspace_rectangle(index iWorkspace, RECTANGLE_I32 * prectangle) ;
 
-      virtual bool workspace_to_monitor(RECTANGLE_I32 * prectangle, index iMonitor, index iWorkspace) ;
+      virtual bool workspace_to_monitor(RECTANGLE_I32 & rectangle, index iMonitor, index iWorkspace);
 
-      virtual bool monitor_to_workspace(RECTANGLE_I32 * prectangle, index iWorkspace, index iMonitor) ;
+      virtual bool monitor_to_workspace(RECTANGLE_I32 & rectangle, index iWorkspace, index iMonitor);
 
-      virtual bool workspace_to_monitor(RECTANGLE_I32 * prectangle) ;
+      virtual bool workspace_to_monitor(RECTANGLE_I32 & rectangle);
 
-      virtual bool monitor_to_workspace(RECTANGLE_I32 * prectangle) ;
+      virtual bool monitor_to_workspace(RECTANGLE_I32 & rectangle);
 
       //virtual ::count get_desk_monitor_count() ;
       //virtual bool  get_desk_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle) ;
 
-      virtual monitor *  get_monitor(index iMonitor);
+      virtual monitor * get_monitor(index iMonitor);
 
-      virtual void  get_monitor(rectangle_i32_array & rectaMonitor, rectangle_i32_array & rectaIntersect, const ::rectangle_i32 & rectangle) ;
+      virtual void  get_monitor(rectangle_i32_array & rectaMonitor, rectangle_i32_array & rectaIntersect, const ::rectangle_i32 & rectangle);
 
       virtual index initial_frame_position(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bMove, ::user::interaction * pinteraction);
 
-      virtual index _get_best_zoneing(edisplay * pedisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bPreserveSize = false) ;
+      virtual index _get_best_zoneing(edisplay * pedisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bPreserveSize = false);
 
-      virtual index get_best_monitor(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, ::e_activation eactivation = e_activation_default, ::windowing::window * pwindowCursorPosition = nullptr) ;
+      virtual index get_best_monitor(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, ::e_activation eactivation = e_activation_default, ::windowing::window * pwindowCursorPosition = nullptr);
 
-      virtual index get_best_workspace(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, ::e_activation eactivation = e_activation_default, ::windowing::window * pwindowCursorPosition = nullptr) ;
+      virtual index get_best_workspace(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, ::e_activation eactivation = e_activation_default, ::windowing::window * pwindowCursorPosition = nullptr);
 
-      virtual index get_good_iconify(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle) ;
+      virtual index get_good_iconify(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle);
 
       virtual index get_good_restore(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction, edisplay edisplayRestore);
 
       virtual index get_good_move(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction);
 
 
-      virtual void enum_display_monitors() ;
+      virtual void enum_display_monitors();
 
-      virtual ::index get_main_monitor(RECTANGLE_I32 * prectangle = nullptr) ;
+      virtual ::index get_main_monitor_index();
+      virtual ::index get_main_monitor(RECTANGLE_I32 & rectangle);
       virtual ::size_i32 get_main_monitor_size();
 
       virtual ::size_i32 get_monitor_union_size();
 
-      virtual ::count get_monitor_count() ;
-      virtual bool  get_monitor_rectangle(index iMonitor, RECTANGLE_I32 * prectangle) ;
+      virtual ::count get_monitor_count();
+      virtual bool  get_monitor_rectangle(index iMonitor, RECTANGLE_I32 & rectangle);
 
-      virtual ::index  get_main_monitor_of_rectangle(const RECTANGLE_I32* prectangle);
+      virtual ::index  get_main_monitor_of_rectangle(const RECTANGLE_I32 & rectangle);
 
-      virtual ::count get_desk_monitor_count() ;
-      virtual bool  get_desk_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle) ;
+      virtual ::count get_desk_monitor_count();
+      virtual bool  get_desk_monitor_rect(index iMonitor, RECTANGLE_I32 & rectangle);
 
 
-      virtual index get_main_workspace(RECTANGLE_I32 * prectangle = nullptr) ;
+      virtual index get_main_workspace(RECTANGLE_I32 & prectangle);
 
-      virtual ::count get_workspace_count() ;
-      virtual bool  get_workspace_rectangle(index iWorkspace, RECTANGLE_I32 * prectangle) ;
+      virtual ::count get_workspace_count();
+      virtual bool get_workspace_rectangle(index iWorkspace, RECTANGLE_I32 & rectangle);
 
-      virtual ::count get_desk_workspace_count() ;
-      virtual bool  get_desk_workspace_rect(index iWorkspace, RECTANGLE_I32 * prectangle) ;
+      virtual ::count get_desk_workspace_count();
+      virtual bool get_desk_workspace_rect(index iWorkspace, RECTANGLE_I32 & rectangle);
 
       virtual index get_ui_workspace(::user::interaction * pinteraction);
 
@@ -144,8 +145,8 @@ namespace windowing
 
       virtual bool would_be_restored_in_monitor(const ::rectangle_i32 & rectangleWouldBeRestored, const ::rectangle_i32 & rectangleMonitor);
 
-   };
 
+   };
 
 
 } // namespace windowing

@@ -25,12 +25,12 @@ public:
    rectangle_type(UNIT_TYPE i) noexcept : rectangle_type(i, i) {}
 
 
-#ifdef APPLE
-   rectangle_type(const CGRect & t) noexcept : { ::copy(this, &t); }
-   rectangle_type(const Gdiplus::RectF & t) noexcept : { ::copy(this, &t); }
-   rectangle_type(const CGRect * p) noexcept : { ::copy(this, p); }
-   rectangle_type(const Gdiplus::RectF * p) noexcept : { ::copy(this, p); }
-#endif
+//#ifdef APPLE
+//   rectangle_type(const CGRect & t) noexcept : { ::copy(*this, &t); }
+//   rectangle_type(const Gdiplus::RectF & t) noexcept : { ::copy(this, &t); }
+//   rectangle_type(const CGRect * p) noexcept : { ::copy(this, p); }
+//   rectangle_type(const Gdiplus::RectF * p) noexcept : { ::copy(this, p); }
+//#endif
    template < primitive_point POINT, primitive_size SIZE >
    rectangle_type(const POINT & point, const SIZE & size) noexcept : rectangle_type((UNIT_TYPE)point.x, (UNIT_TYPE)point.y, (UNIT_TYPE)(point.x + size.cx), (UNIT_TYPE)(point.y + size.cy)) {}
    template < primitive_size SIZE >
@@ -277,18 +277,18 @@ public:
 
    rectangle_type operator+(const POINT_TYPE & point) const noexcept
    {
-      rectangle_type rectangle(this); rectangle.offset(point.x, point.y); return rectangle;
+      rectangle_type rectangle(*this); rectangle.offset(point.x, point.y); return rectangle;
    }
    rectangle_type operator-(const POINT_TYPE & point) const noexcept
    {
-      rectangle_type rectangle(this); rectangle.offset(-point.x, -point.y); return rectangle;
+      rectangle_type rectangle(*this); rectangle.offset(-point.x, -point.y); return rectangle;
    }
 
    template < primitive_size SIZE >
    rectangle_type operator+(const SIZE & size) const noexcept
    {
 
-      rectangle_type rectangle(this); rectangle.offset(size.cx, size.cy); return rectangle;
+      rectangle_type rectangle(*this); rectangle.offset(size.cx, size.cy); return rectangle;
 
    }
 
@@ -296,18 +296,18 @@ public:
    rectangle_type operator-(const SIZE & size) const noexcept
    {
 
-      rectangle_type rectangle(this); rectangle.offset(-size.cx, -size.cy); return rectangle;
+      rectangle_type rectangle(*this); rectangle.offset(-size.cx, -size.cy); return rectangle;
 
    }
 
    rectangle_type operator+(const rectangle_type & rectangleAdd) const noexcept
    {
-      rectangle_type rectangle(this); rectangle.inflate(rectangleAdd); return rectangle;
+      rectangle_type rectangle(*this); rectangle.inflate(rectangleAdd); return rectangle;
    }
    rectangle_type operator-(const rectangle_type & rectangleSub) const noexcept
 
    {
-      rectangle_type rectangle(this); rectangle.deflate(rectangleSub); return rectangle;
+      rectangle_type rectangle(*this); rectangle.deflate(rectangleSub); return rectangle;
    }
    rectangle_type operator&(const rectangle_type & rect2) const noexcept
    {

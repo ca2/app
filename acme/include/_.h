@@ -2933,7 +2933,7 @@ concept primitive_point = requires(POINT point)
 
 
 template < typename POINT >
-concept XY_point = requires(POINT point)
+concept primitive_XY = requires(POINT point)
 {
    point.X;
    point.Y;
@@ -2949,7 +2949,7 @@ concept primitive_size = requires(SIZE size)
 
 
 template < typename SIZE >
-concept Dim_size = requires(SIZE size)
+concept primitive_Dim = requires(SIZE size)
 {
    size.Width;
    size.Height;
@@ -2967,7 +2967,7 @@ concept primitive_rectangle = requires(RECTANGLE rectangle)
 
 
 template < typename RECTANGLE >
-concept XYDim_rectangle = requires(RECTANGLE rectangle)
+concept primitive_XYDim = requires(RECTANGLE rectangle)
 {
    rectangle.X;
    rectangle.Y;
@@ -2977,7 +2977,7 @@ concept XYDim_rectangle = requires(RECTANGLE rectangle)
 
 
 template < typename RECTANGLE >
-concept xydim_rectangle = requires(RECTANGLE rectangle)
+concept primitive_xydim = requires(RECTANGLE rectangle)
 {
    rectangle.x;
    rectangle.y;

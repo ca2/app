@@ -514,10 +514,10 @@ namespace user
 
       virtual void set_context_org(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void viewport_screen_to_client(POINT_I32 * ppt);
-      virtual void viewport_client_to_screen(POINT_I32 * ppt);
-      virtual void viewport_client_to_screen(RECTANGLE_I32 * ppt);
-      virtual void viewport_screen_to_client(RECTANGLE_I32 * ppt);
+      virtual void viewport_screen_to_client(POINT_I32 & point);
+      virtual void viewport_client_to_screen(POINT_I32 & point);
+      virtual void viewport_client_to_screen(RECTANGLE_I32 & point);
+      virtual void viewport_screen_to_client(RECTANGLE_I32 & point);
 
 
       virtual string get_window_default_matter();

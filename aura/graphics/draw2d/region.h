@@ -6,24 +6,24 @@
 
 
 template < primitive_rectangle RECTANGLE >
-inline void max_bounding_box(RECTANGLE * prectangle, POINT_F64 * p)
+inline void max_bounding_box(RECTANGLE & rectangle, POINT_F64 * p)
 {
 
-   prectangle->left = (decltype(prectangle->left))minimum(prectangle->left, p->x);
-   prectangle->right = (decltype(prectangle->right))maximum(prectangle->right, p->x);
-   prectangle->top = (decltype(prectangle->top))minimum(prectangle->top, p->y);
-   prectangle->bottom = (decltype(prectangle->bottom))maximum(prectangle->bottom, p->y);
+   rectangle.left = (decltype(rectangle.left))minimum(rectangle.left, p->x);
+   rectangle.right = (decltype(rectangle.right))maximum(rectangle.right, p->x);
+   rectangle.top = (decltype(rectangle.top))minimum(rectangle.top, p->y);
+   rectangle.bottom = (decltype(rectangle.bottom))maximum(rectangle.bottom, p->y);
 
 }
 
 template < primitive_rectangle RECTANGLE >
-inline void max_bounding_box(RECTANGLE * prectangle, POINT_F64 * p, ::count c)
+inline void max_bounding_box(RECTANGLE & rectangle, POINT_F64 * p, ::count c)
 {
 
    for (::index i = 0; i < c; i++)
    {
     
-      max_bounding_box(prectangle, p);
+      max_bounding_box(rectangle, p);
       
       p++;
 
@@ -48,7 +48,7 @@ namespace draw2d
       public:
 
          virtual void translate(const POINT_I32 & point);
-         virtual void max_bounding_box(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics);
+         virtual void max_bounding_box(RECTANGLE_F64 & rectangle, ::draw2d::graphics * pgraphics);
          virtual bool internal_contains(const POINT_F64 & p);
 
       };
@@ -62,7 +62,7 @@ namespace draw2d
          ::rectangle_f64 m_rectangle;
 
          void translate(const POINT_I32 & point) override;
-         void max_bounding_box(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics) override;
+         void max_bounding_box(RECTANGLE_F64 & rectangle, ::draw2d::graphics * pgraphics) override;
          bool internal_contains(const POINT_F64 & p) override;
 
       };
@@ -76,7 +76,7 @@ namespace draw2d
          ::rectangle_f64 m_rectangle;
 
          void translate(const POINT_I32 & point) override;
-         void max_bounding_box(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics) override;
+         void max_bounding_box(RECTANGLE_F64 & rectangle, ::draw2d::graphics * pgraphics) override;
          bool internal_contains(const POINT_F64 & p) override;
 
 
@@ -93,7 +93,7 @@ namespace draw2d
          
          
          void translate(const POINT_I32 & point) override;
-         void max_bounding_box(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics) override;
+         void max_bounding_box(RECTANGLE_F64 & rectangle, ::draw2d::graphics * pgraphics) override;
          bool internal_contains(const POINT_F64 & p) override;
 
 
@@ -109,7 +109,7 @@ namespace draw2d
          ::draw2d::enum_fill_mode            m_efillmode;
 
          void translate(const POINT_I32 & point) override;
-         void max_bounding_box(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics) override;
+         void max_bounding_box(RECTANGLE_F64 & rectangle, ::draw2d::graphics * pgraphics) override;
          bool internal_contains(const POINT_F64 & p) override;
 
 
@@ -127,7 +127,7 @@ namespace draw2d
          enum_combine                        m_ecombine;
 
          void translate(const POINT_I32 & point) override;
-         void max_bounding_box(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics) override;
+         void max_bounding_box(RECTANGLE_F64 & rectangle, ::draw2d::graphics * pgraphics) override;
          bool internal_contains(const POINT_F64 & p) override;
 
 
@@ -146,7 +146,7 @@ namespace draw2d
 
 
          void translate(const POINT_I32 & point) override;
-         void max_bounding_box(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics) override;
+         void max_bounding_box(RECTANGLE_F64 & rectangle, ::draw2d::graphics * pgraphics) override;
          bool internal_contains(const POINT_F64 & p) override;
 
       };
@@ -214,7 +214,7 @@ namespace draw2d
       
       virtual bool combine(const ::draw2d::region * prgn1, const ::draw2d::region * prgn2, enum_combine ecombine, ::draw2d::graphics * pgraphics = nullptr);
       virtual bool translate(const POINT_I32 & point, ::draw2d::graphics * pgraphics = nullptr);
-      virtual bool get_bounding_box(RECTANGLE_I32 * prectangle, ::draw2d::graphics * pgraphics = nullptr);
+      virtual bool get_bounding_box(RECTANGLE_I32 & rectangle, ::draw2d::graphics * pgraphics = nullptr);
 
       virtual bool contains(const POINT_I32 & point, ::draw2d::graphics * pgraphics = nullptr);
       virtual bool contains(const POINT_F64 & point, ::draw2d::graphics * pgraphics = nullptr);
@@ -247,7 +247,7 @@ namespace draw2d
       //bool internal_combine_contains(const POINT_F64 & point);
 
 
-      virtual void max_bounding_box(RECTANGLE_I32 * prectangle, ::draw2d::graphics * pgraphics = nullptr);
+      virtual void max_bounding_box(RECTANGLE_I32 & rectangle, ::draw2d::graphics * pgraphics = nullptr);
 
       //virtual void max_bounding_box_rect(RECTANGLE_I32 * prectangle, ::draw2d::graphics * pgraphics = nullptr);
 
@@ -261,7 +261,7 @@ namespace draw2d
 
 
       
-      virtual void max_bounding_box(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics = nullptr);
+      virtual void max_bounding_box(RECTANGLE_F64 & rectangle, ::draw2d::graphics * pgraphics = nullptr);
 
       //virtual void max_bounding_box_rect(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics = nullptr);
 

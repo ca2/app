@@ -161,20 +161,23 @@ namespace windowing
    }
 
 
-   ::index display::get_main_monitor(RECTANGLE_I32 * prectangle)
+   ::index display::get_main_monitor_index()
    {
 
-      index iMainMonitor = 0;
+      return 0;
 
-      if (prectangle != nullptr)
+   }
+
+
+   ::index display::get_main_monitor(RECTANGLE_I32 & rectangle)
+   {
+
+      index iMainMonitor = get_main_monitor_index();
+
+      if (!get_monitor_rectangle(iMainMonitor, rectangle))
       {
 
-         if (!get_monitor_rectangle(iMainMonitor, prectangle))
-         {
-
-            return -1;
-
-         }
+         return -1;
 
       }
 
@@ -257,7 +260,7 @@ namespace windowing
    }
 
 
-   bool display::get_monitor_rectangle(index iMonitor, RECTANGLE_I32 * prectangle)
+   bool display::get_monitor_rectangle(index iMonitor, RECTANGLE_I32 & rectangle)
    {
 
       if(iMonitor < 0 || iMonitor >= get_monitor_count())
@@ -280,18 +283,14 @@ namespace windowing
 
       }
 
-      //auto bOk = 
-      
-      pmonitor->get_monitor_rectangle(prectangle);
-
-      //return bOk;
+      pmonitor->get_monitor_rectangle(rectangle);
 
       return true;
 
    }
 
 
-   ::index  display::get_main_monitor_of_rectangle(const RECTANGLE_I32* prectangle)
+   ::index  display::get_main_monitor_of_rectangle(const RECTANGLE_I32 & rectangle)
    {
 
       ::rectangle_i32 rectangleMonitor;
@@ -303,11 +302,11 @@ namespace windowing
       for (::index i = 0; i < get_monitor_count(); i++)
       {
 
-         get_monitor_rectangle(i, &rectangleMonitor);
+         get_monitor_rectangle(i, rectangleMonitor);
 
          ::rectangle_i32 rectangleIntersection;
 
-         if (rectangleIntersection.intersect(rectangleMonitor, *prectangle))
+         if (rectangleIntersection.intersect(rectangleMonitor, rectangle))
          {
 
             if (rectangleIntersection.area() > iMaximumArea)
@@ -336,26 +335,28 @@ namespace windowing
    }
 
 
-   bool display::get_desk_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle)
+   bool display::get_desk_monitor_rect(index iMonitor, RECTANGLE_I32 & rectangle)
    {
 
-      return get_monitor_rectangle(iMonitor, prectangle);
+      return get_monitor_rectangle(iMonitor, rectangle);
 
    }
 
 
 
-   index display::get_main_workspace(RECTANGLE_I32 * prectangle)
+   index display::get_main_workspace(RECTANGLE_I32 & rectangle)
    {
 
-      if(!get_workspace_rectangle(0, prectangle))
+      index iMainWorkspace = get_main_monitor_index();
+
+      if(!get_workspace_rectangle(iMainWorkspace, rectangle))
       {
 
          return -1;
 
       }
 
-      return 0;
+      return iMainWorkspace;
 
    }
 
@@ -368,7 +369,7 @@ namespace windowing
    }
 
 
-   bool display::get_workspace_rectangle(index iWorkspace, RECTANGLE_I32 * prectangle)
+   bool display::get_workspace_rectangle(index iWorkspace, RECTANGLE_I32 & rectangle)
    {
 
       if(iWorkspace < 0 || iWorkspace >= get_workspace_count())
@@ -398,11 +399,7 @@ namespace windowing
 
       }
 
-      //auto bOk = 
-      
-      pmonitor->get_workspace_rectangle(prectangle);
-
-      //return bOk;
+      pmonitor->get_workspace_rectangle(rectangle);
 
       return true;
 
@@ -417,11 +414,11 @@ namespace windowing
    }
 
 
-   bool display::get_desk_workspace_rect(index iWorkspace, RECTANGLE_I32 * prectangle)
+   bool display::get_desk_workspace_rect(index iWorkspace, RECTANGLE_I32 & rectangle)
 
    {
 
-      return get_workspace_rectangle(iWorkspace, prectangle);
+      return get_workspace_rectangle(iWorkspace, rectangle);
 
 
    }
@@ -456,10 +453,10 @@ namespace windowing
    }
 
 
-   bool display::workspace_to_monitor(RECTANGLE_I32 * prectangle, index iMonitor, index iWorkspace)
+   bool display::workspace_to_monitor(RECTANGLE_I32 & rectangleToMonitor, index iMonitor, index iWorkspace)
    {
 
-      ::rectangle_i32 rectangle(*prectangle);
+      ::rectangle_i32 rectangle(rectangleToMonitor);
 
       ::rectangle_i32 rectangleWorkspace;
 
@@ -483,38 +480,37 @@ namespace windowing
 
       rectangle += rectangleMonitor.top_left();
 
-      *prectangle = rectangle;
-
+      rectangleToMonitor = rectangle;
 
       return true;
 
    }
 
 
-   bool display::workspace_to_monitor(RECTANGLE_I32 * prectangle)
+   bool display::workspace_to_monitor(RECTANGLE_I32 & rectangle)
    {
 
-      index iWorkspace = get_best_workspace(nullptr, *prectangle);
+      index iWorkspace = get_best_workspace(nullptr, rectangle);
 
-      return workspace_to_monitor(prectangle, iWorkspace, iWorkspace);
+      return workspace_to_monitor(rectangle, iWorkspace, iWorkspace);
 
    }
 
 
-   bool display::monitor_to_workspace(RECTANGLE_I32 * prectangle)
+   bool display::monitor_to_workspace(RECTANGLE_I32 & rectangle)
    {
 
-      index iMonitor = get_best_monitor(nullptr, *prectangle);
+      index iMonitor = get_best_monitor(nullptr, rectangle);
 
-      return monitor_to_workspace(prectangle, iMonitor, iMonitor);
+      return monitor_to_workspace(rectangle, iMonitor, iMonitor);
 
    }
 
 
-   bool display::monitor_to_workspace(RECTANGLE_I32 * prectangle, index iWorkspace, index iMonitor)
+   bool display::monitor_to_workspace(RECTANGLE_I32 & rectangleToWorkspace, index iWorkspace, index iMonitor)
    {
 
-      ::rectangle_i32 rectangle(*prectangle);
+      ::rectangle_i32 rectangle(rectangleToWorkspace);
 
       ::rectangle_i32 rectangleMonitor;
 
@@ -538,7 +534,7 @@ namespace windowing
 
       rectangle += rectangleWorkspace.top_left();
 
-      *prectangle = rectangle;
+      rectangleToWorkspace = rectangle;
 
       return true;
 
@@ -966,7 +962,7 @@ namespace windowing
 
       }
 
-      iMatchingMonitor = get_main_monitor(prectangle);
+      iMatchingMonitor = get_main_monitor(rectangle);
 
       return iMatchingMonitor;
 
@@ -1046,7 +1042,7 @@ namespace windowing
 
       }
 
-      iMatchingWorkspace = get_main_workspace(prectangle);
+      iMatchingWorkspace = get_main_workspace(*prectangle);
 
       return iMatchingWorkspace;
 
@@ -1200,7 +1196,7 @@ namespace windowing
       if (pinteraction != nullptr)
       {
 
-         auto iMonitor = pinteraction->get_preferred_restore(prectangle);
+         auto iMonitor = pinteraction->get_preferred_restore(*prectangle);
 
          if (iMonitor >= 0)
          {

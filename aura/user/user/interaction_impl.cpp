@@ -2259,7 +2259,7 @@ namespace user
 
                   ::rectangle_i32 rcMonitor;
 
-                  pdisplay->get_monitor_rectangle(0, &rcMonitor);
+                  pdisplay->get_monitor_rectangle(0, rcMonitor);
 
                   if (rectWindow.left >= rcMonitor.left)
                   {

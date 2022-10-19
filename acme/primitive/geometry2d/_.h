@@ -28,14 +28,14 @@ enum enum_orientation
 
 
 
-inline auto left(const RECTANGLE_I32 & rectangle) { return rectangle.left; }
-inline auto top(const RECTANGLE_I32 & rectangle) { return rectangle.top; }
-inline auto left(const RECTANGLE_I64 & rectangle) { return rectangle.left; }
-inline auto top(const RECTANGLE_I64 & rectangle) { return rectangle.top; }
-inline auto left(const RECTANGLE_F32 & rectangle) { return rectangle.left; }
-inline auto top(const RECTANGLE_F32 & rectangle) { return rectangle.top; }
-inline auto left(const RECTANGLE_F64 & rectangle) { return rectangle.left; }
-inline auto top(const RECTANGLE_F64 & rectangle) { return rectangle.top; }
+// inline auto left(const RECTANGLE_I32 & rectangle) { return rectangle.left; }
+// inline auto top(const RECTANGLE_I32 & rectangle) { return rectangle.top; }
+// inline auto left(const RECTANGLE_I64 & rectangle) { return rectangle.left; }
+// inline auto top(const RECTANGLE_I64 & rectangle) { return rectangle.top; }
+// inline auto left(const RECTANGLE_F32 & rectangle) { return rectangle.left; }
+// inline auto top(const RECTANGLE_F32 & rectangle) { return rectangle.top; }
+// inline auto left(const RECTANGLE_F64 & rectangle) { return rectangle.left; }
+// inline auto top(const RECTANGLE_F64 & rectangle) { return rectangle.top; }
 
 
 
@@ -44,8 +44,8 @@ template < typename TARGET, typename SOURCE >
 inline TARGET & _001CopyRect(TARGET & prectTarget, const SOURCE & prectSource);
 
 
-template < XYDim_rectangle XYWH, typename X, typename Y, typename W, typename H >
-inline XYWH & set_dim(XYWH & rectTarget, X x, Y y, W w, H h)
+template < primitive_XYDim XYDim, typename X, typename Y, typename W, typename H >
+inline XYDim & set_dim(XYDim & rectTarget, X x, Y y, W w, H h)
 {
 
    rectTarget.X = (decltype(rectTarget.X))x;
@@ -573,35 +573,35 @@ RECT_TYPE1 & copy(RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 }
 
 
-template < primitive_rectangle RECT_TYPE1, XYDim_rectangle RECT_TYPE2 >
-RECT_TYPE1 & copy(RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
+template < primitive_rectangle RECTANGLE, primitive_XYDim XYDim >
+RECTANGLE & copy(RECTANGLE & rectangle, const XYDim & xydim)
 {
 
-   rect1.left = (decltype(RECT_TYPE1::left))rect2.X;
-   rect1.top = (decltype(RECT_TYPE1::top))rect2.Y;
-   rect1.right = (decltype(RECT_TYPE1::right))(rect2.X + rect2.Width);
-   rect1.bottom = (decltype(RECT_TYPE1::bottom))(rect2.Y + rect2.Height);
+   rectangle.left = (decltype(RECTANGLE::left))xydim.X;
+   rectangle.top = (decltype(RECTANGLE::top))xydim.Y;
+   rectangle.right = (decltype(RECTANGLE::right))(xydim.X + xydim.Width);
+   rectangle.bottom = (decltype(RECTANGLE::bottom))(xydim.Y + xydim.Height);
+
+   return rectangle;
+
+}
+
+
+template < primitive_rectangle RECTANGLE, primitive_xydim XYDIM >
+RECTANGLE & copy(RECTANGLE & rect1, const XYDIM & xydim)
+{
+
+   rect1.left = (decltype(RECTANGLE::left))xydim.x;
+   rect1.top = (decltype(RECTANGLE::top))xydim.y;
+   rect1.right = (decltype(RECTANGLE::right))(xydim.x + xydim.width);
+   rect1.bottom = (decltype(RECTANGLE::bottom))(xydim.y + xydim.height);
 
    return rect1;
 
 }
 
 
-template < primitive_rectangle RECT_TYPE1, xydim_rectangle RECT_TYPE2 >
-RECT_TYPE1 & copy(RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
-{
-
-   rect1.left = (decltype(RECT_TYPE1::left))rect2.x;
-   rect1.top = (decltype(RECT_TYPE1::top))rect2.y;
-   rect1.right = (decltype(RECT_TYPE1::right))(rect2.x + rect2.width);
-   rect1.bottom = (decltype(RECT_TYPE1::bottom))(rect2.y + rect2.height);
-
-   return rect1;
-
-}
-
-
-template < XY_point POINT1, primitive_point POINT2 >
+template < primitive_XY POINT1, primitive_point POINT2 >
 POINT1 & copy(POINT1 & point1, const POINT2 & point2)
 {
 
@@ -613,7 +613,7 @@ POINT1 & copy(POINT1 & point1, const POINT2 & point2)
 }
 
 
-template < primitive_point POINT1, XY_point POINT2 >
+template < primitive_point POINT1, primitive_XY POINT2 >
 POINT1 & copy(POINT1 & point1, const POINT2 & point2)
 {
 
@@ -625,44 +625,44 @@ POINT1 & copy(POINT1 & point1, const POINT2 & point2)
 }
 
 
-template < XYDim_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-RECT_TYPE1 & copy(RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
+template < primitive_XYDim XYDim, primitive_rectangle RECTANGLE >
+XYDim & copy(XYDim & xydim, const RECTANGLE & rectangle)
 {
 
-   rect1.X = (decltype(RECT_TYPE1::X))rect2.left;
-   rect1.Y = (decltype(RECT_TYPE1::Y))rect2.top;
-   rect1.Width = (decltype(RECT_TYPE1::Width))(rect2.right - rect2.left);
-   rect1.Height = (decltype(RECT_TYPE1::Height))(rect2.bottom - rect2.top);
+   xydim.X = (decltype(XYDim::X))rectangle.left;
+   xydim.Y = (decltype(XYDim::Y))rectangle.top;
+   xydim.Width = (decltype(XYDim::Width))(rectangle.right - rectangle.left);
+   xydim.Height = (decltype(XYDim::Height))(rectangle.bottom - rectangle.top);
 
-   return rect1;
+   return xydim;
 
 }
 
 
-template < xydim_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-RECT_TYPE1 & copy(RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
+template < primitive_xydim XYDIM, primitive_rectangle RECTANGLE >
+XYDIM & copy(XYDIM & xydim, const RECTANGLE & rectangle)
 {
 
-   rect1.x = (decltype(RECT_TYPE1::X))rect2.left;
-   rect1.y = (decltype(RECT_TYPE1::Y))rect2.top;
-   rect1.width = (decltype(RECT_TYPE1::Width))(rect2.right - rect2.left);
-   rect1.height = (decltype(RECT_TYPE1::Height))(rect2.bottom - rect2.top);
+   xydim.x = (decltype(XYDIM::X))rectangle.left;
+   xydim.y = (decltype(XYDIM::Y))rectangle.top;
+   xydim.width = (decltype(XYDIM::Width))(rectangle.right - rectangle.left);
+   xydim.height = (decltype(XYDIM::Height))(rectangle.bottom - rectangle.top);
 
-   return rect1;
+   return xydim;
 
 }
 
 
-template < XYDim_rectangle RECT_TYPE1, XYDim_rectangle RECT_TYPE2 >
-RECT_TYPE1 & copy(RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
+template < primitive_XYDim XYDim1, primitive_XYDim XYDim2 >
+XYDim1 & copy(XYDim1 & xydim1, const XYDim2 & xydim2)
 {
 
-   rect1.X = (decltype(RECT_TYPE1::X))rect2.X;
-   rect1.Y = (decltype(RECT_TYPE1::Y))rect2.Y;
-   rect1.Width = (decltype(RECT_TYPE1::Width))rect2.Width;
-   rect1.Height = (decltype(RECT_TYPE1::Height))rect2.Height;
+   xydim1.X = (decltype(XYDim1::X))xydim2.X;
+   xydim1.Y = (decltype(XYDim1::Y))xydim2.Y;
+   xydim1.Width = (decltype(XYDim1::Width))xydim2.Width;
+   xydim1.Height = (decltype(XYDim1::Height))xydim2.Height;
 
-   return rect1;
+   return xydim1;
 
 }
 
@@ -1147,6 +1147,55 @@ inline auto height(const RECTANGLE & rectangle) { return rectangle.bottom - rect
 
 template < primitive_rectangle RECTANGLE >
 inline auto area(const RECTANGLE & rectangle) { return maximum(width(rectangle), 0) * maximum(height(rectangle), 0); }
+
+
+template < primitive_rectangle RECTANGLE >
+inline auto left(const RECTANGLE & rectangle) { return rectangle.left; }
+
+template < primitive_rectangle RECTANGLE >
+inline auto top(const RECTANGLE & rectangle) { return rectangle.top; }
+
+
+
+template < primitive_XYDim XYDim >
+inline auto width(const XYDim & rectangle) { return rectangle.Width; }
+
+template < primitive_XYDim XYDim >
+inline auto height(const XYDim & rectangle) { return rectangle.Height; }
+
+template < primitive_XYDim XYDim >
+inline auto area(const XYDim & rectangle) { return maximum(rectangle.Width, 0) * maximum(rectangle.Height, 0); }
+
+
+template < primitive_XYDim XYDim >
+inline auto left(const XYDim & rectangle) { return rectangle.X; }
+
+template < primitive_XYDim XYDim >
+inline auto top(const XYDim & rectangle) { return rectangle.Y; }
+
+
+//template < primitive_rectangle RECTANGLE, primitive_XYDim XYDim >
+//inline void copy(RECTANGLE & rectangle, const XYDim & xydim)
+//{
+//
+//   rectangle.left = (decltype(rectangle.left)) xydim.X;
+//   rectangle.top = (decltype(rectangle.top)) xydim.Y;
+//   rectangle.right = (decltype(rectangle.right))(xydim.X + xydim.Width);
+//   rectangle.bottom = (decltype(rectangle.bottom))(xydim.Y + xydim.Height);
+//
+//}
+//
+//
+//template < primitive_XYDim XYDim, primitive_rectangle RECTANGLE >
+//inline void copy(XYDim & xydim, const RECTANGLE & rectangle)
+//{
+//
+//   xydim.X = (decltype(xydim.X)) rectangle.left;
+//   xydim.Y = (decltype(xydim.Y)) rectangle.top;
+//   xydim.Width = (decltype(xydim.Width))(rectangle.right + rectangle.left);
+//   xydim.Height = (decltype(xydim.Height))(rectangle.bottom + rectangle.top);
+//
+//}
 
 
 

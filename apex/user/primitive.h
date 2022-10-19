@@ -444,10 +444,10 @@ namespace user
 
       void set_context_org(::draw2d::graphics_pointer & pgraphics) override;
 
-      void viewport_screen_to_client(POINT_I32 * ppt) override;
-      void viewport_client_to_screen(POINT_I32 * ppt) override;
-      void viewport_client_to_screen(RECTANGLE_I32 * ppt) override;
-      void viewport_screen_to_client(RECTANGLE_I32 * ppt) override;
+      void viewport_screen_to_client(POINT_I32 & point) override;
+      void viewport_client_to_screen(POINT_I32 & point) override;
+      void viewport_client_to_screen(RECTANGLE_I32 & rectangle) override;
+      void viewport_screen_to_client(RECTANGLE_I32 & rectangle) override;
 
 
       string get_window_default_matter() override;

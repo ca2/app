@@ -3136,7 +3136,7 @@ namespace draw2d
       for(auto & pshape : shapea)
       {
          
-         _add_clipping_shape(pshape);
+         _add_clipping_shape(*pshape);
          
       }
 

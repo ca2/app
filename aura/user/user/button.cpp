@@ -708,10 +708,10 @@ namespace user
    }
 
 
-   void button::_001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, RECTANGLE_I32 * prectText)
+   void button::_001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, RECTANGLE_I32 & rectText)
    {
 
-      ::rectangle_i32 rectangleText(prectText);
+      ::rectangle_i32 rectangleText(rectText);
 
       if (m_estockicon == e_stock_icon_none)
       {

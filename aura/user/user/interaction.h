@@ -1126,11 +1126,11 @@ namespace user
       //virtual primitive * keyboard_set_focus_next(primitive * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false) override;
       
 
-      virtual void get_child_rect(RECTANGLE_I32* prectangle);
+      virtual void get_child_rect(RECTANGLE_I32 & rectangle);
 
-      inline auto get_child_rect() { ::rectangle_i32 rectangle(e_no_initialize); get_child_rect(&rectangle); return rectangle; }
+      inline auto get_child_rect() { ::rectangle_i32 rectangle(e_no_initialize); get_child_rect(rectangle); return rectangle; }
 
-      virtual bool scroll_bar_get_client_rect(RECTANGLE_I32* prectangle);
+      virtual bool scroll_bar_get_client_rect(RECTANGLE_I32 & rectangle);
 
       virtual void on_visual_applied();
 

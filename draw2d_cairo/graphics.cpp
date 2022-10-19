@@ -384,7 +384,7 @@ namespace draw2d_cairo
 
 
    //virtual void _add_shape(const ::rectangle_f64 & rectangle_f64) override;
-   void graphics::_add_clipping_shape(const ::rectangle & rectangle, ___shape < ::draw2d::region >* pshape)
+   void graphics::_add_clipping_shape(const ::rectangle & rectangle, ___shape < ::draw2d::region > & shape)
    {
 
       _add_shape(rectangle);
@@ -395,7 +395,7 @@ namespace draw2d_cairo
 
 
    //virtual void _add_shape(const ::ellipse & ellipse) override;
-   void graphics::_add_clipping_shape(const ::ellipse & ellipse, ___shape < ::draw2d::region >* pshape)
+   void graphics::_add_clipping_shape(const ::ellipse & ellipse, ___shape < ::draw2d::region > & shape)
    {
 
       _add_shape(ellipse);
@@ -406,7 +406,7 @@ namespace draw2d_cairo
 
 
    //virtual void _add_shape(const ::polygon_i32 & polygon_i32) override;
-   void graphics::_add_clipping_shape(const ::polygon & polygon, ___shape < ::draw2d::region >* pshape)
+   void graphics::_add_clipping_shape(const ::polygon & polygon, ___shape < ::draw2d::region > & shape)
    {
 
       _add_shape(polygon);

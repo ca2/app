@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
 #endif
@@ -1705,10 +1705,10 @@ namespace write_text
    }
 
 
-   void font_list::set_client_rectangle(const RECTANGLE_I32 * lpcrectangle)
+   void font_list::set_client_rectangle(const RECTANGLE_I32 & rectangleParam)
    {
 
-      ::rectangle_i32 rectangle(lpcrectangle);
+      ::rectangle_i32 rectangle(rectangleParam);
 
       if (rectangle != m_rectangleClient)
       {
@@ -1717,7 +1717,7 @@ namespace write_text
 
          ::size_i32 sizeNew(rectangle.size());
 
-         m_rectangleClient = *lpcrectangle;
+         m_rectangleClient = rectangle;
 
          if (sizeOld != sizeNew)
          {

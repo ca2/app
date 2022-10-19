@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "place_holder_container.h"
@@ -151,7 +151,7 @@ namespace user
       virtual ::count get_visible_tab_count();
 
 
-      void get_child_rect(RECTANGLE_I32 * prectangle) override;
+      void get_child_rect(RECTANGLE_I32 & rectangle) override;
 
 
       virtual void _001OnRemoveTab(tab_pane * ptab);

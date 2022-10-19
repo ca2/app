@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "interaction.h"
@@ -97,7 +97,7 @@ namespace user
       virtual void _001OnButtonDrawBitmap(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnButtonDrawImageAndText(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnButtonDrawBackground(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, RECTANGLE_I32 * prectText);
+      virtual void _001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, RECTANGLE_I32 & rectText);
 
       virtual void _001OnButtonDrawNormal(::draw2d::graphics_pointer & pgraphics);
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "place_holder.h"
 #include "aura/user/user/window_util.h"
 
@@ -580,12 +580,12 @@ namespace user
    }
 
 
-   void place_holder::get_child_rect(RECTANGLE_I32* prectangle)
+   void place_holder::get_child_rect(RECTANGLE_I32 & rectangle)
    {
 
-      get_parent()->get_child_rect(prectangle);
+      get_parent()->get_child_rect(rectangle);
 
-      offset(prectangle, -prectangle->left, -prectangle->top);
+      offset(rectangle, -rectangle.left, -rectangle.top);
 
    }
 

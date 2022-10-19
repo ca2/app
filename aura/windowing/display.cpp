@@ -494,7 +494,7 @@ namespace windowing
    bool display::workspace_to_monitor(RECTANGLE_I32 * prectangle)
    {
 
-      index iWorkspace = get_best_workspace(nullptr, rectangle_i32(prectangle));
+      index iWorkspace = get_best_workspace(nullptr, *prectangle);
 
       return workspace_to_monitor(prectangle, iWorkspace, iWorkspace);
 
@@ -504,7 +504,7 @@ namespace windowing
    bool display::monitor_to_workspace(RECTANGLE_I32 * prectangle)
    {
 
-      index iMonitor = get_best_monitor(nullptr, rectangle_i32(prectangle));
+      index iMonitor = get_best_monitor(nullptr, *prectangle);
 
       return monitor_to_workspace(prectangle, iMonitor, iMonitor);
 
@@ -514,7 +514,7 @@ namespace windowing
    bool display::monitor_to_workspace(RECTANGLE_I32 * prectangle, index iWorkspace, index iMonitor)
    {
 
-      ::rectangle_i32 rectangle(prectangle);
+      ::rectangle_i32 rectangle(*prectangle);
 
       ::rectangle_i32 rectangleMonitor;
 
@@ -575,7 +575,7 @@ namespace windowing
          if (get_monitor_rectangle(iMonitor, rectangleMonitor))
          {
 
-            if (rectangleIntersect.top_left_null_intersect(&rectangleParam, rectangleMonitor))
+            if (rectangleIntersect.top_left_null_intersect(rectangleParam, rectangleMonitor))
             {
 
                if (rectangleIntersect.area() >= 0)
@@ -1114,7 +1114,7 @@ namespace windowing
       else
       {
 
-         rectangleIntersect.intersect(rectangleMonitor, &rectangleParam);
+         rectangleIntersect.intersect(rectangleMonitor, rectangleParam);
 
       }
 

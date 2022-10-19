@@ -7233,14 +7233,14 @@ namespace user
    }
 
 
-   i64 interaction_impl::opaque_area(const RECTANGLE_I32 * lpcrect)
+   i64 interaction_impl::opaque_area(const RECTANGLE_I32 & rect)
    {
 
       _synchronous_lock synchronouslock(m_pgraphics->get_screen_sync());
 
       ::color::color colorTransparent(0);
 
-      ::rectangle_i32 rectangle(lpcrect);
+      ::rectangle_i32 rectangle(rect);
 
       rectangle += m_puserinteraction->screen_to_client();
 
@@ -7249,10 +7249,10 @@ namespace user
    }
 
 
-   i64 interaction_impl::_001GetRectTopLeftWeightedArea(const RECTANGLE_I32 * lpcrect)
+   i64 interaction_impl::_001GetRectTopLeftWeightedArea(const RECTANGLE_I32 & rect)
    {
 
-      ::rectangle_i32 rectangle(lpcrect);
+      ::rectangle_i32 rectangle(rect);
 
       rectangle += m_puserinteraction->screen_to_client();
 

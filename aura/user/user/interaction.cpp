@@ -14213,10 +14213,10 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   void interaction::get_client_rect(RECTANGLE_I32 & lprect)
+   void interaction::get_client_rect(RECTANGLE_I32 & rect)
    {
 
-      const_layout().state(e_layout_design).client_rect(lprect);
+      const_layout().state(e_layout_design).client_rect(rect);
 
    }
 
@@ -14226,7 +14226,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       ::rectangle_i32 r;
 
-      get_client_rect(&r);
+      get_client_rect(r);
 
       return r;
 
@@ -14513,7 +14513,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::calculate_window_rectangle_in_main_monitor(RECTANGLE_I32 * prectangle, const ::rectangle_f64 & rectangleOptionalRateOrSize)
+   bool interaction::calculate_window_rectangle_in_main_monitor(RECTANGLE_I32 & rectangle, const ::rectangle_f64 & rectangleOptionalRateOrSize)
    {
 
       ::rectangle_f64 rectangleRate(rectangleOptionalRateOrSize);
@@ -14569,7 +14569,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
 #endif
 
-      * prectangle = rectangleWindow;
+      rectangle = rectangleWindow;
 
       return true;
 
@@ -16809,14 +16809,14 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    //}
 
 
-   bool interaction::scroll_bar_get_client_rect(RECTANGLE_I32 * prectangle)
+   bool interaction::scroll_bar_get_client_rect(RECTANGLE_I32 & rectangle)
    {
 
-      get_client_rect(prectangle);
+      get_client_rect(rectangle);
 
-      prectangle->right += get_final_y_scroll_bar_width();
+      rectangle.right += get_final_y_scroll_bar_width();
 
-      prectangle->bottom += get_final_x_scroll_bar_width();
+      rectangle.bottom += get_final_x_scroll_bar_width();
 
       return true;
 
@@ -19639,13 +19639,13 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   bool interaction::get_element_rect(RECTANGLE_I32 * prectangle, enum_element eelement)
+   bool interaction::get_element_rect(RECTANGLE_I32 & rectangle, enum_element eelement)
    {
 
       if (eelement == e_element_client)
       {
 
-         get_client_rect(prectangle);
+         get_client_rect(rectangle);
 
          return true;
 

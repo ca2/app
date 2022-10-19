@@ -1200,7 +1200,7 @@ namespace windowing
       if (pinteraction != nullptr)
       {
 
-         auto iMonitor = pinteraction->get_preferred_restore(prectangle);
+         auto iMonitor = pinteraction->get_preferred_restore(*prectangle);
 
          if (iMonitor >= 0)
          {

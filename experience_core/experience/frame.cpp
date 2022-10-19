@@ -1,16 +1,14 @@
-#include "framework.h"
-
+﻿#include "framework.h"
+#include "frame.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/source.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
-#include "frame.h"
 #include "base/user/experience/control_box.h"
 #include "base/user/experience/frame_window.h"
 #include "aura/graphics/image/imaging.h"
-
 
 
 namespace experience_core

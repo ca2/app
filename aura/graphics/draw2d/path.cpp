@@ -87,7 +87,7 @@ namespace draw2d
    }
 
 
-   bool path::get_bounding_rectangle(::rectangle_f64 * prectangle) const
+   bool path::get_bounding_rectangle(::rectangle_f64 & rectangle) const
    {
 
       rectangle_f64 r;
@@ -118,7 +118,7 @@ namespace draw2d
 
       }
 
-      copy(prectangle, &r);
+      copy(rectangle, r);
 
       return true;
 

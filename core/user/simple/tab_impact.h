@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "base/user/user/tab.h"
@@ -27,7 +27,7 @@ public:
    void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
-   void get_client_rect(RECTANGLE_I32 * prectangle) override;
+   void get_client_rect(RECTANGLE_I32 & rectangle) override;
 
 
    void install_message_routing(::channel * pchannel) override;
@@ -36,6 +36,8 @@ public:
    DECLARE_MESSAGE_HANDLER(on_message_mouse_move);
    DECLARE_MESSAGE_HANDLER(on_message_mouse_leave);
 
+
 };
+
 
 

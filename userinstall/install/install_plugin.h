@@ -91,7 +91,7 @@ namespace install
 
       virtual bool plugin_initialize();
 
-      virtual void on_paint(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lprect);
+      virtual void on_paint(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lprect);
 
       virtual void on_prepare_memory();
 
@@ -101,7 +101,7 @@ namespace install
       
       virtual void message_handler(::user::message * pusermessage) override;
 
-      virtual void on_paint_progress(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lprect);
+      virtual void on_paint_progress(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lprect);
 
       virtual double extract_spa_progress_rate();
 

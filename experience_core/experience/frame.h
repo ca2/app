@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "base/user/experience/frame.h"
@@ -63,13 +63,13 @@ namespace experience_core
 
       virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual void _001OnBeforeMove(const RECTANGLE_I32 & lpcrectWindow);
+      //virtual void _001OnBeforeMove(const ::rectangle_i32 &lpcrectWindow);
 
-      //virtual void _001OnBeforeSize(const RECTANGLE_I32 & lpcrectWindow);
+      //virtual void _001OnBeforeSize(const ::rectangle_i32 &lpcrectWindow);
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      bool get_element_rect(RECTANGLE_I32 * lprect, enum_element eelement) override;
+      bool get_element_rect(RECTANGLE_I32 & lprect, enum_element eelement) override;
 
       //bool _001HitTest(const POINT_I32 &point, enum_element &eelementParam) override;
 

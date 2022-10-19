@@ -2259,7 +2259,7 @@ namespace user
 
                   ::rectangle_i32 rcMonitor;
 
-                  pdisplay->get_monitor_rectangle(0, &rcMonitor);
+                  pdisplay->get_monitor_rectangle(0, rcMonitor);
 
                   if (rectWindow.left >= rcMonitor.left)
                   {
@@ -7233,7 +7233,7 @@ namespace user
    }
 
 
-   i64 interaction_impl::opaque_area(const RECTANGLE_I32 & rect)
+   i64 interaction_impl::opaque_area(const ::rectangle_i32 &rect)
    {
 
       _synchronous_lock synchronouslock(m_pgraphics->get_screen_sync());
@@ -7249,7 +7249,7 @@ namespace user
    }
 
 
-   i64 interaction_impl::_001GetRectTopLeftWeightedArea(const RECTANGLE_I32 & rect)
+   i64 interaction_impl::_001GetRectTopLeftWeightedArea(const ::rectangle_i32 &rect)
    {
 
       ::rectangle_i32 rectangle(rect);

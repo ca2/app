@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "frame.h"
 ////#include "aura/graphics/draw2d/_component.h"
 #include "base/platform/session.h"
@@ -229,12 +229,12 @@ namespace experience
             ::rectangle_i32 rectangle(0, 0, 32767, 32767);
 
             pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposQuery,
-                                 &rectangle, &rectangle, false);
+                                 rectangle, rectangle, false);
             rectangle.offset(rectangleClient.top_left());
             ::rectangle_i32 rectangleBorder;
             pframewindow->GetBorderRect(rectangleBorder);
             pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposExtra,
-                                 &rectangleBorder, &rectangle, true);
+                                 rectangleBorder, rectangle, true);
             pframewindow->SetBorderRect(rectangleBorder);
             //pframewindow->CalcWindowRect(&rectangle);
             OnNcCalcSize(&rectangle);
@@ -254,7 +254,7 @@ namespace experience
 
             pframewindow->GetBorderRect(rectangleBorder);
 
-            pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposExtra, &rectangleBorder, &rectangleClient);
+            pframewindow->RepositionBars(0, 0xffff, FIRST_PANE, pframewindow->reposExtra, rectangleBorder, rectangleClient);
 
             pframewindow->SetBorderRect(rectangleBorder);
 
@@ -1476,7 +1476,7 @@ namespace experience
    }
 
 
-   bool frame::get_element_rect(RECTANGLE_I32 * prectangle,::enum_element eelement)
+   bool frame::get_element_rect(RECTANGLE_I32 & prectangle,::enum_element eelement)
    {
 
       return false;
@@ -1484,29 +1484,28 @@ namespace experience
    }
 
 
-   void frame::get_parent_rect(RECTANGLE_I32 * prectangle)
+   void frame::get_parent_rect(RECTANGLE_I32 & rectangle)
 
    {
 
       if (m_pframewindow->layout().is_full_screen())
       {
 
-         m_pframewindow->best_monitor(prectangle);
+         m_pframewindow->best_monitor(&rectangle);
 
 
       }
       else if (m_pframewindow->layout().is_zoomed())
       {
 
-         m_pframewindow->get_window_rect(prectangle);
+         m_pframewindow->get_window_rect(rectangle);
 
 
       }
       else
       {
 
-         m_pframewindow->get_window_rect(prectangle);
-
+         m_pframewindow->get_window_rect(rectangle);
 
       }
 
@@ -1548,10 +1547,10 @@ namespace experience
    }
 
 
-   void frame::GetFrameRect(rectangle_i32 * prectangle)
+   void frame::GetFrameRect(rectangle_i32 & rectangle)
    {
 
-      m_pframewindow->::user::interaction::get_client_rect(prectangle);
+      m_pframewindow->::user::interaction::get_client_rect(rectangle);
 
    }
 

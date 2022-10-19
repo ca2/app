@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "list_box.h"
 #include "combo_box.h"
 #include "acme/constant/timer.h"
@@ -370,16 +370,9 @@ namespace user
 
       ::draw2d::savedc savedc(pgraphics);
 
-      //if (m_pcombo == nullptr)
-      //{
-
-      //   return;
-
-      //}
-
       ::rectangle_f64 rectangleClipBox;
 
-      pgraphics->get_clip_box(&rectangleClipBox);
+      pgraphics->get_clip_box(rectangleClipBox);
 
       pgraphics->reset_clip();
 

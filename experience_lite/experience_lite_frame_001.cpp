@@ -189,7 +189,7 @@ SizingNone:;
 
 
 
-            void frame_001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lpcrectClient, enum_border eside)
+            void frame_001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lpcrectClient, enum_border eside)
             {
 
                auto pframewindow = m_pframewindow;
@@ -328,7 +328,7 @@ SizingNone:;
             }
 
 
-            void frame_001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lpcrectClient)
+            void frame_001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lpcrectClient)
             {
 
 
@@ -376,7 +376,7 @@ SizingNone:;
 
             }
 
-            void frame_001::GetBorderRect(const RECTANGLE_I32 & lpcrectClient, RECTANGLE_I32 * lprect, enum_border eside)
+            void frame_001::GetBorderRect(const ::rectangle_i32 &lpcrectClient, RECTANGLE_I32 * lprect, enum_border eside)
             {
 
                ::rectangle_i32 rectangleBig(lpcrectClient);
@@ -427,7 +427,7 @@ SizingNone:;
             }
 
 
-            void frame_001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lpcrectClient, enum_grip egrip)
+            void frame_001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lpcrectClient, enum_grip egrip)
             {
 
                ::rectangle_i32 rectangleC(lpcrectClient);
@@ -1132,7 +1132,7 @@ SizingNone:;
 
             }
 
-            void frame_001::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const RECTANGLE_I32 & rectangleParam)
+            void frame_001::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 &rectangleParam)
             {
 
 
@@ -1155,7 +1155,7 @@ SizingNone:;
 
             }
 
-            void frame_001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lpcrectClient)
+            void frame_001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lpcrectClient)
             {
                size_manager * psizenager = m_pframewindow->size_manager();
 

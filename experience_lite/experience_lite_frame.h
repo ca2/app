@@ -91,9 +91,9 @@
 
                virtual void on_style_change() override;
 
-               virtual void _001OnBeforeMove(const RECTANGLE_I32 & lpcrectWindow);
+               virtual void _001OnBeforeMove(const ::rectangle_i32 &lpcrectWindow);
 
-               virtual void _001OnBeforeSize(const RECTANGLE_I32 & lpcrectWindow) override;
+               virtual void _001OnBeforeSize(const ::rectangle_i32 &lpcrectWindow) override;
 
                virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -101,9 +101,9 @@
 
                virtual bool hit_test(const POINT_I32 &point, enum_element &eelementParam);
 
-               virtual void Glass(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lprect);
+               virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lprect);
 
-               virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lprect, color32_t color32, byte bAlpha);
+               virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lprect, color32_t color32, byte bAlpha);
 
                //virtual ::user::front_end_schema * get_user_front_end_schema();
 

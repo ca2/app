@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "form_mesh.h"
@@ -39,15 +39,15 @@ namespace user
       virtual void on_check_save(::user::interaction* puserinteraction);
       virtual void on_check_load(::user::interaction* puserinteraction);
 
-      void control_get_client_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle) override;
+      void control_get_client_rect(::user::interaction * pinteraction, RECTANGLE_I32 & prectangle) override;
 
-      void control_get_window_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle) override;
+      void control_get_window_rect(::user::interaction * pinteraction, RECTANGLE_I32 & rectangle) override;
 
       bool control_001DisplayHitTest(const ::point_i32 & point);
 
       virtual bool _001IsEditing() override;
 
-      bool _001IsPointInside(::user::interaction * pinteraction,point_i64 ptt) override;
+      bool _001IsPointInside(::user::interaction * pinteraction, const point_i64 & point) override;
 
       void _001OnAddColumn(list_column * pcolumn) override;
 

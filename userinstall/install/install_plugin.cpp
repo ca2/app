@@ -832,7 +832,7 @@ run_install:
 
 
 
-   void plugin::on_paint(::draw2d::graphics_pointer & pgraphics,const RECTANGLE_I32 & lprect)
+   void plugin::on_paint(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 &lprect)
    {
 
 #ifdef _UWP
@@ -1170,7 +1170,7 @@ run_install:
    //}
 
 
-   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const RECTANGLE_I32 & lprect)
+   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 &lprect)
    {
 
       ::hotplugin::plugin::on_paint_progress(pgraphics, lprect);

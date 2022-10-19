@@ -1927,7 +1927,7 @@ namespace user
    }
 
 
-   void element::viewport_client_to_screen(POINT_I32 * ppt)
+   void element::viewport_client_to_screen(POINT_I32 & point)
    {
 
       throw ::interface_only();
@@ -1935,7 +1935,7 @@ namespace user
    }
 
 
-   void element::viewport_screen_to_client(POINT_I32 * ppt)
+   void element::viewport_screen_to_client(POINT_I32 & point)
    {
 
       throw ::interface_only();
@@ -1943,7 +1943,7 @@ namespace user
    }
 
 
-   void element::viewport_client_to_screen(RECTANGLE_I32 * prectangle)
+   void element::viewport_client_to_screen(RECTANGLE_I32 & rectangle)
    {
 
       throw ::interface_only();
@@ -1951,7 +1951,7 @@ namespace user
    }
 
 
-   void element::viewport_screen_to_client(RECTANGLE_I32 * prectangle)
+   void element::viewport_screen_to_client(RECTANGLE_I32 & rectangle)
    {
 
       throw ::interface_only();

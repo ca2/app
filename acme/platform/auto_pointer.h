@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 enum e_new_array
 {
@@ -294,17 +294,20 @@ public:
 
 };
 
-// Remember you always can restore with #define ap(x) __AP(x),
-// or #undef ap and use more verbore __AP,
-// or even you may #undef both and use explicit ::auto_pointer < x >!
-#define __AP(x) ::auto_pointer < x >
-#define ap(x) __AP(x)
+//// Remember you always can restore with #define ap(x) __AP(x),
+//// or #undef ap and use more verbore __AP,
+//// or even you may #undef both and use explicit ::auto_pointer < x >!
+//#define __AP(x) ::auto_pointer < x >
+//#define ap(x) __AP(x)
 
 
 template <typename T>
 inline auto __auto(T* p)
 {
+
    return auto_pointer < T >(p);
+
 }
+
 
 

@@ -1,16 +1,14 @@
-#include "framework.h"
-
+﻿#include "framework.h"
+#include "frame.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/source.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/pen.h"
-#include "frame.h"
 #include "base/user/experience/control_box.h"
 #include "base/user/experience/frame_window.h"
 #include "aura/graphics/image/imaging.h"
-
 
 
 namespace experience_core
@@ -291,7 +289,7 @@ namespace experience_core
 
 
 
-   bool frame::get_element_rect(RECTANGLE_I32 * lprect, enum_element eelement)
+   bool frame::get_element_rect(RECTANGLE_I32 & rectangle, enum_element eelement)
    {
 
       switch(eelement)
@@ -308,13 +306,13 @@ namespace experience_core
 
          }
 
-         lprect->left = m_pointWindowIcon.x;
-         lprect->top = m_pointWindowIcon.y;
-         lprect->right = lprect->left + m_sizeIcon.cx;
-         lprect->bottom = lprect->top + m_sizeIcon.cy;
+         rectangle.left = m_pointWindowIcon.x;
+         rectangle.top = m_pointWindowIcon.y;
+         rectangle.right = rectangle.left + m_sizeIcon.cx;
+         rectangle.bottom = rectangle.top + m_sizeIcon.cy;
 
-         //lprect->right = lprect->left + pdrawicon->get_size().cx;
-         //lprect->bottom = lprect->top + pdrawicon->get_size().cy;
+         //rectangle.right = rectangle.left + pdrawicon->get_size().cx;
+         //rectangle.bottom = rectangle.top + pdrawicon->get_size().cy;
 
          return true;
 
@@ -329,10 +327,10 @@ namespace experience_core
 
          }
 
-         //lprect->left = m_pointMoveGripMinimal.x + 2;
-         //lprect->top = m_pointMoveGripMinimal.y + 2;
-         lprect->right = lprect->left + m_iCaptionHeight - 4;
-         lprect->bottom = lprect->top + m_iCaptionHeight - 4;
+         //rectangle.left = m_pointMoveGripMinimal.x + 2;
+         //rectangle.top = m_pointMoveGripMinimal.y + 2;
+         rectangle.right = rectangle.left + m_iCaptionHeight - 4;
+         rectangle.bottom = rectangle.top + m_iCaptionHeight - 4;
 
          return true;
 

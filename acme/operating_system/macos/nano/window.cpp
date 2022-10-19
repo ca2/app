@@ -12,7 +12,7 @@ void ns_app_stop();
 
 CLASS_DECL_ACME void ns_get_main_screen_size(int & cx, int & cy);
 
-void ns_screen_copy(CGRect & rect, const RECTANGLE_I32 & rectangle);
+void ns_screen_copy(CGRect & rect, const ::rectangle_i32 &rectangle);
 
 void ns_screen_copy(CGPoint & cgpoint, const POINT_I32 & point);
 

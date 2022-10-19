@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "tab_impact.h"
 #include "aura/message/user.h"
 
@@ -37,23 +37,12 @@ void simple_tab_impact::on_layout(::draw2d::graphics_pointer & pgraphics)
 }
 
 
-
-
-
-
-
-
-void simple_tab_impact::get_client_rect(RECTANGLE_I32 * prectangle)
+void simple_tab_impact::get_client_rect(RECTANGLE_I32 & rectangle)
 {
 
-   ::user::impact::get_client_rect(prectangle);
-
-   //return true;
+   ::user::impact::get_client_rect(rectangle);
 
 }
-
-
-
 
 
 void simple_tab_impact::on_message_create(::message::message * pmessage)

@@ -76,14 +76,13 @@ namespace userex
    }
 
 
-   void pane_tab_impact::GetTabClientRect(RECTANGLE_I32 * prectangle)
-
+   void pane_tab_impact::GetTabClientRect(RECTANGLE_I32 & rectangle)
    {
 
       if(m_pimpactdata == nullptr || m_pimpactdata->m_puserinteraction == nullptr || m_pimpactdata->m_iExtendOnParent == 0)
       {
 
-         ::user::tab_impact::GetTabClientRect(prectangle);
+         ::user::tab_impact::GetTabClientRect(rectangle);
 
 
       }
@@ -112,11 +111,9 @@ namespace userex
 
          }
 
-         pinteraction->get_window_rect(prectangle);
+         pinteraction->get_window_rect(rectangle);
 
-
-         screen_to_client()(*prectangle);
-
+         screen_to_client()(rectangle);
 
       }
       else if(m_pimpactdata->m_iExtendOnParent < 0)
@@ -148,9 +145,9 @@ namespace userex
 
          pinteraction = uia.interaction_at(uia.interaction_count() + m_pimpactdata->m_iExtendOnParent);
 
-         pinteraction->get_window_rect(prectangle);
+         pinteraction->get_window_rect(rectangle);
 
-         screen_to_client()(*prectangle);
+         screen_to_client()(rectangle);
 
       }
 

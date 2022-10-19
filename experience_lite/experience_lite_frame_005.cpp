@@ -201,7 +201,7 @@ SizingNone:;
 
 
 
-            void frame_005::draw_border_side(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lpcrectClient,
+            void frame_005::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lpcrectClient,
                   enum_border eside)
             {
 
@@ -378,7 +378,7 @@ SizingNone:;
             }
 
 
-            void frame_005::DrawBorder(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lpcrectClient)
+            void frame_005::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lpcrectClient)
             {
                auto pmovemanager = m_pframewindow->move_manager();
 
@@ -413,7 +413,7 @@ SizingNone:;
             }
 
             void frame_005::GetBorderRect(
-            const RECTANGLE_I32 & lpcrectClient,
+            const ::rectangle_i32 &lpcrectClient,
             RECTANGLE_I32 * lprect,
             enum_border eside)
             {
@@ -461,7 +461,7 @@ SizingNone:;
             }
 
 
-            void frame_005::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics,const RECTANGLE_I32 & rectangleParam,enum_border eborder,color32_t crTopLeft,color32_t crBottomRight)
+            void frame_005::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 &rectangleParam,enum_border eborder,color32_t crTopLeft,color32_t crBottomRight)
             {
 
                ::rectangle_i32 rectangle(rectangleParam);
@@ -566,7 +566,7 @@ SizingNone:;
 
             void frame_005::DrawGrip(
             ::draw2d::graphics_pointer & pgraphics,
-            const RECTANGLE_I32 & lpcrectClient,
+            const ::rectangle_i32 &lpcrectClient,
             enum_grip egrip)
             {
 
@@ -698,7 +698,7 @@ SizingNone:;
             }
 
 
-            void frame_005::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const RECTANGLE_I32 & rectangleParam)
+            void frame_005::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 &rectangleParam)
             {
 
 
@@ -724,7 +724,7 @@ SizingNone:;
             }
 
 
-            void frame_005::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lpcrectClient)
+            void frame_005::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lpcrectClient)
             {
 
                size_manager * psizenager = m_pframewindow->size_manager();

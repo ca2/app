@@ -13,7 +13,7 @@ LRESULT CLASS_DECL_APEX __internal_process_wnd_proc_exception(::exception*, cons
 bool __internal_pre_translate_message(MSG* pMsg);
 bool __internal_is_idle_message(MSG* pMsg);
 //__STATIC void CLASS_DECL_APEX __pre_init_dialog(::pointer<::user::interaction>pWnd, RECTANGLE_I32 * lpRectOld, u32* pdwStyleOld);
-//__STATIC void CLASS_DECL_APEX __post_init_dialog(::pointer<::user::interaction>pWnd, const RECTANGLE_I32& rectangleOld, u32 dwStyleOld);
+//__STATIC void CLASS_DECL_APEX __post_init_dialog(::pointer<::user::interaction>pWnd, const ::rectangle_i32 &rectangleOld, u32 dwStyleOld);
 
 
 //__declspec(thread) HHOOK t_hHookOldMsgFilter = nullptr;

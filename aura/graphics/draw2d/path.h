@@ -96,7 +96,7 @@ namespace draw2d
       virtual void * detach();
 
 
-      virtual bool get_bounding_rectangle(::rectangle_f64 * prectangle) const;
+      virtual bool get_bounding_rectangle(::rectangle_f64 & rectangle) const;
       //virtual bool get_bounding_rectangle(RECTANGLE_I32 * prectangle) const;
 
 

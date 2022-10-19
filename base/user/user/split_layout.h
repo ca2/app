@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "place_holder_container.h"
@@ -43,7 +43,7 @@ namespace user
 
 
       split_layout();
-      virtual ~split_layout();
+      ~split_layout() override;
 
 
       void install_message_routing(::channel * pchannel) override;
@@ -58,12 +58,12 @@ namespace user
       bool InsertPaneAt(index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, atom idPane = atom());
       bool SetPane(index iIndex, ::user::interaction* puserinteraction, bool bFixedSize, atom idPane = atom());
       bool RemovePaneAt(index iIndex);
-      void SetPaneFixedSize(index iIndex, SIZE_I32 * pSize);
-      void CalcSplitBarRect(index iIndex, RECTANGLE_I32 * prectangle);
+      void SetPaneFixedSize(index iIndex, const ::size_i32 & pSize);
+      void CalcSplitBarRect(index iIndex, RECTANGLE_I32 & rectangle);
 
-      void CalcPaneRect(i32 nMinPos, i32 nMaxPos, RECTANGLE_I32 * prectangle);
+      void CalcPaneRect(i32 nMinPos, i32 nMaxPos, RECTANGLE_I32 & rectangle);
 
-      void CalcPaneRect(index iIndex, RECTANGLE_I32 * prectangle);
+      void CalcPaneRect(index iIndex, RECTANGLE_I32 & rectangle);
 
 
       virtual ::user::interaction * get_pane_window(index iPane);

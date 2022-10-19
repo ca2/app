@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 ////#include "core/user/user/_component.h"
 #include "axis/user/user/validate.h"
 #include "acme/constant/id.h"
@@ -1229,7 +1229,7 @@ namespace user
    }
 
 
-   bool form_list::_001IsPointInside(::user::interaction * pinteraction, point_i64 point)
+   bool form_list::_001IsPointInside(::user::interaction * pinteraction, const point_i64 & point)
    {
 
       if (pinteraction != nullptr)
@@ -1555,14 +1555,13 @@ namespace user
    //   }
 
 
-   void form_list::control_get_client_rect(::user::interaction * pinteraction, RECTANGLE_I32 * prectangle)
-
+   void form_list::control_get_client_rect(::user::interaction * pinteraction, RECTANGLE_I32 & rectangle)
    {
 
       if (pinteraction == nullptr)
       {
 
-         ::null(prectangle);
+         ::null(rectangle);
 
          return;
 
@@ -1607,25 +1606,17 @@ namespace user
 
       index_element_rectangle(*psubitem, ::user::mesh::e_element_sub_item);
 
-      rectangleControl = psubitem->m_pdrawmeshsubitem->m_rectangleSubItem;
-
-      ::rectangle_i32 rectangle(rectangleControl);
-
-      *prectangle = rectangle;
-
+      copy(rectangle, psubitem->m_pdrawmeshsubitem->m_rectangleSubItem);
 
    }
 
 
-   void form_list::control_get_window_rect(::user::interaction * pinteraction, RECTANGLE_I32 * prectangle)
-
+   void form_list::control_get_window_rect(::user::interaction * pinteraction, RECTANGLE_I32 & rectangle)
    {
 
-      control_get_client_rect(pinteraction, prectangle);
+      control_get_client_rect(pinteraction, rectangle);
 
-
-      client_to_screen()(*prectangle);
-
+      client_to_screen()(rectangle);
 
    }
 

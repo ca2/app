@@ -74,7 +74,7 @@
             }
 
 
-            void frame::Glass(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lprect)
+            void frame::Glass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lprect)
             {
 
                auto pframewindow = m_pframewindow;
@@ -157,7 +157,7 @@
             //}
 
 
-            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lprect, color32_t color32, byte bAlpha)
+            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lprect, color32_t color32, byte bAlpha)
             {
 
                /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());

@@ -809,9 +809,9 @@ namespace user
       virtual i64 _001GetTopLeftWeightedOccludedOpaqueArea();
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate() override;
       virtual i64 _001GetTopLeftWeightedArea();
-      virtual i64 _001GetRectTopLeftWeightedArea(const RECTANGLE_I32 & rect);
+      virtual i64 _001GetRectTopLeftWeightedArea(const ::rectangle_i32 &rect);
 
-      virtual i64 opaque_area(const RECTANGLE_I32 & rect);
+      virtual i64 opaque_area(const ::rectangle_i32 &rect);
       virtual void approximate_occlusion_rects(rectangle_i32_array& raTest);
 
       virtual i64 opaque_area();

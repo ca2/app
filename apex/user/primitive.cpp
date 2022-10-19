@@ -2048,7 +2048,7 @@ namespace user
    }
 
 
-   void primitive::viewport_client_to_screen(POINT_I32 * ppt)
+   void primitive::viewport_client_to_screen(POINT_I32 & point)
    {
 
       throw ::interface_only();
@@ -2056,7 +2056,7 @@ namespace user
    }
 
 
-   void primitive::viewport_screen_to_client(POINT_I32 * ppt)
+   void primitive::viewport_screen_to_client(POINT_I32 & point)
    {
 
       throw ::interface_only();
@@ -2064,15 +2064,15 @@ namespace user
    }
 
 
-   void primitive::viewport_client_to_screen(RECTANGLE_I32 * prectangle)
+   void primitive::viewport_client_to_screen(RECTANGLE_I32 & rectangle)
    {
 
       throw ::interface_only();
-
+    
    }
 
 
-   void primitive::viewport_screen_to_client(RECTANGLE_I32 * prectangle)
+   void primitive::viewport_screen_to_client(RECTANGLE_I32 & rectangle)
    {
 
       throw ::interface_only();

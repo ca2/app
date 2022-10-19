@@ -480,7 +480,7 @@ public:
 //   virtual void write(double d) { raw_write(d); }
 //   //virtual void write(const POINT_I32 & point) { raw_write(point); }
 //   //virtual void write(const SIZE_I32 & size) { raw_write(size); }
-//   //virtual void write(const RECTANGLE_I32 & crect) { raw_write(crect); }
+//   //virtual void write(const ::rectangle_i32 &crect) { raw_write(crect); }
 //   virtual void write(const char * psz);
 //#ifdef WINDOWS
 //   virtual void write(const unichar * wch) { write(string(wch)); }
@@ -831,7 +831,7 @@ public:
 //
 //inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const POINT_I32 & point) { s.write(point); return s; }
 //
-//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const RECTANGLE_I32 & rectangle) { s.write(rectangle); return s; }
+//inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const ::rectangle_i32 &rectangle) { s.write(rectangle); return s; }
 //
 //inline binary_stream < FILE > & operator << (binary_stream < FILE > & s, const SIZE_I32 & size) { s.write(size); return s; }
 //

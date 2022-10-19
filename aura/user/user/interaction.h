@@ -547,7 +547,7 @@ namespace user
       inline bool is_full_screen() const { return m_bFullScreen; }
       virtual bool _is_full_screen() const;
 
-      virtual bool get_element_rect(RECTANGLE_I32* prectangle, enum_element eelement);
+      virtual bool get_element_rect(RECTANGLE_I32 & rectangle, enum_element eelement);
 
 
       virtual status < rectangle_i32 > rectangle(enum_element eelement)
@@ -790,7 +790,7 @@ namespace user
       virtual ::rectangle_i32 get_client_rect();
 
 
-      virtual void get_window_rect(RECTANGLE_I32 & rect, enum_layout elayout = e_layout_design) { rect = get_window_rect(elayout); }
+      virtual void get_window_rect(RECTANGLE_I32 & rect, enum_layout elayout = e_layout_design) { copy(rect, get_window_rect(elayout)); }
       virtual ::rectangle_i32 get_window_rect(enum_layout elayout = e_layout_design);
 
 
@@ -1640,10 +1640,11 @@ namespace user
       virtual bool window_is_notify_icon_enabled();
       virtual void set_context_org(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void viewport_screen_to_client(POINT_I32* ppt) override;
-      virtual void viewport_client_to_screen(POINT_I32* ppt) override;
-      virtual void viewport_client_to_screen(RECTANGLE_I32* ppt) override;
-      virtual void viewport_screen_to_client(RECTANGLE_I32* ppt) override;
+
+      virtual void viewport_screen_to_client(POINT_I32 & point) override;
+      virtual void viewport_client_to_screen(POINT_I32 & point) override;
+      virtual void viewport_client_to_screen(RECTANGLE_I32 & rect) override;
+      virtual void viewport_screen_to_client(RECTANGLE_I32 & rect) override;
 
 
       virtual string get_window_default_matter() override;

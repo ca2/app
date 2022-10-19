@@ -16,7 +16,7 @@ using namespace ::winrt::Windows::Graphics::Display;
 using namespace D2D1;
 
 static void __pre_init_dialog(::user::interaction * pWnd,RECTANGLE_I32 * lpRectOld,u32* pdwStyleOld);
-static void __post_init_dialog(::user::interaction * pWnd,const RECTANGLE_I32& rectangleOld,u32 dwStyleOld);
+static void __post_init_dialog(::user::interaction * pWnd,const ::rectangle_i32 &rectangleOld,u32 dwStyleOld);
 LRESULT CALLBACK __activation_window_procedure(oswindow hWnd,::u32 nMsg,WPARAM wParam,LPARAM lParam);
 
 
@@ -5534,7 +5534,7 @@ __STATIC void CLASS_DECL_AURA __pre_init_dialog(
 }
 
 __STATIC void CLASS_DECL_AURA __post_init_dialog(
-::user::interaction * pWnd, const RECTANGLE_I32& rectangleOld, u32 dwStyleOld)
+::user::interaction * pWnd, const ::rectangle_i32 &rectangleOld, u32 dwStyleOld)
 {
    // must be hidden to start with
    if (dwStyleOld & WS_VISIBLE)

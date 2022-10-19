@@ -1,6 +1,8 @@
 ﻿#pragma once
 
 
+inline payload & copy(payload & payload, const integral_second & integralsecond);
+
 
 enum para_return
 {
@@ -744,11 +746,12 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    payload & operator = (const T & t)
    {
 
-      ::copy(this, &t);
+      ::copy(*this, t);
 
       return *this;
 
    }
+
 
    template < class T >
    payload & operator = (const memory_template < T > & memory)
@@ -1649,6 +1652,18 @@ inline ::payload_reference __reference(payload & payload)
 //
 
 CLASS_DECL_ACME::string __string(const ::payload & payload);
+
+
+inline payload & copy(payload & payload, const integral_second & integralsecond)
+{
+
+   payload.set_type(e_type_integral_second);
+
+   payload.m_integralsecond = integralsecond;
+
+   return payload;
+
+}
 
 
 

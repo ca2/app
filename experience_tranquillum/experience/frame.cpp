@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "frame.h"
 #include "base/user/experience/frame_window.h"
 #include "base/user/experience/control_box.h"
@@ -99,7 +99,7 @@ namespace experience_tranquillum
       ////spgraphics->Draw3dRect(rectangleClient, 127 << 24, 127 << 24);
       ////rectangleClient.deflate(1, 1);
       ////spgraphics->Draw3dRect(rectangleClient, 64 << 24, 64 << 24);
-      ////b = imaging.bitmap_blend(pgraphics, prectangle->left, prectangle->top,
+      ////b = imaging.bitmap_blend(pgraphics, rectangle.left, rectangle.top,
 
       //rectangleWindow.width(),
       //rectangleWindow.height(),
@@ -111,7 +111,7 @@ namespace experience_tranquillum
       //bf.BlendFlags = 0;
       //bf.SourceConstantAlpha = 255;
       //::alpha_blend(pgraphics->get_handle1(),
-      //prectangle->left, prectangle->top,
+      //rectangle.left, rectangle.top,
 
       //rectangleWindow.width(),
       //rectangleWindow.height(),
@@ -149,7 +149,7 @@ namespace experience_tranquillum
       /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
       g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, colorref_get_r_value(color32), colorref_get_g_value(color32), colorref_get_b_value(color32)));
-      g.FillRectangle(&solidBrush, prectangle->left, prectangle->top, prectangle->right - prectangle->left, prectangle->bottom - prectangle->top);*/
+      g.FillRectangle(&solidBrush, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top);*/
 
 
       pgraphics->fill_rectangle(rectangle, color & opacity);
@@ -177,7 +177,7 @@ namespace experience_tranquillum
 
 
 
-   bool frame::get_element_rect(RECTANGLE_I32 * prectangle, enum_element eelement)
+   bool frame::get_element_rect(RECTANGLE_I32 & rectangle, enum_element eelement)
    {
 
       switch (eelement)
@@ -191,13 +191,13 @@ namespace experience_tranquillum
 
          }
 
-         prectangle->left = m_rectangleCaption.left + m_pcontrolbox->m_iDefaultButtonMargin;
+         rectangle.left = m_rectangleCaption.left + m_pcontrolbox->m_iDefaultButtonMargin;
 
-         prectangle->right = prectangle->left + 16;
+         rectangle.right = rectangle.left + 16;
 
-         prectangle->bottom = m_iTitleBottom;
+         rectangle.bottom = m_iTitleBottom;
 
-         prectangle->top = prectangle->bottom - 16;
+         rectangle.top = rectangle.bottom - 16;
 
          return true;
 
@@ -206,13 +206,13 @@ namespace experience_tranquillum
          if (m_pframewindow == nullptr || m_pframewindow->const_layout().design().display() != ::e_display_minimal)
             return false;
 
-         prectangle->left = m_pointMoveGripMinimal.x + 2;
+         rectangle.left = m_pointMoveGripMinimal.x + 2;
 
-         prectangle->top = m_pointMoveGripMinimal.y + 2;
+         rectangle.top = m_pointMoveGripMinimal.y + 2;
 
-         prectangle->right = prectangle->left + m_iCaptionHeight - 4;
+         rectangle.right = rectangle.left + m_iCaptionHeight - 4;
 
-         prectangle->bottom = prectangle->top + m_iCaptionHeight - 4;
+         rectangle.bottom = rectangle.top + m_iCaptionHeight - 4;
 
 
          return true;
@@ -831,14 +831,14 @@ namespace experience_tranquillum
    }
 
 
-   void frame::GetFrameRect(rectangle_i32 * prectangle)
+   void frame::GetFrameRect(rectangle_i32 & rectangle)
    {
 
-      m_pframewindow->get_window_rect(prectangle);
+      m_pframewindow->get_window_rect(rectangle);
 
-      prectangle->offset(-prectangle->top_left());
+      rectangle.offset(-rectangle.top_left());
 
-      prectangle->deflate(get_margin_rect());
+      rectangle.deflate(get_margin_rect());
 
    }
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "frame.h"
 #include "control_box.h"
 #include "base/user/experience/frame_window.h"
@@ -120,7 +120,7 @@ namespace experience_anthill
       //spgraphics->Draw3dRect(rectangleClient, 127 << 24, 127 << 24);
       //rectangleClient.deflate(1, 1);
       //spgraphics->Draw3dRect(rectangleClient, 64 << 24, 64 << 24);
-      /*b = imaging.bitmap_blend(pgraphics, lprect->left, lprect->top,
+      /*b = imaging.bitmap_blend(pgraphics, rectangle.left, rectangle.top,
       rectangleWindow.width(),
       rectangleWindow.height(),
       &spgraphics,
@@ -131,7 +131,7 @@ namespace experience_anthill
       bf.BlendFlags = 0;
       bf.SourceConstantAlpha = 255;
       ::alpha_blend(pgraphics->get_handle1(),
-      lprect->left, lprect->top,
+      rectangle.left, rectangle.top,
       rectangleWindow.width(),
       rectangleWindow.height(),
       spgraphics->get_handle1(),
@@ -173,7 +173,7 @@ namespace experience_anthill
       /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
       g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
       Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, colorref_get_r_value(color32), colorref_get_g_value(color32), colorref_get_b_value(color32)));
-      g.FillRectangle(&solidBrush, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top);*/
+      g.FillRectangle(&solidBrush, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top);*/
 
       pgraphics->fill_rectangle(rectangle, color & opacity);
 
@@ -237,8 +237,9 @@ namespace experience_anthill
    //}
 
 
-   bool frame::get_element_rect(RECTANGLE_I32 * lprect, enum_element eelement)
+   bool frame::get_element_rect(RECTANGLE_I32 & rectangle, enum_element eelement)
    {
+      
       switch (eelement)
       {
       case e_element_top_left_icon:
@@ -246,12 +247,12 @@ namespace experience_anthill
          if (m_pframewindow == nullptr || m_pframewindow->get_draw_icon() == nullptr)
             return false;
 
-         lprect->left = m_pointWindowIcon.x;
-         lprect->top = m_pointWindowIcon.y;
-         //lprect->right = lprect->left + m_pframewindow->m_picon->get_size().cx;
-         //lprect->bottom = lprect->top + m_pframewindow->m_picon->get_size().cy;
-         lprect->right = lprect->left + 24;
-         lprect->bottom = lprect->top + 24;
+         rectangle.left = m_pointWindowIcon.x;
+         rectangle.top = m_pointWindowIcon.y;
+         //rectangle.right = rectangle.left + m_pframewindow->m_picon->get_size().cx;
+         //rectangle.bottom = rectangle.top + m_pframewindow->m_picon->get_size().cy;
+         rectangle.right = rectangle.left + 24;
+         rectangle.bottom = rectangle.top + 24;
 
          return true;
 
@@ -260,10 +261,10 @@ namespace experience_anthill
          if (m_pframewindow == nullptr || m_pframewindow->const_layout().design().display() != ::e_display_minimal)
             return false;
 
-         //lprect->left = m_pointMoveGripMinimal.x + 2;
-         //lprect->top = m_pointMoveGripMinimal.y + 2;
-         lprect->right = lprect->left + get_caption_height() - 4;
-         lprect->bottom = lprect->top + get_caption_height() - 4;
+         //rectangle.left = m_pointMoveGripMinimal.x + 2;
+         //rectangle.top = m_pointMoveGripMinimal.y + 2;
+         rectangle.right = rectangle.left + get_caption_height() - 4;
+         rectangle.bottom = rectangle.top + get_caption_height() - 4;
 
          return true;
 

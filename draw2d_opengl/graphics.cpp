@@ -601,7 +601,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::rectVisible(const RECTANGLE_I32 &  rectangle_i32) const
+   bool graphics::rectVisible(const ::rectangle_i32 & rectangle_i32) const
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -742,7 +742,7 @@ namespace draw2d_opengl
    }
 
 
-   void graphics::FrameRect(const RECTANGLE_I32 &  rectangleParam,::draw2d::brush* pBrush)
+   void graphics::FrameRect(const ::rectangle_i32 & rectangleParam,::draw2d::brush* pBrush)
    {
 
       //// ASSERT(m_hdc != nullptr);
@@ -752,7 +752,7 @@ namespace draw2d_opengl
    }
 
 
-   void graphics::InvertRect(const RECTANGLE_I32 &  rectangleParam)
+   void graphics::InvertRect(const ::rectangle_i32 & rectangleParam)
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -1033,7 +1033,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::Chord(const RECTANGLE_I32 &  rectangleParam,const ::point_i32 & pointStart,const ::point_i32 & pointEnd)
+   bool graphics::Chord(const ::rectangle_i32 & rectangleParam,const ::point_i32 & pointStart,const ::point_i32 & pointEnd)
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -1046,7 +1046,7 @@ namespace draw2d_opengl
    }
 
    
-   void graphics::DrawFocusRect(const RECTANGLE_I32 &  rectangleParam)
+   void graphics::DrawFocusRect(const ::rectangle_i32 & rectangleParam)
    {
       // ASSERT(m_hdc != nullptr);
       //::DrawFocusRect(m_hdc,&rectangleParam);
@@ -1163,7 +1163,7 @@ namespace draw2d_opengl
    //}
 
 
-   //bool graphics::Pie(const RECTANGLE_I32 &  rectangleParam,const ::point_i32 & pointStart,const ::point_i32 & pointEnd)
+   //bool graphics::Pie(const ::rectangle_i32 & rectangleParam,const ::point_i32 & pointStart,const ::point_i32 & pointEnd)
    //{
 
    //   // ASSERT(m_hdc != nullptr);
@@ -1559,7 +1559,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::RoundRect(const RECTANGLE_I32 &  rectangleParam,const ::point_i32 & point)
+   bool graphics::RoundRect(const ::rectangle_i32 & rectangleParam,const ::point_i32 & point)
    {
       //// ASSERT(m_hdc != nullptr);
       //return ::RoundRect(m_hdc, rectangleParam.left, rectangleParam.top,
@@ -1993,7 +1993,7 @@ namespace draw2d_opengl
 
 
    bool graphics::ScrollDC(i32 Δx, i32 Δy,
-                           const RECTANGLE_I32 &  lpRectScroll,const RECTANGLE_I32 &  rectangleClip,
+                           const ::rectangle_i32 & lpRectScroll,const ::rectangle_i32 & rectangleClip,
                            ::draw2d::region* pRgnUpdate, RECTANGLE_I32 * lpRectUpdate)
    {
       
@@ -2016,7 +2016,7 @@ namespace draw2d_opengl
 
 
    // graphics 3.1 Specific functions
-   ::u32 graphics::SetBoundsRect(const RECTANGLE_I32 &  rectangleBounds, ::u32 flags)
+   ::u32 graphics::SetBoundsRect(const ::rectangle_i32 & rectangleBounds, ::u32 flags)
    {
       // ASSERT(m_hdc != nullptr);
       //return ::SetBoundsRect(m_hdc, &rectangleBounds, flags);
@@ -2243,7 +2243,7 @@ namespace draw2d_opengl
 
 
 
-   bool graphics::ArcTo(const RECTANGLE_I32 &  rectangleParam,const ::point_i32 & pointStart,const ::point_i32 & pointEnd)
+   bool graphics::ArcTo(const ::rectangle_i32 & rectangleParam,const ::point_i32 & pointStart,const ::point_i32 & pointEnd)
    {
       // ASSERT(m_hdc != nullptr);
       //return ArcTo(rectangleParam.left, rectangleParam.top, rectangleParam.right,
@@ -2589,7 +2589,7 @@ namespace draw2d_opengl
    }*/
    
    
-   bool graphics::PlayMetaFile(HENHMETAFILE hEnhMF, const RECTANGLE_I32 &  rectangleBounds)
+   bool graphics::PlayMetaFile(HENHMETAFILE hEnhMF, const ::rectangle_i32 & rectangleBounds)
    {
 
       //plusplus::rectF rectangle_i32((plusplus::REAL) rectangleBounds.left,(plusplus::REAL) rectangleBounds.top,(plusplus::REAL) width(rectangleBounds),(plusplus::REAL) height(rectangleBounds));
@@ -3057,7 +3057,7 @@ namespace draw2d_opengl
       return nullptr;
    }
 
-   void graphics::DrawDragRect(const RECTANGLE_I32 &  rectangle, const ::size_i32 & size, const RECTANGLE_I32 &  lpRectLast, const ::size_i32 & sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
+   void graphics::DrawDragRect(const ::rectangle_i32 & rectangle, const ::size_i32 & size, const ::rectangle_i32 & lpRectLast, const ::size_i32 & sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
    {
 
       throw ::interface_only();
@@ -3136,7 +3136,7 @@ namespace draw2d_opengl
       */
    }
 
-   /*void graphics::FillSolidRect(const RECTANGLE_I32 &  rectangle, color32_t clr)
+   /*void graphics::FillSolidRect(const ::rectangle_i32 & rectangle, color32_t clr)
    {
       ::SetBkColor(m_hdc, clr);
       ::ExtTextOut(m_hdc, 0, 0, ETO_OPAQUE, rectangle, nullptr, 0, nullptr);
@@ -3161,7 +3161,7 @@ namespace draw2d_opengl
 
    */
 
-   void graphics::Draw3dRect(const RECTANGLE_I32 &  rectangleParam,
+   void graphics::Draw3dRect(const ::rectangle_i32 & rectangleParam,
                              color32_t clrTopLeft, color32_t clrBottomRight)
    {
       Draw3dRect(rectangleParam.left, rectangleParam.top, rectangleParam.right - rectangleParam.left,
@@ -3931,7 +3931,7 @@ namespace draw2d_opengl
    }
 
 
-   i32 graphics::ExcludeClipRect(const RECTANGLE_I32 &  rectangleParam)
+   i32 graphics::ExcludeClipRect(const ::rectangle_i32 & rectangleParam)
    {
       
       i32 nRetVal = ERROR;
@@ -3963,7 +3963,7 @@ namespace draw2d_opengl
    }
 
 
-   i32 graphics::IntersectClipRect(const RECTANGLE_I32 &  rectangleBounds)
+   i32 graphics::IntersectClipRect(const ::rectangle_i32 & rectangleBounds)
    {
       
       i32 nRetVal = ERROR;

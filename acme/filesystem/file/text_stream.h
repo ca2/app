@@ -193,7 +193,7 @@ public:
    text_stream & operator <<(double d)  ;
    //virtual void write(const POINT_I32 & point) ;
    //virtual void write(const SIZE_I32 & size) ;
-   //virtual void write(const RECTANGLE_I32 & rectangle) ;
+   //virtual void write(const ::rectangle_i32 &rectangle) ;
 
    text_stream & operator <<(const char * psz) ;
    text_stream & operator <<(const ::atom & atom) ;

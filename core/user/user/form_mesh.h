@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "axis/user/form/window.h"
@@ -61,15 +61,15 @@ namespace user
 
       virtual bool _001HitTest_(const ::point_i32 & point, index&iItem, index&iSubItem) override;
 
-      void control_get_client_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle) override;
+      void control_get_client_rect(::user::interaction * pinteraction, RECTANGLE_I32 & rectangle) override;
 
-      void control_get_window_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle) override;
+      void control_get_window_rect(::user::interaction * pinteraction, RECTANGLE_I32 & rectangle) override;
 
       bool control_001DisplayHitTest(const ::point_i32 & point);
 
       bool _001IsEditing() override;
 
-      virtual bool _001IsPointInside(::user::interaction * pinteraction,point_i64 ptt) override;
+      bool _001IsPointInside(::user::interaction * pinteraction, const point_i64 & point) override;
 
       void _001HideEditingControls();
       void _001HideControl(::user::interaction * pinteraction);

@@ -38,9 +38,7 @@ public:
    template < primitive_point POINT1, primitive_point POINT2 >
    rectangle_type(const POINT1 & point1, const POINT2 & point2) noexcept { top_left() = point1; bottom_right() = point2; }
    template < primitive_rectangle RECTANGLE >
-   rectangle_type(const RECTANGLE & t) noexcept { ::copy(this, &t); }
-   template < primitive_rectangle RECTANGLE >
-   rectangle_type(const RECTANGLE * p) noexcept { ::copy(this, p); }
+   rectangle_type(const RECTANGLE & t) noexcept { ::copy(*this, t); }
 
 
    POINT_TYPE & origin() noexcept { return top_left(); }

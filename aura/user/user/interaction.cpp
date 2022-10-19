@@ -14440,7 +14440,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
          prectangle->move_top_to(rectangleWorkspace.top);
 
-         if (::height(prectangle) < sizeMinimum.cy)
+         if (::height(*prectangle) < sizeMinimum.cy)
          {
 
             prectangle->bottom = prectangle->top + sizeMinimum.cy;
@@ -14454,7 +14454,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
          prectangle->move_bottom_to(rectangleWorkspace.bottom);
 
-         if (::height(prectangle) < sizeMinimum.cy)
+         if (::height(*prectangle) < sizeMinimum.cy)
          {
 
             prectangle->top = prectangle->bottom - sizeMinimum.cy;
@@ -14468,7 +14468,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
          prectangle->move_left_to(rectangleWorkspace.left);
 
-         if (::width(prectangle) < sizeMinimum.cx)
+         if (::width(*prectangle) < sizeMinimum.cx)
          {
 
             prectangle->right = prectangle->left + sizeMinimum.cx;
@@ -14482,7 +14482,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
          prectangle->move_right_to(rectangleWorkspace.right);
 
-         if (::width(prectangle) < sizeMinimum.cx)
+         if (::width(*prectangle) < sizeMinimum.cx)
          {
 
             prectangle->left = prectangle->right + sizeMinimum.cx;

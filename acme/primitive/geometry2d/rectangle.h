@@ -954,88 +954,87 @@ public:
          }
          else
          {
+
             if (rectangleIntersect.left == rectangleMajor.left
-
                && rectangleIntersect.right == rectangleMajor.right)
-
             {
+
                if (rectangleIntersect.top == rectangleMajor.top)
-
                {
-                  ::set_rect(&rectangleRet,
-                     rectangleMajor.left,
 
+                  ::set_rect(rectangleRet,
+                     rectangleMajor.left,
                      rectangleIntersect.top,
                      rectangleMajor.right,
-
                      rectangleMajor.bottom);
 
                }
                else if (rectangleIntersect.bottom == rectangleMajor.bottom)
-
                {
-                  ::set_rect(&rectangleRet,
+
+                  ::set_rect(rectangleRet,
                      rectangleMajor.left,
-
                      rectangleMajor.top,
-
                      rectangleMajor.right,
-
                      rectangleIntersect.bottom);
+
                }
                else
                {
+
                   rectangleRet = rectangleMajor;
 
                }
+
             }
             else if (rectangleIntersect.top == rectangleMajor.top
-
                && rectangleIntersect.bottom == rectangleMajor.bottom)
-
             {
-               if (rectangleIntersect.left == rectangleMajor.left)
 
+               if (rectangleIntersect.left == rectangleMajor.left)
                {
+
                   rectangleRet.set(
                      rectangleIntersect.left,
                      rectangleMajor.top,
-
                      rectangleMajor.right,
-
                      rectangleMajor.bottom);
 
                }
                else if (rectangleIntersect.right == rectangleMajor.right)
-
                {
+
                   rectangleRet.set(
                      rectangleMajor.left,
-
                      rectangleMajor.top,
-
                      rectangleIntersect.right,
                      rectangleMajor.bottom);
 
                }
                else
                {
+
                   rectangleRet = rectangleMajor;
 
                }
+
             }
             else
             {
+
                rectangleRet = rectangleMajor;
 
             }
+
          }
+
       }
+
       *this = rectangleRet;
+
       return;
 
    }
-
 
 
 

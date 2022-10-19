@@ -219,9 +219,9 @@ public:
    virtual void paint_rgb(const ::color::color & color);
 
    virtual ::i64 get_rgba_area(const ::color::color & color) const;
-   virtual ::i64 get_rgba_area(const ::color::color & color, const RECTANGLE_I32 * lpcrect) const;
+   virtual ::i64 get_rgba_area(const ::color::color & color, const RECTANGLE_I32 & rect) const;
    virtual ::i64 _001GetTopLeftWeightedOpaqueArea(int iAlphaMin) const;
-   virtual ::i64 _001GetTopLeftWeightedOpaqueArea(int iAlphaMin, const RECTANGLE_I32 * lpcrect) const;
+   virtual ::i64 _001GetTopLeftWeightedOpaqueArea(int iAlphaMin, const RECTANGLE_I32 & rect) const;
 
 
    virtual void saturation(double dRate);

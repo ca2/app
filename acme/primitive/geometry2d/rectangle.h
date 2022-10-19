@@ -198,7 +198,7 @@ public:
    bool intersect_y(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::y_intersect_rect(*this, rect1, rect2); }
    bool intersect(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::intersect_rect(*this, rect1, rect2); }
 
-   rectangle_type & intersect(const rectangle_type & rectangle) noexcept { ::intersect_rect(*this, *this, &rectangle); return *this; }
+   rectangle_type & intersect(const rectangle_type & rectangle) noexcept { ::intersect_rect(*this, *this, rectangle); return *this; }
 
    rectangle_type & constrain_to(const rectangle_type & rectangle) noexcept { return intersect(rectangle); }
 

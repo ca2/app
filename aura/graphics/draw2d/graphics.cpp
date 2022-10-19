@@ -3145,10 +3145,10 @@ namespace draw2d
    }
 
 
-   void graphics::_add_clipping_shape(___shape < ::draw2d::region > & pshape)
+   void graphics::_add_clipping_shape(___shape < ::draw2d::region > & shape)
    {
    
-      switch(pshape->eshape())
+      switch(shape.eshape())
       {
       case e_shape_none:
          return;
@@ -3156,15 +3156,15 @@ namespace draw2d
          _intersect_clip();
          break;
       case e_shape_rectangle:
-         _add_clipping_shape(pshape->shape < ::rectangle >(), pshape);
+         _add_clipping_shape(shape.shape < ::rectangle >(), shape);
          break;
       case e_shape_ellipse:
-         _add_clipping_shape(pshape->shape < ::ellipse >(), pshape);
+         _add_clipping_shape(shape.shape < ::ellipse >(), shape);
          break;
 //      case e_shape_lines:
-//         return _add_shape(pshape->shape < ::lines >());
+//         return _add_shape(shape.shape < ::lines >());
       case e_shape_polygon:
-         _add_clipping_shape(pshape->shape < ::polygon >(), pshape);
+         _add_clipping_shape(shape.shape < ::polygon >(), shape);
          break;
       default:
          throw ::exception(error_not_implemented);
@@ -3184,7 +3184,7 @@ namespace draw2d
    }
 
 
-   void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, ___shape < ::draw2d::region > * pshape)
+   void graphics::_add_clipping_shape(const ::rectangle_f64 & rectangle, ___shape < ::draw2d::region > & shape)
    {
    
       throw ::interface_only();
@@ -3214,7 +3214,7 @@ namespace draw2d
    //}
 
 
-   void graphics::_add_clipping_shape(const ::ellipse & ellipse, ___shape < ::draw2d::region > * pshape)
+   void graphics::_add_clipping_shape(const ::ellipse & ellipse, ___shape < ::draw2d::region > & shape)
    {
    
       throw ::interface_only();
@@ -3234,7 +3234,7 @@ namespace draw2d
    //}
 
 
-   void graphics::_add_clipping_shape(const ::polygon_f64 & polygon, ___shape < ::draw2d::region > * pshape)
+   void graphics::_add_clipping_shape(const ::polygon_f64 & polygon, ___shape < ::draw2d::region > & shape)
    {
 
       throw ::interface_only();
@@ -3249,7 +3249,7 @@ namespace draw2d
       
       _shape < ::rectangle, e_shape_rectangle, ::draw2d::region > regionshape;
 
-      _add_clipping_shape(rectangle, &regionshape);
+      _add_clipping_shape(rectangle, regionshape);
 
    }
 
@@ -3259,7 +3259,7 @@ namespace draw2d
    
       _shape < ::ellipse, e_shape_ellipse, ::draw2d::region > regionshape;
 
-      _add_clipping_shape(ellipse, &regionshape);
+      _add_clipping_shape(ellipse, regionshape);
    
    }
 

@@ -8231,10 +8231,10 @@ void image::set_rgb(color32_t cr)
 }
 
 
-::i64 image::get_rgba_area(const ::color::color& color32, const RECTANGLE_I32* lpcrect) const
+::i64 image::get_rgba_area(const ::color::color& color32, const RECTANGLE_I32 & rect) const
 {
 
-   ::rectangle_i32 r(lpcrect);
+   ::rectangle_i32 r(rect);
 
    if (!r.intersect(this->rectangle()))
    {
@@ -8298,10 +8298,10 @@ void image::set_rgb(color32_t cr)
 }
 
 
-::i64 image::_001GetTopLeftWeightedOpaqueArea(int iAlphaMin, const RECTANGLE_I32* lpcrect) const
+::i64 image::_001GetTopLeftWeightedOpaqueArea(int iAlphaMin, const RECTANGLE_I32 & rect) const
 {
 
-   ::rectangle_i32 r(lpcrect);
+   ::rectangle_i32 r(rect);
 
    ::rectangle_i32 rTotal(this->rectangle());
 

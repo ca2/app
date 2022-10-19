@@ -175,6 +175,18 @@ list(APPEND apex_source
    inline/console.h
    inline/console_common.h
    inline/library.h
+        interprocess/base.cpp
+        interprocess/base.h
+        interprocess/call.cpp
+        interprocess/call.h
+        interprocess/caller.cpp
+        interprocess/caller.h
+        interprocess/communication.cpp
+        interprocess/communication.cpp
+        interprocess/target.cpp
+        interprocess/target.h
+        interprocess/task.cpp
+        interprocess/task.h
    message/_.cpp
    message/_.h
    message/_impl.h
@@ -483,14 +495,14 @@ list(APPEND apex_source
    platform/history.cpp
    platform/history.h
    #platform/hyperlink.h
-   platform/interprocess_call.cpp
-   platform/interprocess_call.h
-   platform/interprocess_communication.cpp
-   platform/interprocess_communication.h
-   platform/interprocess_intercommunication.cpp
-   platform/interprocess_intercommunication.h
-   platform/interprocess_task.cpp
-   platform/interprocess_task.h
+#   platform/interprocess_call.cpp
+#   platform/interprocess_call.h
+#   platform/interprocess_communication.cpp
+#   platform/interprocess_communication.h
+#   platform/interprocess_intercommunication.cpp
+#   platform/interprocess_intercommunication.h
+#   platform/interprocess_task.cpp
+#   platform/interprocess_task.h
    #platform/keep.h
    platform/launcher.cpp
    platform/launcher.h
@@ -561,7 +573,7 @@ list(APPEND apex_source
    version/version.h
    #_.cpp
    _.h
-   _defer.h
+   #_defer.h
    aaa_want_to_move_xml.h
    application.h
    #astr.h

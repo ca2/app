@@ -3145,7 +3145,7 @@ namespace draw2d
    }
 
 
-   void graphics::_add_clipping_shape(___shape < ::draw2d::region > * pshape)
+   void graphics::_add_clipping_shape(___shape < ::draw2d::region > & pshape)
    {
    
       switch(pshape->eshape())
@@ -3269,7 +3269,7 @@ namespace draw2d
 
       _shape < ::polygon, e_shape_polygon, ::draw2d::region > regionshape;
 
-      _add_clipping_shape(polygon, &regionshape);
+      _add_clipping_shape(polygon, regionshape);
 
    }
 

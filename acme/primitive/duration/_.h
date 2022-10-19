@@ -83,4 +83,11 @@ FLOATING_DURATION_SETUP1(FLOATING_DAY           , floating_day          )
 //__DURATION_SETUP__(floating_day           , m_d)
 
 
+inline integral_second_t::integral_second_t(const ::duration & duration)
+{
 
+   //m_i = duration.m_iSecond + (duration.m_iNanosecond > 500'000'000 ? 1 : 0);
+
+   m_i = duration.m_iSecond;
+
+}

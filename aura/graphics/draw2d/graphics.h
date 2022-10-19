@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/platform/draw_context2.h"
@@ -457,10 +457,10 @@ namespace draw2d
       // It should be an aid when the 2d graphics backend supports
       // "inline" paths.
       virtual void _intersect_clip();
-      virtual void _add_clipping_shape(___shape<::draw2d::region> * pshape);
-      virtual void _add_clipping_shape(const ::rectangle & rectangle, ___shape < ::draw2d::region > * pshape);
-      virtual void _add_clipping_shape(const ::ellipse & ellipse, ___shape < ::draw2d::region > * pshape);
-      virtual void _add_clipping_shape(const ::polygon & polygon, ___shape < ::draw2d::region > * pshape);
+      virtual void _add_clipping_shape(___shape<::draw2d::region> & shape);
+      virtual void _add_clipping_shape(const ::rectangle & rectangle, ___shape < ::draw2d::region > & shape);
+      virtual void _add_clipping_shape(const ::ellipse & ellipse, ___shape < ::draw2d::region > & shape);
+      virtual void _add_clipping_shape(const ::polygon & polygon, ___shape < ::draw2d::region > & shape);
 
       //virtual void IntersectClipregion(::draw2d::region * pregion);
       //virtual void IntersectClipRect(double x1, double y1, double x2, double y2);

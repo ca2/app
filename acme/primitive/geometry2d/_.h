@@ -1139,11 +1139,14 @@ template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2, primitive
 inline INTEGRAL_RESULT muldiv(INTEGRAL1 i, INTEGRAL2 iNumerator, INTEGRAL3 iDenominator);
 
 
+template < primitive_rectangle RECTANGLE >
+inline auto width(const RECTANGLE & rectangle) { return rectangle.right - rectangle.left; }
 
+template < primitive_rectangle RECTANGLE >
+inline auto height(const RECTANGLE & rectangle) { return rectangle.bottom - rectangle.top; }
 
-
-
-
+template < primitive_rectangle RECTANGLE >
+inline auto area(const RECTANGLE & rectangle) { return maximum(width(rectangle), 0) * maximum(height(rectangle), 0); }
 
 
 
@@ -1155,9 +1158,9 @@ inline RECTANGLE_I32 & deflate(RECTANGLE_I32 & rectangle, ::i32 x, ::i32 y) { re
 inline RECTANGLE_I32 & offset(RECTANGLE_I32 & rectangle, ::i32 x, ::i32 y) { return ::offset_rect(rectangle, x, y); }
 inline bool intersect(RECTANGLE_I32 & rectangle, const RECTANGLE_I32 & rect1, const RECTANGLE_I32 & rect2) { return ::intersect_rect(rectangle, rect1, rect2); }
 inline RECTANGLE_I32 & unite(RECTANGLE_I32 & rectangle, const RECTANGLE_I32 & rect1, const RECTANGLE_I32 & rect2) { return ::union_rect(rectangle, rect1, rect2); }
-inline ::i32 width(const RECTANGLE_I32 & rectangle) { return ::rect_width(rectangle); }
-inline ::i32 height(const RECTANGLE_I32 & rectangle) { return ::rect_height(rectangle); }
-inline ::i32 area(const RECTANGLE_I32 & rectangle) { return ::rect_area(rectangle); }
+//inline ::i32 width(const RECTANGLE_I32 & rectangle) { return ::rect_width(rectangle); }
+//inline ::i32 height(const RECTANGLE_I32 & rectangle) { return ::rect_height(rectangle); }
+//inline ::i32 area(const RECTANGLE_I32 & rectangle) { return ::rect_area(rectangle); }
 inline bool is_empty(const RECTANGLE_I32 & rectangle) { return ::is_rect_empty(rectangle); }
 inline void swap_left_right(RECTANGLE_I32 & rectangle) noexcept { ::__swap(rectangle.left, rectangle.right); }
 
@@ -1189,9 +1192,9 @@ inline RECTANGLE_I64 & deflate(RECTANGLE_I64 & rectangle, i64 x, i64 y) { return
 inline RECTANGLE_I64 & offset(RECTANGLE_I64 & rectangle, i64 x, i64 y) { return ::offset_rect(rectangle, x, y); }
 inline bool intersect(RECTANGLE_I64 & rectangle, const RECTANGLE_I64 & rect1, const RECTANGLE_I64 & rect2) { return ::intersect_rect(rectangle, rect1, rect2); }
 inline RECTANGLE_I64 & unite(RECTANGLE_I64 & rectangle, const RECTANGLE_I64 & rect1, const RECTANGLE_I64 & rect2) { return ::union_rect(rectangle, rect1, rect2); }
-inline i64 width(const RECTANGLE_I64 & rectangle) { return ::rect_width(rectangle); }
-inline i64 height(const RECTANGLE_I64 & rectangle) { return ::rect_height(rectangle); }
-inline i64 area(const RECTANGLE_I64 & rectangle) { return ::rect_area(rectangle); }
+//inline i64 width(const RECTANGLE_I64 & rectangle) { return ::rect_width(rectangle); }
+//inline i64 height(const RECTANGLE_I64 & rectangle) { return ::rect_height(rectangle); }
+//inline i64 area(const RECTANGLE_I64 & rectangle) { return ::rect_area(rectangle); }
 inline bool is_empty(const RECTANGLE_I64 & rectangle) { return ::is_rect_empty(rectangle); }
 inline void swap_left_right(RECTANGLE_I64 & rectangle) noexcept { ::__swap(rectangle.left, rectangle.right); }
 

@@ -1,4 +1,4 @@
-//
+﻿//
 // Recreated by camilo on 2021-10-05 13:10 BRT <3ThomasBorregaardSørensen!![ THE ONE GOD ]
 // Refactored/Merged by camilon on 2021-10-04 06:45 BRT <3ThomasBorregaardSørensen!![ THE ONE GOD ]
 // // Created by camilo on 2020-11-16. <3Tbs_!!
@@ -15,7 +15,7 @@ public:
 
    
    constexpr integral_second_t(INTEGRAL_SECOND second = {}) : INTEGRAL_SECOND(second) {}
-
+   integral_second_t(const ::duration & duration);
 
    INTEGRAL_SECOND seconds() const { return INTEGRAL_SECOND(m_i); }
    INTEGRAL_NANOSECOND nanoseconds() const { return INTEGRAL_NANOSECOND(0); }

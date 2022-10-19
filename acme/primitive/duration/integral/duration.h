@@ -13,7 +13,7 @@ public:
 
 
    constexpr integral_duration(BASE_TYPE iduration = {}) : DURATION(iduration) {}
-
+   integral_duration(const ::duration & duration) : DURATION(duration) {}
 
    integral_duration(enum_now)
    {

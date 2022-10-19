@@ -53,12 +53,11 @@ bool _shape < SHAPE, ESHAPE, HOLDEE >::expand_bounding_rect(RECTANGLE_I32 & rect
 
    }
 
-   ::union_rect(rectangle, rectangle, &r);
+   ::union_rect(rectangle, rectangle, r);
 
    return true;
 
 }
-
 
 
 template < typename SHAPE, enum_shape ESHAPE, typename HOLDEE >

@@ -507,6 +507,7 @@ RECTANGLE_TYPE & union_rect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1
 
 }
 
+
 template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
 RECTANGLE_TYPE & subtract_rect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {

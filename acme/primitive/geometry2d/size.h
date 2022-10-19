@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
@@ -52,10 +52,10 @@ public:
 
    POINT_TYPE operator+(const POINT_TYPE& point1) const noexcept { POINT_TYPE point(point1); ::offset_point(&point, this->cx, this->cy); return point; }
    template < primitive_point POINT >
-   POINT_TYPE operator-(const POINT & point1) const noexcept { POINT_TYPE point(this->cx, this->cy); ::offset_point(&point, -point1.x, -point1.y); return point;   }
+   POINT_TYPE operator-(const POINT & point1) const noexcept { POINT_TYPE point(this->cx, this->cy); ::offset_point(point, -point1.x, -point1.y); return point;   }
 
-   RECTANGLE_TYPE operator+(const RECTANGLE_TYPE& rect1) const noexcept { RECTANGLE_TYPE rectangle(rect1); ::offset_rect(&rectangle, this->cx, this->cy); return rectangle; }
-   RECTANGLE_TYPE operator-(const RECTANGLE_TYPE& rect1) const noexcept { RECTANGLE_TYPE rectangle(rect1); ::offset_rect(&rectangle, -this->cx, -this->cy); return rectangle; }
+   RECTANGLE_TYPE operator+(const RECTANGLE_TYPE& rect1) const noexcept { RECTANGLE_TYPE rectangle(rect1); ::offset_rect(rectangle, this->cx, this->cy); return rectangle; }
+   RECTANGLE_TYPE operator-(const RECTANGLE_TYPE& rect1) const noexcept { RECTANGLE_TYPE rectangle(rect1); ::offset_rect(rectangle, -this->cx, -this->cy); return rectangle; }
 
    UNIT_TYPE area() const noexcept { return ::rect_area(this->cx, this->cy); }
    inline bool is_empty() const noexcept { return this->cx <= 0 || this->cy <= 0; }

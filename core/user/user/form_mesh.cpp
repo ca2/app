@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "form_mesh.h"
 #include "core/user/user/mesh_item.h"
 #include "aura/message/user.h"
@@ -389,7 +389,7 @@ namespace user
    }
 
 
-   bool form_mesh::_001IsPointInside(::user::interaction * pinteraction,point_i64 point)
+   bool form_mesh::_001IsPointInside(::user::interaction * pinteraction, const point_i64 & point)
    {
 
       if(pinteraction != nullptr)
@@ -588,14 +588,13 @@ namespace user
    //}
 
 
-   void form_mesh::control_get_client_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle)
-
+   void form_mesh::control_get_client_rect(::user::interaction * pinteraction, RECTANGLE_I32  & rectangle)
    {
 
       if(pinteraction == nullptr)
       {
 
-         ::null(prectangle);
+         ::null(rectangle);
 
          return;
 
@@ -607,55 +606,25 @@ namespace user
 
       auto psubitem = get_subitem(iItem, pinteraction->m_iSubItem);
 
-      //item.initialize_mesh_item(this);
-
       psubitem->m_pitem->m_iDisplayItem = m_iDisplayItemHover;
 
-      //if(m_bGroup)
-      //{
-
-      //   psubitem->m_pitem->m_iGroupTopDisplayIndex = 0;
-
-      //   for(psubitem->m_pitem->m_iGroup = 0; psubitem->m_pitem->m_iGroup < m_nGroupCount; psubitem->m_pitem->m_iGroup++)
-      //   {
-
-      //      psubitem->m_pitem->m_iGroupCount = _001GetGroupItemCount(psubitem->m_pitem->m_iGroup);
-
-      //      if(psubitem->m_pitem->m_iItem >= psubitem->m_pitem->m_iGroupTopDisplayIndex && psubitem->m_pitem->m_iItem < (psubitem->m_pitem->m_iGroupTopDisplayIndex + psubitem->m_pitem->m_iGroupCount))
-      //      {
-
-      //         break;
-
-      //      }
-
-      //   }
-
-      //}
-
-      //psubitem->m_iSubItem = 
-
       psubitem->m_iOrder = _001MapSubItemToOrder(psubitem->m_iSubItem);
-
-      //item.m_iListItem = -1;
 
       index_element_rectangle(*psubitem,::user::mesh::e_element_sub_item);
 
       rectangleControl = psubitem->m_pdrawmeshsubitem->m_rectangleSubItem;
 
-      ::rectangle_i32 rectangle(rectangleControl);
-
-      *prectangle = rectangle;
-
+      copy(rectangle, rectangleControl);
 
    }
 
 
-   void form_mesh::control_get_window_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle)
-
+   void form_mesh::control_get_window_rect(::user::interaction * pinteraction,RECTANGLE_I32 & rectangle)
    {
-      control_get_client_rect(pinteraction,prectangle);
 
-      client_to_screen()(*prectangle);
+      control_get_client_rect(pinteraction,rectangle);
+
+      client_to_screen()(rectangle);
 
    }
 
@@ -671,12 +640,8 @@ namespace user
    void form_mesh::handle(::topic * ptopic, ::context * pcontext)
    {
 
-
-      //if(pdescriptor != nullptr)
-      //{
-      ///pdescriptor->m_pcontrol->m_iEditItem = m_iControlItem;
-      //}
       return form::handle(ptopic, pcontext);
+
    }
 
 

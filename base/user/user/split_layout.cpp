@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "split_layout.h"
 #include "split_pane.h"
 #include "split_bar.h"
@@ -255,15 +255,18 @@ namespace user
 
 
    void split_layout::RelayChildEvent(index iIndex, const MESSAGE * pMsg)
-
    {
 
-      if(!m_bInitialized)
+      if (!m_bInitialized)
+      {
+
          return;
 
+      }
+
       ::rectangle_i32 splitRect;
-      CalcSplitBarRect(iIndex, &splitRect);
-      //::point_i32 pointCursor = pMsg->pt;
+
+      CalcSplitBarRect(iIndex, splitRect);
 
       if(pMsg->m_atom == e_message_left_button_down)
       {
@@ -272,11 +275,17 @@ namespace user
 
          if(psession->is_mouse_button_pressed(::user::e_mouse_left_button))
          {
+            
             ::user::split_bar & splitbar = *m_splitbara.element_at(iIndex);
+            
             splitbar.set_mouse_capture();
+
             m_iIndex = iIndex;
+
             m_iState = stateDragging;
+
          }
+
       }
       else if(pMsg->m_atom == e_message_left_button_up)
       {
@@ -539,7 +548,7 @@ namespace user
 
          }
 
-         CalcSplitBarRect(i, &rectangleBar);
+         CalcSplitBarRect(i, rectangleBar);
 
          uFlags = uBaseFlags;
 
@@ -563,7 +572,7 @@ namespace user
 
          ::rectangle_i32 & rectangleClient = m_splitpanecompositea[i]->m_rectangleClient;
 
-         CalcPaneRect(i,&rectanglePane);
+         CalcPaneRect(i, rectanglePane);
 
          pcomponent = m_splitpanecompositea.element_at(i);
 
@@ -764,43 +773,40 @@ namespace user
    }
 
 
-   void split_layout::CalcPaneRect(index iPane, RECTANGLE_I32 * prectangle)
-
+   void split_layout::CalcPaneRect(index iPane, RECTANGLE_I32 & rectangle)
    {
 
       i32 nMinPos = GetMinPos(iPane);
 
       i32 nMaxPos = GetMaxPos(iPane);
 
-      CalcPaneRect(nMinPos, nMaxPos, prectangle);
-
+      CalcPaneRect(nMinPos, nMaxPos, rectangle);
 
    }
 
-   void split_layout::CalcPaneRect(i32 nMinPos, i32 nMaxPos, RECTANGLE_I32 * prectangle)
 
+   void split_layout::CalcPaneRect(i32 nMinPos, i32 nMaxPos, RECTANGLE_I32 & rectangle)
    {
 
-      get_client_rect(prectangle);
-
+      get_client_rect(rectangle);
 
       if(m_eorientationSplit == e_orientation_horizontal)
       {
 
-         prectangle->top      = nMinPos;
+         rectangle.top      = nMinPos;
 
 
-         prectangle->bottom   = nMaxPos;
+         rectangle.bottom   = nMaxPos;
 
 
       }
       else
       {
 
-         prectangle->left   = nMinPos;
+         rectangle.left   = nMinPos;
 
 
-         prectangle->right   = nMaxPos;
+         rectangle.right   = nMaxPos;
 
 
       }
@@ -854,8 +860,7 @@ namespace user
    }
 
 
-   void split_layout::CalcSplitBarRect(index iIndex, RECTANGLE_I32 * prectangle)
-
+   void split_layout::CalcSplitBarRect(index iIndex, RECTANGLE_I32 & rectangle)
    {
 
       ASSERT(iIndex >= 0);
@@ -887,40 +892,30 @@ namespace user
 
       }
 
-
-      get_client_rect(prectangle);
-
+      get_client_rect(rectangle);
 
       if(m_eorientationSplit == e_orientation_horizontal)
       {
 
-         nPos = maximum(nPos, prectangle->top + m_iMarging / 2);
+         nPos = maximum(nPos, rectangle.top + m_iMarging / 2);
 
+         nPos = minimum(nPos, rectangle.bottom - m_iMarging / 2);
 
-         nPos = minimum(nPos, prectangle->bottom - m_iMarging / 2);
+         rectangle.top      = nPos - m_iMarging / 2;
 
-
-         prectangle->top      = nPos - m_iMarging / 2;
-
-
-         prectangle->bottom   = nPos + m_iMarging / 2;
-
+         rectangle.bottom   = nPos + m_iMarging / 2;
 
       }
       else
       {
 
-         nPos = maximum(nPos, prectangle->left + m_iMarging / 2);
+         nPos = maximum(nPos, rectangle.left + m_iMarging / 2);
 
+         nPos = minimum(nPos, rectangle.right - m_iMarging / 2);
 
-         nPos = minimum(nPos, prectangle->right - m_iMarging / 2);
+         rectangle.left   = nPos - m_iMarging / 2;
 
-
-         prectangle->left   = nPos - m_iMarging / 2;
-
-
-         prectangle->right   = nPos + m_iMarging / 2;
-
+         rectangle.right   = nPos + m_iMarging / 2;
 
       }
 
@@ -930,46 +925,17 @@ namespace user
    bool split_layout::InsertPaneAt(index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, ::atom atom)
    {
 
-      //::count iSplitBarCount = get_pane_count();
+      auto  pbar =__create_new<split_bar>();
 
-      //m_splitbara.erase_all();
+      m_splitbara.insert_at(iIndex, pbar);
 
-      //index i;
+      pbar->m_iIndex = iIndex;
 
-      //for(i = 0; i < iSplitBarCount; i++)
-      //{
-
-         auto  pbar =__create_new<split_bar>();
-
-         m_splitbara.insert_at(iIndex, pbar);
-
-         //::user::split_bar & splitbar = *m_splitbara.element_at(iIndex);
-
-         pbar->m_iIndex = iIndex;
-
-         pbar->create_child(this);
-
-         //if (!pbar->create_child(this))
-         //{
-
-         //   return false;
-
-         //}
-
-      //}
+      pbar->create_child(this);
 
       auto & ppane = m_splitpanecompositea.add_new_at(iIndex);
 
-      //auto estatus = 
-      
       __construct_new(ppane);
-
-      //if (!estatus)
-      //{
-
-      //   return false;
-
-      //}
 
       ppane->m_pplaceholder = place_hold(puserinteraction, ppane->m_rectangleClient);
 
@@ -1078,17 +1044,16 @@ namespace user
    }
 
 
-   void split_layout::SetPaneFixedSize(index iIndex, SIZE_I32 * pSize)
+   void split_layout::SetPaneFixedSize(index iIndex, const ::size_i32 & size)
    {
 
       __UNREFERENCED_PARAMETER(iIndex);
 
-      __UNREFERENCED_PARAMETER(pSize);
+      __UNREFERENCED_PARAMETER(size);
 
       ASSERT(iIndex >= 0);
 
       ASSERT(iIndex < get_pane_count());
-      //    m_aFixedSize.element_at(iIndex) = *pSize;
 
    }
 

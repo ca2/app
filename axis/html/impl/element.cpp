@@ -808,41 +808,11 @@ namespace html
             else
             {
 
-               __copy(rectangle, m_box);
+               copy(rectangle, m_box);
 
             }
 
-
-            //::color32_t color32;
-
             pgraphics->set_alpha_mode(::draw2d::e_alpha_mode_blend);
-
-            //if (m_pelemental->m_pstyle->get_alpha("", pdata, m_pelemental, d))
-            //{
-
-            //   if (m_pelemental->get_color(color32, ::user::color_background, pdata->m_pcoredata->m_pform))
-            //   {
-
-            //      App(pdata->get_app()).imaging().color_blend(pgraphics, rectangle, color32, maximum(0, minimum(255, (byte)(d * 255))));
-
-            //   }
-
-            //}
-            //else
-//            {
-//
-//               //::user::style_context style(m_pelemental);
-//
-////               auto pstyle
-//
-//               if(m_pelemental->get_color(color32,::user::color_background, &style))
-//               {
-//
-//                  pgraphics->fill_rectangle(rectangle, color32);
-//
-//               }
-//
-//            }
 
          }
 

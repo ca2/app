@@ -890,7 +890,7 @@ namespace user
 
       ::rectangle_f64 rectangleClipBox;
 
-      pgraphics->get_clip_box(&rectangleClipBox);
+      pgraphics->get_clip_box(rectangleClipBox);
 
       rectangleClipBox.right--;
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/write_text/font.h"
@@ -232,11 +232,12 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 
       m_bCacheEmboss = false;
 
-      CalcCharsPositions(pgraphics, &rectangle);
+      CalcCharsPositions(pgraphics, rectangle);
 
    }
 
    ::rectangle_i32 rectangleTextOut;
+
    GetPlacement(rectangleTextOut);
 
    switch (m_iAnimateType)
@@ -479,12 +480,11 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
    if (bRecalcLayout)
    {
 
-      CalcCharsPositions(pgraphics, &rectangle);
+      CalcCharsPositions(pgraphics, rectangle);
 
       pgraphics->set(m_pfont);
 
    }
-
 
    switch (m_iAnimateType)
    {
@@ -1294,7 +1294,7 @@ void xfplayer_impact_line::Invalidate(const rectangle_i32 & rectangleParam)
 
    ::rectangle_i32 rectangleInvalidate;
 
-   if (is_empty(&rectangleParam))
+   if (is_empty(rectangleParam))
    {
 
       rectangleInvalidate = rectanglePlacement;
@@ -1325,7 +1325,7 @@ void xfplayer_impact_line::Validate(const rectangle_i32 & rectangleParam)
 
    ::rectangle_i32 rectangleValidate;
 
-   if (is_empty(&rectangleParam))
+   if (is_empty(rectangleParam))
    {
 
       rectangleValidate = rectanglePlacement;

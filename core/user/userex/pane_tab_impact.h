@@ -78,7 +78,7 @@ namespace userex
 
       bool on_after_create_impact_data(::user::impact_data * pimpactdata) override;
 
-      void GetTabClientRect(RECTANGLE_I32 * prectangle) override;
+      void GetTabClientRect(RECTANGLE_I32 & rectangle) override;
 
       bool on_place_hold(::user::interaction * pinteraction, ::user::place_holder * pholder) override;
 
@@ -88,19 +88,11 @@ namespace userex
 
       virtual ::filemanager::document * filemanager_document(const ::atom & atom);
 
-//      virtual void FileManagerSaveAs(::user::document * pdocument);
-
-//      virtual void TabbedFileManagerSaveAs(::user::document * pdocument);
-
       void _001OnTabClose(index iTab) override;
 
       virtual void interactive_credentials(::account::credentials * pcredentials);
 
-      //virtual bool create_app_options(::user::impact_data * pimpactdata);
-
       void handle(::topic * ptopic, ::context * pcontext) override;
-
-      //void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void prepare_form(atom atom, ::form_document * pformdocument);
 

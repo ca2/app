@@ -762,7 +762,7 @@ namespace user
          // align the control bar
          ::rectangle_i32 rectangle;
 
-         rectangle.copy(&playout->rectangle);
+         rectangle.copy(playout->rectangle);
 
          ::size_i32 sizeAvail = rectangle.size();  // maximum size_i32 available
 

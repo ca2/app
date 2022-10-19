@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 namespace experience
@@ -118,10 +118,10 @@ namespace experience
       //virtual void calc_window_client_rect(RECTANGLE_I32 * prectangle, const rectangle_i32 & lprectWindow);
 
 
-      virtual bool get_element_rect(RECTANGLE_I32 * prectangle, ::enum_element eelement);
+      virtual bool get_element_rect(RECTANGLE_I32 & rectangle, ::enum_element eelement);
 
 
-      virtual void get_parent_rect(RECTANGLE_I32 * prectangle);
+      virtual void get_parent_rect(RECTANGLE_I32 & rectangle);
 
       virtual rectangle_i32 get_margin_rect();
       virtual rectangle_i32 get_caption_text_padding();
@@ -183,7 +183,7 @@ namespace experience
 
       virtual bool is_control_box_moveable();
 
-      virtual void GetFrameRect(rectangle_i32 * prectangle);
+      virtual void GetFrameRect(rectangle_i32 & rectangle);
 
 
 

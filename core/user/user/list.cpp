@@ -1194,7 +1194,7 @@ namespace user
 
             ::rectangle_i32 rectangleClient;
 
-            get_client_rect(&rectangleClient);
+            get_client_rect(rectangleClient);
 
             auto pitem = get_item(0);
 
@@ -1865,7 +1865,7 @@ namespace user
 
          ::rectangle_i32 rectangleImpact;
 
-         get_client_rect(&rectangleImpact);
+         get_client_rect(rectangleImpact);
 
          index dHeight = (::index) ((rectangleImpact.height() / m_dItemHeight) * m_dItemHeight);
 
@@ -1897,7 +1897,7 @@ namespace user
 
          ::rectangle_i32 rectangleImpact;
 
-         get_client_rect(&rectangleImpact);
+         get_client_rect(rectangleImpact);
 
          const ::size_i32 & sizeItem = get_item_size();
 
@@ -1910,7 +1910,7 @@ namespace user
 
          ::rectangle_i32 rectangleImpact;
 
-         get_client_rect(&rectangleImpact);
+         get_client_rect(rectangleImpact);
 
          if (m_dItemHeight == 0)
          {
@@ -1963,7 +1963,7 @@ namespace user
 
       ::rectangle_i32 rectangleUpdate;
 
-      get_client_rect(&rectangleUpdate);
+      get_client_rect(rectangleUpdate);
 
       auto pitem = get_item(iItemFirst);
 
@@ -2211,7 +2211,7 @@ namespace user
 
          ::rectangle_i32 rectangleClient;
 
-         get_client_rect(&rectangleClient);
+         get_client_rect(rectangleClient);
 
          if (point.x < 0
                || point.x > rectangleClient.right
@@ -2284,7 +2284,7 @@ namespace user
 
          ::rectangle_i32 rectangleClient;
 
-         get_client_rect(&rectangleClient);
+         get_client_rect(rectangleClient);
 
          if (m_bTopText)
          {
@@ -2407,7 +2407,7 @@ namespace user
 
          ::rectangle_i32 rectangleClient;
 
-         get_client_rect(&rectangleClient);
+         get_client_rect(rectangleClient);
 
          if (m_bTopText)
          {
@@ -2713,7 +2713,7 @@ namespace user
 
          ::rectangle_i32 rectangleClient;
 
-         get_client_rect(&rectangleClient);
+         get_client_rect(rectangleClient);
 
          if (m_bTopText)
          {
@@ -2779,7 +2779,7 @@ namespace user
 
          ::rectangle_i32 rectangleClient;
 
-         get_client_rect(&rectangleClient);
+         get_client_rect(rectangleClient);
 
          if (rectangleClient.is_empty())
          {
@@ -3276,7 +3276,7 @@ namespace user
 
          ::rectangle_i32 rectangleFocus;
 
-         GetFocusRect(&rectangleFocus);
+         GetFocusRect(rectangleFocus);
 
          m_plistheader->order_bottom();
 
@@ -3476,7 +3476,7 @@ namespace user
 
                ::rectangle_i32 rectangleClient;
 
-               get_client_rect(&rectangleClient);
+               get_client_rect(rectangleClient);
 
                index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy);
 
@@ -5540,7 +5540,7 @@ namespace user
 
       ::rectangle_i32 rectangleClient;
 
-      get_client_rect(&rectangleClient);
+      get_client_rect(rectangleClient);
 
       return rectangleClient.intersect(rectangleClient, item.m_rectangleItem) != 0;
 
@@ -6990,7 +6990,7 @@ namespace user
 
             ::rectangle_i32 rectangleClient;
 
-            get_client_rect(&rectangleClient);
+            get_client_rect(rectangleClient);
 
             index iIconSize = maximum(32, (*m_pcolumna)[0]->m_sizeIcon.cy);
 

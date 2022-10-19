@@ -2211,9 +2211,9 @@ namespace user
 
          ::rectangle_i32 rectangle(0, 0, 32767, 32767);
 
-         RepositionBars(0, 0xffff, FIRST_PANE, reposQuery, &rectangle, &rectangle, false);
+         RepositionBars(0, 0xffff, FIRST_PANE, reposQuery, rectangle, rectangle, false);
 
-         RepositionBars(0, 0xffff, FIRST_PANE, reposExtra, &m_rectangleBorder, &rectangle, true);
+         RepositionBars(0, 0xffff, FIRST_PANE, reposExtra, m_rectangleBorder, rectangle, true);
 
          //CalcWindowRect(&rectangle);
 
@@ -2271,7 +2271,7 @@ namespace user
          {
 
             // the rects are different -- recalc needed
-            m_rectangleBorder.copy(pRectBorder);
+            m_rectangleBorder.copy(*pRectBorder);
 
             return true;
 

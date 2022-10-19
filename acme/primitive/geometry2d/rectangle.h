@@ -163,9 +163,7 @@ public:
    rectangle_type & Null() noexcept { return ::null_rect(*this); }
 
    template < primitive_rectangle RECTANGLE >
-   rectangle_type & copy(const RECTANGLE & rectangle) noexcept { ::copy(*this, &rectangle); return *this; }
-   template < primitive_rectangle RECTANGLE >
-   rectangle_type & copy(const RECTANGLE * prectangle) noexcept { ::copy(*this, prectangle); return *this; }
+   rectangle_type & copy(const RECTANGLE & rectangle) noexcept { ::copy(*this, rectangle); return *this; }
 
    bool is_equal(const rectangle_type & rectangle) const noexcept { return ::rect_equals(*this, rectangle); }
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "acme/constant/timer.h"
 #include "tool_tip_window.h"
 #include "tool_tip_tool.h"
@@ -647,8 +647,11 @@ namespace user
          m_point.y = (rectangle.top + rectangle.bottom) / 2;
          break;
       case PositionRandomTopRight:
-         ::geometry::deflate(&rectangle, 0.5, 0.0, 0.0, 0.5);
+         
+         ::geometry::deflate(rectangle, 0.5, 0.0, 0.0, 0.5);
+
          point =  rectangle.random_point();
+
          break;
       default:
          ASSERT(false);

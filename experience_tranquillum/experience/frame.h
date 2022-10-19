@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "base/user/experience/frame.h"
@@ -73,7 +73,7 @@ namespace experience_tranquillum
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool get_element_rect(RECTANGLE_I32 * prectangle, enum_element eelement) override;
+      virtual bool get_element_rect(RECTANGLE_I32 & rectangle, enum_element eelement) override;
 
 
 
@@ -93,7 +93,7 @@ namespace experience_tranquillum
 
 
 
-      virtual void GetFrameRect(rectangle_i32 * prectangle) override;
+      virtual void GetFrameRect(rectangle_i32 & rectangle) override;
 
 
 

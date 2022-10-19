@@ -216,7 +216,7 @@ namespace account
          puiParent->get_window_rect(rectangleDesktop);
 
       }
-      else if (is_empty(&rectangleParam))
+      else if (is_empty(rectangleParam))
       {
 
          auto pwindowing = windowing();

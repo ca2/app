@@ -633,7 +633,7 @@ namespace user
 
       ::rectangle_f64 rClip;
 
-      pgraphics->get_clip_box(&rClip);
+      pgraphics->get_clip_box(rClip);
 
       ::pointer<::base::style>pstyle = get_style(pgraphics);
 
@@ -1279,25 +1279,22 @@ namespace user
    }
 
 
-   void tab::GetTabClientRect(RECTANGLE_I32 * prectangle)
-
+   void tab::GetTabClientRect(RECTANGLE_I32 & rectangle)
    {
 
-      *prectangle = get_data()->m_rectangleTabClient;
-
+      rectangle = get_data()->m_rectangleTabClient;
 
    }
 
 
-   void tab::GetTabClientRect(RECTANGLE_I64 * prectangle)
-
+   void tab::GetTabClientRect(RECTANGLE_I64 & rectangle)
    {
 
-      ::rectangle_i32 rectangleClient;
-      get_client_rect(rectangleClient);
-      rectangle_i64 rectangle_i64(rectangleClient);
-      *prectangle = rectangle_i64;
+      ::rectangle_i32 rectangleTabClient;
 
+      GetTabClientRect(rectangleTabClient);
+
+      copy(rectangle, rectangleTabClient);
 
    }
 
@@ -1992,7 +1989,7 @@ namespace user
    //}
 
 
-   bool tab::get_element_rect(::index iIndex, RECTANGLE_I32 * prectangle, enum_element eelement)
+   bool tab::get_element_rect(::index iIndex, RECTANGLE_I32 & rectangle, enum_element eelement)
    {
 
       point_i32 ptOffset(0,0);
@@ -2015,15 +2012,15 @@ namespace user
 
                   ::rectangle_i32 rectangle = ptabdata->m_rectangleTab;
 
-                  prectangle->left = rectangle.left;
+                  rectangle.left = rectangle.left;
 
-                  prectangle->top = rectangle.top;
+                  rectangle.top = rectangle.top;
 
-                  prectangle->right = rectangle.right;
+                  rectangle.right = rectangle.right;
 
                   fDensity = get_density_for_window();
 
-                  prectangle->bottom = rectangle.top + (::i32)(8.0f * fDensity);
+                  rectangle.bottom = rectangle.top + (::i32)(8.0f * fDensity);
 
                }
                else
@@ -2031,15 +2028,15 @@ namespace user
 
                   ::rectangle_i32 rectangle = ptabdata->m_rectangleTab;
 
-                  prectangle->left = rectangle.left;
+                  rectangle.left = rectangle.left;
 
-                  prectangle->top = rectangle.top;
+                  rectangle.top = rectangle.top;
 
                   fDensity = get_density_for_window();
 
-                  prectangle->right = rectangle.left + (::i32)(8.0f * fDensity);
+                  rectangle.right = rectangle.left + (::i32)(8.0f * fDensity);
 
-                  prectangle->bottom = rectangle.bottom;
+                  rectangle.bottom = rectangle.bottom;
 
                }
 
@@ -2054,15 +2051,15 @@ namespace user
 
                   ::rectangle_i32 rectangle = ptabdata->m_rectangleTab;
 
-                  prectangle->left = rectangle.left;
+                  rectangle.left = rectangle.left;
 
                   fDensity = get_density_for_window();
 
-                  prectangle->top = rectangle.bottom - (::i32)(8.0f * fDensity);
+                  rectangle.top = rectangle.bottom - (::i32)(8.0f * fDensity);
 
-                  prectangle->right = rectangle.right;
+                  rectangle.right = rectangle.right;
 
-                  prectangle->bottom = rectangle.bottom;
+                  rectangle.bottom = rectangle.bottom;
 
                }
                else
@@ -2072,13 +2069,13 @@ namespace user
 
                   fDensity = get_density_for_window();
 
-                  prectangle->left = rectangle.right - (::i32)(8.0f * fDensity);
+                  rectangle.left = rectangle.right - (::i32)(8.0f * fDensity);
 
-                  prectangle->top = rectangle.top;
+                  rectangle.top = rectangle.top;
 
-                  prectangle->right = rectangle.right;
+                  rectangle.right = rectangle.right;
 
-                  prectangle->bottom = rectangle.bottom;
+                  rectangle.bottom = rectangle.bottom;
 
                }
 
@@ -2119,14 +2116,14 @@ namespace user
       if(eelement == e_element_border)
       {
 
-         if (!get_element_rect(iIndex, prectangle, e_element_tab))
+         if (!get_element_rect(iIndex, rectangle, e_element_tab))
          {
 
             return false;
 
          }
 
-         ::rect_deflate(prectangle, &ptabdata->m_rectangleMargin);
+         ::rect_deflate(rectangle, ptabdata->m_rectangleMargin);
 
          //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
 
@@ -2137,14 +2134,14 @@ namespace user
       if(eelement == e_element_client)
       {
 
-         if (!get_element_rect(iIndex, prectangle, e_element_border))
+         if (!get_element_rect(iIndex, rectangle, e_element_border))
          {
 
             return false;
 
          }
 
-         ::rect_deflate(prectangle, &ptabdata->m_rectangleBorder);
+         ::rect_deflate(rectangle, ptabdata->m_rectangleBorder);
 
          //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
 
@@ -2162,16 +2159,16 @@ namespace user
 
          }
 
-         if (!get_element_rect(iIndex, prectangle, e_element_client))
+         if (!get_element_rect(iIndex, rectangle, e_element_client))
          {
 
             return false;
 
          }
 
-         prectangle->right = prectangle->left + ptabdata->m_tabpanecompositea[iIndex]->m_pimage->width();
+         rectangle.right = rectangle.left + ptabdata->m_tabpanecompositea[iIndex]->m_pimage->width();
 
-         prectangle->bottom = prectangle->top + ptabdata->m_tabpanecompositea[iIndex]->m_pimage->height();
+         rectangle.bottom = rectangle.top + ptabdata->m_tabpanecompositea[iIndex]->m_pimage->height();
 
          //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
 
@@ -2181,7 +2178,7 @@ namespace user
       else if(eelement == e_element_text)
       {
 
-         if (!get_element_rect(iIndex, prectangle, e_element_client))
+         if (!get_element_rect(iIndex, rectangle, e_element_client))
          {
 
             return false;
@@ -2191,18 +2188,18 @@ namespace user
          if(::is_ok(ptabdata->m_tabpanecompositea[iIndex]->m_pimage))
          {
 
-            prectangle->left += ptabdata->m_tabpanecompositea[iIndex]->m_pimage->width() + 2;
+            rectangle.left += ptabdata->m_tabpanecompositea[iIndex]->m_pimage->width() + 2;
 
          }
 
          if(!ptabdata->m_tabpanecompositea[iIndex]->m_bPermanent)
          {
 
-            prectangle->right -= 2 + 16 + 2;
+            rectangle.right -= 2 + 16 + 2;
 
          }
 
-         ::rect_deflate(prectangle, &ptabdata->m_rectangleTextMargin);
+         ::rect_deflate(rectangle, ptabdata->m_rectangleTextMargin);
 
          //::offset_rect(prectangle, ptOffset.x, ptOffset.y);
 
@@ -2233,20 +2230,20 @@ namespace user
 
          }
 
-         if (!get_element_rect(iIndex, prectangle, e_element_client))
+         if (!get_element_rect(iIndex, rectangle, e_element_client))
          {
 
             return false;
 
          }
 
-         prectangle->right  = prectangle->right;
+         rectangle.right  = rectangle.right;
 
 
-         prectangle->left   = prectangle->right - 20;
+         rectangle.left   = rectangle.right - 20;
 
 
-         prectangle->top    = prectangle->bottom - 20;
+         rectangle.top    = rectangle.bottom - 20;
 
 
          //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
@@ -2270,13 +2267,13 @@ namespace user
 
          rectangle.bottom = rectangle.top;
 
-         prectangle->left = rectangle.left;
+         rectangle.left = rectangle.left;
 
-         prectangle->top = (::i32) (rectangle.top +  iIndex * get_data()->m_iTabHeight);
+         rectangle.top = (::i32) (rectangle.top +  iIndex * get_data()->m_iTabHeight);
 
-         prectangle->right  = rectangle.right;
+         rectangle.right  = rectangle.right;
 
-         prectangle->bottom = prectangle->top + get_data()->m_iTabHeight;
+         rectangle.bottom = rectangle.top + get_data()->m_iTabHeight;
 
       }
       else
@@ -2284,17 +2281,17 @@ namespace user
 
          auto ppane = get_data()->m_tabpanecompositea[iIndex].get();
 
-         prectangle->left = ppane->m_point.x;
+         rectangle.left = ppane->m_point.x;
 
-         prectangle->top = ppane->m_point.y;
+         rectangle.top = ppane->m_point.y;
 
-         prectangle->right = prectangle->left + ppane->m_size.cx;
+         rectangle.right = rectangle.left + ppane->m_size.cx;
 
-         prectangle->bottom = prectangle->top + ppane->m_size.cy;
+         rectangle.bottom = rectangle.top + ppane->m_size.cy;
 
       }
 
-      ::offset_rect(prectangle, ptOffset.x, ptOffset.y);
+      ::offset_rect(rectangle, ptOffset.x, ptOffset.y);
 
       return true;
 
@@ -3461,56 +3458,57 @@ namespace user
    }
 
 
-   void tab::GetDragRect(RECTANGLE_I32 * prectangle, enum_position eposition)
-
+   void tab::GetDragRect(RECTANGLE_I32 & rectangle, enum_position eposition)
    {
+
       switch(eposition)
       {
       case e_position_top:
       {
-         prectangle->top = get_data()->m_rectangleTabClient.top;
 
-         prectangle->left = get_data()->m_rectangleTabClient.left + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.top = get_data()->m_rectangleTabClient.top;
 
-         prectangle->right = prectangle->left + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.left = get_data()->m_rectangleTabClient.left + get_data()->m_rectangleTabClient.width() / 3;
 
-         prectangle->bottom = prectangle->top + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.right = rectangle.left + get_data()->m_rectangleTabClient.width() / 3;
+
+         rectangle.bottom = rectangle.top + get_data()->m_rectangleTabClient.height() / 3;
 
       }
       break;
       case e_position_left:
       {
-         prectangle->top = get_data()->m_rectangleTabClient.top + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.top = get_data()->m_rectangleTabClient.top + get_data()->m_rectangleTabClient.height() / 3;
 
-         prectangle->left = get_data()->m_rectangleTabClient.left;
+         rectangle.left = get_data()->m_rectangleTabClient.left;
 
-         prectangle->right = prectangle->left + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.right = rectangle.left + get_data()->m_rectangleTabClient.width() / 3;
 
-         prectangle->bottom = prectangle->top + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.bottom = rectangle.top + get_data()->m_rectangleTabClient.height() / 3;
 
       }
       break;
       case e_position_right:
       {
-         prectangle->top = get_data()->m_rectangleTabClient.top + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.top = get_data()->m_rectangleTabClient.top + get_data()->m_rectangleTabClient.height() / 3;
 
-         prectangle->left = get_data()->m_rectangleTabClient.left + get_data()->m_rectangleTabClient.width() * 2 / 3;
+         rectangle.left = get_data()->m_rectangleTabClient.left + get_data()->m_rectangleTabClient.width() * 2 / 3;
 
-         prectangle->right = prectangle->left + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.right = rectangle.left + get_data()->m_rectangleTabClient.width() / 3;
 
-         prectangle->bottom = prectangle->top + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.bottom = rectangle.top + get_data()->m_rectangleTabClient.height() / 3;
 
       }
       break;
       case e_position_bottom:
       {
-         prectangle->top = get_data()->m_rectangleTabClient.top + get_data()->m_rectangleTabClient.height() * 2 / 3;
+         rectangle.top = get_data()->m_rectangleTabClient.top + get_data()->m_rectangleTabClient.height() * 2 / 3;
 
-         prectangle->left = get_data()->m_rectangleTabClient.left + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.left = get_data()->m_rectangleTabClient.left + get_data()->m_rectangleTabClient.width() / 3;
 
-         prectangle->right = prectangle->left + get_data()->m_rectangleTabClient.width() / 3;
+         rectangle.right = rectangle.left + get_data()->m_rectangleTabClient.width() / 3;
 
-         prectangle->bottom = prectangle->top + get_data()->m_rectangleTabClient.height() / 3;
+         rectangle.bottom = rectangle.top + get_data()->m_rectangleTabClient.height() / 3;
 
       }
       break;
@@ -3542,19 +3540,12 @@ namespace user
    }
 
 
-   void tab::get_child_rect(RECTANGLE_I32* prectangle)
+   void tab::get_child_rect(RECTANGLE_I32 & rectangle)
    {
-
-      if (::is_null(prectangle))
-      {
-
-         return;
-
-      }
 
       synchronous_lock synchronouslock(mutex());
 
-      *prectangle = get_data()->m_rectangleTabClient;
+      rectangle = get_data()->m_rectangleTabClient;
 
    }
 

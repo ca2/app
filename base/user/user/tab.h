@@ -162,20 +162,20 @@ namespace user
       virtual ::user::interaction * GetNotifyWnd();
       ::item_pointer on_hit_test(const ::point_i32 & point) override;
       virtual enum_position DragHitTest(const ::point_i32 & point);
-      virtual void GetDragRect(RECTANGLE_I32 * prectangle, enum_position eposition);
+      virtual void GetDragRect(RECTANGLE_I32 & rectangle, enum_position eposition);
 
-      virtual bool get_element_rect(::index iTab, RECTANGLE_I32 * prectangle, enum_element eelement);
+      virtual bool get_element_rect(::index iTab, RECTANGLE_I32 & rectangle, enum_element eelement);
 
 
       virtual void get_title(int iPane,string_array & stra);
 
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+
       virtual void layout_pane(index iPane, bool bDisplay = false);
 
-      virtual void GetTabClientRect(RECTANGLE_I32 * prectangle);
+      virtual void GetTabClientRect(RECTANGLE_I32 & rectangle);
 
-      virtual void GetTabClientRect(RECTANGLE_I64 * prectangle);
-
+      virtual void GetTabClientRect(RECTANGLE_I64 & rectangle);
 
       virtual bool add_tab(const ::string & strName, const ::atom & idImpact = nullptr, bool bVisible = true, bool bPermanent = false, ::user::place_holder * pholder = nullptr);
 

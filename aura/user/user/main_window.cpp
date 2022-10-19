@@ -139,7 +139,7 @@ namespace user
    }
 
 
-   ::index main_window::get_preferred_restore(RECTANGLE_I32 * prectanglePreferredRestore)
+   ::index main_window::get_preferred_restore(RECTANGLE_I32 & rectanglePreferredRestore)
    {
 
       //return calculate_window_rectangle_in_main_monitor(prectanglePreferredRestore, m_rectangleInitialRateOrSize);

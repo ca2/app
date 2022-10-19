@@ -1257,16 +1257,18 @@ namespace user
    }
 
 
-   void button::BaseToolTipGetRect(RECTANGLE_I32 * prectangle)
-
+   void button::BaseToolTipGetRect(RECTANGLE_I32 & rectangle)
    {
+
       // use window client rectangle_i32 as the tool rectangle_i32
-      get_client_rect(prectangle);
+      get_client_rect(rectangle);
 
    }
 
+
    i32 button::BaseToolTipGetIndex()
    {
+
       // use window dialog control atom as the index
       return (i32)GetDlgCtrlId();
    }

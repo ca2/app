@@ -137,7 +137,7 @@ namespace user
       virtual void on_exit_button_style(enum_style estyle);
 
       virtual void BaseToolTipRelayEvent(::message::message * pmessage);
-      virtual void BaseToolTipGetRect(RECTANGLE_I32 * prectangle);
+      virtual void BaseToolTipGetRect(RECTANGLE_I32 & rectangle);
 
       virtual i32 BaseToolTipGetIndex();
 

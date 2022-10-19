@@ -227,7 +227,7 @@ public:
 
       rectangle_type rectangle;
 
-      ::intersect_rect(&rectangle, this, &rect1);
+      ::intersect_rect(rectangle, *this, rect1);
 
       return rectangle;
 

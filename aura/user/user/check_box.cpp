@@ -15,14 +15,14 @@
 #include "aura/message/user.h"
 
 
-void scroll_x(RECTANGLE_I32 * prectangle, double dRateX, const ::rectangle_i32 & rectangle)
+void scroll_x(RECTANGLE_I32 & rectangleTarget, double dRateX, const ::rectangle_i32 & rectangle)
 {
 
-   ::i32 w = ::width(prectangle);
+   ::i32 w = ::width(rectangle);
 
-   prectangle->left = (::i32) (rectangle.left + (rectangle.width() - w) * dRateX);
+   rectangleTarget.left = (::i32) (rectangle.left + (rectangle.width() - w) * dRateX);
 
-   prectangle->right = prectangle->left + w;
+   rectangleTarget.right = rectangleTarget.left + w;
 
 }
 

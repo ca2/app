@@ -190,9 +190,9 @@ namespace user
 
       auto pointOffset = get_context_offset();
 
-      prectangle->right = (::i32) (prectangle->left + minimum(::width(prectangle), sizeTotal.cx - m_pscrolldataHorizontal->m_iPage - pointOffset.x));
+      prectangle->right = (::i32) (prectangle->left + minimum(::width(*prectangle), sizeTotal.cx - m_pscrolldataHorizontal->m_iPage - pointOffset.x));
 
-      prectangle->bottom = (::i32) (prectangle->top + minimum(::height(prectangle), sizeTotal.cy - m_pscrolldataVertical->m_iPage - pointOffset.y));
+      prectangle->bottom = (::i32) (prectangle->top + minimum(::height(*prectangle), sizeTotal.cy - m_pscrolldataVertical->m_iPage - pointOffset.y));
 
       return true;
 

@@ -14427,9 +14427,9 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
          auto point = rectangleWorkspace.center();
 
-         ::top_left(prectangle) = point;
+         ::top_left(*prectangle) = point;
 
-         ::bottom_right(prectangle) = point;
+         ::bottom_right(*prectangle) = point;
 
       }
 

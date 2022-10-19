@@ -109,7 +109,7 @@ list(APPEND library_source
         xml/xmlite.h
         _.cpp
         _.h
-        _defer.h
+        #_defer.h
         console.h
         framework.cpp
         framework.h

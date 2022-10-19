@@ -327,6 +327,8 @@ list(APPEND library_source
    platform/timer_task.cpp
    platform/trace.cpp
    platform/trace.h
+   platform/tracer.cpp
+   platform/tracer.h
    platform/trace_category.cpp
    platform/version.cpp
    #primitive/collection/2d_array.cpp
@@ -507,9 +509,9 @@ list(APPEND library_source
    primitive/primitive/_c_memory.h
    primitive/primitive/_defer.h
    primitive/primitive/_factory_impl.h
-   primitive/primitive/_factory_prefix.h
+   #primitive/primitive/_factory_prefix.h
    primitive/primitive/_impl.h
-   primitive/primitive/_memory.h
+   #primitive/primitive/_memory.h
    primitive/primitive/_papaya.h
    primitive/primitive/_papaya_impl.h
    primitive/primitive/_payload_impl.h
@@ -552,7 +554,7 @@ list(APPEND library_source
    primitive/primitive/interlocked.h
    primitive/primitive/interlocked_count.h
    #primitive/primitive/interlocked_long_pulse.cpp
-   primitive/primitive/interlocked_long_pulse.h
+   #primitive/primitive/interlocked_long_pulse.h
    primitive/primitive/linked_property.cpp
    primitive/primitive/linked_property.h
    primitive/primitive/logic.h
@@ -601,18 +603,18 @@ list(APPEND library_source
    primitive/primitive/property_set_papaya.h
    primitive/primitive/request_interface.h
    #primitive/primitive/runnable.cpp
-   primitive/primitive/runnable.h
+   #primitive/primitive/runnable.h
    #primitive/primitive/shared_memory.cpp
    #primitive/primitive/shared_memory.h
-   primitive/primitive/simple_object.h
+   #primitive/primitive/simple_object.h
    primitive/primitive/stick.h
-   primitive/primitive/str.h
-   primitive/primitive/tracer.cpp
-   primitive/primitive/tracer.h
-   primitive/primitive/trait.h
+   #primitive/primitive/str.h
+   #primitive/primitive/tracer.cpp
+   #primitive/primitive/tracer.h
+   #primitive/primitive/trait.h
    primitive/primitive/trait_predicate.h
    #primitive/primitive/traits.cpp
-   primitive/primitive/traits.h
+   #primitive/primitive/traits.h
    primitive/primitive/type.cpp
    primitive/primitive/type.h
    primitive/primitive/uid.h
@@ -665,7 +667,7 @@ list(APPEND library_source
    primitive/string/_conv.h
    #primitive/string/_conv_ansi.cpp
    #primitive/string/_conv_ansi.h
-   primitive/string/_conv_ansi_impl.h
+   #primitive/string/_conv_ansi_impl.h
    primitive/string/_defer.h
    primitive/string/_impl.h
    primitive/string/_impl_prio.h
@@ -675,8 +677,8 @@ list(APPEND library_source
    primitive/string/_string.cpp
    primitive/string/_str_impl.h
    primitive/string/_string_wide.h
-   primitive/string/to_string.cpp
-   primitive/string/to_string.h
+   primitive/string/__string.cpp
+   primitive/string/__string.h
    #primitive/string/_trait.h
    #primitive/string/_trait_ansi.h
    #primitive/string/_trait_ansi_impl.h
@@ -728,15 +730,15 @@ list(APPEND library_source
    primitive/string/sz.h
    primitive/string/to_integer.cpp
    primitive/string/to_integer.h
-   primitive/string/to_string.cpp
+   #primitive/string/to_string.cpp
    primitive/string/tokenizer.cpp
    primitive/string/tokenizer.h
    primitive/string/unicode.cpp
    primitive/string/unicode16.cpp
    primitive/string/unicode16_32.cpp
    primitive/string/unicode32.cpp
-   primitive/string/utf8_char.cpp
-   primitive/string/utf8_char.h
+   primitive/string/character.cpp
+   primitive/string/character.h
    primitive/string/wildcard.cpp
    #primitive/string/x.cpp
    #primitive/string/x.h
@@ -826,7 +828,7 @@ list(APPEND library_source
 
 list(APPEND library_source
    _.h
-   _defer.h
+   #_defer.h
    _start.h
    #application.h
    #astr.h
@@ -985,10 +987,10 @@ list(APPEND library_source
    framework.h
    framework_c.h
    graphics/draw2d/_.h
-   graphics/draw2d/_const.h
+   graphics/draw2d/_constant.h
    graphics/draw2d/color.h
    graphics/draw2d/colorref_array.h
-   id.h
+   #id.h
    include/_.h
    include/_c.h
    include/_c_bridge.h

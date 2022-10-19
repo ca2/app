@@ -1157,7 +1157,7 @@ public:
 
    }
 
-   inline bool operator==(::std::nullptr_t) const noexcept { return ::is_rect_null(*this); }
+   inline bool operator==(::std::nullptr_t) const noexcept { return ::is_null(*this); }
    inline bool operator!=(::std::nullptr_t) const noexcept { return !operator==(nullptr); }
 
    template < primitive_size SIZE >

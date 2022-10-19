@@ -50,14 +50,14 @@ public:
 
    size_type& Null() { this->cx = (UNIT_TYPE)0; this->cy = (UNIT_TYPE)0; return *this; }
 
-   POINT_TYPE operator+(const POINT_TYPE& point1) const noexcept { POINT_TYPE point(point1); ::offset_point(point, this->cx, this->cy); return point; }
+   POINT_TYPE operator+(const POINT_TYPE& point1) const noexcept { POINT_TYPE point(point1); ::offset(point, this->cx, this->cy); return point; }
    template < primitive_point POINT >
-   POINT_TYPE operator-(const POINT & point1) const noexcept { POINT_TYPE point(this->cx, this->cy); ::offset_point(point, -point1.x, -point1.y); return point;   }
+   POINT_TYPE operator-(const POINT & point1) const noexcept { POINT_TYPE point(this->cx, this->cy); ::offset(point, -point1.x, -point1.y); return point;   }
 
-   RECTANGLE_TYPE operator+(const RECTANGLE_TYPE& rect1) const noexcept { RECTANGLE_TYPE rectangle(rect1); ::offset_rect(rectangle, this->cx, this->cy); return rectangle; }
-   RECTANGLE_TYPE operator-(const RECTANGLE_TYPE& rect1) const noexcept { RECTANGLE_TYPE rectangle(rect1); ::offset_rect(rectangle, -this->cx, -this->cy); return rectangle; }
+   RECTANGLE_TYPE operator+(const RECTANGLE_TYPE& rect1) const noexcept { RECTANGLE_TYPE rectangle(rect1); ::offset(rectangle, this->cx, this->cy); return rectangle; }
+   RECTANGLE_TYPE operator-(const RECTANGLE_TYPE& rect1) const noexcept { RECTANGLE_TYPE rectangle(rect1); ::offset(rectangle, -this->cx, -this->cy); return rectangle; }
 
-   UNIT_TYPE area() const noexcept { return ::rect_area(this->cx, this->cy); }
+   UNIT_TYPE area() const noexcept { return ::area(this->cx, this->cy); }
    inline bool is_empty() const noexcept { return this->cx <= 0 || this->cy <= 0; }
    inline bool is_set() const noexcept { return !is_empty(); }
    inline bool has_area() const noexcept { return is_set(); }

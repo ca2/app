@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "layout_state.h"
@@ -262,8 +262,8 @@ namespace user
       inline ::i32 area(enum_layout elayout = e_layout_design) const { return size_i32(elayout).area(); }
 
 
-      inline void get_client_rect(RECTANGLE_I32* prectangle, enum_layout elayout = e_layout_design) const { state(elayout).client_rect(prectangle); }
-      inline void parent_client_rect(RECTANGLE_I32* prectangle, enum_layout elayout = e_layout_design) const { state(elayout).parent_client_rect(prectangle); }
+      inline void get_client_rect(RECTANGLE_I32 & rectangle, enum_layout elayout = e_layout_design) const { state(elayout).client_rect(rectangle); }
+      inline void parent_client_rect(RECTANGLE_I32 & rectangle, enum_layout elayout = e_layout_design) const { state(elayout).parent_client_rect(rectangle); }
 
 
       inline ::rectangle_i32 get_client_rect(enum_layout elayout = e_layout_design) const { ::rectangle_i32 rectangle; get_client_rect(rectangle, elayout); return rectangle; }

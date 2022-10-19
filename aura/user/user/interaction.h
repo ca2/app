@@ -785,8 +785,8 @@ namespace user
       virtual void display_previous_restore();
 
       // Client Rect : e_layout_design : Design/_001OnDraw time
-      virtual void get_input_client_area(RECTANGLE_I32* lprect);
-      virtual void get_client_rect(RECTANGLE_I32* lprect);
+      virtual void get_input_client_area(RECTANGLE_I32 & rect);
+      virtual void get_client_rect(RECTANGLE_I32 & rect);
       virtual ::rectangle_i32 get_client_rect();
 
 
@@ -1755,7 +1755,7 @@ namespace user
       // returns less than zero if no preferred restore
       // otherwise returns the preferred restore 
       // rectangle and its monitor index
-      virtual ::index get_preferred_restore(RECTANGLE_I32 * prectanglePreferredRestore);
+      virtual ::index get_preferred_restore(RECTANGLE_I32 & rectanglePreferredRestore);
 
       virtual bool calculate_window_rectangle_in_main_monitor(RECTANGLE_I32 * prectangle, const ::rectangle_f64 & rectangleOptionalRateOrSize);
 

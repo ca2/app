@@ -181,18 +181,18 @@ namespace user
 
 
 
-   bool scroll_base::GetActiveClientRect(RECTANGLE_I32 * prectangle)
+   bool scroll_base::GetActiveClientRect(RECTANGLE_I32 & rectangle)
    {
 
-      ::user::interaction::get_client_rect(prectangle);
+      ::user::interaction::get_client_rect(rectangle);
 
       auto sizeTotal = get_total_size();
 
       auto pointOffset = get_context_offset();
 
-      prectangle->right = (::i32) (prectangle->left + minimum(::width(*prectangle), sizeTotal.cx - m_pscrolldataHorizontal->m_iPage - pointOffset.x));
+      rectangle.right = (::i32) (rectangle.left + minimum(::width(rectangle), sizeTotal.cx - m_pscrolldataHorizontal->m_iPage - pointOffset.x));
 
-      prectangle->bottom = (::i32) (prectangle->top + minimum(::height(*prectangle), sizeTotal.cy - m_pscrolldataVertical->m_iPage - pointOffset.y));
+      rectangle.bottom = (::i32) (rectangle.top + minimum(::height(rectangle), sizeTotal.cy - m_pscrolldataVertical->m_iPage - pointOffset.y));
 
       return true;
 

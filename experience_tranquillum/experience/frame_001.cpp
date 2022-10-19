@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "frame_001.h"
 #include "base/user/experience/frame_window.h"
@@ -271,7 +271,7 @@ SizingNone:;
 
          ::rectangle_i32 rectangleClient;
          
-         m_pframewindow->get_client_rect(&rectangleClient);
+         m_pframewindow->get_client_rect(rectangleClient);
 
          rectangleClient.deflate(2, 2, 2, 2);
 

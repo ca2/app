@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "frame.h"
@@ -27,16 +27,17 @@ namespace user
       void on_create_user_interaction() override;
       
       
-      void get_input_client_area(RECTANGLE_I32 * prectangle) override;
+      void get_input_client_area(RECTANGLE_I32 & rectangle) override;
 
 
       void initial_frame_placement() override;
 
 
-      ::index get_preferred_restore(RECTANGLE_I32 * prectanglePreferredRestore) override;
+      ::index get_preferred_restore(RECTANGLE_I32 & rectanglePreferredRestore) override;
 
 
       virtual void create_main_window();
+
 
    };
 

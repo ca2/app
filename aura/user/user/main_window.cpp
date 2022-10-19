@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
 #endif
@@ -71,15 +71,15 @@ namespace user
    }
 
 
-   void main_window::get_input_client_area(RECTANGLE_I32 * prectangle)
+   void main_window::get_input_client_area(RECTANGLE_I32 & rectangle)
    {
       
-      get_client_rect(prectangle);
+      get_client_rect(rectangle);
    
       if(is_top_level() && ::is_set(m_pwindow))
       {
          
-         prectangle->top += (::i32) m_pwindow->get_top_margin();
+         rectangle.top += (::i32) m_pwindow->get_top_margin();
          
       }
       

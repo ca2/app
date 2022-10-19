@@ -241,9 +241,9 @@ public:
    rectangle_type get_union(const rectangle_type & rect1) const noexcept { rectangle_type rectangle(*this); rectangle.unite(rect1); return *this; }
 
    template < primitive_rectangle RECTANGLE >
-   rectangle_type & operator=(const RECTANGLE & rectangle) noexcept { return ::copy(*this, &rectangle); }
+   rectangle_type & operator=(const RECTANGLE & rectangle) noexcept { return ::copy(*this, rectangle); }
 
-   bool operator==(const rectangle_type & rectangle) const noexcept { return ::rect_equals(*this, &rectangle); }
+   bool operator==(const rectangle_type & rectangle) const noexcept { return ::rect_equals(*this, rectangle); }
    bool operator!=(const rectangle_type & rectangle) const noexcept { return !operator ==(rectangle); }
 
    template < primitive_point POINT >
@@ -252,8 +252,8 @@ public:
    template < primitive_size SIZE >
    rectangle_type & operator+=(const SIZE & size) noexcept { return ::offset_rect(*this, size.cx, size.cy); }
 
-   rectangle_type & operator+=(const rectangle_type & rectangle) noexcept { return ::rect_inflate(this, &rectangle); }
-   rectangle_type & operator*=(const rectangle_type & rectangle) noexcept { return ::rect_multiply_inline(this, &rectangle); }
+   rectangle_type & operator+=(const rectangle_type & rectangle) noexcept { return ::rect_inflate(*this, rectangle); }
+   rectangle_type & operator*=(const rectangle_type & rectangle) noexcept { return ::rect_multiply_inline(*this, rectangle); }
 
 
    inline rectangle_type & operator+=(const SHIFT_I32 & shift) noexcept { this->left = (UNIT_TYPE)(this->left + shift.Δx); this->top = (UNIT_TYPE)(this->top + shift.Δy); this->right = (UNIT_TYPE)(this->right + shift.Δx); this->bottom = (UNIT_TYPE)(this->bottom + shift.Δy); return *this; }
@@ -272,9 +272,9 @@ public:
 
    template < primitive_size SIZE >
    rectangle_type & operator-=(const SIZE & size) noexcept { return ::subtract_rect(*this, -size.cx, -size.cy); }
-   rectangle_type & operator-=(const rectangle_type & rectangle) noexcept { return ::rect_deflate(this, rectangle); }
+   rectangle_type & operator-=(const rectangle_type & rectangle) noexcept { return ::rect_deflate(*this, rectangle); }
 
-   rectangle_type & operator&=(const rectangle_type & rectangle) noexcept { ::intersect_rect(this, *this, rectangle); return*this; }
+   rectangle_type & operator&=(const rectangle_type & rectangle) noexcept { ::intersect_rect(*this, *this, rectangle); return*this; }
    rectangle_type & operator|=(const rectangle_type & rectangle) noexcept { return unite(rectangle); }
 
    rectangle_type operator+(const POINT_TYPE & point) const noexcept
@@ -388,7 +388,7 @@ public:
 
 
    void get_bounding_rectangle(const POINT_BASE_TYPE * ppoint, ::count count);
-   void get_bounding_rectangle(const POINT_ARRAY_TYPE & pointa) { pointa.get_bounding_rectangle(this); }
+   void get_bounding_rectangle(const POINT_ARRAY_TYPE & pointa) { pointa.get_bounding_rectangle(*this); }
 
 
    void rate(double d) noexcept
@@ -762,10 +762,10 @@ public:
       if (size.cx > ::width(rectangle))
       {
 
-         intersect_x(this, &rectangle);
+         intersect_x(*this, rectangle);
 
       }
-      else if (intersect_x(this, &rectangle))
+      else if (intersect_x(*this, rectangle))
       {
 
          if (this->left == rectangle.left)
@@ -786,10 +786,10 @@ public:
       if (size.cy > ::height(rectangle))
       {
 
-         intersect_y(this, &rectangle);
+         intersect_y(*this, rectangle);
 
       }
-      else if (intersect_y(this, &rectangle))
+      else if (intersect_y(*this, rectangle))
       {
 
          if (this->top == rectangle.top)
@@ -859,21 +859,17 @@ public:
    }
 
 
-   void _001Constrain(const rectangle_type & rectangle, RECTANGLE_BASE_TYPE * prectangleBounding)
-
+   void _001Constrain(const rectangle_type & rectangle, RECTANGLE_BASE_TYPE & rectangleBounding)
    {
 
-      _001ConstrainX(rectangle, prectangleBounding);
+      _001ConstrainX(rectangle, rectangleBounding);
 
-
-      _001ConstrainY(rectangle, prectangleBounding);
-
+      _001ConstrainY(rectangle, rectangleBounding);
 
    }
 
 
    void _001ConstrainX(const rectangle_type & rectangle, RECTANGLE_BASE_TYPE & rectangleBounding)
-
    {
 
       if (rectangleBounding.right > rectangle.right)
@@ -1166,7 +1162,7 @@ public:
 
    }
 
-   inline bool operator==(::std::nullptr_t) const noexcept { return ::is_rect_null(this); }
+   inline bool operator==(::std::nullptr_t) const noexcept { return ::is_rect_null(*this); }
    inline bool operator!=(::std::nullptr_t) const noexcept { return !operator==(nullptr); }
 
    template < primitive_size SIZE >
@@ -1198,6 +1194,7 @@ public:
 
    template < primitive_size SIZE >
    inline bool any_le(const SIZE & size) const noexcept { return this->size().any_le(size); }
+
 
 };
 

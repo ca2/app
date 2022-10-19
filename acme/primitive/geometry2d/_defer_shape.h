@@ -64,7 +64,7 @@ template < typename SHAPE, enum_shape ESHAPE, typename HOLDEE >
 inline bool _shape < SHAPE, ESHAPE, HOLDEE >::contains(const ::POINT_I32 & point) const
 {
 
-   return ::shape_contains(&m_shape, point);
+   return ::shape_contains(m_shape, point);
 
 }
 
@@ -73,7 +73,7 @@ template < typename SHAPE, enum_shape ESHAPE, typename HOLDEE >
 inline bool _shape < SHAPE, ESHAPE, HOLDEE >::contains(const ::POINT_F64 & point) const
 {
 
-   return ::shape_contains(&m_shape, point);
+   return ::shape_contains(m_shape, point);
 
 }
 

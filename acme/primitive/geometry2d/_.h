@@ -1498,7 +1498,7 @@ inline void expand_rect(RECT1 & rectangle, const RECT2 & r)
    if (::is_rect_null(rectangle))
    {
 
-      copy(rectangle, &r);
+      copy(rectangle, r);
 
    }
    else
@@ -1521,7 +1521,7 @@ inline void collapse_rect(RECT1 & rectangle, const RECT2 & r)
    if (::is_rect_null(rectangle))
    {
 
-      copy(rectangle, &r);
+      copy(rectangle, r);
 
    }
    else

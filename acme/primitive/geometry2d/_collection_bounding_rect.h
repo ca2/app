@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 inline bool get_bounding_rectangle(RECTANGLE_F64 & rectangleBounding, const lines & lines)
@@ -49,7 +49,7 @@ inline bool get_bounding_rectangle(RECTANGLE_F64 & rectangleBounding, const poly
 }
 
 
-inline bool get_bounding_rectangle(RECTANGLE_I32 & prectangleBounding, const polygon_f64 & polygon)
+inline bool get_bounding_rectangle(RECTANGLE_I32 & rectangleBounding, const polygon_f64 & polygon)
 {
 
    ::RECTANGLE_F64 r;

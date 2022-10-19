@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 inline bool tolerance_is_equal(double tolerance, double d1, double d2)
@@ -140,7 +140,7 @@ void point_array_base < POINT_TYPE >::rotate(double dAngle)
 
 
 template < typename POINT_TYPE >
-void point_array_base < POINT_TYPE >::get_bounding_rectangle(RECTANGLE_BASE_TYPE & prectangle) const
+void point_array_base < POINT_TYPE >::get_bounding_rectangle(RECTANGLE_BASE_TYPE & rectangle) const
 {
 
    ::get_bounding_rectangle(rectangle, this->get_data(), this->get_count());

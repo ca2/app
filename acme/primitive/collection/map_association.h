@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 template <  typename PAYLOAD >
@@ -53,7 +53,7 @@ inline typename PAIR::TYPE2& __value(const map_association<PAIR>& pair)
 
 
 template <  typename TYPE >
-inline ::pointer<TYPE>& __value(const ::pointer<TYPE> p)
+inline ::pointer<TYPE>& __value(const ::pointer<TYPE> & p)
 {
 
    return (::pointer<TYPE>&) p;

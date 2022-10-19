@@ -135,7 +135,8 @@ namespace user
 #endif
       virtual strsize _009GetWindowTextLength();
 
-      virtual bool GetFocusRect(RECTANGLE_I32 * prectangle);
+      virtual bool GetFocusRect(RECTANGLE_I32 & rectangle);
+
 
       virtual void defer_update_display();
       

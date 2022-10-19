@@ -2975,10 +2975,10 @@ namespace user
    }
 
 
-   bool primitive::GetFocusRect(RECTANGLE_I32* prectangle)
+   bool primitive::GetFocusRect(RECTANGLE_I32 & rectangle)
    {
 
-      return false;
+      return element::GetFocusRect(rectangle);
 
    }
 

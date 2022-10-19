@@ -1083,13 +1083,14 @@ namespace user
    }
 
 
-   void still::BaseToolTipGetRect(RECTANGLE_I32 * prectangle)
+   void still::BaseToolTipGetRect(RECTANGLE_I32 & rectangle)
    {
 
       // use window client rectangle_i32 as the tool rectangle_i32
-      get_client_rect(prectangle);
+      get_client_rect(rectangle);
 
    }
+
 
    i32 still::BaseToolTipGetIndex()
    {

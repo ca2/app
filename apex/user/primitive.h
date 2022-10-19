@@ -53,7 +53,7 @@ namespace user
 #endif
       strsize _009GetWindowTextLength() override;
 
-      bool GetFocusRect(RECTANGLE_I32 * prectangle) override;
+      bool GetFocusRect(RECTANGLE_I32 & rectangle) override;
 
       void defer_update_display() override;
 

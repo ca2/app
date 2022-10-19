@@ -8581,7 +8581,7 @@ namespace user
       else
       {
 
-         get_input_client_area(&sizeparentparams.rectangle);
+         get_input_client_area(sizeparentparams.rectangle);
 
       }
 
@@ -13971,7 +13971,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   ::user::interaction * interaction::best_top_level_parent(RECTANGLE_I32 * prectangle)
+   ::user::interaction * interaction::best_top_level_parent(RECTANGLE_I32 & rectangle)
    {
 
       auto ptoplevel = top_level();
@@ -13979,13 +13979,13 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       if (!ptoplevel || ptoplevel == this)
       {
 
-         best_monitor(prectangle);
+         best_monitor(&rectangle);
 
       }
       else
       {
 
-         ptoplevel->get_window_rect(prectangle);
+         ptoplevel->get_window_rect(rectangle);
 
       }
 
@@ -14205,12 +14205,13 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   void interaction::get_input_client_area(RECTANGLE_I32* lprect)
+   void interaction::get_input_client_area(RECTANGLE_I32 & rect)
    {
    
-      get_client_rect(lprect);
+      get_client_rect(rect);
       
    }
+
 
    void interaction::get_client_rect(RECTANGLE_I32 * lprect)
    {

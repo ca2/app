@@ -1745,7 +1745,7 @@ namespace user
       }
 
 
-      virtual ::user::interaction* best_top_level_parent(RECTANGLE_I32* prectangle);
+      virtual ::user::interaction* best_top_level_parent(RECTANGLE_I32 & rectangle);
 
       //virtual void get_window_rect(RECTANGLE_I32 * prectangle) const override;
 

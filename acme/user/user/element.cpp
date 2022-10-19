@@ -2851,7 +2851,7 @@ namespace user
    }
 
 
-   bool element::GetFocusRect(RECTANGLE_I32* prectangle)
+   bool element::GetFocusRect(RECTANGLE_I32 & rectangle)
    {
 
       return false;

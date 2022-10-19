@@ -181,18 +181,18 @@ namespace user
 
 
 
-   bool scroll_base::GetActiveClientRect(RECTANGLE_I32 * prectangle)
+   bool scroll_base::GetActiveClientRect(RECTANGLE_I32 & rectangle)
    {
 
-      ::user::interaction::get_client_rect(prectangle);
+      ::user::interaction::get_client_rect(rectangle);
 
       auto sizeTotal = get_total_size();
 
       auto pointOffset = get_context_offset();
 
-      prectangle->right = (::i32) (prectangle->left + minimum(::width(*prectangle), sizeTotal.cx - m_pscrolldataHorizontal->m_iPage - pointOffset.x));
+      rectangle.right = (::i32) (rectangle.left + minimum(::width(rectangle), sizeTotal.cx - m_pscrolldataHorizontal->m_iPage - pointOffset.x));
 
-      prectangle->bottom = (::i32) (prectangle->top + minimum(::height(*prectangle), sizeTotal.cy - m_pscrolldataVertical->m_iPage - pointOffset.y));
+      rectangle.bottom = (::i32) (rectangle.top + minimum(::height(rectangle), sizeTotal.cy - m_pscrolldataVertical->m_iPage - pointOffset.y));
 
       return true;
 
@@ -213,13 +213,13 @@ namespace user
    //}
 
 
-   bool scroll_base::GetFocusRect(RECTANGLE_I32 * prectangle)
+   bool scroll_base::GetFocusRect(RECTANGLE_I32 & rectangle)
    {
 
-      prectangle->left = 0;
-      prectangle->top = 0;
-      prectangle->right = const_layout().sketch().size().cx;
-      prectangle->bottom = const_layout().sketch().size().cy;
+      rectangle.left = 0;
+      rectangle.top = 0;
+      rectangle.right = const_layout().sketch().size().cx;
+      rectangle.bottom = const_layout().sketch().size().cy;
 
       return true;
 

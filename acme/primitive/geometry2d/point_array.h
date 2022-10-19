@@ -38,7 +38,7 @@ public:
 
    void rotate(double dAngle, POINT_TYPE pointCenter);
 
-   void get_bounding_rectangle(RECTANGLE_BASE_TYPE * prectangle) const;
+   void get_bounding_rectangle(RECTANGLE_BASE_TYPE & rectangle) const;
 
    bool polygon_contains(const POINT_TYPE & point) const;
 
@@ -140,10 +140,10 @@ void point_array_base < POINT_TYPE >::rotate(double dAngle)
 
 
 template < typename POINT_TYPE >
-void point_array_base < POINT_TYPE >::get_bounding_rectangle(RECTANGLE_BASE_TYPE * prectangle) const
+void point_array_base < POINT_TYPE >::get_bounding_rectangle(RECTANGLE_BASE_TYPE & prectangle) const
 {
 
-   ::get_bounding_rectangle(prectangle, this->get_data(), this->get_count());
+   ::get_bounding_rectangle(rectangle, this->get_data(), this->get_count());
 
 }
 

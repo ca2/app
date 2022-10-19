@@ -20,14 +20,14 @@ inline bool shape_contains(const ::write_text::text_out & textout, const POINT_I
 }
 
 
-inline bool shape_contains(const ::write_text::text_out & ptextout, const POINT_F64& point)
+inline bool shape_contains(const ::write_text::text_out & textout, const POINT_F64& point)
 {
 
    // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
 
    ::RECTANGLE_F64 rectangleBounding;
 
-   if (!::get_bounding_rectangle(rectangleBounding, ptextout))
+   if (!::get_bounding_rectangle(rectangleBounding, textout))
    {
 
       return false;

@@ -1,72 +1,72 @@
 #pragma once
 
 
-inline bool get_bounding_rectangle(RECTANGLE_F64* prectangleBounding, const lines* plines)
+inline bool get_bounding_rectangle(RECTANGLE_F64 & rectangleBounding, const lines & lines)
 {
 
-   plines->get_bounding_rectangle(prectangleBounding);
+   lines.get_bounding_rectangle(rectangleBounding);
 
    return true;
 
 }
 
 
-inline bool get_bounding_rectangle(RECTANGLE_I32* prectangleBounding, const lines* plines)
+inline bool get_bounding_rectangle(RECTANGLE_I32 & rectangleBounding, const lines & lines)
 {
 
    ::RECTANGLE_F64 r;
 
-   plines->get_bounding_rectangle(&r);
+   lines.get_bounding_rectangle(r);
 
-   copy(prectangleBounding, &r);
+   copy(rectangleBounding, r);
 
    return true;
 
 }
 
 
-inline bool get_bounding_rectangle(RECTANGLE_I32* prectangleBounding, const polygon_i32* ppolygon)
+inline bool get_bounding_rectangle(RECTANGLE_I32 & rectangleBounding, const polygon_i32 & polygon)
 {
 
-   ppolygon->get_bounding_rectangle(prectangleBounding);
+   polygon.get_bounding_rectangle(rectangleBounding);
 
    return true;
 
 }
 
 
-inline bool get_bounding_rectangle(RECTANGLE_F64* prectangleBounding, const polygon_i32* ppolygon)
+inline bool get_bounding_rectangle(RECTANGLE_F64 & rectangleBounding, const polygon_i32 & polygon)
 {
 
    ::RECTANGLE_I32 r;
 
-   ppolygon->get_bounding_rectangle(&r);
+   polygon.get_bounding_rectangle(r);
 
-   copy(prectangleBounding, &r);
+   copy(rectangleBounding, r);
 
    return true;
 
 }
 
 
-inline bool get_bounding_rectangle(RECTANGLE_I32* prectangleBounding, const polygon_f64* ppolygon)
+inline bool get_bounding_rectangle(RECTANGLE_I32 & prectangleBounding, const polygon_f64 & polygon)
 {
 
    ::RECTANGLE_F64 r;
 
-   ppolygon->get_bounding_rectangle(&r);
+   polygon.get_bounding_rectangle(r);
 
-   copy(prectangleBounding, &r);
+   copy(rectangleBounding, r);
 
    return true;
 
 }
 
 
-inline bool get_bounding_rectangle(RECTANGLE_F64* prectangleBounding, const polygon_f64* ppolygon)
+inline bool get_bounding_rectangle(RECTANGLE_F64 & rectangleBounding, const polygon_f64 & polygon)
 {
 
-   ppolygon->get_bounding_rectangle(prectangleBounding);
+   polygon.get_bounding_rectangle(rectangleBounding);
 
    return true;
 

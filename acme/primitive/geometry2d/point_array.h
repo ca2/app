@@ -208,7 +208,7 @@ template < typename POINT_TYPE >
 bool point_array_base < POINT_TYPE >::polygon_contains(const POINT_TYPE & point) const
 {
 
-   return ::polygon_contains_point( this->get_data(), (int)this->get_size(), point);
+   return ::polygon_contains( this->get_data(), (int)this->get_size(), point);
 
 }
 

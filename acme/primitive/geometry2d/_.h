@@ -471,10 +471,10 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, p
 RECTANGLE_TYPE & unite(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
-   if (is_rect_empty(rect1))
+   if (is_empty(rect1))
    {
 
-      if (is_rect_empty(rect2))
+      if (is_empty(rect2))
       {
 
          null(rectangle);
@@ -488,7 +488,7 @@ RECTANGLE_TYPE & unite(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, con
       }
 
    }
-   else if (is_rect_empty(rect1))
+   else if (is_empty(rect1))
    {
 
       copy(rectangle, rect1);
@@ -507,6 +507,42 @@ RECTANGLE_TYPE & unite(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, con
    return rectangle;
 
 }
+
+template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+RECT_TYPE1 & unite(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
+{
+
+   if (is_empty(rect1))
+   {
+
+      if (is_empty(rect2))
+      {
+
+         null(rect1);
+
+      }
+      else
+      {
+
+         copy(rect1, rect2);
+
+      }
+
+   }
+   else if (!is_rect_empty(rect2))
+   {
+
+      rect1.left = (decltype(RECT_TYPE1::left))minimum(rect1.left, rect2.left);
+      rect1.top = (decltype(RECT_TYPE1::top))minimum(rect1.top, rect2.top);
+      rect1.right = (decltype(RECT_TYPE1::right))maximum(rect1.right, rect2.right);
+      rect1.bottom = (decltype(RECT_TYPE1::bottom))maximum(rect1.bottom, rect2.bottom);
+
+   }
+
+   return rect1;
+
+}
+
 
 
 template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >

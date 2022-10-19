@@ -6,7 +6,7 @@ inline bool shape_contains(const ::write_text::text_out & textout, const POINT_I
 
    // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
 
-   ::RECTANGLE_I32 rectangleBounding;
+   ::rectangle_i32 rectangleBounding;
 
    if (!::get_bounding_rectangle(rectangleBounding, textout))
    {
@@ -15,7 +15,7 @@ inline bool shape_contains(const ::write_text::text_out & textout, const POINT_I
 
    }
 
-   return ::rectangle_contains(rectangleBounding, point.x, point.y);
+   return rectangleBounding.contains(point);
 
 }
 
@@ -25,7 +25,7 @@ inline bool shape_contains(const ::write_text::text_out & textout, const POINT_F
 
    // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
 
-   ::RECTANGLE_F64 rectangleBounding;
+   ::rectangle_f64 rectangleBounding;
 
    if (!::get_bounding_rectangle(rectangleBounding, textout))
    {
@@ -34,7 +34,7 @@ inline bool shape_contains(const ::write_text::text_out & textout, const POINT_F
 
    }
 
-   return ::rectangle_contains(rectangleBounding, point.x, point.y);
+   return rectangleBounding.contains(point);
 
 }
 
@@ -44,7 +44,7 @@ inline bool shape_contains(const ::write_text::draw_text & textout, const POINT_
 
    // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
 
-   ::RECTANGLE_I32 rectangleBounding;
+   ::rectangle_i32 rectangleBounding;
 
    if (!::get_bounding_rectangle(rectangleBounding, textout))
    {
@@ -53,7 +53,7 @@ inline bool shape_contains(const ::write_text::draw_text & textout, const POINT_
 
    }
 
-   return ::rectangle_contains(rectangleBounding, point.x, point.y);
+   return rectangleBounding.contains(point);
 
 }
 
@@ -63,7 +63,7 @@ inline bool shape_contains(const ::write_text::draw_text & textout, const POINT_
 
    // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
 
-   ::RECTANGLE_F64 rectangleBounding;
+   ::rectangle_f64 rectangleBounding;
 
    if (!::get_bounding_rectangle(rectangleBounding, textout))
    {
@@ -72,7 +72,7 @@ inline bool shape_contains(const ::write_text::draw_text & textout, const POINT_
 
    }
 
-   return rectangle_contains(rectangleBounding, point.x, point.y);
+   return rectangleBounding.contains(point);
 
 }
 

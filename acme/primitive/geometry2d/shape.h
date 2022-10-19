@@ -294,7 +294,7 @@ template < typename HOLDEE >
 bool ___shape<HOLDEE>::get_bounding_rectangle(RECTANGLE_F64 & rectangle) const
 {
 
-   ::null_rect(rectangle);
+   ::null(rectangle);
 
    return false;
 
@@ -305,7 +305,7 @@ template < typename HOLDEE >
 bool ___shape<HOLDEE>::get_bounding_rectangle(RECTANGLE_I32 & rectangle) const
 {
 
-   ::null_rect(rectangle);
+   ::null(rectangle);
 
    return false;
 

@@ -8,7 +8,7 @@ inline bool shape_contains(const ::write_text::text_out * ptextout, const POINT_
 
    ::RECTANGLE_I32 rectangleBounding;
 
-   if (!::get_bounding_rectangle(&rectangleBounding, ptextout))
+   if (!::get_bounding_rectangle(rectangleBounding, ptextout))
    {
 
       return false;

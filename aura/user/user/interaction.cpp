@@ -13115,10 +13115,10 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   void interaction::get_child_rect(RECTANGLE_I32 * prectangle)
+   void interaction::get_child_rect(RECTANGLE_I32 & rectangle)
    {
 
-      get_client_rect(prectangle);
+      get_client_rect(rectangle);
 
    }
 

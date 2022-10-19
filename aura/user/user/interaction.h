@@ -785,18 +785,19 @@ namespace user
       virtual void display_previous_restore();
 
       // Client Rect : e_layout_design : Design/_001OnDraw time
-      virtual void get_input_client_area(RECTANGLE_I32* lprect);
-      virtual void get_client_rect(RECTANGLE_I32* lprect);
+      virtual void get_input_client_area(RECTANGLE_I32 & rect);
+      virtual void get_client_rect(RECTANGLE_I32 & rect);
       virtual ::rectangle_i32 get_client_rect();
 
 
-      virtual void get_window_rect(RECTANGLE_I32 * lprect, enum_layout elayout = e_layout_design) { *lprect = get_window_rect(elayout); }
+      virtual void get_window_rect(RECTANGLE_I32 & rect, enum_layout elayout = e_layout_design) { rect = get_window_rect(elayout); }
       virtual ::rectangle_i32 get_window_rect(enum_layout elayout = e_layout_design);
 
 
       inline void set_prodevian() { return add_prodevian(this); }
       inline void clear_prodevian() { return erase_prodevian(this); }
       inline bool is_prodevian() const { return is_prodevian(this); }
+
 
       virtual void add_prodevian(::matter * pmatter) override;
       virtual void erase_prodevian(::matter * pmatter) override;
@@ -1755,11 +1756,11 @@ namespace user
       // returns less than zero if no preferred restore
       // otherwise returns the preferred restore 
       // rectangle and its monitor index
-      virtual ::index get_preferred_restore(RECTANGLE_I32 * prectanglePreferredRestore);
+      virtual ::index get_preferred_restore(RECTANGLE_I32 & rectanglePreferredRestore);
 
-      virtual bool calculate_window_rectangle_in_main_monitor(RECTANGLE_I32 * prectangle, const ::rectangle_f64 & rectangleOptionalRateOrSize);
+      virtual bool calculate_window_rectangle_in_main_monitor(RECTANGLE_I32 & rectangle, const ::rectangle_f64 & rectangleOptionalRateOrSize);
 
-      virtual index calculate_broad_and_compact_restore(RECTANGLE_I32* prectWorkspace = nullptr, const ::size_i32 & sizeMin = nullptr, const ::rectangle_i32& rectangleHint = nullptr);
+      virtual index calculate_broad_and_compact_restore(RECTANGLE_I32 * prectWorkspace = nullptr, const ::size_i32 & sizeMin = nullptr, const ::rectangle_i32& rectangleHint = nullptr);
 
        //virtual void reset_window_state();
 

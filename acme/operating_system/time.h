@@ -20,8 +20,8 @@ class duration;
 #define ISDST_DONT_KNOW -1
 
 
-void copy(system_time_t* psystemtimeUTC, const struct tm* ptmUTC);
-void copy(struct tm* ptmUTC, const system_time_t* psystemtimeUTC);
+void copy(system_time_t & systemtimeUTC, const struct tm & tmUTC);
+void copy(struct tm & tmUTC, const system_time_t & systemtimeUTC);
 
 
 CLASS_DECL_ACME void get_system_time(system_time_t* psystemtime);

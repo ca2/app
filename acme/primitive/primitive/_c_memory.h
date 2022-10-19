@@ -45,11 +45,6 @@ inline bool is_zero(const void * p, memsize iSize)
 
 
 
-
-inline void copy(void *, const void *);
-
-
-
 #endif
 
 

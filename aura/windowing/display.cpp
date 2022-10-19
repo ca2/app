@@ -290,7 +290,7 @@ namespace windowing
    }
 
 
-   ::index  display::get_main_monitor_of_rectangle(const RECTANGLE_I32 & rectangle)
+   ::index  display::get_main_monitor_of_rectangle(const ::rectangle_i32 &rectangle)
    {
 
       ::rectangle_i32 rectangleMonitor;

@@ -63,9 +63,9 @@ namespace experience_core
 
       virtual void _on_style_change(::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual void _001OnBeforeMove(const RECTANGLE_I32 & lpcrectWindow);
+      //virtual void _001OnBeforeMove(const ::rectangle_i32 &lpcrectWindow);
 
-      //virtual void _001OnBeforeSize(const RECTANGLE_I32 & lpcrectWindow);
+      //virtual void _001OnBeforeSize(const ::rectangle_i32 &lpcrectWindow);
 
       void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 

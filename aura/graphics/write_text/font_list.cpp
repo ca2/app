@@ -1705,7 +1705,7 @@ namespace write_text
    }
 
 
-   void font_list::set_client_rectangle(const RECTANGLE_I32 & rectangleParam)
+   void font_list::set_client_rectangle(const ::rectangle_i32 &rectangleParam)
    {
 
       ::rectangle_i32 rectangle(rectangleParam);

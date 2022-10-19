@@ -198,7 +198,7 @@
 
 
 
-            void frame_Minimal001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lpcrectClient, enum_border eside)
+            void frame_Minimal001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lpcrectClient, enum_border eside)
             {
 
                if(eside != e_border_top)
@@ -338,7 +338,7 @@
             }
 
 
-            void frame_Minimal001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lpcrectClient)
+            void frame_Minimal001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lpcrectClient)
             {
 
                auto pmovemanager = m_pframewindow->move_manager();
@@ -384,7 +384,7 @@
 
             }
 
-            void frame_Minimal001::GetBorderRect(const RECTANGLE_I32 & lpcrectClient, RECTANGLE_I32 * lprect, enum_border eside)
+            void frame_Minimal001::GetBorderRect(const ::rectangle_i32 &lpcrectClient, RECTANGLE_I32 * lprect, enum_border eside)
             {
 
                ::rectangle_i32 rectangleBig(lpcrectClient);
@@ -435,7 +435,7 @@
             }
 
 
-            void frame_Minimal001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lpcrectClient, enum_grip egrip)
+            void frame_Minimal001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lpcrectClient, enum_grip egrip)
             {
 
                return;
@@ -1142,7 +1142,7 @@
 //
 //            }
 //
-//            void frame_Minimal001::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const RECTANGLE_I32 & rectangleParam)
+//            void frame_Minimal001::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 &rectangleParam)
 //            {
 //
 //               
@@ -1169,7 +1169,7 @@
 
             }
 
-            void frame_Minimal001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lpcrectClient)
+            void frame_Minimal001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lpcrectClient)
             {
 
                size_manager * psizenager = m_pframewindow->size_manager();

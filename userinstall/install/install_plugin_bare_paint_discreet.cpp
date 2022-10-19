@@ -9,7 +9,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_discreet(::draw2d::graphics_pointer & pgraphics,const RECTANGLE_I32 & lprect)
+   void plugin::on_bare_paint_discreet(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 &lprect)
    {
 
       double dRate = get_progress_rate();

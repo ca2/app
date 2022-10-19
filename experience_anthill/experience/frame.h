@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "base/user/experience/frame.h"
@@ -83,7 +83,7 @@ namespace experience_anthill
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool get_element_rect(RECTANGLE_I32 * lprect, enum_element eelement) override;
+      virtual bool get_element_rect(RECTANGLE_I32 & rect, enum_element eelement) override;
 
       virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
 
@@ -99,7 +99,7 @@ namespace experience_anthill
 
 
 
-      virtual void GetFrameRect(rectangle_i32 * lprect) override;
+      virtual void GetFrameRect(rectangle_i32 & rect) override;
 
 
    };

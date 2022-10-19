@@ -251,7 +251,7 @@ text_stream & text_stream::operator <<(double d)
 }
 
 
-//text_stream & text_stream::operator <<(const RECTANGLE_I32 & rectangle)
+//text_stream & text_stream::operator <<(const ::rectangle_i32 &rectangle)
 //{
 //
 //   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);

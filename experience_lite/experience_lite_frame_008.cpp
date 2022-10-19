@@ -208,7 +208,7 @@ SizingNone:
 
 
 
-            void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lpcrectClient, enum_border eside)
+            void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lpcrectClient, enum_border eside)
             {
 
                auto pframewindow = m_pframewindow;
@@ -379,7 +379,7 @@ SizingNone:
             }
 
 
-            void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lpcrectClient)
+            void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 &lpcrectClient)
             {
 
                auto pmovemanager = m_pframewindow->move_manager();
@@ -498,7 +498,7 @@ SizingNone:
             }
 
             void frame_008::GetBorderRect(
-            const RECTANGLE_I32 & lpcrectClient,
+            const ::rectangle_i32 &lpcrectClient,
             RECTANGLE_I32 * lprect,
             enum_border eside)
             {

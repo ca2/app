@@ -245,7 +245,7 @@ namespace graphics
    }
 
 
-   i64 graphics::_001GetTopLeftWeightedOpaqueArea(const RECTANGLE_I32 & rect)
+   i64 graphics::_001GetTopLeftWeightedOpaqueArea(const ::rectangle_i32 &rect)
    {
 
       synchronous_lock synchronouslock(get_screen_sync());

@@ -51,12 +51,12 @@ public:
 
 
    inline bool is_set() const noexcept { return !is_empty(); }
-   inline bool is_empty() const noexcept { return ::is_rect_empty(*this); }
-   inline bool is_null() const noexcept { return ::is_rect_null(*this); }
+   inline bool is_empty() const noexcept { return ::is_empty(*this); }
+   inline bool is_null() const noexcept { return ::is_null(*this); }
    template < primitive_point POINT >
-   inline bool contains(const POINT & point) const noexcept { return ::rectangle_contains(*this, point.x, point.y); }
-   inline bool contains_x(UNIT_TYPE x) const noexcept { return ::rectangle_contains_x(*this, x); }
-   inline bool contains_y(UNIT_TYPE y) const noexcept { return ::rectangle_contains_y(*this, y); }
+   inline bool contains(const POINT & point) const noexcept { return ::contains(*this, point.x, point.y); }
+   inline bool contains_x(UNIT_TYPE x) const noexcept { return ::contains_x(*this, x); }
+   inline bool contains_y(UNIT_TYPE y) const noexcept { return ::contains_y(*this, y); }
 
 
    POINT_TYPE random_point() { return POINT_TYPE(__random(this->left, this->right), __random(this->top, this->bottom)); }
@@ -165,36 +165,36 @@ public:
    template < primitive_rectangle RECTANGLE >
    rectangle_type & copy(const RECTANGLE & rectangle) noexcept { ::copy(*this, rectangle); return *this; }
 
-   bool is_equal(const rectangle_type & rectangle) const noexcept { return ::rect_equals(*this, rectangle); }
+   bool is_equal(const rectangle_type & rectangle) const noexcept { return ::is_equal(*this, rectangle); }
 
-   rectangle_type & inflate(UNIT_TYPE x, UNIT_TYPE y) noexcept { return ::rect_inflate_point(*this, x, y); }
-   rectangle_type & inflate(const SIZE_TYPE & size) noexcept { return ::rect_inflate_point(*this, size.cx, size.cy); }
-   rectangle_type & deflate(UNIT_TYPE x, UNIT_TYPE y) noexcept { return ::rect_deflate_point(*this, x, y); }
-   rectangle_type & deflate(const SIZE_TYPE & size) noexcept { return ::rect_deflate_point(*this, size.cx, size.cy); }
+   rectangle_type & inflate(UNIT_TYPE x, UNIT_TYPE y) noexcept { return ::inflate(*this, x, y); }
+   rectangle_type & inflate(const SIZE_TYPE & size) noexcept { return ::inflate(*this, size.cx, size.cy); }
+   rectangle_type & deflate(UNIT_TYPE x, UNIT_TYPE y) noexcept { return ::deflate(*this, x, y); }
+   rectangle_type & deflate(const SIZE_TYPE & size) noexcept { return ::deflate(*this, size.cx, size.cy); }
 
-   rectangle_type & offset(UNIT_TYPE x, UNIT_TYPE y) noexcept { return ::offset_rect(*this, x, y); }
-   UNIT_TYPE offset_x(UNIT_TYPE x) noexcept { return ::x_offset_rect(*this, x); }
-   UNIT_TYPE offset_y(UNIT_TYPE y) noexcept { return ::y_offset_rect(*this, y); }
-   rectangle_type & inflate(UNIT_TYPE u) noexcept { return ::rect_inflate_unit(*this, u); }
-   rectangle_type & deflate(UNIT_TYPE u) noexcept { return ::rect_deflate_unit(*this, u); }
+   rectangle_type & offset(UNIT_TYPE x, UNIT_TYPE y) noexcept { return ::offset(*this, x, y); }
+   UNIT_TYPE offset_x(UNIT_TYPE x) noexcept { return ::x_offset(*this, x); }
+   UNIT_TYPE offset_y(UNIT_TYPE y) noexcept { return ::y_offset(*this, y); }
+   rectangle_type & inflate(UNIT_TYPE u) noexcept { return ::inflate(*this, u); }
+   rectangle_type & deflate(UNIT_TYPE u) noexcept { return ::deflate(*this, u); }
 
    template < primitive_point POINT >
-   rectangle_type & offset(const POINT & point) noexcept { return ::offset_rect(*this, point.x, point.y); }
+   rectangle_type & offset(const POINT & point) noexcept { return ::offset(*this, point.x, point.y); }
 
 
    template < primitive_size SIZE >
-   rectangle_type & offset(const SIZE & size) noexcept { return ::offset_rect(*this, size.cx, size.cy); }
+   rectangle_type & offset(const SIZE & size) noexcept { return ::offset(*this, size.cx, size.cy); }
 
 
    bool x_intersects(const rectangle_type & rectangle) const noexcept { return ::x_intersects(*this, rectangle); }
    bool y_intersects(const rectangle_type & rectangle) const noexcept { return ::y_intersects(*this, rectangle); }
    bool intersects(const rectangle_type & rectangle) const noexcept { return ::intersects(*this, rectangle); }
 
-   bool intersect_x(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::x_intersect_rect(*this, rect1, rect2); }
-   bool intersect_y(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::y_intersect_rect(*this, rect1, rect2); }
-   bool intersect(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::intersect_rect(*this, rect1, rect2); }
+   bool intersect_x(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::x_intersect(*this, rect1, rect2); }
+   bool intersect_y(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::y_intersect(*this, rect1, rect2); }
+   bool intersect(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::intersect(*this, rect1, rect2); }
 
-   rectangle_type & intersect(const rectangle_type & rectangle) noexcept { ::intersect_rect(*this, *this, rectangle); return *this; }
+   rectangle_type & intersect(const rectangle_type & rectangle) noexcept { ::intersect(*this, *this, rectangle); return *this; }
 
    rectangle_type & constrain_to(const rectangle_type & rectangle) noexcept { return intersect(rectangle); }
 
@@ -229,11 +229,11 @@ public:
 
    }
 
-   bool null_intersect(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::null_intersect_rect(*this, rect1, rect2); }
-   bool top_left_null_intersect(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::top_left_null_intersect_rect(*this, rect1, rect2); }
+   bool null_intersect(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::null_intersect(*this, rect1, rect2); }
+   bool top_left_null_intersect(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::top_left_null_intersect(*this, rect1, rect2); }
 
-   bool unite(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::union_rect(*this, rect1, rect2); }
-   rectangle_type & unite(const rectangle_type & rectangle) noexcept { return ::union_rect(*this, *this, rectangle); }
+   bool unite(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::unite(*this, rect1, rect2); }
+   rectangle_type & unite(const rectangle_type & rectangle) noexcept { return ::unite(*this, *this, rectangle); }
    rectangle_type get_union(const rectangle_type & rect1) const noexcept { rectangle_type rectangle(*this); rectangle.unite(rect1); return *this; }
 
    template < primitive_rectangle RECTANGLE >
@@ -243,13 +243,13 @@ public:
    bool operator!=(const rectangle_type & rectangle) const noexcept { return !operator ==(rectangle); }
 
    template < primitive_point POINT >
-   rectangle_type & operator+=(const POINT & point) noexcept { return ::offset_rect(*this, point.x, point.y); }
+   rectangle_type & operator+=(const POINT & point) noexcept { return ::offset(*this, point.x, point.y); }
 
    template < primitive_size SIZE >
-   rectangle_type & operator+=(const SIZE & size) noexcept { return ::offset_rect(*this, size.cx, size.cy); }
+   rectangle_type & operator+=(const SIZE & size) noexcept { return ::offset(*this, size.cx, size.cy); }
 
-   rectangle_type & operator+=(const rectangle_type & rectangle) noexcept { return ::rect_inflate(*this, rectangle); }
-   rectangle_type & operator*=(const rectangle_type & rectangle) noexcept { return ::rect_multiply_inline(*this, rectangle); }
+   rectangle_type & operator+=(const rectangle_type & rectangle) noexcept { return ::inflate(*this, rectangle); }
+   rectangle_type & operator*=(const rectangle_type & rectangle) noexcept { return ::multiply_inline(*this, rectangle); }
 
 
    inline rectangle_type & operator+=(const SHIFT_I32 & shift) noexcept { this->left = (UNIT_TYPE)(this->left + shift.Δx); this->top = (UNIT_TYPE)(this->top + shift.Δy); this->right = (UNIT_TYPE)(this->right + shift.Δx); this->bottom = (UNIT_TYPE)(this->bottom + shift.Δy); return *this; }
@@ -264,13 +264,13 @@ public:
 
 
    template < primitive_point POINT >
-   rectangle_type & operator-=(const POINT & point) noexcept { return ::subtract_rect(*this, point.x, point.y); }
+   rectangle_type & operator-=(const POINT & point) noexcept { return ::subtract(*this, point.x, point.y); }
 
    template < primitive_size SIZE >
-   rectangle_type & operator-=(const SIZE & size) noexcept { return ::subtract_rect(*this, -size.cx, -size.cy); }
-   rectangle_type & operator-=(const rectangle_type & rectangle) noexcept { return ::rect_deflate(*this, rectangle); }
+   rectangle_type & operator-=(const SIZE & size) noexcept { return ::subtract(*this, -size.cx, -size.cy); }
+   rectangle_type & operator-=(const rectangle_type & rectangle) noexcept { return ::rect(*this, rectangle); }
 
-   rectangle_type & operator&=(const rectangle_type & rectangle) noexcept { ::intersect_rect(*this, *this, rectangle); return*this; }
+   rectangle_type & operator&=(const rectangle_type & rectangle) noexcept { ::intersect(*this, *this, rectangle); return*this; }
    rectangle_type & operator|=(const rectangle_type & rectangle) noexcept { return unite(rectangle); }
 
    rectangle_type operator+(const POINT_TYPE & point) const noexcept

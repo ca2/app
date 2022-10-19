@@ -104,7 +104,7 @@ namespace write_text
       virtual bool get_box_rect_single_column(RECTANGLE_I32 * lprect, ::index i);
 
 
-      virtual void set_client_rectangle(const RECTANGLE_I32 & rectangle);
+      virtual void set_client_rectangle(const ::rectangle_i32 &rectangle);
 
       virtual void set_font_list_type(enum_font_list efontlist);
       virtual enum_font_list get_font_list_type() const;

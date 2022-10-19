@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "control.h"
@@ -26,10 +26,10 @@ namespace user
 
 
       //using ::user::interaction::_001IsPointInside;
-      bool _001IsPointInside(interaction * pinteraction, point_i64 point) override;
-      void control_get_window_rect(interaction * pinteraction, RECTANGLE_I32 * prectangle) override;
+      bool _001IsPointInside(interaction * pinteraction, const point_i64 & point) override;
+      void control_get_window_rect(interaction * pinteraction, RECTANGLE_I32 & rectangle) override;
 
-      void control_get_client_rect(interaction * pinteraction, RECTANGLE_I32 * prectangle) override;
+      void control_get_client_rect(interaction * pinteraction, RECTANGLE_I32 & rectangle) override;
 
       //using form_callback::update;
       //using form_control::update;

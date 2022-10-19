@@ -14213,7 +14213,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   void interaction::get_client_rect(RECTANGLE_I32 * lprect)
+   void interaction::get_client_rect(RECTANGLE_I32 & lprect)
    {
 
       const_layout().state(e_layout_design).client_rect(lprect);
@@ -14505,7 +14505,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
    }
 
 
-   ::index interaction::get_preferred_restore(RECTANGLE_I32 * prectWorkspace)
+   ::index interaction::get_preferred_restore(RECTANGLE_I32 & rectWorkspace)
    {
 
       return -1;

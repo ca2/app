@@ -1,4 +1,4 @@
-// From layout_state.h by camilo on 2022-08-27 02:08 <3ThomasBorregaardSorense!! *8*8infinitywithThommy*8*8!!
+﻿// From layout_state.h by camilo on 2022-08-27 02:08 <3ThomasBorregaardSorense!! *8*8infinitywithThommy*8*8!!
 #pragma once
 
 
@@ -60,10 +60,10 @@ namespace user
       bool operator != (const visual_state & visualstate) const { return !operator == (visualstate); }
 
       auto client_rect() const { return ::rectangle_i32(m_size); }
-      void client_rect(RECTANGLE_I32 * lprect) const { *lprect = client_rect(); }
+      void client_rect(RECTANGLE_I32 & rect) const { rect = client_rect(); }
 
       auto parent_client_rect() const { return ::rectangle_i32(m_point, m_size); }
-      void parent_client_rect(RECTANGLE_I32 * lprect) const { *lprect = parent_client_rect(); }
+      void parent_client_rect(RECTANGLE_I32 & rect) const { rect = parent_client_rect(); }
 
       void bottom_right(const ::point_i32 & point) { m_size = point - m_point; }
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "base/user/experience/frame_window.h"
@@ -71,7 +71,7 @@ public:
    void on_after_set_parent() override;
 
    
-   void get_client_rect(RECTANGLE_I32 * prectangle) override;
+   void get_client_rect(RECTANGLE_I32 & rectangle) override;
 
 
    virtual bool is_application_main_window();

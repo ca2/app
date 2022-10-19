@@ -1430,10 +1430,10 @@ namespace user
    }
 
 
-   void form_window::control_get_client_rect(::user::interaction * pinteraction, RECTANGLE_I32 * prectangle)
+   void form_window::control_get_client_rect(::user::interaction * pinteraction, RECTANGLE_I32 & rectangle)
    {
 
-      pinteraction->get_client_rect(prectangle);
+      pinteraction->get_client_rect(rectangle);
 
    }
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "frame.h"
@@ -33,10 +33,11 @@ namespace user
       void initial_frame_placement() override;
 
 
-      ::index get_preferred_restore(RECTANGLE_I32  & rectanglePreferredRestore) override;
+      ::index get_preferred_restore(RECTANGLE_I32 & rectanglePreferredRestore) override;
 
 
       virtual void create_main_window();
+
 
    };
 

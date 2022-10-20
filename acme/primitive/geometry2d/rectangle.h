@@ -969,7 +969,7 @@ public:
                else if (rectangleIntersect.bottom == rectangleMajor.bottom)
                {
 
-                  ::set_rect(rectangleRet,
+                  ::assign(rectangleRet,
                      rectangleMajor.left,
                      rectangleMajor.top,
                      rectangleMajor.right,

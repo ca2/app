@@ -14324,7 +14324,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       ::rectangle_i32 rectangleWindow;
 
-      if (!::is_empty(rectangle))
+      if (!::is_empty_rectangle(rectangle))
       {
 
          rectangleWindow = rectangle;
@@ -14353,7 +14353,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       pdisplay->get_workspace_rectangle(iMatchingMonitor, rectangleWorkspace);
 
-      if (bSet && (!::is_empty(rectangle) || iMatchingMonitor >= 0))
+      if (bSet && (!::is_empty_rectangle(rectangle) || iMatchingMonitor >= 0))
       {
 
 #if !MOBILE_PLATFORM

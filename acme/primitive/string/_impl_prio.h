@@ -222,7 +222,7 @@ inline ::string atom::string() const
    else
    {
 
-      return ::string("(atom : type:") + __string(m_iType) + ",body:" + __string(m_iBody) + ")";
+      return ::string("(atom : type:") + __string(m_etype) + ",body:" + __string(m_u) + ")";
 
    }
 
@@ -233,7 +233,7 @@ template < >
 inline uptr uptr_hash< const atom & >(const atom & key)
 {
 
-   return (((uptr)key.m_iType) << 24) ^ (key.is_text() ? uptr_hash(key.m_str.c_str()) : ((((::u32)(uptr)key.m_iBody) >> 8) & 0xffffffffu));
+   return (((uptr)key.m_etype) << 24) ^ (key.is_text() ? uptr_hash(key.m_str.c_str()) : ((((::u32)(uptr)key.m_u) >> 8) & 0xffffffffu));
 
 }
 

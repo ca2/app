@@ -814,11 +814,11 @@ constexpr auto area(RECTANGLE_TYPE & rectangle) { return area(width(rectangle), 
 
 
 template < primitive_rectangle RECTANGLE_TYPE >
-constexpr auto is_empty(RECTANGLE_TYPE & rectangle) { return ::is_null(rectangle) || rectangle.right <= rectangle.left || rectangle.bottom <= rectangle.top; }
+constexpr auto is_empty_rectangle(RECTANGLE_TYPE & rectangle) { return ::is_null(rectangle) || rectangle.right <= rectangle.left || rectangle.bottom <= rectangle.top; }
 
 
 template < primitive_rectangle RECTANGLE_TYPE >
-bool is_null(const RECTANGLE_TYPE & rectangle)
+bool is_null_rectangle(const RECTANGLE_TYPE & rectangle)
 {
 
    return rectangle.left == (decltype(RECTANGLE_TYPE::left))0

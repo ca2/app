@@ -188,7 +188,9 @@ inline bool payload::is_array() const
 inline atom::atom(const ::payload & payload)
 {
 
-   m_all = {};
+   m_etype = e_type_integer;
+
+   m_u = 0;
 
    if (payload.is_null())
    {

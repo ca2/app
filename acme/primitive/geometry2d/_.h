@@ -1525,7 +1525,7 @@ template < typename RECT1, typename RECT2 >
 inline void expand_rect(RECT1 & rectangle, const RECT2 & r)
 {
 
-   if (::is_rect_null(rectangle))
+   if (::is_null(rectangle))
    {
 
       copy(rectangle, r);

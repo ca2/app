@@ -34,10 +34,9 @@ template < primitive_rectangle RECTANGLE, primitive_point POINT >
 inline bool shape_contains(const RECTANGLE & rectangle, const POINT & point)
 {
 
-   return ::rectangle_contains(rectangle, point.x, point.y);
+   return ::contains(rectangle, point.x, point.y);
 
 }
-
 
 
 

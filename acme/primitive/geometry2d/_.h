@@ -471,10 +471,10 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, p
 RECTANGLE_TYPE & unite(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
-   if (is_empty(rect1))
+   if (is_empty_rectangle(rect1))
    {
 
-      if (is_empty(rect2))
+      if (is_empty_rectangle(rect2))
       {
 
          null(rectangle);
@@ -488,7 +488,7 @@ RECTANGLE_TYPE & unite(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, con
       }
 
    }
-   else if (is_empty(rect1))
+   else if (is_empty_rectangle(rect1))
    {
 
       copy(rectangle, rect1);
@@ -508,14 +508,15 @@ RECTANGLE_TYPE & unite(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, con
 
 }
 
+
 template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
-RECT_TYPE1 & unite(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
+RECT_TYPE1 & unite(RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
-   if (is_empty(rect1))
+   if (is_empty_rectangle(rect1))
    {
 
-      if (is_empty(rect2))
+      if (is_empty_rectangle(rect2))
       {
 
          null(rect1);
@@ -529,7 +530,7 @@ RECT_TYPE1 & unite(const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
       }
 
    }
-   else if (!is_rect_empty(rect2))
+   else if (!is_empty_rectangle(rect2))
    {
 
       rect1.left = (decltype(RECT_TYPE1::left))minimum(rect1.left, rect2.left);
@@ -725,8 +726,8 @@ bool is_equal(const SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2)
 }
 
 
-template < typename RECTANGLE_TYPE, typename L, typename T, typename R, typename B >
-RECTANGLE_TYPE & set_rect(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
+template < primitive_rectangle RECTANGLE_TYPE, typename L, typename T, typename R, typename B >
+RECTANGLE_TYPE & set_rectangle(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 {
 
    rectangle.left = (decltype(RECTANGLE_TYPE::left))l;
@@ -792,7 +793,7 @@ template < primitive_rectangle RECTANGLE_TYPE >
 RECTANGLE_TYPE & null(RECTANGLE_TYPE & rectangle)
 {
 
-   return ::set_rect(rectangle, 0, 0, 0, 0);
+   return ::set_rectangle(rectangle, 0, 0, 0, 0);
 
 }
 

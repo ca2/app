@@ -102,10 +102,6 @@ public:
 
    UNIT_TYPE minimum_dimension() const noexcept { return ::minimum(width(), height()); }
    UNIT_TYPE maximum_dimension() const noexcept { return ::maximum(width(), height()); }
-   UNIT_TYPE min_dimension() const noexcept { return minimum_dimension(); }
-   UNIT_TYPE max_dimension() const noexcept { return maximum_dimension(); }
-   UNIT_TYPE min_dim() const noexcept { return min_dimension(); }
-   UNIT_TYPE max_dim() const noexcept { return max_dimension(); }
 
    UNIT_TYPE max_border() const noexcept { return ::maximum(::maximum(this->top, this->left), ::maximum(this->bottom, this->right)); }
 
@@ -146,15 +142,15 @@ public:
 
    operator bool() const noexcept { return is_set(); }
 
-   rectangle_type & set(UNIT_TYPE i) noexcept { return ::set_rect(*this, i, i, i, i); }
-   rectangle_type & set(UNIT_TYPE x, UNIT_TYPE y) noexcept { return ::set_rect(*this, x, y, x, y); }
-   rectangle_type & set(UNIT_TYPE l, UNIT_TYPE t, UNIT_TYPE r, UNIT_TYPE b) noexcept { return ::set_rect(*this, l, t, r, b); }
+   rectangle_type & set(UNIT_TYPE i) noexcept { return ::set_rectangle(*this, i, i, i, i); }
+   rectangle_type & set(UNIT_TYPE x, UNIT_TYPE y) noexcept { return ::set_rectangle(*this, x, y, x, y); }
+   rectangle_type & set(UNIT_TYPE l, UNIT_TYPE t, UNIT_TYPE r, UNIT_TYPE b) noexcept { return ::set_rectangle(*this, l, t, r, b); }
    template < primitive_size SIZE >
    rectangle_type & set(const SIZE & s) noexcept { return ::set_rect_point_size(*this, POINT_TYPE(), s); }
    template < primitive_point POINT1, primitive_point POINT2 >
-   rectangle_type & set(const POINT1 & p1, const POINT2 & p2) noexcept { return ::set_rect(*this, p1.x, p1.y, p2.x, p2.y); }
+   rectangle_type & set(const POINT1 & p1, const POINT2 & p2) noexcept { return ::set_rectangle(*this, p1.x, p1.y, p2.x, p2.y); }
    template < primitive_point POINT, primitive_size SIZE >
-   rectangle_type & set(const POINT & p, const SIZE & s) noexcept { return ::set_rect_point_size(*this, p, s); }
+   rectangle_type & set(const POINT & p, const SIZE & s) noexcept { return ::assign(*this, p, s); }
    template < primitive_rectangle RECTANGLE >
    rectangle_type & set(const RECTANGLE & rectangle) noexcept { return copy(rectangle); }
 
@@ -239,7 +235,7 @@ public:
    template < primitive_rectangle RECTANGLE >
    rectangle_type & operator=(const RECTANGLE & rectangle) noexcept { return ::copy(*this, rectangle); }
 
-   bool operator==(const rectangle_type & rectangle) const noexcept { return ::rect_equals(*this, rectangle); }
+   bool operator==(const rectangle_type & rectangle) const noexcept { return ::is_equal(*this, rectangle); }
    bool operator!=(const rectangle_type & rectangle) const noexcept { return !operator ==(rectangle); }
 
    template < primitive_point POINT >

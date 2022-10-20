@@ -436,3 +436,69 @@ CLASS_DECL_APEX bool get_bypass_cache_if_empty(const ::payload & payloadFile);
 
 
 
+
+
+template < class T >
+bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
+{
+
+   ::file::path pathDownloading;
+
+   try
+   {
+
+      //stream outputstream(pobject, FIRST_VERSION);
+
+      //if (!prepare_output(pobject, outputstream, pathDownloading, os))
+      //{
+
+      //   return false;
+
+      //}
+
+      //stream inputstream(pobject, FIRST_VERSION);
+
+      //if (!prepare_input(pobject, inputstream, is))
+      //{
+
+      //   return false;
+
+      //}
+
+      if (!(p->*pfnOuput)(pfileOut, pfileIn))
+      {
+
+         return false;
+
+      }
+
+   }
+   catch (...)
+   {
+
+      return false;
+
+   }
+
+   //try
+   //{
+
+   //   if (!post_output(pobject, os.m_pfile->GetFilePath(), pathDownloading))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //}
+   //catch (...)
+   //{
+
+   //   return false;
+
+   //}
+
+   return true;
+
+}
+

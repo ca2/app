@@ -1009,15 +1009,15 @@ namespace file
 } // namespace file
 
 
-#include "apex/filesystem/filesystem/file_system.h"
+//#include "apex/filesystem/filesystem/file_system.h"
 
-#include "apex/filesystem/filesystem/dir_system.h"
+//#include "apex/filesystem/filesystem/dir_system.h"
 
-#include "apex/filesystem/filesystem/file_context.h"
+//#include "apex/filesystem/filesystem/file_context.h"
 
-#include "apex/filesystem/filesystem/dir_context.h"
+//#include "apex/filesystem/filesystem/dir_context.h"
 
-#include "apex/filesystem/file/set.h"
+//#include "apex/filesystem/file/set.h"
 
 //#include "apex/platform/net.h"
 
@@ -1051,10 +1051,10 @@ namespace zip
 #include "apex/user/_.h"
 
 
-#include "apex/platform/application_menu.h"
-#include "apex/platform/application_array.h"
-#include "apex/platform/application_exit.h"
-#include "apex/platform/app_container.h"
+//#include "apex/platform/application_menu.h"
+//#include "apex/platform/application_array.h"
+//#include "apex/platform/application_exit.h"
+//#include "apex/platform/app_container.h"
 
 
 //class ::interprocess::task;
@@ -1074,7 +1074,7 @@ namespace zip
 
 //#include "apex/platform/hyperlink.h"
 
-#include "apex/platform/context.h"
+//#include "apex/platform/context.h"
 
 
 class ftpfs;
@@ -1141,11 +1141,11 @@ namespace user
 
 #include "apex/platform/_.h"
 
-#include "apex/platform/application.h"
+//#include "apex/platform/application.h"
 
 #include "apex/user/_const_key.h"
 
-#include "apex/platform/session.h"
+//#include "apex/platform/session.h"
 
 #include "apex/parallelization/retry.h"
 
@@ -1187,10 +1187,10 @@ namespace xml
 //#include "apex/user/menu_shared.h"
 
 
-#include "apex/platform/node.h"
+//#include "apex/platform/node.h"
 
 
-#include "apex/platform/system.h"
+//#include "apex/platform/system.h"
 
 
 //#define memory_new ACME_NEW

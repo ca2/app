@@ -169,7 +169,7 @@ public:
    void insert_empty(::index nIndex, ::count c);
 
 
-   class ::memory GetFormatV004();
+   //class ::memory GetFormatV004();
    ::count erase_empty();
    ::count erase_empty_end();
    ::count erase_empty_begin();

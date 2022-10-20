@@ -572,18 +572,7 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
    }
 
 
-   inline payload & operator = (::memory * pmemory)
-   {
-
-      set_type(e_type_memory, false);
-
-      m_pmemory = pmemory;
-
-      ::increment_reference_count(m_pmemory);
-
-      return *this;
-
-   }
+   payload & operator = (::memory * pmemory);
 
    template < typename PREDICATE >
    void predicate_each(PREDICATE predicate)
@@ -813,6 +802,8 @@ inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !oper
       return ((payload *) this)->cast < T >();
    }
 
+
+   ::particle * get_particle();
 
    bool strictly_equal(const payload & payload) const;
    bool strictly_equal(const char * psz) const;

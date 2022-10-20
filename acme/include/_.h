@@ -3012,9 +3012,6 @@ namespace factory
 } // namespace factory
 
 
-class CLASS_DECL_ACME integral_byte { public: integral_byte(memsize memsize = 1) : m_memsize(memsize) {} memsize m_memsize; operator memsize() const { return m_memsize; } };
-
-
 #include "acme/constant/parallelization.h"
 
 
@@ -3825,8 +3822,8 @@ namespace acme
 #include "acme/platform/procedure_array.h"
 
 
-#include "acme/primitive/primitive/memory_base.h"
-#include "acme/primitive/primitive/memory.h"
+//#include "acme/primitive/primitive/memory_base.h"
+//#include "acme/primitive/primitive/memory.h"
 //#include "acme/primitive/primitive/shared_memory.h"
 //#include "acme/primitive/primitive/virtual_memory.h"
 //#include "acme/primitive/primitive/memory_container.h"

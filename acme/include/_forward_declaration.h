@@ -120,3 +120,35 @@ class atom;
 class item;
 
 
+class CLASS_DECL_ACME integral_byte { public: integral_byte(memsize memsize = 1) : m_memsize(memsize) {} memsize m_memsize; operator memsize() const { return m_memsize; } };
+
+
+inline integral_byte operator ""_kb(long double d)
+{
+   return (memsize)(1024.0 * d);
+}
+
+inline integral_byte operator ""_kb(unsigned long long i)
+{
+   return (memsize)(1024 * i);
+}
+
+inline integral_byte operator ""_mb(long double d)
+{
+   return (memsize)(1024.0 * 1024.0 * d);
+}
+
+inline integral_byte operator ""_mb(unsigned long long i)
+{
+   return (memsize) (1024 * 1024 * i);
+}
+
+inline integral_byte operator ""_gb(long double d)
+{
+   return (memsize) (1024.0 * 1024.0 * 1024.0 * d);
+}
+
+inline integral_byte operator ""_gb(unsigned long long i)
+{
+   return (memsize) (1024 * 1024 * 1024 * i);
+}

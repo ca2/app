@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "acme/platform/acme.h"
 #include "acme/operating_system.h"
+#include "acme/primitive/primitive/memory.h"
 
 
 #if defined(WINDOWS)
@@ -7738,4 +7739,46 @@ CLASS_DECL_ACME ::string __string(const ::payload & payload)
 }
 
 
+payload & payload::operator = (::memory * pmemory)
+{
 
+   set_type(e_type_memory, false);
+
+   m_pmemory = pmemory;
+
+   ::increment_reference_count(m_pmemory);
+
+   return *this;
+
+}
+
+
+::particle * payload::get_particle()
+{
+
+switch (m_etype)
+{
+case e_type_element:
+return m_p;
+case e_type_string_array:
+return m_pstra;
+case e_type_i32_array:
+return m_pia;
+case e_type_payload_array:
+return m_ppayloada;
+case e_type_property_set:
+return m_ppropertyset;
+case e_type_i64_array:
+return m_pi64a;
+case e_type_memory:
+return m_pmemory;
+case e_type_path:
+return m_ppath;
+default:
+break;
+}
+
+return nullptr;
+
+
+}

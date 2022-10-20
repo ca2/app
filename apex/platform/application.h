@@ -2,6 +2,11 @@
 #pragma once
 
 
+#include "context.h"
+#include "apex/database/client.h"
+#include "application_exit.h"
+
+
 namespace apex
 {
 

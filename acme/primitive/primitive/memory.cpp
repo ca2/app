@@ -159,6 +159,13 @@ memory::memory(const char * psz)
 }
 
 
+memory::memory(const ::string & str):
+   memory(str.c_str(), str.length())
+{
+
+}
+
+
 memory::memory(memory_container * pcontainer, memsize dwAllocationAddUp, ::u32 nAllocFlags)
 {
 
@@ -429,4 +436,7 @@ void memory::to_sz(char * sz, strsize len) const
    sz[len] = '\0';
 
 }
+
+
+
 

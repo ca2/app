@@ -424,3 +424,6 @@ class item;
 
 using item_pointer = ::pointer < ::item >;
 
+class memory;
+
+using memory_pointer = ::pointer < ::memory >;

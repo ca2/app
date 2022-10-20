@@ -6,7 +6,7 @@ namespace file
 {
 
 
-   enum_status streamable::_open(const char * pszFilePath, const ::file::enum_open & eopen)
+   enum_status streamable::_open(const char *pszFilePath, const ::file::enum_open &eopen)
    {
 
       throw error_interface_only;
@@ -22,7 +22,7 @@ namespace file
    }
 
 
-   memsize streamable::read(void * pdata, memsize nCount)
+   memsize readable::read(void *pdata, memsize nCount)
    {
 
       throw error_interface_only;
@@ -30,7 +30,7 @@ namespace file
    }
 
 
-   void streamable::write(const void * pdata, memsize nCount)
+   void writeable::write(const void *pdata, memsize nCount)
    {
 
       throw error_interface_only;
@@ -79,6 +79,67 @@ namespace file
 
 
 } // namespace file
+
+
+CLASS_DECL_ACME void __transfer_to_writable(::file::writable *pwritable, ::file::file *pfileIn, memsize uiBufSize);
+{
+
+
+   if (pfileIn->get_internal_data() != nullptr && pfileIn->get_internal_data_size() > pfileIn->get_position())
+   {
+
+      pwriter->write((u8*)pfileIn->get_internal_data() + pfileIn->get_position(), (memsize)(pfileIn->get_internal_data_size() - pfileIn->get_position()));
+
+      return;
+
+   }
+
+
+   memsize uRead;
+
+   memsize uiSize = 0;
+
+   uiBufSize = maximum(32 * 1024, uiBufSize);
+
+   memory buf;
+
+   buf.set_size(uiBufSize);
+
+   if (buf.get_data() == nullptr)
+   {
+
+      throw ::exception(error_no_memory);
+
+   }
+
+   try
+   {
+
+      while (true)
+      {
+
+         uRead = pfileIn->read(buf.get_data(), buf.get_size());
+
+         if (uRead <= 0)
+         {
+
+            break;
+
+         }
+
+         writer.write(buf.get_data(), uRead);
+
+         uiSize += uRead;
+
+      }
+
+   }
+   catch (...)
+   {
+
+   }
+
+}
 
 
 

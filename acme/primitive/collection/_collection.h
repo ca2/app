@@ -307,12 +307,6 @@ typedef CLASS_DECL_ACME pointer_array < u32_array > dword_2darray;
 typedef CLASS_DECL_ACME pointer_array < index_array > index_2darray;
 
 
-#include "acme/primitive/geometry2d/point_array.h"
-#include "acme/primitive/geometry2d/size_array.h"
-#include "acme/primitive/geometry2d/rectangle_array.h"
-
-
-#include "acme/primitive/geometry2d/polygon.h"
 
 
 

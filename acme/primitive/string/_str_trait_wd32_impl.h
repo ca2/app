@@ -237,7 +237,7 @@
       while (p2 > p1)
       {
 
-         sort::swap(*p1, *p2);
+         __swap(*p1, *p2);
 
          p1++;
 

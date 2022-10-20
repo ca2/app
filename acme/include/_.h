@@ -3348,7 +3348,7 @@ using procedure_list = ::list < ::procedure >;
 
 
 
-#include "acme/primitive/geometry2d/polygon.h"
+//#include "acme/primitive/geometry2d/polygon.h"
 
 
 //#include "acme/primitive/geometry2d/_shape.h"
@@ -4167,7 +4167,7 @@ namespace user
 
 
 
-#include "acme/handler/item.h"
+//#include "acme/handler/item.h"
 #include "acme/handler/topic.h"
 #include "acme/handler/extended_topic.h"
 

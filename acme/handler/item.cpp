@@ -1,9 +1,6 @@
 ﻿// From aura by camilo on ThomasBirthday2021 21:12 BRT
 #include "framework.h"
-
-//
-//namespace user
-//{
+#include "item.h"
 
 
 item & item::operator = (enum_element eelement)

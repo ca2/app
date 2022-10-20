@@ -2873,6 +2873,12 @@
     <ClInclude Include="primitive\collection\_map_binary_stream.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
+    <ClInclude Include="primitive\geometry2d\_basic.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry2d\_enhanced.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">

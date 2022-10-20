@@ -1615,6 +1615,8 @@
     <ClInclude Include="primitive\geometry2d\_binary_stream.h" />
     <ClInclude Include="primitive\geometry2d\_f32.h" />
     <ClInclude Include="primitive\geometry2d\_f64.h" />
+    <ClInclude Include="primitive\geometry2d\_basic.h" />
+    <ClInclude Include="primitive\geometry2d\_enhanced.h" />
     <ClInclude Include="primitive\geometry2d\_i32.h" />
     <ClInclude Include="primitive\geometry2d\line.h" />
     <ClInclude Include="primitive\geometry2d\lines.h" />

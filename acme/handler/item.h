@@ -4,6 +4,9 @@
 #pragma once
 
 
+#include "acme/primitive/geometry2d/_basic.h"
+
+
 template < typename T >
 class ___stack
 {

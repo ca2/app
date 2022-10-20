@@ -339,7 +339,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
 inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::__swap(::index index1, ::index index2)
 {
 
-   ::sort::swap(m_pData[index1], m_pData[index2]);
+   ::__swap(m_pData[index1], m_pData[index2]);
 
 }
 
@@ -347,9 +347,13 @@ inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::__swap(::
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
 inline void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::__swap(iterator it1, iterator it2)
 {
+   
    TYPE t = *it1;
+
    *it1 = *it2;
+
    *it2 = t;
+
 }
 
 

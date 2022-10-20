@@ -429,5 +429,12 @@ template<class EENUM, EENUM edefault = (EENUM)0>
 class base_enum;
 
 
+class item;
+
+using item_pointer = ::pointer < ::item >;
+
+
+
+
 
 

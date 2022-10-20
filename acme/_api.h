@@ -6,23 +6,6 @@
 
 
 
-namespace sort
-{
-
-
-   template<typename TYPE>
-   inline void swap(TYPE & a, TYPE & b)
-   {
-      auto t = a;
-      a = b;
-      b = t;
-
-   }
-
-
-} // namespace sort
-
-
 inline bool is_null(const void * p, size_t s)
 {
 
@@ -109,5 +92,19 @@ inline std::size_t item_count(array_reference < TYPE, SIZE > &) { return SIZE; }
 
 template < typename T >
 inline byte byte_clip(const T & t) { return ((byte)(((t) < (byte)0) ? (byte)0 : (((t) > (byte)255) ? (byte)255 : (byte)t))); }
+
+
+template < typename A, typename B >
+void __swap(A & a, B & b)
+{
+
+   A aCopy = a;
+
+   a = b;
+
+   b = aCopy;
+
+}
+
 
 

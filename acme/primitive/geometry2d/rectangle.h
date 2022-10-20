@@ -902,7 +902,7 @@ public:
 
          auto yOffset = rectangle.bottom - rectangleBounding.bottom;
 
-         ::y_offset_rect(rectangleBounding, yOffset);
+         ::y_offset(rectangleBounding, yOffset);
 
          offset_y(yOffset);
 
@@ -913,7 +913,7 @@ public:
 
          auto yOffset = rectangle.top - rectangleBounding.top;
 
-         ::y_offset_rect(rectangleBounding, yOffset);
+         ::y_offset(rectangleBounding, yOffset);
 
          offset_y(yOffset);
 

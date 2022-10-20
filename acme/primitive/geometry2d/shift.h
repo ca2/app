@@ -2,13 +2,7 @@
 
 
 
-struct SHIFT_I32
-{
 
-   int Δx;
-   int Δy;
-
-};
 
 
 template < typename SHIFT >

@@ -4,6 +4,10 @@
 #pragma once
 
 
+#include "acme/primitive/geometry2d/shift.h"
+#include "acme/primitive/geometry2d/point.h"
+
+
 class CLASS_DECL_ACME nano_window_interface :
    virtual public ::object
 {

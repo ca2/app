@@ -107,17 +107,17 @@ namespace write_text
    }
 
 
-   double fonts::font_similarity(const ::string & pszSystem, const ::string & pszUser)
+   double fonts::font_similarity(const ::string & strSystem, const ::string & strUser)
    {
 
-      if (::is_null(pszSystem) || ::is_null(pszUser))
+      if (strSystem.is_empty() || strUser.is_empty())
       {
 
          return 0.0;
 
       }
 
-      if (!stricmp(pszSystem, pszUser))
+      if (strSystem.compare_ci(strUser) == 0)
       {
 
          return 1.0;

@@ -518,7 +518,7 @@ string property_object::property_set_get_string(const ::string & str) const
 
    auto pproperty = on_fetch_property(str);
 
-   if (is_null(pproperty))
+   if (is_reference_null(pproperty))
    {
 
       return "";
@@ -532,16 +532,16 @@ string property_object::property_set_get_string(const ::string & str) const
 bool property_object::property_set_get_string(string & strResult, const string& str) const
 {
 
-   auto pproperty = on_fetch_property(str);
+   auto linkedproperty = on_fetch_property(str);
 
-   if (is_null(pproperty))
+   if (!linkedproperty)
    {
 
       return false;
 
    }
 
-   strResult = pproperty->string();
+   strResult = linkedproperty->string();
 
    return true;
 

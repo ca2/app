@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "_collection_basic.h"
+
+
 template < typename POINT_TYPE >
 class polygon_base :
    virtual public point_array_base < POINT_TYPE >

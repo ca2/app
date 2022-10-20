@@ -4,7 +4,8 @@
 #pragma once
 
 
-#include "acme/primitive/geometry2d/_basic.h"
+#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/primitive/geometry2d/point.h"
 
 
 template < typename T >

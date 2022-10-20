@@ -22,6 +22,12 @@
 #include "matrix.h"
 
 
+#include "acme/primitive/geometry2d/angle.h"
+
+
+#include "acme/primitive/geometry2d/ellipse.h"
+
+
 using hdc = void *;
 
 

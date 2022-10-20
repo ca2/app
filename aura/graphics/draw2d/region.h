@@ -2,7 +2,7 @@
 
 
 #include "object.h"
-
+#include "acme/primitive/geometry2d/polygon.h"
 
 
 template < primitive_rectangle RECTANGLE >

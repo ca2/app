@@ -98,15 +98,15 @@ public:
 
    inline size_type aspect_width(UNIT_TYPE w) { return size_type(w, w * this->cy / this->cx); }
    inline size_type aspect_height(UNIT_TYPE h) { return size_type(h * this->cx / this->cy, h); }
-   inline ::design::e_fit get_fit(size_type s) { return (::design::e_fit) ::papaya::sgn(s.cx *this->cy - s.cy * this->cx); }
+   inline ::design::enum_fit get_fit(size_type s) { return (::design::enum_fit) ::papaya::sgn(s.cx *this->cy - s.cy * this->cx); }
    inline size_type fit(size_type s)
    {
-      if (get_fit(s) == ::design::fit_height) return aspect_height(s.cy); else return aspect_width(s.cx);
+      if (get_fit(s) == ::design::e_fit_height) return aspect_height(s.cy); else return aspect_width(s.cx);
    }
-   inline ::design::e_match get_expand(size_type s) { return (::design::e_match)(-(int)get_fit(s)); }
+   inline ::design::enum_match get_expand(size_type s) { return (::design::enum_match)(-(int)get_fit(s)); }
    inline size_type expand(size_type s)
    {
-      if (get_expand(s) == ::design::match_height) return aspect_height(s.cy); else return aspect_width(s.cx);
+      if (get_expand(s) == ::design::e_match_height) return aspect_height(s.cy); else return aspect_width(s.cx);
    }
 
    inline size_type & operator=(const size_type & size) noexcept { this->cx = size.cx; this->cy = size.cy; return *this; }
@@ -195,8 +195,6 @@ public:
    inline bool any_le (const RECTANGLE_TYPE & rectangle) const noexcept { return this->any_le(rectangle.size()); }
 
 };
-
-
 
 
 inline auto abs(const ::size_i32& size) noexcept { return ::size_i32(abs(size.cx), abs(size.cy)); }

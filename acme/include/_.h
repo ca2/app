@@ -2587,8 +2587,8 @@ class thread_parameter;
 #include "acme/primitive/primitive/member.h"
 
 
-template < typename T >
-concept not_pointer = !std::is_pointer < T >::value;
+//template < typename T >
+//concept not_pointer = !std::is_pointer < T >::value;
 
 template < typename T >
 concept an_object = !std::is_pointer < T >::value 
@@ -2605,8 +2605,8 @@ template<typename TYPE>
 inline bool is_set(const ::pointer<TYPE> & p);
 
 
-template < non_pointer NOT_A_POINTER >
-inline bool is_null(const NOT_A_POINTER & t)
+template < typename TYPE >
+inline bool is_reference_null(const TYPE & t)
 {
 
    return is_null(&t);
@@ -2614,8 +2614,8 @@ inline bool is_null(const NOT_A_POINTER & t)
 }
 
 
-template < not_pointer TYPE >
-inline bool is_set(const TYPE & t)
+template < typename TYPE >
+inline bool is_reference_set(const TYPE & t)
 {
 
    return is_set(&t);
@@ -2638,8 +2638,8 @@ template < typename TYPE >
 inline ::i64 __finalize(::pointer<TYPE>& pointer OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
-template < class REFERENCE >
-inline ::i64 release(::pointer<REFERENCE>& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
+//template < class REFERENCE >
+//inline ::i64 release(::pointer<REFERENCE>& preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 
 
 template<typename T>

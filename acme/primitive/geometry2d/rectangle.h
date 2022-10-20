@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-#error "error"
+#include "_concept.h"
 
 
 template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
@@ -15,7 +15,7 @@ public:
    using UNIT_TYPE = decltype(RECTANGLE_BASE_TYPE::left);
    using POINT_TYPE = point_type < POINT_BASE_TYPE, SIZE_BASE_TYPE, RECTANGLE_BASE_TYPE >;
    using SIZE_TYPE = size_type < SIZE_BASE_TYPE, POINT_BASE_TYPE, RECTANGLE_BASE_TYPE >;
-   using POINT_ARRAY_TYPE = typename POINT_TYPE::POINT_ARRAY_TYPE;
+   using POINT_ARRAY_TYPE = point_array_base < POINT_TYPE >;
 
    rectangle_type() noexcept : rectangle_type((UNIT_TYPE)0) { }
    rectangle_type(enum_no_initialize) noexcept { }
@@ -53,8 +53,8 @@ public:
 
 
    inline bool is_set() const noexcept { return !is_empty(); }
-   inline bool is_empty() const noexcept { return ::is_empty_rectangle(*this); }
-   inline bool is_null() const noexcept { return ::is_null_rectangle(*this); }
+   inline bool is_empty() const noexcept { return ::is_empty(*this); }
+   inline bool is_null() const noexcept { return ::is_null(*this); }
    template < primitive_point POINT >
    inline bool contains(const POINT & point) const noexcept { return ::contains(*this, point.x, point.y); }
    inline bool contains_x(UNIT_TYPE x) const noexcept { return ::contains_x(*this, x); }
@@ -79,15 +79,15 @@ public:
    }
 
 
-   inline point_f64 to_point_rate(const POINT_TYPE & point) const
+   inline POINT_F64 to_point_rate(const POINT_TYPE & point) const
    {
 
-      return point_f64(((double)point.x - (double)this->left) / (double)width(),
-         ((double)point.y - (double)this->top) / (double)height());
+      return { ((double)point.x - (double)this->left) / (double)width(),
+         ((double)point.y - (double)this->top) / (double)height() };
 
    }
 
-   inline POINT_TYPE from_point_rate(const point_f64 & point) const
+   inline POINT_TYPE from_point_rate(const POINT_F64 & point) const
    {
 
       return POINT_TYPE((UNIT_TYPE)(point.x * (double)width() + (double)this->left),
@@ -663,10 +663,10 @@ public:
    }
 
 
-   ::size_f64 aspect_size(const rectangle_type & rectangle) const
+   SIZE_F64 aspect_size(const rectangle_type & rectangle) const
    {
 
-      ::size_f64 size = this->size();
+      SIZE_F64 size = { (double) width(), (double) height()};
 
       double dW = (double)rectangle.width() / size.cx;
 
@@ -677,6 +677,7 @@ public:
       return { size.cx * d, size.cy * d };
 
    }
+
 
    void aspect_fit(const rectangle_type & rectangle)
    {
@@ -958,7 +959,7 @@ public:
                if (rectangleIntersect.top == rectangleMajor.top)
                {
 
-                  ::set_rect(rectangleRet,
+                  ::assign(rectangleRet,
                      rectangleMajor.left,
                      rectangleIntersect.top,
                      rectangleMajor.right,
@@ -1198,8 +1199,14 @@ public:
 
 
 
+
+
+using rectangle = ::rectangle_f64;
+
+
+
 // Split to _defer_shape.h by camilo on 2022-06-28 21:20 <3ThomasBorregaardSorensen!! (Mummi and bilbo in ca2HQ)
-#pragma once
+
 
 
 template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
@@ -1209,6 +1216,54 @@ inline void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE >::norma
    __sort(this->left, this->right);
 
    __sort(this->top, this->bottom);
+
+}
+
+
+
+
+
+template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
+void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > ::get_bounding_rectangle(const POINT_BASE_TYPE * ppoint, ::count count)
+{
+
+   ::get_bounding_rectangle(*this, ppoint, count);
+
+}
+
+
+template < typename X, typename Y, typename W, typename H >
+inline rectangle_i32 rectangle_i32_dimension(X x, Y y, W w, H h)
+{
+
+   return rectangle_i32((i32)(x), (i32)(y), (i32)(x + w), (i32)(y + h));
+
+}
+
+
+template < typename X, typename Y, typename W, typename H >
+inline rectangle_i64 rectangle_i64_dimension(X x, Y y, W w, H h)
+{
+
+   return rectangle_i64((i64)x, (i64)y, (i64)(x + w), (i64)(y + h));
+
+}
+
+
+template < typename X, typename Y, typename W, typename H >
+inline rectangle_f32 rectangle_f32_dimension(X x, Y y, W w, H h)
+{
+
+   return rectangle_f32((f32)x, (f32)y, (f32)(x + w), (f32)(y + h));
+
+}
+
+
+template < typename X, typename Y, typename W, typename H >
+inline rectangle_f64 rectangle_f64_dimension(X x, Y y, W w, H h)
+{
+
+   return rectangle_f64((f64)x, (f64)y, (f64)(x + w), (f64)(y + h));
 
 }
 

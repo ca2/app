@@ -2,6 +2,7 @@
 // Created by camilo on 2022-01-21 14:57 <3ThomasBorregaardSørensen
 // Generalization by camilo on 31/01/2022 14:53 <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "acme/user/user/mouse.h"
 #include "acme/operating_system.h"
 #include "_nano.h"
 

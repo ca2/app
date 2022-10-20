@@ -8,6 +8,11 @@
 #pragma once
 
 
+#include "_basic.h"
+#include "_collection_basic.h"
+#include "polygon.h"
+
+
 template < typename HOLDEE >
 class ___shape :
    virtual public element

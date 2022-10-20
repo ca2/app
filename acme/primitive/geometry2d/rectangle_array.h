@@ -211,10 +211,6 @@ index rectangle_array_base < RECTANGLE_TYPE >::max_normal_intersect_area(const R
 
 
 
-using rectangle_i32_array = rectangle_array_base < rectangle_i32 >;
-using rectangle_i64_array = rectangle_array_base < rectangle_i64 >;
-using rectangle_f32_array = rectangle_array_base < rectangle_f32 >;
-using rectangle_f64_array = rectangle_array_base < rectangle_f64 >;
 
 
 

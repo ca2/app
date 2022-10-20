@@ -1,13 +1,7 @@
 ﻿// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen
 // recreated by Camilo 2021-01-28 22:20
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
-//#include "_windowing.h"
-//#include "acme/primitive/geometry2d/_.h"
-//#include "acme/primitive/geometry2d/_geometry2d.h"
-//#include "acme/primitive/geometry2d/_impl.h"
+#include "acme/primitive/geometry2d/rectangle_array.h"
 #include "aura/windowing/display.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/monitor.h"

@@ -1,15 +1,9 @@
 #pragma once
 
-//namespace user
-//{
-//
-//   class impact_data;
-//
-//}
 
 #include "aura/user/user/message.h"
 #include "aura/user/user/key.h"
-
+#include "acme/user/user/mouse.h"
 
 
 namespace message

@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "point.h"
+#include "size.h"
+
+
 class CLASS_DECL_ACME arc
 {
 public:

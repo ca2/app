@@ -127,6 +127,9 @@ namespace user
 
 
    class tool_item;
+   class mouse;
+   class drag;
+   class drag_client;
 
 
 } // namespace user
@@ -432,9 +435,4 @@ class base_enum;
 class item;
 
 using item_pointer = ::pointer < ::item >;
-
-
-
-
-
 

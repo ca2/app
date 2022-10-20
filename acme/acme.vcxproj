@@ -838,6 +838,7 @@
     <ClInclude Include="constant\_.h" />
     <ClInclude Include="constant\_constant.h" />
     <ClInclude Include="constant\_enumeration.h" />
+    <ClInclude Include="constant\_geometry.h" />
     <ClInclude Include="constant\_mathematics.h" />
     <ClInclude Include="exception\bad_file_format.h" />
     <ClInclude Include="exception\aaa_file_open.h" />
@@ -1208,6 +1209,7 @@
     <ClCompile Include="user\user\check.cpp" />
     <ClCompile Include="user\user\conversation.cpp" />
     <ClCompile Include="user\user\drag.cpp" />
+    <ClCompile Include="user\user\drag_client.cpp" />
     <ClCompile Include="user\user\element.cpp" />
     <ClCompile Include="user\user\os_colors.cpp" />
     <ClCompile Include="user\user\os_theme_colors.cpp" />
@@ -1613,6 +1615,9 @@
     <ClInclude Include="primitive\geometry2d\contains.h" />
     <ClInclude Include="primitive\geometry2d\shift.h" />
     <ClInclude Include="primitive\geometry2d\_binary_stream.h" />
+    <ClInclude Include="primitive\geometry2d\_collection_basic.h" />
+    <ClInclude Include="primitive\geometry2d\_collection_enhanced.h" />
+    <ClInclude Include="primitive\geometry2d\_concept.h" />
     <ClInclude Include="primitive\geometry2d\_f32.h" />
     <ClInclude Include="primitive\geometry2d\_f64.h" />
     <ClInclude Include="primitive\geometry2d\_basic.h" />
@@ -1622,7 +1627,6 @@
     <ClInclude Include="primitive\geometry2d\lines.h" />
     <ClInclude Include="primitive\geometry2d\shape.h" />
     <ClInclude Include="primitive\geometry2d\shape_array.h" />
-    <ClInclude Include="primitive\geometry2d\_collection.h" />
     <ClInclude Include="primitive\geometry2d\_collection_bounding_rect.h" />
     <ClInclude Include="primitive\geometry2d\_collection_contains.h" />
     <ClInclude Include="primitive\geometry2d\_i64.h" />
@@ -1765,6 +1769,7 @@
     <ClInclude Include="user\user\check.h" />
     <ClInclude Include="user\user\conversation.h" />
     <ClInclude Include="user\user\drag.h" />
+    <ClInclude Include="user\user\drag_client.h" />
     <ClInclude Include="user\user\element.h" />
     <ClInclude Include="user\user\ewindowflag.h" />
     <ClInclude Include="user\user\mouse.h" />
@@ -1948,7 +1953,7 @@
     <ClInclude Include="primitive\datetime\time_span.h" />
     <ClInclude Include="primitive\datetime\zonetime.h" />
     <ClInclude Include="primitive\datetime\_c.h" />
-    <ClInclude Include="primitive\geometry2d\align.h" />
+    <ClInclude Include="primitive\geometry2d\aaa_align.h" />
     <ClInclude Include="primitive\geometry2d\collection.h" />
     <ClInclude Include="primitive\geometry2d\geometry.h" />
     <ClInclude Include="primitive\geometry2d\point.h" />

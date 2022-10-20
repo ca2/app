@@ -3,6 +3,10 @@
 //
 
 
+#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/primitive/geometry2d/size.h"
+
+
 class CLASS_DECL_ACME nano_device :
    virtual public ::matter
 {

@@ -1,9 +1,7 @@
 ﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
 #include <math.h>
 #include "font_list.h"
+#include "acme/handler/item.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/fonts.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"

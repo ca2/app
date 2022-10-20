@@ -1,10 +1,7 @@
 ﻿#pragma once
-//
-//
-//#ifdef WINDOWS_DESKTOP
-//#include <gdiplus.h>
-//#endif
-////#define memory_new ACME_NEW
+
+
+#include "_concept.h"
 
 
 template < typename BASE_TYPE, typename SIZE_BASE_TYPE, typename RECTANGLE_BASE_TYPE >
@@ -213,6 +210,24 @@ public:
 };
 
 
+inline auto __point_i32(const ::lparam & lparam) noexcept { return ::point_i32(lparam.x(), lparam.y()); }
+inline auto __point_i32(const ::u32 u) noexcept { return ::point_i32((::i32)__u32x(u), (::i32)__u32y(u)); }
+inline auto __point_i32(const ::u64 u) noexcept { return ::point_i32((::i32)__u64x(u), (::i32)__u64y(u)); }
+
+
+inline auto __point_i64(const ::lparam & lparam) noexcept { return ::point_i64(lparam.x(), lparam.y()); }
+inline auto __point_i64(const ::u32 u) noexcept { return ::point_i64((i64)__u32x(u), (i64)__u32y(u)); }
+inline auto __point_i64(const ::u64 u) noexcept { return ::point_i64((i64)__u64x(u), (i64)__u64y(u)); }
+
+
+inline auto __point_f32(const ::lparam & lparam) noexcept { return ::point_f32((float)lparam.x(), (float)lparam.y()); }
+inline auto __point_f32(const ::u32 u) noexcept { return ::point_f32((float)__u32x(u), (float)__u32y(u)); }
+inline auto __point_f32(const ::u64 u) noexcept { return ::point_f32((float)__u64x(u), (float)__u64y(u)); }
+
+
+inline auto __point_f64(const ::lparam & lparam) noexcept { return ::point_f64(lparam.x(), lparam.y()); }
+inline auto __point_f64(const ::u32 u) noexcept { return ::point_f64((double)__u32x(u), (double)__u32y(u)); }
+inline auto __point_f64(const ::u64 u) noexcept { return ::point_f64((double)__u64x(u), (double)__u64y(u)); }
 
 
 

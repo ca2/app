@@ -61,15 +61,3 @@ lines_base < POINT_TYPE >::~lines_base()
 
 }
 
-
-using lines_i32 = lines_base < point_i32 >;
-using lines_i64 = lines_base < point_i64 >;
-using lines_f32 = lines_base < point_f32 >;
-using lines_f64 = lines_base < point_f64 >;
-
-
-
-
-using lines = lines_f64;
-
-

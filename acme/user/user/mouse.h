@@ -8,13 +8,15 @@
 #pragma once
 
 
+#include "acme/primitive/geometry2d/point.h"
+
 
 namespace user
 {
 
 
    class CLASS_DECL_ACME mouse :
-      virtual public element
+      virtual public ::element
    {
    public:
 
@@ -23,8 +25,8 @@ namespace user
       point_i32                           m_point;
       point_i32                           m_pointDesired;
       bool                                m_bTranslated;
-      ::pointer<::windowing::cursor>     m_pcursor;
-      ::pointer<::user::interaction>     m_puserinteractionHit;
+      ::pointer<::windowing::cursor>      m_pcursor;
+      ::pointer<::user::interaction>      m_puserinteractionHit;
 
 
       virtual unsigned int get_message()

@@ -1628,7 +1628,7 @@ void object::branch_each(const ::procedure_array& routinea)
 ::pointer<task>object::branch_procedure(const ::procedure & procedure, ::enum_priority epriority, ::u32 nStackSize, ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
-   if (::is_null(procedure))
+   if (::is_reference_null(procedure))
    {
 
       throw ::exception(error_failed);
@@ -1662,7 +1662,7 @@ void object::branch_each(const ::procedure_array& routinea)
    ::u32 dwCreateFlags ARG_SEC_ATTRS)
 {
 
-   if (::is_null(procedure))
+   if (::is_reference_null(procedure))
    {
 
       throw ::exception(error_failed);

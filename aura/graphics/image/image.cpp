@@ -3,15 +3,15 @@
 //   Date : 09-04-98
 //////////////////////////////////////////////////////////////////////
 #include "framework.h"
-#include "acme/operating_system.h"
-//#include "_image.h"
-#include "aura/graphics/draw2d/graphics.h"
-#include "acme/primitive/mathematics/mathematics.h"
 #include "frame_array.h"
 #include "drawing.h"
-#include "aura/graphics/draw2d/task_tool.h"
 #include "save_image.h"
 #include "context_image.h"
+//#include "acme/primitive/geometry2d/_concept.h"
+#include "acme/operating_system.h"
+#include "aura/graphics/draw2d/graphics.h"
+#include "acme/primitive/mathematics/mathematics.h"
+#include "aura/graphics/draw2d/task_tool.h"
 #include "aura/graphics/draw2d/draw2d.h"
 
 
@@ -273,7 +273,7 @@ void image::create(::draw2d::graphics* pgraphics)
 
    ::draw2d::bitmap& bitmap = *pgraphics->get_current_bitmap();
 
-   if (::is_null(bitmap))
+   if (::is_reference_null(bitmap))
    {
 
       throw ::exception(error_null_pointer);

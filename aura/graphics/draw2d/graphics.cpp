@@ -1,7 +1,8 @@
 ﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
+#include "graphics.h"
+#include "brush.h"
+#include "pen.h"
+#include "path.h"
 #include "draw2d.h"
 #include "aura/platform/aura.h"
 #include "aura/graphics/image/array.h"
@@ -9,21 +10,15 @@
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/write_text/fonts.h"
-#include "graphics.h"
-#include "brush.h"
-#include "pen.h"
-#include "path.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
-#include "acme/primitive/geometry2d/_collection.h"
-//#include "_defer.h"
+#include "acme/primitive/geometry2d/_enhanced.h"
+#include "acme/primitive/geometry2d/_collection_enhanced.h"
 #include "acme/primitive/geometry2d/_defer_shape.h"
 #include "aura/user/user/interaction.h"
+#include "nanosvg/nanosvg.h"
+
 
 #define IMAGE_OK(pimpl) (::is_set(pimpl) && pimpl->area() > 0)
 
-#include "nanosvg/nanosvg.h"
-
-//CLASS_DECL_AURA image_array * g_pimagea = nullptr;
 
 namespace draw2d
 {

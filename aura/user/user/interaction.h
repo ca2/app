@@ -6,6 +6,7 @@
 #include "interaction_layout.h"
 #include "prodevian.h"
 #include "drawable.h"
+#include "acme/user/user/drag_client.h"
 
 
 namespace user

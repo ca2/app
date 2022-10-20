@@ -1,12 +1,25 @@
 ﻿#include "framework.h"
+#include "interaction_child.h"
+#include "scroll_info.h"
+#include "alpha_source.h"
+#include "message.h"
+#include "interaction.h"
+#include "interaction_impl.h"
+#include "interaction_scaler.h"
+#include "interaction_thread.h"
+#include "style.h"
+#include "user.h"
+#include "frame.h"
+#include "form.h"
 #ifdef WINDOWS_DESKTOP
 #include "apex/operating_system.h"
 #endif
 #include "aura/message/timer.h"
-#include "acme/constant/timer.h"
 #include "acme/constant/simple_command.h"
+#include "acme/handler/item.h"
+#include "acme/user/user/drag.h"
 #include "apex/message/simple_command.h"
-#include "interaction_thread.h"
+#include "acme/parallelization/asynchronous.h"
 #include "acme/platform/hyperlink.h"
 #include "acme/platform/timer.h"
 #include "acme/platform/timer_array.h"
@@ -14,25 +27,14 @@
 #include "aura/graphics/draw2d/path.h"
 #include "aura/graphics/graphics/graphics.h"
 #include "aura/graphics/image/image.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
-#include "acme/primitive/geometry2d/_collection.h"
+#include "acme/primitive/geometry2d/_enhanced.h"
+#include "acme/primitive/geometry2d/_collection_enhanced.h"
 #include "acme/primitive/geometry2d/_defer_shape.h"
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"
 #include "aura/windowing/cursor.h"
-#include "alpha_source.h"
-#include "message.h"
-#include "interaction.h"
-#include "interaction_impl.h"
-#include "interaction_scaler.h"
-#include "style.h"
-#include "user.h"
-#include "frame.h"
-#include "form.h"
-#include "interaction_child.h"
 #include "aura/message/user.h"
-#include "scroll_info.h"
 #include "aura/graphics/draw2d/graphics_call.h"
 #include "aura/user/appearance/appearance.h"
 #include "aura/user/user/system.h"
@@ -40,7 +42,7 @@
 #include "aura/graphics/user/control_box_button.h"
 #include "aura/platform/session.h"
 #include "aura/platform/application.h"
-#include "acme/parallelization/asynchronous.h"
+
 
 
 #define INFO_LAYOUT_DISPLAY
@@ -8585,7 +8587,7 @@ namespace user
 
       }
 
-      if (::is_empty_rectangle(sizeparentparams.rectangle))
+      if (::is_empty(sizeparentparams.rectangle))
       {
 
          return;
@@ -14324,7 +14326,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       ::rectangle_i32 rectangleWindow;
 
-      if (!::is_empty_rectangle(rectangle))
+      if (!::is_empty(rectangle))
       {
 
          rectangleWindow = rectangle;
@@ -14353,7 +14355,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
 
       pdisplay->get_workspace_rectangle(iMatchingMonitor, rectangleWorkspace);
 
-      if (bSet && (!::is_empty_rectangle(rectangle) || iMatchingMonitor >= 0))
+      if (bSet && (!::is_empty(rectangle) || iMatchingMonitor >= 0))
       {
 
 #if !MOBILE_PLATFORM

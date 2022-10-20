@@ -4,6 +4,9 @@
 #pragma once
 
 
+#include "acme/primitive/geometry2d/size.h"
+
+
 namespace nano
 {
 

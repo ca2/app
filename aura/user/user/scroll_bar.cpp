@@ -1,10 +1,8 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
+#include "scroll_bar.h"
+#include "acme/handler/item.h"
 #include "aura/platform/draw_context2.h"
 #include "aura/graphics/draw2d/graphics.h"
-#include "scroll_bar.h"
 #include "aura/message/user.h"
 
 

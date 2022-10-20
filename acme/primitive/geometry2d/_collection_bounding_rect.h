@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "lines.h"
+
+
 inline bool get_bounding_rectangle(RECTANGLE_F64 & rectangleBounding, const lines & lines)
 {
 

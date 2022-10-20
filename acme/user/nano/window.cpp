@@ -6,6 +6,7 @@
 #include "acme/constant/id.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/user/user/drag.h"
 
 
 nano_window::nano_window()

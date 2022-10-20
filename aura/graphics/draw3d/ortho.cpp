@@ -1,4 +1,5 @@
 #include "framework.h"
+//#include "acme/primitive/geometry2d/point.h"
 #include "acme/primitive/geometry3d/_.h"
 #include "ortho.h"
 #include <math.h>
@@ -179,7 +180,7 @@ namespace draw3d
 
             m_pdc->set(ppen);
 
-            m_pdc->draw_line(__pointd(locationa[point1[iMax]].cxy()), __pointd(locationa[point2[iMax]].cxy()));
+            m_pdc->draw_line(::point_f64(locationa[point1[iMax]].cxy()), ::point_f64(locationa[point2[iMax]].cxy()));
 
          }
 

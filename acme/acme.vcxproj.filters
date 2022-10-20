@@ -683,7 +683,7 @@
     <ClInclude Include="primitive\geometry2d\collection.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\align.h">
+    <ClInclude Include="primitive\geometry2d\aaa_align.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
     <ClInclude Include="primitive\geometry2d\_.h">
@@ -1038,9 +1038,6 @@
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
     <ClInclude Include="primitive\geometry2d\_impl.h">
-      <Filter>Header Files\primitive\geometry2d</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\geometry2d\_collection.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
     <ClInclude Include="primitive\geometry2d\_collection_bounding_rect.h">
@@ -2879,6 +2876,21 @@
     <ClInclude Include="primitive\geometry2d\_enhanced.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
+    <ClInclude Include="constant\_geometry.h">
+      <Filter>Header Files\constant</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry2d\_collection_basic.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry2d\_collection_enhanced.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry2d\_concept.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\drag_client.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\bit.cpp">
@@ -3930,6 +3942,9 @@
     </ClCompile>
     <ClCompile Include="platform\tracer.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\drag_client.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

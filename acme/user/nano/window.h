@@ -5,6 +5,7 @@
 
 
 #include "acme/platform/conversation_message.h"
+#include "acme/user/user/drag_client.h"
 
 
 class CLASS_DECL_ACME nano_window :

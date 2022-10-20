@@ -7,6 +7,9 @@
 #include "_mathematics.h"
 
 
+#include "_geometry.h"
+
+
 #include "geometry2d.h"
 
 

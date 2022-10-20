@@ -1,8 +1,9 @@
 #include "framework.h"
-#include "image.h"
-#include "aura/graphics/image/context_image.h"
 #include "array.h"
 #include "drawing.h"
+#include "image.h"
+#include "acme/primitive/geometry2d/rectangle.h"
+#include "aura/graphics/image/context_image.h"
 #include "aura/platform/context.h"
 
 

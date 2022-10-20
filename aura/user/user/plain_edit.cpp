@@ -10,6 +10,7 @@
 #endif
 #endif
 #include "acme/constant/timer.h"
+#include "acme/handler/item.h"
 #include "acme/primitive/string/base64.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
@@ -7586,7 +7587,7 @@ namespace user
       if (actioncontext.is_user_source())
       {
 
-         if (::is_set(m_linkedpropertyText))
+         if (m_linkedpropertyText)
          {
 
             plain_edit_get_text(m_linkedpropertyText.m_pproperty->string_reference());

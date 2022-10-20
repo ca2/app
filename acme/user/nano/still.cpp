@@ -1,5 +1,6 @@
 // Created by camilo on 2022-02-06 09:28 <3ThomasBorregaardSørensen
 #include "framework.h"
+#include "acme/user/user/mouse.h"
 #include "_nano.h"
 
 

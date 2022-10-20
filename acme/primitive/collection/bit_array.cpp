@@ -150,7 +150,7 @@ void bit_array::add_bit_array(bit_array & ba)
 {
    if(::index(m_pdata) == 1)
       return;
-   if(::is_null(ba) || ::is_null(ba.m_pdata))
+   if(::is_reference_null(ba) || ::is_null(ba.m_pdata))
       return;
    if(::index(ba.m_pdata) == 1)
    {
@@ -172,7 +172,7 @@ void bit_array::clear_bit_array(bit_array & ba)
 
   }
 
-  if(is_null(ba) || ::is_null(ba.m_pdata))
+  if(is_reference_null(ba) || ::is_null(ba.m_pdata))
   {
 
      return;

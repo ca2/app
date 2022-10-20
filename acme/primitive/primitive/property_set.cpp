@@ -1474,7 +1474,7 @@ property_set & property_set::append(const property_set & set)
 property_set & property_set::merge(const property_set & set)
 {
 
-   if (::is_set(set) && &set != this)
+   if (::is_reference_set(set) && &set != this)
    {
 
       for(auto & pproperty : set)

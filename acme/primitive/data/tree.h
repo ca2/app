@@ -2,6 +2,7 @@
 
 
 #include "acme/primitive/data/tree_item.h"
+#include "acme/primitive/geometry2d/point.h"
 
 
 namespace data

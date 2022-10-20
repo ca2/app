@@ -2,6 +2,7 @@
 // Created by camilo on 31/01/2022 22:42 <3ThomasBorregaardSørensen!!
 //
 #include "framework.h"
+#include "acme/user/user/mouse.h"
 #include "_nano.h"
 
 

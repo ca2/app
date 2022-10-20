@@ -2,6 +2,7 @@
 #include "framework.h"
 #include "acme/user/nano/_nano.h"
 #include "_nano.h"
+#include "acme/user/user/mouse.h"
 
 
 namespace windows

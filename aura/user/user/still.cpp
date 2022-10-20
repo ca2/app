@@ -1,7 +1,6 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
+#include "still.h"
+#include "acme/handler/item.h"
 #include "aura/graphics/write_text/text_out.h"
 #include "aura/graphics/write_text/text_out_array.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -10,7 +9,6 @@
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/drawing.h"
-#include "still.h"
 #include "aura/message/user.h"
 
 

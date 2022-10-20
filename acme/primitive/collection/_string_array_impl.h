@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "acme/primitive/primitive/property_set.h"
-#include "acme/primitive/primitive/memory.h"
+//#include "acme/primitive/primitive/property_set.h"
+//#include "acme/primitive/primitive/memory.h"
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
@@ -121,78 +121,78 @@ string_array_base < Type, RawType, t_etypePayload >  & string_array_base < Type,
 }
 
 
-template < typename Type, typename RawType, enum_type t_etypePayload >
-memory string_array_base < Type, RawType, t_etypePayload > ::GetFormatV004()
-{
-
-   strsize iTotalLength = 0;
-
-   ::index i;
-
-   for (i = 0; i < this->m_nSize; i++)
-   {
-      iTotalLength += this->element_at(i).get_length();
-      iTotalLength++;
-   }
-
-   if (iTotalLength == 0)
-   {
-      iTotalLength = 2;
-   }
-   else
-   {
-      iTotalLength++;
-   }
-
-   memory mem;
-
-   mem.set_size(iTotalLength * sizeof(char));
-
-   char * lpsz = (char *)mem.get_data();
-
-   __memset(lpsz, 0x00, iTotalLength * sizeof(char));
-
-   char * lpszN = lpsz;
-
-   strsize iLength;
-
-   for (i = 0; i < this->m_nSize; i++)
-   {
-
-      Type * pstr = &this->element_at(i);
-
-      iLength = pstr->get_length();
-
-#ifdef WINDOWS
-      strcat_s(lpszN, (size_t) iLength, *pstr);
-#else
-      ansi_concatenate(lpszN, *pstr);
-#endif
-
-#ifdef WINDOWS_DESKTOP
-      iLength = strlen(lpszN);
-#elif defined(_UWPDOW)
-      iLength = wcsnbcnt(lpszN, iLength);
-#else
-      iLength = strlen(lpszN);
-#endif
-
-      lpszN = (char *)((byte *)lpszN) + iLength + sizeof(char);
-
-   }
-
-   if (iTotalLength == 2)
-   {
-      __memset(lpsz, 0x00, iTotalLength * sizeof(char));
-   }
-   else
-   {
-      __memset(lpszN, 0x00, sizeof(char));
-   }
-
-   return mem;
-
-}
+//template < typename Type, typename RawType, enum_type t_etypePayload >
+//memory string_array_base < Type, RawType, t_etypePayload > ::GetFormatV004()
+//{
+//
+//   strsize iTotalLength = 0;
+//
+//   ::index i;
+//
+//   for (i = 0; i < this->m_nSize; i++)
+//   {
+//      iTotalLength += this->element_at(i).get_length();
+//      iTotalLength++;
+//   }
+//
+//   if (iTotalLength == 0)
+//   {
+//      iTotalLength = 2;
+//   }
+//   else
+//   {
+//      iTotalLength++;
+//   }
+//
+//   memory mem;
+//
+//   mem.set_size(iTotalLength * sizeof(char));
+//
+//   char * lpsz = (char *)mem.get_data();
+//
+//   __memset(lpsz, 0x00, iTotalLength * sizeof(char));
+//
+//   char * lpszN = lpsz;
+//
+//   strsize iLength;
+//
+//   for (i = 0; i < this->m_nSize; i++)
+//   {
+//
+//      Type * pstr = &this->element_at(i);
+//
+//      iLength = pstr->get_length();
+//
+//#ifdef WINDOWS
+//      strcat_s(lpszN, (size_t) iLength, *pstr);
+//#else
+//      ansi_concatenate(lpszN, *pstr);
+//#endif
+//
+//#ifdef WINDOWS_DESKTOP
+//      iLength = strlen(lpszN);
+//#elif defined(_UWPDOW)
+//      iLength = wcsnbcnt(lpszN, iLength);
+//#else
+//      iLength = strlen(lpszN);
+//#endif
+//
+//      lpszN = (char *)((byte *)lpszN) + iLength + sizeof(char);
+//
+//   }
+//
+//   if (iTotalLength == 2)
+//   {
+//      __memset(lpsz, 0x00, iTotalLength * sizeof(char));
+//   }
+//   else
+//   {
+//      __memset(lpszN, 0x00, sizeof(char));
+//   }
+//
+//   return mem;
+//
+//}
 
 
 //template < typename Type, typename RawType, enum_type t_etypePayload >

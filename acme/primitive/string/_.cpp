@@ -71,4 +71,32 @@ string string_format(const char * pszFormat, ...)
 }
 
 
+CLASS_DECL_ACME inline strsize safe_strlen(void * p, strsize n)
+{
 
+   if (p == nullptr)
+   {
+
+      return 0;
+
+   }
+
+   const char * psz = (const char *)p;
+
+   strsize i = 0;
+
+   for (; i < n; i++)
+   {
+
+      if (psz[i] == '\0')
+      {
+
+         break;
+
+      }
+
+   }
+
+   return i;
+
+}

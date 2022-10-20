@@ -12,11 +12,9 @@
 #pragma once
 
 
-#include "acme/constant/_constant.h"
-#include "acme/primitive/primitive/estatus.h"
 
 
-constexpr ::u64 operator "" _uintmax(unsigned long long int u) { return u << 32LL; }
+//constexpr ::u64 operator "" _uintmax(unsigned long long int u) { return u << 32LL; }
 
 
 
@@ -105,17 +103,6 @@ class pointer_array;
 //};
 
 
-//#define throw ::exception(...) throw_exception(__VA_ARGS__)
-
-
-CLASS_DECL_ACME void output_error_message(const ansichar * pszMessage, const ansichar * pszTitle = nullptr, int iMessageBox = 0);
-CLASS_DECL_ACME void output_debug_string(const ansichar * psz);
-CLASS_DECL_ACME void output_debug_string(const wd16char * psz);
-CLASS_DECL_ACME void output_debug_string(const wd32char * psz);
-
-
-
-inline bool is_set_ptr(const void * p) { return (uptr)p > 65536; }
 
 
 
@@ -301,6 +288,7 @@ concept is_derived_from =
 ::std::is_base_of < BASE, DERIVED >::value;
 
 
+class e_status;
 
 
 template < typename T >
@@ -436,3 +424,6 @@ class item;
 
 using item_pointer = ::pointer < ::item >;
 
+class memory;
+
+using memory_pointer = ::pointer < ::memory >;

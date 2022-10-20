@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/primitive/primitive/memory.h"
 #include <stdio.h>
 #include <stdarg.h>
 

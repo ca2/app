@@ -6,8 +6,32 @@ namespace file
 {
 
 
+   class CLASS_DECL_ACME readable
+   {
+   public:
+
+
+      virtual memsize read(void * pdata, memsize nCount);
+
+
+   };
+
+
+   class CLASS_DECL_ACME writable
+   {
+   public:
+
+
+      virtual void write(const void * pdata, memsize nCount);
+
+
+   };
+
+
    class CLASS_DECL_ACME streamable :
-      virtual public translatable
+      virtual public translatable,
+      virtual public readable,
+      virtual public writable
    {
    public:
 
@@ -15,10 +39,6 @@ namespace file
       virtual enum_status _open(const char * pszFilePath, const ::file::enum_open & eopen);
 
       virtual filesize translate(filesize offset, ::enum_seek eseek);
-
-      virtual memsize read(void * pdata, memsize nCount);
-
-      virtual void write(const void * pdata, memsize nCount);
 
       virtual void flush();
       virtual void close();
@@ -34,6 +54,9 @@ namespace file
 
 
 } // namespace file
+
+
+CLASS_DECL_ACME void __transfer_to_writable(::file::writable * pwritable, ::file::file * pfileIn, memsize uiBufSize);
 
 
 

@@ -9,7 +9,7 @@
 
 #include "acme/platform/object_type_counter.h"
 
-#include "acme/constant/_constant.h"
+//#include "acme/constant/_constant.h"
 
 #include "acme/memory/memory_allocate.h"
 
@@ -19,7 +19,7 @@
 
 #include "acme/platform/number.h"
 
-#include "_forward_declaration.h"
+//#include "_forward_declaration.h"
 
 #include "acme/include/_include.h"
 

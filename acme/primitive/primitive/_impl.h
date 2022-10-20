@@ -1846,29 +1846,8 @@ inline bool type::operator == (const ::atom& atom) const
 
       }
 
-      switch (m_etype)
-      {
-      case e_type_element:
-         return m_p;
-      case e_type_string_array:
-         return m_pstra;
-      case e_type_i32_array:
-         return m_pia;
-      case e_type_payload_array:
-         return m_ppayloada;
-      case e_type_property_set:
-         return m_ppropertyset;
-      case e_type_i64_array:
-         return m_pi64a;
-      case e_type_memory:
-         return m_pmemory;
-      case e_type_path:
-         return m_ppath;
-      default:
-         break;
-      }
 
-      return nullptr;
+      return get_particle();
 
    }
 
@@ -3344,10 +3323,5 @@ inline e_check::e_check(const ::tristate & triestate)
 }
 
 
-inline memory::memory(const ::string & str):
-   memory(str.c_str(), str.length())
-{
-
-}
 
 

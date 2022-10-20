@@ -1,66 +1,11 @@
 ﻿#pragma once
 
 
-inline strsize safe_strlen(void * p, strsize n)
-{
-
-   if (p == nullptr)
-   {
-
-      return 0;
-
-   }
-
-   const char * psz = (const char *)p;
-
-   strsize i = 0;
-
-   for (; i < n; i++)
-   {
-
-      if (psz[i] == '\0')
-      {
-
-         break;
-
-      }
-
-   }
-
-   return i;
-
-}
+#include "memory_base.h"
 
 
-inline integral_byte operator ""_kb(long double d)
-{
-   return (memsize)(1024.0 * d);
-}
 
-inline integral_byte operator ""_kb(unsigned long long i)
-{
-   return (memsize)(1024 * i);
-}
 
-inline integral_byte operator ""_mb(long double d)
-{
-   return (memsize)(1024.0 * 1024.0 * d);
-}
-
-inline integral_byte operator ""_mb(unsigned long long i)
-{
-   return (memsize) (1024 * 1024 * i);
-}
-
-inline integral_byte operator ""_gb(long double d)
-{
-   return (memsize) (1024.0 * 1024.0 * 1024.0 * d);
-}
-
-inline integral_byte operator ""_gb(unsigned long long i)
-{
-   return (memsize) (1024 * 1024 * 1024 * i);
-}
 
 class CLASS_DECL_ACME read_only_memory :
    public memory_base

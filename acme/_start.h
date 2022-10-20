@@ -204,9 +204,12 @@ typedef i64 filesize;
 #define memory_new new
 #endif
 
+
 #include "acme/memory/new.h"
 
-#include "_forward_declaration.h"
+//#include "acme/constant/_constant.h"
+
+//#include "_forward_declaration.h"
 
 
 

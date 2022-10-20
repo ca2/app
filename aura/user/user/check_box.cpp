@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 ////#include "aura/user/user/_component.h"
 #endif
@@ -543,13 +543,13 @@ namespace user
 
       get_client_rect(rectangleClient);
 
-      int iMin = maximum(rectangleClient.min_dim() -1, 1);
+      int iMinimumDimension = maximum(rectangleClient.minimum_dimension() -1, 1);
 
       ::rectangle_i32 rectangleCheckBox;
       rectangleCheckBox.left = 1;
       rectangleCheckBox.top = 1;
-      rectangleCheckBox.right = iMin + 1;
-      rectangleCheckBox.bottom = iMin + 1;
+      rectangleCheckBox.right = iMinimumDimension + 1;
+      rectangleCheckBox.bottom = iMinimumDimension + 1;
 
       ::color::color crPen = argb(255, 0, 0, 0);
       ::color::color crBrush;

@@ -181,7 +181,7 @@ inline POINT & offset(POINT & point, const POINT2 & point2)
 
 
 template < primitive_point POINT, primitive_point POINT2 >
-inline POINT & add(POINT & point, const POINT2 & point2) { return offset_point(point, point2); }
+inline POINT & add(POINT & point, const POINT2 & point2) { return offset(point, point2); }
 
 
 template < primitive_point POINT_TYPE, typename X, typename Y >

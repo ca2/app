@@ -452,7 +452,7 @@ namespace user
       if (m_puserinteraction)
       {
 
-         ::point_add(point, m_puserinteraction->const_layout().design().origin());
+         ::add(point, m_puserinteraction->const_layout().design().origin());
 
       }
 
@@ -465,7 +465,7 @@ namespace user
       if (m_puserinteraction)
       {
 
-         ::point_sub(point, m_puserinteraction->const_layout().design().origin());
+         ::subtract(point, m_puserinteraction->const_layout().design().origin());
 
       }
 

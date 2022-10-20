@@ -1305,10 +1305,10 @@ inline POINT & operator += (POINT & point, const POINT2 & pointOffset) { ::subtr
 //inline POINT_F64 & operator += (POINT_F64 & point, const ::point_f64 & pointOffset) { ::point_add(point, pointOffset); return point; }
 
 template < primitive_rectangle RECTANGLE, primitive_point POINT >
-inline RECTANGLE & operator -= (RECTANGLE & rectangle, const POINT & point) { ::rect_sub(rectangle, point); return rectangle; }
+inline RECTANGLE & operator -= (RECTANGLE & rectangle, const POINT & point) { ::subtract(rectangle, point); return rectangle; }
 
 template < primitive_rectangle RECTANGLE, primitive_point POINT >
-inline RECTANGLE & operator += (RECTANGLE & rectangle, const POINT & point) { ::rect_add(rectangle, point); return rectangle; }
+inline RECTANGLE & operator += (RECTANGLE & rectangle, const POINT & point) { ::subtract(rectangle, point); return rectangle; }
 
 //inline RECTANGLE_I64& operator -= (RECTANGLE_I64& rectangle, const ::point_i64& point) { ::rect_sub(rectangle, point); return rectangle; }
 //inline RECTANGLE_I64& operator += (RECTANGLE_I64& rectangle, const ::point_i64& point) { ::rect_add(rectangle, point); return rectangle; }

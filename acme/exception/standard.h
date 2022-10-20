@@ -101,7 +101,7 @@ public:
    const char *         name() const;
    const char *         description() const;
 #ifndef ANDROID
-   const ucontext_t *   ucontext_t() const;
+   const ::ucontext_t *   ucontext() const;
 #endif
 #endif
 
@@ -115,32 +115,44 @@ public:
    static void * siginfodup(void * psiginfo);
    static void siginfofree(void * psiginfo);
 
-   standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip = DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP
-#ifndef ANDROID 
-      , void * caller_address = nullptr
+#ifdef ANDROID
 
-#endif
-   ) :
-      ::exception(error_exception, nullptr, nullptr, iSkip
-#ifndef ANDROID
-         , caller_address
-#endif
-      ),
+   standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip = DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP) :
+      ::exception(error_exception, nullptr, nullptr, iSkip),
       m_iSignal(iSignal),
       m_psiginfo(siginfodup(psiginfo))
-#ifndef ANDROID
-      ,m_ucontext(*((ucontext_t *)pc))
+   {
+
+   /*_ASSERTE(psiginfo != 0);*/
+
+   }
+
 #endif
-   { /*_ASSERTE(psiginfo != 0);*/ }
+
+   standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip = DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP,
+                      void * caller_address = nullptr) :
+      ::exception(error_exception, nullptr, nullptr, iSkip, caller_address),
+      m_iSignal(iSignal),
+      m_psiginfo(siginfodup(psiginfo)),
+      m_ucontext(*((::ucontext_t *)pc))
+   {
+
+      /*_ASSERTE(psiginfo != 0);*/
+
+   }
 
 #endif
 
 
    virtual ~standard_exception()
    {
+
 #ifndef WINDOWS
+
       siginfofree(m_psiginfo);
+
 #endif
+
    }
 
 

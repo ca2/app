@@ -107,7 +107,7 @@ namespace papaya
          for(int i = 0; i < dsta.get_size(); i++)
          {
 
-            ::__copy(dsta[i], srca[i]);
+            ::copy(dsta[i], srca[i]);
 
          }
 

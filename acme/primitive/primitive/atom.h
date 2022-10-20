@@ -225,14 +225,6 @@ inline bool __atom_str_begins_ci(const char * a, const char * b)
 
 
 
-struct id_all
-{
-
-   ::iptr            m_iBody;
-   ::iptr            m_iType;
-
-};
-
 
 class CLASS_DECL_ACME atom
 {
@@ -279,45 +271,22 @@ public:
    union
    {
 
-      ::iptr                     m_iId;
-
-      struct
-      {
-
-         union
-         {
-
-            ::uptr               m_u;
-            ::iptr               m_i;
-            enum_id              m_eid;
-            enum_property        m_eproperty;
-            enum_factory         m_efactory;
-            enum_task_tool       m_etasktool;
-            enum_timer           m_etimer;
-            enum_message         m_emessage;
-            enum_dialog_result   m_edialogresult;
-            ::string             m_str;
-
-         };
-
-         enum_type               m_etype;
-
-
-      };
-
-      struct
-      {
-
-         ::iptr                  m_iBody;
-         ::iptr                  m_iType;
-
-      };
-
-      id_all                     m_all;
+      ::iptr               m_iId;
+      ::uptr               m_u;
+      ::iptr               m_i;
+      enum_id              m_eid;
+      enum_property        m_eproperty;
+      enum_factory         m_efactory;
+      enum_task_tool       m_etasktool;
+      enum_timer           m_etimer;
+      enum_message         m_emessage;
+      enum_dialog_result   m_edialogresult;
+      ::string             m_str;
+      ::iptr               m_iBody;
 
    };
 
-   
+   enum_type               m_etype;
 
 //protected:
 //
@@ -353,20 +322,20 @@ public:
    atom(const ::payload & payload);
 #endif // !NO_TEMPLATE
    atom(const ::lparam & lparam);
-   atom(::atom && atom) { m_all = atom.m_all; atom.m_all = {}; }
+   atom(::atom && atom) { m_etype = atom.m_etype; m_u = atom.m_u; atom.m_etype = e_type_integer; atom.m_u = 0; }
    ~atom() { if(is_text()) m_str.::string::~string(); }
 
 
    enum_type primitive_type() const
    {
 
-      if(m_iType < 0)
+      if(m_etype < 0)
       {
 
          return m_etype;
 
       }
-      else if(m_iType < e_type_text)
+      else if(m_etype < e_type_text)
       {
 
          return e_type_integer;
@@ -413,7 +382,7 @@ public:
 
 
 
-   bool is_message() const { return m_iType == e_type_message; }
+   bool is_message() const { return m_etype == e_type_message; }
 
 
    bool is_command() const { return _is_compounded(e_type_command); }
@@ -550,8 +519,8 @@ public:
 #ifndef NO_TEMPLATE
 
 
-   inline void as(string & str) const;
-   inline string string() const;
+   inline void as(::string & str) const;
+   inline ::string string() const;
    //inline string __string() const;
 
 #endif
@@ -573,8 +542,8 @@ public:
    inline bool begins(const char * pszPrefix) const;
    inline bool begins_ci(const char * pszPrefix) const;
 
-   inline bool is_text() const { return m_iType >= e_type_text; }
-   inline bool is_integer() const { return m_iType >= 0 && m_iType < e_type_text; }
+   inline bool is_text() const { return m_etype >= e_type_text; }
+   inline bool is_integer() const { return m_etype >= 0 && m_etype < e_type_text; }
 
 
    //inline atom & operator +=(const char * psz);
@@ -720,7 +689,7 @@ inline atom::atom(const atom & atom)
    if (atom.is_text())
    {
 
-      m_iType = atom.m_iType;
+      m_etype = atom.m_etype;
 
       new(&m_str) ::string(atom.m_str);
 
@@ -728,7 +697,8 @@ inline atom::atom(const atom & atom)
    else
    {
 
-      m_all = atom.m_all;
+      m_u = atom.m_u;
+      m_etype = atom.m_etype;
 
    }
 
@@ -773,7 +743,7 @@ inline atom::atom(UNSIGNED u)
 inline int atom::compare(const atom & atom) const
 {
 
-   auto compare = m_iType - atom.m_iType;
+   auto compare = m_etype - atom.m_etype;
 
    return __atom_compare_square(compare, is_text() ? m_str.compare(atom.m_str) : (m_iBody - atom.m_iBody));
 
@@ -847,7 +817,7 @@ inline atom & atom::operator = (const atom & atom)
 
       }
 
-      m_iType = atom.m_iType;
+      m_etype = atom.m_etype;
 
    }
    else
@@ -860,7 +830,8 @@ inline atom & atom::operator = (const atom & atom)
 
       }
 
-      m_all = atom.m_all;
+      m_etype = atom.m_etype;
+      m_u = atom.m_u;
 
    }
 

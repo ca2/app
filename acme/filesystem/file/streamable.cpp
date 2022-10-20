@@ -1,5 +1,6 @@
 // Created by camilo on 2021-09-09 22:54 Thomas Month!! <3ThomasBS__!!
 #include "framework.h"
+#include "acme/primitive/primitive/memory.h"
 
 
 namespace file
@@ -30,7 +31,7 @@ namespace file
    }
 
 
-   void writeable::write(const void *pdata, memsize nCount)
+   void writable::write(const void *pdata, memsize nCount)
    {
 
       throw error_interface_only;
@@ -81,19 +82,17 @@ namespace file
 } // namespace file
 
 
-CLASS_DECL_ACME void __transfer_to_writable(::file::writable *pwritable, ::file::file *pfileIn, memsize uiBufSize);
+CLASS_DECL_ACME void __transfer_to_writable(::file::writable *pwritable, ::file::file *pfileIn, memsize uiBufSize)
 {
-
 
    if (pfileIn->get_internal_data() != nullptr && pfileIn->get_internal_data_size() > pfileIn->get_position())
    {
 
-      pwriter->write((u8*)pfileIn->get_internal_data() + pfileIn->get_position(), (memsize)(pfileIn->get_internal_data_size() - pfileIn->get_position()));
+      pwritable->write((u8*)pfileIn->get_internal_data() + pfileIn->get_position(), (memsize)(pfileIn->get_internal_data_size() - pfileIn->get_position()));
 
       return;
 
    }
-
 
    memsize uRead;
 
@@ -127,7 +126,7 @@ CLASS_DECL_ACME void __transfer_to_writable(::file::writable *pwritable, ::file:
 
          }
 
-         writer.write(buf.get_data(), uRead);
+         pwritable->write(buf.get_data(), uRead);
 
          uiSize += uRead;
 

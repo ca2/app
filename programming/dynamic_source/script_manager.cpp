@@ -12,6 +12,8 @@
 #include "apex/crypto/rsa.h"
 #include "apex/networking/sockets/link_in_socket.h"
 #include "apex/networking/sockets/link_out_socket.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "apex/filesystem/filesystem/file_watcher.h"
 #include "acme/constant/id.h"
 #include "axis/platform/system.h"

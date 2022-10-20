@@ -2,7 +2,7 @@
 #include "framework.h"
 #include "service_handler.h"
 #include "service.h"
-
+#include "apex/platform/application.h"
 
 
 service_handler::service_handler()

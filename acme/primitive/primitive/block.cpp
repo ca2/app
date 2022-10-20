@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "memory_base.h"
 #include "acme/primitive/string/base64.h"
 
 
@@ -91,3 +92,22 @@ string block::to_base64() const
 //#include "block.inl"
 
 //#endif //__DEBUG
+
+
+
+
+
+
+block::block(const memory_base & memory) :
+   block(memory.get_data(), memory.get_size())
+{
+
+}
+
+
+block::block(const memory_base * pmemory) :
+   block(pmemory->get_data(), pmemory->get_size())
+{
+
+}
+

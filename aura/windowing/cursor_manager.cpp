@@ -1,7 +1,6 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "aura/windowing/cursor_manager.h"
 #include "aura/windowing/cursor.h"
 #include "aura/platform/system.h"

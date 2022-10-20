@@ -1,6 +1,8 @@
 ﻿#include "framework.h"
+#include "server.h"
 #include "acme/filesystem/file/binary_stream.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "apex/platform/context.h"
 
 
 namespace database

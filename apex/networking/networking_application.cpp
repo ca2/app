@@ -3,6 +3,9 @@
 #include "netserver/_netserver.h"
 #include "_networking.h"
 #include "networking_application_socket.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/application.h"
+#include "apex/platform/system.h"
 
 
 networking_application::networking_application()

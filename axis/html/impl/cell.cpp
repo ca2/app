@@ -1,10 +1,8 @@
 #include "framework.h"
-// #if !BROAD_PRECOMPILED_HEADER
-// #include "_impl.h"
-// #endif
 #include "cell.h"
 #include "table_row.h"
 #include "table.h"
+#include "acme/primitive/geometry2d/_collection_basic.h"
 #include "axis/html/html/data.h"
 #include "axis/html/html/core_data.h"
 #include "axis/html/element/element.h"

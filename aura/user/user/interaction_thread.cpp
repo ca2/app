@@ -1,7 +1,5 @@
 ﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
+
 ////#include "aura/message.h"
 #include "acme/operating_system.h"
 #include "interaction_thread.h"

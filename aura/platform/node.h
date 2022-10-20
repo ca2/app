@@ -21,6 +21,10 @@ namespace linux
 
 #endif
 
+
+#include "apex/platform/node.h"
+
+
 namespace aura
 {
 

@@ -6,6 +6,8 @@
 #include "library.h"
 #include "script_main.h"
 #include "script_instance.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/primitive/text/context.h"

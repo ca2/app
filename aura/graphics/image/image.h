@@ -8,6 +8,9 @@
 #include "source.h"
 
 
+#include "acme/primitive/primitive/memory.h"
+
+
 /// <summary>
 /// image * -> image_source_pointer concept
 /// </summary>

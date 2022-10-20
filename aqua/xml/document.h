@@ -2,6 +2,7 @@
 
 
 #include "node.h"
+#include "acme/primitive/primitive/memory.h"
 
 
 namespace xml

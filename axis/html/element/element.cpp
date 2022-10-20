@@ -1,9 +1,8 @@
 #include "framework.h"
-#include "axis/id.h"
-// #if !BROAD_PRECOMPILED_HEADER
-// #include "_element.h"
-// #endif
 #include "element.h"
+#include "acme/primitive/geometry2d/_collection_basic.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "axis/id.h"
 #include "axis/html/html/data.h"
 #include "axis/html/html/core_data.h"
 #include "axis/html/graphics/base.h"

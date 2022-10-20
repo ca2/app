@@ -1,6 +1,11 @@
 #include "framework.h" 
-#include "apex/networking/sockets/_.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/primitive/primitive/memory.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/networking/sockets/_.h"
+#include "apex/platform/application.h"
+#include "apex/platform/context.h"
+#include "apex/platform/system.h"
 #ifdef _MSC_VER
 #pragma warning(disable:4786)
 #endif

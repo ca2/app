@@ -2,6 +2,7 @@
 #include "document.h"
 #include "xml.h"
 #include "exception.h"
+#include "apex/filesystem/filesystem/file_context.h"
 
 
 namespace xml

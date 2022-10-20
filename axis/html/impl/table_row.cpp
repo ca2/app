@@ -1,7 +1,5 @@
 #include "framework.h"
-// #if !BROAD_PRECOMPILED_HEADER
-// #include "_impl.h"
-// #endif
+
 #include "cell.h"
 #include "table_row.h"
 #include "table.h"

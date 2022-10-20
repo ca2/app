@@ -1,9 +1,7 @@
 ﻿// From scroll.cpp by camilo on 2022-08-27 12:46 <3ThomasBorregaardSorensen!!
 #include "framework.h"
 //#include "acme/operating_system.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
+
 //#include "acme/operating_system/_user.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "scroll_data.h"

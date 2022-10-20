@@ -11,18 +11,18 @@ namespace apex
    public:
 
 
-      string                                    m_strAppId;
-      string                                    m_strLocale;
-      string                                    m_strSchema;
-      ::duration                                m_durationCheckPeriod;
-      ::pointer<::apex::application_container> m_pcontainer;
+      string                                       m_strAppId;
+      string                                       m_strLocale;
+      string                                       m_strSchema;
+      ::duration                                   m_durationCheckPeriod;
+      ::pointer<::apex::application_container>     m_pcontainer;
 
 
       assert_running_task(::apex::application_container * pcontainer,const ::string & strAppId, const ::string & strLocale, const ::string & strSchema);
-      virtual ~assert_running_task();
+      ~assert_running_task() override;
 
 
-      virtual void     run() override;
+      virtual void run() override;
 
 
    };

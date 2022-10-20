@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/get_memory.h"
+
+
 namespace simpledb
 {
 

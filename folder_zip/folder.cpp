@@ -2,6 +2,7 @@
 #include "folder.h"
 #include "file.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/primitive/primitive/memory.h"
 #include "file_function_definitions.h"
 
 

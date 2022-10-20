@@ -1,6 +1,8 @@
 ﻿#include "framework.h"
 #include "acme/operating_system.h"
 #include "acme/primitive/string/base64.h"
+#include "acme/primitive/primitive/memory.h"
+
 
 #ifdef WINDOWS
 #include <Shcore.h>
@@ -2349,4 +2351,46 @@ namespace papaya
 //   return __type_name(this);
 //
 //}
+
+
+
+
+
+memory_base & memory_base::operator = (const block & block)
+{
+
+   assign(block);
+
+   return *this;
+
+}
+
+
+memory_base & memory_base::operator += (const block & block)
+{
+
+   append(block);
+
+   return *this;
+
+}
+
+
+void memory_base::assign(const ::block & block)
+{
+
+   assign(block.get_data(), block.get_size());
+
+}
+
+
+void memory_base::append(const ::block & block)
+{
+
+   append(block.get_data(), block.get_size());
+
+}
+
+
+
 

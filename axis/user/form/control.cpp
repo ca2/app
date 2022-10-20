@@ -5,6 +5,7 @@
 #include "acme/platform/timer.h"
 #include "acme/primitive/collection/_array_binary_stream.h"
 #include "apex/database/_binary_stream.h"
+#include "apex/database/selection.h"
 #include "aura/user/user/form_callback.h"
 #include "aura/message/user.h"
 #include "axis/platform/application.h"

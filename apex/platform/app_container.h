@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "application_exit.h"
+#include "application_array.h"
+
+
 namespace apex
 {
 

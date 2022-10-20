@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "file_application.h"
 #include "audio/audio.h"
+#include "apex/filesystem/filesystem/file_context.h"
 
 
 namespace multimedia

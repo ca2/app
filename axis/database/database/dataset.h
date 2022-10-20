@@ -3,6 +3,7 @@
 
 #include "result_set.h"
 #include "parameter_list.h"
+#include "apex/database/stringhelper.h"
 
 
 namespace database

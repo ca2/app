@@ -5,6 +5,8 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 12/11/18.
 //
 #include "framework.h"
+#include "application_array.h"
+#include "apex/platform/application.h"
 
 
 namespace apex

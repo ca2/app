@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "client_socket.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "apex/platform/application.h"
 
 
 #define HEAVY_HTTP_LOG 0

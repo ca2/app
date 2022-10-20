@@ -1,7 +1,5 @@
 ﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
+
 #include "aura/gpu/gpu/_.h"
 #include "aura/gpu/gpu/_gpu.h"
 #include "acme/platform/system_setup.h"

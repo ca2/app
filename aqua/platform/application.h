@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/platform/application.h"
+
+
 namespace aqua
 {
 

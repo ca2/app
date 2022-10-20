@@ -3,6 +3,8 @@
 #include "compiler.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "aura/platform/application.h"
 #ifdef WINDOWS_DESKTOP
 #include "acme_windows/_.h"

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "file_system.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 
 

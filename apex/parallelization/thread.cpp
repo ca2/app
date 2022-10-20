@@ -1,5 +1,4 @@
 ﻿#include "framework.h"
-//#include "apex/operating_system.h"
 #include "apex/message.h"
 #include "acme/update.h"
 #include "acme/parallelization/message_queue.h"
@@ -7,6 +6,9 @@
 #include "apex/user/primitive.h"
 #include "acme/parallelization/tools.h"
 #include "acme/parallelization/pool.h"
+#include "apex/platform/application.h"
+#include "apex/platform/session.h"
+#include "apex/platform/system.h"
 
 #ifdef WINDOWS_DESKTOP
 #include "apex/operating_system.h"

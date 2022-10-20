@@ -3,6 +3,10 @@
 #include "api.h"
 #include "apex/crypto/crypto.h"
 #include "acme/primitive/string/base64.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/application.h"
+#include "apex/platform/context.h"
+#include "apex/platform/system.h"
 
 
 api::api()
@@ -47,7 +51,7 @@ void api::initialize_api(::object* pobject, const ::file::path & pathProfile)
 void api::load_profile()
 {
 
-   auto strNetworkPayload =   m_pcontext->m_papexcontext->file().safe_get_string(m_pathProfile);
+   auto strNetworkPayload = m_pcontext->m_papexcontext->file().safe_get_string(m_pathProfile);
 
    try
    {

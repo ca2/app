@@ -120,3 +120,54 @@ inline bool get_bounding_rectangle(RECTANGLE & rectangleBounding, const ellipse 
 //}
 //
 //
+
+template < primitive_rectangle RECTANGLE_BASE_TYPE, primitive_point POINT_BASE_TYPE >
+void get_bounding_rectangle(RECTANGLE_BASE_TYPE & rect, const POINT_BASE_TYPE * lppoint, ::count count)
+{
+
+   if (count <= 0)
+   {
+
+      rect.left = 0;
+      rect.top = 0;
+      rect.right = 0;
+      rect.bottom = 0;
+
+   }
+   else
+   {
+      rect.left = lppoint[0].x;
+      rect.top = lppoint[0].y;
+      rect.right = lppoint[0].x;
+      rect.bottom = lppoint[0].y;
+
+      for (i32 i = 1; i < count; i++)
+      {
+         if (lppoint[i].x < rect.left)
+            rect.left = lppoint[i].x;
+         else if (lppoint[i].x > rect.right)
+            rect.right = lppoint[i].x;
+         if (lppoint[i].y < rect.top)
+            rect.top = lppoint[i].y;
+         else if (lppoint[i].y > rect.bottom)
+            rect.bottom = lppoint[i].y;
+      }
+
+   }
+
+}
+
+
+template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+inline bool get_bounding_rectangle(RECTANGLE1 & rectangleBounding, const RECTANGLE2 & rectangle)
+{
+
+   copy(rectangleBounding, rectangle);
+
+   return true;
+
+}
+
+
+
+

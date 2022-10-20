@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "app_container.h"
+#include "apex/platform/application.h"
+#include "apex/platform/context.h"
 
 
 namespace apex

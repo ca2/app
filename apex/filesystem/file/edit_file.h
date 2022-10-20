@@ -2,6 +2,7 @@
 
 
 #include "acme/primitive/data/tree.h"
+#include "acme/primitive/primitive/memory.h"
 
 
 namespace file

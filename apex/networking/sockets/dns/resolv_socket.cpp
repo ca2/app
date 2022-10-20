@@ -30,6 +30,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "framework.h"
 #include "resolv_socket.h"
 #include "apex/networking/networking.h"
+#include "apex/platform/application.h"
+#include "apex/platform/context.h"
+#include "apex/platform/system.h"
 #include <time.h>
 
 #ifdef __APPLE__

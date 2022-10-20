@@ -6,6 +6,7 @@
 #include "script_compiler.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "aura/platform/application.h"
 #include "acme/operating_system.h"
 

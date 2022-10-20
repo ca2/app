@@ -4,6 +4,8 @@
 #include "apex/id.h"
 #include "apex/networking/sockets/_sockets.h"
 #include "acme/primitive/string/base64.h"
+#include "apex/platform/application.h"
+#include "apex/platform/system.h"
 
 //
 //#ifdef PARALLELIZATION_PTHREAD

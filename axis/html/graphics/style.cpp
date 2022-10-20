@@ -1,8 +1,6 @@
 #include "framework.h"
-// #if !BROAD_PRECOMPILED_HEADER
-// #include "_graphics.h"
-// #endif 
 #include "style.h"
+#include "acme/primitive/geometry2d/_collection_basic.h"
 #include "axis/html/element/element.h"
 #include "axis/html/html/data.h"
 #include "axis/html/html/core_data.h"
@@ -1050,7 +1048,7 @@ namespace html
    bool style::_parse_border_width(const ::string & psz, float & f)
    {
 
-      if (::is_null(psz))
+      if (psz.is_empty())
       {
        
          return false;
@@ -1203,7 +1201,7 @@ namespace html
    bool style::_parse_border_color(const ::string & pszParam, ::color::color & color32)
    {
 
-      if(::is_null(pszParam))
+      if(pszParam.is_empty())
          return false;
 
       string str(pszParam);

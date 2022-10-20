@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "rsa.h"
+#include "acme/primitive/primitive/memory.h"
 
 
 namespace crypto_openssl

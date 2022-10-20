@@ -2,9 +2,7 @@
 // Created by camilo on 29/01/2021.  02:05 BRT <3ThomasBS_!!
 //
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
+
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/display.h"

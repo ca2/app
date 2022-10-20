@@ -1,4 +1,6 @@
 ﻿#include "framework.h"
+#include "memory.h"
+#include "memory_container.h"
 
 
 memory_container::memory_container(memsize size)

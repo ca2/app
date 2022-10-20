@@ -41,7 +41,12 @@ class particle;
    class context;
 
 //} // namespace topic
+   namespace file
+   {
 
+      class file;
+
+   } // namespace file
 
 
 CLASS_DECL_ACME void output_error_message(const ansichar * pszMessage, const ansichar * pszTitle = nullptr, int iMessageBox = 0);

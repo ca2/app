@@ -1,6 +1,8 @@
 ﻿#pragma once
 
 
+#include "memory_base.h"
+
 
 class CLASS_DECL_ACME virtual_memory :
    public memory_base

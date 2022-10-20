@@ -10,8 +10,8 @@
 //template < typename ARRAY, typename WRITER >
 //inline void __save_array(ARRAY & array, WRITER && writer);
 
-template < typename WRITER >
-void __transfer_to_writer(WRITER & writer, ::file::file * pfileIn, memsize uiBufSize =-1);
+
+CLASS_DECL_ACME void __transfer_to_writable(::file::writable * pwritable, ::file::file * pfileIn, memsize uiBufSize =-1);
 
 namespace papaya
 {

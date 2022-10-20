@@ -1,7 +1,10 @@
 #include "framework.h"
 #include "apex/networking/sockets/_sockets.h"
 #include "apex/filesystem/fs/_fs.h"
+#include "apex/filesystem/filesystem/dir_context.h"
 #include "remote_native_file.h"
+#include "apex/platform/context.h"
+
 
 
 namespace fs

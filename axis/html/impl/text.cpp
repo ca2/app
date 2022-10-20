@@ -1,11 +1,8 @@
 #include "framework.h"
+#include "text.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/text_metric.h"
-#include "acme/primitive/geometry2d/_geometry2d.h"
-// #if !BROAD_PRECOMPILED_HEADER
-// #include "_impl.h"
-// #endif
-#include "text.h"
+#include "acme/primitive/geometry2d/_enhanced.h"
 #include "aura/user/user/plain_edit.h"
 #include "axis/html/html/data.h"
 #include "axis/html/graphics/base.h"

@@ -2,6 +2,9 @@
 #include "apex/operating_system.h"
 #include "apex/platform/node.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/application.h"
+#include "apex/platform/system.h"
 
 
 //CLASS_DECL_APEX string ca2_command_line(hinstance hinstance);

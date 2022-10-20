@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "memory.h"
 #define HEAP_NAMESPACE_PREFIX main
 #include "acme/memory/_____heap_namespace.h"
 #include "acme/primitive/string/base64.h"
@@ -372,28 +373,6 @@ void memory::impl_free(byte * pdata)
 
 }
 
-
-bool get_memory::get_base64(const ::string & str)
-{
-
-   if (::is_set(m_pmemory))
-   {
-
-      m_pmemory->from_base64(str);
-
-      return true;
-
-   }
-   else
-   {
-
-      ::base64 base64;
-
-      return base64.decode(m_block, str);
-
-   }
-
-}
 
 
 strsize memory::sz_len() const

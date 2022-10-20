@@ -1,6 +1,10 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/primitive/memory.h"
+
+
+
 template < typename FILE >
 class binary_stream :
     public stream_base

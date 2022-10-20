@@ -1,8 +1,9 @@
 #include "framework.h"
-//#include "apex/xml/_.h"
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
+#include "apex/platform/application.h"
+#include "apex/platform/system.h"
 
 
 machine_event_central::machine_event_central()

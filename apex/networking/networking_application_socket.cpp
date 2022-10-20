@@ -4,6 +4,7 @@
 #include "_networking.h"
 #include "networking_application_socket.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "apex/platform/application.h"
 
 
 networking_application_socket::networking_application_socket()

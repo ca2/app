@@ -1,4 +1,6 @@
 ﻿#include "framework.h"
+#include "acme/primitive/primitive/memory.h"
+
 
 /*
 e_type_element = 8000,

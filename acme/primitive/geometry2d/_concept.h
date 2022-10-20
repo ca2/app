@@ -306,7 +306,7 @@ inline RECTANGLE_TYPE & offset(RECTANGLE_TYPE & rectangle, const POINT_TYPE & po
 }
 
 
-template < typename RECTANGLE_TYPE, primitive_point POINT_TYPE >
+template < primitive_rectangle RECTANGLE_TYPE, primitive_point POINT_TYPE >
 inline RECTANGLE_TYPE & subtract(RECTANGLE_TYPE & rectangle, const POINT_TYPE & point)
 {
 
@@ -315,8 +315,22 @@ inline RECTANGLE_TYPE & subtract(RECTANGLE_TYPE & rectangle, const POINT_TYPE & 
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_point POINT >
-inline RECTANGLE_TYPE & subtract(RECTANGLE_TYPE & rectangle, const POINT & point) { return subtract(rectangle, point); }
+template < primitive_rectangle RECTANGLE1, primitive_rectangle RECTANGLE2 >
+inline RECTANGLE1 & subtract(RECTANGLE1 & rectangle, const RECTANGLE2 & rectangle2)
+{
+
+   rectangle.left = (decltype(rectangle.left))(rectangle.left - rectangle2.left);
+   rectangle.top = (decltype(rectangle.top))(rectangle.top - rectangle2.top);
+   rectangle.right = (decltype(rectangle.right))(rectangle.right - rectangle2.right);
+   rectangle.bottom = (decltype(rectangle.bottom))(rectangle.bottom - rectangle2.bottom);
+
+   return rectangle;
+
+}
+
+
+//template < primitive_rectangle RECTANGLE_TYPE, primitive_point POINT >
+//inline RECTANGLE_TYPE & subtract(RECTANGLE_TYPE & rectangle, const POINT & point) { return subtract(rectangle, point); }
 
 
 template < primitive_point POINT, typename X, typename Y >
@@ -560,7 +574,7 @@ template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE1, p
 bool null_intersect(RECTANGLE_TYPE & rectangle, const RECT_TYPE1 & rect1, const RECT_TYPE2 & rect2)
 {
 
-   if (x_null_intersect_rect(rectangle, rect1, rect2) && y_null_intersect_rect(rectangle, rect1, rect2))
+   if (x_null_intersect(rectangle, rect1, rect2) && y_null_intersect(rectangle, rect1, rect2))
    {
 
       return true;

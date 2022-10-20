@@ -3,6 +3,9 @@
 // originally from C++ sockets library tcp_socket::circular_file
 
 
+#include "acme/primitive/primitive/memory.h"
+
+
 namespace file
 {
 

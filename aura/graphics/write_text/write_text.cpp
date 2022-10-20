@@ -5,6 +5,7 @@
 #include "true_type_font_utilities.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "aura/platform/system.h"
 
 

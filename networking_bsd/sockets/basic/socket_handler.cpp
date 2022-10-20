@@ -2,6 +2,7 @@
 #include "socket_handler.h"
 #include "tcp_socket.h"
 #include "networking_bsd/networking.h"
+#include "apex/platform/system.h"
 #include <time.h>
 
 #ifdef ANDROID

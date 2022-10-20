@@ -853,7 +853,7 @@ namespace core
 //#include "apex/platform/library_object_allocator.h"
 
 
-#include "apex/platform/library.h"
+//#include "apex/platform/library.h"
 
 
 #include "apex/filesystem/filesystem.h"
@@ -1216,7 +1216,7 @@ namespace xml
 #include "apex/platform/shell_launcher.h"
 
 
-#include "apex/platform/async.h"
+//#include "apex/platform/async.h"
 
 
 //#include "apex/platform/international.h"
@@ -1260,7 +1260,7 @@ namespace mathematics
 //#include "apex/platform/console_application.h"
 
 
-#include "apex/platform/application.h"
+//#include "apex/platform/application.h"
 
 
 #include "apex/parallelization/_impl.h"

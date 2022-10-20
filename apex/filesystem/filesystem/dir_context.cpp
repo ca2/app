@@ -1,13 +1,15 @@
 ﻿#include "framework.h"
-//#include "apex/platform/app_core.h"
-//#include "apex/compress/zip/_.h"
+#include "dir_context.h"
+#include "file_context.h"
 #include "acme/constant/id.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
-
-
-///CLASS_DECL_ACME const char* get_server_ca2_cc();
+#include "apex/platform/application.h"
+#include "apex/platform/context.h"
+#include "apex/platform/session.h"
+#include "apex/platform/system.h"
+#include "apex/filesystem/filesystem/dir_system.h"
 
 
 namespace zip

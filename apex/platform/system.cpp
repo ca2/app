@@ -13,9 +13,16 @@
 #ifdef LINUX
 #include <unistd.h>
 #endif
+#include "apex/platform/application.h"
+#include "apex/platform/context.h"
 #include "apex/platform/node.h"
+#include "apex/platform/system.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/filesystem/filesystem/dir_system.h"
+#include "apex/filesystem/filesystem/file_system.h"
 #include "acme/parallelization/install_mutex.h"
 #include "acme/primitive/text/context.h"
 #include "apex/message/command.h"

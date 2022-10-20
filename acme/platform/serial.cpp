@@ -1,11 +1,8 @@
 #include "framework.h"
 /* Copyright 2012 William Woodall and John Harrison */
-
-
 #include "acme/platform/serial.h"
-
-
 #include "acme/operating_system.h"
+#include "acme/primitive/primitive/memory.h"
 
 
 #if !defined(_WIN32) && !defined(__OpenBSD__) && !defined(__FreeBSD__)

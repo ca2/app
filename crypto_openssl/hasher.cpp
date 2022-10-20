@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "hasher.h"
 #include "hasher_algorithm.h"
+#include "acme/primitive/primitive/memory.h"
 //#include "_openssl.h"
 
 

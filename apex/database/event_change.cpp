@@ -1,4 +1,6 @@
 ﻿#include "framework.h"
+#include "change_event.h"
+#include "client.h"
 
 
 namespace database
@@ -19,6 +21,7 @@ namespace database
       m_pupdate = nullptr;
       m_bOk = true;
    }
+
 
    bool change_event::_data_get(::payload & payload)
    {

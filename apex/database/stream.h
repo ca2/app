@@ -4,6 +4,7 @@
 
 #include "acme/filesystem/file/binary_stream.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "client.h"
 
 
 namespace database

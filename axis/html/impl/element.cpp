@@ -2,9 +2,7 @@
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/pen.h"
 #include "aura/graphics/draw2d/brush.h"
-// #if !BROAD_PRECOMPILED_HEADER
-// #include "_impl.h"
-// #endif
+
 #include "element.h"
 #include "axis/html/html/data.h"
 #include "axis/html/html/core_data.h"
@@ -1177,7 +1175,7 @@ namespace html
       void element::set_dim(html_data * pdata, float l, float t, float w, float h)
       {
 
-         m_box.set_dim(l, t, w, h);
+         m_box.set_dimension(l, t, w, h);
 
          on_change_layout(pdata);
 

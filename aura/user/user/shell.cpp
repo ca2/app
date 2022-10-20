@@ -1,25 +1,21 @@
 ﻿#include "framework.h"
-//#include "acme/operating_system.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
-#include "aura/user/user/shell.h"
-//#include "acme/compress/zip/_.h"
-//#include "acme/compress/gz.h"
+#include "window_util.h"
+#include "interaction.h"
 #include "acme/primitive/primitive/atomic.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/list.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/graphics/image/icon.h"
 #include "aura/graphics/image/drawing.h"
-#include "aura/windowing/icon.h"
-#include "window_util.h"
-#include "interaction.h"
 #include "aura/platform/node.h"
+#include "aura/user/user/shell.h"
+#include "aura/windowing/icon.h"
 
 
 #if defined(RASPBIAN)

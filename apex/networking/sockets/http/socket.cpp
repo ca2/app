@@ -560,7 +560,7 @@ namespace sockets
 
          //}
 
-         __transfer_to_writer(*this, spfile);
+         __transfer_to_writable(this, spfile);
 
       }
       else if(response().file()->get_size() > 0)
@@ -568,7 +568,7 @@ namespace sockets
 
          response().file()->seek_to_begin();
 
-         __transfer_to_writer(*this, response().file());
+         __transfer_to_writable(this, response().file());
 
       }
 

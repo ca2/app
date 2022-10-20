@@ -2,6 +2,8 @@
 #include "framework.h"
 #include "apex/parallelization/service.h"
 #include "apex/parallelization/service_handler.h"
+#include "apex/platform/application.h"
+#include "apex/platform/system.h"
 
 
 namespace apex

@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "session.h"
+
+
 namespace apex
 {
 

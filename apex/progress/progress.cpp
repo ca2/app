@@ -1,6 +1,7 @@
 ﻿// Created by camilo on 2021-08-08 14:11 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
 #include "apex/user/primitive.h"
+#include "apex/platform/application.h"
 
 
 namespace progress

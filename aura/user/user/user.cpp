@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
+
 #include "acme/platform/system_setup.h"
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"

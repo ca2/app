@@ -6,6 +6,7 @@
 #include "aura/platform/system.h"
 ////#include "aura/graphics/draw2d/_component.h"
 #include "aura/graphics/image/image.h"
+#include "apex/filesystem/filesystem/file_context.h"
 //#include "_defer.h"
 
 namespace gpu

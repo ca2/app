@@ -2849,9 +2849,6 @@
     <ClInclude Include="primitive\datetime\_binary_stream.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="_forward_declaration.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\echeck.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
@@ -2890,6 +2887,15 @@
     </ClInclude>
     <ClInclude Include="user\user\drag_client.h">
       <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="include\_template_forward_declaration.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\get_memory.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\read_only_memory.h">
+      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3945,6 +3951,12 @@
     </ClCompile>
     <ClCompile Include="user\user\drag_client.cpp">
       <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\get_memory.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\primitive\read_only_memory.cpp">
+      <Filter>Source Files\primitive\primitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "selection_item.h"
+
+
 namespace database
 {
 
@@ -14,7 +17,7 @@ namespace database
 
 
       selection();
-      virtual ~selection();
+      virtual ~selection() ;
 
 
       void add_item(key key);

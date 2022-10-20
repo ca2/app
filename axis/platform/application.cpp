@@ -2,6 +2,7 @@
 #include "application.h"
 #include "session.h"
 #include "system.h"
+#include "apex/filesystem/filesystem/dir_context.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "axis/user/user/combo_box.h"

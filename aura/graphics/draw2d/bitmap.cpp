@@ -2,7 +2,7 @@
 #include "bitmap.h"
 #include "graphics.h"
 #include "aura/graphics/image/pixmap.h"
-
+#include "acme/primitive/primitive/memory.h"
 
 
 namespace draw2d

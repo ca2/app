@@ -1,7 +1,5 @@
 ﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
+
 #include "acme/platform/system_setup.h"
 #include "aura/windowing/windowing.h"
 #include "aura/windowing/window.h"

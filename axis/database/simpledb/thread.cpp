@@ -2,6 +2,7 @@
 #include "thread.h"
 #include "storage.h"
 #include "queue_item.h"
+#include "apex/filesystem/filesystem/dir_system.h"
 #include "axis/platform/application.h"
 #include "axis/platform/session.h"
 

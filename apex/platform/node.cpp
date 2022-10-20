@@ -3,6 +3,8 @@
 //
 #include "framework.h"
 #include "node.h"
+#include "apex/platform/application.h"
+#include "apex/platform/system.h"
 
 
 namespace apex

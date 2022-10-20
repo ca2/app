@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
+
 //#include "aura/os/x11/_x11.h"
 //#include "_linux.h"
 //#include "acme/constant/id.h"

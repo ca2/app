@@ -10,7 +10,8 @@ namespace sockets
    /** base_socket base class.
    \ingroup basic */
    class CLASS_DECL_APEX base_socket :
-      virtual public ::object
+      virtual public ::object,
+      virtual public ::file::writable
    {
    public:
 
@@ -719,7 +720,7 @@ virtual string GetSocks4Host();
       ////@}
 
 
-      virtual void write(const void * buf, memsize c);
+      void write(const void * buf, memsize c) override;
       inline void print(const ::string & str) { write(str.c_str(), str.length()); }
 
 

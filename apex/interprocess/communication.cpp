@@ -5,11 +5,14 @@
 #include "caller.h"
 #include "call.h"
 #include "task.h"
-#include "apex/constant/method.h"
-#include "apex/platform/launcher.h"
-#include "apex/platform/app_launcher.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "apex/constant/method.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/app_launcher.h"
+#include "apex/platform/application.h"
+#include "apex/platform/context.h"
+#include "apex/platform/launcher.h"
 
 
 namespace interprocess

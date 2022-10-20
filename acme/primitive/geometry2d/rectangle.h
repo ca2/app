@@ -268,7 +268,7 @@ public:
 
    template < primitive_size SIZE >
    rectangle_type & operator-=(const SIZE & size) noexcept { return ::subtract(*this, -size.cx, -size.cy); }
-   rectangle_type & operator-=(const rectangle_type & rectangle) noexcept { return ::rect(*this, rectangle); }
+   rectangle_type & operator-=(const rectangle_type & rectangle) noexcept { return ::subtract(*this, rectangle); }
 
    rectangle_type & operator&=(const rectangle_type & rectangle) noexcept { ::intersect(*this, *this, rectangle); return*this; }
    rectangle_type & operator|=(const rectangle_type & rectangle) noexcept { return unite(rectangle); }
@@ -309,18 +309,18 @@ public:
    }
    rectangle_type operator&(const rectangle_type & rect2) const noexcept
    {
-      rectangle_type rectangle; ::intersect_rect(rectangle, *this, rect2);
+      rectangle_type rectangle; ::intersect(rectangle, *this, rect2);
       return rectangle;
    }
    rectangle_type operator|(const rectangle_type & rectangleOr) const noexcept
    {
-      rectangle_type rectangle; ::union_rect(rectangle, *this, rectangleOr);
+      rectangle_type rectangle; ::unite(rectangle, *this, rectangleOr);
       return rectangle;
    }
 
    bool subtract(const rectangle_type & rectangleSrc1, const rectangle_type & rectangleSrc2) noexcept
    {
-      return ::subtract_rect(*this, rectangleSrc1, rectangleSrc2);
+      return ::subtract(*this, rectangleSrc1, rectangleSrc2);
    }
 
    void normalize() noexcept;
@@ -383,8 +383,8 @@ public:
    }
 
 
-   void get_bounding_rectangle(const POINT_BASE_TYPE * ppoint, ::count count);
-   void get_bounding_rectangle(const POINT_ARRAY_TYPE & pointa) { pointa.get_bounding_rectangle(*this); }
+   //void get_bounding_rectangle(const POINT_BASE_TYPE * ppoint, ::count count);
+   //void get_bounding_rectangle(const POINT_ARRAY_TYPE & pointa) { pointa.get_bounding_rectangle(*this); }
 
 
    void rate(double d) noexcept
@@ -874,7 +874,7 @@ public:
 
          auto xOffset = rectangle.right - rectangleBounding.right;
 
-         ::x_offset_rect(rectangleBounding, xOffset);
+         ::x_offset(rectangleBounding, xOffset);
 
          offset_x(xOffset);
 
@@ -885,7 +885,7 @@ public:
 
          auto xOffset = rectangle.left - rectangleBounding.left;
 
-         ::x_offset_rect(rectangleBounding, xOffset);
+         ::x_offset(rectangleBounding, xOffset);
 
          offset_x(xOffset);
 
@@ -1223,13 +1223,13 @@ inline void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE >::norma
 
 
 
-template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
-void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > ::get_bounding_rectangle(const POINT_BASE_TYPE * ppoint, ::count count)
-{
-
-   ::get_bounding_rectangle(*this, ppoint, count);
-
-}
+//template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
+//void rectangle_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE > ::get_bounding_rectangle(const POINT_BASE_TYPE * ppoint, ::count count)
+//{
+//
+//   ::get_bounding_rectangle(*this, ppoint, count);
+//
+//}
 
 
 template < typename X, typename Y, typename W, typename H >

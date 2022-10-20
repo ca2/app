@@ -33,6 +33,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "acme/filesystem/file/memory_file.h"
 #include "networking_bsd/sockets/basic/socket_handler.h"
 #include "apex/networking/networking.h"
+#include "apex/platform/system.h"
 #include "networking_bsd/sockets/ssl/context.h"
 #include "networking_bsd/sockets/ssl/client_context.h"
 #ifdef _WIN32

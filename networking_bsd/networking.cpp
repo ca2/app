@@ -3,6 +3,8 @@
 #include "networking.h"
 #include "sockets/ssl/initializer.h"
 #include "acme/primitive/duration/_binary_stream.h"
+#include "apex/platform/context.h"
+#include "apex/platform/system.h"
 #define ERROR(...) TRACE_LOG_ERROR(__VA_ARGS__)
 
 //#include <stdio.h>

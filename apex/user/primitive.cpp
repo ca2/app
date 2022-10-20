@@ -1,10 +1,9 @@
 #include "framework.h"
-//#include "apex/user/_user.h"
-////#include "aura/message.h"
+#include "primitive.h"
 #include "acme/constant/simple_command.h"
 #include "apex/message/simple_command.h"
-//#include "aura/message/timer.h"
-#include "apex/user/primitive.h"
+#include "apex/platform/application.h"
+#include "apex/platform/session.h"
 
 
 namespace user

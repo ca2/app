@@ -1,13 +1,16 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/primitive/memory.h"
+
+
 class CLASS_DECL_APEX file_context :
    virtual public object
 {
 public:
 
 
-   ::pointer<::folder>          m_pfolderResource;
+   ::pointer<::folder>           m_pfolderResource;
    bool                          m_bFolderResourceCalculated;
    bool                          m_bMainResourceMemoryCalculated;
    ::memory                      m_memoryMainResource;

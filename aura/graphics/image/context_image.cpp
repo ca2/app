@@ -5,10 +5,13 @@
 #include "save_image.h"
 #include "image.h"
 #include "acme/filesystem/file/binary_stream.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/draw2d/lock.h"
 #include "aura/windowing/icon.h"
+
 
 
 context_image::context_image()

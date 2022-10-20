@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "audio.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
 
 
 namespace aqua

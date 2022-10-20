@@ -1,7 +1,5 @@
 #include "framework.h" // previously aura/user/user.h
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
+
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/user/user/interaction.h"
 

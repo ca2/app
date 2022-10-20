@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "memory_file.h"
+#include "acme/primitive/primitive/memory.h"
 
 
 memory_file::memory_file() :
@@ -853,6 +854,38 @@ memory_file & memory_file::operator = (const memory_file & file)
    memory_container::copy_this(file);
 
    return *this;
+
+}
+
+
+CLASS_DECL_ACME memory_file_pointer create_memory_file()
+{
+   
+   return __new(::memory_file); 
+
+}
+
+
+CLASS_DECL_ACME memory_file_pointer create_memory_file(::memory_base & memory)
+{
+   
+   return __new(::memory_file(memory)); 
+
+}
+
+
+CLASS_DECL_ACME memory_file_pointer create_memory_file(const ::block & block)
+{
+   
+   return __new(::memory_file(block)); 
+
+}
+
+
+CLASS_DECL_ACME memory_file_pointer create_memory_file_as_copy(const memory & memory) 
+{
+   
+   return __new(::memory_file(__new(::memory(memory)))); 
 
 }
 

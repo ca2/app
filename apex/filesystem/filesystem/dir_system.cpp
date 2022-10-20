@@ -1,7 +1,12 @@
 #include "framework.h"
-//#include "apex/platform/app_core.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "dir_system.h"
+#include "file_system.h"
 #include "file_watcher.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
+#include "apex/platform/application.h"
+#include "apex/platform/context.h"
+#include "apex/platform/session.h"
+#include "apex/platform/system.h"
 
 
 dir_system::dir_system()

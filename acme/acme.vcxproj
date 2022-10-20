@@ -865,6 +865,7 @@
     <ClInclude Include="handler\topic.h" />
     <ClInclude Include="include\_c_swap.h" />
     <ClInclude Include="include\_forward_declaration.h" />
+    <ClInclude Include="include\_template_forward_declaration.h" />
     <ClInclude Include="inline\application\windows.h" />
     <ClInclude Include="inline\implement_console.h" />
     <ClInclude Include="inline\windows\main.h" />
@@ -1160,6 +1161,7 @@
     <ClCompile Include="primitive\media_library\item.cpp" />
     <ClCompile Include="primitive\primitive\atom.cpp" />
     <ClCompile Include="primitive\primitive\block.cpp" />
+    <ClCompile Include="primitive\primitive\get_memory.cpp" />
     <ClCompile Include="primitive\primitive\object.cpp" />
     <ClCompile Include="primitive\primitive\particle.cpp" />
     <ClCompile Include="primitive\primitive\property_object.cpp" />
@@ -1170,6 +1172,7 @@
     <ClCompile Include="primitive\primitive\match.cpp" />
     <ClCompile Include="primitive\primitive\payload.cpp" />
     <ClCompile Include="primitive\primitive\element.cpp" />
+    <ClCompile Include="primitive\primitive\read_only_memory.cpp" />
     <ClCompile Include="primitive\primitive\work.cpp" />
     <ClCompile Include="primitive\promise\signalization.cpp" />
     <ClCompile Include="primitive\string\command_line.cpp" />
@@ -1681,6 +1684,7 @@
     <ClInclude Include="primitive\primitive\enum_bitset.h" />
     <ClInclude Include="primitive\primitive\e_flag.h" />
     <ClInclude Include="primitive\primitive\function.h" />
+    <ClInclude Include="primitive\primitive\get_memory.h" />
     <ClInclude Include="primitive\primitive\holder.h" />
     <ClInclude Include="primitive\primitive\atom_array.h" />
     <ClInclude Include="primitive\primitive\interlocked.h" />
@@ -1700,6 +1704,7 @@
     <ClInclude Include="primitive\primitive\match.h" />
     <ClInclude Include="primitive\primitive\payload.h" />
     <ClInclude Include="primitive\primitive\member.h" />
+    <ClInclude Include="primitive\primitive\read_only_memory.h" />
     <ClInclude Include="primitive\primitive\set_bit.h" />
     <ClInclude Include="primitive\primitive\stick.h" />
     <ClInclude Include="primitive\primitive\tracer.h" />
@@ -2086,7 +2091,6 @@
     <ClInclude Include="_api.h" />
     <ClInclude Include="_binary_stream.h" />
     <ClInclude Include="_c.h" />
-    <ClInclude Include="_forward_declaration.h" />
     <ClInclude Include="__defer.h" />
     <ClInclude Include="_start.h" />
     <None Include="filesystem\_impl.h" />

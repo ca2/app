@@ -4,8 +4,9 @@
 //
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 13/11/18.
 //
-
 #include "framework.h"
+#include "application_menu.h"
+
 
 //
 //namespace apex

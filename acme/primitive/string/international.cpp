@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/primitive/primitive/memory.h"
 
 #ifdef WINDOWS
 
@@ -399,9 +400,10 @@
 
       }
 
-      bool unicode_to_multibyte(::u32 uCodePage, memory & memstorage, const widechar * pcsz)
 
+      bool unicode_to_multibyte(::u32 uCodePage, memory & memstorage, const widechar * pcsz)
       {
+
          memstorage.set_size(unicode_to_multibyte_count(uCodePage, pcsz));
 
          return unicode_to_multibyte(uCodePage, (char *) memstorage.get_data(), (strsize) memstorage.get_size(), pcsz);

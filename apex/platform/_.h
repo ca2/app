@@ -12,4 +12,19 @@ class api;
 class api_client;
 
 
+namespace apex
+{
+
+
+   class application_container;
+
+
+} // namespace apex
+
+
+class application_menu_item;
+class application_menu;
+
+
+
 

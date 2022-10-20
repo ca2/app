@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "key.h"
 
 
 namespace database

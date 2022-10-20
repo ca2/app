@@ -3,6 +3,8 @@
 #include "apex/filesystem/fs/_fs.h"
 #include "ifs_file.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/context.h"
 
 
 ifs_file::ifs_file(::payload payloadFile) :

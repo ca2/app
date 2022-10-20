@@ -1,7 +1,5 @@
 #include "framework.h"
-// #if !BROAD_PRECOMPILED_HEADER
-// #include "_graphics.h"
-// #endif 
+
 #include "reader.h"
 #include "tag.h"
 #include "value.h"

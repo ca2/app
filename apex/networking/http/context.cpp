@@ -6,6 +6,11 @@
 #include "apex/networking/http/get_socket.h"
 #include "apex/networking/sockets/basic/socket_handler.h"
 #include "apex/constant/idpool.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/application.h"
+#include "apex/platform/context.h"
+#include "apex/platform/system.h"
 #include <time.h>
 
 

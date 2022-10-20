@@ -5,9 +5,7 @@
 //  Created by Camilo Sasuke Thomas Borregaard Sørensen on 19/06/18.
 //
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
+
 #include "system.h"
 #include "interaction.h"
 #include "aura/platform/application.h"

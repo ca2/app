@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/application.h"
 
 
 #define STR_BOM "\xEF\xBB\xBF"

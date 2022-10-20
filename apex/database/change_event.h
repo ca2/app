@@ -1,11 +1,15 @@
 ﻿#pragma once
 
 
+#include "key.h"
+
+
 namespace database
 {
 
 
    class server;
+   class key;
 
 
    class CLASS_DECL_APEX change_event :
@@ -17,9 +21,9 @@ namespace database
       server *                m_pserver;
       client *                m_pclient;
       key                     m_datakey;
-      ::topic *    m_pupdate;
+      ::topic *               m_pupdate;
       bool                    m_bOk;
-      ::payload *               m_ppayload;
+      ::payload *             m_ppayload;
 
 
       change_event();

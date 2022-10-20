@@ -3,6 +3,9 @@
 #include "rsa.h"
 #include "initializer.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "acme/primitive/primitive/memory.h"
+#include "apex/platform/context.h"
 
 
 #include <openssl/ssl.h>

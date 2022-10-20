@@ -2,9 +2,7 @@
 // Created by camilo on 8/18/21. 06:19 BRT <3TBS_!!
 //
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
+
 #include "interaction_scaler.h"
 #include "interaction.h"
 

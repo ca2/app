@@ -2,6 +2,8 @@
 #include "framework.h"
 #include "true_type_font_utilities.h"
 #include "acme/include/_c_swap.h"
+#include "apex/filesystem/filesystem/file_context.h"
+
 
 
 // https://www.codeproject.com/Articles/2293/Retrieving-Font-Name-from-TTF-File

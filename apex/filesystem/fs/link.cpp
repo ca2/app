@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "apex/filesystem/fs/_fs.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/platform/context.h"
 
 
 namespace fs

@@ -1,7 +1,10 @@
 #include "framework.h"
+#include "ifs_file.h"
 #include "apex/networking/sockets/_sockets.h"
 #include "apex/filesystem/fs/_fs.h"
-#include "ifs_file.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/platform/application.h"
+#include "apex/platform/system.h"
 
 
 ifs::ifs(const char * pszRoot)

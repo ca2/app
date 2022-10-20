@@ -1,6 +1,8 @@
 // Created by camilo on 2021-11-17 01:29 PM <3ThomasBorregaardSørensen!! & Mummi!!
 #include "framework.h"
 #include "api.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/platform/context.h"
 
 
 api_client::api_client()

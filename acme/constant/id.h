@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "_constant.h"
+
+
 enum enum_id : uptr
 {
 

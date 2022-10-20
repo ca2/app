@@ -1,7 +1,9 @@
 ﻿#include "framework.h"
 #include "acme/constant/id.h"
 #include "acme/platform/context.h"
+#include "acme/primitive/primitive/memory.h"
 #include "context.h"
+
 
 namespace text
 {

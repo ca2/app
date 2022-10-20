@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "acme/operating_system.h"
 #include "acme/operating_system/error_code.h"
+#include "acme/primitive/primitive/memory.h"
 
 
 int __node_is_debugger_attached()

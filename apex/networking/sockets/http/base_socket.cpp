@@ -5,6 +5,8 @@
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/primitive/string/base64.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/context.h"
 
 
 namespace sockets

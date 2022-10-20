@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "bitmap_source_buffer.h"
+#include "apex/filesystem/filesystem/dir_context.h"
 #include "aura/graphics/image/image.h"
 #include "aura/user/user/interaction_impl.h"
 #include "aura/user/user/interaction.h"

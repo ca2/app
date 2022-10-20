@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/database/server.h"
+
+
 namespace simpledb
 {
 

@@ -1,9 +1,11 @@
 ﻿#include "framework.h"
-//#include "apex/platform/app_core.h"
-#include "apex/platform/node.h"
+#include "app_container.h"
 #include "acme/filesystem/filesystem/acme_path.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/parallelization/multiple_lock.h"
+#include "apex/platform/node.h"
+#include "apex/platform/application.h"
+#include "apex/platform/system.h"
 
 
 namespace apex

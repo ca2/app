@@ -5,9 +5,13 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
 #include "acme/filesystem/filesystem/acme_path.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/filesystem/filesystem/dir_system.h"
+#include "apex/platform/application.h"
+#include "apex/platform/context.h"
+#include "apex/platform/system.h"
 
-
-//CLASS_DECL_ACME const char* get_server_ca2_cc();
 
 
 namespace apex

@@ -220,7 +220,7 @@ public:
             if (i <= 0)
             {
 
-               output_debug_string("");
+               //output_debug_string("");
 
             }
 

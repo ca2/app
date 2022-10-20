@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "hasher_algorithm.h"
 #include "hasher.h"
+#include "acme/primitive/primitive/memory.h"
 
 
 namespace crypto_openssl

@@ -8,10 +8,12 @@ namespace database
 {
 
    
+   class key;
    class client;
    class server;
    class client_array;
    class stream;
+   class selection;
 
    
 } // namespace database

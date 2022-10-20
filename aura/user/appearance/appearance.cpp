@@ -1,8 +1,6 @@
 // Created by camilo on 2022-03-18 19:55 <3ThomasBorregaardS�rensen!! (Thomas likes number 5!!)!!
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
+
 #include "appearance.h"
 #include "aura/user/user/interaction.h"
 

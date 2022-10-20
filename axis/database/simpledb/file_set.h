@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/filesystem/file/set.h"
+
+
 namespace simpledb
 {
 
@@ -13,7 +16,7 @@ namespace simpledb
 
 
       file_set();
-      virtual ~file_set();
+      ~file_set() override;
 
 
       virtual void refresh() override;

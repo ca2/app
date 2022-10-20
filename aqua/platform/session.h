@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "apex/platform/session.h"
+
+
 namespace aqua
 {
 

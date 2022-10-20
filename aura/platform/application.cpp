@@ -1,10 +1,7 @@
 ﻿#include "framework.h"
 #include "application.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
-//#include "acme/constant/id.h"
 #include "acme/filesystem/file/memory_file.h"
+#include "acme/primitive/primitive/memory.h"
 #include "aura/constant/idpool.h"
 #include "acme/platform/version.h"
 #include "acme/platform/profiler.h"
@@ -19,6 +16,9 @@
 #include "aura/windowing/window.h"
 #include "aura/windowing/windowing.h"
 #include "aqua/game/game.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/node.h"
 #include "aura/user/user/window_util.h"
 #include "aura/user/user/interaction.h"
 #include "shell_open.h"

@@ -26,6 +26,8 @@
  *
  **********************************************************************/
 #include "framework.h"
+#include "stringhelper.h"
+
 
 str_helper::str_helper() {work_str = "";}
 

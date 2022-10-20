@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "combo_box.h"
 #include "list_box.h"
+#include "acme/handler/item.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/draw2d.h"

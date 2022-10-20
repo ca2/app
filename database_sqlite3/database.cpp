@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "database.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "axis/database/database/result_set.h"
 #include "axis/database/database/exception.h"
 #include "axis/database/database/field.h"

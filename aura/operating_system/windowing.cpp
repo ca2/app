@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-////#include "aura/user/user/_component.h"
-#endif
+
 //#include "_os.h"
 #include <stdio.h>
 #include "acme/parallelization/message_queue.h"

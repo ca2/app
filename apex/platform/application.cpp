@@ -1,4 +1,6 @@
 ﻿#include "framework.h"
+#include "application.h"
+#include "application_menu.h"
 #include "apex/message/application.h"
 #include "apex/id.h"
 #include "acme/platform/version.h"
@@ -14,11 +16,15 @@
 #include "apex/interprocess/target.h"
 #include "apex/interprocess/task.h"
 #include "acme/filesystem/filesystem/acme_path.h"
-#include "acme/platform/node.h"
 #include "acme/parallelization/install_mutex.h"
 #include "acme/primitive/text/context.h"
-#include "apex/networking/networking_application.h"
 #include "apex/database/_binary_stream.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/networking/networking_application.h"
+#include "apex/platform/session.h"
+#include "apex/platform/system.h"
+
 
 
 //void shell_restart();

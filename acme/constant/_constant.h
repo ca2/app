@@ -30,16 +30,33 @@ enum enum_factory : ::iptr
 };
 
 
-#define SUCCESS 1
-#define TIMEOUT (1 << 1)
-#define FAILURE (1 << 2)
+#define OLDOK OK
+#undef OK
+
+enum ENUM_I32 : ::i32
+{
+
+   SUCCESS = 1,
+   TIMEOUT = (1 << 1),
+   FAILURE = (1 << 2),
+   OK = SUCCESS,
+   NONE_ID = 0,
 
 
-#define OK SUCCESS
+};
 
 
-#define NONE_ID 0
-#define INVALID_ID ((::uptr) -1)
+#define OK OLDOK
+
+
+enum ENUM_UPTR : ::uptr
+{
+
+   INVALID_ID = ((::uptr) -1),
+
+};
+
+
 
 
 //#define e_flag_success (1 << 0)
@@ -50,38 +67,41 @@ enum enum_factory : ::iptr
 //#define e_object_storing (1 << 5)
 //#define e_object_acquire (1 << 6)
 //#define DEFAULT_ID (1 << 7)
+enum ENUM_IMPACT : ::iptr
+{
+
+BASE_IMPACT= 100'000,
 
 
-#define BASE_IMPACT 100'000
+FILEMANAGER_IMPACT =1'001'000,
+COLORSEL_IMPACT =2'001'000,
+FONTSEL_IMPACT =2'002'000,
+
+TABBED_GROUP =100,
+LIST_GROUP =200,
+FOLDER_SELECTION_LIST_GROUP =300,
 
 
-#define FILEMANAGER_IMPACT 1'001'000
-#define COLORSEL_IMPACT 2'001'000
-#define FONTSEL_IMPACT 2'002'000
+MAIN_IMPACT =1,
+A2_IMPACT =2,
+CONTEXT_MENU_IMPACT= 3,
+MENU_IMPACT =4,
+MAIN_SWITCHER_IMPACT =5,
+DEVEDGE_IMPACT= 6,
+GCOM_IMPACT =7,
+OPTIONS_IMPACT =8,
+EDIT_IMPACT =9,
+WEATHER_IMPACT =10,
+AUDIO_DEVICES_IMPACT= 11,
+TEST_IMPACT =12,
+ACTION_AREA_IMPACT =13,
+DESK_IMPACT =14,
+CONFIGURATION_IMPACT =15,
+PROPERTIES_IMPACT= 16,
+HELP_IMPACT =17,
+FIRST_PANE =18,
 
-#define TABBED_GROUP 100
-#define LIST_GROUP 200
-#define FOLDER_SELECTION_LIST_GROUP 300
-
-
-#define MAIN_IMPACT 1
-#define A2_IMPACT 2
-#define CONTEXT_MENU_IMPACT 3
-#define MENU_IMPACT 4
-#define MAIN_SWITCHER_IMPACT 5
-#define DEVEDGE_IMPACT 6
-#define GCOM_IMPACT 7
-#define OPTIONS_IMPACT 8
-#define EDIT_IMPACT 9
-#define WEATHER_IMPACT 10
-#define AUDIO_DEVICES_IMPACT 11
-#define TEST_IMPACT 12
-#define ACTION_AREA_IMPACT 13
-#define DESK_IMPACT 14
-#define CONFIGURATION_IMPACT 15
-#define PROPERTIES_IMPACT 16
-#define HELP_IMPACT 17
-#define FIRST_PANE 18
+};
 
 
 enum enum_library_main

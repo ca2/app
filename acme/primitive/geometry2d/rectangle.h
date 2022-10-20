@@ -1,6 +1,8 @@
 ﻿#pragma once
 
+
 #error "error"
+
 
 template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
 class rectangle_type :
@@ -156,7 +158,7 @@ public:
 
    rectangle_type & set_dim(UNIT_TYPE l, UNIT_TYPE t, UNIT_TYPE w, UNIT_TYPE h) noexcept { return ::set_dim(*this, l, t, w, h); }
 
-   rectangle_type & Null() noexcept { return ::null_rect(*this); }
+   rectangle_type & Null() noexcept { return ::null(*this); }
 
    template < primitive_rectangle RECTANGLE >
    rectangle_type & copy(const RECTANGLE & rectangle) noexcept { ::copy(*this, rectangle); return *this; }
@@ -214,16 +216,18 @@ public:
 
    }
 
+
    rectangle_type intersection(const rectangle_type & rect1) const noexcept
    {
 
       rectangle_type rectangle;
 
-      ::intersect_rect(rectangle, *this, rect1);
+      ::intersect(rectangle, *this, rect1);
 
       return rectangle;
 
    }
+
 
    bool null_intersect(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::null_intersect(*this, rect1, rect2); }
    bool top_left_null_intersect(const rectangle_type & rect1, const rectangle_type & rect2) noexcept { return ::top_left_null_intersect(*this, rect1, rect2); }

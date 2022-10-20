@@ -742,7 +742,7 @@ bool is_equal(const SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2)
 
 
 template < primitive_rectangle RECTANGLE_TYPE, typename L, typename T, typename R, typename B >
-RECTANGLE_TYPE & set_rectangle(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
+RECTANGLE_TYPE & assign(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 {
 
    rectangle.left = (decltype(RECTANGLE_TYPE::left))l;
@@ -756,7 +756,7 @@ RECTANGLE_TYPE & set_rectangle(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 
 
 template < primitive_rectangle RECTANGLE, typename L, typename T, typename W, typename H >
-RECTANGLE & set_dim(RECTANGLE & rectangle, L l, T t, W w, H h)
+RECTANGLE & set_dimension(RECTANGLE & rectangle, L l, T t, W w, H h)
 {
 
    rectangle.left = (decltype(RECTANGLE::left))l;
@@ -808,7 +808,7 @@ template < primitive_rectangle RECTANGLE_TYPE >
 RECTANGLE_TYPE & null(RECTANGLE_TYPE & rectangle)
 {
 
-   return ::set_rectangle(rectangle, 0, 0, 0, 0);
+   return ::assign(rectangle, 0, 0, 0, 0);
 
 }
 

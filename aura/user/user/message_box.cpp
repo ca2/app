@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 29/01/2021.  02:05 BRT <3ThomasBS_!!
 //
 #include "framework.h"
@@ -436,7 +436,7 @@ namespace user
 
       ::rectangle_i32 r;
 
-      r.set_dim(0, 0, iWidth, (::i32) (300 * screen_scaler()));
+      r.set_dimension(0, 0, iWidth, (::i32) (300 * screen_scaler()));
 
       m_pbuttonClose->place({iWidth - 25, 1, iWidth - 1, 25});
 

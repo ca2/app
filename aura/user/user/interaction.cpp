@@ -14549,7 +14549,7 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
       if (rectangleRate.is_empty())
       {
 
-         rectangleRate.set_dim(100, 100, 800, 400);
+         rectangleRate.set_dimension(100, 100, 800, 400);
 
       }
       else if (fabs(rectangleRate.left) < 10.0

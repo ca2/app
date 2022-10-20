@@ -2555,6 +2555,8 @@ string & payload::string_reference(const char * pszOnNull)
          return m_i64;
       case e_type_u64:
          return m_u64;
+      case e_type_id:
+         return m_atom.i64();
       case e_type_pi8:
          if (::is_null(m_p)) return iDefault;
          return *m_pi8;

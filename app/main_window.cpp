@@ -1,5 +1,7 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "main_window.h"
+#include "acme/handler/item.h"
+#include "acme/user/user/mouse.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/user/control_box_button.h"
 #include "acme/primitive/mathematics/mathematics.h"

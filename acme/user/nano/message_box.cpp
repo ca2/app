@@ -1,4 +1,4 @@
-//
+﻿//
 // Created by camilo on 2022-01-21 14:57 <3ThomasBorregaardSørensen
 // Generalization by camilo on 31/01/2022 14:53 <3ThomasBorregaardSørensen!!
 #include "framework.h"
@@ -118,7 +118,7 @@ void nano_message_box::calculate_size()
    int x = (wScreen - w) / 2;
    int y = (hScreen - h) / 2;
 
-   m_rectangle.set_dim(x, y, w, h);
+   m_rectangle.set_dimension(x, y, w, h);
 
    //printf("nano_message_box::calculate_size (w,h)=%d,%d\n", w, h);
 

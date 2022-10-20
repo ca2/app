@@ -1,10 +1,6 @@
-#include "framework.h"
-
+﻿#include "framework.h"
 #include "application.h"
 #include "main_window.h"
-
-
-//IMPLEMENT_APPLICATION(app_message_box);
 
 
 namespace app_message_box
@@ -39,15 +35,6 @@ namespace app_message_box
    {
 
       ::aura::application::init_instance();
-
-      //if (!::aura::application::init_instance())
-      //{
-
-      //   return false;
-
-      //}
-
-      //return true;
 
    }
 

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "main_window.h"
 #include "aura/user/user/button.h"
 #include "aura/platform/application.h"
@@ -101,12 +101,8 @@ namespace app_message_box
 
       rectangleButton.bottom -= (int) y;
 
-      //rectangleButton.left = (int) (rectangleButton.right - x * 3.5);
-
       rectangleButton.left = (int) (rectangleButton.right - dBase * 11.0);
       
-      //rectangleButton.top = (int) (rectangleButton.bottom - y * 1.65);
-
       rectangleButton.top = (int) (rectangleButton.bottom - dBase * 5.0);
 
       m_pbuttonShowMessageBox->place(rectangleButton);

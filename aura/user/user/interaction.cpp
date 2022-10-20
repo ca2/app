@@ -8585,7 +8585,7 @@ namespace user
 
       }
 
-      if (::is_empty(sizeparentparams.rectangle))
+      if (::is_empty_rectangle(sizeparentparams.rectangle))
       {
 
          return;

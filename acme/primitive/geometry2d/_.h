@@ -200,7 +200,7 @@ template < primitive_point POINT_TYPE, primitive_point POINT_TYPE2 >
 inline POINT_TYPE & subtract(POINT_TYPE & point, const POINT_TYPE2 & point2)
 {
 
-   return subtract_point(point, point2.x, point2.y);
+   return subtract(point, point2.x, point2.y);
 
 }
 

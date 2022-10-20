@@ -165,7 +165,7 @@ public:
 
    inline size_type half_away(const size_type& size) { return size_type((this->cx - size.cx) / (UNIT_TYPE) 2, (this->cy - size.cy) / (UNIT_TYPE)2); }
 
-   inline bool operator==(::std::nullptr_t) const noexcept { return ::is_size_null(this); }
+   inline bool operator==(::std::nullptr_t) const noexcept { return ::is_null(this); }
    inline bool operator!=(::std::nullptr_t) const noexcept { return !operator==(nullptr); }
 
    inline bool operator == (const size_type & size) const noexcept { return this->cx == size.cx && this->cy == size.cy; }

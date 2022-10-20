@@ -4,6 +4,9 @@
 #include "GLOBAL_ID.h"
 
 
+//#warning "passed here"
+
+
 enum enum_property : ::iptr
 {
 

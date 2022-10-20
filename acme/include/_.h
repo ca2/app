@@ -88,10 +88,17 @@
 //#define Node (psystem->node())
 
 
+
+#include "_forward_declaration.h"
+
+
+#include "_template_forward_declaration.h"
+
+
 #include "acme/primitive/primitive/estatus.h"
 
 
-#include "_c.h"
+//#include "_c.h"
 
 
 #include <tuple>
@@ -3822,7 +3829,7 @@ namespace acme
 #include "acme/primitive/primitive/memory.h"
 //#include "acme/primitive/primitive/shared_memory.h"
 //#include "acme/primitive/primitive/virtual_memory.h"
-#include "acme/primitive/primitive/memory_container.h"
+//#include "acme/primitive/primitive/memory_container.h"
 
 
 //#include "acme/filesystem/file/memory_file.h"

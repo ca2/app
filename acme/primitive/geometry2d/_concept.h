@@ -877,6 +877,7 @@ inline RECTANGLE_TYPE & multiply_inline(RECTANGLE_TYPE & rectangle, const RECT_T
 
 }
 
+
 template < primitive_rectangle RECTANGLE_TYPE, typename L, typename T, typename R, typename B >
 inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 {

@@ -53,11 +53,11 @@ void popup_button::calculate_size_and_position(int x, int y)
 
    }
 
-   m_rectangle.set_dim(x, y, w, h);
+   m_rectangle.set_dimension(x, y, w, h);
 
    ::rectangle_i32 rectangleMainScreen;
 
-   rectangleMainScreen.set_dim(0, 0, wScreen, hScreen);
+   rectangleMainScreen.set_dimension(0, 0, wScreen, hScreen);
 
    rectangleMainScreen.deflate(10);
 

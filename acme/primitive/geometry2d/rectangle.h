@@ -156,7 +156,7 @@ public:
    template < primitive_rectangle RECTANGLE >
    rectangle_type & set(const RECTANGLE & rectangle) noexcept { return copy(rectangle); }
 
-   rectangle_type & set_dim(UNIT_TYPE l, UNIT_TYPE t, UNIT_TYPE w, UNIT_TYPE h) noexcept { return ::set_dim(*this, l, t, w, h); }
+   rectangle_type & set_dimension(UNIT_TYPE l, UNIT_TYPE t, UNIT_TYPE w, UNIT_TYPE h) noexcept { return ::set_dimension(*this, l, t, w, h); }
 
    rectangle_type & Null() noexcept { return ::null(*this); }
 

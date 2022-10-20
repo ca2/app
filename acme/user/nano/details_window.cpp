@@ -45,7 +45,7 @@ void nano_details_window::calculate_size()
    int x = (wScreen - w) / 2;
    int y = (hScreen - h) / 2;
 
-   m_rectangle.set_dim(x, y, w, h);
+   m_rectangle.set_dimension(x, y, w, h);
 
 #endif
 

@@ -51,8 +51,8 @@ public:
 
 
    inline bool is_set() const noexcept { return !is_empty(); }
-   inline bool is_empty() const noexcept { return ::is_empty(*this); }
-   inline bool is_null() const noexcept { return ::is_null(*this); }
+   inline bool is_empty() const noexcept { return ::is_empty_rectangle(*this); }
+   inline bool is_null() const noexcept { return ::is_null_rectangle(*this); }
    template < primitive_point POINT >
    inline bool contains(const POINT & point) const noexcept { return ::contains(*this, point.x, point.y); }
    inline bool contains_x(UNIT_TYPE x) const noexcept { return ::contains_x(*this, x); }

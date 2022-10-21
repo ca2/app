@@ -1,7 +1,4 @@
 #include "framework.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
 #include "impact_base.h"
 #include "document.h"
 #include "tab_impact.h"

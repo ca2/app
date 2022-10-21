@@ -1,4 +1,5 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "acme/handler/item.h"
 #include "base/user/simple/scroll_bar.h"
 #include "base/user/user/tab_pane.h"
 #include "aura/graphics/draw2d/pen.h"

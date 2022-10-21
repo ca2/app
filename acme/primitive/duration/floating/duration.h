@@ -14,7 +14,7 @@ public:
 
 
    constexpr floating_duration(BASE_TYPE t = {}) : DURATION(t) {}
-
+   floating_duration(const ::duration & duration) : DURATION(duration) {}
 
 //   floating_duration(const floating_duration & type) :
 //      DURATION(type)

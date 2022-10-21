@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "acme/user/user/tool_item.h"
 #include "acme/operating_system.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "aqua/xml/document.h"
 #include "aura/operating_system/_user.h"
 #include "toolbar.h"

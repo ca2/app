@@ -2,6 +2,7 @@
 #include "fs_simple_impact.h"
 #include "fs_simple_list_impact.h"
 #include "fs_simple_tree.h"
+#include "acme/handler/item.h"
 #include "core/user/user/tree.h"
 
 

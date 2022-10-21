@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "shader.h"
 
 
@@ -106,7 +106,7 @@ namespace opengl
 
       unsigned int uGeometry = 0;
 
-      bool bGeometry = ::is_set(pszGeometry) && string(pszGeometry).trimmed().has_char();
+      bool bGeometry = pszGeometry.trimmed().has_char();
 
       if (bGeometry)
       {

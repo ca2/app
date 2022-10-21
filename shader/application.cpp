@@ -1,10 +1,8 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "application.h"
 #include "main_window.h"
 #include "render.h"
-
-
-//IMPLEMENT_APPLICATION(app_shader);
+#include "apex/filesystem/filesystem/dir_context.h"
 
 
 namespace app_shader

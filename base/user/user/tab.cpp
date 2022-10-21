@@ -1,9 +1,11 @@
 ﻿#include "framework.h"
 #include "tab.h"
 #include "tab_pane_array.h"
-#include "acme/constant/timer.h"
 #include "tab_pane.h"
 #include "tab_data.h"
+#include "acme/constant/timer.h"
+#include "acme/handler/item.h"
+#include "acme/primitive/geometry2d/_concept.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/image/context_image.h"
@@ -2123,7 +2125,7 @@ namespace user
 
          }
 
-         ::rect_deflate(rectangle, ptabdata->m_rectangleMargin);
+         ::deflate(rectangle, ptabdata->m_rectangleMargin);
 
          //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
 
@@ -2141,7 +2143,7 @@ namespace user
 
          }
 
-         ::rect_deflate(rectangle, ptabdata->m_rectangleBorder);
+         ::deflate(rectangle, ptabdata->m_rectangleBorder);
 
          //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
 
@@ -2199,7 +2201,7 @@ namespace user
 
          }
 
-         ::rect_deflate(rectangle, ptabdata->m_rectangleTextMargin);
+         ::deflate(rectangle, ptabdata->m_rectangleTextMargin);
 
          //::offset_rect(prectangle, ptOffset.x, ptOffset.y);
 
@@ -2291,7 +2293,7 @@ namespace user
 
       }
 
-      ::offset_rect(rectangle, ptOffset.x, ptOffset.y);
+      ::offset(rectangle, ptOffset.x, ptOffset.y);
 
       return true;
 

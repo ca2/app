@@ -424,7 +424,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
          }
       }
 
-      if (::is_set(rectaModified))
+      if (rectaModified.has_element())
       {
          ::rectangle_i32 baserect;
          prgn->get_bounding_box(baserect);
@@ -466,7 +466,7 @@ bool xfplayer_impact_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bo
 
       ::rectangle_i32 rectangle(m_rectangleInvalidate);
 
-      if (!is_null(rectaModified))
+      if (rectaModified.has_element())
       {
          ::rectangle_i32 baserect(rectangle);
          rectaModified.add(baserect);

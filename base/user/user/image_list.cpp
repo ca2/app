@@ -1,5 +1,6 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "image_list.h"
+#include "acme/handler/item.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/array.h"
 #include "aura/message/user.h"

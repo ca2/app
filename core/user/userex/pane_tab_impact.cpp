@@ -1,8 +1,6 @@
 ﻿#include "framework.h"
-//
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "base/user/user/tab_pane.h"
 #include "core/user/user/font_list.h"
 #include "core/user/user/user.h"

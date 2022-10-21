@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/handler/item.h"
 #include "aura/platform/context.h"
 #include <math.h>
 #include "aura/graphics/draw2d/matrix.h"
@@ -922,7 +923,7 @@ namespace user
       size = ::size_f64(pointDrag.x * m_ppictureimpl->m_rectangleDrawing.width(),
          pointDrag.y * m_ppictureimpl->m_rectangleDrawing.height()) - size;
 
-      rectangle_f64 rectangle(__pointd(size), ::size_f64(m_ppictureimpl->m_rectangleDrawing.size()));
+      rectangle_f64 rectangle(::point_f64(size), ::size_f64(m_ppictureimpl->m_rectangleDrawing.size()));
 
       return rectangle;
 

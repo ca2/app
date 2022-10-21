@@ -1,6 +1,8 @@
 ﻿#include "framework.h"
 #include "impact.h"
+#include "acme/handler/item.h"
 #include "apex/database/_binary_stream.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "aqua/xml/document.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/graphics/draw2d/brush.h"

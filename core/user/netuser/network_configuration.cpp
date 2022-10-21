@@ -1,4 +1,6 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "core/user/netuser/_netuser.h"
 #include "aqua/xml/document.h"
 #include "core/user/user/user.h"

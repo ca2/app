@@ -4,6 +4,16 @@
 #pragma once
 
 
+class eimpact;
+
+
+enum enum_simple_command : ::iptr;
+enum enum_message : ::iptr;
+enum enum_impact : ::iptr;
+enum enum_id : ::uptr;
+enum enum_check : ::i32;
+
+
 #include "_mathematics.h"
 
 

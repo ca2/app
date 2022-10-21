@@ -1361,7 +1361,7 @@ namespace user
                   pbox->m_sizeBox.cx = 0;
 
                   // just horizonal layout
-                  pbox->m_rectangleBox.set_dim(x, 0, pbox->m_sizeBox.cx, 0);
+                  pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx, 0);
 
                   pbox->m_rectangleHitTest = pbox->m_rectangleBox;
 
@@ -1413,7 +1413,7 @@ namespace user
                   pbox->m_sizeBox.cx = dPosition - dPositionLeft;
 
                   // just horizonal layout
-                  pbox->m_rectangleBox.set_dim(x, 0, pbox->m_sizeBox.cx, 0);
+                  pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx, 0);
 
                   pbox->m_rectangleHitTest = pbox->m_rectangleBox;
 
@@ -1460,7 +1460,7 @@ namespace user
                pbox->m_sizeBox.cx = dPosition - dPositionLeft;
 
                // just horizonal layout
-               pbox->m_rectangleBox.set_dim(x, 0, pbox->m_sizeBox.cx, 0);
+               pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx, 0);
 
                pbox->m_rectangleHitTest = pbox->m_rectangleBox;
 
@@ -1492,7 +1492,7 @@ namespace user
                pbox->m_sizeBox.cx = dPosition;
 
                // just horizonal layout
-               pbox->m_rectangleBox.set_dim(x, 0, pbox->m_sizeBox.cx, 0);
+               pbox->m_rectangleBox.set_dimension(x, 0, pbox->m_sizeBox.cx, 0);
 
                pbox->m_rectangleHitTest = pbox->m_rectangleBox;
 

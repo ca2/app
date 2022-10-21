@@ -3,6 +3,7 @@
 #include "document.h"
 #include "folder_list_impact.h"
 #include "tree.h"
+#include "acme/handler/item.h"
 #include "core/user/user/tree.h"
 
 

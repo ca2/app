@@ -1,11 +1,10 @@
-#include "framework.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "_userfs.h"
-//#endif
+﻿#include "framework.h"
 #include "aura/user/user/shell.h"
 #include "list_data.h"
 #include "list_item_array.h"
 #include "list_item.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "core/user/user/mesh.h"
 #include "core/platform/session.h"
 #include "base/user/user/user.h"

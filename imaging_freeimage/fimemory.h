@@ -1,4 +1,7 @@
-#pragma once
+﻿#pragma once
+
+
+#include "acme/primitive/primitive/memory.h"
 
 
 class fimemory

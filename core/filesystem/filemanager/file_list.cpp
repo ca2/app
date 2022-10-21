@@ -3,9 +3,12 @@
 #include "data.h"
 #include "document.h"
 #include "file_list.h"
+#include "acme/handler/item.h"
 #include "acme/platform/timer.h"
 #include "acme/primitive/collection/_array_binary_stream.h"
 #include "apex/database/_binary_stream.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/list.h"
 #include "aura/message/user.h"
 #include "aura/user/user/frame.h"
@@ -102,7 +105,6 @@ namespace filemanager
       ::user::impact::dump(dumpcontext);
 
    }
-
 
 
    bool file_list::on_click(::item * pitem)

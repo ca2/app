@@ -1,6 +1,6 @@
-#include "framework.h"
-//#include "aura/procedure.h"
+﻿#include "framework.h"
 #include "font_list.h"
+#include "acme/handler/item.h"
 #include "aura/user/user/scroll_data.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/write_text/font_enumeration_item.h"

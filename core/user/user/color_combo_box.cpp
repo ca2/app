@@ -1,4 +1,5 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "acme/handler/item.h"
 #include "aura/graphics/draw2d/brush.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/graphics/draw2d/path.h"

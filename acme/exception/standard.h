@@ -107,10 +107,7 @@ public:
 
 
 
-#ifdef WINDOWS
-
-
-#else
+#if !defined(WINDOWS)
 
    static void * siginfodup(void * psiginfo);
    static void siginfofree(void * psiginfo);
@@ -127,7 +124,7 @@ public:
 
    }
 
-#endif
+#else
 
    standard_exception(i32 iSignal, void * psiginfo, void * pc, i32 iSkip = DEFAULT_SE_EXCEPTION_CALLSTACK_SKIP,
                       void * caller_address = nullptr) :
@@ -142,6 +139,8 @@ public:
    }
 
 #endif
+
+#endif //!def(WINDOWS)
 
 
    virtual ~standard_exception()

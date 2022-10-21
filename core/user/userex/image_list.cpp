@@ -2,6 +2,7 @@
 #include "image_list.h"
 #include "top_edit_impact.h"
 #include "apex/database/_binary_stream.h"
+#include "apex/filesystem/filesystem/dir_context.h"
 #include "aura/graphics/image/context_image.h"
 #include "aura/graphics/image/drawing.h"
 #include "aura/graphics/image/array.h"

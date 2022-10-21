@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "style.h"
 #include "acme/user/user/tool_item.h"
 #include "aura/graphics/draw2d/graphics.h"
@@ -664,7 +664,7 @@ namespace experience_anthill
 
       ::rectangle_f64 r2;
 
-      pgraphics->get_clip_box(&r2);
+      pgraphics->get_clip_box(r2);
 
       auto pstyle = ptab->get_style(pgraphics);
 

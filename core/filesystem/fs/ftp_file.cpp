@@ -1,6 +1,8 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "core/networking/ftp/_.h"
 #include "ftp_file.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "core/networking/ftp/client_socket.h"
 #include "ftpfs.h"
 

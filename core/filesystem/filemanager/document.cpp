@@ -1,9 +1,7 @@
 ﻿#include "framework.h"
 #include "aura/graphics/image/icon.h"
+#include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_watcher.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
 #include "base/user/user/tab_pane.h"
 #include "document.h"
 #include "tab_impact.h"

@@ -1,4 +1,4 @@
-// Created by camilo on 2022-10-19 23:49 <3ThomasBorregaardSorensen!!
+﻿// Created by camilo on 2022-10-19 23:49 <3ThomasBorregaardSorensen!!
 #pragma once
 
 
@@ -941,7 +941,7 @@ inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, UNIT u)
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, typename UNIT >
+template < primitive_rectangle RECTANGLE_TYPE, primitive_number UNIT >
 inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, UNIT u)
 {
 

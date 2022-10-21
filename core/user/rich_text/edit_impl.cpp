@@ -4,6 +4,7 @@
 #include "document.h"
 #include "data.h"
 #include "format.h"
+#include "acme/handler/item.h"
 #include "acme/platform/timer.h"
 #include "acme/constant/timer.h"
 #include "aura/graphics/draw2d/graphics.h"

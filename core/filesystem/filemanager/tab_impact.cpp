@@ -1,17 +1,16 @@
-#include "framework.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
+﻿#include "framework.h"
 #include "tab_impact.h"
-#include "core/user/user/user.h"
 #include "form.h"
 #include "operation_document.h"
 #include "data.h"
 #include "document.h"
-#include "base/user/user/multiple_document_template.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "aura/user/user/frame.h"
-#include "base/user/user/frame_window.h"
 #include "aura/platform/session.h"
+#include "base/user/user/frame_window.h"
+#include "base/user/user/multiple_document_template.h"
+#include "core/user/user/user.h"
 
 
 namespace filemanager

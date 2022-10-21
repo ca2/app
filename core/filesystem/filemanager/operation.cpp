@@ -1,8 +1,7 @@
-#include "framework.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/filesystem/filemanager/_filemanager.h"
-//#endif
+﻿#include "framework.h"
 #include "operation.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "aura/user/user/interaction.h"
 #include "aura/platform/context.h"
 

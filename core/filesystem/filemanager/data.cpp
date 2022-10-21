@@ -2,6 +2,8 @@
 #include "data.h"
 #include "document.h"
 #include "apex/database/_binary_stream.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/write_text/font.h"
 #include "aura/user/user/interaction.h"

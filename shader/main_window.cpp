@@ -1,11 +1,11 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "main_window.h"
 #include "application.h"
 #include "render.h"
 #include <math.h>
 #include "acme/constant/id.h"
+#include "acme/handler/item.h"
 #include "aura/graphics/user/control_box_icon.h"
-////#include "aura/graphics/draw2d/_component.h"
 #include "aura/graphics/image/image.h"
 #include "aura/graphics/image/save_image.h"
 #include "aura/graphics/image/context_image.h"

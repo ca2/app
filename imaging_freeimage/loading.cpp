@@ -1,6 +1,7 @@
 ﻿#include "framework.h"
 #include "aura/platform/context.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "apex/filesystem/filesystem/file_context.h"
 
 
 CLASS_DECL_APEX void set_bypass_cache_if_empty(::payload & payloadFile);

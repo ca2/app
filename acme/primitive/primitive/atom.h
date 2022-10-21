@@ -251,6 +251,7 @@ public:
       e_type_has_command_handler,
       e_type_update,
       e_type_dialog_result,
+      e_type_impact,
 
       e_type_text = 1ull << 16,
       e_type_id_text = e_type_id | e_type_text,
@@ -263,6 +264,7 @@ public:
       e_type_command_probe_text = e_type_command_probe | e_type_text,
       e_type_has_command_handler_text = e_type_has_command_handler | e_type_text,
       e_type_update_text = e_type_update | e_type_text,
+      e_type_impact_text = e_type_impact | e_type_text,
 
 
    };
@@ -306,6 +308,8 @@ public:
    inline atom(enum_task_tool etasktool);
    inline atom(enum_timer etimer);
    inline atom(enum_message emessage);
+   inline atom(enum_impact eimpact);
+   inline atom(ENUM_IMPACT EIMPACT);
    //inline atom(enum_topic etopic);
    inline atom(enum_dialog_result edialogresult);
    inline atom(enum_type etypeAdd, const atom & atom);
@@ -627,6 +631,22 @@ inline atom::atom(enum_timer etimer) :
 inline atom::atom(enum_message emessage) :
    m_etype(e_type_message),
    m_i((::iptr)emessage) // used m_i to reset 64-bit field
+{
+
+}
+
+
+inline atom::atom(enum_impact eimpact) :
+   m_etype(e_type_impact),
+   m_i((::iptr)eimpact) // used m_i to reset 64-bit field
+{
+
+}
+
+
+inline atom::atom(ENUM_IMPACT EIMPACT) :
+   m_etype(e_type_impact),
+   m_i((::iptr)EIMPACT) // used m_i to reset 64-bit field
 {
 
 }

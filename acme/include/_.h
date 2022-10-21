@@ -1335,14 +1335,6 @@ namespace core
 
 //#include "platform/platform/_.h"
 
-class eimpact;
-
-
-enum enum_simple_command : ::iptr;
-enum enum_message : ::iptr;
-enum enum_impact : ::iptr;
-enum enum_id : ::uptr;
-enum enum_check : ::i32;
 
 template<typename TYPE>
 struct erase_const_struct
@@ -3049,7 +3041,7 @@ using procedure = ::function < void() >;
 #include "acme/constant/idpool.h"
 
 
-//#include "acme/primitive/geometry2d/_geometry2d.h"
+//#include "acme/primitive/geometry2d/_enhanced.h"
 
 
 
@@ -3483,7 +3475,7 @@ class context_image;
 
 //#include "acme/parallelization/pool.h"
 
-//#include "acme/primitive/geometry2d/_collection.h"
+//#include "acme/primitive/geometry2d/_collection_enhanced.h"
 
 //#include "acme/primitive/geometry3d/_.h"
 

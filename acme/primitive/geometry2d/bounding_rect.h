@@ -1,6 +1,10 @@
 ﻿#pragma once
 
 
+#include "arc.h"
+#include "line.h"
+
+
 template < primitive_rectangle RECTANGLE >
 inline bool get_bounding_rectangle(RECTANGLE & rectangleBounding, const ::arc & arc)
 {

@@ -2,6 +2,7 @@
 #include "tab_impact.h"
 #include "tab_pane.h"
 #include "tab_data.h"
+#include "apex/filesystem/filesystem/file_context.h"
 #include "aura/user/user/window_util.h"
 #include "frame_window.h"
 #include "aura/message/user.h"

@@ -17,125 +17,12 @@
 //
 //
 #include "framework.h"
-#include "file_watcher.h"
-
+#include "watcher.h"
+#include "watch.h"
 
 
 namespace file
 {
-
-
-   watch::watch()
-   {
-      
-      m_pthis = this;
-      
-   }
-
-
-   watch::~watch()
-   {
-
-      try
-      {
-
-         for (auto & listener : m_listenera)
-         {
-
-            try
-            {
-
-               listener.m_watcha.erase(this);
-
-            }
-            catch (...)
-            {
-
-            }
-
-         }
-
-      }
-      catch (...)
-      {
-
-      }
-
-      if (m_functionDestroy)
-      {
-
-         m_functionDestroy();
-
-      }
-
-   }
-
-
-   bool watch::open(const ::file::path & pathFolder, bool bRecursive)
-   {
-
-      m_pathFolder = pathFolder;
-
-      m_bRecursive = bRecursive;
-
-      return true;
-
-   }
-
-
-   void watch::add_listener(const listener & listenerParam)
-   {
-
-      auto & listener = m_listenera.insert_unique(::move(listenerParam));
-
-      listener.m_watcha.add_unique(this);
-
-   }
-
-
-   void watch::erase_listener(const listener & listener)
-   {
-
-      m_listenera.erase(listener);
-
-      if (m_listenera.is_empty())
-      {
-
-         m_pwatcher->erase_watch(m_watchid);
-
-      }
-
-   }
-
-
-   void watch::handle_action(action * paction)
-   {
-
-      for (auto & listener : m_listenera)
-      {
-
-         listener(paction);
-
-      }
-
-   }
-
-
-   bool watch::step()
-   {
-
-      //return ::success;
-
-      return true;
-
-   }
-
-
-   //listener::listener(const listener_function function) :
-   //   m_function(function)
-   //{
-
-   //}
 
 
    listener::~listener()
@@ -372,7 +259,7 @@ restart:
    }
 
 
-} //namespace watcher
+} //namespace file
 
 
 

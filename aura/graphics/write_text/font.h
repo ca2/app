@@ -10,6 +10,12 @@
 #include "text_metric.h"
 
 
+#include "acme/primitive/geometry2d/size.h"
+
+
+#include "font_descriptor.h"
+
+
 namespace write_text
 {
 

@@ -4,6 +4,12 @@
 class message_queue;
 
 
+#include "apex/handler/manager.h"
+#include "apex/handler/source.h"
+#include "apex/handler/context.h"
+#include "apex/message/channel.h"
+
+
 ///
 /// a thread must be always allocated in the heap
 ///
@@ -47,7 +53,7 @@ public:
    bool                                               m_bPreferLessGraphicsParallelization;
    bool                                               m_bThreadToolsForIncreasedFps;
    //::e_status                                        m_estatus;
-   user_interaction_ptr_array *                       m_puiptraThread;
+   ::pointer < user_interaction_array >               m_puserinteractionaThread;
    ::mutex *                                          m_pmutexThreadUiPtra;
    single_lock *                                      m_pslUser;
    static bool                                        s_bAllocReady;
@@ -141,7 +147,7 @@ public:
    void get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
    void post_message(oswindow oswindow, const ::atom & atom, wparam wParam, lparam lParam);
 
-   user_interaction_ptr_array & uiptra();
+   user_interaction_array & userinteractiona();
 
 
    void destroy() override;
@@ -494,7 +500,7 @@ protected:
 
 
 
-using id_thread_map = id_map < ::pointer<thread > >;
+using id_thread_map = atom_map < ::pointer<thread > >;
 
 
 //CLASS_DECL_APEX void sleep(const duration& duration);
@@ -551,5 +557,32 @@ CLASS_DECL_APEX void defer_create_thread(::object * pobject);
 
 template < typename PRED >
 auto sync_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority), PRED pred, const class ::wait & wait, enum_priority epriority);
+
+
+
+
+class CLASS_DECL_APEX thread_ptra :
+   virtual public pointer_array < thread >
+{
+public:
+
+
+   thread_ptra();
+   thread_ptra(const thread_ptra & ptra):pointer_array < thread >(ptra) {}
+   thread_ptra(thread_ptra && ptra) :pointer_array < thread >(::move(ptra)) {}
+   virtual ~thread_ptra();
+
+   virtual ::count get_count_except_current_thread();
+   //virtual void finish(::property_object * pcontextobjectFinish = nullptr) override;
+   virtual void destroy() override;
+   virtual void wait(const class ::wait & wait, ::synchronous_lock & synchronouslock);
+
+   thread_ptra & operator = (const thread_ptra & ptra) { pointer_array < thread >::operator =(ptra); return *this; }
+   thread_ptra & operator = (thread_ptra && ptra) { pointer_array < thread >::operator =(::move(ptra)); return *this; }
+
+};
+
+
+
 
 

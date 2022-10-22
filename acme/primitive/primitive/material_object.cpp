@@ -2,6 +2,20 @@
 #include "acme/parallelization/asynchronous.h"
 
 
+material_object::material_object(const material_object & materialobject) :
+   ::PARTICLE(materialobject),
+   ::particle(materialobject),
+   ::element(materialobject),
+   ::matter(materialobject),
+   ::property_object(materialobject),
+   m_pmapPropertyProcedure(materialobject.m_pmapPropertyProcedure),
+   m_pia(materialobject.m_pia)
+{
+
+}
+
+
+
 material_object::~material_object()
 {
 
@@ -236,3 +250,16 @@ void material_object::__send_procedure(const ::function < void(const ::procedure
    }
 
 }
+
+
+
+
+
+::i64_array & material_object::idarray() const
+{
+
+   m_psystem->__defer_construct_new(((material_object *)this)->m_pia); return *m_pia;
+
+
+}
+

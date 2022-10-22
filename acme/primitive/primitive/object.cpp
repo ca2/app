@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "acme/constant/message.h"
+#include "acme/handler/extended_topic.h"
 #include "acme/update.h"
 #if OBJECT_REFERENCE_COUNT_DEBUG
 #include "acme/platform/obj_ref_debug_impl.h"

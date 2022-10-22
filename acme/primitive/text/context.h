@@ -12,7 +12,7 @@ namespace text
 
 
    class schema :
-      public id_map < string >
+      public atom_map < string >
    {
    public:
 
@@ -26,7 +26,7 @@ namespace text
    };
 
    class CLASS_DECL_ACME locale :
-      public id_map < schema >
+      public atom_map < schema >
    {
    public:
 
@@ -56,7 +56,7 @@ namespace text
 
       schema *                      m_pschemaEn;
       schema *                      m_pschemaStd;
-      id_map < locale >             m_map;
+      atom_map < locale >             m_map;
       
 
       table();

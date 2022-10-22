@@ -6,6 +6,8 @@
 //
 // From interprocess*.h/*.cpp by camilo on 2022-10-11 00:18 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "acme/handler/topic.h"
+#include "acme/handler/extended_topic.h"
 
 
 handler::~handler()

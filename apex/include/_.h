@@ -179,6 +179,8 @@ extern CLASS_DECL_APEX int g_bApex;
 //#define FLOATABS(f) (((f) >= 0.f) ? (f) : (-(f)))
 //#define DOUBLEABS(d) (((d) >= 0.0) ? (d) : (-(d)))
 //
+#undef APPLICATION_INCLUDE
+#define APPLICATION_INCLUDE "apex/platform/application.h"
 #undef APPLICATION_CLASS
 #define APPLICATION_CLASS ::apex::application
 
@@ -329,6 +331,9 @@ namespace core
 
 
 
+#include "apex/handler/_.h"
+
+
 #include "acme/platform/library.h"
 
 
@@ -354,8 +359,8 @@ namespace core
 //enum enum_check: ::i32;
 
 
-template < typename CHAR_TYPE >
-class string_base;
+//template < typename CHAR_TYPE >
+//class string_base;
 
 
 struct pixmap;
@@ -363,15 +368,15 @@ struct pixmap;
 
 #define CONSIDER_AS(as, use) using use = as
 
-
-using ansistring = string_base < ansichar >;
-using wd16string = string_base < wd16char >;
-using wd32string = string_base < wd32char >;
-using widestring = string_base < widechar >;
-
-
-using string = string_base < ansichar >;
-using wstring = string_base < widechar >;
+//
+//using ansistring = string_base < ansichar >;
+//using wd16string = string_base < wd16char >;
+//using wd32string = string_base < wd32char >;
+//using widestring = string_base < widechar >;
+//
+//
+//using string = string_base < ansichar >;
+//using wstring = string_base < widechar >;
 
 
 class machine_event_central;
@@ -908,10 +913,10 @@ namespace core
 
 
 
-#include "apex/message/_message.h"
+//#include "apex/message/_message.h"
 
 
-#include "apex/message/message.h"
+//#include "apex/message/message.h"
 
 
 //#include "apex/platform/thread_set.h"
@@ -944,7 +949,7 @@ namespace windowing
 //#include "apex/user/primitive.h"
 
 
-#include "apex/parallelization/thread.h"
+//s#include "apex/parallelization/thread.h"
 
 
 class handler_manager;
@@ -953,7 +958,7 @@ class handler_manager;
 class service;
 class service_handler;
 
-#include "apex/parallelization/service.h"
+//#include "apex/parallelization/service.h"
 
 //#include "apex/parallelization/handler_manager.h"
 //#include "apex/parallelization/service_status.h"
@@ -962,11 +967,11 @@ class service_handler;
 //#include "apex/parallelization/service/plain_service.h"
 //#include "apex/parallelization/service/plain_service.h"
 //#include "apex/parallelization/fork.h"
-#include "apex/parallelization/delay_thread.h"
+//#include "apex/parallelization/delay_thread.h"
 //#include "apex/parallelization/tools.h"
 
 
-#include "apex/parallelization/thread_impl.h"
+//#include "apex/parallelization/thread_impl.h"
 
 
 #include "apex/platform/log.h"
@@ -986,7 +991,7 @@ namespace user
 
 #include "apex/user.h"
 
-#include "apex/platform/savings.h"
+//#include "apex/platform/savings.h"
 
 #include "apex/networking/_.h"
 
@@ -1038,7 +1043,7 @@ namespace zip
 
 //#include "apex/operating_system/text.h"
 
-#include "apex/process/process.h"
+#include "source/app/apex/operating_system/process.h"
 
 #include "apex/filesystem/filesystem/file_listener.h"
 
@@ -1061,7 +1066,7 @@ namespace zip
 
 //class interprocess_intercommunication;
 
-//using interprocess_task_map = id_map < ::pointer<::interprocess::task >>;
+//using interprocess_task_map = atom_map < ::pointer<::interprocess::task >>;
 
 
 //#include "apex/platform/::interprocess::call.h"
@@ -1178,7 +1183,7 @@ namespace xml
 //#include "apex/platform/app_core.h"
 
 
-#include "apex/process/_.h"
+//#include "apex/process/_.h"
 
 
 //#include "apex/primitive/math/department.h"
@@ -1199,7 +1204,7 @@ namespace xml
 //#include "apex/os/chronometer.h"
 
 
-#include "apex/platform/assert_running_task.h"
+//#include "apex/platform/assert_running_task.h"
 
 
 //#include "apex/platform/debug.h"
@@ -1213,7 +1218,7 @@ namespace xml
 #include "apex/parallelization/data.h"
 
 
-#include "apex/platform/shell_launcher.h"
+//#include "apex/platform/shell_launcher.h"
 
 
 //#include "apex/platform/async.h"

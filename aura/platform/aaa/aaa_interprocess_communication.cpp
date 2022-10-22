@@ -762,10 +762,10 @@ pacmedirectory->system() / "inteprocess_channel" / strApp / __string(idPid);
    }
 
 
-   id_array inteprocess_channel::get_pid(const ::string & strApp)
+   atom_array inteprocess_channel::get_pid(const ::string & strApp)
    {
 
-      id_array idaPid;
+      atom_array idaPid;
 
 #if defined(LINUX) || defined(MACOS)
 

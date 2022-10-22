@@ -123,10 +123,10 @@ string module_path_from_pid(unsigned int iPid)
 //}
 //
 //
-//id_array app_get_pid(const char * psz)
+//atom_array app_get_pid(const char * psz)
 //{
 //
-//   id_array ia;
+//   atom_array ia;
 //
 //   ::file::path_array stra;
 //

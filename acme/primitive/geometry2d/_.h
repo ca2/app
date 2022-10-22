@@ -1,15 +1,6 @@
 ﻿#pragma once
 
 
-enum enum_orientation
-{
-
-   e_orientation_horizontal = -1,
-   e_orientation_none = 0,
-   e_orientation_vertical = 1,
-
-};
-
 
 
 DECLARE_ENUMERATION(e_align, enum_align);

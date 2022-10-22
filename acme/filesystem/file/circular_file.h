@@ -4,6 +4,7 @@
 
 
 #include "acme/primitive/primitive/memory.h"
+#include "file.h"
 
 
 namespace file

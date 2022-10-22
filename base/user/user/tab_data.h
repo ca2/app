@@ -38,7 +38,7 @@ namespace user
       ::rectangle_i32                     m_rectangleTab;
       ::rectangle_i32                     m_rectangleTabClient;
       draw2d::graphics_extension          m_dcextension;
-      id_array                            m_idaSel;
+      atom_array                            m_idaSel;
       ::rectangle_i32                     m_rectangleBorder;
       ::rectangle_i32                     m_rectangleMargin;
       ::rectangle_i32                     m_rectangleTextMargin;

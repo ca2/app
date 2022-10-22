@@ -375,7 +375,7 @@
 //
 //      pcommand->m_atom.set_compounded_type(::atom::e_type_command);
 //
-//      if (m_idaHandledCommands.contains(pcommand->m_atom))
+//      if (m_atomaHandledCommands.contains(pcommand->m_atom))
 //      {
 //
 //         return true;

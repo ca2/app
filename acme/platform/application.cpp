@@ -3,6 +3,7 @@
 //
 // app to application and back to acme namespace by camilo on 2022-09-17 18:54 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "acme/platform/node.h"
 
 
 #if defined(LINUX) || defined(FREEBSD) || defined(RASPBIAN) || defined(ANDROID)

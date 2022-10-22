@@ -2,6 +2,7 @@
 
 
 #include "acme/operating_system/_const_console.h"
+#include "acme/filesystem/file/file.h"
 
 
 void RedirectIOToConsole();

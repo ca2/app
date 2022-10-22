@@ -1,5 +1,7 @@
 // Created by camilo on 2021-09-09 22:54 Thomas Month!! <3ThomasBS__!!
 #include "framework.h"
+#include "streamable.h"
+#include "file.h"
 #include "acme/primitive/primitive/memory.h"
 
 

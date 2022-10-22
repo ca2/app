@@ -519,12 +519,12 @@
 //   {
 //
 //
-//      id_array node::module_path_get_pid(const char * psz)
+//      atom_array node::module_path_get_pid(const char * psz)
 //      {
 //
 //         ::output_debug_string("os/linux_process.cpp app_get_pid (" + string(psz) + ")");
 //
-//         id_array ia;
+//         atom_array ia;
 //
 //         ::file::path_array stra;
 //

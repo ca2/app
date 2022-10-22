@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 #include "acme/constant/id.h"
-//#include "acme/primitive/primitive/layered.h"
+#include "acme/handler/topic.h"
 
 
 #if OBJECT_REFERENCE_COUNT_DEBUG
@@ -1131,5 +1131,17 @@ bool matter::handle_call(::payload & payload, const ::string & strObject, const 
 //
 //}
 
+
+
+::topic_pointer matter::create_topic(const ::atom & atom)
+{
+
+   auto ptopic = __new(::topic(atom));
+
+   ptopic->m_psystem = m_psystem;
+
+   return ::move(ptopic);
+
+}
 
 

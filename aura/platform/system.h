@@ -2,6 +2,7 @@
 
 
 #include "context.h"
+#include "aqua/platform/system.h"
 
 
 namespace aura
@@ -96,8 +97,8 @@ namespace aura
 
 
 
-      inline ::aura::session* get_session() { return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr; }
-      inline ::aura::node* node() { return m_pnode ? m_pnode->m_pauranode : nullptr; }
+      ::aura::session* get_session();
+      ::aura::node* node();
 
       inline ::gpu::approach* get_gpu() { if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
       inline ::gpu::approach* gpu() { return m_pgpu.get(); };

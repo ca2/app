@@ -2,6 +2,7 @@
 #include "audio.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/context.h"
 
 
 namespace aqua

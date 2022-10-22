@@ -211,7 +211,7 @@ namespace acme
 
       critical_section *                                    m_pcriticalsectionFactory;
       ::pointer<::factory::factory>                         m_pfactory;
-      ::pointer<id_map < ::pointer<::factory::factory > > > m_pmapFactory;
+      ::pointer<atom_map < ::pointer<::factory::factory > > > m_pmapFactory;
 
 
       static acme * g_p;

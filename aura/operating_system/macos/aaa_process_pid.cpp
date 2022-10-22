@@ -82,10 +82,10 @@ extern int ansi_count_compare(const ::string & sz1, const ::string & sz2, iptr i
 // http://stackoverflow.com/users/237188/v%C3%A1clav-slav%C3%ADk
 // https://github.com/vslavik/
 
-id_array get_pids()
+atom_array get_pids()
 {
 
-   id_array pids;
+   atom_array pids;
 
    array < pid_t > pida;
 
@@ -113,12 +113,12 @@ id_array get_pids()
 }
 
 
-id_array module_path_get_pid(const ::string & csProcessName)
+atom_array module_path_get_pid(const ::string & csProcessName)
 {
 
-   id_array iaPid;
+   atom_array iaPid;
 
-   id_array pids = get_pids();
+   atom_array pids = get_pids();
 
    string strPath;
 
@@ -176,12 +176,12 @@ string module_path_from_pid(unsigned int uiPid)
 }
 
 //
-//id_array app_get_pid(const ::string & psz)
+//atom_array app_get_pid(const ::string & psz)
 //{
 //
-//   id_array ia;
+//   atom_array ia;
 //
-//   id_array pids = get_pids();
+//   atom_array pids = get_pids();
 //
 //   ::file::path path1;
 //

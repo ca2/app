@@ -347,9 +347,9 @@ namespace acme
 
       virtual bool load_modules_diff(string_array& straOld, string_array& straNew, const ::string & pszExceptDir);
 
-      virtual id_array get_pids();
+      virtual atom_array get_pids();
 
-      virtual id_array module_path_get_pid(const ::string & pszModulePath, bool bModuleNameIsPropertyFormatted);
+      virtual atom_array module_path_get_pid(const ::string & pszModulePath, bool bModuleNameIsPropertyFormatted);
 
       virtual string module_path_from_pid(u32 pid);
 

@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "_linux.h"
 #include "apex/operating_system.h"
+#include "apex/platform/application.h"
 
 
 //#include <X11/cursorfont.h>

@@ -60,6 +60,8 @@ namespace multimedia
 } // namespace multimedia
 
 
+#undef APPLICATION_INCLUDE
+#define APPLICATION_INCLUDE "aqua/platform/application.h"
 #undef APPLICATION_CLASS
 #define APPLICATION_CLASS ::aqua::application
 
@@ -82,13 +84,13 @@ namespace multimedia
 #include "aqua/xml/_.h"
 
 
-#include "aqua/platform/application.h"
+//#include "aqua/platform/application.h"
 
 
-#include "aqua/platform/session.h"
+//#include "aqua/platform/session.h"
 
 
-#include "aqua/platform/system.h"
+//#include "aqua/platform/system.h"
 
 
 #include "aqua/platform/_impl.h"

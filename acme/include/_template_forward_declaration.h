@@ -6,8 +6,6 @@
 //  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
 //
 #pragma once
-
-
 // Created by camilo on 2021-08-31 16:00 BRT <3ThomasBS_!!
 #pragma once
 
@@ -18,36 +16,10 @@
 
 
 
-namespace acme { class system; }
-namespace acme { class application; }
-namespace apex { class application; }
-class thread;
-class property_object;
-class task;
-class task_pool;
-class action_context;
-class object;
-class dump_context;
-class synchronization_object;
-class __id;
-class string_exchange;
-namespace message { class message; }
-class payload;
 template < typename FILE >
 class binary_stream;
-class text_stream;
-struct block;
-class property_set;
-class particle;
-
-//namespace topic
-//{
-
-   class topic;
-   class context;
-
-//} // namespace topic
-
+template < typename RESULT >
+class process;
 
 
 template<class T>
@@ -56,76 +28,6 @@ class pointer;
 
 template<class T>
 class pointer_array;
-
-
-//#define ::pointer<TYPE>::reference < TYPE >
-
-
-//#define ::pointer<TYPE>::pointer<TYPE>
-//#define pointer_array < TYPE > ::pointer_array < TYPE >
-
-//
-//template < typename TYPE >
-//class ___address
-//{
-//public:
-//
-//
-//   TYPE* m_p;
-//
-//   ___address() : m_p(nullptr) {}
-//   ~___address() { if (::is_set(m_p)) throw error_wrong_state; }
-//
-//   TYPE* get() { return m_p; }
-//   TYPE* get() const { return m_p; }
-//
-//   operator TYPE* () const { return m_p; }
-//   operator TYPE* () { return m_p; }
-//
-//   TYPE* operator ->() const { return m_p; }
-//   TYPE* operator ->() { return m_p; }
-//
-//   bool is_null() const { return ::is_null(m_p); }
-//   bool is_set() const { return ::is_set(m_p); }
-//   bool operator !() const { return is_null(); }
-//
-//   template < typename OBJECT >
-//   ::pointer<OBJECT>cast() const;
-//
-//
-//   template < typename INTERMEDIATE >
-//   void release(INTERMEDIATE* p) { ::release(p, m_p); }
-//
-//
-//   template < typename ADDRESS >
-//   ___address & operator = (ADDRESS & p) { p->increment_reference_count(); release(p); m_p = p; return *this; }
-//
-//};
-
-
-
-
-
-class error_code;
-
-
-namespace user
-{
-
-
-   class tool_item;
-   class mouse;
-   class drag;
-   class drag_client;
-
-
-} // namespace user
-
-
-class image;
-class e_check;
-class tristate;
-
 
 
 
@@ -144,22 +46,11 @@ namespace write_text
 {
 
 
-   class font;
-   
    using font_pointer = ::pointer<font>;
 
 
 } // namespace write_text
 
-
-namespace interprocess
-{
-
-   
-   class target;
-
-
-} // namespace interprocess
 
 
 
@@ -170,8 +61,6 @@ class string_array_base;
 template<typename CHAR_TYPE>
 class string_base;
 
-
-struct pixmap;
 
 
 #define CONSIDER_AS(as, use) using use = as
@@ -199,12 +88,6 @@ using natural_widestring = string_natural_pointer < widechar >;
 
 typedef natural_ansistring natural_string;
 typedef natural_widestring natural_wstring;
-
-class property;
-class payload;
-class atom;
-
-
 
 
 
@@ -419,11 +302,76 @@ class flags;
 template<class EENUM, EENUM edefault = (EENUM)0>
 class base_enum;
 
+template < typename PAYLOAD_TYPE >
+concept payload_class = (is_derived_from < PAYLOAD_TYPE, ::payload > || ::std::same_as < PAYLOAD_TYPE, ::payload >);
 
-class item;
+
 
 using item_pointer = ::pointer < ::item >;
 
-class memory;
-
 using memory_pointer = ::pointer < ::memory >;
+
+
+
+template < typename CONTAINER >
+concept container_type = requires(CONTAINER container)
+{
+
+   {container.this_is_a_container()} -> std::same_as<void>;
+
+};
+
+
+template < container_type CONTAINERX, container_type CONTAINERY >
+inline CONTAINERX operator +(CONTAINERX x, const CONTAINERY & y)
+{
+
+   x += y;
+
+   return x;
+
+}
+
+
+template < typename ARRAY >
+concept indexed_array = requires(ARRAY array, ::index i)
+{
+   array.get_count();
+   array.element_at(i);
+};
+
+template<indexed_array ARRAY1, indexed_array ARRAY2>
+bool operator==(const ARRAY1 &array1, const ARRAY2 &array2)
+{
+
+   if (array1.get_size() != array2.get_size())
+   {
+
+      return false;
+
+   }
+
+   for (::index i = 0; i < array1.get_size(); i++)
+   {
+
+      if (array1.element_at(i) != array2.element_at(i))
+      {
+
+         return false;
+
+      }
+
+   }
+
+   return true;
+
+}
+
+
+template<indexed_array ARRAY1, indexed_array ARRAY2>
+bool operator!=(const ARRAY1 &array1, const ARRAY2 &array2)
+{
+
+   return !operator==(array1, array2);
+
+}

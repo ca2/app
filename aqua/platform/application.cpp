@@ -1,4 +1,6 @@
 ﻿#include "framework.h"
+#include "application.h"
+#include "system.h"
 #include "aqua/multimedia/multimedia.h"
 #include "aqua/xml/document.h"
 
@@ -158,6 +160,13 @@ namespace aqua
 
    //}
 
+
+   ::aqua::system* application::get_system()
+   {
+
+      return dynamic_cast <::aqua::system*> (m_psystem);
+
+   }
 
 
 } // namespace aqua

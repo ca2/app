@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "text_stream.h"
 #ifdef WINDOWS
 //#include <Shellapi.h>
 #endif

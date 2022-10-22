@@ -625,10 +625,10 @@ void interprocess_intercommunication::on_new_instance(const ::string & strModule
 }
 
 
-id_array interprocess_intercommunication::get_pid(const ::string & strApp)
+atom_array interprocess_intercommunication::get_pid(const ::string & strApp)
 {
 
-   id_array idaPid;
+   atom_array idaPid;
 
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
 

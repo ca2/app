@@ -151,7 +151,7 @@ namespace user
 
 } // namespace user
 
-using user_interaction_ptr_array = address_array < ::user::interaction * >;
+//using user_interaction_ptr_array = address_array < ::user::interaction * >;
 
 class thread_startup;
 
@@ -186,28 +186,6 @@ namespace parallelization
 
 class sync_interface;
 class synchronous_lock;
-
-
-class CLASS_DECL_APEX thread_ptra :
-   virtual public pointer_array < thread >
-{
-public:
-
-
-   thread_ptra();
-   thread_ptra(const thread_ptra & ptra):pointer_array < thread >(ptra) {}
-   thread_ptra(thread_ptra && ptra) :pointer_array < thread >(::move(ptra)) {}
-   virtual ~thread_ptra();
-
-   virtual ::count get_count_except_current_thread();
-   //virtual void finish(::property_object * pcontextobjectFinish = nullptr) override;
-   virtual void destroy() override;
-   virtual void wait(const class ::wait & wait, ::synchronous_lock & synchronouslock);
-
-   thread_ptra & operator = (const thread_ptra & ptra) { pointer_array < thread >::operator =(ptra); return *this; }
-   thread_ptra & operator = (thread_ptra && ptra) { pointer_array < thread >::operator =(::move(ptra)); return *this; }
-
-};
 
 
 

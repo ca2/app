@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+
 template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array < TYPE, ARG_TYPE > >
 class comparable_eq_array:
    public ARRAY_TYPE
@@ -70,9 +71,7 @@ public:
 
    comparable_eq_array operator -(const comparable_eq_array & a) const;
 
-   
 
-   
    using ARRAY_TYPE::operator =;
    comparable_eq_array & operator = (const comparable_eq_array & array)
    {
@@ -131,6 +130,9 @@ public:
    }
 
 };
+
+
+
 
 //template < class TYPE, class ARG_TYPE, class ARRAY_TYPE>
 //comparable_eq_array<  TYPE,  ARG_TYPE,  ARRAY_TYPE>::
@@ -398,6 +400,29 @@ operator - (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a) const
    return aRet;
 }
 
+//template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
+//inline bool comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
+//operator == (const comparable_eq_array & a) const
+//{
+//
+//   if(this == &a)
+//   {
+//
+//
+//
+//   }
+//
+//   if(this->size() != a.size())
+//   {
+//
+//      return false;
+//
+//   }
+//
+//
+//
+//}
+
 template <class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 inline comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > &  comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE >::
 operator |= (const comparable_eq_array < TYPE, ARG_TYPE, ARRAY_TYPE > & a)
@@ -542,38 +567,3 @@ erase_array(const comparable_eq_array & a)
 
 
 
-template < indexed_array ARRAY1, indexed_array ARRAY2 >
-bool operator == (const ARRAY1 & array1, const ARRAY2 & array2)
-{
-
-   if (array1.get_size() != array2.get_size())
-   {
-
-      return false;
-
-   }
-
-   for (::index i = 0; i < array1.get_size(); i++)
-   {
-
-      if (array1.element_at(i) != array2.element_at(i))
-      {
-
-         return false;
-
-      }
-
-   }
-
-   return true;
-
-}
-
-
-template < indexed_array ARRAY1, indexed_array ARRAY2 >
-bool operator != (const ARRAY1 & array1, const ARRAY2 & array2)
-{
-
-   return !operator==(array1, array2);
-
-}

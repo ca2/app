@@ -2,6 +2,7 @@
 
 
 #include "key.h"
+#include "message.h"
 
 
 namespace database

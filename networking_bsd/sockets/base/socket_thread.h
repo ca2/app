@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "networking_bsd/sockets/_collection.h"
+
+
 namespace sockets_bsd
 {
 

@@ -1,4 +1,7 @@
 ﻿#include "framework.h"
+#include "system.h"
+#include "application.h"
+#include "session.h"
 #include "acme/parallelization/pool.h"
 #include "acme/platform/system_setup.h"
 #include "aqua/constant/idpool.h"

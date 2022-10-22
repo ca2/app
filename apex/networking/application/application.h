@@ -2,46 +2,54 @@
 #pragma once
 
 
+#include "application_handler.h"
 
-class CLASS_DECL_APEX networking_application :
-   virtual public ::networking_application_handler
+
+namespace networking
 {
-protected:
-
-   
-   string_map < ::pointer<::networking_application_handler >>  m_maphandler;
 
 
-public:
+   class CLASS_DECL_APEX application :
+      virtual public ::networking::application_handler
+   {
+   protected:
 
 
-   ::pointer<::netserver::socket_thread_base>                m_psocketthread;
+      string_map < ::pointer<::networking::application_handler >>  m_maphandler;
 
 
-   networking_application();
-   ~networking_application() override;
+   public:
 
 
-   void initialize(::object* pobject) override;
+      ::pointer<::netserver::socket_thread_base>                m_psocketthread;
 
 
-   void create_networking_application();
-
-   
-   virtual i32 get_current_port();
+      application();
+      ~application() override;
 
 
-   virtual i32 wait_get_current_port(const ::duration & duration);
+      void initialize(::object* pobject) override;
 
 
-   virtual void add_handler(const ::string& strPrefix, networking_application_handler* phandler);
+      void create_networking_application();
 
 
-   ::e_status on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost) override;
+      virtual i32 get_current_port();
 
 
-};
+      virtual i32 wait_get_current_port(const ::duration & duration);
 
+
+      virtual void add_handler(const ::string& strPrefix, ::networking::application_handler* phandler);
+
+
+      ::e_status on_html_response(::string & strHtml, const ::string& strUrl, const ::property_set& setPost) override;
+
+
+   };
+
+
+} // namespace networking
 
 
 

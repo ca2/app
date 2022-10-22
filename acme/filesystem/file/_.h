@@ -1,13 +1,13 @@
 #pragma once
 
 
-#include "item.h"
+//#include "item.h"
 
 
 #include "plain_text_file_options.h"
 
 
-#include "stdio_file.h"
+//#include "stdio_file.h"
 
 
 
@@ -30,41 +30,6 @@ CLASS_DECL_ACME string file_md5_dup(const char* psz);
 /////////////////////////////////////////////////////
 
 
-class CLASS_DECL_ACME sync_io_error
-{
-public:
-
-
-   int   m_iGenerateBefore;
-   int   m_iErrorBefore;
-   int * m_piError;
-
-
-   sync_io_error(int * piError = nullptr)
-   {
-      m_iGenerateBefore = get_generate_sync_io_error();
-      m_iErrorBefore = get_sync_io_error();
-      set_sync_io_error(0);
-      set_generate_sync_io_error(1);
-      m_piError = piError;
-   }
-
-   ~sync_io_error()
-   {
-      if (m_piError != nullptr)
-      {
-         *m_piError = get_sync_io_error();
-      }
-      set_generate_sync_io_error(m_iGenerateBefore);
-      set_sync_io_error(m_iErrorBefore);
-   }
-
-   bool none() const { return get_sync_io_error() == 0; }
-
-
-   operator bool() const { return get_sync_io_error() != 0; }
-
-};
 
 
 namespace file
@@ -156,23 +121,23 @@ CLASS_DECL_ACME ::file::path dir_base_module();
 
 #include "dir.h"
 
-#include "composite.h"
+//#include "composite.h"
 
 //#include "serializable.h"
 
-#include "path.h"
+//#include "path.h"
 
-#include "buffer.h"
+//#include "buffer.h"
 
-#include "text_file.h"
+//#include "text_file.h"
 
 //#include "memory_file.h"
 
-#include "string_buffer.h"
+//#include "string_buffer.h"
 
-#include "text_stream.h"
+//#include "text_stream.h"
 
-#include "payload_stream.h"
+//#include "payload_stream.h"
 
 
 
@@ -219,7 +184,7 @@ namespace file
 
 
 
-#include "item_array.h"
+//#include "item_array.h"
 
 
 //#include "html_file.h"

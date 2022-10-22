@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/constant/message.h"
 #include "acme/constant/simple_command.h"
 #include "acme/handler/item.h"
 #include "check.h"

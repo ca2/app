@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-#include "acme/primitive/primitive/echeck.h"
+//#include "acme/primitive/primitive/echeck.h"
 
 
 namespace user

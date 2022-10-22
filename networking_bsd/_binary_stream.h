@@ -99,3 +99,50 @@ binary_stream < FILE > & operator >>(::binary_stream < FILE > & stream, networki
 
 }
 
+
+
+template < typename FILE >
+inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::in6_addr & addr)
+{
+
+   s.write(&addr, sizeof(addr));
+
+   return s;
+
+}
+
+
+template < typename FILE >
+inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::in6_addr & addr)
+{
+
+   s.read(&addr, sizeof(addr));
+
+   return s;
+
+}
+
+
+template < typename FILE >
+inline binary_stream < FILE > & operator <<(binary_stream < FILE > & s, const ::in_addr & addr)
+{
+
+   s.write(&addr, sizeof(addr));
+
+   return s;
+
+}
+
+
+template < typename FILE >
+inline binary_stream < FILE > & operator >>(binary_stream < FILE > & s, ::in_addr & addr)
+{
+
+   s.read(&addr, sizeof(addr));
+
+   return s;
+
+}
+
+
+

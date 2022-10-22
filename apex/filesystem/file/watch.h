@@ -26,42 +26,6 @@ namespace file
    class watch;
    class watcher;
    class listener;
-
-   
-
-
-
-   //template < typename PRED >
-   //class predicate_listener :
-   //   virtual public listener
-   //{
-   //public:
-
-
-   //   PRED m_predicate;
-   //   
-
-   //   predicate_listener(PRED pred) :
-   //      m_predicate(pred)
-   //   {
-   //   }
-
-   //   /// Handles the action file action
-   //   /// @lparam watchwatch_id The watch watch_id for the directory
-   //   /// @lparam dir The directory
-   //   /// @lparam filename The filename that was accessed (not full path)
-   //   /// @lparam action Action that was performed
-   //   virtual void handle_file_action(::file::action * paction) override
-   //   {
-
-   //      m_predicate(paction);
-
-   //   }
-
-
-   //};
-
-
    class os_watch;
 
 
@@ -103,49 +67,10 @@ namespace file
       void _rescan();
 
 
-
    };
 
    
-   class os_watcher;
-   
-
-   class CLASS_DECL_APEX watcher :
-      virtual public ::thread
-   {
-   public:
-
-      
-      void *               m_pThis;
-
-      typedef ::map < watch_id, ::pointer<watch >>watch_map;
-
-      watch_map            m_watchmap;
-
-      watch_id             m_atomLast;
-
-      bool                 m_bCreateWatchThread;
-
-
-      watcher();
-      ~watcher() override;
-
-
-      virtual watch_id add_watch(const ::file::path & pathFolder, const listener & listener, bool bRecursive);
-
-      virtual void erase_watch(const ::file::path & pathFolder);
-
-      virtual void erase_watch(watch_id watch_id, ::function < void () > functionErased = nullptr);
-
-      virtual void run() override;
-
-      virtual bool step() override;
-
-
-   };//end file_watcher
-
-
-} // namespace file_watcher
+} // namespace file
 
 
 

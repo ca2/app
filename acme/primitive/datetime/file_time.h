@@ -1,8 +1,6 @@
 ﻿#pragma once
 
 
-
-
 class CLASS_DECL_ACME file_time
 {
 public:

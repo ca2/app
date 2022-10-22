@@ -5,6 +5,7 @@
 #include "apex/networking/networking.h"
 #include "address.h"
 #include "networking_bsd/sockets/ssl/client_context_map.h"
+#include "sockets/_collection.h"
 
 
 namespace networking_bsd
@@ -98,16 +99,16 @@ namespace networking_bsd
       ::count                          m_countHttpPostBoundary;
       ::mutex                          m_mutexHttpPostBoundary;
 
-      ::sockets_bsd::resolv_cache_t                   m_resolvcache;
-      ::sockets_bsd::resolv_timeout_t                 m_resolvtimeout;
-      ::mutex                          m_mutexResolvCache;
-      //::pointer<::sockets::net>       m_pnet;
+      ::sockets_bsd::resolv_cache_t       m_resolvcache;
+      ::sockets_bsd::resolv_timeout_t     m_resolvtimeout;
+      ::mutex                             m_mutexResolvCache;
+      //::pointer<::sockets::net>         m_pnet;
 #ifdef WINDOWS
       ::net::port_forward_pointer      m_pportforward;
 #endif
 
-      ::mutex                          m_mutexPool;
-      ::sockets_bsd::socket_map                       m_pool; ///< Active sockets map
+      ::mutex                             m_mutexPool;
+      ::sockets_bsd::socket_map           m_pool; ///< Active sockets map
 
 
       networking();

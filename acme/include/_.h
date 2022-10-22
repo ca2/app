@@ -279,7 +279,7 @@ class holdee
 
 
 
-
+#define APPLICATION_INCLUDE "acme/platform/application.h"
 #define APPLICATION_CLASS ::acme::application
 
 
@@ -833,7 +833,7 @@ class manager;
 class topic;
 class context;
 class handler;
-template < typename RESULT > class process;
+//template < typename RESULT > class process;
 class extended_topic;
 
 
@@ -3103,39 +3103,39 @@ inline bool failed(const ::property &set) { return !::succeeded(set); }
 //#include "acme/primitive/primitive/_factory_prefix.h"
 
 
-#include "acme/primitive/collection/decl.h"
+//#include "acme/primitive/collection/decl.h"
 
-#include "acme/primitive/collection/raw_array_decl.h"
-
-
-#include "acme/primitive/collection/comparable_eq_array.h"
-#include "acme/primitive/collection/comparable_array.h"
-#include "acme/primitive/collection/comparable_raw_array.h"
-
-
-#include "acme/primitive/collection/pointer_array_process.h"
-
-#include "acme/primitive/collection/pointer_array.h"
-
-#include "acme/primitive/primitive/id_array.h"
-
-#include "acme/primitive/primitive/element_array.h"
+//#include "acme/primitive/collection/raw_array_decl.h"
+//
+//
+//#include "acme/primitive/collection/comparable_eq_array.h"
+//#include "acme/primitive/collection/comparable_array.h"
+//#include "acme/primitive/collection/comparable_raw_array.h"
+//
+//
+//#include "acme/primitive/collection/pointer_array_process.h"
+//
+//#include "acme/primitive/collection/pointer_array.h"
+//
+//#include "acme/primitive/primitive/atom_array.h"
+//
+//#include "acme/primitive/primitive/element_array.h"
 
 
 
 
 
 //#include "acme/primitive/collection/_papaya_array_decl.h"
-#include "acme/primitive/collection/_papaya_heap.h"
+//#include "acme/primitive/collection/_papaya_heap.h"
 
 
-#include "acme/primitive/collection/address_array.h"
+//#include "acme/primitive/collection/address_array.h"
 
 
-using element_address_array = ::address_array<matter *>;
+//using element_address_array = ::address_array<matter *>;
 
 
-#include "acme/primitive/collection/_papaya.h"
+//#include "acme/primitive/collection/_papaya.h"
 
 class sticker;
 
@@ -3319,26 +3319,20 @@ namespace file
 
 #include "acme/constant/filesystem.h"
 
-#include "acme/filesystem/filesystem/file_path.h"
-
-#include "acme/primitive/datetime/file_time_span.h"
-
-#include "acme/primitive/datetime/file_time.h"
-
 #include "acme/filesystem/filesystem/path.h"
 
 
 #include "acme/filesystem/filesystem/path_object.h"
 
 
-#include "acme/primitive/collection/_collection.h"
+//#include "acme/primitive/collection/_collection.h"
 
 using procedure_list = ::list < ::procedure >;
 
 
 
 
-#include "acme/primitive/primitive/material_object.h"
+//#include "acme/primitive/primitive/material_object.h"
 
 
 
@@ -3359,22 +3353,22 @@ using procedure_list = ::list < ::procedure >;
 #include "acme/graphics/draw2d/color.h"
 
 
-#include "acme/primitive/primitive/payload.h"
+//#include "acme/primitive/primitive/payload.h"
 
 
-#include "acme/primitive/collection/payload_array.h"
+//#include "acme/primitive/collection/payload_array.h"
 
 
-#include "acme/primitive/primitive/property.h"
+//#include "acme/primitive/primitive/property.h"
 
 
-#include "acme/primitive/primitive/property_set.h"
+//#include "acme/primitive/primitive/property_set.h"
 
 
-#include "acme/primitive/primitive/property_set_papaya.h"
+//#include "acme/primitive/primitive/property_set_papaya.h"
 
 
-#include "acme/filesystem/filesystem/path_array.h"
+//#include "acme/filesystem/filesystem/path_array.h"
 
 
 #include "acme/filesystem/filesystem/enumerator.h"
@@ -3396,7 +3390,7 @@ using procedure_list = ::list < ::procedure >;
 #include "acme/parallelization/critical_section.h"
 
 
-#include "acme/primitive/primitive/factory.h"
+//#include "acme/primitive/primitive/factory.h"
 
 
 CLASS_DECL_ACME void add_release_on_end(::matter * pmatter);
@@ -3657,11 +3651,11 @@ inline auto &__typed(::pointer<POINTER_TYPE>*pp) { return *pp->operator POINTER_
 #include "acme/filesystem/file/translatable.h"
 #include "acme/filesystem/file/streamable.h"
 #include "acme/filesystem/file/streamable_composite.h"
-#include "acme/filesystem/file/file.h"
-#include "acme/filesystem/file/stream.h"
+//#include "acme/filesystem/file/file.h"
+//#include "acme/filesystem/file/stream.h"
 //#include "acme/filesystem/file/binary_stream.h"
-#include "acme/filesystem/file/payload_stream.h"
-#include "acme/filesystem/file/string_buffer.h"
+//#include "acme/filesystem/file/payload_stream.h"
+//#include "acme/filesystem/file/string_buffer.h"
 //#include "acme/filesystem/file/text_stream.h"
 
 
@@ -3670,7 +3664,7 @@ inline auto &__typed(::pointer<POINTER_TYPE>*pp) { return *pp->operator POINTER_
 //#include "acme/filesystem/filesystem/acme_path.h"
 
 
-#include "acme/exception/_dump_context.h"
+//#include "acme/exception/_dump_context.h"
 
 
 inline int read_char(u8 *&pdata, memsize &s, char *pch)
@@ -3730,10 +3724,10 @@ using lresult = iptr;
 #include "acme/platform/cmp.h"
 
 
-#include "acme/filesystem/file/string_buffer.h"
+//#include "acme/filesystem/file/string_buffer.h"
 
 
-#include "acme/filesystem/file/payload_stream.h"
+//#include "acme/filesystem/file/payload_stream.h"
 
 
 #include "acme/primitive/primitive/payload2.h"
@@ -4110,7 +4104,7 @@ DECLARE_ENUMERATION(e_element, enum_element);
 using enum_application_capability_array = ::comparable_array < enum_application_capability >;
 
 
-#include "acme/platform/node.h"
+//#include "acme/platform/node.h"
 
 
 #include "acme/platform/predicate_holder.h"
@@ -4140,7 +4134,7 @@ CLASS_DECL_ACME string factory_name(const ::string& strLibrary);
 CLASS_DECL_ACME string library_filter(const ::string& str);
 
 
-#include "acme/regular_expression/_regular_expression.h"
+//#include "acme/regular_expression/_regular_expression.h"
 
 
 #include "acme/platform/log.h"
@@ -4164,8 +4158,8 @@ namespace user
 
 
 //#include "acme/handler/item.h"
-#include "acme/handler/topic.h"
-#include "acme/handler/extended_topic.h"
+//#include "acme/handler/topic.h"
+//#include "acme/handler/extended_topic.h"
 
 
 
@@ -4209,7 +4203,7 @@ class task_tool;
 
 
 
-#include "acme/platform/application.h"
+//#include "acme/platform/application.h"
 
 
 
@@ -4217,7 +4211,7 @@ class task_tool;
 
 
 
-#include "acme/platform/system.h"
+//#include "acme/platform/system.h"
 
 
 
@@ -4235,28 +4229,26 @@ class task_tool;
 #include "acme/platform/_impl.h"
 
 
+//#include "acme/primitive/collection/_papaya_impl.h"
 
 
-#include "acme/primitive/collection/_papaya_impl.h"
+//#include "acme/primitive/collection/_array_base_impl.h"
+//#include "acme/primitive/collection/_array_impl.h"
+//#include "acme/primitive/collection/_array_impl2.h"
+//#include "acme/primitive/collection/_raw_array_impl.h"
+//#include "acme/primitive/collection/_sort_array_impl.h"
+//#include "acme/primitive/collection/_papaya_array_impl.h"
+//#include "acme/primitive/collection/_tiny_array_impl.h"
 
+//#include "acme/primitive/collection/_list_impl.h"
+//#include "acme/primitive/collection/_map_impl.h"
+//#include "acme/primitive/collection/_set_impl.h"
 
-#include "acme/primitive/collection/_array_base_impl.h"
-#include "acme/primitive/collection/_array_impl.h"
-#include "acme/primitive/collection/_array_impl2.h"
-#include "acme/primitive/collection/_raw_array_impl.h"
-#include "acme/primitive/collection/_sort_array_impl.h"
-#include "acme/primitive/collection/_papaya_array_impl.h"
-#include "acme/primitive/collection/_tiny_array_impl.h"
+//#include "acme/primitive/collection/_sort_map_impl.h"
 
-#include "acme/primitive/collection/_list_impl.h"
-#include "acme/primitive/collection/_map_impl.h"
-#include "acme/primitive/collection/_set_impl.h"
+//#include "acme/primitive/collection/_fifo_map_impl.h"
 
-#include "acme/primitive/collection/_sort_map_impl.h"
-
-#include "acme/primitive/collection/_fifo_map_impl.h"
-
-#include "acme/primitive/collection/_papaya_array2d_impl.h"
+//#include "acme/primitive/collection/_papaya_array2d_impl.h"
 
 
 #include "acme/primitive/string/_c_impl.h"
@@ -4274,7 +4266,7 @@ class task_tool;
 #include "acme/primitive/mathematics/_impl.h"
 
 
-#include "acme/primitive/collection/_string_array_impl.h"
+//#include "acme/primitive/collection/_string_array_impl.h"
 
 
 #include "acme/primitive/primitive/_impl.h"
@@ -4336,7 +4328,7 @@ class task_tool;
 #include "acme/primitive/primitive/_payload_impl.h"
 
 
-#include "acme/primitive/primitive/_property_object_impl.h"
+//#include "acme/primitive/primitive/_property_object_impl.h"
 
 
 #include "acme/primitive/primitive/_interlocked_count_impl.h"

@@ -1,7 +1,7 @@
 #pragma once
 
 
-using id_array = ::comparable_array < identification >;
+using atom_array = ::comparable_array < identification >;
 
 
 

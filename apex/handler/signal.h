@@ -2,6 +2,10 @@
 #pragma once
 
 
+
+#include "acme/handler/extended_topic.h"
+
+
 class CLASS_DECL_APEX signal :
    virtual public ::extended_topic
 {
@@ -83,7 +87,7 @@ public:
 };
 
 
-using signal_map = ::id_map < ::pointer<class ::signal>>;
+using signal_map = ::atom_map < ::pointer<class ::signal>>;
 
 
 

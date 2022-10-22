@@ -1,5 +1,6 @@
 #include "framework.h"
-#include "apex/message/command.h"
+#include "command.h"
+#include "channel.h"
 
 
 namespace message

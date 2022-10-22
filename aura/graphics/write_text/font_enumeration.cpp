@@ -2,6 +2,7 @@
 #include "font_enumeration.h"
 #include "font_enumeration_item.h"
 #include "font.h"
+#include "acme/constant/id.h"
 #include "aura/graphics/draw2d/draw2d.h"
 #include "aura/graphics/write_text/fonts.h"
 

@@ -6,6 +6,7 @@
 #include "acme/user/user/check.h"
 #include "acme/user/user/text.h"
 #include "acme/user/user/command_update_target.h"
+#include "message.h"
 
 
 namespace message

@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "transaction.h"
+
+
 namespace http
 {
 

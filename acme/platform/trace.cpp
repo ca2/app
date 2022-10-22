@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "trace.h"
+#include "acme/constant/message.h"
 #include "acme/operating_system.h"
 #include <stdio.h>
 //#include "acme/_defer.h"

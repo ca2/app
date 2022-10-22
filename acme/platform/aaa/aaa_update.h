@@ -25,7 +25,7 @@ protected:
    static void _erase(::matter* pmatter);
 
    static ::critical_section* g_pcs;
-   static ::id_map < ::pointer<update >> g_pmap;
+   static ::atom_map < ::pointer<update >> g_pmap;
    static bool g_bDestroyAll;
 
 

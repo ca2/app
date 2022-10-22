@@ -9,6 +9,7 @@
 #include "text_to_speech_client.h"
 #include "aqua/multimedia/audio/audio.h"
 #include "aqua/multimedia/audio/speaker.h"
+#include "aqua/platform/system.h"
 
 
 namespace text_to_speech

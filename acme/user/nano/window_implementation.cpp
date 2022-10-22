@@ -4,6 +4,8 @@
 #include "framework.h"
 #include "_nano.h"
 #include "acme/constant/id.h"
+#include "acme/handler/topic.h"
+#include "acme/platform/node.h"
 #include "display.h"
 
 

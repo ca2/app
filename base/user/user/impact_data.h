@@ -40,7 +40,7 @@ namespace user
 
 
    class CLASS_DECL_BASE impact_data_map :
-      public id_map < ::pointer<impact_data >>
+      public atom_map < ::pointer<impact_data >>
    {
    public:
 

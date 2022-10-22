@@ -5,6 +5,10 @@ CLASS_DECL_APEX int get_member_function_offset();
 CLASS_DECL_APEX int get_member_function_size();
 
 
+#include "predicate_handler.h"
+#include "acme/primitive/collection/atom_map.h"
+
+
 namespace message
 {
 
@@ -117,7 +121,7 @@ namespace message
    using dispatcher_array = ::array < dispatcher >;
 
 
-   using dispatcher_map = ::id_map < dispatcher_array >;
+   using dispatcher_map = ::atom_map < dispatcher_array >;
 
    
 } // namespace message

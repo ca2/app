@@ -1,12 +1,15 @@
 #pragma once
 
 
+#include "cookie.h"
+
+
 namespace http
 {
 
 
    class CLASS_DECL_APEX transaction :
-      virtual public ::object
+      virtual public ::matter
    {
    public:
 

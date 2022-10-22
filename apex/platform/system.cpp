@@ -1,12 +1,19 @@
 ﻿#include "framework.h"
+#include "acme/constant/message.h"
+#include "acme/constant/id.h"
+#include "acme/exception/dump_context.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "apex/crypto/crypto.h"
+#include "apex/message/message.h"
 #include "apex/operating_system.h"
+#include "apex/platform/context.h"
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
+#include "apex/platform/shell_launcher.h"
+#include "apex/networking/http/context.h"
 #include "apex/networking/networking.h"
-#include "acme/constant/id.h"
+#include "source/app/apex/operating_system/department.h"
 #include "acme/platform/profiler.h"
 #include "acme/platform/system_setup.h"
 #include "apex/id.h"
@@ -273,7 +280,7 @@ namespace apex
       //}
 
       //estatus =
-      __construct_new(m_pprocess);
+      __construct_new(m_poperatingsystem);
       
       //if (!estatus)
       //{
@@ -2096,6 +2103,12 @@ pacmedirectory->create("/ca2core");
    }
 
 
+   ::apex::node * system::node()
+   {
+
+      return m_pnode ? m_pnode->m_papexnode : nullptr;
+
+   }
 
 
    void system::process_term()
@@ -2386,10 +2399,10 @@ pacmedirectory->create("/ca2core");
 //}
 
 
-   ::operating_system::department & system::process()
+   ::operating_system::department & system::operating_system()
    {
 
-      return *m_pprocess;
+      return *m_poperatingsystem;
 
    }
 

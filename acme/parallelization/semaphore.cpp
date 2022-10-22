@@ -93,7 +93,7 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
 
       string strPath;
 
-      auto psystem = m_psystem;
+      auto psystem = ::get_system();
 
       auto pacmedirectory = psystem->m_pacmedirectory;
 

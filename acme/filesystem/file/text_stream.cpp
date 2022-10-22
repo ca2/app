@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "text_stream.h"
 
 
 string __string_image(const ::property_set & set)
@@ -14,6 +15,19 @@ text_stream::~text_stream()
    
    
 }
+
+
+string text_stream::read_string()
+{
+
+   string str;
+
+   m_p->read_string(str);
+
+   return str;
+
+}
+
 
 
 bool text_stream::is_stream_null()

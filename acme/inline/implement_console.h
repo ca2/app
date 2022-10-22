@@ -2,6 +2,7 @@
 
 #include "_main_hold.h"
 #include "acme/_api.h"
+#include APPLICATION_INCLUDE
 
 //void stage();
 ::acme::system * acme_system_init();
@@ -35,6 +36,7 @@ namespace acme
    void finalize();
 
 }
+
 
 
 #ifdef WINDOWS

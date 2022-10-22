@@ -5,6 +5,8 @@
 // Developers can created local versions or inline/template libraries for optmized instantiation
 
 
+#if !defined(LINUX)
+
 CLASS_DECL_ACME ::string __string(const unsigned long & ul)
 {
 
@@ -12,13 +14,14 @@ CLASS_DECL_ACME ::string __string(const unsigned long & ul)
 
 }
 
-
 CLASS_DECL_ACME::string __string(const long int & i)
 {
 
    return i64toa_dup(i);
 
 }
+
+#endif
 
 
 CLASS_DECL_ACME::string __string(const bool & b)

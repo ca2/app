@@ -379,7 +379,7 @@ inline POINT_TYPE & subtract(POINT_TYPE & point, const POINT_TYPE2 & point2)
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle POINT_TYPE >
+template < primitive_rectangle RECTANGLE_TYPE, primitive_point POINT_TYPE >
 inline RECTANGLE_TYPE & add(RECTANGLE_TYPE & rectangle, const POINT_TYPE & point)
 {
 
@@ -755,7 +755,7 @@ bool is_equal(const SIZE_TYPE1 & size1, const SIZE_TYPE2 & size2)
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, typename L, typename T, typename R, typename B >
+template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_number T, primitive_number R, primitive_number B >
 RECTANGLE_TYPE & assign(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 {
 
@@ -769,7 +769,7 @@ RECTANGLE_TYPE & assign(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 }
 
 
-template < primitive_rectangle RECTANGLE, typename L, typename T, typename W, typename H >
+template < primitive_rectangle RECTANGLE, primitive_number L, primitive_number T, primitive_number W, primitive_number H >
 RECTANGLE & set_dimension(RECTANGLE & rectangle, L l, T t, W w, H h)
 {
 
@@ -828,7 +828,7 @@ RECTANGLE_TYPE & null(RECTANGLE_TYPE & rectangle)
 
 
 
-template < primitive_rectangle RECTANGLE, typename X >
+template < primitive_rectangle RECTANGLE, primitive_number X >
 inline bool contains_x(const RECTANGLE & rectangle, X x)
 {
 
@@ -837,7 +837,7 @@ inline bool contains_x(const RECTANGLE & rectangle, X x)
 }
 
 
-template < primitive_rectangle RECTANGLE, typename Y >
+template < primitive_rectangle RECTANGLE, primitive_number Y >
 inline bool contains_y(const RECTANGLE & rectangle, Y y)
 {
 
@@ -846,7 +846,7 @@ inline bool contains_y(const RECTANGLE & rectangle, Y y)
 }
 
 
-template < typename RECTANGLE, typename X, typename Y >
+template < typename RECTANGLE, primitive_number X, primitive_number Y >
 inline bool contains(const RECTANGLE & rectangle, X x, Y y)
 {
 
@@ -855,7 +855,7 @@ inline bool contains(const RECTANGLE & rectangle, X x, Y y)
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, typename L, typename T, typename R, typename B >
+template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_number T, primitive_number R, primitive_number B >
 inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 {
 
@@ -869,16 +869,16 @@ inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 }
 
 
-template < typename RECTANGLE_TYPE, typename RECT_TYPE2 >
+template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE2 >
 inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & rect2)
 {
 
-   return rect_inflate(rectangle, rect2.left, rect2.top, rect2.right, rect2.bottom);
+   return inflate(rectangle, rect2.left, rect2.top, rect2.right, rect2.bottom);
 
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, typename RECT_TYPE2 >
+template < primitive_rectangle RECTANGLE_TYPE, primitive_rectangle RECT_TYPE2 >
 inline RECTANGLE_TYPE & multiply_inline(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & rect2)
 {
 
@@ -892,7 +892,7 @@ inline RECTANGLE_TYPE & multiply_inline(RECTANGLE_TYPE & rectangle, const RECT_T
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, typename L, typename T, typename R, typename B >
+template < primitive_rectangle RECTANGLE_TYPE, primitive_number L, primitive_number T, primitive_number R, primitive_number B >
 inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, L l, T t, R r, B b)
 {
 
@@ -915,7 +915,7 @@ inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, const RECT_TYPE2 & r
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, typename X, typename Y >
+template < primitive_rectangle RECTANGLE_TYPE, primitive_number X, primitive_number Y >
 inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, X x, Y y)
 {
 
@@ -923,7 +923,7 @@ inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, X x, Y y)
 
 }
 
-template < primitive_rectangle RECTANGLE_TYPE, typename X, typename Y >
+template < primitive_rectangle RECTANGLE_TYPE, primitive_number X, primitive_number Y >
 inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, X x, Y y)
 {
 
@@ -932,7 +932,7 @@ inline RECTANGLE_TYPE & deflate(RECTANGLE_TYPE & rectangle, X x, Y y)
 }
 
 
-template < primitive_rectangle RECTANGLE_TYPE, typename UNIT >
+template < primitive_rectangle RECTANGLE_TYPE, primitive_number UNIT >
 inline RECTANGLE_TYPE & inflate(RECTANGLE_TYPE & rectangle, UNIT u)
 {
 
@@ -984,5 +984,24 @@ inline bool polygon_contains(const POINT1 * ppPolygon, i32 iCount, const POINT2 
    return oddNodes;
 
 }
+
+
+
+
+template < primitive_point POINT, primitive_point POINT2 >
+inline POINT & operator -= (POINT & point, const POINT2 & pointOffset) { ::subtract(point, pointOffset); return point; }
+
+template < primitive_point POINT, primitive_point POINT2 >
+inline POINT & operator += (POINT & point, const POINT2 & pointOffset) { ::add(point, pointOffset); return point; }
+
+
+
+template < primitive_rectangle RECTANGLE, primitive_point POINT >
+inline RECTANGLE & operator -= (RECTANGLE & rectangle, const POINT & point) { ::subtract(rectangle, point); return rectangle; }
+
+template < primitive_rectangle RECTANGLE, primitive_point POINT >
+inline RECTANGLE & operator += (RECTANGLE & rectangle, const POINT & point) { ::add(rectangle, point); return rectangle; }
+
+
 
 

@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "context.h"
+#include "acme/handler/topic.h"
+#include "acme/handler/extended_topic.h"
 
 
 context::context()

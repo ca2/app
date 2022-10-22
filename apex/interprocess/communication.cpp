@@ -7,6 +7,7 @@
 #include "task.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/platform/node.h"
 #include "apex/constant/method.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/platform/app_launcher.h"
@@ -830,10 +831,10 @@ namespace interprocess
    }
 
 
-   id_array communication::get_pid(const ::string & strApp)
+   atom_array communication::get_pid(const ::string & strApp)
    {
 
-      id_array idaPid;
+      atom_array idaPid;
 
 #if defined(LINUX) || defined(MACOS) || defined(FREEBSD)
 

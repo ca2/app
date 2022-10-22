@@ -6,7 +6,7 @@ namespace http
 
 
    class CLASS_DECL_APEX listener:
-      virtual public object
+      virtual public matter
    {
    public:
 

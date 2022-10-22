@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/filesystem/file/file.h"
 #include "acme/platform/acme.h"
 //#include "acme/platform/static_start_internal.h"
 
@@ -2229,3 +2230,296 @@ bool property_set::payload_bool(const atom & atom, bool bDefault) const
 
 }
 
+
+
+
+//::payload matter::topic(const ::atom & atom)
+//{
+//
+//   auto pproperty = fetch_property(atom);
+//
+//   if (!pproperty)
+//   {
+//
+//      throw ::exception(error_resource);
+//
+//   }
+//
+//   return pproperty;
+//
+//}
+
+
+::index property_set::find_index(const ::atom & atom, ::index i) const
+{
+
+   for(; i < m_nSize; i++)
+   {
+
+      if (m_pData[i]->m_atom == atom)
+      {
+
+         return i;
+
+      }
+
+   }
+
+   return -1;
+
+}
+
+
+
+property & property_set::get(const ::atom & atom)
+{
+
+   auto pproperty = find(atom);
+
+   if (!pproperty)
+   {
+
+      pproperty = memory_new property(atom);
+
+      add_item(pproperty);
+
+   }
+
+   return *pproperty;
+
+}
+
+//#define memory_new ACME_NEW
+
+::property * property_set::find(const ::atom & atom) const
+{
+
+   auto iFind = find_index(atom);
+
+   if(__not_found(iFind))
+   {
+
+      return nullptr;
+
+   }
+
+   return (const_cast < property_set * > (this))->m_pData[iFind];
+
+}
+
+
+::payload property_set::operator()(const ::atom & atom, const ::payload & varDefault) const
+{
+
+   auto pproperty = find(atom);
+
+   if (!pproperty)
+   {
+
+      return varDefault;
+
+   }
+
+   return pproperty;
+
+}
+
+
+::payload & property_set::topic(const atom & atom)
+{
+
+   return set(atom);
+
+}
+
+
+
+
+
+::payload & property_set::set(const ::atom & atom)
+{
+
+   auto pproperty = find(atom);
+
+   if (!pproperty)
+   {
+
+      pproperty = memory_new property(atom);
+
+      add_item(pproperty);
+
+   }
+
+   return *pproperty;
+
+}
+
+
+//#define memory_new ACME_NEW
+
+//property * payload::find_property(const ::atom & atom) const
+//{
+//
+//   if (!casts_to(e_type_property_set))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return propset().find(atom);
+//
+//}
+
+
+//property & payload::get_property(const ::atom & atom)
+//{
+//
+//   return propset().get(atom);
+//
+//}
+
+
+
+//CLASS_DECL_ACME string atom::operator + (const atom & atom) const
+//{
+//
+//   if (is_integer())
+//   {
+//
+//      if (atom.is_integer())
+//      {
+//
+//         return (iptr)(m_i + atom.m_i);
+//
+//      }
+//      else if (atom.is_text())
+//      {
+//
+//         return __string(m_i) + "." + string(atom.m_psz);
+//
+//      }
+//      else
+//      {
+//
+//         return *this;
+//
+//      }
+//
+//   }
+//   else if (atom.is_integer())
+//   {
+//
+//      if (is_text())
+//      {
+//
+//         return string(m_psz) + "." + __string(atom.m_i);
+//
+//      }
+//      else
+//      {
+//
+//         return atom;
+//
+//      }
+//
+//   }
+//   else if (is_text())
+//   {
+//
+//      if (atom.is_text())
+//      {
+//
+//         return string(m_psz) + string(atom.m_psz);
+//
+//      }
+//      else
+//      {
+//
+//         return *this;
+//
+//      }
+//
+//   }
+//   else if (atom.is_text())
+//   {
+//
+//      return atom;
+//
+//   }
+//   else
+//   {
+//
+//      return ::atom();
+//
+//   }
+//
+//}
+
+
+bool property_set::has_property(atom idName) const
+{
+
+   if (::is_null(this))
+   {
+
+      return false;
+
+   }
+
+   const property * pproperty = find(idName);
+
+   return pproperty != nullptr && pproperty->m_etype != ::e_type_new;
+
+}
+
+
+bool property_set::is_true(atom idName, bool bDefault) const
+{
+
+   const property * pproperty = find(idName);
+
+   if (pproperty == nullptr)
+   {
+
+      return bDefault;
+
+   }
+
+   return pproperty->is_true(bDefault);
+
+}
+
+
+::payload property_set::value(atom idName) const
+{
+
+   property * pproperty = find(idName);
+
+   if (pproperty == nullptr)
+   {
+
+      return ::error_not_found;
+
+   }
+
+   return *pproperty;
+
+}
+
+
+::payload property_set::value(atom idName, ::payload varDefault) const
+{
+
+   property * pproperty = find(idName);
+
+   if (pproperty == nullptr)
+   {
+
+      return varDefault;
+
+   }
+
+   return *pproperty;
+
+}

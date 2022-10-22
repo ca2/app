@@ -11,7 +11,7 @@ namespace filemanager
    public:
 
 
-      id_map < ::pointer<data >>                      m_datamap;
+      atom_map < ::pointer<data >>                      m_datamap;
 
       bool                                               m_bRestoring;
 
@@ -38,7 +38,7 @@ namespace filemanager
       ::pointer<data>filemanager_create_data(atom atom);
 
 
-      id_map < ::pointer<data >>& datamap() { return m_datamap; }
+      atom_map < ::pointer<data >>& datamap() { return m_datamap; }
 
 
       void filemanager_set_data(atom idData, data * pdata);

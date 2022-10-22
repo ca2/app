@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "manager.h"
+#include "acme/platform/node.h"
 
 
 critical_section manager::s_criticalsection;

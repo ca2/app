@@ -167,20 +167,20 @@ bool stdin_wait_char(void)
 }
 
 
+void flush_stdin()
+{
+
+   while(stdin_has_char())
+   {
+
+      getchar();
+
+   }
+
+}
+
+
 #endif
 
 
-//void flush_stdin()
-//{
-//
-//   while(stdin_has_char())
-//   {
-//
-//      read_stdin_char();
-//      
-//   }
-//
-//}
-//
-//
 

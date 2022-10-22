@@ -6,7 +6,7 @@
 
 
 critical_section * update::g_pcs = nullptr;
-::id_map < ::pointer<update >>* update::g_pmap = nullptr;
+::atom_map < ::pointer<update >>* update::g_pmap = nullptr;
 bool update::g_bDestroyAll = false;
 
 

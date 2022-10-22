@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "acme/platform/acme.h"
+#include "acme/filesystem/file/file.h"
 #include "acme/operating_system.h"
 #include "acme/primitive/primitive/memory.h"
 
@@ -13,6 +14,69 @@
 #endif
 //extern locale_t ::acme::get_c_locale();
 #endif
+
+
+
+
+
+payload::payload()
+{
+
+   m_etype = e_type_new;
+   //clear_data();
+
+}
+
+
+payload::payload(enum_type etype)
+{
+
+   m_etype = e_type_null;
+
+   set_type(etype, false);
+   //clear_data();
+
+}
+
+
+//payload::payload(const ::e_status & estatus)
+//{
+//
+//   set_type(type_enum_status);
+//
+//   m_estatus = estatus;
+//
+//}
+
+
+//payload::payload(enum_command ecommand)
+//{
+//
+//   set_type(type_enum_command);
+//
+//   m_ecommand = ecommand;
+//
+//}
+
+
+//payload::payload(enum_check echeck)
+//{
+//
+//   set_type(type_enum_check);
+//
+//   m_echeck = echeck;
+//
+//}
+
+
+payload::payload(std::nullptr_t)
+{
+
+   m_etype = e_type_null;
+
+}
+
+
 
 payload::payload(const char * psz)
 {
@@ -7782,3 +7846,736 @@ return nullptr;
 
 
 }
+
+
+
+
+
+
+::payload payload::first() const
+{
+
+   return at(0);
+
+}
+
+
+::payload payload::last() const
+{
+
+   if (array_get_count() == 0)
+   {
+
+      return first();
+
+   }
+   else
+   {
+
+      return at(array_get_upper_bound());
+
+   }
+
+}
+
+
+::payload payload::first()
+{
+
+   return at(0);
+
+}
+
+
+::payload payload::last()
+{
+
+   if (array_get_count() == 0)
+   {
+
+      return first();
+
+   }
+   else
+   {
+
+      return at(array_get_upper_bound());
+
+   }
+
+}
+
+
+
+
+bool strictly_equal(const char * psz, const class ::payload & payload)
+{
+   return payload.m_etype == ::e_type_string && payload.m_str == psz;
+}
+
+bool strictly_equal(const ::string & str, const class ::payload & payload)
+{
+   return payload.m_etype == ::e_type_string && str == payload.m_str;
+}
+
+bool strictly_equal(double d, const class ::payload & payload)
+{
+   return payload.m_etype == ::e_type_f64 && d == payload.m_f64;
+}
+
+bool strictly_equal(::i32 i, const class ::payload & payload)
+{
+   return payload.m_etype == ::e_type_i32 && i == payload.m_i32;
+}
+
+bool strictly_equal(bool b, const class ::payload & payload)
+{
+   return payload.m_etype == ::e_type_bool && is_equivalent(b, payload.m_b);
+}
+
+bool strictly_different(const char * psz, const class ::payload & payload)
+{
+   return !strictly_equal(psz, payload);
+}
+
+bool strictly_different(const ::string & str, const class ::payload & payload)
+{
+   return !strictly_equal(str, payload);
+}
+
+bool strictly_different(double d, const class ::payload & payload)
+{
+   return !strictly_equal(d, payload);
+}
+
+bool strictly_different(::i32 i, const class ::payload & payload)
+{
+   return !strictly_equal(i, payload);
+}
+
+bool strictly_different(bool b, const class ::payload & payload)
+{
+   return !strictly_equal(b, payload);
+}
+
+
+
+void assign(::i8 & i, const payload & payload)
+{
+
+i = payload.i8();
+
+}
+
+
+void assign(::u8 & u, const payload & payload)
+{
+
+u = payload.u8();
+
+}
+
+
+void assign(::i16 & i, const payload & payload)
+{
+
+i = payload.i16();
+
+}
+
+
+void assign(::u16 & u, const payload & payload)
+{
+
+u = payload.u16();
+
+}
+
+
+void assign(::i32 & i, const payload & payload)
+{
+
+i = payload.i32();
+
+}
+
+
+void assign(::u32 & u, const payload & payload)
+{
+
+u = payload.u32();
+
+}
+
+
+void assign(::i64 & i, const payload & payload)
+{
+
+i = payload.i64();
+
+}
+
+
+void assign(::u64 & u, const payload & payload)
+{
+
+u = payload.u64();
+
+}
+
+
+void assign(::f32 & f, const payload & payload)
+{
+
+f = payload.f32();
+
+}
+
+
+void assign(::f64 & f, const payload & payload)
+{
+
+f = payload.f64();
+
+}
+
+
+
+::count payload::get_count() const
+{
+   switch (m_etype)
+   {
+      case e_type_bool:
+         return 1;
+      case e_type_i32_array:
+         return ::is_null(m_pia) ? 0 : m_pia->get_count();
+      case e_type_string_array:
+         return ::is_null(m_pstra) ? 0 : m_pstra->get_count();
+      case e_type_payload_array:
+         return ::is_null(m_ppayloada) ? 0 : m_ppayloada->get_count();
+      case e_type_property_set:
+         return ::is_null(m_ppropertyset) ? 0 : m_ppropertyset->get_count();
+      case e_type_empty:
+      case e_type_null:
+      case e_type_new:
+      case e_type_empty_argument:
+         return 0;
+      default:
+         return 1;
+   }
+}
+
+
+::count payload::array_get_count() const
+{
+   if (m_etype == e_type_new
+       || m_etype == e_type_null
+       || m_etype == e_type_empty
+       || m_etype == e_type_empty_argument)
+   {
+      return -1; // indicates that this ::payload is not an array
+   }
+   else if (is_array())
+      return this->get_count();
+   else
+      return 1; // this ::payload is an scalar or object that can be retrieved through "array_" methods
+}
+
+
+
+index payload::array_get_upper_bound() const
+{
+   if (m_etype == e_type_new
+       || m_etype == e_type_null
+       || m_etype == e_type_empty
+       || m_etype == e_type_empty_argument)
+   {
+      return -1; // indicates that this ::payload is not an array
+   }
+   else if (is_array())
+      return this->get_count() - 1;
+   else
+      return 0; // this ::payload is an scalar or object that can be retrieved through "array_" methods
+}
+
+
+bool payload::is_array() const
+{
+
+   if (m_etype == e_type_string_array
+       || m_etype == e_type_i32_array
+       || m_etype == e_type_payload_array
+       || m_etype == e_type_property_set)
+   {
+      return true;
+   }
+   else if (m_etype == e_type_property)
+   {
+      return this->property().is_array();
+   }
+   else if (m_etype == e_type_element)
+   {
+      return false;
+   }
+   else
+   {
+      return false;
+   }
+}
+
+
+
+//bool operator == (const string& str, const ::payload & payload)
+//{
+//
+//   return str == payload.string();
+//
+//}
+
+
+
+//atom& atom::operator = (const ::payload & payload)
+//{
+//
+//   if (payload.is_null())
+//   {
+//      m_all = {};
+//      return *this;
+//   }
+//   else if (payload.is_empty())
+//   {
+//      return operator =("");
+//   }
+//   else if (payload.is_integer())
+//   {
+//      return operator = (payload.iptr());
+//   }
+//   else
+//   {
+//      return operator = (payload.string());
+//   }
+//
+//}
+//
+//atom& atom::operator = (const property& prop)
+//{
+//
+//   return operator = ((const ::payload&)prop);
+//
+//}
+//
+
+
+
+template < payload_class PAYLOAD >
+::payload payload::operator - (const PAYLOAD & payload2) const
+{
+
+   ::payload payload;
+
+   if (m_etype == ::e_type_i32_array)
+   {
+
+      if (payload2.m_etype == ::e_type_i32_array)
+      {
+
+         payload = ia() - payload2.ia();
+
+      }
+      else
+      {
+
+         payload = *this;
+
+         payload.ia().erase(payload2.i32());
+
+      }
+
+   }
+   else if (m_etype == ::e_type_string_array)
+   {
+
+      if (payload2.m_etype == ::e_type_string_array)
+      {
+
+         payload = stra() - payload2.stra();
+
+      }
+      else if (payload2.is_array())
+      {
+
+         payload = stra() - payload2.stra();
+
+      }
+      else
+      {
+
+         payload = *this;
+
+         payload.stra().erase(payload2.string());
+
+      }
+
+   }
+   else if (m_etype == ::e_type_payload_array)
+   {
+      if (payload2.m_etype == ::e_type_payload_array)
+      {
+         payload = payloada() - payload2.payloada();
+      }
+      else
+      {
+         payload = *this;
+         payload.payloada().erase(payload2);
+      }
+   }
+   else if (is_double() || payload2.is_double())
+   {
+      payload = f64() - payload2.f64();
+   }
+   else if (is_integer() || payload2.is_integer())
+   {
+      payload = i32() - payload2.i32();
+   }
+   else if (is_natural() || payload2.is_natural())
+   {
+      payload = u32() - payload2.u32();
+   }
+   else
+   {
+      payload = atoi(string()) - atoi(payload2.string());
+   }
+   return payload;
+}
+
+template < payload_class PAYLOAD >
+::payload payload::operator + (const PAYLOAD & payload2) const
+{
+
+   ::payload payload;
+
+   if (m_etype == ::e_type_i32_array || m_etype == ::e_type_i32_array)
+   {
+
+      if (m_etype == ::e_type_i32_array)
+      {
+
+         if (payload2.m_etype == ::e_type_i32_array)
+         {
+
+            payload = ia() + payload2.ia();
+
+         }
+         else
+         {
+
+            payload = *this;
+
+            payload.ia().add(payload2.i32());
+
+         }
+
+      }
+      else
+      {
+
+         payload = payload2;
+
+         payload.ia().add(i32());
+
+      }
+
+   }
+   else if (m_etype == ::e_type_string_array || payload2.m_etype == ::e_type_string_array)
+   {
+
+      if (m_etype == ::e_type_string_array)
+      {
+
+         if (payload2.m_etype == ::e_type_string_array)
+         {
+
+            payload = stra() + payload2.stra();
+
+         }
+         else
+         {
+
+            payload = *this;
+
+            payload.stra().add(payload2.string());
+
+         }
+
+      }
+      else
+      {
+
+         payload = payload2;
+
+         payload.stra().add(string());
+
+      }
+
+   }
+   else if (m_etype == ::e_type_payload_array || payload2.m_etype == ::e_type_payload_array)
+   {
+
+      if (payload2.m_etype == ::e_type_payload_array)
+      {
+
+         if (payload2.m_etype == ::e_type_payload_array)
+         {
+
+            payload = payloada() + payload2.payloada();
+
+         }
+         else
+         {
+
+            payload = *this;
+
+            payload.payloada().add(payload2);
+
+         }
+
+      }
+      else
+      {
+
+         payload = payload2;
+
+         payload.payloada().add(*this);
+
+      }
+
+   }
+   else if ((is_double() && payload2.is_number()) || (is_number() && payload2.is_double()))
+   {
+
+      payload = f64() + payload2.f64();
+
+   }
+   else if (is_integer() && payload2.is_integer())
+   {
+
+      payload = i32() + payload2.i32();
+
+   }
+   else if (is_natural() && payload2.is_natural())
+   {
+
+      payload = u32() + payload2.u32();
+
+   }
+   else
+   {
+
+      payload = string() + payload2.string();
+
+   }
+
+   return payload;
+
+}
+
+
+
+
+
+template < payload_class PAYLOAD >
+::payload payload::operator / (const PAYLOAD & payload2) const
+{
+
+   ::payload payload;
+
+   if (m_etype == ::e_type_i32_array)
+   {
+      if (payload2.m_etype == ::e_type_i32_array)
+      {
+         payload = *this;
+         payload.ia().intersect(payload2.ia());
+      }
+      else
+      {
+         payload = *this;
+         payload.ia().divide(payload2.i32());
+      }
+   }
+   else if (m_etype == ::e_type_string_array)
+   {
+      if (payload2.m_etype == ::e_type_string_array)
+      {
+         //payload = stra().intersect(payload2.stra());
+      }
+      else
+      {
+         payload = *this;
+         payload.stra().erase(payload2.string());
+      }
+   }
+   else if (m_etype == ::e_type_payload_array)
+   {
+      if (payload2.m_etype == ::e_type_payload_array)
+      {
+         //payload = payloada() / payload2.payloada();
+      }
+      else
+      {
+         payload = *this;
+         payload.payloada().erase(payload2);
+      }
+   }
+   else if (is_double() || payload2.is_double())
+   {
+      payload = f64() / payload2.f64();
+   }
+   else if (is_integer() || payload2.is_integer())
+   {
+      payload = i32() / payload2.i32();
+   }
+   else if (is_natural() || payload2.is_natural())
+   {
+      payload = u32() / payload2.u32();
+   }
+   else
+   {
+      payload = atoi(string()) / atoi(payload2.string());
+   }
+   return payload;
+}
+
+
+
+template < payload_class PAYLOAD >
+::payload payload:: operator * (const PAYLOAD & payload2) const
+{
+
+   ::payload payload;
+
+   if (m_etype == ::e_type_i32_array || m_etype == ::e_type_i32_array)
+   {
+
+      ::papaya::array::intersection(payload.ia(), ia(), payload2.ia());
+
+   }
+   else if (m_etype == ::e_type_string_array || payload2.m_etype == ::e_type_string_array)
+   {
+
+      ::papaya::array::intersection(payload.stra(), stra(), payload2.stra());
+
+   }
+   else if (m_etype == ::e_type_payload_array || payload2.m_etype == ::e_type_payload_array)
+   {
+
+      ::papaya::array::intersection(payload.payloada(), payloada(), payload2.payloada());
+
+   }
+   else if (is_double() || payload2.is_double())
+   {
+
+      payload = f64() * payload2.f64();
+
+   }
+   else if (is_integer() || payload2.is_integer())
+   {
+
+      payload = i32() * payload2.i32();
+
+   }
+   else if (is_natural() || payload2.is_natural())
+   {
+
+      payload = u32() * payload2.u32();
+
+   }
+   else
+   {
+
+      payload = get_string().intersection(payload2.to_string());
+
+   }
+
+   return payload;
+
+}
+
+
+
+
+
+
+
+
+template < payload_class PAYLOAD >
+::payload & payload:: operator -= (const PAYLOAD & payload)
+{
+
+   *this = *this - payload;
+
+   return *this;
+
+}
+
+
+template < payload_class PAYLOAD >
+::payload & payload:: operator += (const PAYLOAD & payload)
+{
+
+   *this = *this + payload;
+
+   return *this;
+
+}
+
+
+template < payload_class PAYLOAD >
+::payload & payload:: operator /= (const PAYLOAD & payload)
+{
+
+   *this = *this / payload;
+
+   return *this;
+
+}
+
+
+template < payload_class PAYLOAD >
+::payload & payload:: operator *= (const PAYLOAD & payload)
+{
+
+   *this = *this * payload;
+
+   return *this;
+
+}
+
+
+
+
+
+
+
+//payload::operator bool() const { return this->get_bool(); }
+//
+//payload::operator ::i8() const { return this->i8(); }
+//payload::operator ::u8() const { return this->u8(); }
+//payload::operator ::i16() const { return this->i16(); }
+//payload::operator ::u16() const { return this->u16(); }
+//payload::operator ::i32() const { return this->i32(); }
+//payload::operator ::u32() const { return this->u32(); }
+//payload::operator ::i64() const { return this->i64(); }
+//payload::operator ::u64() const { return this->u64(); }
+//payload::operator ::f32() const { return this->f32(); }
+//payload::operator ::f64() const { return this->f64(); }
+//
+//
+//payload::operator ::string() const
+//{
+//
+//   return this->string();
+//
+//}
+
+
+

@@ -3,6 +3,7 @@
 
 #include "aura/filesystem/filemanager/item_action.h"
 #include "aura/platform/context.h"
+#include "aqua/platform/session.h"
 
 
 namespace aura
@@ -36,7 +37,7 @@ namespace aura
       //index                                                 m_iMainMonitor;
       //index                                                 m_iMainWorkspace;
 
-      id_map < ::user::interaction * >                      m_mapboundui;
+      atom_map < ::user::interaction * >                      m_mapboundui;
 
       ::pointer<::write_text::font_list>                     m_pfontlistSingleColumn;
       ::pointer<::user::user>                            m_puser;

@@ -234,7 +234,7 @@ public:
    void assign(memsize iCount, uchar uch);
 
 
-   inline void append(const block & block);
+   void append(const block & block);
    void append(const void * pdata, memsize iCount);
    void append(memsize iCount, uchar uch);
    void append(const memory_base & memory, memsize iStart = 0, memsize iCount = -1);

@@ -21,7 +21,7 @@ public:
    using UNIT_TYPE = typename POINT_TYPE::UNIT_TYPE;
    using SIZE_TYPE = typename POINT_TYPE::SIZE_TYPE;
    using RECTANGLE_TYPE = typename POINT_TYPE::RECTANGLE_TYPE;
-   using RECTANGLE_BASE_TYPE = typename RECTANGLE_TYPE::RECTANGLE_BASE_TYPE;
+   //using RECTANGLE_BASE_TYPE = typename RECTANGLE_TYPE::RECTANGLE_BASE_TYPE;
 
 
    inline point_array_base() : comparable_array < POINT_TYPE >() {}

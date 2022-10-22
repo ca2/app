@@ -17,7 +17,26 @@ namespace networking
    using address_pointer = ::pointer<address>;
 
 
+   class application;
+   class application_handler;
+   class application_socket;
+
+
+   class email;
+   class networking;
+
+
 } // namespace networking
+
+
+namespace netserver
+{
+
+
+   class socket_thread_base;
+
+
+} // namespace netserver
 
 
 //inline void __exchange(::stream & s, ::networking::address & address);
@@ -37,13 +56,6 @@ namespace networking
 //
 //#include "byte_order.h"
 //
-namespace networking
-{
-
-   class email;
-   class networking;
-
-} // namespace net
 
 
 
@@ -57,7 +69,7 @@ namespace networking
 
 
 
-#include "ip_enum.h"
+//#include "ip_enum.h"
 //#include "url_domain.h"
 
 
@@ -65,7 +77,7 @@ namespace networking
 #include "email.h"
 
 
-#include "port_forward.h"
+//#include "port_forward.h"
 
 
 //#include "url.h"
@@ -75,16 +87,16 @@ namespace networking
 
 
 
-class networking_application_socket;
+//class networking_application_socket;
 
 
-#include "apex/networking/netserver/_.h"
+//#include "apex/networking/netserver/_.h"
 
 
-#include "networking_application_handler.h"
+//#include "networking_application_handler.h"
 
 
-#include "networking_application.h"
+///#include "networking_application.h"
 
 
 

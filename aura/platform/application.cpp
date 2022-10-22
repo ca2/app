@@ -8983,6 +8983,12 @@ namespace aura
    }
 
 
+   ::aura::session* application::get_session()
+   {
+
+      return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr;
+
+   }
 
 
 } // namespace aura

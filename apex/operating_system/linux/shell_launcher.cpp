@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "shell_launcher.h"
+#include "acme/platform/node.h"
 
 
 namespace ansios

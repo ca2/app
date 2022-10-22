@@ -7,7 +7,10 @@
 #include "_constant.h"
 
 
-#include "_struct.h"
+//s#include "_struct.h"
+
+
+class calc_size;
 
 
 namespace aura

@@ -1,6 +1,11 @@
 ﻿#pragma once
 
 
+#include "file_path.h"
+#include "acme/primitive/datetime/file_time_span.h"
+#include "acme/primitive/datetime/file_time.h"
+
+
 namespace file
 {
 

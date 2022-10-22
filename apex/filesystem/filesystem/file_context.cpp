@@ -11,6 +11,8 @@
 #include "apex/operating_system.h"
 #include "apex/crypto/crypto.h"
 #include "apex/crypto/hasher.h"
+#include "apex/filesystem/filesystem/dir_system.h"
+#include "apex/networking/http/context.h"
 #include "apex/platform/application.h"
 #include "apex/platform/context.h"
 #include "apex/platform/machine_event.h"
@@ -2235,6 +2237,64 @@ file_pointer file_context::get(const ::file::path &name)
 }
 
 
+::file_pointer file_context::get_temporary_upload_file(const ::file::path &pathCurrent)
+{
+
+   int i = 0;
+
+   //static ::mutex s_mutex(nullptr);
+
+   //single_lock synchronouslock(&s_mutex, true);
+
+   ::earth::time timeFile = ::earth::time::now();
+
+   ::string strIndex;
+
+   ::string strTime;
+
+   ::string strTempFile;
+
+   while (true)
+   {
+
+      strTime = ::earth::format("%Y\\%m\\%d\\%H\\%M\\%S\\", timeFile);
+
+      strIndex.format("%08x\\", i);
+
+      strTempFile = m_pcontext->m_psystem->m_papexsystem->m_pdirsystem->m_pathUpload / (strTime + strIndex + pathCurrent);
+
+      if (!exists(strTempFile))
+      {
+
+         break;
+
+      }
+
+      string strMessage;
+
+      auto psystem = m_psystem->m_papexsystem;
+
+      auto pdatetime = psystem->datetime();
+
+      strMessage = pdatetime->international().get_date_time() + " " + strTempFile;
+
+      m_psystem->m_pacmefile->append_wait("C:\\ca2\\toomuchuploads.txt", strMessage);
+
+      i++;
+
+   }
+
+   auto pfileUpload = get_file(strTempFile,
+                               ::file::e_open_defer_create_directory
+                               | ::file::e_open_binary
+                               | ::file::e_open_create
+                               | ::file::e_open_write);
+
+   return pfileUpload;
+
+}
+
+
 ::file::path file_context::replace_with_extension(const ::string & strExtension, const ::file::path & path)
 {
 
@@ -3994,5 +4054,18 @@ bool get_bypass_cache_if_empty(const ::payload & payloadFile)
    return true;
 
 }
+
+
+void file_context::set(const ::payload & payloadFile, const ::memory_base & memory)
+{
+
+   auto writer = get_writer(payloadFile);
+
+   writer->write(memory.get_data(), memory.get_size());
+
+   //return writer.m_estatus;
+
+}
+
 
 

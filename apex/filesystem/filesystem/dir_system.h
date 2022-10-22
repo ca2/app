@@ -26,6 +26,9 @@ public:
    bool                          m_bMatterFromResource;
 
 
+   ::file::path                  m_pathUpload;
+
+
    dir_system();
    ~dir_system() override;
 

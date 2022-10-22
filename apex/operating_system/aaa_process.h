@@ -50,13 +50,13 @@
 //
 //
 //CLASS_DECL_APEX string module_path_from_pid(unsigned int pid);
-//CLASS_DECL_APEX id_array module_path_get_pid(const char * pszModuleName, bool bModuleNameIsPropertyFormatted = true);
+//CLASS_DECL_APEX atom_array module_path_get_pid(const char * pszModuleName, bool bModuleNameIsPropertyFormatted = true);
 //
 //
 //#ifndef WINDOWS
 //
 //CLASS_DECL_APEX string_array cmdline_from_pid(unsigned int pid);
-//CLASS_DECL_APEX id_array app_get_pid(const char * pszModuleName);
+//CLASS_DECL_APEX atom_array app_get_pid(const char * pszModuleName);
 //
 //
 //#endif

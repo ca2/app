@@ -49,29 +49,38 @@ namespace sockets
    class http_session;
    class http_tunnel;
 
+   class cookie;
+   class cookies;
+
+
+   class form;
+   class transaction;
+   class request;
+   class response;
+
 
 } // namespace sockets
 
 
-#include "cookie.h"
+//#include "cookie.h"
 
 
-#include "form.h"
-#include "transaction.h"
-#include "request.h"
-#include "response.h"
+//#include "form.h"
+//#include "transaction.h"
+//#include "request.h"
+//#include "response.h"
 
 
 
-#include "cookie.h"
+//#include "cookie.h"
 
-#include "status.h"
+//#include "status.h"
 
-#include "signal.h"
+//#include "signal.h"
 
-#include "listener.h"
+//#include "listener.h"
 
-#include "context.h"
+//#include "context.h"
 
 //#include "application.h"
 

@@ -1337,24 +1337,24 @@ namespace acme
    }
 
 
-   id_array node::get_pids()
+   atom_array node::get_pids()
    {
       
       //throw ::interface_only();
 
       throw ::interface_only();
    
-      //return id_array();
+      //return atom_array();
       
    }
 
 
-   id_array node::module_path_get_pid(const ::string & pszModulePath, bool bModuleNameIsPropertyFormatted)
+   atom_array node::module_path_get_pid(const ::string & pszModulePath, bool bModuleNameIsPropertyFormatted)
    {
       
-      id_array iaPid;
+      atom_array iaPid;
 
-      id_array pids = get_pids();
+      atom_array pids = get_pids();
 
       string strPath;
 

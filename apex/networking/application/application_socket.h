@@ -3,24 +3,36 @@
 #pragma once
 
 
-class CLASS_DECL_APEX networking_application_socket :
-   virtual public ::netserver::socket
+#include "apex/networking/netserver/socket.h"
+
+
+namespace networking
 {
-public:
 
 
-   ::pointer<networking_application>      m_pnetworkingapplication;
+   class CLASS_DECL_APEX application_socket :
+      virtual public ::netserver::socket
+   {
+   public:
 
 
-   networking_application_socket();
-   ~networking_application_socket() override;
+      ::pointer<::networking::application>      m_pnetworkingapplication;
 
 
-   virtual void on_send_response() override;
+      application_socket();
+      ~application_socket() override;
 
 
-   string on_send_http_response();
+      virtual void on_send_response() override;
 
 
-};
+      string on_send_http_response();
+
+
+   };
+
+
+} // namespace networking
+
+
 

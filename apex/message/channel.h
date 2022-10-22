@@ -1,6 +1,10 @@
 #pragma once
 
 
+#include "dispatcher.h"
+#include "acme/primitive/collection/atom_array.h"
+
+
 class CLASS_DECL_APEX channel :
    virtual public ::object
 {
@@ -9,7 +13,7 @@ public:
 
    static ::pointer<::mutex>                      s_pmutexChannel;
    ::pointer<::channel>                           m_pchannel;
-   id_array                                        m_idaHandledCommands;
+   atom_array                                        m_atomaHandledCommands;
    ::message::dispatcher_map                       m_dispatchermap;
    //::procedure_map                                 m_proceduremap;
 
@@ -134,6 +138,10 @@ public:
   
 
 };
+
+
+#define MESSAGE_LINK(atom, pchannel, preceiver, phandler) \
+   pchannel->add_message_handler((enum_message) (atom), { preceiver, phandler } )
 
 
 

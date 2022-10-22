@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "message.h"
 
 
 namespace message

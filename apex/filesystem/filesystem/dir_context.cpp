@@ -10,6 +10,7 @@
 #include "apex/platform/session.h"
 #include "apex/platform/system.h"
 #include "apex/filesystem/filesystem/dir_system.h"
+#include "apex/networking/http/context.h"
 
 
 namespace zip

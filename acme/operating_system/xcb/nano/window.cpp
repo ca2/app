@@ -3,7 +3,8 @@
 //
 #include "framework.h"
 #include "_nano.h"
-//#include <xcb/xcb_aux.h>
+#include "acme/platform/node.h"
+#include "acme/user/user/mouse.h"
 #include <xkbcommon/xkbcommon.h>
 #include <X11/XKBlib.h>
 #include <cairo-xcb.h>

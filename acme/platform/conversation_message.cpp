@@ -7,6 +7,9 @@
 //
 #include "framework.h"
 #include "conversation_message.h"
+#include "acme/platform/node.h"
+#include "acme/filesystem/file/string_buffer.h"
+#include "acme/filesystem/file/text_stream.h"
 
 
 namespace acme

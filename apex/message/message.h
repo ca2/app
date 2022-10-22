@@ -2,6 +2,7 @@
 
 
 #include "acme/primitive/geometry2d/point.h"
+#include "dispatcher.h"
 
 
 namespace message
@@ -12,7 +13,7 @@ namespace message
    {
 
       e_flag_none,
-      flag_synthesized = 1 << 0,
+      e_flag_synthesized = 1 << 0,
 
    };
 

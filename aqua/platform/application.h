@@ -15,7 +15,7 @@ namespace aqua
 
 
       ::pointer<::aqua::game>                      m_paquagame;
-      ::pointer<::networking_application>            m_pnetworkingapplication;
+      ::pointer<::networking::application>         m_pnetworkingapplication;
      
 
       application();

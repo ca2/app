@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "_nano.h"
+#include "acme/platform/node.h"
 
 
 ::user::enum_desktop _get_edesktop();

@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/geometry2d/point.h"
+
+
 namespace draw2d
 {
 

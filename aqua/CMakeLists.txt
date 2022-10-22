@@ -81,6 +81,8 @@ list(APPEND library_source
         xml/edit.h
         xml/entity.cpp
         xml/entity.h
+        xml/exception.cpp
+        xml/exception.h
         xml/exportable.cpp
         xml/exportable.h
         xml/glue.h

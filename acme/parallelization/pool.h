@@ -13,7 +13,7 @@ protected:
 public:
 
 
-   id_map < ::pointer<::task >>  m_map;
+   atom_map < ::pointer<::task >>  m_map;
 
 
    task_pool();

@@ -242,11 +242,11 @@ public:
    bool operator==(const rectangle_type & rectangle) const noexcept { return ::is_equal(*this, rectangle); }
    bool operator!=(const rectangle_type & rectangle) const noexcept { return !operator ==(rectangle); }
 
-   template < primitive_point POINT >
-   rectangle_type & operator+=(const POINT & point) noexcept { return ::offset(*this, point.x, point.y); }
-
-   template < primitive_size SIZE >
-   rectangle_type & operator+=(const SIZE & size) noexcept { return ::offset(*this, size.cx, size.cy); }
+//   template < primitive_point POINT >
+//   rectangle_type & operator+=(const POINT & point) noexcept { return ::offset(*this, point.x, point.y); }
+//
+//   template < primitive_size SIZE >
+//   rectangle_type & operator+=(const SIZE & size) noexcept { return ::offset(*this, size.cx, size.cy); }
 
    rectangle_type & operator+=(const rectangle_type & rectangle) noexcept { return ::inflate(*this, rectangle); }
    rectangle_type & operator*=(const rectangle_type & rectangle) noexcept { return ::multiply_inline(*this, rectangle); }

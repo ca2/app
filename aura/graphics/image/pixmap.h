@@ -2,6 +2,7 @@
 
 
 #include "header.h"
+#include "acme/primitive/geometry2d/rectangle.h"
 
 
 namespace draw2d

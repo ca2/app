@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "channel.h"
 #include "apex/message.h"
 #include "apex/message/command.h"
 
@@ -306,7 +307,7 @@ void channel::destroy()
 
    m_pchannel.release();
 
-   m_idaHandledCommands.erase_all();
+   m_atomaHandledCommands.erase_all();
 
    m_dispatchermap.erase_all();
 
@@ -449,7 +450,7 @@ bool channel::has_command_handler(::message::command * pcommand)
    if (strText.has_char())
    {
 
-      if (m_idaHandledCommands.contains(strText))
+      if (m_atomaHandledCommands.contains(strText))
       {
 
          return true;
@@ -460,7 +461,7 @@ bool channel::has_command_handler(::message::command * pcommand)
 
    pcommand->m_atom.set_compounded_type(::atom::e_type_command);
 
-   if (m_idaHandledCommands.contains(pcommand->m_atom))
+   if (m_atomaHandledCommands.contains(pcommand->m_atom))
    {
 
       return true;

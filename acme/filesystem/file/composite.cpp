@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "composite.h"
 
 
 namespace file

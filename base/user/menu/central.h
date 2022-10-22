@@ -11,7 +11,7 @@ namespace user
    public:
 
 
-      id_map < int >          m_mapCommandImage;
+      atom_map < int >          m_mapCommandImage;
       ::i32_map < atom >        m_mapImageCommand;
 
       ::pointer<::image_list>     m_pimagelist;

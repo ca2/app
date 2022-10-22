@@ -1,5 +1,6 @@
 ﻿//Created by camilo on 2021-03-26 00:44 BRT <3ThomasBS_
 #include "framework.h"
+#include "acme/filesystem/file/file.h"
 #include "acme/primitive/text/_.h"
 
 

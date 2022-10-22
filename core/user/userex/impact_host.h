@@ -52,7 +52,7 @@ namespace userex
       ::size_i32                                    m_sizeTabbedFrame;
       string_map < ::pointer<::user::document >>      m_mapdoc;
       string_map < simple_frame_window * >      m_mapframe;
-      id_array                                  m_idaHandledImpacts;
+      atom_array                                  m_idaHandledImpacts;
 
       ::pointer<::user::single_document_template>     m_ptemplateTab;
 

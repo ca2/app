@@ -28,7 +28,7 @@ namespace core
 
       map < ::type, ::user::impact_system * >      m_mapTemplate;
 
-      id_map < ::user::impact_system * >           m_mapimpactsystem;
+      atom_map < ::user::impact_system * >           m_mapimpactsystem;
 
 
       //::pointer<::userex::userex>             m_puserex;
@@ -103,7 +103,7 @@ namespace core
 
 
 
-      //id_map < ::user::interaction * >                      m_mapboundui;
+      //atom_map < ::user::interaction * >                      m_mapboundui;
 
 
 

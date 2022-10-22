@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "decoder.h"
 #include "multimedia.h"
+#include "acme/constant/id.h"
+#include "aqua/platform/system.h"
 
 
 namespace multimedia

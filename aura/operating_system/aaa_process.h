@@ -50,13 +50,13 @@ CLASS_DECL_AURA ::file::path core_app_path(string strApp);
 
 
 CLASS_DECL_AURA string module_path_from_pid(unsigned int pid);
-CLASS_DECL_AURA id_array module_path_get_pid(const ::string & pszModuleName, bool bModuleNameIsPropertyFormatted = true);
+CLASS_DECL_AURA atom_array module_path_get_pid(const ::string & pszModuleName, bool bModuleNameIsPropertyFormatted = true);
 
 
 #ifndef WINDOWS
 
 CLASS_DECL_AURA string_array cmdline_from_pid(unsigned int pid);
-CLASS_DECL_AURA id_array app_get_pid(const ::string & pszModuleName);
+CLASS_DECL_AURA atom_array app_get_pid(const ::string & pszModuleName);
 
 
 #endif

@@ -71,7 +71,7 @@ namespace userex
    void impact_host::on_message_create(::message::message * pmessage)
    {
 
-      m_idaHandledCommands.add(m_idaHandledImpacts);
+      m_atomaHandledCommands.add(m_idaHandledImpacts);
 
    }
 

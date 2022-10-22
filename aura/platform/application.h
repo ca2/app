@@ -2,6 +2,7 @@
 
 
 #include "context.h"
+#include "aqua/platform/application.h"
 
 
 namespace aura
@@ -91,7 +92,7 @@ namespace aura
       //string_table                                    m_stringtableStd;
       //map < atom, atom, string, string >                  m_stringmap;
 
-      //id_map < ::pointer<::channel >>                m_mapNotify;
+      //atom_map < ::pointer<::channel >>                m_mapNotify;
 
       //::pointer<context_image>                       m_pcontextimage;
 
@@ -200,8 +201,8 @@ namespace aura
       virtual void verb() override;
 
 
-      inline ::aura::session* get_session() { return m_pcontext && m_pcontext->m_papexsession ? m_pcontext->m_papexsession->m_paurasession : nullptr; }
-      inline ::aura::system* get_system();
+      ::aura::session* get_session();
+      ::aura::system* get_system();
 
 
 

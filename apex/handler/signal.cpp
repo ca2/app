@@ -1,5 +1,8 @@
 // Extrapolation from merge with control_"topic" by camilo on day after ThomasBirthday2021 10:30!!
 #include "framework.h"
+#include "signal.h"
+#include "manager.h"
+#include "context.h"
 
 
 signal::signal(const ::atom & atom, ::manager * pmanager) :

@@ -38,13 +38,13 @@ namespace apex
 
       ::pointer<::mutex>                                m_pmutexMatter;
 
-      ::pointer<::operating_system::department>       m_pprocess;
+      ::pointer<::operating_system::department>       m_poperatingsystem;
 
       ::pointer<::parallelization::threading>         m_pthreading;
       size_t                                             m_nSafetyPoolSize; // ideal size_i32
 
-      bool                                               m_bFinalizeIfNoSessionSetting;
-      bool                                               m_bFinalizeIfNoSession;
+      bool                                            m_bFinalizeIfNoSessionSetting;
+      bool                                            m_bFinalizeIfNoSession;
 
       ::pointer<::dir_system>                         m_pdirsystem;
       ::pointer<::file_system>                        m_pfilesystem;
@@ -138,7 +138,7 @@ namespace apex
       virtual void create_os_node() override;
 
 
-      inline ::apex::node * node() { return m_pnode ? m_pnode->m_papexnode : nullptr; }
+      ::apex::node * node();
 
 
       virtual ::pointer<::factory::factory>& node_factory() override;
@@ -184,7 +184,7 @@ namespace apex
       virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const ::string & strLocale, const ::string & strSchema) override;
       virtual string get_locale_schema_dir() override;
 
-      ::operating_system::department                        &  process();
+      ::operating_system::department                        &  operating_system();
 
       class ::machine_event_central                &  machine_event_central();
       inline ::parallelization::threading           *  threading() { return m_pthreading; }

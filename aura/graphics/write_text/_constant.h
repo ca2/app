@@ -1,4 +1,4 @@
-// From font.h by camilo on 2022-08-28 18:01 <3ThomasBorregaardSørensen!! søndag
+// From font.h by camilo on 2022-08-28 18:01 <3ThomasBorregaardSï¿½rensen!! sï¿½ndag
 #pragma once
 
 
@@ -20,6 +20,24 @@ enum enum_font_weight
    e_font_weight_heavy = 900,
 
 };
+
+
+namespace write_text
+{
+
+
+   enum enum_font_list
+   {
+
+      e_font_list_wide,
+      e_font_list_single_column,
+
+   };
+
+
+} // namespace write_text
+
+
 
 typedef comparable_array < enum_character_set > enum_character_set_array;
 

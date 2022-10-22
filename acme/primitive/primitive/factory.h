@@ -126,7 +126,7 @@ namespace factory
    };
 
 
-   using factory_base = id_map < ::pointer<factory_item_interface > >;
+   using factory_base = atom_map < ::pointer<factory_item_interface > >;
 
 
    class CLASS_DECL_ACME factory :

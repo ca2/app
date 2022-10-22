@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/filesystem/file/file.h"
 #include "apex/filesystem/fs/_fs.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"

@@ -1,5 +1,4 @@
 #include "framework.h"
-#include "apex/operating_system.h"
 #include "launcher.h"
 #include "app_launcher.h"
 #include "acme/filesystem/filesystem/acme_file.h"
@@ -7,6 +6,8 @@
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
+#include "acme/platform/node.h"
+#include "apex/operating_system.h"
 #include "apex/platform/context.h"
 
 

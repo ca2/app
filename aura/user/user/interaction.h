@@ -241,7 +241,7 @@ namespace user
       enum_control_type                         m_econtroltype;
 
       enum_control_ddx                          m_eddx;
-      ::database::key                           m_datakey;
+      //::database::key                           m_datakey;
       int                                       m_iDataValue;
       flags < enum_control_function >           m_flagsfunction;
       enum_control_data_type                    m_edatatype;

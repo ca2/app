@@ -31,4 +31,9 @@ CLASS_DECL_NETWORKING_BSD bool defer_finalize_operating_system_networking()
 }
 
 
+string bsd_socket_error(int iBsdSocketError)
+{
 
+   return strerror(iBsdSocketError);
+
+}

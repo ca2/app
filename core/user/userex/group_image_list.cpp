@@ -101,7 +101,7 @@ namespace userex
 
       pgroup->m_strTitle = strTitle;
 
-      m_idaHandledCommands.add("menu_item_" + idGroup);
+      m_atomaHandledCommands.add("menu_item_" + idGroup);
 
       m_groupa.add(pgroup);
 
@@ -136,7 +136,7 @@ namespace userex
 
       pcreate->previous();
 
-      m_idaHandledCommands.add(m_atom);
+      m_atomaHandledCommands.add(m_atom);
 
       m_pbuttonMenu->create_control(this, m_atom);
 

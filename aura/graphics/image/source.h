@@ -2,6 +2,10 @@
 #pragma once
 
 
+#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/primitive/geometry2d/size.h"
+
+
 template < typename IMAGE_SOURCE_POINTER >
 concept image_source_pointer = requires(IMAGE_SOURCE_POINTER p, const concrete < ::size_i32 > & concreteSize, const ::size_f64 & sizeDst, enum_image_selection eimageselection)
 {

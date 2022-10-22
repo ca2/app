@@ -8,14 +8,17 @@
 #pragma once
 
 
+#include "acme/platform/node.h"
+#include "apex/message/channel.h"
+
+
 namespace apex
 {
 
 
    class CLASS_DECL_APEX node :
       virtual public ::acme::node,
-      virtual public ::channel,
-      virtual public ::handler
+      virtual public ::channel
    {
    public:
 

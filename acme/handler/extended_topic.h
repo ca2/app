@@ -3,6 +3,9 @@
 #pragma once
 
 
+#include "topic.h"
+
+
 class CLASS_DECL_ACME extended_topic :
    virtual public ::topic,
    virtual public ::object

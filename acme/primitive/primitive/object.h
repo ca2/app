@@ -1378,9 +1378,25 @@ inline void create_ ## xxx ## _properties() \
 template < typename TYPE >
 inline void __raw_construct_new(::pointer<TYPE> & ptype)
 {
+
    ptype = memory_new TYPE;
+
 }
 
+
+
+template < typename TYPE >
+inline void __defer_raw_construct_new(::pointer<TYPE> & ptype)
+{
+
+   if(!ptype)
+   {
+
+      __raw_construct_new(ptype);
+
+   }
+
+}
 
 
 

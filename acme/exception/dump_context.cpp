@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "dump_context.h"
 
 
 #ifdef LINUX

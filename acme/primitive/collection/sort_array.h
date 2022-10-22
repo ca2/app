@@ -41,7 +41,7 @@
 //
 //template < typename ARG_TYPE >
 //class sort_map :
-//   virtual public id_map < pointer< sort_data < ARG_TYPE > > >
+//   virtual public atom_map < pointer< sort_data < ARG_TYPE > > >
 //{
 //public:
 //

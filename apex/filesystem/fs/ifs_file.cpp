@@ -5,6 +5,7 @@
 #include "acme/filesystem/file/memory_file.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/platform/context.h"
+#include "apex/networking/http/context.h"
 
 
 ifs_file::ifs_file(::payload payloadFile) :

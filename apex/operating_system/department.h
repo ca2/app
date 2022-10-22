@@ -5,7 +5,7 @@
 #include "apex/parallelization/thread.h"
 
 
-namespace process
+namespace operating_system
 {
 
 
@@ -90,6 +90,6 @@ namespace process
    };
 
 
-} // namespace process
+} // namespace operating_system
 
 

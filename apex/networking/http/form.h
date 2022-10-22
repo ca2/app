@@ -8,20 +8,20 @@ namespace http
    /** Parse/store a http query_string/form-data body.
       \ingroup webserver */
    class CLASS_DECL_APEX form :
-      virtual public ::object
+      virtual public ::matter
    {
    public:
 
 
       form();
-      virtual ~form();
+      ~form() override;
 
       /**
        * Default constructor (used in POST operations).
        * Input is read from stdin. Number of characters to read
        * can be found in the environment ::payload CONTENT_LENGTH.
       */
-      void parse_body(::file::file *, const char * pszContentType, strsize content_length);
+      void parse_body(::apex::context *pcontextUploadFile, ::file::file * pfileInput, const char * pszContentType, strsize content_length);
       /**
        * Another constructor (used in GET operations).
        * Input is read from the environment ::payload QUERY_STRING.

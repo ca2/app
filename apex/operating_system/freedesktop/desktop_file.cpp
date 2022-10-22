@@ -1,8 +1,12 @@
 #include "framework.h"
-#include "apex/operating_system.h"
 #include "desktop_file.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
+#include "apex/filesystem/filesystem/dir_context.h"
+#include "apex/filesystem/filesystem/file_context.h"
+#include "apex/platform/application.h"
+#include "apex/platform/context.h"
+#include "apex/operating_system.h"
 #include <sys/stat.h>
 
 

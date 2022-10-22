@@ -170,7 +170,7 @@ namespace sockets
    void http_base_socket::Execute()
    {
       // parse form data / query_string and cookie header if available
-      m_request.ParseBody();
+      m_request.ParseBody(m_pcontext->m_papexcontext);
 
       //FORMATTED_TRACE("http version: %s\n", m_request.attr("http_version").string());
       //FORMATTED_TRACE("connection: %s\n", m_request.header("connection").string());

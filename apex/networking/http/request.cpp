@@ -1,4 +1,5 @@
-﻿#include "framework.h" 
+﻿#include "framework.h"
+#include "request.h"
 #include "apex/id.h"
 #include "apex/networking/sockets/_.h"
 #include "acme/filesystem/file/memory_file.h"
@@ -68,7 +69,7 @@ namespace http
 
 
    // --------------------------------------------------------------------------------------
-   void request::ParseBody()
+   void request::ParseBody(::apex::context * pcontextUploadFile)
    {
 
       m_form.clear();
@@ -90,7 +91,7 @@ namespace http
       }
       if(m_pmemfileBody->get_size() > 0)
       {
-         m_form.parse_body(m_pmemfileBody, ContentType(), ContentLength());
+         m_form.parse_body(pcontextUploadFile, m_pmemfileBody, ContentType(), ContentLength());
       }
       m_form.request().merge(m_form.post());
    }

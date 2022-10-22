@@ -3,6 +3,8 @@
 //
 #include "framework.h"
 #include "_nano.h"
+#include "acme/platform/node.h"
+#include "acme/user/user/mouse.h"
 #include <X11/Xatom.h>
 #include <xkbcommon/xkbcommon.h>
 #include <X11/XKBlib.h>

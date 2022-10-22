@@ -1,21 +1,6 @@
 #pragma once
 
 
-namespace message
-{
-
-   
-   class message;
-   //class sender; -> oet,chnel (targetable!!evenmoreeasilykillble (dissolve "bad" idea/group/team, not person));
-   //class receiver; -> oyet
-
-
-} // namespace message
-
-
-#define DECLARE_MESSAGE_HANDLER(function) void function(::message::message * pmessage)
-
-
 //namespace user
 //{
 //
@@ -59,7 +44,7 @@ namespace draw2d
 #include "receiver.h"
 #include "dispatcher.h"
 #include "message.h"
-#include "definition.h"
+//#include "definition.h"
 
 
 #include "channel.h"
@@ -74,17 +59,17 @@ namespace draw2d
 //
 //#endif
 
-namespace message
-{
-
-
-   CLASS_DECL_APEX bool is_idle_message(::message::message * pmessage);
-
-
-   CLASS_DECL_APEX bool is_idle_message(MESSAGE* pMsg);
-
-
-} // namespace message
+//namespace message
+//{
+//
+//
+//   CLASS_DECL_APEX bool is_idle_message(::message::message * pmessage);
+//
+//
+//   CLASS_DECL_APEX bool is_idle_message(MESSAGE* pMsg);
+//
+//
+//} // namespace message
 
 
 //#include "timer.h"

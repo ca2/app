@@ -862,7 +862,7 @@ namespace user
    }
 
 
-   void impact_host::hide_all_except(const id_array & ida)
+   void impact_host::hide_all_except(const atom_array & ida)
    {
 
       auto ppair = m_impactdatamap.get_start();

@@ -5,6 +5,7 @@
 #include "context.h"
 #include "apex/database/client.h"
 #include "application_exit.h"
+#include "apex/networking/application/application_handler.h"
 
 
 namespace apex
@@ -18,102 +19,102 @@ namespace apex
       virtual public int_scalar_source,
       virtual public ::database::client,
       virtual public ::application_exit,
-      virtual public ::networking_application_handler
+      virtual public ::networking::application_handler
    {
    public:
 
 
       //__creatable(application);
 
-      void * m_pnativeapp;
+      void *                                       m_pnativeapp;
 
 
-      class application_impl * m_pappimpl;
+      class application_impl *                     m_pappimpl;
 
       // 2020-01-25: removing from ::apex::system, placing here (at ::context)
       // 2020-07-23: now at ::application
       ::pointer<::user::language_map>              m_puserlanguagemap;
 
-      //::pointer<::apex::application>               m_pappParent;
-      ::text::text                                    m_textAppTitle;
-      string                                          m_strBaseSupportId;
-      string                                          m_strDatabaseAppId;
-      string                                          m_strRelativeFolder;
-      string                                          m_strInstallTraceLabel;
-      string                                          m_strInstallBuild;
-      string                                          m_strHttpUserAgentToken;
-      string                                          m_strHttpUserAgentVersion;
-      bool                                            m_bRequiresInstallation;
+      //::pointer<::apex::application>             m_pappParent;
+      ::text::text                                 m_textAppTitle;
+      string                                       m_strBaseSupportId;
+      string                                       m_strDatabaseAppId;
+      string                                       m_strRelativeFolder;
+      string                                       m_strInstallTraceLabel;
+      string                                       m_strInstallBuild;
+      string                                       m_strHttpUserAgentToken;
+      string                                       m_strHttpUserAgentVersion;
+      bool                                         m_bRequiresInstallation;
 
-      bool                                            m_bReadStringTable;
+      bool                                         m_bReadStringTable;
 
       ::pointer<application_menu>                  m_pappmenu;
 
-      //::pointer<::game::game>                      m_pgame;
+      //::pointer<::game::game>                    m_pgame;
 
       ::pointer<::user::primitive>                 m_puiCurrent;
-      bool                                            m_bContextTheme;
+      bool                                         m_bContextTheme;
 
 #if defined(LINUX) || defined(FREEBSD)
-      bool                                            m_bSnLauncheeSetup;
+      bool                                         m_bSnLauncheeSetup;
 #endif
-      semaphore                                       m_semCompiler;
+      semaphore                                    m_semCompiler;
       // former ::application_interface // moved on 2015-05-23 Sammstag while listening to RocketBeansTV (a German channel?) at TwitchTV
-      string_array                                    m_straActivationMessage;
+      string_array                                 m_straActivationMessage;
 
-      ::u32                                           m_dwInstallGoodToCheckAgain;
+      ::u32                                        m_dwInstallGoodToCheckAgain;
 
-      bool                                            m_bAppHasInstallerProtected;
-      bool                                            m_bAppHasInstallerChangedProtected;
+      bool                                         m_bAppHasInstallerProtected;
+      bool                                         m_bAppHasInstallerChangedProtected;
       ::pointer<::install::installer>              m_pinstaller;
 
-      reference_addressa                              m_objectptraEventHook;
+      reference_addressa                           m_objectptraEventHook;
 
-      bool                                            m_bAttendedFirstRequest;
+      bool                                         m_bAttendedFirstRequest;
 
-      //bool                                            m_bAgreeExit;
-      //bool                                            m_bAgreeExitOk;
-      //bool                                            m_bFranceExit;
+      //bool                                       m_bAgreeExit;
+      //bool                                       m_bAgreeExitOk;
+      //bool                                       m_bFranceExit;
 
-      bool                                            m_bEnableAutoStartOption;
-      bool                                            m_bInterprocessCommunication;
-      ::pointer<::interprocess::communication>        m_pinterprocesscommunication;
-      ::pointer<::interprocess::handler>              m_pinterprocesshandler;
-      //::pointer<service>                            m_pservice;
+      bool                                         m_bEnableAutoStartOption;
+      bool                                         m_bInterprocessCommunication;
+      ::pointer<::interprocess::communication>     m_pinterprocesscommunication;
+      ::pointer<::interprocess::handler>           m_pinterprocesshandler;
+      //::pointer<service>                         m_pservice;
 
       // apex commented
       //::mutex                                         m_mutexFrame;
       //::pointer<::user::interaction_pointer_array> m_puiptraFrame;
 
-      enum_thread_context                             m_ethreadcontextClose;
+      enum_thread_context                          m_ethreadcontextClose;
 
-      EExclusiveInstance                              m_eexclusiveinstance;
+      EExclusiveInstance                           m_eexclusiveinstance;
 
-      bool                                            m_bService;
+      bool                                         m_bService;
 
-      bool                                            m_bUpdateMatterOnInstall;
+      bool                                         m_bUpdateMatterOnInstall;
 
-      //::user::interaction *                           m_puiMainContainer;
+      //::user::interaction *                      m_puiMainContainer;
 
-      ::mutex                                         m_mutexMatterLocator;
+      ::mutex                                      m_mutexMatterLocator;
 
-      ::mutex                                         m_mutexStr;
-      string_table                                    m_stringtable;
-      string_table                                    m_stringtableStd;
-      id_map < string >                               m_stringmap;
+      ::mutex                                      m_mutexStr;
+      string_table                                 m_stringtable;
+      string_table                                 m_stringtableStd;
+      atom_map < string >                            m_stringmap;
 
-      id_map < ::pointer<::channel >>              m_mapNotify;
+      atom_map < ::pointer<::channel >>              m_mapNotify;
 
-      string                                          m_strLicense;
+      string                                       m_strLicense;
 
-      i32                                             m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
+      i32                                          m_iWaitCursorCount;         // for wait cursor (>0 => waiting)
 
-      //::pointer<::simpledb::server>                  m_psimpledb;
+      //::pointer<::simpledb::server>              m_psimpledb;
 
-      //::userex::pane_tab_impact *                       m_pmainpane;
+      //::userex::pane_tab_impact *                m_pmainpane;
 
 
-      string                                          m_strHelpFilePath;
+      string                                       m_strHelpFilePath;
 
       //#ifdef WINDOWS
       //
@@ -122,38 +123,38 @@ namespace apex
       //
       //#endif
 
-      u32                                             m_dwPromptContext;        // help action_context override for message box
+      u32                                          m_dwPromptContext;        // help action_context override for message box
       // LKG
-      u32                                             m_dwPolicies;            // block for storing tristate system policies
+      u32                                          m_dwPolicies;            // block for storing tristate system policies
 
       // Support for Shift+F1 help mode.
       // true if we're in SHIFT+F1 mode.
-      bool                                            m_bHelpMode;
+      bool                                         m_bHelpMode;
 
-      //::userex::pane_tab_impact *                       m_ppaneimpactMain;
+      //::userex::pane_tab_impact *                m_ppaneimpactMain;
 
-      string                                          m_strProfileName;
+      string                                       m_strProfileName;
 
       //#ifdef WINDOWS
-      //      ATOM                                            m_atomApp;
-      //      ATOM                                            m_atomSystemTopic;   // for DDE open
+      //      ATOM                                 m_atomApp;
+      //      ATOM                                 m_atomSystemTopic;   // for DDE open
       //#endif
 
-      ::u32                                            m_nNumThumbnailPages; // number of default printed pages
+      ::u32                                        m_nNumThumbnailPages; // number of default printed pages
 
-      string                                          m_strId;
+      string                                       m_strId;
 
-      i32                                             m_iResourceId;
+      i32                                          m_iResourceId;
 
-      //::pointer<::experience::department>          m_pexperience;
-      //::pointer<::apex::theme>                     m_ptheme;
+      //::pointer<::experience::department>        m_pexperience;
+      //::pointer<::apex::theme>                   m_ptheme;
 
 
-      string_array                                    m_straAppInterest;
+      string_array                                 m_straAppInterest;
 
       ::pointer<::service_handler>                 m_pservicehandler;
 
-      ::pointer<::networking_application>            m_pnetworkingapplication;
+      ::pointer<::networking::application>         m_pnetworkingapplication;
 
 
 
@@ -1088,7 +1089,7 @@ namespace apex
       virtual void create_app_shortcut();
 
 
-      virtual class networking_application * networking_application();
+      virtual class ::networking::application * networking_application();
 
 
       virtual void create_networking_application();

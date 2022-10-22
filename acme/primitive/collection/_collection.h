@@ -240,7 +240,7 @@ using map_string_to_ob = map < string, const string &, matter *, matter * >;
 
 #include "string_to_string_map.h"
 #include "bit_array.h"
-#include "string_array_base.h"
+//#include "string_array_base.h"
 
 
 template < typename TYPE >
@@ -315,7 +315,7 @@ typedef CLASS_DECL_ACME pointer_array < index_array > index_2darray;
 
 #include "sort.h"
 
-//#include "id_array.h"
+//#include "atom_array.h"
 
 #include "bitset.h"
 
@@ -365,7 +365,7 @@ namespace earth
 
 //#include "runnable_array.h"
 
-#include "base_2array.h"
+//#include "base_2array.h"
 
 
 #include "duration.h"

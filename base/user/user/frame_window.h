@@ -73,7 +73,7 @@ namespace user
    ::u32                                           m_nIdleFlags;          // set of bit flags for idle processing
 
       ::user::impact *                                m_pviewMain;
-      id_map < ::pointer<::user::toolbar >>     m_mapToolbar;
+      atom_map < ::pointer<::user::toolbar >>     m_mapToolbar;
 
 
 

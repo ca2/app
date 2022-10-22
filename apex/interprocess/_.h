@@ -19,7 +19,7 @@ namespace interprocess
    class communication;
 
 
-   using task_map = id_map < ::pointer< task > >;
+   using task_map = atom_map < ::pointer< task > >;
 
 
 

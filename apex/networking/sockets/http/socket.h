@@ -2,6 +2,9 @@
 
 
 #include "apex/networking/sockets/basic/tcp_socket.h"
+#include "apex/networking/http/request.h"
+#include "apex/networking/http/response.h"
+#include "apex/networking/http/listener.h"
 
 
 namespace sockets
@@ -45,11 +48,7 @@ namespace sockets
 
       bool                 m_bOnlyHeaders;
       bool                 m_bNoClose;
-      ::pointer<http::listener>    m_plistener;
-
-
-
-
+      ::pointer<::http::listener>    m_plistener;
 
 
       http_socket();

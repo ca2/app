@@ -2,7 +2,7 @@
 
 
 //template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type  >
-//using strid_map = id_map < VALUE,ARG_VALUE > ;
+//using strid_map = atom_map < VALUE,ARG_VALUE > ;
 
 template < class T >
 class CLASS_DECL_ACME string_to_pointer :

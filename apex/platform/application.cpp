@@ -1,29 +1,32 @@
 ﻿#include "framework.h"
 #include "application.h"
 #include "application_menu.h"
+#include "session.h"
+#include "system.h"
+#include "acme/constant/id.h"
+#include "acme/constant/message.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/parallelization/install_mutex.h"
+#include "acme/platform/profiler.h"
+#include "acme/primitive/text/context.h"
 #include "apex/message/application.h"
 #include "apex/id.h"
 #include "acme/platform/version.h"
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
-#include "acme/platform/profiler.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_file.h"
 #include "apex/platform/node.h"
 #include "apex/interprocess/call.h"
 #include "apex/interprocess/communication.h"
 #include "apex/interprocess/target.h"
 #include "apex/interprocess/task.h"
-#include "acme/filesystem/filesystem/acme_path.h"
-#include "acme/parallelization/install_mutex.h"
-#include "acme/primitive/text/context.h"
 #include "apex/database/_binary_stream.h"
 #include "apex/filesystem/filesystem/dir_context.h"
 #include "apex/filesystem/filesystem/file_context.h"
-#include "apex/networking/networking_application.h"
-#include "apex/platform/session.h"
-#include "apex/platform/system.h"
+#include "apex/networking/application/application.h"
+#include "apex/networking/http/context.h"
 
 
 
@@ -10032,7 +10035,7 @@ namespace apex
 #endif
 
 
-   class networking_application * application::networking_application()
+   class networking::application * application::networking_application()
    {
 
       if (!m_pnetworkingapplication)

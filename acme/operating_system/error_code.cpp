@@ -6,6 +6,7 @@
 //  Copyright © 2022 Camilo Sasuke Thomas Borregaard Sørensen. All rights reserved.
 //
 #include "framework.h"
+#include "acme/filesystem/file/text_stream.h"
 #include "error_code.h"
 #include "_api.h"
 

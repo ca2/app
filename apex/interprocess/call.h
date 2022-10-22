@@ -14,7 +14,7 @@ namespace interprocess
 
       ::pointer<::interprocess::communication>     m_pinterprocesscommunication;
       string                                       m_strApp;
-      id_array                                     m_iaExclude;
+      atom_array                                     m_iaExclude;
       bool                                         m_bAutoLaunch;
 
       // idPid - Task
@@ -43,7 +43,7 @@ namespace interprocess
       bool _wait(const class ::wait & wait);
 
 
-      virtual id_array prepare_call();
+      virtual atom_array prepare_call();
 
 
       virtual void send_call();

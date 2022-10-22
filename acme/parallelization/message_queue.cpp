@@ -1,6 +1,7 @@
 #include "framework.h"
-#include "acme/operating_system.h"
 #include "message_queue.h"
+#include "acme/constant/message.h"
+#include "acme/operating_system.h"
 
 
 #ifdef PARALLELIZATION_PTHREAD

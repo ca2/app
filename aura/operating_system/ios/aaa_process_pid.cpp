@@ -163,10 +163,10 @@ extern int ansi_count_compare(const ::string & sz1, const ::string & sz2, iptr i
 #import <sys/sysctl.h>
 
 
-id_array get_pids()
+atom_array get_pids()
 {
 
-   return id_array();
+   return atom_array();
 
 //   int_array pids;
 //
@@ -307,10 +307,10 @@ string module_path_from_pid(unsigned int uiPid)
 
 
 
-//id_array app_get_pid(const ::string & psz)
+//atom_array app_get_pid(const ::string & psz)
 //{
 //
-//   return id_array();
+//   return atom_array();
 //
 //}
 

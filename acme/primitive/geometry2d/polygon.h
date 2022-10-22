@@ -2,6 +2,8 @@
 
 
 #include "_collection_basic.h"
+#include "acme/primitive/geometry2d/rectangle.h"
+#include "acme/primitive/geometry2d/point.h"
 
 
 template < typename POINT_TYPE >

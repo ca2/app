@@ -7,8 +7,8 @@ class CLASS_DECL_ACME material_object :
 public:
 
 
-   pointer< ::id_map < ::procedure_array > >       m_pmapPropertyProcedure;
-   ::pointer<::i64_array>                          m_pia;
+   pointer< ::atom_map < ::procedure_array > >        m_pmapPropertyProcedure;
+   ::pointer<::i64_array>                             m_pia;
 
 
    material_object() { }

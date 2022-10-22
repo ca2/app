@@ -4,6 +4,9 @@
 class text_stream;
 
 
+#include "string_buffer.h"
+
+
 //template < typename TYPE >
 //inline void __string_exchange(text_stream & s, TYPE & t);
 //
@@ -74,19 +77,20 @@ public:
    ::file::file * get_file() override { return m_p; }
 
 
+   string read_string();
 
    template < typename TYPE >
    void number_read(TYPE & t)
    {
 
-      string str;
-
-      m_p->read_string(str);
+      string str = read_string();
 
       ::from_string(t, str);
 
    }
 
+
+   void print(const ::string & str);
 
    template < typename TYPE >
    void number_write(const TYPE & t)
@@ -96,7 +100,7 @@ public:
 
       str = __string(t);
 
-      m_p->print(str);
+      print(str);
 
    }
 
@@ -114,9 +118,7 @@ public:
    void string_read(TYPE & t)
    {
 
-      string str;
-
-      m_p->read_string(str);
+      string str = read_string();
 
       ::from_string(t, str);
 
@@ -131,7 +133,7 @@ public:
 
       str = __string(t);
 
-      m_p->print(str);
+      print(str);
 
    }
 

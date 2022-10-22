@@ -90,8 +90,8 @@ in read operations - helps on ECOS */
 // all typedefs in this file will be declared outside the sockets namespace,
 // because some psystem's will already have one or more of the type defined.
 typedef i32 SOCKET;
-#define Errno errno
-#define bsd_socket_error strerror
+//#define Errno errno
+//#define bsd_socket_error strerror
 
 #ifdef sockets
 namespace sockets
@@ -115,12 +115,12 @@ namespace sockets
 #endif // !_WIN32
 
 
-// ----------------------------------------
-// Generic
-#ifndef SOL_IP
-#define SOL_IP IPPROTO_IP
-#endif
-
+//// ----------------------------------------
+//// Generic
+//#ifndef SOL_IP
+//#define SOL_IP IPPROTO_IP
+//#endif
+//
 
 // ----------------------------------------
 // App specific adaptions

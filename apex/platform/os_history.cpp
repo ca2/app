@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "shell_launcher.h"
 
 os_history::os_history(::object * pobject) //:
 //   ::object(pbojectContext)//,

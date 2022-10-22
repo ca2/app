@@ -33,7 +33,7 @@ namespace user
       bool                                m_bAutoSaveModified;
 
       string                              m_strSaveFileExtension;
-      id_map < ::procedure_array >          m_mapRoutine;
+      atom_map < ::procedure_array >          m_mapRoutine;
       bool                                m_bToolbar;
 
 

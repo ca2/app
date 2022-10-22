@@ -1,8 +1,6 @@
 #pragma once
 
 
-
-
 class CLASS_DECL_ACME action_context :
    virtual public matter
 {
@@ -22,9 +20,9 @@ public:
 
 
    inline void add(e_source esource) { m_esource.add(esource); }
-   inline void add(const matter * pobject) { if (!m_pobjecta) m_pobjecta = __new(pointer_array < ::matter >); m_pobjecta->add((::matter *)pobject); }
-   inline index find(const matter * pobject) const { return !m_pobjecta ? -1 : m_pobjecta->find_first(pobject); }
-   inline bool contains(const matter * pobject) const { return !m_pobjecta ? false : m_pobjecta->contains(pobject); }
+   void add(const matter * pobject);
+   index find(const matter * pobject) const;
+   bool contains(const matter * pobject) const;
 
    inline bool is(e_source esource) const { return m_esource.has(esource); }
    inline bool is_user_source() const { return is(e_source_user); }

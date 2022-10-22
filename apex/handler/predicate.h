@@ -2,18 +2,20 @@
 #pragma once
 
 
-template < typename PREDICATE >
-class __predicate :
+class handle_function :
    virtual public ::matter
 {
 public:
 
 
-   PREDICATE m_predicate;
+   using function = ::function < void(::topic *, ::context *) >;
 
 
-   __predicate(PREDICATE predicate) : m_predicate(predicate) { }
-   virtual ~__predicate() {}
+   function       m_function;
+
+
+   handle_function(function function) : m_function(function) { }
+   virtual ~handle_function() {}
    //method(const ::matter_pointer & pmatter) : matter_pointer(pmatter) { }
    //method(const ::method & method) : matter_pointer(method) { }
 
@@ -23,7 +25,7 @@ public:
    void handle(::topic * ptopic, ::context * pcontext) override
    {
 
-      m_predicate(ptopic, pcontext);
+      m_function(ptopic, pcontext);
 
    }
 
@@ -37,13 +39,13 @@ public:
 };
 
 
-template < typename PREDICATE >
-::matter_pointer predicate(PREDICATE predicate)
-{
-
-   return __new(__predicate<PREDICATE>(predicate));
-
-}
+//template < typename PREDICATE >
+//::matter_pointer __handle_function(PREDICATE predicate)
+//{
+//
+//   return __new(han<PREDICATE>(predicate));
+//
+//}
 
 
 

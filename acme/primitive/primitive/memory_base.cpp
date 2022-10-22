@@ -1,7 +1,9 @@
 ﻿#include "framework.h"
 #include "acme/operating_system.h"
+#include "acme/filesystem/file/file.h"
 #include "acme/primitive/string/base64.h"
 #include "acme/primitive/primitive/memory.h"
+
 
 
 #ifdef WINDOWS

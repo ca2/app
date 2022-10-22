@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "decoder_plugin.h"
 #include "decoder.h"
+#include "aqua/platform/system.h"
 
 
 namespace multimedia

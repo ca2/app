@@ -4,6 +4,9 @@
 #pragma once
 
 
+#include "apex/platform/shell_launcher.h"
+
+
 namespace ansios
 {
 
@@ -17,26 +20,25 @@ namespace ansios
 
 
    class CLASS_DECL_APEX shell_launcher :
-virtual public ::apex::shell_launcher
-{
+      virtual public ::apex::shell_launcher
+   {
    public:
 
 
+      shell_launcher();
+
+      virtual ~shell_launcher();
+
+      //virtual void setup(duration durationTimeout = ::one_minute());
+      //virtual void setup(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout = ::one_minute());
+
+      virtual void launch();
 
 
-   shell_launcher();
-   virtual ~shell_launcher();
-
-   //virtual void setup(duration durationTimeout = ::one_minute());
-   //virtual void setup(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout = ::one_minute());
-
-   virtual void launch();
+      //inline void status() const {return m_estatus;}
 
 
-   //inline void status() const {return m_estatus;}
-
-
-};
+   };
 
 
 #endif

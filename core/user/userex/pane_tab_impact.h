@@ -31,9 +31,9 @@ namespace userex
       };
 
       
-      id_map < ::pointer<::form_document >> m_mapForm;
+      atom_map < ::pointer<::form_document >> m_mapForm;
       ::pointer<pane_impact>                  m_ppaneimpact;
-      id_map < ::pointer<::object >>        m_mapFileManager;
+      atom_map < ::pointer<::object >>        m_mapFileManager;
       ::pointer<::user::document>           m_pdocAppOptions;
       ::pointer<font_impact>                m_pfontimpact;
       ::pointer<color_impact>               m_pcolorimpact;

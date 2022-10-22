@@ -85,6 +85,8 @@ public:
    virtual file_pointer time_square_file(const string & pszPrefix = nullptr, const string & pszSuffix = nullptr);
    virtual file_pointer get(const ::file::path & name);
 
+   virtual file_pointer get_temporary_upload_file(const ::file::path & pathCurrent);
+
 
    //template < class T >
    //string time_square(T * p, bool (T:: * pfnOutput)(::stream &, const ::file::path &), const ::file::path & pszSource)
@@ -304,16 +306,7 @@ public:
    }
 
 
-   void set(const ::payload & payloadFile, const ::memory_base & memory)
-   {
-
-      auto writer = get_writer(payloadFile);
-
-      writer->write(memory.get_data(), memory.get_size());
-
-      //return writer.m_estatus;
-
-   }
+   void set(const ::payload & payloadFile, const ::memory_base & memory);
 
 
    template < class OBJECT >

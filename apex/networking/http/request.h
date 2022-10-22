@@ -3,6 +3,7 @@
 
 #include "form.h"
 #include "transaction.h"
+#include "acme/filesystem/file/text_stream.h"
 
 
 namespace http
@@ -44,7 +45,7 @@ namespace http
       /** No more writing */
       void CloseBody();
 
-      void ParseBody();
+      void ParseBody(::apex::context * pcontextUploadFile);
 
       http::form & form();
 

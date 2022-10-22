@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "item_array.h"
+#include "item.h"
 
 
 namespace file

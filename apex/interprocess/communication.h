@@ -52,7 +52,7 @@ namespace interprocess
 
       virtual ::interprocess::caller & caller(const ::string & strApp, const ::atom & idPid);
 
-      virtual id_array get_pid(const ::string & strApp);
+      virtual atom_array get_pid(const ::string & strApp);
 
       virtual string key(const string & strApp, const ::atom & idPid);
 

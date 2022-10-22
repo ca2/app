@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
-//#include "acme/primitive/string/_str.h"
+#include "acme/filesystem/file/file.h"
+#include "acme/filesystem/file/text_stream.h"
 #include <stdio.h>
 
 
@@ -5400,6 +5401,16 @@ void str::get_lines(::string_array & stra, ::string & str, const ::string & strP
 {
 
    return strstream.as_string();
+
+}
+
+
+ansistring & str::assign(ansistring & ansistrDst, const property & property)
+{
+
+   ansistrDst.assign(property.string());
+
+   return ansistrDst;
 
 }
 

@@ -256,12 +256,6 @@ inline RECTANGLE & rate_deflate(RECTANGLE & rectangle, double dLeftRate, double 
 //inline bool is_empty(const RECTANGLE_F64 & rectangle) { return ::is_empty(&rectangle); }
 //inline void swap_left_right(RECTANGLE_F64 & rectangle) noexcept { ::swap_left_right(&rectangle); }
 
-template < primitive_point POINT, primitive_point POINT2 >
-inline POINT & operator -= (POINT & point, const POINT2 & pointOffset) { ::subtract(point, pointOffset); return point; }
-
-template < primitive_point POINT, primitive_point POINT2 >
-inline POINT & operator += (POINT & point, const POINT2 & pointOffset) { ::subtract(point, pointOffset); return point; }
-
 //inline POINT_I64 & operator -= (POINT_I64 & point, const ::point_i64 & pointOffset) { ::point_sub(point, pointOffset); return point; }
 //inline POINT_I64 & operator += (POINT_I64 & point, const ::point_i64 & pointOffset) { ::point_add(point, pointOffset); return point; }
 //inline POINT_F32 & operator -= (POINT_F32 & point, const ::point_f32 & pointOffset) { ::point_sub(point, pointOffset); return point; }
@@ -269,11 +263,7 @@ inline POINT & operator += (POINT & point, const POINT2 & pointOffset) { ::subtr
 //inline POINT_F64 & operator -= (POINT_F64 & point, const ::point_f64 & pointOffset) { ::point_sub(point, pointOffset); return point; }
 //inline POINT_F64 & operator += (POINT_F64 & point, const ::point_f64 & pointOffset) { ::point_add(point, pointOffset); return point; }
 
-template < primitive_rectangle RECTANGLE, primitive_point POINT >
-inline RECTANGLE & operator -= (RECTANGLE & rectangle, const POINT & point) { ::subtract(rectangle, point); return rectangle; }
 
-template < primitive_rectangle RECTANGLE, primitive_point POINT >
-inline RECTANGLE & operator += (RECTANGLE & rectangle, const POINT & point) { ::subtract(rectangle, point); return rectangle; }
 
 //inline RECTANGLE_I64& operator -= (RECTANGLE_I64& rectangle, const ::point_i64& point) { ::rect_sub(rectangle, point); return rectangle; }
 //inline RECTANGLE_I64& operator += (RECTANGLE_I64& rectangle, const ::point_i64& point) { ::rect_add(rectangle, point); return rectangle; }

@@ -849,14 +849,6 @@
    }
 
 
-   inline ansistring & str::assign(ansistring & ansistrDst, const property & property)
-   {
-
-      ansistrDst.assign(property.string());
-
-      return ansistrDst;
-
-   }
 
 
    inline wd16string & str::assign(wd16string & widestrDst, const ::payload & payload)

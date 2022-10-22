@@ -9,6 +9,8 @@
 #pragma once
 
 
+#include "acme/primitive/mathematics/index.h"
+#include "acme/primitive/mathematics/count.h"
 
 
 constexpr ::u64 operator "" _uintmax(unsigned long long int u) { return u << 32LL; }
@@ -33,6 +35,18 @@ class payload;
 struct block;
 class property_set;
 class particle;
+namespace operating_system { class department; }
+
+
+namespace networking
+{
+
+
+   class application;
+
+
+} // namespace networking
+
 
 //namespace topic
 //{
@@ -41,12 +55,41 @@ class particle;
    class context;
 
 //} // namespace topic
-   namespace file
-   {
+namespace file
+{
 
-      class file;
+   class file;
+   class item;
+   class item_array;
 
-   } // namespace file
+
+} // namespace file
+
+
+namespace apex
+{
+
+
+   class savings;
+
+
+} // namespace apex
+
+class stdio_file;
+class string_stream;
+class string_buffer;
+
+
+namespace http
+{
+
+   class cookie;
+   class cookies;
+
+
+} // namespace http
+
+
 
 
 CLASS_DECL_ACME void output_error_message(const ansichar * pszMessage, const ansichar * pszTitle = nullptr, int iMessageBox = 0);
@@ -125,6 +168,9 @@ class atom;
 class item;
 
 
+class memory;
+
+
 class CLASS_DECL_ACME integral_byte { public: integral_byte(memsize memsize = 1) : m_memsize(memsize) {} memsize m_memsize; operator memsize() const { return m_memsize; } };
 
 
@@ -157,3 +203,6 @@ inline integral_byte operator ""_gb(unsigned long long i)
 {
    return (memsize) (1024 * 1024 * 1024 * i);
 }
+
+
+

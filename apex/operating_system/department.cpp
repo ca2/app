@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "department.h"
+#include "acme/platform/node.h"
 
 
 void install_sigchld_handler();

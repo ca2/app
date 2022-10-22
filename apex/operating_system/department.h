@@ -1,7 +1,11 @@
 #pragma once
 
 
-namespace operating_system
+#include "acme/platform/department.h"
+#include "apex/parallelization/thread.h"
+
+
+namespace process
 {
 
 
@@ -86,6 +90,6 @@ namespace operating_system
    };
 
 
-} // namespace operating_system
+} // namespace process
 
 

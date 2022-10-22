@@ -1,7 +1,7 @@
 ﻿// cs<3tbs!! 2020-11-28 21:16 BRT
 #include "framework.h"
-#include "netserver/_netserver.h"
-#include "_networking.h"
+#include "source/app/apex/networking/netserver/_netserver.h"
+#include "source/app/apex/networking/_networking.h"
 #include "networking_application_socket.h"
 #include "acme/filesystem/file/memory_file.h"
 #include "apex/platform/application.h"

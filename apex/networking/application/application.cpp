@@ -1,8 +1,9 @@
 ﻿// Created by camilo on 2021-11-07 11:35 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
-#include "netserver/_netserver.h"
-#include "_networking.h"
+#include "source/app/apex/networking/_networking.h"
 #include "networking_application_socket.h"
+#include "networking_application.h"
+#include "source/app/apex/networking/netserver/_netserver.h"
 #include "apex/filesystem/filesystem/file_context.h"
 #include "apex/platform/application.h"
 #include "apex/platform/system.h"

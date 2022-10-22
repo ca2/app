@@ -198,11 +198,11 @@ public:
    char * get_psz(strsize & len);
 
    memory_base & operator = (const memory_base & s);
-   inline memory_base & operator = (const block & block);
+   memory_base & operator = (const block & block);
 
 
    memory_base & operator += (const memory_base & s);
-   inline memory_base & operator += (const block & block);
+   memory_base & operator += (const block & block);
 
 
    void from_string(const widechar * pwsz);
@@ -228,7 +228,7 @@ public:
    void zero(memsize iStart = 0, memsize uiSize = -1);
 
    
-   inline void assign(const block & block);
+   void assign(const block & block);
    void assign(const void * pdata, memsize iCount);
    void assign(const void * pdata, memsize iStart, memsize iCount);
    void assign(memsize iCount, uchar uch);

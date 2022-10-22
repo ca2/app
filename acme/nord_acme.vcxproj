@@ -509,6 +509,7 @@
     <ClCompile Include="primitive\primitive\element.cpp" />
     <ClCompile Include="primitive\primitive\estatus.cpp" />
     <ClCompile Include="primitive\primitive\factory.cpp" />
+    <ClCompile Include="primitive\primitive\get_memory.cpp" />
     <ClCompile Include="primitive\primitive\interlocked_long.cpp" />
     <ClCompile Include="primitive\primitive\linked_property.cpp" />
     <ClCompile Include="primitive\primitive\match.cpp" />
@@ -524,6 +525,7 @@
     <ClCompile Include="primitive\primitive\property.cpp" />
     <ClCompile Include="primitive\primitive\property_object.cpp" />
     <ClCompile Include="primitive\primitive\property_set.cpp" />
+    <ClCompile Include="primitive\primitive\read_only_memory.cpp" />
     <ClCompile Include="primitive\primitive\type.cpp" />
     <ClCompile Include="primitive\primitive\var_element.cpp" />
     <ClCompile Include="primitive\primitive\virtual_memory.cpp" />
@@ -590,6 +592,7 @@
     <ClCompile Include="user\nano\_nano.cpp" />
     <ClCompile Include="user\user\check.cpp" />
     <ClCompile Include="user\user\drag.cpp" />
+    <ClCompile Include="user\user\drag_client.cpp" />
     <ClCompile Include="user\user\element.cpp" />
     <ClCompile Include="user\user\conversation.cpp" />
     <ClCompile Include="user\user\os_colors.cpp" />

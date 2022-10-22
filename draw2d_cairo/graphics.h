@@ -195,7 +195,7 @@ namespace draw2d_cairo
       void paint_region(::draw2d::region* pRgn) override;
 
       // Clipping Functions
-      i32 get_clip_box(::rectangle_f64 * prectangle) override;
+      i32 get_clip_box(::rectangle_f64 & rectangle) override;
 
 
       void intersect_clip(const ::rectangle_f64 & rectangle) override;

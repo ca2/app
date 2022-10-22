@@ -1,4 +1,5 @@
-#include "framework.h"
+﻿#include "framework.h"
+#include "apex/platform/application.h"
 
 
 namespace apex

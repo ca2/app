@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "draw2d.h"
+#include "acme/primitive/primitive/memory.h"
 
 
 FT_Library __ftlibrary();
@@ -1457,9 +1458,9 @@ namespace draw2d_cairo
 
       ::file::path path = pcontext->defer_process_path(pathFile);
 
-      auto pmemory = m_psystem->m_paurasystem->draw2d()->write_text()->get_file_memory(pcontext, path);
+      auto pmemorypointer = m_psystem->m_paurasystem->draw2d()->write_text()->get_file_memory(pcontext, path);
 
-      return private_ftface_from_memory(*pmemory, pathFile);
+      return private_ftface_from_memory(*pmemorypointer, pathFile);
 
    }
 

@@ -365,6 +365,13 @@
     <ClInclude Include="user\user\style_composite.h" />
     <ClInclude Include="user\user\style_coord.h" />
     <ClInclude Include="user\user\style_rect.h" />
+    <ClInclude Include="user\user\tab.h" />
+    <ClInclude Include="user\user\tab_callback.h" />
+    <ClInclude Include="user\user\tab_data.h" />
+    <ClInclude Include="user\user\tab_drop_target_window.h" />
+    <ClInclude Include="user\user\tab_impact.h" />
+    <ClInclude Include="user\user\tab_pane.h" />
+    <ClInclude Include="user\user\tab_pane_array.h" />
     <ClInclude Include="user\user\text.h" />
     <ClInclude Include="user\user\theme.h" />
     <ClInclude Include="user\user\tooltip.h" />

@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "element.h"
 #include "acme/primitive/geometry2d/_collection_basic.h"
 #include "apex/filesystem/filesystem/file_context.h"

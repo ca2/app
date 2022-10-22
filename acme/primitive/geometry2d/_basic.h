@@ -7,6 +7,9 @@
 #include "shift.h"
 
 
+#include "_concept.h"
+
+
 // inline auto left(const ::rectangle_i32 &rectangle) { return rectangle.left; }
 // inline auto top(const ::rectangle_i32 &rectangle) { return rectangle.top; }
 // inline auto left(const RECTANGLE_I64 & rectangle) { return rectangle.left; }

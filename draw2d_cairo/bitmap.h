@@ -1,7 +1,8 @@
-#pragma once
+﻿#pragma once
 
 
 #include "aura/graphics/draw2d/bitmap.h"
+#include "acme/primitive/primitive/memory.h"
 
 
 namespace draw2d_cairo

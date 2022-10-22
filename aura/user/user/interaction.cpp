@@ -17305,10 +17305,11 @@ void interaction::on_drag_scroll_layout(::draw2d::graphics_pointer &pgraphics)
          }
 
       }
-      
-      if(m_bEnableHorizontalBarDragScroll || m_bEnableVerticalBarDragScroll)
+
+      if((m_bEnableHorizontalBarDragScroll && _001HasHorizontalBarDragScrolling()) 
+      || (m_bEnableVerticalBarDragScroll && _001HasVerticalBarDragScrolling()))
       {
-         
+
          m_pointBarDragScrollLeftButtonDown = pmouse->m_point;
          
          m_bBarDragScrollLeftButtonDown = true;

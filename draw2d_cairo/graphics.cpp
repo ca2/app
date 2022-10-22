@@ -3427,7 +3427,7 @@ namespace draw2d_cairo
    }
 
 
-   i32 graphics::get_clip_box(::rectangle_f64 * prectangle)
+   i32 graphics::get_clip_box(::rectangle_f64 & rectangle)
    {
 
       return 0;
@@ -3898,7 +3898,7 @@ namespace draw2d_cairo
 
       rectangle_f64 rectangle;
 
-      copy(&rectangle, &rectangleParam);
+      copy(rectangle, rectangleParam);
 
       internal_draw_text(strParam, rectangle, ealign, edrawtext);
 

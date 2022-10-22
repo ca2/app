@@ -1149,6 +1149,16 @@ memory_base & memory_base::operator = (const memory_base & s)
 }
 
 
+memory_base & memory_base::operator += (const block & block)
+{
+
+   append(block);
+
+   return *this;
+
+}
+
+
 memory_base & memory_base::operator += (const memory_base & s)
 {
 
@@ -2366,14 +2376,14 @@ memory_base & memory_base::operator = (const block & block)
 }
 
 
-memory_base & memory_base::operator += (const block & block)
-{
-
-   append(block);
-
-   return *this;
-
-}
+//memory_base & memory_base::operator += (const block & block)
+//{
+//
+//   append(block);
+//
+//   return *this;
+//
+//}
 
 
 void memory_base::assign(const ::block & block)

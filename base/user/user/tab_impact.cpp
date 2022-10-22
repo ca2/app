@@ -494,7 +494,7 @@ namespace user
 
          on_change_cur_sel();
 
-         on_change_cur_sel();
+//         on_change_cur_sel();
 
       }
 
@@ -640,7 +640,17 @@ namespace user
 
       }
 
-      if (m_pimpactdataOld 
+   }
+
+
+   void tab_impact::on_after_change_cur_sel()
+   {
+
+      auto ptabdata = get_data();
+
+      ::rectangle_i32 rectangleTabClient = ptabdata->m_rectangleTabClient;
+
+      if (m_pimpactdataOld
          && m_pimpactdataOld->m_eflag & ::user::e_flag_hide_on_kill_focus
          && m_pimpactdataOld->m_atom != MENU_IMPACT
          && m_pimpactdataOld->m_atom != OPTIONS_IMPACT)
@@ -713,16 +723,16 @@ namespace user
 
          m_pimpactdata->m_pplaceholder->display();
 
-//         m_pimpactdata->m_pplaceholder->set_need_redraw();
-//
-//         m_pimpactdata->m_pplaceholder->set_need_layout();
-//
-//         m_pimpactdata->m_pplaceholder->post_redraw();
+         //         m_pimpactdata->m_pplaceholder->set_need_redraw();
+         //
+         //         m_pimpactdata->m_pplaceholder->set_need_layout();
+         //
+         //         m_pimpactdata->m_pplaceholder->post_redraw();
 
       }
 
       ::user::impact * pimpact = nullptr;
-      
+
       if (m_pimpactdata->m_puserinteraction)
       {
 
@@ -740,25 +750,25 @@ namespace user
       auto pframe = parent_frame();
 
       auto pframeImpact = pimpact->parent_frame();
-      
-      if(pframe && pframeImpact)
+
+      if (pframe && pframeImpact)
       {
-      
-         if(pframeImpact != pframe)
+
+         if (pframeImpact != pframe)
          {
-         
+
             pframe->set_active_impact(this);
-            
+
             pframeImpact->set_active_impact(pimpact);
 
          }
          else
          {
-            
+
             pframe->set_active_impact(pimpact);
-            
+
          }
-         
+
       }
 
       auto papp = get_app();

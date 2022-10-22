@@ -103,6 +103,8 @@ namespace user
 
       virtual void on_change_cur_sel();
 
+      virtual void on_after_change_cur_sel();
+
       virtual void  _001SetVertical(bool bSet = true);
       // virtual void set_current_tab_by_index(::index iTab);
       virtual void _001CloseTab(::index iTab);

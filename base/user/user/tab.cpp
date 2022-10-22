@@ -2711,6 +2711,8 @@ namespace user
       }
 
       on_change_cur_sel();
+
+      on_after_change_cur_sel();
       
       if (m_ewindowflag & ::e_window_flag_window_created)
       {
@@ -3240,6 +3242,13 @@ namespace user
       ::pointer<::base::application>papp = get_app();
 
       papp->on_change_cur_sel(this);
+
+   }
+
+
+   void tab::on_after_change_cur_sel()
+   {
+
 
    }
 

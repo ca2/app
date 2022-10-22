@@ -1,4 +1,4 @@
-#include "framework.h"
+﻿#include "framework.h"
 #include "document.h"
 #include "impact.h"
 #include "base/platform/system.h"
@@ -119,6 +119,8 @@ namespace user
 
       }
 
+      m_pform.release();
+
       string strHtml;
 
       ::file::path pathHtml;
@@ -131,6 +133,13 @@ namespace user
       {
 
          bOk = false;
+
+         if (pformOld)
+         {
+
+            pformOld->set_finish();
+
+         }
 
          auto psession = get_session();
 
@@ -190,13 +199,6 @@ namespace user
          {
 
             m_pform = pformNew;
-
-            if (pformOld)
-            {
-
-               pformOld->set_finish();
-
-            }
 
          }
 

@@ -294,11 +294,7 @@ namespace html
 
       m_pelement = ::move_transfer(memory_new ::html::element);
 
-      //m_pelement->m_pbase = memory_new ::html::tag(nullptr);
-
       m_pelement->initialize_html_elemental(this);
-
-      //m_pelement->initialize_html_element(this);
 
       m_pelement->load(this, m_ptag);
 
@@ -314,7 +310,7 @@ namespace html
    void core_data::implement(::draw2d::graphics_pointer & pgraphics)
    {
       
-      if(::is_null(m_pelement))\
+      if(::is_null(m_pelement))
       {
          
          return;
@@ -322,6 +318,8 @@ namespace html
       }
 
       m_bImplemented = false;
+
+      m_bLaidout = false;
 
       __guard_wait(m_bImplement);
 

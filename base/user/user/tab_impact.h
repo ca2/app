@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 
 #include "impact_host.h"
@@ -102,6 +102,8 @@ namespace user
       void _on_change_cur_sel();
 
       void on_change_cur_sel() override;
+
+      void on_after_change_cur_sel() override;
 
       void _001OnTabClick(::index iTab) override;
 

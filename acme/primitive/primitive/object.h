@@ -1400,3 +1400,570 @@ inline void __defer_raw_construct_new(::pointer<TYPE> & ptype)
 
 
 
+
+
+
+
+
+
+#define OPTIONAL_BASE_BODY                                                          \
+public:                                                                             \
+   void on_initialize_object() override {}         \
+   void assert_ok() const override {}                                    \
+   void dump(dump_context&) const override {}                               \
+   void handle(::topic*,::context*) override {}    \
+   //void on_subject(::topic::topic*, ::context*) override {} \
+
+
+#define OPTIONAL_INTERACTION_BODY                                                   \
+   OPTIONAL_BASE_BODY                                                               \
+   void install_message_routing(::channel*) override {}                     \
+   void on_layout(::draw2d::graphics_pointer&) {}
+
+
+class optional_base1 : virtual public ::object { OPTIONAL_BASE_BODY };
+class optional_base2 : virtual public ::object { OPTIONAL_BASE_BODY };
+class optional_base3 : virtual public ::object { OPTIONAL_BASE_BODY };
+class optional_base4 : virtual public ::object { OPTIONAL_BASE_BODY };
+
+class optional_interaction1 : virtual public ::object { OPTIONAL_INTERACTION_BODY };
+class optional_interaction2 : virtual public ::object { OPTIONAL_INTERACTION_BODY };
+class optional_interaction3 : virtual public ::object { OPTIONAL_INTERACTION_BODY };
+class optional_interaction4 : virtual public ::object { OPTIONAL_INTERACTION_BODY };
+
+
+
+
+template < typename TYPE >
+inline ::pointer<TYPE>object::__create()
+{
+
+   auto & pfactory = ::factory::get_factory_item < TYPE >();
+
+   if (!pfactory)
+   {
+
+      throw ::exception(::error_not_implemented);
+
+   }
+
+   auto ptypeNew = pfactory->create_element();
+
+   if (!ptypeNew)
+   {
+
+      throw ::exception(::error_no_memory);
+
+   }
+
+   TYPE * p;
+
+   __dynamic_cast(p, ptypeNew.m_p);
+
+   if (!p)
+   {
+
+      throw ::exception(::error_wrong_type);
+
+   }
+
+   p->initialize(this);
+
+
+   return p;
+
+}
+
+
+
+template < typename TYPE >
+inline ::pointer<TYPE>object::__id_create(const ::atom & atom)
+{
+
+   auto pfactory = ::factory::get_factory_item(atom);
+
+   if (!pfactory)
+   {
+
+      throw ::exception(error_no_factory);
+
+   }
+
+   auto ptypeNew = pfactory->create_element();
+
+   if (!ptypeNew)
+   {
+
+      throw ::exception(error_no_memory);
+
+   }
+
+   ::pointer<TYPE>p;
+
+   p = ptypeNew;
+
+   if (!p)
+   {
+
+      throw ::exception(error_wrong_type);
+
+   }
+
+   p->set(e_flag_factory);
+
+   //auto estatus = p->initialize(this);
+
+   p->initialize(this);
+
+   //if (!estatus)
+   //{
+
+   //   return estatus;
+
+   //}
+
+   return ::move(p);
+
+}
+
+
+template < typename TYPE >
+inline ::pointer<TYPE>object::__create_new()
+{
+
+   ASSERT(::is_set(this));
+
+   auto p = __new(TYPE());
+
+   if (p)
+   {
+
+      p->initialize(this);
+
+   }
+
+   return ::move(p);
+
+}
+
+
+
+
+
+template < typename BASE_TYPE >
+inline void object::__raw_construct(::pointer<BASE_TYPE> & p)
+{
+
+   //if (!p)
+   //{
+
+   auto & pfactory = ::factory::get_factory_item < BASE_TYPE >();
+
+   if (!pfactory)
+   {
+
+      throw ::exception(::error_no_factory);
+
+   }
+
+   auto pelement = pfactory->create_element();
+
+   if (!pelement)
+   {
+
+      throw ::exception(::error_no_memory);
+
+   }
+
+   p = pelement;
+
+   if (!p)
+   {
+
+      throw ::exception(error_wrong_type);
+
+   }
+
+   ///*auto estatus = */ add_composite(pusermessage);
+
+   //if (!estatus)
+   //{
+
+   //   return estatus;
+
+   //}
+
+//}
+
+//return ::success;
+
+}
+
+
+
+
+
+
+
+template < typename TYPE >
+inline void object::__defer_construct(::pointer<TYPE> & p)
+{
+
+   if (::is_null(p))
+   {
+
+      __construct(p);
+
+   }
+
+}
+
+
+template < typename TYPE >
+inline void object::__defer_construct_new(::pointer<TYPE> & p)
+{
+
+   if (::is_null(p))
+   {
+
+      __construct_new(p);
+
+   }
+
+}
+
+
+template < typename TYPE >
+inline void object::__construct(::pointer<TYPE> & p)
+{
+
+   auto & pfactory = ::factory::get_factory_item < TYPE >();
+
+   if (!pfactory)
+   {
+
+      ERROR("object::__construct has failed to find factory_item for type \"" << __type_name < TYPE >() << "\"");
+
+      throw ::exception(::error_not_implemented);
+
+   }
+
+   auto ptypeNew = pfactory->create_element();
+
+   if (!ptypeNew)
+   {
+
+      ERROR("object::__construct no memory to allocate implementation of type \"" + __type_name < TYPE >() + "\"");
+
+      throw ::exception(::error_no_memory);
+
+   }
+
+   p.release();
+
+   p = ptypeNew;
+
+   if (!p)
+   {
+
+      ERROR("object::__construct object(" << __type_name(ptypeNew) << ") is not of type \"" << __type_name < TYPE >() << "\"");
+
+      throw ::exception(::error_wrong_type);
+
+   }
+
+   p->initialize(this);
+
+}
+
+
+template < typename BASE_TYPE, typename TYPE >
+inline void object::__construct(::pointer<BASE_TYPE> & ptype, const ::pointer < TYPE > & p)
+{
+
+   __construct(ptype, p.m_p);
+
+}
+
+
+template < typename BASE_TYPE, typename TYPE >
+inline void object::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p)
+{
+
+   if (::is_null(p))
+   {
+
+      ERROR("object::__assign_and_initialize p is null (is assignee type derived from BASE_TYPE?");
+
+      throw ::exception(::error_null_pointer);
+
+   }
+
+   ptype.release();
+
+   ptype = p;
+
+   ptype->initialize(this);
+
+}
+
+
+template < typename TYPE >
+inline void object::__id_construct(::pointer<TYPE> & p, const ::atom & atom)
+{
+
+   auto & pfactory = ::factory::get_existing_factory_item(atom);
+
+   auto ptypeNew = pfactory->create_element();
+
+   //if (!ptypeNew)
+   //{
+
+   //   return error_no_memory;
+
+   //}
+
+   p = ptypeNew;
+
+   if (!p)
+   {
+
+      throw ::exception(error_wrong_type);
+
+   }
+
+   p->set(e_flag_factory);
+
+   //auto estatus = 
+
+   p->initialize(this);
+
+   //if (!estatus)
+   //{
+
+   //   return estatus;
+
+   //}
+
+   //return estatus;
+
+}
+
+
+template < typename TYPE >
+inline void object::__construct_new(::pointer<TYPE> & p)
+{
+
+   p = __new(TYPE);
+
+   if (!p)
+   {
+
+      throw ::exception(error_no_memory);
+
+   }
+
+   p->initialize(this);
+
+
+}
+
+
+//template < typename BASE_TYPE >
+//inline void object::__release(::pointer<BASE_TYPE> pcomposite OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   if (::is_set(pcomposite))
+//   {
+//
+//      //synchronous_lock synchronouslock(mutex());
+//
+//      //if (m_pcompositea)
+//      //{
+//
+//      //   if (m_pcompositea->erase(pcomposite.get()) >= 0)
+//      //   {
+//
+//            pcomposite.clear_member();
+//
+//      //   }
+//
+//      //}
+//
+//   }
+//
+//   //return ::success;
+//
+//}
+//
+//
+//template < typename BASE_TYPE >
+//inline void object::__release(::pointer<BASE_TYPE> preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   if (::is_set(preference))
+//   {
+//
+//      //synchronous_lock synchronouslock(mutex());
+//
+//      //if (m_preferencea)
+//      //{
+//
+//      //   if (m_preferencea->erase(preference.get()) >= 0)
+//      //   {
+//
+//            //preference->release(OBJECT_REFERENCE_COUNT_DEBUG_ARGS);
+//
+//            preference.clear_member();
+//
+//   //      }
+//   //      else
+//   //      {
+//
+//   //         return ::error_failed;
+//
+//   //      }
+//
+//   //   }
+//
+//   }
+//
+//   //return ::success;
+//
+//}
+//
+//
+//template < typename SOURCE >
+//inline void object::__release(::pointer<SOURCE> psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   release_reference(psource.m_p);
+//
+//}
+
+
+//CLASS_DECL_ACME void object_on_add_composite(const element* pusermessage);
+
+
+//template < typename BASE_TYPE, typename SOURCE >
+//inline void object::__refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   __refer(preference, psource.get()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//}
+//
+//
+//template < typename BASE_TYPE, typename SOURCE >
+//inline void object::__refer(::pointer<BASE_TYPE> preference, const ::primitive::member < SOURCE >& pmember OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   __refer(preference, pmember.get()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//}
+//
+//
+//template < typename BASE_TYPE, typename SOURCE >
+//inline void object::__refer(::pointer<BASE_TYPE> preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   preference = psource;
+//
+//   if (!preference)
+//   {
+//
+//      throw ::exception(error_wrong_type);
+//
+//   }
+//
+//   add_reference(preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//}
+//
+//
+//template < typename BASE_TYPE, typename SOURCE >
+//inline void object::__defer_refer(::pointer<BASE_TYPE> preference, const ::pointer<SOURCE>psource  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   __defer_refer(preference, psource.get()  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//}
+//
+//
+//template < typename BASE_TYPE, typename SOURCE >
+//inline void object::__defer_refer(::pointer<BASE_TYPE> preference, const SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   if (preference.get() != psource)
+//   {
+//
+//      __release(preference);
+//
+//      preference = psource;
+//
+//      if (preference)
+//      {
+//
+//         add_reference(preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//      }
+//
+//   }
+//
+//}
+//
+//
+//template < typename SOURCE >
+//inline void object::add_reference(::pointer<SOURCE> psource  OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   add_reference(psource.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//}
+//
+//
+//template < typename SOURCE >
+//inline void object::add_reference(::pointer<SOURCE> preference OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   add_reference(preference.get() OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//}
+//
+//
+//template < typename SOURCE >
+//inline void object::add_reference(SOURCE* psource OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS_DEF)
+//{
+//
+//   ::element* pelement = psource;
+//
+//   if (::is_null(pelement))
+//   {
+//
+//      throw ::exception(error_wrong_type);
+//
+//   }
+//
+//   add_reference(pelement OBJECT_REFERENCE_COUNT_DEBUG_COMMA_ARGS);
+//
+//}
+
+
+inline ::file_pointer object::get_reader(const ::payload & payloadFile, const ::file::e_open & eopen)
+{
+
+   return get_file(payloadFile, eopen | ::file::e_open_read);
+
+}
+
+
+inline ::file_pointer object::get_writer(const ::payload & payloadFile, const ::file::e_open & eopen)
+{
+
+   return get_file(payloadFile, eopen | ::file::e_open_write);
+
+}
+
+
+
+

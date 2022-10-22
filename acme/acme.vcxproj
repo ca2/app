@@ -1390,6 +1390,7 @@
     <ClInclude Include="parallelization\synchronization_result.h" />
     <ClInclude Include="parallelization\task.h" />
     <ClInclude Include="parallelization\tools.h" />
+    <ClInclude Include="parallelization\_.h" />
     <ClInclude Include="parallelization\_impl.h" />
     <ClInclude Include="parallelization\_parallelization.h" />
     <ClInclude Include="parallelization\_thread_os_create_impl.h" />
@@ -1425,6 +1426,7 @@
     <ClInclude Include="platform\flags.h" />
     <ClInclude Include="platform\hyperlink.h" />
     <ClInclude Include="platform\implementable.h" />
+    <ClInclude Include="platform\ini.h" />
     <ClInclude Include="platform\keep.h" />
     <ClInclude Include="platform\less.h" />
     <ClInclude Include="platform\library.h" />
@@ -1721,10 +1723,12 @@
     <ClInclude Include="primitive\string\bstr.h" />
     <ClInclude Include="primitive\string\from_numeric_type.h" />
     <ClInclude Include="primitive\string\from_string.h" />
+    <ClInclude Include="primitive\string\string.h" />
     <ClInclude Include="primitive\string\string_base.h" />
     <ClInclude Include="primitive\string\string_block.h" />
     <ClInclude Include="primitive\string\character.h" />
     <ClInclude Include="primitive\string\string_type.h" />
+    <ClInclude Include="primitive\string\wstring.h" />
     <ClInclude Include="primitive\string\_ch_impl.h" />
     <ClInclude Include="primitive\string\_conv.h" />
     <ClInclude Include="primitive\string\_conv_ansi_impl.h" />

@@ -2,6 +2,17 @@
 #include "framework.h"
 
 
+
+atom::atom(const ::lparam & lparam)
+{
+
+   m_etype = e_type_integer;
+
+   m_u = lparam.m_lparam;
+
+}
+
+
 atom::atom(const ::payload & payload)
 {
 

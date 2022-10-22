@@ -244,3 +244,15 @@ using property_ptra = auto_ptr_array < ::property >;
 
 
 //#define memory_new ACME_NEW
+
+
+
+
+template < typename TYPE_CHAR >
+inline string_base < TYPE_CHAR >::string_base(const ::property & property) :
+   string_base(property.string())
+{
+
+
+}
+

@@ -1,14 +1,14 @@
 ﻿#pragma once
 
 
-#include "acme/primitive/primitive/property_set.h"
+//#include "acme/primitive/primitive/property_set.h"
 //#include "acme/primitive/primitive/application_bias.h"
 //#include "acme/primitive/primitive/create.h"
 //#include "acme/primitive/primitive/edit.h"
-#include "acme/primitive/primitive/factory.h"
-#include "acme/primitive/primitive/atom.h"
-#include "acme/primitive/primitive/atom_space.h"
-#include "acme/primitive/primitive/interlocked.h"
+//#include "acme/primitive/primitive/factory.h"
+//#include "acme/primitive/primitive/atom.h"
+//#include "acme/primitive/primitive/atom_space.h"
+//#include "acme/primitive/primitive/interlocked.h"
 //#include "acme/primitive/primitive/interlocked_long_pulse.h"
 //#include "acme/primitive/primitive/job.h"
 //#include "acme/primitive/primitive/memory_container.h"
@@ -18,7 +18,7 @@
 //#include "acme/primitive/primitive/virtual_memory.h"
 
 
-#include "acme/primitive/primitive/property_set_papaya.h"
+//#include "acme/primitive/primitive/property_set_papaya.h"
 
 
 #include "acme/user/user/_constant_key.h"

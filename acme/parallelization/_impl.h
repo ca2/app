@@ -1,46 +1,6 @@
 ﻿#pragma once
 
 
-inline ::payload& task_property(const ::atom& atom) { return ::get_task()->payload(atom); }
-
-
-template < typename PRED >
-inline bool predicate_Sleep(int iTime, PRED pred)
-{
-
-   if(iTime < 100)
-   {
-
-      preempt(100_ms);
-
-   }
-   else
-   {
-
-      iTime += 99;
-
-      iTime /= 100;
-
-      for(index i = 0; i < iTime; i++)
-      {
-
-         preempt(100_ms);
-
-         if(!::task_get_run() || !pred())
-         {
-
-            break;
-
-         }
-
-      }
-
-   }
-
-   return ::task_get_run();
-
-}
-
 
 
 
@@ -108,19 +68,6 @@ void async_predicate(void (* pfnBranch )(::matter * pobjectTask, enum_priority),
 //inline class ::wait wait::now() { return get_integral_millisecond(); }
 
 
-inline void preempt()
-{
-
-   if (!::task_get_run())
-   {
-
-      auto ptask = ::get_task();
-
-      throw ::exit_exception(ptask);
-
-   }
-
-}
 
 
 //DEFINE_COMPARISON_WITH_DURATION(wait)

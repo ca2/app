@@ -1656,3 +1656,232 @@ inline payload & copy(payload & payload, const integral_second & integralsecond)
 
 
 
+
+
+
+
+template < typename TYPE_CHAR >
+inline string_base < TYPE_CHAR >::string_base(const ::payload & payload) :
+   string_base(payload.string())
+{
+
+
+}
+
+
+
+
+
+template < class T >
+inline pointer < T > payload::cast(T * pDefault)
+{
+
+   if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
+   {
+
+      return m_ppayload->cast < T >(pDefault);
+
+   }
+   else if (m_etype == e_type_property && m_pproperty != nullptr)
+   {
+
+      return m_pproperty->cast < T >(pDefault);
+
+   }
+
+   auto p = cast < T >();
+
+   if (!p)
+   {
+
+      return pDefault;
+
+   }
+
+   return p;
+
+}
+
+
+
+
+
+template < class T >
+inline T & payload::get_cast(T * pDefault)
+{
+
+   if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
+   {
+
+      return m_ppayload->get_cast <T>(pDefault);
+
+   }
+
+   if (m_etype == e_type_property && m_pproperty != nullptr)
+   {
+
+      return m_pproperty->get_cast <T>(pDefault);
+
+   }
+
+   if (m_etype != e_type_element)
+   {
+
+      return defer_create_type < T >(pDefault);
+
+   }
+
+   auto p = cast < T >();
+
+   if (!p)
+   {
+
+      return defer_create_type < T >(pDefault);
+
+   }
+
+   return *p;
+
+}
+
+
+template < class T >
+inline pointer < T > payload::cast()
+{
+
+   if (m_etype == e_type_payload_pointer && m_ppayload != nullptr)
+   {
+
+      return m_ppayload->cast < T >();
+
+   }
+
+   if (m_etype == e_type_property && m_pproperty != nullptr)
+   {
+
+      return m_pproperty->cast < T >();
+
+   }
+
+
+   return get_particle();
+
+}
+
+
+
+template < typename T >
+inline pointer < T > payload::pointer() const
+{
+
+   auto pproperty = find_pointer < T >();
+
+   if (!pproperty)
+   {
+
+      return nullptr;
+
+   }
+
+   return pproperty->template cast < T >();
+
+}
+
+
+inline ::payload __visible(::payload varOptions, bool bVisible)
+{
+
+   varOptions["visible"] = bVisible;
+
+   return varOptions;
+
+}
+
+
+
+inline ::payload operator + (::payload payload, const ::procedure & procedure)
+{
+
+   if (payload.get_type() != e_type_property_set)
+   {
+
+      payload["message"] = payload;
+
+   }
+
+   payload["routine"] = procedure.m_p;
+
+   return payload;
+
+}
+
+
+
+
+inline void assign(bool & b, const payload & payload)
+{
+
+   b = payload.get_bool();
+
+}
+
+
+inline void assign(::block & block, const ::payload & r)
+{
+
+   block.operator=(r.block());
+
+}
+
+
+
+
+#if defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+
+
+inline void assign(long & l, const payload & payload)
+{
+
+   l = payload.get_long();
+
+}
+
+
+inline void assign(unsigned long & ul, const payload & payload)
+{
+
+   ul = payload.get_unsigned_long();
+
+}
+
+
+#endif // defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN) || defined(WINDOWS)
+
+
+
+
+
+// inline path::path(const ::payload & payload,e_path epath): path(payload.get_file_path(),epath){}
+// inline path::path(const property & property,e_path epath, int iDir): path(property.get_file_path(),epath, iDir) {}
+inline path & path::operator = (const ::payload & payload) { return operator = (payload.string()); }
+inline path & path::operator += (const ::payload & payload) { return operator += (payload.string()); }
+inline path & path::operator = (const property & property) { return operator = ((const ::payload &)property); }
+inline path & path::operator += (const property & property) { return operator += ((const ::payload &)property); }
+inline path path::operator + (const ::payload & payload) const { return operator + (payload.string()); }
+inline path path::operator + (const property & property) const { return operator + (property.string()); }
+inline path path::operator + (const atom & atom) const { return operator + (::string(atom)); }
+inline path path::operator / (const ::payload & payload) const { return operator /(::file::path(payload)); }
+inline path path::operator / (const property & property) const { return operator /(::file::path(property)); }
+inline path path::operator * (const property & property) const { return operator *(::file::path(property)); }
+inline path & path::operator *= (const property & property) { return operator *=(::file::path(property)); }
+inline path path::folder() const { return { ::file_path_folder(*this), m_epath }; }
+inline path path::sibling(const path & path) const { return { ::file_path_folder(*this) + separator() + ::sz::trim_left_path_sep(path), m_epath }; }
+inline path path::sibling(const ::string & str) const { return { ::file_path_folder(*this) + separator() + ::sz::trim_left_path_sep(str), m_epath }; }
+inline path path::sibling(const char * psz) const { return { ::file_path_folder(*this) + separator() + ::sz::trim_left_path_sep(psz), m_epath }; }
+inline string path::all_extensions() const { return &m_pdata[find_skip_or_length('.', rfind(separator()) + 1)]; }
+inline string path::final_extension() const { return file_path_final_extension(operator const char * ()); }
+inline path_array path::ascendants_path() const { path_array patha; return ascendants_path(patha); }
+inline string_array path::ascendants_name() const { string_array patha; return ascendants_name(patha); }
+//   inline path path::folder() const { return ::file_path_folder(*this); }
+inline bool path::operator == (const ::payload & payload) const { return operator == (payload.file_path()); }
+inline bool path::operator != (const ::payload & payload) const { return operator != (payload.file_path()); }

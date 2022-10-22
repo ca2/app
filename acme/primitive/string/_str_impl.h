@@ -699,6 +699,8 @@ inline ::string __string(const particle & particle)
 //}
 
 
+
+
 CLASS_DECL_ACME ::string __string(const ::string_stream & strstream);
 
 
@@ -1444,53 +1446,6 @@ inline string string_from_strdup(const ansichar* psz)
    }
 
 
-   /// Returns:
-   /// end of line, and;
-   /// next line or null if no next line
-   inline struct ::end_of_line_and_next_line str::end_of_line_and_next_line(const char* psz)
-   {
-
-      struct ::end_of_line_and_next_line pair;
-
-      pair.end_of_line = strpbrk(psz, "\r\n\0");
-
-      pair.next_line = pair.end_of_line;
-
-      if (!*pair.next_line  )
-      {
-
-         pair.next_line   = nullptr;
-
-      }
-      else if (*pair.next_line   == '\r')
-      {
-
-         pair.next_line  ++;
-
-         if (*pair.next_line   == '\r')
-         {
-
-            pair.next_line  ++;
-
-         }
-
-      }
-      else if (*pair.next_line   == '\n')
-      {
-
-         pair.next_line  ++;
-
-      }
-      else
-      {
-
-         throw ::exception(error_failed);
-
-      }
-
-      return pair;
-
-   }
 //
 //
 //} // namespace str

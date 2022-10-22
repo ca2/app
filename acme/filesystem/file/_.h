@@ -111,11 +111,11 @@ CLASS_DECL_ACME ::file::path dir_base_module();
 
 #include "opened.h"
 
-#include "exception.h"
+//#include "exception.h"
 
 #include "status.h"
 
-#include "stream.h"
+//#include "stream.h"
 
 #include "opened.h"
 
@@ -212,7 +212,7 @@ namespace file
 #include "listing_provider.h"
 
 
-#include "folder.h"
+//#include "folder.h"
 
 
 

@@ -428,3 +428,68 @@ CLASS_DECL_ACME error_code __last_error()
 
 
 
+
+
+
+CLASS_DECL_ACME void __throw_last_error(DWORD dwLastError)
+{
+
+   auto estatus = last_error_to_status(dwLastError);
+
+   throw ::exception(estatus);
+
+}
+
+
+CLASS_DECL_ACME void __throw_last_error()
+{
+
+   auto lastError = ::GetLastError();
+
+   __throw_last_error(lastError);
+
+}
+
+
+
+CLASS_DECL_ACME::e_status windows_wait_result_to_status(int iResult)
+{
+
+   if (iResult >= WAIT_ABANDONED_0 && iResult < (WAIT_ABANDONED_0 + MAXIMUM_WAIT_OBJECTS))
+   {
+
+      return (::e_status)((::i64)abandoned_base + (iResult - WAIT_ABANDONED_0));
+
+   }
+   else if (iResult == WAIT_IO_COMPLETION)
+   {
+
+      return error_wait_io_completion;
+
+   }
+   else if (iResult == WAIT_FAILED)
+   {
+
+      return error_wait_failed;
+
+   }
+   else if (iResult == WAIT_TIMEOUT)
+   {
+
+      return error_wait_timeout;
+
+   }
+   else if (iResult >= WAIT_OBJECT_0 && iResult < (WAIT_OBJECT_0 + MAXIMUM_WAIT_OBJECTS))
+   {
+
+      return (::e_status)((::i64)signaled_base + (iResult - WAIT_OBJECT_0));
+
+   }
+   else
+   {
+
+      return error_failed;
+
+   }
+
+}

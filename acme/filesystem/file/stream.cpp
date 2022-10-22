@@ -1055,3 +1055,35 @@
 //
 //
 //
+
+
+filesize stream_base::precision(filesize prec)
+{
+
+   return m_precision = prec;
+
+}
+
+
+filesize stream_base::width() const
+{
+
+   return m_width;
+
+}
+
+filesize stream_base::width(filesize prec)
+{
+
+   return m_width = prec;
+
+}
+
+
+filesize stream_base::precision() const
+{
+
+   return m_precision;
+
+}
+

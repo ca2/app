@@ -5,7 +5,7 @@ template < typename TYPE_CHAR >
 class string_base;
 
 
-using string = string_base < ansichar >;
+//using string = string_base < ansichar >;
 
 
 namespace heap

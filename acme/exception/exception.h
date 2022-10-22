@@ -3,6 +3,7 @@
 
 #include "acme/operating_system/error_code.h"
 
+#error "exception"
 
 
 class CLASS_DECL_ACME exception 

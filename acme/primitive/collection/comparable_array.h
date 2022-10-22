@@ -2,7 +2,7 @@
 
 
 
-template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = comparable_eq_array < TYPE, ARG_TYPE > >
+template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE >
 class comparable_array :
    public ARRAY_TYPE
 {

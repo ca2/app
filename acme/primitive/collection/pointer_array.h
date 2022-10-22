@@ -1768,3 +1768,31 @@ bool pointer_array < T > ::insert_unique_at(::index i, T * p OBJECT_REFERENCE_CO
    return false;
 
 }
+
+
+
+
+template < class T >
+template < typename OBJECT >
+::count pointer_array < T > ::set_size_create(OBJECT * pobject, ::count nNewSize, ::count nGrowBy)
+{
+
+   ::index i = this->get_size();
+
+   comparable_array < ::pointer<T >>::set_size(nNewSize);
+
+   ::count c = this->get_size();
+
+   for (; i < c; i++)
+   {
+
+      pobject->__construct(this->element_at(i));
+
+   }
+
+   return c;
+
+}
+
+
+

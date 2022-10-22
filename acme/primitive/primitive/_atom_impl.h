@@ -1,77 +1,77 @@
 ﻿// Included enum_dialog_result camilo on 2021-01-21 05:53 PM <3ThomasBorregaardSørensen
 #pragma once
 
-
-namespace acme
-{
-
-
-   inline ::atom atom(const class ::payload & payload)
-   {
-      
-      return ::atom(payload.atom());
-
-   }
-
-   
-   inline ::atom atom(const ::property & property)
-   {
-      
-      return ::atom(property);
-
-   }
-
-
-   inline ::atom atom(const ::std::type_info& info)
-   {
-
-//#ifdef WINDOWS
 //
-//      return get_id_space()(info.name());
+//namespace acme
+//{
 //
-//#else
 //
-      return info.name();
-
-//#endif
-
-   }
-
-
-   inline ::atom atom(const char* psz)
-   {
-
-      return psz;
-
-   }
-
-
-   inline ::atom atom(const string& str)
-   {
-
-      return str;
-
-   }
-
-
-   inline ::atom atom(i64 i)
-   {
-
-      return i;
-
-   }
-
-
-   //inline atom_space& atom()
-   //{
-
-   //   return get_id_space();
-
-   //}
-
-
-} //namespace acme
-
+//   inline ::atom atom(const class ::payload & payload)
+//   {
+//      
+//      return ::atom(payload.atom());
+//
+//   }
+//
+//   
+//   inline ::atom atom(const ::property & property)
+//   {
+//      
+//      return ::atom(property);
+//
+//   }
+//
+//
+//   inline ::atom atom(const ::std::type_info& info)
+//   {
+//
+////#ifdef WINDOWS
+////
+////      return get_id_space()(info.name());
+////
+////#else
+////
+//      return info.name();
+//
+////#endif
+//
+//   }
+//
+//
+//   inline ::atom atom(const char* psz)
+//   {
+//
+//      return psz;
+//
+//   }
+//
+//
+//   inline ::atom atom(const string& str)
+//   {
+//
+//      return str;
+//
+//   }
+//
+//
+//   inline ::atom atom(i64 i)
+//   {
+//
+//      return i;
+//
+//   }
+//
+//
+//   //inline atom_space& atom()
+//   //{
+//
+//   //   return get_id_space();
+//
+//   //}
+//
+//
+//} //namespace acme
+//
 
 #pragma once
 

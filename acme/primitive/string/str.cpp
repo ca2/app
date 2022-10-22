@@ -5416,3 +5416,1498 @@ ansistring & str::assign(ansistring & ansistrDst, const property & property)
 
 
 
+
+
+
+
+//namespace str
+//{
+
+template < typename TYPE >
+class get_char_type
+{
+public:
+
+   using CHAR_TYPE = typename TYPE::CHAR_TYPE;
+
+};
+
+   template < > class get_char_type < const char * > { public: using CHAR_TYPE = char; };
+   template < > class get_char_type < char * > { public: using CHAR_TYPE = char; };
+   template < int n > class get_char_type < const char[n] > { public: using CHAR_TYPE = char; };
+   template < int n > class get_char_type < char[n] > { public: using CHAR_TYPE = char; };
+
+
+                                                              template < typename TYPE1, typename TYPE2 >
+                                                              inline i32 str::compare(const TYPE1 & str1, const TYPE2 & str2)
+                                                              {
+
+                                                                 return str::string_compare(str1, str2);
+
+                                                              }
+
+
+                                                              template < typename TYPE1, typename TYPE2 >
+                                                              inline i32 str::compare_ci(const TYPE1 & str1, const TYPE2 & str2)
+                                                              {
+
+                                                                 return str::string_compare_ci(str1, str2);
+
+                                                              }
+
+                                                              template < typename TYPE1, typename TYPE2 >
+                                                              inline bool str::equals(const TYPE1 & str1, const TYPE2 & str2)
+                                                              {
+
+                                                                 return !compare(str1, str2);
+
+                                                              }
+
+
+                                                              template < typename TYPE1, typename TYPE2 >
+                                                              inline bool str::equals_ci(const TYPE1 & str1, const TYPE2 & str2)
+                                                              {
+
+                                                                 return !compare_ci(str1, str2);
+
+                                                              }
+
+                                                              template < typename TYPE1, typename TYPE2 >
+                                                              inline TYPE1 str::equals_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 & strOnEqual, const TYPE1 & strOnDifferent)
+                                                              {
+
+                                                                 return equals(str1, str2) ? strOnEqual : strOnDifferent;
+
+                                                              }
+
+
+                                                              template < typename TYPE1, typename TYPE2 >
+                                                              inline TYPE1 str::equals_ci_get(const TYPE1 & str1, const TYPE2 & str2, const TYPE1 & strOnEqual, const TYPE1 & strOnDifferent)
+                                                              {
+
+                                                                 return equals_ci(str1, str2) ? strOnEqual : strOnDifferent;
+
+                                                              }
+
+
+                                                              template < const_c_string TOPIC_STRING, const_c_string PREFIX_STRING >
+                                                              inline bool str::begins(const TOPIC_STRING & topic_string, const PREFIX_STRING & prefix_string)
+                                                              {
+
+                                                                 using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
+
+                                                                 using prefix_type = typename base_const_c_string < PREFIX_STRING >::type;
+
+                                                                 static_assert(::std::same_as < topic_type, prefix_type >);
+
+                                                                 auto prefix = (prefix_type)prefix_string;
+
+                                                                 auto prefix_length = str::string_safe_length(prefix);
+
+                                                                 if (prefix_length <= 0)
+                                                                 {
+
+                                                                    return true;
+
+                                                                 }
+
+                                                                 auto topic = (topic_type)topic_string;
+
+                                                                 auto topic_length = str::string_safe_length(topic);
+
+                                                                 if (topic_length < prefix_length)
+                                                                 {
+
+                                                                    return false;
+
+                                                                 }
+
+                                                                 return !str::string_n_compare(topic, prefix, prefix_length);
+
+                                                              }
+
+
+                                                              template < const_c_string TOPIC_STRING, const_c_string PREFIX_STRING >
+                                                              inline bool str::begins_ci(const TOPIC_STRING & topic_string, const PREFIX_STRING & prefix_string)
+                                                              {
+
+                                                                 using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
+
+                                                                 using prefix_type = typename base_const_c_string < PREFIX_STRING >::type;
+
+                                                                 static_assert(::std::same_as < topic_type, prefix_type >);
+
+                                                                 auto prefix = (prefix_type)prefix_string;
+
+                                                                 auto prefix_length = str::string_safe_length(prefix);
+
+                                                                 if (prefix_length <= 0)
+                                                                 {
+
+                                                                    return true;
+
+                                                                 }
+
+                                                                 auto topic = (topic_type)topic_string;
+
+                                                                 auto topic_length = str::string_safe_length(topic);
+
+                                                                 if (topic_length < prefix_length)
+                                                                 {
+
+                                                                    return false;
+
+                                                                 }
+
+                                                                 return !str::string_n_compare_ci(topic, prefix, prefix_length);
+
+                                                              }
+
+
+                                                              //   template < typename TYPE, typename PREFIX >
+                                                              //   inline bool begins_ci(const TYPE & str, const PREFIX & strPrefix)
+                                                              //   {
+                                                              //
+                                                              //      return !str::string_n_compare_ci(str, strPrefix, str::string_safe_length(strPrefix));
+                                                              //
+                                                              //   }
+
+
+                                                              template < typename TYPE, typename FED, typename PREFIX >
+                                                              inline bool str::begins_ci(const TYPE & str, FED & strFed, const PREFIX & strPrefix)
+                                                              {
+
+                                                                 if (!begins_ci(str, strPrefix))
+                                                                 {
+
+                                                                    return false;
+
+                                                                 }
+
+                                                                 strFed = strPrefix;
+
+                                                                 return true;
+
+                                                              }
+
+                                                              template < typename TYPE, typename PREFIX >
+                                                              inline bool str::begins_eat(TYPE & str, const PREFIX & strPrefix)
+                                                              {
+
+                                                                 auto len = str::string_safe_length(strPrefix);
+
+                                                                 if (str::string_n_compare(str, strPrefix, len))
+                                                                 {
+
+                                                                    return false;
+
+                                                                 }
+
+                                                                 str = str.c_str() + len;
+
+                                                                 return true;
+
+                                                              }
+
+
+                                                              template < typename TYPE, typename PREFIX >
+                                                              inline bool str::begins_eat_ci(TYPE & str, const PREFIX & strPrefix)
+                                                              {
+
+                                                                 auto len = str::string_safe_length(strPrefix);
+
+                                                                 if (str::string_n_compare_ci(str, strPrefix, len))
+                                                                 {
+
+                                                                    return false;
+
+                                                                 }
+
+                                                                 str = &str[len];
+
+                                                                 return true;
+
+                                                              }
+
+
+
+                                                              template < typename PREFIX >
+                                                              inline bool str::begins_eat(::payload & payload, const PREFIX & strPrefix)
+                                                              {
+
+                                                                 string str = payload.string();
+
+                                                                 if (!begins_eat(str, strPrefix))
+                                                                 {
+
+                                                                    return false;
+
+                                                                 }
+
+                                                                 payload = str;
+
+                                                                 return true;
+
+                                                              }
+
+
+                                                              template < typename PREFIX >
+                                                              inline bool str::begins_eat_ci(::payload & payload, const PREFIX & strPrefix)
+                                                              {
+
+                                                                 string str = payload.string();
+
+                                                                 if (!begins_eat_ci(str, strPrefix))
+                                                                 {
+
+                                                                    return false;
+
+                                                                 }
+
+                                                                 payload = str;
+
+                                                                 return true;
+
+                                                              }
+
+
+                                                              template < typename PREFIX >
+                                                              inline bool str::begins_eat(property & property, const PREFIX & strPrefix)
+                                                              {
+
+                                                                 return begins_eat((::payload &)property, strPrefix);
+
+                                                              }
+
+
+
+                                                              template < typename PREFIX >
+                                                              inline bool str::begins_eat_ci(property & property, const PREFIX & strPrefix)
+                                                              {
+
+                                                                 return begins_eat_ci((::payload &)property, strPrefix);
+
+                                                              }
+
+
+                                                              template < const_c_string TOPIC_STRING, const_c_string SUFFIX_STRING >
+                                                              inline bool str::ends(const TOPIC_STRING & topic_string, const SUFFIX_STRING & suffix_string)
+                                                              {
+
+                                                                 using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
+
+                                                                 using suffix_type = typename base_const_c_string < SUFFIX_STRING >::type;
+
+                                                                 static_assert(::std::same_as < topic_type, suffix_type >);
+
+                                                                 auto suffix = (suffix_type)suffix_string;
+
+                                                                 auto suffix_length = str::string_safe_length(suffix);
+
+                                                                 if (suffix_length <= 0)
+                                                                 {
+
+                                                                    return true;
+
+                                                                 }
+
+                                                                 auto topic = (topic_type)topic_string;
+
+                                                                 auto topic_length = str::string_safe_length(topic);
+
+                                                                 if (topic_length < suffix_length)
+                                                                 {
+
+                                                                    return false;
+
+                                                                 }
+
+                                                                 auto end_index = (topic_length - suffix_length);
+
+                                                                 auto end = topic + end_index;
+
+                                                                 return !str::string_n_compare(end, suffix, suffix_length);
+
+                                                              }
+
+
+                                                              template < const_c_string TOPIC_STRING, const_c_string SUFFIX_STRING >
+                                                              inline bool str::ends_ci(const TOPIC_STRING & topic_string, const SUFFIX_STRING & suffix_string)
+                                                              {
+
+                                                                 using topic_type = typename base_const_c_string < TOPIC_STRING >::type;
+
+                                                                 using suffix_type = typename base_const_c_string < SUFFIX_STRING >::type;
+
+                                                                 static_assert(::std::same_as < topic_type, suffix_type >);
+
+                                                                 auto suffix = (suffix_type)suffix_string;
+
+                                                                 auto suffix_length = str::string_safe_length(suffix);
+
+                                                                 if (suffix_length <= 0)
+                                                                 {
+
+                                                                    return true;
+
+                                                                 }
+
+                                                                 auto topic = (topic_type)topic_string;
+
+                                                                 auto topic_length = str::string_safe_length(topic);
+
+                                                                 if (topic_length < suffix_length)
+                                                                 {
+
+                                                                    return false;
+
+                                                                 }
+
+                                                                 auto end_index = (topic_length - suffix_length);
+
+                                                                 auto end = topic + end_index;
+
+                                                                 return !str::string_n_compare_ci(end, suffix, suffix_length);
+
+                                                              }
+
+
+
+                                                              template < typename TYPE, typename SUFFIX >
+                                                              inline bool str::ends_eat(TYPE & str, const SUFFIX & strSuffix)
+                                                              {
+
+                                                                 auto len = str::string_safe_length(strSuffix);
+
+                                                                 auto end = str::string_safe_length(str) - len;
+
+                                                                 if (str::string_n_compare(&str[end], strSuffix, len))
+                                                                 {
+
+                                                                    return false;
+
+                                                                 }
+
+                                                                 str.truncate(end);
+
+                                                                 return true;
+
+                                                              }
+
+
+                                                              template < typename TYPE, typename SUFFIX >
+                                                              inline bool str::ends_eat_ci(TYPE & str, const SUFFIX & strSuffix)
+                                                              {
+
+                                                                 auto len = str::string_safe_length(strSuffix);
+
+                                                                 auto end = str::string_safe_length(str) - len;
+
+                                                                 if (str::string_n_compare_ci(&str[end], strSuffix, len))
+                                                                 {
+
+                                                                    return false;
+
+                                                                 }
+
+                                                                 str.truncate(end);
+
+                                                                 return true;
+
+                                                              }
+
+
+                                                              //} // namespace str
+                                                              //
+                                                              //
+
+
+
+
+
+
+//namespace str
+//{
+//
+
+//   template < typename TYPE_TARGET, typename TYPE_SOURCE >
+//   inline strsize str::utf_to_utf_length(const TYPE_TARGET *, const TYPE_SOURCE * psource, strsize srclen)
+//   {
+//
+//      throw ::interface_only();
+//
+//      return 0;
+//
+//   }
+
+
+//   template <  >
+                                                              inline strsize str::utf_to_utf_length(const ansichar *, const ansichar * psource, strsize srclen)
+                                                              {
+
+                                                                 return srclen;
+
+                                                              }
+
+
+                                                              // template <  >
+                                                              inline strsize str::utf_to_utf_length(const wd16char *, const wd16char * psource, strsize srclen)
+                                                              {
+
+                                                                 return srclen;
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline strsize str::utf_to_utf_length(const wd16char *, const wd32char * psource, strsize srclen)
+                                                              {
+
+                                                                 return wd32_to_wd16_len(psource, srclen);
+
+                                                              }
+
+                                                              //template <  >
+                                                              inline strsize str::utf_to_utf_length(const wd32char *, const wd32char * psource, strsize srclen)
+                                                              {
+
+                                                                 return srclen;
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline strsize str::utf_to_utf_length(const wd32char *, const wd16char * psource, strsize srclen)
+                                                              {
+
+                                                                 return wd16_to_wd32_len(psource, srclen);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline strsize str::utf_to_utf_length(const ansichar *, const wd16char * psource, strsize srclen)
+                                                              {
+
+                                                                 return wd16_to_ansi_len(psource, srclen);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline strsize str::utf_to_utf_length(const wd16char *, const ansichar * psource, strsize srclen)
+                                                              {
+
+                                                                 return ansi_to_wd16_len(psource, srclen);
+
+                                                              }
+
+
+
+                                                              //template <  >
+                                                              inline strsize str::utf_to_utf_length(const ansichar *, const wd32char * psource, strsize srclen)
+                                                              {
+
+                                                                 return wd32_to_ansi_len(psource, srclen);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline strsize str::utf_to_utf_length(const wd32char *, const ansichar * psource, strsize srclen)
+                                                              {
+
+                                                                 return ansi_to_wd32_len(psource, srclen);
+
+                                                              }
+
+
+                                                              //   template < typename TYPE_TARGET, typename TYPE_SOURCE >
+                                                              //   inline strsize str::utf_to_utf_length(const TYPE_TARGET *, const TYPE_SOURCE * psource)
+                                                              //   {
+                                                              //
+                                                              //      throw ::interface_only();
+                                                              //
+                                                              //      return 0;
+                                                              //
+                                                              //   }
+
+
+                                                                 //template <  >
+                                                              inline strsize str::utf_to_utf_length(const ansichar *, const ansichar * psource)
+                                                              {
+
+                                                                 return strlen(psource);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline strsize str::utf_to_utf_length(const wd16char *, const wd16char * psource)
+                                                              {
+
+                                                                 return wd16_len(psource);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline strsize str::utf_to_utf_length(const wd16char *, const wd32char * psource)
+                                                              {
+
+                                                                 return wd32_to_wd16_len(psource);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline strsize str::utf_to_utf_length(const wd32char *, const wd32char * psource)
+                                                              {
+
+                                                                 return wd32_len(psource);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline strsize str::utf_to_utf_length(const wd32char *, const wd16char * psource)
+                                                              {
+
+                                                                 return wd16_to_wd32_len(psource);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline strsize str::utf_to_utf_length(const ansichar *, const wd16char * psource)
+                                                              {
+
+                                                                 return wd16_to_ansi_len(psource);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline strsize str::utf_to_utf_length(const ansichar *, const wd32char * psource)
+                                                              {
+
+                                                                 return wd32_to_ansi_len(psource);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline strsize str::utf_to_utf_length(const wd16char *, const ansichar * psource)
+                                                              {
+
+                                                                 return ansi_to_wd16_len(psource);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline strsize str::utf_to_utf_length(const wd32char *, const ansichar * psource)
+                                                              {
+
+                                                                 return ansi_to_wd32_len(psource);
+
+                                                              }
+
+
+                                                              //   template < typename TYPE_TARGET, typename TYPE_SOURCE >
+                                                              //   inline void str::utf_to_utf(TYPE_TARGET * ptarget, const TYPE_SOURCE * psource, strsize srclen)
+                                                              //   {
+                                                              //
+                                                              //      throw ::interface_only();
+                                                              //
+                                                              //   }
+
+
+                                                              //   inline void str::utf_to_utf(::string & str, const wd16char * psource, strsize srclen)
+                                                              //   {
+                                                              //
+                                                              //      char * psz = nullptr;
+                                                              //
+                                                              //      auto dstlen = utf_to_utf_length(psz, psource, srclen);
+                                                              //
+                                                              //      psz = str.get_string_buffer(dstlen);
+                                                              //
+                                                              //      utf_to_utf(psz, psource, srclen);
+                                                              //
+                                                              //      psz[dstlen]='\0';
+                                                              //
+                                                              //   }
+
+
+                                                                 //template <  >
+                                                              inline void str::utf_to_utf(ansichar * ptarget, const ansichar * psource, strsize srclen)
+                                                              {
+
+                                                                 overlap_safe_ansincpy(ptarget, psource, srclen);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline void str::utf_to_utf(wd16char * ptarget, const wd16char * psource, strsize srclen)
+                                                              {
+
+                                                                 overlap_safe_w16ncpy(ptarget, psource, srclen);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline void str::utf_to_utf(wd16char * ptarget, const wd32char * psource, strsize srclen)
+                                                              {
+
+                                                                 wd32_to_wd16(ptarget, psource, srclen);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline void str::utf_to_utf(wd32char * ptarget, const wd32char * psource, strsize srclen)
+                                                              {
+
+                                                                 overlap_safe_w32ncpy(ptarget, psource, srclen);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline void str::utf_to_utf(wd32char * ptarget, const wd16char * psource, strsize srclen)
+                                                              {
+
+                                                                 wd16_to_wd32(ptarget, psource, srclen);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline void str::utf_to_utf(ansichar * ptarget, const wd16char * psource, strsize srclen)
+                                                              {
+
+                                                                 wd16_to_ansi(ptarget, psource, srclen);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline void str::utf_to_utf(ansichar * ptarget, const wd32char * psource, strsize srclen)
+                                                              {
+
+                                                                 wd32_to_ansi(ptarget, psource, srclen);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline void str::utf_to_utf(wd16char * ptarget, const ansichar * psource, strsize srclen)
+                                                              {
+
+                                                                 ansi_to_wd16(ptarget, psource, srclen);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline void str::utf_to_utf(wd32char * ptarget, const ansichar * psource, strsize srclen)
+                                                              {
+
+                                                                 ansi_to_wd32(ptarget, psource, srclen);
+
+                                                              }
+
+
+                                                              //   template < typename TYPE_TARGET, typename TYPE_SOURCE >
+                                                              //   inline void str::utf_to_utf(TYPE_TARGET * ptarget, const TYPE_SOURCE * psource)
+                                                              //   {
+                                                              //
+                                                              //      throw ::interface_only();
+                                                              //
+                                                              //   }
+
+
+                                                                 //template <  >
+                                                              inline void str::utf_to_utf(ansichar * ptarget, const ansichar * psource)
+                                                              {
+
+                                                                 strcpy(ptarget, psource);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline void str::utf_to_utf(wd16char * ptarget, const wd16char * psource)
+                                                              {
+
+                                                                 wd16_cpy(ptarget, psource);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline void str::utf_to_utf(wd32char * ptarget, const wd16char * psource)
+                                                              {
+
+                                                                 wd16_to_wd32(ptarget, psource);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline void str::utf_to_utf(wd32char * ptarget, const wd32char * psource)
+                                                              {
+
+                                                                 wd32_cpy(ptarget, psource);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline void str::utf_to_utf(wd16char * ptarget, const wd32char * psource)
+                                                              {
+
+                                                                 wd32_to_wd16(ptarget, psource);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline void str::utf_to_utf(ansichar * ptarget, const wd16char * psource)
+                                                              {
+
+                                                                 wd16_to_ansi(ptarget, psource);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline void str::utf_to_utf(ansichar * ptarget, const wd32char * psource)
+                                                              {
+
+                                                                 wd32_to_ansi(ptarget, psource);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline void str::utf_to_utf(wd16char * ptarget, const ansichar * psource)
+                                                              {
+
+                                                                 ansi_to_wd16(ptarget, psource);
+
+                                                              }
+
+
+                                                              //template <  >
+                                                              inline void str::utf_to_utf(wd32char * ptarget, const ansichar * psource)
+                                                              {
+
+                                                                 ansi_to_wd32(ptarget, psource);
+
+                                                              }
+
+
+                                                              inline i32 str::uni_index(const ansichar *& pszChar, strsize * psrclen) { return ::__uni_index(pszChar, psrclen); }
+                                                              inline i32 str::uni_index(const wd16char *& pszChar, strsize * psrclen) { return ::__uni_index(pszChar, psrclen); }
+                                                              inline i32 str::uni_index(const wd32char *& pszChar, strsize * psrclen) { return ::__uni_index(pszChar, psrclen); }
+
+
+                                                              inline const ansichar * str::windows_bbqbunc(const ansistring &) { return "\\\\?\\UNC"; }
+                                                              inline const ansichar * str::windows_bbqb(const ansistring &) { return "\\\\?\\"; }
+                                                              inline const ansichar * str::windows_bb(const ansistring &) { return "\\\\"; }
+
+                                                              inline const widechar * str::windows_bbqbunc(const widestring &) { return L"\\\\?\\UNC"; }
+                                                              inline const widechar * str::windows_bbqb(const widestring &) { return L"\\\\?\\"; }
+                                                              inline const widechar * str::windows_bb(const widestring &) { return L"\\\\"; }
+
+                                                              inline strsize str::unichar_count(const ansichar * pstr) { return ansi_to_wd32_len(pstr); }
+                                                              inline strsize str::unichar_count(const wd16char * pstr) { return wd16_to_wd32_len(pstr); }
+                                                              inline strsize str::unichar_count(const wd32char * pstr) { return __wd32len(pstr); }
+
+
+                                                              inline strsize str::copy_string_len(wd16char * pszDst, const ansichar * pszSrc, strsize srclen) { return utf_to_utf_length(pszDst, pszSrc, srclen); }
+                                                              inline strsize str::copy_string_len(wd32char * pszDst, const ansichar * pszSrc, strsize srclen) { return utf_to_utf_length(pszDst, pszSrc, srclen); }
+                                                              inline strsize str::copy_string_len(ansichar * pszDst, const wd16char * pszSrc, strsize srclen) { return utf_to_utf_length(pszDst, pszSrc, srclen); }
+                                                              inline strsize str::copy_string_len(ansichar * pszDst, const wd32char * pszSrc, strsize srclen) { return utf_to_utf_length(pszDst, pszSrc, srclen); }
+
+
+                                                              inline void str::copy_string(wd16char * pszDst, const ansichar * pszSrc, strsize srclen) { utf_to_utf(pszDst, pszSrc, srclen); }
+                                                              inline void str::copy_string(wd32char * pszDst, const ansichar * pszSrc, strsize srclen) { utf_to_utf(pszDst, pszSrc, srclen); }
+                                                              inline void str::copy_string(ansichar * pszDst, const wd16char * pszSrc, strsize srclen) { utf_to_utf(pszDst, pszSrc, srclen); }
+                                                              inline void str::copy_string(ansichar * pszDst, const wd32char * pszSrc, strsize srclen) { utf_to_utf(pszDst, pszSrc, srclen); }
+
+
+                                                              template < typename TYPE_CHAR >
+                                                              inline string_base < TYPE_CHAR > & str::assign(string_base < TYPE_CHAR > & strDst, const string_base < TYPE_CHAR > & strSrc)
+                                                              {
+
+                                                                 strDst.assign_natural_pointer(strSrc);
+
+                                                                 return strDst;
+
+                                                              }
+
+
+                                                              template < typename TYPE_CHAR >
+                                                              inline string_base < TYPE_CHAR > & str::assign(string_base < TYPE_CHAR > & strDst, const string_natural_pointer < TYPE_CHAR > & strSrc)
+                                                              {
+
+                                                                 strDst.assign_natural_pointer(strSrc);
+
+                                                                 return strDst;
+
+                                                              }
+
+
+                                                              template < typename TYPE_CHAR1 >
+                                                              inline string_base < TYPE_CHAR1 > & str::assign(string_base < TYPE_CHAR1 > & strDst, const TYPE_CHAR1 * pszSrc, strsize srclen)
+                                                              {
+
+                                                                 if (srclen < 0)
+                                                                 {
+
+                                                                    srclen = str::string_get_length(pszSrc) + srclen + 1;
+
+                                                                 }
+
+                                                                 auto dstlen = utf_to_utf_length(strDst.m_pdata, pszSrc, srclen);
+
+                                                                 if (dstlen <= 0)
+                                                                 {
+
+                                                                    strDst.Empty();
+
+                                                                 }
+                                                                 else
+                                                                 {
+
+                                                                    if (strDst.metadata()->contains_data(pszSrc))
+                                                                    {
+
+                                                                       if (strDst.metadata()->natural_is_shared())
+                                                                       {
+
+                                                                          strDst.fork_string(dstlen);
+
+                                                                       }
+
+                                                                    }
+                                                                    else
+                                                                    {
+
+                                                                       strDst.get_string_buffer(dstlen);
+
+                                                                    }
+
+                                                                    str::utf_to_utf(strDst.m_pdata, pszSrc, dstlen);
+
+                                                                    strDst.release_string_buffer(dstlen);
+
+                                                                 }
+
+                                                                 return strDst;
+
+                                                              }
+
+
+                                                              template < typename TYPE_CHAR1, typename TYPE_CHAR2 >
+                                                              inline string_base < TYPE_CHAR1 > & str::assign(string_base < TYPE_CHAR1 > & strDst, const TYPE_CHAR2 * pszSrc, strsize srclen)
+                                                              {
+
+                                                                 if (srclen < 0)
+                                                                 {
+
+                                                                    srclen = str::string_get_length(pszSrc) + srclen + 1;
+
+                                                                 }
+
+                                                                 auto dstlen = utf_to_utf_length(strDst.m_pdata, pszSrc, srclen);
+
+                                                                 if (dstlen <= 0)
+                                                                 {
+
+                                                                    strDst.Empty();
+
+                                                                 }
+                                                                 else
+                                                                 {
+
+                                                                    auto pszDst = strDst.get_string_buffer(dstlen);
+
+                                                                    str::utf_to_utf(pszDst, pszSrc, srclen);
+
+                                                                    strDst.release_string_buffer(dstlen);
+
+                                                                 }
+
+                                                                 return strDst;
+
+                                                              }
+
+
+                                                              template < typename TYPE_CHAR1, typename TYPE_CHAR2 >
+                                                              inline string_base < TYPE_CHAR1 > & str::assign(string_base < TYPE_CHAR1 > & strDst, const TYPE_CHAR2 * pszSrc)
+                                                              {
+
+                                                                 auto dstlen = utf_to_utf_length(strDst.m_pdata, pszSrc);
+
+                                                                 if (dstlen <= 0)
+                                                                 {
+
+                                                                    strDst.Empty();
+
+                                                                 }
+                                                                 else
+                                                                 {
+
+                                                                    auto pszDst = strDst.get_string_buffer(dstlen);
+
+                                                                    str::utf_to_utf(pszDst, pszSrc);
+
+                                                                    strDst.release_string_buffer(dstlen);
+
+                                                                 }
+
+                                                                 return strDst;
+
+                                                              }
+
+                                                              template < typename TYPE_CHAR >
+                                                              inline string_base < TYPE_CHAR > & str::assign(string_base < TYPE_CHAR > & ansistrSrc, const TYPE_CHAR * pszSrc)
+                                                              {
+
+                                                                 return assign(ansistrSrc, pszSrc, str::string_safe_length(pszSrc));
+
+                                                              }
+
+
+                                                              inline wd16string & str::assign(wd16string & wstrDst, const ansistring & strSrc)
+                                                              {
+
+                                                                 auto dstlen = copy_string_len(wstrDst.m_pdata, strSrc.m_pdata, strSrc.get_length());
+
+                                                                 if (dstlen <= 0)
+                                                                 {
+
+                                                                    wstrDst.Empty();
+
+                                                                 }
+                                                                 else
+                                                                 {
+
+                                                                    auto pch = wstrDst.get_string_buffer(dstlen);
+
+                                                                    copy_string(pch, strSrc.m_pdata, strSrc.get_length());
+
+                                                                    wstrDst.release_string_buffer();
+
+                                                                 }
+
+                                                                 return wstrDst;
+
+                                                              }
+
+
+                                                              inline wd32string & str::assign(wd32string & wstrDst, const ansistring & strSrc)
+                                                              {
+
+                                                                 auto dstlen = copy_string_len(wstrDst.m_pdata, strSrc.m_pdata, strSrc.get_length());
+
+                                                                 if (dstlen <= 0)
+                                                                 {
+
+                                                                    wstrDst.Empty();
+
+                                                                 }
+                                                                 else
+                                                                 {
+
+                                                                    auto pch = wstrDst.get_string_buffer(dstlen);
+
+                                                                    copy_string(pch, strSrc.m_pdata, strSrc.get_length());
+
+                                                                    wstrDst.release_string_buffer();
+
+                                                                 }
+
+                                                                 return wstrDst;
+
+                                                              }
+
+
+                                                              inline wd16string & str::assign(wd16string & wstrDst, const natural_ansistring & strSrc)
+                                                              {
+
+                                                                 auto srclen = str::string_safe_length(strSrc.m_pdata);
+
+                                                                 auto len = copy_string_len(wstrDst.m_pdata, strSrc.m_pdata, srclen);
+
+                                                                 auto pch = wstrDst.get_string_buffer(len);
+
+                                                                 copy_string(pch, strSrc.m_pdata, srclen);
+
+                                                                 return wstrDst;
+
+                                                              }
+
+
+                                                              inline wd32string & str::assign(wd32string & wstrDst, const natural_ansistring & strSrc)
+                                                              {
+
+                                                                 auto srclen = str::string_safe_length(strSrc.m_pdata);
+
+                                                                 auto len = copy_string_len(wstrDst.m_pdata, strSrc.m_pdata, srclen);
+
+                                                                 auto pch = wstrDst.get_string_buffer(len);
+
+                                                                 copy_string(pch, strSrc.m_pdata, srclen);
+
+                                                                 return wstrDst;
+
+                                                              }
+
+
+
+                                                              inline ansistring & str::assign(ansistring & ansistrSrc, const wd16string & widestrSrc)
+                                                              {
+
+                                                                 auto len = copy_string_len(ansistrSrc.m_pdata, widestrSrc.m_pdata, widestrSrc.get_length());
+
+                                                                 auto pch = ansistrSrc.get_string_buffer(len);
+
+                                                                 copy_string(pch, widestrSrc.m_pdata, widestrSrc.get_length());
+
+                                                                 return ansistrSrc;
+
+                                                              }
+
+                                                              inline ansistring & str::assign(ansistring & ansistrSrc, const wd32string & widestrSrc)
+                                                              {
+
+                                                                 auto len = copy_string_len(ansistrSrc.m_pdata, widestrSrc.m_pdata, widestrSrc.get_length());
+
+                                                                 auto pch = ansistrSrc.get_string_buffer(len);
+
+                                                                 copy_string(pch, widestrSrc.m_pdata, widestrSrc.get_length());
+
+                                                                 return ansistrSrc;
+
+                                                              }
+
+
+                                                              inline ansistring & str::assign(ansistring & ansistrSrc, const natural_wd16string & widestrSrc)
+                                                              {
+
+                                                                 auto srclen = str::string_safe_length(widestrSrc.m_pdata);
+
+                                                                 auto len = copy_string_len(ansistrSrc.m_pdata, widestrSrc.m_pdata, srclen);
+
+                                                                 auto pch = ansistrSrc.get_string_buffer(len);
+
+                                                                 copy_string(pch, widestrSrc.m_pdata, srclen);
+
+                                                                 return ansistrSrc;
+
+                                                              }
+
+                                                              inline ansistring & str::assign(ansistring & ansistrSrc, const natural_wd32string & widestrSrc)
+                                                              {
+
+                                                                 auto srclen = str::string_safe_length(widestrSrc.m_pdata);
+
+                                                                 auto len = copy_string_len(ansistrSrc.m_pdata, widestrSrc.m_pdata, srclen);
+
+                                                                 auto pch = ansistrSrc.get_string_buffer(len);
+
+                                                                 copy_string(pch, widestrSrc.m_pdata, srclen);
+
+                                                                 return ansistrSrc;
+
+                                                              }
+
+
+                                                              inline ansistring & str::assign(ansistring & ansistrDst, const atom & atom)
+                                                              {
+
+                                                                 ansistrDst.assign(atom);
+
+                                                                 return ansistrDst;
+
+                                                              }
+
+
+                                                              inline wd16string & str::assign(wd16string & widestrDst, const atom & atom)
+                                                              {
+
+                                                                 widestrDst.assign(atom);
+
+                                                                 return widestrDst;
+
+                                                              }
+
+
+                                                              inline wd32string & str::assign(wd32string & widestrDst, const atom & atom)
+                                                              {
+
+                                                                 widestrDst.assign(atom);
+
+                                                                 return widestrDst;
+
+                                                              }
+
+
+                                                              inline ansistring & str::assign(ansistring & ansistrDst, ansichar ansich)
+                                                              {
+
+                                                                 ansistrDst.assign(&ansich, 1);
+
+                                                                 return ansistrDst;
+
+                                                              }
+
+
+                                                              inline wd16string & str::assign(wd16string & widestrDst, ansichar ansich)
+                                                              {
+
+                                                                 widestrDst.assign(&ansich, 1);
+
+                                                                 return widestrDst;
+
+                                                              }
+
+                                                              inline wd32string & str::assign(wd32string & widestrDst, ansichar ansich)
+                                                              {
+
+                                                                 widestrDst.assign(&ansich, 1);
+
+                                                                 return widestrDst;
+
+                                                              }
+
+                                                              inline ansistring & str::assign(ansistring & ansistrDst, wd16char widech)
+                                                              {
+
+                                                                 ansistrDst.assign(&widech, 1);
+
+                                                                 return ansistrDst;
+
+                                                              }
+
+
+                                                              inline wd16string & str::assign(wd16string & widestrDst, wd16char widech)
+                                                              {
+
+                                                                 widestrDst.assign(&widech, 1);
+
+                                                                 return widestrDst;
+
+                                                              }
+
+                                                              inline wd32string & str::assign(wd32string & widestrDst, wd16char widech)
+                                                              {
+
+                                                                 widestrDst.assign(&widech, 1);
+
+                                                                 return widestrDst;
+
+                                                              }
+
+                                                              inline ansistring & str::assign(ansistring & ansistrDst, wd32char widech)
+                                                              {
+
+                                                                 ansistrDst.assign(&widech, 1);
+
+                                                                 return ansistrDst;
+
+                                                              }
+
+
+                                                              inline wd16string & str::assign(wd16string & widestrDst, wd32char widech)
+                                                              {
+
+                                                                 widestrDst.assign(&widech, 1);
+
+                                                                 return widestrDst;
+
+                                                              }
+
+                                                              inline wd32string & str::assign(wd32string & widestrDst, wd32char widech)
+                                                              {
+
+                                                                 widestrDst.assign(&widech, 1);
+
+                                                                 return widestrDst;
+
+                                                              }
+
+
+                                                              inline ansistring & str::assign(ansistring & ansistrDst, const ::payload & payload)
+                                                              {
+
+                                                                 ansistrDst.assign(payload);
+
+                                                                 return ansistrDst;
+
+                                                              }
+
+
+                                                              inline wd16string & str::assign(wd16string & widestrDst, const property & property)
+                                                              {
+
+                                                                 widestrDst.assign(property.string());
+
+                                                                 return widestrDst;
+
+                                                              }
+
+
+                                                              inline wd32string & str::assign(wd32string & widestrDst, const property & property)
+                                                              {
+
+                                                                 widestrDst.assign(property.string());
+
+                                                                 return widestrDst;
+
+                                                              }
+
+
+
+
+                                                              inline wd16string & str::assign(wd16string & widestrDst, const ::payload & payload)
+                                                              {
+
+                                                                 widestrDst.assign(payload.string());
+
+                                                                 return widestrDst;
+
+                                                              }
+
+
+                                                              inline wd32string & str::assign(wd32string & widestrDst, const ::payload & payload)
+                                                              {
+
+                                                                 widestrDst.assign(payload.string());
+
+                                                                 return widestrDst;
+
+                                                              }
+
+                                                              inline ansistring & str::assign(ansistring & strDst, const wd16char * psrcsz)
+                                                              {
+
+                                                                 auto srclen = str::string_safe_length(psrcsz);
+
+                                                                 auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
+
+                                                                 auto pdstsz = strDst.get_string_buffer(dstlen);
+
+                                                                 utf_to_utf(pdstsz, psrcsz, srclen);
+
+                                                                 strDst.metadata()->set_length(dstlen);
+
+                                                                 return strDst;
+
+                                                              }
+
+
+                                                              inline ansistring & str::assign(ansistring & strDst, const wd32char * psrcsz)
+                                                              {
+
+                                                                 auto srclen = str::string_safe_length(psrcsz);
+
+                                                                 auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
+
+                                                                 auto pdstsz = strDst.get_string_buffer(dstlen);
+
+                                                                 utf_to_utf(pdstsz, psrcsz, srclen);
+
+                                                                 strDst.metadata()->set_length(dstlen);
+
+                                                                 return strDst;
+
+                                                              }
+
+                                                              inline wd16string & str::assign(wd16string & strDst, const ansichar * psrcsz)
+                                                              {
+
+                                                                 auto srclen = str::string_safe_length(psrcsz);
+
+                                                                 auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
+
+                                                                 auto pwidesz = strDst.get_string_buffer(dstlen);
+
+                                                                 utf_to_utf(pwidesz, psrcsz, srclen);
+
+                                                                 return strDst;
+
+                                                              }
+
+
+                                                              inline wd16string & str::assign(wd16string & strDst, const wd16char * psrcsz)
+                                                              {
+
+                                                                 auto srclen = str::string_safe_length(psrcsz);
+
+                                                                 auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
+
+                                                                 auto pwidesz = strDst.get_string_buffer(dstlen);
+
+                                                                 utf_to_utf(pwidesz, psrcsz, srclen);
+
+                                                                 return strDst;
+
+                                                              }
+
+
+                                                              inline wd16string & str::assign(wd16string & strDst, const wd32char * psrcsz)
+                                                              {
+
+                                                                 auto srclen = str::string_safe_length(psrcsz);
+
+                                                                 auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
+
+                                                                 auto pwidesz = strDst.get_string_buffer(dstlen);
+
+                                                                 utf_to_utf(pwidesz, psrcsz, srclen);
+
+                                                                 return strDst;
+
+                                                              }
+
+
+                                                              inline wd32string & str::assign(wd32string & strDst, const ansichar * psrcsz)
+                                                              {
+
+                                                                 auto srclen = str::string_safe_length(psrcsz);
+
+                                                                 auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
+
+                                                                 auto pwidesz = strDst.get_string_buffer(dstlen);
+
+                                                                 utf_to_utf(pwidesz, psrcsz, srclen);
+
+                                                                 return strDst;
+
+                                                              }
+
+
+                                                              inline wd32string & str::assign(wd32string & strDst, const wd16char * psrcsz)
+                                                              {
+
+                                                                 auto srclen = str::string_safe_length(psrcsz);
+
+                                                                 auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
+
+                                                                 auto pwidesz = strDst.get_string_buffer(dstlen);
+
+                                                                 utf_to_utf(pwidesz, psrcsz, srclen);
+
+                                                                 return strDst;
+
+                                                              }
+
+
+                                                              inline wd32string & str::assign(wd32string & strDst, const wd32char * psrcsz)
+                                                              {
+
+                                                                 auto srclen = str::string_safe_length(psrcsz);
+
+                                                                 auto dstlen = utf_to_utf_length(strDst.m_pdata, psrcsz, srclen);
+
+                                                                 auto pwidesz = strDst.get_string_buffer(dstlen);
+
+                                                                 utf_to_utf(pwidesz, psrcsz, srclen);
+
+                                                                 return strDst;
+
+                                                              }
+
+
+                                                              inline ansistring & str::assign(ansistring & ansistrDst, const type & type)
+                                                              {
+
+                                                                 ansistrDst.assign(type);
+
+                                                                 return ansistrDst;
+
+                                                              }
+
+
+                                                              inline wd16string & str::assign(wd16string & widestrDst, const type & type)
+                                                              {
+
+                                                                 widestrDst.assign(type);
+
+                                                                 return widestrDst;
+
+                                                              }
+
+
+                                                              inline wd32string & str::assign(wd32string & widestrDst, const type & type)
+                                                              {
+
+                                                                 widestrDst.assign(type);
+
+                                                                 return widestrDst;
+
+                                                              }
+
+                                                              //
+                                                              //} // namespace str
+                                                              //
+
+
+
+
+
+
+                                                                 /// Returns:
+   /// end of line, and;
+   /// next line or null if no next line
+                                                              inline struct ::end_of_line_and_next_line str::end_of_line_and_next_line(const char * psz)
+                                                              {
+
+                                                                 struct ::end_of_line_and_next_line pair;
+
+                                                                 pair.end_of_line = strpbrk(psz, "\r\n\0");
+
+                                                                 pair.next_line = pair.end_of_line;
+
+                                                                 if (!*pair.next_line)
+                                                                 {
+
+                                                                    pair.next_line = nullptr;
+
+                                                                 }
+                                                                 else if (*pair.next_line == '\r')
+                                                                 {
+
+                                                                    pair.next_line++;
+
+                                                                    if (*pair.next_line == '\r')
+                                                                    {
+
+                                                                       pair.next_line++;
+
+                                                                    }
+
+                                                                 }
+                                                                 else if (*pair.next_line == '\n')
+                                                                 {
+
+                                                                    pair.next_line++;
+
+                                                                 }
+                                                                 else
+                                                                 {
+
+                                                                    throw ::exception(error_failed);
+
+                                                                 }
+
+                                                                 return pair;
+
+                                                              }

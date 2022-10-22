@@ -72,8 +72,8 @@ using wd32string = string_base<wd32char>;
 using widestring = string_base<widechar>;
 
 
-using string = string_base < ansichar >;
-using wstring = string_base < widechar >;
+//using string = string_base < ansichar >;
+//using wstring = string_base < widechar >;
 
 
 typedef string_array_base < string, string, e_type_string_array > string_array;
@@ -375,3 +375,18 @@ bool operator!=(const ARRAY1 &array1, const ARRAY2 &array2)
    return !operator==(array1, array2);
 
 }
+
+
+template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array < TYPE, ARG_TYPE > >
+class comparable_eq_array;
+
+
+template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = comparable_eq_array < TYPE, ARG_TYPE > >
+class comparable_array;
+
+
+
+#include "acme/primitive/collection/string_map.h"
+
+
+

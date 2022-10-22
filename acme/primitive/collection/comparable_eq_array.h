@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class ARRAY_TYPE = array < TYPE, ARG_TYPE > >
+template < class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 class comparable_eq_array:
    public ARRAY_TYPE
 {

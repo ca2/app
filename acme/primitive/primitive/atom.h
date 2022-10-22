@@ -1556,3 +1556,14 @@ inline bool atom::begins_ci(const char * pszCandidatePrefix) const
 }
 
 
+
+
+
+template < typename TYPE_CHAR >
+inline string_base < TYPE_CHAR >::string_base(const ::atom & atom) :
+   string_base(atom.string())
+{
+
+
+}
+

@@ -30,6 +30,9 @@ class dump_context;
 class synchronization_object;
 class __id;
 class string_exchange;
+class text_stream;
+class string;
+class wstring;
 namespace message { class message; }
 class payload;
 struct block;

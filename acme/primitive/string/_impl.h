@@ -69,31 +69,3 @@ string_iterator < CHAR_TYPE > string_iterator < CHAR_TYPE > ::operator ++(int)
 
 
 
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(const ::payload & payload) :
-   string_base(payload.string())
-{
-
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(const ::property & property) :
-   string_base(property.string())
-{
-
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(const ::atom & atom) :
-   string_base(atom.string())
-{
-
-
-}
-
-

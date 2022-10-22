@@ -62,7 +62,7 @@ public:
 
 
    predicate_array();
-   virtual ~predicate_array();
+   ~predicate_array() override;
 
 
    template < typename PRED >

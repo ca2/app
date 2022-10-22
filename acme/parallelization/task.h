@@ -216,3 +216,13 @@ using task_array = pointer_array < task >;
 
 
 
+
+
+inline ::payload & task_property(const ::atom & atom) { return ::get_task()->payload(atom); }
+
+
+inline tracer trace_log_information();
+inline tracer trace_log_warning();
+inline tracer trace_log_error();
+inline tracer trace_log_fatal();
+

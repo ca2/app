@@ -5,30 +5,30 @@
 // CLASS_DECL_ACME void set_avoid_bad_status_exception(bool bSet);
 
 
-#include "callstack.h"
+//#include "callstack.h"
 
-#include "exception.h"
+//#include "exception.h"
 
-#include "not_implemented.h"
+//#include "not_implemented.h"
 
-#include "interface_only.h"
+//#include "interface_only.h"
 
 //CLASS_DECL_ACME string estatus_to_string(::e_status estatus);
 
 //#include "base.h"
 
 //#include "simple.h"
-#include "cancel.h"
+//#include "cancel.h"
 
 
-#include "file.h"
+//#include "file.h"
 
 
 //#include "memory.h"
 //#include "invalid_argument.h"
 
-#include "translator.h"
-#include "standard.h"
+//#include "translator.h"
+//#include "standard.h"
 
 
 inline ::e_status errno_to_status(i32 nErrno) { return _errno_to_status(nErrno); }
@@ -60,7 +60,7 @@ inline ::e_status failed_errno_to_status(i32 nErrno) { return _failed_errno_to_s
 //#include "interface_only.h"
 //#include "not_installed.h"
 //#include "not_supported.h"
-#include "exit.h"
+//#include "exit.h"
 //#include "not_licensed.h"
 //#include "temporary.h"
 //#include "installing.h"
@@ -70,8 +70,8 @@ inline ::e_status failed_errno_to_status(i32 nErrno) { return _failed_errno_to_s
 
 
 
-#include "io.h"
-#include "resource.h"
+//#include "io.h"
+//#include "resource.h"
 //#include "user.h"
 
 
@@ -82,11 +82,11 @@ inline ::e_status failed_errno_to_status(i32 nErrno) { return _failed_errno_to_s
 
 
 
-
-#ifndef ___JUMPBUF
-// Use portable 'jmp_buf' defined by ANSI by default.
-#define ___JUMPBUF jmp_buf
-#endif
+//
+//#ifndef ___JUMPBUF
+//// Use portable 'jmp_buf' defined by ANSI by default.
+//#define ___JUMPBUF jmp_buf
+//#endif
 
 namespace datetime
 {
@@ -339,13 +339,13 @@ CLASS_DECL_ACME void __dump(const ::matter * pOb);
 //#include "system.h"
 
 
-#include "parsing.h"
+//#include "parsing.h"
 
 
 //#include "invalid_type.h"
 
 
-#include  "serialization.h"
+//#include  "serialization.h"
 
 
 //#include  "file_open.h"

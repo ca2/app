@@ -360,3 +360,137 @@ namespace factory
 
 
 
+
+
+
+namespace factory
+{
+
+
+   CLASS_DECL_ACME critical_section * get_factory_critical_section();
+
+
+   template < typename TYPE, typename BASE_TYPE>
+   inline pointer< ::factory::factory_item_base < BASE_TYPE > > add_factory_item(const ::atom & atom)
+   {
+
+      critical_section_lock lock(::factory::get_factory_critical_section());
+
+      auto pfactory = __new(::factory::factory_item< TYPE, BASE_TYPE >());
+
+      ::factory::get_factory()->set_at(atom, pfactory);
+
+      return pfactory;
+
+   }
+
+
+   CLASS_DECL_ACME::factory::factory * loading_library_factory();
+
+
+   template < typename TYPE, typename BASE_TYPE>
+   inline pointer< ::factory::factory_item_base < BASE_TYPE > > _add_factory_item_from(const ::atom & atomSource)
+   {
+
+      critical_section_lock lock(::factory::get_factory_critical_section());
+
+      auto pfactory = ::factory::loading_library_factory();
+
+      if (::is_set(pfactory))
+      {
+
+         return pfactory->add_factory_item < TYPE, BASE_TYPE >();
+
+      }
+
+      auto pfactoryitem = __new(::factory::factory_item< TYPE, BASE_TYPE >());
+
+      ::factory::get_factory_item < BASE_TYPE >(atomSource) = pfactoryitem;
+
+      return pfactoryitem;
+
+   }
+
+
+   template < typename TYPE, typename BASE_TYPE>
+   inline pointer< ::factory::factory_item_base < BASE_TYPE > > add_factory_item()
+   {
+
+      critical_section_lock lock(::factory::get_factory_critical_section());
+
+      auto pfactory = __new(::factory::factory_item< TYPE, BASE_TYPE >());
+
+      ::factory::get_factory_item < BASE_TYPE >() = pfactory;
+
+      return pfactory;
+
+   }
+
+
+   template < typename TYPE, typename BASE_TYPE>
+   inline pointer< ::factory::factory_item_base < BASE_TYPE > > create_reusable_factory()
+   {
+
+      critical_section_lock lock(::factory::get_factory_critical_section());
+
+      auto pfactory = __new(::factory::reusable_factory_item< TYPE, BASE_TYPE >());
+
+      ::factory::get_factory_item < BASE_TYPE >() = pfactory;
+
+      return pfactory;
+
+   }
+
+
+} // namespace factory
+
+
+
+
+namespace factory
+{
+
+
+   template < typename TYPE, typename BASE_TYPE >
+   inline ::pointer<BASE_TYPE>reusable_factory_item < TYPE, BASE_TYPE >::_create()
+   {
+
+      {
+
+         critical_section_lock lock(&m_criticalsection);
+
+         if (m_pfree)
+         {
+
+            auto pNew = m_pfree;
+
+            m_pfree = pNew->m_pnext;
+
+            pNew->reuse();
+
+            return pNew;
+
+         }
+
+      }
+
+      return factory_item < TYPE, BASE_TYPE >::_call_new();
+
+   }
+
+
+   template < typename TYPE, typename BASE_TYPE >
+   inline void reusable_factory_item < TYPE, BASE_TYPE >::return_back(BASE_TYPE * p)
+   {
+
+      critical_section_lock lock(&m_criticalsection);
+
+      p->m_pnext = m_pfree;
+
+      m_pfree = p;
+
+   }
+
+
+} // namespace factory
+

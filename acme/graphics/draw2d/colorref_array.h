@@ -8,7 +8,7 @@ public:
 
 
    colorref_array();
-   virtual ~colorref_array();
+   ~colorref_array() override;
 
 
    void create_web_palette();

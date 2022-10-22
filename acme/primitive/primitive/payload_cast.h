@@ -52,3 +52,21 @@ public:
 
 
 
+
+
+
+
+inline payload_cast::operator payload_array () const
+{
+
+   return m_payload.payloada();
+
+}
+
+
+inline payload_cast::operator property_set () const
+{
+
+   return m_payload.propset();
+
+}

@@ -8579,3 +8579,29 @@ template < payload_class PAYLOAD >
 
 
 
+
+
+inline bool succeeded(const ::payload & payload)
+{
+
+   if (payload.m_etype == e_type_enum_status)
+   {
+
+      return ::succeeded(payload.m_estatus);
+
+   }
+   else if (payload.is_integer())
+   {
+
+      return ::succeeded(payload.i64());
+
+   }
+   else
+   {
+
+      throw ::exception(error_unexpected_situation);
+
+   }
+
+}
+

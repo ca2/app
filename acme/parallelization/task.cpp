@@ -1996,3 +1996,69 @@ CLASS_DECL_ACME bool is_main_thread()
 
 
 
+
+
+CLASS_DECL_ACME bool predicate_Sleep(int iTime, ::function < bool(void) > functionOkToSleep)
+{
+
+   if (iTime < 100)
+   {
+
+      preempt(100_ms);
+
+   }
+   else
+   {
+
+      iTime += 99;
+
+      iTime /= 100;
+
+      for (index i = 0; i < iTime; i++)
+      {
+
+         preempt(100_ms);
+
+         if (!::task_get_run() || !functionOkToSleep())
+         {
+
+            break;
+
+         }
+
+      }
+
+   }
+
+   return ::task_get_run();
+
+}
+
+
+
+
+
+
+void preempt()
+{
+
+   if (!::task_get_run())
+   {
+
+      auto ptask = ::get_task();
+
+      throw ::exit_exception(ptask);
+
+   }
+
+}
+
+
+tracer trace_log_information() { return ::get_task()->trace_log_information(); }
+tracer trace_log_warning() { return ::get_task()->trace_log_warning(); }
+tracer trace_log_error() { return ::get_task()->trace_log_error(); }
+tracer trace_log_fatal() { return ::get_task()->trace_log_fatal(); }
+
+
+
+

@@ -853,7 +853,7 @@ namespace dynamic_source
 
 
 } // namespace dynamic_source
-
+#include "acme/parallelization/_.h"
 
 #include "acme/primitive/mathematics/mkint_c.h"
 
@@ -2496,7 +2496,7 @@ class cotaskptr_array;
 class type;
 
 
-#include "acme/primitive/string/_.h"
+//#include "acme/primitive/string/_.h"
 
 namespace text
 {
@@ -3378,9 +3378,9 @@ using procedure_list = ::list < ::procedure >;
 #include "acme/platform/predicate_process.h"
 
 
-#include "acme/platform/sequence1.h"
-#include "acme/user/user/conversation.h"
-#include "acme/platform/sequencer.h"
+//#include "acme/platform/sequence1.h"
+//#include "acme/user/user/conversation.h"
+//#include "acme/platform/sequencer.h"
 
 
 
@@ -3396,7 +3396,7 @@ using procedure_list = ::list < ::procedure >;
 CLASS_DECL_ACME void add_release_on_end(::matter * pmatter);
 
 
-#include "acme/primitive/primitive/object.h"
+//#include "acme/primitive/primitive/object.h"
 
 
 
@@ -3419,38 +3419,10 @@ namespace draw2d
 } // namespace draw2d
 
 
-
-
-#define OPTIONAL_BASE_BODY                                                          \
-public:                                                                             \
-   void on_initialize_object() override {}         \
-   void assert_ok() const override {}                                    \
-   void dump(dump_context&) const override {}                               \
-   void handle(::topic*,::context*) override {}    \
-   //void on_subject(::topic::topic*, ::context*) override {} \
-
-
-#define OPTIONAL_INTERACTION_BODY                                                   \
-   OPTIONAL_BASE_BODY                                                               \
-   void install_message_routing(::channel*) override {}                     \
-   void on_layout(::draw2d::graphics_pointer&) {}
-
-
-class optional_base1 : virtual public ::object { OPTIONAL_BASE_BODY };
-class optional_base2 : virtual public ::object { OPTIONAL_BASE_BODY };
-class optional_base3 : virtual public ::object { OPTIONAL_BASE_BODY };
-class optional_base4 : virtual public ::object { OPTIONAL_BASE_BODY };
-
-class optional_interaction1 : virtual public ::object { OPTIONAL_INTERACTION_BODY };
-class optional_interaction2 : virtual public ::object { OPTIONAL_INTERACTION_BODY };
-class optional_interaction3 : virtual public ::object { OPTIONAL_INTERACTION_BODY };
-class optional_interaction4 : virtual public ::object { OPTIONAL_INTERACTION_BODY };
-
-
 class context_image;
 
 
-#include "acme/parallelization/_parallelization.h"
+//#include "acme/parallelization/_parallelization.h"
 
 
 #include "acme/primitive/data/_.h"
@@ -3459,10 +3431,10 @@ class context_image;
 #include "acme/primitive/text/_.h"
 
 
-#include "acme/primitive/string/_string.h"
+//#include "acme/primitive/string/_string.h"
 
 
-#include "acme/platform/context.h"
+//#include "acme/platform/context.h"
 
 
 
@@ -3525,7 +3497,7 @@ CLASS_DECL_ACME string merge_colon_args(const array<string_array> &str2a);
 //inline bool is_callstack_enabled(e_callstack ecallstack) { return (i64) get_callstack_mask() & (i64) ecallstack; }
 
 
-#include "acme/platform/fixed_alloc.h"
+//#include "acme/platform/fixed_alloc.h"
 
 
 #include "acme/memory/allocate.h"
@@ -3717,8 +3689,8 @@ using lresult = iptr;
 
 
 #include "acme/constant/context.h"
-#include "acme/platform/message.h"
-#include "acme/primitive/primitive/action_context.h"
+//#include "acme/platform/message.h"
+//#include "acme/primitive/primitive/action_context.h"
 
 
 #include "acme/platform/cmp.h"
@@ -3842,10 +3814,10 @@ namespace file
 } // namespace file
 
 
-#include "acme/filesystem/filesystem/listing.h"
+//#include "acme/filesystem/filesystem/listing.h"
 
 
-#include "acme/platform/fixed_alloc_impl.h"
+//#include "acme/platform/fixed_alloc_impl.h"
 
 
 #include "acme/platform/net.h"
@@ -3854,7 +3826,7 @@ namespace file
 //#include "acme/filesystem/file/buffered_file.h"
 
 
-#include "acme/platform/department.h"
+//#include "acme/platform/department.h"
 
 
 #include "acme/primitive/datetime/_datetime.h"
@@ -4017,7 +3989,7 @@ i32 CLASS_DECL_ACME WideCharToMultiByte2(::u32 CodePage, ::u32 dwFlags, const wi
 
 
 
-#include "acme/primitive/primitive/osdata_array.h"
+//#include "acme/primitive/primitive/osdata_array.h"
 
 
 namespace mathematics
@@ -4107,16 +4079,16 @@ using enum_application_capability_array = ::comparable_array < enum_application_
 //#include "acme/platform/node.h"
 
 
-#include "acme/platform/predicate_holder.h"
+//#include "acme/platform/predicate_holder.h"
 
 
-#include "acme/parallelization/fork.h"
+//#include "acme/parallelization/fork.h"
 
 
 //#include "acme/parallelization/tools.h"
 
 
-#include "acme/platform/main.h"
+//#include "acme/platform/main.h"
 
 
 //#include "acme/platform/acme_main_struct.h"
@@ -4137,7 +4109,7 @@ CLASS_DECL_ACME string library_filter(const ::string& str);
 //#include "acme/regular_expression/_regular_expression.h"
 
 
-#include "acme/platform/log.h"
+///#include "acme/platform/log.h"
 
 
 namespace user

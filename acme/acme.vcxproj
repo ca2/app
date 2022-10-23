@@ -1323,6 +1323,7 @@
     <ClInclude Include="operating_system\cross.h" />
     <ClInclude Include="operating_system\file.h" />
     <ClInclude Include="operating_system\graphics.h" />
+    <ClInclude Include="operating_system\message.h" />
     <ClInclude Include="operating_system\microsecond_sleep.h" />
     <ClInclude Include="operating_system\windows\_api.h" />
     <ClInclude Include="operating_system\_api.h" />

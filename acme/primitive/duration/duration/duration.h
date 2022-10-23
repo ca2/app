@@ -1109,3 +1109,21 @@ class ::duration operator * (INTEGRAL i, const ::duration & duration)
    return { e_raw, (::i64)(nanosecond / 1'000'000'000), (long)(nanosecond % 1'000'000'000) };
 
 }
+
+
+
+
+
+template < typename DURATION >
+inline class ::wait integral_duration < DURATION >::wait() const
+{
+
+   return ::duration(*this).integral_microsecond().m_i / 1'000'000.0;
+
+}
+
+
+DEFINE_COMPARISON_WITH_DURATION(time)
+
+
+

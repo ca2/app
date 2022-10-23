@@ -1,12 +1,9 @@
 ﻿#pragma once
 
 
-
-
-
 template < class ENUM >
 class flags :
-   virtual public ::matter
+   virtual public ::particle
 {
 public:
 

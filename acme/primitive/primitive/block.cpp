@@ -2,6 +2,36 @@
 #include "memory_base.h"
 #include "acme/primitive/string/base64.h"
 
+block::block(const atom & atom) :
+   ::block(atom.is_text() ? atom.m_str : nullptr, atom.is_text() ? atom.m_str.length() : 0) 
+{
+
+}
+
+
+block::block(const ::string & str) :
+   ::block(str.c_str(), str.get_length())
+{
+
+}
+
+
+block::block(const ::string & str, ::strsize s) : 
+   ::block((const void *)str.c_str(), (::i64)(s >= 0 ? s : str.get_length() + s + 1))
+{
+
+
+}
+
+
+
+void block::to_string(string & str) const
+{
+
+   str.assign((const ansichar *)get_data(), get_size());
+
+}
+
 
 //#ifdef _UWP
 //
@@ -110,4 +140,29 @@ block::block(const memory_base * pmemory) :
 {
 
 }
+
+
+
+
+namespace hex
+{
+   CLASS_DECL_ACME string lower_from(const block & block)
+   {
+
+      return lower_from(block.get_data(), block.get_size());
+
+   }
+
+   
+   CLASS_DECL_ACME string upper_from(const block & block)
+   {
+
+      return upper_from(block.get_data(), block.get_size());
+
+   }
+
+
+} // namespace hex
+
+
 

@@ -989,7 +989,7 @@ enum e_image_type
 
 };
 
-#include "acme/platform/text.h"
+//#include "acme/platform/text.h"
 
 #include "acme/primitive/primitive/_c_memory.h"
 
@@ -2655,7 +2655,11 @@ inline ::pointer < T > move_transfer(T * p);
 #define __new(...) ::move_transfer( memory_new __VA_ARGS__ )
 
 
+//#include "acme/platform/lparam.h"
+
 #include "acme/primitive/primitive/pointer.h"
+
+#include "acme/platform/lparam.h"
 
 #include "acme/primitive/primitive/holder.h"
 
@@ -2738,7 +2742,7 @@ using wparam = c_number<iptr>;
 #include "acme/primitive/duration/_unit_operator.h"
 
 
-#include "acme/primitive/duration/_string_format.h"
+//#include "acme/primitive/duration/_string_format.h"
 
 
 //#include "acme/primitive/duration/_.h"
@@ -2923,69 +2927,6 @@ namespace user
 } // namespace user
 
 
-template < typename POINT >
-concept primitive_point = requires(POINT point)
-{
-   point.x;
-   point.y;
-};
-
-
-template < typename POINT >
-concept primitive_XY = requires(POINT point)
-{
-   point.X;
-   point.Y;
-};
-
-
-template < typename SIZE >
-concept primitive_size = requires(SIZE size)
-{
-   size.cx;
-   size.cy;
-};
-
-
-template < typename SIZE >
-concept primitive_Dim = requires(SIZE size)
-{
-   size.Width;
-   size.Height;
-};
-
-
-template < typename RECTANGLE >
-concept primitive_rectangle = requires(RECTANGLE rectangle)
-{
-   rectangle.left;
-   rectangle.top;
-   rectangle.right;
-   rectangle.bottom;
-};
-
-
-template < typename RECTANGLE >
-concept primitive_XYDim = requires(RECTANGLE rectangle)
-{
-   rectangle.X;
-   rectangle.Y;
-   rectangle.Width;
-   rectangle.Height;
-};
-
-
-template < typename RECTANGLE >
-concept primitive_xydim = requires(RECTANGLE rectangle)
-{
-   rectangle.x;
-   rectangle.y;
-   rectangle.width;
-   rectangle.height;
-};
-
-
-#include "acme/platform/lparam.h"
 
 
 #include "acme/platform/_global.h"
@@ -3025,12 +2966,12 @@ class sequencer;
 #include "acme/primitive/primitive/element.h"
 #include "acme/primitive/primitive/function.h"
 #include "acme/platform/procedure.h"
-#include "acme/platform/tracer.h"
+//#include "acme/platform/tracer.h"
 
 
 using procedure = ::function < void() >;
 
-#include "acme/primitive/primitive/matter.h"
+//#include "acme/primitive/primitive/matter.h"
 //#include "acme/primitive/primitive/linked_property.h"
 
 
@@ -3038,7 +2979,7 @@ using procedure = ::function < void() >;
 
 
 
-#include "acme/constant/idpool.h"
+//#include "acme/constant/idpool.h"
 
 
 //#include "acme/primitive/geometry2d/_enhanced.h"
@@ -3050,10 +2991,10 @@ class manual_reset_event;
 
 
 
-#include "acme/primitive/primitive/work.h"
+//#include "acme/primitive/primitive/work.h"
 
 
-#include "acme/primitive/primitive/compare_predicate.h"
+//#include "acme/primitive/primitive/compare_predicate.h"
 
 
 #include "acme/platform/status.h"
@@ -3190,36 +3131,6 @@ using oswindow_t = ::windowing::window;
 using oswindow = oswindow_t *;
 
 
-struct MESSAGE
-{
-
-   ::oswindow              oswindow;
-   ::atom                  m_atom;
-   wparam                  wParam;
-   lparam                  lParam;
-   POINT_I32               pt;
-   ::u64                   time;
-
-
-   MESSAGE() {}
-   MESSAGE(const MESSAGE & message)
-   {
-      operator=(message);
-   }
-
-   MESSAGE & operator = (const MESSAGE & message)
-   {
-      oswindow = message.oswindow;
-      m_atom = message.m_atom;
-      wParam = message.wParam;
-      lParam = message.lParam;
-      pt = message.pt;
-      time = message.time;
-      return *this;
-   }
-
-};
-
 
 using generic_pointer = ::pointer<::matter>;
 
@@ -3278,7 +3189,7 @@ using procedure_array = ::array < ::procedure >;
 #include "acme/primitive/primitive/linked_property.h"
 
 
-#include "acme/primitive/primitive/property_object.h"
+//#include "acme/primitive/primitive/property_object.h"
 
 
 #include "acme/exception/extended_status.h"
@@ -3319,10 +3230,10 @@ namespace file
 
 #include "acme/constant/filesystem.h"
 
-#include "acme/filesystem/filesystem/path.h"
+//#include "acme/filesystem/filesystem/path.h"
 
 
-#include "acme/filesystem/filesystem/path_object.h"
+//#include "acme/filesystem/filesystem/path_object.h"
 
 
 //#include "acme/primitive/collection/_collection.h"
@@ -3371,11 +3282,11 @@ using procedure_list = ::list < ::procedure >;
 //#include "acme/filesystem/filesystem/path_array.h"
 
 
-#include "acme/filesystem/filesystem/enumerator.h"
+//#include "acme/filesystem/filesystem/enumerator.h"
 
 #include "acme/platform/predicate_procedure.h"
 
-#include "acme/platform/predicate_process.h"
+//#include "acme/platform/predicate_process.h"
 
 
 //#include "acme/platform/sequence1.h"
@@ -3428,7 +3339,7 @@ class context_image;
 #include "acme/primitive/data/_.h"
 
 
-#include "acme/primitive/text/_.h"
+//#include "acme/primitive/text/_.h"
 
 
 //#include "acme/primitive/string/_string.h"
@@ -3515,10 +3426,10 @@ inline bool is_filemanager_group(const ::atom & atom, const char * pszGroup);
 inline bool is_filemanager_group(const ::atom & atom, int iGroup);
 
 
-inline bool is_color_sel(const ::atom & atom) { return is_impact_group(atom.i64(), COLORSEL_IMPACT); }
+inline bool is_color_sel(const ::atom & atom);
 
 
-inline bool is_font_sel(const ::atom & atom) { return is_impact_group(atom.i64(), FONTSEL_IMPACT); }
+inline bool is_font_sel(const ::atom & atom);
 
 
 #include "acme/primitive/string/composite.h"
@@ -3561,7 +3472,7 @@ inline auto &__typed(::pointer<POINTER_TYPE>*pp) { return *pp->operator POINTER_
 
 
 
-#include "acme/filesystem/file/status.h"
+//#include "acme/filesystem/file/status.h"
 #include "acme/filesystem/file/translatable.h"
 #include "acme/filesystem/file/streamable.h"
 #include "acme/filesystem/file/streamable_composite.h"
@@ -3661,7 +3572,7 @@ namespace mathematics
 #include "acme/primitive/mathematics/scalar_enum.h"
 
 
-#include "acme/primitive/mathematics/scalar.h"
+//#include "acme/primitive/mathematics/scalar.h"
 
 
 //#include "acme/platform/progress.h"
@@ -3693,7 +3604,7 @@ CLASS_DECL_ACME string get_status_message(const ::e_status & estatus);
 #include "acme/platform/restore.h"
 
 
-#include "acme/primitive/mathematics/objects.h"
+//#include "acme/primitive/mathematics/objects.h"
 
 
 //#include "acme/primitive/collection/file_path_map.h"
@@ -3737,9 +3648,9 @@ namespace acme
 //#include "acme/filesystem/file/timeout_buffer.h"
 //#include "acme/filesystem/file/transfer_buffer.h"
 
-#include "acme/filesystem/file/memory_map.h"
+//#include "acme/filesystem/file/memory_map.h"
 
-#include "acme/primitive/string/international2.h"
+//#include "acme/primitive/string/international2.h"
 
 
 
@@ -3968,20 +3879,20 @@ inline string &to_network_payload(string &str, const T &value, bool bNewLine)
 }
 
 
-#include "acme/platform/error.h"
+//#include "acme/platform/error.h"
 
 
 #include "acme/primitive/primitive/_.h"
 
 
 
-#if !defined(_UWP)
-
-
-#include "acme/platform/serial_shared.h"
-
-
-#endif
+//#if !defined(_UWP)
+//
+//
+//#include "acme/platform/serial_shared.h"
+//
+//
+//#endif
 
 
 
@@ -4129,135 +4040,135 @@ class task_tool;
 
 
 
-#include "acme/primitive/duration/_duration.h"
-
-
-
-#include "acme/primitive/primitive/_defer.h"
-
-
-
-#include "acme/parallelization/_impl.h"
-
-
-#include "acme/platform/_impl.h"
-
-
-//#include "acme/primitive/collection/_papaya_impl.h"
-
-
-//#include "acme/primitive/collection/_array_base_impl.h"
-//#include "acme/primitive/collection/_array_impl.h"
-//#include "acme/primitive/collection/_array_impl2.h"
-//#include "acme/primitive/collection/_raw_array_impl.h"
-//#include "acme/primitive/collection/_sort_array_impl.h"
-//#include "acme/primitive/collection/_papaya_array_impl.h"
-//#include "acme/primitive/collection/_tiny_array_impl.h"
-
-//#include "acme/primitive/collection/_list_impl.h"
-//#include "acme/primitive/collection/_map_impl.h"
-//#include "acme/primitive/collection/_set_impl.h"
-
-//#include "acme/primitive/collection/_sort_map_impl.h"
-
-//#include "acme/primitive/collection/_fifo_map_impl.h"
-
-//#include "acme/primitive/collection/_papaya_array2d_impl.h"
-
-
-#include "acme/primitive/string/_c_impl.h"
-
-
-#include "acme/primitive/string/_impl.h"
-
-
-#include "acme/primitive/string/_base_impl.h"
-
-
-#include "acme/primitive/primitive/_factory_impl.h"
-
-
-#include "acme/primitive/mathematics/_impl.h"
-
-
-//#include "acme/primitive/collection/_string_array_impl.h"
-
-
-#include "acme/primitive/primitive/_impl.h"
-
-
-#include "acme/primitive/primitive/_papaya_impl.h"
-
-
-#include "acme/primitive/duration/integral/_impl.h"
-
-
-#include "acme/primitive/duration/duration/_impl.h"
-
-
-#include "acme/primitive/datetime/_impl.h"
-
-
-//#include "acme/primitive/geometry2d/_impl.h"
-
-
-#include "acme/filesystem/_impl.h"
-
-
-#include "acme/filesystem/file/_impl.h"
-
-
-#include "acme/filesystem/file/_payload_stream_impl.h"
-
-
-#include "acme/filesystem/file/_text_stream_impl.h"
-
-
-
-
-#include "acme/primitive/string/_str_impl.h"
-
-
-#include "acme/filesystem/file/_serializable_impl.h"
-
-
-#include "acme/filesystem/file/_.h"
-
-
-#include "acme/filesystem/file/_papaya_impl.h"
-
-
-#include "acme/filesystem/file/_stream_process_impl.h"
-
-
-#include "acme/filesystem/file/_text_stream_impl.h"
-
-
-#include "acme/filesystem/filesystem/_impl.h"
-
-
-#include "acme/primitive/primitive/_atom_impl.h"
-
-
-#include "acme/primitive/primitive/_payload_impl.h"
-
-
-//#include "acme/primitive/primitive/_property_object_impl.h"
-
-
-#include "acme/primitive/primitive/_interlocked_count_impl.h"
-
-
-#include "acme/memory/_impl.h"
-
-
-#include "acme/exception/_impl.h"
-
-
-#include "acme/primitive/string/_defer.h"
-
-
-#include "acme/filesystem/file/_defer.h"
-
-
-#include "acme/__defer.h"
+//#include "acme/primitive/duration/_duration.h"
+
+
+
+//#include "acme/primitive/primitive/_defer.h"
+//
+//
+//
+//#include "acme/parallelization/_impl.h"
+//
+//
+//#include "acme/platform/_impl.h"
+//
+//
+////#include "acme/primitive/collection/_papaya_impl.h"
+//
+//
+////#include "acme/primitive/collection/_array_base_impl.h"
+////#include "acme/primitive/collection/_array_impl.h"
+////#include "acme/primitive/collection/_array_impl2.h"
+////#include "acme/primitive/collection/_raw_array_impl.h"
+////#include "acme/primitive/collection/_sort_array_impl.h"
+////#include "acme/primitive/collection/_papaya_array_impl.h"
+////#include "acme/primitive/collection/_tiny_array_impl.h"
+//
+////#include "acme/primitive/collection/_list_impl.h"
+////#include "acme/primitive/collection/_map_impl.h"
+////#include "acme/primitive/collection/_set_impl.h"
+//
+////#include "acme/primitive/collection/_sort_map_impl.h"
+//
+////#include "acme/primitive/collection/_fifo_map_impl.h"
+//
+////#include "acme/primitive/collection/_papaya_array2d_impl.h"
+//
+//
+////#include "acme/primitive/string/_c_impl.h"
+//
+//
+//#include "acme/primitive/string/_impl.h"
+//
+//
+//#include "acme/primitive/string/_base_impl.h"
+//
+//
+//#include "acme/primitive/primitive/_factory_impl.h"
+//
+//
+//#include "acme/primitive/mathematics/_impl.h"
+//
+//
+////#include "acme/primitive/collection/_string_array_impl.h"
+//
+//
+//#include "acme/primitive/primitive/_impl.h"
+//
+//
+//#include "acme/primitive/primitive/_papaya_impl.h"
+//
+//
+//#include "acme/primitive/duration/integral/_impl.h"
+//
+//
+//#include "acme/primitive/duration/duration/_impl.h"
+//
+//
+//#include "acme/primitive/datetime/_impl.h"
+//
+//
+////#include "acme/primitive/geometry2d/_impl.h"
+//
+//
+//#include "acme/filesystem/_impl.h"
+//
+//
+//#include "acme/filesystem/file/_impl.h"
+//
+//
+//#include "acme/filesystem/file/_payload_stream_impl.h"
+//
+//
+//#include "acme/filesystem/file/_text_stream_impl.h"
+//
+//
+//
+//
+//#include "acme/primitive/string/_str_impl.h"
+//
+//
+//#include "acme/filesystem/file/_serializable_impl.h"
+//
+//
+//#include "acme/filesystem/file/_.h"
+//
+//
+//#include "acme/filesystem/file/_papaya_impl.h"
+//
+//
+//#include "acme/filesystem/file/_stream_process_impl.h"
+//
+//
+//#include "acme/filesystem/file/_text_stream_impl.h"
+//
+//
+//#include "acme/filesystem/filesystem/_impl.h"
+//
+//
+//#include "acme/primitive/primitive/_atom_impl.h"
+//
+//
+//#include "acme/primitive/primitive/_payload_impl.h"
+//
+//
+////#include "acme/primitive/primitive/_property_object_impl.h"
+//
+//
+//#include "acme/primitive/primitive/_interlocked_count_impl.h"
+//
+//
+//#include "acme/memory/_impl.h"
+//
+//
+//#include "acme/exception/_impl.h"
+//
+//
+//#include "acme/primitive/string/_defer.h"
+//
+//
+//#include "acme/filesystem/file/_defer.h"
+//
+//
+//#include "acme/__defer.h"

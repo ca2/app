@@ -120,3 +120,20 @@ bool is_filemanager_group(const ::atom & atom, int iGroup)
    return is_impact_subgroup(atom.i64(), FILEMANAGER_IMPACT + iGroup);
 
 }
+
+
+
+inline bool is_color_sel(const ::atom & atom)
+{
+   
+   return is_impact_group(atom.i64(), COLORSEL_IMPACT); 
+
+}
+
+
+inline bool is_font_sel(const ::atom & atom) 
+{
+   
+   return is_impact_group(atom.i64(), FONTSEL_IMPACT); 
+
+}

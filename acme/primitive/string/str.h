@@ -421,3 +421,46 @@ inline string string_from_strdup(const char * psz);
 
 
 
+
+
+inline string hex_color(const COLOR32 & c)
+{
+
+   string str;
+
+   str.format("%02x%02x%02x", c.red, c.green, c.blue);
+
+   return str;
+
+}
+
+
+inline string _hex_color(const COLOR32 & c)
+{
+
+   return "#" + hex_color(c);
+
+}
+
+
+
+
+
+
+string _hex_color()
+{
+
+   return ::_hex_color(*this);
+
+}
+
+
+string hex_color()
+{
+
+   return ::hex_color(*this);
+
+}
+
+
+inline string __string(const ::e_display & edisplay) { return __string((::enum_display) edisplay); }

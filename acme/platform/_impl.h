@@ -446,7 +446,6 @@ inline RESULT muldiv(MULTIPLICATOR iMultiplicator, NUMERATOR iNumerator, DENOMIN
 }
 
 
-inline string __string(const ::e_display & edisplay) { return __string((::enum_display) edisplay); }
 
 
 //template < typename TYPE >

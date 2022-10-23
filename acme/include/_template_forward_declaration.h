@@ -72,6 +72,68 @@ using wd32string = string_base<wd32char>;
 using widestring = string_base<widechar>;
 
 
+template < typename POINT >
+concept primitive_point = requires(POINT point)
+{
+   point.x;
+   point.y;
+};
+
+
+template < typename POINT >
+concept primitive_XY = requires(POINT point)
+{
+   point.X;
+   point.Y;
+};
+
+
+template < typename SIZE >
+concept primitive_size = requires(SIZE size)
+{
+   size.cx;
+   size.cy;
+};
+
+
+template < typename SIZE >
+concept primitive_Dim = requires(SIZE size)
+{
+   size.Width;
+   size.Height;
+};
+
+
+template < typename RECTANGLE >
+concept primitive_rectangle = requires(RECTANGLE rectangle)
+{
+   rectangle.left;
+   rectangle.top;
+   rectangle.right;
+   rectangle.bottom;
+};
+
+
+template < typename RECTANGLE >
+concept primitive_XYDim = requires(RECTANGLE rectangle)
+{
+   rectangle.X;
+   rectangle.Y;
+   rectangle.Width;
+   rectangle.Height;
+};
+
+
+template < typename RECTANGLE >
+concept primitive_xydim = requires(RECTANGLE rectangle)
+{
+   rectangle.x;
+   rectangle.y;
+   rectangle.width;
+   rectangle.height;
+};
+
+
 //using string = string_base < ansichar >;
 //using wstring = string_base < widechar >;
 

@@ -27,7 +27,7 @@
 //#include "acme/primitive/primitive/object.h"
 
 
-#include "acme/primitive/primitive/property_object.h"
+//#include "acme/primitive/primitive/property_object.h"
 
 
 //#include "acme/primitive/primitive/layered.h"

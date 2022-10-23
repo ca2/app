@@ -179,3 +179,5 @@ integral_duration < DURATION > operator * (INTEGRAL integral, const integral_dur
 //   return (::f64)(floating / integralduration.m_i);
 //
 //}
+
+

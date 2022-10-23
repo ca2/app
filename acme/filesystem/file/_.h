@@ -113,11 +113,11 @@ CLASS_DECL_ACME ::file::path dir_base_module();
 
 //#include "exception.h"
 
-#include "status.h"
+//#include "status.h"
 
 //#include "stream.h"
 
-#include "opened.h"
+//#include "opened.h"
 
 #include "dir.h"
 

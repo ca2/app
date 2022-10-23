@@ -41,9 +41,9 @@ struct CLASS_DECL_ACME block :
    block(const memory_base & memory);
    block(const memory_base * pmemory);
    block(const block & block) : ::block(block.m_pdata, block.m_iSize) {}
-   block(const atom & atom) : ::block(atom.is_text() ? atom.m_str : nullptr, atom.is_text() ? atom.m_str.length() : 0) {}
-   block(const ::string & str) : ::block(str.c_str(), str.get_length()) {}
-   block(const ::string & str, ::strsize s) : ::block((const void *)str.c_str(), (::i64)( s >= 0 ? s : str.get_length() + s + 1)) {}
+   block(const atom & atom);
+   block(const ::string & str);
+   block(const ::string & str, ::strsize s);
    block(const char * psz, ::strsize s = -1) : ::block((const void *)psz, (::i64) (s >= 0 ? s : strlen(psz) + s + 1)) {}
    template < typename TYPE >
    block(enum_as_block, TYPE & t): ::block((void *) & t, sizeof(t)) {}
@@ -108,12 +108,7 @@ struct CLASS_DECL_ACME block :
 
    }
 
-   void to_string(string & str) const
-   {
-
-      str.assign((const ansichar *) get_data(), get_size());
-
-   }
+   void to_string(string & str) const;
 
 };
 
@@ -160,19 +155,9 @@ namespace hex
 {
 
 
-   inline CLASS_DECL_ACME string lower_from(const block & block)
-   {
+   CLASS_DECL_ACME string lower_from(const block & block);
 
-      return lower_from(block.get_data(), block.get_size());
-
-   }
-
-   inline CLASS_DECL_ACME string upper_from(const block & block)
-   {
-
-      return upper_from(block.get_data(), block.get_size());
-
-   }
+   CLASS_DECL_ACME string upper_from(const block & block);
 
 
 } // namespace hex

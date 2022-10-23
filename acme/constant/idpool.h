@@ -9,7 +9,7 @@ namespace acme
 
 
    class CLASS_DECL_ACME idpool :
-      virtual public ::matter
+      virtual public ::particle
    {
    public:
 

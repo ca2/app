@@ -103,6 +103,8 @@ public:
 };
 
 
+#include "acme/primitive/primitive/interlocked_count.h"
+
 
 class CLASS_DECL_ACME particle :
    virtual public PARTICLE

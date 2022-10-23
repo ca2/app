@@ -33,6 +33,7 @@ class string_exchange;
 class text_stream;
 class string;
 class wstring;
+class lparam;
 namespace message { class message; }
 class payload;
 struct block;
@@ -40,7 +41,12 @@ class property_set;
 class particle;
 namespace operating_system { class department; }
 
+enum enum_zero_init
+{
 
+   e_zero_init
+
+};
 namespace networking
 {
 

@@ -6,7 +6,7 @@ namespace file
 
 
    class CLASS_DECL_ACME memory_map :
-      virtual public matter
+      virtual public particle
    {
    public:
 

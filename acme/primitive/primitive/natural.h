@@ -1,12 +1,7 @@
 #pragma once
 
 
-enum e_zero_init
-{
 
-   zero_init
-
-};
 
 
 
@@ -40,7 +35,7 @@ public:
 
 
    meta_data(): m_memsize(0),m_countReference (1) {}
-   meta_data(e_zero_init) : m_memsize(0), m_countReference(1), m_endofmetadata{} {}
+   meta_data(enum_zero_init) : m_memsize(0), m_countReference(1), m_endofmetadata{} {}
 
    bool natural_is_shared() const { return m_countReference > 1; }
 
@@ -70,7 +65,7 @@ public:
 
    natural_meta_data() {}
 
-   natural_meta_data(e_zero_init) :BASE_META_DATA(zero_init){}
+   natural_meta_data(enum_zero_init) :BASE_META_DATA(e_zero_init){}
 
    bool is_set() { return ::is_set(this->m_pdata); }
 

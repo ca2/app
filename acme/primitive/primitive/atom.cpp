@@ -53,3 +53,70 @@ atom::atom(const ::payload & payload)
 
 }
 
+
+
+
+bool is_filemanager(const ::atom & atom)
+{
+
+   if(atom.is_text())
+   {
+
+      return ::str().begins(atom.m_str, "file_manager_");
+
+   }
+
+   return is_impact_group(atom.i64(), FILEMANAGER_IMPACT);
+
+}
+
+
+bool is_filemanager_group(const ::atom & atom, const char * pszGroup)
+{
+
+   if(!atom.is_text())
+   {
+
+      return false;
+
+   }
+
+   string strFileManagerGroup;
+
+   strFileManagerGroup.format("file_manager_%s", pszGroup);
+
+   if(atom == strFileManagerGroup)
+   {
+
+      return true;
+
+   }
+
+   strFileManagerGroup += "_";
+
+   if(::str().begins(atom.m_str, strFileManagerGroup))
+   {
+
+
+      return true;
+
+   }
+
+   return false;
+
+}
+
+
+bool is_filemanager_group(const ::atom & atom, int iGroup)
+{
+
+   if(atom.is_text())
+   {
+
+      return false;
+
+   }
+
+   return is_impact_subgroup(atom.i64(), FILEMANAGER_IMPACT + iGroup);
+
+}

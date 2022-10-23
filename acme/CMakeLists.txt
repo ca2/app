@@ -2156,7 +2156,7 @@ if (LINUX OR FREEBSD)
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source})
+add_library(${PROJECT_NAME} SHARED ${library_source} platform/string_exchange.cpp primitive/string/string.cpp)
 
 
 if (NOT DEFINED NO_PRECOMPILED_HEADER)

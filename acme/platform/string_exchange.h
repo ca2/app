@@ -16,7 +16,7 @@ public:
    
    
    
-   string_exchange &operator = (const ::string & str )const{*m_pstr = str; return (string_exchange &)(*this);}
+   string_exchange &operator = (const ::string & str )const;
    
    
    

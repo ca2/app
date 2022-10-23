@@ -197,16 +197,19 @@ namespace file
 namespace file
 {
 
-   template < typename TRANSFER >
-   bool output(::file::file* pfileOut, TRANSFER* ptransfer, bool (TRANSFER::* pfn)(::file::file* pfileOut, ::file::file* pfileIn), ::file::file* pfileIn)
-   {
+   //template < typename TRANSFER >
+   CLASS_DECL_ACME bool output(::file::file* pfileOut, const ::function < bool (::file::file* pfileOut, ::file::file* pfileIn) > & function, ::file::file* pfileIn);
+//   {
+//
+//      throw ::not_implemented();
+//
+//   }
 
-      throw ::not_implemented();
 
-   }
+} // namespace file
 
 
-}
+
 
 
 #include "listing_provider.h"

@@ -2524,7 +2524,7 @@ namespace text
 //#include "acme/primitive/text/data.h"
 
 
-#include "acme/primitive/text/text.h"
+//#include "acme/primitive/text/text.h"
 
 
 #include "acme/platform/definition.h"
@@ -2552,11 +2552,11 @@ namespace text
 class thread_parameter;
 
 
-#include "acme/primitive/primitive/interlocked.h"
+//#include "acme/primitive/primitive/interlocked.h"
 //#include "acme/primitive/primitive/interlocked_long_pulse.h"
-#include "acme/primitive/primitive/type.h"
-#include "acme/primitive/primitive/atom.h"
-#include "acme/primitive/primitive/uid.h"
+//#include "acme/primitive/primitive/type.h"
+//#include "acme/primitive/primitive/atom.h"
+//#include "acme/primitive/primitive/uid.h"
 
 
 
@@ -3470,13 +3470,13 @@ CLASS_DECL_ACME void message_box_asynchronous(::function < void(const ::atom & a
 
 //#include "acme/xml/importable.h"
 
-#include "acme/primitive/comparison/_.h"
+//#include "acme/primitive/comparison/_.h"
 
 //#include "acme/primitive/primitive/traits.h"
 
 //#include "acme/system_setup.h"
 
-#include "acme/platform/string_exchange.h"
+//#include "acme/platform/string_exchange.h"
 
 
 CLASS_DECL_ACME string merge_colon_args(const array<string_array> &str2a);
@@ -3504,73 +3504,15 @@ CLASS_DECL_ACME string merge_colon_args(const array<string_array> &str2a);
 //#include "acme/memory/plex.h"
 
 
-#include "acme/primitive/primitive/atom.h"
+//#include "acme/primitive/primitive/atom.h"
 
 
-inline bool is_filemanager(const ::atom & atom)
-{
-
-   if(atom.is_text())
-   {
-
-      return ::str().begins(atom.m_str, "file_manager_");
-
-   }
-
-   return is_impact_group(atom.i64(), FILEMANAGER_IMPACT);
-
-}
+inline bool is_filemanager(const ::atom & atom);
 
 
-inline bool is_filemanager_group(const ::atom & atom, const char * pszGroup)
-{
+inline bool is_filemanager_group(const ::atom & atom, const char * pszGroup);
 
-   if(!atom.is_text())
-   {
-
-      return false;
-
-   }
-
-   string strFileManagerGroup;
-
-   strFileManagerGroup.format("file_manager_%s", pszGroup);
-
-   if(atom == strFileManagerGroup)
-   {
-
-      return true;
-
-   }
-
-   strFileManagerGroup += "_";
-
-   if(::str().begins(atom.m_str, strFileManagerGroup))
-   {
-
-
-      return true;
-
-   }
-
-   return false;
-
-}
-
-
-inline bool is_filemanager_group(const ::atom & atom, int iGroup)
-{
-
-   if(atom.is_text())
-   {
-
-      return false;
-
-   }
-
-   return is_impact_subgroup(atom.i64(), FILEMANAGER_IMPACT + iGroup);
-
-}
+inline bool is_filemanager_group(const ::atom & atom, int iGroup);
 
 
 inline bool is_color_sel(const ::atom & atom) { return is_impact_group(atom.i64(), COLORSEL_IMPACT); }
@@ -3693,7 +3635,7 @@ using lresult = iptr;
 //#include "acme/primitive/primitive/action_context.h"
 
 
-#include "acme/platform/cmp.h"
+//#include "acme/platform/cmp.h"
 
 
 //#include "acme/filesystem/file/string_buffer.h"
@@ -3702,10 +3644,10 @@ using lresult = iptr;
 //#include "acme/filesystem/file/payload_stream.h"
 
 
-#include "acme/primitive/primitive/payload2.h"
+//#include "acme/primitive/primitive/payload2.h"
 
 
-#include "acme/primitive/primitive/atom_space.h"
+//#include "acme/primitive/primitive/atom_space.h"
 
 
 namespace mathematics

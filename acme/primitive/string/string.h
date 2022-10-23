@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "string_base.h"
+
+
 class CLASS_DECL_ACME string :
    public ansistring
 {

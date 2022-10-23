@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 class CLASS_DECL_ACME file_transfer :
    virtual public ::object
 {

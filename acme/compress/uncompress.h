@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "acme/filesystem/file/transfer.h"
+
+
 class CLASS_DECL_ACME uncompress :
    virtual public ::file_transfer
 {

@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "atom.h"
+
+
 class CLASS_DECL_ACME matter :
    virtual public element
 {

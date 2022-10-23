@@ -2,6 +2,8 @@
 #pragma once
 
 
+#include "acme/primitive/string/string.h"
+
 
 #include "acme/primitive/comparison/equals.h"
 #include "acme/primitive/comparison/hash.h"

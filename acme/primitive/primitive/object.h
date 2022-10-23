@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "material_object.h"
+
+
 enum enum_method : ::i32;
 enum enum_future : ::i32;
 

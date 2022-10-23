@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "property_object.h"
+
+
 class CLASS_DECL_ACME material_object :
    virtual public ::property_object
 {

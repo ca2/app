@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "listing.h"
+#include "enumerator.h"
 
 
 namespace file
@@ -56,9 +58,9 @@ namespace file
    }
 
 
-   index listing::name_find_first_ci(const path & pcsz,index find = 0,index last = -1) const
-
+   index listing::name_find_first_ci(const path & pcsz,index find,index last ) const
    {
+
       if(find < 0)
          find += this->get_count();
       if(last < 0)
@@ -117,7 +119,7 @@ namespace file
       return count;
    }
 
-   listing::
+   
    void listing::defer_add(::file::path & path)
    {
 

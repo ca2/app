@@ -33,8 +33,7 @@
 
 inline int_bool address_overlaps(const void * pszDst, const void * pszSrc, strsize srclen);
 
-
-
+inline strsize strlen_s_dup(const char * psz, strsize nsize);
 
 
 #include "_c_trait_ansi.h"

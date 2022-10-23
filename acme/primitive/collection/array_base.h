@@ -1,6 +1,8 @@
 ﻿#pragma once
 
 
+#include "_iterator.h"
+#include "allocator.h"
 
 
 #define __default_array_array_base(TYPE) ::array_base < TYPE, const TYPE &, ::allocator::def < TYPE > >
@@ -59,7 +61,7 @@ DECLARE_ARRAY_CONTAINER_OF(ARRAY, ITEM, m_ ## ITEM ## a, TYPE)
 // raw_array is an array that does not call constructors or destructor in elements
 // array is an array that call only copy constructor and destructor in elements
 // array is an array that call default constructors, copy constructs and destructors in elements
-template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, enum_type t_etypePayload = e_type_element >
+template < class TYPE, class ARG_TYPE, class ALLOCATOR, enum_type t_etypePayload >
 class array_base :
    virtual public ::particle
 {
@@ -506,9 +508,14 @@ public:
 
    void zero(::index iStart = 0, ::count c = -1);
 
-   void _001RemoveIndexes(index_array & ia);
-   void erase_indexes(const index_array & ia);
-   void erase_descending_indexes(const index_array & ia);
+   template < primitive_array ARRAY >
+   void _001RemoveIndexes(ARRAY & ia);
+   
+   template < primitive_array ARRAY >
+   void erase_indexes(const ARRAY & ia);
+
+   template < primitive_array ARRAY >
+   void erase_descending_indexes(const ARRAY & ia);
 
 
    inline bool prepare_first_last(::index & first, ::index & last) const;
@@ -551,7 +558,7 @@ public:
    bool erase(const TYPE * p) { auto i = index_of(p); if (!__found(i)) return false; return __found(erase_at(i)); }
    ::count erase(const TYPE * begin, const TYPE * end);
 
-   template < typename ITERATOR > ITERATOR erase(ITERATOR it) { return ::papaya::iterator::erase(*this, it); }
+   template < typename ITERATOR > ITERATOR erase(ITERATOR it) { return ::acme::iterator::erase(*this, it); }
 
    template < typename ITERATOR >
    inline void erase(const ITERATOR & begin, const ITERATOR & last);
@@ -1003,7 +1010,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
    if (nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 
@@ -1154,7 +1161,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
       return -1;
 
    if(nIndex < 0)
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    if(nIndex >= m_nSize)
    {
@@ -1232,7 +1239,8 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::copy(const array_
 // only the indexes that could be erased
 // without indexes duplicates
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::_001RemoveIndexes(index_array & ia)
+template < primitive_array ARRAY >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::_001RemoveIndexes(ARRAY & ia)
 {
 
    // sort
@@ -1277,7 +1285,8 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::_001RemoveIndexes
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::erase_indexes(const index_array & ia)
+template < primitive_array ARRAY >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::erase_indexes(const ARRAY & ia)
 {
 
 
@@ -1293,7 +1302,8 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::erase_indexes(con
 
 
 template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_etypePayload >
-void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::erase_descending_indexes(const index_array & ia)
+template < primitive_array ARRAY >
+void array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::erase_descending_indexes(const ARRAY & ia)
 {
 
    for(::index i = 0; i < ia.get_count(); i++)
@@ -1320,7 +1330,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
       return -1;
 
    if (nIndex < 0)
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    if (nIndex >= m_nSize)
    {
@@ -1379,7 +1389,7 @@ TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >::pick_at(::index n
    if (nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 
@@ -1414,7 +1424,7 @@ array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > array_base < TYPE, ARG_
    if (nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 
@@ -1447,7 +1457,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
    ASSERT(nNewSize >= 0);
 
    if(nNewSize < 0)
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    if(nGrowBy >= 0)
       m_nGrowBy = nGrowBy;  // set memory_new size_i32
@@ -1473,7 +1483,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
       // m_nGrowBy elements, whichever is larger.
 #ifdef SIZE_T_MAX
       if (nNewSize > SIZE_T_MAX / sizeof(TYPE))
-         throw ::exception(error_no_memory);
+         throw_exception(error_no_memory);
       ASSERT(nNewSize <= SIZE_T_MAX / sizeof(TYPE));    // no overflow
 #endif
       ::count nAllocSize = (::count) maximum(nNewSize, m_nGrowBy);
@@ -1553,7 +1563,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
       ASSERT(nNewMax >= m_nMaxSize);  // no wrap around
 
       if(nNewMax  < m_nMaxSize)
-         throw ::exception(error_bad_argument);
+         throw_exception(error_bad_argument);
 
 #ifdef SIZE_T_MAX
       ASSERT(nNewMax <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
@@ -1639,7 +1649,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
    if(nNewSize < 0)
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 
@@ -1683,7 +1693,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
       // m_nGrowBy elements, whichever is larger.
 #ifdef SIZE_T_MAX
       if(::comparison::gt(nNewSize, SIZE_T_MAX / sizeof(TYPE)))
-         throw ::exception(error_no_memory);
+         throw_exception(error_no_memory);
       ASSERT(::comparison::lt(nNewSize, SIZE_T_MAX / sizeof(TYPE)));    // no overflow
 #endif
 
@@ -1824,7 +1834,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
       if(nNewMax  < m_nMaxSize)
       {
 
-         throw ::exception(error_bad_argument);
+         throw_exception(error_bad_argument);
 
       }
 

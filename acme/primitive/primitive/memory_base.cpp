@@ -2208,7 +2208,7 @@ byte * memory_base::reverse_find_byte_not_in_block(const ::block & block, ::inde
 }
 
 
-namespace papaya
+namespace acme
 {
 
 
@@ -2247,7 +2247,7 @@ namespace papaya
 
       pfileIn->seek_to_begin();
 
-      ::papaya::transfer_from(pfileIn, mem, uiBufferSize);
+      ::acme::transfer_from(pfileIn, mem, uiBufferSize);
 
    }
 
@@ -2294,7 +2294,7 @@ namespace papaya
 
 
 
-} // namespace papaya
+} // namespace acme
 
 
 
@@ -2336,7 +2336,7 @@ namespace papaya
 //CLASS_DECL_ACME stream & operator << (stream & stream, memory_base & mem)
 //{
 //
-//   ::papaya::transfer_to(stream, mem);
+//   ::acme::transfer_to(stream, mem);
 //
 //   return stream;
 //
@@ -2347,7 +2347,7 @@ namespace papaya
 //CLASS_DECL_ACME stream & operator >> (stream & stream, memory_base & mem)
 //{
 //
-//   ::papaya::transfer_from(stream, mem);
+//   ::acme::transfer_from(stream, mem);
 //
 //   return stream;
 //

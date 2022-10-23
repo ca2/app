@@ -4,7 +4,7 @@
 
 
 
-inline i64 __uni_index(const char *& input, strsize * psrclen)
+inline i32 __uni_index(const char *& input, strsize * psrclen)
 {
 
    if (*input == 0)
@@ -41,7 +41,7 @@ inline i64 __uni_index(const char *& input, strsize * psrclen)
 }
 
 
-inline i64 __uni_index(const wd16char *& input, strsize * psrclen)
+inline i32 __uni_index(const wd16char *& input, strsize * psrclen)
 {
 
    if (*input == 0)
@@ -58,7 +58,7 @@ inline i64 __uni_index(const wd16char *& input, strsize * psrclen)
 
    }
 
-   ::i64 i = *input;
+   ::i32 i = *input;
 
    ::wd32char u32;
 
@@ -73,7 +73,7 @@ inline i64 __uni_index(const wd16char *& input, strsize * psrclen)
 }
 
 
-inline i64 __uni_index(const wd32char *& input, strsize * psrclen)
+inline i32 __uni_index(const wd32char *& input, strsize * psrclen)
 {
 
    if (*input == 0)
@@ -90,7 +90,7 @@ inline i64 __uni_index(const wd32char *& input, strsize * psrclen)
 
    }
 
-   ::i64 i = *input;
+   ::i32 i = *input;
 
    input++;
 

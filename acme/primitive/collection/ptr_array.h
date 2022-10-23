@@ -1,6 +1,12 @@
 #pragma once
 
 
+#include "array.h"
+#include "comparable_eq_array.h"
+#include "comparable_array.h"
+#include "pointer_array_process.h"
+
+
 template < typename TYPE >
 class ptr_array :
    public pointer_array_process < comparable_array < TYPE * >, TYPE >

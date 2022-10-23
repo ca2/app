@@ -11,6 +11,8 @@ public:
 
    using widestring::widestring;
 
+   wstring(const ::wstring & wstr) : widestring(wstr) {}
+   wstring(const ::widestring & widestr) : widestring(widestr) {}
 
 
 };

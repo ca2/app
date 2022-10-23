@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "synchronization_object.h"
+
+
 class CLASS_DECL_ACME mutex :
    virtual public synchronization_object
 {

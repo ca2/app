@@ -13,7 +13,7 @@
 
 CLASS_DECL_ACME void __transfer_to_writable(::file::writable * pwritable, ::file::file * pfileIn, memsize uiBufSize =-1);
 
-namespace papaya
+namespace acme
 {
 
 
@@ -24,7 +24,7 @@ namespace papaya
    } // namespace array
 
 
-} // namespace papaya
+} // namespace acme
 
 
 

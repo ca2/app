@@ -4,6 +4,9 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/path.h"
+
+
 struct CLASS_DECL_ACME MAIN // : public ::acme::reference
 {
 
@@ -89,6 +92,9 @@ typedef ::acme::library * NEW_LIBRARY();
 
 typedef NEW_LIBRARY * PFN_NEW_LIBRARY;
 
+
+#include "acme/primitive/primitive/object.h"
+#include "implementable.h"
 
 
 class CLASS_DECL_ACME main :

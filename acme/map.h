@@ -16,7 +16,7 @@ namespace acme
    } // namespace map
 
 
-} // namespace papaya
+} // namespace acme
 
 
 
@@ -62,7 +62,7 @@ namespace acme
    } // namespace map
 
 
-} // namespace papaya
+} // namespace acme
 
 
 

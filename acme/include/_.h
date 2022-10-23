@@ -2108,7 +2108,7 @@ namespace audio
 #include "acme/primitive/comparison/compare.h"
 
 
-#include "acme/primitive/primitive/papaya.h"
+#include "acme/primitive/primitive/acme.h"
 
 
 #include "acme/primitive/primitive/logic.h"
@@ -2827,12 +2827,12 @@ class event_map;
 class thread_ptra;
 
 
-namespace papaya
+namespace acme
 {
 
    class topic;
 
-} // namespace papaya
+} // namespace acme
 
 
 class memory_base;
@@ -2969,7 +2969,6 @@ class sequencer;
 //#include "acme/platform/tracer.h"
 
 
-using procedure = ::function < void() >;
 
 //#include "acme/primitive/primitive/matter.h"
 //#include "acme/primitive/primitive/linked_property.h"
@@ -3181,10 +3180,6 @@ class task;
 
 //} // namespace topic
 
-
-using exception_array = ::array < ::exception >;
-
-using procedure_array = ::array < ::procedure >;
 
 #include "acme/primitive/primitive/linked_property.h"
 

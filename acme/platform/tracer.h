@@ -3,8 +3,8 @@
 
 
 #include "acme/primitive/string/__string.h"
-#include "acme/primitive/duration/_.h
-#include "acme/primitive/duration/__string.h
+#include "acme/primitive/duration/_.h"
+#include "acme/primitive/duration/__string.h"
 
 
 class logger;

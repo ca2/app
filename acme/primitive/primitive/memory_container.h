@@ -2,6 +2,7 @@
 
 
 #include "memory_base.h"
+#include "acme/primitive/primitive/object.h"
 
 
 class shared_memory;

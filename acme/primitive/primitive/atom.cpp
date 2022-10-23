@@ -123,7 +123,7 @@ bool is_filemanager_group(const ::atom & atom, int iGroup)
 
 
 
-inline bool is_color_sel(const ::atom & atom)
+bool is_color_sel(const ::atom & atom)
 {
    
    return is_impact_group(atom.i64(), COLORSEL_IMPACT); 
@@ -131,9 +131,50 @@ inline bool is_color_sel(const ::atom & atom)
 }
 
 
-inline bool is_font_sel(const ::atom & atom) 
+bool is_font_sel(const ::atom & atom) 
 {
    
    return is_impact_group(atom.i64(), FONTSEL_IMPACT); 
 
 }
+
+
+
+::string atom::string() const
+{
+
+   if (m_etype == e_type_null)
+   {
+
+      return "(null)";
+
+   }
+   else if (m_etype == e_type_empty)
+   {
+
+      return "(empty)";
+
+   }
+   else if (is_text())
+   {
+
+      return m_str;
+
+   }
+   else if (is_integer())
+   {
+
+      return __string(m_i);
+
+   }
+   else
+   {
+
+      return ::string("(atom : type:") + __string(m_etype) + ",body:" + __string(m_u) + ")";
+
+   }
+
+}
+
+
+

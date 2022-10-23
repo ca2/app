@@ -10,8 +10,8 @@ typedef __POSITION* POSITION;
 
 
 
-#define forall(set) for(auto item : set)
-#define forallref(set) for(auto & item : set)
+//#define forall(set) for(auto item : set)
+//#define forallref(set) for(auto & item : set)
 
 
 typedef void(*ARG_SWAP_FUNCTION)(void * lpVoidSwapArg, index, index);
@@ -40,7 +40,7 @@ public:
    CONST_ITERATOR end() const { return m_end; }
 
 
-   typename CONST_ITERATOR::TYPE & element_at(::index iIndex)
+   typename CONST_ITERATOR::ITEM_TYPE & element_at(::index iIndex)
    {
 
       CONST_ITERATOR it = begin();
@@ -85,7 +85,7 @@ public:
    ITERATOR begin() const { return m_begin; }
    ITERATOR end() const { return m_end; }
 
-   typename ITERATOR::TYPE& element_at(::index iIndex)
+   typename ITERATOR::TYPE & element_at(::index iIndex)
    {
 
       ITERATOR it = begin();
@@ -106,7 +106,9 @@ public:
       else
       {
 
-         throw ::exception(error_bad_argument);
+         throw_exception(error_bad_argument);
+
+         return *((typename ITERATOR::TYPE *) nullptr);
 
       }
 

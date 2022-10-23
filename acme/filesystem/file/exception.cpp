@@ -1,10 +1,7 @@
 #include "framework.h"
 #include "text_stream.h"
-#ifdef WINDOWS
-//#include <Shellapi.h>
-#endif
+#include "exception.h"
 
-//extern int g_iCallStackLevel;
 
 #define DUMP_FILE_EXCEPTION_BACK_TRACE 0
 

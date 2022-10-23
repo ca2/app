@@ -99,7 +99,7 @@ inline void __dynamic_cast(TYPE1*& ptype1, const ::pointer<TYPE2> ptype2)
 }
 
 
-namespace papaya
+namespace acme
 {
 
 
@@ -252,7 +252,7 @@ namespace papaya
    } // namespace property_set
 
 
-} // namespace papaya
+} // namespace acme
 
 
 

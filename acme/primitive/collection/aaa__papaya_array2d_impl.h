@@ -1,7 +1,7 @@
 #pragma once
 
 
-//namespace papaya
+//namespace acme
 //{
 //
 //
@@ -47,7 +47,7 @@
 //   } //namespace array2d
 //
 //
-//} // namespace papaya
+//} // namespace acme
 //
 //
 //

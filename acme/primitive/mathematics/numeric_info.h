@@ -586,7 +586,7 @@ T & minimum(T & t)
 
 }
 
-namespace papaya // or ace, when I am going to introduce ace, on in the minimum insertion ace static library
+namespace acme // or ace, when I am going to introduce ace, on in the minimum insertion ace static library
 {
 
    template <typename T>
@@ -674,5 +674,5 @@ namespace papaya // or ace, when I am going to introduce ace, on in the minimum 
    }
 
 
-} // namespace papaya
+} // namespace acme
 

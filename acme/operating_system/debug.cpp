@@ -7,7 +7,7 @@
 CLASS_DECL_ACME enum_trace_level trace_level_constraint(enum_trace_level elevel)
 {
 
-   return ::papaya::constraint(elevel, e_trace_level_none, e_trace_level_count);
+   return ::acme::constraint(elevel, e_trace_level_none, e_trace_level_count);
 
 }
 

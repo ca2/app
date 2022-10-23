@@ -1274,7 +1274,7 @@ namespace sort
 
 
       template < typename ARRAY_TYPE >
-      void quick_sort(ARRAY_TYPE  & a, less_predicateicate_base < typename ARRAY_TYPE::BASE_ARG_TYPE > * pless, index_array & ia)
+      void quick_sort(ARRAY_TYPE  & a, less_predicate_base < typename ARRAY_TYPE::BASE_ARG_TYPE > * pless, index_array & ia)
       {
 
          if (ia.get_size() != a.get_size())

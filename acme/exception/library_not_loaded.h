@@ -1,5 +1,8 @@
-// Created by camilo on 2022-02-05 21:31 <3ThomasBorregaardSørensen!! (Thomas likes number 5 : day 5)
+// Created by camilo on 2022-02-05 21:31 <3ThomasBorregaardSï¿½rensen!! (Thomas likes number 5 : day 5)
 #pragma once
+
+
+#include "exception.h"
 
 
 class CLASS_DECL_ACME library_not_loaded :

@@ -9,7 +9,7 @@ template < typename ARRAY_TYPE, typename T >
 inline auto & __array_object(::pointer_array_process < ARRAY_TYPE, T > & a, ::index i);
 
 
-namespace papaya
+namespace acme
 {
 
 
@@ -512,7 +512,7 @@ namespace papaya
       bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index & iIndex,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE));
 
       template<class ARRAY>
-      bool binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, less_predicateicate_base < typename ARRAY::BASE_ARG_TYPE > * pcompare, index_array & ia);
+      bool binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, less_predicate_base < typename ARRAY::BASE_ARG_TYPE > * pcompare, index_array & ia);
 
       template<class ARRAY>
       index sort_add(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index(*fCompare) (typename ARRAY::BASE_ARG_TYPE, typename ARRAY::BASE_ARG_TYPE), index_array & ia);
@@ -703,7 +703,7 @@ namespace papaya
    ::count erase_lesser_than_or_equal_or_greater_than_or_equal(::numeric_array < TYPE, t_etypePayload > & a, TYPE lo, TYPE hi);
 
 
-}   // namespace papaya
+}   // namespace acme
 
 
 

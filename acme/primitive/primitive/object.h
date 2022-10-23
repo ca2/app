@@ -2,7 +2,7 @@
 
 
 #include "material_object.h"
-
+#include "acme/primitive/collection/pointer_array.h"
 
 enum enum_method : ::i32;
 enum enum_future : ::i32;
@@ -156,7 +156,7 @@ public:
       if (::is_null(pprocedurea))
       {
 
-         //throw ::exception(error_not_found);
+         //throw_exception(error_not_found);
 
          return;
 
@@ -1435,6 +1435,7 @@ class optional_interaction3 : virtual public ::object { OPTIONAL_INTERACTION_BOD
 class optional_interaction4 : virtual public ::object { OPTIONAL_INTERACTION_BODY };
 
 
+#include "acme/primitive/primitive/factory.h"
 
 
 template < typename TYPE >
@@ -1446,7 +1447,7 @@ inline ::pointer<TYPE>object::__create()
    if (!pfactory)
    {
 
-      throw ::exception(::error_not_implemented);
+      throw_exception(::error_not_implemented);
 
    }
 
@@ -1455,7 +1456,7 @@ inline ::pointer<TYPE>object::__create()
    if (!ptypeNew)
    {
 
-      throw ::exception(::error_no_memory);
+      throw_exception(::error_no_memory);
 
    }
 
@@ -1466,7 +1467,7 @@ inline ::pointer<TYPE>object::__create()
    if (!p)
    {
 
-      throw ::exception(::error_wrong_type);
+      throw_exception(::error_wrong_type);
 
    }
 
@@ -1488,7 +1489,7 @@ inline ::pointer<TYPE>object::__id_create(const ::atom & atom)
    if (!pfactory)
    {
 
-      throw ::exception(error_no_factory);
+      throw_exception(error_no_factory);
 
    }
 
@@ -1497,7 +1498,7 @@ inline ::pointer<TYPE>object::__id_create(const ::atom & atom)
    if (!ptypeNew)
    {
 
-      throw ::exception(error_no_memory);
+      throw_exception(error_no_memory);
 
    }
 
@@ -1508,7 +1509,7 @@ inline ::pointer<TYPE>object::__id_create(const ::atom & atom)
    if (!p)
    {
 
-      throw ::exception(error_wrong_type);
+      throw_exception(error_wrong_type);
 
    }
 
@@ -1565,7 +1566,7 @@ inline void object::__raw_construct(::pointer<BASE_TYPE> & p)
    if (!pfactory)
    {
 
-      throw ::exception(::error_no_factory);
+      throw_exception(::error_no_factory);
 
    }
 
@@ -1574,7 +1575,7 @@ inline void object::__raw_construct(::pointer<BASE_TYPE> & p)
    if (!pelement)
    {
 
-      throw ::exception(::error_no_memory);
+      throw_exception(::error_no_memory);
 
    }
 
@@ -1583,7 +1584,7 @@ inline void object::__raw_construct(::pointer<BASE_TYPE> & p)
    if (!p)
    {
 
-      throw ::exception(error_wrong_type);
+      throw_exception(error_wrong_type);
 
    }
 
@@ -1647,7 +1648,7 @@ inline void object::__construct(::pointer<TYPE> & p)
 
       ERROR("object::__construct has failed to find factory_item for type \"" << __type_name < TYPE >() << "\"");
 
-      throw ::exception(::error_not_implemented);
+      throw_exception(::error_not_implemented);
 
    }
 
@@ -1658,7 +1659,7 @@ inline void object::__construct(::pointer<TYPE> & p)
 
       ERROR("object::__construct no memory to allocate implementation of type \"" + __type_name < TYPE >() + "\"");
 
-      throw ::exception(::error_no_memory);
+      throw_exception(::error_no_memory);
 
    }
 
@@ -1671,7 +1672,7 @@ inline void object::__construct(::pointer<TYPE> & p)
 
       ERROR("object::__construct object(" << __type_name(ptypeNew) << ") is not of type \"" << __type_name < TYPE >() << "\"");
 
-      throw ::exception(::error_wrong_type);
+      throw_exception(::error_wrong_type);
 
    }
 
@@ -1698,7 +1699,7 @@ inline void object::__construct(::pointer<BASE_TYPE> & ptype, TYPE * p)
 
       ERROR("object::__assign_and_initialize p is null (is assignee type derived from BASE_TYPE?");
 
-      throw ::exception(::error_null_pointer);
+      throw_exception(::error_null_pointer);
 
    }
 
@@ -1731,7 +1732,7 @@ inline void object::__id_construct(::pointer<TYPE> & p, const ::atom & atom)
    if (!p)
    {
 
-      throw ::exception(error_wrong_type);
+      throw_exception(error_wrong_type);
 
    }
 
@@ -1762,7 +1763,7 @@ inline void object::__construct_new(::pointer<TYPE> & p)
    if (!p)
    {
 
-      throw ::exception(error_no_memory);
+      throw_exception(error_no_memory);
 
    }
 
@@ -1875,7 +1876,7 @@ inline void object::__construct_new(::pointer<TYPE> & p)
 //   if (!preference)
 //   {
 //
-//      throw ::exception(error_wrong_type);
+//      throw_exception(error_wrong_type);
 //
 //   }
 //
@@ -1943,7 +1944,7 @@ inline void object::__construct_new(::pointer<TYPE> & p)
 //   if (::is_null(pelement))
 //   {
 //
-//      throw ::exception(error_wrong_type);
+//      throw_exception(error_wrong_type);
 //
 //   }
 //

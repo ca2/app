@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/primitive/string/string.h"
 #include <stdio.h>
 
 

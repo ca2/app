@@ -90,7 +90,7 @@ inline pointer < T > & pointer < T >::create_new(OBJECT * pobject)
 }
 
 
-namespace papaya
+namespace acme
 {
 
 
@@ -119,7 +119,7 @@ namespace papaya
    } // namespace array
 
 
-} // namespace papaya
+} // namespace acme
 
 
 #include "acme/primitive/geometry2d/_defer.h"

@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "buffered_file.h"
+#include "acme/exception/exception.h"
 
 
 namespace file

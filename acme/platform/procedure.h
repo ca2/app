@@ -1,5 +1,13 @@
 #pragma once
 
+
+
+using procedure = ::function < void() >;
+
+
+
+
+
 //
 //namespace promise
 //{

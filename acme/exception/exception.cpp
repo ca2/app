@@ -1,5 +1,10 @@
 ﻿// added error_code::get_string by camilo on 2022-09-29 22:10 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "exception.h"
+#include "callstack.h"
+#include "acme/primitive/string/__string.h"
+#include "acme/filesystem/file/exception.h"
+#include "acme/primitive/primitive/atom.h"
 #include "_api.h"
 #include <stdio.h>
 

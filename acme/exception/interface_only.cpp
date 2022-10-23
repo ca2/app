@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "interface_only.h"
 
 
 interface_only::interface_only(const char * pszMessage, const ::e_status & estatus) :

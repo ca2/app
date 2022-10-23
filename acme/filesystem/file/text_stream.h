@@ -5,7 +5,7 @@ class text_stream;
 
 
 #include "string_buffer.h"
-
+#include "stream.h"
 
 //template < typename TYPE >
 //inline void __string_exchange(text_stream & s, TYPE & t);

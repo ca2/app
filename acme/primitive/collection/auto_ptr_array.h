@@ -46,7 +46,7 @@ public:
 };
 
 
-namespace papaya
+namespace acme
 {
 
 
@@ -70,7 +70,7 @@ namespace papaya
    }
 
 
-} // namespace papaya
+} // namespace acme
 
 
 

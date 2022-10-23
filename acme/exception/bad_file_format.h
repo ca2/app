@@ -1,5 +1,8 @@
-// Created by camilo on 2022-03-13 02:56 PM <3ThomasBorregaardSørensen!!
+// Created by camilo on 2022-03-13 02:56 PM <3ThomasBorregaardSï¿½rensen!!
 #pragma once
+
+
+#include "exception.h"
 
 
 class CLASS_DECL_ACME bad_file_format :

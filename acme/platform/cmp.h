@@ -523,14 +523,14 @@ inline  int cmp(const unsigned char & ch1,const unsigned char & ch2)
 template <  >
 inline  int cmp(const double & d1,const double & d2)
 {
-   return ::papaya::sgn(d1 - d2);
+   return ::acme::sgn(d1 - d2);
 }
 
 
 template <  >
 inline  int cmp(const float & f1,const float & f2)
 {
-   return ::papaya::sgn(f1 - f2);
+   return ::acme::sgn(f1 - f2);
 }
 
 

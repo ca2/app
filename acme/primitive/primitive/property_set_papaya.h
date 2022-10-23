@@ -4,7 +4,7 @@
 class property_object;
 
 
-namespace papaya
+namespace acme
 {
 
 
@@ -73,7 +73,7 @@ namespace papaya
    } // namespace property_set
 
 
-} // namespace papaya
+} // namespace acme
 
 
 
@@ -81,7 +81,7 @@ namespace papaya
 #pragma once
 
 
-namespace papaya
+namespace acme
 {
 
 
@@ -309,7 +309,7 @@ namespace papaya
    } // namespace property_set
 
 
-} // namespace papaya
+} // namespace acme
 
 
 

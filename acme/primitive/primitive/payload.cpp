@@ -5561,25 +5561,25 @@ bool payload::is_natural() const
 //   else if(m_etype == e_type_string)
 //   {
 //
-//      return ::papaya::is_true(m_str);
+//      return ::acme::is_true(m_str);
 //
 //   }
 //   else if (m_etype == e_type_pstring)
 //   {
 //
-//      return m_pstr != nullptr && ::papaya::is_true(*m_pstr);
+//      return m_pstr != nullptr && ::acme::is_true(*m_pstr);
 //
 //   }
 //   else if (m_etype == e_type_id)
 //   {
 //
-//      return (m_atom.is_text() && ::papaya::is_true(m_atom.m_psz)) || (m_atom.is_integer() && m_atom.m_i != 0);
+//      return (m_atom.is_text() && ::acme::is_true(m_atom.m_psz)) || (m_atom.is_integer() && m_atom.m_i != 0);
 //
 //   }
 //   else if (m_etype == e_type_pid)
 //   {
 //
-//      return m_patom != nullptr && ((m_patom->is_text() && ::papaya::is_true(m_patom->m_psz)) || (m_patom->is_integer() && m_patom->m_i != 0));
+//      return m_patom != nullptr && ((m_patom->is_text() && ::acme::is_true(m_patom->m_psz)) || (m_patom->is_integer() && m_patom->m_i != 0));
 //
 //   }
 //   else if (m_etype == e_type_i32_array)
@@ -5597,7 +5597,7 @@ bool payload::is_natural() const
 //   else if (m_etype == e_type_string_array)
 //   {
 //
-//      return m_pstra != nullptr && (m_pstra->get_count() >= 2 || (m_pstra->get_count() == 1 && ::papaya::is_true(m_pstra->element_at(0))));
+//      return m_pstra != nullptr && (m_pstra->get_count() >= 2 || (m_pstra->get_count() == 1 && ::acme::is_true(m_pstra->element_at(0))));
 //
 //   }
 //   else if (m_etype == e_type_f32)
@@ -5640,7 +5640,7 @@ bool payload::is_natural() const
 //   else if (m_etype == e_type_property_set)
 //   {
 //
-//      return m_ppropertyset != nullptr && ::papaya::array::every::is_true(m_ppropertyset->values());
+//      return m_ppropertyset != nullptr && ::acme::array::every::is_true(m_ppropertyset->values());
 //
 //   }
 //   else if (m_etype == e_type_duration)
@@ -8456,19 +8456,19 @@ template < payload_class PAYLOAD >
    if (m_etype == ::e_type_i32_array || m_etype == ::e_type_i32_array)
    {
 
-      ::papaya::array::intersection(payload.ia(), ia(), payload2.ia());
+      ::acme::array::intersection(payload.ia(), ia(), payload2.ia());
 
    }
    else if (m_etype == ::e_type_string_array || payload2.m_etype == ::e_type_string_array)
    {
 
-      ::papaya::array::intersection(payload.stra(), stra(), payload2.stra());
+      ::acme::array::intersection(payload.stra(), stra(), payload2.stra());
 
    }
    else if (m_etype == ::e_type_payload_array || payload2.m_etype == ::e_type_payload_array)
    {
 
-      ::papaya::array::intersection(payload.payloada(), payloada(), payload2.payloada());
+      ::acme::array::intersection(payload.payloada(), payloada(), payload2.payloada());
 
    }
    else if (is_double() || payload2.is_double())
@@ -8578,6 +8578,12 @@ template < payload_class PAYLOAD >
 //}
 
 
+payload & payload::operator = (const ::file::path & path)
+{
+   set_type(e_type_path, false);
+   m_ppath = memory_new::file::path_object(path);
+   return *this;
+}
 
 
 

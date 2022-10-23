@@ -10,6 +10,11 @@
 
 
 #include "acme/primitive/media_library/item.h"
+#include "acme/primitive/primitive/matter.h"
+#include "enumerator.h"
+#include "acme/filesystem/filesystem/path.h"
+#include "acme/primitive/collection/map.h"
+#include "acme/parallelization/mutex.h"
 
 
 class CLASS_DECL_ACME acme_directory :

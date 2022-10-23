@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "__begin.h"
+
+
 #include "string_base.h"
 
 
@@ -19,7 +22,26 @@ public:
    string(const ::payload & payload);
    string(const ::property & property);
 
+
+   using ansistring::operator +=;
+
+   string & operator += (const ::payload & payload);
+   string & operator += (const ::property & property);
+   string & operator += (const ::atom & atom);
+
+
+   using ansistring::operator +;
+
+
+   string operator + (const ::payload & payload) const;
+   string operator + (const ::property & property) const;
+   string operator + (const ::atom & atom) const;
+
+
 };
+
+
+#include "__wstring.h"
 
 
 
@@ -36,3 +58,24 @@ inline string_base < TYPE_CHAR >  string_base < TYPE_CHAR > ::operator + (const 
 
 
 }
+
+
+template < typename TYPE_CHAR >
+inline string_base < TYPE_CHAR >  string_base < TYPE_CHAR > ::operator + (const wstring & wstr) const
+{
+
+
+   ::string strConcatenated(*this);
+
+   strConcatenated += wstr;
+
+   return strConcatenated;
+
+
+}
+
+
+#include "__end.h"
+
+
+

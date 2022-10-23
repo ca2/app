@@ -2,6 +2,8 @@
 
 
 #include "array_base.h"
+#include "copy_elements.h"
+
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR, enum_type t_etypePayload >
@@ -727,7 +729,7 @@ template < typename TYPE, typename ARG_TYPE, typename ALLOCATOR, enum_type t_ety
 inline array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::array(::std::initializer_list < TYPE >  l)
 {
 
-   forallref(l)
+   for(auto & item : l)
    {
 
       add((ARG_TYPE) item);
@@ -778,7 +780,7 @@ inline ::index array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::append(cons
    ASSERT(this != &src);   // cannot append to itself
 
    if(this == &src)
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    ::count nOldSize = this->m_nSize;
    this->allocate(this->m_nSize + src.m_nSize);
@@ -867,7 +869,7 @@ inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > ::add_new(::co
 if (c <= 0)
 {
 
-throw ::exception(error_bad_argument);
+throw_exception(error_bad_argument);
 
 }
 

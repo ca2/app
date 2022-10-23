@@ -1,5 +1,9 @@
 ﻿// Created some path constructors by camilo on 2022-10-09 03:24 <3ThomasBorregaardSorensen!!
 #include "framework.h"
+#include "path.h"
+#include "acme/primitive/primitive/payload.h"
+#include "acme/primitive/collection/numeric_array.h"
+
 
 CLASS_DECL_ACME string url_decode(const string & str);
 
@@ -66,7 +70,7 @@ namespace file
    }
 
 
-   path::path(const ::string & str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
+   path::path(const ::ansistring & str, enum_path epath, int iDir, bool bNormalizePath, i64 iSize) :
       string(str)
    {
 
@@ -173,7 +177,7 @@ namespace file
 
 
    //   path::path(const path & path) :
-   //      ::string((const string &)path),
+   //      ::ansistring((const string &)path),
    //      path_meta((path_meta &)path),
    //      path_os((path_os &) path)
    //   {
@@ -250,7 +254,7 @@ namespace file
    //         for(index i = 0; i < patha1.get_size(); i++)
    //         {
    //
-   //            if(patha1[i].::string::operator!=(patha2[i]))
+   //            if(patha1[i].::ansistring::operator!=(patha2[i]))
    //            {
    //
    //               goto there_s_difference_in_this_step_1;
@@ -472,7 +476,7 @@ namespace file
 
    }
 
-   path & path::operator += (const ::string & strParam)
+   path & path::operator += (const ::ansistring & strParam)
    {
 
       string str = strParam;
@@ -554,7 +558,7 @@ namespace file
    }
 
 
-   path path::operator / (const ::string & str) const
+   path path::operator / (const ::ansistring & str) const
    {
 
       return operator /(::file::path(str));
@@ -608,7 +612,7 @@ namespace file
 
    }
 
-   path & path::operator /= (const ::string & str)
+   path & path::operator /= (const ::ansistring & str)
    {
 
       return operator /=(::file::path(str));
@@ -645,7 +649,7 @@ namespace file
    //}
 
 
-   void path::set_all_extensions(const ::string & strNewExtension)
+   void path::set_all_extensions(const ::ansistring & strNewExtension)
    {
 
       string strExtension(strNewExtension);
@@ -670,7 +674,7 @@ namespace file
    }
 
 
-   void path::set_final_extension(const ::string & strNewExtension)
+   void path::set_final_extension(const ::ansistring & strNewExtension)
    {
 
       string strExtension(strNewExtension);
@@ -695,7 +699,7 @@ namespace file
    }
 
 
-   ::file::path path::with_all_extensions(const ::string & strNewExtension) const
+   ::file::path path::with_all_extensions(const ::ansistring & strNewExtension) const
    {
 
       ::file::path path(*this);
@@ -707,7 +711,7 @@ namespace file
    }
 
 
-   ::file::path path::with_final_extension(const ::string & strNewExtension) const
+   ::file::path path::with_final_extension(const ::ansistring & strNewExtension) const
    {
 
       ::file::path path(*this);
@@ -727,7 +731,7 @@ namespace file
 
          m_epath = epath;
 
-         ::string ::operator = (file_path_normalize(*this, m_epath));
+         ::ansistring ::operator = (file_path_normalize(*this, m_epath));
 
       }
 
@@ -757,7 +761,7 @@ namespace file
    }
 
 
-   path & path::operator = (const ::string & str)
+   path & path::operator = (const ::ansistring & str)
    {
 
       *((path_meta *)this) = path_meta();
@@ -779,7 +783,7 @@ namespace file
    }
 
 
-   path path::operator + (const ::string & str) const
+   path path::operator + (const ::ansistring & str) const
    {
 
       return ::file::path((const string &)*this + (m_iDir > 0 ? separator_sz() : "") + string((const string &)str), m_epath);
@@ -837,7 +841,7 @@ namespace file
 
    }
 
-   path path::operator * (const ::string & str) const { return operator * (::file::path(str)); }
+   path path::operator * (const ::ansistring & str) const { return operator * (::file::path(str)); }
    path path::operator * (const char * psz) const { return operator * (::file::path(psz)); }
 
    path & path::operator *= (const path & path)
@@ -854,7 +858,7 @@ namespace file
 
    }
 
-   path & path::operator *= (const ::string & str) { return operator *= (::file::path(str)); }
+   path & path::operator *= (const ::ansistring & str) { return operator *= (::file::path(str)); }
    path & path::operator *= (const char * psz) { return operator *= (::file::path(psz)); }
 
 
@@ -969,7 +973,7 @@ namespace file
    bool path::is_empty() const
    {
 
-      return ::string::is_empty();
+      return ::ansistring::is_empty();
 
    }
 
@@ -982,7 +986,7 @@ namespace file
    }
 
 
-   bool path::operator == (const ::string & str) const
+   bool path::operator == (const ::ansistring & str) const
    {
 
       return operator == (path(str));
@@ -990,7 +994,7 @@ namespace file
    }
 
 
-   bool path::operator != (const ::string & str) const
+   bool path::operator != (const ::ansistring & str) const
    {
 
       return operator != (path(str));

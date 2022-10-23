@@ -7,8 +7,12 @@
 #include "acme_path.h"
 #include "acme/filesystem/file/stdio_file.h"
 #include "acme/platform/node.h"
+#include "acme/platform/system.h"
 #include "acme/primitive/primitive/memory.h"
 #include "acme/operating_system.h"
+#include "acme/exception/interface_only.h"
+#include "acme/exception/io.h"
+#include "acme/primitive/collection/string_array.h"
 #include <stdio.h>
 
 

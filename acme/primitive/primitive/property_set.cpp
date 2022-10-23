@@ -1190,7 +1190,7 @@ void property_set::parse_network_headers(const char * pszHeaders)
 string property_set::_001Replace(const ::string & str) const
 {
 
-   return ::papaya::property_set::evaluate(*this, str);
+   return ::acme::property_set::evaluate(*this, str);
 
 }
 
@@ -1412,7 +1412,7 @@ property_set& property_set::operator = (const ::payload & payload)
       //else
       //{
 
-         ::papaya::copy((property_ptra &)*this, (const property_ptra &)*payload.m_ppropertyset);
+         ::acme::copy((property_ptra &)*this, (const property_ptra &)*payload.m_ppropertyset);
 
 //      }
 
@@ -1443,7 +1443,7 @@ property_set & property_set::operator = (const property_set & set)
    if (&set != this)
    {
 
-      ::papaya::copy((property_ptra & )*this, (const property_ptra & ) set);
+      ::acme::copy((property_ptra & )*this, (const property_ptra & ) set);
 
    }
 

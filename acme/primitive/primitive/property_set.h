@@ -1,6 +1,10 @@
 ﻿#pragma once
 
 
+#include "property.h"
+#include "payload_reference.h"
+
+
 // property set key is case insensitive
 // PROPERTY_ARRAY Property set ordered
 class CLASS_DECL_ACME property_set :

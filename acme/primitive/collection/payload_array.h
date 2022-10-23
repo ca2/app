@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "array.h"
+
+
 class CLASS_DECL_ACME payload_array :
    public array < ::payload, const ::payload &, ::allocator::def < ::payload >, e_type_payload_array >
 {
@@ -146,7 +149,7 @@ inline ::payload payload_array::value_at(::index i) const
 }
 
 
-namespace papaya
+namespace acme
 {
 
 
@@ -160,7 +163,7 @@ namespace papaya
    }
 
 
-} // namespace papaya
+} // namespace acme
 
 
 

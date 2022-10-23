@@ -125,7 +125,7 @@
 //}
 //
 
-namespace papaya
+namespace acme
 {
 
 
@@ -137,7 +137,7 @@ namespace papaya
    } // namespace array
 
 
-} // namespace papaya
+} // namespace acme
 
 
 

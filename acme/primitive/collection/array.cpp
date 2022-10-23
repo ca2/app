@@ -32,7 +32,7 @@ void unit_test___arrayStdSortTest()
 
 
 
-namespace papaya
+namespace acme
 {
 
     string_array x1_decode_ida(const char * psz)
@@ -58,7 +58,7 @@ namespace papaya
 	}
 
 
-} // namespace papaya
+} // namespace acme
 
 
 #ifdef UNIT_TEST

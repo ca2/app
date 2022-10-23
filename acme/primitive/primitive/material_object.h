@@ -2,6 +2,8 @@
 
 
 #include "property_object.h"
+#include "acme/primitive/collection/atom_map.h"
+#include "acme/primitive/collection/procedure_array.h"
 
 
 class CLASS_DECL_ACME material_object :

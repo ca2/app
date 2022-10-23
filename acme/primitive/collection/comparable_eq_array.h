@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/comparison/equals.h"
+
+
 template < class TYPE, class ARG_TYPE, class ARRAY_TYPE >
 class comparable_eq_array:
    public ARRAY_TYPE

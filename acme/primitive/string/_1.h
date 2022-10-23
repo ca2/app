@@ -22,34 +22,6 @@ struct end_of_line_and_next_line
 
 
 
-/////////////////////////////////////////////////////////////////////////////
-// Verify that a nullptr-terminated string points to valid memory
-inline bool __is_valid_string(const widechar* psz, memsize nMaxLength = INT_MAX)
-{
-#ifdef WINDOWS
-   (nMaxLength);
-#endif
-   return (psz != nullptr);
-}
-
-// Verify that a nullptr-terminated string points to valid memory
-inline bool __is_valid_string(const char* psz, memsize nMaxLength = UINT_MAX)
-{
-#ifdef WINDOWS
-   (nMaxLength);
-#endif
-   return (psz != nullptr);
-}
-
-// Verify that a pointer points to valid memory
-inline bool __is_valid_address(const void* p, memsize nBytes, bool bReadWrite = true)
-{
-#ifdef WINDOWS
-   (bReadWrite);
-   (nBytes);
-#endif
-   return (p != nullptr);
-}
 
 
 #include "acme/primitive/string/x/x_charcategory.h"
@@ -96,14 +68,6 @@ inline const wd32string __string_base(const wd32char * psz);
 
 #include "acme/primitive/primitive/natural.h"
 
-
-template < typename T >
-concept has_string_getter = requires(T t, ::string & str)
-{
-
-   { t.as(str) } -> std::same_as < void >;
-
-};
 
 
 #include "string_meta_data.h"

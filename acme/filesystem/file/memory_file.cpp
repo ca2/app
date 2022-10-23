@@ -1,6 +1,10 @@
 ﻿#include "framework.h"
 #include "memory_file.h"
 #include "acme/primitive/primitive/memory.h"
+#include "acme/exception/exception.h"
+#include "acme/exception/io.h"
+#include "acme/filesystem/file/exception.h"
+#include "acme/filesystem/file/status.h"
 
 
 memory_file::memory_file() :

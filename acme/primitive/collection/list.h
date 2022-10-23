@@ -294,7 +294,7 @@ public:
 
    node * detach(node * pnode);
 
-   template < typename ITERATOR > inline ITERATOR erase(ITERATOR it) { return ::papaya::iterator::erase(*this, it); }
+   template < typename ITERATOR > inline ITERATOR erase(ITERATOR it) { return ::acme::iterator::erase(*this, it); }
 
    template < typename ITERATOR >
    inline void erase(const ITERATOR & begin, const ITERATOR & last) { ::erase(*this, begin, last); }

@@ -747,7 +747,6 @@
     <ClCompile Include="exception\bad_file_format.cpp" />
     <ClCompile Include="exception\no_memory.cpp" />
     <ClCompile Include="exception\extended_status.cpp" />
-    <ClCompile Include="exception\file.cpp" />
     <ClCompile Include="exception\interface_only.cpp" />
     <ClCompile Include="exception\io.cpp" />
     <ClCompile Include="exception\library_not_loaded.cpp" />
@@ -859,6 +858,7 @@
     <ClInclude Include="filesystem\file\translatable.h" />
     <ClInclude Include="filesystem\_.h" />
     <ClInclude Include="graphics\draw2d\_binary_stream.h" />
+    <ClInclude Include="graphics\draw2d\__string.h" />
     <ClInclude Include="handler\extended_topic.h" />
     <ClInclude Include="handler\handler.h" />
     <ClInclude Include="handler\item.h" />
@@ -1512,6 +1512,7 @@
     <ClInclude Include="platform\_platform.h" />
     <ClInclude Include="primitive\collection\aaa_want_to_remove_papaya_array_decl.h" />
     <ClInclude Include="primitive\collection\address_array.h" />
+    <ClInclude Include="primitive\collection\allocator.h" />
     <ClInclude Include="primitive\collection\array.h" />
     <ClInclude Include="primitive\collection\array_base.h" />
     <ClInclude Include="primitive\collection\attrib_map.h" />
@@ -1520,9 +1521,11 @@
     <ClInclude Include="primitive\collection\base_enum.h" />
     <ClInclude Include="primitive\collection\bitset.h" />
     <ClInclude Include="primitive\collection\bit_array.h" />
+    <ClInclude Include="primitive\collection\copy_elements.h" />
     <ClInclude Include="primitive\collection\duration.h" />
     <ClInclude Include="primitive\collection\insert_iterator.h" />
     <ClInclude Include="primitive\collection\pointer_array_process.h" />
+    <ClInclude Include="primitive\collection\procedure_array.h" />
     <ClInclude Include="primitive\collection\set_element.h" />
     <ClInclude Include="primitive\collection\single.h" />
     <ClInclude Include="primitive\collection\std_iterator.h" />
@@ -1717,10 +1720,6 @@
     <ClInclude Include="primitive\primitive\_interlocked_count_impl.h" />
     <ClInclude Include="primitive\primitive\_payload_impl.h" />
     <ClInclude Include="primitive\promise\signalization.h" />
-    <ClInclude Include="primitive\string\aaaa_conv_ansi.h" />
-    <ClInclude Include="primitive\string\aaa_international_locale_schema.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_001.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_char_traits.h" />
     <ClInclude Include="primitive\string\bstr.h" />
     <ClInclude Include="primitive\string\from_numeric_type.h" />
     <ClInclude Include="primitive\string\from_string.h" />
@@ -1729,7 +1728,7 @@
     <ClInclude Include="primitive\string\string_block.h" />
     <ClInclude Include="primitive\string\character.h" />
     <ClInclude Include="primitive\string\string_type.h" />
-    <ClInclude Include="primitive\string\wstring.h" />
+    <ClInclude Include="primitive\string\__wstring.h" />
     <ClInclude Include="primitive\string\_ch_impl.h" />
     <ClInclude Include="primitive\string\_conv.h" />
     <ClInclude Include="primitive\string\_conv_ansi_impl.h" />
@@ -1743,6 +1742,7 @@
     <ClInclude Include="primitive\string\_str_ch_ansi_impl.h" />
     <ClInclude Include="primitive\string\_str_to_impl.h" />
     <ClInclude Include="primitive\string\_str_trait_impl.h" />
+    <ClInclude Include="primitive\string\__end.h" />
     <ClInclude Include="primitive\text\data.h" />
     <ClInclude Include="primitive\text\international.h" />
     <ClInclude Include="primitive\text\international_locale_schema.h" />
@@ -1904,8 +1904,8 @@
     <ClInclude Include="primitive\api\api_rotate.h" />
     <ClInclude Include="primitive\collection\composite_array.h" />
     <ClInclude Include="primitive\collection\ptr_array.h" />
-    <ClInclude Include="primitive\collection\string_array_base.h" />
-    <ClInclude Include="primitive\collection\common.h" />
+    <ClInclude Include="primitive\collection\string_array.h" />
+    <ClInclude Include="primitive\collection\range.h" />
     <ClInclude Include="primitive\collection\comparable_array.h" />
     <ClInclude Include="primitive\collection\comparable_eq_array.h" />
     <ClInclude Include="primitive\collection\comparable_eq_list.h" />
@@ -1921,7 +1921,7 @@
     <ClInclude Include="primitive\collection\iterable.h" />
     <ClInclude Include="primitive\collection\iterator.h" />
     <ClInclude Include="primitive\collection\list.h" />
-    <ClInclude Include="primitive\collection\logic_array.h" />
+    <ClInclude Include="primitive\collection\bool_array.h" />
     <ClInclude Include="primitive\collection\map.h" />
     <ClInclude Include="primitive\collection\map_association.h" />
     <ClInclude Include="primitive\collection\map_to_smart_pointer.h" />
@@ -1932,7 +1932,7 @@
     <ClInclude Include="primitive\collection\pointer_array.h" />
     <ClInclude Include="primitive\collection\priority_queue.h" />
     <ClInclude Include="primitive\collection\queue.h" />
-    <ClInclude Include="primitive\collection\raw_array_decl.h" />
+    <ClInclude Include="primitive\collection\raw_array.h" />
     <ClInclude Include="primitive\collection\set.h" />
     <ClInclude Include="primitive\collection\sort.h" />
     <ClInclude Include="primitive\collection\sort_array.h" />
@@ -1983,7 +1983,7 @@
     <ClInclude Include="primitive\primitive\atom.h" />
     <ClInclude Include="primitive\primitive\atom_space.h" />
     <ClInclude Include="primitive\primitive\interlocked_long_pulse.h" />
-    <ClInclude Include="primitive\primitive\papaya.h" />
+    <ClInclude Include="primitive\primitive\acme.h" />
     <ClInclude Include="primitive\primitive\logic.h" />
     <ClInclude Include="primitive\primitive\malloc.h" />
     <ClInclude Include="primitive\primitive\map.h" />
@@ -2031,7 +2031,7 @@
     <ClInclude Include="primitive\string\international2.h" />
     <ClInclude Include="primitive\string\parse.h" />
     <ClInclude Include="primitive\string\static_string.h" />
-    <ClInclude Include="primitive\string\stdstring.h" />
+    <ClInclude Include="primitive\string\aaa_stdstring.h" />
     <ClInclude Include="primitive\string\x\x_charcategory.h" />
     <ClInclude Include="primitive\string\x\x_charcategory2.h" />
     <ClInclude Include="primitive\string\x\x_charcategory_names.h" />
@@ -2042,18 +2042,12 @@
     <ClInclude Include="primitive\string\string_buffer.h" />
     <ClInclude Include="primitive\string\string_inst.h" />
     <ClInclude Include="primitive\string\string_wide_conversion.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_ch_class.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_str.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_str3.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_tokenizer.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_wstring.h" />
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_x.h" />
     <ClInclude Include="primitive\string\_c_impl.h" />
     <ClInclude Include="primitive\string\_c_trait_ansi.h" />
     <ClInclude Include="primitive\string\_c_trait_ansi_impl.h" />
     <ClInclude Include="primitive\string\_c_trait_wd16.h" />
     <ClInclude Include="primitive\string\_c_trait_wd16_impl.h" />
-    <ClInclude Include="primitive\string\_.h" />
+    <ClInclude Include="primitive\string\__begin.h" />
     <ClInclude Include="primitive\string\_c.h" />
     <ClInclude Include="primitive\string\_str_compare.h" />
     <ClInclude Include="primitive\string\__string.h" />
@@ -2064,7 +2058,7 @@
     <ClInclude Include="primitive\string\_impl_prio.h" />
     <ClInclude Include="primitive\string\_international.h" />
     <ClInclude Include="primitive\string\stringtow.h" />
-    <ClInclude Include="primitive\string\str.h" />
+    <ClInclude Include="primitive\string\__str.h" />
     <ClInclude Include="primitive\string\_c_str.h" />
     <ClInclude Include="primitive\string\sz.h" />
     <ClInclude Include="primitive\string\tokenizer.h" />
@@ -2104,7 +2098,6 @@
     <None Include="memory\namespace_heap.inl" />
     <None Include="primitive\primitive\_factory_impl.h" />
     <None Include="primitive\primitive\_impl.h" />
-    <None Include="primitive\string\aaa_want_to_remove_str.inl" />
     <None Include="primitive\string\_defer.h" />
   </ItemGroup>
   <ItemGroup>

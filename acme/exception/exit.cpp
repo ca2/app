@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "exit.h"
+#include "acme/parallelization/task.h"
 
 
 exit_exception::exit_exception(::pointer<::task>playeredThreadExit, const char * pszMessage) :

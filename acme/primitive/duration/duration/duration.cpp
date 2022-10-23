@@ -8,9 +8,9 @@ void duration::normalize()
 
    m_iNanosecond %= SECOND_NANOS;
 
-   int iSecondSign = ::papaya::sgn(m_iSecond);
+   int iSecondSign = ::acme::sgn(m_iSecond);
 
-   int iNanosecondSign = ::papaya::sgn(m_iNanosecond);
+   int iNanosecondSign = ::acme::sgn(m_iNanosecond);
 
    if (iSecondSign == -iNanosecondSign && iSecondSign != 0)
    {

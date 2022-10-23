@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+
+
 //#define __EXCHANGE(xxx) binary_stream < FILE >.stream_exchange(__STRING(xxx), m_##xxx)
 //#define __TYPE_EXCHANGE(xxx) binary_stream < FILE >.stream_exchange(__STRING(xxx), t.m_##xxx)
 

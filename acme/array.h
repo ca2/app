@@ -3,6 +3,12 @@
 #pragma once
 
 
+#include "acme/primitive/collection/pointer_array_process.h"
+#include "acme/primitive/primitive/compare_predicate.h"
+#include "acme/primitive/primitive/payload.h"
+#include "acme/primitive/collection/payload_array.h"
+
+
 template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, enum_type t_etypePayload = e_type_element >
 inline auto & __array_object(::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload > & a, ::index i);
 
@@ -514,7 +520,7 @@ namespace acme
       bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index & iIndex,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE));
 
       template<class ARRAY>
-      bool binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, less_predicateicate_base < typename ARRAY::BASE_ARG_TYPE > * pcompare, index_array & ia);
+      bool binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, less_predicate_base < typename ARRAY::BASE_ARG_TYPE > * pcompare, index_array & ia);
 
       template<class ARRAY>
       index sort_add(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index(*fCompare) (typename ARRAY::BASE_ARG_TYPE, typename ARRAY::BASE_ARG_TYPE), index_array & ia);
@@ -625,7 +631,7 @@ namespace acme
       inline bool equals_non_unique_unordered(const T1 & t1, const T2 & t2)
       {
 
-         return ::papaya::array::contains_array(t1, t2) && ::papaya::array::contains_array(t2, t1);
+         return ::acme::array::contains_array(t1, t2) && ::acme::array::contains_array(t2, t1);
 
       }
 
@@ -705,7 +711,7 @@ namespace acme
    ::count erase_lesser_than_or_equal_or_greater_than_or_equal(::numeric_array < TYPE, t_etypePayload > & a, TYPE lo, TYPE hi);
 
 
-}   // namespace papaya
+}   // namespace acme
 
 
 
@@ -906,13 +912,13 @@ namespace acme
          else if (payload.get_type() == ::e_type_string_array)
          {
 
-            i = ::papaya::array::add(array, payload.stra());
+            i = ::acme::array::add(array, payload.stra());
 
          }
          else if (payload.cast < string_array_base < Type, RawType, t_etypePayload > >() != nullptr)
          {
 
-            i = ::papaya::array::add(array, *payload.cast < string_array_base < Type, RawType, t_etypePayload > >());
+            i = ::acme::array::add(array, *payload.cast < string_array_base < Type, RawType, t_etypePayload > >());
 
          }
          else if (payload.get_type() == ::e_type_payload_array)
@@ -921,7 +927,7 @@ namespace acme
             for (::index i = 0; i < payload.payloada().get_count(); i++)
             {
 
-               index iItem = ::papaya::array::add(array, payload.payloada()[i].string());
+               index iItem = ::acme::array::add(array, payload.payloada()[i].string());
 
                if (i < 0)
                {
@@ -945,7 +951,7 @@ namespace acme
             for (auto & value : payload.propset().values())
             {
 
-               auto iItem = ::papaya::array::add(array, value.string());
+               auto iItem = ::acme::array::add(array, value.string());
 
                if (i < 0)
                {
@@ -960,7 +966,7 @@ namespace acme
          else
          {
 
-            i = ::papaya::array::add(array, payload.string());
+            i = ::acme::array::add(array, payload.string());
 
          }
 
@@ -1308,7 +1314,7 @@ namespace acme
 
 
 
-namespace papaya
+namespace acme
 {
 
 
@@ -1317,94 +1323,94 @@ namespace papaya
 
 
 
-      ///////////////////
-      //
-      //   Adding ITEM
-      //      to array
+      /////////////////////
+      ////
+      ////   Adding ITEM
+      ////      to array
 
-      inline ::index add(string_array & stra, const char * psz) { return stra.add_item(psz); }
-      inline ::index add(string_array & stra, const char & ch) { return stra.add_item(ch); }
-      inline ::index add(string_array & stra, const ansistring & str) { return stra.add_item(str); }
-      inline ::index add(string_array & stra, const wd16string & str) { return stra.add_item(str); }
-      inline ::index add(string_array & stra, const wd32string & str) { return stra.add_item(str); }
-      inline ::index add(string_array & stra, const ::file::path & path) { return stra.add_item(path); }
-
-
-      inline ::index add(::file::path_array & patha, const char * psz) { return patha.add_item(psz); }
-      inline ::index add(::file::path_array & patha, const char & ch) { return patha.add_item(ch); }
-      inline ::index add(::file::path_array & patha, const ansistring & str) { return patha.add_item(str); }
-      inline ::index add(::file::path_array & patha, const wd16string & str) { return patha.add_item(str); }
-      inline ::index add(::file::path_array & patha, const wd32string & str) { return patha.add_item(str); }
-      inline ::index add(::file::path_array & patha, const ::file::path & path) { return patha.add_item(path); }
+      ////inline ::index add(string_array & stra, const char * psz) { return stra.add_item(psz); }
+      ////inline ::index add(string_array & stra, const char & ch) { return stra.add_item(ch); }
+      ////inline ::index add(string_array & stra, const ansistring & str) { return stra.add_item(str); }
+      ////inline ::index add(string_array & stra, const wd16string & str) { return stra.add_item(str); }
+      ////inline ::index add(string_array & stra, const wd32string & str) { return stra.add_item(str); }
+      ////inline ::index add(string_array & stra, const ::file::path & path) { return stra.add_item(path); }
 
 
-      inline ::index add(string_array & stra, const ::payload & payload)
-      {
+      ////inline ::index add(::file::path_array & patha, const char * psz) { return patha.add_item(psz); }
+      ////inline ::index add(::file::path_array & patha, const char & ch) { return patha.add_item(ch); }
+      ////inline ::index add(::file::path_array & patha, const ansistring & str) { return patha.add_item(str); }
+      ////inline ::index add(::file::path_array & patha, const wd16string & str) { return patha.add_item(str); }
+      ////inline ::index add(::file::path_array & patha, const wd32string & str) { return patha.add_item(str); }
+      ////inline ::index add(::file::path_array & patha, const ::file::path & path) { return patha.add_item(path); }
 
-         ::index iInsert = -1;
 
-         if (payload.is_array())
-         {
+      //inline ::index add(string_array & stra, const ::payload & payload)
+      //{
 
-            ::count c = payload.array_get_count();
+      //   ::index iInsert = -1;
 
-            for (::index i = 0; i < c; i++)
-            {
+      //   if (payload.is_array())
+      //   {
 
-               auto iItem = stra.add_item(payload.at(i));
+      //      ::count c = payload.array_get_count();
 
-               if (iInsert < 0)
-               {
+      //      for (::index i = 0; i < c; i++)
+      //      {
 
-                  iInsert = iItem;
+      //         auto iItem = stra.add_item(payload.at(i));
 
-               }
+      //         if (iInsert < 0)
+      //         {
 
-            }
+      //            iInsert = iItem;
 
-         }
-         else
-         {
+      //         }
 
-            iInsert = stra.add_item(payload);
+      //      }
 
-         }
+      //   }
+      //   else
+      //   {
 
-         return iInsert;
+      //      iInsert = stra.add_item(payload);
 
-      }
+      //   }
 
-      inline ::index add(string_array & stra, const ::property & property)
-      {
+      //   return iInsert;
 
-         return add(stra, (const ::payload &)property);
+      //}
 
-      }
+      //inline ::index add(string_array & stra, const ::property & property)
+      //{
 
-      inline ::index add(string_array & stra, const ::property_set & propertyset)
-      {
+      //   return add(stra, (const ::payload &)property);
 
-         ::index iInsert = -1;
+      //}
 
-         ::count c = propertyset.get_count();
+      //inline ::index add(string_array & stra, const ::property_set & propertyset)
+      //{
 
-         for (::index i = 0; i < c; i++)
-         {
+      //   ::index iInsert = -1;
 
-            auto iItem = stra.add_item(*propertyset.element_at(i));
+      //   ::count c = propertyset.get_count();
 
-            if (iInsert < 0)
-            {
+      //   for (::index i = 0; i < c; i++)
+      //   {
 
-               iInsert = iItem;
+      //      auto iItem = stra.add_item(*propertyset.element_at(i));
 
-            }
+      //      if (iInsert < 0)
+      //      {
 
-         }
+      //         iInsert = iItem;
 
-         return iInsert;
+      //      }
 
-      }
+      //   }
+
+      //   return iInsert;
+
+      //}
 
 
 
@@ -1420,47 +1426,47 @@ namespace papaya
       inline ::index add(::file::path_array & patha, const ::file::listing & listing) { return add_array(patha, listing); }
 
 
-      template < typename TYPE, enum_type t_etypePayload >
-      ::count ensure_sequence(::numeric_array < TYPE, t_etypePayload > & aParam, TYPE start, TYPE end, TYPE increment)
-      {
+      //template < typename TYPE, enum_type t_etypePayload >
+      //::count ensure_sequence(::numeric_array < TYPE, t_etypePayload > & aParam, TYPE start, TYPE end, TYPE increment)
+      //{
 
-         ::count c = 0;
+      //   ::count c = 0;
 
-         ::numeric_array < TYPE, t_etypePayload > a;
+      //   ::numeric_array < TYPE, t_etypePayload > a;
 
-         ::papaya::array::set_sequence(a, start, end, increment);
+      //   ::acme::array::set_sequence(a, start, end, increment);
 
-         c += erase_lesser_than_or_greater_than(aParam, start, end);
+      //   c += erase_lesser_than_or_greater_than(aParam, start, end);
 
-         for (index i = aParam.get_upper_bound(); i >= 0; i--)
-         {
+      //   for (index i = aParam.get_upper_bound(); i >= 0; i--)
+      //   {
 
-            index iFind = 0;
+      //      index iFind = 0;
 
-            if (::papaya::array::binary_search(a, aParam.element_at(i), iFind, &::numeric_compare < typename ::numeric_array < TYPE, t_etypePayload >::BASE_ARG_TYPE >))
-            {
+      //      if (::acme::array::binary_search(a, aParam.element_at(i), iFind, &::numeric_compare < typename ::numeric_array < TYPE, t_etypePayload >::BASE_ARG_TYPE >))
+      //      {
 
-               a.erase_at(iFind);
+      //         a.erase_at(iFind);
 
-               c++;
+      //         c++;
 
-            }
-            else
-            {
+      //      }
+      //      else
+      //      {
 
-               aParam.erase_at(i);
+      //         aParam.erase_at(i);
 
-               c++;
+      //         c++;
 
-            }
+      //      }
 
-         }
+      //   }
 
-         c += aParam.add(a);
+      //   c += aParam.add(a);
 
-         return c;
+      //   return c;
 
-      }
+      //}
 
 
       template<class ARRAY>
@@ -1535,7 +1541,7 @@ namespace papaya
 
 
       template<class ARRAY>
-      bool binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, less_predicateicate_base < typename ARRAY::BASE_ARG_TYPE > * pless, index_array & ia)
+      bool binary_search(ARRAY & a, typename ARRAY::BASE_ARG_TYPE t, index & iIndex, less_predicate_base < typename ARRAY::BASE_ARG_TYPE > * pless, index_array & ia)
       {
 
          if (a.get_size() == 0)
@@ -1753,7 +1759,7 @@ namespace papaya
    } //namespace array
 
 
-} // namespace papaya
+} // namespace acme
 
 
 

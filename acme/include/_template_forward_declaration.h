@@ -309,8 +309,15 @@ namespace allocator
    template < typename TYPE >
    class def;
 
+   template < typename TYPE >
+   class nodef;
 
 } // namespace allocator
+
+
+template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = allocator::nodef < TYPE >, enum_type t_etypePayload = e_type_element >
+class array_base;
+
 
 template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = ::allocator::def < TYPE >, enum_type t_etypePayload = e_type_element >
 class array;
@@ -396,13 +403,13 @@ inline CONTAINERX operator +(CONTAINERX x, const CONTAINERY & y)
 
 
 template < typename ARRAY >
-concept indexed_array = requires(ARRAY array, ::index i)
+concept primitive_array = requires(ARRAY array, ::index i)
 {
    array.get_count();
    array.element_at(i);
 };
 
-template<indexed_array ARRAY1, indexed_array ARRAY2>
+template<primitive_array ARRAY1, primitive_array ARRAY2>
 bool operator==(const ARRAY1 &array1, const ARRAY2 &array2)
 {
 
@@ -430,7 +437,7 @@ bool operator==(const ARRAY1 &array1, const ARRAY2 &array2)
 }
 
 
-template<indexed_array ARRAY1, indexed_array ARRAY2>
+template<primitive_array ARRAY1, primitive_array ARRAY2>
 bool operator!=(const ARRAY1 &array1, const ARRAY2 &array2)
 {
 
@@ -447,8 +454,59 @@ template < class TYPE, class ARG_TYPE = TYPE const &, class ARRAY_TYPE = compara
 class comparable_array;
 
 
+namespace allocator
+{
+
+
+   template < typename TYPE >
+   class raw;
+
+
+   template < typename TYPE >
+   class zero;
+
+
+} // namespace allocator
+
+template < typename TYPE, typename ARG_TYPE = const TYPE &, typename ALLOCATOR = ::allocator::raw < TYPE >, enum_type t_etypePayload = e_type_element >
+class raw_array;
+
+
+template < typename POINTER, class ARRAY_TYPE = comparable_array < POINTER, POINTER, comparable_eq_array < POINTER, POINTER, raw_array < POINTER, POINTER, ::allocator::zero < POINTER > > > > >
+class address_array;
+
+
+
+class exception;
+
+using exception_array = ::array < ::exception >;
+
+
+
+template < typename T >
+concept has_string_getter = requires(T t, ::string & str)
+{
+
+   { t.as(str) } -> std::same_as < void >;
+
+};
+
+using element_array = pointer_array < element >;
+
+
 
 #include "acme/primitive/collection/string_map.h"
+
+
+using regular_expression_pointer = ::pointer<::regular_expression::regular_expression>;
+
+
+template < class T, typename C >
+void std_string_assign(T & t, const C * psz);
+
+
+template < class T >
+void std_string_bassign(T & t, const u8 * psz, strsize nsize);
 
 
 

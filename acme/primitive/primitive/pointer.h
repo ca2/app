@@ -5,8 +5,6 @@
 #define TEMPLATE_ARG __TEMPLATE_TYPE__ t = nullptr
 
 
-
-
 class particle;
 
 // ::ca::null_class back link to operational system oswindow.h
@@ -613,15 +611,6 @@ ptr < TYPE > clone(TYPE * p);
 
 
 
-template < class T >
-inline pointer < T >::pointer(lparam& lparam)
-{
-
-   m_pparticle = (::particle*)(::iptr)lparam.m_lparam;
-   m_p = dynamic_cast <T*>(m_pparticle);
-   lparam.m_lparam = 0;
-
-}
 
 
 // ::ca::null_class back link to operational system oswindow.h
@@ -1225,3 +1214,19 @@ ptr < TYPE > clone(TYPE * p)
 
 
 
+
+
+#include "acme/platform/lparam.h"
+
+
+
+
+template < class T >
+inline pointer < T >::pointer(lparam & lparam)
+{
+
+   m_pparticle = (::particle *)(::iptr)lparam.m_lparam;
+   m_p = dynamic_cast <T *>(m_pparticle);
+   lparam.m_lparam = 0;
+
+}

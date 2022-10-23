@@ -2,6 +2,10 @@
 #pragma once
 
 
+#include "acme/parallelization/mutex.h"
+#include "acme/primitive/collection/map.h"
+
+
 class CLASS_DECL_ACME subsystem :
    virtual public ::element
 {

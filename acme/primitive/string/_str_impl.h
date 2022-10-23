@@ -551,7 +551,7 @@ inline void from_string(ansichar sz[n], const ansichar * psz)
    if (strlen(psz) >= n)
    {
 
-      throw ::exception(error_would_reach_buffer_limit);
+      throw_exception(error_would_reach_buffer_limit);
 
    }
 
@@ -567,7 +567,7 @@ inline void from_string(wd16char sz[n], const ansichar * psz)
    if (str().utf_to_utf_length(sz, psz) >= n)
    {
 
-      throw ::exception(error_would_reach_buffer_limit);
+      throw_exception(error_would_reach_buffer_limit);
 
    }
 
@@ -583,7 +583,7 @@ inline void from_string(wd32char sz[n], const ansichar * psz)
    if (str().utf_to_utf_length(sz, psz) >= n)
    {
 
-      throw ::exception(error_would_reach_buffer_limit);
+      throw_exception(error_would_reach_buffer_limit);
 
    }
 
@@ -591,13 +591,6 @@ inline void from_string(wd32char sz[n], const ansichar * psz)
 
 }
 
-
-inline void from_string(::atom & atom, const ansichar * psz)
-{
-
-   atom = psz;
-
-}
 
 
 //inline void from_string(::element & element, const ansichar * psz)
@@ -792,7 +785,7 @@ inline string string_from_u(const T& t)
 //      if(strsize != 0)
 //      {
 //
-//         throw ::exception(error_bad_argument);
+//         throw_exception(error_bad_argument);
 //
 //      }
 //
@@ -846,7 +839,7 @@ inline string string_from_u(const T& t)
 //   if((iChar < 0) || (iChar >= get_length()))
 //   {
 //
-//      throw ::exception(error_bad_argument);
+//      throw_exception(error_bad_argument);
 //
 //   }
 //
@@ -882,7 +875,7 @@ inline string string_from_u(const T& t)
 //      if(pszSrc == nullptr)
 //      {
 //
-//         throw ::exception(error_bad_argument);
+//         throw_exception(error_bad_argument);
 //
 //      }
 //
@@ -940,7 +933,7 @@ inline string string_from_u(const T& t)
 //   if(nLength < 0)
 //   {
 //
-//      throw ::exception(error_bad_argument);
+//      throw_exception(error_bad_argument);
 //
 //   }
 //
@@ -958,50 +951,6 @@ inline string string_from_u(const T& t)
 //   this->metadata()->set_length(nNewLength);
 //
 //}
-
-
-template < typename TYPE_CHAR >
-inline void string_base < TYPE_CHAR >::truncate(strsize nNewLength)
-{
-
-   if (nNewLength >= this->length())
-   {
-
-      return;
-
-   }
-
-   if(nNewLength <= 0)
-   {
-
-      Empty();
-
-   }
-
-   get_string_buffer(nNewLength);
-
-   release_string_buffer(nNewLength);
-
-}
-
-
-template < typename TYPE_CHAR >
-inline void string_base < TYPE_CHAR >::set_at(strsize iChar, CHAR_TYPE ch)
-{
-
-   auto p = this->metadata();
-
-   if (p->natural_is_shared() || iChar >= p->length())
-   {
-
-      fork_string(maximum(p->length(), iChar + 1));
-
-   }
-
-   this->m_pdata[iChar] = ch;
-
-}
-
 
 #ifdef WINDOWS
 #if OSBIT == 64
@@ -1280,7 +1229,7 @@ CLASS_DECL_ACME void to_string(string& str, const double & d);
 //inline bool string_format::defer_get_additional_argument(const ansichar * & s)
 //{
 //
-//   throw ::exception(::exception("missing argument value"));
+//   throw_exception(::exception("missing argument value"));
 //
 //}
 //
@@ -1310,13 +1259,13 @@ CLASS_DECL_ACME void to_string(string& str, const double & d);
 //   if(m_estate == state_waiting_width)
 //   {
 //
-//      throw ::exception(::exception("width should plain i32"));
+//      throw_exception(::exception("width should plain i32"));
 //
 //   }
 //   else if(m_estate == state_waiting_precision)
 //   {
 //
-//      throw ::exception(::exception("width should plain i32"));
+//      throw_exception(::exception("width should plain i32"));
 //
 //   }
 //
@@ -1501,7 +1450,7 @@ inline void string_meta_data < TYPE_CHAR > ::set_length(::strsize strsize)
    if (this->natural_is_shared())
    {
 
-      throw ::exception(error_wrong_state, "invalid state");
+      throw_exception(error_wrong_state, "invalid state");
 
    }
 
@@ -1510,7 +1459,7 @@ inline void string_meta_data < TYPE_CHAR > ::set_length(::strsize strsize)
    if (strsize >= strsizeStorage)
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 

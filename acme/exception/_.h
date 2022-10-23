@@ -202,13 +202,13 @@ CLASS_DECL_ACME void __set_thread_note(const char * pszNote);
 // Debug ASSERTs then throws. Retail throws if condition not met
 #define ENSURE_THROW(cond, exception)   \
    do { i32 _gen__condVal=!!(cond); ASSERT(_gen__condVal); if (!(_gen__condVal)){exception;} } while (false)
-#define ENSURE(cond)      ENSURE_THROW(cond, throw ::exception(error_bad_argument))
-#define ENSURE_ARG(cond)   ENSURE_THROW(cond, throw ::exception(error_bad_argument))
+#define ENSURE(cond)      ENSURE_THROW(cond, throw_exception(error_bad_argument))
+#define ENSURE_ARG(cond)   ENSURE_THROW(cond, throw_exception(error_bad_argument))
 
 // Debug ASSERT_VALIDs then throws. Retail throws if pOb is nullptr
 #define ENSURE_VALID_THROW(pOb, exception)   \
    do { ASSERT_VALID(pOb); if (!(pOb)){exception;} } while (false)
-#define ENSURE_VALID(pOb)   ENSURE_VALID_THROW(pOb, throw ::exception(error_bad_argument))
+#define ENSURE_VALID(pOb)   ENSURE_VALID_THROW(pOb, throw_exception(error_bad_argument))
 
 #define ASSERT_POINTER(p, type) \
    ASSERT(((p) != nullptr) && __is_valid_address((p), sizeof(type), false))

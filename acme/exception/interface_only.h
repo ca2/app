@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "not_implemented.h"
+
+
 class CLASS_DECL_ACME interface_only :
    public not_implemented
 {

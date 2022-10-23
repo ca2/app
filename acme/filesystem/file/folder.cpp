@@ -1,5 +1,7 @@
 // Created by camilo on 2021-11-10 10:40 BRT <3ThomasBorregaardSørensen!!
 #include "framework.h"
+#include "folder.h"
+#include "acme/exception/interface_only.h"
 
 
 folder::folder()
@@ -162,6 +164,35 @@ void folder::add_file(const ::file::path& pszRelative, ::file::file* pfile)
 {
 
    throw ::interface_only();
+
+}
+
+
+::file::enum_type folder::type(const char * pszItem)
+{
+
+   if (::is_empty(pszItem))
+   {
+
+      throw ::exception(error_bad_argument);
+
+   }
+
+   if (locate_file(pszItem))
+   {
+
+      return ::file::e_type_file;
+
+   }
+
+   if (locate_folder(pszItem))
+   {
+
+      return ::file::e_type_folder;
+
+   }
+
+   return ::file::e_type_doesnt_exist;
 
 }
 

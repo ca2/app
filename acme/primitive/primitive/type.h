@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "atom.h"
+
+
 CLASS_DECL_ACME string demangle(const char * psz);
 
 

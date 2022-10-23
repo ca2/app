@@ -494,7 +494,7 @@ atom property_object::translate_property_id(const ::atom & atom)
 string property_object::property_set_evaluate(const ::string & str) const
 {
 
-   return ::papaya::property_set::evaluate(*this, str);
+   return ::acme::property_set::evaluate(*this, str);
 
 }
 

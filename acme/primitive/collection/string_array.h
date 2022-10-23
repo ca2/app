@@ -1,6 +1,14 @@
 ﻿#pragma once
 
 
+#include "array.h"
+#include "comparable_eq_array.h"
+#include "comparable_array.h"
+#include "acme/primitive/string/string.h"
+#include "acme/primitive/collection/address_array.h"
+#include "acme/array.h"
+
+
 //namespace str
 //{
 
@@ -122,7 +130,11 @@ public:
 
 
    void copy(const string_array_base & src);
-   void copy(const i64_array & src);
+
+   template < primitive_array ARRAY >
+   void copy(const ARRAY & src);
+
+
    using BASE_ARRAY::copy;
 
 
@@ -157,7 +169,8 @@ public:
    void swap_sort_ci(
    SWAP __swap);
 
-   void get_quick_sort_ci(index_array & ia);
+   template < primitive_array INDEX_ARRAY >
+   void get_quick_sort_ci(INDEX_ARRAY & ia);
 
    string_array_base slice(::index iStart, ::count iCount = -1) const;
 
@@ -314,28 +327,37 @@ public:
    bool theres(const Type& pcszSubstring,::index iFind = 0,::index iLast = -1, const CHAR_TYPE ** ppszBeg = nullptr, const CHAR_TYPE ** ppszEnd = nullptr) const { return __found(substring_find_first_ci(pcszSubstring, iFind, iLast, ppszBeg, ppszEnd)); }
 
 
-   ::count begins_ci(index_array& ia, const Type& pcszPrefix, ::index first = 0, ::index iLast = -1);
-   ::count begins(index_array& ia, const Type& pcszPrefix, ::index first = 0, ::index iLast = -1);
+   template < primitive_array INDEX_ARRAY >
+   ::count begins_ci(INDEX_ARRAY & ia, const Type& pcszPrefix, ::index first = 0, ::index iLast = -1);
+
+   template < primitive_array INDEX_ARRAY >
+   ::count begins(INDEX_ARRAY & ia, const Type& pcszPrefix, ::index first = 0, ::index iLast = -1);
 
 
-   ::count ends_ci(index_array& stra, const Type& strSuffix, ::index first = 0, ::index iLast = -1);
-   ::count ends(index_array& stra, const Type& strSuffix, ::index first = 0, ::index iLast = -1);
+   template < primitive_array STRING_ARRAY >
+   ::count ends_ci(STRING_ARRAY & stra, const Type& strSuffix, ::index first = 0, ::index iLast = -1);
+
+   template < primitive_array STRING_ARRAY >
+   ::count ends(STRING_ARRAY & stra, const Type& strSuffix, ::index first = 0, ::index iLast = -1);
 
 
-   ::count search_ci(index_array& stra, const Type& pcszSubstring, ::index first = 0, ::index iLast = -1);
-   ::count search(index_array& stra, const Type& pcszSubstring, ::index first = 0, ::index iLast = -1);
+   template < primitive_array STRING_ARRAY >
+   ::count search_ci(STRING_ARRAY & stra, const Type& pcszSubstring, ::index first = 0, ::index iLast = -1);
+
+   template < primitive_array STRING_ARRAY >
+   ::count search(STRING_ARRAY & stra, const Type& pcszSubstring, ::index first = 0, ::index iLast = -1);
 
 
-   ::count begins_ci(string_array_base & straPrefixed,const Type& pcszPrefix,::index first = 0,::index iLast = -1);
-   ::count begins(string_array_base& straPrefixed, const Type& pcszPrefix, ::index first = 0, ::index iLast = -1);
+   //::count begins_ci(string_array_base & straPrefixed,const Type& pcszPrefix,::index first = 0,::index iLast = -1);
+   //::count begins(string_array_base& straPrefixed, const Type& pcszPrefix, ::index first = 0, ::index iLast = -1);
 
 
-   ::count ends_ci(string_array_base& straSuffixed, const Type& pcszPrefix, ::index first = 0, ::index iLast = -1);
-   ::count ends(string_array_base& straSuffixed, const Type& pcszPrefix, ::index first = 0, ::index iLast = -1);
+   //::count ends_ci(string_array_base& straSuffixed, const Type& pcszPrefix, ::index first = 0, ::index iLast = -1);
+   //::count ends(string_array_base& straSuffixed, const Type& pcszPrefix, ::index first = 0, ::index iLast = -1);
 
 
-   ::count search_ci(string_array_base& straResult, const Type& pcszSubstring, ::index first = 0, ::index iLast = -1);
-   ::count search(string_array_base& straResult, const Type& pcszSubstring, ::index first = 0, ::index iLast = -1);
+   //::count search_ci(string_array_base& straResult, const Type& pcszSubstring, ::index first = 0, ::index iLast = -1);
+   //::count search(string_array_base& straResult, const Type& pcszSubstring, ::index first = 0, ::index iLast = -1);
 
 
    ::count filter_begins_ci(const Type& pcszPrefix,::index first = 0,::index iLast = -1);
@@ -955,7 +977,8 @@ void string_array_base < Type, RawType, t_etypePayload >::copy(const string_arra
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
-void string_array_base < Type, RawType, t_etypePayload >::copy(const i64_array & src)
+template < primitive_array ARRAY >
+void string_array_base < Type, RawType, t_etypePayload >::copy(const ARRAY & src)
 {
 
    this->set_size((::count) src.m_nSize);
@@ -1562,10 +1585,13 @@ string_array_base < Type, RawType, t_etypePayload > ::string_array_base(CHAR_TYP
 //#endif
 
 
+#include "acme/primitive/string/tokenizer.h"
+
+
 template < typename Type, typename RawType, enum_type t_etypePayload >
 void string_array_base < Type, RawType, t_etypePayload > ::add_tokens(const Type& pcsz,const Type& strSeparator,bool bAddEmpty)
-
 {
+
    ::tokenizer strTokenizer(pcsz);
 
    Type strToken;
@@ -3611,84 +3637,85 @@ bool string_array_base < Type, RawType, t_etypePayload > ::has_elements(::count 
 }
 
 
+//template < typename Type, typename RawType, enum_type t_etypePayload >
+//::count string_array_base < Type, RawType, t_etypePayload > ::begins(string_array_base < Type, RawType, t_etypePayload > & straPrefixed, const Type & strPrefix, ::index iFirst, ::index iLast)
+//{
+//
+//   ::count count = 0;
+//
+//   if (this->prepare_first_last(iFirst, iLast))
+//   {
+//
+//      while (true)
+//      {
+//
+//         iFirst = _find_first_prefixed(strPrefix, iFirst, iLast);
+//
+//         if (iFirst < 0)
+//         {
+//
+//            return count;
+//
+//         }
+//
+//         straPrefixed.add(this->element_at(iFirst));
+//
+//         iFirst++;
+//
+//         count++;
+//
+//      }
+//
+//   }
+//
+//   return count;
+//
+//}
+//
+//
+//
+//template < typename Type, typename RawType, enum_type t_etypePayload >
+//::count string_array_base < Type, RawType, t_etypePayload > ::begins_ci(string_array_base < Type, RawType, t_etypePayload > & straPrefixed,const Type& strPrefix,::index iFirst,::index iLast)
+//{
+//
+//   ::count count = 0;
+//
+//   if (this->prepare_first_last(iFirst, iLast))
+//   {
+//
+//      while(true)
+//      {
+//
+//         iFirst = find_first_begins_ci(strPrefix,iFirst,iLast);
+//
+//         if (iFirst < 0)
+//         {
+//
+//            return count;
+//
+//         }
+//
+//         straPrefixed.add(this->element_at(iFirst));
+//
+//         iFirst++;
+//
+//         count++;
+//
+//      }
+//
+//   }
+//
+//   return count;
+//
+//}
+//
+//
+//
+
+
 template < typename Type, typename RawType, enum_type t_etypePayload >
-::count string_array_base < Type, RawType, t_etypePayload > ::begins(string_array_base < Type, RawType, t_etypePayload > & straPrefixed, const Type & strPrefix, ::index iFirst, ::index iLast)
-{
-
-   ::count count = 0;
-
-   if (this->prepare_first_last(iFirst, iLast))
-   {
-
-      while (true)
-      {
-
-         iFirst = _find_first_prefixed(strPrefix, iFirst, iLast);
-
-         if (iFirst < 0)
-         {
-
-            return count;
-
-         }
-
-         straPrefixed.add(this->element_at(iFirst));
-
-         iFirst++;
-
-         count++;
-
-      }
-
-   }
-
-   return count;
-
-}
-
-
-
-template < typename Type, typename RawType, enum_type t_etypePayload >
-::count string_array_base < Type, RawType, t_etypePayload > ::begins_ci(string_array_base < Type, RawType, t_etypePayload > & straPrefixed,const Type& strPrefix,::index iFirst,::index iLast)
-{
-
-   ::count count = 0;
-
-   if (this->prepare_first_last(iFirst, iLast))
-   {
-
-      while(true)
-      {
-
-         iFirst = find_first_begins_ci(strPrefix,iFirst,iLast);
-
-         if (iFirst < 0)
-         {
-
-            return count;
-
-         }
-
-         straPrefixed.add(this->element_at(iFirst));
-
-         iFirst++;
-
-         count++;
-
-      }
-
-   }
-
-   return count;
-
-}
-
-
-
-
-
-template < typename Type, typename RawType, enum_type t_etypePayload >
-::count string_array_base < Type, RawType, t_etypePayload > ::begins(index_array & iaPrefixed, const Type & strPrefix, ::index iFirst, ::index iLast)
+template < primitive_array INDEX_ARRAY >
+::count string_array_base < Type, RawType, t_etypePayload > ::begins(INDEX_ARRAY & iaPrefixed, const Type & strPrefix, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -3725,7 +3752,8 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
-::count string_array_base < Type, RawType, t_etypePayload > ::begins_ci(index_array & iaPrefixed, const Type & strPrefix, ::index iFirst, ::index iLast)
+template < primitive_array INDEX_ARRAY >
+::count string_array_base < Type, RawType, t_etypePayload > ::begins_ci(INDEX_ARRAY & iaPrefixed, const Type & strPrefix, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -3761,44 +3789,45 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 
 
 
+//template < typename Type, typename RawType, enum_type t_etypePayload >
+//::count string_array_base < Type, RawType, t_etypePayload > ::ends(string_array_base < Type, RawType, t_etypePayload >& straSuffixed, const Type& strSuffix, ::index iFirst, ::index iLast)
+//{
+//
+//   ::count count = 0;
+//
+//   if (this->prepare_first_last(iFirst, iLast))
+//   {
+//
+//      while (true)
+//      {
+//
+//         iFirst = find_first_ends(strSuffix, iFirst, iLast);
+//
+//         if (iFirst < 0)
+//         {
+//
+//            return count;
+//
+//         }
+//
+//         straSuffixed.add(this->element_at(iFirst));
+//
+//         iFirst++;
+//
+//         count++;
+//
+//      }
+//
+//   }
+//
+//   return count;
+//
+//}
+
+
 template < typename Type, typename RawType, enum_type t_etypePayload >
-::count string_array_base < Type, RawType, t_etypePayload > ::ends(string_array_base < Type, RawType, t_etypePayload >& straSuffixed, const Type& strSuffix, ::index iFirst, ::index iLast)
-{
-
-   ::count count = 0;
-
-   if (this->prepare_first_last(iFirst, iLast))
-   {
-
-      while (true)
-      {
-
-         iFirst = find_first_ends(strSuffix, iFirst, iLast);
-
-         if (iFirst < 0)
-         {
-
-            return count;
-
-         }
-
-         straSuffixed.add(this->element_at(iFirst));
-
-         iFirst++;
-
-         count++;
-
-      }
-
-   }
-
-   return count;
-
-}
-
-
-template < typename Type, typename RawType, enum_type t_etypePayload >
-::count string_array_base < Type, RawType, t_etypePayload > ::ends_ci(string_array_base < Type, RawType, t_etypePayload > & straSuffixed, const Type & strSuffix, ::index iFirst, ::index iLast)
+template < primitive_array STRING_ARRAY >
+::count string_array_base < Type, RawType, t_etypePayload > ::ends_ci(STRING_ARRAY & straSuffixed, const Type & strSuffix, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -3836,7 +3865,8 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
-::count string_array_base < Type, RawType, t_etypePayload > ::ends(index_array & iaSuffixed, const Type & strSuffix, ::index iFirst, ::index iLast)
+template < primitive_array STRING_ARRAY >
+::count string_array_base < Type, RawType, t_etypePayload > ::ends(STRING_ARRAY & iaSuffixed, const Type & strSuffix, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -3872,116 +3902,117 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 
 
 
+//template < typename Type, typename RawType, enum_type t_etypePayload >
+//::count string_array_base < Type, RawType, t_etypePayload > ::ends_ci(index_array & iaSuffixed, const Type & strSuffix, ::index iFirst, ::index iLast)
+//{
+//
+//   ::count count = 0;
+//
+//   if (this->prepare_first_last(iFirst, iLast))
+//   {
+//
+//      while (true)
+//      {
+//
+//         iFirst = _find_first_suffixed_ci(strSuffix, iFirst, iLast);
+//
+//         if (iFirst < 0)
+//         {
+//
+//            return count;
+//
+//         }
+//
+//         iaSuffixed.add(iFirst);
+//
+//         iFirst++;
+//
+//         count++;
+//
+//      }
+//
+//   }
+//
+//   return count;
+//
+//}
+//
+//
+//
+//template < typename Type, typename RawType, enum_type t_etypePayload >
+//::count string_array_base < Type, RawType, t_etypePayload > ::search_ci(string_array_base < Type, RawType, t_etypePayload > & stra, const Type & pcsz, ::index iFirst, ::index iLast)
+//{
+//
+//   ::count count = 0;
+//
+//   if (this->prepare_first_last(iFirst, iLast))
+//   {
+//
+//      while (true)
+//      {
+//
+//         iFirst = _find_first_contains_ci(pcsz, iFirst, iLast);
+//
+//         if (iFirst < 0)
+//         {
+//
+//            return count;
+//
+//         }
+//
+//         stra.add(this->element_at(iFirst));
+//
+//         iFirst++;
+//
+//         count++;
+//
+//      }
+//
+//   }
+//
+//   return count;
+//
+//}
+//
+//
+//template < typename Type, typename RawType, enum_type t_etypePayload >
+//::count string_array_base < Type, RawType, t_etypePayload > ::search(string_array_base < Type, RawType, t_etypePayload > & stra, const Type & pcsz, ::index iFirst, ::index iLast)
+//{
+//
+//   ::count count = 0;
+//
+//   if (this->prepare_first_last(iFirst, iLast))
+//   {
+//
+//      while (true)
+//      {
+//
+//         iFirst = _find_first_contains(pcsz, iFirst, iLast);
+//
+//         if (iFirst < 0)
+//         {
+//
+//            return count;
+//
+//         }
+//
+//         stra.add(this->element_at(iFirst));
+//
+//         iFirst++;
+//
+//         count++;
+//
+//      }
+//
+//   }
+//
+//   return count;
+//
+//}
+
 template < typename Type, typename RawType, enum_type t_etypePayload >
-::count string_array_base < Type, RawType, t_etypePayload > ::ends_ci(index_array & iaSuffixed, const Type & strSuffix, ::index iFirst, ::index iLast)
-{
-
-   ::count count = 0;
-
-   if (this->prepare_first_last(iFirst, iLast))
-   {
-
-      while (true)
-      {
-
-         iFirst = _find_first_suffixed_ci(strSuffix, iFirst, iLast);
-
-         if (iFirst < 0)
-         {
-
-            return count;
-
-         }
-
-         iaSuffixed.add(iFirst);
-
-         iFirst++;
-
-         count++;
-
-      }
-
-   }
-
-   return count;
-
-}
-
-
-
-template < typename Type, typename RawType, enum_type t_etypePayload >
-::count string_array_base < Type, RawType, t_etypePayload > ::search_ci(string_array_base < Type, RawType, t_etypePayload > & stra, const Type & pcsz, ::index iFirst, ::index iLast)
-{
-
-   ::count count = 0;
-
-   if (this->prepare_first_last(iFirst, iLast))
-   {
-
-      while (true)
-      {
-
-         iFirst = _find_first_contains_ci(pcsz, iFirst, iLast);
-
-         if (iFirst < 0)
-         {
-
-            return count;
-
-         }
-
-         stra.add(this->element_at(iFirst));
-
-         iFirst++;
-
-         count++;
-
-      }
-
-   }
-
-   return count;
-
-}
-
-
-template < typename Type, typename RawType, enum_type t_etypePayload >
-::count string_array_base < Type, RawType, t_etypePayload > ::search(string_array_base < Type, RawType, t_etypePayload > & stra, const Type & pcsz, ::index iFirst, ::index iLast)
-{
-
-   ::count count = 0;
-
-   if (this->prepare_first_last(iFirst, iLast))
-   {
-
-      while (true)
-      {
-
-         iFirst = _find_first_contains(pcsz, iFirst, iLast);
-
-         if (iFirst < 0)
-         {
-
-            return count;
-
-         }
-
-         stra.add(this->element_at(iFirst));
-
-         iFirst++;
-
-         count++;
-
-      }
-
-   }
-
-   return count;
-
-}
-
-template < typename Type, typename RawType, enum_type t_etypePayload >
-::count string_array_base < Type, RawType, t_etypePayload > ::search(index_array & iaResult, const Type & strTopic, ::index iFirst, ::index iLast)
+template < primitive_array STRING_ARRAY >
+::count string_array_base < Type, RawType, t_etypePayload > ::search(STRING_ARRAY & iaResult, const Type & strTopic, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -4018,7 +4049,8 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
-::count string_array_base < Type, RawType, t_etypePayload > ::search_ci(index_array & ia, const Type & strTopic, ::index iFirst, ::index iLast)
+template < primitive_array STRING_ARRAY >
+::count string_array_base < Type, RawType, t_etypePayload > ::search_ci(STRING_ARRAY & ia, const Type & strTopic, ::index iFirst, ::index iLast)
 {
 
    ::count count = 0;
@@ -4284,7 +4316,7 @@ Type & string_array_base < Type, RawType, t_etypePayload > ::random_element()
    if(this->is_empty())
    {
 
-      throw ::exception(error_wrong_state, "invalid call");
+      throw_exception(error_wrong_state, "invalid call");
 
    }
 
@@ -4300,7 +4332,7 @@ const Type & string_array_base < Type, RawType, t_etypePayload > ::random_elemen
    if(this->is_empty())
    {
 
-      throw ::exception(error_wrong_state, "invalid call");
+      throw_exception(error_wrong_state, "invalid call");
 
    }
 
@@ -4316,7 +4348,7 @@ Type string_array_base < Type, RawType, t_etypePayload > ::pop_random_element()
    if(this->is_empty())
    {
 
-      throw ::exception(error_wrong_state, "invalid call");
+      throw_exception(error_wrong_state, "invalid call");
 
    }
 
@@ -5089,7 +5121,7 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 Type string_array_base < Type, RawType, t_etypePayload >::get_at(::index nIndex) const
 {
 if (nIndex < 0 || nIndex >= this->m_nSize)
-throw ::exception(error_index_out_of_bounds);
+throw_exception(error_index_out_of_bounds);
 return get_data()[nIndex];
 }
 
@@ -5097,7 +5129,7 @@ return get_data()[nIndex];
 //void string_array_base < Type, RawType, t_etypePayload >::set_at(::index nIndex, const char * newElement)
 //{
 //   if (nIndex < 0 || nIndex >= this->m_nSize)
-//      throw ::exception(error_index_out_of_bounds);
+//      throw_exception(error_index_out_of_bounds);
 //   get_data()[nIndex] = newElement;
 //}
 //
@@ -5106,7 +5138,7 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 void string_array_base < Type, RawType, t_etypePayload >::set_at(::index nIndex, const Type & newElement)
 {
 if (nIndex < 0 || nIndex >= this->m_nSize)
-throw ::exception(error_index_out_of_bounds);
+throw_exception(error_index_out_of_bounds);
 get_data()[nIndex] = newElement;
 }
 
@@ -5115,7 +5147,7 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 Type & string_array_base < Type, RawType, t_etypePayload >::element_at(::index nIndex)
 {
 if (nIndex < 0 || nIndex >= this->m_nSize)
-throw ::exception(error_index_out_of_bounds);
+throw_exception(error_index_out_of_bounds);
 return get_data()[nIndex];
 }
 
@@ -5124,7 +5156,7 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
 const Type & string_array_base < Type, RawType, t_etypePayload >::element_at(::index nIndex) const
 {
 if (nIndex < 0 || nIndex >= this->m_nSize)
-throw ::exception(error_index_out_of_bounds);
+throw_exception(error_index_out_of_bounds);
 return get_data()[nIndex];
 }
 
@@ -5139,6 +5171,7 @@ return get_data()[nIndex];
 //
 //}
 
+#include "acme/primitive/primitive/payload.h"
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
 string_array_base < Type, RawType, t_etypePayload >  & string_array_base < Type, RawType, t_etypePayload > ::operator = (const ::payload & payload)
@@ -5254,22 +5287,23 @@ string_array_base < Type, RawType, t_etypePayload >  & string_array_base < Type,
 //inline ::index string_array_base < Type, RawType, t_etypePayload > ::add(const TYPE & type)
 //{
 //
-//    return ::papaya::array::add(*this, type);
+//    return ::acme::array::add(*this, type);
 //
 //}
 
 
 template < typename Type, typename RawType, enum_type t_etypePayload >
-void string_array_base < Type, RawType, t_etypePayload >::get_quick_sort_ci(index_array & ia)
+template < primitive_array INDEX_ARRAY >
+void string_array_base < Type, RawType, t_etypePayload >::get_quick_sort_ci(INDEX_ARRAY & ia)
 {
-   index_array stackLowerBound;
-   index_array stackUpperBound;
+   INDEX_ARRAY stackLowerBound;
+   INDEX_ARRAY stackUpperBound;
    ::index iLowerBound;
    ::index iUpperBound;
    ::index iLPos,iUPos,iMPos;
    Type t;
    ia.erase_all();
-   ::papaya::array::append_sequence(ia,(::index)0,(::index)get_upper_bound());
+   ::acme::array::append_sequence(ia,(::index)0,(::index)get_upper_bound());
    if(this->get_size() >= 2)
    {
       stackLowerBound.push(0);
@@ -5449,4 +5483,6 @@ template < typename Type, typename RawType, enum_type t_etypePayload >
    return -1;
 
 }
+
+
 

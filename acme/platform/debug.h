@@ -326,7 +326,7 @@ CLASS_DECL_ACME void os_trace(enum_trace_level elevel, const char * pszTag, cons
 
 
 
-namespace papaya
+namespace acme
 {
    template < typename T >
    T constraint(T t, T tMin, T tMax)
@@ -342,7 +342,7 @@ namespace papaya
 //inline enum_trace_level trace_level_constraint(enum_trace_level elevel)
 //{
 //
-//   return ::papaya::constraint(elevel, e_trace_level_none, e_trace_level_count);
+//   return ::acme::constraint(elevel, e_trace_level_none, e_trace_level_count);
 //
 //}
 

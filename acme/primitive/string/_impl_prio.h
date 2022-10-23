@@ -1,10 +1,8 @@
 ﻿#pragma once
 
 
-
 CLASS_DECL_ACME i64 strtoi(const char * psz);
 CLASS_DECL_ACME i64 strtoi(const widechar * psz);
-
 
 
 const ansistring __string_base(const ansichar * psz)
@@ -14,12 +12,14 @@ const ansistring __string_base(const ansichar * psz)
 
 }
 
+
 const wd16string __string_base(const wd16char * psz)
 {
 
    return psz;
 
 }
+
 
 const wd32string __string_base(const wd32char * psz)
 {
@@ -28,10 +28,13 @@ const wd32string __string_base(const wd32char * psz)
 
 }
 
+
 namespace file
 {
 
+   
    class str;
+
 
 } // namespace file
 
@@ -51,6 +54,7 @@ inline T FormatArgument(T value) noexcept
 
 }
 
+
 #ifdef WINDOWS
 inline ::u32 _gen_GetConversionACP()
 {
@@ -60,8 +64,8 @@ inline ::u32 _gen_GetConversionACP()
 }
 #endif
 
-class fixed_alloc_array;
 
+class fixed_alloc_array;
 
 
 template < >
@@ -80,7 +84,6 @@ inline uptr uptr_hash < const widestring & >(const widestring & widestr)
    return uptr_hash < const widechar * >(widestr.c_str());
 
 }
-
 
 
 template < >
@@ -189,62 +192,3 @@ inline ::wstring operator+(const widechar* pszLeft, const ::wstring & wstringabl
 #include "__c_wd16_impl.h"
 
 
-#ifndef NO_TEMPLATE
-
-
-inline ::string atom::string() const
-{
-
-   if (m_etype == e_type_null)
-   {
-
-      return "(null)";
-
-   }
-   else if (m_etype == e_type_empty)
-   {
-
-      return "(empty)";
-
-   }
-   else if (is_text())
-   {
-
-      return m_str;
-
-   }
-   else if (is_integer())
-   {
-
-      return __string(m_i);
-
-   }
-   else
-   {
-
-      return ::string("(atom : type:") + __string(m_etype) + ",body:" + __string(m_u) + ")";
-
-   }
-
-}
-
-
-template < >
-inline uptr uptr_hash< const atom & >(const atom & key)
-{
-
-   return (((uptr)key.m_etype) << 24) ^ (key.is_text() ? uptr_hash(key.m_str.c_str()) : ((((::u32)(uptr)key.m_u) >> 8) & 0xffffffffu));
-
-}
-
-
-template < >
-inline uptr uptr_hash< atom>(atom key)
-{
-
-   return uptr_hash<const atom & >((const atom &)key);
-
-}
-
-
-#endif

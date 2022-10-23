@@ -1,6 +1,12 @@
 ﻿#pragma once
 
 
+#include "pointer_array_process.h"
+#include "acme/primitive/collection/array.h"
+#include "comparable_eq_array.h"
+#include "comparable_array.h"
+
+
 template < class T >
 class pointer_array :
    public pointer_array_process < comparable_array < ::pointer < T > >, T >
@@ -1733,7 +1739,7 @@ bool pointer_array < T > ::insert_unique_at(::index i, T * p OBJECT_REFERENCE_CO
    if (i < 0 || i > this->get_size())
    {
 
-      throw ::exception(error_bad_argument);
+      throw_exception(error_bad_argument);
 
    }
 

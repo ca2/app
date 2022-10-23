@@ -1466,24 +1466,24 @@ inline bool EqualElements< atom >(atom element1, atom element2)
 
 //inline string CLASS_DECL_ACME operator + (const char * psz, const ::atom & atom);
 
-
-namespace acme
-{
-
-   CLASS_DECL_ACME ::atom atom(const char* psz);
-
-}
-
-
-class CLASS_DECL_ACME __atom :
-public atom
-{
-
-public:
-
-   using atom::atom;
-
-};
+//
+//namespace acme
+//{
+//
+//   CLASS_DECL_ACME ::atom atom(const char* psz);
+//
+//}
+//
+//
+//class CLASS_DECL_ACME __atom :
+//public atom
+//{
+//
+//public:
+//
+//   using atom::atom;
+//
+//};
 
 
 inline bool atom::begins(const char * pszCandidatePrefix) const
@@ -1557,11 +1557,49 @@ inline bool atom::begins_ci(const char * pszCandidatePrefix) const
 
 
 
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(const ::atom & atom) :
-   string_base(atom.string())
+
+inline string::string(const ::atom & atom) :
+   ansistring(atom.string())
 {
 
 
 }
+
+
+
+
+
+#ifndef NO_TEMPLATE
+
+
+template < >
+inline uptr uptr_hash< const atom & >(const atom & key)
+{
+
+   return (((uptr)key.m_etype) << 24) ^ (key.is_text() ? uptr_hash(key.m_str.c_str()) : ((((::u32)(uptr)key.m_u) >> 8) & 0xffffffffu));
+
+}
+
+
+template < >
+inline uptr uptr_hash< atom>(atom key)
+{
+
+   return uptr_hash<const atom & >((const atom &)key);
+
+}
+
+
+#endif
+
+
+inline void from_string(::atom & atom, const ansichar * psz)
+{
+
+   atom = psz;
+
+}
+
+
+
 

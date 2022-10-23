@@ -610,7 +610,7 @@ namespace apex
 {
 
 
-   namespace papaya
+   namespace acme
    {
 
       i32 CLASS_DECL_ACME time_seed();
@@ -641,7 +641,7 @@ namespace apex
       }
 
 
-   } // papaya
+   } // acme
 
 
 

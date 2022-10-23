@@ -2,6 +2,9 @@
 #include "framework.h"
 #include "acme_path.h"
 #include "acme_directory.h"
+#include "acme/primitive/string/hex.h"
+#include "acme/exception/interface_only.h"
+#include "acme/platform/system.h"
 
 
 acme_path::acme_path()

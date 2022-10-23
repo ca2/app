@@ -1,7 +1,12 @@
 #pragma once
 
 
-template < typename POINTER, class ARRAY_TYPE = comparable_array < POINTER, POINTER, comparable_eq_array < POINTER, POINTER, raw_array < POINTER, POINTER, ::allocator::zero < POINTER > > > > >
+#include "raw_array.h"
+#include "comparable_eq_array.h"
+#include "comparable_raw_array.h"
+
+
+template < typename POINTER, class ARRAY_TYPE >
 class address_array :
    public ARRAY_TYPE
 {

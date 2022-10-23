@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "acme/operating_system.h"
 #include "acme_file.h"
+#include "acme/primitive/collection/numeric_array.h"
 #include <stdio.h>
 
 

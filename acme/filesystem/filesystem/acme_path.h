@@ -2,6 +2,9 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/matter.h"
+
+
 class CLASS_DECL_ACME acme_path :
    virtual public matter
 {

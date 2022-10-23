@@ -1,6 +1,10 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/collection/map.h"
+#include "acme/primitive/primitive/type.h"
+
+
 namespace factory
 {
 

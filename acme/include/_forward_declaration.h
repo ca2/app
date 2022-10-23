@@ -39,8 +39,10 @@ class payload;
 struct block;
 class property_set;
 class particle;
+class element;
 namespace operating_system { class department; }
-
+class exception_translator;
+class counter;
 enum enum_zero_init
 {
 
@@ -55,6 +57,15 @@ namespace networking
 
 
 } // namespace networking
+
+namespace regular_expression
+{
+
+   class context;
+   class regular_expression;
+
+} // namespace regular_expression
+
 
 
 //namespace topic

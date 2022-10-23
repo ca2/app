@@ -2,9 +2,11 @@
 #include "stdio_file.h"
 #include "acme/operating_system.h"
 #include <stdio.h>
+#include "acme/exception/exception.h"
+#include "acme/filesystem/file/exception.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_file.h"
-
+#include "acme/platform/system.h"
 
 
 stdio_file::stdio_file()

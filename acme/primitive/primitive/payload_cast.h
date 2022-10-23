@@ -2,6 +2,13 @@
 #pragma once
 
 
+#include "acme/filesystem/filesystem/path.h"
+#include "acme/primitive/collection/numeric_array.h"
+#include "acme/primitive/collection/payload_array.h"
+#include "acme/primitive/collection/string_array.h"
+#include "acme/primitive/primitive/property_set.h"
+
+
 class CLASS_DECL_ACME payload_cast
 {
 public:
@@ -40,12 +47,12 @@ public:
    //operator property ()const { return m_payload.property(); }
 
 
-   operator int_array ()const { return m_payload.ia(); }
-   operator i64_array ()const { return m_payload.i64a(); }
-   operator string_array ()const { return m_payload.stra(); }
-   inline operator payload_array () const;
-   inline operator property_set () const;
-   inline operator ::file::path() const;
+   operator ::int_array ()const { return m_payload.ia(); }
+   operator ::i64_array ()const { return m_payload.i64a(); }
+   operator ::string_array ()const { return m_payload.stra(); }
+   operator ::payload_array() const { return m_payload.payloada(); }
+   operator ::property_set() const { return m_payload.propset(); }
+   operator ::file::path() const { return m_payload.file_path(); }
 
 
 };

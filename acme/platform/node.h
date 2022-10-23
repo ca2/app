@@ -10,6 +10,11 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+#include "acme/primitive/collection/atom_array.h"
+#include "acme/platform/serial_shared.h"
+
+
 namespace acme
 {
 
@@ -373,7 +378,7 @@ namespace acme
 
 #ifndef _UWP
 
-      virtual array <::serial::port_info> list_serial_ports();
+      virtual ::array <::serial::port_info> list_serial_ports();
 
 #endif
 

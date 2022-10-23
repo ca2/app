@@ -2,8 +2,8 @@
 
 
 template < typename ARG_TYPE >
-class less_predicateicate_base :
-   virtual public matter
+class less_predicate_base :
+   virtual public particle
 {
 public:
 
@@ -14,7 +14,7 @@ public:
 
 template < typename ARG_TYPE, typename PRED >
 class less_predicate :
-   public less_predicateicate_base < ARG_TYPE >
+   public less_predicate_base < ARG_TYPE >
 {
 public:
 

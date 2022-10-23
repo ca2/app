@@ -18,7 +18,7 @@ public:
 
    using CHAR_TYPE = TYPE_CHAR;
    typedef natural_pointer < string_meta_data < TYPE_CHAR >, string_memory_allocator >     POINTER;
-   typedef string_array_base < string_base, string_base, e_type_string_array > STRINGA;
+   //typedef string_array_base < string_base, string_base, e_type_string_array > STRINGA;
 
 
    string_base() { }
@@ -60,9 +60,9 @@ public:
    //string_base(Object ^ o);
 //#endif
 
-   string_base(const ::payload & payload);
-   string_base(const ::property & property);
-   string_base(const ::atom & atom);
+   //string_base(const ::payload & payload);
+   //string_base(const ::property & property);
+   //string_base(const ::atom & atom);
    //string_base(::payload & payload);
    //string_base(property & property);
    //string_base(atom & atom);
@@ -152,9 +152,6 @@ public:
    string_base & operator += (ansichar ansich);
    string_base & operator += (wd16char wd16ch);
    string_base & operator += (wd32char wd32ch);
-   string_base & operator += (const ::payload & payload);
-   string_base & operator += (const ::property & property);
-   string_base & operator += (const ::atom & atom);
 
 
 //   template < int t_nSize >
@@ -186,9 +183,6 @@ public:
    string_base operator + (ansichar character)  const;
    string_base operator + (wd16char wd16ch)  const;
    string_base operator + (wd32char wd32ch)  const;
-   string_base operator + (const ::payload & payload) const;
-   string_base operator + (const ::property & property) const;
-   string_base operator + (const ::atom & atom) const;
 
    template < typename TYPE >
    inline string_base & operator /=(const TYPE & t)
@@ -447,8 +441,12 @@ public:
    inline bool contains(CHAR_TYPE ch, strsize start, strsize count, const CHAR_TYPE ** ppszBeg) const;
    inline bool contains(const CHAR_TYPE * psz, strsize start, strsize count, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd = nullptr) const;
    inline bool contains(const string_base & ansistr, strsize start, strsize count, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd = nullptr) const;
-   inline bool contains_any(const STRINGA & stra) const;
-   inline bool contains_all(const STRINGA & stra) const;
+
+   template < primitive_array STRING_ARRAY >
+   inline bool contains_any(const STRING_ARRAY & stra) const;
+
+   template < primitive_array STRING_ARRAY >
+   inline bool contains_all(const STRING_ARRAY & stra) const;
 
    inline bool contains_ci(CHAR_TYPE ch, strsize start = 0, strsize count = -1) const;
    inline bool contains_ci(const CHAR_TYPE * psz, strsize start = 0, strsize count = -1) const;
@@ -456,8 +454,12 @@ public:
    inline bool contains_ci(CHAR_TYPE ch, strsize start, strsize count, const CHAR_TYPE ** ppszBeg) const;
    inline bool contains_ci(const CHAR_TYPE* psz, strsize start, strsize count, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd = nullptr) const;
    inline bool contains_ci(const string_base& ansistr, strsize start, strsize count, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd = nullptr) const;
-   inline bool contains_any_ci(const STRINGA & stra) const;
-   inline bool contains_all_ci(const STRINGA& stra) const;
+
+   template < primitive_array STRING_ARRAY >
+   inline bool contains_any_ci(const STRING_ARRAY & stra) const;
+
+   template < primitive_array STRING_ARRAY >
+   inline bool contains_all_ci(const STRING_ARRAY & stra) const;
 
 
    //inline bool contains_wci(CHAR_TYPE ch, strsize start = 0, strsize count = -1) const;
@@ -466,8 +468,12 @@ public:
    //inline bool contains_wci(CHAR_TYPE ch, strsize start, strsize count, const CHAR_TYPE ** ppszBeg) const;
    inline bool contains_wci(const CHAR_TYPE* psz, strsize start, strsize count, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd = nullptr) const;
    inline bool contains_wci(const string_base& ansistr, strsize start, strsize count, const CHAR_TYPE ** ppszBeg, const CHAR_TYPE ** ppszEnd = nullptr) const;
-   inline bool contains_any_wci(const STRINGA & stra) const;
-   inline bool contains_all_wci(const STRINGA & stra) const;
+
+   template < primitive_array STRING_ARRAY >
+   inline bool contains_any_wci(const STRING_ARRAY & stra) const;
+
+   template < primitive_array STRING_ARRAY >
+   inline bool contains_all_wci(const STRING_ARRAY & stra) const;
 
 
    void reserve(strsize res_arg = 0);
@@ -1034,46 +1040,4 @@ public:
 
 
 };
-
-
-inline ::string operator+(const char* pszLeft, const ::string & strRight);
-
-
-inline ::wstring operator+(const widechar* pszLeft, const ::wstring & wstringableRight);
-
-
-inline ::ansistring operator + (ansichar ch, const ::ansistring & strRight)
-{
-
-   ansistring str(&ch, 1);
-
-   return str + strRight;
-
-}
-
-
-inline ::wd16string operator + (wd16char wch, const ::wd16string & wstrRight)
-{
-
-   wd16string wstr(&wch, 1);
-
-   return wstr + wstrRight;
-
-}
-
-
-
-inline ::wd32string operator + (wd32char wch, const ::wd32string & wstrRight)
-{
-
-   wd32string wstr(&wch, 1);
-
-   return wstr + wstrRight;
-
-}
-
-
-CLASS_DECL_ACME ::string __string_format(const char * pszFormat, ...);
-
-
 

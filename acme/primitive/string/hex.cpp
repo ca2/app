@@ -88,16 +88,6 @@ namespace hex
 
 
 
-bool ishexdigit(char ch)
-{
-   if(ch >= '0' && ch <= '9')
-      return true;
-   if(ch >= 'a' && ch <= 'f')
-      return true;
-   if(ch >= 'A' && ch <= 'F')
-      return true;
-   return false;
-}
 
 
 

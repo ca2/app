@@ -377,7 +377,7 @@
     <ClInclude Include="primitive\primitive\memory_base.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\papaya.h">
+    <ClInclude Include="primitive\primitive\acme.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\base64.h">
@@ -410,7 +410,7 @@
     <ClInclude Include="primitive\string\parse.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\stdstring.h">
+    <ClInclude Include="primitive\string\aaa_stdstring.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\stringtow.h">
@@ -428,7 +428,7 @@
     <ClInclude Include="primitive\string\whole_word.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\_.h">
+    <ClInclude Include="primitive\string\__begin.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\_c.h">
@@ -470,7 +470,7 @@
     <ClInclude Include="primitive\string\_base_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\str.h">
+    <ClInclude Include="primitive\string\__str.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\_c_str.h">
@@ -483,24 +483,6 @@
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\_international.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_str.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_str3.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_tokenizer.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_ch_class.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_wstring.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_str_x.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="primitive\string\_c_trait_ansi.h">
@@ -1295,7 +1277,7 @@
     <ClInclude Include="primitive\primitive\property_object.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\common.h">
+    <ClInclude Include="primitive\collection\range.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\comparable_array.h">
@@ -1349,7 +1331,7 @@
     <ClInclude Include="primitive\collection\list.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\logic_array.h">
+    <ClInclude Include="primitive\collection\bool_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\map.h">
@@ -1388,7 +1370,7 @@
     <ClInclude Include="primitive\collection\queue.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\raw_array_decl.h">
+    <ClInclude Include="primitive\collection\raw_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\set.h">
@@ -1424,7 +1406,7 @@
     <ClInclude Include="primitive\collection\strid_map.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\collection\string_array_base.h">
+    <ClInclude Include="primitive\collection\string_array.h">
       <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
     <ClInclude Include="primitive\collection\string_iterable.h">
@@ -2483,18 +2465,6 @@
     <ClInclude Include="primitive\string\_str_trait_impl.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\aaa_international_locale_schema.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_001.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\aaa_want_to_remove_char_traits.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\string\aaaa_conv_ansi.h">
-      <Filter>Header Files\primitive\string</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\string\bstr.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
@@ -2906,11 +2876,26 @@
     <ClInclude Include="primitive\string\string.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\string\wstring.h">
+    <ClInclude Include="primitive\string\__wstring.h">
       <Filter>Header Files\primitive\string</Filter>
     </ClInclude>
     <ClInclude Include="operating_system\message.h">
       <Filter>Header Files\operating_system</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\procedure_array.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\copy_elements.h">
+      <Filter>Header Files\primitive\collection</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\string\__end.h">
+      <Filter>Header Files\primitive\string</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\__string.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\collection\allocator.h">
+      <Filter>Header Files\primitive\collection</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3553,9 +3538,6 @@
     <ClCompile Include="exception\translator.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="exception\file.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="platform\log.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -3975,9 +3957,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="primitive\string\aaa_want_to_remove_str.inl">
-      <Filter>Header Files\primitive\string</Filter>
-    </None>
     <None Include="primitive\string\_defer.h">
       <Filter>Header Files\primitive\string</Filter>
     </None>

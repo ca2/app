@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "exception.h"
+
+
 class CLASS_DECL_ACME exit_exception :
    public ::exception
 {

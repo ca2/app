@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/filesystem/filesystem/path.h"
 #include <memory.h>
 
 
@@ -196,4 +197,16 @@ CLASS_DECL_ACME void free_c_string_array(char * const * ppszList, int iCount)
 
 
 }
+
+namespace file
+{
+
+string_array path::ascendants_name() const { string_array patha; return ascendants_name(patha); }
+////   inline path path::folder() const { return ::file_path_folder(*this); }
+//inline bool path::operator == (const ::payload & payload) const { return operator == (payload.file_path()); }
+//inline bool path::operator != (const ::payload & payload) const { return operator != (payload.file_path()); }
+//
+
+} // namespace file
+
 

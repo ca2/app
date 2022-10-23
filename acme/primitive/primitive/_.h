@@ -115,7 +115,7 @@ void release(TYPE *& p OBJECT_REFERENCE_COUNT_DEBUG_COMMA_PARAMS);
 // };
 
 
-namespace papaya
+namespace acme
 {
 
    CLASS_DECL_ACME void transfer_to(::file::file * pfileOut, memory_base & mem, memsize uiBufferSize = 1024 * 1024);
@@ -125,7 +125,7 @@ namespace papaya
    CLASS_DECL_ACME void transfer_from(::file::file * pfileIn, memory_base & mem, memsize uiBufferSize = 1024 * 1024);
 
 
-} // namespace papaya
+} // namespace acme
 
 
 

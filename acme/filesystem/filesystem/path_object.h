@@ -1,6 +1,10 @@
 ﻿#pragma once
 
 
+#include "acme/primitive/primitive/property_object.h"
+#include "path.h"
+
+
 namespace file
 {
 

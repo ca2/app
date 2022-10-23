@@ -1,6 +1,14 @@
 ﻿#pragma once
 
 
+#include "raw_array.h"
+#include "comparable_eq_array.h"
+#include "comparable_array.h"
+#include "comparable_raw_array.h"
+#include "acme/primitive/primitive/compare_predicate.h"
+#include "acme/primitive/string/string.h"
+
+
 template < typename ARG_TYPE >
 index numeric_compare(ARG_TYPE t1, ARG_TYPE t2)
 {
@@ -26,7 +34,9 @@ class numeric_array :
 {
 public:
 
+
    explicit numeric_array(::matter * pobject = nullptr) : comparable_raw_array < TYPE, TYPE, ::allocator::nodef < TYPE >, t_etypePayload >(pobject) {}
+
 
    numeric_array(std::initializer_list < TYPE >  l):
       comparable_raw_array < TYPE, TYPE, ::allocator::nodef < TYPE >, t_etypePayload >(l)
@@ -169,7 +179,7 @@ public:
       if (iCompare != 0)
       {
 
-         return ::papaya::sgn(iCompare);
+         return ::acme::sgn(iCompare);
 
       }
 
@@ -182,7 +192,7 @@ public:
          if (t != 0)
          {
 
-            return ::papaya::sgn(t);
+            return ::acme::sgn(t);
 
          }
 
@@ -1027,7 +1037,7 @@ unique_number_sort_array(const unique_number_sort_array < TYPE, t_etypePayload >
 
 
 
-namespace papaya
+namespace acme
 {
 
    namespace numeric_array
@@ -1050,12 +1060,14 @@ namespace papaya
 
    } // namespace numeric_array
 
-} // namespace papaya
+} // namespace acme
+
+
+#include "numeric_array_range.h"
 
 
 
-
-namespace papaya
+namespace acme
 {
 
    namespace array
@@ -1065,11 +1077,11 @@ namespace papaya
       template<class ARRAY>
       bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index & iIndex,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE));
 
-      template<class ARRAY>
-      bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index & iIndex, less_predicateicate_base < typename ARRAY::BASE_ARG_TYPE > * pcompare, index_array & ia);
+      template<class ARRAY, primitive_array INDEX_ARRAY >
+      bool binary_search(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index & iIndex, less_predicate_base < typename ARRAY::BASE_ARG_TYPE > * pcompare, INDEX_ARRAY & ia);
 
-      template<class ARRAY>
-      index sort_add(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index_array & ia)
+      template<class ARRAY, primitive_array INDEX_ARRAY>
+      index sort_add(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),INDEX_ARRAY & ia)
       {
          index iIndex = 0;
          binary_search(a, t, iIndex, fCompare, ia);
@@ -1078,8 +1090,8 @@ namespace papaya
          return iIndex;
       }
 
-      template<class ARRAY, class ARRAY2>
-      ::count sort_add_array(ARRAY & a,ARRAY2 & a2,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index_array & ia)
+      template<class ARRAY, class ARRAY2, primitive_array INDEX_ARRAY >
+      ::count sort_add_array(ARRAY & a,ARRAY2 & a2,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),INDEX_ARRAY & ia)
       {
          for(index i = 0; i < a2.get_count(); i++)
          {
@@ -1089,8 +1101,8 @@ namespace papaya
       }
 
 
-      template<class ARRAY>
-      ::count sort_erase(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE),index_array & ia)
+      template<class ARRAY, primitive_array INDEX_ARRAY >
+      ::count sort_erase(ARRAY & a,typename ARRAY::BASE_ARG_TYPE t,index(* fCompare) (typename ARRAY::BASE_ARG_TYPE,typename ARRAY::BASE_ARG_TYPE), INDEX_ARRAY & ia)
       {
          ::count ca = 0;
          index iFind = 0;
@@ -1115,6 +1127,8 @@ namespace papaya
 
 
    } // namespace array
+
+
 
 
    template < typename TYPE, enum_type t_etypePayload >
@@ -1313,6 +1327,6 @@ namespace papaya
 
    }
 
-} // namespace papaya
+} // namespace acme
 
 

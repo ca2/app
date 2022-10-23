@@ -67,11 +67,11 @@
    template < typename TYPE, typename SUFFIX >
    inline bool ends_eat_ci(TYPE & str, const SUFFIX & strSuffix);
 
-   bool eat_before(string & strBefore, const string & strSeparator, string & str, bool bEatEverythingIfNotFound = false);
-   bool eat_before_let_separator(string & strBefore, string strSeparator, string & str, bool bEatEverythingIfNotFound = false);
+   bool eat_before(ansistring & strBefore, const ansistring & strSeparator, ansistring & str, bool bEatEverythingIfNotFound = false);
+   bool eat_before_let_separator(ansistring & strBefore, ansistring strSeparator, ansistring & str, bool bEatEverythingIfNotFound = false);
 
-   bool eat_before(wstring & wstrBefore, wstring wstrSeparator, wstring & wstr, bool bEatEverythingIfNotFound = false);
-   bool eat_before_let_separator(wstring & wstrBefore, wstring wstrSeparator, wstring & wstr, bool bEatEverythingIfNotFound = false);
+   bool eat_before(widestring & wstrBefore, widestring wstrSeparator, widestring & wstr, bool bEatEverythingIfNotFound = false);
+   bool eat_before_let_separator(widestring & wstrBefore, widestring wstrSeparator, widestring & wstr, bool bEatEverythingIfNotFound = false);
 
 
    //template <  >

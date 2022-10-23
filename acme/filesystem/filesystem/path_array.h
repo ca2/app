@@ -5,6 +5,9 @@
 #pragma once
 
 
+#include "acme/primitive/collection/string_array.h"
+
+
 namespace file
 {
 
@@ -23,6 +26,9 @@ namespace file
 
 
    };
+
+   inline path_array path::ascendants_path() const { path_array patha; return ascendants_path(patha); }
+
 
 
 } // namespace file

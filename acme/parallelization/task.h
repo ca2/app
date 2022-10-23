@@ -1,6 +1,11 @@
 #pragma once
 
 
+#include "acme/primitive/primitive/object.h"
+#include "synchronization_object.h"
+#include "acme/platform/implementable.h"
+
+
 typedef pointer_array < ::matter > object_array;
 typedef map < itask_t, ::pointer<task >>task_map;
 typedef map < task *, itask_t > task_id_map;

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "single_lock.h"
+
+
 class CLASS_DECL_ACME synchronous_lock :
    public single_lock
 {

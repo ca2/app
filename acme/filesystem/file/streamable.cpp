@@ -3,6 +3,7 @@
 #include "streamable.h"
 #include "file.h"
 #include "acme/primitive/primitive/memory.h"
+#include "acme/exception/exception.h"
 
 
 namespace file

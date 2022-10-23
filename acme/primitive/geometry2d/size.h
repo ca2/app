@@ -101,7 +101,7 @@ public:
 
    inline size_type aspect_width(UNIT_TYPE w) { return size_type(w, w * this->cy / this->cx); }
    inline size_type aspect_height(UNIT_TYPE h) { return size_type(h * this->cx / this->cy, h); }
-   inline ::design::enum_fit get_fit(size_type s) { return (::design::enum_fit) ::papaya::sgn(s.cx *this->cy - s.cy * this->cx); }
+   inline ::design::enum_fit get_fit(size_type s) { return (::design::enum_fit) ::acme::sgn(s.cx *this->cy - s.cy * this->cx); }
    inline size_type fit(size_type s)
    {
       if (get_fit(s) == ::design::e_fit_height) return aspect_height(s.cy); else return aspect_width(s.cx);

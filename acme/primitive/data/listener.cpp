@@ -42,7 +42,7 @@ namespace data
 
          m_datamap.erase_key(pdata->m_atom);
 
-         //::papaya::map::erase_value(m_datamap, pdata);
+         //::acme::map::erase_value(m_datamap, pdata);
 
          return true;
 

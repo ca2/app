@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace papaya
+namespace acme
 {
 
 
@@ -21,7 +21,7 @@ namespace papaya
    ::pointer<TYPE>clone(const TYPE & t) { return __new(TYPE(t)); }
 
 
-} // namespace papaya
+} // namespace acme
 
 
 

@@ -2,6 +2,7 @@
 
 
 //#include "acme/filesystem/file/serializable.h"
+#include "acme/primitive/primitive/material_object.h"
 
 
 template < typename N >

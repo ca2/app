@@ -3,6 +3,11 @@
 
 //#define memory_new ACME_NEW
 
+#include "_iterator.h"
+
+#include "map_association.h"
+#include "range.h"
+
 
 template < typename PAYLOAD, const int DEFAULT_HASH_TABLE_SIZE = 17 >
 class set_dynamic_hash_table
@@ -146,7 +151,7 @@ public:
 
 template < typename KEY, typename ARG_KEY, typename PAYLOAD >
 class set :
-   virtual public ::matter
+   virtual public ::particle
 {
 public:
 
@@ -158,6 +163,9 @@ public:
 
    typedef ::map_association < PAYLOAD >           association;
    typedef association                             single;
+
+   using BASE_TYPE = association;
+
 
 
    __declare_iterator_struct_ok(set, association *, m_passociation, ::is_set(this->m_passociation));
@@ -431,7 +439,7 @@ public:
    inline bool erase_key(ARG_KEY key) { auto pitem = find_item(key);  return ::is_set(pitem) ? erase_item(pitem) : false; }
 
    template < typename ITERATOR >
-   inline ITERATOR erase(ITERATOR it) { return ::papaya::iterator::erase(*this, it); }
+   inline ITERATOR erase(ITERATOR it) { return ::acme::iterator::erase(*this, it); }
 
    template < typename ITERATOR >
    inline void erase(const ITERATOR & begin, const ITERATOR & last) { ::erase(*this, begin, last); }
@@ -524,8 +532,8 @@ public:
    association * get_association_at(ARG_KEY, ::u32&, ::u32&) const;
 
 
-   void assert_ok() const override;
-   void dump(dump_context & dumpcontext) const override;
+   //void assert_ok() const override;
+   //void dump(dump_context & dumpcontext) const override;
 
 
 
@@ -804,7 +812,7 @@ template < typename KEY, typename ARG_KEY, typename PAYLOAD >
 void set < KEY, ARG_KEY, PAYLOAD >::erase_all()
 {
 
-   ASSERT_VALID(this);
+   //ASSERT_VALID(this);
 
    if(this->m_passociationHead != nullptr)
    {
@@ -1059,7 +1067,7 @@ template < typename KEY, typename ARG_KEY, typename PAYLOAD >
 inline typename set < KEY, ARG_KEY, PAYLOAD >::association * set < KEY, ARG_KEY, PAYLOAD >::find_association(ARG_KEY key) const
 {
 
-   ASSERT_VALID(this);
+   //ASSERT_VALID(this);
 
    ::u32 nHashBucket, nHashValue;
 
@@ -1072,7 +1080,7 @@ template < typename KEY, typename ARG_KEY, typename PAYLOAD >
 typename set < KEY, ARG_KEY, PAYLOAD >::association * set < KEY, ARG_KEY, PAYLOAD >::get_association(ARG_KEY key)
 {
 
-   ASSERT_VALID(this);
+   //ASSERT_VALID(this);
 
    ::u32 nHashBucket,nHashValue;
 
@@ -1218,19 +1226,19 @@ get(ARG_KEY argkey, ARG_KEY valueDefault)
 }
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-void set < KEY, ARG_KEY, PAYLOAD >::assert_ok() const
-{
-
-   ::matter::assert_ok();
-
-   ASSERT(GetHashTableSize() > 0);
-
-   ASSERT(m_nCount == 0 || m_hashtable.m_ppassociationHash != nullptr);
-   // non-empty set should have hash table
-
-}
-
+//template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+//void set < KEY, ARG_KEY, PAYLOAD >::assert_ok() const
+//{
+//
+//   ::matter::assert_ok();
+//
+//   ASSERT(GetHashTableSize() > 0);
+//
+//   ASSERT(m_nCount == 0 || m_hashtable.m_ppassociationHash != nullptr);
+//   // non-empty set should have hash table
+//
+//}
+//
 
 using double_set = set < double >;
 
@@ -1315,7 +1323,7 @@ void set < KEY, ARG_KEY, PAYLOAD >::InitHashTable(
 //   hash table size_i32 of (which is fairly small)
 {
 
-   ASSERT_VALID(this);
+   //ASSERT_VALID(this);
    ASSERT(this->m_nCount == 0);
    ASSERT(nHashSize > 0);
 
@@ -1324,28 +1332,28 @@ void set < KEY, ARG_KEY, PAYLOAD >::InitHashTable(
 }
 
 
-template < typename KEY, typename ARG_KEY, typename PAYLOAD >
-void set < KEY, ARG_KEY, PAYLOAD >::dump(dump_context& dumpcontext) const
-{
-
-   ::matter::dump(dumpcontext);
-
-   //dumpcontext << "with " << this->m_nCount << " elements";
-   //if (dumpcontext.GetDepth() > 0)
-   //{
-   //   // Dump in format "[key] -> value"
-
-   //   const association* passociation = get_start();
-   //   while (passociation != nullptr)
-   //   {
-   //      passociation = get_next(passociation);
-   //      dumpcontext << "\n\t[";
-   //      dump_elements<KEY>(dumpcontext, &passociation->key(), 1);
-   //   }
-   //}
-
-   //dumpcontext << "\n";
-}
-
-
-
+//template < typename KEY, typename ARG_KEY, typename PAYLOAD >
+//void set < KEY, ARG_KEY, PAYLOAD >::dump(dump_context& dumpcontext) const
+//{
+//
+//   ::matter::dump(dumpcontext);
+//
+//   //dumpcontext << "with " << this->m_nCount << " elements";
+//   //if (dumpcontext.GetDepth() > 0)
+//   //{
+//   //   // Dump in format "[key] -> value"
+//
+//   //   const association* passociation = get_start();
+//   //   while (passociation != nullptr)
+//   //   {
+//   //      passociation = get_next(passociation);
+//   //      dumpcontext << "\n\t[";
+//   //      dump_elements<KEY>(dumpcontext, &passociation->key(), 1);
+//   //   }
+//   //}
+//
+//   //dumpcontext << "\n";
+//}
+//
+//
+//

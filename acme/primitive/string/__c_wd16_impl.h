@@ -717,7 +717,7 @@ inline const wd16char * wd16_find_char_reverse(const wd16char * psz, wd16char ch
 inline void wd16_from_u64_base(wd16char * sz, u64 u, i32 iBase)
 {
 
-   u64towd16(u, sz, iBase);
+   __u64towd16(u, sz, iBase);
 
 }
 
@@ -725,7 +725,7 @@ inline void wd16_from_u64_base(wd16char * sz, u64 u, i32 iBase)
 inline void wd16_from_i64_base(wd16char * sz, i64 i, i32 iBase)
 {
 
-   i64towd16(i, sz, iBase);
+   __i64towd16(i, sz, iBase);
 
 }
 

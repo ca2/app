@@ -96,6 +96,7 @@ list(APPEND library_source
         constant/idpool.cpp
         #context_glx.cpp
         #exception/callstack.cpp
+        exception/assert.cpp
         exception/cancel.cpp
         #exception/const.cpp
         exception/debug.cpp
@@ -107,8 +108,8 @@ list(APPEND library_source
         exception/extended_status.cpp
         exception/extended_status.h
         exception/extended_transport.h
-        exception/file.cpp
-        exception/file.h
+        #exception/file.cpp
+        #exception/file.h
         #exception/file_open.cpp
         #exception/file_open.h
         exception/interface_only.cpp
@@ -131,6 +132,7 @@ list(APPEND library_source
         filesystem/file/cpp.cpp
         #filesystem/file/dir2.cpp
         filesystem/file/exception.cpp
+        filesystem/file/exception.h
         filesystem/file/file.cpp
         filesystem/file/folder.cpp
         filesystem/file/folder.h
@@ -728,6 +730,8 @@ list(APPEND library_source
         primitive/string/static_string.h
         primitive/string/stdstring.h
         primitive/string/str.cpp
+        primitive/string/string.cpp
+        primitive/string/string.h
         primitive/string/string_ansi.cpp
         #primitive/string/string_buffer.h
         primitive/string/string_inst.h
@@ -1273,6 +1277,7 @@ list(APPEND library_source
         #platform/static_start.h
         #platform/static_start_internal.h
         platform/status.h
+        platform/string_exchange.cpp
         platform/string_exchange.h
         platform/system.h
         #platform/system_impl.h
@@ -2156,7 +2161,7 @@ if (LINUX OR FREEBSD)
 endif ()
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source} platform/string_exchange.cpp primitive/string/string.cpp)
+add_library(${PROJECT_NAME} SHARED ${library_source} )
 
 
 if (NOT DEFINED NO_PRECOMPILED_HEADER)

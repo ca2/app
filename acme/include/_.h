@@ -3001,7 +3001,7 @@ class manual_reset_event;
 //#include "acme/primitive/primitive/enumeration.h"
 
 
-CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER);
+//CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = CALLSTACK_DEFAULT_SKIP_TRIGGER);
 
 
 using eiostate = ::enumeration<::file::e_iostate>;
@@ -3596,7 +3596,7 @@ namespace mathematics
 CLASS_DECL_ACME string get_status_message(const ::e_status & estatus);
 
 
-#include "acme/platform/flags.h"
+//#include "acme/platform/flags.h"
 #include "acme/constant/check.h"
 
 

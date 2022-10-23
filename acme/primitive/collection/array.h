@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "array_base.h"
+
+
 template < class TYPE, class ARG_TYPE, class ALLOCATOR, enum_type t_etypePayload >
 class array :
    public ::array_base < TYPE, ARG_TYPE, ALLOCATOR, t_etypePayload >

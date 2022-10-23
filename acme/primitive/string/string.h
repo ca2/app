@@ -13,6 +13,8 @@ public:
 
    using ansistring::ansistring;
 
+   string(const ::string & str) : ansistring(str) {}
+   string(const ::ansistring & ansistr) : ansistring(ansistr) {}
    string(const ::atom & atom);
    string(const ::payload & payload);
    string(const ::property & property);
@@ -21,3 +23,16 @@ public:
 
 
 
+template < typename TYPE_CHAR >
+inline string_base < TYPE_CHAR >  string_base < TYPE_CHAR > ::operator + (const string & str) const
+{
+
+
+   ::string strConcatenated(*this);
+
+   strConcatenated += str;
+
+   return strConcatenated;
+
+
+}

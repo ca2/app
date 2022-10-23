@@ -108,3 +108,9 @@ void __swap(A & a, B & b)
 
 
 
+CLASS_DECL_ACME void throw_resource_exception(const char * pszMessage);
+
+CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const char * pszMessage = nullptr, const char * pszDetails = nullptr, i32 iSkip = -1);
+
+
+

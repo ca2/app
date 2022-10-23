@@ -2,11 +2,11 @@
 
 
 #include "acme/operating_system/error_code.h"
+#include "acme/primitive/string/string.h"
+#include "acme/primitive/collection/array.h"
 
-#error "exception"
 
-
-class CLASS_DECL_ACME exception 
+class CLASS_DECL_ACME exception
 {
 public:
 
@@ -109,23 +109,6 @@ public:
 
 #endif
 
-
-class CLASS_DECL_ACME assert_exception :
-   public ::exception
-{
-public:
-
-
-   assert_exception(const char* pszFileName, int iLine) :
-      ::exception(error_failed)
-   {
-
-      m_strMessage.format("Assert Exception at file \"%s\", line %d", pszFileName, iLine);
-
-   }
-
-
-};
 
 
 

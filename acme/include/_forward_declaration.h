@@ -172,7 +172,7 @@ class payload;
 class atom;
 
 
-
+struct MESSAGE;
 
 class item;
 

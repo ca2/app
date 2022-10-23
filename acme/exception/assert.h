@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "exception.h"
+
+
 class CLASS_DECL_ACME assert_exception :
    public ::exception
 {
@@ -16,3 +19,6 @@ public:
 
 
 };
+
+
+

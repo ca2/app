@@ -2,6 +2,7 @@
 
 
 #include "atom.h"
+#include "acme/platform/tracer.h"
 
 
 class CLASS_DECL_ACME matter :

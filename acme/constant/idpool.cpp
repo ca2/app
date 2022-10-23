@@ -1,7 +1,6 @@
 #include "framework.h"
 #include "idpool.h"
-//#include "acme/platform/static_start.h"
-//
+#include "acme/platform/system.h"
 
 
 namespace acme

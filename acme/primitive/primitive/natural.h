@@ -1,18 +1,11 @@
 #pragma once
 
 
-
-
-
-
-
-
-#include "acme/constant/_enumeration.h"
+#include "acme/memory/memory_allocator.h"
 
 
 template < typename NATURAL_DATA >
 NATURAL_DATA* __nil() { return nullptr; }
-
 
 
 #define NATURAL_METADATA_ALIGN 32

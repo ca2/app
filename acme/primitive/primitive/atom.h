@@ -7,7 +7,7 @@
 
 #include "acme/primitive/comparison/equals.h"
 #include "acme/primitive/comparison/hash.h"
-#include "acme/constant/thread.h"
+//#include "acme/constant/thread.h"
 #include "acme/primitive/string/string_base.h"
 #include "acme/primitive/primitive/move.h"
 #include "acme/_api.h"
@@ -53,16 +53,16 @@ int __atom_sgn(T x)
 }
 
 
-#define __atom_safe_strcmp(a, b) ::str().compare(a, b)
-
-
-#define __atom_safe_stricmp(a, b) ::str().compare_ci(a, b)
-
-
-#define __atom_str_begins(a, b) ::str().begins(a, b)
-
-
-#define __atom_str_begins_ci(a, b) ::str().begins_ci(a, b)
+//#define __atom_safe_strcmp(a, b) ::str().compare(a, b)
+//
+//
+//#define __atom_safe_stricmp(a, b) ::str().compare_ci(a, b)
+//
+//
+//#define __atom_str_begins(a, b) ::str().begins(a, b)
+//
+//
+//#define __atom_str_begins_ci(a, b) ::str().begins_ci(a, b)
 
 
 #else
@@ -79,147 +79,147 @@ int __atom_sgn(T x)
 
 
 
-inline int __atom_safe_strcmp(const char * a, const char * b)
-{
-
-   if (__atom_str_is_empty(a))
-   {
-
-      if (__atom_str_is_empty(b))
-      {
-
-         return true;
-
-      }
-      else
-      {
-
-         return -1;
-
-      }
-
-   }
-   else if(__atom_str_is_empty(b))
-   {
-
-      return 1;
-
-   }
-   else
-   {
-
-      return strcmp(a, b);
-
-   }
-
-}
-
-
-inline int __atom_safe_stricmp(const char * a, const char * b)
-{
-
-   if (__atom_str_is_empty(a))
-   {
-
-      if (__atom_str_is_empty(b))
-      {
-
-         return true;
-
-      }
-      else
-      {
-
-         return -1;
-
-      }
-
-   }
-   else if (__atom_str_is_empty(b))
-   {
-
-      return 1;
-
-   }
-   else
-   {
-
-      return stricmp(a, b);
-
-   }
-
-}
-
-inline bool __atom_str_begins(const char * a, const char * b)
-{
-
-   if (__atom_str_is_empty(a))
-   {
-
-      if (__atom_str_is_empty(b))
-      {
-
-         return true;
-
-      }
-      else
-      {
-
-         return false;
-
-      }
-
-   }
-   else if (__atom_str_is_empty(b))
-   {
-
-      return true;
-
-   }
-   else
-   {
-
-      return strncmp(a, b, strlen(b));
-
-   }
-
-}
-
-
-inline bool __atom_str_begins_ci(const char * a, const char * b)
-{
-
-   if (__atom_str_is_empty(a))
-   {
-
-      if (__atom_str_is_empty(b))
-      {
-
-         return true;
-
-      }
-      else
-      {
-
-         return false;
-
-      }
-
-   }
-   else if (__atom_str_is_empty(b))
-   {
-
-      return true;
-
-   }
-   else
-   {
-
-      return strnicmp(a, b, strlen(b));
-
-   }
-
-}
+//inline int __atom_safe_strcmp(const char * a, const char * b)
+//{
+//
+//   if (__atom_str_is_empty(a))
+//   {
+//
+//      if (__atom_str_is_empty(b))
+//      {
+//
+//         return true;
+//
+//      }
+//      else
+//      {
+//
+//         return -1;
+//
+//      }
+//
+//   }
+//   else if(__atom_str_is_empty(b))
+//   {
+//
+//      return 1;
+//
+//   }
+//   else
+//   {
+//
+//      return strcmp(a, b);
+//
+//   }
+//
+//}
+//
+//
+//inline int __atom_safe_stricmp(const char * a, const char * b)
+//{
+//
+//   if (__atom_str_is_empty(a))
+//   {
+//
+//      if (__atom_str_is_empty(b))
+//      {
+//
+//         return true;
+//
+//      }
+//      else
+//      {
+//
+//         return -1;
+//
+//      }
+//
+//   }
+//   else if (__atom_str_is_empty(b))
+//   {
+//
+//      return 1;
+//
+//   }
+//   else
+//   {
+//
+//      return stricmp(a, b);
+//
+//   }
+//
+//}
+//
+//inline bool __atom_str_begins(const char * a, const char * b)
+//{
+//
+//   if (__atom_str_is_empty(a))
+//   {
+//
+//      if (__atom_str_is_empty(b))
+//      {
+//
+//         return true;
+//
+//      }
+//      else
+//      {
+//
+//         return false;
+//
+//      }
+//
+//   }
+//   else if (__atom_str_is_empty(b))
+//   {
+//
+//      return true;
+//
+//   }
+//   else
+//   {
+//
+//      return strncmp(a, b, strlen(b));
+//
+//   }
+//
+//}
+//
+//
+//inline bool __atom_str_begins_ci(const char * a, const char * b)
+//{
+//
+//   if (__atom_str_is_empty(a))
+//   {
+//
+//      if (__atom_str_is_empty(b))
+//      {
+//
+//         return true;
+//
+//      }
+//      else
+//      {
+//
+//         return false;
+//
+//      }
+//
+//   }
+//   else if (__atom_str_is_empty(b))
+//   {
+//
+//      return true;
+//
+//   }
+//   else
+//   {
+//
+//      return strnicmp(a, b, strlen(b));
+//
+//   }
+//
+//}
 
 
 #endif
@@ -1447,7 +1447,7 @@ inline int atom::compare_ci(const char * psz) const
    else
    {
 
-      return __atom_safe_stricmp(m_str.c_str(), psz);
+      return m_str.compare_ci(psz);
 
    }
 
@@ -1486,10 +1486,6 @@ public:
 };
 
 
-
-
-
-
 inline bool atom::begins(const char * pszCandidatePrefix) const
 {
 
@@ -1509,7 +1505,7 @@ inline bool atom::begins(const char * pszCandidatePrefix) const
    else if (is_text())
    {
 
-      return __atom_str_begins(m_str.c_str(), pszCandidatePrefix);
+      return m_str.begins(pszCandidatePrefix);
 
    }
    else

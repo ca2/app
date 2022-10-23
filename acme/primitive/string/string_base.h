@@ -178,6 +178,8 @@ public:
    string_base operator + (const ansichar * pszSrc) const;
    string_base operator + (const wd16char * pszSrc) const;
    string_base operator + (const wd32char * pszSrc) const;
+   string_base operator + (const string & str) const;
+   string_base operator + (const wstring & wstr) const;
    string_base operator + (const ansistring & ansistr) const;
    string_base operator + (const wd16string & wd16str)  const;
    string_base operator + (const wd32string & wd32str)  const;

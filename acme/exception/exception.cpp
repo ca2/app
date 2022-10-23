@@ -548,3 +548,15 @@ CLASS_DECL_ACME void throw_exception(const ::e_status & estatus, const char * ps
 
 
 
+
+
+
+CLASS_DECL_ACME void throw_todo()
+{
+
+   throw ::exception(todo);
+
+}
+
+
+

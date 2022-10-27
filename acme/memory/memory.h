@@ -12,7 +12,7 @@ struct memory_template
    memsize get_size() const { return sizeof(BLOCK_TYPE); }
    memsize size() const { return (memsize) sizeof(BLOCK_TYPE); }
 
-   inline BLOCK_TYPE & operator = (const block & block);
+   BLOCK_TYPE & operator = (const block & block);
 
    ::block block() const { return ::block(get_data(), get_size()); }
 
@@ -28,3 +28,21 @@ struct memory_template
 
 
 
+
+
+template < typename BLOCK_TYPE >
+inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block & block)
+{
+
+   if (block.get_size() < get_size())
+   {
+
+      throw ::exception(error_bad_argument);
+
+   }
+
+   ::memcpy_dup(get_data(), block.get_data(), (size_t)get_size());
+
+   return *get_data();
+
+}

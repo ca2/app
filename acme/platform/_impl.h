@@ -20,22 +20,6 @@ namespace std { enum class align_val_t : std::size_t {}; }
 #ifndef __cplusplus_winrt
 
 
-template < typename BLOCK_TYPE >
-inline BLOCK_TYPE & memory_template < BLOCK_TYPE > ::operator = (const ::block & block)
-{
-
-   if (block.get_size() < get_size())
-   {
-
-      throw ::exception(error_bad_argument);
-
-   }
-
-   ::memcpy_dup(get_data(), block.get_data(), (size_t) get_size());
-
-   return *get_data();
-
-}
 
 
 #endif // __cplusplus_winrt
